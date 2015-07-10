@@ -43,6 +43,7 @@ setup(name='eea.climateadapt',
            ],
           'importer': [
               'zope.sqlalchemy',
+              'psycopg2',
           ]
       },
       entry_points="""

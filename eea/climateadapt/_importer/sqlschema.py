@@ -2,10 +2,10 @@
 from sqlalchemy import BigInteger, Boolean, Column, Date, DateTime, Float, Index, Integer, LargeBinary, Numeric, SmallInteger, String, Table, Text, text
 from sqlalchemy.dialects.postgresql.base import OID
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Metadata
+from sqlalchemy import MetaData
 
 Base = declarative_base()
-metadata = Metadata()
+metadata = MetaData()
 
 class Account(Base):
     __tablename__ = 'account_'
@@ -1970,7 +1970,7 @@ class Kaleonode(Base):
     modifieddate = Column(DateTime)
     kaleodefinitionid = Column(BigInteger, index=True)
     name = Column(String(200))
-    metadata = Column(Text)
+    metadata_ = Column('metadata', Text)
     description = Column(Text)
     type_ = Column(String(20))
     initial_ = Column(Boolean)
