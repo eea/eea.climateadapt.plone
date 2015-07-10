@@ -35,16 +35,22 @@ setup(name='eea.climateadapt',
           'plone.app.dexterity',
           'plone.namedfile [blobs]',
           # -*- Extra requirements: -*-
+          'z3c.jbot',
       ],
       extras_require={
           'test': [
               'plone.app.testing',
            ],
+          'importer': [
+              'zope.sqlalchemy',
+          ]
       },
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
+      [console_scripts]
+      climateadapt_importer = eea.climateadapt._importer:main
       """,
       # The next two lines may be deleted after you no longer need
       # addcontent support from paster and before you distribute
