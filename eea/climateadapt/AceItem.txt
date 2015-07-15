@@ -1,0 +1,39 @@
+AceItem Tests
+-----------------
+
+This is a DocTest file, using the Python doctest format.
+
+
+Create a AceItem object and put it in a folder
+
+    Create the object::
+
+    >>> from zope.component import createObject
+    >>> container = createObject('eea.climateadapt.aceitem')
+
+    Verify it's type::
+
+    >>> container.portal_type
+    'eea.climateadapt.aceitem'
+
+    Give it a title::
+
+    >>> container.setTitle('Test Title')
+    >>> container.Title()
+    'Test Title'
+
+    Put it in our base folder::
+
+    >>> from plone.dexterity.utils import addContentToContainer
+    >>> cobj = addContentToContainer(folder, container)
+
+    >>> cobj
+    <AceItem at /plone/Members/test_user_1_/test-title>
+
+    >>> folder['test-title'].Title()
+    'Test Title'
+
+Now, let's demonstrate a failing test::
+
+    >>> 2 == 3  # Deliberately failing test
+    True

@@ -72,7 +72,6 @@ RELATIONS = {
     # TODO: users_groups to be used to map users to groups. users_usergroups???
     #       users_roles, same
 
-
 }
 
 class AceIndicator(sql.Base):   # count: 42
