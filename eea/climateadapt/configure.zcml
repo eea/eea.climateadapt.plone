@@ -31,5 +31,9 @@
 
     <utility name="eea.climateadapt.aceitems_datatypes" component=".vocabulary.aceitem_datatypes_vocabulary"/>
     <utility name="eea.climateadapt.aceitems_storagetypes" component=".vocabulary.aceitem_storagetypes_vocabulary"/>
+    <utility name="eea.climateadapt.aceitems_sectors" component=".vocabulary.aceitem_sectors_vocabulary"/>
+    <utility name="eea.climateadapt.aceitems_elements" component=".vocabulary.aceitem_elements_vocabulary"/>
+    <utility name="eea.climateadapt.aceitems_climateimpacts" component=".vocabulary.aceitem_climateimpacts_vocabulary"/>
+    <utility name="eea.climateadapt.aceitems_featured" component=".vocabulary.aceitem_featured_vocabulary"/>
 
 </configure>
