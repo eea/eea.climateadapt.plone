@@ -117,6 +117,22 @@ class AceIndicator(sql.Base):   # count: 42
 
 sql.AceIndicator = AceIndicator
 
+def s2l(text, separator=';'):
+    """Converts a string in form: u'EXTREMETEMP;FLOODING;' to a list"""
+    return filter(None, text.split(separator))
+
+
+def import_aceitem(data, session, location):
+    item = createContentInContainer(location,
+                                    'eea.climateadapt.aceitem',
+                                    title = data.name,
+                                    data_type=s2l(data.datatype),
+                                    storage_type=s2l(data.storagetype),
+                                    sectors=s2l(data.sectors_),
+                                    )
+
+    return item
+
 
 def run_importer(session):
     sql.Address = sql.Addres    # wrong detected plural
@@ -142,10 +158,7 @@ def run_importer(session):
     aceitems_destination = site['aceitems']
 
     for aceitem in session.query(sql.AceAceitem):
-        item = createContentInContainer(aceitems_destination,
-                                        'eea.climateadapt.aceitem',
-                                        title = unicode(aceitem.aceitemid))
-        print item
+        import_aceitem(aceitem, session, aceitems_destination)
 
     print aceitems_destination.objectIds()
 
