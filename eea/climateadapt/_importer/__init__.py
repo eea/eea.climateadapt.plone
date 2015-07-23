@@ -1,19 +1,25 @@
 from eea.climateadapt._importer import sqlschema as sql
+from plone.dexterity.utils import createContentInContainer
 from sqlalchemy import Column, BigInteger, String, Text, DateTime   #, text
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker, relationship
 from zope.sqlalchemy import register
+import logging
 import os
 import transaction
 
+logger = logging.getLogger('eea.climateadapt.importer')
+logger.setLevel(logging.INFO)
+logger.addHandler(logging.StreamHandler())
+
 
 RELATIONS = {
-    'Address': {
+    'Addres': {
         'company': {'other': 'Company', 'fk': 'companyid', 'bref': 'addresses'},
         'user': {'other': 'User', 'fk': 'userid', 'bref': 'addresses'},
         'region': {'other': 'Region', 'fk': 'regionid', 'bref': 'addresses'},
         'country': {'other': 'Country', 'fk': 'countryid', 'bref': 'addresses'},
-        'type_': {'other': 'Type', 'fk': 'typeid', 'bref': 'addresses'},
+        #'type_': {'other': 'Type', 'fk': 'typeid', 'bref': 'addresses'},
     },
     'Account': {    # count: 2
         'company': {'other': 'Company', 'fk': 'companyid', 'bref': 'accounts'},
@@ -49,7 +55,7 @@ RELATIONS = {
     },
     'Group': {
         'company': {'other': 'Company', 'fk': 'companyid', 'bref': 'groups'},
-        'creator': {'other': 'User', 'fk': 'creatoruserid', 'bref': 'groups_created'},
+        # 'creator': {'other': 'User', 'fk': 'creatoruserid', 'bref': 'groups_created'},
         'classname': {'other': 'Classname', 'fk': 'classnameid', 'bref': 'usedby_groups'},
     },
     'Journalarticle': { # count: 4203
@@ -113,7 +119,9 @@ sql.AceIndicator = AceIndicator
 
 
 def run_importer(session):
+    sql.Address = sql.Addres    # wrong detected plural
     for kname, rels in RELATIONS.items():
+        logger.info("Setting relations for %s", kname)
         klass = getattr(sql, kname)
         for name, info in rels.items():
             other = getattr(sql, info['other'])
@@ -126,21 +134,57 @@ def run_importer(session):
                                )
             setattr(klass, name, rel)
 
-    item = session.query(sql.AceAceitem).first()
+    site = get_plone_site()
 
-    print session.query(sql.Account).count()
-    print item.company
+    if not ('aceitems' in site.objectIds()):
+        site.invokeFactory("Folder", 'aceitems')
 
-    import pdb; pdb.set_trace()
+    aceitems_destination = site['aceitems']
+
+    for aceitem in session.query(sql.AceAceitem):
+        item = createContentInContainer(aceitems_destination,
+                                        'eea.climateadapt.aceitem',
+                                        title = unicode(aceitem.aceitemid))
+        print item
+
+    print aceitems_destination.objectIds()
+
+
+def get_plone_site():
+    import Zope2
+    app = Zope2.app()
+    from Testing.ZopeTestCase.utils import makerequest
+    app = makerequest(app)
+    app.REQUEST['PARENTS'] = [app]
+    from zope.globalrequest import setRequest
+    setRequest(app.REQUEST)
+    from AccessControl.SpecialUsers import system as user
+    from AccessControl.SecurityManagement import newSecurityManager
+    newSecurityManager(None, user)
+
+    _site = app['Plone']
+    site = _site.__of__(app)
+
+    from zope.site.hooks import setSite
+    setSite(site)
+
+    return site
 
 
 def main():
+    """ Run the ClimateAdapt import process
+
+    This should be run through the zope client script running machinery, like so:
+
+    DB=postgres://postgres:pwd@localhost/climate bin/www1 run bin/climateadapt_importer
+    """
     engine = create_engine(os.environ.get("DB"))
     Session = scoped_session(sessionmaker(bind=engine))
     register(Session, keep_session=True)
     session = Session()
     run_importer(session)
     transaction.commit()
+
     return
 
 
