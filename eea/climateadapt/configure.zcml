@@ -9,6 +9,8 @@
 
   <includeDependencies package="." />
 
+  <include package=".browser" />
+
   <i18n:registerTranslations directory="locales" />
 
   <genericsetup:registerProfile

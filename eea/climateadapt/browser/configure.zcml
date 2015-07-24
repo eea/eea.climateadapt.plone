@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="eea.climateadapt">
+
+    <browser:page
+        name="view"
+        for="eea.climateadapt.aceitem.IAceItem"
+        class="eea.climateadapt.browser.aceitem.AceItemView"
+        template="pt/aceitem_view.pt"
+        permission="zope2.View"
+        />
+
+</configure>
