@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <theme href="index.html" css:if-content="#visual-portal-wrapper" />
+
+    <!--Plone.app.toolbar-->
+    <append theme="/html/body" content="//div[@data-iframe='toolbar']" />
+
+    <!--Head-->
+    <copy css:content="html" css:theme="html" attributes="lang dir" />
+    <before css:content="head style, head link, head script, head meta" css:theme-children="head" />
+    <replace css:content="head title" css:theme="head title" />
+    <copy css:content="head base" css:theme="head base" />
+    <drop css:content="head link[rel='shortcut icon']" />
+    <drop css:content="head link[rel='apple-touch-icon']" />
+    
+    <!--Content-->
+    <merge attributes="class" css:content="body" css:theme="body" />
+    <copy attributes="id dir" css:content="body" css:theme="body" />
+	<copy attributes="role" css:content="content" css:theme="contentspace" />
+    <replace css:content="#portal-columns" css:theme="#content" />
+    
+    <!--Viewlets-->
+    <replace css:content="#portal-personaltools" css:theme="#user" />    
+    <copy attributes="href title" css:content="#portal-logo" css:theme="#logo a" />
+    <replace css:content="#portal-header p.hiddenStructure" css:theme="#accessibility" /> 
+    <drop css:content=".searchSection" />
+    <replace css:content="#portal-searchbox" css:theme="#search" />
+    <replace css:content="#portal-globalnav li" css:theme-children="#nav ul" />
+    <replace css:content-children="#portal-footer" css:theme="#footer-info" />   
+    <replace css:content="#portal-siteactions" css:theme-children="#siteactions" />  
+    <after css:content="#portal-languageselector" css:theme="#logo" />    
+
+    <!--Portlets-->
+    <!-- Control Panel -->
+    <after css:content="#visual-portal-wrapper .row:last-child script" css:theme="head script:last-child" />
+
+
+</rules>
