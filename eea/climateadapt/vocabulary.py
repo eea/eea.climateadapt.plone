@@ -5,8 +5,9 @@ from zope.schema.vocabulary import SimpleTerm
 
 
 def generic_vocabulary(_terms):
-
-    if _terms and isinstance(_terms[0], basestring):
+    if _terms and isinstance(_terms, dict):
+        _terms = dict.items()
+    elif _terms and isinstance(_terms[0], basestring):
         _terms = [(x, x) for x in _terms]
 
     def factory(context):
@@ -112,3 +113,16 @@ _featured = [('CASEHOME', 'Feature this on the homepage'),
              ('CASESEARCH', 'Feature this on study search results page')]
 aceitem_featured_vocabulary = generic_vocabulary(_featured)
 alsoProvides(aceitem_featured_vocabulary, IVocabularyFactory)
+
+_implementationtypes = (("grey", "Technical ('grey')"),
+                        ("green", "Ecological ('green')"),
+                        ("soft", "Behavioural / policy ('soft')")
+                        )
+acemeasure_implementationtype_vocabulary = generic_vocabulary(_implementationtypes)
+alsoProvides(acemeasure_implementationtype_vocabulary, IVocabularyFactory)
+
+from eea.vocab.countries import getCountries
+ace_countries_vocabulary = generic_vocabulary(getCountries())
+
+_measure_types = (("A", "Case study"), ("M", "Adaptation option"))
+acemeasure_types = generic_vocabulary(_measure_types)

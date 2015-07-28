@@ -67,11 +67,12 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                     ),
                     )
 
-    important = Bool(title=_(u"Important"), required=False, default=False)
+    important = Bool(title=_(u"High importance"), required=False, default=False)
     source = TextLine(title=_(u"Source"), required=True,)
     comments = TextLine(title=_(u"Comments"), required=False, default=u"")
     year = Int(title=_(u"Year"), required=True)
-    geochars = Text(title=_(u"Geochars"), required=False, default=u"")
+    geochars = Text(title=_(u"Geographic characterization"),
+                    required=False, default=u"")
 
     # TODO: see if possible to use eea.promotions for this
     featured = List(title=_(u"Featured in location"),

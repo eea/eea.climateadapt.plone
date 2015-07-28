@@ -12,4 +12,12 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        name="view"
+        for="eea.climateadapt.acemeasure.IAceMeasure"
+        class="eea.climateadapt.browser.acemeasure.AceMeasureView"
+        template="pt/acemeasure_view.pt"
+        permission="zope2.View"
+        />
+
 </configure>
