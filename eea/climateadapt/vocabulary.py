@@ -2,6 +2,7 @@ from zope.interface import alsoProvides
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
+import pycountry
 
 
 def generic_vocabulary(_terms):
@@ -121,8 +122,10 @@ _implementationtypes = (("grey", "Technical ('grey')"),
 acemeasure_implementationtype_vocabulary = generic_vocabulary(_implementationtypes)
 alsoProvides(acemeasure_implementationtype_vocabulary, IVocabularyFactory)
 
-from eea.vocab.countries import getCountries
-ace_countries_vocabulary = generic_vocabulary(getCountries())
+ace_countries = [(x.alpha2, x.name) for x in pycountry.countries]
+ace_countries_vocabulary = generic_vocabulary(ace_countries)
+alsoProvides(ace_countries_vocabulary, IVocabularyFactory)
 
 _measure_types = (("A", "Case study"), ("M", "Adaptation option"))
 acemeasure_types = generic_vocabulary(_measure_types)
+alsoProvides(acemeasure_types, IVocabularyFactory)

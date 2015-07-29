@@ -91,7 +91,11 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                     description=_(u"Characterisation of the area"),
                     required=False)
 
-    # TODO: Country
+    countries = List(title=_(u"Countries"),
+                     description=_(u"European countries"),
+                     required=False,
+                     value_type=Choice(
+                         vocabulary="eea.climateadapt.ace_countries"))
 
     comments = TextLine(title=_(u"Source"),
                         description=_(u"Any comments provided with the item"),

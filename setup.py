@@ -36,6 +36,7 @@ setup(name='eea.climateadapt',
           'plone.namedfile [blobs]',
           # -*- Extra requirements: -*-
           'z3c.jbot',
+          'pycountry',
       ],
       extras_require={
           'test': [

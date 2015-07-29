@@ -13,9 +13,9 @@
 
     <include package="plone.resource" file="meta.zcml"/>
 
-    <plone:static 
+    <plone:static
         name="climateadapt"
-        directory="theme/climateadapt" 
+        directory="theme/climateadapt"
         type="theme" />
 
     <i18n:registerTranslations directory="locales" />
