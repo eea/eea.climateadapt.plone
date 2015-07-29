@@ -41,9 +41,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                              required=False,
                              default=u"")
 
-    stakeholder_participation = Text(title=_(u"Stakeholder participation"),
-                             required=False,
-                             default=u"")
     contact = RichText(title=_(u"Contact"), required=False, default=u"")
     success_limitations = Text(title=_(u"Success / limitations"),
                              required=False,

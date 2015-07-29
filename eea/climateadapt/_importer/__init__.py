@@ -117,6 +117,7 @@ class AceIndicator(sql.Base):   # count: 42
 
 sql.AceIndicator = AceIndicator
 
+
 def s2l(text, separator=';'):
     """Converts a string in form: u'EXTREMETEMP;FLOODING;' to a list"""
     return filter(None, text.split(separator))
@@ -125,11 +126,65 @@ def s2l(text, separator=';'):
 def import_aceitem(data, session, location):
     item = createContentInContainer(location,
                                     'eea.climateadapt.aceitem',
-                                    title = data.name,
+                                    title=data.name,
                                     data_type=s2l(data.datatype),
                                     storage_type=s2l(data.storagetype),
                                     sectors=s2l(data.sectors_),
                                     )
+
+    return item
+
+
+def import_aceproject(data, session, location):
+    item = createContentInContainer(
+        location,
+        'eea.climateadapt.aceproject',
+        title=data.title,
+        acronym=data.acronym,
+        lead=data.lead,
+        website=data.website,
+        abstracts=data.abstracts,
+        source=data.source,
+        partners=data.partners,
+        keywords=data.keywords,
+        sectors=s2l(data.sectors),
+        elements=s2l(data.element),
+        climate_impacts=s2l(data.climateimpacts),
+        funding=data.funding,
+        duration=data.duration,
+        specialtagging=data.specialtagging,
+        geochars=data.geochars,
+        countries=s2l(data.spatialvalues),
+        comments=data.comments,
+    )
+
+    return item
+
+
+def import_acemeasure(data, session, location):
+    item = createContentInContainer(
+        location,
+        'eea.climateadapt.acemeasure',
+        title=data.name,
+        implementation_type=data.implementationtype,
+        implementation_time=data.implementationtime,
+        lifetime=data.lifetime,
+        spatial_layer=data.spatiallayer,
+        spatial_values=data.spatialvalues,
+        legal_aspects=data.legalaspects,
+        stakeholder_participation=data.stakeholderparticipation,
+        contact=data.contact,
+        success_limitations=data.succeslimitations,
+        cost_benefit=data.costbenefit,
+        websites=s2l(data.website),
+        sectors=s2l(data.sectors_),
+        elements=s2l(data.elements_),
+        climate_impacts=s2l(data.climateimpacts_),
+        source=data.source,
+        geochars=data.geochars,
+        measure_type=data.mao_type,
+        comments=data.comments,
+    )
 
     return item
 
@@ -161,6 +216,20 @@ def run_importer(session):
         import_aceitem(aceitem, session, aceitems_destination)
 
     print aceitems_destination.objectIds()
+
+    if not ('aceprojects' in site.objectIds()):
+        site.invokeFactory("Folder", 'aceprojects')
+
+    aceprojects_destination = site['aceprojects']
+    for aceproject in session.query(sql.AceProject):
+        import_aceproject(aceproject, session, aceprojects_destination)
+
+    if not ('acemeasures' in site.objectIds()):
+        site.invokeFactory("Folder", 'acemeasures')
+
+    acemeasures_destination = site['acemeasures']
+    for acemeasure in session.query(sql.AceMeasure):
+        import_acemeasure(acemeasure, session, acemeasures_destination)
 
 
 def get_plone_site():
