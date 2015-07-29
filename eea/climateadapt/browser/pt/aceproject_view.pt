@@ -10,19 +10,19 @@
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core" >
 
-        <h2 tal:content="python: context.data_type">Data Type</h2>
         <h1 tal:content="python: context.title">Title here</h1>
+        <h2 tal:content="python: context.acrony">Acronym here</h2>
 
-        <h3>Description</h3>
-        <p tal:content="context/description">description here</p>
+        <h3>Abstracts</h3>
+        <p tal:content="context/abstracts">Abstracts here</p>
 
         <h4>Reference information</h4>
         <h5>Websites:</h5>
-        <p tal:content="python:u', '.join(context.websites)" />
+        <p tal:content="content/website">Websites here</p>
         <h5>Source:</h5>
         <p tal:content="context/source">Source here</p>
 
-        <div id="aceitem_sidebar">
+        <div id="aceproject_sidebar">
           <h4>Keywords</h4>
           <p tal:content="python:u', '.join(context.Subject())" />
           <h4>Climate impacts</h4>
@@ -30,11 +30,13 @@
           <h4>Sectors</h4>
           <p tal:content="structure python:view.widgets['sectors'].render()"/>
           <h5>Countries:</h5>
-          <p tal:content="structure python:view.widgets['spatial_values'].render()"/>
+          <p tal:content="structure python:view.widgets['countries'].render()"/>
         </div>
+
+        <div style="display:none" tal:content="python:view.w.keys()" />
+
       </tal:main-macro>
     </metal:main>
 
   </body>
 </html>
-

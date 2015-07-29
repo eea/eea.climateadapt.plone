@@ -5,7 +5,7 @@
     i18n_domain="eea.climateadapt">
 
     <browser:page
-        name="view"
+        name="aceitem_view"
         for="eea.climateadapt.aceitem.IAceItem"
         class="eea.climateadapt.browser.aceitem.AceItemView"
         template="pt/aceitem_view.pt"
@@ -13,10 +13,18 @@
         />
 
     <browser:page
-        name="view"
+        name="acemeasure_view"
         for="eea.climateadapt.acemeasure.IAceMeasure"
         class="eea.climateadapt.browser.acemeasure.AceMeasureView"
         template="pt/acemeasure_view.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="aceproject_view"
+        for="eea.climateadapt.aceproject.IAceProject"
+        class="eea.climateadapt.browser.aceproject.AceProjectView"
+        template="pt/aceproject_view.pt"
         permission="zope2.View"
         />
 
