@@ -29,7 +29,7 @@ def vocab_from_labels(text):
             name = first.split('-lbl-')[1]
             terms.append((name, label))
 
-        terms.sort(cmp=lambda x,y: cmp(x[1], y[1]))
+        terms.sort(cmp=lambda x, y: cmp(x[1], y[1]))
 
         return SimpleVocabulary([
             SimpleTerm(n, n, l) for n, l in terms
@@ -122,7 +122,15 @@ _implementationtypes = (("grey", "Technical ('grey')"),
 acemeasure_implementationtype_vocabulary = generic_vocabulary(_implementationtypes)
 alsoProvides(acemeasure_implementationtype_vocabulary, IVocabularyFactory)
 
-ace_countries = [(x.alpha2, x.name) for x in pycountry.countries]
+
+european_countries = ['AD', 'AL', 'AM', 'AT', 'AZ', 'BA', 'BE', 'BG', 'BY',
+                      'CH', 'RS', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI',
+                      'FO', 'FR', 'GB', 'GE', 'GR', 'HR', 'HU', 'IE', 'IL',
+                      'IS', 'IT', 'KZ', 'LI', 'LT', 'LU', 'LV', 'MC', 'MD',
+                      'MK', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'RU', 'SE',
+                      'SI', 'SK', 'SM', 'TR', 'UA']
+ace_countries = [(x.alpha2, x.name) for x in pycountry.countries
+                 if x.alpha2 in european_countries]
 ace_countries_vocabulary = generic_vocabulary(ace_countries)
 alsoProvides(ace_countries_vocabulary, IVocabularyFactory)
 
