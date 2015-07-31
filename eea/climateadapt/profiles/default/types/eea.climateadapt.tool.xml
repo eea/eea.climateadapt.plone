@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
-<object name="eea.climateadapt.acemeasure"
+<object name="eea.climateadapt.tool"
    meta_type="Dexterity FTI"
    i18n:domain="eea.climateadapt" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">AceMeasure</property>
+  <property name="title" i18n:translate="">Tool</property>
   <property name="description"
-    i18n:translate="">Ace Measure</property>
+    i18n:translate="">Tool</property>
   <property name="icon_expr">string:${portal_url}/document_icon.png</property>
-  <property name="factory">eea.climateadapt.acemeasure</property>
+  <property name="factory">eea.climateadapt.tool</property>
   <property name="global_allow">True</property>
   <property name="filter_content_types">False</property>
   <property name="allowed_content_types" />
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">eea.climateadapt.acemeasure.IAceMeasure</property>
-  <property name="klass">eea.climateadapt.acemeasure.AceMeasure</property>
+  <property name="schema">eea.climateadapt.aceitem.ITool</property>
+  <property name="klass">eea.climateadapt.aceitem.Tool</property>
 
   <property name="behaviors">
      <element value="plone.app.content.interfaces.INameFromTitle" />

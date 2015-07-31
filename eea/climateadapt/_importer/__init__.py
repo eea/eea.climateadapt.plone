@@ -80,6 +80,7 @@ RELATIONS = {
 
 }
 
+
 class AceIndicator(sql.Base):   # count: 42
     __tablename__ = 'ace_indicator'
 
@@ -123,16 +124,35 @@ def s2l(text, separator=';'):
     return filter(None, text.split(separator))
 
 
-def import_aceitem(data, session, location):
-    item = createContentInContainer(location,
-                                    'eea.climateadapt.aceitem',
-                                    title=data.name,
-                                    data_type=s2l(data.datatype),
-                                    storage_type=s2l(data.storagetype),
-                                    sectors=s2l(data.sectors_),
-                                    )
+PUBLICATION_REPORT = 'DOCUMENT'
+INFORMATION_PORTAL = 'INFORMATIONSOURCE'
+GUIDANCE_DOCUMENT = 'GUIDANCE'
+TOOL = 'TOOL'
+ORGINIZATION = 'ORGINIZATION'
+ACE_ITEM_TYPES = {
+    PUBLICATION_REPORT: 'eea.climateadapt.publicationreport',
+    INFORMATION_PORTAL: 'eea.climateadapt.informationportal',
+    GUIDANCE_DOCUMENT: 'eea.climateadapt.guidancedocument',
+    TOOL: 'eea.climateadapt.tool',
+    ORGINIZATION: 'eea.climateadapt.organization'
+}
 
-    return item
+
+def import_aceitem(data, session, location):
+    # TODO: Some AceItems have ACTION, MEASURE, REASEARCHPROJECT types and
+    # should be mapped over AceMeasure and AceProject
+
+    if data.datatype in ACE_ITEM_TYPES:
+        item = createContentInContainer(
+            location,
+            ACE_ITEM_TYPES[data.datatype],
+            title=data.name,
+            data_type=s2l(data.datatype),
+            storage_type=s2l(data.storagetype),
+            sectors=s2l(data.sectors_),
+        )
+
+        return item
 
 
 def import_aceproject(data, session, location):
@@ -237,15 +257,15 @@ def run_importer(session):
 
     site = get_plone_site()
 
-    if not ('aceitems' in site.objectIds()):
-        site.invokeFactory("Folder", 'aceitems')
+    if not ('content' in site.objectIds()):
+        site.invokeFactory("Folder", 'content')
 
-    aceitems_destination = site['aceitems']
+    content_destination = site['content']
 
     for aceitem in session.query(sql.AceAceitem):
-        import_aceitem(aceitem, session, aceitems_destination)
+        import_aceitem(aceitem, session, content_destination)
 
-    print aceitems_destination.objectIds()
+    print content_destination.objectIds()
 
     if not ('aceprojects' in site.objectIds()):
         site.invokeFactory("Folder", 'aceprojects')

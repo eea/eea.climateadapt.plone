@@ -5,7 +5,7 @@ from zope.interface import implements
 from zope.schema import Choice, TextLine, List, Bool, Int, Text
 
 
-#from five import grok
+# from five import grok
 # from zope import schema
 # from zope.schema.interfaces import IContextSourceBinder
 # from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
@@ -28,15 +28,15 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     Defines content-type schema for Ace Item
     """
 
-    # form.model("models/aceitem.xml")
+    title = TextLine(title=_(u"Title"), required=True)
 
     data_type = Choice(title=_(u"Data Type"),
                        required=True,
                        vocabulary="eea.climateadapt.aceitems_datatypes")
 
     storage_type = Choice(title=_(u"Storage Type"),
-                       required=True,
-                       vocabulary="eea.climateadapt.aceitems_storagetypes")
+                          required=True,
+                          vocabulary="eea.climateadapt.aceitems_storagetypes")
 
     spatial_layer = TextLine(title=_(u"Spatial Layer"),
                              required=False,
@@ -47,41 +47,43 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                    description=_(u"TODO: Sectors description here"),
                    required=False,
                    value_type=Choice(
-                       vocabulary="eea.climateadapt.aceitems_sectors",
-                   ),
+                       vocabulary="eea.climateadapt.aceitems_sectors",),
                    )
 
     elements = List(title=_(u"Elements"),
                     description=_(u"TODO: Elements description here"),
                     required=False,
                     value_type=Choice(
-                        vocabulary="eea.climateadapt.aceitems_elements",
-                    ),
+                        vocabulary="eea.climateadapt.aceitems_elements",),
                     )
 
-    climate_impacts = List(title=_(u"Climate impacts"),
-                    description=_(u"TODO: Climate impacts description here"),
-                    required=False,
-                    value_type=Choice(
-                        vocabulary="eea.climateadapt.aceitems_climateimpacts",
-                    ),
-                    )
+    climate_impacts = List(
+        title=_(u"Climate impacts"),
+        description=_(u"TODO: Climate impacts description here"),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_climateimpacts",),
+    )
 
-    important = Bool(title=_(u"High importance"), required=False, default=False)
+    important = Bool(title=_(u"High importance"), required=False,
+                     default=False)
+
     source = TextLine(title=_(u"Source"), required=True,)
+
     comments = TextLine(title=_(u"Comments"), required=False, default=u"")
+
     year = Int(title=_(u"Year"), required=True)
+
     geochars = Text(title=_(u"Geographic characterization"),
                     required=False, default=u"")
 
     # TODO: see if possible to use eea.promotions for this
     featured = List(title=_(u"Featured in location"),
-                   description=_(u"TODO: Featured description here"),
-                   required=False,
-                   value_type=Choice(
-                       vocabulary="eea.climateadapt.aceitems_featured",
-                   ),
-                   )
+                    description=_(u"TODO: Featured description here"),
+                    required=False,
+                    value_type=Choice(
+                        vocabulary="eea.climateadapt.aceitems_featured",),
+                    )
 
     # TODO: rating??? seems to be manually assigned, not computed
 
@@ -89,7 +91,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     # if contains inner contents, starts with ace_project_id=<id>
     # or ace_measure_id=<id>
 
-    #supdocs - this is a related field. It seems to point to dlfileentry
+    # supdocs - this is a related field. It seems to point to dlfileentry
 
     # replacesid - tot un related??
 
@@ -97,10 +99,50 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     # IPCCSRES A1B
     # the options are stored in a AceItemScenario constant in Java code
 
-
-class AceItem(dexterity.Item):
-    implements(IAceItem)
-
     # TODO: special search behaviour, should aggregate most fields
     # TODO: "keyword" from SQL is Subject
 
+
+class IPublicationReport(IAceItem):
+
+    pass
+
+
+class IInformationPortal(IAceItem):
+
+    pass
+
+
+class IGuidanceDocument(IAceItem):
+
+    pass
+
+
+class ITool(IAceItem):
+
+    pass
+
+
+class IOrganization(IAceItem):
+
+    pass
+
+
+class PublicationReport(dexterity.Item):
+    implements(IPublicationReport)
+
+
+class InformationPortal(dexterity.Item):
+    implements(IInformationPortal)
+
+
+class GuidanceDocument(dexterity.Item):
+    implements(IGuidanceDocument)
+
+
+class Tool(dexterity.Item):
+    implements(ITool)
+
+
+class Organization(dexterity.Item):
+    implements(IOrganization)

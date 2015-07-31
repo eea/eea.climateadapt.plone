@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
-<object name="eea.climateadapt.aceitem"
+<object name="eea.climateadapt.informationportal"
    meta_type="Dexterity FTI"
    i18n:domain="eea.climateadapt" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">AceItem</property>
+  <property name="title" i18n:translate="">Information portal</property>
   <property name="description"
-    i18n:translate="">Generic Ace Item</property>
+    i18n:translate="">Information portal</property>
   <property name="icon_expr">string:${portal_url}/document_icon.png</property>
-  <property name="factory">eea.climateadapt.aceitem</property>
+  <property name="factory">eea.climateadapt.informationportal</property>
   <property name="global_allow">True</property>
-  <property name="filter_content_types">False</property>  
+  <property name="filter_content_types">False</property>
   <property name="allowed_content_types" />
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">eea.climateadapt.aceitem.IAceItem</property> 
-  <property name="klass">eea.climateadapt.aceitem.AceItem</property>
+  <property name="schema">eea.climateadapt.aceitem.IInformationPortal</property>
+  <property name="klass">eea.climateadapt.aceitem.InformationPortal</property>
 
   <property name="behaviors">
      <element value="plone.app.content.interfaces.INameFromTitle" />
