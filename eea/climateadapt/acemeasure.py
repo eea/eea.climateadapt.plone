@@ -3,49 +3,58 @@ from plone.app.textfield import RichText
 from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
 from zope.interface import implements
-from zope.schema import Choice, TextLine, List, Bool, Int, Text, URI
+from zope.schema import Choice, TextLine, List, Bool, Int, Text, URI, Decimal
+
 
 class IAceMeasure(form.Schema, IImageScaleTraversable):
     """
     Defines content-type schema for Ace Measure
     """
 
-    #company - this is always liferay in the data
-    #group - same value for all
+    # company - this is always liferay in the data
+    # group - same value for all
 
     # title - Provided by behaviour. Imported value comes from name column
+    title = TextLine(title=_(u"Title"), required=True)
+
     # description - Provided by behaviour. Imported value comes from description column
+    description = TextLine(title=_(u"description"), required=True)
 
     implementation_type = Choice(
         title=_(u"Implementation Type"), required=False, default=None,
         vocabulary="eea.climateadapt.acemeasure_implementationtype"
     )
 
-    implementation_time = TextLine(title=_(u"Implementation Time"),
-                                   required=False,
-                                   default=None,
-                                   )
-    lifetime = TextLine(title=_(u"Lifetime"), required=False, default=u"")
-    spatial_layer = TextLine(title=_(u"Spatial Layer"),
-                             required=False,
-                             default=u""
-                             )
-    spatial_values = Choice(    #TODO: this should be list
-        title=_(u"Countries"), required=False, default=None,
-        vocabulary="eea.climateadapt.ace_countries"
+    implementation_time = TextLine(
+        title=_(u"Implementation Time"), required=False, default=None,
     )
+
+    lifetime = TextLine(title=_(u"Lifetime"), required=False, default=u"")
+
+    spatial_layer = TextLine(
+        title=_(u"Spatial Layer"), required=False, default=u"")
+
+    spatial_values = List(
+        title=_(u"Countries"), required=False, default=None,
+        value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
+    )
+
     legal_aspects = Text(title=_(u"Legal aspects"),
-                             required=False,
-                             default=u"")
-    stakeholder_participation = Text(title=_(u"Stakeholder participation"),
-                             required=False,
-                             default=u"")
+                         required=False,
+                         default=u"")
+
+    stakeholder_participation = Text(
+        title=_(u"Stakeholder participation"), required=False,
+        default=u"")
 
     contact = RichText(title=_(u"Contact"), required=False, default=u"")
-    success_limitations = Text(title=_(u"Success / limitations"),
-                             required=False,
-                             default=u"")
-    cost_benefit = Text(title=_(u"Cost / Benefit"), required=False, default=u"")
+
+    success_limitations = Text(
+        title=_(u"Success / limitations"), required=False, default=u"")
+
+    cost_benefit = Text(
+        title=_(u"Cost / Benefit"), required=False, default=u"")
+
     websites = List(title=_(u"Websites"),
                     description=_(u"A list of relevant website links"),
                     required=False,
@@ -53,6 +62,10 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                     )
 
     # TODO: "keywords" from SQL is Subject
+    keywords = TextLine(title=_(u"Keywords"),
+                        description=_(u"Keywords related to the project"),
+                        required=False)
+
     # TODO: startdate, enddate, publicationdate have no values in DB
     # TODO: specialtagging is not used in any view jsp, only in add and edit
     # views
@@ -61,25 +74,24 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                    description=_(u"TODO: Sectors description here"),
                    required=False,
                    value_type=Choice(
-                       vocabulary="eea.climateadapt.aceitems_sectors",
-                   ),
+                       vocabulary="eea.climateadapt.aceitems_sectors",),
                    )
 
     elements = List(title=_(u"Elements"),
                     description=_(u"TODO: Elements description here"),
                     required=False,
                     value_type=Choice(
-                        vocabulary="eea.climateadapt.aceitems_elements",
-                    ),
+                        vocabulary="eea.climateadapt.aceitems_elements",),
                     )
 
-    climate_impacts = List(title=_(u"Climate impacts"),
-                    description=_(u"TODO: Climate impacts description here"),
-                    required=False,
-                    value_type=Choice(
-                        vocabulary="eea.climateadapt.aceitems_climateimpacts",
-                    ),
-                    )
+    climate_impacts = List(
+        title=_(u"Climate impacts"),
+        description=_(u"TODO: Climate impacts description here"),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_climateimpacts",),
+    )
+
     source = TextLine(title=_(u"Source"), required=True,)
     # TODO: special tagging implement as related
 
@@ -91,16 +103,33 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           default="A",
                           vocabulary="eea.climateadapt.acemeasure_types")
 
-    #location - a clickable map, not provided if is "Adaptation option" type
     comments = TextLine(title=_(u"Comments"), required=False, default=u"")
-    important = Bool(title=_(u"High importance"), required=False, default=False)
 
-    #approved is done by workflow
+    important = Bool(title=_(u"High importance"), required=False,
+                     default=False)
+
+    # approved is done by workflow
 
 
-class AceMeasure(dexterity.Item):
-    implements(IAceMeasure)
+class ICaseStudy(IAceMeasure):
+    # location - a clickable map, not provided if is "Adaptation option" type
 
+    location_lat = Decimal(title=_(u"Location latitude"), required=True)
+
+    location_lon = Decimal(title=_(u"Location longitude"), required=True)
+
+
+class IAdaptationOption(IAceMeasure):
+
+    pass
+
+
+class CaseStudy(dexterity.Item):
+    implements(ICaseStudy)
+
+
+class AdaptationOption(dexterity.Item):
+    implements(IAdaptationOption)
 
 
 # class AceMeasure(Base):
