@@ -161,10 +161,10 @@ def import_aceproject(data, session, location):
     return item
 
 
-def import_acemeasure(data, session, location):
+def import_adaptationoption(data, session, location):
     item = createContentInContainer(
         location,
-        'eea.climateadapt.acemeasure',
+        'eea.climateadapt.adaptationoption',
         title=data.name,
         implementation_type=data.implementationtype,
         implementation_time=data.implementationtime,
@@ -180,6 +180,36 @@ def import_acemeasure(data, session, location):
         sectors=s2l(data.sectors_),
         elements=s2l(data.elements_),
         climate_impacts=s2l(data.climateimpacts_),
+        source=data.source,
+        geochars=data.geochars,
+        measure_type=data.mao_type,
+        comments=data.comments,
+    )
+
+    return item
+
+
+def import_casestudy(data, session, location):
+    item = createContentInContainer(
+        location,
+        'eea.climateadapt.casestudy',
+        title=data.name,
+        implementation_type=data.implementationtype,
+        implementation_time=data.implementationtime,
+        lifetime=data.lifetime,
+        spatial_layer=data.spatiallayer,
+        spatial_values=data.spatialvalues,
+        legal_aspects=data.legalaspects,
+        stakeholder_participation=data.stakeholderparticipation,
+        contact=data.contact,
+        success_limitations=data.succeslimitations,
+        cost_benefit=data.costbenefit,
+        websites=s2l(data.website),
+        sectors=s2l(data.sectors_),
+        elements=s2l(data.elements_),
+        climate_impacts=s2l(data.climateimpacts_),
+        location_lat=data.lat,
+        location_lon=data.lon,
         source=data.source,
         geochars=data.geochars,
         measure_type=data.mao_type,
@@ -224,12 +254,19 @@ def run_importer(session):
     for aceproject in session.query(sql.AceProject):
         import_aceproject(aceproject, session, aceprojects_destination)
 
-    if not ('acemeasures' in site.objectIds()):
-        site.invokeFactory("Folder", 'acemeasures')
+    if not ('casestudy' in site.objectIds()):
+        site.invokeFactory("Folder", 'casestudy')
+    if not ('adaptationoption' in site.objectIds()):
+        site.invokeFactory("Folder", 'adaptationoption')
 
-    acemeasures_destination = site['acemeasures']
+    casestudy_destination = site['casestudy']
+    adaptationoption_destination = site['adaptationoption']
     for acemeasure in session.query(sql.AceMeasure):
-        import_acemeasure(acemeasure, session, acemeasures_destination)
+        if acemeasure.mao_type == 'A':
+            import_casestudy(acemeasure, session, casestudy_destination)
+        else:
+            import_adaptationoption(acemeasure, session,
+                                    adaptationoption_destination)
 
 
 def get_plone_site():

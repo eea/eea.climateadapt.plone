@@ -10,7 +10,6 @@
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core" >
 
-        <h2 tal:content="python: context.data_type">Data Type</h2>
         <h1 tal:content="python: context.title">Title here</h1>
 
         <h3>Description</h3>
@@ -21,6 +20,9 @@
         <p tal:content="python:u', '.join(context.websites)" />
         <h5>Source:</h5>
         <p tal:content="context/source">Source here</p>
+        <h5>Location:</h5>
+        <p tal:content="content/location_lat">Location latitude</p>
+        <p tal:content="content/location_lon">Location longitude</p>
 
         <div id="aceitem_sidebar">
           <h4>Keywords</h4>

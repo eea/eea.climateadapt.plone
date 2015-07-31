@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="example.conference">
+  <body>
+
+    <metal:main fill-slot="main">
+      <tal:main-macro metal:define-macro="content-core" >
+
+        <h1 tal:content="python: context.title">Title here</h1>
+
+        <h3>Description</h3>
+        <p tal:content="context/description">description here</p>
+
+        <h4>Reference information</h4>
+        <h5>Websites:</h5>
+        <p tal:content="python:u', '.join(context.websites)" />
+        <h5>Source:</h5>
+        <p tal:content="context/source">Source here</p>
+
+        <div id="aceitem_sidebar">
+          <h4>Keywords</h4>
+          <p tal:content="python:u', '.join(context.Subject())" />
+          <h4>Climate impacts</h4>
+          <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
+          <h4>Sectors</h4>
+          <p tal:content="structure python:view.widgets['sectors'].render()"/>
+          <h5>Countries:</h5>
+          <p tal:content="structure python:view.widgets['spatial_values'].render()"/>
+        </div>
+      </tal:main-macro>
+    </metal:main>
+
+  </body>
+</html>

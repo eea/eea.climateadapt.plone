@@ -9,6 +9,7 @@
 <object name="portal_types" meta_type="Plone Types Tool">
   <!-- -*- extra stuff goes here -*- -->
   <object name="eea.climateadapt.aceitem" meta_type="Dexterity FTI" />
-  <object name="eea.climateadapt.acemeasure" meta_type="Dexterity FTI" />
+  <object name="eea.climateadapt.casestudy" meta_type="Dexterity FTI" />
+  <object name="eea.climateadapt.adaptationoption" meta_type="Dexterity FTI" />
   <object name="eea.climateadapt.aceproject" meta_type="Dexterity FTI" />
 </object>

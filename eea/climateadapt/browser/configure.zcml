@@ -13,10 +13,18 @@
         />
 
     <browser:page
-        name="acemeasure_view"
-        for="eea.climateadapt.acemeasure.IAceMeasure"
-        class="eea.climateadapt.browser.acemeasure.AceMeasureView"
-        template="pt/acemeasure_view.pt"
+        name="casestudy_view"
+        for="eea.climateadapt.acemeasure.ICaseStudy"
+        class="eea.climateadapt.browser.acemeasure.CaseStudyView"
+        template="pt/casestudy_view.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="adaptationoption_view"
+        for="eea.climateadapt.acemeasure.IAdaptationOption"
+        class="eea.climateadapt.browser.acemeasure.AdaptationOptionView"
+        template="pt/adaptationoption_view.pt"
         permission="zope2.View"
         />
 
