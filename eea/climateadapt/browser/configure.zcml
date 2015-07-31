@@ -15,7 +15,7 @@
     <browser:page
         name="casestudy_view"
         for="eea.climateadapt.acemeasure.ICaseStudy"
-        class="eea.climateadapt.browser.acemeasure.CaseStudyView"
+        class="eea.climateadapt.browser.casestudy.CaseStudyView"
         template="pt/casestudy_view.pt"
         permission="zope2.View"
         />
@@ -23,7 +23,7 @@
     <browser:page
         name="adaptationoption_view"
         for="eea.climateadapt.acemeasure.IAdaptationOption"
-        class="eea.climateadapt.browser.acemeasure.AdaptationOptionView"
+        class="eea.climateadapt.browser.adaptationoption.AdaptationOptionView"
         template="pt/adaptationoption_view.pt"
         permission="zope2.View"
         />
