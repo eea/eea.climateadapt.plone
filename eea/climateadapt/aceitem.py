@@ -30,6 +30,8 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     title = TextLine(title=_(u"Title"), required=True)
 
+    description = TextLine(title=(u"description"), required=True)
+
     data_type = Choice(title=_(u"Data Type"),
                        required=True,
                        vocabulary="eea.climateadapt.aceitems_datatypes")
@@ -37,6 +39,11 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     storage_type = Choice(title=_(u"Storage Type"),
                           required=True,
                           vocabulary="eea.climateadapt.aceitems_storagetypes")
+
+    # TODO: "keyword" from SQL is Subject
+    keywords = TextLine(title=_(u"Keywords"),
+                        description=_(u"Keywords related to the project"),
+                        required=False)
 
     spatial_layer = TextLine(title=_(u"Spatial Layer"),
                              required=False,
@@ -100,7 +107,6 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     # the options are stored in a AceItemScenario constant in Java code
 
     # TODO: special search behaviour, should aggregate most fields
-    # TODO: "keyword" from SQL is Subject
 
 
 class IPublicationReport(IAceItem):

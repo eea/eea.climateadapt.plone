@@ -147,9 +147,18 @@ def import_aceitem(data, session, location):
             location,
             ACE_ITEM_TYPES[data.datatype],
             title=data.name,
+            description=data.description,
+            keywords=data.keyword,
+            spatial_layer=data.spatiallayer,
             data_type=s2l(data.datatype),
             storage_type=s2l(data.storagetype),
             sectors=s2l(data.sectors_),
+            elements=s2l(data.elements_),
+            climate_impacts=s2l(data.climateimpacts_),
+            source=data.source,
+            comments=data.comments,
+            year=data.year,
+            geochars=data.geochars
         )
 
         return item
