@@ -13,6 +13,46 @@
         />
 
     <browser:page
+        name="publicationreport_view"
+        for="eea.climateadapt.aceitem.IPublicationReport"
+        class="eea.climateadapt.browser.aceitem.PublicationReportView"
+        template="pt/publicationreport_view.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="informationportal_view"
+        for="eea.climateadapt.aceitem.IInformationPortal"
+        class="eea.climateadapt.browser.aceitem.InformationPortalView"
+        template="pt/informationportal_view.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="guidancedocument_view"
+        for="eea.climateadapt.aceitem.IGuidanceDocument"
+        class="eea.climateadapt.browser.aceitem.GuidanceDocumentView"
+        template="pt/guidancedocument_view.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="tool_view"
+        for="eea.climateadapt.aceitem.ITool"
+        class="eea.climateadapt.browser.aceitem.ToolView"
+        template="pt/tool_view.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="organization_view"
+        for="eea.climateadapt.aceitem.IOrganization"
+        class="eea.climateadapt.browser.aceitem.OrganizationView"
+        template="pt/organization_view.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
         name="casestudy_view"
         for="eea.climateadapt.acemeasure.ICaseStudy"
         class="eea.climateadapt.browser.casestudy.CaseStudyView"
