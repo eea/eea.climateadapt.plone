@@ -1,5 +1,6 @@
 from eea.climateadapt._importer import sqlschema as sql
 from plone.dexterity.utils import createContentInContainer
+from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from sqlalchemy import Column, BigInteger, String, Text, DateTime   #, text
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker, relationship
@@ -247,6 +248,64 @@ def import_casestudy(data, session, location):
 
     return item
 
+def import_image(data, session, location):
+    try:
+        file_data = open('./document_library/0/0/' + str(data.imageid) + '.' +
+                         data.type_ + '/1.0').read()
+    except Exception:
+        logger.info("Image with id %d does not exist in the supplied document library",
+                    data.imageid)
+        return None
+
+    item = createContentInContainer(
+        location,
+        'Image',
+        title='Image ' + str(data.imageid),
+        id=str(data.imageid) + '.' + data.type_,
+        image=NamedBlobImage(
+            filename=str(data.imageid) + data.type_,
+            data=file_data
+        )
+    )
+
+    return item
+
+def import_dlfileentry(data, session, location):
+    try:
+        file_data = open('./document_library/' + str(data.companyid) + '/' +
+                         str(data.folderid or data.groupid) + '/' + str(data.name) +
+                         '/' + data.version).read()
+    except Exception:
+        logger.info("File with id %d and title '%s' does not exist in the supplied document library",
+                    data.fileentryid, data.title)
+        return None
+
+    if 'jpg' in data.extension or 'png' in data.extension:
+        item = createContentInContainer(
+            location,
+            'Image',
+            title=data.title,
+            description=data.description,
+            id=str(data.name) + '.' + data.extension,
+            image=NamedBlobImage(
+                filename=str(data.name) + '.' + data.extension,
+                data=file_data
+            )
+        )
+    else:
+        item = createContentInContainer(
+            location,
+            'File',
+            title=data.title,
+            description=data.description,
+            id=str(data.name) + '.' + data.extension,
+            file=NamedBlobFile(
+                filename=str(data.name) + '.' + data.extension,
+                data=file_data
+            )
+        )
+
+    return item
 
 def run_importer(session):
     sql.Address = sql.Addres    # wrong detected plural
@@ -266,26 +325,25 @@ def run_importer(session):
 
     site = get_plone_site()
 
-    if not ('content' in site.objectIds()):
+    if not 'content' in site.objectIds():
         site.invokeFactory("Folder", 'content')
 
     content_destination = site['content']
-
     for aceitem in session.query(sql.AceAceitem):
         import_aceitem(aceitem, session, content_destination)
 
     print content_destination.objectIds()
 
-    if not ('aceprojects' in site.objectIds()):
+    if not 'aceprojects' in site.objectIds():
         site.invokeFactory("Folder", 'aceprojects')
 
     aceprojects_destination = site['aceprojects']
     for aceproject in session.query(sql.AceProject):
         import_aceproject(aceproject, session, aceprojects_destination)
 
-    if not ('casestudy' in site.objectIds()):
+    if not 'casestudy' in site.objectIds():
         site.invokeFactory("Folder", 'casestudy')
-    if not ('adaptationoption' in site.objectIds()):
+    if not 'adaptationoption' in site.objectIds():
         site.invokeFactory("Folder", 'adaptationoption')
 
     casestudy_destination = site['casestudy']
@@ -297,6 +355,14 @@ def run_importer(session):
             import_adaptationoption(acemeasure, session,
                                     adaptationoption_destination)
 
+    if not 'repository' in site.objectIds():
+        site.invokeFactory("Folder", 'repository')
+
+    documents_destination = site['repository']
+    for image in session.query(sql.Image):
+        import_image(image, session, documents_destination)
+    for dlfileentry in session.query(sql.Dlfileentry):
+        import_dlfileentry(dlfileentry, session, documents_destination)
 
 def get_plone_site():
     import Zope2
