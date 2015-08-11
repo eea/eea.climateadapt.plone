@@ -6,7 +6,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker, relationship
 from zope.sqlalchemy import register
 import logging
+import lxml.etree
 import os
+import sys
 import transaction
 
 logger = logging.getLogger('eea.climateadapt.importer')
@@ -124,6 +126,22 @@ def s2l(text, separator=';'):
     """Converts a string in form: u'EXTREMETEMP;FLOODING;' to a list"""
     return filter(None, text.split(separator))
 
+def parse_settings(text):
+    """Changes a string in form:
+    # u'sitemap-changefreq=daily\nlayout-template-id=2_columns_iii\nsitemap-include=1\ncolumn-2=56_INSTANCE_9tMz,\ncolumn-1=56_INSTANCE_2cAx,56_INSTANCE_TN6e,\n'
+    to a dictionary of settings
+    """
+    out = {}
+    for line in text.split("\n"):
+        line = line.strip()
+        if not line:
+            continue
+        k, v = line.split('=', 1)
+        v = filter(None, v.split(','))
+        # if len(v) == 1:
+        #     v = v[0]
+        out[k] = v
+    return out
 
 PUBLICATION_REPORT = 'DOCUMENT'
 INFORMATION_PORTAL = 'INFORMATIONSOURCE'
@@ -162,6 +180,8 @@ def import_aceitem(data, session, location):
             geochars=data.geochars
         )
 
+        logger.info("Imported aceitem %s from sql aceitem %s",
+                    item, item.aceitemid)
         return item
 
 
@@ -187,6 +207,9 @@ def import_aceproject(data, session, location):
         countries=s2l(data.spatialvalues),
         comments=data.comments,
     )
+
+    logger.info("Imported aceproject %s from sql aceproject %s",
+                item, item.aceitemid)
 
     return item
 
@@ -215,6 +238,9 @@ def import_adaptationoption(data, session, location):
         measure_type=data.mao_type,
         comments=data.comments,
     )
+
+    logger.info("Imported aceproject %s from sql aceitem %s",
+                item, item.aceitemid)
 
     return item
 
@@ -246,15 +272,19 @@ def import_casestudy(data, session, location):
         comments=data.comments,
     )
 
+    logger.info("Imported casestudy %s from sql acemeasure %s",
+                item, item.measureid)
+
     return item
+
 
 def import_image(data, session, location):
     try:
-        file_data = open('./document_library/0/0/' + str(data.imageid) + '.' +
-                         data.type_ + '/1.0').read()
+        name = str(data.imageid) + '.' + data.type_ + '/1.0'
+        file_data = open('./document_library/0/0/' + name).read()
     except Exception:
-        logger.info("Image with id %d does not exist in the supplied document library",
-                    data.imageid)
+        logger.warning("Image with id %d does not exist in the supplied "
+                       "document library", data.imageid)
         return None
 
     item = createContentInContainer(
@@ -268,7 +298,10 @@ def import_image(data, session, location):
         )
     )
 
+    logger.info("Imported image %s from sql Image %s", item, data.imageid)
+
     return item
+
 
 def import_dlfileentry(data, session, location):
     try:
@@ -276,8 +309,9 @@ def import_dlfileentry(data, session, location):
                          str(data.folderid or data.groupid) + '/' + str(data.name) +
                          '/' + data.version).read()
     except Exception:
-        logger.info("File with id %d and title '%s' does not exist in the supplied document library",
-                    data.fileentryid, data.title)
+        logger.warning("File with id %d and title '%s' does not exist in the "
+                       "supplied document library", data.fileentryid,
+                       data.title)
         return None
 
     if 'jpg' in data.extension or 'png' in data.extension:
@@ -305,7 +339,109 @@ def import_dlfileentry(data, session, location):
             )
         )
 
+    logger.info("Imported %s from sql dlentry %s", item, data.fileentryid)
+
     return item
+
+from collections import defaultdict
+MAPOFLAYOUTS = defaultdict(list)
+
+
+def import_layout(layout, session, site):
+    #import layout as folder
+    # create documents for each portlet in 'typesettings':
+    # u'sitemap-changefreq=daily\nlayout-template-id=2_columns_iii\nsitemap-include=1\ncolumn-2=56_INSTANCE_9tMz,\ncolumn-1=56_INSTANCE_2cAx,56_INSTANCE_TN6e,\n'
+
+    # split content from layout template
+    # search for portlet name in portletpreferences
+    # parse the prefs and look for articleid
+    # create page from journalarticle
+
+    if layout.type_ == u'control-panel':
+        # we skip control panel pages
+        return
+
+    settings = parse_settings(layout.typesettings)
+    #if not 'layout-template-id' in settings:
+    if layout.type_ == u'link_to_layout':
+        # TODO: this is a shortcut link
+        # should create as a folder and add the linked layout as default
+        # page
+        linked_layoutid = settings['linkToLayoutId']
+
+        return
+
+    template = settings['layout-template-id'][0]
+
+    MAPOFLAYOUTS[template].append(layout.friendlyurl)
+    #print layout.type_, "\t\t", template, "\t\t", layout.friendlyurl
+
+    if template == 'transnationalregion':
+        print "This is a country page", layout.friendlyurl
+        return
+    else:
+        return
+
+    logger.info("Importing layout %s at url %s with template %s",
+                layout.uuid_, layout.friendlyurl, template)
+
+    for k, v in settings.items():
+        if k.startswith('column-'):
+            portlet_ids = v
+            for portletid in portlet_ids:
+                # if '56_INSTANCE_WrI8' in portletid:
+                #     import pdb; pdb.set_trace()
+                try:
+                    portlet = session.query(sql.Portletpreference).filter_by(
+                        portletid=portletid, plid=layout.plid,
+                    ).one()
+                except:
+                    import pdb; pdb.set_trace()
+
+                e = lxml.etree.fromstring(portlet.preferences)
+                try:
+                    articleid = e.xpath(
+                        '//name[contains(text(), "articleId")]'
+                        '/following-sibling::value'
+                    )[0].text
+                except IndexError:
+                    logger.warning("Couldn't find an article for portlet %s",
+                                   portletid)
+                    continue
+
+                article = session.query(sql.Journalarticle).filter_by(
+                    articleid=articleid).order_by(
+                        sql.Journalarticle.version.desc()
+                    ).first()
+
+                if "<dynamic-content" in article.content:
+                    e = lxml.etree.fromstring(
+                        article.content.encode('utf-8')
+                    )
+                    for element in e.xpath("//dynamic-element"):
+                        if element.get("type") == "text_area":
+                            text = element.xpath("dynamic-content/text()")
+
+                            logging.info(u"Extracted dynamic content from "
+                                         "article %s: <%s>", articleid,
+                                         text[:40])
+                        elif element.get("type") == "image":
+                            imageid = element.xpath("dynamic-content/@id")
+                            print "TODO: link image", imageid
+                        else:
+                            import pdb; pdb.set_trace()
+
+                elif "<static-content" in article.content:
+                    content = lxml.etree.fromstring(
+                        article.content.encode('utf-8')
+                    ).xpath("//static-content/text()")[0]
+
+                    logging.info(u"Extracted static content from article %s: <%s>",
+                                articleid, content[:40])
+
+                #print content
+                #import pdb; pdb.set_trace()
+
 
 def run_importer(session):
     sql.Address = sql.Addres    # wrong detected plural
@@ -323,28 +459,31 @@ def run_importer(session):
                                )
             setattr(klass, name, rel)
 
+    if 'dbshell' in sys.argv:
+        import pdb; pdb.set_trace()
+
     site = get_plone_site()
 
-    if not 'content' in site.objectIds():
-        site.invokeFactory("Folder", 'content')
+    structure = ['content', 'aceprojects', 'casestudy',
+                 'adaptationoption', 'repository']
+    for name in (set(structure) - set(site.objectIds())):
+        site.invokeFactory("Folder", name)
+
+    for layout in session.query(sql.Layout).filter_by(privatelayout=False):
+        import_layout(layout, session, site)
+
+    import pprint
+    pprint.pprint(dict(MAPOFLAYOUTS))
+    import pdb; pdb.set_trace()
+    raise ValueError
 
     content_destination = site['content']
     for aceitem in session.query(sql.AceAceitem):
         import_aceitem(aceitem, session, content_destination)
 
-    print content_destination.objectIds()
-
-    if not 'aceprojects' in site.objectIds():
-        site.invokeFactory("Folder", 'aceprojects')
-
     aceprojects_destination = site['aceprojects']
     for aceproject in session.query(sql.AceProject):
         import_aceproject(aceproject, session, aceprojects_destination)
-
-    if not 'casestudy' in site.objectIds():
-        site.invokeFactory("Folder", 'casestudy')
-    if not 'adaptationoption' in site.objectIds():
-        site.invokeFactory("Folder", 'adaptationoption')
 
     casestudy_destination = site['casestudy']
     adaptationoption_destination = site['adaptationoption']
@@ -354,9 +493,6 @@ def run_importer(session):
         else:
             import_adaptationoption(acemeasure, session,
                                     adaptationoption_destination)
-
-    if not 'repository' in site.objectIds():
-        site.invokeFactory("Folder", 'repository')
 
     documents_destination = site['repository']
     for image in session.query(sql.Image):
