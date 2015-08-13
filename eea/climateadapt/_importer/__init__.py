@@ -1,4 +1,6 @@
+from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
+from eea.climateadapt._importer.utils import parse_settings, s2l
 from plone.dexterity.utils import createContentInContainer
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from sqlalchemy import Column, BigInteger, String, Text, DateTime   #, text
@@ -120,28 +122,6 @@ class AceIndicator(sql.Base):   # count: 42
     importance = Column('importance', BigInteger)
 
 sql.AceIndicator = AceIndicator
-
-
-def s2l(text, separator=';'):
-    """Converts a string in form: u'EXTREMETEMP;FLOODING;' to a list"""
-    return filter(None, text.split(separator))
-
-def parse_settings(text):
-    """Changes a string in form:
-    # u'sitemap-changefreq=daily\nlayout-template-id=2_columns_iii\nsitemap-include=1\ncolumn-2=56_INSTANCE_9tMz,\ncolumn-1=56_INSTANCE_2cAx,56_INSTANCE_TN6e,\n'
-    to a dictionary of settings
-    """
-    out = {}
-    for line in text.split("\n"):
-        line = line.strip()
-        if not line:
-            continue
-        k, v = line.split('=', 1)
-        v = filter(None, v.split(','))
-        # if len(v) == 1:
-        #     v = v[0]
-        out[k] = v
-    return out
 
 PUBLICATION_REPORT = 'DOCUMENT'
 INFORMATION_PORTAL = 'INFORMATIONSOURCE'
@@ -343,8 +323,81 @@ def import_dlfileentry(data, session, location):
 
     return item
 
-from collections import defaultdict
+
 MAPOFLAYOUTS = defaultdict(list)
+COUNTRIES_STRUCTURE = defaultdict(dict)
+
+
+
+def extract_portlet_info(portletid, layout, session):
+    """ Extract portlet information from the portlet with portletid
+
+    The result can vary, based on what we find in a portlet.
+
+    It can be:
+        * a simple string with text
+        * a list of ('type_of_info', info)
+    """
+    # if '56_INSTANCE_WrI8' in portletid:
+    #     import pdb; pdb.set_trace()
+    try:
+        portlet = session.query(sql.Portletpreference).filter_by(
+            portletid=portletid, plid=layout.plid,
+        ).one()
+    except:
+        import pdb; pdb.set_trace()
+
+    e = lxml.etree.fromstring(portlet.preferences)
+    try:
+        articleid = e.xpath(
+            '//name[contains(text(), "articleId")]'
+            '/following-sibling::value'
+        )[0].text
+    except IndexError:
+        logger.warning("Couldn't find an article for portlet %s",
+                        portletid)
+        continue
+
+    article = session.query(sql.Journalarticle).filter_by(
+        articleid=articleid).order_by(
+            sql.Journalarticle.version.desc()
+        ).first()
+
+    import pdb; pdb.set_trace()
+
+    e = lxml.etree.fromstring(article.content.encode('utf-8'))
+
+    for child in e:
+        if child.tag == 'dynamic-element':
+            pass
+        elif child.tag == 'static-element':
+            pass
+
+    if "<dynamic-content" in article.content:
+        content = []
+        for element in e.xpath("//dynamic-element"):
+            if element.get("type") == "image":
+                imageid = element.xpath("dynamic-content/@id")
+                content.append(('image', imageid))
+            elif element.get("type") == "text_area":
+                text = element.xpath("dynamic-content/text()")
+
+                logging.info(u"Extracted dynamic content from "
+                                "article %s: <%s>", articleid,
+                                text[:40])
+                content.append(('text', text))
+            else:
+                import pdb; pdb.set_trace()
+
+    elif "<static-content" in article.content:
+        content = lxml.etree.fromstring(
+            article.content.encode('utf-8')
+        ).xpath("//static-content/text()")[0]
+
+        logging.info(u"Extracted static content from article %s: <%s>",
+                    articleid, content[:40])
+
+        return content
 
 
 def import_layout(layout, session, site):
@@ -376,71 +429,20 @@ def import_layout(layout, session, site):
     MAPOFLAYOUTS[template].append(layout.friendlyurl)
     #print layout.type_, "\t\t", template, "\t\t", layout.friendlyurl
 
-    if template == 'transnationalregion':
-        print "This is a country page", layout.friendlyurl
-        return
-    else:
-        return
-
     logger.info("Importing layout %s at url %s with template %s",
                 layout.uuid_, layout.friendlyurl, template)
 
-    for k, v in settings.items():
-        if k.startswith('column-'):
-            portlet_ids = v
-            for portletid in portlet_ids:
-                # if '56_INSTANCE_WrI8' in portletid:
-                #     import pdb; pdb.set_trace()
-                try:
-                    portlet = session.query(sql.Portletpreference).filter_by(
-                        portletid=portletid, plid=layout.plid,
-                    ).one()
-                except:
-                    import pdb; pdb.set_trace()
+    if template == 'transnationalregion':
+        print "This is a country page", layout.friendlyurl
+        import pdb; pdb.set_trace()
 
-                e = lxml.etree.fromstring(portlet.preferences)
-                try:
-                    articleid = e.xpath(
-                        '//name[contains(text(), "articleId")]'
-                        '/following-sibling::value'
-                    )[0].text
-                except IndexError:
-                    logger.warning("Couldn't find an article for portlet %s",
-                                   portletid)
-                    continue
-
-                article = session.query(sql.Journalarticle).filter_by(
-                    articleid=articleid).order_by(
-                        sql.Journalarticle.version.desc()
-                    ).first()
-
-                if "<dynamic-content" in article.content:
-                    e = lxml.etree.fromstring(
-                        article.content.encode('utf-8')
-                    )
-                    for element in e.xpath("//dynamic-element"):
-                        if element.get("type") == "text_area":
-                            text = element.xpath("dynamic-content/text()")
-
-                            logging.info(u"Extracted dynamic content from "
-                                         "article %s: <%s>", articleid,
-                                         text[:40])
-                        elif element.get("type") == "image":
-                            imageid = element.xpath("dynamic-content/@id")
-                            print "TODO: link image", imageid
-                        else:
-                            import pdb; pdb.set_trace()
-
-                elif "<static-content" in article.content:
-                    content = lxml.etree.fromstring(
-                        article.content.encode('utf-8')
-                    ).xpath("//static-content/text()")[0]
-
-                    logging.info(u"Extracted static content from article %s: <%s>",
-                                articleid, content[:40])
-
-                #print content
-                #import pdb; pdb.set_trace()
+    structure = {}
+    for column, portlet_ids in filter(lambda x,y: x.startswith('column-'),
+                                      settings.items()):
+        structure[column] = []   # a column is a list of portlets
+        for portletid in portlet_ids:
+            content = extract_portlet_info(portetid, layout, session)
+            structure[column].append((portletid, content))
 
 
 def run_importer(session):
