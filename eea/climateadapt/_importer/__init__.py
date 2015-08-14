@@ -1,6 +1,7 @@
 from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
-from eea.climateadapt._importer.utils import parse_settings, s2l
+from eea.climateadapt._importer.utils import parse_settings, s2l, printe
+from eea.climateadapt._importer.utils import SOLVERS
 from plone.dexterity.utils import createContentInContainer
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from sqlalchemy import Column, BigInteger, String, Text, DateTime   #, text
@@ -17,6 +18,9 @@ logger = logging.getLogger('eea.climateadapt.importer')
 logger.setLevel(logging.INFO)
 logger.addHandler(logging.StreamHandler())
 
+session = None      # this will be a global bound to the current module
+
+MAPOFLAYOUTS = defaultdict(list)
 
 RELATIONS = {
     'Addres': {
@@ -137,7 +141,7 @@ ACE_ITEM_TYPES = {
 }
 
 
-def import_aceitem(data, session, location):
+def import_aceitem(data, location):
     # TODO: Some AceItems have ACTION, MEASURE, REASEARCHPROJECT types and
     # should be mapped over AceMeasure and AceProject
 
@@ -165,7 +169,7 @@ def import_aceitem(data, session, location):
         return item
 
 
-def import_aceproject(data, session, location):
+def import_aceproject(data, location):
     item = createContentInContainer(
         location,
         'eea.climateadapt.aceproject',
@@ -194,7 +198,7 @@ def import_aceproject(data, session, location):
     return item
 
 
-def import_adaptationoption(data, session, location):
+def import_adaptationoption(data, location):
     item = createContentInContainer(
         location,
         'eea.climateadapt.adaptationoption',
@@ -225,7 +229,7 @@ def import_adaptationoption(data, session, location):
     return item
 
 
-def import_casestudy(data, session, location):
+def import_casestudy(data, location):
     item = createContentInContainer(
         location,
         'eea.climateadapt.casestudy',
@@ -258,7 +262,7 @@ def import_casestudy(data, session, location):
     return item
 
 
-def import_image(data, session, location):
+def import_image(data, location):
     try:
         name = str(data.imageid) + '.' + data.type_ + '/1.0'
         file_data = open('./document_library/0/0/' + name).read()
@@ -283,7 +287,7 @@ def import_image(data, session, location):
     return item
 
 
-def import_dlfileentry(data, session, location):
+def import_dlfileentry(data, location):
     try:
         file_data = open('./document_library/' + str(data.companyid) + '/' +
                          str(data.folderid or data.groupid) + '/' + str(data.name) +
@@ -324,28 +328,21 @@ def import_dlfileentry(data, session, location):
     return item
 
 
-MAPOFLAYOUTS = defaultdict(list)
-COUNTRIES_STRUCTURE = defaultdict(dict)
+def _get_portlet(portletid, layout):
+    """ Get the portlet based on portletid and layout.plid
 
-
-
-def extract_portlet_info(portletid, layout, session):
-    """ Extract portlet information from the portlet with portletid
-
-    The result can vary, based on what we find in a portlet.
-
-    It can be:
-        * a simple string with text
-        * a list of ('type_of_info', info)
-    """
-    # if '56_INSTANCE_WrI8' in portletid:
-    #     import pdb; pdb.set_trace()
+    layout.plid is the "portlet instance id" """
     try:
         portlet = session.query(sql.Portletpreference).filter_by(
             portletid=portletid, plid=layout.plid,
         ).one()
+        return portlet
     except:
-        import pdb; pdb.set_trace()
+        return None
+
+
+def _get_article_for_portlet(portlet):
+    """ Parse portlet preferences to get the Journalarticle for the portlet """
 
     e = lxml.etree.fromstring(portlet.preferences)
     try:
@@ -355,56 +352,54 @@ def extract_portlet_info(portletid, layout, session):
         )[0].text
     except IndexError:
         logger.warning("Couldn't find an article for portlet %s",
-                        portletid)
-        continue
+                        portlet.portletid)
+        return
 
     article = session.query(sql.Journalarticle).filter_by(
         articleid=articleid).order_by(
             sql.Journalarticle.version.desc()
         ).first()
 
-    import pdb; pdb.set_trace()
+    return article
+
+
+def extract_portlet_info(portletid, layout):
+    """ Extract portlet information from the portlet with portletid
+
+    The result can vary, based on what we find in a portlet.
+
+    It can be:
+        * a simple string with text
+        * a list of ('type_of_info', info)
+    """
+    portlet = _get_portlet(portletid, layout)
+    if portlet is None:
+        logger.warning("Portlet id: %s could not be found for %s",
+                       portletid, layout.friendlyurl)
+        return
+
+    article = _get_article_for_portlet(portlet)
+
+    if article is None:
+        logger.warning("Could not get an article from portlet %s for %s",
+                       portletid, layout.friendlyurl)
+        return
 
     e = lxml.etree.fromstring(article.content.encode('utf-8'))
 
-    for child in e:
-        if child.tag == 'dynamic-element':
-            pass
-        elif child.tag == 'static-element':
-            pass
+    # if '56_INSTANCE_WrI8' in portletid:
+    #     import pdb; pdb.set_trace()
 
-    if "<dynamic-content" in article.content:
-        content = []
-        for element in e.xpath("//dynamic-element"):
-            if element.get("type") == "image":
-                imageid = element.xpath("dynamic-content/@id")
-                content.append(('image', imageid))
-            elif element.get("type") == "text_area":
-                text = element.xpath("dynamic-content/text()")
+    # if 'countries' in layout.friendlyurl:
+    #     import pdb; pdb.set_trace()
 
-                logging.info(u"Extracted dynamic content from "
-                                "article %s: <%s>", articleid,
-                                text[:40])
-                content.append(('text', text))
-            else:
-                import pdb; pdb.set_trace()
-
-    elif "<static-content" in article.content:
-        content = lxml.etree.fromstring(
-            article.content.encode('utf-8')
-        ).xpath("//static-content/text()")[0]
-
-        logging.info(u"Extracted static content from article %s: <%s>",
-                    articleid, content[:40])
-
-        return content
+    return [SOLVERS[child.tag](child) for child in e]
 
 
-def import_layout(layout, session, site):
-    #import layout as folder
+def import_layout(layout, site):
+    # import layout as folder
     # create documents for each portlet in 'typesettings':
     # u'sitemap-changefreq=daily\nlayout-template-id=2_columns_iii\nsitemap-include=1\ncolumn-2=56_INSTANCE_9tMz,\ncolumn-1=56_INSTANCE_2cAx,56_INSTANCE_TN6e,\n'
-
     # split content from layout template
     # search for portlet name in portletpreferences
     # parse the prefs and look for articleid
@@ -415,13 +410,10 @@ def import_layout(layout, session, site):
         return
 
     settings = parse_settings(layout.typesettings)
-    #if not 'layout-template-id' in settings:
-    if layout.type_ == u'link_to_layout':
-        # TODO: this is a shortcut link
-        # should create as a folder and add the linked layout as default
-        # page
-        linked_layoutid = settings['linkToLayoutId']
 
+    if layout.type_ == u'link_to_layout':
+        # TODO: this is a shortcut link should create as a folder and add the linked layout as default page
+        linked_layoutid = settings['linkToLayoutId']
         return
 
     template = settings['layout-template-id'][0]
@@ -432,20 +424,57 @@ def import_layout(layout, session, site):
     logger.info("Importing layout %s at url %s with template %s",
                 layout.uuid_, layout.friendlyurl, template)
 
-    if template == 'transnationalregion':
-        print "This is a country page", layout.friendlyurl
-        import pdb; pdb.set_trace()
+    is_column = lambda s: (s.startswith('column-')
+                           and not s.endswith('-customizable'))
 
     structure = {}
-    for column, portlet_ids in filter(lambda x,y: x.startswith('column-'),
+    for column, portlet_ids in filter(lambda kv: is_column(kv[0]),
                                       settings.items()):
         structure[column] = []   # a column is a list of portlets
         for portletid in portlet_ids:
-            content = extract_portlet_info(portetid, layout, session)
+            content = extract_portlet_info(portletid, layout)
             structure[column].append((portletid, content))
 
+    importer = globals().get('import_template_' + template)
+    if importer:
+        importer(layout, structure)
+    else:
+        logger.warning("No importer for template %s", template)
 
-def run_importer(session):
+
+# possible templates are
+# [u'1_2_1_columns', u'1_2_columns_i', u'1_2_columns_ii', u'1_column',
+# u'2_columns_i', u'2_columns_ii', u'2_columns_iii', u'ace_layout_1',
+# u'ace_layout_2', u'ace_layout_3', u'ace_layout_4', u'ace_layout_5',
+# u'ace_layout_col_1_2', u'ast', u'faq', u'frontpage', u'transnationalregion',
+# u'urban_ast']
+
+
+def import_template_transnationalregion(layout, structure):
+    # a country page is a structure with 3 "columns":
+    # column-1 has an image and a select box to select other countries
+    # column-2 has is a structure of tabs and tables
+    # column-3 is unknown and will be ignored
+
+    payload = structure['column-2'][0]
+    portletid, records = payload
+    country = {'Summary': []}
+    for record in records:
+        type_, id, payload = record
+        if type_ == 'text':
+            country[id] = payload[0]
+        if type_ == 'dynamic':
+            for info in record[2]:
+                if isinstance(info, basestring):
+                    continue
+                t, name, text = info
+                country['Summary'].append((name, text[0]))
+
+    # TODO:
+    #create_country(country)
+
+
+def run_importer():
     sql.Address = sql.Addres    # wrong detected plural
     for kname, rels in RELATIONS.items():
         logger.info("Setting relations for %s", kname)
@@ -472,35 +501,35 @@ def run_importer(session):
         site.invokeFactory("Folder", name)
 
     for layout in session.query(sql.Layout).filter_by(privatelayout=False):
-        import_layout(layout, session, site)
+        import_layout(layout, site)
 
     import pprint
     pprint.pprint(dict(MAPOFLAYOUTS))
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     raise ValueError
 
     content_destination = site['content']
     for aceitem in session.query(sql.AceAceitem):
-        import_aceitem(aceitem, session, content_destination)
+        import_aceitem(aceitem, content_destination)
 
     aceprojects_destination = site['aceprojects']
     for aceproject in session.query(sql.AceProject):
-        import_aceproject(aceproject, session, aceprojects_destination)
+        import_aceproject(aceproject, aceprojects_destination)
 
     casestudy_destination = site['casestudy']
     adaptationoption_destination = site['adaptationoption']
     for acemeasure in session.query(sql.AceMeasure):
         if acemeasure.mao_type == 'A':
-            import_casestudy(acemeasure, session, casestudy_destination)
+            import_casestudy(acemeasure, casestudy_destination)
         else:
-            import_adaptationoption(acemeasure, session,
-                                    adaptationoption_destination)
+            import_adaptationoption(acemeasure, adaptationoption_destination)
 
     documents_destination = site['repository']
     for image in session.query(sql.Image):
-        import_image(image, session, documents_destination)
+        import_image(image, documents_destination)
     for dlfileentry in session.query(sql.Dlfileentry):
-        import_dlfileentry(dlfileentry, session, documents_destination)
+        import_dlfileentry(dlfileentry, documents_destination)
+
 
 def get_plone_site():
     import Zope2
@@ -530,11 +559,12 @@ def main():
 
     DB=postgres://postgres:pwd@localhost/climate bin/www1 run bin/climateadapt_importer
     """
+    global session
     engine = create_engine(os.environ.get("DB"))
     Session = scoped_session(sessionmaker(bind=engine))
     register(Session, keep_session=True)
     session = Session()
-    run_importer(session)
+    run_importer()
     transaction.commit()
 
     return
