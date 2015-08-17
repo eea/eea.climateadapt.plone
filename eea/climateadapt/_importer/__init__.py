@@ -141,6 +141,13 @@ ACE_ITEM_TYPES = {
 }
 
 
+def noop(*args, **kwargs):
+    """ no-op function to help with development of importers.
+    It avoids pyflakes errors about not used variables.
+    """
+    return
+
+
 def import_aceitem(data, location):
     # TODO: Some AceItems have ACTION, MEASURE, REASEARCHPROJECT types and
     # should be mapped over AceMeasure and AceProject
@@ -345,13 +352,14 @@ def _get_article_for_portlet(portlet):
     """ Parse portlet preferences to get the Journalarticle for the portlet """
 
     e = lxml.etree.fromstring(portlet.preferences)
+
     try:
         articleid = e.xpath(
             '//name[contains(text(), "articleId")]'
             '/following-sibling::value'
         )[0].text
     except IndexError:
-        logger.warning("Couldn't find an article for portlet %s",
+        logger.debug("Couldn't find an article for portlet %s",
                         portlet.portletid)
         return
 
@@ -374,26 +382,41 @@ def extract_portlet_info(portletid, layout):
     """
     portlet = _get_portlet(portletid, layout)
     if portlet is None:
-        logger.warning("Portlet id: %s could not be found for %s",
+        logger.debug("Portlet id: %s could not be found for %s",
                        portletid, layout.friendlyurl)
+        return
+
+    if not portlet.preferences:
+        logger.warning("Couldn't get preferences for portlet %s with plid %s",
+                       portlet.portletid, portlet.plid)
         return
 
     article = _get_article_for_portlet(portlet)
-
-    if article is None:
-        logger.warning("Could not get an article from portlet %s for %s",
-                       portletid, layout.friendlyurl)
-        return
-
-    e = lxml.etree.fromstring(article.content.encode('utf-8'))
-
-    # if '56_INSTANCE_WrI8' in portletid:
+    # if layout.friendlyurl == "/adaptation-support-tool/step-1/communicate-raise-awareness/terminology":
     #     import pdb; pdb.set_trace()
+    if article is not None:
+        e = lxml.etree.fromstring(article.content.encode('utf-8'))
 
-    # if 'countries' in layout.friendlyurl:
-    #     import pdb; pdb.set_trace()
+        # TODO: attach other needed metadata
+        return {'title': article.title,
+                'description': article.description,
+                'content': [SOLVERS[child.tag](child) for child in e]
+                }
 
-    return [SOLVERS[child.tag](child) for child in e]
+    logger.debug("Could not get an article from portlet %s for %s",
+                    portletid, layout.friendlyurl)
+
+    # extract portlet settings, must be an application's settings
+    e = lxml.etree.fromstring(portlet.preferences)
+    out = {}
+    for pref in e.xpath('//preference'):
+        name = pref.find('name').text
+        value = pref.find('value')
+        if value:
+            value = value.text
+        out[name] = value
+
+    return out
 
 
 def import_layout(layout, site):
@@ -413,7 +436,7 @@ def import_layout(layout, site):
 
     if layout.type_ == u'link_to_layout':
         # TODO: this is a shortcut link should create as a folder and add the linked layout as default page
-        linked_layoutid = settings['linkToLayoutId']
+        #linked_layoutid = settings['linkToLayoutId']
         return
 
     template = settings['layout-template-id'][0]
@@ -459,7 +482,7 @@ def import_template_transnationalregion(layout, structure):
     payload = structure['column-2'][0]
     portletid, records = payload
     country = {'Summary': []}
-    for record in records:
+    for record in records['content']:
         type_, id, payload = record
         if type_ == 'text':
             country[id] = payload[0]
@@ -472,6 +495,35 @@ def import_template_transnationalregion(layout, structure):
 
     # TODO:
     #create_country(country)
+
+
+def import_template_ace_layout_2(layout, structure):
+    pass
+
+
+def import_template_ast(layout, structure):
+    # TODO: create ast page based on structure
+    # column-1 has the imagemap on the left side
+    # column-2 has 2 portlets:  title and then the one with content (which also
+    # has a title)
+
+    image_portlet = structure['column-1'][0][1]['content'][0]
+    header_text = structure['column-2'][0][1]['headertext']
+    content = structure['column-2'][1][1]['content'][0]
+
+    noop(image_portlet, header_text, content)
+
+
+def import_template_urban_ast(layout, structure):
+    # TODO: create urbanast page based on structure
+    # column-1 has the imagemap on the left side
+    # column-2 has 2 portlets:  title and then the one with content (which also
+    # has a title)
+    image_portlet = structure['column-1'][0][1]['content'][0]
+    header_text = structure['column-2'][0][1]['headertext']
+    content = structure['column-2'][1][1]['content'][0]
+
+    noop(image_portlet, header_text, content)
 
 
 def run_importer():

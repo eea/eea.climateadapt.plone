@@ -6,7 +6,7 @@ import lxml.etree
 
 def printe(e):
     """ debug function to easily see an etree as pretty printed xml"""
-    print lxml.etree.tostring(e)
+    print lxml.etree.tostring(e, pretty_print=True)
 
 
 def s2l(text, separator=';'):
@@ -56,6 +56,13 @@ def solve_dynamic_element(node):
     if type_ == 'text':
         return (
             'dynamic',
+            node.get('name'),
+            [SOLVERS[child.tag](child) for child in node]
+        )
+
+    if type_ in (None, 'list', 'boolean'):
+        return (
+            type_,
             node.get('name'),
             [SOLVERS[child.tag](child) for child in node]
         )
