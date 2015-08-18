@@ -492,6 +492,7 @@ def import_template_transnationalregion(layout, structure):
                     continue
                 t, name, text = info
                 country['Summary'].append((name, text[0]))
+    import pdb; pdb.set_trace()
 
     # TODO:
     #create_country(country)
@@ -499,6 +500,10 @@ def import_template_transnationalregion(layout, structure):
 
 def import_template_ace_layout_2(layout, structure):
     pass
+
+def import_template_ace_layout_col_1_2(layout, structure):
+    print layout.friendlyurl
+    import pdb; pdb.set_trace()
 
 
 def import_template_ast(layout, structure):
