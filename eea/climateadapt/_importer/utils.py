@@ -67,7 +67,7 @@ def solve_dynamic_element(node):
             [SOLVERS[child.tag](child) for child in node]
         )
 
-    import pdb; pdb.set_trace()
+    raise ValueError("Dynamic element not handled, please write more code")
 
 
 def solve_dynamic_content(node):
