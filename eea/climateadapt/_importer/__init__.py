@@ -2,6 +2,7 @@ from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.utils import parse_settings, s2l, printe
 from eea.climateadapt._importer.utils import SOLVERS
+from eea.climateadapt._importer.utils import strip_xml
 from plone.dexterity.utils import createContentInContainer
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from sqlalchemy import Column, BigInteger, String, Text, DateTime   #, text
@@ -412,8 +413,10 @@ def extract_portlet_info(portletid, layout):
     for pref in e.xpath('//preference'):
         name = pref.find('name').text
         value = pref.find('value')
-        if value:
+        try:
             value = value.text
+        except Exception:
+            pass
         out[name] = value
 
     return out
@@ -451,12 +454,16 @@ def import_layout(layout, site):
                            and not s.endswith('-customizable'))
 
     structure = {}
+
+    structure['name'] = strip_xml(layout.name)
+
     for column, portlet_ids in filter(lambda kv: is_column(kv[0]),
                                       settings.items()):
         structure[column] = []   # a column is a list of portlets
         for portletid in portlet_ids:
             content = extract_portlet_info(portletid, layout)
             structure[column].append((portletid, content))
+
 
     importer = globals().get('import_template_' + template)
     if importer:
@@ -471,6 +478,15 @@ def import_layout(layout, site):
 # u'ace_layout_2', u'ace_layout_3', u'ace_layout_4', u'ace_layout_5',
 # u'ace_layout_col_1_2', u'ast', u'faq', u'frontpage', u'transnationalregion',
 # u'urban_ast']
+
+
+def import_template_1_2_1_columns(layout, structure):
+    # column-1 has a table with links and a table with info
+    # column-2 has an iframe
+    column1_content = structure['column-1'][0]
+    column2_content = structure['column-2'][0]
+
+    # import pdb; pdb.set_trace( )
 
 
 def import_template_transnationalregion(layout, structure):
@@ -492,18 +508,28 @@ def import_template_transnationalregion(layout, structure):
                     continue
                 t, name, text = info
                 country['Summary'].append((name, text[0]))
-    import pdb; pdb.set_trace()
+
+    column1_content = structure['column-1'][0]
+    portletid, records = column1_content
+    image_info = {
+        'id': records['content'][0][2][0],
+        'description': records['description'],
+        'title': records['title'],
+    }
+    country['image'] = image_info
+    country['name'] = structure['name']
 
     # TODO:
-    #create_country(country)
+    # create_country(country)
 
 
 def import_template_ace_layout_2(layout, structure):
     pass
 
+
 def import_template_ace_layout_col_1_2(layout, structure):
     print layout.friendlyurl
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
 
 
 def import_template_ast(layout, structure):

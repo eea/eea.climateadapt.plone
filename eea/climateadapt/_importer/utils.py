@@ -72,17 +72,26 @@ def solve_dynamic_element(node):
 
 def solve_dynamic_content(node):
     return node.text
-    #return ('text', None, node.text)
+    # return ('text', None, node.text)
 
 
 def solve_static_content(node):
     return node.text
-    #return ('text', None, node.text)
+    # return ('text', None, node.text)
 
 
 SOLVERS = {
     'dynamic-element': solve_dynamic_element,
     'static-content': solve_static_content,
     'dynamic-content': solve_dynamic_content,
-    #'static-element': solve_static_element,
+    # 'static-element': solve_static_element,
 }
+
+
+def strip_xml(xmlstr):
+    if "<xml" in xmlstr:
+        res = lxml.etree.fromstring(xmlstr.encode('utf-8')).xpath(
+            "*/text()")[0]
+    else:
+        res = xmlstr
+    return res
