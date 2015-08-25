@@ -486,7 +486,7 @@ def import_template_1_2_1_columns(layout, structure):
     column1_content = structure['column-1'][0]
     column2_content = structure['column-2'][0]
 
-    # import pdb; pdb.set_trace( )
+    noop(column1_content, column2_content)
 
 
 def import_template_transnationalregion(layout, structure):
@@ -520,7 +520,7 @@ def import_template_transnationalregion(layout, structure):
     country['name'] = structure['name']
 
     # TODO:
-    # create_country(country)
+    # create_country(layout, country)
 
 
 def import_template_ace_layout_2(layout, structure):
@@ -530,6 +530,79 @@ def import_template_ace_layout_2(layout, structure):
 def import_template_ace_layout_col_1_2(layout, structure):
     print layout.friendlyurl
     # import pdb; pdb.set_trace()
+
+
+def import_template_ace_layout_3(layout, structure):
+    # this is a "details" page, ex: http://adapt-test.eea.europa.eu/transnational-regions/baltic-sea/policy-framework
+    # main column has an image, title, main text and "read more text"
+    # sidebar has a aceitem search portlet
+    # extra, there is an id for a tab based navigation, as a separate column
+    # called 'name'
+    main = {}
+    for line in structure['column-1'][0][1]['content']:
+        if line[0] == 'image':
+            main['image'] = line[2][0]
+            continue
+        if line[0] == 'dynamic' and line[1] == 'Title':
+            main['title'] = line[2][0]
+            continue
+        if line[0] == 'text' and line[1] == 'Body':
+            main['body'] = line[2][0]
+        if line[0] == 'text' and line[1] == 'ReadMoreBody':
+            main['readmore'] = line[2][0]
+    search_portlet = structure['column-5']
+    name = structure['name']
+
+    noop(layout, main, search_portlet, name)
+
+
+def import_template_ace_layout_4(layout, structure):
+    # these are Project pages such as http://adapt-test.eea.europa.eu/web/guest/project/climsave
+    main = {
+        'accordion': [],
+    }
+    partners = []
+    for line in structure['column-1'][0][1]['content']:
+        if line[0] == 'image':
+            main['image'] = line[2][0]
+            continue
+        if line[0] == 'dynamic' and line[1] == 'Subtitle':
+            main['subtitle'] = line[2][0]
+            continue
+        if line[0] == 'dynamic' and line[1] == 'Title':
+            main['title'] = line[2][0]
+            continue
+        if line[0] == 'text':
+            category = line[1]
+            text = line[2][0]
+            main['accordion'].append((category, text))
+            continue
+        if line[0] == 'dynamic' and line[1] == 'ProjectPartner':
+            name = line[2][0][2][0]
+            symbol = line[2][1][2][0]
+            if name:
+                partners.append((name, symbol))
+
+    main['accordion'].append(('ProjectPartners', partners))
+
+    _main_sidebar = structure['column-2'][0][1]['content']
+    sidebar = []
+    for line in _main_sidebar:
+        if line[1] != 'Contact':
+            sidebar.append((line[1], line[2][0]))
+        else:
+            contact = []
+            for subline in line[2]:
+                if not subline:
+                    continue
+                contact.append((subline[1], subline[2][0]))
+            sidebar.append(contact)
+
+    if len(structure['column-2']) > 1:
+        for portlet in structure['column-2'][1:]:
+            sidebar.append(('extratext', portlet[1]['content'][0]))
+
+    noop(layout, main, sidebar)
 
 
 def import_template_ast(layout, structure):
@@ -554,7 +627,7 @@ def import_template_urban_ast(layout, structure):
     header_text = structure['column-2'][0][1]['headertext']
     content = structure['column-2'][1][1]['content'][0]
 
-    noop(image_portlet, header_text, content)
+    noop(layout, image_portlet, header_text, content)
 
 
 def run_importer():
