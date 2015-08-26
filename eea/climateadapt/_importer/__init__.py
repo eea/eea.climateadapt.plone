@@ -1,10 +1,11 @@
 from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
-from eea.climateadapt._importer.utils import parse_settings, s2l, printe
 from eea.climateadapt._importer.utils import SOLVERS
+from eea.climateadapt._importer.utils import parse_settings, s2l, printe
 from eea.climateadapt._importer.utils import strip_xml
 from plone.dexterity.utils import createContentInContainer
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
+from pprint import pprint
 from sqlalchemy import Column, BigInteger, String, Text, DateTime   #, text
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker, relationship
@@ -146,6 +147,8 @@ def noop(*args, **kwargs):
     """ no-op function to help with development of importers.
     It avoids pyflakes errors about not used variables.
     """
+    pprint(args)
+    pprint(kwargs)
     return
 
 
@@ -437,10 +440,16 @@ def import_layout(layout, site):
 
     settings = parse_settings(layout.typesettings)
 
+    # if layout.friendlyurl.startswith(u'/climate-change-adaptation'):
+    #     import pdb; pdb.set_trace()
+    #
     if layout.type_ == u'link_to_layout':
         # TODO: this is a shortcut link should create as a folder and add the linked layout as default page
         #linked_layoutid = settings['linkToLayoutId']
         return
+
+    # if layout.friendlyurl.startswith(u'/vulnerability-assessment'):
+    #     import pdb; pdb.set_trace()
 
     template = settings['layout-template-id'][0]
 
@@ -524,12 +533,41 @@ def import_template_transnationalregion(layout, structure):
 
 
 def import_template_ace_layout_2(layout, structure):
-    pass
+    # there are three pages for this layout
+    # two of them are empty because there's another layout with redirection
+    # the third one is at http://adapt-test.eea.europa.eu/adaptation-measures
+    # and has 2 filter portlet and a simple filter portlet
+
+    if not structure.get('column-2') or len(structure['column-2'][0][1]) == 0:
+        # this is a redirection layout, will be created in another place
+        return
+
+    image = structure['column-1'][0][1]['content'][0][2]
+    title = structure['column-1'][0][1]['content'][1][2][0]
+    body = structure['column-1'][0][1]['content'][2][2][0]
+    readmore = structure['column-1'][0][1]['content'][3][2][0]
+
+    col2_portlet = structure['column-2'][0][1]
+    col3_portlet = structure['column-3'][0][1]
+    col4_portlet = structure['column-4'][0][1]
+
+    return noop(layout, image, title, body, readmore, col2_portlet,
+                col3_portlet, col4_portlet)
 
 
 def import_template_ace_layout_col_1_2(layout, structure):
-    print layout.friendlyurl
-    # import pdb; pdb.set_trace()
+    # this is a 2 column page with some navigation on the left and a big
+    # iframe (or just plain html text) on the right
+    # example page: http://adapt-test.eea.europa.eu//tools/urban-adaptation/climatic-threats/heat-waves/sensitivity
+    title = strip_xml(structure['name'])
+    main = structure['column-3'][0][1].get('url')
+    if not main:
+        main = ('text', structure['column-3'][0][1]['content'][0])
+    else:
+        main = ('iframe', main)
+    nav_menu = structure['column-1'][0][1]['content'][0]    # TODO: fix nav menu links
+
+    noop(layout, title, main, nav_menu)
 
 
 def import_template_ace_layout_3(layout, structure):
@@ -659,8 +697,7 @@ def run_importer():
     for layout in session.query(sql.Layout).filter_by(privatelayout=False):
         import_layout(layout, site)
 
-    import pprint
-    pprint.pprint(dict(MAPOFLAYOUTS))
+    pprint(dict(MAPOFLAYOUTS))
     # import pdb; pdb.set_trace()
     raise ValueError
 

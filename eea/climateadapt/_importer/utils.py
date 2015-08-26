@@ -89,7 +89,7 @@ SOLVERS = {
 
 
 def strip_xml(xmlstr):
-    if "<xml" in xmlstr:
+    if ("<xml" in xmlstr) or ("<?xml" in xmlstr):
         res = lxml.etree.fromstring(xmlstr.encode('utf-8')).xpath(
             "*/text()")[0]
     else:
