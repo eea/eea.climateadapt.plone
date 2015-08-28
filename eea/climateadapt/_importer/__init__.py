@@ -395,24 +395,9 @@ def extract_portlet_info(portletid, layout):
                        portlet.portletid, portlet.plid)
         return
 
-    article = _get_article_for_portlet(portlet)
-    # if layout.friendlyurl == "/adaptation-support-tool/step-1/communicate-raise-awareness/terminology":
-    #     import pdb; pdb.set_trace()
-    if article is not None:
-        e = lxml.etree.fromstring(article.content.encode('utf-8'))
-
-        # TODO: attach other needed metadata
-        return {'title': article.title,
-                'description': article.description,
-                'content': [SOLVERS[child.tag](child) for child in e]
-                }
-
-    logger.debug("Could not get an article from portlet %s for %s",
-                    portletid, layout.friendlyurl)
-
     # extract portlet settings, must be an application's settings
     e = lxml.etree.fromstring(portlet.preferences)
-    out = {}
+    prefs = {}
     for pref in e.xpath('//preference'):
         name = pref.find('name').text
         value = pref.find('value')
@@ -420,10 +405,31 @@ def extract_portlet_info(portletid, layout):
             value = value.text
         except Exception:
             pass
-        out[name] = value
+        prefs[name] = value
 
-    return out
+    portlet_title = None
+    if prefs.get('portletSetupUseCustomTitle') == "true":
+        for k, v in prefs.items():
+            if k.startswith('portletSetupTitle'):
+                portlet_title = v
 
+    article = _get_article_for_portlet(portlet)
+    if article is not None:
+        e = lxml.etree.fromstring(article.content.encode('utf-8'))
+
+        # TODO: attach other needed metadata
+        return {'title': article.title,
+                'description': article.description,
+                'content': [SOLVERS[child.tag](child) for child in e],
+                'portlet_title': portlet_title
+                }
+
+    logger.debug("Could not get an article from portlet %s for %s",
+                    portletid, layout.friendlyurl)
+
+    return prefs
+
+no_layout = []
 
 def import_layout(layout, site):
     # import layout as folder
@@ -478,6 +484,7 @@ def import_layout(layout, site):
     if importer:
         importer(layout, structure)
     else:
+        no_layout.append(template)
         logger.warning("No importer for template %s", template)
 
 
@@ -668,6 +675,67 @@ def import_template_urban_ast(layout, structure):
     noop(layout, image_portlet, header_text, content)
 
 
+def import_template_1_2_columns_i(layout, structure):
+    import pdb; pdb.set_trace()
+
+
+def import_template_1_2_columns_ii(layout, structure):
+    import pdb; pdb.set_trace()
+
+
+def import_template_1_column(layout, structure):
+    # this is a simple page, with one portlet of text
+    # example: /eu-adaptation-policy/funding/life
+
+    assert len(structure) == 2  # main portlet + layout name
+    assert len(structure['column-1']) == 1
+
+    content = structure['column-1'][0][1]['content']
+    portlet_title = structure['column-1'][0][1].get('portlet_title')
+    if portlet_title:
+        title = portlet_title
+    else:
+        title = structure['column-1'][0][1]['title']
+
+    noop(title, content, structure)
+
+
+def import_template_2_columns_i(layout, structure):
+    import pdb; pdb.set_trace()
+
+
+def import_template_2_columns_ii(layout, structure):
+
+    if len(structure) == 1: # this is a fake page. Ex: /adaptation-sectors
+        return
+    import pdb; pdb.set_trace()
+
+
+def import_template_2_columns_iii(layout, structure):
+    import pdb; pdb.set_trace()
+
+
+def import_template_ace_layout_1(layout, structure):
+    import pdb; pdb.set_trace()
+
+
+def import_template_ace_layout_5(layout, structure):
+    # ex page: /transnational-regions/caribbean-area
+
+    image = structure['column-1'][0][1]['content'][2][0]
+    col2 = structure['column-2']
+
+    import pdb; pdb.set_trace()
+
+
+def import_template_faq(layout, structure):
+    import pdb; pdb.set_trace()
+
+
+def import_template_frontpage(layout, structure):
+    import pdb; pdb.set_trace()
+
+
 def run_importer():
     sql.Address = sql.Addres    # wrong detected plural
     for kname, rels in RELATIONS.items():
@@ -697,7 +765,8 @@ def run_importer():
     for layout in session.query(sql.Layout).filter_by(privatelayout=False):
         import_layout(layout, site)
 
-    pprint(dict(MAPOFLAYOUTS))
+    #pprint(dict(MAPOFLAYOUTS))
+    pprint(set(no_layout))
     # import pdb; pdb.set_trace()
     raise ValueError
 
