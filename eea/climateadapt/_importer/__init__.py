@@ -431,6 +431,12 @@ def extract_portlet_info(portletid, layout):
 
 no_layout = []
 
+
+portlet_importers = {   # import specific portlets by their ID
+    # TODO: implement this importer. It sits at page http://adapt-test.eea.europa.eu/data-and-downloads
+    'acesearchportlet_WAR_AceItemportlet': lambda layout, structure: None
+}
+
 def import_layout(layout, site):
     # import layout as folder
     # create documents for each portlet in 'typesettings':
@@ -686,11 +692,22 @@ def import_template_1_2_columns_ii(layout, structure):
 def import_template_1_column(layout, structure):
     # this is a simple page, with one portlet of text
     # example: /eu-adaptation-policy/funding/life
+    if structure['column-1'][0][0] in portlet_importers:
+        importer = portlet_importers.get(structure['column-1'][0][0])
+        return importer(layout, structure)
 
     assert len(structure) == 2  # main portlet + layout name
-    assert len(structure['column-1']) == 1
+    try:
+        content = structure['column-1'][0][1]['content']
+    except:
+        import pdb; pdb.set_trace()
 
-    content = structure['column-1'][0][1]['content']
+    if len(structure['column-1']) == 2:
+        content += structure['column-1'][1][1]['content']
+
+    if len(structure['column-1']) > 2:
+        import pdb; pdb.set_trace()
+
     portlet_title = structure['column-1'][0][1].get('portlet_title')
     if portlet_title:
         title = portlet_title
@@ -705,10 +722,17 @@ def import_template_2_columns_i(layout, structure):
 
 
 def import_template_2_columns_ii(layout, structure):
+    # this pages will have to be manually recreated
+    # ex: /home
 
     if len(structure) == 1: # this is a fake page. Ex: /adaptation-sectors
         return
-    import pdb; pdb.set_trace()
+
+    first = [x[1] for x in structure.get('column-1', []) if x[1]]
+    second = [x[1] for x in structure.get('column-2', []) if x[1]]
+
+    if first and second:
+        import pdb; pdb.set_trace()
 
 
 def import_template_2_columns_iii(layout, structure):
@@ -722,14 +746,25 @@ def import_template_ace_layout_1(layout, structure):
 def import_template_ace_layout_5(layout, structure):
     # ex page: /transnational-regions/caribbean-area
 
-    image = structure['column-1'][0][1]['content'][2][0]
-    col2 = structure['column-2']
+    image = structure['column-1'][0][1]['content'][0][2][0]
+    _first = structure['column-2'][0][1]['content'][0][2][0]
+    _second = structure['column-2'][0][1]['content'][1][2][0]
 
-    import pdb; pdb.set_trace()
+    text = _first + _second
+
+    return noop(image, text)
 
 
 def import_template_faq(layout, structure):
-    import pdb; pdb.set_trace()
+    """ This is a template with a main body text and three columns of HTML
+    underneath.
+    Ex:/uncertainty-guidance-ai
+    """
+    main_text = ""
+    col1 = structure['column-2'][0][1]['content'][0]
+    col2 = structure['column-3'][0][1]['content'][0]
+    col3 = structure['column-4'][0][1]['content'][0]
+    return noop(main_text, col1, col2, col3)
 
 
 def import_template_frontpage(layout, structure):
