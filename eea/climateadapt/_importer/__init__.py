@@ -682,6 +682,8 @@ def import_template_urban_ast(layout, structure):
 
 
 def import_template_1_2_columns_i(layout, structure):
+    # TODO: column-1 - mapviewerportlet
+    # TODO: column-2 and column-3 - simplefilterportlet
     import pdb; pdb.set_trace()
 
 
@@ -751,7 +753,15 @@ def import_template_2_columns_ii(layout, structure):
 
 
 def import_template_2_columns_iii(layout, structure):
-    import pdb; pdb.set_trace()
+    # ex: /organizations
+
+    body = structure['column-1'][0][1]['content'][0]
+    portlet_title = structure['column-1'][0][1]['portlet_title']
+
+    # TODO: Extract simplefilterportlet
+    # TODO: Some layouts have a image on column-2
+
+    noop(layout, portlet_title, body)
 
 
 def import_template_ace_layout_1(layout, structure):
