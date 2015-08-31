@@ -689,13 +689,13 @@ def import_template_1_2_columns_i(layout, structure):
 
 def import_template_1_2_columns_ii(layout, structure):
     # ex page: /share-your-info/general
+    # TODO: column02 contains sharemeasureportlet
 
     image = structure['column-1'][0][1]['content'][0][2][0]
     title = structure['column-1'][0][1]['content'][1][2][0]
     body = structure['column-1'][0][1]['content'][2][2][0]
 
     noop(layout, image, title, body)
-
 
 def import_template_1_column(layout, structure):
     # this is a simple page, with one portlet of text
@@ -727,6 +727,7 @@ def import_template_1_column(layout, structure):
 
 def import_template_2_columns_i(layout, structure):
     # ex: /countries
+    # TODO: column-1 may contain countriesportlet
     try:
         body = structure['column-2'][0][1]['content'][0]
         portlet_title = structure['column-2'][0][1]['portlet_title']
