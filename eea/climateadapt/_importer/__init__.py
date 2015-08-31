@@ -176,7 +176,7 @@ def import_aceitem(data, location):
         )
 
         logger.info("Imported aceitem %s from sql aceitem %s",
-                    item, item.aceitemid)
+                    item, data.aceitemid)
         return item
 
 
@@ -204,7 +204,7 @@ def import_aceproject(data, location):
     )
 
     logger.info("Imported aceproject %s from sql aceproject %s",
-                item, item.aceitemid)
+                item, data.projectid)
 
     return item
 
@@ -235,7 +235,7 @@ def import_adaptationoption(data, location):
     )
 
     logger.info("Imported aceproject %s from sql aceitem %s",
-                item, item.aceitemid)
+                item, data.measureid)
 
     return item
 
@@ -268,7 +268,7 @@ def import_casestudy(data, location):
     )
 
     logger.info("Imported casestudy %s from sql acemeasure %s",
-                item, item.measureid)
+                item, data.measureid)
 
     return item
 
@@ -768,7 +768,7 @@ def run_importer():
     #pprint(dict(MAPOFLAYOUTS))
     pprint(set(no_layout))
     # import pdb; pdb.set_trace()
-    raise ValueError
+    # raise ValueError
 
     content_destination = site['content']
     for aceitem in session.query(sql.AceAceitem):
