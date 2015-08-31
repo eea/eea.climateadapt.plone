@@ -686,7 +686,13 @@ def import_template_1_2_columns_i(layout, structure):
 
 
 def import_template_1_2_columns_ii(layout, structure):
-    import pdb; pdb.set_trace()
+    # ex page: /share-your-info/general
+
+    image = structure['column-1'][0][1]['content'][0][2][0]
+    title = structure['column-1'][0][1]['content'][1][2][0]
+    body = structure['column-1'][0][1]['content'][2][2][0]
+
+    noop(layout, image, title, body)
 
 
 def import_template_1_column(layout, structure):
@@ -718,7 +724,16 @@ def import_template_1_column(layout, structure):
 
 
 def import_template_2_columns_i(layout, structure):
-    import pdb; pdb.set_trace()
+    # ex: /countries
+    try:
+        body = structure['column-2'][0][1]['content'][0]
+        portlet_title = structure['column-2'][0][1]['portlet_title']
+    except:
+        body = structure['column-1'][0][1]['content'][0]
+        portlet_title = structure['column-1'][0][1]['portlet_title']
+    title = structure['name']
+
+    noop(layout, title, portlet_title, body)
 
 
 def import_template_2_columns_ii(layout, structure):
