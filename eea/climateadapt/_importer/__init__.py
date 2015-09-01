@@ -772,6 +772,7 @@ def import_template_2_columns_iii(layout, structure):
 
 
 def import_template_ace_layout_1(layout, structure):
+    # ex page: /home (may be just a mockup for home page)
     import pdb; pdb.set_trace()
 
 
@@ -804,7 +805,18 @@ def import_template_faq(layout, structure):
 
 
 def import_template_frontpage(layout, structure):
-    import pdb; pdb.set_trace()
+    # ex page: /home
+    # TODO: column-1 home_slider_portlet
+    # column-2 home_search_portlet
+    # column-5 AceNews_WAR_HomeNewsEventportlet (News)
+    # column-6 AceNews_WAR_HomeNewsEventportlet (Events)
+    country_selector = structure['column-3'][0][1]['content'][0]
+    share_info = structure['column-4'][0][1]['content'][0]
+    sector_policies = structure['column-7'][0][1]['content'][0]
+    information_systems = structure['column-8'][0][1]['content'][0]
+
+    return noop(country_selector, share_info, sector_policies,
+                information_systems)
 
 
 def run_importer():
