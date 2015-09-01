@@ -17,7 +17,7 @@ import sys
 import transaction
 
 logger = logging.getLogger('eea.climateadapt.importer')
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.WARN)
 logger.addHandler(logging.StreamHandler())
 
 session = None      # this will be a global bound to the current module
@@ -429,13 +429,23 @@ def extract_portlet_info(portletid, layout):
 
     return prefs
 
-no_layout = []
 
+no_import_layouts = [
+    '/documents',   # this is an internal Liferay page
+    '/contact-us',  # this is a page that doesn't really exist in the db
+    '/climate-hazards',  # this is a page that doesn't really exist in the db
+    '/adaptation-sectors',  # this is a page that doesn't really exist in the db
+    '/good-practices',
+    '/news-and-forum',
+    '/general',
+]
 
 portlet_importers = {   # import specific portlets by their ID
     # TODO: implement this importer. It sits at page http://adapt-test.eea.europa.eu/data-and-downloads
     'acesearchportlet_WAR_AceItemportlet': lambda layout, structure: None
 }
+
+
 
 def import_layout(layout, site):
     # import layout as folder
@@ -445,6 +455,9 @@ def import_layout(layout, site):
     # search for portlet name in portletpreferences
     # parse the prefs and look for articleid
     # create page from journalarticle
+
+    if layout.friendlyurl in no_import_layouts:
+        return
 
     if layout.type_ == u'control-panel':
         # we skip control panel pages
@@ -479,11 +492,7 @@ def import_layout(layout, site):
             structure[column].append((portletid, content))
 
     importer = globals().get('import_template_' + template)
-    if importer:
-        importer(layout, structure)
-    else:
-        no_layout.append(template)
-        logger.warning("No importer for template %s", template)
+    importer(layout, structure)
 
 
 # possible templates are
@@ -758,6 +767,9 @@ def import_template_2_columns_ii(layout, structure):
     # this pages will have to be manually recreated
     # ex: /home
 
+    if layout.friendlyurl == '/observations-and-scenarios':
+        return  # this is imported in another layout
+
     if len(structure) == 1: # this is a fake page. Ex: /adaptation-sectors
         logger.warning("Please investigate this importer %s with template %s",
                        layout.friendlyurl, '2_columns_ii')
@@ -861,10 +873,6 @@ def run_importer():
 
     for layout in session.query(sql.Layout).filter_by(privatelayout=False):
         import_layout(layout, site)
-
-    #pprint(dict(MAPOFLAYOUTS))
-    # pprint(set(no_layout))
-    # import pdb; pdb.set_trace()
 
     raise ValueError
 
