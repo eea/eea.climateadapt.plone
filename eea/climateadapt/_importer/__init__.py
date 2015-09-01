@@ -697,6 +697,13 @@ def import_template_1_column(layout, structure):
         return importer(layout, structure)
 
     assert len(structure) == 2  # main portlet + layout name
+
+    try:
+        dict(structure['column-1'][0][1])
+    except:
+        logger.warning("Invalid page structure for %s", layout.friendlyurl)
+        return
+
     if not 'content' in structure['column-1'][0][1]:
         #TODO: import this properly
         logger.warning("Please investigate this importer %s",
@@ -715,20 +722,19 @@ def import_template_1_column(layout, structure):
         except:
             content += structure['column-1'][0][1]['content'][0]
 
-    if len(structure['column-1']) > 2:
-        # ex page: /tools/urban-adaptation/generic-response
-        # TODO iframeportlet with climate map structure['column-1'][2]
-        content = structure['column-1'][0][1]['content'][0]
-        content += structure['column-1'][1][1]['content'][0]
-        import pdb; pdb.set_trace()
-
     portlet_title = structure['column-1'][0][1].get('portlet_title')
     if portlet_title:
         title = portlet_title
     else:
         title = structure['column-1'][0][1]['title']
 
-    noop(title, content, structure)
+    if len(structure['column-1']) > 2:
+        col1 = content
+        col2 = structure['column-1'][1][1]['content']
+        iframe = structure['column-1'][2][1]['url']
+        noop(col1, col2, iframe)
+    else:
+        noop(title, content, structure)
 
 
 def import_template_2_columns_i(layout, structure):
@@ -779,17 +785,18 @@ def import_template_ace_layout_1(layout, structure):
 def import_template_ace_layout_5(layout, structure):
     # ex page: /transnational-regions/caribbean-area
 
-    try:
-        image = structure['column-1'][0][1]['content'][0][2][0]
-        _first = structure['column-2'][0][1]['content'][0][2][0]
-        _second = structure['column-2'][0][1]['content'][1][2][0]
-    except:
-        # ex page: /transnational-regions/other-regions
-        _first = structure['column-2'][0][1]['content'][0]
-        _second = ''
-    text = _first + _second
+    image = structure['column-1'][0][1]['content'][0][2][0]
+    _first = structure['column-2'][0][1]['content'][0][2][0]
 
-    return noop(image, text)
+    if len(structure) == 2:
+        _second = structure['column-2'][0][1]['content'][1][2][0]
+        text = _first + _second
+        return noop(image, text)
+
+    portlet = structure['column-2'][0][1]
+    text = _first
+    #TODO: import portlet
+    noop(image, text, portlet)
 
 
 def import_template_faq(layout, structure):
