@@ -506,6 +506,9 @@ def import_layout(layout, site):
 def import_template_1_2_1_columns(layout, structure):
     # column-1 has a table with links and a table with info
     # column-2 has an iframe
+    assert(len(structure) == 3)
+    assert(len(structure['column-1']) == 2)
+    assert(len(structure['column-2']) == 1)
     column1_content = structure['column-1'][0]
     column2_content = structure['column-2'][0]
 
@@ -517,6 +520,9 @@ def import_template_transnationalregion(layout, structure):
     # column-1 has an image and a select box to select other countries
     # column-2 has is a structure of tabs and tables
     # column-3 is unknown and will be ignored
+    assert(len(structure) >= 2)
+    assert(len(structure['column-1']) == 1)
+    assert(len(structure['column-2']) == 1)
 
     payload = structure['column-2'][0]
     portletid, records = payload
@@ -556,6 +562,12 @@ def import_template_ace_layout_2(layout, structure):
         # this is a redirection layout, will be created in another place
         return
 
+    assert(len(structure) == 5)
+    assert(len(structure['column-1']) == 1)
+    assert(len(structure['column-2']) == 1)
+    assert(len(structure['column-3']) == 1)
+    assert(len(structure['column-4']) == 1)
+
     image = structure['column-1'][0][1]['content'][0][2]
     title = structure['column-1'][0][1]['content'][1][2][0]
     body = structure['column-1'][0][1]['content'][2][2][0]
@@ -573,6 +585,10 @@ def import_template_ace_layout_col_1_2(layout, structure):
     # this is a 2 column page with some navigation on the left and a big
     # iframe (or just plain html text) on the right
     # example page: http://adapt-test.eea.europa.eu//tools/urban-adaptation/climatic-threats/heat-waves/sensitivity
+    assert(len(structure) == 3)
+    assert(len(structure['column-1']) == 1)
+    assert(len(structure['column-3']) == 1)
+
     title = strip_xml(structure['name'])
     main = structure['column-3'][0][1].get('url')
     if not main:
@@ -590,6 +606,8 @@ def import_template_ace_layout_3(layout, structure):
     # sidebar has a aceitem search portlet
     # extra, there is an id for a tab based navigation, as a separate column
     # called 'name'
+    # some pages may contain extra columns under the main column
+
     main = {}
     for line in structure['column-1'][0][1]['content']:
         if line[0] == 'image':
@@ -605,7 +623,17 @@ def import_template_ace_layout_3(layout, structure):
     search_portlet = structure['column-5']
     name = structure['name']
 
-    noop(layout, main, search_portlet, name)
+    extra_columns = {}
+    keys = ['column-2', 'column-3', 'column-4']
+    for key in keys:
+        if key in structure:
+            if 'portletSetupTitle_en_GB' in structure[key][0][1]:
+                column_name = structure[key][0][1]['portletSetupTitle_en_GB']
+                extra_columns[column_name] = structure[key]
+            else:
+                extra_columns['Multimedia'] = structure[key]
+
+    noop(layout, main, search_portlet, extra_columns, name)
 
 
 def import_template_ace_layout_4(layout, structure):
