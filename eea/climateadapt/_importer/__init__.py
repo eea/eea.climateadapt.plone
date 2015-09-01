@@ -368,7 +368,7 @@ def _get_article_for_portlet(portlet):
         return
 
     article = session.query(sql.Journalarticle).filter_by(
-        articleid=articleid).order_by(
+        articleid=articleid, status=0).order_by(
             sql.Journalarticle.version.desc()
         ).first()
 
@@ -452,19 +452,12 @@ def import_layout(layout, site):
 
     settings = parse_settings(layout.typesettings)
 
-    # if layout.friendlyurl.startswith(u'/climate-change-adaptation'):
-    #     import pdb; pdb.set_trace()
-    #
     if layout.type_ == u'link_to_layout':
         # TODO: this is a shortcut link should create as a folder and add the linked layout as default page
         #linked_layoutid = settings['linkToLayoutId']
         return
 
-    # if layout.friendlyurl.startswith(u'/vulnerability-assessment'):
-    #     import pdb; pdb.set_trace()
-
     template = settings['layout-template-id'][0]
-
     MAPOFLAYOUTS[template].append(layout.friendlyurl)
     #print layout.type_, "\t\t", template, "\t\t", layout.friendlyurl
 
@@ -484,7 +477,6 @@ def import_layout(layout, site):
         for portletid in portlet_ids:
             content = extract_portlet_info(portletid, layout)
             structure[column].append((portletid, content))
-
 
     importer = globals().get('import_template_' + template)
     if importer:
@@ -705,10 +697,13 @@ def import_template_1_column(layout, structure):
         return importer(layout, structure)
 
     assert len(structure) == 2  # main portlet + layout name
-    try:
-        content = structure['column-1'][0][1]['content']
-    except:
-        import pdb; pdb.set_trace()
+    if not 'content' in structure['column-1'][0][1]:
+        #TODO: import this properly
+        logger.warning("Please investigate this importer %s",
+                       layout.friendlyurl)
+        return
+
+    content = structure['column-1'][0][1]['content']
 
     if len(structure['column-1']) == 2:
         content += structure['column-1'][1][1]['content']
@@ -786,7 +781,7 @@ def import_template_faq(layout, structure):
     underneath.
     Ex:/uncertainty-guidance-ai
     """
-    main_text = ""
+    main_text = structure['column-1'][0][1]['content'][0]
     col1 = structure['column-2'][0][1]['content'][0]
     col2 = structure['column-3'][0][1]['content'][0]
     col3 = structure['column-4'][0][1]['content'][0]
