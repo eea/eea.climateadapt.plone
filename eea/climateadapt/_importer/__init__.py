@@ -703,12 +703,23 @@ def import_template_1_column(layout, structure):
                        layout.friendlyurl)
         return
 
-    content = structure['column-1'][0][1]['content']
+    try:
+        content = structure['column-1'][0][1]['content']
+    except:
+        # TODO: /sitemap (the contents are missing)
+        import pdb; pdb.set_trace()
 
     if len(structure['column-1']) == 2:
-        content += structure['column-1'][1][1]['content']
+        try:
+            content += structure['column-1'][1][1]['content']
+        except:
+            content += structure['column-1'][0][1]['content'][0]
 
     if len(structure['column-1']) > 2:
+        # ex page: /tools/urban-adaptation/generic-response
+        # TODO iframeportlet with climate map structure['column-1'][2]
+        content = structure['column-1'][0][1]['content'][0]
+        content += structure['column-1'][1][1]['content'][0]
         import pdb; pdb.set_trace()
 
     portlet_title = structure['column-1'][0][1].get('portlet_title')
@@ -767,10 +778,14 @@ def import_template_ace_layout_1(layout, structure):
 def import_template_ace_layout_5(layout, structure):
     # ex page: /transnational-regions/caribbean-area
 
-    image = structure['column-1'][0][1]['content'][0][2][0]
-    _first = structure['column-2'][0][1]['content'][0][2][0]
-    _second = structure['column-2'][0][1]['content'][1][2][0]
-
+    try:
+        image = structure['column-1'][0][1]['content'][0][2][0]
+        _first = structure['column-2'][0][1]['content'][0][2][0]
+        _second = structure['column-2'][0][1]['content'][1][2][0]
+    except:
+        # ex page: /transnational-regions/other-regions
+        _first = structure['column-2'][0][1]['content'][0]
+        _second = ''
     text = _first + _second
 
     return noop(image, text)
