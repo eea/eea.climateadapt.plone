@@ -147,8 +147,8 @@ def noop(*args, **kwargs):
     """ no-op function to help with development of importers.
     It avoids pyflakes errors about not used variables.
     """
-    pprint(args)
-    pprint(kwargs)
+    # pprint(args)
+    # pprint(kwargs)
     return
 
 
@@ -676,7 +676,10 @@ def import_template_urban_ast(layout, structure):
 def import_template_1_2_columns_i(layout, structure):
     # TODO: column-1 - mapviewerportlet
     # TODO: column-2 and column-3 - simplefilterportlet
-    import pdb; pdb.set_trace()
+    # there's only one page, here: /map-viewer
+    logger.warning("Please investigate this importer %s with template %s",
+                    layout.friendlyurl, '1_2_columns_i')
+    return
 
 
 def import_template_1_2_columns_ii(layout, structure):
@@ -706,8 +709,8 @@ def import_template_1_column(layout, structure):
 
     if not 'content' in structure['column-1'][0][1]:
         #TODO: import this properly
-        logger.warning("Please investigate this importer %s",
-                       layout.friendlyurl)
+        logger.warning("Please investigate this importer %s with template %s",
+                       layout.friendlyurl, '1_column')
         return
 
     try:
@@ -756,13 +759,16 @@ def import_template_2_columns_ii(layout, structure):
     # ex: /home
 
     if len(structure) == 1: # this is a fake page. Ex: /adaptation-sectors
+        logger.warning("Please investigate this importer %s with template %s",
+                       layout.friendlyurl, '2_columns_ii')
         return
 
     first = [x[1] for x in structure.get('column-1', []) if x[1]]
     second = [x[1] for x in structure.get('column-2', []) if x[1]]
 
     if first and second:
-        import pdb; pdb.set_trace()
+        # this is the /mayors-adapt page
+        noop('mayors-adapt')
 
 
 def import_template_2_columns_iii(layout, structure):
@@ -779,7 +785,8 @@ def import_template_2_columns_iii(layout, structure):
 
 def import_template_ace_layout_1(layout, structure):
     # ex page: /home (may be just a mockup for home page)
-    import pdb; pdb.set_trace()
+    logger.warning("Please investigate this importer %s with template %s",
+                    layout.friendlyurl, 'ace_layout_1')
 
 
 def import_template_ace_layout_5(layout, structure):
@@ -856,9 +863,10 @@ def run_importer():
         import_layout(layout, site)
 
     #pprint(dict(MAPOFLAYOUTS))
-    pprint(set(no_layout))
+    # pprint(set(no_layout))
     # import pdb; pdb.set_trace()
-    # raise ValueError
+
+    raise ValueError
 
     content_destination = site['content']
     for aceitem in session.query(sql.AceAceitem):
