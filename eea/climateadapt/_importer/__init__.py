@@ -690,12 +690,26 @@ def import_template_ast(layout, structure):
     # column-1 has the imagemap on the left side
     # column-2 has 2 portlets:  title and then the one with content (which also
     # has a title)
+    assert(len(structure) >= 3)
+    assert(len(structure['column-1']) == 1)
+    assert(len(structure['column-2']) >= 2)
 
     image_portlet = structure['column-1'][0][1]['content'][0]
     header_text = structure['column-2'][0][1]['headertext']
     content = structure['column-2'][1][1]['content'][0]
 
-    noop(image_portlet, header_text, content)
+    content_portlet = None
+    if len(structure['column-2']) > 2:
+        assert(len(structure['column-2']) == 3)
+        content_portlet = structure['column-2'][2]
+
+    extra_columns = {}
+    [structure.pop(x) for x in ('name', 'column-1', 'column-2')]
+    for key in structure:
+        portlet_name = structure[key][0][1]['portletSetupTitle_en_GB']
+        extra_columns[portlet_name] = structure[key]
+
+    noop(image_portlet, header_text, content, content_portlet, extra_columns)
 
 
 def import_template_urban_ast(layout, structure):
@@ -703,11 +717,32 @@ def import_template_urban_ast(layout, structure):
     # column-1 has the imagemap on the left side
     # column-2 has 2 portlets:  title and then the one with content (which also
     # has a title)
+    assert(len(structure) >= 3)
+    assert(len(structure['column-1']) == 1)
+    assert(len(structure['column-2']) >= 2)
+
     image_portlet = structure['column-1'][0][1]['content'][0]
     header_text = structure['column-2'][0][1]['headertext']
     content = structure['column-2'][1][1]['content'][0]
 
-    noop(layout, image_portlet, header_text, content)
+    content_portlet = None
+    if len(structure['column-2']) > 2:
+        assert(len(structure['column-2']) == 3)
+        content_portlet = structure['column-2'][2]
+
+    extra_columns = {}
+    [structure.pop(x) for x in ('name', 'column-1', 'column-2')]
+    for key in structure:
+        if 'portletSetupTitle_en_GB' in structure[key][0][1]:
+            portlet_name = structure[key][0][1]['portletSetupTitle_en_GB']
+            extra_columns[portlet_name] = structure[key]
+        else:
+            assert(len(structure[key][0][1]) == 4)
+            column_name = structure[key][0][1]['portlet_title']
+            extra_columns[column_name] = structure[key][0][1]['content'][0]
+
+    noop(layout, image_portlet, header_text, content, content_portlet,
+         extra_columns)
 
 
 def import_template_1_2_columns_i(layout, structure):
