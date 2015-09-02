@@ -865,8 +865,6 @@ def import_template_2_columns_iii(layout, structure):
     body = structure['column-1'][0][1]['content'][0]
     portlet_title = structure['column-1'][0][1]['portlet_title']
 
-    print len(structure), len(structure['column-1'])
-
     if len(structure['column-1']) == 4:
         # There is only one layout with this structure
         filter_portlet_1 = structure['column-1'][1]
@@ -891,18 +889,19 @@ def import_template_ace_layout_1(layout, structure):
 
 def import_template_ace_layout_5(layout, structure):
     # ex page: /transnational-regions/caribbean-area
+    assert(len(structure) == 4)
+    assert(len(structure['column-1']) == 1)
 
     image = structure['column-1'][0][1]['content'][0][2][0]
     _first = structure['column-2'][0][1]['content'][0][2][0]
 
-    if len(structure) == 2:
+    if len(structure['column-2'][0][1]['content']) == 2:
         _second = structure['column-2'][0][1]['content'][1][2][0]
-        text = _first + _second
-        return noop(image, text)
+        _first += _second
 
-    portlet = structure['column-2'][0][1]
+    # TODO: import portlet
+    portlet = structure['column-3']
     text = _first
-    #TODO: import portlet
     noop(image, text, portlet)
 
 
@@ -911,6 +910,12 @@ def import_template_faq(layout, structure):
     underneath.
     Ex:/uncertainty-guidance-ai
     """
+    assert(len(structure) == 5)
+    assert(len(structure['column-1']) == 1)
+    assert(len(structure['column-2']) == 1)
+    assert(len(structure['column-3']) == 1)
+    assert(len(structure['column-4']) == 1)
+
     main_text = structure['column-1'][0][1]['content'][0]
     col1 = structure['column-2'][0][1]['content'][0]
     col2 = structure['column-3'][0][1]['content'][0]
@@ -924,10 +929,16 @@ def import_template_frontpage(layout, structure):
     # column-2 home_search_portlet
     # column-5 AceNews_WAR_HomeNewsEventportlet (News)
     # column-6 AceNews_WAR_HomeNewsEventportlet (Events)
+    assert(len(structure) == 9)
     country_selector = structure['column-3'][0][1]['content'][0]
     share_info = structure['column-4'][0][1]['content'][0]
     sector_policies = structure['column-7'][0][1]['content'][0]
     information_systems = structure['column-8'][0][1]['content'][0]
+
+    home_slider_portlet = structure['column-1']
+    home_search_portlet = structure['column-2']
+    news_portlet = structure['column-5']
+    events_portlet = structure['column-6']
 
     return noop(country_selector, share_info, sector_policies,
                 information_systems)
