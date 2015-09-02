@@ -438,6 +438,16 @@ no_import_layouts = [
     '/good-practices',
     '/news-and-forum',
     '/general',
+    '/national-adaptation-strategies',
+    '/european-sector-policy',
+    '/tools/dgregio2020',  # doesn't display anything
+    '/mars-viewer',
+    '/projects1',
+    '/5',
+    '/viewmeasure',
+    '/viewaceitem',
+    '/cities-map',
+    '/city',
 ]
 
 portlet_importers = {   # import specific portlets by their ID
