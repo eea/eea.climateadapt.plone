@@ -750,19 +750,28 @@ def import_template_1_2_columns_i(layout, structure):
     # TODO: column-2 and column-3 - simplefilterportlet
     # there's only one page, here: /map-viewer
     logger.warning("Please investigate this importer %s with template %s",
-                    layout.friendlyurl, '1_2_columns_i')
+                   layout.friendlyurl, '1_2_columns_i')
     return
 
 
 def import_template_1_2_columns_ii(layout, structure):
     # ex page: /share-your-info/general
     # TODO: column02 contains sharemeasureportlet
+    assert(len(structure) == 2 or len(structure) == 3)
+    assert(len(structure['column-1']) == 1)
+    if len(structure) > 2:
+        assert(len(structure['column-2']) == 1)
 
     image = structure['column-1'][0][1]['content'][0][2][0]
     title = structure['column-1'][0][1]['content'][1][2][0]
     body = structure['column-1'][0][1]['content'][2][2][0]
 
-    noop(layout, image, title, body)
+    share_portlet = None
+    if len(structure) == 3:
+        share_portlet = structure['column-2'][0][1]
+
+    noop(layout, image, title, body, share_portlet)
+
 
 def import_template_1_column(layout, structure):
     # this is a simple page, with one portlet of text
@@ -815,15 +824,18 @@ def import_template_1_column(layout, structure):
 def import_template_2_columns_i(layout, structure):
     # ex: /countries
     # TODO: column-1 may contain countriesportlet
-    try:
+    assert(len(structure) == 2 or len(structure) == 3)
+    if len(structure) == 3:
+        countries_portlet = structure['column-1'][0][1]
         body = structure['column-2'][0][1]['content'][0]
         portlet_title = structure['column-2'][0][1]['portlet_title']
-    except:
+    else:
+        countries_portlet = None
         body = structure['column-1'][0][1]['content'][0]
         portlet_title = structure['column-1'][0][1]['portlet_title']
     title = structure['name']
 
-    noop(layout, title, portlet_title, body)
+    noop(layout, title, portlet_title, body, countries_portlet)
 
 
 def import_template_2_columns_ii(layout, structure):
@@ -848,12 +860,25 @@ def import_template_2_columns_ii(layout, structure):
 
 def import_template_2_columns_iii(layout, structure):
     # ex: /organizations
+    assert(len(structure) == 2 or len(structure) == 3)
 
     body = structure['column-1'][0][1]['content'][0]
     portlet_title = structure['column-1'][0][1]['portlet_title']
 
-    # TODO: Extract simplefilterportlet
-    # TODO: Some layouts have a image on column-2
+    print len(structure), len(structure['column-1'])
+
+    if len(structure['column-1']) == 4:
+        # There is only one layout with this structure
+        filter_portlet_1 = structure['column-1'][1]
+        filter_portlet_2 = structure['column-1'][2]
+        blue_button = structure['column-1'][3][1]['content'][0]
+    elif len(structure['column-1']) == 2:
+        body += structure['column-1'][1][1]['content'][0]
+
+    if len(structure) == 3:
+        # column-2 has a image
+        assert(len(structure['column-2']) == 1)
+        image = structure['column-2'][0][1]['content'][0]
 
     noop(layout, portlet_title, body)
 
@@ -861,7 +886,7 @@ def import_template_2_columns_iii(layout, structure):
 def import_template_ace_layout_1(layout, structure):
     # ex page: /home (may be just a mockup for home page)
     logger.warning("Please investigate this importer %s with template %s",
-                    layout.friendlyurl, 'ace_layout_1')
+                   layout.friendlyurl, 'ace_layout_1')
 
 
 def import_template_ace_layout_5(layout, structure):
