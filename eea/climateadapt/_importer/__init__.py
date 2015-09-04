@@ -3,18 +3,24 @@ from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.utils import SOLVERS
 from eea.climateadapt._importer.utils import parse_settings, s2l, printe
 from eea.climateadapt._importer.utils import strip_xml
+from plone.app.textfield import RichTextValue
 from plone.dexterity.utils import createContentInContainer
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
+from plone.tiles.interfaces import ITileDataManager
+from plone.uuid.interfaces import IUUIDGenerator
 from pprint import pprint
 from sqlalchemy import Column, BigInteger, String, Text, DateTime   #, text
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker, relationship
+from zope.component import getUtility
 from zope.sqlalchemy import register
+import json
 import logging
 import lxml.etree
 import os
 import sys
 import transaction
+
 
 logger = logging.getLogger('eea.climateadapt.importer')
 logger.setLevel(logging.WARN)
@@ -150,6 +156,23 @@ def noop(*args, **kwargs):
     # pprint(args)
     # pprint(kwargs)
     return
+
+
+def create_cover_at(site, location, id='index_html', **kw):
+    parent = site
+    for name in [x.strip() for x in location.split('/') if x.strip()]:
+        parent = createContentInContainer(
+            parent,
+            'Folder',
+            title=name,
+        )
+    cover = createContentInContainer(
+        parent,
+        'collective.cover.content',
+        id=id,
+        **kw
+    )
+    return cover
 
 
 def import_aceitem(data, location):
@@ -502,7 +525,7 @@ def import_layout(layout, site):
             structure[column].append((portletid, content))
 
     importer = globals().get('import_template_' + template)
-    importer(layout, structure)
+    importer(site, layout, structure)
 
 
 # possible templates are
@@ -512,20 +535,138 @@ def import_layout(layout, site):
 # u'ace_layout_col_1_2', u'ast', u'faq', u'frontpage', u'transnationalregion',
 # u'urban_ast']
 
+def make_richtext_tile(context, content):
+    # creates a new tile and saves it in the annotation
+    # returns a python objects usable in the layout description
 
-def import_template_1_2_1_columns(layout, structure):
+    id = getUtility(IUUIDGenerator)()
+    typeName = 'collective.cover.richtext'
+    tile = context.restrictedTraverse('@@%s/%s' % (typeName, id))
+
+    ITileDataManager(tile).set({'text': content})
+
+    return {
+        'tile-type': 'collective.cover.richtext',
+        'type': 'tile',
+        'id': id
+    }
+
+
+def make_iframe_embed_tile(context, url):
+    id = getUtility(IUUIDGenerator)()
+    typeName = 'collective.cover.richtext'
+    tile = context.restrictedTraverse('@@%s/%s' % (typeName, id))
+
+    embed = "<iframe src='%s'></iframe" % url
+
+    ITileDataManager(tile).set({'title': 'embeded iframe', 'embed': embed})
+
+    return {
+        'tile-type': 'collective.cover.embed',
+        'type': 'tile',
+        'id': id
+    }
+
+
+def make_layout(*rows):
+    return rows
+
+
+def make_row(*cols):
+    return {
+        'type': 'row',
+        'children': cols
+    }
+
+
+def make_column(*groups):
+    return groups
+
+
+# a layout contains rows
+# a row can contain columns (in its children).
+# a column will contain a group
+# a group will have the tile
+
+# sample cover layout. This is a JSON string!
+# cover_layout = [
+#     {"type": "row", "children":
+#      [{"type": "group",
+#        "children":
+#        [
+#            {"tile-type": "collective.cover.richtext", "type": "tile", "id": "be70f93bd1a4479f8a21ee595b001c06"}
+#         ],
+#        "roles": ["Manager"],
+#        "column-size": 8},
+#       {"type": "group",
+#        "children":
+#        [
+#            {"tile-type": "collective.cover.embed", "type": "tile", "id": "face16b81f2d46bc959df9da24407d94"}
+#        ],
+#        "roles": ["Manager"],
+#        "column-size": 8}]},
+#     {"type": "row",
+#      "children":
+#         [
+#             {"type": "group", "children":
+#              [
+#                  {"tile-type": "collective.cover.richtext", "type": "tile", "id": "a42d3c2a88c8430da52136e2a204cf25"}
+#               ],
+#              "roles": ["Manager"],
+#              "column-size": 16}]}
+# ]
+
+
+def make_group(size=16, *tiles):
+    #{"type": "group", "children":
+    #              [
+    #                  {"tile-type": "collective.cover.richtext", "type": "tile", "id": "a42d3c2a88c8430da52136e2a204cf25"}
+    #               ],
+    #              "roles": ["Manager"],
+    #              "column-size": 16}]
+
+    return {
+        'type': 'group',
+        'roles': ['Manager'],
+        'column-size': size,
+        'children': tiles
+    }
+
+
+def import_template_1_2_1_columns(site, layout, structure):
     # column-1 has a table with links and a table with info
     # column-2 has an iframe
+    # Only one page: http://adapt-test.eea.europa.eu//tools/urban-adaptation/my-adaptation
+
     assert(len(structure) == 3)
     assert(len(structure['column-1']) == 2)
     assert(len(structure['column-2']) == 1)
-    column1_content = structure['column-1'][0]
-    column2_content = structure['column-2'][0]
 
-    noop(column1_content, column2_content)
+    nav = structure['column-1'][0][1]['content'][0]
+    text = structure['column-1'][1][1]['content'][0]
+    iframe = structure['column-2'][0][1]['url']
+
+    cover = create_cover_at(site, layout.friendlyurl, title=structure['name'])
+
+    layout = [{'type': 'row', 'children': []}]
+
+    nav_tile = make_richtext_tile(cover, nav)
+    text_tile = make_richtext_tile(cover, text)
+    iframe_tile = make_iframe_embed_tile(cover, iframe)
+
+    # we create 3 rows, each with a separate tile
+
+    layout = make_layout([make_row(make_group(tile))
+                          for tile in (nav_tile, text_tile, iframe_tile) ])
+
+    import pdb; pdb.set_trace()
+    layout = json.dumps(layout)
+
+    cover.cover_layout = layout
+    cover._p_changed = True
 
 
-def import_template_transnationalregion(layout, structure):
+def import_template_transnationalregion(site, layout, structure):
     # a country page is a structure with 3 "columns":
     # column-1 has an image and a select box to select other countries
     # column-2 has is a structure of tabs and tables
@@ -562,7 +703,7 @@ def import_template_transnationalregion(layout, structure):
     # create_country(layout, country)
 
 
-def import_template_ace_layout_2(layout, structure):
+def import_template_ace_layout_2(site, layout, structure):
     # there are three pages for this layout
     # two of them are empty because there's another layout with redirection
     # the third one is at http://adapt-test.eea.europa.eu/adaptation-measures
@@ -591,7 +732,7 @@ def import_template_ace_layout_2(layout, structure):
                 col3_portlet, col4_portlet)
 
 
-def import_template_ace_layout_col_1_2(layout, structure):
+def import_template_ace_layout_col_1_2(site, layout, structure):
     # this is a 2 column page with some navigation on the left and a big
     # iframe (or just plain html text) on the right
     # example page: http://adapt-test.eea.europa.eu//tools/urban-adaptation/climatic-threats/heat-waves/sensitivity
@@ -605,12 +746,12 @@ def import_template_ace_layout_col_1_2(layout, structure):
         main = ('text', structure['column-3'][0][1]['content'][0])
     else:
         main = ('iframe', main)
-    nav_menu = structure['column-1'][0][1]['content'][0]    # TODO: fix nav menu links
 
+    nav_menu = structure['column-1'][0][1]['content'][0]    # TODO: fix nav menu links
     noop(layout, title, main, nav_menu)
 
 
-def import_template_ace_layout_3(layout, structure):
+def import_template_ace_layout_3(site, layout, structure):
     # this is a "details" page, ex: http://adapt-test.eea.europa.eu/transnational-regions/baltic-sea/policy-framework
     # main column has an image, title, main text and "read more text"
     # sidebar has a aceitem search portlet
@@ -646,7 +787,7 @@ def import_template_ace_layout_3(layout, structure):
     noop(layout, main, search_portlet, extra_columns, name)
 
 
-def import_template_ace_layout_4(layout, structure):
+def import_template_ace_layout_4(site, layout, structure):
     # these are Project pages such as http://adapt-test.eea.europa.eu/web/guest/project/climsave
     main = {
         'accordion': [],
@@ -695,7 +836,7 @@ def import_template_ace_layout_4(layout, structure):
     noop(layout, main, sidebar)
 
 
-def import_template_ast(layout, structure):
+def import_template_ast(site, layout, structure):
     # TODO: create ast page based on structure
     # column-1 has the imagemap on the left side
     # column-2 has 2 portlets:  title and then the one with content (which also
@@ -722,7 +863,7 @@ def import_template_ast(layout, structure):
     noop(image_portlet, header_text, content, content_portlet, extra_columns)
 
 
-def import_template_urban_ast(layout, structure):
+def import_template_urban_ast(site, layout, structure):
     # TODO: create urbanast page based on structure
     # column-1 has the imagemap on the left side
     # column-2 has 2 portlets:  title and then the one with content (which also
@@ -755,7 +896,7 @@ def import_template_urban_ast(layout, structure):
          extra_columns)
 
 
-def import_template_1_2_columns_i(layout, structure):
+def import_template_1_2_columns_i(site, layout, structure):
     # TODO: column-1 - mapviewerportlet
     # TODO: column-2 and column-3 - simplefilterportlet
     # there's only one page, here: /map-viewer
@@ -764,7 +905,7 @@ def import_template_1_2_columns_i(layout, structure):
     return
 
 
-def import_template_1_2_columns_ii(layout, structure):
+def import_template_1_2_columns_ii(site, layout, structure):
     # ex page: /share-your-info/general
     # TODO: column02 contains sharemeasureportlet
     assert(len(structure) == 2 or len(structure) == 3)
@@ -783,7 +924,7 @@ def import_template_1_2_columns_ii(layout, structure):
     noop(layout, image, title, body, share_portlet)
 
 
-def import_template_1_column(layout, structure):
+def import_template_1_column(site, layout, structure):
     # this is a simple page, with one portlet of text
     # example: /eu-adaptation-policy/funding/life
     if structure['column-1'][0][0] in portlet_importers:
@@ -831,7 +972,7 @@ def import_template_1_column(layout, structure):
         noop(title, content, structure)
 
 
-def import_template_2_columns_i(layout, structure):
+def import_template_2_columns_i(site, layout, structure):
     # ex: /countries
     # TODO: column-1 may contain countriesportlet
     assert(len(structure) == 2 or len(structure) == 3)
@@ -848,7 +989,7 @@ def import_template_2_columns_i(layout, structure):
     noop(layout, title, portlet_title, body, countries_portlet)
 
 
-def import_template_2_columns_ii(layout, structure):
+def import_template_2_columns_ii(site, layout, structure):
     # this pages will have to be manually recreated
     # ex: /home
 
@@ -868,7 +1009,7 @@ def import_template_2_columns_ii(layout, structure):
         noop('mayors-adapt')
 
 
-def import_template_2_columns_iii(layout, structure):
+def import_template_2_columns_iii(site, layout, structure):
     # ex: /organizations
     assert(len(structure) == 2 or len(structure) == 3)
 
@@ -891,13 +1032,13 @@ def import_template_2_columns_iii(layout, structure):
     noop(layout, portlet_title, body)
 
 
-def import_template_ace_layout_1(layout, structure):
+def import_template_ace_layout_1(site, layout, structure):
     # ex page: /home (may be just a mockup for home page)
     logger.warning("Please investigate this importer %s with template %s",
                    layout.friendlyurl, 'ace_layout_1')
 
 
-def import_template_ace_layout_5(layout, structure):
+def import_template_ace_layout_5(site, layout, structure):
     # ex page: /transnational-regions/caribbean-area
     assert(len(structure) == 4)
     assert(len(structure['column-1']) == 1)
@@ -915,7 +1056,7 @@ def import_template_ace_layout_5(layout, structure):
     noop(image, text, portlet)
 
 
-def import_template_faq(layout, structure):
+def import_template_faq(site, layout, structure):
     """ This is a template with a main body text and three columns of HTML
     underneath.
     Ex:/uncertainty-guidance-ai
@@ -933,7 +1074,7 @@ def import_template_faq(layout, structure):
     return noop(main_text, col1, col2, col3)
 
 
-def import_template_frontpage(layout, structure):
+def import_template_frontpage(site, layout, structure):
     # ex page: /home
     # TODO: column-1 home_slider_portlet
     # column-2 home_search_portlet
