@@ -1,3 +1,4 @@
+from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.utils import SOLVERS
@@ -161,11 +162,12 @@ def noop(*args, **kwargs):
 def create_cover_at(site, location, id='index_html', **kw):
     parent = site
     for name in [x.strip() for x in location.split('/') if x.strip()]:
-        parent = createContentInContainer(
-            parent,
-            'Folder',
-            title=name,
-        )
+        if not name in parent.contentIds():
+            parent = createContentInContainer(
+                parent,
+                'Folder',
+                title=name,
+            )
     cover = createContentInContainer(
         parent,
         'collective.cover.content',
@@ -659,11 +661,35 @@ def import_template_1_2_1_columns(site, layout, structure):
     layout = make_layout([make_row(make_group(tile))
                           for tile in (nav_tile, text_tile, iframe_tile) ])
 
-    import pdb; pdb.set_trace()
     layout = json.dumps(layout)
 
     cover.cover_layout = layout
     cover._p_changed = True
+
+
+def render(path, options):
+    tpl = PageTemplateFile(path, globals())
+    ns = tpl.pt_getContext((), options)
+    return tpl.pt_render(ns)
+
+
+def pack_to_table(data):
+    """ Convert a flat list of (k, v), (k, v) to a structured list
+    """
+    visited = []
+    rows = []
+    acc = []
+    for k, v in data:
+        if k not in visited:
+            visited.append(k)
+            acc.append(v)
+        else:
+            rows.append(acc)
+            visited = [k]
+            acc = [v]
+
+    rows.append(acc)
+    return {'rows': rows, 'cols': visited}
 
 
 def import_template_transnationalregion(site, layout, structure):
@@ -671,6 +697,8 @@ def import_template_transnationalregion(site, layout, structure):
     # column-1 has an image and a select box to select other countries
     # column-2 has is a structure of tabs and tables
     # column-3 is unknown and will be ignored
+    # Ex: /countries/liechtenstein
+
     assert(len(structure) >= 2)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) == 1)
@@ -678,16 +706,21 @@ def import_template_transnationalregion(site, layout, structure):
     payload = structure['column-2'][0]
     portletid, records = payload
     country = {'Summary': []}
+    tabs = []
+
     for record in records['content']:
         type_, id, payload = record
         if type_ == 'text':
             country[id] = payload[0]
+            tabs.append(id)
         if type_ == 'dynamic':
             for info in record[2]:
                 if isinstance(info, basestring):
                     continue
                 t, name, text = info
                 country['Summary'].append((name, text[0]))
+                if 'Summary' not in tabs:
+                    tabs.append('Summary')
 
     column1_content = structure['column-1'][0]
     portletid, records = column1_content
@@ -699,8 +732,16 @@ def import_template_transnationalregion(site, layout, structure):
     country['image'] = image_info
     country['name'] = structure['name']
 
-    # TODO:
-    # create_country(layout, country)
+    table = pack_to_table(country['Summary'])
+    country['Summary'] = render('templates/table.pt', table)
+
+    payload = []
+    for tab in tabs:
+        payload.append((tab, country[tab]))
+
+    main_content = render('templates/accordion.pt', {'payload': payload})
+
+    cover = create_cover_at(site, layout.friendlyurl)
 
 
 def import_template_ace_layout_2(site, layout, structure):

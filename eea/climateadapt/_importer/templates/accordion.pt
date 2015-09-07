@@ -1,0 +1,10 @@
+<dl class="enableFormTabbing">
+  <tal:rep repeat="kv options/payload">
+    <tal:def define="key python:kv[0]; value python: kv[1]">
+      <dt id="fieldsetlegend-name" tal:attributes="id string:fieldsetlegend-${key}"><span tal:content="key"></span></dt>
+      <dd id="fieldset-name">
+        <span tal:replace="structure value"></span>
+      </dd>
+    </tal:def>
+  </tal:rep>
+</dl>
