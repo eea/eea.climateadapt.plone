@@ -570,6 +570,10 @@ def make_iframe_embed_tile(context, url):
     }
 
 
+def make_image_tile(context, image):
+    pass
+
+
 def make_layout(*rows):
     return rows
 
@@ -621,11 +625,11 @@ def make_column(*groups):
 
 def make_group(size=16, *tiles):
     #{"type": "group", "children":
-    #              [
-    #                  {"tile-type": "collective.cover.richtext", "type": "tile", "id": "a42d3c2a88c8430da52136e2a204cf25"}
-    #               ],
-    #              "roles": ["Manager"],
-    #              "column-size": 16}]
+    #     [
+    #         {"tile-type": "collective.cover.richtext", "type": "tile", "id": "a42d3c2a88c8430da52136e2a204cf25"}
+    #      ],
+    #     "roles": ["Manager"],
+    #     "column-size": 16}]
 
     return {
         'type': 'group',
@@ -633,6 +637,30 @@ def make_group(size=16, *tiles):
         'column-size': size,
         'children': tiles
     }
+
+def render(path, options):
+    tpl = PageTemplateFile(path, globals())
+    ns = tpl.pt_getContext((), options)
+    return tpl.pt_render(ns)
+
+
+def pack_to_table(data):
+    """ Convert a flat list of (k, v), (k, v) to a structured list
+    """
+    visited = []
+    rows = []
+    acc = []
+    for k, v in data:
+        if k not in visited:
+            visited.append(k)
+            acc.append(v)
+        else:
+            rows.append(acc)
+            visited = [k]
+            acc = [v]
+
+    rows.append(acc)
+    return {'rows': rows, 'cols': visited}
 
 
 def import_template_1_2_1_columns(site, layout, structure):
@@ -665,31 +693,6 @@ def import_template_1_2_1_columns(site, layout, structure):
 
     cover.cover_layout = layout
     cover._p_changed = True
-
-
-def render(path, options):
-    tpl = PageTemplateFile(path, globals())
-    ns = tpl.pt_getContext((), options)
-    return tpl.pt_render(ns)
-
-
-def pack_to_table(data):
-    """ Convert a flat list of (k, v), (k, v) to a structured list
-    """
-    visited = []
-    rows = []
-    acc = []
-    for k, v in data:
-        if k not in visited:
-            visited.append(k)
-            acc.append(v)
-        else:
-            rows.append(acc)
-            visited = [k]
-            acc = [v]
-
-    rows.append(acc)
-    return {'rows': rows, 'cols': visited}
 
 
 def import_template_transnationalregion(site, layout, structure):
@@ -742,6 +745,17 @@ def import_template_transnationalregion(site, layout, structure):
     main_content = render('templates/accordion.pt', {'payload': payload})
 
     cover = create_cover_at(site, layout.friendlyurl)
+
+    image_tile = make_image_tile(cover, image_info)    # TODO: import image
+    content_tile = make_richtext_tile(cover, main_content)
+
+    image_group = make_group(2, image_tile)
+    content_group = make_group(14, content_tile)
+
+    layout = make_layout(make_row(image_group, content_group))
+    cover.cover_layout = layout
+    cover._p_changed = True
+    import pdb; pdb.set_trace()
 
 
 def import_template_ace_layout_2(site, layout, structure):
