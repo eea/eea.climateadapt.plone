@@ -28,6 +28,14 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <genericsetup:registerProfile
+        name="cca_import"
+        title="eea.climateadapt: import content from Liferay"
+        directory="profiles/import_content"
+        description="Import content from SQL database of Liferay data"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
     -*- extra stuff goes here -*-
 
     <!-- <plone:behavior -->

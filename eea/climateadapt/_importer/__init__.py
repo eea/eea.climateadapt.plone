@@ -24,7 +24,7 @@ import transaction
 
 
 logger = logging.getLogger('eea.climateadapt.importer')
-logger.setLevel(logging.WARN)
+logger.setLevel(logging.INFO)
 logger.addHandler(logging.StreamHandler())
 
 session = None      # this will be a global bound to the current module
@@ -177,6 +177,13 @@ def create_cover_at(site, location, id='index_html', **kw):
     return cover
 
 
+def log_call(wrapped):
+    def wrapper(*args, **kwargs):
+        logger.info("Calling %s", wrapped.func_name)
+        return wrapped(*args, **kwargs)
+    return wrapper
+
+@log_call
 def import_aceitem(data, location):
     # TODO: Some AceItems have ACTION, MEASURE, REASEARCHPROJECT types and
     # should be mapped over AceMeasure and AceProject
@@ -205,6 +212,7 @@ def import_aceitem(data, location):
         return item
 
 
+@log_call
 def import_aceproject(data, location):
     item = createContentInContainer(
         location,
@@ -234,6 +242,7 @@ def import_aceproject(data, location):
     return item
 
 
+@log_call
 def import_adaptationoption(data, location):
     item = createContentInContainer(
         location,
@@ -265,6 +274,7 @@ def import_adaptationoption(data, location):
     return item
 
 
+@log_call
 def import_casestudy(data, location):
     item = createContentInContainer(
         location,
@@ -297,7 +307,7 @@ def import_casestudy(data, location):
 
     return item
 
-
+@log_call
 def import_image(data, location):
     try:
         name = str(data.imageid) + '.' + data.type_ + '/1.0'
@@ -323,6 +333,7 @@ def import_image(data, location):
     return item
 
 
+@log_call
 def import_dlfileentry(data, location):
     try:
         file_data = open('./document_library/' + str(data.companyid) + '/' +
@@ -481,7 +492,7 @@ portlet_importers = {   # import specific portlets by their ID
 }
 
 
-
+@log_call
 def import_layout(layout, site):
     # import layout as folder
     # create documents for each portlet in 'typesettings':
@@ -559,7 +570,7 @@ def make_iframe_embed_tile(context, url):
     typeName = 'collective.cover.richtext'
     tile = context.restrictedTraverse('@@%s/%s' % (typeName, id))
 
-    embed = "<iframe src='%s'></iframe" % url
+    embed = "<iframe src='%s'></iframe>" % url
 
     ITileDataManager(tile).set({'title': 'embeded iframe', 'embed': embed})
 
@@ -663,6 +674,7 @@ def pack_to_table(data):
     return {'rows': rows, 'cols': visited}
 
 
+@log_call
 def import_template_1_2_1_columns(site, layout, structure):
     # column-1 has a table with links and a table with info
     # column-2 has an iframe
@@ -676,9 +688,20 @@ def import_template_1_2_1_columns(site, layout, structure):
     text = structure['column-1'][1][1]['content'][0]
     iframe = structure['column-2'][0][1]['url']
 
-    cover = create_cover_at(site, layout.friendlyurl, title=structure['name'])
+    cover = create_cover_at(site, layout.friendlyurl,
+                            title=str(structure['name']))
 
     layout = [{'type': 'row', 'children': []}]
+
+    if not isinstance(nav, basestring):
+        import pdb; pdb.set_trace()
+    if not isinstance(text, basestring):
+        import pdb; pdb.set_trace()
+    if not isinstance(iframe, basestring):
+        import pdb; pdb.set_trace()
+
+    if not isinstance(structure['name'], basestring):
+        import pdb; pdb.set_trace()
 
     nav_tile = make_richtext_tile(cover, nav)
     text_tile = make_richtext_tile(cover, text)
@@ -692,9 +715,10 @@ def import_template_1_2_1_columns(site, layout, structure):
     layout = json.dumps(layout)
 
     cover.cover_layout = layout
-    cover._p_changed = True
+    # cover._p_changed = True
 
 
+@log_call
 def import_template_transnationalregion(site, layout, structure):
     # a country page is a structure with 3 "columns":
     # column-1 has an image and a select box to select other countries
@@ -753,11 +777,11 @@ def import_template_transnationalregion(site, layout, structure):
     content_group = make_group(14, content_tile)
 
     layout = make_layout(make_row(image_group, content_group))
-    cover.cover_layout = layout
+    cover.cover_layout = json.dumps(layout)
     cover._p_changed = True
-    import pdb; pdb.set_trace()
 
 
+@log_call
 def import_template_ace_layout_2(site, layout, structure):
     # there are three pages for this layout
     # two of them are empty because there's another layout with redirection
@@ -787,6 +811,7 @@ def import_template_ace_layout_2(site, layout, structure):
                 col3_portlet, col4_portlet)
 
 
+@log_call
 def import_template_ace_layout_col_1_2(site, layout, structure):
     # this is a 2 column page with some navigation on the left and a big
     # iframe (or just plain html text) on the right
@@ -806,6 +831,7 @@ def import_template_ace_layout_col_1_2(site, layout, structure):
     noop(layout, title, main, nav_menu)
 
 
+@log_call
 def import_template_ace_layout_3(site, layout, structure):
     # this is a "details" page, ex: http://adapt-test.eea.europa.eu/transnational-regions/baltic-sea/policy-framework
     # main column has an image, title, main text and "read more text"
@@ -842,6 +868,7 @@ def import_template_ace_layout_3(site, layout, structure):
     noop(layout, main, search_portlet, extra_columns, name)
 
 
+@log_call
 def import_template_ace_layout_4(site, layout, structure):
     # these are Project pages such as http://adapt-test.eea.europa.eu/web/guest/project/climsave
     main = {
@@ -891,6 +918,7 @@ def import_template_ace_layout_4(site, layout, structure):
     noop(layout, main, sidebar)
 
 
+@log_call
 def import_template_ast(site, layout, structure):
     # TODO: create ast page based on structure
     # column-1 has the imagemap on the left side
@@ -918,6 +946,7 @@ def import_template_ast(site, layout, structure):
     noop(image_portlet, header_text, content, content_portlet, extra_columns)
 
 
+@log_call
 def import_template_urban_ast(site, layout, structure):
     # TODO: create urbanast page based on structure
     # column-1 has the imagemap on the left side
@@ -951,6 +980,7 @@ def import_template_urban_ast(site, layout, structure):
          extra_columns)
 
 
+@log_call
 def import_template_1_2_columns_i(site, layout, structure):
     # TODO: column-1 - mapviewerportlet
     # TODO: column-2 and column-3 - simplefilterportlet
@@ -960,6 +990,7 @@ def import_template_1_2_columns_i(site, layout, structure):
     return
 
 
+@log_call
 def import_template_1_2_columns_ii(site, layout, structure):
     # ex page: /share-your-info/general
     # TODO: column02 contains sharemeasureportlet
@@ -979,6 +1010,7 @@ def import_template_1_2_columns_ii(site, layout, structure):
     noop(layout, image, title, body, share_portlet)
 
 
+@log_call
 def import_template_1_column(site, layout, structure):
     # this is a simple page, with one portlet of text
     # example: /eu-adaptation-policy/funding/life
@@ -1027,6 +1059,7 @@ def import_template_1_column(site, layout, structure):
         noop(title, content, structure)
 
 
+@log_call
 def import_template_2_columns_i(site, layout, structure):
     # ex: /countries
     # TODO: column-1 may contain countriesportlet
@@ -1044,6 +1077,7 @@ def import_template_2_columns_i(site, layout, structure):
     noop(layout, title, portlet_title, body, countries_portlet)
 
 
+@log_call
 def import_template_2_columns_ii(site, layout, structure):
     # this pages will have to be manually recreated
     # ex: /home
@@ -1064,6 +1098,7 @@ def import_template_2_columns_ii(site, layout, structure):
         noop('mayors-adapt')
 
 
+@log_call
 def import_template_2_columns_iii(site, layout, structure):
     # ex: /organizations
     assert(len(structure) == 2 or len(structure) == 3)
@@ -1087,12 +1122,14 @@ def import_template_2_columns_iii(site, layout, structure):
     noop(layout, portlet_title, body)
 
 
+@log_call
 def import_template_ace_layout_1(site, layout, structure):
     # ex page: /home (may be just a mockup for home page)
     logger.warning("Please investigate this importer %s with template %s",
                    layout.friendlyurl, 'ace_layout_1')
 
 
+@log_call
 def import_template_ace_layout_5(site, layout, structure):
     # ex page: /transnational-regions/caribbean-area
     assert(len(structure) == 4)
@@ -1111,6 +1148,7 @@ def import_template_ace_layout_5(site, layout, structure):
     noop(image, text, portlet)
 
 
+@log_call
 def import_template_faq(site, layout, structure):
     """ This is a template with a main body text and three columns of HTML
     underneath.
@@ -1129,6 +1167,7 @@ def import_template_faq(site, layout, structure):
     return noop(main_text, col1, col2, col3)
 
 
+@log_call
 def import_template_frontpage(site, layout, structure):
     # ex page: /home
     # TODO: column-1 home_slider_portlet
@@ -1150,7 +1189,7 @@ def import_template_frontpage(site, layout, structure):
                 information_systems)
 
 
-def run_importer():
+def run_importer(site=None):
     sql.Address = sql.Addres    # wrong detected plural
     for kname, rels in RELATIONS.items():
         logger.info("Setting relations for %s", kname)
@@ -1169,25 +1208,28 @@ def run_importer():
     if 'dbshell' in sys.argv:
         import pdb; pdb.set_trace()
 
-    site = get_plone_site()
+    if site is None:
+        site = get_plone_site()
 
     structure = ['content', 'aceprojects', 'casestudy',
                  'adaptationoption', 'repository']
     for name in (set(structure) - set(site.objectIds())):
         site.invokeFactory("Folder", name)
+        #transaction.savepoint()
 
     for layout in session.query(sql.Layout).filter_by(privatelayout=False):
         import_layout(layout, site)
-
-    raise ValueError
+        #transaction.savepoint()
 
     content_destination = site['content']
     for aceitem in session.query(sql.AceAceitem):
         import_aceitem(aceitem, content_destination)
+        #transaction.savepoint()
 
     aceprojects_destination = site['aceprojects']
     for aceproject in session.query(sql.AceProject):
         import_aceproject(aceproject, aceprojects_destination)
+        #transaction.savepoint()
 
     casestudy_destination = site['casestudy']
     adaptationoption_destination = site['adaptationoption']
@@ -1196,12 +1238,15 @@ def run_importer():
             import_casestudy(acemeasure, casestudy_destination)
         else:
             import_adaptationoption(acemeasure, adaptationoption_destination)
+        #transaction.savepoint()
 
     documents_destination = site['repository']
     for image in session.query(sql.Image):
         import_image(image, documents_destination)
+        #transaction.savepoint()
     for dlfileentry in session.query(sql.Dlfileentry):
         import_dlfileentry(dlfileentry, documents_destination)
+        #transaction.savepoint()
 
 
 def get_plone_site():
@@ -1243,7 +1288,16 @@ def main():
     return
 
 
-# sql.AceAceitem.company = relationship(sql.Company,
-#                                       foreign_keys=sql.AceAceitem.companyid,
-#                                       backref="aceitems",
-#                                       primaryjoin="and_(Company.companyid==AceAceitem.companyid)")
+def import_handler(context):
+    """ A GenericSetup import handler.
+
+    Use it like above, start the Zope process with the DB parameter on command line
+    """
+    global session
+    engine = create_engine(os.environ.get("DB"))
+    Session = scoped_session(sessionmaker(bind=engine))
+    register(Session, keep_session=True)
+    session = Session()
+
+    site = context.getSite()
+    run_importer(site)
