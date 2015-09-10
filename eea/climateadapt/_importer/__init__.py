@@ -1,24 +1,25 @@
-from zope.pagetemplate.pagetemplatefile import PageTemplateFile
+#from plone.app.textfield import RichTextValue
+#from pprint import pprint
 from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.utils import SOLVERS
-from eea.climateadapt._importer.utils import parse_settings, s2l, printe
+from eea.climateadapt._importer.utils import parse_settings, s2l    #, printe
 from eea.climateadapt._importer.utils import strip_xml
-from plone.app.textfield import RichTextValue
 from plone.dexterity.utils import createContentInContainer
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from plone.tiles.interfaces import ITileDataManager
 from plone.uuid.interfaces import IUUIDGenerator
-from pprint import pprint
 from sqlalchemy import Column, BigInteger, String, Text, DateTime   #, text
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker, relationship
 from zope.component import getUtility
+from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 from zope.sqlalchemy import register
 import json
 import logging
 import lxml.etree
 import os
+import re
 import sys
 import transaction
 
@@ -161,13 +162,17 @@ def noop(*args, **kwargs):
 
 def create_cover_at(site, location, id='index_html', **kw):
     parent = site
+
     for name in [x.strip() for x in location.split('/') if x.strip()]:
-        if not name in parent.contentIds():
+        if name not in parent.contentIds():
             parent = createContentInContainer(
                 parent,
                 'Folder',
                 title=name,
             )
+        else:
+            parent = parent[name]
+
     cover = createContentInContainer(
         parent,
         'collective.cover.content',
@@ -565,10 +570,10 @@ def make_richtext_tile(context, content):
     }
 
 
-def make_iframe_embed_tile(context, url):
+def make_iframe_embed_tile(cover, url):
     id = getUtility(IUUIDGenerator)()
-    typeName = 'collective.cover.richtext'
-    tile = context.restrictedTraverse('@@%s/%s' % (typeName, id))
+    type_name = 'collective.cover.embed'
+    tile = cover.restrictedTraverse('@@%s/%s' % (type_name, id))
 
     embed = "<iframe src='%s'></iframe>" % url
 
@@ -581,8 +586,44 @@ def make_iframe_embed_tile(context, url):
     }
 
 
-def make_image_tile(context, image):
-    pass
+def make_image_tile(site, cover, info):
+    id = getUtility(IUUIDGenerator)()
+    type_name =  'collective.cover.banner'
+    tile = cover.restrictedTraverse('@@%s/%s' % (type_name, id))
+
+    imageid = info['id']
+
+    repo = site['repository']
+    reg = re.compile(str(imageid) + '.[jpg|png]')
+
+    ids = [m.string for m in [reg.match(cid) for cid in repo.contentIds()] if m]
+
+    if not ids or len(ids) > 1:
+        import pdb; pdb.set_trace()
+        raise ValueError("Image {} not found in repository".format(imageid))
+
+    image = repo[ids[0]]
+    tile.populate_with_object(image)
+
+    # #field = image.image
+    # #image_view_url = image.absolute_url() + '/view'
+    #
+    # # {'image': <plone.namedfile.file.NamedBlobImage object at 0x7fb62ed24aa0>,
+    # # 'image_mtime': '1441874146.537238', 'remote_url':
+    # # '/Plone/repository/11231650.jpg/view', 'title': u'Image 11231650'}
+    #
+    # ITileDataManager(tile).set({
+    #     'title': 'image',
+    #     'image': field,
+    #     'image_mtime': '',
+    #     'remote_url': image_view_url,
+    # })
+
+    return {
+        'tile-type': type_name,
+        'type': 'tile',
+        'id': id
+    }
 
 
 def make_layout(*rows):
@@ -632,6 +673,25 @@ def make_column(*groups):
 #              "roles": ["Manager"],
 #              "column-size": 16}]}
 # ]
+
+
+
+# [{u'children': [{u'children': [None],
+#                  'class': 'cell width-2 position-0',
+#                  u'column-size': 2,
+#                  u'roles': [u'Manager'],
+#                  u'type': u'group'},
+#                 {u'children': [{u'id': u'36759ad0c8114bb48467b858593b271f',
+#                                 u'tile-type': u'collective.cover.richtext',
+#                                 u'type': u'tile'}],
+#                  'class': 'cell width-14 position-2',
+#                  u'column-size': 14,
+#                  u'roles': [u'Manager'],
+#                  u'type': u'group'}],
+#   'class': 'row',
+#   u'type': u'row'}]
+#
+
 
 
 def make_group(size=16, *tiles):
@@ -692,16 +752,6 @@ def import_template_1_2_1_columns(site, layout, structure):
                             title=str(structure['name']))
 
     layout = [{'type': 'row', 'children': []}]
-
-    if not isinstance(nav, basestring):
-        import pdb; pdb.set_trace()
-    if not isinstance(text, basestring):
-        import pdb; pdb.set_trace()
-    if not isinstance(iframe, basestring):
-        import pdb; pdb.set_trace()
-
-    if not isinstance(structure['name'], basestring):
-        import pdb; pdb.set_trace()
 
     nav_tile = make_richtext_tile(cover, nav)
     text_tile = make_richtext_tile(cover, text)
@@ -770,7 +820,7 @@ def import_template_transnationalregion(site, layout, structure):
 
     cover = create_cover_at(site, layout.friendlyurl)
 
-    image_tile = make_image_tile(cover, image_info)    # TODO: import image
+    image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
     content_tile = make_richtext_tile(cover, main_content)
 
     image_group = make_group(2, image_tile)
@@ -1211,42 +1261,34 @@ def run_importer(site=None):
     if site is None:
         site = get_plone_site()
 
-    structure = ['content', 'aceprojects', 'casestudy',
-                 'adaptationoption', 'repository']
-    for name in (set(structure) - set(site.objectIds())):
-        site.invokeFactory("Folder", name)
-        #transaction.savepoint()
+    structure = ['content', 'aceprojects', 'casestudy', 'adaptationoption',
+                 'repository']
+    for name in structure:
+        if name not in site.contentIds():
+            site.invokeFactory("Folder", name)
+
+    for image in session.query(sql.Image):
+        import_image(image, site['repository'])
 
     for layout in session.query(sql.Layout).filter_by(privatelayout=False):
         import_layout(layout, site)
-        #transaction.savepoint()
 
-    content_destination = site['content']
+    return
+
+    for dlfileentry in session.query(sql.Dlfileentry):
+        import_dlfileentry(dlfileentry, site['repository'])
+
     for aceitem in session.query(sql.AceAceitem):
-        import_aceitem(aceitem, content_destination)
-        #transaction.savepoint()
+        import_aceitem(aceitem, site['content'])
 
-    aceprojects_destination = site['aceprojects']
     for aceproject in session.query(sql.AceProject):
-        import_aceproject(aceproject, aceprojects_destination)
-        #transaction.savepoint()
+        import_aceproject(aceproject, site['aceprojects'])
 
-    casestudy_destination = site['casestudy']
-    adaptationoption_destination = site['adaptationoption']
     for acemeasure in session.query(sql.AceMeasure):
         if acemeasure.mao_type == 'A':
-            import_casestudy(acemeasure, casestudy_destination)
+            import_casestudy(acemeasure, site['casestudy'])
         else:
-            import_adaptationoption(acemeasure, adaptationoption_destination)
-        #transaction.savepoint()
-
-    documents_destination = site['repository']
-    for image in session.query(sql.Image):
-        import_image(image, documents_destination)
-        #transaction.savepoint()
-    for dlfileentry in session.query(sql.Dlfileentry):
-        import_dlfileentry(dlfileentry, documents_destination)
-        #transaction.savepoint()
+            import_adaptationoption(acemeasure, site['adaptationoption'])
 
 
 def get_plone_site():
