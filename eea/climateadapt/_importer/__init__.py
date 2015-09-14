@@ -586,38 +586,26 @@ def make_iframe_embed_tile(cover, url):
     }
 
 
+def get_image(site, imageid):
+    repo = site['repository']
+    reg = re.compile(str(imageid) + '.[jpg|png]')
+
+    ids = [m.string for m in [reg.match(cid) for cid in repo.contentIds()] if m]
+
+    if len(ids) == 1:
+        raise ValueError("Image {} not found in repository".format(imageid))
+
+    return repo[ids[0]]
+
+
 def make_image_tile(site, cover, info):
     id = getUtility(IUUIDGenerator)()
     type_name =  'collective.cover.banner'
     tile = cover.restrictedTraverse('@@%s/%s' % (type_name, id))
 
     imageid = info['id']
-
-    repo = site['repository']
-    reg = re.compile(str(imageid) + '.[jpg|png]')
-
-    ids = [m.string for m in [reg.match(cid) for cid in repo.contentIds()] if m]
-
-    if not ids or len(ids) > 1:
-        import pdb; pdb.set_trace()
-        raise ValueError("Image {} not found in repository".format(imageid))
-
-    image = repo[ids[0]]
+    image = get_image(site, imageid)
     tile.populate_with_object(image)
-
-    # #field = image.image
-    # #image_view_url = image.absolute_url() + '/view'
-    #
-    # # {'image': <plone.namedfile.file.NamedBlobImage object at 0x7fb62ed24aa0>,
-    # # 'image_mtime': '1441874146.537238', 'remote_url':
-    # # '/Plone/repository/11231650.jpg/view', 'title': u'Image 11231650'}
-    #
-    # ITileDataManager(tile).set({
-    #     'title': 'image',
-    #     'image': field,
-    #     'image_mtime': '',
-    #     'remote_url': image_view_url,
-    # })
 
     return {
         'tile-type': type_name,
@@ -1272,8 +1260,6 @@ def run_importer(site=None):
 
     for layout in session.query(sql.Layout).filter_by(privatelayout=False):
         import_layout(layout, site)
-
-    return
 
     for dlfileentry in session.query(sql.Dlfileentry):
         import_dlfileentry(dlfileentry, site['repository'])
