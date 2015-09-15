@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<import-steps>
+ <import-step id="importcontent" version="2015-09-08"
+           handler="eea.climateadapt._importer.import_handler"
+           title="EEA Climate Adapt content import">
+ </import-step>
+</import-steps>

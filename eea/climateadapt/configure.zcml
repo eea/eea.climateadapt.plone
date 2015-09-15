@@ -10,6 +10,7 @@
     <includeDependencies package="." />
 
     <include package=".browser" />
+    <include package=".tiles" />
 
     <include package="plone.resource" file="meta.zcml"/>
 
