@@ -112,24 +112,29 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
 
 class ICaseStudy(IAceMeasure):
+    """ Case study
+    """
     # location - a clickable map, not provided if is "Adaptation option" type
 
     location_lat = Decimal(title=_(u"Location latitude"), required=True)
-
     location_lon = Decimal(title=_(u"Location longitude"), required=True)
 
 
 class IAdaptationOption(IAceMeasure):
-
-    pass
+    """ Adaptation Option
+    """
 
 
 class CaseStudy(dexterity.Item):
     implements(ICaseStudy)
 
+    search_type = "ACTION"
+
 
 class AdaptationOption(dexterity.Item):
     implements(IAdaptationOption)
+
+    search_type = "MEASUREACTION"
 
 
 # class AceMeasure(Base):

@@ -76,4 +76,15 @@
         permission="zope2.View"
         />
 
+
+    <!-- Tile helpers -->
+
+    <browser:page
+        name="acecontent_search_helper"
+        for="*"
+        class="eea.climateadapt.browser.tilehelpers.AceContentSearch"
+        template="pt/helper_acecontentsearch.pt"
+        permission="zope2.View"
+        />
+
 </configure>

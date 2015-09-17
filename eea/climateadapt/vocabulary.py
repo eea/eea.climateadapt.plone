@@ -137,3 +137,20 @@ alsoProvides(ace_countries_vocabulary, IVocabularyFactory)
 _measure_types = (("A", "Case study"), ("M", "Adaptation option"))
 acemeasure_types = generic_vocabulary(_measure_types)
 alsoProvides(acemeasure_types, IVocabularyFactory)
+
+from collections import namedtuple
+
+_a = namedtuple('_AceItemType', ['id', 'label'])
+
+aceitem_types = [
+    _a("DOCUMENT", "Publication & Report"),
+    _a("INFORMATIONSOURCE", "Information Portal"),
+    _a("GUIDANCE","Guidance Document"),
+    _a("TOOL", "Tool"),
+    _a("MAPGRAPHDATASET", "Maps, graphs and datasets"),
+    _a("INDICATOR", "Indicators"),
+    _a("RESEARCHPROJECT","Research and Knowledge Projects"),
+    _a("MEASURE","Adaptation Option"),
+    _a("ACTION", "Case Studies"),
+    _a("ORGANISATION", "Organisation"),
+]

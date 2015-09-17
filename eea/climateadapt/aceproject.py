@@ -35,7 +35,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                          required=False,
                          )
 
-    partners = TextLine(title=_(u"Parners"),
+    partners = TextLine(title=_(u"Partners"),
                         description=_(u"Information about project partners"),
                         required=False,
                         )
@@ -108,3 +108,5 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
 class AceProject(dexterity.Item):
     implements(IAceProject)
+
+    search_type = "RESEARCHPROJECT"

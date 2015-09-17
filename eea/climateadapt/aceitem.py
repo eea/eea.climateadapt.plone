@@ -110,45 +110,75 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
 
 class IPublicationReport(IAceItem):
-
-    pass
+    """ Publication Report Interface
+    """
 
 
 class IInformationPortal(IAceItem):
-
-    pass
+    """ Information Portal Interface
+    """
 
 
 class IGuidanceDocument(IAceItem):
-
-    pass
+    """ Guidance Document Interface
+    """
 
 
 class ITool(IAceItem):
-
-    pass
+    """ Tool Interface
+    """
 
 
 class IOrganization(IAceItem):
+    """ Organisation Interface"""
 
-    pass
+
+class IIndicator(IAceItem):
+    """ Indicator Interface"""
+
+
+class IMapGraphDataset(IAceItem):
+    """ Maps, Graphs and Datasets Interface
+    """
 
 
 class PublicationReport(dexterity.Item):
     implements(IPublicationReport)
 
+    search_type = "DOCUMENT"
+
 
 class InformationPortal(dexterity.Item):
     implements(IInformationPortal)
+
+    search_type = "INFORMATIONSOURCE"
 
 
 class GuidanceDocument(dexterity.Item):
     implements(IGuidanceDocument)
 
+    search_type = "GUIDANCE"
+
 
 class Tool(dexterity.Item):
     implements(ITool)
 
+    search_type = "TOOL"
+
 
 class Organization(dexterity.Item):
     implements(IOrganization)
+
+    search_type = "ORGANISATION"
+
+
+class Indicator(dexterity.Item):
+    implements(IIndicator)
+
+    search_type = "INDICATOR"
+
+
+class MapGraphDataset(dexterity.Item):
+    implements(IMapGraphDataset)
+
+    search_type = "MAPGRAPHDATASET"
