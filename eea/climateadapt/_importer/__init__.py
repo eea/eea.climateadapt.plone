@@ -137,17 +137,12 @@ class AceIndicator(sql.Base):   # count: 42
 
 sql.AceIndicator = AceIndicator
 
-PUBLICATION_REPORT = 'DOCUMENT'
-INFORMATION_PORTAL = 'INFORMATIONSOURCE'
-GUIDANCE_DOCUMENT = 'GUIDANCE'
-TOOL = 'TOOL'
-ORGINIZATION = 'ORGINIZATION'
 ACE_ITEM_TYPES = {
-    PUBLICATION_REPORT: 'eea.climateadapt.publicationreport',
-    INFORMATION_PORTAL: 'eea.climateadapt.informationportal',
-    GUIDANCE_DOCUMENT: 'eea.climateadapt.guidancedocument',
-    TOOL: 'eea.climateadapt.tool',
-    ORGINIZATION: 'eea.climateadapt.organization'
+    'DOCUMENT': 'eea.climateadapt.publicationreport',
+    'INFORMATIONSOURCE': 'eea.climateadapt.informationportal',
+    'GUIDANCE': 'eea.climateadapt.guidancedocument',
+    'TOOL': 'eea.climateadapt.tool',
+    'ORGANIZATION': 'eea.climateadapt.organization'
 }
 
 
@@ -215,6 +210,8 @@ def import_aceitem(data, location):
         logger.info("Imported aceitem %s from sql aceitem %s",
                     item, data.aceitemid)
         return item
+    else:
+        raise ValueError("You missed an acetype item")
 
 
 @log_call

@@ -1,7 +1,8 @@
+from collections import namedtuple
 from zope.interface import alsoProvides
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 import pycountry
 
 
@@ -137,8 +138,6 @@ alsoProvides(ace_countries_vocabulary, IVocabularyFactory)
 _measure_types = (("A", "Case study"), ("M", "Adaptation option"))
 acemeasure_types = generic_vocabulary(_measure_types)
 alsoProvides(acemeasure_types, IVocabularyFactory)
-
-from collections import namedtuple
 
 _a = namedtuple('_AceItemType', ['id', 'label'])
 
