@@ -12,7 +12,7 @@
   <object name="eea.climateadapt.informationportal" meta_type="Dexterity FTI" />
   <object name="eea.climateadapt.guidancedocument" meta_type="Dexterity FTI" />
   <object name="eea.climateadapt.tool" meta_type="Dexterity FTI" />
-  <object name="eea.climateadapt.organization" meta_type="Dexterity FTI" />
+  <object name="eea.climateadapt.organisation" meta_type="Dexterity FTI" />
   <object name="eea.climateadapt.casestudy" meta_type="Dexterity FTI" />
   <object name="eea.climateadapt.adaptationoption" meta_type="Dexterity FTI" />
   <object name="eea.climateadapt.aceproject" meta_type="Dexterity FTI" />

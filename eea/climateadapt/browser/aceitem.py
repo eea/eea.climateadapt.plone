@@ -31,7 +31,7 @@ class ToolView(DefaultView):
         return super(ToolView).__call__()
 
 
-class OrganizationView(DefaultView):
+class OrganisationView(DefaultView):
 
     def __call__(self):
-        return super(OrganizationView).__call__()
+        return super(OrganisationView).__call__()

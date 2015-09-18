@@ -142,7 +142,9 @@ ACE_ITEM_TYPES = {
     'INFORMATIONSOURCE': 'eea.climateadapt.informationportal',
     'GUIDANCE': 'eea.climateadapt.guidancedocument',
     'TOOL': 'eea.climateadapt.tool',
-    'ORGANIZATION': 'eea.climateadapt.organization'
+    'ORGANISATION': 'eea.climateadapt.organisation',
+    'INDICATOR': 'eea.climateadapt.indicator',
+    'MAPGRAPHDATASET': 'eea.climateadapt.mapgraphdataset',
 }
 
 
@@ -589,7 +591,7 @@ def get_image(site, imageid):
 
     ids = [m.string for m in [reg.match(cid) for cid in repo.contentIds()] if m]
 
-    if len(ids) == 1:
+    if len(ids) != 1:
         raise ValueError("Image {} not found in repository".format(imageid))
 
     return repo[ids[0]]
@@ -1135,7 +1137,7 @@ def import_template_2_columns_ii(site, layout, structure):
 
 @log_call
 def import_template_2_columns_iii(site, layout, structure):
-    # ex: /organizations
+    # ex: /organisations
     assert(len(structure) == 2 or len(structure) == 3)
 
     body = structure['column-1'][0][1]['content'][0]

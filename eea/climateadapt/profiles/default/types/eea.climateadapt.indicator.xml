@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
-<object name="eea.climateadapt.organization"
+<object name="eea.climateadapt.indicator"
    meta_type="Dexterity FTI"
    i18n:domain="eea.climateadapt" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">Organization</property>
+  <property name="title" i18n:translate="">Indicator</property>
   <property name="description"
-    i18n:translate="">Organization</property>
+    i18n:translate="">Indicator</property>
   <property name="icon_expr">string:${portal_url}/document_icon.png</property>
-  <property name="factory">eea.climateadapt.organization</property>
+  <property name="factory">eea.climateadapt.indicator</property>
   <property name="global_allow">True</property>
   <property name="filter_content_types">False</property>
   <property name="allowed_content_types" />
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">eea.climateadapt.aceitem.IOrganization</property>
-  <property name="klass">eea.climateadapt.aceitem.Organization</property>
+  <property name="schema">eea.climateadapt.aceitem.IIndicator</property>
+  <property name="klass">eea.climateadapt.aceitem.Indicator</property>
 
   <property name="behaviors">
      <element value="plone.app.content.interfaces.INameFromTitle" />

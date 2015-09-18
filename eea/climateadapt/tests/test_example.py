@@ -9,7 +9,7 @@ from eea.climateadapt.testing import \
     EEA_CLIMATEADAPT_INTEGRATION_TESTING
 from eea.climateadapt.aceitem import \
     IPublicationReport, IInformationPortal, IGuidanceDocument, \
-    ITool, IOrganization
+    ITool, IOrganisation
 from eea.climateadapt.acemeasure import ICaseStudy, IAdaptationOption
 from eea.climateadapt.aceproject import IAceProject
 
@@ -78,15 +78,15 @@ class IntegrationTest(unittest.TestCase):
         self.portal.invokeFactory('eea.climateadapt.tool', 'tool')
         self.assertTrue(ITool.providedBy(self.portal.tool))
 
-    def test_schema_organization(self):
-        fti = queryUtility(IDexterityFTI, name='eea.climateadapt.organization')
+    def test_schema_organisation(self):
+        fti = queryUtility(IDexterityFTI, name='eea.climateadapt.organisation')
         schema = fti.lookupSchema()
-        self.assertEqual(IOrganization, schema)
+        self.assertEqual(IOrganisation, schema)
 
-    def test_add_organization(self):
-        self.portal.invokeFactory('eea.climateadapt.organization',
-                                  'organization')
-        self.assertTrue(IOrganization.providedBy(self.portal.organization))
+    def test_add_organisation(self):
+        self.portal.invokeFactory('eea.climateadapt.organisation',
+                                  'organisation')
+        self.assertTrue(IOrganisation.providedBy(self.portal.organisation))
 
     def test_schema_casestudy(self):
         fti = queryUtility(IDexterityFTI, name='eea.climateadapt.casestudy')

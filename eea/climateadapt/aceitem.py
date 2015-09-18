@@ -81,7 +81,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     year = Int(title=_(u"Year"), required=True)
 
-    geochars = Text(title=_(u"Geographic characterization"),
+    geochars = Text(title=_(u"Geographic characterisation"),
                     required=False, default=u"")
 
     # TODO: see if possible to use eea.promotions for this
@@ -129,7 +129,7 @@ class ITool(IAceItem):
     """
 
 
-class IOrganization(IAceItem):
+class IOrganisation(IAceItem):
     """ Organisation Interface"""
 
 
@@ -166,8 +166,8 @@ class Tool(dexterity.Item):
     search_type = "TOOL"
 
 
-class Organization(dexterity.Item):
-    implements(IOrganization)
+class Organisation(dexterity.Item):
+    implements(IOrganisation)
 
     search_type = "ORGANISATION"
 

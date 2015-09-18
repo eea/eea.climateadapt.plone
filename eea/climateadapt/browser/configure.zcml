@@ -45,10 +45,10 @@
         />
 
     <browser:page
-        name="organization_view"
-        for="eea.climateadapt.aceitem.IOrganization"
-        class="eea.climateadapt.browser.aceitem.OrganizationView"
-        template="pt/organization_view.pt"
+        name="organisation_view"
+        for="eea.climateadapt.aceitem.IOrganisation"
+        class="eea.climateadapt.browser.aceitem.OrganisationView"
+        template="pt/organisation_view.pt"
         permission="zope2.View"
         />
 
