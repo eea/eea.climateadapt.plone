@@ -14,14 +14,26 @@
       directory="static"
       />
 
+  <!-- <plone:tile -->
+  <!--     name="eea.climateadapt.embedapp" -->
+  <!--     title="Embed App Tile" -->
+  <!--     description="A tile to embed a configurable view" -->
+  <!--     icon="++resource++eea.climateadapt.tiles/tile&#45;embed&#45;app.png" -->
+  <!--     add_permission="cmf.ModifyPortalContent" -->
+  <!--     schema=".embedapp.IEmbedAppTile" -->
+  <!--     class=".embedapp.EmbedAppTile" -->
+  <!--     permission="zope2.View" -->
+  <!--     for="*" -->
+  <!--     /> -->
+
   <plone:tile
-      name="eea.climateadapt.embedapp"
-      title="Embed App Tile"
-      description="A tile to embed a configurable view"
+      name="eea.climateadapt.search_acecontent"
+      title="Search AceContent"
+      description="A tile to search ace content"
       icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
       add_permission="cmf.ModifyPortalContent"
-      schema=".embedapp.IEmbedAppTile"
-      class=".embedapp.EmbedAppTile"
+      schema=".search_acecontent.ISearchAceContentTile"
+      class=".search_acecontent.SearchAceContentTile"
       permission="zope2.View"
       for="*"
       />

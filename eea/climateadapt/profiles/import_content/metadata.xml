@@ -1,6 +1,9 @@
 <metadata>
-  <version>1</version>
+  <version>2</version>
     <dependencies>
+        <!-- <dependency>profile&#45;Products.CMFPlone:dependencies</dependency> -->
+        <!-- <dependency>profile&#45;Products.CMFPlone:plone</dependency> -->
+        <!-- <dependency>profile&#45;Products.CMFPlone:plone&#45;content</dependency> -->
         <dependency>profile-eea.climateadapt:default</dependency>
     </dependencies>
 </metadata>

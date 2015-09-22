@@ -213,6 +213,8 @@ def import_aceitem(data, location):
                     item, data.aceitemid)
         return item
     else:
+        print "%s not imported" % data.datatype
+        return
         raise ValueError("You missed an acetype item")
 
 

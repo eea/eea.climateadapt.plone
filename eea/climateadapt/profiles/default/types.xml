@@ -16,4 +16,6 @@
   <object name="eea.climateadapt.casestudy" meta_type="Dexterity FTI" />
   <object name="eea.climateadapt.adaptationoption" meta_type="Dexterity FTI" />
   <object name="eea.climateadapt.aceproject" meta_type="Dexterity FTI" />
+  <object name="eea.climateadapt.indicator" meta_type="Dexterity FTI" />
+  <object name="eea.climateadapt.mapgraphdataset" meta_type="Dexterity FTI" />
 </object>

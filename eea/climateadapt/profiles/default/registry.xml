@@ -2,8 +2,14 @@
 <registry>
     <record name="plone.app.tiles">
         <value purge="false">
-            <element>eea.climateadapt.embedapp</element>
-            <element>eea.climateadapt.searchacecontent</element>
+            <!-- <element>eea.climateadapt.embedapp</element> -->
+            <element>eea.climateadapt.search_acecontent</element>
+        </value>
+    </record>
+    <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
+        <value purge="false">
+            <!-- <element>eea.climateadapt.embedapp</element> -->
+            <element>eea.climateadapt.search_acecontent</element>
         </value>
     </record>
 </registry>

@@ -1,4 +1,6 @@
+from Products.CMFCore.utils import getToolByName
 from collections import namedtuple
+from zope.component.hooks import getSite
 from zope.interface import alsoProvides
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
@@ -153,3 +155,31 @@ aceitem_types = [
     _a("ACTION", "Case Studies"),
     _a("ORGANISATION", "Organisation"),
 ]
+
+
+def search_terms_vocabulary(context):
+    """ AceItem data types """
+
+    site = getSite()
+    catalog = getToolByName(site, 'portal_catalog')
+    terms = catalog.uniqueValuesFor("search_type")
+    terms = sorted(terms)
+
+    return SimpleVocabulary([
+        SimpleTerm(x, x, x) for x in terms
+    ])
+alsoProvides(search_terms_vocabulary, IVocabularyFactory)
+
+
+def element_types_vocabulary(context):
+    """ AceItem data types """
+
+    site = getSite()
+    catalog = getToolByName(site, 'portal_catalog')
+    terms = catalog.uniqueValuesFor("elements")
+    terms = sorted(terms)
+
+    return SimpleVocabulary([
+        SimpleTerm(x, x, x) for x in terms
+    ])
+alsoProvides(element_types_vocabulary, IVocabularyFactory)

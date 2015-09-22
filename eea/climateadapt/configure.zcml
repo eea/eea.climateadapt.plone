@@ -22,20 +22,21 @@
     <i18n:registerTranslations directory="locales" />
 
     <genericsetup:registerProfile
-        name="default"
-        title="eea.climateadapt"
-        directory="profiles/default"
-        description="Extension profile for eea.climateadapt"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
-
-    <genericsetup:registerProfile
         name="cca_import"
         title="eea.climateadapt: import content from Liferay"
         directory="profiles/import_content"
         description="Import content from SQL database of Liferay data"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="eea.climateadapt"
+        directory="profiles/default"
+        description="Install eea.climateadapt"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
 
     -*- extra stuff goes here -*-
 
@@ -56,5 +57,8 @@
     <utility name="eea.climateadapt.acemeasure_implementationtype" component=".vocabulary.acemeasure_implementationtype_vocabulary"/>
     <utility name="eea.climateadapt.ace_countries" component=".vocabulary.ace_countries_vocabulary"/>
     <utility name="eea.climateadapt.acemeasure_types" component=".vocabulary.acemeasure_types"/>
+
+    <utility name="eea.climateadapt.element_types_vocabulary" component=".vocabulary.element_types_vocabulary"/>
+    <utility name="eea.climateadapt.search_terms_vocabulary" component=".vocabulary.search_terms_vocabulary"/>
 
 </configure>
