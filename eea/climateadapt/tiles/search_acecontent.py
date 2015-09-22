@@ -36,6 +36,8 @@ class ISearchAceContentTile(IPersistentCoverTile):
 
 class SearchAceContentTile(PersistentCoverTile):
     """ Search Ace content tile
+
+    It shows links to the search page, for all aceitems_types.
     """
 
     implements(ISearchAceContentTile)
@@ -73,3 +75,61 @@ class SearchAceContentTile(PersistentCoverTile):
             ))
 
         return result
+
+
+class IRelevantAceContentItemsTile(ISearchAceContentTile):
+
+    search_type = schema.Choice(
+        title=_(u"Aceitem type"),
+        vocabulary="eea.climateadapt.search_types_vocabulary",
+        required=True
+    )
+
+    nr_items = schema.Int(
+        title=_(u"Nr of items to show"),
+        required=True,
+        default=5,
+    )
+
+
+class RelevantAceContentItemsTile(PersistentCoverTile):
+    """ Relevant AceItem content
+    """
+    implements(IRelevantAceContentItemsTile)
+
+    short_name = u'Relevant AceContent'
+
+    is_configurable = True
+    is_editable = True
+    is_droppable = False
+
+    index = ViewPageTemplateFile('pt/relevant_acecontent.pt')
+
+    def is_empty(self):
+        return False
+
+    def accepted_ct(self):
+        """Return an empty list as no content types are accepted."""
+        return []
+
+    def view_more_url(self):
+        site = getSite()
+        element_type = self.data.get('element_type')
+        search_type = self.data.get('search_type')
+        search_text = self.data.get('search_text') or ""
+        # "http://climate-adapt.eea.europa.eu/data-and-downloads?searchtext=obs-scen-gen&searchelements=OBSERVATIONS&searchtypes=DOCUMENT"
+        return "%s/data-and-downloads?searchtext=%s&searchelements=%s&searchtypes=%s" % (
+            site.absolute_url(), search_text, element_type, search_type
+        )
+
+    def items(self):
+        catalog = getToolByName(self.context, 'portal_catalog')
+        element_type = self.data.get('element_type')
+        search_type = self.data.get('search_type')
+        count = self.data.get('nr_items', 5)
+        search_text = self.data.get('search_text') or ""
+
+        res = catalog.searchResults(search_type=search_type,
+                                    elements=element_type,
+                                    SearchableText=search_text)
+        return res[:count]

@@ -59,6 +59,6 @@
     <utility name="eea.climateadapt.acemeasure_types" component=".vocabulary.acemeasure_types"/>
 
     <utility name="eea.climateadapt.element_types_vocabulary" component=".vocabulary.element_types_vocabulary"/>
-    <utility name="eea.climateadapt.search_terms_vocabulary" component=".vocabulary.search_terms_vocabulary"/>
+    <utility name="eea.climateadapt.search_types_vocabulary" component=".vocabulary.search_types_vocabulary"/>
 
 </configure>

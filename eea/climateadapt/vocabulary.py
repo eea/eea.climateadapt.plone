@@ -157,7 +157,7 @@ aceitem_types = [
 ]
 
 
-def search_terms_vocabulary(context):
+def search_types_vocabulary(context):
     """ AceItem data types """
 
     site = getSite()
@@ -168,7 +168,7 @@ def search_terms_vocabulary(context):
     return SimpleVocabulary([
         SimpleTerm(x, x, x) for x in terms
     ])
-alsoProvides(search_terms_vocabulary, IVocabularyFactory)
+alsoProvides(search_types_vocabulary, IVocabularyFactory)
 
 
 def element_types_vocabulary(context):

@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n:domain="collective.cover">
+
+  <body tal:define="is_compose view/is_compose_mode">
+    <h1 tal:condition="is_compose">Relevant AceContent Tile</h1>
+    <p tal:condition="python: not view.data.get('element_type')  and view.is_compose_mode()" i18n:translate="">
+      Please edit the tile to enter correct data.
+    </p>
+    <h2 tal:content="python: view.data.get('title')">Title here</h2>
+
+    <div tal:condition="view/is_compose_mode">
+      <h3>Element type:</h3>
+      <div tal:content="python: view.data.get('element_type')" />
+      <h3>Search type:</h3>
+      <div tal:content="python: view.data.get('search_type')" />
+      <h3>Search text: </h3>
+      <div tal:content="python: view.data.get('search_text')" />
+      <h3>Number of items: </h3>
+      <div tal:content="python: view.data.get('nr_items')" />
+    </div>
+
+    <div class="cover-richtext-tile tile-content aceitem-relevant-tile" tal:condition="not: is_compose">
+      <ul>
+        <li tal:repeat="brain view/items">
+          <a href="" tal:attributes="href brain/getURL" tal:content="brain/Title">Title here</a>
+        </li>
+      </ul>
+      <div class="tile-footer">
+        <a href="" tal:attributes="href view/view_more_url">View more</a>
+      </div>
+    </div>
+  </body>
+</html>
+
