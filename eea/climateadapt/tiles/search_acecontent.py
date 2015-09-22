@@ -91,6 +91,11 @@ class IRelevantAceContentItemsTile(ISearchAceContentTile):
         default=5,
     )
 
+    show_share_btn = schema.Bool(
+        title=_(u"Show the share button"),
+        default=False,
+    )
+
 
 class RelevantAceContentItemsTile(PersistentCoverTile):
     """ Relevant AceItem content
@@ -104,6 +109,8 @@ class RelevantAceContentItemsTile(PersistentCoverTile):
     is_droppable = False
 
     index = ViewPageTemplateFile('pt/relevant_acecontent.pt')
+
+    view_more = False
 
     def is_empty(self):
         return False
@@ -132,4 +139,6 @@ class RelevantAceContentItemsTile(PersistentCoverTile):
         res = catalog.searchResults(search_type=search_type,
                                     elements=element_type,
                                     SearchableText=search_text)
+        if len(res) > count:
+            self.view_more = True
         return res[:count]

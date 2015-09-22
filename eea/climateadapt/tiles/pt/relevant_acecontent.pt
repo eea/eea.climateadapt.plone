@@ -29,7 +29,10 @@
         </li>
       </ul>
       <div class="tile-footer">
-        <a href="" tal:attributes="href view/view_more_url">View more</a>
+        <a href="" tal:attributes="href view/view_more_url" tal:condition="view/view_more">View more</a>
+        <div tal:condition="python:view.data.get('show_share_btn')">
+          <button>Share information</button>
+        </div>
       </div>
     </div>
   </body>
