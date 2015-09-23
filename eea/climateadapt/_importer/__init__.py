@@ -470,6 +470,8 @@ def extract_portlet_info(portletid, layout):
     logger.debug("Could not get an article from portlet %s for %s",
                     portletid, layout.friendlyurl)
 
+    # if portletid.startswith('filter'):
+    #     import pdb; pdb.set_trace()
     return prefs
 
 
@@ -498,6 +500,10 @@ portlet_importers = {   # import specific portlets by their ID
     'acesearchportlet_WAR_AceItemportlet': lambda layout, structure: None
 }
 
+WATCH = [
+#   '/observations-and-scenarios',
+]
+
 
 @log_call
 def import_layout(layout, site):
@@ -515,6 +521,9 @@ def import_layout(layout, site):
     if layout.type_ == u'control-panel':
         # we skip control panel pages
         return
+
+    if layout.friendlyurl in WATCH:
+        import pdb; pdb.set_trace()
 
     settings = parse_settings(layout.typesettings)
 
@@ -699,6 +708,7 @@ def make_group(size=16, *tiles):
         'children': tiles
     }
 
+
 def render(path, options):
     tpl = PageTemplateFile(path, globals())
     ns = tpl.pt_getContext((), options)
@@ -880,6 +890,18 @@ def import_template_ace_layout_3(site, layout, structure):
     # called 'name'
     # some pages may contain extra columns under the main column
 
+    if layout.themeid != "balticseaace_WAR_acetheme":
+        menu_tpl = """
+        <ul id="third-level-menu">
+            <li><a href="/transnational-regions/baltic-sea">General</a></li>
+            <li><a href="/transnational-regions/baltic-sea/policy-framework">Policy Framework</a></li>
+            <li><a href="/transnational-regions/baltic-sea/impacts">Impacts &amp; Vulnerabilities</a></li>
+            <li><a href="/transnational-regions/baltic-sea/adaptation-actions">Adaptation Actions</a></li>
+        </ul>
+        """
+    else:
+        menu_tpl = ""
+
     main = {}
     for line in structure['column-1'][0][1]['content']:
         if line[0] == 'image':
@@ -905,7 +927,7 @@ def import_template_ace_layout_3(site, layout, structure):
             else:
                 extra_columns['Multimedia'] = structure[key]
 
-    noop(layout, main, search_portlet, extra_columns, name)
+    noop(layout, main, menu_tpl, search_portlet, extra_columns, name)
 
 
 @log_call
@@ -1103,6 +1125,7 @@ def import_template_1_column(site, layout, structure):
 def import_template_2_columns_i(site, layout, structure):
     # ex: /countries
     # TODO: column-1 may contain countriesportlet
+    #import pdb; pdb.set_trace()
     assert(len(structure) == 2 or len(structure) == 3)
     if len(structure) == 3:
         countries_portlet = structure['column-1'][0][1]
@@ -1147,10 +1170,12 @@ def import_template_2_columns_iii(site, layout, structure):
     portlet_title = structure['column-1'][0][1]['portlet_title']
 
     if len(structure['column-1']) == 4:
+        return
         # There is only one layout with this structure
-        filter_portlet_1 = structure['column-1'][1]
-        filter_portlet_2 = structure['column-1'][2]
-        blue_button = structure['column-1'][3][1]['content'][0]
+        # TODO: do this page, it's the /organisations page
+        # filter_portlet_1 = structure['column-1'][1]
+        # filter_portlet_2 = structure['column-1'][2]
+        # blue_button = structure['column-1'][3][1]['content'][0]
     elif len(structure['column-1']) == 2:
         body += structure['column-1'][1][1]['content'][0]
 
