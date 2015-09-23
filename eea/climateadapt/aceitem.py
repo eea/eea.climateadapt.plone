@@ -137,8 +137,17 @@ class IIndicator(IAceItem):
     """ Indicator Interface"""
 
 
+class IAction(IAceItem):
+    """ Action Interface"""
+
+
 class IMapGraphDataset(IAceItem):
     """ Maps, Graphs and Datasets Interface
+    """
+
+
+class IResearchProject(IAceItem):
+    """ ResearchProject Interface
     """
 
 
@@ -182,3 +191,15 @@ class MapGraphDataset(dexterity.Item):
     implements(IMapGraphDataset)
 
     search_type = "MAPGRAPHDATASET"
+
+
+class ResearchProject(dexterity.Item):
+    implements(IResearchProject)
+
+    search_type = "RESEARCHPROJECT"
+
+
+class Action(dexterity.Item):
+    implements(IAction)
+
+    search_type = "ACTION"

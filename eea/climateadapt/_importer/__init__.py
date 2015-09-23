@@ -145,6 +145,8 @@ ACE_ITEM_TYPES = {
     'ORGANISATION': 'eea.climateadapt.organisation',
     'INDICATOR': 'eea.climateadapt.indicator',
     'MAPGRAPHDATASET': 'eea.climateadapt.mapgraphdataset',
+    'RESEARCHPROJECT': 'eea.climateadapt.researchproject',
+    'ACTION': 'eea.climateadapt.action',
 }
 
 
@@ -213,9 +215,8 @@ def import_aceitem(data, location):
                     item, data.aceitemid)
         return item
     else:
-        print "%s not imported" % data.datatype
-        return
-        raise ValueError("You missed an acetype item")
+        import pdb; pdb.set_trace()
+        raise ValueError("You missed an acetype item: %s" % data.datatype)
 
 
 @log_call
@@ -1259,13 +1260,18 @@ def run_importer(site=None):
     for image in session.query(sql.Image):
         import_image(image, site['repository'])
 
-    for layout in session.query(sql.Layout).filter_by(privatelayout=False):
-        import_layout(layout, site)
-
     for dlfileentry in session.query(sql.Dlfileentry):
         import_dlfileentry(dlfileentry, site['repository'])
 
+    for layout in session.query(sql.Layout).filter_by(privatelayout=False):
+        import_layout(layout, site)
+
+    return
+
     for aceitem in session.query(sql.AceAceitem):
+        if aceitem.datatype in ['ACTION', 'MEASURE']:
+            # TODO: log and solve here
+            continue
         import_aceitem(aceitem, site['content'])
 
     for aceproject in session.query(sql.AceProject):
