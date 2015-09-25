@@ -1,0 +1,6 @@
+<ul id="third-level-menu">
+  <li><a tal:attributes="href string:${view/site_url}/transnational-regions/baltic-sea">General</a></li>
+  <li><a tal:attributes="href string:${view/site_url}/transnational-regions/baltic-sea/policy-framework">Policy Framework</a></li>
+  <li><a tal:attributes="href string:${view/site_url}/transnational-regions/baltic-sea/impacts">Impacts &amp; Vulnerabilities</a></li>
+  <li><a tal:attributes="href string:${view/site_url}/transnational-regions/baltic-sea/adaptation-actions">Adaptation Actions</a></li>
+</ul>

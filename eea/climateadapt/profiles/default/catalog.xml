@@ -4,6 +4,9 @@
  <index name="search_type" meta_type="FieldIndex">
   <indexed_attr value="search_type"/>
  </index>
+ <index name="sectors" meta_type="FieldIndex">
+  <indexed_attr value="sectors"/>
+ </index>
  <index name="elements" meta_type="KeywordIndex">
   <indexed_attr value="elements"/>
  </index>
@@ -13,5 +16,6 @@
 
  <column value="search_type"/>
  <column value="elements"/>
+ <column value="sectors"/>
 
 </object>

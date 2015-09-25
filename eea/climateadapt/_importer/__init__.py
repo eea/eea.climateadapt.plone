@@ -688,15 +688,10 @@ def import_template_ace_layout_3(site, layout, structure):
     # called 'name'
     # some pages may contain extra columns under the main column
 
-    if layout.themeid != "balticseaace_WAR_acetheme":
-        menu_tpl = """
-        <ul id="third-level-menu">
-            <li><a href="/transnational-regions/baltic-sea">General</a></li>
-            <li><a href="/transnational-regions/baltic-sea/policy-framework">Policy Framework</a></li>
-            <li><a href="/transnational-regions/baltic-sea/impacts">Impacts &amp; Vulnerabilities</a></li>
-            <li><a href="/transnational-regions/baltic-sea/adaptation-actions">Adaptation Actions</a></li>
-        </ul>
-        """
+    import pdb; pdb.set_trace()
+    if layout.themeid == "balticseaace_WAR_acetheme":
+        pass
+        # TODO: mark the content with a special interface to enable the menu
     else:
         menu_tpl = ""
 
@@ -716,7 +711,7 @@ def import_template_ace_layout_3(site, layout, structure):
     name = structure['name']
 
     extra_columns = {}
-    keys = ['column-2', 'column-3', 'column-4']
+    keys = ['column-2', 'column-3', 'column-4', 'column-5']
     for key in keys:
         if key in structure:
             if 'portletSetupTitle_en_GB' in structure[key][0][1]:
@@ -1054,19 +1049,22 @@ def import_template_frontpage(site, layout, structure):
 
 def run_importer(site=None):
     sql.Address = sql.Addres    # wrong detected plural
-    for kname, rels in RELATIONS.items():
-        logger.info("Setting relations for %s", kname)
-        klass = getattr(sql, kname)
-        for name, info in rels.items():
-            other = getattr(sql, info['other'])
-            pj = "and_(%s.%s==%s.%s)" % (info['other'], info['fk'], kname,
-                                         info['fk'])
-            rel = relationship(other,
-                               foreign_keys=getattr(klass, info['fk']),
-                               backref=info['bref'],
-                               primaryjoin=pj,
-                               )
-            setattr(klass, name, rel)
+    try:
+        for kname, rels in RELATIONS.items():
+            logger.info("Setting relations for %s", kname)
+            klass = getattr(sql, kname)
+            for name, info in rels.items():
+                other = getattr(sql, info['other'])
+                pj = "and_(%s.%s==%s.%s)" % (info['other'], info['fk'], kname,
+                                            info['fk'])
+                rel = relationship(other,
+                                foreign_keys=getattr(klass, info['fk']),
+                                backref=info['bref'],
+                                primaryjoin=pj,
+                                )
+                setattr(klass, name, rel)
+    except Exception, e:
+        logger.warning("Error in setting database relationship: %s", e)
 
     if 'dbshell' in sys.argv:
         import pdb; pdb.set_trace()
@@ -1080,11 +1078,18 @@ def run_importer(site=None):
         if name not in site.contentIds():
             site.invokeFactory("Folder", name)
 
-    for image in session.query(sql.Image):
-        import_image(image, site['repository'])
+    # for image in session.query(sql.Image):
+    #     import_image(image, site['repository'])
+    #
+    # for dlfileentry in session.query(sql.Dlfileentry):
+    #     import_dlfileentry(dlfileentry, site['repository'])
+    #
 
-    for dlfileentry in session.query(sql.Dlfileentry):
-        import_dlfileentry(dlfileentry, site['repository'])
+    for layout in session.query(sql.Layout).filter_by(privatelayout=False):
+        import_layout(layout, site)
+
+    raise ValueError
+    import pdb; pdb.set_trace()
 
     for aceitem in session.query(sql.AceAceitem):
         if aceitem.datatype in ['ACTION', 'MEASURE']:
@@ -1101,10 +1106,6 @@ def run_importer(site=None):
         else:
             import_adaptationoption(acemeasure, site['adaptationoption'])
 
-    for layout in session.query(sql.Layout).filter_by(privatelayout=False):
-        import_layout(layout, site)
-
-    import pdb; pdb.set_trace()
 
 
 def get_plone_site():
