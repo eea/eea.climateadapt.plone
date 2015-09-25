@@ -92,6 +92,11 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                         vocabulary="eea.climateadapt.aceitems_featured",),
                     )
 
+    special_tags = List(title=_(u"Special tagging"),
+                        required=False,
+                        value_type=TextLine(title=_(u"Tag"))
+                        )
+
     # TODO: rating??? seems to be manually assigned, not computed
 
     # TODO: storedat: can contain a related measure or project, or a URL

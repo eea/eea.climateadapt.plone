@@ -30,8 +30,30 @@ class ISearchAceContentTile(IPersistentCoverTile):
     element_type = schema.Choice(
         title=_(u"Element type"),
         vocabulary="eea.climateadapt.element_types_vocabulary",
-        required=True
+        required=False
     )
+
+    sector = schema.Choice(
+        title=_(u"Sector"),
+        vocabulary="eea.climateadapt.",
+        required=False
+    )
+
+
+    special_tags = schema.List(title=_(u"Special tags"),
+                               required=False,
+                               value_type=schema.Choice(
+                                   vocabulary="eea.climateadapt.special_tags"
+                               )
+                               )
+
+    countries = schema.List(title=_(u"Countries"),
+                            required=False,
+                            value_type=schema.Choice(
+                                vocabulary="eea.climateadapt.countries"
+                            )
+                            )
+
 
 
 class SearchAceContentTile(PersistentCoverTile):

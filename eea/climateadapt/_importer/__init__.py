@@ -3,30 +3,32 @@
 from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.utils import SOLVERS
+from eea.climateadapt._importer.utils import create_cover_at
+from eea.climateadapt._importer.utils import log_call
+from eea.climateadapt._importer.utils import logger
+from eea.climateadapt._importer.utils import make_group
+from eea.climateadapt._importer.utils import make_iframe_embed_tile
+from eea.climateadapt._importer.utils import make_image_tile
+from eea.climateadapt._importer.utils import make_layout
+from eea.climateadapt._importer.utils import make_richtext_tile
+from eea.climateadapt._importer.utils import make_row
+from eea.climateadapt._importer.utils import noop
+from eea.climateadapt._importer.utils import pack_to_table
 from eea.climateadapt._importer.utils import parse_settings, s2l    #, printe
+from eea.climateadapt._importer.utils import render
 from eea.climateadapt._importer.utils import strip_xml
 from plone.dexterity.utils import createContentInContainer
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
-from plone.tiles.interfaces import ITileDataManager
-from plone.uuid.interfaces import IUUIDGenerator
 from sqlalchemy import Column, BigInteger, String, Text, DateTime   #, text
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker, relationship
-from zope.component import getUtility
-from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 from zope.sqlalchemy import register
 import json
-import logging
 import lxml.etree
 import os
-import re
 import sys
 import transaction
 
-
-logger = logging.getLogger('eea.climateadapt.importer')
-logger.setLevel(logging.INFO)
-logger.addHandler(logging.StreamHandler())
 
 session = None      # this will be a global bound to the current module
 
@@ -150,43 +152,6 @@ ACE_ITEM_TYPES = {
 }
 
 
-def noop(*args, **kwargs):
-    """ no-op function to help with development of importers.
-    It avoids pyflakes errors about not used variables.
-    """
-    # pprint(args)
-    # pprint(kwargs)
-    return
-
-
-def create_cover_at(site, location, id='index_html', **kw):
-    parent = site
-
-    for name in [x.strip() for x in location.split('/') if x.strip()]:
-        if name not in parent.contentIds():
-            parent = createContentInContainer(
-                parent,
-                'Folder',
-                title=name,
-            )
-        else:
-            parent = parent[name]
-
-    cover = createContentInContainer(
-        parent,
-        'collective.cover.content',
-        id=id,
-        **kw
-    )
-    return cover
-
-
-def log_call(wrapped):
-    def wrapper(*args, **kwargs):
-        logger.info("Calling %s", wrapped.func_name)
-        return wrapped(*args, **kwargs)
-    return wrapper
-
 @log_call
 def import_aceitem(data, location):
     # TODO: Some AceItems have ACTION, MEASURE, REASEARCHPROJECT types and
@@ -208,7 +173,8 @@ def import_aceitem(data, location):
             source=data.source,
             comments=data.comments,
             year=data.year,
-            geochars=data.geochars
+            geochars=data.geochars,
+            special_tags=s2l(data.specialtagging),
         )
 
         logger.info("Imported aceitem %s from sql aceitem %s",
@@ -417,6 +383,7 @@ def _get_article_for_portlet(portlet):
 
     return article
 
+filter_portlets = []
 
 def extract_portlet_info(portletid, layout):
     """ Extract portlet information from the portlet with portletid
@@ -470,8 +437,8 @@ def extract_portlet_info(portletid, layout):
     logger.debug("Could not get an article from portlet %s for %s",
                     portletid, layout.friendlyurl)
 
-    # if portletid.startswith('filter'):
-    #     import pdb; pdb.set_trace()
+    if portletid.startswith('filter') or portletid.startswith('simplefilter'):
+        filter_portlets.append(prefs)
     return prefs
 
 
@@ -563,175 +530,6 @@ def import_layout(layout, site):
 # u'ace_layout_2', u'ace_layout_3', u'ace_layout_4', u'ace_layout_5',
 # u'ace_layout_col_1_2', u'ast', u'faq', u'frontpage', u'transnationalregion',
 # u'urban_ast']
-
-def make_richtext_tile(context, content):
-    # creates a new tile and saves it in the annotation
-    # returns a python objects usable in the layout description
-
-    id = getUtility(IUUIDGenerator)()
-    typeName = 'collective.cover.richtext'
-    tile = context.restrictedTraverse('@@%s/%s' % (typeName, id))
-
-    ITileDataManager(tile).set({'text': content})
-
-    return {
-        'tile-type': 'collective.cover.richtext',
-        'type': 'tile',
-        'id': id
-    }
-
-
-def make_iframe_embed_tile(cover, url):
-    id = getUtility(IUUIDGenerator)()
-    type_name = 'collective.cover.embed'
-    tile = cover.restrictedTraverse('@@%s/%s' % (type_name, id))
-
-    embed = "<iframe src='%s'></iframe>" % url
-
-    ITileDataManager(tile).set({'title': 'embeded iframe', 'embed': embed})
-
-    return {
-        'tile-type': 'collective.cover.embed',
-        'type': 'tile',
-        'id': id
-    }
-
-
-def get_image(site, imageid):
-    repo = site['repository']
-    reg = re.compile(str(imageid) + '.[jpg|png]')
-
-    ids = [m.string for m in [reg.match(cid) for cid in repo.contentIds()] if m]
-
-    if len(ids) != 1:
-        raise ValueError("Image {} not found in repository".format(imageid))
-
-    return repo[ids[0]]
-
-
-def make_image_tile(site, cover, info):
-    id = getUtility(IUUIDGenerator)()
-    type_name =  'collective.cover.banner'
-    tile = cover.restrictedTraverse('@@%s/%s' % (type_name, id))
-
-    imageid = info['id']
-    image = get_image(site, imageid)
-    tile.populate_with_object(image)
-
-    return {
-        'tile-type': type_name,
-        'type': 'tile',
-        'id': id
-    }
-
-
-def make_layout(*rows):
-    return rows
-
-
-def make_row(*cols):
-    return {
-        'type': 'row',
-        'children': cols
-    }
-
-
-def make_column(*groups):
-    return groups
-
-
-# a layout contains rows
-# a row can contain columns (in its children).
-# a column will contain a group
-# a group will have the tile
-
-# sample cover layout. This is a JSON string!
-# cover_layout = [
-#     {"type": "row", "children":
-#      [{"type": "group",
-#        "children":
-#        [
-#            {"tile-type": "collective.cover.richtext", "type": "tile", "id": "be70f93bd1a4479f8a21ee595b001c06"}
-#         ],
-#        "roles": ["Manager"],
-#        "column-size": 8},
-#       {"type": "group",
-#        "children":
-#        [
-#            {"tile-type": "collective.cover.embed", "type": "tile", "id": "face16b81f2d46bc959df9da24407d94"}
-#        ],
-#        "roles": ["Manager"],
-#        "column-size": 8}]},
-#     {"type": "row",
-#      "children":
-#         [
-#             {"type": "group", "children":
-#              [
-#                  {"tile-type": "collective.cover.richtext", "type": "tile", "id": "a42d3c2a88c8430da52136e2a204cf25"}
-#               ],
-#              "roles": ["Manager"],
-#              "column-size": 16}]}
-# ]
-
-
-
-# [{u'children': [{u'children': [None],
-#                  'class': 'cell width-2 position-0',
-#                  u'column-size': 2,
-#                  u'roles': [u'Manager'],
-#                  u'type': u'group'},
-#                 {u'children': [{u'id': u'36759ad0c8114bb48467b858593b271f',
-#                                 u'tile-type': u'collective.cover.richtext',
-#                                 u'type': u'tile'}],
-#                  'class': 'cell width-14 position-2',
-#                  u'column-size': 14,
-#                  u'roles': [u'Manager'],
-#                  u'type': u'group'}],
-#   'class': 'row',
-#   u'type': u'row'}]
-#
-
-
-
-def make_group(size=16, *tiles):
-    #{"type": "group", "children":
-    #     [
-    #         {"tile-type": "collective.cover.richtext", "type": "tile", "id": "a42d3c2a88c8430da52136e2a204cf25"}
-    #      ],
-    #     "roles": ["Manager"],
-    #     "column-size": 16}]
-
-    return {
-        'type': 'group',
-        'roles': ['Manager'],
-        'column-size': size,
-        'children': tiles
-    }
-
-
-def render(path, options):
-    tpl = PageTemplateFile(path, globals())
-    ns = tpl.pt_getContext((), options)
-    return tpl.pt_render(ns)
-
-
-def pack_to_table(data):
-    """ Convert a flat list of (k, v), (k, v) to a structured list
-    """
-    visited = []
-    rows = []
-    acc = []
-    for k, v in data:
-        if k not in visited:
-            visited.append(k)
-            acc.append(v)
-        else:
-            rows.append(acc)
-            visited = [k]
-            acc = [v]
-
-    rows.append(acc)
-    return {'rows': rows, 'cols': visited}
 
 
 @log_call
@@ -1288,11 +1086,6 @@ def run_importer(site=None):
     for dlfileentry in session.query(sql.Dlfileentry):
         import_dlfileentry(dlfileentry, site['repository'])
 
-    for layout in session.query(sql.Layout).filter_by(privatelayout=False):
-        import_layout(layout, site)
-
-    return
-
     for aceitem in session.query(sql.AceAceitem):
         if aceitem.datatype in ['ACTION', 'MEASURE']:
             # TODO: log and solve here
@@ -1307,6 +1100,11 @@ def run_importer(site=None):
             import_casestudy(acemeasure, site['casestudy'])
         else:
             import_adaptationoption(acemeasure, site['adaptationoption'])
+
+    for layout in session.query(sql.Layout).filter_by(privatelayout=False):
+        import_layout(layout, site)
+
+    import pdb; pdb.set_trace()
 
 
 def get_plone_site():

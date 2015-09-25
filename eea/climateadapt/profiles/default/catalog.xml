@@ -7,6 +7,9 @@
  <index name="elements" meta_type="KeywordIndex">
   <indexed_attr value="elements"/>
  </index>
+ <index name="special_tags" meta_type="KeywordIndex">
+  <indexed_attr value="special_tags"/>
+ </index>
 
  <column value="search_type"/>
  <column value="elements"/>
