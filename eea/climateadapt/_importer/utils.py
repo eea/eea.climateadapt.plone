@@ -48,13 +48,14 @@ def solve_dynamic_element(node):
     type_ = node.get('type')
 
     if type_ == 'image':
-        imageid = node.xpath("dynamic-content/@id")
+        # TODO: don't need to keep this as a list
+        imageid = [str(x) for x in node.xpath("dynamic-content/@id")]
         return ('image', None, imageid)
 
     if type_ == 'text_area':
         return ('text',
                 node.get('name'),
-                node.xpath("dynamic-content/text()")
+                [unicode(x) for x in node.xpath("dynamic-content/text()")]
                 )
 
     if type_ == 'text_box':
@@ -101,20 +102,83 @@ SOLVERS = {
 
 def strip_xml(xmlstr):
     if ("<xml" in xmlstr) or ("<?xml" in xmlstr):
-        res = lxml.etree.fromstring(xmlstr.encode('utf-8')).xpath(
-            "*/text()")[0]
+        res = unicode(lxml.etree.fromstring(xmlstr.encode('utf-8')).xpath(
+            "*/text()")[0])
     else:
-        res = xmlstr
+        res = unicode(xmlstr)
     return res
 
 
-def make_richtext_tile(context, content):
+def _clean(s):
+    if s == "NULL_VALUE":
+        return None
+    return s
+
+
+def _clean_portlet_settings(d):
+    _conv = {
+        'aceitemtype': 'search_type',
+        'anyOfThese': 'special_tags',
+        'countries': 'countries',
+        'element': 'elements',
+        'nrItemsPage': '10',
+        'portletSetupTitle_en_GB': 'title',
+        'sector': 'sector',
+        'sortBy': 'sortBy'
+    }
+    res = {}
+    for k, v in d.items():
+        if k not in _conv:
+            continue
+        res[_conv[k]] = _clean(v)
+
+    return res
+
+
+def make_aceitem_search_tile(cover, info):
+    # Available options
+    # title
+    # search_text
+    # element_type
+    # sector
+    # special_tags
+    # countries
+
+    id = getUtility(IUUIDGenerator)()
+    typeName = 'eea.climateadapt.search_acecontent'
+    tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
+    info = _clean_portlet_settings(info)
+    ITileDataManager(tile).set(info)
+
+    return {
+        'tile-type': typeName,
+        'type': typeName,
+        'id': id
+    }
+
+
+def make_aceitem_relevant_content_tile(cover, info):
+    id = getUtility(IUUIDGenerator)()
+    typeName = 'eea.climateadapt.relevant_acecontent'
+    tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
+    ITileDataManager(tile).set(info)
+
+    return {
+        'tile-type': typeName,
+        'type': typeName,
+        'id': id
+    }
+
+    pass
+
+
+def make_richtext_tile(cover, content):
     # creates a new tile and saves it in the annotation
     # returns a python objects usable in the layout description
 
     id = getUtility(IUUIDGenerator)()
     typeName = 'collective.cover.richtext'
-    tile = context.restrictedTraverse('@@%s/%s' % (typeName, id))
+    tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
 
     ITileDataManager(tile).set({'text': content})
 
@@ -155,13 +219,12 @@ def get_image(site, imageid):
 
 def make_image_tile(site, cover, info):
     id = getUtility(IUUIDGenerator)()
-    type_name =  'collective.cover.banner'
+    type_name = 'collective.cover.banner'
     tile = cover.restrictedTraverse('@@%s/%s' % (type_name, id))
 
     imageid = info['id']
     image = get_image(site, imageid)
     tile.populate_with_object(image)
-
     return {
         'tile-type': type_name,
         'type': 'tile',
@@ -218,7 +281,6 @@ def make_column(*groups):
 # ]
 
 
-
 # [{u'children': [{u'children': [None],
 #                  'class': 'cell width-2 position-0',
 #                  u'column-size': 2,
@@ -234,7 +296,6 @@ def make_column(*groups):
 #   'class': 'row',
 #   u'type': u'row'}]
 #
-
 
 
 def make_group(size=16, *tiles):

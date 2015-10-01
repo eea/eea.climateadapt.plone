@@ -91,9 +91,9 @@
         name="baltic_region_menu"
         for="eea.climateadapt.interfaces.IBalticRegionMarker"
         manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
-        class=".viewlets.BalticRegionMenu"
-        template=".pt/viewlet_transregion_menu.pt"
+        template="pt/viewlet_transregion_menu.pt"
         permission="zope2.View"
         />
+        class=".viewlets.BalticRegionMenu"
 
 </configure>

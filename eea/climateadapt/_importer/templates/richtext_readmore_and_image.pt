@@ -1,0 +1,7 @@
+<div tal:define="info options/payload">
+  <img class="pull-left" src="" tal:attributes="src info/image/thumb; title info/image/title" />
+  <h2 tal:content="info/title">Title</h2>
+  <div class="read_more_first" tal:content="info/body">body here</div>
+  <div class="read_more_second" tal:content="info/readmore">body here</div>
+  <div tal:content="info/body">body here</div>
+</div>

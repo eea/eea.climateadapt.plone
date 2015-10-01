@@ -35,7 +35,7 @@ class ISearchAceContentTile(IPersistentCoverTile):
 
     sector = schema.Choice(
         title=_(u"Sector"),
-        vocabulary="eea.climateadapt.",
+        vocabulary="eea.climateadapt.aceitems_sectors",
         required=False
     )
 
@@ -63,6 +63,14 @@ class SearchAceContentTile(PersistentCoverTile):
     """
 
     implements(ISearchAceContentTile)
+
+    # available options:
+    # title
+    # search_text
+    # element_type
+    # sector
+    # special_tags
+    # countries
 
     index = ViewPageTemplateFile('pt/search_acecontent.pt')
 

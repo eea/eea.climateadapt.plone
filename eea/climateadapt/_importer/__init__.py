@@ -1,11 +1,13 @@
-#from plone.app.textfield import RichTextValue
-#from pprint import pprint
 from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.utils import SOLVERS
+from eea.climateadapt._importer.utils import _clean_portlet_settings
 from eea.climateadapt._importer.utils import create_cover_at
+from eea.climateadapt._importer.utils import get_image
 from eea.climateadapt._importer.utils import log_call
 from eea.climateadapt._importer.utils import logger
+from eea.climateadapt._importer.utils import make_aceitem_relevant_content_tile
+from eea.climateadapt._importer.utils import make_aceitem_search_tile
 from eea.climateadapt._importer.utils import make_group
 from eea.climateadapt._importer.utils import make_iframe_embed_tile
 from eea.climateadapt._importer.utils import make_image_tile
@@ -17,11 +19,13 @@ from eea.climateadapt._importer.utils import pack_to_table
 from eea.climateadapt._importer.utils import parse_settings, s2l    #, printe
 from eea.climateadapt._importer.utils import render
 from eea.climateadapt._importer.utils import strip_xml
+from eea.climateadapt.interfaces import IBalticRegionMarker
 from plone.dexterity.utils import createContentInContainer
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from sqlalchemy import Column, BigInteger, String, Text, DateTime   #, text
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker, relationship
+from zope.interface import alsoProvides
 from zope.sqlalchemy import register
 import json
 import lxml.etree
@@ -409,19 +413,22 @@ def extract_portlet_info(portletid, layout):
     e = lxml.etree.fromstring(portlet.preferences)
     prefs = {}
     for pref in e.xpath('//preference'):
-        name = pref.find('name').text
+        name = str(pref.find('name').text)
         value = pref.find('value')
         try:
             value = value.text
         except Exception:
             pass
-        prefs[name] = value
+        prefs[name] = unicode(value)
 
     portlet_title = None
     if prefs.get('portletSetupUseCustomTitle') == "true":
         for k, v in prefs.items():
             if k.startswith('portletSetupTitle'):
-                portlet_title = v
+                portlet_title = unicode(v)
+
+    if 'Policy Framework' in prefs.get('name', ''):
+        import pdb; pdb.set_trace()
 
     article = _get_article_for_portlet(portlet)
     if article is not None:
@@ -439,6 +446,9 @@ def extract_portlet_info(portletid, layout):
 
     if portletid.startswith('filter') or portletid.startswith('simplefilter'):
         filter_portlets.append(prefs)
+    # if 'name' in prefs:
+    #     prefs['name'] = unicode(name)
+
     return prefs
 
 
@@ -469,6 +479,7 @@ portlet_importers = {   # import specific portlets by their ID
 
 WATCH = [
 #   '/observations-and-scenarios',
+    u'/transnational-regions/baltic-sea/policy-framework'
 ]
 
 
@@ -689,14 +700,9 @@ def import_template_ace_layout_3(site, layout, structure):
     # some pages may contain extra columns under the main column
 
     import pdb; pdb.set_trace()
-    if layout.themeid == "balticseaace_WAR_acetheme":
-        pass
-        # TODO: mark the content with a special interface to enable the menu
-    else:
-        menu_tpl = ""
-
     main = {}
-    for line in structure['column-1'][0][1]['content']:
+    col1 = structure.pop('column-1')
+    for line in col1[0][1]['content']:
         if line[0] == 'image':
             main['image'] = line[2][0]
             continue
@@ -707,20 +713,54 @@ def import_template_ace_layout_3(site, layout, structure):
             main['body'] = line[2][0]
         if line[0] == 'text' and line[1] == 'ReadMoreBody':
             main['readmore'] = line[2][0]
-    search_portlet = structure['column-5']
-    name = structure['name']
 
-    extra_columns = {}
-    keys = ['column-2', 'column-3', 'column-4', 'column-5']
-    for key in keys:
-        if key in structure:
-            if 'portletSetupTitle_en_GB' in structure[key][0][1]:
-                column_name = structure[key][0][1]['portletSetupTitle_en_GB']
-                extra_columns[column_name] = structure[key]
-            else:
-                extra_columns['Multimedia'] = structure[key]
+    name = structure.pop('name')
+    sidebar = structure.pop('column-5')
 
-    noop(layout, main, menu_tpl, search_portlet, extra_columns, name)
+    extra_columns = [structure[k] for k in sorted(structure.keys())]
+
+    cover = create_cover_at(site, layout.friendlyurl, title=name)
+
+    if layout.themeid == "balticseaace_WAR_acetheme":
+        # TODO: mark the content with a special interface to enable the menu
+        alsoProvides(cover, IBalticRegionMarker)
+
+    image = get_image(site, main['image'])
+    main['image'] = {
+        'title': image.Title(),
+        'thumb': image.absolute_url() + "/@@images/image",
+    }
+    main_content = render('templates/richtext_readmore_and_image.pt',
+                          {'payload': main})
+
+    main_content_tile = make_richtext_tile(cover, main_content)
+    relevant_content_tiles = []
+    for col in extra_columns:
+        info = _clean_portlet_settings(col[1])
+        relevant_content_tiles.append(make_aceitem_relevant_content_tile(cover,
+                                                                         info))
+
+    sidebar_tile = make_aceitem_search_tile(cover, sidebar[0][1])
+    sidebar_group = make_group(2, sidebar_tile)
+    main_content_group = make_group(14,
+                                    main_content_tile, *relevant_content_tiles)
+    layout = make_layout(make_row(main_content_group, sidebar_group))
+    cover.cover_layout = json.dumps(layout)
+    cover._p_changed = True
+    import pdb; pdb.set_trace()
+
+    # image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
+    # content_tile = make_richtext_tile(cover, main_content)
+    #
+    # image_group = make_group(2, image_tile)
+    # content_group = make_group(14, content_tile)
+    #
+    # layout = make_layout(make_row(image_group, content_group))
+    # cover.cover_layout = json.dumps(layout)
+    # cover._p_changed = True
+
+    import pdb; pdb.set_trace()
+    return
 
 
 @log_call
