@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<object name="portal_javascripts" meta_type="JavaScripts Registry">
+    <javascript authenticated="0" bundle="default" cacheable="True"
+        compression="none" conditionalcomment="" cookable="True" enabled="on"
+        expression="" id="++resource++orderedselect_input.js" inline="False"
+        insert-after="++resource++collective.cover/jquery.endless-scroll.js"/>
+</object>

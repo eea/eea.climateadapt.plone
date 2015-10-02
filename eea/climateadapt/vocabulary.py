@@ -157,29 +157,27 @@ aceitem_types = [
 ]
 
 
-def search_types_vocabulary(context):
-    """ AceItem data types """
+def catalog_based_vocabulary(index):
 
-    site = getSite()
-    catalog = getToolByName(site, 'portal_catalog')
-    terms = catalog.uniqueValuesFor("search_type")
-    terms = sorted(terms)
+    def factory(context):
+        site = getSite()
+        catalog = getToolByName(site, 'portal_catalog')
+        terms = catalog.uniqueValuesFor(index)
+        terms = sorted(terms)
 
-    return SimpleVocabulary([
-        SimpleTerm(x, x, x) for x in terms
-    ])
+        return SimpleVocabulary([
+            SimpleTerm(x, x, x) for x in terms
+        ])
+
+        pass
+
+    return factory
+
+search_types_vocabulary = catalog_based_vocabulary('search_type')
 alsoProvides(search_types_vocabulary, IVocabularyFactory)
 
-
-def element_types_vocabulary(context):
-    """ AceItem data types """
-
-    site = getSite()
-    catalog = getToolByName(site, 'portal_catalog')
-    terms = catalog.uniqueValuesFor("elements")
-    terms = sorted(terms)
-
-    return SimpleVocabulary([
-        SimpleTerm(x, x, x) for x in terms
-    ])
+element_types_vocabulary = catalog_based_vocabulary('elements')
 alsoProvides(element_types_vocabulary, IVocabularyFactory)
+
+special_tags_vocabulary = catalog_based_vocabulary('special_tags')
+alsoProvides(special_tags_vocabulary, IVocabularyFactory)

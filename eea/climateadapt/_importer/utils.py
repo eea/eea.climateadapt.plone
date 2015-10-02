@@ -152,7 +152,7 @@ def make_aceitem_search_tile(cover, info):
 
     return {
         'tile-type': typeName,
-        'type': typeName,
+        'type': 'tile',
         'id': id
     }
 
@@ -165,7 +165,7 @@ def make_aceitem_relevant_content_tile(cover, info):
 
     return {
         'tile-type': typeName,
-        'type': typeName,
+        'type': 'tile',
         'id': id
     }
 

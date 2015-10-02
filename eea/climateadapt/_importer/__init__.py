@@ -515,7 +515,7 @@ def import_layout(layout, site):
     #print layout.type_, "\t\t", template, "\t\t", layout.friendlyurl
 
     logger.info("Importing layout %s at url %s with template %s",
-                layout.uuid_, layout.friendlyurl, template)
+                layout.layoutid, layout.friendlyurl, template)
 
     is_column = lambda s: (s.startswith('column-')
                            and not s.endswith('-customizable'))
@@ -735,7 +735,7 @@ def import_template_ace_layout_3(site, layout, structure):
     main_content_tile = make_richtext_tile(cover, main_content)
     relevant_content_tiles = []
     for col in extra_columns:
-        info = _clean_portlet_settings(col[1])
+        info = _clean_portlet_settings(col[0][1])
         relevant_content_tiles.append(make_aceitem_relevant_content_tile(cover,
                                                                          info))
 
@@ -746,19 +746,7 @@ def import_template_ace_layout_3(site, layout, structure):
     layout = make_layout(make_row(main_content_group, sidebar_group))
     cover.cover_layout = json.dumps(layout)
     cover._p_changed = True
-    import pdb; pdb.set_trace()
 
-    # image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
-    # content_tile = make_richtext_tile(cover, main_content)
-    #
-    # image_group = make_group(2, image_tile)
-    # content_group = make_group(14, content_tile)
-    #
-    # layout = make_layout(make_row(image_group, content_group))
-    # cover.cover_layout = json.dumps(layout)
-    # cover._p_changed = True
-
-    import pdb; pdb.set_trace()
     return
 
 
@@ -1125,8 +1113,11 @@ def run_importer(site=None):
     #
 
     for layout in session.query(sql.Layout).filter_by(privatelayout=False):
-        import_layout(layout, site)
+        cover = import_layout(layout, site)
+        if cover:
+            logger.info("Created cover at %s", cover.absolute_url())
 
+    return
     raise ValueError
     import pdb; pdb.set_trace()
 

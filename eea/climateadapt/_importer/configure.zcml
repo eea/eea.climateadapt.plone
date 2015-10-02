@@ -9,7 +9,6 @@
     i18n_domain="collective.cover"
     >
 
-
     <browser:page
         name="layout_importer"
         for="*"
@@ -17,5 +16,11 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        name="topdb"
+        for="*"
+        class=".views.GoToPDB"
+        permission="zope2.View"
+        />
 
 </configure>

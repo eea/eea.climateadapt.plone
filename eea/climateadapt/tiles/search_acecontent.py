@@ -39,21 +39,19 @@ class ISearchAceContentTile(IPersistentCoverTile):
         required=False
     )
 
-
     special_tags = schema.List(title=_(u"Special tags"),
                                required=False,
                                value_type=schema.Choice(
-                                   vocabulary="eea.climateadapt.special_tags"
+                                   vocabulary="eea.climateadapt.special_tags_vocabulary"
                                )
                                )
 
     countries = schema.List(title=_(u"Countries"),
                             required=False,
                             value_type=schema.Choice(
-                                vocabulary="eea.climateadapt.countries"
+                                vocabulary="eea.climateadapt.ace_countries"
                             )
                             )
-
 
 
 class SearchAceContentTile(PersistentCoverTile):
