@@ -38,4 +38,17 @@
       for="*"
       />
 
+  <plone:tile
+      name="eea.climateadapt.richtext_with_title"
+      title="Rich text with title"
+      description="A richtext tile that shows its title"
+      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+      add_permission="cmf.ModifyPortalContent"
+      schema=".richtext.IRichTextWithTitle"
+      class=".richtext.RichTextWithTitle"
+      permission="zope2.View"
+      for="*"
+      />
+
+
 </configure>

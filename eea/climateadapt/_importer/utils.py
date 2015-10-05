@@ -175,15 +175,40 @@ def make_aceitem_relevant_content_tile(cover, info):
 def make_richtext_tile(cover, content):
     # creates a new tile and saves it in the annotation
     # returns a python objects usable in the layout description
+    # content needs to be a dict with keys 'title' and 'text'
 
     id = getUtility(IUUIDGenerator)()
     typeName = 'collective.cover.richtext'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
 
-    ITileDataManager(tile).set({'text': content})
+    content['text'] = unicode(content['text'])
+    content['title'] = unicode(content['title'])
+
+    ITileDataManager(tile).set(content)
 
     return {
-        'tile-type': 'collective.cover.richtext',
+        'tile-type': typeName,
+        'type': 'tile',
+        'id': id
+    }
+
+
+def make_richtext_with_title_tile(cover, content):
+    # creates a new tile and saves it in the annotation
+    # returns a python objects usable in the layout description
+    # content needs to be a dict with keys 'title' and 'text'
+
+    id = getUtility(IUUIDGenerator)()
+    typeName = 'eea.climateadapt.richtext_with_title'
+    tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
+
+    content['text'] = unicode(content['text'])
+    content['title'] = unicode(content['title'])
+
+    ITileDataManager(tile).set(content)
+
+    return {
+        'tile-type': typeName,
         'type': 'tile',
         'id': id
     }

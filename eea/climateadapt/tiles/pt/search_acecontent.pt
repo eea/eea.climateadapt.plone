@@ -5,17 +5,21 @@
   i18n:domain="collective.cover">
 
   <body tal:define="is_compose view/is_compose_mode">
-    <h1 tal:condition="is_compose" >Search AceContent Tile</h1>
-    <p tal:condition="python: not view.data.get('element_type') and is_compose" i18n:translate="">
-      Please edit the tile to enter correct data.
-    </p>
+    <strong tal:condition="is_compose" >Search AceContent Tile</strong>
+    <!-- <p tal:condition="python: not view.data.get('element_type') and is_compose" i18n:translate=""> -->
+    <!--   Please edit the tile to enter correct data. -->
+    <!-- </p> -->
     <h2 tal:content="python: view.data.get('title')">Title here</h2>
 
+    <div tal:content="view/data" />
+
     <div tal:condition="view/is_compose_mode">
-      <h3>Element type:</h3>
-      <div tal:content="python: view.data.get('element_type')" />
-      <h3>Search text: </h3>
-      <div tal:content="python: view.data.get('search_text')" />
+      <dl>
+        <dt>Element type:</dt>
+        <dd tal:content="python: view.data.get('element_type')" />
+        <dt>Search text: </dt>
+        <dd tal:content="python: view.data.get('search_text')" />
+      </dl>
     </div>
 
     <div class="cover-richtext-tile tile-content aceitem-search-tile" tal:condition="not: is_compose">

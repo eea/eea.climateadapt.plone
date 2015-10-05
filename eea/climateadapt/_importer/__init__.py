@@ -13,6 +13,7 @@ from eea.climateadapt._importer.utils import make_iframe_embed_tile
 from eea.climateadapt._importer.utils import make_image_tile
 from eea.climateadapt._importer.utils import make_layout
 from eea.climateadapt._importer.utils import make_richtext_tile
+from eea.climateadapt._importer.utils import make_richtext_with_title_tile
 from eea.climateadapt._importer.utils import make_row
 from eea.climateadapt._importer.utils import noop
 from eea.climateadapt._importer.utils import pack_to_table
@@ -438,7 +439,8 @@ def extract_portlet_info(portletid, layout):
         return {'title': article.title,
                 'description': article.description,
                 'content': [SOLVERS[child.tag](child) for child in e],
-                'portlet_title': portlet_title
+                'portlet_title': portlet_title,
+                'portlet_type': 'journal_article_content'
                 }
 
     logger.debug("Could not get an article from portlet %s for %s",
@@ -562,8 +564,8 @@ def import_template_1_2_1_columns(site, layout, structure):
 
     layout = [{'type': 'row', 'children': []}]
 
-    nav_tile = make_richtext_tile(cover, nav)
-    text_tile = make_richtext_tile(cover, text)
+    nav_tile = make_richtext_tile(cover, {'title': 'navigation', 'text': nav})
+    text_tile = make_richtext_tile(cover, {'title': 'text', 'text': text})
     iframe_tile = make_iframe_embed_tile(cover, iframe)
 
     # we create 3 rows, each with a separate tile
@@ -574,6 +576,7 @@ def import_template_1_2_1_columns(site, layout, structure):
     layout = json.dumps(layout)
 
     cover.cover_layout = layout
+    return cover
     # cover._p_changed = True
 
 
@@ -630,7 +633,8 @@ def import_template_transnationalregion(site, layout, structure):
     cover = create_cover_at(site, layout.friendlyurl)
 
     image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
-    content_tile = make_richtext_tile(cover, main_content)
+    content_tile = make_richtext_tile(cover, {'title': 'main content',
+                                              'text': main_content})
 
     image_group = make_group(2, image_tile)
     content_group = make_group(14, content_tile)
@@ -638,6 +642,7 @@ def import_template_transnationalregion(site, layout, structure):
     layout = make_layout(make_row(image_group, content_group))
     cover.cover_layout = json.dumps(layout)
     cover._p_changed = True
+    return cover
 
 
 @log_call
@@ -690,6 +695,19 @@ def import_template_ace_layout_col_1_2(site, layout, structure):
     noop(layout, title, main, nav_menu)
 
 
+def make_tile(cover, col):
+    if col[0][1].get('portlet_type') != 'journal_article_content':
+        info = _clean_portlet_settings(col[0][1])
+        return make_aceitem_relevant_content_tile(cover, info)
+    else:
+        _content = {
+            'title': col[0][1]['portlet_title'],
+            'text': col[0][1]['content'][0]
+        }
+        import pdb; pdb.set_trace()
+        return make_richtext_with_title_tile(cover, _content)
+
+
 @log_call
 def import_template_ace_layout_3(site, layout, structure):
     # this is a "details" page, ex: http://adapt-test.eea.europa.eu/transnational-regions/baltic-sea/policy-framework
@@ -732,12 +750,11 @@ def import_template_ace_layout_3(site, layout, structure):
     main_content = render('templates/richtext_readmore_and_image.pt',
                           {'payload': main})
 
-    main_content_tile = make_richtext_tile(cover, main_content)
-    relevant_content_tiles = []
-    for col in extra_columns:
-        info = _clean_portlet_settings(col[0][1])
-        relevant_content_tiles.append(make_aceitem_relevant_content_tile(cover,
-                                                                         info))
+    main_content_tile = make_richtext_tile(cover, {'title': 'main content',
+                                                   'text': main_content})
+    relevant_content_tiles = [
+        make_tile(cover, col) for col in extra_columns
+    ]
 
     sidebar_tile = make_aceitem_search_tile(cover, sidebar[0][1])
     sidebar_group = make_group(2, sidebar_tile)
@@ -747,7 +764,7 @@ def import_template_ace_layout_3(site, layout, structure):
     cover.cover_layout = json.dumps(layout)
     cover._p_changed = True
 
-    return
+    return cover
 
 
 @log_call
@@ -1115,6 +1132,8 @@ def run_importer(site=None):
     for layout in session.query(sql.Layout).filter_by(privatelayout=False):
         cover = import_layout(layout, site)
         if cover:
+            cover._imported_comment = \
+                "Imported from layout {0}".format(layout.layoutid)
             logger.info("Created cover at %s", cover.absolute_url())
 
     return

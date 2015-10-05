@@ -26,6 +26,7 @@ class SingleImporterView(BrowserView):
         layoutid = int(self.request.form.get('layoutid'))
         layout = session.query(sql.Layout).filter_by(privatelayout=False,
                                                      layoutid=layoutid).one()
+        import pdb; pdb.set_trace()
         import_layout(layout, site)
 
         return "done"

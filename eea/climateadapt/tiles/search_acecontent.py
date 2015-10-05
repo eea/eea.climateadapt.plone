@@ -5,9 +5,9 @@ It renders a search "portlet" for Ace content
 
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from collective.cover import _
 from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
+from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.vocabulary import aceitem_types
 from zope import schema
 from zope.component.hooks import getSite
@@ -161,7 +161,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile):
         catalog = getToolByName(self.context, 'portal_catalog')
         element_type = self.data.get('element_type')
         search_type = self.data.get('search_type')
-        count = self.data.get('nr_items', 5)
+        count = self.data.get('nr_items', 5) or 5
         search_text = self.data.get('search_text') or ""
 
         res = catalog.searchResults(search_type=search_type,

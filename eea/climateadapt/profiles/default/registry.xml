@@ -4,12 +4,14 @@
         <value purge="false">
             <element>eea.climateadapt.search_acecontent</element>
             <element>eea.climateadapt.relevant_acecontent</element>
+            <element>eea.climateadapt.richtext_with_title</element>
         </value>
     </record>
     <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
         <value purge="false">
             <element>eea.climateadapt.search_acecontent</element>
             <element>eea.climateadapt.relevant_acecontent</element>
+            <element>eea.climateadapt.richtext_with_title</element>
         </value>
     </record>
 </registry>
