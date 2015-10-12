@@ -135,6 +135,39 @@ def _clean_portlet_settings(d):
     return res
 
 
+def make_tile(cover, col):
+    if col[0][1].get('portlet_type') == 'journal_article_content':
+        _content = {
+            'title': col[0][1]['portlet_title'],
+            'text': col[0][1]['content'][0]
+        }
+        return make_richtext_with_title_tile(cover, _content)
+    info = _clean_portlet_settings(col[0][1])
+    return make_aceitem_relevant_content_tile(cover, info)
+
+
+def make_text_from_articlejournal(content):
+
+    if not isinstance(content, list):
+        raise ValueError
+
+    if len(content) == 1:
+        return content[0]
+
+    if len(content) != 2:
+        import pdb; pdb.set_trace()
+
+    first_text = content[0][2][0]
+    second_text = content[1][2][0]
+
+    payload = {
+        'first_text': first_text,
+        'second_text': second_text
+    }
+
+    return render('templates/readmore_text.pt', payload)
+
+
 def make_aceitem_search_tile(cover, info):
     # Available options
     # title
@@ -229,6 +262,28 @@ def make_iframe_embed_tile(cover, url):
         'id': id
     }
 
+
+# def make_ast_text_tile(cover, info):
+#     id = getUtility(IUUIDGenerator)()
+#     type_name = 'collective.cover.richtext'
+#     tile = cover.restrictedTraverse('@@%s/%s' % (type_name, id))
+#
+#     payload = {
+#         'title':None,
+#         'subtitle': None,
+#         'first_text': None,
+#         'second_text': None,
+#     }
+#     country['Summary'] = render('templates/table.pt', table)
+#
+#     ITileDataManager(tile).set({'title': 'embeded iframe', 'embed': embed})
+#
+#     return {
+#         'tile-type': 'collective.cover.embed',
+#         'type': 'tile',
+#         'id': id
+#     }
+#
 
 def get_image(site, imageid):
     repo = site['repository']

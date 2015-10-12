@@ -1,0 +1,4 @@
+<div tal:define="info options/payload">
+  <div class="" tal:content="info/first_text">
+  <div class="" tal:content="info/second_text">
+</div>

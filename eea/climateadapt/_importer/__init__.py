@@ -15,6 +15,8 @@ from eea.climateadapt._importer.utils import make_layout
 from eea.climateadapt._importer.utils import make_richtext_tile
 from eea.climateadapt._importer.utils import make_richtext_with_title_tile
 from eea.climateadapt._importer.utils import make_row
+from eea.climateadapt._importer.utils import make_text_from_articlejournal
+from eea.climateadapt._importer.utils import make_tile
 from eea.climateadapt._importer.utils import noop
 from eea.climateadapt._importer.utils import pack_to_table
 from eea.climateadapt._importer.utils import parse_settings, s2l    #, printe
@@ -428,9 +430,6 @@ def extract_portlet_info(portletid, layout):
             if k.startswith('portletSetupTitle'):
                 portlet_title = unicode(v)
 
-    if 'Policy Framework' in prefs.get('name', ''):
-        import pdb; pdb.set_trace()
-
     article = _get_article_for_portlet(portlet)
     if article is not None:
         e = lxml.etree.fromstring(article.content.encode('utf-8'))
@@ -538,15 +537,29 @@ def import_layout(layout, site):
 
 
 # possible templates are
-# [u'1_2_1_columns', u'1_2_columns_i', u'1_2_columns_ii', u'1_column',
-# u'2_columns_i', u'2_columns_ii', u'2_columns_iii', u'ace_layout_1',
-# u'ace_layout_2', u'ace_layout_3', u'ace_layout_4', u'ace_layout_5',
-# u'ace_layout_col_1_2', u'ast', u'faq', u'frontpage', u'transnationalregion',
-# u'urban_ast']
+# 1_2_1_columns         - done
+# 1_2_columns_i
+# 1_2_columns_ii
+# 1_column
+# 2_columns_i
+# 2_columns_ii
+# 2_columns_iii
+# ace_layout_1
+# ace_layout_2
+# ace_layout_3          - done
+# ace_layout_4
+# ace_layout_5
+# ace_layout_col_1_2
+# ast
+# faq
+# frontpage
+# transnationalregion   - done
+# urban_ast
 
 
 @log_call
 def import_template_1_2_1_columns(site, layout, structure):
+    # done
     # column-1 has a table with links and a table with info
     # column-2 has an iframe
     # Only one page: http://adapt-test.eea.europa.eu//tools/urban-adaptation/my-adaptation
@@ -577,11 +590,11 @@ def import_template_1_2_1_columns(site, layout, structure):
 
     cover.cover_layout = layout
     return cover
-    # cover._p_changed = True
 
 
 @log_call
 def import_template_transnationalregion(site, layout, structure):
+    # done
     # a country page is a structure with 3 "columns":
     # column-1 has an image and a select box to select other countries
     # column-2 has is a structure of tabs and tables
@@ -671,6 +684,8 @@ def import_template_ace_layout_2(site, layout, structure):
     col3_portlet = structure['column-3'][0][1]
     col4_portlet = structure['column-4'][0][1]
 
+    import pdb; pdb.set_trace()
+
     return noop(layout, image, title, body, readmore, col2_portlet,
                 col3_portlet, col4_portlet)
 
@@ -693,19 +708,6 @@ def import_template_ace_layout_col_1_2(site, layout, structure):
 
     nav_menu = structure['column-1'][0][1]['content'][0]    # TODO: fix nav menu links
     noop(layout, title, main, nav_menu)
-
-
-def make_tile(cover, col):
-    if col[0][1].get('portlet_type') != 'journal_article_content':
-        info = _clean_portlet_settings(col[0][1])
-        return make_aceitem_relevant_content_tile(cover, info)
-    else:
-        _content = {
-            'title': col[0][1]['portlet_title'],
-            'text': col[0][1]['content'][0]
-        }
-        import pdb; pdb.set_trace()
-        return make_richtext_with_title_tile(cover, _content)
 
 
 @log_call
@@ -850,30 +852,68 @@ def import_template_urban_ast(site, layout, structure):
     # TODO: create urbanast page based on structure
     # column-1 has the imagemap on the left side
     # column-2 has 2 portlets:  title and then the one with content (which also
+    # there can be more columns where there are tiles with search
     # has a title)
     assert(len(structure) >= 3)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) >= 2)
 
+    # TODO: cleanup the css in image_portlet
+    # TODO: create nav menu on the left
+
+    name = structure['name']
     image_portlet = structure['column-1'][0][1]['content'][0]
     header_text = structure['column-2'][0][1]['headertext']
-    content = structure['column-2'][1][1]['content'][0]
+    step = structure['column-2'][0][1]['step']
+    portlet = structure['column-2'][1][1]
+    subtitle = portlet['portlet_title']
 
-    content_portlet = None
-    if len(structure['column-2']) > 2:
-        assert(len(structure['column-2']) == 3)
-        content_portlet = structure['column-2'][2]
+    main_text = make_text_from_articlejournal(portlet['content'])
 
-    extra_columns = {}
-    [structure.pop(x) for x in ('name', 'column-1', 'column-2')]
-    for key in structure:
-        if 'portletSetupTitle_en_GB' in structure[key][0][1]:
-            portlet_name = structure[key][0][1]['portletSetupTitle_en_GB']
-            extra_columns[portlet_name] = structure[key]
-        else:
-            assert(len(structure[key][0][1]) == 4)
-            column_name = structure[key][0][1]['portlet_title']
-            extra_columns[column_name] = structure[key][0][1]['content'][0]
+    payload = {
+        'title': header_text,
+        'subtitle': subtitle,
+        'main_text': main_text
+    }
+    main_content = render('templates/ast_text.pt', payload)
+
+    cover = create_cover_at(site, layout.friendlyurl, title=str(name))
+    image_tile = make_richtext_tile(cover, image_portlet)
+    main_content_tile = make_richtext_tile(cover, main_content)
+    [structure.pop(z) for z in ['column-1', 'column-2', 'name']]
+    second_row = make_row(*[make_tile(x) for x in structure.values()])
+
+    import pdb; pdb.set_trace()
+
+
+    # content_portlet = None
+    # if len(structure['column-2']) > 2:
+    #     assert(len(structure['column-2']) == 3)
+    #     content_portlet = structure['column-2'][2]
+    #
+    # extra_columns = {}
+    # name = structure['name']
+    #
+    # if structure.get('column-3'):
+    #     import pdb; pdb.set_trace()
+    # [structure.pop(x) for x in ('name', 'column-1', 'column-2')]
+    # if structure:
+    #     import pdb; pdb.set_trace()
+
+    # for key in structure:
+    #     if 'portletSetupTitle_en_GB' in structure[key][0][1]:
+    #         portlet_name = structure[key][0][1]['portletSetupTitle_en_GB']
+    #         extra_columns[portlet_name] = structure[key]
+    #     else:
+    #         try:
+    #             assert(len(structure[key][0][1]) == 4)
+    #         except:
+    #             import pdb; pdb.set_trace()
+    #         column_name = structure[key][0][1]['portlet_title']
+    #         extra_columns[column_name] = structure[key][0][1]['content'][0]
+
+    # search_tiles_row = make_row(...)
+    # TODO: nav_tile = make_ast_navtile(cover, ...)
 
     noop(layout, image_portlet, header_text, content, content_portlet,
          extra_columns)
@@ -962,7 +1002,6 @@ def import_template_1_column(site, layout, structure):
 def import_template_2_columns_i(site, layout, structure):
     # ex: /countries
     # TODO: column-1 may contain countriesportlet
-    #import pdb; pdb.set_trace()
     assert(len(structure) == 2 or len(structure) == 3)
     if len(structure) == 3:
         countries_portlet = structure['column-1'][0][1]
@@ -988,6 +1027,7 @@ def import_template_2_columns_ii(site, layout, structure):
     if len(structure) == 1: # this is a fake page. Ex: /adaptation-sectors
         logger.warning("Please investigate this importer %s with template %s",
                        layout.friendlyurl, '2_columns_ii')
+
         return
 
     first = [x[1] for x in structure.get('column-1', []) if x[1]]
