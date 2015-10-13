@@ -1,5 +1,5 @@
-<div class="ast_text" tal:define="info options/payload">
-  <h2 tal:content="info/title"></h2>
-  <h3 tal:content="info/subtitle"></h3>
-  <div class="" tal:content="info/main_text" />
+<div class="ast_text">
+  <h2 tal:content="options/title"></h2>
+  <h3 tal:content="options/subtitle"></h3>
+  <div class="" tal:content="options/main_text" />
 </div>

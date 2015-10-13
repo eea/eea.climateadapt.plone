@@ -878,12 +878,26 @@ def import_template_urban_ast(site, layout, structure):
     main_content = render('templates/ast_text.pt', payload)
 
     cover = create_cover_at(site, layout.friendlyurl, title=str(name))
-    image_tile = make_richtext_tile(cover, image_portlet)
-    main_content_tile = make_richtext_tile(cover, main_content)
-    [structure.pop(z) for z in ['column-1', 'column-2', 'name']]
-    second_row = make_row(*[make_tile(x) for x in structure.values()])
+    image_tile = make_richtext_tile(cover, {'text': image_portlet,
+                                            'title': 'AST Image'})
+    main_content_tile = make_richtext_tile(cover, {'text': main_content,
+                                                   'title': 'Main text'})
+    nav_tile = make_richtext_tile(cover, {'text': 'nav here', 'title': 'nav'})
 
-    import pdb; pdb.set_trace()
+    side_group = make_group(2, image_tile, nav_tile)
+
+    [structure.pop(z) for z in ['column-1', 'column-2', 'name']]
+    second_row = make_row(*[make_tile(cover, x) for x in structure.values()])
+    if second_row['children']:
+        main_group = make_group(14, main_content_tile, second_row)
+    else:
+        main_group = make_group(14, main_content_tile)
+
+    layout = make_layout(make_row(side_group, main_group))
+    cover.cover_layout = json.dumps(layout)
+    cover._p_changed = True
+    cover._layout_id = layout.layoutid
+    return cover
 
 
     # content_portlet = None

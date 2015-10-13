@@ -1,4 +1,2 @@
-<div tal:define="info options/payload">
-  <div class="" tal:content="info/first_text">
-  <div class="" tal:content="info/second_text">
-</div>
+<div class="" tal:content="options/first_text"></div>
+<div class="" tal:content="options/second_text"></div>
