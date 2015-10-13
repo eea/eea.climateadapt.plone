@@ -532,6 +532,8 @@ def import_layout(layout, site):
             content = extract_portlet_info(portletid, layout)
             structure[column].append((portletid, content))
 
+    if template != "urban_ast":
+        return
     importer = globals().get('import_template_' + template)
     importer(site, layout, structure)
 
@@ -574,6 +576,8 @@ def import_template_1_2_1_columns(site, layout, structure):
 
     cover = create_cover_at(site, layout.friendlyurl,
                             title=str(structure['name']))
+    cover._p_changed = True
+    cover._layout_id = layout.layoutid
 
     layout = [{'type': 'row', 'children': []}]
 
@@ -644,6 +648,8 @@ def import_template_transnationalregion(site, layout, structure):
     main_content = render('templates/accordion.pt', {'payload': payload})
 
     cover = create_cover_at(site, layout.friendlyurl)
+    cover._p_changed = True
+    cover._layout_id = layout.layoutid
 
     image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
     content_tile = make_richtext_tile(cover, {'title': 'main content',
@@ -683,8 +689,6 @@ def import_template_ace_layout_2(site, layout, structure):
     col2_portlet = structure['column-2'][0][1]
     col3_portlet = structure['column-3'][0][1]
     col4_portlet = structure['column-4'][0][1]
-
-    import pdb; pdb.set_trace()
 
     return noop(layout, image, title, body, readmore, col2_portlet,
                 col3_portlet, col4_portlet)
@@ -739,6 +743,8 @@ def import_template_ace_layout_3(site, layout, structure):
     extra_columns = [structure[k] for k in sorted(structure.keys())]
 
     cover = create_cover_at(site, layout.friendlyurl, title=name)
+    cover._p_changed = True
+    cover._layout_id = layout.layoutid
 
     if layout.themeid == "balticseaace_WAR_acetheme":
         # TODO: mark the content with a special interface to enable the menu
@@ -857,6 +863,7 @@ def import_template_urban_ast(site, layout, structure):
     assert(len(structure) >= 3)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) >= 2)
+    import pdb; pdb.set_trace()
 
     # TODO: cleanup the css in image_portlet
     # TODO: create nav menu on the left
@@ -878,6 +885,9 @@ def import_template_urban_ast(site, layout, structure):
     main_content = render('templates/ast_text.pt', payload)
 
     cover = create_cover_at(site, layout.friendlyurl, title=str(name))
+    cover._p_changed = True
+    cover._layout_id = layout.layoutid
+
     image_tile = make_richtext_tile(cover, {'text': image_portlet,
                                             'title': 'AST Image'})
     main_content_tile = make_richtext_tile(cover, {'text': main_content,
@@ -895,8 +905,7 @@ def import_template_urban_ast(site, layout, structure):
 
     layout = make_layout(make_row(side_group, main_group))
     cover.cover_layout = json.dumps(layout)
-    cover._p_changed = True
-    cover._layout_id = layout.layoutid
+
     return cover
 
 

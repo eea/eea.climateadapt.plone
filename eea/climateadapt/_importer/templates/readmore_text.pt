@@ -1,2 +1,2 @@
-<div class="" tal:content="options/first_text"></div>
-<div class="" tal:content="options/second_text"></div>
+<div class="" tal:content="structure options/first_text"></div>
+<div class="" tal:content="structure options/second_text"></div>

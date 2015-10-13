@@ -1,5 +1,5 @@
 <div class="ast_text">
-  <h2 tal:content="options/title"></h2>
-  <h3 tal:content="options/subtitle"></h3>
-  <div class="" tal:content="options/main_text" />
+  <h2 tal:content="structure options/title"></h2>
+  <h3 tal:content="structure options/subtitle"></h3>
+  <div class="" tal:content="structure options/main_text" />
 </div>
