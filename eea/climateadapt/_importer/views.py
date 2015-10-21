@@ -1,4 +1,6 @@
 from Products.Five.browser import BrowserView
+from collections import defaultdict
+from eea.climateadapt._importer.utils import get_template_for_layout
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from zope.sqlalchemy import register
@@ -37,3 +39,20 @@ class GoToPDB(BrowserView):
     def __call__(self):
         import pdb; pdb.set_trace()
         return "done"
+
+
+class MapOfLayouts(SingleImporterView):
+    def __call__(self):
+        from eea.climateadapt._importer import sql
+
+        session = self._make_session()
+        eea.climateadapt._importer.session = session
+
+        self.options = defaultdict(list)
+
+        for layout in session.query(sql.Layout).filter_by(privatelayout=False):
+            template = get_template_for_layout(layout)
+            self.options[template].append((layout.friendlyurl, layout.layoutid))
+
+        return self.index()
+

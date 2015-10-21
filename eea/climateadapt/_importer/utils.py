@@ -135,6 +135,16 @@ def _clean_portlet_settings(d):
     return res
 
 
+def get_template_for_layout(layout):
+    settings = parse_settings(layout.typesettings)
+
+    if layout.type_ == u'link_to_layout':
+        return "link to layout"
+
+    template = settings['layout-template-id'][0]
+    return template
+
+
 def make_tile(cover, col):
     if col[0][1].get('portlet_type') == 'journal_article_content':
         _content = {

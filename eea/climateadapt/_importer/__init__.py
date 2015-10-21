@@ -863,7 +863,6 @@ def import_template_urban_ast(site, layout, structure):
     assert(len(structure) >= 3)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) >= 2)
-    import pdb; pdb.set_trace()
 
     # TODO: cleanup the css in image_portlet
     # TODO: create nav menu on the left
@@ -897,8 +896,11 @@ def import_template_urban_ast(site, layout, structure):
     side_group = make_group(2, image_tile, nav_tile)
 
     [structure.pop(z) for z in ['column-1', 'column-2', 'name']]
-    second_row = make_row(*[make_tile(cover, x) for x in structure.values()])
-    if second_row['children']:
+    if structure:
+        second_row_group = [make_group(4, t) for t in
+                            [make_tile(cover, x) for x in structure.values()]
+                            ]
+        second_row = make_row(*second_row_group)
         main_group = make_group(14, main_content_tile, second_row)
     else:
         main_group = make_group(14, main_content_tile)

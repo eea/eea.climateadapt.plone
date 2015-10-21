@@ -23,4 +23,12 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        name="map_of_layouts"
+        for="*"
+        class=".views.MapOfLayouts"
+        permission="zope2.View"
+        template="templates/map_of_layouts.pt"
+        />
+
 </configure>
