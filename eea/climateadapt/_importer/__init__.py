@@ -1,19 +1,19 @@
+#from eea.climateadapt._importer.utils import _clean_portlet_settings
+#from eea.climateadapt._importer.utils import make_aceitem_relevant_content_tile
+#from eea.climateadapt._importer.utils import make_richtext_with_title_tile
 from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.utils import SOLVERS
-from eea.climateadapt._importer.utils import _clean_portlet_settings
 from eea.climateadapt._importer.utils import create_cover_at
 from eea.climateadapt._importer.utils import get_image
 from eea.climateadapt._importer.utils import log_call
 from eea.climateadapt._importer.utils import logger
-from eea.climateadapt._importer.utils import make_aceitem_relevant_content_tile
 from eea.climateadapt._importer.utils import make_aceitem_search_tile
 from eea.climateadapt._importer.utils import make_group
 from eea.climateadapt._importer.utils import make_iframe_embed_tile
 from eea.climateadapt._importer.utils import make_image_tile
 from eea.climateadapt._importer.utils import make_layout
 from eea.climateadapt._importer.utils import make_richtext_tile
-from eea.climateadapt._importer.utils import make_richtext_with_title_tile
 from eea.climateadapt._importer.utils import make_row
 from eea.climateadapt._importer.utils import make_text_from_articlejournal
 from eea.climateadapt._importer.utils import make_tile
@@ -33,6 +33,7 @@ from zope.sqlalchemy import register
 import json
 import lxml.etree
 import os
+import random
 import sys
 import transaction
 
@@ -532,8 +533,8 @@ def import_layout(layout, site):
             content = extract_portlet_info(portletid, layout)
             structure[column].append((portletid, content))
 
-    if template != "urban_ast":
-        return
+    # if template != "urban_ast":
+    #     return
     importer = globals().get('import_template_' + template)
     importer(site, layout, structure)
 
@@ -556,12 +557,13 @@ def import_layout(layout, site):
 # faq
 # frontpage
 # transnationalregion   - done
-# urban_ast
+# urban_ast             - done with TODOs
 
 
 @log_call
 def import_template_1_2_1_columns(site, layout, structure):
-    # done
+    # DONE
+
     # column-1 has a table with links and a table with info
     # column-2 has an iframe
     # Only one page: http://adapt-test.eea.europa.eu//tools/urban-adaptation/my-adaptation
@@ -598,7 +600,8 @@ def import_template_1_2_1_columns(site, layout, structure):
 
 @log_call
 def import_template_transnationalregion(site, layout, structure):
-    # done
+    # DONE
+
     # a country page is a structure with 3 "columns":
     # column-1 has an image and a select box to select other countries
     # column-2 has is a structure of tabs and tables
@@ -645,7 +648,11 @@ def import_template_transnationalregion(site, layout, structure):
     for tab in tabs:
         payload.append((tab, country[tab]))
 
-    main_content = render('templates/accordion.pt', {'payload': payload})
+    main_content = render('templates/accordion.pt',
+                          {'payload': payload,
+                           'rand': lambda: unicode(random.randint(1, 10000))
+                           }
+                          )
 
     cover = create_cover_at(site, layout.friendlyurl)
     cover._p_changed = True
@@ -675,6 +682,8 @@ def import_template_ace_layout_2(site, layout, structure):
         # this is a redirection layout, will be created in another place
         return
 
+    import pdb; pdb.set_trace()
+
     assert(len(structure) == 5)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) == 1)
@@ -692,6 +701,53 @@ def import_template_ace_layout_2(site, layout, structure):
 
     return noop(layout, image, title, body, readmore, col2_portlet,
                 col3_portlet, col4_portlet)
+
+
+
+
+
+    name = structure['name']
+    image_portlet = structure['column-1'][0][1]['content'][0]
+    header_text = structure['column-2'][0][1]['headertext']
+    # step = structure['column-2'][0][1]['step']
+    portlet = structure['column-2'][1][1]
+    subtitle = portlet['portlet_title']
+
+    main_text = make_text_from_articlejournal(portlet['content'])
+
+    payload = {
+        'title': header_text,
+        'subtitle': subtitle,
+        'main_text': main_text
+    }
+    main_content = render('templates/ast_text.pt', payload)
+
+    cover = create_cover_at(site, layout.friendlyurl, title=str(name))
+    cover._p_changed = True
+    cover._layout_id = layout.layoutid
+
+    image_tile = make_richtext_tile(cover, {'text': image_portlet,
+                                            'title': 'AST Image'})
+    main_content_tile = make_richtext_tile(cover, {'text': main_content,
+                                                   'title': 'Main text'})
+    nav_tile = make_richtext_tile(cover, {'text': 'nav here', 'title': 'nav'})
+
+    side_group = make_group(2, image_tile, nav_tile)
+
+    [structure.pop(z) for z in ['column-1', 'column-2', 'name']]
+    if structure:
+        second_row_group = [make_group(4, t) for t in
+                            [make_tile(cover, x) for x in structure.values()]
+                            ]
+        second_row = make_row(*second_row_group)
+        main_group = make_group(14, main_content_tile, second_row)
+    else:
+        main_group = make_group(14, main_content_tile)
+
+    layout = make_layout(make_row(side_group, main_group))
+    cover.cover_layout = json.dumps(layout)
+
+    return cover
 
 
 @log_call
@@ -855,22 +911,26 @@ def import_template_ast(site, layout, structure):
 
 @log_call
 def import_template_urban_ast(site, layout, structure):
-    # TODO: create urbanast page based on structure
+    # TODO: fix images
+    # TODO: fix urban ast navigation
+    # TODO: create nav menu on the left
+    # TODO: use the step information
+    # TODO: cleanup the css in image_portlet
+
+
     # column-1 has the imagemap on the left side
     # column-2 has 2 portlets:  title and then the one with content (which also
-    # there can be more columns where there are tiles with search
     # has a title)
+    # there can be more columns where there are tiles with search
+
     assert(len(structure) >= 3)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) >= 2)
 
-    # TODO: cleanup the css in image_portlet
-    # TODO: create nav menu on the left
-
     name = structure['name']
     image_portlet = structure['column-1'][0][1]['content'][0]
     header_text = structure['column-2'][0][1]['headertext']
-    step = structure['column-2'][0][1]['step']
+    # step = structure['column-2'][0][1]['step']
     portlet = structure['column-2'][1][1]
     subtitle = portlet['portlet_title']
 
@@ -909,39 +969,6 @@ def import_template_urban_ast(site, layout, structure):
     cover.cover_layout = json.dumps(layout)
 
     return cover
-
-
-    # content_portlet = None
-    # if len(structure['column-2']) > 2:
-    #     assert(len(structure['column-2']) == 3)
-    #     content_portlet = structure['column-2'][2]
-    #
-    # extra_columns = {}
-    # name = structure['name']
-    #
-    # if structure.get('column-3'):
-    #     import pdb; pdb.set_trace()
-    # [structure.pop(x) for x in ('name', 'column-1', 'column-2')]
-    # if structure:
-    #     import pdb; pdb.set_trace()
-
-    # for key in structure:
-    #     if 'portletSetupTitle_en_GB' in structure[key][0][1]:
-    #         portlet_name = structure[key][0][1]['portletSetupTitle_en_GB']
-    #         extra_columns[portlet_name] = structure[key]
-    #     else:
-    #         try:
-    #             assert(len(structure[key][0][1]) == 4)
-    #         except:
-    #             import pdb; pdb.set_trace()
-    #         column_name = structure[key][0][1]['portlet_title']
-    #         extra_columns[column_name] = structure[key][0][1]['content'][0]
-
-    # search_tiles_row = make_row(...)
-    # TODO: nav_tile = make_ast_navtile(cover, ...)
-
-    noop(layout, image_portlet, header_text, content, content_portlet,
-         extra_columns)
 
 
 @log_call
@@ -1081,12 +1108,13 @@ def import_template_2_columns_iii(site, layout, structure):
     elif len(structure['column-1']) == 2:
         body += structure['column-1'][1][1]['content'][0]
 
+    image = None
     if len(structure) == 3:
         # column-2 has a image
         assert(len(structure['column-2']) == 1)
         image = structure['column-2'][0][1]['content'][0]
 
-    noop(layout, portlet_title, body)
+    noop(layout, portlet_title, body, image)
 
 
 @log_call
@@ -1147,12 +1175,14 @@ def import_template_frontpage(site, layout, structure):
     sector_policies = structure['column-7'][0][1]['content'][0]
     information_systems = structure['column-8'][0][1]['content'][0]
 
-    home_slider_portlet = structure['column-1']
-    home_search_portlet = structure['column-2']
-    news_portlet = structure['column-5']
-    events_portlet = structure['column-6']
+    # home_slider_portlet = structure['column-1']
+    # home_search_portlet = structure['column-2']
+    # news_portlet = structure['column-5']
+    # events_portlet = structure['column-6']
 
-    return noop(country_selector, share_info, sector_policies,
+    return noop(country_selector,
+                share_info,
+                sector_policies,
                 information_systems)
 
 
@@ -1266,6 +1296,8 @@ def import_handler(context):
 
     Use it like above, start the Zope process with the DB parameter on command line
     """
+    if context.readDataFile('eea.climateadapt.importer.txt') is None:
+        return
     global session
     engine = create_engine(os.environ.get("DB"))
     Session = scoped_session(sessionmaker(bind=engine))
