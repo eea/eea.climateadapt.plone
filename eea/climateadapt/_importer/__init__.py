@@ -21,6 +21,8 @@ from eea.climateadapt._importer.utils import noop
 from eea.climateadapt._importer.utils import pack_to_table
 from eea.climateadapt._importer.utils import parse_settings, s2l    #, printe
 from eea.climateadapt._importer.utils import render
+from eea.climateadapt._importer.utils import render_accordion
+from eea.climateadapt._importer.utils import render_tabs
 from eea.climateadapt._importer.utils import strip_xml
 from eea.climateadapt.interfaces import IBalticRegionMarker
 from plone.dexterity.utils import createContentInContainer
@@ -33,7 +35,6 @@ from zope.sqlalchemy import register
 import json
 import lxml.etree
 import os
-import random
 import sys
 import transaction
 
@@ -648,11 +649,7 @@ def import_template_transnationalregion(site, layout, structure):
     for tab in tabs:
         payload.append((tab, country[tab]))
 
-    main_content = render('templates/accordion.pt',
-                          {'payload': payload,
-                           'rand': lambda: unicode(random.randint(1, 10000))
-                           }
-                          )
+    main_content = render_tabs(payload)
 
     cover = create_cover_at(site, layout.friendlyurl)
     cover._p_changed = True

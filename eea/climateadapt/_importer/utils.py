@@ -8,7 +8,9 @@ from zope.component import getUtility
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 import logging
 import lxml.etree
+import random
 import re
+
 
 logger = logging.getLogger('eea.climateadapt.importer')
 logger.setLevel(logging.INFO)
@@ -447,6 +449,21 @@ def render(path, options):
     ns = tpl.pt_getContext((), options)
     return tpl.pt_render(ns)
 
+
+def render_accordion(payload):
+    return render('templates/accordion.pt',
+                          {'payload': payload,
+                           'rand': lambda: unicode(random.randint(1, 10000))
+                           }
+                          )
+
+
+def render_tabs(payload):
+    return render('templates/tabs.pt',
+                          {'payload': payload,
+                           'rand': lambda: unicode(random.randint(1, 10000))
+                           }
+                          )
 
 def pack_to_table(data):
     """ Convert a flat list of (k, v), (k, v) to a structured list
