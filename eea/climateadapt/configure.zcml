@@ -23,18 +23,18 @@
     <i18n:registerTranslations directory="locales" />
 
     <genericsetup:registerProfile
-        name="cca_import"
-        title="eea.climateadapt: import content from Liferay"
-        directory="profiles/import_content"
-        description="Import content from SQL database of Liferay data"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
-
-    <genericsetup:registerProfile
         name="default"
         title="eea.climateadapt"
         directory="profiles/default"
         description="Install eea.climateadapt"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:registerProfile
+        name="zzz_cca_import"
+        title="eea.climateadapt: import content from Liferay"
+        directory="profiles/import_content"
+        description="Import content from SQL database of Liferay data"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 

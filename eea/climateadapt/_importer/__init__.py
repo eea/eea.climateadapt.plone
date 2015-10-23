@@ -571,8 +571,6 @@ def import_template_ace_layout_2(site, layout, structure):
         # this is a redirection layout, will be created in another place
         return
 
-    import pdb; pdb.set_trace()
-
     assert(len(structure) == 5)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) == 1)
@@ -590,10 +588,6 @@ def import_template_ace_layout_2(site, layout, structure):
 
     return noop(layout, image, title, body, readmore, col2_portlet,
                 col3_portlet, col4_portlet)
-
-
-
-
 
     name = structure['name']
     image_portlet = structure['column-1'][0][1]['content'][0]
@@ -1091,12 +1085,11 @@ def run_importer(site=None):
         if name not in site.contentIds():
             site.invokeFactory("Folder", name)
 
-    # for image in session.query(sql.Image):
-    #     import_image(image, site['repository'])
-    #
-    # for dlfileentry in session.query(sql.Dlfileentry):
-    #     import_dlfileentry(dlfileentry, site['repository'])
-    #
+    for image in session.query(sql.Image):
+        import_image(image, site['repository'])
+
+    for dlfileentry in session.query(sql.Dlfileentry):
+        import_dlfileentry(dlfileentry, site['repository'])
 
     for layout in session.query(sql.Layout).filter_by(privatelayout=False):
         cover = import_layout(layout, site)
@@ -1104,10 +1097,6 @@ def run_importer(site=None):
             cover._imported_comment = \
                 "Imported from layout {0}".format(layout.layoutid)
             logger.info("Created cover at %s", cover.absolute_url())
-
-    return
-    raise ValueError
-    import pdb; pdb.set_trace()
 
     for aceitem in session.query(sql.AceAceitem):
         if aceitem.datatype in ['ACTION', 'MEASURE']:

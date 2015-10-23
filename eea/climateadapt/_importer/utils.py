@@ -47,6 +47,8 @@ def parse_settings(text):
 
 
 def solve_dynamic_element(node):
+    """ Used to extract content from xml etree. This is content stored by journal article
+    """
 
     type_ = node.get('type')
 
