@@ -472,6 +472,10 @@ def import_template_transnationalregion(site, layout, structure):
 
 @log_call
 def import_template_ace_layout_2(site, layout, structure):
+    # Done
+
+    # TODO: relevant tiles, search tiles, relevent with filtering
+
     # there are three pages for this layout
     # two of them are empty because there's another layout with redirection
     # the third one is at http://adapt-test.eea.europa.eu/adaptation-measures
@@ -529,6 +533,10 @@ def import_template_ace_layout_2(site, layout, structure):
 
 @log_call
 def import_template_ace_layout_col_1_2(site, layout, structure):
+    # done
+
+    # TODO: fix the iframe, it's too small
+
     # this is a 2 column page with some navigation on the left and a big
     # iframe (or just plain html text) on the right
     # example page: http://adapt-test.eea.europa.eu//tools/urban-adaptation/climatic-threats/heat-waves/sensitivity
@@ -537,14 +545,36 @@ def import_template_ace_layout_col_1_2(site, layout, structure):
     assert(len(structure['column-3']) == 1)
 
     title = strip_xml(structure['name'])
+    cover = create_cover_at(site, layout.friendlyurl, title=title)
+    cover._layout_id = layout.layoutid
+
     main = structure['column-3'][0][1].get('url')
     if not main:
-        main = ('text', structure['column-3'][0][1]['content'][0])
+        main = structure['column-3'][0][1]['content'][0]
+        info = {
+            'title': title,
+            'text': main,
+        }
+        main_tile = make_richtext_tile(cover, info)
     else:
-        main = ('iframe', main)
+        main_tile = make_iframe_embed_tile(cover, main)
 
     nav_menu = structure['column-1'][0][1]['content'][0]    # TODO: fix nav menu links
-    noop(layout, title, main, nav_menu)
+    info = {
+        'title': 'navigation',
+        'text': nav_menu
+    }
+    nav_tile = make_richtext_tile(cover, info)
+
+    nav_group = make_group(1, nav_tile)
+    main_group = make_group(15, main_tile)
+
+    layout = make_layout(make_row(nav_group, main_group))
+    layout = json.dumps(layout)
+
+    cover.cover_layout = layout
+
+    return cover
 
 
 @log_call
