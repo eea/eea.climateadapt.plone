@@ -30,7 +30,7 @@ class SingleImporterView(BrowserView):
                                                      layoutid=layoutid).one()
         cover = import_layout(layout, site)
         if cover:
-            return cover.absolute_url()
+            return "<a href='" + cover.absolute_url() + "'>cover</a>"
 
         return "done"
 

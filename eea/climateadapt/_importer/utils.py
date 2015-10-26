@@ -11,6 +11,7 @@ import logging
 import lxml.etree
 import random
 import re
+from eea.climateadapt._importer import sqlschema as sql
 
 
 logger = logging.getLogger('eea.climateadapt.importer')
@@ -140,6 +141,100 @@ def _clean_portlet_settings(d):
     return res
 
 
+def _get_portlet(session, portletid, layout):
+    """ Get the portlet based on portletid and layout.plid
+
+    layout.plid is the "portlet instance id" """
+    try:
+        portlet = session.query(sql.Portletpreference).filter_by(
+            portletid=portletid, plid=layout.plid,
+        ).one()
+        return portlet
+    except:
+        return None
+
+
+def _get_article_for_portlet(session, portlet):
+    """ Parse portlet preferences to get the Journalarticle for the portlet """
+
+    e = lxml.etree.fromstring(portlet.preferences)
+
+    try:
+        articleid = e.xpath(
+            '//name[contains(text(), "articleId")]'
+            '/following-sibling::value'
+        )[0].text
+    except IndexError:
+        logger.debug("Couldn't find an article for portlet %s",
+                        portlet.portletid)
+        return
+
+    article = session.query(sql.Journalarticle).filter_by(
+        articleid=articleid, status=0).order_by(
+            sql.Journalarticle.version.desc()
+        ).first()
+
+    return article
+
+
+def extract_portlet_info(session, portletid, layout):
+    """ Extract portlet information from the portlet with portletid
+
+    The result can vary, based on what we find in a portlet.
+
+    It can be:
+        * a simple string with text
+        * a list of ('type_of_info', info)
+    """
+    portlet = _get_portlet(session, portletid, layout)
+    if portlet is None:
+        logger.debug("Portlet id: %s could not be found for %s",
+                       portletid, layout.friendlyurl)
+        return
+
+    if not portlet.preferences:
+        logger.warning("Couldn't get preferences for portlet %s with plid %s",
+                       portlet.portletid, portlet.plid)
+        return
+
+    # extract portlet settings, must be an application's settings
+    e = lxml.etree.fromstring(portlet.preferences)
+    prefs = {}
+    for pref in e.xpath('//preference'):
+        name = str(pref.find('name').text)
+        value = pref.find('value')
+        try:
+            value = value.text
+        except Exception:
+            pass
+        prefs[name] = unicode(value)
+
+    portlet_title = None
+    if prefs.get('portletSetupUseCustomTitle') == "true":
+        for k, v in prefs.items():
+            if k.startswith('portletSetupTitle'):
+                portlet_title = unicode(v)
+
+    article = _get_article_for_portlet(session, portlet)
+    if article is not None:
+        e = lxml.etree.fromstring(article.content.encode('utf-8'))
+
+        # TODO: attach other needed metadata
+        return {'title': article.title,
+                'description': article.description,
+                'content': [SOLVERS[child.tag](child) for child in e],
+                'portlet_title': portlet_title,
+                'portlet_type': 'journal_article_content'
+                }
+
+    logger.debug("Could not get an article from portlet %s for %s",
+                    portletid, layout.friendlyurl)
+
+    return prefs
+
+
+
+
 def get_template_for_layout(layout):
     settings = parse_settings(layout.typesettings)
 
@@ -151,14 +246,19 @@ def get_template_for_layout(layout):
 
 
 def make_tile(cover, col):
-    if col[0][1].get('portlet_type') == 'journal_article_content':
+    payload = col[0][1]
+    if payload.get('portlet_type') == 'journal_article_content':
         _content = {
-            'title': col[0][1]['portlet_title'],
-            'text': col[0][1]['content'][0]
+            'title': payload['portlet_title'],
+            'text': payload['content'][0]
         }
         return make_richtext_with_title_tile(cover, _content)
-    info = _clean_portlet_settings(col[0][1])
-    return make_aceitem_relevant_content_tile(cover, info)
+
+    if payload.get('paging') == u'1':
+        # this is the search portlet on the right
+        return make_aceitem_search_tile(cover, payload)
+    else:
+        return make_aceitem_relevant_content_tile(cover, payload)
 
 
 def make_text_from_articlejournal(content):
@@ -205,19 +305,23 @@ def make_aceitem_search_tile(cover, info):
     }
 
 
-def make_aceitem_relevant_content_tile(cover, info):
+def make_aceitem_relevant_content_tile(cover, payload):
     id = getUtility(IUUIDGenerator)()
     typeName = 'eea.climateadapt.relevant_acecontent'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
+    info = _clean_portlet_settings(payload)
     ITileDataManager(tile).set(info)
+
+    # TODO: relevant stuff here
+    # info = _clean_portlet_settings(payload)
+    # if filter(lambda x: x.startswith('user'), payload.keys()):
+    #     return make_aceitem_relevant_content_tile(cover, payload)
 
     return {
         'tile-type': typeName,
         'type': 'tile',
         'id': id
     }
-
-    pass
 
 
 def make_richtext_tile(cover, content):

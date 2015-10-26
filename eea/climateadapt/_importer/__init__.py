@@ -1,12 +1,14 @@
+#from eea.climateadapt._importer.utils import SOLVERS
 #from eea.climateadapt._importer.utils import _clean_portlet_settings
 #from eea.climateadapt._importer.utils import make_aceitem_relevant_content_tile
 #from eea.climateadapt._importer.utils import make_richtext_with_title_tile
 #from eea.climateadapt._importer.utils import render_accordion
+#import lxml.etree
 from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.tweak_sql import fix_relations
-from eea.climateadapt._importer.utils import SOLVERS
 from eea.climateadapt._importer.utils import create_cover_at
+from eea.climateadapt._importer.utils import extract_portlet_info
 from eea.climateadapt._importer.utils import get_image
 from eea.climateadapt._importer.utils import log_call
 from eea.climateadapt._importer.utils import logger
@@ -33,7 +35,6 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from zope.interface import alsoProvides
 from zope.sqlalchemy import register
 import json
-import lxml.etree
 import os
 import sys
 import transaction
@@ -253,98 +254,6 @@ def import_dlfileentry(data, location):
     return item
 
 
-def _get_portlet(portletid, layout):
-    """ Get the portlet based on portletid and layout.plid
-
-    layout.plid is the "portlet instance id" """
-    try:
-        portlet = session.query(sql.Portletpreference).filter_by(
-            portletid=portletid, plid=layout.plid,
-        ).one()
-        return portlet
-    except:
-        return None
-
-
-def _get_article_for_portlet(portlet):
-    """ Parse portlet preferences to get the Journalarticle for the portlet """
-
-    e = lxml.etree.fromstring(portlet.preferences)
-
-    try:
-        articleid = e.xpath(
-            '//name[contains(text(), "articleId")]'
-            '/following-sibling::value'
-        )[0].text
-    except IndexError:
-        logger.debug("Couldn't find an article for portlet %s",
-                        portlet.portletid)
-        return
-
-    article = session.query(sql.Journalarticle).filter_by(
-        articleid=articleid, status=0).order_by(
-            sql.Journalarticle.version.desc()
-        ).first()
-
-    return article
-
-
-def extract_portlet_info(portletid, layout):
-    """ Extract portlet information from the portlet with portletid
-
-    The result can vary, based on what we find in a portlet.
-
-    It can be:
-        * a simple string with text
-        * a list of ('type_of_info', info)
-    """
-    portlet = _get_portlet(portletid, layout)
-    if portlet is None:
-        logger.debug("Portlet id: %s could not be found for %s",
-                       portletid, layout.friendlyurl)
-        return
-
-    if not portlet.preferences:
-        logger.warning("Couldn't get preferences for portlet %s with plid %s",
-                       portlet.portletid, portlet.plid)
-        return
-
-    # extract portlet settings, must be an application's settings
-    e = lxml.etree.fromstring(portlet.preferences)
-    prefs = {}
-    for pref in e.xpath('//preference'):
-        name = str(pref.find('name').text)
-        value = pref.find('value')
-        try:
-            value = value.text
-        except Exception:
-            pass
-        prefs[name] = unicode(value)
-
-    portlet_title = None
-    if prefs.get('portletSetupUseCustomTitle') == "true":
-        for k, v in prefs.items():
-            if k.startswith('portletSetupTitle'):
-                portlet_title = unicode(v)
-
-    article = _get_article_for_portlet(portlet)
-    if article is not None:
-        e = lxml.etree.fromstring(article.content.encode('utf-8'))
-
-        # TODO: attach other needed metadata
-        return {'title': article.title,
-                'description': article.description,
-                'content': [SOLVERS[child.tag](child) for child in e],
-                'portlet_title': portlet_title,
-                'portlet_type': 'journal_article_content'
-                }
-
-    logger.debug("Could not get an article from portlet %s for %s",
-                    portletid, layout.friendlyurl)
-
-    return prefs
-
-
 no_import_layouts = [
     '/documents',   # this is an internal Liferay page
     '/contact-us',  # this is a page that doesn't really exist in the db
@@ -421,13 +330,14 @@ def import_layout(layout, site):
                                       settings.items()):
         structure[column] = []   # a column is a list of portlets
         for portletid in portlet_ids:
-            content = extract_portlet_info(portletid, layout)
+            content = extract_portlet_info(session, portletid, layout)
             structure[column].append((portletid, content))
 
     # if template != "urban_ast":
     #     return
     importer = globals().get('import_template_' + template)
-    importer(site, layout, structure)
+    cover = importer(site, layout, structure)
+    return cover
 
 
 # possible templates are
@@ -577,59 +487,43 @@ def import_template_ace_layout_2(site, layout, structure):
     assert(len(structure['column-3']) == 1)
     assert(len(structure['column-4']) == 1)
 
-    image = structure['column-1'][0][1]['content'][0][2]
+    name = structure['name']
+    cover = create_cover_at(site, layout.friendlyurl, title=str(name))
+    cover._layout_id = layout.layoutid
+
+    main = {}
+
     title = structure['column-1'][0][1]['content'][1][2][0]
     body = structure['column-1'][0][1]['content'][2][2][0]
     readmore = structure['column-1'][0][1]['content'][3][2][0]
+    image_id = structure['column-1'][0][1]['content'][0][2][0]
+    image = get_image(site, image_id)
 
-    col2_portlet = structure['column-2'][0][1]
-    col3_portlet = structure['column-3'][0][1]
-    col4_portlet = structure['column-4'][0][1]
-
-    return noop(layout, image, title, body, readmore, col2_portlet,
-                col3_portlet, col4_portlet)
-
-    name = structure['name']
-    image_portlet = structure['column-1'][0][1]['content'][0]
-    header_text = structure['column-2'][0][1]['headertext']
-    # step = structure['column-2'][0][1]['step']
-    portlet = structure['column-2'][1][1]
-    subtitle = portlet['portlet_title']
-
-    main_text = make_text_from_articlejournal(portlet['content'])
-
-    payload = {
-        'title': header_text,
-        'subtitle': subtitle,
-        'main_text': main_text
+    main['title'] = title
+    main['body'] = body
+    main['readmore'] = readmore
+    main['image'] = {
+        'title': image.Title(),
+        'thumb': image.absolute_url() + "/@@images/image",
     }
-    main_content = render('templates/ast_text.pt', payload)
+    main_content = render('templates/richtext_readmore_and_image.pt',
+                          {'payload': main})
 
-    cover = create_cover_at(site, layout.friendlyurl, title=str(name))
-    cover._p_changed = True
-    cover._layout_id = layout.layoutid
+    main_content_tile = make_richtext_tile(cover, {'title': 'main content',
+                                                   'text': main_content})
 
-    image_tile = make_richtext_tile(cover, {'text': image_portlet,
-                                            'title': 'AST Image'})
-    main_content_tile = make_richtext_tile(cover, {'text': main_content,
-                                                   'title': 'Main text'})
-    nav_tile = make_richtext_tile(cover, {'text': 'nav here', 'title': 'nav'})
+    col2_tile = make_tile(cover, structure['column-2'])
+    col3_tile = make_tile(cover, structure['column-3'])
 
-    side_group = make_group(2, image_tile, nav_tile)
+    relevant_content_tiles = [col2_tile, col3_tile]
+    sidebar_tile = make_tile(cover, structure['column-4'])
+    sidebar_group = make_group(2, sidebar_tile)
+    main_content_group = make_group(14,
+                                    main_content_tile, *relevant_content_tiles)
+    layout = make_layout(make_row(main_content_group, sidebar_group))
+    layout = json.dumps(layout)
 
-    [structure.pop(z) for z in ['column-1', 'column-2', 'name']]
-    if structure:
-        second_row_group = [make_group(4, t) for t in
-                            [make_tile(cover, x) for x in structure.values()]
-                            ]
-        second_row = make_row(*second_row_group)
-        main_group = make_group(14, main_content_tile, second_row)
-    else:
-        main_group = make_group(14, main_content_tile)
-
-    layout = make_layout(make_row(side_group, main_group))
-    cover.cover_layout = json.dumps(layout)
-
+    cover.cover_layout = layout
     return cover
 
 
