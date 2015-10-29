@@ -815,20 +815,37 @@ def import_template_1_2_columns_ii(site, layout, structure):
     cover._layout_id = layout.layoutid
 
     share_portlet = None
+    share_portlet_title = ""
     if len(structure) == 3:
         share_portlet = structure['column-2'][0][1]
+        share_portlet_title = structure['column-2'][0][0]
 
     info = {'title': title, 'text': body}
     main_text_tile = make_richtext_tile(cover, info)
     image_tile = make_image_tile(site, cover, {'id': image})
-    share_tile = make_share_tile(cover, share_portlet['sharetype'])
+
+    if share_portlet:
+        sharetype = share_portlet.get('sharetype')
+        if not sharetype:
+            if 'shareprojectportlet' in share_portlet_title:
+                sharetype = 'RESEARCHPROJECT'
+            elif share_portlet.get('caseStudiesFeatureType'):
+                sharetype = 'ACTION'
+            else:
+                import pdb; pdb.set_trace()
+                sharetype = 'MEASURE'
+        share_tile = make_share_tile(cover, sharetype)
 
     main_text_group = make_group(12, main_text_tile)
     image_group = make_group(4, image_tile)
     row_1 = make_row(main_text_group, image_group)
-    row_2 = make_row(make_group(16, share_tile))
 
-    layout = make_layout(row_1, row_2)
+    if share_portlet:
+        row_2 = make_row(make_group(16, share_tile))
+        layout = make_layout(row_1, row_2)
+    else:
+        layout = make_layout(row_1)
+
     cover.cover_layout = json.dumps(layout)
 
     return cover
