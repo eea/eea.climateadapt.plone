@@ -1,9 +1,3 @@
-#from eea.climateadapt._importer.utils import SOLVERS
-#from eea.climateadapt._importer.utils import _clean_portlet_settings
-#from eea.climateadapt._importer.utils import make_aceitem_relevant_content_tile
-#from eea.climateadapt._importer.utils import make_richtext_with_title_tile
-#from eea.climateadapt._importer.utils import render_accordion
-#import lxml.etree
 from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.tweak_sql import fix_relations
@@ -19,6 +13,7 @@ from eea.climateadapt._importer.utils import make_image_tile
 from eea.climateadapt._importer.utils import make_layout
 from eea.climateadapt._importer.utils import make_richtext_tile
 from eea.climateadapt._importer.utils import make_row
+from eea.climateadapt._importer.utils import make_share_tile
 from eea.climateadapt._importer.utils import make_text_from_articlejournal
 from eea.climateadapt._importer.utils import make_tile
 from eea.climateadapt._importer.utils import noop
@@ -797,7 +792,15 @@ def import_template_1_2_columns_i(site, layout, structure):
 @log_call
 def import_template_1_2_columns_ii(site, layout, structure):
     # ex page: /share-your-info/general
+
     # TODO: column02 contains sharemeasureportlet
+    # TODO: mark the cover with an interface to show a viewlet with navigation
+    # TODO: doesn't show title? Cover should be able to show its title
+    # TODO: fix for above is to set layout to standard in display menu
+
+    # row 1: text + image
+    # row 2: share button
+
     assert(len(structure) == 2 or len(structure) == 3)
     assert(len(structure['column-1']) == 1)
     if len(structure) > 2:
@@ -807,12 +810,28 @@ def import_template_1_2_columns_ii(site, layout, structure):
     title = structure['column-1'][0][1]['content'][1][2][0]
     body = structure['column-1'][0][1]['content'][2][2][0]
 
+    cover = create_cover_at(site, layout.friendlyurl, title=title)
+    cover._p_changed = True
+    cover._layout_id = layout.layoutid
+
     share_portlet = None
     if len(structure) == 3:
         share_portlet = structure['column-2'][0][1]
 
-    import pdb; pdb.set_trace()
-    noop(layout, image, title, body, share_portlet)
+    info = {'title': title, 'text': body}
+    main_text_tile = make_richtext_tile(cover, info)
+    image_tile = make_image_tile(site, cover, {'id': image})
+    share_tile = make_share_tile(cover, share_portlet['sharetype'])
+
+    main_text_group = make_group(12, main_text_tile)
+    image_group = make_group(4, image_tile)
+    row_1 = make_row(main_text_group, image_group)
+    row_2 = make_row(make_group(16, share_tile))
+
+    layout = make_layout(row_1, row_2)
+    cover.cover_layout = json.dumps(layout)
+
+    return cover
 
 
 @log_call

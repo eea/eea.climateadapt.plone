@@ -366,6 +366,25 @@ def make_richtext_with_title_tile(cover, content):
     }
 
 
+def make_share_tile(cover, share_type):
+    id = getUtility(IUUIDGenerator)()
+    typeName = 'eea.climateadapt.shareinfo'
+    tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
+
+    content = {}
+    content['title'] = "Share your %s" % share_type
+    content['shareinfo_type'] = share_type
+
+    ITileDataManager(tile).set(content)
+
+    return {
+        'tile-type': typeName,
+        'type': 'tile',
+        'id': id
+    }
+
+
+
 def make_iframe_embed_tile(cover, url):
     id = getUtility(IUUIDGenerator)()
     type_name = 'collective.cover.embed'
