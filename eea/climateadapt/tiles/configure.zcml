@@ -50,5 +50,16 @@
       for="*"
       />
 
+  <plone:tile
+      name="eea.climateadapt.shareinfo"
+      title="Share your info button"
+      description="A button to share info"
+      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+      add_permission="cmf.ModifyPortalContent"
+      schema=".shareinfo.IShareInfoTile"
+      class=".shareinfo.ShareInfoTile"
+      permission="zope2.View"
+      for="*"
+      />
 
 </configure>

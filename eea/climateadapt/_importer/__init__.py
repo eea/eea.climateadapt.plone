@@ -690,31 +690,37 @@ def import_template_ace_layout_4(site, layout, structure):
 
 @log_call
 def import_template_ast(site, layout, structure):
-    # TODO: create ast page based on structure
+    # done
+    # TODO: AST navigation menu
+    # TODO: portlets order is not preserved?
+
     # column-1 has the imagemap on the left side
     # column-2 has 2 portlets:  title and then the one with content (which also
     # has a title)
+
     assert(len(structure) >= 3)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) >= 2)
 
-    image_portlet = structure['column-1'][0][1]['content'][0]
-    header_text = structure['column-2'][0][1]['headertext']
-    content = structure['column-2'][1][1]['content'][0]
+    return import_template_urban_ast(site, layout, structure)
 
-    content_portlet = None
-    if len(structure['column-2']) > 2:
-        assert(len(structure['column-2']) == 3)
-        content_portlet = structure['column-2'][2]
-
-    extra_columns = {}
-    [structure.pop(x) for x in ('name', 'column-1', 'column-2')]
-    for key in structure:
-        portlet_name = structure[key][0][1]['portletSetupTitle_en_GB']
-        extra_columns[portlet_name] = structure[key]
-
-    noop(image_portlet, header_text, content, content_portlet, extra_columns)
-
+    # image_portlet = structure['column-1'][0][1]['content'][0]
+    # header_text = structure['column-2'][0][1]['headertext']
+    # content = structure['column-2'][1][1]['content'][0]
+    #
+    # content_portlet = None
+    # if len(structure['column-2']) > 2:
+    #     assert(len(structure['column-2']) == 3)
+    #     content_portlet = structure['column-2'][2]
+    #
+    # extra_columns = {}
+    # [structure.pop(x) for x in ('name', 'column-1', 'column-2')]
+    # for key in structure:
+    #     portlet_name = structure[key][0][1]['portletSetupTitle_en_GB']
+    #     extra_columns[portlet_name] = structure[key]
+    #
+    # noop(image_portlet, header_text, content, content_portlet, extra_columns)
+    #
 
 @log_call
 def import_template_urban_ast(site, layout, structure):
@@ -805,6 +811,7 @@ def import_template_1_2_columns_ii(site, layout, structure):
     if len(structure) == 3:
         share_portlet = structure['column-2'][0][1]
 
+    import pdb; pdb.set_trace()
     noop(layout, image, title, body, share_portlet)
 
 

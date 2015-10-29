@@ -141,20 +141,23 @@ _measure_types = (("A", "Case study"), ("M", "Adaptation option"))
 acemeasure_types = generic_vocabulary(_measure_types)
 alsoProvides(acemeasure_types, IVocabularyFactory)
 
-_a = namedtuple('_AceItemType', ['id', 'label'])
-
-aceitem_types = [
-    _a("DOCUMENT", "Publication & Report"),
-    _a("INFORMATIONSOURCE", "Information Portal"),
-    _a("GUIDANCE","Guidance Document"),
-    _a("TOOL", "Tool"),
-    _a("MAPGRAPHDATASET", "Maps, graphs and datasets"),
-    _a("INDICATOR", "Indicators"),
-    _a("RESEARCHPROJECT","Research and Knowledge Projects"),
-    _a("MEASURE","Adaptation Option"),
-    _a("ACTION", "Case Studies"),
-    _a("ORGANISATION", "Organisation"),
+_cca_types = [
+    ("DOCUMENT", "Publication & Report"),
+    ("INFORMATIONSOURCE", "Information Portal"),
+    ("GUIDANCE","Guidance Document"),
+    ("TOOL", "Tool"),
+    ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
+    ("INDICATOR", "Indicators"),
+    ("RESEARCHPROJECT","Research and Knowledge Projects"),
+    ("MEASURE","Adaptation Option"),
+    ("ACTION", "Case Studies"),
+    ("ORGANISATION", "Organisation"),
 ]
+cca_types = generic_vocabulary(_cca_types)
+alsoProvides(cca_types, IVocabularyFactory)
+
+_a = namedtuple('_AceItemType', ['id', 'label'])
+aceitem_types = [_a(*x) for x in _cca_types]
 
 
 def catalog_based_vocabulary(index):

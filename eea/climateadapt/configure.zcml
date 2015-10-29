@@ -58,6 +58,7 @@
     <utility name="eea.climateadapt.acemeasure_implementationtype" component=".vocabulary.acemeasure_implementationtype_vocabulary"/>
     <utility name="eea.climateadapt.ace_countries" component=".vocabulary.ace_countries_vocabulary"/>
     <utility name="eea.climateadapt.acemeasure_types" component=".vocabulary.acemeasure_types"/>
+    <utility name="eea.climateadapt.cca_types" component=".vocabulary.cca_types"/>
 
     <utility name="eea.climateadapt.element_types_vocabulary" component=".vocabulary.element_types_vocabulary"/>
     <utility name="eea.climateadapt.search_types_vocabulary" component=".vocabulary.search_types_vocabulary"/>

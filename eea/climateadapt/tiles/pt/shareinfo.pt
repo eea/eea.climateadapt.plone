@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n:domain="collective.cover">
+
+  <body tal:define="is_compose view/is_compose_mode">
+    <strong tal:condition="is_compose">Share button tile</strong>
+
+    <h2 tal:content="python: view.data.get('title')">Title here</h2>
+
+    <div tal:content="view/data" />
+
+    <dl tal:condition="view/is_compose_mode">
+      <dt>Share type:</dt>
+      <dd tal:content="python: view.data.get('shareinfo_type')" />
+    </dl>
+
+    <div class="cover-richtext-tile tile-content aceitem-relevant-tile" tal:condition="not: is_compose">
+      <button>Share your info</button>
+      <div tal:content="python: view.data.get('shareinfo_type')" />
+    </div>
+  </body>
+</html>
