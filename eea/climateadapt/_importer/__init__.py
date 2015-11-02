@@ -337,21 +337,21 @@ def import_layout(layout, site):
 
 # possible templates are
 # 1_2_1_columns         - done
-# 1_2_columns_i
-# 1_2_columns_ii
+# 1_2_columns_i         - TODO as custom page
+# 1_2_columns_ii        - done
 # 1_column
 # 2_columns_i
 # 2_columns_ii
 # 2_columns_iii
 # ace_layout_1
-# ace_layout_2
+# ace_layout_2          - done
 # ace_layout_3          - done
 # ace_layout_4
 # ace_layout_5
-# ace_layout_col_1_2
+# ace_layout_col_1_2    - done
 # ast
-# faq
-# frontpage
+# faq                   - done
+# frontpage             - TODO as a custom page
 # transnationalregion   - done
 # urban_ast             - done with TODOs
 
@@ -791,6 +791,8 @@ def import_template_1_2_columns_i(site, layout, structure):
 
 @log_call
 def import_template_1_2_columns_ii(site, layout, structure):
+    # done
+
     # ex page: /share-your-info/general
 
     # TODO: column02 contains sharemeasureportlet
@@ -979,7 +981,9 @@ def import_template_ace_layout_5(site, layout, structure):
     # ex page: /transnational-regions/caribbean-area
     assert(len(structure) == 4)
     assert(len(structure['column-1']) == 1)
+    import pdb; pdb.set_trace()
 
+    title = structure['name']
     image = structure['column-1'][0][1]['content'][0][2][0]
     _first = structure['column-2'][0][1]['content'][0][2][0]
 
@@ -987,10 +991,30 @@ def import_template_ace_layout_5(site, layout, structure):
         _second = structure['column-2'][0][1]['content'][1][2][0]
         _first += _second
 
-    # TODO: import portlet
-    portlet = structure['column-3']
-    text = _first
-    noop(image, text, portlet)
+    # tr_portlet = structure['column-3']
+    cover = create_cover_at(site, layout.friendlyurl, title=title)
+
+    info = {'title': title, 'text': _first }
+    main_text_tile = make_richtext_tile(cover, info)
+
+    main_text_group = make_group(14, main_text_tile)
+    dropdown_tile = None
+    image_info = {
+        'id': image,
+        'description': '',
+        'title': 'region image',
+    }
+    image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
+    image_group = make_group(2, image_tile, dropdown_tile)
+    row_1 = make_row(image_group, main_text_group)
+
+    layout = make_layout(row_1)
+
+    cover.cover_layout = json.dumps(layout)
+
+
+    # 1 row, 2 columns. First column: image + region selection tile
+    #                   Second column: rich text
 
 
 @log_call
@@ -999,6 +1023,11 @@ def import_template_faq(site, layout, structure):
     underneath.
     Ex:/uncertainty-guidance-ai
     """
+
+    # done
+    # TODO: fix styling of columns
+    # TODO: fix images path
+
     assert(len(structure) == 5)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) == 1)
@@ -1009,7 +1038,28 @@ def import_template_faq(site, layout, structure):
     col1 = structure['column-2'][0][1]['content'][0]
     col2 = structure['column-3'][0][1]['content'][0]
     col3 = structure['column-4'][0][1]['content'][0]
-    return noop(main_text, col1, col2, col3)
+
+    title = structure['name']
+
+    cover = create_cover_at(site, layout.friendlyurl, title=title)
+    cover._p_changed = True
+    cover._layout_id = layout.layoutid
+
+    info = {'title': title, 'text': main_text}
+    main_text_tile = make_richtext_tile(cover, info)
+    main_text_group = make_group(16, main_text_tile)
+
+    col_tiles = [
+        make_richtext_tile(cover, {'text': col, 'title': 'column'})
+        for col in [col1, col2, col3]
+    ]
+    row_1 = make_row(main_text_group)
+    row_2 = make_row(make_group(4, *col_tiles))
+    layout = make_layout(row_1, row_2)
+
+    cover.cover_layout = json.dumps(layout)
+
+    return cover
 
 
 @log_call
@@ -1079,7 +1129,6 @@ def run_importer(site=None):
             import_casestudy(acemeasure, site['casestudy'])
         else:
             import_adaptationoption(acemeasure, site['adaptationoption'])
-
 
 
 def get_plone_site():
