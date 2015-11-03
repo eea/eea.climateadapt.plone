@@ -10,6 +10,7 @@ from eea.climateadapt._importer.utils import make_aceitem_search_tile
 from eea.climateadapt._importer.utils import make_group
 from eea.climateadapt._importer.utils import make_iframe_embed_tile
 from eea.climateadapt._importer.utils import make_image_tile
+from eea.climateadapt._importer.utils import make_transregion_dropdown_tile
 from eea.climateadapt._importer.utils import make_layout
 from eea.climateadapt._importer.utils import make_richtext_tile
 from eea.climateadapt._importer.utils import make_row
@@ -23,6 +24,7 @@ from eea.climateadapt._importer.utils import render
 from eea.climateadapt._importer.utils import render_tabs
 from eea.climateadapt._importer.utils import strip_xml
 from eea.climateadapt.interfaces import IBalticRegionMarker
+from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from plone.dexterity.utils import createContentInContainer
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from sqlalchemy import create_engine
@@ -978,10 +980,14 @@ def import_template_ace_layout_1(site, layout, structure):
 
 @log_call
 def import_template_ace_layout_5(site, layout, structure):
+    # done
+    # TODO: fix the dropdown select template, needs JS work
     # ex page: /transnational-regions/caribbean-area
+    # 1 row, 2 columns. First column: image + region selection tile
+    #                   Second column: rich text
+
     assert(len(structure) == 4)
     assert(len(structure['column-1']) == 1)
-    import pdb; pdb.set_trace()
 
     title = structure['name']
     image = structure['column-1'][0][1]['content'][0][2][0]
@@ -993,12 +999,13 @@ def import_template_ace_layout_5(site, layout, structure):
 
     # tr_portlet = structure['column-3']
     cover = create_cover_at(site, layout.friendlyurl, title=title)
+    alsoProvides(cover, ITransnationalRegionMarker)
 
     info = {'title': title, 'text': _first }
     main_text_tile = make_richtext_tile(cover, info)
 
     main_text_group = make_group(14, main_text_tile)
-    dropdown_tile = None
+    dropdown_tile = make_transregion_dropdown_tile(cover)
     image_info = {
         'id': image,
         'description': '',
@@ -1012,9 +1019,7 @@ def import_template_ace_layout_5(site, layout, structure):
 
     cover.cover_layout = json.dumps(layout)
 
-
-    # 1 row, 2 columns. First column: image + region selection tile
-    #                   Second column: rich text
+    return cover
 
 
 @log_call

@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n:domain="collective.cover">
+
+  <body tal:define="is_compose view/is_compose_mode">
+    <strong tal:condition="is_compose">Transregional select</strong>
+
+    <h2 tal:content="python: view.data.get('title')">Title here</h2>
+
+    <dl tal:condition="view/is_compose_mode">
+      <dt>Transnational regions select</dt>
+      <dd>
+        <select></select>
+      </dd>
+    </dl>
+
+    <div class="cover-richtext-tile tile-content aceitem-relevant-tile" 
+      tal:condition="not: is_compose">
+      <select>
+        <option tal:repeat="region view/regions" 
+          tal:attributes="value region/url" 
+          tal:content="region/title" >1</option>
+      </select>
+    </div>
+  </body>
+</html>
+

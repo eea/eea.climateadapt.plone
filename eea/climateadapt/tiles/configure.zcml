@@ -62,4 +62,16 @@
       for="*"
       />
 
+  <plone:tile
+      name="eea.climateadapt.transregionselect"
+      title="TransRegion select"
+      description="A dropdown to select a transregion"
+      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+      add_permission="cmf.ModifyPortalContent"
+      schema=".transregional_select.ITransRegionalSelectTile"
+      class=".transregional_select.TransRegionalSelectTile"
+      permission="zope2.View"
+      for="*"
+      />
+
 </configure>

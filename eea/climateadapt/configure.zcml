@@ -64,4 +64,8 @@
     <utility name="eea.climateadapt.search_types_vocabulary" component=".vocabulary.search_types_vocabulary"/>
     <utility name="eea.climateadapt.special_tags_vocabulary" component=".vocabulary.special_tags_vocabulary"/>
 
+    Marker interfaces:
+
+    <interface interface="eea.climateadapt.interfaces.ITransnationalRegionMarker" />
+
 </configure>

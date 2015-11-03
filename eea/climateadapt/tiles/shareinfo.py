@@ -3,14 +3,11 @@
 It renders a search "portlet" for Ace content
 """
 
-from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
 from eea.climateadapt import MessageFactory as _
-#from eea.climateadapt.vocabulary import aceitem_types
 from zope import schema
-from zope.component.hooks import getSite
 from zope.interface import implements
 
 

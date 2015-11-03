@@ -6,6 +6,7 @@
             <element>eea.climateadapt.relevant_acecontent</element>
             <element>eea.climateadapt.richtext_with_title</element>
             <element>eea.climateadapt.shareinfo</element>
+            <element>eea.climateadapt.transregionselect</element>
         </value>
     </record>
     <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
@@ -14,6 +15,7 @@
             <element>eea.climateadapt.relevant_acecontent</element>
             <element>eea.climateadapt.richtext_with_title</element>
             <element>eea.climateadapt.shareinfo</element>
+            <element>eea.climateadapt.transregionselect</element>
         </value>
     </record>
 </registry>
