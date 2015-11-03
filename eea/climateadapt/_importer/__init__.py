@@ -21,6 +21,7 @@ from eea.climateadapt._importer.utils import noop
 from eea.climateadapt._importer.utils import pack_to_table
 from eea.climateadapt._importer.utils import parse_settings, s2l    #, printe
 from eea.climateadapt._importer.utils import render
+from eea.climateadapt._importer.utils import render_accordion
 from eea.climateadapt._importer.utils import render_tabs
 from eea.climateadapt._importer.utils import strip_xml
 from eea.climateadapt.interfaces import IBalticRegionMarker
@@ -349,7 +350,7 @@ def import_layout(layout, site):
 # ace_layout_2          - done
 # ace_layout_3          - done
 # ace_layout_4
-# ace_layout_5
+# ace_layout_5          - done
 # ace_layout_col_1_2    - done
 # ast
 # faq                   - done
@@ -681,6 +682,23 @@ def import_template_ace_layout_4(site, layout, structure):
     if len(structure['column-2']) > 1:
         for portlet in structure['column-2'][1:]:
             sidebar.append(('extratext', portlet[1]['content'][0]))
+
+
+    # the accordion is a list of ('tab title', 'tab content structure')
+    # we need to go through each of the tabs and change the structure to be html
+
+    payload = []
+    for k, v in main['accordion']:
+        # TODO: get the keys from dictionary
+        if not k == 'ProjectPartners':
+            payload.append((k, v))
+        else:
+            table = pack_to_table(v)
+            payload.append((k, render('templates/table.pt', table)))
+
+    main_text = render_accordion(payload)
+
+    import pdb; pdb.set_trace()
 
     noop(layout, main, sidebar)
 
