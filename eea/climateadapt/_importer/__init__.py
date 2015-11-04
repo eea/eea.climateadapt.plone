@@ -639,6 +639,12 @@ def import_template_ace_layout_3(site, layout, structure):
 @log_call
 def import_template_ace_layout_4(site, layout, structure):
     # these are Project pages such as http://adapt-test.eea.europa.eu/web/guest/project/climsave
+
+    title = structure['name']
+    cover = create_cover_at(site, layout.friendlyurl, title=title)
+    cover._p_changed = True
+    cover._layout_id = layout.layoutid
+
     main = {
         'accordion': [],
     }
@@ -667,21 +673,35 @@ def import_template_ace_layout_4(site, layout, structure):
     main['accordion'].append(('ProjectPartners', partners))
 
     _main_sidebar = structure['column-2'][0][1]['content']
+    sidebar_title = structure['column-2'][0][1]['portlet_title']
     sidebar = []
+    _contact = []
     for line in _main_sidebar:
         if line[1] != 'Contact':
             sidebar.append((line[1], line[2][0]))
         else:
-            contact = []
+            #contact = []
             for subline in line[2]:
                 if not subline:
                     continue
-                contact.append((subline[1], subline[2][0]))
-            sidebar.append(contact)
+                _contact.append((subline[1], subline[2][0]))
+            #sidebar.append(contact)
 
+    contact_text = render("templates/snippet_contact.pt", {'lines': _contact})
+    sidebar_text = render("templates/snippet_sidebar_text.pt",
+                          {'lines': sidebar})
+    sidebar_tile = make_richtext_tile(cover,
+                                      {'title': sidebar_title,
+                                       'text': sidebar_text + contact_text})
+
+    sidebar_tiles = [sidebar_tile]
+
+    extra_text = []
     if len(structure['column-2']) > 1:
-        for portlet in structure['column-2'][1:]:
-            sidebar.append(('extratext', portlet[1]['content'][0]))
+        for pid, portlet in structure['column-2'][1:]:
+            extra_text.append((portlet['portlet_title'], portlet['content'][0]))
+
+    # TODO: make the tiles, append to sidebar_tiles
 
 
     # the accordion is a list of ('tab title', 'tab content structure')
@@ -696,11 +716,29 @@ def import_template_ace_layout_4(site, layout, structure):
             table = pack_to_table(v)
             payload.append((k, render('templates/table.pt', table)))
 
-    main_text = render_accordion(payload)
-
+    image = get_image(site, main['image'])
+    accordion = render_accordion(payload)
+    main_text = render('templates/project.pt',
+                       {'image': image.absolute_url() + "/@@images/image",
+                        'title': main['title'],
+                        'subtitle': main['subtitle'],
+                        'accordion': accordion
+                        })
     import pdb; pdb.set_trace()
 
-    noop(layout, main, sidebar)
+    main_tile = make_richtext_tile(cover, {'title': 'main content',
+                                           'text': main_text})
+    sidebar_group = make_group(2, *sidebar_tiles)
+    main_content_group = make_group(14,
+                                    main_content_tile, *relevant_content_tiles)
+    layout = make_layout(make_row(main_content_group, sidebar_group))
+    cover.cover_layout = json.dumps(layout)
+    cover._p_changed = True
+
+    return cover
+
+
+    import pdb; pdb.set_trace()
 
 
 @log_call

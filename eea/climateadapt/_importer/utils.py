@@ -2,6 +2,7 @@
 """
 
 
+from eea.climateadapt._importer import sqlschema as sql
 from plone.dexterity.utils import createContentInContainer
 from plone.tiles.interfaces import ITileDataManager
 from plone.uuid.interfaces import IUUIDGenerator
@@ -11,7 +12,6 @@ import logging
 import lxml.etree
 import random
 import re
-from eea.climateadapt._importer import sqlschema as sql
 
 
 logger = logging.getLogger('eea.climateadapt.importer')

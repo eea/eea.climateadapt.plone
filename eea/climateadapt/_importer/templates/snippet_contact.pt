@@ -1,0 +1,3 @@
+<div class="contact">
+  <p tal:repeat="line options/lines" tal:content="python:line[0]" />
+</div>

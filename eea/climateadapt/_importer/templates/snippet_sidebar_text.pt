@@ -1,0 +1,4 @@
+<div tal:repeat="line options/lines">
+  <h4 tal:content="python: line[0]" />
+  <p tal:replace="structure python: line[1]" />
+</div>
