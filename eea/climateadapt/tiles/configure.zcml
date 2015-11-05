@@ -74,4 +74,16 @@
       for="*"
       />
 
+  <plone:tile
+      name="eea.climateadapt.countryselect"
+      title="Country select"
+      description="A dropdown to select a country"
+      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+      add_permission="cmf.ModifyPortalContent"
+      schema=".country_select.ICountrySelectTile"
+      class=".country_select.CountrySelectTile"
+      permission="zope2.View"
+      for="*"
+      />
+
 </configure>

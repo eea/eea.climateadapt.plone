@@ -7,6 +7,7 @@
             <element>eea.climateadapt.richtext_with_title</element>
             <element>eea.climateadapt.shareinfo</element>
             <element>eea.climateadapt.transregionselect</element>
+            <element>eea.climateadapt.countryselect</element>
         </value>
     </record>
     <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
@@ -16,6 +17,7 @@
             <element>eea.climateadapt.richtext_with_title</element>
             <element>eea.climateadapt.shareinfo</element>
             <element>eea.climateadapt.transregionselect</element>
+            <element>eea.climateadapt.countryselect</element>
         </value>
     </record>
 </registry>

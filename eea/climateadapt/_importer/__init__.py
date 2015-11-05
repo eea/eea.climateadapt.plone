@@ -7,6 +7,7 @@ from eea.climateadapt._importer.utils import get_image
 from eea.climateadapt._importer.utils import log_call
 from eea.climateadapt._importer.utils import logger
 from eea.climateadapt._importer.utils import make_aceitem_search_tile
+from eea.climateadapt._importer.utils import make_countries_dropdown_tile
 from eea.climateadapt._importer.utils import make_group
 from eea.climateadapt._importer.utils import make_iframe_embed_tile
 from eea.climateadapt._importer.utils import make_image_tile
@@ -409,6 +410,7 @@ def import_template_transnationalregion(site, layout, structure):
     # Ex: /countries/liechtenstein
 
     # TODO: "translate" the titles for tabs and table header
+    # TODO: add the countries select dropdown
 
     assert(len(structure) >= 2)
     assert(len(structure['column-1']) == 1)
@@ -961,9 +963,19 @@ def import_template_1_column(site, layout, structure):
 
 @log_call
 def import_template_2_columns_i(site, layout, structure):
+    # done
+
     # ex: /countries
-    # TODO: column-1 may contain countriesportlet
-    assert(len(structure) == 2 or len(structure) == 3)
+    # TODO: fix images linking
+
+    assert(len(structure) in [2, 3])
+
+    title = structure['name']
+
+    cover = create_cover_at(site, layout.friendlyurl, title=title)
+    cover._p_changed = True
+    cover._layout_id = layout.layoutid
+
     if len(structure) == 3:
         countries_portlet = structure['column-1'][0][1]
         body = structure['column-2'][0][1]['content'][0]
@@ -972,9 +984,20 @@ def import_template_2_columns_i(site, layout, structure):
         countries_portlet = None
         body = structure['column-1'][0][1]['content'][0]
         portlet_title = structure['column-1'][0][1]['portlet_title']
-    title = structure['name']
 
-    noop(layout, title, portlet_title, body, countries_portlet)
+    main_text_tile = make_richtext_with_title_tile(cover,
+                                                   {'title': portlet_title,
+                                                    'text': body})
+    if countries_portlet:
+        countries_tile = make_countries_dropdown_tile(cover)
+        main_group = make_group(16, main_text_tile, countries_tile)
+    else:
+        main_group = make_group(16, main_text_tile)
+
+    layout = make_layout(make_row(main_group))
+    cover.cover_layout = json.dumps(layout)
+    cover._p_changed = True
+    return cover
 
 
 @log_call

@@ -1,0 +1,3 @@
+<select>
+  <option tal:repeat="c view/countries" tal:attributes="value python:c[0]" tal:content="python: c[1]"></option>
+</select>
