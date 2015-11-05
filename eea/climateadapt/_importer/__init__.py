@@ -346,11 +346,11 @@ def import_layout(layout, site):
 # 1_column
 # 2_columns_i
 # 2_columns_ii
-# 2_columns_iii
-# ace_layout_1
+# 2_columns_iii         - done
+# ace_layout_1          - is not needed?
 # ace_layout_2          - done
 # ace_layout_3          - done
-# ace_layout_4
+# ace_layout_4          - done
 # ace_layout_5          - done
 # ace_layout_col_1_2    - done
 # ast
@@ -892,7 +892,6 @@ def import_template_1_2_columns_ii(site, layout, structure):
             elif share_portlet.get('caseStudiesFeatureType'):
                 sharetype = 'ACTION'
             else:
-                import pdb; pdb.set_trace()
                 sharetype = 'MEASURE'
         share_tile = make_share_tile(cover, sharetype)
 
@@ -1002,19 +1001,27 @@ def import_template_2_columns_ii(site, layout, structure):
 
 @log_call
 def import_template_2_columns_iii(site, layout, structure):
+    # done
+
     # ex: /organisations
     assert(len(structure) == 2 or len(structure) == 3)
 
+    #title = structure['name']
+    title = structure['column-1'][0][1]['portlet_title']
     body = structure['column-1'][0][1]['content'][0]
-    portlet_title = structure['column-1'][0][1]['portlet_title']
 
+    cover = create_cover_at(site, layout.friendlyurl, title=title)
+    cover._p_changed = True
+    cover._layout_id = layout.layoutid
+
+    extra_tiles = []
     if len(structure['column-1']) == 4:
-        return
         # There is only one layout with this structure
         # TODO: do this page, it's the /organisations page
         # filter_portlet_1 = structure['column-1'][1]
         # filter_portlet_2 = structure['column-1'][2]
         # blue_button = structure['column-1'][3][1]['content'][0]
+        extra_tiles = [make_tile(cover, [p]) for p in structure['column-1'][1:]]
     elif len(structure['column-1']) == 2:
         body += structure['column-1'][1][1]['content'][0]
 
@@ -1024,7 +1031,22 @@ def import_template_2_columns_iii(site, layout, structure):
         assert(len(structure['column-2']) == 1)
         image = structure['column-2'][0][1]['content'][0]
 
-    noop(layout, portlet_title, body, image)
+    title = structure['name']
+
+    main_content_tile = make_richtext_tile(cover, {'text': body,
+                                                   'title': 'Main text'})
+    if image:
+        image_tile = make_richtext_tile(cover, {'text': image,
+                                                'title': 'image'})
+        side_group = make_group(2, image_tile)
+        main_group = make_group(10, main_content_tile, *extra_tiles)
+        layout = make_layout(make_row(main_group, side_group))
+    else:
+        main_group = make_group(16, main_content_tile)
+        layout = make_layout(make_row(main_group))
+
+    cover.cover_layout = json.dumps(layout)
+    return cover
 
 
 @log_call

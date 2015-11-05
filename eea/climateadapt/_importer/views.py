@@ -25,9 +25,9 @@ class SingleImporterView(BrowserView):
         eea.climateadapt._importer.session = session
         site = self.context
 
-        layoutid = int(self.request.form.get('layoutid'))
+        uuid = self.request.form.get('uuid')
         layout = session.query(sql.Layout).filter_by(privatelayout=False,
-                                                     layoutid=layoutid).one()
+                                                     uuid_=uuid).one()
         cover = import_layout(layout, site)
         if cover:
             return "<a href='" + cover.absolute_url() + "'>cover</a>"
@@ -52,7 +52,7 @@ class MapOfLayouts(SingleImporterView):
 
         for layout in session.query(sql.Layout).filter_by(privatelayout=False):
             template = get_template_for_layout(layout)
-            self.options[template].append((layout.friendlyurl, layout.layoutid))
+            self.options[template].append((layout.friendlyurl, layout.uuid_))
 
         return self.index()
 

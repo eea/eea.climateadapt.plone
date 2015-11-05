@@ -249,7 +249,7 @@ def make_tile(cover, col):
     payload = col[0][1]
     if payload.get('portlet_type') == 'journal_article_content':
         _content = {
-            'title': payload['portlet_title'],
+            'title': payload['portlet_title'] or "",
             'text': payload['content'][0]
         }
         return make_richtext_with_title_tile(cover, _content)
