@@ -14,6 +14,7 @@ from eea.climateadapt._importer.utils import make_transregion_dropdown_tile
 from eea.climateadapt._importer.utils import make_layout
 from eea.climateadapt._importer.utils import make_richtext_tile
 from eea.climateadapt._importer.utils import make_row
+from eea.climateadapt._importer.utils import make_richtext_with_title_tile
 from eea.climateadapt._importer.utils import make_share_tile
 from eea.climateadapt._importer.utils import make_text_from_articlejournal
 from eea.climateadapt._importer.utils import make_tile
@@ -638,6 +639,8 @@ def import_template_ace_layout_3(site, layout, structure):
 
 @log_call
 def import_template_ace_layout_4(site, layout, structure):
+    # done
+
     # these are Project pages such as http://adapt-test.eea.europa.eu/web/guest/project/climsave
 
     title = structure['name']
@@ -690,30 +693,30 @@ def import_template_ace_layout_4(site, layout, structure):
     contact_text = render("templates/snippet_contact.pt", {'lines': _contact})
     sidebar_text = render("templates/snippet_sidebar_text.pt",
                           {'lines': sidebar})
-    sidebar_tile = make_richtext_tile(cover,
+    sidebar_tile = make_richtext_with_title_tile(cover,
                                       {'title': sidebar_title,
                                        'text': sidebar_text + contact_text})
 
     sidebar_tiles = [sidebar_tile]
 
-    extra_text = []
     if len(structure['column-2']) > 1:
         for pid, portlet in structure['column-2'][1:]:
-            extra_text.append((portlet['portlet_title'], portlet['content'][0]))
-
-    # TODO: make the tiles, append to sidebar_tiles
-
+            tile = make_richtext_with_title_tile(
+                cover, {'title': portlet['portlet_title'],
+                        'text': portlet['content'][0]})
+            sidebar_tiles.append(tile)
 
     # the accordion is a list of ('tab title', 'tab content structure')
     # we need to go through each of the tabs and change the structure to be html
 
+    # TODO: fix accordion, it's not rendered properly (all tabs closed, etc)
     payload = []
     for k, v in main['accordion']:
         # TODO: get the keys from dictionary
         if not k == 'ProjectPartners':
             payload.append((k, v))
         else:
-            table = pack_to_table(v)
+            table = {'rows': v, 'cols': []}
             payload.append((k, render('templates/table.pt', table)))
 
     image = get_image(site, main['image'])
@@ -724,21 +727,18 @@ def import_template_ace_layout_4(site, layout, structure):
                         'subtitle': main['subtitle'],
                         'accordion': accordion
                         })
-    import pdb; pdb.set_trace()
 
     main_tile = make_richtext_tile(cover, {'title': 'main content',
                                            'text': main_text})
     sidebar_group = make_group(2, *sidebar_tiles)
-    main_content_group = make_group(14,
-                                    main_content_tile, *relevant_content_tiles)
+    main_content_group = make_group(10, main_tile)
+
     layout = make_layout(make_row(main_content_group, sidebar_group))
+
     cover.cover_layout = json.dumps(layout)
     cover._p_changed = True
 
     return cover
-
-
-    import pdb; pdb.set_trace()
 
 
 @log_call
