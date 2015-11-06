@@ -331,7 +331,6 @@ def make_countries_dropdown_tile(cover):
     }
 
 
-
 def make_aceitem_relevant_content_tile(cover, payload):
     id = getUtility(IUUIDGenerator)()
     typeName = 'eea.climateadapt.relevant_acecontent'

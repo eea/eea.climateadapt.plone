@@ -345,8 +345,8 @@ def import_layout(layout, site):
 # 1_2_columns_i         - TODO as custom page
 # 1_2_columns_ii        - done
 # 1_column
-# 2_columns_i
-# 2_columns_ii
+# 2_columns_i           - done
+# 2_columns_ii          - these need to be manually created
 # 2_columns_iii         - done
 # ace_layout_1          - is not needed?
 # ace_layout_2          - done
@@ -354,7 +354,7 @@ def import_layout(layout, site):
 # ace_layout_4          - done
 # ace_layout_5          - done
 # ace_layout_col_1_2    - done
-# ast
+# ast                   - done using urban_ast
 # faq                   - done
 # frontpage             - TODO as a custom page
 # transnationalregion   - done
@@ -916,6 +916,7 @@ def import_template_1_2_columns_ii(site, layout, structure):
 def import_template_1_column(site, layout, structure):
     # this is a simple page, with one portlet of text
     # example: /eu-adaptation-policy/funding/life
+
     if structure['column-1'][0][0] in portlet_importers:
         importer = portlet_importers.get(structure['column-1'][0][0])
         return importer(layout, structure)
@@ -952,14 +953,44 @@ def import_template_1_column(site, layout, structure):
     else:
         title = structure['column-1'][0][1]['title']
 
-    if len(structure['column-1']) > 2:
-        col1 = content
-        col2 = structure['column-1'][1][1]['content']
-        iframe = structure['column-1'][2][1]['url']
-        noop(col1, col2, iframe)
-    else:
-        noop(title, content, structure)
+    cover = create_cover_at(site, layout.friendlyurl, title=title)
+    cover._p_changed = True
+    cover._layout_id = layout.layoutid
 
+    if len(structure['column-1']) > 2:
+        col1 = u"".join(content)
+        col2 = u"".join(structure['column-1'][1][1]['content'][0])
+
+        col1_tile = make_richtext_tile(cover, {'title': 'col1', 'text': col1})
+        col2_tile = make_richtext_tile(cover, {'title': 'col1', 'text': col2})
+        iframe = structure['column-1'][2][1]['url']
+        iframe_tile = make_iframe_embed_tile(cover, iframe)
+
+        col1_group = make_group(8, col1_tile)
+        col2_group = make_group(8, col2_tile)
+        iframe_group = make_group(16, iframe_tile)
+
+        row_1 = make_row(col1_group, col2_group)
+        row_2 = make_row(iframe_group)
+        layout = make_layout(row_1, row_2)
+
+    else:
+        if isinstance(content[0], tuple):
+            # this is a dynamic portlet
+            logger.warning("Please investigate this importer %s with template %s",
+                        layout.friendlyurl, '1_column')
+            return
+
+        main_text_tile = make_richtext_with_title_tile(cover,
+                                                    {'title': portlet_title,
+                                                    'text': u"".join(content)})
+
+        main_group = make_group(16, main_text_tile)
+        layout = make_layout(make_row(main_group))
+
+    cover.cover_layout = json.dumps(layout)
+    cover._p_changed = True
+    return cover
 
 @log_call
 def import_template_2_columns_i(site, layout, structure):

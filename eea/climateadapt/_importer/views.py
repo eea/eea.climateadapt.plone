@@ -3,6 +3,7 @@ from collections import defaultdict
 from eea.climateadapt._importer.utils import get_template_for_layout
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+from zope.component.hooks import getSite
 from zope.sqlalchemy import register
 import eea.climateadapt._importer
 import os
@@ -30,9 +31,9 @@ class SingleImporterView(BrowserView):
                                                      uuid_=uuid).one()
         cover = import_layout(layout, site)
         if cover:
-            return "<a href='" + cover.absolute_url() + "'>cover</a>"
+            return self.request.response.redirect(cover.absolute_url())
 
-        return "done"
+        return "no cover?"
 
 
 class GoToPDB(BrowserView):
@@ -55,4 +56,9 @@ class MapOfLayouts(SingleImporterView):
             self.options[template].append((layout.friendlyurl, layout.uuid_))
 
         return self.index()
+
+    def import_url(self, uuid):
+        site = getSite()
+        return site.absolute_url() + "/layout_importer?uuid=" + uuid
+        pass
 

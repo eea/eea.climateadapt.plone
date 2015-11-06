@@ -7,6 +7,7 @@
           <th>Template id</th>
           <th>Layout ID</th>
           <th>Friendly URL</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -14,8 +15,9 @@
           <tr><td tal:content="template"></td><td></td><td></td></tr>
           <tr tal:repeat="row python:opts[template]">
             <td></td>
-            <td tal:content="python: row[0]"></td>
             <td tal:content="python: row[1]"></td>
+            <td tal:content="python: row[0]"></td>
+            <td><a href="" tal:attributes="href python: view.import_url(row[1])">Importer</a></td>
           </tr>
         </tal:rep>
       </tbody>
