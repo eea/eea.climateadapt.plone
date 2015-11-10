@@ -206,6 +206,7 @@ def import_image(data, location):
             data=file_data
         )
     )
+    item._uuid = data.uuid_
 
     logger.info("Imported image %s from sql Image %s", item, data.imageid)
 
@@ -344,7 +345,7 @@ def import_layout(layout, site):
 # 1_2_1_columns         - done
 # 1_2_columns_i         - TODO as custom page
 # 1_2_columns_ii        - done
-# 1_column
+# 1_column              - done
 # 2_columns_i           - done
 # 2_columns_ii          - these need to be manually created
 # 2_columns_iii         - done

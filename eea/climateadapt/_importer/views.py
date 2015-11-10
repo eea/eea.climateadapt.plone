@@ -18,7 +18,7 @@ class SingleImporterView(BrowserView):
         session = Session()
         return session
 
-    def __call__(self):
+    def import_layout(self):
         from eea.climateadapt._importer import import_layout
         from eea.climateadapt._importer import sql
 
@@ -34,6 +34,24 @@ class SingleImporterView(BrowserView):
             return self.request.response.redirect(cover.absolute_url())
 
         return "no cover?"
+
+    def import_image(self):
+        from eea.climateadapt._importer import import_image
+        from eea.climateadapt._importer import sql
+
+        session = self._make_session()
+        eea.climateadapt._importer.session = session
+        site = self.context
+        for image in session.query(sql.Image):
+            import_image(image, site['repository'])
+
+        return "done"
+
+    def __call__(self):
+        _type = self.request.form.get('type', 'layout')
+
+        importer = getattr(self, 'import_' + _type)
+        return importer()
 
 
 class GoToPDB(BrowserView):
