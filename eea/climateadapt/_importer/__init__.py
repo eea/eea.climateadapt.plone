@@ -3,7 +3,7 @@ from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.tweak_sql import fix_relations
 from eea.climateadapt._importer.utils import create_cover_at
 from eea.climateadapt._importer.utils import extract_portlet_info
-from eea.climateadapt._importer.utils import get_image
+from eea.climateadapt._importer.utils import get_image_by_imageid
 from eea.climateadapt._importer.utils import log_call
 from eea.climateadapt._importer.utils import logger
 from eea.climateadapt._importer.utils import make_aceitem_search_tile
@@ -206,6 +206,7 @@ def import_image(data, location):
             data=file_data
         )
     )
+    import pdb; pdb.set_trace()
     item._uuid = data.uuid_
 
     logger.info("Imported image %s from sql Image %s", item, data.imageid)
@@ -249,6 +250,8 @@ def import_dlfileentry(data, location):
                 data=file_data
             )
         )
+
+    item._uuid = data.uuid_
 
     logger.info("Imported %s from sql dlentry %s", item, data.fileentryid)
 
@@ -503,7 +506,7 @@ def import_template_ace_layout_2(site, layout, structure):
     body = structure['column-1'][0][1]['content'][2][2][0]
     readmore = structure['column-1'][0][1]['content'][3][2][0]
     image_id = structure['column-1'][0][1]['content'][0][2][0]
-    image = get_image(site, image_id)
+    image = get_image_by_imageid(site, image_id)
 
     main['title'] = title
     main['body'] = body
@@ -615,7 +618,7 @@ def import_template_ace_layout_3(site, layout, structure):
         # TODO: mark the content with a special interface to enable the menu
         alsoProvides(cover, IBalticRegionMarker)
 
-    image = get_image(site, main['image'])
+    image = get_image_by_imageid(site, main['image'])
     main['image'] = {
         'title': image.Title(),
         'thumb': image.absolute_url() + "/@@images/image",
@@ -722,7 +725,7 @@ def import_template_ace_layout_4(site, layout, structure):
             table = {'rows': v, 'cols': []}
             payload.append((k, render('templates/table.pt', table)))
 
-    image = get_image(site, main['image'])
+    image = get_image_by_imageid(site, main['image'])
     accordion = render_accordion(payload)
     main_text = render('templates/project.pt',
                        {'image': image.absolute_url() + "/@@images/image",

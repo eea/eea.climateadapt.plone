@@ -35,17 +35,24 @@ class SingleImporterView(BrowserView):
 
         return "no cover?"
 
-    def import_image(self):
-        from eea.climateadapt._importer import import_image
+    def import_dlentries(self):
+        from eea.climateadapt._importer import import_dlfileentry
         from eea.climateadapt._importer import sql
 
         session = self._make_session()
         eea.climateadapt._importer.session = session
         site = self.context
-        for image in session.query(sql.Image):
-            import_image(image, site['repository'])
 
-        return "done"
+        imported = []
+
+        for dlfileentry in session.query(sql.Dlfileentry):
+            f = import_dlfileentry(dlfileentry, site['repository'])
+            if f is None:
+                continue
+            link = "<a href='{0}'>{1}</a>".format(f.absolute_url(), f.getId())
+            imported.append(link)
+
+        return "<br/>".join(imported)
 
     def __call__(self):
         _type = self.request.form.get('type', 'layout')

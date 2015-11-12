@@ -39,6 +39,8 @@
         />
 
 
+    <adapter name="imported_uuid" factory=".catalog.imported_uuid" />
+
     -*- extra stuff goes here -*-
 
     <!-- <plone:behavior -->

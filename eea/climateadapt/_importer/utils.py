@@ -1,17 +1,19 @@
 """ Importing utils
 """
 
-
 from eea.climateadapt._importer import sqlschema as sql
 from plone.dexterity.utils import createContentInContainer
 from plone.tiles.interfaces import ITileDataManager
 from plone.uuid.interfaces import IUUIDGenerator
 from zope.component import getUtility
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
+from zope.site.hooks import getSite
 import logging
 import lxml.etree
+import lxml.html
 import random
 import re
+import urlparse
 
 
 logger = logging.getLogger('eea.climateadapt.importer')
@@ -233,8 +235,6 @@ def extract_portlet_info(session, portletid, layout):
     return prefs
 
 
-
-
 def get_template_for_layout(layout):
     settings = parse_settings(layout.typesettings)
 
@@ -355,11 +355,13 @@ def make_richtext_tile(cover, content):
     # returns a python objects usable in the layout description
     # content needs to be a dict with keys 'title' and 'text'
 
+    site = getSite()
+
     id = getUtility(IUUIDGenerator)()
     typeName = 'collective.cover.richtext'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
 
-    content['text'] = unicode(content['text'])
+    content['text'] = fix_links(site, unicode(content['text']))
     content['title'] = unicode(content['title'])
 
     ITileDataManager(tile).set(content)
@@ -376,11 +378,13 @@ def make_richtext_with_title_tile(cover, content):
     # returns a python objects usable in the layout description
     # content needs to be a dict with keys 'title' and 'text'
 
+    site = getSite()
+
     id = getUtility(IUUIDGenerator)()
     typeName = 'eea.climateadapt.richtext_with_title'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
 
-    content['text'] = unicode(content['text'])
+    content['text'] = fix_links(site, unicode(content['text']))
     content['title'] = unicode(content['title'])
 
     ITileDataManager(tile).set(content)
@@ -408,7 +412,6 @@ def make_share_tile(cover, share_type):
         'type': 'tile',
         'id': id
     }
-
 
 
 def make_iframe_embed_tile(cover, url):
@@ -449,7 +452,28 @@ def make_iframe_embed_tile(cover, url):
 #     }
 #
 
-def get_image(site, imageid):
+
+def get_uuid_from_link(text):
+    link = urlparse.urlparse(text)
+    uuid = urlparse.parse_qs(link.query)['uuid'][0]
+    return uuid
+
+
+def fix_links(site, text):
+    e = lxml.html.fromstring(text)
+    imgs = e.xpath('//img')
+
+    for img in imgs:
+        src = img.get('src')
+        uuid = get_uuid_from_link(src)
+        image = get_image_by_uuid(site, uuid)
+        url = image.absolute_url() + "/@@images/image"
+        img.set('src', url)
+
+    return lxml.html.tostring(e, pretty_print=True)
+
+
+def get_image_by_imageid(site, imageid):
     repo = site['repository']
     reg = re.compile(str(imageid) + '.[jpg|png]')
 
@@ -461,13 +485,18 @@ def get_image(site, imageid):
     return repo[ids[0]]
 
 
+def get_image_by_uuid(site, uuid):
+    catalog = site['portal_catalog']
+    return catalog.searchResults(imported_uuid=uuid)[0].getObject()
+
+
 def make_image_tile(site, cover, info):
     id = getUtility(IUUIDGenerator)()
     type_name = 'collective.cover.banner'
     tile = cover.restrictedTraverse('@@%s/%s' % (type_name, id))
 
     imageid = info['id']
-    image = get_image(site, imageid)
+    image = get_image_by_imageid(site, imageid)
     tile.populate_with_object(image)
     return {
         'tile-type': type_name,
