@@ -452,44 +452,6 @@ def make_iframe_embed_tile(cover, url):
 #     }
 #
 
-
-def get_uuid_from_link(text):
-    link = urlparse.urlparse(text)
-    uuid = urlparse.parse_qs(link.query)['uuid'][0]
-    return uuid
-
-
-def fix_links(site, text):
-    e = lxml.html.fromstring(text)
-    imgs = e.xpath('//img')
-
-    for img in imgs:
-        src = img.get('src')
-        uuid = get_uuid_from_link(src)
-        image = get_image_by_uuid(site, uuid)
-        url = image.absolute_url() + "/@@images/image"
-        img.set('src', url)
-
-    return lxml.html.tostring(e, pretty_print=True)
-
-
-def get_image_by_imageid(site, imageid):
-    repo = site['repository']
-    reg = re.compile(str(imageid) + '.[jpg|png]')
-
-    ids = [m.string for m in [reg.match(cid) for cid in repo.contentIds()] if m]
-
-    if len(ids) != 1:
-        raise ValueError("Image {} not found in repository".format(imageid))
-
-    return repo[ids[0]]
-
-
-def get_image_by_uuid(site, uuid):
-    catalog = site['portal_catalog']
-    return catalog.searchResults(imported_uuid=uuid)[0].getObject()
-
-
 def make_image_tile(site, cover, info):
     id = getUtility(IUUIDGenerator)()
     type_name = 'collective.cover.banner'
@@ -663,6 +625,67 @@ def pack_to_table(data):
 
     rows.append(acc)
     return {'rows': rows, 'cols': visited}
+
+
+def get_param_from_link(text, param='uuid'):
+    link = urlparse.urlparse(text)
+    d = urlparse.parse_qs(link.query)
+    if param in d:
+        return d[param][0]
+
+
+def get_image_from_link(site, link):
+    """ Returns a Plone image object by extracting needed info from a link
+    """
+    # a link can have either uuid or img_id
+
+    uuid = get_param_from_link(link, 'uuid')
+    if uuid:
+        return get_image_by_uuid(site, uuid)
+
+    image_id = get_param_from_link(link, 'img_id')
+    if image_id:
+        return get_image_by_imageid(site, image_id)
+
+    raise ValueError("Image not found for link: {0}".format(link))
+
+
+def fix_links(site, text):
+    e = lxml.html.fromstring(text)
+
+    for img in e.xpath('//img'):
+        src = img.get('src')
+        image = get_image_from_link(site, src)
+        url = image.absolute_url() + "/@@images/image"
+        img.set('src', url)
+
+    for a in e.xpath('//a'):
+        href = a.get('href')
+        a.set('href', href.replace('/web/guest/', '/'))
+
+    return lxml.html.tostring(e, pretty_print=True)
+
+
+def get_image_by_imageid(site, imageid):
+    repo = site['repository']
+    reg = re.compile(str(imageid) + '.[jpg|png]')
+
+    ids = [m.string for m in [reg.match(cid) for cid in repo.contentIds()] if m]
+
+    if len(ids) != 1:
+        # we will try to find it by uuid
+        from eea.climateadapt._importer import session
+        from eea.climateadapt._importer import sql
+        uuid = session.query(sql.Dlfileentry.uuid_
+                             ).filter_by(largeimageid=imageid).one()[0]
+        return get_image_by_uuid(site, uuid)
+
+    return repo[ids[0]]
+
+
+def get_image_by_uuid(site, uuid):
+    catalog = site['portal_catalog']
+    return catalog.searchResults(imported_uuid=uuid)[0].getObject()
 
 
 # Search portlet has this info:
