@@ -639,32 +639,50 @@ def get_image_from_link(site, link):
     """
     # a link can have either uuid or img_id
 
+    if "@@images" in link:
+        return None     # this is already a Plone link
+
     uuid = get_param_from_link(link, 'uuid')
     if uuid:
         return get_image_by_uuid(site, uuid)
+
+    try:
+        # some links are like: /documents/18/11231805/urban_ast_step0.png/38b047f5-65be-4fcd-bdd6-3bd9d52cd83d?t=1411119161497
+        uuid = UUID_RE.search(link).group()
+        return get_image_by_uuid(site, uuid)
+    except Exception:
+        pass
 
     image_id = get_param_from_link(link, 'img_id')
     if image_id:
         return get_image_by_imageid(site, image_id)
 
+    import pdb; pdb.set_trace()
     raise ValueError("Image not found for link: {0}".format(link))
 
 
 def fix_links(site, text):
-    e = lxml.html.fromstring(text)
+    from lxml.html.soupparser import fromstring
+    e = fromstring(text)
 
     for img in e.xpath('//img'):
         src = img.get('src')
         image = get_image_from_link(site, src)
-        url = image.absolute_url() + "/@@images/image"
-        img.set('src', url)
+        if image is not None:
+            url = image.absolute_url() + "/@@images/image"
+            img.set('src', url)
 
     for a in e.xpath('//a'):
         href = a.get('href')
-        a.set('href', href.replace('/web/guest/', '/'))
+        if href is not None:
+            a.set('href', href.replace('/web/guest/', '/'))
 
     return lxml.html.tostring(e, pretty_print=True)
 
+
+UUID_RE = re.compile(
+    "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+)
 
 def get_image_by_imageid(site, imageid):
     repo = site['repository']

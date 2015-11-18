@@ -206,8 +206,6 @@ def import_image(data, location):
             data=file_data
         )
     )
-    import pdb; pdb.set_trace()
-    item._uuid = data.uuid_
 
     logger.info("Imported image %s from sql Image %s", item, data.imageid)
 
@@ -647,6 +645,8 @@ def import_template_ace_layout_3(site, layout, structure):
 def import_template_ace_layout_4(site, layout, structure):
     # done
 
+    # TODO: the facts is not saved properly? shows labels instead of values
+
     # these are Project pages such as http://adapt-test.eea.europa.eu/web/guest/project/climsave
 
     title = structure['name']
@@ -815,7 +815,7 @@ def import_template_urban_ast(site, layout, structure):
     }
     main_content = render('templates/ast_text.pt', payload)
 
-    cover = create_cover_at(site, layout.friendlyurl, title=str(name))
+    cover = create_cover_at(site, layout.friendlyurl, title=unicode(name))
     cover._p_changed = True
     cover._layout_id = layout.layoutid
 
