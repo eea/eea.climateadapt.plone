@@ -159,14 +159,22 @@ class RelevantAceContentItemsTile(PersistentCoverTile):
 
     def items(self):
         catalog = getToolByName(self.context, 'portal_catalog')
-        element_type = self.data.get('element_type')
-        search_type = self.data.get('search_type')
         count = self.data.get('nr_items', 5) or 5
-        search_text = self.data.get('search_text') or ""
 
-        res = catalog.searchResults(search_type=search_type,
-                                    elements=element_type,
-                                    SearchableText=search_text)
+        query = {}
+        # todo: do countries
+        map = {'search_type': 'search_type',
+               'element_type': 'element_type',
+               'search_text': 'SearchableText',
+               'special_tags': 'special_tags',
+               }
+
+        for k, v in map.items():
+            p = self.data.get(k, '')
+            if p:
+                query[v] = p
+
+        res = catalog.searchResults(limit=count, **query)
         if len(res) > count:
             self.view_more = True
         return res[:count]

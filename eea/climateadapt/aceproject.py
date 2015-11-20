@@ -2,7 +2,7 @@ from eea.climateadapt import MessageFactory as _
 from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
 from zope.interface import implements
-from zope.schema import Choice, TextLine, List, Bool, Text
+from zope.schema import Choice, TextLine, List, Bool, Text, Int
 
 
 class IAceProject(form.Schema, IImageScaleTraversable):
@@ -104,6 +104,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     important = Bool(title=_(u"Important"),
                      required=False,
                      default=False)
+
+    rating = Int(title=_(u"Rating"), required=True, default=0)
 
 
 class AceProject(dexterity.Item):

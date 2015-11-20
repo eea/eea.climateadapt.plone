@@ -54,6 +54,20 @@ class SingleImporterView(BrowserView):
 
         return "<br/>".join(imported)
 
+    def import_aceitems(self):
+        from eea.climateadapt._importer import import_aceitem
+        from eea.climateadapt._importer import sql
+
+        session = self._make_session()
+        eea.climateadapt._importer.session = session
+        site = self.context
+
+        for aceitem in session.query(sql.AceAceitem):
+            if aceitem.datatype in ['ACTION', 'MEASURE']:
+                # TODO: log and solve here
+                continue
+            import_aceitem(aceitem, site['content'])
+
     def __call__(self):
         _type = self.request.form.get('type', 'layout')
 

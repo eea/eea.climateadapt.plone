@@ -108,6 +108,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     important = Bool(title=_(u"High importance"), required=False,
                      default=False)
 
+    rating = Int(title=_(u"Rating"), required=True, default=0)
+
     # approved is done by workflow
 
 

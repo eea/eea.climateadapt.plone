@@ -32,10 +32,12 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     description = TextLine(title=(u"description"), required=True)
 
+    #fix
     data_type = Choice(title=_(u"Data Type"),
                        required=True,
                        vocabulary="eea.climateadapt.aceitems_datatypes")
 
+    # fix
     storage_type = Choice(title=_(u"Storage Type"),
                           required=True,
                           vocabulary="eea.climateadapt.aceitems_storagetypes")
@@ -96,6 +98,8 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                         required=False,
                         value_type=TextLine(title=_(u"Tag"))
                         )
+
+    rating = Int(title=_(u"Rating"), required=True, default=0)
 
     # TODO: rating??? seems to be manually assigned, not computed
 

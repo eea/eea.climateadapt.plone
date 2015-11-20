@@ -23,6 +23,7 @@
     </div>
 
     <div class="cover-richtext-tile tile-content aceitem-search-tile" tal:condition="not: is_compose">
+      search
       <ul>
         <li tal:repeat="info view/sections">
           <a tal:attributes="href python:info[2]">

@@ -27,6 +27,7 @@
     </dl>
 
     <div class="cover-richtext-tile tile-content aceitem-relevant-tile" tal:condition="not: is_compose">
+      relevant
       <ul>
         <li tal:repeat="brain view/items">
           <a href="" tal:attributes="href brain/getURL" tal:content="brain/Title">Title here</a>

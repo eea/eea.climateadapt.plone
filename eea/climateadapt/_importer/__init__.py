@@ -71,8 +71,8 @@ def import_aceitem(data, location):
             description=data.description,
             keywords=data.keyword,
             spatial_layer=data.spatiallayer,
-            data_type=s2l(data.datatype),
-            storage_type=s2l(data.storagetype),
+            data_type=data.datatype,
+            storage_type=data.storagetype,
             sectors=s2l(data.sectors_),
             elements=s2l(data.elements_),
             climate_impacts=s2l(data.climateimpacts_),
@@ -81,6 +81,7 @@ def import_aceitem(data, location):
             year=data.year,
             geochars=data.geochars,
             special_tags=s2l(data.specialtagging),
+            rating=data.rating,
         )
 
         logger.info("Imported aceitem %s from sql aceitem %s",
@@ -113,6 +114,7 @@ def import_aceproject(data, location):
         geochars=data.geochars,
         countries=s2l(data.spatialvalues),
         comments=data.comments,
+        rating=data.rating,
     )
 
     logger.info("Imported aceproject %s from sql aceproject %s",
@@ -145,6 +147,7 @@ def import_adaptationoption(data, location):
         geochars=data.geochars,
         measure_type=data.mao_type,
         comments=data.comments,
+        rating=data.rating,
     )
 
     logger.info("Imported aceproject %s from sql aceitem %s",
@@ -179,6 +182,7 @@ def import_casestudy(data, location):
         geochars=data.geochars,
         measure_type=data.mao_type,
         comments=data.comments,
+        rating=data.rating,
     )
 
     logger.info("Imported casestudy %s from sql acemeasure %s",

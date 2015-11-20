@@ -309,7 +309,7 @@ def make_transregion_dropdown_tile(cover):
     id = getUtility(IUUIDGenerator)()
     typeName = 'eea.climateadapt.transregionselect'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
-    ITileDataManager(tile).set({'title': "Trans regional select"})
+    ITileDataManager(tile).set({'title': u"Trans regional select"})
 
     return {
         'tile-type': typeName,
@@ -322,7 +322,7 @@ def make_countries_dropdown_tile(cover):
     id = getUtility(IUUIDGenerator)()
     typeName = 'eea.climateadapt.countryselect'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
-    ITileDataManager(tile).set({'title': "Country select"})
+    ITileDataManager(tile).set({'title': u"Country select"})
 
     return {
         'tile-type': typeName,
@@ -361,7 +361,7 @@ def make_richtext_tile(cover, content):
     typeName = 'collective.cover.richtext'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
 
-    content['text'] = fix_links(site, unicode(content['text']))
+    content['text'] = unicode(fix_links(site, unicode(content['text'])))
     content['title'] = unicode(content['title'])
 
     ITileDataManager(tile).set(content)
@@ -677,7 +677,7 @@ def fix_links(site, text):
         if href is not None:
             a.set('href', href.replace('/web/guest/', '/'))
 
-    return lxml.html.tostring(e, pretty_print=True)
+    return lxml.html.tostring(e, encoding='unicode', pretty_print=True)
 
 
 UUID_RE = re.compile(
