@@ -13,6 +13,9 @@
  <index name="special_tags" meta_type="KeywordIndex">
   <indexed_attr value="special_tags"/>
  </index>
+ <index name="rating" meta_type="FieldIndex">
+  <indexed_attr value="rating"/>
+ </index>
 
  <column value="search_type"/>
  <column value="elements"/>

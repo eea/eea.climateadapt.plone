@@ -163,11 +163,21 @@ class RelevantAceContentItemsTile(PersistentCoverTile):
 
         query = {}
         # todo: do countries
-        map = {'search_type': 'search_type',
+        map = {'search_type': 'search_type',        # importeddata: plone field
                'element_type': 'element_type',
                'search_text': 'SearchableText',
                'special_tags': 'special_tags',
                }
+
+        sort_map = {
+            'RATING': 'rating',                     # importeddata: plone field
+
+        }
+
+        sort = self.data.get('sortOn')
+        if sort:
+            query['sort_on'] = sort_map[sort]
+            query['sort_order'] = 'reverse'
 
         for k, v in map.items():
             p = self.data.get(k, '')
