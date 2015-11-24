@@ -14,13 +14,13 @@
         <h1 tal:content="python: context.title">Title here</h1>
 
         <h3>Description</h3>
-        <p tal:content="context/description">description here</p>
+        <p tal:replace="structure context/description">description here</p>
 
         <h4>Reference information</h4>
         <h5>Websites:</h5>
         <p>websites should come here</p>
         <h5>Source:</h5>
-        <p tal:content="context/source">Source here</p>
+        <p tal:content="structure context/source">Source here</p>
 
         <div id="aceitem_sidebar">
           <h4>Keywords</h4>

@@ -662,11 +662,15 @@ def get_image_from_link(site, link):
 
 
 def fix_links(site, text):
+
+    f = open('/tmp/links.txt', 'w+')
+
     from lxml.html.soupparser import fromstring
     e = fromstring(text)
 
     for img in e.xpath('//img'):
         src = img.get('src')
+        f.write((src or '').encode('utf-8') + "\n")
         image = get_image_from_link(site, src)
         if image is not None:
             url = image.absolute_url() + "/@@images/image"
@@ -674,9 +678,11 @@ def fix_links(site, text):
 
     for a in e.xpath('//a'):
         href = a.get('href')
+        f.write((href or '').encode('utf-8') + "\n")
         if href is not None:
             a.set('href', href.replace('/web/guest/', '/'))
 
+    f.close()
     return lxml.html.tostring(e, encoding='unicode', pretty_print=True)
 
 
