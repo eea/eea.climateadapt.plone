@@ -83,7 +83,7 @@ def import_aceitem(data, location):
             special_tags=s2l(data.specialtagging),
             rating=data.rating,
         )
-        item._aceitem_id = item.aceitemid
+        item._aceitem_id = data.aceitemid
 
         logger.info("Imported aceitem %s from sql aceitem %s",
                     item, data.aceitemid)
@@ -118,7 +118,7 @@ def import_aceproject(data, location):
         rating=data.rating,
     )
 
-    item._aceproject_id = item.projectid
+    item._aceproject_id = data.projectid
 
     logger.info("Imported aceproject %s from sql aceproject %s",
                 item, data.projectid)
