@@ -1,15 +1,16 @@
 # from Products.Five import BrowserView
 from plone.dexterity.browser.view import DefaultView
+from eea.climateadapt.browser import AceViewApi
 
 
-class AceItemView(DefaultView):
+class AceItemView(DefaultView, AceViewApi):
     """
     """
     # def __call__(self):
     #     return super(AceItemView, self).__call__()
 
 
-class PublicationReportView(DefaultView):
+class PublicationReportView(DefaultView, AceViewApi):
     """
     """
 
@@ -17,7 +18,7 @@ class PublicationReportView(DefaultView):
     #     return super(PublicationReportView).__call__()
 
 
-class InformationPortalView(DefaultView):
+class InformationPortalView(DefaultView, AceViewApi):
     """
     """
 
@@ -25,7 +26,7 @@ class InformationPortalView(DefaultView):
     #     return super(InformationPortalView).__call__()
 
 
-class GuidanceDocumentView(DefaultView):
+class GuidanceDocumentView(DefaultView, AceViewApi):
     """
     """
 
@@ -33,7 +34,7 @@ class GuidanceDocumentView(DefaultView):
     #     return super(GuidanceDocumentView).__call__()
 
 
-class ToolView(DefaultView):
+class ToolView(DefaultView, AceViewApi):
     """
     """
 
@@ -41,7 +42,7 @@ class ToolView(DefaultView):
     #     return super(ToolView).__call__()
 
 
-class OrganisationView(DefaultView):
+class OrganisationView(DefaultView, AceViewApi):
     """
     """
 

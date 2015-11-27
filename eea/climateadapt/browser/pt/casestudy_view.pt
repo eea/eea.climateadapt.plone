@@ -10,30 +10,56 @@
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core" >
 
+        <h2>Case Study</h2>
         <h1 tal:content="python: context.title">Title here</h1>
 
-        <h3>Description</h3>
-        <p tal:content="context/description">description here</p>
+        <p tal:content="structure context/description">description here</p>
 
-        <h4>Reference information</h4>
-        <h5>Websites:</h5>
-        <p tal:content="python:u', '.join(context.websites)" />
-        <h5>Source:</h5>
-        <p tal:content="context/source">Source here</p>
-        <h5>Location:</h5>
-        <p tal:content="content/location_lat">Location latitude</p>
-        <p tal:content="content/location_lon">Location longitude</p>
+        <h3>Case Study Description</h3>
+        <h4>Challenges</h4>
 
-        <div id="aceitem_sidebar">
+        <h4>Objectives</h4>
+        <p tal:replace="structure context/objectives"></p>
+
+        <h4>Adaptation Options</h4>
+        <p tal:replace="structure context/adaptationoptions"></p>
+
+        <h4>Solutions</h4>
+        <p tal:replace="structure context/solutions"></p>
+
+        <h4>Relevance</h4>
+        <p tal:replace="structure context/relevance"></p>
+
+        <h3>Additional Details</h3>
+        <h4>Legal Aspects</h4>
+        <p tal:replace="structure context/legal_aspects"></p>
+
+        <h3>Reference Information</h3>
+
+        <h4>Contact</h4>
+        <p tal:content="structure context/contact"></p>
+
+        <h4>Websites</h4>
+        <ul>
+          <li tal:repeat="website context/websites">
+            <a href="" tal:attributes="href website" tal:content="website">Website</a>
+          </li>
+        </ul>
+
+        <h4>Source</h4>
+        <p tal:content="structure context/source"></p>
+
+        <div id="ace_sidebar">
           <h4>Keywords</h4>
-          <p tal:content="python:u', '.join(context.Subject())" />
-          <h4>Climate impacts</h4>
-          <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
+          <p tal:replace="structure context/keywords" />
           <h4>Sectors</h4>
           <p tal:content="structure python:view.widgets['sectors'].render()"/>
-          <h5>Countries:</h5>
-          <p tal:content="structure python:view.widgets['spatial_values'].render()"/>
+          <h4>Climate impacts</h4>
+          <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
+          <h4>Geographic characterization</h4>
+          <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars" />
         </div>
+
       </tal:main-macro>
     </metal:main>
 

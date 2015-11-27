@@ -168,6 +168,7 @@ def import_casestudy(data, location):
         title=data.name,
         implementation_type=data.implementationtype,
         implementation_time=data.implementationtime,
+        description=data.description,
         lifetime=data.lifetime,
         spatial_layer=data.spatiallayer,
         spatial_values=data.spatialvalues,

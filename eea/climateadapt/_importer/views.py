@@ -68,11 +68,26 @@ class SingleImporterView(BrowserView):
                 continue
             import_aceitem(aceitem, site['content'])
 
+    def import_casestudy(self):
+        from eea.climateadapt._importer import import_casestudy as importer
+        from eea.climateadapt._importer import sql
+
+        session = self._make_session()
+        eea.climateadapt._importer.session = session
+        site = self.context
+
+        if 'casestudy' not in site.contentIds():
+            site.invokeFactory("Folder", 'casestudy')
+
+        for acemeasure in session.query(sql.AceMeasure):
+            if acemeasure.mao_type == 'A':
+                importer(acemeasure, site['casestudy'])
+
     def __call__(self):
         _type = self.request.form.get('type', 'layout')
 
         importer = getattr(self, 'import_' + _type)
-        return importer()
+        return importer() or "done"
 
 
 class GoToPDB(BrowserView):

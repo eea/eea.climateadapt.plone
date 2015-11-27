@@ -110,6 +110,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     rating = Int(title=_(u"Rating"), required=True, default=0)
 
+    objectives = Text(title=_(u"Objectives"), required=False, default=u"")
+    solutions = Text(title=_(u"Solutions"), required=False, default=u"")
+    adaptationoptions = Text(title=_(u"Adaptation Options"),
+                             required=False, default=u"")
+    relevance = Text(title=_(u"Relevance"), required=False, default=u"")
     # approved is done by workflow
 
 
