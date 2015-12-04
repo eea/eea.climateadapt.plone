@@ -577,6 +577,7 @@ def create_cover_at(site, location, id='index_html', **kw):
         id=id,
         **kw
     )
+    logger.info("Created new cover at %s", cover.absolute_url())
     return cover
 
 
@@ -638,18 +639,19 @@ def get_image_from_link(site, link):
     """ Returns a Plone image object by extracting needed info from a link
     """
     # a link can have either uuid or img_id
+    #import pdb; pdb.set_trace()
 
     if "@@images" in link:
-        return None     # this is already a Plone link
+        return link     # this is already a Plone link
 
     uuid = get_param_from_link(link, 'uuid')
     if uuid:
-        return get_image_by_uuid(site, uuid)
+        return get_repofile_by_uuid(site, uuid)
 
     try:
         # some links are like: /documents/18/11231805/urban_ast_step0.png/38b047f5-65be-4fcd-bdd6-3bd9d52cd83d?t=1411119161497
         uuid = UUID_RE.search(link).group()
-        return get_image_by_uuid(site, uuid)
+        return get_repofile_by_uuid(site, uuid)
     except Exception:
         pass
 
@@ -657,13 +659,44 @@ def get_image_from_link(site, link):
     if image_id:
         return get_image_by_imageid(site, image_id)
 
-    import pdb; pdb.set_trace()
     raise ValueError("Image not found for link: {0}".format(link))
+
+
+def fix_inner_link(site, href):
+
+    href = href.strip()
+
+    # TODO: fix links like:
+    #     viewaceitem?aceitem_id=8434
+    # http://climate-adapt.eea.europa.eu/viewmeasure?ace_measure_id=3311
+    # http://climate-adapt.eea.europa.eu/web/guest/uncertainty-guidance/topic2?p_p_id=56_INSTANCE_qWU5&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1#How+are+uncertainties+quantified%3F
+    # http://localhost:8001/Plone/repository/11245406.jpg/@@images/image
+
+    if href.startswith('http://climate-adapt.eea.europa.eu/'):
+        href.replace('http://climate-adapt.eea.europa.eu/', '/')
+
+    if href.startswith('../../../'):
+        href = href.replace('../../../', '/')
+
+    href = href.replace('/web/guest/', '/')
+
+    uuid = get_param_from_link(href, 'uuid')
+    if uuid:
+        return get_repofile_by_uuid(site, uuid)
+
+    try:
+        # some links are like: /documents/18/11231805/urban_ast_step0.png/38b047f5-65be-4fcd-bdd6-3bd9d52cd83d?t=1411119161497
+        uuid = UUID_RE.search(href).group()
+        return get_repofile_by_uuid(site, uuid)
+    except Exception:
+        pass
+
+    return href
 
 
 def fix_links(site, text):
 
-    f = open('/tmp/links.txt', 'w+')
+    f = open('/tmp/links.txt', 'a+')
 
     from lxml.html.soupparser import fromstring
     e = fromstring(text)
@@ -671,16 +704,25 @@ def fix_links(site, text):
     for img in e.xpath('//img'):
         src = img.get('src')
         f.write((src or '').encode('utf-8') + "\n")
+
         image = get_image_from_link(site, src)
-        if image is not None:
-            url = image.absolute_url() + "/@@images/image"
-            img.set('src', url)
+
+        if isinstance(image, basestring):
+            pass
+        else:
+            if image is not None:
+                url = image.absolute_url() + "/@@images/image"
+                logger.info("Change image link %s to %s", src, url)
+                img.set('src', url)
 
     for a in e.xpath('//a'):
         href = a.get('href')
         f.write((href or '').encode('utf-8') + "\n")
         if href is not None:
-            a.set('href', href.replace('/web/guest/', '/'))
+            new_href = fix_inner_link(site, href)
+            if href != new_href:
+                logger.info("Change link %s to %s", href, new_href)
+            a.set('href', href)
 
     f.close()
     return lxml.html.tostring(e, encoding='unicode', pretty_print=True)
@@ -691,6 +733,7 @@ UUID_RE = re.compile(
 )
 
 def get_image_by_imageid(site, imageid):
+    #import pdb; pdb.set_trace()
     repo = site['repository']
     reg = re.compile(str(imageid) + '.[jpg|png]')
 
@@ -702,14 +745,17 @@ def get_image_by_imageid(site, imageid):
         from eea.climateadapt._importer import sql
         uuid = session.query(sql.Dlfileentry.uuid_
                              ).filter_by(largeimageid=imageid).one()[0]
-        return get_image_by_uuid(site, uuid)
+        return get_repofile_by_uuid(site, uuid)
 
     return repo[ids[0]]
 
 
-def get_image_by_uuid(site, uuid):
+def get_repofile_by_uuid(site, uuid):
     catalog = site['portal_catalog']
-    return catalog.searchResults(imported_uuid=uuid)[0].getObject()
+    try:
+        return catalog.searchResults(imported_uuid=uuid)[0].getObject()
+    except:
+        import pdb; pdb.set_trace()
 
 
 # Search portlet has this info:

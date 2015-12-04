@@ -27,8 +27,14 @@ class SingleImporterView(BrowserView):
         site = self.context
 
         uuid = self.request.form.get('uuid')
-        layout = session.query(sql.Layout).filter_by(privatelayout=False,
-                                                     uuid_=uuid).one()
+        if uuid:
+            layout = session.query(sql.Layout).filter_by(privatelayout=False,
+                                                        uuid_=uuid).one()
+        else:
+            id = self.request.form.get('layout')
+            layout = session.query(sql.Layout).filter_by(privatelayout=False,
+                                                        layoutid=id).one()
+
         cover = import_layout(layout, site)
         if cover:
             return self.request.response.redirect(cover.absolute_url())

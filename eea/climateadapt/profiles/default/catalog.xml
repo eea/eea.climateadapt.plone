@@ -17,6 +17,10 @@
   <indexed_attr value="rating"/>
  </index>
 
+ <index name="imported_uuid" meta_type="FieldIndex">
+  <indexed_attr value="imported_uuid"/>
+ </index>
+
  <column value="search_type"/>
  <column value="elements"/>
  <column value="sectors"/>

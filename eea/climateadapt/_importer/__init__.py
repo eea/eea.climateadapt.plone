@@ -87,6 +87,7 @@ def import_aceitem(data, location):
 
         logger.info("Imported aceitem %s from sql aceitem %s",
                     item, data.aceitemid)
+        item.reindexObject()
         return item
     else:
         import pdb; pdb.set_trace()
@@ -119,6 +120,7 @@ def import_aceproject(data, location):
     )
 
     item._aceproject_id = data.projectid
+    item.reindexObject()
 
     logger.info("Imported aceproject %s from sql aceproject %s",
                 item, data.projectid)
@@ -153,6 +155,7 @@ def import_adaptationoption(data, location):
         rating=data.rating,
     )
     item._acemeasure_id = data.measureid
+    item.reindexObject()
 
     logger.info("Imported aceproject %s from sql aceitem %s",
                 item, data.measureid)
@@ -191,6 +194,7 @@ def import_casestudy(data, location):
     )
 
     item._acemeasure_id = data.measureid
+    item.reindexObject()
 
     logger.info("Imported casestudy %s from sql acemeasure %s",
                 item, data.measureid)
@@ -218,6 +222,7 @@ def import_image(data, location):
         )
     )
 
+    item.reindexObject()
     logger.info("Imported image %s from sql Image %s", item, data.imageid)
 
     return item
@@ -263,6 +268,8 @@ def import_dlfileentry(data, location):
     item._uuid = data.uuid_
 
     logger.info("Imported %s from sql dlentry %s", item, data.fileentryid)
+
+    item.reindexObject()
 
     return item
 
@@ -350,6 +357,8 @@ def import_layout(layout, site):
     #     return
     importer = globals().get('import_template_' + template)
     cover = importer(site, layout, structure)
+    if cover is not None:
+        cover.reindexObject()
     return cover
 
 
@@ -395,7 +404,7 @@ def import_template_1_2_1_columns(site, layout, structure):
     cover._p_changed = True
     cover._layout_id = layout.layoutid
 
-    layout = [{'type': 'row', 'children': []}]
+    # layout = [{'type': 'row', 'children': []}]
 
     nav_tile = make_richtext_tile(cover, {'title': 'navigation', 'text': nav})
     text_tile = make_richtext_tile(cover, {'title': 'text', 'text': text})
@@ -403,7 +412,7 @@ def import_template_1_2_1_columns(site, layout, structure):
 
     # we create 3 rows, each with a separate tile
 
-    layout = make_layout([make_row(make_group(tile))
+    layout = make_layout(*[make_row(make_group(tile))
                           for tile in (nav_tile, text_tile, iframe_tile) ])
 
     layout = json.dumps(layout)

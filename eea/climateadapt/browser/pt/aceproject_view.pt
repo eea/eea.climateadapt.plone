@@ -50,17 +50,7 @@
           <p tal:content="structure python:view.widgets['sectors'].render()"/>
           <h4>Geographic characterization</h4>
           <p tal:content="structure python:view.render_geochar(context.geochars)"/>
-          <!-- <h5>Countries:</h5> -->
-          <!-- <p tal:content="structure python:view.widgets['countries'].render()"/> -->
         </div>
-
-
-
-        <!-- <h5>Source:</h5> -->
-        <!-- <p tal:content="context/source">Source here</p> -->
-        <!--  -->
-        <!--  -->
-        <!-- <div style="display:none" tal:content="python:view.w.keys()" /> -->
 
       </tal:main-macro>
     </metal:main>
