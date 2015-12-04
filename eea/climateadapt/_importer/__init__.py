@@ -1,9 +1,11 @@
 from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.tweak_sql import fix_relations
+from eea.climateadapt._importer.utils import ACE_ITEM_TYPES
 from eea.climateadapt._importer.utils import create_cover_at
 from eea.climateadapt._importer.utils import extract_portlet_info
 from eea.climateadapt._importer.utils import get_image_by_imageid
+from eea.climateadapt._importer.utils import localize
 from eea.climateadapt._importer.utils import log_call
 from eea.climateadapt._importer.utils import logger
 from eea.climateadapt._importer.utils import make_aceitem_search_tile
@@ -11,14 +13,14 @@ from eea.climateadapt._importer.utils import make_countries_dropdown_tile
 from eea.climateadapt._importer.utils import make_group
 from eea.climateadapt._importer.utils import make_iframe_embed_tile
 from eea.climateadapt._importer.utils import make_image_tile
-from eea.climateadapt._importer.utils import make_transregion_dropdown_tile
 from eea.climateadapt._importer.utils import make_layout
 from eea.climateadapt._importer.utils import make_richtext_tile
-from eea.climateadapt._importer.utils import make_row
 from eea.climateadapt._importer.utils import make_richtext_with_title_tile
+from eea.climateadapt._importer.utils import make_row
 from eea.climateadapt._importer.utils import make_share_tile
 from eea.climateadapt._importer.utils import make_text_from_articlejournal
 from eea.climateadapt._importer.utils import make_tile
+from eea.climateadapt._importer.utils import make_transregion_dropdown_tile
 from eea.climateadapt._importer.utils import noop
 from eea.climateadapt._importer.utils import pack_to_table
 from eea.climateadapt._importer.utils import parse_settings, s2l    #, printe
@@ -43,19 +45,6 @@ import transaction
 session = None      # this will be a global bound to the current module
 
 MAPOFLAYOUTS = defaultdict(list)
-
-
-ACE_ITEM_TYPES = {
-    'DOCUMENT': 'eea.climateadapt.publicationreport',
-    'INFORMATIONSOURCE': 'eea.climateadapt.informationportal',
-    'GUIDANCE': 'eea.climateadapt.guidancedocument',
-    'TOOL': 'eea.climateadapt.tool',
-    'ORGANISATION': 'eea.climateadapt.organisation',
-    'INDICATOR': 'eea.climateadapt.indicator',
-    'MAPGRAPHDATASET': 'eea.climateadapt.mapgraphdataset',
-    'RESEARCHPROJECT': 'eea.climateadapt.researchproject',
-    'ACTION': 'eea.climateadapt.action',
-}
 
 
 @log_call
@@ -531,7 +520,7 @@ def import_template_ace_layout_2(site, layout, structure):
     main['readmore'] = readmore
     main['image'] = {
         'title': image.Title(),
-        'thumb': image.absolute_url() + "/@@images/image",
+        'thumb': localize(image.absolute_url(1)) + "/@@images/image",
     }
     main_content = render('templates/richtext_readmore_and_image.pt',
                           {'payload': main})
@@ -639,7 +628,7 @@ def import_template_ace_layout_3(site, layout, structure):
     image = get_image_by_imageid(site, main['image'])
     main['image'] = {
         'title': image.Title(),
-        'thumb': image.absolute_url() + "/@@images/image",
+        'thumb': localize(image.absolute_url(1)) + "/@@images/image",
     }
     main_content = render('templates/richtext_readmore_and_image.pt',
                           {'payload': main})
@@ -748,7 +737,7 @@ def import_template_ace_layout_4(site, layout, structure):
     image = get_image_by_imageid(site, main['image'])
     accordion = render_accordion(payload)
     main_text = render('templates/project.pt',
-                       {'image': image.absolute_url() + "/@@images/image",
+                       {'image': localize(image.absolute_url(1)) + "/@@images/image",
                         'title': main['title'],
                         'subtitle': main['subtitle'],
                         'accordion': accordion
@@ -1015,6 +1004,7 @@ def import_template_1_column(site, layout, structure):
     cover.cover_layout = json.dumps(layout)
     cover._p_changed = True
     return cover
+
 
 @log_call
 def import_template_2_columns_i(site, layout, structure):

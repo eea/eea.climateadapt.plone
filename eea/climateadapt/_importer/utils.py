@@ -1,6 +1,7 @@
 """ Importing utils
 """
 
+from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
 from plone.dexterity.utils import createContentInContainer
 from plone.tiles.interfaces import ITileDataManager
@@ -19,6 +20,19 @@ import urlparse
 logger = logging.getLogger('eea.climateadapt.importer')
 logger.setLevel(logging.INFO)
 logger.addHandler(logging.StreamHandler())
+
+
+ACE_ITEM_TYPES = {
+    'DOCUMENT': 'eea.climateadapt.publicationreport',
+    'INFORMATIONSOURCE': 'eea.climateadapt.informationportal',
+    'GUIDANCE': 'eea.climateadapt.guidancedocument',
+    'TOOL': 'eea.climateadapt.tool',
+    'ORGANISATION': 'eea.climateadapt.organisation',
+    'INDICATOR': 'eea.climateadapt.indicator',
+    'MAPGRAPHDATASET': 'eea.climateadapt.mapgraphdataset',
+    'RESEARCHPROJECT': 'eea.climateadapt.researchproject',
+    'ACTION': 'eea.climateadapt.action',
+}
 
 
 def printe(e):
@@ -662,15 +676,22 @@ def get_image_from_link(site, link):
     raise ValueError("Image not found for link: {0}".format(link))
 
 
+def localize(link):
+    # from a link such as 'Plone/climsave-tool' return '/climsave-tool'
+    return '/' + link.split('/', 1)
+
+
 def fix_inner_link(site, href):
 
     href = href.strip()
 
     # TODO: fix links like:
-    #     viewaceitem?aceitem_id=8434
+    #     /viewaceitem?aceitem_id=8434
+    #     /viewmeasure?ace_measure_id=1102
     # http://climate-adapt.eea.europa.eu/viewmeasure?ace_measure_id=3311
     # http://climate-adapt.eea.europa.eu/web/guest/uncertainty-guidance/topic2?p_p_id=56_INSTANCE_qWU5&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1#How+are+uncertainties+quantified%3F
     # http://localhost:8001/Plone/repository/11245406.jpg/@@images/image
+    # http://climate-adapt.eea.europa.eu/projects1?ace_project_id=55
 
     if href.startswith('http://climate-adapt.eea.europa.eu/'):
         href.replace('http://climate-adapt.eea.europa.eu/', '/')
@@ -679,6 +700,16 @@ def fix_inner_link(site, href):
         href = href.replace('../../../', '/')
 
     href = href.replace('/web/guest/', '/')
+
+    if "/viewmeasure" in href:
+        acemeasure_id = get_param_from_link(href, 'ace_measure_id')
+        obj = _get_imported_acemeasure(acemeasure_id)
+        return localize(obj.absolute_url(1))
+
+    if "/viewaceitem" in href:
+        aceitem_id = get_param_from_link(href, 'aceitem_id')
+        obj = _get_imported_aceitem(aceitem_id)
+        return localize(obj.absolute_url(1))
 
     uuid = get_param_from_link(href, 'uuid')
     if uuid:
@@ -711,7 +742,7 @@ def fix_links(site, text):
             pass
         else:
             if image is not None:
-                url = image.absolute_url() + "/@@images/image"
+                url = localize(image.absolute_url(1)) + "/@@images/image"
                 logger.info("Change image link %s to %s", src, url)
                 img.set('src', url)
 
@@ -756,6 +787,46 @@ def get_repofile_by_uuid(site, uuid):
         return catalog.searchResults(imported_uuid=uuid)[0].getObject()
     except:
         import pdb; pdb.set_trace()
+
+
+MAP_OF_OBJECTS = defaultdict(lambda:{})
+ACEMEASURE_TYPES = ['eea.climateadapt.casestudy',
+                    'eea.climateadapt.adaptationoption',]
+
+def _get_imported_aceitem(site, id):
+    coll = MAP_OF_OBJECTS['aceitems']
+    if len(coll) == 0:
+        for pt in ACE_ITEM_TYPES.values():
+            brains = site.portal_catalog.search_results(portal_type=pt)
+            for b in brains:
+                obj = b.getObject()
+                coll[obj._aceitem_id] = obj
+
+    return coll[id]
+
+
+def _get_imported_aceproject(site, id):
+    pt = "eea.climateadapt.aceproject"
+    coll = MAP_OF_OBJECTS['aceprojects']
+    if len(coll) == 0:
+        brains = site.portal_catalog.search_results(portal_type=pt)
+        for b in brains:
+            obj = b.getObject()
+            coll[obj._aceitem_id] = obj
+
+    return coll[id]
+
+
+def _get_imported_acemeasure(site, id):
+    coll = MAP_OF_OBJECTS['acemeasures']
+    if len(coll) == 0:
+        for pt in ACEMEASURE_TYPES:
+            brains = site.portal_catalog.search_results(portal_type=pt)
+            for b in brains:
+                obj = b.getObject()
+                coll[obj._aceitem_id] = obj
+
+    return coll[id]
 
 
 # Search portlet has this info:
