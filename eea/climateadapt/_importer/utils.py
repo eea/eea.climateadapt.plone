@@ -678,7 +678,7 @@ def get_image_from_link(site, link):
 
 def localize(link):
     # from a link such as 'Plone/climsave-tool' return '/climsave-tool'
-    return '/' + link.split('/', 1)
+    return '/' + link.split('/', 1)[1]
 
 
 def fix_inner_link(site, href):
@@ -703,12 +703,12 @@ def fix_inner_link(site, href):
 
     if "/viewmeasure" in href:
         acemeasure_id = get_param_from_link(href, 'ace_measure_id')
-        obj = _get_imported_acemeasure(acemeasure_id)
+        obj = _get_imported_acemeasure(site, acemeasure_id)
         return localize(obj.absolute_url(1))
 
     if "/viewaceitem" in href:
         aceitem_id = get_param_from_link(href, 'aceitem_id')
-        obj = _get_imported_aceitem(aceitem_id)
+        obj = _get_imported_aceitem(site, aceitem_id)
         return localize(obj.absolute_url(1))
 
     uuid = get_param_from_link(href, 'uuid')
@@ -720,7 +720,8 @@ def fix_inner_link(site, href):
         uuid = UUID_RE.search(href).group()
         return get_repofile_by_uuid(site, uuid)
     except Exception:
-        pass
+        logger.warning("Couldn't find proper equivalent link for %s", href)
+        return href
 
     return href
 
@@ -783,10 +784,7 @@ def get_image_by_imageid(site, imageid):
 
 def get_repofile_by_uuid(site, uuid):
     catalog = site['portal_catalog']
-    try:
-        return catalog.searchResults(imported_uuid=uuid)[0].getObject()
-    except:
-        import pdb; pdb.set_trace()
+    return catalog.searchResults(imported_uuid=uuid)[0].getObject()
 
 
 MAP_OF_OBJECTS = defaultdict(lambda:{})
@@ -797,12 +795,15 @@ def _get_imported_aceitem(site, id):
     coll = MAP_OF_OBJECTS['aceitems']
     if len(coll) == 0:
         for pt in ACE_ITEM_TYPES.values():
-            brains = site.portal_catalog.search_results(portal_type=pt)
+            brains = site.portal_catalog.searchResults(portal_type=pt)
             for b in brains:
                 obj = b.getObject()
                 coll[obj._aceitem_id] = obj
 
-    return coll[id]
+    try:
+        return coll[long(id)]
+    except:
+        import pdb; pdb.set_trace()
 
 
 def _get_imported_aceproject(site, id):
@@ -812,21 +813,21 @@ def _get_imported_aceproject(site, id):
         brains = site.portal_catalog.search_results(portal_type=pt)
         for b in brains:
             obj = b.getObject()
-            coll[obj._aceitem_id] = obj
+            coll[obj._aceproject_id] = obj
 
-    return coll[id]
+    return coll[long(id)]
 
 
 def _get_imported_acemeasure(site, id):
     coll = MAP_OF_OBJECTS['acemeasures']
     if len(coll) == 0:
         for pt in ACEMEASURE_TYPES:
-            brains = site.portal_catalog.search_results(portal_type=pt)
+            brains = site.portal_catalog.searchResults(portal_type=pt)
             for b in brains:
                 obj = b.getObject()
-                coll[obj._aceitem_id] = obj
+                coll[obj._acemeasure_id] = obj
 
-    return coll[id]
+    return coll[long(id)]
 
 
 # Search portlet has this info:

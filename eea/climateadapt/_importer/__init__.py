@@ -1259,13 +1259,6 @@ def run_importer(site=None):
     for dlfileentry in session.query(sql.Dlfileentry):
         import_dlfileentry(dlfileentry, site['repository'])
 
-    for layout in session.query(sql.Layout).filter_by(privatelayout=False):
-        cover = import_layout(layout, site)
-        if cover:
-            cover._imported_comment = \
-                "Imported from layout {0}".format(layout.layoutid)
-            logger.info("Created cover at %s", cover.absolute_url())
-
     for aceitem in session.query(sql.AceAceitem):
         if aceitem.datatype in ['ACTION', 'MEASURE']:
             # TODO: log and solve here
@@ -1280,6 +1273,13 @@ def run_importer(site=None):
             import_casestudy(acemeasure, site['casestudy'])
         else:
             import_adaptationoption(acemeasure, site['adaptationoption'])
+
+    for layout in session.query(sql.Layout).filter_by(privatelayout=False):
+        cover = import_layout(layout, site)
+        if cover:
+            cover._imported_comment = \
+                "Imported from layout {0}".format(layout.layoutid)
+            logger.info("Created cover at %s", cover.absolute_url())
 
 
 def get_plone_site():
