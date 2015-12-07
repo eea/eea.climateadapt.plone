@@ -81,3 +81,9 @@ class AceViewApi(object):
             out.append(renderer(element))
 
         return u" ".join(out)
+
+    def link_to_original(self):
+        """ Returns link to original object, to allow easy comparison
+        """
+
+        raise NotImplementedError

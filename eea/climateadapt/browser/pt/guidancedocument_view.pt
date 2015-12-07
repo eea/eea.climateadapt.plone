@@ -10,6 +10,7 @@
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core" >
 
+        <a href="" tal:attributes="href view/link_to_original">Original</a>
         <h2>Guidance Document</h2>
         <h1 tal:content="context/title">Title here</h1>
 
@@ -18,15 +19,15 @@
 
         <h4>Reference information</h4>
 
-        <h5>Websites:</h5>
-        <ul>
-          <li tal:repeat="website context/websites">
-            <a href="" tal:attributes="href website" tal:content="website">Website</a>
-          </li>
-        </ul>
+        <!-- <h5>Websites:</h5> -->
+        <!-- <ul> -->
+        <!--   <li tal:repeat="website context/websites"> -->
+        <!--     <a href="" tal:attributes="href website" tal:content="website">Website</a> -->
+        <!--   </li> -->
+        <!-- </ul> -->
 
         <h5>Source:</h5>
-        <p tal:content="context/source">Source here</p>
+        <p tal:content="structure context/source">Source here</p>
 
         <div id="aceitem_sidebar">
           <h4>Project Documents</h4>
@@ -34,6 +35,7 @@
 
           <h4>Keywords</h4>
           <p tal:content="python:u', '.join(context.Subject())" />
+
           <h4>Climate impacts</h4>
           <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
           <h4>Sectors</h4>
