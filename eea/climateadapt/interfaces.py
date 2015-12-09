@@ -9,3 +9,8 @@ class IBalticRegionMarker(Interface):
 class ITransnationalRegionMarker(Interface):
     """ A marker interface for transnational region pages.
     """
+
+
+class IASTNavigationRoot(Interface):
+    """ A marker interface for AST tools
+    """

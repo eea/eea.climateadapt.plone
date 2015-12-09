@@ -86,4 +86,16 @@
       for="*"
       />
 
+  <plone:tile
+      name="eea.climateadapt.ast_navigation"
+      title="AST Navigation"
+      description="Navigation tile for AST pages"
+      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+      add_permission="cmf.ModifyPortalContent"
+      schema=".ast_navigation.IASTNavigationTile"
+      class=".ast_navigation.ASTNavigationTile"
+      permission="zope2.View"
+      for="*"
+      />
+
 </configure>

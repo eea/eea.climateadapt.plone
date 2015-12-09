@@ -9,6 +9,7 @@ from eea.climateadapt._importer.utils import localize
 from eea.climateadapt._importer.utils import log_call
 from eea.climateadapt._importer.utils import logger
 from eea.climateadapt._importer.utils import make_aceitem_search_tile
+from eea.climateadapt._importer.utils import make_ast_navigation_tile
 from eea.climateadapt._importer.utils import make_countries_dropdown_tile
 from eea.climateadapt._importer.utils import make_group
 from eea.climateadapt._importer.utils import make_iframe_embed_tile
@@ -28,6 +29,7 @@ from eea.climateadapt._importer.utils import render
 from eea.climateadapt._importer.utils import render_accordion
 from eea.climateadapt._importer.utils import render_tabs
 from eea.climateadapt._importer.utils import strip_xml
+from eea.climateadapt.interfaces import IASTNavigationRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from plone.dexterity.utils import createContentInContainer
@@ -342,8 +344,6 @@ def import_layout(layout, site):
             content = extract_portlet_info(session, portletid, layout)
             structure[column].append((portletid, content))
 
-    # if template != "urban_ast":
-    #     return
     importer = globals().get('import_template_' + template)
     cover = importer(site, layout, structure)
     if cover is not None:
@@ -832,7 +832,8 @@ def import_template_urban_ast(site, layout, structure):
                                             'title': 'AST Image'})
     main_content_tile = make_richtext_tile(cover, {'text': main_content,
                                                    'title': 'Main text'})
-    nav_tile = make_richtext_tile(cover, {'text': 'nav here', 'title': 'nav'})
+    # nav_tile = make_richtext_tile(cover, {'text': 'nav here', 'title': 'nav'})
+    nav_tile = make_ast_navigation_tile(cover)
 
     side_group = make_group(2, image_tile, nav_tile)
 
@@ -1280,6 +1281,13 @@ def run_importer(site=None):
             cover._imported_comment = \
                 "Imported from layout {0}".format(layout.layoutid)
             logger.info("Created cover at %s", cover.absolute_url())
+
+    ast_tools = ['tools/urban-ast',
+                 'adaptation-support-tool']
+    for path in ast_tools:
+        obj = site.restrictedTraverse(ast_tools)
+        if not IASTNavigationRoot.providedBy(obj):
+            alsoProvides(obj, IASTNavigationRoot)
 
 
 def get_plone_site():

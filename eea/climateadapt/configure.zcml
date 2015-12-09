@@ -69,5 +69,6 @@
     Marker interfaces:
 
     <interface interface="eea.climateadapt.interfaces.ITransnationalRegionMarker" />
+    <interface interface="eea.climateadapt.interfaces.IASTNavigationRoot" />
 
 </configure>

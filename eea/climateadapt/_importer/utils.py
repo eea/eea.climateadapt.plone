@@ -332,6 +332,19 @@ def make_transregion_dropdown_tile(cover):
     }
 
 
+def make_ast_navigation_tile(cover):
+    id = getUtility(IUUIDGenerator)()
+    typeName = 'eea.climateadapt.ast_navigation'
+    tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
+    ITileDataManager(tile).set({'title': u"AST Navigation"})
+
+    return {
+        'tile-type': typeName,
+        'type': 'tile',
+        'id': id
+    }
+
+
 def make_countries_dropdown_tile(cover):
     id = getUtility(IUUIDGenerator)()
     typeName = 'eea.climateadapt.countryselect'

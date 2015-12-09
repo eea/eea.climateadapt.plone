@@ -1,0 +1,10 @@
+<ul tal:define="struct view/get_nav_struct">
+  <li tal:repeat="pstruct struct">
+    <a href="" tal:attributes="href python:pstruct[1]" tal:content="python:pstruct[0]">Parent here</a>
+    <ul tal:condition="python:pstruct[2]">
+      <li tal:repeat="cstruct python:pstruct[2]">
+        <a tal:attributes="href python:cstruct[1]" tal:content="python:cstruct[0]">Child here</a>
+      </li>
+    </ul>
+  </li>
+</ul>

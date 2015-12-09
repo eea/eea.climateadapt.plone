@@ -8,6 +8,7 @@
             <element>eea.climateadapt.shareinfo</element>
             <element>eea.climateadapt.transregionselect</element>
             <element>eea.climateadapt.countryselect</element>
+            <element>eea.climateadapt.ast_navigation</element>
         </value>
     </record>
     <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
@@ -18,6 +19,7 @@
             <element>eea.climateadapt.shareinfo</element>
             <element>eea.climateadapt.transregionselect</element>
             <element>eea.climateadapt.countryselect</element>
+            <element>eea.climateadapt.ast_navigation</element>
         </value>
     </record>
 </registry>
