@@ -1,6 +1,8 @@
 """ Importing utils
 """
 
+from Products.CMFCore.WorkflowCore import WorkflowException
+from Products.CMFCore.utils import getToolByName
 from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
 from plone.dexterity.utils import createContentInContainer
@@ -605,6 +607,17 @@ def create_cover_at(site, location, id='index_html', **kw):
         **kw
     )
     logger.info("Created new cover at %s", cover.absolute_url())
+
+    wftool = getToolByName(site, "portal_workflow")
+
+    try:
+        wftool.doActionFor(cover, 'publish')
+    except WorkflowException:
+        # a workflow exception is risen if the state transition is not available
+        # (the sampleProperty content is in a workflow state which
+        # does not have a "submit" transition)
+        logger.exception("Could not publish:" + str(cover.getId()))
+
     return cover
 
 
@@ -756,7 +769,7 @@ def fix_links(site, text):
             pass
         else:
             if image is not None:
-                url = localize(image.absolute_url(1)) + "/@@images/image"
+                url = '/' + image.absolute_url(1) + "/@@images/image"
                 logger.info("Change image link %s to %s", src, url)
                 img.set('src', url)
 

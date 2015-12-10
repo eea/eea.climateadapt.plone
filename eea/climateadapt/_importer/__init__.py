@@ -837,6 +837,16 @@ def import_template_urban_ast(site, layout, structure):
 
     side_group = make_group(2, image_tile, nav_tile)
 
+    step = structure['column-2'][0][1]['step']
+
+#  u'column-2': [(u'astheaderportlet_WAR_ASTHeaderportlet_INSTANCE_AQlGpTEbY3Eg',
+#                 {'headertext': u'Implementation',
+#                  'portletSetupCss': u'{"wapData":{"title":"","initialWindowState":"NORMAL"},"spacingData":{"margin":{"sameForAll":true,"bottom":{"unit":"px","value":""},"left":{"unit":"px","value":""},"right":{"unit":"px","value":""},"top":{"unit":"px","value":""}},"padding":{"sameForAll":true,"bottom":{"unit":"px","value":""},"left":{"unit":"px","value":""},"right":{"unit":"px","value":""},"top":{"unit":"px","value":""}}},"borderData":{"borderStyle":{"sameForAll":true,"bottom":"","left":"","right":"","top":""},"borderColor":{"sameForAll":true,"bottom":"","left":"","right":"","top":""},"borderWidth":{"sameForAll":true,"bottom":{"unit":"px","value":""},"left":{"unit":"px","value":""},"right":{"unit":"px","value":""},"top":{"unit":"px","value":""}}},"textData":{"fontWeight":"","lineHeight":"","textDecoration":"","letterSpacing":"","color":"","textAlign":"","fontStyle":"","fontFamily":"","wordSpacing":"","fontSize":""},"bgData":{"backgroundPosition":{"left":{"unit":"px","value":""},"top":{"unit":"px","value":""}},"backgroundColor":"","backgroundRepeat":"","backgroundImage":"","useBgImage":false},"advancedData":{"customCSS":"","customCSSClassName":""}}',
+#                  'portletSetupShowBorders': u'false',
+#                  'portletSetupUseCustomTitle': u'false',
+#                  'step': u'5'}),
+
+
     [structure.pop(z) for z in ['column-1', 'column-2', 'name']]
     if structure:
         second_row_group = [make_group(4, t) for t in
@@ -849,6 +859,7 @@ def import_template_urban_ast(site, layout, structure):
 
     layout = make_layout(make_row(side_group, main_group))
     cover.cover_layout = json.dumps(layout)
+    cover._ast_navigation_step = int(step)
 
     return cover
 
@@ -1284,10 +1295,10 @@ def run_importer(site=None):
 
     ast_tools = ['tools/urban-ast',
                  'adaptation-support-tool']
-    for path in ast_tools:
-        obj = site.restrictedTraverse(ast_tools)
-        if not IASTNavigationRoot.providedBy(obj):
-            alsoProvides(obj, IASTNavigationRoot)
+    # for path in ast_tools:
+    #     obj = site.restrictedTraverse(ast_tools)
+    #     if not IASTNavigationRoot.providedBy(obj):
+    #         alsoProvides(obj, IASTNavigationRoot)
 
 
 def get_plone_site():

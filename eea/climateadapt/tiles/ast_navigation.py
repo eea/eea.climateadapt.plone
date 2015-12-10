@@ -64,19 +64,34 @@ class ASTNavigationTile(PersistentCoverTile):
 
         step = 0
 
-        while True:
+        while step < len(all_parts):
             for_this_step = [o.getId()
                              for o in all_parts
                              if o.getId().startswith('step-{0}'.format(step))]
             for_this_step.sort()
-            if not for_this_step:
-                break
-
             step += 1
+
+            if not for_this_step:
+                continue
+
             main = ast_root[for_this_step[0]]
             children = [(o['index_html'].Title(), o['index_html'].absolute_url())
                         for o in [ast_root[x] for x in for_this_step[1:]]]
-            res.append((main['index_html'].Title(),
-                        main['index_html'].absolute_url(), children))
+            res.append((step,
+                        main['index_html'].Title(),
+                        main['index_html'].absolute_url(),
+                        children))
+
+
+        # process extra documents that have weird ids
+        for folder in all_parts:
+            if not folder.getId().startswith('step'):
+                cover = folder['index_html']
+                step = getattr(cover, '_ast_navigation_step', 0)
+                info = (cover.Title(), cover.absolute_url())
+                # try to find the proper index position
+                for branch in res:
+                    if branch[0] == step:
+                        branch[3].append(info)
 
         return res
