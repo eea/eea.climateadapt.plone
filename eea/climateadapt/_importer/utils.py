@@ -699,6 +699,7 @@ def get_image_from_link(site, link):
     if image_id:
         return get_image_by_imageid(site, image_id)
 
+    return link     #TODO: put the error back
     raise ValueError("Image not found for link: {0}".format(link))
 
 
