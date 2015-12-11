@@ -1293,12 +1293,23 @@ def run_importer(site=None):
                 "Imported from layout {0}".format(layout.layoutid)
             logger.info("Created cover at %s", cover.absolute_url())
 
+
+    tweak_site(site)
+
+
+def tweak_site(site):
+    """ Apply any other tweaks to the site
+    """
+
     ast_tools = ['tools/urban-ast',
                  'adaptation-support-tool']
     for path in ast_tools:
         obj = site.restrictedTraverse(path)
         if not IASTNavigationRoot.providedBy(obj):
             alsoProvides(obj, IASTNavigationRoot)
+
+    # TODO: create manually created pages
+    # tweak frontpage portlets
 
 
 def get_plone_site():
