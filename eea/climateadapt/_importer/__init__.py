@@ -474,7 +474,7 @@ def import_template_transnationalregion(site, layout, structure):
                                               'text': main_content})
 
     image_group = make_group(2, image_tile)
-    content_group = make_group(14, content_tile)
+    content_group = make_group(10, content_tile)
 
     layout = make_layout(make_row(image_group, content_group))
     cover.cover_layout = json.dumps(layout)
@@ -534,7 +534,7 @@ def import_template_ace_layout_2(site, layout, structure):
     relevant_content_tiles = [col2_tile, col3_tile]
     sidebar_tile = make_tile(cover, structure['column-4'])
     sidebar_group = make_group(2, sidebar_tile)
-    main_content_group = make_group(14,
+    main_content_group = make_group(10,
                                     main_content_tile, *relevant_content_tiles)
     layout = make_layout(make_row(main_content_group, sidebar_group))
     layout = json.dumps(layout)
@@ -579,7 +579,7 @@ def import_template_ace_layout_col_1_2(site, layout, structure):
     nav_tile = make_richtext_tile(cover, info)
 
     nav_group = make_group(1, nav_tile)
-    main_group = make_group(15, main_tile)
+    main_group = make_group(11, main_tile)
 
     layout = make_layout(make_row(nav_group, main_group))
     layout = json.dumps(layout)
@@ -641,7 +641,7 @@ def import_template_ace_layout_3(site, layout, structure):
 
     sidebar_tile = make_aceitem_search_tile(cover, sidebar[0][1])
     sidebar_group = make_group(2, sidebar_tile)
-    main_content_group = make_group(14,
+    main_content_group = make_group(10,
                                     main_content_tile, *relevant_content_tiles)
     layout = make_layout(make_row(main_content_group, sidebar_group))
     cover.cover_layout = json.dumps(layout)
@@ -849,13 +849,13 @@ def import_template_urban_ast(site, layout, structure):
 
     [structure.pop(z) for z in ['column-1', 'column-2', 'name']]
     if structure:
-        second_row_group = [make_group(4, t) for t in
+        second_row_group = [make_group(2, t) for t in
                             [make_tile(cover, x) for x in structure.values()]
                             ]
         second_row = make_row(*second_row_group)
-        main_group = make_group(14, main_content_tile, second_row)
+        main_group = make_group(10, main_content_tile, second_row)
     else:
-        main_group = make_group(14, main_content_tile)
+        main_group = make_group(10, main_content_tile)
 
     layout = make_layout(make_row(side_group, main_group))
     cover.cover_layout = json.dumps(layout)
@@ -922,12 +922,12 @@ def import_template_1_2_columns_ii(site, layout, structure):
                 sharetype = 'MEASURE'
         share_tile = make_share_tile(cover, sharetype)
 
-    main_text_group = make_group(12, main_text_tile)
-    image_group = make_group(4, image_tile)
+    main_text_group = make_group(10, main_text_tile)
+    image_group = make_group(2, image_tile)
     row_1 = make_row(main_text_group, image_group)
 
     if share_portlet:
-        row_2 = make_row(make_group(16, share_tile))
+        row_2 = make_row(make_group(12, share_tile))
         layout = make_layout(row_1, row_2)
     else:
         layout = make_layout(row_1)
@@ -991,9 +991,9 @@ def import_template_1_column(site, layout, structure):
         iframe = structure['column-1'][2][1]['url']
         iframe_tile = make_iframe_embed_tile(cover, iframe)
 
-        col1_group = make_group(8, col1_tile)
-        col2_group = make_group(8, col2_tile)
-        iframe_group = make_group(16, iframe_tile)
+        col1_group = make_group(6, col1_tile)
+        col2_group = make_group(6, col2_tile)
+        iframe_group = make_group(12, iframe_tile)
 
         row_1 = make_row(col1_group, col2_group)
         row_2 = make_row(iframe_group)
@@ -1047,9 +1047,9 @@ def import_template_2_columns_i(site, layout, structure):
                                                     'text': body})
     if countries_portlet:
         countries_tile = make_countries_dropdown_tile(cover)
-        main_group = make_group(16, main_text_tile, countries_tile)
+        main_group = make_group(12, main_text_tile, countries_tile)
     else:
-        main_group = make_group(16, main_text_tile)
+        main_group = make_group(12, main_text_tile)
 
     layout = make_layout(make_row(main_group))
     cover.cover_layout = json.dumps(layout)
@@ -1122,7 +1122,7 @@ def import_template_2_columns_iii(site, layout, structure):
         main_group = make_group(10, main_content_tile, *extra_tiles)
         layout = make_layout(make_row(main_group, side_group))
     else:
-        main_group = make_group(16, main_content_tile)
+        main_group = make_group(12, main_content_tile)
         layout = make_layout(make_row(main_group))
 
     cover.cover_layout = json.dumps(layout)
@@ -1162,7 +1162,7 @@ def import_template_ace_layout_5(site, layout, structure):
     info = {'title': title, 'text': _first }
     main_text_tile = make_richtext_tile(cover, info)
 
-    main_text_group = make_group(14, main_text_tile)
+    main_text_group = make_group(10, main_text_tile)
     dropdown_tile = make_transregion_dropdown_tile(cover)
     image_info = {
         'id': image,
@@ -1217,7 +1217,7 @@ def import_template_faq(site, layout, structure):
         for col in [col1, col2, col3]
     ]
     row_1 = make_row(main_text_group)
-    row_2 = make_row(make_group(4, *col_tiles))
+    row_2 = make_row(make_group(3, *col_tiles))
     layout = make_layout(row_1, row_2)
 
     cover.cover_layout = json.dumps(layout)

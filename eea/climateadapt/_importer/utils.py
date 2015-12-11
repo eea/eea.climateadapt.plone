@@ -562,7 +562,7 @@ def make_column(*groups):
 #
 
 
-def make_group(size=16, *tiles):
+def make_group(size=12, *tiles):
     #{"type": "group", "children":
     #     [
     #         {"tile-type": "collective.cover.richtext", "type": "tile", "id": "a42d3c2a88c8430da52136e2a204cf25"}
