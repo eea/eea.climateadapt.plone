@@ -9,10 +9,6 @@
     <!-- <p tal:condition="python: not view.data.get('element_type') and is_compose" i18n:translate=""> -->
     <!--   Please edit the tile to enter correct data. -->
     <!-- </p> -->
-    <h2 tal:content="python: view.data.get('title')">Title here</h2>
-
-    <div tal:content="view/data" />
-
     <div tal:condition="view/is_compose_mode">
       <dl>
         <dt>Element type:</dt>
@@ -23,6 +19,10 @@
     </div>
 
     <div class="cover-richtext-tile tile-content aceitem-search-tile" tal:condition="not: is_compose">
+      <h2 tal:content="python: view.data.get('title')">Title here</h2>
+
+      <div tal:content="view/data" />
+
       search
       <ul>
         <li tal:repeat="info view/sections">

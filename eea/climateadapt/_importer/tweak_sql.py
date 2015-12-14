@@ -5,8 +5,8 @@ import logging
 
 
 logger = logging.getLogger('eea.climateadapt.importer')
-logger.setLevel(logging.INFO)
-logger.addHandler(logging.StreamHandler())
+# logger.setLevel(logging.INFO)
+# logger.addHandler(logging.StreamHandler())
 
 
 RELATIONS = {

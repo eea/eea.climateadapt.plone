@@ -11,10 +11,6 @@
     <!--   Please edit the tile to enter correct data. -->
     <!-- </p> -->
 
-    <h2 tal:content="python: view.data.get('title')">Title here</h2>
-
-    <div tal:content="view/data" />
-
     <dl tal:condition="view/is_compose_mode">
       <dt>Element type:</dt>
       <dd tal:content="python: view.data.get('element_type')" />
@@ -27,6 +23,10 @@
     </dl>
 
     <div class="cover-richtext-tile tile-content aceitem-relevant-tile" tal:condition="not: is_compose">
+      <h2 tal:content="python: view.data.get('title')">Title here</h2>
+
+      <div tal:content="view/data" />
+
       relevant
       <ul>
         <li tal:repeat="brain view/items">
