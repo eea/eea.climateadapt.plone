@@ -1,5 +1,5 @@
 /* reset */
-* {margin:0; padding:0; list-style:none; vertical-align:baseline;}
+/* * {margin:0; padding:0; list-style:none; vertical-align:baseline;} */
 
 /************** Responsive Diazo Magic ************************/
 
@@ -9,7 +9,7 @@ body {background: #CCC; }
 #header {background-size:1600px 88px; position:relative;}
 
 /* Colors and fonts */
-body {color: #000000; font-family: Arial, Helvetica, sans-serif; font-size: 62.5%;}
+/* body {color: #000000; font-family: Arial, Helvetica, sans-serif; font-size: 62.5%;} */
 a:link, a:visited, #content a:link, dl.portlet a:link {color:#205C90;}
 a:hover {color:#000;}
 h1, h2, h3, h4, h5, h6 {font-family: Arial, Helvetica, sans-serif;}
@@ -20,7 +20,7 @@ h2, h3, h4, h5, h6 {color: #636466;}
 #wrapper { width:984px; margin: 0 auto; max-width: 90%;  font-size: 1.1em;}
 #main {background:#fff; font-size: 1.3em; padding: 1em 0;}
 
-#nav {background: #205C90;  text-align: left; color: #ffffff;}
+#nav {background: #a5bf26;  text-align: left; color: #ffffff;}
 #nav a {color: #ffffff;}
 #nav a:hover, #nav li.selected a {padding-top: 1em;background: #ff9900;}
 
@@ -44,9 +44,9 @@ h2, h3, h4, h5, h6 {color: #636466;}
 
 /****************** Basic Stuff ***********************/
 
-#content {font-size: 90%;}
-p {line-height: 1.8em; margin: 0 0 1em 0;}
-h1, h2, h3 {margin: 0.5em 0 0.5em;}
+/* #content {font-size: 90%;} */
+/* p {line-height: 1.8em; margin: 0 0 1em 0;} */
+/* h1, h2, h3 {margin: 0.5em 0 0.5em;} */
 .hidden {display: none;} 
 .clear {clear: both;}
 .pb-ajax, .pb-image, 
@@ -182,4 +182,23 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
         margin: 0 auto 2%;
     }
 }
-)
+
+/* Layout fixes */
+#portal-columns.row { margin: 0; }
+#content {margin: 0}
+#content > .row { margin: 0}
+#tiles-list li { list-style-type: none }
+
+.column.col-md-8 .col-md-1{
+    width:30%;
+}
+
+#content .row .column.col-md-4 {
+    background-color: pink;
+}
+
+div.width-full { width: 100%; }
+div.position-0 { margin-left: -100%; }
+
+.pull-left { margin: 0 1em 1em 0;}
+
