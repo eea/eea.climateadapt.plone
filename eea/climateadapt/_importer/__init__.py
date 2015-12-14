@@ -628,20 +628,21 @@ def import_template_ace_layout_3(site, layout, structure):
     image = get_image_by_imageid(site, main['image'])
     main['image'] = {
         'title': image.Title(),
-        'thumb': localize(image.absolute_url(1)) + "/@@images/image",
+        'thumb': '/' + image.absolute_url(1) + "/@@images/image",
     }
     main_content = render('templates/richtext_readmore_and_image.pt',
                           {'payload': main})
 
     main_content_tile = make_richtext_tile(cover, {'title': 'main content',
-                                                   'text': main_content})
+                                                   'text': main_content,
+                                                   })
     relevant_content_tiles = [
         make_tile(cover, col) for col in extra_columns
     ]
 
     sidebar_tile = make_aceitem_search_tile(cover, sidebar[0][1])
-    sidebar_group = make_group(2, sidebar_tile)
-    main_content_group = make_group(10,
+    sidebar_group = make_group(3, sidebar_tile)
+    main_content_group = make_group(9,
                                     main_content_tile, *relevant_content_tiles)
     layout = make_layout(make_row(main_content_group, sidebar_group))
     cover.cover_layout = json.dumps(layout)

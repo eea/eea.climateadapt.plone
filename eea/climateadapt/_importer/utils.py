@@ -4,6 +4,7 @@
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFCore.utils import getToolByName
 from collections import defaultdict
+from collective.cover.tiles.configuration import TilesConfigurationScreen
 from eea.climateadapt._importer import sqlschema as sql
 from plone.dexterity.utils import createContentInContainer
 from plone.tiles.interfaces import ITileDataManager
@@ -21,7 +22,7 @@ import urlparse
 
 logger = logging.getLogger('eea.climateadapt.importer')
 logger.setLevel(logging.INFO)
-logger.addHandler(logging.StreamHandler())
+#logger.addHandler(logging.StreamHandler())
 
 
 ACE_ITEM_TYPES = {
@@ -148,7 +149,9 @@ def _clean_portlet_settings(d):
         'nrItemsPage': '10',
         'portletSetupTitle_en_GB': 'title',
         'sector': 'sector',
-        'sortBy': 'sortBy'
+        'sortBy': 'sortBy',
+
+        'css_class': 'css_class',
     }
     res = {}
     for k, v in d.items():
@@ -272,8 +275,10 @@ def make_tile(cover, col):
 
     if payload.get('paging') == u'1':
         # this is the search portlet on the right
+        payload.update({'css_class': 'col-md-4'})
         return make_aceitem_search_tile(cover, payload)
     else:
+        payload.update({'css_class': 'col-md-4'})
         return make_aceitem_relevant_content_tile(cover, payload)
 
 
@@ -299,6 +304,16 @@ def make_text_from_articlejournal(content):
     return render('templates/readmore_text.pt', payload)
 
 
+def set_css_class(cover, tile, css_class):
+    if css_class:
+        tile_conf_adapter = TilesConfigurationScreen(cover, None, tile)
+
+        conf = tile_conf_adapter.get_configuration()
+        conf['css_class'] = css_class
+        tile_conf_adapter.set_configuration(conf)
+
+
+
 def make_aceitem_search_tile(cover, info):
     # Available options
     # title
@@ -312,7 +327,12 @@ def make_aceitem_search_tile(cover, info):
     typeName = 'eea.climateadapt.search_acecontent'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
     info = _clean_portlet_settings(info)
+
+    css_class = info.pop('css_class', None)
+
     ITileDataManager(tile).set(info)
+
+    set_css_class(cover, tile, css_class)
 
     return {
         'tile-type': typeName,
@@ -365,12 +385,16 @@ def make_aceitem_relevant_content_tile(cover, payload):
     typeName = 'eea.climateadapt.relevant_acecontent'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
     info = _clean_portlet_settings(payload)
+
+    css_class = info.pop('css_class', None)
     ITileDataManager(tile).set(info)
 
     # TODO: relevant stuff here
     # info = _clean_portlet_settings(payload)
     # if filter(lambda x: x.startswith('user'), payload.keys()):
     #     return make_aceitem_relevant_content_tile(cover, payload)
+
+    set_css_class(cover, tile, css_class)
 
     return {
         'tile-type': typeName,
@@ -393,7 +417,11 @@ def make_richtext_tile(cover, content):
     content['text'] = unicode(fix_links(site, unicode(content['text'])))
     content['title'] = unicode(content['title'])
 
+    css_class = content.pop('css_class', None)
+
     ITileDataManager(tile).set(content)
+
+    set_css_class(cover, tile, css_class)
 
     return {
         'tile-type': typeName,
@@ -416,7 +444,11 @@ def make_richtext_with_title_tile(cover, content):
     content['text'] = fix_links(site, unicode(content['text']))
     content['title'] = unicode(content['title'])
 
+    css_class = content.pop('css_class', None)
+
     ITileDataManager(tile).set(content)
+
+    set_css_class(cover, tile, css_class)
 
     return {
         'tile-type': typeName,
@@ -434,7 +466,11 @@ def make_share_tile(cover, share_type):
     content['title'] = "Share your %s" % share_type
     content['shareinfo_type'] = share_type
 
+    css_class = content.pop('css_class', None)
+
     ITileDataManager(tile).set(content)
+
+    set_css_class(cover, tile, css_class)
 
     return {
         'tile-type': typeName,
@@ -679,7 +715,6 @@ def get_image_from_link(site, link):
     """ Returns a Plone image object by extracting needed info from a link
     """
     # a link can have either uuid or img_id
-    #import pdb; pdb.set_trace()
 
     if "@@images" in link:
         return link     # this is already a Plone link
