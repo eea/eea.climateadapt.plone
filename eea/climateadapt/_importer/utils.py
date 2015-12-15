@@ -738,11 +738,6 @@ def get_image_from_link(site, link):
     raise ValueError("Image not found for link: {0}".format(link))
 
 
-def localize(link):
-    # from a link such as 'Plone/climsave-tool' return '/climsave-tool'
-    return '/' + link.split('/', 1)[1]
-
-
 def fix_inner_link(site, href):
 
     href = href.strip()
@@ -755,23 +750,27 @@ def fix_inner_link(site, href):
     # http://localhost:8001/Plone/repository/11245406.jpg/@@images/image
     # http://climate-adapt.eea.europa.eu/projects1?ace_project_id=55
 
-    if href.startswith('http://climate-adapt.eea.europa.eu/'):
-        href.replace('http://climate-adapt.eea.europa.eu/', '/')
 
-    if href.startswith('../../../'):
-        href = href.replace('../../../', '/')
-
-    href = href.replace('/web/guest/', '/')
+    starters = [
+        'http://climate-adapt.eea.europa.eu/',
+        '../../../',
+        '/web/guest/', '/'
+    ]
+    for path in starters:
+        if href.startswith(path):
+            href = href.replace(path, '/', 1)
 
     if "/viewmeasure" in href:
         acemeasure_id = get_param_from_link(href, 'ace_measure_id')
         obj = _get_imported_acemeasure(site, acemeasure_id)
-        return localize(obj.absolute_url(1))
+        path = '/' + '/'.join(obj.getPhysicalPath()[2:])
+        return path
 
     if "/viewaceitem" in href:
         aceitem_id = get_param_from_link(href, 'aceitem_id')
         obj = _get_imported_aceitem(site, aceitem_id)
-        return localize(obj.absolute_url(1))
+        path = '/' + '/'.join(obj.getPhysicalPath()[2:])
+        return path
 
     uuid = get_param_from_link(href, 'uuid')
     if uuid:
@@ -782,7 +781,7 @@ def fix_inner_link(site, href):
         uuid = UUID_RE.search(href).group()
         return get_repofile_by_uuid(site, uuid)
     except Exception:
-        logger.warning("Couldn't find proper equivalent link for %s", href)
+        logger.debug("Couldn't find proper equivalent link for %s", href)
         return href
 
     return href

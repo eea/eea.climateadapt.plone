@@ -5,7 +5,6 @@ from eea.climateadapt._importer.utils import ACE_ITEM_TYPES
 from eea.climateadapt._importer.utils import create_cover_at
 from eea.climateadapt._importer.utils import extract_portlet_info
 from eea.climateadapt._importer.utils import get_image_by_imageid
-from eea.climateadapt._importer.utils import localize
 from eea.climateadapt._importer.utils import log_call
 from eea.climateadapt._importer.utils import logger
 from eea.climateadapt._importer.utils import make_aceitem_search_tile
@@ -518,9 +517,10 @@ def import_template_ace_layout_2(site, layout, structure):
     main['title'] = title
     main['body'] = body
     main['readmore'] = readmore
+    path = '/' + '/'.join(image.getPhysicalPath()[2:])
     main['image'] = {
         'title': image.Title(),
-        'thumb': localize(image.absolute_url(1)) + "/@@images/image",
+        'thumb': path + "/@@images/image",
     }
     main_content = render('templates/richtext_readmore_and_image.pt',
                           {'payload': main})
@@ -737,8 +737,11 @@ def import_template_ace_layout_4(site, layout, structure):
 
     image = get_image_by_imageid(site, main['image'])
     accordion = render_accordion(payload)
+
+    path = '/' + '/'.join(image.getPhysicalPath()[2:])
+
     main_text = render('templates/project.pt',
-                       {'image': localize(image.absolute_url(1)) + "/@@images/image",
+                       {'image': path + "/@@images/image",
                         'title': main['title'],
                         'subtitle': main['subtitle'],
                         'accordion': accordion
