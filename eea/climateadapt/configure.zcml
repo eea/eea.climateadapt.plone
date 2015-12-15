@@ -9,6 +9,8 @@
 
     <includeDependencies package="." />
 
+    <include package='plone.app.theming' />
+
     <include package=".browser" />
     <include package=".tiles" />
     <include package="._importer" />
