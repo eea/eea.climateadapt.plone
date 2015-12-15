@@ -1,72 +1,266 @@
+<?xml version="1.0"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
-
-<head>
-<title>Page Title</title>
-<link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon" />
-<link rel="stylesheet" href="static/bs3/css/bootstrap.css" type="text/css" />
-<link rel="apple-touch-icon" href="static/touch_icon.png" />
-<link type="text/css" rel="stylesheet" href="static/style.css" />
-<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-</head>
-<body >
-<!-- Accessibility -->
-<div id="accessibility"> </div>
-
-<!-- User -->
-<div id="user">
-    <ul>
-        <li><a href="#" title="Login">Login</a></li>
-    </ul>
-</div>
-
-<div id="wrapper">
-
-    <!-- Header -->
-    <div id="header" role="banner">
-
-
+  <head>
+    <title>Page Title</title>
+    <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="static/bs3/css/bootstrap.css" type="text/css"/>
+    <script type="text/javascript" src="static/main.js"></script>
+    <link rel="apple-touch-icon" href="static/touch_icon.png"/>
+    <link type="text/css" rel="stylesheet" href="static/style.css"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  </head>
+  <body>
+    <!-- Accessibility -->
+    <div id="accessibility"> </div>
+    <!-- User -->
+    <div id="user">
+      <ul>
+        <li>
+          <a href="#" title="Login">Login</a>
+        </li>
+      </ul>
+    </div>
+    <div id="wrapper">
+      <!-- Header -->
+      <div id="header" role="banner">
         <div id="logo">
-            <a href="#" title="#"><img src="static/logo.png" alt="Portal Title" /></a>
+          <a href="#" title="#">
+            <img src="static/logo.png" alt="Portal Title"/>
+          </a>
         </div>
-
         <!-- Search -->
         <div id="search" role="search">
-            <form>search</form>
+          <form>search</form>
         </div>
-
         <div class="clear"> </div>
-
         <!-- Main Menu -->
-        <div id="searchbt"><a>search</a></div>
-        <div id="nav" role="navigation">
-            <span id="seletor" onclick="void(0)">Sections</span>
-            <ul>
-                <li><a href="#" title="Link name">Section 1</a></li>
-                <li><a href="#" title="Link name">Section 2</a></li>
-                <li><a href="#" title="Link name">Section 3</a></li>
-            </ul>
+        <div id="searchbt">
+          <a>search</a>
         </div>
-    </div>
-
-    <!-- Columns -->    
-    <div id="main" role="main">
-
+        <nav class="navbar navbar-inverse navbar-static-top marginBottom-0" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"/>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <!-- First tab menu -->
+              <li>
+                <a href="/about1">
+                  <span> About</span>
+                </a>
+              </li>
+              <li class="dropdown">
+                <a href="/11" class="dropdown-toggle" data-toggle="dropdown">
+                  <span> Search the database</span>
+                  <b class="caret"/>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/11">
+                      <span>Search database</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/articles">
+                      <span>Search articles</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!-- Second tab menu -->
+              <li class="dropdown">
+                <a href="/eu-adaptation-policy" class="dropdown-toggle" data-toggle="dropdown">
+                  <span> EU policy</span>
+                  <b class="caret"/>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/eu-adaptation-policy/strategy">
+                      <span> EU Adaptation Strategy</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/eu-adaptation-policy/mainstreaming">
+                      <span> EU mainstreaming in sector policies</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/eu-adaptation-policy/funding">
+                      <span> EU funding of adaptation</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/mayors-adapt" class="dropdown-toggle" data-toggle="dropdown">
+                      <span> Mayors Adapt</span>
+                      <b class="caret"/>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li class="first">
+                        <a href="/mayors-adapt/register">Register your City</a>
+                      </li>
+                      <li>
+                        <a href="/city-profile">City Profiles</a>
+                      </li>
+                      <li class="last">
+                        <a href="http://community.eea.europa.eu/">City Forum</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <!-- Third tab menu -->
+              <li>
+                <a href="/countries-regions" class="dropdown-toggle" data-toggle="dropdown">
+                  <span> Countries, regions, cities</span>
+                  <b class="caret"/>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="first">
+                    <a href="/transnational-regions">
+                      <span> Transnational regions</span>
+                    </a>
+                  </li>
+                  <li class="selected">
+                    <a href="/cities">
+                      <span> Cities and towns</span>
+                    </a>
+                  </li>
+                  <li class="">
+                    <a href="/countries-map">
+                      <span> Country information</span>
+                    </a>
+                  </li>
+                  <li class="">
+                    <a href="/new-regions">
+                      <span> New Regions</span>
+                    </a>
+                  </li>
+                  <li class="last">
+                    <a href="/country-forum">
+                      <span> Country Forum</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!-- Fourth tab menu -->
+              <li>
+                <a href="/knowledge" class="dropdown-toggle" data-toggle="dropdown">
+                  <span> Knowledge</span>
+                  <b class="caret"/>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown first submenu">
+                    <a href="/6" class="dropdown-toggle" data-toggle="dropdown">
+                      <span> Adaptation information</span>
+                      <b class="caret" style="transform: rotate(270deg);"/>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li class="first">
+                        <a href="/observations-and-scenarios">Observations and scenarios</a>
+                      </li>
+                      <li>
+                        <a href="/vulnerabilities-and-risks">Vulnerabilities and risks</a>
+                      </li>
+                      <li>
+                        <a href="/adaptation-measures">Adaptation options</a>
+                      </li>
+                      <li>
+                        <a href="/adaptation-strategies">Adaptation strategies</a>
+                      </li>
+                      <li class="last">
+                        <a href="/research-projects">Research projects</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="dropdown last submenu">
+                    <a href="/tools" class="dropdown-toggle" data-toggle="dropdown">
+                      <span> Tools</span>
+                      <b class="caret" style="transform: rotate(270deg);"/>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li class="first">
+                        <a href="/adaptation-support-tool">Adaptation support tool</a>
+                      </li>
+                      <li>
+                        <a href="/sat">Case study search tool</a>
+                      </li>
+                      <li>
+                        <a href="/uncertainty-guidance">Uncertainty guidance</a>
+                      </li>
+                      <li>
+                        <a href="/map-viewer">Map viewer</a>
+                      </li>
+                      <li>
+                        <a href="/tools/urban-ast">Urban adaptation support tool</a>
+                      </li>
+                      <li>
+                        <a href="/tools/urban-adaptation">Urban Vulnerability Map Book</a>
+                      </li>
+                      <li>
+                        <a href="/guidelines-for-project-managers">Guidelines for project managers</a>
+                      </li>
+                      <li>
+                        <a href="/tools/time-series-tool">Time series tool</a>
+                      </li>
+                      <li>
+                        <a href="/additional-tools">Additional Tools</a>
+                      </li>
+                      <li class="last">
+                        <a href="/tools/new-map-viewer">New Map Viewer</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <!-- Fifth tab menu -->
+              <li class="dropdown">
+                <a href="/12" class="dropdown-toggle" data-toggle="dropdown">
+                  <span> Network</span>
+                  <b class="caret"/>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="first">
+                    <a href="/organisations">
+                      <span> Organisations</span>
+                    </a>
+                  </li>
+                  <li class="last">
+                    <a href="/international">
+                      <span> Global platforms</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="/help">
+                  <span>Help</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </nav>
+      </div>
+      <!-- Columns -->
+      <div id="main" role="main">
         <div id="content"> 
 
             Columns
         </div>
         <div class="clear"> </div>
-
-    </div>
-    <!-- Footer --> 
-    <div id="footer" role="contentinfo"><div>
-            <p id="siteactions"></p>
-            <p><span id="footer-info"></span> Footer.</p>
+      </div>
+      <!-- Footer -->
+      <div id="footer" role="contentinfo">
+        <div>
+          <p id="siteactions"/>
+          <p><span id="footer-info"/> Footer.</p>
         </div>
+      </div>
     </div>
-
-</div>
-<noscript>No script</noscript>
-</body>
+    <noscript>No script</noscript>
+  </body>
 </html>
