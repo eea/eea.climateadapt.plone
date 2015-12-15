@@ -738,6 +738,13 @@ def get_image_from_link(site, link):
     raise ValueError("Image not found for link: {0}".format(link))
 
 
+def localize(obj, site):
+    # returns the path to an object localized to the website
+    path = obj.getPhysicalPath()
+    site_path = site.getPhysicalPath()
+    return '/' + '/'.join(path[len(site_path):])
+
+
 def fix_inner_link(site, href):
 
     href = href.strip()
@@ -763,14 +770,12 @@ def fix_inner_link(site, href):
     if "/viewmeasure" in href:
         acemeasure_id = get_param_from_link(href, 'ace_measure_id')
         obj = _get_imported_acemeasure(site, acemeasure_id)
-        path = '/' + '/'.join(obj.getPhysicalPath()[2:])
-        return path
+        return localize(obj, site)
 
     if "/viewaceitem" in href:
         aceitem_id = get_param_from_link(href, 'aceitem_id')
         obj = _get_imported_aceitem(site, aceitem_id)
-        path = '/' + '/'.join(obj.getPhysicalPath()[2:])
-        return path
+        return localize(obj, site)
 
     uuid = get_param_from_link(href, 'uuid')
     if uuid:
