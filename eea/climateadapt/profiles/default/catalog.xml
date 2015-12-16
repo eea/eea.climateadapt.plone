@@ -4,32 +4,40 @@
  <index name="search_type" meta_type="FieldIndex">
   <indexed_attr value="search_type"/>
  </index>
+ <column value="search_type"/>
+
  <index name="sectors" meta_type="FieldIndex">
   <indexed_attr value="sectors"/>
  </index>
+ <column value="sectors"/>
+
  <index name="elements" meta_type="KeywordIndex">
   <indexed_attr value="elements"/>
  </index>
+ <column value="elements"/>
+
+ <index name="countries" meta_type="KeywordIndex">
+  <indexed_attr value="countries"/>
+ </index>
+
  <index name="special_tags" meta_type="KeywordIndex">
   <indexed_attr value="special_tags"/>
  </index>
+
  <index name="rating" meta_type="FieldIndex">
   <indexed_attr value="rating"/>
  </index>
+
  <index name="climate_impacts" meta_type="FieldIndex">
   <indexed_attr value="climate_impacts"/>
  </index>
+
  <index name="year" meta_type="FieldIndex">
   <indexed_attr value="year"/>
  </index>
- 
 
  <index name="imported_uuid" meta_type="FieldIndex">
   <indexed_attr value="imported_uuid"/>
  </index>
-
- <column value="search_type"/>
- <column value="elements"/>
- <column value="sectors"/>
 
 </object>
