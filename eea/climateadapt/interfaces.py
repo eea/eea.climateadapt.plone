@@ -1,6 +1,11 @@
 from zope.interface import Interface
 
 
+class IEEAClimateAdaptInstalled(Interface):
+    """ Browser layer marker interface
+    """
+
+
 class IBalticRegionMarker(Interface):
     """ A marker interface for Baltic Region pages. They get a special nav menu
     """

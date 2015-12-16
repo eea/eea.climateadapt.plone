@@ -15,40 +15,36 @@
         <h1 tal:content="context/title">Title here</h1>
 
         <h4>Description:</h4>
-        <p tal:replace="structure context/description">description here</p>
+        <tal:block replace="structure context/description" />
 
         <h4>Reference information</h4>
 
-        <!-- <h5>Websites:</h5> -->
-        <!-- <ul> -->
-        <!--   <li tal:repeat="website context/websites"> -->
-        <!--     <a href="" tal:attributes="href website" tal:content="website">Website</a> -->
-        <!--   </li> -->
-        <!-- </ul> -->
+        <h5>Websites:</h5>
+        <ul>
+          <li tal:repeat="website context/websites|nothing">
+            <a tal:attributes="href website" tal:content="website">Website</a>
+          </li>
+        </ul>
 
         <h5>Source:</h5>
-        <p tal:content="structure context/source">Source here</p>
+        <tal:block content="structure context/source" />
 
         <div id="aceitem_sidebar">
           <h4>Project Documents</h4>
           <p tal:content="python:u', '.join(context.Subject())" />
 
           <h4>Keywords</h4>
-          <p tal:content="python:u', '.join(context.Subject())" />
+          <tal:block content="structure context/keywords" />
 
           <h4>Climate impacts</h4>
-          <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
+          <tal:block content="structure python:view.widgets['climate_impacts'].render()" />
+          <h4>Elements</h4>
+          <tal:block content="structure python:view.widgets['elements'].render()" />
           <h4>Sectors</h4>
-          <p tal:content="structure python:view.widgets['sectors'].render()"/>
-          <h5>Countries:</h5>
-          <p tal:content="structure python:view.widgets['spatial_layer'].render()"/>
-        </div>
+          <tal:block content="structure python:view.widgets['sectors'].render()" />
 
-        <!-- <tal:def tal:define="sector_w python:view.widgets['sectors']" > -->
-          <!--   <!&#45;&#45; <tal:widget tal:replace="structure sector_w/@@ploneform&#38;#45;render&#38;#45;widget"/> &#45;&#45;> -->
-          <!--   <tal:widget tal:replace="structure sector_w/render"/> -->
-          <!-- </tal:def> -->
-        <!--  -->
+          <h4>Geographic characterisation</h4>
+          <tal:block content="structure python:view.render_geochar(context.geochars)" />
 
         <div style="display:none" tal:content="python:view.w.keys()" />
 
