@@ -1,13 +1,15 @@
+#from plone.dexterity.utils import createAndPublishContentInContainer
 from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.tweak_sql import fix_relations
 from eea.climateadapt._importer.utils import ACE_ITEM_TYPES
+from eea.climateadapt._importer.utils import createAndPublishContentInContainer
 from eea.climateadapt._importer.utils import create_cover_at
 from eea.climateadapt._importer.utils import extract_portlet_info
 from eea.climateadapt._importer.utils import get_image_by_imageid
+from eea.climateadapt._importer.utils import localize
 from eea.climateadapt._importer.utils import log_call
 from eea.climateadapt._importer.utils import logger
-from eea.climateadapt._importer.utils import localize
 from eea.climateadapt._importer.utils import make_aceitem_search_tile
 from eea.climateadapt._importer.utils import make_ast_navigation_tile
 from eea.climateadapt._importer.utils import make_countries_dropdown_tile
@@ -32,7 +34,7 @@ from eea.climateadapt._importer.utils import strip_xml
 from eea.climateadapt.interfaces import IASTNavigationRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
-from plone.dexterity.utils import createContentInContainer
+
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -55,13 +57,14 @@ def import_aceitem(data, location):
     # should be mapped over AceMeasure and AceProject
 
     if data.datatype in ACE_ITEM_TYPES:
-        item = createContentInContainer(
+        item = createAndPublishContentInContainer(
             location,
             ACE_ITEM_TYPES[data.datatype],
             title=data.name,
             description=data.description,
             keywords=data.keyword,
             spatial_layer=data.spatiallayer,
+            countries=s2l(data.spatialvalues),
             data_type=data.datatype,
             storage_type=data.storagetype,
             sectors=s2l(data.sectors_),
@@ -87,7 +90,7 @@ def import_aceitem(data, location):
 
 @log_call
 def import_aceproject(data, location):
-    item = createContentInContainer(
+    item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.aceproject',
         title=data.title,
@@ -106,6 +109,7 @@ def import_aceproject(data, location):
         specialtagging=data.specialtagging,
         geochars=data.geochars,
         countries=s2l(data.spatialvalues),
+        spatial_layer=s2l(data.spatiallayer),
         comments=data.comments,
         rating=data.rating,
     )
@@ -121,7 +125,7 @@ def import_aceproject(data, location):
 
 @log_call
 def import_adaptationoption(data, location):
-    item = createContentInContainer(
+    item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.adaptationoption',
         title=data.name,
@@ -129,7 +133,7 @@ def import_adaptationoption(data, location):
         implementation_time=data.implementationtime,
         lifetime=data.lifetime,
         spatial_layer=data.spatiallayer,
-        spatial_values=data.spatialvalues,
+        countries=s2l(data.spatialvalues),
         legal_aspects=data.legalaspects,
         stakeholder_participation=data.stakeholderparticipation,
         contact=data.contact,
@@ -156,7 +160,7 @@ def import_adaptationoption(data, location):
 
 @log_call
 def import_casestudy(data, location):
-    item = createContentInContainer(
+    item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.casestudy',
         title=data.name,
@@ -202,7 +206,7 @@ def import_image(data, location):
                        "document library", data.imageid)
         return None
 
-    item = createContentInContainer(
+    item = createAndPublishContentInContainer(
         location,
         'Image',
         title='Image ' + str(data.imageid),
@@ -232,7 +236,7 @@ def import_dlfileentry(data, location):
         return None
 
     if 'jpg' in data.extension or 'png' in data.extension:
-        item = createContentInContainer(
+        item = createAndPublishContentInContainer(
             location,
             'Image',
             title=data.title,
@@ -244,7 +248,7 @@ def import_dlfileentry(data, location):
             )
         )
     else:
-        item = createContentInContainer(
+        item = createAndPublishContentInContainer(
             location,
             'File',
             title=data.title,
@@ -628,7 +632,7 @@ def import_template_ace_layout_3(site, layout, structure):
     image = get_image_by_imageid(site, main['image'])
     main['image'] = {
         'title': image.Title(),
-        'thumb': '/' + image.absolute_url(1) + "/@@images/image",
+        'thumb': localize(image, site) + "/@@images/image",
     }
     main_content = render('templates/richtext_readmore_and_image.pt',
                           {'payload': main})
@@ -1114,6 +1118,7 @@ def import_template_2_columns_iii(site, layout, structure):
         image = structure['column-2'][0][1]['content'][0]
 
     title = structure['name']
+    #import pdb; pdb.set_trace()
 
     main_content_tile = make_richtext_tile(cover, {'text': body,
                                                    'title': 'Main text'})

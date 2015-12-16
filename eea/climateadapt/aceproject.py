@@ -107,6 +107,15 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     rating = Int(title=_(u"Rating"), required=True, default=0)
 
+    spatial_layer = TextLine(
+        title=_(u"Spatial Layer"), required=False, default=u"")
+
+    # implemented as "countries"
+    # spatial_values = List(
+    #     title=_(u"Countries"), required=False, default=None,
+    #     value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
+    # )
+
 
 class AceProject(dexterity.Item):
     implements(IAceProject)

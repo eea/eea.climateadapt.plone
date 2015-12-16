@@ -17,6 +17,8 @@
 
     <include package="plone.resource" file="meta.zcml"/>
 
+    <include file="faceted.zcml" />
+
     <plone:static
         name="climateadapt"
         directory="theme/climateadapt"
@@ -42,16 +44,6 @@
 
 
     <adapter name="imported_uuid" factory=".catalog.imported_uuid" />
-
-    -*- extra stuff goes here -*-
-
-    <!-- <plone:behavior -->
-        <!--     title="Example Behavior" -->
-        <!--     description="Description of the Example behavior" -->
-        <!--     provides=".examplebehavior.IExampleBehavior" -->
-        <!--     factory=".examplebehavior.ExampleBehavior" -->
-        <!--     for="plone.dexterity.interfaces.IDexterityContent" -->
-        <!--     /> -->
 
     <utility name="eea.climateadapt.aceitems_datatypes" component=".vocabulary.aceitem_datatypes_vocabulary"/>
     <utility name="eea.climateadapt.aceitems_storagetypes" component=".vocabulary.aceitem_storagetypes_vocabulary"/>
