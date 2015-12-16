@@ -1,13 +1,15 @@
+#from plone.dexterity.utils import createAndPublishContentInContainer
 from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.tweak_sql import fix_relations
 from eea.climateadapt._importer.utils import ACE_ITEM_TYPES
+from eea.climateadapt._importer.utils import createAndPublishContentInContainer
 from eea.climateadapt._importer.utils import create_cover_at
 from eea.climateadapt._importer.utils import extract_portlet_info
 from eea.climateadapt._importer.utils import get_image_by_imageid
+from eea.climateadapt._importer.utils import localize
 from eea.climateadapt._importer.utils import log_call
 from eea.climateadapt._importer.utils import logger
-from eea.climateadapt._importer.utils import localize
 from eea.climateadapt._importer.utils import make_aceitem_search_tile
 from eea.climateadapt._importer.utils import make_ast_navigation_tile
 from eea.climateadapt._importer.utils import make_countries_dropdown_tile
@@ -32,7 +34,7 @@ from eea.climateadapt._importer.utils import strip_xml
 from eea.climateadapt.interfaces import IASTNavigationRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
-from plone.dexterity.utils import createContentInContainer
+
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -55,7 +57,7 @@ def import_aceitem(data, location):
     # should be mapped over AceMeasure and AceProject
 
     if data.datatype in ACE_ITEM_TYPES:
-        item = createContentInContainer(
+        item = createAndPublishContentInContainer(
             location,
             ACE_ITEM_TYPES[data.datatype],
             title=data.name,
@@ -87,7 +89,7 @@ def import_aceitem(data, location):
 
 @log_call
 def import_aceproject(data, location):
-    item = createContentInContainer(
+    item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.aceproject',
         title=data.title,
@@ -121,7 +123,7 @@ def import_aceproject(data, location):
 
 @log_call
 def import_adaptationoption(data, location):
-    item = createContentInContainer(
+    item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.adaptationoption',
         title=data.name,
@@ -156,7 +158,7 @@ def import_adaptationoption(data, location):
 
 @log_call
 def import_casestudy(data, location):
-    item = createContentInContainer(
+    item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.casestudy',
         title=data.name,
@@ -202,7 +204,7 @@ def import_image(data, location):
                        "document library", data.imageid)
         return None
 
-    item = createContentInContainer(
+    item = createAndPublishContentInContainer(
         location,
         'Image',
         title='Image ' + str(data.imageid),
@@ -232,7 +234,7 @@ def import_dlfileentry(data, location):
         return None
 
     if 'jpg' in data.extension or 'png' in data.extension:
-        item = createContentInContainer(
+        item = createAndPublishContentInContainer(
             location,
             'Image',
             title=data.title,
@@ -244,7 +246,7 @@ def import_dlfileentry(data, location):
             )
         )
     else:
-        item = createContentInContainer(
+        item = createAndPublishContentInContainer(
             location,
             'File',
             title=data.title,

@@ -9,7 +9,7 @@ from eea.climateadapt._importer import sqlschema as sql
 from plone.dexterity.utils import createContentInContainer
 from plone.tiles.interfaces import ITileDataManager
 from plone.uuid.interfaces import IUUIDGenerator
-from zope.component import getUtility
+from zope.component import getUtility, getMultiAdapter
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 from zope.site.hooks import getSite
 import logging
@@ -36,6 +36,25 @@ ACE_ITEM_TYPES = {
     'RESEARCHPROJECT': 'eea.climateadapt.researchproject',
     'ACTION': 'eea.climateadapt.action',
 }
+
+
+def wf_transition(obj, action="publish"):
+    """ Publish object """
+    workflow = getMultiAdapter((obj, obj.REQUEST),
+                               name=u"plone_tools").workflow()
+    try:
+        workflow.doActionFor(obj, action)
+    except WorkflowException:
+        logger.info("Workflow exception for %s" % obj.absolute_url())
+
+
+def createAndPublishContentInContainer(*args, **kwargs):
+    """ Wrap createContentInContainer and publish it """
+    content = createContentInContainer(*args, **kwargs)
+    action = kwargs.pop('action', 'publish')
+    if args[1] not in ('File', 'Image',):
+        wf_transition(content, action)
+    return content
 
 
 def printe(e):

@@ -17,6 +17,8 @@
 
     <include package="plone.resource" file="meta.zcml"/>
 
+    <include file="faceted.zcml" />
+
     <plone:static
         name="climateadapt"
         directory="theme/climateadapt"

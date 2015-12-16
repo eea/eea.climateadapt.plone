@@ -11,4 +11,10 @@
         expression="" id="http://code.jquery.com/jquery-migrate-1.2.1.js" inline="False"
         />
 
+    <!-- disable plone.app.widgets.js -->
+    <javascript authenticated="False" bundle="default" cacheable="True"
+        compression="none" conditionalcomment="" cookable="True" enabled="False"
+        expression="" id="++resource++plone.app.widgets.js" inline="False"
+        insert-after="collective.js.jqueryui.custom.min.js"/>
+
 </object>
