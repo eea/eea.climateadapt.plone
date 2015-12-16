@@ -16,6 +16,13 @@
  <index name="rating" meta_type="FieldIndex">
   <indexed_attr value="rating"/>
  </index>
+ <index name="climate_impacts" meta_type="FieldIndex">
+  <indexed_attr value="climate_impacts"/>
+ </index>
+ <index name="year" meta_type="FieldIndex">
+  <indexed_attr value="year"/>
+ </index>
+ 
 
  <index name="imported_uuid" meta_type="FieldIndex">
   <indexed_attr value="imported_uuid"/>
