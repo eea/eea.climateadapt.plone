@@ -628,7 +628,7 @@ def import_template_ace_layout_3(site, layout, structure):
     image = get_image_by_imageid(site, main['image'])
     main['image'] = {
         'title': image.Title(),
-        'thumb': '/' + image.absolute_url(1) + "/@@images/image",
+        'thumb': localize(image, site) + "/@@images/image",
     }
     main_content = render('templates/richtext_readmore_and_image.pt',
                           {'payload': main})
