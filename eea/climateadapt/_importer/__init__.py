@@ -1114,6 +1114,7 @@ def import_template_2_columns_iii(site, layout, structure):
         image = structure['column-2'][0][1]['content'][0]
 
     title = structure['name']
+    #import pdb; pdb.set_trace()
 
     main_content_tile = make_richtext_tile(cover, {'text': body,
                                                    'title': 'Main text'})

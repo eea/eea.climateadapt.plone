@@ -809,7 +809,7 @@ def fix_links(site, text):
             pass
         else:
             if image is not None:
-                url = '/' + image.absolute_url(1) + "/@@images/image"
+                url = localize(image, site) + "/@@images/image"
                 logger.info("Change image link %s to %s", src, url)
                 img.set('src', url)
 
