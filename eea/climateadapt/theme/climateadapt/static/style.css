@@ -188,6 +188,7 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
 #content {margin: 0}
 #content > .row { margin: 0}
 #tiles-list li { list-style-type: none }
+.layout-actions li { list-style-type: none !important;}
 
 .column.col-md-8 .col-md-1{
     width:30%;
