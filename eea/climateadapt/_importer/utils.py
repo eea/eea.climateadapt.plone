@@ -662,16 +662,6 @@ def create_cover_at(site, location, id='index_html', **kw):
     )
     logger.info("Created new cover at %s", cover.absolute_url(1))
 
-    wftool = getToolByName(site, "portal_workflow")
-
-    try:
-        wftool.doActionFor(cover, 'publish')
-    except WorkflowException:
-        # a workflow exception is risen if the state transition is not available
-        # (the sampleProperty content is in a workflow state which
-        # does not have a "submit" transition)
-        logger.exception("Could not publish:" + str(cover.getId()))
-
     return cover
 
 
