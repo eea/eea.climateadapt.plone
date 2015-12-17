@@ -667,7 +667,7 @@ def create_cover_at(site, location, id='index_html', **kw):
 
 def log_call(wrapped):
     def wrapper(*args, **kwargs):
-        logger.info("Calling %s", wrapped.func_name)
+        logger.debug("Calling %s", wrapped.func_name)
         return wrapped(*args, **kwargs)
     return wrapper
 
