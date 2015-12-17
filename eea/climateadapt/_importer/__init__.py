@@ -1,4 +1,5 @@
-#from plone.dexterity.utils import createAndPublishContentInContainer
+from Products.CMFCore.WorkflowCore import WorkflowException
+from Products.CMFCore.utils import getToolByName
 from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.tweak_sql import fix_relations
@@ -34,7 +35,6 @@ from eea.climateadapt._importer.utils import strip_xml
 from eea.climateadapt.interfaces import IASTNavigationRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
-
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -1268,11 +1268,19 @@ def run_importer(site=None):
     if site is None:
         site = get_plone_site()
 
+    wftool = getToolByName(site, "portal_workflow")
+
     structure = ['content', 'aceprojects', 'casestudy', 'adaptationoption',
                  'repository']
     for name in structure:
         if name not in site.contentIds():
             site.invokeFactory("Folder", name)
+            obj = site[name]
+            try:
+                wftool.doActionFor(obj, 'publish')
+            except WorkflowException:
+                logger.exception("Could not publish:" + obj.absolute_url(1))
+
 
     for image in session.query(sql.Image):
         import_image(image, site['repository'])
