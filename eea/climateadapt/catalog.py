@@ -5,5 +5,4 @@ from zope.interface import Interface
 @indexer(Interface)
 def imported_uuid(object):
     if hasattr(object, "_uuid"):
-        print "indexing object uuid", object
         return object._uuid
