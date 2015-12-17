@@ -9,7 +9,7 @@ from eea.climateadapt._importer import sqlschema as sql
 from plone.dexterity.utils import createContentInContainer
 from plone.tiles.interfaces import ITileDataManager
 from plone.uuid.interfaces import IUUIDGenerator
-from zope.component import getUtility, getMultiAdapter
+from zope.component import getUtility
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 from zope.site.hooks import getSite
 import logging
@@ -38,22 +38,21 @@ ACE_ITEM_TYPES = {
 }
 
 
-def wf_transition(obj, action="publish"):
-    """ Publish object """
-    workflow = getMultiAdapter((obj, obj.REQUEST),
-                               name=u"plone_tools").workflow()
-    try:
-        workflow.doActionFor(obj, action)
-    except WorkflowException:
-        logger.info("Workflow exception for %s" % obj.absolute_url())
-
-
 def createAndPublishContentInContainer(*args, **kwargs):
     """ Wrap createContentInContainer and publish it """
+
     content = createContentInContainer(*args, **kwargs)
-    action = kwargs.pop('action', 'publish')
+    wftool = getToolByName(content, "portal_workflow")
+
     if args[1] not in ('File', 'Image',):
-        wf_transition(content, action)
+        try:
+            wftool.doActionFor(content, 'publish')
+        except WorkflowException:
+            # a workflow exception is risen if the state transition is not available
+            # (the sampleProperty content is in a workflow state which
+            # does not have a "submit" transition)
+            logger.exception("Could not publish:" + content)
+
     return content
 
 
@@ -647,7 +646,7 @@ def create_cover_at(site, location, id='index_html', **kw):
 
     for name in [x.strip() for x in location.split('/') if x.strip()]:
         if name not in parent.contentIds():
-            parent = createContentInContainer(
+            parent = createAndPublishContentInContainer(
                 parent,
                 'Folder',
                 title=name,
@@ -655,13 +654,13 @@ def create_cover_at(site, location, id='index_html', **kw):
         else:
             parent = parent[name]
 
-    cover = createContentInContainer(
+    cover = createAndPublishContentInContainer(
         parent,
         'collective.cover.content',
         id=id,
         **kw
     )
-    logger.info("Created new cover at %s", cover.absolute_url())
+    logger.info("Created new cover at %s", cover.absolute_url(1))
 
     wftool = getToolByName(site, "portal_workflow")
 

@@ -1,4 +1,5 @@
-#from plone.dexterity.utils import createAndPublishContentInContainer
+from Products.CMFCore.WorkflowCore import WorkflowException
+from Products.CMFCore.utils import getToolByName
 from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.tweak_sql import fix_relations
@@ -34,7 +35,6 @@ from eea.climateadapt._importer.utils import strip_xml
 from eea.climateadapt.interfaces import IASTNavigationRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
-
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -64,7 +64,7 @@ def import_aceitem(data, location):
             description=data.description,
             keywords=data.keyword,
             spatial_layer=data.spatiallayer,
-            countries=s2l(data.spatialvalues),
+            spatial_values=s2l(data.spatialvalues),
             data_type=data.datatype,
             storage_type=data.storagetype,
             sectors=s2l(data.sectors_),
@@ -80,7 +80,7 @@ def import_aceitem(data, location):
         item._aceitem_id = data.aceitemid
 
         logger.info("Imported aceitem %s from sql aceitem %s",
-                    item, data.aceitemid)
+                    item.absolute_url(1), data.aceitemid)
         item.reindexObject()
         return item
     else:
@@ -108,8 +108,8 @@ def import_aceproject(data, location):
         duration=data.duration,
         specialtagging=data.specialtagging,
         geochars=data.geochars,
-        countries=s2l(data.spatialvalues),
         spatial_layer=s2l(data.spatiallayer),
+        spatial_values=s2l(data.spatialvalues),
         comments=data.comments,
         rating=data.rating,
     )
@@ -118,7 +118,7 @@ def import_aceproject(data, location):
     item.reindexObject()
 
     logger.info("Imported aceproject %s from sql aceproject %s",
-                item, data.projectid)
+                item.absolute_url(1), data.projectid)
 
     return item
 
@@ -133,7 +133,7 @@ def import_adaptationoption(data, location):
         implementation_time=data.implementationtime,
         lifetime=data.lifetime,
         spatial_layer=data.spatiallayer,
-        countries=s2l(data.spatialvalues),
+        spatial_values=s2l(data.spatialvalues),
         legal_aspects=data.legalaspects,
         stakeholder_participation=data.stakeholderparticipation,
         contact=data.contact,
@@ -153,7 +153,7 @@ def import_adaptationoption(data, location):
     item.reindexObject()
 
     logger.info("Imported aceproject %s from sql aceitem %s",
-                item, data.measureid)
+                item.absolute_url(1), data.measureid)
 
     return item
 
@@ -192,7 +192,7 @@ def import_casestudy(data, location):
     item.reindexObject()
 
     logger.info("Imported casestudy %s from sql acemeasure %s",
-                item, data.measureid)
+                item.absolute_url(1), data.measureid)
 
     return item
 
@@ -218,7 +218,8 @@ def import_image(data, location):
     )
 
     item.reindexObject()
-    logger.info("Imported image %s from sql Image %s", item, data.imageid)
+    logger.info("Imported image %s from sql Image %s",
+                item.absolute_url(1), data.imageid)
 
     return item
 
@@ -262,7 +263,8 @@ def import_dlfileentry(data, location):
 
     item._uuid = data.uuid_
 
-    logger.info("Imported %s from sql dlentry %s", item, data.fileentryid)
+    logger.info("Imported %s from sql dlentry %s",
+                item.absolute_url(1), data.fileentryid)
 
     item.reindexObject()
 
@@ -1266,11 +1268,19 @@ def run_importer(site=None):
     if site is None:
         site = get_plone_site()
 
+    wftool = getToolByName(site, "portal_workflow")
+
     structure = ['content', 'aceprojects', 'casestudy', 'adaptationoption',
                  'repository']
     for name in structure:
         if name not in site.contentIds():
             site.invokeFactory("Folder", name)
+            obj = site[name]
+            try:
+                wftool.doActionFor(obj, 'publish')
+            except WorkflowException:
+                logger.exception("Could not publish:" + obj.absolute_url(1))
+
 
     for image in session.query(sql.Image):
         import_image(image, site['repository'])

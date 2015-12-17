@@ -34,10 +34,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     spatial_layer = TextLine(
         title=_(u"Spatial Layer"), required=False, default=u"")
 
-    countries = List(
-        title=_(u"Countries"), required=False, default=None,
-        value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
-    )
+    spatial_values = List(title=_(u"Countries"),
+                          description=_(u"European countries"),
+                          required=False,
+                          value_type=Choice(
+                              vocabulary="eea.climateadapt.ace_countries"))
 
     legal_aspects = Text(title=_(u"Legal aspects"),
                          required=False,

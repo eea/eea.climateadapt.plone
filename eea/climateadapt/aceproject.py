@@ -91,12 +91,6 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                     description=_(u"Characterisation of the area"),
                     required=False)
 
-    countries = List(title=_(u"Countries"),
-                     description=_(u"European countries"),
-                     required=False,
-                     value_type=Choice(
-                         vocabulary="eea.climateadapt.ace_countries"))
-
     comments = TextLine(title=_(u"Source"),
                         description=_(u"Any comments provided with the item"),
                         required=False)
@@ -110,11 +104,11 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     spatial_layer = TextLine(
         title=_(u"Spatial Layer"), required=False, default=u"")
 
-    # implemented as "countries"
-    # spatial_values = List(
-    #     title=_(u"Countries"), required=False, default=None,
-    #     value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
-    # )
+    spatial_values = List(title=_(u"Countries"),
+                          description=_(u"European countries"),
+                          required=False,
+                          value_type=Choice(
+                              vocabulary="eea.climateadapt.ace_countries"))
 
 
 class AceProject(dexterity.Item):

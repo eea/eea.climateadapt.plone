@@ -1,6 +1,13 @@
 <html>
   <head></head>
   <body tal:define="opts view/options">
+
+    <ul>
+      <li><a href="">Import dlentries</a></li>
+      <li><a href="">Import aceitems</a></li>
+      <li><a href="">Import casestudy</a></li>
+    </ul>
+
     <table>
       <thead>
         <tr>
