@@ -52,10 +52,11 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                              default=u""
                              )
 
-    countries = List(
-        title=_(u"Countries"), required=False, default=None,
-        value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
-    )
+    spatial_values = List(title=_(u"Countries"),
+                          description=_(u"European countries"),
+                          required=False,
+                          value_type=Choice(
+                              vocabulary="eea.climateadapt.ace_countries"))
 
     sectors = List(title=_(u"Sectors"),
                    description=_(u"TODO: Sectors description here"),
