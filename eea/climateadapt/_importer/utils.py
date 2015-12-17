@@ -646,7 +646,7 @@ def create_cover_at(site, location, id='index_html', **kw):
 
     for name in [x.strip() for x in location.split('/') if x.strip()]:
         if name not in parent.contentIds():
-            parent = createContentInContainer(
+            parent = createAndPublishContentInContainer(
                 parent,
                 'Folder',
                 title=name,
@@ -654,7 +654,7 @@ def create_cover_at(site, location, id='index_html', **kw):
         else:
             parent = parent[name]
 
-    cover = createContentInContainer(
+    cover = createAndPublishContentInContainer(
         parent,
         'collective.cover.content',
         id=id,
