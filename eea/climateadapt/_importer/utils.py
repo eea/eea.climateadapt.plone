@@ -93,6 +93,13 @@ def solve_dynamic_element(node):
     if type_ == 'image':
         # TODO: don't need to keep this as a list
         imageid = [str(x) for x in node.xpath("dynamic-content/@id")]
+        if not imageid:
+            try:
+                imageid = node.xpath('dynamic-content/text()')
+                imageid = get_param_from_link(imageid[0], 'img_id')
+            except Exception, e:
+                print e
+                import pdb; pdb.set_trace()
         return ('image', None, imageid)
 
     if type_ == 'text_area':
@@ -841,7 +848,6 @@ UUID_RE = re.compile(
 )
 
 def get_image_by_imageid(site, imageid):
-    #import pdb; pdb.set_trace()
     repo = site['repository']
     reg = re.compile(str(imageid) + '.[jpg|png]')
 
