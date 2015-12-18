@@ -104,10 +104,4 @@
         permission="zope2.View"
         />
 
-    <!-- Resources -->
-    <browser:resourceDirectory
-        name="eea.climateadapt"
-        directory="resources"
-        />
-
 </configure>

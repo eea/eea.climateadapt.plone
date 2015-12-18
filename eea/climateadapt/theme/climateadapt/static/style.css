@@ -213,3 +213,8 @@ div.position-0 { margin-left: -100%; }
     padding-bottom: 10px;
     line-height: 20px;
 }
+
+/* Edit tiles layout */
+#tile-configure.in.hide {
+    display: block !important;
+}
