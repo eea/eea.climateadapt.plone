@@ -223,23 +223,27 @@ div.position-0 { margin-left: -100%; }
 .sweet-tabs .nav-tabs {
     margin-left: 5px !important;
     height: 31px;
+    border-bottom-color: rgb(149, 172, 193);
 }
 .sweet-tabs .nav-tabs, .sweet-tabs .nav-tabs li {
     list-style: outside none none !important;
 }
 .sweet-tabs .nav-tabs li {
-    background: #d7e3ef url("../images/jquery-ui/ui-bg_glass_75_d7e3ef_1x400.png") repeat-x scroll 50% 50%;
-    border: 1px solid #d3d3d3;
+    background: #d7e3ef url(ui-bg_glass_75_d7e3ef_1x400.png) repeat-x scroll 50% 50%;
     color: #02213d;
     font-weight: normal;
     margin-right: 2px; 
-    border-bottom: 0 none !important;
+    border-width: 0px;
     float: left;
     position: relative;
     top: 1px;
     white-space: nowrap;
-    height: 29px;
+    height: 30px;
     margin-bottom: 0px !important;
+}
+
+.sweet-tabs .nav-tabs li:not(.active), .sweet-tabs .nav-tabs li:not(.active) a {
+    height: 28px;
 }
 
 .sweet-tabs .nav-tabs li:first-child {
@@ -247,8 +251,7 @@ div.position-0 { margin-left: -100%; }
 }
 
 .sweet-tabs .nav-tabs li:hover {
-    background: #b8cce0 url("../images/jquery-ui/ui-bg_glass_75_b8cce0_1x400.png") repeat-x scroll 50% 50%;
-    border: 1px solid #95acc1;
+    background: #b8cce0 url(ui-bg_glass_75_b8cce0_1x400.png) repeat-x scroll 50% 50%;
     color: #02213d;
     font-weight: normal;
 }
@@ -263,15 +266,25 @@ div.position-0 { margin-left: -100%; }
     border-radius: 0px;
     padding-bottom: 2px;
     border-bottom-width: 0px !important;
-    height: 28px;
+    height: 30px;
 }
 
 #content .sweet-tabs .nav-tabs li a:hover, .sweet-tabs .nav-tabs li a:focus {
     color: #0077b3 !important;
     text-decoration: underline;
-    border-bottom-width: 0px !important;
+    border-top-color: rgb(149, 172, 193);
+    border-left-color: rgb(149, 172, 193);
+    border-right-color: rgb(149, 172, 193);
+}
+
+#content .sweet-tabs .nav-tabs li.active, #content .sweet-tabs .nav-tabs li.active a {
+    border-top-color: rgb(149, 172, 193);
+    border-left-color: rgb(149, 172, 193);
+    border-right-color: rgb(149, 172, 193);
+    border-bottom: 1px solid white !important;
 }
 
 .sweet-tabs .tab-content {
     margin-top: 20px;
+    margin-left: 22px;
 }
