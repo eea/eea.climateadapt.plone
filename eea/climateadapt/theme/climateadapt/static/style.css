@@ -308,11 +308,25 @@ div.position-0 { margin-left: -100%; }
     text-decoration: none;
     color: #02213d;
     display: block;
-    padding: 6px 6px 6px 26px;
+    padding: 6px 6px 6px 11px;
     height: 16px;
+    outline: 0;
 }
+#content .panel-group .panel-title:hover > a {
+    color: #02213d !important;
+}
+.panel-group .panel-title > a:before {
+    font-family: monospace;
+    font-size: 10px;
+    content: "▼  "
+}
+.panel-group .panel-title > a.collapsed:before {
+    font-family: monospace;
+    font-size: 10px;
+    content: "▶  ";
+}
+
 .panel-group .panel-title > a:not(.collapsed) {
     font-size: 13px !important;
     font-weight: bold !important;
-    color: red !important;
 }
