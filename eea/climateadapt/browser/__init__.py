@@ -88,4 +88,5 @@ class AceViewApi(object):
         """ Returns link to original object, to allow easy comparison
         """
 
-        raise NotImplementedError
+        return "http://adapt-test.eea.europa.eu/viewaceitem?aceitem_id=%s" % \
+            self.context._aceitem_id

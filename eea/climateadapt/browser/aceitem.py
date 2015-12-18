@@ -21,12 +21,6 @@ class GuidanceDocumentView(DefaultView, AceViewApi):
     """
     """
 
-    def link_to_original(self):
-        """ Returns link to original object, to allow easy comparison
-        """
-        return "http://adapt-test.eea.europa.eu/viewaceitem?aceitem_id=%s" % \
-            self.context._aceitem_id
-
 
 class ToolView(DefaultView, AceViewApi):
     """
