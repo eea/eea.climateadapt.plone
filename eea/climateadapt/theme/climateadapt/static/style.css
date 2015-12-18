@@ -288,3 +288,30 @@ div.position-0 { margin-left: -100%; }
     margin-top: 20px;
     margin-left: 22px;
 }
+
+/* Accordion */
+.panel-group .panel-title {
+    font-size: 12px;
+    line-height: 15.6px;
+    margin-bottom: 0;
+    text-decoration: none;
+    height: 28px;
+    border-width: 1px;
+    margin-top: 1px;
+    background: #d7e3ef url(ui-bg_glass_75_d7e3ef_1x400.png) repeat-x scroll 50% 50%;
+    border-color: rgb(211, 211, 211):
+}
+.panel-group .panel-title > a {
+    font-size: 12px !important;
+    font-weight: normal !important;
+    text-decoration: none;
+    color: #02213d;
+    display: block;
+    padding: 6px 6px 6px 26px;
+    height: 16px;
+}
+.panel-group .panel-title > a:not(.collapsed) {
+    font-size: 13px !important;
+    font-weight: bold !important;
+    color: red !important;
+}
