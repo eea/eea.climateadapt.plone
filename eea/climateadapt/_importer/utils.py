@@ -93,6 +93,13 @@ def solve_dynamic_element(node):
     if type_ == 'image':
         # TODO: don't need to keep this as a list
         imageid = [str(x) for x in node.xpath("dynamic-content/@id")]
+        if not imageid:
+            try:
+                imageid = node.xpath('dynamic-content/text()')
+                imageid = get_param_from_link(imageid[0], 'img_id')
+            except Exception, e:
+                print e
+                import pdb; pdb.set_trace()
         return ('image', None, imageid)
 
     if type_ == 'text_area':
@@ -662,22 +669,12 @@ def create_cover_at(site, location, id='index_html', **kw):
     )
     logger.info("Created new cover at %s", cover.absolute_url(1))
 
-    wftool = getToolByName(site, "portal_workflow")
-
-    try:
-        wftool.doActionFor(cover, 'publish')
-    except WorkflowException:
-        # a workflow exception is risen if the state transition is not available
-        # (the sampleProperty content is in a workflow state which
-        # does not have a "submit" transition)
-        logger.exception("Could not publish:" + str(cover.getId()))
-
     return cover
 
 
 def log_call(wrapped):
     def wrapper(*args, **kwargs):
-        logger.info("Calling %s", wrapped.func_name)
+        logger.debug("Calling %s", wrapped.func_name)
         return wrapped(*args, **kwargs)
     return wrapper
 
@@ -788,12 +785,14 @@ def fix_inner_link(site, href):
     if "/viewmeasure" in href:
         acemeasure_id = get_param_from_link(href, 'ace_measure_id')
         obj = _get_imported_acemeasure(site, acemeasure_id)
-        return localize(obj, site)
+        if obj:
+            return localize(obj, site)
 
     if "/viewaceitem" in href:
         aceitem_id = get_param_from_link(href, 'aceitem_id')
         obj = _get_imported_aceitem(site, aceitem_id)
-        return localize(obj, site)
+        if obj:
+            return localize(obj, site)
 
     uuid = get_param_from_link(href, 'uuid')
     if uuid:
@@ -849,7 +848,6 @@ UUID_RE = re.compile(
 )
 
 def get_image_by_imageid(site, imageid):
-    #import pdb; pdb.set_trace()
     repo = site['repository']
     reg = re.compile(str(imageid) + '.[jpg|png]')
 
@@ -875,6 +873,7 @@ MAP_OF_OBJECTS = defaultdict(lambda:{})
 ACEMEASURE_TYPES = ['eea.climateadapt.casestudy',
                     'eea.climateadapt.adaptationoption',]
 
+
 def _get_imported_aceitem(site, id):
     coll = MAP_OF_OBJECTS['aceitems']
     if len(coll) == 0:
@@ -887,7 +886,8 @@ def _get_imported_aceitem(site, id):
     try:
         return coll[long(id)]
     except:
-        import pdb; pdb.set_trace()
+        logger.warning("Could not find aceitem with id %s", id)
+        return
 
 
 def _get_imported_aceproject(site, id):
@@ -899,7 +899,11 @@ def _get_imported_aceproject(site, id):
             obj = b.getObject()
             coll[obj._aceproject_id] = obj
 
-    return coll[long(id)]
+    try:
+        return coll[long(id)]
+    except:
+        logger.warning("Could not find aceproject with id %s", id)
+        return
 
 
 def _get_imported_acemeasure(site, id):
@@ -911,7 +915,11 @@ def _get_imported_acemeasure(site, id):
                 obj = b.getObject()
                 coll[obj._acemeasure_id] = obj
 
-    return coll[long(id)]
+    try:
+        return coll[long(id)]
+    except:
+        logger.warning("Could not find acemeasure with id %s", id)
+        return
 
 
 # Search portlet has this info:

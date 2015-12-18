@@ -609,8 +609,11 @@ def import_template_ace_layout_3(site, layout, structure):
     col1 = structure.pop('column-1')
     for line in col1[0][1]['content']:
         if line[0] == 'image':
-            main['image'] = line[2][0]
-            continue
+            try:
+                main['image'] = line[2][0]
+                continue
+            except IndexError:
+                main['image'] = None
         if line[0] == 'dynamic' and line[1] == 'Title':
             main['title'] = line[2][0]
             continue
@@ -632,11 +635,15 @@ def import_template_ace_layout_3(site, layout, structure):
         # TODO: mark the content with a special interface to enable the menu
         alsoProvides(cover, IBalticRegionMarker)
 
-    image = get_image_by_imageid(site, main['image'])
-    main['image'] = {
-        'title': image.Title(),
-        'thumb': localize(image, site) + "/@@images/image",
-    }
+    if main['image']:
+        image = get_image_by_imageid(site, main['image'])
+        main['image'] = {
+            'title': image.Title(),
+            'thumb': localize(image, site) + "/@@images/image",
+        }
+    else:
+        main['image'] = {'title': '', 'thumb': ''}
+
     main_content = render('templates/richtext_readmore_and_image.pt',
                           {'payload': main})
 

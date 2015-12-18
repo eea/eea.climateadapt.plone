@@ -35,6 +35,7 @@ class SingleImporterView(BrowserView):
             layout = session.query(sql.Layout).filter_by(privatelayout=False,
                                                          layoutid=id).one()
 
+        import pdb; pdb.set_trace()
         cover = import_layout(layout, site)
         if cover:
             return self.request.response.redirect(cover.absolute_url())
