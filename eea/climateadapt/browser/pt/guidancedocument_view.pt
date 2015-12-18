@@ -47,6 +47,7 @@
 
           <h4>Geographic characterisation</h4>
           <tal:block content="structure python:view.render_geochar(context.geochars)" />
+        </div>
 
         <div style="display:none" tal:content="python:view.w.keys()" />
 
