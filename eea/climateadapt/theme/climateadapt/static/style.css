@@ -222,6 +222,7 @@ div.position-0 { margin-left: -100%; }
 /* Tabs */
 .sweet-tabs .nav-tabs {
     margin-left: 5px !important;
+    height: 31px;
 }
 .sweet-tabs .nav-tabs, .sweet-tabs .nav-tabs li {
     list-style: outside none none !important;
@@ -232,13 +233,17 @@ div.position-0 { margin-left: -100%; }
     color: #02213d;
     font-weight: normal;
     margin-right: 2px; 
-
     border-bottom: 0 none !important;
     float: left;
     position: relative;
     top: 1px;
     white-space: nowrap;
-    height: 28px;
+    height: 29px;
+    margin-bottom: 0px !important;
+}
+
+.sweet-tabs .nav-tabs li:first-child {
+   margin-left: 4px;
 }
 
 .sweet-tabs .nav-tabs li:hover {
@@ -257,9 +262,16 @@ div.position-0 { margin-left: -100%; }
     font-weight: 400;
     border-radius: 0px;
     padding-bottom: 2px;
+    border-bottom-width: 0px !important;
+    height: 28px;
 }
 
 #content .sweet-tabs .nav-tabs li a:hover, .sweet-tabs .nav-tabs li a:focus {
     color: #0077b3 !important;
     text-decoration: underline;
+    border-bottom-width: 0px !important;
+}
+
+.sweet-tabs .tab-content {
+    margin-top: 20px;
 }
