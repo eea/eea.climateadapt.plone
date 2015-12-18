@@ -837,7 +837,7 @@ def fix_links(site, text):
             new_href = fix_inner_link(site, href)
             if href != new_href:
                 logger.info("Change link %s to %s", href, new_href)
-            a.set('href', href)
+                a.set('href', new_href)
 
     f.close()
     return lxml.html.tostring(e, encoding='unicode', pretty_print=True)

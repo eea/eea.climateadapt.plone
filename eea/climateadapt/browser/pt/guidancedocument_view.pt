@@ -30,8 +30,10 @@
         <tal:block content="structure context/source" />
 
         <div id="aceitem_sidebar">
-          <h4>Project Documents</h4>
-          <p tal:content="python:u', '.join(context.Subject())" />
+          <tal:block condition="context/Subject">
+            <h4>Project Documents</h4>
+            <p tal:content="python:u', '.join(context.Subject())" />
+          </tal:block>
 
           <h4>Keywords</h4>
           <tal:block content="structure context/keywords" />

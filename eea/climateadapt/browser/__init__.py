@@ -44,15 +44,16 @@ class AceViewApi(object):
         return TRANSLATED[value] + u": <br/>"
 
     def _render_geochar_macrotrans(self, value):
-        return u", ".join(
-            [u"Macro-Transnational region: %s" % TRANSLATED[x] for x in value]
-        )
+        return u"Macro-Transnational region: " + u", ".join(
+            [TRANSLATED[x] for x in value])
 
     def _render_geochar_biotrans(self, value):
         return u" ".join(TRANSLATED.get(x, u'') for x in value)
 
     def _render_geochar_countries(self, value):
-        return u" ".join(TRANSLATED.get(x, u'') for x in value)
+        return (u"Countries:<br/><ul><li>" +
+                u"</li><li>".join(value) +
+                "</li></ul>")
 
     def _render_geochar_subnational(self, value):
         return u" ".join(TRANSLATED.get(x, u'') for x in value)
@@ -78,7 +79,8 @@ class AceViewApi(object):
         for key in order:
             element = value['geoElements'].get(key)
             renderer = getattr(self, "_render_geochar_" + key)
-            out.append(renderer(element))
+            if element:
+                out.append(renderer(element))
 
         return u" ".join(out)
 
