@@ -7,7 +7,7 @@
   role="tablist">
 
   <tal:accordion repeat="kv options/payload">
-    <tal:def tal:define="key python:kv[0]; value python: kv[1]">
+    <tal:def tal:define="key python:kv[0]; value python: kv[1]; first repeat/kv/start;">
 
       <div class="panel panel-default">
         <tal:panel define="panel_id python:accordion_id + '-' + rand()">
@@ -15,8 +15,9 @@
             <h4 class="panel-title">
               <a 
 
-                tal:attributes="aria-controls string:${panel_id}-body; 
+                tal:attributes="aria-controls string:${panel_id}-body;
                 data-parent string:#${accordion_id}-accordion; 
+                class python:first and 'accordion-toggle' or 'accordion-toggle collapsed';
                 href string:#${panel_id}-body"
                 tal:content="key"
 
