@@ -218,3 +218,48 @@ div.position-0 { margin-left: -100%; }
 #tile-configure.in.hide {
     display: block !important;
 }
+
+/* Tabs */
+.sweet-tabs .nav-tabs {
+    margin-left: 5px !important;
+}
+.sweet-tabs .nav-tabs, .sweet-tabs .nav-tabs li {
+    list-style: outside none none !important;
+}
+.sweet-tabs .nav-tabs li {
+    background: #d7e3ef url("../images/jquery-ui/ui-bg_glass_75_d7e3ef_1x400.png") repeat-x scroll 50% 50%;
+    border: 1px solid #d3d3d3;
+    color: #02213d;
+    font-weight: normal;
+    margin-right: 2px; 
+
+    border-bottom: 0 none !important;
+    float: left;
+    position: relative;
+    top: 1px;
+    white-space: nowrap;
+    height: 28px;
+}
+
+.sweet-tabs .nav-tabs li:hover {
+    background: #b8cce0 url("../images/jquery-ui/ui-bg_glass_75_b8cce0_1x400.png") repeat-x scroll 50% 50%;
+    border: 1px solid #95acc1;
+    color: #02213d;
+    font-weight: normal;
+}
+
+.sweet-tabs .nav-tabs > li > a {
+    text-decoration: underline;
+    padding: 6px 12px;
+    margin: 0px;
+    font-family: Arial,sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    border-radius: 0px;
+    padding-bottom: 2px;
+}
+
+#content .sweet-tabs .nav-tabs li a:hover, .sweet-tabs .nav-tabs li a:focus {
+    color: #0077b3 !important;
+    text-decoration: underline;
+}
