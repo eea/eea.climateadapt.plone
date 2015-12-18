@@ -386,6 +386,7 @@
     "forms.less",
     "navs.less",
     "navbar.less",
+    "component-animations.less",
     "dropdowns.less"
   ],
   "js": [
@@ -393,7 +394,8 @@
     "tooltip.js",
     "popover.js",
     "tab.js",
-    "collapse.js"
+    "collapse.js",
+    "transition.js"
   ],
-  "customizerUrl": "http://getbootstrap.com/customize/?id=bed9b163f4c9c1da0805"
+  "customizerUrl": "http://getbootstrap.com/customize/?id=4b708e7d00c8f0d62190"
 }

@@ -837,7 +837,7 @@ def fix_links(site, text):
             new_href = fix_inner_link(site, href)
             if href != new_href:
                 logger.info("Change link %s to %s", href, new_href)
-            a.set('href', href)
+                a.set('href', new_href)
 
     f.close()
     return lxml.html.tostring(e, encoding='unicode', pretty_print=True)
@@ -857,9 +857,13 @@ def get_image_by_imageid(site, imageid):
         # we will try to find it by uuid
         from eea.climateadapt._importer import session
         from eea.climateadapt._importer import sql
-        uuid = session.query(sql.Dlfileentry.uuid_
-                             ).filter_by(largeimageid=imageid).one()[0]
-        return get_repofile_by_uuid(site, uuid)
+        try:
+            uuid = session.query(sql.Dlfileentry.uuid_
+                                ).filter_by(largeimageid=imageid).one()[0]
+            return get_repofile_by_uuid(site, uuid)
+        except:
+            logger.warning("Couldn't find image by id %s", imageid)
+            return None
 
     return repo[ids[0]]
 
