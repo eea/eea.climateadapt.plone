@@ -29,11 +29,11 @@ class SingleImporterView(BrowserView):
         uuid = self.request.form.get('uuid')
         if uuid:
             layout = session.query(sql.Layout).filter_by(privatelayout=False,
-                                                        uuid_=uuid).one()
+                                                         uuid_=uuid).one()
         else:
             id = self.request.form.get('layout')
             layout = session.query(sql.Layout).filter_by(privatelayout=False,
-                                                        layoutid=id).one()
+                                                         layoutid=id).one()
 
         cover = import_layout(layout, site)
         if cover:
@@ -122,3 +122,17 @@ class MapOfLayouts(SingleImporterView):
         return site.absolute_url() + "/layout_importer?uuid=" + uuid
         pass
 
+    def aceimport_url(self):
+        site = getSite()
+        return site.absolute_url() + "/layout_importer?type=aceitems"
+        pass
+
+    def dlimport_url(self):
+        site = getSite()
+        return site.absolute_url() + "/layout_importer?type=dlentries"
+        pass
+
+    def caseimport_url(self):
+        site = getSite()
+        return site.absolute_url() + "/layout_importer?type=casestudy"
+        pass

@@ -32,7 +32,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     description = TextLine(title=(u"description"), required=True)
 
-    #fix
+    # fix
     data_type = Choice(title=_(u"Data Type"),
                        required=True,
                        vocabulary="eea.climateadapt.aceitems_datatypes")
@@ -82,6 +82,8 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     important = Bool(title=_(u"High importance"), required=False,
                      default=False)
+
+    websites = TextLine(title=_(u"Websites"), required=True,)
 
     source = TextLine(title=_(u"Source"), required=True,)
 

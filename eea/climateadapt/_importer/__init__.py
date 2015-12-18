@@ -70,6 +70,7 @@ def import_aceitem(data, location):
             sectors=s2l(data.sectors_),
             elements=s2l(data.elements_),
             climate_impacts=s2l(data.climateimpacts_),
+            websites=s2l(data.storedat),
             source=data.source,
             comments=data.comments,
             year=int(data.year or '0'),
