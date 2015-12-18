@@ -70,6 +70,7 @@ def import_aceitem(data, location):
             sectors=s2l(data.sectors_),
             elements=s2l(data.elements_),
             climate_impacts=s2l(data.climateimpacts_),
+            websites=s2l(data.storedat),
             source=data.source,
             comments=data.comments,
             year=int(data.year or '0'),
@@ -634,14 +635,14 @@ def import_template_ace_layout_3(site, layout, structure):
         # TODO: mark the content with a special interface to enable the menu
         alsoProvides(cover, IBalticRegionMarker)
 
+    main['image'] = {'title': '', 'thumb': ''}
     if main['image']:
         image = get_image_by_imageid(site, main['image'])
-        main['image'] = {
-            'title': image.Title(),
-            'thumb': localize(image, site) + "/@@images/image",
-        }
-    else:
-        main['image'] = {'title': '', 'thumb': ''}
+        if image:
+            main['image'] = {
+                'title': image.Title(),
+                'thumb': localize(image, site) + "/@@images/image",
+            }
 
     main_content = render('templates/richtext_readmore_and_image.pt',
                           {'payload': main})
@@ -1311,7 +1312,10 @@ def run_importer(site=None):
             import_adaptationoption(acemeasure, site['adaptationoption'])
 
     for layout in session.query(sql.Layout).filter_by(privatelayout=False):
-        cover = import_layout(layout, site)
+        try:
+            cover = import_layout(layout, site)
+        except:
+            logger.exception("Couldn't import layout %s", layout.friendlyurl)
         if cover:
             cover._imported_comment = \
                 "Imported from layout {0}".format(layout.layoutid)

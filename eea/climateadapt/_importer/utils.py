@@ -857,9 +857,13 @@ def get_image_by_imageid(site, imageid):
         # we will try to find it by uuid
         from eea.climateadapt._importer import session
         from eea.climateadapt._importer import sql
-        uuid = session.query(sql.Dlfileentry.uuid_
-                             ).filter_by(largeimageid=imageid).one()[0]
-        return get_repofile_by_uuid(site, uuid)
+        try:
+            uuid = session.query(sql.Dlfileentry.uuid_
+                                ).filter_by(largeimageid=imageid).one()[0]
+            return get_repofile_by_uuid(site, uuid)
+        except:
+            logger.warning("Couldn't find image by id %s", imageid)
+            return None
 
     return repo[ids[0]]
 

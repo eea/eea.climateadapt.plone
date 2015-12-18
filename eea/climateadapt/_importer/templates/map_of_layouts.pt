@@ -3,9 +3,9 @@
   <body tal:define="opts view/options">
 
     <ul>
-      <li><a href="">Import dlentries</a></li>
-      <li><a href="">Import aceitems</a></li>
-      <li><a href="">Import casestudy</a></li>
+      <li><a tal:attributes="href view/dlimport_url">Import dlentries</a></li>
+      <li><a tal:attributes="href view/aceimport_url">Import aceitems</a></li>
+      <li><a tal:attributes="href view/caseimport_url">Import casestudy</a></li>
     </ul>
 
     <table>
