@@ -185,7 +185,7 @@ def _clean_portlet_settings(d):
         'anyOfThese': 'special_tags',
         'countries': 'countries',
         'element': 'elements',
-        'nrItemsPage': '10',
+        'nrItemsPage': 'count',
         'portletSetupTitle_en_GB': 'title',
         'sector': 'sector',
         'sortBy': 'sortBy',

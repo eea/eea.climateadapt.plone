@@ -7,10 +7,6 @@
   <body tal:define="is_compose view/is_compose_mode">
     <strong tal:condition="is_compose">Relevant AceContent Tile</strong>
 
-    <!-- <p tal:condition="python: not view.data.get('element_type') and view.is_compose_mode()" i18n:translate=""> -->
-    <!--   Please edit the tile to enter correct data. -->
-    <!-- </p> -->
-
     <dl tal:condition="view/is_compose_mode">
       <dt>Element type:</dt>
       <dd tal:content="python: view.data.get('element_type')" />
@@ -25,9 +21,8 @@
     <div class="cover-richtext-tile tile-content aceitem-relevant-tile" tal:condition="not: is_compose">
       <h2 tal:content="python: view.data.get('title')">Title here</h2>
 
-      <div tal:content="view/data" />
-
-      relevant
+      <h3 style="display:none">Relevant tile</h3>
+      <div style="display:none" tal:content="view/data" />
       <ul>
         <li tal:repeat="brain view/items">
           <a href="" tal:attributes="href brain/getURL" tal:content="brain/Title">Title here</a>
