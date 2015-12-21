@@ -174,7 +174,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile):
 
         }
 
-        sort = self.data.get('sortOn')
+        sort = self.data.get('sortBy')
         if sort:
             query['sort_on'] = sort_map[sort]
             query['sort_order'] = 'reverse'
@@ -183,6 +183,8 @@ class RelevantAceContentItemsTile(PersistentCoverTile):
             p = self.data.get(k, '')
             if p:
                 query[v] = p
+
+        print query
 
         res = catalog.searchResults(limit=count, **query)
         if len(res) > count:

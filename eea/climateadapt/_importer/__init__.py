@@ -75,7 +75,7 @@ def import_aceitem(data, location):
             comments=data.comments,
             year=int(data.year or '0'),
             geochars=data.geochars,
-            special_tags=s2l(data.specialtagging),
+            special_tags=s2l(data.specialtagging, ' ', relaxed=True),
             rating=data.rating,
         )
         item._aceitem_id = data.aceitemid

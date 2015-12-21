@@ -61,8 +61,22 @@ def printe(e):
     print lxml.etree.tostring(e, pretty_print=True)
 
 
-def s2l(text, separator=';'):
+def s2l(text, separator=';', relaxed=False):
     """Converts a string in form: u'EXTREMETEMP;FLOODING;' to a list"""
+
+    if relaxed:
+        # for specialtagging, the separator can be anything from
+        # ' ' or ',' or ';'
+        tags = [text]
+        for sep in [';', ',', ' ']:
+            z = [t.split(sep) for t in tags]
+            tags = []
+            for t in z:
+                tags.extend(t)
+            tags = filter(None, [x.strip().lower() for x in tags])
+
+        return tags
+
     return filter(None, text.split(separator))
 
 
