@@ -267,7 +267,10 @@ def extract_portlet_info(session, portletid, layout):
             value = value.text
         except Exception:
             pass
-        prefs[name] = unicode(value)
+        if value is not None:
+            prefs[name] = unicode(value)
+        else:
+            prefs[name] = None
 
     portlet_title = None
     if prefs.get('portletSetupUseCustomTitle') == "true":
@@ -851,7 +854,7 @@ def fix_links(site, text):
             res = fix_inner_link(site, href)
             if href != res:
                 if not isinstance(res, basestring):
-                    res = res.absolute_url()    # TODO: maybe needs /download?
+                    res = res.absolute_url()
                 logger.info("Change link %s to %s", href, res)
                 a.set('href', res)
 

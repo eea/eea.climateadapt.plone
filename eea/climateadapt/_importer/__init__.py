@@ -525,10 +525,12 @@ def import_template_ace_layout_2(site, layout, structure):
     main['title'] = title
     main['body'] = body
     main['readmore'] = readmore
+
     main['image'] = {
         'title': image.Title(),
         'thumb': localize(image, site) + "/@@images/image",
     }
+
     main_content = render('templates/richtext_readmore_and_image.pt',
                           {'payload': main})
 
@@ -610,10 +612,10 @@ def import_template_ace_layout_3(site, layout, structure):
     for line in col1[0][1]['content']:
         if line[0] == 'image':
             try:
-                main['image'] = line[2][0]
+                main['image'] = {'id': line[2][0]}
                 continue
             except IndexError:
-                main['image'] = None
+                main['image'] = {'id': None}
         if line[0] == 'dynamic' and line[1] == 'Title':
             main['title'] = line[2][0]
             continue
@@ -635,14 +637,14 @@ def import_template_ace_layout_3(site, layout, structure):
         # TODO: mark the content with a special interface to enable the menu
         alsoProvides(cover, IBalticRegionMarker)
 
-    main['image'] = {'title': '', 'thumb': ''}
-    if main['image']:
-        image = get_image_by_imageid(site, main['image'])
-        if image:
-            main['image'] = {
+    main['image'].update({'title': '', 'thumb': ''})
+    if main['image']['id']:
+        image = get_image_by_imageid(site, main['image']['id'])
+        if image is not None:
+            main['image'].update({
                 'title': image.Title(),
                 'thumb': localize(image, site) + "/@@images/image",
-            }
+            })
 
     main_content = render('templates/richtext_readmore_and_image.pt',
                           {'payload': main})

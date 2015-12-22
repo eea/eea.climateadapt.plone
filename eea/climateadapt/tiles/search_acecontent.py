@@ -138,7 +138,6 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
 
         for info in aceitem_types:
             q = query.copy()
-            #q.pop('special_tags')
             q.update({'search_type': info.id})
             print 'search:', q
             print self.data
