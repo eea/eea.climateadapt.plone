@@ -185,6 +185,21 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
     view_more = False
 
+
+    def show_share_btn(self):
+        search_type = self.data.get('search_type')
+        if search_type in ['DOCUMENT', 'INFORMATIONSOURCE', 'GUIDANCE',
+                           'TOOL', 'REASEARCHPROJECT', 'MEASURE',
+                           'ORGANISATION']:
+            return True
+
+        # <c:if test="${aceitemtype eq 'DOCUMENT' || aceitemtype eq
+                           # 'INFORMATIONSOURCE' || aceitemtype eq 'GUIDANCE' ||
+                           # aceitemtype eq 'TOOL' || aceitemtype eq
+                           # 'RESEARCHPROJECT' || aceitemtype eq 'MEASURE' ||
+                           # aceitemtype eq 'ORGANISATION'}" >
+
+
     def is_empty(self):
         return False
 
@@ -203,6 +218,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         )
 
     def items(self):
+        print self.data
         count = self.data.get('nr_items', 5) or 5
         query = self.build_query()
         res = self.catalog.searchResults(limit=count, **query)
