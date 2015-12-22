@@ -32,6 +32,7 @@ from eea.climateadapt._importer.utils import render
 from eea.climateadapt._importer.utils import render_accordion
 from eea.climateadapt._importer.utils import render_tabs
 from eea.climateadapt._importer.utils import strip_xml
+from eea.climateadapt._importer.utils import t2r
 from eea.climateadapt.interfaces import IASTNavigationRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
@@ -61,7 +62,7 @@ def import_aceitem(data, location):
             location,
             ACE_ITEM_TYPES[data.datatype],
             title=data.name,
-            description=data.description,
+            description=t2r(data.description),
             keywords=data.keyword,
             spatial_layer=data.spatiallayer,
             spatial_values=s2l(data.spatialvalues),

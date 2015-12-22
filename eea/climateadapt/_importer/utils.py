@@ -6,6 +6,7 @@ from Products.CMFCore.utils import getToolByName
 from collections import defaultdict
 from collective.cover.tiles.configuration import TilesConfigurationScreen
 from eea.climateadapt._importer import sqlschema as sql
+from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import createContentInContainer
 from plone.tiles.interfaces import ITileDataManager
 from plone.uuid.interfaces import IUUIDGenerator
@@ -78,6 +79,10 @@ def s2l(text, separator=';', relaxed=False):
         return tags
 
     return filter(None, text.split(separator))
+
+
+def t2r(text):
+    return RichTextValue(text, 'text/html', 'text/html')
 
 
 def parse_settings(text):
