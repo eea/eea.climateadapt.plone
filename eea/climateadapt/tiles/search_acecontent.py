@@ -71,7 +71,7 @@ class AceTileMixin(object):
                'element_type': 'element_type',
                'search_text': 'SearchableText',
                'special_tags': 'special_tags',
-               'sector': 'sector',
+               'sector': 'sectors',
                }
 
         sort_map = {
@@ -138,16 +138,17 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
 
         for info in aceitem_types:
             q = query.copy()
-            q.pop('special_tags')
+            #q.pop('special_tags')
             q.update({'search_type': info.id})
             print 'search:', q
             print self.data
-            res = self.catalog.searchResults(**q)
-            result.append((
-                info.label,
-                len(res),
-                url % (element_type, info.id),
-            ))
+            count = len(self.catalog.searchResults(**q))
+            if count:
+                result.append((
+                    info.label,
+                    count,
+                    url % (element_type, info.id),
+                ))
 
         return result
 

@@ -6,7 +6,7 @@
  </index>
  <column value="search_type"/>
 
- <index name="sectors" meta_type="FieldIndex">
+ <index name="sectors" meta_type="KeywordIndex">
   <indexed_attr value="sectors"/>
  </index>
  <column value="sectors"/>

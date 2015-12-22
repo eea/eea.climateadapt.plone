@@ -848,10 +848,12 @@ def fix_links(site, text):
         href = a.get('href')
         f.write((href or '').encode('utf-8') + "\n")
         if href is not None:
-            new_href = fix_inner_link(site, href)
-            if href != new_href:
-                logger.info("Change link %s to %s", href, new_href)
-                a.set('href', new_href)
+            res = fix_inner_link(site, href)
+            if href != res:
+                if not isinstance(res, basestring):
+                    res = res.absolute_url()    # TODO: maybe needs /download?
+                logger.info("Change link %s to %s", href, res)
+                a.set('href', res)
 
     f.close()
     return lxml.html.tostring(e, encoding='unicode', pretty_print=True)
