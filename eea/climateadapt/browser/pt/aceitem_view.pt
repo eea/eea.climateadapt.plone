@@ -10,7 +10,8 @@
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core" >
 
-        <h2 tal:content="python: context.data_type">Data Type</h2>
+        <a href="" tal:attributes="href view/link_to_original">Original</a>
+        <h2 tal:content="structure python: view.widgets['data_type'].render()">Data Type</h2>
         <h1 tal:content="python: context.title">Title here</h1>
 
         <h3>Description</h3>
@@ -18,19 +19,22 @@
 
         <h4>Reference information</h4>
         <h5>Websites:</h5>
-        <p>websites should come here</p>
+        <p>Websites should come here</p>
         <h5>Source:</h5>
         <p tal:content="context/source">Source here</p>
 
         <div id="aceitem_sidebar">
           <h4>Keywords</h4>
-          <p tal:content="python:u', '.join(context.Subject())" />
+          <tal:block content="structure context/keywords" />
+
           <h4>Climate impacts</h4>
-          <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
+          <tal:block content="structure python:view.widgets['climate_impacts'].render()" />
+
+          <h4>Elements</h4>
+          <tal:block content="structure python:view.widgets['elements'].render()" />
+
           <h4>Sectors</h4>
-          <p tal:content="structure python:view.widgets['sectors'].render()"/>
-          <h5>Countries:</h5>
-          <p tal:content="structure python:view.widgets['spatial_layer'].render()"/>
+          <tal:block content="structure python:view.widgets['sectors'].render()" />
         </div>
 
         <!-- <tal:def tal:define="sector_w python:view.widgets['sectors']" > -->
