@@ -6,6 +6,7 @@ from Products.CMFCore.utils import getToolByName
 from collections import defaultdict
 from collective.cover.tiles.configuration import TilesConfigurationScreen
 from eea.climateadapt._importer import sqlschema as sql
+from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import createContentInContainer
 from plone.tiles.interfaces import ITileDataManager
 from plone.uuid.interfaces import IUUIDGenerator
@@ -61,9 +62,27 @@ def printe(e):
     print lxml.etree.tostring(e, pretty_print=True)
 
 
-def s2l(text, separator=';'):
+def s2l(text, separator=';', relaxed=False):
     """Converts a string in form: u'EXTREMETEMP;FLOODING;' to a list"""
+
+    if relaxed:
+        # for specialtagging, the separator can be anything from
+        # ' ' or ',' or ';'
+        tags = [text]
+        for sep in [';', ',', ' ']:
+            z = [t.split(sep) for t in tags]
+            tags = []
+            for t in z:
+                tags.extend(t)
+            tags = filter(None, [x.strip().lower() for x in tags])
+
+        return tags
+
     return filter(None, text.split(separator))
+
+
+def t2r(text):
+    return RichTextValue(text, 'text/html', 'text/html')
 
 
 def parse_settings(text):
@@ -171,7 +190,7 @@ def _clean_portlet_settings(d):
         'anyOfThese': 'special_tags',
         'countries': 'countries',
         'element': 'elements',
-        'nrItemsPage': '10',
+        'nrItemsPage': 'count',
         'portletSetupTitle_en_GB': 'title',
         'sector': 'sector',
         'sortBy': 'sortBy',
@@ -253,7 +272,10 @@ def extract_portlet_info(session, portletid, layout):
             value = value.text
         except Exception:
             pass
-        prefs[name] = unicode(value)
+        if value is not None:
+            prefs[name] = unicode(value)
+        else:
+            prefs[name] = None
 
     portlet_title = None
     if prefs.get('portletSetupUseCustomTitle') == "true":
@@ -834,10 +856,12 @@ def fix_links(site, text):
         href = a.get('href')
         f.write((href or '').encode('utf-8') + "\n")
         if href is not None:
-            new_href = fix_inner_link(site, href)
-            if href != new_href:
-                logger.info("Change link %s to %s", href, new_href)
-                a.set('href', new_href)
+            res = fix_inner_link(site, href)
+            if href != res:
+                if not isinstance(res, basestring):
+                    res = res.absolute_url()
+                logger.info("Change link %s to %s", href, res)
+                a.set('href', res)
 
     f.close()
     return lxml.html.tostring(e, encoding='unicode', pretty_print=True)

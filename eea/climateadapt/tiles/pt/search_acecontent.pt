@@ -21,9 +21,9 @@
     <div class="cover-richtext-tile tile-content aceitem-search-tile" tal:condition="not: is_compose">
       <h2 tal:content="python: view.data.get('title')">Title here</h2>
 
-      <div tal:content="view/data" />
+      <h3 style="display:none">Search tile</h3>
+      <div style="display:none" tal:content="view/data" />
 
-      search
       <ul>
         <li tal:repeat="info view/sections">
           <a tal:attributes="href python:info[2]">

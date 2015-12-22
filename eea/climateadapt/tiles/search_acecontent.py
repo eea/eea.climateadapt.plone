@@ -54,7 +54,48 @@ class ISearchAceContentTile(IPersistentCoverTile):
                             )
 
 
-class SearchAceContentTile(PersistentCoverTile):
+class AceTileMixin(object):
+    """ Mixin class for ace search/relevant content tiles
+    """
+
+    @property
+    def catalog(self):
+        catalog = getToolByName(self.context, 'portal_catalog')
+        return catalog
+
+    def build_query(self):
+
+        query = {}
+        # todo: do countries
+        map = {'search_type': 'search_type',        # importeddata: plone field
+               'element_type': 'element_type',
+               'search_text': 'SearchableText',
+               'special_tags': 'special_tags',
+               'sector': 'sectors',
+               }
+
+        sort_map = {
+            'RATING': 'rating',                     # importeddata: plone field
+
+        }
+
+        sort = self.data.get('sortBy')
+        if sort:
+            query['sort_on'] = sort_map[sort]
+            query['sort_order'] = 'reverse'
+
+        for k, v in map.items():
+            p = self.data.get(k, '')
+            if p:
+                query[v] = p
+
+        for k, v in query.items():
+            if v is None:
+                del query[k]
+        return query
+
+
+class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
     """ Search Ace content tile
 
     It shows links to the search page, for all aceitems_types.
@@ -88,19 +129,23 @@ class SearchAceContentTile(PersistentCoverTile):
         """ Returns a list of (section name, section count, section_url)
         """
         site = getSite()
-        catalog = getToolByName(self.context, 'portal_catalog')
         result = []
         url = site.absolute_url() + "/data-and-downloads?searchtext=&searchelements=%s&searchtypes=%s"
+        query = self.build_query()
 #       "http://adapt-test.eea.europa.eu/data-and-downloads?"
 #       "searchtext=&searchelements=OBSERVATIONS&searchtypes=ORGANISATION"
         element_type = self.data.get('element_type')
+
         for info in aceitem_types:
-            res = catalog.searchResults(search_type=info.id)
-            result.append((
-                info.label,
-                len(res),
-                url % (element_type, info.id),
-            ))
+            q = query.copy()
+            q.update({'search_type': info.id})
+            count = len(self.catalog.searchResults(**q))
+            if count:
+                result.append((
+                    info.label,
+                    count,
+                    url % (element_type, info.id),
+                ))
 
         return result
 
@@ -125,7 +170,7 @@ class IRelevantAceContentItemsTile(ISearchAceContentTile):
     )
 
 
-class RelevantAceContentItemsTile(PersistentCoverTile):
+class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
     """ Relevant AceItem content
     """
     implements(IRelevantAceContentItemsTile)
@@ -139,6 +184,21 @@ class RelevantAceContentItemsTile(PersistentCoverTile):
     index = ViewPageTemplateFile('pt/relevant_acecontent.pt')
 
     view_more = False
+
+
+    def show_share_btn(self):
+        search_type = self.data.get('search_type')
+        if search_type in ['DOCUMENT', 'INFORMATIONSOURCE', 'GUIDANCE',
+                           'TOOL', 'REASEARCHPROJECT', 'MEASURE',
+                           'ORGANISATION']:
+            return True
+
+        # <c:if test="${aceitemtype eq 'DOCUMENT' || aceitemtype eq
+                           # 'INFORMATIONSOURCE' || aceitemtype eq 'GUIDANCE' ||
+                           # aceitemtype eq 'TOOL' || aceitemtype eq
+                           # 'RESEARCHPROJECT' || aceitemtype eq 'MEASURE' ||
+                           # aceitemtype eq 'ORGANISATION'}" >
+
 
     def is_empty(self):
         return False
@@ -158,33 +218,12 @@ class RelevantAceContentItemsTile(PersistentCoverTile):
         )
 
     def items(self):
-        catalog = getToolByName(self.context, 'portal_catalog')
+        print self.data
         count = self.data.get('nr_items', 5) or 5
+        query = self.build_query()
+        res = self.catalog.searchResults(limit=count, **query)
 
-        query = {}
-        # todo: do countries
-        map = {'search_type': 'search_type',        # importeddata: plone field
-               'element_type': 'element_type',
-               'search_text': 'SearchableText',
-               'special_tags': 'special_tags',
-               }
-
-        sort_map = {
-            'RATING': 'rating',                     # importeddata: plone field
-
-        }
-
-        sort = self.data.get('sortOn')
-        if sort:
-            query['sort_on'] = sort_map[sort]
-            query['sort_order'] = 'reverse'
-
-        for k, v in map.items():
-            p = self.data.get(k, '')
-            if p:
-                query[v] = p
-
-        res = catalog.searchResults(limit=count, **query)
         if len(res) > count:
             self.view_more = True
+
         return res[:count]

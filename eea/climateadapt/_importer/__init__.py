@@ -32,6 +32,7 @@ from eea.climateadapt._importer.utils import render
 from eea.climateadapt._importer.utils import render_accordion
 from eea.climateadapt._importer.utils import render_tabs
 from eea.climateadapt._importer.utils import strip_xml
+from eea.climateadapt._importer.utils import t2r
 from eea.climateadapt.interfaces import IASTNavigationRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
@@ -61,7 +62,7 @@ def import_aceitem(data, location):
             location,
             ACE_ITEM_TYPES[data.datatype],
             title=data.name,
-            description=data.description,
+            description=t2r(data.description),
             keywords=data.keyword,
             spatial_layer=data.spatiallayer,
             spatial_values=s2l(data.spatialvalues),
@@ -75,7 +76,7 @@ def import_aceitem(data, location):
             comments=data.comments,
             year=int(data.year or '0'),
             geochars=data.geochars,
-            special_tags=s2l(data.specialtagging),
+            special_tags=s2l(data.specialtagging, ' ', relaxed=True),
             rating=data.rating,
         )
         item._aceitem_id = data.aceitemid
@@ -525,10 +526,12 @@ def import_template_ace_layout_2(site, layout, structure):
     main['title'] = title
     main['body'] = body
     main['readmore'] = readmore
+
     main['image'] = {
         'title': image.Title(),
         'thumb': localize(image, site) + "/@@images/image",
     }
+
     main_content = render('templates/richtext_readmore_and_image.pt',
                           {'payload': main})
 
@@ -610,10 +613,10 @@ def import_template_ace_layout_3(site, layout, structure):
     for line in col1[0][1]['content']:
         if line[0] == 'image':
             try:
-                main['image'] = line[2][0]
+                main['image'] = {'id': line[2][0]}
                 continue
             except IndexError:
-                main['image'] = None
+                main['image'] = {'id': None}
         if line[0] == 'dynamic' and line[1] == 'Title':
             main['title'] = line[2][0]
             continue
@@ -635,14 +638,14 @@ def import_template_ace_layout_3(site, layout, structure):
         # TODO: mark the content with a special interface to enable the menu
         alsoProvides(cover, IBalticRegionMarker)
 
-    main['image'] = {'title': '', 'thumb': ''}
-    if main['image']:
-        image = get_image_by_imageid(site, main['image'])
-        if image:
-            main['image'] = {
+    main['image'].update({'title': '', 'thumb': ''})
+    if main['image']['id']:
+        image = get_image_by_imageid(site, main['image']['id'])
+        if image is not None:
+            main['image'].update({
                 'title': image.Title(),
                 'thumb': localize(image, site) + "/@@images/image",
-            }
+            })
 
     main_content = render('templates/richtext_readmore_and_image.pt',
                           {'payload': main})
