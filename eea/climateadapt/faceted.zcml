@@ -5,8 +5,19 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:grok="http://namespaces.zope.org/grok"
     xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:faceted="http://namespaces.zope.org/faceted"
     i18n_domain="eea.climateadapt">
 
-    <utility name="eea.climateadapt.faceted_search_types_vocabulary" component=".facetedsearch.search_types_vocabulary" />
+    <utility 
+        name="eea.climateadapt.faceted_search_types_vocabulary" 
+        component=".facetedsearch.search_types_vocabulary" />
+
+    <faceted:view
+        name="faceted-climate-listing-view"
+        class=".facetedsearch.ListingView"
+        template="browser/pt/faceted-listing-view.pt"
+        title="ClimateAdapt Listing View"
+        permission="zope2.View"
+        />
 
 </configure>
