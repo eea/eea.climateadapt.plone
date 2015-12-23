@@ -87,6 +87,11 @@ class AceViewApi(object):
     def link_to_original(self):
         """ Returns link to original object, to allow easy comparison
         """
-
-        return "http://adapt-test.eea.europa.eu/viewaceitem?aceitem_id=%s" % \
-            self.context._aceitem_id
+        if hasattr(self.context, '_aceitem_id'):
+            return (
+                "http://adapt-test.eea.europa.eu/viewaceitem?aceitem_id=%s"
+                % self.context._aceitem_id)
+        if hasattr(self.context, '_acemeasure_id'):
+            return (
+                "http://adapt-test.eea.europa.eu/viewmeasure?ace_measure_id=%s"
+                % self.context._acemeasure_id)
