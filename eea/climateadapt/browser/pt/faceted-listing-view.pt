@@ -5,71 +5,37 @@
   metal:use-macro="context/main_template/macros/master"
   i18n:domain="eea">
 
-<body>
+  <body>
 
-  <metal:content-core fill-slot="content-core">
+    <metal:content-core fill-slot="content-core">
 
-    <tal:comment condition="nothing">
-    <!--
-      Defining the 'content-core' macro is mandatory
-      for this to work as a Faceted View.
+      <metal:block define-macro="content-core">
 
-      Also, in order to have results overwritten by Faceted you have to define
-      folderContents like::
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.css"/>
+        <script type="text/javascript" src="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.js"></script>
 
-          tal:define="folderContents folderContents | <something else>;"
-
-      This way when you use this view outside faceted, <someting else> will
-      be used, otherwise 'folderContents' is used;
-
-      Remember, when you use this template as a faceted view, 'view' variable
-      is an instance of a class from eea.facetednavigation package,
-      that's why you get a lot of AttributeErrors. In order to access your
-      custom controller define a 'self' variable as bellow and use
-      that instead of 'view.my_stuff()'::
-
-          tal:define="
-            self nocall:context/@@my-custom-faceted-view;
-            myStuff python:self.my_stuff()"
-
-      Having the batch present within the results page is also important,
-      otherwise you may get no facets on the page. It doesn't matter
-      if you put it on the top or at the bottom of your results, it's
-      important to have at least one of it::
-
-          <div metal:use-macro="context/batch_macros/macros/navigation" />
-
-      Still, there is a trick you can do to avoid the batch macro. Just
-      add a HTML element with class="listingBar" like::
+        <div tal:define="
+          self nocall:context/@@faceted-climate-listing-view;
+          folderContents folderContents | python:context.getFolderContents();
+          all_results python:self.results(folderContents);
+          sections self/sections;
+          labels self/labels">
 
           <div class="listingBar" style="display: none"></div>
 
-    -->
-    </tal:comment>
+          <div tal:repeat="search_type sections">
+            <h3 tal:content="python: labels[search_type]" />
+            <dl tal:define="results python: all_results[search_type]" >
+              <tal:entry repeat="brain results">
+                <dt tal:content="brain/Title" />
+                <dd tal:content="python:brain.Description" />
+              </tal:entry>
+            </dl>
+          </div>
 
-    <metal:block define-macro="content-core">
-      <div tal:define="
-        self nocall:context/@@faceted-climate-listing-view;
-        folderContents folderContents | python:context.getFolderContents();
-        all_results python:self.results(folderContents);
-        sections self/sections;
-        labels self/labels">
-
-        <div class="listingBar" style="display: none"></div>
-
-        <div tal:repeat="search_type sections">
-          <h3 tal:content="python: labels[search_type]" />
-          <dl tal:define="results python: all_results[search_type]" >
-            <tal:entry repeat="brain results">
-              <dt tal:content="brain/Title" />
-              <!-- <dd tal:content="python:brain.Description" /> -->
-            </tal:entry>
-          </dl>
         </div>
 
-      </div>
-
-    </metal:block>
-  </metal:content-core>
-</body>
+      </metal:block>
+    </metal:content-core>
+  </body>
 </html>
