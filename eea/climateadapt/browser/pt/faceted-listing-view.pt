@@ -25,13 +25,53 @@
 
           <div tal:repeat="search_type sections">
             <h3 tal:content="python: labels[search_type]" />
-            <dl tal:define="results python: all_results[search_type]" >
-              <tal:entry repeat="brain results">
-                <dt tal:content="brain/Title" />
-                <dd tal:content="python:brain.Description" />
-              </tal:entry>
-            </dl>
+
+            <div class="table-control">
+              <strong>Sorty by:</strong>
+
+              <input type="radio" name="" tal:attributes="name string:control-${search_type}; 
+                id string: search_relevance-control-${$search_type}" 
+                value="search_relevance" />
+                <label 
+                  tal:attributes="for string: search_relevance-control-${$search_type}">
+                  Search relevance
+                </label>
+
+              <input type="radio" name="" tal:attributes="name string:control-${search_type}; 
+                id string: atoz-control-${$search_type}" 
+                value="atoz" />
+                <label 
+                  tal:attributes="for string: atoz-control-${$search_type}">A to Z</label>
+
+              <input type="radio" name="" tal:attributes="name string:control-${search_type}; 
+                id string: year-control-${$search_type}" 
+                value="year" />
+                <label 
+                  tal:attributes="for string: year-control-${$search_type}">Year in descending order
+                </label>
+            </div>
+
+            <table class="listing-table" tal:define="results python: all_results[search_type]" >
+              <tr tal:repeat="brain results">
+                <td>
+                  <h5><a href="" tal:content="brain/Title" tal:attributes="brain/getURL">Link</a></h5>
+                </td>
+                <td tal:content="repeat/brain/index">relevance</td>
+                <td tal:content="brain/year">year</td>
+              </tr>
+            </table>
           </div>
+          <script>
+            $(document).ready(function() {
+            $('.listing-table').DataTable(
+              {
+                paging: true,
+                pagingType: 'full',
+                pageLength: 10
+              }
+            );
+                } );
+          </script>
 
         </div>
 
