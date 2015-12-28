@@ -85,6 +85,12 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        name="site_navbar"
+        for="*"
+        template="pt/navbar.pt"
+        permission="zope.Public"
+        />
 
     <!-- Tile helpers -->
 

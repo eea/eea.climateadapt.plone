@@ -27,7 +27,7 @@
             <h3 tal:content="python: labels[search_type]" />
 
             <div class="table-control">
-              <strong>Sorty by:</strong>
+              <strong>Sort by:</strong>
 
               <input type="radio" name="" tal:attributes="name string:control-${search_type}; 
                 id string: search_relevance-control-${$search_type}" 
@@ -63,14 +63,14 @@
           </div>
           <script>
             $(document).ready(function() {
-            $('.listing-table').DataTable(
-              {
-                paging: true,
-                pagingType: 'full',
-                pageLength: 10
-              }
-            );
-                } );
+              $('.listing-table').DataTable(
+                {
+                  paging: true,
+                  pagingType: 'full',
+                  pageLength: 10
+                }
+              );
+            } );
           </script>
 
         </div>
