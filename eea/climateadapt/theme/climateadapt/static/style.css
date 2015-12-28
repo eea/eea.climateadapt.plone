@@ -350,7 +350,8 @@ div.position-0 { margin-left: -100%; }
     padding-top: 9px; padding-left: 20px;
 }
 
-.panel-collapse.in > .panel-body {
+.panel-collapse.in > .panel-body,
+.panel-collapse.collapsing {
     border-left-width: 1px;
     border-bottom-width: 1px;
     border-right-width: 1px;
