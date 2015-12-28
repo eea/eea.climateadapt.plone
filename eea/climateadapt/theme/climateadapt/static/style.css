@@ -333,8 +333,10 @@ div.position-0 { margin-left: -100%; }
     border-right-width: 1px;
     border-right-color: rgb(170, 170, 170);
     border-top-color: rgb(170, 170, 170);
+    border-bottom-color: rgb(170, 170, 170);
     border-left-color: rgb(170, 170, 170);
     border-top-style: solid;
+    border-bottom-style: solid;
     border-left-style: solid;
     border-right-style: solid;
 }
