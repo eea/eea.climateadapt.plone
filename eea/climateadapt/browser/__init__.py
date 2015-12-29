@@ -52,9 +52,7 @@ class AceViewApi(object):
         return u" ".join(TRANSLATED.get(x, u'') for x in value)
 
     def _render_geochar_countries(self, value):
-        return (u"Countries:<br/><ul><li>" +
-                u"</li><li>".join(value) +
-                "</li></ul>")
+        return (u"Countries:<br/>" + u", ".join(value))
 
     def _render_geochar_subnational(self, value):
         return u" ".join(TRANSLATED.get(x, u'') for x in value)
@@ -127,16 +125,16 @@ class Navbar(BrowserView):
             Transnational regions       /transnational-regions
             Cities and towns            /cities
 
-        Tools                                   /tools/general
-            General                             /tools/general
-            Adaptation support tool             /adaptation-support-tool
-            Case study search tool              /sat
-            Map viewer                          /tools/map-viewer
-            Uncertainty guidance                /uncertainty-guidance
-            Guidelines for project managers     /guidelines-for-project-managers
-            Urban vulnerability mapbook         /tools/urban-adaptation
-            Urban adaptation support tool       /tools/urban-ast
-            Time series tool                    /tools/time-series-tool
+        Tools                                  /tools/general
+            General                            /tools/general
+            Adaptation support tool            /adaptation-support-tool
+            Case study search tool             /sat
+            Map viewer                         /tools/map-viewer
+            Uncertainty guidance               /uncertainty-guidance
+            Guidelines for project managers    /guidelines-for-project-managers
+            Urban vulnerability mapbook        /tools/urban-adaptation
+            Urban adaptation support tool      /tools/urban-ast
+            Time series tool                   /tools/time-series-tool
 
         Links       /organisations
             Organisations       /organisations
@@ -180,4 +178,3 @@ class Navbar(BrowserView):
         sections.append(this_section)
 
         return sections
-
