@@ -68,6 +68,9 @@ class SingleImporterView(BrowserView):
         eea.climateadapt._importer.session = session
         site = self.context
 
+        if 'content' not in site.contentIds():
+            site.invokeFactory("Folder", 'content')
+
         for aceitem in session.query(sql.AceAceitem):
             if aceitem.datatype in ['ACTION', 'MEASURE']:
                 # TODO: log and solve here

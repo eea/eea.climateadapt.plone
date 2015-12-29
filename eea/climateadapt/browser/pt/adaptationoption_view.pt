@@ -13,6 +13,7 @@
         <a href="" tal:attributes="href view/link_to_original">Original</a>
         <h2>Adaptation option</h2>
         <h1 tal:content="context/title">Title here</h1>
+        <p tal:content="structure context/description/output" />
 
         <h5>Adaptation Option Description</h5>
 
@@ -24,8 +25,13 @@
           <li><a href="#implementation">Implementation Time</a></li>
         </ul>
 
+        <h5>Reference information</h5>
+        <ul>
+          <li><a href="#websites">Websites</a></li>
+          <li><a href="#source">Source</a></li>
+        </ul>
+
         <h4>Adaptation Option Description</h4>
-        <tal:block replace="structure context/description" />
 
         <h4>Adaptation Details</h4>
         <p id="success_factors"><em class="underline">Success and Limiting Factors</em> <tal:block content="context/success_limitations" /></p>
@@ -34,12 +40,12 @@
         <p id="implementation"><em class="underline">Implementation Time</em> <tal:block content="context/implementation_time" /></p>
 
         <h4>Reference information</h4>
-        <h5>Websites:</h5>
+        <h5 id="websites">Websites:</h5>
         <ul>
           <li tal:repeat="site context/websites"><a tal:attributes="href site" tal:content="site" /></li>
         </ul>
 
-        <h5>Source:</h5>
+        <h5 id="source">Source:</h5>
         <p tal:content="context/source">Source here</p>
 
         <div id="aceitem_sidebar">
