@@ -86,10 +86,11 @@
         />
 
     <browser:page
-        name="site_navbar"
+        class=".Navbar"
         for="*"
-        template="pt/navbar.pt"
+        name="site_navbar"
         permission="zope.Public"
+        template="pt/navbar.pt"
         />
 
     <!-- Tile helpers -->
