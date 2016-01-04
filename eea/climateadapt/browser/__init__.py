@@ -175,6 +175,8 @@ class Navbar(BrowserView):
                 label, link = line[:lpos].strip(), line[lpos:].strip()
                 this_section[2].append((label, link))
 
-        sections.append(this_section)
+        if this_section:
+            sections.append(this_section)
 
+        print sections
         return sections

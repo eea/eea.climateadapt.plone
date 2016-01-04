@@ -29,7 +29,9 @@
     <replace css:content="#portal-header p.hiddenStructure" css:theme="#accessibility" /> 
     <drop css:content=".searchSection" />
     <replace css:content="#portal-searchbox" css:theme="#search" />
-    <replace css:content="#portal-globalnav" href="./@@site_navbar" />
+
+    <replace css:content="#navbar" css:theme="#mainnav" href="@@site_navbar" method="document" />
+
     <!-- <replace css:content="#portal&#45;globalnav li" css:theme&#45;children="#nav ul" /> -->
     <replace css:content-children="#portal-footer" css:theme="#footer-info" />   
     <replace css:content="#portal-siteactions" css:theme-children="#siteactions" />  
