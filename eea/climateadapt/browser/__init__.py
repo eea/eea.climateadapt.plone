@@ -178,5 +178,4 @@ class Navbar(BrowserView):
         if this_section:
             sections.append(this_section)
 
-        print sections
         return sections
