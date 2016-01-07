@@ -3,14 +3,25 @@
 
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFCore.utils import getToolByName
+from Products.GenericSetup.context import SnapshotImportContext
+from Products.GenericSetup.interfaces import IBody
 from collections import defaultdict
 from collective.cover.tiles.configuration import TilesConfigurationScreen
 from eea.climateadapt._importer import sqlschema as sql
+from eea.facetednavigation.events import FacetedEnabledEvent
+from eea.facetednavigation.events import FacetedWillBeEnabledEvent
+from eea.facetednavigation.interfaces import IDisableSmartFacets
+from eea.facetednavigation.interfaces import IFacetedNavigable
+from eea.facetednavigation.interfaces import IHidePloneLeftColumn
+from eea.facetednavigation.interfaces import IHidePloneRightColumn
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import createContentInContainer
 from plone.tiles.interfaces import ITileDataManager
 from plone.uuid.interfaces import IUUIDGenerator
 from zope.component import getUtility
+from zope.component import queryMultiAdapter
+from zope.event import notify
+from zope.interface import alsoProvides
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 from zope.site.hooks import getSite
 import logging
@@ -949,6 +960,60 @@ def _get_imported_acemeasure(site, id):
         logger.warning("Could not find acemeasure with id %s", id)
         return
 
+
+def _facetize(item, xml_filename):
+    """ Make an item as faceted navigation
+    """
+
+    notify(FacetedWillBeEnabledEvent(item))
+    alsoProvides(item, IFacetedNavigable)
+    if not IDisableSmartFacets.providedBy(item):
+        alsoProvides(item, IDisableSmartFacets)
+    if not IHidePloneLeftColumn.providedBy(item):
+        alsoProvides(item, IHidePloneLeftColumn)
+    if not IHidePloneRightColumn.providedBy(item):
+        alsoProvides(item, IHidePloneRightColumn)
+    notify(FacetedEnabledEvent(item))
+
+    import os.path
+    fpath = os.path.join(os.path.dirname(__file__), 'faceted', xml_filename)
+    with open(fpath) as f:
+        xml = f.read()
+
+    if not xml.startswith('<?xml version="1.0"'):
+        raise ValueError('Please provide a valid xml file')
+
+    environ = SnapshotImportContext(item, 'utf-8')
+    importer = queryMultiAdapter((item, environ), IBody)
+    if not importer:
+        raise ValueError('No adapter found')
+
+    importer.body = xml
+
+
+def make_faceted(site, location, xmlfilename, layout):
+
+    path = [x.strip() for x in location.split('/') if x.strip()]
+    fname, parent_names = path[-1], path[:-1]
+
+    parent = site
+    for name in parent_names:
+        if name not in parent.contentIds():
+            parent = createAndPublishContentInContainer(
+                parent,
+                'Folder',
+                title=name,
+            )
+        else:
+            parent = parent[name]
+
+    faceted = createAndPublishContentInContainer(parent, 'Folder', title=fname)
+    faceted.setLayout(layout)
+    _facetize(faceted, xmlfilename)
+
+    logger.info("Created faceted folder at %s", faceted.absolute_url(1))
+
+    return faceted
 
 # Search portlet has this info:
 #  u'column-5': [(u'filteraceitemportlet_WAR_FilterAceItemportlet_INSTANCE_nY73',

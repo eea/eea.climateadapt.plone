@@ -86,9 +86,9 @@
         />
 
     <browser:page
+        name="site_navbar"
         class=".Navbar"
         for="*"
-        name="site_navbar"
         permission="zope.Public"
         template="pt/navbar.pt"
         />

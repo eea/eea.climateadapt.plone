@@ -14,6 +14,7 @@ from eea.climateadapt._importer.utils import logger
 from eea.climateadapt._importer.utils import make_aceitem_search_tile
 from eea.climateadapt._importer.utils import make_ast_navigation_tile
 from eea.climateadapt._importer.utils import make_countries_dropdown_tile
+from eea.climateadapt._importer.utils import make_faceted
 from eea.climateadapt._importer.utils import make_group
 from eea.climateadapt._importer.utils import make_iframe_embed_tile
 from eea.climateadapt._importer.utils import make_image_tile
@@ -1340,6 +1341,13 @@ def tweak_site(site):
         obj = site.restrictedTraverse(path)
         if not IASTNavigationRoot.providedBy(obj):
             alsoProvides(obj, IASTNavigationRoot)
+
+    faceted_pages = [
+        ('/search', 'search.xml', 'faceted-climate-listing-view'),
+    ]
+
+    for location, xmlfilename, layout in faceted_pages:
+        make_faceted(site, location, xmlfilename, layout)
 
     # TODO: create manually created pages
     # tweak frontpage portlets

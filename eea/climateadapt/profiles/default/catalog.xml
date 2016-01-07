@@ -35,6 +35,7 @@
  <index name="year" meta_type="FieldIndex">
   <indexed_attr value="year"/>
  </index>
+ <column value="year" />
 
  <index name="imported_uuid" meta_type="FieldIndex">
   <indexed_attr value="imported_uuid"/>
