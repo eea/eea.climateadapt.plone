@@ -18,7 +18,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     title = TextLine(title=_(u"Title"), required=True)
 
     # description - Provided by behaviour. Imported value comes from description column
-    description = TextLine(title=_(u"description"), required=True)
+    description = RichText(title=_(u"description"), required=True)
 
     implementation_type = Choice(
         title=_(u"Implementation Type"), required=False, default=None,
