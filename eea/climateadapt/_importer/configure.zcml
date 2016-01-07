@@ -31,4 +31,12 @@
         template="templates/map_of_layouts.pt"
         />
 
+    <browser:page
+        name="faceted_importer"
+        for="*"
+        class=".views.FacetedImporter"
+        permission="zope2.View"
+        template="templates/faceted_importer.pt"
+        />
+
 </configure>

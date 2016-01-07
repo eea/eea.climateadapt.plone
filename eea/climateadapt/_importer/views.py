@@ -139,3 +139,21 @@ class MapOfLayouts(SingleImporterView):
         site = getSite()
         return site.absolute_url() + "/layout_importer?type=casestudy"
         pass
+
+
+class FacetedImporter(BrowserView):
+    def __call__(self):
+        from eea.climateadapt._importer.utils import make_faceted
+
+        if 'submit' in self.request.form:
+            site = self.context
+
+            form = self.request.form
+            location = form['location']
+            xmlfilename = form['xmlfilename']
+            layout = form['layout']
+
+            faceted = make_faceted(site, location, xmlfilename, layout)
+            return self.request.response.redirect(faceted.absolute_url())
+        else:
+            return self.index()

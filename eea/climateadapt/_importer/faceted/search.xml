@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<object name="search" meta_type="Dexterity Container">
+ <criteria>
+  <criterion name="c1">
+   <property name="widget">select</property>
+   <property name="title">Type of Data</property>
+   <property name="position">left</property>
+   <property name="section">default</property>
+   <property name="hidden">0</property>
+   <property name="count">0</property>
+   <property name="sortcountable">0</property>
+   <property name="hidezerocount">0</property>
+   <property name="index">search_type</property>
+   <property
+      name="vocabulary">eea.climateadapt.faceted_search_types_vocabulary</property>
+   <property name="catalog"></property>
+   <property name="sortreversed">0</property>
+   <property name="default"></property>
+  </criterion>
+  <criterion name="c2">
+   <property name="widget">sorting</property>
+   <property name="title">Sort on</property>
+   <property name="position">right</property>
+   <property name="section">default</property>
+   <property name="hidden">1</property>
+   <property name="vocabulary"></property>
+   <property name="default">effective(reverse)</property>
+  </criterion>
+  <criterion name="c0">
+   <property name="widget">resultsperpage</property>
+   <property name="title">res</property>
+   <property name="position">right</property>
+   <property name="section">default</property>
+   <property name="hidden">1</property>
+   <property name="start"></property>
+   <property name="end">1000000</property>
+   <property name="step">1000000</property>
+   <property name="default">1000000</property>
+  </criterion>
+ </criteria>
+</object>
