@@ -41,4 +41,15 @@
   <indexed_attr value="imported_uuid"/>
  </index>
 
+ <index name="aceitem_id" meta_type="FieldIndex">
+  <indexed_attr value="aceitem_id"/>
+ </index>
+
+ <index name="acemeasure_id" meta_type="FieldIndex">
+  <indexed_attr value="acemeasure_id"/>
+ </index>
+
+ <index name="aceproject_id" meta_type="FieldIndex">
+  <indexed_attr value="aceproject_id"/>
+ </index>
 </object>
