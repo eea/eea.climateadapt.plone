@@ -40,11 +40,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           value_type=Choice(
                               vocabulary="eea.climateadapt.ace_countries"))
 
-    legal_aspects = Text(title=_(u"Legal aspects"),
-                         required=False,
-                         default=u"")
+    legal_aspects = RichText(title=_(u"Legal aspects"),
+                             required=False,
+                             default=u"")
 
-    stakeholder_participation = Text(
+    stakeholder_participation = RichText(
         title=_(u"Stakeholder participation"), required=False,
         default=u"")
 
