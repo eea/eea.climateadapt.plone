@@ -42,7 +42,11 @@ for line in filter(None, labels.split('\n')):
 class AceViewApi(object):
 
     def _render_geochar_element(self, value):
-        return TRANSLATED[value] + u": <br/>"
+        value = TRANSLATED[value]
+        if value == 'Global':
+            return value + u"<br/>"
+        else:
+            return value + u":<br/>"
 
     def _render_geochar_macrotrans(self, value):
         return u"Macro-Transnational region: " + u", ".join(
