@@ -10,14 +10,14 @@
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core" >
 
+        <a href="" tal:attributes="href view/link_to_original">Original</a>
         <h2>Project</h2>
 
         <h1 tal:content="context/title">Title here</h1>
         <!-- <h2 tal:content="context/acronym">Acronym here</h2> -->
 
         <h4>Description:</h4>
-        <p tal:replace="structure context/description">Description here</p>
-        <!-- <p tal:replace="structure context/abstracts">Abstracts here</p> -->
+        <tal:block content="structure context/abstracts" />
 
         <h3>Project information</h3>
 

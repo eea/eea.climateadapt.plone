@@ -98,6 +98,10 @@ class AceViewApi(object):
             return (
                 "http://adapt-test.eea.europa.eu/viewmeasure?ace_measure_id=%s"
                 % self.context._acemeasure_id)
+        if hasattr(self.context, '_aceproject_id'):
+            return (
+                "http://adapt-test.eea.europa.eu/projects1?ace_project_id=%s"
+                % self.context._aceproject_id)
 
 
 class Navbar(BrowserView):
