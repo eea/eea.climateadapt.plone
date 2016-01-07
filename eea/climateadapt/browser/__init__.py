@@ -1,5 +1,6 @@
 from Products.Five.browser import BrowserView
 import json
+from zExceptions import NotFound
 
 #
 labels = """
@@ -186,3 +187,66 @@ class Navbar(BrowserView):
         sections.append(this_section)
 
         return sections
+
+
+class ViewAceItem(BrowserView):
+    """
+    """
+
+    def __call__(self, REQUEST):
+
+        aceitem_id = REQUEST.get('aceitem_id')
+        if aceitem_id:
+            try:
+                aceitem_id = int(aceitem_id)
+            except ValueError:
+                raise NotFound
+        else:
+            raise NotFound
+
+        return redirect(self.context, REQUEST, 'aceitem_id', aceitem_id)
+
+
+class ViewAceMeasure(BrowserView):
+    """
+    """
+
+    def __call__(self, REQUEST):
+
+        acemeasure_id = REQUEST.get('ace_measure_id')
+        if acemeasure_id:
+            try:
+                acemeasure_id = int(acemeasure_id)
+            except ValueError:
+                raise NotFound
+        else:
+            raise NotFound
+
+        return redirect(self.context, REQUEST, 'acemeasure_id', acemeasure_id)
+
+
+class ViewAceProject(BrowserView):
+    """
+    """
+
+    def __call__(self, REQUEST):
+
+        aceproject_id = REQUEST.get('ace_project_id')
+        if aceproject_id:
+            try:
+                aceproject_id = int(aceproject_id)
+            except ValueError:
+                raise NotFound
+        else:
+            raise NotFound
+
+        return redirect(self.context, REQUEST, 'aceproject_id', aceproject_id)
+
+
+def redirect(site, REQUEST, key, itemid):
+    portal_catalog = site.portal_catalog
+    brains = portal_catalog({key: itemid})
+    if not brains:
+        raise NotFound
+    ob = brains[0].getObject()
+    return REQUEST.RESPONSE.redirect(ob.absolute_url(), status=301)

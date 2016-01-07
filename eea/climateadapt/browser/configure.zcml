@@ -93,6 +93,27 @@
         template="pt/navbar.pt"
         />
 
+    <browser:page
+        class=".ViewAceItem"
+        for="*"
+        name="viewaceitem"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        class=".ViewAceMeasure"
+        for="*"
+        name="viewmeasure"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        class=".ViewAceProject"
+        for="*"
+        name="projects1"
+        permission="zope.Public"
+        />
+
     <!-- Tile helpers -->
 
     <browser:page
