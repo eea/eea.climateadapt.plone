@@ -50,10 +50,10 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     contact = RichText(title=_(u"Contact"), required=False, default=u"")
 
-    success_limitations = Text(
+    success_limitations = RichText(
         title=_(u"Success / limitations"), required=False, default=u"")
 
-    cost_benefit = Text(
+    cost_benefit = RichText(
         title=_(u"Cost / Benefit"), required=False, default=u"")
 
     websites = List(title=_(u"Websites"),
