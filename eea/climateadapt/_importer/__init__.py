@@ -104,7 +104,7 @@ def import_aceproject(data, location):
         abstracts=t2r(data.abstracts),
         source=t2r(data.source),
         partners=t2r(data.partners),
-        keywords=t2r(data.keywords, separator=', '),
+        keywords=t2r(data.keywords),
         sectors=s2l(data.sectors),
         elements=s2l(data.element),
         climate_impacts=s2l(data.climateimpacts),
