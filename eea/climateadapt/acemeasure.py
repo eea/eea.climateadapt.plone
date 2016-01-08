@@ -17,7 +17,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     # title - Provided by behaviour. Imported value comes from name column
     title = TextLine(title=_(u"Title"), required=True)
 
-    # description - Provided by behaviour. Imported value comes from description column
+    # description - Provided by behaviour. Imported value comes from
+    #               description column
     long_description = RichText(title=_(u"description"), required=True)
 
     implementation_type = Choice(
@@ -156,7 +157,10 @@ class AdaptationOption(dexterity.Item):
 # class AceMeasure(Base):
 #     __tablename__ = 'ace_measure'
 #
-#     measureid = Column(BigInteger, primary_key=True, server_default=text("nextval('ace_measure_id_seq'::regclass)"))
+#     measureid = Column(
+#         BigInteger,
+#         primary_key=True,
+#         server_default=text("nextval('ace_measure_id_seq'::regclass)"))
 #     companyid = Column(BigInteger)
 #     groupid = Column(BigInteger)
 #     name = Column(String(255))
@@ -176,7 +180,9 @@ class AdaptationOption(dexterity.Item):
 #     startdate = Column(DateTime)
 #     enddate = Column(DateTime)
 #     publicationdate = Column(DateTime)
-#     specialtagging = Column(String(75), server_default=text("NULL::character varying"))
+#     specialtagging = Column(
+#         String(75),
+#         server_default=text("NULL::character varying"))
 #     sectors_ = Column(String(255))
 #     elements_ = Column(String(255))
 #     climateimpacts_ = Column(String(255))
