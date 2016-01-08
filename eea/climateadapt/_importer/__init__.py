@@ -101,10 +101,10 @@ def import_aceproject(data, location):
         acronym=data.acronym,
         lead=data.lead,
         website=data.website,
-        abstracts=data.abstracts,
-        source=data.source,
-        partners=data.partners,
-        keywords=data.keywords,
+        abstracts=t2r(data.abstracts),
+        source=t2r(data.source),
+        partners=t2r(data.partners),
+        keywords=t2r(data.keywords, separator=', '),
         sectors=s2l(data.sectors),
         elements=s2l(data.element),
         climate_impacts=s2l(data.climateimpacts),
@@ -1303,7 +1303,6 @@ def run_importer(site=None):
                 wftool.doActionFor(obj, 'publish')
             except WorkflowException:
                 logger.exception("Could not publish:" + obj.absolute_url(1))
-
 
     for image in session.query(sql.Image):
         import_image(image, site['repository'])
