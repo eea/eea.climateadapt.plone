@@ -4,6 +4,7 @@ from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
 from zope.interface import implements
 from zope.schema import Choice, TextLine, List, Bool, Int, Text, URI, Decimal
+from collective import dexteritytextindexer
 
 
 class IAceMeasure(form.Schema, IImageScaleTraversable):
@@ -17,8 +18,10 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     # title - Provided by behaviour. Imported value comes from name column
     title = TextLine(title=_(u"Title"), required=True)
 
-    # description - Provided by behaviour. Imported value comes from description column
-    description = TextLine(title=_(u"description"), required=True)
+    # description - Provided by behaviour. Imported value comes from
+    #               description column
+    dexteritytextindexer.searchable('long_description')
+    long_description = RichText(title=_(u"description"), required=True)
 
     implementation_type = Choice(
         title=_(u"Implementation Type"), required=False, default=None,
@@ -40,20 +43,25 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           value_type=Choice(
                               vocabulary="eea.climateadapt.ace_countries"))
 
-    legal_aspects = Text(title=_(u"Legal aspects"),
-                         required=False,
-                         default=u"")
+    dexteritytextindexer.searchable('legal_aspects')
+    legal_aspects = RichText(title=_(u"Legal aspects"),
+                             required=False,
+                             default=u"")
 
-    stakeholder_participation = Text(
+    dexteritytextindexer.searchable('stakeholder_participation')
+    stakeholder_participation = RichText(
         title=_(u"Stakeholder participation"), required=False,
         default=u"")
 
+    dexteritytextindexer.searchable('contact')
     contact = RichText(title=_(u"Contact"), required=False, default=u"")
 
-    success_limitations = Text(
+    dexteritytextindexer.searchable('success_limitations')
+    success_limitations = RichText(
         title=_(u"Success / limitations"), required=False, default=u"")
 
-    cost_benefit = Text(
+    dexteritytextindexer.searchable('cost_benefit')
+    cost_benefit = RichText(
         title=_(u"Cost / Benefit"), required=False, default=u"")
 
     websites = List(title=_(u"Websites"),
@@ -111,11 +119,23 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     rating = Int(title=_(u"Rating"), required=True, default=0)
 
-    objectives = Text(title=_(u"Objectives"), required=False, default=u"")
-    solutions = Text(title=_(u"Solutions"), required=False, default=u"")
-    adaptationoptions = Text(title=_(u"Adaptation Options"),
-                             required=False, default=u"")
-    relevance = Text(title=_(u"Relevance"), required=False, default=u"")
+    dexteritytextindexer.searchable('objectives')
+    objectives = RichText(title=_(u"Objectives"), required=False, default=u"")
+
+    dexteritytextindexer.searchable('solutions')
+    solutions = RichText(title=_(u"Solutions"), required=False, default=u"")
+
+    adaptationoptions = List(
+        title=_(u"Adaptation Options"),
+        required=False,
+        value_type=Int(),   # TODO:  leave it like that, until we figure it out
+        )
+    relevance = List(
+        title=_(u"Relevance"),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_relevance",),
+        )
     # approved is done by workflow
 
 
@@ -148,7 +168,10 @@ class AdaptationOption(dexterity.Item):
 # class AceMeasure(Base):
 #     __tablename__ = 'ace_measure'
 #
-#     measureid = Column(BigInteger, primary_key=True, server_default=text("nextval('ace_measure_id_seq'::regclass)"))
+#     measureid = Column(
+#         BigInteger,
+#         primary_key=True,
+#         server_default=text("nextval('ace_measure_id_seq'::regclass)"))
 #     companyid = Column(BigInteger)
 #     groupid = Column(BigInteger)
 #     name = Column(String(255))
@@ -168,7 +191,9 @@ class AdaptationOption(dexterity.Item):
 #     startdate = Column(DateTime)
 #     enddate = Column(DateTime)
 #     publicationdate = Column(DateTime)
-#     specialtagging = Column(String(75), server_default=text("NULL::character varying"))
+#     specialtagging = Column(
+#         String(75),
+#         server_default=text("NULL::character varying"))
 #     sectors_ = Column(String(255))
 #     elements_ = Column(String(255))
 #     climateimpacts_ = Column(String(255))

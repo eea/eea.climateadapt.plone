@@ -29,6 +29,7 @@ from eea.climateadapt._importer.utils import make_transregion_dropdown_tile
 from eea.climateadapt._importer.utils import noop
 from eea.climateadapt._importer.utils import pack_to_table
 from eea.climateadapt._importer.utils import parse_settings, s2l    #, printe
+from eea.climateadapt._importer.utils import s2li
 from eea.climateadapt._importer.utils import render
 from eea.climateadapt._importer.utils import render_accordion
 from eea.climateadapt._importer.utils import render_tabs
@@ -100,10 +101,10 @@ def import_aceproject(data, location):
         acronym=data.acronym,
         lead=data.lead,
         website=data.website,
-        abstracts=data.abstracts,
-        source=data.source,
-        partners=data.partners,
-        keywords=data.keywords,
+        abstracts=t2r(data.abstracts),
+        source=t2r(data.source),
+        partners=t2r(data.partners),
+        keywords=t2r(data.keywords),
         sectors=s2l(data.sectors),
         elements=s2l(data.element),
         climate_impacts=s2l(data.climateimpacts),
@@ -132,17 +133,17 @@ def import_adaptationoption(data, location):
         location,
         'eea.climateadapt.adaptationoption',
         title=data.name,
-        description=t2r(data.description),
+        long_description=t2r(data.description),
         implementation_type=data.implementationtype,
         implementation_time=data.implementationtime,
         lifetime=data.lifetime,
         spatial_layer=data.spatiallayer,
         spatial_values=s2l(data.spatialvalues),
-        legal_aspects=data.legalaspects,
-        stakeholder_participation=data.stakeholderparticipation,
+        legal_aspects=t2r(data.legalaspects),
+        stakeholder_participation=t2r(data.stakeholderparticipation),
         contact=t2r(data.contact),
-        success_limitations=data.succeslimitations,
-        cost_benefit=data.costbenefit,
+        success_limitations=t2r(data.succeslimitations),
+        cost_benefit=t2r(data.costbenefit),
         websites=s2l(data.website),
         sectors=s2l(data.sectors_),
         elements=s2l(data.elements_),
@@ -153,6 +154,10 @@ def import_adaptationoption(data, location):
         measure_type=data.mao_type,
         comments=data.comments,
         rating=data.rating,
+        objectives=t2r(data.objectives),
+        solutions=t2r(data.solutions),
+        adaptationoptions=s2li(data.adaptationoptions),
+        relevance=s2l(data.relevance),
     )
     item._acemeasure_id = data.measureid
     item.reindexObject()
@@ -171,15 +176,15 @@ def import_casestudy(data, location):
         title=data.name,
         implementation_type=data.implementationtype,
         implementation_time=data.implementationtime,
-        description=data.description,
+        long_description=t2r(data.description),
         lifetime=data.lifetime,
         spatial_layer=data.spatiallayer,
         spatial_values=data.spatialvalues,
-        legal_aspects=data.legalaspects,
-        stakeholder_participation=data.stakeholderparticipation,
+        legal_aspects=t2r(data.legalaspects),
+        stakeholder_participation=t2r(data.stakeholderparticipation),
         contact=t2r(data.contact),
-        success_limitations=data.succeslimitations,
-        cost_benefit=data.costbenefit,
+        success_limitations=t2r(data.succeslimitations),
+        cost_benefit=t2r(data.costbenefit),
         websites=s2l(data.website),
         sectors=s2l(data.sectors_),
         elements=s2l(data.elements_),
@@ -191,6 +196,10 @@ def import_casestudy(data, location):
         measure_type=data.mao_type,
         comments=data.comments,
         rating=data.rating,
+        objectives=t2r(data.objectives),
+        solutions=t2r(data.solutions),
+        adaptationoptions=s2li(data.adaptationoptions),
+        relevance=s2l(data.relevance),
     )
 
     item._acemeasure_id = data.measureid
@@ -1312,7 +1321,6 @@ def run_importer(site=None):
                 wftool.doActionFor(obj, 'publish')
             except WorkflowException:
                 logger.exception("Could not publish:" + obj.absolute_url(1))
-
 
     for image in session.query(sql.Image):
         import_image(image, site['repository'])
