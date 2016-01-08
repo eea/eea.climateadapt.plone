@@ -4,6 +4,7 @@ from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
 from zope.interface import implements
 from zope.schema import Choice, TextLine, List, Bool, Int, Text, URI, Decimal
+from collective import dexteritytextindexer
 
 
 class IAceMeasure(form.Schema, IImageScaleTraversable):
@@ -19,6 +20,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     # description - Provided by behaviour. Imported value comes from
     #               description column
+    dexteritytextindexer.searchable('long_description')
     long_description = RichText(title=_(u"description"), required=True)
 
     implementation_type = Choice(
@@ -41,19 +43,24 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           value_type=Choice(
                               vocabulary="eea.climateadapt.ace_countries"))
 
+    dexteritytextindexer.searchable('legal_aspects')
     legal_aspects = RichText(title=_(u"Legal aspects"),
                              required=False,
                              default=u"")
 
+    dexteritytextindexer.searchable('stakeholder_participation')
     stakeholder_participation = RichText(
         title=_(u"Stakeholder participation"), required=False,
         default=u"")
 
+    dexteritytextindexer.searchable('contact')
     contact = RichText(title=_(u"Contact"), required=False, default=u"")
 
+    dexteritytextindexer.searchable('success_limitations')
     success_limitations = RichText(
         title=_(u"Success / limitations"), required=False, default=u"")
 
+    dexteritytextindexer.searchable('cost_benefit')
     cost_benefit = RichText(
         title=_(u"Cost / Benefit"), required=False, default=u"")
 
@@ -112,8 +119,12 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     rating = Int(title=_(u"Rating"), required=True, default=0)
 
+    dexteritytextindexer.searchable('objectives')
     objectives = RichText(title=_(u"Objectives"), required=False, default=u"")
+
+    dexteritytextindexer.searchable('solutions')
     solutions = RichText(title=_(u"Solutions"), required=False, default=u"")
+
     adaptationoptions = List(
         title=_(u"Adaptation Options"),
         required=False,
