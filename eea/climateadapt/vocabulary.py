@@ -118,6 +118,14 @@ _featured = [('CASEHOME', 'Feature this on the homepage'),
 aceitem_featured_vocabulary = generic_vocabulary(_featured)
 alsoProvides(aceitem_featured_vocabulary, IVocabularyFactory)
 
+_relevance = [
+    ('IMPL_AS_CCA', 'Case developed and implemented as a CCA (Climate Change Adaptation) Measure.'),
+    ('PARTFUND_AS_CCA', 'Case developed and implemented and partially funded as a CCA measure.'),
+    ('OTHER_POL_OBJ', 'Case mainly developed and implemented because of other policy objectives, but with significant'),
+    ]
+aceitem_relevance_vocabulary = generic_vocabulary(_relevance)
+alsoProvides(aceitem_relevance_vocabulary, IVocabularyFactory)
+
 _implementationtypes = (("grey", "Technical ('grey')"),
                         ("green", "Ecological ('green')"),
                         ("soft", "Behavioural / policy ('soft')")

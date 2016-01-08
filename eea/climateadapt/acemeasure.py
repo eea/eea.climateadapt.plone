@@ -111,11 +111,19 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     rating = Int(title=_(u"Rating"), required=True, default=0)
 
-    objectives = Text(title=_(u"Objectives"), required=False, default=u"")
-    solutions = Text(title=_(u"Solutions"), required=False, default=u"")
-    adaptationoptions = Text(title=_(u"Adaptation Options"),
-                             required=False, default=u"")
-    relevance = Text(title=_(u"Relevance"), required=False, default=u"")
+    objectives = RichText(title=_(u"Objectives"), required=False, default=u"")
+    solutions = RichText(title=_(u"Solutions"), required=False, default=u"")
+    adaptationoptions = List(
+        title=_(u"Adaptation Options"),
+        required=False,
+        value_type=Int(),   # TODO:  leave it like that, until we figure it out
+        )
+    relevance = List(
+        title=_(u"Relevance"),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_relevance",),
+        )
     # approved is done by workflow
 
 

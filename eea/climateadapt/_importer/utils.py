@@ -76,6 +76,8 @@ def printe(e):
 def s2l(text, separator=';', relaxed=False):
     """Converts a string in form: u'EXTREMETEMP;FLOODING;' to a list"""
 
+    if not text:
+        return None
     if relaxed:
         # for specialtagging, the separator can be anything from
         # ' ' or ',' or ';'
@@ -90,6 +92,13 @@ def s2l(text, separator=';', relaxed=False):
         return tags
 
     return filter(None, text.split(separator))
+
+
+def s2li(text, separator=';', relaxed=False):
+    """Converts a string in form: u'123;456;' to a list of int"""
+    if text:
+        return map(int, s2l(text, separator, relaxed))
+    return None
 
 
 def t2r(text):

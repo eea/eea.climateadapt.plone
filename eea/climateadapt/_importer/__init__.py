@@ -29,6 +29,7 @@ from eea.climateadapt._importer.utils import make_transregion_dropdown_tile
 from eea.climateadapt._importer.utils import noop
 from eea.climateadapt._importer.utils import pack_to_table
 from eea.climateadapt._importer.utils import parse_settings, s2l    #, printe
+from eea.climateadapt._importer.utils import s2li
 from eea.climateadapt._importer.utils import render
 from eea.climateadapt._importer.utils import render_accordion
 from eea.climateadapt._importer.utils import render_tabs
@@ -153,6 +154,10 @@ def import_adaptationoption(data, location):
         measure_type=data.mao_type,
         comments=data.comments,
         rating=data.rating,
+        objectives=t2r(data.objectives),
+        solutions=t2r(data.solutions),
+        adaptationoptions=s2li(data.adaptationoptions),
+        relevance=s2l(data.relevance),
     )
     item._acemeasure_id = data.measureid
     item.reindexObject()
@@ -191,6 +196,10 @@ def import_casestudy(data, location):
         measure_type=data.mao_type,
         comments=data.comments,
         rating=data.rating,
+        objectives=t2r(data.objectives),
+        solutions=t2r(data.solutions),
+        adaptationoptions=s2li(data.adaptationoptions),
+        relevance=s2l(data.relevance),
     )
 
     item._acemeasure_id = data.measureid
