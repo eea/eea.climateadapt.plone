@@ -400,7 +400,7 @@ def import_template_1_2_1_columns(site, layout, structure):
     iframe = structure['column-2'][0][1]['url']
 
     cover = create_cover_at(site, layout.friendlyurl,
-                            title=str(structure['name']))
+                            title=strip_xml(structure['name']))
     cover._p_changed = True
     cover._layout_id = layout.layoutid
 
@@ -982,29 +982,30 @@ def import_template_1_column(site, layout, structure):
                        layout.friendlyurl, '1_column')
         return
 
-    try:
-        content = structure['column-1'][0][1]['content']
-    except:
-        # TODO: /sitemap (the contents are missing)
-        import pdb; pdb.set_trace()
+    cover_title = unicode(structure['name'])
 
-    if len(structure['column-1']) == 2:
-        try:
-            content += structure['column-1'][1][1]['content']
-        except:
-            content += structure['column-1'][0][1]['content'][0]
+    # if len(structure['column-1']) == 2:
+    #     try:
+    #         content += structure['column-1'][1][1]['content']
+    #     except:
+    #         content += structure['column-1'][0][1]['content'][0]
+    #
+    # portlet_title = structure['column-1'][0][1].get('portlet_title')
+    # if portlet_title:
+    #     title = portlet_title
+    # else:
+    #     title = structure['column-1'][0][1]['title']
+    #
+    # title = strip_xml(title)
 
-    portlet_title = structure['column-1'][0][1].get('portlet_title')
-    if portlet_title:
-        title = portlet_title
-    else:
-        title = structure['column-1'][0][1]['title']
-
-    cover = create_cover_at(site, layout.friendlyurl, title=title)
+    cover = create_cover_at(site, layout.friendlyurl, title=cover_title)
     cover._p_changed = True
     cover._layout_id = layout.layoutid
 
+
     if len(structure['column-1']) > 2:
+        content = structure['column-1'][0][1]['content']
+
         col1 = u"".join(content)
         col2 = u"".join(structure['column-1'][1][1]['content'][0])
 
@@ -1022,17 +1023,34 @@ def import_template_1_column(site, layout, structure):
         layout = make_layout(row_1, row_2)
 
     else:
+        content = structure['column-1'][0][1]['content']
+        title = ""
+
         if isinstance(content[0], tuple):
             # this is a dynamic portlet
             logger.warning("Please investigate this importer %s with template %s",
                         layout.friendlyurl, '1_column')
             return
 
-        main_text_tile = make_richtext_with_title_tile(cover,
-                                                    {'title': portlet_title,
-                                                    'text': u"".join(content)})
+        tiles = []
 
-        main_group = make_group(16, main_text_tile)
+        for piece in structure['column-1']:
+            content = piece[1]['content'][0]
+            title = piece[1]['portlet_title']
+            if title:
+                tile = make_richtext_with_title_tile(cover,
+                                                     {'title': title,
+                                                      'text': content})
+            else:
+                tile = make_richtext_tile(cover,
+                                          {'title': strip_xml(piece[1]['title']),
+                                           'text': content})
+            tiles.append(tile)
+
+        # main_text_tile = make_richtext_with_title_tile(
+        #     cover, {'title': title, 'text': u"".join(content)})
+
+        main_group = make_group(16, *tiles)
         layout = make_layout(make_row(main_group))
 
     cover.cover_layout = json.dumps(layout)
@@ -1343,7 +1361,7 @@ def tweak_site(site):
             alsoProvides(obj, IASTNavigationRoot)
 
     faceted_pages = [
-        ('/search', 'search.xml', 'faceted-climate-listing-view'),
+        ('/data-and-downloads', 'search.xml', 'faceted-climate-listing-view'),
     ]
 
     for location, xmlfilename, layout in faceted_pages:

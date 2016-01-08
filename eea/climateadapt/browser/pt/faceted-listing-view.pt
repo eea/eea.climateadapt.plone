@@ -74,23 +74,20 @@
           </div>
           <script>
             $(document).ready(function() {
-
-            jQuery(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function(evt){
-            console.log($('.listing-table'));
-            // alert('success');
-            console.log('success');
-            $('.listing-table').DataTable(
-            {
-            paging: true,
-            pagingType: 'full',
-            pageLength: 10
-            }
-            );
+              jQuery(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function(evt){
+                console.log($('.listing-table'));
+                // alert('success');
+                console.log('success');
+                $('.listing-table').DataTable(
+                  {
+                    paging: true,
+                    pagingType: 'full',
+                    pageLength: 10,
+                    retrieve: true
+                  }
+                );
+              });
             });
-
-
-
-            } );
           </script>
 
         </div>
