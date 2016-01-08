@@ -37,6 +37,7 @@ setup(name='eea.climateadapt',
           # -*- Extra requirements: -*-
           'z3c.jbot',
           'pycountry',
+          'collective.dexteritytextindexer',
       ],
       extras_require={
           'test': [

@@ -2,6 +2,7 @@ from eea.climateadapt import MessageFactory as _
 from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.app.textfield import RichText
+from collective import dexteritytextindexer
 from zope.interface import implements
 from zope.schema import Choice, TextLine, List, Bool, Text, Int
 
@@ -41,6 +42,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                         required=False,
                         )
 
+    dexteritytextindexer.searchable('keywords')
     keywords = RichText(title=_(u"Keywords"),
                         description=_(u"Keywords related to the project"),
                         required=False,
