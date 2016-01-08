@@ -21,6 +21,7 @@
   <property name="behaviors">
      <element value="plone.app.content.interfaces.INameFromTitle" />
      <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
+    <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />
    </property>
 
   <!-- View information -->
@@ -49,9 +50,4 @@
     url_expr="string:${object_url}/edit" visible="True">
     <permission value="Modify portal content" />
   </action>
-
-  <!-- enabled behaviors -->
-  <property name="behaviors">
-    <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />
-  </property>
 </object>
