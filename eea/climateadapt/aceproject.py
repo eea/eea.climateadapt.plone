@@ -32,11 +32,13 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                        required=False,
                        )
 
+    dexteritytextindexer.searchable('abstracts')
     abstracts = RichText(title=_(u"Abstracts"),
                          description=_(u"Project abstracts"),
                          required=False,
                          )
 
+    dexteritytextindexer.searchable('partners')
     partners = RichText(title=_(u"Partners"),
                         description=_(u"Information about project partners"),
                         required=False,
@@ -80,6 +82,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                         required=False,
                         )
 
+    dexteritytextindexer.searchable('source')
     source = RichText(
         title=_(u"Source"),
         description=_(u"Source from which project was retrieved"),
