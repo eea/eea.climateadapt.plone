@@ -13,6 +13,26 @@
         template="pt/orderedselect_display.pt"
         />
 
+
+    <browser:menuItems
+        for="collective.cover.content.ICover"
+        menu="plone_displayviews"
+        >
+        <browser:menuItem
+            title="Standard with no title"
+            action="no_title_cover_view"
+            />
+    </browser:menuItems>
+
+
+    <browser:page
+        name="no_title_cover_view"
+        for="*"
+        class=".CoverNoTitleView"
+        template="pt/no_title_cover_view.pt"
+        permission="zope2.View"
+        />
+
     <browser:page
         name="view"
         for="eea.climateadapt.aceitem.IAceItem"

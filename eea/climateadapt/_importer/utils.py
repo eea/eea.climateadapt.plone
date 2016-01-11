@@ -709,7 +709,7 @@ def create_cover_at(site, location, id='index_html', **kw):
         id=id,
         **kw
     )
-    cover.setLayout('standard')
+    cover.setLayout('no_title_cover_view')
     logger.info("Created new cover at %s", cover.absolute_url(1))
 
     return cover

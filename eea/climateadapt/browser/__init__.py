@@ -1,8 +1,9 @@
 from Products.Five.browser import BrowserView
-import json
+from collective.cover.browser.cover import Standard
 from zExceptions import NotFound
+import json
 
-#
+
 labels = """
 acesearch-geochars-lbl-GLOBAL=Global
 acesearch-geochars-lbl-EUROPE=Europe
@@ -251,3 +252,11 @@ def redirect(site, REQUEST, key, itemid):
         raise NotFound
     ob = brains[0].getObject()
     return REQUEST.RESPONSE.redirect(ob.absolute_url(), status=301)
+
+
+class CoverNoTitleView(Standard):
+    """
+    """
+
+    def __call__(self):
+        return self.index()
