@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<object name="search" meta_type="Dexterity Container">
+<object name="data-and-downloads" meta_type="Dexterity Container">
  <criteria>
   <criterion name="c1">
    <property name="widget">checkbox</property>
@@ -7,18 +7,18 @@
    <property name="position">left</property>
    <property name="section">default</property>
    <property name="hidden">0</property>
-   <property name="count">0</property>
-   <property name="sortcountable">0</property>
-   <property name="hidezerocount">0</property>
+   <property name="count"></property>
+   <property name="sortcountable"></property>
+   <property name="hidezerocount"></property>
    <property name="index">search_type</property>
    <property name="operator">or</property>
-   <property name="operator_visible">0</property>
+   <property name="operator_visible"></property>
    <property
       name="vocabulary">eea.climateadapt.faceted_search_types_vocabulary</property>
    <property name="catalog"></property>
    <property name="maxitems"></property>
-   <property name="sortreversed">0</property>
-   <property name="default"/>
+   <property name="sortreversed"></property>
+   <property name="default"></property>
   </criterion>
   <criterion name="c3">
    <property name="widget">checkbox</property>
@@ -26,17 +26,17 @@
    <property name="position">left</property>
    <property name="section">default</property>
    <property name="hidden">0</property>
-   <property name="count">0</property>
-   <property name="sortcountable">0</property>
-   <property name="hidezerocount">0</property>
+   <property name="count"></property>
+   <property name="sortcountable"></property>
+   <property name="hidezerocount"></property>
    <property name="index">sectors</property>
    <property name="operator">or</property>
    <property name="operator_visible">1</property>
    <property name="vocabulary">eea.climateadapt.aceitems_sectors</property>
    <property name="catalog"></property>
    <property name="maxitems"></property>
-   <property name="sortreversed">0</property>
-   <property name="default"/>
+   <property name="sortreversed"></property>
+   <property name="default"></property>
   </criterion>
   <criterion name="c4">
    <property name="widget">checkbox</property>
@@ -44,9 +44,9 @@
    <property name="position">left</property>
    <property name="section">default</property>
    <property name="hidden">0</property>
-   <property name="count">0</property>
-   <property name="sortcountable">0</property>
-   <property name="hidezerocount">0</property>
+   <property name="count"></property>
+   <property name="sortcountable"></property>
+   <property name="hidezerocount"></property>
    <property name="index">climate_impacts</property>
    <property name="operator">or</property>
    <property name="operator_visible">1</property>
@@ -54,8 +54,8 @@
       name="vocabulary">eea.climateadapt.aceitems_climateimpacts</property>
    <property name="catalog"></property>
    <property name="maxitems"></property>
-   <property name="sortreversed">0</property>
-   <property name="default"/>
+   <property name="sortreversed"></property>
+   <property name="default"></property>
   </criterion>
   <criterion name="c5">
    <property name="widget">checkbox</property>
@@ -63,13 +63,31 @@
    <property name="position">left</property>
    <property name="section">default</property>
    <property name="hidden">0</property>
-   <property name="count">0</property>
-   <property name="sortcountable">0</property>
-   <property name="hidezerocount">0</property>
+   <property name="count"></property>
+   <property name="sortcountable"></property>
+   <property name="hidezerocount"></property>
    <property name="index">elements</property>
    <property name="operator">or</property>
    <property name="operator_visible">1</property>
    <property name="vocabulary">eea.climateadapt.aceitems_elements</property>
+   <property name="catalog"></property>
+   <property name="maxitems"></property>
+   <property name="sortreversed"></property>
+   <property name="default"></property>
+  </criterion>
+  <criterion name="c7">
+   <property name="widget">checkbox</property>
+   <property name="title">Countries</property>
+   <property name="position">left</property>
+   <property name="section">default</property>
+   <property name="hidden">0</property>
+   <property name="count">0</property>
+   <property name="sortcountable">0</property>
+   <property name="hidezerocount">0</property>
+   <property name="index">countries</property>
+   <property name="operator">or</property>
+   <property name="operator_visible">0</property>
+   <property name="vocabulary">eea.climateadapt.ace_countries</property>
    <property name="catalog"></property>
    <property name="maxitems"></property>
    <property name="sortreversed">0</property>

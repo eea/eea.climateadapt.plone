@@ -1018,8 +1018,8 @@ def make_faceted(site, location, xmlfilename, layout):
             parent = parent[name]
 
     faceted = createAndPublishContentInContainer(parent, 'Folder', title=fname)
-    faceted.setLayout(layout)
     _facetize(faceted, xmlfilename)
+    faceted.setLayout(layout)
 
     logger.info("Created faceted folder at %s", faceted.absolute_url(1))
 
