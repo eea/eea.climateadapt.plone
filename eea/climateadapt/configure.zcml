@@ -47,6 +47,7 @@
     <adapter name="aceitem_id" factory=".catalog.aceitem_id" />
     <adapter name="acemeasure_id" factory=".catalog.acemeasure_id" />
     <adapter name="aceproject_id" factory=".catalog.aceproject_id" />
+    <adapter name="countries" factory=".catalog.countries" />
 
     <utility name="eea.climateadapt.aceitems_datatypes" component=".vocabulary.aceitem_datatypes_vocabulary"/>
     <utility name="eea.climateadapt.aceitems_storagetypes" component=".vocabulary.aceitem_storagetypes_vocabulary"/>

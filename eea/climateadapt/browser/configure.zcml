@@ -24,6 +24,12 @@
             />
     </browser:menuItems>
 
+    <browser:page
+        name="ace_macros"
+        for="*"
+        template="pt/ace_macros.pt"
+        permission="zope.Public"
+        />
 
     <browser:page
         name="no_title_cover_view"

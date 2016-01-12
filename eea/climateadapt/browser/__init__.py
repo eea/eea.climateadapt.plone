@@ -1,5 +1,6 @@
 from Products.Five.browser import BrowserView
 from collective.cover.browser.cover import Standard
+from eea.climateadapt.vocabulary import ace_countries_dict
 from zExceptions import NotFound
 import json
 
@@ -51,14 +52,15 @@ class AceViewApi(object):
             return value + u":<br/>"
 
     def _render_geochar_macrotrans(self, value):
-        return u"Macro-Transnational region: " + u", ".join(
-            [TRANSLATED[x] for x in value])
+        tpl = u"<p>Macro-Transnational region: <br/>{0}</p>"
+        return tpl.format(u", ".join([TRANSLATED[x] for x in value]))
 
     def _render_geochar_biotrans(self, value):
         return u" ".join(TRANSLATED.get(x, u'') for x in value)
 
     def _render_geochar_countries(self, value):
-        return (u"Countries:<br/>" + u", ".join(value))
+        tpl = u"<p>Countries:<br/>{0}</p>"
+        return tpl.format(u", ".join(self.get_countries(value)))
 
     def _render_geochar_subnational(self, value):
         return u" ".join(TRANSLATED.get(x, u'') for x in value)
@@ -74,6 +76,9 @@ class AceViewApi(object):
         #                   "countries":[],
         #                   "subnational":[],
         #                   "city":""}}'
+
+        if not value:
+            return u""
 
         value = json.loads(value)
 
@@ -104,6 +109,9 @@ class AceViewApi(object):
             return (
                 "http://adapt-test.eea.europa.eu/projects1?ace_project_id=%s"
                 % self.context._aceproject_id)
+
+    def get_countries(self, country_list):
+        return [ace_countries_dict.get(x, x) for x in country_list]
 
 
 class Navbar(BrowserView):

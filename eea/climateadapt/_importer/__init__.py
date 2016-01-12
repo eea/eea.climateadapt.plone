@@ -179,7 +179,7 @@ def import_casestudy(data, location):
         long_description=t2r(data.description),
         lifetime=data.lifetime,
         spatial_layer=data.spatiallayer,
-        spatial_values=data.spatialvalues,
+        spatial_values=s2l(data.spatialvalues),
         legal_aspects=t2r(data.legalaspects),
         stakeholder_participation=t2r(data.stakeholderparticipation),
         contact=t2r(data.contact),

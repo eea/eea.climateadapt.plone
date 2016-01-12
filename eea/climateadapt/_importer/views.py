@@ -10,6 +10,15 @@ import os
 
 
 class SingleImporterView(BrowserView):
+    """ Registered as /@@layout_importer
+
+    Call with one of
+    * ?uuid=<uuid>
+    * layout=<layoutid>
+    * type=casestudy[&id=<measureid>]
+    * type=aceitems
+
+    """
 
     def _make_session(self):
         engine = create_engine(os.environ.get("DB"))
@@ -88,9 +97,15 @@ class SingleImporterView(BrowserView):
         if 'casestudy' not in site.contentIds():
             site.invokeFactory("Folder", 'casestudy')
 
-        for acemeasure in session.query(sql.AceMeasure):
+        to_import = session.query(sql.AceMeasure)
+        id = self.request.form.get('id')
+        if id:
+            to_import = to_import.filter_by(measureid=int(id))
+
+        for acemeasure in to_import:
             if acemeasure.mao_type == 'A':
-                importer(acemeasure, site['casestudy'])
+                obj = importer(acemeasure, site['casestudy'])
+                print "Imported ", obj.absolute_url()
 
     def __call__(self):
         _type = self.request.form.get('type', 'layout')

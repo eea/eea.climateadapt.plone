@@ -364,3 +364,7 @@ div.position-0 { margin-left: -100%; }
     border-left-style: solid;
     border-right-style: solid;
 }
+
+.aceitem_page {
+    padding:1em;
+}
