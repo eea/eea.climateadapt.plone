@@ -1,11 +1,36 @@
-<metal:macro define-macro="geochar">
-  <!-- Geochar field -->
-  <tal:block content="structure python:view.render_geochar(context.geochars)" />
-  <tal:fallback tal:condition="python: not(context.geochars)">
-    <div tal:content="context/spatial_layer" />
-    <div>Countries:</div>
-    <ul tal:define="countries python: view.get_countries(context.spatial_values)">
-      <li tal:repeat="country countries" tal:content="country" />
-    </ul>
-  </tal:fallback>
-</metal:macro>
+<div>
+  <metal:macro define-macro="geochar">
+    <!-- Geochar field -->
+    <tal:block content="structure python:view.render_geochar(context.geochars)" />
+    <tal:fallback tal:condition="python: not(context.geochars)">
+      <div tal:content="context/spatial_layer" />
+      <div>Countries:</div>
+      <ul tal:define="countries python: view.get_countries(context.spatial_values)">
+        <li tal:repeat="country countries" tal:content="country" />
+      </ul>
+    </tal:fallback>
+  </metal:macro>
+
+  <metal:macro define-macro="ace_layout">
+    <div class="aceitem_page">
+
+      <metal:slot metal:define-slot="ace-top-slot"></metal:slot>
+
+      <div class="col-md-9">
+        <metal:slot metal:define-slot="ace-left-slot"></metal:slot>
+        <div class="share-your-info-ace-button">
+          <button>Share your information</button>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div id="aceitem_sidebar">
+          <metal:slot metal:define-slot="ace-right-slot"></metal:slot>
+        </div>
+      </div>
+
+    </div>
+
+  </metal:macro>
+
+</div>
