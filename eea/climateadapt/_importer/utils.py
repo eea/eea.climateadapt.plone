@@ -434,16 +434,17 @@ def make_ast_navigation_tile(cover):
     }
 
 
-def make_countries_dropdown_tile(cover):
+def make_countries_dropdown_tile(cover, image=None):
     id = getUtility(IUUIDGenerator)()
     typeName = 'eea.climateadapt.countryselect'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
-    ITileDataManager(tile).set({'title': u"Country select"})
+    uuid = image.__dict__['_plone.uuid']
+    ITileDataManager(tile).set({'title': u"Country select", 'image_uuid': uuid})
 
     return {
         'tile-type': typeName,
         'type': 'tile',
-        'id': id
+        'id': id,
     }
 
 
@@ -767,6 +768,11 @@ def render_tabs(payload):
 def pack_to_table(data):
     """ Convert a flat list of (k, v), (k, v) to a structured list
     """
+    m = {
+        'Item_name': 'Item',
+        'Status': 'Status',
+        'Web_links': 'Links',
+    }
     visited = []
     rows = []
     acc = []
@@ -780,7 +786,7 @@ def pack_to_table(data):
             acc = [v]
 
     rows.append(acc)
-    return {'rows': rows, 'cols': visited}
+    return {'rows': rows, 'cols': [m[x] for x in visited]}
 
 
 def get_param_from_link(text, param='uuid'):

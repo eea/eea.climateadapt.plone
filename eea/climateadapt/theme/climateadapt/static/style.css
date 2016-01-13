@@ -22,7 +22,7 @@ h2, h3, h4, h5, h6 {color: #636466;}
 /* #wrapper { width:auto; margin: 0 auto; max-width: 90%;  font-size: 1.1em;} */
 
 #wrapper { width:984px; margin: 0 auto; max-width: 90%;  font-size: 1.1em;}
-#main {background:#fff; font-size: 1.3em; padding: 1em 0;}
+#main {background:#fff; font-size: 1.3em; padding: 0;}
 
 /* #nav {background: #a5bf26;  text-align: left; color: #ffffff;} */
 /* #nav a {color: #ffffff;} */
@@ -51,6 +51,9 @@ h2, h3, h4, h5, h6 {color: #636466;}
 /* #content {font-size: 90%;} */
 /* p {line-height: 1.8em; margin: 0 0 1em 0;} */
 /* h1, h2, h3 {margin: 0.5em 0 0.5em;} */
+#content {
+    font-family:arial,serif;
+}
 .hidden {display: none;} 
 .clear {clear: both;}
 .pb-ajax, .pb-image, 
@@ -189,8 +192,8 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
 
 /* Layout fixes */
 #portal-columns.row { margin: 0; }
-#content {margin: 0}
-#content-core {padding:1em;}
+#content {margin: 1em;}
+/* #content-core {padding:1em;} */
 #content > .row { margin: 0}
 #tiles-list li { list-style-type: none }
 .layout-actions li { list-style-type: none !important;}
@@ -208,7 +211,7 @@ div.position-0 { margin-left: -100%; }
 
 .pull-left { margin: 0 1em 1em 0;}
 
-.tile-content { padding: 0 1em;}
+/* .tile-content { padding: 0 1em;} */
 
 .navbar { margin-bottom: 0px; min-height: 30px;}
 .navbar-inverse { background-color: #a5bf26;}
@@ -372,3 +375,48 @@ div.position-0 { margin-left: -100%; }
 .aceitem_page {
     padding:1em;
 }
+
+/* Breadcrumb fixes */
+
+#viewlet-above-content {
+    background-color: #E9ECC9;
+    padding:0.5em;
+    line-height:1em;
+}
+#portal-breadcrumbs {
+    margin:0;
+}
+
+#content p {
+    margin-bottom: 10px;
+}
+#content ul {
+    margin-bottom: 10px;
+}
+#content li {
+    list-style-type: disc;
+}
+
+#footer {
+    background-color: White;
+    padding:2em;
+    padding-bottom: 0em;
+}
+
+#footer p {
+    display: none;
+}
+#portal-siteactions {
+    width: 100%;
+    border-top: 2px solid #CCC !important;
+    padding-top: 30px;
+    margin: 10px auto;
+    display: inherit;
+    text-align: center;
+}
+
+#portal-siteactions li {margin-right: 6em;}
+#portal-siteactions a {
+    color: Black !important;
+}
+@media screen #portal-siteactions li { margin-right: 3em;}

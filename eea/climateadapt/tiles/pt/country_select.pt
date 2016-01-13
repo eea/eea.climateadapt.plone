@@ -1,3 +1,19 @@
-<select>
-  <option tal:repeat="c view/countries" tal:attributes="value python:c[0]" tal:content="python: c[1]"></option>
-</select>
+<div class="country-select-tile" tal:define="image view/get_image">
+  <img tal:condition="image" tal:attributes="src string:${image/absolute_url}" />
+  <select id="country-select">
+    <option id="no-selection-option" value="" selected="selected">Choose a country</option>
+    <option tal:repeat="c view/countries" tal:attributes="value python:c[0]" tal:content="python: c[1]"></option>
+  </select>
+  <script>
+    jQuery(document).ready(function(){
+      $("#country-select").change(function(){
+        var cid = $(this).val();
+        var country = $("#country-select option[value='" + cid + "']").text();
+        console.log(cid, country);
+        if (country.length) {
+          document.location = '/countries/' + country.toLowerCase();
+        }
+      });
+    });
+  </script>
+</div>

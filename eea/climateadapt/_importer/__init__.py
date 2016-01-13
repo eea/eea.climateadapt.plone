@@ -496,7 +496,9 @@ def import_template_transnationalregion(site, layout, structure):
     cover._p_changed = True
     cover._layout_id = layout.layoutid
 
-    image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
+    #image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
+    image = get_image_by_imageid(site, image_info['id'])
+    image_tile = make_countries_dropdown_tile(cover, image)
     content_tile = make_richtext_tile(cover, {'title': 'main content',
                                               'text': main_content})
 
@@ -1175,8 +1177,8 @@ def import_template_2_columns_iii(site, layout, structure):
     if image:
         image_tile = make_richtext_tile(cover, {'text': image,
                                                 'title': 'image'})
-        side_group = make_group(2, image_tile)
-        main_group = make_group(10, main_content_tile, *extra_tiles)
+        side_group = make_group(5, image_tile)
+        main_group = make_group(7, main_content_tile, *extra_tiles)
         layout = make_layout(make_row(main_group, side_group))
     else:
         main_group = make_group(12, main_content_tile)

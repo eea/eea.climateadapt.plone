@@ -17,6 +17,11 @@ class ICountrySelectTile(IPersistentCoverTile):
         required=False,
     )
 
+    image_uuid = schema.TextLine(
+        title=_(u'Image UUID'),
+        required=False,
+    )
+
 
 class CountrySelectTile(PersistentCoverTile):
     """ CountrySelect tile
@@ -37,5 +42,9 @@ class CountrySelectTile(PersistentCoverTile):
         return False
 
     def countries(self):
-
         return ace_countries
+
+    def get_image(self):
+        if self.data['image_uuid']:
+            cat = self.context.portal_catalog
+            return cat.searchResults(UID=self.data['image_uuid'])[0].getObject()
