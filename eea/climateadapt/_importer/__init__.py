@@ -6,6 +6,7 @@ from eea.climateadapt._importer.tweak_sql import fix_relations
 from eea.climateadapt._importer.utils import ACE_ITEM_TYPES
 from eea.climateadapt._importer.utils import createAndPublishContentInContainer
 from eea.climateadapt._importer.utils import create_cover_at
+from eea.climateadapt._importer.utils import create_folder_at
 from eea.climateadapt._importer.utils import extract_portlet_info
 from eea.climateadapt._importer.utils import get_image_by_imageid
 from eea.climateadapt._importer.utils import localize
@@ -340,9 +341,14 @@ def import_layout(layout, site):
     settings = parse_settings(layout.typesettings)
 
     if layout.type_ == u'link_to_layout':
-        # TODO: this is a shortcut link should create as a folder and add the linked layout as default page
-        #linked_layoutid = settings['linkToLayoutId']
-        return
+        llid = int(settings['linkToLayoutId'][0])
+        ll = session.query(sql.Layout).filter_by(layoutid=llid).one()
+        this_url = layout.friendlyurl
+        child_url = ll.friendlyurl
+        folder = create_folder_at(site, this_url)
+        folder.setLayout(child_url.split('/')[-1])
+        folder.title = strip_xml(ll.name)
+        return folder
 
     template = settings['layout-template-id'][0]
     MAPOFLAYOUTS[template].append(layout.friendlyurl)

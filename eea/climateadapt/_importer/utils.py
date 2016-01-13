@@ -690,6 +690,27 @@ def noop(*args, **kwargs):
     return
 
 
+# def get_possible_title_for_layout(site, layout):
+#     settings = parse_settings(layout.typesettings)
+#     pass
+
+
+def create_folder_at(site, location):
+    parent = site
+
+    for name in [x.strip() for x in location.split('/') if x.strip()]:
+        if name not in parent.contentIds():
+            parent = createAndPublishContentInContainer(
+                parent,
+                'Folder',
+                title=name,
+            )
+        else:
+            parent = parent[name]
+
+    return parent
+
+
 def create_cover_at(site, location, id='index_html', **kw):
     parent = site
 
