@@ -10,54 +10,61 @@
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core" >
 
-        <h2>Case Study</h2>
-        <h1 tal:content="python: context.title">Title here</h1>
+        <div class="aceitem_page">
+          <div class="col-md-9">
 
-        <p tal:content="structure context/description">description here</p>
+            <h2>Case Study</h2>
+            <h1 tal:content="python: context.title">Title here</h1>
 
-        <h3>Case Study Description</h3>
-        <h4>Challenges</h4>
+            <p tal:content="structure context/description">description here</p>
 
-        <h4>Objectives</h4>
-        <p tal:replace="structure context/objectives"></p>
+            <h3>Case Study Description</h3>
+            <h4>Challenges</h4>
 
-        <h4>Adaptation Options</h4>
-        <p tal:replace="structure context/adaptationoptions"></p>
+            <h4>Objectives</h4>
+            <p tal:replace="structure context/objectives"></p>
 
-        <h4>Solutions</h4>
-        <p tal:replace="structure context/solutions"></p>
+            <h4>Adaptation Options</h4>
+            <p tal:replace="structure context/adaptationoptions"></p>
 
-        <h4>Relevance</h4>
-        <p tal:replace="structure context/relevance"></p>
+            <h4>Solutions</h4>
+            <p tal:replace="structure context/solutions"></p>
 
-        <h3>Additional Details</h3>
-        <h4>Legal Aspects</h4>
-        <p tal:replace="structure context/legal_aspects"></p>
+            <h4>Relevance</h4>
+            <p tal:replace="structure context/relevance"></p>
 
-        <h3>Reference Information</h3>
+            <h3>Additional Details</h3>
+            <h4>Legal Aspects</h4>
+            <p tal:replace="structure context/legal_aspects"></p>
 
-        <h4>Contact</h4>
-        <p tal:content="structure context/contact"></p>
+            <h3>Reference Information</h3>
 
-        <h4>Websites</h4>
-        <ul>
-          <li tal:repeat="website context/websites">
-            <a href="" tal:attributes="href website" tal:content="website">Website</a>
-          </li>
-        </ul>
+            <h4>Contact</h4>
+            <p tal:content="structure context/contact"></p>
 
-        <h4>Source</h4>
-        <p tal:content="structure context/source"></p>
+            <h4>Websites</h4>
+            <ul>
+              <li tal:repeat="website context/websites">
+                <a href="" tal:attributes="href website" tal:content="website">Website</a>
+              </li>
+            </ul>
 
-        <div id="ace_sidebar">
-          <h4>Keywords</h4>
-          <p tal:replace="structure context/keywords" />
-          <h4>Sectors</h4>
-          <p tal:content="structure python:view.widgets['sectors'].render()"/>
-          <h4>Climate impacts</h4>
-          <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
-          <h4>Geographic characterization</h4>
-          <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars" />
+            <h4>Source</h4>
+            <p tal:content="structure context/source"></p>
+          </div>
+          <div class="col-md-3">
+
+            <div id="ace_sidebar">
+              <h4>Keywords</h4>
+              <p tal:replace="structure context/keywords" />
+              <h4>Sectors</h4>
+              <p tal:content="structure python:view.widgets['sectors'].render()"/>
+              <h4>Climate impacts</h4>
+              <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
+              <h4>Geographic characterization</h4>
+              <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars" />
+            </div>
+          </div>
         </div>
 
       </tal:main-macro>

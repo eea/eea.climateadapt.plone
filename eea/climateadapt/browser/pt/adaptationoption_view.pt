@@ -10,56 +10,62 @@
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core" >
 
-        <a href="" tal:attributes="href view/link_to_original">Original</a>
-        <h2>Adaptation option</h2>
-        <h1 tal:content="context/title">Title here</h1>
-        <p tal:content="structure context/description/output" />
+        <div class="aceitem_page">
+          <div class="col-md-9">
+            <a href="" tal:attributes="href view/link_to_original">Original</a>
+            <h2>Adaptation option</h2>
+            <h1 tal:content="context/title">Title here</h1>
+            <p tal:content="structure context/description/output" />
 
-        <h5>Adaptation Option Description</h5>
+            <h5>Adaptation Option Description</h5>
 
-        <h5>Additional Details</h5>
-        <ul>
-          <li><a href="#success_factors">Success and Limiting Factors</a></li>
-          <li><a href="#costs_benefits">Costs and Benefits</a></li>
-          <li><a href="#legal">Legal Aspects</a></li>
-          <li><a href="#implementation">Implementation Time</a></li>
-        </ul>
+            <h5>Additional Details</h5>
+            <ul>
+              <li><a href="#success_factors">Success and Limiting Factors</a></li>
+              <li><a href="#costs_benefits">Costs and Benefits</a></li>
+              <li><a href="#legal">Legal Aspects</a></li>
+              <li><a href="#implementation">Implementation Time</a></li>
+            </ul>
 
-        <h5>Reference information</h5>
-        <ul>
-          <li><a href="#websites">Websites</a></li>
-          <li><a href="#source">Source</a></li>
-        </ul>
+            <h5>Reference information</h5>
+            <ul>
+              <li><a href="#websites">Websites</a></li>
+              <li><a href="#source">Source</a></li>
+            </ul>
 
-        <h4>Adaptation Option Description</h4>
+            <h4>Adaptation Option Description</h4>
 
-        <h4>Adaptation Details</h4>
-        <p id="success_factors"><em class="underline">Success and Limiting Factors</em> <tal:block content="context/success_limitations" /></p>
-        <p id="costs_benefits"><em class="underline">Costs and Benefits</em> <tal:block content="context/cost_benefit" /></p>
-        <p id="legal"><em class="underline">Legal Aspects</em> <tal:block content="context/legal_aspects" /></p>
-        <p id="implementation"><em class="underline">Implementation Time</em> <tal:block content="context/implementation_time" /></p>
+            <h4>Adaptation Details</h4>
+            <p id="success_factors"><em class="underline">Success and Limiting Factors</em> <tal:block content="context/success_limitations" /></p>
+            <p id="costs_benefits"><em class="underline">Costs and Benefits</em> <tal:block content="context/cost_benefit" /></p>
+            <p id="legal"><em class="underline">Legal Aspects</em> <tal:block content="context/legal_aspects" /></p>
+            <p id="implementation"><em class="underline">Implementation Time</em> <tal:block content="context/implementation_time" /></p>
 
-        <h4>Reference information</h4>
-        <h5 id="websites">Websites:</h5>
-        <ul>
-          <li tal:repeat="site context/websites"><a tal:attributes="href site" tal:content="site" /></li>
-        </ul>
+            <h4>Reference information</h4>
+            <h5 id="websites">Websites:</h5>
+            <ul>
+              <li tal:repeat="site context/websites"><a tal:attributes="href site" tal:content="site" /></li>
+            </ul>
 
-        <h5 id="source">Source:</h5>
-        <p tal:content="context/source">Source here</p>
+            <h5 id="source">Source:</h5>
+            <p tal:content="context/source">Source here</p>
 
-        <div id="aceitem_sidebar">
-          <h4>Keywords</h4>
-          <tal:block content="structure context/keywords" />
+          </div>
+          <div class="col-md-3">
+            <div id="aceitem_sidebar">
+              <h4>Keywords</h4>
+              <tal:block content="structure context/keywords" />
 
-          <h4>Sectors</h4>
-          <tal:block content="structure python:view.widgets['sectors'].render()"/>
+              <h4>Sectors</h4>
+              <tal:block content="structure python:view.widgets['sectors'].render()"/>
 
-          <h4>Climate impacts</h4>
-          <tal:block content="structure python:view.widgets['climate_impacts'].render()"/>
+              <h4>Climate impacts</h4>
+              <tal:block content="structure python:view.widgets['climate_impacts'].render()"/>
 
-          <h4>Geographic characterisation</h4>
-          <p tal:content="context/spatial_layer" />
+              <h4>Geographic characterisation</h4>
+              <p tal:content="context/spatial_layer" />
+            </div>
+          </div>
         </div>
       </tal:main-macro>
     </metal:main>

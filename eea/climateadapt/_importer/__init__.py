@@ -64,7 +64,7 @@ def import_aceitem(data, location):
             location,
             ACE_ITEM_TYPES[data.datatype],
             title=data.name,
-            description=data.description,
+            long_description=t2r(data.description),
             keywords=data.keyword,
             spatial_layer=data.spatiallayer,
             spatial_values=s2l(data.spatialvalues),
@@ -98,6 +98,7 @@ def import_aceproject(data, location):
         location,
         'eea.climateadapt.aceproject',
         title=data.title,
+        long_description=t2r(data.description),
         acronym=data.acronym,
         lead=data.lead,
         website=data.website,
@@ -1373,6 +1374,7 @@ def tweak_site(site):
     ]
 
     for location, xmlfilename, layout in faceted_pages:
+        # TODO: also add a title
         make_faceted(site, location, xmlfilename, layout)
 
     # TODO: create manually created pages

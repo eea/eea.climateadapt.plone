@@ -10,48 +10,55 @@
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core" >
 
-        <a href="" tal:attributes="href view/link_to_original">Original</a>
-        <h2>Guidance Document</h2>
-        <h1 tal:content="context/title">Title here</h1>
+        <div class="aceitem_page">
+          <div class="col-md-9">
 
-        <h4>Description:</h4>
-        <tal:block replace="structure context/description" />
+            <a href="" tal:attributes="href view/link_to_original">Original</a>
+            <h2>Guidance Document</h2>
+            <h1 tal:content="context/title">Title here</h1>
 
-        <h4>Reference information</h4>
+            <h4>Description:</h4>
+            <tal:block replace="structure context/description" />
 
-        <h5>Websites:</h5>
-        <ul>
-          <li tal:repeat="website context/websites|nothing">
-            <a tal:attributes="href website" tal:content="website">Website</a>
-          </li>
-        </ul>
+            <h4>Reference information</h4>
 
-        <h5>Source:</h5>
-        <tal:block content="structure context/source" />
+            <h5>Websites:</h5>
+            <ul>
+              <li tal:repeat="website context/websites|nothing">
+                <a tal:attributes="href website" tal:content="website">Website</a>
+              </li>
+            </ul>
 
-        <div id="aceitem_sidebar">
-          <tal:block condition="context/Subject">
-            <h4>Project Documents</h4>
-            <p tal:content="python:u', '.join(context.Subject())" />
-          </tal:block>
+            <h5>Source:</h5>
+            <tal:block content="structure context/source" />
+          </div>
 
-          <h4>Keywords</h4>
-          <tal:block content="structure context/keywords" />
+          <div class="col-md-3">
+            <div id="aceitem_sidebar">
+              <tal:block condition="context/Subject">
+                <h4>Project Documents</h4>
+                <p tal:content="python:u', '.join(context.Subject())" />
+              </tal:block>
 
-          <h4>Climate impacts</h4>
-          <tal:block content="structure python:view.widgets['climate_impacts'].render()" />
+              <h4>Keywords</h4>
+              <tal:block content="structure context/keywords" />
 
-          <h4>Elements</h4>
-          <tal:block content="structure python:view.widgets['elements'].render()" />
+              <h4>Climate impacts</h4>
+              <tal:block content="structure python:view.widgets['climate_impacts'].render()" />
 
-          <h4>Sectors</h4>
-          <tal:block content="structure python:view.widgets['sectors'].render()" />
+              <h4>Elements</h4>
+              <tal:block content="structure python:view.widgets['elements'].render()" />
 
-          <h4>Geographic characterisation</h4>
-          <tal:block content="structure python:view.render_geochar(context.geochars)" />
+              <h4>Sectors</h4>
+              <tal:block content="structure python:view.widgets['sectors'].render()" />
+
+              <h4>Geographic characterisation</h4>
+              <tal:block content="structure python:view.render_geochar(context.geochars)" />
+            </div>
+
+            <div style="display:none" tal:content="python:view.w.keys()" />
+          </div>
         </div>
-
-        <div style="display:none" tal:content="python:view.w.keys()" />
 
       </tal:main-macro>
     </metal:main>

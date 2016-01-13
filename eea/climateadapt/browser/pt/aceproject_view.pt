@@ -9,47 +9,52 @@
 
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core" >
+        <div class="aceitem_page">
+          <div class="col-md-9">
 
-        <a href="" tal:attributes="href view/link_to_original">Original</a>
-        <h2>Project</h2>
+            <a href="" tal:attributes="href view/link_to_original">Original</a>
+            <h2>Project</h2>
 
-        <h1 tal:content="context/title">Title here</h1>
-        <!-- <h2 tal:content="context/acronym">Acronym here</h2> -->
+            <h1 tal:content="context/title">Title here</h1>
+            <!-- <h2 tal:content="context/acronym">Acronym here</h2> -->
 
-        <h4>Description:</h4>
-        <tal:block content="structure context/abstracts" />
+            <h4>Description:</h4>
+            <tal:block content="structure context/abstracts" />
 
-        <h3>Project information</h3>
+            <h3>Project information</h3>
 
-        <h5>Lead</h5>
-        <p tal:replace="structure context/lead" />
+            <h5>Lead</h5>
+            <p tal:replace="structure context/lead" />
 
-        <h5>Partners</h5>
-        <p tal:replace="structure context/partners" />
+            <h5>Partners</h5>
+            <p tal:replace="structure context/partners" />
 
-        <h5>Source of funding</h5>
-        <p tal:replace="structure context/funding" />
+            <h5>Source of funding</h5>
+            <p tal:replace="structure context/funding" />
 
-        <h3>Reference information</h3>
-        <h5>Websites:</h5>
-        <p>
-          <a tal:attributes="href context/website" tal:content="context/website">Websites here</a>
-        </p>
+            <h3>Reference information</h3>
+            <h5>Websites:</h5>
+            <p>
+              <a tal:attributes="href context/website" tal:content="context/website">Websites here</a>
+            </p>
+          </div>
 
-
-        <div id="aceproject_sidebar">
-          <h4>Keywords</h4>
-          <p tal:replace="structure context/keywords" />
-          <h4>Duration</h4>
-          <p tal:replace="structure context/duration" />
-          <h4>Climate impacts</h4>
-          <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
-          <h4>Elements</h4>
-          <p tal:content="structure python:view.widgets['elements'].render()"/>
-          <h4>Sectors</h4>
-          <p tal:content="structure python:view.widgets['sectors'].render()"/>
-          <h4>Geographic characterization</h4>
-          <p tal:content="structure python:view.render_geochar(context.geochars)"/>
+          <div class="col-md-3">
+            <div id="aceproject_sidebar">
+              <h4>Keywords</h4>
+              <p tal:replace="structure context/keywords" />
+              <h4>Duration</h4>
+              <p tal:replace="structure context/duration" />
+              <h4>Climate impacts</h4>
+              <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
+              <h4>Elements</h4>
+              <p tal:content="structure python:view.widgets['elements'].render()"/>
+              <h4>Sectors</h4>
+              <p tal:content="structure python:view.widgets['sectors'].render()"/>
+              <h4>Geographic characterization</h4>
+              <p tal:content="structure python:view.render_geochar(context.geochars)"/>
+            </div>
+          </div>
         </div>
 
       </tal:main-macro>

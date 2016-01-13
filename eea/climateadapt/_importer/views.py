@@ -109,6 +109,9 @@ class SingleImporterView(BrowserView):
 
     def __call__(self):
         _type = self.request.form.get('type', 'layout')
+        debug = self.request.form.get('debug')
+        if debug:
+            import pdb; pdb.set_trace()
 
         importer = getattr(self, 'import_' + _type)
         return importer() or "done"
