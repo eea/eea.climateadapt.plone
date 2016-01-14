@@ -59,10 +59,23 @@
 		<script type="text/javascript" src="++resource++eea.climateadapt/js/chm/Application.js"></script>
 		<script type="text/javascript" src="++resource++eea.climateadapt/js/chm/Session.js"></script>
 		
-		<link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/esri/css/esri.css">
-		<link rel="stylesheet" href="++resource++eea.climateadapt/css/ext-all.css">
-		<link rel="stylesheet" href="++resource++eea.climateadapt/css/portlet.css">
-		<link rel="stylesheet" href="++resource++eea.climateadapt/css/tooltip.css">
+                <script>
+                    (function () {
+                        var urls, i, link, urls_length,
+                        urls = ["http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/esri/css/esri.css",
+                                "++resource++eea.climateadapt/css/ext-all.css",
+                                "++resource++eea.climateadapt/css/portlet.css",
+                                "++resource++eea.climateadapt/css/tooltip.css"
+                               ];
+                        urls_length = urls.length;
+                        for (i=0; i<urls_length; i++) {
+                            link = document.createElement("link");
+                            link.rel = "stylesheet";
+                            link.href = urls[i];
+                            document.head.appendChild(link);
+                        }
+                    })();
+                </script>
 
 		<script>
 			var proxyUrl = '';
