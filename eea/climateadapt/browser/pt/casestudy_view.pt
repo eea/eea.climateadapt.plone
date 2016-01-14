@@ -10,37 +10,39 @@
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core" >
 
-        <div class="aceitem_page">
-          <div class="col-md-9">
+        <metal:macro use-macro="context/ace_macros/macros/ace_layout">
+          <div metal:fill-slot="ace-top-slot">
 
             <h2>Case Study</h2>
             <h1 tal:content="python: context.title">Title here</h1>
+          </div>
 
+          <div metal:fill-slot="ace-left-slot">
             <p tal:content="structure context/description">description here</p>
 
             <h3>Case Study Description</h3>
             <h4>Challenges</h4>
 
             <h4>Objectives</h4>
-            <p tal:replace="structure context/objectives"></p>
+            <p tal:replace="structure context/objectives/output"></p>
 
             <h4>Adaptation Options</h4>
             <p tal:replace="structure context/adaptationoptions"></p>
 
             <h4>Solutions</h4>
-            <p tal:replace="structure context/solutions"></p>
+            <p tal:replace="structure context/solutions/output"></p>
 
             <h4>Relevance</h4>
             <p tal:replace="structure context/relevance"></p>
 
             <h3>Additional Details</h3>
             <h4>Legal Aspects</h4>
-            <p tal:replace="structure context/legal_aspects"></p>
+            <p tal:replace="structure context/legal_aspects/output"></p>
 
             <h3>Reference Information</h3>
 
             <h4>Contact</h4>
-            <p tal:content="structure context/contact"></p>
+            <p tal:content="structure context/contact/output"></p>
 
             <h4>Websites</h4>
             <ul>
@@ -52,20 +54,18 @@
             <h4>Source</h4>
             <p tal:content="structure context/source"></p>
           </div>
-          <div class="col-md-3">
 
-            <div id="ace_sidebar">
-              <h4>Keywords</h4>
-              <p tal:replace="structure context/keywords" />
-              <h4>Sectors</h4>
-              <p tal:content="structure python:view.widgets['sectors'].render()"/>
-              <h4>Climate impacts</h4>
-              <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
-              <h4>Geographic characterization</h4>
-              <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars" />
-            </div>
+          <div metal:fill-slot="ace-right-slot">
+            <h4>Keywords</h4>
+            <p tal:replace="structure context/keywords" />
+            <h4>Sectors</h4>
+            <p tal:content="structure python:view.widgets['sectors'].render()"/>
+            <h4>Climate impacts</h4>
+            <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
+            <h4>Geographic characterization</h4>
+            <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars" />
           </div>
-        </div>
+        </metal:macro>
 
       </tal:main-macro>
     </metal:main>

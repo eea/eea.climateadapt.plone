@@ -9,15 +9,18 @@
 
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core" >
-        <div class="aceitem_page">
-          <div class="col-md-9">
 
-            <a href="" tal:attributes="href view/link_to_original">Original</a>
+        <metal:macro use-macro="context/ace_macros/macros/ace_layout">
+          <div metal:fill-slot="ace-top-slot">
+
+            <a href="" tal:attributes="href view/link_to_original">Original aceitem</a>
             <h2 tal:content="structure python: view.widgets['data_type'].render()">Data Type</h2>
             <h1 tal:content="python: context.title">Title here</h1>
+          </div>
 
+          <div metal:fill-slot="ace-left-slot">
             <h3>Description</h3>
-            <p tal:content="context/description">description here</p>
+            <p tal:content="structure context/description">description here</p>
 
             <h4>Reference information</h4>
             <h5>Websites:</h5>
@@ -25,30 +28,29 @@
             <h5>Source:</h5>
             <p tal:content="context/source">Source here</p>
           </div>
-          <div class="col-md-3">
 
-            <div id="aceitem_sidebar">
-              <h4>Keywords</h4>
-              <tal:block content="structure context/keywords" />
+          <div metal:fill-slot="ace-right-slot">
 
-              <h4>Climate impacts</h4>
-              <tal:block content="structure python:view.widgets['climate_impacts'].render()" />
+            <h4>Keywords</h4>
+            <tal:block content="structure context/keywords" />
 
-              <h4>Elements</h4>
-              <tal:block content="structure python:view.widgets['elements'].render()" />
+            <h4>Climate impacts</h4>
+            <tal:block content="structure python:view.widgets['climate_impacts'].render()" />
 
-              <h4>Sectors</h4>
-              <tal:block content="structure python:view.widgets['sectors'].render()" />
-            </div>
+            <h4>Elements</h4>
+            <tal:block content="structure python:view.widgets['elements'].render()" />
 
-            <!-- <tal:def tal:define="sector_w python:view.widgets['sectors']" > -->
-              <!--   <!&#45;&#45; <tal:widget tal:replace="structure sector_w/@@ploneform&#38;#45;render&#38;#45;widget"/> &#45;&#45;> -->
-              <!--   <tal:widget tal:replace="structure sector_w/render"/> -->
-              <!-- </tal:def> -->
-            <!--  -->
-            <div style="display:none" tal:content="python:view.w.keys()" />
+            <h4>Sectors</h4>
+            <tal:block content="structure python:view.widgets['sectors'].render()" />
           </div>
-        </div>
+
+          <!-- <tal:def tal:define="sector_w python:view.widgets['sectors']" > -->
+            <!--   <!&#45;&#45; <tal:widget tal:replace="structure sector_w/@@ploneform&#38;#45;render&#38;#45;widget"/> &#45;&#45;> -->
+            <!--   <tal:widget tal:replace="structure sector_w/render"/> -->
+            <!-- </tal:def> -->
+          <!--  -->
+          <div style="display:none" tal:content="python:view.w.keys()" />
+        </metal:macro>
 
       </tal:main-macro>
     </metal:main>

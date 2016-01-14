@@ -9,13 +9,15 @@
 
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core" >
-        <div class="aceitem_page">
-          <div class="col-md-9">
 
+        <metal:macro use-macro="context/ace_macros/macros/ace_layout">
+          <div metal:fill-slot="ace-top-slot">
             <a href="" tal:attributes="href view/link_to_original">Original</a>
             <h2>Tools</h2>
             <h1 tal:content="context/title" />
+          </div>
 
+          <div metal:fill-slot="ace-left-slot">
             <h3>Description</h3>
             <p tal:replace="structure context/description">description here</p>
 
@@ -30,28 +32,27 @@
             <h5>Source:</h5>
             <tal:block content="structure context/source" />
           </div>
-          <div class="col-md-3">
 
-            <div id="aceitem_sidebar">
-              <h4>Keywords</h4>
-              <tal:block content="structure context/keywords" />
 
-              <h4>Climate impacts</h4>
-              <tal:block content="structure python:view.widgets['climate_impacts'].render()" />
+          <div metal:fill-slot="ace-right-slot">
 
-              <h4>Elements</h4>
-              <tal:block content="structure python:view.widgets['elements'].render()" />
+            <h4>Keywords</h4>
+            <tal:block content="structure context/keywords" />
 
-              <h4>Sectors</h4>
-              <tal:block content="structure python:view.widgets['sectors'].render()" />
+            <h4>Climate impacts</h4>
+            <tal:block content="structure python:view.widgets['climate_impacts'].render()" />
 
-              <h4>Geographic characterisation</h4>
-              <tal:block content="structure python:view.render_geochar(context.geochars)" />
-            </div>
+            <h4>Elements</h4>
+            <tal:block content="structure python:view.widgets['elements'].render()" />
 
-            <div style="display:none" tal:content="python:view.w.keys()" />
+            <h4>Sectors</h4>
+            <tal:block content="structure python:view.widgets['sectors'].render()" />
+
+            <h4>Geographic characterisation</h4>
+            <tal:block content="structure python:view.render_geochar(context.geochars)" />
           </div>
-        </div>
+
+        </metal:macro>
 
       </tal:main-macro>
     </metal:main>

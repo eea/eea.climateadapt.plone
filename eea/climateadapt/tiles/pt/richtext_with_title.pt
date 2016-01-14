@@ -13,9 +13,9 @@
         <tal:rep repeat="name python:['title', 'text']">
 
           <tal:repfields tal:repeat="field fields">
-            <h3 tal:condition="python: field['id'] == 'title' == name">
+            <h1 tal:condition="python: field['id'] == 'title' == name">
               <span tal:replace="field/content" ></span>
-            </h3>
+            </h1>
             <div tal:condition="python:field['id'] == 'text' == name">
               <span tal:replace="structure field/content">Rich Text</span>
             </div>
