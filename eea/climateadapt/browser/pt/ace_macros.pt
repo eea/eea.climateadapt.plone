@@ -17,9 +17,11 @@
       <metal:slot metal:define-slot="ace-top-slot"></metal:slot>
 
       <div class="col-md-9">
-        <metal:slot metal:define-slot="ace-left-slot"></metal:slot>
-        <div class="share-your-info-ace-button">
-          <button>Share your information</button>
+        <div class="ace-content-column">
+          <metal:slot metal:define-slot="ace-left-slot"></metal:slot>
+          <div class="share-your-info-ace-button">
+            <button>Share your information</button>
+          </div>
         </div>
       </div>
 

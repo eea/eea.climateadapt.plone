@@ -83,7 +83,12 @@
                     paging: true,
                     pagingType: 'full',
                     pageLength: 10,
-                    retrieve: true
+                    retrieve: true,
+                    columnDefs: [
+                      {'visible': false, 'targets': 1}
+                      // {'visible': false, 'targets': 2}
+                    ]
+
                   }
                 );
               });
