@@ -51,6 +51,18 @@
       />
 
   <plone:tile
+      name="eea.climateadapt.case_study"
+      title="Case study locator"
+      description="A case study locator"
+      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+      add_permission="cmf.ModifyPortalContent"
+      schema=".case_study.ICaseStudy"
+      class=".case_study.CaseStudy"
+      permission="zope2.View"
+      for="*"
+      />
+
+  <plone:tile
       name="eea.climateadapt.shareinfo"
       title="Share your info button"
       description="A button to share info"
