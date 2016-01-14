@@ -16,4 +16,13 @@
         expression="" id="++resource++plone.app.widgets.js" inline="False"
         insert-after="++resource++plone.app.jquery.js"/>
 
+    <javascript authenticated="False" bundle="default" cacheable="False"
+        compression="none" conditionalcomment="" cookable="False" enabled="True"
+        expression="" id="++resource++eea.climateadapt/jquery.dataTables.js"
+        inline="False" />
+
+    <javascript cacheable="True" compression="none"
+        cookable="True" enabled="0" expression=""
+        id="++resource++jquery.datatables.js" />
+
 </object>

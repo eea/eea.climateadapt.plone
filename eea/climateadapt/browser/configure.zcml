@@ -5,6 +5,11 @@
     xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="eea.climateadapt">
 
+    <browser:resourceDirectory
+        name="eea.climateadapt"
+        directory="resources"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        />
 
     <z3c:widgetTemplate
         mode="display"
