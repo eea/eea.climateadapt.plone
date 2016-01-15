@@ -37,12 +37,12 @@
 
 		<div id='csst_element'></div>
 
-		<script type='text/javascript' src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2&amp;mkt=en-us"></script>
+		<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2&amp;mkt=en-us"></script>
 		<script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4compact"></script>
-		<script type="text/javascript" src='++resource++eea.climateadapt/SimilarAreasTool-portlet/js/ext-base.js'></script>
-		<script type="text/javascript" src='++resource++eea.climateadapt/SimilarAreasTool-portlet/js/ext-all.js'></script>
-		<script type='text/javascript' src='++resource++eea.climateadapt/SimilarAreasTool-portlet/js/OpenLayers.js'></script>
-		<script type="text/javascript" src='++resource++eea.climateadapt/SimilarAreasTool-portlet/js/GeoExt.js'></script>
+		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/ext-base.js"></script>
+		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/ext-all.js"></script>
+		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/OpenLayers.js"></script>
+		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/GeoExt.js"></script>
 		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/CHM.js"></script>
 		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/Point.js"></script>
 		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/Location.js"></script>
@@ -51,20 +51,24 @@
 		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/locator/candidate/CandidatesStore.js"></script>
 		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/locator/Locator.js"></script>
 		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/grid/GridControl.js"></script>
-		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/options/OptionsControl.js"></script>
 		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/legend/LegendControl.js"></script>
+		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/options/OptionsControl.js"></script>
 		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/locator/LocatorControl.js"></script>
 		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/map/MapControl.js"></script>
 		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/map/Map.js"></script>
 		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/Application.js"></script>
 		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/Session.js"></script>
+		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/javascript.js"></script>
+
 		
                 <script>
                     (function () {
                         var urls, i, link, urls_length,
-                        urls = ["http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/esri/css/esri.css",
-                                "++resource++eea.climateadapt/SimilarAreasTool-portlet/css/ext-all.css",
+                        urls = ["http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/esri/css/esri.css",   // ??
                                 "++resource++eea.climateadapt/SimilarAreasTool-portlet/css/portlet.css",
+                                "++resource++eea.climateadapt/SimilarAreasTool-portlet/css/ext-all.css",
+                                "++resource++eea.climateadapt/SimilarAreasTool-portlet/css/xtheme-gray.css",
+                                "++resource++eea.climateadapt/SimilarAreasTool-portlet/css/css_ext_theme.css",
                                 "++resource++eea.climateadapt/SimilarAreasTool-portlet/css/tooltip.css"
                                ];
                         urls_length = urls.length;
