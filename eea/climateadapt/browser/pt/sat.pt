@@ -10,7 +10,6 @@
     </metal:fill-slot>
 
     <metal:fill-slot fill-slot="javascript_head_slot">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2&amp;mkt=en-us"></script>
         <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4compact"></script>
         <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/ext-base.js"></script>
