@@ -104,7 +104,7 @@
 
 			var zoomLevel = 2;
 
-			var root = '';
+			var root = '++resource++eea.climateadapt/';
 		</script>
 		<script type="text/javascript" src="++resource++eea.climateadapt/js/javascript.js"></script>
       </div>
