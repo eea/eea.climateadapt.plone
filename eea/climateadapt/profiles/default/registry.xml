@@ -5,7 +5,6 @@
             <element>eea.climateadapt.search_acecontent</element>
             <element>eea.climateadapt.relevant_acecontent</element>
             <element>eea.climateadapt.richtext_with_title</element>
-            <element>eea.climateadapt.case_study</element>
             <element>eea.climateadapt.shareinfo</element>
             <element>eea.climateadapt.transregionselect</element>
             <element>eea.climateadapt.countryselect</element>
@@ -17,7 +16,6 @@
             <element>eea.climateadapt.search_acecontent</element>
             <element>eea.climateadapt.relevant_acecontent</element>
             <element>eea.climateadapt.richtext_with_title</element>
-            <element>eea.climateadapt.case_study</element>
             <element>eea.climateadapt.shareinfo</element>
             <element>eea.climateadapt.transregionselect</element>
             <element>eea.climateadapt.countryselect</element>

@@ -152,6 +152,14 @@
         permission="zope.Public"
         />
 
+    <browser:page
+        class=".sat.SatView"
+        for="*"
+        name="sat_view"
+        template="pt/sat.pt"
+        permission="zope2.View"
+        />
+
     <!-- Tile helpers -->
 
     <browser:page
@@ -168,6 +176,16 @@
         manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
         template="pt/viewlet_transregion_menu.pt"
         permission="zope2.View"
+        />
+
+    <!-- sat_view viewlet overrides -->
+    <browser:viewlet
+        name="plone.resourceregistries"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        view=".sat.ISatView"
+        template="pt/resourceregistries.pt"
+        permission="zope2.View"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
 
 </configure>
