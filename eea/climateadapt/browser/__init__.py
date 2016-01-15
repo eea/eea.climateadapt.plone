@@ -1,4 +1,5 @@
 from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cover.browser.cover import Standard
 from eea.climateadapt.vocabulary import ace_countries_dict
 from zExceptions import NotFound
@@ -268,3 +269,12 @@ class CoverNoTitleView(Standard):
 
     def __call__(self):
         return self.index()
+
+
+class FacetedSearchTextPortlet(BrowserView):
+    template = ViewPageTemplateFile("pt/faceted-search-text-portlet.pt")
+
+    @property
+    def macros(self):
+        return self.template.macros
+

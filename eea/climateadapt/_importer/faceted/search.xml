@@ -81,17 +81,17 @@
    <property name="position">left</property>
    <property name="section">default</property>
    <property name="hidden">0</property>
-   <property name="count">0</property>
-   <property name="sortcountable">0</property>
-   <property name="hidezerocount">0</property>
+   <property name="count"></property>
+   <property name="sortcountable"></property>
+   <property name="hidezerocount"></property>
    <property name="index">countries</property>
    <property name="operator">or</property>
-   <property name="operator_visible">0</property>
+   <property name="operator_visible"></property>
    <property name="vocabulary">eea.climateadapt.ace_countries</property>
    <property name="catalog"></property>
    <property name="maxitems"></property>
-   <property name="sortreversed">0</property>
-   <property name="default"/>
+   <property name="sortreversed"></property>
+   <property name="default"></property>
   </criterion>
   <criterion name="c6">
    <property name="widget">range</property>
@@ -101,6 +101,26 @@
    <property name="hidden">0</property>
    <property name="index">year</property>
    <property name="default"></property>
+  </criterion>
+  <criterion name="c9">
+   <property name="widget">portlet</property>
+   <property name="title">Search</property>
+   <property name="position">center</property>
+   <property name="section">default</property>
+   <property name="hidden">0</property>
+   <property
+      name="macro">here/@@faceted-search-text-portlet/macros/text</property>
+  </criterion>
+  <criterion name="c8">
+   <property name="widget">text</property>
+   <property name="title">Keywords</property>
+   <property name="position">center</property>
+   <property name="section">default</property>
+   <property name="hidden">0</property>
+   <property name="index">SearchableText</property>
+   <property name="default"></property>
+   <property name="onlyallelements">1</property>
+   <property name="wildcard">0</property>
   </criterion>
   <criterion name="c2">
    <property name="widget">sorting</property>

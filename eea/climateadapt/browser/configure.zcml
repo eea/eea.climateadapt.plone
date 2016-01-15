@@ -37,6 +37,13 @@
         />
 
     <browser:page
+        name="faceted-search-text-portlet"
+        for="*"
+        permission="zope.Public"
+        class=".FacetedSearchTextPortlet"
+        />
+
+    <browser:page
         name="no_title_cover_view"
         for="*"
         class=".CoverNoTitleView"

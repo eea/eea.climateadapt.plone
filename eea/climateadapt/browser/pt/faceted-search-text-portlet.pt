@@ -1,0 +1,6 @@
+<metal:macro define-macro="text">
+  <div>
+    The database contains quality checked information and is annotated by climate adaptation experts with keywords.
+    Search the database using the keywords field below and filter the results using one or more of the filters from the left side bar
+  </div>
+</metal:macro>
