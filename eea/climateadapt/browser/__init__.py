@@ -2,6 +2,7 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cover.browser.cover import Standard
 from eea.climateadapt.vocabulary import ace_countries_dict
+from eea.facetednavigation.browser.app.view import FacetedContainerView
 from zExceptions import NotFound
 import json
 
@@ -278,3 +279,10 @@ class FacetedSearchTextPortlet(BrowserView):
     def macros(self):
         return self.template.macros
 
+
+class FacetedViewNoTitle(FacetedContainerView):
+    """
+    """
+
+    # def __call__(self):
+    #     import pdb; pdb.set_trace()

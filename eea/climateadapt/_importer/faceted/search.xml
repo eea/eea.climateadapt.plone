@@ -113,7 +113,7 @@
   </criterion>
   <criterion name="c8">
    <property name="widget">text</property>
-   <property name="title">Keywords</property>
+   <property name="title">Keywords:</property>
    <property name="position">center</property>
    <property name="section">default</property>
    <property name="hidden">0</property>

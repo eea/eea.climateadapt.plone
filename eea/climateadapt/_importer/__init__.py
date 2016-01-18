@@ -30,19 +30,21 @@ from eea.climateadapt._importer.utils import make_transregion_dropdown_tile
 from eea.climateadapt._importer.utils import noop
 from eea.climateadapt._importer.utils import pack_to_table
 from eea.climateadapt._importer.utils import parse_settings, s2l    #, printe
-from eea.climateadapt._importer.utils import s2li
 from eea.climateadapt._importer.utils import render
 from eea.climateadapt._importer.utils import render_accordion
 from eea.climateadapt._importer.utils import render_tabs
+from eea.climateadapt._importer.utils import s2li
 from eea.climateadapt._importer.utils import strip_xml
 from eea.climateadapt._importer.utils import t2r
 from eea.climateadapt.interfaces import IASTNavigationRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
+from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
+from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-from zope.interface import alsoProvides
+from zope.interface import alsoProvides, noLongerProvides
 from zope.sqlalchemy import register
 import json
 import os
@@ -1384,6 +1386,13 @@ def tweak_site(site):
     for location, xmlfilename, layout in faceted_pages:
         # TODO: also add a title
         make_faceted(site, location, xmlfilename, layout)
+
+    # reorder providedBy for '/data-and-downloads'
+
+    dad = site['data-and-downloads']
+    noLongerProvides(dad, IFacetedNavigable)
+    alsoProvides(dad, ISiteSearchFacetedView)
+    alsoProvides(dad, IFacetedNavigable)
 
     # TODO: create manually created pages
     # tweak frontpage portlets

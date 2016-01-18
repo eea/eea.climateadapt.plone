@@ -6,7 +6,6 @@
   i18n:domain="eea">
 
   <body>
-
     <metal:content-core fill-slot="content-core">
 
       <metal:block define-macro="content-core">

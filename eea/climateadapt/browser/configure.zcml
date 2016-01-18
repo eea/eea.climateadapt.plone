@@ -188,4 +188,12 @@
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
 
+    <browser:page
+        for="eea.climateadapt.interfaces.ISiteSearchFacetedView"
+        name="facetednavigation_view"
+        template="pt/faceted-search-view.pt"
+        class=".FacetedViewNoTitle"
+        permission="zope2.View"
+        />
+
 </configure>

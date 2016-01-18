@@ -19,3 +19,8 @@ class ITransnationalRegionMarker(Interface):
 class IASTNavigationRoot(Interface):
     """ A marker interface for AST tools
     """
+
+
+class ISiteSearchFacetedView(Interface):
+    """ A marker interface for the /data-and-downloads page
+    """
