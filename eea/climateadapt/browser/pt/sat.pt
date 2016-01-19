@@ -1,6 +1,6 @@
 <metal:use-macro use-macro="context/main_template/macros/master">
 
-    <metal:fill-slot fill-slot="style">
+    <metal:fill-slot fill-slot="style_slot">
         <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/esri/css/esri.css">
         <link rel="stylesheet" href="++resource++eea.climateadapt/SimilarAreasTool-portlet/css/portlet.css">
         <link rel="stylesheet" href="++resource++eea.climateadapt/SimilarAreasTool-portlet/css/ext-all.css">
@@ -31,7 +31,6 @@
         <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/map/Map.js"></script>
         <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/Application.js"></script>
         <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/Session.js"></script>
-        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/javascript.js"></script>
     </metal:fill-slot>
 
     <metal:fill-slot fill-slot="content">
@@ -60,35 +59,22 @@
 			<option value="WATERMANAGEMENT">Water management</option>
 		</select>
 
-		<div id='csst_element'></div>
+		<div id="csst_element"></div>
 
 		<script>
 			var proxyUrl = '';
-
 			var geoserverUrl = 'http://climate-adapt.eea.europa.eu/geoserver/';
-
 			var wfs = 'wms';
-
 			var wms = 'wfs';
-
 			var featureNamespace = 'http://climate-adapt.eea.europa.eu';
-
 			var areasFeatureType = 'biogeo_2008';
-
 			var areasLayer = 'chm:biogeo_2008';
-
 			var caseStudiesFeatureType = 'casestudies';
-
 			var geometryColumn = 'geom';
-
 			var areaColumn = 'area';
-
 			var locatorUrl = 'http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/';
-
 			var locatorKey = 'AgyLk7bO8WrzknvPFCGPq-fhUvYnQhoZgK74Mvt-i9wRTkDTv1nDzFs-D5LnGNAN';
-
 			var zoomLevel = 2;
-
 			var root = '++resource++eea.climateadapt/SimilarAreasTool-portlet/';
 		</script>
 		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/javascript.js"></script>
