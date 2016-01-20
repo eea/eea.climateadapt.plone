@@ -206,7 +206,7 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
 }
 
 #content .row .column.col-md-4 {
-    background-color: pink;
+    /* background-color: pink; */
 }
 
 div.width-full { width: 100%; }

@@ -76,7 +76,7 @@ class AceTileMixin(object):
 
         sort_map = {
             'RATING': 'rating',                     # importeddata: plone field
-
+            'NAME': 'sortable_title',
         }
 
         sort = self.data.get('sortBy')

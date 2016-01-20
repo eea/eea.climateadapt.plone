@@ -1,6 +1,9 @@
 from Products.Five.browser import BrowserView
 from collections import defaultdict
 from eea.climateadapt._importer.utils import get_template_for_layout
+from eea.climateadapt._importer.utils import create_folder_at
+from eea.climateadapt._importer.utils import parse_settings
+from eea.climateadapt._importer.utils import strip_xml
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from zope.component.hooks import getSite
@@ -49,6 +52,57 @@ class SingleImporterView(BrowserView):
             return self.request.response.redirect(cover.absolute_url())
 
         return "no cover?"
+
+    def import_layout_type(self):
+        """ Allows importing a batch of layouts by their template name
+        """
+        from eea.climateadapt._importer import import_layout
+        from eea.climateadapt._importer import sql
+
+        session = self._make_session()
+        eea.climateadapt._importer.session = session
+        site = self.context
+
+        template = self.request.form.get('template', '').strip()
+        if not template:
+            raise ValueError("Please provide a template")
+
+        for layout in session.query(sql.Layout).filter_by(privatelayout=False):
+            if layout.type_ in [u'control-panel']:
+                # we skip control panel pages
+                continue
+
+            settings = parse_settings(layout.typesettings)
+
+            if layout.type_ == u'link_to_layout':
+                llid = int(settings['linkToLayoutId'][0])
+                try:
+                    ll = session.query(sql.Layout).filter_by(layoutid=llid).one()
+                except:
+                    import pdb; pdb.set_trace()
+                this_url = layout.friendlyurl
+                child_url = ll.friendlyurl
+                folder = create_folder_at(site, this_url)
+                folder.setLayout(child_url.split('/')[-1])
+                folder.title = strip_xml(ll.name)
+                continue
+
+            try:
+                layout_template = settings['layout-template-id'][0]
+            except:
+                import pdb; pdb.set_trace()
+            if not layout_template == template:
+                continue
+
+            try:
+                cover = import_layout(layout, site)
+            except:
+                print "Couldn't import layout %s", layout.friendlyurl
+            if cover:
+                cover._imported_comment = \
+                    "Imported from layout {0}".format(layout.layoutid)
+                print "Created cover at %s" % cover.absolute_url()
+
 
     def import_dlentries(self):
         from eea.climateadapt._importer import import_dlfileentry
@@ -141,22 +195,22 @@ class MapOfLayouts(SingleImporterView):
     def import_url(self, uuid):
         site = getSite()
         return site.absolute_url() + "/layout_importer?uuid=" + uuid
-        pass
 
     def aceimport_url(self):
         site = getSite()
         return site.absolute_url() + "/layout_importer?type=aceitems"
-        pass
 
     def dlimport_url(self):
         site = getSite()
         return site.absolute_url() + "/layout_importer?type=dlentries"
-        pass
 
     def caseimport_url(self):
         site = getSite()
         return site.absolute_url() + "/layout_importer?type=casestudy"
-        pass
+
+    def ast_import_url(self):
+        site = getSite()
+        return site.absolute_url() + "/layout_importer?type=layout_type&template=ast"
 
 
 class FacetedImporter(BrowserView):

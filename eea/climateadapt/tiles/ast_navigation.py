@@ -56,6 +56,12 @@ class ASTNavigationTile(PersistentCoverTile):
                              'proper root with IASTNavigationRoot')
         return parent
 
+
+    def _title(self, obj):
+        obj = obj.aq_self
+        title = getattr(obj, "_ast_title", obj.Title())
+        return title
+
     def get_nav_struct(self):
         ast_root = self._get_ast_root()
         res = []
@@ -63,6 +69,8 @@ class ASTNavigationTile(PersistentCoverTile):
         all_parts = ast_root.contentValues({'portal_type': 'Folder'})
 
         step = 0
+
+        T = self._title
 
         while step < len(all_parts):
             for_this_step = [o.getId()
@@ -75,10 +83,11 @@ class ASTNavigationTile(PersistentCoverTile):
                 continue
 
             main = ast_root[for_this_step[0]]
-            children = [(o['index_html'].Title(), o['index_html'].absolute_url())
+            children = [(T(o['index_html']), o['index_html'].absolute_url())
                         for o in [ast_root[x] for x in for_this_step[1:]]]
             res.append((step,
-                        main['index_html'].Title(),
+                        #main['index_html'].Title(),
+                        T(main['index_html']),
                         main['index_html'].absolute_url(),
                         children))
 
@@ -88,7 +97,7 @@ class ASTNavigationTile(PersistentCoverTile):
             if not folder.getId().startswith('step'):
                 cover = folder['index_html']
                 step = getattr(cover, '_ast_navigation_step', 0)
-                info = (cover.Title(), cover.absolute_url())
+                info = (T(cover), cover.absolute_url())
                 # try to find the proper index position
                 for branch in res:
                     if branch[0] == step:

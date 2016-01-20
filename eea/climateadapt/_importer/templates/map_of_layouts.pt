@@ -6,6 +6,7 @@
       <li><a tal:attributes="href view/dlimport_url">Import dlentries</a></li>
       <li><a tal:attributes="href view/aceimport_url">Import aceitems</a></li>
       <li><a tal:attributes="href view/caseimport_url">Import casestudy</a></li>
+      <li><a tal:attributes="href view/ast_import_url">Import AST</a></li>
     </ul>
 
     <table>
@@ -24,7 +25,10 @@
             <td></td>
             <td tal:content="python: row[1]"></td>
             <td tal:content="python: row[0]"></td>
-            <td><a href="" tal:attributes="href python: view.import_url(row[1])">Importer</a></td>
+            <td>
+              <a href="" tal:attributes="href python: view.import_url(row[1])">Importer</a>&nbsp;
+              <a href="" tal:attributes="href python: view.import_url(row[1]) + '&debug=true'">Debug</a>
+            </td>
           </tr>
         </tal:rep>
       </tbody>

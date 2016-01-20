@@ -720,6 +720,7 @@ def create_cover_at(site, location, id='index_html', **kw):
             parent = createAndPublishContentInContainer(
                 parent,
                 'Folder',
+                id=name,
                 title=name,
             )
         else:

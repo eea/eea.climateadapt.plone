@@ -101,7 +101,7 @@ def import_aceproject(data, location):
         location,
         'eea.climateadapt.aceproject',
         title=data.title,
-        long_description=t2r(data.description),
+        #long_description=t2r(data.description),    # doesn't have description
         acronym=data.acronym,
         lead=data.lead,
         website=data.website,
@@ -812,7 +812,7 @@ def import_template_ast(site, layout, structure):
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) >= 2)
 
-    return import_template_urban_ast(site, layout, structure)
+    return _import_template_urban_ast(site, layout, structure)
 
     # image_portlet = structure['column-1'][0][1]['content'][0]
     # header_text = structure['column-2'][0][1]['headertext']
@@ -832,8 +832,13 @@ def import_template_ast(site, layout, structure):
     # noop(image_portlet, header_text, content, content_portlet, extra_columns)
     #
 
+
 @log_call
 def import_template_urban_ast(site, layout, structure):
+    _import_template_urban_ast(site, layout, structure)
+
+
+def _import_template_urban_ast(site, layout, structure):
     # TODO: fix images
     # TODO: fix urban ast navigation
     # TODO: create nav menu on the left
@@ -850,23 +855,44 @@ def import_template_urban_ast(site, layout, structure):
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) >= 2)
 
-    name = structure['name']
+    """
+    Need to know:
+    # ast section breadcrumb title
+    # ast section title
+    # ast section slug
+    # ast section number
+
+    # subtitle nu apare pe ast section main page
+
+    - subsection
+        - ast section title appears as main title
+        - section title - appears in ast menu
+                        - appears as title
+                        - appears as subtitle in page
+        - step number + section number
+    """
+
+    # subsection_title
+    # ast_section_title
+
     image_portlet = structure['column-1'][0][1]['content'][0]
-    header_text = structure['column-2'][0][1]['headertext']
-    # step = structure['column-2'][0][1]['step']
     portlet = structure['column-2'][1][1]
-    subtitle = portlet['portlet_title']
+
+    cover_title = structure['name']    # this will be the title
+    section_title = portlet['portlet_title']
+    main_section_title = structure['column-2'][0][1]['headertext']
+    step = structure['column-2'][0][1]['step']
 
     main_text = make_text_from_articlejournal(portlet['content'])
 
     payload = {
-        'title': header_text,
-        'subtitle': subtitle,
+        'title': main_section_title,
+        'subtitle': section_title,
         'main_text': main_text
     }
     main_content = render('templates/ast_text.pt', payload)
 
-    cover = create_cover_at(site, layout.friendlyurl, title=unicode(name))
+    cover = create_cover_at(site, layout.friendlyurl, title=section_title)
     cover._p_changed = True
     cover._layout_id = layout.layoutid
 
@@ -877,9 +903,7 @@ def import_template_urban_ast(site, layout, structure):
     # nav_tile = make_richtext_tile(cover, {'text': 'nav here', 'title': 'nav'})
     nav_tile = make_ast_navigation_tile(cover)
 
-    side_group = make_group(2, image_tile, nav_tile)
-
-    step = structure['column-2'][0][1]['step']
+    side_group = make_group(4, image_tile, nav_tile)
 
 #  u'column-2': [(u'astheaderportlet_WAR_ASTHeaderportlet_INSTANCE_AQlGpTEbY3Eg',
 #                 {'headertext': u'Implementation',
@@ -895,13 +919,14 @@ def import_template_urban_ast(site, layout, structure):
                             [make_tile(cover, x) for x in structure.values()]
                             ]
         second_row = make_row(*second_row_group)
-        main_group = make_group(10, main_content_tile, second_row)
+        main_group = make_group(8, main_content_tile, second_row)
     else:
-        main_group = make_group(10, main_content_tile)
+        main_group = make_group(8, main_content_tile)
 
     layout = make_layout(make_row(side_group, main_group))
     cover.cover_layout = json.dumps(layout)
     cover._ast_navigation_step = int(step)
+    cover._ast_title = main_section_title
 
     return cover
 
