@@ -1,0 +1,11 @@
+.ext-reset * {
+    box-sizing: content-box;
+}
+
+.ext-reset h1 {
+    margin: inherit;
+}
+
+.ext-reset label {
+    display: inline;
+}

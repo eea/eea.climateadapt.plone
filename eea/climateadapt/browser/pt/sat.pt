@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="++resource++eea.climateadapt/SimilarAreasTool-portlet/css/xtheme-gray.css">
         <link rel="stylesheet" href="++resource++eea.climateadapt/SimilarAreasTool-portlet/css/css_ext_theme.css">
         <link rel="stylesheet" href="++resource++eea.climateadapt/SimilarAreasTool-portlet/css/tooltip.css">
+        <link rel="stylesheet" href="++resource++eea.climateadapt/SimilarAreasTool-portlet/css/main.css">
     </metal:fill-slot>
 
     <metal:fill-slot fill-slot="javascript_head_slot">
@@ -34,7 +35,7 @@
     </metal:fill-slot>
 
     <metal:fill-slot fill-slot="content">
-      <div class="cover-richtext-tile tile-content">
+      <div class="cover-richtext-tile tile-content ext-reset">
 		<select id="riskSelect" name="riskSelect">
 			<option value="ALL">All risks</option>
 			<option value="EXTREMETEMP">Extreme Temperatures</option>
@@ -61,21 +62,7 @@
 
 		<div id="csst_element"></div>
 
-		<script>
-			var proxyUrl = '';
-			var geoserverUrl = 'http://climate-adapt.eea.europa.eu/geoserver/';
-			var wfs = 'wms';
-			var wms = 'wfs';
-			var featureNamespace = 'http://climate-adapt.eea.europa.eu';
-			var areasFeatureType = 'biogeo_2008';
-			var areasLayer = 'chm:biogeo_2008';
-			var caseStudiesFeatureType = 'casestudies';
-			var geometryColumn = 'geom';
-			var areaColumn = 'area';
-			var locatorUrl = 'http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/';
-			var locatorKey = 'AgyLk7bO8WrzknvPFCGPq-fhUvYnQhoZgK74Mvt-i9wRTkDTv1nDzFs-D5LnGNAN';
-			var zoomLevel = 2;
-			var root = '++resource++eea.climateadapt/SimilarAreasTool-portlet/';
+		<script tal:content="view/inline_js">
 		</script>
 		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/javascript.js"></script>
     </metal:fill-slot>
