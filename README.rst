@@ -42,6 +42,29 @@ Dependencies
 2.
 3.
 
+Test locally
+============
+
+To test the view,
+create a folder and navigate to http://localhost:8080/Plone/folder/@@sat_view,
+or go into the ZMI
+and set the property ``layout`` of the folder to ``@@sat_view``.
+
+Since the SAT view contacts a Geoserver instance via Javascript,
+and we don't set up a geoserver locally,
+but instead connect directly to the production one, there is an issues with CORS.
+
+In order to mitigate that,
+download and install CORSProxy (https://github.com/gr2m/CORS-Proxy)
+and then launch it in a shell.
+
+Then relaunch the instance like this::
+
+  $ CORS_PROXY_DEVEL=http://localhost:1337 bin/instance fg
+
+Plone will rewrite the base URL to pass through the proxy
+and not have preflight requests fail.
+
 Source code
 ===========
 
