@@ -819,8 +819,8 @@ def import_template_ast(site, layout, structure):
 
 @log_call
 def import_template_urban_ast(site, layout, structure):
-    _import_template_urban_ast(site, layout, structure,
-                               make_urbanast_navigation_tile)
+    return _import_template_urban_ast(site, layout, structure,
+                                      make_urbanast_navigation_tile)
 
 
 def _import_template_urban_ast(site, layout, structure, nav_tile_maker):

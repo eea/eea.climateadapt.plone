@@ -562,3 +562,14 @@ div.position-0 { margin-left: -100%; }
     width: 6em;
     float: left;
 }
+
+ul#ast-menu, #ast-menu ul {
+    margin: 0 !important;
+}
+#ast-menu li {
+    list-style-type: none;
+}
+
+.tile {
+    padding-right: 1em;
+}
