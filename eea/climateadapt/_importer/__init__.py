@@ -27,6 +27,7 @@ from eea.climateadapt._importer.utils import make_share_tile
 from eea.climateadapt._importer.utils import make_text_from_articlejournal
 from eea.climateadapt._importer.utils import make_tile
 from eea.climateadapt._importer.utils import make_transregion_dropdown_tile
+from eea.climateadapt._importer.utils import make_urbanast_navigation_tile
 from eea.climateadapt._importer.utils import noop
 from eea.climateadapt._importer.utils import pack_to_table
 from eea.climateadapt._importer.utils import parse_settings, s2l    #, printe
@@ -561,13 +562,13 @@ def import_template_ace_layout_2(site, layout, structure):
     main_content_tile = make_richtext_tile(cover, {'title': 'main content',
                                                    'text': main_content})
 
-    col2_tile = make_tile(cover, structure['column-2'])
-    col3_tile = make_tile(cover, structure['column-3'])
+    col2_tile = make_tile(cover, structure['column-2'], 'col-md-4')
+    col3_tile = make_tile(cover, structure['column-3'], 'col-md-4')
 
     relevant_content_tiles = [col2_tile, col3_tile]
     sidebar_tile = make_tile(cover, structure['column-4'])
-    sidebar_group = make_group(2, sidebar_tile)
-    main_content_group = make_group(10,
+    sidebar_group = make_group(3, sidebar_tile)
+    main_content_group = make_group(9,
                                     main_content_tile, *relevant_content_tiles)
     layout = make_layout(make_row(main_content_group, sidebar_group))
     layout = json.dumps(layout)
@@ -812,39 +813,22 @@ def import_template_ast(site, layout, structure):
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) >= 2)
 
-    return _import_template_urban_ast(site, layout, structure)
-
-    # image_portlet = structure['column-1'][0][1]['content'][0]
-    # header_text = structure['column-2'][0][1]['headertext']
-    # content = structure['column-2'][1][1]['content'][0]
-    #
-    # content_portlet = None
-    # if len(structure['column-2']) > 2:
-    #     assert(len(structure['column-2']) == 3)
-    #     content_portlet = structure['column-2'][2]
-    #
-    # extra_columns = {}
-    # [structure.pop(x) for x in ('name', 'column-1', 'column-2')]
-    # for key in structure:
-    #     portlet_name = structure[key][0][1]['portletSetupTitle_en_GB']
-    #     extra_columns[portlet_name] = structure[key]
-    #
-    # noop(image_portlet, header_text, content, content_portlet, extra_columns)
-    #
+    return _import_template_urban_ast(site, layout, structure,
+                                      make_ast_navigation_tile)
 
 
 @log_call
 def import_template_urban_ast(site, layout, structure):
-    _import_template_urban_ast(site, layout, structure)
+    _import_template_urban_ast(site, layout, structure,
+                               make_urbanast_navigation_tile)
 
 
-def _import_template_urban_ast(site, layout, structure):
+def _import_template_urban_ast(site, layout, structure, nav_tile_maker):
     # TODO: fix images
     # TODO: fix urban ast navigation
     # TODO: create nav menu on the left
     # TODO: use the step information
     # TODO: cleanup the css in image_portlet
-
 
     # column-1 has the imagemap on the left side
     # column-2 has 2 portlets:  title and then the one with content (which also
@@ -854,6 +838,8 @@ def _import_template_urban_ast(site, layout, structure):
     assert(len(structure) >= 3)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) >= 2)
+
+    # TODO: insert step number image in view
 
     """
     Need to know:
@@ -878,7 +864,7 @@ def _import_template_urban_ast(site, layout, structure):
     image_portlet = structure['column-1'][0][1]['content'][0]
     portlet = structure['column-2'][1][1]
 
-    cover_title = structure['name']    # this will be the title
+    #cover_title = structure['name']    # this will be the title
     section_title = portlet['portlet_title']
     main_section_title = structure['column-2'][0][1]['headertext']
     step = structure['column-2'][0][1]['step']
@@ -915,7 +901,7 @@ def _import_template_urban_ast(site, layout, structure):
 
     [structure.pop(z) for z in ['column-1', 'column-2', 'name']]
     if structure:
-        second_row_group = [make_group(2, t) for t in
+        second_row_group = [make_group(4, t) for t in
                             [make_tile(cover, x) for x in structure.values()]
                             ]
         second_row = make_row(*second_row_group)

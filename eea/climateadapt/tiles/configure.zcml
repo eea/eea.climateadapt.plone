@@ -98,4 +98,16 @@
       for="*"
       />
 
+  <plone:tile
+      name="eea.climateadapt.urbanast_navigation"
+      title="UrbanAST Navigation"
+      description="Navigation tile for UrbanAST pages"
+      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+      add_permission="cmf.ModifyPortalContent"
+      schema=".ast_navigation.IUrbanASTNavigationTile"
+      class=".ast_navigation.UrbanASTNavigationTile"
+      permission="zope2.View"
+      for="*"
+      />
+
 </configure>

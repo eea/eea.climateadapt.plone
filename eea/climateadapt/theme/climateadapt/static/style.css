@@ -198,7 +198,7 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
 #content {margin: 1em;}
 /* #content-core {padding:1em;} */
 #content > .row { margin: 0}
-#tiles-list li { list-style-type: none }
+#tiles-list li { list-style-type: none !important }
 .layout-actions li { list-style-type: none !important;}
 
 .column.col-md-8 .col-md-1{

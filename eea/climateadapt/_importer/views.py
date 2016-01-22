@@ -79,6 +79,8 @@ class SingleImporterView(BrowserView):
                 try:
                     ll = session.query(sql.Layout).filter_by(layoutid=llid).one()
                 except:
+                    print "Got error on layout", layout.friendlyurl
+                    continue
                     import pdb; pdb.set_trace()
                 this_url = layout.friendlyurl
                 child_url = ll.friendlyurl

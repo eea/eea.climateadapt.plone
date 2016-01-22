@@ -5,7 +5,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
 from eea.climateadapt import MessageFactory as _
-from eea.climateadapt.interfaces import IASTNavigationRoot
+#from eea.climateadapt.interfaces import IASTNavigationRoot
 from zope import schema
 from zope.interface import implements
 
@@ -37,70 +37,98 @@ class ASTNavigationTile(PersistentCoverTile):
         return False
 
 
-    def _get_ast_root(self):
+class IUrbanASTNavigationTile(IPersistentCoverTile):
 
-        parent = self.context
-        while True:
-            if IASTNavigationRoot.providedBy(parent):
-                break
-            else:
-                if hasattr(parent, 'aq_parent'):
-                    parent = parent.aq_parent
-                    if parent is None:
-                        break
-                else:
-                    break
-
-        if not IASTNavigationRoot.providedBy(parent):
-            raise ValueError('No AST Root was found, mark '
-                             'proper root with IASTNavigationRoot')
-        return parent
+    title = schema.TextLine(
+        title=_(u'Title'),
+        required=False,
+    )
 
 
-    def _title(self, obj):
-        obj = obj.aq_self
-        title = getattr(obj, "_ast_title", obj.Title())
-        return title
+class UrbanASTNavigationTile(PersistentCoverTile):
+    """ AST Navigation tile
 
-    def get_nav_struct(self):
-        ast_root = self._get_ast_root()
-        res = []
+    Shows the navigation tile
+    """
 
-        all_parts = ast_root.contentValues({'portal_type': 'Folder'})
+    implements(IASTNavigationTile)
 
-        step = 0
+    index = ViewPageTemplateFile('pt/urbanast_navigation.pt')
 
-        T = self._title
+    is_configurable = False
+    is_editable = False
+    is_droppable = False
+    short_name = u'AST Navigation'
 
-        while step < len(all_parts):
-            for_this_step = [o.getId()
-                             for o in all_parts
-                             if o.getId().startswith('step-{0}'.format(step))]
-            for_this_step.sort()
-            step += 1
-
-            if not for_this_step:
-                continue
-
-            main = ast_root[for_this_step[0]]
-            children = [(T(o['index_html']), o['index_html'].absolute_url())
-                        for o in [ast_root[x] for x in for_this_step[1:]]]
-            res.append((step,
-                        #main['index_html'].Title(),
-                        T(main['index_html']),
-                        main['index_html'].absolute_url(),
-                        children))
+    def is_empty(self):
+        return False
 
 
-        # process extra documents that have weird ids
-        for folder in all_parts:
-            if not folder.getId().startswith('step'):
-                cover = folder['index_html']
-                step = getattr(cover, '_ast_navigation_step', 0)
-                info = (T(cover), cover.absolute_url())
-                # try to find the proper index position
-                for branch in res:
-                    if branch[0] == step:
-                        branch[3].append(info)
 
-        return res
+    # def _get_ast_root(self):
+    #
+    #     parent = self.context
+    #     while True:
+    #         if IASTNavigationRoot.providedBy(parent):
+    #             break
+    #         else:
+    #             if hasattr(parent, 'aq_parent'):
+    #                 parent = parent.aq_parent
+    #                 if parent is None:
+    #                     break
+    #             else:
+    #                 break
+    #
+    #     if not IASTNavigationRoot.providedBy(parent):
+    #         raise ValueError('No AST Root was found, mark '
+    #                          'proper root with IASTNavigationRoot')
+    #     return parent
+    #
+    #
+    # def _title(self, obj):
+    #     obj = obj.aq_self
+    #     title = getattr(obj, "_ast_title", obj.Title())
+    #     return title
+    #
+    # def get_nav_struct(self):
+    #     ast_root = self._get_ast_root()
+    #     res = []
+    #
+    #     all_parts = ast_root.contentValues({'portal_type': 'Folder'})
+    #
+    #     step = 0
+    #
+    #     T = self._title
+    #
+    #     while step < len(all_parts):
+    #         for_this_step = [o.getId()
+    #                          for o in all_parts
+    #                          if o.getId().startswith('step-{0}'.format(step))]
+    #         for_this_step.sort()
+    #         step += 1
+    #
+    #         if not for_this_step:
+    #             continue
+    #
+    #         main = ast_root[for_this_step[0]]
+    #         children = [(o['index_html'].Title(), o['index_html'].absolute_url())
+    #                     for o in [ast_root[x] for x in for_this_step[1:]]]
+    #         res.append((step,
+    #                     #main['index_html'].Title(),
+    #                     T(main['index_html']),
+    #                     main['index_html'].absolute_url(),
+    #                     children))
+    #
+    #
+    #     # process extra documents that have weird ids
+    #     for folder in all_parts:
+    #         if not folder.getId().startswith('step'):
+    #             cover = folder['index_html']
+    #             step = getattr(cover, '_ast_navigation_step', 0)
+    #             info = (T(cover), cover.absolute_url())
+    #             # try to find the proper index position
+    #             for branch in res:
+    #                 if branch[0] == step:
+    #                     branch[3].append(info)
+    #
+    #     return res

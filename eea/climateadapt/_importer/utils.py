@@ -331,7 +331,7 @@ def get_template_for_layout(layout):
     return template
 
 
-def make_tile(cover, col):
+def make_tile(cover, col, css_class=None):
     payload = col[0][1]
     if payload.get('portlet_type') == 'journal_article_content':
         _content = {
@@ -340,12 +340,13 @@ def make_tile(cover, col):
         }
         return make_richtext_with_title_tile(cover, _content)
 
+    if css_class:
+        payload.update({'css_class': css_class})
+
     if payload.get('paging') == u'1':
         # this is the search portlet on the right
-        payload.update({'css_class': 'col-md-4'})
         return make_aceitem_search_tile(cover, payload)
     else:
-        payload.update({'css_class': 'col-md-4'})
         return make_aceitem_relevant_content_tile(cover, payload)
 
 
@@ -426,6 +427,19 @@ def make_ast_navigation_tile(cover):
     typeName = 'eea.climateadapt.ast_navigation'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
     ITileDataManager(tile).set({'title': u"AST Navigation"})
+
+    return {
+        'tile-type': typeName,
+        'type': 'tile',
+        'id': id
+    }
+
+
+def make_urbanast_navigation_tile(cover):
+    id = getUtility(IUUIDGenerator)()
+    typeName = 'eea.climateadapt.urbanast_navigation'
+    tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
+    ITileDataManager(tile).set({'title': u"UrbanAST Navigation"})
 
     return {
         'tile-type': typeName,
