@@ -48,7 +48,7 @@ CHM.Control.Options.OptionsControl = Ext.extend(Ext.Panel, {
     	    forceSelection: true,
     	    anchor: '94%',
     		id: 'sector-select',
-    		cls: 'csst-input'    	
+    		cls: 'csst-input'
     	});
     	
     	this.sectorSelect.addListener('select', this.handleSectorSelect, this);
