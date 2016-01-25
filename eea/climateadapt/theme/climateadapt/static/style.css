@@ -573,3 +573,7 @@ ul#ast-menu, #ast-menu ul {
 .tile {
     padding-right: 1em;
 }
+#fp-country-selector {
+    margin-top:-30px;
+    margin-left: 1em;
+}

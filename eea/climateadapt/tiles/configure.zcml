@@ -110,4 +110,16 @@
       for="*"
       />
 
+  <plone:tile
+      name="eea.climateadapt.genericview"
+      title="Generic View"
+      description="Render a view as a tile"
+      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+      add_permission="cmf.ModifyPortalContent"
+      schema=".genericview.IGenericViewTile"
+      class=".genericview.GenericViewTile"
+      permission="zope2.View"
+      for="*"
+      />
+
 </configure>

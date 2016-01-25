@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n:domain="collective.cover">
+
+  <body>
+    <tal:text define="title python:view.data['title']; view_name python:view.data['view_name']">
+      <p tal:condition="python: not view_name and view.is_compose_mode()" i18n:translate="">
+        Please edit the tile to enter the view name.
+      </p>
+
+      <div tal:condition="view/is_compose_mode">
+        <h3 tal:condition="title" tal:content="title"></h3>
+
+        <p tal:condition="view_name">Will render view @@<span tal:content="view_name">view name</span></p>
+      </div>
+
+      <div class="cover-genericview-tile tile-content" tal:condition="not: view/is_compose_mode">
+        <div tal:replace="structure view/render_inner_view" />
+      </div>
+    </tal:text>
+  </body>
+</html>
+

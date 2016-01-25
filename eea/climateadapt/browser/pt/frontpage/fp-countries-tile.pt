@@ -1,0 +1,25 @@
+<div>
+  <a href="/countries-map">
+    <img src="" tal:attributes="src string: ${context/++resource++eea.climateadapt}/img/european-countries.png" />
+  </a>
+  <form id="fp-country-selector">
+  <select id="country-select">
+    <option id="no-selection-option" value="" selected="selected">Choose a country</option>
+    <option tal:repeat="c view/countries" tal:attributes="value python:c[0]" tal:content="python: c[1]"></option>
+  </select>
+  <script>
+    // <![CDATA[
+    jQuery(document).ready(function(){
+      $("#country-select").change(function(){
+        var cid = $(this).val();
+        var country = $("#country-select option[value='" + cid + "']").text();
+        console.log(cid, country);
+        if (country.length) {
+          document.location = '/countries/' + country.toLowerCase();
+        }
+      });
+    });
+    // ]]>
+  </script>
+  </form>
+</div>

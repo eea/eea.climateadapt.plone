@@ -5,6 +5,8 @@
     xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="eea.climateadapt">
 
+    <include file='frontpage.zcml' />
+
     <browser:resourceDirectory
         name="eea.climateadapt"
         directory="resources"
