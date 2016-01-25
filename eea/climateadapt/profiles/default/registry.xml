@@ -9,6 +9,8 @@
             <element>eea.climateadapt.transregionselect</element>
             <element>eea.climateadapt.countryselect</element>
             <element>eea.climateadapt.ast_navigation</element>
+            <element>eea.climateadapt.urbanast_navigation</element>
+            <element>eea.climateadapt.genericview</element>
         </value>
     </record>
     <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
@@ -20,6 +22,8 @@
             <element>eea.climateadapt.transregionselect</element>
             <element>eea.climateadapt.countryselect</element>
             <element>eea.climateadapt.ast_navigation</element>
+            <element>eea.climateadapt.urbanast_navigation</element>
+            <element>eea.climateadapt.genericview</element>
         </value>
     </record>
 </registry>

@@ -1,0 +1,5 @@
+<div>
+  <a href="/share-your-info">
+    <img src="" tal:attributes="src string: ${context/++resource++eea.climateadapt}/img/share-your-info.jpg" />
+  </a>
+</div>

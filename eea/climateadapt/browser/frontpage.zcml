@@ -1,0 +1,38 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="eea.climateadapt">
+
+
+    <browser:page
+        name="fp-ast-tile"
+        for="*"
+        template="pt/frontpage/fp-ast-tile.pt"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        name="fp-countries-tile"
+        for="*"
+        template="pt/frontpage/fp-countries-tile.pt"
+        permission="zope.Public"
+        class=".tilehelpers.FrontPageCountries"
+        />
+
+    <browser:page
+        name="fp-casestudies-tile"
+        for="*"
+        template="pt/frontpage/fp-casestudies-tile.pt"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        name="fp-shareinfo-tile"
+        for="*"
+        template="pt/frontpage/fp-shareinfo-tile.pt"
+        permission="zope.Public"
+        />
+
+</configure>

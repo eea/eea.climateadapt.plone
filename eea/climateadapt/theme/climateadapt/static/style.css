@@ -581,7 +581,6 @@ ul#ast-menu, #ast-menu ul {
 .tile {
     padding-right: 1em;
 }
-
 #content .eu-strategy td h2,
 #content .aceitem-relevant-tile h2 {
     font-size: 1.4em;
@@ -698,4 +697,8 @@ a.bluebutton:active {
 }
 #content ul#ast-menu > li {
     background-color: transparent !important;
+}
+#fp-country-selector {
+    margin-top:-30px;
+    margin-left: 1em;
 }
