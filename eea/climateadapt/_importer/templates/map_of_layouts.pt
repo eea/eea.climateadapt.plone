@@ -7,6 +7,7 @@
       <li><a tal:attributes="href view/aceimport_url">Import aceitems</a></li>
       <li><a tal:attributes="href view/caseimport_url">Import casestudy</a></li>
       <li><a tal:attributes="href view/ast_import_url">Import AST</a></li>
+      <li><a tal:attributes="href view/journal_articles_import_url">Import News and Events</a></li>
     </ul>
 
     <table>
