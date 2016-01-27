@@ -786,7 +786,43 @@ a.bluebutton:active {
 #content ul#ast-menu .ui-state-active .ui-icon {
     background-image: url('cca/img/arrow_ast_wit.png');
 }
+
+/* fronpage */
+
 #fp-country-selector {
     margin-top:-30px;
     margin-left: 1em;
+}
+
+.section-frontpage .tile {
+    margin-top: 1em;
+}
+
+.section-frontpage .tile h3 {
+    background-color: rgb(166, 191, 38);
+    color: White;
+    padding: 0.3em;
+    text-align:center;
+}
+
+.section-frontpage .tile ul {
+    margin: 0em;
+    margin-left: 1.3em !important;
+}
+.section-frontpage .tile ul li {
+    list-style-image: url('cca/img/arrow_ast.png') !important;
+}
+.section-frontpage .tile-listing-footer {
+    text-align: right;
+}
+.section-frontpage .tile-listing-footer a {
+    background: url('cca/img/arrow_ast.png') 0% 50% no-repeat !important;
+    padding-left: 1em;
+}
+.section-frontpage .tile-edge {
+    border: none;
+}
+.section-frontpage .tile-edge .tile-content {
+    padding-right: 1em;
+    border-right: 2px #d7e3ef solid;
 }

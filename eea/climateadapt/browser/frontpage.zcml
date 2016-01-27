@@ -35,4 +35,20 @@
         permission="zope.Public"
         />
 
+    <browser:page
+        name="fp-news-tile"
+        for="*"
+        class=".tilehelpers.NewsTile"
+        template="pt/frontpage/fp-listing-tile.pt"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        name="fp-events-tile"
+        class=".tilehelpers.EventsTile"
+        for="*"
+        template="pt/frontpage/fp-listing-tile.pt"
+        permission="zope.Public"
+        />
+
 </configure>
