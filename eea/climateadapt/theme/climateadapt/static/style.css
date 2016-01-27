@@ -624,23 +624,29 @@ ul#ast-menu, #ast-menu ul {
 #content .aceitem-relevant-tile > ul, #content .aceitem-relevant-tile > ul > li,
 #content ul.arrow-items, #content ul.arrow-items > li,
 #content ul#ast-menu ul, #content ul#ast-menu ul > li {
-    list-style-type: none;
-    list-style-image: url("cca/img/arrows/01_plus.png");
-    list-style-position: outside;
+    list-style: none;
     margin-bottom: 0.5em;
+}
+#content .eu-strategy td > ul > li,
+#content .aceitem-relevant-tile > ul > li,
+#content ul.arrow-items > li,
+#content ul#ast-menu ul > li {
+    background-image: url("cca/img/arrows/01_plus.png");
+    background-repeat: no-repeat;
+    background-position: 0.15em 0.2em;
+    padding-left: 1.6em;
 }
 #content .eu-strategy td > ul > li > a,
 #content .aceitem-relevant-tile > ul > li > a,
 #content ul.arrow-items > li > a,
 #content ul#ast-menu ul > li > a{
-    vertical-align: text-bottom;
     text-decoration: initial;
 }
 #content .eu-strategy td > ul,
 #content .aceitem-relevant-tile > ul,
 #content ul.arrow-items,
 #content ul#ast-menu ul {
-    margin-left: 1.6em;
+    margin-left: 0em;
 }
 #content .aceitem-relevant-tile > ul {
     margin-top: 1em;
@@ -731,11 +737,11 @@ a.bluebutton:active {
 #content ul#ast-menu > li {
     background-color: transparent !important;
 }
-#content ul#ast-menu ul, #content ul#ast-menu ul > li {
-    list-style-image: url('cca/img/arrows/arrow_darkgreen.png');
+#content ul#ast-menu ul > li {
+    background-image: url('cca/img/arrows/arrow_darkgreen.png');
 }
 #content ul#ast-menu ul > li:hover {
-    list-style-image: url('cca/img/arrows/01_plus.png');
+    background-image: url('cca/img/arrows/01_plus.png');
 }
 #content ul#ast-menu ul > li:hover a {
     color: #a5bf26;
