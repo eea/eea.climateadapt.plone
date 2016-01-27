@@ -46,6 +46,7 @@ from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
+from pytz import utc
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from zope.interface import alsoProvides, noLongerProvides
@@ -1399,6 +1400,13 @@ def import_journal_articles(site):
         publish_date = latest.displaydate
 
         content = extract_simplified_info_from_article_content(latest.content)
+        # content is in form:
+        # [('dynamic', 'location', ['']),
+        #   ('list', 'day', ['22']),
+        #   ('list', 'month', ['May']),
+        #   ('list', 'year', ['2014']),
+        #   ('dynamic', 'url', ['http://www.interreg4c.eu/policy-sharing-policy-learning/overview/']),
+        #   ('dynamic', 'title', ['Policy sharing, policy learning, Interreg IVC, Brussels, Belgium'])]
 
         if latest.structureid == 'ACEEVENT':
             attrs = {}
@@ -1413,11 +1421,12 @@ def import_journal_articles(site):
             year = attrs['year']
             location = attrs['location']
             date = dateutil.parser.parse("{0} {1} {2}".format(day, month, year))
+            date = utc.localize(date)
 
-            #link_title = attrs['title']
             event = create_plone_content(parent, type='Event', id=slug,
                                          title=title, location=location,
                                          start=date, end=date, whole_day=True,
+                                         timezone='UTC',
                                          event_url=link, effective=publish_date)
 
             logger.info("Created Event at %s", event.absolute_url())
@@ -1425,23 +1434,12 @@ def import_journal_articles(site):
             print "no structure id"
             import pdb; pdb.set_trace()
 
-    import pdb; pdb.set_trace()
-
-    # content is in form:
-    # [('dynamic', 'location', ['']),
-    #   ('list', 'day', ['22']),
-    #   ('list', 'month', ['May']),
-    #   ('list', 'year', ['2014']),
-    #   ('dynamic', 'url', ['http://www.interreg4c.eu/policy-sharing-policy-learning/overview/']),
-    #   ('dynamic', 'title', ['Policy sharing, policy learning, Interreg IVC, Brussels, Belgium'])]
-
-
-
     # TODO: fix effective date as publishing
     parent = create_folder_at(site, '/news-archive')
     for info in session.query(sql.Journalarticle).filter_by(type_='news'):
         # We get the latest version and skip it if it's already imported
         latest = _get_latest_version(session, info)
+
         if latest.urltitle in parent.contentIds():
             logger.debug("Skipping %s, already imported", info.urltitle)
             continue
