@@ -321,6 +321,12 @@ def extract_portlet_info(session, portletid, layout):
     return prefs
 
 
+def extract_simplified_info_from_article_content(content):
+    e = lxml.etree.fromstring(content.encode('utf-8'))
+    content = [SOLVERS[child.tag](child) for child in e]
+    return content
+
+
 def get_template_for_layout(layout):
     settings = parse_settings(layout.typesettings)
 
@@ -750,6 +756,12 @@ def create_cover_at(site, location, id='index_html', **kw):
     logger.info("Created new cover at %s", cover.absolute_url(1))
 
     return cover
+
+
+def create_plone_content(parent, **kw):
+    type_ = kw.pop('type')
+    content = createAndPublishContentInContainer(parent, type_, **kw)
+    return content
 
 
 def log_call(wrapped):

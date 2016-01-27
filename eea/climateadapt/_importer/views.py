@@ -163,6 +163,19 @@ class SingleImporterView(BrowserView):
                 obj = importer(acemeasure, site['casestudy'])
                 print "Imported ", obj.absolute_url()
 
+
+    def import_journal_articles(self):
+        from eea.climateadapt._importer import import_journal_articles
+
+        session = self._make_session()
+        eea.climateadapt._importer.session = session
+        site = self.context
+
+        import_journal_articles(site)
+
+        return "Done"
+
+
     def __call__(self):
         _type = self.request.form.get('type', 'layout')
         debug = self.request.form.get('debug')
@@ -213,6 +226,10 @@ class MapOfLayouts(SingleImporterView):
     def ast_import_url(self):
         site = getSite()
         return site.absolute_url() + "/layout_importer?type=layout_type&template=ast"
+
+    def journal_articles_import_url(self):
+        site = getSite()
+        return site.absolute_url() + "/layout_importer?type=journal_articles"
 
 
 class FacetedImporter(BrowserView):

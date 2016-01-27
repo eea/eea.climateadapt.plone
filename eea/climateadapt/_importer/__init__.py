@@ -7,7 +7,9 @@ from eea.climateadapt._importer.utils import ACE_ITEM_TYPES
 from eea.climateadapt._importer.utils import createAndPublishContentInContainer
 from eea.climateadapt._importer.utils import create_cover_at
 from eea.climateadapt._importer.utils import create_folder_at
+from eea.climateadapt._importer.utils import create_plone_content
 from eea.climateadapt._importer.utils import extract_portlet_info
+from eea.climateadapt._importer.utils import extract_simplified_info_from_article_content
 from eea.climateadapt._importer.utils import get_image_by_imageid
 from eea.climateadapt._importer.utils import localize
 from eea.climateadapt._importer.utils import log_call
@@ -1376,7 +1378,43 @@ def run_importer(site=None):
             logger.info("Created cover at %s", cover.absolute_url())
 
 
+    import_journal_articles(site)
     tweak_site(site)
+
+
+def import_journal_articles(site):
+    news = session.query(sql.Journalarticle).filter_by(type_='news')
+    parent = create_folder_at(site, '/news-archive')
+
+    for info in news:
+        # TODO: consolidate imported news.
+        # when importing, make a query for the same resourceprimkey and only
+        # import the one with the biggest version
+        # then, on the next iteration, check if id exists in parent
+
+        slug = info.urltitle
+        title = strip_xml(info.title)
+        publish_date = info.displaydate
+
+        content = extract_simplified_info_from_article_content(info.content)
+        if info.structureid == 'ACENEWS':
+            attrs = {}
+            for line in content:
+                name = line[1]
+                val = line[2][0]
+                attrs[name] = val
+            link = attrs['url']
+            #link_title = attrs['title']
+            news = create_plone_content(parent, type='Link', id=slug, title=title,
+                                        remoteUrl=link, effective=publish_date)
+            logger.info("Created Link for news at %s", news.absolute_url())
+        else:
+            text = content[0]
+            news = create_plone_content(parent, type='News Item', id=slug, title=title,
+                                        text=text, effective=publish_date)
+            logger.info("Created News Item for news at %s", news.absolute_url())
+
+    #events = session.query(sql.Journalarticle).filter_by(type_='events')
 
 
 def tweak_site(site):
