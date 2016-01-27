@@ -1079,6 +1079,19 @@ def make_faceted(site, location, xmlfilename, layout):
 
     return faceted
 
+
+def _get_latest_version(session, saobj):
+    """ Returns the latest version of a Journalarticle object
+
+    Latest version means row where version is the biggest Decimal number
+    """
+    klass = saobj.__class__
+    return session.query(klass).\
+        filter_by(resourceprimkey=saobj.resourceprimkey).\
+        order_by(klass.version.desc()).first()
+
+
+
 # Search portlet has this info:
 #  u'column-5': [(u'filteraceitemportlet_WAR_FilterAceItemportlet_INSTANCE_nY73',
 #                 {'aceitemtype': 'NULL_VALUE',

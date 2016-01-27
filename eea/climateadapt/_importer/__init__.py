@@ -4,6 +4,7 @@ from collections import defaultdict
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.tweak_sql import fix_relations
 from eea.climateadapt._importer.utils import ACE_ITEM_TYPES
+from eea.climateadapt._importer.utils import _get_latest_version
 from eea.climateadapt._importer.utils import createAndPublishContentInContainer
 from eea.climateadapt._importer.utils import create_cover_at
 from eea.climateadapt._importer.utils import create_folder_at
@@ -49,6 +50,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from zope.interface import alsoProvides, noLongerProvides
 from zope.sqlalchemy import register
+import dateutil
 import json
 import os
 import sys
@@ -1383,21 +1385,73 @@ def run_importer(site=None):
 
 
 def import_journal_articles(site):
-    news = session.query(sql.Journalarticle).filter_by(type_='news')
+
+    parent = create_folder_at(site, '/more-events')
+
+    for info in session.query(sql.Journalarticle).filter_by(type_='events'):
+        latest = _get_latest_version(session, info)
+        if latest.urltitle in parent.contentIds():
+            logger.debug("Skipping %s, already imported", info.urltitle)
+            continue
+
+        slug = latest.urltitle
+        title = strip_xml(latest.title)
+        publish_date = latest.displaydate
+
+        content = extract_simplified_info_from_article_content(latest.content)
+
+        if latest.structureid == 'ACEEVENT':
+            attrs = {}
+            for line in content:
+                name = line[1]
+                val = line[2][0]
+                attrs[name] = val
+
+            link = attrs['url']
+            day = attrs['day']
+            month = attrs['month']
+            year = attrs['year']
+            location = attrs['location']
+            date = dateutil.parser.parse("{0} {1} {2}".format(day, month, year))
+
+            #link_title = attrs['title']
+            event = create_plone_content(parent, type='Event', id=slug,
+                                         title=title, location=location,
+                                         start=date, end=date, whole_day=True,
+                                         event_url=link, effective=publish_date)
+
+            logger.info("Created Event at %s", event.absolute_url())
+        else:
+            print "no structure id"
+            import pdb; pdb.set_trace()
+
+    import pdb; pdb.set_trace()
+
+    # content is in form:
+    # [('dynamic', 'location', ['']),
+    #   ('list', 'day', ['22']),
+    #   ('list', 'month', ['May']),
+    #   ('list', 'year', ['2014']),
+    #   ('dynamic', 'url', ['http://www.interreg4c.eu/policy-sharing-policy-learning/overview/']),
+    #   ('dynamic', 'title', ['Policy sharing, policy learning, Interreg IVC, Brussels, Belgium'])]
+
+
+
+    # TODO: fix effective date as publishing
     parent = create_folder_at(site, '/news-archive')
+    for info in session.query(sql.Journalarticle).filter_by(type_='news'):
+        # We get the latest version and skip it if it's already imported
+        latest = _get_latest_version(session, info)
+        if latest.urltitle in parent.contentIds():
+            logger.debug("Skipping %s, already imported", info.urltitle)
+            continue
 
-    for info in news:
-        # TODO: consolidate imported news.
-        # when importing, make a query for the same resourceprimkey and only
-        # import the one with the biggest version
-        # then, on the next iteration, check if id exists in parent
+        slug = latest.urltitle
+        title = strip_xml(latest.title)
+        publish_date = latest.displaydate
 
-        slug = info.urltitle
-        title = strip_xml(info.title)
-        publish_date = info.displaydate
-
-        content = extract_simplified_info_from_article_content(info.content)
-        if info.structureid == 'ACENEWS':
+        content = extract_simplified_info_from_article_content(latest.content)
+        if latest.structureid == 'ACENEWS':
             attrs = {}
             for line in content:
                 name = line[1]
@@ -1405,16 +1459,16 @@ def import_journal_articles(site):
                 attrs[name] = val
             link = attrs['url']
             #link_title = attrs['title']
-            news = create_plone_content(parent, type='Link', id=slug, title=title,
-                                        remoteUrl=link, effective=publish_date)
+            news = create_plone_content(parent, type='Link', id=slug,
+                                        title=title, remoteUrl=link,
+                                        effective=publish_date)
             logger.info("Created Link for news at %s", news.absolute_url())
         else:
             text = content[0]
-            news = create_plone_content(parent, type='News Item', id=slug, title=title,
-                                        text=text, effective=publish_date)
+            news = create_plone_content(parent, type='News Item', id=slug,
+                                        title=title, text=text,
+                                        effective=publish_date)
             logger.info("Created News Item for news at %s", news.absolute_url())
-
-    #events = session.query(sql.Journalarticle).filter_by(type_='events')
 
 
 def tweak_site(site):
