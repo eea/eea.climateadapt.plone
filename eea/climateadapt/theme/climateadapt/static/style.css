@@ -20,7 +20,14 @@ body {
 }
 a:link, a:visited, #content a:link, dl.portlet a:link {color:#205C90;}
 a:hover {color:#000;}
-h1, #content h1 {color: #205C90; font-family: Tahoma, 'Times New Roman', serif; margin: 0em 0em 0.5em; font-weight: 500;}
+h1,
+#content h1 {
+   color: #012C56;
+   font-family: Tahoma, 'Times New Roman', serif;
+   margin: 0em 0em 0.5em;
+   font-weight: 500;
+   font-size: 190%;
+}
 h2, h3, h4, h5, h6 {color: #636466; font-family: Arial, Helvetica, sans-serif;}
 /* #wrapper { width:auto; margin: 0 auto; max-width: 90%;  font-size: 1.1em;} */
 
@@ -62,6 +69,22 @@ h2, h3, h4, h5, h6 {color: #636466; font-family: Arial, Helvetica, sans-serif;}
 .pb-ajax, .pb-image, .overlay iframe {font-size: 1.3em;}
 div.overlay-iframe, div.overlay-ajax {width:75%;z-index:1100;}
 .portlet img, #content img {max-width:100%;}
+#content a:hover,
+dl.portlet a:hover {
+    color: #a5bf26 !important;
+}
+#content a:visited,
+dl.portlet a:visited {
+    color: #02516d;
+    border-bottom: 0px transparent;
+    text-decoration: underline;
+}
+#content a:link,
+dl.portlet a:link {
+    color: #12617d;
+    border-bottom: 0px transparent;
+    text-decoration: underline;
+}
 /* lists */
 #content li, dl.portlet li {
     display: list-item;
@@ -577,7 +600,6 @@ ul#ast-menu, #ast-menu ul {
 #ast-menu li {
     list-style-type: none;
 }
-
 .tile {
     padding-right: 1em;
 }
@@ -602,15 +624,29 @@ ul#ast-menu, #ast-menu ul {
 #content .aceitem-relevant-tile > ul, #content .aceitem-relevant-tile > ul > li,
 #content ul.arrow-items, #content ul.arrow-items > li,
 #content ul#ast-menu ul, #content ul#ast-menu ul > li {
-    list-style-type: none;
-    list-style-image: url("cca/img/01_plus.png");
-    list-style-position: outside;
+    list-style: none;
+    margin-bottom: 0.5em;
+}
+#content .eu-strategy td > ul > li,
+#content .aceitem-relevant-tile > ul > li,
+#content ul.arrow-items > li,
+#content ul#ast-menu ul > li {
+    background-image: url("cca/img/arrows/01_plus.png");
+    background-repeat: no-repeat;
+    background-position: 0.15em 0.2em;
+    padding-left: 1.6em;
+}
+#content .eu-strategy td > ul > li > a,
+#content .aceitem-relevant-tile > ul > li > a,
+#content ul.arrow-items > li > a,
+#content ul#ast-menu ul > li > a{
+    text-decoration: initial;
 }
 #content .eu-strategy td > ul,
 #content .aceitem-relevant-tile > ul,
 #content ul.arrow-items,
 #content ul#ast-menu ul {
-    margin-left: 1.6em;
+    margin-left: 0em;
 }
 #content .aceitem-relevant-tile > ul {
     margin-top: 1em;
@@ -651,6 +687,7 @@ ul#ast-menu, #ast-menu ul {
 #content .aceitem-relevant-tile .tile-footer {
     padding-top: 0.7em;
 }
+#content .share-your-info-ace-button button,
 #content .aceitem-relevant-tile .tile-footer button,
 a.bluebutton,
 a.bluebutton:visited {
@@ -663,12 +700,14 @@ a.bluebutton:visited {
     font-weight: bold;
     vertical-align: middle;
 }
+#content .share-your-info-ace-button button:hover,
 #content .aceitem-relevant-tile .tile-footer button:hover,
 a.bluebutton:hover {
     background-color: #afca36;
     color: #fff;
     box-shadow: 1px 1px 6px 0px #bbb;
 }
+#content .share-your-info-ace-button button:active,
 #content .aceitem-relevant-tile .tile-footer button:active,
 a.bluebutton:active {
     background-color: #a0ba21;
@@ -697,6 +736,55 @@ a.bluebutton:active {
 }
 #content ul#ast-menu > li {
     background-color: transparent !important;
+}
+#content ul#ast-menu ul > li {
+    background-image: url('cca/img/arrows/arrow_darkgreen.png');
+}
+#content ul#ast-menu ul > li:hover {
+    background-image: url('cca/img/arrows/01_plus.png');
+}
+#content ul#ast-menu ul > li:hover a {
+    color: #a5bf26;
+}
+#content ul#ast-menu ul > li a,
+#content ul#ast-menu ul > li a:hover,
+#content ul#ast-menu ul > li a:visited {
+    color: #2c330a;
+    text-decoration: initial;
+    border-bottom: 0px transparent;
+}
+#content ul#ast-menu .ui-accordion-header,
+#content ul#ast-menu .ui-accordion-content {
+    border-radius: 0px;
+    border: 0px transparent;
+}
+#content ul#ast-menu .ui-accordion-header,
+#content ul#ast-menu .ui-accordion-header:visited {
+    background: #9aa854;
+    text-decoration: initial;
+    color: #2c330a !important;
+}
+#content ul#ast-menu .ui-accordion-header:hover {
+    background: #9aa854;
+    text-decoration: initial;
+    color: #fff !important;
+}
+#content ul#ast-menu .ui-accordion-header.ui-accordion-header-active {
+    background: #6d7a2b;
+    color: #fff !important;
+}
+#content ul#ast-menu .ui-accordion-content {
+    background: #e9efc9;
+}
+#content ul#ast-menu .ui-state-default .ui-icon {
+    background-image: url('cca/img/arrow_ast.png');
+    background-position: 0px 0px;
+    left: 0.8em;
+    top: 0.73em;
+    margin-top: 0px;
+}
+#content ul#ast-menu .ui-state-active .ui-icon {
+    background-image: url('cca/img/arrow_ast_wit.png');
 }
 #fp-country-selector {
     margin-top:-30px;
