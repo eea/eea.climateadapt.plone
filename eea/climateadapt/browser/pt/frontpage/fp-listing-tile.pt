@@ -1,0 +1,12 @@
+<div>
+  <h3 tal:content="view/title">Tile title</h3>
+  <ul tal:define="items view/items">
+    <li tal:repeat="obj items">
+      <a href="" tal:attributes="href python: view.get_url(obj)" tal:content="obj/Title">Link</a>
+    </li>
+  </ul>
+  <div class="tile-listing-footer">
+    <a href="" tal:define="info view/more_url; title python: info[1]; url python: info[0]" 
+      tal:attributes="href url" tal:content="title"></a>
+  </div>
+</div>

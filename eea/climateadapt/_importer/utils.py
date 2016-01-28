@@ -583,6 +583,19 @@ def make_iframe_embed_tile(cover, url):
     }
 
 
+def make_view_tile(cover, kw):
+    id = getUtility(IUUIDGenerator)()
+    typeName = 'eea.climateadapt.genericview'
+    tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
+    ITileDataManager(tile).set(kw)
+
+    return {
+        'tile-type': typeName,
+        'type': 'tile',
+        'id': id
+    }
+
+
 # def make_ast_text_tile(cover, info):
 #     id = getUtility(IUUIDGenerator)()
 #     type_name = 'collective.cover.richtext'
