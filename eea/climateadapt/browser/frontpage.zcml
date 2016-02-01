@@ -51,4 +51,46 @@
         permission="zope.Public"
         />
 
+    <browser:page
+        name="fp-newsletter-tile"
+        for="*"
+        template="pt/frontpage/fp-newsletter-tile.pt"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        name="fp-latest-updates-tile"
+        for="*"
+        template="pt/frontpage/fp-latest-updates-tile.pt"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        name="fp-sector-policies-tile"
+        for="*"
+        template="pt/frontpage/fp-sector-policies-tile.pt"
+        permission="zope.Public"
+        />
+
+    <!-- <browser:page -->
+    <!--     name="fp&#45;sector&#45;policies&#45;tile" -->
+    <!--     for="*" -->
+    <!--     template="pt/frontpage/fp&#45;sector&#45;policies&#45;tile.pt" -->
+    <!--     permission="zope.Public" -->
+    <!--     /> -->
+
+    <browser:page
+        name="fp-funding-tile"
+        for="*"
+        template="pt/frontpage/fp-funding-tile.pt"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        name="fp-climate-policy-tile"
+        for="*"
+        template="pt/frontpage/fp-climate-policy-tile.pt"
+        permission="zope.Public"
+        />
+
 </configure>

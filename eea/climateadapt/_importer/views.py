@@ -175,12 +175,6 @@ class SingleImporterView(BrowserView):
 
         return "Done"
 
-    def import_frontpage(self):
-        site = self.context
-        from eea.climateadapt._importer import make_frontpage
-        fp = make_frontpage(site)
-        return self.request.response.redirect(fp.absolute_url())
-
     def __call__(self):
         _type = self.request.form.get('type', 'layout')
         debug = self.request.form.get('debug')
@@ -235,10 +229,6 @@ class MapOfLayouts(SingleImporterView):
     def journal_articles_import_url(self):
         site = getSite()
         return site.absolute_url() + "/layout_importer?type=journal_articles"
-
-    def frontpage_url(self):
-        site = getSite()
-        return site.absolute_url() + "/layout_importer?type=frontpage"
 
 
 class FacetedImporter(BrowserView):

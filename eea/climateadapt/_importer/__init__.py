@@ -1305,26 +1305,89 @@ def import_template_faq(site, layout, structure):
 
 @log_call
 def import_template_frontpage(site, layout, structure):
-    # ex page: /home
-    # TODO: column-1 home_slider_portlet
-    # column-2 home_search_portlet
-    # column-5 AceNews_WAR_HomeNewsEventportlet (News)
-    # column-6 AceNews_WAR_HomeNewsEventportlet (Events)
-    assert(len(structure) == 9)
-    country_selector = structure['column-3'][0][1]['content'][0]
-    share_info = structure['column-4'][0][1]['content'][0]
-    sector_policies = structure['column-7'][0][1]['content'][0]
-    information_systems = structure['column-8'][0][1]['content'][0]
+    """ Makes the frontpage cover for the site.
 
-    # home_slider_portlet = structure['column-1']
-    # home_search_portlet = structure['column-2']
-    # news_portlet = structure['column-5']
-    # events_portlet = structure['column-6']
+    Structure:
 
-    return noop(country_selector,
-                share_info,
-                sector_policies,
-                information_systems)
+        * 1st row:
+            * promotions carousel slideshow
+        * 2nd row:
+            * img tile: use ast support tool
+            * img tile: countries dropdown
+            * img tile: find case studies
+            * img tile: share your information
+        * 3rd row:
+            * news listing tile
+            * events listing tile
+            * newsletter rich text tile
+            * latest updates rich text tile
+        * 4th row:
+            eu sector policies tile
+        * 5th row:
+            * EU funding and adaptation tile
+            * EU climate policy
+    """
+    cover = create_cover_at(site, '/frontpage', title=u'Home')
+    carousel_tile = make_view_tile(cover,
+                                   {'title': 'Promotions',
+                                    'view_name': 'fp-promotions-carousel-tile'})
+    ast_tile = make_view_tile(cover,
+                              {'title': 'AST',
+                               'view_name': 'fp-ast-tile'})
+    countries_tile = make_view_tile(cover,
+                                    {'title': 'Countries',
+                                     'view_name': 'fp-countries-tile'})
+    casestudies_tile = make_view_tile(cover,
+                                      {'title': 'Case studies',
+                                       'view_name': 'fp-casestudies-tile'})
+    shareinfo_tile = make_view_tile(cover,
+                                    {'title': 'Share info',
+                                     'view_name': 'fp-shareinfo-tile'})
+    news_tile = make_view_tile(cover,
+                               {'title': 'News',
+                                'view_name': 'fp-news-tile'})
+    events_tile = make_view_tile(cover,
+                                 {'title': 'Events',
+                                  'view_name': 'fp-events-tile'})
+
+    newsletter_tile = make_view_tile(cover,
+                                     {'title': "Newsletter",
+                                      "view_name": "fp-newsletter-tile"})
+
+    latest_updates_tile = make_view_tile(cover,
+                                     {'title': "Latest updates",
+                                      "view_name": "fp-latest-updates-tile"})
+
+    eu_sector_policies_tile = make_view_tile(cover,
+                                     {'title': "EU Sector Policies",
+                                      "view_name": "fp-sector-policies-tile"})
+
+    eu_funding_tile = make_view_tile(cover,
+                                     {'title': "EU Funding and Adaptation",
+                                      "view_name": "fp-funding-tile"})
+
+    eu_climate_policy_tile = make_view_tile(cover,
+                                     {'title': "EU Climate Policy",
+                                      "view_name": "fp-climate-policy-tile"})
+
+
+    row_1 = make_row(make_group(12, carousel_tile))
+    row_2 = make_row(*[make_group(3, tile) for tile in [ast_tile,
+                                                             countries_tile,
+                                                             casestudies_tile,
+                                                             shareinfo_tile]])
+    row_3 = make_row(*[make_group(3, tile) for tile in
+                           [news_tile, events_tile, newsletter_tile,
+                            latest_updates_tile]])
+    row_4 = make_row(make_group(12, eu_sector_policies_tile))
+    row_5 = make_row(*[make_group(6, tile) for tile in [eu_funding_tile,
+                                                        eu_climate_policy_tile]])
+
+    layout = make_layout(row_1, row_2, row_3, row_4, row_5)
+    layout = json.dumps(layout)
+
+    cover.cover_layout = layout
+    return cover
 
 
 def run_importer(site=None):
@@ -1468,75 +1531,6 @@ def import_journal_articles(site):
                                         title=title, text=text,
                                         effective=publish_date)
             logger.info("Created News Item for news at %s", news.absolute_url())
-
-
-def make_frontpage(site):
-    """ Makes the frontpage cover for the site.
-
-    Structure:
-
-        * 1st row:
-            * promotions carousel slideshow
-        * 2nd row:
-            * img tile: use ast support tool
-            * img tile: countries dropdown
-            * img tile: find case studies
-            * img tile: share your information
-        * 3rd row:
-            * news listing tile
-            * events listing tile
-            * newsletter rich text tile
-            * latest updates rich text tile
-        * 4th row:
-            eu sector policies tile
-        * 5th row:
-            * EU funding and adaptation tile
-            * EU climate policy
-    """
-    cover = create_cover_at(site, '/frontpage', title=u'Home')
-    carousel_tile = make_view_tile(cover,
-                                   {'title': 'Promotions',
-                                    'view_name': 'fp-promotions-carousel-tile'})
-    ast_tile = make_view_tile(cover,
-                              {'title': 'AST',
-                               'view_name': 'fp-ast-tile'})
-    countries_tile = make_view_tile(cover,
-                                    {'title': 'Countries',
-                                     'view_name': 'fp-countries-tile'})
-    casestudies_tile = make_view_tile(cover,
-                                      {'title': 'Case studies',
-                                       'view_name': 'fp-casestudies-tile'})
-    shareinfo_tile = make_view_tile(cover,
-                                    {'title': 'Share info',
-                                     'view_name': 'fp-shareinfo-tile'})
-    news_tile = make_view_tile(cover,
-                               {'title': 'News',
-                                'view_name': 'fp-news-tile'})
-    events_tile = make_view_tile(cover,
-                                 {'title': 'Events',
-                                  'view_name': 'fp-events-tile'})
-
-    first_row = make_row(make_group(12, carousel_tile))
-    second_row = make_row(*[make_group(3, tile) for tile in [ast_tile,
-                                                             countries_tile,
-                                                             casestudies_tile,
-                                                             shareinfo_tile]])
-    third_row = make_row(*[make_group(3, tile) for tile in [news_tile,
-                                                            events_tile]])
-
-    layout = make_layout(first_row, second_row, third_row)
-    layout = json.dumps(layout)
-
-    cover.cover_layout = layout
-    return cover
-
-
-    # nav_tile = make_richtext_tile(cover, {'title': 'navigation', 'text': nav})
-    # text_tile = make_richtext_tile(cover, {'title': 'text', 'text': text})
-    # iframe_tile = make_iframe_embed_tile(cover, iframe)
-    # layout = make_layout(*[make_row(make_group(tile))
-    #                       for tile in (nav_tile, text_tile, iframe_tile) ])
-    #
 
 
 def tweak_site(site):

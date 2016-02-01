@@ -805,6 +805,11 @@ a.bluebutton:active {
     text-align:center;
 }
 
+.section-frontpage .tile h3 a, .section-frontpage .tile h3 a:hover {
+    color: White !important;
+    text-decoration: none !important;
+}
+
 .section-frontpage .tile ul {
     margin: 0em;
     margin-left: 1.3em !important;

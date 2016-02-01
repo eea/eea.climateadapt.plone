@@ -1,0 +1,31 @@
+<div>
+  <h3>
+    <a href="/eu-adaptation-policy/landing">EU Funding and Adaptation</a>
+  </h3>
+  <div style="padding-top:6px;"> 
+    <table align="center" cellpadding="1" cellspacing="1" style="width:80%;text-align:center;"> 
+      <tbody> 
+        <tr> 
+          <td>
+            <a href="http://ec.europa.eu/clima/">
+              <img alt="EC Climate Action " src="/++resource++eea.climateadapt/frontpage/eu-flag.jpg" style="width: 116px; height: 58px;" />
+            </a>
+          </td> 
+          <td>
+            <a href="http://www.eea.europa.eu/themes/climate" style="color: rgb(117, 136, 22);">
+              <img alt="EEA Climate Change topic" src="/++resource++eea.climateadapt/frontpage/eu-climate-change-topic.jpg" style="width: 77px; height: 68px;" />
+            </a>
+          </td> 
+        </tr> 
+        <tr> 
+          <td>
+            <span style="color: rgb(34, 34, 34); font-family: Calibri, sans-serif; font-size: 14.6667px; line-height: normal;">EC Climate Action</span>
+          </td> 
+          <td>
+            <span style="color: rgb(34, 34, 34); font-family: Calibri, sans-serif; font-size: 14.6667px; line-height: normal;">EEA Climate Change topic</span>
+          </td> 
+        </tr> 
+      </tbody> 
+    </table> 
+  </div>
+</div>
