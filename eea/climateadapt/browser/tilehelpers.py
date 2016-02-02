@@ -13,6 +13,11 @@ class AceContentSearch(BrowserView):
     """ A view to show an AceContet "portlet" search
     """
 
+    def items(self):
+        return self.parent.getFolderContents({'portal_type':'Event', 'sort_by':
+                                              'effective'},
+                                             full_objects=True)[:3]
+
 
 class FrontPageCountries(BrowserView):
     """ A view to render the frontpage tile with countries and country select
@@ -21,6 +26,19 @@ class FrontPageCountries(BrowserView):
 
     def countries(self):
         return ace_countries
+
+
+class FrontPageCarousel(BrowserView):
+    """ A view to render the frontpage carousel
+    """
+
+    def items(self):
+        site = getSite()
+        parent = site['site-news']
+        return parent.getFolderContents({'portal_type':'News Item',
+                                         'review_state': 'published',
+                                         'sort_by': 'getObjPositionInParent'},
+                                        full_objects=True)[:5]
 
 
 class ListingTile(BrowserView):

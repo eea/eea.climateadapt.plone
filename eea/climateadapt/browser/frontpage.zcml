@@ -22,6 +22,14 @@
         />
 
     <browser:page
+        name="fp-promotions-carousel-tile"
+        for="*"
+        template="pt/frontpage/fp-carousel-tile.pt"
+        permission="zope.Public"
+        class=".tilehelpers.FrontPageCarousel"
+        />
+
+    <browser:page
         name="fp-casestudies-tile"
         for="*"
         template="pt/frontpage/fp-casestudies-tile.pt"

@@ -1559,8 +1559,6 @@ def tweak_site(site):
     alsoProvides(dad, ISiteSearchFacetedView)
     alsoProvides(dad, IFacetedNavigable)
 
-    make_frontpage(site)
-
     # TODO: create manually created pages
     # tweak frontpage portlets
 
