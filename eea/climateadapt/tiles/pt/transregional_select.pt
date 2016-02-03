@@ -7,7 +7,7 @@
   <body tal:define="is_compose view/is_compose_mode">
     <strong tal:condition="is_compose">Transregional select</strong>
 
-    <h2 tal:content="python: view.data.get('title')">Title here</h2>
+    <!-- <h2 tal:content="python: view.data.get('title')">Title here</h2> -->
 
     <dl tal:condition="view/is_compose_mode">
       <dt>Transnational regions select</dt>
@@ -16,14 +16,25 @@
       </dd>
     </dl>
 
-    <div class="cover-richtext-tile tile-content aceitem-relevant-tile" 
-      tal:condition="not: is_compose">
-      <select>
-        <option tal:repeat="region view/regions" 
+    <div class="cover-richtext-tile tile-content aceitem-relevant-tile" tal:condition="not: is_compose">
+      <script>
+      jQuery(document).ready(function(){
+        $("#trans-region-select").change(function(){
+          var url = $(this).val();
+          if (url.length) {
+            document.location = url;
+          }
+        });
+      });
+      </script>
+
+      <select id="trans-region-select">
+        <option value="">Choose a region</option>
+        <option 
+          tal:repeat="region view/regions" 
           tal:attributes="value region/url" 
           tal:content="region/title" >1</option>
       </select>
     </div>
   </body>
 </html>
-

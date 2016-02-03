@@ -1217,7 +1217,6 @@ def import_template_ace_layout_1(site, layout, structure):
 @log_call
 def import_template_ace_layout_5(site, layout, structure):
     # done
-    # TODO: fix the dropdown select template, needs JS work
     # ex page: /transnational-regions/caribbean-area
     # 1 row, 2 columns. First column: image + region selection tile
     #                   Second column: rich text
@@ -1225,22 +1224,27 @@ def import_template_ace_layout_5(site, layout, structure):
     assert(len(structure) == 4)
     assert(len(structure['column-1']) == 1)
 
-    title = structure['name']
+    _titles = {
+        'policy_legal_framework': "Policy and legal framework",
+        'assessments_and_projects': "Assessments and projects",
+    }
+
+    main_title = structure['name']
     image = structure['column-1'][0][1]['content'][0][2][0]
-    _first = structure['column-2'][0][1]['content'][0][2][0]
+    main_text = ""
 
-    if len(structure['column-2'][0][1]['content']) == 2:
-        _second = structure['column-2'][0][1]['content'][1][2][0]
-        _first += _second
+    for bit in structure['column-2'][0][1]['content']:
+        title = _titles[bit[1]]
+        text = bit[2][0]
+        main_text += u"<h3>{0}</h3>\n{1}".format(title, text)
 
-    # tr_portlet = structure['column-3']
     cover = create_cover_at(site, layout.friendlyurl, title=title)
     alsoProvides(cover, ITransnationalRegionMarker)
 
-    info = {'title': title, 'text': _first }
-    main_text_tile = make_richtext_tile(cover, info)
+    info = {'title': main_title, 'text': main_text }
+    main_text_tile = make_richtext_with_title_tile(cover, info)
 
-    main_text_group = make_group(10, main_text_tile)
+    main_text_group = make_group(9, main_text_tile)
     dropdown_tile = make_transregion_dropdown_tile(cover)
     image_info = {
         'id': image,
@@ -1248,7 +1252,7 @@ def import_template_ace_layout_5(site, layout, structure):
         'title': 'region image',
     }
     image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
-    image_group = make_group(2, image_tile, dropdown_tile)
+    image_group = make_group(3, image_tile, dropdown_tile)
     row_1 = make_row(image_group, main_text_group)
 
     layout = make_layout(row_1)
