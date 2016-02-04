@@ -501,7 +501,7 @@ def import_template_transnationalregion(site, layout, structure):
 
     main_content = render_tabs(payload)
 
-    cover = create_cover_at(site, layout.friendlyurl)
+    cover = create_cover_at(site, layout.friendlyurl, title=country['name'])
     cover._p_changed = True
     cover._layout_id = layout.layoutid
 
@@ -1098,6 +1098,7 @@ def import_template_2_columns_i(site, layout, structure):
     title = structure['name']
 
     cover = create_cover_at(site, layout.friendlyurl, title=title)
+    cover.aq_parent.edit(title=title)   # fix parent title
     cover._p_changed = True
     cover._layout_id = layout.layoutid
 

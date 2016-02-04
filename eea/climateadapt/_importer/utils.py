@@ -458,7 +458,9 @@ def make_countries_dropdown_tile(cover, image=None):
     id = getUtility(IUUIDGenerator)()
     typeName = 'eea.climateadapt.countryselect'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
-    uuid = image.__dict__['_plone.uuid']
+    uuid = None
+    if image is not None:
+        uuid = image.__dict__['_plone.uuid']
     ITileDataManager(tile).set({'title': u"Country select", 'image_uuid': uuid})
 
     return {
