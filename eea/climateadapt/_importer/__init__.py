@@ -1021,24 +1021,18 @@ def import_template_1_column(site, layout, structure):
 
     cover_title = unicode(structure['name'])
 
-    # if len(structure['column-1']) == 2:
-    #     try:
-    #         content += structure['column-1'][1][1]['content']
-    #     except:
-    #         content += structure['column-1'][0][1]['content'][0]
-    #
-    # portlet_title = structure['column-1'][0][1].get('portlet_title')
-    # if portlet_title:
-    #     title = portlet_title
-    # else:
-    #     title = structure['column-1'][0][1]['title']
-    #
-    # title = strip_xml(title)
+    # try to get the main title and set it on the parent folder
+    portlet_title = structure['column-1'][0][1].get('portlet_title')
+    if portlet_title:
+        main_title = portlet_title
+    else:
+        main_title = structure['column-1'][0][1]['title']
+    main_title = strip_xml(main_title)
 
     cover = create_cover_at(site, layout.friendlyurl, title=cover_title)
+    cover.aq_parent.edit(title=main_title)
     cover._p_changed = True
     cover._layout_id = layout.layoutid
-
 
     if len(structure['column-1']) > 2:
         content = structure['column-1'][0][1]['content']
@@ -1083,9 +1077,6 @@ def import_template_1_column(site, layout, structure):
                                           {'title': strip_xml(piece[1]['title']),
                                            'text': content})
             tiles.append(tile)
-
-        # main_text_tile = make_richtext_with_title_tile(
-        #     cover, {'title': title, 'text': u"".join(content)})
 
         main_group = make_group(16, *tiles)
         layout = make_layout(make_row(main_group))

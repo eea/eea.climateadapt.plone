@@ -198,4 +198,14 @@
         permission="zope2.View"
         />
 
+    <!-- other viewlet overrides -->
+    <browser:page
+        for="*"
+        name="breadcrumbs_view"
+        class=".viewlets.FixBreadcrumbs"
+        permission="zope.Public"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        allowed_attributes="breadcrumbs"
+        />
+
 </configure>
