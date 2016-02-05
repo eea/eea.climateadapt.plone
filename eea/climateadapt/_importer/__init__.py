@@ -591,39 +591,36 @@ def import_template_ace_layout_col_1_2(site, layout, structure):
     # iframe (or just plain html text) on the right
     # example page: http://adapt-test.eea.europa.eu//tools/urban-adaptation/climatic-threats/heat-waves/sensitivity
 
-    import pdb; pdb.set_trace()
     assert(len(structure) == 3)
     assert(len(structure['column-1']) == 1)
-    assert(len(structure['column-3']) == 1)
+
+    # column 3 can have multiple tiles
+    # try:
+    #     assert(len(structure['column-3']) == 1)
+    # except:
+    #     import pdb; pdb.set_trace()
 
     title = strip_xml(structure['name'])
     cover = create_cover_at(site, layout.friendlyurl, title=title)
     cover._layout_id = layout.layoutid
+    cover.aq_parent.edit(title=title)   # Fix parent folder title
 
-    main = structure['column-3'][0][1].get('url')
-    if not main:
-        main = structure['column-3'][0][1]['content'][0]
-        info = {
-            'title': title,
-            'text': main,
-        }
-        main_tile = make_richtext_with_title_tile(cover, info)
-        cover.aq_parent.edit(title=title)   # Fix parent title
-    else:
-        main_tile = make_iframe_embed_tile(cover, main)
+    urban_menu_tile = make_urbanmenu_title(cover)
+    urban_menu_group = make_group(2, urban_menu_tile)
 
-    nav_menu = structure['column-1'][0][1]['content'][0]    # TODO: fix nav menu links
+    top_nav = structure['column-1'][0][1]['content'][0]
     info = {
         'title': 'navigation',
-        'text': nav_menu,
+        'text': top_nav,
         'css_class': 'tools-nav-menu',
     }
     top_nav_tile = make_richtext_tile(cover, info)
 
+    main_tiles = [make_tile(cover, [portlet])
+                  for portlet in structure['column-3']]
+
     nav_group = make_group(12, top_nav_tile)
-    urban_menu_tile = make_urbanmenu_title(cover)
-    urban_menu_group = make_group(2, urban_menu_tile)
-    main_group = make_group(10, main_tile)
+    main_group = make_group(10, *main_tiles)
 
     first_row = make_row(nav_group)
     second_row = make_row(urban_menu_group, main_group)

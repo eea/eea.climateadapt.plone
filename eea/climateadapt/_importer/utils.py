@@ -339,6 +339,10 @@ def get_template_for_layout(layout):
 
 def make_tile(cover, col, css_class=None):
     payload = col[0][1]
+
+    if col[0][0].startswith('iframe'):
+        return make_iframe_embed_tile(cover, payload['url'])
+
     if payload.get('portlet_type') == 'journal_article_content':
         _content = {
             'title': payload['portlet_title'] or "",
@@ -587,9 +591,10 @@ def make_iframe_embed_tile(cover, url):
     type_name = 'collective.cover.embed'
     tile = cover.restrictedTraverse('@@%s/%s' % (type_name, id))
 
-    embed = "<iframe src='%s'></iframe>" % url
+    embed = """<iframe class='ace-iframe' frameborder='0'
+    style='min-width:700px;min-height:800px' width='780px' src='%s'></iframe>""" % url
 
-    ITileDataManager(tile).set({'title': 'embeded iframe', 'embed': embed})
+    ITileDataManager(tile).set({'title': '', 'embed': embed})
 
     return {
         'tile-type': 'collective.cover.embed',
