@@ -849,3 +849,6 @@ a.bluebutton:active {
     color: #67788a;
     font-size: 85%;
 }
+.tools-nav-menu table th {
+    height: 3em;
+}

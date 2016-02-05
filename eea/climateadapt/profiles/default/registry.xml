@@ -11,6 +11,7 @@
             <element>eea.climateadapt.ast_navigation</element>
             <element>eea.climateadapt.urbanast_navigation</element>
             <element>eea.climateadapt.genericview</element>
+            <element>eea.climateadapt.urbanmenu</element>
         </value>
     </record>
     <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
@@ -24,6 +25,7 @@
             <element>eea.climateadapt.ast_navigation</element>
             <element>eea.climateadapt.urbanast_navigation</element>
             <element>eea.climateadapt.genericview</element>
+            <element>eea.climateadapt.urbanmenu</element>
         </value>
     </record>
 </registry>

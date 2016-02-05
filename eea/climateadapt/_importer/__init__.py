@@ -31,6 +31,7 @@ from eea.climateadapt._importer.utils import make_text_from_articlejournal
 from eea.climateadapt._importer.utils import make_tile
 from eea.climateadapt._importer.utils import make_transregion_dropdown_tile
 from eea.climateadapt._importer.utils import make_urbanast_navigation_tile
+from eea.climateadapt._importer.utils import make_urbanmenu_title
 from eea.climateadapt._importer.utils import make_view_tile
 from eea.climateadapt._importer.utils import noop
 from eea.climateadapt._importer.utils import pack_to_table
@@ -456,9 +457,6 @@ def import_template_transnationalregion(site, layout, structure):
     # column-3 is unknown and will be ignored
     # Ex: /countries/liechtenstein
 
-    # TODO: "translate" the titles for tabs and table header
-    # TODO: add the countries select dropdown
-
     assert(len(structure) >= 2)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) == 1)
@@ -524,8 +522,6 @@ def import_template_transnationalregion(site, layout, structure):
 def import_template_ace_layout_2(site, layout, structure):
     # Done
 
-    # TODO: relevant tiles, search tiles, relevent with filtering
-
     # there are three pages for this layout
     # two of them are empty because there's another layout with redirection
     # the third one is at http://adapt-test.eea.europa.eu/adaptation-measures
@@ -562,6 +558,8 @@ def import_template_ace_layout_2(site, layout, structure):
         'thumb': localize(image, site) + "/@@images/image",
     }
 
+    cover.aq_parent.edit(title=main['title'])
+
     main_content = render('templates/richtext_readmore_and_image.pt',
                           {'payload': main})
 
@@ -592,6 +590,8 @@ def import_template_ace_layout_col_1_2(site, layout, structure):
     # this is a 2 column page with some navigation on the left and a big
     # iframe (or just plain html text) on the right
     # example page: http://adapt-test.eea.europa.eu//tools/urban-adaptation/climatic-threats/heat-waves/sensitivity
+
+    import pdb; pdb.set_trace()
     assert(len(structure) == 3)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-3']) == 1)
@@ -607,21 +607,28 @@ def import_template_ace_layout_col_1_2(site, layout, structure):
             'title': title,
             'text': main,
         }
-        main_tile = make_richtext_tile(cover, info)
+        main_tile = make_richtext_with_title_tile(cover, info)
+        cover.aq_parent.edit(title=title)   # Fix parent title
     else:
         main_tile = make_iframe_embed_tile(cover, main)
 
     nav_menu = structure['column-1'][0][1]['content'][0]    # TODO: fix nav menu links
     info = {
         'title': 'navigation',
-        'text': nav_menu
+        'text': nav_menu,
+        'css_class': 'tools-nav-menu',
     }
-    nav_tile = make_richtext_tile(cover, info)
+    top_nav_tile = make_richtext_tile(cover, info)
 
-    nav_group = make_group(1, nav_tile)
-    main_group = make_group(11, main_tile)
+    nav_group = make_group(12, top_nav_tile)
+    urban_menu_tile = make_urbanmenu_title(cover)
+    urban_menu_group = make_group(2, urban_menu_tile)
+    main_group = make_group(10, main_tile)
 
-    layout = make_layout(make_row(nav_group, main_group))
+    first_row = make_row(nav_group)
+    second_row = make_row(urban_menu_group, main_group)
+
+    layout = make_layout(first_row, second_row)
     layout = json.dumps(layout)
 
     cover.cover_layout = layout
@@ -663,6 +670,7 @@ def import_template_ace_layout_3(site, layout, structure):
     cover = create_cover_at(site, layout.friendlyurl, title=name)
     cover._p_changed = True
     cover._layout_id = layout.layoutid
+    cover.aq_parent.edit(title=main['title'])    # Fix cover's parent title
 
     if layout.themeid == "balticseaace_WAR_acetheme":
         # TODO: mark the content with a special interface to enable the menu
@@ -684,7 +692,7 @@ def import_template_ace_layout_3(site, layout, structure):
                                                    'text': main_content,
                                                    })
     relevant_content_tiles = [
-        make_tile(cover, col) for col in extra_columns
+        make_tile(cover, col, css_class='col-md-4') for col in extra_columns
     ]
 
     sidebar_tile = make_aceitem_search_tile(cover, sidebar[0][1])

@@ -1,0 +1,193 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n:domain="collective.cover">
+
+  <body tal:define="is_compose view/is_compose_mode">
+    <strong tal:condition="is_compose">Urban menu</strong>
+
+    <!-- <h2 tal:content="python: view.data.get('title')">Title here</h2> -->
+
+    <dl tal:condition="view/is_compose_mode">
+      <dt>Urban Menu</dt>
+      <dd>
+        <select></select>
+      </dd>
+    </dl>
+
+    <div class="cover-richtext-tile tile-content aceitem-urban-menu-tile" tal:condition="not: is_compose">
+      <style>
+/************** Urban adaptation map viewer menu ***************/
+
+.menu-urban, .menu-urban li, .menu-urban a {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none;
+        outline: none;
+    }
+
+.menu-urban {
+        width:149px;
+    }
+
+.menu-urban li {
+        list-style-type: none !important;
+        margin: 0 0 2px 0;
+        opacity: 0.75;
+
+        -webkit-transition: opacity .25s ease .1s;
+        -moz-transition: opacity .25s ease .1s;
+        -o-transition: opacity .25s ease .1s;
+        -ms-transition: opacity .25s ease .1s;
+        transition: opacity .25s ease .1s;
+    }
+
+.menu-urban li:hover { opacity: 1; }
+
+a.menu-link {
+        display:block;
+        height:80px;
+        padding: 5px 5px 0 5px;
+
+        text-decoration: none;
+        text-align: right;
+
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 25px;
+
+        color: #f3f3f3;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.6);
+
+        -webkit-transition: color .2s ease-in-out;
+        -moz-transition: color .2s ease-in-out;
+        -o-transition: color .2s ease-in-out;
+        -ms-transition: color .2s ease-in-out;
+        transition: color .2s ease-in-out;
+    }
+
+#heat_waves {
+        background-image: url("/++resource++eea.climateadapt/img/heat_waves.png");
+    }
+#drought {
+        background-image: url("/++resource++eea.climateadapt/img/drought.png");
+    }
+#flooding {
+        background-image: url("/++resource++eea.climateadapt/img/flooding.png");
+    }
+#forest_fires {
+        background-image: url("/++resource++eea.climateadapt/img/forest_fires.png");
+    }
+
+.menu-urban li ul {
+        opacity: 0;
+        height: 0;
+        background: #e9efc9;
+
+        -webkit-transition: opacity .25s ease .1s, height .25s ease .1s;
+        -moz-transition: opacity .25s ease .1s, height .25s ease .1s;
+        -o-transition: opacity .25s ease .1s, height .25s ease .1s;
+        -ms-transition: opacity .25s ease .1s, height .25s ease .1s;
+        transition: opacity .25s ease .1s, height .25s ease .1s;
+    }
+
+/*
+#content .ace_layout_col_1_2 .menu-urban li:hover ul { opacity: 1; height: 80px; }
+*/
+.menu-urban ul li {
+        padding: 3px;
+        opacity: 1;
+        line-height: 20px;
+    }
+
+
+.menu-urban ul li a {
+        padding: 0px 0px 0px 25px;
+        background: url("/++resource++eea.climateadapt/img/arrow.gif") no-repeat scroll 10px 5px transparent;
+
+        text-decoration: none;
+        font-size: 12px;
+        color: #2C330A;
+
+        -webkit-transition: color .2s ease-in-out;
+        -moz-transition: color .2s ease-in-out;
+        -o-transition: color .2s ease-in-out;
+        -ms-transition: color .2s ease-in-out;
+        transition: color .2s ease-in-out;
+    }
+  
+
+.menu-urban a:hover { color: #a5bf26; }
+
+.empty {
+        display: none;
+}
+
+/****** effects fo active links *****/
+.menu-urban li a.active { color: #a5bf26; }
+
+      </style>
+
+        <script type="text/javascript">
+          // <![CDATA[
+
+            $(document).ready(function() {
+              var pageUrl = document.location.href;
+            
+            // Find the page url in the list of <a> tags in tha menu and add class 'active' 
+            $('.menu-urban li a').each(function(){
+                if (pageUrl.search($(this).attr('href')) > 0) {
+                      $(this).addClass("active");
+                      $(this).closest(".menu-urban-sub").css({"opacity": "1", "height": "80px"});
+                      $(this).next(".menu-urban-sub").css({"opacity": "1", "height": "80px"});
+                      $(this).closest(".menu-urban li").css({"opacity": "1"});
+                }
+            });
+          });
+          // ]]>
+        </script>
+
+			  <ul class="menu-urban">
+		        <li>
+		            <a href="/tools/urban-adaptation/climatic-threats/heat-waves" id="heat_waves" class="menu-link">Heat waves</a>
+		            <ul class="menu-urban-sub">
+		                <li><a href="/tools/urban-adaptation/climatic-threats/heat-waves/exposure">Exposure</a></li>
+		                <li><a href="/tools/urban-adaptation/climatic-threats/heat-waves/sensitivity">Sensitivity</a></li>
+		                <li><a href="/tools/urban-adaptation/climatic-threats/heat-waves/response-capacity">Response capacity</a></li>
+		            </ul>
+		        </li>
+		        <li>
+		            <a href="/tools/urban-adaptation/climatic-threats/droughts" id="drought" class="menu-link">Water scarity and droughts</a>
+		            <ul class="menu-urban-sub">
+		                <li><a href="/tools/urban-adaptation/climatic-threats/droughts/exposure">Exposure</a></li>
+		                <li><a href="/tools/urban-adaptation/climatic-threats/droughts/sensitivity">Sensitivity</a></li>
+		                <li><a href="/tools/urban-adaptation/climatic-threats/droughts/response-capacity">Response capacity</a></li>
+		            </ul>
+		        </li>
+		        <li>
+		            <a href="/tools/urban-adaptation/climatic-threats/flooding" id="flooding" class="menu-link">Flooding</a>
+		            <ul class="menu-urban-sub">
+		                <li><a href="/tools/urban-adaptation/climatic-threats/flooding/exposure">Exposure</a></li>
+		                <li><a href="/tools/urban-adaptation/climatic-threats/flooding/sensitivity">Sensitivity</a></li>
+		                <li><a href="/tools/urban-adaptation/climatic-threats/flooding/response-capacity">Response capacity</a></li>
+		            </ul>
+		        </li>
+		        <li>
+		            <a href="/tools/urban-adaptation/climatic-threats/forest-fires" id="forest_fires" class="menu-link">Forest fires</a>
+		            <ul class="menu-urban-sub">
+		                <li><a href="/tools/urban-adaptation/climatic-threats/forest-fires/exposure">Exposure</a></li>
+		                <li><a href="/tools/urban-adaptation/climatic-threats/forest-fires/sensitivity">Sensitivity</a></li>
+		                <li><a href="/tools/urban-adaptation/climatic-threats/forest-fires/response-capacity">Response capacity</a></li>
+		            </ul>
+		        </li>
+		    </ul>			
+    </div>
+  </body>
+</html>
+
+
+
+
+
+

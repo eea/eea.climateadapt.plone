@@ -454,6 +454,19 @@ def make_urbanast_navigation_tile(cover):
     }
 
 
+def make_urbanmenu_title(cover):
+    id = getUtility(IUUIDGenerator)()
+    typeName = 'eea.climateadapt.urbanmenu'
+    tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
+    ITileDataManager(tile).set({'title': u"Urban Menu"})
+
+    return {
+        'tile-type': typeName,
+        'type': 'tile',
+        'id': id
+    }
+
+
 def make_countries_dropdown_tile(cover, image=None):
     id = getUtility(IUUIDGenerator)()
     typeName = 'eea.climateadapt.countryselect'

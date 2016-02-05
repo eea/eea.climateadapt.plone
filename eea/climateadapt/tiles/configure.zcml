@@ -122,4 +122,16 @@
       for="*"
       />
 
+  <plone:tile
+      name="eea.climateadapt.urbanmenu"
+      title="Urban Menu"
+      description="Urban menu navigation"
+      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+      add_permission="cmf.ModifyPortalContent"
+      schema=".urbanmenu.IUrbanMenuTile"
+      class=".urbanmenu.UrbanMenuTile"
+      permission="zope2.View"
+      for="*"
+      />
+
 </configure>
