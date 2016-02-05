@@ -157,7 +157,7 @@
     <browser:page
         class=".sat.SatView"
         for="*"
-        name="sat_view"
+        name="sat"
         template="pt/sat.pt"
         permission="zope2.View"
         />
