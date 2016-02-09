@@ -1225,12 +1225,18 @@ def import_template_ace_layout_5(site, layout, structure):
     image = structure['column-1'][0][1]['content'][0][2][0]
     main_text = ""
 
-    for bit in structure['column-2'][0][1]['content']:
-        title = _titles[bit[1]]
-        text = bit[2][0]
-        main_text += u"<h3>{0}</h3>\n{1}".format(title, text)
+    texts = structure['column-2'][0][1]['content']
+    title = None
+    if len(texts) > 1:
+        for bit in texts:
+            title = _titles[bit[1]]
+            text = bit[2][0]
+            main_text += u"<h3>{0}</h3>\n{1}".format(title, text)
+    else:
+        main_text = texts[0]
 
-    cover = create_cover_at(site, layout.friendlyurl, title=title)
+    cover = create_cover_at(site, layout.friendlyurl, title=title or main_title)
+    cover.aq_parent.edit(title=main_title)
     alsoProvides(cover, ITransnationalRegionMarker)
 
     info = {'title': main_title, 'text': main_text }
