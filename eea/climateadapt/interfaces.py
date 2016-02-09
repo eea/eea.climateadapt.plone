@@ -24,3 +24,8 @@ class IASTNavigationRoot(Interface):
 class ISiteSearchFacetedView(Interface):
     """ A marker interface for the /data-and-downloads page
     """
+
+
+class IClimateAdaptSharePage(Interface):
+    """ A marker interface for the /share-your-info/ pages
+    """

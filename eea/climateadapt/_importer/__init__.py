@@ -40,12 +40,15 @@ from eea.climateadapt._importer.utils import render
 from eea.climateadapt._importer.utils import render_accordion
 from eea.climateadapt._importer.utils import render_tabs
 from eea.climateadapt._importer.utils import s2li
+from eea.climateadapt._importer.utils import stamp_cover
 from eea.climateadapt._importer.utils import strip_xml
 from eea.climateadapt._importer.utils import t2r
 from eea.climateadapt.interfaces import IASTNavigationRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
+from eea.climateadapt.interfaces import IClimateAdaptSharePage
 from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
+from eea.climateadapt.vocabulary import _cca_types
 from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from pytz import utc
@@ -415,7 +418,8 @@ def import_template_1_2_1_columns(site, layout, structure):
 
     # column-1 has a table with links and a table with info
     # column-2 has an iframe
-    # Only one page: http://adapt-test.eea.europa.eu//tools/urban-adaptation/my-adaptation
+    # Only one page: http://adapt-test.eea.europa.eu/tools/urban-adaptation/my-adaptation
+    #import pdb; pdb.set_trace()
 
     assert(len(structure) == 3)
     assert(len(structure['column-1']) == 2)
@@ -427,8 +431,7 @@ def import_template_1_2_1_columns(site, layout, structure):
 
     cover = create_cover_at(site, layout.friendlyurl,
                             title=strip_xml(structure['name']))
-    cover._p_changed = True
-    cover._layout_id = layout.layoutid
+    stamp_cover(cover, layout)
 
     # layout = [{'type': 'row', 'children': []}]
 
@@ -500,8 +503,7 @@ def import_template_transnationalregion(site, layout, structure):
     main_content = render_tabs(payload)
 
     cover = create_cover_at(site, layout.friendlyurl, title=country['name'])
-    cover._p_changed = True
-    cover._layout_id = layout.layoutid
+    stamp_cover(cover, layout)
 
     #image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
     image = get_image_by_imageid(site, image_info['id'])
@@ -539,7 +541,7 @@ def import_template_ace_layout_2(site, layout, structure):
 
     name = structure['name']
     cover = create_cover_at(site, layout.friendlyurl, title=str(name))
-    cover._layout_id = layout.layoutid
+    stamp_cover(cover, layout)
 
     main = {}
 
@@ -558,7 +560,7 @@ def import_template_ace_layout_2(site, layout, structure):
         'thumb': localize(image, site) + "/@@images/image",
     }
 
-    cover.aq_parent.edit(title=main['title'])
+    cover.aq_parent.edit(title=main['title'])   # Fix cover parent title
 
     main_content = render('templates/richtext_readmore_and_image.pt',
                           {'payload': main})
@@ -594,15 +596,9 @@ def import_template_ace_layout_col_1_2(site, layout, structure):
     assert(len(structure) == 3)
     assert(len(structure['column-1']) == 1)
 
-    # column 3 can have multiple tiles
-    # try:
-    #     assert(len(structure['column-3']) == 1)
-    # except:
-    #     import pdb; pdb.set_trace()
-
     title = strip_xml(structure['name'])
     cover = create_cover_at(site, layout.friendlyurl, title=title)
-    cover._layout_id = layout.layoutid
+    stamp_cover(cover, layout)
     cover.aq_parent.edit(title=title)   # Fix parent folder title
 
     urban_menu_tile = make_urbanmenu_title(cover)
@@ -665,8 +661,7 @@ def import_template_ace_layout_3(site, layout, structure):
     extra_columns = [structure[k] for k in sorted(structure.keys())]
 
     cover = create_cover_at(site, layout.friendlyurl, title=name)
-    cover._p_changed = True
-    cover._layout_id = layout.layoutid
+    stamp_cover(cover, layout)
     cover.aq_parent.edit(title=main['title'])    # Fix cover's parent title
 
     if layout.themeid == "balticseaace_WAR_acetheme":
@@ -713,8 +708,7 @@ def import_template_ace_layout_4(site, layout, structure):
 
     title = structure['name']
     cover = create_cover_at(site, layout.friendlyurl, title=title)
-    cover._p_changed = True
-    cover._layout_id = layout.layoutid
+    stamp_cover(cover, layout)
 
     main = {
         'accordion': [],
@@ -890,8 +884,7 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker):
     main_content = render('templates/ast_text.pt', payload)
 
     cover = create_cover_at(site, layout.friendlyurl, title=section_title)
-    cover._p_changed = True
-    cover._layout_id = layout.layoutid
+    stamp_cover(cover, layout)
 
     image_tile = make_richtext_tile(cover, {'text': image_portlet,
                                             'title': 'AST Image'})
@@ -944,11 +937,6 @@ def import_template_1_2_columns_ii(site, layout, structure):
 
     # ex page: /share-your-info/general
 
-    # TODO: column02 contains sharemeasureportlet
-    # TODO: mark the cover with an interface to show a viewlet with navigation
-    # TODO: doesn't show title? Cover should be able to show its title
-    # TODO: fix for above is to set layout to standard in display menu
-
     # row 1: text + image
     # row 2: share button
 
@@ -957,13 +945,19 @@ def import_template_1_2_columns_ii(site, layout, structure):
     if len(structure) > 2:
         assert(len(structure['column-2']) == 1)
 
-    image = structure['column-1'][0][1]['content'][0][2][0]
-    title = structure['column-1'][0][1]['content'][1][2][0]
-    body = structure['column-1'][0][1]['content'][2][2][0]
+    content_portlet = structure['column-1'][0][1]['content']
+    for bit in content_portlet:
+        if bit[0] == 'image':
+            image = bit[-1]
+        if bit[0] == 'text':
+            body = bit[-1][0]
+        if bit[0] == 'dynamic' and bit[1] == 'Title':
+            title = bit[-1][0]
 
     cover = create_cover_at(site, layout.friendlyurl, title=title)
-    cover._p_changed = True
-    cover._layout_id = layout.layoutid
+    cover.setLayout('standard')
+    alsoProvides(cover, IClimateAdaptSharePage)
+    stamp_cover(cover, layout)
 
     share_portlet = None
     share_portlet_title = ""
@@ -985,9 +979,11 @@ def import_template_1_2_columns_ii(site, layout, structure):
             else:
                 sharetype = 'MEASURE'
         share_tile = make_share_tile(cover, sharetype)
+        parent_title = dict(_cca_types)[sharetype]
+        cover.aq_parent.edit(title=parent_title)    # Fix parent title
 
-    main_text_group = make_group(10, main_text_tile)
-    image_group = make_group(2, image_tile)
+    main_text_group = make_group(8, main_text_tile)
+    image_group = make_group(4, image_tile)
     row_1 = make_row(main_text_group, image_group)
 
     if share_portlet:
@@ -1036,8 +1032,7 @@ def import_template_1_column(site, layout, structure):
 
     cover = create_cover_at(site, layout.friendlyurl, title=cover_title)
     cover.aq_parent.edit(title=main_title)
-    cover._p_changed = True
-    cover._layout_id = layout.layoutid
+    stamp_cover(cover, layout)
 
     if len(structure['column-1']) > 2:
         content = structure['column-1'][0][1]['content']
@@ -1104,8 +1099,7 @@ def import_template_2_columns_i(site, layout, structure):
 
     cover = create_cover_at(site, layout.friendlyurl, title=title)
     cover.aq_parent.edit(title=title)   # fix parent title
-    cover._p_changed = True
-    cover._layout_id = layout.layoutid
+    stamp_cover(cover, layout)
 
     if len(structure) == 3:
         countries_portlet = structure['column-1'][0][1]
@@ -1158,6 +1152,7 @@ def import_template_2_columns_iii(site, layout, structure):
     # done
 
     # ex: /organisations
+
     assert(len(structure) == 2 or len(structure) == 3)
 
     #title = structure['name']
@@ -1165,8 +1160,8 @@ def import_template_2_columns_iii(site, layout, structure):
     body = structure['column-1'][0][1]['content'][0]
 
     cover = create_cover_at(site, layout.friendlyurl, title=title)
-    cover._p_changed = True
-    cover._layout_id = layout.layoutid
+    cover.aq_parent.edit(title=title)   # Fix parent title
+    stamp_cover(cover, layout)
 
     extra_tiles = []
     if len(structure['column-1']) == 4:
@@ -1284,8 +1279,7 @@ def import_template_faq(site, layout, structure):
     title = structure['name']
 
     cover = create_cover_at(site, layout.friendlyurl, title=title)
-    cover._p_changed = True
-    cover._layout_id = layout.layoutid
+    stamp_cover(cover, layout)
 
     info = {'title': title, 'text': main_text}
     main_text_tile = make_richtext_tile(cover, info)

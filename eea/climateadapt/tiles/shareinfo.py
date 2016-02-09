@@ -7,9 +7,10 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
 from eea.climateadapt import MessageFactory as _
+from eea.climateadapt.vocabulary import _cca_types
 from zope import schema
+from zope.component.hooks import getSite
 from zope.interface import implements
-
 
 class IShareInfoTile(IPersistentCoverTile):
 
@@ -43,3 +44,12 @@ class ShareInfoTile(PersistentCoverTile):
     def is_empty(self):
         return False
 
+    def link_url(self):
+        site = getSite()    # TODO: fix this link
+        type_ = self.data.get('shareinfo_type')
+        return "{0}/create?type_name={1}".format(site.absolute_url(), type_)
+
+    def link_title(self):
+        type_ = self.data.get('shareinfo_type')
+        label = dict(_cca_types)[type_]
+        return u"Add a {0}".format(label)

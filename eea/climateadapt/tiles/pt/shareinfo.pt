@@ -7,18 +7,14 @@
   <body tal:define="is_compose view/is_compose_mode">
     <strong tal:condition="is_compose">Share button tile</strong>
 
-    <h2 tal:content="python: view.data.get('title')">Title here</h2>
-
-    <div tal:content="view/data" />
-
     <dl tal:condition="view/is_compose_mode">
       <dt>Share type:</dt>
       <dd tal:content="python: view.data.get('shareinfo_type')" />
     </dl>
 
-    <div class="cover-richtext-tile tile-content aceitem-relevant-tile" tal:condition="not: is_compose">
-      <button>Share your info</button>
-      <div tal:content="python: view.data.get('shareinfo_type')" />
+    <div class="cover-richtext-tile tile-content aceitem-share-info-tile" tal:condition="not: is_compose" 
+      tal:define="share_type python: view.data.get('shareinfo_type')">
+      <a href="" tal:attributes="href view/link_url" tal:content="view/link_title">Create your type</a>
     </div>
   </body>
 </html>

@@ -70,5 +70,6 @@
     <interface interface="eea.climateadapt.interfaces.ITransnationalRegionMarker" />
     <interface interface="eea.climateadapt.interfaces.IASTNavigationRoot" />
     <interface interface="eea.climateadapt.interfaces.ISiteSearchFacetedView" />
+    <interface interface="eea.climateadapt.interfaces.IClimateAdaptSharePage" />
 
 </configure>

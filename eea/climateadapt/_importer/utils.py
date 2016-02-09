@@ -138,6 +138,8 @@ def solve_dynamic_element(node):
                 imageid = get_param_from_link(imageid[0], 'img_id')
             except Exception, e:
                 print e
+                logger.error("Could not find image for %s", printe(node))
+                return ('image', None, None)
                 import pdb; pdb.set_trace()
         return ('image', None, imageid)
 
@@ -1123,6 +1125,11 @@ def _get_latest_version(session, saobj):
         filter_by(resourceprimkey=saobj.resourceprimkey).\
         order_by(klass.version.desc()).first()
 
+
+def stamp_cover(cover, layout):
+    cover._p_changed = True
+    cover._imported_layout_id = layout.layoutid
+    cover._imported_layout_uuid = layout.uuid_
 
 
 # Search portlet has this info:

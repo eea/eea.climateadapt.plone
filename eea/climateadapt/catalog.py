@@ -41,7 +41,7 @@ def countries(object):
         value = object.spatial_values
 
     if value:
-        print "Return spatial values", object, value
+        #print "Return spatial values", object, value
         return value
 
     if hasattr(object, 'geochars'):
@@ -50,6 +50,6 @@ def countries(object):
             return None
 
         value = json.loads(value)['geoElements'].get('countries', []) or None
-        if value:
-            print "Returning", object, value
+        # if value:
+        #     #print "Returning", object, value
         return value
