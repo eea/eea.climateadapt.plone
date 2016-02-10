@@ -339,7 +339,7 @@ def get_template_for_layout(layout):
     return template
 
 
-def make_tile(cover, col, css_class=None):
+def make_tile(cover, col, css_class=None, no_titles=False):
     payload = col[0][1]
 
     if col[0][0].startswith('iframe'):
@@ -350,7 +350,10 @@ def make_tile(cover, col, css_class=None):
             'title': payload['portlet_title'] or "",
             'text': payload['content'][0]
         }
-        return make_richtext_with_title_tile(cover, _content)
+        if no_titles:
+            return make_richtext_tile(cover, _content)
+        else:
+            return make_richtext_with_title_tile(cover, _content)
 
     if css_class:
         payload.update({'css_class': css_class})

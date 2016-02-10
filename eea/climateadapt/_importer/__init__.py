@@ -419,34 +419,30 @@ def import_template_1_2_1_columns(site, layout, structure):
     # column-1 has a table with links and a table with info
     # column-2 has an iframe
     # Only one page: http://adapt-test.eea.europa.eu/tools/urban-adaptation/my-adaptation
-    #import pdb; pdb.set_trace()
 
-    assert(len(structure) == 3)
-    assert(len(structure['column-1']) == 2)
-    assert(len(structure['column-2']) == 1)
+    # assert(len(structure) == 3)
+    # assert(len(structure['column-1']) == 2)
+    # assert(len(structure['column-2']) == 1)
 
-    nav = structure['column-1'][0][1]['content'][0]
-    text = structure['column-1'][1][1]['content'][0]
-    iframe = structure['column-2'][0][1]['url']
-
+    main_title = structure.pop('name')
     cover = create_cover_at(site, layout.friendlyurl,
-                            title=strip_xml(structure['name']))
+                            title=strip_xml(main_title))
+    cover.aq_parent.edit(title=main_title)  # Fix parent name
     stamp_cover(cover, layout)
 
-    # layout = [{'type': 'row', 'children': []}]
+    tiles = []
 
-    nav_tile = make_richtext_tile(cover, {'title': 'navigation', 'text': nav})
-    text_tile = make_richtext_tile(cover, {'title': 'text', 'text': text})
-    iframe_tile = make_iframe_embed_tile(cover, iframe)
+    column_names = ['column-1', 'column-2', 'column-3', 'column-4', 'column-5']
 
-    # we create 3 rows, each with a separate tile
+    for name in column_names:   # Try to preserve the order of columns
+        col = structure.get(name)
+        if col:
+            tiles.extend([make_tile(cover, [p], no_titles=True) for p in col])
 
-    layout = make_layout(*[make_row(make_group(tile))
-                          for tile in (nav_tile, text_tile, iframe_tile) ])
-
+    layout = make_layout(make_row(*[make_group(12, tile) for tile in tiles]))
     layout = json.dumps(layout)
-
     cover.cover_layout = layout
+
     return cover
 
 
