@@ -39,10 +39,12 @@ class TransRegionalSelectTile(PersistentCoverTile):
 
     def regions(self):
         site = getSite()
-        catalog = getToolByName(site, 'portal_catalog')
 
-        brains = catalog.searchResults(
-            object_provides=
-            "eea.climateadapt.interfaces.ITransnationalRegionMarker")
+        catalog = getToolByName(site, 'portal_catalog')
+        q = {
+            "object_provides":"eea.climateadapt.interfaces.ITransnationalRegionMarker",
+            'sort_on':'sortable_title'
+        }
+        brains = catalog.searchResults(**q)
 
         return [{'url': b.getURL(), 'title': b.Title} for b in brains]

@@ -1031,7 +1031,7 @@ def import_template_1_column(site, layout, structure):
     main_title = strip_xml(main_title)
 
     cover = create_cover_at(site, layout.friendlyurl, title=cover_title)
-    cover.aq_parent.edit(title=main_title)
+    cover.aq_parent.edit(title=main_title)  # Fix parent title
     stamp_cover(cover, layout)
 
     if len(structure['column-1']) > 2:
@@ -1063,20 +1063,7 @@ def import_template_1_column(site, layout, structure):
                         layout.friendlyurl, '1_column')
             return
 
-        tiles = []
-
-        for piece in structure['column-1']:
-            content = piece[1]['content'][0]
-            title = piece[1]['portlet_title']
-            if title:
-                tile = make_richtext_with_title_tile(cover,
-                                                     {'title': title,
-                                                      'text': content})
-            else:
-                tile = make_richtext_tile(cover,
-                                          {'title': strip_xml(piece[1]['title']),
-                                           'text': content})
-            tiles.append(tile)
+        tiles = [make_tile(cover, [p]) for p in structure['column-1']]
 
         main_group = make_group(16, *tiles)
         layout = make_layout(make_row(main_group))
@@ -1237,7 +1224,7 @@ def import_template_ace_layout_5(site, layout, structure):
 
     cover = create_cover_at(site, layout.friendlyurl, title=title or main_title)
     cover.aq_parent.edit(title=main_title)
-    alsoProvides(cover, ITransnationalRegionMarker)
+    alsoProvides(cover.aq_parent, ITransnationalRegionMarker)
 
     info = {'title': main_title, 'text': main_text }
     main_text_tile = make_richtext_with_title_tile(cover, info)
