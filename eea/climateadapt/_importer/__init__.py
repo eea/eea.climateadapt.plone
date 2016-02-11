@@ -414,7 +414,7 @@ def import_layout(layout, site):
 
 @log_call
 def import_template_1_2_1_columns(site, layout, structure):
-    # DONE
+    # DONE, parent name fixed
 
     # column-1 has a table with links and a table with info
     # column-2 has an iframe
@@ -448,7 +448,7 @@ def import_template_1_2_1_columns(site, layout, structure):
 
 @log_call
 def import_template_transnationalregion(site, layout, structure):
-    # DONE
+    # DONE, parent title fixed
 
     # a country page is a structure with 3 "columns":
     # column-1 has an image and a select box to select other countries
@@ -499,6 +499,7 @@ def import_template_transnationalregion(site, layout, structure):
     main_content = render_tabs(payload)
 
     cover = create_cover_at(site, layout.friendlyurl, title=country['name'])
+    cover.aq_parent.edit(title=structure['name'])
     stamp_cover(cover, layout)
 
     #image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
@@ -512,13 +513,12 @@ def import_template_transnationalregion(site, layout, structure):
 
     layout = make_layout(make_row(image_group, content_group))
     cover.cover_layout = json.dumps(layout)
-    cover._p_changed = True
     return cover
 
 
 @log_call
 def import_template_ace_layout_2(site, layout, structure):
-    # Done
+    # Done, parent title fixed
 
     # there are three pages for this layout
     # two of them are empty because there's another layout with redirection
@@ -581,7 +581,7 @@ def import_template_ace_layout_2(site, layout, structure):
 
 @log_call
 def import_template_ace_layout_col_1_2(site, layout, structure):
-    # done
+    # done, parent title fixed
 
     # TODO: fix the iframe, it's too small
 
@@ -627,6 +627,8 @@ def import_template_ace_layout_col_1_2(site, layout, structure):
 
 @log_call
 def import_template_ace_layout_3(site, layout, structure):
+    # done, parent title fixed
+
     # this is a "details" page, ex: http://adapt-test.eea.europa.eu/transnational-regions/baltic-sea/policy-framework
     # main column has an image, title, main text and "read more text"
     # sidebar has a aceitem search portlet
@@ -696,7 +698,7 @@ def import_template_ace_layout_3(site, layout, structure):
 
 @log_call
 def import_template_ace_layout_4(site, layout, structure):
-    # done
+    # done, parent title fixed
 
     # TODO: the facts is not saved properly? shows labels instead of values
 
@@ -704,6 +706,7 @@ def import_template_ace_layout_4(site, layout, structure):
 
     title = structure['name']
     cover = create_cover_at(site, layout.friendlyurl, title=title)
+    cover.aq_parent.edit(title=title)
     stamp_cover(cover, layout)
 
     main = {
@@ -795,7 +798,6 @@ def import_template_ace_layout_4(site, layout, structure):
     layout = make_layout(make_row(main_content_group, sidebar_group))
 
     cover.cover_layout = json.dumps(layout)
-    cover._p_changed = True
 
     return cover
 
@@ -810,10 +812,6 @@ def import_template_ast(site, layout, structure):
     # column-2 has 2 portlets:  title and then the one with content (which also
     # has a title)
 
-    assert(len(structure) >= 3)
-    assert(len(structure['column-1']) == 1)
-    assert(len(structure['column-2']) >= 2)
-
     return _import_template_urban_ast(site, layout, structure,
                                       make_ast_navigation_tile)
 
@@ -825,6 +823,7 @@ def import_template_urban_ast(site, layout, structure):
 
 
 def _import_template_urban_ast(site, layout, structure, nav_tile_maker):
+    # parent name fixed
     # TODO: fix images
     # TODO: fix urban ast navigation
     # TODO: create nav menu on the left
@@ -861,6 +860,7 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker):
 
     # subsection_title
     # ast_section_title
+    #import pdb; pdb.set_trace()
 
     image_portlet = structure['column-1'][0][1]['content'][0]
     portlet = structure['column-2'][1][1]
@@ -880,6 +880,7 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker):
     main_content = render('templates/ast_text.pt', payload)
 
     cover = create_cover_at(site, layout.friendlyurl, title=section_title)
+    cover.aq_parent.edit(title=structure['name'])   # Fix parent name
     stamp_cover(cover, layout)
 
     image_tile = make_richtext_tile(cover, {'text': image_portlet,
@@ -929,7 +930,7 @@ def import_template_1_2_columns_i(site, layout, structure):
 
 @log_call
 def import_template_1_2_columns_ii(site, layout, structure):
-    # done
+    # done, parent title fixed
 
     # ex page: /share-your-info/general
 
@@ -944,7 +945,7 @@ def import_template_1_2_columns_ii(site, layout, structure):
     content_portlet = structure['column-1'][0][1]['content']
     for bit in content_portlet:
         if bit[0] == 'image':
-            image = bit[-1]
+            image = bit[-1][0]
         if bit[0] == 'text':
             body = bit[-1][0]
         if bit[0] == 'dynamic' and bit[1] == 'Title':
@@ -977,6 +978,8 @@ def import_template_1_2_columns_ii(site, layout, structure):
         share_tile = make_share_tile(cover, sharetype)
         parent_title = dict(_cca_types)[sharetype]
         cover.aq_parent.edit(title=parent_title)    # Fix parent title
+    else:
+        cover.aq_parent.edit(title=structure['name'])
 
     main_text_group = make_group(8, main_text_tile)
     image_group = make_group(4, image_tile)
@@ -995,6 +998,7 @@ def import_template_1_2_columns_ii(site, layout, structure):
 
 @log_call
 def import_template_1_column(site, layout, structure):
+    # done, fixed parent title
     # this is a simple page, with one portlet of text
     # example: /eu-adaptation-policy/funding/life
 
@@ -1071,7 +1075,7 @@ def import_template_1_column(site, layout, structure):
 
 @log_call
 def import_template_2_columns_i(site, layout, structure):
-    # done
+    # done, fixed parent title
 
     # ex: /countries
     # TODO: fix images linking
@@ -1132,7 +1136,7 @@ def import_template_2_columns_ii(site, layout, structure):
 
 @log_call
 def import_template_2_columns_iii(site, layout, structure):
-    # done
+    # done, fixed parent title
 
     # ex: /organisations
 
@@ -1191,7 +1195,7 @@ def import_template_ace_layout_1(site, layout, structure):
 
 @log_call
 def import_template_ace_layout_5(site, layout, structure):
-    # done
+    # done, fixed parent title
     # ex page: /transnational-regions/caribbean-area
     # 1 row, 2 columns. First column: image + region selection tile
     #                   Second column: rich text
