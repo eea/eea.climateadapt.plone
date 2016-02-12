@@ -860,7 +860,6 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker):
 
     # subsection_title
     # ast_section_title
-    #import pdb; pdb.set_trace()
 
     image_portlet = structure['column-1'][0][1]['content'][0]
     portlet = structure['column-2'][1][1]
@@ -1254,7 +1253,7 @@ def import_template_faq(site, layout, structure):
     Ex:/uncertainty-guidance-ai
     """
 
-    # done
+    # done, parent title fixed
     # TODO: fix styling of columns
     # TODO: fix images path
 
@@ -1272,6 +1271,7 @@ def import_template_faq(site, layout, structure):
     title = structure['name']
 
     cover = create_cover_at(site, layout.friendlyurl, title=title)
+    cover.aq_parent.edit(title=structure['name'])
     stamp_cover(cover, layout)
 
     info = {'title': title, 'text': main_text}
@@ -1315,7 +1315,15 @@ def import_template_frontpage(site, layout, structure):
             * EU funding and adaptation tile
             * EU climate policy
     """
-    cover = create_cover_at(site, '/frontpage', title=u'Home')
+    cover = createAndPublishContentInContainer(
+        site,
+        'collective.cover.content',
+        id='frontpage',
+        title='Home'
+    )
+    cover.setLayout('no_title_cover_view')
+    site.setLayout('frontpage')
+
     carousel_tile = make_view_tile(cover,
                                    {'title': 'Promotions',
                                     'view_name': 'fp-promotions-carousel-tile'})
