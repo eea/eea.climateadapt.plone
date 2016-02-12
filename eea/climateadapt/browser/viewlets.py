@@ -4,6 +4,19 @@ from Products.CMFPlone import utils
 from Products.CMFPlone.browser.navigation import CatalogNavigationBreadcrumbs
 from Products.CMFPlone.browser.navigation import get_view_url
 from plone.app.layout.navigation.root import getNavigationRoot
+from plone.app.layout.viewlets import ViewletBase
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.component import getMultiAdapter
+
+
+class SharePageSubMenuViewlet(ViewletBase):
+
+    index = ViewPageTemplateFile("pt/viewlet_sharepage_submenu.pt")
+
+    def update(self):
+        super(SharePageSubMenuViewlet, self).update()
+
+        self.base_url = '/'.join((self.context.portal_url(), 'share-your-info'))
 
 
 class FixBreadcrumbs(CatalogNavigationBreadcrumbs):

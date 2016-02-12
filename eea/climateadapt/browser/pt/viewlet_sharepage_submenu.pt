@@ -1,14 +1,14 @@
 <ul id="third-level-menu">
-  <li><a tal:attributes="href string:/general">General</a></li>
-  <li><a tal:attributes="href string:/publications-and-reports">Publications and reports</a></li>
-  <li><a tal:attributes="href string:/information">Information</a></li>
-  <li><a tal:attributes="href string:/portals">Portals</a></li>
-  <li><a tal:attributes="href string:/guidance-documents">Guidance documents</a></li>
-  <li><a tal:attributes="href string:/tools">Tools</a></li>
-  <li><a tal:attributes="href string:/research-and-knowledge-projects">Research and knowledge projects</a></li>
-  <li><a tal:attributes="href string:/adaptation-options">Adaptation options</a></li>
-  <li><a tal:attributes="href string:/case-studies">Case studies</a></li>
-  <li><a tal:attributes="href string:/organisations">Organisations</a></li>
-  <li><a tal:attributes="href string:/indicators">Indicators</a></li>
-  <li><a tal:attributes="href string:/map-graph-data">Map Graph Data</a></li>
+  <li><a tal:attributes="href string:${view/base_url}/general">General</a></li>
+  <li><a tal:attributes="href string:${view/base_url}/publications-and-reports">Publications and reports</a></li>
+  <li><a tal:attributes="href string:${view/base_url}/information">Information</a></li>
+  <li><a tal:attributes="href string:${view/base_url}/portals">Portals</a></li>
+  <li><a tal:attributes="href string:${view/base_url}/guidance-documents">Guidance documents</a></li>
+  <li><a tal:attributes="href string:${view/base_url}/tools">Tools</a></li>
+  <li><a tal:attributes="href string:${view/base_url}/research-and-knowledge-projects">Research and knowledge projects</a></li>
+  <li><a tal:attributes="href string:${view/base_url}/adaptation-options">Adaptation options</a></li>
+  <li><a tal:attributes="href string:${view/base_url}/case-studies">Case studies</a></li>
+  <li><a tal:attributes="href string:${view/base_url}/organisations">Organisations</a></li>
+  <li><a tal:attributes="href string:${view/base_url}/indicators">Indicators</a></li>
+  <li><a tal:attributes="href string:${view/base_url}/map-graph-data">Map Graph Data</a></li>
 </ul>
