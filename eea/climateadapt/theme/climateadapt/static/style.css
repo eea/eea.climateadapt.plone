@@ -814,7 +814,7 @@ a.bluebutton:active {
     margin: 0em;
     margin-left: 1.3em !important;
 }
-.section-frontpage .tile ul li {
+.section-frontpage .tile ul.blank ul li {
     list-style-image: url('cca/img/arrow_ast.png') !important;
 }
 .section-frontpage .tile-listing-footer {
@@ -854,4 +854,9 @@ a.bluebutton:active {
 }
 .aceitem-share-info-tile {
     margin-top: 4em;
+}
+
+.glossary-inline-term{
+    border-bottom: 1px dotted #056BBD !important;
+    text-decoration: none !important;
 }
