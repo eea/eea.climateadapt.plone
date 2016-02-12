@@ -718,6 +718,13 @@ def import_template_ace_layout_4(site, layout, structure):
     main = {
         'accordion': [],
     }
+    labels = {
+        'Challenge': 'The Challenge',
+        'Objective': "Project objectives",
+        'Methodology': "Methodology",
+        'Results': 'Results',
+        'ProjectPartners': 'Project partners',
+    }
     partners = []
     for line in structure['column-1'][0][1]['content']:
         if line[0] == 'image':
@@ -732,7 +739,7 @@ def import_template_ace_layout_4(site, layout, structure):
         if line[0] == 'text':
             category = line[1]
             text = line[2][0]
-            main['accordion'].append((category, text))
+            main['accordion'].append((labels[category], text))
             continue
         if line[0] == 'dynamic' and line[1] == 'ProjectPartner':
             name = line[2][0][2][0]
@@ -740,7 +747,7 @@ def import_template_ace_layout_4(site, layout, structure):
             if name:
                 partners.append((name, symbol))
 
-    main['accordion'].append(('ProjectPartners', partners))
+    main['accordion'].append(('Project Partners', partners))
 
     _main_sidebar = structure['column-2'][0][1]['content']
     sidebar_title = structure['column-2'][0][1]['portlet_title']
