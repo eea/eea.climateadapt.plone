@@ -190,6 +190,15 @@
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
 
+    <!-- SharePageSubMenu -->
+    <browser:viewlet
+        name="share_page_sub_menu"
+        for="eea.climateadapt.interfaces.IClimateAdaptSharePage"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        class=".viewlets.SharePageSubMenuViewlet"
+        permission="zope2.View"
+        />
+
     <browser:page
         for="eea.climateadapt.interfaces.ISiteSearchFacetedView"
         name="facetednavigation_view"
