@@ -6,7 +6,6 @@ from Products.CMFPlone.browser.navigation import get_view_url
 from plone.app.layout.navigation.root import getNavigationRoot
 from plone.app.layout.viewlets import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from zope.component import getMultiAdapter
 
 
 class SharePageSubMenuViewlet(ViewletBase):
