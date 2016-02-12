@@ -43,6 +43,7 @@ from eea.climateadapt._importer.utils import s2li
 from eea.climateadapt._importer.utils import stamp_cover
 from eea.climateadapt._importer.utils import strip_xml
 from eea.climateadapt._importer.utils import t2r
+from eea.climateadapt._importer.utils import to_decimal
 from eea.climateadapt.interfaces import IASTNavigationRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
 from eea.climateadapt.interfaces import IClimateAdaptSharePage
@@ -204,8 +205,8 @@ def import_casestudy(data, location):
         sectors=s2l(data.sectors_),
         elements=s2l(data.elements_),
         climate_impacts=s2l(data.climateimpacts_),
-        location_lat=data.lat,
-        location_lon=data.lon,
+        location_lat=to_decimal(data.lat),
+        location_lon=to_decimal(data.lon),
         source=data.source,
         geochars=data.geochars,
         measure_type=data.mao_type,
@@ -1398,12 +1399,17 @@ def run_importer(site=None):
 
     wftool = getToolByName(site, "portal_workflow")
 
-    structure = ['content', 'aceprojects', 'casestudy', 'adaptationoption',
-                 'repository']
-    for name in structure:
+    structure = [('content', 'Content'),
+                 ('aceprojects', 'Projects'),
+                 ('casestudy', 'Case Studies'),
+                 ('adaptationoption', 'Adaptation Options'),
+                 ('repository', 'Repository')
+                 ]
+    for name, title in structure:
         if name not in site.contentIds():
             site.invokeFactory("Folder", name)
             obj = site[name]
+            obj.edit(title=title)
             try:
                 wftool.doActionFor(obj, 'publish')
             except WorkflowException:

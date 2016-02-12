@@ -7,6 +7,7 @@ from Products.GenericSetup.context import SnapshotImportContext
 from Products.GenericSetup.interfaces import IBody
 from collections import defaultdict
 from collective.cover.tiles.configuration import TilesConfigurationScreen
+from decimal import Decimal
 from eea.climateadapt._importer import sqlschema as sql
 from eea.facetednavigation.events import FacetedEnabledEvent
 from eea.facetednavigation.events import FacetedWillBeEnabledEvent
@@ -103,6 +104,17 @@ def s2li(text, separator=';', relaxed=False):
 
 def t2r(text):
     return RichTextValue(text, 'text/html', 'text/html')
+
+
+def to_decimal(val):
+    if not isinstance(val, float):
+        raise ValueError("Not a float: {0}".format(val))
+
+    if val.hex() == 'nan':
+        return None
+
+    val = str(val)
+    return Decimal(val)
 
 
 def parse_settings(text):

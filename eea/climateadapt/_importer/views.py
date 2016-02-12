@@ -152,6 +152,7 @@ class SingleImporterView(BrowserView):
 
         if 'casestudy' not in site.contentIds():
             site.invokeFactory("Folder", 'casestudy')
+            site['casestudy'].edit(title='Case Studies')
 
         to_import = session.query(sql.AceMeasure)
         id = self.request.form.get('id')
