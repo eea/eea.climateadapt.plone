@@ -68,6 +68,11 @@ session = None      # this will be a global bound to the current module
 
 MAPOFLAYOUTS = defaultdict(list)
 
+additional_sharepage_layouts = [
+    '/share-your-info/indicators',
+    '/share-your-info/map-graph-data'
+]
+
 
 @log_call
 def import_aceitem(data, location):
@@ -1032,6 +1037,8 @@ def import_template_1_column(site, layout, structure):
 
     cover = create_cover_at(site, layout.friendlyurl, title=cover_title)
     cover.aq_parent.edit(title=main_title)  # Fix parent title
+    if layout.friendlyurl in additional_sharepage_layouts:
+        alsoProvides(cover, IClimateAdaptSharePage)
     stamp_cover(cover, layout)
 
     if len(structure['column-1']) > 2:
