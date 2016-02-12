@@ -206,12 +206,6 @@
   </div> 
   <div class="case-studies-homepage-slider-controls"> 
     <ul id="slidercontainer"> 
-      <li class="first">1 </li>
-      <li class="">2 </li>
-      <li class="">3 </li>
-      <li class="">4 </li>
-      <li class="last active">5
-      </li>
     </ul> 
   </div> 
 </div>
