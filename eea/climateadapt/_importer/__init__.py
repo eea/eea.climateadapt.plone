@@ -724,6 +724,7 @@ def import_template_ace_layout_4(site, layout, structure):
         'Methodology': "Methodology",
         'Results': 'Results',
         'ProjectPartners': 'Project partners',
+        'Deliverables': 'Deliverables',
     }
     partners = []
     for line in structure['column-1'][0][1]['content']:
@@ -751,25 +752,48 @@ def import_template_ace_layout_4(site, layout, structure):
 
     _main_sidebar = structure['column-2'][0][1]['content']
     sidebar_title = structure['column-2'][0][1]['portlet_title']
-    sidebar = []
-    _contact = []
-    for line in _main_sidebar:
-        if line[1] != 'Contact':
-            sidebar.append((line[1], line[2][0]))
-        else:
-            #contact = []
-            for subline in line[2]:
-                if not subline:
-                    continue
-                _contact.append((subline[1], subline[2][0]))
-            #sidebar.append(contact)
 
-    contact_text = render("templates/snippet_contact.pt", {'lines': _contact})
+# [('dynamic', 'Instrument', ['FP7, Small-medium-sized Integrated Project']),
+#  ('dynamic', 'StartDate', ['01/01/2010']),
+#  ('dynamic', 'Duration', ['42 months']),
+#  ('dynamic', 'ProjectCoord', ['Chancellor, Master and Scholars of the University of Oxford (United Kingdom)']),
+#  ('dynamic', 'ProjectWebSite', ['www.climsave.eu']),
+#  ('dynamic',
+#   'Contact',
+#   [('dynamic', 'ContactName', ['Dr. Paula Harrison']),
+#    ('dynamic', 'ContactInstitute', ['Environmental Change Institute\nUniversity of Oxford']),
+#    ('dynamic', 'ContactAddress', ['Oxford University Centre for the Environment, South Parks Road, Oxford, OX1 3QY, UK']),
+#    ('dynamic', 'ContactMail', ['paharriso@aol.com']),
+#
+
+    print _main_sidebar
+
+    _sidebar = []
+    _contact = []
+    for dyn, name, payload in _main_sidebar:
+        if len(payload) == 1:
+            _sidebar.append((name, payload[0]))
+        else:
+            for l in payload:
+                if l:
+                    _contact.append((l[1], l[2][0]))
+
+    labels = {
+        'Instrument': 'Instrument',
+        'StartDate': 'Start date',
+        'Duration': 'Duration',
+        'ProjectCoord': 'Project Coordinator',
+        'ProjectWebSite': 'Project website',
+        'ContactPoint': "Contact Point",
+    }
+
+    contact_text = render("templates/snippet_contact.pt", {'lines': _contact,
+                                                           'labels': labels})
+    _sidebar.append(('ContactPoint', contact_text))
     sidebar_text = render("templates/snippet_sidebar_text.pt",
-                          {'lines': sidebar})
-    sidebar_tile = make_richtext_with_title_tile(cover,
-                                      {'title': sidebar_title,
-                                       'text': sidebar_text + contact_text})
+                          {'lines': _sidebar, 'labels': labels})
+    sidebar_tile = make_richtext_with_title_tile(
+        cover, {'title': sidebar_title, 'text': sidebar_text})
 
     sidebar_tiles = [sidebar_tile]
 
