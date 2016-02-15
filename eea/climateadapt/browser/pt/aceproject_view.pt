@@ -22,7 +22,7 @@
           <div metal:fill-slot="ace-left-slot">
             <!-- <h2 tal:content="context/acronym">Acronym here</h2> -->
             <h4>Description:</h4>
-            <tal:block content="structure context/abstracts" />
+            <tal:block content="structure context/abstracts/output" />
 
             <h3>Project information</h3>
 
@@ -30,7 +30,7 @@
             <p tal:replace="structure context/lead" />
 
             <h5>Partners</h5>
-            <p tal:replace="structure context/partners" />
+            <p tal:replace="structure context/partners/output" />
 
             <h5>Source of funding</h5>
             <p tal:replace="structure context/funding" />
