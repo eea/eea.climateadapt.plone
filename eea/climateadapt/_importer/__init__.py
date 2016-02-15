@@ -1507,14 +1507,13 @@ def import_journal_articles(site):
                                          title=title, location=location,
                                          start=date, end=date, whole_day=True,
                                          timezone='UTC',
-                                         event_url=link, effective=publish_date)
+                                         event_url=link, effective_date=publish_date)
 
-            logger.info("Created Event at %s", event.absolute_url())
+            logger.info("Created Event at %s with effective %s" % (event.absolute_url(), str(publish_date)))
         else:
             print "no structure id"
             import pdb; pdb.set_trace()
 
-    # TODO: fix effective date as publishing
     parent = create_folder_at(site, '/news-archive')
     for info in session.query(sql.Journalarticle).filter_by(type_='news'):
         # We get the latest version and skip it if it's already imported
@@ -1539,13 +1538,13 @@ def import_journal_articles(site):
             #link_title = attrs['title']
             news = create_plone_content(parent, type='Link', id=slug,
                                         title=title, remoteUrl=link,
-                                        effective=publish_date)
-            logger.info("Created Link for news at %s", news.absolute_url())
+                                        effective_date=publish_date)
+            logger.info("Created Link for news at %s with effective %s" % (news.absolute_url(), publish_date))
         else:
             text = content[0]
             news = create_plone_content(parent, type='News Item', id=slug,
                                         title=title, text=text,
-                                        effective=publish_date)
+                                        effective_date=publish_date)
             logger.info("Created News Item for news at %s", news.absolute_url())
 
 
