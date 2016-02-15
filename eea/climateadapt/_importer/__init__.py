@@ -1263,6 +1263,7 @@ def import_template_ace_layout_5(site, layout, structure):
     cover = create_cover_at(site, layout.friendlyurl, title=title or main_title)
     cover.aq_parent.edit(title=main_title)
     alsoProvides(cover.aq_parent, ITransnationalRegionMarker)
+    cover.aq_parent.reindexObject(idxs=('object_provides',))
 
     info = {'title': main_title, 'text': main_text }
     main_text_tile = make_richtext_with_title_tile(cover, info)
