@@ -615,3 +615,39 @@
 .qtipmodal-ie6fix{
 	position: absolute !important;
 }
+
+/* CUSTOM */
+.ui-tooltip-rounded {
+    border-radius: 4px;
+}
+.qtip.ui-tooltip-rounded .GlossaryTitle {
+    border-radius: 4px 4px 0px 0px;
+}
+.qtip-tip {
+    color: #02213d;
+    background-color: #d0e9f5;
+}
+.qtip-default {
+    background-color: #e5f6fe;
+    border-color: #add9ed;
+    color: #02213d;
+}
+
+.qtip .top-link {
+    display: none;
+}
+
+.qtip .GlossaryTitle {
+    color: #02213d;
+    background-color: #d0e9f5;
+    font-weight: bold;
+    padding: 7px 0px 7px 9px;
+    margin-top: -5px;
+    margin-right: -9px;
+    margin-left: -9px;
+    margin-bottom: 7px;
+}
+
+.qtip.ui-tooltip-shadow {
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.15);
+}
