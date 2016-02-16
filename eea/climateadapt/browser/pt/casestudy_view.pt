@@ -27,13 +27,17 @@
             <p tal:replace="structure context/objectives/output"></p>
 
             <h4>Adaptation Options</h4>
-            <p tal:replace="structure context/adaptationoptions"></p>
+            <p tal:define="adaptations view/get_adaptation_options">
+              <a tal:repeat="brain adaptations" tal:attributes="href brain/getURL" tal:content="brain/Title">Link</a>
+            </p>
 
             <h4>Solutions</h4>
             <p tal:replace="structure context/solutions/output"></p>
 
             <h4>Relevance</h4>
-            <p tal:replace="structure context/relevance"></p>
+            <p tal:repeat="rel context/relevance">
+              <span tal:replace="python: view.relevances_dict()[rel]"></span>
+            </p>
 
             <h3>Additional Details</h3>
             <h4>Legal Aspects</h4>

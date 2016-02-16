@@ -129,7 +129,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         title=_(u"Adaptation Options"),
         required=False,
         value_type=Int(),   # TODO:  leave it like that, until we figure it out
-        )
+    )   # TODO: reimplement as list
     relevance = List(
         title=_(u"Relevance"),
         required=False,
