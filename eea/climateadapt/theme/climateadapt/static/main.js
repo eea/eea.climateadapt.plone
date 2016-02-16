@@ -28,6 +28,8 @@ $(document).ready(function() {
         		$(that).qtip({
         		    content: {
                                 text: function(event, api) {
+                                    var thatText = $(that).text();
+
                                     $.ajax({
                                         // url: element.data('url') // Use data-url attribute for the URL
                                         url: $(that).attr('href')
@@ -40,7 +42,7 @@ $(document).ready(function() {
                                         // Upon failure... set the tooltip content to the status and error value
                                         api.set('content.text', status + ': ' + error);
                                     });
-                                    return 'Loading...'; // Set some initial text
+                                    return '<div class="GlossaryTitle">' + thatText.charAt(0).toUpperCase() + thatText.slice(1) + '</div><p>Loading glossary term...</p>'; // Set some initial text
                                 }
         		     },
         		     position: {

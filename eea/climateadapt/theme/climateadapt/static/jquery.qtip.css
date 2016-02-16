@@ -623,9 +623,11 @@
 .qtip.ui-tooltip-rounded .GlossaryTitle {
     border-radius: 4px 4px 0px 0px;
 }
-.qtip-tip {
-    color: #02213d;
-    background-color: #d0e9f5;
+.qtip-pos-tc .qtip-tip {
+background-color: #d0e9f5;        // up
+}
+.qtip-pos-bc .qtip-tip {
+background-color: #e5f6fe;    // down
 }
 .qtip-default {
     background-color: #e5f6fe;
