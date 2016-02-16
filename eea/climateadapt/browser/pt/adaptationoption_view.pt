@@ -15,7 +15,7 @@
             <a href="" tal:attributes="href view/link_to_original">Original</a>
             <h2>Adaptation option</h2>
             <h1 tal:content="context/title">Title here</h1>
-            <p tal:content="structure context/description/output" />
+            <p tal:content="structure context/description" />
 
             <h5>Adaptation Option Description</h5>
 
