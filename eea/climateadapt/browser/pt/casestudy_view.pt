@@ -33,7 +33,7 @@
             <div class="case-studies-review-clearing"></div>
 
             <div class="case-studies-tabbed-content-section">
-                <ul class="pippo">
+                <ul>
                     <li class="first submenu">
                         <p>
                             <b><em>Case Study Description</em></b>
@@ -109,40 +109,52 @@
                 <p>
                     TODO
                 </p>
-    
-                <h4>Objectives</h4>
+
+                <h3 id="objectives_anchor">Objectives</h3>
                 <p tal:replace="structure context/objectives/output"></p>
-    
-                <h4>Adaptation Options</h4>
+
+                <h3 id="adapt_options_anchor">Adaptation Options Implemented In This Case</h3>
                 <p tal:define="adaptations view/get_adaptation_options">
                   <a tal:repeat="brain adaptations" tal:attributes="href brain/getURL" tal:content="brain/Title">Link</a>
                 </p>
     
-                <h4>Solutions</h4>
+                <h3 id="solutions_anchor">Solutions</h3>
                 <p tal:replace="structure context/solutions/output"></p>
     
-                <h4>Relevance</h4>
+                <h3 id="relevance_anchor">Relevance</h3>
                 <p tal:repeat="rel context/relevance">
                   <span tal:replace="python: view.relevances_dict()[rel]"></span>
                 </p>
     
-                <h3>Additional Details</h3>
-                <h4>Legal Aspects</h4>
-                <p tal:replace="structure context/legal_aspects/output"></p>
+                <h4>Additional Details</h4>
+                <h3 id="stake_holder_anchor">Stakeholder Participation</h3>
+                <p tal:content="structure context/stakeholder_participation/output"></p>
+
+                <h3 id="success_limitations_anchor">Success and Limiting Factors</h3>
+                <p tal:content="structure context/success_limitations/output"></p>
+
+                <h3 id="cost_benefit_anchor">Costs and Benefits</h3>
+                <p tal:content="structure context/cost_benefit/output"></p>
+
+                <h3 id="implementation_time_anchor">Implementation Time</h3>
+                <p tal:content="structure context/implementation_time"></p>
+
+                <h3 id="life_time_anchor">Life Time</h3>
+                <p tal:content="structure context/lifetime"></p>
+
+                <h4>Reference Information</h4>
     
-                <h3>Reference Information</h3>
-    
-                <h4>Contact</h4>
+                <h3>Contact</h3>
                 <p tal:content="structure context/contact/output"></p>
     
-                <h4>Websites</h4>
+                <h3>Websites</h3>
                 <ul>
                   <li tal:repeat="website context/websites">
                     <a href="" tal:attributes="href website" tal:content="website">Website</a>
                   </li>
                 </ul>
     
-                <h4>Source</h4>
+                <h3>Source</h3>
                 <p tal:content="structure context/source"></p>
               </div>
           </div>
