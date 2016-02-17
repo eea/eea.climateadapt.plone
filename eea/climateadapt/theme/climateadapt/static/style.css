@@ -884,6 +884,6 @@ a.bluebutton:active {
 .case-studies-tabbed-content-section {
     margin-bottom: 29px;
 }
-.case-studies-tabbed-content-section > ul.pippo {
+.case-studies-tabbed-content-section > ul {
     list-style-image: url("cca/img/ico-arrow.png") !important;
 }
