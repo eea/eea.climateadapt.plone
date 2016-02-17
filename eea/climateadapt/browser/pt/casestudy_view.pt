@@ -106,9 +106,7 @@
 
                 <h4>Case Study Description</h4>
                 <h3 id="challenges_anchor">Challenges</h3>
-                <p>
-                    TODO
-                </p>
+                <p tal:content="structure context/challenges/output"></p>
 
                 <h3 id="objectives_anchor">Objectives</h3>
                 <p tal:replace="structure context/objectives/output"></p>
