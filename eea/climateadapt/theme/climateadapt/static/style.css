@@ -967,3 +967,16 @@ li.dropdown-submenu {
 .case-studies-title {
     margin-bottom: 10px;
 }
+.case-studies-top {
+    padding-bottom: 12px;
+}
+.case-studies-review-clearing {
+    clear: both;
+    height: 0;
+}
+.case-studies-tabbed-content-section {
+    margin-bottom: 29px;
+}
+.case-studies-tabbed-content-section > ul.pippo {
+    list-style-image: url("cca/img/ico-arrow.png") !important;
+}
