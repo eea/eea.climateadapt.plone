@@ -262,6 +262,42 @@ def import_image(data, location):
 
     return item
 
+@log_call
+def import_dlfileversion(data, location):
+    # TODO: missing mapping for 208/157
+    file_path = "./document_library/%s/0/document_thumbnail/%s/208/157/%s/%s.%s/%s" % (data.companyid,
+                                                                                       data.repositoryid,  # or groupid
+                                                                                       data.fileentryid,
+                                                                                       data.fileversionid,
+                                                                                       data.extension,
+                                                                                       data.version)
+    logger.info('DEBUG dlfileversion: ' + file_path)
+    return
+
+    try:
+        file_data = open(file_path).read()
+    except Exception:
+        logger.warning("Image with id %d does not exist in the supplied "
+                       "document library", data.imageid)
+        return None
+
+    item = createAndPublishContentInContainer(
+        location,
+        'Image',
+        title='Image ' + str(data.fileversionid),
+        id=str(data.fileversionid) + '.' + data.extension,
+        image=NamedBlobImage(
+            filename=str(data.fileversionid) + '.' + data.extension,
+            data=file_data
+        )
+    )
+
+    item.reindexObject()
+    logger.info("Imported image %s from sql Image %s",
+                item.absolute_url(1), data.fileversionid)
+
+    return item
+
 
 @log_call
 def import_dlfileentry(data, location):
@@ -1483,6 +1519,9 @@ def run_importer(site=None):
 
     for dlfileentry in session.query(sql.Dlfileentry):
         import_dlfileentry(dlfileentry, site['repository'])
+
+    for dlfileversion in session.query(sql.Dlfileversion):
+        import_dlfileversion(dlfileversion, site['repository'])
 
     for aceitem in session.query(sql.AceAceitem):
         if aceitem.datatype in ['ACTION', 'MEASURE']:
