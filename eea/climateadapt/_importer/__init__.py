@@ -179,6 +179,7 @@ def import_adaptationoption(data, location):
         solutions=t2r(data.solutions),
         adaptationoptions=s2li(data.adaptationoptions),
         relevance=s2l(data.relevance),
+        challenges=t2r(data.challenges),
     )
     item._acemeasure_id = data.measureid
     item.reindexObject()
@@ -221,6 +222,7 @@ def import_casestudy(data, location):
         solutions=t2r(data.solutions),
         adaptationoptions=s2li(data.adaptationoptions),
         relevance=s2l(data.relevance),
+        challenges=t2r(data.challenges),
     )
 
     item._acemeasure_id = data.measureid

@@ -33,6 +33,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         title=_(u"Implementation Time"), required=False, default=None,
     )
 
+    dexteritytextindexer.searchable('challenges')
+    challenges = RichText(
+        title=_(u"Challenges"), required=False, default=None,
+    )
+
     dexteritytextindexer.searchable('lifetime')
     lifetime = RichText(title=_(u"Lifetime"), required=False, default=u"")
 
