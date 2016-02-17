@@ -954,3 +954,16 @@ li.dropdown-submenu {
     display: list-item;
 }
 
+/* case study */
+.case-studies-review-image-wrapper {
+    float: left;
+    padding-right: 10px;
+    position: relative;
+    width: 45%;
+}
+.case-studies-top-title {
+    padding-right: 3px;
+}
+.case-studies-title {
+    margin-bottom: 10px;
+}

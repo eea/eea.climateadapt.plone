@@ -13,11 +13,22 @@
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
           <div metal:fill-slot="ace-top-slot">
 
-            <h2>Case Study</h2>
-            <h1 tal:content="python: context.title">Title here</h1>
+            <h2 class="case-studies-title">Case Study</h2>
           </div>
 
           <div metal:fill-slot="ace-left-slot">
+            <div class="case-studies-top">
+                <div class="case-studies-review-image-wrapper">
+                    <!-- TODO: image + gallery -->
+                    <img src="http://climate-adapt.eea.europa.eu/image/image_gallery?uuid=fb8f4b42-dfcb-40ba-8392-152205de3f8e&t=1455704704041&groupId=18" />
+                </div>
+                <div class"case-studies-top-title">
+                    <h1 tal:content="python: context.title">Title here</h1>
+                    <p tal:content="structure context/long_description/output">
+                        Description
+                    </p>
+                </div>
+            </div>
             <p tal:content="structure context/description">description here</p>
 
             <h3>Case Study Description</h3>
