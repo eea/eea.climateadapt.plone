@@ -57,6 +57,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from zope.interface import alsoProvides, noLongerProvides
 from zope.sqlalchemy import register
+from zope.component import getMultiAdapter
 import dateutil
 import json
 import os
@@ -1626,7 +1627,8 @@ def tweak_site(site):
     dad = site['data-and-downloads']
     noLongerProvides(dad, IFacetedNavigable)
     alsoProvides(dad, ISiteSearchFacetedView)
-    alsoProvides(dad, IFacetedNavigable)
+    faceted_view = getMultiAdapter((dad, site.REQUEST), name="faceted_subtyper")
+    faceted_view.enable()
 
     # TODO: create manually created pages
     # tweak frontpage portlets
