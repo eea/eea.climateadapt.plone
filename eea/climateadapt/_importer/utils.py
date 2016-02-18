@@ -1012,6 +1012,13 @@ def get_image_by_imageid(site, imageid):
             return get_repofile_by_uuid(site, uuid)
         except:
             logger.warning("Couldn't find image by id %s", imageid)
+            logger.info("Let's try with dlfileversion by id %s" % imageid)
+            try:
+                uuid = session.query(sql.Dlfileversion.uuid_).filter(
+                    sql.Dlfileversion.fileentryid==long(imageid)).one()[0]
+                return get_repofile_by_uuid(site, uuid)
+            except:
+                return None
             return None
 
     return repo[ids[0]]

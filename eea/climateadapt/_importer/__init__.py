@@ -194,6 +194,8 @@ def import_adaptationoption(data, location):
 
 @log_call
 def import_casestudy(data, location):
+    # TODO: primephoto and photogallery
+    primephoto = get_image_by_imageid(location.aq_inner.aq_parent, data.primephoto)
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.casestudy',
@@ -225,6 +227,7 @@ def import_casestudy(data, location):
         adaptationoptions=s2li(data.adaptationoptions),
         relevance=s2l(data.relevance),
         challenges=t2r(data.challenges),
+        primephoto=primephoto,
     )
 
     item._acemeasure_id = data.measureid
@@ -300,6 +303,7 @@ def import_dlfileversion(data, location):
         )
     )
 
+    item._uuid = data.uuid_
     item.reindexObject()
     logger.info("Imported image %s from sql Image %s",
                 item.absolute_url(1), data.fileversionid)
