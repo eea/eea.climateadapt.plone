@@ -51,6 +51,7 @@ from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.climateadapt.vocabulary import _cca_types
 from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
+from eea.facetednavigation.layout.interfaces import IFacetedLayout
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from pytz import utc
 from sqlalchemy import create_engine
@@ -1629,6 +1630,7 @@ def tweak_site(site):
     alsoProvides(dad, ISiteSearchFacetedView)
     faceted_view = getMultiAdapter((dad, site.REQUEST), name="faceted_subtyper")
     faceted_view.enable()
+    IFacetedLayout(dad).update_layout('faceted-climate-listing-view')
 
     # TODO: create manually created pages
     # tweak frontpage portlets
