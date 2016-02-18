@@ -194,8 +194,15 @@ def import_adaptationoption(data, location):
 
 @log_call
 def import_casestudy(data, location):
-    # TODO: primephoto and photogallery
-    primephoto = get_image_by_imageid(location.aq_inner.aq_parent, data.primephoto)
+    primephoto = get_image_by_imageid(location.aq_inner.aq_parent,
+                                      data.primephoto)
+    supphotos = []
+    supphotos_str = data.supphotos is not None and data.supphotos or ''
+    for supphotoid in supphotos_str:
+        supphoto = get_image_by_imageid(location.aq_inner.aq_parent,
+                                        supphotoid)
+        if supphoto:
+            supphotos.append(supphoto)
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.casestudy',
@@ -228,6 +235,7 @@ def import_casestudy(data, location):
         relevance=s2l(data.relevance),
         challenges=t2r(data.challenges),
         primephoto=primephoto,
+        supphotos=supphotos,
     )
 
     item._acemeasure_id = data.measureid
