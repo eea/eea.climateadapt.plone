@@ -1,3 +1,4 @@
+from subprocess import check_output
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFCore.utils import getToolByName
 from collections import defaultdict
@@ -62,6 +63,7 @@ import json
 import os
 import sys
 import transaction
+import re
 
 
 session = None      # this will be a global bound to the current module
@@ -262,15 +264,23 @@ def import_image(data, location):
 
 @log_call
 def import_dlfileversion(data, location):
-    # TODO: missing mapping for 208/157
-    file_path = "./document_library/%s/0/document_thumbnail/%s/208/157/%s/%s.%s/%s" % (data.companyid,
+    base_path = check_output([
+        'find',
+        './document_library',
+        '-iname', '%s.%s' % (data.fileversionid,
+                             data.extension)]).rstrip('\n')
+    file_path = os.path.join(base_path, data.version)
+    regexp = "./document_library/%s/0/document_thumbnail/%s/[^/]*/[^/]*/%s/%s.%s/%s" % (data.companyid,
                                                                                        data.repositoryid,  # or groupid
                                                                                        data.fileentryid,
                                                                                        data.fileversionid,
                                                                                        data.extension,
                                                                                        data.version)
-    logger.info('DEBUG dlfileversion: ' + file_path)
-    return
+    if not (os.path.isfile(file_path) and re.match(regexp, file_path)):
+        # there is no file and no match
+        logger.info('DEBUG dlfileversion NO MATCH: ' + file_path)
+        return
+    logger.info('FOUND dlfileversion: ' + file_path)
 
     try:
         file_data = open(file_path).read()
