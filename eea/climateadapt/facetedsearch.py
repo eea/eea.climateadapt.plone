@@ -46,7 +46,7 @@ FACETED_SEARCH_TYPES = [
     ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
     ("INDICATOR", "Indicators"),
     ("RESEARCHPROJECT","Research and knowledge Projects"),
-    #("MEASURE","Adaptation Option"),
+    ("MEASURE","Adaptation Option"),
     ("ACTION", "Case Studies"),
     ("ORGANISATION", "Organisations"),
 ]
