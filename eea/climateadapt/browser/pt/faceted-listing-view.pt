@@ -27,12 +27,12 @@
 
             <tal:def tal:define="results python: all_results[search_type];
                                  section_id string:collapsed_${repeat/search_type/index};
-                                 results python: list(results); 
+                                 results python: list(results);
                                  nr_res python: len(results);">
 
               <div class="listing-result" tal:condition="results">
                 <h3>
-                  <a class="btn btn-primary" 
+                  <a class="btn btn-primary"
                     role="button" data-toggle="collapse" tal:attributes="href string:#${section_id}; aria-controls section_id"
                     aria-expanded="false" aria-controls="collapseExample">
                     <span class="glyphicon glyphicon-chevron-right"></span>
@@ -95,6 +95,12 @@
 
                   }
                 );
+                $('.listing-result h3 a').on('click', function(event){
+                  var acc = $(this);
+                  var glyph = acc.parent().find('.glyphicon');
+                  glyph.toggleClass('glyphicon-chevron-right');
+                  glyph.toggleClass('glyphicon-chevron-down');
+                });
               });
             });
           </script>
