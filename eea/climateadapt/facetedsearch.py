@@ -71,5 +71,4 @@ class ListingView(BrowserView):
                 if brain.search_type in self.labels:
                     results[brain.search_type].append(brain)
 
-        print results
         return results

@@ -64,7 +64,7 @@ h2, h3, h4, h5, h6 {color: #636466; font-family: Arial, Helvetica, sans-serif;}
 #content {
     font-family:arial,serif;
 }
-.hidden {display: none;} 
+.hidden {display: none;}
 .clear {clear: both;}
 .pb-ajax, .pb-image, .overlay iframe {font-size: 1.3em;}
 div.overlay-iframe, div.overlay-ajax {width:75%;z-index:1100;}
@@ -137,7 +137,7 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
     .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {color: #101010;}
 
     /*Columns*/
-    #portal-column-one, 
+    #portal-column-one,
     #portal-column-two,
     #portal-column-content {clear: both; width: 97.75%; margin-left: -98.875%;}
 
@@ -250,7 +250,7 @@ div.position-0 { margin-left: -100%; }
 .navbar { margin-bottom: 0px; min-height: 30px;}
 .navbar-inverse { background-color: #a5bf26;}
 .navbar-inverse .navbar-nav > li > a { color: Black; }
-.navbar-nav > li > a { 
+.navbar-nav > li > a {
     padding-top:10px;
     padding-bottom: 10px;
     line-height: 20px;
@@ -274,7 +274,7 @@ div.position-0 { margin-left: -100%; }
     background: #d7e3ef url(ui-bg_glass_75_d7e3ef_1x400.png) repeat-x scroll 50% 50%;
     color: #02213d;
     font-weight: normal;
-    margin-right: 2px; 
+    margin-right: 2px;
     border-width: 0px;
     float: left;
     position: relative;
@@ -504,7 +504,7 @@ div.position-0 { margin-left: -100%; }
     margin-left: 0em;
 }
 #aceitem_sidebar li, #content .faceted-widget li {
-   list-style-type: none; 
+   list-style-type: none;
 }
 
 #left-area {
@@ -861,7 +861,7 @@ a.bluebutton:active {
     text-decoration: none !important;
 }
 
-.section-data-and-downloads a.case-studies-database-search-filters-section-header {
+.section-data-and-downloads a.searchpage-column-accordion-handle {
     color: #0856a0 !important;
     display: block;
     font-size: 14px;
@@ -871,11 +871,11 @@ a.bluebutton:active {
     width: 100%;
     text-decoration: none !important;
 }
-.section-data-and-downloads a.case-studies-database-search-filters-section-header:hover {
+.section-data-and-downloads #content a.searchpage-column-accordion-handle:hover {
     color: #0856a0 !important;
 }
 .section-data-and-downloads #faceted-form .widget-fieldset{
-    padding-bottom: 0; 
+    padding-bottom: 0;
 }
 .section-data-and-downloads #left-area .widget-fieldset form,
 .section-data-and-downloads #left-area .widget-fieldset .faceted-operator{
@@ -883,7 +883,7 @@ a.bluebutton:active {
     text-align: left;
     margin-top: -5px;
 }
-.section-data-and-downloads a.case-studies-database-search-filters-section-header span.case-studies-database-search-filters-section-header-icon {
+.section-data-and-downloads a.searchpage-column-accordion-handle span {
     background-color: #fff;
     border: 1px solid #c1c1c1;
     border-radius: 2px;
@@ -922,4 +922,9 @@ border: 1px solid #a3af29;
 }
 .section-data-and-downloads .dataTable{
     font-size: 12px;
+}
+
+.searchpageoperator label{
+    font-size: 11px;
+    color: #555555;
 }
