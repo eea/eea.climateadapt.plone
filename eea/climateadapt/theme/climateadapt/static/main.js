@@ -26,8 +26,6 @@
                 $(this).find('span').text('+');
             }
 		});
-		// $('.faceted-left-column .widget-fieldset .case-studies-database-search-filters-section-header').click();
-		console.log('ciao!!!');
 	});
 
 //Add tooltips to glossary terms
