@@ -91,7 +91,6 @@ alsoProvides(aceitem_sectors_vocabulary, IVocabularyFactory)
 _elements = """
 acesearch-elements-lbl-OBSERVATIONS=Observations and Scenarios
 acesearch-elements-lbl-VULNERABILITY=Vulnerability Assessment
-acesearch-elements-lbl-ACTION=Adaptation Actions
 acesearch-elements-lbl-PLANSTRATEGY=Adaptation Plans and Strategies
 acesearch-elements-lbl-EU_POLICY=Sector Policies
 acesearch-elements-lbl-MEASUREACTION=Adaptation Measures and Actions
