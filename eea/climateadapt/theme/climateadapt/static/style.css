@@ -928,3 +928,14 @@ border: 1px solid #a3af29;
     font-size: 11px;
     color: #555555;
 }
+
+#faceted-results .number_of_results {
+    color: #67788a;
+    font-family: Tahoma,Times New Roman,serif;
+    font-size: 20px;
+    font-weight: normal;
+    margin: 10px 0 15px 0px;
+    clear: left;
+    position: relative;
+    top: 8px;
+}

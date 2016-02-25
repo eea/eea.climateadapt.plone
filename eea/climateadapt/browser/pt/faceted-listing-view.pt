@@ -18,13 +18,17 @@
           labels self/labels">
 
           <div class="listingBar" style="display: none"></div>
+          <div class="number_of_results">
+            <span i18n:translate="">Search results</span>:
+            <span tal:content="python: sum([len(all_results[s]) for s in sections])">0</span>
+          </div>
 
           <div tal:repeat="search_type sections">
 
-            <tal:def tal:define="results python: all_results[search_type]; section_id string:collapsed_${repeat/search_type/index};
-                      results python: list(results); 
-                      nr_res python: len(results); 
-              ">
+            <tal:def tal:define="results python: all_results[search_type];
+                                 section_id string:collapsed_${repeat/search_type/index};
+                                 results python: list(results); 
+                                 nr_res python: len(results);">
 
               <div class="listing-result" tal:condition="results">
                 <h3>
