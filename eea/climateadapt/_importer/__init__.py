@@ -1626,7 +1626,7 @@ def tweak_site(site):
     # reorder providedBy for '/data-and-downloads'
 
     dad = site['data-and-downloads']
-    dad.title = 'Search the database - Climate-ADAPT'
+    dad.title = 'Search the database'
     noLongerProvides(dad, IFacetedNavigable)
     alsoProvides(dad, ISiteSearchFacetedView)
     faceted_view = getMultiAdapter((dad, site.REQUEST), name="faceted_subtyper")
