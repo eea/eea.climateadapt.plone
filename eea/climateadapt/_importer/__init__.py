@@ -51,12 +51,14 @@ from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.climateadapt.vocabulary import _cca_types
 from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
+from eea.facetednavigation.layout.interfaces import IFacetedLayout
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from pytz import utc
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from zope.interface import alsoProvides, noLongerProvides
 from zope.sqlalchemy import register
+from zope.component import getMultiAdapter
 import dateutil
 import json
 import os
@@ -1624,9 +1626,12 @@ def tweak_site(site):
     # reorder providedBy for '/data-and-downloads'
 
     dad = site['data-and-downloads']
+    dad.title = 'Search the database'
     noLongerProvides(dad, IFacetedNavigable)
     alsoProvides(dad, ISiteSearchFacetedView)
-    alsoProvides(dad, IFacetedNavigable)
+    faceted_view = getMultiAdapter((dad, site.REQUEST), name="faceted_subtyper")
+    faceted_view.enable()
+    IFacetedLayout(dad).update_layout('faceted-climate-listing-view')
 
     # TODO: create manually created pages
     # tweak frontpage portlets

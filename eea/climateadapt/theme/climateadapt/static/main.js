@@ -6,6 +6,28 @@
 			$(this).parent().siblings().removeClass('open');
 			$(this).parent().toggleClass('open');
 		});
+        $('.faceted-left-column .widget-fieldset legend').each(function(){
+            var text = $(this).text();
+            $(this).replaceWith(
+            '<a class="case-studies-database-search-filters-section-header" href="#">'
+            + text +
+            '<span class="case-studies-database-search-filters-section-header-icon">+</span></a>');
+        });
+		$('.faceted-left-column .widget-fieldset .case-studies-database-search-filters-section-header').on('click', function(event) {
+			event.preventDefault(); 
+			event.stopPropagation(); 
+            var parent_node = $(this).parent()
+            parent_node.find("form").toggle(400);
+            parent_node.find(".faceted-operator").toggle();
+            $(this).toggleClass('collapsed');
+            if ($(this).hasClass('collapsed')){
+                $(this).find('span').text('-');
+            } else {
+                $(this).find('span').text('+');
+            }
+		});
+		// $('.faceted-left-column .widget-fieldset .case-studies-database-search-filters-section-header').click();
+		console.log('ciao!!!');
 	});
 
 //Add tooltips to glossary terms
