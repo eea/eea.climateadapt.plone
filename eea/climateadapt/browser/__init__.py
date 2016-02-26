@@ -121,48 +121,47 @@ class Navbar(BrowserView):
     """
 
     _menu = """
-        Home        /
+        About        /about
 
-        Adaptation information              /adaptation-information/general
-            General                         /adaptation-information/general
-            Observations and scenarios      /observations-and-scenarios
-            Vulnerabilities and risks       /vulnerabilities-and-risks
-            Adaptation options              /adaptation-measures
-            Adaptation strategies           /adaptation-strategies
-            Research projects               /research-projects
-            Uncertainty guidance            /uncertainty-guidance-ai
+        Search the database         /data-and-downloads
 
-        EU Adaptation policy            /eu-adaptation-policy/landing
-            EU adaptation policy and funding   /eu-adaptation-policy/landing
-            EU Adaptation Strategy      /eu-adaptation-policy/strategy
-            Mayors Adapt                /mayors-adapt
-            EU sector policies          /eu-adaptation-policy/mainstreaming
-            EU funding of adaptation    /eu-adaptation-policy/funding
+        EU policy                          /eu-adaptation-policy
+            EU Adaptation Strategy         /eu-adaptation-policy/strategy
+            EU mainstreaming in sector policies   /eu-adaptation-policy/mainstreaming
+            EU funding of adaptation       /eu-adaptation-policy/funding
+            Mayors Adapt                   /mayors-adapt
+                Register your City         /mayors-adapt/register
+                City Profiles              /city-profile
 
-        Countries, regions, cities      /countries/general
-            General                     /countries/general
-            Countries                   /countries
-            Transnational regions       /transnational-regions
-            Cities and towns            /cities
+        Countries, regions, cities         /countries-regions
+            Transnational regions          /transnational-regions
+            Cities and towns               /cities
+            Country Information            /countries
 
-        Tools                                  /tools/general
-            General                            /tools/general
-            Adaptation support tool            /adaptation-support-tool
-            Case study search tool             /sat
-            Map viewer                         /tools/map-viewer
-            Uncertainty guidance               /uncertainty-guidance
-            Guidelines for project managers    /guidelines-for-project-managers
-            Urban vulnerability mapbook        /tools/urban-adaptation
-            Urban adaptation support tool      /tools/urban-ast
-            Time series tool                   /tools/time-series-tool
+        Knowledge               /knowledge
+            Adaptation information         /adaptation-information/general
+                Observations and scenarios    /observations-and-scenarios
+                Vulnerabilities and risks     /vulnerabilities-and-risks
+                Adaptation options            /adaptation-measures
+                Adaptation strategies         /adaptation-strategies
+                Research projects             /research-projects
+            Tools                          /tools/general
+                Adaptation Support Tool       /adaptation-support-tool
+                Case study search tool        /sat
+                Uncertainty guidance          /uncertainty-guidance
+                Map viewer                    /tools/map-viewer
+                Urban adaptation support tool    /tools/urban-ast/step-0-0
+                Urban vulnerability Map book     /tools/urban-adaptation/introduction
+                Guidelines for project managers  /guidelines-for-project-managers
+                Time series tool                 /tools/time-series-tool
+                Additional Tools                 /additional-tools
+                General                          /general
 
-        Links       /organisations
-            Organisations       /organisations
-            Global platforms    /international
+        Network                 /network
+            Organisations           /organisations
+            Global Platforms        /international
 
-        Search the database    /data-and-downloads
-
-        Newsletter      /newsletter
+        Help                        /help
     """
 
     def menu(self):
@@ -199,6 +198,42 @@ class Navbar(BrowserView):
             sections.append(this_section)
 
         return sections
+
+
+#    def menu(self):
+#        lines = self._menu.split('\n')
+#        sections = []
+#        this_section = None
+#        for line in lines:
+#            line = line.strip()
+
+#            # empty lines at beginning of docstring
+#            if not line and this_section is None:
+#                continue
+
+#            # new section
+#            if not line and this_section:
+#                sections.append(this_section)
+#                this_section = None
+#                continue
+
+#            # new section
+#            if line and this_section is None:
+#                lpos = line.find('/')
+#                label, link = line[:lpos].strip(), line[lpos:].strip()
+#                this_section = [label, link, []]
+#                continue
+
+#            # link inside section
+#            if line and this_section:
+#                lpos = line.find('/')
+#                label, link = line[:lpos].strip(), line[lpos:].strip()
+#                this_section[2].append((label, link))
+
+#        if this_section:
+#            sections.append(this_section)
+
+#        return sections
 
 
 class ViewAceItem(BrowserView):
