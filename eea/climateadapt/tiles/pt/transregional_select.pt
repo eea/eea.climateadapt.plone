@@ -12,7 +12,7 @@
     <dl tal:condition="view/is_compose_mode">
       <dt>Transnational regions select</dt>
       <dd>
-        <select></select>
+        <select class="form-control"></select>
       </dd>
     </dl>
 
@@ -28,7 +28,7 @@
       });
       </script>
 
-      <select id="trans-region-select">
+      <select id="trans-region-select" class="form-control">
         <option value="">Choose a region</option>
         <option 
           tal:repeat="region view/regions" 

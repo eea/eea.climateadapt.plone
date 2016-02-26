@@ -28,11 +28,13 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         vocabulary="eea.climateadapt.acemeasure_implementationtype"
     )
 
-    implementation_time = TextLine(
+    dexteritytextindexer.searchable('implementation_time')
+    implementation_time = RichText(
         title=_(u"Implementation Time"), required=False, default=None,
     )
 
-    lifetime = TextLine(title=_(u"Lifetime"), required=False, default=u"")
+    dexteritytextindexer.searchable('lifetime')
+    lifetime = RichText(title=_(u"Lifetime"), required=False, default=u"")
 
     spatial_layer = TextLine(
         title=_(u"Spatial Layer"), required=False, default=u"")
@@ -101,7 +103,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
             vocabulary="eea.climateadapt.aceitems_climateimpacts",),
     )
 
-    source = TextLine(title=_(u"Source"), required=True,)
+    dexteritytextindexer.searchable('source')
+    source = RichText(title=_(u"Source"), required=True,)
     # TODO: special tagging implement as related
 
     geochars = Text(title=_(u"Geographic characterization"),
@@ -129,7 +132,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         title=_(u"Adaptation Options"),
         required=False,
         value_type=Int(),   # TODO:  leave it like that, until we figure it out
-        )
+    )   # TODO: reimplement as list
     relevance = List(
         title=_(u"Relevance"),
         required=False,

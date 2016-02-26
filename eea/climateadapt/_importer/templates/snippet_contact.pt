@@ -1,3 +1,8 @@
 <div class="contact">
-  <p tal:repeat="line options/lines" tal:content="python:line[0]" />
+  <p tal:repeat="line options/lines">
+    <tal:def define="name python: line[0]; value python: line[1]">
+      <span tal:condition="python:name != 'ContactMail'" tal:content="python:value" />
+      <a tal:condition="python:name == 'ContactMail'" tal:attributes="href python:'mailto:' + value">Send mail</a>
+    </tal:def>
+  </p>
 </div>

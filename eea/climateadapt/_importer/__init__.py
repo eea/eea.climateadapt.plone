@@ -51,12 +51,14 @@ from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.climateadapt.vocabulary import _cca_types
 from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
+from eea.facetednavigation.layout.interfaces import IFacetedLayout
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from pytz import utc
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from zope.interface import alsoProvides, noLongerProvides
 from zope.sqlalchemy import register
+from zope.component import getMultiAdapter
 import dateutil
 import json
 import os
@@ -156,8 +158,8 @@ def import_adaptationoption(data, location):
         title=data.name,
         long_description=t2r(data.description),
         implementation_type=data.implementationtype,
-        implementation_time=data.implementationtime,
-        lifetime=data.lifetime,
+        implementation_time=t2r(data.implementationtime),
+        lifetime=t2r(data.lifetime),
         spatial_layer=data.spatiallayer,
         spatial_values=s2l(data.spatialvalues),
         legal_aspects=t2r(data.legalaspects),
@@ -169,7 +171,7 @@ def import_adaptationoption(data, location):
         sectors=s2l(data.sectors_),
         elements=s2l(data.elements_),
         climate_impacts=s2l(data.climateimpacts_),
-        source=data.source,
+        source=t2r(data.source),
         keywords=data.keywords,
         geochars=data.geochars,
         measure_type=data.mao_type,
@@ -724,6 +726,7 @@ def import_template_ace_layout_4(site, layout, structure):
         'Methodology': "Methodology",
         'Results': 'Results',
         'ProjectPartners': 'Project partners',
+        'Deliverables': 'Deliverables',
     }
     partners = []
     for line in structure['column-1'][0][1]['content']:
@@ -751,25 +754,48 @@ def import_template_ace_layout_4(site, layout, structure):
 
     _main_sidebar = structure['column-2'][0][1]['content']
     sidebar_title = structure['column-2'][0][1]['portlet_title']
-    sidebar = []
-    _contact = []
-    for line in _main_sidebar:
-        if line[1] != 'Contact':
-            sidebar.append((line[1], line[2][0]))
-        else:
-            #contact = []
-            for subline in line[2]:
-                if not subline:
-                    continue
-                _contact.append((subline[1], subline[2][0]))
-            #sidebar.append(contact)
 
-    contact_text = render("templates/snippet_contact.pt", {'lines': _contact})
+# [('dynamic', 'Instrument', ['FP7, Small-medium-sized Integrated Project']),
+#  ('dynamic', 'StartDate', ['01/01/2010']),
+#  ('dynamic', 'Duration', ['42 months']),
+#  ('dynamic', 'ProjectCoord', ['Chancellor, Master and Scholars of the University of Oxford (United Kingdom)']),
+#  ('dynamic', 'ProjectWebSite', ['www.climsave.eu']),
+#  ('dynamic',
+#   'Contact',
+#   [('dynamic', 'ContactName', ['Dr. Paula Harrison']),
+#    ('dynamic', 'ContactInstitute', ['Environmental Change Institute\nUniversity of Oxford']),
+#    ('dynamic', 'ContactAddress', ['Oxford University Centre for the Environment, South Parks Road, Oxford, OX1 3QY, UK']),
+#    ('dynamic', 'ContactMail', ['paharriso@aol.com']),
+#
+
+    print _main_sidebar
+
+    _sidebar = []
+    _contact = []
+    for dyn, name, payload in _main_sidebar:
+        if len(payload) == 1:
+            _sidebar.append((name, payload[0]))
+        else:
+            for l in payload:
+                if l:
+                    _contact.append((l[1], l[2][0]))
+
+    labels = {
+        'Instrument': 'Instrument',
+        'StartDate': 'Start date',
+        'Duration': 'Duration',
+        'ProjectCoord': 'Project Coordinator',
+        'ProjectWebSite': 'Project website',
+        'ContactPoint': "Contact Point",
+    }
+
+    contact_text = render("templates/snippet_contact.pt", {'lines': _contact,
+                                                           'labels': labels})
+    _sidebar.append(('ContactPoint', contact_text))
     sidebar_text = render("templates/snippet_sidebar_text.pt",
-                          {'lines': sidebar})
-    sidebar_tile = make_richtext_with_title_tile(cover,
-                                      {'title': sidebar_title,
-                                       'text': sidebar_text + contact_text})
+                          {'lines': _sidebar, 'labels': labels})
+    sidebar_tile = make_richtext_with_title_tile(
+        cover, {'title': sidebar_title, 'text': sidebar_text})
 
     sidebar_tiles = [sidebar_tile]
 
@@ -1239,6 +1265,7 @@ def import_template_ace_layout_5(site, layout, structure):
     cover = create_cover_at(site, layout.friendlyurl, title=title or main_title)
     cover.aq_parent.edit(title=main_title)
     alsoProvides(cover.aq_parent, ITransnationalRegionMarker)
+    cover.aq_parent.reindexObject(idxs=('object_provides',))
 
     info = {'title': main_title, 'text': main_text }
     main_text_tile = make_richtext_with_title_tile(cover, info)
@@ -1468,6 +1495,20 @@ def run_importer(site=None):
 def import_journal_articles(site):
 
     parent = create_folder_at(site, '/more-events')
+    create_plone_content(
+        parent,
+        type='Collection',
+        title='Events',
+        slug='events',
+        sort_on=u'effective',
+        sort_reversed=True,
+        query=[{u'i': u'portal_type',
+                u'o': u'plone.app.querystring.operation.selection.is',
+                u'v': [u'Event']},
+               {u'i': u'path',
+                u'o': u'plone.app.querystring.operation.string.relativePath',
+                u'v': u'..'}],)
+    parent.setDefaultPage('events')
 
     for info in session.query(sql.Journalarticle).filter_by(type_='events'):
         latest = _get_latest_version(session, info)
@@ -1507,15 +1548,29 @@ def import_journal_articles(site):
                                          title=title, location=location,
                                          start=date, end=date, whole_day=True,
                                          timezone='UTC',
-                                         event_url=link, effective=publish_date)
+                                         event_url=link, effective_date=publish_date)
 
-            logger.info("Created Event at %s", event.absolute_url())
+            logger.info("Created Event at %s with effective %s" % (event.absolute_url(), str(publish_date)))
         else:
             print "no structure id"
             import pdb; pdb.set_trace()
 
-    # TODO: fix effective date as publishing
     parent = create_folder_at(site, '/news-archive')
+    create_plone_content(
+        parent,
+        type='Collection',
+        title='News',
+        slug='news',
+        sort_on=u'effective',
+        sort_reversed=True,
+        query=[{u'i': u'portal_type',
+                u'o': u'plone.app.querystring.operation.selection.is',
+                u'v': [u'News Item']},
+               {u'i': u'path',
+                u'o': u'plone.app.querystring.operation.string.relativePath',
+                u'v': u'..'}],)
+    parent.setDefaultPage('news')
+
     for info in session.query(sql.Journalarticle).filter_by(type_='news'):
         # We get the latest version and skip it if it's already imported
         latest = _get_latest_version(session, info)
@@ -1539,13 +1594,13 @@ def import_journal_articles(site):
             #link_title = attrs['title']
             news = create_plone_content(parent, type='Link', id=slug,
                                         title=title, remoteUrl=link,
-                                        effective=publish_date)
-            logger.info("Created Link for news at %s", news.absolute_url())
+                                        effective_date=publish_date)
+            logger.info("Created Link for news at %s with effective %s" % (news.absolute_url(), publish_date))
         else:
             text = content[0]
             news = create_plone_content(parent, type='News Item', id=slug,
                                         title=title, text=text,
-                                        effective=publish_date)
+                                        effective_date=publish_date)
             logger.info("Created News Item for news at %s", news.absolute_url())
 
 
@@ -1571,9 +1626,12 @@ def tweak_site(site):
     # reorder providedBy for '/data-and-downloads'
 
     dad = site['data-and-downloads']
+    dad.title = 'Search the database'
     noLongerProvides(dad, IFacetedNavigable)
     alsoProvides(dad, ISiteSearchFacetedView)
-    alsoProvides(dad, IFacetedNavigable)
+    faceted_view = getMultiAdapter((dad, site.REQUEST), name="faceted_subtyper")
+    faceted_view.enable()
+    IFacetedLayout(dad).update_layout('faceted-climate-listing-view')
 
     # TODO: create manually created pages
     # tweak frontpage portlets

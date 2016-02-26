@@ -15,7 +15,7 @@
             <a href="" tal:attributes="href view/link_to_original">Original</a>
             <h2>Adaptation option</h2>
             <h1 tal:content="context/title">Title here</h1>
-            <p tal:content="structure context/description/output" />
+            <p tal:content="structure context/description" />
 
             <h5>Adaptation Option Description</h5>
 
@@ -39,7 +39,7 @@
             <p id="success_factors"><em class="underline">Success and Limiting Factors</em> <tal:block content="context/success_limitations" /></p>
             <p id="costs_benefits"><em class="underline">Costs and Benefits</em> <tal:block content="context/cost_benefit" /></p>
             <p id="legal"><em class="underline">Legal Aspects</em> <tal:block content="context/legal_aspects" /></p>
-            <p id="implementation"><em class="underline">Implementation Time</em> <tal:block content="context/implementation_time" /></p>
+            <p id="implementation"><em class="underline">Implementation Time</em> <tal:block content="context/implementation_time/output" /></p>
 
             <h4>Reference information</h4>
             <h5 id="websites">Websites:</h5>
@@ -48,7 +48,7 @@
             </ul>
 
             <h5 id="source">Source:</h5>
-            <p tal:content="context/source">Source here</p>
+            <p tal:content="context/source/output">Source here</p>
 
           </div>
           <div class="col-md-3">
