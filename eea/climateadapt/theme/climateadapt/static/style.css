@@ -98,7 +98,10 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
 #logo {float: left; width: 100%; padding-left:120px; height:88px;}
 #logo > a {display:block; max-width:85%;}
 #logo > a img {max-width: 100%;}
-#portal-personaltools {font-size: 1.1em; background: none; position:absolute; right: 0px; top: 0px;}
+#portal-personaltools {font-size: 1.1em; background: none; position:absolute; right: 0px; top: 0px; z-index: 1001;}
+#portal-personaltools dd {
+    background: #666;
+}
 #portal-personaltools a {color: #fff;}
 
 /* navigation */
