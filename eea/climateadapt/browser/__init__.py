@@ -130,8 +130,8 @@ class Navbar(BrowserView):
             EU mainstreaming in sector policies   /eu-adaptation-policy/mainstreaming
             EU funding of adaptation       /eu-adaptation-policy/funding
             Mayors Adapt                   /mayors-adapt
-                Register your City         /mayors-adapt/register
-                City Profiles              /city-profile
+                -Register your City         /mayors-adapt/register
+                -City Profiles              /city-profile
 
         Countries, regions, cities         /countries-regions
             Transnational regions          /transnational-regions
@@ -140,22 +140,22 @@ class Navbar(BrowserView):
 
         Knowledge               /knowledge
             Adaptation information         /adaptation-information/general
-                Observations and scenarios    /observations-and-scenarios
-                Vulnerabilities and risks     /vulnerabilities-and-risks
-                Adaptation options            /adaptation-measures
-                Adaptation strategies         /adaptation-strategies
-                Research projects             /research-projects
+                -Observations and scenarios    /observations-and-scenarios
+                -Vulnerabilities and risks     /vulnerabilities-and-risks
+                -Adaptation options            /adaptation-measures
+                -Adaptation strategies         /adaptation-strategies
+                -Research projects             /research-projects
             Tools                          /tools/general
-                Adaptation Support Tool       /adaptation-support-tool
-                Case study search tool        /sat
-                Uncertainty guidance          /uncertainty-guidance
-                Map viewer                    /tools/map-viewer
-                Urban adaptation support tool    /tools/urban-ast/step-0-0
-                Urban vulnerability Map book     /tools/urban-adaptation/introduction
-                Guidelines for project managers  /guidelines-for-project-managers
-                Time series tool                 /tools/time-series-tool
-                Additional Tools                 /additional-tools
-                General                          /general
+                -Adaptation Support Tool       /adaptation-support-tool
+                -Case study search tool        /sat
+                -Uncertainty guidance          /uncertainty-guidance
+                -Map viewer                    /tools/map-viewer
+                -Urban adaptation support tool    /tools/urban-ast/step-0-0
+                -Urban vulnerability Map book     /tools/urban-adaptation/introduction
+                -Guidelines for project managers  /guidelines-for-project-managers
+                -Time series tool                 /tools/time-series-tool
+                -Additional Tools                 /additional-tools
+                -General                          /general
 
         Network                 /network
             Organisations           /organisations
@@ -168,6 +168,7 @@ class Navbar(BrowserView):
         lines = self._menu.split('\n')
         sections = []
         this_section = None
+        sub_section = None
         for line in lines:
             line = line.strip()
 
@@ -189,10 +190,17 @@ class Navbar(BrowserView):
                 continue
 
             # link inside section
-            if line and this_section:
+            if line and this_section and line[0] != '-':
                 lpos = line.find('/')
                 label, link = line[:lpos].strip(), line[lpos:].strip()
-                this_section[2].append((label, link))
+                this_section[2].append((label, link, []))
+                continue
+
+
+            if line and this_section and line[0] == '-':
+                lpos = line.find('/')
+                label, link = line[1:lpos].strip(), line[lpos:].strip()
+                this_section[2][-1][2].append((label, link))
 
         if this_section:
             sections.append(this_section)

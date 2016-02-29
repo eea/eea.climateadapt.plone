@@ -18,10 +18,23 @@
         </a>
         <ul tal:condition="python: section[2]" class="dropdown-menu">
           <li tal:repeat="child python:section[2]">
-            <a href="" tal:attributes="href python:child[1]" tal:content="python: child[0]">Home</a>
+            
+            <tal:def define="has_subchildren python: bool(child[2])">
+              <a href="" tal:attributes="href python:child[1]" tal:content="python: child[0]">Home</a>
+              <ul tal:condition="has_subchildren" class="dropdown-menu">
+                <li tal:repeat="subchild python:child[2]">
+                  <a href="" tal:attributes="href python:subchild[1]"  
+                             tal:content="python:subchild[0]">Label
+                    <b class="caret" tal:condition="has_children" />           
+                  </a>
+                </li>
+              </ul>
+            </tal:def>
+            
           </li>
         </ul>
       </li>
+      
     </ul>
   </div>
 </nav>
