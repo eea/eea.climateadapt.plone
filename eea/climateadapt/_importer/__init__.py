@@ -1040,7 +1040,6 @@ def import_template_1_column(site, layout, structure):
         logger.error("Invalid page structure for %s", layout.friendlyurl)
         return
 
-
     # There are three versions of this template:
     # - only one iframe
     # - two columns with an iframe below
