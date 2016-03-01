@@ -130,10 +130,14 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
         """
         site = getSite()
         result = []
+
+        # TODO: sync the links here to the index names and to the faceted indexes
         url = site.absolute_url() + "/data-and-downloads?searchtext=&searchelements=%s&searchtypes=%s"
         query = self.build_query()
+
 #       "http://adapt-test.eea.europa.eu/data-and-downloads?"
 #       "searchtext=&searchelements=OBSERVATIONS&searchtypes=ORGANISATION"
+
         element_type = self.data.get('element_type')
 
         for info in aceitem_types:
