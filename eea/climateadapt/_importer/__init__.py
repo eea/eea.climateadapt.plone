@@ -205,13 +205,11 @@ def import_casestudy(data, location):
     primephoto = primephoto and RelationValue(intids.getId(primephoto)) or None
     supphotos = []
     supphotos_str = data.supphotos is not None and data.supphotos or ''
-    for supphotoid in supphotos_str:
+    for supphotoid in supphotos_str.split(';'):
         supphoto = get_image_by_imageid(location.aq_inner.aq_parent,
                                         supphotoid)
         if supphoto:
-            supphotos.append(supphoto)
-    if supphotos:
-        import pdb; pdb.set_trace()
+            supphotos.append(RelationValue(intids.getId(supphoto)))
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.casestudy',
