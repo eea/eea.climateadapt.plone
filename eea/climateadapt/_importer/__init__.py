@@ -1049,14 +1049,14 @@ def import_template_1_column(site, layout, structure):
     try:
         dict(structure['column-1'][0][1])
     except:
-        logger.warning("Invalid page structure for %s", layout.friendlyurl)
+        logger.error("Invalid page structure for %s", layout.friendlyurl)
         return
 
-    if not 'content' in structure['column-1'][0][1]:
-        #TODO: import this properly
-        logger.warning("Please investigate this importer %s with template %s",
-                       layout.friendlyurl, '1_column')
-        return
+
+    # There are three versions of this template:
+    # - only one iframe
+    # - two columns with an iframe below
+    # - several portlets (with rich text) one below another
 
     cover_title = unicode(structure['name'])
 
@@ -1065,8 +1065,8 @@ def import_template_1_column(site, layout, structure):
     if portlet_title:
         main_title = portlet_title
     else:
-        main_title = structure['column-1'][0][1]['title']
-    main_title = strip_xml(main_title)
+        main_title = structure['column-1'][0][1].get('title') or ""
+    main_title = strip_xml(main_title) or cover_title
 
     cover = create_cover_at(site, layout.friendlyurl, title=cover_title)
     cover.aq_parent.edit(title=main_title)  # Fix parent title
@@ -1074,7 +1074,7 @@ def import_template_1_column(site, layout, structure):
         alsoProvides(cover, IClimateAdaptSharePage)
     stamp_cover(cover, layout)
 
-    if len(structure['column-1']) > 2:
+    def _import_two_columns():
         content = structure['column-1'][0][1]['content']
 
         col1 = u"".join(content)
@@ -1092,10 +1092,10 @@ def import_template_1_column(site, layout, structure):
         row_1 = make_row(col1_group, col2_group)
         row_2 = make_row(iframe_group)
         layout = make_layout(row_1, row_2)
+        return layout
 
-    else:
+    def _import_cols():
         content = structure['column-1'][0][1]['content']
-        title = ""
 
         if isinstance(content[0], tuple):
             # this is a dynamic portlet
@@ -1105,10 +1105,27 @@ def import_template_1_column(site, layout, structure):
 
         tiles = [make_tile(cover, [p]) for p in structure['column-1']]
 
-        main_group = make_group(16, *tiles)
-        layout = make_layout(make_row(main_group))
+        main_group = make_group(12, *tiles)
+        cover_layout = make_layout(make_row(main_group))
+        return cover_layout
 
-    cover.cover_layout = json.dumps(layout)
+    def _import_iframe():
+        tiles = [make_tile(cover, [p]) for p in structure['column-1']]
+        main_group = make_group(12, *tiles)
+        cover_layout = make_layout(make_row(main_group))
+        cover.setLayout('standard')
+
+        return cover_layout
+
+    if not 'content' in structure['column-1'][0][1]:
+        # an iframe layout, such as /tools/map-viewer
+        cover_layout = _import_iframe()
+    elif len(structure['column-1']) > 2:
+        cover_layout = _import_two_columns()
+    else:
+        cover_layout = _import_cols()
+
+    cover.cover_layout = json.dumps(cover_layout)
     cover._p_changed = True
     return cover
 
@@ -1170,6 +1187,7 @@ def import_template_2_columns_ii(site, layout, structure):
     second = [x[1] for x in structure.get('column-2', []) if x[1]]
 
     if first and second:
+        #import pdb; pdb.set_trace()
         # this is the /mayors-adapt page
         noop('mayors-adapt')
 
@@ -1223,6 +1241,7 @@ def import_template_2_columns_iii(site, layout, structure):
         layout = make_layout(make_row(main_group))
 
     cover.cover_layout = json.dumps(layout)
+    cover.setLayout('standard')
     return cover
 
 
@@ -1315,17 +1334,18 @@ def import_template_faq(site, layout, structure):
     cover = create_cover_at(site, layout.friendlyurl, title=title)
     cover.aq_parent.edit(title=structure['name'])
     stamp_cover(cover, layout)
+    cover.setLayout('standard')
 
     info = {'title': title, 'text': main_text}
     main_text_tile = make_richtext_tile(cover, info)
-    main_text_group = make_group(16, main_text_tile)
+    main_text_group = make_group(12, main_text_tile)
 
     col_tiles = [
         make_richtext_tile(cover, {'text': col, 'title': 'column'})
         for col in [col1, col2, col3]
     ]
     row_1 = make_row(main_text_group)
-    row_2 = make_row(make_group(3, *col_tiles))
+    row_2 = make_row(*[make_group(4, t) for t in col_tiles])
     layout = make_layout(row_1, row_2)
 
     cover.cover_layout = json.dumps(layout)
@@ -1484,7 +1504,8 @@ def run_importer(site=None):
             logger.exception("Couldn't import layout %s", layout.friendlyurl)
         if cover:
             cover._imported_comment = \
-                "Imported from layout {0}".format(layout.layoutid)
+                "Imported from layout {0} - {1}".format(layout.layoutid,
+                                                        layout.uuid_)
             logger.info("Created cover at %s", cover.absolute_url())
 
 

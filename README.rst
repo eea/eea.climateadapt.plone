@@ -46,9 +46,9 @@ Test locally
 ============
 
 To test the view,
-create a folder and navigate to http://localhost:8080/Plone/folder/@@sat_view,
+create a folder and navigate to http://localhost:8080/Plone/folder/@@sat,
 or go into the ZMI
-and set the property ``layout`` of the folder to ``@@sat_view``.
+and set the property ``layout`` of the folder to ``@@sat``.
 
 Since the SAT view contacts a Geoserver instance via Javascript,
 and we don't set up a geoserver locally,
