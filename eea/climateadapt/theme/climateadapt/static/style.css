@@ -980,3 +980,47 @@ li.dropdown-submenu {
 .case-studies-tabbed-content-section > ul {
     list-style-image: url("cca/img/ico-arrow.png") !important;
 }
+
+*/ bottom menu in urban ast pages */
+
+#bottom-menu {
+	margin: 5px 20px 20px 20px;
+}
+
+#bottom-menu a{
+	color: #2c330a;
+	text-decoration: none;
+}
+
+#bottom-menu a:hover{
+	color: #758816;
+}
+
+#previous-link {
+	float: left;
+	width: 150px;
+	text-align: left;
+}
+
+#contact-link {
+	float: left;
+	text-align: center;
+	width: 310px;
+}
+
+#contact-link a.bluebutton{
+	margin-top: 0px;
+	float: none;
+}
+
+
+#next-link {
+	width: 150px;
+	float: right;
+	text-align: right;
+}
+
+.clear-both {
+	clear: both;
+}
+

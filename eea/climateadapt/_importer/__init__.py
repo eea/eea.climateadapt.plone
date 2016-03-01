@@ -51,15 +51,15 @@ from eea.climateadapt.interfaces import IClimateAdaptSharePage
 from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.climateadapt.vocabulary import _cca_types
-from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from eea.facetednavigation.layout.interfaces import IFacetedLayout
+from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from pytz import utc
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+from zope.component import getMultiAdapter
 from zope.interface import alsoProvides, noLongerProvides
 from zope.sqlalchemy import register
-from zope.component import getMultiAdapter
 import dateutil
 import json
 import os
@@ -914,22 +914,20 @@ def import_template_ast(site, layout, structure):
     # has a title)
 
     return _import_template_urban_ast(site, layout, structure,
-                                      make_ast_navigation_tile)
+                                      make_ast_navigation_tile,
+                                      is_urbanast=False)
 
 
 @log_call
 def import_template_urban_ast(site, layout, structure):
     return _import_template_urban_ast(site, layout, structure,
-                                      make_urbanast_navigation_tile)
+                                      make_urbanast_navigation_tile,
+                                      is_urbanast=True)
 
 
-def _import_template_urban_ast(site, layout, structure, nav_tile_maker):
+def _import_template_urban_ast(site, layout, structure, nav_tile_maker,
+                               is_urbanast=False):
     # parent name fixed
-    # TODO: fix images
-    # TODO: fix urban ast navigation
-    # TODO: create nav menu on the left
-    # TODO: use the step information
-    # TODO: cleanup the css in image_portlet
 
     # column-1 has the imagemap on the left side
     # column-2 has 2 portlets:  title and then the one with content (which also
@@ -939,28 +937,6 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker):
     assert(len(structure) >= 3)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) >= 2)
-
-    # TODO: insert step number image in view
-
-    """
-    Need to know:
-    # ast section breadcrumb title
-    # ast section title
-    # ast section slug
-    # ast section number
-
-    # subtitle nu apare pe ast section main page
-
-    - subsection
-        - ast section title appears as main title
-        - section title - appears in ast menu
-                        - appears as title
-                        - appears as subtitle in page
-        - step number + section number
-    """
-
-    # subsection_title
-    # ast_section_title
 
     image_portlet = structure['column-1'][0][1]['content'][0]
     portlet = structure['column-2'][1][1]
@@ -983,12 +959,17 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker):
     cover.aq_parent.edit(title=structure['name'])   # Fix parent name
     stamp_cover(cover, layout)
 
+    # fix the scripts and css paths from this tile
+    image_portlet = image_portlet.replace("/ace-theme/css/", "/++theme++climateadapt/static/")
+    image_portlet = image_portlet.replace("/ace-theme/js/",  "/++theme++climateadapt/static/")
+    image_portlet = image_portlet.replace("jquery.qtip.min.css", "jquery.qtip.css")
+
     image_tile = make_richtext_tile(cover, {'text': image_portlet,
                                             'title': 'AST Image'})
     main_content_tile = make_richtext_tile(cover, {'text': main_content,
                                                    'title': 'Main text'})
     # nav_tile = make_richtext_tile(cover, {'text': 'nav here', 'title': 'nav'})
-    nav_tile = make_ast_navigation_tile(cover)
+    nav_tile = nav_tile_maker(cover)
 
     side_group = make_group(4, image_tile, nav_tile)
 
@@ -1002,11 +983,18 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker):
 
     [structure.pop(z) for z in ['column-1', 'column-2', 'name']]
     if structure:
-        second_row_group = [make_group(4, t) for t in
+        second_row_group = [make_group(6, t) for t in
                             [make_tile(cover, x) for x in structure.values()]
                             ]
         second_row = make_row(*second_row_group)
-        main_group = make_group(8, main_content_tile, second_row)
+        if is_urbanast:
+            tile = make_view_tile(cover,
+                                        {'title': 'UrbanAST nav',
+                                         'view_name': 'urbanast_bottom_nav'})
+            third_row = make_group(8, tile)
+            main_group = make_group(8, main_content_tile, second_row, third_row)
+        else:
+            main_group = make_group(8, main_content_tile, second_row)
     else:
         main_group = make_group(8, main_content_tile)
 
