@@ -200,6 +200,13 @@
         />
 
     <browser:page
+        name="urbanast_bottom_nav"
+        for="*"
+        template="pt/viewlet_urbanast_bottom_nav.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
         for="eea.climateadapt.interfaces.ISiteSearchFacetedView"
         name="facetednavigation_view"
         template="pt/faceted-search-view.pt"
