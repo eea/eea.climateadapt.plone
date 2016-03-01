@@ -11,6 +11,7 @@
 
     <!--Head-->
     <copy css:content="html" css:theme="html" attributes="lang dir" />
+    <drop css:theme="head script" css:if-content=".template-sat"/>
     <before css:content="head style, head link, head script, head meta" css:theme-children="head" />
     <replace css:content="head title" css:theme="head title" />
     <copy css:content="head base" css:theme="head base" />
