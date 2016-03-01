@@ -897,6 +897,11 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker,
     cover.aq_parent.edit(title=structure['name'])   # Fix parent name
     stamp_cover(cover, layout)
 
+    # fix the scripts and css paths from this tile
+    image_portlet = image_portlet.replace("/ace-theme/css/", "/++theme++climateadapt/static/")
+    image_portlet = image_portlet.replace("/ace-theme/js/",  "/++theme++climateadapt/static/")
+    image_portlet = image_portlet.replace("jquery.qtip.min.css", "jquery.qtip.css")
+
     image_tile = make_richtext_tile(cover, {'text': image_portlet,
                                             'title': 'AST Image'})
     main_content_tile = make_richtext_tile(cover, {'text': main_content,
