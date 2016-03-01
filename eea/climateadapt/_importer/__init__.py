@@ -60,6 +60,9 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from zope.component import getMultiAdapter
 from zope.interface import alsoProvides, noLongerProvides
 from zope.sqlalchemy import register
+from zope.component import getUtility
+from zope.intid.interfaces import IIntIds
+from z3c.relationfield.relation import RelationValue
 import dateutil
 import json
 import os
@@ -198,6 +201,8 @@ def import_adaptationoption(data, location):
 def import_casestudy(data, location):
     primephoto = get_image_by_imageid(location.aq_inner.aq_parent,
                                       data.primephoto)
+    intids = getUtility(IIntIds)
+    primephoto = primephoto and RelationValue(intids.getId(primephoto)) or None
     supphotos = []
     supphotos_str = data.supphotos is not None and data.supphotos or ''
     for supphotoid in supphotos_str:

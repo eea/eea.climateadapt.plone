@@ -19,8 +19,12 @@
           <div metal:fill-slot="ace-left-slot">
             <div class="case-studies-top">
                 <div class="case-studies-review-image-wrapper">
-                    <!-- TODO: image + gallery -->
-                    <img src="http://climate-adapt.eea.europa.eu/image/image_gallery?uuid=fb8f4b42-dfcb-40ba-8392-152205de3f8e&t=1455704704041&groupId=18" />
+                    <!-- TODO: gallery -->
+                    <tal:define define="primephoto context/primephoto;
+                                        primephoto python:primephoto and primephoto.to_object or None;
+                                       ">
+                        <img tal:condition="primephoto" tal:replace="structure primephoto/@@images/image/large" />
+                    </tal:define>
                 </div>
                 <div class"case-studies-top-title">
                     <h1 tal:content="python: context.title">Title here</h1>
