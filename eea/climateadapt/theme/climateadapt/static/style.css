@@ -954,6 +954,32 @@ li.dropdown-submenu {
     display: list-item;
 }
 
+/* case study */
+.case-studies-review-image-wrapper {
+    float: left;
+    padding-right: 10px;
+    position: relative;
+    width: 45%;
+}
+.case-studies-top-title {
+    padding-right: 3px;
+}
+.case-studies-title {
+    margin-bottom: 10px;
+}
+.case-studies-top {
+    padding-bottom: 12px;
+}
+.case-studies-review-clearing {
+    clear: both;
+    height: 0;
+}
+.case-studies-tabbed-content-section {
+    margin-bottom: 29px;
+}
+.case-studies-tabbed-content-section > ul {
+    list-style-image: url("cca/img/ico-arrow.png") !important;
+}
 
 */ bottom menu in urban ast pages */
 

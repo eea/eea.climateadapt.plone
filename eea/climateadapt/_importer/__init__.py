@@ -1,3 +1,4 @@
+from subprocess import check_output
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFCore.utils import getToolByName
 from collections import defaultdict
@@ -64,6 +65,7 @@ import json
 import os
 import sys
 import transaction
+import re
 
 
 session = None      # this will be a global bound to the current module
@@ -181,6 +183,7 @@ def import_adaptationoption(data, location):
         solutions=t2r(data.solutions),
         adaptationoptions=s2li(data.adaptationoptions),
         relevance=s2l(data.relevance),
+        challenges=t2r(data.challenges),
     )
     item._acemeasure_id = data.measureid
     item.reindexObject()
@@ -193,6 +196,17 @@ def import_adaptationoption(data, location):
 
 @log_call
 def import_casestudy(data, location):
+    primephoto = get_image_by_imageid(location.aq_inner.aq_parent,
+                                      data.primephoto)
+    supphotos = []
+    supphotos_str = data.supphotos is not None and data.supphotos or ''
+    for supphotoid in supphotos_str:
+        supphoto = get_image_by_imageid(location.aq_inner.aq_parent,
+                                        supphotoid)
+        if supphoto:
+            supphotos.append(supphoto)
+    if supphotos:
+        import pdb; pdb.set_trace()
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.casestudy',
@@ -223,6 +237,9 @@ def import_casestudy(data, location):
         solutions=t2r(data.solutions),
         adaptationoptions=s2li(data.adaptationoptions),
         relevance=s2l(data.relevance),
+        challenges=t2r(data.challenges),
+        primephoto=primephoto,
+        supphotos=supphotos,
     )
 
     item._acemeasure_id = data.measureid
@@ -257,6 +274,51 @@ def import_image(data, location):
     item.reindexObject()
     logger.info("Imported image %s from sql Image %s",
                 item.absolute_url(1), data.imageid)
+
+    return item
+
+@log_call
+def import_dlfileversion(data, location):
+    base_path = check_output([
+        'find',
+        './document_library',
+        '-iname', '%s.%s' % (str(data.fileversionid),
+                             data.extension)]).rstrip('\n')
+    file_path = os.path.join(base_path, data.version)
+    regexp = "./document_library/%s/0/document_thumbnail/%s/[^/]*/[^/]*/%s/%s.%s/%s" % (data.companyid,
+                                                                                       data.repositoryid,  # or groupid
+                                                                                       data.fileentryid,
+                                                                                       data.fileversionid,
+                                                                                       data.extension,
+                                                                                       data.version)
+    if not (os.path.isfile(file_path) and re.match(regexp, file_path)):
+        # there is no file and no match
+        logger.info('DEBUG dlfileversion NO MATCH: ' + file_path)
+        return
+    logger.info('FOUND dlfileversion: ' + file_path)
+
+    try:
+        file_data = open(file_path).read()
+    except Exception:
+        logger.warning("Image with id %d does not exist in the supplied "
+                       "document library", data.imageid)
+        return None
+
+    item = createAndPublishContentInContainer(
+        location,
+        'Image',
+        title='Image ' + str(data.fileversionid),
+        id=str(data.fileversionid) + '.' + data.extension,
+        image=NamedBlobImage(
+            filename=str(data.fileversionid) + '.' + data.extension,
+            data=file_data
+        )
+    )
+
+    item._uuid = data.uuid_
+    item.reindexObject()
+    logger.info("Imported image %s from sql Image %s",
+                item.absolute_url(1), data.fileversionid)
 
     return item
 
@@ -1468,6 +1530,9 @@ def run_importer(site=None):
 
     for dlfileentry in session.query(sql.Dlfileentry):
         import_dlfileentry(dlfileentry, site['repository'])
+
+    for dlfileversion in session.query(sql.Dlfileversion):
+        import_dlfileversion(dlfileversion, site['repository'])
 
     for aceitem in session.query(sql.AceAceitem):
         if aceitem.datatype in ['ACTION', 'MEASURE']:
