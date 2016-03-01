@@ -205,6 +205,8 @@ def import_casestudy(data, location):
                                         supphotoid)
         if supphoto:
             supphotos.append(supphoto)
+    if supphotos:
+        import pdb; pdb.set_trace()
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.casestudy',
@@ -280,7 +282,7 @@ def import_dlfileversion(data, location):
     base_path = check_output([
         'find',
         './document_library',
-        '-iname', '%s.%s' % (data.fileversionid,
+        '-iname', '%s.%s' % (str(data.fileversionid),
                              data.extension)]).rstrip('\n')
     file_path = os.path.join(base_path, data.version)
     regexp = "./document_library/%s/0/document_thumbnail/%s/[^/]*/[^/]*/%s/%s.%s/%s" % (data.companyid,
