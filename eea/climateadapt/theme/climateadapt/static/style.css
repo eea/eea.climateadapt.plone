@@ -946,3 +946,8 @@ border: 1px solid #a3af29;
     color: inherit !important;
     background-color: transparent !important;
 }
+
+li.dropdown-submenu {
+    display: list-item;
+}
+

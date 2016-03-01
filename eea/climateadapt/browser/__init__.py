@@ -130,6 +130,7 @@ class Navbar(BrowserView):
             EU mainstreaming in sector policies   /eu-adaptation-policy/mainstreaming
             EU funding of adaptation       /eu-adaptation-policy/funding
             Mayors Adapt                   /mayors-adapt
+                -Mayors Adapt               /mayors-adapt
                 -Register your City         /mayors-adapt/register
                 -City Profiles              /city-profile
 
@@ -140,12 +141,14 @@ class Navbar(BrowserView):
 
         Knowledge               /knowledge
             Adaptation information         /adaptation-information/general
+                -Adaptation information         /adaptation-information/general
                 -Observations and scenarios    /observations-and-scenarios
                 -Vulnerabilities and risks     /vulnerabilities-and-risks
                 -Adaptation options            /adaptation-measures
                 -Adaptation strategies         /adaptation-strategies
                 -Research projects             /research-projects
             Tools                          /tools/general
+                -Tools                         /tools/general
                 -Adaptation Support Tool       /adaptation-support-tool
                 -Case study search tool        /sat
                 -Uncertainty guidance          /uncertainty-guidance
@@ -168,7 +171,6 @@ class Navbar(BrowserView):
         lines = self._menu.split('\n')
         sections = []
         this_section = None
-        sub_section = None
         for line in lines:
             line = line.strip()
 
@@ -196,7 +198,7 @@ class Navbar(BrowserView):
                 this_section[2].append((label, link, []))
                 continue
 
-
+            # link inside subsection
             if line and this_section and line[0] == '-':
                 lpos = line.find('/')
                 label, link = line[1:lpos].strip(), line[lpos:].strip()

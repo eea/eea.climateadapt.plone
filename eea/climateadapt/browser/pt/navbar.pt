@@ -1,10 +1,26 @@
 <nav id="navbar" class="navbar navbar-inverse navbar-static-top marginBottom-0" role="navigation" tal:define="menu view/menu">
+
+<link rel="stylesheet" href="/++theme++climateadapt/static/vendor/bootstrap-submenu.css">  
+<script type="text/javascript" src="/++theme++climateadapt/static/vendor/bootstrap-submenu.js"></script>
+
+
+   <script>
+   
+   (function($){
+        $(document).ready(function(){
+        
+            $('[data-submenu]').submenupicker();
+        });
+   }(window.jQuery));
+   </script>
+
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"/>
     </button>
   </div>
+  
   <div class="collapse navbar-collapse" id="navbar-collapse-1">
     <ul class="nav navbar-nav">
       <li tal:repeat="section menu" class="dropdown">
@@ -17,10 +33,16 @@
           <b class="caret" tal:condition="has_children" />
         </a>
         <ul tal:condition="python: section[2]" class="dropdown-menu">
-          <li tal:repeat="child python:section[2]">
-            
-            <tal:def define="has_subchildren python: bool(child[2])">
-              <a href="" tal:attributes="href python:child[1]" tal:content="python: child[0]">Home</a>
+        
+        
+        <tal:rep tal:repeat="child python:section[2]">
+          <li tal:define="has_subchildren python: bool(child[2])" tal:attributes="class python:has_subchildren and 'dropdown-submenu' or ''">
+              <a href="" 
+                tal:attributes="href python:child[1]; 
+                                data-submenu python:has_subchildren and 'data-submenu' or '';
+                                data-toggle python: has_subchildren and 'dropdown' or False;
+                                " 
+                tal:content="python: child[0]">Home</a>
               <ul tal:condition="has_subchildren" class="dropdown-menu">
                 <li tal:repeat="subchild python:child[2]">
                   <a href="" tal:attributes="href python:subchild[1]"  
@@ -29,9 +51,10 @@
                   </a>
                 </li>
               </ul>
-            </tal:def>
-            
           </li>
+          </tal:rep>
+          
+          
         </ul>
       </li>
       
