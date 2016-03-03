@@ -29,3 +29,8 @@ class ISiteSearchFacetedView(Interface):
 class IClimateAdaptSharePage(Interface):
     """ A marker interface for the /share-your-info/ pages
     """
+
+
+class IUrbanASTPage(Interface):
+    """ A marker interface for Urban AST pages
+    """

@@ -5,6 +5,12 @@ from plone.namedfile.interfaces import IImageScaleTraversable
 from zope.interface import implements
 from zope.schema import Choice, TextLine, List, Bool, Int, Text, URI, Decimal
 from collective import dexteritytextindexer
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
+from plone.formwidget.contenttree import ObjPathSourceBinder
+from plone.app.contenttypes.interfaces import IImage
+from plone.autoform import directives
+from plone.formwidget.autocomplete import AutocompleteFieldWidget
 
 
 class IAceMeasure(form.Schema, IImageScaleTraversable):
@@ -31,6 +37,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('implementation_time')
     implementation_time = RichText(
         title=_(u"Implementation Time"), required=False, default=None,
+    )
+
+    dexteritytextindexer.searchable('challenges')
+    challenges = RichText(
+        title=_(u"Challenges"), required=False, default=None,
     )
 
     dexteritytextindexer.searchable('lifetime')
@@ -139,7 +150,25 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_relevance",),
         )
+    primephoto = RelationChoice(
+        title=_(u"Prime photo"),
+        source=ObjPathSourceBinder(object_provides=IImage.__identifier__),
+        required=False,
+    )
+    supphotos = RelationList(
+        title=u"Gallery",
+        default=[],
+        value_type=RelationChoice(
+            title=_(u"Related"),
+            source=ObjPathSourceBinder(
+                object_provides=IImage.__identifier__)
+            ),
+        required=False,
+    )
     # approved is done by workflow
+
+directives.widget('primephoto', AutocompleteFieldWidget)
+directives.widget('supphotos', AutocompleteFieldWidget)
 
 
 class ICaseStudy(IAceMeasure):

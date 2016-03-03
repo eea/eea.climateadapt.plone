@@ -1,3 +1,4 @@
+from subprocess import check_output
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFCore.utils import getToolByName
 from collections import defaultdict
@@ -50,20 +51,24 @@ from eea.climateadapt.interfaces import IClimateAdaptSharePage
 from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.climateadapt.vocabulary import _cca_types
-from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from eea.facetednavigation.layout.interfaces import IFacetedLayout
+from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from pytz import utc
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+from zope.component import getMultiAdapter
 from zope.interface import alsoProvides, noLongerProvides
 from zope.sqlalchemy import register
-from zope.component import getMultiAdapter
+from zope.component import getUtility
+from zope.intid.interfaces import IIntIds
+from z3c.relationfield.relation import RelationValue
 import dateutil
 import json
 import os
 import sys
 import transaction
+import re
 
 
 session = None      # this will be a global bound to the current module
@@ -181,6 +186,7 @@ def import_adaptationoption(data, location):
         solutions=t2r(data.solutions),
         adaptationoptions=s2li(data.adaptationoptions),
         relevance=s2l(data.relevance),
+        challenges=t2r(data.challenges),
     )
     item._acemeasure_id = data.measureid
     item.reindexObject()
@@ -193,6 +199,17 @@ def import_adaptationoption(data, location):
 
 @log_call
 def import_casestudy(data, location):
+    primephoto = get_image_by_imageid(location.aq_inner.aq_parent,
+                                      data.primephoto)
+    intids = getUtility(IIntIds)
+    primephoto = primephoto and RelationValue(intids.getId(primephoto)) or None
+    supphotos = []
+    supphotos_str = data.supphotos is not None and data.supphotos or ''
+    for supphotoid in supphotos_str.split(';'):
+        supphoto = get_image_by_imageid(location.aq_inner.aq_parent,
+                                        supphotoid)
+        if supphoto:
+            supphotos.append(RelationValue(intids.getId(supphoto)))
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.casestudy',
@@ -223,6 +240,9 @@ def import_casestudy(data, location):
         solutions=t2r(data.solutions),
         adaptationoptions=s2li(data.adaptationoptions),
         relevance=s2l(data.relevance),
+        challenges=t2r(data.challenges),
+        primephoto=primephoto,
+        supphotos=supphotos,
     )
 
     item._acemeasure_id = data.measureid
@@ -257,6 +277,51 @@ def import_image(data, location):
     item.reindexObject()
     logger.info("Imported image %s from sql Image %s",
                 item.absolute_url(1), data.imageid)
+
+    return item
+
+@log_call
+def import_dlfileversion(data, location):
+    base_path = check_output([
+        'find',
+        './document_library',
+        '-iname', '%s.%s' % (str(data.fileversionid),
+                             data.extension)]).rstrip('\n')
+    file_path = os.path.join(base_path, data.version)
+    regexp = "./document_library/%s/0/document_thumbnail/%s/[^/]*/[^/]*/%s/%s.%s/%s" % (data.companyid,
+                                                                                       data.repositoryid,  # or groupid
+                                                                                       data.fileentryid,
+                                                                                       data.fileversionid,
+                                                                                       data.extension,
+                                                                                       data.version)
+    if not (os.path.isfile(file_path) and re.match(regexp, file_path)):
+        # there is no file and no match
+        logger.info('DEBUG dlfileversion NO MATCH: ' + file_path)
+        return
+    logger.info('FOUND dlfileversion: ' + file_path)
+
+    try:
+        file_data = open(file_path).read()
+    except Exception:
+        logger.warning("Image with id %d does not exist in the supplied "
+                       "document library", data.imageid)
+        return None
+
+    item = createAndPublishContentInContainer(
+        location,
+        'Image',
+        title='Image ' + str(data.fileversionid),
+        id=str(data.fileversionid) + '.' + data.extension,
+        image=NamedBlobImage(
+            filename=str(data.fileversionid) + '.' + data.extension,
+            data=file_data
+        )
+    )
+
+    item._uuid = data.uuid_
+    item.reindexObject()
+    logger.info("Imported image %s from sql Image %s",
+                item.absolute_url(1), data.fileversionid)
 
     return item
 
@@ -852,22 +917,20 @@ def import_template_ast(site, layout, structure):
     # has a title)
 
     return _import_template_urban_ast(site, layout, structure,
-                                      make_ast_navigation_tile)
+                                      make_ast_navigation_tile,
+                                      is_urbanast=False)
 
 
 @log_call
 def import_template_urban_ast(site, layout, structure):
     return _import_template_urban_ast(site, layout, structure,
-                                      make_urbanast_navigation_tile)
+                                      make_urbanast_navigation_tile,
+                                      is_urbanast=True)
 
 
-def _import_template_urban_ast(site, layout, structure, nav_tile_maker):
+def _import_template_urban_ast(site, layout, structure, nav_tile_maker,
+                               is_urbanast=False):
     # parent name fixed
-    # TODO: fix images
-    # TODO: fix urban ast navigation
-    # TODO: create nav menu on the left
-    # TODO: use the step information
-    # TODO: cleanup the css in image_portlet
 
     # column-1 has the imagemap on the left side
     # column-2 has 2 portlets:  title and then the one with content (which also
@@ -877,28 +940,6 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker):
     assert(len(structure) >= 3)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) >= 2)
-
-    # TODO: insert step number image in view
-
-    """
-    Need to know:
-    # ast section breadcrumb title
-    # ast section title
-    # ast section slug
-    # ast section number
-
-    # subtitle nu apare pe ast section main page
-
-    - subsection
-        - ast section title appears as main title
-        - section title - appears in ast menu
-                        - appears as title
-                        - appears as subtitle in page
-        - step number + section number
-    """
-
-    # subsection_title
-    # ast_section_title
 
     image_portlet = structure['column-1'][0][1]['content'][0]
     portlet = structure['column-2'][1][1]
@@ -921,12 +962,17 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker):
     cover.aq_parent.edit(title=structure['name'])   # Fix parent name
     stamp_cover(cover, layout)
 
+    # fix the scripts and css paths from this tile
+    image_portlet = image_portlet.replace("/ace-theme/css/", "/++theme++climateadapt/static/")
+    image_portlet = image_portlet.replace("/ace-theme/js/",  "/++theme++climateadapt/static/")
+    image_portlet = image_portlet.replace("jquery.qtip.min.css", "jquery.qtip.css")
+
     image_tile = make_richtext_tile(cover, {'text': image_portlet,
                                             'title': 'AST Image'})
     main_content_tile = make_richtext_tile(cover, {'text': main_content,
                                                    'title': 'Main text'})
     # nav_tile = make_richtext_tile(cover, {'text': 'nav here', 'title': 'nav'})
-    nav_tile = make_ast_navigation_tile(cover)
+    nav_tile = nav_tile_maker(cover)
 
     side_group = make_group(4, image_tile, nav_tile)
 
@@ -940,11 +986,18 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker):
 
     [structure.pop(z) for z in ['column-1', 'column-2', 'name']]
     if structure:
-        second_row_group = [make_group(4, t) for t in
+        second_row_group = [make_group(6, t) for t in
                             [make_tile(cover, x) for x in structure.values()]
                             ]
         second_row = make_row(*second_row_group)
-        main_group = make_group(8, main_content_tile, second_row)
+        if is_urbanast:
+            tile = make_view_tile(cover,
+                                        {'title': 'UrbanAST nav',
+                                         'view_name': 'urbanast_bottom_nav'})
+            third_row = make_group(8, tile)
+            main_group = make_group(8, main_content_tile, second_row, third_row)
+        else:
+            main_group = make_group(8, main_content_tile, second_row)
     else:
         main_group = make_group(8, main_content_tile)
 
@@ -1051,7 +1104,6 @@ def import_template_1_column(site, layout, structure):
     except:
         logger.error("Invalid page structure for %s", layout.friendlyurl)
         return
-
 
     # There are three versions of this template:
     # - only one iframe
@@ -1481,6 +1533,9 @@ def run_importer(site=None):
 
     for dlfileentry in session.query(sql.Dlfileentry):
         import_dlfileentry(dlfileentry, site['repository'])
+
+    for dlfileversion in session.query(sql.Dlfileversion):
+        import_dlfileversion(dlfileversion, site['repository'])
 
     for aceitem in session.query(sql.AceAceitem):
         if aceitem.datatype in ['ACTION', 'MEASURE']:

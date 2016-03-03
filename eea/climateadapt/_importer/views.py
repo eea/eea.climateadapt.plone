@@ -227,6 +227,10 @@ class MapOfLayouts(SingleImporterView):
         site = getSite()
         return site.absolute_url() + "/layout_importer?type=layout_type&template=ast"
 
+    def urbanast_import_url(self):
+        site = getSite()
+        return site.absolute_url() + "/layout_importer?type=layout_type&template=urban_ast"
+
     def journal_articles_import_url(self):
         site = getSite()
         return site.absolute_url() + "/layout_importer?type=journal_articles"
