@@ -45,8 +45,7 @@ class FormTile(PersistentCoverTile):
         uuid = self.data.get('form_uuid')
         if not uuid:
             return ''
-        site = getSite()
-        obj = uuidToObject(site.test.UID())
+        obj = uuidToObject(uuid)
         if not obj:
             return ''
         try:
