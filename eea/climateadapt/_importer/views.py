@@ -116,7 +116,13 @@ class SingleImporterView(BrowserView):
 
         imported = []
 
-        for dlfileentry in session.query(sql.Dlfileentry):
+        #import pdb; pdb.set_trace()
+        to_import = session.query(sql.Dlfileentry)
+        id = self.request.form.get('id')
+        if id:
+            to_import = to_import.filter_by(fileentryid=int(id))
+
+        for dlfileentry in to_import:
             f = import_dlfileentry(dlfileentry, site['repository'])
             if f is None:
                 continue
@@ -209,33 +215,8 @@ class MapOfLayouts(SingleImporterView):
 
         return self.index()
 
-    def import_url(self, uuid):
-        site = getSite()
-        return site.absolute_url() + "/layout_importer?uuid=" + uuid
-
-    def aceimport_url(self):
-        site = getSite()
-        return site.absolute_url() + "/layout_importer?type=aceitems"
-
-    def dlimport_url(self):
-        site = getSite()
-        return site.absolute_url() + "/layout_importer?type=dlentries"
-
-    def caseimport_url(self):
-        site = getSite()
-        return site.absolute_url() + "/layout_importer?type=casestudy"
-
-    def ast_import_url(self):
-        site = getSite()
-        return site.absolute_url() + "/layout_importer?type=layout_type&template=ast"
-
-    def urbanast_import_url(self):
-        site = getSite()
-        return site.absolute_url() + "/layout_importer?type=layout_type&template=urban_ast"
-
-    def journal_articles_import_url(self):
-        site = getSite()
-        return site.absolute_url() + "/layout_importer?type=journal_articles"
+    def site_url(self):
+        return getSite().absolute_url()
 
 
 class FacetedImporter(BrowserView):

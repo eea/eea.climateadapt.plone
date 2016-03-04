@@ -331,15 +331,47 @@ def import_dlfileversion(data, location):
 
 @log_call
 def import_dlfileentry(data, location):
-    try:
-        file_data = open('./document_library/' + str(data.companyid) + '/' +
-                         str(data.folderid or data.groupid) + '/' + str(data.name) +
-                         '/' + data.version).read()
-    except Exception:
-        logger.warning("File with id %d and title '%s' does not exist in the "
+    # data.companyid / data.repositoryid / data.name / data.version
+
+    # treepath can be something like this:
+
+    # /8910770/11271386/'
+    # /10402/
+    # /0/
+
+    tp = data.treepath[1:-1]
+    components = tp.split('/')
+    if len(components) == 2:
+        # we'll get the folderid from the treepath
+        folderid = components[1]
+        fpath = ('./document_library/{0}/{1}/{2}/{3}'.format(
+            str(data.companyid),
+            str(folderid),
+            str(data.name),
+            data.version
+        ))
+    else:
+        fpath = ('./document_library/{0}/{1}/{2}/{3}'.format(
+            str(data.companyid),
+            str(data.repositoryid),
+            str(data.name),
+            data.version
+        ))
+
+    if not os.path.exists(fpath):
+        logger.error("File with id %d and title '%s' does not exist in the "
                        "supplied document library", data.fileentryid,
                        data.title)
         return None
+
+        # try:
+        # except:
+        #     print "no folderid", data.treepath
+        #     folderid = data.folderid or data.groupid
+        #
+        # print p
+
+    file_data = open(fpath).read()
 
     if 'jpg' in data.extension or 'png' in data.extension:
         item = createAndPublishContentInContainer(
