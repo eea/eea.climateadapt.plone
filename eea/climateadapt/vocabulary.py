@@ -100,7 +100,7 @@ alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
 
 
 _climateimpacts = """
-aceitem-climateimpacts-lbl-EXTREMETEMP=Temperatures
+aceitem-climateimpacts-lbl-EXTREMETEMP=Extreme Temperatures
 aceitem-climateimpacts-lbl-WATERSCARCE=Water Scarcity
 aceitem-climateimpacts-lbl-FLOODING=Flooding
 aceitem-climateimpacts-lbl-SEALEVELRISE=Sea Level Rise
@@ -110,6 +110,77 @@ aceitem-climateimpacts-lbl-ICEANDSNOW=Ice and Snow
 """
 aceitem_climateimpacts_vocabulary = vocab_from_labels(_climateimpacts)
 alsoProvides(aceitem_climateimpacts_vocabulary, IVocabularyFactory)
+
+
+_covenant = """
+aceitem-covenant-lbl-SELECT=Select
+aceitem-covenant-lbl-YES=Yes
+aceitem-covenant-lbl-NO=No
+"""
+aceitem_covenant_vocabulary = vocab_from_labels(_covenant)
+alsoProvides(aceitem_covenant_vocabulary, IVocabularyFactory)
+
+
+_statusofadaptsignature = """
+aceitem-statusofadaptsignature-lbl-SELECT=Select
+aceitem-statusofadaptsignature-lbl-ALREADYSIGNED=Already Signed
+aceitem-statusofadaptsignature-lbl-INPROCESSSIGNING=In the process of signing
+"""
+aceitem_statusofadaptsignature_vocabulary = vocab_from_labels(_statusofadaptsignature)
+alsoProvides(aceitem_statusofadaptsignature_vocabulary, IVocabularyFactory)
+
+
+_keyvulnerableadaptsector = """
+aceitem-keyvulnerableadaptsector-lbl-AGRIANDFOREST=Agriculture and Forest
+aceitem-keyvulnerableadaptsector-lbl-COASTALAREAS=Coastal areas
+aceitem-keyvulnerableadaptsector-lbl-DISASTERRISK=Disaster Risk Reduction
+aceitem-keyvulnerableadaptsector-lbl-FINANACIAL=Financial
+aceitem-keyvulnerableadaptsector-lbl-HEALTH=Health
+aceitem-keyvulnerableadaptsector-lbl-INFRASTRUCTURE =Infrastructure
+aceitem-keyvulnerableadaptsector-lbl-MARINEANDFISH=Marine and Fisheries
+aceitem-keyvulnerableadaptsector-lbl-TOURISM=Tourism
+aceitem-keyvulnerableadaptsector-lbl-ENERGY=Energy
+aceitem-keyvulnerableadaptsector-lbl-OTHER=Other
+aceitem-keyvulnerableadaptsector-lbl-BIODIVERSITY=Biodiversity
+aceitem-keyvulnerableadaptsector-lbl-WATERMANAGEMENT=Water Management
+aceitem-keyvulnerableadaptsector-lbl-URBAN=Urban
+"""
+aceitem_keyvulnerableadaptsector_vocabulary = vocab_from_labels(_keyvulnerableadaptsector)
+alsoProvides(aceitem_keyvulnerableadaptsector_vocabulary, IVocabularyFactory)
+
+
+_stageimplementationcycle = """
+aceitem-stageimplementationcycle-lbl-PREPARINGGROUND=Preparing the ground.
+aceitem-stageimplementationcycle-lbl-ASSESSINGRVULNER=Assessing risks and vulnerabilities
+aceitem-stageimplementationcycle-lbl-IDENTIFADAPTOPT=Identifying adaptation options
+aceitem-stageimplementationcycle-lbl-ASSESSINGADAPTOPT=Assessing adaptation options
+aceitem-stageimplementationcycle-lbl-IMPLEMENTATION=Implementation
+aceitem-stageimplementationcycle-lbl-MONITANDEVAL=Monitoring and evaluation
+"""
+aceitem_stageimplementationcycle_vocabulary = vocab_from_labels(_stageimplementationcycle)
+alsoProvides(aceitem_stageimplementationcycle_vocabulary, IVocabularyFactory)
+
+
+_alreadydeveladaptstrategy = """
+aceitem-alreadydeveladaptstrategy-lbl-SELECT=Select
+aceitem-alreadydeveladaptstrategy-lbl-YHAVEADAPTSTRAT=Yes, we have an adaptation strategy
+aceitem-alreadydeveladaptstrategy-lbl-NHAVEADAPTSTRAT=No, we do not have an adaptation strategy but are currently developing one
+aceitem-alreadydeveladaptstrategy-lbl-MADAPTFIRSTEX=No, Mayors Adapt is the first example of my city considering adaptation and we will develop an adaptation strategy
+aceitem-alreadydeveladaptstrategy-lbl-INTEGADAPTEXISTREL=We (will) integrate adaptation into existing relevant plans
+"""
+aceitem_alreadydeveladaptstrategy_vocabulary = vocab_from_labels(_alreadydeveladaptstrategy)
+alsoProvides(aceitem_alreadydeveladaptstrategy_vocabulary, IVocabularyFactory)
+
+
+_elementsmentionedyourcp = """
+aceitem-elementsmentionedyourcp-lbl-OBSSCENARIOS=Observations and Scenarios
+aceitem-elementsmentionedyourcp-lbl-VULNERASSESS=Vulnerability Assessment
+aceitem-elementsmentionedyourcp-lbl-ADAPTMEASACT=Adaptation Measures and Actions
+aceitem-elementsmentionedyourcp-lbl-ADAPTPLANSSTRAT=Adaptation Plans and Strategies
+aceitem-elementsmentionedyourcp-lbl-SECTORPOLICIES=Sector Policies
+"""
+aceitem_elementsmentionedyourcp_vocabulary = vocab_from_labels(_elementsmentionedyourcp)
+alsoProvides(aceitem_elementsmentionedyourcp_vocabulary, IVocabularyFactory)
 
 
 _featured = [('CASEHOME', 'Feature this on the homepage'),
