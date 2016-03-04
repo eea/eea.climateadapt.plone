@@ -159,11 +159,13 @@ class SingleImporterView(BrowserView):
         if id:
             to_import = to_import.filter_by(measureid=int(id))
 
+        imported = []
         for acemeasure in to_import:
             if acemeasure.mao_type == 'A':
                 obj = importer(acemeasure, site['casestudy'])
+                imported.append(obj)
                 print "Imported ", obj.absolute_url()
-
+        return self.request.response.redirect(imported[0].absolute_url())
 
     def import_journal_articles(self):
         from eea.climateadapt._importer import import_journal_articles

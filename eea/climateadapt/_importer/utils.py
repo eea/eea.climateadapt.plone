@@ -64,7 +64,7 @@ def createAndPublishContentInContainer(*args, **kwargs):
             # a workflow exception is risen if the state transition is not available
             # (the sampleProperty content is in a workflow state which
             # does not have a "submit" transition)
-            logger.exception("Could not publish:" + content)
+            logger.error("Could not publish:" + content)
 
     return content
 
