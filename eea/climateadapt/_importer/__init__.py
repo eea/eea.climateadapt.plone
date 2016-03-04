@@ -343,6 +343,8 @@ def import_dlfileentry(data, location):
     components = tp.split('/')
     if len(components) == 2:
         # we'll get the folderid from the treepath
+        # TODO: try by original algorithm
+        #     folderid = data.folderid or data.groupid
         folderid = components[1]
         fpath = ('./document_library/{0}/{1}/{2}/{3}'.format(
             str(data.companyid),
@@ -350,10 +352,18 @@ def import_dlfileentry(data, location):
             str(data.name),
             data.version
         ))
-    else:
+    elif data.treepath == u'/0/':
         fpath = ('./document_library/{0}/{1}/{2}/{3}'.format(
             str(data.companyid),
             str(data.repositoryid),
+            str(data.name),
+            data.version
+        ))
+
+    elif len(components) == 1:
+        fpath = ('./document_library/{0}/{1}/{2}/{3}'.format(
+            str(data.companyid),
+            components[0],
             str(data.name),
             data.version
         ))
@@ -363,13 +373,6 @@ def import_dlfileentry(data, location):
                        "supplied document library", data.fileentryid,
                        data.title)
         return None
-
-        # try:
-        # except:
-        #     print "no folderid", data.treepath
-        #     folderid = data.folderid or data.groupid
-        #
-        # print p
 
     file_data = open(fpath).read()
 
@@ -1569,8 +1572,8 @@ def run_importer(site=None):
     for dlfileentry in session.query(sql.Dlfileentry):
         import_dlfileentry(dlfileentry, site['repository'])
 
-    for dlfileversion in session.query(sql.Dlfileversion):
-        import_dlfileversion(dlfileversion, site['repository'])
+    # for dlfileversion in session.query(sql.Dlfileversion):
+    #     import_dlfileversion(dlfileversion, site['repository'])
 
     for aceitem in session.query(sql.AceAceitem):
         if aceitem.datatype in ['ACTION', 'MEASURE']:
