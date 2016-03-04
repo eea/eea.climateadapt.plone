@@ -288,12 +288,13 @@ def import_dlfileversion(data, location):
         '-iname', '%s.%s' % (str(data.fileversionid),
                              data.extension)]).rstrip('\n')
     file_path = os.path.join(base_path, data.version)
-    regexp = "./document_library/%s/0/document_thumbnail/%s/[^/]*/[^/]*/%s/%s.%s/%s" % (data.companyid,
-                                                                                       data.repositoryid,  # or groupid
-                                                                                       data.fileentryid,
-                                                                                       data.fileversionid,
-                                                                                       data.extension,
-                                                                                       data.version)
+    _r = "./document_library/%s/0/document_thumbnail/%s/[^/]*/[^/]*/%s/%s.%s/%s"
+    regexp = _r % (data.companyid,
+                   data.repositoryid,  # or groupid
+                   data.fileentryid,
+                   data.fileversionid,
+                   data.extension,
+                   data.version)
     if not (os.path.isfile(file_path) and re.match(regexp, file_path)):
         # there is no file and no match
         logger.info('DEBUG dlfileversion NO MATCH: ' + file_path)
@@ -310,7 +311,9 @@ def import_dlfileversion(data, location):
     item = createAndPublishContentInContainer(
         location,
         'Image',
-        title='Image ' + str(data.fileversionid),
+        #title='Image ' + str(data.fileversionid),
+        title=data.title,
+        description=data.description,
         id=str(data.fileversionid) + '.' + data.extension,
         image=NamedBlobImage(
             filename=str(data.fileversionid) + '.' + data.extension,
@@ -1734,6 +1737,14 @@ def get_plone_site():
     return site
 
 
+def _make_session():
+    engine = create_engine(os.environ.get("DB"))
+    Session = scoped_session(sessionmaker(bind=engine))
+    register(Session, keep_session=True)
+
+    return Session()
+
+
 def main():
     """ Run the ClimateAdapt import process
 
@@ -1742,10 +1753,7 @@ def main():
     DB=postgres://postgres:pwd@localhost/climate bin/www1 run bin/climateadapt_importer
     """
     global session
-    engine = create_engine(os.environ.get("DB"))
-    Session = scoped_session(sessionmaker(bind=engine))
-    register(Session, keep_session=True)
-    session = Session()
+    session = _make_session()
     run_importer()
     transaction.commit()
 
@@ -1760,10 +1768,7 @@ def import_handler(context):
     if context.readDataFile('eea.climateadapt.importer.txt') is None:
         return
     global session
-    engine = create_engine(os.environ.get("DB"))
-    Session = scoped_session(sessionmaker(bind=engine))
-    register(Session, keep_session=True)
-    session = Session()
+    session = _make_session()
 
     site = context.getSite()
     run_importer(site)

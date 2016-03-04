@@ -6,6 +6,7 @@
       <li><a tal:attributes="href view/dlimport_url">Import dlentries</a></li>
       <li><a tal:attributes="href view/aceimport_url">Import aceitems</a></li>
       <li><a tal:attributes="href view/caseimport_url">Import casestudy</a></li>
+      <li><a tal:attributes="href string:${view/caseimport_url}&id=5003">Import casestudy 5003</a></li>
       <li><a tal:attributes="href view/ast_import_url">Import AST section</a></li>
       <li><a tal:attributes="href view/urbanast_import_url">Import UrbanAST section</a></li>
       <li><a tal:attributes="href view/journal_articles_import_url">Import News and Events</a></li>

@@ -9,6 +9,7 @@ from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.vocabulary import aceitem_types
+from urllib import urlencode
 from zope import schema
 from zope.component.hooks import getSite
 from zope.interface import implements
@@ -94,6 +95,16 @@ class AceTileMixin(object):
                 del query[k]
         return query
 
+    def build_url(self, url, query, kw):
+        q = query.copy()
+        q.update(kw)
+        x = {}
+        for k, v in q.items():
+            if v:
+                if k not in ['sort_on', 'sort_order']:
+                    x[k] = v
+        return url + "#" + urlencode(x)
+
 
 class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
     """ Search Ace content tile
@@ -129,14 +140,12 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
         """ Returns a list of (section name, section count, section_url)
         """
         site = getSite()
+        base = site.absolute_url() + "/data-and-downloads?"
+
         result = []
 
         # TODO: sync the links here to the index names and to the faceted indexes
-        url = site.absolute_url() + "/data-and-downloads?searchtext=&searchelements=%s&searchtypes=%s"
         query = self.build_query()
-
-#       "http://adapt-test.eea.europa.eu/data-and-downloads?"
-#       "searchtext=&searchelements=OBSERVATIONS&searchtypes=ORGANISATION"
 
         element_type = self.data.get('element_type')
 
@@ -148,7 +157,7 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
                 result.append((
                     info.label,
                     count,
-                    url % (element_type, info.id),
+                    self.build_url(base, q, {'elements':element_type}),
                 ))
 
         return result
@@ -213,13 +222,19 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
     def view_more_url(self):
         site = getSite()
-        element_type = self.data.get('element_type')
-        search_type = self.data.get('search_type')
-        search_text = self.data.get('search_text') or ""
+        base = site.absolute_url() + "/data-and-downloads?"
+
+        q = {
+            'elements': self.data.get('element_type'),
+            'search_type': self.data.get('search_type'),
+            'SearchableText': self.data.get('search_text') or ""
+        }
+        return self.build_url(base, q, {})
+
         # "http://climate-adapt.eea.europa.eu/data-and-downloads?searchtext=obs-scen-gen&searchelements=OBSERVATIONS&searchtypes=DOCUMENT"
-        return "%s/data-and-downloads?searchtext=%s&searchelements=%s&searchtypes=%s" % (
-            site.absolute_url(), search_text, element_type, search_type
-        )
+        # return "%s/data-and-downloads?searchtext=%s&searchelements=%s&searchtypes=%s" % (
+        #     site.absolute_url(), search_text, element_type, search_type
+        # )
 
     def items(self):
         print self.data
