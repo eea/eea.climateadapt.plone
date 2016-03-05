@@ -33,7 +33,7 @@ from eea.climateadapt._importer.utils import make_transregion_dropdown_tile
 from eea.climateadapt._importer.utils import make_urbanast_navigation_tile
 from eea.climateadapt._importer.utils import make_urbanmenu_title
 from eea.climateadapt._importer.utils import make_view_tile
-from eea.climateadapt._importer.utils import noop
+# from eea.climateadapt._importer.utils import noop
 from eea.climateadapt._importer.utils import pack_to_table
 from eea.climateadapt._importer.utils import parse_settings, s2l    #, printe
 from eea.climateadapt._importer.utils import render
@@ -1410,19 +1410,27 @@ def import_template_2_columns_ii(site, layout, structure):
     if layout.friendlyurl == '/observations-and-scenarios':
         return  # this is imported in another layout
 
-    if len(structure) == 1: # this is a fake page. Ex: /adaptation-sectors
+    if len(structure) == 1:  # this is a fake page. Ex: /adaptation-sectors
         logger.warning("Please investigate this importer %s with template %s",
                        layout.friendlyurl, '2_columns_ii')
-
         return
 
-    first = [x[1] for x in structure.get('column-1', []) if x[1]]
-    second = [x[1] for x in structure.get('column-2', []) if x[1]]
-
-    if first and second:
-        #import pdb; pdb.set_trace()
+    if layout.friendlyurl == u'/mayors-adapt/register':
         # this is the /mayors-adapt page
-        noop('mayors-adapt')
+        title = structure['name']
+
+        cover = create_cover_at(site, layout.friendlyurl, title=title)
+        cover.aq_parent.edit(title=title)   # Fix parent title
+        stamp_cover(cover, layout)
+        form_tile = make_tile(cover, structure.get('column-1', []))
+        image_tile = make_tile(cover, structure.get('column-2', []))
+        side_group = make_group(6, form_tile)
+        main_group = make_group(6, image_tile)
+        layout = make_layout(make_row(side_group, main_group))
+
+        cover.cover_layout = json.dumps(layout)
+        cover.setLayout('no_title_cover_view')
+        return cover
 
 
 @log_call

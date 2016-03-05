@@ -373,6 +373,9 @@ def make_tile(cover, col, css_class=None, no_titles=False):
 
     if col[0][0].startswith('iframe'):
         return make_iframe_embed_tile(cover, payload['url'])
+    elif 'webformportlet' in col[0][0]:
+        form_obj = make_form(cover.aq_parent, payload)
+        return make_form_tile(cover, form_obj)
 
     if payload.get('portlet_type') == 'journal_article_content':
         _content = {
@@ -392,6 +395,102 @@ def make_tile(cover, col, css_class=None, no_titles=False):
         return make_aceitem_search_tile(cover, payload)
     else:
         return make_aceitem_relevant_content_tile(cover, payload)
+
+
+def get_form_fields(content):
+    fields_types = [k for k in content.keys() if k.startswith('fieldType')]
+    fields = []
+    for f in sorted(fields_types):
+        if not content.get(f):
+            continue
+        field = {}
+        fname = f.replace('fieldType','')
+        foptional = content.get('fieldOptional{fname}'.format(fname=fname))
+        frequired = foptional == u'false' and True or False
+        field['name'] = fname
+        field['required'] = frequired
+        field['options'] = content.get(
+            'fieldOptions{fname}'.format(fname=fname))
+        field['label'] = content.get(
+            'fieldLabel{fname}'.format(fname=fname))
+        field['type'] = content.get(
+            'fieldType{fname}'.format(fname=fname))
+        field['validation_error'] = content.get(
+            'fieldValidationErrorMessage{fname}'.format(fname=fname))
+        field['validation_script'] = content.get(
+            'fieldValidationScript{fname}'.format(fname=fname))
+        fields.append(field)
+    return fields
+
+
+def make_form(context, content):
+    form_prologue = content.get('description').replace('[$NEW_LINE$]','<br />')
+    form_fields = get_form_fields(content)
+    form_obj = createAndPublishContentInContainer(
+        context,
+        'EasyForm',
+        title=content.get('title'),
+        subject=[content.get('subject')] or [''],
+        formPrologue=u'<p>{prologue}</p>'.format(prologue=form_prologue),
+        submitLabel=u'Send'
+    )
+
+    nsmap = {}
+    easyformns = "http://namespaces.plone.org/supermodel/easyform"
+    efns = "{ns}".format(ns=easyformns)
+    nsmap[None] = "http://namespaces.plone.org/supermodel/schema"
+    nsmap['security'] = "http://namespaces.plone.org/supermodel/security"
+    nsmap['marshal'] = "http://namespaces.plone.org/supermodel/marshal"
+    nsmap['form'] = "http://namespaces.plone.org/supermodel/form"
+    nsmap['easyform'] = easyformns
+    model = lxml.etree.Element('model', nsmap=nsmap)
+    schema = lxml.etree.SubElement(model, 'schema')
+
+    # <field
+    #         name="replyto"
+    #         type="zope.schema.TextLine"
+    #         easyform:TDefault="python:member and member.getProperty(\'email\', \'\') or \'\'"
+    #         easyform:serverSide="False"
+    #         easyform:validators="isValidEmail">
+    #     <description/>
+    #     <title>Your E-Mail Address</title>
+    # </field>
+    #
+
+    for f in form_fields:
+        if f['type'] == u'text':
+            field = lxml.etree.SubElement(schema, 'field')
+            field.set('{{{ns}}}TDefault'.format(ns=efns), '')
+            field.set('{{{ns}}}ServerSide'.format(ns=efns), 'False')
+            field.set('{{{ns}}}validators'.format(ns=efns), '')
+            field.set('name', 'field_{name}'.format(name=f['name']))
+            field.set('type', 'zope.schema.TextLine')
+            title = lxml.etree.SubElement(field, 'title')
+            title.text = f['label']
+            lxml.etree.SubElement(field, 'description')
+    form_obj.fields_model = lxml.etree.tostring(model)
+    return form_obj
+
+
+def make_form_tile(cover, form):
+    # creates a new tile and saves it in the annotation
+    # returns a python objects usable in the layout description
+    # content needs to be a dict with keys 'title' and 'text'
+
+    id = getUtility(IUUIDGenerator)()
+    typeName = 'eea.climateadapt.formtile'
+    tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
+    formtiledata = {}
+    formtiledata['title'] = form.get('title')
+    formtiledata['form_uuid'] = form.UID()
+
+    ITileDataManager(tile).set(formtiledata)
+
+    return {
+        'tile-type': typeName,
+        'type': 'tile',
+        'id': id
+    }
 
 
 def make_text_from_articlejournal(content):
