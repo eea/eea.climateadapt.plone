@@ -1,15 +1,25 @@
 <html>
   <head></head>
-  <body tal:define="opts view/options">
+  <body tal:define="opts view/options; 
+    site_url view/site_url; 
+    lurl python: site_url + '/layout_importer?uuid=';
+    ">
 
     <ul>
-      <li><a tal:attributes="href view/dlimport_url">Import dlentries</a></li>
-      <li><a tal:attributes="href view/aceimport_url">Import aceitems</a></li>
-      <li><a tal:attributes="href view/caseimport_url">Import casestudy</a></li>
-      <li><a tal:attributes="href string:${view/caseimport_url}&id=5003">Import casestudy 5003</a></li>
-      <li><a tal:attributes="href view/ast_import_url">Import AST section</a></li>
-      <li><a tal:attributes="href view/urbanast_import_url">Import UrbanAST section</a></li>
-      <li><a tal:attributes="href view/journal_articles_import_url">Import News and Events</a></li>
+      <li><a tal:attributes="href string:$site_url/layout_importer?type=aceitems">Import aceitems</a></li>
+      <li><a tal:attributes="href string:$site_url/layout_importer?type=casestudy">Import casestudy</a></li>
+      <li><a tal:attributes="href string:$site_url/layout_importer?type=casestudy&id=5003">Import casestudy 5003</a></li>
+      <li><a tal:attributes="href string:$site_url/layout_importer?type=layout_type&template=ast">Import AST section</a></li>
+      <li><a tal:attributes="href string:$site_url/layout_importer?type=layout_type&template=urban_ast">Import UrbanAST section</a></li>
+      <li><a tal:attributes="href string:$site_url/layout_importer?type=journal_articles">Import News and Events</a></li>
+      <li><a tal:attributes="href string:$site_url/layout_importer?type=dlentries">Import dlentries</a></li>
+      <li>
+        <form method="GET" action="" tal:attributes="action string:$site_url/layout_importer">
+          <label>Import dlentry by ID:</label><input type="text" name="id" />
+          <input type="hidden" name="type" value="dlentries" />
+          <input type="submit" name="submit" value="Submit" />
+        </form>
+      </li>
     </ul>
 
     <table>
@@ -29,8 +39,8 @@
             <td tal:content="python: row[1]"></td>
             <td tal:content="python: row[0]"></td>
             <td>
-              <a href="" tal:attributes="href python: view.import_url(row[1])">Importer</a>&nbsp;
-              <a href="" tal:attributes="href python: view.import_url(row[1]) + '&debug=true'">Debug</a>
+              <a href="" tal:attributes="href python: lurl + row[1]">Importer</a>&nbsp;
+              <a href="" tal:attributes="href python: lurl + row[1] + '&debug=true'">Debug</a>
             </td>
           </tr>
         </tal:rep>
