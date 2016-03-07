@@ -149,7 +149,8 @@ class SingleImporterView(BrowserView):
             import_aceitem(aceitem, site['content'])
 
     def import_casestudy(self):
-        from eea.climateadapt._importer import import_casestudy as importer
+        from eea.climateadapt._importer import import_casestudy
+        from eea.climateadapt._importer import import_adaptationoption
         from eea.climateadapt._importer import sql
 
         session = self._make_session()
@@ -168,10 +169,21 @@ class SingleImporterView(BrowserView):
         imported = []
         for acemeasure in to_import:
             if acemeasure.mao_type == 'A':
-                obj = importer(acemeasure, site['casestudy'])
+                obj = import_casestudy(acemeasure, site['casestudy'])
                 imported.append(obj)
-                print "Imported ", obj.absolute_url()
-        return self.request.response.redirect(imported[0].absolute_url())
+                print "Imported Case Study {0} from id {1}".format(
+                    obj.absolute_url(), acemeasure.measureid)
+            else:
+                obj = import_adaptationoption(acemeasure,
+                                              site['adaptationoption'])
+                imported.append(obj)
+                print "Imported Adaptation Option {0} from id {1}".format(
+                    obj.absolute_url(), acemeasure.measureid)
+
+        if imported:
+            return self.request.response.redirect(imported[0].absolute_url())
+        else:
+            return "Nothing to import"
 
     def import_journal_articles(self):
         from eea.climateadapt._importer import import_journal_articles

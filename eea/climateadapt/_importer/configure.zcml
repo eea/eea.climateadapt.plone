@@ -13,21 +13,21 @@
         name="layout_importer"
         for="*"
         class=".views.SingleImporterView"
-        permission="zope2.View"
+        permission="cmf.ManagePortal"
         />
 
     <browser:page
         name="topdb"
         for="*"
         class=".views.GoToPDB"
-        permission="zope2.View"
+        permission="cmf.ManagePortal"
         />
 
     <browser:page
         name="map_of_layouts"
         for="*"
         class=".views.MapOfLayouts"
-        permission="zope2.View"
+        permission="cmf.ManagePortal"
         template="templates/map_of_layouts.pt"
         />
 
@@ -35,7 +35,7 @@
         name="faceted_importer"
         for="*"
         class=".views.FacetedImporter"
-        permission="zope2.View"
+        permission="cmf.ManagePortal"
         template="templates/faceted_importer.pt"
         />
 
