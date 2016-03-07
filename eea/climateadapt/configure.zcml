@@ -62,12 +62,12 @@
     <utility name="eea.climateadapt.acemeasure_types" component=".vocabulary.acemeasure_types"/>
     <utility name="eea.climateadapt.cca_types" component=".vocabulary.cca_types"/>
 
-    <utility name="eea.climateadapt.aceitem_covenant" component=".vocabulary.aceitem_covenant_vocabulary"/>
-    <utility name="eea.climateadapt.aceitem_statusofadaptsignature" component=".vocabulary.aceitem_statusofadaptsignature_vocabulary"/>
-    <utility name="eea.climateadapt.aceitem_keyvulnerableadaptsector" component=".vocabulary.aceitem_keyvulnerableadaptsector_vocabulary"/>
-    <utility name="eea.climateadapt.aceitem_stageimplementationcycle" component=".vocabulary.aceitem_stageimplementationcycle_vocabulary"/>
-    <utility name="eea.climateadapt.aceitem_alreadydeveladaptstrategy" component=".vocabulary.aceitem_alreadydeveladaptstrategy_vocabulary"/>
-    <utility name="eea.climateadapt.aceitem_elementsmentionedyourcp" component=".vocabulary.aceitem_elementsmentionedyourcp_vocabulary"/>
+    <utility name="eea.climateadapt.covenant" component=".vocabulary.covenant_vocabulary"/>
+    <utility name="eea.climateadapt.status_of_adapt_signature" component=".vocabulary.status_of_adapt_signature_vocabulary"/>
+    <utility name="eea.climateadapt.key_vulnerable_adapt_sector" component=".vocabulary.key_vulnerable_adapt_sector_vocabulary"/>
+    <utility name="eea.climateadapt.stage_implementation_cycle" component=".vocabulary.stage_implementation_cycle_vocabulary"/>
+    <utility name="eea.climateadapt.already_devel_adapt_strategy" component=".vocabulary.already_devel_adapt_strategy_vocabulary"/>
+    <utility name="eea.climateadapt.elements_mentioned_your_cp" component=".vocabulary.elements_mentioned_your_cp_vocabulary"/>
     <utility name="eea.climateadapt.element_types_vocabulary" component=".vocabulary.element_types_vocabulary"/>
     <utility name="eea.climateadapt.search_types_vocabulary" component=".vocabulary.search_types_vocabulary"/>
     <utility name="eea.climateadapt.special_tags_vocabulary" component=".vocabulary.special_tags_vocabulary"/>
