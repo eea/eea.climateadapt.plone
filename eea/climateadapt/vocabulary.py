@@ -112,77 +112,6 @@ aceitem_climateimpacts_vocabulary = vocab_from_labels(_climateimpacts)
 alsoProvides(aceitem_climateimpacts_vocabulary, IVocabularyFactory)
 
 
-_covenant = """
-aceitem-covenant-lbl-SELECT=Select
-aceitem-covenant-lbl-YES=Yes
-aceitem-covenant-lbl-NO=No
-"""
-aceitem_covenant_vocabulary = vocab_from_labels(_covenant)
-alsoProvides(aceitem_covenant_vocabulary, IVocabularyFactory)
-
-
-_statusofadaptsignature = """
-aceitem-statusofadaptsignature-lbl-SELECT=Select
-aceitem-statusofadaptsignature-lbl-ALREADYSIGNED=Already Signed
-aceitem-statusofadaptsignature-lbl-INPROCESSSIGNING=In the process of signing
-"""
-aceitem_statusofadaptsignature_vocabulary = vocab_from_labels(_statusofadaptsignature)
-alsoProvides(aceitem_statusofadaptsignature_vocabulary, IVocabularyFactory)
-
-
-_keyvulnerableadaptsector = """
-aceitem-keyvulnerableadaptsector-lbl-AGRIANDFOREST=Agriculture and Forest
-aceitem-keyvulnerableadaptsector-lbl-COASTALAREAS=Coastal areas
-aceitem-keyvulnerableadaptsector-lbl-DISASTERRISK=Disaster Risk Reduction
-aceitem-keyvulnerableadaptsector-lbl-FINANACIAL=Financial
-aceitem-keyvulnerableadaptsector-lbl-HEALTH=Health
-aceitem-keyvulnerableadaptsector-lbl-INFRASTRUCTURE =Infrastructure
-aceitem-keyvulnerableadaptsector-lbl-MARINEANDFISH=Marine and Fisheries
-aceitem-keyvulnerableadaptsector-lbl-TOURISM=Tourism
-aceitem-keyvulnerableadaptsector-lbl-ENERGY=Energy
-aceitem-keyvulnerableadaptsector-lbl-OTHER=Other
-aceitem-keyvulnerableadaptsector-lbl-BIODIVERSITY=Biodiversity
-aceitem-keyvulnerableadaptsector-lbl-WATERMANAGEMENT=Water Management
-aceitem-keyvulnerableadaptsector-lbl-URBAN=Urban
-"""
-aceitem_keyvulnerableadaptsector_vocabulary = vocab_from_labels(_keyvulnerableadaptsector)
-alsoProvides(aceitem_keyvulnerableadaptsector_vocabulary, IVocabularyFactory)
-
-
-_stageimplementationcycle = """
-aceitem-stageimplementationcycle-lbl-PREPARINGGROUND=Preparing the ground.
-aceitem-stageimplementationcycle-lbl-ASSESSINGRVULNER=Assessing risks and vulnerabilities
-aceitem-stageimplementationcycle-lbl-IDENTIFADAPTOPT=Identifying adaptation options
-aceitem-stageimplementationcycle-lbl-ASSESSINGADAPTOPT=Assessing adaptation options
-aceitem-stageimplementationcycle-lbl-IMPLEMENTATION=Implementation
-aceitem-stageimplementationcycle-lbl-MONITANDEVAL=Monitoring and evaluation
-"""
-aceitem_stageimplementationcycle_vocabulary = vocab_from_labels(_stageimplementationcycle)
-alsoProvides(aceitem_stageimplementationcycle_vocabulary, IVocabularyFactory)
-
-
-_alreadydeveladaptstrategy = """
-aceitem-alreadydeveladaptstrategy-lbl-SELECT=Select
-aceitem-alreadydeveladaptstrategy-lbl-YHAVEADAPTSTRAT=Yes, we have an adaptation strategy
-aceitem-alreadydeveladaptstrategy-lbl-NHAVEADAPTSTRAT=No, we do not have an adaptation strategy but are currently developing one
-aceitem-alreadydeveladaptstrategy-lbl-MADAPTFIRSTEX=No, Mayors Adapt is the first example of my city considering adaptation and we will develop an adaptation strategy
-aceitem-alreadydeveladaptstrategy-lbl-INTEGADAPTEXISTREL=We (will) integrate adaptation into existing relevant plans
-"""
-aceitem_alreadydeveladaptstrategy_vocabulary = vocab_from_labels(_alreadydeveladaptstrategy)
-alsoProvides(aceitem_alreadydeveladaptstrategy_vocabulary, IVocabularyFactory)
-
-
-_elementsmentionedyourcp = """
-aceitem-elementsmentionedyourcp-lbl-OBSSCENARIOS=Observations and Scenarios
-aceitem-elementsmentionedyourcp-lbl-VULNERASSESS=Vulnerability Assessment
-aceitem-elementsmentionedyourcp-lbl-ADAPTMEASACT=Adaptation Measures and Actions
-aceitem-elementsmentionedyourcp-lbl-ADAPTPLANSSTRAT=Adaptation Plans and Strategies
-aceitem-elementsmentionedyourcp-lbl-SECTORPOLICIES=Sector Policies
-"""
-aceitem_elementsmentionedyourcp_vocabulary = vocab_from_labels(_elementsmentionedyourcp)
-alsoProvides(aceitem_elementsmentionedyourcp_vocabulary, IVocabularyFactory)
-
-
 _featured = [('CASEHOME', 'Feature this on the homepage'),
              ('CASESEARCH', 'Feature this on study search results page')]
 aceitem_featured_vocabulary = generic_vocabulary(_featured)
@@ -237,6 +166,78 @@ alsoProvides(cca_types, IVocabularyFactory)
 
 _a = namedtuple('_AceItemType', ['id', 'label'])
 aceitem_types = [_a(*x) for x in _cca_types]
+
+
+_covenant = [
+    ("", "Select"),
+    ("YES", "Yes"),
+    ("NO", "No"),
+]
+covenant_vocabulary = generic_vocabulary(_covenant)
+alsoProvides(covenant_vocabulary, IVocabularyFactory)
+
+
+_status_of_adapt_signature = [
+    ("", "Select"),
+    ("ALREADYSIGNED", "Already Signed"),
+    ("INPROCESSSIGNING", "In the process of signing"),
+]
+status_of_adapt_signature_vocabulary = generic_vocabulary(_status_of_adapt_signature)
+alsoProvides(status_of_adapt_signature_vocabulary, IVocabularyFactory)
+
+
+_key_vulnerable_adapt_sector = [
+    ("AGRI_AND_FOREST", "Agriculture and Forest"),
+    ("COASTAL_AREAS", "Coastal areas"),
+    ("DISASTER_RISK", "Disaster Risk Reduction"),
+    ("FINANACIAL", "Financial"),
+    ("HEALTH", "Health"),
+    ("INFRASTRUCTURE", "Infrastructure"),
+    ("MARINE_AND_FISH", "Marine and Fisheries"),
+    ("TOURISM", "Tourism"),
+    ("ENERGY", "Energy"),
+    ("OTHER", "Other"),
+    ("BIODIVERSITY", "Biodiversity"),
+    ("WATER_MANAGEMENT", "Water Management"),
+    ("URBAN", "Urban"),
+]
+key_vulnerable_adapt_sector_vocabulary = generic_vocabulary(_key_vulnerable_adapt_sector)
+alsoProvides(key_vulnerable_adapt_sector_vocabulary, IVocabularyFactory)
+
+
+_stage_implementation_cycle = [
+    ("", "Select"),
+    ("PREPARING_GROUND", "Preparing the ground."),
+    ("ASSESSING_RISKS_VULNER", "Assessing risks and vulnerabilities"),
+    ("IDENTIF_ADAPT_OPT", "Identifying adaptation options"),
+    ("ASSESSING_ADAPT_OPT", "Assessing adaptation options"),
+    ("IMPLEMENTATION", "Implementation"),
+    ("MONIT_AND_EVAL", "Monitoring and evaluation"),
+]
+stage_implementation_cycle_vocabulary = generic_vocabulary(_stage_implementation_cycle)
+alsoProvides(stage_implementation_cycle_vocabulary, IVocabularyFactory)
+
+
+_already_devel_adapt_strategy = [
+    ("", "Select"),
+    ("YES_HAVE_ADAPT_STRAT", "Yes, we have an adaptation strategy"),
+    ("NO_HAVE_ADAPT_STRAT", "No, we do not have an adaptation strategy but are currently developing one"),
+    ("MAYORS_ADAPT_FIRST_EX", "No, Mayors Adapt is the first example of my city considering adaptation and we will develop an adaptation strategy"),
+    ("INTEG_ADAPT_EXIST_REL", "We (will) integrate adaptation into existing relevant plans"),
+]
+already_devel_adapt_strategy_vocabulary = generic_vocabulary(_already_devel_adapt_strategy)
+alsoProvides(already_devel_adapt_strategy_vocabulary, IVocabularyFactory)
+
+
+_elements_mentioned_your_cp = [
+    ("OBS_SCENARIOS", "Observations and Scenarios"),
+    ("VULNER_ASSESS", "Vulnerability Assessment"),
+    ("ADAPT_MEAS_ACT", "Adaptation Measures and Actions"),
+    ("ADAPT_PLANS_STRAT", "Adaptation Plans and Strategies"),
+    ("SECTOR_POLICIES", "Sector Policies"),
+]
+elements_mentioned_your_cp_vocabulary = generic_vocabulary(_elements_mentioned_your_cp)
+alsoProvides(elements_mentioned_your_cp_vocabulary, IVocabularyFactory)
 
 
 def catalog_based_vocabulary(index):
