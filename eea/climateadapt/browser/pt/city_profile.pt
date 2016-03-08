@@ -1,0 +1,95 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="example.conference">
+  <body>
+
+    <metal:main fill-slot="main">
+      <tal:main-macro metal:define-macro="content-core" >
+
+        <h1>
+        <span tal:content="context/title">Barcelona</span> -
+        <span tal:replace="structure python: view.w['country'].render()"></span>
+        </h1>
+        <div tal:content="context/name_of_local_authority" />
+        
+        <div>
+            <div tal:content="structure python: view.w['city_background_information_about_the_city'].render()" />
+        </div>
+        
+        <div>
+            <strong>Climate change impacts and adaptation responses</strong><br/>
+            <div tal:content="structure python: view.w['additional_information_on_climate_impacts'].render()" />
+        </div>
+        
+        <div>
+            <strong>Planned adaptation actions</strong>
+            <div tal:content="structure python: view.w['planned_current_adaptation_actions_and_responses'].render()" />
+        </div>
+        
+        <div>
+            <strong>Good practice / spotlight item</strong>
+            <div tal:content="structure python: view.w['title_of_the_action_event'].render()" />
+            <div tal:content="structure python: view.w['description'].render()" />
+        </div>
+        
+        
+        <div>
+            Map
+        </div>
+        
+        <div>
+            <strong>Climate change impacts</strong><br/>
+            <div tal:content="structure python: view.w['climate_impacts_risks_particularly_for_city_region'].render()" />
+        </div>
+        
+        <div>
+            <strong>Key vulnerable sectors</strong><br/>
+            <div tal:content="structure python: view.w['key_vulnerable_adaptation_sector'].render()" />
+        </div>
+        
+        <div>
+            <strong>Name & surname of mayor</strong><br/>
+            <div tal:content="structure python: view.w['name_and_surname_of_mayor'].render()" />
+        </div>
+        
+        <div>
+            <strong>Population</strong><br/>
+            <div tal:content="structure python: view.w['population_size'].render()" />
+        </div>
+        
+        <div>
+            <strong>Contact person</strong><br/>
+            <div tal:content="structure python: view.w['name_and_surname_of_contact_person'].render()" />
+            <div tal:content="structure python: view.w['role_of_contact_person'].render()" />
+        </div>
+        
+        <div>
+            <strong>Official e-mail</strong><br/>
+            <div tal:content="structure python: view.w['official_email'].render()" />
+            <a tal:attributes="href python: context.website_of_the_local_authority">Website</a>
+        </div>
+        
+        <div>
+            <strong>Date of officially joining Mayors Adapt</strong><br/>
+            <div tal:content="structure python: view.w['signature_date'].render()" />
+        </div>
+        
+        <div>
+            <strong>Covenant of Mayors 2020 signatory</strong><br/>
+            <div tal:content="structure python: view.w['covenant_of_mayors_signatory'].render()" />
+        </div>
+        
+        <div>
+            <strong>Last Update</strong>
+            <!-- <span tal:content="view.formated_date(context.modified)" /> -->
+        </div>
+        
+      </tal:main-macro>
+    </metal:main>
+
+  </body>
+</html>
