@@ -5,6 +5,7 @@ from eea.climateadapt.vocabulary import ace_countries_dict
 from eea.facetednavigation.browser.app.view import FacetedContainerView
 from zExceptions import NotFound
 import json
+import re
 
 
 labels = """
@@ -58,17 +59,31 @@ class AceViewApi(object):
         return tpl.format(u", ".join([TRANSLATED[x] for x in value]))
 
     def _render_geochar_biotrans(self, value):
-        return u" ".join(TRANSLATED.get(x, u'') for x in value)
+        return u" ".join(TRANSLATED.get(x, x) for x in value)
 
     def _render_geochar_countries(self, value):
         tpl = u"<p>Countries:<br/>{0}</p>"
         return tpl.format(u", ".join(self.get_countries(value)))
 
     def _render_geochar_subnational(self, value):
-        return u" ".join(TRANSLATED.get(x, u'') for x in value)
+        tpl = "<p>Sub Nationals: <br/>{0}"
+        # a list like: ['SUBN_Marche__IT_']
+
+        out = []
+        for line in value:
+            n_c = line[3:]
+            reg, country = re.findall('_.+?_', n_c)
+            t = "{0} ({1})".format(reg[1:-1], country[1:-1])
+            out.append(t)
+
+        text = "<br/>".join(out)
+        return tpl.format(text)
 
     def _render_geochar_city(self, value):
-        return u" ".join(TRANSLATED.get(x, u'') for x in value)
+        text = value
+        if isinstance(value, (list, tuple)):
+            text = u" ".join(value)
+        return u"<p>City: {0}</p>".format(text)
 
     def render_geochar(self, value):
         # value is a mapping such as:
@@ -90,8 +105,8 @@ class AceViewApi(object):
 
         for key in order:
             element = value['geoElements'].get(key)
-            renderer = getattr(self, "_render_geochar_" + key)
             if element:
+                renderer = getattr(self, "_render_geochar_" + key)
                 out.append(renderer(element))
 
         return u" ".join(out)

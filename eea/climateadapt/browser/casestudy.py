@@ -9,7 +9,7 @@ class CaseStudyView(DefaultView, AceViewApi):
         return super(CaseStudyView, self).__call__()
 
     def get_adaptation_options(self):
-        options = self.context.adaptationoptions
+        options = self.context.adaptationoptions or []
 
         cat = getToolByName(self.context, 'portal_catalog')
         res = []

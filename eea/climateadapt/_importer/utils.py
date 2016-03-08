@@ -74,31 +74,37 @@ def printe(e):
     print lxml.etree.tostring(e, pretty_print=True)
 
 
-def s2l(text, separator=';', relaxed=False):
+def s2l(text, separator=';', separators=None, relaxed=False):
     """Converts a string in form: u'EXTREMETEMP;FLOODING;' to a list"""
+
+    if separators is None:
+        if relaxed:
+            separators = [';', ',', ' ']
+        else:
+            separators = [separator]
 
     if not text:
         return None
-    if relaxed:
-        # for specialtagging, the separator can be anything from
-        # ' ' or ',' or ';'
-        tags = [text]
-        for sep in [';', ',', ' ']:
-            z = [t.split(sep) for t in tags]
-            tags = []
-            for t in z:
-                tags.extend(t)
-            tags = filter(None, [x.strip().lower() for x in tags])
 
-        return tags
+    # for specialtagging, the separator can be anything from
+    # ' ' or ',' or ';'
+    tags = [text]
+    for sep in separators:
+        z = [t.split(sep) for t in tags]
+        tags = []
+        for t in z:
+            tags.extend(t)
+        tags = filter(None, [x.strip() for x in tags])
+        # TODO: lower() used to be called on some of this relaxed tags
 
-    return filter(None, text.split(separator))
+    tags = [c.strip() for c in tags]
+    return tags
 
 
 def s2li(text, separator=';', relaxed=False):
     """Converts a string in form: u'123;456;' to a list of int"""
     if text:
-        return map(int, s2l(text, separator, relaxed))
+        return map(int, s2l(text, separator=separator, relaxed=relaxed))
     return None
 
 
