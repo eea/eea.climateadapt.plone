@@ -34,7 +34,7 @@ import urlparse
 
 
 logger = logging.getLogger('eea.climateadapt.importer')
-logger.setLevel(logging.INFO)
+#logger.setLevel(logging.INFO)
 #logger.addHandler(logging.StreamHandler())
 
 
@@ -74,31 +74,37 @@ def printe(e):
     print lxml.etree.tostring(e, pretty_print=True)
 
 
-def s2l(text, separator=';', relaxed=False):
+def s2l(text, separator=';', separators=None, relaxed=False):
     """Converts a string in form: u'EXTREMETEMP;FLOODING;' to a list"""
+
+    if separators is None:
+        if relaxed:
+            separators = [';', ',', ' ']
+        else:
+            separators = [separator]
 
     if not text:
         return None
-    if relaxed:
-        # for specialtagging, the separator can be anything from
-        # ' ' or ',' or ';'
-        tags = [text]
-        for sep in [';', ',', ' ']:
-            z = [t.split(sep) for t in tags]
-            tags = []
-            for t in z:
-                tags.extend(t)
-            tags = filter(None, [x.strip().lower() for x in tags])
 
-        return tags
+    # for specialtagging, the separator can be anything from
+    # ' ' or ',' or ';'
+    tags = [text]
+    for sep in separators:
+        z = [t.split(sep) for t in tags]
+        tags = []
+        for t in z:
+            tags.extend(t)
+        tags = filter(None, [x.strip() for x in tags])
+        # TODO: lower() used to be called on some of this relaxed tags
 
-    return filter(None, text.split(separator))
+    tags = [c.strip() for c in tags]
+    return tags
 
 
 def s2li(text, separator=';', relaxed=False):
     """Converts a string in form: u'123;456;' to a list of int"""
     if text:
-        return map(int, s2l(text, separator, relaxed))
+        return map(int, s2l(text, separator=separator, relaxed=relaxed))
     return None
 
 
@@ -998,6 +1004,11 @@ UUID_RE = re.compile(
 )
 
 def get_image_by_imageid(site, imageid):
+    if isinstance(imageid, basestring):
+        imageid = imageid.strip()
+        if not imageid:
+            return None
+
     repo = site['repository']
     reg = re.compile(str(imageid) + '.[jpg|png]')
 
@@ -1007,27 +1018,42 @@ def get_image_by_imageid(site, imageid):
         # we will try to find it by uuid
         from eea.climateadapt._importer import session
         from eea.climateadapt._importer import sql
-        try:
-            uuid = session.query(sql.Dlfileentry.uuid_
-                                ).filter_by(largeimageid=imageid).one()[0]
+
+        uuids = session.query(sql.Dlfileentry.uuid_).filter_by(
+            fileentryid=int(imageid)).all()
+        if uuids:
+            uuid = uuids[0]
             return get_repofile_by_uuid(site, uuid)
-        except:
-            logger.warning("Couldn't find image by id %s", imageid)
-            logger.info("Let's try with dlfileversion by id %s" % imageid)
-            try:
-                uuid = session.query(sql.Dlfileversion.uuid_).filter(
-                    sql.Dlfileversion.fileentryid==long(imageid)).one()[0]
-                return get_repofile_by_uuid(site, uuid)
-            except:
-                return None
-            return None
+        else:
+            logger.error("Couldn't find image by id %s", imageid)
+
+        # try:
+        #     # uuid = session.query(sql.Dlfileentry.uuid_
+        #     #                     ).filter_by(largeimageid=imageid).one()[0]
+        # except:
+        #     logger.error("Couldn't find image by id %s", imageid)
+        #     # logger.info("Let's try with dlfileversion by id %s" % imageid)
+        #     # try:
+        #     #     uuid = session.query(sql.Dlfileversion.uuid_).filter(
+        #     #         sql.Dlfileversion.fileentryid==long(imageid)).one()[0]
+        #     #     return get_repofile_by_uuid(site, uuid)
+        #     # except:
+        #     #     return None
+        #     return None
 
     return repo[ids[0]]
 
 
 def get_repofile_by_uuid(site, uuid):
     catalog = site['portal_catalog']
-    return catalog.searchResults(imported_uuid=uuid)[0].getObject()
+    if isinstance(uuid, (list, tuple)):
+        uuid = uuid[0]
+    brains = catalog.searchResults(imported_uuid=uuid)
+    if not brains:
+        logger.error("Could not find in catalog image by uuid %s", uuid)
+        return
+
+    return brains[0].getObject()
 
 
 MAP_OF_OBJECTS = defaultdict(lambda:{})

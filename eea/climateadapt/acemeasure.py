@@ -83,10 +83,16 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                     value_type=URI(title=_("A link")),
                     )
 
-    # TODO: "keywords" from SQL is Subject
-    keywords = TextLine(title=_(u"Keywords"),
-                        description=_(u"Keywords related to the project"),
-                        required=False)
+    # keywords = List(title=_(u"Keywords"),
+    #                description=_(u"Keywords related to the project"),
+    #                required=False,
+    #                value_type=TextLine(title=_(u"Tag"))
+    # )
+
+    keywords = RichText(title=_(u"Keywords"),
+                   description=_(u"Keywords related to the project"),
+                   required=False,
+    )
 
     # TODO: startdate, enddate, publicationdate have no values in DB
     # TODO: specialtagging is not used in any view jsp, only in add and edit

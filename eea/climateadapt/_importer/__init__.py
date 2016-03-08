@@ -105,7 +105,7 @@ def import_aceitem(data, location):
             comments=data.comments,
             year=int(data.year or '0'),
             geochars=data.geochars,
-            special_tags=s2l(data.specialtagging, ' ', relaxed=True),
+            special_tags=s2l(data.specialtagging, relaxed=True),
             rating=data.rating,
         )
         item._aceitem_id = data.aceitemid
@@ -160,38 +160,39 @@ def import_adaptationoption(data, location):
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.adaptationoption',
-        title=data.name,
-        long_description=t2r(data.description),
-        implementation_type=data.implementationtype,
+        adaptationoptions=s2li(data.adaptationoptions),
+        challenges=t2r(data.challenges),
+        climate_impacts=s2l(data.climateimpacts_),
+        comments=data.comments,
+        contact=t2r(data.contact),
+        cost_benefit=t2r(data.costbenefit),
+        elements=s2l(data.elements_),
+        geochars=data.geochars,
         implementation_time=t2r(data.implementationtime),
+        implementation_type=data.implementationtype,
+        #keywords=s2l(data.keywords, separators=[';', ',']),
+        keywords=t2r(data.keywords),
+        legal_aspects=t2r(data.legalaspects),
         lifetime=t2r(data.lifetime),
+        long_description=t2r(data.description),
+        measure_type=data.mao_type,
+        objectives=t2r(data.objectives),
+        rating=data.rating,
+        relevance=s2l(data.relevance),
+        sectors=s2l(data.sectors_),
+        solutions=t2r(data.solutions),
+        source=t2r(data.source),
         spatial_layer=data.spatiallayer,
         spatial_values=s2l(data.spatialvalues),
-        legal_aspects=t2r(data.legalaspects),
         stakeholder_participation=t2r(data.stakeholderparticipation),
-        contact=t2r(data.contact),
         success_limitations=t2r(data.succeslimitations),
-        cost_benefit=t2r(data.costbenefit),
+        title=data.name,
         websites=s2l(data.website),
-        sectors=s2l(data.sectors_),
-        elements=s2l(data.elements_),
-        climate_impacts=s2l(data.climateimpacts_),
-        source=t2r(data.source),
-        keywords=data.keywords,
-        geochars=data.geochars,
-        measure_type=data.mao_type,
-        comments=data.comments,
-        rating=data.rating,
-        objectives=t2r(data.objectives),
-        solutions=t2r(data.solutions),
-        adaptationoptions=s2li(data.adaptationoptions),
-        relevance=s2l(data.relevance),
-        challenges=t2r(data.challenges),
     )
     item._acemeasure_id = data.measureid
     item.reindexObject()
 
-    logger.info("Imported aceproject %s from sql aceitem %s",
+    logger.info("Imported adaptation option %s from sql acemeasure %s",
                 item.absolute_url(1), data.measureid)
 
     return item
@@ -199,9 +200,11 @@ def import_adaptationoption(data, location):
 
 @log_call
 def import_casestudy(data, location):
-    primephoto = get_image_by_imageid(location.aq_inner.aq_parent,
-                                      data.primephoto)
     intids = getUtility(IIntIds)
+    primephoto = None
+    if data.primephoto:
+        primephoto = get_image_by_imageid(location.aq_inner.aq_parent,
+                                        data.primephoto)
     primephoto = primephoto and RelationValue(intids.getId(primephoto)) or None
     supphotos = []
     supphotos_str = data.supphotos is not None and data.supphotos or ''
@@ -213,36 +216,38 @@ def import_casestudy(data, location):
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.casestudy',
-        title=data.name,
-        implementation_type=data.implementationtype,
-        implementation_time=data.implementationtime,
-        long_description=t2r(data.description),
-        lifetime=data.lifetime,
-        spatial_layer=data.spatiallayer,
-        spatial_values=s2l(data.spatialvalues),
-        legal_aspects=t2r(data.legalaspects),
-        stakeholder_participation=t2r(data.stakeholderparticipation),
-        contact=t2r(data.contact),
-        success_limitations=t2r(data.succeslimitations),
-        cost_benefit=t2r(data.costbenefit),
-        websites=s2l(data.website),
-        sectors=s2l(data.sectors_),
-        elements=s2l(data.elements_),
+        adaptationoptions=s2li(data.adaptationoptions),
+        challenges=t2r(data.challenges),
         climate_impacts=s2l(data.climateimpacts_),
+        comments=data.comments,
+        contact=t2r(data.contact),
+        cost_benefit=t2r(data.costbenefit),
+        elements=s2l(data.elements_),
+        geochars=data.geochars,
+        implementation_time=data.implementationtime,
+        implementation_type=data.implementationtype,
+        keywords=t2r(data.keywords),
+        #keywords=s2l(data.keywords, separators=[',', ';']),
+        legal_aspects=t2r(data.legalaspects),
+        lifetime=data.lifetime,
         location_lat=to_decimal(data.lat),
         location_lon=to_decimal(data.lon),
-        source=data.source,
-        geochars=data.geochars,
+        long_description=t2r(data.description),
         measure_type=data.mao_type,
-        comments=data.comments,
-        rating=data.rating,
         objectives=t2r(data.objectives),
-        solutions=t2r(data.solutions),
-        adaptationoptions=s2li(data.adaptationoptions),
-        relevance=s2l(data.relevance),
-        challenges=t2r(data.challenges),
         primephoto=primephoto,
+        rating=data.rating,
+        relevance=s2l(data.relevance),
+        sectors=s2l(data.sectors_),
+        solutions=t2r(data.solutions),
+        source=data.source,
+        spatial_layer=data.spatiallayer,
+        spatial_values=s2l(data.spatialvalues),
+        stakeholder_participation=t2r(data.stakeholderparticipation),
+        success_limitations=t2r(data.succeslimitations),
         supphotos=supphotos,
+        title=data.name,
+        websites=s2l(data.website),
     )
 
     item._acemeasure_id = data.measureid
@@ -1316,7 +1321,6 @@ def import_template_2_columns_iii(site, layout, structure):
         image = structure['column-2'][0][1]['content'][0]
 
     title = structure['name']
-    #import pdb; pdb.set_trace()
 
     main_content_tile = make_richtext_tile(cover, {'text': body,
                                                    'title': 'Main text'})
@@ -1584,11 +1588,12 @@ def run_importer(site=None):
     for aceproject in session.query(sql.AceProject):
         import_aceproject(aceproject, site['aceprojects'])
 
-    for acemeasure in session.query(sql.AceMeasure):
-        if acemeasure.mao_type == 'A':
-            import_casestudy(acemeasure, site['casestudy'])
-        else:
-            import_adaptationoption(acemeasure, site['adaptationoption'])
+    # for acemeasure in session.query(sql.AceMeasure):
+    #     if acemeasure.mao_type == 'A':
+    #         import_casestudy(acemeasure, site['casestudy'])
+    #     else:
+    #         pass
+    #         import_adaptationoption(acemeasure, site['adaptationoption'])
 
     for layout in session.query(sql.Layout).filter_by(privatelayout=False):
         try:
