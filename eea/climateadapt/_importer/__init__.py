@@ -500,7 +500,6 @@ def import_layout(layout, site):
         for portletid in portlet_ids:
             content = extract_portlet_info(session, portletid, layout)
             structure[column].append((portletid, content))
-
     importer = globals().get('import_template_' + template)
     cover = importer(site, layout, structure)
     if cover is not None:
@@ -1349,8 +1348,12 @@ def import_template_1_column(site, layout, structure):
         cover.setLayout('standard')
 
         return cover_layout
+    if layout.friendlyurl == u'/tools/urban-ast/contact':
+        form_tile = make_tile(cover, structure.get('column-1', []))
+        form_group = make_group(12, form_tile)
+        cover_layout = make_layout(make_row(form_group))
 
-    if not 'content' in structure['column-1'][0][1]:
+    elif 'content' not in structure['column-1'][0][1]:
         # an iframe layout, such as /tools/map-viewer
         cover_layout = _import_iframe()
     elif len(structure['column-1']) > 2:

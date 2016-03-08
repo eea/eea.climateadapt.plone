@@ -374,8 +374,7 @@ def make_tile(cover, col, css_class=None, no_titles=False):
     if col[0][0].startswith('iframe'):
         return make_iframe_embed_tile(cover, payload['url'])
     elif 'webformportlet' in col[0][0]:
-        form_obj = make_form(cover.aq_parent, payload)
-        return make_form_tile(cover, form_obj)
+        return make_form_tile(cover, payload)
 
     if payload.get('portlet_type') == 'journal_article_content':
         _content = {
@@ -423,18 +422,8 @@ def get_form_fields(content):
     return fields
 
 
-def make_form(context, content):
-    form_prologue = content.get('description').replace('[$NEW_LINE$]','<br />')
+def make_form_fields_model(form_obj, content):
     form_fields = get_form_fields(content)
-    form_obj = createAndPublishContentInContainer(
-        context,
-        'EasyForm',
-        title=content.get('title'),
-        subject=[content.get('subject')] or [''],
-        formPrologue=u'<p>{prologue}</p>'.format(prologue=form_prologue),
-        submitLabel=u'Send'
-    )
-
     nsmap = {}
     easyformns = "http://namespaces.plone.org/supermodel/easyform"
     efns = "{ns}".format(ns=easyformns)
@@ -458,31 +447,80 @@ def make_form(context, content):
     #
 
     for f in form_fields:
+        validators = []
+        field = lxml.etree.SubElement(schema, 'field')
+        field.set('{{{ns}}}TDefault'.format(ns=efns), '')
+        field.set('{{{ns}}}ServerSide'.format(ns=efns), 'False')
+        field.set('name', 'field_{name}'.format(name=f['name']))
+        title = lxml.etree.SubElement(field, 'title')
+        title.text = f['label']
+        lxml.etree.SubElement(field, 'description')
+        req = lxml.etree.SubElement(field, 'required')
+        req.text = str(f['required'])
         if f['type'] == u'text':
-            field = lxml.etree.SubElement(schema, 'field')
-            field.set('{{{ns}}}TDefault'.format(ns=efns), '')
-            field.set('{{{ns}}}ServerSide'.format(ns=efns), 'False')
-            field.set('{{{ns}}}validators'.format(ns=efns), '')
-            field.set('name', 'field_{name}'.format(name=f['name']))
             field.set('type', 'zope.schema.TextLine')
-            title = lxml.etree.SubElement(field, 'title')
-            title.text = f['label']
-            lxml.etree.SubElement(field, 'description')
-    form_obj.fields_model = lxml.etree.tostring(model)
+            if f['label'].lower() == u'email':
+                validators.append('isValidEmail')
+        elif f['type'] == u'options':
+            # https://github.com/plone/plone.supermodel/blob/master/plone/supermodel/fields.txt#L1237
+            field.set('type', 'zope.schema.Choice')
+            options = f['options'].split(', ')
+            default_option = options[0]
+            default = lxml.etree.SubElement(field, 'default')
+            default.text = default_option
+            lxml.etree.SubElement(field, 'missing_value')
+            values = lxml.etree.SubElement(field, 'values')
+            for o in options:
+                opt = lxml.etree.SubElement(values, 'element')
+                opt.text = o
+        elif f['type'] == u'textarea':
+            field.set('type', 'zope.schema.Text')
+        validators_str = '|'.join(validators)
+        field.set('{{{ns}}}validators'.format(ns=efns), validators_str)
+    if content.get('requireCaptcha') == u'true':
+        field = lxml.etree.SubElement(schema, 'field')
+        field.set('{{{ns}}}TDefault'.format(ns=efns), '')
+        field.set('{{{ns}}}ServerSide'.format(ns=efns), 'False')
+        field.set('{{{ns}}}validators'.format(ns=efns), '')
+        field.set('name', 'field_captcha')
+        field.set('type', 'collective.easyform.fields.ReCaptcha')
+        req = lxml.etree.SubElement(field, 'required')
+        req.text = str(True)
+        title = lxml.etree.SubElement(field, 'title')
+        title.text = u'Text Verification'
+        lxml.etree.SubElement(field, 'description')
+
+    return lxml.etree.tostring(model)
+
+
+def make_form_content(context, content):
+    form_prologue = content.get('description').replace('[$NEW_LINE$]','<br />')
+    form_obj = createAndPublishContentInContainer(
+        context,
+        'EasyForm',
+        title=content.get('title'),
+        subject=[content.get('subject')] or [''],
+        formPrologue=u'<p>{prologue}</p>'.format(prologue=form_prologue),
+        submitLabel=u'Send'
+    )
+
+    form_obj.fields_model = make_form_fields_model(form_obj, content)
+    form_obj._p_changed = True
     return form_obj
 
 
-def make_form_tile(cover, form):
+def make_form_tile(cover, content):
     # creates a new tile and saves it in the annotation
     # returns a python objects usable in the layout description
     # content needs to be a dict with keys 'title' and 'text'
+    form_obj = make_form_content(cover.aq_parent, content)
 
     id = getUtility(IUUIDGenerator)()
     typeName = 'eea.climateadapt.formtile'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
     formtiledata = {}
-    formtiledata['title'] = form.get('title')
-    formtiledata['form_uuid'] = form.UID()
+    formtiledata['title'] = form_obj.get('title')
+    formtiledata['form_uuid'] = form_obj.UID()
 
     ITileDataManager(tile).set(formtiledata)
 
