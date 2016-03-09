@@ -114,18 +114,17 @@ class AceViewApi(object):
     def link_to_original(self):
         """ Returns link to original object, to allow easy comparison
         """
+        site = "http://climate-adapt.eea.europa.eu"
         if hasattr(self.context, '_aceitem_id'):
-            return (
-                "http://adapt-test.eea.europa.eu/viewaceitem?aceitem_id=%s"
-                % self.context._aceitem_id)
+            return ("{0}/viewaceitem?aceitem_id={1}".format(
+                site, self.context._aceitem_id))
         if hasattr(self.context, '_acemeasure_id'):
-            return (
-                "http://adapt-test.eea.europa.eu/viewmeasure?ace_measure_id=%s"
-                % self.context._acemeasure_id)
+            return ("{0}/viewmeasure?ace_measure_id={1}".format(
+                site, self.context._acemeasure_id))
         if hasattr(self.context, '_aceproject_id'):
             return (
-                "http://adapt-test.eea.europa.eu/projects1?ace_project_id=%s"
-                % self.context._aceproject_id)
+                "{0}/projects1?ace_project_id={1}".format(
+                    site, self.context._aceproject_id))
 
     def get_countries(self, country_list):
         return [ace_countries_dict.get(x, x) for x in country_list]
