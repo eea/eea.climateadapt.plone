@@ -9,104 +9,106 @@
 
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core" >
+        <tal:def define="primephoto context/primephoto;
+          primephoto python:primephoto and primephoto.to_object or None;
+          supphotos context/supphotos;
+          ">
 
-        <metal:macro use-macro="context/ace_macros/macros/ace_layout">
-          <div metal:fill-slot="ace-top-slot">
-            <a href="" tal:attributes="href view/link_to_original">Original</a>
-            <h2 class="case-studies-title">Case Study</h2>
-          </div>
-
-          <div metal:fill-slot="ace-left-slot">
-            <div class="case-studies-top">
-                <div class="case-studies-review-image-wrapper">
-                    <!-- TODO: gallery -->
-                    <tal:define define="primephoto context/primephoto;
-                                        primephoto python:primephoto and primephoto.to_object or None;
-                                       ">
-                        <img tal:condition="primephoto" tal:replace="structure primephoto/@@images/image/large" />
-                    </tal:define>
-                </div>
-                <div class"case-studies-top-title">
-                    <h1 tal:content="python: context.title">Title here</h1>
-                    <p tal:content="structure context/long_description/output">
-                        Description
-                    </p>
-                </div>
+          <metal:macro use-macro="context/ace_macros/macros/ace_layout">
+            <div metal:fill-slot="ace-top-slot">
+              <a href="" tal:attributes="href view/link_to_original">Original</a>
+              <h2 class="case-studies-title">Case Study</h2>
             </div>
 
-            <div class="case-studies-review-clearing"></div>
+            <div metal:fill-slot="ace-left-slot">
+              <div class="case-studies-top">
+                <div class="case-studies-review-image-wrapper" tal:condition="primephoto">
+                  <img tal:condition="primephoto" tal:replace="structure primephoto/@@images/image/large" />
+                </div>
+                <div class="case-studies-top-title">
+                  <h1 tal:content="python: context.title">Title here</h1>
+                  <p tal:content="structure context/long_description/output">
+                    Description
+                  </p>
+                </div>
+              </div>
 
-            <div class="case-studies-tabbed-content-section">
+              <div class="case-studies-review-clearing"></div>
+
+              <div class="case-studies-tabbed-content-section">
                 <ul>
-                    <li class="first submenu">
-                        <p>
-                            <b><em>Case Study Description</em></b>
-                        </p>
-                        <ul class="case-studies-tabbed-content-bullted-list">
-                            <li class="first">
-                                <a href="#challenges_anchor">Challenges</a>
-                            </li>
-                            <li>
-                                <a href="#objectives_anchor">Objectives</a>
-                            </li>
-                            <li>
-                                <a href="#adapt_options_anchor">Adaptation Options Implemented In This Case</a>
-                            </li>
-                            <li>
-                                <a href="#solutions_anchor">Solutions</a>
-                            </li>
-                            <li class="last">
-                                <a href="#relevance_anchor">Importance and Relevance of Adaptation</a>
-                            </li>
-                        </ul>
-                    </li>
-                     <li class="submenu">
-                         <p>
-                             <b>
-                                 <em>Additional Details</em>
-                             </b>
-                         </p>
-                         <ul class="case-studies-bullted-list">
-                             <li class="first">
-                                  <a href="#stake_holder_anchor">Stakeholder Participation</a>
-                             </li>
-                             <li>
-                                  <a href="#success_limitations_anchor">Success and Limiting Factors</a>
-                             </li>
-                             <li>
-                                  <a href="#cost_benefit_anchor">Costs and Benefits</a>
-                             </li>
-                             <li>
-                                  <a href="#implementation_time_anchor">Implementation Time</a>
-                             </li>
-                             <li class="last">
-                                  <a href="#life_time_anchor">Life Time</a>
-                             </li>
-                         </ul>
-                     </li>
-                    <li class="last submenu">
-                        <p>
-                            <b>
-                                <em>Reference Information</em>
-                             </b>
-                         </p>
-                         <ul class="case-studies-bullted-list">
-                             <li class="first">
-                                 <a href="#contact_anchor">Contact</a>
-                             </li>
-                             <li>
-                                 <a href="#website_anchor">Websites</a>
-                             </li>
-                             <li class="last">
-                                 <a href="#source_anchor">Source</a>
-                             </li>
-                         </ul>
-                    </li>
+                  <li class="first submenu">
+                    <p>
+                      <b><em>Case Study Description</em></b>
+                    </p>
+                    <ul class="case-studies-tabbed-content-bullted-list">
+                      <li class="first">
+                        <a href="#challenges_anchor">Challenges</a>
+                      </li>
+                      <li>
+                        <a href="#objectives_anchor">Objectives</a>
+                      </li>
+                      <li>
+                        <a href="#adapt_options_anchor">Adaptation Options Implemented In This Case</a>
+                      </li>
+                      <li>
+                        <a href="#solutions_anchor">Solutions</a>
+                      </li>
+                      <li class="last">
+                        <a href="#relevance_anchor">Importance and Relevance of Adaptation</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="submenu">
+                    <p>
+                      <b>
+                        <em>Additional Details</em>
+                      </b>
+                    </p>
+                    <ul class="case-studies-bullted-list">
+                      <li class="first">
+                        <a href="#stake_holder_anchor">Stakeholder Participation</a>
+                      </li>
+                      <li>
+                        <a href="#success_limitations_anchor">Success and Limiting Factors</a>
+                      </li>
+                      <li>
+                        <a href="#cost_benefit_anchor">Costs and Benefits</a>
+                      </li>
+                      <li>
+                        <a href="#legal_aspects">Legal Aspects</a>
+                      </li>
+                      <li>
+                        <a href="#implementation_time_anchor">Implementation Time</a>
+                      </li>
+                      <li class="last">
+                        <a href="#life_time_anchor">Life Time</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="last submenu">
+                    <p>
+                      <b>
+                        <em>Reference Information</em>
+                      </b>
+                    </p>
+                    <ul class="case-studies-bullted-list">
+                      <li class="first">
+                        <a href="#contact_anchor">Contact</a>
+                      </li>
+                      <li>
+                        <a href="#website_anchor">Websites</a>
+                      </li>
+                      <li class="last">
+                        <a href="#source_anchor">Source</a>
+                      </li>
+                    </ul>
+                  </li>
                 </ul>
 
                 <div class="case-studies-case-studies-review-clearing-clearing"></div>
-            </div>
-            <div>
+              </div>
+              <div>
 
                 <h4>Case Study Description</h4>
                 <h3 id="challenges_anchor">Challenges</h3>
@@ -119,15 +121,15 @@
                 <p tal:define="adaptations view/get_adaptation_options">
                   <a tal:repeat="brain adaptations" tal:attributes="href brain/getURL" tal:content="brain/Title">Link</a>
                 </p>
-    
+
                 <h3 id="solutions_anchor">Solutions</h3>
                 <p tal:replace="structure context/solutions/output"></p>
-    
+
                 <h3 id="relevance_anchor">Relevance</h3>
                 <p tal:repeat="rel context/relevance">
                   <span tal:replace="python: view.relevances_dict()[rel]"></span>
                 </p>
-    
+
                 <h4>Additional Details</h4>
                 <h3 id="stake_holder_anchor">Stakeholder Participation</h3>
                 <p tal:content="structure context/stakeholder_participation/output"></p>
@@ -138,6 +140,9 @@
                 <h3 id="cost_benefit_anchor">Costs and Benefits</h3>
                 <p tal:content="structure context/cost_benefit/output"></p>
 
+                <h3 id="legal_aspects">Legal Aspects</h3>
+                <p tal:content="structure context/legal_aspects/output"></p>
+
                 <h3 id="implementation_time_anchor">Implementation Time</h3>
                 <p tal:content="structure context/implementation_time"></p>
 
@@ -145,40 +150,55 @@
                 <p tal:content="structure context/lifetime"></p>
 
                 <h4>Reference Information</h4>
-    
+
                 <h3>Contact</h3>
                 <p tal:content="structure context/contact/output"></p>
-    
+
                 <h3>Websites</h3>
                 <ul>
                   <li tal:repeat="website context/websites">
                     <a href="" tal:attributes="href website" tal:content="website">Website</a>
                   </li>
                 </ul>
-    
+
                 <h3>Source</h3>
                 <p tal:content="structure context/source"></p>
               </div>
-          </div>
+            </div>
 
-          <div metal:fill-slot="ace-right-slot">
-            <h4>Keywords</h4>
-            <p tal:replace="structure python:view.w['keywords'].render()"/>
-            <h4>Sectors</h4>
-            <p tal:content="structure python:view.w['sectors'].render()"/>
-            <h4>Climate impacts</h4>
-            <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
-            <h4>Geographic characterization</h4>
-            <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars" />
-            <tal:cond condition="not: context/geochars">
-              <p tal:condition="context/spatial_layer" tal:content="context/spatial_layer" />
-              <p tal:condition="context/spatial_values">
-                Countries: <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])" />
-              </p>
-            </tal:cond>
-          </div>
-        </metal:macro>
+            <div metal:fill-slot="ace-right-slot">
 
+              <div class="case-studies-illustrations" tal:condition="supphotos">
+                <h4>Case Study Illustrations (<span tal:replace="python:len(supphotos)" />)</h4>
+                <ul>
+                  <li tal:repeat="rel supphotos">
+                    <div tal:define="photo nocall:rel/to_object" >
+                      <img tal:replace="structure photo/@@images/image/thumb" />
+                      <div tal:content="photo/Title" />
+                      <div tal:content="photo/description" />
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <h4>Keywords</h4>
+              <p tal:replace="structure python:view.w['keywords'].render()"/>
+              <h4>Sectors</h4>
+              <p tal:content="structure python:view.w['sectors'].render()"/>
+              <h4>Climate impacts</h4>
+              <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
+              <h4>Geographic characterization</h4>
+              <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars" />
+              <tal:cond condition="not: context/geochars">
+                <p tal:condition="context/spatial_layer" tal:content="context/spatial_layer" />
+                <p tal:condition="context/spatial_values">
+                  Countries: <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])" />
+                </p>
+              </tal:cond>
+            </div>
+          </metal:macro>
+
+        </tal:def>
       </tal:main-macro>
     </metal:main>
 
