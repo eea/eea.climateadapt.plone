@@ -39,6 +39,15 @@
         />
 
     <browser:page
+        name="city_profile"
+        for="*"
+        template="pt/city_profile.pt"
+        class="eea.climateadapt.browser.cityprofile.CityProfileView"
+        permission="zope.Public"
+        />
+        
+        
+    <browser:page
         name="faceted-search-text-portlet"
         for="*"
         permission="zope.Public"
