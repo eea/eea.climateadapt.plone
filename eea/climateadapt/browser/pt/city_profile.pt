@@ -85,7 +85,7 @@
         
         <div>
             <strong>Last Update</strong>
-            <!-- <span tal:content="view.formated_date(context.modified)" /> -->
+            <div tal:content="python: view.formated_date(context.modified())" />
         </div>
         
       </tal:main-macro>
