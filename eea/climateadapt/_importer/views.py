@@ -196,6 +196,15 @@ class SingleImporterView(BrowserView):
 
         return "Done"
 
+    def import_city_profile(self):
+        from eea.climateadapt._importer import import_city_profiles
+
+        session = self._make_session()
+        eea.climateadapt._importer.session = session
+        site = self.context
+        cities = import_city_profiles(site)
+        return "Imported {0} cities".format(len(cities))
+
     def __call__(self):
         _type = self.request.form.get('type', 'layout')
         debug = self.request.form.get('debug')

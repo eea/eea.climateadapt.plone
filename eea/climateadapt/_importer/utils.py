@@ -148,18 +148,14 @@ def solve_dynamic_element(node):
     type_ = node.get('type')
 
     if type_ == 'image':
-        # TODO: don't need to keep this as a list
         imageid = [str(x) for x in node.xpath("dynamic-content/@id")]
         if not imageid:
-            try:
-                imageid = node.xpath('dynamic-content/text()')
+            imageid = node.xpath('dynamic-content/text()')
+            if imageid:
                 imageid = get_param_from_link(imageid[0], 'img_id')
-            except Exception, e:
-                print e
-                logger.error("Could not find image for %s", printe(node))
-                return ('image', None, None)
-                import pdb; pdb.set_trace()
-        return ('image', None, imageid)
+            else:
+                return ('image', node.get('name'), None)
+        return ('image', node.get('name'), imageid)
 
     if type_ == 'text_area':
         return ('text',
@@ -192,7 +188,22 @@ def solve_dynamic_element(node):
 
 
 def solve_dynamic_content(node):
-    return node.text
+    # one of:
+    #
+    # <dynamic-content language-id="en_GB">1435190400000</dynamic-content>
+    #
+    # or:
+    #
+    # <dynamic-content language-id="en_GB">
+    #         <option>Extreme Temperatures</option>
+    #         <option>Flooding</option>
+    #         <option>Sea Level Rise</option>
+    # </dynamic-content>
+
+    if not node.xpath('*'):
+        return node.text
+    return [x.text for x in node.iterchildren()]
+
     # return ('text', None, node.text)
 
 

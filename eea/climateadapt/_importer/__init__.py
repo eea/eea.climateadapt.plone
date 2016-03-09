@@ -1,4 +1,3 @@
-from subprocess import check_output
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFCore.utils import getToolByName
 from collections import defaultdict
@@ -57,18 +56,20 @@ from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from pytz import utc
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-from zope.component import getMultiAdapter
-from zope.interface import alsoProvides, noLongerProvides
-from zope.sqlalchemy import register
-from zope.component import getUtility
-from zope.intid.interfaces import IIntIds
+from subprocess import check_output
 from z3c.relationfield.relation import RelationValue
+from zope.component import getMultiAdapter
+from zope.component import getUtility
+from zope.interface import alsoProvides, noLongerProvides
+from zope.intid.interfaces import IIntIds
+from zope.sqlalchemy import register
 import dateutil
 import json
 import os
+import pprint
+import re
 import sys
 import transaction
-import re
 
 
 session = None      # this will be a global bound to the current module
@@ -505,6 +506,99 @@ def import_layout(layout, site):
     if cover is not None:
         cover.reindexObject()
     return cover
+
+
+def import_city_profile(site, journal):
+    destination = site['city-profile']
+    vals = extract_simplified_info_from_article_content(journal.content)
+    data = {}
+    for _type, name, payload in vals:
+        if name is None:
+            name = 'image'
+        if payload:
+            data[name] = payload[0]
+        else:
+            data[name] = None
+
+    """
+    {'a_m_city_latitude': '57.776543',
+    'a_m_city_longitude': '26.004789',
+    'a_m_country': 'Latvia',
+    'a_m_name_of_local_authority': '-',
+    'a_population_size': '9970',
+    'b_city_background': '-',
+    'b_climate_impacts_additional_information': '-',
+    'b_m_climate_impacts': ['Flooding', 'Forest Fires', 'Ice and Snow', 'Storms'],
+    'b_m_covenant_of_mayors_signatory': 'Yes',
+    'b_m_current_status_of_mayors_adapt_enrolment': 'Already signed',
+    'b_m_name_surname_of_mayor': 'Vents Armands Krauklis',
+    'b_m_official_email': 'novads@valka.lv',
+    'b_m_r_email_of_contact_person': 'cityprofiles@mayors-adapt.eu',
+    'b_m_r_name_surname_of_contact_person': 'Gunta Smane',
+    'b_m_role_of_contact_person': 'Head of Development and Planning Department',
+    'b_m_sector': ['Agriculture and Forest', 'Biodiversity', 'Disaster Risk Reduction', 'Financial', 'Health', 'Infrastructure', 'Urban', 'Water Management'],
+    'b_m_telephone': '+37126463408',
+    'b_m_website_of_the_local_authority': 'http://www.valka.lv',
+    'b_sector_additional_information': '-',
+    'b_signature_date': '1435190400000',
+    'c_m_stage_of_the_implementation_cycle': 'Preparing the ground',
+    'd_adaptation_strategy_date_of_approval': '1435190400000',
+    'd_adaptation_strategy_name': u'Development Strategy 2015 \u2013 2022',
+    'd_adaptation_strategy_summary': u'The Development Strategy 2015 \u2013 2022 of the Municipality of Valka is a strategic document that establishes objectives and priorities for sustainable and integrated socio-economic development. The Strategy contains the vision, objectives, and priorities of the development of municipality, the investment plan necessary for the realisation of the Strategy, and a monitoring and evaluation system. While climate change adaptation is not the focus of the Development Strategy, the creation of a Local Adaption Strategy of Valka Municipality is planned.',
+    'd_adaptation_strategy_weblink': 'http://valka.lv/pasvaldiba/dokumenti/attistibas-programma/',
+    'd_m_developed_an_adaptationstrategy': 'No, Mayors Adapt is the first example of my city considering adaptation and we will develop an adaptation strategy',
+    'e_adaptation_weblink': 'http://valka.lv/pasvaldiba/dokumenti/attistibas-programma/',
+    'e_additional_information_on_adaptation_responses': '-',
+    'e_m_motivation': "The main current impact of the climate changes to Valka's territory is the changing in the natural environment as well as social and economic consequences (including damaging economic infrastructure). By identifying and adapting to the current and future impacts of climate change, Valka hopes to strengthen its resilience to these changes, reduce the costs of damage, protect livelihoods, create jobs, and promote economic growth in the region.",
+    'e_m_planed_adaptation_actions': 'The Adaption Strategy of Valka will define concrete actions that tackle problems related to climate change (for example, detailed measures for floods, forest fires, air quality and temperature).',
+    'f_m_action_event_long_description': u'Valka is actively working to increase energy efficiency and the use of energy from renewable sources but such efforts also have adaptation\u2013related benefits. One of  the most important activities involves complex energy saving measures for public educational institutions (Valka Music School, Valka Primary School and Valka Sport Hall) and apartment buildings. The energy efficiency and heat resistance measures implemented include insulating facades and roofs; replacing windows, doors, and floors; renewing heating systems; reconstructing lighting and electrical power systems; and installing ventilation systems. By renovating buildings, Valka is also improving their resistance to the impacts of extreme temperatures.',
+    'f_m_action_event_title': 'Improving of the heat resistance of municipal buildings',
+    'f_picture_caption': "Valka's renovated Sports Hall",
+    'f_sectors_concerned': ['Financial', 'Energy', 'Urban'],
+    'h_m_elements': 'Sector Policies',
+    'image': '11288937'}
+    """
+    # _map = {}
+    city_name = strip_xml(journal.title)
+    city = createAndPublishContentInContainer(
+        destination,
+        'eea.climateadapt.city_profile',
+        id=journal.urltitle,
+        title=city_name,
+    )
+    pprint.pprint(data)
+    logger.info("Imported city profile %s", city_name)
+    return city
+
+
+def import_city_profiles(site):
+    template_pks = {}
+    for data in session.query(sql.Ddmtemplate):
+        name = strip_xml(data.name)
+        template_pks[name] = data.templatekey
+
+    _id = template_pks['City Profile']
+    cp = defaultdict(lambda:[])
+    query = session.query(sql.Journalarticle).filter_by(templateid=_id)
+
+    for data in query:
+        name = strip_xml(data.title)
+        cp[name].append(data)
+
+    to_import = []
+
+    for city_name in cp:
+        if city_name and city_name != '-':
+            cities = cp[city_name]
+            cities.sort(key=lambda d:d.version)
+            to_import.append(cities[-1])
+
+    imported = []
+    for data in to_import:
+        obj = import_city_profile(site, data)
+        imported.append(obj)
+
+    return imported
 
 
 # possible templates are
@@ -1588,12 +1682,12 @@ def run_importer(site=None):
     for aceproject in session.query(sql.AceProject):
         import_aceproject(aceproject, site['aceprojects'])
 
-    # for acemeasure in session.query(sql.AceMeasure):
-    #     if acemeasure.mao_type == 'A':
-    #         import_casestudy(acemeasure, site['casestudy'])
-    #     else:
-    #         pass
-    #         import_adaptationoption(acemeasure, site['adaptationoption'])
+    for acemeasure in session.query(sql.AceMeasure):
+        if acemeasure.mao_type == 'A':
+            import_casestudy(acemeasure, site['casestudy'])
+        else:
+            pass
+            import_adaptationoption(acemeasure, site['adaptationoption'])
 
     for layout in session.query(sql.Layout).filter_by(privatelayout=False):
         try:
