@@ -6,6 +6,7 @@
     i18n_domain="eea.climateadapt">
 
     <include file='frontpage.zcml' />
+    <include file="faceted.zcml" />
 
     <browser:resourceDirectory
         name="eea.climateadapt"
@@ -47,12 +48,6 @@
         />
         
         
-    <browser:page
-        name="faceted-search-text-portlet"
-        for="*"
-        permission="zope.Public"
-        class=".FacetedSearchTextPortlet"
-        />
 
     <browser:page
         name="no_title_cover_view"
@@ -212,14 +207,6 @@
         name="urbanast_bottom_nav"
         for="*"
         template="pt/viewlet_urbanast_bottom_nav.pt"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        for="eea.climateadapt.interfaces.ISiteSearchFacetedView"
-        name="facetednavigation_view"
-        template="pt/faceted-search-view.pt"
-        class=".FacetedViewNoTitle"
         permission="zope2.View"
         />
 

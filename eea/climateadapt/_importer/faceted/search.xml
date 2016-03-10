@@ -2,7 +2,7 @@
 <object name="data-and-downloads" meta_type="Dexterity Container">
  <criteria>
 
-  <criterion name="search_type">
+  <criterion name="searchtype">
    <property name="widget">searchpagecheckbox</property>
    <property name="title">Type of Data</property>
    <property name="position">left</property>
@@ -45,7 +45,7 @@
    <property name="disable_criterion_label">Any of the sectors selected below</property>
   </criterion>
 
-  <criterion name="climate_impacts">
+  <criterion name="climateimpacts">
    <property name="widget">searchpagecheckbox</property>
    <property name="title">Climate Impacts</property>
    <property name="position">left</property>

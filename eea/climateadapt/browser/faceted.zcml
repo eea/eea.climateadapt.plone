@@ -1,5 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
@@ -15,8 +16,23 @@
     <faceted:view
         name="faceted-climate-listing-view"
         class=".facetedsearch.ListingView"
-        template="browser/pt/faceted-listing-view.pt"
+        template="pt/search/faceted-listing-view.pt"
         title="ClimateAdapt Listing View"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="faceted-search-text-portlet"
+        for="*"
+        permission="zope.Public"
+        class=".facetedsearch..FacetedSearchTextPortlet"
+        />
+
+    <browser:page
+        for="eea.climateadapt.interfaces.ISiteSearchFacetedView"
+        name="facetednavigation_view"
+        template="pt/search/faceted-search-view.pt"
+        class=".facetedsearch.FacetedViewNoTitle"
         permission="zope2.View"
         />
 
