@@ -25,6 +25,9 @@ from zope.event import notify
 from zope.interface import alsoProvides
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 from zope.site.hooks import getSite
+from collective.easyform.api import set_actions, set_fields
+from collective.easyform.api import CONTEXT_KEY
+from plone.supermodel import loadString
 import logging
 import lxml.etree
 import lxml.html
@@ -373,6 +376,8 @@ def make_tile(cover, col, css_class=None, no_titles=False):
 
     if col[0][0].startswith('iframe'):
         return make_iframe_embed_tile(cover, payload['url'])
+    elif 'webformportlet' in col[0][0]:
+        return make_form_tile(cover, payload)
 
     if payload.get('portlet_type') == 'journal_article_content':
         _content = {
@@ -392,6 +397,251 @@ def make_tile(cover, col, css_class=None, no_titles=False):
         return make_aceitem_search_tile(cover, payload)
     else:
         return make_aceitem_relevant_content_tile(cover, payload)
+
+
+def get_form_fields(content):
+    fields_types = [k for k in content.keys() if k.startswith('fieldType')]
+    fields = []
+    for f in sorted(fields_types):
+        if not content.get(f):
+            continue
+        field = {}
+        fname = f.replace('fieldType','')
+        foptional = content.get('fieldOptional{fname}'.format(fname=fname))
+        frequired = foptional == u'false' and True or False
+        field['name'] = fname
+        field['required'] = frequired
+        field['options'] = content.get(
+            'fieldOptions{fname}'.format(fname=fname))
+        field['label'] = content.get(
+            'fieldLabel{fname}'.format(fname=fname))
+        field['type'] = content.get(
+            'fieldType{fname}'.format(fname=fname))
+        field['validation_error'] = content.get(
+            'fieldValidationErrorMessage{fname}'.format(fname=fname))
+        field['validation_script'] = content.get(
+            'fieldValidationScript{fname}'.format(fname=fname))
+        fields.append(field)
+    return fields
+
+
+def make_form_fields_model(form_obj, content):
+    form_fields = get_form_fields(content)
+    nsmap = {}
+    easyformns = "http://namespaces.plone.org/supermodel/easyform"
+    efns = "{ns}".format(ns=easyformns)
+    nsmap[None] = "http://namespaces.plone.org/supermodel/schema"
+    nsmap['security'] = "http://namespaces.plone.org/supermodel/security"
+    nsmap['marshal'] = "http://namespaces.plone.org/supermodel/marshal"
+    nsmap['form'] = "http://namespaces.plone.org/supermodel/form"
+    nsmap['easyform'] = easyformns
+    model = lxml.etree.Element('model', nsmap=nsmap)
+    schema = lxml.etree.SubElement(model, 'schema')
+
+    # <field
+    #         name="replyto"
+    #         type="zope.schema.TextLine"
+    #         easyform:TDefault="python:member and member.getProperty(\'email\', \'\') or \'\'"
+    #         easyform:serverSide="False"
+    #         easyform:validators="isValidEmail">
+    #     <description/>
+    #     <title>Your E-Mail Address</title>
+    # </field>
+    #
+
+    for f in form_fields:
+        validators = []
+        field = lxml.etree.SubElement(schema, 'field')
+        field.set('{{{ns}}}TDefault'.format(ns=efns), '')
+        field.set('{{{ns}}}ServerSide'.format(ns=efns), 'False')
+        field.set('name', 'field_{name}'.format(name=f['name']))
+        title = lxml.etree.SubElement(field, 'title')
+        title.text = f['label']
+        lxml.etree.SubElement(field, 'description')
+        req = lxml.etree.SubElement(field, 'required')
+        req.text = str(f['required'])
+        if f['type'] == u'text':
+            field.set('type', 'zope.schema.TextLine')
+            if f['label'].lower() == u'email':
+                validators.append('isValidEmail')
+        elif f['type'] == u'options':
+            # https://github.com/plone/plone.supermodel/blob/master/plone/supermodel/fields.txt#L1237
+            field.set('type', 'zope.schema.Choice')
+            options = f['options'].split(', ')
+            default_option = options[0]
+            default = lxml.etree.SubElement(field, 'default')
+            default.text = default_option
+            lxml.etree.SubElement(field, 'missing_value')
+            values = lxml.etree.SubElement(field, 'values')
+            for o in options:
+                opt = lxml.etree.SubElement(values, 'element')
+                opt.text = o
+        elif f['type'] == u'textarea':
+            field.set('type', 'zope.schema.Text')
+        validators_str = '|'.join(validators)
+        field.set('{{{ns}}}validators'.format(ns=efns), validators_str)
+    if content.get('requireCaptcha') == u'true':
+        field = lxml.etree.SubElement(schema, 'field')
+        field.set('{{{ns}}}TDefault'.format(ns=efns), '')
+        field.set('{{{ns}}}ServerSide'.format(ns=efns), 'False')
+        field.set('{{{ns}}}validators'.format(ns=efns), '')
+        field.set('name', 'field_captcha')
+        field.set('type', 'collective.easyform.fields.ReCaptcha')
+        req = lxml.etree.SubElement(field, 'required')
+        req.text = str(True)
+        title = lxml.etree.SubElement(field, 'title')
+        title.text = u'Text Verification'
+        lxml.etree.SubElement(field, 'description')
+
+    return lxml.etree.tostring(model)
+
+
+def make_form_actions_model(form_obj, content):
+    """
+    The required action model should be like this:
+    <model
+      xmlns:form="http://namespaces.plone.org/supermodel/form"
+      xmlns:easyform="http://namespaces.plone.org/supermodel/easyform"
+      xmlns:indexer="http://namespaces.plone.org/supermodel/indexer"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:security="http://namespaces.plone.org/supermodel/security"
+      xmlns:marshal="http://namespaces.plone.org/supermodel/marshal"
+      xmlns="http://namespaces.plone.org/supermodel/schema">
+        <schema>
+            <field name="mailer" type="collective.easyform.actions.Mailer">
+            <body_pt>&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&#13;
+                &lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&#13;
+                &lt;body&gt;&#13;
+                &lt;p tal:content="body_pre | nothing" /&gt;&#13;
+                &lt;dl&gt;&#13;
+                &lt;tal:block repeat="field data | nothing"&gt;&#13;
+                &lt;dt tal:content="python:fields[field]" /&gt;&#13;
+                &lt;dd tal:content="structure python:data[field]" /&gt;&#13;
+                &lt;/tal:block&gt;&#13; &lt;/dl&gt;&#13;
+                &lt;p tal:content="body_post | nothing" /&gt;&#13;
+                &lt;pre tal:content="body_footer | nothing" /&gt;&#13;
+                &lt;/body&gt;&#13;
+                &lt;/html&gt;
+            </body_pt>
+            <description>E-Mails Form Input urban-climate-adaptation-contact-form-7</description>
+            <msg_subject>New form submission for "Urban Climate Adaptation"</msg_subject>
+            <recipientOverride>string: helpdesk@mayors-adapt.eu</recipientOverride>
+            <replyto_field>replyto</replyto_field>
+            <senderOverride>string: No reply1 &lt;no-reply@eea.europa.eu&gt;</senderOverride>
+            <showFields/>
+            <title>urban-climate-adaptation-contact-form-7</title>
+            </field>
+        </schema>
+    </model>
+    """
+    nsmap = {}
+    easyformns = "http://namespaces.plone.org/supermodel/easyform"
+    # efns = "{ns}".format(ns=easyformns)
+    nsmap[None] = "http://namespaces.plone.org/supermodel/schema"
+    nsmap['security'] = "http://namespaces.plone.org/supermodel/security"
+    nsmap['marshal'] = "http://namespaces.plone.org/supermodel/marshal"
+    nsmap['form'] = "http://namespaces.plone.org/supermodel/form"
+    nsmap['indexer'] = "http://namespaces.plone.org/supermodel/indexer"
+    nsmap['i18n'] = "http://xml.zope.org/namespaces/i18n"
+    nsmap['easyform'] = easyformns
+    model = lxml.etree.Element('model', nsmap=nsmap)
+    schema = lxml.etree.SubElement(model, 'schema')
+    if content.get('sendAsEmail') == u'true':
+        field = lxml.etree.SubElement(
+            schema, 'field', name='mailer',
+            type="collective.easyform.actions.Mailer")
+        body_pt = lxml.etree.SubElement(field, 'body_pt')
+        body_pt.text = """"<html xmlns="http://www.w3.org/1999/xhtml">
+    <head><title></title></head>
+        <body>
+            <p tal:content="body_pre | nothing" />
+            <dl>
+                <tal:block repeat="field data | nothing">
+                    <dt tal:content="python:fields[field]" />
+                    <dd tal:content="structure python:data[field]" />
+                </tal:block>
+            </dl>
+            <p tal:content="body_post | nothing" />
+            <pre tal:content="body_footer | nothing" />
+        </body>
+    </html>"""
+        description = lxml.etree.SubElement(field, 'description')
+        description.text = 'E-Mails Form Input'
+        msg_subject = lxml.etree.SubElement(field, 'msg_subject')
+        msg_subject.text = content.get('subject')
+        recipient_override = lxml.etree.SubElement(field, 'recipientOverride')
+        recipient_override.text = 'string: {email}'.format(
+            email=content.get('emailAddress'))
+        replyto_field = lxml.etree.SubElement(field, 'replyto_field')
+        replyto_field.text = 'replyto'
+        sender_override = lxml.etree.SubElement(field, 'senderOverride')
+        sender_override.text = 'string: {name} <{email}>'.format(
+            name=content.get('emailFromName'),
+            email=content.get('emailFromAddress'))
+        lxml.etree.SubElement(field, 'showFields')
+        title = lxml.etree.SubElement(field, 'title')
+        title.text = 'Mailer'
+    if content.get('saveToDatabase') == u'true':
+        field = lxml.etree.SubElement(
+            schema, 'field', name='store_submissions',
+            type="collective.easyform.actions.SaveData")
+        lxml.etree.SubElement(field, 'ExtraData')
+        use_column_names = lxml.etree.SubElement(field, 'UseColumnNames')
+        use_column_names.text = 'False'
+        lxml.etree.SubElement(field, 'description')
+        lxml.etree.SubElement(field, 'showFields')
+        title = lxml.etree.SubElement(field, 'title')
+        title.text = 'Stored form submissions'
+    if content.get('saveToFile') == u'true':
+        # TODO: this needs to be investigated
+        pass
+    return lxml.etree.tostring(model).decode()
+
+
+def make_form_content(context, content):
+    form_prologue = content.get('description').replace('[$NEW_LINE$]','<br />')
+    form_obj = createAndPublishContentInContainer(
+        context,
+        'EasyForm',
+        title=content.get('title'),
+        submitLabel=u'Send'
+    )
+    form_prologue = u'<p>{prologue}</p>'.format(prologue=form_prologue)
+    form_obj.formPrologue = t2r(form_prologue)
+
+    fields_model_str = make_form_fields_model(form_obj, content)
+    fields_model = loadString(fields_model_str)
+    fields_schema = fields_model.schema
+    set_fields(form_obj, fields_schema)
+
+    actions_model_str = make_form_actions_model(form_obj, content)
+    actions_model = loadString(actions_model_str)
+    actions_schema = actions_model.schema
+    actions_schema.setTaggedValue(CONTEXT_KEY, form_obj)
+    set_actions(form_obj, actions_schema)
+    return form_obj
+
+
+def make_form_tile(cover, content):
+    # creates a new tile and saves it in the annotation
+    # returns a python objects usable in the layout description
+    # content needs to be a dict with keys 'title' and 'text'
+    form_obj = make_form_content(cover.aq_parent, content)
+
+    id = getUtility(IUUIDGenerator)()
+    typeName = 'eea.climateadapt.formtile'
+    tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
+    formtiledata = {}
+    formtiledata['title'] = form_obj.get('title')
+    formtiledata['form_uuid'] = form_obj.UID()
+
+    ITileDataManager(tile).set(formtiledata)
+
+    return {
+        'tile-type': typeName,
+        'type': 'tile',
+        'id': id
+    }
 
 
 def make_text_from_articlejournal(content):

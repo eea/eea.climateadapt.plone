@@ -38,6 +38,7 @@ setup(name='eea.climateadapt',
           'z3c.jbot',
           'pycountry',
           'collective.dexteritytextindexer',
+          'collective.easyform',
       ],
       extras_require={
           'test': [
