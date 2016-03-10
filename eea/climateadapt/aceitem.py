@@ -1,4 +1,6 @@
+from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
+from plone.app.textfield import RichText
 from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
 from zope.interface import implements
@@ -30,20 +32,21 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     title = TextLine(title=_(u"Title"), required=True)
 
-    description = TextLine(title=(u"description"), required=True)
+    dexteritytextindexer.searchable('long_description')
+    long_description = RichText(title=(u"description"), required=True)
 
-    # fix
+    # fix???
     data_type = Choice(title=_(u"Data Type"),
                        required=True,
                        vocabulary="eea.climateadapt.aceitems_datatypes")
 
-    # fix
+    # fix???
     storage_type = Choice(title=_(u"Storage Type"),
                           required=True,
                           vocabulary="eea.climateadapt.aceitems_storagetypes")
 
     # TODO: "keyword" from SQL is Subject
-    keywords = TextLine(title=_(u"Keywords"),
+    keywords = RichText(title=_(u"Keywords"),
                         description=_(u"Keywords related to the project"),
                         required=False)
 
@@ -83,9 +86,11 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     important = Bool(title=_(u"High importance"), required=False,
                      default=False)
 
-    websites = TextLine(title=_(u"Websites"), required=True,)
+    websites = List(title=_(u"Websites"),
+                    required=True,
+                    value_type=TextLine(title=_(u"Link"), ))
 
-    source = TextLine(title=_(u"Source"), required=True,)
+    source = RichText(title=_(u"Source"), required=True,)
 
     comments = TextLine(title=_(u"Comments"), required=False, default=u"")
 

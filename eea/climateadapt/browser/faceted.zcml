@@ -21,6 +21,24 @@
         permission="zope2.View"
         />
 
+    <!-- Listing pages with results -->
+    <browser:page
+        for="*"
+        name="faceted_listing_GENERIC"
+        template="pt/search/listing-generic.pt"
+        class=".facetedsearch.ListingGeneric"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="faceted_listing_DOCUMENT"
+        template="pt/search/listing-document.pt"
+        class=".facetedsearch.ListingGeneric"
+        permission="zope2.View"
+        />
+
+
     <browser:page
         name="faceted-search-text-portlet"
         for="*"

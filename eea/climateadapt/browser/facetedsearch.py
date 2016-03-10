@@ -5,6 +5,8 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collections import defaultdict
 from eea.facetednavigation.browser.app.view import FacetedContainerView
+from plone import api
+from zope.component import getMultiAdapter, queryMultiAdapter
 from zope.interface import alsoProvides
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
@@ -74,6 +76,17 @@ class ListingView(BrowserView):
 
         return results
 
+    def render(self, name, brains):
+        print "rendering ", name
+        view = queryMultiAdapter((self.context, self.request),
+                               name='faceted_listing_' + name)
+        if view is None:
+            view = getMultiAdapter((self.context, self.request),
+                                name='faceted_listing_GENERIC')
+
+        view.brains = brains
+        return view()
+
 
 class FacetedSearchTextPortlet(BrowserView):
     template = ViewPageTemplateFile("pt/search/faceted-search-text-portlet.pt")
@@ -86,3 +99,16 @@ class FacetedSearchTextPortlet(BrowserView):
 class FacetedViewNoTitle(FacetedContainerView):
     """
     """
+
+
+class ListingGeneric(BrowserView):
+    """
+    """
+
+    def html2text(self, html):
+        portal_transforms = api.portal.get_tool(name='portal_transforms')
+        data = portal_transforms.convertTo('text/plain',
+                                           html, mimetype='text/html')
+        text = data.getData()
+        return text
+

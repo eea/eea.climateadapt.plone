@@ -102,7 +102,7 @@ def import_aceitem(data, location):
             elements=s2l(data.elements_),
             climate_impacts=s2l(data.climateimpacts_),
             websites=s2l(data.storedat),
-            source=data.source,
+            source=t2r(data.source),
             comments=data.comments,
             year=int(data.year or '0'),
             geochars=data.geochars,
