@@ -521,7 +521,8 @@ def import_city_profile(site, journal):
             data[name] = None
 
     """
-    {'a_m_city_latitude': '57.776543',
+    {
+    'a_m_city_latitude': '57.776543',
     'a_m_city_longitude': '26.004789',
     'a_m_country': 'Latvia',
     'a_m_name_of_local_authority': '-',
@@ -556,9 +557,52 @@ def import_city_profile(site, journal):
     'f_picture_caption': "Valka's renovated Sports Hall",
     'f_sectors_concerned': ['Financial', 'Energy', 'Urban'],
     'h_m_elements': 'Sector Policies',
-    'image': '11288937'}
+    'image': '11288937'
+    }
     """
+
     # _map = {}
+
+    # #fields in xml file
+    # 'additional_information_on_adaptation_responses',
+    # 'additional_information_on_climate_impacts',
+    # 'additional_information_on_vulnerable_sectors',
+    # 'city_background_information_about_the_city',
+    # 'city_latitude',
+    # 'city_longitude',
+    # 'climate_impacts_risks_particularly_for_city_region',
+    # 'country',
+    # 'covenant_of_mayors_signatory',
+    # 'date_of_approval_of_the_strategy__plan',
+    # 'description',
+    # 'e_mail_of_contact_person',
+    # 'have_you_already_developed_an_adaptation_strategy',
+    # 'key_vulnerable_adaptation_sector',
+    # 'main_motivation_for_taking_adaptation_action',
+    # 'name_and_surname_of_contact_person',
+    # 'name_and_surname_of_mayor',
+    # 'name_of_local_authority',
+    # 'name_of_the_strategy__plan',
+    # 'official_email',
+    # 'picture',
+    # 'picture_caption',
+    # 'planned_current_adaptation_actions_and_responses',
+    # 'population_size',
+    # 'role_of_contact_person',
+    # 'searchable',
+    # 'short_content_summary_of_the_strategy__plan',
+    # 'signature_date',
+    # 'stage_of_the_implementation_cycle',
+    # 'status_of_mayors_adapt_signature',
+    # 'telephone',
+    # 'title_of_the_action_event',
+    # 'weblink_of_the_strategy__plan',
+    # 'weblinks_to_relevant_plans_studies',
+    # 'website_of_the_local_authority',
+    # 'what_sectors_are_concerned',
+    # 'which_elements_are_mentioned_in_your_city_profile'
+
+
     city_name = strip_xml(journal.title)
     city = createAndPublishContentInContainer(
         destination,
