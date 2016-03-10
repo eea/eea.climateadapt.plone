@@ -25,6 +25,9 @@ from zope.event import notify
 from zope.interface import alsoProvides
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 from zope.site.hooks import getSite
+from collective.easyform.api import set_actions, set_fields
+from collective.easyform.api import CONTEXT_KEY
+from plone.supermodel import loadString
 import logging
 import lxml.etree
 import lxml.html
@@ -493,19 +496,129 @@ def make_form_fields_model(form_obj, content):
     return lxml.etree.tostring(model)
 
 
+def make_form_actions_model(form_obj, content):
+    """
+    The required action model should be like this:
+    <model
+      xmlns:form="http://namespaces.plone.org/supermodel/form"
+      xmlns:easyform="http://namespaces.plone.org/supermodel/easyform"
+      xmlns:indexer="http://namespaces.plone.org/supermodel/indexer"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:security="http://namespaces.plone.org/supermodel/security"
+      xmlns:marshal="http://namespaces.plone.org/supermodel/marshal"
+      xmlns="http://namespaces.plone.org/supermodel/schema">
+        <schema>
+            <field name="mailer" type="collective.easyform.actions.Mailer">
+            <body_pt>&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&#13;
+                &lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&#13;
+                &lt;body&gt;&#13;
+                &lt;p tal:content="body_pre | nothing" /&gt;&#13;
+                &lt;dl&gt;&#13;
+                &lt;tal:block repeat="field data | nothing"&gt;&#13;
+                &lt;dt tal:content="python:fields[field]" /&gt;&#13;
+                &lt;dd tal:content="structure python:data[field]" /&gt;&#13;
+                &lt;/tal:block&gt;&#13; &lt;/dl&gt;&#13;
+                &lt;p tal:content="body_post | nothing" /&gt;&#13;
+                &lt;pre tal:content="body_footer | nothing" /&gt;&#13;
+                &lt;/body&gt;&#13;
+                &lt;/html&gt;
+            </body_pt>
+            <description>E-Mails Form Input urban-climate-adaptation-contact-form-7</description>
+            <msg_subject>New form submission for "Urban Climate Adaptation"</msg_subject>
+            <recipientOverride>string: helpdesk@mayors-adapt.eu</recipientOverride>
+            <replyto_field>replyto</replyto_field>
+            <senderOverride>string: No reply1 &lt;no-reply@eea.europa.eu&gt;</senderOverride>
+            <showFields/>
+            <title>urban-climate-adaptation-contact-form-7</title>
+            </field>
+        </schema>
+    </model>
+    """
+    nsmap = {}
+    easyformns = "http://namespaces.plone.org/supermodel/easyform"
+    # efns = "{ns}".format(ns=easyformns)
+    nsmap[None] = "http://namespaces.plone.org/supermodel/schema"
+    nsmap['security'] = "http://namespaces.plone.org/supermodel/security"
+    nsmap['marshal'] = "http://namespaces.plone.org/supermodel/marshal"
+    nsmap['form'] = "http://namespaces.plone.org/supermodel/form"
+    nsmap['indexer'] = "http://namespaces.plone.org/supermodel/indexer"
+    nsmap['i18n'] = "http://xml.zope.org/namespaces/i18n"
+    nsmap['easyform'] = easyformns
+    model = lxml.etree.Element('model', nsmap=nsmap)
+    schema = lxml.etree.SubElement(model, 'schema')
+    if content.get('sendAsEmail') == u'true':
+        field = lxml.etree.SubElement(
+            schema, 'field', name='mailer',
+            type="collective.easyform.actions.Mailer")
+        body_pt = lxml.etree.SubElement(field, 'body_pt')
+        body_pt.text = """"<html xmlns="http://www.w3.org/1999/xhtml">
+    <head><title></title></head>
+        <body>
+            <p tal:content="body_pre | nothing" />
+            <dl>
+                <tal:block repeat="field data | nothing">
+                    <dt tal:content="python:fields[field]" />
+                    <dd tal:content="structure python:data[field]" />
+                </tal:block>
+            </dl>
+            <p tal:content="body_post | nothing" />
+            <pre tal:content="body_footer | nothing" />
+        </body>
+    </html>"""
+        description = lxml.etree.SubElement(field, 'description')
+        description.text = 'E-Mails Form Input'
+        msg_subject = lxml.etree.SubElement(field, 'msg_subject')
+        msg_subject.text = content.get('subject')
+        recipient_override = lxml.etree.SubElement(field, 'recipientOverride')
+        recipient_override.text = 'string: {email}'.format(
+            email=content.get('emailAddress'))
+        replyto_field = lxml.etree.SubElement(field, 'replyto_field')
+        replyto_field.text = 'replyto'
+        sender_override = lxml.etree.SubElement(field, 'senderOverride')
+        sender_override.text = 'string: {name} <{email}>'.format(
+            name=content.get('emailFromName'),
+            email=content.get('emailFromAddress'))
+        lxml.etree.SubElement(field, 'showFields')
+        title = lxml.etree.SubElement(field, 'title')
+        title.text = 'Mailer'
+    if content.get('saveToDatabase') == u'true':
+        field = lxml.etree.SubElement(
+            schema, 'field', name='store_submissions',
+            type="collective.easyform.actions.SaveData")
+        lxml.etree.SubElement(field, 'ExtraData')
+        use_column_names = lxml.etree.SubElement(field, 'UseColumnNames')
+        use_column_names.text = 'False'
+        lxml.etree.SubElement(field, 'description')
+        lxml.etree.SubElement(field, 'showFields')
+        title = lxml.etree.SubElement(field, 'title')
+        title.text = 'Stored form submissions'
+    if content.get('saveToFile') == u'true':
+        # TODO: this needs to be investigated
+        pass
+    return lxml.etree.tostring(model).decode()
+
+
 def make_form_content(context, content):
     form_prologue = content.get('description').replace('[$NEW_LINE$]','<br />')
     form_obj = createAndPublishContentInContainer(
         context,
         'EasyForm',
         title=content.get('title'),
-        subject=[content.get('subject')] or [''],
-        formPrologue=u'<p>{prologue}</p>'.format(prologue=form_prologue),
         submitLabel=u'Send'
     )
+    form_prologue = u'<p>{prologue}</p>'.format(prologue=form_prologue)
+    form_obj.formPrologue = t2r(form_prologue)
 
-    form_obj.fields_model = make_form_fields_model(form_obj, content)
-    form_obj._p_changed = True
+    fields_model_str = make_form_fields_model(form_obj, content)
+    fields_model = loadString(fields_model_str)
+    fields_schema = fields_model.schema
+    set_fields(form_obj, fields_schema)
+
+    actions_model_str = make_form_actions_model(form_obj, content)
+    actions_model = loadString(actions_model_str)
+    actions_schema = actions_model.schema
+    actions_schema.setTaggedValue(CONTEXT_KEY, form_obj)
+    set_actions(form_obj, actions_schema)
     return form_obj
 
 
