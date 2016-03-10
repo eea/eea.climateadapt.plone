@@ -134,4 +134,16 @@
       for="*"
       />
 
+  <plone:tile
+      name="eea.climateadapt.formtile"
+      title="Form tile"
+      description="A tile to display a form"
+      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+      add_permission="cmf.ModifyPortalContent"
+      schema=".formtile.IFormTile"
+      class=".formtile.FormTile"
+      permission="zope2.View"
+      for="*"
+      />
+
 </configure>

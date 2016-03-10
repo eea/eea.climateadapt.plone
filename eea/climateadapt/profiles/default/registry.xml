@@ -12,6 +12,7 @@
             <element>eea.climateadapt.urbanast_navigation</element>
             <element>eea.climateadapt.genericview</element>
             <element>eea.climateadapt.urbanmenu</element>
+            <element>eea.climateadapt.formtile</element>
         </value>
     </record>
     <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
@@ -26,6 +27,13 @@
             <element>eea.climateadapt.urbanast_navigation</element>
             <element>eea.climateadapt.genericview</element>
             <element>eea.climateadapt.urbanmenu</element>
+            <element>eea.climateadapt.formtile</element>
         </value>
+    </record>
+    <record name="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings.public_key">
+        <value>to-be-changed</value>
+    </record>
+    <record name="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings.private_key">
+        <value>to-be-changed</value>
     </record>
 </registry>
