@@ -106,6 +106,8 @@ class ListingGeneric(BrowserView):
     """
 
     def html2text(self, html):
+        if not isinstance(html, basestring):
+            return u""
         portal_transforms = api.portal.get_tool(name='portal_transforms')
         data = portal_transforms.convertTo('text/plain',
                                            html, mimetype='text/html')

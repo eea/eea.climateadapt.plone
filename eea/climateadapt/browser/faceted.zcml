@@ -21,6 +21,21 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        name="faceted-search-text-portlet"
+        for="*"
+        permission="zope.Public"
+        class=".facetedsearch..FacetedSearchTextPortlet"
+        />
+
+    <browser:page
+        for="eea.climateadapt.interfaces.ISiteSearchFacetedView"
+        name="facetednavigation_view"
+        template="pt/search/faceted-search-view.pt"
+        class=".facetedsearch.FacetedViewNoTitle"
+        permission="zope2.View"
+        />
+
     <!-- Listing pages with results -->
     <browser:page
         for="*"
@@ -38,19 +53,67 @@
         permission="zope2.View"
         />
 
-
     <browser:page
-        name="faceted-search-text-portlet"
         for="*"
-        permission="zope.Public"
-        class=".facetedsearch..FacetedSearchTextPortlet"
+        name="faceted_listing_INFORMATIONSOURCE"
+        template="pt/search/listing-document.pt"
+        class=".facetedsearch.ListingGeneric"
+        permission="zope2.View"
         />
 
     <browser:page
-        for="eea.climateadapt.interfaces.ISiteSearchFacetedView"
-        name="facetednavigation_view"
-        template="pt/search/faceted-search-view.pt"
-        class=".facetedsearch.FacetedViewNoTitle"
+        for="*"
+        name="faceted_listing_GUIDANCE"
+        template="pt/search/listing-document.pt"
+        class=".facetedsearch.ListingGeneric"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="faceted_listing_TOOL"
+        template="pt/search/listing-document.pt"
+        class=".facetedsearch.ListingGeneric"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="faceted_listing_MAPGRAPHDATASET"
+        template="pt/search/listing-document.pt"
+        class=".facetedsearch.ListingGeneric"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="faceted_listing_INDICATOR"
+        template="pt/search/listing-document.pt"
+        class=".facetedsearch.ListingGeneric"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="faceted_listing_RESEARCHPROJECT"
+        template="pt/search/listing-document.pt"
+        class=".facetedsearch.ListingGeneric"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="faceted_listing_ACTION"
+        template="pt/search/listing-document.pt"
+        class=".facetedsearch.ListingGeneric"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="faceted_listing_ORGANISATION"
+        template="pt/search/listing-document.pt"
+        class=".facetedsearch.ListingGeneric"
         permission="zope2.View"
         />
 
