@@ -1262,9 +1262,51 @@ def import_template_1_2_columns_ii(site, layout, structure):
     else:
         layout = make_layout(row_1)
 
-    cover.cover_layout = json.dumps(layout)
+    cover.cover_layout = json.dumps(_make_share_page_layout(
+        site, cover, structure, title, body, image
+    ))
 
     return cover
+
+
+def _make_share_page_layout(site, cover, structure, title, body, image):
+
+    share_portlet = None
+    share_portlet_title = ""
+    if len(structure) == 3:
+        share_portlet = structure['column-2'][0][1]
+        share_portlet_title = structure['column-2'][0][0]
+
+    info = {'title': title, 'text': body}
+    main_text_tile = make_richtext_tile(cover, info)
+    image_tile = make_image_tile(site, cover, {'id': image})
+
+    if share_portlet:
+        sharetype = share_portlet.get('sharetype')
+        if not sharetype:
+            if 'shareprojectportlet' in share_portlet_title:
+                sharetype = 'RESEARCHPROJECT'
+            elif share_portlet.get('caseStudiesFeatureType'):
+                sharetype = 'ACTION'
+            else:
+                sharetype = 'MEASURE'
+        share_tile = make_share_tile(cover, sharetype)
+        parent_title = dict(_cca_types)[sharetype]
+        cover.aq_parent.edit(title=parent_title)    # Fix parent title
+    else:
+        cover.aq_parent.edit(title=structure['name'])
+
+    main_text_group = make_group(8, main_text_tile)
+    image_group = make_group(4, image_tile)
+    row_1 = make_row(main_text_group, image_group)
+
+    if share_portlet:
+        row_2 = make_row(make_group(12, share_tile))
+        layout = make_layout(row_1, row_2)
+    else:
+        layout = make_layout(row_1)
+
+    return layout
 
 
 @log_call
@@ -1330,10 +1372,25 @@ def import_template_1_column(site, layout, structure):
         content = structure['column-1'][0][1]['content']
 
         if isinstance(content[0], tuple):
+            # these are the /share-your-info/indicators pages
+            # layout is similar to 1_2_columns_ii
+            # [('image', 'Image', ['11285089']),
+            # ('dynamic', 'Title', ['Map Graph Data']),
+            #  ('text',
+            #     'Body',
+            #     [u'<p><br />\n<strong>Definition: </strong><br />\nMap Graph Data ....</p>\n\n<p>In this section of CLIMATE-ADAPT, map graph data is included at EU level (e.g. from the European Commission) or from countries.</p>\n\n<p>Governmental organisations are expected to provide proposals for this type of content.</p>\n\n<p>See an <a href="/viewaceitem?aceitem_id=3660">example</a> of a CLIMATE-ADAPT map graph data.</p>'])]
             # this is a dynamic portlet
-            logger.warning("Please investigate this importer %s with template %s",
-                        layout.friendlyurl, '1_column')
-            return
+            for bit in content:
+                if bit[0] == 'image':
+                    image = bit[-1][0]
+                if bit[0] == 'text':
+                    body = bit[-1][0]
+                if bit[0] == 'dynamic' and bit[1] == 'Title':
+                    title = bit[-1][0]
+            layout = _make_share_page_layout(
+                site, cover, structure, title, body, image
+            )
+            return layout
 
         tiles = [make_tile(cover, [p]) for p in structure['column-1']]
 
