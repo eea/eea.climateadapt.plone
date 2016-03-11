@@ -33,7 +33,6 @@ from eea.climateadapt._importer.utils import make_transregion_dropdown_tile
 from eea.climateadapt._importer.utils import make_urbanast_navigation_tile
 from eea.climateadapt._importer.utils import make_urbanmenu_title
 from eea.climateadapt._importer.utils import make_view_tile
-# from eea.climateadapt._importer.utils import noop
 from eea.climateadapt._importer.utils import pack_to_table
 from eea.climateadapt._importer.utils import parse_settings, s2l    #, printe
 from eea.climateadapt._importer.utils import render
@@ -780,7 +779,10 @@ def import_template_ace_layout_2(site, layout, structure):
     # and has 2 filter portlet and a simple filter portlet
 
     if not structure.get('column-2') or len(structure['column-2'][0][1]) == 0:
-        # this is a redirection layout, will be created in another place
+        # TODO: add these redirections:
+        # /climate-change-adaptation => /en/adaptation-information/general
+        # /en/adaptation-information/general => /adaptation-information/general
+        # /vulnerability-assessment => same as above
         return
 
     assert(len(structure) == 5)
@@ -895,7 +897,7 @@ def import_template_ace_layout_3(site, layout, structure):
     for line in col1[0][1]['content']:
         if line[0] == 'image':
             try:
-                main['image'] = {'id': line[2][0]}
+                main['image'] = {'id': line[2]}
                 continue
             except IndexError:
                 main['image'] = {'id': None}
@@ -1196,8 +1198,9 @@ def import_template_1_2_columns_i(site, layout, structure):
     # TODO: column-1 - mapviewerportlet
     # TODO: column-2 and column-3 - simplefilterportlet
     # there's only one page, here: /map-viewer
-    logger.warning("Please investigate this importer %s with template %s",
+    logger.error("Please investigate this importer %s with template %s",
                    layout.friendlyurl, '1_2_columns_i')
+    raise ValueError
     return
 
 
@@ -1472,8 +1475,9 @@ def import_template_2_columns_ii(site, layout, structure):
         return  # this is imported in another layout
 
     if len(structure) == 1:  # this is a fake page. Ex: /adaptation-sectors
-        logger.warning("Please investigate this importer %s with template %s",
+        logger.error("Please investigate this importer %s with template %s",
                        layout.friendlyurl, '2_columns_ii')
+        raise ValueError
         return
 
     if layout.friendlyurl == u'/mayors-adapt/register':
@@ -1549,8 +1553,10 @@ def import_template_2_columns_iii(site, layout, structure):
 @log_call
 def import_template_ace_layout_1(site, layout, structure):
     # ex page: /home (may be just a mockup for home page)
-    logger.warning("Please investigate this importer %s with template %s",
+
+    logger.error("Please investigate this importer %s with template %s",
                    layout.friendlyurl, 'ace_layout_1')
+    raise ValueError
 
 
 @log_call

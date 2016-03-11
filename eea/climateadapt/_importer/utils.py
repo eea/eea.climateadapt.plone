@@ -1287,6 +1287,7 @@ def get_image_by_imageid(site, imageid):
             return get_repofile_by_uuid(site, uuid)
         else:
             logger.error("Couldn't find image by id %s", imageid)
+            return None
 
         # try:
         #     # uuid = session.query(sql.Dlfileentry.uuid_
