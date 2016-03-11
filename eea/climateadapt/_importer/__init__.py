@@ -954,8 +954,6 @@ def import_template_ace_layout_3(site, layout, structure):
 def import_template_ace_layout_4(site, layout, structure):
     # done, parent title fixed
 
-    # TODO: the facts is not saved properly? shows labels instead of values
-
     # these are Project pages such as http://adapt-test.eea.europa.eu/web/guest/project/climsave
 
     title = structure['name']
@@ -1014,11 +1012,13 @@ def import_template_ace_layout_4(site, layout, structure):
 #    ('dynamic', 'ContactMail', ['paharriso@aol.com']),
 #
 
-    print _main_sidebar
-
     _sidebar = []
     _contact = []
+    _website = None
     for dyn, name, payload in _main_sidebar:
+        if name == "ProjectWebSite":
+            _website = payload[0]
+            continue
         if len(payload) == 1:
             _sidebar.append((name, payload[0]))
         else:
@@ -1034,6 +1034,8 @@ def import_template_ace_layout_4(site, layout, structure):
         'ProjectWebSite': 'Project website',
         'ContactPoint': "Contact Point",
     }
+
+    _contact.append(('ProjectWebSite', _website))
 
     contact_text = render("templates/snippet_contact.pt", {'lines': _contact,
                                                            'labels': labels})
@@ -1055,7 +1057,6 @@ def import_template_ace_layout_4(site, layout, structure):
     # the accordion is a list of ('tab title', 'tab content structure')
     # we need to go through each of the tabs and change the structure to be html
 
-    # TODO: fix accordion, it's not rendered properly (all tabs closed, etc)
     payload = []
     for k, v in main['accordion']:
         # TODO: get the keys from dictionary
