@@ -214,6 +214,7 @@ def import_casestudy(data, location):
                                         supphotoid)
         if supphoto:
             supphotos.append(RelationValue(intids.getId(supphoto)))
+
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.casestudy',
@@ -1263,19 +1264,15 @@ def import_template_1_2_columns_ii(site, layout, structure):
         layout = make_layout(row_1)
 
     cover.cover_layout = json.dumps(_make_share_page_layout(
-        site, cover, structure, title, body, image
+        site, cover, structure, title, body, image, share_portlet_title,
+        share_portlet
     ))
 
     return cover
 
 
-def _make_share_page_layout(site, cover, structure, title, body, image):
-
-    share_portlet = None
-    share_portlet_title = ""
-    if len(structure) == 3:
-        share_portlet = structure['column-2'][0][1]
-        share_portlet_title = structure['column-2'][0][0]
+def _make_share_page_layout(site, cover, structure, title, body, image,
+                            share_portlet_title, share_portlet):
 
     info = {'title': title, 'text': body}
     main_text_tile = make_richtext_tile(cover, info)
@@ -1387,8 +1384,11 @@ def import_template_1_column(site, layout, structure):
                     body = bit[-1][0]
                 if bit[0] == 'dynamic' and bit[1] == 'Title':
                     title = bit[-1][0]
+            share_portlet_title = title
+            share_portlet = structure['column-1'][1][1]
             layout = _make_share_page_layout(
-                site, cover, structure, title, body, image
+                site, cover, structure, title, body, image, share_portlet_title,
+                share_portlet
             )
             return layout
 
