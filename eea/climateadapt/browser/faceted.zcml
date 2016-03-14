@@ -47,6 +47,14 @@
 
     <browser:page
         for="*"
+        name="faceted_listing_CONTENT"
+        template="pt/search/listing-content.pt"
+        class=".facetedsearch.ListingGeneric"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
         name="faceted_listing_DOCUMENT"
         template="pt/search/listing-document.pt"
         class=".facetedsearch.ListingGeneric"

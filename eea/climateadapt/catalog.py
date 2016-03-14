@@ -1,3 +1,4 @@
+from collective.cover.interfaces import ICover
 from plone.indexer import indexer
 from zope.interface import Interface
 import json
@@ -53,3 +54,10 @@ def countries(object):
         # if value:
         #     #print "Returning", object, value
         return value
+
+
+@indexer(ICover)
+def search_type(object):
+    """
+    """
+    return "CONTENT"

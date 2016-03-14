@@ -39,21 +39,21 @@ def search_types_vocabulary(context):
 alsoProvides(search_types_vocabulary, IVocabularyFactory)
 
 
-FACETED_SECTIONS = [
-    ("CITYPROFILE", "Mayors Adapt city profiles"),
-    ("COVER", "Content in Climate-ADAPT"),
-    ("DOCUMENT", "Publication & Report"),
-    ("INFORMATIONSOURCE", "Information Portal"),
-    ("GUIDANCE","Guidance"),
-    ("TOOL", "Tools"),
-    ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
-    ("INDICATOR", "Indicators"),
-    ("RESEARCHPROJECT","Research and knowledge Projects"),
-    ("MEASURE","Adaptation Option"),
-    ("ACTION", "Case Studies"),
-    ("ORGANISATION", "Organisations"),
-]
-
+# FACETED_SECTIONS = [
+#     ("CITYPROFILE", "Mayors Adapt city profiles"),
+#     ("CONTENT", "Content in Climate-ADAPT"),
+#     ("DOCUMENT", "Publication & Report"),
+#     ("INFORMATIONSOURCE", "Information Portal"),
+#     ("GUIDANCE","Guidance"),
+#     ("TOOL", "Tools"),
+#     ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
+#     ("INDICATOR", "Indicators"),
+#     ("RESEARCHPROJECT","Research and knowledge Projects"),
+#     ("MEASURE","Adaptation Option"),
+#     ("ACTION", "Case Studies"),
+#     ("ORGANISATION", "Organisations"),
+# ]
+#
 
 class ListingView(BrowserView):
     """ Faceted listing view for ClimateAdapt
@@ -61,11 +61,11 @@ class ListingView(BrowserView):
 
     @property
     def sections(self):
-        return [x[0] for x in FACETED_SECTIONS]
+        return [x[0] for x in SEARCH_TYPES]
 
     @property
     def labels(self):
-        return dict(FACETED_SECTIONS)
+        return dict(SEARCH_TYPES)
 
     def results(self, batch):
         results = defaultdict(lambda:[])
@@ -113,4 +113,10 @@ class ListingGeneric(BrowserView):
                                            html, mimetype='text/html')
         text = data.getData()
         return text
+
+    def cover_url(self, brain):
+        url = brain.getURL()
+        if url.endswith('index_html'):
+            return url[:-len('index_html')]
+        return url
 
