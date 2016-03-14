@@ -19,20 +19,15 @@
 
           <div metal:fill-slot="ace-left-slot">
             <h3>Description</h3>
-            <p tal:replace="structure context/description">description here</p>
+            <p tal:replace="structure context/long_description/output">description here</p>
 
             <h4>Reference information</h4>
             <h5>Websites:</h5>
-            <ul>
-              <li tal:repeat="website context/websites|nothing">
-                <a tal:attributes="href website" tal:content="website">Website</a>
-              </li>
-            </ul>
+            <p tal:replace="structure context/websites/output">description here</p>
 
             <h5>Source:</h5>
-            <tal:block content="structure context/source" />
+            <tal:block content="structure context/source/output" />
           </div>
-
 
           <div metal:fill-slot="ace-right-slot">
 

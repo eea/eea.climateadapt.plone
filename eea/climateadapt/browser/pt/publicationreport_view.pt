@@ -20,7 +20,7 @@
 
           <div metal:fill-slot="ace-left-slot">
             <h3>Description</h3>
-            <tal:block replace="structure context/description" />
+            <tal:block replace="structure context/long_description/output" />
 
             <h4>Reference information</h4>
 

@@ -86,9 +86,10 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     important = Bool(title=_(u"High importance"), required=False,
                      default=False)
 
-    websites = List(title=_(u"Websites"),
-                    required=True,
-                    value_type=TextLine(title=_(u"Link"), ))
+    # websites = List(title=_(u"Websites"),
+    #                 required=True,
+    #                 value_type=TextLine(title=_(u"Link"), ))
+    websites = RichText(title=_(u"Websites"), required=True,)
 
     source = RichText(title=_(u"Source"), required=True,)
 
