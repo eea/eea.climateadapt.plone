@@ -38,7 +38,7 @@
             <h3>Reference information</h3>
             <h5>Websites:</h5>
             <p>
-              <a tal:attributes="href context/website" tal:content="context/website">Websites here</a>
+              <a tal:attributes="href python:view.linkify(context.website)" tal:content="context/website">Websites here</a>
             </p>
           </div>
 
