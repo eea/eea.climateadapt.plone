@@ -897,7 +897,7 @@ def import_template_ace_layout_3(site, layout, structure):
     for line in col1[0][1]['content']:
         if line[0] == 'image':
             try:
-                main['image'] = {'id': line[2]}
+                main['image'] = {'id': line[2][0]}
                 continue
             except IndexError:
                 main['image'] = {'id': None}
@@ -1221,7 +1221,7 @@ def import_template_1_2_columns_ii(site, layout, structure):
     content_portlet = structure['column-1'][0][1]['content']
     for bit in content_portlet:
         if bit[0] == 'image':
-            image = bit[-1][0]
+            image = bit[-1]
         if bit[0] == 'text':
             body = bit[-1][0]
         if bit[0] == 'dynamic' and bit[1] == 'Title':

@@ -1250,6 +1250,8 @@ def fix_links(site, text):
         f.write((href or '').encode('utf-8') + "\n")
         if href is not None:
             res = fix_inner_link(site, href)
+            if not res:
+                continue
             if href != res:
                 if not isinstance(res, basestring):
                     res = res.absolute_url()
