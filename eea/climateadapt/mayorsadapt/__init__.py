@@ -4,5 +4,5 @@
 from Products.PluggableAuthService import registerMultiPlugin
 import roleplugin
 
-registerMultiPlugin(roleplugin.TokenBasedRolesManager.meta_type)
+registerMultiPlugin(roleplugin.CityMayorUserFactory.meta_type)
 

@@ -1,13 +1,14 @@
 <dtml-var manage_page_header>
 
-<h2> Add A TokenBased Roles Manager For PAS </h2>
+<h2> Add a CityMayor User Factory For PAS </h2>
 
 <p class="form-help">
-A token based roles manager, to be used with ClimateAdapt's MayorAdapt
-functionality
+A user factory that creates 'almost anonymous' users named 'CityMayor'.
+These users get the CityMayor roles in special CityProfile objects,
+identified through a token mechanism.
 </p>
 
-<form action="manage_addTokenBasedRolesManager" method="POST">
+<form action="manage_addCityMayorUserFactory" method="POST">
 
     <table>
         <tr>

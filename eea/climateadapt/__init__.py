@@ -12,10 +12,10 @@ collective.cover.config.DEFAULT_GRID_SYSTEM = 'bootstrap3'
 
 def initialize(context):
 
-    context.registerClass(roleplugin.TokenBasedRolesManager,
+    context.registerClass(roleplugin.CityMayorUserFactory,
                           permission=add_user_folders,
                           constructors=(
-                              roleplugin.manage_addTokenBasedRolesManagerForm,
-                              roleplugin.manage_addTokenBasedRolesManager),
+                              roleplugin.manage_addCityMayorUserFactoryForm,
+                              roleplugin.manage_addCityMayorUserFactory),
                           visibility=None
                           )
