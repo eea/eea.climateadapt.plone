@@ -87,7 +87,6 @@ acesearch-sectors-lbl-WATERMANAGEMENT=Water management
 aceitem_sectors_vocabulary = vocab_from_labels(_sectors)
 alsoProvides(aceitem_sectors_vocabulary, IVocabularyFactory)
 
-
 _elements = """
 acesearch-elements-lbl-OBSERVATIONS=Observations and Scenarios
 acesearch-elements-lbl-VULNERABILITY=Vulnerability Assessment

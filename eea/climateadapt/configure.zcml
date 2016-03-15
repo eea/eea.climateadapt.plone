@@ -8,6 +8,7 @@
     i18n_domain="eea.climateadapt">
 
     <includeDependencies package="." />
+    <five:registerPackage package="." initialize=".initialize" />
 
     <include package='plone.app.theming' />
 

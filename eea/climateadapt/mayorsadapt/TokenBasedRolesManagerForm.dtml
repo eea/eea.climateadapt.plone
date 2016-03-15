@@ -1,0 +1,34 @@
+<dtml-var manage_page_header>
+
+<h2> Add A TokenBased Roles Manager For PAS </h2>
+
+<p class="form-help">
+A token based roles manager, to be used with ClimateAdapt's MayorAdapt
+functionality
+</p>
+
+<form action="manage_addTokenBasedRolesManager" method="POST">
+
+    <table>
+        <tr>
+            <td class="form-label"> Id </td>
+            <td> <input type="text" name="id" /> </td>
+        </tr>
+        <tr>
+            <td class="form-label"> Title </td>
+            <td> <input type="text" name="title" /> </td>
+        </tr>
+        <tr>
+            <td colspan="2"> 
+                <div class="form-element">
+                    <input type="submit" value="submit"/>
+                </div>
+            </td>
+        </tr>
+
+    </table>
+
+</form>
+
+</body>
+</html>
