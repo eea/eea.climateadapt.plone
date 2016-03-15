@@ -1,3 +1,4 @@
+from datetime import datetime as dt
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFCore.utils import getToolByName
 from collections import defaultdict
@@ -33,6 +34,7 @@ from eea.climateadapt._importer.utils import make_transregion_dropdown_tile
 from eea.climateadapt._importer.utils import make_urbanast_navigation_tile
 from eea.climateadapt._importer.utils import make_urbanmenu_title
 from eea.climateadapt._importer.utils import make_view_tile
+# from eea.climateadapt._importer.utils import noop
 from eea.climateadapt._importer.utils import pack_to_table
 from eea.climateadapt._importer.utils import parse_settings, s2l    #, printe
 from eea.climateadapt._importer.utils import render
@@ -49,6 +51,13 @@ from eea.climateadapt.interfaces import IClimateAdaptSharePage
 from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.climateadapt.vocabulary import _cca_types
+from eea.climateadapt.vocabulary import ace_countries_dict
+from eea.climateadapt.vocabulary import _stage_implementation_cycle
+from eea.climateadapt.vocabulary import _status_of_adapt_signature
+from eea.climateadapt.vocabulary import aceitem_climateimpacts_vocabulary
+from eea.climateadapt.vocabulary import _already_devel_adapt_strategy
+from eea.climateadapt.vocabulary import key_vulnerable_adapt_sector_vocabulary
+from eea.climateadapt.vocabulary import aceitem_elements_vocabulary
 from eea.facetednavigation.layout.interfaces import IFacetedLayout
 from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
@@ -100,7 +109,7 @@ def import_aceitem(data, location):
             sectors=s2l(data.sectors_),
             elements=s2l(data.elements_),
             climate_impacts=s2l(data.climateimpacts_),
-            websites=t2r(data.storedat),
+            websites=s2l(data.storedat),
             source=t2r(data.source),
             comments=data.comments,
             year=int(data.year or '0'),
@@ -213,7 +222,6 @@ def import_casestudy(data, location):
                                         supphotoid)
         if supphoto:
             supphotos.append(RelationValue(intids.getId(supphoto)))
-
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.casestudy',
@@ -507,8 +515,7 @@ def import_layout(layout, site):
     return cover
 
 
-def import_city_profile(site, journal):
-    destination = site['city-profile']
+def import_city_profile(container, journal):
     vals = extract_simplified_info_from_article_content(journal.content)
     data = {}
     for _type, name, payload in vals:
@@ -560,7 +567,94 @@ def import_city_profile(site, journal):
     }
     """
 
-    # _map = {}
+    l2k_countries_dict = {v: k for k, v in ace_countries_dict.iteritems()}
+    l2k_stage_implementation_cycle = {
+        i[1]: i[0] for i in _stage_implementation_cycle}
+    l2k_status_of_adapt_signature = {
+        i[1]: i[0] for i in _status_of_adapt_signature}
+    l2k_climate_impacts = {
+        t.title: t.value for t in aceitem_climateimpacts_vocabulary(container)}
+    l2k_developed_an_adaptationstrategy = {
+        i[1]: i[0] for i in _already_devel_adapt_strategy}
+    l2k_key_vulnerable_adapt_sector_vocabulary = {
+        t.title: t.value for t in key_vulnerable_adapt_sector_vocabulary(container)}
+    l2k_sectors_concerned = {
+        t.title: t.value for t in key_vulnerable_adapt_sector_vocabulary(container)}
+    l2k_elements = {
+        t.title: t.value for t in aceitem_elements_vocabulary(container)}
+
+    def impacted_sectors(sectors):
+        sectors_dict = l2k_key_vulnerable_adapt_sector_vocabulary
+        return [sectors_dict[sect]
+                for sect in data['b_m_sector'] if sect in sectors_dict]
+
+    _map = {
+        'a_m_city_latitude': {'newkey': 'city_latitude'},
+        'a_m_city_longitude': {'newkey': 'city_longitude'},
+        'a_m_country': {
+            'newkey': 'country',
+            'mapping_fnc': lambda x: l2k_countries_dict.get(x)},
+        'a_m_name_of_local_authority': {'newkey': 'name_of_local_authority'},
+        'a_population_size': {'newkey': 'population_size'},
+        'b_m_climate_impacts': {
+            'newkey': 'climate_impacts',
+            'mapping': lambda x: l2k_climate_impacts.get(x)},
+        'b_climate_impacts_additional_information': {
+            'newkey': 'additional_information_on_climate_impacts'},
+        'b_m_covenant_of_mayors_signatory': {'newkey': 'covenant_of_mayors_signatory'},
+        'b_m_current_status_of_mayors_adapt_enrolment': {
+            'newkey': 'status_of_mayors_adapt_signature',
+            'mapping_fnc': lambda x: l2k_status_of_adapt_signature.get(x)},
+        'b_m_name_surname_of_mayor': {'newkey': 'name_surname_of_mayor'},
+        'b_m_official_email': {'newkey': 'official_email'},
+        'b_m_sector': {
+            'newkey': 'key_vulnerable_adaptation_sector',
+            'mapping_fnc': impacted_sectors},
+        'b_m_r_email_of_contact_person': {'newkey': 'e_mail_of_contact_person'},
+        'b_m_r_name_surname_of_contact_person': {'newkey': 'name_surname_of_contact_person'},
+        'b_m_role_of_contact_person': {'newkey': 'role_of_contact_person'},
+        'b_m_telephone': {'newkey': 'telephone'},
+        'b_m_website_of_the_local_authority': {'newkey': 'website_of_the_local_authority'},
+        'b_signature_date': {
+            'newkey': 'signature_date',
+            'mapping_fnc': lambda x: dt.fromtimestamp(int(x) / 1e3).date()},
+        'c_m_stage_of_the_implementation_cycle': {
+            'newkey': 'stage_of_the_implementation_cycle',
+            'mapping_fnc': lambda x: l2k_stage_implementation_cycle.get(x)},
+        'd_adaptation_strategy_date_of_approval': {
+            'newkey': 'date_of_approval_of_the_strategy__plan',
+            'mapping_fnc': lambda x: dt.fromtimestamp(int(x) / 1e3).date()},
+        'd_adaptation_strategy_name': {'newkey': 'name_of_the_strategy__plan'},
+        'd_adaptation_strategy_summary': {'newkey': 'short_content_summary_of_the_strategy__plan'},
+        'd_adaptation_strategy_weblink': {'newkey': 'weblink_of_the_strategy__plan'},
+        'd_m_developed_an_adaptationstrategy': {
+            'newkey': 'have_you_already_developed_an_adaptation_strategy',
+            'mapping_fnc': lambda x: l2k_developed_an_adaptationstrategy.get(x)},
+        'e_additional_information_on_adaptation_responses': {'newkey': 'additional_information_on_adaptation_responses'},
+        'f_picture_caption': {'newkey': 'picture_caption'},
+        'f_sectors_concerned': {
+            'newkey': 'what_sectors_are_concerned',
+            'mapping_fnc': lambda x: l2k_sectors_concerned.get(x)
+        },
+        'h_m_elements': {
+            'newkey': 'adaptation_elements',
+            'mapping_fnc': lambda x: l2k_elements.get(x)},
+        # 'b_city_background': {'newkey': 'city_background'},
+        # 'b_sector_additional_information': {'newkey': 'sector_additional_information'},
+        # XXX: this seems to be duplicated with d_adaptation_strategy_weblink
+        # 'e_adaptation_weblink': {'newkey': 'developed_an_adaptationstrategy'},
+        # 'e_m_motivation': {'newkey': 'motivation'},
+        # 'e_m_planed_adaptation_actions': {'newkey': 'planed_adaptation_actions'},
+        # 'f_m_action_event_long_description': {'newkey': 'action_event_long_description'},
+        # 'f_m_action_event_title': {'newkey': 'action_event_title'},
+    }
+
+    missing_vals = []
+    for _type, name, payload in vals:
+        if name not in _map:
+            missing_vals.append((_type, name, payload))
+    for v in missing_vals:
+        print v
 
     # #fields in xml file
     # 'additional_information_on_adaptation_responses',
@@ -601,15 +695,25 @@ def import_city_profile(site, journal):
     # 'what_sectors_are_concerned',
     # 'which_elements_are_mentioned_in_your_city_profile'
 
-
     city_name = strip_xml(journal.title)
+    mapped_data = {'title': city_name}
+    for key in data:
+        if key in _map:
+            mapping = _map[key]
+            newkey = mapping['newkey']
+            if 'mapping_fnc' in mapping:
+                fnc = mapping['mapping_fnc']
+                val = fnc(data[key])
+            else:
+                val = data[key]
+            mapped_data[newkey] = val
     city = createAndPublishContentInContainer(
-        destination,
+        container,
         'eea.climateadapt.city_profile',
         id=journal.urltitle,
-        title=city_name,
+        **mapped_data
     )
-    pprint.pprint(data)
+    pprint.pprint(mapped_data)
     logger.info("Imported city profile %s", city_name)
     return city
 
@@ -636,9 +740,15 @@ def import_city_profiles(site):
             cities.sort(key=lambda d:d.version)
             to_import.append(cities[-1])
 
+    city_profiles_folder = createAndPublishContentInContainer(
+        site,
+        'Folder',
+        id='city-profile',
+        title='City Profiles',
+    )
     imported = []
     for data in to_import:
-        obj = import_city_profile(site, data)
+        obj = import_city_profile(city_profiles_folder, data)
         imported.append(obj)
 
     return imported
@@ -779,10 +889,7 @@ def import_template_ace_layout_2(site, layout, structure):
     # and has 2 filter portlet and a simple filter portlet
 
     if not structure.get('column-2') or len(structure['column-2'][0][1]) == 0:
-        # TODO: add these redirections:
-        # /climate-change-adaptation => /en/adaptation-information/general
-        # /en/adaptation-information/general => /adaptation-information/general
-        # /vulnerability-assessment => same as above
+        # this is a redirection layout, will be created in another place
         return
 
     assert(len(structure) == 5)
@@ -956,6 +1063,8 @@ def import_template_ace_layout_3(site, layout, structure):
 def import_template_ace_layout_4(site, layout, structure):
     # done, parent title fixed
 
+    # TODO: the facts is not saved properly? shows labels instead of values
+
     # these are Project pages such as http://adapt-test.eea.europa.eu/web/guest/project/climsave
 
     title = structure['name']
@@ -1014,13 +1123,11 @@ def import_template_ace_layout_4(site, layout, structure):
 #    ('dynamic', 'ContactMail', ['paharriso@aol.com']),
 #
 
+    print _main_sidebar
+
     _sidebar = []
     _contact = []
-    _website = None
     for dyn, name, payload in _main_sidebar:
-        if name == "ProjectWebSite":
-            _website = payload[0]
-            continue
         if len(payload) == 1:
             _sidebar.append((name, payload[0]))
         else:
@@ -1036,8 +1143,6 @@ def import_template_ace_layout_4(site, layout, structure):
         'ProjectWebSite': 'Project website',
         'ContactPoint': "Contact Point",
     }
-
-    _contact.append(('ProjectWebSite', _website))
 
     contact_text = render("templates/snippet_contact.pt", {'lines': _contact,
                                                            'labels': labels})
@@ -1059,6 +1164,7 @@ def import_template_ace_layout_4(site, layout, structure):
     # the accordion is a list of ('tab title', 'tab content structure')
     # we need to go through each of the tabs and change the structure to be html
 
+    # TODO: fix accordion, it's not rendered properly (all tabs closed, etc)
     payload = []
     for k, v in main['accordion']:
         # TODO: get the keys from dictionary
@@ -1198,9 +1304,8 @@ def import_template_1_2_columns_i(site, layout, structure):
     # TODO: column-1 - mapviewerportlet
     # TODO: column-2 and column-3 - simplefilterportlet
     # there's only one page, here: /map-viewer
-    logger.error("Please investigate this importer %s with template %s",
+    logger.warning("Please investigate this importer %s with template %s",
                    layout.friendlyurl, '1_2_columns_i')
-    raise ValueError
     return
 
 
@@ -1221,7 +1326,7 @@ def import_template_1_2_columns_ii(site, layout, structure):
     content_portlet = structure['column-1'][0][1]['content']
     for bit in content_portlet:
         if bit[0] == 'image':
-            image = bit[-1]
+            image = bit[-1][0]
         if bit[0] == 'text':
             body = bit[-1][0]
         if bit[0] == 'dynamic' and bit[1] == 'Title':
@@ -1267,47 +1372,9 @@ def import_template_1_2_columns_ii(site, layout, structure):
     else:
         layout = make_layout(row_1)
 
-    cover.cover_layout = json.dumps(_make_share_page_layout(
-        site, cover, structure, title, body, image, share_portlet_title,
-        share_portlet
-    ))
+    cover.cover_layout = json.dumps(layout)
 
     return cover
-
-
-def _make_share_page_layout(site, cover, structure, title, body, image,
-                            share_portlet_title, share_portlet):
-
-    info = {'title': title, 'text': body}
-    main_text_tile = make_richtext_tile(cover, info)
-    image_tile = make_image_tile(site, cover, {'id': image})
-
-    if share_portlet:
-        sharetype = share_portlet.get('sharetype')
-        if not sharetype:
-            if 'shareprojectportlet' in share_portlet_title:
-                sharetype = 'RESEARCHPROJECT'
-            elif share_portlet.get('caseStudiesFeatureType'):
-                sharetype = 'ACTION'
-            else:
-                sharetype = 'MEASURE'
-        share_tile = make_share_tile(cover, sharetype)
-        parent_title = dict(_cca_types)[sharetype]
-        cover.aq_parent.edit(title=parent_title)    # Fix parent title
-    else:
-        cover.aq_parent.edit(title=structure['name'])
-
-    main_text_group = make_group(8, main_text_tile)
-    image_group = make_group(4, image_tile)
-    row_1 = make_row(main_text_group, image_group)
-
-    if share_portlet:
-        row_2 = make_row(make_group(12, share_tile))
-        layout = make_layout(row_1, row_2)
-    else:
-        layout = make_layout(row_1)
-
-    return layout
 
 
 @log_call
@@ -1373,28 +1440,10 @@ def import_template_1_column(site, layout, structure):
         content = structure['column-1'][0][1]['content']
 
         if isinstance(content[0], tuple):
-            # these are the /share-your-info/indicators pages
-            # layout is similar to 1_2_columns_ii
-            # [('image', 'Image', ['11285089']),
-            # ('dynamic', 'Title', ['Map Graph Data']),
-            #  ('text',
-            #     'Body',
-            #     [u'<p><br />\n<strong>Definition: </strong><br />\nMap Graph Data ....</p>\n\n<p>In this section of CLIMATE-ADAPT, map graph data is included at EU level (e.g. from the European Commission) or from countries.</p>\n\n<p>Governmental organisations are expected to provide proposals for this type of content.</p>\n\n<p>See an <a href="/viewaceitem?aceitem_id=3660">example</a> of a CLIMATE-ADAPT map graph data.</p>'])]
             # this is a dynamic portlet
-            for bit in content:
-                if bit[0] == 'image':
-                    image = bit[-1][0]
-                if bit[0] == 'text':
-                    body = bit[-1][0]
-                if bit[0] == 'dynamic' and bit[1] == 'Title':
-                    title = bit[-1][0]
-            share_portlet_title = title
-            share_portlet = structure['column-1'][1][1]
-            layout = _make_share_page_layout(
-                site, cover, structure, title, body, image, share_portlet_title,
-                share_portlet
-            )
-            return layout
+            logger.warning("Please investigate this importer %s with template %s",
+                        layout.friendlyurl, '1_column')
+            return
 
         tiles = [make_tile(cover, [p]) for p in structure['column-1']]
 
@@ -1475,9 +1524,8 @@ def import_template_2_columns_ii(site, layout, structure):
         return  # this is imported in another layout
 
     if len(structure) == 1:  # this is a fake page. Ex: /adaptation-sectors
-        logger.error("Please investigate this importer %s with template %s",
+        logger.warning("Please investigate this importer %s with template %s",
                        layout.friendlyurl, '2_columns_ii')
-        raise ValueError
         return
 
     if layout.friendlyurl == u'/mayors-adapt/register':
@@ -1553,10 +1601,8 @@ def import_template_2_columns_iii(site, layout, structure):
 @log_call
 def import_template_ace_layout_1(site, layout, structure):
     # ex page: /home (may be just a mockup for home page)
-
-    logger.error("Please investigate this importer %s with template %s",
+    logger.warning("Please investigate this importer %s with template %s",
                    layout.friendlyurl, 'ace_layout_1')
-    raise ValueError
 
 
 @log_call
