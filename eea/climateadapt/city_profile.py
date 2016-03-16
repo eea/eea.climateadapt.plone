@@ -4,9 +4,8 @@ from zope.interface import implements
 
 class ICityProfile(form.Schema):
     """
-    Defines content-type schema for Ace Item
+    Defines content-type schema for CityProfile
     """
-    #form.model("city_profile.xml")
 
 
 class CityProfile(dexterity.Container):
@@ -16,6 +15,8 @@ class CityProfile(dexterity.Container):
     secret = "zzz"
 
     def __ac_local_roles__(self):
-        if self.REQUEST.get('mk') == self.secret:
+        tk = self.REQUEST.SESSION.get('tk')
+        if tk == self.secret:
+            #print "returning city mayor role", self.REQUEST['ACTUAL_URL']
             return {'CityMayor': ['CityMayor']}
         return {}

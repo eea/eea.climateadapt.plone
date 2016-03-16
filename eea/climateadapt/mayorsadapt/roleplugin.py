@@ -16,7 +16,7 @@ from Products.PluggableAuthService.PluggableAuthService import PluggableAuthServ
 
 _old_isTop = PluggableAuthService._isTop
 def _new_isTop(self):
-    if self.REQUEST.get('mk'):  # TODO: read cookies
+    if self.REQUEST.SESSION.get('tk'):  # TODO: read cookies
         return True
     return _old_isTop(self)
 PluggableAuthService._isTop = _new_isTop

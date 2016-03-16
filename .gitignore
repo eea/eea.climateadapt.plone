@@ -2,3 +2,4 @@
 *.pyo
 .eggs
 *.egg-info
+*.swp

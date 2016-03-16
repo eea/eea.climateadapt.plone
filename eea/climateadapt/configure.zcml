@@ -15,6 +15,7 @@
     <include package=".widgets" />
     <include package=".browser" />
     <include package=".tiles" />
+    <include package=".mayorsadapt" />
     <include package="._importer" />
 
     <include package="plone.resource" file="meta.zcml"/>
