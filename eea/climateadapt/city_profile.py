@@ -1,4 +1,5 @@
 from plone.directives import dexterity, form
+from zope.globalrequest import getRequest
 from zope.interface import implements
 
 
@@ -14,9 +15,10 @@ class CityProfile(dexterity.Container):
     search_type = "CITYPROFILE"
     secret = "zzz"
 
+    @property
     def __ac_local_roles__(self):
-        tk = self.REQUEST.SESSION.get('tk')
+        req = getRequest()
+        tk = req.SESSION.get('tk')
         if tk == self.secret:
-            #print "returning city mayor role", self.REQUEST['ACTUAL_URL']
-            return {'CityMayor': ['CityMayor']}
+            return {'CityMayor': ['Owner',]}
         return {}

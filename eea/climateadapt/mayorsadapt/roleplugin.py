@@ -50,7 +50,7 @@ class CityMayorUser(BasicUser):
     def getRoles(self):
         """Get a sequence of the global roles assigned to the user.
         """
-        return ('Anonymous', )
+        return ('CityMayor', )
 
     def getDomains(self):
         """Get a sequence of the domain restrictions for the user.
@@ -69,10 +69,13 @@ class CityMayorUserFactory(BasePlugin):
 
     The CityProfile model class has a special implementation of
     __ac_local_roles__ that can authenticate the token against that CityProfile
-    and grant this anonymous user the CityMayor role.
+    and grant this anonymous user the Owner role.
 
     Then the rest of the permissions problem is solved with the help of
     workflow.
+
+    The CityMayor role is used to allow adding content to the /city-profile
+    folder.
     """
 
     meta_type = "CityMayor User Factory"
