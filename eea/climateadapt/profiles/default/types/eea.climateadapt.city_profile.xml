@@ -30,6 +30,7 @@
     <property name="behaviors">
         <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
         <element value="plone.app.content.interfaces.INameFromTitle"/>
+        <element value="eea.climateadapt.city_profile.ICityProfileStaging"/>
         <element value="plone.app.stagingbehavior.interfaces.IStagingSupport"/>
     </property>
 

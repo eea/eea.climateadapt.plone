@@ -15,4 +15,27 @@
         permission="zope.Public"
         />
 
+    <plone:behavior
+        title="CityProfile Staging"
+        description="Enable override of staging behavior for CityProfiles"
+        provides="eea.climateadapt.city_profile.ICityProfileStaging"
+        for="eea.climateadapt.city_profile.ICityProfile"
+        />
+
+    <adapter factory=".staging.CityProfileBehaviorAssignable" />
+    
+    <browser:page
+        for="eea.climateadapt.city_profile.ICityProfileStaging"
+        name="iterate_control"
+        class=".staging.IterateControl"
+        permission="zope2.View"
+        allowed_attributes="checkin_allowed checkout_allowed cancel_allowed"
+        />
+
+
+    <!-- <subscriber -->
+    <!--     for="plone.app.iterate.interfaces.ICheckoutEvent" -->
+    <!--     handler=".staging.handleCheckoutEvent" -->
+    <!--    /> -->
+
 </configure>

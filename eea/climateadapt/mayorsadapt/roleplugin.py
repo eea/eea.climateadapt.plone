@@ -5,6 +5,7 @@ from AccessControl.users import BasicUser
 from App.class_init import InitializeClass
 from App.special_dtml import DTMLFile
 from Products.PluggableAuthService.interfaces.plugins import IAnonymousUserFactoryPlugin
+from Products.PluggableAuthService.interfaces.plugins import IUserEnumerationPlugin
 from Products.PluggableAuthService.plugins.BasePlugin import BasePlugin
 from zope.interface import implements
 
@@ -36,11 +37,14 @@ manage_addCityMayorUserFactoryForm = DTMLFile('./CityMayorUserFactoryForm',
                                                 globals())
 
 
+CITYMAYOR =  'CityMayor'
+
+
 class CityMayorUser(BasicUser):
     """ An almost Anonymous User with a fixed username: CityMayor """
 
     def __init__(self):
-        self.name = 'CityMayor'
+        self.name = CITYMAYOR
 
     def getUserName(self):
         """Get the name used by the user to log into the system.
@@ -81,7 +85,7 @@ class CityMayorUserFactory(BasePlugin):
     meta_type = "CityMayor User Factory"
     security = ClassSecurityInfo()
 
-    implements(IAnonymousUserFactoryPlugin)
+    implements(IAnonymousUserFactoryPlugin, IUserEnumerationPlugin)
 
     def __init__(self, id, title=None):
         self._id = self.id = id
@@ -89,5 +93,13 @@ class CityMayorUserFactory(BasePlugin):
 
     def createAnonymousUser(self):
         return CityMayorUser()
+
+    def enumerateUsers(self, **kw):
+        if kw['id'] == CITYMAYOR:
+            info = {'id': CITYMAYOR,
+                    'login': CITYMAYOR,
+                    'pluginid': self.getId(),
+                    }
+            return (info,)
 
 InitializeClass(CityMayorUserFactory)
