@@ -32,6 +32,15 @@
         allowed_attributes="checkin_allowed checkout_allowed cancel_allowed"
         />
 
+    <browser:viewlet
+        name="baltic_region_menu"
+        for="eea.climateadapt.city_profile.ICityProfile"
+        class=".viewlets.EditMenuViewlet"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
+        template="pt/edit_menu.pt"
+        permission="zope2.View"
+        />
+
 
     <!-- <subscriber -->
     <!--     for="plone.app.iterate.interfaces.ICheckoutEvent" -->

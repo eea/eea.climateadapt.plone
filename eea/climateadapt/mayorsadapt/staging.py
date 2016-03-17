@@ -1,4 +1,3 @@
-#from zope.interface import providedBy, noLongerProvides, alsoProvides
 from AccessControl import getSecurityManager
 from eea.climateadapt.city_profile import ICityProfile
 from eea.climateadapt.city_profile import ICityProfileStaging
@@ -10,7 +9,6 @@ from plone.dexterity.behavior import DexterityBehaviorAssignable
 from plone.dexterity.schema import SCHEMA_CACHE
 from zope.component import adapter
 from zope.interface import implementer
-from Products.Five import BrowserView
 
 
 class IterateControl(Control):
@@ -41,6 +39,12 @@ class CityProfileBehaviorAssignable(DexterityBehaviorAssignable):
 
     We want to reorder the behavior markers so that ICityProfileStaging is the
     first one.
+
+
+    Note: I'm not sure if this is needed. I've reordered the behaviors in the
+    cityprofile xml type file and I believe that can be enough.
+
+    TODO: test the above.
     """
 
     def enumerateBehaviors(self):
