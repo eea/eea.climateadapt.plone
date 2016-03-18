@@ -15,6 +15,13 @@
         permission="zope.Public"
         />
 
+    <browser:page
+        for="eea.climateadapt.city_profile.ICityProfile"
+        name="mayors_edit"
+        class=".views.CityProfileEditController"
+        permission="zope.Public"
+        />
+
     <plone:behavior
         title="CityProfile Staging"
         description="Enable override of staging behavior for CityProfiles"

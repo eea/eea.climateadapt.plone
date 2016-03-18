@@ -15,9 +15,18 @@ from zope.interface import implements
 # We want to be able to build them from the Plone site level.
 from Products.PluggableAuthService.PluggableAuthService import PluggableAuthService
 
+
+def is_citymayor_visitor(request):
+    """ Is this browsing session belong to a city mayor visitor?
+    """
+    if request.SESSION.get('tk'):  # TODO: read cookies
+        return True
+    return False
+
+
 _old_isTop = PluggableAuthService._isTop
 def _new_isTop(self):
-    if self.REQUEST.SESSION.get('tk'):  # TODO: read cookies
+    if is_citymayor_visitor(self.REQUEST):
         return True
     return _old_isTop(self)
 PluggableAuthService._isTop = _new_isTop
@@ -80,6 +89,9 @@ class CityMayorUserFactory(BasePlugin):
 
     The CityMayor role is used to allow adding content to the /city-profile
     folder.
+
+    This plugin also implements enumerateUsers, to be able to provide
+    information on the CityMayor user
     """
 
     meta_type = "CityMayor User Factory"
