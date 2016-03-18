@@ -68,7 +68,8 @@ h2, h3, h4, h5, h6 {color: #636466; font-family: Arial, Helvetica, sans-serif;}
 .clear {clear: both;}
 .pb-ajax, .pb-image, .overlay iframe {font-size: 1.3em;}
 div.overlay-iframe, div.overlay-ajax {width:75%;z-index:1100;}
-.portlet img, #content img {max-width:100%;}
+.portlet img, #content img {max-width:100%; margin-top: 10px !important;
+                            margin-left: 30px !important}
 #content a:hover,
 dl.portlet a:hover {
     color: #a5bf26 !important;
@@ -84,6 +85,7 @@ dl.portlet a:link {
     color: #12617d;
     border-bottom: 0px transparent;
     text-decoration: underline;
+
 }
 /* lists */
 #content li, dl.portlet li {
@@ -230,7 +232,7 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
 /* Layout fixes */
 #portal-columns.row { margin: 0; }
 #content {margin: 1em;}
-/* #content-core {padding:1em;} */
+/* #content-core { padding:1em;} */
 #content > .row { margin: 0}
 #tiles-list li { list-style-type: none !important }
 .layout-actions li { list-style-type: none !important;}
@@ -604,8 +606,9 @@ ul#ast-menu, #ast-menu ul {
     list-style-type: none;
 }
 .tile {
-    padding-right: 1em;
+    padding-right: 0.1em;
 }
+
 #content .eu-strategy td h2,
 #content .aceitem-relevant-tile h2 {
     font-size: 1.4em;
@@ -644,6 +647,7 @@ ul#ast-menu, #ast-menu ul {
 #content ul.arrow-items > li > a,
 #content ul#ast-menu ul > li > a{
     text-decoration: initial;
+    text-decoration: underline;
 }
 #content .eu-strategy td > ul,
 #content .aceitem-relevant-tile > ul,
@@ -695,7 +699,7 @@ ul#ast-menu, #ast-menu ul {
 a.bluebutton,
 a.bluebutton:visited {
     background-color: #a5bf26;
-    border-radius: 4px;
+    border-radius: .5em; /* 4px */
     padding: 0.6em 0.7em 0.5em 0.7em;
     border: 0px transparent;
     box-shadow: 1px 1px 6px 0px #aaa;
@@ -719,8 +723,11 @@ a.bluebutton:active {
 #content a.bluebutton, #content a.bluebutton:hover,
 #content a.bluebutton:visited {
     display: inline-block;
-    color: #fff !important;
+    color: #02213d !important;
     text-decoration: initial;
+    text-decoration: underline;
+    float: right;
+    border: solid 1px #aab91d;
 }
 #content a.double-arrow {
     background: url("cca/img/arrow_blue.png") no-repeat left center;
@@ -788,6 +795,21 @@ a.bluebutton:active {
 }
 #content ul#ast-menu .ui-state-active .ui-icon {
     background-image: url('cca/img/arrow_ast_wit.png');
+}
+
+.sector-main-article #read-more-link {
+    color: #2aaae6;
+
+    background: -webkit-linear-gradient(right, #2aaae6 , white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(left, #2aaae6, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(left, #2aaae6, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to left, #2aaae6 , white); /* Standard syntax (must be last) */
+
+    padding-right: 10px;
+    line-height: 30px;
+    right: 0;
+    top: 210px;
+    text-align: right;
 }
 
 /* fronpage */
@@ -1023,4 +1045,3 @@ li.dropdown-submenu {
 .clear-both {
 	clear: both;
 }
-
