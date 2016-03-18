@@ -1457,7 +1457,6 @@ def import_template_1_column(site, layout, structure):
     if layout.friendlyurl in additional_sharepage_layouts:
         alsoProvides(cover, IClimateAdaptSharePage)
     stamp_cover(cover, layout)
-
     def _import_two_columns():
         content = structure['column-1'][0][1]['content']
 
@@ -1518,6 +1517,19 @@ def import_template_1_column(site, layout, structure):
         cover.setLayout('standard')
 
         return cover_layout
+
+    #fixing paths to javascript/css and images
+    text_portlet = structure['column-1'][0][1]['content'][0]
+
+    text_portlet = text_portlet.replace("/documents/18/11278677/countriesLegend.png",
+                                        "/++theme++climateadapt/static/cca/img/countriesLegend.png")
+    text_portlet = text_portlet.replace("/ace-theme/js/jquery.qtip.min.js",
+                                        "/++theme++climateadapt/static/jquery.qtip.min.js")
+    text_portlet = text_portlet.replace("/ace-theme/css/jquery.qtip.min.css",
+                                        "/++theme++climateadapt/static/jquery.qtip.css")
+    structure['column-1'][0][1]['content'][0] = text_portlet
+
+
     if layout.friendlyurl == u'/tools/urban-ast/contact':
         form_tile = make_tile(cover, structure.get('column-1', []))
         form_group = make_group(12, form_tile)
