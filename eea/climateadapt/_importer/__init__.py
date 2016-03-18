@@ -1,4 +1,5 @@
 from datetime import datetime as dt
+from plone.api import portal
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFCore.utils import getToolByName
 from collections import defaultdict
@@ -50,11 +51,11 @@ from eea.climateadapt.interfaces import IClimateAdaptSharePage
 from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.climateadapt.vocabulary import _cca_types
-from eea.climateadapt.vocabulary import ace_countries_dict
-from eea.climateadapt.vocabulary import _stage_implementation_cycle
-from eea.climateadapt.vocabulary import _status_of_adapt_signature
+from eea.climateadapt.vocabulary import ace_countries_vocabulary
+from eea.climateadapt.vocabulary import stage_implementation_cycle_vocabulary
+from eea.climateadapt.vocabulary import status_of_adapt_signature_vocabulary
 from eea.climateadapt.vocabulary import aceitem_climateimpacts_vocabulary
-from eea.climateadapt.vocabulary import _already_devel_adapt_strategy
+from eea.climateadapt.vocabulary import already_devel_adapt_strategy_vocabulary
 from eea.climateadapt.vocabulary import key_vulnerable_adapt_sector_vocabulary
 from eea.climateadapt.vocabulary import aceitem_elements_vocabulary
 from eea.facetednavigation.layout.interfaces import IFacetedLayout
@@ -566,51 +567,74 @@ def import_city_profile(container, journal):
     }
     """
 
-    l2k_countries_dict = {v: k for k, v in ace_countries_dict.iteritems()}
-    l2k_stage_implementation_cycle = {
-        i[1]: i[0] for i in _stage_implementation_cycle}
-    l2k_status_of_adapt_signature = {
-        i[1]: i[0] for i in _status_of_adapt_signature}
-    l2k_climate_impacts = {
-        t.title: t.value for t in aceitem_climateimpacts_vocabulary(container)}
-    l2k_developed_an_adaptationstrategy = {
-        i[1]: i[0] for i in _already_devel_adapt_strategy}
-    l2k_key_vulnerable_adapt_sector_vocabulary = {
-        t.title: t.value for t in key_vulnerable_adapt_sector_vocabulary(container)}
-    l2k_sectors_concerned = {
-        t.title: t.value for t in key_vulnerable_adapt_sector_vocabulary(container)}
-    l2k_elements = {
-        t.title: t.value for t in aceitem_elements_vocabulary(container)}
+    def map_titles_to_tokens(context, vocab_factory):
+        from zope.schema.interfaces import IVocabularyFactory
+        if IVocabularyFactory.providedBy(vocab_factory):
+            vocab = vocab_factory(context)
+            t2t_map = {t.title.lower(): t.token for t in vocab}
+        else:
+            t2t_map = {v.lower(): k for k, v in vocab_factory.iteritems()}
 
-    def impacted_sectors(sectors):
-        sectors_dict = l2k_key_vulnerable_adapt_sector_vocabulary
-        return [sectors_dict[sect]
-                for sect in data['b_m_sector'] if sect in sectors_dict]
+        def t2tmap(values):
+            tokens = []
+            if isinstance(values, basestring):
+                if values.lower() == 'select':
+                    return tokens
+                token = t2t_map.get(values.lower())
+                if token:
+                    return token
+                else:
+                    import pdb; pdb.set_trace()
+            else:
+                for v in values:
+                    token = t2t_map.get(v.lower())
+                    if token:
+                        tokens.append(token)
+                    else:
+                        import pdb; pdb.set_trace()
+            return tokens
+        return t2tmap
+
+    map_climate_impacts = map_titles_to_tokens(
+        container, aceitem_climateimpacts_vocabulary)
+    map_country = map_titles_to_tokens(
+        container, ace_countries_vocabulary)
+    map_status_of_major_adapt_signature = map_titles_to_tokens(
+        container, status_of_adapt_signature_vocabulary)
+    map_impacted_sectors = map_titles_to_tokens(
+        container, key_vulnerable_adapt_sector_vocabulary)
+    map_stage_of_implementation = map_titles_to_tokens(
+        container, stage_implementation_cycle_vocabulary)
+    map_adaptation_strategy = map_titles_to_tokens(
+        container, already_devel_adapt_strategy_vocabulary)
+    map_elements = map_titles_to_tokens(
+        container, aceitem_elements_vocabulary)
 
     _map = {
         'a_m_city_latitude': {'newkey': 'city_latitude'},
         'a_m_city_longitude': {'newkey': 'city_longitude'},
         'a_m_country': {
-            'newkey': 'country',
-            'mapping_fnc': lambda x: l2k_countries_dict.get(x)},
+            'newkey': 'country', 'mapping_fnc': map_country},
         'a_m_name_of_local_authority': {'newkey': 'name_of_local_authority'},
         'a_population_size': {'newkey': 'population_size'},
         'b_m_climate_impacts': {
-            'newkey': 'climate_impacts',
-            'mapping': lambda x: l2k_climate_impacts.get(x)},
+            'newkey': 'climate_impacts_risks_particularly_for_city_region',
+            'mapping_fnc': map_climate_impacts},
         'b_climate_impacts_additional_information': {
             'newkey': 'additional_information_on_climate_impacts'},
-        'b_m_covenant_of_mayors_signatory': {'newkey': 'covenant_of_mayors_signatory'},
+        'b_m_covenant_of_mayors_signatory': {
+            'newkey': 'covenant_of_mayors_signatory',
+            'mapping_fnc': lambda x: x and x.lower() == 'yes'},
         'b_m_current_status_of_mayors_adapt_enrolment': {
             'newkey': 'status_of_mayors_adapt_signature',
-            'mapping_fnc': lambda x: l2k_status_of_adapt_signature.get(x)},
-        'b_m_name_surname_of_mayor': {'newkey': 'name_surname_of_mayor'},
+            'mapping_fnc': map_status_of_major_adapt_signature},
+        'b_m_name_surname_of_mayor': {'newkey': 'name_and_surname_of_mayor'},
         'b_m_official_email': {'newkey': 'official_email'},
         'b_m_sector': {
             'newkey': 'key_vulnerable_adaptation_sector',
-            'mapping_fnc': impacted_sectors},
+            'mapping_fnc': map_impacted_sectors},
         'b_m_r_email_of_contact_person': {'newkey': 'e_mail_of_contact_person'},
-        'b_m_r_name_surname_of_contact_person': {'newkey': 'name_surname_of_contact_person'},
+        'b_m_r_name_surname_of_contact_person': {'newkey': 'name_and_surname_of_contact_person'},
         'b_m_role_of_contact_person': {'newkey': 'role_of_contact_person'},
         'b_m_telephone': {'newkey': 'telephone'},
         'b_m_website_of_the_local_authority': {'newkey': 'website_of_the_local_authority'},
@@ -619,7 +643,7 @@ def import_city_profile(container, journal):
             'mapping_fnc': lambda x: dt.fromtimestamp(int(x) / 1e3).date()},
         'c_m_stage_of_the_implementation_cycle': {
             'newkey': 'stage_of_the_implementation_cycle',
-            'mapping_fnc': lambda x: l2k_stage_implementation_cycle.get(x)},
+            'mapping_fnc': map_stage_of_implementation},
         'd_adaptation_strategy_date_of_approval': {
             'newkey': 'date_of_approval_of_the_strategy__plan',
             'mapping_fnc': lambda x: dt.fromtimestamp(int(x) / 1e3).date()},
@@ -628,24 +652,22 @@ def import_city_profile(container, journal):
         'd_adaptation_strategy_weblink': {'newkey': 'weblink_of_the_strategy__plan'},
         'd_m_developed_an_adaptationstrategy': {
             'newkey': 'have_you_already_developed_an_adaptation_strategy',
-            'mapping_fnc': lambda x: l2k_developed_an_adaptationstrategy.get(x)},
+            'mapping_fnc': map_adaptation_strategy},
         'e_additional_information_on_adaptation_responses': {'newkey': 'additional_information_on_adaptation_responses'},
         'f_picture_caption': {'newkey': 'picture_caption'},
         'f_sectors_concerned': {
             'newkey': 'what_sectors_are_concerned',
-            'mapping_fnc': lambda x: l2k_sectors_concerned.get(x)
-        },
+            'mapping_fnc': map_impacted_sectors},
         'h_m_elements': {
-            'newkey': 'adaptation_elements',
-            'mapping_fnc': lambda x: l2k_elements.get(x)},
+            'newkey': 'adaptation_elements', 'mapping_fnc': map_elements},
+        'e_m_motivation': {'newkey': 'main_motivation_for_taking_adaptation_action'},
         # 'b_city_background': {'newkey': 'city_background'},
         # 'b_sector_additional_information': {'newkey': 'sector_additional_information'},
         # XXX: this seems to be duplicated with d_adaptation_strategy_weblink
         # 'e_adaptation_weblink': {'newkey': 'developed_an_adaptationstrategy'},
-        # 'e_m_motivation': {'newkey': 'motivation'},
-        # 'e_m_planed_adaptation_actions': {'newkey': 'planed_adaptation_actions'},
-        # 'f_m_action_event_long_description': {'newkey': 'action_event_long_description'},
-        # 'f_m_action_event_title': {'newkey': 'action_event_title'},
+        'e_m_planed_adaptation_actions': {'newkey': 'planned_current_adaptation_actions_and_responses'},
+        'f_m_action_event_long_description': {'newkey': 'description'},
+        'f_m_action_event_title': {'newkey': 'title_of_the_action_event'},
     }
 
     missing_vals = []
@@ -706,12 +728,19 @@ def import_city_profile(container, journal):
             else:
                 val = data[key]
             mapped_data[newkey] = val
+
+    if data.get('f_picture'):
+        img = get_image_by_imageid(portal.get(), data['f_picture'])
+        if img:
+            mapped_data['picture'] = img.image
+
     city = createAndPublishContentInContainer(
         container,
         'eea.climateadapt.city_profile',
         id=journal.urltitle,
         **mapped_data
     )
+    city.setLayout('city_profile')
     pprint.pprint(mapped_data)
     logger.info("Imported city profile %s", city_name)
     return city
@@ -746,6 +775,7 @@ def import_city_profiles(site):
         title='City Profiles',
     )
     imported = []
+    to_import = sorted(to_import, key=lambda x: x.title)
     for data in to_import:
         obj = import_city_profile(city_profiles_folder, data)
         imported.append(obj)

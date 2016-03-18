@@ -8,86 +8,224 @@
   <body>
 
     <metal:main fill-slot="main">
-      <tal:main-macro metal:define-macro="content-core" >
+      <style>
+          .center-area{
+            width: 65%;
+            float: left;
+            font-size: 87%;
+            margin-left: 1em;
+          }
+          .right-area{
+            width: 30%;
+            float: right;
+            background: #d2de92;
+            padding: 10px;
+            font-size: 87%;
+          }
+          #logos {
+              width: 100%;
+              height: 144px;
+              position: relative;
+          }
+          #logoMayors {
+              position: absolute;
+              top: 0px;
+              left: 0px;
+          }
+          #logoStatus {
+              position: absolute;
+              top: 0px;
+              right: 0px;
+              left: 300px;
+          }
+          #content h1{
+            border-bottom: 1px solid #c8c9ca;
+            font-family: arial,serif;
+            font-size: 24.5px;
+            color: #2c330a;
+          }
+          #content .container-title{
+            color: #67788a;
+            font-weight: normal;
+            font-family: Tahoma, 'Times New Roman', serif;
+            font-size: 20px;
+            margin-bottom: 1em;
+          }
+          #content .city-name-and-country {
+              padding-left: 0;
+              padding-right: 0;
+              color: #67788a;
+              font-size: 20px;
+              font-weight: normal;
+              line-height: 20px;
+              padding-bottom: 8px;
+              padding-top: 8px;
+              margin-bottom: 1em;
+          }
+          #content .info-box{
+              margin-bottom: 1em;
+          }
+          #content .info-box h3{
+            background: #afc7df; /* For browsers that do not support gradients */
+            background: -webkit-linear-gradient(left, #FFFFFF , #afc7df); /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient(right, #FFFFFF, #afc7df); /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient(right, #FFFFFF, #afc7df); /* For Firefox 3.6 to 15 */
+            background: linear-gradient(to right, #FFFFFF , #afc7df); /* Standard syntax */
+            text-align: right;
+            font-size: 12px;
+            font-weight: normal;
+            font-family: arial, serif;
+            color: #02213d;
+            padding: 5px;
+          }
+          #content .right-area h3{
+            color: #02213d;
+            font-size: 12px;
+            margin-top: 2em;
+          }
+      </style>
 
-        <h1>
-        <span tal:content="context/title">Barcelona</span> -
-        <span tal:replace="structure python: view.w['country'].render()"></span>
+      <tal:main-macro metal:define-macro="content-core" >
+        <h2 class="container-title">
+            <span tal:content="context/aq_parent/title">City Profiles</span>
+        </h2>
+
+        <h1 class="city-name">
+            <a class="glyphicon glyphicon-circle-arrow-left"
+              href="#" tal:attributes="href context/aq_parent/absolute_url" />
+            <span tal:content="context/title">Barcelona</span>
         </h1>
+        <div class="center-area">
+
+        <div id="logos">
+            <div id="logoMayors">
+                <img src="http://mayors-adapt.eu/wp-content/themes/mayoradapt/images/logo.png">
+            </div>
+            <div id="logoStatus">
+                <img
+                  tal:attributes="src view/implementation_state_img_url"
+                  src="http://climate-adapt.eea.europa.eu/documents/18/11278677/stage_Assessing adaptation options.png" style="max-width: 100%;">
+            </div>
+        </div>
+
+        <h3 class="city-name-and-country">
+            <span tal:content="context/title">Barcelona</span> -
+            <span tal:replace="structure python: view.w['country'].render()"></span>
+        </h3>
         <div tal:content="context/name_of_local_authority" />
-        
+
         <div>
             <div tal:content="structure python: view.w['city_background_information_about_the_city'].render()" />
         </div>
-        
-        <div>
-            <strong>Climate change impacts and adaptation responses</strong><br/>
+
+        <div class='info-box climate-change-impacts-and-adaptation-responses'>
+            <h3>Climate change impacts and adaptation responses</h3>
             <div tal:content="structure python: view.w['additional_information_on_climate_impacts'].render()" />
         </div>
-        
-        <div>
-            <strong>Planned adaptation actions</strong>
+
+        <div class="info-box planned-adaptation-actions">
+            <h3>Planned adaptation actions</h3>
             <div tal:content="structure python: view.w['planned_current_adaptation_actions_and_responses'].render()" />
         </div>
-        
-        <div>
-            <strong>Good practice / spotlight item</strong>
-            <div tal:content="structure python: view.w['title_of_the_action_event'].render()" />
+
+        <div class="info-box good-practice-spotlight-item">
+            <h3>Good practice / spotlight item</h3>
+            <div style="font-weight: bold"
+                tal:content="structure python: view.w['title_of_the_action_event'].render()" />
             <div tal:content="structure python: view.w['description'].render()" />
         </div>
-        
-        
-        <div>
-            Map
+            <img tal:replace="structure context/@@images/picture/medium" style="max-width: 100%"/>
+            <small tal:content="structure python: view.w['picture_caption'].render()" />
         </div>
-        
-        <div>
-            <strong>Climate change impacts</strong><br/>
-            <div tal:content="structure python: view.w['climate_impacts_risks_particularly_for_city_region'].render()" />
+
+
+        <div class="right-area">
+            <div>
+                  <span id='longitude'
+                      style="display:none"
+                      tal:content="context/city_longitude" />
+                  <span id='latitude'
+                      style="display:none"
+                      tal:content="context/city_latitude" />
+                  <div id="map" style="height: 200px; width:100%; display:inline-block"></div>
+                  <script>
+                    function initMap() {
+                      var map;
+                      var longitude = parseFloat($('#longitude').text());
+                      var latitude = parseFloat($('#latitude').text());
+                      var city_name = $('.city-name span').text();
+                      var myLatLng = {lat: latitude, lng: longitude};
+                      map = new google.maps.Map(document.getElementById('map'), {
+                        center: myLatLng,
+                        zoom: 5
+                      });
+                      var marker = new google.maps.Marker({
+                        position: myLatLng,
+                        map: map,
+                        title: city_name
+                      });
+                    }
+                  </script>
+                  <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+                  async defer></script>
+            </div>
+
+            <div>
+                <h3>Climate change impacts</h3>
+                <ul>
+                    <li
+                      tal:repeat="sector python: view.labels_from_choice('climate_impacts_risks_particularly_for_city_region')"
+                      tal:content="sector"></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Key vulnerable sectors</h3>
+                <ul>
+                    <li
+                      tal:repeat="sector python: view.labels_from_choice('key_vulnerable_adaptation_sector')"
+                      tal:content="sector"></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Name & surname of mayor</h3>
+                <div tal:content="structure python: view.w['name_and_surname_of_mayor'].render()" />
+            </div>
+
+            <div>
+                <h3>Population</h3>
+                <span tal:content="structure python: view.w['population_size'].render()" /> <span i18n:translate="">inhabitants</span>
+            </div>
+
+            <div>
+                <h3>Contact person</h3>
+                <div tal:content="structure python: view.w['name_and_surname_of_contact_person'].render()" />
+                <div tal:content="structure python: view.w['role_of_contact_person'].render()" />
+            </div>
+
+            <div>
+                <h3>Official e-mail</h3>
+                <div tal:content="structure python: view.w['official_email'].render()" />
+                <a tal:attributes="href python: 'http://' + context.website_of_the_local_authority">Website</a>
+            </div>
+
+            <div>
+                <h3>Date of officially joining Mayors Adapt</h3>
+                <div tal:content="structure python: view.w['signature_date'].render()" />
+            </div>
+
+            <div>
+                <h3>Covenant of Mayors 2020 signatory</h3>
+                <div tal:content="structure python: view.w['covenant_of_mayors_signatory'].render()" />
+            </div>
+
+            <div>
+                <h3>Last Update</h3>
+                <div tal:content="python: view.formated_date(context.modified())" />
+            </div>
         </div>
-        
-        <div>
-            <strong>Key vulnerable sectors</strong><br/>
-            <div tal:content="structure python: view.w['key_vulnerable_adaptation_sector'].render()" />
-        </div>
-        
-        <div>
-            <strong>Name & surname of mayor</strong><br/>
-            <div tal:content="structure python: view.w['name_and_surname_of_mayor'].render()" />
-        </div>
-        
-        <div>
-            <strong>Population</strong><br/>
-            <div tal:content="structure python: view.w['population_size'].render()" />
-        </div>
-        
-        <div>
-            <strong>Contact person</strong><br/>
-            <div tal:content="structure python: view.w['name_and_surname_of_contact_person'].render()" />
-            <div tal:content="structure python: view.w['role_of_contact_person'].render()" />
-        </div>
-        
-        <div>
-            <strong>Official e-mail</strong><br/>
-            <div tal:content="structure python: view.w['official_email'].render()" />
-            <a tal:attributes="href python: context.website_of_the_local_authority">Website</a>
-        </div>
-        
-        <div>
-            <strong>Date of officially joining Mayors Adapt</strong><br/>
-            <div tal:content="structure python: view.w['signature_date'].render()" />
-        </div>
-        
-        <div>
-            <strong>Covenant of Mayors 2020 signatory</strong><br/>
-            <div tal:content="structure python: view.w['covenant_of_mayors_signatory'].render()" />
-        </div>
-        
-        <div>
-            <strong>Last Update</strong>
-            <div tal:content="python: view.formated_date(context.modified())" />
-        </div>
-        
+
       </tal:main-macro>
     </metal:main>
 
