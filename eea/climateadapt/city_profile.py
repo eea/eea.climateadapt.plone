@@ -29,6 +29,7 @@ class CityProfile(dexterity.Container):
     def __ac_local_roles__(self):
         req = getRequest()
         tk = req.SESSION.get('tk')
+        #import pdb; pdb.set_trace()
         if tk == self.secret:
             return {'CityMayor': ['Owner',]}
         return {}
