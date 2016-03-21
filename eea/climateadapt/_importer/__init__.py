@@ -1661,6 +1661,7 @@ def import_template_2_columns_iii(site, layout, structure):
     title = structure['column-1'][0][1]['portlet_title']
     body = structure['column-1'][0][1]['content'][0]
 
+    
     cover = create_cover_at(site, layout.friendlyurl, title=title)
     cover.aq_parent.edit(title=title)   # Fix parent title
     stamp_cover(cover, layout)
@@ -1684,8 +1685,8 @@ def import_template_2_columns_iii(site, layout, structure):
 
     title = structure['name']
 
-    main_content_tile = make_richtext_tile(cover, {'text': body,
-                                                   'title': 'Main text'})
+    main_content_tile = make_richtext_with_title_tile(cover,
+                                                      {'text': body, 'title': title})
     if image:
         image_tile = make_richtext_tile(cover, {'text': image,
                                                 'title': 'image'})
