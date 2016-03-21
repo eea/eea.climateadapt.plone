@@ -171,7 +171,7 @@
                 <description/>
                 <title>Description</title>
             </field>
-            <field name="picture" type="plone.namedfile.field.NamedBlobFile">
+            <field name="picture" type="plone.namedfile.field.NamedBlobImage">
                 <description/>
                 <required>False</required>
                 <title>Picture</title>

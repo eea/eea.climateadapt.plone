@@ -99,6 +99,7 @@ alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
 
 
 _climateimpacts = """
+aceitem-climateimpacts-lbl-FORESTFIRES=Forest Fires
 aceitem-climateimpacts-lbl-EXTREMETEMP=Extreme Temperatures
 aceitem-climateimpacts-lbl-WATERSCARCE=Water Scarcity
 aceitem-climateimpacts-lbl-FLOODING=Flooding
@@ -140,6 +141,7 @@ european_countries = ['AD', 'AL', 'AM', 'AT', 'AZ', 'BA', 'BE', 'BG', 'BY',
                       'SI', 'SK', 'SM', 'TR', 'UA']
 ace_countries = [(x.alpha2, x.name) for x in pycountry.countries
                  if x.alpha2 in european_countries]
+ace_countries.append(('FYROM', 'Former Yugoslav Republic of Macedonia'))
 ace_countries_dict = dict(ace_countries)
 ace_countries_vocabulary = generic_vocabulary(ace_countries)
 alsoProvides(ace_countries_vocabulary, IVocabularyFactory)
@@ -206,7 +208,7 @@ alsoProvides(key_vulnerable_adapt_sector_vocabulary, IVocabularyFactory)
 
 _stage_implementation_cycle = [
     ("", "Select"),
-    ("PREPARING_GROUND", "Preparing the ground."),
+    ("PREPARING_GROUND", "Preparing the ground"),
     ("ASSESSING_RISKS_VULNER", "Assessing risks and vulnerabilities"),
     ("IDENTIF_ADAPT_OPT", "Identifying adaptation options"),
     ("ASSESSING_ADAPT_OPT", "Assessing adaptation options"),
