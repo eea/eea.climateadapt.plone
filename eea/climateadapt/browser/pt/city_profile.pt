@@ -134,7 +134,8 @@
                 tal:content="structure python: view.w['title_of_the_action_event'].render()" />
             <div tal:content="structure python: view.w['description'].render()" />
         </div>
-            <img tal:replace="structure context/@@images/picture/medium" style="max-width: 100%"/>
+            <img tal:replace="structure context/@@images/picture/preview" style="max-width: 100%"
+                 tal:condition="context/picture"/>
             <small tal:content="structure python: view.w['picture_caption'].render()" />
         </div>
 

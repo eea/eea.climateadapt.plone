@@ -981,6 +981,14 @@ a.bluebutton:active {
     text-decoration: none !important;
 }
 
+tbody .ceva_de_test {
+    width : 15%;
+}
+
+tbody .table_year_css {
+    width: 10%;
+}
+
 .section-data-and-downloads .searchButton{
 border: 1px solid #a3af29;
     background: linear-gradient(to bottom,#c7d544 0,#aebe20 100%);

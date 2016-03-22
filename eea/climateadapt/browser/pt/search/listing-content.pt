@@ -13,16 +13,16 @@
     <tr tal:repeat="brain brains">
       <td tal:define="title brain/Title">
         » <a href="" tal:attributes="href python:view.cover_url(brain)">
-          <span tal:replace="python:brain.Title or 'untitled' " /> 
+          <span tal:replace="python:brain.Title or 'untitled' " />
         </a>
         <tal:nothing replace="nothing">
-        - <span tal:define="text python: view.html2text(brain.Description); 
+        - <span tal:define="text python: view.html2text(brain.Description);
                             desc python: text[:208-len(title)]">
                             <tal:cond condition="desc"><span tal:replace="desc" />...</tal:cond>
           </span>
         </tal:nothing>
       </td>
-      <td tal:define="relevance repeat/brain/index">
+      <td class="ceva_de_test" tal:define="relevance repeat/brain/index">
         <span style="display: none" tal:content="relevance" />
         <div class="relevance-marker"></div>
         <div class="relevance-marker" tal:condition="python: relevance &gt; two"></div>
@@ -34,5 +34,3 @@
     </tr>
   </tbody>
 </table>
-
-
