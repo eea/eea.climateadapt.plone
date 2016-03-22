@@ -583,16 +583,17 @@ def import_city_profile(container, journal):
                 token = t2t_map.get(values.lower())
                 if token:
                     return token
-                else:
-                    import pdb; pdb.set_trace()
+#                else:
+#                    import pdb; pdb.set_trace()
             else:
                 for v in values:
                     token = t2t_map.get(v.lower())
                     if token:
                         tokens.append(token)
-                    else:
-                        import pdb; pdb.set_trace()
+#                    else:
+#                        import pdb; pdb.set_trace()
             return tokens
+#        import pdb; pdb.set_trace()
         return t2tmap
 
     map_climate_impacts = map_titles_to_tokens(
@@ -609,6 +610,10 @@ def import_city_profile(container, journal):
         container, already_devel_adapt_strategy_vocabulary)
     map_elements = map_titles_to_tokens(
         container, aceitem_elements_vocabulary)
+    def map_to_x(x):
+#        import pdb; pdb.set_trace()
+        res = map_adaptation_strategy(x)
+        return res or ""
 
     _map = {
         'a_m_city_latitude': {'newkey': 'city_latitude'},
@@ -643,7 +648,7 @@ def import_city_profile(container, journal):
             'mapping_fnc': lambda x: dt.fromtimestamp(int(x) / 1e3).date()},
         'c_m_stage_of_the_implementation_cycle': {
             'newkey': 'stage_of_the_implementation_cycle',
-            'mapping_fnc': map_stage_of_implementation},
+            'mapping_fnc': lambda x: map_stage_of_implementation(x) or ""},
         'd_adaptation_strategy_date_of_approval': {
             'newkey': 'date_of_approval_of_the_strategy__plan',
             'mapping_fnc': lambda x: dt.fromtimestamp(int(x) / 1e3).date()},
@@ -652,7 +657,7 @@ def import_city_profile(container, journal):
         'd_adaptation_strategy_weblink': {'newkey': 'weblink_of_the_strategy__plan'},
         'd_m_developed_an_adaptationstrategy': {
             'newkey': 'have_you_already_developed_an_adaptation_strategy',
-            'mapping_fnc': map_adaptation_strategy},
+            'mapping_fnc': lambda x: map_to_x(x) or ""},
         'e_additional_information_on_adaptation_responses': {'newkey': 'additional_information_on_adaptation_responses'},
         'f_picture_caption': {'newkey': 'picture_caption'},
         'f_sectors_concerned': {
@@ -1482,13 +1487,14 @@ def import_template_1_column(site, layout, structure):
         main_title = structure['column-1'][0][1].get('title') or ""
     main_title = strip_xml(main_title) or cover_title
 
+
     cover = create_cover_at(site, layout.friendlyurl, title=cover_title)
     cover.aq_parent.edit(title=main_title)  # Fix parent title
     if layout.friendlyurl in additional_sharepage_layouts:
         alsoProvides(cover, IClimateAdaptSharePage)
     stamp_cover(cover, layout)
     def _import_two_columns():
-        content = structure['column-1'][0][1]['content']
+        content = structure['column-1'][0][1].get('content')
 
         col1 = u"".join(content)
         col2 = u"".join(structure['column-1'][1][1]['content'][0])
@@ -1661,7 +1667,7 @@ def import_template_2_columns_iii(site, layout, structure):
     title = structure['column-1'][0][1]['portlet_title']
     body = structure['column-1'][0][1]['content'][0]
 
-    
+
     cover = create_cover_at(site, layout.friendlyurl, title=title)
     cover.aq_parent.edit(title=title)   # Fix parent title
     stamp_cover(cover, layout)
