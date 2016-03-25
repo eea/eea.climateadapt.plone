@@ -1,8 +1,7 @@
-from datetime import datetime as dt
-from plone.api import portal
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFCore.utils import getToolByName
 from collections import defaultdict
+from datetime import datetime as dt
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.tweak_sql import fix_relations
 from eea.climateadapt._importer.utils import ACE_ITEM_TYPES
@@ -13,7 +12,7 @@ from eea.climateadapt._importer.utils import create_folder_at
 from eea.climateadapt._importer.utils import create_plone_content
 from eea.climateadapt._importer.utils import extract_portlet_info
 from eea.climateadapt._importer.utils import extract_simplified_info_from_article_content
-from eea.climateadapt._importer.utils import get_image_by_imageid
+from eea.climateadapt._importer.utils import get_repofile_by_id
 from eea.climateadapt._importer.utils import localize
 from eea.climateadapt._importer.utils import log_call
 from eea.climateadapt._importer.utils import logger
@@ -52,20 +51,22 @@ from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.climateadapt.vocabulary import _cca_types
 from eea.climateadapt.vocabulary import ace_countries_vocabulary
-from eea.climateadapt.vocabulary import stage_implementation_cycle_vocabulary
-from eea.climateadapt.vocabulary import status_of_adapt_signature_vocabulary
 from eea.climateadapt.vocabulary import aceitem_climateimpacts_vocabulary
+from eea.climateadapt.vocabulary import aceitem_elements_vocabulary
 from eea.climateadapt.vocabulary import already_devel_adapt_strategy_vocabulary
 from eea.climateadapt.vocabulary import key_vulnerable_adapt_sector_vocabulary
-from eea.climateadapt.vocabulary import aceitem_elements_vocabulary
+from eea.climateadapt.vocabulary import stage_implementation_cycle_vocabulary
+from eea.climateadapt.vocabulary import status_of_adapt_signature_vocabulary
 from eea.facetednavigation.layout.interfaces import IFacetedLayout
 from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
+from persistent.list import PersistentList
+from plone.api import portal
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from pytz import utc
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-from subprocess import check_output
 from z3c.relationfield.relation import RelationValue
+from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.interface import alsoProvides, noLongerProvides
@@ -75,9 +76,11 @@ import dateutil
 import json
 import os
 import pprint
-import re
 import sys
 import transaction
+
+#import re
+#from subprocess import check_output
 
 
 session = None      # this will be a global bound to the current module
@@ -212,14 +215,14 @@ def import_casestudy(data, location):
     intids = getUtility(IIntIds)
     primephoto = None
     if data.primephoto:
-        primephoto = get_image_by_imageid(location.aq_inner.aq_parent,
+        primephoto = get_repofile_by_id(location.aq_inner.aq_parent,
                                         data.primephoto)
     primephoto = primephoto and RelationValue(intids.getId(primephoto)) or None
     supphotos = []
     supphotos_str = data.supphotos is not None and data.supphotos or ''
     for supphotoid in supphotos_str.split(';'):
-        supphoto = get_image_by_imageid(location.aq_inner.aq_parent,
-                                        supphotoid)
+        supphoto = get_repofile_by_id(location.aq_inner.aq_parent,
+                                      supphotoid)
         if supphoto:
             supphotos.append(RelationValue(intids.getId(supphoto)))
     item = createAndPublishContentInContainer(
@@ -269,76 +272,29 @@ def import_casestudy(data, location):
 
 @log_call
 def import_image(data, location):
+    name = "{0}.{1}/1.0".format(data.imageid, data.type_)
+    #str(data.imageid) + '.' + data.type_ + '/1.0'
     try:
-        name = str(data.imageid) + '.' + data.type_ + '/1.0'
         file_data = open('./document_library/0/0/' + name).read()
-    except Exception:
+    except IOError:
         logger.warning("Image with id %d does not exist in the supplied "
                        "document library", data.imageid)
         return None
 
+    filename = unicode("{0}.{1}".format(data.imageid, data.type_))
     item = createAndPublishContentInContainer(
         location,
         'Image',
-        title='Image ' + str(data.imageid),
-        id=str(data.imageid) + '.' + data.type_,
-        image=NamedBlobImage(
-            filename=str(data.imageid) + data.type_,
-            data=file_data
-        )
+        title='Image {0}'.format(filename),
+        id=filename,
+        image=NamedBlobImage(filename=filename, data=file_data)
     )
+    info = map(str, [data.imageid])
+    IAnnotations(item)['eea.climateadapt.imported_ids'] = PersistentList(info)
 
     item.reindexObject()
     logger.info("Imported image %s from sql Image %s",
                 item.absolute_url(1), data.imageid)
-
-    return item
-
-@log_call
-def import_dlfileversion(data, location):
-    base_path = check_output([
-        'find',
-        './document_library',
-        '-iname', '%s.%s' % (str(data.fileversionid),
-                             data.extension)]).rstrip('\n')
-    file_path = os.path.join(base_path, data.version)
-    _r = "./document_library/%s/0/document_thumbnail/%s/[^/]*/[^/]*/%s/%s.%s/%s"
-    regexp = _r % (data.companyid,
-                   data.repositoryid,  # or groupid
-                   data.fileentryid,
-                   data.fileversionid,
-                   data.extension,
-                   data.version)
-    if not (os.path.isfile(file_path) and re.match(regexp, file_path)):
-        # there is no file and no match
-        logger.info('DEBUG dlfileversion NO MATCH: ' + file_path)
-        return
-    logger.info('FOUND dlfileversion: ' + file_path)
-
-    try:
-        file_data = open(file_path).read()
-    except Exception:
-        logger.warning("Image with id %d does not exist in the supplied "
-                       "document library", data.imageid)
-        return None
-
-    item = createAndPublishContentInContainer(
-        location,
-        'Image',
-        #title='Image ' + str(data.fileversionid),
-        title=data.title,
-        description=data.description,
-        id=str(data.fileversionid) + '.' + data.extension,
-        image=NamedBlobImage(
-            filename=str(data.fileversionid) + '.' + data.extension,
-            data=file_data
-        )
-    )
-
-    item._uuid = data.uuid_
-    item.reindexObject()
-    logger.info("Imported image %s from sql Image %s",
-                item.absolute_url(1), data.fileversionid)
 
     return item
 
@@ -389,6 +345,8 @@ def import_dlfileentry(data, location):
         return None
 
     file_data = open(fpath).read()
+    # filename = str(data.name) + '.' + data.extension
+    filename = unicode("{0}.{1}".format(data.fileentryid, data.extension))
 
     if 'jpg' in data.extension or 'png' in data.extension:
         item = createAndPublishContentInContainer(
@@ -396,11 +354,8 @@ def import_dlfileentry(data, location):
             'Image',
             title=data.title,
             description=data.description,
-            id=str(data.name) + '.' + data.extension,
-            image=NamedBlobImage(
-                filename=str(data.name) + '.' + data.extension,
-                data=file_data
-            )
+            id=filename,
+            image=NamedBlobImage(filename=filename, data=file_data)
         )
     else:
         item = createAndPublishContentInContainer(
@@ -408,14 +363,18 @@ def import_dlfileentry(data, location):
             'File',
             title=data.title,
             description=data.description,
-            id=str(data.name) + '.' + data.extension,
-            file=NamedBlobFile(
-                filename=str(data.name) + '.' + data.extension,
-                data=file_data
-            )
+            id=filename,
+            file=NamedBlobFile(filename=filename, data=file_data)
         )
 
-    item._uuid = data.uuid_
+    #item._uuid = data.uuid_
+    info = map(str, [data.uuid_,
+                     data.name,
+                     data.fileentryid,
+                     data.largeimageid,
+                     #data.smallimageid,
+                     ])
+    IAnnotations(item)['eea.climateadapt.imported_ids'] = PersistentList(info)
 
     logger.info("Imported %s from sql dlentry %s",
                 item.absolute_url(1), data.fileentryid)
@@ -735,7 +694,7 @@ def import_city_profile(container, journal):
             mapped_data[newkey] = val
 
     if data.get('f_picture'):
-        img = get_image_by_imageid(portal.get(), data['f_picture'])
+        img = get_repofile_by_id(portal.get(), data['f_picture'])
         if img:
             mapped_data['picture'] = img.image
 
@@ -900,7 +859,7 @@ def import_template_transnationalregion(site, layout, structure):
     stamp_cover(cover, layout)
 
     #image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
-    image = get_image_by_imageid(site, image_info['id'])
+    image = get_repofile_by_id(site, image_info['id'])
     image_tile = make_countries_dropdown_tile(cover, image)
     content_tile = make_richtext_tile(cover, {'title': 'main content',
                                               'text': main_content})
@@ -945,7 +904,7 @@ def import_template_ace_layout_2(site, layout, structure):
     body = structure['column-1'][0][1]['content'][2][2][0]
     readmore = structure['column-1'][0][1]['content'][3][2][0]
     image_id = structure['column-1'][0][1]['content'][0][2][0]
-    image = get_image_by_imageid(site, image_id)
+    image = get_repofile_by_id(site, image_id)
 
     main['title'] = title
     main['body'] = body
@@ -1068,7 +1027,7 @@ def import_template_ace_layout_3(site, layout, structure):
 
     main['image'].update({'title': '', 'thumb': ''})
     if main['image']['id']:
-        image = get_image_by_imageid(site, main['image']['id'])
+        image = get_repofile_by_id(site, main['image']['id'])
         if image is not None:
             main['image'].update({
                 'title': image.Title(),
@@ -1212,7 +1171,7 @@ def import_template_ace_layout_4(site, layout, structure):
             table = {'rows': v, 'cols': []}
             payload.append((k, render('templates/table.pt', table)))
 
-    image = get_image_by_imageid(site, main['image'])
+    image = get_repofile_by_id(site, main['image'])
     accordion = render_accordion(payload)
 
     main_text = render('templates/project.pt',
@@ -1971,6 +1930,8 @@ def run_importer(site=None):
             cover = import_layout(layout, site)
         except:
             logger.exception("Couldn't import layout %s", layout.friendlyurl)
+            #import pdb; pdb.set_trace()
+            #raise ValueError
         if cover:
             cover._imported_comment = \
                 "Imported from layout {0} - {1}".format(layout.layoutid,
@@ -2183,3 +2144,53 @@ def import_handler(context):
 
     site = context.getSite()
     run_importer(site)
+
+
+# @log_call
+# def import_dlfileversion(data, location):
+#     base_path = check_output([
+#         'find',
+#         './document_library',
+#         '-iname', '%s.%s' % (str(data.fileversionid),
+#                              data.extension)]).rstrip('\n')
+#     file_path = os.path.join(base_path, data.version)
+#     _r = "./document_library/%s/0/document_thumbnail/%s/[^/]*/[^/]*/%s/%s.%s/%s"
+#     regexp = _r % (data.companyid,
+#                    data.repositoryid,  # or groupid
+#                    data.fileentryid,
+#                    data.fileversionid,
+#                    data.extension,
+#                    data.version)
+#     if not (os.path.isfile(file_path) and re.match(regexp, file_path)):
+#         # there is no file and no match
+#         logger.info('DEBUG dlfileversion NO MATCH: ' + file_path)
+#         return
+#     logger.info('FOUND dlfileversion: ' + file_path)
+#
+#     try:
+#         file_data = open(file_path).read()
+#     except Exception:
+#         logger.warning("Image with id %d does not exist in the supplied "
+#                        "document library", data.imageid)
+#         return None
+#
+#     item = createAndPublishContentInContainer(
+#         location,
+#         'Image',
+#         #title='Image ' + str(data.fileversionid),
+#         title=data.title,
+#         description=data.description,
+#         id=str(data.fileversionid) + '.' + data.extension,
+#         image=NamedBlobImage(
+#             filename=str(data.fileversionid) + '.' + data.extension,
+#             data=file_data
+#         )
+#     )
+#
+#     item._uuid = data.uuid_
+#     item.reindexObject()
+#     logger.info("Imported image %s from sql Image %s",
+#                 item.absolute_url(1), data.fileversionid)
+#
+#     return item
+

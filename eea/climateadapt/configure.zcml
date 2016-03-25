@@ -44,7 +44,7 @@
         />
 
 
-    <adapter name="imported_uuid" factory=".catalog.imported_uuid" />
+    <adapter name="imported_ids" factory=".catalog.imported_ids" />
     <adapter name="aceitem_id" factory=".catalog.aceitem_id" />
     <adapter name="acemeasure_id" factory=".catalog.acemeasure_id" />
     <adapter name="aceproject_id" factory=".catalog.aceproject_id" />

@@ -929,7 +929,7 @@ def make_image_tile(site, cover, info):
     tile = cover.restrictedTraverse('@@%s/%s' % (type_name, id))
 
     imageid = info['id']
-    image = get_image_by_imageid(site, imageid)
+    image = get_repofile_by_id(site, imageid)
     tile.populate_with_object(image)
     return {
         'tile-type': type_name,
@@ -1134,42 +1134,8 @@ def pack_to_table(data):
     return {'rows': rows, 'cols': [m[x] for x in visited]}
 
 
-def get_param_from_link(text, param='uuid'):
-    link = urlparse.urlparse(text)
-    d = urlparse.parse_qs(link.query)
-    if param in d:
-        return d[param][0]
-
-
-def get_image_from_link(site, link):
-    """ Returns a Plone image object by extracting needed info from a link
-    """
-    # a link can have either uuid or img_id
-
-    if "@@images" in link:
-        return link     # this is already a Plone link
-
-    uuid = get_param_from_link(link, 'uuid')
-    if uuid:
-        return get_repofile_by_uuid(site, uuid)
-
-    try:
-        # some links are like: /documents/18/11231805/urban_ast_step0.png/38b047f5-65be-4fcd-bdd6-3bd9d52cd83d?t=1411119161497
-        uuid = UUID_RE.search(link).group()
-        return get_repofile_by_uuid(site, uuid)
-    except Exception:
-        pass
-
-    image_id = get_param_from_link(link, 'img_id')
-    if image_id:
-        return get_image_by_imageid(site, image_id)
-
-    return link     #TODO: put the error back
-    raise ValueError("Image not found for link: {0}".format(link))
-
-
 def localize(obj, site):
-    # returns the path to an object localized to the website
+    """ Returns the path to an object, localized to the website"""
     path = obj.getPhysicalPath()
     site_path = site.getPhysicalPath()
     return '/' + '/'.join(path[len(site_path):])
@@ -1180,13 +1146,7 @@ def fix_inner_link(site, href):
     href = href.strip()
 
     # TODO: fix links like:
-    #     /viewaceitem?aceitem_id=8434
-    #     /viewmeasure?ace_measure_id=1102
-    # http://climate-adapt.eea.europa.eu/viewmeasure?ace_measure_id=3311
     # http://climate-adapt.eea.europa.eu/web/guest/uncertainty-guidance/topic2?p_p_id=56_INSTANCE_qWU5&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1#How+are+uncertainties+quantified%3F
-    # http://localhost:8001/Plone/repository/11245406.jpg/@@images/image
-    # http://climate-adapt.eea.europa.eu/projects1?ace_project_id=55
-
 
     starters = [
         'http://climate-adapt.eea.europa.eu/',
@@ -1211,14 +1171,16 @@ def fix_inner_link(site, href):
 
     uuid = get_param_from_link(href, 'uuid')
     if uuid:
-        return get_repofile_by_uuid(site, uuid)
+        return get_repofile_by_id(site, uuid)
 
-    try:
         # some links are like: /documents/18/11231805/urban_ast_step0.png/38b047f5-65be-4fcd-bdd6-3bd9d52cd83d?t=1411119161497
-        uuid = UUID_RE.search(href).group()
-        return get_repofile_by_uuid(site, uuid)
-    except Exception:
-        logger.debug("Couldn't find proper equivalent link for %s", href)
+    res = UUID_RE.search(href)
+    if res:
+        uuid = res.group()
+        return get_repofile_by_id(site, uuid)
+    else:
+        logger.error("Couldn't find proper equivalent link for %s", href)
+        #import pdb; pdb.set_trace()
         return href
 
     return href
@@ -1226,14 +1188,14 @@ def fix_inner_link(site, href):
 
 def fix_links(site, text):
 
-    f = open('/tmp/links.txt', 'a+')
+    #f = open('/tmp/links.txt', 'a+')
 
     from lxml.html.soupparser import fromstring
     e = fromstring(text)
 
     for img in e.xpath('//img'):
         src = img.get('src')
-        f.write((src or '').encode('utf-8') + "\n")
+        #f.write((src or '').encode('utf-8') + "\n")
 
         image = get_image_from_link(site, src)
 
@@ -1247,7 +1209,7 @@ def fix_links(site, text):
 
     for a in e.xpath('//a'):
         href = a.get('href')
-        f.write((href or '').encode('utf-8') + "\n")
+        #f.write((href or '').encode('utf-8') + "\n")
         if href is not None:
             res = fix_inner_link(site, href)
             if not res:
@@ -1258,7 +1220,7 @@ def fix_links(site, text):
                 logger.info("Change link %s to %s", href, res)
                 a.set('href', res)
 
-    f.close()
+    #f.close()
     return lxml.html.tostring(e, encoding='unicode', pretty_print=True)
 
 
@@ -1266,58 +1228,138 @@ UUID_RE = re.compile(
     "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
 )
 
-def get_image_by_imageid(site, imageid):
-    if isinstance(imageid, basestring):
-        imageid = imageid.strip()
-        if not imageid:
+
+def get_repofile_by_id(site, id):
+    if isinstance(id, basestring):
+        id = id.strip()
+        if not id:
             return None
+    elif isinstance(id, (list, tuple)):
+        id = id[0]
 
-    repo = site['repository']
-    reg = re.compile(str(imageid) + '.[jpg|png]')
-
-    ids = [m.string for m in [reg.match(cid) for cid in repo.contentIds()] if m]
-
-    if len(ids) != 1:
-        # we will try to find it by uuid
-        from eea.climateadapt._importer import session
-        from eea.climateadapt._importer import sql
-
-        uuids = session.query(sql.Dlfileentry.uuid_).filter_by(
-            fileentryid=int(imageid)).all()
-        if uuids:
-            uuid = uuids[0]
-            return get_repofile_by_uuid(site, uuid)
-        else:
-            logger.error("Couldn't find image by id %s", imageid)
-            return None
-
-        # try:
-        #     # uuid = session.query(sql.Dlfileentry.uuid_
-        #     #                     ).filter_by(largeimageid=imageid).one()[0]
-        # except:
-        #     logger.error("Couldn't find image by id %s", imageid)
-        #     # logger.info("Let's try with dlfileversion by id %s" % imageid)
-        #     # try:
-        #     #     uuid = session.query(sql.Dlfileversion.uuid_).filter(
-        #     #         sql.Dlfileversion.fileentryid==long(imageid)).one()[0]
-        #     #     return get_repofile_by_uuid(site, uuid)
-        #     # except:
-        #     #     return None
-        #     return None
-
-    return repo[ids[0]]
-
-
-def get_repofile_by_uuid(site, uuid):
     catalog = site['portal_catalog']
-    if isinstance(uuid, (list, tuple)):
-        uuid = uuid[0]
-    brains = catalog.searchResults(imported_uuid=uuid)
+    brains = catalog.searchResults(imported_ids=id)
     if not brains:
-        logger.error("Could not find in catalog image by uuid %s", uuid)
+        logger.error("Could not find in catalog image by id %s", id)
+        return
+
+    if len(brains) != 1:
+        logger.error("Multiple images found for", id)
         return
 
     return brains[0].getObject()
+
+
+# def get_image_by_imageid(site, imageid):
+#     if isinstance(imageid, basestring):
+#         imageid = imageid.strip()
+#         if not imageid:
+#             return None
+#
+#     catalog = site['portal_catalog']
+#     if isinstance(uuid, (list, tuple)):
+#         uuid = uuid[0]
+#     brains = catalog.searchResults(imported_uuid=uuid)
+#     if not brains:
+#         logger.error("Could not find in catalog image by uuid %s", uuid)
+#         return
+#
+#     return brains[0].getObject()
+
+#   # repo = site['repository']
+#   # reg = re.compile(str(imageid) + '.[jpg|png]')
+#   #
+#   # ids = [m.string for m in [reg.match(cid) for cid in repo.contentIds()] if m]
+#   #
+#   # if len(ids) != 1:
+#   #     # we will try to find it by uuid
+#   #     from eea.climateadapt._importer import session
+#   #     from eea.climateadapt._importer import sql
+#   #
+#   #     uuids = session.query(sql.Dlfileentry.uuid_).filter_by(
+#   #         fileentryid=int(imageid)).all()
+#   #     if uuids:
+#   #         uuid = uuids[0]
+#   #         return get_repofile_by_uuid(site, uuid)
+#   #     else:
+#   #         logger.error("Couldn't find image by id %s", imageid)
+#   #         return None
+#   #
+#   #     # try:
+#   #     #     # uuid = session.query(sql.Dlfileentry.uuid_
+#   #     #     #                     ).filter_by(largeimageid=imageid).one()[0]
+#   #     # except:
+#   #     #     logger.error("Couldn't find image by id %s", imageid)
+#   #     #     # logger.info("Let's try with dlfileversion by id %s" % imageid)
+#   #     #     # try:
+#   #     #     #     uuid = session.query(sql.Dlfileversion.uuid_).filter(
+#   #     #     #         sql.Dlfileversion.fileentryid==long(imageid)).one()[0]
+#   #     #     #     return get_repofile_by_uuid(site, uuid)
+#   #     #     # except:
+#   #     #     #     return None
+#   #     #     return None
+#   #
+#   # return repo[ids[0]]
+
+
+#ef get_repofile_by_uuid(site, uuid):
+#   return
+#   # catalog = site['portal_catalog']
+#   # if isinstance(uuid, (list, tuple)):
+#   #     uuid = uuid[0]
+#   # brains = catalog.searchResults(imported_uuid=uuid)
+#   # if not brains:
+#   #     logger.error("Could not find in catalog image by uuid %s", uuid)
+#   #     return
+#   #
+#   # return brains[0].getObject()
+
+
+def get_param_from_link(text, param='uuid'):
+    """ Extracts a query parameter from a link text
+    """
+    link = urlparse.urlparse(text)
+    d = urlparse.parse_qs(link.query)
+    if param in d:
+        return d[param][0]
+
+
+def get_image_from_link(site, link):
+    """ Returns a Plone image object by extracting needed info from a link
+    """
+
+    # The logic is as followes:
+    # images can be linked like: /something/?img_id=ZZZ  or /something/?uuid=ZZZ
+    # or even /documents/18/11231805/urban_ast_step0.png/38b047f5-65be-4fcd-bdd6-3bd9d52cd83d?t=1411119161497
+    # when imported from the database, they have been imported from two tables:
+    # "image" and "dlfileentry"
+    # The images are saved in the /repository/ folder in the Portal,
+    # with an id of data.extension (for dlfileentry) and data.type_ (for images)
+    # The dlfileentry also have the uuids, but they are sometimes linked
+    # also with the largeimageid (or smallimageid), or data.name
+    # a link can have either uuid or img_id
+
+    if "@@images" in link:
+        return link     # this is already a Plone link
+
+    uuid = get_param_from_link(link, 'uuid')
+    if uuid:
+        return get_repofile_by_id(site, uuid)
+
+
+    res = UUID_RE.search(link)
+    if res:
+        # some links are like: /documents/18/11231805/urban_ast_step0.png/38b047f5-65be-4fcd-bdd6-3bd9d52cd83d?t=1411119161497
+        uuid = res.group()
+        return get_repofile_by_id(site, uuid)
+
+    image_id = get_param_from_link(link, 'img_id')
+    if image_id:
+        return get_repofile_by_id(site, image_id)
+
+    #raise ValueError("Image not found for link: {0}".format(link))
+    print("Image not found for link: {0}".format(link))
+    return link     #TODO: put the error back
 
 
 MAP_OF_OBJECTS = defaultdict(lambda:{})

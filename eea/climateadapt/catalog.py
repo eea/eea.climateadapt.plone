@@ -1,13 +1,16 @@
 from collective.cover.interfaces import ICover
 from plone.indexer import indexer
+from zope.annotation.interfaces import IAnnotations
 from zope.interface import Interface
 import json
 
 
 @indexer(Interface)
-def imported_uuid(object):
-    if hasattr(object, "_uuid"):
-        return object._uuid
+def imported_ids(object):
+    annot = IAnnotations(object).get('eea.climateadapt.imported_ids')
+    if annot is None:
+        return
+    return list(annot)
 
 
 @indexer(Interface)

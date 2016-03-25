@@ -43,8 +43,8 @@
         <indexed_attr value="countries"/>
     </index>
 
-    <index name="imported_uuid" meta_type="FieldIndex">
-        <indexed_attr value="imported_uuid"/>
+    <index name="imported_ids" meta_type="KeywordIndex">
+        <indexed_attr value="imported_ids"/>
     </index>
 
     <index name="aceitem_id" meta_type="FieldIndex">
