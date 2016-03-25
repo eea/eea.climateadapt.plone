@@ -1,0 +1,559 @@
+<metal:use-macro use-macro="context/main_template/macros/master">
+  <metal:fill-slot fill-slot="style_slot">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css"/>
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css"/>
+    <link rel="styleshhet" href="/++theme++climateadapt/static/jquery.qtip.css"/>
+    <link href="http://cca.ro/portal_css/Sunburst%20Theme/columns.css" rel="stylesheet" />
+  </metal:fill-slot>
+
+  <metal:fill-slot fill-slot="javascript_head_slot">
+
+
+    <script type="text/javascript" src="/++theme++climateadapt/static/jquery.qtip.min.js"></script>
+    <script>
+    Array.prototype.unique2 = function ()
+    {
+    	var n = {}, r = [];
+    	for (var i = 0; i < this.length; i++)
+    	{
+    		if (!n[this[i]])
+    		{
+    			n[this[i]] = true;
+    			r.push(this[i]);
+    		}
+    	}
+    	return r;
+    }
+    var dojoConfig = {parseOnLoad: true};
+
+    </script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://js.arcgis.com/3.13compact"></script>
+    <script type="text/javascript" src="/++theme++climateadapt/static/jquery.qtip.min.js"></script>
+    <!-- <script type="text/javascript" src="++resource++plone.app.widgets.js"></script> -->
+  </metal:fill-slot>
+
+<metal:fill-slot fill-slot="content-title">
+  <h1> Countries </h1>
+</metal:fill-slot>
+  <metal:fill-slot fill-slot="content-core">
+
+    <div class="cover-richtext-tile tile-content">
+      <style type="text/css">
+        #mapDiv,
+        .map.container,
+        body,
+        html {
+          padding: 0;
+          margin: 0;
+          height: 100%;
+        }
+        #legendDiv {
+          background-color: #fff;
+          top: 10px;
+          right: 20px;
+          width: 300px;
+          height: 300px;
+        }
+        #contenidoCombos {
+          position: absolute;
+          top: 0;
+          right: 10px;
+          height: 100%;
+          width: 300px;
+        }
+        #contenidoMapa {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 320px;
+          height: 100%;
+        }
+        #contenido {
+          position: relative;
+          height: 500px;
+        }
+        #HomeButton {
+          position: absolute;
+          top: 95px;
+          left: 20px;
+          z-index: 50;
+        }
+        #search {
+          display: block;
+          position: absolute;
+          z-index: 2;
+          top: 20px;
+          left: 74px;
+        }
+        #hover-content {
+          display: none;
+        }
+        #disclaimer:hover #hover-content {
+          display: block;
+        }
+        #disclaimer {
+          color: #009ae5;
+        }
+        #colorLink,
+        #xDialog {
+          color: #0057E5;
+          font-weight: bold;
+        }
+
+      </style>
+
+      <script>
+        var map;
+        var capita;
+        var symboler = null;
+        var styleGenerator = null;
+        var thematicField = "";
+
+        require([
+          "esri/map",
+          "esri/arcgis/utils",
+          "esri/layers/FeatureLayer",
+          "esri/symbols/SimpleFillSymbol",
+          "esri/symbols/SimpleLineSymbol",
+          "esri/renderers/SimpleRenderer",
+          "esri/graphic",
+          "esri/lang",
+          "esri/Color",
+          "dojo/number",
+          "dojo/dom-style",
+          "dijit/TooltipDialog",
+          "dijit/popup",
+          "esri/dijit/HomeButton",
+          "esri/dijit/Search",
+          "esri/dijit/Legend",
+          "esri/tasks/query",
+          "esri/tasks/QueryTask",
+          "esri/renderers/UniqueValueRenderer",
+          "esri/symbols/SimpleMarkerSymbol",
+          "esri/renderers/ClassBreaksRenderer",
+          "dojo/domReady!"
+        ], function (Map, arcgisUtils, FeatureLayer, SimpleFillSymbol, SimpleLineSymbol, SimpleRenderer, Graphic, esriLang, Color, number, domStyle, TooltipDialog, dijitPopup, HomeButton, Search, Legend, Query, QueryTask, UniqueValueRenderer, SimpleMarkerSymbol, ClassBreaksRenderer) {
+
+          /*var startExtent = new esri.geometry.Extent(-9011008.390480462, 2469896.302801029, 9011008.390480462, 12253835.923300989,
+      			new esri.SpatialReference({wkid:102100}) );
+      		map = new Map("mapDiv", { basemap: "streets", extent: startExtent, slider: true });
+      		*/
+
+          map = new Map("mapDiv", {
+            //basemap: new esri.layers.ArcGISTiledMapServiceLayer("http://bio.discomap.eea.europa.eu/arcgis/rest/services/Internal/GetRestMap_Boundaries_WM/MapServer"),
+            basemap: "streets",
+            center: [
+              12, 55
+            ],
+            zoom: 3,
+            slider: true
+          });
+
+          //http://bio.discomap.eea.europa.eu/arcgis/rest/services/Internal/GetRestMap_Boundaries_WM/MapServer http://land.discomap.eea.europa.eu/arcgis/rest/services/Background/Background_Cashed_WGS84/MapServer
+
+          /*
+      		map = new Map("mapDiv", {
+      			basemap: "streets",
+      			center: [0, 55],
+      			zoom: 4,
+      			slider: true
+      		});
+      		*/
+          //var baseMapLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://bio.discomap.eea.europa.eu/arcgis/rest/services/Internal/GetRestMap_Boundaries_WM/MapServer"); map.addLayer(baseMapLayer);
+
+          var home = new HomeButton({
+            map: map
+          }, "HomeButton");
+          home.startup();
+
+          /*
+      		var s = new Search({
+      			map: map
+      		}, "search");
+      		s.startup();
+      		*/
+
+          dialog = new TooltipDialog({id: "tooltipDialog", style: "position: absolute; width: 250px; font: normal normal normal 10pt Helvetica;z-index:100"});
+          dialog.startup();
+
+          var highlightSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([255, 0, 0]), 3), new Color([125, 125, 125, 0.35]));
+
+          var paises = new FeatureLayer("http://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/COUNTRIES_MA_LIG/FeatureServer/0", {
+            mode: FeatureLayer.MODE_SNAPSHOT,
+            outFields: [
+              "COUNTRY_1",
+              "LINK",
+              "NATIONAL_ADA",
+              "PLANS",
+              "IMPACTS",
+              "CLIMATE",
+              "WEB_PORTAL",
+              "PLATFORM",
+              "UNFCCC"
+            ]
+          });
+
+          var kosovo = new FeatureLayer("http://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/Kosovo/FeatureServer/0", {
+            mode: FeatureLayer.MODE_SNAPSHOT,
+            outFields: [
+              "COUNTRY_1",
+              "LINK",
+              "NATIONAL1",
+              "NATIONAL2",
+              "PLANS1",
+              "PLANS2",
+              "IMPACTS1",
+              "IMPACTS2",
+              "CLIMATE1",
+              "CLIMATE2",
+              "MINISTRIES",
+              "MINISTRI_1",
+              "PLATFORM1",
+              "PLATFORM2",
+              "UNFCCC1",
+              "UNFCCC2"
+            ]
+          });
+
+          //var raster = new esri.layers.ArcGISTiledMapServiceLayer("http://bio.discomap.eea.europa.eu/arcgis/rest/services/Internal/GetRestMap_Boundaries_WM/MapServer"); map.addLayer(raster);
+
+          function criteriaFilter() {
+            var pais = $("#country").val();
+            paises.setDefinitionExpression("f3 like '" + pais + "'");
+          }
+          //document.getElementById("criteriaButton").onclick = criteriaFilter;
+
+          function removeLayer() {
+            map.removeLayer(paises);
+          }
+          //document.getElementById("removeButton").onclick = removeLayer;
+
+          function addLayer() {
+            map.addLayer(paises);
+          }
+          //document.getElementById("addButton").onclick = addLayer;
+
+          function zoneFilter() {
+            var pais = $("#country").val();
+            paises.setDefinitionExpression("f3 like '" + pais + "'");
+          }
+          //document.getElementById("zoneButton").onclick = zoneFilter; listen for the click event on country
+          paises.on("click", function (evt) {
+            var t = "$\{LINK\}";
+            var content = esriLang.substitute(evt.graphic.attributes, t);
+            document.location.href = content;
+          });
+
+          //listen for when the onMouseOver event fires on the countiesGraphicsLayer when fired, create a new graphic with the geometry from the event.graphic and add it to the maps graphics layer
+          paises.on("mouse-over", function (evt) {
+            map.graphics.clear();
+            aux = "$\{" + thematicField + "\}";
+            //console.log("Antes de convert: " + aux);
+            var convert = esriLang.substitute(evt.graphic.attributes, aux);
+            var resFinal = "<b>No links.</b>";
+            if (convert.length > 1) {
+              resFinal = "<b>Links:</b><br/><ul>";
+              //console.log("Convert: " + convert);
+              var urls = convert.split("¬");
+              for (var i = 0; i < urls.length; i++) {
+                if (urls[0] == "NO_VALUE") {
+                  resFinal = "<b>No Information available for this country.</b>";
+                  break;
+                }
+                if (urls[i].length > 0) {
+                  if (urls[i].length > 2) {
+                    var texto = urls[i].split("|");
+                    //console.log("Texto:"); console.log(texto);
+                    if (texto[1] === undefined || texto[1] == "" || texto[1] == " ") {
+                      texto[1] = "Link " + (i + 1);
+                    }
+                    resFinal += "<li style='line-height: 15px !important;'><a target='_blank' id='colorLink' href='" + texto[0] + "'>" + texto[1] + "</a></li>";
+                  }
+                }
+              }
+              resFinal += "</ul>";
+            }
+
+            var t = "<b><div style='float:left'><b><a id='colorLink' href='$\{LINK\}'>$\{COUNTRY_1\}</a></b></div><div style='float:right'><b><a id='xDialog' style='cursor: pointer;padding-right: 5px;'>X</a></b></div><br/><hr>" + resFinal + "<br>";
+
+            var content = esriLang.substitute(evt.graphic.attributes, t);
+            var highlightGraphic = new Graphic(evt.graphic.geometry, highlightSymbol);
+            //map.graphics.add(highlightGraphic);
+
+            dialog.setContent(content);
+
+            domStyle.set(dialog.domNode, "opacity", 0.85);
+            dijitPopup.open({popup: dialog, x: evt.pageX, y: evt.pageY});
+
+            document.getElementById("xDialog").onclick = function (evt) {
+              map.graphics.clear();
+              dijitPopup.close(dialog);
+            };
+          });
+
+          //Thematics
+
+          paises.on("load", paisesCargadas);
+
+          var queryTask = new QueryTask("http://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/COUNTRIES_MA/FeatureServer/0");
+
+          var query = new Query();
+
+          function paisesCargadas() {
+            capita = paises;
+
+            // Thematics Select
+            var thematicName = [
+              "National adaptation strategy",
+              "Action plans",
+              "Impacts, vulnerability and adaptation assessments",
+              "Climate services / Met office",
+              "Adaptation platform",
+              "Web portal",
+              "National Communication to the UNFCCC"
+            ];
+            var thematicId = [
+              "NATIONAL_ADA",
+              "PLANS",
+              "IMPACTS",
+              "CLIMATE",
+              "PLATFORM",
+              "WEB_PORTAL",
+              "UNFCCC"
+            ]
+
+            var x = document.getElementById("thematic_field");
+            for (var i = 0; i < thematicName.length; i++) {
+              var option = document.createElement("option");
+              option.text = thematicName[i];
+              option.value = thematicId[i];
+              x.add(option);
+            }
+
+            x.onchange = ejectuar;
+
+            query.returnGeometry = false;
+            query.where = "1=1";
+            query.outFields = [];
+
+            paises.on("load", null);
+          }
+
+          function ejectuar() {
+            var aux = document.getElementById('thematic_field').value;
+            var auxiliar = aux.substring(0, aux.indexOf("|"));
+            //auxiliar = aux; console.log("Auxiliar: " + auxiliar);
+            query.outFields = [];
+            query.outFields.push(auxiliar);
+            queryTask.execute(query, showResults);
+          }
+
+          function removeOptions(selectbox) {
+            var i;
+            for (i = selectbox.options.length - 1; i >= 0; i--) {
+              selectbox.remove(i);
+            }
+          }
+
+          var opciones2 = new Array();
+
+          function showResults(results) {
+            var opciones2 = new Array();
+
+            var resultItems = [];
+            var resultCount = results.features.length;
+            for (var i = 0; i < resultCount; i++) {
+              var featureAttributes = results.features[i].attributes;
+              for (var attr in featureAttributes) {
+                //   resultItems.push("<b>" + attr + ":</b>  " + featureAttributes[attr] + "<br>");
+                opciones2.push(featureAttributes[attr]);
+              }
+
+              // resultItems.push("<br>");
+            }
+          }
+
+          function buttonClicked() {
+            var atributosColores1 = ["null"];
+            var atributosColores2 = ["#0080FF"];
+            var atributosColores3 = ["#808080"];
+            var renderer = null;
+
+            // Dependiendo del tipo de geometría se usa un symbolizer u otro.
+            switch (capita.geometryType) {
+              case "esriGeometryPoint":
+                symboler = pointSymboler;
+                break;
+              case "esriGeometryPolygon":
+                symboler = polygonSymboler;
+                break;
+
+              default:
+                break;
+            }
+
+            var campito = null;
+            thematicField = document.getElementById('thematic_field').value;
+            var campitoName = thematicField;
+            //campitoName = thematicField; console.log("thematicField: " + thematicField); console.log("campitoName: " + campitoName);
+            for (var i = 0; i < capita.fields.length; i++) {
+              if (capita.fields[i].name == campitoName) {
+                campito = capita.fields[i];
+              }
+            }
+
+            //Depending on field type -> Renderer type.
+            switch (campito.type) {
+              case "esriFieldTypeString":
+                styleGenerator = makeRendererUniqueValue;
+                renderer = makeStyle2String(atributosColores1, atributosColores2, atributosColores3, styleGenerator, symboler);
+                break;
+              default:
+                styleGenerator = makeStyle2Number;
+                renderer = makeStyle2Number(atributosColores1, atributosColores2, atributosColores3, styleGenerator, symboler);
+
+                break;
+            }
+            capita.setRenderer(renderer);
+            capita.refresh();
+          }
+
+          function makeStyle2String(atributosColores1, atributosColores2, atributosColores3, styleGenerator2, symbolizer) {
+            var defaultSymbol = symbolizer('#89CD66');
+
+            var aux = document.getElementById('thematic_field').value;
+            var renderer2 = styleGenerator2(defaultSymbol, aux);
+            //console.log("Atributos"); console.log(atributosColores1); console.log(atributosColores2);
+            for (var i = 0; i < atributosColores1.length; i++) {
+              //console.log("Addvalue: " + atributosColores1[i] + "------" + symbolizer(atributosColores2[i]))
+              renderer2.addValue(atributosColores1[i], symbolizer(atributosColores2[i]));
+              renderer2.addValue("", symbolizer(atributosColores2[i]));
+              renderer2.addValue(" ", symbolizer(atributosColores2[i]));
+              renderer2.addValue("NO_VALUE", symbolizer(atributosColores3[i]));
+            }
+            return renderer2;
+          }
+
+          function polygonSymboler(color) {
+            return (new SimpleFillSymbol().setColor(Color.fromHex(color)));
+          }
+
+          function makeRendererUniqueValue(defaultSymbol, valor) {
+            //console.log("RendererUniqueValue"); console.log(defaultSymbol); console.log(valor);
+            return (new UniqueValueRenderer(defaultSymbol, valor));
+          }
+
+          document.getElementById('botoncito1').onclick = buttonClicked;
+          // END Thematics
+
+          map.addLayer(paises);
+          map.addLayer(kosovo);
+        });
+
+        function goCountry(combo) {
+          if (combo.value != "%") {
+            document.location.href = combo.value;
+          }
+        }
+
+        function loadCountries() {
+          var z = document.getElementById("country");
+          for (var j = 0; j < capita.graphics.length; j++) {
+            var option = document.createElement("option");
+            option.text = capita.graphics[j].attributes.COUNTRY_1;
+            option.value = capita.graphics[j].attributes.LINK;
+            z.add(option);
+          }
+
+          var options = $('#country option');
+          var arr = options.map(function (_, o) {
+            return {t: $(o).text(), v: o.value};
+          }).get();
+          arr.sort(function (o1, o2) {
+            return o1.t.toUpperCase() > o2.t.toUpperCase()
+              ? 1
+              : o1.t.toUpperCase() < o2.t.toUpperCase()
+                ? -1
+                : 0;
+          });
+          options.each(function (i, o) {
+            o.value = arr[i].v;
+            $(o).text(arr[i].t);
+          });
+
+          $("#country").prepend("<option value=''>Choose a country</option>").val('');
+        }
+
+        function checkLayer() {
+//          debugger ;
+          if (capita) {
+            //console.log("Definida, cargo combo"); console.log(capita.graphics.length);
+            loadCountries();
+            document.getElementById('botoncito1').click();
+          } else {
+            //console.log("Rellamada");
+            setTimeout(checkLayer, 500);
+          }
+        }
+
+        $(window).load(function () {
+          setTimeout(checkLayer, 500);
+        });
+      </script>
+      <div class="journal-content-article" style="margin-right: 10px;">
+        <p>EEA Member countries are at different stages of preparing, developing and implementing national
+          <a aria-describedby="ui-tooltip-0" class="glossary-inline-term" href="http://climate-adapt.eea.europa.eu/glossary#linkAdaptation" target="_blank">adaptation</a>
+          strategies and plans.</p>
+
+        <p>See in the map below the information provided by each Member State of the European Union under the European mechanism for monitoring and reporting information relevant to climate change (Regulation (EU) No 525/2013).</p>
+
+        <p>For other EEA Member countries, the information provided is based on voluntary submissions to EEA.</p>
+
+        <p>Filter by any of the topics in the drop-down list ('Choose Thematic Map') and the map will indicate if links on the topic are available for each country. To navigate to the information just scroll over to one country on the map and a pop-up window
+          will show the existing link(s) and allow clicking on them.</p>
+
+        <p>Select a country to go to country's page:
+          <select id="country" onchange="goCountry(this)"></select>
+        </p>
+      </div>
+
+      <div class="columns-2" id="contenido">
+        <div id="contenidoMapa">
+          <div id="search">&nbsp;</div>
+
+          <div id="mapDiv" style="height:450px">
+            <!--<div id="legendDiv"></div>-->
+            <div id="HomeButton">&nbsp;</div>
+            <!--<div id="LegendButton">
+      				<img src="images/details.png" onclick="toogleLegend()" style="width: 34px;height: 34px;"/>
+      			</div>-->
+          </div>
+        </div>
+
+        <div id="contenidoCombos">
+          <div id="myfom">
+            <h2 class="portlet-title">
+              <span class="portlet-title-text">Choose Thematic Map:</span>
+            </h2>
+            <br/>
+            <select id="thematic_field" style="width:100%"></select>
+
+            <div class="bluebuttondiv" style="text-align:center">
+              <a class="bluebutton" id="botoncito1" style="float:none;margin-top:10px;margin-bottom:10px">Show Thematic Map</a>
+            </div>
+            &nbsp;
+
+            <p><img src="/++theme++climateadapt/static/cca/img/countriesLegend.png"/></p>
+
+            <div id="disclaimer">[Disclaimer]
+              <div id="hover-content">The information presented in these pages is based on the reporting according to the Monitoring Mechanism Regulation (Regulation (EU) No 525/2013) and updates by the EEA member countries</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </metal:fill-slot>
+</metal:use-macro>

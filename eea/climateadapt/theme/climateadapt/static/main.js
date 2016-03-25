@@ -119,7 +119,7 @@ $(document).ready(function() {
                 });
             }
 
-                if(window.require) {
+                if(window.require && window.requirejs) {
                     requirejs.config({
                         paths: {
                             // You may also need to tell set the jquery path, as some sites (like BBC) use a different name!
@@ -207,4 +207,3 @@ $(document).ready(function() {
 			});
 		}
 });
-
