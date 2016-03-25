@@ -46,8 +46,8 @@
         class="eea.climateadapt.browser.cityprofile.CityProfileView"
         permission="zope.Public"
         />
-        
-        
+
+
 
     <browser:page
         name="no_title_cover_view"
@@ -166,6 +166,76 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        class=".mayoradapt.MAdaptView"
+        for="*"
+        name="mayors-adapt"
+        template="pt/mayors-adapt.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        class=".mayoradapt.b_m_climate_impacts"
+        for="*"
+        name="b_m_climate_impacts"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        class=".mayoradapt.a_m_country"
+        for="*"
+        name="a_m_country"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        class=".mayoradapt.b_m_sector"
+        for="*"
+        name="b_m_sector"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        class=".mayoradapt.c_m_stage_of_the_implementation_cycle"
+        for="*"
+        name="c_m_stage_of_the_implementation_cycle"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        class=".mayoradapt.citiesxyz"
+        for="*"
+        name="citiesxyz"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        class=".countries.CountriesView"
+        for="*"
+        name="countries"
+        template="pt/countries.pt"
+        permission="zope2.View"
+        />
+
+    <browser:viewlet
+        name="plone.resourceregistries"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        view=".countries.CountriesView"
+        template="pt/resourceregistries.pt"
+        permission="zope2.View"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        />
+
+
+    <browser:viewlet
+        name="plone.resourceregistries"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        view=".mayoradapt.MAdaptView"
+        template="pt/resourceregistries.pt"
+        permission="zope2.View"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        />
+
     <!-- Tile helpers -->
 
     <browser:page
@@ -183,6 +253,7 @@
         template="pt/viewlet_transregion_menu.pt"
         permission="zope2.View"
         />
+
 
     <!-- sat_view viewlet overrides -->
     <browser:viewlet
