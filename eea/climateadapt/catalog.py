@@ -3,6 +3,7 @@ from plone.indexer import indexer
 from zope.annotation.interfaces import IAnnotations
 from zope.interface import Interface
 import json
+from city_profile import ICityProfile
 
 
 @indexer(Interface)
@@ -64,3 +65,24 @@ def search_type(object):
     """
     """
     return "CONTENT"
+
+
+@indexer(ICityProfile)
+def city_sectors(city):
+    return city.key_vulnerable_adaptation_sector
+
+
+@indexer(ICityProfile)
+def city_climate_impacts(city):
+    return city.climate_impacts_risks_particularly_for_city_region
+
+
+@indexer(ICityProfile)
+def city_stage_implementation_cycle(city):
+    # import pdb; pdb.set_trace()
+    return city.stage_of_the_implementation_cycle
+
+
+@indexer(ICityProfile)
+def city_countries(city):
+    return city.country

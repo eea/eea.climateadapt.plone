@@ -454,7 +454,7 @@
 
         function goCountry(combo) {
           if (combo.value != "%") {
-            document.location.href = combo.value;
+            document.location.href = combo.value.toLowerCase();
           }
         }
 

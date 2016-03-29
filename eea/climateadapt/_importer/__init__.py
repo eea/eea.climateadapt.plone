@@ -402,6 +402,7 @@ no_import_layouts = [
     '/viewaceitem',
     '/cities-map',
     '/city',
+    '/countries'
 ]
 
 portlet_importers = {   # import specific portlets by their ID
@@ -2193,4 +2194,3 @@ def import_handler(context):
 #                 item.absolute_url(1), data.fileversionid)
 #
 #     return item
-

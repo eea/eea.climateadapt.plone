@@ -43,19 +43,19 @@ def vocab_from_labels(text):
 
 # changes title and buttons (what to add) in view for AceItem
 # extracted from JAVA code:
-_datatypes = """
-acesearch-datainfotype-lbl-DOCUMENT=Publications and reports
-acesearch-datainfotype-lbl-INFORMATIONSOURCE=Information portals
-acesearch-datainfotype-lbl-MAPGRAPHDATASET=Maps, graphs and datasets
-acesearch-datainfotype-lbl-INDICATOR=Indicators
-acesearch-datainfotype-lbl-GUIDANCE=Guidance
-acesearch-datainfotype-lbl-TOOL=Tools
-acesearch-datainfotype-lbl-RESEARCHPROJECT=Research and knowledge projects
-acesearch-datainfotype-lbl-ORGANISATION=Organisations
-acesearch-datainfotype-lbl-MEASURE=Adaptation options
-acesearch-datainfotype-lbl-ACTION=Case studies
-"""
-aceitem_datatypes_vocabulary = vocab_from_labels(_datatypes)
+_datatypes = [
+    ("DOCUMENT", "Publications and reports"),
+    ("INFORMATIONSOURCE", "Information portals"),
+    ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
+    ("INDICATOR", "Indicators"),
+    ("GUIDANCE", "Guidance"),
+    ("TOOL", "Tools"),
+    ("RESEARCHPROJECT", "Research and knowledge projects"),
+    ("ORGANISATION", "Organisations"),
+    ("MEASURE", "Adaptation options"),
+    ("ACTION", "Case studies"),
+]
+aceitem_datatypes_vocabulary = generic_vocabulary(_datatypes)
 alsoProvides(aceitem_datatypes_vocabulary, IVocabularyFactory)
 
 
@@ -98,17 +98,17 @@ aceitem_elements_vocabulary = vocab_from_labels(_elements)
 alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
 
 
-_climateimpacts = """
-aceitem-climateimpacts-lbl-FORESTFIRES=Forest Fires
-aceitem-climateimpacts-lbl-EXTREMETEMP=Extreme Temperatures
-aceitem-climateimpacts-lbl-WATERSCARCE=Water Scarcity
-aceitem-climateimpacts-lbl-FLOODING=Flooding
-aceitem-climateimpacts-lbl-SEALEVELRISE=Sea Level Rise
-aceitem-climateimpacts-lbl-DROUGHT=Droughts
-aceitem-climateimpacts-lbl-STORM=Storms
-aceitem-climateimpacts-lbl-ICEANDSNOW=Ice and Snow
-"""
-aceitem_climateimpacts_vocabulary = vocab_from_labels(_climateimpacts)
+_climateimpacts = [
+    ("FORESTFIRES", "Forest Fires"),
+    ("EXTREMETEMP", "Extreme Temperatures"),
+    ("WATERSCARCE", "Water Scarcity"),
+    ("FLOODING", "Flooding"),
+    ("SEALEVELRISE", "Sea Level Rise"),
+    ("DROUGHT", "Droughts"),
+    ("STORM", "Storms"),
+    ("ICEANDSNOW", "Ice and Snow"),
+    ]
+aceitem_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts)
 alsoProvides(aceitem_climateimpacts_vocabulary, IVocabularyFactory)
 
 
@@ -191,7 +191,7 @@ _key_vulnerable_adapt_sector = [
     ("AGRI_AND_FOREST", "Agriculture and Forest"),
     ("COASTAL_AREAS", "Coastal areas"),
     ("DISASTER_RISK", "Disaster Risk Reduction"),
-    ("FINANACIAL", "Financial"),
+    ("FINANCIAL", "Financial"),
     ("HEALTH", "Health"),
     ("INFRASTRUCTURE", "Infrastructure"),
     ("MARINE_AND_FISH", "Marine and Fisheries"),

@@ -31,7 +31,7 @@
         <indexed_attr value="rating"/>
     </index>
 
-    <index name="climate_impacts" meta_type="FieldIndex">
+    <index name="climate_impacts" meta_type="KeywordIndex">
         <indexed_attr value="climate_impacts"/>
     </index>
 
@@ -58,5 +58,9 @@
     <index name="aceproject_id" meta_type="FieldIndex">
         <indexed_attr value="aceproject_id"/>
     </index>
+
+    <index name="city_stage" meta_type="FieldIndex">
+          <indexed_attr value="city_stage"/>
+      </index>
 
 </object>

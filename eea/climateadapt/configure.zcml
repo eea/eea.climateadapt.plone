@@ -50,6 +50,10 @@
     <adapter name="aceproject_id" factory=".catalog.aceproject_id" />
     <adapter name="countries" factory=".catalog.countries" />
     <adapter name="search_type" factory=".catalog.search_type" />
+    <adapter name="sector" factory=".catalog.city_sectors" />
+    <adapter name="city_stage" factory=".catalog.city_stage_implementation_cycle" />
+    <adapter name="city_country" factory=".catalog.city_countries" />
+    <adapter name="climate_impacts" factory=".catalog.city_climate_impacts" />
 
     <utility name="eea.climateadapt.aceitems_datatypes" component=".vocabulary.aceitem_datatypes_vocabulary"/>
     <utility name="eea.climateadapt.aceitems_storagetypes" component=".vocabulary.aceitem_storagetypes_vocabulary"/>
