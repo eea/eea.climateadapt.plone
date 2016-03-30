@@ -45,6 +45,7 @@ from eea.climateadapt._importer.utils import strip_xml
 from eea.climateadapt._importer.utils import t2r
 from eea.climateadapt._importer.utils import to_decimal
 from eea.climateadapt.interfaces import IASTNavigationRoot
+from eea.climateadapt.interfaces import ICountriesRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
 from eea.climateadapt.interfaces import IClimateAdaptSharePage
 from eea.climateadapt.interfaces import ISiteSearchFacetedView
@@ -400,7 +401,7 @@ no_import_layouts = [
     '/viewaceitem',
     '/cities-map',
     '/city',
-    '/countries'
+    '/countries',
 ]
 
 portlet_importers = {   # import specific portlets by their ID
@@ -1334,6 +1335,7 @@ def import_template_1_2_columns_ii(site, layout, structure):
     alsoProvides(cover, IClimateAdaptSharePage)
     stamp_cover(cover, layout)
 
+
     share_portlet = None
     share_portlet_title = ""
     if len(structure) == 3:
@@ -2085,6 +2087,12 @@ def tweak_site(site):
     faceted_view = getMultiAdapter((dad, site.REQUEST), name="faceted_subtyper")
     faceted_view.enable()
     IFacetedLayout(dad).update_layout('faceted-climate-listing-view')
+
+    # countries page
+    ctpage = site['countries']
+    alsoProvides(ctpage, ICountriesRoot)
+    ctpage.setLayout('@@countries-view-map')
+
 
     # TODO: create manually created pages
     # tweak frontpage portlets

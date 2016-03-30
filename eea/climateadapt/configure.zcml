@@ -83,5 +83,7 @@
     <interface interface="eea.climateadapt.interfaces.IASTNavigationRoot" />
     <interface interface="eea.climateadapt.interfaces.ISiteSearchFacetedView" />
     <interface interface="eea.climateadapt.interfaces.IClimateAdaptSharePage" />
+    <interface interface="eea.climateadapt.interfaces.ICountriesRoot" />
+
 
 </configure>

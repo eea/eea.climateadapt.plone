@@ -213,7 +213,7 @@
     <browser:page
         class=".countries.CountriesView"
         for="*"
-        name="countries"
+        name="countries-view-map"
         template="pt/countries.pt"
         permission="zope2.View"
         />
