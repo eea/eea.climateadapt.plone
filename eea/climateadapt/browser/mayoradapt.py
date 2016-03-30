@@ -1,21 +1,21 @@
 # coding=utf-8
-import os
-from zope.interface import Interface
-from zope.interface import implements
-from Products.Five.browser import BrowserView
-import json
 
+from Products.Five.browser import BrowserView
+from eea.climateadapt.vocabulary import _climateimpacts
 from eea.climateadapt.vocabulary import _sectors
 from eea.climateadapt.vocabulary import _stage_implementation_cycle
-from eea.climateadapt.vocabulary import _climateimpacts
 from eea.climateadapt.vocabulary import ace_countries
+from zope.interface import Interface
+from zope.interface import implements
+import json
+
 
 class IMAdaptView (Interface):
     """ Countries Interface """
 
 
-class MAdaptView (BrowserView):
-    """ Custom view for http://climate-adapt.eea.europa.eu/mayors-adapt """
+class MayorsAdaptPage (BrowserView):
+    """ Custom page for http://climate-adapt.eea.europa.eu/mayors-adapt """
 
     implements(IMAdaptView)
 

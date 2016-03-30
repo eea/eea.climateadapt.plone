@@ -72,7 +72,7 @@ aceitem_storagetypes_vocabulary = generic_vocabulary(_storagetypes)
 alsoProvides(aceitem_storagetypes_vocabulary, IVocabularyFactory)
 
 
-_sectors = [
+_sectors = [    # this is the canonical
     ("AGRICULTURE", "Agriculture and Forest"),
     ("BIODIVERSITY", "Biodiversity"),
     ("COASTAL", "Coastal areas"),
@@ -88,11 +88,11 @@ aceitem_sectors_vocabulary = generic_vocabulary(_sectors)
 alsoProvides(aceitem_sectors_vocabulary, IVocabularyFactory)
 
 _elements = [
-    ("OBSERVATIONS", "Observations and Scenarios"),
-    ("VULNERABILITY", "Vulnerability Assessment"),
-    ("PLANSTRATEGY", "Adaptation Plans and Strategies"),
     ("EU_POLICY", "Sector Policies"),
     ("MEASUREACTION", "Adaptation Measures and Actions")
+    ("OBSERVATIONS", "Observations and Scenarios"),
+    ("PLANSTRATEGY", "Adaptation Plans and Strategies"),
+    ("VULNERABILITY", "Vulnerability Assessment"),
     ]
 aceitem_elements_vocabulary = generic_vocabulary(_elements)
 alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
@@ -188,6 +188,7 @@ status_of_adapt_signature_vocabulary = generic_vocabulary(_status_of_adapt_signa
 alsoProvides(status_of_adapt_signature_vocabulary, IVocabularyFactory)
 
 
+# TODO: merge with _sectors vocabulary
 _key_vulnerable_adapt_sector = [
     ("AGRI_AND_FOREST", "Agriculture and Forest"),
     ("COASTAL_AREAS", "Coastal areas"),
@@ -230,12 +231,13 @@ already_devel_adapt_strategy_vocabulary = generic_vocabulary(_already_devel_adap
 alsoProvides(already_devel_adapt_strategy_vocabulary, IVocabularyFactory)
 
 
+# TODO: isn't this the same vocabulary as _elements
 _elements_mentioned_your_cp = [
-    ("OBS_SCENARIOS", "Observations and Scenarios"),
-    ("VULNER_ASSESS", "Vulnerability Assessment"),
     ("ADAPT_MEAS_ACT", "Adaptation Measures and Actions"),
     ("ADAPT_PLANS_STRAT", "Adaptation Plans and Strategies"),
+    ("OBS_SCENARIOS", "Observations and Scenarios"),
     ("SECTOR_POLICIES", "Sector Policies"),
+    ("VULNER_ASSESS", "Vulnerability Assessment"),
 ]
 elements_mentioned_your_cp_vocabulary = generic_vocabulary(_elements_mentioned_your_cp)
 alsoProvides(elements_mentioned_your_cp_vocabulary, IVocabularyFactory)
