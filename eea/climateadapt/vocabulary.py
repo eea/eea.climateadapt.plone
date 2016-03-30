@@ -72,29 +72,29 @@ aceitem_storagetypes_vocabulary = generic_vocabulary(_storagetypes)
 alsoProvides(aceitem_storagetypes_vocabulary, IVocabularyFactory)
 
 
-_sectors = """
-acesearch-sectors-lbl-AGRICULTURE=Agriculture and Forest
-acesearch-sectors-lbl-BIODIVERSITY=Biodiversity
-acesearch-sectors-lbl-COASTAL=Coastal areas
-acesearch-sectors-lbl-DISASTERRISKREDUCTION=Disaster Risk Reduction
-acesearch-sectors-lbl-FINANCIAL=Financial
-acesearch-sectors-lbl-HEALTH=Health
-acesearch-sectors-lbl-INFRASTRUCTURE=Infrastructure
-acesearch-sectors-lbl-URBAN=Urban
-acesearch-sectors-lbl-MARINE=Marine and Fisheries
-acesearch-sectors-lbl-WATERMANAGEMENT=Water management
-"""
-aceitem_sectors_vocabulary = vocab_from_labels(_sectors)
+_sectors = [
+    ("AGRICULTURE", "Agriculture and Forest"),
+    ("BIODIVERSITY", "Biodiversity"),
+    ("COASTAL", "Coastal areas"),
+    ("DISASTERRISKREDUCTION", "Disaster Risk Reduction"),
+    ("FINANCIAL", "Financial"),
+    ("HEALTH", "Health"),
+    ("INFRASTRUCTURE", "Infrastructure"),
+    ("URBAN", "Urban"),
+    ("MARINE", "Marine and Fisheries"),
+    ("WATERMANAGEMENT", "Water management")
+    ]
+aceitem_sectors_vocabulary = generic_vocabulary(_sectors)
 alsoProvides(aceitem_sectors_vocabulary, IVocabularyFactory)
 
-_elements = """
-acesearch-elements-lbl-OBSERVATIONS=Observations and Scenarios
-acesearch-elements-lbl-VULNERABILITY=Vulnerability Assessment
-acesearch-elements-lbl-PLANSTRATEGY=Adaptation Plans and Strategies
-acesearch-elements-lbl-EU_POLICY=Sector Policies
-acesearch-elements-lbl-MEASUREACTION=Adaptation Measures and Actions
-"""
-aceitem_elements_vocabulary = vocab_from_labels(_elements)
+_elements = [
+    ("OBSERVATIONS", "Observations and Scenarios"),
+    ("VULNERABILITY", "Vulnerability Assessment"),
+    ("PLANSTRATEGY", "Adaptation Plans and Strategies"),
+    ("EU_POLICY", "Sector Policies"),
+    ("MEASUREACTION", "Adaptation Measures and Actions")
+    ]
+aceitem_elements_vocabulary = generic_vocabulary(_elements)
 alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
 
 
@@ -143,6 +143,7 @@ ace_countries = [(x.alpha2, x.name) for x in pycountry.countries
                  if x.alpha2 in european_countries]
 ace_countries.append(('FYROM', 'Former Yugoslav Republic of Macedonia'))
 ace_countries_dict = dict(ace_countries)
+
 ace_countries_vocabulary = generic_vocabulary(ace_countries)
 alsoProvides(ace_countries_vocabulary, IVocabularyFactory)
 
@@ -207,7 +208,6 @@ alsoProvides(key_vulnerable_adapt_sector_vocabulary, IVocabularyFactory)
 
 
 _stage_implementation_cycle = [
-    ("", "Select"),
     ("PREPARING_GROUND", "Preparing the ground"),
     ("ASSESSING_RISKS_VULNER", "Assessing risks and vulnerabilities"),
     ("IDENTIF_ADAPT_OPT", "Identifying adaptation options"),

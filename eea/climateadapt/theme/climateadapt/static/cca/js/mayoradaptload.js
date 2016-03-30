@@ -85,8 +85,17 @@ require([
   // Filter cities based on criterias (Adaptation sectors, Climate Impacts, Stage of implementation)
   function criteriaFilter() {
     var sectors = $("#sectors option:selected").text();
+    var sector_element = document.getElementById("sectors");
+    var sectors_id = sector_element.options[sector_element.selectedIndex].value;
+
     var impacts = $("#impacts option:selected").text();
+    var impacts_elemnt = document.getElementById("impacts");
+    var impacts_id = impacts_elemnt.options[impacts_elemnt.selectedIndex].value;
+
     var stages = $("#stage option:selected").text();
+    var stages_elemnt = document.getElementById("stage");
+    var stages_id = stages_elemnt.options[stages_elemnt.selectedIndex].value;
+
     var cities = "";
 
     if(sectors == "All"){ sectors="";}
@@ -95,8 +104,10 @@ require([
 
     //Fill the combo of cities with cities that have these criteria
     //url: "http://adapt-test.eea.europa.eu/api/jsonws/Mayors-ADAPT-portlet.data/get-cities-by-criteria?countries=&sectors=" + sectors + "&impacts=" + impacts + "&stages=" + stages,
+    var url = "/@@citiesxyz?countries=&sectors=" + sectors_id + "&climate_impacts=" + impacts_id + "&city_stage=" + stages_id;
+    console.log("URL: ", stages_elemnt);
     $.ajax({
-    url: "/@@citiesxyz?countries=&sectors=" + sectors + "&impacts=" + impacts + "&stages=" + stages,
+    'url': url,
     processData: true,
     async: true,
     type: "GET",
@@ -156,12 +167,16 @@ require([
   //Fill the other combo of cities with cities of the country selected
   function zoneFilter() {
     var pais = $("#country option:selected").text();
+
+    var pais_elemnt = document.getElementById("country");
+    var pais_id = pais_elemnt.options[pais_elemnt.selectedIndex].value;
+
     if(pais == "All"){ pais="%";}
     ciudades.setDefinitionExpression("f3 like '" + pais + "'");
     if(pais == "%"){ pais="";}
     //Fill the combo with cities of this country
     $.ajax({
-    url: "/@@citiesxyz?countries=" + pais + "&sectors=&impacts=&stages=",
+    url: "/@@citiesxyz?countries=" + pais_id + "&sectors=&climate_impacts=&city_stage=",
     processData: true,
     async: true,
     type: "GET",
@@ -369,7 +384,7 @@ function loadCombo(element,url_ws){
       // var rows = $(response);
       // var jsonObject = eval(response);
       var selectObject = $("#"+element);
-      selectObject[0].options[0] = new Option("All","%");
+      selectObject[0].options[0] = new Option("All","");
       var i=1;
         for (var key in jsonObject){
           var value="", text="";

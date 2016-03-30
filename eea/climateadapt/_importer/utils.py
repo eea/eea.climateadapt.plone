@@ -37,9 +37,9 @@ import urlparse
 
 
 logger = logging.getLogger('eea.climateadapt.importer')
-#logger.setLevel(logging.INFO)
-#logger.addHandler(logging.StreamHandler())
-
+# logger.setLevel(logging.INFO)
+# logger.addHandler(logging.StreamHandler())
+# f.open('errorslog.txt', 'w+')
 
 ACE_ITEM_TYPES = {
     'DOCUMENT': 'eea.climateadapt.publicationreport',

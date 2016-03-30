@@ -85,4 +85,4 @@ def city_stage_implementation_cycle(city):
 
 @indexer(ICityProfile)
 def city_countries(city):
-    return city.country
+    return [city.country]

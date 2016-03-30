@@ -53,6 +53,7 @@ from eea.climateadapt.vocabulary import _cca_types
 from eea.climateadapt.vocabulary import ace_countries_vocabulary
 from eea.climateadapt.vocabulary import aceitem_climateimpacts_vocabulary
 from eea.climateadapt.vocabulary import aceitem_elements_vocabulary
+from eea.climateadapt.vocabulary import aceitem_sectors_vocabulary
 from eea.climateadapt.vocabulary import already_devel_adapt_strategy_vocabulary
 from eea.climateadapt.vocabulary import key_vulnerable_adapt_sector_vocabulary
 from eea.climateadapt.vocabulary import stage_implementation_cycle_vocabulary
@@ -560,7 +561,7 @@ def import_city_profile(container, journal):
     map_status_of_major_adapt_signature = map_titles_to_tokens(
         container, status_of_adapt_signature_vocabulary)
     map_impacted_sectors = map_titles_to_tokens(
-        container, key_vulnerable_adapt_sector_vocabulary)
+        container, aceitem_sectors_vocabulary)
     map_stage_of_implementation = map_titles_to_tokens(
         container, stage_implementation_cycle_vocabulary)
     map_adaptation_strategy = map_titles_to_tokens(
