@@ -21,7 +21,6 @@
         template="pt/orderedselect_display.pt"
         />
 
-
     <browser:menuItems
         for="collective.cover.content.ICover"
         menu="plone_displayviews"
@@ -40,21 +39,19 @@
         />
 
     <browser:page
-        name="city_profile"
-        for="*"
-        template="pt/city_profile.pt"
-        class="eea.climateadapt.browser.cityprofile.CityProfileView"
-        permission="zope.Public"
-        />
-
-
-
-    <browser:page
         name="no_title_cover_view"
         for="*"
         class=".CoverNoTitleView"
         template="pt/no_title_cover_view.pt"
         permission="zope2.View"
+        />
+
+    <browser:page
+        name="view"
+        for="eea.climateadapt.city_profile.ICityProfile"
+        template="pt/city_profile.pt"
+        class="eea.climateadapt.browser.cityprofile.CityProfileView"
+        permission="zope.Public"
         />
 
     <browser:page
@@ -137,6 +134,8 @@
         template="pt/navbar.pt"
         />
 
+
+    <!-- # portal link redirections, compatibility with old site -->
     <browser:page
         class=".ViewAceItem"
         for="*"
@@ -157,7 +156,9 @@
         name="projects1"
         permission="zope.Public"
         />
+    <!-- # end link redirections -->
 
+    <!-- Special pages, reimplemented as standalone views, and their AJAX helpers -->
     <browser:page
         class=".sat.SatView"
         for="*"

@@ -1071,7 +1071,7 @@ def create_cover_at(site, location, id='index_html', **kw):
         **kw
     )
     cover.setLayout('no_title_cover_view')
-    logger.info("Created new cover at %s", cover.absolute_url(1))
+    logger.debug("Created new cover at %s", cover.absolute_url(1))
 
     return cover
 
@@ -1186,16 +1186,24 @@ def fix_inner_link(site, href):
     return href
 
 
-def fix_links(site, text):
+_links = []
 
-    #f = open('/tmp/links.txt', 'a+')
+def write_links():
+    global _links
+    f = open('/tmp/links.txt', 'a+')
+    f.write("\n".join([x.encode('utf-8') for x in _links]))
+    f.close()
+
+
+def fix_links(site, text):
+    global _links
 
     from lxml.html.soupparser import fromstring
     e = fromstring(text)
 
     for img in e.xpath('//img'):
         src = img.get('src')
-        #f.write((src or '').encode('utf-8') + "\n")
+        _links.append(src or '')
 
         image = get_image_from_link(site, src)
 
@@ -1204,12 +1212,12 @@ def fix_links(site, text):
         else:
             if image is not None:
                 url = localize(image, site) + "/@@images/image"
-                logger.info("Change image link %s to %s", src, url)
+                logger.info("Changed <img> link %s to %s", src, url)
                 img.set('src', url)
 
     for a in e.xpath('//a'):
         href = a.get('href')
-        #f.write((href or '').encode('utf-8') + "\n")
+        _links.append(href or '')
         if href is not None:
             res = fix_inner_link(site, href)
             if not res:
@@ -1217,10 +1225,9 @@ def fix_links(site, text):
             if href != res:
                 if not isinstance(res, basestring):
                     res = res.absolute_url()
-                logger.info("Change link %s to %s", href, res)
+                logger.info("Changed <a> link %s to %s", href, res)
                 a.set('href', res)
 
-    #f.close()
     return lxml.html.tostring(e, encoding='unicode', pretty_print=True)
 
 

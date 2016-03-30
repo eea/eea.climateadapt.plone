@@ -79,9 +79,6 @@ import pprint
 import sys
 import transaction
 
-#import re
-#from subprocess import check_output
-
 
 session = None      # this will be a global bound to the current module
 
@@ -122,8 +119,8 @@ def import_aceitem(data, location):
         )
         item._aceitem_id = data.aceitemid
 
-        logger.info("Imported aceitem %s from sql aceitem %s",
-                    item.absolute_url(1), data.aceitemid)
+        logger.debug("Imported aceitem %s from sql aceitem %s",
+                     item.absolute_url(1), data.aceitemid)
         item.reindexObject()
         return item
     else:
@@ -161,8 +158,8 @@ def import_aceproject(data, location):
     item._aceproject_id = data.projectid
     item.reindexObject()
 
-    logger.info("Imported aceproject %s from sql aceproject %s",
-                item.absolute_url(1), data.projectid)
+    logger.debug("Imported aceproject %s from sql aceproject %s",
+                 item.absolute_url(1), data.projectid)
 
     return item
 
@@ -204,8 +201,8 @@ def import_adaptationoption(data, location):
     item._acemeasure_id = data.measureid
     item.reindexObject()
 
-    logger.info("Imported adaptation option %s from sql acemeasure %s",
-                item.absolute_url(1), data.measureid)
+    logger.debug("Imported adaptation option %s from sql acemeasure %s",
+                 item.absolute_url(1), data.measureid)
 
     return item
 
@@ -265,8 +262,8 @@ def import_casestudy(data, location):
     item._acemeasure_id = data.measureid
     item.reindexObject()
 
-    logger.info("Imported casestudy %s from sql acemeasure %s",
-                item.absolute_url(1), data.measureid)
+    logger.debug("Imported casestudy %s from sql acemeasure %s",
+                 item.absolute_url(1), data.measureid)
 
     return item
 
@@ -293,8 +290,8 @@ def import_image(data, location):
     IAnnotations(item)['eea.climateadapt.imported_ids'] = PersistentList(info)
 
     item.reindexObject()
-    logger.info("Imported image %s from sql Image %s",
-                item.absolute_url(1), data.imageid)
+    logger.debug("Imported image %s from sql Image %s",
+                 item.absolute_url(1), data.imageid)
 
     return item
 
@@ -376,8 +373,8 @@ def import_dlfileentry(data, location):
                      ])
     IAnnotations(item)['eea.climateadapt.imported_ids'] = PersistentList(info)
 
-    logger.info("Imported %s from sql dlentry %s",
-                item.absolute_url(1), data.fileentryid)
+    logger.debug("Imported %s from sql dlentry %s",
+                 item.absolute_url(1), data.fileentryid)
 
     item.reindexObject()
 
@@ -452,8 +449,8 @@ def import_layout(layout, site):
     MAPOFLAYOUTS[template].append(layout.friendlyurl)
     #print layout.type_, "\t\t", template, "\t\t", layout.friendlyurl
 
-    logger.info("Importing layout %s at url %s with template %s",
-                layout.layoutid, layout.friendlyurl, template)
+    logger.debug("Importing layout %s at url %s with template %s",
+                 layout.layoutid, layout.friendlyurl, template)
 
     is_column = lambda s: (s.startswith('column-')
                            and not s.endswith('-customizable'))
@@ -705,9 +702,9 @@ def import_city_profile(container, journal):
         id=journal.urltitle,
         **mapped_data
     )
-    city.setLayout('city_profile')
+    # city.setLayout('city_profile')    # TODO: is this needed?
     pprint.pprint(mapped_data)
-    logger.info("Imported city profile %s", city_name)
+    logger.debug("Imported city profile %s", city_name)
     return city
 
 
@@ -1937,7 +1934,7 @@ def run_importer(site=None):
             cover._imported_comment = \
                 "Imported from layout {0} - {1}".format(layout.layoutid,
                                                         layout.uuid_)
-            logger.info("Created cover at %s", cover.absolute_url())
+            logger.debug("Created cover at %s", cover.absolute_url())
 
 
     import_journal_articles(site)
@@ -2002,7 +1999,8 @@ def import_journal_articles(site):
                                          timezone='UTC',
                                          event_url=link, effective_date=publish_date)
 
-            logger.info("Created Event at %s with effective %s" % (event.absolute_url(), str(publish_date)))
+            logger.debug("Created Event at %s with effective %s" %
+                         (event.absolute_url(), str(publish_date)))
         else:
             print "no structure id"
             import pdb; pdb.set_trace()
@@ -2047,13 +2045,15 @@ def import_journal_articles(site):
             news = create_plone_content(parent, type='Link', id=slug,
                                         title=title, remoteUrl=link,
                                         effective_date=publish_date)
-            logger.info("Created Link for news at %s with effective %s" % (news.absolute_url(), publish_date))
+            logger.debug("Created Link for news at %s with effective %s" %
+                         (news.absolute_url(), publish_date))
         else:
             text = content[0]
             news = create_plone_content(parent, type='News Item', id=slug,
                                         title=title, text=text,
                                         effective_date=publish_date)
-            logger.info("Created News Item for news at %s", news.absolute_url())
+            logger.debug("Created News Item for news at %s",
+                         news.absolute_url())
 
 
 def tweak_site(site):
@@ -2145,52 +2145,3 @@ def import_handler(context):
 
     site = context.getSite()
     run_importer(site)
-
-
-# @log_call
-# def import_dlfileversion(data, location):
-#     base_path = check_output([
-#         'find',
-#         './document_library',
-#         '-iname', '%s.%s' % (str(data.fileversionid),
-#                              data.extension)]).rstrip('\n')
-#     file_path = os.path.join(base_path, data.version)
-#     _r = "./document_library/%s/0/document_thumbnail/%s/[^/]*/[^/]*/%s/%s.%s/%s"
-#     regexp = _r % (data.companyid,
-#                    data.repositoryid,  # or groupid
-#                    data.fileentryid,
-#                    data.fileversionid,
-#                    data.extension,
-#                    data.version)
-#     if not (os.path.isfile(file_path) and re.match(regexp, file_path)):
-#         # there is no file and no match
-#         logger.info('DEBUG dlfileversion NO MATCH: ' + file_path)
-#         return
-#     logger.info('FOUND dlfileversion: ' + file_path)
-#
-#     try:
-#         file_data = open(file_path).read()
-#     except Exception:
-#         logger.warning("Image with id %d does not exist in the supplied "
-#                        "document library", data.imageid)
-#         return None
-#
-#     item = createAndPublishContentInContainer(
-#         location,
-#         'Image',
-#         #title='Image ' + str(data.fileversionid),
-#         title=data.title,
-#         description=data.description,
-#         id=str(data.fileversionid) + '.' + data.extension,
-#         image=NamedBlobImage(
-#             filename=str(data.fileversionid) + '.' + data.extension,
-#             data=file_data
-#         )
-#     )
-#
-#     item._uuid = data.uuid_
-#     item.reindexObject()
-#     logger.info("Imported image %s from sql Image %s",
-#                 item.absolute_url(1), data.fileversionid)
-#
-#     return item
