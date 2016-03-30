@@ -104,8 +104,8 @@ require([
 
     //Fill the combo of cities with cities that have these criteria
     //url: "http://adapt-test.eea.europa.eu/api/jsonws/Mayors-ADAPT-portlet.data/get-cities-by-criteria?countries=&sectors=" + sectors + "&impacts=" + impacts + "&stages=" + stages,
-    var url = "/@@citiesxyz?countries=&sectors=" + sectors_id + "&climate_impacts=" + impacts_id + "&city_stage=" + stages_id;
-    console.log("URL: ", stages_elemnt);
+    var url = "/@@CitiesLoad?countries=&sectors=" + sectors_id + "&climate_impacts=" + impacts_id + "&city_stage=" + stages_id;
+    // console.log("URL: ", stages_elemnt);
     $.ajax({
     'url': url,
     processData: true,
@@ -176,7 +176,7 @@ require([
     if(pais == "%"){ pais="";}
     //Fill the combo with cities of this country
     $.ajax({
-    url: "/@@citiesxyz?countries=" + pais_id + "&sectors=&climate_impacts=&city_stage=",
+    url: "/@@CitiesLoad?countries=" + pais_id + "&sectors=&climate_impacts=&city_stage=",
     processData: true,
     async: true,
     type: "GET",
@@ -343,7 +343,7 @@ require([
 function loadAllCities(combo){
   $.ajax({
   // url: "/api/jsonws/Mayors-ADAPT-portlet.data/get-cities-by-criteria?countries=&sectors=&impacts=&stages=&cmd={%22%2FMayors-ADAPT-portlet.data%2Fget-cities-by-criteria%22%3A{}}",
-  url: "/@@citiesxyz",
+  url: "/@@CitiesLoad",
   // processData: true,
   dataType: "json",
   async: true,
@@ -409,10 +409,10 @@ function toogleLegend(){
 
 $(window).load(function() {
 // First of all load the criterias' combos and the cities' combo
-loadCombo("country", "a_m_country");
-loadCombo("impacts", "b_m_climate_impacts");
-loadCombo("sectors", "b_m_sector");
-loadCombo("stage", "c_m_stage_of_the_implementation_cycle");
+loadCombo("country", "A_M_Country");
+loadCombo("impacts", "B_M_Climate_Impacts");
+loadCombo("sectors", "B_M_Sector");
+loadCombo("stage", "C_M_Stage_Of_The_Implementation_Cycle");
 loadAllCities("cityCountry");
 loadAllCities("city");
 setMatrix();

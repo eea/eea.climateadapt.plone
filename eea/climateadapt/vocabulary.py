@@ -82,6 +82,9 @@ _sectors = [    # this is the canonical
     ("INFRASTRUCTURE", "Infrastructure"),
     ("URBAN", "Urban"),
     ("MARINE", "Marine and Fisheries"),
+    ("TOURISM", "Tourism"),
+    ("ENERGY", "Energy"),
+    ("OTHER", "Other"),
     ("WATERMANAGEMENT", "Water management")
     ]
 aceitem_sectors_vocabulary = generic_vocabulary(_sectors)
@@ -89,7 +92,7 @@ alsoProvides(aceitem_sectors_vocabulary, IVocabularyFactory)
 
 _elements = [
     ("EU_POLICY", "Sector Policies"),
-    ("MEASUREACTION", "Adaptation Measures and Actions")
+    ("MEASUREACTION", "Adaptation Measures and Actions"),
     ("OBSERVATIONS", "Observations and Scenarios"),
     ("PLANSTRATEGY", "Adaptation Plans and Strategies"),
     ("VULNERABILITY", "Vulnerability Assessment"),
@@ -233,12 +236,20 @@ alsoProvides(already_devel_adapt_strategy_vocabulary, IVocabularyFactory)
 
 # TODO: isn't this the same vocabulary as _elements
 _elements_mentioned_your_cp = [
-    ("ADAPT_MEAS_ACT", "Adaptation Measures and Actions"),
-    ("ADAPT_PLANS_STRAT", "Adaptation Plans and Strategies"),
-    ("OBS_SCENARIOS", "Observations and Scenarios"),
-    ("SECTOR_POLICIES", "Sector Policies"),
-    ("VULNER_ASSESS", "Vulnerability Assessment"),
+    ("EU_POLICY", "Sector Policies"),
+    ("MEASUREACTION", "Adaptation Measures and Actions"),
+    ("OBSERVATIONS", "Observations and Scenarios"),
+    ("PLANSTRATEGY", "Adaptation Plans and Strategies"),
+    ("VULNERABILITY", "Vulnerability Assessment"),
 ]
+
+#("ADAPT_MEAS_ACT", "Adaptation Measures and Actions"),
+#("ADAPT_PLANS_STRAT", "Adaptation Plans and Strategies"),
+#("OBS_SCENARIOS", "Observations and Scenarios"),
+#("SECTOR_POLICIES", "Sector Policies"),
+#("VULNER_ASSESS", "Vulnerability Assessment"),
+
+
 elements_mentioned_your_cp_vocabulary = generic_vocabulary(_elements_mentioned_your_cp)
 alsoProvides(elements_mentioned_your_cp_vocabulary, IVocabularyFactory)
 

@@ -20,27 +20,27 @@ class MayorsAdaptPage (BrowserView):
     implements(IMAdaptView)
 
 
-class b_m_climate_impacts (BrowserView):
+class B_M_Climate_Impacts (BrowserView):
     def __call__(self):
         return json.dumps(_climateimpacts)
 
 
-class a_m_country (BrowserView):
+class A_M_Country (BrowserView):
     def __call__(self):
         return json.dumps(ace_countries)
 
 
-class b_m_sector (BrowserView):
+class B_M_Sector (BrowserView):
     def __call__(self):
         return json.dumps(_sectors)
 
 
-class c_m_stage_of_the_implementation_cycle (BrowserView):
+class C_M_Stage_Of_The_Implementation_Cycle (BrowserView):
     def __call__(self):
         return json.dumps(_stage_implementation_cycle)
 
 
-class citiesxyz (BrowserView):
+class CitiesLoad (BrowserView):
     def __call__(self):
         cat = self.context.portal_catalog
         q = {
