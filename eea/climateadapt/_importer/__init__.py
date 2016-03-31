@@ -44,10 +44,11 @@ from eea.climateadapt._importer.utils import stamp_cover
 from eea.climateadapt._importer.utils import strip_xml
 from eea.climateadapt._importer.utils import t2r
 from eea.climateadapt._importer.utils import to_decimal
+from eea.climateadapt._importer.utils import write_links
 from eea.climateadapt.interfaces import IASTNavigationRoot
-from eea.climateadapt.interfaces import ICountriesRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
 from eea.climateadapt.interfaces import IClimateAdaptSharePage
+from eea.climateadapt.interfaces import ICountriesRoot
 from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.climateadapt.vocabulary import _cca_types
@@ -56,7 +57,6 @@ from eea.climateadapt.vocabulary import aceitem_climateimpacts_vocabulary
 from eea.climateadapt.vocabulary import aceitem_elements_vocabulary
 from eea.climateadapt.vocabulary import aceitem_sectors_vocabulary
 from eea.climateadapt.vocabulary import already_devel_adapt_strategy_vocabulary
-from eea.climateadapt.vocabulary import key_vulnerable_adapt_sector_vocabulary
 from eea.climateadapt.vocabulary import stage_implementation_cycle_vocabulary
 from eea.climateadapt.vocabulary import status_of_adapt_signature_vocabulary
 from eea.facetednavigation.layout.interfaces import IFacetedLayout
@@ -1953,6 +1953,7 @@ def run_importer(site=None):
 
     import_journal_articles(site)
     tweak_site(site)
+    write_links()
 
 
 def import_journal_articles(site):
