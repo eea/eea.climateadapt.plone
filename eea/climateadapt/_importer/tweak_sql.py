@@ -95,6 +95,8 @@ def fix_relations(session):
     except Exception, e:
         logger.warning("Error in setting database relationship: %s", e)
 
+    sql.AceAceitem.metadata_ = Column('metadata', Text)
+
 
 class AceIndicator(sql.Base):   # count: 42
     __tablename__ = 'ace_indicator'
@@ -132,5 +134,3 @@ class AceIndicator(sql.Base):   # count: 42
     importance = Column('importance', BigInteger)
 
 sql.AceIndicator = AceIndicator
-
-

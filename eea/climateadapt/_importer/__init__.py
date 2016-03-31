@@ -118,6 +118,7 @@ def import_aceitem(data, location):
             geochars=data.geochars,
             special_tags=s2l(data.specialtagging, relaxed=True),
             rating=data.rating,
+            metadata=t2r(data.metadata_),
         )
         item._aceitem_id = data.aceitemid
 
@@ -420,6 +421,13 @@ no_import_layouts = [
     '/sitemap',
     '/provant',
     '/adaptation-strategies',
+    '/countries-regions',
+    '/maintain',
+    '/explain',
+    '/6',
+    '/links',
+    '/home',
+    '/newregion',
 ]
 
 # TO DO

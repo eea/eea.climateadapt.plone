@@ -93,6 +93,8 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     source = RichText(title=_(u"Source"), required=True,)
 
+    metadata = RichText(title=_(u"Metadata"), required=False,)
+
     comments = TextLine(title=_(u"Comments"), required=False, default=u"")
 
     year = Int(title=_(u"Year"), required=True)

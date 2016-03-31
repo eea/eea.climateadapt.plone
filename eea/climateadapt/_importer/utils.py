@@ -112,7 +112,7 @@ def s2li(text, separator=';', relaxed=False):
 
 
 def t2r(text):
-    return RichTextValue(text, 'text/html', 'text/html')
+    return RichTextValue(text or '', 'text/html', 'text/html')
 
 
 def to_decimal(val):
@@ -1190,7 +1190,7 @@ _links = []
 
 def write_links():
     global _links
-    f = open('/tmp/links.txt', 'a+')
+    f = open('links.txt', 'a+')
     f.write("\n".join([x.encode('utf-8') for x in _links]))
     f.close()
 
