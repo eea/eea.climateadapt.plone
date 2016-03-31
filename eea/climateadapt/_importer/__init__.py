@@ -384,7 +384,7 @@ def import_dlfileentry(data, location):
 
 
 no_import_layouts = [
-    '/documents',   # this is an internal Liferay page
+    # '/documents',   # this is an internal Liferay page
     '/contact-us',  # this is a page that doesn't really exist in the db
     '/climate-hazards',  # this is a page that doesn't really exist in the db
     '/adaptation-sectors',  # this is a page that doesn't really exist in the db
@@ -402,7 +402,30 @@ no_import_layouts = [
     '/cities-map',
     '/city',
     '/countries',
+    '/articles',
+    '/countries-light',
+    '/countries-medium',
+    '/projects1',
+    '/explain-ast-vul',
+    '/city-profile-form',
+    '/harvesters',
+    '/data-and-downloads',
+    '/aceitems1',
+    '/city-profile',
+    '/sat',
+    '/news-archive',
+    '/more-events',
+    '/test',
+    '/documents',
+    '/sitemap',
+    '/provant',
+    '/adaptation-strategies',
 ]
+
+# TO DO
+
+#  /tools/map-viewer   Linkuri Interne
+#  /tools/time-series-tool
 
 portlet_importers = {   # import specific portlets by their ID
     # TODO: implement this importer. It sits at page http://adapt-test.eea.europa.eu/data-and-downloads
@@ -1513,18 +1536,6 @@ def import_template_1_column(site, layout, structure):
         cover.setLayout('standard')
 
         return cover_layout
-
-    #fixing paths to javascript/css and images
-    text_portlet = structure['column-1'][0][1]['content'][0]
-
-    text_portlet = text_portlet.replace("/documents/18/11278677/countriesLegend.png",
-                                        "/++theme++climateadapt/static/cca/img/countriesLegend.png")
-    text_portlet = text_portlet.replace("/ace-theme/js/jquery.qtip.min.js",
-                                        "/++theme++climateadapt/static/jquery.qtip.min.js")
-    text_portlet = text_portlet.replace("/ace-theme/css/jquery.qtip.min.css",
-                                        "/++theme++climateadapt/static/jquery.qtip.css")
-    structure['column-1'][0][1]['content'][0] = text_portlet
-
 
     if layout.friendlyurl == u'/tools/urban-ast/contact':
         form_tile = make_tile(cover, structure.get('column-1', []))

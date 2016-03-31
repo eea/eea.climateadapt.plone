@@ -218,6 +218,14 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        class=".adaptationstrat.AdaptationStrategyView"
+        for="*"
+        name="adaptation-strategies"
+        permission="zope2.View"
+        />
+
+
     <browser:viewlet
         name="plone.resourceregistries"
         manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
