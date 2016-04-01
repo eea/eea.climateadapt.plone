@@ -1057,9 +1057,20 @@ li.dropdown-submenu {
 }
 .case-studies-tabbed-content-section {
     margin-bottom: 29px;
-}
+}/*
 .case-studies-tabbed-content-section > ul {
     list-style-image: url("cca/img/ico-arrow.png") !important;
+}*/
+
+.submenu {
+    list-style: none;
+    list-style-image: url("cca/img/ico-arrow.png") !important;
+}
+
+#case-study-selector-em > em {
+    background-image: url("cca/img/ico-arrow.png");
+    background-repeat: no-repeat;
+    padding-left: 1em;
 }
 
 */ bottom menu in urban ast pages */

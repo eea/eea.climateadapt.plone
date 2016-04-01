@@ -25,20 +25,16 @@
             <h4>Reference information</h4>
 
             <h5>Websites:</h5>
-            <ul>
-              <li tal:repeat="website context/websites|nothing">
-                <a tal:attributes="href website" tal:content="website">Website</a>
-              </li>
-            </ul>
+                <div tal:content="structure context/websites/output">Website</div>
 
             <h5>Source:</h5>
-            <tal:block content="structure context/source" />
+            <tal:block content="structure context/source/output" />
           </div>
 
           <div metal:fill-slot="ace-right-slot">
             <tal:block condition="context/Subject">
               <h4>Project Documents</h4>
-              <p tal:content="python:u', '.join(context.Subject())" />
+              <div tal:content="python:u', '.join(context.Subject())" />
             </tal:block>
 
             <h4>Keywords</h4>

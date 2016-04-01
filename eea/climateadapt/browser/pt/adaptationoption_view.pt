@@ -1,10 +1,10 @@
-<html 
-  xmlns="http://www.w3.org/1999/xhtml" 
-  xmlns:tal="http://xml.zope.org/namespaces/tal" 
-  xmlns:metal="http://xml.zope.org/namespaces/metal" 
-  xmlns:i18n="http://xml.zope.org/namespaces/i18n" 
-  xml:lang="en" lang="en" 
-  metal:use-macro="context/main_template/macros/master" 
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  xml:lang="en" lang="en"
+  metal:use-macro="context/main_template/macros/master"
   i18n:domain="eea.climateadapt">
   <body>
     <metal:main fill-slot="main">
@@ -17,7 +17,7 @@
           <div metal:fill-slot="ace-left-slot">
 
             <h1 tal:content="context/title">Title here</h1>
-            <p tal:content="structure context/long_description/output"/>
+            <div tal:content="structure context/long_description/output"/>
             <h5>Adaptation Option Description</h5>
             <h5>Additional Details</h5>
             <ul>
@@ -40,54 +40,54 @@
             <h4>Adaptation Details</h4>
 
             <p id="ao_category">
-              <em class="underline">Category</em>
+              <em class="underline" style="text-decoration: underline">Category</em>
               <tal:block content="context/category | nothing" />
             </p>
             <p id="stakeholder_participation">
-              <em class="underline">Stakeholder participation</em>
+              <em class="underline" style="text-decoration: underline">Stakeholder participation</em>
               <tal:block content="structure context/stakeholder_participation/output" />
             </p>
             <p id="success_factors">
-              <em class="underline">Success and Limiting Factors</em>
+              <em class="underline" style="text-decoration: underline">Success and Limiting Factors</em>
               <tal:block content="structure context/success_limitations/output"/>
             </p>
             <p id="costs_benefits">
-              <em class="underline">Costs and Benefits</em>
+              <em class="underline" style="text-decoration: underline">Costs and Benefits</em>
               <tal:block content="structure context/cost_benefit/output"/>
             </p>
             <p id="legal">
-              <em class="underline">Legal Aspects</em>
+              <em class="underline" style="text-decoration: underline">Legal Aspects</em>
               <tal:block content="structure context/legal_aspects/output"/>
             </p>
             <p id="implementation">
-              <em class="underline">Implementation Time</em>
+              <em class="underline" style="text-decoration: underline">Implementation Time</em>
               <tal:block content="structure context/implementation_time/output"/>
             </p>
             <p id="life_time">
-              <em class="underline">Life Time</em>
+              <em class="underline" style="text-decoration: underline">Life Time</em>
               <tal:block content="structure context/lifetime/output"/>
             </p>
             <h4>Reference information</h4>
-            <h5 id="websites">Websites:</h5>
+            <h5 id="websites" style="text-decoration: underline">Websites:</h5>
             <ul>
               <li tal:repeat="site context/websites">
                 <a tal:attributes="href site" tal:content="site"/>
               </li>
             </ul>
-            <h5 id="source">Source:</h5>
-            <p tal:content="structure context/source/output">Source here</p>
+            <h5 id="source" style="text-decoration: underline">Source:</h5>
+            <div tal:content="structure context/source/output">Source here</div>
           </div>
           <div metal:fill-slot="ace-right-slot">
             <h4>Keywords</h4>
-            <tal:block content="structure context/keywords"/>
+            <tal:block content="structure context/keywords/output"/>
             <h4>Sectors</h4>
             <tal:block content="structure python:view.widgets['sectors'].render()"/>
             <h4>Climate impacts</h4>
             <tal:block content="structure python:view.widgets['climate_impacts'].render()"/>
             <h4>Geographic characterisation</h4>
-            <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars" />
+            <div tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars" />
             <tal:cond condition="not: context/geochars">
-              <p tal:condition="context/spatial_layer" tal:content="context/spatial_layer" />
+              <div tal:condition="context/spatial_layer" tal:content="context/spatial_layer" />
               <p tal:condition="context/spatial_values">
                 Countries: <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])" />
               </p>

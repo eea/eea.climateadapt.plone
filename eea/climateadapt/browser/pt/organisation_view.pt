@@ -18,30 +18,43 @@
           </div>
 
           <div metal:fill-slot="ace-left-slot">
-            <h3>Description</h3>
+            <h3>Description:</h3>
             <tal:block content="structure context/long_description/output" />
-            <h4>Reference information</h4>
-            <ul>
-              <li tal:repeat="website context/websites|nothing">
-                <a tal:attributes="href website" tal:content="website">Website</a>
-              </li>
-            </ul>
+            <p></p>
+            <h4>Reference information</h4> <p></p>
+            <h5>Websites:</h5> <p></p>
+            <a tal:attributes="href context/websites/output" tal:content="structure context/websites/output" style="text-decoration: underline">Website</a>
+            <p></p>
             <h5>Source:</h5>
-            <tal:block content="structure context/source" />
+            <p></p>
+            <tal:block content="structure context/source/output" />
+            <p></p>
           </div>
 
           <div metal:fill-slot="ace-right-slot">
             <h4>Keywords</h4>
             <tal:block content="structure context/keywords" />
+            <p></p>
 
-            <h4>Climate impacts</h4>
+            <h4>Climate impacts</h4> <p></p>
             <tal:block content="structure python:view.widgets['climate_impacts'].render()" />
+            <p></p>
 
-            <h4>Elements</h4>
+            <h4>Elements</h4> <p></p>
             <tal:block content="structure python:view.widgets['elements'].render()" />
+            <p></p>
 
-            <h4>Sectors</h4>
+            <h4>Sectors</h4> <p></p>
             <tal:block content="structure python:view.widgets['sectors'].render()" />
+            <p></p>
+
+            <h4>Geographic characterisation</h4> <p></p>
+            <div tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars" />
+            <p></p>
+
+
+
+
           </div>
 
         </metal:macro>

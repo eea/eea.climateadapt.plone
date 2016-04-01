@@ -9,7 +9,9 @@ class IAdaptationStrategy (Interface):
 
 
 class AdaptationStrategyView (BrowserView):
-    """ Custom view for http://climate-adapt.eea.europa.eu/countries """
+    """ Redirect for http://climate-adapt.eea.europa.eu/adaptation-strategies
+        to /countries-view-map
+    """
 
     implements(IAdaptationStrategy)
 

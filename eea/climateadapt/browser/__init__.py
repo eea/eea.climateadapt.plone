@@ -70,8 +70,14 @@ class AceViewApi(object):
         out = []
         for line in value:
             n_c = line[3:]
-            reg, country = re.findall('_.+?_', n_c)
-            t = "{0} ({1})".format(reg[1:-1], country[1:-1])
+
+            try:
+                reg, country = re.findall('_.+?_', n_c)
+            except:
+                print 'TODO: Fix This: ', n_c
+                continue
+                # import pdb; pdb.set_trace()
+            t = u"{0} ({1})".format(reg[1:-1], country[1:-1])
             out.append(t)
 
         text = "<br/>".join(out)
@@ -327,5 +333,3 @@ class CoverNoTitleView(Standard):
 
     def __call__(self):
         return self.index()
-
-

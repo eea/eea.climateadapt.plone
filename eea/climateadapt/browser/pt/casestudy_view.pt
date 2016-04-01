@@ -1,5 +1,5 @@
-<html 
-  xmlns="http://www.w3.org/1999/xhtml" 
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
@@ -28,9 +28,10 @@
                 </div>
                 <div class="case-studies-top-title">
                   <h1 tal:content="python: context.title">Title here</h1>
-                  <p tal:content="structure context/long_description/output">
+                  <div tal:content="structure context/long_description/output">
                     Description
-                  </p>
+                  </div>
+                  <p></p>
                 </div>
               </div>
 
@@ -40,68 +41,64 @@
                 <ul>
                   <li class="first submenu">
                     <p>
-                      <b><em>Case Study Description</em></b>
+                      <em>Case Study Description</em>
                     </p>
                     <ul class="case-studies-tabbed-content-bullted-list">
                       <li class="first">
-                        <a href="#challenges_anchor">Challenges</a>
+                        <a href="#challenges_anchor" style="text-decoration: underline">Challenges</a>
                       </li>
                       <li>
-                        <a href="#objectives_anchor">Objectives</a>
+                        <a href="#objectives_anchor" style="text-decoration: underline">Objectives</a>
                       </li>
                       <li>
-                        <a href="#adapt_options_anchor">Adaptation Options Implemented In This Case</a>
+                        <a href="#adapt_options_anchor" style="text-decoration: underline">Adaptation Options Implemented In This Case</a>
                       </li>
                       <li>
-                        <a href="#solutions_anchor">Solutions</a>
+                        <a href="#solutions_anchor" style="text-decoration: underline">Solutions</a>
                       </li>
                       <li class="last">
-                        <a href="#relevance_anchor">Importance and Relevance of Adaptation</a>
+                        <a href="#relevance_anchor" style="text-decoration: underline">Importance and Relevance of Adaptation</a>
                       </li>
                     </ul>
                   </li>
                   <li class="submenu">
                     <p>
-                      <b>
                         <em>Additional Details</em>
-                      </b>
                     </p>
                     <ul class="case-studies-bullted-list">
                       <li class="first">
-                        <a href="#stake_holder_anchor">Stakeholder Participation</a>
+                        <a href="#stake_holder_anchor" style="text-decoration: underline">Stakeholder Participation</a>
                       </li>
                       <li>
-                        <a href="#success_limitations_anchor">Success and Limiting Factors</a>
+                        <a href="#success_limitations_anchor" style="text-decoration: underline">Success and Limiting Factors</a>
                       </li>
                       <li>
-                        <a href="#cost_benefit_anchor">Costs and Benefits</a>
+                        <a href="#cost_benefit_anchor" style="text-decoration: underline">Costs and Benefits</a>
                       </li>
                       <li>
-                        <a href="#legal_aspects">Legal Aspects</a>
+                        <a href="#legal_aspects" style="text-decoration: underline">Legal Aspects</a>
                       </li>
                       <li>
-                        <a href="#implementation_time_anchor">Implementation Time</a>
+                        <a href="#implementation_time_anchor" style="text-decoration: underline">Implementation Time</a>
                       </li>
                       <li class="last">
-                        <a href="#life_time_anchor">Life Time</a>
+                        <a href="#life_time_anchor" style="text-decoration: underline">Life Time</a>
                       </li>
                     </ul>
                   </li>
                   <li class="last submenu">
                     <p>
-                      <b>
                         <em>Reference Information</em>
-                      </b>
                     </p>
                     <ul class="case-studies-bullted-list">
                       <li class="first">
-                        <a href="#contact_anchor">Contact</a>
+                        <a href="#contact_anchor" style="text-decoration: underline">Contact</a>
                       </li>
                       <li>
-                        <a href="#website_anchor">Websites</a>
+                        <a href="#website_anchor" style="text-decoration: underline">Websites</a>
                       </li>
                       <li class="last">
-                        <a href="#source_anchor">Source</a>
+                        <a href="#source_anchor" style="text-decoration: underline">Source</a>
                       </li>
                     </ul>
                   </li>
@@ -109,68 +106,75 @@
 
                 <div class="case-studies-case-studies-review-clearing-clearing"></div>
               </div>
-              <div>
+              <div id="case-study-selector-em">
 
                 <h4>Case Study Description</h4>
-                <h3 id="challenges_anchor">Challenges</h3>
-                <p tal:content="structure context/challenges/output"></p>
+                <em id="challenges_anchor" style="text-decoration: underline">Challenges</em>
+                <div tal:content="structure context/challenges/output"></div>
+                <p></p>
 
-                <h3 id="objectives_anchor">Objectives</h3>
+                <em id="objectives_anchor" style="text-decoration: underline">Objectives</em>
                 <p tal:replace="structure context/objectives/output"></p>
-
-                <h3 id="adapt_options_anchor">Adaptation Options Implemented In This Case</h3>
-                <p tal:define="adaptations view/get_adaptation_options">
-                  <a tal:repeat="brain adaptations" tal:attributes="href brain/getURL" tal:content="brain/Title">Link</a>
-                </p>
-
-                <h3 id="solutions_anchor">Solutions</h3>
+                <p></p>
+                <em id="adapt_options_anchor" style="text-decoration: underline">Adaptation Options Implemented In This Case</em>
+                <div tal:define="adaptations view/get_adaptation_options">
+                  <a tal:repeat="brain adaptations" tal:attributes="href brain/getURL" tal:content="brain/Title" style="text-decoration: underline">Link</a>
+                </div>
+                <p></p>
+                <em id="solutions_anchor" style="text-decoration: underline">Solutions</em>
                 <p tal:replace="structure context/solutions/output"></p>
-
-                <h3 id="relevance_anchor">Relevance</h3>
+                <p></p>
+                <em id="relevance_anchor" style="text-decoration: underline">Relevance</em>
                 <p tal:repeat="rel context/relevance">
                   <span tal:replace="python: view.relevances_dict()[rel]"></span>
                 </p>
 
                 <h4>Additional Details</h4>
-                <h3 id="stake_holder_anchor">Stakeholder Participation</h3>
-                <p tal:content="structure context/stakeholder_participation/output"></p>
-
-                <h3 id="success_limitations_anchor">Success and Limiting Factors</h3>
-                <p tal:content="structure context/success_limitations/output"></p>
-
-                <h3 id="cost_benefit_anchor">Costs and Benefits</h3>
-                <p tal:content="structure context/cost_benefit/output"></p>
-
-                <h3 id="legal_aspects">Legal Aspects</h3>
-                <p tal:content="structure context/legal_aspects/output"></p>
-
-                <h3 id="implementation_time_anchor">Implementation Time</h3>
-                <p tal:content="structure context/implementation_time"></p>
-
-                <h3 id="life_time_anchor">Life Time</h3>
-                <p tal:content="structure context/lifetime"></p>
+                <em id="stake_holder_anchor" style="text-decoration: underline">Stakeholder Participation</em>
+                <div tal:condition="context/stakeholder_participation | nothing" tal:content="structure context/stakeholder_participation/output"></div>
+                <p></p>
+                <em id="success_limitations_anchor" style="text-decoration: underline">Success and Limiting Factors</em>
+                <div tal:condition="context/succes_limitations | nothing" tal:content="structure context/success_limitations/output"></div>
+                <p></p>
+                <em id="cost_benefit_anchor" style="text-decoration: underline">Costs and Benefits</em>
+                <div tal:condition="context/cost_benefit | nothing" tal:content="structure context/cost_benefit/output"></div>
+                <p></p>
+                <em id="legal_aspects" style="text-decoration: underline">Legal Aspects</em>
+                <div tal:condition="context/legal_aspects | nothing" tal:content="structure context/legal_aspects/output"></div>
+                <p></p>
+                <em id="implementation_time_anchor" style="text-decoration: underline">Implementation Time</em>
+                <div tal:condition="context/implementation_time | nothing" tal:content="structure context/implementation_time"></div>
+                <p></p>
+                <em id="life_time_anchor" style="text-decoration: underline">Life Time</em>
+                <div tal:condition="context/lifetime | nothing" tal:content="structure context/lifetime"></div>
+                <p></p>
 
                 <h4>Reference Information</h4>
 
-                <h3>Contact</h3>
-                <p tal:content="structure context/contact/output"></p>
+                <em style="text-decoration: underline">Contact</em>
+                <div tal:content="structure context/contact/output"></div>
+                <p></p>
 
-                <h3>Websites</h3>
+                <em style="text-decoration: underline">Websites</em>
                 <ul>
                   <li tal:repeat="website context/websites">
-                    <a href="" tal:attributes="href website" tal:content="website">Website</a>
+                    <a href="" tal:attributes="href website" tal:content="website" style="text-decoration: underline">Website</a>
                   </li>
                 </ul>
 
-                <h3>Source</h3>
-                <p tal:content="structure context/source"></p>
+                <p></p>
+                <em style="text-decoration: underline">Source</em>
+                <div tal:content="structure context/source"></div>
+                <p></p>
               </div>
             </div>
 
             <div metal:fill-slot="ace-right-slot">
 
               <div class="case-studies-illustrations" tal:condition="supphotos">
+               <a class="bluebutton" id="case-studies-modal-link"> 
                 <h4>Case Study Illustrations (<span tal:replace="python:len(supphotos)" />)</h4>
+                </a>
                 <ul>
                   <li tal:repeat="rel supphotos">
                     <div tal:define="photo nocall:rel/to_object" >
@@ -185,13 +189,16 @@
               <h4>Keywords</h4>
               <p tal:replace="structure python:view.w['keywords'].render()"/>
               <h4>Sectors</h4>
-              <p tal:content="structure python:view.w['sectors'].render()"/>
+              <div tal:content="structure python:view.w['sectors'].render()"/>
+              <p></p>
               <h4>Climate impacts</h4>
-              <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
+              <div tal:content="structure python:view.widgets['climate_impacts'].render()"/>
+              <p></p>
               <h4>Geographic characterization</h4>
-              <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars" />
+              <div tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars" />
+              <p></p>
               <tal:cond condition="not: context/geochars">
-                <p tal:condition="context/spatial_layer" tal:content="context/spatial_layer" />
+                <div tal:condition="context/spatial_layer" tal:content="context/spatial_layer" />
                 <p tal:condition="context/spatial_values">
                   Countries: <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])" />
                 </p>

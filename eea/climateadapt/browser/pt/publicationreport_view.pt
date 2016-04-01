@@ -35,7 +35,7 @@
 
             <tal:block condition="context/Subject">
               <h4>Project Documents</h4>
-              <p tal:content="python:u', '.join(context.Subject())" />
+              <div tal:content="python:u', '.join(context.Subject())" />
             </tal:block>
 
             <h4>Keywords</h4>

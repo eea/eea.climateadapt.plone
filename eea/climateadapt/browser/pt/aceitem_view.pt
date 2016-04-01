@@ -1,4 +1,6 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
@@ -8,7 +10,7 @@
   <body>
 
     <metal:main fill-slot="main">
-      <tal:main-macro metal:define-macro="content-core" >
+      <tal:main-macro metal:define-macro="content-core">
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
           <div metal:fill-slot="ace-top-slot">
@@ -20,50 +22,52 @@
 
           <div metal:fill-slot="ace-left-slot">
             <h3>Description</h3>
-            <p tal:content="structure context/long_description/output">description here</p>
+            <div tal:content="structure context/long_description/output">description here</div>
 
             <h4>Reference information</h4>
             <h5>Websites:</h5>
-            <p tal:content="structure context/websites/output">Source here</p>
+            <div tal:content="structure context/websites/output">Source here</div>
             <h5>Source:</h5>
-            <p tal:content="structure context/source/output">Source here</p>
-            <h5>Link to metadata:</h5>
-            <p tal:condition="context/metadata | nothing"
-               tal:content="structure context/metadata/output">Source here</p>
+            <div tal:content="structure context/source/output">Source here</div>
+
+            <div tal:condition="context/metadata/raw | nothing">
+              <h5>Link to metadata:</h5>
+              <div tal:content="structure context/metadata/output">Source here</div>
+            </div>
 
           </div>
 
           <div metal:fill-slot="ace-right-slot">
 
             <h4>Keywords</h4>
-            <tal:block content="structure context/keywords" />
+            <tal:block content="structure context/keywords"/>
 
             <h4>Climate impacts</h4>
-            <tal:block content="structure python:view.widgets['climate_impacts'].render()" />
+            <tal:block content="structure python:view.widgets['climate_impacts'].render()"/>
 
             <h4>Elements</h4>
-            <tal:block content="structure python:view.widgets['elements'].render()" />
+            <tal:block content="structure python:view.widgets['elements'].render()"/>
 
             <h4>Sectors</h4>
-            <tal:block content="structure python:view.widgets['sectors'].render()" />
+            <tal:block content="structure python:view.widgets['sectors'].render()"/>
             <h4>Geographic characterization</h4>
-            <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars" />
+            <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars"/>
             <tal:cond condition="not: context/geochars">
-              <p tal:condition="context/spatial_layer" tal:content="context/spatial_layer" />
+              <p tal:condition="context/spatial_layer" tal:content="context/spatial_layer"/>
               <p tal:condition="context/spatial_values">
-                Countries: <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])" />
+                Countries:
+                <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
               </p>
             </tal:cond>
 
           </div>
 
-
           <!-- <tal:def tal:define="sector_w python:view.widgets['sectors']" > -->
-            <!--   <!&#45;&#45; <tal:widget tal:replace="structure sector_w/@@ploneform&#38;#45;render&#38;#45;widget"/> &#45;&#45;> -->
-            <!--   <tal:widget tal:replace="structure sector_w/render"/> -->
-            <!-- </tal:def> -->
+          <!--   <!&#45;&#45; <tal:widget tal:replace="structure sector_w/@@ploneform&#38;#45;render&#38;#45;widget"/> &#45;&#45;> -->
+          <!--   <tal:widget tal:replace="structure sector_w/render"/> -->
+          <!-- </tal:def> -->
           <!--  -->
-          <div style="display:none" tal:content="python:view.w.keys()" />
+          <div style="display:none" tal:content="python:view.w.keys()"/>
         </metal:macro>
 
       </tal:main-macro>
