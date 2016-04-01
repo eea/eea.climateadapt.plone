@@ -3,13 +3,14 @@
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  xml:lang="en" lang="en"
+  xml:lang="en"
+  lang="en"
   metal:use-macro="context/main_template/macros/master"
   i18n:domain="eea.climateadapt">
   <body>
 
     <metal:main fill-slot="main">
-      <tal:main-macro metal:define-macro="content-core" >
+      <tal:main-macro metal:define-macro="content-core">
         <tal:def define="primephoto context/primephoto;
           primephoto python:primephoto and primephoto.to_object or None;
           supphotos context/supphotos;
@@ -24,7 +25,7 @@
             <div metal:fill-slot="ace-left-slot">
               <div class="case-studies-top">
                 <div class="case-studies-review-image-wrapper" tal:condition="primephoto">
-                  <img tal:condition="primephoto" tal:replace="structure primephoto/@@images/image/large" />
+                  <img tal:condition="primephoto" tal:replace="structure primephoto/@@images/image/large"/>
                 </div>
                 <div class="case-studies-top-title">
                   <h1 tal:content="python: context.title">Title here</h1>
@@ -63,7 +64,7 @@
                   </li>
                   <li class="submenu">
                     <p>
-                        <em>Additional Details</em>
+                      <em>Additional Details</em>
                     </p>
                     <ul class="case-studies-bullted-list">
                       <li class="first">
@@ -88,7 +89,7 @@
                   </li>
                   <li class="last submenu">
                     <p>
-                        <em>Reference Information</em>
+                      <em>Reference Information</em>
                     </p>
                     <ul class="case-studies-bullted-list">
                       <li class="first">
@@ -172,15 +173,15 @@
             <div metal:fill-slot="ace-right-slot">
 
               <div class="case-studies-illustrations" tal:condition="supphotos">
-               <a class="bluebutton" id="case-studies-modal-link"> 
-                <h4>Case Study Illustrations (<span tal:replace="python:len(supphotos)" />)</h4>
+                <a class="bluebutton" id="case-studies-modal-link">
+                  <h4>Case Study Illustrations (<span tal:replace="python:len(supphotos)"/>)</h4>
                 </a>
                 <ul>
                   <li tal:repeat="rel supphotos">
-                    <div tal:define="photo nocall:rel/to_object" >
-                      <img tal:replace="structure photo/@@images/image/thumb" />
-                      <div tal:content="photo/Title" />
-                      <div tal:content="photo/description" />
+                    <div tal:define="photo nocall:rel/to_object">
+                      <img tal:replace="structure photo/@@images/image/thumb"/>
+                      <div tal:content="photo/Title"/>
+                      <div tal:content="photo/description"/>
                     </div>
                   </li>
                 </ul>
@@ -195,12 +196,13 @@
               <div tal:content="structure python:view.widgets['climate_impacts'].render()"/>
               <p></p>
               <h4>Geographic characterization</h4>
-              <div tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars" />
+              <div tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars"/>
               <p></p>
               <tal:cond condition="not: context/geochars">
-                <div tal:condition="context/spatial_layer" tal:content="context/spatial_layer" />
+                <div tal:condition="context/spatial_layer" tal:content="context/spatial_layer"/>
                 <p tal:condition="context/spatial_values">
-                  Countries: <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])" />
+                  Countries:
+                  <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
                 </p>
               </tal:cond>
             </div>

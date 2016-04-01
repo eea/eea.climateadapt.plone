@@ -1,4 +1,6 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
@@ -8,7 +10,7 @@
   <body>
 
     <metal:main fill-slot="main">
-      <tal:main-macro metal:define-macro="content-core" >
+      <tal:main-macro metal:define-macro="content-core">
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
           <div metal:fill-slot="ace-top-slot">
@@ -22,18 +24,18 @@
           <div metal:fill-slot="ace-left-slot">
             <!-- <h2 tal:content="context/acronym">Acronym here</h2> -->
             <h4>Description:</h4>
-            <tal:block content="structure context/abstracts/output" />
+            <tal:block content="structure context/abstracts/output"/>
 
             <h3>Project information</h3>
 
             <h5>Lead</h5>
-            <p tal:replace="structure context/lead" />
+            <p tal:replace="structure context/lead"/>
 
             <h5>Partners</h5>
-            <p tal:replace="structure context/partners/output" />
+            <p tal:replace="structure context/partners/output"/>
 
             <h5>Source of funding</h5>
-            <p tal:replace="structure context/funding" />
+            <p tal:replace="structure context/funding"/>
 
             <h3>Reference information</h3>
             <h5>Websites:</h5>
@@ -44,9 +46,9 @@
 
           <div metal:fill-slot="ace-right-slot">
             <h4>Keywords</h4>
-            <p tal:replace="structure context/keywords/output" />
+            <p tal:replace="structure context/keywords/output"/>
             <h4>Duration</h4>
-            <p tal:replace="structure context/duration" />
+            <p tal:replace="structure context/duration"/>
             <h4>Climate impacts</h4>
             <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
             <h4>Elements</h4>

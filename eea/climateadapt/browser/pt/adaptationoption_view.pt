@@ -3,7 +3,8 @@
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  xml:lang="en" lang="en"
+  xml:lang="en"
+  lang="en"
   metal:use-macro="context/main_template/macros/master"
   i18n:domain="eea.climateadapt">
   <body>
@@ -21,19 +22,37 @@
             <h5>Adaptation Option Description</h5>
             <h5>Additional Details</h5>
             <ul>
-              <li><a href="#ao_category">Category</a></li>
-              <li><a href="#stakeholder_participation">Stakeholder participation</a></li>
-              <li><a href="#success_factors">Success and Limiting Factors</a> </li>
-              <li><a href="#costs_benefits">Costs and Benefits</a> </li>
-              <li><a href="#legal">Legal Aspects</a> </li>
-              <li><a href="#implementation">Implementation Time</a> </li>
-              <li><a href="#life_time">Life Time</a> </li>
+              <li>
+                <a href="#ao_category">Category</a>
+              </li>
+              <li>
+                <a href="#stakeholder_participation">Stakeholder participation</a>
+              </li>
+              <li>
+                <a href="#success_factors">Success and Limiting Factors</a>
+              </li>
+              <li>
+                <a href="#costs_benefits">Costs and Benefits</a>
+              </li>
+              <li>
+                <a href="#legal">Legal Aspects</a>
+              </li>
+              <li>
+                <a href="#implementation">Implementation Time</a>
+              </li>
+              <li>
+                <a href="#life_time">Life Time</a>
+              </li>
             </ul>
 
             <h5>Reference information</h5>
             <ul>
-              <li><a href="#websites">Websites</a> </li>
-              <li><a href="#source">Source</a> </li>
+              <li>
+                <a href="#websites">Websites</a>
+              </li>
+              <li>
+                <a href="#source">Source</a>
+              </li>
             </ul>
 
             <h4>Adaptation Option Description</h4>
@@ -41,11 +60,11 @@
 
             <p id="ao_category">
               <em class="underline" style="text-decoration: underline">Category</em>
-              <tal:block content="context/category | nothing" />
+              <tal:block content="context/category | nothing"/>
             </p>
             <p id="stakeholder_participation">
               <em class="underline" style="text-decoration: underline">Stakeholder participation</em>
-              <tal:block content="structure context/stakeholder_participation/output" />
+              <tal:block content="structure context/stakeholder_participation/output"/>
             </p>
             <p id="success_factors">
               <em class="underline" style="text-decoration: underline">Success and Limiting Factors</em>
@@ -85,11 +104,12 @@
             <h4>Climate impacts</h4>
             <tal:block content="structure python:view.widgets['climate_impacts'].render()"/>
             <h4>Geographic characterisation</h4>
-            <div tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars" />
+            <div tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars"/>
             <tal:cond condition="not: context/geochars">
-              <div tal:condition="context/spatial_layer" tal:content="context/spatial_layer" />
+              <div tal:condition="context/spatial_layer" tal:content="context/spatial_layer"/>
               <p tal:condition="context/spatial_values">
-                Countries: <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])" />
+                Countries:
+                <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
               </p>
             </tal:cond>
           </div>

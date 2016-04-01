@@ -1,4 +1,6 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
@@ -8,13 +10,13 @@
   <body>
 
     <metal:main fill-slot="main">
-      <tal:main-macro metal:define-macro="content-core" >
+      <tal:main-macro metal:define-macro="content-core">
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
           <div metal:fill-slot="ace-top-slot">
             <a href="" tal:attributes="href view/link_to_original">Original</a>
             <h2>Tools</h2>
-            <h1 tal:content="context/title" />
+            <h1 tal:content="context/title"/>
           </div>
 
           <div metal:fill-slot="ace-left-slot">
@@ -26,25 +28,25 @@
             <p tal:replace="structure context/websites/output">description here</p>
 
             <h5>Source:</h5>
-            <tal:block content="structure context/source/output" />
+            <tal:block content="structure context/source/output"/>
           </div>
 
           <div metal:fill-slot="ace-right-slot">
 
             <h4>Keywords</h4>
-            <tal:block content="structure context/keywords" />
+            <tal:block content="structure context/keywords"/>
 
             <h4>Climate impacts</h4>
-            <tal:block content="structure python:view.widgets['climate_impacts'].render()" />
+            <tal:block content="structure python:view.widgets['climate_impacts'].render()"/>
 
             <h4>Elements</h4>
-            <tal:block content="structure python:view.widgets['elements'].render()" />
+            <tal:block content="structure python:view.widgets['elements'].render()"/>
 
             <h4>Sectors</h4>
-            <tal:block content="structure python:view.widgets['sectors'].render()" />
+            <tal:block content="structure python:view.widgets['sectors'].render()"/>
 
             <h4>Geographic characterisation</h4>
-            <tal:block content="structure python:view.render_geochar(context.geochars)" />
+            <tal:block content="structure python:view.render_geochar(context.geochars)"/>
           </div>
 
         </metal:macro>
