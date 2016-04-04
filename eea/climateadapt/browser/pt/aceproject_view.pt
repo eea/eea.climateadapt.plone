@@ -23,10 +23,10 @@
 
           <div metal:fill-slot="ace-left-slot">
             <!-- <h2 tal:content="context/acronym">Acronym here</h2> -->
-            <h4>Description:</h4>
+            <h3>Description:</h3>
             <tal:block content="structure context/abstracts/output"/>
 
-            <h3>Project information</h3>
+            <h4>Project information</h4>
 
             <h5>Lead</h5>
             <p tal:replace="structure context/lead"/>
@@ -37,7 +37,7 @@
             <h5>Source of funding</h5>
             <p tal:replace="structure context/funding"/>
 
-            <h3>Reference information</h3>
+            <h4>Reference information</h4>
             <h5>Websites:</h5>
             <p>
               <a tal:attributes="href python:view.linkify(context.website)" tal:content="context/website">Websites here</a>

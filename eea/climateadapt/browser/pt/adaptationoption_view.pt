@@ -19,8 +19,8 @@
 
             <h1 tal:content="context/title">Title here</h1>
             <div tal:content="structure context/long_description/output"/>
-            <h5>Adaptation Option Description</h5>
-            <h5>Additional Details</h5>
+            <h5 class="Adaptation-option-selector">Adaptation Option Description</h5>
+            <h5 class="Adaptation-option-selector">Additional Details</h5>
             <ul>
               <li>
                 <a href="#ao_category">Category</a>
@@ -45,7 +45,7 @@
               </li>
             </ul>
 
-            <h5>Reference information</h5>
+            <h5 class="Adaptation-option-selector">Reference information</h5>
             <ul>
               <li>
                 <a href="#websites">Websites</a>
@@ -59,41 +59,41 @@
             <h4>Adaptation Details</h4>
 
             <p id="ao_category">
-              <em class="underline" style="text-decoration: underline">Category</em>
+              <em class="adapt-option-em" style="text-decoration: underline">Category</em>
               <tal:block content="context/category | nothing"/>
             </p>
             <p id="stakeholder_participation">
-              <em class="underline" style="text-decoration: underline">Stakeholder participation</em>
+              <em class="adapt-option-em" style="text-decoration: underline">Stakeholder participation</em>
               <tal:block content="structure context/stakeholder_participation/output"/>
             </p>
             <p id="success_factors">
-              <em class="underline" style="text-decoration: underline">Success and Limiting Factors</em>
+              <em class="adapt-option-em" style="text-decoration: underline">Success and Limiting Factors</em>
               <tal:block content="structure context/success_limitations/output"/>
             </p>
             <p id="costs_benefits">
-              <em class="underline" style="text-decoration: underline">Costs and Benefits</em>
+              <em class="adapt-option-em" style="text-decoration: underline">Costs and Benefits</em>
               <tal:block content="structure context/cost_benefit/output"/>
             </p>
             <p id="legal">
-              <em class="underline" style="text-decoration: underline">Legal Aspects</em>
+              <em class="adapt-option-em" style="text-decoration: underline">Legal Aspects</em>
               <tal:block content="structure context/legal_aspects/output"/>
             </p>
             <p id="implementation">
-              <em class="underline" style="text-decoration: underline">Implementation Time</em>
+              <em class="adapt-option-em" style="text-decoration: underline">Implementation Time</em>
               <tal:block content="structure context/implementation_time/output"/>
             </p>
             <p id="life_time">
-              <em class="underline" style="text-decoration: underline">Life Time</em>
+              <em class="adapt-option-em" style="text-decoration: underline">Life Time</em>
               <tal:block content="structure context/lifetime/output"/>
             </p>
             <h4>Reference information</h4>
-            <h5 id="websites" style="text-decoration: underline">Websites:</h5>
+            <h5 id="websites" style="text-decoration: underline" class="Adaptation-option-selector">Websites:</h5>
             <ul>
               <li tal:repeat="site context/websites">
                 <a tal:attributes="href site" tal:content="site"/>
               </li>
             </ul>
-            <h5 id="source" style="text-decoration: underline">Source:</h5>
+            <h5 id="source" style="text-decoration: underline" class="Adaptation-option-selector">Source:</h5>
             <div tal:content="structure context/source/output">Source here</div>
           </div>
           <div metal:fill-slot="ace-right-slot">

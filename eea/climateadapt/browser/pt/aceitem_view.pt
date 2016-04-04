@@ -26,7 +26,17 @@
 
             <h4>Reference information</h4>
             <h5>Websites:</h5>
-            <div tal:content="structure context/websites/output">Source here</div>
+            <!-- <div tal:content="structure python:view._render_websites(context.storage_type)"/> -->
+            <!-- <div tal:content="structure python:view._render_websites(context.storage_type)"/> -->
+
+            <div tal:define="link python:view._render_websites(context.storage_type)">
+              <dl>
+                <a tal:content="python:link[1]" href="" tal:attributes="href python:link[0]"/>
+              </dl>
+            </div>
+
+            <!-- tal:condition="python: context.storage_type=='MAPLAYER'" -->
+            <!-- <div tal:content="structure context/websites/output" style="text-decoration: underline">Source here</div> -->
             <h5>Source:</h5>
             <div tal:content="structure context/source/output">Source here</div>
 

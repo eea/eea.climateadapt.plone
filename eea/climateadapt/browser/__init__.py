@@ -44,6 +44,16 @@ for line in filter(None, labels.split('\n')):
 
 
 class AceViewApi(object):
+    def _render_websites(self, value):
+        if (value == 'MAPLAYER'):
+            url = '/tools/map-viewer?layerid=' + self.context.websites.output
+
+            if (self.context.data_type == 'MAPGRAPHDATASET'):
+                return (url, 'View map ' + self.context.title)
+            return (url, self.context.websites.output)
+        elif (value == 'URL'):
+            # import pdb; pdb.set_trace()
+            return (self.context.websites.output, self.context.websites.output)
 
     def _render_geochar_element(self, value):
         value = TRANSLATED[value]

@@ -67,6 +67,7 @@ def search_type(object):
     return "CONTENT"
 
 
+
 @indexer(ICityProfile)
 def city_sectors(city):
     return city.key_vulnerable_adaptation_sector

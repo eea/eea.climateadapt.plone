@@ -640,6 +640,22 @@ ul#ast-menu, #ast-menu ul {
     padding-right: 0.1em;
 }
 
+.Adaptation-option-selector {
+    background-position: left center;
+    background-image: url("cca/img/ico-arrow.png");
+    background-repeat: no-repeat;
+    background-position: inline;
+    padding-left: 1em;
+}
+
+.adapt-option-em {
+    background-position: left center;
+    background-image: url("cca/img/ico-arrow.png");
+    background-repeat: no-repeat;
+    background-position: inline;
+    padding-left: 1em;
+}
+
 #content .eu-strategy td h2,
 #content .aceitem-relevant-tile h2 {
     font-size: 1.4em;

@@ -1961,6 +1961,7 @@ def run_importer(site=None):
 
     import_journal_articles(site)
     tweak_site(site)
+    import_city_profiles(site)
     write_links()
 
 

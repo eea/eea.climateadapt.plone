@@ -52,6 +52,7 @@ class CitiesLoad (BrowserView):
                 q[k] = v
         brains = cat.searchResults(**q)
         res = {}
+        
         for brain in brains:
             res[brain.Title] = brain.getURL()
 
