@@ -4,10 +4,10 @@
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   lang="en"
   metal:use-macro="context/main_template/macros/master"
-  i18n:domain="example.conference">
+  i18n:domain="eea.climateadapt">
   <body>
 
-    <metal:main fill-slot="main">
+    <metal:main fill-slot="content-core">
       <style>
           .center-area{
             width: 65%;
@@ -85,7 +85,7 @@
           }
       </style>
 
-      <tal:main-macro metal:define-macro="content-core" >
+
         <h2 class="container-title">
             <span tal:content="context/aq_parent/title">City Profiles</span>
         </h2>
@@ -227,7 +227,7 @@
             </div>
         </div>
 
-      </tal:main-macro>
+      
     </metal:main>
 
   </body>

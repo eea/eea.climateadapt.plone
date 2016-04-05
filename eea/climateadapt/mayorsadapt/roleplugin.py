@@ -8,6 +8,7 @@ from Products.PluggableAuthService.interfaces.plugins import IAnonymousUserFacto
 from Products.PluggableAuthService.interfaces.plugins import IUserEnumerationPlugin
 from Products.PluggableAuthService.plugins.BasePlugin import BasePlugin
 from zope.interface import implements
+from eea.climateadapt.city_profile import TOKENID
 
 
 # Monkeypatch _isTop() to be able to create special Anonymous City Mayor users.
@@ -19,12 +20,14 @@ from Products.PluggableAuthService.PluggableAuthService import PluggableAuthServ
 def is_citymayor_visitor(request):
     """ Is this browsing session belong to a city mayor visitor?
     """
-    if request.SESSION.get('tk'):  # TODO: read cookies
+    if request.cookies.get(TOKENID) or request.SESSION.get(TOKENID): 
         return True
     return False
 
 
 _old_isTop = PluggableAuthService._isTop
+
+
 def _new_isTop(self):
     if is_citymayor_visitor(self.REQUEST):
         return True
@@ -46,7 +49,7 @@ manage_addCityMayorUserFactoryForm = DTMLFile('./CityMayorUserFactoryForm',
                                                 globals())
 
 
-CITYMAYOR =  'CityMayor'
+CITYMAYOR = 'CityMayor'
 
 
 class CityMayorUser(BasicUser):

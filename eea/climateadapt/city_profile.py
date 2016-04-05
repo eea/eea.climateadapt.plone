@@ -1,6 +1,11 @@
 from plone.directives import dexterity, form
+from zope.annotation.interfaces import IAnnotations
 from zope.globalrequest import getRequest
 from zope.interface import implements, Interface
+import os
+import binascii
+import datetime
+from datetime import timedelta
 
 
 class ICityProfile(form.Schema):
@@ -19,17 +24,33 @@ class ICityProfileStaging(Interface):
     """
 
 
+def generate_secret_token():
+    return binascii.hexlify(os.urandom(16)).upper()
+
+
+TOKENID = 'cptk'
+
+current_date = datetime.datetime.now()
+expire_date = current_date + timedelta(days=14)
+
+
 class CityProfile(dexterity.Container):
     implements(ICityProfile)
 
     search_type = "MAYORSADAPT"
-    secret = "zzz"
+
+    def __init__(self, *args, **kw):
+        super(CityProfile, self).__init__(*args, **kw)
+        IAnnotations(self)['eea.climateadapt.cityprofile_secret'] = generate_secret_token()
 
     @property
     def __ac_local_roles__(self):
         req = getRequest()
-        tk = req.SESSION.get('tk')
-        #import pdb; pdb.set_trace()
-        if tk == self.secret:
-            return {'CityMayor': ['Owner',]}
+
+        try:
+            tk = req.SESSION.get(TOKENID)
+        except:
+            tk = req.cookies.get(TOKENID)
+        if tk and (tk == IAnnotations(self)['eea.climateadapt.cityprofile_secret']):
+            return {'CityMayor': ['Owner', ]}
         return {}

@@ -10,7 +10,7 @@
 
     <browser:page
         for="*"
-        name="tk"
+        name="cptk"
         class=".traverser.TokenTraverser"
         permission="zope.Public"
         />
@@ -30,7 +30,7 @@
         />
 
     <adapter factory=".staging.CityProfileBehaviorAssignable" />
-    
+
     <browser:page
         for="eea.climateadapt.city_profile.ICityProfileStaging"
         name="iterate_control"

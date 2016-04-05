@@ -108,4 +108,3 @@ class CityProfileEditController(BrowserView):
             return self.request.response.redirect(url)
 
         raise ValueError ('unknown state')
-
