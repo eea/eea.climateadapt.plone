@@ -200,7 +200,7 @@ class CaseStudy(dexterity.Item):
 class AdaptationOption(dexterity.Item):
     implements(IAdaptationOption)
 
-    search_type = "MEASUREACTION"
+    search_type = "MEASURE"
 
 
 # class AceMeasure(Base):

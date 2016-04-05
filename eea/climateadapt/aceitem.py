@@ -176,6 +176,17 @@ class IResearchProject(IAceItem):
     """
 
 
+# class IAdaptationOption(IAceItem):
+#     """ Adaptation Option Interface
+#     """
+#
+#
+# class AdaptationOption(dexterity.Item):
+#     implements(IAdaptationOption)
+#
+#     search_type = "MEASURE"
+
+
 class PublicationReport(dexterity.Item):
     implements(IPublicationReport)
 

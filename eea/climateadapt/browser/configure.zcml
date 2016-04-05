@@ -64,6 +64,15 @@
 
     <browser:page
         name="view"
+        for="eea.climateadapt.city_profile.ICityProfileStaging"
+        class="eea.climateadapt.browser.cityprofile.CityProfileView"
+        template="pt/city_profile.pt"
+        permission="zope2.View"
+        />
+
+
+    <browser:page
+        name="view"
         for="eea.climateadapt.aceitem.IPublicationReport"
         class="eea.climateadapt.browser.aceitem.PublicationReportView"
         template="pt/publicationreport_view.pt"
@@ -117,6 +126,7 @@
         template="pt/adaptationoption_view.pt"
         permission="zope2.View"
         />
+
 
     <browser:page
         name="view"

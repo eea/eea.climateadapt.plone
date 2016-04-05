@@ -22,7 +22,7 @@ class ICityProfileStaging(Interface):
 class CityProfile(dexterity.Container):
     implements(ICityProfile)
 
-    search_type = "CITYPROFILE"
+    search_type = "MAYORSADAPT"
     secret = "zzz"
 
     @property

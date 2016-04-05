@@ -428,6 +428,7 @@ no_import_layouts = [
     '/links',
     '/home',
     '/newregion',
+    '/content/eea-climateadapt-researchproject',
 ]
 
 # TO DO
