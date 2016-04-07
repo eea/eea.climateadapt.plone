@@ -77,6 +77,7 @@ from zope.sqlalchemy import register
 import dateutil
 import json
 import os
+import pprint
 import sys
 import transaction
 
@@ -665,12 +666,12 @@ def import_city_profile(container, journal):
         'f_m_action_event_title': {'newkey': 'title_of_the_action_event'},
     }
 
-    # missing_vals = []
-    # for _type, name, payload in vals:
-    #     if name not in _map:
-    #         missing_vals.append((_type, name, payload))
-    # for v in missing_vals:
-    #     print v
+    missing_vals = []
+    for _type, name, payload in vals:
+        if name not in _map:
+            missing_vals.append((_type, name, payload))
+    for v in missing_vals:
+        print v
 
     # #fields in xml file
     # 'additional_information_on_adaptation_responses',
@@ -736,8 +737,7 @@ def import_city_profile(container, journal):
         **mapped_data
     )
     # city.setLayout('city_profile')    # TODO: is this needed?
-    # import pprint
-    # pprint.pprint(mapped_data)
+    pprint.pprint(mapped_data)
     logger.debug("Imported city profile %s", city_name)
     return city
 
@@ -1608,10 +1608,7 @@ def import_template_2_columns_ii(site, layout, structure):
     # this pages will have to be manually recreated
     # ex: /home
 
-    if layout.friendlyurl in ['/observations-and-scenarios',
-                              '/adaptation-measures',
-                              '/adaptation-support-tool',
-                              ]:
+    if layout.friendlyurl == '/observations-and-scenarios':
         return  # this is imported in another layout
 
     if len(structure) == 1:  # this is a fake page. Ex: /adaptation-sectors

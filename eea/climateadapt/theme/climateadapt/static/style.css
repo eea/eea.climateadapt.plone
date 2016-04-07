@@ -68,9 +68,20 @@ h2, h3, h4, h5, h6 {color: #636466; font-family: Arial, Helvetica, sans-serif;}
 .clear {clear: both;}
 .pb-ajax, .pb-image, .overlay iframe {font-size: 1.3em;}
 div.overlay-iframe, div.overlay-ajax {width:75%;z-index:1100;}
-.portlet img, #content img {max-width:100%; margin-top: 10px !important;
-                            margin-left: 30px }
-.pull-left {margin-left: 0px !important;}
+.portlet img, #content img {max-width:100%;
+/*
+                            margin-top: 0.1em;
+                          margin-left: 0.5em */}
+.pull-left {margin-left: 0px;}
+
+#content .case-studies-homepage-slider-image img {
+    margin: 0;
+}
+
+#content .homepage-read-more img {
+    display: inline-block;
+    margin-top: 0 ;
+}
 
 #content a:hover,
 dl.portlet a:hover {
