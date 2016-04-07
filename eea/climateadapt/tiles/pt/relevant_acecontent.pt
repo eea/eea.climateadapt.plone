@@ -31,7 +31,9 @@
       <div class="tile-footer">
         <!-- <a href="" tal:attributes="href view/view_more_url" tal:condition="view/view_more">View more</a> -->
         <div tal:condition="python:view.data.get('show_share_btn') or view.show_share_btn()">
-          <button>Share information</button>
+          <a href="/share-your-info" >
+            <button>Share information</button>
+          </a>
         </div>
       </div>
     </div>
