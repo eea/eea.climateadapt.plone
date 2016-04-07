@@ -22,7 +22,7 @@
           </span>
         </tal:nothing>
       </td>
-      <td class="ceva_de_test" tal:define="relevance repeat/brain/index">
+      <td class="relevance_table" tal:define="relevance repeat/brain/index">
         <span style="display: none" tal:content="relevance" />
         <div class="relevance-marker"></div>
         <div class="relevance-marker" tal:condition="python: relevance &gt; two"></div>

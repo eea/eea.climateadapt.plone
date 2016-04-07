@@ -1,47 +1,47 @@
-<div>
+<div class="funding-adaptation-tile">
   <h3>
     <a href="/eu-adaptation-policy/funding">EU Funding and Adaptation</a>
   </h3>
-  <div style="padding-top:6px;"> 
-    <table align="center" cellpadding="1" cellspacing="1" style="width:100%;text-align:center;"> 
-      <tbody> 
-        <tr> 
+  <div style="padding-top:6px;">
+    <table align="center" cellpadding="1" cellspacing="1" style="width:100%;text-align:center;">
+      <tbody>
+        <tr>
           <td>
             <a href="/eu-adaptation-policy/funding/life">
               <img alt="Life Climate Action" src="/++resource++eea.climateadapt/frontpage/life-climate-action.jpg" style="width: 93px; height: 68px;" />
             </a>
-          </td> 
+          </td>
           <td>
             <a href="/eu-adaptation-policy/funding/esi">
               <img alt="ESI funds" src="/++resource++eea.climateadapt/frontpage/esi-funds.jpg" style="width: 97px; height: 74px;" />
             </a>
-          </td> 
+          </td>
           <td>
             <a href="/eu-adaptation-policy/funding/h2020">
               <img alt="H2020" src="/++resource++eea.climateadapt/frontpage/h2020.jpg" style="width: 95px; height: 69px;" />
             </a>
-          </td> 
-        </tr> 
-        <tr> 
-          <td style="text-align: center;"> 
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">
             <p>
               <span style="color: rgb(34, 34, 34); font-family: Calibri, sans-serif; font-size: 14.6667px; line-height: normal;">Life Climate Action </span>
-            </p> 
-          </td> 
+            </p>
+          </td>
           <td
-            style="text-align: center;"> 
+            style="text-align: center;">
             <p>
               <span style="color: rgb(34, 34, 34); font-family: Calibri, sans-serif; font-size: 14.6667px; line-height: normal;">ESI funds </span>
-            </p> 
+            </p>
           </td>
-          <td style="text-align: center;"> 
+          <td style="text-align: center;">
             <p>
               <span style="color: rgb(34, 34, 34); font-family: Calibri, sans-serif; font-size: 14.6667px; line-height: normal;">H2020
               </span>
-            </p> 
+            </p>
           </td>
-        </tr> 
-      </tbody> 
-    </table> 
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

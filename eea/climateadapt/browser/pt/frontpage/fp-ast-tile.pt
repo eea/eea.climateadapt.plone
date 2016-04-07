@@ -1,4 +1,4 @@
-<div>
+<div class="fp-image-tile">
   <a href="/adaptation-support-tool">
     <img src="" tal:attributes="src string: ${context/++resource++eea.climateadapt}/img/ast_front.png" />
   </a>

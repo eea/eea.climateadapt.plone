@@ -1,6 +1,5 @@
-<div>
+<div class="fp-image-tile">
   <a href="/sat">
     <img src="" tal:attributes="src string: ${context/++resource++eea.climateadapt}/img/find-case-studies.jpg" />
   </a>
 </div>
-

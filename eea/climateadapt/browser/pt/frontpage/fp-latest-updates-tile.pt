@@ -1,8 +1,8 @@
-<div>
+<div style="padding-right:0em; border: none;" class="fp-tile-fixes">
   <h3><a href="/more-latest-updates">Latest updates</a></h3>
   <p>Check the latest updates in the content of the Platform.</p>
-  <ul>
-    <li><a href="">Country information page</a></li>
-    <li><a href="">Mayors Adapt landing page</a></li>
+  <ul style="margin-left:0.2em">
+    <li style="list-style-image: url(/++theme++climateadapt/static/cca/img/01_plus.png)"><a href="">Country information page</a></li>
+    <li style="list-style-image: url(/++theme++climateadapt/static/cca/img/01_plus.png)"><a href="">Mayors Adapt landing page</a></li>
   </ul>
 </div>

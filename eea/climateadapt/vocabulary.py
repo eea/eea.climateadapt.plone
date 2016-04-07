@@ -144,7 +144,7 @@ european_countries = ['AD', 'AL', 'AM', 'AT', 'AZ', 'BA', 'BE', 'BG', 'BY',
                       'SI', 'SK', 'SM', 'TR', 'UA']
 ace_countries = [(x.alpha2, x.name) for x in pycountry.countries
                  if x.alpha2 in european_countries]
-ace_countries.append(('FYROM', 'Former Yugoslav Republic of Macedonia'))
+ace_countries.append(('FYROM', 'F. Y. R. O. Macedonia'))
 ace_countries_dict = dict(ace_countries)
 
 ace_countries_vocabulary = generic_vocabulary(ace_countries)

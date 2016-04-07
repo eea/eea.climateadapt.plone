@@ -1,4 +1,4 @@
-<div>
+<div class="fp-image-tile">
   <a href="/countries-map">
     <img src="" tal:attributes="src string: ${context/++resource++eea.climateadapt}/img/european-countries.png" />
   </a>

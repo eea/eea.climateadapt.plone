@@ -68,10 +68,7 @@ h2, h3, h4, h5, h6 {color: #636466; font-family: Arial, Helvetica, sans-serif;}
 .clear {clear: both;}
 .pb-ajax, .pb-image, .overlay iframe {font-size: 1.3em;}
 div.overlay-iframe, div.overlay-ajax {width:75%;z-index:1100;}
-.portlet img, #content img {max-width:100%;
-/*
-                            margin-top: 0.1em;
-                          margin-left: 0.5em */}
+.portlet img, #content img {max-width:100%;}
 .pull-left {margin-left: 0px;}
 
 #content .case-studies-homepage-slider-image img {
@@ -272,6 +269,13 @@ div.position-0 { margin-left: -100%; }
     padding-top:10px;
     padding-bottom: 10px;
     line-height: 20px;
+}
+
+/* .country-select-tile */
+
+#country-select {
+    width: auto;
+    max-width: 93%;
 }
 
 /* Edit tiles layout */
@@ -894,7 +898,28 @@ a.bluebutton:active {
 
 #fp-country-selector {
     margin-top:-30px;
-    margin-left: 1em;
+    margin-left: 3em;
+    max-width: 80%;
+    margin-right: 2em;
+}
+
+.eu-climate-policy-tile {
+    margin-left: 0.7em;
+}
+
+.fp-tile-fixes {
+    border-right: #d7e3ef 2px solid;
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+}
+
+.fp-image-tile {
+    padding-left: 0.7em;
+    padding-right: 0.5em;
+}
+
+.funding-adaptation-tile {
+    margin-right: 0.7em;
 }
 
 .section-frontpage .tile {
@@ -1008,7 +1033,7 @@ a.bluebutton:active {
     text-decoration: none !important;
 }
 
-tbody .ceva_de_test {
+tbody .relevance_table {
     width : 15%;
 }
 
