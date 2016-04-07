@@ -198,12 +198,11 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
     view_more = False
 
-
     def show_share_btn(self):
         search_type = self.data.get('search_type')
-        if search_type in ['DOCUMENT', 'INFORMATIONSOURCE', 'GUIDANCE',
-                           'TOOL', 'REASEARCHPROJECT', 'MEASURE',
-                           'ORGANISATION']:
+        if search_type in ['DOCUMENT', 'INFORMATIONSOURCE',
+                           'GUIDANCE', 'TOOL', 'REASEARCHPROJECT',
+                           'MEASURE', 'ORGANISATION']:
             return True
 
         # <c:if test="${aceitemtype eq 'DOCUMENT' || aceitemtype eq

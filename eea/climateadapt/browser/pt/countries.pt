@@ -145,7 +145,7 @@
             <select id="thematic_field" style="width:100%"></select>
 
             <div class="bluebuttondiv" style="text-align:center">
-              <a class="bluebutton" id="botoncito1" style="float:none;margin-top:10px;margin-bottom:10px">Show Thematic Map</a>
+              <a class="bluebutton" id="botoncito1" style="float:none;margin-top:10px;margin-bottom:10px;cursor:pointer">Show Thematic Map</a>
             </div>
             &nbsp;
 

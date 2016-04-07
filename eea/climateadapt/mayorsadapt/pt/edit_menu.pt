@@ -1,20 +1,80 @@
 <div class="cityprofile_edit_menu" tal:define="state view/current_state; has_working_copy view/has_working_copy">
   <form method="POST" action="/@@mayors_edit" tal:attributes="action string:${context/absolute_url}/@@mayors_edit">
+    <style type="text/css">
+      .buttonone {
+          background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline !important;
+          font-size: 16px;
+          margin: 0px 0px;
+          cursor: pointer;
+      }
 
-    <p>Current state: <strong tal:content="python: view.state_labels()[state]" /></p>
+      p {
+          background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: left;
+          width: auto;
+          text-decoration: none;
+          font-size: 16px;
+          margin: 0px 0px;
+      }
 
-    <div tal:condition="view/can_submit_for_publication">
-      <button name="submit" value="submit">Submit for publication</button>
-    </div>
+      .buttons {
+          display: inline !important;
+      }
 
-    <div>
-      <button name="submit" value="edit">Edit</button>
-    </div>
+      .buttons2 {
+          display: inline !important;
+      }
 
-    <div tal:condition="python: state == 'private'">Editing will open this CityProfile for edit</div>
-    <div tal:condition="python: (state == 'published') and not has_working_copy">Editing will create a private copy, to be edited</div>
-    <div tal:condition="python: (state == 'published') and has_working_copy">Edit the existing private working copy</div>
-    <div tal:condition="python: state == 'pending'">Editing will cancel the publishing process and edit this CityProfile</div>
+      .buttons2:hover div{
+          display: inline-block;
+          background-color: #4CAF50;
+          border: none;
+          color: white;
+          padding: 0.5em 0.5em;
+          text-align: left;
+          width: auto;
+          text-decoration: none;
+          font-size: 16px;
+          margin: 4px 2px;
+      }
+
+      .buttons2 div {
+          display: none;
+      }
+
+      p {
+          width: 33%;
+      }
+
+
+    </style>
+      <p>Current state:
+        <!-- <div class="hover1"> -->
+          <strong tal:content="python: view.state_labels()[state]" />
+        <!-- </div> -->
+      </p>
+
+
+      <div tal:condition="view/can_submit_for_publication" class="buttons">
+        <button class="buttonone" name="submit" value="submit">Submit for publication</button>
+      </div>
+
+      <div class="buttons2">
+        <button class="buttonone two" name="submit" value="edit">Edit</button>
+          <div tal:condition="python: state == 'private'">Editing will open this CityProfile for edit</div>
+          <div tal:condition="python: (state == 'published') and not has_working_copy">Editing will create a private copy, to be edited</div>
+          <div tal:condition="python: (state == 'published') and has_working_copy">Edit the existing private working copy</div>
+          <div tal:condition="python: state == 'pending'">Editing will cancel the publishing process and edit this CityProfile</div>
+      </div>
   </form>
 
 </div>

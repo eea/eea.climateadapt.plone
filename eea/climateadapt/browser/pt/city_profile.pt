@@ -7,6 +7,16 @@
   i18n:domain="eea.climateadapt">
   <body>
 
+
+    <metal:main fill-slot="content-title">
+      <h2 class="container-title">
+          <span tal:content="context/aq_parent/title">City Profiles</span>
+      </h2>
+    </metal:main>
+
+    <metal:main fill-slot="content-description">
+    </metal:main>
+
     <metal:main fill-slot="content-core">
       <style>
           .center-area{
@@ -84,11 +94,6 @@
             margin-top: 2em;
           }
       </style>
-
-
-        <h2 class="container-title">
-            <span tal:content="context/aq_parent/title">City Profiles</span>
-        </h2>
 
         <h1 class="city-name">
             <a class="glyphicon glyphicon-circle-arrow-left"
@@ -227,7 +232,7 @@
             </div>
         </div>
 
-      
+
     </metal:main>
 
   </body>
