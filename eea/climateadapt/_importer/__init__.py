@@ -49,6 +49,7 @@ from eea.climateadapt.interfaces import IASTNavigationRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
 from eea.climateadapt.interfaces import IClimateAdaptSharePage
 from eea.climateadapt.interfaces import ICountriesRoot
+from eea.climateadapt.interfaces import IMayorAdaptRoot
 from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.climateadapt.vocabulary import _cca_types
@@ -429,6 +430,7 @@ no_import_layouts = [
     '/home',
     '/newregion',
     '/content/eea-climateadapt-researchproject',
+    '/mayors-adapt',
 ]
 
 # TO DO
@@ -1671,8 +1673,13 @@ def import_template_2_columns_iii(site, layout, structure):
 
     title = structure['name']
 
+    if structure['name'] == 'Additional Tools':
+        title = ''
+
     main_content_tile = make_richtext_with_title_tile(cover,
                                                       {'text': body, 'title': title})
+
+
     if image:
         image_tile = make_richtext_tile(cover, {'text': image,
                                                 'title': 'image'})
@@ -2114,6 +2121,11 @@ def tweak_site(site):
     ctpage = site['countries']
     alsoProvides(ctpage, ICountriesRoot)
     ctpage.setLayout('@@countries-view-map')
+
+    # mayors-adapt page
+    mapage = site['mayors-adapt']
+    alsoProvides(mapage, IMayorAdaptRoot)
+    mapage.setLayout('@@mayors-adapt')
 
 
     # TODO: create manually created pages

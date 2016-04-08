@@ -35,6 +35,12 @@ class IUrbanASTPage(Interface):
     """ A marker interface for Urban AST pages
     """
 
+
 class ICountriesRoot(Interface):
     """ A marker interface for /countries page
+    """
+
+
+class IMayorAdaptRoot(Interface):
+    """ A marker interface for /mayors-adapt
     """

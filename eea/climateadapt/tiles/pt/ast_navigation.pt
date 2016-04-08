@@ -113,15 +113,15 @@
     <li>
       <a href="/adaptation-support-tool/step-6" name="step-6" onclick="document.location.href='/adaptation-support-tool/step-6'"><strong>6.</strong> Monitoring and evaluation</a>
       <ul id="step-6">
-        <li><a href="/adaptation-support-tool/step-6/develop-provisions" name="step-6-1" 
+        <li><a href="/adaptation-support-tool/step-6/develop-provisions" name="step-6-1"
             onclick="document.location.href='/adaptation-support-tool/step-6/develop-provisions'">Develop appropriate M&amp;E provisions for your policy´s objectives and adaptation options</a>
         </li>
         <li>
-          <a href="/adaptation-support-tool/step-6/identify-indicators" name="step-6-2" 
+          <a href="/adaptation-support-tool/step-6/identify-indicators" name="step-6-2"
             onclick="document.location.href='/adaptation-support-tool/step-6/identify-indicators'">Identify indicators </a>
         </li>
         <ul id="step-6-2">
-          <li><a href="/adaptation-support-tool/step-6/self-check" name="step-6-2-1" 
+          <li><a href="/adaptation-support-tool/step-6/self-check" name="step-6-2-1"
               onclick="document.location.href='/adaptation-support-tool/step-6/self-check'">SELF-CHECK</a></li>
         </ul>
       </ul>
