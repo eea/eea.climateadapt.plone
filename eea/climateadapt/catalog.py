@@ -79,10 +79,14 @@ def city_climate_impacts(city):
 
 @indexer(ICityProfile)
 def city_stage_implementation_cycle(city):
-    # import pdb; pdb.set_trace()
     return city.stage_of_the_implementation_cycle
 
 
 @indexer(ICityProfile)
 def city_countries(city):
     return [city.country]
+
+
+@indexer(ICityProfile)
+def city_long_description(city):
+    return """Placeholder description"""

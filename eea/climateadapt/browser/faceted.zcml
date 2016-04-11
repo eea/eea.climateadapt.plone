@@ -9,8 +9,8 @@
     xmlns:faceted="http://namespaces.zope.org/faceted"
     i18n_domain="eea.climateadapt">
 
-    <utility 
-        name="eea.climateadapt.faceted_search_types_vocabulary" 
+    <utility
+        name="eea.climateadapt.faceted_search_types_vocabulary"
         component=".facetedsearch.search_types_vocabulary" />
 
     <faceted:view
@@ -88,7 +88,7 @@
     <browser:page
         for="*"
         name="faceted_listing_MAPGRAPHDATASET"
-        template="pt/search/listing-document.pt"
+        template="pt/search/listing-maps.pt"
         class=".facetedsearch.ListingGeneric"
         permission="zope2.View"
         />
@@ -96,7 +96,7 @@
     <browser:page
         for="*"
         name="faceted_listing_INDICATOR"
-        template="pt/search/listing-document.pt"
+        template="pt/search/listing-indicators.pt"
         class=".facetedsearch.ListingGeneric"
         permission="zope2.View"
         />
@@ -104,7 +104,7 @@
     <browser:page
         for="*"
         name="faceted_listing_RESEARCHPROJECT"
-        template="pt/search/listing-document.pt"
+        template="pt/search/listing-projects.pt"
         class=".facetedsearch.ListingGeneric"
         permission="zope2.View"
         />
@@ -112,7 +112,7 @@
     <browser:page
         for="*"
         name="faceted_listing_ACTION"
-        template="pt/search/listing-document.pt"
+        template="pt/search/listing-casestudies.pt"
         class=".facetedsearch.ListingGeneric"
         permission="zope2.View"
         />
@@ -120,7 +120,23 @@
     <browser:page
         for="*"
         name="faceted_listing_ORGANISATION"
-        template="pt/search/listing-document.pt"
+        template="pt/search/listing-organizations.pt"
+        class=".facetedsearch.ListingGeneric"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="faceted_listing_MEASURE"
+        template="pt/search/listing-adaptoption.pt"
+        class=".facetedsearch.ListingGeneric"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="faceted_listing_MAYORSADAPT"
+        template="pt/search/listing-cityprofile.pt"
         class=".facetedsearch.ListingGeneric"
         permission="zope2.View"
         />

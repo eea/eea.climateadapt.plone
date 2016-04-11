@@ -54,6 +54,7 @@
     <adapter name="countries" factory=".catalog.city_countries" />
     <adapter name="search_type" factory=".catalog.search_type" />
     <adapter name="climate_impacts" factory=".catalog.city_climate_impacts" />
+    <adapter name="long_description" factory=".catalog.city_long_description" />
 
     <utility name="eea.climateadapt.aceitems_datatypes" component=".vocabulary.aceitem_datatypes_vocabulary"/>
     <utility name="eea.climateadapt.aceitems_storagetypes" component=".vocabulary.aceitem_storagetypes_vocabulary"/>

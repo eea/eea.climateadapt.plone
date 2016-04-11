@@ -78,8 +78,10 @@ class ListingView(BrowserView):
 
     def render(self, name, brains):
         print "rendering ", name
+
         view = queryMultiAdapter((self.context, self.request),
                                name='faceted_listing_' + name)
+
         if view is None:
             view = getMultiAdapter((self.context, self.request),
                                 name='faceted_listing_GENERIC')
@@ -119,4 +121,3 @@ class ListingGeneric(BrowserView):
         if url.endswith('index_html'):
             return url[:-len('index_html')]
         return url
-
