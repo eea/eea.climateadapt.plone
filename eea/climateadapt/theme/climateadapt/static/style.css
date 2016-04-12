@@ -1096,6 +1096,11 @@ li.dropdown-submenu {
     display: list-item;
 }
 
+.ugquestion {
+    text-decoration: underline;
+    font-size: 16px;
+}
+
 /* case study */
 .case-studies-review-image-wrapper {
     float: left;

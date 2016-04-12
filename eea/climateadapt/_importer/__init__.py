@@ -431,6 +431,7 @@ no_import_layouts = [
     '/newregion',
     '/content/eea-climateadapt-researchproject',
     '/mayors-adapt',
+    '/newregion',
 ]
 
 # TO DO
@@ -760,11 +761,15 @@ def import_city_profiles(site):
 
     to_import = []
 
+
     for city_name in cp:
         if city_name and city_name != '-':
             cities = cp[city_name]
             cities.sort(key=lambda d:d.version)
             to_import.append(cities[-1])
+
+    # 'status_of_mayors_adapt_signature': 'INPROCESSSIGNING' - CELE NEPUBLICATE
+    # 'status_of_mayors_adapt_signature': []] - CELE NEPUBLICATE
 
     city_profiles_folder = createAndPublishContentInContainer(
         site,
@@ -1645,14 +1650,36 @@ def import_template_2_columns_iii(site, layout, structure):
 
     assert(len(structure) == 2 or len(structure) == 3)
 
-    #title = structure['name']
+    # title = structure['name']
     title = structure['column-1'][0][1]['portlet_title']
     body = structure['column-1'][0][1]['content'][0]
-
 
     cover = create_cover_at(site, layout.friendlyurl, title=title)
     cover.aq_parent.edit(title=title)   # Fix parent title
     stamp_cover(cover, layout)
+
+    # there are three pages that use dynamic text (faq items)
+    if 'dynamic' in [x[0] for x in structure['column-1'][0][1]['content']]:
+        htmlstring = ''
+        for row in structure['column-1'][0][1]['content']:
+            row_type = row[0]
+            if row_type == 'text':
+                htmlstring += row[2][0]
+            elif row_type == 'dynamic':
+                question = row[2][0][2][0]
+                newquestion = '<p class="ugquestion">' + question + '</p>'
+                answer = row[2][1][2][0]
+                htmlstring += newquestion + answer
+        main_content_tile = make_richtext_with_title_tile(cover,
+                                                          {'text': htmlstring, 'title': ''})
+
+        side_group = make_group(5)
+        main_group = make_group(7, main_content_tile)
+        layout = make_layout(make_row(main_group, side_group))
+
+        cover.cover_layout = json.dumps(layout)
+        cover.setLayout('standard')
+        return cover
 
     extra_tiles = []
     if len(structure['column-1']) == 4:
@@ -1671,14 +1698,11 @@ def import_template_2_columns_iii(site, layout, structure):
         assert(len(structure['column-2']) == 1)
         image = structure['column-2'][0][1]['content'][0]
 
-    title = structure['name']
-
-    if structure['name'] == 'Additional Tools':
-        title = ''
+#    title = structure['name']
+    title = ''
 
     main_content_tile = make_richtext_with_title_tile(cover,
                                                       {'text': body, 'title': title})
-
 
     if image:
         image_tile = make_richtext_tile(cover, {'text': image,
