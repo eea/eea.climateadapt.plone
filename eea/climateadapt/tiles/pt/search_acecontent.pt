@@ -32,6 +32,11 @@
           </a>
         </li>
       </ul>
+      <div class="share-your-info-ace-button">
+        <a href="/share-your-info">
+          <button>Share your information</button>
+        </a>
+      </div>
     </div>
   </body>
 </html>

@@ -195,7 +195,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
     is_droppable = False
 
     index = ViewPageTemplateFile('pt/relevant_acecontent.pt')
-
+    
     view_more = False
 
     def show_share_btn(self):

@@ -631,6 +631,11 @@ ul#ast-menu, #ast-menu ul {
     margin-left: 2%;
 }
 
+/*
+#portal-column-content .documentEditable #content {
+    margin-left: 0;
+}
+*/
 .ast_text {
     margin-left: 5%;
 }
@@ -647,8 +652,12 @@ ul#ast-menu, #ast-menu ul {
     text-decoration: underline;
 }
 
+.col-md-4 .cover-richtext-tile ul li a:link {
+    text-decoration: none;
+}
+
 .cover-richtext-tile img {
-    margin-left: 10% !important;
+    margin-left: 0.1em;
 }
 
 .tile {
@@ -718,7 +727,6 @@ ul#ast-menu, #ast-menu ul {
 #content ul.arrow-items > li > a,
 #content ul#ast-menu ul > li > a{
     text-decoration: initial;
-    text-decoration: underline;
 }
 #content .eu-strategy td > ul,
 #content .aceitem-relevant-tile > ul,
@@ -794,6 +802,10 @@ a.bluebutton:visited {
     border: solid 1px #aab91d;
     text-align: center;
     text-decoration: underline;
+}
+
+#content .aceitem-search-tile .share-your-info-ace-button button {
+    color: #000;
 }
 
 #content .share-your-info-ace-button button:hover,
@@ -1099,6 +1111,189 @@ li.dropdown-submenu {
 .ugquestion {
     text-decoration: underline;
     font-size: 16px;
+}
+
+.col-md-7 table td a {
+    text-decoration: underline;
+}
+
+.col-md-7 .cover-richtext-tile a:link {
+    text-decoration: underline;
+}
+
+.col-md-8 .cover-richtext-tile a:link {
+    text-decoration: underline;
+}
+
+.col-md-12 table a:link span {
+    text-decoration: underline;
+}
+
+.col-md-12 table p {
+    padding-left: 0.5em;
+}
+
+.col-md-12 a:link {
+    text-decoration: underline;
+}
+
+#content-core .col-md-4 .cover-richtext-tile ul li {
+    list-style-image: url("cca/img/01_plus.png");
+}
+
+#_com_2 td a img {
+    margin-left: 0;
+}
+
+.col-md-9 a:link {
+    text-decoration: underline;
+}
+
+.col-md-3 .aceitem-relevant-tile {
+    background-color: #d2de92;
+    padding: 0.4em 1em;
+    margin-bottom: 0.3em;
+    margin-top: 0.2em;
+}
+
+/* Needs some revision*/
+#content .col-md-3 .speedbutton {
+    background-color: red;
+}
+
+.col-md-3 .aceitem-relevant-tile h2 {
+    color : #758816;
+}
+
+.col-md-3 .speedbutton , .col-md-3 .speedbutton img{
+    background-color: #d2de92;
+}
+
+
+
+/* table for /eu-adaptation-policy/funding/esi */
+.CSSTableGenerator {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border: 1px solid #3f7f00;
+    -moz-border-radius-bottomleft: 0;
+    -webkit-border-bottom-left-radius: 0;
+    border-bottom-left-radius: 0;
+    -moz-border-radius-bottomright: 0;
+    -webkit-border-bottom-right-radius: 0;
+    border-bottom-right-radius: 0;
+    -moz-border-radius-topright: 0;
+    -webkit-border-top-right-radius: 0;
+    border-top-right-radius: 0;
+    -moz-border-radius-topleft: 0;
+    -webkit-border-top-left-radius: 0;
+    border-top-left-radius: 0
+}
+
+.CSSTableGenerator table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0
+}
+
+.CSSTableGenerator tr:last-child td:last-child {
+    -moz-border-radius-bottomright: 0;
+    -webkit-border-bottom-right-radius: 0;
+    border-bottom-right-radius: 0
+}
+
+.CSSTableGenerator table tr:first-child td:first-child {
+    -moz-border-radius-topleft: 0;
+    -webkit-border-top-left-radius: 0;
+    border-top-left-radius: 0
+}
+
+.CSSTableGenerator table tr:first-child td:last-child {
+    -moz-border-radius-topright: 0;
+    -webkit-border-top-right-radius: 0;
+    border-top-right-radius: 0
+}
+
+.CSSTableGenerator tr:last-child td:first-child {
+    -moz-border-radius-bottomleft: 0;
+    -webkit-border-bottom-left-radius: 0;
+    border-bottom-left-radius: 0
+}
+
+.CSSTableGenerator tr:nth-child(odd) {
+    background-color: #d2df92
+}
+
+.CSSTableGenerator tr:nth-child(even) {
+    background-color: #fff
+}
+
+.CSSTableGenerator td {
+    vertical-align: middle;
+    border: 1px solid #3f7f00;
+    border-width: 0 1px 1px 0;
+    text-align: left;
+    padding: 7px;
+    font-weight: normal;
+    color: #000
+}
+
+.CSSTableGenerator tr:last-child td {
+    border-width: 0 1px 0 0
+}
+
+.CSSTableGenerator tr td:last-child {
+    border-width: 0 0 1px 0
+}
+
+.CSSTableGenerator tr:last-child td:last-child {
+    border-width: 0
+}
+
+.CSSTableGenerator tr:first-child td {
+    background: -o-linear-gradient(bottom, #6d7a2b 5%, #a5bf26 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6d7a2b), color-stop(1, #a5bf26));
+    background: -moz-linear-gradient(center top, #6d7a2b 5%, #a5bf26 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#6d7a2b", endColorstr="#a5bf26");
+    background: -o-linear-gradient(top, #6d7a2b, a5bf26);
+    background-color: #6d7a2b;
+    border: 0 solid #3f7f00;
+    text-align: center;
+    border-width: 0 0 1px 1px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff
+}
+
+.CSSTableGenerator tr:first-child:hover td {
+    background: -o-linear-gradient(bottom, #6d7a2b 5%, #a5bf26 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6d7a2b), color-stop(1, #a5bf26));
+    background: -moz-linear-gradient(center top, #6d7a2b 5%, #a5bf26 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#6d7a2b", endColorstr="#a5bf26");
+    background: -o-linear-gradient(top, #6d7a2b, a5bf26);
+    background-color: #6d7a2b
+}
+
+.CSSTableGenerator tr:first-child td:first-child {
+    border-width: 0 0 1px 0
+}
+
+.CSSTableGenerator tr:first-child td:last-child {
+    border-width: 0 0 1px 1px
+}
+
+.CSSTableGenerator ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0
+}
+
+.CSSTableGenerator ul li {
+    margin-bottom: 8px
 }
 
 /* case study */

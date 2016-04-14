@@ -34,8 +34,8 @@
             tab.push($(this).attr('href'));
         });
 
-        // Check which entry match the current url and return 
-        // the previous one and the next one 
+        // Check which entry match the current url and return
+        // the previous one and the next one
         var tablel = tab.length;
         i = 0;
         pos = -1;
@@ -101,7 +101,7 @@
         <li><a href="/tools/urban-ast/step-2-5" name="step-2-5" onclick="document.location.href='/tools/urban-ast/step-2-5'"><p>2.5 Which sectors in my city/town are most likely to be impacted by climate change and how?</p></a></li>
         <li><a href="/tools/urban-ast/step-2-6" name="step-2-6" onclick="document.location.href='/tools/urban-ast/step-2-6'"><p>2.6 What is the role of the surrounding areas in adaptation and how do I take that into account?</p></a></li>
         <li><a href="/tools/urban-ast/step-2-7" name="step-2-7" onclick="document.location.href='/tools/urban-ast/step-2-7'"><p>2.7 Whom can I approach for further information, data and analysis assistance?</p></a></li>
-        <li><a href="/tools/urban-ast/step-2-8" name="step-2-8" onclick="document.location.href='/tools/urban-ast/step-2-8'"><p>2.8 How do I identify the main adaptation concerns and set the strategic direction?</p></a></li>          
+        <li><a href="/tools/urban-ast/step-2-8" name="step-2-8" onclick="document.location.href='/tools/urban-ast/step-2-8'"><p>2.8 How do I identify the main adaptation concerns and set the strategic direction?</p></a></li>
         <li><a href="/tools/urban-ast/step-2-9" name="step-2-9" onclick="document.location.href='/tools/urban-ast/step-2-9'"><p>2.9 How to set concrete targets for adaptation?</p></a>
           <ul id="step-2-9">
             <li><a href="/tools/urban-ast/step-2-check" name="step-2-9-1" onclick="document.location.href='/tools/urban-ast/step-2-check'"><p>Self-check</p></a></li>
@@ -146,7 +146,7 @@
     <li><a href="/tools/urban-ast/step-6-0" name="step-6-0" onclick="document.location.href='/tools/urban-ast/step-6-0'"><strong>6.</strong> Monitoring and evaluation</a>
       <ul id="step-6">
         <li><a href="/tools/urban-ast/step-6-1" name="step-6-1" onclick="document.location.href='/tools/urban-ast/step-6-1'"><p>6.1 What approaches for monitoring and evaluation can I apply?</p></a></li>
-        <li><a href="/tools/urban-ast/step-6-2" name="step-6-2" onclick="document.location.href='/tools/urban-ast/step-6-2'"><p>6.2 How do I develop indicators for adaptation?</p></a></li>        
+        <li><a href="/tools/urban-ast/step-6-2" name="step-6-2" onclick="document.location.href='/tools/urban-ast/step-6-2'"><p>6.2 How do I develop indicators for adaptation?</p></a></li>
         <li><a href="/tools/urban-ast/step-6-3" name="step-6-3" onclick="document.location.href='/tools/urban-ast/step-6-3'"><p>6.3 Where can I find examples of adaptation indicators?</p></a>
           <ul id="step-6-3">
             <li><a href="/tools/urban-ast/step-6-check" name="step-6-3-1" onclick="document.location.href='/tools/urban-ast/step-6-check'"><p>Self-check</p></a></li>
