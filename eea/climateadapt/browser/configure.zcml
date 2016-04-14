@@ -235,6 +235,24 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        class=".cities_listing.CitiesProfilesView"
+        for="*"
+        name="cities-listing"
+        template="pt/cities_listings.pt"
+        permission="zope2.View"
+        />
+
+    <!-- Tile helpers -->
+
+    <browser:viewlet
+        name="plone.resourceregistries"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        view=".cities_listing.CitiesProfilesView"
+        template="pt/resourceregistries.pt"
+        permission="zope2.View"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        />
 
     <browser:viewlet
         name="plone.resourceregistries"
@@ -245,7 +263,6 @@
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
 
-
     <browser:viewlet
         name="plone.resourceregistries"
         manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
@@ -254,8 +271,6 @@
         permission="zope2.View"
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
-
-    <!-- Tile helpers -->
 
     <browser:page
         name="acecontent_search_helper"

@@ -1,0 +1,42 @@
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="plone">
+
+    <body>
+
+        <metal:content-core fill-slot="content-core">
+
+            <table class="listing" summary="Content listing" i18n:attributes="summary summary_content_listing;" style="width:100%">
+                <thead>
+                    <tr>
+                        <th class="nosort">&nbsp;<tal:title i18n:translate="listingheader_title">Title</tal:title>&nbsp;</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tal:rep repeat="brain context/getFolderContents">
+                        <tr tal:define="oddrow repeat/brain/odd;" tal:attributes="class python:oddrow and 'even' or 'odd'">
+
+                            <td>
+
+                                <a href="#" tal:attributes="href brain/getURL" tal:content="brain/Title">
+                                    Item Title
+                                </a>
+                            </td>
+
+                        </tr>
+                    </tal:rep>
+
+                </tbody>
+            </table>
+
+        </metal:content-core>
+
+    </body>
+</html>

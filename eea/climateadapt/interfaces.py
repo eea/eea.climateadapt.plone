@@ -44,3 +44,8 @@ class ICountriesRoot(Interface):
 class IMayorAdaptRoot(Interface):
     """ A marker interface for /mayors-adapt
     """
+
+
+class ICitiesListingsRoot(Interface):
+    """ A marker interface for /city-profile
+    """

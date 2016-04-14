@@ -10,37 +10,37 @@ from zope.interface import implements
 import json
 
 
-class IMAdaptView (Interface):
+class IMAdaptView(Interface):
     """ Countries Interface """
 
 
-class MayorsAdaptPage (BrowserView):
+class MayorsAdaptPage(BrowserView):
     """ Custom page for http://climate-adapt.eea.europa.eu/mayors-adapt """
 
     implements(IMAdaptView)
 
 
-class B_M_Climate_Impacts (BrowserView):
+class B_M_Climate_Impacts(BrowserView):
     def __call__(self):
         return json.dumps(_climateimpacts)
 
 
-class A_M_Country (BrowserView):
+class A_M_Country(BrowserView):
     def __call__(self):
         return json.dumps(ace_countries)
 
 
-class B_M_Sector (BrowserView):
+class B_M_Sector(BrowserView):
     def __call__(self):
         return json.dumps(_sectors)
 
 
-class C_M_Stage_Of_The_Implementation_Cycle (BrowserView):
+class C_M_Stage_Of_The_Implementation_Cycle(BrowserView):
     def __call__(self):
         return json.dumps(_stage_implementation_cycle)
 
 
-class CitiesLoad (BrowserView):
+class CitiesLoad(BrowserView):
     def __call__(self):
         cat = self.context.portal_catalog
         q = {
@@ -52,7 +52,7 @@ class CitiesLoad (BrowserView):
                 q[k] = v
         brains = cat.searchResults(**q)
         res = {}
-        
+
         for brain in brains:
             res[brain.Title] = brain.getURL()
 

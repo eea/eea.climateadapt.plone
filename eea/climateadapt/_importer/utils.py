@@ -399,6 +399,10 @@ def make_tile(cover, col, css_class=None, no_titles=False):
         return make_aceitem_relevant_content_tile(cover, payload)
 
 
+def make_tiles(cover, column):
+    return [make_tile(cover, [col]) for col in column]
+
+
 def get_form_fields(content):
     fields_types = [k for k in content.keys() if k.startswith('fieldType')]
     fields = []

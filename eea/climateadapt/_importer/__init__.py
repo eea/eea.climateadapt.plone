@@ -30,6 +30,7 @@ from eea.climateadapt._importer.utils import make_row
 from eea.climateadapt._importer.utils import make_share_tile
 from eea.climateadapt._importer.utils import make_text_from_articlejournal
 from eea.climateadapt._importer.utils import make_tile
+from eea.climateadapt._importer.utils import make_tiles
 from eea.climateadapt._importer.utils import make_transregion_dropdown_tile
 from eea.climateadapt._importer.utils import make_urbanast_navigation_tile
 from eea.climateadapt._importer.utils import make_urbanmenu_title
@@ -50,6 +51,7 @@ from eea.climateadapt.interfaces import IBalticRegionMarker
 from eea.climateadapt.interfaces import IClimateAdaptSharePage
 from eea.climateadapt.interfaces import ICountriesRoot
 from eea.climateadapt.interfaces import IMayorAdaptRoot
+from eea.climateadapt.interfaces import ICitiesListingsRoot
 from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.climateadapt.vocabulary import _cca_types
@@ -1083,8 +1085,10 @@ def import_template_ace_layout_3(site, layout, structure):
         make_tile(cover, col, css_class='col-md-4') for col in extra_columns
     ]
 
-    sidebar_tile = make_aceitem_search_tile(cover, sidebar[0][1])
-    sidebar_group = make_group(3, sidebar_tile)
+    # sidebar_tile = make_aceitem_search_tile(cover, sidebar[0][1])
+    sidebar_tiles = make_tiles(cover, sidebar)
+
+    sidebar_group = make_group(3, *sidebar_tiles)
     main_content_group = make_group(9,
                                     main_content_tile, *relevant_content_tiles)
     layout = make_layout(make_row(main_content_group, sidebar_group))
@@ -1698,7 +1702,11 @@ def import_template_2_columns_iii(site, layout, structure):
         assert(len(structure['column-2']) == 1)
         image = structure['column-2'][0][1]['content'][0]
 
-#    title = structure['name']
+    # Fix images
+    if image is not None:
+        image = image.replace("/documents/18/0/", "/++theme++climateadapt/static/cca/img/")
+
+    # title = structure['name']
     title = ''
 
     main_content_tile = make_richtext_with_title_tile(cover,
@@ -2150,6 +2158,12 @@ def tweak_site(site):
     mapage = site['mayors-adapt']
     alsoProvides(mapage, IMayorAdaptRoot)
     mapage.setLayout('@@mayors-adapt')
+
+    # city-profile page
+    cplpage = site['city-profile']
+    alsoProvides(cplpage, ICitiesListingsRoot)
+    mapage.setLayout('@@cities-listing')
+
 
 
     # TODO: create manually created pages

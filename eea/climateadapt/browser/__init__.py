@@ -497,6 +497,10 @@ class Navbar(BrowserView):
             Global Platforms        /international
 
         Help                        /help
+            Glossary                /glossary
+            Tutorial Videos         /tutorial-videos
+            FAQ for users           /faq
+            Share your info         /share-your-info
     """
 
     def menu(self):
