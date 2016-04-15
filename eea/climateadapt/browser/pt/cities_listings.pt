@@ -22,21 +22,16 @@
                 <tbody>
                     <tal:rep repeat="brain context/getFolderContents">
                         <tr tal:define="oddrow repeat/brain/odd;" tal:attributes="class python:oddrow and 'even' or 'odd'">
-
                             <td>
-
                                 <a href="#" tal:attributes="href brain/getURL" tal:content="brain/Title">
                                     Item Title
                                 </a>
                             </td>
-
                         </tr>
                     </tal:rep>
-
                 </tbody>
             </table>
 
         </metal:content-core>
-
     </body>
 </html>

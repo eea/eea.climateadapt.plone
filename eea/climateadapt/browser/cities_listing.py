@@ -5,7 +5,7 @@ from plone.app.contenttypes.browser.folder import FolderView
 
 
 class ICitiesProfilesView(Interface):
-    """ Countries Interface """
+    """ City Profiles Interface """
 
 
 class CitiesProfilesView(FolderView):

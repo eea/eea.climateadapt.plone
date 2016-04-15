@@ -31,7 +31,7 @@ def generate_secret_token():
 TOKENID = 'cptk'
 
 current_date = datetime.datetime.now()
-expire_date = current_date + timedelta(days=14)
+expire_date = current_date + timedelta(days=28)
 
 
 class CityProfile(dexterity.Container):

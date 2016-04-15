@@ -11,7 +11,7 @@ import json
 
 
 class IMAdaptView(Interface):
-    """ Countries Interface """
+    """ Mayors Adapt Interface """
 
 
 class MayorsAdaptPage(BrowserView):

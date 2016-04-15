@@ -228,6 +228,7 @@ def import_casestudy(data, location):
                                       supphotoid)
         if supphoto:
             supphotos.append(RelationValue(intids.getId(supphoto)))
+
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.casestudy',

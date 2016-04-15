@@ -15,9 +15,7 @@ class CaseStudyView(DefaultView, AceViewApi):
         res = []
         for v in options:
             res.extend(cat.searchResults(acemeasure_id=v))
-
         return res
 
     def relevances_dict(self):
         return dict(_relevance)
-
