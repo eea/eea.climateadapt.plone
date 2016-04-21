@@ -39,6 +39,7 @@ setup(name='eea.climateadapt',
           'pycountry',
           'collective.dexteritytextindexer',
           'collective.easyform',
+          'tokenlib',
       ],
       extras_require={
           'test': [
@@ -63,4 +64,3 @@ setup(name='eea.climateadapt',
       paster_plugins=["templer.localcommands"],
 
       )
-

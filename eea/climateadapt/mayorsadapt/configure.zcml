@@ -22,6 +22,14 @@
         permission="zope.Public"
         />
 
+    <browser:page
+        for="*"
+        name="token_mail"
+        class="eea.climateadapt.city_profile.TokenMailView"
+        permission="cmf.ManagePortal"
+        template="pt/mail_token.pt"
+        />
+
     <plone:behavior
         title="CityProfile Staging"
         description="Enable override of staging behavior for CityProfiles"
@@ -53,5 +61,12 @@
     <!--     for="plone.app.iterate.interfaces.ICheckoutEvent" -->
     <!--     handler=".staging.handleCheckoutEvent" -->
     <!--    /> -->
+
+    <subscriber
+      for="eea.climateadapt.city_profile.CityProfile
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler="eea.climateadapt.city_profile.handle_city_added"
+    />
+
 
 </configure>
