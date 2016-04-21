@@ -16,4 +16,4 @@ class AdaptationStrategyView (BrowserView):
     implements(IAdaptationStrategy)
 
     def __call__(self):
-        return self.request.response.redirect('/countries-view-map')
+        return self.request.response.redirect('/countries')

@@ -685,8 +685,11 @@ ul#ast-menu, #ast-menu ul {
 }
 
 .col-md-6 {
-    padding-left: 2em;
     display: inline-block;
+}
+
+.col-md-8 .row .col-md-6 .tile {
+    padding-left: 2.2em;
 }
 
 #content .eu-strategy td h2,
