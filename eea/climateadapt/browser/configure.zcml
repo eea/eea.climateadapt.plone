@@ -243,6 +243,15 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        class=".city_administrator.CityAdminView"
+        for="*"
+        name="city-profile-admin"
+        template="pt/city_admin.pt"
+        permission="zope2.View"
+        />
+
+
     <!-- Tile helpers -->
 
     <browser:viewlet

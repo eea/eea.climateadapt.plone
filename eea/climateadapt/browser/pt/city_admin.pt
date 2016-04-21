@@ -1,0 +1,28 @@
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xml:lang="en"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="eea.climateadapt">
+
+    <body>
+        <metal:main fill-slot="main">
+            <tal:main-macro metal:define-macro="content-core">
+                <form action="" method="GET" tal:attributes="action string:${context/absolute_url}/@@city-profile-admin/?">
+                    <div tal:define="profiles view/res">
+                        <ul>
+                            <li tal:repeat="city profiles">
+                                <input type="checkbox" name="city:list" value="" tal:attributes="value city/getId; disabled python:'disabled' and (not city.official_email) or None"/>
+                                <span tal:content="city/Title">London</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <input type="submit" name="submit" value="Submit"/>
+                </form>
+            </tal:main-macro>
+        </metal:main>
+    </body>
+</html>
