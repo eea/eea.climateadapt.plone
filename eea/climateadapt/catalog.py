@@ -89,4 +89,4 @@ def city_countries(city):
 
 @indexer(ICityProfile)
 def city_long_description(city):
-    return """Placeholder description"""
+    return ""

@@ -68,13 +68,15 @@ with open(tpl_path) as f:
 
 def send_token_mail(city):
     """ Sends a multipart email that contains the link with token """
+    return
+
     mail_host = api.portal.get_tool(name='MailHost')
     request = getRequest()
     renderer = getMultiAdapter((city, request), name='token_mail')
     html = renderer()
 
     city_url = city.portal_url() + '/cptk/' + renderer.secret + '/' + renderer.cityurl
-    text_plain_dictionary = {'receivername': str(city.name_and_surname_of_contact_person),
+    text_plain_dictionary = {'receivername': city.name_and_surname_of_contact_person,
                              'cityurl':  city_url}
 
     body_plain = MAIL_TEXT_TEMPLATE % (text_plain_dictionary)
@@ -82,8 +84,6 @@ def send_token_mail(city):
     emailto = str(city.official_email)
     email_subject = 'New token email'
     emailfrom = str(api.portal.getSite().email_from_address)
-
-    print city_url
 
     mime_msg = MIMEMultipart('related')
     mime_msg['Subject'] = email_subject
@@ -102,7 +102,8 @@ def send_token_mail(city):
     msg_txt = MIMEText(body_html, _subtype='html', _charset='utf-8')
     msgAlternative.attach(msg_txt)
 
-    return mail_host.send(mime_msg.as_string())
+    return
+    #return mail_host.send(mime_msg.as_string())
 
 
 def handle_city_added(city, event):

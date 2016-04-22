@@ -16,7 +16,6 @@ from eea.climateadapt._importer.utils import get_repofile_by_id
 from eea.climateadapt._importer.utils import localize
 from eea.climateadapt._importer.utils import log_call
 from eea.climateadapt._importer.utils import logger
-from eea.climateadapt._importer.utils import make_aceitem_search_tile
 from eea.climateadapt._importer.utils import make_ast_navigation_tile
 from eea.climateadapt._importer.utils import make_countries_dropdown_tile
 from eea.climateadapt._importer.utils import make_faceted
@@ -48,10 +47,10 @@ from eea.climateadapt._importer.utils import to_decimal
 from eea.climateadapt._importer.utils import write_links
 from eea.climateadapt.interfaces import IASTNavigationRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
+from eea.climateadapt.interfaces import ICitiesListingsRoot
 from eea.climateadapt.interfaces import IClimateAdaptSharePage
 from eea.climateadapt.interfaces import ICountriesRoot
 from eea.climateadapt.interfaces import IMayorAdaptRoot
-from eea.climateadapt.interfaces import ICitiesListingsRoot
 from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.climateadapt.vocabulary import _cca_types
@@ -83,6 +82,8 @@ import os
 import pprint
 import sys
 import transaction
+
+#from eea.climateadapt._importer.utils import make_aceitem_search_tile
 
 
 session = None      # this will be a global bound to the current module
@@ -281,7 +282,7 @@ def import_image(data, location):
     try:
         file_data = open('./document_library/0/0/' + name).read()
     except IOError:
-        logger.warning("Image with id %d does not exist in the supplied "
+        logger.error("Image with id %d does not exist in the supplied "
                        "document library", data.imageid)
         return None
 
@@ -676,8 +677,9 @@ def import_city_profile(container, journal):
     for _type, name, payload in vals:
         if name not in _map:
             missing_vals.append((_type, name, payload))
-    for v in missing_vals:
-        print v
+
+    # for v in missing_vals:
+    #     print v
 
     # #fields in xml file
     # 'additional_information_on_adaptation_responses',
@@ -743,7 +745,7 @@ def import_city_profile(container, journal):
         **mapped_data
     )
     # city.setLayout('city_profile')    # TODO: is this needed?
-    pprint.pprint(mapped_data)
+    #pprint.pprint(mapped_data)
     logger.debug("Imported city profile %s", city_name)
     return city
 
@@ -2001,8 +2003,9 @@ def run_importer(site=None):
 
 
     import_journal_articles(site)
-    tweak_site(site)
     import_city_profiles(site)
+
+    tweak_site(site)
     write_links()
 
 
@@ -2163,12 +2166,7 @@ def tweak_site(site):
     # city-profile page
     cplpage = site['city-profile']
     alsoProvides(cplpage, ICitiesListingsRoot)
-    mapage.setLayout('@@cities-listing')
-
-
-
-    # TODO: create manually created pages
-    # tweak frontpage portlets
+    cplpage.setLayout('@@cities-listing')
 
 
 def get_plone_site():

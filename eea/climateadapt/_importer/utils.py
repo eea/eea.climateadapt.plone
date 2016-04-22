@@ -1161,6 +1161,9 @@ def fix_inner_link(site, href):
         if href.startswith(path):
             href = href.replace(path, '/', 1)
 
+    if href.startswith("#"):
+        return href
+
     if "/viewmeasure" in href:
         acemeasure_id = get_param_from_link(href, 'ace_measure_id')
         obj = _get_imported_acemeasure(site, acemeasure_id)
@@ -1177,13 +1180,13 @@ def fix_inner_link(site, href):
     if uuid:
         return get_repofile_by_id(site, uuid)
 
-        # some links are like: /documents/18/11231805/urban_ast_step0.png/38b047f5-65be-4fcd-bdd6-3bd9d52cd83d?t=1411119161497
+    # some links are like: /documents/18/11231805/urban_ast_step0.png/38b047f5-65be-4fcd-bdd6-3bd9d52cd83d?t=1411119161497
     res = UUID_RE.search(href)
     if res:
         uuid = res.group()
         return get_repofile_by_id(site, uuid)
     else:
-        logger.error("Couldn't find proper equivalent link for %s", href)
+        logger.debug("Couldn't find proper equivalent link for %s", href)
         #import pdb; pdb.set_trace()
         return href
 
@@ -1216,7 +1219,7 @@ def fix_links(site, text):
         else:
             if image is not None:
                 url = localize(image, site) + "/@@images/image"
-                logger.info("Changed <img> link %s to %s", src, url)
+                logger.debug("Changed <img> link %s to %s", src, url)
                 img.set('src', url)
 
     for a in e.xpath('//a'):
@@ -1229,7 +1232,7 @@ def fix_links(site, text):
             if href != res:
                 if not isinstance(res, basestring):
                     res = res.absolute_url()
-                logger.info("Changed <a> link %s to %s", href, res)
+                logger.debug("Changed <a> link %s to %s", href, res)
                 a.set('href', res)
 
     return lxml.html.tostring(e, encoding='unicode', pretty_print=True)
