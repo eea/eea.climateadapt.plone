@@ -47,7 +47,6 @@ class TokenMailView (BrowserView):
         self.secret = tokenlib.make_token({"": ""}, secret=tokensecret, timeout=2419200)
         self.emailto = str(city.official_email)
         self.receivername = city.name_and_surname_of_contact_person
-        # self.cityname = str(city.title).encode(encoding='utf-8').lower()
         self.cityurl = city.virtual_url_path().encode(encoding='UTF-8')
 
         return self.index()
@@ -83,6 +82,8 @@ def send_token_mail(city):
     emailto = str(city.official_email)
     email_subject = 'New token email'
     emailfrom = str(api.portal.getSite().email_from_address)
+
+    print city_url
 
     mime_msg = MIMEMultipart('related')
     mime_msg['Subject'] = email_subject

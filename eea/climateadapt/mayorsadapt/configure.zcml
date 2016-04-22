@@ -56,6 +56,15 @@
         permission="zope2.View"
         />
 
+    <browser:viewlet
+        name="expired_token_error"
+        for="eea.climateadapt.city_profile.ICityProfile"
+        class=".viewlets.ExpiredTokenViewlet"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
+        template="pt/expired_token.pt"
+        permission="zope2.View"
+        />
+
 
     <!-- <subscriber -->
     <!--     for="plone.app.iterate.interfaces.ICheckoutEvent" -->
