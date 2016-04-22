@@ -32,32 +32,6 @@ class ICityProfileStaging(Interface):
     """
 
 
-class ITokenMailView(Interface):
-    """Token mail interface"""
-
-
-class TokenMailView (BrowserView):
-    implements(ITokenMailView)
-
-    def __init__(self, context, request):
-        self.context = context
-        self.request = request
-
-        city = self.context
-        tokensecret = IAnnotations(city)['eea.climateadapt.cityprofile_secret']
-        self.secret = tokenlib.make_token({"": ""}, secret=tokensecret, timeout=2419200)
-        self.emailto = str(city.official_email)
-        self.receivername = city.name_and_surname_of_contact_person
-        self.cityurl = city.virtual_url_path().encode(encoding='UTF-8')
-        self.city_full_url = self.context.portal_url() + '/cptk/' + self.secret + '/' + self.cityurl
-        self.text_plain_dictionary = {'receivername': self.receivername,
-                                      'cityurl':  self.city_full_url}
-        self.MAIL_TEXT_TEMPLATE = MAIL_TEXT_TEMPLATE % (self.text_plain_dictionary)
-
-    def html(self):
-        return self.index()
-
-
 def generate_secret():
     """ Generates the token secret key """
     return binascii.hexlify(os.urandom(16)).upper()
@@ -84,6 +58,8 @@ def send_token_mail(city):
     emailto = city.official_email
     email_subject = 'New token email'
     emailfrom = str(api.portal.getSite().email_from_address)
+
+    print renderer.city_full_url
 
     mime_msg = MIMEMultipart('related')
     mime_msg['Subject'] = email_subject

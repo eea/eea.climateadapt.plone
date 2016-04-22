@@ -28,6 +28,7 @@ class TokenMailView (BrowserView):
 
         city = self.context
         tokensecret = IAnnotations(city)['eea.climateadapt.cityprofile_secret']
+        # 4 weeks = 2419200
         self.secret = tokenlib.make_token({"": ""}, secret=tokensecret, timeout=2419200)
         self.emailto = str(city.official_email)
         self.receivername = city.name_and_surname_of_contact_person
@@ -36,6 +37,7 @@ class TokenMailView (BrowserView):
         self.text_plain_dictionary = {'receivername': self.receivername,
                                       'cityurl':  self.city_full_url}
         self.MAIL_TEXT_TEMPLATE = MAIL_TEXT_TEMPLATE % (self.text_plain_dictionary)
+        self.valoaretest = True
 
     def html(self):
         return self.index()

@@ -1,3 +1,6 @@
 <div class="cityprofile_expired_token_error">
-      <h3> Your token is expired </h3>
+    <div tal:condition="view/context/secret">
+      <h3> Your token is not valid for this city profile </h3>
+      <p></p>
+  </div>
 </div>

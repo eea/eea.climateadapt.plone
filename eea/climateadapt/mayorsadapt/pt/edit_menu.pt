@@ -1,6 +1,6 @@
 <div class="cityprofile_edit_menu" tal:define="state view/current_state; has_working_copy view/has_working_copy">
   <form method="POST" action="/@@mayors_edit" tal:attributes="action string:${context/absolute_url}/@@mayors_edit">
-    <style type="text/css">
+    <!-- <style type="text/css">
       .buttonone {
           background-color: #4CAF50; /* Green */
           border: none;
@@ -58,9 +58,7 @@
 
     </style>
       <p>Current state:
-        <!-- <div class="hover1"> -->
           <strong tal:content="python: view.state_labels()[state]" />
-        <!-- </div> -->
       </p>
 
 
@@ -74,7 +72,7 @@
           <div tal:condition="python: (state == 'published') and not has_working_copy">Editing will create a private copy, to be edited</div>
           <div tal:condition="python: (state == 'published') and has_working_copy">Edit the existing private working copy</div>
           <div tal:condition="python: state == 'pending'">Editing will cancel the publishing process and edit this CityProfile</div>
-      </div>
+      </div> -->
   </form>
 
 </div>

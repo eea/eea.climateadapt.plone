@@ -63,7 +63,7 @@ class ExpiredTokenViewlet(ViewletBase):
             secret_token = req.cookies.get(TOKENID)
 
         if not secret_token:
-            return False
+            return True
 
         try:
             secret = IAnnotations(self.context)['eea.climateadapt.cityprofile_secret']
@@ -75,5 +75,3 @@ class ExpiredTokenViewlet(ViewletBase):
             return False
         except InvalidSignatureError:
             return False
-
-        return False
