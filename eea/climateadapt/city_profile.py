@@ -39,7 +39,7 @@ class ITokenMailView(Interface):
 class TokenMailView (BrowserView):
     implements(ITokenMailView)
 
-    def __call__(self):
+    def html(self):
         city = self.context
         tokensecret = IAnnotations(city)['eea.climateadapt.cityprofile_secret']
 
@@ -49,6 +49,15 @@ class TokenMailView (BrowserView):
         self.receivername = city.name_and_surname_of_contact_person
         self.cityurl = city.virtual_url_path().encode(encoding='UTF-8')
 
+    def txt(self):
+        city_full_url = self.context.portal_url() + '/cptk/' + self.secret + '/' + self.cityurl
+        text_plain_dictionary = {'receivername': self.receivername,
+                                 'cityurl':  city_full_url}
+        self.text_plain_dictionary = text_plain_dictionary
+
+    def __call__(self):
+        html(self)
+        txt(self)
         return self.index()
 
 
@@ -71,19 +80,12 @@ def send_token_mail(city):
     mail_host = api.portal.get_tool(name='MailHost')
     request = getRequest()
     renderer = getMultiAdapter((city, request), name='token_mail')
-    html = renderer()
 
-    city_url = city.portal_url() + '/cptk/' + renderer.secret + '/' + renderer.cityurl
-    text_plain_dictionary = {'receivername': str(city.name_and_surname_of_contact_person),
-                             'cityurl':  city_url}
-
-    body_plain = MAIL_TEXT_TEMPLATE % (text_plain_dictionary)
-    body_html = html
+    body_html = renderer()
+    body_plain = MAIL_TEXT_TEMPLATE % (renderer.text_plain_dictionary)
     emailto = str(city.official_email)
     email_subject = 'New token email'
     emailfrom = str(api.portal.getSite().email_from_address)
-
-    print city_url
 
     mime_msg = MIMEMultipart('related')
     mime_msg['Subject'] = email_subject
