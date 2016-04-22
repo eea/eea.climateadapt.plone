@@ -39,25 +39,22 @@ class ITokenMailView(Interface):
 class TokenMailView (BrowserView):
     implements(ITokenMailView)
 
-    def html(self):
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
         city = self.context
         tokensecret = IAnnotations(city)['eea.climateadapt.cityprofile_secret']
-
-        # 4 weeks = 2419200
         self.secret = tokenlib.make_token({"": ""}, secret=tokensecret, timeout=2419200)
         self.emailto = str(city.official_email)
         self.receivername = city.name_and_surname_of_contact_person
         self.cityurl = city.virtual_url_path().encode(encoding='UTF-8')
+        self.city_full_url = self.context.portal_url() + '/cptk/' + self.secret + '/' + self.cityurl
+        self.text_plain_dictionary = {'receivername': self.receivername,
+                                      'cityurl':  self.city_full_url}
+        self.MAIL_TEXT_TEMPLATE = MAIL_TEXT_TEMPLATE % (self.text_plain_dictionary)
 
-    def txt(self):
-        city_full_url = self.context.portal_url() + '/cptk/' + self.secret + '/' + self.cityurl
-        text_plain_dictionary = {'receivername': self.receivername,
-                                 'cityurl':  city_full_url}
-        self.text_plain_dictionary = text_plain_dictionary
-
-    def __call__(self):
-        html(self)
-        txt(self)
+    def html(self):
         return self.index()
 
 
@@ -77,24 +74,14 @@ with open(tpl_path) as f:
 
 def send_token_mail(city):
     """ Sends a multipart email that contains the link with token """
-    return
 
     mail_host = api.portal.get_tool(name='MailHost')
     request = getRequest()
     renderer = getMultiAdapter((city, request), name='token_mail')
 
-<<<<<<< HEAD
     body_html = renderer()
-    body_plain = MAIL_TEXT_TEMPLATE % (renderer.text_plain_dictionary)
-=======
-    city_url = city.portal_url() + '/cptk/' + renderer.secret + '/' + renderer.cityurl
-    text_plain_dictionary = {'receivername': city.name_and_surname_of_contact_person,
-                             'cityurl':  city_url}
-
-    body_plain = MAIL_TEXT_TEMPLATE % (text_plain_dictionary)
-    body_html = html
->>>>>>> 88f132909956787efb9acf138c211c6bb6f7c324
-    emailto = str(city.official_email)
+    body_plain = renderer.MAIL_TEXT_TEMPLATE
+    emailto = city.official_email
     email_subject = 'New token email'
     emailfrom = str(api.portal.getSite().email_from_address)
 
@@ -115,8 +102,7 @@ def send_token_mail(city):
     msg_txt = MIMEText(body_html, _subtype='html', _charset='utf-8')
     msgAlternative.attach(msg_txt)
 
-    return
-    #return mail_host.send(mime_msg.as_string())
+    return mail_host.send(mime_msg.as_string())
 
 
 def handle_city_added(city, event):

@@ -178,49 +178,6 @@
         />
 
     <browser:page
-        class=".mayoradapt.MayorsAdaptPage"
-        for="*"
-        name="mayors-adapt"
-        template="pt/mayors-adapt.pt"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        class=".mayoradapt.B_M_Climate_Impacts"
-        for="*"
-        name="B_M_Climate_Impacts"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        class=".mayoradapt.A_M_Country"
-        for="*"
-        name="A_M_Country"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        class=".mayoradapt.B_M_Sector"
-        for="*"
-        name="B_M_Sector"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        class=".mayoradapt.C_M_Stage_Of_The_Implementation_Cycle"
-        for="*"
-        name="C_M_Stage_Of_The_Implementation_Cycle"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        class=".mayoradapt.CitiesLoad"
-        for="*"
-        name="CitiesLoad"
-        permission="zope2.View"
-        />
-
-    <browser:page
         class=".countries.CountriesView"
         for="*"
         name="countries-view-map"
@@ -267,15 +224,6 @@
         name="plone.resourceregistries"
         manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
         view=".countries.CountriesView"
-        template="pt/resourceregistries.pt"
-        permission="zope2.View"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        />
-
-    <browser:viewlet
-        name="plone.resourceregistries"
-        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
-        view=".mayoradapt.MayorsAdaptPage"
         template="pt/resourceregistries.pt"
         permission="zope2.View"
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
