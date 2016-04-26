@@ -1411,6 +1411,12 @@ li.dropdown-submenu {
     padding-left: 1em;
 }
 
+/* time series tool */
+
+.subsection-time-series-tool #content {
+    margin: 0px !important;
+}
+
 */ bottom menu in urban ast pages */
 
 #bottom-menu {
