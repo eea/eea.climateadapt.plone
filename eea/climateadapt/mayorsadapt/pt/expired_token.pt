@@ -1,6 +1,29 @@
 <div class="cityprofile_expired_token_error">
-    <div tal:condition="view/context/secret">
-      <h3> Your token is not valid for this city profile </h3>
-      <p></p>
-  </div>
+    <div tal:condition="not:view/check_url">
+        <h3> Your token is not valid for this city profile </h3>
+
+        <div tal:condition="view/expire_value">
+            <h3>
+                Your token has expired for this city profile.
+            </h3>
+        </div>
+
+        <div tal:condition="view/malformed_value">
+            <h3>
+                Your token is malformed.
+                Request a new city profile token.
+            </h3>
+        </div>
+
+        <div tal:condition="view/invalid_value">
+            <h3>
+                Request a new city profile token.
+            </h3>
+        </div>
+    </div>
+
+    <div tal:condition="view/check_url">
+        <!-- Edit menu here -->
+        <h3>  CEVA </h3>
+    </div>
 </div>

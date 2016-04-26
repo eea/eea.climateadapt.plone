@@ -55,6 +55,11 @@ class ExpiredTokenViewlet(ViewletBase):
 
     def available(self):
         # Check token here
+        self.check_url = False
+        self.expire_value = False
+        self.malformed_value = False
+        self.invalid_value = False
+
         req = getRequest()
 
         try:
@@ -63,15 +68,27 @@ class ExpiredTokenViewlet(ViewletBase):
             secret_token = req.cookies.get(TOKENID)
 
         if not secret_token:
+            self.check_url = False
+            return True
+
+        if self.request.getURL().find('cptk') == -1:
+            self.check_url = False
             return True
 
         try:
             secret = IAnnotations(self.context)['eea.climateadapt.cityprofile_secret']
             tokenlib.parse_token(secret_token, secret=secret)
+            self.check_url = True
+            self.expire_value = False
+            self.malformed_value = False
+            self.invalid_value = False
             return True
         except ExpiredTokenError:
+            self.expire_value = True
             return False
         except MalformedTokenError:
+            self.malformed_value = True
             return False
         except InvalidSignatureError:
+            self.invalid_value = True
             return False

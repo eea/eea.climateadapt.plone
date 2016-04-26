@@ -16,13 +16,14 @@
           if(doc_rel_href.indexOf('?') > 0) {
             doc_rel_href = doc_rel_href.substr(0, doc_rel_href.indexOf('?') );
           }
-
           if( (doc_rel_href.indexOf(this_rel_href) != -1) ) {
             $(this).addClass("active");
             return true;
           }
-            else {return false;}
+          else {
+            return false;
           }
+         }
         });
 
         $("a.ui-state-active").parent().css('background-color', '#6D7A2B');

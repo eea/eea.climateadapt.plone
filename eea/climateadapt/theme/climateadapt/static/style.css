@@ -898,6 +898,7 @@ a.bluebutton:active {
     left: 0.8em;
     top: 0.73em;
     margin-top: 0px;
+    float: left;
 }
 #content ul#ast-menu .ui-state-active .ui-icon {
     background-image: url('cca/img/arrow_ast_wit.png');

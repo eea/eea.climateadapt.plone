@@ -1,66 +1,65 @@
 <div class="cityprofile_edit_menu" tal:define="state view/current_state; has_working_copy view/has_working_copy">
   <form method="POST" action="/@@mayors_edit" tal:attributes="action string:${context/absolute_url}/@@mayors_edit">
-    <!-- <style type="text/css">
-      .buttonone {
-          background-color: #4CAF50; /* Green */
-          border: none;
-          color: white;
-          padding: 15px 32px;
-          text-align: center;
-          text-decoration: none;
-          display: inline !important;
-          font-size: 16px;
-          margin: 0px 0px;
-          cursor: pointer;
-      }
+    <!--
+        <style type="text/css">
+         .buttonone {
+             background-color: #4CAF50; /* Green */
+             border: none;
+             color: white;
+             padding: 15px 32px;
+             text-align: center;
+             text-decoration: none;
+             display: inline !important;
+             font-size: 16px;
+             margin: 0px 0px;
+             cursor: pointer;
+         }
 
-      p {
-          background-color: #4CAF50; /* Green */
-          border: none;
-          color: white;
-          padding: 15px 32px;
-          text-align: left;
-          width: auto;
-          text-decoration: none;
-          font-size: 16px;
-          margin: 0px 0px;
-      }
+         p {
+             background-color: #4CAF50; /* Green */
+             border: none;
+             color: white;
+             padding: 15px 32px;
+             text-align: left;
+             width: auto;
+             text-decoration: none;
+             font-size: 16px;
+             margin: 0px 0px;
+         }
 
-      .buttons {
-          display: inline !important;
-      }
+         .buttons {
+             display: inline !important;
+         }
 
-      .buttons2 {
-          display: inline !important;
-      }
+         .buttons2 {
+             display: inline !important;
+         }
 
-      .buttons2:hover div{
-          display: inline-block;
-          background-color: #4CAF50;
-          border: none;
-          color: white;
-          padding: 0.5em 0.5em;
-          text-align: left;
-          width: auto;
-          text-decoration: none;
-          font-size: 16px;
-          margin: 4px 2px;
-      }
+         .buttons2:hover div{
+             display: inline-block;
+             background-color: #4CAF50;
+             border: none;
+             color: white;
+             padding: 0.5em 0.5em;
+             text-align: left;
+             width: auto;
+             text-decoration: none;
+             font-size: 16px;
+             margin: 4px 2px;
+         }
 
-      .buttons2 div {
-          display: none;
-      }
+         .buttons2 div {
+             display: none;
+         }
 
-      p {
-          width: 33%;
-      }
+         p {
+             width: 33%;
+         }
+       </style>
 
-
-    </style>
       <p>Current state:
           <strong tal:content="python: view.state_labels()[state]" />
       </p>
-
 
       <div tal:condition="view/can_submit_for_publication" class="buttons">
         <button class="buttonone" name="submit" value="submit">Submit for publication</button>

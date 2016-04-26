@@ -37,7 +37,6 @@ class TokenMailView (BrowserView):
         self.text_plain_dictionary = {'receivername': self.receivername,
                                       'cityurl':  self.city_full_url}
         self.MAIL_TEXT_TEMPLATE = MAIL_TEXT_TEMPLATE % (self.text_plain_dictionary)
-        self.valoaretest = True
 
     def html(self):
         return self.index()
