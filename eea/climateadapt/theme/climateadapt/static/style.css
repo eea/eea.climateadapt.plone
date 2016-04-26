@@ -742,6 +742,7 @@ ul#ast-menu, #ast-menu ul {
 #content .aceitem-relevant-tile > ul > li,
 #content ul.arrow-items > li,
 #content ul#ast-menu ul > li {
+    list-style: none !important;
     background-image: url("cca/img/arrows/01_plus.png");
     background-repeat: no-repeat;
     background-position: 0.15em 0.2em;
@@ -1436,7 +1437,7 @@ li.dropdown-submenu {
 /* time series tool */
 
 .subsection-time-series-tool #content {
-    margin: 0px !important;
+    margin-left: 4px !important;
 }
 
 */ bottom menu in urban ast pages */

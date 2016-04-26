@@ -883,7 +883,7 @@ def make_iframe_embed_tile(cover, url):
     tile = cover.restrictedTraverse('@@%s/%s' % (type_name, id))
 
     embed = """<iframe class='ace-iframe' frameborder='0'
-        style='min-width:900px;min-height:700px' height='100%%'
+        style='min-width:980px;min-height:700px' height='100%%'
         scrolling='no' src='%s'></iframe>""" % url
 
     ITileDataManager(tile).set({'title': '', 'embed': embed})
