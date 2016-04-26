@@ -762,12 +762,14 @@ def import_city_profiles(site):
             cities.sort(key=lambda d:d.version)
             to_import.append(cities[-1])
 
-    city_profiles_folder = createAndPublishContentInContainer(
+    if not 'city-profile' in site.contentIds():
+        city_profiles_folder = createAndPublishContentInContainer(
         site,
         'Folder',
         id='city-profile',
         title='City Profiles',
     )
+    city_profiles_folder = site['city-profile']
     imported = []
     to_import = sorted(to_import, key=lambda x: x.title)
     for data in to_import:
