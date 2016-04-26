@@ -60,7 +60,8 @@ def createAndPublishContentInContainer(*args, **kwargs):
     content = createContentInContainer(*args, **kwargs)
     wftool = getToolByName(content, "portal_workflow")
 
-    if args[1] not in ('File', 'Image',):
+    _publish = kwargs.get('_publish', True)
+    if (args[1] not in ('File', 'Image',)) and _publish:
         try:
             wftool.doActionFor(content, 'publish')
         except WorkflowException:

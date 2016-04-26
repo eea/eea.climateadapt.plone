@@ -737,14 +737,15 @@ def import_city_profile(container, journal):
         if img:
             mapped_data['picture'] = img.image
 
+    _publish = journal.status == 0 # is this a published city?
+
     city = createAndPublishContentInContainer(
         container,
         'eea.climateadapt.city_profile',
         id=journal.urltitle,
+        _publish=_publish,
         **mapped_data
     )
-    # city.setLayout('city_profile')    # TODO: is this needed?
-    #pprint.pprint(mapped_data)
     logger.debug("Imported city profile %s", city_name)
     return city
 
@@ -771,9 +772,6 @@ def import_city_profiles(site):
             cities.sort(key=lambda d:d.version)
             to_import.append(cities[-1])
 
-    # 'status_of_mayors_adapt_signature': 'INPROCESSSIGNING' - CELE NEPUBLICATE
-    # 'status_of_mayors_adapt_signature': []] - CELE NEPUBLICATE
-
     city_profiles_folder = createAndPublishContentInContainer(
         site,
         'Folder',
@@ -782,7 +780,6 @@ def import_city_profiles(site):
     )
     imported = []
     to_import = sorted(to_import, key=lambda x: x.title)
-    #import pdb; pdb.set_trace()
     for data in to_import:
         obj = import_city_profile(city_profiles_folder, data)
         imported.append(obj)
