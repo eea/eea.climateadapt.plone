@@ -12,7 +12,7 @@
         />
 
     <javascript authenticated="False" bundle="default" cacheable="True"
-        compression="none" conditionalcomment="" cookable="True" enabled="True"
+        compression="none" conditionalcomment="" cookable="True" enabled="False"
         expression="" id="++resource++plone.app.widgets.js" inline="False"
         insert-after="++resource++plone.app.jquery.js"/>
 
@@ -24,5 +24,7 @@
     <javascript cacheable="True" compression="none"
         cookable="True" enabled="0" expression=""
         id="++resource++jquery.datatables.js" />
+
+
 
 </object>

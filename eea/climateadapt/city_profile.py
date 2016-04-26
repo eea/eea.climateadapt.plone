@@ -1,19 +1,18 @@
-import binascii
-import os
-import os.path
-from email.MIMEImage import MIMEImage
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
-import tokenlib
-from tokenlib.errors import (ExpiredTokenError, InvalidSignatureError,
-                             MalformedTokenError)
 from plone import api
 from plone.directives import dexterity, form
-from Products.Five.browser import BrowserView
+from tokenlib.errors import ExpiredTokenError
+from tokenlib.errors import InvalidSignatureError
+from tokenlib.errors import MalformedTokenError
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
 from zope.interface import Interface, implements
+import binascii
+import os
+import os.path
+import tokenlib
 
 
 class ICityProfile(form.Schema):
@@ -48,6 +47,7 @@ with open(tpl_path) as f:
 
 def send_token_mail(city):
     """ Sends a multipart email that contains the link with token """
+    return
 
     mail_host = api.portal.get_tool(name='MailHost')
     request = getRequest()

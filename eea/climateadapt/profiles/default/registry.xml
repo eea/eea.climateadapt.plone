@@ -36,4 +36,17 @@
     <record name="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings.private_key">
         <value>to-be-changed</value>
     </record>
+
+
+    <record interface="Products.ResourceRegistries.interfaces.settings.IResourceRegistriesSettings" field="resourceBundlesForThemes">
+      <value purge="false">
+        <element key="Sunburst Theme" purge="false">
+          <element>deprecated</element>
+        </element>
+      </value>
+  </record>
+
+    # activate plone.app.jquery
+    # disable plone.app.widgets
+
 </registry>
