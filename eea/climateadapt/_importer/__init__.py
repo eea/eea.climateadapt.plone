@@ -765,7 +765,6 @@ def import_city_profiles(site):
 
     to_import = []
 
-
     for city_name in cp:
         if city_name and city_name != '-':
             cities = cp[city_name]
@@ -783,6 +782,7 @@ def import_city_profiles(site):
     )
     imported = []
     to_import = sorted(to_import, key=lambda x: x.title)
+    #import pdb; pdb.set_trace()
     for data in to_import:
         obj = import_city_profile(city_profiles_folder, data)
         imported.append(obj)
