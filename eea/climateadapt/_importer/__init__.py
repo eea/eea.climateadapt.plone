@@ -1267,6 +1267,8 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker,
 
     #cover_title = structure['name']    # this will be the title
     section_title = portlet['portlet_title']
+    if section_title == u'None':
+        section_title = ""
     main_section_title = structure['column-2'][0][1]['headertext']
     step = structure['column-2'][0][1]['step']
 
@@ -1320,7 +1322,14 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker,
         else:
             main_group = make_group(8, main_content_tile, second_row)
     else:
-        main_group = make_group(8, main_content_tile)
+        if is_urbanast:
+            tile = make_view_tile(cover,
+                                        {'title': 'UrbanAST nav',
+                                         'view_name': 'urbanast_bottom_nav'})
+            third_row = make_group(8, tile)
+            main_group = make_group(8, main_content_tile, third_row)
+        else:
+            main_group = make_group(8, main_content_tile)
 
     layout = make_layout(make_row(side_group, main_group))
     cover.cover_layout = json.dumps(layout)
