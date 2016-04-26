@@ -144,7 +144,6 @@
             <small tal:content="structure python: view.w['picture_caption'].render()" />
         </div>
 
-
         <div class="right-area">
             <div>
                   <span id='longitude'

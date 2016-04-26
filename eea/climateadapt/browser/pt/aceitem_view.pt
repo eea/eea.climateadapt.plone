@@ -16,7 +16,7 @@
           <div metal:fill-slot="ace-top-slot">
 
             <a href="" tal:attributes="href view/link_to_original">Original aceitem</a>
-            <h2 tal:content="structure python: view.widgets['data_type'].render()">Data Type</h2>
+            <h2 tal:content="structure python: view.w['data_type'].render()">Data Type</h2>
             <h1 tal:content="python: context.title">Title here</h1>
           </div>
 
@@ -53,13 +53,13 @@
             <tal:block content="structure context/keywords"/>
 
             <h4>Climate impacts</h4>
-            <tal:block content="structure python:view.widgets['climate_impacts'].render()"/>
+            <tal:block content="structure python:view.w['climate_impacts'].render()"/>
 
             <h4>Elements</h4>
-            <tal:block content="structure python:view.widgets['elements'].render()"/>
+            <tal:block content="structure python:view.w['elements'].render()"/>
 
             <h4>Sectors</h4>
-            <tal:block content="structure python:view.widgets['sectors'].render()"/>
+            <tal:block content="structure python:view.w['sectors'].render()"/>
             <h4>Geographic characterization</h4>
             <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars"/>
             <tal:cond condition="not: context/geochars">
@@ -72,7 +72,7 @@
 
           </div>
 
-          <!-- <tal:def tal:define="sector_w python:view.widgets['sectors']" > -->
+          <!-- <tal:def tal:define="sector_w python:view.w['sectors']" > -->
           <!--   <!&#45;&#45; <tal:widget tal:replace="structure sector_w/@@ploneform&#38;#45;render&#38;#45;widget"/> &#45;&#45;> -->
           <!--   <tal:widget tal:replace="structure sector_w/render"/> -->
           <!-- </tal:def> -->

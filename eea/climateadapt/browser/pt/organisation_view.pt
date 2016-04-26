@@ -42,17 +42,17 @@
 
             <h4>Climate impacts</h4>
             <p></p>
-            <tal:block content="structure python:view.widgets['climate_impacts'].render()"/>
+            <tal:block content="structure python:view.w['climate_impacts'].render()"/>
             <p></p>
 
             <h4>Elements</h4>
             <p></p>
-            <tal:block content="structure python:view.widgets['elements'].render()"/>
+            <tal:block content="structure python:view.w['elements'].render()"/>
             <p></p>
 
             <h4>Sectors</h4>
             <p></p>
-            <tal:block content="structure python:view.widgets['sectors'].render()"/>
+            <tal:block content="structure python:view.w['sectors'].render()"/>
             <p></p>
 
             <h4>Geographic characterisation</h4>
