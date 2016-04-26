@@ -10,15 +10,16 @@
                           id string:${search_input_id}_form;">
         <div class="LSBox">
         <label class=""
+               id="searchLabel"
                tal:attributes="for search_input_id"
-               i18n:translate="text_search">Search website:</label>
+               i18n:translate="text_search">Search the website:</label>
 
         <input name="SearchableText"
                type="text"
                size="18"
                value=""
                title="Search Site"
-               placeholder="Search Site"
+               placeholder="Search..."
                accesskey="4"
                i18n:attributes="title title_search_site;
                                 placeholder title_search_site"
@@ -28,7 +29,7 @@
 
         <input class="searchButton"
                type="submit"
-               value="Search"
+               value=""
                i18n:attributes="value label_search;" />
 
         <div class="LSResult" id="LSResult"><div class="LSShadow" id="LSShadow"></div></div>

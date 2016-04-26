@@ -38,17 +38,25 @@ h2, h3, h4, h5, h6 {color: #636466; font-family: Arial, Helvetica, sans-serif;}
 /* #nav a {color: #ffffff;} */
 /* #nav a:hover, #nav li.selected a {padding-top: 1em;background: #ff9900;} */
 
+#portal-searchbox #searchLabel {
+    color: #FFF;
+    font-size: 12px;
+}
+
 #portal-searchbox #searchGadget {
     border-width: 1px;
     border-style: solid;
     border-color: #597a97;
 }
 #portal-searchbox .searchButton {
-    background:#636466;
+    background-color:transparent;
     color: #ffffff;
     border-width: 1px;
     border-style: solid;
     border-color: #c8c8c9;
+    border: none;
+    -webkit-box-shadow: none;
+    vertical-align: middle;
 }
 #footer {background: #205C90; color: #fff;;}
 #footer a:link {color:#fff;;}
@@ -124,15 +132,29 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
 #searchbt, #nav #seletor {display:none;}
 
 /* Searchbox */
-#portal-searchbox {font-size: 1em; position: absolute; right: 0px; top: 1.8em; padding-right: 1em;}
+#portal-searchbox {font-size: 1em; position: absolute; right: 0px; top: 1.8em; padding-right: 1.5em;}
 #portal-searchbox form, #portal-searchbox form .LSBox  {font-size: 100%;}
 #portal-searchbox #searchGadget {
     padding: 0.2em 0.3em;
-    width: 100%;
+    width: 170px;
     font-size:1.1em;
 }
-#portal-searchbox .searchButton {font-size:0.8em; width: 27%; padding:1.899% 0  0.8% 0; text-align:center;}
+#portal-searchbox .searchButton {
+    font-size:0.8em;
+    width: 10%;
+    padding:1.899% 0  0.8% 0;
+    text-align:center;
+    display: inline-block;
+    -webkit-appearance: none !important;
+    background-image: url("cca/img/vergrootglas.png");
+    background-repeat: no-repeat;
+}
+
 #LSResult {z-index:1; margin-top: 0.5%;}
+
+#searchGadget:focus::-webkit-input-placeholder {
+    color:transparent;
+}
 
 /*footer*/
 #footer {clear: left; padding: 2em;}
