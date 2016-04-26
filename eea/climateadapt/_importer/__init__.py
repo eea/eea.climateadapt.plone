@@ -79,7 +79,6 @@ from zope.sqlalchemy import register
 import dateutil
 import json
 import os
-import pprint
 import sys
 import transaction
 
@@ -673,11 +672,11 @@ def import_city_profile(container, journal):
         'f_m_action_event_title': {'newkey': 'title_of_the_action_event'},
     }
 
-    missing_vals = []
-    for _type, name, payload in vals:
-        if name not in _map:
-            missing_vals.append((_type, name, payload))
-
+    # missing_vals = []
+    # for _type, name, payload in vals:
+    #     if name not in _map:
+    #         missing_vals.append((_type, name, payload))
+    #
     # for v in missing_vals:
     #     print v
 
@@ -1622,7 +1621,9 @@ def import_template_2_columns_ii(site, layout, structure):
     # this pages will have to be manually recreated
     # ex: /home
 
-    if layout.friendlyurl == '/observations-and-scenarios':
+    if layout.friendlyurl in ['/observations-and-scenarios',
+                              '/adaptation-measures',
+                              '/adaptation-support-tool']:
         return  # this is imported in another layout
 
     if len(structure) == 1:  # this is a fake page. Ex: /adaptation-sectors
@@ -1935,80 +1936,6 @@ def import_template_frontpage(site, layout, structure):
     return cover
 
 
-def run_importer(site=None):
-    sql.Address = sql.Addres    # wrong detected plural
-    fix_relations(session)
-
-    if 'dbshell' in sys.argv:
-        import pdb; pdb.set_trace()
-
-    if site is None:
-        site = get_plone_site()
-
-    wftool = getToolByName(site, "portal_workflow")
-
-    structure = [('content', 'Content'),
-                 ('aceprojects', 'Projects'),
-                 ('casestudy', 'Case Studies'),
-                 ('adaptationoption', 'Adaptation Options'),
-                 ('repository', 'Repository')
-                 ]
-    for name, title in structure:
-        if name not in site.contentIds():
-            site.invokeFactory("Folder", name)
-            obj = site[name]
-            obj.edit(title=title)
-            try:
-                wftool.doActionFor(obj, 'publish')
-            except WorkflowException:
-                logger.exception("Could not publish:" + obj.absolute_url(1))
-
-    for image in session.query(sql.Image):
-        import_image(image, site['repository'])
-
-    for dlfileentry in session.query(sql.Dlfileentry):
-        import_dlfileentry(dlfileentry, site['repository'])
-
-    # for dlfileversion in session.query(sql.Dlfileversion):
-    #     import_dlfileversion(dlfileversion, site['repository'])
-
-    for aceitem in session.query(sql.AceAceitem):
-        if aceitem.datatype in ['ACTION', 'MEASURE']:
-            # TODO: log and solve here
-            continue
-        import_aceitem(aceitem, site['content'])
-
-    for aceproject in session.query(sql.AceProject):
-        import_aceproject(aceproject, site['aceprojects'])
-
-    for acemeasure in session.query(sql.AceMeasure):
-        if acemeasure.mao_type == 'A':
-            import_casestudy(acemeasure, site['casestudy'])
-        else:
-            pass
-            import_adaptationoption(acemeasure, site['adaptationoption'])
-
-    for layout in session.query(sql.Layout).filter_by(privatelayout=False):
-        try:
-            cover = import_layout(layout, site)
-        except:
-            logger.exception("Couldn't import layout %s", layout.friendlyurl)
-            #import pdb; pdb.set_trace()
-            #raise ValueError
-        if cover:
-            cover._imported_comment = \
-                "Imported from layout {0} - {1}".format(layout.layoutid,
-                                                        layout.uuid_)
-            logger.debug("Created cover at %s", cover.absolute_url())
-
-
-    import_journal_articles(site)
-    import_city_profiles(site)
-
-    tweak_site(site)
-    write_links()
-
-
 def import_journal_articles(site):
 
     parent = create_folder_at(site, '/more-events')
@@ -2122,6 +2049,80 @@ def import_journal_articles(site):
                                         effective_date=publish_date)
             logger.debug("Created News Item for news at %s",
                          news.absolute_url())
+
+
+def run_importer(site=None):
+    sql.Address = sql.Addres    # wrong detected plural
+    fix_relations(session)
+
+    if 'dbshell' in sys.argv:
+        import pdb; pdb.set_trace()
+
+    if site is None:
+        site = get_plone_site()
+
+    wftool = getToolByName(site, "portal_workflow")
+
+    structure = [('content', 'Content'),
+                 ('aceprojects', 'Projects'),
+                 ('casestudy', 'Case Studies'),
+                 ('adaptationoption', 'Adaptation Options'),
+                 ('repository', 'Repository')
+                 ]
+    for name, title in structure:
+        if name not in site.contentIds():
+            site.invokeFactory("Folder", name)
+            obj = site[name]
+            obj.edit(title=title)
+            try:
+                wftool.doActionFor(obj, 'publish')
+            except WorkflowException:
+                logger.exception("Could not publish:" + obj.absolute_url(1))
+
+    for image in session.query(sql.Image):
+        import_image(image, site['repository'])
+
+    for dlfileentry in session.query(sql.Dlfileentry):
+        import_dlfileentry(dlfileentry, site['repository'])
+
+    # for dlfileversion in session.query(sql.Dlfileversion):
+    #     import_dlfileversion(dlfileversion, site['repository'])
+
+    for aceitem in session.query(sql.AceAceitem):
+        if aceitem.datatype in ['ACTION', 'MEASURE']:
+            # TODO: log and solve here
+            continue
+        import_aceitem(aceitem, site['content'])
+
+    for aceproject in session.query(sql.AceProject):
+        import_aceproject(aceproject, site['aceprojects'])
+
+    for acemeasure in session.query(sql.AceMeasure):
+        if acemeasure.mao_type == 'A':
+            import_casestudy(acemeasure, site['casestudy'])
+        else:
+            pass
+            import_adaptationoption(acemeasure, site['adaptationoption'])
+
+    for layout in session.query(sql.Layout).filter_by(privatelayout=False):
+        try:
+            cover = import_layout(layout, site)
+        except:
+            logger.exception("Couldn't import layout %s", layout.friendlyurl)
+            #import pdb; pdb.set_trace()
+            #raise ValueError
+        if cover:
+            cover._imported_comment = \
+                "Imported from layout {0} - {1}".format(layout.layoutid,
+                                                        layout.uuid_)
+            logger.debug("Created cover at %s", cover.absolute_url())
+
+
+    import_journal_articles(site)
+    import_city_profiles(site)
+
+    tweak_site(site)
+    write_links()
 
 
 def tweak_site(site):
