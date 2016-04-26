@@ -26,5 +26,9 @@
         id="++resource++jquery.datatables.js" />
 
 
+    Disabling livesearch for search viewlet, we use faceted navigation for that
+    <javascript cacheable="True" compression="none"
+        cookable="True" enabled="False" expression=""
+        id="livesearch.js" />
 
 </object>

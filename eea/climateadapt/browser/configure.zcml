@@ -273,13 +273,22 @@
         />
 
     <!-- other viewlet overrides -->
-    <browser:page
-        for="*"
-        name="breadcrumbs_view"
-        class=".viewlets.FixBreadcrumbs"
-        permission="zope.Public"
+
+    <browser:viewlet
+        name="plone.searchbox"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".viewlets.SearchBoxViewlet"
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        allowed_attributes="breadcrumbs"
+        permission="zope2.View"
         />
+
+    <!-- <browser:page -->
+    <!--     for="*" -->
+    <!--     name="breadcrumbs_view" -->
+    <!--     class=".viewlets.FixBreadcrumbs" -->
+    <!--     permission="zope.Public" -->
+    <!--     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+    <!--     allowed_attributes="breadcrumbs" -->
+    <!--     /> -->
 
 </configure>
