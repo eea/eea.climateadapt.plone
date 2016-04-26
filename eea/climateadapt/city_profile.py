@@ -55,11 +55,13 @@ def send_token_mail(city):
 
     body_html = renderer()
     body_plain = renderer.MAIL_TEXT_TEMPLATE
+
     emailto = city.official_email
     email_subject = 'New token email'
     emailfrom = str(api.portal.getSite().email_from_address)
 
-    print renderer.city_full_url
+    if not (emailto and emailfrom):
+        return
 
     mime_msg = MIMEMultipart('related')
     mime_msg['Subject'] = email_subject
