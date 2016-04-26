@@ -167,7 +167,7 @@
                 <description/>
                 <title>Title of the action/event</title>
             </field>
-            <field name="description" type="zope.schema.Text">
+            <field name="long_description" type="plone.app.textfield.RichText">
                 <description/>
                 <title>Description</title>
             </field>
@@ -176,7 +176,7 @@
                 <required>False</required>
                 <title>Picture</title>
             </field>
-            <field name="picture_caption" type="zope.schema.TextLine">
+            <field name="picture_caption" type="plone.app.textfield.RichText">
                 <description/>
                 <required>False</required>
                 <title>Picture caption</title>

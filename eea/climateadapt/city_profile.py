@@ -47,7 +47,6 @@ with open(tpl_path) as f:
 
 def send_token_mail(city):
     """ Sends a multipart email that contains the link with token """
-    return
 
     mail_host = api.portal.get_tool(name='MailHost')
     request = getRequest()

@@ -214,15 +214,6 @@
     <browser:viewlet
         name="plone.resourceregistries"
         manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
-        view=".cities_listing.CitiesProfilesView"
-        template="pt/resourceregistries.pt"
-        permission="zope2.View"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        />
-
-    <browser:viewlet
-        name="plone.resourceregistries"
-        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
         view=".countries.CountriesView"
         template="pt/resourceregistries.pt"
         permission="zope2.View"

@@ -137,7 +137,7 @@
             <h3>Good practice / spotlight item</h3>
             <div style="font-weight: bold"
                 tal:content="structure python: view.w['title_of_the_action_event'].render()" />
-            <div tal:content="structure python: view.w['description'].render()" />
+            <div tal:content="structure python: view.w['long_description'].render()" />
         </div>
             <img tal:replace="structure context/@@images/picture/preview" style="max-width: 100%"
                  tal:condition="context/picture"/>

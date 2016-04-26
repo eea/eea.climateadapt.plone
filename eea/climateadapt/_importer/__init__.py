@@ -646,7 +646,7 @@ def import_city_profile(container, journal):
             'newkey': 'have_you_already_developed_an_adaptation_strategy',
             'mapping_fnc': lambda x: map_to_x(x) or ""},
         'e_additional_information_on_adaptation_responses': {'newkey': 'additional_information_on_adaptation_responses'},
-        'f_picture_caption': {'newkey': 'picture_caption'},
+        'f_picture_caption': {'newkey': 'picture_caption', 'mapping_fnc': lambda x: t2r(x) or ""},
         'f_sectors_concerned': {
             'newkey': 'what_sectors_are_concerned',
             'mapping_fnc': map_impacted_sectors},
@@ -658,7 +658,7 @@ def import_city_profile(container, journal):
         # XXX: this seems to be duplicated with d_adaptation_strategy_weblink
         # 'e_adaptation_weblink': {'newkey': 'developed_an_adaptationstrategy'},
         'e_m_planed_adaptation_actions': {'newkey': 'planned_current_adaptation_actions_and_responses'},
-        'f_m_action_event_long_description': {'newkey': 'description'},
+        'f_m_action_event_long_description': {'newkey': 'long_description', 'mapping_fnc': lambda x: t2r(x) or ""},
         'f_m_action_event_title': {'newkey': 'title_of_the_action_event'},
     }
 

@@ -37,10 +37,11 @@ class CityProfileView(DefaultView):
         ftype = ftype.bind(self.context)
         vocab = ftype.vocabulary
         titles = []
-        for token in getattr(self.context, fname):
-            try:
-                term = vocab.getTermByToken(token)
-            except LookupError:
-                continue
-            titles.append(term.title)
+        if getattr(self.context, fname):
+            for token in getattr(self.context, fname):
+                try:
+                    term = vocab.getTermByToken(token)
+                except LookupError:
+                    continue
+                titles.append(term.title)
         return titles
