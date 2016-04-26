@@ -580,35 +580,25 @@ def import_city_profile(container, journal):
                 token = t2t_map.get(values.lower())
                 if token:
                     return token
-#                else:
-#                    import pdb; pdb.set_trace()
             else:
                 for v in values:
                     token = t2t_map.get(v.lower())
                     if token:
                         tokens.append(token)
-#                    else:
-#                        import pdb; pdb.set_trace()
             return tokens
-#        import pdb; pdb.set_trace()
         return t2tmap
 
-    map_climate_impacts = map_titles_to_tokens(
-        container, aceitem_climateimpacts_vocabulary)
-    map_country = map_titles_to_tokens(
-        container, ace_countries_vocabulary)
-    map_status_of_major_adapt_signature = map_titles_to_tokens(
-        container, status_of_adapt_signature_vocabulary)
-    map_impacted_sectors = map_titles_to_tokens(
-        container, aceitem_sectors_vocabulary)
-    map_stage_of_implementation = map_titles_to_tokens(
-        container, stage_implementation_cycle_vocabulary)
-    map_adaptation_strategy = map_titles_to_tokens(
-        container, already_devel_adapt_strategy_vocabulary)
-    map_elements = map_titles_to_tokens(
-        container, aceitem_elements_vocabulary)
+    mpttt = map_titles_to_tokens
+    c = container
+    map_climate_impacts                 = mpttt(c, aceitem_climateimpacts_vocabulary)
+    map_country                         = mpttt(c, ace_countries_vocabulary)
+    map_status_of_major_adapt_signature = mpttt(c, status_of_adapt_signature_vocabulary)
+    map_impacted_sectors                = mpttt(c, aceitem_sectors_vocabulary)
+    map_stage_of_implementation         = mpttt(c, stage_implementation_cycle_vocabulary)
+    map_adaptation_strategy             = mpttt(c, already_devel_adapt_strategy_vocabulary)
+    map_elements                        = mpttt(c, aceitem_elements_vocabulary)
+
     def map_to_x(x):
-#        import pdb; pdb.set_trace()
         res = map_adaptation_strategy(x)
         return res or ""
 
