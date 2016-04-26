@@ -472,7 +472,7 @@ def make_form_fields_model(form_obj, content):
         elif f['type'] == u'options':
             # https://github.com/plone/plone.supermodel/blob/master/plone/supermodel/fields.txt#L1237
             field.set('type', 'zope.schema.Choice')
-            options = f['options'].split(', ')
+            options = s2l(f['options'], separator=',')
             default_option = options[0]
             default = lxml.etree.SubElement(field, 'default')
             default.text = default_option
@@ -485,18 +485,20 @@ def make_form_fields_model(form_obj, content):
             field.set('type', 'zope.schema.Text')
         validators_str = '|'.join(validators)
         field.set('{{{ns}}}validators'.format(ns=efns), validators_str)
-    if content.get('requireCaptcha') == u'true':
-        field = lxml.etree.SubElement(schema, 'field')
-        field.set('{{{ns}}}TDefault'.format(ns=efns), '')
-        field.set('{{{ns}}}ServerSide'.format(ns=efns), 'False')
-        field.set('{{{ns}}}validators'.format(ns=efns), '')
-        field.set('name', 'field_captcha')
-        field.set('type', 'collective.easyform.fields.ReCaptcha')
-        req = lxml.etree.SubElement(field, 'required')
-        req.text = str(True)
-        title = lxml.etree.SubElement(field, 'title')
-        title.text = u'Text Verification'
-        lxml.etree.SubElement(field, 'description')
+
+    # captcha field don't work ok, disabling them temporarily
+    # if content.get('requireCaptcha') == u'true':
+    #     field = lxml.etree.SubElement(schema, 'field')
+    #     field.set('{{{ns}}}TDefault'.format(ns=efns), '')
+    #     field.set('{{{ns}}}ServerSide'.format(ns=efns), 'False')
+    #     field.set('{{{ns}}}validators'.format(ns=efns), '')
+    #     field.set('name', 'field_captcha')
+    #     field.set('type', 'collective.easyform.fields.ReCaptcha')
+    #     req = lxml.etree.SubElement(field, 'required')
+    #     req.text = str(True)
+    #     title = lxml.etree.SubElement(field, 'title')
+    #     title.text = u'Text Verification'
+    #     lxml.etree.SubElement(field, 'description')
 
     return lxml.etree.tostring(model)
 
