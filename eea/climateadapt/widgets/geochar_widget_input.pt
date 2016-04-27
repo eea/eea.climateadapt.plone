@@ -46,10 +46,7 @@
       readonly view/readonly;
       accesskey view/accesskey;
       onselect view/onselect"
-      tal:content="view/value" style="display:none" />
-
-
-
+      tal:content="view/value" />
 
     <ul class="one-col" >
       <li class="first" >
