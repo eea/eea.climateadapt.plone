@@ -356,11 +356,10 @@ class AceViewApi(object):
         if (value == 'MAPLAYER'):
             url = '/tools/map-viewer?layerid=' + self.context.websites.output
 
-            if (self.context.data_type == 'MAPGRAPHDATASET'):
+            if (self.context.search_type == 'MAPGRAPHDATASET'):
                 return (url, 'View map ' + self.context.title)
             return (url, self.context.websites.output)
         elif (value == 'URL'):
-            # import pdb; pdb.set_trace()
             return (self.context.websites.output, self.context.websites.output)
 
     def _render_geochar_element(self, value):
