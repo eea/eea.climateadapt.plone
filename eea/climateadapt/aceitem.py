@@ -1,10 +1,11 @@
 from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
 from plone.app.textfield import RichText
+from plone.autoform import directives
 from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
 from zope.interface import implements
-from zope.schema import Choice, TextLine, List, Bool, Int, Text
+from zope.schema import Bool, Choice, Int, List, Text, TextLine
 
 
 class IAceItem(form.Schema, IImageScaleTraversable):
@@ -54,11 +55,11 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     # TODO: "keyword" from SQL is Subject
     keywords = RichText(title=_(u"Keywords"),
                         description=_(u"Describe and tag this item with relevant keywords. Separate each keyword with a comma. For example, example keyword 1, example keyword 2 (1,000 character limit)"),
-                        required=False)
+                        required=True)
 
     sectors = List(title=_(u"Sectors"),
                    description=_(u"Select one or more relevant sector policies that this item relates to."),
-                   required=False,
+                   required=True,
                    value_type=Choice(
                        vocabulary="eea.climateadapt.aceitems_sectors",),
                    )
@@ -66,7 +67,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     climate_impacts = List(
         title=_(u"Climate impacts"),
         description=_(u"Select one or more climate change impact topics that this item relates to."),
-        required=False,
+        required=True,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_climateimpacts",),
     )
@@ -78,7 +79,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                         vocabulary="eea.climateadapt.aceitems_elements",),
                     )
 
-    year = Int(title=_(u"Year"), description=u"Date of publication/release/update of the item", required=True)
+    year = Int(title=_(u"Year"), description=u"Date of publication/release/update of the item", required=False)
 
     # -----------[ "reference_information" fields ]------------------
 
@@ -87,20 +88,25 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                         required=True,)
 
     source = RichText(title=_(u"Source"),
-                      required=True,
+                      required=False,
                       description=u"Describe the original source of the item description (250 character limit)")
 
     # -----------[ "geographic_information" fields ]------------------
 
     form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
     geochars = Text(title=_(u"Geographic characterisation"),
-                    required=False,
+                    required=True,
                     default=u'{"geoElements":{"element":"GLOBAL","macrotrans":null,"biotrans":null,"countries":[],"subnational":[],"city":""}}',
                     description=u"Select the characterisation for this item",
                     )
 
     comments = Text(title=_(u"Comments"), required=False, default=u"",
                     description=u"Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]")
+
+    # -----------[ "omitted" fields ]------------------
+    directives.omitted('data_type', 'storage_type', 'spatial_layer',
+                       'spatial_values', 'important', 'metadata',
+                       'special_tags', 'rating')
 
     # -----------[ "backend" fields ]------------------
 
