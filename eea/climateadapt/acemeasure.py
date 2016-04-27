@@ -28,7 +28,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.fieldset('default',
         label=u'Item Description',
-        fields=['title', 'long_description', 'climate_impacts', 'keywords',
+        fields=['long_description', 'climate_impacts', 'keywords',
                 'sectors', 'year']
     )
 

@@ -15,7 +15,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     form.fieldset('default',
                   label=u'Item Description',
-                  fields=['acronym', 'title', 'lead', 'long_description',
+                  fields=['acronym', 'lead', 'long_description',
                           'partners', 'keywords', 'sectors', 'climate_impacts',
                           'elements', 'funding', 'duration'])
 
