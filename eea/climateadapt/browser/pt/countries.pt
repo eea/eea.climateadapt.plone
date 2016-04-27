@@ -2,46 +2,7 @@
   <metal:fill-slot fill-slot="style_slot">
     <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css"/>
     <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css"/>
-    <link rel="styleshhet" href="/++theme++climateadapt/static/jquery.qtip.css"/>
-    <link href="http://cca.ro/portal_css/Sunburst%20Theme/columns.css" rel="stylesheet" />
-  </metal:fill-slot>
 
-  <metal:fill-slot fill-slot="javascript_head_slot">
-
-
-    <script type="text/javascript" src="/++theme++climateadapt/static/jquery.qtip.min.js"></script>
-    <script>
-    Array.prototype.unique2 = function ()
-    {
-    	var n = {}, r = [];
-    	for (var i = 0; i < this.length; i++)
-    	{
-    		if (!n[this[i]])
-    		{
-    			n[this[i]] = true;
-    			r.push(this[i]);
-    		}
-    	}
-    	return r;
-    }
-    var dojoConfig = {parseOnLoad: true};
-
-    </script>
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://js.arcgis.com/3.13compact"></script>
-    <script type="text/javascript" src="/++theme++climateadapt/static/jquery.qtip.min.js"></script>
-    <script type="text/javascript" src="/++theme++climateadapt/static/cca/js/countries.js"></script>
-
-    <!-- <script type="text/javascript" src="++resource++plone.app.widgets.js"></script> -->
-  </metal:fill-slot>
-
-<metal:fill-slot fill-slot="content-title">
-  <h1> Countries </h1>
-</metal:fill-slot>
-  <metal:fill-slot fill-slot="content-core">
-
-    <div class="cover-richtext-tile tile-content">
       <style type="text/css">
         #mapDiv,
         .map.container,
@@ -105,6 +66,43 @@
         }
 
       </style>
+    
+  </metal:fill-slot>
+
+  <metal:fill-slot fill-slot="javascript_head_slot">
+
+    <script>
+    Array.prototype.unique2 = function ()
+    {
+    	var n = {}, r = [];
+    	for (var i = 0; i < this.length; i++)
+    	{
+    		if (!n[this[i]])
+    		{
+    			n[this[i]] = true;
+    			r.push(this[i]);
+    		}
+    	}
+    	return r;
+    }
+    var dojoConfig = {parseOnLoad: true};
+
+    </script>
+
+    <link rel="stylesheet" href="/++resource++collective.js.bootstrap/js/bootstrap.min.js"/>
+    <script src="http://js.arcgis.com/3.13compact"></script>
+    <script type="text/javascript" src="/++theme++climateadapt/static/jquery.qtip.min.js"></script>
+    <script type="text/javascript" src="/++theme++climateadapt/static/cca/js/countries.js"></script>
+
+    <!-- <script type="text/javascript" src="++resource++plone.app.widgets.js"></script> -->
+  </metal:fill-slot>
+
+  <metal:fill-slot fill-slot="content-title">
+    <h1> Countries </h1>
+  </metal:fill-slot>
+  <metal:fill-slot fill-slot="content-core">
+
+    <div class="cover-richtext-tile tile-content">
 
       <div class="journal-content-article" style="margin-right: 10px;">
         <p>EEA Member countries are at different stages of preparing, developing and implementing national

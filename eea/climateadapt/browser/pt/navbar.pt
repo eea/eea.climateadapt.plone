@@ -3,12 +3,9 @@
 <link rel="stylesheet" href="/++theme++climateadapt/static/vendor/bootstrap-submenu.css">
 <script type="text/javascript" src="/++theme++climateadapt/static/vendor/bootstrap-submenu.js"></script>
 
-
    <script>
-
    (function($){
         $(document).ready(function(){
-
             $('[data-submenu]').submenupicker();
         });
    }(window.jQuery));
@@ -34,7 +31,6 @@
         </a>
         <ul tal:condition="python: section[2]" class="dropdown-menu">
 
-
         <tal:rep tal:repeat="child python:section[2]">
           <li tal:define="has_subchildren python: bool(child[2])" tal:attributes="class python:has_subchildren and 'dropdown-submenu' or ''">
               <a href=""
@@ -53,7 +49,6 @@
               </ul>
           </li>
           </tal:rep>
-
 
         </ul>
       </li>
