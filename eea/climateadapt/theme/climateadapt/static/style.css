@@ -1482,3 +1482,31 @@ li.dropdown-submenu {
 .clear-both {
 	clear: both;
 }
+
+
+/* geochar widget stuff */
+#formfield-form-widgets-geochars { }
+#formfield-form-widgets-geochars ul { 
+    margin-left: 1em;
+}
+#formfield-form-widgets-geochars li { 
+    list-style-type: none;
+}
+#formfield-form-widgets-geochars .five-col li { 
+    float: left;
+    width:12em;
+    margin-right: 1em;
+}
+#formfield-form-widgets-geochars .five-col input { 
+    margin-right: 0.3em;
+}
+#formfield-form-widgets-geochars .five-col label { 
+    font-weight: normal;
+}
+.europe_geochar_class {
+    margin-top:2em;
+    overflow: hidden;
+}
+.case-studies-tabbed-content-table-for-lists {
+    width: 80%;
+}

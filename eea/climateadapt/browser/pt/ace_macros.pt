@@ -20,7 +20,9 @@
         <div class="ace-content-column">
           <metal:slot metal:define-slot="ace-left-slot"></metal:slot>
           <div class="share-your-info-ace-button">
-            <button>Share your information</button>
+            <form method="POST" action="/share-your-info">
+              <button>Share your information</button>
+            </form>          
           </div>
         </div>
       </div>

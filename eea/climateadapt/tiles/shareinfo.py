@@ -26,6 +26,29 @@ class IShareInfoTile(IPersistentCoverTile):
     )
 
 
+TYPES = {
+    'DOCUMENT': ('eea.climateadapt.publicationreport', 'content'),
+    'INFORMATIONSOURCE': ('eea.climateadapt.informationportal', 'content'),
+    'GUIDANCE': ('eea.climateadapt.guidancedocument', 'content'),
+    'TOOL': ('eea.climateadapt.tool', 'content'),
+    'ORGANISATION': ('eea.climateadapt.organisation', 'content'),
+    'INDICATOR': ('eea.climateadapt.indicator', 'content'),
+    'MAPGRAPHDATASET': ('eea.climateadapt.mapgraphdataset', 'content'),
+    'RESEARCHPROJECT': ('eea.climateadapt.researchproject', 'content'),
+
+    'MEASURE': ('eea.climateadapt.adaptationoption', 'aceprojects'),
+    'ACTION': ('eea.climateadapt.casestudy', 'casestudy'),
+}
+
+#       'eea.climateadapt.aceproject': 'aceprojects'
+#       'eea.climateadapt.adaptationoption': 'adaptationoption'
+# 'eea.climateadapt.casestudy': 'casestudy'
+
+DEFAULT_LOCATIONS = {
+    'INDICATOR': 'content',
+}
+
+
 class ShareInfoTile(PersistentCoverTile):
     """ Share info tile
 
@@ -47,7 +70,9 @@ class ShareInfoTile(PersistentCoverTile):
     def link_url(self):
         site = getSite()    # TODO: fix this link
         type_ = self.data.get('shareinfo_type')
-        return "{0}/create?type_name={1}".format(site.absolute_url(), type_)
+        factory, location = TYPES[type_]
+        location = site.restrictedTraverse(location)
+        return "{0}/++add++{1}".format(location.absolute_url(), factory)
 
     def link_title(self):
         type_ = self.data.get('shareinfo_type')

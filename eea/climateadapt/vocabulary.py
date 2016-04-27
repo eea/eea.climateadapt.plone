@@ -243,13 +243,6 @@ _elements_mentioned_your_cp = [
     ("VULNERABILITY", "Vulnerability Assessment"),
 ]
 
-#("ADAPT_MEAS_ACT", "Adaptation Measures and Actions"),
-#("ADAPT_PLANS_STRAT", "Adaptation Plans and Strategies"),
-#("OBS_SCENARIOS", "Observations and Scenarios"),
-#("SECTOR_POLICIES", "Sector Policies"),
-#("VULNER_ASSESS", "Vulnerability Assessment"),
-
-
 elements_mentioned_your_cp_vocabulary = generic_vocabulary(_elements_mentioned_your_cp)
 alsoProvides(elements_mentioned_your_cp_vocabulary, IVocabularyFactory)
 

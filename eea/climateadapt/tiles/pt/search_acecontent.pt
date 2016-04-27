@@ -33,9 +33,9 @@
         </li>
       </ul>
       <div class="share-your-info-ace-button">
-        <a href="/share-your-info">
+        <form method="POST" action="/share-your-info">
           <button>Share your information</button>
-        </a>
+        </form>
       </div>
     </div>
   </body>

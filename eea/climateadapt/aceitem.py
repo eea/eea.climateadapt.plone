@@ -7,24 +7,6 @@ from zope.interface import implements
 from zope.schema import Choice, TextLine, List, Bool, Int, Text
 
 
-# from five import grok
-# from zope import schema
-# from zope.schema.interfaces import IContextSourceBinder
-# from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-#
-# from zope.interface import invariant, Invalid, implements
-#
-# from z3c.form import group, field
-#
-# from plone.namedfile.field import NamedImage, NamedFile
-# from plone.namedfile.field import NamedBlobImage, NamedBlobFile
-#
-# from plone.app.textfield import RichText
-#
-# from z3c.relationfield.schema import RelationList, RelationChoice
-# from plone.formwidget.contenttree import ObjPathSourceBinder
-
-
 class IAceItem(form.Schema, IImageScaleTraversable):
     """
     Defines content-type schema for Ace Item
@@ -65,7 +47,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                      description=u"Item Name (250 character limit)",
                      required=True)
 
-    long_description = RichText(title=(u"description"),
+    long_description = RichText(title=(u"Description"),
                                 description=u"Provide a description of the item. (5,000 character limit)",
                                 required=True)
 
@@ -110,14 +92,15 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     # -----------[ "geographic_information" fields ]------------------
 
+    form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
     geochars = Text(title=_(u"Geographic characterisation"),
                     required=False,
-                    default=u"",
+                    default=u'{"geoElements":{"element":"GLOBAL","macrotrans":null,"biotrans":null,"countries":[],"subnational":[],"city":""}}',
                     description=u"Select the characterisation for this item",
                     )
 
-    comments = TextLine(title=_(u"Comments"), required=False, default=u"",
-                        description=u"Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]")
+    comments = Text(title=_(u"Comments"), required=False, default=u"",
+                    description=u"Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]")
 
     # -----------[ "backend" fields ]------------------
 
@@ -277,3 +260,16 @@ class Action(dexterity.Item):
     implements(IAction)
 
     search_type = "ACTION"
+
+
+# from five import grok
+# from plone.app.textfield import RichText
+# from plone.formwidget.contenttree import ObjPathSourceBinder
+# from plone.namedfile.field import NamedBlobImage, NamedBlobFile
+# from plone.namedfile.field import NamedImage, NamedFile
+# from z3c.form import group, field
+# from z3c.relationfield.schema import RelationList, RelationChoice
+# from zope import schema
+# from zope.interface import invariant, Invalid, implements
+# from zope.schema.interfaces import IContextSourceBinder
+# from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm

@@ -30,7 +30,7 @@
             <!-- <div tal:content="structure python:view._render_websites(context.storage_type)"/> -->
 
             <div tal:define="link python:view._render_websites(context.storage_type)">
-              <dl>
+              <dl tal:condition="link">
                 <a tal:condition="python:link[1]" tal:content="python:link[1]" href="" tal:attributes="href python:link[0]"/>
               </dl>
             </div>
