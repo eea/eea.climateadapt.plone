@@ -1,8 +1,7 @@
 <ul id="third-level-menu">
   <li><a tal:attributes="href string:${view/base_url}/general">General</a></li>
   <li><a tal:attributes="href string:${view/base_url}/publications-and-reports">Publications and reports</a></li>
-  <li><a tal:attributes="href string:${view/base_url}/information">Information</a></li>
-  <li><a tal:attributes="href string:${view/base_url}/portals">Portals</a></li>
+  <li><a tal:attributes="href string:${view/base_url}/information-portals">Information Portals</a></li>
   <li><a tal:attributes="href string:${view/base_url}/guidance-documents">Guidance documents</a></li>
   <li><a tal:attributes="href string:${view/base_url}/tools">Tools</a></li>
   <li><a tal:attributes="href string:${view/base_url}/research-and-knowledge-projects">Research and knowledge projects</a></li>

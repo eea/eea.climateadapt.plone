@@ -8,9 +8,11 @@ from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.vocabulary import _cca_types
+from plone import api
 from zope import schema
 from zope.component.hooks import getSite
 from zope.interface import implements
+
 
 class IShareInfoTile(IPersistentCoverTile):
 
@@ -40,9 +42,6 @@ TYPES = {
     'ACTION': ('eea.climateadapt.casestudy', 'casestudy'),
 }
 
-#       'eea.climateadapt.aceproject': 'aceprojects'
-#       'eea.climateadapt.adaptationoption': 'adaptationoption'
-# 'eea.climateadapt.casestudy': 'casestudy'
 
 DEFAULT_LOCATIONS = {
     'INDICATOR': 'content',
@@ -63,6 +62,9 @@ class ShareInfoTile(PersistentCoverTile):
     is_editable = True
     is_droppable = False
     short_name = u'Share info'
+
+    def is_anon(self):
+        return api.user.is_anonymous()
 
     def is_empty(self):
         return False
