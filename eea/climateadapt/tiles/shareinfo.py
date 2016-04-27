@@ -34,9 +34,9 @@ TYPES = {
     'ORGANISATION': ('eea.climateadapt.organisation', 'content'),
     'INDICATOR': ('eea.climateadapt.indicator', 'content'),
     'MAPGRAPHDATASET': ('eea.climateadapt.mapgraphdataset', 'content'),
-    'RESEARCHPROJECT': ('eea.climateadapt.researchproject', 'content'),
 
-    'MEASURE': ('eea.climateadapt.adaptationoption', 'aceprojects'),
+    'RESEARCHPROJECT': ('eea.climateadapt.aceproject', 'aceprojects'),
+    'MEASURE': ('eea.climateadapt.adaptationoption', 'adaptationoption'),
     'ACTION': ('eea.climateadapt.casestudy', 'casestudy'),
 }
 

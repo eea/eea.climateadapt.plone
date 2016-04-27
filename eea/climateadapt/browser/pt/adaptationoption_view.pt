@@ -100,9 +100,9 @@
             <h4>Keywords</h4>
             <tal:block content="structure context/keywords/output"/>
             <h4>Sectors</h4>
-            <tal:block content="structure python:view.widgets['sectors'].render()"/>
+            <tal:block content="structure python:view.w['sectors'].render()"/>
             <h4>Climate impacts</h4>
-            <tal:block content="structure python:view.widgets['climate_impacts'].render()"/>
+            <tal:block content="structure python:view.w['climate_impacts'].render()"/>
             <h4>Geographic characterisation</h4>
             <div tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars"/>
             <tal:cond condition="not: context/geochars">
