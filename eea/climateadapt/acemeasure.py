@@ -11,7 +11,6 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.app.contenttypes.interfaces import IImage
 from plone.autoform import directives
 from plone.formwidget.autocomplete import AutocompleteFieldWidget
-from plone.supermodel import model
 
 
 class IAceMeasure(form.Schema, IImageScaleTraversable):
@@ -128,7 +127,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     lifetime = RichText(title=_(u"Lifetime"),
                         required=False,
                         default=u"",
-                        description="Describe the lifetime of the measure: Time frame, e.g. 5-10 years, Brief explanation(250 char limit)")
+                        description=u"Describe the lifetime of the measure: Time frame, e.g. 5-10 years, Brief explanation(250 char limit)")
 
     # -----------[ "reference_information" fields ]------------------
 
