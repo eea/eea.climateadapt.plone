@@ -125,7 +125,9 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         description=_(u"Describe the time needed to implement the measure. Include: Time frame, e.g. 5-10 years, Brief explanation(250 char limit)"))
 
     dexteritytextindexer.searchable('lifetime')
-    lifetime = RichText(title=_(u"Lifetime"), required=False, default=u"",
+    lifetime = RichText(title=_(u"Lifetime"),
+                        required=False,
+                        default=u"",
                         description="Describe the lifetime of the measure: Time frame, e.g. 5-10 years, Brief explanation(250 char limit)")
 
     # -----------[ "reference_information" fields ]------------------
@@ -137,7 +139,9 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                     )
 
     dexteritytextindexer.searchable('source')
-    source = RichText(title=_(u"Source"), required=False,description=_(u"Describe the original source (like name of a certain project) of the adaptation option description (250 character limit)"))
+    source = RichText(title=_(u"Source"),
+                      required=False,
+                      description=_(u"Describe the original source (like name of a certain project) of the adaptation option description (250 character limit)"))
 
     # -----------[ "document" fields ]------------------
 
@@ -145,12 +149,16 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     # governance ???
 
-    geochars = Text(title=_(u"Geographic characterization"),
-                    required=True, default=u""
-                    description=_(u"Input the characterisation for this case study"))
+    form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
+    geochars = Text(
+        title=_(u"Geographic characterization"),
+        required=True, default=u"",
+        description=_(u"Input the characterisation for this case study")
+    )
 
-    comments = TextLine(title=_(u"Comments"), required=False, default=u""
-                        description=_(u"Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]"))
+    comments = Text(title=_(u"Comments"), required=False, default=u"",
+                        description=_(u"Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]")
+                        )
 
     # -----------[ "omitted" fields ]------------------
 
