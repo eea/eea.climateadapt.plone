@@ -1438,6 +1438,31 @@ li.dropdown-submenu {
     display: none;
 }
 
+.section-cities #content {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.section-cities .read_more_first {
+    margin-left: 1em;
+}
+
+.section-cities .read_more_second {
+    margin-left: 1em;
+}
+
+.section-cities #content .cover-richtext-tile div div , p {
+    margin-left: 1em;
+}
+
+.section-cities .aceitem-relevant-tile {
+    margin-left: 2em;
+}
+
+.subsection-map-viewer #content {
+    margin-left: 2px;
+}
+
 /* time series tool */
 
 .subsection-time-series-tool #content {
@@ -1490,21 +1515,21 @@ li.dropdown-submenu {
 
 /* geochar widget stuff */
 #formfield-form-widgets-geochars { }
-#formfield-form-widgets-geochars ul { 
+#formfield-form-widgets-geochars ul {
     margin-left: 1em;
 }
-#formfield-form-widgets-geochars li { 
+#formfield-form-widgets-geochars li {
     list-style-type: none;
 }
-#formfield-form-widgets-geochars .five-col li { 
+#formfield-form-widgets-geochars .five-col li {
     float: left;
     width:12em;
     margin-right: 1em;
 }
-#formfield-form-widgets-geochars .five-col input { 
+#formfield-form-widgets-geochars .five-col input {
     margin-right: 0.3em;
 }
-#formfield-form-widgets-geochars .five-col label { 
+#formfield-form-widgets-geochars .five-col label {
     font-weight: normal;
 }
 .europe_geochar_class {
