@@ -99,6 +99,9 @@ class AceTileMixin(object):
         q = query.copy()
         q.update(kw)
         x = {}
+        searchtype = q.pop('search_type', None)
+        if searchtype:
+            q['searchtype'] = searchtype
         for k, v in q.items():
             if v:
                 if k not in ['sort_on', 'sort_order']:
@@ -195,7 +198,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
     is_droppable = False
 
     index = ViewPageTemplateFile('pt/relevant_acecontent.pt')
-    
+
     view_more = False
 
     def show_share_btn(self):
@@ -236,7 +239,6 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         # )
 
     def items(self):
-        print self.data
         count = self.data.get('nr_items', 5) or 5
         query = self.build_query()
         res = self.catalog.searchResults(limit=count, **query)
