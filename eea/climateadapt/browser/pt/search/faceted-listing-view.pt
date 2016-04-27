@@ -64,15 +64,18 @@
                       // {'visible': false, 'targets': 1}
                       // {'visible': false, 'targets': 2}
                     ]
-
                   }
                 );
+
                 $('.listing-result h3 a').on('click', function(event){
                   var acc = $(this);
                   var glyph = acc.parent().find('.glyphicon');
                   glyph.toggleClass('glyphicon-chevron-right');
                   glyph.toggleClass('glyphicon-chevron-down');
                 });
+              });
+              $('.listing-table').dataTable({
+                "order": [1, "desc"]
               });
             });
           </script>
