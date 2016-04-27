@@ -12,6 +12,10 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     Defines content-type schema for Ace Project
     """
 
+
+
+
+
     title = TextLine(title=_(u"Title"),
                      description=_(u"Project title or name"),
                      required=True,

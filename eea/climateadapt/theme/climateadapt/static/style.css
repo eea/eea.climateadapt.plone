@@ -1434,6 +1434,10 @@ li.dropdown-submenu {
     padding-left: 1em;
 }
 
+.template-mayors-adapt #content .documentFirstHeading {
+    display: none;
+}
+
 /* time series tool */
 
 .subsection-time-series-tool #content {

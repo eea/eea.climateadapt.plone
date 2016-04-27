@@ -11,6 +11,7 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.app.contenttypes.interfaces import IImage
 from plone.autoform import directives
 from plone.formwidget.autocomplete import AutocompleteFieldWidget
+from plone.supermodel import model
 
 
 class IAceMeasure(form.Schema, IImageScaleTraversable):
@@ -18,34 +19,158 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     Defines content-type schema for Ace Measure
     """
 
-    # company - this is always liferay in the data
-    # group - same value for all
+    # def updateWidgets(self):
+    #     super(IAceMeasure, self).updateWidgets()
+    #     import pdb; pdb.set_trace()
+    #     self.fieldset['default'].label = 'bla bla'
+    #
+    # model.fieldset(u"default", label="Default", fields=['title'])
 
-    # title - Provided by behaviour. Imported value comes from name column
-    title = TextLine(title=_(u"Title"), required=True)
+    # updateWidgets(form)
 
-    # description - Provided by behaviour. Imported value comes from
-    #               description column
+    form.fieldset('default',
+        label=u'Item Description',
+        fields=['title', 'long_description', 'climate_impacts', 'keywords',
+                'sectors', 'year']
+    )
+
+    form.fieldset('additional_details',
+        label=u'Additional Details',
+        fields=['stakeholder_participation', 'success_limitations',
+                'cost_benefit', 'legal_aspects', 'implementation_time',
+                'lifetime']
+    )
+
+    form.fieldset('reference_information',
+        label=u'Reference information',
+        fields=['websites', 'source']
+    )
+
+    # TODO:
+    # form.fieldset('documents',
+    #     label=u'Documents',
+    #     fields=[]
+    # )
+
+    # TODO:
+    # form.fieldset('reference_information',
+    #     label=u'Documents',
+    #     fields=[]
+    # )
+
+    form.fieldset('geographic_information',
+        label=u'Geographic Information',
+        fields=['geochars', 'comments']
+    )
+
+    # -----------[ "default" fields ]------------------
+
+    title = TextLine(title=_(u"Title"),
+                     description=_(u"Item Name (250 character limit)"),
+                     required=True)
     dexteritytextindexer.searchable('long_description')
-    long_description = RichText(title=_(u"description"), required=True)
+    long_description = RichText(title=_(u"Description"),
+                                description=_(u"Brief Description:"),
+                                required=True,)
+
+    climate_impacts = List(
+        title=_(u"Climate impacts"),
+        description=_(u"Select one or more climate change impact topics that this item relates to"),
+        required=True,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_climateimpacts",),
+    )
+
+    keywords = RichText(title=_(u"Keywords"),
+                   description=_(u"Describe and tag this item with relevant keywords. Separate each keyword with a comma. For example, example keyword 1, example keyword 2 (1,000 character limit)"),
+                   required=True,)
+
+    sectors = List(title=_(u"Sectors"),
+                   description=_(u"Select one or more relevant sector policies that this item relates to."),
+                   required=True,
+                   value_type=Choice(
+                       vocabulary="eea.climateadapt.aceitems_sectors",),
+                   )
+
+    year = Int(title=_(u"Year"), description=u"Date of publication/release/update of the items related source", required=False,)
+
+    # -----------[ "additional_details" fields ]------------------
+
+    # category ???
+
+    dexteritytextindexer.searchable('stakeholder_participation')
+    stakeholder_participation = RichText(
+        title=_(u"Stakeholder participation"), required=False,
+        default=u"",
+        description=_(u"Describe the Information about actors involved, the form of participation and the participation process. Focus should be on the level of participation needed and/or adopted already (from information, to full commitment in the deliberation/implementation process), with useful notes e.g. regarding motivations. (5,000 character limit)"))
+
+    dexteritytextindexer.searchable('success_limitations')
+    success_limitations = RichText(
+        title=_(u"Success / limitations"), required=False, default=u"",
+        description=_(u"Describe factors that are decisive for a successful implementation and expected challenges or limiting factors which may hinder the process and need to be considered (5,000 character limit)"))
+
+    dexteritytextindexer.searchable('cost_benefit')
+    cost_benefit = RichText(
+        title=_(u"Cost / Benefit"), required=False, default=u"")
+
+    dexteritytextindexer.searchable('legal_aspects')
+    legal_aspects = RichText(title=_(u"Legal aspects"),
+                             required=False,
+                             default=u"",
+                             description=_(u"Describe the Legislation framework from which the case originated, relevant institutional opportunities and constrains, which determined the case as it is (5000 character limit):"))
+
+    dexteritytextindexer.searchable('implementation_time')
+    implementation_time = RichText(
+        title=_(u"Implementation Time"), required=False, default=None,
+        description=_(u"Describe the time needed to implement the measure. Include: Time frame, e.g. 5-10 years, Brief explanation(250 char limit)"))
+
+    dexteritytextindexer.searchable('lifetime')
+    lifetime = RichText(title=_(u"Lifetime"), required=False, default=u"",
+                        description="Describe the lifetime of the measure: Time frame, e.g. 5-10 years, Brief explanation(250 char limit)")
+
+    # -----------[ "reference_information" fields ]------------------
+
+    websites = List(title=_(u"Websites"),
+                    description=_(u"List the Name and Website where the option can be found or is described. Note: may refer to the original document describing a measure and does not have to refer back to the project e.g. collected measures (500 character limit). Please separate each website with semicolon."),
+                    required=True,
+                    value_type=URI(title=_("A link")),
+                    )
+
+    dexteritytextindexer.searchable('source')
+    source = RichText(title=_(u"Source"), required=False,description=_(u"Describe the original source (like name of a certain project) of the adaptation option description (250 character limit)"))
+
+    # -----------[ "document" fields ]------------------
+
+    # -----------[ "geographic_information" fields ]------------------
+
+    # governance ???
+
+    geochars = Text(title=_(u"Geographic characterization"),
+                    required=True, default=u""
+                    description=_(u"Input the characterisation for this case study"))
+
+    comments = TextLine(title=_(u"Comments"), required=False, default=u""
+                        description=_(u"Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]"))
+
+    # -----------[ "omitted" fields ]------------------
+
+    directives.omitted('implementation_type', 'challenges', 'spatial_layer',
+                       'spatial_values', 'contact', 'elements', 'measure_type',
+                       'important', 'rating', 'objectives', 'solutions',
+                       'adaptationoptions', 'relevance', 'primephoto',
+                       'supphotos')
+
+    # end
 
     implementation_type = Choice(
         title=_(u"Implementation Type"), required=False, default=None,
         vocabulary="eea.climateadapt.acemeasure_implementationtype"
     )
 
-    dexteritytextindexer.searchable('implementation_time')
-    implementation_time = RichText(
-        title=_(u"Implementation Time"), required=False, default=None,
-    )
-
     dexteritytextindexer.searchable('challenges')
     challenges = RichText(
         title=_(u"Challenges"), required=False, default=None,
     )
-
-    dexteritytextindexer.searchable('lifetime')
-    lifetime = RichText(title=_(u"Lifetime"), required=False, default=u"")
 
     spatial_layer = TextLine(
         title=_(u"Spatial Layer"), required=False, default=u"")
@@ -56,32 +181,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           value_type=Choice(
                               vocabulary="eea.climateadapt.ace_countries"))
 
-    dexteritytextindexer.searchable('legal_aspects')
-    legal_aspects = RichText(title=_(u"Legal aspects"),
-                             required=False,
-                             default=u"")
-
-    dexteritytextindexer.searchable('stakeholder_participation')
-    stakeholder_participation = RichText(
-        title=_(u"Stakeholder participation"), required=False,
-        default=u"")
-
     dexteritytextindexer.searchable('contact')
     contact = RichText(title=_(u"Contact"), required=False, default=u"")
-
-    dexteritytextindexer.searchable('success_limitations')
-    success_limitations = RichText(
-        title=_(u"Success / limitations"), required=False, default=u"")
-
-    dexteritytextindexer.searchable('cost_benefit')
-    cost_benefit = RichText(
-        title=_(u"Cost / Benefit"), required=False, default=u"")
-
-    websites = List(title=_(u"Websites"),
-                    description=_(u"A list of relevant website links"),
-                    required=False,
-                    value_type=URI(title=_("A link")),
-                    )
 
     # keywords = List(title=_(u"Keywords"),
     #                description=_(u"Keywords related to the project"),
@@ -89,21 +190,9 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     #                value_type=TextLine(title=_(u"Tag"))
     # )
 
-    keywords = RichText(title=_(u"Keywords"),
-                   description=_(u"Keywords related to the project"),
-                   required=False,
-    )
-
     # TODO: startdate, enddate, publicationdate have no values in DB
     # TODO: specialtagging is not used in any view jsp, only in add and edit
     # views
-
-    sectors = List(title=_(u"Sectors"),
-                   description=_(u"TODO: Sectors description here"),
-                   required=False,
-                   value_type=Choice(
-                       vocabulary="eea.climateadapt.aceitems_sectors",),
-                   )
 
     elements = List(title=_(u"Elements"),
                     description=_(u"TODO: Elements description here"),
@@ -112,27 +201,12 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                         vocabulary="eea.climateadapt.aceitems_elements",),
                     )
 
-    climate_impacts = List(
-        title=_(u"Climate impacts"),
-        description=_(u"TODO: Climate impacts description here"),
-        required=False,
-        value_type=Choice(
-            vocabulary="eea.climateadapt.aceitems_climateimpacts",),
-    )
-
-    dexteritytextindexer.searchable('source')
-    source = RichText(title=_(u"Source"), required=True,)
     # TODO: special tagging implement as related
-
-    geochars = Text(title=_(u"Geographic characterization"),
-                    required=False, default=u"")
 
     measure_type = Choice(title=_(u"Measure Type"),
                           required=True,
                           default="A",
                           vocabulary="eea.climateadapt.acemeasure_types")
-
-    comments = TextLine(title=_(u"Comments"), required=False, default=u"")
 
     important = Bool(title=_(u"High importance"), required=False,
                      default=False)
@@ -144,6 +218,9 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     dexteritytextindexer.searchable('solutions')
     solutions = RichText(title=_(u"Solutions"), required=False, default=u"")
+
+    # dexteritytextindexer.searchable('summary')
+    # summary = Text(title=_(u"Summary"), required=False, default=u"")
 
     adaptationoptions = List(
         title=_(u"Adaptation Options"),

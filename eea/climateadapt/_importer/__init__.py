@@ -1049,6 +1049,9 @@ def import_template_ace_layout_3(site, layout, structure):
 
     extra_columns = [structure[k] for k in sorted(structure.keys())]
 
+    if name == 'Urban areas':
+        name = str(col1[0][1]['content'][1][2][0])
+
     cover = create_cover_at(site, layout.friendlyurl, title=name)
     stamp_cover(cover, layout)
     cover.aq_parent.edit(title=main['title'])    # Fix cover's parent title
