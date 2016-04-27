@@ -275,7 +275,7 @@
                                 <div tal:content="structure python:view.w['sectors'].render()"/>
                                 <p></p>
                                 <h4>Climate impacts</h4>
-                                <div tal:content="structure python:view.widgets['climate_impacts'].render()"/>
+                                <div tal:content="structure python:view.w['climate_impacts'].render()"/>
                                 <p></p>
                                 <h4>Geographic characterization</h4>
                                 <div tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars"/>

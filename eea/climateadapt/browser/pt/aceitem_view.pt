@@ -16,7 +16,7 @@
           <div metal:fill-slot="ace-top-slot">
 
             <a href="" tal:attributes="href view/link_to_original">Original aceitem</a>
-            <h2 tal:content="structure python: view.w['data_type'].render()">Data Type</h2>
+            <h2 tal:content="view/type_label">Data Type</h2>
             <h1 tal:content="python: context.title">Title here</h1>
           </div>
 

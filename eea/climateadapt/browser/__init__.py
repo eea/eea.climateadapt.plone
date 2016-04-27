@@ -447,6 +447,11 @@ class AceViewApi(object):
     def get_countries(self, country_list):
         return [ace_countries_dict.get(x, x) for x in country_list]
 
+    def type_label(self):
+        from eea.climateadapt.vocabulary import _datatypes
+        d = dict(_datatypes)
+        return d[self.context.search_type]
+
 
 class Navbar(BrowserView):
     """ The global site navbar

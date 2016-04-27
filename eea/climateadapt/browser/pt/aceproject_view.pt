@@ -50,11 +50,11 @@
             <h4>Duration</h4>
             <p tal:replace="structure context/duration"/>
             <h4>Climate impacts</h4>
-            <p tal:content="structure python:view.widgets['climate_impacts'].render()"/>
+            <p tal:content="structure python:view.w['climate_impacts'].render()"/>
             <h4>Elements</h4>
-            <p tal:content="structure python:view.widgets['elements'].render()"/>
+            <p tal:content="structure python:view.w['elements'].render()"/>
             <h4>Sectors</h4>
-            <p tal:content="structure python:view.widgets['sectors'].render()"/>
+            <p tal:content="structure python:view.w['sectors'].render()"/>
             <h4>Geographic characterization</h4>
             <p tal:content="structure python:view.render_geochar(context.geochars)"/>
           </div>
