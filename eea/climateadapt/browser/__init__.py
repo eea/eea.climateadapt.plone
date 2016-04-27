@@ -4,10 +4,10 @@ from Products.Five.browser import BrowserView
 from collective.cover.browser.cover import Standard
 from eea.climateadapt.vocabulary import ace_countries_dict
 from zExceptions import NotFound
+from zope.publisher.browser import BrowserPage
 import json
 import logging
 
-#import re
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -619,3 +619,12 @@ class CoverNoTitleView(Standard):
 
     def __call__(self):
         return self.index()
+
+
+class CityRedirector(BrowserPage):
+    """ A traverser view registered /-/ that redirects to the new /city-profile/ folder
+    """
+
+    def publishTraverse(self, request, name):
+        city = self.context['city-profile'][name]
+        return request.response.redirect(city.absolute_url())

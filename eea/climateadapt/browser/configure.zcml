@@ -8,6 +8,13 @@
     <include file='frontpage.zcml' />
     <include file="faceted.zcml" />
 
+    <browser:page
+        for="*"
+        name="-"
+        class=".CityRedirector"
+        permission="zope.Public"
+        />
+
     <browser:resourceDirectory
         name="eea.climateadapt"
         directory="resources"
