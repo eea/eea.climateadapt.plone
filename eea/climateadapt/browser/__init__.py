@@ -550,42 +550,6 @@ class Navbar(BrowserView):
         return sections
 
 
-#    def menu(self):
-#        lines = self._menu.split('\n')
-#        sections = []
-#        this_section = None
-#        for line in lines:
-#            line = line.strip()
-
-#            # empty lines at beginning of docstring
-#            if not line and this_section is None:
-#                continue
-
-#            # new section
-#            if not line and this_section:
-#                sections.append(this_section)
-#                this_section = None
-#                continue
-
-#            # new section
-#            if line and this_section is None:
-#                lpos = line.find('/')
-#                label, link = line[:lpos].strip(), line[lpos:].strip()
-#                this_section = [label, link, []]
-#                continue
-
-#            # link inside section
-#            if line and this_section:
-#                lpos = line.find('/')
-#                label, link = line[:lpos].strip(), line[lpos:].strip()
-#                this_section[2].append((label, link))
-
-#        if this_section:
-#            sections.append(this_section)
-
-#        return sections
-
-
 class ViewAceItem(BrowserView):
     """
     """

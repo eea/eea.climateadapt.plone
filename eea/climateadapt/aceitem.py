@@ -17,7 +17,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     form.fieldset('default',
         label=u'Item Description',
-        fields=['title', 'long_description', 'keywords', 'sectors',
+        fields=['long_description', 'keywords', 'sectors',
                 'climate_impacts', 'elements', 'year']
     )
 
@@ -266,16 +266,3 @@ class Action(dexterity.Item):
     implements(IAction)
 
     search_type = "ACTION"
-
-
-# from five import grok
-# from plone.app.textfield import RichText
-# from plone.formwidget.contenttree import ObjPathSourceBinder
-# from plone.namedfile.field import NamedBlobImage, NamedBlobFile
-# from plone.namedfile.field import NamedImage, NamedFile
-# from z3c.form import group, field
-# from z3c.relationfield.schema import RelationList, RelationChoice
-# from zope import schema
-# from zope.interface import invariant, Invalid, implements
-# from zope.schema.interfaces import IContextSourceBinder
-# from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
