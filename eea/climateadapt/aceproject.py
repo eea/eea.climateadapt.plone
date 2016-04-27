@@ -15,7 +15,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     form.fieldset('default',
                   label=u'Item Description',
-                  fields=['acronym', 'lead', 'long_description',
+                  fields=['acronym', 'title', 'lead', 'long_description',
                           'partners', 'keywords', 'sectors', 'climate_impacts',
                           'elements', 'funding', 'duration'])
 
@@ -126,7 +126,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     # -----------[ "omitted" fields ]------------------
     directives.omitted('abstracts', 'specialtagging', 'important', 'rating',
-                       'spatial_layer', 'spatial_values',)
+                       'spatial_layer', 'spatial_values',
+                       )
 
     # end
     dexteritytextindexer.searchable('abstracts')

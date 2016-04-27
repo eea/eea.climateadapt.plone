@@ -17,7 +17,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     form.fieldset('default',
         label=u'Item Description',
-        fields=['long_description', 'keywords', 'sectors',
+        fields=['title', 'long_description', 'keywords', 'sectors',
                 'climate_impacts', 'elements', 'year']
     )
 
