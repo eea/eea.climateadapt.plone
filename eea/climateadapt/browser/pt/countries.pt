@@ -66,11 +66,11 @@
         }
 
       </style>
-    
+
   </metal:fill-slot>
 
   <metal:fill-slot fill-slot="javascript_head_slot">
-    <tal:styles replace="structure provider:plone.resourceregistries.scripts" />
+    <!-- <tal:styles replace="structure provider:plone.resourceregistries.scripts" /> -->
 
     <script>
     Array.prototype.unique2 = function ()
@@ -90,7 +90,7 @@
 
     </script>
 
-    <!-- <link rel="stylesheet" href="/++resource++collective.js.bootstrap/js/bootstrap.min.js"/> -->
+    <script type="text/javascript" src="/++resource++collective.js.bootstrap/js/bootstrap.min.js"></script>
     <script src="http://js.arcgis.com/3.13compact"></script>
     <!-- <script type="text/javascript" src="/++theme++climateadapt/static/jquery.qtip.min.js"></script> -->
     <script type="text/javascript" src="/++theme++climateadapt/static/cca/js/countries.js"></script>

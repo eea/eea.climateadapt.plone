@@ -32,6 +32,7 @@
         <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/map/Map.js"></script>
         <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/Application.js"></script>
         <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/Session.js"></script>
+        <script type="text/javascript" src="/++resource++collective.js.bootstrap/js/bootstrap.min.js"></script>
     </metal:fill-slot>
 
     <metal:fill-slot fill-slot="content">
