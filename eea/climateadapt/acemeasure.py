@@ -1,16 +1,15 @@
-from eea.climateadapt import MessageFactory as _
-from plone.app.textfield import RichText
-from plone.directives import dexterity, form
-from plone.namedfile.interfaces import IImageScaleTraversable
-from zope.interface import implements
-from zope.schema import Choice, TextLine, List, Bool, Int, Text, URI, Decimal
 from collective import dexteritytextindexer
-from z3c.relationfield.schema import RelationChoice
-from z3c.relationfield.schema import RelationList
-from plone.formwidget.contenttree import ObjPathSourceBinder
+from eea.climateadapt import MessageFactory as _
 from plone.app.contenttypes.interfaces import IImage
+from plone.app.textfield import RichText
 from plone.autoform import directives
+from plone.directives import dexterity, form
 from plone.formwidget.autocomplete import AutocompleteFieldWidget
+from plone.formwidget.contenttree import ObjPathSourceBinder
+from plone.namedfile.interfaces import IImageScaleTraversable
+from z3c.relationfield.schema import RelationChoice, RelationList
+from zope.interface import implements
+from zope.schema import URI, Bool, Choice, Decimal, Int, List, Text, TextLine
 
 
 class IAceMeasure(form.Schema, IImageScaleTraversable):
@@ -156,8 +155,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     )
 
     comments = Text(title=_(u"Comments"), required=False, default=u"",
-                        description=_(u"Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]")
-                        )
+                    description=_(u"Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]")
+                    )
 
     # -----------[ "omitted" fields ]------------------
 

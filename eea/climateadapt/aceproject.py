@@ -1,10 +1,11 @@
+from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
+from plone.app.textfield import RichText
+from plone.autoform import directives
 from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
-from plone.app.textfield import RichText
-from collective import dexteritytextindexer
 from zope.interface import implements
-from zope.schema import Choice, TextLine, List, Bool, Text, Int
+from zope.schema import Bool, Choice, Int, List, Text, TextLine
 
 
 class IAceProject(form.Schema, IImageScaleTraversable):
@@ -12,113 +13,151 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     Defines content-type schema for Ace Project
     """
 
+    form.fieldset('default',
+                  label=u'Item Description',
+                  fields=['acronym', 'title', 'lead', 'long_description',
+                          'partners', 'keywords', 'sectors', 'climate_impacts',
+                          'elements', 'funding', 'duration'])
 
+    form.fieldset('reference_information',
+                  label=u'Reference information',
+                  fields=['website', 'source'])
 
+    # TODO:
+    # form.fieldset('documents',
+    #     label=u'Documents',
+    #     fields=[]
+    # )
 
+    form.fieldset('geographic_information',
+                  label=u'Geographic Information',
+                  fields=['geochars', 'comments'])
+
+    # -----------[ "default" fields ]------------------
+    acronym = TextLine(title=_(u"Acronym"),
+                       description=_(u"Acronym of the project"),
+                       required=True,
+                       )
 
     title = TextLine(title=_(u"Title"),
                      description=_(u"Project title or name"),
                      required=True,
                      )
 
-    acronym = TextLine(title=_(u"Acronym"),
-                       description=_(u"Acronym of the project"),
-                       required=True,
-                       )
-
     lead = TextLine(title=_(u"Lead"),
-                    description=_(u"Lead organisation of the project"),
-                    required=False,
+                    description=_(u"Lead organisation or individual of the project"),
+                    required=True,
                     )
 
-    website = TextLine(title=_(u"Website"),
-                       description=_(u"Project website"),
+    dexteritytextindexer.searchable('long_description')
+    long_description = RichText(title=_(u"Description"),
+                                description=_(u"Provide information focusing on project output. Possibly on specific Website features."),
+                                required=True,
+                                )
+
+    dexteritytextindexer.searchable('partners')
+    partners = RichText(title=_(u"Partners"),
+                        description=_(u"Provide information about project partners (organisation names)."),
+                        required=True,
+                        )
+
+    dexteritytextindexer.searchable('keywords')
+    keywords = RichText(title=_(u"Keywords"),
+                        description=_(u"Provide Keywords related to the project. Separate each keyword with a comma. For example, keyword 1, keyword 2 etc."),
+                        required=True,
+                        )
+
+    sectors = List(title=_(u"Sectors"),
+                   description=_(u"Select one or more relevant sector policies that this item relates to."),
+                   required=True,
+                   value_type=Choice(
+                       vocabulary="eea.climateadapt.aceitems_sectors",),
+                   )
+
+    climate_impacts = List(
+        title=_(u"Climate impacts"),
+        description=_(u"Select one or more climate change impact topics that this item relates to."),
+        required=True,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_climateimpacts",),
+    )
+
+    elements = List(title=_(u"Elements"),
+                    description=_(u"Select one or more elements."),
+                    required=False,
+                    value_type=Choice(
+                        vocabulary="eea.climateadapt.aceitems_elements",),
+                    )
+
+    funding = TextLine(title=_(u"Funding"),
+                       description=_(u"Provide source of funding"),
                        required=False,
                        )
 
+    duration = TextLine(title=_(u"Duration"),
+                        description=_(u"Provide duration of project - Start and end date [yr]"),
+                        required=False,
+                        )
+
+    # -----------[ "reference_information" fields ]------------------
+    website = TextLine(title=_(u"Website"),
+                       description=_(u"List the Name and Website where the item can be found or is described.Please separate each website with semicolon."),
+                       required=False,
+                       )
+    dexteritytextindexer.searchable('source')
+    source = RichText(
+        title=_(u"Source"),
+        description=_(u"Provide source from which project was retrieved (e.g. specific DB) "),
+        required=False)
+
+    # -----------[ "documents" fields ]------------------
+
+    # -----------[ "geographic_information" fields ]------------------
+    form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
+    geochars = Text(title=_(u"Geographic characterization"),
+                    description=_(u"Select the characterisation for this project"),
+                    required=True,
+                    )
+
+    comments = TextLine(title=_(u"Source"),
+                        description=_(u"Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]"),
+                        required=False,
+                        )
+
+    # -----------[ "omitted" fields ]------------------
+    directives.omitted('abstracts', 'specialtagging', 'important', 'rating',
+                       'spatial_layer', 'spatial_values',)
+
+    # end
     dexteritytextindexer.searchable('abstracts')
     abstracts = RichText(title=_(u"Abstracts"),
                          description=_(u"Project abstracts"),
                          required=False,
                          )
 
-    dexteritytextindexer.searchable('partners')
-    partners = RichText(title=_(u"Partners"),
-                        description=_(u"Information about project partners"),
-                        required=False,
-                        )
-
-    dexteritytextindexer.searchable('keywords')
-    keywords = RichText(title=_(u"Keywords"),
-                        description=_(u"Keywords related to the project"),
-                        required=False,
-                        )
-
-    sectors = List(title=_(u"Sectors"),
-                   description=_(u"EU policy sectors"),
-                   required=False,
-                   value_type=Choice(
-                       vocabulary="eea.climateadapt.aceitems_sectors",),
-                   )
-
-    elements = List(title=_(u"Elements"),
-                    description=_(u"Adaptation element"),
-                    required=False,
-                    value_type=Choice(
-                        vocabulary="eea.climateadapt.aceitems_elements",),
-                    )
-
-    climate_impacts = List(
-        title=_(u"Climate impacts"),
-        description=_(u"Climate impacts"),
-        required=False,
-        value_type=Choice(
-            vocabulary="eea.climateadapt.aceitems_climateimpacts",),
-    )
-
-    funding = TextLine(title=_(u"Funding"),
-                       description=_(u"Source of funding"),
-                       required=False,
-                       )
-
-    duration = TextLine(title=_(u"Duration"),
-                        description=_(u"Duration of project"),
-                        required=False,
-                        )
-
-    dexteritytextindexer.searchable('source')
-    source = RichText(
-        title=_(u"Source"),
-        description=_(u"Source from which project was retrieved"),
-        required=False)
-
     specialtagging = TextLine(
         title=_(u"Special Tagging"),
         description=_(u"Special tags that allow for linking the item"),
-        required=False)
-
-    geochars = Text(title=_(u"Geochars"),
-                    description=_(u"Characterisation of the area"),
-                    required=False)
-
-    comments = TextLine(title=_(u"Source"),
-                        description=_(u"Any comments provided with the item"),
-                        required=False)
+        required=False,
+        )
 
     important = Bool(title=_(u"Important"),
                      required=False,
-                     default=False)
+                     default=False,
+                     )
 
     rating = Int(title=_(u"Rating"), required=True, default=0)
 
     spatial_layer = TextLine(
-        title=_(u"Spatial Layer"), required=False, default=u"")
+        title=_(u"Spatial Layer"), required=False, default=u"",
+        )
 
     spatial_values = List(title=_(u"Countries"),
                           description=_(u"European countries"),
                           required=False,
                           value_type=Choice(
-                              vocabulary="eea.climateadapt.ace_countries"))
+                              vocabulary="eea.climateadapt.ace_countries"),
+                          )
 
 
 class AceProject(dexterity.Item):
