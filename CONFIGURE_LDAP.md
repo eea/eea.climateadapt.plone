@@ -21,3 +21,12 @@
 
 Map appropriate groups to Zope roles, in the Groups tab, /acl_users/ldap-roles/acl_users/manage_grouprecords
 
+Enable the plugin for the appropriate functionality:
+
+    Authentication (authenticateCredentials)
+    Group_Enumeration (enumerateGroups)
+    Groups (getGroupsForPrincipal)
+    Properties (getPropertiesForUser)
+    Role_Enumeration (enumerateRoles)
+    Roles (getRolesForPrincipal)
+    User_Enumeration (enumerateUsers)
