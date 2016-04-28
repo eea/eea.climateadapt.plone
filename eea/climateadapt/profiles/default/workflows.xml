@@ -3,6 +3,7 @@
     <property
         name="title">Contains workflow definitions for your portal</property>
     <object name="cityprofile_workflow" meta_type="Workflow"/>
+    <object name="cca_items_workflow" meta_type="Workflow"/>
     <bindings>
         <default>
             <bound-workflow workflow_id="simple_publication_workflow"/>
