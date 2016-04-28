@@ -960,6 +960,15 @@ a.bluebutton:active {
     border-left: #d7e3ef 2px solid;
 }
 
+.section-frontpage .row:nth-child(3) .col-md-3:first-child .fp-tile-fixes{
+    padding-left: 0;
+}
+
+
+.section-frontpage .row:nth-child(2) .col-md-3:first-child .fp-image-tile{
+    padding-left: 0;
+}
+
 
 .fp-tile-fixes {
     padding-left: 0.7em;
