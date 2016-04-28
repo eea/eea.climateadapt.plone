@@ -174,6 +174,7 @@
 
       var t = "<b><div style='float:left'><b><a id='colorLink' href='$\{LINK\}'>$\{COUNTRY_1\}</a></b></div><div style='float:right'><b><a id='xDialog' style='cursor: pointer;padding-right: 5px;'>X</a></b></div><br/><hr>" + resFinal + "<br>";
 
+      evt.graphic.attributes.LINK = evt.graphic.attributes.LINK.toLowerCase();
       var content = esriLang.substitute(evt.graphic.attributes, t);
       var highlightGraphic = new Graphic(evt.graphic.geometry, highlightSymbol);
       //map.graphics.add(highlightGraphic);
