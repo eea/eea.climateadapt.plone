@@ -12,7 +12,7 @@
       <dd tal:content="python: view.data.get('shareinfo_type')" />
     </dl>
 
-    <div class="cover-richtext-tile tile-content aceitem-share-info-tile" tal:condition="python: not (is_compose or view.is_anon())" 
+    <div class="cover-richtext-tile tile-content aceitem-share-info-tile" tal:condition="python: not is_compose" 
       tal:define="share_type python: view.data.get('shareinfo_type')">
       <a href="" tal:attributes="href view/link_url" tal:content="view/link_title">Create your type</a>
     </div>
