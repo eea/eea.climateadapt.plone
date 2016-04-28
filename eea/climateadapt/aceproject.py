@@ -162,7 +162,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                           )
 
 
-class AceProject(dexterity.Item):
+class AceProject(dexterity.Container):
     implements(IAceProject)
 
     search_type = "RESEARCHPROJECT"

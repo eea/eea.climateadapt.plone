@@ -215,55 +215,55 @@ class IResearchProject(IAceItem):
     """
 
 
-class PublicationReport(dexterity.Item):
+class PublicationReport(dexterity.Container):
     implements(IPublicationReport)
 
     search_type = "DOCUMENT"
 
 
-class InformationPortal(dexterity.Item):
+class InformationPortal(dexterity.Container):
     implements(IInformationPortal)
 
     search_type = "INFORMATIONSOURCE"
 
 
-class GuidanceDocument(dexterity.Item):
+class GuidanceDocument(dexterity.Container):
     implements(IGuidanceDocument)
 
     search_type = "GUIDANCE"
 
 
-class Tool(dexterity.Item):
+class Tool(dexterity.Container):
     implements(ITool)
 
     search_type = "TOOL"
 
 
-class Organisation(dexterity.Item):
+class Organisation(dexterity.Container):
     implements(IOrganisation)
 
     search_type = "ORGANISATION"
 
 
-class Indicator(dexterity.Item):
+class Indicator(dexterity.Container):
     implements(IIndicator)
 
     search_type = "INDICATOR"
 
 
-class MapGraphDataset(dexterity.Item):
+class MapGraphDataset(dexterity.Container):
     implements(IMapGraphDataset)
 
     search_type = "MAPGRAPHDATASET"
 
 
-class ResearchProject(dexterity.Item):
+class ResearchProject(dexterity.Container):
     implements(IResearchProject)
 
     search_type = "RESEARCHPROJECT"
 
 
-class Action(dexterity.Item):
+class Action(dexterity.Container):
     implements(IAction)
 
     search_type = "ACTION"

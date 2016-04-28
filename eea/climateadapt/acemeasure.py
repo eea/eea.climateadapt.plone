@@ -276,13 +276,13 @@ class IAdaptationOption(IAceMeasure):
     """
 
 
-class CaseStudy(dexterity.Item):
+class CaseStudy(dexterity.Container):
     implements(ICaseStudy)
 
     search_type = "ACTION"
 
 
-class AdaptationOption(dexterity.Item):
+class AdaptationOption(dexterity.Container):
     implements(IAdaptationOption)
 
     search_type = "MEASURE"
