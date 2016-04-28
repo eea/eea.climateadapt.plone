@@ -8,7 +8,7 @@
         <dependency>profile-eea.facetednavigation:default</dependency>
         <dependency>profile-collective.js.datatables:default</dependency>
         <dependency>profile-collective.easyform:default</dependency>
-        <dependency>profile-collective.easyform:default</dependency>
         <dependency>profile-plone.formwidget.recaptcha:default</dependency>
+        <dependency>profile-collective.sweeteditor:default</dependency>
     </dependencies>
 </metadata>

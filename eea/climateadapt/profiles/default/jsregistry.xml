@@ -25,6 +25,10 @@
         cookable="True" enabled="0" expression=""
         id="++resource++jquery.datatables.js" />
 
+    Disabling kss-bbb.js, it breaks the Sharing tab
+    <javascript cacheable="True" compression="none"
+        cookable="True" enabled="0" expression=""
+        id="kss-bbb.js" />
 
     Disabling livesearch for search viewlet, we use faceted navigation for that
     <javascript cacheable="True" compression="none"

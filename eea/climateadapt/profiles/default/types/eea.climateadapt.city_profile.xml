@@ -33,6 +33,7 @@
         <element value="eea.climateadapt.city_profile.ICityProfileStaging"/>
         <element value="plone.app.stagingbehavior.interfaces.IStagingSupport"/>
         <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />
+        <element value="plone.app.stagingbehavior.interfaces.IStagingSupport" />
     </property>
 
     <alias from="(Default)" to="(dynamic view)"/>
