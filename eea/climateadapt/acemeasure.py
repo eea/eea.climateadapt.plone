@@ -132,7 +132,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     websites = List(title=_(u"Websites"),
                     description=_(u"List the Name and Website where the option can be found or is described. Note: may refer to the original document describing a measure and does not have to refer back to the project e.g. collected measures (500 character limit). Please separate each website with semicolon."),
-                    required=True,
+                    required=False,
                     value_type=URI(title=_("A link")),
                     )
 
@@ -150,7 +150,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
     geochars = Text(
         title=_(u"Geographic characterization"),
-        required=True, default=u"",
+        required=False, default=u"",
         description=_(u"Input the characterisation for this case study")
     )
 

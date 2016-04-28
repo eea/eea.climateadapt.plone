@@ -116,7 +116,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
     geochars = Text(title=_(u"Geographic characterization"),
                     description=_(u"Select the characterisation for this project"),
-                    required=True,
+                    required=False,
                     )
 
     comments = TextLine(title=_(u"Source"),
