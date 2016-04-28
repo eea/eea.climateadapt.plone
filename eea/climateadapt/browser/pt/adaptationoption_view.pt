@@ -18,7 +18,7 @@
           <div metal:fill-slot="ace-left-slot">
 
             <h1 tal:content="context/title">Title here</h1>
-            <div tal:content="structure context/long_description/output"/>
+            <div tal:content="structure python: view.w['long_description'].render()"/>
             <h5 class="Adaptation-option-selector">Adaptation Option Description</h5>
             <h5 class="Adaptation-option-selector">Additional Details</h5>
             <ul>
@@ -64,27 +64,27 @@
             </p>
             <p id="stakeholder_participation">
               <em class="adapt-option-em" style="text-decoration: underline">Stakeholder participation</em>
-              <tal:block content="structure context/stakeholder_participation/output"/>
+              <tal:block content="structure python: view.w['stakeholder_participation'].render()"/>
             </p>
             <p id="success_factors">
               <em class="adapt-option-em" style="text-decoration: underline">Success and Limiting Factors</em>
-              <tal:block content="structure context/success_limitations/output"/>
+              <tal:block content="structure python: view.w['success_limitations'].render()"/>
             </p>
             <p id="costs_benefits">
               <em class="adapt-option-em" style="text-decoration: underline">Costs and Benefits</em>
-              <tal:block content="structure context/cost_benefit/output"/>
+              <tal:block content="structure python: view.w['cost_benefit'].render()"/>
             </p>
             <p id="legal">
               <em class="adapt-option-em" style="text-decoration: underline">Legal Aspects</em>
-              <tal:block content="structure context/legal_aspects/output"/>
+              <tal:block content="structure python: view.w['legal_aspects'].render()"/>
             </p>
             <p id="implementation">
               <em class="adapt-option-em" style="text-decoration: underline">Implementation Time</em>
-              <tal:block content="structure context/implementation_time/output"/>
+              <tal:block content="structure python: view.w['implementation_time'].render()"/>
             </p>
             <p id="life_time">
               <em class="adapt-option-em" style="text-decoration: underline">Life Time</em>
-              <tal:block content="structure context/lifetime/output"/>
+              <tal:block content="structure python: view.w['lifetime'].render()"/>
             </p>
             <h4>Reference information</h4>
             <h5 id="websites" style="text-decoration: underline" class="Adaptation-option-selector">Websites:</h5>
@@ -94,11 +94,11 @@
               </li>
             </ul>
             <h5 id="source" style="text-decoration: underline" class="Adaptation-option-selector">Source:</h5>
-            <div tal:content="structure context/source/output">Source here</div>
+            <div tal:content="structure python: view.w['source'].render()">Source here</div>
           </div>
           <div metal:fill-slot="ace-right-slot">
             <h4>Keywords</h4>
-            <tal:block content="structure context/keywords/output"/>
+            <tal:block content="structure python: view.w['keywords'].render()"/>
             <h4>Sectors</h4>
             <tal:block content="structure python:view.w['sectors'].render()"/>
             <h4>Climate impacts</h4>

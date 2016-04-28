@@ -6,6 +6,7 @@ from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
 from zope.interface import implements
 from zope.schema import Bool, Choice, Int, List, Text, TextLine
+from z3c.form.interfaces import IEditForm
 
 
 class IAceProject(form.Schema, IImageScaleTraversable):
@@ -125,8 +126,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                         )
 
     # -----------[ "omitted" fields ]------------------
-    directives.omitted('abstracts', 'specialtagging', 'important', 'rating',
-                       'spatial_layer', 'spatial_values',
+    directives.omitted(IEditForm, 'abstracts', 'specialtagging', 'important',
+                       'rating', 'spatial_layer', 'spatial_values',
                        )
 
     # end

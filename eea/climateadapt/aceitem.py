@@ -6,6 +6,7 @@ from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
 from zope.interface import implements
 from zope.schema import Bool, Choice, Int, List, Text, TextLine
+from z3c.form.interfaces import IEditForm
 
 
 class IAceItem(form.Schema, IImageScaleTraversable):
@@ -104,7 +105,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                     description=u"Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]")
 
     # -----------[ "omitted" fields ]------------------
-    directives.omitted('data_type', 'storage_type', 'spatial_layer',
+    directives.omitted(IEditForm, 'data_type', 'storage_type', 'spatial_layer',
                        'spatial_values', 'important', 'metadata',
                        'special_tags', 'rating')
 

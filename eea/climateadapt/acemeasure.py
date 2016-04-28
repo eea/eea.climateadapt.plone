@@ -7,6 +7,7 @@ from plone.directives import dexterity, form
 from plone.formwidget.autocomplete import AutocompleteFieldWidget
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.namedfile.interfaces import IImageScaleTraversable
+from z3c.form.interfaces import IEditForm
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.interface import implements
 from zope.schema import URI, Bool, Choice, Decimal, Int, List, Text, TextLine
@@ -160,7 +161,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     # -----------[ "omitted" fields ]------------------
 
-    directives.omitted('implementation_type', 'challenges', 'spatial_layer',
+    directives.omitted(IEditForm,
+                       'implementation_type', 'challenges', 'spatial_layer',
                        'spatial_values', 'contact', 'elements', 'measure_type',
                        'important', 'rating', 'objectives', 'solutions',
                        'adaptationoptions', 'relevance', 'primephoto',

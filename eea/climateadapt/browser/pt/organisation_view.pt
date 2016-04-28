@@ -21,17 +21,17 @@
 
           <div metal:fill-slot="ace-left-slot">
             <h3>Description:</h3>
-            <tal:block content="structure context/long_description/output"/>
+            <tal:block content="structure python: view.w['long_description'].render()"/>
             <p></p>
             <h4>Reference information</h4>
             <p></p>
             <h5>Websites:</h5>
             <p></p>
-            <a tal:attributes="href context/websites/output" tal:content="structure context/websites/output" style="text-decoration: underline">Website</a>
+            <a tal:attributes="href python: view.w['websites'].render()" tal:content="structure python: view.w['websites'].render()" style="text-decoration: underline">Website</a>
             <p></p>
             <h5>Source:</h5>
             <p></p>
-            <tal:block content="structure context/source/output"/>
+            <tal:block content="structure python: view.w['source'].render()"/>
             <p></p>
           </div>
 

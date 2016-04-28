@@ -20,14 +20,14 @@
 
           <div metal:fill-slot="ace-left-slot">
             <h3>Description</h3>
-            <div tal:content="structure context/long_description/output">description here</div>
+            <div tal:content="structure python: view.w['long_description'].render()">description here</div>
 
             <h4>Reference information</h4>
             <h5>Websites:</h5>
-                <div tal:content="structure context/websites/output">Website</div>
+                <div tal:content="structure python: view.w['websites'].render()">Website</div>
 
             <h5>Source:</h5>
-            <tal:block content="structure context/source/output" />
+            <tal:block content="structure python: view.w['source'].render()" />
           </div>
 
           <div metal:fill-slot="ace-right-slot">

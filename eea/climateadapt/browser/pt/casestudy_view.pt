@@ -81,7 +81,7 @@
                                     </div>
                                     <div class="case-studies-top-title">
                                         <h1 tal:content="python: context.title">Title here</h1>
-                                        <div tal:content="structure context/long_description/output">
+                                        <div tal:content="structure python: view.w['long_description'].render()">
                                             Description
                                         </div>
                                         <p></p>
@@ -163,11 +163,12 @@
 
                                     <h4>Case Study Description</h4>
                                     <em id="challenges_anchor" style="text-decoration: underline">Challenges</em>
-                                    <div tal:content="structure context/challenges/output"></div>
+                                    <div tal:content="structure python: view.w['challenges'].render()"></div>
+                                    <!-- context/challenges/output -->
                                     <p></p>
 
                                     <em id="objectives_anchor" style="text-decoration: underline">Objectives</em>
-                                    <p tal:replace="structure context/objectives/output"></p>
+                                    <p tal:replace="structure python: view.w['objectives'].render()"></p>
                                     <p></p>
                                     <em id="adapt_options_anchor" style="text-decoration: underline">Adaptation Options Implemented In This Case</em>
                                     <div tal:define="adaptations view/get_adaptation_options">
@@ -175,7 +176,7 @@
                                     </div>
                                     <p></p>
                                     <em id="solutions_anchor" style="text-decoration: underline">Solutions</em>
-                                    <p tal:replace="structure context/solutions/output"></p>
+                                    <p tal:replace="structure python: view.w['solutions'].render()"></p>
                                     <p></p>
                                     <em id="relevance_anchor" style="text-decoration: underline">Relevance</em>
                                     <p tal:repeat="rel context/relevance">
@@ -184,16 +185,16 @@
 
                                     <h4>Additional Details</h4>
                                     <em id="stake_holder_anchor" style="text-decoration: underline">Stakeholder Participation</em>
-                                    <div tal:condition="context/stakeholder_participation | nothing" tal:content="structure context/stakeholder_participation/output"></div>
+                                    <div tal:condition="context/stakeholder_participation | nothing" tal:content="structure python: view.w['stakeholder_participation'].render()"></div>
                                     <p></p>
                                     <em id="success_limitations_anchor" style="text-decoration: underline">Success and Limiting Factors</em>
-                                    <div tal:condition="context/succes_limitations | nothing" tal:content="structure context/success_limitations/output"></div>
+                                    <div tal:condition="context/succes_limitations | nothing" tal:content="structure python: view.w['success_limitations'].render()"></div>
                                     <p></p>
                                     <em id="cost_benefit_anchor" style="text-decoration: underline">Costs and Benefits</em>
-                                    <div tal:condition="context/cost_benefit | nothing" tal:content="structure context/cost_benefit/output"></div>
+                                    <div tal:condition="context/cost_benefit | nothing" tal:content="structure python: view.w['cost_benefit'].render()"></div>
                                     <p></p>
                                     <em id="legal_aspects" style="text-decoration: underline">Legal Aspects</em>
-                                    <div tal:condition="context/legal_aspects | nothing" tal:content="structure context/legal_aspects/output"></div>
+                                    <div tal:condition="context/legal_aspects | nothing" tal:content="structure python: view.w['legal_aspects'].render()"></div>
                                     <p></p>
                                     <em id="implementation_time_anchor" style="text-decoration: underline">Implementation Time</em>
                                     <div tal:condition="context/implementation_time | nothing" tal:content="structure context/implementation_time"></div>
@@ -205,7 +206,7 @@
                                     <h4>Reference Information</h4>
 
                                     <em style="text-decoration: underline">Contact</em>
-                                    <div tal:content="structure context/contact/output"></div>
+                                    <div tal:content="structure python: view.w['contact'].render()"></div>
                                     <p></p>
 
                                     <em style="text-decoration: underline">Websites</em>
