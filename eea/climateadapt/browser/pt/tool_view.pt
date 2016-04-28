@@ -21,20 +21,20 @@
 
           <div metal:fill-slot="ace-left-slot">
             <h3>Description</h3>
-            <p tal:replace="structure context/long_description/output">description here</p>
+            <p tal:replace="structure python: view.w['long_description'].render()">description here</p>
 
             <h4>Reference information</h4>
             <h5>Websites:</h5>
             <p tal:replace="structure context/websites/output">description here</p>
 
             <h5>Source:</h5>
-            <tal:block content="structure context/source/output"/>
+            <tal:block content="structure python: view.w['source'].render()" />
           </div>
 
           <div metal:fill-slot="ace-right-slot">
 
             <h4>Keywords</h4>
-            <tal:block content="structure context/keywords"/>
+            <tal:block content="structure python: view.w['keywords'].render()"/>
 
             <h4>Climate impacts</h4>
             <tal:block content="structure python:view.w['climate_impacts'].render()"/>
