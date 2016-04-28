@@ -34,7 +34,7 @@
           <div metal:fill-slot="ace-right-slot">
 
             <h4>Keywords</h4>
-            <tal:block content="structure context/keywords"/>
+            <tal:block content="structure python: view.w['keywords'].render()"/>
 
             <h4>Climate impacts</h4>
             <tal:block content="structure python:view.w['climate_impacts'].render()"/>
