@@ -2,7 +2,7 @@
 	<metal:fill-slot fill-slot="javascript_head_slot">
 			<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 			<script type="text/javascript" src="http://js.arcgis.com/3.13compact/"></script> -->
-			<script type="text/javascript" src="/++theme++climateadapt/static/jquery.qtip.min.js"></script>
+			<!-- <script type="text/javascript" src="/++theme++climateadapt/static/jquery.qtip.min.js"></script> -->
 		    <script type="text/javascript" src="/++resource++collective.js.bootstrap/js/bootstrap.min.js"></script>
 			<!-- <script type="text/javascript" src="++resource++plone.app.widgets.js"></script> -->
 	</metal:fill-slot>

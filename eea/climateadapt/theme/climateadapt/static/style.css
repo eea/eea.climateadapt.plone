@@ -678,10 +678,6 @@ ul#ast-menu, #ast-menu ul {
     text-decoration: none;
 }
 
-.cover-richtext-tile img {
-    margin-left: 0.1em;
-}
-
 .tile {
     padding-right: 0.1em;
 }
@@ -955,8 +951,17 @@ a.bluebutton:active {
     margin-left: 0.7em;
 }
 
-.fp-tile-fixes {
+.section-frontpage .row:nth-child(3) .col-md-3:nth-child(2) {
+    border-left: #d7e3ef 2px solid;
+}
+
+.section-frontpage .row:nth-child(3) .col-md-3:nth-child(3) {
     border-right: #d7e3ef 2px solid;
+    border-left: #d7e3ef 2px solid;
+}
+
+
+.fp-tile-fixes {
     padding-left: 0.7em;
     padding-right: 0.7em;
 }
@@ -1438,30 +1443,137 @@ li.dropdown-submenu {
     display: none;
 }
 
-.section-cities #content {
-    margin-left: 0;
-    padding-left: 0;
-}
-
-.section-cities .read_more_first {
-    margin-left: 1em;
-}
-
-.section-cities .read_more_second {
-    margin-left: 1em;
-}
-
-.section-cities #content .cover-richtext-tile div div , p {
-    margin-left: 1em;
-}
-
-.section-cities .aceitem-relevant-tile {
-    margin-left: 2em;
+.section-cities .cover-richtext-tile img {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 .subsection-map-viewer #content {
     margin-left: 2px;
 }
+
+.subsection-climsave .col-md-2 a:link{text-decoration: underline;}
+.subsection-climsave .col-md-10 {width: 74%; margin-right: 1%;}
+.subsection-climsave #content {margin-right: 0;}
+.subsection-climsave .col-md-2 .tile {margin: 1.5em;}
+
+.subsection-climsave .col-md-2 {
+    background-color: #d2de92;
+    margin-right: 0;
+    width: 25%;
+}
+
+.subsection-climsave .col-md-2 .tile div{
+    margin-bottom: 5px;
+    color: #353f02;
+    font-size: 13px;
+}
+
+.subsection-climsave .col-md-2 .tile div h4 {
+    margin-bottom: 5px;
+    color: #353f02;
+    font-size: 13px;
+}
+
+.subsection-climsave #content .cover-richtext-tile h1 {
+    color: #758816;
+    font-size: 20px;
+}
+
+.subsection-econadapt .col-md-2 a:link{text-decoration: underline;}
+.subsection-econadapt .col-md-10 {width: 74%; margin-right: 1%;}
+.subsection-econadapt #content {margin-right: 0;}
+.subsection-econadapt .col-md-2 .tile {margin: 1.5em;}
+
+.subsection-econadapt .col-md-2 {
+    background-color: #d2de92;
+    margin-right: 0;
+    width: 25%;
+}
+
+.subsection-econadapt .col-md-2 .tile div{
+    margin-bottom: 5px;
+    color: #353f02;
+    font-size: 13px;
+}
+
+.subsection-econadapt .col-md-2 .tile div h4 {
+    margin-bottom: 5px;
+    color: #353f02;
+    font-size: 13px;
+}
+
+.subsection-econadapt #content .cover-richtext-tile h1 {
+    color: #758816;
+    font-size: 20px;
+}
+
+.subsection-climatecost .col-md-2 a:link{text-decoration: underline;}
+.subsection-climatecost .col-md-10 {width: 74%; margin-right: 1%;}
+.subsection-climatecost #content {margin-right: 0;}
+.subsection-climatecost .col-md-2 .tile {margin: 1.5em;}
+
+.subsection-climatecost .col-md-2 {
+    background-color: #d2de92;
+    margin-right: 0;
+    width: 25%;
+}
+
+.subsection-climatecost .col-md-2 .tile div{
+    margin-bottom: 5px;
+    color: #353f02;
+    font-size: 13px;
+}
+
+.subsection-climatecost .col-md-2 .tile div h4 {
+    margin-bottom: 5px;
+    color: #353f02;
+    font-size: 13px;
+}
+
+.subsection-climatecost #content .cover-richtext-tile h1 {
+    color: #758816;
+    font-size: 20px;
+}
+
+.subsection-mediation .col-md-2 a:link{text-decoration: underline;}
+.subsection-mediation .col-md-10 {width: 74%; margin-right: 1%;}
+.subsection-mediation #content {margin-right: 0;}
+.subsection-mediation .col-md-2 .tile {margin: 1.5em;}
+
+.subsection-mediation .col-md-2 {
+    background-color: #d2de92;
+    margin-right: 0;
+    width: 25%;
+}
+
+.subsection-mediation .col-md-2 .tile div{
+    margin-bottom: 5px;
+    color: #353f02;
+    font-size: 13px;
+}
+
+.subsection-mediation .col-md-2 .tile div h4 {
+    margin-bottom: 5px;
+    color: #353f02;
+    font-size: 13px;
+}
+
+.subsection-mediation #content .cover-richtext-tile h1 {
+    color: #758816;
+    font-size: 20px;
+}
+
+.section-uncertainty-guidance .col-md-4:nth-child(2){
+    border-right: #d7e3ef 2px solid;
+    border-left: #d7e3ef 2px solid;
+}
+
+.section-uncertainty-guidance .col-md-4 {
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+}
+
 
 /* time series tool */
 
