@@ -2,12 +2,15 @@
 <dc-workflow workflow_id="cca_items_workflow" title="Simple Publication Workflow" description=" - Simple workflow that is useful for basic web sites. - Things start out as private, and can either be submitted for review, or published directly. - The creator of a content item can edit the item even after it is published." state_variable="review_state" initial_state="private" manager_bypass="False">
  <permission>Access contents information</permission>
  <permission>Change portal events</permission>
+ <permission>Delete objects</permission>
  <permission>Modify portal content</permission>
+ <permission>Request review</permission>
  <permission>View</permission>
  <permission>iterate : Check in content</permission>
  <permission>iterate : Check out content</permission>
- <permission>Delete objects</permission>
- <permission>Request review</permission>
+ <permission>Sharing page: Delegate roles</permission>
+ <permission>Add portal content</permission>
+ <permission>Modify view template</permission>
  <state state_id="pending" title="Pending review">
   <description>Waiting to be reviewed, not editable by the owner.</description>
   <exit-transition transition_id="publish"/>
@@ -22,15 +25,30 @@
    <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
+  <permission-map name="Add portal content" acquired="False">
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
   <permission-map name="Change portal events" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
+  <permission-map name="Delete objects" acquired="False">
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
   <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Modify view template" acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="Request review" acquired="False">
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Sharing page: Delegate roles" acquired="False">
+   <permission-role>Reviewer</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Contributor</permission-role>
@@ -60,19 +78,40 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Reader</permission-role>
+   <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Add portal content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Reviewer</permission-role>
   </permission-map>
   <permission-map name="Change portal events" acquired="False">
    <permission-role>Editor</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Delete objects" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Reviewer</permission-role>
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
    <permission-role>Editor</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Modify view template" acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="Request review" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Sharing page: Delegate roles" acquired="False">
+   <permission-role>Reviewer</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Contributor</permission-role>
@@ -80,11 +119,14 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Reader</permission-role>
+   <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="iterate : Check in content" acquired="False">
+   <permission-role>Reviewer</permission-role>
   </permission-map>
   <permission-map name="iterate : Check out content" acquired="False">
+   <permission-role>Reviewer</permission-role>
   </permission-map>
  </state>
  <state state_id="published" title="Published">
@@ -93,6 +135,9 @@
   <exit-transition transition_id="reject"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Anonymous</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Add portal content" acquired="False">
    <permission-role>Reviewer</permission-role>
   </permission-map>
   <permission-map name="Change portal events" acquired="False">
@@ -109,7 +154,13 @@
    <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
+  <permission-map name="Modify view template" acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
   <permission-map name="Request review" acquired="False">
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Sharing page: Delegate roles" acquired="False">
    <permission-role>Reviewer</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
@@ -208,4 +259,3 @@
   </guard>
  </variable>
 </dc-workflow>
-
