@@ -223,48 +223,48 @@ class PublicationReport(dexterity.Container):
 
 
 class InformationPortal(dexterity.Container):
-    implements(IInformationPortal)
+    implements(IInformationPortal, IClimateAdaptContent)
 
     search_type = "INFORMATIONSOURCE"
 
 
 class GuidanceDocument(dexterity.Container):
-    implements(IGuidanceDocument)
+    implements(IGuidanceDocument, IClimateAdaptContent)
 
     search_type = "GUIDANCE"
 
 
 class Tool(dexterity.Container):
-    implements(ITool)
+    implements(ITool, IClimateAdaptContent)
 
     search_type = "TOOL"
 
 
 class Organisation(dexterity.Container):
-    implements(IOrganisation)
+    implements(IOrganisation, IClimateAdaptContent)
 
     search_type = "ORGANISATION"
 
 
 class Indicator(dexterity.Container):
-    implements(IIndicator)
+    implements(IIndicator, IClimateAdaptContent)
 
     search_type = "INDICATOR"
 
 
 class MapGraphDataset(dexterity.Container):
-    implements(IMapGraphDataset)
+    implements(IMapGraphDataset, IClimateAdaptContent)
 
     search_type = "MAPGRAPHDATASET"
 
 
 class ResearchProject(dexterity.Container):
-    implements(IResearchProject)
+    implements(IResearchProject, IClimateAdaptContent)
 
     search_type = "RESEARCHPROJECT"
 
 
 class Action(dexterity.Container):
-    implements(IAction)
+    implements(IAction, IClimateAdaptContent)
 
     search_type = "ACTION"

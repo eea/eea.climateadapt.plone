@@ -14,7 +14,7 @@ from zope.interface import implements
 from zope.schema import URI, Bool, Choice, Decimal, Int, List, Text, TextLine
 
 
-class IAceMeasure(form.Schema, IClimateAdaptContent, IImageScaleTraversable):
+class IAceMeasure(form.Schema, IImageScaleTraversable):
     """
     Defines content-type schema for Ace Measure
     """
@@ -278,13 +278,13 @@ class IAdaptationOption(IAceMeasure):
 
 
 class CaseStudy(dexterity.Container):
-    implements(ICaseStudy)
+    implements(ICaseStudy, IClimateAdaptContent)
 
     search_type = "ACTION"
 
 
 class AdaptationOption(dexterity.Container):
-    implements(IAdaptationOption)
+    implements(IAdaptationOption, IClimateAdaptContent)
 
     search_type = "MEASURE"
 

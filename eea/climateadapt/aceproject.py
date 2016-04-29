@@ -10,7 +10,7 @@ from zope.interface import implements
 from zope.schema import Bool, Choice, Int, List, Text, TextLine
 
 
-class IAceProject(form.Schema, IClimateAdaptContent, IImageScaleTraversable):
+class IAceProject(form.Schema, IImageScaleTraversable):
     """
     Defines content-type schema for Ace Project
     """
@@ -164,6 +164,6 @@ class IAceProject(form.Schema, IClimateAdaptContent, IImageScaleTraversable):
 
 
 class AceProject(dexterity.Container):
-    implements(IAceProject)
+    implements(IAceProject, IClimateAdaptContent)
 
     search_type = "RESEARCHPROJECT"
