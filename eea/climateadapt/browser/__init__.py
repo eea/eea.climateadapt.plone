@@ -6,8 +6,8 @@ from Products.Five.browser import BrowserView
 from collective.cover.browser.cover import Standard
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.vocabulary import ace_countries_dict
-from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 from plone.app.stagingbehavior.browser.control import Control
+from plone.app.stagingbehavior.utils import get_baseline
 from zExceptions import NotFound
 from zope.publisher.browser import BrowserPage
 import json
@@ -647,11 +647,7 @@ class IterateControl(Control):
 
         if allowed:
 
-            policy = ICheckinCheckoutPolicy(self.context, None)
-            if policy is None:
-                return False
-
-            original = policy.getBaseline()
+            original = get_baseline(self.context)
             if original is None:
                 return False
 
