@@ -1,6 +1,11 @@
 from zope.interface import Interface
 
 
+class IClimateAdaptContent(Interface):
+    """ Marker interface for climate adapt content
+    """
+
+
 class IEEAClimateAdaptInstalled(Interface):
     """ Browser layer marker interface
     """

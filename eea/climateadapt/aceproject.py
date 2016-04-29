@@ -1,15 +1,16 @@
 from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
+from eea.climateadapt.interfaces import IClimateAdaptContent
 from plone.app.textfield import RichText
 from plone.autoform import directives
 from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
+from z3c.form.interfaces import IEditForm
 from zope.interface import implements
 from zope.schema import Bool, Choice, Int, List, Text, TextLine
-from z3c.form.interfaces import IEditForm
 
 
-class IAceProject(form.Schema, IImageScaleTraversable):
+class IAceProject(form.Schema, IClimateAdaptContent, IImageScaleTraversable):
     """
     Defines content-type schema for Ace Project
     """

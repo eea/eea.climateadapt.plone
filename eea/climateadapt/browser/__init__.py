@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 
+from AccessControl import getSecurityManager
 from Products.Five.browser import BrowserView
 from collective.cover.browser.cover import Standard
+from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.vocabulary import ace_countries_dict
+from plone.app.stagingbehavior.browser.control import Control
 from zExceptions import NotFound
 from zope.publisher.browser import BrowserPage
 import json
@@ -628,3 +631,19 @@ class CityRedirector(BrowserPage):
     def publishTraverse(self, request, name):
         city = self.context['city-profile'][name]
         return request.response.redirect(city.absolute_url())
+
+
+class IterateControl(Control):
+    def checkin_allowed(self):
+        """ Overrided to check for the checkin permission, as it is normal
+        """
+
+        allowed = super(IterateControl, self).checkin_allowed()
+        if not IClimateAdaptContent.providedBy(self.context):
+            return allowed
+        if allowed:
+            checkPermission = getSecurityManager().checkPermission
+            if not checkPermission('Iterate : Check in content', self.context):
+                allowed = False
+
+        return allowed

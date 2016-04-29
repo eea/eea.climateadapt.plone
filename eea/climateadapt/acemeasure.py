@@ -1,5 +1,6 @@
 from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
+from eea.climateadapt.interfaces import IClimateAdaptContent
 from plone.app.contenttypes.interfaces import IImage
 from plone.app.textfield import RichText
 from plone.autoform import directives
@@ -13,7 +14,7 @@ from zope.interface import implements
 from zope.schema import URI, Bool, Choice, Decimal, Int, List, Text, TextLine
 
 
-class IAceMeasure(form.Schema, IImageScaleTraversable):
+class IAceMeasure(form.Schema, IClimateAdaptContent, IImageScaleTraversable):
     """
     Defines content-type schema for Ace Measure
     """
