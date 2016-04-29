@@ -55,7 +55,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                                 required=True)
 
     # TODO: "keyword" from SQL is Subject
-    keywords = RichText(title=_(u"Keywords"),
+    keywords = Text(title=_(u"Keywords"),
                         description=_(u"Describe and tag this item with relevant keywords. Separate each keyword with a comma. For example, example keyword 1, example keyword 2 (1,000 character limit)"),
                         required=True)
 
