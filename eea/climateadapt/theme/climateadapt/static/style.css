@@ -1432,7 +1432,13 @@ li.dropdown-submenu {
 }
 .case-studies-tabbed-content-section {
     margin-bottom: 29px;
-}/*
+}
+
+.section-casestudy .case-studies-review-image-wrapper img {
+    max-height: 25vh;
+}
+
+/*
 .case-studies-tabbed-content-section > ul {
     list-style-image: url("cca/img/ico-arrow.png") !important;
 }*/

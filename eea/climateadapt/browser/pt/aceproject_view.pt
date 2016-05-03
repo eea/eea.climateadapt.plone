@@ -18,7 +18,11 @@
             <a href="" tal:attributes="href view/link_to_original">Original project</a>
             <h2>Project</h2>
 
-            <h1 tal:content="context/title">Title here</h1>
+            <h1>
+                <span tal:content="context/acronym">Acronym here</span>
+                <span>: </span>
+                <span tal:content="context/title">Title here</span>
+            </h1>
           </div>
 
           <div metal:fill-slot="ace-left-slot">

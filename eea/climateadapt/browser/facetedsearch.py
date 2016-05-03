@@ -81,7 +81,6 @@ class ListingView(BrowserView):
 
         view = queryMultiAdapter((self.context, self.request),
                                name='faceted_listing_' + name)
-
         if view is None:
             view = getMultiAdapter((self.context, self.request),
                                 name='faceted_listing_GENERIC')
