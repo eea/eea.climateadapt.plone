@@ -1,7 +1,6 @@
 <div>
-
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
   <script type="text/javascript">
-    // <![CDATA[
     $(document).ready(function() {
       $("#ast-menu").accordion({
         autoHeight: false,
@@ -27,8 +26,36 @@
         });
 
         $("a.ui-state-active").parent().css('background-color', '#6D7A2B');
+        var b = new Array();
+        $("#ast-menu li a").each(function() {
+            b.push($(this).attr("href"))
+        });
+        var a = b.length;
+        i = 0;
+        pos = -1;
+        previous = "";
+        next = "";
+        while (i < a && pos < 0) {
+            pos = c.search(b[i]);
+            if (pos > 0) {
+                if (i == 0) {
+                    previous = b[a - 1];
+                    next = b[1]
+                } else {
+                    if (i == a - 1) {
+                        previous = b[a - 2];
+                        next = b[0]
+                    } else {
+                        previous = b[i - 1];
+                        next = b[i + 1]
+                    }
+                }
+            }
+            i++
+        }
+        $("#previous-link a").attr("href", previous);
+        $("#next-link a").attr("href", next)
     });
-    // ]]>
   </script>
 
   <ul id="ast-menu">
