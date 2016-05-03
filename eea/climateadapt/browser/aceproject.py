@@ -7,5 +7,7 @@ class AceProjectView(DefaultView, AceViewApi):
         return super(AceProjectView, self).__call__()
 
     def linkify(self, text):
+        if not text:
+            return
         if not text.startswith('http'):
             return "http://" + text

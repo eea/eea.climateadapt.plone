@@ -5,6 +5,7 @@ from plone.app.textfield import RichText
 from plone.autoform import directives
 from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
+from z3c.form.interfaces import IAddForm
 from z3c.form.interfaces import IEditForm
 from zope.interface import implements
 from zope.schema import Bool, Choice, Int, List, Text, TextLine
@@ -106,20 +107,40 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                     description=u"Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]")
 
     # -----------[ "omitted" fields ]------------------
-    directives.omitted(IEditForm, 'data_type', 'storage_type', 'spatial_layer',
-                       'spatial_values', 'important', 'metadata',
-                       'special_tags', 'rating')
+    directives.omitted(IAddForm, 'data_type')
+    directives.omitted(IEditForm, 'data_type')
+
+    directives.omitted(IAddForm, 'storage_type')
+    directives.omitted(IEditForm, 'storage_type')
+
+    directives.omitted(IAddForm, 'spatial_layer')
+    directives.omitted(IEditForm, 'spatial_layer')
+
+    directives.omitted(IAddForm, 'spatial_values')
+    directives.omitted(IEditForm, 'spatial_values')
+
+    directives.omitted(IAddForm, 'important')
+    directives.omitted(IEditForm, 'important')
+
+    directives.omitted(IAddForm, 'metadata')
+    directives.omitted(IEditForm, 'metadata')
+
+    directives.omitted(IAddForm, 'special_tags')
+    directives.omitted(IEditForm, 'special_tags')
+
+    directives.omitted(IAddForm, 'rating')
+    directives.omitted(IEditForm, 'rating')
 
     # -----------[ "backend" fields ]------------------
 
     # fix???
     data_type = Choice(title=_(u"Data Type"),
-                       required=True,
+                       required=False,
                        vocabulary="eea.climateadapt.aceitems_datatypes")
 
     # fix???
     storage_type = Choice(title=_(u"Storage Type"),
-                          required=True,
+                          required=False,
                           vocabulary="eea.climateadapt.aceitems_storagetypes")
 
     spatial_layer = TextLine(title=_(u"Spatial Layer"),
@@ -131,10 +152,10 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                           description=_(u"European countries"),
                           required=False,
                           value_type=Choice(
-                              vocabulary="eea.climateadapt.ace_countries"))
+                              vocabulary="eea.climateadapt.ace_countries")
+                          )
 
-    important = Bool(title=_(u"High importance"), required=False,
-                     default=False)
+    important = Bool(title=_(u"High importance"), required=False, default=False)
 
     # websites = List(title=_(u"Websites"),
     #                 required=True,
@@ -152,7 +173,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     special_tags = List(title=_(u"Special tagging"),
                         required=False,
-                        value_type=TextLine(title=_(u"Tag"))
+                        value_type=TextLine(title=_(u"Tag"), required=False)
                         )
 
     rating = Int(title=_(u"Rating"), required=True, default=0)

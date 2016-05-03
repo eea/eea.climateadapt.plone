@@ -8,6 +8,7 @@ from plone.directives import dexterity, form
 from plone.formwidget.autocomplete import AutocompleteFieldWidget
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.namedfile.interfaces import IImageScaleTraversable
+from z3c.form.interfaces import IAddForm
 from z3c.form.interfaces import IEditForm
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.interface import implements
@@ -162,12 +163,36 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     # -----------[ "omitted" fields ]------------------
 
-    directives.omitted(IEditForm,
-                       'implementation_type', 'challenges', 'spatial_layer',
-                       'spatial_values', 'contact', 'elements', 'measure_type',
-                       'important', 'rating', 'objectives', 'solutions',
-                       'adaptationoptions', 'relevance', 'primephoto',
-                       'supphotos')
+    directives.omitted(IEditForm, 'implementation_type')
+    directives.omitted(IAddForm, 'implementation_type')
+    directives.omitted(IEditForm, 'challenges')
+    directives.omitted(IAddForm, 'challenges')
+    directives.omitted(IEditForm, 'spatial_layer')
+    directives.omitted(IAddForm, 'spatial_layer')
+    directives.omitted(IEditForm, 'spatial_values')
+    directives.omitted(IAddForm, 'spatial_values')
+    directives.omitted(IEditForm, 'contact')
+    directives.omitted(IAddForm, 'contact')
+    directives.omitted(IEditForm, 'elements')
+    directives.omitted(IAddForm, 'elements')
+    directives.omitted(IEditForm, 'measure_type')
+    directives.omitted(IAddForm, 'measure_type')
+    directives.omitted(IEditForm, 'important')
+    directives.omitted(IAddForm, 'important')
+    directives.omitted(IEditForm, 'rating')
+    directives.omitted(IAddForm, 'rating')
+    directives.omitted(IEditForm, 'objectives')
+    directives.omitted(IAddForm, 'objectives')
+    directives.omitted(IEditForm, 'solutions')
+    directives.omitted(IAddForm, 'solutions')
+    directives.omitted(IEditForm, 'adaptationoptions')
+    directives.omitted(IAddForm, 'adaptationoptions')
+    directives.omitted(IEditForm, 'relevance')
+    directives.omitted(IAddForm, 'relevance')
+    directives.omitted(IEditForm, 'primephoto')
+    directives.omitted(IAddForm, 'primephoto')
+    directives.omitted(IEditForm, 'supphotos')
+    directives.omitted(IAddForm, 'supphotos')
 
     # end
 

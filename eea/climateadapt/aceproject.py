@@ -5,7 +5,7 @@ from plone.app.textfield import RichText
 from plone.autoform import directives
 from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
-from z3c.form.interfaces import IEditForm
+from z3c.form.interfaces import IEditForm, IAddForm
 from zope.interface import implements
 from zope.schema import Bool, Choice, Int, List, Text, TextLine
 
@@ -127,9 +127,18 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                         )
 
     # -----------[ "omitted" fields ]------------------
-    directives.omitted(IEditForm, 'abstracts', 'specialtagging', 'important',
-                       'rating', 'spatial_layer', 'spatial_values',
-                       )
+    directives.omitted(IEditForm, 'abstracts')
+    directives.omitted(IAddForm, 'abstracts')
+    directives.omitted(IEditForm, 'specialtagging')
+    directives.omitted(IAddForm, 'specialtagging')
+    directives.omitted(IEditForm, 'important')
+    directives.omitted(IAddForm, 'important')
+    directives.omitted(IEditForm, 'rating')
+    directives.omitted(IAddForm, 'rating')
+    directives.omitted(IEditForm, 'spatial_layer')
+    directives.omitted(IAddForm, 'spatial_layer')
+    directives.omitted(IEditForm, 'spatial_values')
+    directives.omitted(IAddForm, 'spatial_values')
 
     # end
     dexteritytextindexer.searchable('abstracts')
