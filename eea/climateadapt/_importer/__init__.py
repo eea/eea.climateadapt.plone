@@ -435,6 +435,7 @@ no_import_layouts = [
     '/content/eea-climateadapt-researchproject',
     '/mayors-adapt',
     '/newregion',
+    '/map-viewer',  # TODO: add a browser view for this one
 ]
 
 # TO DO
