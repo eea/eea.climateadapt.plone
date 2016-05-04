@@ -6,6 +6,7 @@ from Products.Five.browser import BrowserView
 from collective.cover.browser.cover import Standard
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.vocabulary import ace_countries_dict
+from plone.app.iterate.permissions import CheckoutPermission
 from plone.app.stagingbehavior.browser.control import Control
 from plone.app.stagingbehavior.utils import get_baseline
 from zExceptions import NotFound
@@ -640,7 +641,6 @@ class IterateControl(Control):
         """ Overrided to check for the checkin permission, as it is normal
         """
 
-        print "checking control on", self.context
         allowed = super(IterateControl, self).checkin_allowed()
         if not IClimateAdaptContent.providedBy(self.context):
             return allowed
@@ -654,5 +654,18 @@ class IterateControl(Control):
             checkPermission = getSecurityManager().checkPermission
             if not checkPermission(ModifyPortalContent, original):
                 return False
+
+        return allowed
+
+    def checkout_allowed(self):
+        """ Overrided to check for the checkout permission, as it is normal
+        """
+        allowed = super(IterateControl, self).checkout_allowed()
+        if not IClimateAdaptContent.providedBy(self.context):
+            return allowed
+
+        checkPermission = getSecurityManager().checkPermission
+        if not checkPermission(CheckoutPermission, self.context):
+            return False
 
         return allowed
