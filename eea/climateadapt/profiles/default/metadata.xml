@@ -10,5 +10,6 @@
         <dependency>profile-collective.easyform:default</dependency>
         <dependency>profile-plone.formwidget.recaptcha:default</dependency>
         <dependency>profile-collective.sweeteditor:default</dependency>
+        <dependency>profile-plone.app.ldap:ldap</dependency>
     </dependencies>
 </metadata>
