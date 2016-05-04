@@ -2,8 +2,9 @@ from AccessControl import getSecurityManager
 from eea.climateadapt.city_profile import ICityProfile
 from eea.climateadapt.city_profile import ICityProfileStaging
 from plone.app.iterate.permissions import CheckinPermission
-from plone.app.stagingbehavior.browser.control import Control
-from plone.app.stagingbehavior.interfaces import IStagingSupport
+from plone.app.iterate.browser.control import Control
+# from plone.app.stagingbehavior.browser.control import Control
+# from plone.app.stagingbehavior.interfaces import IStagingSupport
 from plone.behavior.interfaces import IBehaviorAssignable
 from plone.dexterity.behavior import DexterityBehaviorAssignable
 from plone.dexterity.schema import SCHEMA_CACHE
@@ -32,35 +33,35 @@ class IterateControl(Control):
         return allowed and checkPermission(CheckinPermission, self.context)
 
 
-@implementer(IBehaviorAssignable)
-@adapter(ICityProfile)
-class CityProfileBehaviorAssignable(DexterityBehaviorAssignable):
-    """ Custom BehaviorAssignable adapter.
-
-    We want to reorder the behavior markers so that ICityProfileStaging is the
-    first one.
-
-
-    Note: I'm not sure if this is needed. I've reordered the behaviors in the
-    cityprofile xml type file and I believe that can be enough.
-
-    TODO: test the above.
-    """
-
-    def enumerateBehaviors(self):
-        res = []
-        _sb = None
-        _cpb = None
-        behvs = SCHEMA_CACHE.behavior_registrations(self.context.portal_type)
-        for b in behvs:
-            if b.interface is ICityProfileStaging:
-                _cpb = b
-            elif b.interface is IStagingSupport:
-                _sb = b
-            else:
-                res.append(b)
-
-        res = [_cpb, _sb] + res
-
-        for behavior in res:
-            yield behavior
+# @implementer(IBehaviorAssignable)
+# @adapter(ICityProfile)
+# class CityProfileBehaviorAssignable(DexterityBehaviorAssignable):
+#     """ Custom BehaviorAssignable adapter.
+#
+#     We want to reorder the behavior markers so that ICityProfileStaging is the
+#     first one.
+#
+#
+#     Note: I'm not sure if this is needed. I've reordered the behaviors in the
+#     cityprofile xml type file and I believe that can be enough.
+#
+#     TODO: test the above.
+#     """
+#
+#     def enumerateBehaviors(self):
+#         res = []
+#         _sb = None
+#         _cpb = None
+#         behvs = SCHEMA_CACHE.behavior_registrations(self.context.portal_type)
+#         for b in behvs:
+#             if b.interface is ICityProfileStaging:
+#                 _cpb = b
+#             elif b.interface is IStagingSupport:
+#                 _sb = b
+#             else:
+#                 res.append(b)
+#
+#         res = [_cpb, _sb] + res
+#
+#         for behavior in res:
+#             yield behavior

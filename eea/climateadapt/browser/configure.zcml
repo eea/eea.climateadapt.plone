@@ -16,13 +16,15 @@
         />
 
     <browser:page
-        for="plone.app.stagingbehavior.interfaces.IStagingSupport"
+        for="*"
         name="iterate_control"
         class=".IterateControl"
         permission="zope2.View"
         allowed_attributes="checkin_allowed checkout_allowed cancel_allowed"
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
+
+        for="plone.app.stagingbehavior.interfaces.IStagingSupport"
         for="eea.climateadapt.interfaces.IClimateAdaptContent"
 
     <browser:resourceDirectory

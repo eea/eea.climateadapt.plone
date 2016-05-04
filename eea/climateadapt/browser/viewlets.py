@@ -1,7 +1,7 @@
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.layout.viewlets import ViewletBase
 from plone.app.layout.viewlets.common import SearchBoxViewlet as BaseSearchViewlet
-from plone.app.stagingbehavior.browser.info import BaselineInfoViewlet as InfoViewlet
+#from plone.app.stagingbehavior.browser.info import BaselineInfoViewlet as InfoViewlet
 
 
 class SharePageSubMenuViewlet(ViewletBase):

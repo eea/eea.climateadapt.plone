@@ -5,7 +5,7 @@ from eea.climateadapt.city_profile import TOKENID
 from eea.climateadapt.mayorsadapt.roleplugin import is_citymayor_visitor
 from plone.api.content import get_state
 from plone.app.layout.viewlets import ViewletBase
-from plone.app.stagingbehavior.utils import get_baseline, get_working_copy
+#from plone.app.stagingbehavior.utils import get_baseline, get_working_copy
 from zope.annotation.interfaces import IAnnotations
 from zope.globalrequest import getRequest
 

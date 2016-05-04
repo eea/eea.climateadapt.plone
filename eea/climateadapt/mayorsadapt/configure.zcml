@@ -82,7 +82,7 @@
         for="eea.climateadapt.city_profile.ICityProfile"
         />
 
-    <adapter factory=".staging.CityProfileBehaviorAssignable" />
+    <!-- <adapter factory=".staging.CityProfileBehaviorAssignable" /> -->
 
     <browser:page
         for="eea.climateadapt.city_profile.ICityProfileStaging"

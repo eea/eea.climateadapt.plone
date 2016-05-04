@@ -7,8 +7,8 @@ from plone.app.iterate import PloneMessageFactory as _
 from plone.app.iterate.interfaces import CheckoutException
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 from plone.app.iterate.interfaces import IWCContainerLocator
-from plone.app.stagingbehavior.utils import get_baseline
-from plone.app.stagingbehavior.utils import get_working_copy
+#from plone.app.stagingbehavior.utils import get_baseline
+#from plone.app.stagingbehavior.utils import get_working_copy
 from zope.component import getMultiAdapter, getAdapters
 
 
