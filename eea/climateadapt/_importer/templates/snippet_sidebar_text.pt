@@ -4,5 +4,4 @@
     <h4 tal:content="python: labels[name]" />
     <p tal:replace="structure python: value" />
   </tal:def>
-
 </div>
