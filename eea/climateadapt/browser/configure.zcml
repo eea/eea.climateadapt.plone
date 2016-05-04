@@ -227,6 +227,13 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        class=".map_viewer.MapViewerView"
+        for="*"
+        name="map-viewer"
+        permission="zope2.View"
+        />
+
 
     <!-- Tile helpers -->
 
