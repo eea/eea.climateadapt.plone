@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
+#from Products.CMFCore.permissions import ModifyPortalContent
 from AccessControl import getSecurityManager
-from Products.CMFCore.permissions import ModifyPortalContent
 from Products.Five.browser import BrowserView
 from collective.cover.browser.cover import Standard
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.vocabulary import ace_countries_dict
+from plone.app.iterate.permissions import CheckinPermission
 from plone.app.iterate.permissions import CheckoutPermission
 from plone.app.stagingbehavior.browser.control import Control
 from plone.app.stagingbehavior.utils import get_baseline
@@ -652,7 +653,7 @@ class IterateControl(Control):
                 return False
 
             checkPermission = getSecurityManager().checkPermission
-            if not checkPermission(ModifyPortalContent, original):
+            if not checkPermission(CheckinPermission, original):
                 return False
 
         return allowed
