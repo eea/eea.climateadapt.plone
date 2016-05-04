@@ -682,6 +682,10 @@ ul#ast-menu, #ast-menu ul {
     padding-right: 0.1em;
 }
 
+.section-adaptation-support-tool .tile {
+    padding-right: 0.3em;
+}
+
 .Adaptation-option-selector {
     background-position: left center;
     background-image: url("cca/img/ico-arrow.png");
@@ -1169,6 +1173,20 @@ border: 1px solid #a3af29;
 li.dropdown-submenu {
     display: list-item;
 }
+
+@media (min-width: 900px) {
+    ul.nav li.dropdown:hover > ul.dropdown-menu{
+        display: block;
+        margin: 0;
+    }
+
+
+    ul.dropdown-menu li.dropdown-submenu:hover > ul.dropdown-menu{
+        display: block;
+        margin: 0;
+    }
+}
+
 
 .ugquestion {
     text-decoration: underline;
