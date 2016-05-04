@@ -702,6 +702,14 @@ ul#ast-menu, #ast-menu ul {
     margin: 0;
 }
 
+.read-more-body .CSSTableGenerator td {
+    padding: 0;
+}
+
+.subsection-urban-ast #content {
+    margin: 0;
+}
+
 .col-md-6 {
     display: inline-block;
 }
@@ -936,6 +944,19 @@ a.bluebutton:active {
     right: 0;
     top: 210px;
     text-align: right;
+}
+
+#read-more-link {
+    background: url("cca/img/bg_sector_main_article_filter.png") repeat-y scroll 0 center transparent;
+    padding-right: 10px;
+    line-height: 30px;
+    right: 0;
+    top: 210px;
+    text-align: right;
+}
+
+#read-more-link a:link {
+    color: #02213d;
 }
 
 /* fronpage */

@@ -1,2 +1,23 @@
-<div class="" tal:content="structure options/first_text"></div>
-<div class="" tal:content="structure options/second_text"></div>
+<div class="text-container" tal:content="structure options/first_text"></div>
+<div id="read-more-link">
+    <a href="#">Read more</a>
+</div>
+<div class="read-more-body" tal:content="structure options/second_text" style="display:none"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ($(".read-more-body p").length == 0) {
+            $("#read-more-link").css("display", "none")
+        }
+    });
+    $("#read-more-link").click(function () {
+        $(".read-more-body").toggle("slow", function () {
+            $("#read-more-link a").text(function (a, b) {
+                return (b == "Read more"
+                    ? "Read less"
+                    : "Read more")
+            })
+        });
+        return false
+    });
+</script>
