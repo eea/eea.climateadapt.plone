@@ -245,6 +245,14 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        name="view_last_modified"
+        for="*"
+        class="eea.climateadapt.browser.tilehelpers.LastUpdateTile"
+        template="pt/last_update.pt"
+        permission="zope2.View"
+        />
+
     <browser:viewlet
         name="baltic_region_menu"
         for="eea.climateadapt.interfaces.IBalticRegionMarker"

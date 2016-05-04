@@ -1188,7 +1188,9 @@ def import_template_ace_layout_4(site, layout, structure):
     sidebar_tile = make_richtext_with_title_tile(
         cover, {'title': sidebar_title, 'text': sidebar_text})
 
-    sidebar_tiles = [sidebar_tile]
+    lu_tile = make_view_tile(cover, {'view_name': 'view_last_modified'})
+
+    sidebar_tiles = [sidebar_tile, lu_tile]
 
     if len(structure['column-2']) > 1:
         for pid, portlet in structure['column-2'][1:]:

@@ -7,6 +7,7 @@ developed and tested.
 from Products.Five.browser import BrowserView
 from eea.climateadapt.vocabulary import ace_countries
 from zope.component.hooks import getSite
+from plone.api import portal
 
 
 class AceContentSearch(BrowserView):
@@ -35,7 +36,7 @@ class FrontPageCarousel(BrowserView):
     def items(self):
         site = getSite()
         parent = site['site-news']
-        return parent.getFolderContents({'portal_type':'News Item',
+        return parent.getFolderContents({'portal_type': 'News Item',
                                          'review_state': 'published',
                                          'sort_by': 'getObjPositionInParent'},
                                         full_objects=True)[:5]
@@ -65,7 +66,7 @@ class NewsTile(ListingTile):
         return site['news-archive']
 
     def items(self):
-        return self.parent.getFolderContents({'portal_type':'News Item',
+        return self.parent.getFolderContents({'portal_type': 'News Item',
                                               'sort_by': 'effective'},
                                              full_objects=True)[:3]
 
@@ -90,3 +91,9 @@ class EventsTile(ListingTile):
                                               'effective'},
                                              full_objects=True)[:3]
 
+
+class LastUpdateTile(BrowserView):
+    """ Tile for last update date
+    """
+    def formated_date(self, modifiedTime):
+        return portal.get_localized_time(datetime=modifiedTime)

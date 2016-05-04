@@ -1180,7 +1180,6 @@ li.dropdown-submenu {
         margin: 0;
     }
 
-
     ul.dropdown-menu li.dropdown-submenu:hover > ul.dropdown-menu{
         display: block;
         margin: 0;
