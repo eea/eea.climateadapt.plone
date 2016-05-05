@@ -46,6 +46,9 @@
             <property id="_binduid" type="str">
                 <item value="uid=tiberich,ou=Users,o=EIONET,l=Europe"/>
             </property>
+            <property id="_bindpwd" type="str">
+                <item value=""/>
+            </property>
             <property id="_binduid_usage" type="int">
                 <item value="1"/>
             </property>
