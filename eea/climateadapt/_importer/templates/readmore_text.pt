@@ -1,23 +1,26 @@
-<div class="text-container" tal:content="structure options/first_text"></div>
-<div id="read-more-link">
-    <a href="#">Read more</a>
-</div>
-<div class="read-more-body" tal:content="structure options/second_text" style="display:none"></div>
+<div class="" tal:content="structure options/first_text">Body 1</div>
+<div class="panel panel-default">
+    <div class="panel-heading edit-tool-custom-click" id="8466-37230-heading" role="tab">
+      <h4 class="panel-title"><a class="accordion-toggle" aria-controls="8466-37230-body" data-parent=
+      "#8466-accordion" data-toggle="collapse" href="#8466-37230-body" role=
+      "button">Read more</a></h4>
+    </div>
+    <div aria-labelledby="8466-37230-heading" class="panel-collapse collapse"
+         id="8466-37230-body" role="tabpanel">
+      <div class="panel-body">
+        <p tal:content="structure options/second_text">Body 2</p>
+      </div>
+    </div>
+  </div>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        if ($(".read-more-body p").length == 0) {
-            $("#read-more-link").css("display", "none")
-        }
-    });
-    $("#read-more-link").click(function () {
-        $(".read-more-body").toggle("slow", function () {
-            $("#read-more-link a").text(function (a, b) {
-                return (b == "Read more"
-                    ? "Read less"
-                    : "Read more")
-            })
-        });
-        return false
+    $('.panel-title a').click(function(){
+        $('.panel-collapse').removeClass('edit-tool-custom')
+        $('.panel-collapse').addClass('edit-tool-custom');
+        $('.panel-title a').text(function (a,b) {
+            return (b == "Read more"
+            ? "Read less"
+            : "Read more")
+        })
     });
 </script>

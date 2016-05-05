@@ -397,6 +397,7 @@ div.position-0 { margin-left: -100%; }
     outline: 0;
     background: #d7e3ef url(ui-bg_glass_75_d7e3ef_1x400.png) repeat-x scroll 50% 50%;
 }
+
 #content .panel-group .panel-title:hover > a {
     color: #02213d !important;
 }
@@ -448,6 +449,39 @@ div.position-0 { margin-left: -100%; }
     border-bottom-style: solid;
     border-left-style: solid;
     border-right-style: solid;
+}
+
+
+#content .edit-tool-custom-click .panel-title a:hover {
+    color: #FFF !important;
+}
+
+.edit-tool-custom-click .panel-title a:link {
+    color: #02213d;
+}
+
+#content .edit-tool-custom-click {
+    background: url("cca/img/bg_sector_main_article_filter.png") repeat-y scroll 0 center transparent;
+    padding-right: 10px;
+    line-height: 30px;
+    right: 0;
+    top: 210px;
+    text-align: right;
+}
+
+#content .edit-tool-custom > .panel-body {
+    border: none;
+    padding: 0;
+    line-height: 1.5em;
+    font-size: 1.1em;
+}
+
+.edit-tool-custom > .panel-body, .panel-collapse.collapsing {
+    border: none;
+}
+
+.panel {
+    border: none;
 }
 
 .aceitem_page {
