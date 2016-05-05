@@ -21,6 +21,7 @@
     <property name="klass">eea.climateadapt.aceitem.Tool</property>
 
     <property name="behaviors">
+        <element value="plone.app.lockingbehavior.behaviors.ILocking"/>
         <element value="plone.app.content.interfaces.INameFromTitle" />
         <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />
         <!-- <element value="plone.app.stagingbehavior.interfaces.IStagingSupport" /> -->
