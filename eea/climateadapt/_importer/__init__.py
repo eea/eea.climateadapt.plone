@@ -2173,6 +2173,14 @@ def tweak_site(site):
     alsoProvides(cplpage, ICitiesListingsRoot)
     cplpage.setLayout('@@cities-listing')
 
+    # apply local roles, to enable special CCA workflows
+    for name in ['content', 'aceprojects', 'adaptationoption']:
+        folder = site._getOb(name)
+        roles = folder.__ac_local_roles__
+        roles.update(AuthenticatedUsers=[u'Contributor', u'Reader'])
+        roles.update(ContentReviewers=[u'Contributor', u'Reviewer', u'Editor', u'Reader'])
+        roles.update(PowerUsers=[u'Contributor', u'Editor', u'Reader'])
+
 
 def get_plone_site():
     import Zope2
