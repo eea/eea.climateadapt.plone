@@ -2133,6 +2133,11 @@ def tweak_site(site):
     """ Apply any other tweaks to the site
     """
 
+    acl_users = site._getOb('acl_users')
+    acl_users.manage_addProduct['PlonePAS'].manage_addAutoGroup(
+        id='members_auto_group', title='Members AutoGroup', group='Members',
+        description="Set Members group for everybody logged in")
+
     ast_tools = ['tools/urban-ast',
                  'adaptation-support-tool']
     for path in ast_tools:
@@ -2177,9 +2182,34 @@ def tweak_site(site):
     for name in ['content', 'aceprojects', 'adaptationoption']:
         folder = site._getOb(name)
         roles = folder.__ac_local_roles__
-        roles.update(AuthenticatedUsers=[u'Contributor', u'Reader'])
-        roles.update(ContentReviewers=[u'Contributor', u'Reviewer', u'Editor', u'Reader'])
+        roles.update(Members=[u'Contributor', u'Reader'])
+        roles.update(ContentReviewers=[u'Contributor', u'Reviewer', u'Editor',
+                                       u'Reader'])
         roles.update(PowerUsers=[u'Contributor', u'Editor', u'Reader'])
+
+    cf = site._getOb('content')
+    cf.immediately_addable_types = ['eea.climateadapt.aceproject',
+                                    'eea.climateadapt.adaptationoption',
+                                    'eea.climateadapt.casestudy',
+                                    'eea.climateadapt.guidancedocument',
+                                    'eea.climateadapt.indicator',
+                                    'eea.climateadapt.informationportal',
+                                    'eea.climateadapt.mapgraphdataset',
+                                    'eea.climateadapt.organisation',
+                                    'eea.climateadapt.publicationreport',
+                                    'eea.climateadapt.researchproject',
+                                    'eea.climateadapt.tool']
+    cf.locally_allowed_types = ['eea.climateadapt.aceproject',
+                                'eea.climateadapt.adaptationoption',
+                                'eea.climateadapt.casestudy',
+                                'eea.climateadapt.guidancedocument',
+                                'eea.climateadapt.indicator',
+                                'eea.climateadapt.informationportal',
+                                'eea.climateadapt.mapgraphdataset',
+                                'eea.climateadapt.organisation',
+                                'eea.climateadapt.publicationreport',
+                                'eea.climateadapt.researchproject',
+                                'eea.climateadapt.tool']
 
 
 def get_plone_site():

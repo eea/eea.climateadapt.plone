@@ -20,7 +20,7 @@
         name="topdb"
         for="*"
         class=".views.GoToPDB"
-        permission="cmf.ManagePortal"
+        permission="zope.Public"
         />
 
     <browser:page
