@@ -16,7 +16,21 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     Defines content-type schema for Ace Item
     """
 
+    dexteritytextindexer.searchable('title')
     dexteritytextindexer.searchable('long_description')
+    dexteritytextindexer.searchable('keywords')
+    dexteritytextindexer.searchable('sectors')
+    dexteritytextindexer.searchable('climate_impacts')
+    dexteritytextindexer.searchable('elements')
+    dexteritytextindexer.searchable('year')
+
+    dexteritytextindexer.searchable('data_type')
+    dexteritytextindexer.searchable('storage_type')
+    dexteritytextindexer.searchable('spatial_layer')
+    dexteritytextindexer.searchable('spatial_values')
+    dexteritytextindexer.searchable('important')
+    dexteritytextindexer.searchable('metadata')
+    dexteritytextindexer.searchable('special_tags')
 
     form.fieldset('default',
         label=u'Item Description',

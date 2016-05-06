@@ -52,17 +52,18 @@
         />
 
 
-    <adapter name="imported_ids" factory=".catalog.imported_ids" />
+    <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> -->
     <adapter name="aceitem_id" factory=".catalog.aceitem_id" />
     <adapter name="acemeasure_id" factory=".catalog.acemeasure_id" />
     <adapter name="aceproject_id" factory=".catalog.aceproject_id" />
-    <adapter name="countries" factory=".catalog.countries" />
-    <adapter name="sectors" factory=".catalog.city_sectors" />
     <adapter name="city_stage" factory=".catalog.city_stage_implementation_cycle" />
-    <adapter name="countries" factory=".catalog.city_countries" />
-    <adapter name="search_type" factory=".catalog.search_type" />
     <adapter name="climate_impacts" factory=".catalog.city_climate_impacts" />
+    <adapter name="countries" factory=".catalog.city_countries" />
+    <adapter name="countries" factory=".catalog.countries" />
+    <adapter name="imported_ids" factory=".catalog.imported_ids" />
     <adapter name="long_description" factory=".catalog.city_long_description" />
+    <adapter name="search_type" factory=".catalog.search_type" />
+    <adapter name="sectors" factory=".catalog.city_sectors" />
 
     <utility name="eea.climateadapt.aceitems_datatypes" component=".vocabulary.aceitem_datatypes_vocabulary"/>
     <utility name="eea.climateadapt.aceitems_storagetypes" component=".vocabulary.aceitem_storagetypes_vocabulary"/>

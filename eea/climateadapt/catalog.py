@@ -1,9 +1,10 @@
+from city_profile import ICityProfile
 from collective.cover.interfaces import ICover
+from eea.climateadapt.interfaces import IClimateAdaptContent
 from plone.indexer import indexer
 from zope.annotation.interfaces import IAnnotations
 from zope.interface import Interface
 import json
-from city_profile import ICityProfile
 
 
 @indexer(Interface)
@@ -90,3 +91,9 @@ def city_countries(city):
 @indexer(ICityProfile)
 def city_long_description(city):
     return ""
+
+
+# @indexer(IClimateAdaptContent)
+# def climate_adapt_content_searchabletext(obj):
+#     import pdb; pdb.set_trace()
+#     pass
