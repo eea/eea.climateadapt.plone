@@ -1178,6 +1178,8 @@ def import_template_ace_layout_4(site, layout, structure):
         'ContactPoint': "Contact Point",
     }
 
+    if _website and (not _website.startswith('http')):
+        _website = 'http://' + _website
     _contact.append(('ProjectWebSite', _website))
 
     contact_text = render("templates/snippet_contact.pt", {'lines': _contact,
@@ -1203,9 +1205,10 @@ def import_template_ace_layout_4(site, layout, structure):
     # we need to go through each of the tabs and change the structure to be html
 
     payload = []
+    #import pdb; pdb.set_trace()
     for k, v in main['accordion']:
         # TODO: get the keys from dictionary
-        if not k == 'ProjectPartners':
+        if not k == 'Project Partners':
             payload.append((k, v))
         else:
             table = {'rows': v, 'cols': []}
