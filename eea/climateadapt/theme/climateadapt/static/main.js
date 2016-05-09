@@ -205,7 +205,7 @@ $(document).ready(function() {
 		$(nextSlide).fadeIn(fadeInSpeed, function() {
 			$(nextSlide).addClass('active');
 			$(nextToggle).addClass('active');
-			bannerTimer = setTimeout(transitionSlides, 20000);
+			bannerTimer = setTimeout(transitionSlides, 5000);
 		});
 	}
 
