@@ -29,6 +29,34 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     # updateWidgets(form)
 
+    dexteritytextindexer.searchable('title')
+    dexteritytextindexer.searchable('long_description')
+    dexteritytextindexer.searchable('climate_impacts')
+    dexteritytextindexer.searchable('keywords')
+    dexteritytextindexer.searchable('sectors')
+    dexteritytextindexer.searchable('year')
+
+    dexteritytextindexer.searchable('stakeholder_participation')
+    dexteritytextindexer.searchable('success_limitations')
+    dexteritytextindexer.searchable('cost_benefit')
+    dexteritytextindexer.searchable('legal_aspects')
+    dexteritytextindexer.searchable('implementation_time')
+    dexteritytextindexer.searchable('lifetime')
+
+    dexteritytextindexer.searchable('websites')
+    dexteritytextindexer.searchable('source')
+
+    dexteritytextindexer.searchable('implementation_type')
+    dexteritytextindexer.searchable('challenges')
+    dexteritytextindexer.searchable('spatial_layer')
+    dexteritytextindexer.searchable('spatial_values')
+    dexteritytextindexer.searchable('contact')
+    dexteritytextindexer.searchable('measure_type')
+    dexteritytextindexer.searchable('important')
+    dexteritytextindexer.searchable('objectives')
+    dexteritytextindexer.searchable('solutions')
+
+
     form.fieldset('default',
         label=u'Item Description',
         fields=['title', 'long_description', 'climate_impacts', 'keywords',
@@ -201,7 +229,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         vocabulary="eea.climateadapt.acemeasure_implementationtype"
     )
 
-    dexteritytextindexer.searchable('challenges')
     challenges = RichText(
         title=_(u"Challenges"), required=False, default=None,
     )
@@ -215,7 +242,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           value_type=Choice(
                               vocabulary="eea.climateadapt.ace_countries"))
 
-    dexteritytextindexer.searchable('contact')
     contact = RichText(title=_(u"Contact"), required=False, default=u"")
 
     # keywords = List(title=_(u"Keywords"),
@@ -247,10 +273,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     rating = Int(title=_(u"Rating"), required=True, default=0)
 
-    dexteritytextindexer.searchable('objectives')
     objectives = RichText(title=_(u"Objectives"), required=False, default=u"")
 
-    dexteritytextindexer.searchable('solutions')
     solutions = RichText(title=_(u"Solutions"), required=False, default=u"")
 
     # dexteritytextindexer.searchable('summary')

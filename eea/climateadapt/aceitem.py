@@ -24,6 +24,9 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('elements')
     dexteritytextindexer.searchable('year')
 
+    dexteritytextindexer.searchable('websites')
+    dexteritytextindexer.searchable('source')
+
     dexteritytextindexer.searchable('data_type')
     dexteritytextindexer.searchable('storage_type')
     dexteritytextindexer.searchable('spatial_layer')

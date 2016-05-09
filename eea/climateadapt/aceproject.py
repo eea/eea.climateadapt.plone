@@ -15,6 +15,27 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     Defines content-type schema for Ace Project
     """
 
+    dexteritytextindexer.searchable('acronym')
+    dexteritytextindexer.searchable('title')
+    dexteritytextindexer.searchable('lead')
+    dexteritytextindexer.searchable('long_description')
+    dexteritytextindexer.searchable('partners')
+    dexteritytextindexer.searchable('keywords')
+    dexteritytextindexer.searchable('sectors')
+    dexteritytextindexer.searchable('climate_impacts')
+    dexteritytextindexer.searchable('elements')
+    dexteritytextindexer.searchable('funding')
+    dexteritytextindexer.searchable('duration')
+
+    dexteritytextindexer.searchable('website')
+    dexteritytextindexer.searchable('source')
+
+    dexteritytextindexer.searchable('abstracts')
+    dexteritytextindexer.searchable('specialtagging')
+    dexteritytextindexer.searchable('important')
+    dexteritytextindexer.searchable('spatial_layer')
+    dexteritytextindexer.searchable('spatial_values')
+
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['acronym', 'title', 'lead', 'long_description',
@@ -141,7 +162,6 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     directives.omitted(IAddForm, 'spatial_values')
 
     # end
-    dexteritytextindexer.searchable('abstracts')
     abstracts = RichText(title=_(u"Abstracts"),
                          description=_(u"Project abstracts"),
                          required=False,
