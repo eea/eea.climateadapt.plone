@@ -134,9 +134,11 @@ class SingleImporterView(BrowserView):
     def import_aceitems(self):
         from eea.climateadapt._importer import import_aceitem
         from eea.climateadapt._importer import sql
+        from eea.climateadapt._importer.tweak_sql import fix_relations
 
         session = self._make_session()
         eea.climateadapt._importer.session = session
+        fix_relations(session)
         site = self.context
 
         if 'content' not in site.contentIds():

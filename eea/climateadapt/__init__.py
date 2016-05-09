@@ -9,6 +9,10 @@ MessageFactory = MessageFactory('eea.climateadapt')
 import collective.cover.config
 collective.cover.config.DEFAULT_GRID_SYSTEM = 'bootstrap3'
 
+# patch max length URL fragment generation, makes for shorter IDs for content
+from plone.i18n import normalizer
+normalizer.MAX_URL_LENGTH = 100
+
 
 def initialize(context):
 
