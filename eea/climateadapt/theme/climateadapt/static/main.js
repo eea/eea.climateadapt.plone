@@ -91,7 +91,7 @@
 //Add tooltips to glossary terms
 $(document).ready(function() {
             function qtip2Initializer() {
-                // Make sure to only match links to the glossary
+        // Make sure to only match links to the glossary
 		$('a[href*="glossary#link"]').each(function() {
                     var that = this;
 
