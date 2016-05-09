@@ -59,6 +59,33 @@
                 });
             });
         });
+
+		// Check all accordions on the page, add class where necessary
+		var selector = $(".panel-title a")
+		$(selector).each(function(index) {
+			if($(this).text().toLowerCase().indexOf("read more") > -1 || $(this).text().toLowerCase().indexOf("read less") > -1) {
+				console.log("ghag");
+				$(this).parents("div.panel-heading").removeClass('edit-tool-custom-click');
+				$(this).parents("div.panel-heading").addClass('edit-tool-custom-click');
+				$(this).parents("h4.panel-title").removeClass('read-more-acc')
+				$(this).parents("h4.panel-title").addClass('read-more-acc')
+			}
+		});
+		// Add classes to arccodion
+		$('.panel-title a').click(function(){
+			if ($(this).text().toLowerCase().indexOf("read more") > -1 || $(this).text().toLowerCase().indexOf("read less") > -1) {
+			 	var acc_parent = $(this).parents("div.panel-default");
+				$(acc_parent).children().eq(1).removeClass('edit-tool-custom');
+				$(acc_parent).children().eq(1).addClass('edit-tool-custom');
+				$(this).removeClass('read-more-class');
+				$(this).addClass('read-more-class');
+				$(this).text(function (a,b) {
+					return (b == "Read more"
+					? "Read less"
+					: "Read more")
+				});
+			}
+		});
 	});
 
 //Add tooltips to glossary terms
@@ -137,8 +164,6 @@ $(document).ready(function() {
 
 
 })(jQuery);
-
-
 
 // homepage carousel
 //

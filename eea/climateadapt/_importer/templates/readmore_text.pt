@@ -1,7 +1,7 @@
 <div class="" tal:content="structure options/first_text">Body 1</div>
 <div tal:define="verifytext options/second_text" tal:condition="python: len(verifytext) != 0">
     <div class="panel panel-default">
-        <div class="panel-heading edit-tool-custom-click" id="8466-37230-heading" role="tab">
+        <div class="panel-heading" id="8466-37230-heading" role="tab">
           <h4 class="panel-title"><a class="accordion-toggle" aria-controls="8466-37230-body" data-parent=
           "#8466-accordion" data-toggle="collapse" href="#8466-37230-body" role=
           "button">Read more</a></h4>
@@ -14,15 +14,3 @@
         </div>
      </div>
 </div>
-
-<script type="text/javascript">
-    $('.panel-title a').click(function(){
-        $('.panel-collapse').removeClass('edit-tool-custom')
-        $('.panel-collapse').addClass('edit-tool-custom');
-        $('.panel-title a').text(function (a,b) {
-            return (b == "Read more"
-            ? "Read less"
-            : "Read more")
-        })
-    });
-</script>
