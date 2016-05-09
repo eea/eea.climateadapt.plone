@@ -5,4 +5,61 @@
    <element value="medium 650:650"/>
   </property>
  </object>
+ <object name="navtree_properties" meta_type="Plone Property Sheet">
+  <property name="title">NavigationTree properties</property>
+  <property name="sortAttribute" type="string">getObjPositionInParent</property>
+  <property name="sortOrder" type="string">asc</property>
+  <property name="sitemapDepth" type="int">2</property>
+  <property name="name" type="string"/>
+  <property name="root" type="string">/</property>
+  <property name="currentFolderOnlyInNavtree" type="boolean">False</property>
+  <property name="includeTop" type="boolean">True</property>
+  <property name="topLevel" type="int">0</property>
+  <property name="bottomLevel" type="int">0</property>
+  <property name="showAllParents" type="boolean">True</property>
+  <property name="idsNotToList" type="lines"/>
+  <property name="parentMetaTypesNotToQuery" type="lines">
+    <element value="TempFolder"/>
+  </property>
+  <property name="metaTypesNotToList" type="lines">
+    <element value="ATBooleanCriterion"/>
+    <element value="ATDateCriteria"/>
+    <element value="ATDateRangeCriterion"/>
+    <element value="ATListCriterion"/>
+    <element value="ATPortalTypeCriterion"/>
+    <element value="ATReferenceCriterion"/>
+    <element value="ATSelectionCriterion"/>
+    <element value="ATSimpleIntCriterion"/>
+    <element value="ATSimpleStringCriterion"/>
+    <element value="ATSortCriterion"/>
+    <element value="ChangeSet"/>
+    <element value="Discussion Item"/>
+    <element value="Plone Site"/>
+    <element value="TempFolder"/>
+    <element value="ATCurrentAuthorCriterion"/>
+    <element value="ATPathCriterion"/>
+    <element value="ATRelativePathCriterion"/>
+    <element value="eea.climateadapt.aceproject"/>
+    <element value="eea.climateadapt.adaptationoption"/>
+    <element value="eea.climateadapt.guidancedocument"/>
+    <element value="eea.climateadapt.casestudy"/>
+    <element value="eea.climateadapt.indicator"/>
+    <element value="eea.climateadapt.informationportal"/>
+    <element value="eea.climateadapt.mapgraphdataset"/>
+    <element value="eea.climateadapt.organisation"/>
+    <element value="eea.climateadapt.publicationreport"/>
+    <element value="eea.climateadapt.researchproject"/>
+    <element value="eea.climateadapt.tool"/>
+    <element value="eea.climateadapt.city_profile"/>
+    <element value="News Item"/>
+    <element value="Event"/>
+    <element value="Image"/>
+    <element value="File"/>
+    <element value="Document"/>
+    <element value="Link"/>
+    <element value="collective.cover.content"/>
+  </property>
+  <property name="enable_wf_state_filtering" type="boolean">False</property>
+  <property name="wf_states_to_show" type="lines"/>
+ </object>
 </object>
