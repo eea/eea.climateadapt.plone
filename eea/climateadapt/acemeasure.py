@@ -101,7 +101,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     dexteritytextindexer.searchable('stakeholder_participation')
     stakeholder_participation = RichText(
-        title=_(u"Stakeholder participation"), required=False,
+        title=_(u"Stakeholder participation"), required=True,
         default=u"",
         description=_(u"Describe the Information about actors involved, the form of participation and the participation process. Focus should be on the level of participation needed and/or adopted already (from information, to full commitment in the deliberation/implementation process), with useful notes e.g. regarding motivations. (5,000 character limit)"))
 
@@ -135,7 +135,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     websites = List(title=_(u"Websites"),
                     description=_(u"List the Name and Website where the option can be found or is described. Note: may refer to the original document describing a measure and does not have to refer back to the project e.g. collected measures (500 character limit). Please separate each website with semicolon."),
-                    required=False,
+                    required=True,
                     value_type=URI(title=_("A link"), required=False),
                     )
 
@@ -153,7 +153,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
     geochars = Text(
         title=_(u"Geographic characterization"),
-        required=False, default=u"",
+        required=True, default=u"",
         description=_(u"Input the characterisation for this case study")
     )
 

@@ -102,7 +102,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     websites = RichText(title=_(u"Websites"),
                         description=u'List the Name and Website where the item can be found or is described. (500 character limit). Please separate each website with semicolon.',
-                        required=False,)
+                        required=True,)
 
     source = RichText(title=_(u"Source"),
                       required=False,
@@ -112,7 +112,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
     geochars = Text(title=_(u"Geographic characterisation"),
-                    required=False,
+                    required=True,
                     default=u'{"geoElements":{"element":"GLOBAL","macrotrans":null,"biotrans":null,"countries":[],"subnational":[],"city":""}}',
                     description=u"Select the characterisation for this item",
                     )

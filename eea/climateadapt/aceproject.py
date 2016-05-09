@@ -104,7 +104,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     # -----------[ "reference_information" fields ]------------------
     website = TextLine(title=_(u"Website"),
                        description=_(u"List the Name and Website where the item can be found or is described.Please separate each website with semicolon."),
-                       required=False,
+                       required=True,
                        )
     dexteritytextindexer.searchable('source')
     source = RichText(
@@ -118,7 +118,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
     geochars = Text(title=_(u"Geographic characterization"),
                     description=_(u"Select the characterisation for this project"),
-                    required=False,
+                    required=True,
                     )
 
     comments = TextLine(title=_(u"Source"),
