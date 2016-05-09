@@ -1,5 +1,5 @@
 
-<div id="case-studies-homepage-slider-wrapper"> 
+<div id="case-studies-homepage-slider-wrapper">
   <style>
 	/* Portlet CSS Starts Here */
 		/* ======================= */
@@ -8,12 +8,12 @@
 			clear: both;
 			height: 0;
 		}
-		
+
 		.homepage-read-more {
 		    float: right;
 		}
 
-		
+
 
 		#case-studies-homepage-slider-wrapper {
 			background-color: #f0f0f0;
@@ -49,7 +49,7 @@
 			text-indent: -9999px;
 			width: 11px;
 		}
-		
+
 		 #case-studies-homepage-slider-wrapper .case-studies-homepage-slider-controls ul li:first-child {
 			margin-left: 0;
 		}
@@ -69,7 +69,7 @@
 		 #case-studies-homepage-slider-wrapper .case-studies-homepage-slider-content ul li.active {
 			display: list-item;
 		}
-		
+
 		 #case-studies-homepage-slider-wrapper .case-studies-homepage-slider-content ul li.active-content {
 			display: list-item;
 		}
@@ -84,7 +84,7 @@
 			height: 100%;
 			width: 100%;
 		}
-		
+
 		 #case-studies-homepage-slider-wrapper .case-studies-homepage-slider-content .case-studies-homepage-slider-description {
 			float: right;
 			padding-right: 5px;
@@ -130,94 +130,94 @@
 		/* ===================== */
 
   </style>
-  <div class="case-studies-homepage-slider-content"> 
-    <ul class="blank"> 
+  <div class="case-studies-homepage-slider-content">
+    <ul class="blank">
 
-      <li class="first submenu" style="display: none;"> 
-        <div class="case-studies-homepage-slider-image"> 
-          <img src="/++resource++eea.climateadapt/frontpage/first_banner.jpg" alt="About Climate Change Adaptation in Europe" /> 
-        </div> 
-        <div class="case-studies-homepage-slider-description"> 
-          <h2>About Climate Change Adaptation in Europe </h2> 
+      <li class="first submenu" style="display: none;">
+        <div class="case-studies-homepage-slider-image">
+          <img src="/++resource++eea.climateadapt/frontpage/first_banner.jpg" alt="About Climate Change Adaptation in Europe" />
+        </div>
+        <div class="case-studies-homepage-slider-description">
+          <h2>About Climate Change Adaptation in Europe </h2>
           <p> The European Climate Adaptation Platform (Climate-ADAPT) aims to support
             Europe in adapting to <a href="/glossary#linkClimateChange"
               class="glossary-inline-term">climate change </a>. It is an initiative of
             the European Commission and helps users to access and share information on:
-          </p> 
-          <ul> 
-            <li class="active-content first"> Expected climate change in Europe </li> 
-            <li class="active-content"> Current and future <a href="/glossary#linkVulnerability" class="glossary-inline-term">vulnerability </a> of regions and sectors </li> 
-            <li class="active-content"> National and transnational adaptation strategies </li> 
-            <li class="active-content"> <a href="/glossary#linkAdaptation" class="glossary-inline-term">Adaptation </a> case studies and potential adaptation options </li> 
-            <li class="last"> Tools that support adaptation planning </li> 
-          </ul> 
-          <p> 
-            <a class="homepage-read-more" href="adaptation-information/general"><img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a> 
-          </p> 
+          </p>
+          <ul>
+            <li class="active-content first"> Expected climate change in Europe </li>
+            <li class="active-content"> Current and future <a href="/glossary#linkVulnerability" class="glossary-inline-term">vulnerability </a> of regions and sectors </li>
+            <li class="active-content"> National and transnational adaptation strategies </li>
+            <li class="active-content"> <a href="/glossary#linkAdaptation" class="glossary-inline-term">Adaptation </a> case studies and potential adaptation options </li>
+            <li class="last"> Tools that support adaptation planning </li>
+          </ul>
+          <p>
+            <a class="homepage-read-more" href="adaptation-information/general"><img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
+          </p>
 
-        </div> 
-      </li> 
+        </div>
+      </li>
 
-      <li class="" style="display: none;"> 
-        <div class="case-studies-homepage-slider-image"> 
-          <img src="/image/image_gallery?img_id=0&amp;t=1454085734402" alt="Case Study" /> 
-        </div> 
-        <div class="case-studies-homepage-slider-description"> 
-          <h2>Storm water management in Växjö - the Linnaeus Canal and Växjö Lake lagoons, Sweden</h2> 
+      <li class="" style="display: none;">
+        <div class="case-studies-homepage-slider-image">
+          <img src="/image/image_gallery?img_id=0&amp;t=1454085734402" alt="Case Study" />
+        </div>
+        <div class="case-studies-homepage-slider-description">
+          <h2>Storm water management in Växjö - the Linnaeus Canal and Växjö Lake lagoons, Sweden</h2>
           <p>
           </p>
-          <p>The City of Växjö is situated in the southern part of Sweden, surrounded by forests and lakes.  </p> 
-          <a class="homepage-read-more" href="viewmeasure?ace_measure_id=4301"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a> 
-        </div> 
-      </li> 
+          <p>The City of Växjö is situated in the southern part of Sweden, surrounded by forests and lakes.  </p>
+          <a class="homepage-read-more" href="viewmeasure?ace_measure_id=4301"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
+        </div>
+      </li>
 
       <li class="" style="display: none;">
 
-        <div class="case-studies-homepage-slider-image"> 
-          <img src="/++resource++eea.climateadapt/frontpage/aceitem_picture.jpg" alt="Ace Item" /> 
-        </div> 
-        <div class="case-studies-homepage-slider-description"> 
-          <h2>CLIPART project </h2> 
-          <p>CLImatic Planning And Reviewing Tools for regions and local authorities </p> 
+        <div class="case-studies-homepage-slider-image">
+          <img src="/++resource++eea.climateadapt/frontpage/aceitem_picture.jpg" alt="Ace Item" />
+        </div>
+        <div class="case-studies-homepage-slider-description">
+          <h2>CLIPART project </h2>
+          <p>CLImatic Planning And Reviewing Tools for regions and local authorities </p>
           <a class="homepage-read-more" href="projects1?ace_project_id=7501">
-            <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a> 
-        </div> 
-      </li> 
+            <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
+        </div>
+      </li>
 
-      <li class="" style="display: none;"> 
-        <div class="case-studies-homepage-slider-image"> 
+      <li class="" style="display: none;">
+        <div class="case-studies-homepage-slider-image">
           <img src="/++resource++eea.climateadapt/frontpage/events.jpg" alt="Events" />
 
-        </div> 
-        <div class="case-studies-homepage-slider-description"> 
-          <h2>8th European Conference on Sustainable Cities &amp; Towns </h2> 
-          <p> </p> 
-          <a class="homepage-read-more" href="http://conferences.sustainablecities.eu/basquecountry2016/"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a> 
-        </div> 
-      </li> 
+        </div>
+        <div class="case-studies-homepage-slider-description">
+          <h2>8th European Conference on Sustainable Cities &amp; Towns </h2>
+          <p> </p>
+          <a class="homepage-read-more" href="http://conferences.sustainablecities.eu/basquecountry2016/"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
+        </div>
+      </li>
 
-      <li class="last active" style="display: list-item;"> 
-        <div class="case-studies-homepage-slider-image"> 
+      <li class="" style="display: none;"> 
+        <div class="case-studies-homepage-slider-image">
           <img src="/++resource++eea.climateadapt/frontpage/mayors_adapt.jpg" alt="Mayors Adapt" />
-        </div> 
-        <div class="case-studies-homepage-slider-description"> 
+        </div>
+        <div class="case-studies-homepage-slider-description">
           <h2 style="margin-bottom: 10px">Mayors Adapt: Promoting urban leadership in adaptation to climate change </h2>
 
           <div style="float:right; margin: 0 8px 0 10px;">
             <img alt="" src="/++resource++eea.climateadapt/frontpage/mayors-adapt-logo.png" style="height: 60px; width: 126px;border: 1px solid #aebe20" />
-          </div> 
+          </div>
           <p>The Covenant of Mayors Initiative on Climate Change Adaptation has been set up by the European Commission to engage cities in taking action on climate change adaptation.  </p>
-          <p>The initiative, provides a platform for supporting adaptation, networking and public awareness at the local level where the impacts of climate change will be felt the most.  </p> 
+          <p>The initiative, provides a platform for supporting adaptation, networking and public awareness at the local level where the impacts of climate change will be felt the most.  </p>
 
-          <a class="homepage-read-more" href="http://www.mayors-adapt.eu" target="_blank"> 
+          <a class="homepage-read-more" href="http://www.mayors-adapt.eu" target="_blank">
             <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Want to join the initiative?
           </a>
-        </div> 
-      </li> 
-    </ul> 
-  </div> 
-  <div class="case-studies-homepage-slider-controls"> 
-    <ul id="slidercontainer"> 
-    </ul> 
-  </div> 
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="case-studies-homepage-slider-controls">
+    <ul id="slidercontainer">
+    </ul>
+  </div>
 </div>

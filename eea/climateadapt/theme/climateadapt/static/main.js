@@ -186,8 +186,7 @@ $(document).ready(function() {
 	var activeIndex=1;
 	var fadeOutSpeed = 200;
 	var fadeInSpeed = 200;
-	var bannerTimer = setTimeout(transitionSlides, 20000);
-
+	var bannerTimer = setTimeout(transitionSlides, 200);
 	function transitionSlides(){
 		var currentSlide = $('#case-studies-homepage-slider-wrapper .case-studies-homepage-slider-content ul.blank>li:nth-child(' + activeIndex + ')');
 		var currentToggle = $('#case-studies-homepage-slider-wrapper .case-studies-homepage-slider-controls ul>li:nth-child(' + activeIndex + ')');
