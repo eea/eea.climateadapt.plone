@@ -7,17 +7,10 @@
  </object>
  <object name="navtree_properties" meta_type="Plone Property Sheet">
   <property name="title">NavigationTree properties</property>
-  <property name="sortAttribute" type="string">getObjPositionInParent</property>
-  <property name="sortOrder" type="string">asc</property>
   <property name="sitemapDepth" type="int">2</property>
   <property name="name" type="string"/>
   <property name="root" type="string">/</property>
-  <property name="currentFolderOnlyInNavtree" type="boolean">False</property>
-  <property name="includeTop" type="boolean">True</property>
-  <property name="topLevel" type="int">0</property>
-  <property name="bottomLevel" type="int">0</property>
   <property name="showAllParents" type="boolean">True</property>
-  <property name="idsNotToList" type="lines"/>
   <property name="parentMetaTypesNotToQuery" type="lines">
     <element value="TempFolder"/>
   </property>
@@ -59,7 +52,5 @@
     <element value="Link"/>
     <element value="collective.cover.content"/>
   </property>
-  <property name="enable_wf_state_filtering" type="boolean">False</property>
-  <property name="wf_states_to_show" type="lines"/>
  </object>
 </object>

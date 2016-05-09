@@ -279,7 +279,7 @@
         template="pt/resourceregistries.pt"
         permission="zope2.View"
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        />
+        /> 
 
     <!-- SharePageSubMenu -->
     <browser:viewlet
