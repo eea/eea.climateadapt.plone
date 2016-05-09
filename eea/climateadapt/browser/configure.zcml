@@ -307,6 +307,14 @@
         permission="zope2.View"
         />
 
+    <browser:viewlet
+        name="plone.path_bar"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        class=".viewlets.PathBarViewlet"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        permission="zope2.View"
+        />
+
     <!-- <browser:page -->
     <!--     for="*" -->
     <!--     name="breadcrumbs_view" -->
