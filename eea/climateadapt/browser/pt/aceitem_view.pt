@@ -1,4 +1,5 @@
 <html
+  /a
   xmlns="http://www.w3.org/1999/xhtml"
   xml:lang="en"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
@@ -13,14 +14,15 @@
       <tal:main-macro metal:define-macro="content-core">
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
-          <div metal:fill-slot="ace-top-slot">
+          <metal:topslot metal:fill-slot="ace-top-slot">
+            <div >
+              <a href="" tal:attributes="href view/link_to_original">Original aceitem</a>
+              <h2 tal:content="view/type_label">Data Type</h2>
+              <h1 tal:content="python: context.title">Title here</h1>
+            </div>
+          </metal:topslot>
 
-            <a href="" tal:attributes="href view/link_to_original">Original aceitem</a>
-            <h2 tal:content="view/type_label">Data Type</h2>
-            <h1 tal:content="python: context.title">Title here</h1>
-          </div>
-
-          <div metal:fill-slot="ace-left-slot">
+          <div class="aceitem-left" metal:fill-slot="ace-left-slot">
             <h3>Description</h3>
             <div tal:content="structure python: view.w['long_description'].render()">description here</div>
 
@@ -47,7 +49,7 @@
 
           </div>
 
-          <div metal:fill-slot="ace-right-slot">
+          <div class="aceitem-right" metal:fill-slot="ace-right-slot">
 
             <h4>Keywords</h4>
             <tal:block content="structure context/keywords"/>
@@ -73,9 +75,9 @@
           </div>
 
           <!-- <tal:def tal:define="sector_w python:view.w['sectors']" > -->
-          <!--   <!&#45;&#45; <tal:widget tal:replace="structure sector_w/@@ploneform&#38;#45;render&#38;#45;widget"/> &#45;&#45;> -->
-          <!--   <tal:widget tal:replace="structure sector_w/render"/> -->
-          <!-- </tal:def> -->
+            <!--   <!&#45;&#45; <tal:widget tal:replace="structure sector_w/@@ploneform&#38;#45;render&#38;#45;widget"/> &#45;&#45;> -->
+            <!--   <tal:widget tal:replace="structure sector_w/render"/> -->
+            <!-- </tal:def> -->
           <!--  -->
           <div style="display:none" tal:content="python:view.w.keys()"/>
         </metal:macro>

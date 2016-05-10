@@ -14,7 +14,9 @@
   <metal:macro define-macro="ace_layout">
     <div class="aceitem_page">
 
-      <metal:slot metal:define-slot="ace-top-slot"></metal:slot>
+      <div class="aceitem_top">
+        <metal:slot metal:define-slot="ace-top-slot"></metal:slot>
+      </div>
 
       <div class="col-md-9">
         <div class="ace-content-column">

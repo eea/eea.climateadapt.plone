@@ -7,7 +7,7 @@ from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.interfaces import IEditForm, IAddForm
 from zope.interface import implements
-from zope.schema import Bool, Choice, Int, List, Text, TextLine
+from zope.schema import Bool, Choice, Int, List, Text, TextLine, Tuple
 
 
 class IAceProject(form.Schema, IImageScaleTraversable):
@@ -27,7 +27,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('funding')
     dexteritytextindexer.searchable('duration')
 
-    dexteritytextindexer.searchable('website')
+    dexteritytextindexer.searchable('websites')
     dexteritytextindexer.searchable('source')
 
     dexteritytextindexer.searchable('abstracts')
@@ -44,13 +44,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     form.fieldset('reference_information',
                   label=u'Reference information',
-                  fields=['website', 'source'])
-
-    # TODO:
-    # form.fieldset('documents',
-    #     label=u'Documents',
-    #     fields=[]
-    # )
+                  fields=['websites', 'source'])
 
     form.fieldset('geographic_information',
                   label=u'Geographic Information',
@@ -85,9 +79,11 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                         )
 
     dexteritytextindexer.searchable('keywords')
-    keywords = RichText(title=_(u"Keywords"),
-                        description=_(u"Provide Keywords related to the project. Separate each keyword with a comma. For example, keyword 1, keyword 2 etc."),
+    keywords = Tuple(title=_(u"Keywords"),
+                        description=_(u"Provide Keywords related to the project."),
                         required=True,
+                        value_type=TextLine(),
+                        missing_value=(),
                         )
 
     sectors = List(title=_(u"Sectors"),
@@ -123,17 +119,22 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                         )
 
     # -----------[ "reference_information" fields ]------------------
-    website = TextLine(title=_(u"Website"),
-                       description=_(u"List the Name and Website where the item can be found or is described.Please separate each website with semicolon."),
-                       required=True,
-                       )
+    # website = TextLine(title=_(u"Website"),
+    #                    description=_(u"List the Name and Website where the item can be found or is described.Please separate each website with semicolon."),
+    #                    required=True,
+    #                    )
+    websites = Tuple(title=_(u"Website"),
+                    description=_(u"List the Website where the item can be found or is described. Please place each website on a new line"),
+                    required=True,
+                    value_type=TextLine(),
+                    missing_value=(),
+                    )
+
     dexteritytextindexer.searchable('source')
     source = RichText(
         title=_(u"Source"),
         description=_(u"Provide source from which project was retrieved (e.g. specific DB) "),
         required=False)
-
-    # -----------[ "documents" fields ]------------------
 
     # -----------[ "geographic_information" fields ]------------------
     form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
@@ -160,8 +161,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     directives.omitted(IAddForm, 'spatial_layer')
     directives.omitted(IEditForm, 'spatial_values')
     directives.omitted(IAddForm, 'spatial_values')
-
     # end
+
     abstracts = RichText(title=_(u"Abstracts"),
                          description=_(u"Project abstracts"),
                          required=False,
