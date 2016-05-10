@@ -9,8 +9,9 @@ class AceProjectView(DefaultView, AceViewApi):
     def linkify(self, text):
         if not text:
             return
-        if not text.startswith('http'):
-            return "http://" + text
+        if text.startswith('http'):
+            return text
+        return "http://" + text
 
     def website_links(self, text):
         return text

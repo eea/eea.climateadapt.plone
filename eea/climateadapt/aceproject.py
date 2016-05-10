@@ -39,8 +39,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['acronym', 'title', 'lead', 'long_description',
-                          'partners', 'keywords', 'sectors', 'climate_impacts',
-                          'elements', 'funding', 'duration'])
+                          'abstracts', 'partners', 'keywords', 'sectors',
+                          'climate_impacts', 'elements', 'funding', 'duration'])
 
     form.fieldset('reference_information',
                   label=u'Reference information',
@@ -60,6 +60,11 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                      description=_(u"Project title or name"),
                      required=True,
                      )
+
+    abstracts = RichText(title=_(u"Abstracts"),
+                         description=_(u"Project abstracts"),
+                         required=False,
+                         )
 
     lead = TextLine(title=_(u"Lead"),
                     description=_(u"Lead organisation or individual of the project"),
@@ -143,14 +148,12 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                     required=True,
                     )
 
-    comments = TextLine(title=_(u"Source"),
-                        description=_(u"Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]"),
-                        required=False,
-                        )
+    comments = Text(title=_(u"Source"),
+                    description=_(u"Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]"),
+                    required=False,
+                    )
 
     # -----------[ "omitted" fields ]------------------
-    directives.omitted(IEditForm, 'abstracts')
-    directives.omitted(IAddForm, 'abstracts')
     directives.omitted(IEditForm, 'specialtagging')
     directives.omitted(IAddForm, 'specialtagging')
     directives.omitted(IEditForm, 'important')
@@ -162,11 +165,6 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     directives.omitted(IEditForm, 'spatial_values')
     directives.omitted(IAddForm, 'spatial_values')
     # end
-
-    abstracts = RichText(title=_(u"Abstracts"),
-                         description=_(u"Project abstracts"),
-                         required=False,
-                         )
 
     specialtagging = TextLine(
         title=_(u"Special Tagging"),
