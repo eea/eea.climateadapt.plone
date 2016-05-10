@@ -187,6 +187,34 @@ class SingleImporterView(BrowserView):
         else:
             return "Nothing to import"
 
+    def import_projects(self):
+        from eea.climateadapt._importer import import_aceproject
+        from eea.climateadapt._importer import sql
+
+        session = self._make_session()
+        eea.climateadapt._importer.session = session
+        site = self.context
+
+        if 'aceprojects' not in site.contentIds():
+            site.invokeFactory("Folder", 'aceprojects')
+            site['aceprojects'].edit(title='Projects')
+
+        to_import = session.query(sql.AceProject)
+        id = self.request.form.get('id')
+        if id:
+            to_import = to_import.filter_by(projectid=int(id))
+
+        imported = []
+        for project in to_import:
+            obj = import_aceproject(project, site['aceprojects'])
+            imported.append(obj)
+            print "Imported Project {0} from id {1}".format(
+                obj.absolute_url(), project.projectid)
+        if imported:
+            return self.request.response.redirect(imported[0].absolute_url())
+        else:
+            return "Nothing to import"
+
     def import_journal_articles(self):
         from eea.climateadapt._importer import import_journal_articles
 

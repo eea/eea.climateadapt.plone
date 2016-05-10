@@ -532,17 +532,14 @@ div.position-0 { margin-left: -100%; }
     color: inherit;
     padding: 0.1em 0.4em;
     background-color: #EBEBEB;
-    margin-bottom:0.6em;
+    margin-top: 1em;
+    margin-bottom:0.4em;
 }
 
 .ace-content-column h5 {
     font-size:100%;
     color: inherit;
-}
-
-#aceitem_sidebar h4 {
-    font-size:100%;
-    color: inherit;
+    padding-top:0.6em;
 }
 
 /* Breadcrumb fixes */
@@ -593,9 +590,17 @@ div.position-0 { margin-left: -100%; }
 
 #aceitem_sidebar {
     background-color: #afc8df;
-    padding: 1em;
+    padding: 0 1em 1em 1em;
     margin-left:1em;
+    font-size: 86%;
 }
+
+#aceitem_sidebar h4 {
+    font-size:100%;
+    color: inherit;
+    padding-top: 1em;
+}
+
 
 #aceitem_sidebar ul {
     margin-left: 0em;
@@ -871,6 +876,11 @@ a.bluebutton:visited {
     color: #fff;
     font-weight: bold;
     vertical-align: middle;
+}
+
+.share-your-info-ace-button {
+    padding-top:2em;
+    text-align: right;
 }
 .tile-footer button {
     color: #02213d !important;

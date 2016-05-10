@@ -8,6 +8,7 @@
     <ul>
       <li><a tal:attributes="href string:$site_url/layout_importer?type=aceitems">Import aceitems</a></li>
       <li><a tal:attributes="href string:$site_url/layout_importer?type=casestudy">Import casestudy</a></li>
+      <li><a tal:attributes="href string:$site_url/layout_importer?type=projects">Import AceProjects</a></li>
       <li><a tal:attributes="href string:$site_url/layout_importer?type=casestudy&id=5003">Import casestudy 5003</a></li>
       <li><a tal:attributes="href string:$site_url/layout_importer?type=layout_type&template=ast">Import AST section</a></li>
       <li><a tal:attributes="href string:$site_url/layout_importer?type=layout_type&template=urban_ast">Import UrbanAST section</a></li>

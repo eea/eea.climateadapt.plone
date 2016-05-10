@@ -26,27 +26,40 @@
           </div>
 
           <div metal:fill-slot="ace-left-slot">
-            <!-- <h2 tal:content="context/acronym">Acronym here</h2> -->
-            <h3>Description:</h3>
-            <tal:block content="structure python: view.w['abstracts'].render()"/>
-            <!-- context/abstracts/output -->
+            <tal:def define="description python: view.w['abstracts'].render();
+              lead context/lead;
+              partners python: view.w['partners'].render();
+              funding context/funding;
+              websites context/websites;
+              ">
+              <h3>Description:</h3>
+              <tal:block content="structure description"/>
 
-            <h4>Project information</h4>
+              <h4>Project information</h4>
 
-            <h5>Lead</h5>
-            <p tal:replace="structure context/lead"/>
+              <tal:cond condition="lead">
+                <h5>Lead</h5>
+                <p tal:replace="structure lead"/>
+              </tal:cond>
 
-            <h5>Partners</h5>
-            <p tal:replace="structure python: view.w['partners'].render()"/>
+              <tal:cond condition="partners">
+                <h5>Partners</h5>
+                <p tal:replace="structure partners"/>
+              </tal:cond>
 
-            <h5>Source of funding</h5>
-            <p tal:replace="structure context/funding"/>
+              <tal:cond condition="funding">
+                <h5>Source of funding</h5>
+                <p tal:replace="structure funding"/>
+              </tal:cond>
 
-            <h4>Reference information</h4>
-            <h5>Websites:</h5>
-            <p>
-              <a tal:attributes="href python:view.linkify(context.website)" tal:content="context/website">Websites here</a>
-            </p>
+              <h4>Reference information</h4>
+              <h5>Websites:</h5>
+              <ul>
+                <li tal:repeat="link websites">
+                  <a tal:attributes="href python:view.linkify(link)" tal:content="link">Websites here</a>
+                </li>
+              </ul>
+            </tal:def>
           </div>
 
           <div metal:fill-slot="ace-right-slot">
@@ -55,13 +68,13 @@
             <h4>Duration</h4>
             <p tal:replace="structure context/duration"/>
             <h4>Climate impacts</h4>
-            <p tal:content="structure python:view.w['climate_impacts'].render()"/>
+            <p tal:replace="structure python:view.w['climate_impacts'].render()"/>
             <h4>Elements</h4>
-            <p tal:content="structure python:view.w['elements'].render()"/>
+            <p tal:replace="structure python:view.w['elements'].render()"/>
             <h4>Sectors</h4>
-            <p tal:content="structure python:view.w['sectors'].render()"/>
+            <p tal:replace="structure python:view.w['sectors'].render()"/>
             <h4>Geographic characterization</h4>
-            <p tal:content="structure python:view.render_geochar(context.geochars)"/>
+            <p tal:replace="structure python:view.render_geochar(context.geochars)"/>
           </div>
         </metal:macro>
 

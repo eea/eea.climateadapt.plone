@@ -35,14 +35,13 @@ from eea.climateadapt._importer.utils import make_urbanast_navigation_tile
 from eea.climateadapt._importer.utils import make_urbanmenu_title
 from eea.climateadapt._importer.utils import make_view_tile
 from eea.climateadapt._importer.utils import pack_to_table
-from eea.climateadapt._importer.utils import parse_settings, s2l    #, printe
+from eea.climateadapt._importer.utils import parse_settings    #, printe
 from eea.climateadapt._importer.utils import render
 from eea.climateadapt._importer.utils import render_accordion
 from eea.climateadapt._importer.utils import render_tabs
-from eea.climateadapt._importer.utils import s2li
+from eea.climateadapt._importer.utils import s2li, t2r, r2t, s2l
 from eea.climateadapt._importer.utils import stamp_cover
 from eea.climateadapt._importer.utils import strip_xml
-from eea.climateadapt._importer.utils import t2r
 from eea.climateadapt._importer.utils import to_decimal
 from eea.climateadapt._importer.utils import write_links
 from eea.climateadapt.interfaces import IASTNavigationRoot
@@ -67,6 +66,7 @@ from persistent.list import PersistentList
 from plone.api import portal
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from pytz import utc
+from six.moves.html_parser import HTMLParser
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from z3c.relationfield.relation import RelationValue
@@ -93,6 +93,9 @@ additional_sharepage_layouts = [
     '/share-your-info/indicators',
     '/share-your-info/map-graph-data'
 ]
+
+
+html_unescape = HTMLParser().unescape
 
 
 @log_call
@@ -143,11 +146,12 @@ def import_aceproject(data, location):
         #long_description=t2r(data.description),    # doesn't have description
         acronym=data.acronym,
         lead=data.lead,
-        website=data.website,
+        websites=s2l(html_unescape(data.website)),
         abstracts=t2r(data.abstracts),
         source=t2r(data.source),
         partners=t2r(data.partners),
-        keywords=t2r(data.keywords),
+        #keywords=t2r(data.keywords),
+        keywords=s2l(r2t(data.keywords), separators=[';', ',']),
         sectors=s2l(data.sectors),
         elements=s2l(data.element),
         climate_impacts=s2l(data.climateimpacts),

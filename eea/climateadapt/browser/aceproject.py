@@ -11,3 +11,6 @@ class AceProjectView(DefaultView, AceViewApi):
             return
         if not text.startswith('http'):
             return "http://" + text
+
+    def website_links(self, text):
+        return text

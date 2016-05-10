@@ -116,6 +116,15 @@ def t2r(text):
     return RichTextValue(text or '', 'text/html', 'text/html')
 
 
+def r2t(text):
+    # convert html strings to plain text
+    nodes = lxml.html.fragments_fromstring(text)
+    if nodes and isinstance(nodes[0], basestring):
+        # a plain text is not converted to etree by lxml
+        return u'\r'.join(nodes).strip()
+    return u'\r'.join([t.text_content() for t in nodes]).strip()
+
+
 def to_decimal(val):
     if not isinstance(val, float):
         raise ValueError("Not a float: {0}".format(val))
