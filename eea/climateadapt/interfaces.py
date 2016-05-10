@@ -54,3 +54,8 @@ class IMayorAdaptRoot(Interface):
 class ICitiesListingsRoot(Interface):
     """ A marker interface for /city-profile
     """
+
+
+class IContentRoot(Interface):
+    """ A marker interface for /content
+    """

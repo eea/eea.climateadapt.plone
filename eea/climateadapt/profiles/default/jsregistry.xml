@@ -35,4 +35,9 @@
         cookable="True" enabled="False" expression=""
         id="livesearch.js" />
 
+    <javascript authenticated="False" bundle="default" cacheable="True"
+        compression="safe" conditionalcomment="" cookable="True" enabled="False"
+        id="++resource++jquery.jstree.js" inline="False"
+        insert-after="++resource++jquery.bbq.js"/>
+
 </object>

@@ -47,6 +47,7 @@ from eea.climateadapt._importer.utils import write_links
 from eea.climateadapt.interfaces import IASTNavigationRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
 from eea.climateadapt.interfaces import ICitiesListingsRoot
+from eea.climateadapt.interfaces import IContentRoot
 from eea.climateadapt.interfaces import IClimateAdaptSharePage
 from eea.climateadapt.interfaces import ICountriesRoot
 from eea.climateadapt.interfaces import IMayorAdaptRoot
@@ -440,6 +441,7 @@ no_import_layouts = [
     '/mayors-adapt',
     '/newregion',
     '/map-viewer',  # TODO: add a browser view for this one
+    '/content',
 ]
 
 # TO DO
@@ -2184,6 +2186,11 @@ def tweak_site(site):
     cplpage = site['city-profile']
     alsoProvides(cplpage, ICitiesListingsRoot)
     cplpage.setLayout('@@cities-listing')
+
+    # content page
+    contentpage = site['content']
+    alsoProvides(contentpage, IContentRoot)
+    contentpage.setLayout('@@content')
 
     # apply local roles, to enable special CCA workflows
     for name in ['content', 'aceprojects', 'adaptationoption']:
