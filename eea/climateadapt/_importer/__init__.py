@@ -145,11 +145,10 @@ def import_aceproject(data, location):
         location,
         'eea.climateadapt.aceproject',
         title=data.title,
-        #long_description=t2r(data.description),    # doesn't have description
         acronym=data.acronym,
         lead=data.lead,
         websites=s2l(html_unescape(data.website)),
-        abstracts=t2r(data.abstracts),
+        long_description=t2r(data.abstracts),
         source=t2r(data.source),
         partners=t2r(data.partners),
         #keywords=t2r(data.keywords),

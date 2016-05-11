@@ -26,7 +26,7 @@
           </div>
 
           <div metal:fill-slot="ace-left-slot">
-            <tal:def define="description python: view.w['abstracts'].render();
+            <tal:def define="description python: view.w['long_description'].render();
               lead context/lead;
               partners python: view.w['partners'].render();
               funding context/funding;

@@ -30,7 +30,6 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('websites')
     dexteritytextindexer.searchable('source')
 
-    dexteritytextindexer.searchable('abstracts')
     dexteritytextindexer.searchable('specialtagging')
     dexteritytextindexer.searchable('important')
     dexteritytextindexer.searchable('spatial_layer')
@@ -39,8 +38,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['acronym', 'title', 'lead', 'long_description',
-                          'abstracts', 'partners', 'keywords', 'sectors',
-                          'climate_impacts', 'elements', 'funding', 'duration'])
+                          'partners', 'keywords', 'sectors', 'climate_impacts',
+                          'elements', 'funding', 'duration'])
 
     form.fieldset('reference_information',
                   label=u'Reference information',
@@ -61,22 +60,17 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                      required=True,
                      )
 
-    abstracts = RichText(title=_(u"Abstracts"),
-                         description=_(u"Project abstracts"),
-                         required=False,
-                         )
+    dexteritytextindexer.searchable('long_description')
+    long_description = RichText(
+        title=_(u"Abstracts"),
+        description=_(u"Provide information focusing on project output. "
+                      u"Possibly on specific Website features."),
+        required=True,
+    )
 
     lead = TextLine(
         title=_(u"Lead"),
         description=_(u"Lead organisation or individual of the project"),
-        required=True,
-    )
-
-    dexteritytextindexer.searchable('long_description')
-    long_description = RichText(
-        title=_(u"Description"),
-        description=_(u"Provide information focusing on project output. "
-                      u"Possibly on specific Website features."),
         required=True,
     )
 
