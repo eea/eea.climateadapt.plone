@@ -192,7 +192,8 @@ def import_adaptationoption(data, location):
         implementation_time=t2r(data.implementationtime),
         implementation_type=data.implementationtype,
         #keywords=s2l(data.keywords, separators=[';', ',']),
-        keywords=t2r(data.keywords),
+        #keywords=t2r(data.keywords),
+        keywords=s2l(r2t(data.keywords), separators=[';', ',']),
         legal_aspects=t2r(data.legalaspects),
         lifetime=t2r(data.lifetime),
         long_description=t2r(data.description),
@@ -208,7 +209,8 @@ def import_adaptationoption(data, location):
         stakeholder_participation=t2r(data.stakeholderparticipation),
         success_limitations=t2r(data.succeslimitations),
         title=data.name,
-        websites=s2l(data.website),
+        #websites=s2l(data.website),
+        websites=s2l(html_unescape(data.website)),
     )
     item._acemeasure_id = data.measureid
     item.reindexObject()

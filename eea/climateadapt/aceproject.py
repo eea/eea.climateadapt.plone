@@ -7,7 +7,7 @@ from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.interfaces import IEditForm, IAddForm
 from zope.interface import implements
-from zope.schema import Bool, Choice, Int, List, Text, TextLine, Tuple
+from zope.schema import Bool, Choice, Int, List, Text, TextLine, Tuple, URI
 
 
 class IAceProject(form.Schema, IImageScaleTraversable):
@@ -139,7 +139,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         description=_(u"List the Website where the item can be found or is "
                       u"described. Please place each website on a new line"),
         required=True,
-        value_type=TextLine(),
+        value_type=URI(),
         missing_value=(),
     )
 

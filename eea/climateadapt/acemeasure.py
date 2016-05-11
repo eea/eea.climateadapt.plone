@@ -12,6 +12,7 @@ from z3c.form.interfaces import IAddForm
 from z3c.form.interfaces import IEditForm
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.interface import implements
+from zope.schema import Tuple
 from zope.schema import URI, Bool, Choice, Decimal, Int, List, Text, TextLine
 
 
@@ -110,9 +111,13 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
             vocabulary="eea.climateadapt.aceitems_climateimpacts",),
     )
 
-    keywords = RichText(title=_(u"Keywords"),
-                   description=_(u"Describe and tag this item with relevant keywords. Separate each keyword with a comma. For example, example keyword 1, example keyword 2 (1,000 character limit)"),
-                   required=True,)
+    keywords = Tuple(
+        title=_(u"Keywords"),
+        description=_(u"Describe and tag this item with relevant keywords."),
+        required=True,
+        value_type=TextLine(),
+        missing_value=(),
+    )
 
     sectors = List(title=_(u"Sectors"),
                    description=_(u"Select one or more relevant sector policies that this item relates to."),
@@ -161,11 +166,16 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     # -----------[ "reference_information" fields ]------------------
 
-    websites = List(title=_(u"Websites"),
-                    description=_(u"List the Name and Website where the option can be found or is described. Note: may refer to the original document describing a measure and does not have to refer back to the project e.g. collected measures (500 character limit). Please separate each website with semicolon."),
-                    required=True,
-                    value_type=URI(title=_("A link"), required=False),
-                    )
+    websites = Tuple(
+        title=_(u"Website"),
+        description=_(u"List the Website where the option can be found"
+                      u" or is described. Note: may refer to the original "
+                      u"document describing a measure and does not have to "
+                      u"refer back to the project e.g. collected measures."),
+        required=True,
+        value_type=URI(),
+        missing_value=(),
+    )
 
     dexteritytextindexer.searchable('source')
     source = RichText(title=_(u"Source"),
