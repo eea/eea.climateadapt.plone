@@ -37,6 +37,14 @@
               <div tal:content="python:u', '.join(context.Subject())" />
             </tal:block>
 
+            <h4 tal:define="file_nr context/contentValues">Guidance Documents (<span tal:content="python: len(file_nr)"></span>) </h4>
+            <ul>
+                <li tal:repeat="file context/contentValues">
+                    <a tal:attributes="href file/absolute_url" tal:content="file/Title">
+                    </a>
+                </li>
+            </ul>
+
             <h4>Keywords</h4>
             <tal:block content="structure context/keywords" />
 
