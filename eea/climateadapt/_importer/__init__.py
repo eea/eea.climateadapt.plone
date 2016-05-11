@@ -1674,8 +1674,11 @@ def import_template_2_columns_iii(site, layout, structure):
 
     assert(len(structure) == 2 or len(structure) == 3)
 
+    #import pdb; pdb.set_trace()
     # title = structure['name']
     title = structure['column-1'][0][1]['portlet_title']
+    if not title:
+        title = structure['name']
     body = structure['column-1'][0][1]['content'][0]
 
     cover = create_cover_at(site, layout.friendlyurl, title=title)
@@ -1683,19 +1686,61 @@ def import_template_2_columns_iii(site, layout, structure):
     stamp_cover(cover, layout)
 
     # there are three pages that use dynamic text (faq items)
-    if 'dynamic' in [x[0] for x in structure['column-1'][0][1]['content']]:
-        htmlstring = ''
-        for row in structure['column-1'][0][1]['content']:
-            row_type = row[0]
-            if row_type == 'text':
-                htmlstring += row[2][0]
-            elif row_type == 'dynamic':
-                question = row[2][0][2][0]
-                newquestion = '<p class="ugquestion">' + question + '</p>'
-                answer = row[2][1][2][0]
-                htmlstring += newquestion + answer
-        main_content_tile = make_richtext_with_title_tile(cover,
-                                                          {'text': htmlstring, 'title': ''})
+    portlet_types = [x[0] for x in structure['column-1'][0][1]['content']]
+    portlet_names = [x[1] for x in structure['column-1'][0][1]['content']]
+    #import pdb; pdb.set_trace()
+    if 'dynamic' in portlet_types:
+        # a page with readmore structure
+        if 'Body' in portlet_names and 'ReadMoreBody' in portlet_names:
+
+            main = {}
+            image_id = structure['column-1'][0][1]['content'][0][2][0]
+            image = get_repofile_by_id(site, image_id)
+
+            title = structure['column-1'][0][1]['content'][1][2][0]
+            body = structure['column-1'][0][1]['content'][2][2][0]
+            readmore = structure['column-1'][0][1]['content'][3][2][0]
+
+            main['title'] = title
+            main['body'] = body
+            main['readmore'] = readmore
+
+            main['image'] = {
+                'title': image.Title(),
+                'thumb': localize(image, site) + "/@@images/image",
+            }
+
+            cover.aq_parent.edit(title=main['title'])   # Fix cover parent title
+
+            main_content = render(
+                'templates/richtext_readmore_and_image.pt', {'payload': main})
+
+            main_content_tile = make_richtext_with_title_tile(
+                cover, {'text': main_content, 'title': ''})
+
+            sidebar_tiles = make_tiles(cover, structure['column-2'])
+            sidebar_group = make_group(3, *sidebar_tiles)
+            main_content_group = make_group(9, main_content_tile)
+            layout = make_layout(make_row(main_content_group, sidebar_group))
+            layout = json.dumps(layout)
+
+            cover.cover_layout = layout
+            cover.setLayout('standard')
+            return cover
+
+        else:
+            htmlstring = ''
+            for row in structure['column-1'][0][1]['content']:
+                row_type = row[0]
+                if row_type == 'text':
+                    htmlstring += row[2][0]
+                elif row_type == 'dynamic':
+                    question = row[2][0][2][0]
+                    newquestion = '<p class="ugquestion">' + question + '</p>'
+                    answer = row[2][1][2][0]
+                    htmlstring += newquestion + answer
+            main_content_tile = make_richtext_with_title_tile(
+                cover, {'text': htmlstring, 'title': ''})
 
         side_group = make_group(5)
         main_group = make_group(7, main_content_tile)

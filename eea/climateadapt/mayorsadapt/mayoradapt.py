@@ -1,18 +1,15 @@
 # coding=utf-8
-
 from Products.Five.browser import BrowserView
+from eea.climateadapt.city_profile import MAIL_TEXT_TEMPLATE
 from eea.climateadapt.vocabulary import _climateimpacts
 from eea.climateadapt.vocabulary import _sectors
 from eea.climateadapt.vocabulary import _stage_implementation_cycle
 from eea.climateadapt.vocabulary import ace_countries
+from zope.annotation.interfaces import IAnnotations
 from zope.interface import Interface
 from zope.interface import implements
 import json
 import tokenlib
-from zope.annotation.interfaces import IAnnotations
-import os
-import os.path
-from eea.climateadapt.city_profile import MAIL_TEXT_TEMPLATE
 
 
 class ITokenMailView(Interface):
@@ -29,14 +26,21 @@ class TokenMailView (BrowserView):
         city = self.context
         tokensecret = IAnnotations(city)['eea.climateadapt.cityprofile_secret']
         # 4 weeks = 2419200
-        self.secret = tokenlib.make_token({"": ""}, secret=tokensecret, timeout=2419200)
-        self.emailto = str(city.official_email)
+        self.secret = tokenlib.make_token({"": ""}, secret=tokensecret,
+                                          timeout=2419200)
+        try:
+            self.emailto = str(city.official_email)
+        except:
+            # TODO: debug this
+            self.emailto = ""
         self.receivername = city.name_and_surname_of_contact_person
         self.cityurl = city.virtual_url_path().encode(encoding='UTF-8')
-        self.city_full_url = self.context.portal_url() + '/cptk/' + self.secret + '/' + self.cityurl
+        self.city_full_url = self.context.portal_url() + \
+            '/cptk/' + self.secret + '/' + self.cityurl
         self.text_plain_dictionary = {'receivername': self.receivername,
                                       'cityurl':  self.city_full_url}
-        self.MAIL_TEXT_TEMPLATE = MAIL_TEXT_TEMPLATE % (self.text_plain_dictionary)
+        self.MAIL_TEXT_TEMPLATE = MAIL_TEXT_TEMPLATE % \
+            (self.text_plain_dictionary)
 
     def html(self):
         return self.index()

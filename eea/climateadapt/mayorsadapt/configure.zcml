@@ -125,11 +125,12 @@
     <!--     handler=".staging.handleCheckoutEvent" -->
     <!--    /> -->
 
-    <subscriber
-      for="eea.climateadapt.city_profile.CityProfile
-           zope.lifecycleevent.interfaces.IObjectAddedEvent"
-      handler="eea.climateadapt.city_profile.handle_city_added"
-    />
+TODO: re-enable after import
+    <!-- <subscriber -->
+    <!--   for="eea.climateadapt.city_profile.CityProfile -->
+    <!--        zope.lifecycleevent.interfaces.IObjectAddedEvent" -->
+    <!--   handler="eea.climateadapt.city_profile.handle_city_added" -->
+    <!-- /> -->
 
 
 </configure>
