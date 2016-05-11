@@ -57,24 +57,23 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('objectives')
     dexteritytextindexer.searchable('solutions')
 
-
     form.fieldset('default',
-        label=u'Item Description',
-        fields=['title', 'long_description', 'climate_impacts', 'keywords',
-                'sectors', 'year']
-    )
+                  label=u'Item Description',
+                  fields=['title', 'long_description', 'climate_impacts',
+                          'keywords', 'sectors', 'year']
+                  )
 
     form.fieldset('additional_details',
-        label=u'Additional Details',
-        fields=['stakeholder_participation', 'success_limitations',
-                'cost_benefit', 'legal_aspects', 'implementation_time',
-                'lifetime']
-    )
+                  label=u'Additional Details',
+                  fields=['stakeholder_participation', 'success_limitations',
+                          'cost_benefit', 'legal_aspects',
+                          'implementation_time', 'lifetime']
+                  )
 
     form.fieldset('reference_information',
-        label=u'Reference information',
-        fields=['websites', 'source']
-    )
+                  label=u'Reference information',
+                  fields=['websites', 'source']
+                  )
 
     # TODO:
     # form.fieldset('documents',
@@ -89,9 +88,9 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     # )
 
     form.fieldset('geographic_information',
-        label=u'Geographic Information',
-        fields=['geochars', 'comments']
-    )
+                  label=u'Geographic Information',
+                  fields=['geochars', 'comments']
+                  )
 
     # -----------[ "default" fields ]------------------
 
@@ -105,7 +104,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     climate_impacts = List(
         title=_(u"Climate impacts"),
-        description=_(u"Select one or more climate change impact topics that this item relates to"),
+        description=_(u"Select one or more climate change impact topics that "
+                      u"this item relates to"),
         required=True,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_climateimpacts",),
@@ -120,13 +120,17 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     )
 
     sectors = List(title=_(u"Sectors"),
-                   description=_(u"Select one or more relevant sector policies that this item relates to."),
+                   description=_(u"Select one or more relevant sector policies"
+                                 u" that this item relates to."),
                    required=True,
                    value_type=Choice(
                        vocabulary="eea.climateadapt.aceitems_sectors",),
                    )
 
-    year = Int(title=_(u"Year"), description=u"Date of publication/release/update of the items related source", required=False,)
+    year = Int(title=_(u"Year"),
+               description=u"Date of publication/release/update of the items "
+                           u"related source",
+               required=False,)
 
     # -----------[ "additional_details" fields ]------------------
 
@@ -136,12 +140,21 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     stakeholder_participation = RichText(
         title=_(u"Stakeholder participation"), required=True,
         default=u"",
-        description=_(u"Describe the Information about actors involved, the form of participation and the participation process. Focus should be on the level of participation needed and/or adopted already (from information, to full commitment in the deliberation/implementation process), with useful notes e.g. regarding motivations. (5,000 character limit)"))
+        description=_(u"Describe the Information about actors involved, the "
+                      u"form of participation and the participation process. "
+                      u" Focus should be on the level of participation needed "
+                      u"and/or adopted already (from information, to full "
+                      u"commitment in the deliberation/implementation "
+                      u"process), with useful notes e.g. regarding "
+                      u"motivations. (5,000 character limit)"))
 
     dexteritytextindexer.searchable('success_limitations')
     success_limitations = RichText(
         title=_(u"Success / limitations"), required=False, default=u"",
-        description=_(u"Describe factors that are decisive for a successful implementation and expected challenges or limiting factors which may hinder the process and need to be considered (5,000 character limit)"))
+        description=_(u"Describe factors that are decisive for a successful "
+                      u"implementation and expected challenges or limiting "
+                      u"factors which may hinder the process and need to be "
+                      u"considered (5,000 character limit)"))
 
     dexteritytextindexer.searchable('cost_benefit')
     cost_benefit = RichText(
@@ -151,18 +164,27 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     legal_aspects = RichText(title=_(u"Legal aspects"),
                              required=False,
                              default=u"",
-                             description=_(u"Describe the Legislation framework from which the case originated, relevant institutional opportunities and constrains, which determined the case as it is (5000 character limit):"))
+                             description=_(u"Describe the Legislation "
+                                           u"framework from which the case "
+                                           u"originated, relevant institutional"
+                                           u" opportunities and constrains, "
+                                           u"which determined the case as it "
+                                           u"is (5000 character limit):"))
 
     dexteritytextindexer.searchable('implementation_time')
     implementation_time = RichText(
         title=_(u"Implementation Time"), required=False, default=None,
-        description=_(u"Describe the time needed to implement the measure. Include: Time frame, e.g. 5-10 years, Brief explanation(250 char limit)"))
+        description=_(u"Describe the time needed to implement the measure. "
+                      u"Include: Time frame, e.g. 5-10 years, Brief "
+                      u"explanation(250 char limit)"))
 
     dexteritytextindexer.searchable('lifetime')
     lifetime = RichText(title=_(u"Lifetime"),
                         required=False,
                         default=u"",
-                        description=u"Describe the lifetime of the measure: Time frame, e.g. 5-10 years, Brief explanation(250 char limit)")
+                        description=u"Describe the lifetime of the measure: "
+                        u"Time frame, e.g. 5-10 years, Brief explanation "
+                        u"(250 char limit)")
 
     # -----------[ "reference_information" fields ]------------------
 
@@ -180,7 +202,10 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('source')
     source = RichText(title=_(u"Source"),
                       required=False,
-                      description=_(u"Describe the original source (like name of a certain project) of the adaptation option description (250 character limit)"))
+                      description=_(u"Describe the original source (like name "
+                                    u"of a certain project) of the adaptation "
+                                    u"option description (250 character limit)"
+                                    ))
 
     # -----------[ "document" fields ]------------------
 
@@ -196,7 +221,10 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     )
 
     comments = Text(title=_(u"Comments"), required=False, default=u"",
-                    description=_(u"Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]")
+                    description=_(u"Comments about this database item "
+                                  u"[information entered below will not be "
+                                  u"displayed on the public pages of "
+                                  u"climate-adapt]")
                     )
 
     # -----------[ "omitted" fields ]------------------

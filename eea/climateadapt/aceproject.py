@@ -18,7 +18,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('acronym')
     dexteritytextindexer.searchable('title')
     dexteritytextindexer.searchable('lead')
-    dexteritytextindexer.searchable('long_description')
+    dexteritytextindexer.searchable('abstracts')
     dexteritytextindexer.searchable('partners')
     dexteritytextindexer.searchable('keywords')
     dexteritytextindexer.searchable('sectors')
@@ -154,13 +154,14 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     comments = Text(
         title=_(u"Source"),
-        description=_(u"Comments about this database item [information entered "
-                      u"below will not be displayed on the public pages of "
+        description=_(u"Comments about this database item [information entered"
+                      u" below will not be displayed on the public pages of "
                       u"climate-adapt]"),
         required=False,
     )
 
     # -----------[ "omitted" fields ]------------------
+
     directives.omitted(IEditForm, 'specialtagging')
     directives.omitted(IAddForm, 'specialtagging')
     directives.omitted(IEditForm, 'important')

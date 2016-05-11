@@ -36,15 +36,15 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('special_tags')
 
     form.fieldset('default',
-        label=u'Item Description',
-        fields=['title', 'long_description', 'keywords', 'sectors',
-                'climate_impacts', 'elements', 'year']
-    )
+                  label=u'Item Description',
+                  fields=['title', 'long_description', 'keywords', 'sectors',
+                          'climate_impacts', 'elements', 'year']
+                  )
 
     form.fieldset('reference_information',
-        label=u'Reference information',
-        fields=['websites', 'source']
-    )
+                  label=u'Reference information',
+                  fields=['websites', 'source']
+                  )
 
     # TODO:
     # form.fieldset('reference_information',
@@ -53,14 +53,14 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     # )
 
     form.fieldset('geographic_information',
-        label=u'Geographic Information',
-        fields=['geochars', 'comments']
-    )
+                  label=u'Geographic Information',
+                  fields=['geochars', 'comments']
+                  )
 
     form.fieldset('backend',
-        label=u'Backend fields',
-        fields=[]
-    )
+                  label=u'Backend fields',
+                  fields=[]
+                  )
 
     # -----------[ "default" fields ]------------------
 
@@ -69,7 +69,8 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                      required=True)
 
     long_description = RichText(title=(u"Description"),
-                                description=u"Provide a description of the item. (5,000 character limit)",
+                                description=u"Provide a description of the "
+                                u"item.(5,000 character limit)",
                                 required=True)
 
     keywords = Tuple(
@@ -81,7 +82,8 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     )
 
     sectors = List(title=_(u"Sectors"),
-                   description=_(u"Select one or more relevant sector policies that this item relates to."),
+                   description=_(u"Select one or more relevant sector policies"
+                                 u" that this item relates to."),
                    required=True,
                    value_type=Choice(
                        vocabulary="eea.climateadapt.aceitems_sectors",),
@@ -89,7 +91,8 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     climate_impacts = List(
         title=_(u"Climate impacts"),
-        description=_(u"Select one or more climate change impact topics that this item relates to."),
+        description=_(u"Select one or more climate change impact topics that "
+                      u"this item relates to."),
         required=True,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_climateimpacts",),
@@ -102,7 +105,10 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                         vocabulary="eea.climateadapt.aceitems_elements",),
                     )
 
-    year = Int(title=_(u"Year"), description=u"Date of publication/release/update of the item", required=False)
+    year = Int(title=_(u"Year"),
+               description=u"Date of publication/release/update of the item",
+               required=False
+               )
 
     # -----------[ "reference_information" fields ]------------------
 
@@ -117,19 +123,23 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     source = RichText(title=_(u"Source"),
                       required=False,
-                      description=u"Describe the original source of the item description (250 character limit)")
+                      description=u"Describe the original source of the item
+                                  u"description (250 character limit)")
 
     # -----------[ "geographic_information" fields ]------------------
 
     form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
     geochars = Text(title=_(u"Geographic characterisation"),
                     required=True,
-                    default=u'{"geoElements":{"element":"GLOBAL","macrotrans":null,"biotrans":null,"countries":[],"subnational":[],"city":""}}',
+                    default=u'{"geoElements":{"element":"GLOBAL", "macrotrans":null,"biotrans":null,"countries":[],"subnational":[],"city":""}}',
                     description=u"Select the characterisation for this item",
                     )
 
     comments = Text(title=_(u"Comments"), required=False, default=u"",
-                    description=u"Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]")
+                    description=u"Comments about this database item"
+                                u"[information entered below will not be"
+                                u"displayed on the public pages of"
+                                u"climate-adapt]")
 
     # -----------[ "omitted" fields ]------------------
     directives.omitted(IAddForm, 'data_type')
@@ -180,15 +190,15 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                               vocabulary="eea.climateadapt.ace_countries")
                           )
 
-    important = Bool(title=_(u"High importance"), required=False, default=False)
+    important = Bool(title=_(u"High importance"), required=False, default=False
+                     )
 
     # websites = List(title=_(u"Websites"),
     #                 required=True,
     #                 value_type=TextLine(title=_(u"Link"), ))
     metadata = RichText(title=_(u"Metadata"), required=False,)
 
-
-    # # TODO: see if possible to use eea.promotions for this
+    # TODO: see if possible to use eea.promotions for this
     # featured = List(title=_(u"Featured in location"),
     #                 description=_(u"TODO: Featured description here"),
     #                 required=False,
