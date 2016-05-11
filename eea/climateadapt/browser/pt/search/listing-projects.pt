@@ -12,7 +12,10 @@
     five python: 4 * two;">
     <tr tal:repeat="brain brains">
       <td tal:define="title brain/Title">
-        » <a href="" tal:content="title" tal:attributes="href brain/getURL">» Link</a>
+        »<div tal:condition="nothing | python: brain.getObject().acronym">
+          <span tal:content="python: brain.getObject().acronym">Here </span>
+        </div>
+        <a href="" tal:content="title" tal:attributes="href brain/getURL">» Link</a>
         - <span tal:define="text python: brain.description">
             <span tal:replace="python: text[:208-len(title)]" />...
           </span>
