@@ -66,41 +66,50 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                          required=False,
                          )
 
-    lead = TextLine(title=_(u"Lead"),
-                    description=_(u"Lead organisation or individual of the project"),
-                    required=True,
-                    )
+    lead = TextLine(
+        title=_(u"Lead"),
+        description=_(u"Lead organisation or individual of the project"),
+        required=True,
+    )
 
     dexteritytextindexer.searchable('long_description')
-    long_description = RichText(title=_(u"Description"),
-                                description=_(u"Provide information focusing on project output. Possibly on specific Website features."),
-                                required=True,
-                                )
+    long_description = RichText(
+        title=_(u"Description"),
+        description=_(u"Provide information focusing on project output. "
+                      u"Possibly on specific Website features."),
+        required=True,
+    )
 
     dexteritytextindexer.searchable('partners')
-    partners = RichText(title=_(u"Partners"),
-                        description=_(u"Provide information about project partners (organisation names)."),
-                        required=True,
-                        )
+    partners = RichText(
+        title=_(u"Partners"),
+        description=_(u"Provide information about project partners "
+                      u"(organisation names)."),
+        required=True,
+    )
 
     dexteritytextindexer.searchable('keywords')
-    keywords = Tuple(title=_(u"Keywords"),
-                        description=_(u"Provide Keywords related to the project."),
-                        required=True,
-                        value_type=TextLine(),
-                        missing_value=(),
-                        )
+    keywords = Tuple(
+        title=_(u"Keywords"),
+        description=_(u"Provide Keywords related to the project."),
+        required=True,
+        value_type=TextLine(),
+        missing_value=(),
+    )
 
-    sectors = List(title=_(u"Sectors"),
-                   description=_(u"Select one or more relevant sector policies that this item relates to."),
-                   required=True,
-                   value_type=Choice(
-                       vocabulary="eea.climateadapt.aceitems_sectors",),
-                   )
+    sectors = List(
+        title=_(u"Sectors"),
+        description=_(u"Select one or more relevant sector policies that "
+                      u"this item relates to."),
+        required=True,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_sectors",),
+    )
 
     climate_impacts = List(
         title=_(u"Climate impacts"),
-        description=_(u"Select one or more climate change impact topics that this item relates to."),
+        description=_(u"Select one or more climate change impact topics that "
+                      u"this item relates to."),
         required=True,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_climateimpacts",),
@@ -118,40 +127,44 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                        required=False,
                        )
 
-    duration = TextLine(title=_(u"Duration"),
-                        description=_(u"Provide duration of project - Start and end date [yr]"),
-                        required=False,
-                        )
+    duration = TextLine(
+        title=_(u"Duration"),
+        description=_(u"Provide duration of project - Start and end date [yr]"),
+        required=False,
+    )
 
     # -----------[ "reference_information" fields ]------------------
-    # website = TextLine(title=_(u"Website"),
-    #                    description=_(u"List the Name and Website where the item can be found or is described.Please separate each website with semicolon."),
-    #                    required=True,
-    #                    )
-    websites = Tuple(title=_(u"Website"),
-                    description=_(u"List the Website where the item can be found or is described. Please place each website on a new line"),
-                    required=True,
-                    value_type=TextLine(),
-                    missing_value=(),
-                    )
+    websites = Tuple(
+        title=_(u"Website"),
+        description=_(u"List the Website where the item can be found or is "
+                      u"described. Please place each website on a new line"),
+        required=True,
+        value_type=TextLine(),
+        missing_value=(),
+    )
 
     dexteritytextindexer.searchable('source')
     source = RichText(
         title=_(u"Source"),
-        description=_(u"Provide source from which project was retrieved (e.g. specific DB) "),
+        description=_(u"Provide source from which project was retrieved (e.g. "
+                      u"specific DB) "),
         required=False)
 
     # -----------[ "geographic_information" fields ]------------------
     form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
-    geochars = Text(title=_(u"Geographic characterization"),
-                    description=_(u"Select the characterisation for this project"),
-                    required=True,
-                    )
+    geochars = Text(
+        title=_(u"Geographic characterization"),
+        description=_(u"Select the characterisation for this project"),
+        required=True,
+    )
 
-    comments = Text(title=_(u"Source"),
-                    description=_(u"Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]"),
-                    required=False,
-                    )
+    comments = Text(
+        title=_(u"Source"),
+        description=_(u"Comments about this database item [information entered "
+                      u"below will not be displayed on the public pages of "
+                      u"climate-adapt]"),
+        required=False,
+    )
 
     # -----------[ "omitted" fields ]------------------
     directives.omitted(IEditForm, 'specialtagging')
