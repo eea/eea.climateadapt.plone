@@ -123,7 +123,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     source = RichText(title=_(u"Source"),
                       required=False,
-                      description=u"Describe the original source of the item
+                      description=u"Describe the original source of the item "
                                   u"description (250 character limit)")
 
     # -----------[ "geographic_information" fields ]------------------
