@@ -8,7 +8,7 @@ from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.interfaces import IAddForm
 from z3c.form.interfaces import IEditForm
 from zope.interface import implements
-from zope.schema import Bool, Choice, Int, List, Text, TextLine
+from zope.schema import Bool, Choice, Int, List, Text, TextLine, Tuple
 
 
 class IAceItem(form.Schema, IImageScaleTraversable):
@@ -72,10 +72,13 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                                 description=u"Provide a description of the item. (5,000 character limit)",
                                 required=True)
 
-    # TODO: "keyword" from SQL is Subject
-    keywords = Text(title=_(u"Keywords"),
-                        description=_(u"Describe and tag this item with relevant keywords. Separate each keyword with a comma. For example, example keyword 1, example keyword 2 (1,000 character limit)"),
-                        required=True)
+    keywords = Tuple(
+        title=_(u"Keywords"),
+        description=_(u"Describe and tag this item with relevant keywords. "),
+        required=True,
+        value_type=TextLine(),
+        missing_value=(),
+    )
 
     sectors = List(title=_(u"Sectors"),
                    description=_(u"Select one or more relevant sector policies that this item relates to."),
@@ -103,9 +106,14 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     # -----------[ "reference_information" fields ]------------------
 
-    websites = RichText(title=_(u"Websites"),
-                        description=u'List the Name and Website where the item can be found or is described. (500 character limit). Please separate each website with semicolon.',
-                        required=True,)
+    websites = Tuple(
+        title=_(u"Website"),
+        description=_(u"List the Website where the item can be found or is "
+                      u"described. Please place each website on a new line"),
+        required=True,
+        value_type=TextLine(),
+        missing_value=(),
+    )
 
     source = RichText(title=_(u"Source"),
                       required=False,
