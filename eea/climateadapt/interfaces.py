@@ -59,3 +59,8 @@ class ICitiesListingsRoot(Interface):
 class IContentRoot(Interface):
     """ A marker interface for /content
     """
+
+
+class ITransRegioRoot(Interface):
+    """ A marker interface for /transnations-regions
+    """

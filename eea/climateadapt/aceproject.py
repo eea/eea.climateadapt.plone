@@ -18,7 +18,6 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('acronym')
     dexteritytextindexer.searchable('title')
     dexteritytextindexer.searchable('lead')
-    dexteritytextindexer.searchable('abstracts')
     dexteritytextindexer.searchable('partners')
     dexteritytextindexer.searchable('keywords')
     dexteritytextindexer.searchable('sectors')

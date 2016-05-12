@@ -56,7 +56,7 @@
               <h5>Websites:</h5>
               <ul>
                 <li tal:repeat="link websites">
-                  <a tal:attributes="href python:view.linkify(link)" tal:content="link">Websites here</a>
+                  <a tal:attributes="href python:view.linkify(link)" tal:content="python:view.linkify(link)">Websites here</a>
                 </li>
               </ul>
             </tal:def>

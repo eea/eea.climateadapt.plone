@@ -53,6 +53,7 @@ from eea.climateadapt.interfaces import ICountriesRoot
 from eea.climateadapt.interfaces import IMayorAdaptRoot
 from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
+from eea.climateadapt.interfaces import ITransRegioRoot
 from eea.climateadapt.vocabulary import _cca_types
 from eea.climateadapt.vocabulary import ace_countries_vocabulary
 from eea.climateadapt.vocabulary import aceitem_climateimpacts_vocabulary
@@ -445,6 +446,7 @@ no_import_layouts = [
     '/newregion',
     '/map-viewer',  # TODO: add a browser view for this one
     '/content',
+    '/transnational-regions',
 ]
 
 # TO DO
@@ -2311,6 +2313,11 @@ def tweak_site(site):
     contentpage = site['content']
     alsoProvides(contentpage, IContentRoot)
     contentpage.setLayout('@@content')
+
+    # transnational regions page
+    trans_reg_page = site['transnational-regions']
+    alsoProvides(trans_reg_page, ITransRegioRoot)
+    trans_reg_page.setLayout('@@transnational-regions-view')
 
     # apply local roles, to enable special CCA workflows
     for name in ['content', 'aceprojects', 'adaptationoption']:

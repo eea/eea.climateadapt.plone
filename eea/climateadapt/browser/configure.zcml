@@ -241,7 +241,24 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        class=".transnational_reg.TransRegionView"
+        for="*"
+        name="transnational-regions-view"
+        template="pt/transnational_regions.pt"
+        permission="zope2.View"
+        />
+
     <!-- Tile helpers -->
+
+    <browser:viewlet
+        name="plone.resourceregistries"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        view=".transnational_reg.TransRegionView"
+        template="pt/resourceregistries.pt"
+        permission="zope2.View"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        />
 
     <browser:viewlet
         name="plone.resourceregistries"

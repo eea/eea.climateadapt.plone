@@ -1,0 +1,491 @@
+<metal:use-macro use-macro="context/main_template/macros/master">
+    <metal:fill-slot fill-slot="style_slot">
+        <link href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css" rel="stylesheet"/>
+        <link href="http://js.arcgis.com/3.13/esri/css/esri.css" rel="stylesheet"/>
+        <style type="text/css">
+            #mapDiv,
+            .map.container,
+            body,
+            html {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+            }
+            #legendDiv {
+                background-color: #fff;
+                top: 10px;
+                right: 20px;
+                width: 300px;
+                height: 300px;
+            }
+            #contenidoCombos {
+                position: absolute;
+                top: 0;
+                right: -10px;
+                height: 100%;
+                width: 300px;
+            }
+            #contenidoMapa {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 320px;
+                height: 100%;
+            }
+            #contenido {
+                position: relative;
+                height: 500px;
+            }
+            #LoadingDiv {
+                position: absolute;
+                top: 225px;
+                left: 300px;
+                z-index: 50;
+            }
+            #HomeButton {
+                position: absolute;
+                top: 95px;
+                left: 20px;
+                z-index: 50;
+            }
+            #search {
+                display: block;
+                position: absolute;
+                z-index: 2;
+                top: 20px;
+                left: 74px;
+            }
+            .regionsLink {
+                vertical-align: super;
+                margin-left: 5px;
+            }
+            .esriPopup {
+                opacity: 0.7;
+            }
+
+        </style>
+
+    </metal:fill-slot>
+
+    <metal:fill-slot fill-slot="javascript_head_slot">
+        <script>
+            Array.prototype.unique2 = function () {
+                var n = {},
+                    r = [];
+                for (var i = 0; i < this.length; i++) {
+                    if (!n[this[i]]) {
+                        n[this[i]] = true;
+                        r.push(this[i]);
+                    }
+                }
+                return r;
+            }
+            var dojoConfig = {
+                parseOnLoad: true
+            };
+        </script>
+        <script src="http://js.arcgis.com/3.13compact/"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>
+            var map;
+            var capita;
+            var symboler = null;
+            var styleGenerator = null;
+            var thematicField = "";
+
+            require([
+                "esri/map",
+                "esri/tasks/IdentifyTask",
+                "esri/tasks/IdentifyParameters",
+                "esri/InfoTemplate",
+                "esri/arcgis/utils",
+                "esri/layers/FeatureLayer",
+                "esri/symbols/SimpleFillSymbol",
+                "esri/symbols/SimpleLineSymbol",
+                "esri/renderers/SimpleRenderer",
+                "esri/graphic",
+                "esri/lang",
+                "esri/Color",
+                "dojo/number",
+                "dojo/dom-style",
+                "dijit/TooltipDialog",
+                "dijit/popup",
+                "esri/dijit/HomeButton",
+                "esri/dijit/Search",
+                "esri/dijit/Legend",
+                "esri/tasks/query",
+                "esri/tasks/QueryTask",
+                "esri/renderers/UniqueValueRenderer",
+                "esri/symbols/SimpleMarkerSymbol",
+                "esri/renderers/ClassBreaksRenderer",
+                "dojo/domReady!"
+            ], function (Map, IdentifyTask, IdentifyParameters, InfoTemplate, arcgisUtils, FeatureLayer, SimpleFillSymbol, SimpleLineSymbol, SimpleRenderer, Graphic, esriLang, Color, number, domStyle, TooltipDialog, dijitPopup, HomeButton, Search, Legend, Query, QueryTask, UniqueValueRenderer, SimpleMarkerSymbol, ClassBreaksRenderer) {
+
+                var startExtent = new esri.geometry.Extent(-2575486.379091041, 4141962.556737445, 8446530.401869884, 13925902.177237403, new esri.SpatialReference({wkid: 102100}));
+
+                var iTask = new IdentifyTask("http://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer");
+                var iPara = new IdentifyParameters();
+                var sfs = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, new SimpleLineSymbol(SimpleLineSymbol.STYLE_DASHDOT, new Color([255, 0, 0]), 2), new Color([120, 120, 120, 0.25]));
+
+                var event = "";
+                map = new Map("mapDiv", {
+                    basemap: "gray",
+                    center: [
+                        12, 55
+                    ],
+                    zoom: 3,
+                    slider: true
+                });
+
+                var home = new HomeButton({
+                    map: map
+                }, "HomeButton");
+                home.startup();
+
+                var gra = [];
+
+                var regionName = "$\{pgm_name\}";
+                var regName = "";
+                if (event != "") {
+                    regName = esriLang.substitute(event.graphic.attributes, regionName);
+                }
+                var iTemplate = new InfoTemplate();
+                iTemplate.setTitle("See region(s) selected");
+
+                iTemplate.setContent("<b>Region: </b><a href='$\{LINK\}'>$\{pgm_name\}</a><br><b>Countries</b><br/>   $\{Countries\}<br>");
+                console.log(iTemplate);
+
+                dialog = new TooltipDialog({id: "tooltipDialog", style: "position: absolute; width: 250px; font: normal normal normal 10pt Helvetica;z-index:100"});
+                dialog.startup();
+
+                var highlightSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([125, 125, 125]), 1), new Color([125, 125, 125, 0.35]));
+
+                var regions = new FeatureLayer("http://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/REGIONS_COUNTRIES/FeatureServer/0", {
+                    mode: FeatureLayer.MODE_SNAPSHOT,
+                    infoTemplate: iTemplate,
+                    outFields: ["pgm_name", "CCI", "Countries", "LINK"]
+                });
+
+                function criteriaFilter() {
+                    var pais = $("#country").val();
+                    regions.setDefinitionExpression("f3 like '" + pais + "'");
+                }
+                //document.getElementById("criteriaButton").onclick = criteriaFilter;
+
+                function removeLayer() {
+                    map.removeLayer(regions);
+                }
+                //document.getElementById("removeButton").onclick = removeLayer;
+
+                function addLayer() {
+                    map.addLayer(regions);
+                }
+                //document.getElementById("addButton").onclick = addLayer;
+
+                function zoneFilter() {
+                    var pais = $("#country").val();
+                    regions.setDefinitionExpression("f3 like '" + pais + "'");
+                }
+                //document.getElementById("zoneButton").onclick = zoneFilter; listen for when the onMouseOver event fires on the countiesGraphicsLayer when fired, create a new graphic with the geometry from the event.graphic and add it to the maps graphics layer
+                regions.on("click", function (evt) {
+                    event = e;
+                    console.log("Dentro mouse-over");
+                    mapP = e.mapPoint;
+                    screenP = e.screenPoint;
+                    map.graphics.clear();
+                    iPara.geometry = e.mapPoint;
+                    iPara.mapExtent = map.extent;
+                    iPara.returnGeometry = true;
+                    iPara.layerIds = [3];
+                    iPara.width = map.width;
+                    iPara.height = map.height;
+                    iPara.tolerance = 10;
+                    iTask.execute(iPara, results, error);
+                    console.log("Fin mouse-over");
+                });
+
+                //Thematics
+
+                regions.on("load", regionsCargadas);
+
+                var queryTask = new QueryTask("http://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/COUNTRIES_MAYORS_ADAPT/FeatureServer/0");
+
+                var query = new Query();
+
+                function regionsCargadas() {
+
+                    capita = regions;
+                    /*
+			// Thematics Select
+			var thematicName = ["National adaptation strategy","Action plans","Impacts, vulnerability and adaptation assessments","Climate services / Met office","Web portal","Adaptation platform","National Communication to the UNFCCC"];
+			//var thematicId = ["National1","Plans1","Impacts1","Climate1","ministries","platform1","UNFCCC1"]
+			//var thematicFields = ["National1|National2","Plans1|Plans2","Impacts1|Impacts2","Climate1|Climate2","ministries|ministri_1","platform1|platform2","UNFCCC1|UNFCCC2"]
+			var thematicId = ["NATIONAL1|NATIONAL2","PLANS1|PLANS2","IMPACTS1|IMPACTS2","CLIMATE1|CLIMATE2","MINISTRIES|MINISTRI_1","PLATFORM1|PLATFORM2","UNFCCC1|UNFCCC2"]
+
+			var x = document.getElementById("thematic_field");
+			for (var i = 0; i < thematicName.length; i++) {
+				var option = document.createElement("option");
+				option.text = thematicName[i];
+				option.value = thematicId[i];
+				x.add(option);
+			}
+
+			x.onchange = ejectuar;
+
+			query.returnGeometry = false;
+			query.where = "1=1";
+			query.outFields = [];
+
+			regions.on("load", null);
+			*/
+                }
+
+                function ejectuar() {
+                    var aux = document.getElementById('thematic_field').value;
+                    var auxiliar = aux.substring(0, aux.indexOf("|"));
+                    //auxiliar = aux; console.log("Auxiliar: " + auxiliar);
+                    query.outFields = [];
+                    query.outFields.push(auxiliar);
+                    queryTask.execute(query, showResults);
+                }
+
+                function removeOptions(selectbox) {
+                    var i;
+                    for (i = selectbox.options.length - 1; i >= 0; i--) {
+                        selectbox.remove(i);
+                    }
+                }
+
+                var opciones2 = new Array();
+
+                function showResults(results) {
+                    var opciones2 = new Array();
+
+                    var resultItems = [];
+                    var resultCount = results.features.length;
+                    for (var i = 0; i < resultCount; i++) {
+                        var featureAttributes = results.features[i].attributes;
+                        for (var attr in featureAttributes) {
+                            //   resultItems.push("<b>" + attr + ":</b>  " + featureAttributes[attr] + "<br>");
+                            opciones2.push(featureAttributes[attr]);
+                        }
+
+                        // resultItems.push("<br>");
+                    }
+                }
+
+                function buttonClicked() {
+                    var atributosColores1 = ["null"];
+                    var atributosColores2 = ["#CDF5A1"];
+                    var atributosColores3 = ["#808080"];
+                    var renderer = null;
+
+                    // Dependiendo del tipo de geometría se usa un symbolizer u otro.
+                    switch (capita.geometryType) {
+                        case "esriGeometryPoint":
+                            symboler = pointSymboler;
+                            break;
+                        case "esriGeometryPolygon":
+                            symboler = polygonSymboler;
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    var campito = null;
+                    thematicField = document.getElementById('thematic_field').value;
+                    var campitoName = thematicField.substring(0, thematicField.indexOf("|"));
+                    //campitoName = thematicField; console.log("thematicField: " + thematicField); console.log("campitoName: " + campitoName);
+                    for (var i = 0; i < capita.fields.length; i++) {
+                        if (capita.fields[i].name == campitoName) {
+                            campito = capita.fields[i];
+                        }
+                    }
+
+                    //Depending on field type -> Renderer type.
+                    switch (campito.type) {
+                        case "esriFieldTypeString":
+                            styleGenerator = makeRendererUniqueValue;
+                            renderer = makeStyle2String(atributosColores1, atributosColores2, atributosColores3, styleGenerator, symboler);
+                            break;
+                        default:
+                            styleGenerator = makeStyle2Number;
+                            renderer = makeStyle2Number(atributosColores1, atributosColores2, atributosColores3, styleGenerator, symboler);
+
+                            break;
+                    }
+                    capita.setRenderer(renderer);
+                    capita.refresh();
+                }
+
+                function makeStyle2String(atributosColores1, atributosColores2, atributosColores3, styleGenerator2, symbolizer) {
+                    var defaultSymbol = symbolizer('#89CD66');
+
+                    var aux = document.getElementById('thematic_field').value;
+                    var aux2 = aux.substring(0, aux.indexOf("|"));
+                    //console.log("aux2:" + aux2);
+                    var renderer2 = styleGenerator2(defaultSymbol, aux2);
+                    //console.log("Atributos"); console.log(atributosColores1); console.log(atributosColores2);
+                    for (var i = 0; i < atributosColores1.length; i++) {
+                        //console.log("Addvalue: " + atributosColores1[i] + "------" + symbolizer(atributosColores2[i]))
+                        renderer2.addValue(atributosColores1[i], symbolizer(atributosColores2[i]));
+                        renderer2.addValue("", symbolizer(atributosColores2[i]));
+                        renderer2.addValue(" ", symbolizer(atributosColores2[i]));
+                        renderer2.addValue("NO_VALUE", symbolizer(atributosColores3[i]));
+                    }
+                    return renderer2;
+                }
+
+                function polygonSymboler(color) {
+                    return (new SimpleFillSymbol().setColor(Color.fromHex(color)));
+                }
+
+                function makeRendererUniqueValue(defaultSymbol, valor) {
+                    //console.log("RendererUniqueValue"); console.log(defaultSymbol); console.log(valor);
+                    return (new UniqueValueRenderer(defaultSymbol, valor));
+                }
+
+                //document.getElementById('botoncito1').onclick = buttonClicked; END Thematics
+
+                map.addLayer(regions);
+
+                // Add Legend
+                /*
+		var legend = new Legend({
+			map: map,
+			layerInfos:[
+            {
+              layer: regions, title: "Transnational Regions"
+            }
+			]}, "legendDiv");
+		legend.startup();
+		*/
+            });
+
+            function goCountry(combo) {
+                if (combo.value != "%") {
+                    document.location.href = combo.value;
+                }
+            }
+
+            function loadCountries() {
+                var z = document.getElementById("RegionsCombo");
+                for (var j = 0; j < capita.graphics.length; j++) {
+                    var option = document.createElement("option");
+                    option.text = capita.graphics[j].attributes.pgm_name;
+                    option.value = capita.graphics[j].attributes.LINK;
+                    z.add(option);
+                }
+                var opt = document.createElement("option");
+                opt.text = "Other regions";
+                opt.value = "/transnational-regions/other-regions";
+                z.add(opt);
+            }
+
+            function checkLayer() {
+                if (capita.graphics.length > 0) {
+                    //console.log("Definida, cargo combo"); console.log(capita.graphics.length);
+                    document.getElementById("LoadingDiv").style.visibility = "hidden";
+                    loadCountries();
+                    //document.getElementById('botoncito1').click();
+                } else {
+                    //console.log("Rellamada");
+                    setTimeout(checkLayer, 500);
+                }
+            }
+
+            $(window).load(function () {
+                setTimeout(checkLayer, 500);
+            });
+        </script>
+    </metal:fill-slot>
+
+    <metal:fill-slot fill-slot="content-title">
+        <h1></h1>
+    </metal:fill-slot>
+    <metal:fill-slot fill-slot="content-core">
+        <div class="journal-content-article" style="margin-right: 10px;">
+            <p>There are
+                <a href="http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm" target="_blank">12 regions</a>
+                in Europe for transnational co-operation. In addition, specific EU agreed strategies exist for four macro-national regions:
+                <a href="http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm" target="_blank">Baltic Sea</a>,
+                <a href="http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm" target="_blank">Danube</a>,
+                <a href="http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN" target="_blank">Alpine</a>, and
+                <a href="http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/" target="_blank">Adriatic and Ionian</a>
+                regions. This section provides information on strategies and actions that have been developed or are currently under development for the EU transnational regions and for other regions and countries.<br/>
+                <br/>
+                <b>How to use the map?</b><br/>
+                The map shows the transnational regions situated in Europe defined in the co-operation programmes for 2014-2020. You can select transnational regions by clicking on the map. If you select an area that belongs to more than one region, the pop-up
+                window will show all the regions where the area is located. The pop-up window also shows the countries where each region is located.<br/>
+                <br/>
+                To go to one of the regions' pages, choose in the drop-down list, click on the legend, or make use of the link shown in the tooltip.</p>
+
+            <p>
+                <select id="RegionsCombo" onchange="goCountry(this)" style="width:300px">
+                    <option value="%">Choose a region</option>
+                </select>
+            </p>
+        </div>
+
+        <div class="columns-2" id="contenido">
+            <div id="contenidoMapa">
+                <div id="search">&nbsp;</div>
+
+                <div id="mapDiv">
+                    <div id="HomeButton">&nbsp;</div>
+
+                    <div id="LoadingDiv"><img src="/documents/18/0/loading_layer.gif/e6aff2ab-71eb-4861-8629-84c9e1924e8f?t=1442309406876"/></div>
+                </div>
+            </div>
+
+            <div id="contenidoCombos">
+                <div id="myfom">
+                    <div id="legendDiv">
+                        <ul>
+                            <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/Adriatic-Ionian.png"/>
+                                <a class="regionsLink" href="/transnational-regions/adriatic-ionian">Adriatic-Ionian</a>
+                            </li>
+                            <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/AlpineSpace.png"/>
+                                <a class="regionsLink" href="/transnational-regions/alpine-space">Alpine Space</a>
+                            </li>
+                            <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/AtlanticArea.png"/>
+                                <a class="regionsLink" href="/transnational-regions/atlantic-area">Atlantic Area</a>
+                            </li>
+                            <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/Balkan-Mediterranean.png"/>
+                                <a class="regionsLink" href="/transnational-regions/balkan-mediterranean">Balkan-Mediterranean</a>
+                            </li>
+                            <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/BalticSea.png"/>
+                                <a class="regionsLink" href="/transnational-regions/baltic-sea-region">Baltic Sea</a>
+                            </li>
+                            <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/CentralEurope.png"/>
+                                <a class="regionsLink" href="/transnational-regions/central-europe">Central Europe</a>
+                            </li>
+                            <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/Danube.png"/>
+                                <a class="regionsLink" href="/transnational-regions/danube">Danube</a>
+                            </li>
+                            <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/Mediterranean.png"/>
+                                <a class="regionsLink" href="/transnational-regions/mediterranean">Mediterranean</a>
+                            </li>
+                            <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/NorthSea.png"/>
+                                <a class="regionsLink" href="/transnational-regions/north-sea">North Sea</a>
+                            </li>
+                            <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/NorthWestEurope.png"/>
+                                <a class="regionsLink" href="/transnational-regions/north-west-europe">North West Europe</a>
+                            </li>
+                            <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/NorthernPeriphery.png"/>
+                                <a class="regionsLink" href="/transnational-regions/northern-periphery">Northern Periphery and Arctic</a>
+                            </li>
+                            <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/SouthWestEurope.png"/>
+                                <a class="regionsLink" href="/transnational-regions/south-west-europe">South West Europe</a>
+                            </li>
+                            <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/Others.png"/>
+                                <a class="regionsLink" href="/transnational-regions/other-regions">Other regions</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </metal:fill-slot>
+</metal:use-macro>
