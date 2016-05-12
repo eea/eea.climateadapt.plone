@@ -212,7 +212,7 @@
             <div>
                 <h3>Official e-mail</h3>
                 <div tal:content="structure python: view.w['official_email'].render()" />
-                <a tal:attributes="href python: 'http://' + context.website_of_the_local_authority">Website</a>
+                <a tal:attributes="href python: context.website_of_the_local_authority">Website</a>
             </div>
 
             <div>

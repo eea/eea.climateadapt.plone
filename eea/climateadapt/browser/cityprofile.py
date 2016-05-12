@@ -2,6 +2,7 @@ from zope.component import getUtility
 from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.api import portal
+import datetime
 
 
 class CityProfileView(DefaultView):
@@ -9,8 +10,8 @@ class CityProfileView(DefaultView):
     """
 
     def formated_date(self, modifiedTime):
-
-        return portal.get_localized_time(datetime=modifiedTime)
+        modif_date = portal.get_localized_time(datetime=modifiedTime)
+        return datetime.datetime.strptime(modif_date, '%d %B %Y').strftime('%d/%m/%y')
 
     def implementation_state_img_url(self):
         _map = {
