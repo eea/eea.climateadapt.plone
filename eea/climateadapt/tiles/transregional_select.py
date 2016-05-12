@@ -24,12 +24,15 @@ class ITransRegionalSelectTile(IPersistentCoverTile):
         required=True,
     )
 
-countries = {
+regions = {
     'Adriatic-Ionian': [],
     'Alpine Space': [],
     'Northern Periphery and Arctic': [],
     'Atlantic Area': [],
-    'Balkan-Mediterranean': [],
+    'Balkan-Mediterranean': [
+        ('Bulgaria', '/countries/Bulgaria'),
+        ('Albania', ''),
+    ],
     'Baltic Sea': [],
     'Central Europe': [],
     'Danube': [],
@@ -53,7 +56,7 @@ class TransRegionalSelectTile(PersistentCoverTile):
     index = ViewPageTemplateFile('pt/transregional_select.pt')
 
     is_configurable = False
-    is_editable = False
+    is_editable = True
     is_droppable = False
     short_name = u'Select trans region'
 
@@ -78,4 +81,4 @@ class TransRegionalSelectTile(PersistentCoverTile):
         region = self.data.get('region', None)
         if not region:
             return []
-        return countries[region]
+        return regions[region]

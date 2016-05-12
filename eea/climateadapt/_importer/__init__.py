@@ -1904,9 +1904,11 @@ def _import_transnational_region_page(site, layout, structure):
                 _info['main_text'] = payload[0]
 
     cover = create_cover_at(site, layout.friendlyurl, title=_info['title'])
-    #cover.aq_parent.edit(title=_info['title'])
+    alsoProvides(cover.aq_parent, ITransnationalRegionMarker)
+    cover.aq_parent.reindexObject(idxs=('object_provides',))
+    cover.aq_parent.edit(title=_info['title'])
 
-    main_info = {'title': title, 'text': _info['main_text'] }
+    main_info = {'title': _info['title'], 'text': _info['main_text'] }
     image_info = {
         'id': _info['image'],
         'description': '',

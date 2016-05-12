@@ -719,11 +719,14 @@ def make_aceitem_search_tile(cover, info):
     }
 
 
-def make_transregion_dropdown_tile(cover):
+def make_transregion_dropdown_tile(cover, options=None):
+    if options is None:
+        options = {}
     id = getUtility(IUUIDGenerator)()
     typeName = 'eea.climateadapt.transregionselect'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
-    ITileDataManager(tile).set({'title': u"Trans regional select"})
+    options.update({'title': u"Trans regional select"})
+    ITileDataManager(tile).set(options)
 
     return {
         'tile-type': typeName,

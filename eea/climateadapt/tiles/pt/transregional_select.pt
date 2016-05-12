@@ -16,7 +16,7 @@
       </dd>
     </dl>
 
-    <div class="cover-richtext-tile tile-content aceitem-relevant-tile" tal:condition="not: is_compose">
+    <div class="cover-richtext-tile tile-content" tal:condition="not: is_compose">
       <script>
       jQuery(document).ready(function(){
         $("#trans-region-select").change(function(){
@@ -36,10 +36,10 @@
           tal:content="region/title" >1</option>
       </select>
 
-      <div>
+      <div style="padding-top: 1em">
         <strong>Region's countries:</strong><br />
         <tal:rep tal:repeat="info view/countries">
-          <a href="" tal:attributes="href python:info[1]" tal:content="python: info[0]">UK</a>
+          <a href="" tal:omit-tag="python: not info[1]" tal:attributes="href python:info[1]" tal:content="python: info[0]">UK</a><span tal:condition="not: repeat/info/end">, </span>
         </tal:rep>
       </div>
     </div>
