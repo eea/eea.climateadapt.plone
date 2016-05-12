@@ -53,6 +53,7 @@ from eea.climateadapt.interfaces import ICountriesRoot
 from eea.climateadapt.interfaces import IMayorAdaptRoot
 from eea.climateadapt.interfaces import ISiteSearchFacetedView
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
+from eea.climateadapt.interfaces import ITransRegioRoot
 from eea.climateadapt.vocabulary import _cca_types
 from eea.climateadapt.vocabulary import ace_countries_vocabulary
 from eea.climateadapt.vocabulary import aceitem_climateimpacts_vocabulary
@@ -445,6 +446,7 @@ no_import_layouts = [
     '/newregion',
     '/map-viewer',  # TODO: add a browser view for this one
     '/content',
+    '/transnational-regions',
 ]
 
 # TO DO
@@ -1508,12 +1510,12 @@ def import_template_1_column(site, layout, structure):
         main_title = structure['column-1'][0][1].get('title') or ""
     main_title = strip_xml(main_title) or cover_title
 
-
     cover = create_cover_at(site, layout.friendlyurl, title=cover_title)
     cover.aq_parent.edit(title=main_title)  # Fix parent title
     if layout.friendlyurl in additional_sharepage_layouts:
         alsoProvides(cover, IClimateAdaptSharePage)
     stamp_cover(cover, layout)
+
     def _import_two_columns():
         content = structure['column-1'][0][1].get('content')
 
@@ -2239,6 +2241,11 @@ def tweak_site(site):
     contentpage = site['content']
     alsoProvides(contentpage, IContentRoot)
     contentpage.setLayout('@@content')
+
+    # transnational regions page
+    trans_reg_page = site['transnational-regions']
+    alsoProvides(trans_reg_page, ITransRegioRoot)
+    trans_reg_page.setLayout('@@transnational-regions-view')
 
     # apply local roles, to enable special CCA workflows
     for name in ['content', 'aceprojects', 'adaptationoption']:

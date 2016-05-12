@@ -1767,3 +1767,13 @@ li.dropdown-submenu {
     width: 80%;
 }
 #form-widgets-geochars { display: none }
+
+/* transnational-regions */
+
+.template-transnational-regions-view .regionsLink {
+    vertical-align: bottom;
+}
+
+.template-transnational-regions-view a:link {
+    text-decoration: underline;
+}
