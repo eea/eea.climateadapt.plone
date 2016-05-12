@@ -19,7 +19,7 @@
 
             <h1 tal:content="context/title">Title here</h1>
             <div tal:content="structure python: view.w['long_description'].render()"/>
-            <h5 class="Adaptation-option-selector">Adaptation Option Description</h5>
+            <!-- <h5 class="Adaptation-option-selector">Adaptation Option Description</h5> -->
             <h5 class="Adaptation-option-selector">Additional Details</h5>
             <ul>
               <li>
@@ -55,7 +55,6 @@
               </li>
             </ul>
 
-            <h4>Adaptation Option Description</h4>
             <h4>Adaptation Details</h4>
 
             <p id="ao_category">
