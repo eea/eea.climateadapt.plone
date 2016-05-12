@@ -64,7 +64,6 @@
 		var selector = $(".panel-title a")
 		$(selector).each(function(index) {
 			if($(this).text().toLowerCase().indexOf("read more") > -1 || $(this).text().toLowerCase().indexOf("read less") > -1) {
-				console.log("ghag");
 				$(this).parents("div.panel-heading").removeClass('edit-tool-custom-click');
 				$(this).parents("div.panel-heading").addClass('edit-tool-custom-click');
 				$(this).parents("h4.panel-title").removeClass('read-more-acc')
