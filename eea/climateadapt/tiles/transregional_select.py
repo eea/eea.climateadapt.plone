@@ -18,6 +18,29 @@ class ITransRegionalSelectTile(IPersistentCoverTile):
         required=False,
     )
 
+    region = schema.Choice(
+        title=_(u"Region"),
+        vocabulary="eea.climateadapt.regions",
+        required=True,
+    )
+
+countries = {
+    'Adriatic-Ionian': [],
+    'Alpine Space': [],
+    'Northern Periphery and Arctic': [],
+    'Atlantic Area': [],
+    'Balkan-Mediterranean': [],
+    'Baltic Sea': [],
+    'Central Europe': [],
+    'Danube': [],
+    'Mediterranean': [],
+    'North Sea': [],
+    'North West Europe': [
+        ('Germany', '/countries/Germany'),
+    ],
+    'South West Europe': [],
+    'Other regions': [],
+}
 
 class TransRegionalSelectTile(PersistentCoverTile):
     """ TransRegionalSelect tile
@@ -42,9 +65,17 @@ class TransRegionalSelectTile(PersistentCoverTile):
 
         catalog = getToolByName(site, 'portal_catalog')
         q = {
-            "object_provides":"eea.climateadapt.interfaces.ITransnationalRegionMarker",
+            "object_provides":
+                "eea.climateadapt.interfaces.ITransnationalRegionMarker",
             'sort_on':'sortable_title'
         }
         brains = catalog.searchResults(**q)
 
         return [{'url': b.getURL(), 'title': b.Title} for b in brains]
+
+    def countries(self):
+        # a list of {'name': Country name, 'link': Country Link}
+        region = self.data.get('region', None)
+        if not region:
+            return []
+        return countries[region]

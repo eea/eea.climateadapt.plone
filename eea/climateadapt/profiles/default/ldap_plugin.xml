@@ -3,17 +3,17 @@
     
         <ldapplugin title="Plone managed LDAP" id="ldap-plugin" meta_type="Plone LDAP plugin" update="False">
 
-            <!-- <interface value="IAuthenticationPlugin"/> -->
-            <!-- <interface value="ICredentialsResetPlugin"/> -->
-            <!-- <interface value="IGroupIntrospection"/> -->
-            <!-- <interface value="IGroupManagement"/> -->
-            <!-- <interface value="IGroupsPlugin"/> -->
-            <!-- <interface value="IPropertiesPlugin"/> -->
-            <!-- <interface value="IRoleEnumerationPlugin"/> -->
-            <!-- <interface value="IRolesPlugin"/> -->
-            <!-- <interface value="IUserAdderPlugin"/> -->
-            <!-- <interface value="IUserEnumerationPlugin"/> -->
-            <!-- <interface value="IUserManagement"/> -->
+            <interface value="IAuthenticationPlugin"/>
+            <interface value="ICredentialsResetPlugin"/>
+            <interface value="IGroupIntrospection"/>
+            <interface value="IGroupManagement"/>
+            <interface value="IGroupsPlugin"/>
+            <interface value="IPropertiesPlugin"/>
+            <interface value="IRoleEnumerationPlugin"/>
+            <interface value="IRolesPlugin"/>
+            <interface value="IUserAdderPlugin"/>
+            <interface value="IUserEnumerationPlugin"/>
+            <interface value="IUserManagement"/>
             <plugin_property id="prefix" type="string" mode="w" value=""/>
             <plugin_property id="title" type="string" mode="wd" value="Plone managed LDAP"/>
             <property id="_login_attr" type="str">

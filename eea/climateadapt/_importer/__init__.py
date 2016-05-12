@@ -1500,6 +1500,16 @@ def import_template_1_column(site, layout, structure):
 
     cover_title = unicode(structure['name'])
 
+    # detect /transnational-regions pages
+    def is_transnational_region():
+        content = structure['column-1'][0][1]['content']
+        names = [x[1] for x in content]
+        if 'region_name' in names:
+            return True
+
+    if is_transnational_region():
+        return _import_transnational_region_page(site, layout, structure)
+
     # try to get the main title and set it on the parent folder
     portlet_title = structure['column-1'][0][1].get('portlet_title')
     if portlet_title:
@@ -1508,12 +1518,12 @@ def import_template_1_column(site, layout, structure):
         main_title = structure['column-1'][0][1].get('title') or ""
     main_title = strip_xml(main_title) or cover_title
 
-
     cover = create_cover_at(site, layout.friendlyurl, title=cover_title)
     cover.aq_parent.edit(title=main_title)  # Fix parent title
     if layout.friendlyurl in additional_sharepage_layouts:
         alsoProvides(cover, IClimateAdaptSharePage)
     stamp_cover(cover, layout)
+
     def _import_two_columns():
         content = structure['column-1'][0][1].get('content')
 
@@ -1807,10 +1817,6 @@ def import_template_ace_layout_5(site, layout, structure):
     # ex page: /transnational-regions/caribbean-area
     # 1 row, 2 columns. First column: image + region selection tile
     #                   Second column: rich text
-
-    assert(len(structure) == 4)
-    assert(len(structure['column-1']) == 1)
-
     _titles = {
         'policy_legal_framework': "Policy and legal framework",
         'assessments_and_projects': "Assessments and projects",
@@ -1835,22 +1841,88 @@ def import_template_ace_layout_5(site, layout, structure):
     alsoProvides(cover.aq_parent, ITransnationalRegionMarker)
     cover.aq_parent.reindexObject(idxs=('object_provides',))
 
-    info = {'title': main_title, 'text': main_text }
-    main_text_tile = make_richtext_with_title_tile(cover, info)
-
-    main_text_group = make_group(9, main_text_tile)
-    dropdown_tile = make_transregion_dropdown_tile(cover)
+    main_info = {'title': main_title, 'text': main_text }
     image_info = {
         'id': image,
         'description': '',
         'title': 'region image',
     }
+
+    main_text_tile = make_richtext_with_title_tile(cover, main_info)
+    dropdown_tile = make_transregion_dropdown_tile(cover)
     image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
+
     image_group = make_group(3, image_tile, dropdown_tile)
+    main_text_group = make_group(9, main_text_tile)
+
     row_1 = make_row(image_group, main_text_group)
-
     layout = make_layout(row_1)
+    cover.cover_layout = json.dumps(layout)
 
+    return cover
+
+
+def _import_transnational_region_page(site, layout, structure):
+    # ex page: /transnational-regions/balkan-mediterranean
+    # 1 row, 2 columns:
+    # first column, 2 tiles: image, region selector
+    # second column: 1 tile, rich text
+
+    _titles = {
+        'policy_framework': "Policy framework",
+        'assessments_and_projects': "Assessments and projects",
+    }
+
+    _info = {}
+    _info['title'] = ''
+    _info['countries'] = []
+
+    content = structure['column-1'][0][1]['content']
+    _info['main_text'] = ''
+    for _type, name, payload in content:
+        if name == 'region_name':
+            _info['title'] = payload[0]
+        if _type == 'image':
+            _info['image'] = payload[0]
+            continue
+        if name == 'link_to_country':
+            # [('dynamic', 'link_to_country_desc', ['Bulgaria']),
+            #                                       '/countries/Bulgaria']
+            country_name = payload[0][2][0]
+            country_link = payload[1]
+            _info['countries'].append((country_name, country_link))
+        if _type == 'text':
+            if len(payload) > 1:
+                for bit in payload:
+                    title = _titles[bit[1]]
+                    text = bit[2][0]
+                    _info['main_text'] += u"<h3>{0}</h3>\n{1}".format(
+                        title, text)
+            else:
+                _info['main_text'] = payload[0]
+
+    cover = create_cover_at(site, layout.friendlyurl, title=_info['title'])
+    #cover.aq_parent.edit(title=_info['title'])
+
+    main_info = {'title': title, 'text': _info['main_text'] }
+    image_info = {
+        'id': _info['image'],
+        'description': '',
+        'title': 'region image',
+    }
+    region_name = _info['title'].replace(' Area', '').strip()
+
+    main_text_tile = make_richtext_with_title_tile(cover, main_info)
+
+    image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
+    dropdown_tile = make_transregion_dropdown_tile(cover,
+                                                   {'region': region_name})
+
+    main_text_group = make_group(9, main_text_tile)
+    image_group = make_group(3, image_tile, dropdown_tile)
+
+    row_1 = make_row(image_group, main_text_group)
+    layout = make_layout(row_1)
     cover.cover_layout = json.dumps(layout)
 
     return cover

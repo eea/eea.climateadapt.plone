@@ -35,6 +35,13 @@
           tal:attributes="value region/url" 
           tal:content="region/title" >1</option>
       </select>
+
+      <div>
+        <strong>Region's countries:</strong><br />
+        <tal:rep tal:repeat="info view/countries">
+          <a href="" tal:attributes="href python:info[1]" tal:content="python: info[0]">UK</a>
+        </tal:rep>
+      </div>
     </div>
   </body>
 </html>
