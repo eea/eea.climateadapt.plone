@@ -447,6 +447,9 @@ no_import_layouts = [
     '/map-viewer',  # TODO: add a browser view for this one
     '/content',
     '/transnational-regions',
+    '/transnational-regions/bsr-adaptation-old',
+    '/atlantic-area',
+    '/atlantic-area1',
 ]
 
 # TO DO
@@ -810,6 +813,37 @@ def import_city_profiles(site):
 # frontpage             - TODO as a custom page
 # transnationalregion   - done
 # urban_ast             - done with TODOs
+
+
+@log_call
+def import_template_help(site, layout, structure):
+    main_title = structure.pop('name')
+    cover = create_cover_at(site, layout.friendlyurl,
+                            title=strip_xml(main_title))
+    cover.aq_parent.edit(title=main_title)  # Fix parent name
+    stamp_cover(cover, layout)
+
+    column_names = ['column-1', 'column-2', 'column-3', 'column-4', 'column-5']
+
+    main_tile = make_tile(cover, structure.pop('column-1'))
+    lrow = []
+
+    for name in column_names:   # Try to preserve the order of columns
+        col = structure.get(name)
+        if col:
+            # each column has two tiles
+            tiles = [make_tile(cover, [p], no_titles=True) for p in col]
+            group = make_group(3, *tiles)
+            lrow.append(group)
+
+    main_row = make_row(*[make_group(12, main_tile)])
+    lower_row = make_row(*lrow)
+    layout = make_layout(main_row, lower_row)
+
+    layout = json.dumps(layout)
+    cover.cover_layout = layout
+
+    return cover
 
 
 @log_call
@@ -1686,7 +1720,6 @@ def import_template_2_columns_iii(site, layout, structure):
 
     assert(len(structure) == 2 or len(structure) == 3)
 
-    #import pdb; pdb.set_trace()
     # title = structure['name']
     title = structure['column-1'][0][1]['portlet_title']
     if not title:
@@ -1700,18 +1733,36 @@ def import_template_2_columns_iii(site, layout, structure):
     # there are three pages that use dynamic text (faq items)
     portlet_types = [x[0] for x in structure['column-1'][0][1]['content']]
     portlet_names = [x[1] for x in structure['column-1'][0][1]['content']]
-    #import pdb; pdb.set_trace()
+
     if 'dynamic' in portlet_types:
         # a page with readmore structure
         if 'Body' in portlet_names and 'ReadMoreBody' in portlet_names:
 
             main = {}
-            image_id = structure['column-1'][0][1]['content'][0][2][0]
-            image = get_repofile_by_id(site, image_id)
+            for _type, name, payload in structure['column-1'][0][1]['content']:
+                if _type == 'image':
+                    if isinstance(payload, basestring):
+                        image_id = payload
+                    else:
+                        image_id = payload[0]
 
-            title = structure['column-1'][0][1]['content'][1][2][0]
-            body = structure['column-1'][0][1]['content'][2][2][0]
-            readmore = structure['column-1'][0][1]['content'][3][2][0]
+                    image = get_repofile_by_id(site, image_id)
+                if _type == 'dynamic' and name == 'Title':
+                    if isinstance(payload, basestring):
+                        title = payload
+                    else:
+                        title = payload[0]
+                if _type == 'text':
+                    if name == 'Body':
+                        body = payload[0]
+                    if name == 'ReadMoreBody':
+                        readmore = payload[0]
+
+            # image_id = structure['column-1'][0][1]['content'][0][2][0]
+            # image = get_repofile_by_id(site, image_id)
+            # title = structure['column-1'][0][1]['content'][1][2][0]
+            # body = structure['column-1'][0][1]['content'][2][2][0]
+            # readmore = structure['column-1'][0][1]['content'][3][2][0]
 
             main['title'] = title
             main['body'] = body
