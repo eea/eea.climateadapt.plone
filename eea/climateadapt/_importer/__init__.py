@@ -1873,8 +1873,9 @@ def _import_transnational_region_page(site, layout, structure):
     _titles = {
         'policy_framework': "Policy framework",
         'assessments_and_projects': "Assessments and projects",
+        'assessments_and_projects_': "Assessments and projects",
     }
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
 
     _info = {}
     _info['title'] = ''
@@ -1902,7 +1903,10 @@ def _import_transnational_region_page(site, layout, structure):
                     _info['main_text'] += u"<h3>{0}</h3>\n{1}".format(
                         title, text)
             else:
-                _info['main_text'] = payload[0]
+                text = payload[0]
+                title = _titles[name]
+                _info['main_text'] += u"<h3>{0}</h3>\n{1}".format(
+                    title, text)
 
     cover = create_cover_at(site, layout.friendlyurl, title=_info['title'])
     alsoProvides(cover.aq_parent, ITransnationalRegionMarker)
