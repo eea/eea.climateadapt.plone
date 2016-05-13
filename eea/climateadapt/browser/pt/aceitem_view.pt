@@ -45,6 +45,10 @@
             <div tal:condition="context/metadata/raw | nothing">
               <h5>Link to metadata:</h5>
               <div tal:content="structure python: view.w['metadata'].render()">Source here</div>
+              
+              <!-- <div tal:content="structure python: view.linkify(view.w['metadata'].render())"></div> -->
+              <!-- <a tal:attributes="href python:view.linkify(link)" tal:content="python:view.linkify(link)">Websites here</a> -->
+
             </div>
 
           </div>
