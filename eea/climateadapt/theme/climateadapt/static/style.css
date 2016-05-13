@@ -1694,6 +1694,9 @@ li.dropdown-submenu {
     padding-right: 0.7em;
 }
 
+.section-help #content img {
+    max-width: none;
+}
 
 /* time series tool */
 

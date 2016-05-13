@@ -824,9 +824,33 @@ def import_template_help(site, layout, structure):
     stamp_cover(cover, layout)
 
     column_names = ['column-1', 'column-2', 'column-3', 'column-4', 'column-5']
+    lrow = []
+
+    img_1 = structure['column-2'][0][1]['content'][0]
+    img_2 = structure['column-3'][0][1]['content'][0]
+    img_3 = structure['column-4'][0][1]['content'][0]
+    img_4 = structure['column-5'][0][1]['content'][0]
+    img_5 = structure['column-1'][0][1]['content'][0]
+    img_6 = structure['column-3'][1][1]['content'][0]
+    img_7 = structure['column-4'][1][1]['content'][0]
+
+    img_1 = img_1.replace("/documents/18/11284244/Glossary+of+terms.jpg", "/++theme++climateadapt/static/cca/img/Glossary of terms.jpg")
+    img_2 = img_2.replace("/documents/18/11284244/Reproductor.jpg", "/++theme++climateadapt/static/cca/img/Reproductor.jpg")
+    img_3 = img_3.replace("/documents/18/11284244/FAQ.jpg", "/++theme++climateadapt/static/cca/img/FAQ.jpg")
+    img_4 = img_4.replace("/documents/18/11284244/Share+information.jpg", "/++theme++climateadapt/static/cca/img/Share information.jpg")
+    img_5 = img_5.replace("/documents/18/11284244/Help.jpg", "/++theme++climateadapt/static/cca/img/Help.jpg")
+    img_6 = img_6.replace("/documents/18/11284244/ec_icon.jpg", "/++theme++climateadapt/static/cca/img/ec_icon.jpg")
+    img_7 = img_7.replace("/documents/18/11284244/eea_icon.jpg", "/++theme++climateadapt/static/cca/img/eea_icon.jpg")
+
+    structure['column-2'][0][1]['content'][0] = img_1
+    structure['column-3'][0][1]['content'][0] = img_2
+    structure['column-4'][0][1]['content'][0] = img_3
+    structure['column-5'][0][1]['content'][0] = img_4
+    structure['column-1'][0][1]['content'][0] = img_5
+    structure['column-3'][1][1]['content'][0] = img_6
+    structure['column-4'][1][1]['content'][0] = img_7
 
     main_tile = make_tile(cover, structure.pop('column-1'))
-    lrow = []
 
     for name in column_names:   # Try to preserve the order of columns
         col = structure.get(name)
