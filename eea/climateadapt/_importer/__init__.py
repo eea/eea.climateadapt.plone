@@ -1874,6 +1874,7 @@ def _import_transnational_region_page(site, layout, structure):
         'policy_framework': "Policy framework",
         'assessments_and_projects': "Assessments and projects",
     }
+    import pdb; pdb.set_trace()
 
     _info = {}
     _info['title'] = ''
@@ -1914,7 +1915,8 @@ def _import_transnational_region_page(site, layout, structure):
         'description': '',
         'title': 'region image',
     }
-    region_name = _info['title'].replace(' Area', '').strip()
+    region_name = _info['title'].replace(
+        ' Area', '').replace(' Region', '').strip()
 
     main_text_tile = make_richtext_with_title_tile(cover, main_info)
 
@@ -1922,8 +1924,8 @@ def _import_transnational_region_page(site, layout, structure):
     dropdown_tile = make_transregion_dropdown_tile(cover,
                                                    {'region': region_name})
 
-    main_text_group = make_group(9, main_text_tile)
-    image_group = make_group(3, image_tile, dropdown_tile)
+    main_text_group = make_group(10, main_text_tile)
+    image_group = make_group(2, image_tile, dropdown_tile)
 
     row_1 = make_row(image_group, main_text_group)
     layout = make_layout(row_1)

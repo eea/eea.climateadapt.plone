@@ -30,7 +30,7 @@ regions = {
     'Northern Periphery and Arctic': [],
     'Atlantic Area': [],
     'Balkan-Mediterranean': [
-        ('Bulgaria', '/countries/Bulgaria'),
+        ('Bulgaria', '/countries/bulgaria'),
         ('Albania', ''),
     ],
     'Baltic Sea': [],
@@ -39,7 +39,7 @@ regions = {
     'Mediterranean': [],
     'North Sea': [],
     'North West Europe': [
-        ('Germany', '/countries/Germany'),
+        ('Germany', '/countries/germany'),
     ],
     'South West Europe': [],
     'Other regions': [],
