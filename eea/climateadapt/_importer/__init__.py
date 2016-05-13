@@ -1541,6 +1541,10 @@ def import_template_1_column(site, layout, structure):
     # this is a simple page, with one portlet of text
     # example: /eu-adaptation-policy/funding/life
 
+    img_1 = structure['column-1'][0][1]['content'][0]
+    img_1 = img_1.replace("/documents/18/11284244/FAQ.jpg", "/++theme++climateadapt/static/cca/img/FAQ.jpg")
+    structure['column-1'][0][1]['content'][0] = img_1
+
     if structure['column-1'][0][0] in portlet_importers:
         importer = portlet_importers.get(structure['column-1'][0][0])
         return importer(layout, structure)
