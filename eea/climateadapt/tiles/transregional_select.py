@@ -184,7 +184,8 @@ class TransRegionalSelectTile(PersistentCoverTile):
         }
         brains = catalog.searchResults(**q)
 
-        return [{'url': b.getURL(), 'title': b.Title} for b in brains]
+        return sorted([{'url': b.getURL(), 'title': b.Title} for b in brains],
+                      key=lambda x:x['title'])
 
     def countries(self):
         # a list of {'name': Country name, 'link': Country Link}

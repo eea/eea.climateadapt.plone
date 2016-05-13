@@ -1874,6 +1874,7 @@ def _import_transnational_region_page(site, layout, structure):
         'policy_framework': "Policy framework",
         'assessments_and_projects': "Assessments and projects",
         'assessments_and_projects_': "Assessments and projects",
+        'Detailed_Information': "Detailed information",
     }
     #import pdb; pdb.set_trace()
 

@@ -273,7 +273,7 @@ special_tags_vocabulary = catalog_based_vocabulary('special_tags')
 alsoProvides(special_tags_vocabulary, IVocabularyFactory)
 
 _regions = ['Adriatic-Ionian', 'Alpine Space', 'Northern Periphery and Arctic',
-           'Atlantic Area', 'Balkan-Mediterranean', 'Baltic Sea',
+           'Atlantic', 'Balkan-Mediterranean', 'Baltic Sea',
            'Central Europe', 'Danube', 'Mediterranean', 'North Sea',
            'North West Europe', 'South West Europe', 'Other regions']
 regions_vocabulary = generic_vocabulary(_regions)
