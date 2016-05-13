@@ -450,6 +450,7 @@ no_import_layouts = [
     '/transnational-regions/bsr-adaptation-old',
     '/atlantic-area',
     '/atlantic-area1',
+    '/more-latest-updates',
 ]
 
 # TO DO
@@ -1562,6 +1563,10 @@ def import_template_1_column(site, layout, structure):
 
     # detect /transnational-regions pages
     def is_transnational_region():
+        if not ('column-1' in structure):
+            return False
+        if not ('content' in structure['column-1'][0][1]):
+            return False
         content = structure['column-1'][0][1]['content']
         names = [x[1] for x in content]
         if 'region_name' in names:
