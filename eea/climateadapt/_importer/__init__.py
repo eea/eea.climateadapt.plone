@@ -837,16 +837,9 @@ def import_template_help(site, layout, structure):
             lrow.append(group)
 
     main_row = make_row(*[make_group(12, main_tile)])
-    #lower_row = make_row(*[make_group(3, tile) for tile in ltiles])
     lower_row = make_row(*lrow)
     layout = make_layout(main_row, lower_row)
 
-    # image_group = make_group(2, image_tile)
-    # content_group = make_group(10, content_tile)
-    #
-    # layout = make_layout(make_row(image_group, content_group))
-
-    #layout = make_layout(make_row(*[make_group(12, tile) for tile in tiles]))
     layout = json.dumps(layout)
     cover.cover_layout = layout
 
