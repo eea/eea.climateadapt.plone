@@ -1782,6 +1782,6 @@ li.dropdown-submenu {
     vertical-align: bottom;
 }
 
-.template-transnational-regions-view a:link {
+.template-transnational-regions-view #content-core a:link {
     text-decoration: underline;
 }
