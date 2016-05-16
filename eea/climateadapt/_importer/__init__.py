@@ -131,7 +131,7 @@ def import_aceitem(data, location):
             geochars=data.geochars,
             special_tags=s2l(data.specialtagging, relaxed=True),
             rating=data.rating,
-            metadata=t2r(data.metadata),
+            metadata=t2r(data.metadata_),
         )
         item._aceitem_id = data.aceitemid
 
