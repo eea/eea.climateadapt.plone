@@ -136,7 +136,7 @@ def import_aceitem(data, location):
             geochars=data.geochars,
             special_tags=s2l(data.specialtagging, relaxed=True),
             rating=data.rating,
-            metadata=t2r(data.metadata_),
+            metadata=t2r(data.metadata_),   # this is a web link
             _publish=_publish,
         )
         item._aceitem_id = data.aceitemid
@@ -1011,6 +1011,7 @@ def import_template_ace_layout_2(site, layout, structure):
     # the third one is at http://adapt-test.eea.europa.eu/adaptation-measures
     # and has 2 filter portlet and a simple filter portlet
 
+    #import pdb; pdb.set_trace()
     if not structure.get('column-2') or len(structure['column-2'][0][1]) == 0:
         # TODO: add these redirections:
         # /climate-change-adaptation => /en/adaptation-information/general
@@ -1051,10 +1052,11 @@ def import_template_ace_layout_2(site, layout, structure):
                           {'payload': main})
 
     main_content_tile = make_richtext_tile(cover, {'title': 'main content',
-                                                   'text': main_content})
+                                                   'text': main_content,
+                                                   'css_class': 'clearfix'})
 
     col2_tile = make_tile(cover, structure['column-2'], 'col-md-4')
-    col3_tile = make_tile(cover, structure['column-3'], 'col-md-4')
+    col3_tile = make_tile(cover, structure['column-3'], 'col-md-8')
 
     relevant_content_tiles = [col2_tile, col3_tile]
     sidebar_tile = make_tile(cover, structure['column-4'])

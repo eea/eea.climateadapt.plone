@@ -39,6 +39,18 @@
       />
 
   <plone:tile
+      name="eea.climateadapt.filter_acecontent"
+      title="Filterable Relevant AceContent"
+      description="A tile to show relevant ace content, with filtering options"
+      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+      add_permission="cmf.ModifyPortalContent"
+      schema=".search_acecontent.IFilterAceContentItemsTile"
+      class=".search_acecontent.FilterAceContentItemsTile"
+      permission="zope2.View"
+      for="*"
+      />
+
+  <plone:tile
       name="eea.climateadapt.richtext_with_title"
       title="Rich text with title"
       description="A richtext tile that shows its title"

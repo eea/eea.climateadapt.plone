@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n:domain="collective.cover">
+
+  <body tal:define="is_compose view/is_compose_mode">
+    <strong tal:condition="is_compose">Filterable Relevant AceContent Tile</strong>
+
+    <dl tal:condition="view/is_compose_mode">
+      <dt>Element type:</dt>
+      <dd tal:content="python: view.data.get('element_type')" />
+      <dt>Search type:</dt>
+      <dd tal:content="python: view.data.get('search_type')" />
+      <dd>Search text: </dd>
+      <dt tal:content="python: view.data.get('search_text')" />
+      <dd>Number of items: </dd>
+      <dt tal:content="python: view.data.get('nr_items')" />
+    </dl>
+
+    <div class="cover-richtext-tile tile-content aceitem-relevant-tile aceitem-filter-relevant-tile" tal:condition="not: is_compose">
+      <h2 tal:content="python: view.data.get('title')">Title here</h2>
+
+      <h3 style="display:none">Relevant tile</h3>
+      <div tal:replace="structure python: view.filterform.render()" />
+
+      <div style="display:none" tal:content="view/data" />
+      <ul>
+        <li tal:repeat="brain view/items">
+          <a href="" tal:attributes="href brain/getURL" tal:content="brain/Title">Title here</a>
+        </li>
+      </ul>
+      <div class="tile-footer">
+        <a href="" tal:attributes="href view/view_more_url" tal:condition="view/view_more">View all</a>
+      </div>
+    </div>
+  </body>
+</html>

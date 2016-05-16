@@ -1788,3 +1788,9 @@ li.dropdown-submenu {
 .template-transnational-regions-view #content-core a:link {
     text-decoration: underline;
 }
+
+/* filter relevant aceitems tile */
+.aceitem-filter-relevant-tile label {
+    width: 8em;
+    float: left;
+}
