@@ -16,7 +16,7 @@
           <span tal:content="python: brain.getObject().acronym">Here </span>
         </div>
         <a href="" tal:content="title" tal:attributes="href brain/getURL">» Link</a>
-        - <span tal:define="text python: brain.description">
+        - <span tal:define="text python: view.html2text(brain.long_description.raw)">
             <span tal:replace="python: text[:208-len(title)]" />...
           </span>
       </td>
