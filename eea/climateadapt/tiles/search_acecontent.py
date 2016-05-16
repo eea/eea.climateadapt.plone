@@ -335,8 +335,26 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         if sector:
             query['sectors'] = sector
 
-        print query
-
         res = self.catalog.searchResults(limit=count, **query)
 
         return res[:count]
+
+    def view_more_url(self):
+        site = getSite()
+        base = site.absolute_url() + "/data-and-downloads?"
+
+        kw, errors = self.filterform.extractData()
+        impact = kw['impact']
+        sector = kw['sector']
+
+        query = {
+            'elements': self.data.get('element_type'),
+            'search_type': self.data.get('search_type'),
+            'SearchableText': self.data.get('search_text') or ""
+        }
+        if impact:
+            query['climate_impacts'] = impact
+        if sector:
+            query['sectors'] = sector
+
+        return self.build_url(base, query, {})

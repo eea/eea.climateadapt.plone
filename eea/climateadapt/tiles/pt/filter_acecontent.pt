@@ -30,7 +30,9 @@
           <a href="" tal:attributes="href brain/getURL" tal:content="brain/Title">Title here</a>
         </li>
       </ul>
-      <div class="tile-footer"></div>
+      <div class="tile-footer">
+        <a href="" tal:attributes="href view/view_more_url" tal:condition="view/view_more">View all</a>
+      </div>
     </div>
   </body>
 </html>
