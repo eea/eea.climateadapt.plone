@@ -51,7 +51,7 @@
 
           <div class="aceitem-right" metal:fill-slot="ace-right-slot">
 
-             <div>
+             <div tal:condition="nothing | context/contentValues">
                 <h4 tal:define="file_nr context/contentValues">Item Documents (<span tal:content="python: len(file_nr)"></span>) </h4>
                 <ul>
                     <li tal:repeat="file context/contentValues">
