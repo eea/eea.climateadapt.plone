@@ -93,6 +93,14 @@ class AceTileMixin(object):
         for k, v in query.items():
             if v is None:
                 del query[k]
+
+        # get rid of special_tags index, just use the SearchableText
+        # the special_tags field is indexed into the SearchableText
+        st = query.pop('special_tags', '')
+        if st:
+            text = query.pop('SearchableText', '') + ' ' + st
+            query['SearchableText'] = text
+
         return query
 
     def build_url(self, url, query, kw):

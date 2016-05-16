@@ -81,6 +81,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
         missing_value=(),
     )
 
+
     sectors = List(title=_(u"Sectors"),
                    description=_(u"Select one or more relevant sector policies"
                                  u" that this item relates to."),
@@ -168,6 +169,13 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     # -----------[ "backend" fields ]------------------
 
+    special_tags = Tuple(
+        title=_(u"Special tagging"),
+        required=False,
+        value_type=TextLine(),
+        missing_value=(),
+    )
+
     # fix???
     data_type = Choice(title=_(u"Data Type"),
                        required=False,
@@ -205,11 +213,6 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     #                 value_type=Choice(
     #                     vocabulary="eea.climateadapt.aceitems_featured",),
     #                 )
-
-    special_tags = List(title=_(u"Special tagging"),
-                        required=False,
-                        value_type=TextLine(title=_(u"Tag"), required=False)
-                        )
 
     rating = Int(title=_(u"Rating"), required=True, default=0)
 

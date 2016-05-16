@@ -251,7 +251,8 @@ def _clean(s):
 def _clean_portlet_settings(d):
     _conv = {
         'aceitemtype': 'search_type',
-        'anyOfThese': 'special_tags',
+        #'anyOfThese': 'special_tags',
+        'anyOfThese': 'search_text',
         'countries': 'countries',
         'element': 'elements',
         'nrItemsPage': 'count',
@@ -824,7 +825,7 @@ def make_richtext_tile(cover, content):
     typeName = 'collective.cover.richtext'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
 
-    content['text'] = unicode(fix_links(site, unicode(content['text'])))
+    content['text'] = t2r(unicode(fix_links(site, unicode(content['text']))))
     content['title'] = unicode(content['title'])
 
     css_class = content.pop('css_class', None)
@@ -851,7 +852,7 @@ def make_richtext_with_title_tile(cover, content):
     typeName = 'eea.climateadapt.richtext_with_title'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
 
-    content['text'] = fix_links(site, unicode(content['text']))
+    content['text'] = t2r(fix_links(site, unicode(content['text'])))
     content['title'] = unicode(content['title'])
 
     css_class = content.pop('css_class', None)
