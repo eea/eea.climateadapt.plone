@@ -116,7 +116,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         description=_(u"Describe and tag this item with relevant keywords."),
         required=True,
         value_type=TextLine(),
-        missing_value=(),
+        missing_value=(None),
     )
 
     sectors = List(title=_(u"Sectors"),
