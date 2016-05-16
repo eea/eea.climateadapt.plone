@@ -56,7 +56,6 @@
             </ul>
 
             <h4>Adaptation Details</h4>
-
             <p id="ao_category">
               <em class="adapt-option-em" style="text-decoration: underline">Category</em>
               <tal:block content="context/category | nothing"/>
@@ -96,12 +95,14 @@
             <div tal:content="structure python: view.w['source'].render()">Source here</div>
           </div>
           <div metal:fill-slot="ace-right-slot">
-            <h4 tal:define="file_nr context/contentValues">Adaptation Option Documents (<span tal:content="python: len(file_nr)"></span>) </h4>
-            <ul>
-              <li tal:repeat="file context/contentValues">
-                 <a tal:attributes="href file/absolute_url" tal:content="file/Title"></a>
-              </li>
-            </ul>
+            <div tal:condition="context/contentValues">
+                <h4 tal:define="file_nr context/contentValues">Adaptation Option Documents (<span tal:content="python: len(file_nr)"></span>) </h4>
+                <ul>
+                  <li tal:repeat="file context/contentValues">
+                     <a tal:attributes="href file/absolute_url" tal:content="file/Title"></a>
+                  </li>
+                </ul>
+            </div>
             <h4>Keywords</h4>
             <tal:block content="structure python: view.w['keywords'].render()"/>
             <h4>Sectors</h4>

@@ -36,12 +36,14 @@
 
           <div metal:fill-slot="ace-right-slot">
 
-            <h4 tal:define="file_nr context/contentValues">Publication Report Documents (<span tal:content="python: len(file_nr)"></span>) </h4>
-            <ul>
-              <li tal:repeat="file context/contentValues">
-                  <a tal:attributes="href file/absolute_url" tal:content="file/Title"></a>
-              </li>
-            </ul>
+            <div tal:condition="context/contentValues">
+                <h4 tal:define="file_nr context/contentValues">Publication Report Documents (<span tal:content="python: len(file_nr)"></span>) </h4>
+                <ul>
+                  <li tal:repeat="file context/contentValues">
+                      <a tal:attributes="href file/absolute_url" tal:content="file/Title"></a>
+                  </li>
+                </ul>
+            </div>
 
             <tal:block condition="context/Subject">
               <h4>Project Documents</h4>
@@ -57,7 +59,6 @@
             <tal:block content="structure python:view.w['elements'].render()" />
             <h4>Sectors</h4>
             <tal:block content="structure python:view.w['sectors'].render()" />
-
             <h4>Geographic characterisation</h4>
             <metal:geo use-macro="context/@@ace_macros/macros/geochar" />
 
