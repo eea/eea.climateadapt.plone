@@ -92,10 +92,9 @@ def fix_relations(session):
                                 primaryjoin=pj,
                                 )
                 setattr(klass, name, rel)
+        sql.AceAceitem.metadata_ = Column('metadata', Text)
     except Exception, e:
         logger.warning("Error in setting database relationship: %s", e)
-
-    sql.AceAceitem.metadata_ = Column('metadata', Text)
 
 
 class AceIndicator(sql.Base):   # count: 42
