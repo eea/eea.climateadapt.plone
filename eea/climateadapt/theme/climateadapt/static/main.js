@@ -1,5 +1,10 @@
 (function($){
 	$(document).ready(function(){
+
+        $(".acecontent_filtering_tile select").on('change', function(event){
+            $(this).parents('form').submit();
+        });
+
 		$('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
 			event.preventDefault();
 			event.stopPropagation();
@@ -43,7 +48,7 @@
                     var action = $(this).val();
                     var form = $(this).closest('form');
                     var wid = $(this).closest('.faceted-widget');
-                    var wid_id = wid.attr('id').split('_')[0]
+                    var wid_id = wid.attr('id').split('_')[0];
                     if (action === 'display'){
                         form.find('ul').show();
                     } else {
@@ -61,13 +66,13 @@
         });
 
 		// Check all accordions on the page, add class where necessary
-		var selector = $(".panel-title a")
+		var selector = $(".panel-title a");
 		$(selector).each(function(index) {
 			if($(this).text().toLowerCase().indexOf("read more") > -1 || $(this).text().toLowerCase().indexOf("read less") > -1) {
 				$(this).parents("div.panel-heading").removeClass('edit-tool-custom-click');
 				$(this).parents("div.panel-heading").addClass('edit-tool-custom-click');
-				$(this).parents("h4.panel-title").removeClass('read-more-acc')
-				$(this).parents("h4.panel-title").addClass('read-more-acc')
+				$(this).parents("h4.panel-title").removeClass('read-more-acc');
+				$(this).parents("h4.panel-title").addClass('read-more-acc');
 			}
 		});
 		// Add classes to arccodion
@@ -79,9 +84,7 @@
 				$(this).removeClass('read-more-class');
 				$(this).addClass('read-more-class');
 				$(this).text(function (a,b) {
-					return (b == "Read more"
-					? "Read less"
-					: "Read more")
+					return (b == "Read more" ? "Read less" : "Read more");
 				});
 			}
 		});
@@ -159,8 +162,6 @@ $(document).ready(function() {
     		   // Make sure it doesn't follow the link when we click it
     		   //.click(function(event) { event.preventDefault(); });
 		});
-
-
 
 })(jQuery);
 

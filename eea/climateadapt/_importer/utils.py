@@ -383,11 +383,15 @@ def get_template_for_layout(layout):
 
 
 def make_tile(cover, col, css_class=None, no_titles=False):
+    # TODO: this should be able to return a list of tiles from the column
+    # not just a single tile
+
+    tile_name = col[0][0]
     payload = col[0][1]
 
-    if col[0][0].startswith('iframe'):
+    if tile_name.startswith('iframe'):
         return make_iframe_embed_tile(cover, payload['url'])
-    elif 'webformportlet' in col[0][0]:
+    elif 'webformportlet' in tile_name:
         return make_form_tile(cover, payload)
 
     if payload.get('portlet_type') == 'journal_article_content':
@@ -403,6 +407,10 @@ def make_tile(cover, col, css_class=None, no_titles=False):
     if css_class:
         payload.update({'css_class': css_class})
 
+    if tile_name and 'simplefilterportlet' in tile_name:
+        return make_aceitem_filter_tile(cover, payload)
+
+    # TODO: use type_name instead of this hack
     if payload.get('paging') == u'1':
         # this is the search portlet on the right
         return make_aceitem_search_tile(cover, payload)
@@ -788,6 +796,24 @@ def make_countries_dropdown_tile(cover, image=None):
         'tile-type': typeName,
         'type': 'tile',
         'id': id,
+    }
+
+
+def make_aceitem_filter_tile(cover, payload):
+    id = getUtility(IUUIDGenerator)()
+    typeName = 'eea.climateadapt.filter_acecontent'
+    tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
+    info = _clean_portlet_settings(payload)
+
+    css_class = info.pop('css_class', None)
+    ITileDataManager(tile).set(info)
+
+    set_css_class(cover, tile, css_class)
+
+    return {
+        'tile-type': typeName,
+        'type': 'tile',
+        'id': id
     }
 
 

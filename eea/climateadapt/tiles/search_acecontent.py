@@ -9,7 +9,10 @@ from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.vocabulary import aceitem_types
+from plone.directives import form
 from urllib import urlencode
+from z3c.form.field import Fields
+from z3c.form.form import Form
 from zope import schema
 from zope.component.hooks import getSite
 from zope.interface import implements
@@ -253,5 +256,87 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
         if len(res) > count:
             self.view_more = True
+
+        return res[:count]
+
+
+class IFilterAceContentItemsTile(IRelevantAceContentItemsTile):
+    """ Schema for filter aceitems
+
+    This is a results listing, but with two dropdowns to filter:
+    * climate impact
+    * adaptation sector
+    """
+
+
+class IFilteringSchema(form.Schema):
+    impact = schema.Choice(
+        title=_(u"Climate impact"),
+        vocabulary="eea.climateadapt.aceitems_climateimpacts",
+        required=False
+    )
+    sector = schema.Choice(
+        title=_(u"Sector"),
+        vocabulary="eea.climateadapt.aceitems_sectors",
+        required=False
+    )
+
+
+class FilteringForm(Form):   #form.SchemaForm):
+    """ Filtering form handling
+    """
+
+    template = ViewPageTemplateFile('pt/filter_form.pt')
+
+    label = u""
+    description = u""
+
+    prefix = ''
+    ignoreContext = True
+    method = "GET"
+
+    fields = Fields(IFilteringSchema)
+    css_class = "acecontent_filtering_tile"
+
+    def __init__(self, context, request, *args, **kwargs):
+        request = request['PARENT_REQUEST']
+        super(FilteringForm, self).__init__(context, request, *args, **kwargs)
+
+    def action(self):
+        return self.context.absolute_url()
+
+
+class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin):
+    implements(IFilterAceContentItemsTile)
+
+    short_name = u'Filterable relevant AceContent'
+
+    is_configurable = True
+    is_editable = True
+    is_droppable = False
+    index = ViewPageTemplateFile('pt/filter_acecontent.pt')
+
+    @property
+    def filterform(self):
+        form = FilteringForm(self.context, self.request)
+        form.update()
+        return form
+
+    def items(self):
+        kw, errors = self.filterform.extractData()
+        impact = kw['impact']
+        sector = kw['sector']
+
+        count = self.data.get('nr_items', 5) or 5
+        query = self.build_query()
+
+        if impact:
+            query['climate_impacts'] = impact
+        if sector:
+            query['sectors'] = sector
+
+        print query
+
+        res = self.catalog.searchResults(limit=count, **query)
 
         return res[:count]
