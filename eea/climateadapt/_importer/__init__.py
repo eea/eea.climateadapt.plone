@@ -108,6 +108,11 @@ def import_aceitem(data, location):
     if data.datatype == "RESEARCHPROJECT":
         return
 
+    if data.controlstatus == 1:
+        _publish = 1
+    else:
+        _publish = 0
+
     if data.datatype in ACE_ITEM_TYPES:
         item = createAndPublishContentInContainer(
             location,
@@ -132,6 +137,7 @@ def import_aceitem(data, location):
             special_tags=s2l(data.specialtagging, relaxed=True),
             rating=data.rating,
             metadata=t2r(data.metadata_),   # this is a web link
+            _publish=_publish,
         )
         item._aceitem_id = data.aceitemid
 
@@ -146,6 +152,11 @@ def import_aceitem(data, location):
 
 @log_call
 def import_aceproject(data, location):
+    if data.controlstatus == 1:
+        _publish = 1
+    else:
+        _publish = 0
+
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.aceproject',
@@ -169,6 +180,7 @@ def import_aceproject(data, location):
         spatial_values=s2l(data.spatialvalues),
         comments=data.comments,
         rating=data.rating,
+        _publish=_publish,
     )
 
     item._aceproject_id = data.projectid
@@ -182,6 +194,11 @@ def import_aceproject(data, location):
 
 @log_call
 def import_adaptationoption(data, location):
+    if data.controlstatus == 1:
+        _publish = 1
+    else:
+        _publish = 0
+
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.adaptationoption',
@@ -215,6 +232,7 @@ def import_adaptationoption(data, location):
         title=data.name,
         #websites=s2l(data.website),
         websites=s2l(html_unescape(data.website)),
+        _publish=_publish,
     )
     item._acemeasure_id = data.measureid
     item.reindexObject()
@@ -240,6 +258,11 @@ def import_casestudy(data, location):
                                       supphotoid)
         if supphoto:
             supphotos.append(RelationValue(intids.getId(supphoto)))
+
+    if data.controlstatus == 1:
+        _publish = 1
+    else:
+        _publish = 0
 
     item = createAndPublishContentInContainer(
         location,
@@ -276,6 +299,7 @@ def import_casestudy(data, location):
         supphotos=supphotos,
         title=data.name,
         websites=s2l(data.website),
+        _publish=_publish,
     )
 
     item._acemeasure_id = data.measureid
