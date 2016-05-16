@@ -361,14 +361,14 @@ SUBNATIONAL_REGIONS = {
 
 class AceViewApi(object):
     def _render_websites(self, value):
+        website = self.context.websites.pop()
         if (value == 'MAPLAYER'):
-            url = '/tools/map-viewer?layerid=' + self.context.websites[0]
-
+            url = '/tools/map-viewer?layerid=' + website
             if (self.context.search_type == 'MAPGRAPHDATASET'):
                 return (url, 'View map ' + self.context.title)
-            return (url, self.context.websites[0])
+            return (url, website)
         elif (value == 'URL'):
-            return (self.context.websites[0], self.context.websites[0])
+            return (website, website)
 
     def _render_geochar_element(self, value):
         value = TRANSLATED[value]

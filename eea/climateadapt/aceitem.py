@@ -173,7 +173,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
         title=_(u"Special tagging"),
         required=False,
         value_type=TextLine(),
-        missing_value=(),
+        missing_value=None,
     )
 
     # fix???
