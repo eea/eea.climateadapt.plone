@@ -105,6 +105,9 @@ def import_aceitem(data, location):
     # TODO: Some AceItems have ACTION, MEASURE, REASEARCHPROJECT types and
     # should be mapped over AceMeasure and AceProject
 
+    if data.datatype == "RESEARCHPROJECT":
+        return
+
     if data.datatype in ACE_ITEM_TYPES:
         item = createAndPublishContentInContainer(
             location,
@@ -128,7 +131,7 @@ def import_aceitem(data, location):
             geochars=data.geochars,
             special_tags=s2l(data.specialtagging, relaxed=True),
             rating=data.rating,
-            metadata=t2r(data.metadata_),
+            metadata=t2r(data.metadata),
         )
         item._aceitem_id = data.aceitemid
 
