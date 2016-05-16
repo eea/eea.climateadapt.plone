@@ -460,6 +460,9 @@ div.position-0 { margin-left: -100%; }
     border-right-style: solid;
 }
 
+#content .readmore-overflow {
+    overflow: hidden;
+}
 
 #content .edit-tool-custom-click .read-more-acc a:hover {
     color: #FFF !important;

@@ -66,10 +66,13 @@
 			if($(this).text().toLowerCase().indexOf("read more") > -1 || $(this).text().toLowerCase().indexOf("read less") > -1) {
 				$(this).parents("div.panel-heading").removeClass('edit-tool-custom-click');
 				$(this).parents("div.panel-heading").addClass('edit-tool-custom-click');
-				$(this).parents("h4.panel-title").removeClass('read-more-acc')
-				$(this).parents("h4.panel-title").addClass('read-more-acc')
+				$(this).parents("h4.panel-title").removeClass('read-more-acc');
+				$(this).parents("h4.panel-title").addClass('read-more-acc');
+				$(this).parents("div.tile-default").removeClass('readmore-overflow');
+				$(this).parents("div.tile-default").addClass('readmore-overflow');
 			}
 		});
+
 		// Add classes to arccodion
 		$('.panel-title a').click(function(){
 			if ($(this).text().toLowerCase().indexOf("read more") > -1 || $(this).text().toLowerCase().indexOf("read less") > -1) {
