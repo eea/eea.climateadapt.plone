@@ -59,9 +59,9 @@ from eea.climateadapt.vocabulary import ace_countries_vocabulary
 from eea.climateadapt.vocabulary import aceitem_climateimpacts_vocabulary
 from eea.climateadapt.vocabulary import aceitem_elements_vocabulary
 from eea.climateadapt.vocabulary import aceitem_sectors_vocabulary
-from eea.climateadapt.vocabulary import already_devel_adapt_strategy_vocabulary
-from eea.climateadapt.vocabulary import stage_implementation_cycle_vocabulary
-from eea.climateadapt.vocabulary import status_of_adapt_signature_vocabulary
+from eea.climateadapt.mayorsadapt.vocabulary import already_devel_adapt_strategy_vocabulary
+from eea.climateadapt.mayorsadapt.vocabulary import stage_implementation_cycle_vocabulary
+from eea.climateadapt.mayorsadapt.vocabulary import status_of_adapt_signature_vocabulary
 from eea.facetednavigation.layout.interfaces import IFacetedLayout
 from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from persistent.list import PersistentList

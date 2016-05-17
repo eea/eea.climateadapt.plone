@@ -9,165 +9,170 @@
     i18n_domain="collective.cover"
     >
 
-  <browser:resourceDirectory
-      name="eea.climateadapt.tiles"
-      directory="static"
-      />
+    <utility name="eea.climateadapt.element_types_vocabulary" component=".vocabulary.element_types_vocabulary"/>
+    <utility name="eea.climateadapt.search_types_vocabulary" component=".vocabulary.search_types_vocabulary"/>
+    <utility name="eea.climateadapt.special_tags_vocabulary" component=".vocabulary.special_tags_vocabulary"/>
+    <utility name="eea.climateadapt.regions" component=".vocabulary.regions_vocabulary"/>
 
-  <plone:tile
-      name="eea.climateadapt.search_acecontent"
-      title="Search AceContent"
-      description="A tile to search ace content"
-      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
-      add_permission="cmf.ModifyPortalContent"
-      schema=".search_acecontent.ISearchAceContentTile"
-      class=".search_acecontent.SearchAceContentTile"
-      permission="zope2.View"
-      for="*"
-      />
+    <browser:resourceDirectory
+        name="eea.climateadapt.tiles"
+        directory="static"
+        />
 
-  <plone:tile
-      name="eea.climateadapt.relevant_acecontent"
-      title="Relevant AceContent"
-      description="A tile to show relevant ace content"
-      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
-      add_permission="cmf.ModifyPortalContent"
-      schema=".search_acecontent.IRelevantAceContentItemsTile"
-      class=".search_acecontent.RelevantAceContentItemsTile"
-      permission="zope2.View"
-      for="*"
-      />
+    <plone:tile
+        name="eea.climateadapt.search_acecontent"
+        title="Search AceContent"
+        description="A tile to search ace content"
+        icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".search_acecontent.ISearchAceContentTile"
+        class=".search_acecontent.SearchAceContentTile"
+        permission="zope2.View"
+        for="*"
+        />
 
-  <plone:tile
-      name="eea.climateadapt.filter_acecontent"
-      title="Filterable Relevant AceContent"
-      description="A tile to show relevant ace content, with filtering options"
-      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
-      add_permission="cmf.ModifyPortalContent"
-      schema=".search_acecontent.IFilterAceContentItemsTile"
-      class=".search_acecontent.FilterAceContentItemsTile"
-      permission="zope2.View"
-      for="*"
-      />
+    <plone:tile
+        name="eea.climateadapt.relevant_acecontent"
+        title="Relevant AceContent"
+        description="A tile to show relevant ace content"
+        icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".search_acecontent.IRelevantAceContentItemsTile"
+        class=".search_acecontent.RelevantAceContentItemsTile"
+        permission="zope2.View"
+        for="*"
+        />
 
-  <plone:tile
-      name="eea.climateadapt.richtext_with_title"
-      title="Rich text with title"
-      description="A richtext tile that shows its title"
-      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
-      add_permission="cmf.ModifyPortalContent"
-      schema=".richtext.IRichTextWithTitle"
-      class=".richtext.RichTextWithTitle"
-      permission="zope2.View"
-      for="*"
-      />
+    <plone:tile
+        name="eea.climateadapt.filter_acecontent"
+        title="Filterable Relevant AceContent"
+        description="A tile to show relevant ace content, with filtering options"
+        icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".search_acecontent.IFilterAceContentItemsTile"
+        class=".search_acecontent.FilterAceContentItemsTile"
+        permission="zope2.View"
+        for="*"
+        />
 
-  <plone:tile
-      name="eea.climateadapt.shareinfo"
-      title="Share your info button"
-      description="A button to share info"
-      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
-      add_permission="cmf.ModifyPortalContent"
-      schema=".shareinfo.IShareInfoTile"
-      class=".shareinfo.ShareInfoTile"
-      permission="zope2.View"
-      for="*"
-      />
+    <plone:tile
+        name="eea.climateadapt.richtext_with_title"
+        title="Rich text with title"
+        description="A richtext tile that shows its title"
+        icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".richtext.IRichTextWithTitle"
+        class=".richtext.RichTextWithTitle"
+        permission="zope2.View"
+        for="*"
+        />
 
-  <plone:tile
-      name="eea.climateadapt.transregionselect"
-      title="TransRegion select"
-      description="A dropdown to select a transregion"
-      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
-      add_permission="cmf.ModifyPortalContent"
-      schema=".transregional_select.ITransRegionalSelectTile"
-      class=".transregional_select.TransRegionalSelectTile"
-      permission="zope2.View"
-      for="*"
-      />
+    <plone:tile
+        name="eea.climateadapt.shareinfo"
+        title="Share your info button"
+        description="A button to share info"
+        icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".shareinfo.IShareInfoTile"
+        class=".shareinfo.ShareInfoTile"
+        permission="zope2.View"
+        for="*"
+        />
 
-  <plone:tile
-      name="eea.climateadapt.countryselect"
-      title="Country select"
-      description="A dropdown to select a country"
-      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
-      add_permission="cmf.ModifyPortalContent"
-      schema=".country_select.ICountrySelectTile"
-      class=".country_select.CountrySelectTile"
-      permission="zope2.View"
-      for="*"
-      />
+    <plone:tile
+        name="eea.climateadapt.transregionselect"
+        title="TransRegion select"
+        description="A dropdown to select a transregion"
+        icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".transregional_select.ITransRegionalSelectTile"
+        class=".transregional_select.TransRegionalSelectTile"
+        permission="zope2.View"
+        for="*"
+        />
 
-  <plone:tile
-      name="eea.climateadapt.ast_header"
-      title="AST Header"
-      description="Header for AST pages"
-      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
-      add_permission="cmf.ModifyPortalContent"
-      schema=".ast.IASTHeaderTile"
-      class=".ast.ASTHeaderTile"
-      permission="zope2.View"
-      for="*"
-      />
+    <plone:tile
+        name="eea.climateadapt.countryselect"
+        title="Country select"
+        description="A dropdown to select a country"
+        icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".country_select.ICountrySelectTile"
+        class=".country_select.CountrySelectTile"
+        permission="zope2.View"
+        for="*"
+        />
 
-  <plone:tile
-      name="eea.climateadapt.ast_navigation"
-      title="AST Navigation"
-      description="Navigation tile for AST pages"
-      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
-      add_permission="cmf.ModifyPortalContent"
-      schema=".ast.IASTNavigationTile"
-      class=".ast.ASTNavigationTile"
-      permission="zope2.View"
-      for="*"
-      />
+    <plone:tile
+        name="eea.climateadapt.ast_header"
+        title="AST Header"
+        description="Header for AST pages"
+        icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".ast.IASTHeaderTile"
+        class=".ast.ASTHeaderTile"
+        permission="zope2.View"
+        for="*"
+        />
 
-  <plone:tile
-      name="eea.climateadapt.urbanast_navigation"
-      title="UrbanAST Navigation"
-      description="Navigation tile for UrbanAST pages"
-      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
-      add_permission="cmf.ModifyPortalContent"
-      schema=".ast.IUrbanASTNavigationTile"
-      class=".ast.UrbanASTNavigationTile"
-      permission="zope2.View"
-      for="*"
-      />
+    <plone:tile
+        name="eea.climateadapt.ast_navigation"
+        title="AST Navigation"
+        description="Navigation tile for AST pages"
+        icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".ast.IASTNavigationTile"
+        class=".ast.ASTNavigationTile"
+        permission="zope2.View"
+        for="*"
+        />
 
-  <plone:tile
-      name="eea.climateadapt.genericview"
-      title="Generic View"
-      description="Render a view as a tile"
-      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
-      add_permission="cmf.ModifyPortalContent"
-      schema=".genericview.IGenericViewTile"
-      class=".genericview.GenericViewTile"
-      permission="zope2.View"
-      for="*"
-      />
+    <plone:tile
+        name="eea.climateadapt.urbanast_navigation"
+        title="UrbanAST Navigation"
+        description="Navigation tile for UrbanAST pages"
+        icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".ast.IUrbanASTNavigationTile"
+        class=".ast.UrbanASTNavigationTile"
+        permission="zope2.View"
+        for="*"
+        />
 
-  <plone:tile
-      name="eea.climateadapt.urbanmenu"
-      title="Urban Menu"
-      description="Urban menu navigation"
-      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
-      add_permission="cmf.ModifyPortalContent"
-      schema=".ast.IUrbanMenuTile"
-      class=".ast.UrbanMenuTile"
-      permission="zope2.View"
-      for="*"
-      />
+    <plone:tile
+        name="eea.climateadapt.genericview"
+        title="Generic View"
+        description="Render a view as a tile"
+        icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".genericview.IGenericViewTile"
+        class=".genericview.GenericViewTile"
+        permission="zope2.View"
+        for="*"
+        />
 
-  <plone:tile
-      name="eea.climateadapt.formtile"
-      title="Form tile"
-      description="A tile to display a form"
-      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
-      add_permission="cmf.ModifyPortalContent"
-      schema=".formtile.IFormTile"
-      class=".formtile.FormTile"
-      permission="zope2.View"
-      for="*"
-      />
+    <plone:tile
+        name="eea.climateadapt.urbanmenu"
+        title="Urban Menu"
+        description="Urban menu navigation"
+        icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".ast.IUrbanMenuTile"
+        class=".ast.UrbanMenuTile"
+        permission="zope2.View"
+        for="*"
+        />
+
+    <plone:tile
+        name="eea.climateadapt.formtile"
+        title="Form tile"
+        description="A tile to display a form"
+        icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".formtile.IFormTile"
+        class=".formtile.FormTile"
+        permission="zope2.View"
+        for="*"
+        />
 
 </configure>

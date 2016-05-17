@@ -1,9 +1,9 @@
 # coding=utf-8
 from Products.Five.browser import BrowserView
 from eea.climateadapt.city_profile import MAIL_TEXT_TEMPLATE
-from eea.climateadapt.vocabulary import _climateimpacts
-from eea.climateadapt.vocabulary import _sectors
-from eea.climateadapt.vocabulary import _stage_implementation_cycle
+from eea.climateadapt.mayorsadapt.vocabulary import _climateimpacts
+from eea.climateadapt.mayorsadapt.vocabulary import _sectors
+from eea.climateadapt.mayorsadapt.vocabulary import _stage_implementation_cycle
 from eea.climateadapt.vocabulary import ace_countries
 from zope.annotation.interfaces import IAnnotations
 from zope.interface import Interface

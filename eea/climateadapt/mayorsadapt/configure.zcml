@@ -119,6 +119,12 @@
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
 
+    <utility name="eea.climateadapt.covenant" component=".vocabulary.covenant_vocabulary"/>
+    <utility name="eea.climateadapt.status_of_adapt_signature" component=".vocabulary.status_of_adapt_signature_vocabulary"/>
+    <utility name="eea.climateadapt.key_vulnerable_adapt_sector" component=".vocabulary.key_vulnerable_adapt_sector_vocabulary"/>
+    <utility name="eea.climateadapt.stage_implementation_cycle" component=".vocabulary.stage_implementation_cycle_vocabulary"/>
+    <utility name="eea.climateadapt.already_devel_adapt_strategy" component=".vocabulary.already_devel_adapt_strategy_vocabulary"/>
+    <utility name="eea.climateadapt.elements_mentioned_your_cp" component=".vocabulary.elements_mentioned_your_cp_vocabulary"/>
 
     <!-- <subscriber -->
     <!--     for="plone.app.iterate.interfaces.ICheckoutEvent" -->

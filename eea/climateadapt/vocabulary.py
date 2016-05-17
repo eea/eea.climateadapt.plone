@@ -9,8 +9,11 @@ import pycountry
 
 
 def generic_vocabulary(_terms):
+    """ Returns a zope vocabulary from a dict or a list
+    """
+
     if _terms and isinstance(_terms, dict):
-        _terms = dict.items()
+        _terms = sorted(dict.items())
     elif _terms and isinstance(_terms[0], basestring):
         _terms = [(x, x) for x in _terms]
 
@@ -22,21 +25,21 @@ def generic_vocabulary(_terms):
     return factory
 
 
-def vocab_from_labels(text):
+def catalog_based_vocabulary(index):
+    """ Creates a vocabulary from searching on an index
+    """
+
     def factory(context):
-        """ AceItem data types """
-
-        terms = []
-        for line in filter(None, text.split('\n')):
-            first, label = line.split('=')
-            name = first.split('-lbl-')[1]
-            terms.append((name, label))
-
-        terms.sort(cmp=lambda x, y: cmp(x[1], y[1]))
+        site = getSite()
+        catalog = getToolByName(site, 'portal_catalog')
+        terms = catalog.uniqueValuesFor(index)
+        terms = sorted(terms)
 
         return SimpleVocabulary([
-            SimpleTerm(n, n, l) for n, l in terms
+            SimpleTerm(x, x, x) for x in terms
         ])
+
+        pass
 
     return factory
 
@@ -80,13 +83,13 @@ _sectors = [    # this is the canonical
     ("FINANCIAL", "Financial"),
     ("HEALTH", "Health"),
     ("INFRASTRUCTURE", "Infrastructure"),
-    ("URBAN", "Urban"),
+#   ("URBAN", "Urban"),
     ("MARINE", "Marine and Fisheries"),
-    ("TOURISM", "Tourism"),
-    ("ENERGY", "Energy"),
-    ("OTHER", "Other"),
-    ("WATERMANAGEMENT", "Water management")
-    ]
+#   ("TOURISM", "Tourism"),
+#   ("ENERGY", "Energy"),
+#   ("OTHER", "Other"),
+    ("WATERMANAGEMENT", "Water management"),
+]
 aceitem_sectors_vocabulary = generic_vocabulary(_sectors)
 alsoProvides(aceitem_sectors_vocabulary, IVocabularyFactory)
 
@@ -96,13 +99,13 @@ _elements = [
     ("OBSERVATIONS", "Observations and Scenarios"),
     ("PLANSTRATEGY", "Adaptation Plans and Strategies"),
     ("VULNERABILITY", "Vulnerability Assessment"),
-    ]
+]
 aceitem_elements_vocabulary = generic_vocabulary(_elements)
 alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
 
 
 _climateimpacts = [
-    ("FORESTFIRES", "Forest Fires"),
+#   ("FORESTFIRES", "Forest Fires"),
     ("EXTREMETEMP", "Extreme Temperatures"),
     ("WATERSCARCE", "Water Scarcity"),
     ("FLOODING", "Flooding"),
@@ -110,7 +113,7 @@ _climateimpacts = [
     ("DROUGHT", "Droughts"),
     ("STORM", "Storms"),
     ("ICEANDSNOW", "Ice and Snow"),
-    ]
+]
 aceitem_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts)
 alsoProvides(aceitem_climateimpacts_vocabulary, IVocabularyFactory)
 
@@ -171,110 +174,3 @@ alsoProvides(cca_types, IVocabularyFactory)
 
 _a = namedtuple('_AceItemType', ['id', 'label'])
 aceitem_types = [_a(*x) for x in _cca_types]
-
-
-_covenant = [
-    ("", "Select"),
-    ("YES", "Yes"),
-    ("NO", "No"),
-]
-covenant_vocabulary = generic_vocabulary(_covenant)
-alsoProvides(covenant_vocabulary, IVocabularyFactory)
-
-
-_status_of_adapt_signature = [
-    ("", "Select"),
-    ("ALREADYSIGNED", "Already Signed"),
-    ("INPROCESSSIGNING", "In the process of signing"),
-]
-status_of_adapt_signature_vocabulary = generic_vocabulary(_status_of_adapt_signature)
-alsoProvides(status_of_adapt_signature_vocabulary, IVocabularyFactory)
-
-
-# TODO: merge with _sectors vocabulary
-_key_vulnerable_adapt_sector = [
-    ("AGRI_AND_FOREST", "Agriculture and Forest"),
-    ("COASTAL_AREAS", "Coastal areas"),
-    ("DISASTER_RISK", "Disaster Risk Reduction"),
-    ("FINANCIAL", "Financial"),
-    ("HEALTH", "Health"),
-    ("INFRASTRUCTURE", "Infrastructure"),
-    ("MARINE_AND_FISH", "Marine and Fisheries"),
-    ("TOURISM", "Tourism"),
-    ("ENERGY", "Energy"),
-    ("OTHER", "Other"),
-    ("BIODIVERSITY", "Biodiversity"),
-    ("WATER_MANAGEMENT", "Water Management"),
-    ("URBAN", "Urban"),
-]
-key_vulnerable_adapt_sector_vocabulary = generic_vocabulary(_key_vulnerable_adapt_sector)
-alsoProvides(key_vulnerable_adapt_sector_vocabulary, IVocabularyFactory)
-
-
-_stage_implementation_cycle = [
-    ("PREPARING_GROUND", "Preparing the ground"),
-    ("ASSESSING_RISKS_VULNER", "Assessing risks and vulnerabilities"),
-    ("IDENTIF_ADAPT_OPT", "Identifying adaptation options"),
-    ("ASSESSING_ADAPT_OPT", "Assessing adaptation options"),
-    ("IMPLEMENTATION", "Implementation"),
-    ("MONIT_AND_EVAL", "Monitoring and evaluation"),
-]
-stage_implementation_cycle_vocabulary = generic_vocabulary(_stage_implementation_cycle)
-alsoProvides(stage_implementation_cycle_vocabulary, IVocabularyFactory)
-
-
-_already_devel_adapt_strategy = [
-    ("", "Select"),
-    ("YES_HAVE_ADAPT_STRAT", "Yes, we have an adaptation strategy"),
-    ("NO_HAVE_ADAPT_STRAT", "No, we do not have an adaptation strategy but are currently developing one"),
-    ("MAYORS_ADAPT_FIRST_EX", "No, Mayors Adapt is the first example of my city considering adaptation and we will develop an adaptation strategy"),
-    ("INTEG_ADAPT_EXIST_REL", "We (will) integrate adaptation into existing relevant plans"),
-]
-already_devel_adapt_strategy_vocabulary = generic_vocabulary(_already_devel_adapt_strategy)
-alsoProvides(already_devel_adapt_strategy_vocabulary, IVocabularyFactory)
-
-
-# TODO: isn't this the same vocabulary as _elements
-_elements_mentioned_your_cp = [
-    ("EU_POLICY", "Sector Policies"),
-    ("MEASUREACTION", "Adaptation Measures and Actions"),
-    ("OBSERVATIONS", "Observations and Scenarios"),
-    ("PLANSTRATEGY", "Adaptation Plans and Strategies"),
-    ("VULNERABILITY", "Vulnerability Assessment"),
-]
-
-elements_mentioned_your_cp_vocabulary = generic_vocabulary(_elements_mentioned_your_cp)
-alsoProvides(elements_mentioned_your_cp_vocabulary, IVocabularyFactory)
-
-
-def catalog_based_vocabulary(index):
-
-    def factory(context):
-        site = getSite()
-        catalog = getToolByName(site, 'portal_catalog')
-        terms = catalog.uniqueValuesFor(index)
-        terms = sorted(terms)
-
-        return SimpleVocabulary([
-            SimpleTerm(x, x, x) for x in terms
-        ])
-
-        pass
-
-    return factory
-
-search_types_vocabulary = catalog_based_vocabulary('search_type')
-alsoProvides(search_types_vocabulary, IVocabularyFactory)
-
-element_types_vocabulary = catalog_based_vocabulary('elements')
-alsoProvides(element_types_vocabulary, IVocabularyFactory)
-
-special_tags_vocabulary = catalog_based_vocabulary('special_tags')
-alsoProvides(special_tags_vocabulary, IVocabularyFactory)
-
-_regions = ['Adriatic-Ionian', 'Alpine Space', 'Northern Periphery and Arctic',
-           'Atlantic', 'Balkan-Mediterranean', 'Baltic Sea',
-           'Central Europe', 'Danube', 'Mediterranean', 'North Sea',
-           'North West Europe', 'South West Europe', 'Other regions']
-regions_vocabulary = generic_vocabulary(_regions)
-alsoProvides(regions_vocabulary, IVocabularyFactory)
