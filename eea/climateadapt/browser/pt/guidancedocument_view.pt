@@ -15,12 +15,7 @@
 
             <a href="" tal:attributes="href view/link_to_original">Original</a>
             <h2>Guidance Document</h2>
-            <h1>
-                <span tal:content="python: context.title"></span>
-                <span tal:condition="python: context.year != (0 and None)">
-                    (<span tal:content="python: context.year"></span>)
-                </span>
-            </h1>
+            <div metal:use-macro="context/ace_macros/macros/title_date"></div>
           </div>
 
           <div metal:fill-slot="ace-left-slot">

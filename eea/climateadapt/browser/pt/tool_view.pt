@@ -16,7 +16,7 @@
           <div metal:fill-slot="ace-top-slot">
             <a href="" tal:attributes="href view/link_to_original">Original</a>
             <h2>Tools</h2>
-            <h1 tal:content="context/title"/>
+            <div metal:use-macro="context/ace_macros/macros/title_date"></div>
           </div>
 
           <div metal:fill-slot="ace-left-slot">
@@ -25,7 +25,7 @@
 
             <h4>Reference information</h4>
             <h5>Websites:</h5>
-            <p tal:replace="structure python: view.w['websites'].render()">description here</p>
+            <div metal:use-macro="context/ace_macros/macros/websites"></div>
 
             <h5>Source:</h5>
             <tal:block content="structure python: view.w['source'].render()"/>

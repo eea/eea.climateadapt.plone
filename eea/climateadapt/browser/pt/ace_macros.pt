@@ -20,6 +20,15 @@
     </div>
   </metal:macro>
 
+  <metal:macro define-macro="title_date">
+      <h1>
+          <span tal:content="python: context.title"></span>
+          <span tal:condition="python: context.year != (0 and None)">
+              (<span tal:content="python: context.year"></span>)
+          </span>
+      </h1>
+  </metal:macro>
+
   <metal:macro define-macro="ace_layout">
     <div class="aceitem_page">
 
