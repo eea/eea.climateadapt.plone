@@ -17,7 +17,9 @@
             <h2 tal:content="view/type_label">Data Type</h2>
             <h1>
                 <span tal:content="python: context.title"></span>
-                (<span tal:content="python: context.year"></span>)
+                <span tal:condition="python: context.year != (0 and None)">
+                    (<span tal:content="python: context.year"></span>)
+                </span>
             </h1>
           </div>
 
@@ -28,12 +30,7 @@
             <h4>Reference information</h4>
 
             <h5>Websites:</h5>
-            <!-- <tal:block content="structure python: view.w['websites'].render()" /> -->
-            <div tal:define="link python:view._render_websites()">
-              <dl tal:condition="link" tal:repeat="layer_link link">
-                <a tal:condition="python:layer_link[1]" tal:content="python:view.linkify(view.html2text(layer_link[1]))" href="" tal:attributes="href python:view.linkify(view.html2text(layer_link[0]))"/>
-              </dl>
-            </div>
+            <div metal:use-macro="context/ace_macros/macros/websites"></div>
 
             <h5>Source:</h5>
             <tal:block content="structure python: view.w['source'].render()" />

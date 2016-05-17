@@ -11,6 +11,15 @@
     </tal:fallback>
   </metal:macro>
 
+  <metal:macro define-macro="websites">
+    <!-- Websites field -->
+    <div tal:define="links python:view._render_websites()">
+      <dl tal:condition="links" tal:repeat="link links">
+        <a tal:condition="python:link[1]" tal:content="python:view.linkify(view.html2text(link[1]))" href="" tal:attributes="href python:view.linkify(view.html2text(link[0]))"/>
+      </dl>
+    </div>
+  </metal:macro>
+
   <metal:macro define-macro="ace_layout">
     <div class="aceitem_page">
 
@@ -24,7 +33,7 @@
           <div class="share-your-info-ace-button">
             <form method="POST" action="/share-your-info">
               <button>Share your information</button>
-            </form>          
+            </form>
           </div>
         </div>
       </div>
