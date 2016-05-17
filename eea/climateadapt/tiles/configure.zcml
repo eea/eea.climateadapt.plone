@@ -99,13 +99,25 @@
       />
 
   <plone:tile
+      name="eea.climateadapt.ast_header"
+      title="AST Header"
+      description="Header for AST pages"
+      icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+      add_permission="cmf.ModifyPortalContent"
+      schema=".ast.IASTHeaderTile"
+      class=".ast.ASTHeaderTile"
+      permission="zope2.View"
+      for="*"
+      />
+
+  <plone:tile
       name="eea.climateadapt.ast_navigation"
       title="AST Navigation"
       description="Navigation tile for AST pages"
       icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
       add_permission="cmf.ModifyPortalContent"
-      schema=".ast_navigation.IASTNavigationTile"
-      class=".ast_navigation.ASTNavigationTile"
+      schema=".ast.IASTNavigationTile"
+      class=".ast.ASTNavigationTile"
       permission="zope2.View"
       for="*"
       />
@@ -116,8 +128,8 @@
       description="Navigation tile for UrbanAST pages"
       icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
       add_permission="cmf.ModifyPortalContent"
-      schema=".ast_navigation.IUrbanASTNavigationTile"
-      class=".ast_navigation.UrbanASTNavigationTile"
+      schema=".ast.IUrbanASTNavigationTile"
+      class=".ast.UrbanASTNavigationTile"
       permission="zope2.View"
       for="*"
       />
@@ -140,8 +152,8 @@
       description="Urban menu navigation"
       icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
       add_permission="cmf.ModifyPortalContent"
-      schema=".urbanmenu.IUrbanMenuTile"
-      class=".urbanmenu.UrbanMenuTile"
+      schema=".ast.IUrbanMenuTile"
+      class=".ast.UrbanMenuTile"
       permission="zope2.View"
       for="*"
       />

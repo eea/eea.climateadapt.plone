@@ -31,7 +31,7 @@
         </li>
       </ul>
       <div class="tile-footer">
-        <a href="" tal:attributes="href view/view_more_url" tal:condition="view/view_more">View all</a>
+        <a href="" tal:attributes="href view/view_more_url">View all</a>
       </div>
     </div>
   </body>

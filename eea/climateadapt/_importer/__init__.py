@@ -862,13 +862,20 @@ def import_template_help(site, layout, structure):
     img_6 = structure['column-3'][1][1]['content'][0]
     img_7 = structure['column-4'][1][1]['content'][0]
 
-    img_1 = img_1.replace("/documents/18/11284244/Glossary+of+terms.jpg", "/++theme++climateadapt/static/cca/img/Glossary of terms.jpg")
-    img_2 = img_2.replace("/documents/18/11284244/Reproductor.jpg", "/++theme++climateadapt/static/cca/img/Reproductor.jpg")
-    img_3 = img_3.replace("/documents/18/11284244/FAQ.jpg", "/++theme++climateadapt/static/cca/img/FAQ.jpg")
-    img_4 = img_4.replace("/documents/18/11284244/Share+information.jpg", "/++theme++climateadapt/static/cca/img/Share information.jpg")
-    img_5 = img_5.replace("/documents/18/11284244/Help.jpg", "/++theme++climateadapt/static/cca/img/Help.jpg")
-    img_6 = img_6.replace("/documents/18/11284244/ec_icon.jpg", "/++theme++climateadapt/static/cca/img/ec_icon.jpg")
-    img_7 = img_7.replace("/documents/18/11284244/eea_icon.jpg", "/++theme++climateadapt/static/cca/img/eea_icon.jpg")
+    img_1 = img_1.replace("/documents/18/11284244/Glossary+of+terms.jpg",
+                          "/++theme++climateadapt/static/cca/img/Glossary of terms.jpg")
+    img_2 = img_2.replace("/documents/18/11284244/Reproductor.jpg",
+                          "/++theme++climateadapt/static/cca/img/Reproductor.jpg")
+    img_3 = img_3.replace("/documents/18/11284244/FAQ.jpg",
+                          "/++theme++climateadapt/static/cca/img/FAQ.jpg")
+    img_4 = img_4.replace("/documents/18/11284244/Share+information.jpg",
+                          "/++theme++climateadapt/static/cca/img/Share information.jpg")
+    img_5 = img_5.replace("/documents/18/11284244/Help.jpg",
+                          "/++theme++climateadapt/static/cca/img/Help.jpg")
+    img_6 = img_6.replace("/documents/18/11284244/ec_icon.jpg",
+                          "/++theme++climateadapt/static/cca/img/ec_icon.jpg")
+    img_7 = img_7.replace("/documents/18/11284244/eea_icon.jpg",
+                          "/++theme++climateadapt/static/cca/img/eea_icon.jpg")
 
     structure['column-2'][0][1]['content'][0] = img_1
     structure['column-3'][0][1]['content'][0] = img_2
@@ -1366,78 +1373,57 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker,
     # has a title)
     # there can be more columns where there are tiles with search
 
+    #  u'column-2': [(u'astheaderportlet_WAR_ASTHeaderportlet_INSTANCE_AQlGpTEbY3Eg',
+    #                 {'headertext': u'Implementation',
+    #                  'portletSetupCss': u'{"wapData":{"title":"","initialWindowState":"NORMAL"},"spacingData":{"margin":{"sameForAll":true,"bottom":{"unit":"px","value":""},"left":{"unit":"px","value":""},"right":{"unit":"px","value":""},"top":{"unit":"px","value":""}},"padding":{"sameForAll":true,"bottom":{"unit":"px","value":""},"left":{"unit":"px","value":""},"right":{"unit":"px","value":""},"top":{"unit":"px","value":""}}},"borderData":{"borderStyle":{"sameForAll":true,"bottom":"","left":"","right":"","top":""},"borderColor":{"sameForAll":true,"bottom":"","left":"","right":"","top":""},"borderWidth":{"sameForAll":true,"bottom":{"unit":"px","value":""},"left":{"unit":"px","value":""},"right":{"unit":"px","value":""},"top":{"unit":"px","value":""}}},"textData":{"fontWeight":"","lineHeight":"","textDecoration":"","letterSpacing":"","color":"","textAlign":"","fontStyle":"","fontFamily":"","wordSpacing":"","fontSize":""},"bgData":{"backgroundPosition":{"left":{"unit":"px","value":""},"top":{"unit":"px","value":""}},"backgroundColor":"","backgroundRepeat":"","backgroundImage":"","useBgImage":false},"advancedData":{"customCSS":"","customCSSClassName":""}}',
+    #                  'portletSetupShowBorders': u'false',
+    #                  'portletSetupUseCustomTitle': u'false',
+    #                  'step': u'5'}),
+
+
     assert(len(structure) >= 3)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) >= 2)
 
-    image_portlet = structure['column-1'][0][1]['content'][0]
-    portlet = structure['column-2'][1][1]
-
-    #cover_title = structure['name']    # this will be the title
-    section_title = portlet['portlet_title']
-    if section_title == u'None':
-        section_title = ""
-    main_section_title = structure['column-2'][0][1]['headertext']
-    step = structure['column-2'][0][1]['step']
-
-    main_text = make_text_from_articlejournal(portlet['content'])
-
-    payload = {
-        'title': main_section_title,
-        'subtitle': section_title,
-        'main_text': main_text
-    }
-    main_content = render('templates/ast_text.pt', payload)
-
+    section_title = structure['column-2'][1][1]['portlet_title']
     cover = create_cover_at(site, layout.friendlyurl, title=section_title)
     cover.aq_parent.edit(title=structure['name'])   # Fix parent name
     stamp_cover(cover, layout)
 
-    # fix the scripts and css paths from this tile
-    image_portlet = image_portlet.replace("/ace-theme/css/", "/++theme++climateadapt/static/")
-    image_portlet = image_portlet.replace("/ace-theme/js/",  "/++theme++climateadapt/static/")
-    image_portlet = image_portlet.replace("jquery.qtip.min.css", "jquery.qtip.css")
+    imgp = structure['column-1'][0][1]['content'][0]
+    imgp = imgp.replace("/ace-theme/css/", "/++theme++climateadapt/static/")
+    imgp = imgp.replace("/ace-theme/js/",  "/++theme++climateadapt/static/")
+    imgp = imgp.replace("jquery.qtip.min.css", "jquery.qtip.css")
 
-    image_tile = make_richtext_tile(cover, {'text': image_portlet,
+    image_tile = make_richtext_tile(cover, {'text': imgp,
                                             'title': 'AST Image'})
-    main_content_tile = make_richtext_tile(cover, {'text': main_content,
-                                                   'title': 'Main text'})
-    # nav_tile = make_richtext_tile(cover, {'text': 'nav here', 'title': 'nav'})
     nav_tile = nav_tile_maker(cover)
-
     side_group = make_group(4, image_tile, nav_tile)
 
-#  u'column-2': [(u'astheaderportlet_WAR_ASTHeaderportlet_INSTANCE_AQlGpTEbY3Eg',
-#                 {'headertext': u'Implementation',
-#                  'portletSetupCss': u'{"wapData":{"title":"","initialWindowState":"NORMAL"},"spacingData":{"margin":{"sameForAll":true,"bottom":{"unit":"px","value":""},"left":{"unit":"px","value":""},"right":{"unit":"px","value":""},"top":{"unit":"px","value":""}},"padding":{"sameForAll":true,"bottom":{"unit":"px","value":""},"left":{"unit":"px","value":""},"right":{"unit":"px","value":""},"top":{"unit":"px","value":""}}},"borderData":{"borderStyle":{"sameForAll":true,"bottom":"","left":"","right":"","top":""},"borderColor":{"sameForAll":true,"bottom":"","left":"","right":"","top":""},"borderWidth":{"sameForAll":true,"bottom":{"unit":"px","value":""},"left":{"unit":"px","value":""},"right":{"unit":"px","value":""},"top":{"unit":"px","value":""}}},"textData":{"fontWeight":"","lineHeight":"","textDecoration":"","letterSpacing":"","color":"","textAlign":"","fontStyle":"","fontFamily":"","wordSpacing":"","fontSize":""},"bgData":{"backgroundPosition":{"left":{"unit":"px","value":""},"top":{"unit":"px","value":""}},"backgroundColor":"","backgroundRepeat":"","backgroundImage":"","useBgImage":false},"advancedData":{"customCSS":"","customCSSClassName":""}}',
-#                  'portletSetupShowBorders': u'false',
-#                  'portletSetupUseCustomTitle': u'false',
-#                  'step': u'5'}),
+    main_section_title = structure['column-2'][0][1]['headertext']
+    step = structure['column-2'][0][1]['step']
 
+    # column-2 is full width tiles
+    main_content_tiles = make_tiles(cover, structure['column-2'])
 
+    # create tiles in the remaining columns
     [structure.pop(z) for z in ['column-1', 'column-2', 'name']]
+
     if structure:
         second_row_group = [make_group(6, t) for t in
                             [make_tile(cover, x) for x in structure.values()]
                             ]
         second_row = make_row(*second_row_group)
-        if is_urbanast:
-            tile = make_view_tile(cover,
-                                        {'title': 'UrbanAST nav',
-                                         'view_name': 'urbanast_bottom_nav'})
-            third_row = make_group(8, tile)
-            main_group = make_group(8, main_content_tile, second_row, third_row)
-        else:
-            main_group = make_group(8, main_content_tile, second_row)
-    else:
-        if is_urbanast:
-            tile = make_view_tile(cover,
-                                        {'title': 'UrbanAST nav',
-                                         'view_name': 'urbanast_bottom_nav'})
-            third_row = make_group(8, tile)
-            main_group = make_group(8, main_content_tile, third_row)
-        else:
-            main_group = make_group(8, main_content_tile)
+        main_content_tiles.append(second_row)
+
+    if is_urbanast:
+        tile = make_view_tile(cover,
+                              {'title': 'UrbanAST nav',
+                               'view_name': 'urbanast_bottom_nav'})
+        third_row = make_group(8, tile)
+        main_content_tiles.append(third_row)
+
+    main_group = make_group(8, *main_content_tiles)
 
     layout = make_layout(make_row(side_group, main_group))
     cover.cover_layout = json.dumps(layout)
@@ -1572,7 +1558,8 @@ def import_template_1_column(site, layout, structure):
     # example: /eu-adaptation-policy/funding/life
 
     img_1 = structure['column-1'][0][1]['content'][0]
-    img_1 = img_1.replace("/documents/18/11284244/FAQ.jpg", "/++theme++climateadapt/static/cca/img/FAQ.jpg")
+    img_1 = img_1.replace("/documents/18/11284244/FAQ.jpg",
+                          "/++theme++climateadapt/static/cca/img/FAQ.jpg")
     structure['column-1'][0][1]['content'][0] = img_1
 
     if structure['column-1'][0][0] in portlet_importers:
@@ -1894,7 +1881,8 @@ def import_template_2_columns_iii(site, layout, structure):
 
     # Fix images
     if image is not None:
-        image = image.replace("/documents/18/0/", "/++theme++climateadapt/static/cca/img/")
+        image = image.replace("/documents/18/0/",
+                              "/++theme++climateadapt/static/cca/img/")
 
     # title = structure['name']
     title = ''
@@ -2033,8 +2021,8 @@ def _import_transnational_region_page(site, layout, structure):
         'description': '',
         'title': 'region image',
     }
-    region_name = _info['title'].replace(
-        ' Area', '').replace(' Region', '').strip()
+    region_name = _info['title'].replace(' Area', '').\
+        replace(' Region', '').strip()
 
     main_text_tile = make_richtext_with_title_tile(cover, main_info)
 

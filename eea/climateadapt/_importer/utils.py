@@ -251,15 +251,14 @@ def _clean(s):
 def _clean_portlet_settings(d):
     _conv = {
         'aceitemtype': 'search_type',
-        #'anyOfThese': 'special_tags',
-        'anyOfThese': 'search_text',
+        'anyOfThese': 'special_tags',
+        #'anyOfThese': 'search_text',
         'countries': 'countries',
         'element': 'elements',
         'nrItemsPage': 'count',
         'portletSetupTitle_en_GB': 'title',
         'sector': 'sector',
         'sortBy': 'sortBy',
-
         'css_class': 'css_class',
     }
     res = {}
@@ -267,6 +266,14 @@ def _clean_portlet_settings(d):
         if k not in _conv:
             continue
         res[_conv[k]] = _clean(v)
+
+    if d.get('anyOfThese'):
+        text = res.get('search_text', ' ')
+        text += d['anyOfThese']
+        res['search_text'] = text.strip()
+
+    if res.get('count'):
+        res['nr_items'] = int(res['count'])
 
     return res
 
@@ -393,11 +400,14 @@ def make_tile(cover, col, css_class=None, no_titles=False):
         return make_iframe_embed_tile(cover, payload['url'])
     elif 'webformportlet' in tile_name:
         return make_form_tile(cover, payload)
+    elif 'ASTHeaderportlet' in tile_name:
+        return make_ast_header_tile(cover, payload)
 
     if payload.get('portlet_type') == 'journal_article_content':
+        main_text = make_text_from_articlejournal(payload['content'])
         _content = {
             'title': payload['portlet_title'] or "",
-            'text': payload['content'][0]
+            'text': main_text
         }
         if no_titles:
             return make_richtext_tile(cover, _content)
@@ -407,19 +417,37 @@ def make_tile(cover, col, css_class=None, no_titles=False):
     if css_class:
         payload.update({'css_class': css_class})
 
-    if tile_name and 'simplefilterportlet' in tile_name:
+    if payload.get('freeparameter') == u'1':
         return make_aceitem_filter_tile(cover, payload)
 
-    # TODO: use type_name instead of this hack
+    if tile_name and 'SimpleFilterportlet' in tile_name:
+        return make_aceitem_relevant_content_tile(cover, payload)
+
     if payload.get('paging') == u'1':
         # this is the search portlet on the right
         return make_aceitem_search_tile(cover, payload)
     else:
+        print "Fallback tile"
         return make_aceitem_relevant_content_tile(cover, payload)
 
 
 def make_tiles(cover, column):
-    return [make_tile(cover, [col]) for col in column]
+    return [make_tile(cover, [portlet]) for portlet in column]
+
+
+def make_ast_header_tile(cover, payload):
+    id = getUtility(IUUIDGenerator)()
+    typeName = 'eea.climateadapt.ast_header'
+    tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
+
+    info = {'title': payload['headertext'], 'step': int(payload['step'])}
+    ITileDataManager(tile).set(info)
+
+    return {
+        'tile-type': typeName,
+        'type': 'tile',
+        'id': id
+    }
 
 
 def get_form_fields(content):
@@ -670,6 +698,10 @@ def make_form_tile(cover, content):
 
 
 def make_text_from_articlejournal(content):
+    """ Converts an article journal to richtext.
+
+    Uses the Readmore template if it detects the case
+    """
 
     if not isinstance(content, list):
         raise ValueError
