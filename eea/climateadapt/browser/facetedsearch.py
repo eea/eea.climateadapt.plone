@@ -16,8 +16,8 @@ from zope.schema.vocabulary import SimpleVocabulary
 # TODO: should use the FACETED_SECTIONS LIST
 SEARCH_TYPES = [
     ("CONTENT", "Content in Climate-ADAPT"),
-    ("DOCUMENT", "Publication & Report"),
-    ("INFORMATIONSOURCE", "Information Portal"),
+    ("DOCUMENT", "Publication and Reports"),
+    ("INFORMATIONSOURCE", "Information Portals"),
     ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
     ("INDICATOR", "Indicators"),
     ("GUIDANCE","Guidance"),
