@@ -1,5 +1,0 @@
-<div class="ast_text">
-  <h2 tal:condition="options/title" tal:content="structure options/title"></h2>
-  <h3 tal:condition="options/subtitle" tal:content="structure options/subtitle"></h3>
-  <div tal:condition="options/main_text" tal:content="structure options/main_text" />
-</div>

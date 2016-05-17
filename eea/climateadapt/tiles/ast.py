@@ -5,7 +5,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
 from eea.climateadapt import MessageFactory as _
-#from eea.climateadapt.interfaces import IASTNavigationRoot
 from zope import schema
 from zope.interface import implements
 
@@ -62,8 +61,6 @@ class UrbanASTNavigationTile(PersistentCoverTile):
 
     def is_empty(self):
         return False
-
-
 
     # def _get_ast_root(self):
     #
@@ -132,3 +129,59 @@ class UrbanASTNavigationTile(PersistentCoverTile):
     #                     branch[3].append(info)
     #
     #     return res
+
+
+class IUrbanMenuTile(IPersistentCoverTile):
+
+    title = schema.TextLine(
+        title=_(u'Title'),
+        required=False,
+    )
+
+
+class UrbanMenuTile(PersistentCoverTile):
+    """ Urban Menu tile
+    """
+
+    implements(IUrbanMenuTile)
+
+    index = ViewPageTemplateFile('pt/urbanmenu.pt')
+
+    is_configurable = False
+    is_editable = False
+    is_droppable = False
+    short_name = u'Urban Menu'
+
+    def is_empty(self):
+        return False
+
+
+class IASTHeaderTile(IPersistentCoverTile):
+
+    title = schema.TextLine(
+        title=_(u'Title'),
+        required=False,
+    )
+
+    step = schema.Int(
+        title=_(u"AST Step"),
+        required=True,
+        default=1,
+    )
+
+
+class ASTHeaderTile(PersistentCoverTile):
+    """ AST Header tile
+    """
+
+    implements(IASTHeaderTile)
+
+    index = ViewPageTemplateFile('pt/ast_header.pt')
+
+    is_configurable = False
+    is_editable = True
+    is_droppable = False
+    short_name = u'AST Header'
+
+    def is_empty(self):
+        return False

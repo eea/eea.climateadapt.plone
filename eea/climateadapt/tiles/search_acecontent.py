@@ -18,6 +18,9 @@ from zope.component.hooks import getSite
 from zope.interface import implements
 
 
+# TODO: use an adaptor for the choice widgets to set the noValueMessage
+
+
 class ISearchAceContentTile(IPersistentCoverTile):
 
     title = schema.TextLine(
