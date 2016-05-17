@@ -83,8 +83,6 @@ import os
 import sys
 import transaction
 
-#from eea.climateadapt._importer.utils import make_aceitem_search_tile
-
 
 session = None      # this will be a global bound to the current module
 
@@ -1402,7 +1400,8 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker,
     step = structure['column-2'][0][1]['step']
 
     # column-2 is full width tiles
-    main_content_tiles = make_tiles(cover, structure['column-2'])
+    main_content_tiles = make_tiles(cover, structure['column-2'],
+                                    css_class='padded-tile')
 
     # create tiles in the remaining columns
     [structure.pop(z) for z in ['column-1', 'column-2', 'name']]
@@ -1555,10 +1554,11 @@ def import_template_1_column(site, layout, structure):
     # this is a simple page, with one portlet of text
     # example: /eu-adaptation-policy/funding/life
 
-    img_1 = structure['column-1'][0][1]['content'][0]
-    img_1 = img_1.replace("/documents/18/11284244/FAQ.jpg",
-                          "/++theme++climateadapt/static/cca/img/FAQ.jpg")
-    structure['column-1'][0][1]['content'][0] = img_1
+    # import pdb; pdb.set_trace()
+    # img_1 = structure['column-1'][0][1]['content'][0]
+    # img_1 = img_1.replace("/documents/18/11284244/FAQ.jpg",
+    #                       "/++theme++climateadapt/static/cca/img/FAQ.jpg")
+    #structure['column-1'][0][1]['content'][0] = img_1
 
     if structure['column-1'][0][0] in portlet_importers:
         importer = portlet_importers.get(structure['column-1'][0][0])

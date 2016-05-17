@@ -408,6 +408,9 @@ def make_tile(cover, col, css_class=None, no_titles=False):
     tile_name = col[0][0]
     payload = col[0][1]
 
+    if css_class:
+        payload['css_class'] = css_class
+
     if tile_name.startswith('iframe'):
         return make_iframe_embed_tile(cover, payload['url'])
     elif 'webformportlet' in tile_name:
@@ -419,15 +422,13 @@ def make_tile(cover, col, css_class=None, no_titles=False):
         main_text = make_text_from_articlejournal(payload['content'])
         _content = {
             'title': payload['portlet_title'] or "",
-            'text': main_text
+            'text': main_text,
+            'css_class': css_class
         }
         if no_titles:
             return make_richtext_tile(cover, _content)
         else:
             return make_richtext_with_title_tile(cover, _content)
-
-    if css_class:
-        payload.update({'css_class': css_class})
 
     if payload.get('freeparameter') == u'1':
         return make_aceitem_filter_tile(cover, payload)
@@ -443,8 +444,8 @@ def make_tile(cover, col, css_class=None, no_titles=False):
         return make_aceitem_relevant_content_tile(cover, payload)
 
 
-def make_tiles(cover, column):
-    return [make_tile(cover, [portlet]) for portlet in column]
+def make_tiles(cover, column, css_class=None):
+    return [make_tile(cover, [portlet], css_class) for portlet in column]
 
 
 def make_ast_header_tile(cover, payload):
@@ -744,7 +745,6 @@ def set_css_class(cover, tile, css_class):
         tile_conf_adapter.set_configuration(conf)
 
 
-
 def make_aceitem_search_tile(cover, info):
     # Available options
     # title
@@ -834,6 +834,7 @@ def make_countries_dropdown_tile(cover, image=None):
     uuid = None
     if image is not None:
         uuid = image.__dict__['_plone.uuid']
+
     ITileDataManager(tile).set({'title': u"Country select", 'image_uuid': uuid})
 
     return {

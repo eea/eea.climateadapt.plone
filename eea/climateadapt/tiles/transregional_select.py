@@ -54,7 +54,7 @@ regions = {
         ('Greenland', ''),
         ('Faroe Islands', ''),
     ],
-    'Atlantic Area': [
+    'Atlantic': [
         ('France', '/countries/france'),
         ('Ireland', '/countries/ireland'),
         ('Portugal', '/countries/portugal'),
