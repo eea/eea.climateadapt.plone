@@ -714,6 +714,10 @@ ul#ast-menu, #ast-menu ul {
     list-style: none;
 }
 
+#ast-menu .ui-accordion-content-active a.active, #ast-menu .ui-accordion-content-active a:hover {
+    color: #a5bf26;
+}
+
 .documentEditable #content {
     margin-left: 2%;
 }
@@ -974,8 +978,8 @@ a.bluebutton:active {
     border-radius: 0px;
     border: 0px transparent;
 }
-#content ul#ast-menu .ui-accordion-header,
-#content ul#ast-menu .ui-accordion-header:visited {
+#ast-menu .ui-accordion-header,
+#ast-menu .ui-accordion-header:visited {
     background: #9aa854;
     text-decoration: initial;
     color: #2c330a !important;
@@ -1003,6 +1007,14 @@ a.bluebutton:active {
 }
 #content ul#ast-menu .ui-state-active .ui-icon {
     background-image: url('cca/img/arrow_ast_wit.png');
+}
+
+#content #ast-menu .ui-state-active {
+    color: white !important;
+}
+
+#ast-menu .ui-accordion-content-active a.active {
+    color: #a5bf26 !important;
 }
 
 .sector-main-article #read-more-link {

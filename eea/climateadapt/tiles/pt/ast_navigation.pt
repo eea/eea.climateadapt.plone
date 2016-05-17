@@ -2,6 +2,7 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
+      var c = document.location.href;
       $("#ast-menu").accordion({
         autoHeight: false,
         navigation: true,
@@ -36,7 +37,7 @@
         previous = "";
         next = "";
         while (i < a && pos < 0) {
-            pos = $("#ast-menu").search(b[i]);
+            pos = c.search(b[i]);
             if (pos > 0) {
                 if (i == 0) {
                     previous = b[a - 1];

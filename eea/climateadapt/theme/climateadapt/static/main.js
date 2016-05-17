@@ -32,7 +32,6 @@
                     event.stopPropagation();
                     var wid = $(this).closest('.faceted-widget');
                     wid.find("form").toggle(400);
-                    console.log('CIAO');
                     wid.find(".faceted-operator").toggle();
                     $(this).toggleClass('collapsed');
                     if ($(this).hasClass('collapsed')){
@@ -100,7 +99,6 @@ $(document).ready(function() {
 		$('a[href*="glossary#link"]').each(function() {
                     var that = this;
 
-                        console.log("Link", this);
         		var url = $(this).attr('href');
 
         		var thisLinkTerm = url.substring(url.indexOf("#")+1);
