@@ -15,7 +15,12 @@
           <div metal:fill-slot="ace-top-slot">
             <a href="" tal:attributes="href view/link_to_original">Original</a>
             <h2>Information Portal</h2>
-            <h1 tal:content="context/title">Title here</h1>
+            <h1>
+                <span tal:content="python: context.title"></span>
+                <span tal:condition="python: context.year != (0 and None)">
+                    (<span tal:content="python: context.year"></span>)
+                </span>
+            </h1>
           </div>
 
           <div metal:fill-slot="ace-left-slot">
@@ -24,7 +29,12 @@
 
             <h4>Reference information</h4>
             <h5>Websites:</h5>
-                <div tal:content="structure python: view.w['websites'].render()">Website</div>
+                <!-- <div tal:content="structure python: view.w['websites'].render()">Website</div> -->
+                <div tal:define="link python:view._render_websites()">
+                  <dl tal:condition="link" tal:repeat="layer_link link">
+                    <a tal:condition="python:layer_link[1]" tal:content="python:view.linkify(view.html2text(layer_link[1]))" href="" tal:attributes="href python:view.linkify(view.html2text(layer_link[0]))"/>
+                  </dl>
+                </div>
 
             <h5>Source:</h5>
             <tal:block content="structure python: view.w['source'].render()" />
@@ -42,7 +52,9 @@
                 </ul>
             </div>
             <h4>Keywords</h4>
-            <tal:block content="structure context/keywords" />
+            <span tal:repeat="structure context/keywords">
+                <span tal:content="structure"></span>,
+            </span>
 
             <h4>Climate impacts</h4>
             <tal:block content="structure python:view.w['climate_impacts'].render()" />
@@ -54,7 +66,15 @@
             <tal:block content="structure python:view.w['sectors'].render()" />
 
             <h4>Geographic characterisation</h4>
-            <tal:block content="structure context/spatial_layer" />
+            <!-- <tal:block content="structure context/spatial_layer" /> -->
+            <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars"/>
+            <tal:cond condition="not: context/geochars">
+              <p tal:condition="context/spatial_layer" tal:content="context/spatial_layer"/>
+              <p tal:condition="context/spatial_values">
+                Countries:
+                <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
+              </p>
+            </tal:cond>
           </div>
 
         </metal:macro>
