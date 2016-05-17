@@ -13,9 +13,9 @@ from plone.directives import form
 from urllib import urlencode
 from z3c.form.field import Fields
 from z3c.form.form import Form
-from zope import schema
 from zope.component.hooks import getSite
 from zope.interface import implements
+from zope.schema import TextLine, Choice, List, Int, Bool
 
 
 # TODO: use an adaptor for the choice widgets to set the noValueMessage
@@ -23,42 +23,42 @@ from zope.interface import implements
 
 class ISearchAceContentTile(IPersistentCoverTile):
 
-    title = schema.TextLine(
+    title = TextLine(
         title=_(u'Title'),
         required=False,
     )
 
-    search_text = schema.TextLine(
+    search_text = TextLine(
         title=_(u'Search Text'),
         required=False,
         default=u"",
     )
 
-    element_type = schema.Choice(
+    element_type = Choice(
         title=_(u"Element type"),
         vocabulary="eea.climateadapt.element_types_vocabulary",
         required=False
     )
 
-    sector = schema.Choice(
+    sector = Choice(
         title=_(u"Sector"),
         vocabulary="eea.climateadapt.aceitems_sectors",
         required=False
     )
 
-    special_tags = schema.List(title=_(u"Special tags"),
-                               required=False,
-                               value_type=schema.Choice(
-                                   vocabulary="eea.climateadapt.special_tags_vocabulary"
-                               )
-                               )
+    special_tags = List(title=_(u"Special tags"),
+                        required=False,
+                        value_type=Choice(
+                            vocabulary="eea.climateadapt.special_tags_vocabulary"
+                        )
+                        )
 
-    countries = schema.List(title=_(u"Countries"),
-                            required=False,
-                            value_type=schema.Choice(
-                                vocabulary="eea.climateadapt.ace_countries"
-                            )
-                            )
+    countries = List(title=_(u"Countries"),
+                     required=False,
+                     value_type=Choice(
+                         vocabulary="eea.climateadapt.ace_countries"
+                     )
+                     )
 
 
 class AceTileMixin(object):
@@ -182,19 +182,21 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
 
 class IRelevantAceContentItemsTile(ISearchAceContentTile):
 
-    search_type = schema.Choice(
+    search_type = List(
         title=_(u"Aceitem type"),
-        vocabulary="eea.climateadapt.search_types_vocabulary",
-        required=True
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.search_types_vocabulary",
+        )
     )
 
-    nr_items = schema.Int(
+    nr_items = Int(
         title=_(u"Nr of items to show"),
         required=True,
         default=5,
     )
 
-    show_share_btn = schema.Bool(
+    show_share_btn = Bool(
         title=_(u"Show the share button"),
         default=False,
     )
@@ -273,12 +275,12 @@ class IFilterAceContentItemsTile(IRelevantAceContentItemsTile):
 
 
 class IFilteringSchema(form.Schema):
-    impact = schema.Choice(
+    impact = Choice(
         title=_(u"Climate impact"),
         vocabulary="eea.climateadapt.aceitems_climateimpacts",
         required=False
     )
-    sector = schema.Choice(
+    sector = Choice(
         title=_(u"Sector"),
         vocabulary="eea.climateadapt.aceitems_sectors",
         required=False

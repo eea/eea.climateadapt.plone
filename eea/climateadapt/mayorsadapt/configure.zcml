@@ -125,6 +125,8 @@
     <utility name="eea.climateadapt.stage_implementation_cycle" component=".vocabulary.stage_implementation_cycle_vocabulary"/>
     <utility name="eea.climateadapt.already_devel_adapt_strategy" component=".vocabulary.already_devel_adapt_strategy_vocabulary"/>
     <utility name="eea.climateadapt.elements_mentioned_your_cp" component=".vocabulary.elements_mentioned_your_cp_vocabulary"/>
+    <utility name="eea.climateadapt.cityprofile_climateimpacts" component=".vocabulary.cityprofile_climateimpacts_vocabulary"/>
+    <utility name="eea.climateadapt.cityprofile_sectors" component=".vocabulary.cityprofile_sectors_vocabulary"/>
 
     <!-- <subscriber -->
     <!--     for="plone.app.iterate.interfaces.ICheckoutEvent" -->

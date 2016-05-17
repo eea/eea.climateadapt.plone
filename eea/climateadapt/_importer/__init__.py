@@ -27,7 +27,6 @@ from eea.climateadapt._importer.utils import make_richtext_tile
 from eea.climateadapt._importer.utils import make_richtext_with_title_tile
 from eea.climateadapt._importer.utils import make_row
 from eea.climateadapt._importer.utils import make_share_tile
-from eea.climateadapt._importer.utils import make_text_from_articlejournal
 from eea.climateadapt._importer.utils import make_tile
 from eea.climateadapt._importer.utils import make_tiles
 from eea.climateadapt._importer.utils import make_transregion_dropdown_tile
@@ -1379,7 +1378,6 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker,
     #                  'portletSetupShowBorders': u'false',
     #                  'portletSetupUseCustomTitle': u'false',
     #                  'step': u'5'}),
-
 
     assert(len(structure) >= 3)
     assert(len(structure['column-1']) == 1)

@@ -79,7 +79,7 @@
                 <description/>
                 <title>Climate impacts/risks particularly relevant for your city/region</title>
                 <value_type type="zope.schema.Choice">
-                    <vocabulary>eea.climateadapt.aceitems_climateimpacts</vocabulary>
+                    <vocabulary>eea.climateadapt.cityprofile_climateimpacts</vocabulary>
                 </value_type>
             </field>
             <field name="additional_information_on_climate_impacts" type="zope.schema.Text">
@@ -186,7 +186,7 @@
                 <required>False</required>
                 <title>What sectors are concerned</title>
                 <value_type type="zope.schema.Choice">
-                    <vocabulary>eea.climateadapt.aceitems_sectors</vocabulary>
+                    <vocabulary>eea.climateadapt.cityprofile_sectors</vocabulary>
                 </value_type>
             </field>
         </fieldset>

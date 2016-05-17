@@ -275,6 +275,12 @@ def _clean_portlet_settings(d):
     if res.get('count'):
         res['nr_items'] = int(res['count'])
 
+    # change back search_type to be a list
+    if 'search_type' in res:
+        search_type = res['search_type']
+        if isinstance(search_type, basestring):
+            res['search_type'] = [search_type]
+
     return res
 
 
@@ -339,15 +345,21 @@ def extract_portlet_info(session, portletid, layout):
     prefs = {}
     for pref in e.xpath('//preference'):
         name = str(pref.find('name').text)
-        value = pref.find('value')
-        try:
-            value = value.text
-        except Exception:
-            pass
-        if value is not None:
-            prefs[name] = unicode(value)
-        else:
+        values = pref.findall('value')
+        res = []
+        for node in values:
+            try:
+                value = node.text
+            except Exception:
+                continue
+            if value is not None:
+                res.append(unicode(value))
+        if len(res) == 0:
             prefs[name] = None
+        elif len(res) == 1:
+            prefs[name] = res[0]
+        else:
+            prefs[name] = res
 
     portlet_title = None
     if prefs.get('portletSetupUseCustomTitle') == "true":

@@ -105,7 +105,6 @@ alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
 
 
 _climateimpacts = [
-#   ("FORESTFIRES", "Forest Fires"),
     ("EXTREMETEMP", "Extreme Temperatures"),
     ("WATERSCARCE", "Water Scarcity"),
     ("FLOODING", "Flooding"),

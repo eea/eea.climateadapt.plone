@@ -13,8 +13,8 @@ _climateimpacts = [
     ("STORM", "Storms"),
     ("ICEANDSNOW", "Ice and Snow"),
 ]
-aceitem_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts)
-alsoProvides(aceitem_climateimpacts_vocabulary, IVocabularyFactory)
+cityprofile_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts)
+alsoProvides(cityprofile_climateimpacts_vocabulary, IVocabularyFactory)
 
 _sectors = [    # this is the canonical
     ("AGRICULTURE", "Agriculture and Forest"),
@@ -31,8 +31,8 @@ _sectors = [    # this is the canonical
     ("OTHER", "Other"),
     ("WATERMANAGEMENT", "Water management"),
 ]
-aceitem_sectors_vocabulary = generic_vocabulary(_sectors)
-alsoProvides(aceitem_sectors_vocabulary, IVocabularyFactory)
+cityprofile_sectors_vocabulary = generic_vocabulary(_sectors)
+alsoProvides(cityprofile_sectors_vocabulary, IVocabularyFactory)
 
 _status_of_adapt_signature = [
     ("", "Select"),
