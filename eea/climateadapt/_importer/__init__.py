@@ -102,7 +102,7 @@ def import_aceitem(data, location):
     # TODO: Some AceItems have ACTION, MEASURE, REASEARCHPROJECT types and
     # should be mapped over AceMeasure and AceProject
 
-    if data.datatype == "RESEARCHPROJECT":
+    if data.datatype in ["RESEARCHPROJECT", "MEASURE", "ACTION"]:
         return
 
     if data.controlstatus == 1:
@@ -306,6 +306,7 @@ def import_casestudy(data, location):
                  item.absolute_url(1), data.measureid)
 
     return item
+
 
 @log_call
 def import_image(data, location):
@@ -1554,11 +1555,11 @@ def import_template_1_column(site, layout, structure):
     # this is a simple page, with one portlet of text
     # example: /eu-adaptation-policy/funding/life
 
-    # import pdb; pdb.set_trace()
-    # img_1 = structure['column-1'][0][1]['content'][0]
-    # img_1 = img_1.replace("/documents/18/11284244/FAQ.jpg",
-    #                       "/++theme++climateadapt/static/cca/img/FAQ.jpg")
-    #structure['column-1'][0][1]['content'][0] = img_1
+    if layout.friendlyurl == '/share-your-info':
+        img_1 = structure['column-1'][0][1]['content'][0]
+        img_1 = img_1.replace("/documents/18/11284244/FAQ.jpg",
+                              "/++theme++climateadapt/static/cca/img/FAQ.jpg")
+        structure['column-1'][0][1]['content'][0] = img_1
 
     if structure['column-1'][0][0] in portlet_importers:
         importer = portlet_importers.get(structure['column-1'][0][0])

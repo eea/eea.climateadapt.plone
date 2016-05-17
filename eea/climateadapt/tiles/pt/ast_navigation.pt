@@ -36,7 +36,7 @@
         previous = "";
         next = "";
         while (i < a && pos < 0) {
-            pos = c.search(b[i]);
+            pos = $("#ast-menu").search(b[i]);
             if (pos > 0) {
                 if (i == 0) {
                     previous = b[a - 1];
