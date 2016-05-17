@@ -27,7 +27,12 @@
             <p></p>
             <h5>Websites:</h5>
             <p></p>
-            <a tal:attributes="href python: view.w['websites'].render()" tal:content="structure python: view.w['websites'].render()" style="text-decoration: underline">Website</a>
+            <!-- <a tal:attributes="href python: view.w['websites'].render()" tal:content="structure python: view.w['websites'].render()" style="text-decoration: underline">Website</a> -->
+            <div tal:define="link python:view._render_websites()">
+              <dl tal:condition="link" tal:repeat="layer_link link">
+                <a tal:condition="python:layer_link[1]" tal:content="python:view.html2text(layer_link[1])" href="" tal:attributes="href python:view.linkify(view.html2text(layer_link[0]))"/>
+              </dl>
+            </div>
             <p></p>
             <h5>Source:</h5>
             <p></p>
@@ -46,7 +51,10 @@
                 </ul>
             </div>
             <h4>Keywords</h4>
-            <tal:block content="structure context/keywords"/>
+            <span tal:repeat="structure context/keywords">
+                <span tal:content="structure"></span>,
+            </span>
+
             <p></p>
 
             <h4>Climate impacts</h4>
@@ -66,7 +74,15 @@
 
             <h4>Geographic characterisation</h4>
             <p></p>
-            <div tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars"/>
+            <!-- <div tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars"/> -->
+            <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars"/>
+            <tal:cond condition="not: context/geochars">
+              <p tal:condition="context/spatial_layer" tal:content="context/spatial_layer"/>
+              <p tal:condition="context/spatial_values">
+                Countries:
+                <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
+              </p>
+            </tal:cond>
             <p></p>
 
           </div>

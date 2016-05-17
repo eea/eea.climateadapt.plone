@@ -6,6 +6,7 @@ from Products.Five.browser import BrowserView
 from collective.cover.browser.cover import Standard
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.vocabulary import ace_countries_dict
+from plone import api
 from plone.app.iterate.permissions import CheckinPermission
 from plone.app.iterate.permissions import CheckoutPermission
 from plone.app.iterate.browser.control import Control
@@ -360,6 +361,22 @@ SUBNATIONAL_REGIONS = {
 
 
 class AceViewApi(object):
+    def html2text(self, html):
+        if not isinstance(html, basestring):
+            return u""
+        portal_transforms = api.portal.get_tool(name='portal_transforms')
+        data = portal_transforms.convertTo('text/plain',
+                                           html, mimetype='text/html')
+        text = data.getData()
+        return text.strip()
+
+    def linkify(self, text):
+        if not text:
+            return
+        if text.startswith('http'):
+            return text
+        return "http://" + text
+
     def _render_websites(self):
         websites = self.context.websites
         storage_type = self.context.storage_type
