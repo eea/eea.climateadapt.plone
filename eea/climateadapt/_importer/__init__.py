@@ -103,6 +103,14 @@ def import_aceitem(data, location):
     # TODO: Some AceItems have ACTION, MEASURE, REASEARCHPROJECT types and
     # should be mapped over AceMeasure and AceProject
 
+    creationdate = data.creationdate
+    if creationdate is not None:
+        creationdate = creationdate.replace(tzinfo=ctz)
+
+    approvaldate = data.approvaldate
+    if approvaldate is not None:
+        approvaldate = approvaldate.replace(tzinfo=ctz)
+
     if data.datatype in ACE_ITEM_TYPES:
         item = createAndPublishContentInContainer(
             location,
@@ -127,8 +135,8 @@ def import_aceitem(data, location):
             special_tags=s2l(data.specialtagging, relaxed=True),
             rating=data.rating,
             metadata=t2r(data.metadata_),   # this is a web link
-            creation_date=data.creationdate.replace(tzinfo=ctz),
-            effective_date=data.approvaldate.replace(tzinfo=ctz),
+            creation_date=creationdate,
+            effective_date=approvaldate,
             _publish=data.controlstatus == 1,
         )
         item._aceitem_id = data.aceitemid
@@ -144,6 +152,13 @@ def import_aceitem(data, location):
 
 @log_call
 def import_aceproject(data, location):
+    creationdate = data.creationdate
+    if creationdate is not None:
+        creationdate = creationdate.replace(tzinfo=ctz)
+
+    approvaldate = data.approvaldate
+    if approvaldate is not None:
+        approvaldate = approvaldate.replace(tzinfo=ctz)
 
     item = createAndPublishContentInContainer(
         location,
@@ -168,8 +183,8 @@ def import_aceproject(data, location):
         spatial_values=s2l(data.spatialvalues),
         comments=data.comments,
         rating=data.rating,
-        creation_date=data.creationdate.replace(tzinfo=ctz),
-        effective_date=data.approvaldate.replace(tzinfo=ctz),
+        creation_date=creationdate,
+        effective_date=approvaldate,
         _publish=data.controlstatus == 1,
     )
 
@@ -184,6 +199,14 @@ def import_aceproject(data, location):
 
 @log_call
 def import_adaptationoption(data, location):
+
+    creationdate = data.creationdate
+    if creationdate is not None:
+        creationdate = creationdate.replace(tzinfo=ctz)
+
+    approvaldate = data.approvaldate
+    if approvaldate is not None:
+        approvaldate = approvaldate.replace(tzinfo=ctz)
 
     item = createAndPublishContentInContainer(
         location,
@@ -218,8 +241,8 @@ def import_adaptationoption(data, location):
         title=data.name,
         #websites=s2l(data.website),
         websites=s2l(html_unescape(data.website)),
-        creation_date=data.creationdate.replace(tzinfo=ctz),
-        effective_date=data.approvaldate.replace(tzinfo=ctz),
+        creation_date=creationdate,
+        effective_date=approvaldate,
         _publish=data.controlstatus == 1,
     )
     item._acemeasure_id = data.measureid
@@ -246,6 +269,14 @@ def import_casestudy(data, location):
                                       supphotoid)
         if supphoto:
             supphotos.append(RelationValue(intids.getId(supphoto)))
+
+    creationdate = data.creationdate
+    if creationdate is not None:
+        creationdate = creationdate.replace(tzinfo=ctz)
+
+    approvaldate = data.approvaldate
+    if approvaldate is not None:
+        approvaldate = approvaldate.replace(tzinfo=ctz)
 
     item = createAndPublishContentInContainer(
         location,
@@ -282,8 +313,8 @@ def import_casestudy(data, location):
         supphotos=supphotos,
         title=data.name,
         websites=s2l(data.website),
-        creation_date=data.creationdate.replace(tzinfo=ctz),
-        effective_date=data.approvaldate.replace(tzinfo=ctz),
+        creation_date=creationdate,
+        effective_date=approvaldate,
         _publish=data.controlstatus == 1,
     )
 
@@ -415,9 +446,9 @@ no_import_layouts = [
     '/contact-us',  # this is a page that doesn't really exist in the db
     '/climate-hazards',  # this is a page that doesn't really exist in the db
     '/adaptation-sectors',  # this is a page that doesn't really exist in the db
+    '/general',  # this is a page that doesn't really exist in the db
     '/good-practices',
     '/news-and-forum',
-    '/general',
     '/national-adaptation-strategies',
     '/european-sector-policy',
     '/tools/dgregio2020',  # doesn't display anything
@@ -447,7 +478,6 @@ no_import_layouts = [
     '/sitemap',
     '/provant',
     '/adaptation-strategies',
-    '/countries-regions',
     '/maintain',
     '/explain',
     '/6',
@@ -470,6 +500,7 @@ no_import_layouts = [
 
 #  /tools/map-viewer   Linkuri Interne
 #  /tools/time-series-tool
+# '/countries-regions',
 
 portlet_importers = {   # import specific portlets by their ID
     # TODO: implement this importer. It sits at page http://adapt-test.eea.europa.eu/data-and-downloads
