@@ -1,7 +1,7 @@
 <html>
   <head></head>
-  <body tal:define="opts view/options; 
-    site_url view/site_url; 
+  <body tal:define="opts view/options;
+    site_url view/site_url;
     lurl python: site_url + '/layout_importer?uuid=';
     ">
 
@@ -14,6 +14,7 @@
       <li><a tal:attributes="href string:$site_url/layout_importer?type=layout_type&template=urban_ast">Import UrbanAST section</a></li>
       <li><a tal:attributes="href string:$site_url/layout_importer?type=journal_articles">Import News and Events</a></li>
       <li><a tal:attributes="href string:$site_url/layout_importer?type=dlentries">Import dlentries</a></li>
+      <li><a tal:attributes="href string:$site_url/layout_importer?type=portlet_preferences">Get portlet preferences</a></li>
       <li>
         <form method="GET" action="" tal:attributes="action string:$site_url/layout_importer">
           <label>Import dlentry by ID:</label><input type="text" name="id" />

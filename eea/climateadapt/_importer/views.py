@@ -106,7 +106,6 @@ class SingleImporterView(BrowserView):
                     "Imported from layout {0}".format(layout.layoutid)
                 print "Created cover at %s" % cover.absolute_url()
 
-
     def import_dlentries(self):
         from eea.climateadapt._importer import import_dlfileentry
         from eea.climateadapt._importer import sql
@@ -226,6 +225,40 @@ class SingleImporterView(BrowserView):
         site = self.context
         cities = import_city_profiles(site)
         return "Imported {0} cities".format(len(cities))
+
+    def import_portlet_preferences(self):
+        from eea.climateadapt._importer import sql
+        import lxml.etree
+        import lxml.html
+
+        session = self._make_session()
+        eea.climateadapt._importer.session = session
+        site = self.context
+
+        saportlets = session.query(sql.Portletpreference)
+        for portlet in saportlets:
+            if portlet.preferences is not None:
+                e = lxml.etree.fromstring(portlet.preferences)
+                prefs = {}
+                for pref in e.xpath('//preference'):
+                    name = str(pref.find('name').text)
+                    values = pref.findall('value')
+                    if len(values) > 1:
+                        print len(values), name, portlet.portletid
+                    res = []
+                    for node in values:
+                        try:
+                            value = node.text
+                        except Exception:
+                            continue
+                        if value is not None:
+                            res.append(unicode(value))
+                    if len(res) == 0:
+                        prefs[name] = None
+                    elif len(res) == 1:
+                        prefs[name] = res[0]
+                    else:
+                        prefs[name] = res
 
     def __call__(self):
         _type = self.request.form.get('type', 'layout')
