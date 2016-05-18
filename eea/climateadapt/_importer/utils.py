@@ -5,8 +5,11 @@ from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFCore.utils import getToolByName
 from Products.GenericSetup.context import SnapshotImportContext
 from Products.GenericSetup.interfaces import IBody
+from bs4 import BeautifulSoup
 from collections import defaultdict
 from collective.cover.tiles.configuration import TilesConfigurationScreen
+from collective.easyform.api import CONTEXT_KEY
+from collective.easyform.api import set_actions, set_fields
 from decimal import Decimal
 from eea.climateadapt._importer import sqlschema as sql
 from eea.facetednavigation.events import FacetedEnabledEvent
@@ -17,17 +20,17 @@ from eea.facetednavigation.interfaces import IHidePloneLeftColumn
 from eea.facetednavigation.interfaces import IHidePloneRightColumn
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import createContentInContainer
+from plone.supermodel import loadString
 from plone.tiles.interfaces import ITileDataManager
 from plone.uuid.interfaces import IUUIDGenerator
+from z3c.relationfield import RelationValue
 from zope.component import getUtility
 from zope.component import queryMultiAdapter
 from zope.event import notify
 from zope.interface import alsoProvides
+from zope.intid.interfaces import IIntIds
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 from zope.site.hooks import getSite
-from collective.easyform.api import set_actions, set_fields
-from collective.easyform.api import CONTEXT_KEY
-from plone.supermodel import loadString
 import logging
 import lxml.etree
 import lxml.html
@@ -152,6 +155,33 @@ def parse_settings(text):
         #     v = v[0]
         out[k] = v
     return out
+
+
+def is_html(text):
+    """ Returns true if the given text contains HTML"""
+    return bool(BeautifulSoup(text or '', "html.parser").find())
+
+
+def detect_richtext_fields(session):
+    """ Detect all the fields that contain richtext.
+    """
+    #import pdb; pdb.set_trace()
+    result = {}
+    for klass in [sql.AceAceitem, sql.AceProject, sql.AceMeasure]:
+        print "Looking up", klass
+        richtext = set()
+        for obj in session.query(klass):
+            for name in obj.__dict__.keys():
+                if name in richtext:
+                    continue
+                value = getattr(obj, name)
+                if isinstance(value, basestring):
+                    if is_html(value):
+                        richtext.add(name)
+        result[klass] = richtext
+    for k in result:
+        print "=" * 20
+        print "Richtext fields for ", k, ": ", richtext
 
 
 def solve_dynamic_element(node):
@@ -1327,7 +1357,7 @@ UUID_RE = re.compile(
 )
 
 
-def get_repofile_by_id(site, id):
+def get_repofile_by_id(context, id):
     if isinstance(id, basestring):
         id = id.strip()
         if not id:
@@ -1335,7 +1365,7 @@ def get_repofile_by_id(site, id):
     elif isinstance(id, (list, tuple)):
         id = id[0]
 
-    catalog = getToolByName(site, 'portal_catalog')
+    catalog = getToolByName(context, 'portal_catalog')
     brains = catalog.searchResults(imported_ids=id)
     if not brains:
         logger.error("Could not find in catalog image by id %s", id)
@@ -1449,6 +1479,17 @@ def _get_imported_acemeasure(site, id):
     except:
         logger.warning("Could not find acemeasure with id %s", id)
         return
+
+
+def get_relateditems(saobj, context):
+    dbids = s2l(saobj.supdocs) or []
+    files = [get_repofile_by_id(context, id) for id in dbids]
+    util = getUtility(IIntIds, context=context)
+    ids = [util.getId(f) for f in files]
+    if ids:
+        print ids, saobj
+
+    return [RelationValue(id) for id in ids]
 
 
 def _facetize(item, xml_filename):

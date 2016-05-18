@@ -13,6 +13,7 @@ from eea.climateadapt._importer.utils import create_folder_at
 from eea.climateadapt._importer.utils import create_plone_content
 from eea.climateadapt._importer.utils import extract_portlet_info
 from eea.climateadapt._importer.utils import extract_simplified_info_from_article_content
+from eea.climateadapt._importer.utils import get_relateditems
 from eea.climateadapt._importer.utils import get_repofile_by_id
 from eea.climateadapt._importer.utils import localize
 from eea.climateadapt._importer.utils import log_call
@@ -85,6 +86,7 @@ import os
 import sys
 import transaction
 
+
 ctz = timezone('Europe/Copenhagen')
 
 session = None      # this will be a global bound to the current module
@@ -110,6 +112,8 @@ def import_aceitem(data, location):
     approvaldate = data.approvaldate
     if approvaldate is not None:
         approvaldate = approvaldate.replace(tzinfo=ctz)
+
+    related = get_relateditems(data, location)
 
     if data.datatype in ACE_ITEM_TYPES:
         item = createAndPublishContentInContainer(
@@ -137,6 +141,7 @@ def import_aceitem(data, location):
             metadata=t2r(data.metadata_),   # this is a web link
             creation_date=creationdate,
             effective_date=approvaldate,
+            relatedItems=related,
             _publish=data.controlstatus == 1,
         )
         item._aceitem_id = data.aceitemid
@@ -265,8 +270,7 @@ def import_casestudy(data, location):
     supphotos = []
     supphotos_str = data.supphotos is not None and data.supphotos or ''
     for supphotoid in supphotos_str.split(';'):
-        supphoto = get_repofile_by_id(location.aq_inner.aq_parent,
-                                      supphotoid)
+        supphoto = get_repofile_by_id(location, supphotoid)
         if supphoto:
             supphotos.append(RelationValue(intids.getId(supphoto)))
 
@@ -289,12 +293,12 @@ def import_casestudy(data, location):
         cost_benefit=t2r(data.costbenefit),
         elements=s2l(data.elements_),
         geochars=data.geochars,
-        implementation_time=data.implementationtime,
+        implementation_time=t2r(data.implementationtime),
         implementation_type=data.implementationtype,
         # keywords=t2r(data.keywords),
         keywords=s2l(r2t(data.keywords), separators=[';', ',']),
         legal_aspects=t2r(data.legalaspects),
-        lifetime=data.lifetime,
+        lifetime=t2r(data.lifetime),
         location_lat=to_decimal(data.lat),
         location_lon=to_decimal(data.lon),
         long_description=t2r(data.description),
@@ -305,7 +309,7 @@ def import_casestudy(data, location):
         relevance=s2l(data.relevance),
         sectors=s2l(data.sectors_),
         solutions=t2r(data.solutions),
-        source=data.source,
+        source=t2r(data.source),
         spatial_layer=data.spatiallayer,
         spatial_values=s2l(data.spatialvalues),
         stakeholder_participation=t2r(data.stakeholderparticipation),
@@ -2355,15 +2359,15 @@ def get_default_location(site, _type):
 
 
 def import_aceitems(session, site):
-    for aceitem in session.query(sql.AceAceitem):
-        if aceitem.datatype in ['ACTION', 'MEASURE', "RESEARCHPROJECT",
-                                "MEASURE", "ACTION"]:
-            continue
-        import_aceitem(aceitem, get_default_location(site, aceitem.datatype))
-
-    for aceproject in session.query(sql.AceProject):
-        import_aceproject(aceproject, get_default_location(site,
-                                                           'RESEARCHPROJECT'))
+    # for aceitem in session.query(sql.AceAceitem):
+    #     if aceitem.datatype in ['ACTION', 'MEASURE', "RESEARCHPROJECT",
+    #                             "MEASURE", "ACTION"]:
+    #         continue
+    #     import_aceitem(aceitem, get_default_location(site, aceitem.datatype))
+    #
+    # for aceproject in session.query(sql.AceProject):
+    #     import_aceproject(aceproject, get_default_location(site,
+    #                                                        'RESEARCHPROJECT'))
 
     for acemeasure in session.query(sql.AceMeasure):
         if acemeasure.mao_type == 'A':

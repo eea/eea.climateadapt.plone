@@ -227,6 +227,14 @@ class SingleImporterView(BrowserView):
         cities = import_city_profiles(site)
         return "Imported {0} cities".format(len(cities))
 
+    def import_detect_richtext(self):
+        from eea.climateadapt._importer.utils import detect_richtext_fields
+        session = self._make_session()
+        eea.climateadapt._importer.session = session
+        #site = self.context
+        detect_richtext_fields(session)
+        return "done"
+
     def __call__(self):
         _type = self.request.form.get('type', 'layout')
         debug = self.request.form.get('debug')
