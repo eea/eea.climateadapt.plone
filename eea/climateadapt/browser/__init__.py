@@ -493,32 +493,32 @@ class Navbar(BrowserView):
         Search the database         /data-and-downloads
 
         EU policy                          /eu-adaptation-policy
-            EU policy - landing page       /eu-adaptation-policy
+            EU policy - introduction       /eu-adaptation-policy
             EU Adaptation Strategy         /eu-adaptation-policy/strategy
             EU mainstreaming in sector policies   /eu-adaptation-policy/mainstreaming
             EU funding of adaptation       /eu-adaptation-policy/funding
             Mayors Adapt                   /mayors-adapt
-                -Mayors Adapt - landing page  /mayors-adapt
+                -Mayors Adapt - introduction  /mayors-adapt
                 -Register your City         /mayors-adapt/register
                 -City Profiles              /city-profile
 
         Countries, regions, cities         /countries-regions
-            Countries - landing page       /countries-regions
+            Countries - introduction       /countries-regions
             Transnational regions          /transnational-regions
             Cities and towns               /cities
             Country Information            /countries
 
         Knowledge               /knowledge
-            Knowledge - landing page       /knowledge
+            Knowledge - introduction       /knowledge
             Adaptation information         /adaptation-information/general
-                -Adaptation information - landing page  /adaptation-information/general
+                -Adaptation information - introduction  /adaptation-information/general
                 -Observations and scenarios    /observations-and-scenarios
                 -Vulnerabilities and risks     /vulnerabilities-and-risks
                 -Adaptation options            /adaptation-measures
                 -Adaptation strategies         /adaptation-strategies
                 -Research projects             /research-projects
             Tools                          /tools/general
-                -Tools - landing page          /tools/general
+                -Tools - introduction          /tools/general
                 -Adaptation Support Tool       /adaptation-support-tool
                 -Case study search tool        /sat
                 -Uncertainty guidance          /uncertainty-guidance
@@ -531,12 +531,12 @@ class Navbar(BrowserView):
                 -General                          /general
 
         Network                 /network
-            Network - landing page  /network
+            Network - introduction  /network
             Organisations           /organisations
             Global Platforms        /international
 
         Help                        /help
-            Help - landing page     /help
+            Help - introduction     /help
             Glossary                /glossary
             Tutorial Videos         /tutorial-videos
             FAQ for users           /faq
