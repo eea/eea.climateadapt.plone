@@ -4,6 +4,7 @@ from eea.climateadapt._importer.utils import get_template_for_layout
 from eea.climateadapt._importer.utils import create_folder_at
 from eea.climateadapt._importer.utils import parse_settings
 from eea.climateadapt._importer.utils import strip_xml
+from eea.climateadapt._importer import import_aceitems as base_import_aceitems
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from zope.component.hooks import getSite
@@ -132,8 +133,6 @@ class SingleImporterView(BrowserView):
         return "<br/>".join(imported)
 
     def import_aceitems(self):
-        from eea.climateadapt._importer import import_aceitem
-        from eea.climateadapt._importer import sql
         from eea.climateadapt._importer.tweak_sql import fix_relations
 
         session = self._make_session()
@@ -141,14 +140,7 @@ class SingleImporterView(BrowserView):
         fix_relations(session)
         site = self.context
 
-        if 'content' not in site.contentIds():
-            site.invokeFactory("Folder", 'content')
-
-        for aceitem in session.query(sql.AceAceitem):
-            if aceitem.datatype in ['ACTION', 'MEASURE']:
-                # TODO: log and solve here
-                continue
-            import_aceitem(aceitem, site['content'])
+        base_import_aceitems(session, site)
 
     def import_casestudy(self):
         from eea.climateadapt._importer import import_casestudy

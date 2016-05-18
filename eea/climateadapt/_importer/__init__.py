@@ -1,3 +1,4 @@
+#from eea.climateadapt.interfaces import IContentRoot
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFCore.utils import getToolByName
 from collections import defaultdict
@@ -48,7 +49,6 @@ from eea.climateadapt.interfaces import IASTNavigationRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
 from eea.climateadapt.interfaces import ICitiesListingsRoot
 from eea.climateadapt.interfaces import IClimateAdaptSharePage
-#from eea.climateadapt.interfaces import IContentRoot
 from eea.climateadapt.interfaces import ICountriesRoot
 from eea.climateadapt.interfaces import IMayorAdaptRoot
 from eea.climateadapt.interfaces import ISiteSearchFacetedView
@@ -67,6 +67,7 @@ from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from persistent.list import PersistentList
 from plone.api import portal
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
+from pytz import timezone
 from pytz import utc
 from six.moves.html_parser import HTMLParser
 from sqlalchemy import create_engine
@@ -84,10 +85,9 @@ import os
 import sys
 import transaction
 
+ctz = timezone('Europe/Copenhagen')
 
 session = None      # this will be a global bound to the current module
-
-MAPOFLAYOUTS = defaultdict(list)
 
 additional_sharepage_layouts = [
     '/share-your-info/indicators',
@@ -102,11 +102,6 @@ html_unescape = HTMLParser().unescape
 def import_aceitem(data, location):
     # TODO: Some AceItems have ACTION, MEASURE, REASEARCHPROJECT types and
     # should be mapped over AceMeasure and AceProject
-
-    if data.controlstatus == 1:
-        _publish = 1
-    else:
-        _publish = 0
 
     if data.datatype in ACE_ITEM_TYPES:
         item = createAndPublishContentInContainer(
@@ -132,7 +127,9 @@ def import_aceitem(data, location):
             special_tags=s2l(data.specialtagging, relaxed=True),
             rating=data.rating,
             metadata=t2r(data.metadata_),   # this is a web link
-            _publish=_publish,
+            creation_date=data.creationdate.replace(tzinfo=ctz),
+            effective_date=data.approvaldate.replace(tzinfo=ctz),
+            _publish=data.controlstatus == 1,
         )
         item._aceitem_id = data.aceitemid
 
@@ -147,10 +144,6 @@ def import_aceitem(data, location):
 
 @log_call
 def import_aceproject(data, location):
-    if data.controlstatus == 1:
-        _publish = 1
-    else:
-        _publish = 0
 
     item = createAndPublishContentInContainer(
         location,
@@ -175,7 +168,9 @@ def import_aceproject(data, location):
         spatial_values=s2l(data.spatialvalues),
         comments=data.comments,
         rating=data.rating,
-        _publish=_publish,
+        creation_date=data.creationdate.replace(tzinfo=ctz),
+        effective_date=data.approvaldate.replace(tzinfo=ctz),
+        _publish=data.controlstatus == 1,
     )
 
     item._aceproject_id = data.projectid
@@ -189,10 +184,6 @@ def import_aceproject(data, location):
 
 @log_call
 def import_adaptationoption(data, location):
-    if data.controlstatus == 1:
-        _publish = 1
-    else:
-        _publish = 0
 
     item = createAndPublishContentInContainer(
         location,
@@ -227,7 +218,9 @@ def import_adaptationoption(data, location):
         title=data.name,
         #websites=s2l(data.website),
         websites=s2l(html_unescape(data.website)),
-        _publish=_publish,
+        creation_date=data.creationdate.replace(tzinfo=ctz),
+        effective_date=data.approvaldate.replace(tzinfo=ctz),
+        _publish=data.controlstatus == 1,
     )
     item._acemeasure_id = data.measureid
     item.reindexObject()
@@ -253,11 +246,6 @@ def import_casestudy(data, location):
                                       supphotoid)
         if supphoto:
             supphotos.append(RelationValue(intids.getId(supphoto)))
-
-    if data.controlstatus == 1:
-        _publish = 1
-    else:
-        _publish = 0
 
     item = createAndPublishContentInContainer(
         location,
@@ -294,7 +282,9 @@ def import_casestudy(data, location):
         supphotos=supphotos,
         title=data.name,
         websites=s2l(data.website),
-        _publish=_publish,
+        creation_date=data.creationdate.replace(tzinfo=ctz),
+        effective_date=data.approvaldate.replace(tzinfo=ctz),
+        _publish=data.controlstatus == 1,
     )
 
     item._acemeasure_id = data.measureid
@@ -515,6 +505,7 @@ def import_layout(layout, site):
     settings = parse_settings(layout.typesettings)
 
     if layout.type_ == u'link_to_layout':
+        # TODO: warning: log this, they may create recursions
         llid = int(settings['linkToLayoutId'][0])
         ll = session.query(sql.Layout).filter_by(layoutid=llid).one()
         this_url = layout.friendlyurl
@@ -525,8 +516,6 @@ def import_layout(layout, site):
         return folder
 
     template = settings['layout-template-id'][0]
-    MAPOFLAYOUTS[template].append(layout.friendlyurl)
-    #print layout.type_, "\t\t", template, "\t\t", layout.friendlyurl
 
     logger.debug("Importing layout %s at url %s with template %s",
                  layout.layoutid, layout.friendlyurl, template)
@@ -2334,6 +2323,25 @@ def get_default_location(site, _type):
     return dest
 
 
+def import_aceitems(session, site):
+    for aceitem in session.query(sql.AceAceitem):
+        if aceitem.datatype in ['ACTION', 'MEASURE', "RESEARCHPROJECT",
+                                "MEASURE", "ACTION"]:
+            continue
+        import_aceitem(aceitem, get_default_location(site, aceitem.datatype))
+
+    for aceproject in session.query(sql.AceProject):
+        import_aceproject(aceproject, get_default_location(site,
+                                                           'RESEARCHPROJECT'))
+
+    for acemeasure in session.query(sql.AceMeasure):
+        if acemeasure.mao_type == 'A':
+            import_casestudy(acemeasure, get_default_location(site, 'ACTION'))
+        else:
+            import_adaptationoption(acemeasure, get_default_location(site,
+                                                                     'MEASURE'))
+
+
 def run_importer(site=None):
     sql.Address = sql.Addres    # wrong detected plural
     fix_relations(session)
@@ -2363,22 +2371,7 @@ def run_importer(site=None):
     for dlfileentry in session.query(sql.Dlfileentry):
         import_dlfileentry(dlfileentry, site['repository'])
 
-    for aceitem in session.query(sql.AceAceitem):
-        if aceitem.datatype in ['ACTION', 'MEASURE', "RESEARCHPROJECT",
-                                "MEASURE", "ACTION"]:
-            continue
-        import_aceitem(aceitem, get_default_location(site, aceitem.datatype))
-
-    for aceproject in session.query(sql.AceProject):
-        import_aceproject(aceproject, get_default_location(site,
-                                                           'RESEARCHPROJECT'))
-
-    for acemeasure in session.query(sql.AceMeasure):
-        if acemeasure.mao_type == 'A':
-            import_casestudy(acemeasure, get_default_location(site, 'ACTION'))
-        else:
-            import_adaptationoption(acemeasure, get_default_location(site,
-                                                                     'MEASURE'))
+    import_aceitems(session, site)
 
     for layout in session.query(sql.Layout).filter_by(privatelayout=False):
         try:
