@@ -129,8 +129,6 @@ def import_aceitem(data, location):
             sectors=s2l(data.sectors_),
             elements=s2l(data.elements_),
             climate_impacts=s2l(data.climateimpacts_),
-            # websites=t2r(data.storedat),
-            # websites=s2l(r2t(html_unescape(data.storedat))),
             websites=s2l(html_unescape(data.storedat)),
             source=t2r(data.source),
             comments=data.comments,
@@ -138,7 +136,7 @@ def import_aceitem(data, location):
             geochars=data.geochars,
             special_tags=s2l(data.specialtagging, relaxed=True),
             rating=data.rating,
-            metadata=t2r(data.metadata_),   # this is a web link
+            metadata=data.metadata_,
             creation_date=creationdate,
             effective_date=approvaldate,
             relatedItems=related,
@@ -175,7 +173,6 @@ def import_aceproject(data, location):
         long_description=t2r(data.abstracts),
         source=t2r(data.source),
         partners=t2r(data.partners),
-        #keywords=t2r(data.keywords),
         keywords=s2l(r2t(data.keywords), separators=[';', ',']),
         sectors=s2l(data.sectors),
         elements=s2l(data.element),
@@ -2359,15 +2356,15 @@ def get_default_location(site, _type):
 
 
 def import_aceitems(session, site):
-    # for aceitem in session.query(sql.AceAceitem):
-    #     if aceitem.datatype in ['ACTION', 'MEASURE', "RESEARCHPROJECT",
-    #                             "MEASURE", "ACTION"]:
-    #         continue
-    #     import_aceitem(aceitem, get_default_location(site, aceitem.datatype))
-    #
-    # for aceproject in session.query(sql.AceProject):
-    #     import_aceproject(aceproject, get_default_location(site,
-    #                                                        'RESEARCHPROJECT'))
+    for aceitem in session.query(sql.AceAceitem):
+        if aceitem.datatype in ['ACTION', 'MEASURE', "RESEARCHPROJECT",
+                                "MEASURE", "ACTION"]:
+            continue
+        import_aceitem(aceitem, get_default_location(site, aceitem.datatype))
+
+    for aceproject in session.query(sql.AceProject):
+        import_aceproject(aceproject, get_default_location(site,
+                                                           'RESEARCHPROJECT'))
 
     for acemeasure in session.query(sql.AceMeasure):
         if acemeasure.mao_type == 'A':

@@ -49,6 +49,11 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                   fields=['geochars', 'comments'])
 
     # -----------[ "default" fields ]------------------
+
+
+    # These fields are richtext in the db:
+    #set(['keywords', 'partners', 'admincomment', 'abstracts', 'source'])
+
     acronym = TextLine(title=_(u"Acronym"),
                        description=_(u"Acronym of the project"),
                        required=True,

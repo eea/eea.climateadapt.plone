@@ -87,6 +87,13 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     #     fields=[]
     # )
 
+
+# richtext fields in database:
+# set(['legalaspects', 'implementationtime', 'description', 'source',
+# 'objectives', 'stakeholderparticipation', 'admincomment', 'comments',
+# 'challenges', 'keywords', 'contact', 'solutions', 'costbenefit',
+# 'succeslimitations', 'lifetime'])
+
     form.fieldset('geographic_information',
                   label=u'Geographic Information',
                   fields=['geochars', 'comments']
@@ -311,6 +318,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     rating = Int(title=_(u"Rating"), required=True, default=0)
 
+    # TODO: show the objectives field
     objectives = RichText(title=_(u"Objectives"), required=False, default=u"")
 
     solutions = RichText(title=_(u"Solutions"), required=False, default=u"")

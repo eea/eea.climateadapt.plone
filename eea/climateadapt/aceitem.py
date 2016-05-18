@@ -63,6 +63,9 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                   )
 
     # -----------[ "default" fields ]------------------
+    # these are the richtext fields from the db:
+    # set(['description', 'storedat', 'admincomment', 'comments', 'source',
+    #      'keyword', 'textsearch'])
 
     title = TextLine(title=_(u"Title"),
                      description=u"Item Name (250 character limit)",
@@ -198,13 +201,10 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                               vocabulary="eea.climateadapt.ace_countries")
                           )
 
-    important = Bool(title=_(u"High importance"), required=False, default=False
-                     )
+    important = Bool(title=_(u"High importance"),
+                     required=False, default=False)
 
-    # websites = List(title=_(u"Websites"),
-    #                 required=True,
-    #                 value_type=TextLine(title=_(u"Link"), ))
-    metadata = RichText(title=_(u"Metadata"), required=False,)
+    metadata = TextLine(title=_(u"Metadata"), required=False,)
 
     # TODO: see if possible to use eea.promotions for this
     # featured = List(title=_(u"Featured in location"),

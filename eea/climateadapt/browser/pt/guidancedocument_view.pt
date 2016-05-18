@@ -46,7 +46,9 @@
                 </ul>
             </div>
             <h4>Keywords</h4>
-            <tal:block content="structure context/keywords" />
+            <span tal:repeat="structure context/keywords">
+                <span tal:content="structure"></span>,
+            </span>
 
             <h4>Climate impacts</h4>
             <tal:block content="structure python:view.w['climate_impacts'].render()" />

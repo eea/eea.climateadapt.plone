@@ -179,9 +179,9 @@ def detect_richtext_fields(session):
                     if is_html(value):
                         richtext.add(name)
         result[klass] = richtext
-    for k in result:
+    for k, v in result.items():
         print "=" * 20
-        print "Richtext fields for ", k, ": ", richtext
+        print "Richtext fields for ", k, ": ", v
 
 
 def solve_dynamic_element(node):
