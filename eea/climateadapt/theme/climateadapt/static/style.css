@@ -1806,6 +1806,9 @@ li.dropdown-submenu {
     width: 8em;
     float: left;
 }
+.aceitem-filter-relevant-tile h2 {
+    margin-top:2em;
+}
 
 .aceitem-filter-relevant-tile form {
     padding-top: 1em;

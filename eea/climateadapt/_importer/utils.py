@@ -1335,7 +1335,7 @@ def get_repofile_by_id(site, id):
     elif isinstance(id, (list, tuple)):
         id = id[0]
 
-    catalog = site['portal_catalog']
+    catalog = getToolByName(site, 'portal_catalog')
     brains = catalog.searchResults(imported_ids=id)
     if not brains:
         logger.error("Could not find in catalog image by id %s", id)
@@ -1346,71 +1346,6 @@ def get_repofile_by_id(site, id):
         return
 
     return brains[0].getObject()
-
-
-# def get_image_by_imageid(site, imageid):
-#     if isinstance(imageid, basestring):
-#         imageid = imageid.strip()
-#         if not imageid:
-#             return None
-#
-#     catalog = site['portal_catalog']
-#     if isinstance(uuid, (list, tuple)):
-#         uuid = uuid[0]
-#     brains = catalog.searchResults(imported_uuid=uuid)
-#     if not brains:
-#         logger.error("Could not find in catalog image by uuid %s", uuid)
-#         return
-#
-#     return brains[0].getObject()
-
-#   # repo = site['repository']
-#   # reg = re.compile(str(imageid) + '.[jpg|png]')
-#   #
-#   # ids = [m.string for m in [reg.match(cid) for cid in repo.contentIds()] if m]
-#   #
-#   # if len(ids) != 1:
-#   #     # we will try to find it by uuid
-#   #     from eea.climateadapt._importer import session
-#   #     from eea.climateadapt._importer import sql
-#   #
-#   #     uuids = session.query(sql.Dlfileentry.uuid_).filter_by(
-#   #         fileentryid=int(imageid)).all()
-#   #     if uuids:
-#   #         uuid = uuids[0]
-#   #         return get_repofile_by_uuid(site, uuid)
-#   #     else:
-#   #         logger.error("Couldn't find image by id %s", imageid)
-#   #         return None
-#   #
-#   #     # try:
-#   #     #     # uuid = session.query(sql.Dlfileentry.uuid_
-#   #     #     #                     ).filter_by(largeimageid=imageid).one()[0]
-#   #     # except:
-#   #     #     logger.error("Couldn't find image by id %s", imageid)
-#   #     #     # logger.info("Let's try with dlfileversion by id %s" % imageid)
-#   #     #     # try:
-#   #     #     #     uuid = session.query(sql.Dlfileversion.uuid_).filter(
-#   #     #     #         sql.Dlfileversion.fileentryid==long(imageid)).one()[0]
-#   #     #     #     return get_repofile_by_uuid(site, uuid)
-#   #     #     # except:
-#   #     #     #     return None
-#   #     #     return None
-#   #
-#   # return repo[ids[0]]
-
-
-#ef get_repofile_by_uuid(site, uuid):
-#   return
-#   # catalog = site['portal_catalog']
-#   # if isinstance(uuid, (list, tuple)):
-#   #     uuid = uuid[0]
-#   # brains = catalog.searchResults(imported_uuid=uuid)
-#   # if not brains:
-#   #     logger.error("Could not find in catalog image by uuid %s", uuid)
-#   #     return
-#   #
-#   # return brains[0].getObject()
 
 
 def get_param_from_link(text, param='uuid'):
@@ -1466,10 +1401,11 @@ ACEMEASURE_TYPES = ['eea.climateadapt.casestudy',
 
 
 def _get_imported_aceitem(site, id):
+    catalog = getToolByName(site, 'portal_catalog')
     coll = MAP_OF_OBJECTS['aceitems']
     if len(coll) == 0:
         for pt in ACE_ITEM_TYPES.values():
-            brains = site.portal_catalog.searchResults(portal_type=pt)
+            brains = catalog.searchResults(portal_type=pt)
             for b in brains:
                 obj = b.getObject()
                 coll[obj._aceitem_id] = obj
@@ -1482,10 +1418,11 @@ def _get_imported_aceitem(site, id):
 
 
 def _get_imported_aceproject(site, id):
+    catalog = getToolByName(site, 'portal_catalog')
     pt = "eea.climateadapt.aceproject"
     coll = MAP_OF_OBJECTS['aceprojects']
     if len(coll) == 0:
-        brains = site.portal_catalog.search_results(portal_type=pt)
+        brains = catalog.search_results(portal_type=pt)
         for b in brains:
             obj = b.getObject()
             coll[obj._aceproject_id] = obj
@@ -1498,10 +1435,11 @@ def _get_imported_aceproject(site, id):
 
 
 def _get_imported_acemeasure(site, id):
+    catalog = getToolByName(site, 'portal_catalog')
     coll = MAP_OF_OBJECTS['acemeasures']
     if len(coll) == 0:
         for pt in ACEMEASURE_TYPES:
-            brains = site.portal_catalog.searchResults(portal_type=pt)
+            brains = catalog.searchResults(portal_type=pt)
             for b in brains:
                 obj = b.getObject()
                 coll[obj._acemeasure_id] = obj

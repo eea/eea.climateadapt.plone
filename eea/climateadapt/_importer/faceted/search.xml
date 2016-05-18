@@ -162,5 +162,23 @@
    <property name="default">1000000</property>
   </criterion>
 
+  <criterion name="review_state">
+   <property name="widget">radio</property>
+   <property name="title">State</property>
+   <property name="position">right</property>
+   <property name="section">default</property>
+   <property name="hidden">1</property>
+   <property name="count">0</property>
+   <property name="sortcountable">0</property>
+   <property name="hidezerocount">0</property>
+   <property name="index">review_state</property>
+   <property name="vocabulary"></property>
+   <property name="catalog">portal_catalog</property>
+   <property name="hidealloption">0</property>
+   <property name="maxitems"></property>
+   <property name="sortreversed">0</property>
+   <property name="default">published</property>
+  </criterion>
+
  </criteria>
 </object>

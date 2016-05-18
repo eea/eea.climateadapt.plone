@@ -7,6 +7,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
 from eea.climateadapt import MessageFactory as _
+from eea.climateadapt.config import DEFAULT_LOCATIONS
 from eea.climateadapt.vocabulary import _cca_types
 from plone import api
 from zope import schema
@@ -26,26 +27,6 @@ class IShareInfoTile(IPersistentCoverTile):
         vocabulary="eea.climateadapt.cca_types",
         required=False
     )
-
-
-TYPES = {
-    'DOCUMENT': ('eea.climateadapt.publicationreport', 'content'),
-    'INFORMATIONSOURCE': ('eea.climateadapt.informationportal', 'content'),
-    'GUIDANCE': ('eea.climateadapt.guidancedocument', 'content'),
-    'TOOL': ('eea.climateadapt.tool', 'content'),
-    'ORGANISATION': ('eea.climateadapt.organisation', 'content'),
-    'INDICATOR': ('eea.climateadapt.indicator', 'content'),
-    'MAPGRAPHDATASET': ('eea.climateadapt.mapgraphdataset', 'content'),
-
-    'RESEARCHPROJECT': ('eea.climateadapt.aceproject', 'aceprojects'),
-    'MEASURE': ('eea.climateadapt.adaptationoption', 'adaptationoption'),
-    'ACTION': ('eea.climateadapt.casestudy', 'casestudy'),
-}
-
-
-DEFAULT_LOCATIONS = {
-    'INDICATOR': 'content',
-}
 
 
 class ShareInfoTile(PersistentCoverTile):
@@ -72,7 +53,7 @@ class ShareInfoTile(PersistentCoverTile):
     def link_url(self):
         site = getSite()    # TODO: fix this link
         type_ = self.data.get('shareinfo_type')
-        factory, location = TYPES[type_]
+        location, _t, factory = DEFAULT_LOCATIONS[type_]
         location = site.restrictedTraverse(location)
         return "{0}/++add++{1}".format(location.absolute_url(), factory)
 

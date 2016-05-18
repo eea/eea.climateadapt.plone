@@ -43,24 +43,25 @@ from eea.climateadapt._importer.utils import stamp_cover
 from eea.climateadapt._importer.utils import strip_xml
 from eea.climateadapt._importer.utils import to_decimal
 from eea.climateadapt._importer.utils import write_links
+from eea.climateadapt.config import DEFAULT_LOCATIONS
 from eea.climateadapt.interfaces import IASTNavigationRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
 from eea.climateadapt.interfaces import ICitiesListingsRoot
-from eea.climateadapt.interfaces import IContentRoot
 from eea.climateadapt.interfaces import IClimateAdaptSharePage
+#from eea.climateadapt.interfaces import IContentRoot
 from eea.climateadapt.interfaces import ICountriesRoot
 from eea.climateadapt.interfaces import IMayorAdaptRoot
 from eea.climateadapt.interfaces import ISiteSearchFacetedView
-from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.climateadapt.interfaces import ITransRegioRoot
+from eea.climateadapt.interfaces import ITransnationalRegionMarker
+from eea.climateadapt.mayorsadapt.vocabulary import already_devel_adapt_strategy_vocabulary
+from eea.climateadapt.mayorsadapt.vocabulary import stage_implementation_cycle_vocabulary
+from eea.climateadapt.mayorsadapt.vocabulary import status_of_adapt_signature_vocabulary
 from eea.climateadapt.vocabulary import _cca_types
 from eea.climateadapt.vocabulary import ace_countries_vocabulary
 from eea.climateadapt.vocabulary import aceitem_climateimpacts_vocabulary
 from eea.climateadapt.vocabulary import aceitem_elements_vocabulary
 from eea.climateadapt.vocabulary import aceitem_sectors_vocabulary
-from eea.climateadapt.mayorsadapt.vocabulary import already_devel_adapt_strategy_vocabulary
-from eea.climateadapt.mayorsadapt.vocabulary import stage_implementation_cycle_vocabulary
-from eea.climateadapt.mayorsadapt.vocabulary import status_of_adapt_signature_vocabulary
 from eea.facetednavigation.layout.interfaces import IFacetedLayout
 from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from persistent.list import PersistentList
@@ -101,9 +102,6 @@ html_unescape = HTMLParser().unescape
 def import_aceitem(data, location):
     # TODO: Some AceItems have ACTION, MEASURE, REASEARCHPROJECT types and
     # should be mapped over AceMeasure and AceProject
-
-    if data.datatype in ["RESEARCHPROJECT", "MEASURE", "ACTION"]:
-        return
 
     if data.controlstatus == 1:
         _publish = 1
@@ -2295,6 +2293,47 @@ def import_journal_articles(site):
                          news.absolute_url())
 
 
+def get_default_location(site, _type):
+    """ Returns the proper folder for a database item to be created.
+
+    If the folder doesn't exist, it creates it and adds the proper roles to it.
+    """
+
+    path, title, factory = DEFAULT_LOCATIONS[_type]
+    dbname, name = path.split('/')
+
+    parent = site
+
+    if not dbname in site.contentIds():
+        parent = createAndPublishContentInContainer(
+            site,
+            'Folder',
+            id=dbname,
+            title='Database',
+        )
+    else:
+        parent = site._getOb(dbname)
+
+    if name in parent.contentIds():
+        dest = parent._getOb(name)
+    else:
+        dest = createAndPublishContentInContainer(
+            parent,
+            'Folder',
+            id=name,
+            title=title,
+        )
+        roles = dest.__ac_local_roles__
+        roles.update(Members=[u'Contributor', u'Reader'])
+        roles.update(ContentReviewers=[u'Contributor', u'Reviewer', u'Editor',
+                                       u'Reader'])
+        roles.update(PowerUsers=[u'Contributor', u'Editor', u'Reader'])
+        dest.immediately_addable_types = [factory]
+        dest.locally_allowed_types = [factory]
+
+    return dest
+
+
 def run_importer(site=None):
     sql.Address = sql.Addres    # wrong detected plural
     fix_relations(session)
@@ -2307,12 +2346,7 @@ def run_importer(site=None):
 
     wftool = getToolByName(site, "portal_workflow")
 
-    structure = [('content', 'Content'),
-                 ('aceprojects', 'Projects'),
-                 ('casestudy', 'Case Studies'),
-                 ('adaptationoption', 'Adaptation Options'),
-                 ('repository', 'Repository')
-                 ]
+    structure = [('repository', 'Repository')]
     for name, title in structure:
         if name not in site.contentIds():
             site.invokeFactory("Folder", name)
@@ -2329,32 +2363,28 @@ def run_importer(site=None):
     for dlfileentry in session.query(sql.Dlfileentry):
         import_dlfileentry(dlfileentry, site['repository'])
 
-    # for dlfileversion in session.query(sql.Dlfileversion):
-    #     import_dlfileversion(dlfileversion, site['repository'])
-
     for aceitem in session.query(sql.AceAceitem):
-        if aceitem.datatype in ['ACTION', 'MEASURE']:
-            # TODO: log and solve here
+        if aceitem.datatype in ['ACTION', 'MEASURE', "RESEARCHPROJECT",
+                                "MEASURE", "ACTION"]:
             continue
-        import_aceitem(aceitem, site['content'])
+        import_aceitem(aceitem, get_default_location(site, aceitem.datatype))
 
     for aceproject in session.query(sql.AceProject):
-        import_aceproject(aceproject, site['aceprojects'])
+        import_aceproject(aceproject, get_default_location(site,
+                                                           'RESEARCHPROJECT'))
 
     for acemeasure in session.query(sql.AceMeasure):
         if acemeasure.mao_type == 'A':
-            import_casestudy(acemeasure, site['casestudy'])
+            import_casestudy(acemeasure, get_default_location(site, 'ACTION'))
         else:
-            pass
-            import_adaptationoption(acemeasure, site['adaptationoption'])
+            import_adaptationoption(acemeasure, get_default_location(site,
+                                                                     'MEASURE'))
 
     for layout in session.query(sql.Layout).filter_by(privatelayout=False):
         try:
             cover = import_layout(layout, site)
-        except:
+        except Exception:
             logger.exception("Couldn't import layout %s", layout.friendlyurl)
-            #import pdb; pdb.set_trace()
-            #raise ValueError
         if cover:
             cover._imported_comment = \
                 "Imported from layout {0} - {1}".format(layout.layoutid,
@@ -2419,47 +2449,14 @@ def tweak_site(site):
     cplpage.setLayout('@@cities-listing')
 
     # content page
-    contentpage = site['content']
-    alsoProvides(contentpage, IContentRoot)
-    contentpage.setLayout('@@content')
+    #contentpage = site['content']
+    # alsoProvides(contentpage, IContentRoot)
+    # contentpage.setLayout('@@content')
 
     # transnational regions page
     trans_reg_page = site['transnational-regions']
     alsoProvides(trans_reg_page, ITransRegioRoot)
     trans_reg_page.setLayout('@@transnational-regions-view')
-
-    # apply local roles, to enable special CCA workflows
-    for name in ['content', 'aceprojects', 'adaptationoption']:
-        folder = site._getOb(name)
-        roles = folder.__ac_local_roles__
-        roles.update(Members=[u'Contributor', u'Reader'])
-        roles.update(ContentReviewers=[u'Contributor', u'Reviewer', u'Editor',
-                                       u'Reader'])
-        roles.update(PowerUsers=[u'Contributor', u'Editor', u'Reader'])
-
-    cf = site._getOb('content')
-    cf.immediately_addable_types = ['eea.climateadapt.aceproject',
-                                    'eea.climateadapt.adaptationoption',
-                                    'eea.climateadapt.casestudy',
-                                    'eea.climateadapt.guidancedocument',
-                                    'eea.climateadapt.indicator',
-                                    'eea.climateadapt.informationportal',
-                                    'eea.climateadapt.mapgraphdataset',
-                                    'eea.climateadapt.organisation',
-                                    'eea.climateadapt.publicationreport',
-                                    'eea.climateadapt.researchproject',
-                                    'eea.climateadapt.tool']
-    cf.locally_allowed_types = ['eea.climateadapt.aceproject',
-                                'eea.climateadapt.adaptationoption',
-                                'eea.climateadapt.casestudy',
-                                'eea.climateadapt.guidancedocument',
-                                'eea.climateadapt.indicator',
-                                'eea.climateadapt.informationportal',
-                                'eea.climateadapt.mapgraphdataset',
-                                'eea.climateadapt.organisation',
-                                'eea.climateadapt.publicationreport',
-                                'eea.climateadapt.researchproject',
-                                'eea.climateadapt.tool']
 
 
 def get_plone_site():
