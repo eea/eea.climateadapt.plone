@@ -13,66 +13,33 @@
       <tal:main-macro metal:define-macro="content-core">
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
-          <div metal:fill-slot="ace-top-slot">
-
-            <a href="" tal:attributes="href view/link_to_original">Original project</a>
-            <h2>Project</h2>
-
+          <div metal:fill-slot="title-slot">
             <h1>
-                <span tal:content="context/acronym">Acronym here</span>
-                <span>: </span>
-                <span tal:content="context/title">Title here</span>
+              <span tal:content="context/acronym">Acronym here</span>
+              <span>: </span>
+              <span tal:content="context/title">Title here</span>
             </h1>
           </div>
 
           <div metal:fill-slot="ace-left-slot">
-            <tal:def define="description python: view.w['long_description'].render();
-              lead context/lead;
-              partners python: view.w['partners'].render();
-              funding context/funding;
-              websites context/websites;
-              ">
-              <h3>Description:</h3>
-              <tal:block content="structure description"/>
+            <metal:macro use-macro="context/ace_macros/macros/description" />
 
-              <h4>Project information</h4>
+            <h4>Project information</h4>
 
-              <tal:cond condition="lead">
-                <h5>Lead</h5>
-                <p tal:replace="structure lead"/>
-              </tal:cond>
+            <metal:macro use-macro="context/ace_macros/macros/lead" />
+            <metal:macro use-macro="context/ace_macros/macros/partners" />
+            <metal:macro use-macro="context/ace_macros/macros/funding" />
 
-              <tal:cond condition="partners">
-                <h5>Partners</h5>
-                <p tal:replace="structure partners"/>
-              </tal:cond>
+            <h4>Reference information</h4>
+            <h5>Websites:</h5>
+            <metal:macro use-macro="context/ace_macros/macros/websites" />
 
-              <tal:cond condition="funding">
-                <h5>Source of funding</h5>
-                <p tal:replace="structure funding"/>
-              </tal:cond>
-
-              <h4>Reference information</h4>
-              <h5>Websites:</h5>
-              <ul>
-                <li tal:repeat="link websites">
-                  <a tal:attributes="href python:view.linkify(link)" tal:content="python:view.linkify(link)">Websites here</a>
-                </li>
-              </ul>
-            </tal:def>
           </div>
 
           <div metal:fill-slot="ace-right-slot">
-            <div tal:condition="context/contentValues">
-                <h4 tal:define="file_nr context/contentValues">Project Documents (<span tal:content="python: len(file_nr)"></span>) </h4>
-                <ul>
-                    <li tal:repeat="file context/contentValues">
-                        <a tal:attributes="href file/absolute_url" tal:content="file/Title"></a>
-                    </li>
-                </ul>
-            </div>
+            <metal:macro use-macro="context/ace_macros/macros/files" />
             <h4>Keywords</h4>
-            <p tal:replace="structure python: view.w['keywords'].render()"/>
+            <metal:macro use-macro="context/ace_macros/macros/keywords" />
             <h4>Duration</h4>
             <p tal:replace="structure context/duration"/>
             <h4>Climate impacts</h4>
@@ -82,7 +49,7 @@
             <h4>Sectors</h4>
             <p tal:replace="structure python:view.w['sectors'].render()"/>
             <h4>Geographic characterization</h4>
-            <p tal:replace="structure python:view.render_geochar(context.geochars)"/>
+            <metal:macro use-macro="context/ace_macros/macros/geochar" />
           </div>
         </metal:macro>
 

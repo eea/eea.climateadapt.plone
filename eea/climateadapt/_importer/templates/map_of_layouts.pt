@@ -6,7 +6,13 @@
     ">
 
     <ul>
-      <li><a tal:attributes="href string:$site_url/layout_importer?type=aceitems">Import aceitems</a></li>
+      <li>
+        <form method="GET" action="" tal:attributes="action string:$site_url/layout_importer">
+          <label>Import aceitem by ID:</label><input type="text" name="id" />
+          <input type="hidden" name="type" value="aceitems" />
+          <input type="submit" name="submit" value="Submit" />
+        </form>
+      </li>
       <li><a tal:attributes="href string:$site_url/layout_importer?type=casestudy">Import casestudy</a></li>
       <li><a tal:attributes="href string:$site_url/layout_importer?type=projects">Import AceProjects</a></li>
       <li><a tal:attributes="href string:$site_url/layout_importer?type=casestudy&id=5003">Import casestudy 5003</a></li>

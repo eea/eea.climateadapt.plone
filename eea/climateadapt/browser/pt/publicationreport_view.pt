@@ -12,9 +12,7 @@
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
 
-          <div metal:fill-slot="ace-top-slot">
-            <a href="" tal:attributes="href view/link_to_original">Original</a>
-            <h2 tal:content="view/type_label">Data Type</h2>
+          <div metal:fill-slot="title-slot">
             <div metal:use-macro="context/ace_macros/macros/title_date"></div>
           </div>
 
@@ -33,14 +31,7 @@
 
           <div metal:fill-slot="ace-right-slot">
 
-            <div tal:condition="context/contentValues">
-                <h4 tal:define="file_nr context/contentValues">Publication Report Documents (<span tal:content="python: len(file_nr)"></span>) </h4>
-                <ul>
-                  <li tal:repeat="file context/contentValues">
-                      <a tal:attributes="href file/absolute_url" tal:content="file/Title"></a>
-                  </li>
-                </ul>
-            </div>
+            <div metal:use-macro="context/ace_macros/macros/files"></div>
 
             <tal:block condition="context/Subject">
               <h4>Project Documents</h4>
@@ -48,9 +39,7 @@
             </tal:block>
 
             <h4>Keywords</h4>
-            <span tal:repeat="structure context/keywords">
-                <span tal:content="structure"></span>,
-            </span>
+            <div metal:use-macro="context/ace_macros/macros/websites"></div>
 
             <h4>Climate impacts</h4>
             <tal:block content="structure python:view.w['climate_impacts'].render()" />

@@ -101,7 +101,8 @@ html_unescape = HTMLParser().unescape
 
 
 @log_call
-def import_aceitem(data, location):
+def import_aceitem(data, site):
+    location = get_default_location(site, data.datatype)
     # TODO: Some AceItems have ACTION, MEASURE, REASEARCHPROJECT types and
     # should be mapped over AceMeasure and AceProject
 
@@ -114,6 +115,8 @@ def import_aceitem(data, location):
         approvaldate = approvaldate.replace(tzinfo=ctz)
 
     related = get_relateditems(data, location)
+
+    #import pdb; pdb.set_trace()
 
     if data.datatype in ACE_ITEM_TYPES:
         item = createAndPublishContentInContainer(
@@ -129,7 +132,8 @@ def import_aceitem(data, location):
             sectors=s2l(data.sectors_),
             elements=s2l(data.elements_),
             climate_impacts=s2l(data.climateimpacts_),
-            websites=s2l(html_unescape(data.storedat)),
+            websites=s2l(r2t(html_unescape(data.storedat)),
+                         separators=[';', ',']),
             source=t2r(data.source),
             comments=data.comments,
             year=int(data.year or '0'),
@@ -154,7 +158,8 @@ def import_aceitem(data, location):
 
 
 @log_call
-def import_aceproject(data, location):
+def import_aceproject(data, site):
+    location = get_default_location(site, 'RESEARCHPROJECT')
     creationdate = data.creationdate
     if creationdate is not None:
         creationdate = creationdate.replace(tzinfo=ctz)
@@ -169,7 +174,7 @@ def import_aceproject(data, location):
         title=data.title,
         acronym=data.acronym,
         lead=data.lead,
-        websites=s2l(html_unescape(data.website)),
+        websites=s2l(r2t(html_unescape(data.website)), separators=[';', ',']),
         long_description=t2r(data.abstracts),
         source=t2r(data.source),
         partners=t2r(data.partners),
@@ -200,7 +205,8 @@ def import_aceproject(data, location):
 
 
 @log_call
-def import_adaptationoption(data, location):
+def import_adaptationoption(data, site):
+    location = get_default_location(site, 'MEASURE')
 
     creationdate = data.creationdate
     if creationdate is not None:
@@ -223,8 +229,6 @@ def import_adaptationoption(data, location):
         geochars=data.geochars,
         implementation_time=t2r(data.implementationtime),
         implementation_type=data.implementationtype,
-        #keywords=s2l(data.keywords, separators=[';', ',']),
-        #keywords=t2r(data.keywords),
         keywords=s2l(r2t(data.keywords), separators=[';', ',']),
         legal_aspects=t2r(data.legalaspects),
         lifetime=t2r(data.lifetime),
@@ -241,8 +245,7 @@ def import_adaptationoption(data, location):
         stakeholder_participation=t2r(data.stakeholderparticipation),
         success_limitations=t2r(data.succeslimitations),
         title=data.name,
-        #websites=s2l(data.website),
-        websites=s2l(html_unescape(data.website)),
+        websites=s2l(r2t(html_unescape(data.website)), separators=[';', ',']),
         creation_date=creationdate,
         effective_date=approvaldate,
         _publish=data.controlstatus == 1,
@@ -257,7 +260,8 @@ def import_adaptationoption(data, location):
 
 
 @log_call
-def import_casestudy(data, location):
+def import_casestudy(data, site):
+    location = get_default_location(site, 'ACTION')
     intids = getUtility(IIntIds)
     primephoto = None
     if data.primephoto:
@@ -292,7 +296,6 @@ def import_casestudy(data, location):
         geochars=data.geochars,
         implementation_time=t2r(data.implementationtime),
         implementation_type=data.implementationtype,
-        # keywords=t2r(data.keywords),
         keywords=s2l(r2t(data.keywords), separators=[';', ',']),
         legal_aspects=t2r(data.legalaspects),
         lifetime=t2r(data.lifetime),
@@ -313,7 +316,7 @@ def import_casestudy(data, location):
         success_limitations=t2r(data.succeslimitations),
         supphotos=supphotos,
         title=data.name,
-        websites=s2l(data.website),
+        websites=s2l(r2t(html_unescape(data.website)), separators=[';', ',']),
         creation_date=creationdate,
         effective_date=approvaldate,
         _publish=data.controlstatus == 1,
@@ -2360,18 +2363,16 @@ def import_aceitems(session, site):
         if aceitem.datatype in ['ACTION', 'MEASURE', "RESEARCHPROJECT",
                                 "MEASURE", "ACTION"]:
             continue
-        import_aceitem(aceitem, get_default_location(site, aceitem.datatype))
+        import_aceitem(aceitem, site)
 
     for aceproject in session.query(sql.AceProject):
-        import_aceproject(aceproject, get_default_location(site,
-                                                           'RESEARCHPROJECT'))
+        import_aceproject(aceproject, site)
 
     for acemeasure in session.query(sql.AceMeasure):
         if acemeasure.mao_type == 'A':
-            import_casestudy(acemeasure, get_default_location(site, 'ACTION'))
+            import_casestudy(acemeasure, site)
         else:
-            import_adaptationoption(acemeasure, get_default_location(site,
-                                                                     'MEASURE'))
+            import_adaptationoption(acemeasure, site)
 
 
 def run_importer(site=None):

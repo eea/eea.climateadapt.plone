@@ -3,8 +3,6 @@ from eea.climateadapt.browser import AceViewApi
 
 
 class AceProjectView(DefaultView, AceViewApi):
-    def __call__(self):
-        return super(AceProjectView, self).__call__()
 
-    def website_links(self, text):
-        return text
+    type_label = u"Project"
+
