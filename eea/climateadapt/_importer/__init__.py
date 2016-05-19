@@ -101,7 +101,8 @@ html_unescape = HTMLParser().unescape
 
 
 @log_call
-def import_aceitem(data, location):
+def import_aceitem(data, site):
+    location = get_default_location(site, data.datatype)
     # TODO: Some AceItems have ACTION, MEASURE, REASEARCHPROJECT types and
     # should be mapped over AceMeasure and AceProject
 
@@ -154,7 +155,8 @@ def import_aceitem(data, location):
 
 
 @log_call
-def import_aceproject(data, location):
+def import_aceproject(data, site):
+    location = get_default_location(site, 'RESEARCHPROJECT')
     creationdate = data.creationdate
     if creationdate is not None:
         creationdate = creationdate.replace(tzinfo=ctz)
@@ -200,7 +202,8 @@ def import_aceproject(data, location):
 
 
 @log_call
-def import_adaptationoption(data, location):
+def import_adaptationoption(data, site):
+    location = get_default_location(site, 'MEASURE')
 
     creationdate = data.creationdate
     if creationdate is not None:
@@ -257,7 +260,8 @@ def import_adaptationoption(data, location):
 
 
 @log_call
-def import_casestudy(data, location):
+def import_casestudy(data, site):
+    location = get_default_location(site, 'ACTION')
     intids = getUtility(IIntIds)
     primephoto = None
     if data.primephoto:
@@ -2360,18 +2364,16 @@ def import_aceitems(session, site):
         if aceitem.datatype in ['ACTION', 'MEASURE', "RESEARCHPROJECT",
                                 "MEASURE", "ACTION"]:
             continue
-        import_aceitem(aceitem, get_default_location(site, aceitem.datatype))
+        import_aceitem(aceitem, site)
 
     for aceproject in session.query(sql.AceProject):
-        import_aceproject(aceproject, get_default_location(site,
-                                                           'RESEARCHPROJECT'))
+        import_aceproject(aceproject, site)
 
     for acemeasure in session.query(sql.AceMeasure):
         if acemeasure.mao_type == 'A':
-            import_casestudy(acemeasure, get_default_location(site, 'ACTION'))
+            import_casestudy(acemeasure, site)
         else:
-            import_adaptationoption(acemeasure, get_default_location(site,
-                                                                     'MEASURE'))
+            import_adaptationoption(acemeasure, site)
 
 
 def run_importer(site=None):
