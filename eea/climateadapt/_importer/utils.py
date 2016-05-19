@@ -334,6 +334,12 @@ def _clean_portlet_settings(d):
         if isinstance(sector, basestring):
             res['sector'] = [sector]
 
+    # change back element to be a list
+    if 'element_type' in res:
+        element_type = res['element_type']
+        if isinstance(element_type, basestring):
+            res['element_type'] = [element_type]
+
     return res
 
 
