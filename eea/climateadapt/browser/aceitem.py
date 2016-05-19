@@ -27,6 +27,11 @@ class ToolView(DefaultView, AceViewApi):
     """
 
 
+class MapGraphDatasetView(DefaultView, AceViewApi):
+    """
+    """
+
+
 class OrganisationView(DefaultView, AceViewApi):
     """
     """

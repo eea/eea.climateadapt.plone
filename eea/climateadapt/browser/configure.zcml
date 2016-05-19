@@ -124,6 +124,14 @@
 
     <browser:page
         name="view"
+        for="eea.climateadapt.aceitem.IMapGraphDataset"
+        class="eea.climateadapt.browser.aceitem.MapGraphDatasetView"
+        template="pt/mapgraphdataset_view.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="view"
         for="eea.climateadapt.aceitem.IOrganisation"
         class="eea.climateadapt.browser.aceitem.OrganisationView"
         template="pt/organisation_view.pt"
