@@ -121,7 +121,7 @@
 <div id="headLogos">
 <div id="mayorsDiv"><img src="http://mayors-adapt.eu/wp-content/themes/mayoradapt/images/logo.png" /></div>
 
-<div id="registerDiv"><a class="bluebutton" href="mayors-adapt/register" style="  margin-top: 60px;margin-right: 450px;">Register your City</a></div>
+<div id="registerDiv"><a class="bluebutton" href="/mayors-adapt/register" style="  margin-top: 60px;margin-right: 450px;">Register your City</a></div>
 </div>
 
 <div class="journal-content-article" style="margin-right: 10px;">
