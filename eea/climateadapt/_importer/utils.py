@@ -124,7 +124,10 @@ def r2t(text):
     nodes = lxml.html.fragments_fromstring(text)
     if nodes and isinstance(nodes[0], basestring):
         # a plain text is not converted to etree by lxml
-        return u'\r'.join(nodes).strip()
+        try:
+            return u'\r'.join(nodes).strip()
+        except:
+            import pdb; pdb.set_trace()
     return u'\r'.join([t.text_content() for t in nodes]).strip()
 
 
@@ -320,7 +323,7 @@ def _clean_portlet_settings(d):
     if 'userdefaultsector' in d:
         v = _clean(d['userdefaultsector'])
         if v:
-            l = res.get('sector', [])
+            l = res.get('sector') or []
             l.append(v)
             res['sector'] = list(set(l))
 

@@ -1151,8 +1151,6 @@ def import_template_ace_layout_3(site, layout, structure):
     # called 'name'
     # some pages may contain extra columns under the main column
 
-    import pdb; pdb.set_trace()
-
     main = {}
     col1 = structure.pop('column-1')
     for line in col1[0][1]['content']:
