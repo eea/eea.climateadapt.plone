@@ -34,16 +34,32 @@ class ISearchAceContentTile(IPersistentCoverTile):
         default=u"",
     )
 
-    element_type = Choice(
+    # element_type = Choice(
+    #     title=_(u"Element type"),
+    #     vocabulary="eea.climateadapt.element_types_vocabulary",
+    #     required=False
+    # )
+
+    element_type = List(
         title=_(u"Element type"),
-        vocabulary="eea.climateadapt.element_types_vocabulary",
-        required=False
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.element_types_vocabulary",
+        )
     )
 
-    sector = Choice(
+    # sector = Choice(
+    #     title=_(u"Sector"),
+    #     vocabulary="eea.climateadapt.aceitems_sectors",
+    #     required=False
+    # )
+
+    sector = List(
         title=_(u"Sector"),
-        vocabulary="eea.climateadapt.aceitems_sectors",
-        required=False
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_sectors",
+        )
     )
 
     special_tags = List(title=_(u"Special tags"),
@@ -280,11 +296,20 @@ class IFilteringSchema(form.Schema):
         vocabulary="eea.climateadapt.aceitems_climateimpacts",
         required=False
     )
+
     sector = Choice(
         title=_(u"Sector"),
         vocabulary="eea.climateadapt.aceitems_sectors",
         required=False
     )
+
+    # sector = List(
+    #     title=_(u"Sector"),
+    #     required=False,
+    #     value_type=Choice(
+    #         vocabulary="eea.climateadapt.aceitems_sectors",
+    #     )
+    # )
 
 
 class FilteringForm(Form):   #form.SchemaForm):
@@ -304,7 +329,8 @@ class FilteringForm(Form):   #form.SchemaForm):
     css_class = "acecontent_filtering_tile"
 
     def __init__(self, context, request, *args, **kwargs):
-        request = request['PARENT_REQUEST']
+        if 'PARENT_REQUEST' in request:
+            request = request['PARENT_REQUEST']
         super(FilteringForm, self).__init__(context, request, *args, **kwargs)
 
     def action(self):
@@ -357,6 +383,7 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin):
             'search_type': self.data.get('search_type'),
             'SearchableText': self.data.get('search_text') or ""
         }
+
         if impact:
             query['climate_impacts'] = impact
         if sector:

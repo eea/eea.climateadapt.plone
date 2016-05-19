@@ -284,10 +284,12 @@ def _clean_portlet_settings(d):
         'anyOfThese': 'special_tags',
         #'anyOfThese': 'search_text',
         'countries': 'countries',
-        'element': 'elements',
+        # 'element': 'elements',
+        'element': 'element_type',
         'nrItemsPage': 'count',
         'portletSetupTitle_en_GB': 'title',
         'sector': 'sector',
+        'userdefaultsector': 'sector',
         'sortBy': 'sortBy',
         'css_class': 'css_class',
     }
@@ -310,6 +312,12 @@ def _clean_portlet_settings(d):
         search_type = res['search_type']
         if isinstance(search_type, basestring):
             res['search_type'] = [search_type]
+
+    # change back sector to be a list
+    if 'sector' in res:
+        sector = res['sector']
+        if isinstance(sector, basestring):
+            res['sector'] = [sector]
 
     return res
 

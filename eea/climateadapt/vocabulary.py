@@ -83,7 +83,7 @@ _sectors = [    # this is the canonical
     ("FINANCIAL", "Financial"),
     ("HEALTH", "Health"),
     ("INFRASTRUCTURE", "Infrastructure"),
-#   ("URBAN", "Urban"),
+    ("URBAN", "Urban"),
     ("MARINE", "Marine and Fisheries"),
 #   ("TOURISM", "Tourism"),
 #   ("ENERGY", "Energy"),

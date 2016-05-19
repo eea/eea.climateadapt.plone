@@ -11,6 +11,8 @@
     <!-- </p> -->
     <div tal:condition="view/is_compose_mode">
       <dl>
+        <dt>Sector:</dt>
+        <dd tal:content="python: view.data.get('sector')" />
         <dt>Element type:</dt>
         <dd tal:content="python: view.data.get('element_type')" />
         <dt>Search text: </dt>

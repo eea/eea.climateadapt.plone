@@ -10,6 +10,8 @@
     <dl tal:condition="view/is_compose_mode">
       <dt>Element type:</dt>
       <dd tal:content="python: view.data.get('element_type')" />
+      <dt>Sector:</dt>
+      <dd tal:content="python: view.data.get('sector')" />
       <dt>Search type:</dt>
       <dd tal:content="python: view.data.get('search_type')" />
       <dd>Search text: </dd>
