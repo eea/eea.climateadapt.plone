@@ -275,10 +275,15 @@ def strip_xml(xmlstr):
 def _clean(s):
     if s == "NULL_VALUE":
         return None
+
+    if isinstance(s, (list, tuple)):
+        s = [_clean(x) for x in s]
+
     return s
 
 
 def _clean_portlet_settings(d):
+
     _conv = {
         'aceitemtype': 'search_type',
         'anyOfThese': 'special_tags',
@@ -289,7 +294,6 @@ def _clean_portlet_settings(d):
         'nrItemsPage': 'count',
         'portletSetupTitle_en_GB': 'title',
         'sector': 'sector',
-        'userdefaultsector': 'sector',
         'sortBy': 'sortBy',
         'css_class': 'css_class',
     }
@@ -312,6 +316,13 @@ def _clean_portlet_settings(d):
         search_type = res['search_type']
         if isinstance(search_type, basestring):
             res['search_type'] = [search_type]
+
+    if 'userdefaultsector' in d:
+        v = _clean(d['userdefaultsector'])
+        if v:
+            l = res.get('sector', [])
+            l.append(v)
+            res['sector'] = list(set(l))
 
     # change back sector to be a list
     if 'sector' in res:
