@@ -1830,3 +1830,6 @@ li.dropdown-submenu {
     padding-left: 1em;
 }
 
+#aceitem_sidebar .bluebutton {
+    float: none !important;
+}

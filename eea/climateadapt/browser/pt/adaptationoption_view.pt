@@ -14,7 +14,6 @@
 
           <div metal:fill-slot="ace-left-slot">
 
-            <h1 tal:content="context/title">Title here</h1>
             <div tal:content="structure python: view.w['long_description'].render()"/>
             <!-- <h5 class="Adaptation-option-selector">Adaptation Option Description</h5> -->
             <h5 class="Adaptation-option-selector">Additional Details</h5>

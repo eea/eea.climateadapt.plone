@@ -11,7 +11,7 @@
     <div class="aceitem_page">
 
       <div class="aceitem_top">
-        <a href="" tal:attributes="href view/link_to_original">Original project</a>
+        <a href="" tal:attributes="href view/link_to_original">Original page</a>
         <h2 tal:content="view/type_label">Project</h2>
         <metal:macro define-slot="title-slot">
           <h1 tal:content="context/title">Title here</h1>
@@ -78,7 +78,7 @@
   </metal:macro>
 
   <metal:macro define-macro="keywords">
-    <div tal:content="python: ', '.join(sorted(set(context.keywords)))"></div>
+    <div tal:content="python: ', '.join(sorted(set(context.keywords or [])))"></div>
   </metal:macro>
 
   <metal:macro define-macro="files">

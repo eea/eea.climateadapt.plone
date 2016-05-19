@@ -39,7 +39,7 @@
             </tal:block>
 
             <h4>Keywords</h4>
-            <div metal:use-macro="context/ace_macros/macros/websites"></div>
+            <div metal:use-macro="context/ace_macros/macros/keywords"></div>
 
             <h4>Climate impacts</h4>
             <tal:block content="structure python:view.w['climate_impacts'].render()" />
@@ -52,7 +52,6 @@
 
           </div>
 
-          <div style="display:none" tal:content="python:view.w.keys()" />
         </metal:macro>
 
       </tal:main-macro>

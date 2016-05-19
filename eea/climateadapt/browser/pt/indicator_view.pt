@@ -1,0 +1,61 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="example.conference">
+  <body>
+
+    <metal:main fill-slot="main">
+      <tal:main-macro metal:define-macro="content-core">
+
+        <metal:macro use-macro="context/ace_macros/macros/ace_layout">
+
+          <div class="aceitem-left" metal:fill-slot="ace-left-slot">
+            <h3>Description</h3>
+            <div tal:content="structure python: view.w['long_description'].render()">description here</div>
+
+            <h4>Reference information</h4>
+            <h5>Websites:</h5>
+            <metal:macro use-macro="context/ace_macros/macros/websites" />
+
+            <h5>Source:</h5>
+            <div tal:content="structure python: view.w['source'].render()">Source here</div>
+
+            <div tal:condition="context/metadata/raw | nothing">
+              <h5>Link to metadata:</h5>
+              <div tal:content="structure python: view.w['metadata'].render()">Metadata</div>
+            </div>
+          </div>
+
+          <div class="aceitem-right" metal:fill-slot="ace-right-slot">
+
+            <metal:macro use-macro="context/ace_macros/macros/files" />
+
+            <h4>Keywords</h4>
+            <metal:macro use-macro="context/ace_macros/macros/keywords" />
+
+            <h4>Climate impacts</h4>
+            <tal:block content="structure python:view.w['climate_impacts'].render()"/>
+
+            <h4>Elements</h4>
+            <tal:block content="structure python:view.w['elements'].render()"/>
+
+            <h4>Sectors</h4>
+            <tal:block content="structure python:view.w['sectors'].render()"/>
+            <h4>Geographic characterization</h4>
+            <metal:macro use-macro="context/ace_macros/macros/geochar" />
+
+          </div>
+
+        </metal:macro>
+
+      </tal:main-macro>
+    </metal:main>
+
+  </body>
+</html>
+

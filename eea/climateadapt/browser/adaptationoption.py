@@ -4,6 +4,5 @@ from eea.climateadapt.browser import AceViewApi
 
 class AdaptationOptionView(DefaultView, AceViewApi):
     """ """
-    #
-    # def __call__(self):
-    #     return super(AdaptationOptionView, self).__call__()
+
+    type_label = u"Adaptation option"
