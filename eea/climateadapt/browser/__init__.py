@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 
-#from Products.CMFCore.permissions import ModifyPortalContent
-from AccessControl import getSecurityManager
-from Products.Five.browser import BrowserView
-from collective.cover.browser.cover import Standard
-from eea.climateadapt.interfaces import IClimateAdaptContent
-from eea.climateadapt.vocabulary import ace_countries_dict
-from plone import api
-from plone.app.iterate.permissions import CheckinPermission
-from plone.app.iterate.permissions import CheckoutPermission
-from plone.app.iterate.browser.control import Control
+# from plone.app.iterate.permissions import CheckinPermission
+# from plone.app.iterate.permissions import CheckoutPermission
 # from plone.app.stagingbehavior.browser.control import Control
 # from plone.app.stagingbehavior.utils import get_baseline
+#from AccessControl import getSecurityManager
+#from Products.CMFCore.permissions import ModifyPortalContent
+#from eea.climateadapt.interfaces import IClimateAdaptContent
+from Products.Five.browser import BrowserView
+from collective.cover.browser.cover import Standard
+from eea.climateadapt.vocabulary import ace_countries_dict
+from plone import api
+from plone.app.iterate.browser.control import Control
 from zExceptions import NotFound
 from zope.publisher.browser import BrowserPage
 import json
@@ -373,25 +373,36 @@ class AceViewApi(object):
     def linkify(self, text):
         if not text:
             return
-        if text.startswith('http'):
+
+        if text.startswith('/') or text.startswith('http'):
             return text
+
         return "http://" + text
 
-    def _render_websites(self):
+    def get_websites(self):
+        """ This returns a list of websites. Because of BBB, we need to treat
+        them in various ways
+        """
         websites = self.context.websites
-        storage_type = self.context.storage_type
+        storage_type = getattr(self.context, 'storage_type', None)
 
         result = []
         for link in websites:
             if (storage_type == 'MAPLAYER'):
                 url = '/tools/map-viewer?layerid=' + link
                 if (self.context.search_type == 'MAPGRAPHDATASET'):
-                    result.append((url, 'View map ' + self.context.title))
+                    result.append({'url': url,
+                                   'title': 'View map ' + self.context.title})
                 else:
-                    result.append((url, link))
+                    result.append({'url': self.linkify(link), 'title': link})
             else:
-                result.append((link, link))
+                result.append({'url': self.linkify(link), 'title': link})
+
         return result
+
+    def get_files(self):
+        return [r.to_object for r in self.context.relatedItems] \
+            + self.context.contentValues()
 
     def _render_geochar_element(self, value):
         value = TRANSLATED[value]

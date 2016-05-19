@@ -132,6 +132,8 @@ class SingleImporterView(BrowserView):
         return "<br/>".join(imported)
 
     def import_aceitems(self):
+        from eea.climateadapt._importer import import_aceitem
+        from eea.climateadapt._importer import sql
         from eea.climateadapt._importer.tweak_sql import fix_relations
 
         session = self._make_session()
@@ -139,7 +141,15 @@ class SingleImporterView(BrowserView):
         fix_relations(session)
         site = self.context
 
+        id = self.request.form.get('id')
+        if id:
+            aceitem = session.query(sql.AceAceitem).\
+                filter_by(aceitemid=int(id)).one()
+            obj = import_aceitem(aceitem, site)
+            return self.request.response.redirect(obj.absolute_url())
+
         base_import_aceitems(session, site)
+        return 'done'
 
     def import_casestudy(self):
         from eea.climateadapt._importer import import_casestudy

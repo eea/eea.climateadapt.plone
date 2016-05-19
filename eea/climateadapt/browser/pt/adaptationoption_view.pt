@@ -11,10 +11,7 @@
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core">
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
-          <div metal:fill-slot="ace-top-slot">
-            <a href="" tal:attributes="href view/link_to_original">Original</a>
-            <h2>Adaptation option</h2>
-          </div>
+
           <div metal:fill-slot="ace-left-slot">
 
             <h1 tal:content="context/title">Title here</h1>
@@ -22,37 +19,19 @@
             <!-- <h5 class="Adaptation-option-selector">Adaptation Option Description</h5> -->
             <h5 class="Adaptation-option-selector">Additional Details</h5>
             <ul>
-              <li>
-                <a href="#ao_category">Category</a>
-              </li>
-              <li>
-                <a href="#stakeholder_participation">Stakeholder participation</a>
-              </li>
-              <li>
-                <a href="#success_factors">Success and Limiting Factors</a>
-              </li>
-              <li>
-                <a href="#costs_benefits">Costs and Benefits</a>
-              </li>
-              <li>
-                <a href="#legal">Legal Aspects</a>
-              </li>
-              <li>
-                <a href="#implementation">Implementation Time</a>
-              </li>
-              <li>
-                <a href="#life_time">Life Time</a>
-              </li>
+              <li> <a href="#ao_category">Category</a> </li>
+              <li> <a href="#stakeholder_participation">Stakeholder participation</a> </li>
+              <li> <a href="#success_factors">Success and Limiting Factors</a> </li>
+              <li> <a href="#costs_benefits">Costs and Benefits</a> </li>
+              <li> <a href="#legal">Legal Aspects</a> </li>
+              <li> <a href="#implementation">Implementation Time</a> </li>
+              <li> <a href="#life_time">Life Time</a> </li>
             </ul>
 
             <h5 class="Adaptation-option-selector">Reference information</h5>
             <ul>
-              <li>
-                <a href="#websites">Websites</a>
-              </li>
-              <li>
-                <a href="#source">Source</a>
-              </li>
+              <li> <a href="#websites">Websites</a> </li>
+              <li> <a href="#source">Source</a> </li>
             </ul>
 
             <h4>Adaptation Details</h4>
@@ -84,25 +63,19 @@
               <em class="adapt-option-em" style="text-decoration: underline">Life Time</em>
               <tal:block content="structure python: view.w['lifetime'].render()"/>
             </p>
+
             <h4>Reference information</h4>
+
             <h5 id="websites" style="text-decoration: underline" class="Adaptation-option-selector">Websites:</h5>
-            <ul>
-              <li tal:repeat="site context/websites">
-                <a tal:attributes="href site" tal:content="site"/>
-              </li>
-            </ul>
+            <metal:macro use-macro="context/ace_macros/macros/websites" />
+
             <h5 id="source" style="text-decoration: underline" class="Adaptation-option-selector">Source:</h5>
             <div tal:content="structure python: view.w['source'].render()">Source here</div>
+
           </div>
+
           <div metal:fill-slot="ace-right-slot">
-            <div tal:condition="context/contentValues">
-                <h4 tal:define="file_nr context/contentValues">Adaptation Option Documents (<span tal:content="python: len(file_nr)"></span>) </h4>
-                <ul>
-                  <li tal:repeat="file context/contentValues">
-                     <a tal:attributes="href file/absolute_url" tal:content="file/Title"></a>
-                  </li>
-                </ul>
-            </div>
+            <metal:macro use-macro="context/ace_macros/macros/files" />
             <h4>Keywords</h4>
             <tal:block content="structure python: view.w['keywords'].render()"/>
             <h4>Sectors</h4>
@@ -110,14 +83,7 @@
             <h4>Climate impacts</h4>
             <tal:block content="structure python:view.w['climate_impacts'].render()"/>
             <h4>Geographic characterisation</h4>
-            <div tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars"/>
-            <tal:cond condition="not: context/geochars">
-              <div tal:condition="context/spatial_layer" tal:content="context/spatial_layer"/>
-              <p tal:condition="context/spatial_values">
-                Countries:
-                <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
-              </p>
-            </tal:cond>
+            <metal:macro use-macro="context/ace_macros/macros/geochar" />
           </div>
         </metal:macro>
       </tal:main-macro>

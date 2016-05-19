@@ -1,39 +1,21 @@
 <div>
-  <metal:macro define-macro="geochar">
-    <!-- Geochar field -->
-    <tal:block content="structure python:view.render_geochar(context.geochars)" />
-    <tal:fallback tal:condition="python: not(context.geochars)">
-      <div tal:content="context/spatial_layer" />
-      <div>Countries:</div>
-      <ul tal:define="countries python: view.get_countries(context.spatial_values)">
-        <li tal:repeat="country countries" tal:content="country" />
-      </ul>
-    </tal:fallback>
-  </metal:macro>
-
-  <metal:macro define-macro="websites">
-    <!-- Websites field -->
-    <div tal:define="links python:view._render_websites()">
-      <dl tal:condition="links" tal:repeat="link links">
-        <a tal:condition="python:link[1]" tal:content="python:view.linkify(view.html2text(link[1]))" href="" tal:attributes="href python:view.linkify(view.html2text(link[0]))"/>
-      </dl>
-    </div>
-  </metal:macro>
 
   <metal:macro define-macro="title_date">
-      <h1>
-          <span tal:content="python: context.title"></span>
-          <span tal:condition="python: context.year != (0 and None)">
-              (<span tal:content="python: context.year"></span>)
-          </span>
-      </h1>
+    <h1>
+      <span tal:replace="context/title"></span>
+      <tal:cond tal:condition="context/year">(<span tal:replace="context/year"></span>)</tal:cond>
+    </h1>
   </metal:macro>
 
   <metal:macro define-macro="ace_layout">
     <div class="aceitem_page">
 
       <div class="aceitem_top">
-        <metal:slot metal:define-slot="ace-top-slot"></metal:slot>
+        <a href="" tal:attributes="href view/link_to_original">Original project</a>
+        <h2 tal:content="view/type_label">Project</h2>
+        <metal:macro define-slot="title-slot">
+          <h1 tal:content="context/title">Title here</h1>
+        </metal:macro>
       </div>
 
       <div class="col-md-9">
@@ -55,6 +37,78 @@
 
     </div>
 
+  </metal:macro>
+
+  <metal:macro define-macro="description">
+    <h3>Description:</h3>
+    <tal:block tal:define="description python: view.w['long_description'].render();" content="structure description"/>
+  </metal:macro>
+
+  <metal:macro define-macro="lead">
+    <tal:cond condition="context/lead">
+      <h5>Lead</h5>
+      <p tal:replace="structure context/lead"/>
+    </tal:cond>
+  </metal:macro>
+
+  <metal:macro define-macro="partners">
+    <tal:def define="partners python: view.w['partners'].render();">
+      <tal:cond condition="partners">
+        <h5>Partners</h5>
+        <p tal:replace="structure partners"/>
+      </tal:cond>
+    </tal:def>
+  </metal:macro>
+
+  <metal:macro define-macro="funding">
+    <tal:def define="funding context/funding">
+      <tal:cond condition="funding">
+        <h5>Source of funding</h5>
+        <p tal:replace="structure funding"/>
+      </tal:cond>
+    </tal:def>
+  </metal:macro>
+
+  <metal:macro define-macro="websites">
+    <div tal:define="links python:view.get_websites()">
+      <dl tal:condition="links" tal:repeat="link links">
+        <a tal:content="link/title" tal:attributes="href link/url"/>
+      </dl>
+    </div>
+  </metal:macro>
+
+  <metal:macro define-macro="keywords">
+    <div tal:content="python: ', '.join(sorted(set(context.keywords)))"></div>
+  </metal:macro>
+
+  <metal:macro define-macro="files">
+    <tal:def define="files view/get_files">
+      <div tal:condition="files" class="sidebar_files">
+        <h4><span tal:replace="view/type_label" /> Documents (<span tal:content="python: len(files)"></span>) </h4>
+        <ul>
+          <li tal:repeat="file files">
+            <a tal:attributes="href file/absolute_url" tal:content="file/Title"></a>
+          </li>
+        </ul>
+      </div>
+    </tal:def>
+  </metal:macro>
+
+  <metal:macro define-macro="geochar">
+    <tal:def define="geochar python:view.render_geochar(context.geochars)">
+
+      <div tal:content="structure geochar" tal:condition="geochar"/>
+
+      <tal:cond condition="not: geochar">
+        <div tal:condition="context/spatial_layer | nothing" tal:content="context/spatial_layer"/>
+
+        <p tal:condition="context/spatial_values">
+          Countries:
+          <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
+        </p>
+      </tal:cond>
+
+    </tal:def>
   </metal:macro>
 
 </div>

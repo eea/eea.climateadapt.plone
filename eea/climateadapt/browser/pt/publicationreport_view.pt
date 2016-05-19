@@ -12,9 +12,7 @@
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
 
-          <div metal:fill-slot="ace-top-slot">
-            <a href="" tal:attributes="href view/link_to_original">Original</a>
-            <h2 tal:content="view/type_label">Data Type</h2>
+          <div metal:fill-slot="title-slot">
             <div metal:use-macro="context/ace_macros/macros/title_date"></div>
           </div>
 

@@ -116,6 +116,8 @@ def import_aceitem(data, site):
 
     related = get_relateditems(data, location)
 
+    #import pdb; pdb.set_trace()
+
     if data.datatype in ACE_ITEM_TYPES:
         item = createAndPublishContentInContainer(
             location,
@@ -130,7 +132,8 @@ def import_aceitem(data, site):
             sectors=s2l(data.sectors_),
             elements=s2l(data.elements_),
             climate_impacts=s2l(data.climateimpacts_),
-            websites=s2l(html_unescape(data.storedat)),
+            websites=s2l(r2t(html_unescape(data.storedat)),
+                         separators=[';', ',']),
             source=t2r(data.source),
             comments=data.comments,
             year=int(data.year or '0'),
@@ -171,7 +174,7 @@ def import_aceproject(data, site):
         title=data.title,
         acronym=data.acronym,
         lead=data.lead,
-        websites=s2l(html_unescape(data.website)),
+        websites=s2l(r2t(html_unescape(data.website)), separators=[';', ',']),
         long_description=t2r(data.abstracts),
         source=t2r(data.source),
         partners=t2r(data.partners),
@@ -226,8 +229,6 @@ def import_adaptationoption(data, site):
         geochars=data.geochars,
         implementation_time=t2r(data.implementationtime),
         implementation_type=data.implementationtype,
-        #keywords=s2l(data.keywords, separators=[';', ',']),
-        #keywords=t2r(data.keywords),
         keywords=s2l(r2t(data.keywords), separators=[';', ',']),
         legal_aspects=t2r(data.legalaspects),
         lifetime=t2r(data.lifetime),
@@ -244,8 +245,7 @@ def import_adaptationoption(data, site):
         stakeholder_participation=t2r(data.stakeholderparticipation),
         success_limitations=t2r(data.succeslimitations),
         title=data.name,
-        #websites=s2l(data.website),
-        websites=s2l(html_unescape(data.website)),
+        websites=s2l(r2t(html_unescape(data.website)), separators=[';', ',']),
         creation_date=creationdate,
         effective_date=approvaldate,
         _publish=data.controlstatus == 1,
@@ -296,7 +296,6 @@ def import_casestudy(data, site):
         geochars=data.geochars,
         implementation_time=t2r(data.implementationtime),
         implementation_type=data.implementationtype,
-        # keywords=t2r(data.keywords),
         keywords=s2l(r2t(data.keywords), separators=[';', ',']),
         legal_aspects=t2r(data.legalaspects),
         lifetime=t2r(data.lifetime),
@@ -317,7 +316,7 @@ def import_casestudy(data, site):
         success_limitations=t2r(data.succeslimitations),
         supphotos=supphotos,
         title=data.name,
-        websites=s2l(data.website),
+        websites=s2l(r2t(html_unescape(data.website)), separators=[';', ',']),
         creation_date=creationdate,
         effective_date=approvaldate,
         _publish=data.controlstatus == 1,

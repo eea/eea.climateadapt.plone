@@ -11,10 +11,8 @@
       <tal:main-macro metal:define-macro="content-core" >
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
-          <div metal:fill-slot="ace-top-slot">
 
-            <a href="" tal:attributes="href view/link_to_original">Original</a>
-            <h2>Guidance Document</h2>
+          <div metal:fill-slot="title_slot">
             <div metal:use-macro="context/ace_macros/macros/title_date"></div>
           </div>
 
@@ -32,23 +30,11 @@
           </div>
 
           <div metal:fill-slot="ace-right-slot">
-            <tal:block condition="context/Subject">
-              <h4>Project Documents</h4>
-              <div tal:content="python:u', '.join(context.Subject())" />
-            </tal:block>
-            <div tal:condition="context/contentValues">
-                <h4 tal:define="file_nr context/contentValues">Guidance Documents (<span tal:content="python: len(file_nr)"></span>) </h4>
-                <ul>
-                    <li tal:repeat="file context/contentValues">
-                        <a tal:attributes="href file/absolute_url" tal:content="file/Title">
-                        </a>
-                    </li>
-                </ul>
-            </div>
+
+            <metal:macro use-macro="context/ace_macros/macros/files" />
+
             <h4>Keywords</h4>
-            <span tal:repeat="structure context/keywords">
-                <span tal:content="structure"></span>,
-            </span>
+            <tal:block content="structure python: view.w['keywords'].render()"/>
 
             <h4>Climate impacts</h4>
             <tal:block content="structure python:view.w['climate_impacts'].render()" />

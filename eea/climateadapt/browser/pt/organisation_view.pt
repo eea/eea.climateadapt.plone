@@ -13,72 +13,34 @@
       <tal:main-macro metal:define-macro="content-core">
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
-          <div metal:fill-slot="ace-top-slot">
-            <a href="" tal:attributes="href view/link_to_original">Original</a>
-            <h2>Organisation</h2>
-            <h1 tal:content="context/title"/>
-          </div>
 
           <div metal:fill-slot="ace-left-slot">
             <h3>Description:</h3>
             <tal:block content="structure python: view.w['long_description'].render()"/>
-            <p></p>
             <h4>Reference information</h4>
-            <p></p>
             <h5>Websites:</h5>
-            <p></p>
             <div metal:use-macro="context/ace_macros/macros/websites"></div>
-            <p></p>
             <h5>Source:</h5>
-            <p></p>
             <tal:block content="structure python: view.w['source'].render()"/>
-            <p></p>
           </div>
 
           <div metal:fill-slot="ace-right-slot">
-            <div tal:condition="context/contentValues">
-                <h4 tal:define="file_nr context/contentValues">Organisation Documents (<span tal:content="python: len(file_nr)"></span>) </h4>
-                <ul>
-                  <li tal:repeat="file context/contentValues">
-                     <a tal:attributes="href file/absolute_url" tal:content="file/Title">
-                     </a>
-                  </li>
-                </ul>
-            </div>
-            <h4>Keywords</h4>
-            <span tal:repeat="structure context/keywords">
-                <span tal:content="structure"></span>,
-            </span>
+            <div metal:use-macro="context/ace_macros/macros/files"></div>
 
-            <p></p>
+            <h4>Keywords</h4>
+            <div metal:use-macro="context/ace_macros/macros/keywords"></div>
 
             <h4>Climate impacts</h4>
-            <p></p>
             <tal:block content="structure python:view.w['climate_impacts'].render()"/>
-            <p></p>
 
             <h4>Elements</h4>
-            <p></p>
             <tal:block content="structure python:view.w['elements'].render()"/>
-            <p></p>
 
             <h4>Sectors</h4>
-            <p></p>
             <tal:block content="structure python:view.w['sectors'].render()"/>
-            <p></p>
 
             <h4>Geographic characterisation</h4>
-            <p></p>
-            <!-- <div tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars"/> -->
-            <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars"/>
-            <tal:cond condition="not: context/geochars">
-              <p tal:condition="context/spatial_layer" tal:content="context/spatial_layer"/>
-              <p tal:condition="context/spatial_values">
-                Countries:
-                <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
-              </p>
-            </tal:cond>
-            <p></p>
+            <div metal:use-macro="context/ace_macros/macros/geochar"></div>
 
           </div>
 

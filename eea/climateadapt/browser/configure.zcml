@@ -73,13 +73,13 @@
         permission="zope.Public"
         />
 
-    <browser:page
-        name="view"
-        for="eea.climateadapt.aceitem.IAceItem"
-        class="eea.climateadapt.browser.aceitem.AceItemView"
-        template="pt/aceitem_view.pt"
-        permission="zope2.View"
-        />
+    <!-- <browser:page -->
+    <!--     name="view" -->
+    <!--     for="eea.climateadapt.aceitem.IAceItem" -->
+    <!--     class="eea.climateadapt.browser.aceitem.AceItemView" -->
+    <!--     template="pt/aceitem_view.pt" -->
+    <!--     permission="zope2.View" -->
+    <!--     /> -->
 
     <browser:page
         name="view"
