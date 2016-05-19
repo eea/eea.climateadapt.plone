@@ -276,7 +276,7 @@ def strip_xml(xmlstr):
 
 
 def _clean(s):
-    if s == "NULL_VALUE":
+    if s in ["NULL_VALUE", 'all']:
         return None
 
     if isinstance(s, (list, tuple)):
@@ -300,6 +300,7 @@ def _clean_portlet_settings(d):
         'sortBy': 'sortBy',
         'css_class': 'css_class',
     }
+
     res = {}
     for k, v in d.items():
         if k not in _conv:

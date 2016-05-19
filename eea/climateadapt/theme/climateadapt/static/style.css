@@ -1821,3 +1821,12 @@ li.dropdown-submenu {
 .padded-tile .tile-content {
     padding: 0 1em;
 }
+
+.GlossaryTitle {
+    margin-top:1em;
+    font-weight: bold;
+}
+.GlossaryTitle a { 
+    padding-left: 1em;
+}
+

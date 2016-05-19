@@ -34,12 +34,6 @@ class ISearchAceContentTile(IPersistentCoverTile):
         default=u"",
     )
 
-    # element_type = Choice(
-    #     title=_(u"Element type"),
-    #     vocabulary="eea.climateadapt.element_types_vocabulary",
-    #     required=False
-    # )
-
     element_type = List(
         title=_(u"Element type"),
         required=False,
@@ -47,12 +41,6 @@ class ISearchAceContentTile(IPersistentCoverTile):
             vocabulary="eea.climateadapt.element_types_vocabulary",
         )
     )
-
-    # sector = Choice(
-    #     title=_(u"Sector"),
-    #     vocabulary="eea.climateadapt.aceitems_sectors",
-    #     required=False
-    # )
 
     sector = List(
         title=_(u"Sector"),
@@ -123,6 +111,8 @@ class AceTileMixin(object):
             text = query.pop('SearchableText', '') + ' ' + st
             query['SearchableText'] = text
 
+        query['review_state'] = 'published'
+
         return query
 
     def build_url(self, url, query, kw):
@@ -135,7 +125,10 @@ class AceTileMixin(object):
         for k, v in q.items():
             if v:
                 if k not in ['sort_on', 'sort_order']:
-                    x[k] = v
+                    if isinstance(v, (tuple, list)):
+                        x[k] = v[0]
+                    else:
+                        x[k] = v
         return url + "#" + urlencode(x)
 
 
