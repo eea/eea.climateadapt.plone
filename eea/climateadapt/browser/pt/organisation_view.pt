@@ -17,9 +17,11 @@
           <div metal:fill-slot="ace-left-slot">
             <h3>Description:</h3>
             <tal:block content="structure python: view.w['long_description'].render()"/>
+
             <h4>Reference information</h4>
             <h5>Websites:</h5>
             <div metal:use-macro="context/ace_macros/macros/websites"></div>
+
             <h5>Source:</h5>
             <tal:block content="structure python: view.w['source'].render()"/>
           </div>

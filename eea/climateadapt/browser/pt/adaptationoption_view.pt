@@ -77,7 +77,7 @@
           <div metal:fill-slot="ace-right-slot">
             <metal:macro use-macro="context/ace_macros/macros/files" />
             <h4>Keywords</h4>
-            <tal:block content="structure python: view.w['keywords'].render()"/>
+            <metal:macro use-macro="context/ace_macros/macros/keywords" />
             <h4>Sectors</h4>
             <tal:block content="structure python:view.w['sectors'].render()"/>
             <h4>Climate impacts</h4>

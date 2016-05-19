@@ -34,7 +34,7 @@
             <metal:macro use-macro="context/ace_macros/macros/files" />
 
             <h4>Keywords</h4>
-            <tal:block content="structure python: view.w['keywords'].render()"/>
+            <metal:macro use-macro="context/ace_macros/macros/keywords" />
 
             <h4>Climate impacts</h4>
             <tal:block content="structure python:view.w['climate_impacts'].render()" />
@@ -46,7 +46,7 @@
             <tal:block content="structure python:view.w['sectors'].render()" />
 
             <h4>Geographic characterisation</h4>
-            <tal:block content="structure python:view.render_geochar(context.geochars)" />
+            <metal:macro use-macro="context/ace_macros/macros/geochar" />
           </div>
 
         </metal:macro>
