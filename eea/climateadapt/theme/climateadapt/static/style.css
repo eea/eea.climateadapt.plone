@@ -1847,3 +1847,4 @@ li.dropdown-submenu {
 }
 
 .configlets li { list-style-type: none !important}
+.suppressVisualEditor { display: none }

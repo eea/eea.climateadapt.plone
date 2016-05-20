@@ -2364,6 +2364,8 @@ def get_default_location(site, _type):
         roles.update(PowerUsers=[u'Contributor', u'Editor', u'Reader'])
         dest.immediately_addable_types = [factory]
         dest.locally_allowed_types = [factory]
+        dest.manage_addProperty('search_type_name', _type)
+        dest.setLayout('@@redirect_to_search_page')
 
     return dest
 
@@ -2474,6 +2476,7 @@ def tweak_site(site):
     # countries page
     ctpage = site['countries']
     alsoProvides(ctpage, ICountriesRoot)
+    ctpage.manage_changeProperties({'title': 'Countries'})
     ctpage.setLayout('@@countries-view-map')
 
     # mayors-adapt page
@@ -2487,9 +2490,8 @@ def tweak_site(site):
     cplpage.setLayout('@@cities-listing')
 
     # content page
-    #contentpage = site['content']
-    # alsoProvides(contentpage, IContentRoot)
-    # contentpage.setLayout('@@content')
+    contentpage = site['metadata']
+    contentpage.setLayout('@@redirect_to_search_page')
 
     # transnational regions page
     trans_reg_page = site['transnational-regions']
