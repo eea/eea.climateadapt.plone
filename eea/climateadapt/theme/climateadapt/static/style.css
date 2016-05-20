@@ -1828,9 +1828,13 @@ li.dropdown-submenu {
 .GlossaryTitle {
     margin-top:1em;
     font-weight: bold;
+    background: url("/cca/img/bg_sector_main_article_text.png") repeat-y scroll 0 0 transparent;
+    color: #67788a;
 }
-.GlossaryTitle a { 
+
+.GlossaryTitle a {
     padding-left: 1em;
+    float: right;
 }
 
 #aceitem_sidebar .bluebutton {

@@ -1403,6 +1403,9 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker,
     assert(len(structure['column-2']) >= 2)
 
     section_title = structure['column-2'][1][1]['portlet_title']
+    if structure['name'] == 'Urban AST step 0-0':
+        section_title = structure['name']
+
     cover = create_cover_at(site, layout.friendlyurl, title=section_title)
     cover.aq_parent.edit(title=structure['name'])   # Fix parent name
     stamp_cover(cover, layout)
@@ -1621,6 +1624,9 @@ def import_template_1_column(site, layout, structure):
     else:
         main_title = structure['column-1'][0][1].get('title') or ""
     main_title = strip_xml(main_title) or cover_title
+
+    if portlet_title == 'Network':
+        cover_title = 'Network'
 
     cover = create_cover_at(site, layout.friendlyurl, title=cover_title)
     cover.aq_parent.edit(title=main_title)  # Fix parent title
