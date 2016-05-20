@@ -251,9 +251,9 @@
         />
 
     <browser:page
-        class=".content.ContentView"
+        class=".content.RedirectToSearchView"
         for="*"
-        name="content"
+        name="redirect_to_search_page"
         permission="zope2.View"
         />
 

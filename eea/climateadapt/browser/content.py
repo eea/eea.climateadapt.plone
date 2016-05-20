@@ -1,17 +1,14 @@
-import os
-from zope.interface import Interface
-from zope.interface import implements
 from Products.Five.browser import BrowserView
 
 
-class IContentView (Interface):
-    """ /content Interface """
-
-
-class ContentView (BrowserView):
+class RedirectToSearchView (BrowserView):
     """ Custom view for /content """
 
-    implements(IContentView)
-
     def __call__(self):
-        return self.request.response.redirect('/data-and-downloads')
+        type_name = self.context.getProperty('search_type_name', '')
+        url = '/data-and-downloads'
+        if type_name:
+            url += '#searchtype=' + type_name
+
+        return self.request.response.redirect(url)
+
