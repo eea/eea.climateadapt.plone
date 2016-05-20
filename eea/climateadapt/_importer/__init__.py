@@ -1431,9 +1431,16 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker,
     [structure.pop(z) for z in ['column-1', 'column-2', 'name']]
 
     if structure:
-        second_row_group = [make_group(6, t) for t in
-                            [make_tile(cover, x) for x in structure.values()]
-                            ]
+        second_row_group = []
+
+        for name in sorted(structure.keys()):
+            column = structure[name]
+            tiles = []
+            for tile in column:
+                tile = make_tile(cover, [tile])
+                tiles.append(tile)
+            group = make_group(6, *tiles)
+            second_row_group.append(group)
         second_row = make_row(*second_row_group)
         main_content_tiles.append(second_row)
 
@@ -1766,7 +1773,6 @@ def import_template_2_columns_ii(site, layout, structure):
         logger.error("Please investigate this importer %s with template %s",
                        layout.friendlyurl, '2_columns_ii')
         raise ValueError
-        return
 
     if layout.friendlyurl == u'/mayors-adapt/register':
         # this is the /mayors-adapt page
