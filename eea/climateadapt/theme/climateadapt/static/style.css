@@ -1852,3 +1852,7 @@ li.dropdown-submenu {
 .section-help #content .cover-richtext-tile a.titleLink:hover {
     color: #02516d !important;
 }
+
+.section-tutorial-videos #wrapper {
+    max-width: 100%;
+}
