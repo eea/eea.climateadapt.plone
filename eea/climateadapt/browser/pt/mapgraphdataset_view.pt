@@ -22,7 +22,7 @@
             <p tal:replace="structure python: view.w['long_description'].render()">description here</p>
 
             <h4>Reference information</h4>
-            
+
             <h5>Link to Map Viewer: </h5>
 
             <h5>Go to the service</h5>
@@ -30,6 +30,9 @@
 
             <h5>Source:</h5>
             <tal:block content="structure python: view.w['source'].render()"/>
+
+            <h5>Link to metadata:</h5>
+            <div tal:content="structure python: view.w['metadata'].render()"></div>
           </div>
 
           <div metal:fill-slot="ace-right-slot">

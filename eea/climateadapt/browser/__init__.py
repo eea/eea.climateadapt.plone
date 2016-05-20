@@ -4,9 +4,9 @@
 # from plone.app.iterate.permissions import CheckoutPermission
 # from plone.app.stagingbehavior.browser.control import Control
 # from plone.app.stagingbehavior.utils import get_baseline
-#from AccessControl import getSecurityManager
-#from Products.CMFCore.permissions import ModifyPortalContent
-#from eea.climateadapt.interfaces import IClimateAdaptContent
+# from AccessControl import getSecurityManager
+# from Products.CMFCore.permissions import ModifyPortalContent
+# from eea.climateadapt.interfaces import IClimateAdaptContent
 from Products.Five.browser import BrowserView
 from collective.cover.browser.cover import Standard
 from eea.climateadapt.vocabulary import ace_countries_dict
