@@ -2,11 +2,18 @@ from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from plone.app.textfield import RichText
+from plone.app.widgets.dx import AjaxSelectWidget
+from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.interfaces import IAddForm
 from z3c.form.interfaces import IEditForm
+from z3c.form.interfaces import IFieldWidget
+from z3c.form.util import getSpecification
+from z3c.form.widget import FieldWidget
+from zope.component import adapter
+from zope.interface import implementer
 from zope.interface import implements
 from zope.schema import Bool, Choice, Int, List, Text, TextLine, Tuple, URI
 
@@ -38,7 +45,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['title', 'long_description', 'keywords', 'sectors',
-                          'climate_impacts', 'elements', 'year']
+                          'climate_impacts', 'elements', 'year',]
                   )
 
     form.fieldset('reference_information',
@@ -46,15 +53,14 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                   fields=['websites', 'source']
                   )
 
-    # TODO:
-    # form.fieldset('reference_information',
-    #     label=u'Documents',
-    #     fields=[]
-    # )
-
     form.fieldset('geographic_information',
                   label=u'Geographic Information',
                   fields=['geochars', 'comments']
+                  )
+
+    form.fieldset('categorization',
+                  label=u'Categorization',
+                  fields=['special_tags']
                   )
 
     form.fieldset('backend',
@@ -164,8 +170,8 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     directives.omitted(IAddForm, 'metadata')
     directives.omitted(IEditForm, 'metadata')
 
-    directives.omitted(IAddForm, 'special_tags')
-    directives.omitted(IEditForm, 'special_tags')
+    # directives.omitted(IAddForm, 'special_tags')
+    # directives.omitted(IEditForm, 'special_tags')
 
     directives.omitted(IAddForm, 'rating')
     directives.omitted(IEditForm, 'rating')
@@ -327,3 +333,11 @@ class Action(dexterity.Container):
     implements(IAction, IClimateAdaptContent)
 
     search_type = "ACTION"
+
+
+@adapter(getSpecification(IAceItem['special_tags']), IWidgetsLayer)
+@implementer(IFieldWidget)
+def SpecialTagsFieldWidget(field, request):
+    widget = FieldWidget(field, AjaxSelectWidget(request))
+    widget.vocabulary = 'eea.climateadapt.special_tags'
+    return widget

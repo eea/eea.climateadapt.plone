@@ -173,3 +173,6 @@ alsoProvides(cca_types, IVocabularyFactory)
 
 _a = namedtuple('_AceItemType', ['id', 'label'])
 aceitem_types = [_a(*x) for x in _cca_types]
+
+special_tags_vocabulary = catalog_based_vocabulary('special_tags')
+alsoProvides(special_tags_vocabulary, IVocabularyFactory)

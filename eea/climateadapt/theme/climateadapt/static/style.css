@@ -1845,3 +1845,5 @@ li.dropdown-submenu {
     color: #CCC !important;
     padding-left: 1em;
 }
+
+.configlets li { list-style-type: none !important}

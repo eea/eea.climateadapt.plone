@@ -77,6 +77,8 @@
     <utility name="eea.climateadapt.acemeasure_types" component=".vocabulary.acemeasure_types"/>
     <utility name="eea.climateadapt.cca_types" component=".vocabulary.cca_types"/>
 
+    <utility name="eea.climateadapt.special_tags" component=".vocabulary.special_tags_vocabulary" />
+
     Marker interfaces:
 
     <interface interface="eea.climateadapt.interfaces.ITransnationalRegionMarker" />
@@ -84,5 +86,8 @@
     <interface interface="eea.climateadapt.interfaces.ISiteSearchFacetedView" />
     <interface interface="eea.climateadapt.interfaces.IClimateAdaptSharePage" />
     <interface interface="eea.climateadapt.interfaces.ICountriesRoot" />
+
+    Widgets:
+    <adapter factory=".aceitem.SpecialTagsFieldWidget" />
 
 </configure>

@@ -105,10 +105,10 @@ class AceTileMixin(object):
         for setting_name, index_name in map.items():
             setting = self.data.get(setting_name, '')
             if setting:
-                if index_name not in keyword_indexes:
-                    query[index_name] = setting
-                else:
+                if index_name in keyword_indexes:
                     query[index_name] = {'query': setting, 'operator': 'or'}
+                else:
+                    query[index_name] = setting
 
         # is this needed?
         # for k, v in query.items():
@@ -117,10 +117,13 @@ class AceTileMixin(object):
 
         # get rid of special_tags index, just use the SearchableText
         # the special_tags field is indexed into the SearchableText
-        st = query.pop('special_tags', '')
+        st = query.pop('special_tags', {'query':''})['query']
         if st:
-            text = query.pop('SearchableText', '') + ' ' + st
+            text = query.pop('SearchableText', u'') + u' ' + st
+            text = u' '.join(set(text.split(u' ')))
             query['SearchableText'] = text
+
+        print query
 
         return query
 
