@@ -68,6 +68,7 @@
 
     <browser:page
         name="fp-latest-updates-tile"
+        class=".tilehelpers.LatestUpdatesTile"
         for="*"
         template="pt/frontpage/fp-latest-updates-tile.pt"
         permission="zope.Public"

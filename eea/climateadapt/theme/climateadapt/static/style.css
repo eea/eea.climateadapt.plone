@@ -1848,3 +1848,7 @@ li.dropdown-submenu {
 
 .configlets li { list-style-type: none !important}
 .suppressVisualEditor { display: none }
+
+.section-help #content .cover-richtext-tile a.titleLink:hover {
+    color: #02516d !important;
+}
