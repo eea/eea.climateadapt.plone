@@ -116,6 +116,9 @@ def s2li(text, separator=';', relaxed=False):
 
 
 def t2r(text):
+    if text:
+        if not text.startswith('<'):
+            text = u"<div>{0}</div>".format(text)
     return RichTextValue(text or '', 'text/html', 'text/html')
 
 
