@@ -9,19 +9,16 @@
       <p tal:condition="python: not text and view.is_compose_mode()" i18n:translate="">
         Please edit the tile to enter some text.
       </p>
-      <div class="cover-richtext-tile tile-content" tal:define="fields view/get_configured_fields">
-        <tal:rep repeat="name python:['title', 'text']">
-
-          <tal:repfields tal:repeat="field fields">
-            <h1 tal:condition="python: field['id'] == 'title' == name">
-              <span tal:replace="field/content" ></span>
-            </h1>
-            <div tal:condition="python:field['id'] == 'text' == name">
-              <span tal:replace="structure field/content">Rich Text</span>
-            </div>
-          </tal:repfields>
-
-        </tal:rep>
+      <div class="cover-richtext-tile tile-content" tal:define="fields view/data">
+        <h1 tal:condition="fields/title">
+          <span tal:replace="fields/title" />
+        </h1>
+        <div tal:condition="fields/dont_strip">
+          <div tal:replace="structure fields/text/raw" />
+        </div>
+        <div tal:condition="not: fields/dont_strip">
+          <div tal:replace="structure fields/text/output" />
+        </div>
       </div>
     </tal:text>
   </body>

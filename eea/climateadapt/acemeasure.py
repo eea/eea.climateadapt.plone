@@ -127,7 +127,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     keywords = Tuple(
         title=_(u"Keywords"),
         description=_(u"Describe and tag this item with relevant keywords."),
-        required=True,
+        required=False,
         value_type=TextLine(),
         missing_value=(None),
     )
@@ -294,12 +294,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                               vocabulary="eea.climateadapt.ace_countries"))
 
     contact = RichText(title=_(u"Contact"), required=False, default=u"")
-
-    # keywords = List(title=_(u"Keywords"),
-    #                description=_(u"Keywords related to the project"),
-    #                required=False,
-    #                value_type=TextLine(title=_(u"Tag"))
-    # )
 
     # TODO: startdate, enddate, publicationdate have no values in DB
     # TODO: specialtagging is not used in any view jsp, only in add and edit

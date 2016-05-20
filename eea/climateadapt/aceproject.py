@@ -97,7 +97,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     keywords = Tuple(
         title=_(u"Keywords"),
         description=_(u"Provide Keywords related to the project."),
-        required=True,
+        required=False,
         value_type=TextLine(),
         missing_value=(None),
     )

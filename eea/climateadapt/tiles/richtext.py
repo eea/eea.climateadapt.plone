@@ -15,6 +15,12 @@ class IRichTextWithTitle(IRichTextTile):
         required=False,
     )
 
+    dont_strip = schema.Bool(
+        title=_(u"Don't sanitize HTML"),
+        description=_(u"Use with care!"),
+        default=False,
+    )
+
 
 class RichTextWithTitle(RichTextTile):
     """

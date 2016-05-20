@@ -1584,6 +1584,7 @@ def import_template_1_column(site, layout, structure):
     # done, fixed parent title
     # this is a simple page, with one portlet of text
     # example: /eu-adaptation-policy/funding/life
+    #import pdb; pdb.set_trace()
 
     if layout.friendlyurl == '/share-your-info':
         img_1 = structure['column-1'][0][1]['content'][0]
@@ -2358,7 +2359,7 @@ def get_default_location(site, _type):
             title=title,
         )
         roles = dest.__ac_local_roles__
-        roles.update(Members=[u'Contributor', u'Reader'])
+        roles.update(AuthenticatedUsers=[u'Contributor', u'Reader'])
         roles.update(ContentReviewers=[u'Contributor', u'Reviewer', u'Editor',
                                        u'Reader'])
         roles.update(PowerUsers=[u'Contributor', u'Editor', u'Reader'])
