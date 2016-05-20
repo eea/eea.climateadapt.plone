@@ -23,6 +23,10 @@
         <indexed_attr value="spatial_values"/>
     </index>
 
+    <index name="keywords" meta_type="KeywordIndex">
+        <indexed_attr value="keywords"/>
+    </index>
+
     <index name="special_tags" meta_type="KeywordIndex">
         <indexed_attr value="special_tags"/>
     </index>

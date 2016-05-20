@@ -3,17 +3,21 @@ from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from plone.app.contenttypes.interfaces import IImage
 from plone.app.textfield import RichText
+from plone.app.widgets.dx import AjaxSelectWidget
+from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.directives import dexterity, form
 from plone.formwidget.autocomplete import AutocompleteFieldWidget
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.namedfile.interfaces import IImageScaleTraversable
-from z3c.form.interfaces import IAddForm
-from z3c.form.interfaces import IEditForm
+from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
+from z3c.form.util import getSpecification
+from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
-from zope.interface import implements
-from zope.schema import Tuple
-from zope.schema import URI, Bool, Choice, Decimal, Int, List, Text, TextLine
+from zope.component import adapter
+from zope.interface import implementer, implements
+from zope.schema import (URI, Bool, Choice, Decimal, Int, List, Text, TextLine,
+                         Tuple)
 
 
 class IAceMeasure(form.Schema, IImageScaleTraversable):
@@ -336,7 +340,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_relevance",),
-        )
+    )
     primephoto = RelationChoice(
         title=_(u"Prime photo"),
         source=ObjPathSourceBinder(object_provides=IImage.__identifier__),
@@ -349,7 +353,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
             title=_(u"Related"),
             source=ObjPathSourceBinder(
                 object_provides=IImage.__identifier__)
-            ),
+        ),
         required=False,
     )
     # approved is done by workflow
@@ -382,6 +386,14 @@ class AdaptationOption(dexterity.Container):
     implements(IAdaptationOption, IClimateAdaptContent)
 
     search_type = "MEASURE"
+
+
+@adapter(getSpecification(IAceMeasure['keywords']), IWidgetsLayer)
+@implementer(IFieldWidget)
+def KeywordsFieldWidget(field, request):
+    widget = FieldWidget(field, AjaxSelectWidget(request))
+    widget.vocabulary = 'eea.climateadapt.keywords'
+    return widget
 
 
 # class AceMeasure(Base):

@@ -176,3 +176,6 @@ aceitem_types = [_a(*x) for x in _cca_types]
 
 special_tags_vocabulary = catalog_based_vocabulary('special_tags')
 alsoProvides(special_tags_vocabulary, IVocabularyFactory)
+
+keywords_vocabulary = catalog_based_vocabulary('keywords')
+alsoProvides(keywords_vocabulary, IVocabularyFactory)

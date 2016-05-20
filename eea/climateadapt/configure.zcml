@@ -23,8 +23,8 @@
     <include package="plone.resource" file="meta.zcml"/>
     <include package="z3c.jbot" file="meta.zcml" />
 
-    <browser:jbot 
-        directory="browser/pt-overrides" 
+    <browser:jbot
+        directory="browser/pt-overrides"
         />
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
 
@@ -78,6 +78,7 @@
     <utility name="eea.climateadapt.cca_types" component=".vocabulary.cca_types"/>
 
     <utility name="eea.climateadapt.special_tags" component=".vocabulary.special_tags_vocabulary" />
+    <utility name="eea.climateadapt.keywords" component=".vocabulary.keywords_vocabulary" />
 
     Marker interfaces:
 
@@ -89,5 +90,8 @@
 
     Widgets:
     <adapter factory=".aceitem.SpecialTagsFieldWidget" />
+    <adapter factory=".aceitem.KeywordsFieldWidget" />
+    <adapter factory=".acemeasure.KeywordsFieldWidget" />
+    <adapter factory=".aceproject.KeywordsFieldWidget" />
 
 </configure>

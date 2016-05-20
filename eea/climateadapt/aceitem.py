@@ -87,9 +87,8 @@ class IAceItem(form.Schema, IImageScaleTraversable):
         description=_(u"Describe and tag this item with relevant keywords. "),
         required=True,
         value_type=TextLine(),
-        missing_value=(),
+        missing_value=None,
     )
-
 
     sectors = List(title=_(u"Sectors"),
                    description=_(u"Select one or more relevant sector policies"
@@ -340,4 +339,12 @@ class Action(dexterity.Container):
 def SpecialTagsFieldWidget(field, request):
     widget = FieldWidget(field, AjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.special_tags'
+    return widget
+
+
+@adapter(getSpecification(IAceItem['keywords']), IWidgetsLayer)
+@implementer(IFieldWidget)
+def KeywordsFieldWidget(field, request):
+    widget = FieldWidget(field, AjaxSelectWidget(request))
+    widget.vocabulary = 'eea.climateadapt.keywords'
     return widget

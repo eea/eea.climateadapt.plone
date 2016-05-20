@@ -2,12 +2,17 @@ from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from plone.app.textfield import RichText
+from plone.app.widgets.dx import AjaxSelectWidget
+from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
-from z3c.form.interfaces import IEditForm, IAddForm
-from zope.interface import implements
-from zope.schema import Bool, Choice, Int, List, Text, TextLine, Tuple, URI
+from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
+from z3c.form.util import getSpecification
+from z3c.form.widget import FieldWidget
+from zope.component import adapter
+from zope.interface import implementer, implements
+from zope.schema import URI, Bool, Choice, Int, List, Text, TextLine, Tuple
 
 
 class IAceProject(form.Schema, IImageScaleTraversable):
@@ -92,7 +97,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         description=_(u"Provide Keywords related to the project."),
         required=True,
         value_type=TextLine(),
-        missing_value=(),
+        missing_value=(None),
     )
 
     sectors = List(
@@ -207,3 +212,11 @@ class AceProject(dexterity.Container):
     implements(IAceProject, IClimateAdaptContent)
 
     search_type = "RESEARCHPROJECT"
+
+
+@adapter(getSpecification(IAceProject['keywords']), IWidgetsLayer)
+@implementer(IFieldWidget)
+def KeywordsFieldWidget(field, request):
+    widget = FieldWidget(field, AjaxSelectWidget(request))
+    widget.vocabulary = 'eea.climateadapt.keywords'
+    return widget
