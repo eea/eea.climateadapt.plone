@@ -1,4 +1,4 @@
-#from eea.climateadapt.interfaces import IContentRoot
+# from eea.climateadapt.interfaces import IContentRoot
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFCore.utils import getToolByName
 from collections import defaultdict

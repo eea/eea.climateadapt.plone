@@ -46,9 +46,6 @@ class ListingTile(BrowserView):
     """ Helper for listing tiles on fronpage
     """
 
-    def get_url(self, obj):
-        return ""
-
 
 class NewsTile(ListingTile):
     """ Tile for news on frontpage
@@ -90,6 +87,11 @@ class EventsTile(ListingTile):
         return self.parent.getFolderContents({'portal_type':'Event', 'sort_by':
                                               'effective'},
                                              full_objects=True)[:3]
+
+
+class LatestUpdatesTile(ListingTile):
+    """ Tile for latest-updates on fp
+    """
 
 
 class LastUpdateTile(BrowserView):
