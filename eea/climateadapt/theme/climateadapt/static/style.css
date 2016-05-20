@@ -1856,3 +1856,6 @@ li.dropdown-submenu {
 .section-tutorial-videos #wrapper {
     max-width: 100%;
 }
+.fp-tile-fixes h3 {
+    margin-bottom: 0.4em;
+}

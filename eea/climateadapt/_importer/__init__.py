@@ -2216,20 +2216,22 @@ def import_template_frontpage(site, layout, structure):
 def import_journal_articles(site):
 
     parent = create_folder_at(site, '/more-events')
-    create_plone_content(
-        parent,
-        type='Collection',
-        title='Events',
-        slug='events',
-        sort_on=u'effective',
-        sort_reversed=True,
-        query=[{u'i': u'portal_type',
-                u'o': u'plone.app.querystring.operation.selection.is',
-                u'v': [u'Event']},
-               {u'i': u'path',
-                u'o': u'plone.app.querystring.operation.string.relativePath',
-                u'v': u'..'}],)
-    parent.setDefaultPage('events')
+    # create_plone_content(
+    #     parent,
+    #     type='Collection',
+    #     title='Events',
+    #     slug='events',
+    #     sort_on=u'effective',
+    #     sort_reversed=True,
+    #     query=[{u'i': u'portal_type',
+    #             u'o': u'plone.app.querystring.operation.selection.is',
+    #             u'v': [u'Event']},
+    #            {u'i': u'path',
+    #             u'o': u'plone.app.querystring.operation.string.relativePath',
+    #             u'v': u'..'}],)
+    # parent.setDefaultPage('events')
+    parent.edit(title="More Events")
+    parent.setLayout('event_listing')
 
     for info in session.query(sql.Journalarticle).filter_by(type_='events'):
         latest = _get_latest_version(session, info)
