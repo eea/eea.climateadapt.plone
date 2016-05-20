@@ -2476,6 +2476,7 @@ def tweak_site(site):
     # countries page
     ctpage = site['countries']
     alsoProvides(ctpage, ICountriesRoot)
+    ctpage.manage_changeProperties({'title': 'Countries'})
     ctpage.setLayout('@@countries-view-map')
 
     # mayors-adapt page
