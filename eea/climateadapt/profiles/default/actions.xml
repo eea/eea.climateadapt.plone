@@ -1,7 +1,5 @@
 <object xmlns:i18n="http://xml.zope.org/namespaces/i18n" name="portal_actions" meta_type="Plone Actions Tool">
-    <action-provider name="portal_workflow"/>
-    <action-provider name="portal_types"/>
-    <action-provider name="portal_actions"/>
+
     <object name="site_actions" meta_type="CMF Action Category">
         <object name="accessibility" meta_type="CMF Action" i18n:domain="plone">
             <property name="permissions">
@@ -24,4 +22,17 @@
             <property name="visible">True</property>
         </object>
     </object>
+
+    <object name="object_buttons" meta_type="CMF Action Category">
+        <object name="ical_import_enable" meta_type="CMF Action">
+            <property name="visible">False</property>
+        </object>
+        <object name="faceted.disable" meta_type="CMF Action" i18n:domain="eea">
+            <property name="visible">False</property>
+        </object>
+        <object name="faceted.enable" meta_type="CMF Action" i18n:domain="eea">
+            <property name="visible">False</property>
+        </object>
+    </object>
+
 </object>
