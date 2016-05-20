@@ -987,6 +987,7 @@ def make_richtext_with_title_tile(cover, content):
 
     content['text'] = t2r(fix_links(site, unicode(content['text'])))
     content['title'] = unicode(content['title'])
+    content['dont_strip'] = True
 
     css_class = content.pop('css_class', None)
 
