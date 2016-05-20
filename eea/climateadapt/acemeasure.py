@@ -51,6 +51,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('websites')
     dexteritytextindexer.searchable('source')
 
+    dexteritytextindexer.searchable('geochars')
+
     dexteritytextindexer.searchable('implementation_type')
     dexteritytextindexer.searchable('challenges')
     dexteritytextindexer.searchable('spatial_layer')

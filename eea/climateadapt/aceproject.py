@@ -34,6 +34,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('websites')
     dexteritytextindexer.searchable('source')
 
+    dexteritytextindexer.searchable('geochars')
+
     dexteritytextindexer.searchable('specialtagging')
     dexteritytextindexer.searchable('important')
     dexteritytextindexer.searchable('spatial_layer')
