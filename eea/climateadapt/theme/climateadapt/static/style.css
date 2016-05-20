@@ -792,6 +792,9 @@ ul#ast-menu, #ast-menu ul {
 }
 
 #content .eu-strategy td h2,
+#content .aceitem-relevant-tile {
+    margin-top: 1em;
+}
 #content .aceitem-relevant-tile h2 {
     font-size: 1.4em;
     line-height: 1.2em;
@@ -1832,4 +1835,9 @@ li.dropdown-submenu {
 
 #aceitem_sidebar .bluebutton {
     float: none !important;
+}
+.ast_header h1 {
+    font-size:120% !important;
+    color: #CCC !important;
+    padding-left: 1em;
 }

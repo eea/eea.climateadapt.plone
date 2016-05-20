@@ -127,7 +127,7 @@ def r2t(text):
         try:
             return u'\r'.join(nodes).strip()
         except:
-            import pdb; pdb.set_trace()
+            return nodes[0] # junk in the rest of the file
     return u'\r'.join([t.text_content() for t in nodes]).strip()
 
 

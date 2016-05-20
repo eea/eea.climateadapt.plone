@@ -7,7 +7,7 @@
     <column value="year" />
     <column value="long_description" />
 
-    <index name="search_type" meta_type="FieldIndex">
+    <index name="search_type" meta_type="KeywordIndex">
         <indexed_attr value="search_type"/>
     </index>
 
@@ -60,7 +60,7 @@
     </index>
 
     <index name="city_stage" meta_type="FieldIndex">
-          <indexed_attr value="city_stage"/>
-      </index>
+        <indexed_attr value="city_stage"/>
+    </index>
 
 </object>

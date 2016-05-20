@@ -76,14 +76,21 @@ class AceTileMixin(object):
 
     def build_query(self):
 
-        query = {}
+        query = {
+            'review_state': 'published'
+        }
+
+        keyword_indexes = ['search_type', 'element_type', 'special_tags',
+                           'sectors']
+
         # todo: do countries
-        map = {'search_type': 'search_type',        # importeddata: plone field
-               'element_type': 'element_type',
-               'search_text': 'SearchableText',
-               'special_tags': 'special_tags',
-               'sector': 'sectors',
-               }
+        map = {
+            'search_type': 'search_type',        # importeddata: plone field
+            'element_type': 'element_type',
+            'search_text': 'SearchableText',
+            'special_tags': 'special_tags',
+            'sector': 'sectors',
+        }
 
         sort_map = {
             'RATING': 'rating',                     # importeddata: plone field
@@ -95,14 +102,18 @@ class AceTileMixin(object):
             query['sort_on'] = sort_map[sort]
             query['sort_order'] = 'reverse'
 
-        for k, v in map.items():
-            p = self.data.get(k, '')
-            if p:
-                query[v] = p
+        for setting_name, index_name in map.items():
+            setting = self.data.get(setting_name, '')
+            if setting:
+                if index_name not in keyword_indexes:
+                    query[index_name] = setting
+                else:
+                    query[index_name] = {'query': setting, 'operator': 'or'}
 
-        for k, v in query.items():
-            if v is None:
-                del query[k]
+        # is this needed?
+        # for k, v in query.items():
+        #     if v is None:
+        #         del query[k]
 
         # get rid of special_tags index, just use the SearchableText
         # the special_tags field is indexed into the SearchableText
@@ -110,8 +121,6 @@ class AceTileMixin(object):
         if st:
             text = query.pop('SearchableText', '') + ' ' + st
             query['SearchableText'] = text
-
-        query['review_state'] = 'published'
 
         return query
 
