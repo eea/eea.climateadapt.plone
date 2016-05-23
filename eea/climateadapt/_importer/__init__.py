@@ -2367,7 +2367,7 @@ def get_default_location(site, _type):
         roles.update(PowerUsers=[u'Contributor', u'Editor', u'Reader'])
         dest.immediately_addable_types = [factory]
         dest.locally_allowed_types = [factory]
-        dest.manage_addProperty('search_type_name', _type)
+        dest.manage_addProperty('search_type_name', _type, 'string')
         dest.setLayout('@@redirect_to_search_page')
 
     return dest
