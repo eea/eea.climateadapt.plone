@@ -2322,7 +2322,10 @@ def import_journal_articles(site):
             logger.debug("Created Link for news at %s with effective %s" %
                          (news.absolute_url(), publish_date))
         else:
-            text = t2r(content[0])
+            try:
+                text = t2r(content[0])
+            except Exception:   # TODO: there's a news item that's actually an event, that's actually a Link
+                continue
             news = create_plone_content(parent, type='News Item', id=slug,
                                         title=title, text=text,
                                         effective_date=publish_date)

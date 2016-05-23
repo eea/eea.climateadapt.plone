@@ -87,7 +87,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     keywords = Tuple(
         title=_(u"Keywords"),
         description=_(u"Describe and tag this item with relevant keywords. "),
-        required=True,
+        required=False,
         value_type=TextLine(),
         missing_value=None,
     )
