@@ -3,6 +3,8 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.layout.viewlets import ViewletBase
 from plone.app.layout.viewlets.common import PathBarViewlet as BasePathBarViewlet
 from plone.app.layout.viewlets.common import SearchBoxViewlet as BaseSearchViewlet
+from zope.component import getMultiAdapter
+from plone.api import portal
 
 
 class SharePageSubMenuViewlet(ViewletBase):
@@ -26,3 +28,17 @@ class PathBarViewlet(BasePathBarViewlet):
 
         if IPloneSiteRoot.providedBy(self.context.aq_parent):
             return ''
+
+    render = ViewPageTemplateFile('pt/breadcrumbs.pt')
+
+    def update(self):
+        portal_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_portal_state')
+
+        self.navigation_root_url = portal_state.navigation_root_url()
+
+        self.is_rtl = portal_state.is_rtl()
+
+        breadcrumbs_view = getMultiAdapter((self.context, self.request),
+                                           name='breadcrumbs_view')
+        self.breadcrumbs = breadcrumbs_view.breadcrumbs()
