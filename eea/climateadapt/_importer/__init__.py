@@ -2482,12 +2482,13 @@ def tweak_site(site):
     # countries page
     ctpage = site['countries']
     alsoProvides(ctpage, ICountriesRoot)
-    ctpage.manage_changeProperties({'title': 'Countries'})
+    ctpage.manage_changeProperties({'title': 'Country Information'})
     ctpage.setLayout('@@countries-view-map')
 
     # mayors-adapt page
     mapage = site['mayors-adapt']
     alsoProvides(mapage, IMayorAdaptRoot)
+    trans_reg_page.manage_changeProperties({'title': 'Mayors Adapt'})
     mapage.setLayout('@@mayors-adapt')
 
     # city-profile page
@@ -2502,6 +2503,7 @@ def tweak_site(site):
     # transnational regions page
     trans_reg_page = site['transnational-regions']
     alsoProvides(trans_reg_page, ITransRegioRoot)
+    trans_reg_page.manage_changeProperties({'title': 'Transnational regions'})
     trans_reg_page.setLayout('@@transnational-regions-view')
 
 
