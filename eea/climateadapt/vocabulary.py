@@ -19,7 +19,7 @@ def generic_vocabulary(_terms):
 
     def factory(context):
         return SimpleVocabulary([
-            SimpleTerm(n, n, l) for n, l in _terms
+            SimpleTerm(n, n.encode('utf-8'), l) for n, l in _terms
         ])
 
     return factory
@@ -36,7 +36,7 @@ def catalog_based_vocabulary(index):
         terms = sorted(terms)
 
         return SimpleVocabulary([
-            SimpleTerm(x, x, x) for x in terms
+            SimpleTerm(x, x.encode('utf-8'), x) for x in terms
         ])
 
         pass
