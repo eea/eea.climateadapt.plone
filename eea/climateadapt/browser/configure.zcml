@@ -213,7 +213,7 @@
         />
 
     <browser:page
-        class=".countries.CountriesView"
+        class=".misc.CountriesView"
         for="*"
         name="countries-view-map"
         template="pt/countries.pt"
@@ -221,14 +221,14 @@
         />
 
     <browser:page
-        class=".adaptationstrat.AdaptationStrategyView"
+        class=".misc.AdaptationStrategyView"
         for="*"
         name="adaptation-strategies"
         permission="zope2.View"
         />
 
     <browser:page
-        class=".cities_listing.CitiesProfilesView"
+        class=".misc.CitiesProfilesView"
         for="*"
         name="cities-listing"
         template="pt/cities_listings.pt"
@@ -244,21 +244,21 @@
         />
 
     <browser:page
-        class=".map_viewer.MapViewerView"
+        class=".misc.MapViewerView"
         for="*"
         name="map-viewer"
         permission="zope2.View"
         />
 
     <browser:page
-        class=".content.RedirectToSearchView"
+        class=".misc.RedirectToSearchView"
         for="*"
         name="redirect_to_search_page"
         permission="zope2.View"
         />
 
     <browser:page
-        class=".transnational_reg.TransRegionView"
+        class=".misc.TransRegionView"
         for="*"
         name="transnational-regions-view"
         template="pt/transnational_regions.pt"
@@ -270,7 +270,7 @@
     <browser:viewlet
         name="plone.resourceregistries"
         manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
-        view=".transnational_reg.TransRegionView"
+        view=".misc.TransRegionView"
         template="pt/resourceregistries.pt"
         permission="zope2.View"
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
@@ -279,7 +279,7 @@
     <browser:viewlet
         name="plone.resourceregistries"
         manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
-        view=".countries.CountriesView"
+        view=".misc.CountriesView"
         template="pt/resourceregistries.pt"
         permission="zope2.View"
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"

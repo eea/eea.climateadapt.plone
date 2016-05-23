@@ -402,7 +402,7 @@
     </metal:fill-slot>
 
     <metal:fill-slot fill-slot="content-title">
-        <h1></h1>
+        <h1>Transnational regions and other regions and countries</h1>
     </metal:fill-slot>
     <metal:fill-slot fill-slot="content-core">
         <div class="journal-content-article" style="margin-right: 10px;">
