@@ -127,7 +127,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
         title=_(u"Website"),
         description=_(u"List the Website where the item can be found or is "
                       u"described. Please place each website on a new line"),
-        required=True,
+        required=False,
         value_type=URI(),
         missing_value=(),
     )

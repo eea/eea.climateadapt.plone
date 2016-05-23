@@ -207,7 +207,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                       u" or is described. Note: may refer to the original "
                       u"document describing a measure and does not have to "
                       u"refer back to the project e.g. collected measures."),
-        required=True,
+        required=False,
         value_type=URI(),
         missing_value=(),
     )
