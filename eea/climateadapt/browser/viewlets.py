@@ -1,6 +1,6 @@
+#from plone.api import portal
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from plone.api import portal
 from plone.app.layout.viewlets import ViewletBase
 from plone.app.layout.viewlets.common import PathBarViewlet as BasePathBarViewlet
 from plone.app.layout.viewlets.common import SearchBoxViewlet as BaseSearchViewlet
@@ -22,14 +22,15 @@ class SearchBoxViewlet(BaseSearchViewlet):
 class PathBarViewlet(BasePathBarViewlet):
     """ Override to hide the breadcrumbs on the frontpage
     """
+
+    render = ViewPageTemplateFile('pt/breadcrumbs.pt')
+
     def render(self):
         if not self.context.id == 'frontpage':
             return super(PathBarViewlet, self).render()
 
         if IPloneSiteRoot.providedBy(self.context.aq_parent):
             return ''
-
-    render = ViewPageTemplateFile('pt/breadcrumbs.pt')
 
     def update(self):
         portal_state = getMultiAdapter((self.context, self.request),

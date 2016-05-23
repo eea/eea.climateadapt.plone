@@ -2454,6 +2454,13 @@ def tweak_site(site):
         id='members_auto_group', title='Members AutoGroup', group='Members',
         description="Set Members group for everybody logged in")
 
+    plugin_obj = acl_users._getOb('members_auto_group')
+    activatable = [
+        'getPropertiesForUser', 'getGroupsForPrincipal', 'getGroupById',
+        'enumerateGroups'
+    ]
+    plugin_obj.manage_activateInterfaces(activatable)
+
     ast_tools = ['tools/urban-ast',
                  'adaptation-support-tool']
     for path in ast_tools:
