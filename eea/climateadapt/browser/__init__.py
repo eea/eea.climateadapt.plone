@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 
-# from plone.app.iterate.permissions import CheckinPermission
-# from plone.app.iterate.permissions import CheckoutPermission
-# from plone.app.stagingbehavior.browser.control import Control
-# from plone.app.stagingbehavior.utils import get_baseline
-# from AccessControl import getSecurityManager
-# from Products.CMFCore.permissions import ModifyPortalContent
-# from eea.climateadapt.interfaces import IClimateAdaptContent
+from AccessControl import getSecurityManager
+from Products.CMFCore.permissions import ModifyPortalContent
 from Products.Five.browser import BrowserView
 from collective.cover.browser.cover import Standard
+from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.vocabulary import ace_countries_dict
 from plone import api
 from plone.app.iterate.browser.control import Control
+from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
+from plone.app.iterate.permissions import CheckinPermission
+from plone.app.iterate.permissions import CheckoutPermission
 from zExceptions import NotFound
 from zope.publisher.browser import BrowserPage
 import json
@@ -680,35 +679,44 @@ class CityRedirector(BrowserPage):
 class IterateControl(Control):
     """
     """
-    # def checkin_allowed(self):
-    #     """ Overrided to check for the checkin permission, as it is normal
-    #     """
-    #
-    #     allowed = super(IterateControl, self).checkin_allowed()
-    #     if not IClimateAdaptContent.providedBy(self.context):
-    #         return allowed
-    #
-    #     if allowed:
-    #
-    #         original = get_baseline(self.context)
-    #         if original is None:
-    #             return False
-    #
-    #         checkPermission = getSecurityManager().checkPermission
-    #         if not checkPermission(CheckinPermission, original):
-    #             return False
-    #
-    #     return allowed
-    #
-    # def checkout_allowed(self):
-    #     """ Overrided to check for the checkout permission, as it is normal
-    #     """
-    #     allowed = super(IterateControl, self).checkout_allowed()
-    #     if not IClimateAdaptContent.providedBy(self.context):
-    #         return allowed
-    #
-    #     checkPermission = getSecurityManager().checkPermission
-    #     if not checkPermission(CheckoutPermission, self.context):
-    #         return False
-    #
-    #     return allowed
+
+    def checkin_allowed(self):
+        """ Overrided to check for the checkin permission, as it is normal
+        """
+
+        allowed = super(IterateControl, self).checkin_allowed()
+
+        if not IClimateAdaptContent.providedBy(self.context):
+            return allowed
+
+        return allowed
+
+        if allowed:
+
+            policy = ICheckinCheckoutPolicy(context, None)
+            if policy is None:
+                return False
+
+            original = policy.getBaseline()
+            if original is None:
+                return False
+
+            checkPermission = getSecurityManager().checkPermission
+            if not checkPermission(CheckinPermission, original):
+                return False
+
+        return allowed
+
+    def checkout_allowed(self):
+        """ Overrided to check for the checkout permission, as it is normal
+        """
+
+        allowed = super(IterateControl, self).checkout_allowed()
+        if not IClimateAdaptContent.providedBy(self.context):
+            return allowed
+
+        checkPermission = getSecurityManager().checkPermission
+        if not checkPermission(CheckoutPermission, self.context):
+            return False
+
+        return allowed
