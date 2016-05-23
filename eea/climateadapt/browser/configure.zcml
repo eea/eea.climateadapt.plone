@@ -354,6 +354,16 @@
         permission="zope2.View"
         />
 
+
+    Other overrides
+    <browser:page
+        name="getVocabulary"
+        for="*"
+        class=".overrides.VocabularyView"
+        permission="zope2.View"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        />
+
     <!-- <browser:page -->
     <!--     for="*" -->
     <!--     name="breadcrumbs_view" -->
