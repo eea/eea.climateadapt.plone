@@ -1,10 +1,10 @@
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from plone.api import portal
 from plone.app.layout.viewlets import ViewletBase
 from plone.app.layout.viewlets.common import PathBarViewlet as BasePathBarViewlet
 from plone.app.layout.viewlets.common import SearchBoxViewlet as BaseSearchViewlet
 from zope.component import getMultiAdapter
-from plone.api import portal
 
 
 class SharePageSubMenuViewlet(ViewletBase):
