@@ -2488,7 +2488,7 @@ def tweak_site(site):
     # mayors-adapt page
     mapage = site['mayors-adapt']
     alsoProvides(mapage, IMayorAdaptRoot)
-    trans_reg_page.manage_changeProperties({'title': 'Mayors Adapt'})
+    mapage.manage_changeProperties({'title': 'Mayors Adapt'})
     mapage.setLayout('@@mayors-adapt')
 
     # city-profile page
