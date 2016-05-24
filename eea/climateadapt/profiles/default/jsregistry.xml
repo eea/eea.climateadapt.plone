@@ -33,6 +33,11 @@
         cookable="True" enabled="0" expression=""
         id="kss-bbb.js" />
 
+    Disabling handlebars, conflict with plone.app.widgets
+    <javascript cacheable="True" compression="none"
+        cookable="True" enabled="False" expression=""
+        id="++resource++collective.sweeteditor.js/handlebars-v4.0.2.js" />
+
     Disabling livesearch for search viewlet, we use faceted navigation for that
     <javascript cacheable="True" compression="none"
         cookable="True" enabled="False" expression=""
