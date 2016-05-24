@@ -840,27 +840,6 @@ def import_city_profiles(site):
     return imported
 
 
-# possible templates are
-# 1_2_1_columns         - done
-# 1_2_columns_i         - TODO as custom page
-# 1_2_columns_ii        - done
-# 1_column              - done
-# 2_columns_i           - done
-# 2_columns_ii          - these need to be manually created
-# 2_columns_iii         - done
-# ace_layout_1          - is not needed?
-# ace_layout_2          - done
-# ace_layout_3          - done
-# ace_layout_4          - done
-# ace_layout_5          - done
-# ace_layout_col_1_2    - done
-# ast                   - done using urban_ast
-# faq                   - done
-# frontpage             - TODO as a custom page
-# transnationalregion   - done
-# urban_ast             - done with TODOs
-
-
 @log_call
 def import_template_help(site, layout, structure):
     main_title = structure.pop('name')
@@ -1044,6 +1023,7 @@ def import_template_ace_layout_2(site, layout, structure):
         # /vulnerability-assessment => same as above
         return
 
+    #import pdb; pdb.set_trace()
     assert(len(structure) == 5)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) == 1)
