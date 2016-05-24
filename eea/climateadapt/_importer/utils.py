@@ -1378,7 +1378,8 @@ def fix_links(site, text):
                 continue
             if href != res:
                 if not isinstance(res, basestring):
-                    res = res.absolute_url()
+                    #res = res.absolute_url()
+                    res = '/' + '/'.join(res.getPhysicalPath()[2:])
                 logger.debug("Changed <a> link %s to %s", href, res)
                 a.set('href', res)
 

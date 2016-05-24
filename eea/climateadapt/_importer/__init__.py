@@ -1015,7 +1015,6 @@ def import_template_ace_layout_2(site, layout, structure):
     # the third one is at http://adapt-test.eea.europa.eu/adaptation-measures
     # and has 2 filter portlet and a simple filter portlet
 
-    #import pdb; pdb.set_trace()
     if not structure.get('column-2') or len(structure['column-2'][0][1]) == 0:
         # TODO: add these redirections:
         # /climate-change-adaptation => /en/adaptation-information/general
@@ -1023,7 +1022,6 @@ def import_template_ace_layout_2(site, layout, structure):
         # /vulnerability-assessment => same as above
         return
 
-    #import pdb; pdb.set_trace()
     assert(len(structure) == 5)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) == 1)
