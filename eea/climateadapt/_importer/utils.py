@@ -1042,7 +1042,6 @@ def make_iframe_embed_tile(cover, url):
         embed = """<iframe class='ace-iframe' frameborder='0'
             style='min-width:940px;min-height:800px' height='100%%'
             scrolling='no' src='%s'></iframe>""" % url
-    print cover.title
 
     ITileDataManager(tile).set({'title': '', 'embed': embed})
 

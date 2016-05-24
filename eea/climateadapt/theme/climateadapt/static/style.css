@@ -1907,10 +1907,10 @@ li.dropdown-submenu {
     z-index: 10;
 }
 
-.subsection-urban-adaptation-generic-response .col-md-6:first-of-type table a:hover {
+.subsection-urban-adaptation-generic-response #content .col-md-6:first-of-type table a:hover {
     color: #12617d !important;
 }
 
-.subsection-urban-adaptation .row .col-md-12:first-of-type table a:hover{
+.subsection-urban-adaptation #content .row .col-md-12:first-of-type table a:hover{
     color: #12617d !important;
 }
