@@ -2504,7 +2504,7 @@ def tweak_site(site):
     cplpage.setLayout('@@cities-listing')
 
     # content page
-    contentpage = site['content']
+    contentpage = site['metadata']
     contentpage.setLayout('@@redirect_to_search_page')
 
     # transnational regions page
@@ -2518,6 +2518,19 @@ def tweak_site(site):
     tools.edit(title=u'Tools')
     toolsgeneral = tools['general']
     toolsgeneral.edit(title=u'General')
+
+    urbanadapt = site['tools']['urban-adaptation']
+    introduction = urbanadapt['introduction']
+    urbanadapt.edit(title=u'Urban Adaptation Menu')
+    introduction.edit(title=u'Introduction')
+
+    adaptinfo = site['adaptation-information']
+    adaptinfogeneral = adaptinfo['general']
+    adaptinfo.edit(title=u'Adaptation Information')
+    adaptinfogeneral.edit(title=u'General')
+
+    urbanast = site['tools']['urban-ast']
+    urbanast.edit(title=u'Urban adaptation support tool')
 
 
 def get_plone_site():
