@@ -1235,7 +1235,7 @@ def import_template_ace_layout_4(site, layout, structure):
         'Challenge': 'The Challenge',
         'Objective': "Project objectives",
         'Methodology': "Methodology",
-        'Results': 'Results',
+        'Results': 'Expected results',
         'ProjectPartners': 'Project partners',
         'Deliverables': 'Deliverables',
     }
@@ -2514,23 +2514,22 @@ def tweak_site(site):
     trans_reg_page.setLayout('@@transnational-regions-view')
 
     # fix pages title
-    tools = site['tools']
-    tools.edit(title=u'Tools')
-    toolsgeneral = tools['general']
-    toolsgeneral.edit(title=u'General')
 
-    urbanadapt = site['tools']['urban-adaptation']
-    introduction = urbanadapt['introduction']
-    urbanadapt.edit(title=u'Urban Adaptation Menu')
-    introduction.edit(title=u'Introduction')
+    titles = [
+        ('project', 'Projects'),
+        ('tools', 'Tools'),
+        ('tools/general', 'General'),
+        ('tools/urban-ast', 'Urban adaptation support tool'),
+        ('tools/urban-ast', 'Urban adaptation support tool'),
+        ('tools/urban-adaptation', 'Urban Adaptation Menu'),
+        ('tools/urban-adaptation/introduction', 'Introduction'),
+        ('adaptation-information', 'Adaptation Information'),
+        ('adaptation-information/general', 'General'),
+    ]
 
-    adaptinfo = site['adaptation-information']
-    adaptinfogeneral = adaptinfo['general']
-    adaptinfo.edit(title=u'Adaptation Information')
-    adaptinfogeneral.edit(title=u'General')
-
-    urbanast = site['tools']['urban-ast']
-    urbanast.edit(title=u'Urban adaptation support tool')
+    for path, title in titles:
+        obj = site.restrictedTraverse(path)
+        obj.edit(title=title)
 
 
 def get_plone_site():
