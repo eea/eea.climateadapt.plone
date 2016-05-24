@@ -840,27 +840,6 @@ def import_city_profiles(site):
     return imported
 
 
-# possible templates are
-# 1_2_1_columns         - done
-# 1_2_columns_i         - TODO as custom page
-# 1_2_columns_ii        - done
-# 1_column              - done
-# 2_columns_i           - done
-# 2_columns_ii          - these need to be manually created
-# 2_columns_iii         - done
-# ace_layout_1          - is not needed?
-# ace_layout_2          - done
-# ace_layout_3          - done
-# ace_layout_4          - done
-# ace_layout_5          - done
-# ace_layout_col_1_2    - done
-# ast                   - done using urban_ast
-# faq                   - done
-# frontpage             - TODO as a custom page
-# transnationalregion   - done
-# urban_ast             - done with TODOs
-
-
 @log_call
 def import_template_help(site, layout, structure):
     main_title = structure.pop('name')
@@ -1044,6 +1023,7 @@ def import_template_ace_layout_2(site, layout, structure):
         # /vulnerability-assessment => same as above
         return
 
+    #import pdb; pdb.set_trace()
     assert(len(structure) == 5)
     assert(len(structure['column-1']) == 1)
     assert(len(structure['column-2']) == 1)
@@ -1235,7 +1215,7 @@ def import_template_ace_layout_4(site, layout, structure):
         'Challenge': 'The Challenge',
         'Objective': "Project objectives",
         'Methodology': "Methodology",
-        'Results': 'Results',
+        'Results': 'Expected results',
         'ProjectPartners': 'Project partners',
         'Deliverables': 'Deliverables',
     }
@@ -2514,23 +2494,22 @@ def tweak_site(site):
     trans_reg_page.setLayout('@@transnational-regions-view')
 
     # fix pages title
-    tools = site['tools']
-    tools.edit(title=u'Tools')
-    toolsgeneral = tools['general']
-    toolsgeneral.edit(title=u'General')
 
-    urbanadapt = site['tools']['urban-adaptation']
-    introduction = urbanadapt['introduction']
-    urbanadapt.edit(title=u'Urban Adaptation Menu')
-    introduction.edit(title=u'Introduction')
+    titles = [
+        ('project', 'Projects'),
+        ('tools', 'Tools'),
+        ('tools/general', 'General'),
+        ('tools/urban-ast', 'Urban adaptation support tool'),
+        ('tools/urban-ast', 'Urban adaptation support tool'),
+        ('tools/urban-adaptation', 'Urban Adaptation Menu'),
+        ('tools/urban-adaptation/introduction', 'Introduction'),
+        ('adaptation-information', 'Adaptation Information'),
+        ('adaptation-information/general', 'General'),
+    ]
 
-    adaptinfo = site['adaptation-information']
-    adaptinfogeneral = adaptinfo['general']
-    adaptinfo.edit(title=u'Adaptation Information')
-    adaptinfogeneral.edit(title=u'General')
-
-    urbanast = site['tools']['urban-ast']
-    urbanast.edit(title=u'Urban adaptation support tool')
+    for path, title in titles:
+        obj = site.restrictedTraverse(path)
+        obj.edit(title=title)
 
 
 def get_plone_site():

@@ -8,6 +8,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
 from eea.climateadapt import MessageFactory as _
+from eea.climateadapt.vocabulary import _datatypes
 from eea.climateadapt.vocabulary import aceitem_types
 from plone.directives import form
 from urllib import urlencode
@@ -32,6 +33,14 @@ class ISearchAceContentTile(IPersistentCoverTile):
         title=_(u'Search Text'),
         required=False,
         default=u"",
+    )
+
+    search_type = List(
+        title=_(u"Aceitem type"),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.search_types_vocabulary",
+        )
     )
 
     element_type = List(
@@ -63,6 +72,12 @@ class ISearchAceContentTile(IPersistentCoverTile):
                          vocabulary="eea.climateadapt.ace_countries"
                      )
                      )
+
+    nr_items = Int(
+        title=_(u"Nr of items to show"),
+        required=True,
+        default=5,
+    )
 
 
 class AceTileMixin(object):
@@ -105,7 +120,7 @@ class AceTileMixin(object):
         for setting_name, index_name in map.items():
             setting = self.data.get(setting_name, '')
             if setting:
-                if index_name in keyword_indexes:
+                if index_name in keyword_indexes and len(setting) > 1:
                     query[index_name] = {'query': setting, 'operator': 'or'}
                 else:
                     query[index_name] = setting
@@ -182,6 +197,21 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
 
         result = []
 
+        _ace_types = dict(_datatypes)
+
+        search_type = self.data.get('search_type')
+        #import pdb; pdb.set_trace()
+        if search_type:
+            search_type = search_type[0]
+            query = self.build_query()
+            count = self.data.get('nr_items', 5)
+            brains = self.catalog.searchResults(**query)
+            url = self.build_url(base, query, {})
+            print "url", url
+            result.append((_ace_types[search_type], len(brains), url, brains[:count]))
+
+            return result
+
         # TODO: sync the links here to the index names and to the faceted indexes
         query = self.build_query()
 
@@ -202,20 +232,6 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
 
 
 class IRelevantAceContentItemsTile(ISearchAceContentTile):
-
-    search_type = List(
-        title=_(u"Aceitem type"),
-        required=False,
-        value_type=Choice(
-            vocabulary="eea.climateadapt.search_types_vocabulary",
-        )
-    )
-
-    nr_items = Int(
-        title=_(u"Nr of items to show"),
-        required=True,
-        default=5,
-    )
 
     show_share_btn = Bool(
         title=_(u"Show the share button"),

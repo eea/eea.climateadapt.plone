@@ -876,6 +876,17 @@ ul#ast-menu, #ast-menu ul {
     padding: 0px;
     vertical-align: middle;
 }
+
+#content .aceitem-search-tile-listing ul li {
+    padding:0.3em;
+    background-color: #e9efc9;
+    border: 1px solid #758816;
+}
+#content .aceitem-search-tile-listing ul li a:before {
+    content: "";
+    /* content: "\226b"; */
+}
+
 #content .aceitem-relevant-tile .tile-footer {
     padding-top: 0.7em;
 }
