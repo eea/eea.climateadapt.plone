@@ -11,6 +11,11 @@
         expression="" id="http://code.jquery.com/jquery-migrate-1.2.1.js" inline="False"
         />
 
+    <javascript authenticated="0" bundle="default" cacheable="True"
+        compression="none" conditionalcomment="" cookable="False" enabled="on"
+        expression="" id="form_tabbing.js" inline="False"
+        />
+
     <javascript bundle="deprecated" enabled="False" cacheable="True"
         id="++resource++plone.app.jquery.js" expression=""/>
 
