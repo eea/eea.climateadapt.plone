@@ -10,13 +10,6 @@
 
     <browser:page
         for="*"
-        name="-"
-        class=".CityRedirector"
-        permission="zope.Public"
-        />
-
-    <browser:page
-        for="*"
         name="iterate_control"
         class=".IterateControl"
         permission="zope2.View"
@@ -64,23 +57,6 @@
         template="pt/no_title_cover_view.pt"
         permission="zope2.View"
         />
-
-    <browser:page
-        name="view"
-        for="eea.climateadapt.city_profile.ICityProfile"
-        template="pt/city_profile.pt"
-        class="eea.climateadapt.browser.cityprofile.CityProfileView"
-        permission="zope.Public"
-        />
-
-    <browser:page
-        name="view"
-        for="eea.climateadapt.city_profile.ICityProfileStaging"
-        class="eea.climateadapt.browser.cityprofile.CityProfileView"
-        template="pt/city_profile.pt"
-        permission="zope2.View"
-        />
-
 
     <!-- <browser:page -->
     <!--     name="view" -->
@@ -224,22 +200,6 @@
         class=".misc.AdaptationStrategyView"
         for="*"
         name="adaptation-strategies"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        class=".misc.CitiesProfilesView"
-        for="*"
-        name="cities-listing"
-        template="pt/cities_listings.pt"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        class=".city_administrator.CityAdminView"
-        for="*"
-        name="city-profile-admin"
-        template="pt/city_admin.pt"
         permission="zope2.View"
         />
 

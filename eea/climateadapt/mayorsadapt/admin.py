@@ -1,12 +1,9 @@
-import os
-from zope.interface import Interface
-from zope.interface import implements
 from Products.Five.browser import BrowserView
-from eea.climateadapt.city_profile import TOKENID
 from eea.climateadapt.city_profile import generate_secret
 from eea.climateadapt.city_profile import send_token_mail
 from zope.annotation.interfaces import IAnnotations
-from zope.globalrequest import getRequest
+from zope.interface import Interface
+from zope.interface import implements
 
 
 class ICityAdminView (Interface):
@@ -31,7 +28,8 @@ class CityAdminView (BrowserView):
                 for b in self.context.portal_catalog.searchResults(id=[cityid.lower()]):
                     cityobject = b.getObject()
                     newtokenid = generate_secret()
-                    IAnnotations(cityobject)['eea.climateadapt.cityprofile_secret'] = newtokenid
+                    annot = IAnnotations(cityobject)
+                    annot['eea.climateadapt.cityprofile_secret'] = newtokenid
                     send_token_mail(cityobject)
         else:
             cat = self.context.portal_catalog
@@ -42,3 +40,4 @@ class CityAdminView (BrowserView):
             self.res = [brain.getObject() for brain in cat.searchResults(**q)]
 
             return self.index()
+

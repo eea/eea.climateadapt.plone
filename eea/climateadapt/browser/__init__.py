@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from AccessControl import getSecurityManager
-from Products.CMFCore.permissions import ModifyPortalContent
+#from Products.CMFCore.permissions import ModifyPortalContent
 from Products.Five.browser import BrowserView
 from collective.cover.browser.cover import Standard
 from eea.climateadapt.interfaces import IClimateAdaptContent
@@ -12,7 +12,6 @@ from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 from plone.app.iterate.permissions import CheckinPermission
 from plone.app.iterate.permissions import CheckoutPermission
 from zExceptions import NotFound
-from zope.publisher.browser import BrowserPage
 import json
 import logging
 
@@ -667,15 +666,6 @@ class CoverNoTitleView(Standard):
         return self.index()
 
 
-class CityRedirector(BrowserPage):
-    """ A traverser view registered /-/ that redirects to the new /city-profile/ folder
-    """
-
-    def publishTraverse(self, request, name):
-        city = self.context['city-profile'][name]
-        return request.response.redirect(city.absolute_url())
-
-
 class IterateControl(Control):
     """
     """
@@ -693,7 +683,7 @@ class IterateControl(Control):
 
         if allowed:
 
-            policy = ICheckinCheckoutPolicy(context, None)
+            policy = ICheckinCheckoutPolicy(self.context, None)
             if policy is None:
                 return False
 

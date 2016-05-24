@@ -3,11 +3,14 @@ from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from plone.api.content import get_state
 from plone.api.content import transition
+from plone.app.contenttypes.browser.folder import FolderView
 from plone.app.iterate import PloneMessageFactory as _
 from plone.app.iterate.interfaces import CheckoutException
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 from plone.app.iterate.interfaces import IWCContainerLocator
 from zope.component import getMultiAdapter, getAdapters
+from zope.interface import Interface, implements
+from zope.publisher.browser import BrowserPage
 
 
 class CityProfileEditController(BrowserView):
@@ -112,3 +115,22 @@ class CityProfileEditController(BrowserView):
             return self.request.response.redirect(url)
 
         raise ValueError ('unknown state')
+
+
+class CityRedirector(BrowserPage):
+    """ A traverser view registered /-/ that redirects to the new /city-profile/ folder
+    """
+
+    def publishTraverse(self, request, name):
+        city = self.context['city-profile'][name]
+        return request.response.redirect(city.absolute_url())
+
+
+class ICitiesProfilesView(Interface):
+    """ City Profiles Interface """
+
+
+class CitiesProfilesView(FolderView):
+    """ Custom view for  city-profiles"""
+
+    implements(ICitiesProfilesView)

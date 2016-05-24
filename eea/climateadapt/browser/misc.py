@@ -1,8 +1,6 @@
-import os
 from zope.interface import Interface
 from zope.interface import implements
 from Products.Five.browser import BrowserView
-from plone.app.contenttypes.browser.folder import FolderView
 
 
 class ITransRegionView (Interface):
@@ -15,10 +13,6 @@ class IMapViewerView (Interface):
 
 class ICountriesView (Interface):
     """ Countries Interface """
-
-
-class ICitiesProfilesView(Interface):
-    """ City Profiles Interface """
 
 
 class IAdaptationStrategy (Interface):
@@ -44,12 +38,6 @@ class CountriesView (BrowserView):
     """ Custom view for http://climate-adapt.eea.europa.eu/countries """
 
     implements(ICountriesView)
-
-
-class CitiesProfilesView(FolderView):
-    """ Custom view for  city-profiles"""
-
-    implements(ICitiesProfilesView)
 
 
 class AdaptationStrategyView (BrowserView):

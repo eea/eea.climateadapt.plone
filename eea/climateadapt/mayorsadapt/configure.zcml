@@ -8,6 +8,46 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="eea.climateadapt">
 
+
+    TODO: is this needed?
+    <plone:behavior
+        title="CityProfile Staging"
+        description="Enable override of staging behavior for CityProfiles"
+        provides="eea.climateadapt.city_profile.ICityProfileStaging"
+        for="eea.climateadapt.city_profile.ICityProfile"
+        />
+
+    <browser:page
+        for="*"
+        name="-"
+        class=".views.CityRedirector"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        class=".views.CitiesProfilesView"
+        for="*"
+        name="cities-listing"
+        template="pt/cities_listings.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="view"
+        for="eea.climateadapt.city_profile.ICityProfile"
+        template="pt/city_profile.pt"
+        class="eea.climateadapt.browser.cityprofile.CityProfileView"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        name="view"
+        for="eea.climateadapt.city_profile.ICityProfileStaging"
+        class="eea.climateadapt.browser.cityprofile.CityProfileView"
+        template="pt/city_profile.pt"
+        permission="zope2.View"
+        />
+
     <browser:page
         for="*"
         name="cptk"
@@ -39,47 +79,13 @@
         />
 
     <browser:page
-        class=".mayoradapt.B_M_Climate_Impacts"
+        class=".admin.CityAdminView"
         for="*"
-        name="B_M_Climate_Impacts"
-        permission="zope2.View"
+        name="city-profile-admin"
+        template="pt/city_admin.pt"
+        permission="cmf.ManagePortal"
         />
 
-    <browser:page
-        class=".mayoradapt.A_M_Country"
-        for="*"
-        name="A_M_Country"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        class=".mayoradapt.B_M_Sector"
-        for="*"
-        name="B_M_Sector"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        class=".mayoradapt.C_M_Stage_Of_The_Implementation_Cycle"
-        for="*"
-        name="C_M_Stage_Of_The_Implementation_Cycle"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        class=".mayoradapt.CitiesLoad"
-        for="*"
-        name="CitiesLoad"
-        permission="zope2.View"
-        />
-
-
-    <plone:behavior
-        title="CityProfile Staging"
-        description="Enable override of staging behavior for CityProfiles"
-        provides="eea.climateadapt.city_profile.ICityProfileStaging"
-        for="eea.climateadapt.city_profile.ICityProfile"
-        />
 
     <!-- <adapter factory=".staging.CityProfileBehaviorAssignable" /> -->
 
@@ -139,5 +145,42 @@ TODO: re-enable after import
     <!--   handler="eea.climateadapt.city_profile.handle_city_added" -->
     <!-- /> -->
 
+    Pages with vocabularies used in the mayorsadaptloads.js
+
+    <browser:page
+        class=".mayoradapt.B_M_Climate_Impacts"
+        for="*"
+        name="B_M_Climate_Impacts"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        class=".mayoradapt.A_M_Country"
+        for="*"
+        name="A_M_Country"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        class=".mayoradapt.B_M_Sector"
+        for="*"
+        name="B_M_Sector"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        class=".mayoradapt.C_M_Stage_Of_The_Implementation_Cycle"
+        for="*"
+        name="C_M_Stage_Of_The_Implementation_Cycle"
+        permission="zope2.View"
+        />
+
+    TODO: change the name of this view
+    <browser:page
+        class=".mayoradapt.CitiesLoad"
+        for="*"
+        name="CitiesLoad"
+        permission="zope2.View"
+        />
 
 </configure>
