@@ -22,7 +22,6 @@ class SearchBoxViewlet(BaseSearchViewlet):
 class PathBarViewlet(BasePathBarViewlet):
     """ Override to hide the breadcrumbs on the frontpage
     """
-
     render = ViewPageTemplateFile('pt/breadcrumbs.pt')
 
     def render(self):
@@ -35,7 +34,6 @@ class PathBarViewlet(BasePathBarViewlet):
     def update(self):
         portal_state = getMultiAdapter((self.context, self.request),
                                             name=u'plone_portal_state')
-
         self.navigation_root_url = portal_state.navigation_root_url()
 
         self.is_rtl = portal_state.is_rtl()
@@ -43,3 +41,6 @@ class PathBarViewlet(BasePathBarViewlet):
         breadcrumbs_view = getMultiAdapter((self.context, self.request),
                                            name='breadcrumbs_view')
         self.breadcrumbs = breadcrumbs_view.breadcrumbs()
+        self.br_exists = True
+        if self.context.id == 'frontpage':
+            self.br_exists = False

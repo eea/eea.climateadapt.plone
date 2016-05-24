@@ -2504,7 +2504,7 @@ def tweak_site(site):
     cplpage.setLayout('@@cities-listing')
 
     # content page
-    contentpage = site['metadata']
+    contentpage = site['content']
     contentpage.setLayout('@@redirect_to_search_page')
 
     # transnational regions page
@@ -2512,6 +2512,12 @@ def tweak_site(site):
     alsoProvides(trans_reg_page, ITransRegioRoot)
     trans_reg_page.manage_changeProperties({'title': 'Transnational regions'})
     trans_reg_page.setLayout('@@transnational-regions-view')
+
+    # fix pages title
+    tools = site['tools']
+    tools.edit(title=u'Tools')
+    toolsgeneral = tools['general']
+    toolsgeneral.edit(title=u'General')
 
 
 def get_plone_site():

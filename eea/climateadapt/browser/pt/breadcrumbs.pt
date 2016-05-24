@@ -1,5 +1,5 @@
 <div id="portal-breadcrumbs"
-     i18n:domain="plone">
+     i18n:domain="plone" tal:condition="view/br_exists">
 
     <a i18n:translate="tabs_home" tal:attributes="href view/navigation_root_url">Home</a>
     <span tal:condition="view/breadcrumbs" class="breadcrumbSeparator">
