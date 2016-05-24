@@ -1870,3 +1870,47 @@ li.dropdown-submenu {
 .fp-tile-fixes h3 {
     margin-bottom: 0.4em;
 }
+
+.subsection-urban-adaptation #content .tools-nav-menu a:hover{
+    color: #12617d !important;
+}
+
+.subsection-urban-adaptation #content .menu-urban ul li a {
+    background: url('/++resource++eea.climateadapt/img/arrow.gif') 0% 50% no-repeat;
+    padding-left: 1em !important;
+}
+
+.subsection-urban-adaptation #content .menu-urban-sub {
+    margin-left: 0;
+}
+
+.subsection-urban-adaptation-climatic-threats-forest-fires #content table a:hover {
+    color: #12617d !important;
+}
+
+.subsection-urban-adaptation-climatic-threats-flooding #content table a:hover {
+    color: #12617d !important;
+}
+
+.subsection-urban-adaptation-climatic-threats-droughts #content table a:hover {
+    color: #12617d !important;
+}
+
+.subsection-urban-adaptation-generic-response .col-md-6 {
+    display: inherit;
+    width: auto;
+}
+
+.subsection-urban-adaptation-generic-response .col-md-6:first-of-type {
+    float: none;
+    position: relative;
+    z-index: 10;
+}
+
+.subsection-urban-adaptation-generic-response #content .col-md-6:first-of-type table a:hover {
+    color: #12617d !important;
+}
+
+.subsection-urban-adaptation #content .row .col-md-12:first-of-type table a:hover{
+    color: #12617d !important;
+}
