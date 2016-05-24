@@ -1,15 +1,6 @@
 from AccessControl import getSecurityManager
-from eea.climateadapt.city_profile import ICityProfile
-from eea.climateadapt.city_profile import ICityProfileStaging
-from plone.app.iterate.permissions import CheckinPermission
 from plone.app.iterate.browser.control import Control
-# from plone.app.stagingbehavior.browser.control import Control
-# from plone.app.stagingbehavior.interfaces import IStagingSupport
-from plone.behavior.interfaces import IBehaviorAssignable
-from plone.dexterity.behavior import DexterityBehaviorAssignable
-from plone.dexterity.schema import SCHEMA_CACHE
-from zope.component import adapter
-from zope.interface import implementer
+from plone.app.iterate.permissions import CheckinPermission
 
 
 class IterateControl(Control):
@@ -33,6 +24,15 @@ class IterateControl(Control):
         return allowed and checkPermission(CheckinPermission, self.context)
 
 
+# from eea.climateadapt.city_profile import ICityProfile
+# from eea.climateadapt.city_profile import ICityProfileStaging
+# from plone.behavior.interfaces import IBehaviorAssignable
+# from plone.dexterity.behavior import DexterityBehaviorAssignable
+# from plone.dexterity.schema import SCHEMA_CACHE
+# from zope.component import adapter
+# from zope.interface import implementer
+# from plone.app.stagingbehavior.browser.control import Control
+# from plone.app.stagingbehavior.interfaces import IStagingSupport
 # @implementer(IBehaviorAssignable)
 # @adapter(ICityProfile)
 # class CityProfileBehaviorAssignable(DexterityBehaviorAssignable):

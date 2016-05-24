@@ -33,7 +33,6 @@
   <element
      value="plone.app.referenceablebehavior.referenceable.IReferenceable"/>
   <element value="plone.app.relationfield.behavior.IRelatedItems"/>
-  <!-- <element value="plone.app.stagingbehavior.interfaces.IStagingSupport"/> -->
  </property>
  <property name="schema">collective.cover.content.ICover</property>
  <property

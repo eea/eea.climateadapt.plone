@@ -7,8 +7,6 @@ from plone.app.iterate import PloneMessageFactory as _
 from plone.app.iterate.interfaces import CheckoutException
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 from plone.app.iterate.interfaces import IWCContainerLocator
-#from plone.app.stagingbehavior.utils import get_baseline
-#from plone.app.stagingbehavior.utils import get_working_copy
 from zope.component import getMultiAdapter, getAdapters
 
 
@@ -31,6 +29,7 @@ class CityProfileEditController(BrowserView):
             return handler()
 
     def _get_working_copy(self):
+        # needed to function as override. TODO: check this statement
         return self.context
 
     def handle_submit(self):
@@ -55,7 +54,8 @@ class CityProfileEditController(BrowserView):
 
         # We want to redirect to a specific template, else we might
         # end up downloading a file
-        control = getMultiAdapter((context, self.request), name=u"iterate_control")
+        control = getMultiAdapter((context, self.request),
+                                  name=u"iterate_control")
         if not control.checkout_allowed():
             raise CheckoutException(u"Not allowed")
 
@@ -64,8 +64,10 @@ class CityProfileEditController(BrowserView):
             locator = [c['locator']
                        for c in containers if c['name'] == location][0]
         except IndexError:
-            IStatusMessage(self.request).addStatusMessage(_("Cannot find checkout location"), type='stop')
-            view_url = context.restrictedTraverse("@@plone_context_state").view_url()
+            IStatusMessage(self.request).addStatusMessage(
+                _("Cannot find checkout location"), type='stop')
+            view_url = context.restrictedTraverse(
+                "@@plone_context_state").view_url()
             self.request.response.redirect(view_url)
             return
 
@@ -75,16 +77,18 @@ class CityProfileEditController(BrowserView):
         # we do this for metadata update side affects which will update lock info
         context.reindexObject('review_state')
 
-        IStatusMessage(self.request).addStatusMessage(_("Check-out created"), type='info')
+        IStatusMessage(self.request).addStatusMessage(_("Check-out created"),
+                                                      type='info')
         #view_url = wc.restrictedTraverse("@@plone_context_state").view_url()
         return wc
 
     def handle_edit(self):
-        obj = get_working_copy(self.context)
+        policy = ICheckinCheckoutPolicy(self.context)
+        obj = policy.getWorkingCopy()
+        baseline = policy.getBaseline()
 
-        # TODO: use the stagingbehavior API to get the best object, in all cases
         print "WC: ", obj
-        print "Baseline: ", get_baseline(self.context)
+        print "Baseline: ", baseline
 
         if obj is None:
             obj = self.context

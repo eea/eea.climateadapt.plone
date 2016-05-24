@@ -1,13 +1,14 @@
-import tokenlib
-from tokenlib.errors import (ExpiredTokenError, InvalidSignatureError,
-                             MalformedTokenError)
 from eea.climateadapt.city_profile import TOKENID
 from eea.climateadapt.mayorsadapt.roleplugin import is_citymayor_visitor
 from plone.api.content import get_state
+from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 from plone.app.layout.viewlets import ViewletBase
-# from plone.app.stagingbehavior.utils import get_baseline, get_working_copy
+from tokenlib.errors import ExpiredTokenError
+from tokenlib.errors import InvalidSignatureError
+from tokenlib.errors import MalformedTokenError
 from zope.annotation.interfaces import IAnnotations
 from zope.globalrequest import getRequest
+import tokenlib
 
 
 class EditMenuViewlet(ViewletBase):
@@ -40,7 +41,16 @@ class EditMenuViewlet(ViewletBase):
         return self.current_state() == 'private'
 
     def has_working_copy(self):
-        return get_working_copy(self.context) is not None
+
+        context = self.context
+        policy = ICheckinCheckoutPolicy(context, None)
+
+        if policy is None:
+            return False
+
+        wc = policy.getWorkingCopy()
+        if wc is not None:
+            return True
 
 
 class ExpiredTokenViewlet(ViewletBase):
@@ -76,7 +86,8 @@ class ExpiredTokenViewlet(ViewletBase):
             return True
 
         try:
-            secret = IAnnotations(self.context)['eea.climateadapt.cityprofile_secret']
+            ann = IAnnotations(self.context)
+            secret = ann['eea.climateadapt.cityprofile_secret']
             tokenlib.parse_token(secret_token, secret=secret)
             self.check_url = True
             self.expire_value = False

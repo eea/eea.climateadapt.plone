@@ -74,7 +74,6 @@
         />
 
 
-
     <plone:behavior
         title="CityProfile Staging"
         description="Enable override of staging behavior for CityProfiles"
