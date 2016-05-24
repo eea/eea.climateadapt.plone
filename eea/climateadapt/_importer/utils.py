@@ -1033,6 +1033,17 @@ def make_iframe_embed_tile(cover, url):
         style='min-width:980px;min-height:700px' height='100%%'
         scrolling='no' src='%s'></iframe>""" % url
 
+    titles = ['Exposure', 'Sensitivity', 'Response capacity']
+    if cover.title in titles:
+        embed = """<iframe class='ace-iframe' frameborder='0'
+            style='min-width:780px;min-height:800px' height='100%%'
+            scrolling='no' src='%s'></iframe>""" % url
+    elif cover.title in ['My adaptation', 'Generic response']:
+        embed = """<iframe class='ace-iframe' frameborder='0'
+            style='min-width:940px;min-height:800px' height='100%%'
+            scrolling='no' src='%s'></iframe>""" % url
+    print cover.title
+
     ITileDataManager(tile).set({'title': '', 'embed': embed})
 
     return {
