@@ -82,6 +82,10 @@
     <div tal:content="python: ', '.join(sorted(set(context.keywords or [])))"></div>
   </metal:macro>
 
+  <metal:macro define-macro="comments">
+    <div tal:content="python: view.context.comments"></div>
+  </metal:macro>
+
   <metal:macro define-macro="files">
     <tal:def define="files view/get_files">
       <div tal:condition="files" class="sidebar_files">
