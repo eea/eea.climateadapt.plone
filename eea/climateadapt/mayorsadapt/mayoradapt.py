@@ -37,6 +37,7 @@ class TokenMailView (BrowserView):
         self.cityurl = city.virtual_url_path().encode(encoding='UTF-8')
         self.city_full_url = self.context.portal_url() + \
             '/cptk/' + self.secret + '/' + self.cityurl
+        print self.city_full_url
         self.text_plain_dictionary = {'receivername': self.receivername,
                                       'cityurl':  self.city_full_url}
         self.MAIL_TEXT_TEMPLATE = MAIL_TEXT_TEMPLATE % \

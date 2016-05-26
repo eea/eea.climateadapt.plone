@@ -33,6 +33,7 @@ def _new_isTop(self):
     if is_citymayor_visitor(self.REQUEST):
         return True
     return _old_isTop(self)
+
 PluggableAuthService._isTop = _new_isTop
 
 

@@ -2477,9 +2477,15 @@ def tweak_site(site):
     mapage.setLayout('@@mayors-adapt')
 
     # city-profile page
-    cplpage = site['city-profile']
-    alsoProvides(cplpage, ICitiesListingsRoot)
-    cplpage.setLayout('@@cities-listing')
+    cities = site['city-profile']
+    alsoProvides(cities, ICitiesListingsRoot)
+    cities.setLayout('@@cities-listing')
+
+    cities.immediately_addable_types = ['eea.climateadapt.city_profile']
+    cities.locally_allowed_types = ['eea.climateadapt.city_profile']
+
+    cities._Add_portal_content_Permission = ('CityMayor',)
+    cities._p_changed = True
 
     # content page
     contentpage = site['metadata']

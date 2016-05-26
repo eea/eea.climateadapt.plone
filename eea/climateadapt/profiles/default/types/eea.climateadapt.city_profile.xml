@@ -28,10 +28,11 @@
     <property name="schema_policy">dexterity</property>
 
     <property name="behaviors">
-        <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
         <element value="plone.app.content.interfaces.INameFromTitle"/>
         <element value="eea.climateadapt.city_profile.ICityProfileStaging"/>
         <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />
+        <element value="plone.app.lockingbehavior.behaviors.ILocking"/>
+        <!-- <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/> -->
     </property>
 
     <alias from="(Default)" to="(dynamic view)"/>
