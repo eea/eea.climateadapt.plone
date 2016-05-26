@@ -54,3 +54,6 @@
   </property>
  </object>
 </object>
+<object name="site_properties" meta_type="Plone Property Sheet">
+  <property name="mark_special_links" type="string">true</property>
+</object>
