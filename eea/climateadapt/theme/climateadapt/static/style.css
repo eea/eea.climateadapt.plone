@@ -1896,6 +1896,10 @@ li.dropdown-submenu {
     color: #12617d !important;
 }
 
+.subsection-urban-adaptation-climatic-threats-droughts #content table {
+    line-height: 1.8em !important;
+}
+
 .subsection-urban-adaptation-generic-response .col-md-6 {
     display: inherit;
     width: auto;
