@@ -462,7 +462,6 @@ div.position-0 { margin-left: -100%; }
 
 #content .readmore-overflow {
     overflow: hidden;
-    margin-bottom: 1em;
 }
 
 #content .edit-tool-custom-click .read-more-acc a:hover {
@@ -906,8 +905,7 @@ a.bluebutton:visited {
 }
 
 .share-your-info-ace-button {
-    padding-top: 2em;
-    padding-bottom: 1em;
+    padding-top:2em;
     text-align: right;
 }
 .tile-footer button {
@@ -1911,6 +1909,10 @@ li.dropdown-submenu {
     float: none;
     position: relative;
     z-index: 10;
+}
+
+.subsection-urban-adaptation .menu-urban .menu-link {
+    color: #fff !important;
 }
 
 .subsection-urban-adaptation-generic-response #content .col-md-6:first-of-type table a:hover {
