@@ -15,7 +15,7 @@ from z3c.form.widget import FieldWidget
 from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import implements
-from zope.schema import Bool, Choice, Int, List, Text, TextLine, Tuple, URI, Date
+from zope.schema import Bool, Choice, Int, List, Text, TextLine, Tuple, URI
 
 
 class IAceItem(form.Schema, IImageScaleTraversable):
@@ -116,12 +116,10 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                         vocabulary="eea.climateadapt.aceitems_elements",),
                     )
 
-    year = Date(title=_(u"Year"),
-                required=False,
-                description=u"Date of publication/release/update of the item",
-                missing_value=(None),
-                default=(None),
-                )
+    year = Int(title=_(u"Year"),
+               description=u"Date of publication/release/update of the item",
+               required=False
+               )
 
     # -----------[ "reference_information" fields ]------------------
 

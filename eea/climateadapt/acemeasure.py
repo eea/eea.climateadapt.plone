@@ -17,7 +17,7 @@ from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import implementer, implements
 from zope.schema import (URI, Bool, Choice, Decimal, Int, List, Text, TextLine,
-                         Tuple, Date)
+                         Tuple)
 
 
 class IAceMeasure(form.Schema, IImageScaleTraversable):
@@ -140,13 +140,10 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                        vocabulary="eea.climateadapt.aceitems_sectors",),
                    )
 
-    year = Date(title=_(u"Year"),
-                required=False,
-                description=u"Date of publication/release/update of the item"
-                            u"related source",
-                missing_value=(None),
-                default=(None),
-                )
+    year = Int(title=_(u"Year"),
+               description=u"Date of publication/release/update of the items "
+                           u"related source",
+               required=False,)
 
     # -----------[ "additional_details" fields ]------------------
 
