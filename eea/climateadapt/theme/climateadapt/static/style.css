@@ -462,6 +462,7 @@ div.position-0 { margin-left: -100%; }
 
 #content .readmore-overflow {
     overflow: hidden;
+    margin-bottom: 1em;
 }
 
 #content .edit-tool-custom-click .read-more-acc a:hover {
@@ -905,7 +906,8 @@ a.bluebutton:visited {
 }
 
 .share-your-info-ace-button {
-    padding-top:2em;
+    padding-top: 2em;
+    padding-bottom: 1em;
     text-align: right;
 }
 .tile-footer button {
