@@ -171,7 +171,7 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
     #wrapper {max-width: 100%;}
     #logo {min-width:140px;}
 
-    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {color: #101010;}
+    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {color: #ffff;}
 
     /*Columns*/
     #portal-column-one,
@@ -1923,4 +1923,8 @@ table.dataTable thead .sorting_asc {
 table.dataTable thead .sorting_desc {
     padding-left: 1.5em;
     background: url("cca/img/sort_desc.png") no-repeat center left;
+}
+
+.subsection-urban-adaptation-introduction table tr:nth-of-type(3) td:nth-of-type(3) p:nth-of-type(3)  {
+    padding-left: 0;
 }

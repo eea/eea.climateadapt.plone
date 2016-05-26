@@ -537,7 +537,6 @@ class Navbar(BrowserView):
                 -Guidelines for project managers  /guidelines-for-project-managers
                 -Time series tool                 /tools/time-series-tool
                 -Additional Tools                 /additional-tools
-                -General                          /general
 
         Network                 /network
             Network - introduction  /network
