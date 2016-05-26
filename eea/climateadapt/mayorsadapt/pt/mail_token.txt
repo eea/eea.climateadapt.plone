@@ -1,7 +1,5 @@
 Dear %(receivername)s:
 
-Placeholder text
-
 You can edit your city profile by using
 
 %(cityurl)s

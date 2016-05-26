@@ -40,20 +40,21 @@ class CityProfileEditController(BrowserView):
         url = '{0}/'.format(self.context.absolute_url())
         return self.request.response.redirect(url)
 
-    def _containers(self):
-        """Get a list of potential containers"""
-        # NOTE: this code is copied from plone.app.iterate.browser.checkout
-        context = aq_inner(self.context)
-        for name, locator in getAdapters((context,), IWCContainerLocator):
-            if locator.available:
-                yield dict(name=name, locator=locator)
+    # def _containers(self):
+    #     """Get a list of potential containers"""
+    #     # NOTE: this code is copied from plone.app.iterate.browser.checkout
+    #     #yield self.context.aq_parent
+    #     context = aq_inner(self.context)
+    #     for name, locator in getAdapters((context,), IWCContainerLocator):
+    #         if locator.available:
+    #             yield dict(name=name, locator=locator)
 
     def _checkout(self):
         # NOTE: this code is copied from plone.app.iterate.browser.checkout
         context = aq_inner(self.context)
 
-        containers = list(self._containers())
-        location = containers[0]['name']
+        # containers = list(self._containers())
+        location = self.context.aq_parent   #containers[0]['name']
 
         # We want to redirect to a specific template, else we might
         # end up downloading a file
@@ -62,20 +63,20 @@ class CityProfileEditController(BrowserView):
         if not control.checkout_allowed():
             raise CheckoutException(u"Not allowed")
 
-        locator = None
-        try:
-            locator = [c['locator']
-                       for c in containers if c['name'] == location][0]
-        except IndexError:
-            IStatusMessage(self.request).addStatusMessage(
-                _("Cannot find checkout location"), type='stop')
-            view_url = context.restrictedTraverse(
-                "@@plone_context_state").view_url()
-            self.request.response.redirect(view_url)
-            return
+        # locator = None
+        # try:
+        #     locator = [c['locator']
+        #                for c in containers if c['name'] == location][0]
+        # except IndexError:
+        #     IStatusMessage(self.request).addStatusMessage(
+        #         _("Cannot find checkout location"), type='stop')
+        #     view_url = context.restrictedTraverse(
+        #         "@@plone_context_state").view_url()
+        #     self.request.response.redirect(view_url)
+        #     return
 
         policy = ICheckinCheckoutPolicy(context)
-        wc = policy.checkout(locator())
+        wc = policy.checkout(location)
 
         # we do this for metadata update side affects which will update lock info
         context.reindexObject('review_state')
