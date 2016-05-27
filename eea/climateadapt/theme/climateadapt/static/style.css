@@ -1727,6 +1727,23 @@ li.dropdown-submenu {
     max-width: none;
 }
 
+.section-help #content .col-md-3 {
+    width: 25%;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.section-help #content .col-md-3:nth-of-type(3) table {
+    width: 100%;
+}
+
+.section-help #content .col-md-3:nth-of-type(3) table img{
+    width: 100% !important;
+}
+
+.section-help h2 {
+    font-size: 1.5em;
+}
 /* time series tool */
 
 .subsection-time-series-tool #content {
