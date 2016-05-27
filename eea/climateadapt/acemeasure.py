@@ -71,7 +71,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.fieldset('reference_information',
                   label=u'Reference information',
-                  fields=['websites', 'source']
+                  fields=['contact', 'websites', 'source']
                   )
 
 # richtext fields in database:
@@ -190,13 +190,19 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     # -----------[ "reference_information" fields ]------------------
 
+    contact = RichText(
+        title=_(u"Contact"), required=True, default=u"",
+        description=_(u"Contact of reference (institution and persons) who is "
+                      u"directly involved in the development and "
+                      u"implementation of the case. (500 char limit) "))
+
     websites = Tuple(
         title=_(u"Website"),
         description=_(u"List the Website where the option can be found"
                       u" or is described. Note: may refer to the original "
                       u"document describing a measure and does not have to "
                       u"refer back to the project e.g. collected measures."),
-        required=False,
+        required=True,
         value_type=URI(),
         missing_value=(),
     )
@@ -247,8 +253,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     directives.omitted(IAddForm, 'spatial_layer')
     directives.omitted(IEditForm, 'spatial_values')
     directives.omitted(IAddForm, 'spatial_values')
-    directives.omitted(IEditForm, 'contact')
-    directives.omitted(IAddForm, 'contact')
     directives.omitted(IEditForm, 'elements')
     directives.omitted(IAddForm, 'elements')
     directives.omitted(IEditForm, 'measure_type')
@@ -290,8 +294,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           required=False,
                           value_type=Choice(
                               vocabulary="eea.climateadapt.ace_countries"))
-
-    contact = RichText(title=_(u"Contact"), required=False, default=u"")
 
     # TODO: startdate, enddate, publicationdate have no values in DB
     # TODO: specialtagging is not used in any view jsp, only in add and edit
