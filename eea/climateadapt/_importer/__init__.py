@@ -2505,8 +2505,11 @@ def tweak_site(site):
         ('tools/general', 'General'),
         ('tools/urban-ast', 'Urban adaptation support tool'),
         ('tools/urban-ast', 'Urban adaptation support tool'),
-        ('tools/urban-adaptation', 'Urban Adaptation Menu'),
+        ('tools/urban-adaptation', 'Urban vulnerability Map book'),
         ('tools/urban-adaptation/introduction', 'Introduction'),
+        ('tools/urban-adaptation/climatic-threats', 'Climatic threats'),
+        ('tools/urban-adaptation/generic-response', 'Generic response'),
+        ('tools/urban-adaptation/overview', 'Overview'),
         ('adaptation-information', 'Adaptation Information'),
         ('adaptation-information/general', 'General'),
     ]

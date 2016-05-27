@@ -83,7 +83,12 @@
   </metal:macro>
 
   <metal:macro define-macro="comments">
-    <div tal:content="python: view.context.comments"></div>
+      <div tal:define="portal_state context/@@plone_portal_state">
+          <div tal:condition="python: portal_state.anonymous() != True">
+              <h5 style="text-decoration: underline">Comments:</h5>
+              <div tal:content="python: view.context.comments"></div>
+          </div>
+      </div>
   </metal:macro>
 
   <metal:macro define-macro="files">

@@ -76,7 +76,7 @@
                         <div metal:fill-slot="ace-left-slot">
                           <div class="case-studies-top">
                             <div class="case-studies-review-image-wrapper" tal:condition="primephoto">
-                              <img tal:condition="primephoto" tal:replace="structure primephoto/@@images/image/large"/>
+                              <img tal:condition="primephoto" tal:replace="structure primephoto/@@images/image/preview"/>
                             </div>
                             <div class="case-studies-top-title">
                               <h1 tal:content="python: context.title">Title here</h1>
@@ -208,7 +208,6 @@
                             <em style="text-decoration: underline">Source</em>
                             <div tal:content="structure context/source/output"></div>
 
-                            <em style="text-decoration: underline">Comments</em>
                             <div metal:use-macro="context/ace_macros/macros/comments"></div>
                           </div>
                         </div>
