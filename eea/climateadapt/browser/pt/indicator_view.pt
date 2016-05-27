@@ -29,6 +29,8 @@
               <h5>Link to metadata:</h5>
               <div tal:content="structure python: view.w['metadata'].render()">Metadata</div>
             </div>
+
+            <div metal:use-macro="context/ace_macros/macros/comments"></div>
           </div>
 
           <div class="aceitem-right" metal:fill-slot="ace-right-slot">
@@ -58,4 +60,3 @@
 
   </body>
 </html>
-

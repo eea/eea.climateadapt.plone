@@ -105,7 +105,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     keywords = Tuple(
         title=_(u"Keywords"),
-        description=_(u"Describe and tag this item with relevant keywords."),
+        description=_(u"Describe and tag this item with relevant keywords. "
+                      u"Press Enter after writing your keyword."),
         required=False,
         value_type=TextLine(),
         missing_value=(None),

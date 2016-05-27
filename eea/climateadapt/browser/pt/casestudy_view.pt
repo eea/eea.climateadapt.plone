@@ -76,7 +76,7 @@
                         <div metal:fill-slot="ace-left-slot">
                           <div class="case-studies-top">
                             <div class="case-studies-review-image-wrapper" tal:condition="primephoto">
-                              <img tal:condition="primephoto" tal:replace="structure primephoto/@@images/image/large"/>
+                              <img tal:condition="primephoto" tal:replace="structure primephoto/@@images/image/preview"/>
                             </div>
                             <div class="case-studies-top-title">
                               <h1 tal:content="python: context.title">Title here</h1>
@@ -193,10 +193,10 @@
                             <div tal:condition="context/legal_aspects | nothing" tal:content="structure python: view.w['legal_aspects'].render()"></div>
 
                             <em id="implementation_time_anchor" style="text-decoration: underline">Implementation Time</em>
-                            <div tal:condition="context/implementation_time | nothing" tal:content="structure context/implementation_time"></div>
+                            <div tal:condition="context/implementation_time | nothing" tal:content="structure context/implementation_time/output"></div>
 
                             <em id="life_time_anchor" style="text-decoration: underline">Life Time</em>
-                            <div tal:condition="context/lifetime | nothing" tal:content="structure context/lifetime"></div>
+                            <div tal:condition="context/lifetime | nothing" tal:content="structure context/lifetime/output"></div>
 
                             <h4>Reference Information</h4>
                             <em style="text-decoration: underline">Contact</em>
@@ -206,7 +206,9 @@
                             <div metal:use-macro="context/ace_macros/macros/websites"></div>
 
                             <em style="text-decoration: underline">Source</em>
-                            <div tal:content="structure context/source"></div>
+                            <div tal:content="structure context/source/output"></div>
+
+                            <div metal:use-macro="context/ace_macros/macros/comments"></div>
                           </div>
                         </div>
 

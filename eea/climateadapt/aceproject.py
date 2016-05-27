@@ -96,7 +96,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('keywords')
     keywords = Tuple(
         title=_(u"Keywords"),
-        description=_(u"Provide Keywords related to the project."),
+        description=_(u"Provide Keywords related to the project. "
+                      u"Press Enter after writing your keyword."),
         required=False,
         value_type=TextLine(),
         missing_value=(None),

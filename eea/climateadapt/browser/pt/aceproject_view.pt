@@ -34,6 +34,8 @@
             <h5>Websites:</h5>
             <metal:macro use-macro="context/ace_macros/macros/websites" />
 
+            <div metal:use-macro="context/ace_macros/macros/comments"></div>
+
           </div>
 
           <div metal:fill-slot="ace-right-slot">

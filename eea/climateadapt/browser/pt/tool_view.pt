@@ -27,6 +27,8 @@
 
             <h5>Source:</h5>
             <tal:block content="structure python: view.w['source'].render()"/>
+
+            <div metal:use-macro="context/ace_macros/macros/comments"></div>
           </div>
 
           <div metal:fill-slot="ace-right-slot">

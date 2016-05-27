@@ -82,6 +82,15 @@
     <div tal:content="python: ', '.join(sorted(set(context.keywords or [])))"></div>
   </metal:macro>
 
+  <metal:macro define-macro="comments">
+      <div tal:define="portal_state context/@@plone_portal_state">
+          <div tal:condition="python: portal_state.anonymous() != True">
+              <h5 style="text-decoration: underline">Comments:</h5>
+              <div tal:content="python: view.context.comments"></div>
+          </div>
+      </div>
+  </metal:macro>
+
   <metal:macro define-macro="files">
     <tal:def define="files view/get_files">
       <div tal:condition="files" class="sidebar_files">

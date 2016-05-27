@@ -71,6 +71,7 @@
             <h5 id="source" style="text-decoration: underline" class="Adaptation-option-selector">Source:</h5>
             <div tal:content="structure python: view.w['source'].render()">Source here</div>
 
+            <div metal:use-macro="context/ace_macros/macros/comments"></div>
           </div>
 
           <div metal:fill-slot="ace-right-slot">
