@@ -179,3 +179,12 @@ alsoProvides(special_tags_vocabulary, IVocabularyFactory)
 
 keywords_vocabulary = catalog_based_vocabulary('keywords')
 alsoProvides(keywords_vocabulary, IVocabularyFactory)
+
+_governance = [
+    ("TRANS", "Transnational region (stretching across country borders)"),
+    ("NAT", "National"),
+    ("SNA", "Sub National Regions"),
+    ("LC", "Local (e.g. city or municipal level)"),
+]
+governance_level = generic_vocabulary(_governance)
+alsoProvides(governance_level, IVocabularyFactory)

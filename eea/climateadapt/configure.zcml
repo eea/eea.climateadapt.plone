@@ -72,6 +72,7 @@
     <utility name="eea.climateadapt.aceitems_climateimpacts" component=".vocabulary.aceitem_climateimpacts_vocabulary"/>
     <utility name="eea.climateadapt.aceitems_featured" component=".vocabulary.aceitem_featured_vocabulary"/>
     <utility name="eea.climateadapt.aceitems_relevance" component=".vocabulary.aceitem_relevance_vocabulary"/>
+    <utility name="eea.climateadapt.aceitems_governancelevel" component=".vocabulary.governance_level"/>
     <utility name="eea.climateadapt.acemeasure_implementationtype" component=".vocabulary.acemeasure_implementationtype_vocabulary"/>
     <utility name="eea.climateadapt.ace_countries" component=".vocabulary.ace_countries_vocabulary"/>
     <utility name="eea.climateadapt.acemeasure_types" component=".vocabulary.acemeasure_types"/>

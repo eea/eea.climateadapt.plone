@@ -1930,3 +1930,12 @@ table.dataTable thead .sorting_desc {
 .subsection-urban-adaptation-introduction table tr:nth-of-type(3) td:nth-of-type(3) p:nth-of-type(3)  {
     padding-left: 0;
 }
+
+/* governance_level checkbox widget editing */
+#form-widgets-governance_level label {
+    display: block;
+}
+#form-widgets-governance_level input[type="checkbox"] {
+    float: left; 
+    margin-right: 0.3em;
+}

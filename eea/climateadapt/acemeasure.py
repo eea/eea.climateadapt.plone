@@ -7,7 +7,6 @@ from plone.app.widgets.dx import AjaxSelectWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.directives import dexterity, form
-from plone.formwidget.autocomplete import AutocompleteFieldWidget
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
@@ -16,23 +15,16 @@ from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import implementer, implements
-from zope.schema import (URI, Bool, Choice, Decimal, Int, List, Text, TextLine,
-                         Tuple)
+from zope.schema import List, Text, TextLine, Tuple
+from zope.schema import URI, Bool, Choice, Decimal, Int
+
+#from plone.formwidget.autocomplete import AutocompleteFieldWidget
 
 
 class IAceMeasure(form.Schema, IImageScaleTraversable):
     """
     Defines content-type schema for Ace Measure
     """
-
-    # def updateWidgets(self):
-    #     super(IAceMeasure, self).updateWidgets()
-    #     import pdb; pdb.set_trace()
-    #     self.fieldset['default'].label = 'bla bla'
-    #
-    # model.fieldset(u"default", label="Default", fields=['title'])
-
-    # updateWidgets(form)
 
     dexteritytextindexer.searchable('title')
     dexteritytextindexer.searchable('long_description')
@@ -81,19 +73,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                   fields=['websites', 'source']
                   )
 
-    # TODO:
-    # form.fieldset('documents',
-    #     label=u'Documents',
-    #     fields=[]
-    # )
-
-    # TODO:
-    # form.fieldset('reference_information',
-    #     label=u'Documents',
-    #     fields=[]
-    # )
-
-
 # richtext fields in database:
 # set(['legalaspects', 'implementationtime', 'description', 'source',
 # 'objectives', 'stakeholderparticipation', 'admincomment', 'comments',
@@ -102,7 +81,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.fieldset('geographic_information',
                   label=u'Geographic Information',
-                  fields=['geochars', 'comments']
+                  fields=['governance_level', 'geochars', 'comments']
                   )
 
     # -----------[ "default" fields ]------------------
@@ -224,7 +203,15 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     # -----------[ "geographic_information" fields ]------------------
 
-    # governance ???
+    form.widget(governance_level="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    governance_level = List(
+        title=_(u"Governance Level"),
+        description=_(u"Select the one governance level that relates to this "
+                      u"adaptation option"),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_governancelevel",),
+    )
 
     form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
     geochars = Text(
@@ -268,6 +255,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     directives.omitted(IAddForm, 'adaptationoptions')
     directives.omitted(IEditForm, 'relevance')
     directives.omitted(IAddForm, 'relevance')
+
     directives.omitted(IEditForm, 'primephoto')
     directives.omitted(IAddForm, 'primephoto')
     directives.omitted(IEditForm, 'supphotos')
@@ -354,8 +342,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     )
     # approved is done by workflow
 
-directives.widget('primephoto', AutocompleteFieldWidget)
-directives.widget('supphotos', AutocompleteFieldWidget)
+# directives.widget('primephoto', AutocompleteFieldWidget)
+# directives.widget('supphotos', AutocompleteFieldWidget)
 
 
 class ICaseStudy(IAceMeasure):
@@ -454,4 +442,3 @@ def KeywordsFieldWidget(field, request):
 #     geochars = Column(Text)
 #     category = Column(String(50))
 #     lockdate = Column(DateTime)
-#
