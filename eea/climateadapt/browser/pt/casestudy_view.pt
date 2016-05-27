@@ -184,19 +184,19 @@
                             <div tal:condition="context/stakeholder_participation | nothing" tal:content="structure python: view.w['stakeholder_participation'].render()"></div>
 
                             <em id="success_limitations_anchor" style="text-decoration: underline">Success and Limiting Factors</em>
-                            <div tal:condition="context/succes_limitations | nothing" tal:content="structure python: view.w['success_limitations'].render()"></div>
+                            <div tal:content="structure python: view.w['success_limitations'].render()"></div>
 
                             <em id="cost_benefit_anchor" style="text-decoration: underline">Costs and Benefits</em>
-                            <div tal:condition="context/cost_benefit | nothing" tal:content="structure python: view.w['cost_benefit'].render()"></div>
+                            <div tal:content="structure python: view.w['cost_benefit'].render()"></div>
 
                             <em id="legal_aspects" style="text-decoration: underline">Legal Aspects</em>
-                            <div tal:condition="context/legal_aspects | nothing" tal:content="structure python: view.w['legal_aspects'].render()"></div>
+                            <div tal:content="structure python: view.w['legal_aspects'].render()"></div>
 
                             <em id="implementation_time_anchor" style="text-decoration: underline">Implementation Time</em>
-                            <div tal:condition="context/implementation_time | nothing" tal:content="structure context/implementation_time/output"></div>
+                            <div tal:content="structure context/implementation_time/output"></div>
 
                             <em id="life_time_anchor" style="text-decoration: underline">Life Time</em>
-                            <div tal:condition="context/lifetime | nothing" tal:content="structure context/lifetime/output"></div>
+                            <div tal:content="structure context/lifetime/output"></div>
 
                             <h4>Reference Information</h4>
                             <em style="text-decoration: underline">Contact</em>
