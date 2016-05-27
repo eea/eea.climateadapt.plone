@@ -178,7 +178,7 @@ class SingleImporterView(BrowserView):
                     obj.absolute_url(), acemeasure.measureid)
             else:
                 obj = import_adaptationoption(acemeasure,
-                                              site['adaptationoption'])
+                                              site['metadata']['adaptation-options'])
                 imported.append(obj)
                 print "Imported Adaptation Option {0} from id {1}".format(
                     obj.absolute_url(), acemeasure.measureid)

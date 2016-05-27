@@ -245,6 +245,7 @@ def import_adaptationoption(data, location):
         #websites=s2l(data.website),
         websites=s2l(r2t(html_unescape(data.website))),
         governance_level=s2l(data.geos_),
+        category=s2l(data.category),
         creation_date=creationdate,
         effective_date=approvaldate,
         _publish=data.controlstatus == 1,

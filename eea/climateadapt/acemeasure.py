@@ -63,7 +63,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.fieldset('additional_details',
                   label=u'Additional Details',
-                  fields=['stakeholder_participation', 'success_limitations',
+                  fields=['category', 'stakeholder_participation',
+                          'success_limitations',
                           'cost_benefit', 'legal_aspects',
                           'implementation_time', 'lifetime']
                   )
@@ -127,11 +128,19 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     # -----------[ "additional_details" fields ]------------------
 
-    # category ???
+    form.widget(category="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    category = List(
+        title=_(u"Category"),
+        description=_(u"Select one or more categories of adaptation options: "
+                      u"The 3 options are:"),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_category",),
+    )
 
     dexteritytextindexer.searchable('stakeholder_participation')
     stakeholder_participation = RichText(
-        title=_(u"Stakeholder participation"), required=True,
+        title=_(u"Stakeholder participation"), required=False,
         default=u"",
         description=_(u"Describe the Information about actors involved, the "
                       u"form of participation and the participation process. "

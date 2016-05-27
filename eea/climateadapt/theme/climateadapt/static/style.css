@@ -1963,6 +1963,15 @@ table.dataTable thead .sorting_desc {
     display: block;
 }
 #form-widgets-governance_level input[type="checkbox"] {
-    float: left; 
+    float: left;
+    margin-right: 0.3em;
+}
+
+/* category checkbox widget editing */
+#form-widgets-category label {
+    display: block;
+}
+#form-widgets-category input[type="checkbox"] {
+    float: left;
     margin-right: 0.3em;
 }

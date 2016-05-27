@@ -34,10 +34,13 @@
             </ul>
 
             <h4>Adaptation Details</h4>
-            <p id="ao_category">
+            <p></p>
+            <div id="ao_category">
               <em class="adapt-option-em" style="text-decoration: underline">Category</em>
-              <tal:block content="context/category | nothing"/>
-            </p>
+              <div tal:repeat="categ context/category">
+                  <tal:block content="categ | nothing"/>
+              </div>
+          </div>
             <p id="stakeholder_participation">
               <em class="adapt-option-em" style="text-decoration: underline">Stakeholder participation</em>
               <tal:block content="structure python: view.w['stakeholder_participation'].render()"/>
