@@ -1222,6 +1222,10 @@ def import_template_ace_layout_4(site, layout, structure):
     partners = []
     for line in structure['column-1'][0][1]['content']:
         if line[0] == 'image':
+            if line[2] == None:
+                logger.info("Skipping empty layout %s", layout.friendlyurl)
+                # these are empty projects
+                return
             main['image'] = line[2][0]
             continue
         if line[0] == 'dynamic' and line[1] == 'Subtitle':
