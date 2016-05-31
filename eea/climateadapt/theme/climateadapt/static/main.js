@@ -1,5 +1,18 @@
 (function($){
 	$(document).ready(function(){
+		setTimeout(function(){
+			$("#form-widgets-websites-buttons-add").on('click', function(event){
+				window.location.hash = "form-widgets-websites-buttons-add";
+				window.location.hash = "form-widgets-websites-buttons-add";
+			});
+		},100);
+
+		setTimeout(function(){
+			$("#form-widgets-websites-buttons-remove").on('click', function(event){
+				window.location.hash = "form-widgets-websites-buttons-remove";
+				window.location.hash = "form-widgets-websites-buttons-remove";
+			});
+		},100);
 
         $(".acecontent_filtering_tile select").on('change', function(event){
             $(this).parents('form').submit();
