@@ -414,7 +414,8 @@ class AceViewApi(object):
         return tpl.format(u", ".join([TRANSLATED[x] for x in value]))
 
     def _render_geochar_biotrans(self, value):
-        return u" ".join(TRANSLATED.get(x, x) for x in value)
+        tpl = u"<p>Biographical regions: <br/>{0}</p>"
+        return tpl.format(u", ".join([TRANSLATED.get(x, x) for x in value]))
 
     def _render_geochar_countries(self, value):
         tpl = u"<p>Countries:<br/>{0}</p>"

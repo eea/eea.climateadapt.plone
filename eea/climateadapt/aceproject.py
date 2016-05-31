@@ -7,6 +7,7 @@ from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
+from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
@@ -140,6 +141,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     )
 
     # -----------[ "reference_information" fields ]------------------
+    directives.widget('websites', TextLinesWidget)
     websites = Tuple(
         title=_(u"Website"),
         description=_(u"List the Website where the item can be found or is "
