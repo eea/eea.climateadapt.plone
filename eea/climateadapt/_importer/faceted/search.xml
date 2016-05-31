@@ -41,8 +41,8 @@
    <property name="maxitems"></property>
    <property name="sortreversed"></property>
    <property name="default"></property>
-   <property name="enable_criterion_label">Exclude sectors as a filter criteria</property>
-   <property name="disable_criterion_label">Any of the sectors selected below</property>
+   <property name="disable_criterion_label">Exclude sectors as a filter criteria</property>
+   <property name="enable_criterion_label">Any of the sectors selected below</property>
   </criterion>
 
   <criterion name="climateimpacts">
