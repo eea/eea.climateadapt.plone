@@ -154,6 +154,19 @@ ace_countries_dict = dict(ace_countries)
 ace_countries_vocabulary = generic_vocabulary(ace_countries)
 alsoProvides(ace_countries_vocabulary, IVocabularyFactory)
 
+faceted_countries = ['AL', 'AT', 'BE', 'BG', 'BA', 'HR', 'CY', 'CZ', 'DK',
+                     'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT',
+                     'KZ', 'LV', 'LI', 'LT', 'LU', 'MT', 'ME', 'NL', 'NO',
+                     'PL', 'PT', 'RO', 'RS', 'SK', 'SI', 'ES', 'SE', 'CH',
+                     'TR', 'GB']
+faceted_countries = [(x.alpha2, x.name) for x in pycountry.countries
+                     if x.alpha2 in faceted_countries]
+faceted_countries.append(('FYROM', 'F. Y. R. O. Macedonia'))
+faceted_countries_dict = dict(faceted_countries)
+
+faceted_countries_vocabulary = generic_vocabulary(faceted_countries)
+alsoProvides(faceted_countries_vocabulary, IVocabularyFactory)
+
 _measure_types = (("A", "Case study"), ("M", "Adaptation option"))
 acemeasure_types = generic_vocabulary(_measure_types)
 alsoProvides(acemeasure_types, IVocabularyFactory)
