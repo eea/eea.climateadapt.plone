@@ -16,7 +16,7 @@ from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import implementer, implements
 from zope.schema import List, Text, TextLine, Tuple
-from zope.schema import URI, Bool, Choice, Decimal, Int
+from zope.schema import URI, Bool, Choice, Int
 
 #from plone.formwidget.autocomplete import AutocompleteFieldWidget
 
@@ -361,10 +361,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 class ICaseStudy(IAceMeasure):
     """ Case study
     """
-    # location - a clickable map, not provided if is "Adaptation option" type
-
-    location_lat = Decimal(title=_(u"Location latitude"), required=True)
-    location_lon = Decimal(title=_(u"Location longitude"), required=True)
 
 
 class IAdaptationOption(IAceMeasure):

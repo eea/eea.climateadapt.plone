@@ -1,4 +1,3 @@
-# from eea.climateadapt.interfaces import IContentRoot
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFCore.utils import getToolByName
 from collections import defaultdict
@@ -67,6 +66,7 @@ from eea.facetednavigation.layout.interfaces import IFacetedLayout
 from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from persistent.list import PersistentList
 from plone.api import portal
+from plone.formwidget.geolocation.geolocation import Geolocation
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from pytz import timezone
 from pytz import utc
@@ -299,8 +299,10 @@ def import_casestudy(data, location):
         keywords=s2l(r2t(data.keywords), separators=[';', ',']),
         legal_aspects=t2r(data.legalaspects),
         lifetime=t2r(data.lifetime),
-        location_lat=to_decimal(data.lat),
-        location_lon=to_decimal(data.lon),
+        # location_lat=to_decimal(data.lat),
+        # location_lon=to_decimal(data.lon),
+        geolocation=Geolocation(latitude=to_decimal(data.lat),
+                                longitude=to_decimal(data.lon)),
         long_description=t2r(data.description),
         measure_type=data.mao_type,
         objectives=t2r(data.objectives),
