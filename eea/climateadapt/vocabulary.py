@@ -17,7 +17,7 @@ def generic_vocabulary(_terms):
     elif _terms and isinstance(_terms[0], basestring):
         _terms = [(x, x) for x in _terms]
 
-    _terms = sorted(_terms, lambda x: x[0])
+    _terms = sorted(_terms, key=lambda x: x[0])
 
     def factory(context):
         return SimpleVocabulary([
