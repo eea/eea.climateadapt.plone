@@ -9,6 +9,7 @@ from plone.autoform import directives
 from plone.directives import dexterity, form
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.namedfile.interfaces import IImageScaleTraversable
+from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
@@ -196,6 +197,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                       u"directly involved in the development and "
                       u"implementation of the case. (500 char limit) "))
 
+    directives.widget('websites', TextLinesWidget)
     websites = Tuple(
         title=_(u"Website"),
         description=_(u"List the Website where the option can be found"
