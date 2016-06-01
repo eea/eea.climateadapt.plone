@@ -14,6 +14,18 @@
 			});
 		},100);
 
+		$('.tile-container').each(function(){
+			var span = $(this).find('.tile-type-name');
+			var editbtn = $(this).children('a');
+			var div = $(this).children('div');
+			if (span.text() == 'Relevant AceContent') {
+				span.detach().appendTo(div);
+			}
+			if (editbtn.text() == 'Edit') {
+				editbtn.detach().appendTo(div);
+			}
+		});
+
         $(".acecontent_filtering_tile select").on('change', function(event){
             $(this).parents('form').submit();
         });

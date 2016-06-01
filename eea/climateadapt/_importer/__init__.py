@@ -180,7 +180,6 @@ def import_aceproject(data, location):
         climate_impacts=s2l(data.climateimpacts),
         funding=data.funding,
         duration=data.duration,
-        year=int(data.year or '0'),
         specialtagging=data.specialtagging,
         geochars=data.geochars,
         spatial_layer=s2l(data.spatiallayer),
