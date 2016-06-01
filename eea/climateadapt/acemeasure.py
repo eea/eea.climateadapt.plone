@@ -4,7 +4,7 @@ from eea.climateadapt.interfaces import IClimateAdaptContent
 from plone.app.contenttypes.interfaces import IImage
 from plone.app.textfield import RichText
 from plone.app.widgets.dx import AjaxSelectWidget
-from plone.app.widgets.dx import RelatedItemsFieldWidget
+from plone.app.widgets.dx import RelatedItemsWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.directives import dexterity, form
@@ -361,17 +361,25 @@ class ICaseStudy(IAceMeasure):
     """ Case study
     """
 
-    form.widget(adaptationoptions=RelatedItemsFieldWidget)
+    #form.widget(adaptationoptions=RelatedItemsFieldWidget)
     adaptationoptions = RelationList(
         title=u"Adaptation Options",
         default=[],
         value_type=RelationChoice(
             title=_(u"Related"),
-            source=ObjPathSourceBinder(
-                object_provides=IAdaptationOption.__identifier__)
+            source=ObjPathSourceBinder()
+                #object_provides=IAdaptationOption.__identifier__)
         ),
         required=False,
     )
+
+
+@adapter(getSpecification(ICaseStudy['adaptationoptions']), IWidgetsLayer)
+@implementer(IFieldWidget)
+def AdaptationOptionsFieldWidget(field, request):
+    widget = FieldWidget(field, RelatedItemsWidget(request))
+    widget.vocabulary = 'plone.app.vocabularies.Catalog'
+    return widget
 
 
 class CaseStudy(dexterity.Container):
