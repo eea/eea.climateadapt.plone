@@ -145,13 +145,13 @@
         </div>
 
         <div class="right-area">
-            <div>
+            <div tal:on-error="nothing">
                   <span id='longitude'
                       style="display:none"
-                      tal:content="context/city_longitude" />
+                      tal:content="context/geolocation/longitude" />
                   <span id='latitude'
                       style="display:none"
-                      tal:content="context/city_latitude" />
+                      tal:content="context/geolocation/latitude" />
                   <div id="map" style="height: 200px; width:100%; display:inline-block"></div>
                   <script>
                     function initMap() {
@@ -171,8 +171,7 @@
                       });
                     }
                   </script>
-                  <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
-                  async defer></script>
+                  <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async="async" defer="defer"></script>
             </div>
 
             <div>
@@ -225,10 +224,11 @@
                 <div tal:content="structure python: view.w['covenant_of_mayors_signatory'].render()" />
             </div>
 
-            <div>
-                <h3>Last Update</h3>
-                <div tal:content="python: view.formated_date(context.modified())" />
-            </div>
+            <!-- <div> -->
+            <!--     <h3>Last Update</h3> -->
+            <!--     <div tal:content="python:dir(view)" /> -->
+            <!--     <div tal:content="python:view" /> -->
+            <!-- </div> -->
         </div>
 
 

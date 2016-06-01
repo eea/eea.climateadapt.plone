@@ -191,18 +191,18 @@
             </field>
         </fieldset>
 
-        <fieldset name="city_additional_data" label="City additional data">
-            <field name="city_latitude" type="zope.schema.TextLine">
-                <description/>
-                <required>False</required>
-                <title>City latitude</title>
-            </field>
-            <field name="city_longitude" type="zope.schema.TextLine">
-                <description/>
-                <required>False</required>
-                <title>City longitude</title>
-            </field>
-        </fieldset>
+        <!-- <fieldset name="city_additional_data" label="City additional data"> -->
+        <!--     <field name="city_latitude" type="zope.schema.TextLine"> -->
+        <!--         <description/> -->
+        <!--         <required>False</required> -->
+        <!--         <title>City latitude</title> -->
+        <!--     </field> -->
+        <!--     <field name="city_longitude" type="zope.schema.TextLine"> -->
+        <!--         <description/> -->
+        <!--         <required>False</required> -->
+        <!--         <title>City longitude</title> -->
+        <!--     </field> -->
+        <!-- </fieldset> -->
 
         <fieldset name="adaptation_elements" label="Adaptation elements">
             <field name="which_elements_are_mentioned_in_your_city_profile" type="zope.schema.Set">
@@ -212,12 +212,12 @@
                     <vocabulary>eea.climateadapt.elements_mentioned_your_cp</vocabulary>
                 </value_type>
             </field>
-            <field name="searchable" type="zope.schema.Bool">
-                <description/>
-                <required>False</required>
-                <title>Searchable</title>
-                <form:widget type="z3c.form.browser.radio.RadioFieldWidget"/>
-            </field>
+            <!-- <field name="searchable" type="zope.schema.Bool"> -->
+            <!--     <description/> -->
+            <!--     <required>False</required> -->
+            <!--     <title>Searchable</title> -->
+            <!--     <form:widget type="z3c.form.browser.radio.RadioFieldWidget"/> -->
+            <!-- </field> -->
         </fieldset>
 
     </schema>

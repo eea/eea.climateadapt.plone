@@ -813,6 +813,11 @@ def import_city_profile(container, journal):
 
     _publish = journal.status == 0 # is this a published city?
 
+    geoloc_lat = mapped_data.pop('city_latitude')
+    geoloc_long = mapped_data.pop('city_longitude')
+    geoloc = Geolocation(latitude=geoloc_lat, longitude=geoloc_long)
+    mapped_data['geolocation'] = geoloc
+
     city = createAndPublishContentInContainer(
         container,
         'eea.climateadapt.city_profile',
