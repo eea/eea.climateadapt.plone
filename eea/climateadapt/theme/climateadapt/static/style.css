@@ -1850,7 +1850,7 @@ li.dropdown-submenu {
     float: left;
 }
 .aceitem-filter-relevant-tile h2 {
-    margin-top:2em;
+    margin-top:0;
 }
 
 .aceitem-filter-relevant-tile form {
@@ -2013,11 +2013,13 @@ table.dataTable thead .sorting_desc {
 #form-widgets-climate_impacts input[type="checkbox"] {
     float: left;
     margin-right: 0.3em;
+
 /* tile composing fixes */
 .edit-tile-link {
     /* position: relative !important;; */
     color: Red !important;
 }
+
 .template-compose .tile-container {
     /* position: initial; */
 }
