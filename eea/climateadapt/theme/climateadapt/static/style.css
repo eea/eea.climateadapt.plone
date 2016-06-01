@@ -952,6 +952,11 @@ a.bluebutton:active {
     float: right;
     border: solid 1px #aab91d;
 }
+
+#content #contact-link .bluebutton {
+    float: none;
+}
+
 #content a.double-arrow {
     background: url("cca/img/arrow_blue.png") no-repeat left center;
     padding-left: 14px;
