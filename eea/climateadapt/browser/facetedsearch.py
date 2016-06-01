@@ -15,27 +15,42 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 # TODO: should use the FACETED_SECTIONS LIST
 SEARCH_TYPES = [
+    ("CONTENT", "Content in Climate-ADAPT"),
     ("DOCUMENT", "Publication and Reports"),
     ("INFORMATIONSOURCE", "Information Portals"),
     ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
     ("INDICATOR", "Indicators"),
-    ("GUIDANCE","Guidance"),
+    ("GUIDANCE", "Guidance"),
     ("TOOL", "Tools"),
-    ("RESEARCHPROJECT","Research and knowledge projects"),
-    ("MEASURE","Adaptation options"),
+    ("RESEARCHPROJECT", "Research and knowledge projects"),
+    ("MEASURE", "Adaptation options"),
     ("ACTION", "Case studies"),
     ("MAYORSADAPT", "Mayors Adapt city profiles"),
     ("ORGANISATION", "Organisations"),
 ]
 
+FACETED_SEARCH_TYPES = [
+    ("MEASURE", "Adaptation options"),
+    ("ACTION", "Case studies"),
+    ("GUIDANCE", "Guidance"),
+    ("INDICATOR", "Indicators"),
+    ("INFORMATIONSOURCE", "Information Portals"),
+    ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
+    ("MAYORSADAPT", "Mayors Adapt city profiles"),
+    ("ORGANISATION", "Organisations"),
+    ("DOCUMENT", "Publication and Reports"),
+    ("RESEARCHPROJECT", "Research and knowledge projects"),
+    ("TOOL", "Tools"),
+]
 
-def search_types_vocabulary(context):
+
+def faceted_search_types_vocabulary(context):
 
     return SimpleVocabulary([
-        SimpleTerm(x[0], x[0], x[1]) for x in SEARCH_TYPES
+        SimpleTerm(x[0], x[0], x[1]) for x in FACETED_SEARCH_TYPES
     ])
 
-alsoProvides(search_types_vocabulary, IVocabularyFactory)
+alsoProvides(faceted_search_types_vocabulary, IVocabularyFactory)
 
 
 # FACETED_SECTIONS = [

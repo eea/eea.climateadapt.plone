@@ -84,7 +84,7 @@
    <property name="maxitems"></property>
    <property name="sortreversed"></property>
    <property name="default"></property>
-   <property name="disable_criterion_label">All of the elements selected below</property>
+   <property name="disable_criterion_label">Exclude elements as a filter criteria</property>
    <property name="enable_criterion_label">Any of the elements selected below</property>
   </criterion>
 

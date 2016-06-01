@@ -11,7 +11,7 @@
 
     <utility
         name="eea.climateadapt.faceted_search_types_vocabulary"
-        component=".facetedsearch.search_types_vocabulary" />
+        component=".facetedsearch.faceted_search_types_vocabulary" />
 
     <faceted:view
         name="faceted-climate-listing-view"
