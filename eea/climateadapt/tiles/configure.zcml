@@ -9,6 +9,9 @@
     i18n_domain="collective.cover"
     >
 
+    <adapter factory=".search_acecontent.impacts_no_value" name="noValueMessage" />
+    <adapter factory=".search_acecontent.sectors_no_value" name="noValueMessage" />
+
     <utility name="eea.climateadapt.element_types_vocabulary" component=".vocabulary.element_types_vocabulary"/>
     <utility name="eea.climateadapt.search_types_vocabulary" component=".vocabulary.search_types_vocabulary"/>
     <utility name="eea.climateadapt.special_tags_vocabulary" component=".vocabulary.special_tags_vocabulary"/>

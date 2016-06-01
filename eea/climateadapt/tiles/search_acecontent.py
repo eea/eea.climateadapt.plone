@@ -14,12 +14,10 @@ from plone.directives import form
 from urllib import urlencode
 from z3c.form.field import Fields
 from z3c.form.form import Form
+from z3c.form.widget import StaticWidgetAttribute
 from zope.component.hooks import getSite
 from zope.interface import implements
 from zope.schema import TextLine, Choice, List, Int, Bool
-
-
-# TODO: use an adaptor for the choice widgets to set the noValueMessage
 
 
 class ISearchAceContentTile(IPersistentCoverTile):
@@ -324,14 +322,6 @@ class IFilteringSchema(form.Schema):
         required=False
     )
 
-    # sector = List(
-    #     title=_(u"Sector"),
-    #     required=False,
-    #     value_type=Choice(
-    #         vocabulary="eea.climateadapt.aceitems_sectors",
-    #     )
-    # )
-
 
 class FilteringForm(Form):   #form.SchemaForm):
     """ Filtering form handling
@@ -356,6 +346,14 @@ class FilteringForm(Form):   #form.SchemaForm):
 
     def action(self):
         return self.context.absolute_url()
+
+
+impacts_no_value = StaticWidgetAttribute(u"All climate impacts",
+                                         view=FilteringForm,
+                                         field=IFilteringSchema['impact'])
+sectors_no_value = StaticWidgetAttribute(u"All adaptation sectors",
+                                         view=FilteringForm,
+                                         field=IFilteringSchema['sector'])
 
 
 class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin):

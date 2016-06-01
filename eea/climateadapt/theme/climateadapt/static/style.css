@@ -1988,6 +1988,7 @@ table.dataTable thead .sorting_desc {
     margin-right: 0.3em;
 }
 
+<<<<<<< Updated upstream
 /* sectors checkbox widget editing */
 #form-widgets-sectors label {
     display: block;
@@ -2013,4 +2014,13 @@ table.dataTable thead .sorting_desc {
 #form-widgets-climate_impacts input[type="checkbox"] {
     float: left;
     margin-right: 0.3em;
+=======
+/* tile composing fixes */
+.edit-tile-link {
+    /* position: relative !important;; */
+    color: Red !important;
+}
+.template-compose .tile-container {
+    /* position: initial; */
+>>>>>>> Stashed changes
 }
