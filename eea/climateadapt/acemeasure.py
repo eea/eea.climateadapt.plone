@@ -4,6 +4,7 @@ from eea.climateadapt.interfaces import IClimateAdaptContent
 from plone.app.contenttypes.interfaces import IImage
 from plone.app.textfield import RichText
 from plone.app.widgets.dx import AjaxSelectWidget
+from plone.app.widgets.dx import RelatedItemsFieldWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.directives import dexterity, form
@@ -18,8 +19,6 @@ from zope.component import adapter
 from zope.interface import implementer, implements
 from zope.schema import List, Text, TextLine, Tuple
 from zope.schema import URI, Bool, Choice, Int
-
-#from plone.formwidget.autocomplete import AutocompleteFieldWidget
 
 
 class IAceMeasure(form.Schema, IImageScaleTraversable):
@@ -59,7 +58,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['title', 'long_description', 'climate_impacts',
-                          'challenges', 'objectives', 'adaptationoptions',
+                          'challenges', 'objectives', #'adaptationoptions',
                           'solutions', 'relevance', 'keywords', 'sectors',
                           'year']
                   )
@@ -115,13 +114,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     objectives = RichText(
         title=_(u"Objectives"), required=True, default=None,
-    )
-
-    # form.widget(adaptationoptions="z3c.form.browser.checkbox.CheckBoxFieldWidget")
-    adaptationoptions = List(
-        title=_(u"Adaptation Options"),
-        required=True,
-        value_type=Int(),   # TODO:  leave it like that, until we figure it out
     )
 
     solutions = RichText(
@@ -359,18 +351,27 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     )
     # approved is done by workflow
 
-# directives.widget('primephoto', AutocompleteFieldWidget)
-# directives.widget('supphotos', AutocompleteFieldWidget)
+
+class IAdaptationOption(IAceMeasure):
+    """ Adaptation Option
+    """
 
 
 class ICaseStudy(IAceMeasure):
     """ Case study
     """
 
-
-class IAdaptationOption(IAceMeasure):
-    """ Adaptation Option
-    """
+    form.widget(adaptationoptions=RelatedItemsFieldWidget)
+    adaptationoptions = RelationList(
+        title=u"Adaptation Options",
+        default=[],
+        value_type=RelationChoice(
+            title=_(u"Related"),
+            source=ObjPathSourceBinder(
+                object_provides=IAdaptationOption.__identifier__)
+        ),
+        required=False,
+    )
 
 
 class CaseStudy(dexterity.Container):

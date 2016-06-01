@@ -169,7 +169,7 @@
 
                             <em id="adapt_options_anchor" style="text-decoration: underline">Adaptation Options Implemented In This Case</em>
                             <div tal:define="adaptations view/get_adaptation_options">
-                              <a tal:repeat="brain adaptations" tal:attributes="href brain/getURL" tal:content="brain/Title" style="text-decoration: underline">Link</a>
+                              <a tal:repeat="obj adaptations" tal:attributes="href obj/absolute_url" tal:content="obj/Title" style="text-decoration: underline">Link</a>
                             </div>
 
                             <em id="solutions_anchor" style="text-decoration: underline">Solutions</em>

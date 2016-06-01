@@ -200,6 +200,17 @@ def import_aceproject(data, location):
     return item
 
 
+def get_measure(id, context):
+    """ Returns the measure based on imported id
+    """
+    catalog = getToolByName(context, 'portal_catalog')
+    brains = catalog.searchResults(acemeasure_id=id)
+    if brains:
+        return brains[0].getObject()
+    else:
+        logger.warning("Couldn't find measure id %s", id)
+
+
 @log_call
 def import_adaptationoption(data, location):
 
@@ -214,7 +225,7 @@ def import_adaptationoption(data, location):
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.adaptationoption',
-        adaptationoptions=s2li(data.adaptationoptions),
+        #adaptationoptions=measures,
         challenges=t2r(data.challenges),
         climate_impacts=s2l(data.climateimpacts_),
         comments=data.comments,
@@ -263,6 +274,11 @@ def import_adaptationoption(data, location):
 @log_call
 def import_casestudy(data, location):
     intids = getUtility(IIntIds)
+
+    measure_ids = s2li(data.adaptationoptions)
+    measures = filter(None, [get_measure(x, location) for x in measure_ids])
+    measures = [RelationValue(intids.getId(m)) for m in measures]
+
     primephoto = None
     if data.primephoto:
         primephoto = get_repofile_by_id(location.aq_inner.aq_parent,
@@ -283,16 +299,15 @@ def import_casestudy(data, location):
     if approvaldate is not None:
         approvaldate = approvaldate.replace(tzinfo=ctz)
 
-    latitude = to_decimal(data.lat)
-    longitude = to_decimal(data.lon)
-    location = None
+    latitude, longitude = to_decimal(data.lat), to_decimal(data.lon)
+    geoloc = None
     if latitude and longitude:
-        location = Geolocation(latitude=latitude, longitude=longitude)
+        geoloc = Geolocation(latitude=latitude, longitude=longitude)
 
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.casestudy',
-        adaptationoptions=s2li(data.adaptationoptions),
+        adaptationoptions=measures,
         challenges=t2r(data.challenges),
         climate_impacts=s2l(data.climateimpacts_),
         comments=data.comments,
@@ -302,13 +317,10 @@ def import_casestudy(data, location):
         geochars=data.geochars,
         implementation_time=t2r(data.implementationtime),
         implementation_type=data.implementationtype,
-        # keywords=t2r(data.keywords),
         keywords=s2l(r2t(data.keywords), separators=[';', ',']),
         legal_aspects=t2r(data.legalaspects),
         lifetime=t2r(data.lifetime),
-        # location_lat=to_decimal(data.lat),
-        # location_lon=to_decimal(data.lon),
-        geolocation=location,
+        geolocation=geoloc,
         long_description=t2r(data.description),
         measure_type=data.mao_type,
         objectives=t2r(data.objectives),
@@ -2380,12 +2392,13 @@ def import_aceitems(session, site):
         import_aceproject(aceproject, get_default_location(site,
                                                            'RESEARCHPROJECT'))
 
-    for acemeasure in session.query(sql.AceMeasure):
-        if acemeasure.mao_type == 'A':
-            import_casestudy(acemeasure, get_default_location(site, 'ACTION'))
-        else:
-            import_adaptationoption(acemeasure, get_default_location(site,
-                                                                     'MEASURE'))
+    # first import the adaptation options, then the case studies
+    # because case studies have references to adaptation options
+    for acemeasure in session.query(sql.AceMeasure).filter(sql.AceMeasure.mao_type!='A'):
+        import_adaptationoption(acemeasure, get_default_location(site,
+                                                                    'MEASURE'))
+    for acemeasure in session.query(sql.AceMeasure).filter(sql.AceMeasure.mao_type=='A'):
+        import_casestudy(acemeasure, get_default_location(site, 'ACTION'))
 
 
 def run_importer(site=None):
