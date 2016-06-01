@@ -8,7 +8,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 import pycountry
 
 
-def generic_vocabulary(_terms):
+def generic_vocabulary(_terms, sort=True):
     """ Returns a zope vocabulary from a dict or a list
     """
 
@@ -17,7 +17,8 @@ def generic_vocabulary(_terms):
     elif _terms and isinstance(_terms[0], basestring):
         _terms = [(x, x) for x in _terms]
 
-    _terms = sorted(_terms, key=lambda x: x[0])
+    if sort:
+        _terms = sorted(_terms, key=lambda x: x[0])
 
     def factory(context):
         return SimpleVocabulary([
@@ -105,6 +106,16 @@ _elements = [
 aceitem_elements_vocabulary = generic_vocabulary(_elements)
 alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
 
+# Vocabulary for faceted search "Adaptation elements"
+fac_elements = [
+    ("OBSERVATIONS", "Observations and Scenarios"),
+    ("VULNERABILITY", "Vulnerability Assessment"),
+    ("MEASUREACTION", "Adaptation Measures and Actions"),
+    ("PLANSTRATEGY", "Adaptation Plans and Strategies"),
+    ("EU_POLICY", "Sector Policies"),
+]
+faceted_elements = generic_vocabulary(fac_elements, sort=False)
+alsoProvides(faceted_elements, IVocabularyFactory)
 
 _climateimpacts = [
     ("EXTREMETEMP", "Extreme Temperatures"),
