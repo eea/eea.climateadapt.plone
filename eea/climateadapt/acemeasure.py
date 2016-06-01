@@ -59,7 +59,9 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['title', 'long_description', 'climate_impacts',
-                          'keywords', 'sectors', 'year']
+                          'challenges', 'objectives', 'adaptationoptions',
+                          'solutions', 'relevance', 'keywords', 'sectors',
+                          'year']
                   )
 
     form.fieldset('additional_details',
@@ -91,11 +93,13 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     title = TextLine(title=_(u"Title"),
                      description=_(u"Item Name (250 character limit)"),
                      required=True)
+
     dexteritytextindexer.searchable('long_description')
     long_description = RichText(title=_(u"Description"),
                                 description=_(u"Brief Description:"),
                                 required=True,)
 
+    form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_(u"Climate impacts"),
         description=_(u"Select one or more climate change impact topics that "
@@ -103,6 +107,33 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         required=True,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_climateimpacts",),
+    )
+
+    challenges = RichText(
+        title=_(u"Challenges"), required=True, default=None,
+    )
+
+    objectives = RichText(
+        title=_(u"Objectives"), required=True, default=None,
+    )
+
+    # form.widget(adaptationoptions="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    adaptationoptions = List(
+        title=_(u"Adaptation Options"),
+        required=True,
+        value_type=Int(),   # TODO:  leave it like that, until we figure it out
+    )
+
+    solutions = RichText(
+        title=_(u"Solutions"), required=True, default=None,
+    )
+
+    form.widget(relevance="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    relevance = List(
+        title=_(u"Relevance"),
+        required=True,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_relevance",),
     )
 
     keywords = Tuple(
@@ -114,6 +145,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         missing_value=(None),
     )
 
+    form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(title=_(u"Sectors"),
                    description=_(u"Select one or more relevant sector policies"
                                  u" that this item relates to."),
@@ -249,8 +281,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     directives.omitted(IEditForm, 'implementation_type')
     directives.omitted(IAddForm, 'implementation_type')
-    directives.omitted(IEditForm, 'challenges')
-    directives.omitted(IAddForm, 'challenges')
     directives.omitted(IEditForm, 'spatial_layer')
     directives.omitted(IAddForm, 'spatial_layer')
     directives.omitted(IEditForm, 'spatial_values')
@@ -263,14 +293,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     directives.omitted(IAddForm, 'important')
     directives.omitted(IEditForm, 'rating')
     directives.omitted(IAddForm, 'rating')
-    directives.omitted(IEditForm, 'objectives')
-    directives.omitted(IAddForm, 'objectives')
-    directives.omitted(IEditForm, 'solutions')
-    directives.omitted(IAddForm, 'solutions')
-    directives.omitted(IEditForm, 'adaptationoptions')
-    directives.omitted(IAddForm, 'adaptationoptions')
-    directives.omitted(IEditForm, 'relevance')
-    directives.omitted(IAddForm, 'relevance')
 
     directives.omitted(IEditForm, 'primephoto')
     directives.omitted(IAddForm, 'primephoto')
@@ -284,9 +306,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         vocabulary="eea.climateadapt.acemeasure_implementationtype"
     )
 
-    challenges = RichText(
-        title=_(u"Challenges"), required=False, default=None,
-    )
 
     spatial_layer = TextLine(
         title=_(u"Spatial Layer"), required=False, default=u"")
@@ -320,25 +339,9 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     rating = Int(title=_(u"Rating"), required=True, default=0)
 
-    # TODO: show the objectives field
-    objectives = RichText(title=_(u"Objectives"), required=False, default=u"")
-
-    solutions = RichText(title=_(u"Solutions"), required=False, default=u"")
-
     # dexteritytextindexer.searchable('summary')
     # summary = Text(title=_(u"Summary"), required=False, default=u"")
 
-    adaptationoptions = List(
-        title=_(u"Adaptation Options"),
-        required=False,
-        value_type=Int(),   # TODO:  leave it like that, until we figure it out
-    )   # TODO: reimplement as list
-    relevance = List(
-        title=_(u"Relevance"),
-        required=False,
-        value_type=Choice(
-            vocabulary="eea.climateadapt.aceitems_relevance",),
-    )
     primephoto = RelationChoice(
         title=_(u"Prime photo"),
         source=ObjPathSourceBinder(object_provides=IImage.__identifier__),

@@ -1987,3 +1987,30 @@ table.dataTable thead .sorting_desc {
     float: left;
     margin-right: 0.3em;
 }
+
+/* sectors checkbox widget editing */
+#form-widgets-sectors label {
+    display: block;
+}
+#form-widgets-sectors input[type="checkbox"] {
+    float: left;
+    margin-right: 0.3em;
+}
+
+/* relevance checkbox widget editing */
+#form-widgets-relevance label {
+    display: block;
+}
+#form-widgets-relevance input[type="checkbox"] {
+    float: left;
+    margin-right: 0.3em;
+}
+
+/* climate impacts checkbox widget editing */
+#form-widgets-climate_impacts label {
+    display: block;
+}
+#form-widgets-climate_impacts input[type="checkbox"] {
+    float: left;
+    margin-right: 0.3em;
+}
