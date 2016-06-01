@@ -283,6 +283,12 @@ def import_casestudy(data, location):
     if approvaldate is not None:
         approvaldate = approvaldate.replace(tzinfo=ctz)
 
+    latitude = to_decimal(data.lat)
+    longitude = to_decimal(data.lon)
+    location = None
+    if latitude and longitude:
+        location = Geolocation(latitude=latitude, longitude=longitude)
+
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.casestudy',
@@ -302,8 +308,7 @@ def import_casestudy(data, location):
         lifetime=t2r(data.lifetime),
         # location_lat=to_decimal(data.lat),
         # location_lon=to_decimal(data.lon),
-        geolocation=Geolocation(latitude=to_decimal(data.lat),
-                                longitude=to_decimal(data.lon)),
+        geolocation=location,
         long_description=t2r(data.description),
         measure_type=data.mao_type,
         objectives=t2r(data.objectives),
