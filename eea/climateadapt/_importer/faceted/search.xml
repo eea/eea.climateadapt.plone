@@ -79,7 +79,7 @@
    <property name="index">elements</property>
    <property name="operator">or</property>
    <property name="operator_visible"></property>
-   <property name="vocabulary">eea.climateadapt.aceitems_elements</property>
+   <property name="vocabulary">eea.climateadapt.faceted_elements_voc</property>
    <property name="catalog"></property>
    <property name="maxitems"></property>
    <property name="sortreversed"></property>
