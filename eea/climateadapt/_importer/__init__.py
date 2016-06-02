@@ -894,15 +894,15 @@ def import_template_help(site, layout, structure):
     img_7 = structure['column-4'][1][1]['content'][0]
 
     img_1 = img_1.replace("/documents/18/11284244/Glossary+of+terms.jpg",
-                          "/++theme++climateadapt/static/cca/img/Glossary of terms.jpg")
+                          "/++theme++climateadapt/static/cca/img/cca-glossary.jpg")
     img_2 = img_2.replace("/documents/18/11284244/Reproductor.jpg",
-                          "/++theme++climateadapt/static/cca/img/Reproductor.jpg")
+                          "/++theme++climateadapt/static/cca/img/cca-videos.jpg")
     img_3 = img_3.replace("/documents/18/11284244/FAQ.jpg",
-                          "/++theme++climateadapt/static/cca/img/FAQ.jpg")
+                          "/++theme++climateadapt/static/cca/img/cca-faq.jpg")
     img_4 = img_4.replace("/documents/18/11284244/Share+information.jpg",
                           "/++theme++climateadapt/static/cca/img/Share information.jpg")
     img_5 = img_5.replace("/documents/18/11284244/Help.jpg",
-                          "/++theme++climateadapt/static/cca/img/Help.jpg")
+                          "/++theme++climateadapt/static/cca/img/cca-main.jpg")
     img_6 = img_6.replace("/documents/18/11284244/ec_icon.jpg",
                           "/++theme++climateadapt/static/cca/img/ec_icon.jpg")
     img_7 = img_7.replace("/documents/18/11284244/eea_icon.jpg",
@@ -1605,7 +1605,7 @@ def import_template_1_column(site, layout, structure):
     if layout.friendlyurl == '/share-your-info':
         img_1 = structure['column-1'][0][1]['content'][0]
         img_1 = img_1.replace("/documents/18/11284244/FAQ.jpg",
-                              "/++theme++climateadapt/static/cca/img/FAQ.jpg")
+                              "/++theme++climateadapt/static/cca/img/cca-faq.jpg")
         structure['column-1'][0][1]['content'][0] = img_1
 
     if structure['column-1'][0][0] in portlet_importers:

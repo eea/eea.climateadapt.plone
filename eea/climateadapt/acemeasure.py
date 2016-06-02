@@ -372,11 +372,6 @@ class ICaseStudy(IAceMeasure):
         required=False,
     )
 
-    # files = NamedBlobFile(
-    #     title=_(u"Upload file"),
-    #     required=False,
-    # )
-
     # BBB fields, only used during migration
     primephoto = RelationChoice(
         title=_(u"Prime photo"),
@@ -420,6 +415,7 @@ class AdaptationOption(dexterity.Container):
 def KeywordsFieldWidget(field, request):
     widget = FieldWidget(field, AjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.keywords'
+    widget.query = {'criteria': 'eea.climateadapt.adaptationoption'}
     return widget
 
 
