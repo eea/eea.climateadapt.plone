@@ -2505,12 +2505,12 @@ def tweak_site(site):
         id='members_auto_group', title='Members AutoGroup', group='Members',
         description="Set Members group for everybody logged in")
 
-    # plugin_obj = acl_users._getOb('members_auto_group')
-    # activatable = [
-    #     'getPropertiesForUser', 'getGroupsForPrincipal', 'getGroupById',
-    #     'enumerateGroups'
-    # ]
-    # plugin_obj.manage_activateInterfaces(activatable)
+    acl_users.manage_addProduct['eea.climateadapt'].\
+        manage_addCityMayorUserFactory(id="city_mayor_user_plugin",
+                                       title="CityMayor Users Plugin")
+    plugin_obj = acl_users._getOb('city_mayor_user_plugin')
+    ifaces = ['IAnonymousUserFactoryPlugin', 'IUserEnumerationPlugin']
+    plugin_obj.manage_activateInterfaces(ifaces)
 
     ast_tools = ['tools/urban-ast',
                  'adaptation-support-tool']
