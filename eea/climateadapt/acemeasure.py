@@ -1,3 +1,4 @@
+#from plone.namedfile.field import NamedBlobFile
 from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
@@ -10,7 +11,6 @@ from plone.autoform import directives
 from plone.directives import dexterity, form
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.namedfile.field import NamedBlobImage
-from plone.namedfile.field import NamedBlobFile
 from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
@@ -394,7 +394,7 @@ class ICaseStudy(IAceMeasure):
 @implementer(IFieldWidget)
 def AdaptationOptionsFieldWidget(field, request):
     widget = FieldWidget(field, RelatedItemsWidget(request))
-    widget.vocabulary = 'plone.app.vocabularies.Catalog'
+    widget.vocabulary = 'eea.climateadapt.adaptation_options'
     return widget
 
 
@@ -415,7 +415,6 @@ class AdaptationOption(dexterity.Container):
 def KeywordsFieldWidget(field, request):
     widget = FieldWidget(field, AjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.keywords'
-    widget.query = {'criteria': 'eea.climateadapt.adaptationoption'}
     return widget
 
 
