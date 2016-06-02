@@ -2426,6 +2426,7 @@ def _fix_casestudy_images(casestudy):
     if casestudy.primephoto:
         img = casestudy.primephoto.to_object
         casestudy.primary_photo = img.image
+        # TODO: remove the rel image
         logger.info("Changed primary photo of casestudy, %s",
                     casestudy.absolute_url())
 
