@@ -5,6 +5,7 @@ from zope.interface import alsoProvides
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+from plone.app.vocabularies.catalog import CatalogVocabularyFactory
 import pycountry
 
 
@@ -46,6 +47,29 @@ def catalog_based_vocabulary(index):
 
     return factory
 
+
+def get_adaptation_option_vocabulary(context):
+    """ Gets the adaptation options and puts them in a vocabulary
+    """
+
+    cat = getToolByName(context, 'portal_catalog')
+    q = {
+        'portal_type': 'eea.climateadapt.adaptationoption'
+    }
+    brains = cat.searchResults(**q)
+    res = []
+
+    return SimpleVocabulary([
+        SimpleTerm(x, x.encode('utf-8'), x) for x in brains
+    ])
+
+alsoProvides(get_adaptation_option_vocabulary, IVocabularyFactory)
+
+
+class CatalogChild(CatalogVocabularyFactory):
+    def __call__(self, context, query):
+        # query.update()
+        super(CatalogChild, self).__call__(self, context, query)
 
 # changes title and buttons (what to add) in view for AceItem
 # extracted from JAVA code:
