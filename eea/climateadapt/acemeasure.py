@@ -361,8 +361,11 @@ class ICaseStudy(IAceMeasure):
         default=[],
         value_type=RelationChoice(
             title=_(u"Related"),
-            source=ObjPathSourceBinder()
-            # object_provides=IAdaptationOption.__identifier__)
+            source=ObjPathSourceBinder(
+                #object_provides=IAdaptationOption.__identifier__
+                portal_type='eea.climateadapt.adaptationoption',
+                path={'/Plone/metadata/adaptation-options/'},
+            )
         ),
         required=False,
     )
@@ -394,7 +397,8 @@ class ICaseStudy(IAceMeasure):
 @implementer(IFieldWidget)
 def AdaptationOptionsFieldWidget(field, request):
     widget = FieldWidget(field, RelatedItemsWidget(request))
-    widget.vocabulary = 'eea.climateadapt.adaptation_options'
+    widget.vocabulary = 'plone.app.vocabularies.Catalog'
+    #widget.vocabulary = 'eea.climateadapt.adaptation_options'
     return widget
 
 

@@ -1,6 +1,9 @@
 from Products.CMFCore.utils import getToolByName
 from collections import namedtuple
+from plone.app.querystring import queryparser
+from plone.app.vocabularies.catalog import CatalogVocabulary as BaseCatalogVocabulary
 from plone.app.vocabularies.catalog import CatalogVocabularyFactory
+from plone.uuid.interfaces import IUUID
 from zope.component.hooks import getSite
 from zope.interface import alsoProvides
 from zope.interface import implementer
@@ -49,24 +52,54 @@ def catalog_based_vocabulary(index):
     return factory
 
 
+class CatalogVocabulary(BaseCatalogVocabulary):
+
+    def getTerm(self, value):
+        if isinstance(value, basestring):
+            # perhaps it's already a uid
+            uid = value
+        else:
+            uid = IUUID(value)
+        for term in self._terms:
+            try:
+                term_uid = term.value.UID
+            except AttributeError:
+                term_uid = term.value
+            if uid == term_uid:
+                return term
+
+
 @implementer(IVocabularyFactory)
 class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
 
     def __call__(self, context, query=None):
         query = query or {}
-        # query.append(
-        #     {u'i': u'portal_type',
-        #      u'o': u'plone.app.querystring.operation.selection.is',
-        #      u'v': [u'News Item']}
-        #     )
+
         if 'criteria' not in query:
             query['criteria'] = []
+
         query['criteria'].append(
             {u'i': u'portal_type',
              u'o': u'plone.app.querystring.operation.selection.is',
-             u'v': [u'News Item']}
+             u'v': [u'eea.climateadapt.adaptationoption']}
         )
-        return super(AdaptationOptionsVocabulary, self).__call__(context, query)
+
+        parsed = {}
+        if query:
+            parsed = queryparser.parseFormquery(context, query['criteria'])
+            if 'sort_on' in query:
+                parsed['sort_on'] = query['sort_on']
+            if 'sort_order' in query:
+                parsed['sort_order'] = str(query['sort_order'])
+        try:
+            catalog = getToolByName(context, 'portal_catalog')
+        except AttributeError:
+            catalog = getToolByName(getSite(), 'portal_catalog')
+
+        brains = catalog(**parsed)
+
+        return CatalogVocabulary.fromItems(brains, context)
+
 
 # changes title and buttons (what to add) in view for AceItem
 # extracted from JAVA code:
