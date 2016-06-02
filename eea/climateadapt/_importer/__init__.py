@@ -43,6 +43,7 @@ from eea.climateadapt._importer.utils import s2li, t2r, r2t, s2l
 from eea.climateadapt._importer.utils import stamp_cover
 from eea.climateadapt._importer.utils import strip_xml
 from eea.climateadapt._importer.utils import to_decimal
+from eea.climateadapt._importer.utils import to_int
 from eea.climateadapt._importer.utils import write_links
 from eea.climateadapt.config import DEFAULT_LOCATIONS
 from eea.climateadapt.interfaces import IASTNavigationRoot
@@ -276,7 +277,7 @@ def import_adaptationoption(data, location):
 def import_casestudy(data, location):
     intids = getUtility(IIntIds)
 
-    measure_ids = s2li(data.adaptationoptions)
+    measure_ids = s2li(data.adaptationoptions) or []
     measures = filter(None, [get_measure(x, location) for x in measure_ids])
     measures = [RelationValue(intids.getId(m)) for m in measures]
 
@@ -291,6 +292,8 @@ def import_casestudy(data, location):
         supphoto = get_repofile_by_id(location, supphotoid)
         if supphoto:
             supphotos.append(RelationValue(intids.getId(supphoto)))
+
+    related = get_relateditems(data, location)
 
     creationdate = data.creationdate
     if creationdate is not None:
@@ -341,6 +344,7 @@ def import_casestudy(data, location):
         websites=s2l(r2t(html_unescape(data.website))),
         creation_date=creationdate,
         effective_date=approvaldate,
+        relatedItems=related,
         _publish=data.controlstatus == 1,
     )
 
@@ -814,10 +818,11 @@ def import_city_profile(container, journal):
 
     _publish = journal.status == 0 # is this a published city?
 
-    geoloc_lat = mapped_data.pop('city_latitude')
-    geoloc_long = mapped_data.pop('city_longitude')
-    geoloc = Geolocation(latitude=geoloc_lat, longitude=geoloc_long)
-    mapped_data['geolocation'] = geoloc
+    geoloc_lat = to_int(mapped_data.pop('city_latitude'))
+    geoloc_long = to_int(mapped_data.pop('city_longitude'))
+    if geoloc_lat and geoloc_long:
+        geoloc = Geolocation(latitude=geoloc_lat, longitude=geoloc_long)
+        mapped_data['geolocation'] = geoloc
 
     city = createAndPublishContentInContainer(
         container,
@@ -2291,6 +2296,7 @@ def import_journal_articles(site):
             import pdb; pdb.set_trace()
 
     parent = create_folder_at(site, '/news-archive')
+    parent.edit(title="News Archive")
     create_plone_content(
         parent,
         type='Collection',
@@ -2376,9 +2382,10 @@ def get_default_location(site, _type):
         )
         roles = dest.__ac_local_roles__
         roles.update(AuthenticatedUsers=[u'Contributor', u'Reader'])
-        roles.update(ContentReviewers=[u'Contributor', u'Reviewer', u'Editor',
-                                       u'Reader'])
-        roles.update(PowerUsers=[u'Contributor', u'Editor', u'Reader'])
+        # roles.update(ContentReviewers=[u'Contributor', u'Reviewer', u'Editor',
+        #                                u'Reader'])
+        roles.update({'extranet-cca-powerusers':
+                      [u'Contributor', u'Editor', u'Reader']})
         dest.immediately_addable_types = [factory]
         dest.locally_allowed_types = [factory]
         dest.manage_addProperty('search_type_name', _type, 'string')
@@ -2488,7 +2495,6 @@ def run_importer(site=None):
                                                         layout.uuid_)
             logger.debug("Created cover at %s", cover.absolute_url())
 
-
     import_journal_articles(site)
     import_city_profiles(site)
 
@@ -2571,7 +2577,6 @@ def tweak_site(site):
     trans_reg_page.setLayout('@@transnational-regions-view')
 
     # fix pages title
-
     titles = [
         ('project', 'Projects'),
         ('tools', 'Tools'),
@@ -2586,10 +2591,39 @@ def tweak_site(site):
         ('adaptation-information', 'Adaptation Information'),
         ('adaptation-information/general', 'General'),
     ]
-
     for path, title in titles:
         obj = site.restrictedTraverse(path)
         obj.edit(title=title)
+
+    # set permitted addable content in various locations
+    site['news-archive'].immediately_addable_types = ['News Item']
+    site['news-archive'].locally_allowed_types = ['News Item', 'Image', 'File']
+
+    site['more-events'].immediately_addable_types = ['Event']
+    site['more-events'].locally_allowed_types = ['Event', 'Image', 'File']
+
+    # set permissions
+    #{'extranet-cca-managers': [u'Contributor', u'Reviewer', u'Editor', u'Reader']}
+    site.__ac_local_roles__.update({'extranet-cca-managers': [u'Manager'],
+                                    'extranet-cca-editors': [u'Contributor'],
+                                    'extranet-cca-checkers': [u'Reader'],
+                                    'extranet-cca-reviewers': [u'Reviewer'],
+                                    })
+    site._p_changed = True
+
+    # Explanation of roles from Prosperini:
+    # cca-editors: former writer role (can add content and submit it for approval)
+    #              they can check out web content
+    # cca-reviewers: content reviewers everywhere
+    # cca-checker: nothing, just a group for users that need to see unpublish
+    #              content before it's published.
+
+    site['more-events'].__ac_local_roles__.update(
+        {'extranet-cca-newsevents': ['Contributor', 'Reviewer', 'Editor']})
+    site['news-archive'].__ac_local_roles__.update(
+        {'extranet-cca-newsevents': ['Contributor', 'Reviewer', 'Editor']})
+    site['news-archive'].__ac_local_roles__.update(
+        {'extranet-cca-ma-managers': ['Contributor', 'Reviewer', 'Editor']})
 
 
 def get_plone_site():

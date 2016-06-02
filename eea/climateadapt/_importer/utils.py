@@ -144,6 +144,12 @@ def to_decimal(val):
     val = str(val)
     return Decimal(val)
 
+def to_int(val):
+    try:
+        val = int(val)
+    except Exception:
+        return None
+
 
 def parse_settings(text):
     """Changes a string in form:

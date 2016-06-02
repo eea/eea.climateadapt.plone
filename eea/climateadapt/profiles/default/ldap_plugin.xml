@@ -94,34 +94,34 @@
                     <item id="multivalued" value="False"/>
                 </attr>
             </schema>
-            <server update="False" delete="False">
-                <item id="host" value="ldap2.eionet.europa.eu" type="str"/>
-                <item id="op_timeout" value="-1" type="int"/>
-                <item id="protocol" value="ldap" type="str"/>
-                <item id="port" value="389" type="str"/>
-                <item id="conn_timeout" value="5" type="int"/>
-            </server>
-            <server update="False" delete="False">
-                <item id="host" value="ldap.eionet.europa.eu" type="str"/>
-                <item id="op_timeout" value="-1" type="int"/>
-                <item id="protocol" value="ldap" type="str"/>
-                <item id="port" value="389" type="str"/>
-                <item id="conn_timeout" value="5" type="int"/>
-            </server>
-            <server update="False" delete="False">
-                <item id="host" value="ldap3.eionet.europa.eu" type="str"/>
-                <item id="op_timeout" value="-1" type="int"/>
-                <item id="protocol" value="ldap" type="str"/>
-                <item id="port" value="389" type="str"/>
-                <item id="conn_timeout" value="5" type="int"/>
-            </server>
-            <server update="False" delete="False">
-                <item id="host" value="ldap4.eionet.europa.eu" type="str"/>
-                <item id="op_timeout" value="-1" type="int"/>
-                <item id="protocol" value="ldap" type="str"/>
-                <item id="port" value="389" type="str"/>
-                <item id="conn_timeout" value="5" type="int"/>
-            </server>
+            <!-- <server update="False" delete="False"> -->
+            <!--     <item id="host" value="ldap2.eionet.europa.eu" type="str"/> -->
+            <!--     <item id="op_timeout" value="&#45;1" type="int"/> -->
+            <!--     <item id="protocol" value="ldap" type="str"/> -->
+            <!--     <item id="port" value="389" type="str"/> -->
+            <!--     <item id="conn_timeout" value="5" type="int"/> -->
+            <!-- </server> -->
+            <!-- <server update="False" delete="False"> -->
+            <!--     <item id="host" value="ldap.eionet.europa.eu" type="str"/> -->
+            <!--     <item id="op_timeout" value="&#45;1" type="int"/> -->
+            <!--     <item id="protocol" value="ldap" type="str"/> -->
+            <!--     <item id="port" value="389" type="str"/> -->
+            <!--     <item id="conn_timeout" value="5" type="int"/> -->
+            <!-- </server> -->
+            <!-- <server update="False" delete="False"> -->
+            <!--     <item id="host" value="ldap3.eionet.europa.eu" type="str"/> -->
+            <!--     <item id="op_timeout" value="&#45;1" type="int"/> -->
+            <!--     <item id="protocol" value="ldap" type="str"/> -->
+            <!--     <item id="port" value="389" type="str"/> -->
+            <!--     <item id="conn_timeout" value="5" type="int"/> -->
+            <!-- </server> -->
+            <!-- <server update="False" delete="False"> -->
+            <!--     <item id="host" value="ldap4.eionet.europa.eu" type="str"/> -->
+            <!--     <item id="op_timeout" value="&#45;1" type="int"/> -->
+            <!--     <item id="protocol" value="ldap" type="str"/> -->
+            <!--     <item id="port" value="389" type="str"/> -->
+            <!--     <item id="conn_timeout" value="5" type="int"/> -->
+            <!-- </server> -->
         </ldapplugin>
     
 </ldapplugins>
