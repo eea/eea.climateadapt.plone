@@ -400,7 +400,7 @@ class AceViewApi(object):
 
     def get_files(self):
         return [r.to_object for r in self.context.relatedItems] \
-            + self.context.contentValues()
+            + self.context.contentValues({'portal_type': 'File'})
 
     def _render_geochar_element(self, value):
         value = TRANSLATED[value]
