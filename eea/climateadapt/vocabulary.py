@@ -1,11 +1,12 @@
 from Products.CMFCore.utils import getToolByName
 from collections import namedtuple
+from plone.app.vocabularies.catalog import CatalogVocabularyFactory
 from zope.component.hooks import getSite
 from zope.interface import alsoProvides
+from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-from plone.app.vocabularies.catalog import CatalogVocabularyFactory
 import pycountry
 
 
@@ -48,14 +49,23 @@ def catalog_based_vocabulary(index):
     return factory
 
 
+@implementer(IVocabularyFactory)
 class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
-    def __call__(self, context, query):
-        # query.update()
-        query.append(
+
+    def __call__(self, context, query=None):
+        query = query or {}
+        # query.append(
+        #     {u'i': u'portal_type',
+        #      u'o': u'plone.app.querystring.operation.selection.is',
+        #      u'v': [u'News Item']}
+        #     )
+        if 'criteria' not in query:
+            query['criteria'] = []
+        query['criteria'].append(
             {u'i': u'portal_type',
              u'o': u'plone.app.querystring.operation.selection.is',
              u'v': [u'News Item']}
-            )
+        )
         return super(AdaptationOptionsVocabulary, self).__call__(context, query)
 
 # changes title and buttons (what to add) in view for AceItem
