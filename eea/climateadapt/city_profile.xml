@@ -104,6 +104,13 @@
                 <title>Stage of the implementation cycle</title>
                 <vocabulary>eea.climateadapt.stage_implementation_cycle</vocabulary>
             </field>
+            <field name="which_elements_are_mentioned_in_your_city_profile" type="zope.schema.Set">
+                <description/>
+                <title>Which of the following elements are mentioned in your city profile?</title>
+                <value_type type="zope.schema.Choice">
+                    <vocabulary>eea.climateadapt.elements_mentioned_your_cp</vocabulary>
+                </value_type>
+            </field>
         </fieldset>
 
         <fieldset name="adapation_strategy" label="Adaptation Strategy">
@@ -132,25 +139,16 @@
                 <required>False</required>
                 <title>Short content summary of the strategy/ plan (If adopted)</title>
             </field>
-        </fieldset>
-
-        <fieldset name="motivation" label="Motivation">
-            <field name="main_motivation_for_taking_adaptation_action" type="zope.schema.Text">
-                <description/>
-                <required>False</required>
-                <title>Main motivation for taking adaptation action (and joining Mayors Adapt)</title>
-            </field>
-        </fieldset>
-
-        <fieldset name="additional_information" label="Additional information">
             <field name="additional_information_on_adaptation_responses" type="zope.schema.Text">
                 <description/>
                 <required>False</required>
                 <title>Additional information on adaptation responses, e.g. assessments, legal processes, partners involved and political framework</title>
             </field>
-        </fieldset>
-
-        <fieldset name="integration_of_adaptation_into_existing_plans" label="Integration of adaptation into existing relevant plans">
+            <field name="main_motivation_for_taking_adaptation_action" type="zope.schema.Text">
+                <description/>
+                <required>False</required>
+                <title>Main motivation for taking adaptation action (and joining Mayors Adapt)</title>
+            </field>
             <field name="planned_current_adaptation_actions_and_responses" type="zope.schema.Text">
                 <description/>
                 <title>(Planned/current) adaptation actions and responses</title>
@@ -160,9 +158,6 @@
                 <required>False</required>
                 <title>Weblinks to relevant plans/ studies</title>
             </field>
-        </fieldset>
-
-        <fieldset name="good_practice_spotlight_item" label="Good practice / spotlight item">
             <field name="title_of_the_action_event" type="zope.schema.TextLine">
                 <description/>
                 <title>Title of the action/event</title>
@@ -191,6 +186,63 @@
             </field>
         </fieldset>
 
+        <!-- <fieldset name="motivation" label="Motivation">
+            <field name="main_motivation_for_taking_adaptation_action" type="zope.schema.Text">
+                <description/>
+                <required>False</required>
+                <title>Main motivation for taking adaptation action (and joining Mayors Adapt)</title>
+            </field>
+        </fieldset> -->
+
+        <!-- <fieldset name="additional_information" label="Additional information">
+            <field name="additional_information_on_adaptation_responses" type="zope.schema.Text">
+                <description/>
+                <required>False</required>
+                <title>Additional information on adaptation responses, e.g. assessments, legal processes, partners involved and political framework</title>
+            </field>
+        </fieldset> -->
+
+        <!-- <fieldset name="integration_of_adaptation_into_existing_plans" label="Integration of adaptation into existing relevant plans">
+            <field name="planned_current_adaptation_actions_and_responses" type="zope.schema.Text">
+                <description/>
+                <title>(Planned/current) adaptation actions and responses</title>
+            </field>
+            <field name="weblinks_to_relevant_plans_studies" type="zope.schema.TextLine">
+                <description/>
+                <required>False</required>
+                <title>Weblinks to relevant plans/ studies</title>
+            </field>
+        </fieldset> -->
+
+        <!-- <fieldset name="good_practice_spotlight_item" label="Good practice / spotlight item">
+            <field name="title_of_the_action_event" type="zope.schema.TextLine">
+                <description/>
+                <title>Title of the action/event</title>
+            </field>
+            <field name="long_description" type="plone.app.textfield.RichText">
+                <description/>
+                <title>Description</title>
+            </field>
+            <field name="picture" type="plone.namedfile.field.NamedBlobImage">
+                <description/>
+                <required>False</required>
+                <title>Picture</title>
+            </field>
+            <field name="picture_caption" type="plone.app.textfield.RichText">
+                <description/>
+                <required>False</required>
+                <title>Picture caption</title>
+            </field>
+            <field name="what_sectors_are_concerned" type="zope.schema.Set">
+                <description/>
+                <required>False</required>
+                <title>What sectors are concerned</title>
+                <value_type type="zope.schema.Choice">
+                    <vocabulary>eea.climateadapt.cityprofile_sectors</vocabulary>
+                </value_type>
+            </field>
+        </fieldset> -->
+
         <!-- <fieldset name="city_additional_data" label="City additional data"> -->
         <!--     <field name="city_latitude" type="zope.schema.TextLine"> -->
         <!--         <description/> -->
@@ -204,7 +256,7 @@
         <!--     </field> -->
         <!-- </fieldset> -->
 
-        <fieldset name="adaptation_elements" label="Adaptation elements">
+        <!-- <fieldset name="adaptation_elements" label="Adaptation elements">
             <field name="which_elements_are_mentioned_in_your_city_profile" type="zope.schema.Set">
                 <description/>
                 <title>Which of the following elements are mentioned in your city profile?</title>
@@ -212,13 +264,14 @@
                     <vocabulary>eea.climateadapt.elements_mentioned_your_cp</vocabulary>
                 </value_type>
             </field>
+             -->
             <!-- <field name="searchable" type="zope.schema.Bool"> -->
             <!--     <description/> -->
             <!--     <required>False</required> -->
             <!--     <title>Searchable</title> -->
             <!--     <form:widget type="z3c.form.browser.radio.RadioFieldWidget"/> -->
             <!-- </field> -->
-        </fieldset>
+        <!-- </fieldset> -->
 
     </schema>
 </model>
