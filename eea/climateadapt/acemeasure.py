@@ -10,6 +10,7 @@ from plone.autoform import directives
 from plone.directives import dexterity, form
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.namedfile.field import NamedBlobImage
+from plone.namedfile.field import NamedBlobFile
 from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
@@ -294,7 +295,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         vocabulary="eea.climateadapt.acemeasure_implementationtype"
     )
 
-
     spatial_layer = TextLine(
         title=_(u"Spatial Layer"), required=False, default=u"")
 
@@ -340,19 +340,29 @@ class ICaseStudy(IAceMeasure):
     """ Case study
     """
 
+    form.fieldset('default',
+                  label=u'Item Description',
+                  fields=['adaptationoptions']
+                  )
+
+    form.fieldset('documents',
+                  label=u'Illustrations and Documents',
+                  fields=['primary_photo']
+                  )
+
     directives.omitted(IEditForm, 'primephoto')
     directives.omitted(IAddForm, 'primephoto')
     directives.omitted(IEditForm, 'supphotos')
     directives.omitted(IAddForm, 'supphotos')
 
-    #form.widget(adaptationoptions=RelatedItemsFieldWidget)
+    # form.widget(adaptationoptions=RelatedItemsFieldWidget)
     adaptationoptions = RelationList(
         title=u"Adaptation Options",
         default=[],
         value_type=RelationChoice(
             title=_(u"Related"),
             source=ObjPathSourceBinder()
-                #object_provides=IAdaptationOption.__identifier__)
+            # object_provides=IAdaptationOption.__identifier__)
         ),
         required=False,
     )
@@ -361,6 +371,11 @@ class ICaseStudy(IAceMeasure):
         title=_(u"Please upload an image"),
         required=False,
     )
+
+    # files = NamedBlobFile(
+    #     title=_(u"Upload file"),
+    #     required=False,
+    # )
 
     # BBB fields, only used during migration
     primephoto = RelationChoice(
