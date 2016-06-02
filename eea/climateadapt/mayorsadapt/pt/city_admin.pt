@@ -12,25 +12,49 @@
       <metal:main fill-slot="main">
         <tal:main-macro metal:define-macro="content-core">
           <h1>Send token emails to City Mayors</h1>
-          <form action="" method="GET" tal:attributes="action string:${context/absolute_url}/@@city-profile-admin/?">
-            <div tal:define="profiles view/res">
-              <input type="checkbox" id="select-all-cities" />
-              <label for="select-all-cities">Select all</label>
-              <ul class="cities-listing">
-                <li tal:repeat="city profiles" style="list-style-type: none">
-                  <input type="checkbox" name="city:list" value="" 
-                    tal:attributes="value city/getId; disabled python:'disabled' and (not city.official_email) or None"/>
-                  <span tal:content="city/Title">London</span>
-                </li>
-              </ul>
-            </div>
+          <style>
+            .cities-listing td, .cities-listing th {
+              padding: 0em 1em;
+            }
+          </style>
+          <form action="" method="POST" tal:attributes="action string:${context/absolute_url}/@@city-profile-admin">
+            <table class="cities-listing table table-striped" tal:define="profiles view/res">
+              <thead>
+                <tr>
+                  <th>
+                    <input type="checkbox" id="select-all-cities" />
+                    <!-- <label for="select&#45;all&#45;cities">Select all</label> -->
+                  </th>
+                  <th>City</th>
+                  <th>Status</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr tal:repeat="city profiles" >
+                  <td>
+                    <input type="checkbox" name="city:list" value="" 
+                      tal:attributes="value city/getId; disabled python:'disabled' and (not city.official_email) or None"/>
+                  </td>
+                  <td>
+                    <a href="" tal:attributes="href city/absolute_url" tal:content="city/Title">London</a>
+                  </td>
+                  <td>
+                    <span tal:content="python:view.get_status(city)" />
+                  </td>
+                  <td>
+                    <span tal:content="city/official_email"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
             <input type="submit" name="submit" value="Submit"/>
           </form>
           <script>
             /* <![CDATA[ */
             jQuery(document).ready(function(){
             $("#select-all-cities").on('change', function(){
-              $(".cities-listing input").prop("checked", $(this).prop('checked'));
+              $(".cities-listing input:enabled").prop("checked", $(this).prop('checked'));
             });
             });
             /* ]]> */

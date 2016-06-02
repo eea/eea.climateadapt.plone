@@ -23,6 +23,7 @@ def is_citymayor_visitor(request):
 
     if request.cookies.get(TOKENID) or request.SESSION.get(TOKENID):
         return True
+
     return False
 
 

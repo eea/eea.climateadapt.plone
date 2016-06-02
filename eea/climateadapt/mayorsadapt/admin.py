@@ -4,6 +4,8 @@ from eea.climateadapt.city_profile import send_token_mail
 from zope.annotation.interfaces import IAnnotations
 from zope.interface import Interface
 from zope.interface import implements
+from plone.api.portal import show_message
+from plone.api.content import get_state
 
 
 class ICityAdminView (Interface):
@@ -31,13 +33,17 @@ class CityAdminView (BrowserView):
                     annot = IAnnotations(cityobject)
                     annot['eea.climateadapt.cityprofile_secret'] = newtokenid
                     send_token_mail(cityobject)
-        else:
-            cat = self.context.portal_catalog
-            q = {
-                'portal_type': 'eea.climateadapt.city_profile'
-            }
 
-            self.res = [brain.getObject() for brain in cat.searchResults(**q)]
+            show_message("Email(s) sent", request=self.request, type='info')
 
-            return self.index()
+        cat = self.context.portal_catalog
+        q = { 'portal_type': 'eea.climateadapt.city_profile' }
+        self.res = [brain.getObject() for brain in cat.searchResults(**q)]
 
+        return self.index()
+
+    def get_status(self, city):
+        try:
+            return get_state(city)
+        except Exception, e:
+            return "Error: %s" % e

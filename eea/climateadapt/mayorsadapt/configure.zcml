@@ -86,7 +86,6 @@
         permission="cmf.ManagePortal"
         />
 
-
     <!-- <adapter factory=".staging.CityProfileBehaviorAssignable" /> -->
 
     <browser:page
