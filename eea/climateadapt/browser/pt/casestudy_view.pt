@@ -66,9 +66,7 @@
                         /* ]]> */
                     </script>
 
-                    <tal:def define="primephoto context/primephoto; primephoto
-                      python:primephoto and primephoto.to_object or None;
-                      supphotos context/supphotos; ">
+                    <tal:def define="primephoto context/primary_photo; supphotos context/contentValues; ">
 
                       <metal:macro use-macro="context/ace_macros/macros/ace_layout">
 
@@ -76,7 +74,7 @@
                         <div metal:fill-slot="ace-left-slot">
                           <div class="case-studies-top">
                             <div class="case-studies-review-image-wrapper" tal:condition="primephoto">
-                              <img tal:condition="primephoto" tal:replace="structure primephoto/@@images/image/preview"/>
+                              <img tal:condition="primephoto" tal:replace="structure context/@@images/primary_photo/preview"/>
                             </div>
                             <div class="case-studies-top-title">
                               <!-- <h1 tal:content="python: context.title">Title here</h1> -->
@@ -168,7 +166,7 @@
                             <p tal:replace="structure python: view.w['objectives'].render()"></p>
 
                             <em id="adapt_options_anchor" style="text-decoration: underline">Adaptation Options Implemented In This Case</em>
-                            <div tal:define="adaptations view/get_adaptation_options">
+                            <div tal:define="adaptations view/get_adaptation_options" tal:on-error="nothing">
                               <a tal:repeat="obj adaptations" tal:attributes="href obj/absolute_url" tal:content="obj/Title" style="text-decoration: underline">Link</a>
                             </div>
 
@@ -224,15 +222,15 @@
                             <div id="case-studies-modal" title="Case Study Illustrations">
                               <div id="case-studies-modal-image-gallery">
                                 <ul>
-                                  <div tal:repeat="rel supphotos">
-                                    <li tal:define="photo nocall:rel/to_object" class="active first" tal:condition="python: repeat['rel'].index == 0">
+                                  <div tal:repeat="photo supphotos">
+                                    <li class="active first" tal:condition="python: repeat['photo'].index == 0">
                                       <h3 class="case-studies-modal-image-gallery-slide-label" tal:content="photo/Title"></h3>
                                       <center>
                                         <img tal:attributes="src photo/absolute_url"/></center>
                                       <p tal:content="photo/description"></p>
                                     </li>
-                                    <li tal:condition="python: repeat['rel'].index != 0">
-                                      <div tal:define="photo nocall:rel/to_object">
+                                    <li tal:condition="python: repeat['photo'].index != 0">
+                                      <div>
                                         <h3 class="case-studies-modal-image-gallery-slide-label" tal:content="photo/Title"></h3>
                                         <center>
                                           <img tal:attributes="src photo/absolute_url" /></center>
@@ -253,9 +251,9 @@
                                 </ul>
                               </div>
                             </div>
-                            <div class="firstImage" tal:repeat="rel supphotos">
-                              <div tal:condition="python: repeat['rel'].index == 0">
-                                <img tal:define="photo nocall:rel/to_object" tal:replace="structure photo/@@images/image/thumb"/>
+                            <div class="firstImage" tal:repeat="photo supphotos">
+                              <div tal:condition="python: repeat['photo'].index == 0">
+                                <img tal:replace="structure photo/@@images/image/thumb"/>
                               </div>
                             </div>
                           </div>

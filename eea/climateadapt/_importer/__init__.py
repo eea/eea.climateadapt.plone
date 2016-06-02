@@ -66,6 +66,7 @@ from eea.facetednavigation.layout.interfaces import IFacetedLayout
 from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from persistent.list import PersistentList
 from plone.api import portal
+from plone.api.content import move
 from plone.formwidget.geolocation.geolocation import Geolocation
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from pytz import timezone
@@ -2399,11 +2400,49 @@ def import_aceitems(session, site):
 
     # first import the adaptation options, then the case studies
     # because case studies have references to adaptation options
-    for acemeasure in session.query(sql.AceMeasure).filter(sql.AceMeasure.mao_type!='A'):
+    q = session.query(sql.AceMeasure)
+
+    for acemeasure in q.filter(sql.AceMeasure.mao_type!='A'):
         import_adaptationoption(acemeasure, get_default_location(site,
                                                                     'MEASURE'))
-    for acemeasure in session.query(sql.AceMeasure).filter(sql.AceMeasure.mao_type=='A'):
+    for acemeasure in q.filter(sql.AceMeasure.mao_type=='A'):
         import_casestudy(acemeasure, get_default_location(site, 'ACTION'))
+
+    fix_casestudy_images(site)
+
+
+def _fix_casestudy_images(casestudy):
+    # set the primephoto as uploaded field to primary_photo
+    # move the supphotos inside the case study
+
+    for rel in casestudy.supphotos:
+        img = rel.to_object
+        move(img, casestudy)
+        logger.info("Move photo %s inside casestudy, %s",
+                    img.absolute_url(),
+                    casestudy.absolute_url())
+
+    casestudy.supphotos = []
+    if casestudy.primephoto:
+        img = casestudy.primephoto.to_object
+        casestudy.primary_photo = img.image
+        logger.info("Changed primary photo of casestudy, %s",
+                    casestudy.absolute_url())
+
+    casestudy._p_changed = True
+
+
+def fix_casestudy_images(site):
+
+    # now we fix the images for the case studies
+    catalog = getToolByName(site, 'portal_catalog')
+    brains = catalog.searchResults(portal_type='eea.climateadapt.casestudy')
+
+    for brain in brains:
+        obj = brain.getObject()
+        _fix_casestudy_images(obj)
+
+    return
 
 
 def run_importer(site=None):

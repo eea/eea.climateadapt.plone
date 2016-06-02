@@ -22,6 +22,7 @@
       <li><a tal:attributes="href string:$site_url/layout_importer?type=dlentries">Import dlentries</a></li>
       <li><a tal:attributes="href string:$site_url/layout_importer?type=detect_richtext">Detect richtext fields in DB</a></li>
       <li><a tal:attributes="href string:$site_url/layout_importer?type=portlet_preferences">Get portlet preferences</a></li>
+      <li><a tal:attributes="href string:$site_url/layout_importer?type=fix_casestudies">Fix casestudies</a></li>
       <li>
         <form method="GET" action="" tal:attributes="action string:$site_url/layout_importer">
           <label>Import dlentry by ID:</label><input type="text" name="id" />

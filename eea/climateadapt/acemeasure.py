@@ -9,6 +9,7 @@ from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.directives import dexterity, form
 from plone.formwidget.contenttree import ObjPathSourceBinder
+from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
@@ -286,11 +287,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     directives.omitted(IEditForm, 'rating')
     directives.omitted(IAddForm, 'rating')
 
-    directives.omitted(IEditForm, 'primephoto')
-    directives.omitted(IAddForm, 'primephoto')
-    directives.omitted(IEditForm, 'supphotos')
-    directives.omitted(IAddForm, 'supphotos')
-
     # end
 
     implementation_type = Choice(
@@ -334,6 +330,39 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     # dexteritytextindexer.searchable('summary')
     # summary = Text(title=_(u"Summary"), required=False, default=u"")
 
+
+class IAdaptationOption(IAceMeasure):
+    """ Adaptation Option
+    """
+
+
+class ICaseStudy(IAceMeasure):
+    """ Case study
+    """
+
+    directives.omitted(IEditForm, 'primephoto')
+    directives.omitted(IAddForm, 'primephoto')
+    directives.omitted(IEditForm, 'supphotos')
+    directives.omitted(IAddForm, 'supphotos')
+
+    #form.widget(adaptationoptions=RelatedItemsFieldWidget)
+    adaptationoptions = RelationList(
+        title=u"Adaptation Options",
+        default=[],
+        value_type=RelationChoice(
+            title=_(u"Related"),
+            source=ObjPathSourceBinder()
+                #object_provides=IAdaptationOption.__identifier__)
+        ),
+        required=False,
+    )
+
+    primary_photo = NamedBlobImage(
+        title=_(u"Please upload an image"),
+        required=False,
+    )
+
+    # BBB fields, only used during migration
     primephoto = RelationChoice(
         title=_(u"Prime photo"),
         source=ObjPathSourceBinder(object_provides=IImage.__identifier__),
@@ -346,29 +375,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
             title=_(u"Related"),
             source=ObjPathSourceBinder(
                 object_provides=IImage.__identifier__)
-        ),
-        required=False,
-    )
-    # approved is done by workflow
-
-
-class IAdaptationOption(IAceMeasure):
-    """ Adaptation Option
-    """
-
-
-class ICaseStudy(IAceMeasure):
-    """ Case study
-    """
-
-    #form.widget(adaptationoptions=RelatedItemsFieldWidget)
-    adaptationoptions = RelationList(
-        title=u"Adaptation Options",
-        default=[],
-        value_type=RelationChoice(
-            title=_(u"Related"),
-            source=ObjPathSourceBinder()
-                #object_provides=IAdaptationOption.__identifier__)
         ),
         required=False,
     )

@@ -169,6 +169,7 @@ class SingleImporterView(BrowserView):
         if id:
             to_import = to_import.filter_by(measureid=int(id))
 
+        # TODO: fix this code
         imported = []
         for acemeasure in to_import:
             if acemeasure.mao_type == 'A':
@@ -187,6 +188,10 @@ class SingleImporterView(BrowserView):
             return self.request.response.redirect(imported[0].absolute_url())
         else:
             return "Nothing to import"
+
+    def import_fix_casestudies(self):
+        from eea.climateadapt._importer import fix_casestudy_images
+        fix_casestudy_images(self.context)
 
     def import_projects(self):
         from eea.climateadapt._importer import import_aceproject
