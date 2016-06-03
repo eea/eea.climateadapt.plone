@@ -42,5 +42,9 @@
     <!-- Control Panel -->
     <after css:content="#visual-portal-wrapper .row:last-child script" css:theme="head script:last-child" />
 
+    <!-- Form fieldset fixes -->
+    <!-- <before css:content&#45;children=".kssattr&#45;fieldset&#45;default"> -->
+    <!--     <include css:content="#formfield&#45;form&#45;widgets&#45;IGeolocatable&#45;geolocation" /> -->
+    <!-- </before> -->
 
 </rules>

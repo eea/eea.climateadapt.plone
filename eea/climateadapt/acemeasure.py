@@ -1,5 +1,6 @@
 #from plone.namedfile.field import NamedBlobFile
 from collective import dexteritytextindexer
+from collective.geolocationbehavior.geolocation import IGeolocatable
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from plone.app.contenttypes.interfaces import IImage
@@ -336,19 +337,19 @@ class IAdaptationOption(IAceMeasure):
     """
 
 
-class ICaseStudy(IAceMeasure):
+class ICaseStudy(IAceMeasure):  #, IGeolocatable):
     """ Case study
     """
 
-    form.fieldset('default',
-                  label=u'Item Description',
-                  fields=['adaptationoptions']
-                  )
+    # form.fieldset('additional_detailsdefault',
+    #               label=u'Additional details',
+    #               fields=['adaptationoptions', 'geolocation']
+    #               )
 
-    form.fieldset('documents',
-                  label=u'Illustrations and Documents',
-                  fields=['primary_photo']
-                  )
+    # form.fieldset('documents',
+    #               label=u'Illustrations and Documents',
+    #               fields=['primary_photo']
+    #               )
 
     directives.omitted(IEditForm, 'primephoto')
     directives.omitted(IAddForm, 'primephoto')

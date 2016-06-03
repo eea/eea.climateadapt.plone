@@ -130,6 +130,12 @@
         permission="zope2.View"
         />
 
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="eea.climateadapt.acemeasure.ICaseStudy * *"
+        factory=".casestudy.CaseStudyEditFormExtender"
+        />
+
     <browser:page
         name="view"
         for="eea.climateadapt.acemeasure.IAdaptationOption"

@@ -117,43 +117,41 @@ def import_aceitem(data, location):
 
     related = get_relateditems(data, location)
 
-    if data.datatype in ACE_ITEM_TYPES:
-        item = createAndPublishContentInContainer(
-            location,
-            ACE_ITEM_TYPES[data.datatype],
-            title=data.name,
-            long_description=t2r(data.description),
-            keywords=s2l(r2t(data.keyword), separators=[';', ',']),
-            spatial_layer=data.spatiallayer,
-            spatial_values=s2l(data.spatialvalues),
-            data_type=data.datatype,
-            storage_type=data.storagetype,
-            sectors=s2l(data.sectors_),
-            elements=s2l(data.elements_),
-            climate_impacts=s2l(data.climateimpacts_),
-            websites=s2l(r2t(html_unescape(data.storedat)),
-                         separators=[';', ',']),
-            source=t2r(data.source),
-            comments=data.comments,
-            year=int(data.year or '0'),
-            geochars=data.geochars,
-            special_tags=s2l(data.specialtagging, relaxed=True),
-            rating=data.rating,
-            metadata=data.metadata_,
-            creation_date=creationdate,
-            effective_date=approvaldate,
-            relatedItems=related,
-            _publish=data.controlstatus == 1,
-        )
-        item._aceitem_id = data.aceitemid
+    item = createAndPublishContentInContainer(
+        location,
+        ACE_ITEM_TYPES[data.datatype],
+        title=data.name,
+        long_description=t2r(data.description),
+        keywords=s2l(r2t(data.keyword), separators=[';', ',']),
+        spatial_layer=data.spatiallayer,
+        spatial_values=s2l(data.spatialvalues),
+        data_type=data.datatype,
+        storage_type=data.storagetype,
+        sectors=s2l(data.sectors_),
+        elements=s2l(data.elements_),
+        climate_impacts=s2l(data.climateimpacts_),
+        websites=s2l(r2t(html_unescape(data.storedat)),
+                        separators=[';', ',']),
+        source=t2r(data.source),
+        comments=data.comments,
+        year=int(data.year or '0'),
+        geochars=data.geochars,
+        special_tags=s2l(data.specialtagging, relaxed=True),
+        rating=data.rating,
+        metadata=data.metadata_,
+        creation_date=creationdate,
+        effective_date=approvaldate,
+        relatedItems=related,
+        _publish=data.controlstatus == 1,
+    )
+    item._aceitem_id = data.aceitemid
 
-        logger.debug("Imported aceitem %s from sql aceitem %s",
-                     item.absolute_url(1), data.aceitemid)
-        item.reindexObject()
-        return item
-    else:
-        import pdb; pdb.set_trace()
-        raise ValueError("You missed an acetype item: %s" % data.datatype)
+    logger.debug("Imported aceitem %s from sql aceitem %s",
+                    item.absolute_url(1), data.aceitemid)
+    _fix_supdocs(item)
+    item.reindexObject()
+
+    return item
 
 
 @log_call
@@ -165,6 +163,8 @@ def import_aceproject(data, location):
     approvaldate = data.approvaldate
     if approvaldate is not None:
         approvaldate = approvaldate.replace(tzinfo=ctz)
+
+    related = get_relateditems(data, location)
 
     item = createAndPublishContentInContainer(
         location,
@@ -190,10 +190,12 @@ def import_aceproject(data, location):
         rating=data.rating,
         creation_date=creationdate,
         effective_date=approvaldate,
+        relatedItems=related,
         _publish=data.controlstatus == 1,
     )
 
     item._aceproject_id = data.projectid
+    _fix_supdocs(item)
     item.reindexObject()
 
     logger.debug("Imported aceproject %s from sql aceproject %s",
@@ -2450,7 +2452,16 @@ def fix_casestudy_images(site):
         obj = brain.getObject()
         _fix_casestudy_images(obj)
 
-    return
+
+def _fix_supdocs(obj):
+    if obj.relatedItems:
+        for rel in obj.relatedItems:
+            t = rel.to_object
+            move(t, obj)
+            logger.info("Move file %s inside obj, %s", t.absolute_url(),
+                        obj.absolute_url())
+        obj.relatedItems = []
+        obj._p_changed = True
 
 
 def run_importer(site=None):
@@ -2507,9 +2518,9 @@ def tweak_site(site):
     """
 
     acl_users = site._getOb('acl_users')
-    acl_users.manage_addProduct['PlonePAS'].manage_addAutoGroup(
-        id='members_auto_group', title='Members AutoGroup', group='Members',
-        description="Set Members group for everybody logged in")
+    # acl_users.manage_addProduct['PlonePAS'].manage_addAutoGroup(
+    #     id='members_auto_group', title='Members AutoGroup', group='Members',
+    #     description="Set Members group for everybody logged in")
 
     acl_users.manage_addProduct['eea.climateadapt'].\
         manage_addCityMayorUserFactory(id="city_mayor_user_plugin",
