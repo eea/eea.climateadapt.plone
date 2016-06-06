@@ -17,13 +17,13 @@
             <!-- <h5 class="Adaptation-option-selector">Adaptation Option Description</h5> -->
             <h5 class="Adaptation-option-selector">Additional Details</h5>
             <ul>
-              <li> <a href="#ao_category">Category</a> </li>
-              <li> <a href="#stakeholder_participation">Stakeholder participation</a> </li>
-              <li> <a href="#success_factors">Success and Limiting Factors</a> </li>
-              <li> <a href="#costs_benefits">Costs and Benefits</a> </li>
-              <li> <a href="#legal">Legal Aspects</a> </li>
-              <li> <a href="#implementation">Implementation Time</a> </li>
-              <li> <a href="#life_time">Life Time</a> </li>
+              <li tal:condition="context/category"> <a href="#ao_category">Category</a> </li>
+              <li tal:condition="context/stakeholder_participation/output"> <a href="#stakeholder_participation">Stakeholder participation</a> </li>
+              <li tal:condition="context/success_limitations/output"> <a href="#success_factors">Success and Limiting Factors</a> </li>
+              <li tal:condition="context/cost_benefit/output"> <a href="#costs_benefits">Costs and Benefits</a> </li>
+              <li tal:condition="context/legal_aspects/output"> <a href="#legal">Legal Aspects</a> </li>
+              <li tal:condition="context/implementation_time/output"> <a href="#implementation">Implementation Time</a> </li>
+              <li tal:condition="context/lifetime/output"> <a href="#life_time">Life Time</a> </li>
             </ul>
 
             <h5 class="Adaptation-option-selector">Reference information</h5>
@@ -34,36 +34,48 @@
 
             <h4>Adaptation Details</h4>
             <p></p>
-            <div id="ao_category">
+            <div id="ao_category" tal:condition="context/category">
               <em class="adapt-option-em" style="text-decoration: underline">Category</em>
               <div tal:repeat="categ context/category">
                   <tal:block content="categ | nothing"/>
               </div>
           </div>
-            <p id="stakeholder_participation">
-              <em class="adapt-option-em" style="text-decoration: underline">Stakeholder participation</em>
-              <tal:block content="structure python: view.w['stakeholder_participation'].render()"/>
-            </p>
-            <p id="success_factors">
-              <em class="adapt-option-em" style="text-decoration: underline">Success and Limiting Factors</em>
-              <tal:block content="structure python: view.w['success_limitations'].render()"/>
-            </p>
-            <p id="costs_benefits">
-              <em class="adapt-option-em" style="text-decoration: underline">Costs and Benefits</em>
-              <tal:block content="structure python: view.w['cost_benefit'].render()"/>
-            </p>
-            <p id="legal">
-              <em class="adapt-option-em" style="text-decoration: underline">Legal Aspects</em>
-              <tal:block content="structure python: view.w['legal_aspects'].render()"/>
-            </p>
-            <p id="implementation">
-              <em class="adapt-option-em" style="text-decoration: underline">Implementation Time</em>
-              <tal:block content="structure python: view.w['implementation_time'].render()"/>
-            </p>
-            <p id="life_time">
-              <em class="adapt-option-em" style="text-decoration: underline">Life Time</em>
-              <tal:block content="structure python: view.w['lifetime'].render()"/>
-            </p>
+            <div tal:condition="context/stakeholder_participation/output">
+                <p id="stakeholder_participation">
+                  <em class="adapt-option-em" style="text-decoration: underline">Stakeholder participation</em>
+                  <tal:block content="structure python: view.w['stakeholder_participation'].render()"/>
+                </p>
+            </div>
+            <div tal:condition="context/success_limitations/output">
+                <p id="success_factors">
+                  <em class="adapt-option-em" style="text-decoration: underline">Success and Limiting Factors</em>
+                  <tal:block content="structure python: view.w['success_limitations'].render()"/>
+                </p>
+            </div>
+            <div tal:condition="context/cost_benefit/output">
+                <p id="costs_benefits">
+                  <em class="adapt-option-em" style="text-decoration: underline">Costs and Benefits</em>
+                  <tal:block content="structure python: view.w['cost_benefit'].render()"/>
+                </p>
+            </div>
+            <div tal:condition="context/legal_aspects/output">
+                <p id="legal">
+                  <em class="adapt-option-em" style="text-decoration: underline">Legal Aspects</em>
+                  <tal:block content="structure python: view.w['legal_aspects'].render()"/>
+                </p>
+            </div>
+            <div tal:condition="context/implementation_time/output">
+                <p id="implementation">
+                  <em class="adapt-option-em" style="text-decoration: underline">Implementation Time</em>
+                  <tal:block content="structure python: view.w['implementation_time'].render()"/>
+                </p>
+            </div>
+            <div tal:condition="context/lifetime/output">
+                <p id="life_time">
+                  <em class="adapt-option-em" style="text-decoration: underline">Life Time</em>
+                  <tal:block content="structure python: view.w['lifetime'].render()"/>
+                </p>
+            </div>
 
             <h4>Reference information</h4>
 
@@ -88,8 +100,10 @@
             <tal:block content="structure python:view.w['sectors'].render()"/>
             <h4>Climate impacts</h4>
             <tal:block content="structure python:view.w['climate_impacts'].render()"/>
-            <h4>Geographic characterisation</h4>
-            <metal:macro use-macro="context/ace_macros/macros/geochar" />
+            <div tal:condition="python: view.render_geochar(context.geochars)">
+                <h4>Geographic characterisation</h4>
+                <metal:macro use-macro="context/ace_macros/macros/geochar" />
+            </div>
           </div>
         </metal:macro>
       </tal:main-macro>
