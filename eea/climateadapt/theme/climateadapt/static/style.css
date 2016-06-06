@@ -67,7 +67,7 @@ h2, h3, h4, h5, h6 {color: #636466; font-family: Arial, Helvetica, sans-serif;}
 /****************** Basic Stuff ***********************/
 
 .portalMessage {
-    margin:0.8em;
+    margin:0.8em !important;
     background-color: White;
     border: 1px solid Red;
     padding: 0.6em;
