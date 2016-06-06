@@ -2540,6 +2540,7 @@ def tweak_site(site):
 
     faceted_pages = [
         ('/data-and-downloads', 'search.xml', 'faceted-climate-listing-view'),
+        ('/admin', 'admin.xml', None),
     ]
 
     for location, xmlfilename, layout in faceted_pages:
