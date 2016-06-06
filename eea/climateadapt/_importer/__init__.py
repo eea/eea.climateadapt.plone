@@ -2659,7 +2659,7 @@ def tweak_site(site):
     """
     page = createAndPublishContentInContainer(
         site,
-        'Page',
+        'Document',
         title=u'More latest updates',
         text = t2r(_content)
     )
