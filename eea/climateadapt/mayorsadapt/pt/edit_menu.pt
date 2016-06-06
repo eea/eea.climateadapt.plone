@@ -50,7 +50,7 @@
           Step 1: Edit your City Profile fact sheet.
           <span tal:omit-tag="" tal:condition="python: state == 'private'">Editing will open this CityProfile for edit</span>
           <span tal:omit-tag="" tal:condition="python: (state == 'published') and not has_working_copy">Editing will create a private copy, to be edited</span>
-          <span tal:omit-tag="" tal:condition="python: (state == 'published') and has_working_copy">Edit the existing private working copy</span>
+          <span tal:omit-tag="" tal:condition="python: (state == 'published') and has_working_copy">This will edit the existing private working copy</span>
           <span tal:omit-tag="" tal:condition="python: state == 'pending'">Editing will cancel the publishing process and edit this CityProfile</span>
         </span>
       </div>
@@ -67,8 +67,8 @@
         <span>Step 3: Preview your working copy of City Profile</span>
       </div>
 
-      <div class="city-menu-row" >
-        <button name="submit" tal:attributes="class python: (state != 'published') and 'disabled' or ''" value="check">Check</button>
+      <div class="city-menu-row" tal:define="baseline_state view/get_baseline_state">
+        <button name="submit" tal:attributes="class python: (baseline_state != 'published') and 'disabled' or ''" value="check">Check</button>
         <span>Step 4: Check your page in the Climate ADAPT platform, as soon as the Mayors Adapt team approves it.</span>
       </div>
 

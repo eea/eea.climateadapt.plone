@@ -57,6 +57,13 @@ class EditMenuViewlet(ViewletBase):
             return True
         return False
 
+    def get_baseline_state(self):
+        policy = ICheckinCheckoutPolicy(self.context)
+        baseline = policy.getBaseline()
+        if baseline is None:
+            baseline = self.context
+        return get_state(baseline)
+
 
 class ExpiredTokenViewlet(ViewletBase):
     """ Viewlet that appears when a user tries to access a city profile
