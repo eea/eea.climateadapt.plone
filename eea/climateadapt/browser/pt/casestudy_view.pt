@@ -74,10 +74,9 @@
                         <div metal:fill-slot="ace-left-slot">
                           <div class="case-studies-top">
                             <div class="case-studies-review-image-wrapper" tal:condition="primephoto">
-                              <img tal:condition="primephoto" tal:replace="structure context/@@images/primary_photo/preview"/>
+                              <img tal:condition="primephoto" tal:replace="structure context/@@images/primary_photo/mini"/>
                             </div>
                             <div class="case-studies-top-title">
-                              <!-- <h1 tal:content="python: context.title">Title here</h1> -->
                               <div metal:use-macro="context/ace_macros/macros/title_date"></div>
                               <div tal:content="structure python: view.w['long_description'].render()">
                                 Description

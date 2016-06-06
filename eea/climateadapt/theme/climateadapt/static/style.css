@@ -1554,7 +1554,7 @@ li.dropdown-submenu {
     float: left;
     padding-right: 10px;
     position: relative;
-    width: 45%;
+    /*width: 45%;*/
 }
 .case-studies-top-title {
     padding-right: 3px;
