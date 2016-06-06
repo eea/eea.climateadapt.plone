@@ -353,6 +353,8 @@ def import_casestudy(data, location):
     item._acemeasure_id = data.measureid
     item.reindexObject()
 
+    _fix_supdocs(item)
+
     logger.debug("Imported casestudy %s from sql acemeasure %s",
                  item.absolute_url(1), data.measureid)
 
