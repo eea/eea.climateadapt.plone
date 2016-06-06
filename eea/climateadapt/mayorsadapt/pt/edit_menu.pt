@@ -7,13 +7,11 @@
             }
 
         .cityprofile_edit_menu .header {
-          background-color: White;
           color: Black;
           /* background-color: #132D01; */
           /* color: White; */
-          font-size: 120%;
-          padding: 0.6em 0.3em;
-          margin-bottom: 1em;
+          font-size: 130%;
+          margin-bottom: 0.4em;
           font-family: 'Francois One', sans;
         }
 
@@ -39,7 +37,7 @@
       </style>
 
       <div class="header">
-        The <span class="city_name" tal:content="context/Title" /> administration menu
+        The <span class="city_name" tal:content="context/Title" /> City Profile administration menu
       </div>
 
       <p>
@@ -75,7 +73,7 @@
       </div>
 
       <p>
-        Current state: <strong tal:content="python: view.state_labels()[state]" />
+        Current document state: <strong tal:content="python: view.state_labels()[state]" />
       </p>
 
   </form>

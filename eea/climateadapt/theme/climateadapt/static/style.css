@@ -66,6 +66,13 @@ h2, h3, h4, h5, h6 {color: #636466; font-family: Arial, Helvetica, sans-serif;}
 
 /****************** Basic Stuff ***********************/
 
+.portalMessage {
+    margin:0.8em;
+    background-color: White;
+    border: 1px solid Red;
+    padding: 0.6em;
+}
+
 /* #content {font-size: 90%;} */
 /* p {line-height: 1.8em; margin: 0 0 1em 0;} */
 /* h1, h2, h3 {margin: 0.5em 0 0.5em;} */
@@ -553,11 +560,12 @@ div.position-0 { margin-left: -100%; }
 /* Breadcrumb fixes */
 
 #viewlet-above-content {
-    background-color: #E9ECC9;
-    padding:0.5em;
-    line-height:1em;
 }
 #portal-breadcrumbs {
+    background-color: #E9ECC9;
+    padding:1em 0.5em;
+    line-height:1em;
+
     margin:0;
 }
 
@@ -2023,3 +2031,4 @@ table.dataTable thead .sorting_desc {
 .template-compose .tile-container {
     /* position: initial; */
 }
+
