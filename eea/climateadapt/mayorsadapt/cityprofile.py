@@ -1,8 +1,9 @@
-from zope.component import getUtility
+#import datetime
+from plone.api import portal
 from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityFTI
-from plone.api import portal
-#import datetime
+from plone.z3cform.fieldsets.extensible import FormExtender
+from zope.component import getUtility
 
 
 class CityProfileView(DefaultView):
@@ -51,3 +52,9 @@ class CityProfileView(DefaultView):
                     continue
                 titles.append(term.title)
         return titles
+
+
+class CityProfileFormExtender(FormExtender):
+
+    def update(self):
+        self.move('IGeolocatable.geolocation', after='country')

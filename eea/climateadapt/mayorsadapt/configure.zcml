@@ -182,4 +182,10 @@ TODO: re-enable after import
         permission="zope2.View"
         />
 
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="eea.climateadapt.city_profile.ICityProfile * *"
+        factory=".cityprofile.CityProfileFormExtender"
+        />
+
 </configure>
