@@ -372,7 +372,7 @@ class ICaseStudy(IAceMeasure):  #, IGeolocatable):
     )
 
     primary_photo = NamedBlobImage(
-        title=_(u"Please upload an image"),
+        title=_(u"Primary photo"),
         required=False,
     )
 
