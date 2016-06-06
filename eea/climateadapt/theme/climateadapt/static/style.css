@@ -1332,7 +1332,7 @@ li.dropdown-submenu {
     position: absolute;
     text-decoration: none;
     top: 20%;
-    width: 60px
+    width: 60px;
 }
 #case-studies-modal-image-gallery .case-studies-modal-image-gallery-navigation a.next {
     left: auto;
@@ -1554,7 +1554,7 @@ li.dropdown-submenu {
     float: left;
     padding-right: 10px;
     position: relative;
-    width: 45%;
+    /*width: 45%;*/
 }
 .case-studies-top-title {
     padding-right: 3px;

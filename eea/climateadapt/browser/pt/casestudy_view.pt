@@ -74,10 +74,9 @@
                         <div metal:fill-slot="ace-left-slot">
                           <div class="case-studies-top">
                             <div class="case-studies-review-image-wrapper" tal:condition="primephoto">
-                              <img tal:condition="primephoto" tal:replace="structure context/@@images/primary_photo/preview"/>
+                              <img tal:condition="primephoto" tal:replace="structure context/@@images/primary_photo/mini"/>
                             </div>
                             <div class="case-studies-top-title">
-                              <!-- <h1 tal:content="python: context.title">Title here</h1> -->
                               <div metal:use-macro="context/ace_macros/macros/title_date"></div>
                               <div tal:content="structure python: view.w['long_description'].render()">
                                 Description
@@ -226,14 +225,15 @@
                                     <li class="active first" tal:condition="python: repeat['photo'].index == 0">
                                       <h3 class="case-studies-modal-image-gallery-slide-label" tal:content="photo/Title"></h3>
                                       <center>
-                                        <img tal:attributes="src photo/absolute_url"/></center>
+                                        <img tal:attributes="src string:${photo/absolute_url}/@@images/image/medium"/></center>
                                       <p tal:content="photo/description"></p>
                                     </li>
                                     <li tal:condition="python: repeat['photo'].index != 0">
                                       <div>
                                         <h3 class="case-studies-modal-image-gallery-slide-label" tal:content="photo/Title"></h3>
                                         <center>
-                                          <img tal:attributes="src photo/absolute_url" /></center>
+                                            <img tal:attributes="src string:${photo/absolute_url}/@@images/image/medium" />
+                                        </center>
                                         <p tal:content="photo/description"></p>
                                       </div>
                                     </li>
