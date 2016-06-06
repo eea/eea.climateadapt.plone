@@ -2652,7 +2652,7 @@ def tweak_site(site):
     <h3 class="asset-title"></h3>
     <h3 class="asset-title"><a href="mayors-adapt" data-linktype="external" data-val="/mayors-adapt">Mayors Adapt landing page</a></h3>
     <div class="asset-content">
-    <div class="asset-summary">Register your City Mayors Adapt – the Covenant of Mayors Initiative on Climate Change Adaptation has been set up by the European Commission to engage cities in...</div>
+    <div class="asset-summary">Register your City Mayors Adapt - the Covenant of Mayors Initiative on Climate Change Adaptation has been set up by the European Commission to engage cities in...</div>
     <div class="asset-more"><a href="mayors-adapt" data-linktype="external" data-val="/mayors-adapt">Read More</a></div>
     </div>
     </div>
