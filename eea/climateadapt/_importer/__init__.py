@@ -2639,12 +2639,12 @@ def tweak_site(site):
     site['city-profile'].__ac_local_roles__.update(
         {'extranet-cca-ma-managers': ['Contributor', 'Reviewer', 'Editor']})
 
-    _content = """
+    _content = u"""
     <div class="asset-abstract ">
     <h3 class="asset-title"><a href="countries" data-linktype="external" data-val="/countries">Country information page</a></h3>
     <div class="asset-content">
     <div class="asset-summary">EEA Member countries are at different stages of preparing, developing and implementing national adaptation strategies and plans. See in the map below the information provided...</div>
-    <div class="asset-more"><a href="countries" data-linktype="external" data-val="/countries">Read More »</a></div>
+    <div class="asset-more"><a href="countries" data-linktype="external" data-val="/countries">Read More</a></div>
     </div>
     <div class="asset-metadata"></div>
     </div>
@@ -2653,7 +2653,7 @@ def tweak_site(site):
     <h3 class="asset-title"><a href="mayors-adapt" data-linktype="external" data-val="/mayors-adapt">Mayors Adapt landing page</a></h3>
     <div class="asset-content">
     <div class="asset-summary">Register your City Mayors Adapt – the Covenant of Mayors Initiative on Climate Change Adaptation has been set up by the European Commission to engage cities in...</div>
-    <div class="asset-more"><a href="mayors-adapt" data-linktype="external" data-val="/mayors-adapt">Read More »</a></div>
+    <div class="asset-more"><a href="mayors-adapt" data-linktype="external" data-val="/mayors-adapt">Read More</a></div>
     </div>
     </div>
     """
