@@ -36,14 +36,14 @@
         name="view"
         for="eea.climateadapt.city_profile.ICityProfile"
         template="pt/city_profile.pt"
-        class="eea.climateadapt.browser.cityprofile.CityProfileView"
+        class="eea.climateadapt.mayorsadapt.cityprofile.CityProfileView"
         permission="zope.Public"
         />
 
     <browser:page
         name="view"
         for="eea.climateadapt.city_profile.ICityProfileStaging"
-        class="eea.climateadapt.browser.cityprofile.CityProfileView"
+        class="eea.climateadapt.mayorsadapt.cityprofile.CityProfileView"
         template="pt/city_profile.pt"
         permission="zope2.View"
         />
