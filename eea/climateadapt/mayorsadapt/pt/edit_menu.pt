@@ -1,76 +1,83 @@
-<div class="cityprofile_edit_menu" tal:define="state view/current_state; has_working_copy view/has_working_copy">
+<div class="cityprofile_edit_menu" tal:define="state view/current_state; has_working_copy view/has_working_copy; wc view/get_working_copy">
   <form method="POST" action="/@@mayors_edit" tal:attributes="action string:${context/absolute_url}/@@mayors_edit">
       <style type="text/css">
-        .buttonone {
-            background-color: #4CAF50; /* Green */
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline !important;
-            font-size: 16px;
-            margin: 0px 0px;
-            cursor: pointer;
+        .cityprofile_edit_menu {
+            background-color: #C2DEB0; /* Green */
+            padding: 1em;
+            }
+
+        .cityprofile_edit_menu .header {
+          background-color: White;
+          color: Black;
+          /* background-color: #132D01; */
+          /* color: White; */
+          font-size: 120%;
+          padding: 0.6em 0.3em;
+          margin-bottom: 1em;
+          font-family: 'Francois One', sans;
         }
 
-        p {
-            background-color: #4CAF50; /* Green */
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: left;
-            width: auto;
-            text-decoration: none;
-            font-size: 16px;
-            margin: 0px 0px;
+        .cityprofile_edit_menu .city_name {
+        color: Red;
         }
 
-        .buttons {
-            display: inline !important;
+        .cityprofile_edit_menu button {
+          padding: 0.1em 0.6em;
+          width: 12em;
         }
 
-        .buttons2 {
-            display: inline !important;
+        .cityprofile_edit_menu .city-menu-row {
+          margin: 0.3em 0em;
+        }
+        .cityprofile_edit_menu .city-menu-row span {
+          padding-left: 0.4em;
+        }
+        .cityprofile_edit_menu .disabled {
+          text-decoration:line-through
         }
 
-        .buttons2:hover div{
-            display: inline-block;
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 0.5em 0.5em;
-            text-align: left;
-            width: auto;
-            text-decoration: none;
-            font-size: 16px;
-            margin: 4px 2px;
-        }
-
-        .buttons2 div {
-            display: none;
-        }
-
-        p {
-            width: 33%;
-        }
       </style>
 
-      <p>Current state:
-          <strong tal:content="python: view.state_labels()[state]" />
+      <div class="header">
+        The <span class="city_name" tal:content="context/Title" /> administration menu
+      </div>
+
+      <p>
+        Here you can manage Mayors Adapt initiative information relative to your city
       </p>
 
-      <div tal:condition="view/can_submit_for_publication" class="buttons">
-        <button class="buttonone" name="submit" value="submit">Submit for publication</button>
+      <div class="city-menu-row">
+        <button name="submit" value="edit">Edit</button>
+        <span>
+          Step 1: Edit your City Profile fact sheet.
+          <span tal:omit-tag="" tal:condition="python: state == 'private'">Editing will open this CityProfile for edit</span>
+          <span tal:omit-tag="" tal:condition="python: (state == 'published') and not has_working_copy">Editing will create a private copy, to be edited</span>
+          <span tal:omit-tag="" tal:condition="python: (state == 'published') and has_working_copy">Edit the existing private working copy</span>
+          <span tal:omit-tag="" tal:condition="python: state == 'pending'">Editing will cancel the publishing process and edit this CityProfile</span>
+        </span>
       </div>
 
-      <div class="buttons2">
-        <button class="buttonone two" name="submit" value="edit">Edit</button>
-          <div tal:condition="python: state == 'private'">Editing will open this CityProfile for edit</div>
-          <div tal:condition="python: (state == 'published') and not has_working_copy">Editing will create a private copy, to be edited</div>
-          <div tal:condition="python: (state == 'published') and has_working_copy">Edit the existing private working copy</div>
-          <div tal:condition="python: state == 'pending'">Editing will cancel the publishing process and edit this CityProfile</div>
+      <div class="city-menu-row" tal:define="can_submit view/can_submit_for_publication">
+        <button tal:define="disabled python: (not can_submit) and 'disabled' or ''" 
+          tal:attributes="class disabled; disabled disabled" name="submit" value="submit">Submit for publication</button>
+        <span>Step 2: Finish the edition of your fact sheet</span>
       </div>
+
+      <div class="city-menu-row" >
+        <button name="submit" tal:define="disabled python: (not has_working_copy) and 'disabled' or ''" 
+          tal:attributes="class disabled; disabled disabled;" value="preview_working_copy">Preview working copy</button>
+        <span>Step 3: Preview your working copy of City Profile</span>
+      </div>
+
+      <div class="city-menu-row" >
+        <button name="submit" tal:attributes="class python: (state != 'published') and 'disabled' or ''" value="check">Check</button>
+        <span>Step 4: Check your page in the Climate ADAPT platform, as soon as the Mayors Adapt team approves it.</span>
+      </div>
+
+      <p>
+        Current state: <strong tal:content="python: view.state_labels()[state]" />
+      </p>
+
   </form>
 
 </div>

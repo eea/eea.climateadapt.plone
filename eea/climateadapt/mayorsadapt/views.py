@@ -7,8 +7,8 @@ from plone.app.contenttypes.browser.folder import FolderView
 from plone.app.iterate import PloneMessageFactory as _
 from plone.app.iterate.interfaces import CheckoutException
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
-from plone.app.iterate.interfaces import IWCContainerLocator
-from zope.component import getMultiAdapter, getAdapters
+#from plone.app.iterate.interfaces import IWCContainerLocator
+from zope.component import getMultiAdapter  #, getAdapters
 from zope.interface import Interface, implements
 from zope.publisher.browser import BrowserPage
 
@@ -33,21 +33,28 @@ class CityProfileEditController(BrowserView):
 
     def _get_working_copy(self):
         # needed to function as override. TODO: check this statement
-        return self.context
+        policy = ICheckinCheckoutPolicy(self.context)
+        obj = policy.getWorkingCopy()
+        return obj
 
     def handle_submit(self):
         transition(self.context, to_state='pending')
         url = '{0}/'.format(self.context.absolute_url())
         return self.request.response.redirect(url)
 
-    # def _containers(self):
-    #     """Get a list of potential containers"""
-    #     # NOTE: this code is copied from plone.app.iterate.browser.checkout
-    #     #yield self.context.aq_parent
-    #     context = aq_inner(self.context)
-    #     for name, locator in getAdapters((context,), IWCContainerLocator):
-    #         if locator.available:
-    #             yield dict(name=name, locator=locator)
+    def handle_preview_working_copy(self):
+        wc = self._get_working_copy()
+        if wc is not None:
+            return self.request.response.redirect(wc.absolute_url())
+        else:
+            return self.request.response.redirect(self.context.absolute_url())
+
+    def handle_check(self):
+        policy = ICheckinCheckoutPolicy(self.context)
+        baseline = policy.getBaseline()
+        if baseline is None:
+            baseline = self.context
+        return self.request.response.redirect(baseline.absolute_url())
 
     def _checkout(self):
         # NOTE: this code is copied from plone.app.iterate.browser.checkout
@@ -62,18 +69,6 @@ class CityProfileEditController(BrowserView):
                                   name=u"iterate_control")
         if not control.checkout_allowed():
             raise CheckoutException(u"Not allowed")
-
-        # locator = None
-        # try:
-        #     locator = [c['locator']
-        #                for c in containers if c['name'] == location][0]
-        # except IndexError:
-        #     IStatusMessage(self.request).addStatusMessage(
-        #         _("Cannot find checkout location"), type='stop')
-        #     view_url = context.restrictedTraverse(
-        #         "@@plone_context_state").view_url()
-        #     self.request.response.redirect(view_url)
-        #     return
 
         policy = ICheckinCheckoutPolicy(context)
         wc = policy.checkout(location)

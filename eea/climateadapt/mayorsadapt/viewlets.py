@@ -40,7 +40,7 @@ class EditMenuViewlet(ViewletBase):
         # TODO: return True if transition submit is available
         return self.current_state() == 'private'
 
-    def has_working_copy(self):
+    def get_working_copy(self):
 
         context = self.context
         policy = ICheckinCheckoutPolicy(context, None)
@@ -49,8 +49,13 @@ class EditMenuViewlet(ViewletBase):
             return False
 
         wc = policy.getWorkingCopy()
+        return wc
+
+    def has_working_copy(self):
+        wc = self.get_working_copy()
         if wc is not None:
             return True
+        return False
 
 
 class ExpiredTokenViewlet(ViewletBase):
