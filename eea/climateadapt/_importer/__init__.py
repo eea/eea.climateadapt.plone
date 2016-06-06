@@ -2633,7 +2633,7 @@ def tweak_site(site):
         {'extranet-cca-newsevents': ['Contributor', 'Reviewer', 'Editor']})
     site['news-archive'].__ac_local_roles__.update(
         {'extranet-cca-newsevents': ['Contributor', 'Reviewer', 'Editor']})
-    site['news-archive'].__ac_local_roles__.update(
+    site['city-profile'].__ac_local_roles__.update(
         {'extranet-cca-ma-managers': ['Contributor', 'Reviewer', 'Editor']})
 
 
