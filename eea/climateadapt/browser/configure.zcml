@@ -308,6 +308,15 @@
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
 
+    <browser:viewlet
+        name="plone.resourceregistries"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        view=".satold.ISatOldView"
+        template="pt/resourceregistries.pt"
+        permission="zope2.View"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        />
+
     <!-- SharePageSubMenu -->
     <browser:viewlet
         name="share_page_sub_menu"
