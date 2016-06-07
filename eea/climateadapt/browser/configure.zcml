@@ -161,6 +161,20 @@
         template="pt/navbar.pt"
         />
 
+    <browser:page
+        class=".keywords_admin.KeywordsAdminView"
+        for="*"
+        name="keywords-admin"
+        template="pt/keywords-admin.pt"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        class=".keywords_admin.KeywordObjects"
+        for="*"
+        name="keyword-objects"
+        permission="zope2.View"
+        />
 
     <!-- # portal link redirections, compatibility with old site -->
     <browser:page
