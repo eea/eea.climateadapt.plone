@@ -24,7 +24,7 @@
 						replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
 						replacedText = datastring.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
 
-						// Add content cu div
+						// Add content to div
 						obj_div.append(replacedText);
 					}
 	            })
