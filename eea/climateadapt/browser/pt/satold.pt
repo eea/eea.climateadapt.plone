@@ -1,0 +1,70 @@
+<metal:use-macro use-macro="context/main_template/macros/master">
+
+    <metal:fill-slot fill-slot="style_slot">
+        <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/esri/css/esri.css">
+        <link rel="stylesheet" href="++resource++eea.climateadapt/SimilarAreasTool-portlet/css/portlet.css">
+        <link rel="stylesheet" href="++resource++eea.climateadapt/SimilarAreasTool-portlet/css/ext-all.css">
+        <link rel="stylesheet" href="++resource++eea.climateadapt/SimilarAreasTool-portlet/css/xtheme-gray.css">
+        <link rel="stylesheet" href="++resource++eea.climateadapt/SimilarAreasTool-portlet/css/css_ext_theme.css">
+        <link rel="stylesheet" href="++resource++eea.climateadapt/SimilarAreasTool-portlet/css/tooltip.css">
+        <link rel="stylesheet" href="++resource++eea.climateadapt/SimilarAreasTool-portlet/css/main.css">
+    </metal:fill-slot>
+
+    <metal:fill-slot fill-slot="javascript_head_slot">
+        <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2&amp;mkt=en-us"></script>
+        <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4compact"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/ext-base.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/ext-all.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/OpenLayers.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/GeoExt.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/CHM.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/Point.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/Location.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/LocationControl.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/layer/vector/CasestudiesVector.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/locator/candidate/CandidatesStore.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/locator/Locator.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/grid/GridControl.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/legend/LegendControl.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/options/OptionsControl.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/locator/LocatorControl.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/map/MapControl.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/control/map/Map.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/Application.js"></script>
+        <script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/chm/Session.js"></script>
+        <script type="text/javascript" src="/++resource++collective.js.bootstrap/js/bootstrap.min.js"></script>
+    </metal:fill-slot>
+
+    <metal:fill-slot fill-slot="content">
+      <div class="cover-richtext-tile tile-content ext-reset">
+		<select id="riskSelect" name="riskSelect">
+			<option value="ALL">All risks</option>
+			<option value="EXTREMETEMP">Extreme Temperatures</option>
+			<option value="WATERSCARCE">Water Scarcity</option>
+			<option value="FLOODING">Flooding</option>
+			<option value="SEALEVELRISE">Sea Level Rise</option>
+			<option value="DROUGHT">Droughts</option>
+			<option value="STORM">Storms</option>
+			<option value="ICEANDSNOW">Ice and Snow</option>
+		</select>
+
+		<select id="sectorSelect" name="sectorSelect">
+			<option value="ALL">All sectors</option>
+			<option value="AGRICULTURE">Agriculture and Forest</option>
+			<option value="BIODIVERSITY">Biodiversity</option>
+			<option value="COASTAL">Coastal areas</option>
+			<option value="DISASTERRISKREDUCTION">Disaster Risk Reduction</option>
+			<option value="FINANCIAL">Financial</option>
+			<option value="HEALTH">Health</option>
+			<option value="INFRASTRUCTURE">Infrastructure</option>
+			<option value="MARINE">Marine and Fisheries</option>
+			<option value="WATERMANAGEMENT">Water management</option>
+		</select>
+
+		<div id="csst_element"></div>
+
+		<script tal:content="view/inline_js">
+		</script>
+		<script type="text/javascript" src="++resource++eea.climateadapt/SimilarAreasTool-portlet/js/javascript.js"></script>
+    </metal:fill-slot>
+</metal:use-macro>
