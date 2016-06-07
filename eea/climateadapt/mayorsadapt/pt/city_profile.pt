@@ -193,7 +193,7 @@
             </div>
 
             <div>
-                <h3>Name & surname of mayor</h3>
+                <h3>Name &and; surname of mayor</h3>
                 <div tal:content="structure python: view.w['name_and_surname_of_mayor'].render()" />
             </div>
 
@@ -216,7 +216,8 @@
 
             <div>
                 <h3>Date of officially joining Mayors Adapt</h3>
-                <div tal:content="structure python: view.w['signature_date'].render()" />
+                <div tal:content="python: view.formated_date(view.context.signature_date)" />
+                <!-- <div tal:content="structure python: view.w['signature_date'].render()" /> -->
             </div>
 
             <div>
@@ -224,13 +225,12 @@
                 <div tal:content="structure python: view.w['covenant_of_mayors_signatory'].render()" />
             </div>
 
-            <!-- <div> -->
-            <!--     <h3>Last Update</h3> -->
-            <!--     <div tal:content="python:dir(view)" /> -->
-            <!--     <div tal:content="python:view" /> -->
-            <!-- </div> -->
-        </div>
+            <div>
+              <h3>Last Update</h3>
+                <div tal:content="python: view.formated_date(view.context.modified())" />
+            </div>
 
+        </div>
 
     </metal:main>
 

@@ -39,16 +39,14 @@ from eea.climateadapt._importer.utils import parse_settings    #, printe
 from eea.climateadapt._importer.utils import render
 from eea.climateadapt._importer.utils import render_accordion
 from eea.climateadapt._importer.utils import render_tabs
-from eea.climateadapt._importer.utils import s2li, t2r, r2t, s2l
+from eea.climateadapt._importer.utils import s2li, t2r, r2t, s2l, s2d
 from eea.climateadapt._importer.utils import stamp_cover
 from eea.climateadapt._importer.utils import strip_xml
 from eea.climateadapt._importer.utils import to_decimal
-from eea.climateadapt._importer.utils import to_int
 from eea.climateadapt._importer.utils import write_links
 from eea.climateadapt.config import DEFAULT_LOCATIONS
 from eea.climateadapt.interfaces import IASTNavigationRoot
 from eea.climateadapt.interfaces import IBalticRegionMarker
-from eea.climateadapt.interfaces import ICitiesListingsRoot
 from eea.climateadapt.interfaces import IClimateAdaptSharePage
 from eea.climateadapt.interfaces import ICountriesRoot
 from eea.climateadapt.interfaces import IMayorAdaptRoot
@@ -87,6 +85,7 @@ import json
 import os
 import sys
 import transaction
+#from eea.climateadapt.interfaces import ICitiesListingsRoot
 
 
 ctz = timezone('Europe/Copenhagen')
@@ -822,8 +821,8 @@ def import_city_profile(container, journal):
 
     _publish = journal.status == 0 # is this a published city?
 
-    geoloc_lat = to_int(mapped_data.pop('city_latitude'))
-    geoloc_long = to_int(mapped_data.pop('city_longitude'))
+    geoloc_lat = s2d(mapped_data.pop('city_latitude'))
+    geoloc_long = s2d(mapped_data.pop('city_longitude'))
     if geoloc_lat and geoloc_long:
         geoloc = Geolocation(latitude=geoloc_lat, longitude=geoloc_long)
         mapped_data['geolocation'] = geoloc
@@ -871,6 +870,7 @@ def import_city_profiles(site):
     city_profiles_folder = site['city-profile']
     imported = []
     to_import = sorted(to_import, key=lambda x: x.title)
+
     for data in to_import:
         obj = import_city_profile(city_profiles_folder, data)
         imported.append(obj)
@@ -2392,6 +2392,7 @@ def get_default_location(site, _type):
                       [u'Contributor', u'Editor', u'Reader']})
         dest.immediately_addable_types = [factory]
         dest.locally_allowed_types = [factory]
+        dest.constrain_types_mode = 1
         dest.manage_addProperty('search_type_name', _type, 'string')
         dest.setLayout('@@redirect_to_search_page')
 
@@ -2571,13 +2572,13 @@ def tweak_site(site):
 
     # city-profile page
     cities = site['city-profile']
-    alsoProvides(cities, ICitiesListingsRoot)
     cities.setLayout('@@cities-listing')
-
     cities.immediately_addable_types = ['eea.climateadapt.city_profile']
     cities.locally_allowed_types = ['eea.climateadapt.city_profile']
+    cities.constrain_types_mode = 1
 
-    cities._Add_portal_content_Permission = ('CityMayor',)
+    cities._Add_portal_content_Permission = ('CityMayor', 'Manager',
+                                             'Contributor')
     cities._p_changed = True
 
     # content page
@@ -2612,9 +2613,11 @@ def tweak_site(site):
     # set permitted addable content in various locations
     site['news-archive'].immediately_addable_types = ['News Item']
     site['news-archive'].locally_allowed_types = ['News Item', 'Image', 'File']
+    site['news-archive'].constrain_types_mode = 1
 
     site['more-events'].immediately_addable_types = ['Event']
     site['more-events'].locally_allowed_types = ['Event', 'Image', 'File']
+    site['more-events'].constrain_types_mode = 1
 
     # set permissions
     #{'extranet-cca-managers': [u'Contributor', u'Reviewer', u'Editor', u'Reader']}
@@ -2657,7 +2660,7 @@ def tweak_site(site):
     </div>
     </div>
     """
-    page = createAndPublishContentInContainer(
+    createAndPublishContentInContainer(
         site,
         'Document',
         title=u'More latest updates',

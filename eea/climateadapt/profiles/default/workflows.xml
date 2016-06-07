@@ -30,9 +30,6 @@
         <type type_id="eea.climateadapt.casestudy">
             <bound-workflow workflow_id="cca_items_workflow"/>
         </type>
-        <type type_id="eea.climateadapt.city_profile">
-            <bound-workflow workflow_id="cca_items_workflow"/>
-        </type>
         <type type_id="eea.climateadapt.guidancedocument">
             <bound-workflow workflow_id="cca_items_workflow"/>
         </type>

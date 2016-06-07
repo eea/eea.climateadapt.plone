@@ -13,11 +13,12 @@ class CityProfileView(DefaultView):
     def city_modified(self):
         return portal.get_localized_time(self.context.modified())
 
-    # def formated_date(self, modifiedTime):
-    #     import pdb; pdb.set_trace()
-    #     modif_date = portal.get_localized_time(datetime=modifiedTime)
-    #     return modif_date
-    #     return datetime.datetime.strptime(modif_date, '%d %B %Y').strftime('%d/%m/%y')
+    def formated_date(self, modifiedTime):
+        modif_date = portal.get_localized_time(datetime=modifiedTime)
+        return modif_date
+
+        # import datetime
+        # return datetime.datetime.strptime(modif_date, '%d %B %Y').strftime('%d/%m/%y')
 
     def implementation_state_img_url(self):
         _map = {

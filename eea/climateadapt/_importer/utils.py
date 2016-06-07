@@ -144,9 +144,11 @@ def to_decimal(val):
     val = str(val)
     return Decimal(val)
 
-def to_int(val):
+
+def s2d(val):
     try:
-        val = int(val)
+        val = Decimal(val)
+        return val
     except Exception:
         return None
 
