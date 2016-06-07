@@ -19,11 +19,12 @@
                         color: #444;
                         cursor: pointer;
                         padding: 18px;
-                        width: 100%;
                         text-align: left;
                         border: none;
                         outline: none;
                         transition: 0.4s;
+                        display:inline-block;
+                        float: left;
                     }
 
                     button.show_key_objects.active, button.show_key_objects:hover {
@@ -32,6 +33,7 @@
 
                     div.keyword_objects {
                         padding: 0 18px;
+                        display:inline-block;
                         background-color: white;
                         max-height: 0;
                         overflow: hidden;
@@ -43,6 +45,19 @@
                         opacity: 1;
                         max-height: 500px;
                         white-space: pre-line;
+                        background-color: #eee;
+                    }
+
+                    button.show_key_objects:after {
+                        content: '\02795'; (+)
+                        font-size: 13px;
+                        color: #777;
+                        float: right;
+                        margin-left: 5px;
+                    }
+
+                    button.show_key_objects.active:after {
+                        content: "\2796"; /* (-) */
                     }
 
                 </style>
@@ -52,19 +67,17 @@
                   <thead>
                     <tr>
                       <th>Keyword</th>
-                      <th>Lenght</th>
+                      <th>Count</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr tal:repeat="key keys">
-                      <td tal:content="key" id="admin-keywords">
-                      </td>
-                      <td tal:content="python: view.get_keyword_lenght(key)">
-                      </td>
                       <td>
-                        <button class="show_key_objects">Show</button>
-                        <div class="keyword_objects">
-                        </div>
+                          <div tal:content="key" class="admin-keywords"></div>
+                          <button class="show_key_objects"></button>
+                          <div class="keyword_objects"></div>
+                      </td>
+                      <td tal:content="python: view.get_keyword_lenght(key)" style="text-align:center;">
                       </td>
                     </tr>
                   </tbody>

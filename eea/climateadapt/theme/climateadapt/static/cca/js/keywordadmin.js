@@ -6,7 +6,7 @@
             var form_key = $(this).parents('tr').children('td')[0].innerText;
 
 			// get the div where the links will be inserted
-			var obj_div = $(this).siblings('div');
+			var obj_div = $(this).siblings('.keyword_objects');
 
 			// check if the element was clicked before so that
 			// we do the ajax load only once
@@ -17,8 +17,15 @@
 	                url: '/keyword-objects?keyword=' + form_key,
 	                dataType: "json",
 	                success: function(data){
+						// add newlink after links
 						datastring = data.join('\n');
-						obj_div.append(datastring);
+
+						// Linkify http/https/ftp
+						replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+						replacedText = datastring.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
+
+						// Add content cu div
+						obj_div.append(replacedText);
 					}
 	            })
 			}
@@ -29,11 +36,6 @@
 
 			// flag for click
 			$(this).data('clicked', true);
-
-			// changes text per click
-			$(this).text(function (a,b) {
-				return (b == "Show" ? "Hide" : "Show");
-			});
         });
     });
 })(jQuery);
