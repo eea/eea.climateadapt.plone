@@ -2031,35 +2031,3 @@ table.dataTable thead .sorting_desc {
 .template-compose .tile-container {
     /* position: initial; */
 }
-
-/* Keyword-admin page */
-.template-keywords-admin button.show_key_objects {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: 0.4s;
-}
-
-.template-keywords-admin button.show_key_objects.active, button.show_key_objects:hover {
-    background-color: #ddd;
-}
-
-.template-keywords-admin div.keyword_objects {
-    padding: 0 18px;
-    background-color: white;
-    max-height: 0;
-    overflow: hidden;
-    transition: 0.6s ease-in-out;
-    opacity: 0;
-}
-
-.template-keywords-admin div.keyword_objects.show {
-    opacity: 1;
-    max-height: 500px;
-    white-space: pre-line;
-}
