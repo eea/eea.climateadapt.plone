@@ -13,9 +13,10 @@
       $("#country-select").change(function(){
         var cid = $(this).val();
         var country = $("#country-select option[value='" + cid + "']").text();
-        console.log(cid, country);
+        var res = country.split(" ").join("-")
+        console.log(cid, res);
         if (country.length) {
-          document.location = '/countries/' + country.toLowerCase();
+          document.location = '/countries/' + res.toLowerCase();
         }
       });
     });
