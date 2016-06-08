@@ -13,7 +13,7 @@
             <tal:main-macro metal:define-macro="content-core">
                 <style>
                     .documentEditable #content {
-                        margin-left: 0.25em;
+                        margin-left: 1em;
                     }
                 </style>
                 <iframe class='ace-iframe' frameborder='0'
