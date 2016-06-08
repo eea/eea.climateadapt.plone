@@ -200,13 +200,6 @@
     <!-- # end link redirections -->
 
     <!-- Special pages, reimplemented as standalone views, and their AJAX helpers -->
-    <browser:page
-        class=".satold.SatOldView"
-        for="*"
-        name="sat-old"
-        template="pt/satold.pt"
-        permission="zope2.View"
-        />
 
     <browser:page
         class=".sat.SatView"
