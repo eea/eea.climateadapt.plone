@@ -12,7 +12,6 @@
 
       <div class="aceitem_top">
         <div style="display: none" tal:content="context/special_tags | nothing">Special tags, for debugging</div>
-        <a href="" tal:attributes="href view/link_to_original">Original page</a>
         <h2 tal:content="view/type_label">Project</h2>
         <metal:macro define-slot="title-slot">
           <h1 tal:content="context/title">Title here</h1>
