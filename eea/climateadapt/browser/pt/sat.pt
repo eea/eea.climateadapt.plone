@@ -17,7 +17,7 @@
                     }
                 </style>
                 <iframe class='ace-iframe' frameborder='0'
-                    style='min-width:980px;min-height:800px' height='100%%'
+                    style='min-width:960px;min-height:800px' height='100%%'
                     scrolling='no' src='http://maps.eea.europa.eu/wab/ClimateAdaptCaseStudies/'></iframe>
             </tal:main-macro>
         </metal:main>
