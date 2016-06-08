@@ -77,7 +77,7 @@
                           <button class="show_key_objects"></button>
                           <div class="keyword_objects"></div>
                       </td>
-                      <td tal:content="python: view.get_keyword_lenght(key)" style="text-align:center;">
+                      <td tal:content="python: view.get_keyword_length(key)" style="text-align:center;">
                       </td>
                     </tr>
                   </tbody>

@@ -15,7 +15,7 @@ class KeywordsAdminView (BrowserView):
 
         return self.index()
 
-    def get_keyword_lenght(self, key):
+    def get_keyword_length(self, key):
         return len(self.context.portal_catalog._catalog.indexes['keywords']._index[key])
 
 
