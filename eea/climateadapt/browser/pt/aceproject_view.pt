@@ -51,7 +51,24 @@
             <h4>Sectors</h4>
             <p tal:replace="structure python:view.w['sectors'].render()"/>
             <h4>Geographic characterization</h4>
-            <metal:macro use-macro="context/ace_macros/macros/geochar" />
+            <tal:def define="geochar python:view.render_geochar(context.geochars)">
+
+              <div tal:content="structure geochar" tal:condition="geochar"/>
+
+              <tal:cond condition="not: geochar">
+                <div tal:condition="context/spatial_layer | nothing">
+                    <div tal:repeat="spatial_layer context/spatial_layer">
+                        <div tal:content="spatial_layer"/>
+                    </div>
+                </div>
+
+                <p tal:condition="context/spatial_values">
+                  Countries:
+                  <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
+                </p>
+              </tal:cond>
+
+            </tal:def>
           </div>
         </metal:macro>
 
