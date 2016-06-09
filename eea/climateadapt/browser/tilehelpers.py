@@ -66,6 +66,7 @@ class NewsTile(ListingTile):
         return self.parent.getFolderContents({'portal_type': 'News Item',
                                               'sort_by': 'effective',
                                               "sort_order":"reverse",
+                                              'review_state': 'published',
                                               },
                                              full_objects=True)[:3]
 
@@ -87,6 +88,7 @@ class EventsTile(ListingTile):
 
     def items(self):
         return self.parent.getFolderContents({'portal_type':'Event',
+                                              'review_state': 'published',
                                               "sort_order":"reverse",
                                               'sort_by': 'effective'},
                                              full_objects=True)[:3]
