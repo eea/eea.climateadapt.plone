@@ -141,13 +141,13 @@
                                 </p>
                                 <ul class="case-studies-bullted-list">
                                   <li class="first">
-                                    <a href="#contact_anchor" style="text-decoration: underline">Contact</a>
+                                    <a href="#contact" style="text-decoration: underline">Contact</a>
                                   </li>
                                   <li>
-                                    <a href="#website_anchor" style="text-decoration: underline">Websites</a>
+                                    <a href="#websites" style="text-decoration: underline">Websites</a>
                                   </li>
                                   <li class="last">
-                                    <a href="#source_anchor" style="text-decoration: underline">Source</a>
+                                    <a href="#source" style="text-decoration: underline">Source</a>
                                   </li>
                                 </ul>
                               </li>
@@ -197,13 +197,13 @@
                             <div tal:content="structure context/lifetime/output"></div>
 
                             <h4>Reference Information</h4>
-                            <em style="text-decoration: underline">Contact</em>
+                            <em id="contact" style="text-decoration: underline">Contact</em>
                             <div tal:content="structure python: view.w['contact'].render()"></div>
 
-                            <em style="text-decoration: underline">Websites</em>
+                            <em id="websites" style="text-decoration: underline">Websites</em>
                             <div metal:use-macro="context/ace_macros/macros/websites"></div>
 
-                            <em style="text-decoration: underline">Source</em>
+                            <em id="source" style="text-decoration: underline">Source</em>
                             <div tal:content="structure context/source/output"></div>
 
                             <div metal:use-macro="context/ace_macros/macros/comments"></div>
