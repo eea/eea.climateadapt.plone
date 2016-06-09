@@ -404,10 +404,11 @@ class AceViewApi(object):
 
     def _render_geochar_element(self, value):
         value = TRANSLATED[value]
-        if value == 'Global':
-            return value + u"<br/>"
-        else:
-            return value + u":<br/>"
+        return u"<p>{0}</p>".format(value)
+        # if value == 'Global':
+        #     return value + u"<br/>"
+        # else:
+        #     return value + u":<br/>"
 
     def _render_geochar_macrotrans(self, value):
         tpl = u"<p>Macro-Transnational region: <br/>{0}</p>"
