@@ -1,15 +1,14 @@
 # coding=utf-8
-from Products.Five.browser import BrowserView
-from eea.climateadapt.city_profile import MAIL_TEXT_TEMPLATE
-from eea.climateadapt.mayorsadapt.vocabulary import _climateimpacts
-from eea.climateadapt.mayorsadapt.vocabulary import _sectors
-from eea.climateadapt.mayorsadapt.vocabulary import _stage_implementation_cycle
-from eea.climateadapt.vocabulary import ace_countries
-from zope.annotation.interfaces import IAnnotations
-from zope.interface import Interface
-from zope.interface import implements
 import json
+from datetime import date, timedelta
 import tokenlib
+from eea.climateadapt.city_profile import MAIL_TEXT_TEMPLATE
+from eea.climateadapt.mayorsadapt.vocabulary import (_climateimpacts, _sectors,
+                                                     _stage_implementation_cycle)
+from eea.climateadapt.vocabulary import ace_countries
+from Products.Five.browser import BrowserView
+from zope.annotation.interfaces import IAnnotations
+from zope.interface import Interface, implements
 
 
 class ITokenMailView(Interface):
@@ -28,6 +27,11 @@ class TokenMailView (BrowserView):
         # 4 weeks = 2419200
         self.secret = tokenlib.make_token({"": ""}, secret=tokensecret,
                                           timeout=2419200)
+
+        time_now = date.today()
+        expiry_time = time_now + timedelta(days=28)
+        IAnnotations(city)['eea.climateadapt.cityprofile_token_expires'] = expiry_time
+
         try:
             self.emailto = str(city.official_email)
         except:

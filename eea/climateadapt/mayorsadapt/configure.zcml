@@ -86,6 +86,15 @@
         permission="cmf.ManagePortal"
         />
 
+
+    <browser:page
+        class=".token_check.TokenCheckView"
+        for="*"
+        name="token-check"
+        template="pt/token_check.pt"
+        permission="zope2.View"
+        />
+
     <!-- <adapter factory=".staging.CityProfileBehaviorAssignable" /> -->
 
     <browser:page
