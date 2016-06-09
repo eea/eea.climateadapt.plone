@@ -3,6 +3,9 @@ Changelog
 
 1.2.dev0 - (unreleased)
 -----------------------
+* Bug fix: temporarily disabled SESSION intervention, to see if we can track
+  down performance problem for authenticated
+  [tiberich #73248]
 
 1.1 - (2016-06-09)
 ------------------

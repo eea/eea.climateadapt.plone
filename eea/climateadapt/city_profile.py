@@ -101,10 +101,12 @@ class CityProfile(dexterity.Container):
     def __ac_local_roles__(self):
         req = getRequest()
 
-        try:
-            secret_token = req.SESSION.get(TOKENID)
-        except KeyError:
-            secret_token = req.cookies.get(TOKENID)
+        # try:
+        #     secret_token = req.SESSION.get(TOKENID)
+        # except KeyError:
+        #     secret_token = req.cookies.get(TOKENID)
+
+        secret_token = req.cookies.get(TOKENID)
 
         if not secret_token:
             return {}

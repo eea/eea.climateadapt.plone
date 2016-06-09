@@ -13,6 +13,6 @@ class TokenTraverser(BrowserPage):
     def publishTraverse(self, request, name):
         """ Sets the cookie with the token value, expires in 2 hours """
         expire_date = datetime.datetime.now() + timedelta(hours=2)
-        request.SESSION.set(TOKENID, name)
+        #request.SESSION.set(TOKENID, name)
         request.RESPONSE.setCookie(TOKENID, name, expires=expire_date)
         return self.context

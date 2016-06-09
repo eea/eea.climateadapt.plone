@@ -84,10 +84,11 @@ class ExpiredTokenViewlet(ViewletBase):
 
         req = getRequest()
 
-        try:
-            secret_token = req.SESSION.get(TOKENID)
-        except KeyError:
-            secret_token = req.cookies.get(TOKENID)
+        # try:
+        #     secret_token = req.SESSION.get(TOKENID)
+        # except KeyError:
+        #     secret_token = req.cookies.get(TOKENID)
+        secret_token = req.cookies.get(TOKENID)
 
         if not secret_token:
             self.check_url = False
