@@ -7,7 +7,7 @@ Changelog
   [tiberich #73231]
 
 * Change: Implemented the catalog search and time verification of city profile
-        tokens for email reminders
+  tokens for email reminders
   [iulianpetchesi #71389]
 
 1.0 - (08-06-2016)
