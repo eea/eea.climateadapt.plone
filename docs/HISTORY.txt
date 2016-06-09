@@ -1,6 +1,11 @@
 Changelog
 =========
 
-1.0-dev - (unreleased)
+1.1-dev - (unreleased)
+----------------------
+* Bugfix: fix geochar field rendering of global/Europe label
+  [tiberich #73231]
+
+1.0 - (08-06-2016)
 ----------------------
 - Initial release
