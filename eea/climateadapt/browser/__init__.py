@@ -441,8 +441,8 @@ class AceViewApi(object):
     def _render_geochar_city(self, value):
         text = value
         if isinstance(value, (list, tuple)):
-            text = u" ".join(value)
-        return u"<p>City: {0}</p>".format(text)
+            text = u", ".join(value)
+        return u"<p>City: <br/>{0}</p>".format(text)
 
     def render_geochar(self, value):
         # value is a mapping such as:
