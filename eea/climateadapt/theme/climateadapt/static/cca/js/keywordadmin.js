@@ -1,6 +1,5 @@
 jQuery(document).ready(function(){
     $("#keywords-admin button").click(function(){
-        console.log('triggered', this);
         $('span', this).toggleClass('glyphicon glyphicon-zoom-in');
         $('span', this).toggleClass('glyphicon glyphicon-zoom-out');
         var $placeholder = $(this).parent().find('.links');
@@ -13,7 +12,6 @@ jQuery(document).ready(function(){
 
         $(this).addClass('opened');
 
-        console.log('placeholder', $placeholder);
         var keyword = $(this).parent().find('input').val();
         $.post('keyword-objects', {'keyword':keyword}, function(data){
             var $ul = $("<ul>");

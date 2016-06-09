@@ -25,7 +25,6 @@ class KeywordObjects (BrowserView):
     """
 
     def __call__(self):
-        #import pdb; pdb.set_trace()
         key = self.request.form['keyword'].decode('utf-8')
         key_obj = [b.getURL() + '/edit' for b in
                    self.context.portal_catalog.searchResults(keywords=key)]
