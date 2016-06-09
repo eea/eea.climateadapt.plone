@@ -1,11 +1,10 @@
 Changelog
 =========
 
-1.1-dev - (unreleased)
-----------------------
+1.1 - (2016-06-09)
+------------------
 * Bugfix: fix geochar field rendering of global/Europe label and city
   [tiberich #73231]
-
 * Change: Implemented the catalog search and time verification of city profile
   tokens for email reminders
   [iulianpetchesi #71389]
@@ -13,3 +12,4 @@ Changelog
 1.0 - (08-06-2016)
 ----------------------
 - Initial release
+
