@@ -3,6 +3,9 @@ Changelog
 
 1.2.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed links for frontpage
+  [iulianpetchesi #73236]
+
 * Bugfix: Fixed anchors for case study links
   [iulianpetchesi #73239]
 
