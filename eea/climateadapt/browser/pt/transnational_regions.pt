@@ -435,7 +435,7 @@
                 <div id="mapDiv">
                     <div id="HomeButton">&nbsp;</div>
 
-                    <div id="LoadingDiv"><img src="/documents/18/0/loading_layer.gif/e6aff2ab-71eb-4861-8629-84c9e1924e8f?t=1442309406876"/></div>
+                    <div id="LoadingDiv"><img src="/++theme++climateadapt/static/cca/img/loading.gif"/></div>
                 </div>
             </div>
 
