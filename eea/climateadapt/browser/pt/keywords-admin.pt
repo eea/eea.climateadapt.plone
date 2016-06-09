@@ -1,88 +1,43 @@
 <html
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:tal="http://xml.zope.org/namespaces/tal"
-    xmlns:metal="http://xml.zope.org/namespaces/metal"
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    xml:lang="en"
-    lang="en"
-    metal:use-macro="context/main_template/macros/master"
-    i18n:domain="eea.climateadapt">
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  xml:lang="en"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="eea.climateadapt">
 
-    <body>
-        <metal:main fill-slot="main">
-            <tal:main-macro metal:define-macro="content-core">
-                <script src="/++theme++climateadapt/static/cca/js/keywordadmin.js"></script>
+  <body>
+    <metal:main fill-slot="main">
+      <tal:main-macro metal:define-macro="content-core">
 
-                <style>
-                    button.show_key_objects {
-                        background-color: #eee;
-                        color: #444;
-                        cursor: pointer;
-                        padding: 18px;
-                        text-align: left;
-                        border: none;
-                        outline: none;
-                        transition: 0.4s;
-                        display:inline-block;
-                        float: left;
-                    }
+        <script src="/++theme++climateadapt/static/cca/js/keywordadmin.js"></script>
 
-                    button.show_key_objects.active, button.show_key_objects:hover {
-                        background-color: #ddd;
-                    }
+        <h1>Keywords administration</h1>
 
-                    div.keyword_objects {
-                        padding: 0 18px;
-                        display:inline-block;
-                        background-color: white;
-                        max-height: 0;
-                        overflow: hidden;
-                        transition: 0.6s ease-in-out;
-                        opacity: 0;
-                    }
+        <table class="table table-striped" id="keywords-admin" tal:define="keys view/keyword">
+          <thead>
+            <tr>
+              <th>Keyword</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr tal:repeat="key keys">
+              <td>
+                <input type="hidden" value="" tal:attributes="value key" />
+                <strong tal:content="key" class="admin-keywords"></strong>
+                <button><span class="glyphicon glyphicon-zoom-in"></span></button>
+                <div class="links"></div>
+              </td>
+              <td tal:content="python: view.get_keyword_length(key)" style="text-align:center;">
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-                    div.keyword_objects.show {
-                        opacity: 1;
-                        max-height: 500px;
-                        white-space: pre-line;
-                        background-color: #eee;
-                    }
-
-                    button.show_key_objects:after {
-                        content: '\02795'; (+)
-                        font-size: 13px;
-                        color: #777;
-                        float: right;
-                        margin-left: 5px;
-                    }
-
-                    button.show_key_objects.active:after {
-                        content: "\2796"; /* (-) */
-                    }
-
-                </style>
-
-                <h1>Keywords</h1>
-                <table class="table table-striped" tal:define="keys view/keyword">
-                  <thead>
-                    <tr>
-                      <th>Keyword</th>
-                      <th>Count</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr tal:repeat="key keys">
-                      <td>
-                          <div tal:content="key" class="admin-keywords"></div>
-                          <button class="show_key_objects"></button>
-                          <div class="keyword_objects"></div>
-                      </td>
-                      <td tal:content="python: view.get_keyword_length(key)" style="text-align:center;">
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-            </tal:main-macro>
-        </metal:main>
-    </body>
+      </tal:main-macro>
+    </metal:main>
+  </body>
 </html>

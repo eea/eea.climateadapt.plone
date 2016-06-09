@@ -1,5 +1,5 @@
 from Products.Five.browser import BrowserView
-from zope.interface import Interface
+#from zope.interface import Interface
 import json
 
 
@@ -16,7 +16,8 @@ class KeywordsAdminView (BrowserView):
         return self.index()
 
     def get_keyword_length(self, key):
-        return len(self.context.portal_catalog._catalog.indexes['keywords']._index[key])
+        catalog = self.context.portal_catalog._catalog
+        return len(catalog.indexes['keywords']._index[key])
 
 
 class KeywordObjects (BrowserView):
@@ -24,6 +25,8 @@ class KeywordObjects (BrowserView):
     """
 
     def __call__(self):
+        #import pdb; pdb.set_trace()
         key = self.request.form['keyword'].decode('utf-8')
-        key_obj = [b.getURL() for b in self.context.portal_catalog.searchResults(keywords=key)]
+        key_obj = [b.getURL() + '/edit' for b in
+                   self.context.portal_catalog.searchResults(keywords=key)]
         return json.dumps(key_obj)
