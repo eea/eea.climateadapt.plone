@@ -15,8 +15,8 @@ class AceContentSearch(BrowserView):
     """
 
     def items(self):
-        return self.parent.getFolderContents({'portal_type':'Event', 'sort_by':
-                                              'effective'},
+        return self.parent.getFolderContents({'portal_type':'Event',
+                                              'sort_by': 'effective'},
                                              full_objects=True)[:3]
 
 
@@ -38,7 +38,7 @@ class FrontPageCarousel(BrowserView):
         parent = site['site-news']
         return parent.getFolderContents({'portal_type': 'News Item',
                                          'review_state': 'published',
-                                         'sort_by': 'getObjPositionInParent'},
+                                         'sort_by': 'effective'},
                                         full_objects=True)[:5]
 
 
