@@ -6,7 +6,7 @@ Changelog
 * Bugfix: fix geochar field rendering of global/Europe label and city
   [tiberich #73231]
 
-* Task: Implemented the catalog search and time verification of city profile
+* Change: Implemented the catalog search and time verification of city profile
         tokens for email reminders
   [iulianpetchesi #71389]
 
