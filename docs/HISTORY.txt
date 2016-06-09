@@ -6,6 +6,10 @@ Changelog
 * Bug fix: temporarily disabled SESSION intervention, to see if we can track
   down performance problem for authenticated
   [tiberich #73248]
+* Bugfix: Fixed links for frontpage
+  [iulianpetchesi #73236]
+* Bugfix: Fixed anchors for case study links
+  [iulianpetchesi #73239]
 
 1.1 - (2016-06-09)
 ------------------
@@ -18,4 +22,3 @@ Changelog
 1.0 - (08-06-2016)
 ----------------------
 - Initial release
-
