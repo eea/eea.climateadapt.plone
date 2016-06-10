@@ -3,7 +3,8 @@ Changelog
 
 1.2.dev0 - (unreleased)
 -----------------------
-* Bugfix: Moved 'category' field to adaptations options only
+* Bugfix: Moved 'category' field to adaptations options only and added
+  description for the cost/benefit field
   [iulianpetchesi #73286]
 * Bugfix: Fixed template not hiding empty fields
   [iulianpetchesi #73229]

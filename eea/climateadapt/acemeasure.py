@@ -178,7 +178,16 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     dexteritytextindexer.searchable('cost_benefit')
     cost_benefit = RichText(
-        title=_(u"Cost / Benefit"), required=False, default=u"")
+        title=_(u"Cost / Benefit"), required=False, default=u"",
+        description=_(u"Describe costs (possibly providing quantitative "
+                      u"estimate) and funding sources. Describe benefits "
+                      u"provided by implemented solutions, i.e.: positive "
+                      u"outcomes related climate change adaptation, "
+                      u"co-benefits in other areas, quantitative estimation "
+                      u"of benefits and related methodologies (e.g. "
+                      u"monetization of benefits for cost benefit analysis, "
+                      u"indicators of effectiveness of actions implemented, "
+                      u"etc.) (5,000 characters limit)"))
 
     dexteritytextindexer.searchable('legal_aspects')
     legal_aspects = RichText(title=_(u"Legal aspects"),
