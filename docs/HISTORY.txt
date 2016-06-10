@@ -3,6 +3,16 @@ Changelog
 
 1.2.dev0 - (unreleased)
 -----------------------
+* Bugfix: Moved 'category' field to adaptations options only
+  [iulianpetchesi #73286]
+* Bugfix: Fixed template not hiding empty fields
+  [iulianpetchesi #73229]
+* Bugfix: Fixed vocabulary for relevance field
+  [iulianpetchesi #73234]
+* Change: Added links to the bottom of the sat page
+  [iulianpetchesi #73241]
+* Bugfix: Fixed vocabulary for geochars
+  [iulianpetchesi #73240]
 * Change: Made it so that the website field is no longer required
   [iulianpetchesi #73247]
 * Bugfix: Fixed transnational region error

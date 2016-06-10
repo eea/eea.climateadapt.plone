@@ -144,8 +144,6 @@
         />
 
 
-    -----[ Case Study Form customizations ]----
-
     <adapter
         for="Products.CMFCore.interfaces.IFolderish
              eea.climateadapt.interfaces.IEEAClimateAdaptInstalled
@@ -159,6 +157,8 @@
             interface="zope.publisher.interfaces.browser.IBrowserPage"
             />
     </class>
+
+    -----[ Case Study Form customizations ]----
 
     <browser:page
         for="eea.climateadapt.acemeasure.ICaseStudy"
@@ -181,6 +181,33 @@
         zope.publisher.interfaces.browser.IDefaultBrowserLayer 
         .casestudy.CaseStudyAddForm"
         factory=".casestudy.CaseStudyFormExtender"
+        />
+
+    -----[ Adaptation Option Form customizations ]----
+
+    <browser:page
+        for="eea.climateadapt.acemeasure.IAdaptationOption"
+        name="edit"
+        class=".adaptationoption.AdaptationOptionEditView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="eea.climateadapt.acemeasure.IAdaptationOption 
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer 
+        .adaptationoption.AdaptationOptionEditForm
+        "
+        factory=".adaptationoption.AdaptationOptionFormExtender"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="Products.CMFCore.interfaces.IFolderish
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer 
+        .adaptationoption.AdaptationOptionAddForm
+        "
+        factory=".adaptationoption.AdaptationOptionFormExtender"
         />
 
     ------

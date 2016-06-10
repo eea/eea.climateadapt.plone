@@ -62,13 +62,16 @@ class AddView(DefaultAddView):
         self.request = request
 
         if self.form is not None:
+
             if ti.klass == 'eea.climateadapt.acemeasure.CaseStudy':
                 from eea.climateadapt.browser.casestudy import CaseStudyAddForm
-                self.form_instance = CaseStudyAddForm(aq_inner(self.context),
-                                                      self.request)
-            else:
-                self.form_instance = self.form(
-                    aq_inner(self.context), self.request)
+                self.form = CaseStudyAddForm
+            elif ti.klass == 'eea.climateadapt.acemeasure.AdaptationOption':
+                from eea.climateadapt.browser.adaptationoption import \
+                    AdaptationOptionAddForm
+                self.form = AdaptationOptionAddForm
+
+            self.form_instance = self.form(aq_inner(self.context), self.request)
             self.form_instance.__name__ = self.__name__
 
         self.ti = ti

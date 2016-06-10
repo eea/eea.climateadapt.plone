@@ -192,7 +192,7 @@ alsoProvides(aceitem_featured_vocabulary, IVocabularyFactory)
 _relevance = [
     ('IMPL_AS_CCA', 'Case developed and implemented as a CCA (Climate Change Adaptation) Measure.'),
     ('PARTFUND_AS_CCA', 'Case developed and implemented and partially funded as a CCA measure.'),
-    ('OTHER_POL_OBJ', 'Case mainly developed and implemented because of other policy objectives, but with significant'),
+    ('OTHER_POL_OBJ', 'Case mainly developed and implemented because of other policy objectives, but with significant consideration of CCA aspects'),
     ]
 aceitem_relevance_vocabulary = generic_vocabulary(_relevance)
 alsoProvides(aceitem_relevance_vocabulary, IVocabularyFactory)
@@ -209,11 +209,12 @@ european_countries = ['AD', 'AL', 'AM', 'AT', 'AZ', 'BA', 'BE', 'BG', 'BY',
                       'CH', 'RS', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI',
                       'FO', 'FR', 'GB', 'GE', 'GR', 'HR', 'HU', 'IE', 'IL',
                       'IS', 'IT', 'KZ', 'LI', 'LT', 'LU', 'LV', 'MC', 'MD',
-                      'MK', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'RU', 'SE',
-                      'SI', 'SK', 'SM', 'TR', 'UA']
+                      'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'RU', 'SE', 'SI',
+                      'SK', 'SM', 'TR', 'UA']
 ace_countries = [(x.alpha2, x.name) for x in pycountry.countries
                  if x.alpha2 in european_countries]
 ace_countries.append(('FYROM', 'F. Y. R. O. Macedonia'))
+ace_countries.append(('MK', 'Republic of Macedonia'))
 ace_countries_dict = dict(ace_countries)
 
 ace_countries_vocabulary = generic_vocabulary(ace_countries)

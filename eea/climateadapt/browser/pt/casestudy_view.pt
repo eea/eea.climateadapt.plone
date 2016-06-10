@@ -187,13 +187,15 @@
                             <em id="cost_benefit_anchor" style="text-decoration: underline">Costs and Benefits</em>
                             <div tal:content="structure python: view.w['cost_benefit'].render()"></div>
 
-                            <em id="legal_aspects" style="text-decoration: underline">Legal Aspects</em>
+                            <em id="legal_aspects" tal:condition="python: context.legal_aspects.output != '' or None"
+                                style="text-decoration: underline">Legal Aspects</em>
                             <div tal:content="structure python: view.w['legal_aspects'].render()"></div>
 
                             <em id="implementation_time_anchor" style="text-decoration: underline">Implementation Time</em>
                             <div tal:content="structure context/implementation_time/output"></div>
 
-                            <em id="life_time_anchor" style="text-decoration: underline">Life Time</em>
+                            <em id="life_time_anchor" tal:condition="python: context.lifetime.output != '' or None"
+                                style="text-decoration: underline">Life Time</em>
                             <div tal:content="structure context/lifetime/output"></div>
 
                             <h4>Reference Information</h4>
