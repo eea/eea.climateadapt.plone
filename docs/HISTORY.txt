@@ -3,6 +3,8 @@ Changelog
 
 1.2.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed vocabulary for geochars
+  [iulianpetchesi #73240]
 * Change: Made it so that the website field is no longer required
   [iulianpetchesi #73247]
 * Bugfix: Fixed transnational region error

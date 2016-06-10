@@ -209,11 +209,12 @@ european_countries = ['AD', 'AL', 'AM', 'AT', 'AZ', 'BA', 'BE', 'BG', 'BY',
                       'CH', 'RS', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI',
                       'FO', 'FR', 'GB', 'GE', 'GR', 'HR', 'HU', 'IE', 'IL',
                       'IS', 'IT', 'KZ', 'LI', 'LT', 'LU', 'LV', 'MC', 'MD',
-                      'MK', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'RU', 'SE',
-                      'SI', 'SK', 'SM', 'TR', 'UA']
+                      'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'RU', 'SE', 'SI',
+                      'SK', 'SM', 'TR', 'UA']
 ace_countries = [(x.alpha2, x.name) for x in pycountry.countries
                  if x.alpha2 in european_countries]
 ace_countries.append(('FYROM', 'F. Y. R. O. Macedonia'))
+ace_countries.append(('MK', 'Republic of Macedonia'))
 ace_countries_dict = dict(ace_countries)
 
 ace_countries_vocabulary = generic_vocabulary(ace_countries)
