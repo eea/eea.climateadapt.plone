@@ -12,13 +12,40 @@
         <metal:main fill-slot="main">
             <tal:main-macro metal:define-macro="content-core">
                 <style>
-                    .documentEditable #content {
-                        margin-left: 1em;
+                    #content {
+                        margin-left: 0.25em;
                     }
+                    .documentEditable #content {
+                        margin-left: 0.25em;
+                    }
+
                 </style>
                 <iframe class='ace-iframe' frameborder='0'
                     style='min-width:980px;min-height:800px' height='100%%'
                     scrolling='no' src='http://maps.eea.europa.eu/wab/ClimateAdaptCaseStudies/'></iframe>
+
+                <h3>Other Case Study Portals</h3>
+                <p>
+                    Please note that the case studies presented in the following external information sources do not use the
+                    same definitions and criteria as applied for case studies presented in the Climate-ADAPT case study search tool.
+                </p>
+                <ul>
+                    <li><a href="http://www.circle-era.eu/np4/%7B$clientServletPath%7D/?newsId=432&fileName=BOOK_150_dpi.pdf">
+                            Circle-2 Adaptation Inspiration Book</a></li>
+                    <li><a href="http://www.future-cities.eu/fileadmin/user_upload/pdf/FC_AdaptationCompass_Supplement_web.pdf">
+                            Future Cities project</a></li>
+                    <li><a href="http://www.grabs-eu.org/membersArea/files/Database_Final_no_hyperlinks.pdf">
+                            GRaBS project- Green and blue infrastructure</a></li>
+                    <li><a href="http://www.sic-adapt.eu/outputs/knowledge-platform.html">
+                            SIC adapt</a></li>
+                    <li><a href="http://en.klimatilpasning.dk/recent/cases.aspx">
+                            Klimatilpassning.dk (English / Danish)</a></li>
+                    <li><a href="http://www.umweltbundesamt.de/themen/klima-energie/klimafolgen-anpassung/werkzeuge-der-anpassung/tatenbank/Tatenbank/DE/Home/home_node.html">K omPass Tatenbank (German)</a></li>
+                    <li><a href="http://www.unisdr.org/campaign/resilientcities/cities/index3/#view_role_model">
+                            Making cities resilient - Role models</a></li>
+                    <li><a href="http://www.nwrm.eu/list-of-all-case-studies">
+                            Natural Water Retention Measures - NWRM platform</a></li>
+                </ul>
             </tal:main-macro>
         </metal:main>
     </body>

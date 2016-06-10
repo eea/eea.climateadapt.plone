@@ -3,6 +3,9 @@ Changelog
 
 1.2.dev0 - (unreleased)
 -----------------------
+
+* Change: Added links to the bottom of the sat page
+  [iulianpetchesi #73241]
 * Bugfix: Fixed vocabulary for geochars
   [iulianpetchesi #73240]
 * Change: Made it so that the website field is no longer required
