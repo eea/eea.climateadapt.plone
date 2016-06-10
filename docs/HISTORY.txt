@@ -3,6 +3,8 @@ Changelog
 
 1.2.dev0 - (unreleased)
 -----------------------
+* Bug fix: fixed adding Images and Files to AdaptationOptions and CaseStudy
+  [tiberich #73283]
 * Bugfix: Moved 'category' field to adaptations options only and added
   description for the cost/benefit field
   [iulianpetchesi #73286]
