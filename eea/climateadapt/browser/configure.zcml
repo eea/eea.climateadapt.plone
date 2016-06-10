@@ -8,6 +8,13 @@
     <include file='frontpage.zcml' />
     <include file="faceted.zcml" />
 
+    <configure package="plone.app.widgets">
+        <browser:resource
+            name="plone.app.widgets-tinymce-content.min.css"
+            file="static/widgets-tinymce-content.min.css"
+            />
+    </configure>
+
     <browser:page
         for="*"
         name="iterate_control"
@@ -131,16 +138,52 @@
     <browser:page
         name="view"
         for="eea.climateadapt.acemeasure.ICaseStudy"
-        class="eea.climateadapt.browser.casestudy.CaseStudyView"
+        class=".casestudy.CaseStudyView"
         template="pt/casestudy_view.pt"
         permission="zope2.View"
         />
 
+
+    -----[ Case Study Form customizations ]----
+
+    <adapter
+        for="Products.CMFCore.interfaces.IFolderish
+             eea.climateadapt.interfaces.IEEAClimateAdaptInstalled
+             plone.dexterity.interfaces.IDexterityFTI"
+        provides="zope.publisher.interfaces.browser.IBrowserPage"
+        factory=".overrides.AddView"
+        />
+    <class class=".overrides.AddView">
+        <require
+            permission="cmf.AddPortalContent"
+            interface="zope.publisher.interfaces.browser.IBrowserPage"
+            />
+    </class>
+
+    <browser:page
+        for="eea.climateadapt.acemeasure.ICaseStudy"
+        name="edit"
+        class=".casestudy.CaseStudyEditView"
+        permission="cmf.ModifyPortalContent"
+        />
+
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.acemeasure.ICaseStudy * *"
-        factory=".casestudy.CaseStudyEditFormExtender"
+        for="eea.climateadapt.acemeasure.ICaseStudy 
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer 
+        .casestudy.CaseStudyEditForm"
+        factory=".casestudy.CaseStudyFormExtender"
         />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="Products.CMFCore.interfaces.IFolderish
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer 
+        .casestudy.CaseStudyAddForm"
+        factory=".casestudy.CaseStudyFormExtender"
+        />
+
+    ------
 
     <browser:page
         name="view"

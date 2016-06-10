@@ -3,9 +3,10 @@ Various page overrides
 """
 
 from plone.app.widgets.browser import vocabulary as vocab
+from plone.dexterity.browser.add import DefaultAddView
+from types import FunctionType
 from zope.component import queryUtility
 from zope.schema.interfaces import IVocabularyFactory
-from types import FunctionType
 import inspect
 
 
@@ -48,3 +49,31 @@ class VocabularyView(vocab.VocabularyView):
             vocabulary = factory(context)
 
         return vocabulary
+
+
+from Acquisition import aq_inner
+
+class AddView(DefaultAddView):
+    """ Add form page for case studies
+    """
+
+    def __init__(self, context, request, ti):
+        self.context = context
+        self.request = request
+
+        if self.form is not None:
+            if ti.klass == 'eea.climateadapt.acemeasure.CaseStudy':
+                from eea.climateadapt.browser.casestudy import CaseStudyAddForm
+                self.form_instance = CaseStudyAddForm(aq_inner(self.context),
+                                                      self.request)
+            else:
+                self.form_instance = self.form(
+                    aq_inner(self.context), self.request)
+            self.form_instance.__name__ = self.__name__
+
+        self.ti = ti
+
+        # Set portal_type name on newly created form instance
+        if self.form_instance is not None \
+           and not getattr(self.form_instance, 'portal_type', None):
+            self.form_instance.portal_type = ti.getId()

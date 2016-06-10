@@ -2031,3 +2031,8 @@ table.dataTable thead .sorting_desc {
 .template-compose .tile-container {
     /* position: initial; */
 }
+
+/* fix modal dialog for image upload in tinymce */
+.plone-modal-dialog  {
+    border: 2px solid Black;
+}
