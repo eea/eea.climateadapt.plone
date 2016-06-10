@@ -142,6 +142,13 @@
         factory=".casestudy.CaseStudyEditFormExtender"
         />
 
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="eea.climateadapt.acemeasure.IAdaptationOption * *"
+        factory=".adaptationoption.AdaptationOptionEditFormExtender"
+        />
+
     <browser:page
         name="view"
         for="eea.climateadapt.acemeasure.IAdaptationOption"
