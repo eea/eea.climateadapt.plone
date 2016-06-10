@@ -93,19 +93,23 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     # -----------[ "default" fields ]------------------
 
     title = TextLine(title=_(u"Title"),
-                     description=_(u"Item Name (250 character limit)"),
+                     description=_(u"Name of the case study clearly "
+                                   u"identifying its scope and location "
+                                   u"(250 character limit)"),
                      required=True)
 
     dexteritytextindexer.searchable('long_description')
-    long_description = RichText(title=_(u"Description"),
-                                description=_(u"Brief Description:"),
+    long_description = RichText(title=_(u"Summary Description"),
+                                description=_(u"Summary description (abstract)"
+                                              u" about the case study (1,000 "
+                                              u"characters limit):"),
                                 required=True,)
 
     form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_(u"Climate impacts"),
         description=_(u"Select one or more climate change impact topics that "
-                      u"this item relates to"),
+                      u"this item relates to:"),
         required=True,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_climateimpacts",),
@@ -113,20 +117,33 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     challenges = RichText(
         title=_(u"Challenges"), required=True, default=None,
+        description=_(u"Describe what are the main climate change "
+                      u"impacts/risks and related challenges addressed by the "
+                      u"adaptation solutions proposed by the case study. "
+                      u"Possibly include quantitate scenarios/projections of "
+                      u"future climate change considered by the case study "
+                      u"(5,000 characters limit):"),
     )
 
     objectives = RichText(
         title=_(u"Objectives"), required=True, default=None,
+        description=_(u"Describe the objectives which triggered the "
+                      u"adaptation measures (5,000 characters limit):"),
     )
 
     solutions = RichText(
         title=_(u"Solutions"), required=True, default=None,
+        description=_(u"Describe the climate change adaptation solution(s) "
+                      u"implemented (5,000 characters limit):"),
     )
 
     form.widget(relevance="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     relevance = List(
         title=_(u"Relevance"),
         required=True,
+        description=_(u"Select only one category below that best describes "
+                      u"how relevant this case study is to climate change "
+                      u"adaptation:"),
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_relevance",),
     )
@@ -134,7 +151,10 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     keywords = Tuple(
         title=_(u"Keywords"),
         description=_(u"Describe and tag this item with relevant keywords. "
-                      u"Press Enter after writing your keyword."),
+                      u"Press Enter after writing your keyword. "
+                      u"Use specific and not general key words (e.g. avoid "
+                      u"words as: adaption, climate change, measure, "
+                      u"integrated approach, etc.):"),
         required=False,
         value_type=TextLine(),
         missing_value=(None),
@@ -143,7 +163,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(title=_(u"Sectors"),
                    description=_(u"Select one or more relevant sector policies"
-                                 u" that this item relates to."),
+                                 u" that this item relates to:"),
                    required=True,
                    value_type=Choice(
                        vocabulary="eea.climateadapt.aceitems_sectors",),
@@ -367,8 +387,10 @@ class ICaseStudy(IAceMeasure):  #, IGeolocatable):
 
     # form.widget(adaptationoptions=RelatedItemsFieldWidget)
     adaptationoptions = RelationList(
-        title=u"Adaptation Options",
+        title=u"Adaptation measures implemented in the case:",
         default=[],
+        description=_(u"Select one or more adaptation options that this item "
+                      u"relates to:"),
         value_type=RelationChoice(
             title=_(u"Related"),
             source=ObjPathSourceBinder(
