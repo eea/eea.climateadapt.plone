@@ -142,7 +142,7 @@ regions = {
         ('Switzerland', '/countries/switzerland'),
         ('United Kingdom', '/countries/united-kingdom'),
     ],
-    'South West Europe': [
+    'South-West Europe': [
         ('France', '/countries/france'),
         ('Portugal', '/countries/portugal'),
         ('Spain', '/countries/spain'),
