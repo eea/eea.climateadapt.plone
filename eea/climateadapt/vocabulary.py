@@ -192,7 +192,7 @@ alsoProvides(aceitem_featured_vocabulary, IVocabularyFactory)
 _relevance = [
     ('IMPL_AS_CCA', 'Case developed and implemented as a CCA (Climate Change Adaptation) Measure.'),
     ('PARTFUND_AS_CCA', 'Case developed and implemented and partially funded as a CCA measure.'),
-    ('OTHER_POL_OBJ', 'Case mainly developed and implemented because of other policy objectives, but with significant'),
+    ('OTHER_POL_OBJ', 'Case mainly developed and implemented because of other policy objectives, but with significant consideration of CCA aspects'),
     ]
 aceitem_relevance_vocabulary = generic_vocabulary(_relevance)
 alsoProvides(aceitem_relevance_vocabulary, IVocabularyFactory)
