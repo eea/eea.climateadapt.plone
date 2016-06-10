@@ -44,7 +44,7 @@ regions = {
         ('Liechtenstein', ''),
         ('Switzerland', '/countries/switzerland'),
     ],
-    'Northern Periphery and Arctic': [
+    'Northern Periphery and Artic': [
         ('Finland', '/countries/finland'),
         ('Ireland', '/countries/ireland'),
         ('Sweden', '/countries/sweden'),
@@ -132,7 +132,7 @@ regions = {
         ('United Kingdom', '/countries/united-kingdom'),
         ('Norway', '/countries/norway'),
     ],
-    'North West Europe': [
+    'North-West Europe': [
         ('Belgium', '/countries/belgium'),
         ('France', '/countries/france'),
         ('Germany', '/countries/germany'),
