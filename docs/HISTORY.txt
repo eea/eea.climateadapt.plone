@@ -3,6 +3,8 @@ Changelog
 
 1.2.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed template not hiding empty fields
+  [iulianpetchesi #73229]
 * Bugfix: Fixed vocabulary for relevance field
   [iulianpetchesi #73234]
 * Change: Added links to the bottom of the sat page
