@@ -3,6 +3,14 @@ Changelog
 
 1.2.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed view all link to /data-and-downloads for filter acecontent tile
+  [iulianpetchesi #73330]
+* Bugfix: Removed important from hover
+  [iulianpetchesi #73236]
+* Bugfix: Added date to adaptation options title
+  [iulianpetchesi #73293]
+* Bugfix: Updated description of case-studies fields
+  [iulianpetchesi #73284]
 * Bug fix: fixed adding Images and Files to AdaptationOptions and CaseStudy
   [tiberich #73283]
 * Bugfix: Moved 'category' field to adaptations options only and added

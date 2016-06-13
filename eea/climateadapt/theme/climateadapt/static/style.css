@@ -97,7 +97,7 @@ div.overlay-iframe, div.overlay-ajax {width:75%;z-index:1100;}
 
 #content a:hover,
 dl.portlet a:hover {
-    color: #a5bf26 !important;
+    color: #a5bf26;
 }
 #content a:visited,
 dl.portlet a:visited {

@@ -11,6 +11,9 @@
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core">
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
+          <div metal:fill-slot="title-slot">
+              <metal:macro use-macro="context/ace_macros/macros/title_date" />
+          </div>
           <div metal:fill-slot="ace-left-slot">
 
             <div tal:content="structure python: view.w['long_description'].render()"/>

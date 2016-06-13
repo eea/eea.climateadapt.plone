@@ -404,8 +404,7 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         }
 
         if impact:
-            query['climate_impacts'] = impact
+            query['climateimpacts'] = impact
         if sector:
             query['sectors'] = sector
-
         return self.build_url(base, query, {})
