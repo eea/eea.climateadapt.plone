@@ -508,49 +508,49 @@ class Navbar(BrowserView):
             EU Adaptation Strategy         /eu-adaptation-policy/strategy
             EU mainstreaming in sector policies   /eu-adaptation-policy/mainstreaming
             EU funding of adaptation       /eu-adaptation-policy/funding
-            Mayors Adapt                   /mayors-adapt
-                -Mayors Adapt - introduction  /mayors-adapt
-                -Register your City         /mayors-adapt/register
-                -City Profiles              /city-profile
+            Mayors Adapt                   /eu-adaptation-policy/mayors-adapt
+                -Mayors Adapt - introduction  /eu-adaptation-policy/mayors-adapt
+                -Register your City         /eu-adaptation-policy/mayors-adapt/register
+                -City Profiles              /eu-adaptation-policy/mayors-adapt/city-profiles
 
         Countries, regions, cities         /countries-regions
             Countries - introduction       /countries-regions
-            Transnational regions          /transnational-regions
-            Cities and towns               /cities
-            Country Information            /countries
+            Transnational regions          /countries-regions/transnational-regions
+            Cities and towns               /countries-regions/cities
+            Country Information            /countries-regions/countries
 
         Knowledge               /knowledge
             Knowledge - introduction       /knowledge
-            Adaptation information         /adaptation-information/general
-                -Adaptation information - introduction  /adaptation-information/general
-                -Observations and scenarios    /observations-and-scenarios
-                -Vulnerabilities and risks     /vulnerabilities-and-risks
-                -Adaptation options            /adaptation-measures
-                -Adaptation strategies         /adaptation-strategies
-                -Research projects             /research-projects
-            Tools                          /tools/general
-                -Tools - introduction          /tools/general
-                -Adaptation Support Tool       /adaptation-support-tool
-                -Case study search tool        /sat
-                -Uncertainty guidance          /uncertainty-guidance
-                -Map viewer                    /tools/map-viewer
-                -Urban adaptation support tool    /tools/urban-ast/step-0-0
-                -Urban vulnerability Map book     /tools/urban-adaptation/introduction
-                -Guidelines for project managers  /guidelines-for-project-managers
-                -Time series tool                 /tools/time-series-tool
-                -Additional Tools                 /additional-tools
+            Adaptation information         /knowledge/adaptation-information
+                -Adaptation information - introduction  /knowledge/adaptation-information
+                -Observations and scenarios    /knowledge/adaptation-information/observations-and-scenarios
+                -Vulnerabilities and risks     /knowledge/adaptation-information/vulnerabilities-and-risks
+                -Adaptation options            /knowledge/adaptation-information/adaptation-measures
+                -Adaptation strategies         /knowledge/adaptation-information/adaptation-strategies
+                -Research projects             /knowledge/adaptation-information/research-projects
+            Tools                          /knowledge/tools
+                -Tools - introduction          /knowledge/tools
+                -Adaptation Support Tool       /knowledge/tools/adaptation-support-tool
+                -Case study search tool        /knowledge/tools/sat
+                -Uncertainty guidance          /knowledge/tools/uncertainty-guidance
+                -Map viewer                    /knowledge/tools/map-viewer
+                -Urban adaptation support tool    /knowledge/tools/urban-ast/step-0-0
+                -Urban vulnerability Map book     /knowledge/tools/urban-adaptation/introduction
+                -Guidelines for project managers  /knowledge/tools/guidelines-for-project-managers
+                -Time series tool                 /knowledge/tools/time-series-tool
+                -Additional Tools                 /knowledge/tools/additional-tools
 
         Network                 /network
             Network - introduction  /network
-            Organisations           /organisations
-            Global Platforms        /international
+            Organisations           /network/organisations
+            Global Platforms        /network/international
 
         Help                        /help
             Help - introduction     /help
-            Glossary                /glossary
-            Tutorial Videos         /tutorial-videos
-            FAQ for users           /faq
-            Share your info         /share-your-info
+            Glossary                /help/glossary
+            Tutorial Videos         /help/tutorial-videos
+            FAQ for users           /help/faq
+            Share your info         /help/share-your-info
     """
 
     def menu(self):
