@@ -1,6 +1,6 @@
+#from collective.geolocationbehavior.geolocation import IGeolocatable
 #from plone.namedfile.field import NamedBlobFile
 from collective import dexteritytextindexer
-from collective.geolocationbehavior.geolocation import IGeolocatable
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from plone.app.contenttypes.interfaces import IImage
@@ -97,6 +97,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                      required=True)
 
     dexteritytextindexer.searchable('long_description')
+    form.widget(long_description="eea.climateadapt.browser.form.RichTextFieldWidget")
     long_description = RichText(title=_(u"Description"),
                                 description=_(u"Brief Description:"),
                                 required=True,)
