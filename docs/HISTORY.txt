@@ -3,6 +3,8 @@ Changelog
 
 1.2.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed view all link to /data-and-downloads for filter acecontent tile
+  [iulianpetchesi #73330]
 * Bugfix: Removed important from hover
   [iulianpetchesi #73236]
 * Bugfix: Added date to adaptation options title
