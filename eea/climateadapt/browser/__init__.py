@@ -473,7 +473,7 @@ class AceViewApi(object):
     def link_to_original(self):
         """ Returns link to original object, to allow easy comparison
         """
-        site = "http://climate-adapt.eea.europa.eu"
+        site = "http://climate-adapt-old.eea.europa.eu"
         if hasattr(self.context, '_aceitem_id'):
             return ("{0}/viewaceitem?aceitem_id={1}".format(
                 site, self.context._aceitem_id))
