@@ -3,6 +3,9 @@ Changelog
 
 1.2.dev0 - (unreleased)
 -----------------------
+* Bugfix: Made it so that you can sort case studies and
+  adaptation options by year
+  [iulianpetchesi #73227]
 * Bugfix: Removed some fields from adaptation options
   [iulianpetchesi #73332]
 * Bugfix: Fixed view all link to /data-and-downloads for filter acecontent tile
