@@ -2034,7 +2034,7 @@ table.dataTable thead .sorting_desc {
 
 /* fix modal dialog for image upload in tinymce */
 .plone-modal-dialog  {
-    border: 2px solid Black;
+    border: 2px solid Black !important;
 }
 /*
 .subsection-adaptation-information-research-projects .col-md-2 {

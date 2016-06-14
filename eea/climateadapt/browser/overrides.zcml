@@ -40,40 +40,40 @@
             />
     </configure>
 
-    <!-- Fix RichText widget: the plone.app.widgets provided one has proper relatedItems configuration -->
-    <!-- <adapter -->
-    <!--     for="plone.app.textfield.interfaces.IRichText eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
-    <!--     factory="plone.app.widgets.dx.RichTextFieldWidget" -->
-    <!--     /> -->
+    Fix RichText widget: the plone.app.widgets provided one has proper relatedItems configuration
+    <adapter
+        for="plone.app.textfield.interfaces.IRichText eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        factory="plone.app.widgets.dx.RichTextFieldWidget"
+        />
 
 
-    <!-- <adapter -->
-    <!--     for="zope.annotation.interfaces.IAnnotatable -->
-    <!--     eea.climateadapt.interfaces.IEEAClimateAdaptInstalled -->
-    <!--     plone.tiles.interfaces.ITileType" -->
-    <!--     provides="collective.cover.tiles.edit.ICoverTileEditView" -->
-    <!--     factory=".overrides.CustomTileEdit" -->
-    <!--     /> -->
-    <!--  -->
-    <!-- <class class=".overrides.CustomTileEdit"> -->
-    <!--     <require -->
-    <!--         permission="cmf.ModifyPortalContent" -->
-    <!--         interface="zope.publisher.interfaces.browser.IBrowserPage" -->
-    <!--         /> -->
-    <!-- </class> -->
-    <!--  -->
-    <!-- <adapter -->
-    <!--     for=".overrides.AcquisitionAwareDict zope.schema.interfaces.IField" -->
-    <!--     provides="z3c.form.interfaces.IDataManager" -->
-    <!--     factory="z3c.form.datamanager.DictionaryField" -->
-    <!--     /> -->
-    <!--  -->
-    <!-- <browser:page -->
-    <!--     for=".overrides.AcquisitionAwareDict" -->
-    <!--     name="plone_layout" -->
-    <!--     class=".overrides.PloneLayout" -->
-    <!--     permission="zope.Public" -->
-    <!--     allowed_interface="plone.app.layout.globals.interfaces.ILayoutPolicy" -->
-    <!--     /> -->
+    <adapter
+        for="zope.annotation.interfaces.IAnnotatable
+        eea.climateadapt.interfaces.IEEAClimateAdaptInstalled
+        plone.tiles.interfaces.ITileType"
+        provides="collective.cover.tiles.edit.ICoverTileEditView"
+        factory=".overrides.CustomTileEdit"
+        />
+
+    <class class=".overrides.CustomTileEdit">
+        <require
+            permission="cmf.ModifyPortalContent"
+            interface="zope.publisher.interfaces.browser.IBrowserPage"
+            />
+    </class>
+
+    <adapter
+        for=".overrides.AcquisitionAwareDict zope.schema.interfaces.IField"
+        provides="z3c.form.interfaces.IDataManager"
+        factory="z3c.form.datamanager.DictionaryField"
+        />
+
+    <browser:page
+        for=".overrides.AcquisitionAwareDict"
+        name="plone_layout"
+        class=".overrides.PloneLayout"
+        permission="zope.Public"
+        allowed_interface="plone.app.layout.globals.interfaces.ILayoutPolicy"
+        />
 
 </configure>
