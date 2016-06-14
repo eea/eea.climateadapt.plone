@@ -3,6 +3,9 @@ Changelog
 
 1.2.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added date to news and events on frontpage
+  when you one you will be redirected to external link if there is one
+  [iulianpetchesi #73362]
 * Bugfix: Made it so that you can sort case studies and
   adaptation options by year
   [iulianpetchesi #73227]

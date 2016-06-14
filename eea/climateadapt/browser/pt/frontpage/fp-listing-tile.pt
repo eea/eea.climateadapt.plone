@@ -2,7 +2,10 @@
   <h3><a href="" tal:content="view/title" tal:define="url view/parent/absolute_url" tal:attributes="href url"></a></h3>
   <ul tal:define="items view/items" style="padding-left:0.2em">
     <li tal:repeat="obj items" style="list-style-image: url(/++theme++climateadapt/static/cca/img/01_plus.png)">
-      <a href="" tal:attributes="href obj/absolute_url" tal:content="obj/Title">Link</a>
+      <a href="" tal:attributes="href python: view.get_external_url(obj)">
+          <span tal:content="python: view.get_item_date(obj)"></span>,
+          <span tal:content="obj/Title"></span>
+      </a>
     </li>
   </ul>
   <div class="tile-listing-footer">

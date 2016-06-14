@@ -15,7 +15,7 @@ class AceContentSearch(BrowserView):
     """
 
     def items(self):
-        return self.parent.getFolderContents({'portal_type':'Event',
+        return self.parent.getFolderContents({'portal_type': 'Event',
                                               'sort_by': 'effective'},
                                              full_objects=True)[:3]
 
@@ -62,10 +62,23 @@ class NewsTile(ListingTile):
         site = getSite()
         return site['news-archive']
 
+    def get_item_date(self, item):
+        date = item.effective_date.strftime('%d %b %Y')
+        return date
+
+    def get_external_url(self, item):
+        url = getattr(item, 'remoteUrl', None)
+        if url:
+            if url.find('http://') != -1:
+                return url
+            else:
+                return 'http://' + url
+        return item.absolute_url()
+
     def items(self):
-        return self.parent.getFolderContents({'portal_type': 'News Item',
+        return self.parent.getFolderContents({'portal_type': ['Link', 'News Item'],
                                               'sort_by': 'effective',
-                                              "sort_order":"reverse",
+                                              "sort_order": "reverse",
                                               'review_state': 'published',
                                               },
                                              full_objects=True)[:3]
@@ -86,10 +99,21 @@ class EventsTile(ListingTile):
         site = getSite()
         return site['more-events']
 
+    def get_item_date(self, item):
+        date = item.end.strftime('%d %b %Y')
+        return date
+
+    def get_external_url(self, item):
+        url = item.event_url
+        if url == '':
+            url = item.absolute_url()
+
+        return url
+
     def items(self):
-        return self.parent.getFolderContents({'portal_type':'Event',
+        return self.parent.getFolderContents({'portal_type': 'Event',
                                               'review_state': 'published',
-                                              "sort_order":"reverse",
+                                              "sort_order": "reverse",
                                               'sort_by': 'effective'},
                                              full_objects=True)[:3]
 
