@@ -4,6 +4,8 @@ Various page overrides
 
 from Acquisition import Explicit
 from Acquisition import aq_inner
+from OFS.Traversable import Traversable
+from Products.CMFPlone.browser.ploneview import Plone as BasePloneView
 from UserDict import UserDict
 from collective.cover.interfaces import ITileEditForm
 from collective.cover.tiles.edit import CustomEditForm as CoverEditForm
@@ -14,6 +16,7 @@ from plone.tiles.interfaces import ITileDataManager
 from types import FunctionType
 from zope.component import queryUtility
 from zope.interface import implementer
+from zope.interface.common.mapping import IMapping
 from zope.schema.interfaces import IVocabularyFactory
 import inspect
 
@@ -102,13 +105,29 @@ class AddView(DefaultAddView):
 # this we want an acquisition aware context (which, originally, is just a simple
 # dict).
 
-from zope.interface.common.mapping import IMapping
 
 @implementer(IMapping)
-class AcquisitionAwareDict(Explicit, UserDict):
+class AcquisitionAwareDict(Explicit, Traversable, UserDict):
     def __init__(self, *args, **kwargs):
         super(AcquisitionAwareDict, self).__init__()
         UserDict.__init__(self, *args, **kwargs)
+
+    def absolute_url(self):
+        return self.aq_parent.absolute_url()
+
+    @property
+    def portal_type(self):
+        return self.aq_parent.portal_type
+
+
+class PloneView(BasePloneView):
+    def __init__(self, context, request):
+        print "custom plone view", context
+        #import pdb; pdb.set_trace()
+        if hasattr(context, 'aq_parent'):
+            return PloneView.__init__(self, context.aq_parent, request)
+        else:
+            return super(PloneView, self).__init__(context, request)
 
 
 @implementer(ITileEditForm)
@@ -118,6 +137,7 @@ class CustomEditForm(CoverEditForm):
         dataManager = ITileDataManager(self.getTile())
         val = dataManager.get()
         context = AcquisitionAwareDict(val)
+        context.REQUEST = self.request
         return context.__of__(self.context)
 
 
