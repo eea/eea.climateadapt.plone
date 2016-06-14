@@ -205,9 +205,10 @@
                             <em id="websites" style="text-decoration: underline">Websites</em>
                             <div metal:use-macro="context/ace_macros/macros/websites"></div>
 
-                            <em id="source" style="text-decoration: underline">Source</em>
-                            <div tal:content="structure context/source/output"></div>
-
+                            <div tal:condition="context/source/output | nothing">
+                                <em id="source" style="text-decoration: underline">Source</em>
+                                <div tal:content="structure context/source/output"></div>
+                            </div>
                             <div metal:use-macro="context/ace_macros/macros/comments"></div>
                           </div>
                         </div>
