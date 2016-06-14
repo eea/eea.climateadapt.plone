@@ -2036,16 +2036,45 @@ table.dataTable thead .sorting_desc {
 .plone-modal-dialog  {
     border: 2px solid Black;
 }
-
-.subsection-adaptation-information-research-projects-impressions .col-md-2 {
+/*
+.subsection-adaptation-information-research-projects .col-md-2 {
     background-color: #d2de92;
 }
 
-.subsection-adaptation-information-research-projects-impressions .col-md-2 h4 {
+.subsection-adaptation-information-research-projects .col-md-2 h4 {
     margin: 20px 0 5px 0;
     line-height: 40px;
 }
 
-.subsection-adaptation-information-research-projects-impressions .col-md-2 h4 .tile{
+.subsection-adaptation-information-research-projects .col-md-2 .tile{
     margin-left: 1em;
+}*/
+
+
+.subsection-adaptation-information-research-projects-impressions .col-md-2 a:link{text-decoration: underline;}
+.subsection-adaptation-information-research-projects-impressions .col-md-10 {width: 74%; margin-right: 1%;}
+.subsection-adaptation-information-research-projects-impressions #content {margin-right: 0;}
+.subsection-adaptation-information-research-projects-impressions .col-md-2 .tile {margin: 1.5em;}
+
+.subsection-adaptation-information-research-projects-impressions .col-md-2 {
+    background-color: #d2de92;
+    margin-right: 0;
+    width: 25%;
+}
+
+.subsection-adaptation-information-research-projects-impressions .col-md-2 .tile div{
+    margin-bottom: 5px;
+    color: #353f02;
+    font-size: 13px;
+}
+
+.subsection-adaptation-information-research-projects-impressions .col-md-2 .tile div h4 {
+    margin-bottom: 5px;
+    color: #353f02;
+    font-size: 13px;
+}
+
+.subsection-adaptation-information-research-projects-impressions #content .cover-richtext-tile h1 {
+    color: #758816;
+    font-size: 20px;
 }
