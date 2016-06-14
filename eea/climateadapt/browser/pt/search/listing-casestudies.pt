@@ -3,6 +3,7 @@
     <tr>
       <th>Title</th>
       <th>Relevance</th>
+      <th>Year</th>
     </tr>
   </thead>
   <tbody tal:define="
@@ -26,6 +27,7 @@
         <div class="relevance-marker" tal:condition="python: relevance &gt; five"></div>
         <div class="visualClear"></div>
       </td>
+      <td class="table_year_css" tal:content="python: brain.year or '' ">year</td>
     </tr>
   </tbody>
 </table>

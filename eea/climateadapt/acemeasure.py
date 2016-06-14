@@ -61,9 +61,9 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['title', 'long_description', 'climate_impacts',
-                          'challenges', 'objectives', #'adaptationoptions',
-                          'solutions', 'relevance', 'keywords', 'sectors',
-                          'year']
+                          # 'challenges', 'objectives', 'adaptationoptions',
+                          # 'solutions', 'relevance',
+                          'keywords', 'sectors', 'year']
                   )
 
     form.fieldset('additional_details',
@@ -76,7 +76,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.fieldset('reference_information',
                   label=u'Reference information',
-                  fields=['contact', 'websites', 'source']
+                  fields=[  # 'contact',
+                          'websites', 'source']
                   )
 
 # richtext fields in database:
@@ -102,7 +103,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     # form.widget(long_description=
     #             "eea.climateadapt.browser.form.RichTextFieldWidget")
     long_description = RichText(title=_(u"Description"),
-                                description=_(u"Brief Description:"),
                                 required=True,)
 
     form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
@@ -113,39 +113,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         required=True,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_climateimpacts",),
-    )
-
-    challenges = RichText(
-        title=_(u"Challenges"), required=True, default=None,
-        description=_(u"Describe what are the main climate change "
-                      u"impacts/risks and related challenges addressed by the "
-                      u"adaptation solutions proposed by the case study. "
-                      u"Possibly include quantitate scenarios/projections of "
-                      u"future climate change considered by the case study "
-                      u"(5,000 characters limit):"),
-    )
-
-    objectives = RichText(
-        title=_(u"Objectives"), required=True, default=None,
-        description=_(u"Describe the objectives which triggered the "
-                      u"adaptation measures (5,000 characters limit):"),
-    )
-
-    solutions = RichText(
-        title=_(u"Solutions"), required=True, default=None,
-        description=_(u"Describe the climate change adaptation solution(s) "
-                      u"implemented (5,000 characters limit):"),
-    )
-
-    form.widget(relevance="z3c.form.browser.checkbox.CheckBoxFieldWidget")
-    relevance = List(
-        title=_(u"Relevance"),
-        required=True,
-        description=_(u"Select only one category below that best describes "
-                      u"how relevant this case study is to climate change "
-                      u"adaptation:"),
-        value_type=Choice(
-            vocabulary="eea.climateadapt.aceitems_relevance",),
     )
 
     keywords = Tuple(
@@ -236,12 +203,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                         u"(250 char limit)")
 
     # -----------[ "reference_information" fields ]------------------
-
-    contact = RichText(
-        title=_(u"Contact"), required=True, default=u"",
-        description=_(u"Contact of reference (institution and persons) who is "
-                      u"directly involved in the development and "
-                      u"implementation of the case. (500 char limit) "))
 
     directives.widget('websites', TextLinesWidget)
     websites = Tuple(
@@ -385,6 +346,46 @@ class ICaseStudy(IAceMeasure):  #, IGeolocatable):
     directives.omitted(IEditForm, 'supphotos')
     directives.omitted(IAddForm, 'supphotos')
 
+    challenges = RichText(
+        title=_(u"Challenges"), required=True, default=None,
+        description=_(u"Describe what are the main climate change "
+                      u"impacts/risks and related challenges addressed by the "
+                      u"adaptation solutions proposed by the case study. "
+                      u"Possibly include quantitate scenarios/projections of "
+                      u"future climate change considered by the case study "
+                      u"(5,000 characters limit):"),
+    )
+
+    objectives = RichText(
+        title=_(u"Objectives"), required=True, default=None,
+        description=_(u"Describe the objectives which triggered the "
+                      u"adaptation measures (5,000 characters limit):"),
+    )
+
+    solutions = RichText(
+        title=_(u"Solutions"), required=True, default=None,
+        description=_(u"Describe the climate change adaptation solution(s) "
+                      u"implemented (5,000 characters limit):"),
+    )
+
+    form.widget(relevance="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    relevance = List(
+        title=_(u"Relevance"),
+        required=True,
+        description=_(u"Select only one category below that best describes "
+                      u"how relevant this case study is to climate change "
+                      u"adaptation:"),
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_relevance",),
+    )
+
+
+    contact = RichText(
+        title=_(u"Contact"), required=True, default=u"",
+        description=_(u"Contact of reference (institution and persons) who is "
+                      u"directly involved in the development and "
+                      u"implementation of the case. (500 char limit) "))
+
     # form.widget(adaptationoptions=RelatedItemsFieldWidget)
     adaptationoptions = RelationList(
         title=u"Adaptation measures implemented in the case:",
@@ -430,7 +431,7 @@ class ICaseStudy(IAceMeasure):  #, IGeolocatable):
 def AdaptationOptionsFieldWidget(field, request):
     widget = FieldWidget(field, RelatedItemsWidget(request))
     widget.vocabulary = 'plone.app.vocabularies.Catalog'
-    #widget.vocabulary = 'eea.climateadapt.adaptation_options'
+    # widget.vocabulary = 'eea.climateadapt.adaptation_options'
     return widget
 
 
