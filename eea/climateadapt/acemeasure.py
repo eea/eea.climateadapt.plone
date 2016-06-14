@@ -99,8 +99,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                      required=True)
 
     dexteritytextindexer.searchable('long_description')
-    form.widget(long_description=
-                "eea.climateadapt.browser.form.RichTextFieldWidget")
+    # form.widget(long_description=
+    #             "eea.climateadapt.browser.form.RichTextFieldWidget")
     long_description = RichText(title=_(u"Description"),
                                 description=_(u"Brief Description:"),
                                 required=True,)
