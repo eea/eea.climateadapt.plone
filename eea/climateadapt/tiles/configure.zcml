@@ -9,6 +9,8 @@
     i18n_domain="collective.cover"
     >
 
+    <include package="plone.tiles" file="meta.zcml" />
+
     <adapter factory=".search_acecontent.impacts_no_value" name="noValueMessage" />
     <adapter factory=".search_acecontent.sectors_no_value" name="noValueMessage" />
 
