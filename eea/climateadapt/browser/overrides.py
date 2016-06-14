@@ -5,11 +5,11 @@ Various page overrides
 from Acquisition import Explicit
 from Acquisition import aq_inner
 from OFS.Traversable import Traversable
-from Products.CMFPlone.browser.ploneview import Plone as BasePloneView
 from UserDict import UserDict
 from collective.cover.interfaces import ITileEditForm
 from collective.cover.tiles.edit import CustomEditForm as CoverEditForm
 from collective.cover.tiles.edit import CustomTileEdit as CoverTileEdit
+from plone.app.layout.globals.layout import LayoutPolicy
 from plone.app.widgets.browser import vocabulary as vocab
 from plone.dexterity.browser.add import DefaultAddView
 from plone.tiles.interfaces import ITileDataManager
@@ -120,14 +120,13 @@ class AcquisitionAwareDict(Explicit, Traversable, UserDict):
         return self.aq_parent.portal_type
 
 
-class PloneView(BasePloneView):
+class PloneLayout(LayoutPolicy):
     def __init__(self, context, request):
-        print "custom plone view", context
-        #import pdb; pdb.set_trace()
+        #print "custom plone layout view", context
         if hasattr(context, 'aq_parent'):
-            return PloneView.__init__(self, context.aq_parent, request)
+            return LayoutPolicy.__init__(self, context.aq_parent, request)
         else:
-            return super(PloneView, self).__init__(context, request)
+            return super(PloneLayout, self).__init__(context, request)
 
 
 @implementer(ITileEditForm)
@@ -143,6 +142,3 @@ class CustomEditForm(CoverEditForm):
 
 class CustomTileEdit(CoverTileEdit):
     form = CustomEditForm
-
-
-#class CoverDataManager(

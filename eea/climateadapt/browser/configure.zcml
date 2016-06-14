@@ -9,19 +9,6 @@
     <include file='frontpage.zcml' />
     <include file="faceted.zcml" />
 
-    <configure package="plone.app.widgets">
-        <browser:resource
-            name="plone.app.widgets-tinymce-content.min.css"
-            file="static/widgets-tinymce-content.min.css"
-            />
-    </configure>
-
-    Fix RichText widget: the plone.app.widgets provided one has proper relatedItems configuration
-    <adapter
-        for="plone.app.textfield.interfaces.IRichText eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        factory="plone.app.widgets.dx.RichTextFieldWidget"
-        />
-
     <browser:page
         for="*"
         name="iterate_control"
