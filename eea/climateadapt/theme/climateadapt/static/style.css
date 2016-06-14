@@ -2037,15 +2037,15 @@ table.dataTable thead .sorting_desc {
     border: 2px solid Black;
 }
 
-.subsection-adaptation-information-research-projects-impressions .col-md-2 {
+.subsection-adaptation-information-research-projects .col-md-2 {
     background-color: #d2de92;
 }
 
-.subsection-adaptation-information-research-projects-impressions .col-md-2 h4 {
+.subsection-adaptation-information-research-projects .col-md-2 h4 {
     margin: 20px 0 5px 0;
     line-height: 40px;
 }
 
-.subsection-adaptation-information-research-projects-impressions .col-md-2 h4 .tile{
+.subsection-adaptation-information-research-projects .col-md-2 h4 .tile{
     margin-left: 1em;
 }
