@@ -514,7 +514,7 @@ class Navbar(BrowserView):
                 -City Profiles              /eu-adaptation-policy/mayors-adapt/city-profiles
 
         Countries, regions, cities         /countries-regions
-            Countries - introduction       /countries-regions
+            Countries, regions, cities - introduction       /countries-regions
             Transnational regions          /countries-regions/transnational-regions
             Cities and towns               /countries-regions/cities
             Country Information            /countries-regions/countries
