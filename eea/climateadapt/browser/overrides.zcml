@@ -46,7 +46,6 @@
         factory="plone.app.widgets.dx.RichTextFieldWidget"
         />
 
-
     <adapter
         for="zope.annotation.interfaces.IAnnotatable
         eea.climateadapt.interfaces.IEEAClimateAdaptInstalled

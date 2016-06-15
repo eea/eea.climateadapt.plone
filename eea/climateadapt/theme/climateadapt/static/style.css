@@ -178,7 +178,7 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
     #wrapper {max-width: 100%;}
     #logo {min-width:140px;}
 
-    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {color: #ffff;}
+    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {color: #FFF;}
 
     /*Columns*/
     #portal-column-one,
@@ -400,8 +400,9 @@ div.position-0 { margin-left: -100%; }
     height: 28px;
     border-width: 1px;
     margin-top: 1px;
-    border-color: rgb(211, 211, 211):
+    border-color: rgb(211, 211, 211);
 }
+
 .panel-group .panel-title > a {
     font-size: 12px !important;
     font-weight: normal !important;
@@ -481,7 +482,6 @@ div.position-0 { margin-left: -100%; }
 
 .edit-tool-custom-click .read-more-acc a {
     font-size: 12px;
-    text-
 }
 
 #content .edit-tool-custom-click {
@@ -534,7 +534,7 @@ div.position-0 { margin-left: -100%; }
 .aceitem_page h1 {
     color: Black;
     font-size: 130%;
-    font-weight: 160%;
+    font-weight: 200;
 }
 
 .aceitem_page h3 {
@@ -602,7 +602,8 @@ div.position-0 { margin-left: -100%; }
 #portal-siteactions a {
     color: Black !important;
 }
-@media screen #portal-siteactions li { margin-right: 3em;}
+
+@media screen { #portal-siteactions li { margin-right: 3em;} }
 
 #aceitem_sidebar {
     background-color: #afc8df;
@@ -764,7 +765,7 @@ ul#ast-menu, #ast-menu ul {
 }
 
 .Adaptation-option-selector {
-    background-position: left center;
+    /* background-position: left center; */
     background-image: url("cca/img/ico-arrow.png");
     background-repeat: no-repeat;
     background-position: inline;
@@ -772,7 +773,7 @@ ul#ast-menu, #ast-menu ul {
 }
 
 .adapt-option-em {
-    background-position: left center;
+    /* background-position: left center; */
     background-image: url("cca/img/ico-arrow.png");
     background-repeat: no-repeat;
     background-position: inline;
@@ -1770,7 +1771,7 @@ li.dropdown-submenu {
     margin-left: 4px !important;
 }
 
-*/ bottom menu in urban ast pages */
+/* bottom menu in urban ast pages */
 
 #bottom-menu {
 	margin: 5px 20px 20px 20px;
@@ -2021,10 +2022,10 @@ table.dataTable thead .sorting_desc {
 #form-widgets-climate_impacts input[type="checkbox"] {
     float: left;
     margin-right: 0.3em;
+}
 
 /* tile composing fixes */
 .edit-tile-link {
-    /* position: relative !important;; */
     color: Red !important;
 }
 
@@ -2033,9 +2034,6 @@ table.dataTable thead .sorting_desc {
 }
 
 /* fix modal dialog for image upload in tinymce */
-.plone-modal-dialog  {
-    border: 2px solid Black !important;
-}
 /*
 .subsection-adaptation-information-research-projects .col-md-2 {
     background-color: #d2de92;
@@ -2077,4 +2075,11 @@ table.dataTable thead .sorting_desc {
 .subsection-adaptation-information-research-projects-impressions #content .cover-richtext-tile h1 {
     color: #758816;
     font-size: 20px;
+}
+
+.pattern-relateditems-dropdown {
+    z-index: 100000;
+}
+.plone-modal.in .plone-modal-dialog  {
+    border: 2px solid Black;
 }
