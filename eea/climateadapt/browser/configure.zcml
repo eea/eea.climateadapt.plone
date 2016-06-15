@@ -50,13 +50,50 @@
             />
     </browser:menuItems>
 
-    <browser:menuItem
-        for="Products.CMFCore.interfaces._content.IFolderish"
+    <browser:menuItems
+        for="*"
         menu="plone_displayviews"
-        title="News Display"
-        action="news-archive-display"
-        description="News Listing"
-    />
+        >
+        <browser:menuItem
+            action="listing-with-dates"
+            title="Listing with dates"
+            />
+    </browser:menuItems>
+
+<!-- <adapter -->
+<!--     for="* *" -->
+<!--     provides="" -->
+<!--      -->
+<!--  -->
+<!-- ((Pdb++)) p self.getMenuItemType() -->
+<!-- <InterfaceClass zope.app.menus.plone_displayviews> -->
+<!-- ((Pdb++)) n -->
+<!-- [3] > /media/tibi/3778690e&#45;08ae&#45;4e20&#45;a2b2&#45;2b03ea0d9500/home/tibi/work/eea.climateadapt.plonebuildout/eggs/plone.app.contentmenu&#45;2.0.11&#45;py2.7.egg/plone/app/contentmenu/displayviewsmenu.py(21)getMenuItemByAction() -->
+<!-- &#45;> item_action = item.action -->
+<!-- ((Pdb++)) l -->
+<!--  16             if action.startswith('++view++'): -->
+<!--  17                 action = action[8:] -->
+<!--  18 -->
+<!--  19             for name, item in getAdapters((object, request), -->
+<!--  20                                           self.getMenuItemType()): -->
+<!--  21  &#45;>             item_action = item.action -->
+<!--  22                 # Normalize menu item action; never uses ++view++ -->
+<!--  23                 if item_action.startswith('@@'): -->
+<!--  24                     item_action = item_action[2:] -->
+<!--  25 -->
+<!--  26                 if item_action == action: -->
+<!-- ((Pdb++)) p name -->
+<!-- u'All content' -->
+<!-- ((Pdb++)) p item -->
+<!-- <zope.browsermenu.menu.BrowserMenuItem object at 0x7f61f9291f50> -->
+
+
+    <browser:page
+        for="*"
+        name="listing-with-dates"
+        template="pt/listing-with-dates.pt"
+        permission="zope2.View"
+        />
 
     <browser:page
         name="ace_macros"
@@ -238,14 +275,6 @@
         for="*"
         name="keyword-objects"
         permission="zope2.View"
-        />
-
-    <browser:page
-        class=".news_archive.NewsArchiveView"
-        for="*"
-        name="news-archive-display"
-        template="pt/news-archive.pt"
-        permission="cmf.ManagePortal"
         />
 
     <!-- # portal link redirections, compatibility with old site -->

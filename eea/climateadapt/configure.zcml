@@ -23,10 +23,12 @@
     <include package="plone.resource" file="meta.zcml"/>
     <include package="z3c.jbot" file="meta.zcml" />
 
+    <include file="profiles.zcml" />
+
     <browser:jbot
         directory="browser/pt-overrides"
-        />
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        />
 
     <plone:static
         name="climateadapt"
@@ -35,24 +37,8 @@
 
     <i18n:registerTranslations directory="locales" />
 
-    <genericsetup:registerProfile
-        name="default"
-        title="eea.climateadapt"
-        directory="profiles/default"
-        description="Install eea.climateadapt"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+    -------[ Catalog indexes adapters ]-------
 
-    <genericsetup:registerProfile
-        name="zzz_cca_import"
-        title="eea.climateadapt: import content from Liferay"
-        directory="profiles/import_content"
-        description="Import content from SQL database of Liferay data"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
-
-
-    <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> -->
     <adapter name="aceitem_id" factory=".catalog.aceitem_id" />
     <adapter name="acemeasure_id" factory=".catalog.acemeasure_id" />
     <adapter name="aceproject_id" factory=".catalog.aceproject_id" />
@@ -64,6 +50,9 @@
     <adapter name="long_description" factory=".catalog.city_long_description" />
     <adapter name="search_type" factory=".catalog.search_type" />
     <adapter name="sectors" factory=".catalog.city_sectors" />
+    <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> -->
+
+    ----[ Vocabularies: ]------
 
     <utility name="eea.climateadapt.aceitems_datatypes" component=".vocabulary.aceitem_datatypes_vocabulary"/>
     <utility name="eea.climateadapt.aceitems_storagetypes" component=".vocabulary.aceitem_storagetypes_vocabulary"/>
@@ -85,7 +74,7 @@
     <utility name="eea.climateadapt.faceted_elements_voc" component=".vocabulary.faceted_elements"/>
     <utility name="eea.climateadapt.adaptation_options" factory=".vocabulary.AdaptationOptionsVocabulary"/>
 
-    Marker interfaces:
+    ------[ Marker interfaces: ]--------
 
     <interface interface="eea.climateadapt.interfaces.ITransnationalRegionMarker" />
     <interface interface="eea.climateadapt.interfaces.IASTNavigationRoot" />
@@ -94,7 +83,8 @@
     <interface interface="eea.climateadapt.interfaces.ICountriesRoot" />
     <interface interface="eea.climateadapt.interfaces.ICitiesListingsRoot" />
 
-    Widgets:
+    ------[ Widgets: ]--------
+
     <adapter factory=".aceitem.SpecialTagsFieldWidget" />
     <adapter factory=".aceitem.KeywordsFieldWidget" />
     <adapter factory=".acemeasure.KeywordsFieldWidget" />
