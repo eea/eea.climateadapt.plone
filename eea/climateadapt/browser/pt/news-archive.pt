@@ -11,16 +11,16 @@
   <body>
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core">
-        <h1>News</h1>
+        <h2>All News</h2>
 
         <ul tal:define="items python: context.results(sort_on='effective')">
             <li tal:repeat="item items" style="list-style: none">
-                <h5 style="text-decoration:underline">
+                <h2 style="text-decoration:underline">
                     <a href="" tal:content="python: item.Title()"
                         tal:attributes="href item/getURL">
                         News Title with href
                     </a>
-                </h5>
+                </h2>
                 <small tal:content="python: item.EffectiveDate().split('T')[0]"> Date </small>
                 <p tal:content="python: item.Description()"> Description </p>
             </li>
