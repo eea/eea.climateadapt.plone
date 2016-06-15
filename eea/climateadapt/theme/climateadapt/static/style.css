@@ -172,7 +172,6 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
 .navbar-inverse {border-color: transparent;}
 
 /* Responsive Design Magic*/
-
 @media screen and (max-width: 768px) {
 
     #wrapper {max-width: 100%;}
@@ -289,8 +288,6 @@ div.position-0 { margin-left: -100%; }
 
 .pull-left { margin: 0 1em 1em 0; }
 
-/* .tile-content { padding: 0 1em;} */
-
 .navbar { margin-bottom: 0px; min-height: 30px;}
 .navbar-inverse { background-color: #a5bf26;}
 .navbar-inverse .navbar-nav > li > a { color: Black; }
@@ -310,7 +307,6 @@ div.position-0 { margin-left: -100%; }
 
 
 /* .country-select-tile */
-
 #country-select {
     width: auto;
     max-width: 93%;
@@ -559,8 +555,6 @@ div.position-0 { margin-left: -100%; }
 
 /* Breadcrumb fixes */
 
-#viewlet-above-content {
-}
 #portal-breadcrumbs {
     background-color: #E9ECC9;
     padding:1em 0.5em;
