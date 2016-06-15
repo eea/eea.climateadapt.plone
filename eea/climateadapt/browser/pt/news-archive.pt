@@ -11,10 +11,10 @@
   <body>
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core">
-        <h2>All News</h2>
+        <h2 style="border-bottom:3px solid #bdcb2e">All News</h2>
 
-        <ul tal:define="items python: context.results(sort_on='effective')">
-            <li tal:repeat="item items" style="list-style: none">
+        <ul tal:define="items python: context.results(sort_on='effective')" style="margin-left:0">
+            <li tal:repeat="item items" style="list-style: none" class="news-item">
                 <h2 style="text-decoration:underline">
                     <a href="" tal:content="python: item.Title()"
                         tal:attributes="href item/getURL">
