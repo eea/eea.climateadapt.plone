@@ -527,6 +527,7 @@ no_import_layouts = [
     '/atlantic-area',
     '/atlantic-area1',
     '/more-latest-updates',
+    '/news-archive',
 ]
 
 # TO DO
