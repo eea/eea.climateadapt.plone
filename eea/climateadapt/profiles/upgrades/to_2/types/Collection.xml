@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <object name="Collection" meta_type="Dexterity FTI" i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
-    <mumu />
     <property name="view_methods" purge="False">
         <element value="listing-with-dates"/>
     </property>

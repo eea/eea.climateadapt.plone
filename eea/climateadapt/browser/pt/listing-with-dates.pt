@@ -20,7 +20,7 @@
                         News Title with href
                     </a>
                 </h3>
-                <small tal:content="python: item.EffectiveDate().split('T')[0]"> Date </small>
+                <small class="discreet" tal:content="python: item.EffectiveDate().split('T')[0]"> Date </small>
                 <p tal:content="item/Description"> Description </p>
             </li>
         </ul>
