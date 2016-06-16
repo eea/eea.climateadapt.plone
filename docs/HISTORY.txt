@@ -1,6 +1,9 @@
 Changelog
 =========
 
+1.3.dev0 - (unreleased)
+-----------------------
+
 1.2 - (2016-06-16)
 ------------------
 * Bugfix: Added date to news and events on frontpage
