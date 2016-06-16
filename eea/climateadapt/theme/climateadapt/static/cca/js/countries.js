@@ -388,16 +388,16 @@
 
   function checkLayer() {
     //          debugger ;
-    if (capita) {
+    if (capita.graphics.length != 0) {
       //console.log("Definida, cargo combo"); console.log(capita.graphics.length);
       loadCountries();
       document.getElementById('botoncito1').click();
     } else {
       //console.log("Rellamada");
-      setTimeout(checkLayer, 500);
+      setTimeout(checkLayer, 200);
     }
   }
 
   $(window).load(function() {
-    setTimeout(checkLayer, 500);
+    setTimeout(checkLayer, 200);
   });
