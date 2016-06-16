@@ -1,4 +1,9 @@
 <tal:resourceregistries>
   <tal:styles replace="structure provider:plone.resourceregistries.styles" />
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" type="text/javascript"></script>
+  <script src="++resource++plone.app.jquerytools.js" type="text/javascript"></script>
+  <script src="++resource++plone.app.jquerytools.form.js" type="text/javascript"></script>
+  <script src="++resource++plone.app.jquerytools.overlayhelpers.js" type="text/javascript"></script>
+  <script src="dropdown.js" type="text/javascript"></script>
+  <script src="popupforms.js" type="text/javascript"></script>
 </tal:resourceregistries>
