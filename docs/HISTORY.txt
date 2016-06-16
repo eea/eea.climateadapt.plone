@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.2.dev0 - (unreleased)
------------------------
+1.2 - (2016-06-16)
+------------------
 * Bugfix: Added date to news and events on frontpage
   when you one you will be redirected to external link if there is one
   [iulianpetchesi #73362]
@@ -55,3 +55,4 @@ Changelog
 1.0 - (08-06-2016)
 ----------------------
 - Initial release
+
