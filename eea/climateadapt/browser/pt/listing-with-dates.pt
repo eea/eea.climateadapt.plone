@@ -15,12 +15,11 @@
 
         <ul tal:define="items python: context.results(sort_on='effective')" style="margin-left:0">
             <li tal:repeat="item items" style="list-style: none" class="news-item">
-                <h2 style="text-decoration:underline">
-                    <a href="" tal:content="item/Title"
-                        tal:attributes="href item/getURL">
+                <h3>
+                    <a href="" tal:content="item/Title" tal:attributes="href item/getURL">
                         News Title with href
                     </a>
-                </h2>
+                </h3>
                 <small tal:content="python: item.EffectiveDate().split('T')[0]"> Date </small>
                 <p tal:content="item/Description"> Description </p>
             </li>
