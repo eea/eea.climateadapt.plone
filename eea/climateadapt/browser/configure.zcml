@@ -436,7 +436,25 @@
         permission="zope2.View"
         />
 
+    <class class=".sat.SatView">
+      <implements interface="plone.app.layout.globals.interfaces.IViewView" />
+    </class>
 
+    <class class=".misc.TransRegionView">
+      <implements interface="plone.app.layout.globals.interfaces.IViewView" />
+    </class>
+
+    <class class=".misc.CountriesView">
+      <implements interface="plone.app.layout.globals.interfaces.IViewView" />
+    </class>
+
+    <class class=".keywords_admin.KeywordsAdminView">
+      <implements interface="plone.app.layout.globals.interfaces.IViewView" />
+    </class>
+
+    <class class=".misc.MapViewerView">
+      <implements interface="plone.app.layout.globals.interfaces.IViewView" />
+    </class>
 
     <!-- <browser:page -->
     <!--     for="*" -->
