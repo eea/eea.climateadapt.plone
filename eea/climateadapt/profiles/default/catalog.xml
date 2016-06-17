@@ -6,6 +6,7 @@
     <column value="elements"/>
     <column value="year" />
     <column value="long_description" />
+    <column value="acronym" />
 
     <index name="search_type" meta_type="KeywordIndex">
         <indexed_attr value="search_type"/>
