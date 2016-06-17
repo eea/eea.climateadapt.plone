@@ -5,7 +5,7 @@ Changelog
 -----------------------
 * Bugfix: Frontpage style fix
   [iulianpetchesi]
-* Bugfix: Styling fixes
+* Bugfix: Styling fixes for urban ast
   [iulianpetchesi #73382]
 * Feature: allow selecting the heading level for rich text with title tiles
   [iulianpetchesi]

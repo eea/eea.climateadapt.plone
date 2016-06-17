@@ -789,6 +789,14 @@ ul#ast-menu, #ast-menu ul {
     margin: 0;
 }
 
+.subsection-tools-urban-ast #content .tile:nth-last-of-type(1) {
+    font-size: 0.9em;
+}
+
+.subsection-tools-urban-ast #content .col-md-8 .padded-tile {
+    font-size: 0.9em;
+}
+
 .col-md-6 {
     display: inline-block;
 }
@@ -1004,7 +1012,7 @@ a.bluebutton:active {
     border: 0px transparent;
 }
 #ast-menu .ui-accordion-header,
-#ast-menu .ui-accordion-header:visited {
+#ast-menu .ui-accordion-header:visited, #content a.ui-state-default{
     background: #9aa854;
     text-decoration: initial;
     color: #2c330a !important;
