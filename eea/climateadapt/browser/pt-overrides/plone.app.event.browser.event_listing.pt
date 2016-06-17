@@ -1,0 +1,178 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone.app.event">
+<body>
+
+<metal:custom_title fill-slot="content-title" tal:define="header view/header_string">
+  <h1 class="documentFirstHeading" tal:content="header/main" tal:condition="header/main" />
+  <h2 tal:content="header/sub" tal:condition="header/sub" />
+</metal:custom_title>
+
+<metal:content-core fill-slot="content-core">
+<metal:block define-macro="content-core">
+<tal:def define="batch view/events;
+                 mode request/mode|string:future;
+                 toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
+
+  <div class="event_listing">
+    <header>
+      <nav tal:define="show_filter python:not (view.is_collection or view.is_topic)">
+        <ul class="mode_selector">
+          <tal:cond condition="show_filter">
+          <li class="" tal:attributes="class python:mode=='future' and 'selected' or ''">
+            <a class="mode_future"   href="" tal:attributes="href view/mode_future_url"   i18n:translate="mode_future_link">Upcoming</a>
+          </li>
+          <li class="" tal:attributes="class python:mode=='past' and 'selected' or ''">
+            <a class="mode_past"   href="" tal:attributes="href view/mode_past_url"   i18n:translate="mode_past_link">Past</a>
+          </li>
+          <li class="" tal:attributes="class python:mode=='month' and 'selected' or ''">
+            <a class="mode_month" href="" tal:attributes="href view/mode_month_url" i18n:translate="mode_month_link">Month</a>
+          </li>
+          <li class="" tal:attributes="class python:mode=='week' and 'selected' or ''">
+            <a class="mode_week"  href="" tal:attributes="href view/mode_week_url"  i18n:translate="mode_week_link">Week</a>
+          </li>
+          <li class="" tal:attributes="class python:mode=='day' and 'selected' or ''">
+            <a class="mode_day"   href="" tal:attributes="href view/mode_day_url"   i18n:translate="mode_day_link">Day</a> <input id="event_listing_calendar" type="hidden" />
+          </li>
+          </tal:cond>
+          <li>
+            <a class="mode_ical"  href="" tal:attributes="href view/ical_url"
+               title="Download this event in iCal format"
+               i18n:attributes="title title_add_to_ical;">
+                <img src="" alt=""
+                    tal:attributes="src string:${portal_url}/++resource++plone.app.event/icon_export_ical.png"/>
+                <span i18n:translate="label_add_to_ical">iCal</span></a>
+
+          </li>
+        </ul>
+        <tal:cond condition="show_filter">
+        <tal:month condition="python:mode=='month'">
+        <ul class="sub_nav">
+          <li><a class="prev_month" href="" tal:attributes="href view/prev_month_url" i18n:translate="prev_month_link">Previous Month</a></li>
+          <li><a class="this_month" href="" tal:attributes="href view/this_month_url" i18n:translate="this_month_link">This Month</a></li>
+          <li><a class="next_month" href="" tal:attributes="href view/next_month_url" i18n:translate="next_month_link">Next Month</a></li>
+        </ul>
+        </tal:month>
+        <tal:week condition="python:mode=='week'">
+        <ul class="sub_nav">
+          <li><a class="prev_week"  href="" tal:attributes="href view/prev_week_url"  i18n:translate="prev_week_link">Previous Week</a></li>
+          <li><a class="this_week"  href="" tal:attributes="href view/this_week_url"  i18n:translate="this_week_link">This Week</a></li>
+          <li><a class="next_week"  href="" tal:attributes="href view/next_week_url"  i18n:translate="next_week_link">Next Week</a></li>
+        </ul>
+        </tal:week>
+        <tal:day condition="python:mode in ('day', 'today')">
+        <ul class="sub_nav">
+          <li><a class="prev_day"   href="" tal:attributes="href view/prev_day_url"   i18n:translate="prev_day_link">Previous Day</a></li>
+          <li><a class="today"      href="" tal:attributes="href view/today_url"      i18n:translate="today_link">Today</a></li>
+          <li><a class="next_day"   href="" tal:attributes="href view/next_day_url"   i18n:translate="next_day_link">Next Day</a></li>
+        </ul>
+        </tal:day>
+        </tal:cond>
+      </nav>
+      <div class="visualClear"></div>
+    </header>
+
+    <section>
+
+    <tal:items repeat="data batch">
+
+      <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
+          tal:define="startf python:view.date_speller(data.start)">
+
+        <ul class="hiddenStructure">
+          <li itemprop="startDate" class="dtstart" tal:content="data/start/isoformat">end</li>
+          <li itemprop="endDate" class="dtend" tal:content="data/end/isoformat">end</li>
+        </ul>
+
+        <div class="cal_date">
+            <span class="cal_wkday" tal:content="python:startf['wkday_abbr'][:2]">Tue</span>
+            <span class="cal_day" tal:content="string:${startf/day}.">15.</span>
+            <span class="cal_month" tal:content="string:${startf/month_abbr}.">Oct.</span>
+        </div>
+
+        <div class="cal_info">
+          <h2><a href="" itemprop="url" class="url" tal:attributes="href data/event_url">
+            <span itemprop="summary" class="summary" tal:content="data/title">Title</span>
+          </a></h2>
+          <div class="documentByLine">
+            <tal:date tal:replace="structure python:view.formatted_date(data)"/>
+            <div itemprop="location" class="location"
+                tal:define="location python:view.get_location(data)"
+                tal:condition="location"
+                tal:content="structure location">location</div>
+          </div>
+
+          <p itemprop="description" class="description" tal:condition="data/description" tal:content="data/description" />
+
+          <ul class="horizontal metadata">
+
+            <li tal:condition="data/subjects" itemprop="eventType" class="category">
+              <span tal:repeat="data data/subjects" tal:content="data" />
+            </li>
+
+            <li tal:condition="data/url">
+              <a class="event_url" title="Event Link"
+                  tal:attributes="href data/url"
+                  i18n:translate="label_web">Event Link</a>
+            </li>
+
+            <li tal:define="contact_email data/contact_email|nothing;
+                            contact_name data/contact_name|nothing"
+                tal:condition="contact_email|contact_name">
+              <span tal:condition="contact_email">
+                <i18n:label_email translate="label_email">Email</i18n:label_email>:
+              </span>
+              <a class="contact_email" title=""
+                  i18n:attributes="title contact_name"
+                  tal:omit-tag="not:contact_email"
+                  tal:attributes="href string:mailto:${contact_email}">
+                <span tal:condition="python:contact_email and not contact_name"
+                      tal:replace="contact_email">Email</span>
+                <span tal:condition="contact_name" tal:content="contact_name"/>
+              </a>
+            </li>
+
+            <li tal:condition="data/contact_phone" i18n:attributes="title label_phone">
+              <span i18n:translate="label_phone">Phone</span>:
+              <a class="contact_phone" title=""
+                  tal:attributes="href string:tel:${data/contact_phone}"
+                  tal:content="data/contact_phone">123</a>
+            </li>
+
+            <li>
+              <a class="event_ical"
+                  tal:define="portal_url context/@@plone_portal_state/portal_url;"
+                  tal:attributes="href string:${data/url}/ics_view"
+                  title="Download this event in iCal format"
+                  i18n:attributes="title title_add_to_ical;">
+                <img src="" alt=""
+                    tal:attributes="src string:${portal_url}/++resource++plone.app.event/icon_export_ical.png"/>
+                <span i18n:translate="label_add_to_ical">iCal</span>
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+        <div class="visualClear"></div>
+
+      </article>
+
+     </tal:items>
+
+    </section>
+
+  </div>
+
+  <div metal:use-macro="context/batch_macros/macros/navigation" />
+
+</tal:def>
+</metal:block>
+</metal:content-core>
+
+</body>
+</html>
