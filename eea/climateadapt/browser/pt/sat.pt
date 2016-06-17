@@ -30,20 +30,21 @@
                     same definitions and criteria as applied for case studies presented in the Climate-ADAPT case study search tool.
                 </p>
                 <ul>
-                    <li><a href="http://www.circle-era.eu/np4/%7B$clientServletPath%7D/?newsId=432&fileName=BOOK_150_dpi.pdf">
+                    <li><a href="http://www.circle-era.eu/np4/%7B$clientServletPath%7D/?newsId=432&fileName=BOOK_150_dpi.pdf" target="_blank">
                             Circle-2 Adaptation Inspiration Book</a></li>
-                    <li><a href="http://www.future-cities.eu/fileadmin/user_upload/pdf/FC_AdaptationCompass_Supplement_web.pdf">
+                    <li><a href="http://www.future-cities.eu/fileadmin/user_upload/pdf/FC_AdaptationCompass_Supplement_web.pdf" target="_blank">
                             Future Cities project</a></li>
-                    <li><a href="http://www.grabs-eu.org/membersArea/files/Database_Final_no_hyperlinks.pdf">
+                    <li><a href="http://www.interreg4c.eu/good-practices" target="_blank">
                             GRaBS project- Green and blue infrastructure</a></li>
-                    <li><a href="http://www.sic-adapt.eu/outputs/knowledge-platform.html">
+                    <li><a href="http://www.sic-adapt.eu/outputs/knowledge-platform.html" target="_blank">
                             SIC adapt</a></li>
-                    <li><a href="http://en.klimatilpasning.dk/cases.aspx">
+                    <li><a href="http://en.klimatilpasning.dk/cases.aspx" target="_blank">
                             Klimatilpassning.dk (English / Danish)</a></li>
-                    <li><a href="http://www.umweltbundesamt.de/themen/klima-energie/klimafolgen-anpassung/werkzeuge-der-anpassung/tatenbank/Tatenbank/DE/Home/home_node.html">KomPass Tatenbank (German)</a></li>
-                    <li><a href="http://www.unisdr.org/campaign/resilientcities/home/rolemodel">
+                    <li><a href="http://www.umweltbundesamt.de/themen/klima-energie/klimafolgen-anpassung/werkzeuge-der-anpassung/tatenbank/Tatenbank/DE/Home/home_node.html" target="_blank">
+                            KomPass Tatenbank (German)</a></li>
+                    <li><a href="http://www.unisdr.org/campaign/resilientcities/home/rolemodel" target="_blank">
                             Making cities resilient - Role models</a></li>
-                    <li><a href="http://www.nwrm.eu/list-of-all-case-studies">
+                    <li><a href="http://www.nwrm.eu/list-of-all-case-studies" target="_blank">
                             Natural Water Retention Measures - NWRM platform</a></li>
                 </ul>
             </tal:main-macro>
