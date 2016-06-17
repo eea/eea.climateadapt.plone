@@ -5,6 +5,8 @@ Changelog
 -----------------------
 * Bugfix: Styling fixes
   [iulianpetchesi #73382]
+* Feature: allow selecting the heading level for rich text with title tiles
+  [iulianpetchesi]
 * Bugfix: Items will be sorted by title in /data-and-downloads
   [iulianpetchesi #73214]
 * Bugfix: Fixed the countries dropdown for /countries-regions/countries
