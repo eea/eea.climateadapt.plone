@@ -3,6 +3,10 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Frontpage style fix
+  [iulianpetchesi]
+* Bugfix: Styling fixes
+  [iulianpetchesi #73382]
 * Feature: allow selecting the heading level for rich text with title tiles
   [iulianpetchesi]
 * Bugfix: Items will be sorted by title in /data-and-downloads

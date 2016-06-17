@@ -11,7 +11,8 @@
       </p>
       <div class="cover-richtext-tile tile-content" tal:define="fields view/data">
         <tal:title define="htmltag python:fields.get('title_level', 'h1');
-                               viewdata fields/title">
+                               viewdata fields/title"
+                               tal:condition="viewdata">
                     <p tal:replace="structure string:<$htmltag>$viewdata</$htmltag>"></p>
         </tal:title>
 
