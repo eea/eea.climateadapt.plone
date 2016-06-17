@@ -277,3 +277,13 @@ _category = [
 ]
 category = generic_vocabulary(_category)
 alsoProvides(category, IVocabularyFactory)
+
+_header_level = (
+    ("h1", "Header 1"),
+    ("h2", "Header 2"),
+    ("h3", "Header 3"),
+    ("h4", "Header 4"),
+    ("h5", "Header 5"),
+)
+rich_header_level = generic_vocabulary(_header_level)
+alsoProvides(rich_header_level, IVocabularyFactory)
