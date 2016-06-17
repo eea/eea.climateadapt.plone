@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Styling fixes
+  [iulianpetchesi #73382]
 * Bugfix: Items will be sorted by title in /data-and-downloads
   [iulianpetchesi #73214]
 * Bugfix: Fixed the countries dropdown for /countries-regions/countries
