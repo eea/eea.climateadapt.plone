@@ -95,10 +95,15 @@ div.overlay-iframe, div.overlay-ajax {width:75%;z-index:1100;}
     margin-top: 0 ;
 }
 
+
 #content a:hover, dl.portlet a:hover {
-    /* color: #a5bf26; */
+    color: #a5bf26;
+}
+
+.section-frontpage #content a:hover, dl.portlet a:hover {
     color: #4D6776 !important;
 }
+
 #content a:visited,
 dl.portlet a:visited {
     color: #02516d;
