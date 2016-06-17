@@ -759,18 +759,16 @@ ul#ast-menu, #ast-menu ul {
 }
 
 .Adaptation-option-selector {
-    /* background-position: left center; */
+    background-position: left center;
     background-image: url("cca/img/ico-arrow.png");
     background-repeat: no-repeat;
-    background-position: inline;
     padding-left: 1em;
 }
 
 .adapt-option-em {
-    /* background-position: left center; */
+    background-position: left center;
     background-image: url("cca/img/ico-arrow.png");
     background-repeat: no-repeat;
-    background-position: inline;
     padding-left: 1em;
 }
 
