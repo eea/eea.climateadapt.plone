@@ -265,7 +265,6 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
                            # 'RESEARCHPROJECT' || aceitemtype eq 'MEASURE' ||
                            # aceitemtype eq 'ORGANISATION'}" >
 
-
     def is_empty(self):
         return False
 

@@ -21,6 +21,12 @@ class IRichTextWithTitle(IRichTextTile):
         default=False,
     )
 
+    title_level = schema.Choice(
+        title=_(u"Change header style."),
+        default="h1",
+        vocabulary="eea.climateadapt.rich_header_level",
+    )
+
 
 class RichTextWithTitle(RichTextTile):
     """
