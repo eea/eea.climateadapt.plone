@@ -3,9 +3,11 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Modified the event template
+  [iulianpetchesi #73281]
 * Bugfix: Frontpage style fix
   [iulianpetchesi]
-* Bugfix: Styling fixes
+* Bugfix: Styling fixes for urban ast
   [iulianpetchesi #73382]
 * Feature: allow selecting the heading level for rich text with title tiles
   [iulianpetchesi]

@@ -1,5 +1,5 @@
 <div class="fp-image-tile" style="padding-right: 0;">
   <a href="/adaptation-support-tool">
-    <img src="" tal:attributes="src string: ${context/++resource++eea.climateadapt}/img/ast_front.png" style="width: 95%;"/>
+    <img src="" tal:attributes="src string: ${context/++resource++eea.climateadapt}/img/ast_front.png"/>
   </a>
 </div>

@@ -1,5 +1,5 @@
 <div class="fp-image-tile" style="padding-right:0;">
   <a href="/share-your-info">
-    <img src="" tal:attributes="src string: ${context/++resource++eea.climateadapt}/img/share-your-info.jpg" style="width: 100%;"/>
+    <img src="" tal:attributes="src string: ${context/++resource++eea.climateadapt}/img/share-your-info.jpg" />
   </a>
 </div>
