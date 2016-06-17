@@ -12,5 +12,6 @@
         <dependency>profile-plone.formwidget.recaptcha:default</dependency>
         <dependency>profile-collective.sweeteditor:default</dependency>
         <dependency>profile-plone.app.ldap:ldap</dependency>
+        <dependency>profile-plone.app.querystring:default</dependency>
     </dependencies>
 </metadata>
