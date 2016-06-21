@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fix styling for urban adaptation
+  [iulianpetchesi]
 * Bugfix: Modified the event template
   [iulianpetchesi #73281]
 * Bugfix: Frontpage style fix
