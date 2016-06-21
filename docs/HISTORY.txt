@@ -3,7 +3,10 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
-* Bugfix: Moved the adaptations options field 
+* Bugfix: The adaptation options widget will show only
+  adaptation options from now on
+  [iulianpetchesi #73542]
+* Bugfix: Moved the adaptations options field
   [iulianpetchesi #73542]
 * Bugfix: Fixed a casestudy error
   [iulianpetchesi #73584]

@@ -23,12 +23,13 @@ import inspect
 
 class VocabularyView(vocab.VocabularyView):
     """ Override the default getVocabulary because it doesn't work
-    well with the add view
+        well with the add view and the editing of an item
     """
 
     _vocabs = [
         ('eea.climateadapt.keywords', 'keywords'),
         ('eea.climateadapt.special_tags', 'special_tags'),
+        ('eea.climateadapt.adaptation_options', 'adaptationoptions'),
     ]
 
     def get_vocabulary(self):

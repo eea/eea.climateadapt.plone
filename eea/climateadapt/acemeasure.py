@@ -428,9 +428,13 @@ class ICaseStudy(IAceMeasure):  #, IGeolocatable):
 @adapter(getSpecification(ICaseStudy['adaptationoptions']), IWidgetsLayer)
 @implementer(IFieldWidget)
 def AdaptationOptionsFieldWidget(field, request):
+    """ The vocabulary view is overridden so that
+        the widget will show only adaptation options
+        Check browser/overrides.py for more details
+    """
     widget = FieldWidget(field, RelatedItemsWidget(request))
-    widget.vocabulary = 'plone.app.vocabularies.Catalog'
-    # widget.vocabulary = 'eea.climateadapt.adaptation_options'
+    # widget.vocabulary = 'plone.app.vocabularies.Catalog'
+    widget.vocabulary = 'eea.climateadapt.adaptation_options'
     return widget
 
 
@@ -449,6 +453,10 @@ class AdaptationOption(dexterity.Container):
 @adapter(getSpecification(IAceMeasure['keywords']), IWidgetsLayer)
 @implementer(IFieldWidget)
 def KeywordsFieldWidget(field, request):
+    """ The vocabulary view is overridden so that
+        the widget will work properly
+        Check browser/overrides.py for more details
+    """
     widget = FieldWidget(field, AjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.keywords'
     return widget
