@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fix countries filter not appearing in faceted
+  [iulianpetchesi #73214]
 * Bugfix: Fix styling for urban adaptation
   [iulianpetchesi]
 * Bugfix: Modified the event template
