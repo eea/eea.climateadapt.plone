@@ -187,14 +187,14 @@
                             <em id="cost_benefit_anchor" style="text-decoration: underline">Costs and Benefits</em>
                             <div tal:content="structure python: view.w['cost_benefit'].render()"></div>
 
-                            <em id="legal_aspects" tal:condition="python: context.legal_aspects.output != '' or None"
+                            <em id="legal_aspects" tal:condition="python: context.legal_aspects is not None"
                                 style="text-decoration: underline">Legal Aspects</em>
                             <div tal:content="structure python: view.w['legal_aspects'].render()"></div>
 
                             <em id="implementation_time_anchor" style="text-decoration: underline">Implementation Time</em>
                             <div tal:content="structure context/implementation_time/output"></div>
 
-                            <em id="life_time_anchor" tal:condition="python: context.lifetime.output != '' or None"
+                            <em id="life_time_anchor" tal:condition="python: context.lifetime is not None"
                                 style="text-decoration: underline">Life Time</em>
                             <div tal:content="structure context/lifetime/output"></div>
 
@@ -205,7 +205,7 @@
                             <em id="websites" style="text-decoration: underline">Websites</em>
                             <div metal:use-macro="context/ace_macros/macros/websites"></div>
 
-                            <div tal:condition="context/source/output | nothing">
+                            <div tal:condition="context/source | nothing">
                                 <em id="source" style="text-decoration: underline">Source</em>
                                 <div tal:content="structure context/source/output"></div>
                             </div>
