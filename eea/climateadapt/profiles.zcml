@@ -62,4 +62,22 @@
             />
     </genericsetup:upgradeSteps>
 
+    <!-- v4 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_4"
+        title="Upgrade profile for eea.climateadapt v4"
+        description=""
+        directory="profiles/upgrades/to_4"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="4"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v4"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_4"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>
