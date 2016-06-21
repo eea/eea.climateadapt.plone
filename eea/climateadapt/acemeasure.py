@@ -1,5 +1,5 @@
-#from collective.geolocationbehavior.geolocation import IGeolocatable
-#from plone.namedfile.field import NamedBlobFile
+# from collective.geolocationbehavior.geolocation import IGeolocatable
+# from plone.namedfile.field import NamedBlobFile
 from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
@@ -378,7 +378,6 @@ class ICaseStudy(IAceMeasure):  #, IGeolocatable):
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_relevance",),
     )
-
 
     contact = RichText(
         title=_(u"Contact"), required=True, default=u"",

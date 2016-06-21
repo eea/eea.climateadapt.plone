@@ -3,6 +3,10 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Moved the adaptations options field 
+  [iulianpetchesi #73542]
+* Bugfix: Fixed a casestudy error
+  [iulianpetchesi #73584]
 * Bugfix: Fix countries filter not appearing in faceted
   [iulianpetchesi #73214]
 * Bugfix: Fix styling for urban adaptation

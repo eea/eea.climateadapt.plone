@@ -37,10 +37,10 @@ class CaseStudyAddForm(DefaultAddForm):
 class CaseStudyFormExtender(FormExtender):
     def update(self):
         self.move('IGeolocatable.geolocation', after='geochars')
-        self.move('adaptationoptions', after='lifetime')
         self.move('primary_photo', after='long_description')
         self.move('relevance', after='climate_impacts')
         self.move('solutions', after='climate_impacts')
+        self.move('adaptationoptions', after='climate_impacts')
         self.move('objectives', after='climate_impacts')
         self.move('challenges', after='climate_impacts')
         self.move('contact', before='websites')
