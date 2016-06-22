@@ -2,7 +2,6 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Relevance</th>
       <th>Year</th>
     </tr>
   </thead>
@@ -17,15 +16,6 @@
         - <span tal:define="text python: view.html2text(brain.long_description.raw)">
             <span tal:replace="python: text[:208-len(title)]" />...
           </span>
-      </td>
-      <td class="relevance_table" tal:define="relevance repeat/brain/index">
-        <span style="display: none" tal:content="relevance" />
-        <div class="relevance-marker"></div>
-        <div class="relevance-marker" tal:condition="python: relevance &gt; two"></div>
-        <div class="relevance-marker" tal:condition="python: relevance &gt; three"></div>
-        <div class="relevance-marker" tal:condition="python: relevance &gt; four"></div>
-        <div class="relevance-marker" tal:condition="python: relevance &gt; five"></div>
-        <div class="visualClear"></div>
       </td>
       <td class="table_year_css" tal:content="python: brain.year or '' ">year</td>
     </tr>

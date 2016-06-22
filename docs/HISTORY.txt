@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Removed relevance column from the search page
+  [iulianpetchesi #73277]
 * Bugfix: Added default values for year filter at faceted search
   [iulianpetchesi #72023]
 * Bugfix: Style fixes for portlet headers

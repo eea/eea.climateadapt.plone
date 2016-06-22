@@ -26,6 +26,7 @@
 			}
 		});
 
+		// Year defaults for faceted
 		$('#year-start-input').val(0);
 		$('#year-end-input').val(9999);
 
