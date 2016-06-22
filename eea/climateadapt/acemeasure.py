@@ -394,10 +394,12 @@ class ICaseStudy(IAceMeasure):  #, IGeolocatable):
         value_type=RelationChoice(
             title=_(u"Related"),
             source=ObjPathSourceBinder(
-                #object_provides=IAdaptationOption.__identifier__
+                # object_provides=IAdaptationOption.__identifier__,
+                # navigation_tree_query={'path': {'query': '/Plone/metadata/adaptation-options/'}},
+                # path={'/Plone/metadata/adaptation-options/'},
                 portal_type='eea.climateadapt.adaptationoption',
                 path={'/Plone/metadata/adaptation-options/'},
-            )
+            ),
         ),
         required=False,
     )
@@ -433,8 +435,8 @@ def AdaptationOptionsFieldWidget(field, request):
         Check browser/overrides.py for more details
     """
     widget = FieldWidget(field, RelatedItemsWidget(request))
-    # widget.vocabulary = 'plone.app.vocabularies.Catalog'
-    widget.vocabulary = 'eea.climateadapt.adaptation_options'
+    widget.vocabulary = 'plone.app.vocabularies.Catalog'
+    # widget.vocabulary = 'eea.climateadapt.adaptation_options'
     return widget
 
 
