@@ -805,19 +805,37 @@ ul#ast-menu, #ast-menu ul {
     padding-left: 2.2em;
 }
 
-#content .eu-strategy td h2,
-#content .aceitem-relevant-tile {
+/*#content .aceitem-relevant-tile,*/
+#content .eu-strategy td h2{
     margin-top: 1em;
 }
-#content .aceitem-relevant-tile h2 {
+
+/*#content .aceitem-relevant-tile h2 {
+    font-size: 1.4em;
+    line-height: 1.2em;
+    padding: 0.1em 0.5em;
+}*/
+/*#content .aceitem-relevant-tile h2 {
+    padding-left: 0em;
+    padding-right: 0em;
+}*/
+
+#content .col-md-4 .cover-richtext-tile {
+    margin-top: 1em;
+}
+
+#content .col-md-4 .cover-richtext-tile h2 {
     font-size: 1.4em;
     line-height: 1.2em;
     padding: 0.1em 0.5em;
 }
-#content .aceitem-relevant-tile h2 {
+
+#content .col-md-4 .cover-richtext-tile h2 {
     padding-left: 0em;
     padding-right: 0em;
 }
+
+
 #content .eu-strategy tr:first-child td {
     padding: 0em 0em 1em 0em;
 }
