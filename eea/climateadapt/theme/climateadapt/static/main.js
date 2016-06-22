@@ -26,6 +26,9 @@
 			}
 		});
 
+		$('#year-start-input').val(0);
+		$('#year-end-input').val(9999);
+
         $(".acecontent_filtering_tile select").on('change', function(event){
             $(this).parents('form').submit();
         });
