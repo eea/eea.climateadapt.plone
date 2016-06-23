@@ -304,6 +304,44 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
         margin-right: 0;
     }
 
+    .subsection-countries #contenidoMapa {
+        right: 0;
+    }
+
+    #content-core #contenido {
+        margin-bottom: 20em;
+    }
+
+    #content-core #contenidoCombos {
+        margin-top: 35em;
+    }
+
+    .iframe-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 35px;
+        height: 0;
+        overflow: hidden;
+    }
+
+    .iframe-container iframe {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    #center-content-area {
+        margin-left: 0;
+    }
+    #center-top-area {
+        margin-left: 19em;
+    }
+    #faceted-results {
+        margin-top: 10em;
+    }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -331,9 +369,29 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
         max-width: 100%;
         width: auto;
     }
+
     .section-frontpage #content .row ul li .case-studies-homepage-slider-description {
         margin-top: 2em;
     }
+
+    #content-core #center-top-area {
+        margin-top: 23em;
+        margin-left: 0;
+    }
+
+    #content-core #faceted-results {
+        margin-top: 0;
+    }
+
+    #content-core #contenido {
+        margin-bottom: 20em;
+    }
+
+    #content-core #contenidoCombos {
+        margin-top: 35em;
+        padding-left: 1em;
+    }
+
 }
 
 /* Layout fixes */
