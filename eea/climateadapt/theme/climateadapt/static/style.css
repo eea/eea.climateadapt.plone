@@ -252,6 +252,58 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
     .overlay.overlay-ajax #searchform .discreet {text-align:left;}
     .overlay.overlay-ajax #content-core strong {display:none;}
 
+    .section-frontpage #content-core .row:nth-child(1) {
+        margin-bottom: 15em;
+    }
+
+    .section-frontpage #content .row ul li .case-studies-homepage-slider-image {
+        max-width: 100%;
+        width: auto;
+    }
+
+    .section-frontpage #content .row ul li .case-studies-homepage-slider-description {
+        margin-top: 2em;
+        float: left;
+        max-width: 100%;
+        width: auto;
+    }
+
+    .section-frontpage #content-core .row:nth-child(2) .col-md-3 {
+        display: inline-flex;
+    }
+
+    .section-frontpage #content-core .row:nth-child(5) .col-md-6 {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .section-frontpage #content-core .row:nth-child(3) .col-md-3:nth-child(2) {
+        border-left: none;
+    }
+
+    .section-frontpage #content-core .row:nth-child(3) .col-md-3:nth-child(3) {
+        border-right: none;
+        border-left: none;
+    }
+
+    #content-core .fp-tile-fixes {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .section-frontpage .eu-climate-policy-tile {
+        margin-left: 0;
+    }
+
+    #content-core .fp-image-tile {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .section-frontpage .funding-adaptation-tile {
+        margin-right: 0;
+    }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -269,6 +321,18 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
         width:80%;
         clear:both;
         margin: 0 auto 2%;
+    }
+
+    .section-frontpage #content-core .row:nth-child(1) {
+        margin-bottom: 20em;
+    }
+
+    .section-frontpage #content .row ul li .case-studies-homepage-slider-image {
+        max-width: 100%;
+        width: auto;
+    }
+    .section-frontpage #content .row ul li .case-studies-homepage-slider-description {
+        margin-top: 2em;
     }
 }
 

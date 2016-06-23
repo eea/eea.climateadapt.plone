@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed mobile browsing for frontpage for device width < 768px 
+  [iulianpetchesi #73319]
 * Bugfix: Removed relevance column from the search page
   [iulianpetchesi #73277]
 * Bugfix: Added default values for year filter at faceted search
