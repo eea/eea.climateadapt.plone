@@ -56,13 +56,13 @@
       </div>
 
       <div class="city-menu-row" tal:define="can_submit view/can_submit_for_publication">
-        <button tal:define="disabled python: (not can_submit) and 'disabled' or ''" 
+        <button tal:define="disabled python: (not can_submit) and 'disabled' or ''"
           tal:attributes="class disabled; disabled disabled" name="submit" value="submit">Submit for publication</button>
         <span>Step 2: Finish the edition of your fact sheet</span>
       </div>
 
       <div class="city-menu-row" >
-        <button name="submit" tal:define="disabled python: (not has_working_copy) and 'disabled' or ''" 
+        <button name="submit" tal:define="disabled python: (not has_working_copy) and 'disabled' or ''"
           tal:attributes="class disabled; disabled disabled;" value="preview_working_copy">Preview working copy</button>
         <span>Step 3: Preview your working copy of City Profile</span>
       </div>
