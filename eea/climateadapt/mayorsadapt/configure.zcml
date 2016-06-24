@@ -147,11 +147,11 @@
     <!--    /> -->
 
 TODO: re-enable after import
-    <!-- <subscriber -->
-    <!--   for="eea.climateadapt.city_profile.CityProfile -->
-    <!--        zope.lifecycleevent.interfaces.IObjectAddedEvent" -->
-    <!--   handler="eea.climateadapt.city_profile.handle_city_added" -->
-    <!-- /> -->
+    <subscriber
+       for="eea.climateadapt.city_profile.CityProfile
+            zope.lifecycleevent.interfaces.IObjectAddedEvent"
+       handler="eea.climateadapt.city_profile.handle_city_added"
+    />
 
     Pages with vocabularies used in the mayorsadaptloads.js
 

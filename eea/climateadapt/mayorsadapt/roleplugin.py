@@ -21,7 +21,7 @@ def is_citymayor_visitor(request):
     """ Is this browsing session belong to a city mayor visitor?
     """
 
-    if request.cookies.get(TOKENID):    # or request.SESSION.get(TOKENID):
+    if request.cookies.get(TOKENID) or request.SESSION.get(TOKENID): #Session Problems
         return True
 
     return False
