@@ -77,7 +77,7 @@ class ExpiredTokenViewlet(ViewletBase):
 
 
 def is_token_available(self):
-    # Check token here
+    """ Check and parse token for exceptions """
     self.check_url = False
     self.expire_value = False
     self.malformed_value = False
@@ -92,12 +92,7 @@ def is_token_available(self):
         secret_token = req.cookies.get(TOKENID)
     # secret_token = req.cookies.get(TOKENID)
 
-    if not secret_token:
-        self.check_url = False
-        return True
-
-    if self.request.getURL().find('cptk') == -1:
-        self.check_url = False
+    if not secret_token or self.request.getURL().find('cptk') == -1:
         return True
 
     try:
@@ -105,9 +100,6 @@ def is_token_available(self):
         secret = ann['eea.climateadapt.cityprofile_secret']
         tokenlib.parse_token(secret_token, secret=secret)
         self.check_url = True
-        self.expire_value = False
-        self.malformed_value = False
-        self.invalid_value = False
         return True
     except ExpiredTokenError:
         self.expire_value = True

@@ -21,9 +21,4 @@
             </h3>
         </div>
     </div>
-
-    <div tal:condition="view/check_url">
-        <!-- Edit menu here -->
-        <h3>  CEVA </h3>
-    </div>
 </div>
