@@ -117,7 +117,7 @@
             <li tal:condition="data/url">
               <a class="event_url" title="Event Link"
                   tal:attributes="href data/url"
-                  i18n:translate="label_web">Edit Event</a>
+                  i18n:translate="label_web">Climate Adapt page for this event</a>
             </li>
 
             <li tal:define="contact_email data/contact_email|nothing;
