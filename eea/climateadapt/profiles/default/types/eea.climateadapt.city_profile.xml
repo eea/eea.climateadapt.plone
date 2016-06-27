@@ -33,6 +33,7 @@
         <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />
         <element value="plone.app.lockingbehavior.behaviors.ILocking"/>
         <element value="collective.geolocationbehavior.geolocation.IGeolocatable"/>
+        <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
         <!-- <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/> -->
     </property>
 
