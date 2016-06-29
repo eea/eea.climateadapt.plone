@@ -94,7 +94,6 @@ class TokenCheckView(BrowserView):
                           'title': city.title})
                     self.send_email(html_msg, text_msg, city)
             else:
-                print "Not sent - ", city.Title()
                 pass
 
         return self.index()
