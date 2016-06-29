@@ -1,0 +1,3 @@
+%(receiver)s:
+
+Your token has expired for city profile %(title)s

@@ -1,0 +1,3 @@
+%(receiver)s:
+
+You still have 1 week to edit your profile %(title)s.

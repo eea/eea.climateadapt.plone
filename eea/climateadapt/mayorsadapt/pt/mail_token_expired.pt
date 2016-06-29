@@ -1,0 +1,6 @@
+<tal:root>
+ <div tal:content="python: args[0]['receiver']">
+ </div>, <br/>
+ Your token has expired for city profile
+ <span tal:content="python: args[0]['title']()"> </span>
+</tal:root>
