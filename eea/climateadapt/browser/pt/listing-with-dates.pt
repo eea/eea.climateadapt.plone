@@ -11,6 +11,10 @@
   <body>
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core">
+        <div tal:define="Batch python:modules['plone.batching'].Batch;
+                 b_size python:10;b_start python:0;b_start request/b_start | b_start;
+                 batch python:Batch(context.results(), b_size, int(b_start), orphan=1);">
+
         <h2 style="border-bottom:3px solid #bdcb2e" tal:content="context/Title">All News</h2>
 
         <ul tal:define="items python: context.results(sort_on='effective')" style="margin-left:0">
@@ -25,6 +29,10 @@
             </li>
         </ul>
 
+        <tal:batchnavigation
+            define="batchnavigation nocall:context/@@batchnavigation"
+            replace="structure python:batchnavigation(batch)" />
+       </div>
       </tal:main-macro>
     </metal:main>
   </body>

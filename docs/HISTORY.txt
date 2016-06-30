@@ -3,7 +3,9 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
-* Bugfix: Created templates for mail reminders 
+* Bugfix: Enabled batching for news 
+  [iulianpetchesi #73364]
+* Bugfix: Created templates for mail reminders
   [iulianpetchesi #71389]
 * Bugfix: Fixed mobile browsing for search page + others
   [iulianpetchesi #73319]
