@@ -26,10 +26,6 @@
 			}
 		});
 
-		// Year defaults for faceted
-		$('#year-start-input').val(0);
-		$('#year-end-input').val(9999);
-
         $(".acecontent_filtering_tile select").on('change', function(event){
             $(this).parents('form').submit();
         });
@@ -118,6 +114,13 @@
 					return (b == "Read more" ? "Read less" : "Read more");
 				});
 			}
+		});
+		// Year defaults for faceted
+		var range_click = $(".faceted-range-widget").children().children();
+
+		$(range_click).click(function() {
+			$('#year-start-input').val(0);
+			$('#year-end-input').val(9999);
 		});
 	});
 
