@@ -42,7 +42,8 @@ class CountrySelectTile(PersistentCoverTile):
         return False
 
     def countries(self):
-        return ace_countries
+        countries = [(c[0], c[1].replace(" ", "-")) for c in ace_countries]
+        return countries
 
     def get_image(self):
         if self.data['image_uuid']:
