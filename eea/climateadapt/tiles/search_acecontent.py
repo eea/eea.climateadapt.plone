@@ -199,7 +199,7 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
         _ace_types = dict(_datatypes)
 
         search_type = self.data.get('search_type')
-        #import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         if search_type:
             search_type = search_type[0]
             query = self.build_query()
@@ -214,17 +214,17 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
         # TODO: sync the links here to the index names and to the faceted indexes
         query = self.build_query()
 
-        element_type = self.data.get('element_type')
+        element_type = self.data.pop('element_type', [])
 
         for info in aceitem_types:
             q = query.copy()
-            q.update({'search_type': info.id})
+            q.update({'search_type': info.id, 'elements': element_type[0]})
             count = len(self.catalog.searchResults(**q))
             if count:
                 result.append((
                     info.label,
                     count,
-                    self.build_url(base, q, {'elements':element_type}),
+                    self.build_url(base, q, {'elements': element_type}),
                 ))
 
         return result
