@@ -130,7 +130,7 @@ class AceTileMixin(object):
 
         # get rid of special_tags index, just use the SearchableText
         # the special_tags field is indexed into the SearchableText
-        st = query.pop('special_tags', {'query':''})['query']
+        st = query.pop('special_tags', {'query': ''})['query']
         if st:
             text = query.pop('SearchableText', u'') + u' ' + st
             text = u' '.join(set(text.split(u' ')))
@@ -151,10 +151,11 @@ class AceTileMixin(object):
             if v:
                 if k not in ['sort_on', 'sort_order']:
                     if isinstance(v, (tuple, list)):
-                        x[k] = v[0]
+                        x[k] = v
                     else:
                         x[k] = v
-        return url + "#" + urlencode(x)
+
+        return url + "#" + urlencode(x, True)
 
 
 class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
@@ -291,7 +292,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
     def items(self):
         count = self.data.get('nr_items', 5) or 5
         query = self.build_query()
-        res = self.catalog.searchResults(limit=count, **query)
+        res = self.catalog.searchResults(**query)
 
         if len(res) > count:
             self.view_more = True

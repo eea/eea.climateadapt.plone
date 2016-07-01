@@ -3,7 +3,9 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
-* Bugfix: Enabled batching for news 
+* Bugfix: Enabled the view all link for portlets
+  [iulianpetchesi #73383]
+* Bugfix: Enabled batching for news
   [iulianpetchesi #73364]
 * Bugfix: Created templates for mail reminders
   [iulianpetchesi #71389]
