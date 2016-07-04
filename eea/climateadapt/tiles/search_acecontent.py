@@ -218,13 +218,17 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
 
         for info in aceitem_types:
             q = query.copy()
-            q.update({'search_type': info.id, 'elements': element_type[0]})
+
+            q.update({'search_type': info.id})
+            if element_type:
+                q.update({'elements': element_type})
             count = len(self.catalog.searchResults(**q))
+
             if count:
                 result.append((
                     info.label,
                     count,
-                    self.build_url(base, q, {'elements': element_type}),
+                    self.build_url(base, q, {}),
                 ))
 
         return result

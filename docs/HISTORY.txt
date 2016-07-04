@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed an error when element type was none for search portlets
+  [iulianpetchesi #73366]
 * Bugfix: Fixed portlet not showing correct number of items
   [iulianpetchesi #73366]
 * Bugfix: Enabled the view all link for portlets
