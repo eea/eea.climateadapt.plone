@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bug fix: don't hide forms in faceted config
+  [tiberich]
 * Bugfix: Fixed an error when element type was none for search portlets
   [iulianpetchesi #73366]
 * Bugfix: Fixed portlet not showing correct number of items

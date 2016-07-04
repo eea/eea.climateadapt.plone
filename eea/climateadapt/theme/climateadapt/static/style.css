@@ -1352,11 +1352,17 @@ a.bluebutton:active {
     padding-bottom: 0;
 }
 
+/* .template-facetednavigation_view  */
+
 .section-data-and-downloads #left-area .widget-fieldset form,
 .section-data-and-downloads #left-area .widget-fieldset .faceted-operator{
     display: none;
     text-align: left;
     margin-top: -5px;
+}
+
+body.template-configure_faceted-html .widget-fieldset form {
+    display: block !important;
 }
 
 .section-data-and-downloads a.searchpage-column-accordion-handle span {
