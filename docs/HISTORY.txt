@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Implemented upgrade step 6 that adds /admin in user dropdown
+  [iulianpetchesi #74008]
 * Bug fix: don't hide forms in faceted config
   [tiberich]
 * Bugfix: Fixed an error when element type was none for search portlets

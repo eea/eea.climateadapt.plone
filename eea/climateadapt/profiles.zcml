@@ -98,4 +98,22 @@
             />
     </genericsetup:upgradeSteps>
 
+    <!-- v6 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_6"
+        title="Upgrade profile for eea.climateadapt v6"
+        description=""
+        directory="profiles/upgrades/to_6"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="6"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v6"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_6"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>
