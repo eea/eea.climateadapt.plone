@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from AccessControl import getSecurityManager
-#from Products.CMFCore.permissions import ModifyPortalContent
+from Acquisition import aq_inner
 from Products.Five.browser import BrowserView
 from collective.cover.browser.cover import Standard
 from eea.climateadapt.interfaces import IClimateAdaptContent
@@ -9,6 +9,9 @@ from eea.climateadapt.vocabulary import ace_countries_dict
 from plone import api
 from plone.app.iterate.browser.control import Control
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
+from plone.app.iterate.interfaces import IIterateAware
+from plone.app.iterate.interfaces import IObjectArchiver
+from plone.app.iterate.interfaces import IWorkingCopy
 from plone.app.iterate.permissions import CheckinPermission
 from plone.app.iterate.permissions import CheckoutPermission
 from zExceptions import NotFound
@@ -672,31 +675,35 @@ class IterateControl(Control):
     """
 
     def checkin_allowed(self):
-        """ Overrided to check for the checkin permission, as it is normal
+        """ Overrided to check for the checkin permission, as it should be normal
         """
 
-        allowed = super(IterateControl, self).checkin_allowed()
+        context = aq_inner(self.context)
+        checkPermission = getSecurityManager().checkPermission
 
-        if not IClimateAdaptContent.providedBy(self.context):
-            return allowed
+        if not IIterateAware.providedBy(context):
+            return False
 
-        return allowed
+        archiver = IObjectArchiver(context)
+        if not archiver.isVersionable():
+            return False
 
-        if allowed:
+        if not IWorkingCopy.providedBy(context):
+            return False
 
-            policy = ICheckinCheckoutPolicy(self.context, None)
-            if policy is None:
-                return False
+        policy = ICheckinCheckoutPolicy(context, None)
+        if policy is None:
+            return False
 
-            original = policy.getBaseline()
-            if original is None:
-                return False
+        original = policy.getBaseline()
+        if original is None:
+            return False
 
-            checkPermission = getSecurityManager().checkPermission
-            if not checkPermission(CheckinPermission, original):
-                return False
+        checkPermission = getSecurityManager().checkPermission
+        if not checkPermission(CheckinPermission, original):
+            return False
 
-        return allowed
+        return True
 
     def checkout_allowed(self):
         """ Overrided to check for the checkout permission, as it is normal

@@ -3,6 +3,9 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Feature: added the cca_webpages_workflow as default workflow.
+  This allows using the iterate: Checkin permission to check if
+  a Checkin operation is allowed.
 * Bug fix: fix inline alignment of <li><a> inside table.listing
   [tiberich #74017]
 * Bugfix: Implemented upgrade step 6 that adds /admin in user dropdown
