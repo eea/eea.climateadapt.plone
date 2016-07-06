@@ -2115,3 +2115,7 @@ table.dataTable thead .sorting_desc {
     margin-bottom: 2em;
     padding-bottom: 0;
 }
+
+table.listing a {
+    display: initial;   /* fix vertical align in <li> elements */
+}
