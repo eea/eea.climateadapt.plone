@@ -510,6 +510,19 @@ class Navbar(BrowserView):
             EU policy - introduction       /eu-adaptation-policy
             EU Adaptation Strategy         /eu-adaptation-policy/strategy
             EU mainstreaming in sector policies   /eu-adaptation-policy/mainstreaming
+                -EU mainstreaming in sector policies - introduction   /eu-adaptation-policy/mainstreaming
+                -Agriculture                   /eu-adaptation-policy/mainstreaming/agriculture
+                -Forestry                      /eu-adaptation-policy/mainstreaming/forestry
+                -Biodiversity                  /eu-adaptation-policy/mainstreaming/biodiversity
+                -Coastal areas                 /eu-adaptation-policy/mainstreaming/coastal-areas
+                -Disaster risk reduction       /eu-adaptation-policy/mainstreaming/disaster-risk-reduction
+                -Financial                     /eu-adaptation-policy/mainstreaming/financial
+                -Buildings                     /eu-adaptation-policy/mainstreaming/infrastructure
+                -Energy                        /eu-adaptation-policy/mainstreaming/infrastructure
+                -Transport                     /eu-adaptation-policy/mainstreaming/infrastructure
+                -Health                        /eu-adaptation-policy/mainstreaming/health
+                -Water management              /eu-adaptation-policy/mainstreaming/water-management
+                -Marine and fisheries          /eu-adaptation-policy/mainstreaming/marine-and-fisheries
             EU funding of adaptation       /eu-adaptation-policy/funding
             Mayors Adapt                   /eu-adaptation-policy/mayors-adapt
                 -Mayors Adapt - introduction  /eu-adaptation-policy/mayors-adapt
