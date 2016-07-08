@@ -24,8 +24,6 @@ def fixtiles(context):
 
     modify_covers(site)
 
-    return self.index()
-
 
 def modify_covers(self):
     """ Function to modify the tiles in each cover
