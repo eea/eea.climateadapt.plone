@@ -1,0 +1,40 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  xml:lang="en"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="eea.climateadapt">
+
+  <body>
+    <metal:main fill-slot="main">
+      <tal:main-macro metal:define-macro="content-core">
+
+          <script src="/++theme++climateadapt/static/cca/js/specialtagsadmin.js"></script>
+
+          <h1>Search tags administration</h1>
+
+          <table class="table table-striped" id="tags-admin" tal:define="keys view/sp_tags">
+            <thead>
+              <tr>
+                <th>Tag</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr tal:repeat="key keys">
+                <td>
+                  <input type="hidden" value="" tal:attributes="value key" />
+                  <strong tal:content="key"></strong>
+                  <button><span class="glyphicon glyphicon-zoom-in"></span></button>
+                  <div class="links"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+      </tal:main-macro>
+    </metal:main>
+  </body>
+</html>
