@@ -58,6 +58,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('objectives')
     dexteritytextindexer.searchable('solutions')
 
+    dexteritytextindexer.searchable('special_tags')
+
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['title', 'long_description', 'climate_impacts',
@@ -77,7 +79,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.fieldset('reference_information',
                   label=u'Reference information',
                   fields=[  # 'contact',
-                          'websites', 'source']
+                          'special_tags', 'websites', 'source']
                   )
 
 # richtext fields in database:
@@ -89,6 +91,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.fieldset('geographic_information',
                   label=u'Geographic Information',
                   fields=['governance_level', 'geochars', 'comments']
+                  )
+
+    form.fieldset('categorization',
+                  label=u'Categorization',
+                  fields=['special_tags']
                   )
 
     # -----------[ "default" fields ]------------------
@@ -268,6 +275,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     directives.omitted(IAddForm, 'important')
     directives.omitted(IEditForm, 'rating')
     directives.omitted(IAddForm, 'rating')
+    # directives.omitted(IEditForm, 'special_tags')
+    # directives.omitted(IAddForm, 'special_tags')
 
     # end
 
@@ -307,6 +316,13 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                      default=False)
 
     rating = Int(title=_(u"Rating"), required=True, default=0)
+
+    special_tags = Tuple(
+        title=_(u"Special tagging"),
+        required=False,
+        value_type=TextLine(),
+        missing_value=(None),
+    )
 
     # dexteritytextindexer.searchable('summary')
     # summary = Text(title=_(u"Summary"), required=False, default=u"")
@@ -461,6 +477,14 @@ def KeywordsFieldWidget(field, request):
     """
     widget = FieldWidget(field, AjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.keywords'
+    return widget
+
+
+@adapter(getSpecification(IAceMeasure['special_tags']), IWidgetsLayer)
+@implementer(IFieldWidget)
+def SpecialTagsFieldWidget(field, request):
+    widget = FieldWidget(field, AjaxSelectWidget(request))
+    widget.vocabulary = 'eea.climateadapt.special_tags'
     return widget
 
 
