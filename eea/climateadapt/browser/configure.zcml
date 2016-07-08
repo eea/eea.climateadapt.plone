@@ -243,14 +243,6 @@
         />
 
     <browser:page
-        class=".migration_fix.MigrationFixView"
-        for="*"
-        name="migration-fix"
-        template="pt/migration_fix.pt"
-        permission="cmf.ManagePortal"
-        />
-
-    <browser:page
         class=".special_tags_admin.SpecialTagsView"
         for="*"
         name="tags-admin"

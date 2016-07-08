@@ -38,6 +38,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('geochars')
 
     dexteritytextindexer.searchable('specialtagging')
+    dexteritytextindexer.searchable('special_tags')
     dexteritytextindexer.searchable('important')
     dexteritytextindexer.searchable('spatial_layer')
     dexteritytextindexer.searchable('spatial_values')
@@ -178,6 +179,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     directives.omitted(IEditForm, 'specialtagging')
     directives.omitted(IAddForm, 'specialtagging')
+    directives.omitted(IEditForm, 'special_tags')
+    directives.omitted(IAddForm, 'special_tags')
     directives.omitted(IEditForm, 'important')
     directives.omitted(IAddForm, 'important')
     directives.omitted(IEditForm, 'rating')
@@ -189,6 +192,12 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     # end
 
     specialtagging = TextLine(
+        title=_(u"Special Tagging"),
+        description=_(u"Special tags that allow for linking the item"),
+        required=False,
+        )
+
+    special_tags = TextLine(
         title=_(u"Special Tagging"),
         description=_(u"Special tags that allow for linking the item"),
         required=False,
