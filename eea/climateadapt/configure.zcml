@@ -95,4 +95,10 @@
     <adapter factory=".acemeasure.AdaptationOptionsFieldWidget" />
     <adapter factory=".aceproject.KeywordsFieldWidget" />
 
+    <subscriber
+        for="plone.dexterity.interfaces.IDexterityContent
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
+        />
+
 </configure>
