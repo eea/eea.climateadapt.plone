@@ -18,8 +18,8 @@
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
 
-        for="plone.app.stagingbehavior.interfaces.IStagingSupport"
-        for="eea.climateadapt.interfaces.IClimateAdaptContent"
+    for="plone.app.stagingbehavior.interfaces.IStagingSupport"
+    for="eea.climateadapt.interfaces.IClimateAdaptContent"
 
     <browser:resourceDirectory
         name="eea.climateadapt"
@@ -28,10 +28,10 @@
         />
 
     <browser:resource
-       name="plone.app.jquerytools.overlayhelpers.js"
-       file="resources/overlayhelpers.js"
-       layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-       />
+        name="plone.app.jquerytools.overlayhelpers.js"
+        file="resources/overlayhelpers.js"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        />
 
     <z3c:widgetTemplate
         mode="display"
@@ -83,12 +83,12 @@
         />
 
     <!-- <browser:page -->
-    <!--     name="view" -->
-    <!--     for="eea.climateadapt.aceitem.IAceItem" -->
-    <!--     class="eea.climateadapt.browser.aceitem.AceItemView" -->
-    <!--     template="pt/aceitem_view.pt" -->
-    <!--     permission="zope2.View" -->
-    <!--     /> -->
+        <!--     name="view" -->
+        <!--     for="eea.climateadapt.aceitem.IAceItem" -->
+        <!--     class="eea.climateadapt.browser.aceitem.AceItemView" -->
+        <!--     template="pt/aceitem_view.pt" -->
+        <!--     permission="zope2.View" -->
+        <!--     /> -->
 
     <browser:page
         name="view"
@@ -432,32 +432,40 @@
         />
 
     <class class=".sat.SatView">
-      <implements interface="plone.app.layout.globals.interfaces.IViewView" />
+        <implements interface="plone.app.layout.globals.interfaces.IViewView" />
     </class>
 
     <class class=".misc.TransRegionView">
-      <implements interface="plone.app.layout.globals.interfaces.IViewView" />
+        <implements interface="plone.app.layout.globals.interfaces.IViewView" />
     </class>
 
     <class class=".misc.CountriesView">
-      <implements interface="plone.app.layout.globals.interfaces.IViewView" />
+        <implements interface="plone.app.layout.globals.interfaces.IViewView" />
     </class>
 
     <class class=".keywords_admin.KeywordsAdminView">
-      <implements interface="plone.app.layout.globals.interfaces.IViewView" />
+        <implements interface="plone.app.layout.globals.interfaces.IViewView" />
     </class>
 
     <class class=".misc.MapViewerView">
-      <implements interface="plone.app.layout.globals.interfaces.IViewView" />
+        <implements interface="plone.app.layout.globals.interfaces.IViewView" />
     </class>
 
     <!-- <browser:page -->
-    <!--     for="*" -->
-    <!--     name="breadcrumbs_view" -->
-    <!--     class=".viewlets.FixBreadcrumbs" -->
-    <!--     permission="zope.Public" -->
-    <!--     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
-    <!--     allowed_attributes="breadcrumbs" -->
-    <!--     /> -->
+        <!--     for="*" -->
+        <!--     name="breadcrumbs_view" -->
+        <!--     class=".viewlets.FixBreadcrumbs" -->
+        <!--     permission="zope.Public" -->
+        <!--     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+        <!--     allowed_attributes="breadcrumbs" -->
+        <!--     /> -->
+
+    <browser:page
+        name="images"
+        for="eea.climateadapt.interfaces.IClimateAdaptContent"
+        class=".overrides.AceContentImagesTraverser"
+        allowed_attributes="scale"
+        permission="zope2.View"
+        />
 
 </configure>

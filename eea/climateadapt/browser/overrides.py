@@ -12,6 +12,7 @@ from collective.cover.tiles.edit import CustomTileEdit as CoverTileEdit
 from plone.app.layout.globals.layout import LayoutPolicy
 from plone.app.widgets.browser import vocabulary as vocab
 from plone.dexterity.browser.add import DefaultAddView
+from plone.namedfile.scaling import ImageScaling
 from plone.tiles.interfaces import ITileDataManager
 from types import FunctionType
 from zope.component import queryUtility
@@ -143,3 +144,29 @@ class CustomEditForm(CoverEditForm):
 
 class CustomTileEdit(CoverTileEdit):
     form = CustomEditForm
+
+
+
+class IconWrapper(Traversable):
+
+    def __init__(self, context):
+        self.context = context
+
+    def __bobo_traverse__(self, request, name):
+        if name == "icon":
+            return self.context
+
+
+class AceContentImagesTraverser(ImageScaling):
+    """ A hack to use the content type icons for @@images view
+
+    This helps the relatedItems widget to look better
+    """
+
+    def publishTraverse(self, request, name):
+        if name == 'image':
+            icon = self.context.getIcon()
+            img = self.context.restrictedTraverse(icon.replace('/', ''))
+            return IconWrapper(img)
+        return super(AceContentImagesTraverser, self).publishTraverse(request,
+                                                                      name)
