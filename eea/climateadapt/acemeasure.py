@@ -93,10 +93,10 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                   fields=['governance_level', 'geochars', 'comments']
                   )
 
-    form.fieldset('categorization',
-                  label=u'Categorization',
-                  fields=['special_tags']
-                  )
+    # form.fieldset('categorization',
+    #               label=u'Categorization',
+    #               fields=['special_tags']
+    #               )
 
     # -----------[ "default" fields ]------------------
 
@@ -410,11 +410,16 @@ class ICaseStudy(IAceMeasure):  #, IGeolocatable):
         value_type=RelationChoice(
             title=_(u"Related"),
             source=ObjPathSourceBinder(
+                portal_type='eea.climateadapt.adaptationoption',
+                navigation_tree_query={'portal_type': 'eea.climateadapt.adaptationoption'},
                 # object_provides=IAdaptationOption.__identifier__,
                 # navigation_tree_query={'path': {'query': '/Plone/metadata/adaptation-options/'}},
                 # path={'/Plone/metadata/adaptation-options/'},
-                portal_type='eea.climateadapt.adaptationoption',
-                path={'/Plone/metadata/adaptation-options/'},
+
+                #navigation_tree_query={'portal_type': 'eea.climateadapt.adaptationoption'},
+
+                # tibi
+                # path={'/Plone/metadata/adaptation-options/'},
             ),
         ),
         required=False,
@@ -452,6 +457,7 @@ def AdaptationOptionsFieldWidget(field, request):
     """
     widget = FieldWidget(field, RelatedItemsWidget(request))
     widget.vocabulary = 'plone.app.vocabularies.Catalog'
+    widget.vocabulary_override = True
     # widget.vocabulary = 'eea.climateadapt.adaptation_options'
     return widget
 
