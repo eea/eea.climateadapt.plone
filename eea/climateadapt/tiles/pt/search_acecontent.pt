@@ -13,14 +13,21 @@
       <dl>
         <dt>Sector:</dt>
         <dd tal:content="python: view.data.get('sector')" />
+
         <dt>Element type:</dt>
         <dd tal:content="python: view.data.get('element_type')" />
+
         <dt>Search text: </dt>
         <dd tal:content="python: view.data.get('search_text')" />
+
+        <dt>Special tags: </dt>
+        <dd tal:content="python: view.data.get('special_tags')" />
+
         <dt>Search type:</dt>
         <dd tal:content="python: view.data.get('search_type')" />
-        <dd>Number of items: </dd>
-        <dt tal:content="python: view.data.get('nr_items')" />
+
+        <dt>Number of items: </dt>
+        <dd tal:content="python: view.data.get('nr_items')" />
       </dl>
     </div>
 

@@ -79,7 +79,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.fieldset('reference_information',
                   label=u'Reference information',
                   fields=[  # 'contact',
-                          'special_tags', 'websites', 'source']
+                          'websites', 'source']
                   )
 
 # richtext fields in database:
@@ -93,10 +93,10 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                   fields=['governance_level', 'geochars', 'comments']
                   )
 
-    # form.fieldset('categorization',
-    #               label=u'Categorization',
-    #               fields=['special_tags']
-    #               )
+    form.fieldset('categorization',
+                  label=u'Categorization',
+                  fields=['special_tags']
+                  )
 
     # -----------[ "default" fields ]------------------
 
@@ -275,8 +275,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     directives.omitted(IAddForm, 'important')
     directives.omitted(IEditForm, 'rating')
     directives.omitted(IAddForm, 'rating')
-    # directives.omitted(IEditForm, 'special_tags')
-    # directives.omitted(IAddForm, 'special_tags')
 
     # end
 
@@ -401,7 +399,6 @@ class ICaseStudy(IAceMeasure):  #, IGeolocatable):
                       u"directly involved in the development and "
                       u"implementation of the case. (500 char limit) "))
 
-    # form.widget(adaptationoptions=RelatedItemsFieldWidget)
     adaptationoptions = RelationList(
         title=u"Adaptation measures implemented in the case:",
         default=[],
@@ -410,16 +407,6 @@ class ICaseStudy(IAceMeasure):  #, IGeolocatable):
         value_type=RelationChoice(
             title=_(u"Related"),
             source=ObjPathSourceBinder(
-                portal_type='eea.climateadapt.adaptationoption',
-                navigation_tree_query={'portal_type': 'eea.climateadapt.adaptationoption'},
-                # object_provides=IAdaptationOption.__identifier__,
-                # navigation_tree_query={'path': {'query': '/Plone/metadata/adaptation-options/'}},
-                # path={'/Plone/metadata/adaptation-options/'},
-
-                #navigation_tree_query={'portal_type': 'eea.climateadapt.adaptationoption'},
-
-                # tibi
-                # path={'/Plone/metadata/adaptation-options/'},
             ),
         ),
         required=False,

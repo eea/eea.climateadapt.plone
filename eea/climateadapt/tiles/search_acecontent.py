@@ -93,8 +93,7 @@ class AceTileMixin(object):
             'review_state': 'published'
         }
 
-        keyword_indexes = ['search_type', 'element_type', 'special_tags',
-                           'sectors']
+        keyword_indexes = ['search_type', 'element_type', 'sectors']
 
         # todo: do countries
         map = {
@@ -130,13 +129,13 @@ class AceTileMixin(object):
 
         # get rid of special_tags index, just use the SearchableText
         # the special_tags field is indexed into the SearchableText
-        st = query.pop('special_tags', {'query': ''})['query']
+        #st = query.pop('special_tags', {'query': ''})['query']
+        st = self.data.get('special_tags')
         if st:
-            text = query.pop('SearchableText', u'') + u' ' + st
-            text = u' '.join(set(text.split(u' ')))
-            query['SearchableText'] = text
-
-        print query
+            if isinstance(st, basestring):
+                st = st.split(u' ')
+            words = query.pop('SearchableText', u'').split(u' ')
+            query['SearchableText'] = u' '.join(set(words + st))
 
         return query
 
