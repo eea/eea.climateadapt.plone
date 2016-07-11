@@ -96,4 +96,65 @@
     <adapter factory=".acemeasure.SpecialTagsFieldWidget" />
     <adapter factory=".aceproject.KeywordsFieldWidget" />
 
+    <subscriber
+        for="plone.dexterity.interfaces.IDexterityContent
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
+        />
+
+    -----[ eea.cache integration ]-----------
+
+    <class class="collective.cover.content.Cover">
+        <implements interface="eea.cache.interfaces.ICacheAware" />
+    </class>
+
+    <class class=".acemeasure.CaseStudy">
+        <implements interface="eea.cache.interfaces.ICacheAware" />
+    </class>
+
+    <class class=".acemeasure.AdaptationOption">
+        <implements interface="eea.cache.interfaces.ICacheAware" />
+    </class>
+
+    <class class=".aceproject.AceProject">
+        <implements interface="eea.cache.interfaces.ICacheAware" />
+    </class>
+
+    <class class=".aceitem.PublicationReport">
+        <implements interface="eea.cache.interfaces.ICacheAware" />
+    </class>
+
+    <class class=".aceitem.InformationPortal">
+        <implements interface="eea.cache.interfaces.ICacheAware" />
+    </class>
+
+    <class class=".aceitem.GuidanceDocument">
+        <implements interface="eea.cache.interfaces.ICacheAware" />
+    </class>
+
+    <class class=".aceitem.Tool">
+        <implements interface="eea.cache.interfaces.ICacheAware" />
+    </class>
+
+    <class class=".aceitem.Organisation">
+        <implements interface="eea.cache.interfaces.ICacheAware" />
+    </class>
+
+    <class class=".aceitem.Indicator">
+        <implements interface="eea.cache.interfaces.ICacheAware" />
+    </class>
+
+    <class class=".aceitem.MapGraphDataset">
+        <implements interface="eea.cache.interfaces.ICacheAware" />
+    </class>
+    
+    <class class=".aceitem.ResearchProject">
+        <implements interface="eea.cache.interfaces.ICacheAware" />
+    </class>
+
+    <class class=".aceitem.Action">
+        <implements interface="eea.cache.interfaces.ICacheAware" />
+    </class>
+
+
 </configure>
