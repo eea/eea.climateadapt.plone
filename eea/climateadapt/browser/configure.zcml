@@ -264,6 +264,14 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        class=".misc.ListTilesWithTitleView"
+        for="*"
+        name="richtext-tiles"
+        template="pt/list-richtext-tiles.pt"
+        permission="cmf.ManagePortal"
+        />
+
     <!-- # portal link redirections, compatibility with old site -->
     <browser:page
         class=".ViewAceItem"

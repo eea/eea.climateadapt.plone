@@ -10,9 +10,9 @@
         Please edit the tile to enter some text.
       </p>
       <div class="cover-richtext-tile tile-content" tal:define="fields view/data">
-        <tal:title define="htmltag python:fields.get('title_level', 'h1');
+        <tal:title define="htmltag python:fields.get('title_level') or 'h3';
                                viewdata fields/title"
-                               tal:condition="viewdata">
+                               condition="viewdata">
                     <p tal:replace="structure string:<$htmltag>$viewdata</$htmltag>"></p>
         </tal:title>
 

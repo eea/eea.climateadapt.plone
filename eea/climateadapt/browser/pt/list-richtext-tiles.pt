@@ -1,0 +1,24 @@
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xml:lang="en"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="eea.climateadapt">
+
+    <body>
+        <metal:main fill-slot="main">
+            <tal:main-macro metal:define-macro="content-core">
+
+            <ul>
+                <li tal:repeat="url view/urls">
+                    <a href="" tal:content="python: view.linkify(url)"
+                        tal:attributes="href python:view.linkify(url)"></a>
+                </li>
+            </ul>
+            </tal:main-macro>
+        </metal:main>
+    </body>
+ </html>
