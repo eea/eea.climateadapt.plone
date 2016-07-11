@@ -3,6 +3,23 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Implemented upgrade for fixing tiles.
+  [iulianpetchesi #73351]
+* Bugfix: Implemented an override icons view
+  [tiberich #74197]
+* Bugfix: Fixed special tags handling in filtering portlets
+  [tiberich #74207]
+* Bugfix: Implemented a view that shows the richtext tiles with title.
+  [iulianpetchesi #74153]
+* Bugfix: Fix special tags field
+  [tiberich #74142]
+* Bugfix: Resized frontpage images.
+  [iulianpetchesi #74003]
+* Bugfix: Register Cover and all climateadapt content as Cache Aware classes
+  [tiberich #73492]
+* Bugfix: add a subscriber TO INvalidate facetednav when
+  any dexterity content is modified
+  [tiberich #73492]
 * Bugfix: Fixed a migration issue that was causing incorrect number
   of items in different tiles
   [iulianpetchesi #73351]
