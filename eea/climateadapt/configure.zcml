@@ -93,6 +93,7 @@
     <adapter factory=".aceitem.KeywordsFieldWidget" />
     <adapter factory=".acemeasure.KeywordsFieldWidget" />
     <adapter factory=".acemeasure.AdaptationOptionsFieldWidget" />
+    <adapter factory=".acemeasure.SpecialTagsFieldWidget" />
     <adapter factory=".aceproject.KeywordsFieldWidget" />
 
     <subscriber

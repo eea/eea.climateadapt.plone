@@ -3,6 +3,13 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed a migration issue that was causing incorrect number
+  of items in different tiles
+  [iulianpetchesi #73351]
+* Bugfix: Added special tags to case studies and adaptation options
+  [iulianpetchesi #74143 & 74142]
+* Bugfix: Created view to manage special tags
+  [iulianpetchesi #74011]
 * Feature: added the cca_webpages_workflow as default workflow.
   This allows using the iterate: Checkin permission to check if
   a Checkin operation is allowed.

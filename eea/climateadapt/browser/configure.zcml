@@ -243,9 +243,24 @@
         />
 
     <browser:page
+        class=".special_tags_admin.SpecialTagsView"
+        for="*"
+        name="tags-admin"
+        template="pt/special-tags-admin.pt"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
         class=".keywords_admin.KeywordObjects"
         for="*"
         name="keyword-objects"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        class=".special_tags_admin.SpecialTagsObjects"
+        for="*"
+        name="special-tags-objects"
         permission="zope2.View"
         />
 

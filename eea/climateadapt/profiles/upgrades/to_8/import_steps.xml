@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<import-steps>
+ <import-step id="fixtiles" version="2016-07-08"
+           handler="eea.climateadapt.update.fixtiles"
+           title="EEA Climate Adapt Fix Tiles update">
+ </import-step>
+</import-steps>

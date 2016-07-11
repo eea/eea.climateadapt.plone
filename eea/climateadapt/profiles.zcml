@@ -119,7 +119,7 @@
     <!-- v7 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_7"
-        title="Upgrade profile for eea.climateadapt v6"
+        title="Upgrade profile for eea.climateadapt v7"
         description=""
         directory="profiles/upgrades/to_7"
         provides="Products.GenericSetup.interfaces.EXTENSION"
@@ -131,6 +131,24 @@
         <genericsetup:upgradeDepends
             title="Upgrade profile eeaclimate to v7"
             import_profile="eea.climateadapt:eeaclimateadapt_to_7"
+            />
+    </genericsetup:upgradeSteps>
+
+    <!-- v8 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_8"
+        title="Upgrade profile for eea.climateadapt v8"
+        description=""
+        directory="profiles/upgrades/to_8"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="8"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v8"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_8"
             />
     </genericsetup:upgradeSteps>
 
