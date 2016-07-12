@@ -151,5 +151,23 @@
             import_profile="eea.climateadapt:eeaclimateadapt_to_8"
             />
     </genericsetup:upgradeSteps>
+    
+    <!-- v9 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_9"
+        title="Upgrade profile for eea.climateadapt v9"
+        description=""
+        directory="profiles/upgrades/to_9"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="9"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v9"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_9"
+            />
+    </genericsetup:upgradeSteps>
 
 </configure>

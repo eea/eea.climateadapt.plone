@@ -1,32 +1,61 @@
 from Acquisition import aq_self
+import logging
+
+logger = logging.getLogger('eea.climateadapt.migration')
 
 
 def fixtiles(context):
+    """ Noop migrator, as it's already recorded in GS registry
+    """
+    pass
+
+
+def update_to_8(context):
     if context.readDataFile('eea.climateadapt.update.txt') is None:
         return
 
     site = context.getSite()
 
-    results = search_catalog(site)
-
-    for result in results:
-        obj = result.getObject()
-        if hasattr(aq_self(obj), 'special_tags'):
-            obj.special_tags = replt(obj.special_tags)
-        elif hasattr(obj, 'specialtagging'):
-            obj.special_tags = obj.specialtagging
-            obj.special_tags = replt(obj.special_tags)
-        else:
-            # print "Not changed ", obj.Title()
-            pass
-
-        obj.reindexObject()
-
-    modify_covers(site)
+    fix_covers(site)
+    fix_content(site)
 
 
-def modify_covers(self):
-    """ Function to modify the tiles in each cover
+def update_to_9(context):
+    if context.readDataFile('eea.climateadapt.update_9.txt') is None:
+        return
+
+    fix_content(context.getSite())
+
+
+def fix_content(site):
+    """ Fix the tags in all objects in the site
+    """
+
+    for brain in search_catalog(site):
+        obj = aq_self(brain.getObject())
+
+        if not (hasattr(obj, 'special_tags') or hasattr(obj, 'specialtagging')):
+            continue
+
+        tags = []
+        for attr in ['special_tags', 'specialtagging']:
+            st = getattr(obj, attr, []) or []
+            if isinstance(st, basestring):
+                tags.append(st)
+            else:
+                tags.extend(st)
+
+        tags = fix_tags(tags)
+
+        if tags:
+            logger.info("Fixing tags on %s", brain.getURL())
+            obj.special_tags = tags
+            obj.reindexObject()
+
+
+
+def fix_covers(self):
+    """ Fix tags in all cover tiles
     """
 
     covers = self.portal_catalog.searchResults(
@@ -41,24 +70,19 @@ def modify_covers(self):
                 if 'plone.tiles.data' in tile_id:
                     tile = cover.__annotations__[tile_id]
                     if 'special_tags' and 'search_text' in tile.keys():
-                        tile['special_tags'] = replt(tile['special_tags'])
-                        tile['search_text'] = replt(tile['search_text'])
+                        tile['special_tags'] = fix_tags(tile['special_tags'])
+                        tile['search_text'] = fix_tags(tile['search_text'])
                         tile._p_changed = True
                         cover.reindexObject()
 
 
-def replt(word):
-    """ Function to replace the text
-    """
+def fix_tags(tags):
+    if isinstance(tags, (list, tuple)):
+        tags = [i.replace('-', '_') for i in tags]
+    elif tags:
+        tags = tags.replace('-', '_')
 
-    if isinstance(word, (list, tuple)):
-        word = [i.replace('-', '_') for i in word]
-    elif word is not None and word is not '':
-        word = word.replace('-', '_')
-    else:
-        pass
-
-    return word
+    return list(set(filter(lambda: None, tags)))
 
 
 def search_catalog(self):
