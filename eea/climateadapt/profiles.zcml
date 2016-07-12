@@ -170,4 +170,22 @@
             />
     </genericsetup:upgradeSteps>
 
+    <!-- v10 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_10"
+        title="Upgrade profile for eea.climateadapt v10"
+        description=""
+        directory="profiles/upgrades/to_10"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="10"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v10"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_10"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>
