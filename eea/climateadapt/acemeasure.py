@@ -30,42 +30,34 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     Defines content-type schema for Ace Measure
     """
 
-    dexteritytextindexer.searchable('title')
-    dexteritytextindexer.searchable('long_description')
-    dexteritytextindexer.searchable('climate_impacts')
-    dexteritytextindexer.searchable('keywords')
-    dexteritytextindexer.searchable('sectors')
-    dexteritytextindexer.searchable('year')
-
-    dexteritytextindexer.searchable('stakeholder_participation')
-    dexteritytextindexer.searchable('success_limitations')
-    dexteritytextindexer.searchable('cost_benefit')
-    dexteritytextindexer.searchable('legal_aspects')
-    dexteritytextindexer.searchable('implementation_time')
-    dexteritytextindexer.searchable('lifetime')
-
-    dexteritytextindexer.searchable('websites')
-    dexteritytextindexer.searchable('source')
-
-    dexteritytextindexer.searchable('geochars')
-
-    dexteritytextindexer.searchable('implementation_type')
     dexteritytextindexer.searchable('challenges')
+    dexteritytextindexer.searchable('climate_impacts')
+    dexteritytextindexer.searchable('contact')
+    dexteritytextindexer.searchable('cost_benefit')
+    dexteritytextindexer.searchable('geochars')
+    dexteritytextindexer.searchable('implementation_time')
+    dexteritytextindexer.searchable('important')
+    dexteritytextindexer.searchable('keywords')
+    dexteritytextindexer.searchable('legal_aspects')
+    dexteritytextindexer.searchable('lifetime')
+    dexteritytextindexer.searchable('long_description')
+    dexteritytextindexer.searchable('measure_type')
+    dexteritytextindexer.searchable('objectives')
+    dexteritytextindexer.searchable('sectors')
+    dexteritytextindexer.searchable('solutions')
+    dexteritytextindexer.searchable('source')
     dexteritytextindexer.searchable('spatial_layer')
     dexteritytextindexer.searchable('spatial_values')
-    dexteritytextindexer.searchable('contact')
-    dexteritytextindexer.searchable('measure_type')
-    dexteritytextindexer.searchable('important')
-    dexteritytextindexer.searchable('objectives')
-    dexteritytextindexer.searchable('solutions')
-
     dexteritytextindexer.searchable('special_tags')
+    dexteritytextindexer.searchable('stakeholder_participation')
+    dexteritytextindexer.searchable('success_limitations')
+    dexteritytextindexer.searchable('title')
+    dexteritytextindexer.searchable('websites')
+    dexteritytextindexer.searchable('year')
 
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['title', 'long_description', 'climate_impacts',
-                          # 'challenges', 'objectives', 'adaptationoptions',
-                          # 'solutions', 'relevance',
                           'keywords', 'sectors', 'year']
                   )
 
@@ -107,11 +99,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                                    u"(250 character limit)"),
                      required=True)
 
-    dexteritytextindexer.searchable('long_description')
-    # form.widget(long_description=
-    #             "eea.climateadapt.browser.form.RichTextFieldWidget")
-    long_description = RichText(title=_(u"Description"),
-                                required=True,)
+    long_description = RichText(title=_(u"Description"), required=True,)
 
     form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
@@ -232,8 +220,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                                     u"option description (250 character limit)"
                                     ))
 
-    # -----------[ "document" fields ]------------------
-
     # -----------[ "geographic_information" fields ]------------------
 
     form.widget(governance_level="z3c.form.browser.checkbox.CheckBoxFieldWidget")
@@ -304,8 +290,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                         vocabulary="eea.climateadapt.aceitems_elements",),
                     )
 
-    # TODO: special tagging implement as related
-
     measure_type = Choice(title=_(u"Measure Type"),
                           required=True,
                           default="A",
@@ -345,16 +329,6 @@ class IAdaptationOption(IAceMeasure):
 class ICaseStudy(IAceMeasure):  #, IGeolocatable):
     """ Case study
     """
-
-    # form.fieldset('additional_detailsdefault',
-    #               label=u'Additional details',
-    #               fields=['adaptationoptions', 'geolocation']
-    #               )
-
-    # form.fieldset('documents',
-    #               label=u'Illustrations and Documents',
-    #               fields=['primary_photo']
-    #               )
 
     directives.omitted(IEditForm, 'primephoto')
     directives.omitted(IAddForm, 'primephoto')
@@ -407,8 +381,9 @@ class ICaseStudy(IAceMeasure):  #, IGeolocatable):
                       u"relates to:"),
         value_type=RelationChoice(
             title=_(u"Related"),
+            vocabulary="eea.climateadapt.adaptation_options"
             #source=ObjPathSourceBinder(),
-            source=CatalogSource(portal_type='eea.cliamteadapt.adaptionoption'),
+            #source=CatalogSource(portal_type='eea.cliamteadapt.adaptionoption'),
         ),
         required=False,
     )
@@ -444,7 +419,6 @@ def AdaptationOptionsFieldWidget(field, request):
         Check browser/overrides.py for more details
     """
     widget = FieldWidget(field, RelatedItemsWidget(request))
-    #widget.vocabulary = 'plone.app.vocabularies.Catalog'
     widget.vocabulary = 'eea.climateadapt.adaptation_options'
     widget.vocabulary_override = True
     return widget
