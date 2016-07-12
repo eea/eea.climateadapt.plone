@@ -82,7 +82,7 @@ def fix_tags(tags):
     elif tags:
         tags = tags.replace('-', '_')
 
-    return list(set(filter(lambda: None, tags)))
+    return list(set(filter(None, tags)))
 
 
 def search_catalog(self):
