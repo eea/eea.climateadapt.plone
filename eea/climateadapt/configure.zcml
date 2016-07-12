@@ -89,13 +89,15 @@
 
     ------[ Widgets: ]--------
 
-    <adapter factory=".aceitem.SpecialTagsFieldWidget" />
     <adapter factory=".aceitem.KeywordsFieldWidget" />
-    <adapter factory=".acemeasure.KeywordsFieldWidget" />
-    tibi
+    <adapter factory=".aceitem.SpecialTagsFieldWidget" />
+
     <adapter factory=".acemeasure.AdaptationOptionsFieldWidget" />
+    <adapter factory=".acemeasure.KeywordsFieldWidget" />
     <adapter factory=".acemeasure.SpecialTagsFieldWidget" />
+
     <adapter factory=".aceproject.KeywordsFieldWidget" />
+    <adapter factory=".aceproject.SpecialTagsFieldWidget" />
 
     <subscriber
         for="plone.dexterity.interfaces.IDexterityContent

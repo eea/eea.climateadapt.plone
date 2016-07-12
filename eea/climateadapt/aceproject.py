@@ -57,6 +57,11 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                   label=u'Geographic Information',
                   fields=['geochars', 'comments'])
 
+    form.fieldset('categorization',
+                  label=u'Categorization',
+                  fields=['special_tags']
+                  )
+
     # -----------[ "default" fields ]------------------
 
 
@@ -179,8 +184,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     directives.omitted(IEditForm, 'specialtagging')
     directives.omitted(IAddForm, 'specialtagging')
-    directives.omitted(IEditForm, 'special_tags')
-    directives.omitted(IAddForm, 'special_tags')
+    # directives.omitted(IEditForm, 'special_tags')
+    # directives.omitted(IAddForm, 'special_tags')
     directives.omitted(IEditForm, 'important')
     directives.omitted(IAddForm, 'important')
     directives.omitted(IEditForm, 'rating')
@@ -197,11 +202,18 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         required=False,
         )
 
-    special_tags = TextLine(
-        title=_(u"Special Tagging"),
-        description=_(u"Special tags that allow for linking the item"),
+    # special_tags = TextLine(
+    #     title=_(u"Special Tagging"),
+    #     description=_(u"Special tags that allow for linking the item"),
+    #     required=False,
+    #     )
+
+    special_tags = Tuple(
+        title=_(u"Special tagging"),
         required=False,
-        )
+        value_type=TextLine(),
+        missing_value=(None),
+    )
 
     important = Bool(title=_(u"Important"),
                      required=False,
@@ -233,4 +245,12 @@ class AceProject(dexterity.Container):
 def KeywordsFieldWidget(field, request):
     widget = FieldWidget(field, AjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.keywords'
+    return widget
+
+
+@adapter(getSpecification(IAceProject['special_tags']), IWidgetsLayer)
+@implementer(IFieldWidget)
+def SpecialTagsFieldWidget(field, request):
+    widget = FieldWidget(field, AjaxSelectWidget(request))
+    widget.vocabulary = 'eea.climateadapt.special_tags'
     return widget
