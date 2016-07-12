@@ -22,6 +22,7 @@ from zope.component import adapter
 from zope.interface import implementer, implements
 from zope.schema import List, Text, TextLine, Tuple
 from zope.schema import URI, Bool, Choice, Int
+from plone.app.vocabularies.catalog import CatalogSource
 
 
 class IAceMeasure(form.Schema, IImageScaleTraversable):
@@ -406,8 +407,8 @@ class ICaseStudy(IAceMeasure):  #, IGeolocatable):
                       u"relates to:"),
         value_type=RelationChoice(
             title=_(u"Related"),
-            source=ObjPathSourceBinder(
-            ),
+            #source=ObjPathSourceBinder(),
+            source=CatalogSource(portal_type='eea.cliamteadapt.adaptionoption'),
         ),
         required=False,
     )
@@ -443,9 +444,9 @@ def AdaptationOptionsFieldWidget(field, request):
         Check browser/overrides.py for more details
     """
     widget = FieldWidget(field, RelatedItemsWidget(request))
-    widget.vocabulary = 'plone.app.vocabularies.Catalog'
+    #widget.vocabulary = 'plone.app.vocabularies.Catalog'
+    widget.vocabulary = 'eea.climateadapt.adaptation_options'
     widget.vocabulary_override = True
-    # widget.vocabulary = 'eea.climateadapt.adaptation_options'
     return widget
 
 
@@ -479,67 +480,3 @@ def SpecialTagsFieldWidget(field, request):
     widget = FieldWidget(field, AjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.special_tags'
     return widget
-
-
-# class AceMeasure(Base):
-#     __tablename__ = 'ace_measure'
-#
-#     measureid = Column(
-#         BigInteger,
-#         primary_key=True,
-#         server_default=text("nextval('ace_measure_id_seq'::regclass)"))
-#     companyid = Column(BigInteger)
-#     groupid = Column(BigInteger)
-#     name = Column(String(255))
-#     description = Column(Text)
-#     implementationtype = Column(Text)
-#     implementationtime = Column(String(255))
-#     lifetime = Column(Text)
-#     spatiallayer = Column(Text)
-#     spatialvalues = Column(Text)
-#     legalaspects = Column(Text)
-#     stakeholderparticipation = Column(Text)
-#     contact = Column(Text)
-#     succeslimitations = Column(Text)
-#     website = Column(Text)
-#     costbenefit = Column(Text)
-#     keywords = Column(Text)
-#     startdate = Column(DateTime)
-#     enddate = Column(DateTime)
-#     publicationdate = Column(DateTime)
-#     specialtagging = Column(
-#         String(75),
-#         server_default=text("NULL::character varying"))
-#     sectors_ = Column(String(255))
-#     elements_ = Column(String(255))
-#     climateimpacts_ = Column(String(255))
-#     mao_type = Column(String(24))
-#     source = Column(Text)
-#     rating = Column(BigInteger)
-#     importance = Column(BigInteger)
-#     lon = Column(Float(53))
-#     lat = Column(Float(53))
-#     satarea = Column(String(254))
-#     controlstatus = Column(SmallInteger)
-#     creator = Column(String(75))
-#     creationdate = Column(DateTime)
-#     moderator = Column(String(2000))
-#     approvaldate = Column(DateTime)
-#     replacesid = Column(BigInteger)
-#     comments = Column(Text)
-#     textwebpage = Column(Text)
-#     admincomment = Column(Text)
-#     casestudyfeature = Column(String(50))
-#     objectives = Column(Text)
-#     challenges = Column(Text)
-#     adaptationoptions = Column(String(2500))
-#     solutions = Column(Text)
-#     relevance = Column(String(2500))
-#     primephoto = Column(String(10))
-#     supphotos = Column(String(50))
-#     supdocs = Column(String(50))
-#     year = Column(String(7))
-#     geos_ = Column(String(250))
-#     geochars = Column(Text)
-#     category = Column(String(50))
-#     lockdate = Column(DateTime)

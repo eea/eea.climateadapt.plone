@@ -4,11 +4,13 @@ Various page overrides
 
 from Acquisition import Explicit
 from Acquisition import aq_inner
+from OFS.Image import Image
 from OFS.Traversable import Traversable
 from UserDict import UserDict
 from collective.cover.interfaces import ITileEditForm
 from collective.cover.tiles.edit import CustomEditForm as CoverEditForm
 from collective.cover.tiles.edit import CustomTileEdit as CoverTileEdit
+from plone.api import portal
 from plone.app.layout.globals.layout import LayoutPolicy
 from plone.app.widgets.browser import vocabulary as vocab
 from plone.dexterity.browser.add import DefaultAddView
@@ -157,16 +159,24 @@ class IconWrapper(Traversable):
             return self.context
 
 
+
 class AceContentImagesTraverser(ImageScaling):
     """ A hack to use the content type icons for @@images view
 
-    This helps the relatedItems widget to look better
+    It is needed because relatedItems widget from plone.app.widgets hardcodes
+    the path that is used to get the icons.
     """
 
     def publishTraverse(self, request, name):
         if name == 'image':
+            site = portal.getSite()
             icon = self.context.getIcon()
-            img = self.context.restrictedTraverse(icon.replace('/', ''))
+            if icon.startswith('/'):
+                icon = icon[1:]
+            img = site.restrictedTraverse(icon)
+            if "++resource++" in icon:
+                img = Image('img', 'image', img.GET())
+                img = img.__of__(self.context)
             return IconWrapper(img)
         return super(AceContentImagesTraverser, self).publishTraverse(request,
                                                                       name)

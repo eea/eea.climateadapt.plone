@@ -451,21 +451,4 @@
         <implements interface="plone.app.layout.globals.interfaces.IViewView" />
     </class>
 
-    <!-- <browser:page -->
-        <!--     for="*" -->
-        <!--     name="breadcrumbs_view" -->
-        <!--     class=".viewlets.FixBreadcrumbs" -->
-        <!--     permission="zope.Public" -->
-        <!--     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
-        <!--     allowed_attributes="breadcrumbs" -->
-        <!--     /> -->
-
-    <browser:page
-        name="images"
-        for="eea.climateadapt.interfaces.IClimateAdaptContent"
-        class=".overrides.AceContentImagesTraverser"
-        allowed_attributes="scale"
-        permission="zope2.View"
-        />
-
 </configure>
