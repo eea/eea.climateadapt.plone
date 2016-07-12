@@ -5,6 +5,7 @@
  <permission>Modify portal content</permission>
  <permission>View</permission>
  <permission>iterate : Check in content</permission>
+ <permission>iterate : Check out content</permission>
  <state state_id="pending" title="Pending review">
   <description>Waiting to be reviewed, not editable by the owner.</description>
   <exit-transition transition_id="publish"/>
@@ -42,6 +43,12 @@
    <permission-role>Editor</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="iterate : Check out content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
  </state>
  <state state_id="private" title="Private">
@@ -81,6 +88,12 @@
    <permission-role>Manager</permission-role>
    <permission-role>Reviewer</permission-role>
   </permission-map>
+  <permission-map name="iterate : Check out content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
  </state>
  <state state_id="published" title="Published">
   <description>Visible to everyone, editable by the owner.</description>
@@ -108,6 +121,12 @@
    <permission-role>Editor</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="iterate : Check out content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
  </state>
  <transition transition_id="publish" title="Reviewer publishes content" new_state="published" trigger="USER" before_script="" after_script="">
