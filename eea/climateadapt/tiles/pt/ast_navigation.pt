@@ -142,17 +142,17 @@
     <li>
       <a href="/adaptation-support-tool/step-6" name="step-6" onclick="document.location.href='/adaptation-support-tool/step-6'"><strong>6.</strong> Monitoring and evaluation</a>
       <ul id="step-6">
-        <li><a href="/adaptation-support-tool/step-6/develop-provisions" name="step-6-1"
+        <li><a href="/adaptation-support-tool/step-6/understanding-drivers" name="step-6-1"
             onclick="document.location.href='/adaptation-support-tool/step-6/understanding-drivers'">Understanding drivers and purposes</a>
         </li>
-        <li><a href="/adaptation-support-tool/step-6/develop-provisions" name="step-6-2"
+        <li><a href="/adaptation-support-tool/step-6/who-should-be-involved" name="step-6-2"
             onclick="document.location.href='/adaptation-support-tool/step-6/who-should-be-involved'">Who should be involved?</a>
         </li>
-        <li><a href="/adaptation-support-tool/step-6/develop-provisions" name="step-6-3"
+        <li><a href="/adaptation-support-tool/step-6/mixed-methods" name="step-6-3"
             onclick="document.location.href='/adaptation-support-tool/step-6/mixed-methods'">A mixed-methods approach</a>
         </li>
         <li>
-          <a href="/adaptation-support-tool/step-6/identify-indicators" name="step-6-4"
+          <a href="/adaptation-support-tool/step-6/communicating-results" name="step-6-4"
             onclick="document.location.href='/adaptation-support-tool/step-6/communicating-results'">Communicating results to inform policy and practice</a>
         </li>
         <ul id="step-6-4">
