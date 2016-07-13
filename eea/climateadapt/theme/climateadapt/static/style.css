@@ -2119,3 +2119,8 @@ table.dataTable thead .sorting_desc {
 table.listing a {
     display: initial;   /* fix vertical align in <li> elements */
 }
+
+.pattern-relateditems-buttons {
+    position: inherit;
+    padding-left: 25em;
+}
