@@ -148,8 +148,8 @@ class CustomTileEdit(CoverTileEdit):
     form = CustomEditForm
 
 
-
 class IconWrapper(Traversable):
+    """ Class hack to allow traversing to type icons. See below"""
 
     def __init__(self, context):
         self.context = context
@@ -157,7 +157,6 @@ class IconWrapper(Traversable):
     def __bobo_traverse__(self, request, name):
         if name == "icon":
             return self.context
-
 
 
 class AceContentImagesTraverser(ImageScaling):

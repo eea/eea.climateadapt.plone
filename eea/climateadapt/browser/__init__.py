@@ -4,7 +4,6 @@ from AccessControl import getSecurityManager
 from Acquisition import aq_inner
 from Products.Five.browser import BrowserView
 from collective.cover.browser.cover import Standard
-from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.vocabulary import ace_countries_dict
 from plone import api
 from plone.app.iterate.browser.control import Control
@@ -17,6 +16,8 @@ from plone.app.iterate.permissions import CheckoutPermission
 from zExceptions import NotFound
 import json
 import logging
+
+#from eea.climateadapt.interfaces import IClimateAdaptContent
 
 
 logger = logging.getLogger('eea.climateadapt')
@@ -721,13 +722,28 @@ class IterateControl(Control):
     def checkout_allowed(self):
         """ Overrided to check for the checkout permission, as it is normal
         """
+        context = aq_inner(self.context)
 
-        allowed = super(IterateControl, self).checkout_allowed()
-        if not IClimateAdaptContent.providedBy(self.context):
-            return allowed
-
-        checkPermission = getSecurityManager().checkPermission
-        if not checkPermission(CheckoutPermission, self.context):
+        if not IIterateAware.providedBy(context):
             return False
 
-        return allowed
+        archiver = IObjectArchiver(context)
+        if not archiver.isVersionable():
+            return False
+
+        policy = ICheckinCheckoutPolicy(context, None)
+        if policy is None:
+            return False
+
+        if policy.getWorkingCopy() is not None:
+            return False
+
+        # check if its is a checkout
+        if policy.getBaseline() is not None:
+            return False
+
+        checkPermission = getSecurityManager().checkPermission
+        if not checkPermission(CheckoutPermission, context):
+            return False
+
+        return True
