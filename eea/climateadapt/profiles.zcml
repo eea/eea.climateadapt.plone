@@ -224,4 +224,22 @@
             />
     </genericsetup:upgradeSteps>
 
+    <!-- v13 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_13"
+        title="Upgrade profile for eea.climateadapt v13"
+        description=""
+        directory="profiles/upgrades/to_13"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="13"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v13"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_13"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>

@@ -2,6 +2,7 @@
 
 from AccessControl import getSecurityManager
 from Acquisition import aq_inner
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from collective.cover.browser.cover import Standard
 from eea.climateadapt.vocabulary import ace_countries_dict
@@ -502,76 +503,76 @@ class Navbar(BrowserView):
     """ The global site navbar
     """
 
-    _menu = """
-        About        /about
+    default_menu = """
+About        /about
 
-        Search the database         /data-and-downloads
+Search the database         /data-and-downloads
 
-        EU policy                          /eu-adaptation-policy
-            EU policy - introduction       /eu-adaptation-policy
-            EU Adaptation Strategy         /eu-adaptation-policy/strategy
-            EU mainstreaming in sector policies   /eu-adaptation-policy/mainstreaming
-                -EU mainstreaming in sector policies - introduction   /eu-adaptation-policy/mainstreaming
-                -Agriculture                   /eu-adaptation-policy/mainstreaming/agriculture
-                -Forestry                      /eu-adaptation-policy/mainstreaming/forestry
-                -Biodiversity                  /eu-adaptation-policy/mainstreaming/biodiversity
-                -Coastal areas                 /eu-adaptation-policy/mainstreaming/coastal-areas
-                -Disaster risk reduction       /eu-adaptation-policy/mainstreaming/disaster-risk-reduction
-                -Financial                     /eu-adaptation-policy/mainstreaming/financial
-                -Buildings                     /eu-adaptation-policy/mainstreaming/infrastructure
-                -Energy                        /eu-adaptation-policy/mainstreaming/infrastructure
-                -Transport                     /eu-adaptation-policy/mainstreaming/infrastructure
-                -Health                        /eu-adaptation-policy/mainstreaming/health
-                -Water management              /eu-adaptation-policy/mainstreaming/water-management
-                -Marine and fisheries          /eu-adaptation-policy/mainstreaming/marine-and-fisheries
-            EU funding of adaptation       /eu-adaptation-policy/funding
-            Mayors Adapt                   /eu-adaptation-policy/mayors-adapt
-                -Mayors Adapt - introduction  /eu-adaptation-policy/mayors-adapt
-                -Register your City         /eu-adaptation-policy/mayors-adapt/register
-                -City Profiles              /eu-adaptation-policy/mayors-adapt/city-profiles
+EU policy                          /eu-adaptation-policy
+    EU policy - introduction       /eu-adaptation-policy
+    EU Adaptation Strategy         /eu-adaptation-policy/strategy
+    EU mainstreaming in sector policies   /eu-adaptation-policy/mainstreaming
+        -EU mainstreaming in sector policies - introduction   /eu-adaptation-policy/mainstreaming
+        -Agriculture                   /eu-adaptation-policy/mainstreaming/agriculture
+        -Forestry                      /eu-adaptation-policy/mainstreaming/forestry
+        -Biodiversity                  /eu-adaptation-policy/mainstreaming/biodiversity
+        -Coastal areas                 /eu-adaptation-policy/mainstreaming/coastal-areas
+        -Disaster risk reduction       /eu-adaptation-policy/mainstreaming/disaster-risk-reduction
+        -Financial                     /eu-adaptation-policy/mainstreaming/financial
+        -Buildings                     /eu-adaptation-policy/mainstreaming/infrastructure
+        -Energy                        /eu-adaptation-policy/mainstreaming/infrastructure
+        -Transport                     /eu-adaptation-policy/mainstreaming/infrastructure
+        -Health                        /eu-adaptation-policy/mainstreaming/health
+        -Water management              /eu-adaptation-policy/mainstreaming/water-management
+        -Marine and fisheries          /eu-adaptation-policy/mainstreaming/marine-and-fisheries
+    EU funding of adaptation       /eu-adaptation-policy/funding
+    Mayors Adapt                   /eu-adaptation-policy/mayors-adapt
+        -Mayors Adapt - introduction  /eu-adaptation-policy/mayors-adapt
+        -Register your City         /eu-adaptation-policy/mayors-adapt/register
+        -City Profiles              /eu-adaptation-policy/mayors-adapt/city-profiles
 
-        Countries, regions, cities         /countries-regions
-            Countries, regions, cities - introduction       /countries-regions
-            Transnational regions          /countries-regions/transnational-regions
-            Cities and towns               /countries-regions/cities
-            Country Information            /countries-regions/countries
+Countries, regions, cities         /countries-regions
+    Countries, regions, cities - introduction       /countries-regions
+    Transnational regions          /countries-regions/transnational-regions
+    Cities and towns               /countries-regions/cities
+    Country Information            /countries-regions/countries
 
-        Knowledge               /knowledge
-            Knowledge - introduction       /knowledge
-            Adaptation information         /knowledge/adaptation-information
-                -Adaptation information - introduction  /knowledge/adaptation-information
-                -Observations and scenarios    /knowledge/adaptation-information/observations-and-scenarios
-                -Vulnerabilities and risks     /knowledge/adaptation-information/vulnerabilities-and-risks
-                -Adaptation options            /knowledge/adaptation-information/adaptation-measures
-                -Adaptation strategies         /knowledge/adaptation-information/adaptation-strategies
-                -Research projects             /knowledge/adaptation-information/research-projects
-            Tools                          /knowledge/tools
-                -Tools - introduction          /knowledge/tools
-                -Adaptation Support Tool       /knowledge/tools/adaptation-support-tool
-                -Case study search tool        /knowledge/tools/sat
-                -Uncertainty guidance          /knowledge/tools/uncertainty-guidance
-                -Map viewer                    /knowledge/tools/map-viewer
-                -Urban adaptation support tool    /knowledge/tools/urban-ast/step-0-0
-                -Urban vulnerability Map book     /knowledge/tools/urban-adaptation/introduction
-                -Guidelines for project managers  /knowledge/tools/guidelines-for-project-managers
-                -Time series tool                 /knowledge/tools/time-series-tool
-                -Additional Tools                 /knowledge/tools/additional-tools
+Knowledge               /knowledge
+    Knowledge - introduction       /knowledge
+    Adaptation information         /knowledge/adaptation-information
+        -Adaptation information - introduction  /knowledge/adaptation-information
+        -Observations and scenarios    /knowledge/adaptation-information/observations-and-scenarios
+        -Vulnerabilities and risks     /knowledge/adaptation-information/vulnerabilities-and-risks
+        -Adaptation options            /knowledge/adaptation-information/adaptation-measures
+        -Adaptation strategies         /knowledge/adaptation-information/adaptation-strategies
+        -Research projects             /knowledge/adaptation-information/research-projects
+    Tools                          /knowledge/tools
+        -Tools - introduction          /knowledge/tools
+        -Adaptation Support Tool       /knowledge/tools/adaptation-support-tool
+        -Case study search tool        /knowledge/tools/sat
+        -Uncertainty guidance          /knowledge/tools/uncertainty-guidance
+        -Map viewer                    /knowledge/tools/map-viewer
+        -Urban adaptation support tool    /knowledge/tools/urban-ast/step-0-0
+        -Urban vulnerability Map book     /knowledge/tools/urban-adaptation/introduction
+        -Guidelines for project managers  /knowledge/tools/guidelines-for-project-managers
+        -Time series tool                 /knowledge/tools/time-series-tool
+        -Additional Tools                 /knowledge/tools/additional-tools
 
-        Network                 /network
-            Network - introduction  /network
-            Organisations           /network/organisations
-            Global Platforms        /network/international
+Network                 /network
+    Network - introduction  /network
+    Organisations           /network/organisations
+    Global Platforms        /network/international
 
-        Help                        /help
-            Help - introduction     /help
-            Glossary                /help/glossary
-            Tutorial Videos         /help/tutorial-videos
-            FAQ for users           /help/faq
-            Share your info         /help/share-your-info
+Help                        /help
+    Help - introduction     /help
+    Glossary                /help/glossary
+    Tutorial Videos         /help/tutorial-videos
+    FAQ for users           /help/faq
+    Share your info         /help/share-your-info
     """
 
-    def menu(self):
-        lines = self._menu.split('\n')
+    def _extract_menu(self, value):
+        lines = value.split('\n')
         sections = []
         this_section = None
         for line in lines:
@@ -611,6 +612,15 @@ class Navbar(BrowserView):
             sections.append(this_section)
 
         return sections
+
+    def menu(self):
+        try:
+            ptool = getToolByName(self.context,
+                                'portal_properties')['site_properties']
+            return self._extract_menu(ptool.getProperty('main_navigation_menu'))
+        except Exception, e:
+            logger.exception("Error while rendering navigation menu: %s", e)
+            return self._extract_menu(self.default_menu)
 
 
 class ViewAceItem(BrowserView):

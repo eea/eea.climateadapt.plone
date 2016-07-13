@@ -1,5 +1,8 @@
 from Products.Five.browser import BrowserView
-#from zope.interface import Interface
+from Products.CMFCore.utils import getToolByName
+from plone.directives import form
+from z3c.form import button
+from zope import schema
 import json
 
 
@@ -29,3 +32,44 @@ class KeywordObjects (BrowserView):
         key_obj = [b.getURL() + '/edit' for b in
                    self.context.portal_catalog.searchResults(keywords=key)]
         return json.dumps(key_obj)
+
+
+
+
+class IMainNavigationMenu(form.Schema):
+    menu = schema.Text(title=u"Menu structure text", required=True)
+
+
+class MainNavigationMenuEdit(form.SchemaForm):
+    """
+    """
+
+    schema = IMainNavigationMenu
+    ignoreContext = False
+
+    label = u"Fill in the content of the main menu"
+    description = u"""This should be a structure for the main menu. Use a single
+    empty line to denot main menu entries. Indent with 4 spaces each sublevel of
+    the menu. Separate with at least one space the link. Links should start with
+    a slash (/)."""
+
+    @property
+    def ptool(self):
+        return getToolByName(self.context,
+                              'portal_properties')['site_properties']
+
+    def getContent(self):
+        content = {'menu': self.ptool.getProperty('main_navigation_menu')}
+        #print "getting content", content
+        return content
+
+    @button.buttonAndHandler(u"Save")
+    def handleApply(self, action):
+        data, errors = self.extractData()
+        if errors:
+            self.status = self.formErrorsMessage
+            return
+
+        self.ptool._updateProperty('main_navigation_menu', data['menu'])
+
+        self.status = u"Saved, please check."

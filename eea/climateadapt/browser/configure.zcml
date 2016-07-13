@@ -18,9 +18,6 @@
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
 
-    for="plone.app.stagingbehavior.interfaces.IStagingSupport"
-    for="eea.climateadapt.interfaces.IClimateAdaptContent"
-
     <browser:resourceDirectory
         name="eea.climateadapt"
         directory="resources"
@@ -232,6 +229,13 @@
         for="*"
         permission="zope.Public"
         template="pt/navbar.pt"
+        />
+
+    <browser:page
+        class=".admin.MainNavigationMenuEdit"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        name="edit-navigation-menu"
+        permission="cmf.ManagePortal"
         />
 
     <browser:page
