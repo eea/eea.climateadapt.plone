@@ -235,8 +235,8 @@
         />
 
     <browser:page
-        class=".keywords_admin.KeywordsAdminView"
-        for="*"
+        class=".admin.KeywordsAdminView"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
         name="keywords-admin"
         template="pt/keywords-admin.pt"
         permission="cmf.ManagePortal"
@@ -244,29 +244,29 @@
 
     <browser:page
         class=".special_tags_admin.SpecialTagsView"
-        for="*"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
         name="tags-admin"
         template="pt/special-tags-admin.pt"
         permission="cmf.ManagePortal"
         />
 
     <browser:page
-        class=".keywords_admin.KeywordObjects"
-        for="*"
+        class=".admin.KeywordObjects"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
         name="keyword-objects"
         permission="zope2.View"
         />
 
     <browser:page
         class=".special_tags_admin.SpecialTagsObjects"
-        for="*"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
         name="special-tags-objects"
         permission="zope2.View"
         />
 
     <browser:page
         class=".misc.ListTilesWithTitleView"
-        for="*"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
         name="richtext-tiles"
         template="pt/list-richtext-tiles.pt"
         permission="cmf.ManagePortal"
@@ -275,21 +275,21 @@
     <!-- # portal link redirections, compatibility with old site -->
     <browser:page
         class=".ViewAceItem"
-        for="*"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
         name="viewaceitem"
         permission="zope.Public"
         />
 
     <browser:page
         class=".ViewAceMeasure"
-        for="*"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
         name="viewmeasure"
         permission="zope.Public"
         />
 
     <browser:page
         class=".ViewAceProject"
-        for="*"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
         name="projects1"
         permission="zope.Public"
         />
@@ -431,6 +431,7 @@
         permission="zope2.View"
         />
 
+    # TODO: remove these declarations, move to implements in class
     <class class=".sat.SatView">
         <implements interface="plone.app.layout.globals.interfaces.IViewView" />
     </class>
@@ -443,7 +444,7 @@
         <implements interface="plone.app.layout.globals.interfaces.IViewView" />
     </class>
 
-    <class class=".keywords_admin.KeywordsAdminView">
+    <class class=".admin.KeywordsAdminView">
         <implements interface="plone.app.layout.globals.interfaces.IViewView" />
     </class>
 

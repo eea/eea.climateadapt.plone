@@ -21,9 +21,15 @@ class IAdaptationStrategy (Interface):
 
 
 class TransRegionView (BrowserView):
-    """ Custom view for http://climate-adapt.eea.europa.eu/transnational-regions """
+    """ Custom view for /transnational-regions """
 
     implements(ITransRegionView)
+
+
+class CountriesView (BrowserView):
+    """ Custom view for http://climate-adapt.eea.europa.eu/countries """
+
+    implements(ICountriesView)
 
 
 class MapViewerView (BrowserView):
@@ -32,13 +38,8 @@ class MapViewerView (BrowserView):
     implements(IMapViewerView)
 
     def __call__(self):
-        return self.request.response.redirect('/tools/map-viewer?' + self.request['QUERY_STRING'])
-
-
-class CountriesView (BrowserView):
-    """ Custom view for http://climate-adapt.eea.europa.eu/countries """
-
-    implements(ICountriesView)
+        return self.request.response.redirect('/tools/map-viewer?' +
+                                              self.request['QUERY_STRING'])
 
 
 class AdaptationStrategyView (BrowserView):
@@ -65,8 +66,7 @@ class RedirectToSearchView (BrowserView):
 
 
 class ListTilesWithTitleView (BrowserView):
-    """ View that lists all tiles with richtext
-        title and their respective urls
+    """ View that lists all tiles with richtext title and their respective urls
     """
 
     def __call__(self):
@@ -83,8 +83,9 @@ class ListTilesWithTitleView (BrowserView):
             if hasattr(cover, '__annotations__'):
                 for tile_id in self.tiles:
                     tile_id = tile_id.encode()
-                    tile = cover.__annotations__['plone.tiles.data.' + tile_id]
+                    #tile = cover.__annotations__['plone.tiles.data.' + tile_id]
                     self.urls.append(cover.absolute_url())
+
         return self.index()
 
     def linkify(self, text):
