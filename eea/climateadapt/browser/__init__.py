@@ -519,9 +519,9 @@ EU policy                          /eu-adaptation-policy
         -Coastal areas                 /eu-adaptation-policy/mainstreaming/coastal-areas
         -Disaster risk reduction       /eu-adaptation-policy/mainstreaming/disaster-risk-reduction
         -Financial                     /eu-adaptation-policy/mainstreaming/financial
-        -Buildings                     /eu-adaptation-policy/mainstreaming/infrastructure
-        -Energy                        /eu-adaptation-policy/mainstreaming/infrastructure
-        -Transport                     /eu-adaptation-policy/mainstreaming/infrastructure
+        -Buildings                     /eu-adaptation-policy/mainstreaming/buildings
+        -Energy                        /eu-adaptation-policy/mainstreaming/energy
+        -Transport                     /eu-adaptation-policy/mainstreaming/transport
         -Health                        /eu-adaptation-policy/mainstreaming/health
         -Water management              /eu-adaptation-policy/mainstreaming/water-management
         -Marine and fisheries          /eu-adaptation-policy/mainstreaming/marine-and-fisheries

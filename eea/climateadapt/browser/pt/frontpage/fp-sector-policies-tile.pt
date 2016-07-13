@@ -58,7 +58,7 @@
             </a>
           </td> 
           <td width="79px">
-            <a href="/eu-adaptation-policy/mainstreaming/infrastructure">
+            <a href="/eu-adaptation-policy/mainstreaming/buildings">
               <img
                 onmouseout="javascript:this.src='/++resource++eea.climateadapt/frontpage/buildings_g.png';$('#buildings').toggle();"
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/buildings_v.png';$('#buildings').toggle();"
@@ -66,7 +66,7 @@
             </a>
           </td> 
           <td width="79px">
-            <a href="/eu-adaptation-policy/mainstreaming/infrastructure">
+            <a href="/eu-adaptation-policy/mainstreaming/energy">
               <img
                 onmouseout="javascript:this.src='/++resource++eea.climateadapt/frontpage/energy_g.png';$('#energy').toggle();"
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/energy_v.png';$('#energy').toggle();"
@@ -75,7 +75,7 @@
           </td> 
           <td
             width="79px">
-            <a href="/eu-adaptation-policy/mainstreaming/infrastructure">
+            <a href="/eu-adaptation-policy/mainstreaming/transport">
               <img
                 onmouseout="javascript:this.src='/++resource++eea.climateadapt/frontpage/transport_g.png';$('#transport').toggle();"
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/transport_v.png';$('#transport').toggle();"
@@ -132,13 +132,13 @@
             <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/financial" id="financial" style="display: none;">Financial</a> 
           </td> 
           <td width="79px">
-            <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/infrastructure" id="buildings" style="display: none;">Buidings</a>
+            <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/buildings" id="buildings" style="display: none;">Buildings</a>
           </td> 
           <td width="79px">
-            <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/infrastructure" id="energy" style="display: none;">Energy</a>
+            <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/energy" id="energy" style="display: none;">Energy</a>
           </td> 
           <td width="79px">
-            <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/infrastructure" id="transport" style="display: none;">Transport</a>
+            <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/transport" id="transport" style="display: none;">Transport</a>
           </td> 
           <td width="79px">
             <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/health" id="health" style="display: none;">Health</a>
