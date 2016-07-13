@@ -431,25 +431,4 @@
         permission="zope2.View"
         />
 
-    # TODO: remove these declarations, move to implements in class
-    <class class=".sat.SatView">
-        <implements interface="plone.app.layout.globals.interfaces.IViewView" />
-    </class>
-
-    <class class=".misc.TransRegionView">
-        <implements interface="plone.app.layout.globals.interfaces.IViewView" />
-    </class>
-
-    <class class=".misc.CountriesView">
-        <implements interface="plone.app.layout.globals.interfaces.IViewView" />
-    </class>
-
-    <class class=".admin.KeywordsAdminView">
-        <implements interface="plone.app.layout.globals.interfaces.IViewView" />
-    </class>
-
-    <class class=".misc.MapViewerView">
-        <implements interface="plone.app.layout.globals.interfaces.IViewView" />
-    </class>
-
 </configure>
