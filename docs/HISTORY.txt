@@ -5,6 +5,8 @@ Changelog
 -----------------------
 * Bugfix: Fix pagination for news
   [iulianpetchesi #74118]
+* Bug fix: use elements instead of element_type as index name for filtering tiles
+  [tiberich #73326]
 * Bugfix: implemented @@images/image/icon for climateadapt content and Covers
   [tiberich #74197]
 * Bugfix: Implemented upgrade for fixing tiles.

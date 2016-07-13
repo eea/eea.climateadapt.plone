@@ -188,4 +188,40 @@
             />
     </genericsetup:upgradeSteps>
 
+    <!-- v11 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_11"
+        title="Upgrade profile for eea.climateadapt v11"
+        description=""
+        directory="profiles/upgrades/to_11"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="11"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v11"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_11"
+            />
+    </genericsetup:upgradeSteps>
+
+    <!-- v12 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_12"
+        title="Upgrade profile for eea.climateadapt v12"
+        description=""
+        directory="profiles/upgrades/to_12"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="12"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v12"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_12"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>

@@ -93,19 +93,19 @@ class AceTileMixin(object):
             'review_state': 'published'
         }
 
-        keyword_indexes = ['search_type', 'element_type', 'sectors']
-
         # todo: do countries
+        # map of {tile field: index name}
         map = {
-            'search_type': 'search_type',        # importeddata: plone field
-            'element_type': 'element_type',
+            'search_type': 'search_type',
+            'element_type': 'elements',
             'search_text': 'SearchableText',
             'special_tags': 'special_tags',
             'sector': 'sectors',
         }
+        keyword_indexes = ['search_type', 'elements', 'sectors']
 
         sort_map = {
-            'RATING': 'rating',                     # importeddata: plone field
+            'RATING': 'rating',
             'NAME': 'sortable_title',
         }
 
@@ -117,7 +117,7 @@ class AceTileMixin(object):
         for setting_name, index_name in map.items():
             setting = self.data.get(setting_name, '')
             if setting:
-                if index_name in keyword_indexes and len(setting) > 1:
+                if index_name in keyword_indexes:   # and len(setting) > 1:
                     query[index_name] = {'query': setting, 'operator': 'or'}
                 else:
                     query[index_name] = setting
@@ -198,14 +198,13 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
         _ace_types = dict(_datatypes)
 
         search_type = self.data.get('search_type')
-        # import pdb; pdb.set_trace()
         if search_type:
             search_type = search_type[0]
             query = self.build_query()
             count = self.data.get('nr_items', 5)
             brains = self.catalog.searchResults(**query)
             url = self.build_url(base, query, {})
-            print "url", url
+            #print "buildurl: ", url
             result.append((_ace_types[search_type], len(brains), url, brains[:count]))
 
             return result
@@ -295,6 +294,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
     def items(self):
         count = self.data.get('nr_items', 5) or 5
         query = self.build_query()
+        print "relevant tile query: ", query
         res = self.catalog.searchResults(**query)
 
         if len(res) > count:
@@ -396,18 +396,19 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         site = getSite()
         base = site.absolute_url() + "/data-and-downloads?"
 
-        kw, errors = self.filterform.extractData()
-        impact = kw['impact']
-        sector = kw['sector']
-
         query = {
             'elements': self.data.get('element_type'),
             'search_type': self.data.get('search_type'),
             'SearchableText': self.data.get('search_text') or ""
         }
 
+        kw, errors = self.filterform.extractData()
+        impact = kw['impact']
+        sector = kw['sector']
+
         if impact:
             query['climateimpacts'] = impact
         if sector:
             query['sectors'] = sector
+
         return self.build_url(base, query, {})
