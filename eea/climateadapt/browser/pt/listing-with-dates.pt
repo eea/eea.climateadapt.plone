@@ -11,27 +11,25 @@
   <body>
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core">
-        <div tal:define="Batch python:modules['plone.batching'].Batch;
-                 b_size python:10;b_start python:0;b_start request/b_start | b_start;
-                 batch python:Batch(context.results(), b_size, int(b_start), orphan=1);">
-
         <h2 style="border-bottom:3px solid #bdcb2e" tal:content="context/Title">All News</h2>
 
-        <ul tal:define="items python: context.results(sort_on='effective')" style="margin-left:0">
-            <li tal:repeat="item items" style="list-style: none" class="news-item">
-                <h3>
-                    <a href="" tal:content="item/Title" tal:attributes="href item/getURL">
-                        News Title with href
-                    </a>
-                </h3>
-                <small class="discreet" tal:content="python: item.EffectiveDate().split('T')[0]"> Date </small>
-                <p tal:content="item/Description"> Description </p>
-            </li>
-        </ul>
+       <div tal:define= "batch python: context.results(batch=True,
+                                                                                   b_start=request.get('b_start', 0),
+                                                                                   b_size=10);
+                                                                                   ">
+           <tal:results repeat= "result batch">
+               <li style="list-style: none" class="news-item">
+                   <h3>
+                       <a href="" tal:content="result/Title" tal:attributes="href result/getURL">
+                           News Title with href
+                       </a>
+                   </h3>
+                   <small class="discreet" tal:content="python: result.EffectiveDate().split('T')[0]"> Date </small>
+                   <p tal:content="result/Description"> Description </p>
+               </li>
 
-        <tal:batchnavigation
-            define="batchnavigation nocall:context/@@batchnavigation"
-            replace="structure python:batchnavigation(batch)" />
+           </tal:results>
+           <div metal:use-macro= "context/batch_macros/macros/navigation"/>
        </div>
       </tal:main-macro>
     </metal:main>

@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fix pagination for news
+  [iulianpetchesi #74118]
 * Bugfix: implemented @@images/image/icon for climateadapt content and Covers
   [tiberich #74197]
 * Bugfix: Implemented upgrade for fixing tiles.
