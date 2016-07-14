@@ -1,14 +1,16 @@
 # coding=utf-8
-import json
-from datetime import date, timedelta
-import tokenlib
-from eea.climateadapt.city_profile import MAIL_TEXT_TEMPLATE
-from eea.climateadapt.mayorsadapt.vocabulary import (_climateimpacts, _sectors,
-                                                     _stage_implementation_cycle)
-from eea.climateadapt.vocabulary import ace_countries
+
 from Products.Five.browser import BrowserView
+from datetime import date, timedelta
+from eea.climateadapt.city_profile import MAIL_TEXT_TEMPLATE
+from eea.climateadapt.mayorsadapt.vocabulary import _climateimpacts
+from eea.climateadapt.mayorsadapt.vocabulary import _sectors
+from eea.climateadapt.mayorsadapt.vocabulary import _stage_implementation_cycle
+from eea.climateadapt.vocabulary import ace_countries
 from zope.annotation.interfaces import IAnnotations
 from zope.interface import Interface, implements
+import json
+import tokenlib
 
 
 class ITokenMailView(Interface):
@@ -81,7 +83,10 @@ class C_M_Stage_Of_The_Implementation_Cycle(BrowserView):
         return json.dumps(_stage_implementation_cycle)
 
 
-class CitiesLoad(BrowserView):
+class CitiesListingJson(BrowserView):
+    """ json query page used by city profiles map on Mayors Adapt page
+    """
+
     def __call__(self):
         cat = self.context.portal_catalog
         q = {

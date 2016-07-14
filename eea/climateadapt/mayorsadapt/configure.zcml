@@ -8,6 +8,26 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="eea.climateadapt">
 
+    <utility name="eea.climateadapt.covenant" component=".vocabulary.covenant_vocabulary"/>
+    <utility name="eea.climateadapt.status_of_adapt_signature" component=".vocabulary.status_of_adapt_signature_vocabulary"/>
+    <utility name="eea.climateadapt.key_vulnerable_adapt_sector" component=".vocabulary.key_vulnerable_adapt_sector_vocabulary"/>
+    <utility name="eea.climateadapt.stage_implementation_cycle" component=".vocabulary.stage_implementation_cycle_vocabulary"/>
+    <utility name="eea.climateadapt.already_devel_adapt_strategy" component=".vocabulary.already_devel_adapt_strategy_vocabulary"/>
+    <utility name="eea.climateadapt.elements_mentioned_your_cp" component=".vocabulary.elements_mentioned_your_cp_vocabulary"/>
+    <utility name="eea.climateadapt.cityprofile_climateimpacts" component=".vocabulary.cityprofile_climateimpacts_vocabulary"/>
+    <utility name="eea.climateadapt.cityprofile_sectors" component=".vocabulary.cityprofile_sectors_vocabulary"/>
+
+    <!-- <subscriber -->
+    <!--     for="plone.app.iterate.interfaces.ICheckoutEvent" -->
+    <!--     handler=".staging.handleCheckoutEvent" -->
+    <!--    /> -->
+
+    <subscriber
+       for="eea.climateadapt.city_profile.CityProfile
+            zope.lifecycleevent.interfaces.IObjectAddedEvent"
+       handler="eea.climateadapt.city_profile.handle_city_added"
+    />
+
 
     TODO: is this needed?
     <plone:behavior
@@ -132,29 +152,9 @@
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
 
-    <utility name="eea.climateadapt.covenant" component=".vocabulary.covenant_vocabulary"/>
-    <utility name="eea.climateadapt.status_of_adapt_signature" component=".vocabulary.status_of_adapt_signature_vocabulary"/>
-    <utility name="eea.climateadapt.key_vulnerable_adapt_sector" component=".vocabulary.key_vulnerable_adapt_sector_vocabulary"/>
-    <utility name="eea.climateadapt.stage_implementation_cycle" component=".vocabulary.stage_implementation_cycle_vocabulary"/>
-    <utility name="eea.climateadapt.already_devel_adapt_strategy" component=".vocabulary.already_devel_adapt_strategy_vocabulary"/>
-    <utility name="eea.climateadapt.elements_mentioned_your_cp" component=".vocabulary.elements_mentioned_your_cp_vocabulary"/>
-    <utility name="eea.climateadapt.cityprofile_climateimpacts" component=".vocabulary.cityprofile_climateimpacts_vocabulary"/>
-    <utility name="eea.climateadapt.cityprofile_sectors" component=".vocabulary.cityprofile_sectors_vocabulary"/>
-
-    <!-- <subscriber -->
-    <!--     for="plone.app.iterate.interfaces.ICheckoutEvent" -->
-    <!--     handler=".staging.handleCheckoutEvent" -->
-    <!--    /> -->
-
-TODO: re-enable after import
-    <subscriber
-       for="eea.climateadapt.city_profile.CityProfile
-            zope.lifecycleevent.interfaces.IObjectAddedEvent"
-       handler="eea.climateadapt.city_profile.handle_city_added"
-    />
-
     Pages with vocabularies used in the mayorsadaptloads.js
 
+    TODO: why can't we use a single page to load these vocabularies?
     <browser:page
         class=".mayoradapt.B_M_Climate_Impacts"
         for="*"
@@ -183,11 +183,10 @@ TODO: re-enable after import
         permission="zope2.View"
         />
 
-    TODO: change the name of this view
     <browser:page
-        class=".mayoradapt.CitiesLoad"
+        class=".mayoradapt.CitiesListingJson"
         for="*"
-        name="CitiesLoad"
+        name="cities_listing.json"
         permission="zope2.View"
         />
 
