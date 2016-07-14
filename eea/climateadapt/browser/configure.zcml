@@ -18,6 +18,14 @@
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
 
+    <browser:page
+        for="*"
+        name="force_unlock"
+        class=".admin.ForceUnlock"
+        permission="cmf.ManagePortal"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        />
+
     <browser:resourceDirectory
         name="eea.climateadapt"
         directory="resources"

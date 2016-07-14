@@ -34,14 +34,12 @@ class KeywordObjects (BrowserView):
         return json.dumps(key_obj)
 
 
-
-
 class IMainNavigationMenu(form.Schema):
     menu = schema.Text(title=u"Menu structure text", required=True)
 
 
 class MainNavigationMenuEdit(form.SchemaForm):
-    """
+    """ A page to edit the main site navigation menu
     """
 
     schema = IMainNavigationMenu
@@ -49,9 +47,12 @@ class MainNavigationMenuEdit(form.SchemaForm):
 
     label = u"Fill in the content of the main menu"
     description = u"""This should be a structure for the main menu. Use a single
-    empty line to denot main menu entries. Indent with 4 spaces each sublevel of
-    the menu. Separate with at least one space the link. Links should start with
-    a slash (/)."""
+    empty line to separate main menu entries. All lines after the main menu
+    entry, and before an empty line, will form entries in that section menu. To
+    create a submenu for a section, start a line with a dash (-).  Links should
+    start with a slash (/)."""
+
+    # TODO: validation!
 
     @property
     def ptool(self):
@@ -60,7 +61,6 @@ class MainNavigationMenuEdit(form.SchemaForm):
 
     def getContent(self):
         content = {'menu': self.ptool.getProperty('main_navigation_menu')}
-        #print "getting content", content
         return content
 
     @button.buttonAndHandler(u"Save")
@@ -73,3 +73,28 @@ class MainNavigationMenuEdit(form.SchemaForm):
         self.ptool._updateProperty('main_navigation_menu', data['menu'])
 
         self.status = u"Saved, please check."
+
+
+class ForceUnlock(BrowserView):
+    """ Forcefully unlock a content item
+    """
+
+    def __call__(self):
+        annot = getattr(self.context, '__annotations__', {})
+        if 'plone.locking' in annot:
+            del annot['plone.locking']
+
+            self.context._p_changed = True
+            annot._p_changed = True
+
+            url = self.context.absolute_url()
+            props_tool = getToolByName(self.context, 'portal_properties')
+            if props_tool:
+                types_use_view = \
+                    props_tool.site_properties.typesUseViewActionInListings
+                if self.context.portal_type in types_use_view:
+                    url += '/view'
+
+            return self.request.RESPONSE.redirect(url)
+        else:
+            return "done"

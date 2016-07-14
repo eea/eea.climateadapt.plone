@@ -127,6 +127,6 @@ class ICitiesProfilesView(Interface):
 
 
 class CitiesProfilesView(FolderView):
-    """ Custom view for  city-profiles"""
+    """ Custom view for city-profiles"""
 
     implements(ICitiesProfilesView)
