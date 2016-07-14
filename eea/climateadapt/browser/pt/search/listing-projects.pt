@@ -12,12 +12,10 @@
     <tr tal:repeat="brain brains">
       <td tal:define="title brain/Title">
         »<span tal:condition="brain/acronym">
-          <span tal:replace="brain/acronym">Here</span>
+            <a href="" tal:content="brain/acronym" tal:attributes="href brain/getURL">» Link</a>
         </span>
-        <a href="" tal:content="title" tal:attributes="href brain/getURL">» Link</a>
-        - <span tal:define="text python: view.html2text(brain.long_description.raw)">
-            <span tal:replace="python: text[:208-len(title)]" />...
-          </span>
+        - <span tal:replace="python: title">
+        </span> ...
       </td>
     </tr>
   </tbody>

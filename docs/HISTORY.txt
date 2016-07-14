@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed project display in /data-and-downloads
+  [iulianpetchesi #73214]
 * Feature: allow editing main navigation menu from special page
   [tiberich #73256]
 * Bugfix: Fix pagination for news
