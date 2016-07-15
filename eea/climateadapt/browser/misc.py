@@ -4,38 +4,16 @@ from Products.Five.browser import BrowserView
 import json
 
 
-class ITransRegionView (Interface):
-    """ Transnational regions Interface """
-
-
-class IMapViewerView (Interface):
-    """ map-viewer Interface """
-
-
-class ICountriesView (Interface):
-    """ Countries Interface """
-
-
-class IAdaptationStrategy (Interface):
-    """ Adaptation Interface """
-
-
 class TransRegionView (BrowserView):
     """ Custom view for /transnational-regions """
-
-    implements(ITransRegionView)
 
 
 class CountriesView (BrowserView):
     """ Custom view for http://climate-adapt.eea.europa.eu/countries """
 
-    implements(ICountriesView)
-
 
 class MapViewerView (BrowserView):
     """ Custom view for http://climate-adapt.eea.europa.eu/tools/map-viewer """
-
-    implements(IMapViewerView)
 
     def __call__(self):
         return self.request.response.redirect('/tools/map-viewer?' +
@@ -46,8 +24,6 @@ class AdaptationStrategyView (BrowserView):
     """ Redirect for http://climate-adapt.eea.europa.eu/adaptation-strategies
         to /countries-view-map
     """
-
-    implements(IAdaptationStrategy)
 
     def __call__(self):
         return self.request.response.redirect('/countries')
@@ -83,7 +59,7 @@ class ListTilesWithTitleView (BrowserView):
             if hasattr(cover, '__annotations__'):
                 for tile_id in self.tiles:
                     tile_id = tile_id.encode()
-                    #tile = cover.__annotations__['plone.tiles.data.' + tile_id]
+                    # tile = cover.__annotations__['plone.tiles.data.' + tile_id]
                     self.urls.append(cover.absolute_url())
 
         return self.index()
