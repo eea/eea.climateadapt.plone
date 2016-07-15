@@ -16,10 +16,12 @@
         expression="" id="form_tabbing.js" inline="False"
         />
 
-    <javascript bundle="deprecated" enabled="False" cacheable="True"
-        id="++resource++plone.app.jquery.js" expression=""/>
-
     <javascript authenticated="False" bundle="default" cacheable="True"
+         compression="none" conditionalcomment="" cookable="True" enabled="True"
+         expression="python:member is None" id="++resource++plone.app.jquery.js"
+         inline="False"/>
+
+    <javascript authenticated="True" bundle="default" cacheable="True"
         compression="none" conditionalcomment="" cookable="True" enabled="True"
         expression="" id="++resource++plone.app.widgets.js" inline="False"
         insert-after="++resource++plone.app.jquery.js"/>

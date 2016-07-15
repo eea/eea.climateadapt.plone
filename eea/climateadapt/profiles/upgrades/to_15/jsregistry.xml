@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+ <object name="portal_javascripts" meta_type="JavaScripts Registry">
+
+    <javascript authenticated="False" bundle="default" compression="none"
+         conditionalcomment="" cookable="True" enabled="True"
+         expression="python:member is None" id="++resource++plone.app.jquery.js"
+         inline="False"/>
+
+    <javascript authenticated="True"  id="++resource++plone.app.widgets.js"
+        insert-after="++resource++plone.app.jquery.js"/>
+
+ </object>
