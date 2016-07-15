@@ -139,12 +139,14 @@ _sectors = [    # this is the canonical
     ("DISASTERRISKREDUCTION", "Disaster Risk Reduction"),
     ("FINANCIAL", "Financial"),
     ("HEALTH", "Health"),
-    ("INFRASTRUCTURE", "Infrastructure"),
+    # ("INFRASTRUCTURE", "Infrastructure"),
     ("URBAN", "Urban"),
     ("MARINE", "Marine and Fisheries"),
-#   ("TOURISM", "Tourism"),
-#   ("ENERGY", "Energy"),
-#   ("OTHER", "Other"),
+    #   ("TOURISM", "Tourism"),
+    ("ENERGY", "Energy"),
+    ("TRANSPORT", "Transport"),
+    ("BUILDINGS", "Buildings"),
+    #   ("OTHER", "Other"),
     ("WATERMANAGEMENT", "Water management"),
 ]
 aceitem_sectors_vocabulary = generic_vocabulary(_sectors)

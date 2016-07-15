@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Updated the vocabularies for sectors
+  [iulianpetchesi #74340]
 * Bugfix: Removed the interfaces that weren't needed
   [iulianpetchesi #74290]
 * Bugfix: Created upgrade step for one_state_workflow
