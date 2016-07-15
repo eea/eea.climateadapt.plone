@@ -1532,6 +1532,11 @@ li.dropdown-submenu {
     width: 890px
 }
 
+#case-studies-modal a {
+    outline: 0;
+    border: 0;
+}
+
 .col-md-7 table td a {
     text-decoration: underline;
 }
