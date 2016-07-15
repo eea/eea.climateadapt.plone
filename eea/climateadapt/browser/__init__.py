@@ -695,8 +695,25 @@ class CoverNoTitleView(Standard):
 
 
 class IterateControl(Control):
+    """ Better behaviour for iteration
     """
-    """
+
+    def is_checkout(self):
+        """ Is this object a checkout? Used by CCA for workflow guards
+        """
+        context = aq_inner(self.context)
+
+        if not IIterateAware.providedBy(context):
+            return False
+
+        archiver = IObjectArchiver(context)
+        if not archiver.isVersionable():
+            return False
+
+        if IWorkingCopy.providedBy(context):
+            return True
+
+        return False
 
     def checkin_allowed(self):
         """ Overrided to check for the checkin permission, as it should be normal

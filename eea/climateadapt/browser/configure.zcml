@@ -14,7 +14,7 @@
         name="iterate_control"
         class=".IterateControl"
         permission="zope2.View"
-        allowed_attributes="checkin_allowed checkout_allowed cancel_allowed"
+        allowed_attributes="checkin_allowed checkout_allowed cancel_allowed is_checkout"
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
 

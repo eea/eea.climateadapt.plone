@@ -3,3 +3,4 @@
 .eggs
 *.egg-info
 *.swp
+dist/*

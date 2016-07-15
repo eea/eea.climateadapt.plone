@@ -278,4 +278,22 @@
             />
     </genericsetup:upgradeSteps>
 
+    <!-- v16 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_16"
+        title="Upgrade profile for eea.climateadapt v16"
+        description=""
+        directory="profiles/upgrades/to_16"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="16"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v16"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_16"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>
