@@ -10,8 +10,12 @@
     i18n_domain="eea.climateadapt">
 
     <includeDependencies package="." />
+
+    <i18n:registerTranslations directory="locales" />
     <five:registerPackage package="." initialize=".initialize" />
 
+    <include package="plone.resource" file="meta.zcml"/>
+    <include package="z3c.jbot" file="meta.zcml" />
     <include package='plone.app.theming' />
 
     <include package=".widgets" />
@@ -20,10 +24,8 @@
     <include package=".mayorsadapt" />
     <include package="._importer" />
 
-    <include package="plone.resource" file="meta.zcml"/>
-    <include package="z3c.jbot" file="meta.zcml" />
-
     <include file="profiles.zcml" />
+    <include file="cache.zcml" />
 
     <browser:jbot
         directory="browser/pt-overrides"
@@ -35,7 +37,13 @@
         directory="theme/climateadapt"
         type="theme" />
 
-    <i18n:registerTranslations directory="locales" />
+
+    <adapter
+        for="*"
+        provides="plone.stringinterp.interfaces.IStringSubstitution"
+        factory=".stringinterp.CCAReviewerEmailSubstitution"
+        name="cca_reviewer_emails"
+    />
 
     -------[ Catalog indexes adapters ]-------
 
@@ -75,7 +83,6 @@
     <utility name="eea.climateadapt.adaptation_options" factory=".vocabulary.AdaptationOptionsVocabulary"/>
     <utility name="eea.climateadapt.faceted_countries" component=".vocabulary.faceted_countries_vocabulary"/>
 
-
     <utility name="eea.climateadapt.rich_header_level" component=".vocabulary.rich_header_level"/>
 
     ------[ Marker interfaces: ]--------
@@ -104,60 +111,5 @@
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
         handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
         />
-
-    -----[ eea.cache integration ]-----------
-
-    <class class="collective.cover.content.Cover">
-        <implements interface="eea.cache.interfaces.ICacheAware" />
-    </class>
-
-    <class class=".acemeasure.CaseStudy">
-        <implements interface="eea.cache.interfaces.ICacheAware" />
-    </class>
-
-    <class class=".acemeasure.AdaptationOption">
-        <implements interface="eea.cache.interfaces.ICacheAware" />
-    </class>
-
-    <class class=".aceproject.AceProject">
-        <implements interface="eea.cache.interfaces.ICacheAware" />
-    </class>
-
-    <class class=".aceitem.PublicationReport">
-        <implements interface="eea.cache.interfaces.ICacheAware" />
-    </class>
-
-    <class class=".aceitem.InformationPortal">
-        <implements interface="eea.cache.interfaces.ICacheAware" />
-    </class>
-
-    <class class=".aceitem.GuidanceDocument">
-        <implements interface="eea.cache.interfaces.ICacheAware" />
-    </class>
-
-    <class class=".aceitem.Tool">
-        <implements interface="eea.cache.interfaces.ICacheAware" />
-    </class>
-
-    <class class=".aceitem.Organisation">
-        <implements interface="eea.cache.interfaces.ICacheAware" />
-    </class>
-
-    <class class=".aceitem.Indicator">
-        <implements interface="eea.cache.interfaces.ICacheAware" />
-    </class>
-
-    <class class=".aceitem.MapGraphDataset">
-        <implements interface="eea.cache.interfaces.ICacheAware" />
-    </class>
-    
-    <class class=".aceitem.ResearchProject">
-        <implements interface="eea.cache.interfaces.ICacheAware" />
-    </class>
-
-    <class class=".aceitem.Action">
-        <implements interface="eea.cache.interfaces.ICacheAware" />
-    </class>
-
 
 </configure>
