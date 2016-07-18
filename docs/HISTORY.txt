@@ -5,9 +5,12 @@ Changelog
 -----------------------
 * Feature: use a special cca_reviewer_emails in content rules
   [tiberich #74370]
+* Bugfix: Fixed mobile view for help page and fixed style for tutorial videos
+  [iulianpetchesi #73334]
 * Change: don't allow publish transition on checkout items
   [tiberich #74252]
-* Bugfix: Created upgrade step for jsregistry
+* Bugfix: Modified jsregistry so that plone.app.widgets will load only for authentificated users
+  and jquery will be loaded for the rest + created upgrade step for it
   [iulianpetchesi #74276]
 * Bugfix: Updated the vocabularies for sectors
   [iulianpetchesi #74340]
