@@ -25,6 +25,7 @@
     <include package="._importer" />
 
     <include file="profiles.zcml" />
+    <include file="stringinterp.zcml" />
     <include file="cache.zcml" />
 
     <browser:jbot
@@ -36,14 +37,6 @@
         name="climateadapt"
         directory="theme/climateadapt"
         type="theme" />
-
-
-    <adapter
-        for="*"
-        provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".stringinterp.CCAReviewerEmailSubstitution"
-        name="cca_reviewer_emails"
-    />
 
     -------[ Catalog indexes adapters ]-------
 

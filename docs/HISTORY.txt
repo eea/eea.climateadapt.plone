@@ -3,7 +3,7 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
-* Feature: use a special cca_reviewer_emails in content rules
+* Feature: use special filters for CCA groups in content rules
   [tiberich #74370]
 * Bugfix: Fixed mobile view for help page and fixed style for tutorial videos
   [iulianpetchesi #73334]

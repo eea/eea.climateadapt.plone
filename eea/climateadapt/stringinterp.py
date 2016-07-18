@@ -9,8 +9,9 @@ from zope.component import adapts
 
 
 class BaseLDAPLookupEmailSubstitution(BaseSubstitution):
+    adapts(IContentish)
 
-    group = ""  # override this in subclasses
+    category = u'CCA Groups'
 
     def safe_call(self):
         acl = getToolByName(self.context, 'acl_users')
@@ -32,11 +33,38 @@ class BaseLDAPLookupEmailSubstitution(BaseSubstitution):
         return ", ".join(mails) or ""
 
 
-class CCAReviewerEmailSubstitution(BaseLDAPLookupEmailSubstitution):
-    adapts(IContentish)
+class cca_ma(BaseLDAPLookupEmailSubstitution):
+    group = 'extranet-cca-ma'
+    description = group + u' E-Mails'
 
-    category = u'Local Roles'
-    description = u'CCA Reviewers E-Mails'
+class cca_ma_contacts(BaseLDAPLookupEmailSubstitution):
+    group = 'extranet-cca-ma-contacts'
+    description = group + u' E-Mails'
 
+class cca_ma_managers(BaseLDAPLookupEmailSubstitution):
+    group = 'extranet-cca-ma-managers'
+    description = group + u' E-Mails'
+
+class cca_newsevents(BaseLDAPLookupEmailSubstitution):
+    group = 'extranet-cca-newsevents'
+    description = group + u' E-Mails'
+
+class cca_powerusers(BaseLDAPLookupEmailSubstitution):
+    group = 'extranet-cca-powerusers'
+    description = group + u' E-Mails'
+
+class cca_reviewers(BaseLDAPLookupEmailSubstitution):
     group = 'extranet-cca-reviewers'
+    description = group + u' E-Mails'
 
+class cca_managers(BaseLDAPLookupEmailSubstitution):
+    group = 'extranet-cca-managers'
+    description = group + u' E-Mails'
+
+class cca_checkers(BaseLDAPLookupEmailSubstitution):
+    group = 'extranet-cca-checkers'
+    description = group + u' E-Mails'
+
+class cca_editors(BaseLDAPLookupEmailSubstitution):
+    group = 'extranet-cca-editors'
+    description = group + u' E-Mails'
