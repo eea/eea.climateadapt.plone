@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed mobile view for help page and fixed style for tutorial videos
+  [iulianpetchesi #73334]
 * Change: don't allow publish transition on checkout items
   [tiberich #74252]
 * Bugfix: Modified jsregistry so that plone.app.widgets will load only for authentificated users
