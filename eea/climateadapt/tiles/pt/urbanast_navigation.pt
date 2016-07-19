@@ -62,7 +62,8 @@
         <li><a href="/tools/urban-ast/step-0-2" name="step-0-2" onclick="document.location.href='/tools/urban-ast/step-0-2'"><p>0.2 How is the European climate changing and what are the consequences for urban areas?</p></a></li>
         <li><a href="/tools/urban-ast/step-0-3" name="step-0-3" onclick="document.location.href='/tools/urban-ast/step-0-3'"><p>0.3 What is adaptation to climate change and why does it matter in my city/town?</p></a></li>
         <li><a href="/tools/urban-ast/step-0-4" name="step-0-4" onclick="document.location.href='/tools/urban-ast/step-0-4'"><p>0.4 What are the key principles for adaptation?</p></a></li>
-        <li><a href="/tools/urban-ast/step-0-5" name="step-0-5" onclick="document.location.href='/tools/urban-ast/step-0-5'"><p>0.5 Where can I find support for adaptation planning in the form of advice and capacity building?</p></a></li>
+        <li><a href="/tools/urban-ast/step-0-5" name="step-0-5" onclick="document.location.href='/tools/urban-ast/step-0-5'"><p>0.5 What are the inter-relationships between adaptation and mitigation?</p></a></li>
+        <li><a href="/tools/urban-ast/step-0-6" name="step-0-6" onclick="document.location.href='/tools/urban-ast/step-0-6'"><p>0.6 Where can I find support for adaptation planning in the form of advice and capacity building?</p></a></li>
       </ul>
     </li>
     <li><a href="/tools/urban-ast/step-1-0" name="step-1-0" onclick="document.location.href='/tools/urban-ast/step-1-0'"><strong>1.</strong> Preparing the ground for adaptation</a>
