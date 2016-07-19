@@ -233,7 +233,7 @@
 
     <browser:page
         name="site_navbar"
-        class=".Navbar"
+        class=".site.Navbar"
         for="*"
         permission="zope.Public"
         template="pt/navbar.pt"

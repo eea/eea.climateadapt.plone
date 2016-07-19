@@ -1,8 +1,10 @@
-from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
+from Products.Five.browser import BrowserView
+from eea.climateadapt.browser.site import _extract_menu
 from plone.directives import form
 from z3c.form import button
 from zope import schema
+from zope.interface import Invalid, invariant
 import json
 
 
@@ -34,8 +36,19 @@ class KeywordObjects (BrowserView):
         return json.dumps(key_obj)
 
 
+class InvalidMenuConfiguration(Invalid):
+    __doc__ = u"The menu format is invalid"
+
+
 class IMainNavigationMenu(form.Schema):
     menu = schema.Text(title=u"Menu structure text", required=True)
+
+    @invariant
+    def check_menu(data):
+        try:
+            _extract_menu(data.menu)
+        except Exception, e:
+            raise InvalidMenuConfiguration(e)
 
 
 class MainNavigationMenuEdit(form.SchemaForm):
@@ -51,8 +64,6 @@ class MainNavigationMenuEdit(form.SchemaForm):
     entry, and before an empty line, will form entries in that section menu. To
     create a submenu for a section, start a line with a dash (-).  Links should
     start with a slash (/)."""
-
-    # TODO: validation!
 
     @property
     def ptool(self):
