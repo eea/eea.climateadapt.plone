@@ -1,6 +1,7 @@
 from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
+from eea.climateadapt.schema import Year
 from plone.app.textfield import RichText
 from plone.app.widgets.dx import AjaxSelectWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
@@ -118,10 +119,10 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                         vocabulary="eea.climateadapt.aceitems_elements",),
                     )
 
-    year = Int(title=_(u"Year"),
-               description=u"Date of publication/release/update of the item",
-               required=False
-               )
+    year = Year(title=_(u"Year"),
+                description=u"Date of publication/release/update of the item",
+                required=False
+                )
 
     # -----------[ "reference_information" fields ]------------------
 
