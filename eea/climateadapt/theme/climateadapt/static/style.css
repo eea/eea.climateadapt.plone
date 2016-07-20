@@ -177,6 +177,32 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
 .navbar-inverse {border-color: transparent;}
 
 /* Responsive Design Magic*/
+@media screen and (max-width: 991px) {
+    .section-help #content .row:nth-child(2) {
+        display: inline-flex;
+    }
+
+    .section-help #content .row:nth-child(2) .col-md-3 {
+        width: 25%;
+    }
+
+    .section-help #content .row:nth-child(2) .col-md-3 img {
+        max-height: 100%;
+    }
+
+    .section-help #content .row:nth-child(2) .col-md-3:nth-child(3) {
+        max-width: 83%;
+    }
+
+    .section-help #content .row:nth-child(2) .col-md-3 img {
+        width: 100% !important;
+    }
+
+    .section-help #content .col-md-3:nth-of-type(3) table {
+        width: 89%;
+    }
+}
+
 @media screen and (max-width: 768px) {
 
     #wrapper {max-width: 100%;}
