@@ -197,7 +197,7 @@
 
                             <em id="life_time_anchor" tal:condition="python: context.lifetime is not None"
                                 style="text-decoration: underline">Life Time</em>
-                            <div tal:content="structure context/lifetime/output"></div>
+                            <div tal:content="structure context/lifetime/output | nothing"></div>
 
                             <h4>Reference Information</h4>
                             <em id="contact" style="text-decoration: underline">Contact</em>
@@ -208,7 +208,7 @@
 
                             <div tal:condition="context/source | nothing">
                                 <em id="source" style="text-decoration: underline">Source</em>
-                                <div tal:content="structure context/source/output"></div>
+                                <div tal:content="structure context/source/output | nothing"></div>
                             </div>
                             <div metal:use-macro="context/ace_macros/macros/comments"></div>
                           </div>
