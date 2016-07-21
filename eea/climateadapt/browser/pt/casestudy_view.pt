@@ -99,7 +99,7 @@
                                   <li>
                                     <a href="#objectives_anchor" style="text-decoration: underline">Objectives</a>
                                   </li>
-                                  <li>
+                                  <li tal:condition="view/get_adaptation_options | nothing">
                                     <a href="#adapt_options_anchor" style="text-decoration: underline">Adaptation Options Implemented In This Case</a>
                                   </li>
                                   <li>
@@ -115,22 +115,22 @@
                                   <em>Additional Details</em>
                                 </p>
                                 <ul class="case-studies-bullted-list">
-                                  <li class="first">
+                                  <li class="first" tal:condition="context/stakeholder_participation | nothing">
                                     <a href="#stake_holder_anchor" style="text-decoration: underline">Stakeholder Participation</a>
                                   </li>
-                                  <li>
+                                  <li tal:condition="context/success_limitations | nothing">
                                     <a href="#success_limitations_anchor" style="text-decoration: underline">Success and Limiting Factors</a>
                                   </li>
-                                  <li>
+                                  <li tal:condition="context/cost_benefit | nothing">
                                     <a href="#cost_benefit_anchor" style="text-decoration: underline">Costs and Benefits</a>
                                   </li>
-                                  <li>
+                                  <li tal:condition="python: context.legal_aspects is not None">
                                     <a href="#legal_aspects" style="text-decoration: underline">Legal Aspects</a>
                                   </li>
-                                  <li>
+                                  <li tal:condition="python: context.implementation_time is not None">
                                     <a href="#implementation_time_anchor" style="text-decoration: underline">Implementation Time</a>
                                   </li>
-                                  <li class="last">
+                                  <li class="last" tal:condition="python: context.lifetime is not None">
                                     <a href="#life_time_anchor" style="text-decoration: underline">Life Time</a>
                                   </li>
                                 </ul>
@@ -164,9 +164,11 @@
                             <em id="objectives_anchor" style="text-decoration: underline">Objectives</em>
                             <p tal:replace="structure python: view.w['objectives'].render()"></p>
 
-                            <em id="adapt_options_anchor" style="text-decoration: underline">Adaptation Options Implemented In This Case</em>
-                            <div tal:define="adaptations view/get_adaptation_options" tal:on-error="nothing">
-                              <a tal:repeat="obj adaptations" tal:attributes="href obj/absolute_url" tal:content="obj/Title" style="text-decoration: underline">Link</a>
+                            <div tal:condition="view/get_adaptation_options | nothing">
+                                <em id="adapt_options_anchor" style="text-decoration: underline">Adaptation Options Implemented In This Case</em>
+                                <div tal:define="adaptations view/get_adaptation_options" tal:on-error="nothing">
+                                  <a tal:repeat="obj adaptations" tal:attributes="href obj/absolute_url" tal:content="obj/Title" style="text-decoration: underline">Link</a>
+                                </div>
                             </div>
 
                             <em id="solutions_anchor" style="text-decoration: underline">Solutions</em>
@@ -178,20 +180,26 @@
                             </p>
 
                             <h4>Additional Details</h4>
-                            <em id="stake_holder_anchor" style="text-decoration: underline">Stakeholder Participation</em>
-                            <div tal:condition="context/stakeholder_participation | nothing" tal:content="structure python: view.w['stakeholder_participation'].render()"></div>
+                            <div tal:condition="context/stakeholder_participation | nothing">
+                                <em id="stake_holder_anchor" style="text-decoration: underline">Stakeholder Participation</em>
+                                <div tal:content="structure python: view.w['stakeholder_participation'].render()"></div>
+                            </div>
 
-                            <em id="success_limitations_anchor" style="text-decoration: underline">Success and Limiting Factors</em>
-                            <div tal:content="structure python: view.w['success_limitations'].render()"></div>
+                            <div tal:condition="context/success_limitations | nothing">
+                                <em id="success_limitations_anchor" style="text-decoration: underline">Success and Limiting Factors</em>
+                                <div tal:content="structure python: view.w['success_limitations'].render()"></div>
+                            </div>
 
-                            <em id="cost_benefit_anchor" style="text-decoration: underline">Costs and Benefits</em>
-                            <div tal:content="structure python: view.w['cost_benefit'].render()"></div>
+                            <div tal:condition="context/cost_benefit | nothing">
+                                <em id="cost_benefit_anchor" style="text-decoration: underline">Costs and Benefits</em>
+                                <div tal:content="structure python: view.w['cost_benefit'].render()"></div>
+                            </div>
 
                             <em id="legal_aspects" tal:condition="python: context.legal_aspects is not None"
                                 style="text-decoration: underline">Legal Aspects</em>
                             <div tal:content="structure python: view.w['legal_aspects'].render()"></div>
 
-                            <em id="implementation_time_anchor" style="text-decoration: underline" 
+                            <em id="implementation_time_anchor" style="text-decoration: underline"
                               tal:condition="python: context.implementation_time is not None">Implementation Time</em>
                             <div tal:content="structure context/implementation_time/output | nothing"></div>
 
