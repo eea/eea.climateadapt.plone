@@ -37,7 +37,7 @@
         />
 
     <browser:page
-        class=".special_tags_admin.SpecialTagsView"
+        class=".admin.SpecialTagsView"
         for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
         name="tags-admin"
         template="pt/special-tags-admin.pt"
@@ -52,7 +52,7 @@
         />
 
     <browser:page
-        class=".special_tags_admin.SpecialTagsObjects"
+        class=".admin.SpecialTagsObjects"
         for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
         name="special-tags-objects"
         permission="zope2.View"
