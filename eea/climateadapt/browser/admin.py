@@ -1,3 +1,4 @@
+from plone.memoize import view
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from eea.climateadapt.browser.site import _extract_menu
@@ -12,13 +13,9 @@ class KeywordsAdminView (BrowserView):
     """ Custom view for the administration of keywords
     """
 
-    def __call__(self):
-        self.keyword = []
-
-        for key in self.context.portal_catalog.uniqueValuesFor('keywords'):
-            self.keyword.append(key)
-
-        return self.index()
+    @view.memoize
+    def keywords(self):
+        return self.context.portal_catalog.uniqueValuesFor('keywords')
 
     def get_keyword_length(self, key):
         catalog = self.context.portal_catalog._catalog
@@ -154,3 +151,27 @@ class ListTilesWithTitleView (BrowserView):
         elif isinstance(item, list):
             for x in item:
                 self.walk(x)
+
+
+class SpecialTagsView(BrowserView):
+    """ Custom view for administration of special tags
+    """
+
+    def __call__(self):
+        self.sp_tags = []
+
+        for tag in self.context.portal_catalog.uniqueValuesFor('special_tags'):
+            self.sp_tags.append(tag)
+
+        return self.index()
+
+
+class SpecialTagsObjects (BrowserView):
+    """ Gets the links for the special tags that we get in the request
+    """
+
+    def __call__(self):
+        tag = self.request.form['special_tags'].decode('utf-8')
+        tag_obj = [b.getURL() + '/edit' for b in
+                   self.context.portal_catalog.searchResults(special_tags=tag)]
+        return json.dumps(tag_obj)
