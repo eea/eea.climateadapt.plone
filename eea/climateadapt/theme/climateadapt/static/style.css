@@ -2237,3 +2237,44 @@ table.listing a {
     position: inherit;
     padding-left: 25em;
 }
+
+/* Case study image gallery */
+.blueimp-gallery > .description {
+    position: absolute;
+    top: 50px;
+    left: 15px;
+    color: #fff;
+    display: none;
+    font-size: 1.3em;
+}
+
+.blueimp-gallery-display > .description {
+    display: block;
+    float: left;
+}
+
+#blueimp-gallery .next, #blueimp-gallery .prev {
+    display: block;
+}
+
+.blueimp-gallery > .title {
+    left: 15px;
+}
+
+#links > span {
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 5px;
+    float: left;
+    text-align: center;
+}
+
+#links {
+    background-color: #aab91d;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.case-studies-illustrations {
+    padding-top: 5px;
+}

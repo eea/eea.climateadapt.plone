@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Implemented new image gallery
+  [iulianpetchesi #73235]
 * Bugfix: Case studies template fixes
   [iulianpetchesi #74514]
 * Feature: use special filters for CCA groups in content rules

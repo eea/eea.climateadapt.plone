@@ -122,6 +122,50 @@
 			$('#year-start-input').val(0);
 			$('#year-end-input').val(9999);
 		});
+
+		$('#links').on('click', function(event) {
+			$(this).children('.gallery-hide').css('display', 'block');
+		});
+
+		$('#blueimp-gallery').on('click', function(event) {
+			if(event.target.className == "slide " ||
+			   event.target.className == "close"  ||
+		   	   event.target.className == "slide") {
+				$('#links').children('.gallery-hide').css('display', 'none');
+			}
+		});
+
+		$(document).keyup(function(e) {
+			if (e.keyCode === 27) {
+				$('#links').children('.gallery-hide').css('display', 'none');
+			}
+		});
+
+		if (document.getElementById('links') != null) {
+			document.getElementById('links').onclick = function (event) {
+			  event = event || window.event;
+			  var target = event.target || event.srcElement,
+			    link = target.src ? target.parentNode : target,
+			    options = {
+			      index: link, event: event,
+			      onslide: function (index, slide) {
+
+			        self = this;
+			        var initializeAdditional = function (index, data, klass, self) {
+			          var text = self.list[index].getAttribute(data),
+			            node = self.container.find(klass);
+			          node.empty();
+			          if (text) {
+			            node[0].appendChild(document.createTextNode(text));
+			          }
+			        };
+			        initializeAdditional(index, 'data-description', '.description', self);
+			      }
+			    },
+			    links = this.getElementsByTagName('a');
+			  blueimp.Gallery(links, options);
+			};
+		}
 	});
 
 //Add tooltips to glossary terms
