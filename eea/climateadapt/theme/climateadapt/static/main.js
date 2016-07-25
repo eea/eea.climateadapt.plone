@@ -123,10 +123,12 @@
 			$('#year-end-input').val(9999);
 		});
 
+		// Display event for gallery open
 		$('#links').on('click', function(event) {
 			$(this).children('.gallery-hide').css('display', 'block');
 		});
 
+		// Display events for gallery close
 		$('#blueimp-gallery').on('click', function(event) {
 			if(event.target.className == "slide " ||
 			   event.target.className == "close"  ||
@@ -141,6 +143,7 @@
 			}
 		});
 
+		// Initialize blueimp gallery
 		if (document.getElementById('links') != null) {
 			document.getElementById('links').onclick = function (event) {
 			  event = event || window.event;
