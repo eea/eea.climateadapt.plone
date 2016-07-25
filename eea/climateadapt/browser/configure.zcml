@@ -6,6 +6,7 @@
     i18n_domain="eea.climateadapt">
 
     <include file="overrides.zcml" />
+    <include file="admin.zcml" />
     <include file="frontpage.zcml" />
     <include file="faceted.zcml" />
 
@@ -15,14 +16,6 @@
         class=".IterateControl"
         permission="zope2.View"
         allowed_attributes="checkin_allowed checkout_allowed cancel_allowed is_checkout"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        />
-
-    <browser:page
-        for="*"
-        name="force_unlock"
-        class=".admin.ForceUnlock"
-        permission="cmf.ManagePortal"
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
 
@@ -229,51 +222,6 @@
         for="*"
         permission="zope.Public"
         template="pt/navbar.pt"
-        />
-
-    <browser:page
-        class=".admin.MainNavigationMenuEdit"
-        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-        name="edit-navigation-menu"
-        permission="cmf.ManagePortal"
-        />
-
-    <browser:page
-        class=".admin.KeywordsAdminView"
-        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-        name="keywords-admin"
-        template="pt/keywords-admin.pt"
-        permission="cmf.ManagePortal"
-        />
-
-    <browser:page
-        class=".special_tags_admin.SpecialTagsView"
-        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-        name="tags-admin"
-        template="pt/special-tags-admin.pt"
-        permission="cmf.ManagePortal"
-        />
-
-    <browser:page
-        class=".admin.KeywordObjects"
-        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-        name="keyword-objects"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        class=".special_tags_admin.SpecialTagsObjects"
-        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-        name="special-tags-objects"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        class=".admin.ListTilesWithTitleView"
-        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-        name="richtext-tiles"
-        template="pt/list-richtext-tiles.pt"
-        permission="cmf.ManagePortal"
         />
 
     <!-- # portal link redirections, compatibility with old site -->

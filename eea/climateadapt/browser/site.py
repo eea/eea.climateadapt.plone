@@ -1,3 +1,6 @@
+""" Views useful for the entire website functionality
+"""
+
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 import logging
@@ -132,7 +135,7 @@ class Navbar(BrowserView):
     def menu(self):
         try:
             ptool = getToolByName(self.context,
-                                'portal_properties')['site_properties']
+                                  'portal_properties')['site_properties']
             return _extract_menu(ptool.getProperty('main_navigation_menu'))
         except Exception, e:
             logger.exception("Error while rendering navigation menu: %s", e)

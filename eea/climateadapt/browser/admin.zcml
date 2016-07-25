@@ -1,0 +1,61 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="eea.climateadapt">
+
+    <browser:page
+        for="*"
+        name="force_unlock"
+        class=".admin.ForceUnlock"
+        permission="cmf.ManagePortal"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        />
+
+    <browser:page
+        class=".admin.ListTilesWithTitleView"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        name="richtext-tiles"
+        template="pt/list-richtext-tiles.pt"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        class=".admin.MainNavigationMenuEdit"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        name="edit-navigation-menu"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        class=".admin.KeywordsAdminView"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        name="keywords-admin"
+        template="pt/keywords-admin.pt"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        class=".special_tags_admin.SpecialTagsView"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        name="tags-admin"
+        template="pt/special-tags-admin.pt"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        class=".admin.KeywordObjects"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        name="keyword-objects"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        class=".special_tags_admin.SpecialTagsObjects"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        name="special-tags-objects"
+        permission="zope2.View"
+        />
+
+</configure>

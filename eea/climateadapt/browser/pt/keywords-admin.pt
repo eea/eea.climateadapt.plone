@@ -16,7 +16,7 @@
 
         <h1>Keywords administration</h1>
 
-        <table class="table table-striped" id="keywords-admin" tal:define="keys view/keyword">
+        <table class="table table-striped" id="keywords-admin" tal:define="keys view/keywords">
           <thead>
             <tr>
               <th>Keyword</th>
