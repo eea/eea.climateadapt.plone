@@ -1,6 +1,7 @@
 from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
+from eea.climateadapt.rabbitmq import queue_msg
 from eea.climateadapt.schema import Year
 from plone.app.contenttypes.interfaces import IImage
 from plone.app.textfield import RichText
@@ -452,3 +453,8 @@ def SpecialTagsFieldWidget(field, request):
     widget = FieldWidget(field, AjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.special_tags'
     return widget
+
+
+def handle_for_arcgis_sync(obj, event):
+    msg = event.__class__.__name__ + "|" + obj.absolute_url()
+    queue_msg(msg, queue='eea.climateadapt.casestudies')

@@ -144,6 +144,12 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        name="json"
+        for="eea.climateadapt.acemeasure.ICaseStudy"
+        class=".casestudy.CaseStudyJson"
+        permission="zope2.View"
+        />
 
     -----[ Case Study Form customizations ]----
 

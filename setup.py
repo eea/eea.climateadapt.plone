@@ -40,6 +40,7 @@ setup(name='eea.climateadapt',
           'collective.dexteritytextindexer',
           'collective.easyform',
           'tokenlib',
+          'eea.rabbitmq.client',    # schedule jobs
       ],
       extras_require={
           'test': [
@@ -56,6 +57,7 @@ setup(name='eea.climateadapt',
       target = plone
       [console_scripts]
       climateadapt_importer = eea.climateadapt._importer:main
+      sync_to_arcgis = eea.climateadapt.scripts.sync_to_arcgis:main
       """,
       # The next two lines may be deleted after you no longer need
       # addcontent support from paster and before you distribute

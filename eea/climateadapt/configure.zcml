@@ -27,6 +27,7 @@
     <include file="profiles.zcml" />
     <include file="stringinterp.zcml" />
     <include file="cache.zcml" />
+    <include file="rabbitmq.zcml" />
 
     <browser:jbot
         directory="browser/pt-overrides"
@@ -99,10 +100,18 @@
     <adapter factory=".aceproject.KeywordsFieldWidget" />
     <adapter factory=".aceproject.SpecialTagsFieldWidget" />
 
+    ------[ Subscribers: ]--------
+
     <subscriber
         for="plone.dexterity.interfaces.IDexterityContent
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
         handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
         />
+
+    <subscriber
+       for="eea.climateadapt.acemeasure.CaseStudy
+            zope.lifecycleevent.interfaces.IObjectAddedEvent"
+       handler=".acemeasure.handle_for_arcgis_sync"
+    />
 
 </configure>

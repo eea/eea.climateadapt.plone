@@ -14,8 +14,8 @@ import time
 
 
 class CaseStudyView(DefaultView, AceViewApi):
-    def __call__(self):
-        return super(CaseStudyView, self).__call__()
+    """ Default view for case studies
+    """
 
     def get_adaptation_options(self):
         # TODO: filter by published
@@ -50,6 +50,46 @@ class CaseStudyFormExtender(FormExtender):
         self.move('contact', before='websites')
 
 
+def _unixtime(d):
+    try:
+        return int(time.mktime(d.utctimetuple()))
+    except AttributeError:
+        return ""
+
+
+def cs_to_json(cs):
+    return {
+        'attributes': {
+            'area':     '',
+            'itemname': cs.Title(),
+            'desc_':    cs.long_description
+            and cs.long_description.output or '',   # todo: strip
+            'website':  ';'.join(cs.websites or []),
+            'sectors':  ';'.join(cs.sectors or []),
+            'risks':    ';'.join(cs.climate_impacts or []),
+            'measureid': brain.getURL(),
+            'featured': 'no',
+            'newitem': 'no',
+            'casestudyf': '',
+            'client_cls': '',
+            'CreationDate': _unixtime(cs.creation_date),
+            'Creator': cs.creators[-1],
+            'EditDate': _unixtime(cs.modification_date),
+            'Editor': cs.workflow_history[
+                'cca_items_workflow'][-1]['actor'],
+        },
+        'geometry': {'x': geo and geo.latitude or '',
+                     'y': geo and geo.longitude or ''}
+    }
+
+
+class CaseStudyJson(BrowserView):
+    """ @@json view
+    """
+    def __call__(self):
+        return json.dumps(cs_to_json(self.context))
+
+
 class CaseStudiesJson(BrowserView):
     """ A view to return all case studies as JSON.
 
@@ -76,39 +116,11 @@ class CaseStudiesJson(BrowserView):
     Geometry such as: u'geometry': {u'x': -413371.4, u'y': 4927436.6}
     """
 
-    def _unixtime(self, d):
-        try:
-            return int(time.mktime(d.utctimetuple()))
-        except AttributeError:
-            return ""
-
     def __call__(self):
         cat = getToolByName(self.context, 'portal_catalog')
         res = []
         for brain in cat.searchResults(portal_type='eea.climateadapt.casestudy'):
             cs = brain.getObject()
             geo = cs.geolocation
-            res.append({
-                'attributes': {
-                    'area':     '',
-                    'itemname': cs.Title(),
-                    'desc_':    cs.long_description
-                                and cs.long_description.output or '',   # todo: strip
-                    'website':  ';'.join(cs.websites or []),
-                    'sectors':  ';'.join(cs.sectors or []),
-                    'risks':    ';'.join(cs.climate_impacts or []),
-                    'measureid': brain.getURL(),
-                    'featured': 'no',
-                    'newitem': 'no',
-                    'casestudyf': '',
-                    'client_cls': '',
-                    'CreationDate': self._unixtime(cs.creation_date),
-                    'Creator': cs.creators[-1],
-                    'EditDate': self._unixtime(cs.modification_date),
-                    'Editor': cs.workflow_history[
-                        'cca_items_workflow'][-1]['actor'],
-                },
-                'geometry': {'x': geo and geo.latitude or '',
-                             'y': geo and geo.longitude or ''}
-            })
+            res.append(cs_to_json(cs))
         return json.dumps(res)

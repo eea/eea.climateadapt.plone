@@ -40,17 +40,16 @@
     </record>
 
     <record interface="Products.ResourceRegistries.interfaces.settings.IResourceRegistriesSettings" field="resourceBundlesForThemes">
-      <value purge="false">
-        <element key="Sunburst Theme" purge="false">
-          <element>jquery</element>
-          <element>default</element>
-          <element>jqueryui</element>
-          <!-- <element>deprecated</element> -->
-        </element>
-      </value>
-  </record>
+        <value purge="false">
+            <element key="Sunburst Theme" purge="false">
+                <element>jquery</element>
+                <element>default</element>
+                <element>jqueryui</element>
+                <!-- <element>deprecated</element> -->
+            </element>
+        </value>
+    </record>
 
-    # activate plone.app.jquery
-    # disable plone.app.widgets
+    <records interface="eea.climateadapt.rabbitmq.IRabbitMQClientSettings" />
 
 </registry>
