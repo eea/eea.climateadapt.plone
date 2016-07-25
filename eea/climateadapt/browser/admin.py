@@ -111,3 +111,46 @@ class ForceUnlock(BrowserView):
                 url += '/view'
 
         return self.request.RESPONSE.redirect(url)
+
+
+class ListTilesWithTitleView (BrowserView):
+    """ View that lists all tiles with richtext title and their respective urls
+    """
+
+    def __call__(self):
+        covers = self.context.portal_catalog.searchResults(
+                              portal_type='collective.cover.content')
+        self.urls = []
+        for cover in covers:
+            cover = cover.getObject()
+
+            self.tiles = []
+
+            self.walk(json.loads(cover.cover_layout))
+
+            if hasattr(cover, '__annotations__'):
+                for tile_id in self.tiles:
+                    tile_id = tile_id.encode()
+                    # tile = cover.__annotations__['plone.tiles.data.' + tile_id]
+                    self.urls.append(cover.absolute_url())
+
+        return self.index()
+
+    def linkify(self, text):
+        if not text:
+            return
+
+        if text.startswith('/') or text.startswith('http'):
+            return text
+
+        return "http://" + text
+
+    def walk(self, item):
+        if isinstance(item, dict):
+            if item.get('tile-type') == 'eea.climateadapt.richtext_with_title':
+                self.tiles.append(item['id'])
+
+            self.walk(item.get('children', []))
+        elif isinstance(item, list):
+            for x in item:
+                self.walk(x)

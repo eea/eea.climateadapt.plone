@@ -1,3 +1,5 @@
+from Products.CMFPlone.utils import getToolByName
+from Products.Five.browser import BrowserView
 from eea.climateadapt.browser import AceViewApi
 from eea.climateadapt.vocabulary import _relevance
 from plone.dexterity.browser.add import DefaultAddForm
@@ -7,6 +9,8 @@ from plone.dexterity.interfaces import IDexterityEditForm
 from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
 from zope.interface import classImplements
+import json
+import time
 
 
 class CaseStudyView(DefaultView, AceViewApi):
@@ -44,3 +48,67 @@ class CaseStudyFormExtender(FormExtender):
         self.move('objectives', after='climate_impacts')
         self.move('challenges', after='climate_impacts')
         self.move('contact', before='websites')
+
+
+class CaseStudiesJson(BrowserView):
+    """ A view to return all case studies as JSON.
+
+    Useful in debugging in developing the SAT mapping tool
+
+    Fields:
+        [u'FID',            # internal id field in GIS?
+        u'area',            # biogeographical region from geochar
+        u'itemname',        # title
+        u'desc_',           # u'desc_': u'<p>The Hedwige-Prosper Polder project is part of the <span></p></span>',
+        u'website',         # 'www.stadtklima-stuttgart.de/index.php?climate_climate_atlas_2008;www.stadtklima-stuttgart.de/index.php?start_e;www.grabs-eu.org/membersArea/files/stuttgart.pdf'
+        u'sectors',         # 'BIODIVERSITY;COASTAL;WATERMANAGEMENT;',
+        u'risks',           # u'FLOODING;SEALEVELRISE;',
+        u'measureid',       # a number
+        u'featured',        # "yes" or "no",
+        u'newitem',         # "yes" or "no"
+        u'casestudyf',      # u'casestudyf': u'CASEHOME;CASESEARCH;',
+        u'client_cls',      # "featured" or "featured-highlight" or "normal" or "highlight"
+        u'CreationDate',    # Unix timestamp
+        u'Creator',         # user id
+        u'EditDate',        # Unix timestamp
+        u'Editor'           # user id
+        ]
+    Geometry such as: u'geometry': {u'x': -413371.4, u'y': 4927436.6}
+    """
+
+    def _unixtime(self, d):
+        try:
+            return int(time.mktime(d.utctimetuple()))
+        except AttributeError:
+            return ""
+
+    def __call__(self):
+        cat = getToolByName(self.context, 'portal_catalog')
+        res = []
+        for brain in cat.searchResults(portal_type='eea.climateadapt.casestudy'):
+            cs = brain.getObject()
+            geo = cs.geolocation
+            res.append({
+                'attributes': {
+                    'area':     '',
+                    'itemname': cs.Title(),
+                    'desc_':    cs.long_description
+                                and cs.long_description.output or '',   # todo: strip
+                    'website':  ';'.join(cs.websites or []),
+                    'sectors':  ';'.join(cs.sectors or []),
+                    'risks':    ';'.join(cs.climate_impacts or []),
+                    'measureid': brain.getURL(),
+                    'featured': 'no',
+                    'newitem': 'no',
+                    'casestudyf': '',
+                    'client_cls': '',
+                    'CreationDate': self._unixtime(cs.creation_date),
+                    'Creator': cs.creators[-1],
+                    'EditDate': self._unixtime(cs.modification_date),
+                    'Editor': cs.workflow_history[
+                        'cca_items_workflow'][-1]['actor'],
+                },
+                'geometry': {'x': geo and geo.latitude or '',
+                             'y': geo and geo.longitude or ''}
+            })
+        return json.dumps(res)

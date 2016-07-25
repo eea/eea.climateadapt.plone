@@ -5,8 +5,8 @@
     xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="eea.climateadapt">
 
-    <include file='overrides.zcml' />
-    <include file='frontpage.zcml' />
+    <include file="overrides.zcml" />
+    <include file="frontpage.zcml" />
     <include file="faceted.zcml" />
 
     <browser:page
@@ -86,14 +86,6 @@
         template="pt/no_title_cover_view.pt"
         permission="zope2.View"
         />
-
-    <!-- <browser:page -->
-        <!--     name="view" -->
-        <!--     for="eea.climateadapt.aceitem.IAceItem" -->
-        <!--     class="eea.climateadapt.browser.aceitem.AceItemView" -->
-        <!--     template="pt/aceitem_view.pt" -->
-        <!--     permission="zope2.View" -->
-        <!--     /> -->
 
     <browser:page
         name="view"
@@ -277,7 +269,7 @@
         />
 
     <browser:page
-        class=".misc.ListTilesWithTitleView"
+        class=".admin.ListTilesWithTitleView"
         for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
         name="richtext-tiles"
         template="pt/list-richtext-tiles.pt"
@@ -310,7 +302,7 @@
     <!-- Special pages, reimplemented as standalone views, and their AJAX helpers -->
 
     <browser:page
-        class=".sat.SatView"
+        class=".misc.SatView"
         for="*"
         name="sat"
         template="pt/sat.pt"
@@ -356,24 +348,6 @@
 
     <!-- Tile helpers -->
 
-    <browser:viewlet
-        name="plone.resourceregistries"
-        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
-        view=".misc.TransRegionView"
-        template="pt/resourceregistries.pt"
-        permission="zope2.View"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        />
-
-    <browser:viewlet
-        name="plone.resourceregistries"
-        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
-        view=".misc.CountriesView"
-        template="pt/resourceregistries.pt"
-        permission="zope2.View"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        />
-
     <browser:page
         name="acecontent_search_helper"
         for="*"
@@ -396,17 +370,6 @@
         manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
         template="pt/viewlet_transregion_menu.pt"
         permission="zope2.View"
-        />
-
-
-    <!-- sat_view viewlet overrides -->
-    <browser:viewlet
-        name="plone.resourceregistries"
-        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
-        view=".sat.ISatView"
-        template="pt/resourceregistries.pt"
-        permission="zope2.View"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
 
     <!-- SharePageSubMenu -->
@@ -436,11 +399,27 @@
         />
 
     <browser:viewlet
+        name="plone.resourceregistries"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        view=".misc.ISimplifiedResourceRegistriesView"
+        template="pt/resourceregistries.pt"
+        permission="zope2.View"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        />
+
+    <browser:viewlet
         name="plone.path_bar"
         manager="plone.app.layout.viewlets.interfaces.IAboveContent"
         class=".viewlets.PathBarViewlet"
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         permission="zope2.View"
+        />
+
+    <browser:page
+        name="casestudies.json"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        permission="zope2.View"
+        class=".casestudy.CaseStudiesJson"
         />
 
 </configure>
