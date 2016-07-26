@@ -114,4 +114,16 @@
        handler=".acemeasure.handle_for_arcgis_sync"
     />
 
+    <subscriber
+       for="eea.climateadapt.acemeasure.CaseStudy
+            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+       handler=".acemeasure.handle_for_arcgis_sync"
+    />
+
+    <subscriber
+       for="eea.climateadapt.acemeasure.CaseStudy
+            zope.lifecycleevent.interfaces.IObjectRemovedEvent"
+       handler=".acemeasure.handle_for_arcgis_sync"
+    />
+
 </configure>

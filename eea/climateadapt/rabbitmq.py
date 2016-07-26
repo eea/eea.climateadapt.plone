@@ -35,7 +35,10 @@ RabbitMQClientControlPanelView.label = u"RabbitMQ Client settings"
 
 RABBIT_QUEUE = 'eea.climateadapt'
 
-def queue_msg(msg, queue=None):
+def get_rabbitmq_conn(context=None, queue=None):
+    """ Returns a RabbitMQConnector instance
+    """
+
     if queue == None:
         queue = RABBIT_QUEUE
 
@@ -45,4 +48,35 @@ def queue_msg(msg, queue=None):
     rb = RabbitMQConnector(s.server, s.port, s.username, s.password)
     rb.open_connection()
     rb.declare_queue(queue)
-    rb.send_message(queue, msg)
+
+    return rb
+
+
+def queue_msg(msg, context=None, queue=None):
+    """ Queues a rabbitmq message in the given queue
+
+    If no queue is given, the default RABBIT_QUEUE is used
+    """
+
+    conn = get_rabbitmq_conn(context=context, queue=queue)
+    conn.send_message(queue, msg)
+    print "queu msg", msg, queue, conn
+
+
+def consume_messages(callback, context=None, queue=None):
+    """ Executes the callback on all messages existing in the queue
+
+    # TODO: implement a lockfile mechanism, see
+    # http://fasteners.readthedocs.io/en/latest/api/lock.html#decorators
+    """
+
+    if queue is None:
+        queue = RABBIT_QUEUE
+
+    conn = get_rabbitmq_conn(context=context, queue=queue)
+    while not conn.is_queue_empty(queue):
+        msg = conn.get_message(queue)
+        print "consuming message", msg, queue
+        callback(msg)
+        conn.get_channel().basic_ack(msg[0].delivery_tag)
+    conn.close_connection()

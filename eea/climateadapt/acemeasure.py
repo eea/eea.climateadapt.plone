@@ -458,3 +458,4 @@ def SpecialTagsFieldWidget(field, request):
 def handle_for_arcgis_sync(obj, event):
     msg = event.__class__.__name__ + "|" + obj.absolute_url()
     queue_msg(msg, queue='eea.climateadapt.casestudies')
+    print "queued msg", msg
