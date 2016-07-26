@@ -492,5 +492,5 @@ def handle_for_arcgis_sync(obj, event):
     msg = event.__class__.__name__ + "|" + obj.UID()
     try:
         queue_msg(msg, queue='eea.climateadapt.casestudies')
-    except:
+    except Exception:
         logger.exception("Couldn't queue RabbitMQ message for case study event")
