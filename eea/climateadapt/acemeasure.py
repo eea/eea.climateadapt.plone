@@ -26,6 +26,9 @@ from zope.component import adapter
 from zope.interface import implementer, implements
 from zope.schema import List, Text, TextLine, Tuple
 from zope.schema import URI, Bool, Choice, Int
+import logging
+
+logger = logging.getLogger('eea.climateadapt.acemeasure')
 
 
 class IAceMeasure(form.Schema, IImageScaleTraversable):
@@ -487,4 +490,7 @@ def SpecialTagsFieldWidget(field, request):
 
 def handle_for_arcgis_sync(obj, event):
     msg = event.__class__.__name__ + "|" + obj.UID()
-    queue_msg(msg, queue='eea.climateadapt.casestudies')
+    try:
+        queue_msg(msg, queue='eea.climateadapt.casestudies')
+    except:
+        logger.exception("Couldn't queue RabbitMQ message for case study event")
