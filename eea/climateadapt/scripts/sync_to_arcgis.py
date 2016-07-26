@@ -170,29 +170,35 @@ def describe_service(token):
     return resp.json()
 
 
-# def main():
-#     token_url = get_token_service_url()
-#     token = generate_token(token_url)
-#     print "Got token:", token
-#
-#     # pprint(describe_service(token))
-#     # return
-#
-#     test_edit(token)
-#
-#     results = query_layer(token)
-#     pprint(results)
-#     # titles = [(f['attributes']['itemname'],
-#     #            f['attributes']['measureid'],
-#     #            f['attributes']['FID'],
-#     #            f['geometry'])
-#     #           for f in results['features']]
-#     # pprint(titles)
-#
-#     fields = [r['name'] for r in results['fields']]
-#     pprint(fields)
-#
-#     #test_convert_from_points()
+def _arcgis_req(entry, op='edits'):
+    token_url = get_token_service_url()
+    token = generate_token(token_url)
+
+    data = {
+        'f': 'json',
+        'token': token,
+        'referer': REFERER,
+        'edits': json.dumps([
+            {'id': 0,
+             op: [entry._repr_for_arcgis()]
+             }
+        ]),
+    }
+    url = "{0}/applyEdits".format(LAYER_URL)
+    resp = requests.post(url, data=data)
+    return resp.json()
+
+
+def arcgis_add_entry(entry):
+    return _arcgis_req(entry, op='adds')
+
+
+def arcgis_del_entry(entry):
+    return _arcgis_req(entry, op='deletes')
+
+
+def arcgis_edit_entry(entry):
+    return _arcgis_req(entry, op='updates')
 
 
 def _get_obj_by_uid(context, uid):
@@ -202,8 +208,8 @@ def _get_obj_by_uid(context, uid):
 
 def handle_ObjectAddedEvent(context, uid):
     obj = _get_obj_by_uid(context, uid)
-    js = obj._repr_for_arcgis()
-    print js
+    entry = obj._repr_for_arcgis()
+    arcgis_add_entry(entry)
 
 
 HANDLERS = {
@@ -237,7 +243,3 @@ def main():
         partial(_consume_msg, context=site),
         queue='eea.climateadapt.casestudies'
     )
-
-
-if __name__ == "__main__":
-    main()
