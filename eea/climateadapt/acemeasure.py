@@ -1,8 +1,12 @@
+""" CaseStudy and AdaptationOption implementations
+"""
+
 from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.rabbitmq import queue_msg
 from eea.climateadapt.schema import Year
+from eea.climateadapt.utils import _unixtime
 from plone.app.contenttypes.interfaces import IImage
 from plone.app.textfield import RichText
 from plone.app.widgets.dx import AjaxSelectWidget
@@ -428,6 +432,32 @@ class CaseStudy(dexterity.Container):
 
     search_type = "ACTION"
 
+    def _repr_for_arcgis(self):
+        geo = self.geolocation
+        return {
+            'attributes': {
+                'area':     '',
+                'itemname': self.Title(),
+                'desc_':    self.long_description
+                and self.long_description.output or '',   # todo: strip
+                'website':  ';'.join(self.websites or []),
+                'sectors':  ';'.join(self.sectors or []),
+                'risks':    ';'.join(self.climate_impacts or []),
+                'measureid': self.UID(),
+                'featured': 'no',
+                'newitem': 'no',
+                'casestudyf': '',
+                'client_cls': '',
+                'CreationDate': _unixtime(self.creation_date),
+                'Creator': self.creators[-1],
+                'EditDate': _unixtime(self.modification_date),
+                'Editor': self.workflow_history[
+                    'cca_items_workflow'][-1]['actor'],
+            },
+            'geometry': {'x': geo and geo.latitude or '',
+                        'y': geo and geo.longitude or ''}
+        }
+
 
 class AdaptationOption(dexterity.Container):
     implements(IAdaptationOption, IClimateAdaptContent)
@@ -456,6 +486,5 @@ def SpecialTagsFieldWidget(field, request):
 
 
 def handle_for_arcgis_sync(obj, event):
-    msg = event.__class__.__name__ + "|" + obj.absolute_url()
+    msg = event.__class__.__name__ + "|" + obj.UID()
     queue_msg(msg, queue='eea.climateadapt.casestudies')
-    print "queued msg", msg

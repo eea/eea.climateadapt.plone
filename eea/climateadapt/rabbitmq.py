@@ -60,7 +60,6 @@ def queue_msg(msg, context=None, queue=None):
 
     conn = get_rabbitmq_conn(context=context, queue=queue)
     conn.send_message(queue, msg)
-    print "queu msg", msg, queue, conn
 
 
 def consume_messages(callback, context=None, queue=None):
@@ -76,7 +75,6 @@ def consume_messages(callback, context=None, queue=None):
     conn = get_rabbitmq_conn(context=context, queue=queue)
     while not conn.is_queue_empty(queue):
         msg = conn.get_message(queue)
-        print "consuming message", msg, queue
         callback(msg)
         conn.get_channel().basic_ack(msg[0].delivery_tag)
     conn.close_connection()

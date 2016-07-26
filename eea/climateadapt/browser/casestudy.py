@@ -10,7 +10,6 @@ from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
 from zope.interface import classImplements
 import json
-import time
 
 
 class CaseStudyView(DefaultView, AceViewApi):
@@ -50,44 +49,11 @@ class CaseStudyFormExtender(FormExtender):
         self.move('contact', before='websites')
 
 
-def _unixtime(d):
-    try:
-        return int(time.mktime(d.utctimetuple()))
-    except AttributeError:
-        return ""
-
-
-def cs_to_json(cs):
-    return {
-        'attributes': {
-            'area':     '',
-            'itemname': cs.Title(),
-            'desc_':    cs.long_description
-            and cs.long_description.output or '',   # todo: strip
-            'website':  ';'.join(cs.websites or []),
-            'sectors':  ';'.join(cs.sectors or []),
-            'risks':    ';'.join(cs.climate_impacts or []),
-            'measureid': brain.getURL(),
-            'featured': 'no',
-            'newitem': 'no',
-            'casestudyf': '',
-            'client_cls': '',
-            'CreationDate': _unixtime(cs.creation_date),
-            'Creator': cs.creators[-1],
-            'EditDate': _unixtime(cs.modification_date),
-            'Editor': cs.workflow_history[
-                'cca_items_workflow'][-1]['actor'],
-        },
-        'geometry': {'x': geo and geo.latitude or '',
-                     'y': geo and geo.longitude or ''}
-    }
-
-
 class CaseStudyJson(BrowserView):
     """ @@json view
     """
     def __call__(self):
-        return json.dumps(cs_to_json(self.context))
+        return json.dumps(self.context._to_json())
 
 
 class CaseStudiesJson(BrowserView):
@@ -121,6 +87,5 @@ class CaseStudiesJson(BrowserView):
         res = []
         for brain in cat.searchResults(portal_type='eea.climateadapt.casestudy'):
             cs = brain.getObject()
-            geo = cs.geolocation
-            res.append(cs_to_json(cs))
+            res.append(cs._repr_for_arcgis())
         return json.dumps(res)
