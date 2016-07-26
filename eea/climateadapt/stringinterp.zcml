@@ -63,11 +63,5 @@
         factory=".stringinterp.cca_managers"
         name="cca_managers_emails"
         />
-    <adapter
-        for="*"
-        provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".stringinterp.cca_mayors"
-        name="cca_mayors_email"
-        />
 
 </configure>

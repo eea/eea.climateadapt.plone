@@ -81,8 +81,3 @@ class cca_checkers(BaseLDAPLookupEmailSubstitution):
 class cca_editors(BaseLDAPLookupEmailSubstitution):
     group = 'extranet-cca-editors'
     description = group + u' E-Mails'
-
-
-class cca_mayors(BaseLDAPLookupEmailSubstitution):
-    group = 'cca-mayors'
-    description = group + u' E-Mails'
