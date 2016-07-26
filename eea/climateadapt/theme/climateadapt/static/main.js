@@ -123,6 +123,9 @@
 			$('#year-end-input').val(9999);
 		});
 
+		// Make the first photo of gallery visible
+		$('#links').children('.gallery-hide').eq(0).css('display', 'block');
+
 		// Display event for gallery open
 		$('#links').on('click', function(event) {
 			$(this).children('.gallery-hide').css('display', 'block');
@@ -133,13 +136,13 @@
 			if(event.target.className == "slide " ||
 			   event.target.className == "close"  ||
 		   	   event.target.className == "slide") {
-				$('#links').children('.gallery-hide').css('display', 'none');
+				$('#links').children('.gallery-hide').slice(1, 4).css('display', 'none');
 			}
 		});
 
 		$(document).keyup(function(e) {
 			if (e.keyCode === 27) {
-				$('#links').children('.gallery-hide').css('display', 'none');
+				$('#links').children('.gallery-hide').slice(1, 4).css('display', 'none');
 			}
 		});
 
