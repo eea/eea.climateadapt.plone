@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Implemented mayors_email stringinterp filter
+  [iulianpetchesi #74581]
 * Bugfix: Implemented new image gallery
   [iulianpetchesi #73235]
 * Bugfix: Case studies template fixes
