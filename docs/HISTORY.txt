@@ -3,7 +3,7 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
-* Bugfix: Implemented new contact form
+* Bugfix: Implemented new contact form for /contact page
   [iulianpetchesi #71637]
 * Bugfix: Implemented new image gallery
   [iulianpetchesi #73235]
