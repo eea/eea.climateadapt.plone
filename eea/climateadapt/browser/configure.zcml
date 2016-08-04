@@ -257,7 +257,7 @@
 
     <browser:page
         class=".misc.ContactForm"
-        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        for="*"
         name="contact-form"
         permission="cmf.ManagePortal"
         />
