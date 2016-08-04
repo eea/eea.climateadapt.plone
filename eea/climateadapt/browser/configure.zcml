@@ -256,6 +256,13 @@
     <!-- Special pages, reimplemented as standalone views, and their AJAX helpers -->
 
     <browser:page
+        class=".misc.ContactForm"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        name="contact-form"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
         class=".misc.SatView"
         for="*"
         name="sat"

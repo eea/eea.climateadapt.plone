@@ -2,6 +2,8 @@
 """
 
 from zope.schema import TextLine
+from Products.CMFPlone.PloneTool import EMAIL_RE
+from zope.schema import ValidationError
 
 
 class Year(TextLine):
@@ -30,3 +32,16 @@ class Year(TextLine):
         v = int(str)
         self.validate(v)
         return v
+
+
+class InvalidEmail(ValidationError):
+    """ Invalid Email Address """
+
+
+class Email(TextLine):
+    def validate(self, value):
+        if value:
+            check_value = EMAIL_RE.sub('', value)
+            if check_value != '':
+                raise InvalidEmail
+        return True
