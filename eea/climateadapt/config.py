@@ -12,3 +12,15 @@ DEFAULT_LOCATIONS = {
     "MEASURE": ('metadata/adaptation-options', "Adaptation options", 'eea.climateadapt.adaptationoption'),
     "ACTION": ('metadata/case-studies', "Case studies", 'eea.climateadapt.casestudy'),
 }
+
+CONTACT_MAIL_LIST = [
+    "christian.prosperini@eea.europa.eu",
+    "lorenasalcidos@gmail.com",
+    "helpdesk@mayors-adapt.eu",
+]
+
+REGISTER_MAIL_LIST = [
+    "christian.prosperini@eea.europa.eu",
+    "lorenasalcidos@gmail.com",
+    "helpdesk@mayors-adapt.eu",
+]

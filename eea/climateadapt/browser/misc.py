@@ -1,5 +1,7 @@
 from email.MIMEText import MIMEText
 from Acquisition import aq_inner
+from eea.climateadapt.config import CONTACT_MAIL_LIST
+from eea.climateadapt.schema import Email
 from plone import api
 from plone.directives import form
 from plone.formwidget.recaptcha.interfaces import IReCaptchaSettings
@@ -9,7 +11,6 @@ from z3c.form import button, field
 from zope import schema
 from zope.component import getMultiAdapter
 from zope.interface import Interface, Invalid, implements, invariant
-from eea.climateadapt.schema import Email
 
 
 class ISimplifiedResourceRegistriesView(Interface):
@@ -107,12 +108,16 @@ class ContactForm(form.SchemaForm):
         )
         if captcha.verify():
             mail_host = api.portal.get_tool(name='MailHost')
-            emailto = str(api.portal.getSite().email_from_address)
+            # emailto = str(api.portal.getSite().email_from_address)
 
             mime_msg = MIMEText(data.get('message'))
             mime_msg['Subject'] = data.get('feedback')
             mime_msg['From'] = data.get('email')
-            mime_msg['To'] = emailto
+            # mime_msg['To'] = ','.join(b for b in CONTACT_MAIL_LIST)
+            # mime_msg['To'] = CONTACT_MAIL_LIST
+
+            for m in CONTACT_MAIL_LIST:
+                mime_msg['To'] = m
 
             self.description = u"Email Sent."
             return mail_host.send(mime_msg.as_string())
