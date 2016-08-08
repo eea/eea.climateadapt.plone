@@ -138,7 +138,9 @@ jQuery(function ($) {
                     o.click(pb.image_click);
                     break;
                 case 'ajax':
-                    o.click(pb.ajax_click);
+                    if (o.text() !== "Contact") {
+                        o.click(pb.ajax_click);
+                    }
                     break;
                 case 'iframe':
                     pb.create_content_div(pbo);
