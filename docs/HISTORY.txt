@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Several bugfixes to urban ast.
+  [iulianpetchesi #74971 & #74981 & #74974 & #74975 & #74977]
 * Feature: implemented a tile-based navigation system for subsections
   [tiberich #73975]
 * Bugfix: Implemented new forms for /register and for

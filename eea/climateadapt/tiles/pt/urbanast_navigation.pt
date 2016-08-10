@@ -62,7 +62,8 @@
         <li><a href="/tools/urban-ast/step-0-2" name="step-0-2" onclick="document.location.href='/tools/urban-ast/step-0-2'"><p>0.2 How is the European climate changing and what are the consequences for urban areas?</p></a></li>
         <li><a href="/tools/urban-ast/step-0-3" name="step-0-3" onclick="document.location.href='/tools/urban-ast/step-0-3'"><p>0.3 What is adaptation to climate change and why does it matter in my city/town?</p></a></li>
         <li><a href="/tools/urban-ast/step-0-4" name="step-0-4" onclick="document.location.href='/tools/urban-ast/step-0-4'"><p>0.4 What are the key principles for adaptation?</p></a></li>
-        <li><a href="/tools/urban-ast/step-0-5" name="step-0-5" onclick="document.location.href='/tools/urban-ast/step-0-5'"><p>0.5 What are the inter-relationships between adaptation and mitigation?</p></a></li>
+        <li><a href="/tools/urban-ast/step-0-5" name="step-0-5" onclick="document.location.href='/tools/urban-ast/step-0-5'"><p>0.5
+        How to address the inter-relationships and co-benefits between adaptation and mitigation?</p></a></li>
         <li><a href="/tools/urban-ast/step-0-6" name="step-0-6" onclick="document.location.href='/tools/urban-ast/step-0-6'"><p>0.6 Where can I find support for adaptation planning in the form of advice and capacity building?</p></a></li>
       </ul>
     </li>
@@ -100,7 +101,7 @@
     </li>
     <li><a href="/tools/urban-ast/step-3-0" name="step-3-0" onclick="document.location.href='/tools/urban-ast/step-3-0'"><strong>3.</strong> Identifying adaptation options</a>
       <ul id="step-3">
-        <li><a href="/tools/urban-ast/step-3-1" name="step-3-1" onclick="document.location.href='/tools/urban-ast/step-3-1'"><p>3.1 What adaptation options for urban cities exist and how to set up a catalogue of options?</p></a></li>
+        <li><a href="/tools/urban-ast/step-3-1" name="step-3-1" onclick="document.location.href='/tools/urban-ast/step-3-1'"><p>3.1 What are the possible adaptation measures for urban areas and how to collect them in a catalogue of potential measures?</p></a></li>
         <li><a href="/tools/urban-ast/step-3-2" name="step-3-2" onclick="document.location.href='/tools/urban-ast/step-3-2'"><p>3.2 Where can I find examples of good adaptation practice of other cities and towns?</p></a></li>
         <li><a href="/tools/urban-ast/step-3-3" name="step-3-3" onclick="document.location.href='/tools/urban-ast/step-3-3'"><p>3.3 How do I identify the existing adaptation options in my city/town?</p></a>
           <ul id="step-3-3">
@@ -111,7 +112,7 @@
     </li>
     <li><a href="/tools/urban-ast/step-4-0" name="step-4-0" onclick="document.location.href='/tools/urban-ast/step-4-0'"><strong>4.</strong> Assessing and selecting adaptation options</a>
       <ul id="step-4">
-        <li><a href="/tools/urban-ast/step-4-1" name="step-4-1" onclick="document.location.href='/tools/urban-ast/step-4-1'"><p>4.1 What are the main aspects of adaptation measures that need to be assessed and described in detail?</p></a></li>
+        <li><a href="/tools/urban-ast/step-4-1" name="step-4-1" onclick="document.location.href='/tools/urban-ast/step-4-1'"><p>4.1 What are the main aspects of adaptation measures that need to be assessed in order to choose the most appropriate ones for my city or town?</p></a></li>
         <li><a href="/tools/urban-ast/step-4-2" name="step-4-2" onclick="document.location.href='/tools/urban-ast/step-4-2'"><p>4.2 How do I carry out cost-benefit analysis?</p></a></li>
         <li><a href="/tools/urban-ast/step-4-3" name="step-4-3" onclick="document.location.href='/tools/urban-ast/step-4-3'"><p>4.3 How to assess cross-cutting issues, trade-offs and synergies of adaptation options?</p></a></li>
         <li><a href="/tools/urban-ast/step-4-4" name="step-4-4" onclick="document.location.href='/tools/urban-ast/step-4-4'"><p>4.4 How to prioritise adaptation options and select the preferable ones?</p></a>

@@ -58,6 +58,7 @@ class SectionNavTile(PersistentCoverTile):
                 'sort_order':'getObjPositionInParent',
                 'portal_type':'Folder'}
         )
+
     def accepted_ct(self):
         return ['Folder']
 

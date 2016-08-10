@@ -1014,12 +1014,24 @@ ul#ast-menu, #ast-menu ul {
     margin: 0;
 }
 
-.subsection-tools-urban-ast #content .tile:nth-last-of-type(1) {
+/*.subsection-tools-urban-ast #content .tile:nth-last-of-type(1) {
+    font-size: 0.9em;
+}*/
+
+.subsection-tools-urban-ast #content .col-md-8 .row h3 {
+    font-size: 1.1em;
+}
+
+.subsection-tools-urban-ast #content .col-md-8 .row .cover-richtext-tile div {
     font-size: 0.9em;
 }
 
 .subsection-tools-urban-ast #content .col-md-8 .padded-tile {
     font-size: 0.9em;
+}
+
+.subsection-tools-urban-ast .edit-tool-custom-click .read-more-acc a {
+    font-size: 18px;
 }
 
 .col-md-6 {
@@ -1951,9 +1963,8 @@ li.dropdown-submenu {
 	float: none;
 }
 
-
 #next-link {
-	width: 150px;
+	width: 110px;
 	float: right;
 	text-align: right;
 }
@@ -2037,8 +2048,8 @@ li.dropdown-submenu {
 #aceitem_sidebar .bluebutton {
     float: none !important;
 }
+
 .ast_header h1 {
-    font-size:120% !important;
     color: #CCC !important;
     padding-left: 1em;
 }
