@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<registry>
+    <record name="plone.app.tiles">
+        <value purge="false">
+            <element>eea.climateadapt.section_nav</element>
+        </value>
+    </record>
+    <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
+        <value purge="false">
+            <element>eea.climateadapt.section_nav</element>
+        </value>
+    </record>
+</registry>

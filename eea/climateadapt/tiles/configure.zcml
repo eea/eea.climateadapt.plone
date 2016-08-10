@@ -157,6 +157,18 @@
         />
 
     <plone:tile
+        name="eea.climateadapt.section_nav"
+        title="Section Navigation"
+        description="Navigation between sections"
+        icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".section_nav.ISectionNavTile"
+        class=".section_nav.SectionNavTile"
+        permission="zope2.View"
+        for="*"
+        />
+
+    <plone:tile
         name="eea.climateadapt.urbanmenu"
         title="Urban Menu"
         description="Urban menu navigation"

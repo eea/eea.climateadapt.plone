@@ -2,6 +2,7 @@
 <registry>
     <record name="plone.app.tiles">
         <value purge="false">
+
             <element>eea.climateadapt.filter_acecontent</element>
             <element>eea.climateadapt.search_acecontent</element>
             <element>eea.climateadapt.relevant_acecontent</element>
@@ -14,6 +15,7 @@
             <element>eea.climateadapt.genericview</element>
             <element>eea.climateadapt.urbanmenu</element>
             <element>eea.climateadapt.formtile</element>
+            <element>eea.climateadapt.section_nav</element>
         </value>
     </record>
     <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
@@ -30,6 +32,7 @@
             <element>eea.climateadapt.genericview</element>
             <element>eea.climateadapt.urbanmenu</element>
             <element>eea.climateadapt.formtile</element>
+            <element>eea.climateadapt.section_nav</element>
         </value>
     </record>
     <record name="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings.public_key">

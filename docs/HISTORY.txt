@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Feature: implemented a tile-based navigation system for subsections
+  [tiberich #73975]
 * Bugfix: Implemented new forms for /register and for
   the contact footer
   [iulianpetchesi #71637]
