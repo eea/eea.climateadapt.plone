@@ -1030,7 +1030,7 @@ ul#ast-menu, #ast-menu ul {
     font-size: 0.9em;
 }
 
-.subsection-tools-urban-ast #content .col-md-8 .row .cover-richtext-tile ul > a {
+.subsection-tools-urban-ast #content .col-md-8 .row .cover-richtext-tile ul li a {
     font-size: 0.9em;
 }
 
