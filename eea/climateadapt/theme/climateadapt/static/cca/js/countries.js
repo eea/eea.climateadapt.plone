@@ -399,5 +399,5 @@
   }
 
   $(window).load(function() {
-    setTimeout(checkLayer, 200);
+    setTimeout(checkLayer, 500);
   });

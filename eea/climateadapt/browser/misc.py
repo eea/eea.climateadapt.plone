@@ -28,6 +28,7 @@ class TransRegionView(BrowserView):
 
 class CountriesView (BrowserView):
     """ Custom view for http://climate-adapt.eea.europa.eu/countries """
+    implements(ISimplifiedResourceRegistriesView)
 
 
 class MapViewerView (BrowserView):
