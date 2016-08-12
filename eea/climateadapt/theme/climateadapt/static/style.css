@@ -2330,3 +2330,6 @@ table.listing a {
 .cover-section_nav-tile ul li a:hover {
     color: Black !important;
 }
+.userrole-anonymous .hiddenForAnon {
+    display: none;
+}

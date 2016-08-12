@@ -32,6 +32,34 @@
     </div>
 
     <div class="cover-richtext-tile tile-content aceitem-search-tile" tal:condition="not: is_compose">
+      <div style="margin-top:0.4em; margin-right: 0.6em;float:left" class="hiddenForAnon">
+        <a href="" 
+          class="pat-plone-modal" 
+          tal:attributes="href string:#info${view/id}">
+          <img src="/++theme++climateadapt/static/cca/img/vergrootglas.png" />
+        </a>
+        <div tal:attributes="id string:info${view/id}" style="display:none" >
+          <h1>Relevant tile info</h1>
+          <dl>
+            <dt>Sector:</dt>
+            <dd tal:content="python: view.data.get('sector')" />
+
+            <dt>Element type:</dt>
+            <dd tal:content="python: view.data.get('element_type')" />
+
+            <dt>Search text: </dt>
+            <dd tal:content="python: view.data.get('search_text')" />
+
+            <dt>Special tags: </dt>
+            <dd tal:content="python: view.data.get('special_tags')" />
+
+            <dt>Search type:</dt>
+            <dd tal:content="python: view.data.get('search_type')" />
+
+            <dt>Number of items: </dt>
+            <dd tal:content="python: view.data.get('nr_items')" />
+        </dl>  </div>
+      </div>     
       <h2 tal:content="python: view.data.get('title')">Title here</h2>
 
       <h3 style="display:none">Search tile</h3>

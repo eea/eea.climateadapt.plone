@@ -28,10 +28,40 @@
     </dl>
 
     <div class="cover-richtext-tile tile-content aceitem-relevant-tile" tal:condition="not: is_compose">
-      <h2 tal:content="python: view.data.get('title')">Title here</h2>
+
+      <div style="margin-top:0.4em; margin-right: 0.6em;float:left" class="hiddenForAnon">
+        <a href="" 
+          class="pat-plone-modal" 
+          tal:attributes="href string:#info${view/id}">
+          <img src="/++theme++climateadapt/static/cca/img/vergrootglas.png" />
+        </a>
+        <div tal:attributes="id string:info${view/id}" style="display:none" >
+          <h1>Relevant tile info</h1>
+          <dl>
+            <dt>Element type:</dt>
+            <dd tal:content="python: view.data.get('element_type')" />
+
+            <dt>Sector:</dt>
+            <dd tal:content="python: view.data.get('sector')" />
+
+            <dt>Search type:</dt>
+            <dd tal:content="python: view.data.get('search_type')" />
+
+            <dt>Special tags: </dt>
+            <dd tal:content="python: view.data.get('special_tags')" />
+
+            <dt>Search text: </dt>
+            <dd tal:content="python: view.data.get('search_text')" />
+
+            <dt>Number of items: </dt>
+            <dd tal:content="python: view.data.get('nr_items')" />
+          </dl>      
+        </div>
+      </div>
+
+      <h2><span tal:content="python: view.data.get('title')">Title here</span></h2>
 
       <h3 style="display:none">Relevant tile</h3>
-      <div style="display:none" tal:content="view/data" />
       <ul>
         <li tal:repeat="brain view/items">
           <a href="" tal:attributes="href brain/getURL" tal:content="brain/Title">Title here</a>
