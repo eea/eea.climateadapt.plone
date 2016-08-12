@@ -198,7 +198,7 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
         _ace_types = dict(_datatypes)
 
         search_type = self.data.get('search_type')
-        if search_type:
+        if search_type and len(search_type) == 1:
             search_type = search_type[0]
             query = self.build_query()
             count = self.data.get('nr_items', 5)
@@ -215,6 +215,8 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
         element_type = self.data.pop('element_type', [])
 
         for info in aceitem_types:
+            if not (info.id in search_type):
+                continue
             q = query.copy()
 
             q.update({'search_type': info.id})
