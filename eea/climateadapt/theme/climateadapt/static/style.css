@@ -1184,6 +1184,7 @@ a.bluebutton:visited {
 
 .share-your-info-ace-button {
     padding-top:2em;
+    margin-bottom: 1em;
     text-align: right;
 }
 .tile-footer button {
