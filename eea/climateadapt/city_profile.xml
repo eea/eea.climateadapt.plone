@@ -5,6 +5,7 @@
         <fieldset name="general_information" label="General information">
             <field name="name_of_local_authority" type="zope.schema.TextLine">
                 <description/>
+                <required>False</required>
                 <title>Name of local authority</title>
             </field>
             <field name="population_size" type="zope.schema.TextLine">
@@ -14,6 +15,7 @@
             </field>
             <field name="country" type="zope.schema.Choice">
                 <description/>
+                <required>False</required>
                 <title>Country</title>
                 <vocabulary>eea.climateadapt.ace_countries</vocabulary>
             </field>
@@ -22,14 +24,17 @@
         <fieldset name="contact_person" label="Contact person">
             <field name="name_and_surname_of_mayor" type="zope.schema.TextLine">
                 <description/>
+                <required>False</required>
                 <title>Name and surname of mayor</title>
             </field>
             <field name="name_and_surname_of_contact_person" type="zope.schema.TextLine">
                 <description/>
+                <required>False</required>
                 <title>Name and surname of contact person</title>
             </field>
             <field name="role_of_contact_person" type="zope.schema.TextLine">
                 <description/>
+                <required>False</required>
                 <title>Role of contact person</title>
             </field>
             <field name="official_email" type="zope.schema.TextLine">
@@ -43,10 +48,12 @@
             </field>
             <field name="telephone" type="zope.schema.TextLine">
                 <description/>
+                <required>False</required>
                 <title>Telephone (for internal use only, not publically visible)</title>
             </field>
             <field name="website_of_the_local_authority" type="zope.schema.TextLine">
                 <description/>
+                <required>False</required>
                 <title>Website of the local authority</title>
             </field>
             <field name="city_background_information_about_the_city" type="zope.schema.Text">
@@ -59,17 +66,18 @@
         <fieldset name="signatory_status" label="Signatory status">
             <field name="covenant_of_mayors_signatory" type="zope.schema.Bool">
                 <description/>
+                <required>False</required>
                 <title>Covenant of Mayors signatory</title>
                 <form:widget type="z3c.form.browser.radio.RadioFieldWidget"/>
             </field>
             <field name="status_of_mayors_adapt_signature" type="zope.schema.Choice">
                 <description/>
+                <required>False</required>
                 <title>Status of Mayors Adapt signature (of political commitment)</title>
                 <vocabulary>eea.climateadapt.status_of_adapt_signature</vocabulary>
             </field>
             <field name="signature_date" type="zope.schema.Date">
                 <description/>
-                <required>False</required>
                 <title>Signature date</title>
             </field>
         </fieldset>
@@ -77,6 +85,7 @@
         <fieldset name="climate_change_impact_and_adaptation_responses" label="Climate change impact and adaptation responses">
             <field name="climate_impacts_risks_particularly_for_city_region" type="zope.schema.Set">
                 <description/>
+                <required>False</required>
                 <title>Climate impacts/risks particularly relevant for your city/region</title>
                 <value_type type="zope.schema.Choice">
                     <vocabulary>eea.climateadapt.cityprofile_climateimpacts</vocabulary>
@@ -89,6 +98,7 @@
             </field>
             <field name="key_vulnerable_adaptation_sector" type="zope.schema.Set">
                 <description/>
+                <required>False</required>
                 <title>Key vulnerable adaptation sector</title>
                 <value_type type="zope.schema.Choice">
                     <vocabulary>eea.climateadapt.key_vulnerable_adapt_sector</vocabulary>
@@ -101,11 +111,13 @@
             </field>
             <field name="stage_of_the_implementation_cycle" type="zope.schema.Choice">
                 <description/>
+                <required>False</required>
                 <title>Stage of the implementation cycle</title>
                 <vocabulary>eea.climateadapt.stage_implementation_cycle</vocabulary>
             </field>
             <field name="which_elements_are_mentioned_in_your_city_profile" type="zope.schema.Set">
                 <description/>
+                <required>False</required>
                 <title>Which of the following elements are mentioned in your city profile?</title>
                 <value_type type="zope.schema.Choice">
                     <vocabulary>eea.climateadapt.elements_mentioned_your_cp</vocabulary>
@@ -116,6 +128,7 @@
         <fieldset name="adapation_strategy" label="Adaptation Strategy">
             <field name="have_you_already_developed_an_adaptation_strategy" type="zope.schema.Choice">
                 <description/>
+                <required>False</required>
                 <title>Have you already developed an adaptation strategy?</title>
                 <vocabulary>eea.climateadapt.already_devel_adapt_strategy</vocabulary>
             </field>
@@ -151,6 +164,7 @@
             </field>
             <field name="planned_current_adaptation_actions_and_responses" type="zope.schema.Text">
                 <description/>
+                <required>False</required>
                 <title>(Planned/current) adaptation actions and responses</title>
             </field>
             <field name="weblinks_to_relevant_plans_studies" type="zope.schema.TextLine">
@@ -160,10 +174,12 @@
             </field>
             <field name="title_of_the_action_event" type="zope.schema.TextLine">
                 <description/>
+                <required>False</required>
                 <title>Title of the action/event</title>
             </field>
             <field name="long_description" type="plone.app.textfield.RichText">
                 <description/>
+                <required>False</required>
                 <title>Description</title>
             </field>
             <field name="picture" type="plone.namedfile.field.NamedBlobImage">

@@ -3,6 +3,9 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Made all fields not required for city profiles
+  except for title, official email and signature date
+  [iulianpetchesi #75034]
 * Bugfix: Fixed countries page not loading its map
   [iulianpetchesi #75039]
 * Bugfix: Several bugfixes to urban ast.
