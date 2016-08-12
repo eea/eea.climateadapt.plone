@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed a templating error for city profiles
+  [iulianpetchesi #75033]
 * Bug fix: allow selection of search_type in Search filtering tile
   [tiberich #73975]
 * Bugfix: Made all fields not required for city profiles except for title,

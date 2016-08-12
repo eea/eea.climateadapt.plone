@@ -214,7 +214,7 @@
                 <a tal:attributes="href python: context.website_of_the_local_authority">Website</a>
             </div>
 
-            <div>
+            <div tal:condition="python: view.context.signature_date is not None">
                 <h3>Date of officially joining Mayors Adapt</h3>
                 <div tal:content="python: view.formated_date(view.context.signature_date)" />
                 <!-- <div tal:content="structure python: view.w['signature_date'].render()" /> -->

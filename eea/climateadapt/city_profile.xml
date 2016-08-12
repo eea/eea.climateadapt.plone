@@ -78,6 +78,7 @@
             </field>
             <field name="signature_date" type="zope.schema.Date">
                 <description/>
+                <required>False</required>
                 <title>Signature date</title>
             </field>
         </fieldset>
