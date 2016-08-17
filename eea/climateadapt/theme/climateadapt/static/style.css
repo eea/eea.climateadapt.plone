@@ -2304,22 +2304,26 @@ table.listing a {
 .row .col-md-2 {
     padding-right: 1em;
 }
+
 .row .col-md-2 .form-control {
     padding: 0;
 }
 
 .cover-section_nav-tile {
 }
+
 .cover-section_nav-tile ul {
     margin: 1em 0em !important;
     padding: 0px !important;
 }
+
 .cover-section_nav-tile ul li {
     display: inline-block !important;
     padding: 0.4em 1em;
     margin-right: 0.3em;
     background-color: #a5bf26;
 }
+
 .cover-section_nav-tile ul li a {
     color: #012C56 !important;
     text-decoration: none;
@@ -2327,9 +2331,15 @@ table.listing a {
     font-family: 'Francois One', sans;
     cursor: pointer;
 }
+
 .cover-section_nav-tile ul li a:hover {
     color: Black !important;
 }
+
 .userrole-anonymous .hiddenForAnon {
     display: none;
+}
+
+.subsection-case-studies .pattern-relateditems-buttons {
+    padding-left: 45em;
 }
