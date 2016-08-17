@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed an error when search_type was None
+  [iulianpetchesi #75047]
 * Feature: show a button with a modal with relevant/search tile configuration
   [tiberich #75047]
 * Bugfix: Fixed a templating error for city profiles

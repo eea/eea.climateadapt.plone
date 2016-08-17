@@ -215,8 +215,9 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
         element_type = self.data.pop('element_type', [])
 
         for info in aceitem_types:
-            if not (info.id in search_type):
-                continue
+            if search_type is not None:
+                if not (info.id in search_type):
+                    continue
             q = query.copy()
 
             q.update({'search_type': info.id})
