@@ -54,12 +54,16 @@
     <class class=".aceitem.MapGraphDataset">
         <implements interface="eea.cache.interfaces.ICacheAware" />
     </class>
-    
+
     <class class=".aceitem.ResearchProject">
         <implements interface="eea.cache.interfaces.ICacheAware" />
     </class>
 
     <class class=".aceitem.Action">
+        <implements interface="eea.cache.interfaces.ICacheAware" />
+    </class>
+
+    <class class="plone.app.contenttypes.content.NewsItem">
         <implements interface="eea.cache.interfaces.ICacheAware" />
     </class>
 
