@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added eea.climateadapt.adaptation_options to overrides.py
+  [iulianpetchesi #73542]
 * Bugfix: Added plone.app.contenttypes to cache.zcml for news
   [iulianpetchesi #75065]
 * Bugfix: Style fixes for relateditems widget
