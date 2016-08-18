@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Mobile browsing fixes
+  [iulianpetchesi #73319]
 * Bug fix: fix handling of special_tags in search tile
   [tiberich #73975]
 * Bugfix: Added eea.climateadapt.adaptation_options to overrides.py

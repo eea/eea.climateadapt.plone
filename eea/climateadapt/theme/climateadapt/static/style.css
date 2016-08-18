@@ -100,6 +100,7 @@ div.overlay-iframe, div.overlay-ajax {width:75%;z-index:1100;}
     color: #a5bf26;
 }
 
+
 .section-frontpage #content a:hover, dl.portlet a:hover {
     color: #4D6776 !important;
 }
@@ -116,6 +117,40 @@ dl.portlet a:link {
     border-bottom: 0px transparent;
 
 }
+
+/* iframes */
+.iframe-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 35px;
+    height: 0;
+    overflow: hidden;
+}
+
+.iframe-container iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.subsection-tools-map-viewer .cover-embed-tile {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 35px;
+    height: 0;
+    overflow: hidden;
+}
+
+.subsection-tools-map-viewer .ace-iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 /* lists */
 #content li, dl.portlet li {
     display: list-item;
@@ -342,20 +377,63 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
         margin-top: 35em;
     }
 
-    .iframe-container {
-        position: relative;
-        padding-bottom: 56.25%;
-        padding-top: 35px;
-        height: 0;
-        overflow: hidden;
+    .subsection-mayors-adapt #content #contenidoMapa {
+        right: 0px;
     }
 
-    .iframe-container iframe {
+    .subsection-mayors-adapt #content {
+        overflow: auto;
+    }
+
+    .subsection-mayors-adapt #content #contenidoCombos {
+        right: 0px;
+    }
+
+    .subsection-share-your-info #content {
+        overflow: auto;
+    }
+
+    .subsection-tutorial-videos .youtube-player {
         position: absolute;
         top:0;
         left: 0;
         width: 100%;
         height: 100%;
+    }
+
+    /* Wrapper for iframe on tutorial-videos page
+       !important is needed to override some inline styles
+       tried removing the inline styles but the iframe will not load */
+    .subsection-tutorial-videos #leftcolumn {
+        margin: 0px !important;
+        padding: 0px !important;
+        float: none !important;
+        width: auto !important;
+
+        position: relative;
+        padding-bottom: 56.25% !important;
+        padding-top: 35px !important;
+        height: 0 !important;
+        overflow: hidden;
+    }
+
+    .subsection-tutorial-videos #content {
+        overflow: auto;
+    }
+
+
+    .subsection-transnational-regions #content-core #contenidoCombos {
+        padding-top: 37em;
+        margin-top: 0px;
+        right: 0px;
+    }
+
+    .subsection-transnational-regions #content #contenidoMapa {
+        right: 0px;
+    }
+
+    .subsection-transnational-regions #content {
+        overflow: auto;
     }
 
     #center-content-area {
@@ -465,6 +543,14 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
     .section-help #content .col-md-3:nth-of-type(3) table {
         width: 89%;
     }
+
+    .subsection-mayors-adapt #contenidoMapa {
+        width: 400px;
+    }
+
+    .subsection-mayors-adapt #content {
+        overflow: auto;
+    }
 }
 
 @media screen and (max-width: 425px) {
@@ -474,6 +560,10 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
 
     .section-help #content .row:nth-child(2) {
         padding-left: 6em;
+    }
+
+    .subsection-mayors-adapt #contenidoMapa {
+        width: 390px;
     }
 }
 
@@ -485,6 +575,10 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
     .section-help #content .row:nth-child(2) {
         padding-left: 4em;
     }
+
+    .subsection-mayors-adapt #contenidoMapa {
+        width: 350px;
+    }
 }
 
 @media screen and (max-width: 320px) {
@@ -495,6 +589,21 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
     .section-help #content .row:nth-child(2) {
         padding-left: 2em;
     }
+
+    .subsection-strategy #content {
+        margin: 0;
+        overflow: auto;
+    }
+
+    .subsection-mayors-adapt #content {
+        margin: 0;
+        overflow: auto;
+    }
+
+    .subsection-mayors-adapt #contenidoMapa {
+        width: 290px;
+    }
+
 }
 
 /* Layout fixes */
