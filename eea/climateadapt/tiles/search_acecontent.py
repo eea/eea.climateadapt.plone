@@ -132,6 +132,7 @@ class AceTileMixin(object):
         #st = query.pop('special_tags', {'query': ''})['query']
         st = self.data.get('special_tags')
         if st:
+            query.pop('special_tags', None)
             if isinstance(st, basestring):
                 st = st.split(u' ')
             words = query.pop('SearchableText', u'').split(u' ')
@@ -211,6 +212,7 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
 
         # TODO: sync the links here to the index names and to the faceted indexes
         query = self.build_query()
+        print query
 
         element_type = self.data.pop('element_type', [])
 
