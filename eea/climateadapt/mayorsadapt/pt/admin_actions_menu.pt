@@ -1,0 +1,5 @@
+<div id="cityprofile-admin-menu">
+  <form method="POST" action="" tal:attributes="action string:${context/absolute_url}/@@send-mayorsadapt-token-email">
+    <button onclick="return confirm('Are you sure you want to send the email?');">Send access token email</button>
+  </form>
+</div>

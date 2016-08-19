@@ -4,37 +4,35 @@ from AccessControl import ClassSecurityInfo
 from AccessControl.users import BasicUser
 from App.class_init import InitializeClass
 from App.special_dtml import DTMLFile
+from Products.PluggableAuthService.PluggableAuthService import PluggableAuthService
 from Products.PluggableAuthService.interfaces.plugins import IAnonymousUserFactoryPlugin
 from Products.PluggableAuthService.interfaces.plugins import IUserEnumerationPlugin
 from Products.PluggableAuthService.plugins.BasePlugin import BasePlugin
+from eea.climateadapt.city_profile import TOKEN_COOKIE_NAME
 from zope.interface import implements
-from eea.climateadapt.city_profile import TOKENID
 
-
-# Monkeypatch _isTop() to be able to create special Anonymous City Mayor users.
-# PAS is such built that it only builds anonymous users in the top acl_users.
-# We want to be able to build them from the Plone site level.
-from Products.PluggableAuthService.PluggableAuthService import PluggableAuthService
+CITYMAYOR = 'CityMayor'
 
 
 def is_citymayor_visitor(request):
     """ Is this browsing session belong to a city mayor visitor?
     """
 
-    if request.cookies.get(TOKENID):    # or request.SESSION.get(TOKENID): #Session Problems
+    if request.cookies.get(TOKEN_COOKIE_NAME):
         return True
 
     return False
 
-
 _old_isTop = PluggableAuthService._isTop
-
 
 def _new_isTop(self):
     if is_citymayor_visitor(self.REQUEST):
         return True
     return _old_isTop(self)
 
+# Monkeypatch _isTop() to be able to create special Anonymous City Mayor users.
+# PAS is such built that it only builds anonymous users in the top acl_users.
+# We want to be able to build them from the Plone site level.
 PluggableAuthService._isTop = _new_isTop
 
 
@@ -50,9 +48,6 @@ def manage_addCityMayorUserFactory(dispatcher, id, title=None, RESPONSE=None):
 
 manage_addCityMayorUserFactoryForm = DTMLFile('./CityMayorUserFactoryForm',
                                                 globals())
-
-
-CITYMAYOR = 'CityMayor'
 
 
 class CityMayorUser(BasicUser):

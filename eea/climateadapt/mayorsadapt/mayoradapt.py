@@ -1,67 +1,19 @@
 # coding=utf-8
 
 from Products.Five.browser import BrowserView
-from datetime import date, timedelta
-from eea.climateadapt.city_profile import MAIL_TEXT_TEMPLATE
 from eea.climateadapt.mayorsadapt.vocabulary import _climateimpacts
 from eea.climateadapt.mayorsadapt.vocabulary import _sectors
 from eea.climateadapt.mayorsadapt.vocabulary import _stage_implementation_cycle
 from eea.climateadapt.vocabulary import ace_countries
-from zope.annotation.interfaces import IAnnotations
-from zope.interface import Interface, implements
 import json
-import tokenlib
-
-
-class ITokenMailView(Interface):
-    """Token mail interface"""
-
-
-class TokenMailView (BrowserView):
-    implements(ITokenMailView)
-
-    def __init__(self, context, request):
-        self.context = context
-        self.request = request
-
-        city = self.context
-        tokensecret = IAnnotations(city)['eea.climateadapt.cityprofile_secret']
-        # 4 weeks = 2419200
-        self.secret = tokenlib.make_token({"": ""}, secret=tokensecret,
-                                          timeout=2419200)
-
-        time_now = date.today()
-        expiry_time = time_now + timedelta(days=28)
-        IAnnotations(city)['eea.climateadapt.cityprofile_token_expires'] = expiry_time
-
-        try:
-            self.emailto = str(city.official_email)
-        except:
-            # TODO: debug this
-            self.emailto = ""
-        self.receivername = city.name_and_surname_of_contact_person
-        self.cityurl = city.virtual_url_path().encode(encoding='UTF-8')
-        self.city_full_url = self.context.portal_url() + \
-            '/cptk/' + self.secret + '/' + self.cityurl
-        print self.city_full_url
-        self.text_plain_dictionary = {'receivername': self.receivername,
-                                      'cityurl':  self.city_full_url}
-        self.MAIL_TEXT_TEMPLATE = MAIL_TEXT_TEMPLATE % \
-            (self.text_plain_dictionary)
-
-    def html(self):
-        return self.index()
-
-
-class IMAdaptView(Interface):
-    """ Mayors Adapt Interface """
 
 
 class MayorsAdaptPage(BrowserView):
     """ Custom page for http://climate-adapt.eea.europa.eu/mayors-adapt """
+    # TODO: remove this page
 
-    implements(IMAdaptView)
 
+# TODO: make the following 4 classes a single class
 
 class B_M_Climate_Impacts(BrowserView):
     def __call__(self):

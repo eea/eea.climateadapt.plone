@@ -1,4 +1,4 @@
-Dear %(receivername)s:
+Dear %(receiver)s:
 
 You can edit your city profile by using
 

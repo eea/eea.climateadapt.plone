@@ -1,8 +1,5 @@
 <tal:root>
- <div tal:content="python: args[0]['receiver']">
- </div>, <br/>
- You still have 1 week to edit your profile 
- <span tal:content="python: args[0]['title']()"> </span>
- <br/>
- .
+  <div tal:replace="options/receiver">John</div>, <br/>
+  You still have 1 week to edit your profile 
+  <span tal:content="options/title"> </span>.
 </tal:root>

@@ -1,18 +1,26 @@
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
-from plone import api
+""" City profile content
+"""
+
+from AccessControl.SecurityInfo import ClassSecurityInfo
+from datetime import date, timedelta
+from plone.api.portal import getSite
 from plone.directives import dexterity, form
 from tokenlib.errors import ExpiredTokenError
 from tokenlib.errors import InvalidSignatureError
 from tokenlib.errors import MalformedTokenError
 from zope.annotation.interfaces import IAnnotations
-from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
 from zope.interface import Interface, implements
 import binascii
 import os
 import os.path
 import tokenlib
+
+
+TOKEN_COOKIE_NAME = 'cptk'
+TOKEN_EXPIRES_KEY = 'eea.climateadapt.cityprofile_token_expires'
+SECRET_KEY = 'eea.climateadapt.cityprofile_secret'
+TIMEOUT = 2419200    # How long a token link is valid? 28 days default
 
 
 class ICityProfile(form.Schema):
@@ -33,89 +41,32 @@ class ICityProfileStaging(Interface):
 
 def generate_secret():
     """ Generates the token secret key """
+
     return binascii.hexlify(os.urandom(16)).upper()
-
-# The urls look like  /cptk/<token>/city-profile/somecity
-TOKENID = 'cptk'
-
-curdir = os.path.dirname(__file__)
-tpl_path = os.path.join(curdir, "mayorsadapt/pt/mail_token.txt")
-
-with open(tpl_path) as f:
-    MAIL_TEXT_TEMPLATE = f.read()
-
-
-def send_token_mail(city):
-    """ Sends a multipart email that contains the link with token """
-
-    mail_host = api.portal.get_tool(name='MailHost')
-    request = getRequest()
-    renderer = getMultiAdapter((city, request), name='token_mail')
-
-    body_html = renderer()
-    body_plain = renderer.MAIL_TEXT_TEMPLATE
-
-    emailto = city.official_email
-    email_subject = 'New token email'
-    emailfrom = str(api.portal.getSite().email_from_address)
-
-    if not (emailto and emailfrom):
-        return
-
-    mime_msg = MIMEMultipart('related')
-    mime_msg['Subject'] = email_subject
-    mime_msg['From'] = emailfrom
-    mime_msg['To'] = emailto
-    mime_msg.preamble = 'This is a multi-part message in MIME format.'
-
-    msgAlternative = MIMEMultipart('alternative')
-    mime_msg.attach(msgAlternative)
-
-    # Attach plain text
-    msg_txt = MIMEText(body_plain,  _charset='utf-8')
-    msgAlternative.attach(msg_txt)
-
-    # Attach html
-    msg_txt = MIMEText(body_html, _subtype='html', _charset='utf-8')
-    msgAlternative.attach(msg_txt)
-
-    return mail_host.send(mime_msg.as_string())
-
-
-def handle_city_added(city, event):
-    """ Event handler for when a new city is added """
-    send_token_mail(city)
 
 
 class CityProfile(dexterity.Container):
     implements(ICityProfile)
 
     search_type = "MAYORSADAPT"
+    security = ClassSecurityInfo()
 
     def __init__(self, *args, **kw):
         super(CityProfile, self).__init__(*args, **kw)
-        token_secret = generate_secret()
-        IAnnotations(self)['eea.climateadapt.cityprofile_secret'] = token_secret
+        self._reset_secret_key()
 
     @property
     def __ac_local_roles__(self):
-        req = getRequest()
 
-        # Comment the try if session problems
-        try:
-            secret_token = req.SESSION.get(TOKENID)
-        except KeyError:
-            secret_token = req.cookies.get(TOKENID)
+        public_token = getRequest().cookies.get(TOKEN_COOKIE_NAME)
 
-        # secret_token = req.cookies.get(TOKENID)
-
-        if not secret_token:
+        if not public_token:
             return {}
 
         # Parses the token to check for errors
         try:
-            secret = IAnnotations(self)['eea.climateadapt.cityprofile_secret']
-            tokenlib.parse_token(secret_token, secret=secret)
+            secret = IAnnotations(self)[SECRET_KEY]
+            tokenlib.parse_token(public_token, secret=secret)
             return {'CityMayor': ['Owner', ]}
         except ExpiredTokenError:
             return {}
@@ -125,3 +76,33 @@ class CityProfile(dexterity.Container):
             return {}
 
         return {}
+
+    def _reset_secret_key(self):
+        IAnnotations(self)[SECRET_KEY] = generate_secret()
+
+    def _get_public_token(self):
+        """ When asked for a new public token, it will generate a new public
+        key, with a new expiration date
+        """
+
+        secret = IAnnotations(self)[SECRET_KEY]
+        public = tokenlib.make_token({}, secret=secret, timeout=TIMEOUT)
+
+        time_now = date.today()
+        expiry_time = time_now + timedelta(seconds=TIMEOUT)
+        IAnnotations(self)[TOKEN_EXPIRES_KEY] = expiry_time
+
+        return public
+
+    security.declareProtected('Modify portal content', 'get_private_edit_link')
+    def get_private_edit_link(self):
+        """ Returns the link to edit a city profile
+        """
+
+        site = getSite()
+        url = "{0}/cptk/{1}/{2}".format(site.absolute_url(),
+                                         self._get_public_token(),
+                                         self.getId()
+                                         )
+        print url
+        return url

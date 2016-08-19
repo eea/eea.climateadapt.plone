@@ -17,17 +17,24 @@
     <utility name="eea.climateadapt.cityprofile_climateimpacts" component=".vocabulary.cityprofile_climateimpacts_vocabulary"/>
     <utility name="eea.climateadapt.cityprofile_sectors" component=".vocabulary.cityprofile_sectors_vocabulary"/>
 
+    <!-- <adapter factory=".staging.CityProfileBehaviorAssignable" /> -->
+
     <!-- <subscriber -->
     <!--     for="plone.app.iterate.interfaces.ICheckoutEvent" -->
     <!--     handler=".staging.handleCheckoutEvent" -->
     <!--    /> -->
 
-    <subscriber
-       for="eea.climateadapt.city_profile.CityProfile
-            zope.lifecycleevent.interfaces.IObjectAddedEvent"
-       handler="eea.climateadapt.city_profile.handle_city_added"
-    />
+    <!-- <subscriber -->
+    <!--    for="eea.climateadapt.city_profile.CityProfile -->
+    <!--         zope.lifecycleevent.interfaces.IObjectAddedEvent" -->
+    <!--    handler="eea.climateadapt.city_profile.handle_city_added" -->
+    <!-- /> -->
 
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="eea.climateadapt.city_profile.ICityProfile * *"
+        factory=".cityprofile.CityProfileFormExtender"
+        />
 
     TODO: is this needed?
     <plone:behavior
@@ -83,14 +90,6 @@
         />
 
     <browser:page
-        for="*"
-        name="token_mail"
-        class=".mayoradapt.TokenMailView"
-        permission="cmf.ManagePortal"
-        template="pt/mail_token.pt"
-        />
-
-    <browser:page
         class=".mayoradapt.MayorsAdaptPage"
         for="*"
         name="mayors-adapt"
@@ -106,16 +105,12 @@
         permission="cmf.ManagePortal"
         />
 
-
     <browser:page
-        class=".token_check.TokenCheckView"
+        class=".admin.BatchSendReminders"
         for="*"
-        name="token-check"
-        template="pt/token_check.pt"
-        permission="zope2.View"
+        name="batch-send-tokenlink-reminders"
+        permission="cmf.ManagePortal"
         />
-
-    <!-- <adapter factory=".staging.CityProfileBehaviorAssignable" /> -->
 
     <browser:page
         for="eea.climateadapt.city_profile.ICityProfileStaging"
@@ -125,8 +120,16 @@
         allowed_attributes="checkin_allowed checkout_allowed cancel_allowed"
         />
 
+    <browser:page
+        for="eea.climateadapt.city_profile.ICityProfile"
+        name="send-mayorsadapt-token-email"
+        class=".admin.SendTokenEmail"
+        permission="zope2.View"
+        allowed_attributes="checkin_allowed checkout_allowed cancel_allowed"
+        />
+
     <browser:viewlet
-        name="baltic_region_menu"
+        name="mayors_edit_menu"
         for="eea.climateadapt.city_profile.ICityProfile"
         class=".viewlets.EditMenuViewlet"
         manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
@@ -141,6 +144,15 @@
         manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
         template="pt/expired_token.pt"
         permission="zope2.View"
+        />
+
+    <browser:viewlet
+        name="mayors_manager_menu"
+        for="eea.climateadapt.city_profile.ICityProfile"
+        class=".viewlets.AdminActionsViewlet"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
+        template="pt/admin_actions_menu.pt"
+        permission="cmf.ModifyPortalContent"
         />
 
     <browser:viewlet
@@ -188,12 +200,6 @@
         for="*"
         name="cities_listing.json"
         permission="zope2.View"
-        />
-
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.city_profile.ICityProfile * *"
-        factory=".cityprofile.CityProfileFormExtender"
         />
 
 </configure>

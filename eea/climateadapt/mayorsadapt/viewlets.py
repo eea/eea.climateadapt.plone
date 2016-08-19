@@ -1,14 +1,40 @@
-from eea.climateadapt.city_profile import TOKENID
-from eea.climateadapt.mayorsadapt.roleplugin import is_citymayor_visitor
+from eea.climateadapt.city_profile import TOKEN_COOKIE_NAME
+from plone.api import user
 from plone.api.content import get_state
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 from plone.app.layout.viewlets import ViewletBase
 from tokenlib.errors import ExpiredTokenError
-from tokenlib.errors import InvalidSignatureError
-from tokenlib.errors import MalformedTokenError
 from zope.annotation.interfaces import IAnnotations
-from zope.globalrequest import getRequest
 import tokenlib
+
+# from tokenlib.errors import InvalidSignatureError
+# from tokenlib.errors import MalformedTokenError
+#from zope.globalrequest import getRequest
+
+
+OK = object()
+EXPIRED = object()
+NOTGOOD = False
+
+
+def check_public_token(context, request):
+    """ Check and parse token for exceptions """
+
+    public_token = request.cookies.get(TOKEN_COOKIE_NAME)
+
+    if public_token is None:
+        return NOTGOOD
+
+    try:
+        secret = IAnnotations(context)[TOKEN_COOKIE_NAME]
+        tokenlib.parse_token(public_token, secret=secret)
+        return OK
+    except ExpiredTokenError:
+        return EXPIRED
+    except Exception:
+        return NOTGOOD
+
+    return NOTGOOD
 
 
 class EditMenuViewlet(ViewletBase):
@@ -26,12 +52,10 @@ class EditMenuViewlet(ViewletBase):
         # print "WC: ", get_working_copy(self.context)
         # print "Baseline: ", get_baseline(self.context)
 
-        if not (self.available() and is_token_available(self)):
+        if not check_public_token(self.context, self.request) == OK:
             return ""
-        return super(EditMenuViewlet, self).render()
 
-    def available(self):
-        return is_citymayor_visitor(self.request)
+        return super(EditMenuViewlet, self).render()
 
     def current_state(self):
         return get_state(self.context)
@@ -62,6 +86,7 @@ class EditMenuViewlet(ViewletBase):
         baseline = policy.getBaseline()
         if baseline is None:
             baseline = self.context
+
         return get_state(baseline)
 
 
@@ -71,42 +96,16 @@ class ExpiredTokenViewlet(ViewletBase):
     """
 
     def render(self):
-        if is_token_available(self):
+        if check_public_token(self.context, self.request) is not EXPIRED:
             return ""
         return super(ExpiredTokenViewlet, self).render()
 
 
-def is_token_available(self):
-    """ Check and parse token for exceptions """
-    self.check_url = False
-    self.expire_value = False
-    self.malformed_value = False
-    self.invalid_value = False
+class AdminActionsViewlet(ViewletBase):
+    """ A viewlet with actions for managers
+    """
 
-    req = getRequest()
-
-    # Comment the try for session problems
-    try:
-        secret_token = req.SESSION.get(TOKENID)
-    except KeyError:
-        secret_token = req.cookies.get(TOKENID)
-    # secret_token = req.cookies.get(TOKENID)
-
-    if not secret_token or self.request.getURL().find('cptk') == -1:
-        return True
-
-    try:
-        ann = IAnnotations(self.context)
-        secret = ann['eea.climateadapt.cityprofile_secret']
-        tokenlib.parse_token(secret_token, secret=secret)
-        self.check_url = True
-        return True
-    except ExpiredTokenError:
-        self.expire_value = True
-        return False
-    except MalformedTokenError:
-        self.malformed_value = True
-        return False
-    except InvalidSignatureError:
-        self.invalid_value = True
-        return False
+    def available(self):
+        import pdb; pdb.set_trace()
+        roles = ['Editor', 'Manager']
+        return bool(set(roles).intersection(set(user.get_roles())))

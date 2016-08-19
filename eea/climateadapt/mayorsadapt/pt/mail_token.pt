@@ -1,6 +1,6 @@
 <tal:root>
-  Dear <span tal:replace="view/receivername"/>: <br/>
+  Dear <span tal:replace="options/receiver"/>: <br/>
 
-      You can edit your city profile by using <br/>
-      <a href="" tal:attributes="href string:${context/portal_url}/cptk/${view/secret}/${view/cityurl}">this link.</a> <br />
+  You can edit your city profile by using <br/>
+  <a href="" tal:attributes="href options/cityurl">this link.</a>
 </tal:root>
