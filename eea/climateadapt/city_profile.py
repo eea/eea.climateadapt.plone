@@ -58,7 +58,9 @@ class CityProfile(dexterity.Container):
     @property
     def __ac_local_roles__(self):
 
-        public_token = getRequest().cookies.get(TOKEN_COOKIE_NAME)
+        req = getRequest()
+        public_token = req.cookies.get(TOKEN_COOKIE_NAME)
+        print "token", public_token, req['ACTUAL_URL']
 
         if not public_token:
             return {}

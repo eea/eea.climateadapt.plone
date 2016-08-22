@@ -36,6 +36,8 @@ class CityAdminView (BrowserView):
             show_message("{0} Email(s) sent".format(counter),
                          request=self.request, type='info')
 
+            return self.request.response.redirect(self.context.absolute_url())
+
         cat = self.context.portal_catalog
         q = { 'portal_type': 'eea.climateadapt.city_profile' }
         self.res = [brain.getObject() for brain in cat.searchResults(**q)]

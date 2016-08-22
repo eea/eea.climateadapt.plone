@@ -13,20 +13,13 @@ from zope.interface import implements
 
 CITYMAYOR = 'CityMayor'
 
-
-def is_citymayor_visitor(request):
-    """ Is this browsing session belong to a city mayor visitor?
-    """
-
-    if request.cookies.get(TOKEN_COOKIE_NAME):
-        return True
-
-    return False
-
 _old_isTop = PluggableAuthService._isTop
 
 def _new_isTop(self):
-    if is_citymayor_visitor(self.REQUEST):
+    """ Is this browsing session belong to a city mayor visitor?
+    """
+
+    if self.REQUEST.cookies.get(TOKEN_COOKIE_NAME):
         return True
     return _old_isTop(self)
 

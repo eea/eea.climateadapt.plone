@@ -76,7 +76,7 @@
         />
 
     <browser:page
-        for="*"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
         name="cptk"
         class=".traverser.TokenTraverser"
         permission="zope.Public"
