@@ -1,4 +1,5 @@
-from eea.climateadapt.city_profile import TOKEN_COOKIE_NAME
+from eea.climateadapt.city_profile import check_public_token
+from eea.climateadapt.city_profile import OK, EXPIRED
 from plone.api import user
 from plone.api.content import get_state
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
@@ -7,34 +8,10 @@ from tokenlib.errors import ExpiredTokenError
 from zope.annotation.interfaces import IAnnotations
 import tokenlib
 
+#from eea.climateadapt.city_profile import TOKEN_COOKIE_NAME
 # from tokenlib.errors import InvalidSignatureError
 # from tokenlib.errors import MalformedTokenError
 #from zope.globalrequest import getRequest
-
-
-OK = object()
-EXPIRED = object()
-NOTGOOD = False
-
-
-def check_public_token(context, request):
-    """ Check and parse token for exceptions """
-
-    public_token = request.cookies.get(TOKEN_COOKIE_NAME)
-
-    if public_token is None:
-        return NOTGOOD
-
-    try:
-        secret = IAnnotations(context)[TOKEN_COOKIE_NAME]
-        tokenlib.parse_token(public_token, secret=secret)
-        return OK
-    except ExpiredTokenError:
-        return EXPIRED
-    except Exception:
-        return NOTGOOD
-
-    return NOTGOOD
 
 
 class EditMenuViewlet(ViewletBase):
@@ -106,6 +83,10 @@ class AdminActionsViewlet(ViewletBase):
     """
 
     def available(self):
-        import pdb; pdb.set_trace()
         roles = ['Editor', 'Manager']
         return bool(set(roles).intersection(set(user.get_roles())))
+
+    def render(self):
+        if not self.available():
+            return ""
+        return super(AdminActionsViewlet, self).render()

@@ -64,7 +64,7 @@ class CityHandler(BrowserPage):
     Note: don't remove docstring, needed by Zope security
     """
 
-    index = ViewPageTemplateFile('pt/redirect-to-city.pt')
+    #index = ViewPageTemplateFile('pt/redirect-to-city.pt')
     token = None
 
     def __init__(self, context, request):

@@ -45,6 +45,31 @@ def generate_secret():
     return binascii.hexlify(os.urandom(16)).upper()
 
 
+OK = object()
+EXPIRED = object()
+NOTGOOD = False
+
+
+def check_public_token(context, request):
+    """ Check and parse token for exceptions """
+
+    public_token = request.cookies.get(TOKEN_COOKIE_NAME)
+
+    if public_token is None:
+        return NOTGOOD
+
+    try:
+        secret = IAnnotations(context)[SECRET_KEY]
+        tokenlib.parse_token(public_token, secret=secret)
+        return OK
+    except ExpiredTokenError:
+        return EXPIRED
+    except Exception:
+        return NOTGOOD
+
+    return NOTGOOD
+
+
 class CityProfile(dexterity.Container):
     implements(ICityProfile)
 
@@ -57,27 +82,10 @@ class CityProfile(dexterity.Container):
 
     @property
     def __ac_local_roles__(self):
-
-        req = getRequest()
-        public_token = req.cookies.get(TOKEN_COOKIE_NAME)
-        print "token", public_token, req['ACTUAL_URL']
-
-        if not public_token:
-            return {}
-
-        # Parses the token to check for errors
-        try:
-            secret = IAnnotations(self)[SECRET_KEY]
-            tokenlib.parse_token(public_token, secret=secret)
+        if check_public_token(self, getRequest()) == OK:
             return {'CityMayor': ['Owner', ]}
-        except ExpiredTokenError:
+        else:
             return {}
-        except MalformedTokenError:
-            return {}
-        except InvalidSignatureError:
-            return {}
-
-        return {}
 
     def _reset_secret_key(self):
         IAnnotations(self)[SECRET_KEY] = generate_secret()
