@@ -6,8 +6,6 @@ from datetime import date, timedelta
 from plone.api.portal import getSite
 from plone.directives import dexterity, form
 from tokenlib.errors import ExpiredTokenError
-from tokenlib.errors import InvalidSignatureError
-from tokenlib.errors import MalformedTokenError
 from zope.annotation.interfaces import IAnnotations
 from zope.globalrequest import getRequest
 from zope.interface import Interface, implements
@@ -21,6 +19,10 @@ TOKEN_COOKIE_NAME = 'cptk'
 TOKEN_EXPIRES_KEY = 'eea.climateadapt.cityprofile_token_expires'
 SECRET_KEY = 'eea.climateadapt.cityprofile_secret'
 TIMEOUT = 2419200    # How long a token link is valid? 28 days default
+
+OK = object()       # markers for check_public_token response
+EXPIRED = object()
+NOTGOOD = False
 
 
 class ICityProfile(form.Schema):
@@ -43,11 +45,6 @@ def generate_secret():
     """ Generates the token secret key """
 
     return binascii.hexlify(os.urandom(16)).upper()
-
-
-OK = object()
-EXPIRED = object()
-NOTGOOD = False
 
 
 def check_public_token(context, request):
