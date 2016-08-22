@@ -114,7 +114,8 @@ class CityProfileEditController(BrowserView):
 
 
 class CityRedirector(BrowserPage):
-    """ A traverser view registered /-/ that redirects to the new /city-profile/ folder
+    """ A traverser view registered /-/ that redirects to the
+    new /city-profile/ folder
     """
 
     def publishTraverse(self, request, name):
@@ -122,11 +123,5 @@ class CityRedirector(BrowserPage):
         return request.response.redirect(city.absolute_url())
 
 
-class ICitiesProfilesView(Interface):
-    """ City Profiles Interface """
-
-
 class CitiesProfilesView(FolderView):
     """ Custom view for city-profiles"""
-
-    implements(ICitiesProfilesView)
