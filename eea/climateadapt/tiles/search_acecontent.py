@@ -78,6 +78,9 @@ class ISearchAceContentTile(IPersistentCoverTile):
     )
 
 
+KEYWORD_INDEXES = ['search_type', 'elements', 'sectors']
+
+
 class AceTileMixin(object):
     """ Mixin class for ace search/relevant content tiles
     """
@@ -102,7 +105,6 @@ class AceTileMixin(object):
             'special_tags': 'special_tags',
             'sector': 'sectors',
         }
-        keyword_indexes = ['search_type', 'elements', 'sectors']
 
         sort_map = {
             'RATING': 'rating',
@@ -117,19 +119,13 @@ class AceTileMixin(object):
         for setting_name, index_name in map.items():
             setting = self.data.get(setting_name, '')
             if setting:
-                if index_name in keyword_indexes:   # and len(setting) > 1:
+                if index_name in KEYWORD_INDEXES:   # and len(setting) > 1:
                     query[index_name] = {'query': setting, 'operator': 'or'}
                 else:
                     query[index_name] = setting
 
-        # is this needed?
-        # for k, v in query.items():
-        #     if v is None:
-        #         del query[k]
-
         # get rid of special_tags index, just use the SearchableText
         # the special_tags field is indexed into the SearchableText
-        #st = query.pop('special_tags', {'query': ''})['query']
         st = self.data.get('special_tags')
         if st:
             query.pop('special_tags', None)
@@ -147,13 +143,18 @@ class AceTileMixin(object):
         searchtype = q.pop('search_type', None)
         if searchtype:
             q['searchtype'] = searchtype
-        for k, v in q.items():
+        for index, v in q.items():
             if v:
-                if k not in ['sort_on', 'sort_order']:
+                if index not in ['sort_on', 'sort_order']:
                     if isinstance(v, (tuple, list)):
-                        x[k] = v
+                        x[index] = v
                     else:
-                        x[k] = v
+                        # keyword indexes appear ex:
+                        #     'sectors': {'operator': 'or', 'query': [u'AGRICULTURE']}
+                        if index in KEYWORD_INDEXES:
+                            x[index] = v['query']
+                        else:
+                            x[index] = v
 
         return url + "#" + urlencode(x, True)
 
@@ -212,7 +213,7 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
 
         # TODO: sync the links here to the index names and to the faceted indexes
         query = self.build_query()
-        print query
+        print "sections query", query
 
         element_type = self.data.pop('element_type', [])
 
@@ -225,6 +226,7 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
             q.update({'search_type': info.id})
             if element_type:
                 q.update({'elements': element_type})
+
             count = len(self.catalog.searchResults(**q))
 
             if count:

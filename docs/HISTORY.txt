@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bug fix: fix search tile linking to /data-and-downloads pages
+  [tiberich #74606]
 * Bugfix: Mobile browsing fixes
   [iulianpetchesi #73319]
 * Bug fix: fix handling of special_tags in search tile
