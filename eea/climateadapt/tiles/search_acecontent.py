@@ -9,7 +9,6 @@ from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.vocabulary import _datatypes
-from eea.climateadapt.vocabulary import aceitem_types
 from plone.directives import form
 from urllib import urlencode
 from z3c.form.field import Fields
@@ -19,6 +18,7 @@ from zope.component.hooks import getSite
 from zope.interface import implements
 from zope.schema import TextLine, Choice, List, Int, Bool
 
+#from eea.climateadapt.vocabulary import aceitem_types
 
 class ISearchAceContentTile(IPersistentCoverTile):
 
@@ -201,29 +201,28 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
 
         search_type = self.data.get('search_type')
         if search_type and len(search_type) == 1:
+            # Special case when we want to show the results, like RelevantTile
             search_type = search_type[0]
             query = self.build_query()
             count = self.data.get('nr_items', 5)
             brains = self.catalog.searchResults(**query)
             url = self.build_url(base, query, {})
-            #print "buildurl: ", url
             result.append((_ace_types[search_type], len(brains), url, brains[:count]))
 
             return result
 
         # TODO: sync the links here to the index names and to the faceted indexes
         query = self.build_query()
-        print "sections query", query
 
         element_type = self.data.pop('element_type', [])
 
-        for info in aceitem_types:
+        for typeid, typelabel in _datatypes:
             if search_type:
-                if not (info.id in search_type):
+                if not (typeid in search_type):
                     continue
             q = query.copy()
 
-            q.update({'search_type': info.id})
+            q.update({'search_type': typeid})
             if element_type:
                 q.update({'elements': element_type})
 
@@ -231,7 +230,7 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
 
             if count:
                 result.append((
-                    info.label,
+                    typelabel,
                     count,
                     self.build_url(base, q, {}),
                 ))
@@ -301,7 +300,6 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
     def items(self):
         count = self.data.get('nr_items', 5) or 5
         query = self.build_query()
-        print "relevant tile query: ", query
         res = self.catalog.searchResults(**query)
 
         if len(res) > count:
