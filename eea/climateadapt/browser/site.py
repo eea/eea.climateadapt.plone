@@ -39,6 +39,20 @@ EU policy                          /eu-adaptation-policy
 Countries, regions, cities         /countries-regions
     Countries, regions, cities - introduction       /countries-regions
     Transnational regions          /countries-regions/transnational-regions
+        -Transnational regions - Introduction         /countries-regions/transnational-regions
+        -Adriatic-Ionian                              /countries-regions/transnational-regions/adriatic-ionian
+        -Alpine Space                                 /countries-regions/transnational-regions/alpine-space
+        -Atlantic Area                                /countries-regions/transnational-regions/atlantic-area
+        -Balkan-Mediterranean                         /countries-regions/transnational-regions/balkan-mediterranean
+        -Baltic Sea                                   /countries-regions/transnational-regions/baltic-sea-region
+        -Central Europe                               /countries-regions/transnational-regions/central-europe
+        -Danube                                       /countries-regions/transnational-regions/danube
+        -Mediterranean                                /countries-regions/transnational-regions/mediterranean
+        -North Sea                                    /countries-regions/transnational-regions/north-sea
+        -North West Europe                            /countries-regions/transnational-regions/north-west-europe
+        -Northern Periphery and Arctic                /countries-regions/transnational-regions/northern-periphery
+        -South West Europe                            /countries-regions/transnational-regions/south-west-europe
+        -Other regions                                /countries-regions/transnational-regions/other-regions
     Cities and towns               /countries-regions/cities
     Country Information            /countries-regions/countries
 
