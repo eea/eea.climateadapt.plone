@@ -4,14 +4,6 @@ from plone.api import user
 from plone.api.content import get_state
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 from plone.app.layout.viewlets import ViewletBase
-from tokenlib.errors import ExpiredTokenError
-from zope.annotation.interfaces import IAnnotations
-import tokenlib
-
-#from eea.climateadapt.city_profile import TOKEN_COOKIE_NAME
-# from tokenlib.errors import InvalidSignatureError
-# from tokenlib.errors import MalformedTokenError
-#from zope.globalrequest import getRequest
 
 
 class EditMenuViewlet(ViewletBase):
