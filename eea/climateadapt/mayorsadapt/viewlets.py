@@ -1,6 +1,5 @@
 from eea.climateadapt.city_profile import check_public_token
 from eea.climateadapt.city_profile import OK, EXPIRED
-from plone.api import user
 from plone.api.content import get_state
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 from plone.app.layout.viewlets import ViewletBase
@@ -74,12 +73,7 @@ class AdminActionsViewlet(ViewletBase):
     """ A viewlet with actions for managers
     """
 
-    def available(self):
-        roles = set(['Editor', 'Manager'])
-        here_roles = set(user.get_roles(obj=self.context))
-        return bool(roles.intersection(here_roles))
-
     def render(self):
-        if not self.available():
+        if not self.context.can_reset_token():
             return ""
         return super(AdminActionsViewlet, self).render()

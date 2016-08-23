@@ -9,7 +9,6 @@ from eea.climateadapt.city_profile import TOKEN_EXPIRES_KEY
 from eea.climateadapt.mayorsadapt.events import ResetTokenEvent
 from eea.climateadapt.mayorsadapt.events import TokenAboutToExpireEvent
 from eea.climateadapt.mayorsadapt.events import TokenExpiredEvent
-from plone.api import user
 from plone.api.content import get_state
 from plone.api.portal import show_message
 from zope.annotation.interfaces import IAnnotations
@@ -61,8 +60,7 @@ class SendTokenEmail(BrowserView):
         if not self.request.method == 'POST':
             return
 
-        roles = ['Editor', 'Manager']
-        if not set(roles).intersection(set(user.get_roles())):
+        if not self.context.can_reset_token():
             raise Unauthorized("You are not allowed to send token email")
         email = self.context.official_email
         if email:

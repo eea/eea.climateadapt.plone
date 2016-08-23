@@ -3,6 +3,7 @@
 
 from AccessControl.SecurityInfo import ClassSecurityInfo
 from datetime import date, timedelta
+from plone.api import user
 from plone.api.portal import getSite
 from plone.directives import dexterity, form
 from tokenlib.errors import ExpiredTokenError
@@ -112,5 +113,12 @@ class CityProfile(dexterity.Container):
                                          self._get_public_token(),
                                          self.getId()
                                          )
-        print url
+        print "Token url: ", url
         return url
+
+    def can_reset_token(self):
+        """ Returns True if current logged in user can reset public token
+        """
+        roles = set(['Editor', 'Manager'])
+        here_roles = set(user.get_roles(obj=self))
+        return bool(roles.intersection(here_roles))
