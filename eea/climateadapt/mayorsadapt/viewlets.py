@@ -75,8 +75,9 @@ class AdminActionsViewlet(ViewletBase):
     """
 
     def available(self):
-        roles = ['Editor', 'Manager']
-        return bool(set(roles).intersection(set(user.get_roles())))
+        roles = set(['Editor', 'Manager'])
+        here_roles = set(user.get_roles(obj=self.context))
+        return bool(roles.intersection(here_roles))
 
     def render(self):
         if not self.available():
