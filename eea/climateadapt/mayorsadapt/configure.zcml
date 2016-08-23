@@ -20,15 +20,15 @@
     <!-- <adapter factory=".staging.CityProfileBehaviorAssignable" /> -->
 
     <!-- <subscriber -->
-    <!--     for="plone.app.iterate.interfaces.ICheckoutEvent" -->
-    <!--     handler=".staging.handleCheckoutEvent" -->
-    <!--    /> -->
+        <!--     for="plone.app.iterate.interfaces.ICheckoutEvent" -->
+        <!--     handler=".staging.handleCheckoutEvent" -->
+        <!--    /> -->
 
     <!-- <subscriber -->
-    <!--    for="eea.climateadapt.city_profile.CityProfile -->
-    <!--         zope.lifecycleevent.interfaces.IObjectAddedEvent" -->
-    <!--    handler="eea.climateadapt.city_profile.handle_city_added" -->
-    <!-- /> -->
+        <!--    for="eea.climateadapt.city_profile.CityProfile -->
+        <!--         zope.lifecycleevent.interfaces.IObjectAddedEvent" -->
+        <!--    handler="eea.climateadapt.city_profile.handle_city_added" -->
+        <!-- /> -->
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
@@ -201,5 +201,29 @@
         name="cities_listing.json"
         permission="zope2.View"
         />
+
+    <!-- Events stuff -->
+
+    <interface
+        interface="eea.climateadapt.mayorsadapt.events.IResetTokenEvent"
+        type="plone.contentrules.rule.interfaces.IRuleEventType"
+        name="CityProfile: Token reset"
+        />
+
+    <interface
+        interface="eea.climateadapt.mayorsadapt.events.ITokenAboutToExpireEvent"
+        type="plone.contentrules.rule.interfaces.IRuleEventType"
+        name="CityProfile: Token about to expire"
+        />
+
+    <interface
+        interface="eea.climateadapt.mayorsadapt.events.ITokenExpiredEvent"
+        type="plone.contentrules.rule.interfaces.IRuleEventType"
+        name="CityProfile: Token has expired"
+        />
+
+    <subscriber for=".events.IResetTokenEvent" handler=".events.trigger_contentrules" />
+    <subscriber for=".events.ITokenAboutToExpireEvent" handler=".events.trigger_contentrules" />
+    <subscriber for=".events.ITokenExpiredEvent" handler=".events.trigger_contentrules" />
 
 </configure>

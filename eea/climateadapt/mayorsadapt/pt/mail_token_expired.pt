@@ -1,6 +1,0 @@
-<tal:root>
-  <div tal:content="options/receiver">John</div>, 
-  <br/>
-  Your special editing link has expired for city profile
-  <span tal:content="options/title"> </span>
-</tal:root>

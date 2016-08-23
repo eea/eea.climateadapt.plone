@@ -4,9 +4,13 @@
 from Products.CMFCore.interfaces import IContentish
 from Products.CMFCore.utils import getToolByName
 from Products.LDAPUserFolder.LDAPDelegate import filter_format
+from eea.climateadapt.city_profile import ICityProfile
 from plone.stringinterp.adapters import BaseSubstitution
 from zope.component import adapts
-from eea.climateadapt._importer.utils import logger
+import logging
+
+
+logger = logging.getLogger("eea.climateadapt.stringinterp")
 
 
 class BaseLDAPLookupEmailSubstitution(BaseSubstitution):
@@ -81,3 +85,33 @@ class cca_checkers(BaseLDAPLookupEmailSubstitution):
 class cca_editors(BaseLDAPLookupEmailSubstitution):
     group = 'extranet-cca-editors'
     description = group + u' E-Mails'
+
+
+class cityprofile_contact_name(BaseSubstitution):
+    description = u"CityProfile contact name"
+    category = 'CityProfile'
+
+    adapts(ICityProfile)
+
+    def safe_call(self):
+        return getattr(self.context, 'name_and_surname_of_contact_person', '')
+
+
+class cityprofile_contact_email(BaseSubstitution):
+    description = u"CityProfile contact email"
+    category = 'CityProfile'
+
+    adapts(ICityProfile)
+
+    def safe_call(self):
+        return getattr(self.context, 'official_email', '')
+
+
+class cityprofile_private_edit_link(BaseSubstitution):
+    description = u"CityProfile private edit link"
+    category = 'CityProfile'
+
+    adapts(ICityProfile)
+
+    def safe_call(self):
+        return self.context.get_private_edit_link()

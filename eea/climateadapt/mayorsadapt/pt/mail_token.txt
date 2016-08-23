@@ -1,5 +1,0 @@
-Dear %(receiver)s:
-
-You can edit your city profile by using
-
-%(cityurl)s

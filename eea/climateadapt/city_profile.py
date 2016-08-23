@@ -85,6 +85,7 @@ class CityProfile(dexterity.Container):
             return {}
 
     def _reset_secret_key(self):
+        # TODO: create a public method for this, to allow invalidation of links
         IAnnotations(self)[SECRET_KEY] = generate_secret()
 
     def _get_public_token(self):
