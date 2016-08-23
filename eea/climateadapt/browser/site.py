@@ -7,7 +7,9 @@ import logging
 
 logger = logging.getLogger('eea.climateadapt')
 
-
+# NOTICE: you don't have to edit the menu here. This is a fallback, the menu
+# is rendered live, from information stored in the portal. Use to edit:
+# http://climate-adapt.eea.europa.eu/@@edit-navigation-menu
 DEFAULT_MENU = """
 About        /about
 
