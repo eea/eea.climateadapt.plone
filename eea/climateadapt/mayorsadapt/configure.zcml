@@ -17,19 +17,6 @@
     <utility name="eea.climateadapt.cityprofile_climateimpacts" component=".vocabulary.cityprofile_climateimpacts_vocabulary"/>
     <utility name="eea.climateadapt.cityprofile_sectors" component=".vocabulary.cityprofile_sectors_vocabulary"/>
 
-    <!-- <adapter factory=".staging.CityProfileBehaviorAssignable" /> -->
-
-    <!-- <subscriber -->
-        <!--     for="plone.app.iterate.interfaces.ICheckoutEvent" -->
-        <!--     handler=".staging.handleCheckoutEvent" -->
-        <!--    /> -->
-
-    <!-- <subscriber -->
-        <!--    for="eea.climateadapt.city_profile.CityProfile -->
-        <!--         zope.lifecycleevent.interfaces.IObjectAddedEvent" -->
-        <!--    handler="eea.climateadapt.city_profile.handle_city_added" -->
-        <!-- /> -->
-
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
         for="eea.climateadapt.city_profile.ICityProfile * *"
@@ -164,7 +151,7 @@
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
 
-    Pages with vocabularies used in the mayorsadaptloads.js
+    <!-- Pages with vocabularies used in the mayorsadaptloads.js -->
 
     TODO: why can't we use a single page to load these vocabularies?
     <browser:page

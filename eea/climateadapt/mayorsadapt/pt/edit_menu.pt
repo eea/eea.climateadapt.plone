@@ -47,7 +47,10 @@
       </p>
 
       <div class="city-menu-row">
-        <button name="submit" value="edit">Edit</button>
+        <button name="submit" value="edit" 
+          tal:define="can_edit view/can_edit; disabled python: (not can_edit) and 'disabled' or ''"
+          tal:attributes="class disabled; disabled disabled"  
+          >Edit</button>
         <span>
           Step 1: Edit your City Profile fact sheet.
           <span tal:omit-tag="" tal:condition="python: state == 'private'">
@@ -77,8 +80,8 @@
       </div>
 
       <div class="city-menu-row" tal:define="baseline_state view/get_baseline_state">
-        <button name="submit" tal:attributes="class python: (baseline_state != 'published') and 'disabled' or ''" value="check">Check</button>
-        <span>Step 4: Check your published page in the Climate ADAPT platform, available as soon as the Mayors Adapt team approves it.</span>
+        <button name="submit" tal:attributes="class python: (baseline_state != 'published') and 'disabled' or ''" value="check">View published fact sheet</button>
+        <span>Step 4: View your published page in the Climate ADAPT platform, available as soon as the Mayors Adapt team approves it.</span>
       </div>
 
       <p>

@@ -16,6 +16,9 @@ class EditMenuViewlet(ViewletBase):
             'pending': 'Pending aproval',
         }
 
+    def can_edit(self):
+        return self.current_state() != 'pending'
+
     def render(self):
         # print "WC: ", get_working_copy(self.context)
         # print "Baseline: ", get_baseline(self.context)
