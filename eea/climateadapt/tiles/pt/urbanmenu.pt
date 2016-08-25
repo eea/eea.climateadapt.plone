@@ -79,6 +79,9 @@ a.menu-link {
 #forest_fires {
         background-image: url("/++resource++eea.climateadapt/img/forest_fires.png");
     }
+#maps-response-capacity {
+        background-image: url("/++resource++eea.climateadapt/img/maps-response-capacity.png");
+    }
 
 .menu-urban li ul {
         opacity: 0;
@@ -181,6 +184,9 @@ a.menu-link {
 		                <li><a href="/tools/urban-adaptation/climatic-threats/forest-fires/response-capacity">Response capacity</a></li>
 		            </ul>
 		        </li>
+                        <li>
+                            <a href="/tools/urban-adaptation/climatic-threats/maps-response-capacity" id="maps-response-capacity" class="menu-link">Maps of response capacity</a>
+                        </li>
 		    </ul>			
     </div>
   </body>
