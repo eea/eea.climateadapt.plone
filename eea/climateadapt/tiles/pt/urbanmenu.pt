@@ -122,6 +122,7 @@ a.menu-link {
   
 
 .menu-urban a:hover { color: #a5bf26; }
+.menu-urban a.active { color: #a5bf26; }
 
 .empty {
         display: none;
@@ -151,7 +152,7 @@ a.menu-link {
           // ]]>
         </script>
 
-			  <ul class="menu-urban">
+	        <ul class="menu-urban">
 		        <li>
 		            <a href="/tools/urban-adaptation/climatic-threats/heat-waves" id="heat_waves" class="menu-link">Heat waves</a>
 		            <ul class="menu-urban-sub">
