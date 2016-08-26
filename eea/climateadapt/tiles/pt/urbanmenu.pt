@@ -122,14 +122,13 @@ a.menu-link {
   
 
 .menu-urban a:hover { color: #a5bf26; }
-.menu-urban a.active { color: #a5bf26; }
 
 .empty {
         display: none;
 }
 
 /****** effects fo active links *****/
-.menu-urban li a.active { color: #a5bf26; }
+.menu-urban li a.active { color: #a5bf26 !important;}
 
       </style>
 
@@ -139,7 +138,7 @@ a.menu-link {
             $(document).ready(function() {
               var pageUrl = document.location.href;
             
-            // Find the page url in the list of <a> tags in tha menu and add class 'active' 
+            // Find the page url in the list of <a> tags in the menu and add class 'active' 
             $('.menu-urban li a').each(function(){
                 if (pageUrl.search($(this).attr('href')) > 0) {
                       $(this).addClass("active");
