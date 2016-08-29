@@ -1,4 +1,3 @@
-#import datetime
 from plone.api import portal
 from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityFTI
@@ -52,6 +51,7 @@ class CityProfileView(DefaultView):
                 except LookupError:
                     continue
                 titles.append(term.title)
+
         return titles
 
 

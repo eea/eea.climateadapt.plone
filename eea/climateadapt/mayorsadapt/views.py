@@ -7,9 +7,7 @@ from plone.app.contenttypes.browser.folder import FolderView
 from plone.app.iterate import PloneMessageFactory as _
 from plone.app.iterate.interfaces import CheckoutException
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
-#from plone.app.iterate.interfaces import IWCContainerLocator
-from zope.component import getMultiAdapter  #, getAdapters
-from zope.interface import Interface, implements
+from zope.component import getMultiAdapter
 from zope.publisher.browser import BrowserPage
 
 

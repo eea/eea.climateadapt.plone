@@ -1,4 +1,4 @@
-from zope.interface import Interface, implements
+from zope.interface import implements
 from zope.component.interfaces import ObjectEvent, IObjectEvent
 from plone.app.contentrules.handlers import execute_rules
 
@@ -18,6 +18,11 @@ class ITokenExpiredEvent(IObjectEvent):
     """
 
 
+class ICityProfileRegisterEvent(IObjectEvent):
+    """ A new city profile registration
+    """
+
+
 class ResetTokenEvent(ObjectEvent):
     implements(IResetTokenEvent)
 
@@ -28,6 +33,10 @@ class TokenAboutToExpireEvent(ObjectEvent):
 
 class TokenExpiredEvent(ObjectEvent):
     implements(ITokenExpiredEvent)
+
+
+class CityProfileRegisterEvent(ObjectEvent):
+    implements(ICityProfileRegisterEvent)
 
 
 def trigger_contentrules(event):

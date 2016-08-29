@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Feature: use an contentrules event to send emails on cityprofile registration
+  [tiberich #75285]
 * Bug fix: move mayor-city-register to .mayorsadapt subpackage; Fix permission
   [tiberich #75295]
 * Bug fix: some refactoring of Mayors Adapt functionality

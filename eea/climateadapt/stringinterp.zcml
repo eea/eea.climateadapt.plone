@@ -66,25 +66,4 @@
         name="cca_managers_emails"
         />
 
-    <adapter
-        for="*"
-        provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".stringinterp.cityprofile_contact_name"
-        name="cityprofile_contact_name"
-        />
-
-    <adapter
-        for="*"
-        provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".stringinterp.cityprofile_contact_email"
-        name="cityprofile_contact_email"
-        />
-
-    <adapter
-        for="*"
-        provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".stringinterp.cityprofile_private_edit_link"
-        name="cityprofile_private_edit_link"
-        />
-
 </configure>

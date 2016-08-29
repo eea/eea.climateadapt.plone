@@ -97,9 +97,8 @@ class CityProfile(dexterity.Container):
         secret = IAnnotations(self)[SECRET_KEY]
         public = tokenlib.make_token({}, secret=secret, timeout=TIMEOUT)
 
-        time_now = date.today()
-        expiry_time = time_now + timedelta(seconds=TIMEOUT)
-        IAnnotations(self)[TOKEN_EXPIRES_KEY] = expiry_time
+        expiry_date = date.today() + timedelta(seconds=TIMEOUT)
+        IAnnotations(self)[TOKEN_EXPIRES_KEY] = expiry_date
 
         return public
 
@@ -110,9 +109,9 @@ class CityProfile(dexterity.Container):
 
         site = getSite()
         url = "{0}/cptk/{1}/{2}".format(site.absolute_url(),
-                                         self._get_public_token(),
-                                         self.getId()
-                                         )
+                                        self._get_public_token(),
+                                        self.getId()
+                                        )
         print "Token url: ", url
         return url
 

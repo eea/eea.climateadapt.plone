@@ -1,20 +1,21 @@
 # coding=utf-8
 
+from Acquisition import Implicit
 from Acquisition import aq_inner
 from Products.Five.browser import BrowserView
-from eea.climateadapt.config import REGISTER_MAIL_LIST
+from eea.climateadapt.mayorsadapt.events import CityProfileRegisterEvent
 from eea.climateadapt.mayorsadapt.vocabulary import _climateimpacts
 from eea.climateadapt.mayorsadapt.vocabulary import _sectors
 from eea.climateadapt.mayorsadapt.vocabulary import _stage_implementation_cycle
 from eea.climateadapt.schema import Email
 from eea.climateadapt.vocabulary import ace_countries
-from email.MIMEText import MIMEText
-from plone import api
+from plone.api.portal import show_message
 from plone.directives import form
 from plone.formwidget.recaptcha.widget import ReCaptchaFieldWidget
 from z3c.form import button, field
 from zope import schema
 from zope.component import getMultiAdapter
+from zope.event import notify
 import json
 
 
@@ -29,6 +30,15 @@ class IRegisterCityForm(form.Schema):
     )
 
 
+class CityProfileRegister(Implicit):
+    """ A container to be passed to plone.app.contentrules for register info
+    """
+
+    def __init__(self, name=None, email=None):
+        self.name = name
+        self.email = email
+
+
 class RegisterCityForm(form.SchemaForm):
     """ Mayors adapt register city form
     """
@@ -40,7 +50,7 @@ class RegisterCityForm(form.SchemaForm):
     description = u""" If you are a city representative currently signing up
     to the Mayors Adapt initiative, please submit the form below and we will
     set up a city profile fact sheet site for you to showcase your city’s work
-    on Climate-ADAPT.For any questions please do not hesitate to get in touch
+    on Climate-ADAPT. For any questions please do not hesitate to get in touch
     with our helpdesk at helpdesk@mayors-adapt.eu.
     """
 
@@ -57,33 +67,21 @@ class RegisterCityForm(form.SchemaForm):
             (aq_inner(self.context), self.request),
             name='recaptcha'
         )
+
+        msg = u"""Registration process completed. You will receive an email
+message with details on how to proceed further."""
+
         if captcha.verify():
-            mail_host = api.portal.get_tool(name='MailHost')
+            name = data.get('name')
+            email = data.get('email')
 
-            info = {'name': data.get('name'),
-                    'email': data.get('email')}
-
-            body_plain = """
-There is a new city profile request.
-
-Contact Email:
-%(email)s
-
-City Name:
-%(name)s
-""" % info
-
-            mime_msg = MIMEText(body_plain)
-            mime_msg['Subject'] = "City Profile Request"
-            mime_msg['From'] = "no-reply@eea.europa.eu"
-            for m in REGISTER_MAIL_LIST:
-                mime_msg['To'] = m
-
-            self.description = u"Your city profile register request was sent."
-
-            return mail_host.send(mime_msg.as_string())
+            obj = CityProfileRegister(name=name, email=email)
+            obj = obj.__of__(self.context)
+            notify(CityProfileRegisterEvent(obj))
+            show_message(message=msg, request=self.request, type='error')
         else:
-            self.description = u"Please complete the Captcha."
+            show_message(message=u"Please complete the Captcha.",
+                         request=self.request, type='error')
 
 
 class MayorsAdaptPage(BrowserView):

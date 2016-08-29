@@ -216,8 +216,50 @@
         name="CityProfile: Token has expired"
         />
 
+    <interface
+        interface="eea.climateadapt.mayorsadapt.events.ICityProfileRegisterEvent"
+        type="plone.contentrules.rule.interfaces.IRuleEventType"
+        name="CityProfile: new city profile registration"
+        />
+
     <subscriber for=".events.IResetTokenEvent" handler=".events.trigger_contentrules" />
     <subscriber for=".events.ITokenAboutToExpireEvent" handler=".events.trigger_contentrules" />
     <subscriber for=".events.ITokenExpiredEvent" handler=".events.trigger_contentrules" />
+    <subscriber for=".events.ICityProfileRegisterEvent" handler=".events.trigger_contentrules" />
+
+    <adapter
+        for="*"
+        provides="plone.stringinterp.interfaces.IStringSubstitution"
+        factory=".stringinterp.cityprofile_contact_name"
+        name="cityprofile_contact_name"
+        />
+
+    <adapter
+        for="*"
+        provides="plone.stringinterp.interfaces.IStringSubstitution"
+        factory=".stringinterp.cityprofile_contact_email"
+        name="cityprofile_contact_email"
+        />
+
+    <adapter
+        for="*"
+        provides="plone.stringinterp.interfaces.IStringSubstitution"
+        factory=".stringinterp.cityprofile_private_edit_link"
+        name="cityprofile_private_edit_link"
+        />
+
+    <adapter
+        for="*"
+        provides="plone.stringinterp.interfaces.IStringSubstitution"
+        factory=".stringinterp.cityprofile_register_email"
+        name="cityprofile_register_email"
+        />
+
+    <adapter
+        for="*"
+        provides="plone.stringinterp.interfaces.IStringSubstitution"
+        factory=".stringinterp.cityprofile_register_name"
+        name="cityprofile_register_name"
+        />
 
 </configure>
