@@ -78,7 +78,7 @@ message with details on how to proceed further."""
             obj = CityProfileRegister(name=name, email=email)
             obj = obj.__of__(self.context)
             notify(CityProfileRegisterEvent(obj))
-            show_message(message=msg, request=self.request, type='error')
+            show_message(message=msg, request=self.request, type='info')
         else:
             show_message(message=u"Please complete the Captcha.",
                          request=self.request, type='error')
