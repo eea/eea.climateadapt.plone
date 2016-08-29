@@ -263,13 +263,6 @@
         />
 
     <browser:page
-        class=".misc.RegisterCityForm"
-        for="*"
-        name="mayor-city-register"
-        permission="cmf.ManagePortal"
-        />
-
-    <browser:page
         class=".misc.ContactFooterForm"
         for="*"
         name="contact-footer"

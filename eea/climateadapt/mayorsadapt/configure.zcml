@@ -33,6 +33,13 @@
 
     <browser:page
         for="*"
+        class=".mayoradapt.RegisterCityForm"
+        name="mayor-city-register"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
         name="-"
         class=".views.CityRedirector"
         permission="zope.Public"
