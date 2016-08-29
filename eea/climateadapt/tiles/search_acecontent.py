@@ -9,6 +9,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cover.interfaces import ICoverUIDsProvider
 from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
+from collective.cover.tiles.list import IListTile
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.vocabulary import _datatypes
 from plone import api
@@ -269,7 +270,7 @@ class IRelevantAceContentItemsTile(ISearchAceContentTile):
 class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
     """ Relevant AceItem content
     """
-    implements(IRelevantAceContentItemsTile)
+    implements(IRelevantAceContentItemsTile, IListTile)
 
     short_name = u'Relevant AceContent'
 
