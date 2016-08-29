@@ -259,14 +259,14 @@
         class=".misc.ContactForm"
         for="*"
         name="contact-form"
-        permission="cmf.ManagePortal"
+        permission="zope.Public"
         />
 
     <browser:page
         class=".misc.ContactFooterForm"
         for="*"
         name="contact-footer"
-        permission="cmf.ManagePortal"
+        permission="zope.Public"
         />
 
 
