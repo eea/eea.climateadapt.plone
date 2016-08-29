@@ -1,19 +1,22 @@
 <metal:use-macro use-macro="context/main_template/macros/master">
-	<metal:fill-slot fill-slot="javascript_head_slot">
-			<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-			<script type="text/javascript" src="http://js.arcgis.com/3.13compact/"></script> -->
-			<!-- <script type="text/javascript" src="/++theme++climateadapt/static/jquery.qtip.min.js"></script> -->
-		    <script type="text/javascript" src="/++resource++collective.js.bootstrap/js/bootstrap.min.js"></script>
-			<!-- <script type="text/javascript" src="++resource++plone.app.widgets.js"></script> -->
-	</metal:fill-slot>
+  <metal:fill-slot fill-slot="javascript_head_slot">
+    <script>var dojoConfig = { parseOnLoad:true };</script>
+    <script src="http://js.arcgis.com/3.13compact/"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/++theme++climateadapt/static/cca/js/mayoradaptload.js"></script>
+
+    <script type="text/javascript" src="/++resource++collective.js.bootstrap/js/bootstrap.min.js"></script>
+  </metal:fill-slot>
+
 <metal:fill-slot fill-slot="content-core">
 <link href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css" rel="stylesheet" />
 <link href="http://js.arcgis.com/3.13/esri/css/esri.css" rel="stylesheet" />
-<!-- <link href="http://cca.ro/portal_css/Sunburst%20Theme/columns.css" rel="stylesheet" /> -->
-<style type="text/css">html,body,#mapDiv,.map.container{
-	padding:0;
-	margin:0;
-	height:100%;
+<style type="text/css">
+  /* <![CDATA[ */
+  #mapDiv,.map.container{
+    padding:0;
+    margin:0;
+    height:100%;
 	}
 	#legendDiv{
 	  background-color: #fff;
@@ -35,16 +38,18 @@
 		height:100px;
 		width:100%;
 		margin-bottom: 15px;
+    margin-top: 1em;
 	}
 	#mayorsDiv{
 		height:100px;
-		width:35%;
+		width:33%;
 		float:left;
+    text-align:center;
 	}
 	#registerDiv{
 		height:100px;
-		width:65%;
-		float:right;
+		width:30%;
+		float:left;
 	}
 	#contenidoCombos{
 		position:absolute;
@@ -60,9 +65,7 @@
 		right: 320px;
 		height:100%;
 	}
-	#intro{
-
-	}
+	#intro{}
 	#contenido{
 		position:relative;
 		height:500px;
@@ -110,78 +113,75 @@
 		color: #009ae5;
         margin-top: 5px;
 	}
+  /* ]]>*/
 </style>
-<script>var dojoConfig = { parseOnLoad:true };</script>
-<script src="http://js.arcgis.com/3.13compact/"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="/++theme++climateadapt/static/cca/js/mayoradaptload.js"></script>
-
 <div id="banner" style="margin-right:10px;"><img src="http://mayors-adapt.eu/wp-content/uploads/2015/01/start03.jpg" style="width:100%" /></div>
 
 <div id="headLogos">
-<div id="mayorsDiv"><img src="/++theme++climateadapt/static/cca/img/mayors-adapt-logo.jpg" /></div>
-
-<div id="registerDiv"><a class="bluebutton" href="/mayors-adapt/register" style="  margin-top: 60px;margin-right: 450px;">Register your City</a></div>
+  <div id="mayorsDiv"><img src="/++resource++eea.climateadapt/img/mayors_adapt_logo.png" /></div>
+  <div id="registerDiv"><a class="bluebutton" href="/mayors-adapt/register" style="margin-top: 60px; margin-right: 80px;">Register your City</a></div>
+  <div id="mayorsDiv"><img src="/++theme++climateadapt/static/cca/img/mayors-adapt-logo.jpg" /></div>
 </div>
 
 <div class="journal-content-article" style="margin-right: 10px;">
-<p><a href="http://mayors-adapt.eu/" target="_blank">Mayors Adapt</a> - the Covenant of Mayors Initiative on Climate Change Adaptation was set up by the European Commission to engage cities in taking action to adapt to climate change. Cities signing up to the initiative commit to contributing to the overall aim of the EU Adaptation Strategy by developing a comprehensive local adaptation strategy and/or integrating adaptation to climate change into relevant existing plans.</p>
-<p>In October 2015, the Mayors Adapt initiative was officially merged with the Covenant of Mayors to create the new <a href="http://www.covenantofmayors.eu/index_en.html" target="_blank">Covenant of Mayors for Climate & Energy</a>. The new Covenant addresses both mitigation and adaptation.</p>
-<p>Mayors Adapt - and likewise the new integrated Covenant - aims to increase support for local activities, provide a platform for greater engagement and networking by cities, and raise public awareness about adaptation and the measures needed.<br/>
-To help bring this about, the EC initiative offers signatories:</p>
+  <p><a href="http://mayors-adapt.eu/" target="_blank">Mayors Adapt</a> - the Covenant of Mayors Initiative on Climate Change Adaptation was set up by the European Commission to engage cities in taking action to adapt to climate change. Cities signing up to the initiative commit to contributing to the overall aim of the EU Adaptation Strategy by developing a comprehensive local adaptation strategy and/or integrating adaptation to climate change into relevant existing plans.</p>
+  <p>In October 2015, the Mayors Adapt initiative was officially merged with the Covenant of Mayors to create the new <a href="http://www.covenantofmayors.eu/index_en.html" target="_blank">Covenant of Mayors for Climate & Energy</a>. The new Covenant addresses both mitigation and adaptation.</p>
+  <p>Mayors Adapt - and likewise the new integrated Covenant - aims to increase support for local activities, provide a platform for greater engagement and networking by cities, and raise public awareness about adaptation and the measures needed.<br/>
+    To help bring this about, the EC initiative offers signatories:</p>
 
-<ul>
-	<li>A dedicated helpdesk to support them in implementing their commitment to action on adaptation;</li>
-	<li>Information, tools and other resources relevant for their work, including the Urban Adaptation Support Tool, dedicated case studies on action and city profile factsheets on signatories;</li>
-	<li>Networking and peer-to-peer learning opportunities through dedicated events, city twinning activities, a practitioners group etc. to support the growing community of practice;</li>
-	<li>A platform to showcase their action and leadership through the initiative's annual Signature Ceremony, as well as communications and outreach support.</li>
-</ul>
+  <ul>
+    <li>A dedicated helpdesk to support them in implementing their commitment to action on adaptation;</li>
+    <li>Information, tools and other resources relevant for their work, including the Urban Adaptation Support Tool, dedicated case studies on action and city profile factsheets on signatories;</li>
+    <li>Networking and peer-to-peer learning opportunities through dedicated events, city twinning activities, a practitioners group etc. to support the growing community of practice;</li>
+    <li>A platform to showcase their action and leadership through the initiative's annual Signature Ceremony, as well as communications and outreach support.</li>
+  </ul>
 
-<p>&nbsp;</p>
+  <p>&nbsp;</p>
 
-<p>For additional information about Mayors Adapt, please visit:</p>
+  <p>For additional information about Mayors Adapt, please visit:</p>
 
-<ul>
-	<li>The <a href="http://mayors-adapt.eu/" target="_blank">Mayors Adapt</a> Outreach website</li>
-</ul>
-For more resources (tools, guidance, publications, case studies, etc.), visit: 
+  <ul>
+    <li>The <a href="http://mayors-adapt.eu/" target="_blank">Mayors Adapt</a> Outreach website</li>
+  </ul>
+  For more resources (tools, guidance, publications, case studies, etc.), visit: 
 
-<ul>
-	<li>The <a href="http://climate-adapt.eea.europa.eu/cities">Cities and towns</a> section in Climate-ADAPT.</li>
-</ul>
-Local authorities willing to make a formal adaptation commitment now integrated with mitigation action should sign up to the new Covenant by presenting and discussing the full <a href="http://mayors-adapt.eu/materials" target="_blank">Political Commitment Document</a> in their municipal council. Once a decision to sign up is formally made, local authorities should complete and sign the adhesion form and send it via email to: <a href="mailto:info@eumayors.eu" target="_top">info@eumayors.eu</a>. Once your adhesion is confirmed by the Covenant of Mayors Office, you will then be able to fully benefit from the initiative.
+  <ul>
+    <li>The <a href="http://climate-adapt.eea.europa.eu/cities">Cities and towns</a> section in Climate-ADAPT.</li>
+  </ul>
+  Local authorities willing to make a formal adaptation commitment now integrated with mitigation action should sign up to the new Covenant by presenting and discussing the full <a href="http://mayors-adapt.eu/materials" target="_blank">Political Commitment Document</a> in their municipal council. Once a decision to sign up is formally made, local authorities should complete and sign the adhesion form and send it via email to: <a href="mailto:info@eumayors.eu" target="_top">info@eumayors.eu</a>. Once your adhesion is confirmed by the Covenant of Mayors Office, you will then be able to fully benefit from the initiative.
 
-<p>&nbsp;</p>
+  <p>&nbsp;</p>
 
-<div class="sector-main-article">
-<div id="read-more-link" style="position:inherit;width:inherit"><a href="/city-profile" style="text-decoration:none;">Mayors Adapt Signatory Cities Profiles</a></div>
-</div>
+  <div class="sector-main-article">
+    <div id="read-more-link" style="position:inherit;width:inherit"><a href="/city-profile" style="text-decoration:none;">Mayors Adapt Signatory Cities Profiles</a></div>
+  </div>
 </div>
 
 <div class="columns-2" id="contenido">
-<div id="contenidoMapa"><!--<div id="Mapsearch"></div>-->
-<div id="mapDiv" style="height:450px">
-<div id="xButton"><b><a onclick="toogleLegend()">X</a></b></div>
+  <div id="contenidoMapa"><!--<div id="Mapsearch"></div>-->
+    <div id="mapDiv" style="height:450px">
+      <div id="xButton"><b><a onclick="toogleLegend()">X</a></b></div>
 
-<div id="legendDiv">&nbsp;</div>
+      <div id="legendDiv">&nbsp;</div>
 
-<div id="HomeButton">&nbsp;</div>
+      <div id="HomeButton">&nbsp;</div>
 
-<div id="LegendButton"><img onclick="toogleLegend()" src="/++theme++climateadapt/static/cca/img/legendMA.png" style="width: 34px;height: 34px;" /></div>
-</div>
-</div>
+      <div id="LegendButton"><img onclick="toogleLegend()" src="/++theme++climateadapt/static/cca/img/legendMA.png" style="width: 34px;height: 34px;" /></div>
+    </div>
+  </div>
 
-<div id="contenidoCombos">
-<h2 class="portlet-title"><span class="portlet-title-text">Filter by zone</span></h2>
-Choose a Country:<br />
-<select id="country" style="width:100% "><option value="">All</option> </select><br />
-Choose a City:<br />
-<select id="cityCountry" style="width:100% "><option value="">All</option> </select><br />
+  <div id="contenidoCombos">
+    <h2 class="portlet-title"><span class="portlet-title-text">Filter by zone</span></h2>
+    Choose a Country:<br />
+    <select id="country" style="width:100% "><option value="">All</option> </select><br />
+    Choose a City:<br />
+    <select id="cityCountry" style="width:100% "><option value="">All</option> </select><br />
 <!--
-		<div style="text-align:center" class="bluebuttondiv">
-			<a id="zoneButton" style="float:none;margin-top:10px;margin-bottom:10px" class="bluebutton" >Filter</a>
-		</div>
-		-->
+    <div style="text-align:center" class="bluebuttondiv">
+      <a id="zoneButton" style="float:none;margin-top:10px;margin-bottom:10px" class="bluebutton" >Filter</a>
+    </div>
+    -->
+
 <h2 class="portlet-title"><span class="portlet-title-text">Filter by criteria</span></h2>
 Climate Impacts:<br />
 <select id="impacts" style="width:100%"><option value="">All</option> </select><br />
@@ -193,7 +193,10 @@ Choose a City:<br />
 <select id="city" style="width:100%"><option value="">All</option> </select>
 
 <div id="disclaimer">[Browser Compatibility]
-<div id="hover-content">We recommend using Mozilla Firefox or Google Chrome as your Internet browser to optimize the use of the map viewer. Using Microsoft Internet Explorer browser, particularly old versions, may cause some of our web site's features and services to operate incorrectly.</div>
+  <div id="hover-content">We recommend using Mozilla Firefox or Google Chrome
+    as your Internet browser to optimize the use of the map viewer. Using
+    Microsoft Internet Explorer browser, particularly old versions, may cause
+    some of our web site's features and services to operate incorrectly.</div>
 </div>
 </div>
 </div>
