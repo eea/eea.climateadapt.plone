@@ -362,10 +362,12 @@
   function loadCountries() {
     var z = document.getElementById("country");
     for (var j = 0; j < capita.graphics.length; j++) {
-      var option = document.createElement("option");
-      option.text = capita.graphics[j].attributes.COUNTRY_1;
-      option.value = capita.graphics[j].attributes.LINK;
-      z.add(option);
+      if (capita.graphics[j].attributes.NATIONAL_ADA != "NO_VALUE") {
+        var option = document.createElement("option");
+        option.text = capita.graphics[j].attributes.COUNTRY_1;
+        option.value = capita.graphics[j].attributes.LINK;
+        z.add(option);
+      }
     }
 
     var options = $('#country option');
