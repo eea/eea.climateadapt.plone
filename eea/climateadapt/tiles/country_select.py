@@ -5,7 +5,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
 from eea.climateadapt import MessageFactory as _
-from eea.climateadapt.vocabulary import ace_countries
+from eea.climateadapt.vocabulary import ace_countries_selection
 from zope import schema
 from zope.interface import implements
 
@@ -42,7 +42,7 @@ class CountrySelectTile(PersistentCoverTile):
         return False
 
     def countries(self):
-        countries = [(c[0], c[1].replace(" ", "-")) for c in ace_countries]
+        countries = [(c[0], c[1].replace(" ", "-")) for c in ace_countries_selection]
         return countries
 
     def get_image(self):

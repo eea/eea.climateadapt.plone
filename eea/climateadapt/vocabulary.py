@@ -222,6 +222,14 @@ ace_countries_dict = dict(ace_countries)
 ace_countries_vocabulary = generic_vocabulary(ace_countries)
 alsoProvides(ace_countries_vocabulary, IVocabularyFactory)
 
+
+eu_countries_selection = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR',
+                          'DE', 'GR', 'HU', 'IS', 'IE', 'IT', 'LV', 'LI', 'LT', 'LU', 
+                          'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE',
+                          'CH', 'TR', 'GB']
+ace_countries_selection = [(x.alpha2, x.name) for x in pycountry.countries
+                          if x.alpha2 in eu_countries_selection]
+
 faceted_countries = ['AL', 'AT', 'BE', 'BG', 'BA', 'HR', 'CY', 'CZ', 'DK',
                      'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT',
                      'KZ', 'LV', 'LI', 'LT', 'LU', 'MT', 'ME', 'NL', 'NO',
