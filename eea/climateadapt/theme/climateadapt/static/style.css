@@ -842,7 +842,8 @@ div.position-0 { margin-left: -100%; }
 
 .panel {
     border: none;
-    padding-top: 10px;
+    padding-top: 2em;
+    padding-bottom: 2em;
 }
 
 .panel-group .read-more-acc > a:not(.collapsed) {
@@ -895,6 +896,19 @@ div.position-0 { margin-left: -100%; }
 }
 
 /* Breadcrumb fixes */
+
+.subsection-tools-urban-ast #content .tile .cover-richtext-tile li {
+    /*list-style-image: url("cca/img/01_plus.png");*/
+    list-style: none !important;
+    background-image: url("cca/img/arrows/01_plus.png");
+    background-repeat: no-repeat;
+    background-position: 0.15em 0.2em;
+    padding-left: 1.6em;
+}
+
+.subsection-tools-urban-ast #content .tile .cover-richtext-tile ul {
+    margin-left: 0;
+}
 
 #portal-breadcrumbs {
     background-color: #E9ECC9;
