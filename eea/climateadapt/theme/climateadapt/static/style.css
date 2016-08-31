@@ -833,6 +833,7 @@ div.position-0 { margin-left: -100%; }
     padding: 0;
     line-height: 1.5em;
     font-size: 1em;
+    padding-top: 10px;
 }
 
 .edit-tool-custom > .panel-body, .panel-collapse.collapsing {
@@ -841,6 +842,7 @@ div.position-0 { margin-left: -100%; }
 
 .panel {
     border: none;
+    padding-top: 10px;
 }
 
 .panel-group .read-more-acc > a:not(.collapsed) {
@@ -1149,7 +1151,7 @@ ul#ast-menu, #ast-menu ul {
 }
 
 .subsection-tools-urban-ast .edit-tool-custom-click .read-more-acc a {
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .col-md-6 {
@@ -1422,6 +1424,10 @@ a.bluebutton:active {
 
 #ast-menu .ui-accordion-content-active a.active {
     color: #a5bf26 !important;
+}
+
+.subsection-tools-urban-ast #content .aceitem-relevant-tile > ul {
+    margin-top: 0;
 }
 
 .sector-main-article #read-more-link {
