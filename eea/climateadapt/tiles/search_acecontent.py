@@ -1,5 +1,4 @@
 """ A view that can be embeded in a tile.
-
 It renders a search "portlet" for Ace content
 """
 
@@ -171,7 +170,6 @@ class AceTileMixin(object):
 
 class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
     """ Search Ace content tile
-
     It shows links to the search page, for all aceitems_types.
     """
 
@@ -333,7 +331,6 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
     def assigned(self):
         """Return the list of objects stored in the tile as UUID. If an UUID
         has no object associated with it, removes the UUID from the list.
-
         :returns: a list of objects.
         """
         #self.set_limit()
@@ -367,7 +364,6 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
     def populate_with_object(self, obj):
         """ Add an object to the list of items
-
         :param obj: [required] The object to be added
         :type obj: Content object
         """
@@ -379,7 +375,6 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
     def populate_with_uuids(self, uuids):
         """ Add a list of elements to the list of items. This method will
         append new elements to the already existing list of items
-
         :param uuids: The list of objects' UUIDs to be used
         :type uuids: List of strings
         """
@@ -425,7 +420,6 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
     def replace_with_uuids(self, uuids):
         """ Replaces the whole list of items with a new list of items
-
         :param uuids: The list of objects' UUIDs to be used
         :type uuids: List of strings
         """
@@ -443,7 +437,6 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
     @view.memoize
     def get_uuid(self, obj):
         """Return the UUID of the object.
-
         :param obj: [required]
         :type obj: content object
         :returns: the object's UUID
@@ -452,7 +445,6 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
     def remove_item(self, uuid):
         """ Removes an item from the list
-
         :param uuid: [required] uuid for the object that wants to be removed
         :type uuid: string
         """
@@ -468,7 +460,6 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
 class IFilterAceContentItemsTile(IRelevantAceContentItemsTile):
     """ Schema for filter aceitems
-
     This is a results listing, but with two dropdowns to filter:
     * climate impact
     * adaptation sector

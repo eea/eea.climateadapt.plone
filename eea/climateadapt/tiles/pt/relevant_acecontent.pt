@@ -9,7 +9,7 @@
       <h4 style="margin-bottom:0.6em">Relevant AceContent Tile</h4>
 
       <tal:items repeat="obj view/assigned">
-        <div class="list-item" style="position:relative;" 
+        <div class="list-item" style="position:relative;"
           tal:attributes="data-tile-id view/id;
           data-content-type obj/portal_type;
           data-content-uuid python:view.get_uuid(obj)">
@@ -47,8 +47,8 @@
     <div class="cover-richtext-tile tile-content aceitem-relevant-tile" tal:condition="not: is_compose" tal:define="assigned view/assigned">
 
       <div style="margin-top:0.4em; margin-right: 0.6em;float:left" class="hiddenForAnon">
-        <a href="" 
-          class="pat-plone-modal" 
+        <a href=""
+          class="pat-plone-modal"
           tal:attributes="href string:#info${view/id}">
           <img src="/++theme++climateadapt/static/cca/img/vergrootglas.png" />
         </a>
@@ -72,7 +72,7 @@
 
             <dt>Number of items: </dt>
             <dd tal:content="python: view.data.get('nr_items')" />
-          </dl>      
+          </dl>
         </div>
       </div>
 
