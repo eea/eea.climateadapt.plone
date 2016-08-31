@@ -111,9 +111,9 @@ _datatypes = [
     ("GUIDANCE", "Guidance"),
     ("TOOL", "Tools"),
     ("RESEARCHPROJECT", "Research and knowledge projects"),
-    ("ORGANISATION", "Organisations"),
     ("MEASURE", "Adaptation options"),
     ("ACTION", "Case studies"),
+    ("ORGANISATION", "Organisations"),
 ]
 aceitem_datatypes_vocabulary = generic_vocabulary(_datatypes)
 alsoProvides(aceitem_datatypes_vocabulary, IVocabularyFactory)
@@ -224,7 +224,7 @@ alsoProvides(ace_countries_vocabulary, IVocabularyFactory)
 
 
 eu_countries_selection = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR',
-                          'DE', 'GR', 'HU', 'IS', 'IE', 'IT', 'LV', 'LI', 'LT', 'LU', 
+                          'DE', 'GR', 'HU', 'IS', 'IE', 'IT', 'LV', 'LI', 'LT', 'LU',
                           'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE',
                           'CH', 'TR', 'GB']
 ace_countries_selection = [(x.alpha2, x.name) for x in pycountry.countries

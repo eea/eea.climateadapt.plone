@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Ordered the aceitem types in the search tile
+  [iulianpetchesi #75221]
 * Bugfix: Style fixes for read more and relevant acecontent tile
   [iulianpetchesi #75172]
 * Feature: use an contentrules event to send emails on cityprofile registration
