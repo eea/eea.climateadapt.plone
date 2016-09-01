@@ -12,7 +12,7 @@
         <label class=""
                id="searchLabel"
                tal:attributes="for search_input_id"
-               i18n:translate="text_search">Search the website:</label>
+               i18n:translate="text_search">Search:</label>
 
         <input name="SearchableText"
                type="text"
