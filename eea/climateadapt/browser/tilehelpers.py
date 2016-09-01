@@ -5,7 +5,7 @@ developed and tested.
 """
 
 from Products.Five.browser import BrowserView
-from eea.climateadapt.vocabulary import ace_countries
+from eea.climateadapt.vocabulary import ace_countries_selection
 from zope.component.hooks import getSite
 from plone.api import portal
 
@@ -26,7 +26,7 @@ class FrontPageCountries(BrowserView):
     """
 
     def countries(self):
-        return ace_countries
+        return ace_countries_selection
 
 
 class FrontPageCarousel(BrowserView):
