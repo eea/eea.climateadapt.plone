@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Changed the city profile view
+  [iulianpetchesi #75210]
 * Bugfix: Ordered the aceitem types in the search tile
   [iulianpetchesi #75221]
 * Bugfix: Style fixes for read more and relevant acecontent tile

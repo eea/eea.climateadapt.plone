@@ -117,31 +117,90 @@
             <span tal:content="context/title">Barcelona</span> -
             <span tal:replace="structure python: view.w['country'].render()"></span>
         </h3>
-        <div tal:content="context/name_of_local_authority" />
+        <div tal:condition="python: view.w['name_of_local_authority'].value not in [None, '-', '']"
+             tal:content="context/name_of_local_authority" />
 
-        <div>
-            <div tal:content="structure python: view.w['city_background_information_about_the_city'].render()" />
-        </div>
+        <div tal:condition="python: view.w['city_background_information_about_the_city'].value not in [None, '-', '']"
+            tal:content="structure python: view.w['city_background_information_about_the_city'].render()" />
 
-        <div class='info-box climate-change-impacts-and-adaptation-responses'>
+        <div class='info-box climate-change-impacts-and-adaptation-responses'
+             tal:condition="python: view.check_sections('1')">
             <h3>Climate change impacts and adaptation responses</h3>
             <div tal:content="structure python: view.w['additional_information_on_climate_impacts'].render()" />
         </div>
 
-        <div class="info-box planned-adaptation-actions">
+        <div class='info-box'>
+            <h3>Adaptation strategy</h3>
+
+            <div tal:condition="python: view.label_from_dropdown('have_you_already_developed_an_adaptation_strategy')">
+                <span style="font-weight:bold;">Have you already developed an adaptation strategy?</span>
+                <div tal:content="structure python: view.label_from_dropdown('have_you_already_developed_an_adaptation_strategy')" />
+            </div>
+
+            <div tal:condition="python: view.context.date_of_approval_of_the_strategy__plan is not None">
+                <span style="font-weight:bold;">Date of approval of the strategy/ plan (If adopted)</span>
+                <div tal:content="python: view.formated_date(view.context.date_of_approval_of_the_strategy__plan)" />
+            </div>
+
+            <div tal:condition="python: view.w['name_of_the_strategy__plan'].value not in [None, '-', '']">
+                <span style="font-weight:bold;">Name of the strategy/ plan (If adopted)</span>
+                <div tal:content="structure python: view.w['name_of_the_strategy__plan'].render()" />
+            </div>
+
+            <div tal:condition="python: view.w['weblink_of_the_strategy__plan'].value not in [None, '-', '']">
+                <span style="font-weight:bold;">Weblink of the strategy/ plan (If adopted)</span>
+                <div tal:content="structure python: view.linkify(view.w['weblink_of_the_strategy__plan'].render())" />
+            </div>
+
+            <div tal:condition="python: view.w['weblinks_to_relevant_plans_studies'].value not in [None, '-', '']">
+                <span style="font-weight:bold;">Weblinks to relevant plans/ studies</span>
+                <div tal:content="structure python: view.linkify(view.w['weblinks_to_relevant_plans_studies'].render())" />
+            </div>
+
+            <div tal:condition="python: view.w['short_content_summary_of_the_strategy__plan'].value not in [None, '-', '']">
+                <span style="font-weight:bold;">Short content summary of the strategy/ plan (If adopted)</span>
+                <div tal:content="structure python: view.w['short_content_summary_of_the_strategy__plan'].render()" />
+            </div>
+
+            <div tal:condition="python: view.w['additional_information_on_adaptation_responses'].value not in [None, '-', '']">
+                <span style="font-weight:bold;">Additional information on adaptation responses, e.g. assessments, legal processes, partners involved and political framework</span>
+                <div tal:content="structure python: view.w['additional_information_on_adaptation_responses'].render()" />
+            </div>
+
+            <div tal:condition="python: view.w['main_motivation_for_taking_adaptation_action'].value not in [None, '-', '']">
+                <span style="font-weight:bold;">Main motivation for taking adaptation action (and joining Mayors Adapt)</span>
+                <div tal:content="structure python: view.w['main_motivation_for_taking_adaptation_action'].render()" />
+            </div>
+
+            <span tal:condition="python: view.labels_from_choice('what_sectors_are_concerned')"
+                style="font-weight:bold;">What sectors are concerned</span>
+            <ul>
+                <li
+                  tal:repeat="sector python: view.labels_from_choice('what_sectors_are_concerned')"
+                  tal:content="sector"></li>
+            </ul>
+
+        </div>
+
+        <div class="info-box planned-adaptation-actions"
+             tal:condition="python: view.check_sections('3')">
             <h3>Planned adaptation actions</h3>
             <div tal:content="structure python: view.w['planned_current_adaptation_actions_and_responses'].render()" />
         </div>
 
-        <div class="info-box good-practice-spotlight-item">
+        <div class="info-box good-practice-spotlight-item"
+             tal:condition="python: view.check_sections('4')">
             <h3>Good practice / spotlight item</h3>
             <div style="font-weight: bold"
+                tal:condition="python: view.w['title_of_the_action_event'].value not in [None, '-', '']"
                 tal:content="structure python: view.w['title_of_the_action_event'].render()" />
-            <div tal:content="structure python: view.w['long_description'].render()" />
+            <div tal:condition="python: view.check_richtext(view.w['long_description'])"
+                 tal:content="structure python: view.w['long_description'].render()" />
         </div>
             <img tal:replace="structure context/@@images/picture/preview" style="max-width: 100%"
                  tal:condition="context/picture"/>
-            <small tal:content="structure python: view.w['picture_caption'].render()" />
+            <small tal:condition="python: view.check_richtext(view.w['picture_caption'])"
+                tal:content="structure python: view.w['picture_caption'].render()" />
         </div>
 
         <div class="right-area">

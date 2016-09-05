@@ -54,6 +54,77 @@ class CityProfileView(DefaultView):
 
         return titles
 
+    def label_from_dropdown(self, fname):
+        schema = getUtility(
+            IDexterityFTI, name='eea.climateadapt.city_profile').lookupSchema()
+        ftype = schema.get(fname)
+        ftype = ftype.bind(self.context)
+        vocab = ftype.vocabulary
+        if getattr(self.context, fname):
+            term = vocab.getTermByToken(getattr(self.context, fname))
+            return term.title
+
+    def html_to_text(self, html):
+        portal_transform = portal.get_tool(name='portal_transforms')
+
+        data = portal_transform.convertTo(
+            'text/plain', html, mimetype='text/html'
+        )
+
+        data = data.getData().strip()
+        return data
+
+    def check_richtext(self, fname):
+        if hasattr(fname, 'value'):
+            if fname.value is None:
+                return False
+            html = fname.value.output
+        else:
+            html = fname.output
+
+        text = self.html_to_text(html)
+        if text in ['-', '']:
+            return False
+        return True
+
+    def check_sections(self, number):
+        sections = {
+            '1': [self.context.additional_information_on_climate_impacts],
+            '3': [self.context.planned_current_adaptation_actions_and_responses
+                  ],
+            '4': [self.context.title_of_the_action_event,
+                  self.context.long_description,
+                  self.context.picture,
+                  self.context.picture_caption],
+        }
+
+        section = sections.get(number)
+        if len(section) == 1:
+            if section[0] in [None, '-', '']:
+                return False
+            return True
+        else:
+            for b in section:
+                if hasattr(b, 'output'):
+                    b = self.html_to_text(b.output)
+                if b not in [None, '-', '']:
+                    return True
+        return False
+
+    def linkify(self, text):
+        portal_transform = portal.get_tool(name='portal_transforms')
+
+        xx = portal_transform.convertTo('text/x-web-intelligent',
+                                        text.encode('utf-8'),
+                                        mimetype='text/html').getData()
+        text = portal_transform.convertTo(
+            'text/html', xx, mimetype='text/x-web-intelligent').getData()
+
+        if not text:
+            return
+
+        return text
+
 
 class CityProfileFormExtender(FormExtender):
 
