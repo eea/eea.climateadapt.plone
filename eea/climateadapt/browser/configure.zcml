@@ -145,6 +145,13 @@
         />
 
     <browser:page
+        name="maps_configuration"
+        for="*"
+        class=".casestudy.CaseStudyMapsConfiguration"
+        permission="zope.Public"
+        />
+
+    <browser:page
         name="json"
         for="eea.climateadapt.acemeasure.ICaseStudy"
         class=".casestudy.CaseStudyJson"
