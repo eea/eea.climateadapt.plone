@@ -226,6 +226,7 @@
     <subscriber for=".events.ITokenAboutToExpireEvent" handler=".events.trigger_contentrules" />
     <subscriber for=".events.ITokenExpiredEvent" handler=".events.trigger_contentrules" />
     <subscriber for=".events.ICityProfileRegisterEvent" handler=".events.trigger_contentrules" />
+    <subscriber for="Products.PlonePAS.events.UserLoggedOutEvent" handler=".events.mayor_logout" />
 
     <adapter
         for="*"

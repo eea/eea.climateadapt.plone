@@ -24,7 +24,7 @@ class cityprofile_contact_email(BaseSubstitution):
     adapts(ICityProfile)
 
     def safe_call(self):
-        return getattr(self.context, 'official_email', '')
+        return getattr(self.context, 'e_mail_of_contact_person', '')
 
 
 class cityprofile_private_edit_link(BaseSubstitution):

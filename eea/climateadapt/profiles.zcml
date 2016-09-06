@@ -332,4 +332,22 @@
             />
     </genericsetup:upgradeSteps>
 
+    <!-- v19 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_19"
+        title="Upgrade profile for eea.climateadapt v19"
+        description=""
+        directory="profiles/upgrades/to_19"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="19"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v19"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_19"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>

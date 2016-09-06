@@ -39,11 +39,11 @@
             </field>
             <field name="official_email" type="zope.schema.TextLine">
                 <description/>
+                <required>False</required>
                 <title>Official email</title>
             </field>
             <field name="e_mail_of_contact_person" type="zope.schema.TextLine">
                 <description/>
-                <required>False</required>
                 <title>E-mail of contact person</title>
             </field>
             <field name="telephone" type="zope.schema.TextLine">
