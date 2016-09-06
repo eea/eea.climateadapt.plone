@@ -3,6 +3,9 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Changed the keywords admin permission to manage portal and
+  modified condition for preferences
+  [iulianpetchesi #75332]
 * Bugfix: Changed the city profile view
   [iulianpetchesi #75210]
 * Bugfix: Ordered the aceitem types in the search tile
