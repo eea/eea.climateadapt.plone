@@ -3,7 +3,10 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
-* Bugfix: Cleared the cptk cookie
+* Bugfix: Modified the required field for city profile email from
+  'official email' to 'email of contact person'
+  [iulianpetchesi #75544]
+* Bugfix: Cleared the cptk cookie on CityMayor logout
   [iulianpetchesi #75332]
 * Bugfix: Changed the keywords admin permission to manage portal and
   modified condition for preferences
