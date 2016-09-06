@@ -89,3 +89,8 @@ class CaseStudiesJson(BrowserView):
             cs = brain.getObject()
             res.append(cs._repr_for_arcgis())
         return json.dumps(res)
+
+
+class CaseStudyMapsConfiguration(BrowserView):
+    default_location = (47.654064, 9.636072)    # Somewhere south of Germany
+

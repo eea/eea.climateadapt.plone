@@ -1,3 +1,9 @@
+L.Map.addInitHook(function(){
+    // "patches" construction of L.Map to add a _map property to keep a reference
+    // to the constructed map, from the map container
+    this._container._map = this;
+});
+
 (function($){
 	$(document).ready(function(){
 		setTimeout(function(){
@@ -13,6 +19,15 @@
 				window.location.hash = "form-widgets-websites-buttons-remove";
 			});
 		},100);
+
+        $("#fieldsetlegend-geographic_information").on('click', function(){
+            // solve a problem with the Leaflet map for CaseStudy edit form
+            // it needs a different zoom, and the map is shown badly when on 
+            // secondary edit tab
+			var map = $("div.map.leaflet-container").get(0)._map;
+            map.setZoom(4);
+            map.invalidateSize();
+        });
 
 		$('.tile-container').each(function(){
 			var span = $(this).find('.tile-type-name');
