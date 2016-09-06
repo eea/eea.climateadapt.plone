@@ -9,8 +9,8 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="eea.climateadapt">
 
+    <!-- Other overrides -->
 
-    Other overrides
     <browser:page
         name="getVocabulary"
         for="*"
@@ -26,6 +26,7 @@
         provides="zope.publisher.interfaces.browser.IBrowserPage"
         factory=".overrides.AddView"
         />
+
     <class class=".overrides.AddView">
         <require
             permission="cmf.AddPortalContent"
@@ -40,7 +41,7 @@
             />
     </configure>
 
-    Fix RichText widget: the plone.app.widgets provided one has proper relatedItems configuration
+    <!-- Fix RichText widget: the plone.app.widgets provided one has proper relatedItems configuration -->
     <adapter
         for="plone.app.textfield.interfaces.IRichText eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         factory="plone.app.widgets.dx.RichTextFieldWidget"

@@ -2,8 +2,8 @@ from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.schema import Year
+from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.app.textfield import RichText
-from plone.app.widgets.dx import AjaxSelectWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.directives import dexterity, form
@@ -343,7 +343,7 @@ class Action(dexterity.Container):
 @adapter(getSpecification(IAceItem['special_tags']), IWidgetsLayer)
 @implementer(IFieldWidget)
 def SpecialTagsFieldWidget(field, request):
-    widget = FieldWidget(field, AjaxSelectWidget(request))
+    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.special_tags'
     return widget
 
@@ -351,6 +351,6 @@ def SpecialTagsFieldWidget(field, request):
 @adapter(getSpecification(IAceItem['keywords']), IWidgetsLayer)
 @implementer(IFieldWidget)
 def KeywordsFieldWidget(field, request):
-    widget = FieldWidget(field, AjaxSelectWidget(request))
+    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.keywords'
     return widget

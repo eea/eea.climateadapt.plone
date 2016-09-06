@@ -6,10 +6,10 @@ from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.rabbitmq import queue_msg
 from eea.climateadapt.schema import Year
+from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from eea.climateadapt.utils import _unixtime
 from plone.app.contenttypes.interfaces import IImage
 from plone.app.textfield import RichText
-from plone.app.widgets.dx import AjaxSelectWidget
 from plone.app.widgets.dx import RelatedItemsWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
@@ -475,7 +475,7 @@ def KeywordsFieldWidget(field, request):
         the widget will work properly
         Check browser/overrides.py for more details
     """
-    widget = FieldWidget(field, AjaxSelectWidget(request))
+    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.keywords'
     return widget
 
@@ -483,7 +483,7 @@ def KeywordsFieldWidget(field, request):
 @adapter(getSpecification(IAceMeasure['special_tags']), IWidgetsLayer)
 @implementer(IFieldWidget)
 def SpecialTagsFieldWidget(field, request):
-    widget = FieldWidget(field, AjaxSelectWidget(request))
+    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.special_tags'
     return widget
 

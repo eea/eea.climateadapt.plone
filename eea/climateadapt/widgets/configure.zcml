@@ -1,4 +1,5 @@
 <configure
+    xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:faceted="http://namespaces.zope.org/faceted"
     xmlns:z3c="http://namespaces.zope.org/z3c"
@@ -19,5 +20,7 @@
         template="geochar_widget_display.pt"
         />
         layer="z3c.form.interfaces.IFormLayer"
+
+    <adapter factory=".ajaxselect.BetterAjaxSelectWidgetConverter" />
 
 </configure>
