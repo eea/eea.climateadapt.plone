@@ -45,7 +45,7 @@ L.Map.addInitHook(function(){
             $(this).parents('form').submit();
         });
 
-		$('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+		$('#header ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
 			event.preventDefault();
 			event.stopPropagation();
 			$(this).parent().siblings().removeClass('open');

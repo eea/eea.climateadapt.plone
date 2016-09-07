@@ -80,3 +80,6 @@ class AdminActionsViewlet(ViewletBase):
         if not self.context.can_reset_token():
             return ""
         return super(AdminActionsViewlet, self).render()
+
+    def is_not_private(self):
+        return get_state(self.context) != 'private'

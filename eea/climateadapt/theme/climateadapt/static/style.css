@@ -2481,3 +2481,10 @@ table.listing a {
 .subsection-case-studies .pattern-relateditems-buttons {
     padding-left: 45em;
 }
+
+.pattern-relateditems-container button {
+    width: initial !important;
+}
+#fakeUploadFile {
+    margin: 0px !important;
+}
