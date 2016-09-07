@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Several changes regarding city profiles form and template
+  [iulianpetchesi #75878]
 * Bugfix: Modified the required field for city profile email from
   'official email' to 'email of contact person'
   [iulianpetchesi #75544]
