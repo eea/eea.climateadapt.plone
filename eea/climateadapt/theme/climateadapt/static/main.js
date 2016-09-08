@@ -4,6 +4,16 @@ L.Map.addInitHook(function(){
     this._container._map = this;
 });
 
+
+function fix_map(){
+    // solve a problem with the Leaflet map for CaseStudy edit form
+    // it needs a different zoom, and the map is shown badly when on 
+    // secondary edit tab
+    var map = $("div.map.leaflet-container").get(0)._map;
+    map.setZoom(4);
+    map.invalidateSize();
+}
+
 (function($){
 	$(document).ready(function(){
 		setTimeout(function(){
@@ -20,15 +30,9 @@ L.Map.addInitHook(function(){
 			});
 		},100);
 
-        $("#fieldsetlegend-geographic_information").on('click', function(){
-            // solve a problem with the Leaflet map for CaseStudy edit form
-            // it needs a different zoom, and the map is shown badly when on 
-            // secondary edit tab
-			var map = $("div.map.leaflet-container").get(0)._map;
-            map.setZoom(4);
-            map.invalidateSize();
-        });
-
+        $("#fieldsetlegend-geographic_information").on('click', fix_map);
+        $("#fieldsetlegend-general_information").on('click', fix_map);
+        
 		$('.tile-container').each(function(){
 			var span = $(this).find('.tile-type-name');
 			var editbtn = $(this).children('a');
