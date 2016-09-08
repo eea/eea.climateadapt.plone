@@ -132,4 +132,4 @@ class CityProfileFormExtender(FormExtender):
         self.move('IGeolocatable.geolocation', after='country')
         self.remove('city_background_information_about_the_city')
         self.remove('status_of_mayors_adapt_signature')
-        self.remove('signature_date')
+        # self.remove('signature_date')
