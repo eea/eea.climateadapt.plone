@@ -7,7 +7,7 @@ L.Map.addInitHook(function(){
 
 function fix_map(){
     // solve a problem with the Leaflet map for CaseStudy edit form
-    // it needs a different zoom, and the map is shown badly when on 
+    // it needs a different zoom, and the map is shown badly when on
     // secondary edit tab
     var map = $("div.map.leaflet-container").get(0)._map;
     map.setZoom(4);
@@ -32,7 +32,7 @@ function fix_map(){
 
         $("#fieldsetlegend-geographic_information").on('click', fix_map);
         $("#fieldsetlegend-general_information").on('click', fix_map);
-        
+
 		$('.tile-container').each(function(){
 			var span = $(this).find('.tile-type-name');
 			var editbtn = $(this).children('a');
@@ -43,7 +43,7 @@ function fix_map(){
 			if (editbtn.text() == 'Edit') {
 				editbtn.detach().appendTo(div);
 			}
-		});
+        });
 
         $(".acecontent_filtering_tile select").on('change', function(event){
             $(this).parents('form').submit();
