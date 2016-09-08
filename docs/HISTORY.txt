@@ -6,6 +6,8 @@ Changelog
 * Bug fix: added leaflet map workaround to properly show maps in
   CaseStudy edit form and CityProfile edit form
   [tiberich #75909]
+* Bugfix: Several changes regarding city profiles form and template
+  [iulianpetchesi #75878]
 * Bugfix: Modified the required field for city profile email from
   'official email' to 'email of contact person'
   [iulianpetchesi #75544]

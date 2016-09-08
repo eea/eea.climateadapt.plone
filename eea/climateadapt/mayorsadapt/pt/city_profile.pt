@@ -95,11 +95,6 @@
           }
       </style>
 
-        <h1 class="city-name">
-            <a class="glyphicon glyphicon-circle-arrow-left"
-              href="#" tal:attributes="href context/aq_parent/absolute_url" />
-            <span tal:content="context/title">Barcelona</span>
-        </h1>
         <div class="center-area">
 
         <div id="logos">
@@ -120,13 +115,22 @@
         <div tal:condition="python: view.w['name_of_local_authority'].value not in [None, '-', '']"
              tal:content="context/name_of_local_authority" />
 
-        <div tal:condition="python: view.w['city_background_information_about_the_city'].value not in [None, '-', '']"
-            tal:content="structure python: view.w['city_background_information_about_the_city'].render()" />
+        <!-- <div tal:condition="python: view.w['city_background_information_about_the_city'].value not in [None, '-', '']"
+            tal:content="structure python: view.w['city_background_information_about_the_city'].render()" /> -->
 
         <div class='info-box climate-change-impacts-and-adaptation-responses'
              tal:condition="python: view.check_sections('1')">
-            <h3>Climate change impacts and adaptation responses</h3>
+            <h3>Climate change impacts</h3>
             <div tal:content="structure python: view.w['additional_information_on_climate_impacts'].render()" />
+            <div tal:condition="python: view.w['additional_information_on_vulnerable_sectors'].value not in [None, '-', '']"
+                 tal:content="structure python: view.w['additional_information_on_vulnerable_sectors'].render()"
+            />
+        </div>
+
+        <div class='info-box'
+             tal:condition="python: view.w['main_motivation_for_taking_adaptation_action'].value not in [None, '-', '']">
+            <h3>Main motivation for taking adaptation action</h3>
+            <div tal:content="structure python: view.w['main_motivation_for_taking_adaptation_action'].render()" />
         </div>
 
         <div class='info-box'>
@@ -137,18 +141,18 @@
                 <div tal:content="structure python: view.label_from_dropdown('have_you_already_developed_an_adaptation_strategy')" />
             </div>
 
-            <div tal:condition="python: view.context.date_of_approval_of_the_strategy__plan is not None">
-                <span style="font-weight:bold;">Date of approval of the strategy/ plan (If adopted)</span>
-                <div tal:content="python: view.formated_date(view.context.date_of_approval_of_the_strategy__plan)" />
-            </div>
-
             <div tal:condition="python: view.w['name_of_the_strategy__plan'].value not in [None, '-', '']">
                 <span style="font-weight:bold;">Name of the strategy/ plan (If adopted)</span>
                 <div tal:content="structure python: view.w['name_of_the_strategy__plan'].render()" />
             </div>
 
+            <div tal:condition="python: view.context.date_of_approval_of_the_strategy__plan is not None">
+                <span style="font-weight:bold;">Date of strategy/plan approval</span>
+                <div tal:content="python: view.formated_date(view.context.date_of_approval_of_the_strategy__plan)" />
+            </div>
+
             <div tal:condition="python: view.w['weblink_of_the_strategy__plan'].value not in [None, '-', '']">
-                <span style="font-weight:bold;">Weblink of the strategy/ plan (If adopted)</span>
+                <span style="font-weight:bold;">Weblink of the strategy/ plan</span>
                 <div tal:content="structure python: view.linkify(view.w['weblink_of_the_strategy__plan'].render())" />
             </div>
 
@@ -158,28 +162,14 @@
             </div>
 
             <div tal:condition="python: view.w['short_content_summary_of_the_strategy__plan'].value not in [None, '-', '']">
-                <span style="font-weight:bold;">Short content summary of the strategy/ plan (If adopted)</span>
+                <span style="font-weight:bold;">Summary of the strategy/plan</span>
                 <div tal:content="structure python: view.w['short_content_summary_of_the_strategy__plan'].render()" />
             </div>
 
             <div tal:condition="python: view.w['additional_information_on_adaptation_responses'].value not in [None, '-', '']">
-                <span style="font-weight:bold;">Additional information on adaptation responses, e.g. assessments, legal processes, partners involved and political framework</span>
+                <span style="font-weight:bold;">Additional information on adaptation responses</span>
                 <div tal:content="structure python: view.w['additional_information_on_adaptation_responses'].render()" />
             </div>
-
-            <div tal:condition="python: view.w['main_motivation_for_taking_adaptation_action'].value not in [None, '-', '']">
-                <span style="font-weight:bold;">Main motivation for taking adaptation action (and joining Mayors Adapt)</span>
-                <div tal:content="structure python: view.w['main_motivation_for_taking_adaptation_action'].render()" />
-            </div>
-
-            <span tal:condition="python: view.labels_from_choice('what_sectors_are_concerned')"
-                style="font-weight:bold;">What sectors are concerned</span>
-            <ul>
-                <li
-                  tal:repeat="sector python: view.labels_from_choice('what_sectors_are_concerned')"
-                  tal:content="sector"></li>
-            </ul>
-
         </div>
 
         <div class="info-box planned-adaptation-actions"
@@ -196,6 +186,14 @@
                 tal:content="structure python: view.w['title_of_the_action_event'].render()" />
             <div tal:condition="python: view.check_richtext(view.w['long_description'])"
                  tal:content="structure python: view.w['long_description'].render()" />
+            <span tal:condition="python: view.labels_from_choice('what_sectors_are_concerned')"
+                  style="font-weight:bold;">What sectors are concerned</span>
+            <ul>
+               <li
+                  tal:repeat="sector python: view.labels_from_choice('what_sectors_are_concerned')"
+                  tal:content="sector">
+              </li>
+           </ul>
         </div>
             <img tal:replace="structure context/@@images/picture/preview" style="max-width: 100%"
                  tal:condition="context/picture"/>
@@ -252,7 +250,7 @@
             </div>
 
             <div>
-                <h3>Name &and; surname of mayor</h3>
+                <h3>Mayor</h3>
                 <div tal:content="structure python: view.w['name_and_surname_of_mayor'].render()" />
             </div>
 
@@ -268,21 +266,32 @@
             </div>
 
             <div>
-                <h3>Official e-mail</h3>
+                <h3>Email</h3>
                 <div tal:content="structure python: view.w['official_email'].render()" />
                 <a tal:attributes="href python: context.website_of_the_local_authority">Website</a>
             </div>
 
-            <div tal:condition="python: view.context.signature_date is not None">
+            <!-- <div tal:condition="python: view.context.signature_date is not None">
                 <h3>Date of officially joining Mayors Adapt</h3>
                 <div tal:content="python: view.formated_date(view.context.signature_date)" />
-                <!-- <div tal:content="structure python: view.w['signature_date'].render()" /> -->
+            </div> -->
+
+            <div tal:condition="python: view.w['covenant_of_mayors_signatory'].value[0] == 'true'">
+                <h3>Covenant of Mayors signatory</h3>
             </div>
 
-            <div>
-                <h3>Covenant of Mayors 2020 signatory</h3>
-                <div tal:content="structure python: view.w['covenant_of_mayors_signatory'].render()" />
+            <div tal:condition="python: len(view.w['covenant_of_mayors_signatory_2020'].value) > 0">
+                <h3 tal:condition="python: view.w['covenant_of_mayors_signatory_2020'].value[0] == 'true'">
+                    Covenant of Mayors 2020 signatory
+                </h3>
             </div>
+
+            <div tal:condition="python: len(view.w['covenant_of_mayors_signatory_2030'].value) > 0">
+                <h3 tal:condition="python: view.w['covenant_of_mayors_signatory_2030'].value[0] == 'true'">
+                    Covenant of Mayors 2030 signatory
+                </h3>
+            </div>
+
 
             <div>
               <h3>Last Update</h3>
