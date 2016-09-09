@@ -126,4 +126,29 @@
        handler=".acemeasure.handle_for_arcgis_sync"
     />
 
+
+    ------[ Workflow Message Functionality: ]--------
+
+    <subscriber for=".workflow.IWorkflowMessageEvent" handler=".utils.trigger_contentrules" />
+
+    <interface
+        interface=".workflow.IWorkflowMessageEvent"
+        type="plone.contentrules.rule.interfaces.IRuleEventType"
+        name="ClimateAdapt: workflow transition with message"
+        />
+
+    <adapter
+        for="*"
+        provides="plone.stringinterp.interfaces.IStringSubstitution"
+        factory=".workflow.workflow_message"
+        name="cca_workflow_message"
+        />
+
+    <browser:page
+        name="set_workflow_message"
+        for="Products.CMFCore.interfaces.IContentish"
+        class=".workflow.WorkflowTransitionMessage"
+        permission="cmf.ReviewPortalContent"
+        />
+
 </configure>

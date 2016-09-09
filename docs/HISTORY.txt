@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Feature: added a form that allows setting the workflow transition comment
+  [tiberich #75543]
 * Bugfix: Changed city profile fields 
   [iulianpetchesi #75951]
 * Bugfix: Mobile view fixes for aceitems

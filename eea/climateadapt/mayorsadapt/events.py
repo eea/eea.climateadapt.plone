@@ -1,6 +1,5 @@
 from zope.interface import implements
 from zope.component.interfaces import ObjectEvent, IObjectEvent
-from plone.app.contentrules.handlers import execute_rules
 from eea.climateadapt.city_profile import TOKEN_COOKIE_NAME
 
 
@@ -38,10 +37,6 @@ class TokenExpiredEvent(ObjectEvent):
 
 class CityProfileRegisterEvent(ObjectEvent):
     implements(ICityProfileRegisterEvent)
-
-
-def trigger_contentrules(event):
-    execute_rules(event)
 
 
 def mayor_logout(event):

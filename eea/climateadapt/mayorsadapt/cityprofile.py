@@ -129,7 +129,10 @@ class CityProfileView(DefaultView):
 class CityProfileFormExtender(FormExtender):
 
     def update(self):
-        self.move('IGeolocatable.geolocation', after='country')
-        self.remove('city_background_information_about_the_city')
-        self.remove('status_of_mayors_adapt_signature')
+        try:
+            self.move('IGeolocatable.geolocation', after='country')
+            self.remove('city_background_information_about_the_city')
+            self.remove('status_of_mayors_adapt_signature')
+        except Exception:   # registered too loosely
+            pass
         # self.remove('signature_date')
