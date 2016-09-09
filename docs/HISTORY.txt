@@ -6,6 +6,11 @@ Changelog
 * Feature: added a form that allows setting the workflow transition comment
   [tiberich #75543]
 * Bugfix: Changed city profile fields 
+* Bugfix: Made titles in bold for aceitem sidebar 
+  [iulianpetchesi #19463]
+* Bugfix: Mobile browsing fix
+  [iulianpetchesi #73319]
+* Bugfix: Changed city profile fields
   [iulianpetchesi #75951]
 * Bugfix: Mobile view fixes for aceitems
   [iulianpetchesi #73319]
