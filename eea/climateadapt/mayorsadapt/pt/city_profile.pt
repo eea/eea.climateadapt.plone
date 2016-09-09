@@ -271,8 +271,10 @@
                 <a tal:attributes="href python: context.website_of_the_local_authority">Website</a>
             </div>
 
-            <div tal:condition="python: view.w['covenant_of_mayors_signatory'].value[0] == 'true'">
-                <h3>Covenant of Mayors signatory</h3>
+            <div tal:condition="python: view.w['covenant_of_mayors_signatory'].value">
+                <h3 tal:condition="python: view.w['covenant_of_mayors_signatory'].value[0] == 'true'">
+                    Covenant of Mayors signatory
+                </h3>
             </div>
 
             <div tal:condition="python: view.context.signature_date is not None">
