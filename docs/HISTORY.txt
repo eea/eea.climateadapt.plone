@@ -3,7 +3,9 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
-* Bugfix: Changed city profile fields 
+* Bugfix: Mobile browsing fix 
+  [iulianpetchesi #73319]
+* Bugfix: Changed city profile fields
   [iulianpetchesi #75951]
 * Bugfix: Mobile view fixes for aceitems
   [iulianpetchesi #73319]

@@ -236,6 +236,10 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {list-style: none;}
     .section-help #content .col-md-3:nth-of-type(3) table {
         width: 89%;
     }
+
+    .subsection-tools-urban-adaptation #content {
+        overflow: scroll;
+    }
 }
 
 @media screen and (max-width: 768px) {
