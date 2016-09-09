@@ -412,19 +412,19 @@ class AceViewApi(object):
         #     return value + u":<br/>"
 
     def _render_geochar_macrotrans(self, value):
-        tpl = u"<p>Macro-Transnational region: <br/>{0}</p>"
+        tpl = u"<div class='sidebar_bold'>Macro-Transnational region: <br/><p>{0}</p></div>"
         return tpl.format(u", ".join([TRANSLATED[x] for x in value]))
 
     def _render_geochar_biotrans(self, value):
-        tpl = u"<p>Biographical regions: <br/>{0}</p>"
+        tpl = u"<div class='sidebar_bold'>Biographical regions: <br/><p>{0}</p></div>"
         return tpl.format(u", ".join([TRANSLATED.get(x, x) for x in value]))
 
     def _render_geochar_countries(self, value):
-        tpl = u"<p>Countries:<br/>{0}</p>"
+        tpl = u"<div class='sidebar_bold'>Countries:<br/><p>{0}</p></div>"
         return tpl.format(u", ".join(self.get_countries(value)))
 
     def _render_geochar_subnational(self, value):
-        tpl = u"<p>Sub Nationals: <br/>{0}"
+        tpl = u"<div class='sidebar_bold'>Sub Nationals: <br/><p>{0}</p></div>"
         # a list like: ['SUBN_Marche__IT_']
 
         out = []

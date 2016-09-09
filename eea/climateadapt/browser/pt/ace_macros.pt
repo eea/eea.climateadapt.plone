@@ -113,7 +113,7 @@
         <div tal:condition="context/spatial_layer | nothing" tal:content="context/spatial_layer"/>
 
         <p tal:condition="context/spatial_values">
-          Countries:
+          <span style="font-weight:bold;">Countries:</span><br>
           <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
         </p>
       </tal:cond>

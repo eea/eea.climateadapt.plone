@@ -2523,3 +2523,11 @@ table.listing a {
 #fakeUploadFile {
     margin: 0px !important;
 }
+
+.sidebar_bold {
+    font-weight: bold;
+}
+
+.sidebar_bold p {
+    font-weight: normal;
+}
