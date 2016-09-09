@@ -3,6 +3,9 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Change: set the "Send back to City Representative" transition to use
+  the workflow message setting form
+  [tiberich #75543]
 * Feature: added a form that allows setting the workflow transition comment
   [tiberich #75543]
 * Bugfix: Changed city profile fields 
