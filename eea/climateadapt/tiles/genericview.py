@@ -1,7 +1,6 @@
 """ Generic view tile, uses a view name to render content
 """
 
-#from eea.climateadapt.interfaces import IASTNavigationRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile

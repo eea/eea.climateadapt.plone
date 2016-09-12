@@ -69,7 +69,7 @@ class ISearchAceContentTile(IPersistentCoverTile):
     special_tags = List(title=_(u"Special tags"),
                         required=False,
                         value_type=Choice(
-                            vocabulary="eea.climateadapt.special_tags_vocabulary"
+                            vocabulary="eea.climateadapt.special_tags"
                         )
                         )
 

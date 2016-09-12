@@ -7,7 +7,6 @@ from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
 from eea.climateadapt import MessageFactory as _
 from zope import schema
-from zope.component.hooks import getSite
 from zope.interface import implements
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.uuid.utils import uuidToObject
@@ -29,9 +28,7 @@ class IFormTile(IPersistentCoverTile):
 
 
 class FormTile(PersistentCoverTile):
-    """ Search Ace content tile
-
-    It shows links to the search page, for all aceitems_types.
+    """
     """
 
     implements(IFormTile)

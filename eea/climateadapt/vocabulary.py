@@ -40,23 +40,6 @@ class KeywordsVocabulary(BKV):
         self.keyword_index = index
 
 
-def catalog_based_vocabulary(index):
-    """ Creates a vocabulary from searching on an index
-    """
-
-    def factory(context):
-        site = getSite()
-        catalog = getToolByName(site, 'portal_catalog')
-        terms = catalog.uniqueValuesFor(index)
-        terms = sorted(terms)
-
-        return SimpleVocabulary([
-            SimpleTerm(x, x.encode('utf-8'), x) for x in terms
-        ])
-
-    return factory
-
-
 class CatalogVocabulary(BCV):
 
     def getTerm(self, value):
@@ -272,9 +255,6 @@ aceitem_types = [_a(*x) for x in _cca_types]
 
 SpecialTagsVocabularyFactory = KeywordsVocabulary('special_tags')
 KeywordsVocabularyFactory = KeywordsVocabulary('keywords')
-
-# keywords_vocabulary = catalog_based_vocabulary('keywords')
-# alsoProvides(keywords_vocabulary, IVocabularyFactory)
 
 _governance = [
     ("TRANS", "Transnational region (stretching across country borders)"),
