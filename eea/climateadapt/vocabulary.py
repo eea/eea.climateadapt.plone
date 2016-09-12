@@ -1,7 +1,7 @@
 from Products.CMFCore.utils import getToolByName
 from collections import namedtuple
 from plone.app.querystring import queryparser
-from plone.app.vocabularies.catalog import CatalogVocabulary as BaseCatalogVocabulary
+from plone.app.vocabularies.catalog import CatalogVocabulary as BCV
 from plone.app.vocabularies.catalog import CatalogVocabularyFactory
 from plone.app.vocabularies.catalog import KeywordsVocabulary as BKV
 from plone.uuid.interfaces import IUUID
@@ -34,6 +34,12 @@ def generic_vocabulary(_terms, sort=True):
     return factory
 
 
+@implementer(IVocabularyFactory)
+class KeywordsVocabulary(BKV):
+    def __init__(self, index):
+        self.keyword_index = index
+
+
 def catalog_based_vocabulary(index):
     """ Creates a vocabulary from searching on an index
     """
@@ -51,7 +57,7 @@ def catalog_based_vocabulary(index):
     return factory
 
 
-class CatalogVocabulary(BaseCatalogVocabulary):
+class CatalogVocabulary(BCV):
 
     def getTerm(self, value):
         if isinstance(value, basestring):
@@ -264,15 +270,8 @@ alsoProvides(cca_types, IVocabularyFactory)
 _a = namedtuple('_AceItemType', ['id', 'label'])
 aceitem_types = [_a(*x) for x in _cca_types]
 
-special_tags_vocabulary = catalog_based_vocabulary('special_tags')
-alsoProvides(special_tags_vocabulary, IVocabularyFactory)
-
-
-@implementer(IVocabularyFactory)
-class KeywordsVocabulary(BKV):
-    keyword_index = 'keywords'
-
-KeywordsVocabularyFactory = KeywordsVocabulary()
+SpecialTagsVocabularyFactory = KeywordsVocabulary('special_tags')
+KeywordsVocabularyFactory = KeywordsVocabulary('keywords')
 
 # keywords_vocabulary = catalog_based_vocabulary('keywords')
 # alsoProvides(keywords_vocabulary, IVocabularyFactory)
