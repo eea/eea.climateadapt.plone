@@ -82,17 +82,17 @@ class CityProfileEditController(BrowserView):
     def handle_edit(self):
         policy = ICheckinCheckoutPolicy(self.context)
         obj = policy.getWorkingCopy()
-        baseline = policy.getBaseline()
+        #baseline = policy.getBaseline()
 
-        print "WC: ", obj
-        print "Baseline: ", baseline
+        # print "WC: ", obj
+        # print "Baseline: ", baseline
 
         if obj is None:
             obj = self.context
 
         state = get_state(obj)
 
-        if state == 'private':
+        if state in ['private', 'sent']:
             url = '{0}/edit'.format(obj.absolute_url())
             return self.request.response.redirect(url)
 

@@ -4,7 +4,6 @@ URLs should look like /@@tk/<token value>/city-profile/somecity
 """
 
 from Products.CMFPlone.utils import getToolByName
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from datetime import timedelta
 from eea.climateadapt.city_profile import TOKEN_COOKIE_NAME
 from zExceptions import NotFound
@@ -42,6 +41,7 @@ class TokenHandler(object):
         self.token = token
 
     def __getitem__(self, cityname):
+        # TODO: cache this
         catalog = getToolByName(self.context, 'portal_catalog')
         cities = catalog.unrestrictedSearchResults(
             portal_type='eea.climateadapt.city_profile',
@@ -64,7 +64,6 @@ class CityHandler(BrowserPage):
     Note: don't remove docstring, needed by Zope security
     """
 
-    #index = ViewPageTemplateFile('pt/redirect-to-city.pt')
     token = None
 
     def __init__(self, context, request):
@@ -80,4 +79,3 @@ class CityHandler(BrowserPage):
 
         self.url = self.context.getURL()
         return self.request.response.redirect(self.context.getURL())
-        #return self.index()
