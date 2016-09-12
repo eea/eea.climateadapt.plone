@@ -353,4 +353,5 @@ def SpecialTagsFieldWidget(field, request):
 def KeywordsFieldWidget(field, request):
     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.keywords'
+    #widget.vocabulary = 'plone.app.vocabularies.Catalog'
     return widget

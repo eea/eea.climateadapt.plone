@@ -71,7 +71,8 @@
     <utility name="eea.climateadapt.cca_types" component=".vocabulary.cca_types"/>
 
     <utility name="eea.climateadapt.special_tags" component=".vocabulary.special_tags_vocabulary" />
-    <utility name="eea.climateadapt.keywords" component=".vocabulary.keywords_vocabulary" />
+    <!-- <utility name="eea.climateadapt.keywords" component=".vocabulary.keywords_vocabulary" /> -->
+    <utility name="eea.climateadapt.keywords" component=".vocabulary.KeywordsVocabularyFactory" />
 
     <utility name="eea.climateadapt.faceted_elements_voc" component=".vocabulary.faceted_elements"/>
     <utility name="eea.climateadapt.adaptation_options" factory=".vocabulary.AdaptationOptionsVocabulary"/>

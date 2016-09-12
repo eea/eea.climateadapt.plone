@@ -3,6 +3,7 @@ from collections import namedtuple
 from plone.app.querystring import queryparser
 from plone.app.vocabularies.catalog import CatalogVocabulary as BaseCatalogVocabulary
 from plone.app.vocabularies.catalog import CatalogVocabularyFactory
+from plone.app.vocabularies.catalog import KeywordsVocabulary as BKV
 from plone.uuid.interfaces import IUUID
 from zope.component.hooks import getSite
 from zope.interface import alsoProvides
@@ -46,8 +47,6 @@ def catalog_based_vocabulary(index):
         return SimpleVocabulary([
             SimpleTerm(x, x.encode('utf-8'), x) for x in terms
         ])
-
-        pass
 
     return factory
 
@@ -268,8 +267,15 @@ aceitem_types = [_a(*x) for x in _cca_types]
 special_tags_vocabulary = catalog_based_vocabulary('special_tags')
 alsoProvides(special_tags_vocabulary, IVocabularyFactory)
 
-keywords_vocabulary = catalog_based_vocabulary('keywords')
-alsoProvides(keywords_vocabulary, IVocabularyFactory)
+
+@implementer(IVocabularyFactory)
+class KeywordsVocabulary(BKV):
+    keyword_index = 'keywords'
+
+KeywordsVocabularyFactory = KeywordsVocabulary()
+
+# keywords_vocabulary = catalog_based_vocabulary('keywords')
+# alsoProvides(keywords_vocabulary, IVocabularyFactory)
 
 _governance = [
     ("TRANS", "Transnational region (stretching across country borders)"),

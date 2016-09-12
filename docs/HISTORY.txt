@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bug fix: improve keywords vocabulary to allow filtering
+  [tiberich #74938]
 * Bug fix: fix edit menu for City Profiles
   [tiberich #76160]
 * Bugfix: Changed city profile fields 

@@ -48,6 +48,7 @@ class VocabularyView(vocab.VocabularyView):
             raise vocab.VocabLookupException(
                 'No factory with name "%s" exists.' % factory_name)
 
+        #import pdb; pdb.set_trace()
         # This part is for backwards-compatibility with the first
         # generation of vocabularies created for plone.app.widgets,
         # which take the (unparsed) query as a parameter of the vocab

@@ -10,6 +10,7 @@ from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from eea.climateadapt.utils import _unixtime
 from plone.app.contenttypes.interfaces import IImage
 from plone.app.textfield import RichText
+from plone.app.widgets.dx import AjaxSelectWidget
 from plone.app.widgets.dx import RelatedItemsWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
