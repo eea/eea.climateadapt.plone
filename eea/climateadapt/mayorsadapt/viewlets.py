@@ -14,6 +14,7 @@ class EditMenuViewlet(ViewletBase):
             'private': 'Private',
             'published': 'Published',
             'pending': 'Pending aproval',
+            'sent': 'Sent to City Representative',
         }
 
     def can_edit(self):
