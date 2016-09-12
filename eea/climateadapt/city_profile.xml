@@ -83,6 +83,21 @@
                 <required>False</required>
                 <title>Signature date</title>
             </field>
+
+            <field name="covenant_of_mayors_signatory_2020" type="zope.schema.Bool">
+                <description/>
+                <required>False</required>
+                <title>Covenant of Mayors 2020 signatory</title>
+                <form:widget type="z3c.form.browser.radio.RadioFieldWidget"/>
+            </field>
+
+            <field name="covenant_of_mayors_signatory_2030" type="zope.schema.Bool">
+                <description/>
+                <required>False</required>
+                <title>Covenant of Mayors 2030 signatory</title>
+                <form:widget type="z3c.form.browser.radio.RadioFieldWidget"/>
+            </field>
+
         </fieldset>
 
         <fieldset name="climate_change_impact_and_adaptation_responses" label="Climate change impact and adaptation responses">

@@ -271,14 +271,29 @@
                 <a tal:attributes="href python: context.website_of_the_local_authority">Website</a>
             </div>
 
-            <div tal:condition="python: view.w['covenant_of_mayors_signatory'].value[0] == 'true'">
-                <h3>Covenant of Mayors signatory</h3>
+            <div tal:condition="python: view.w['covenant_of_mayors_signatory'].value">
+                <h3 tal:condition="python: view.w['covenant_of_mayors_signatory'].value[0] == 'true'">
+                    Mayors Adapt signatory
+                </h3>
             </div>
 
             <div tal:condition="python: view.context.signature_date is not None">
                 <h3>Date of officially joining Mayors Adapt</h3>
                 <div tal:content="python: view.formated_date(view.context.signature_date)" />
             </div>
+
+            <div tal:condition="python: view.w['covenant_of_mayors_signatory_2020'].value">
+                <h3 tal:condition="python: view.w['covenant_of_mayors_signatory_2020'].value[0] == 'true'">
+                    Covenant of Mayors 2020 signatory
+                </h3>
+            </div>
+
+            <div tal:condition="python: view.w['covenant_of_mayors_signatory_2030'].value">
+                <h3 tal:condition="python: view.w['covenant_of_mayors_signatory_2030'].value[0] == 'true'">
+                    Covenant of Mayors 2030 signatory
+                </h3>
+            </div>
+
 
             <div>
               <h3>Last Update</h3>
