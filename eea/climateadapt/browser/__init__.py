@@ -494,6 +494,14 @@ class AceViewApi(object):
         d = dict(_datatypes)
         return d[self.context.search_type]
 
+    def governance_level(self):
+        if len(self.context.governance_level) == 0:
+            return ""
+
+        from eea.climateadapt.vocabulary import _governance
+        d = dict(_governance)
+        return [d.get(b) for b in self.context.governance_level]
+
 
 class ViewAceItem(BrowserView):
     """ Redirection view for /viewaceitem?aceitem_id=..."

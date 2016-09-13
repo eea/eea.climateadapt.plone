@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added the governance level field to respective aceitems
+  [iulianpetchesi #76209]
 * Bugfix: Made the city heading bold
   [iulianpetchesi #76208]
 * Bug fix: improve keywords vocabulary to allow filtering
