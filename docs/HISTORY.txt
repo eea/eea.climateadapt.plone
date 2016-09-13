@@ -7,7 +7,7 @@ Changelog
   [tiberich #74938]
 * Bug fix: fix edit menu for City Profiles
   [tiberich #76160]
-* Bugfix: Changed city profile fields 
+* Bugfix: Changed city profile fields
   [iulianpetchesi #76159]
 * Change: set the "Send back to City Representative" transition to use
   the workflow message setting form
