@@ -443,7 +443,7 @@ class AceViewApi(object):
         text = value
         if isinstance(value, (list, tuple)):
             text = u", ".join(value)
-        return u"<p>City: <br/>{0}</p>".format(text)
+        return u"<div class='sidebar_bold'>City: <br/><p>{0}</p></div>".format(text)
 
     def render_geochar(self, value):
         # value is a mapping such as:
@@ -493,6 +493,16 @@ class AceViewApi(object):
         from eea.climateadapt.vocabulary import _datatypes
         d = dict(_datatypes)
         return d[self.context.search_type]
+
+    def governance_level(self):
+        if self.context.governance_level is None:
+            return ""
+        if len(self.context.governance_level) == 0:
+            return ""
+
+        from eea.climateadapt.vocabulary import _governance
+        d = dict(_governance)
+        return [d.get(b) for b in self.context.governance_level]
 
 
 class ViewAceItem(BrowserView):

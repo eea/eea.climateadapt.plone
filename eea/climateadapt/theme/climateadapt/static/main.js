@@ -12,6 +12,29 @@ function fix_map(){
     var map = $("div.map.leaflet-container").get(0)._map;
     map.setZoom(4);
     map.invalidateSize();
+
+    // map bounds
+    var southWest = L.latLng(32.990, -32.431),
+        northEast = L.latLng(59.085, 51.679),
+        bounds = L.latLngBounds(southWest, northEast);
+    map.fitBounds(bounds)
+
+    // hide the default popup-marker and its shadow
+    // default coords are [0, 0]
+    $.each(map._layers, function (ml) {
+        if ((this).hasOwnProperty('_latlng')) {
+            // get the marker and it's shadow
+            var marker = $(this)
+            var shadow = $(marker[0]._icon).parent().parent().children('.leaflet-shadow-pane')
+
+            if (marker[0]._latlng.lat === 0 && marker[0]._latlng.lng === 0) {
+                // hide the marker and it's shadow if there are no coords
+                marker[0]._icon.hidden = true;
+                shadow[0].style.display = "none";
+            }
+        }
+    })
+    map.invalidateSize();
 }
 
 (function($){
@@ -30,6 +53,43 @@ function fix_map(){
 			});
 		},100);
 
+        // check if the map container exists in the DOM
+        var elementExists = document.getElementsByClassName("leaflet-container");
+        if (elementExists.length != 0) {
+            // get the map
+            var map = $("div.map.leaflet-container").get(0)._map;
+
+            // call map.whenReady only when a new city profile is being added
+            var path = "/eu-adaptation-policy/mayors-adapt/city-profile/++add++eea.climateadapt.city_profile";
+            if (document.location.pathname === path) {
+                map.whenReady(fix_map)
+            }
+
+            // map click event handler
+            map.on('click', function(e) {
+                $.each(map._layers, function (ml) {
+                    // check for marker
+                    if ((this).hasOwnProperty('_latlng')) {
+                        // get the marker
+                        var marker = $(this)
+                        var shadow = $(marker[0]._icon).parent().parent().children('.leaflet-shadow-pane')
+
+                        // show the marker and it's shadow
+                        marker[0]._icon.hidden = false;
+                        shadow[0].style.display = "block";
+
+                        // update marker coords to the click location
+                        marker[0].setLatLng(e.latlng).update();
+
+                        // update latitude and longitude coords in the text inputs
+                        inputs = document.getElementsByClassName('geolocation_wrapper');
+                        $(inputs).find('input.latitude').attr('value', e.latlng.lat);
+                        $(inputs).find('input.longitude').attr('value', e.latlng.lng);
+                    }
+                })
+            });
+        }
+        // handler for fix_map function
         $("#fieldsetlegend-geographic_information").on('click', fix_map);
         $("#fieldsetlegend-general_information").on('click', fix_map);
 
@@ -155,13 +215,17 @@ function fix_map(){
 			if(event.target.className == "slide " ||
 			   event.target.className == "close"  ||
 		   	   event.target.className == "slide") {
-				$('#links').children('.gallery-hide').slice(1, 4).css('display', 'none');
+                // get the maximum number of slices
+                var nr_of_slices = $('#links').children('.gallery-hide').length
+				$('#links').children('.gallery-hide').slice(1, nr_of_slices).css('display', 'none');
 			}
 		});
 
 		$(document).keyup(function(e) {
 			if (e.keyCode === 27) {
-				$('#links').children('.gallery-hide').slice(1, 4).css('display', 'none');
+                // get the maximum number of slices
+                var nr_of_slices = $('#links').children('.gallery-hide').length
+				$('#links').children('.gallery-hide').slice(1, nr_of_slices).css('display', 'none');
 			}
 		});
 

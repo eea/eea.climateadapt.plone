@@ -92,5 +92,5 @@ class CaseStudiesJson(BrowserView):
 
 
 class CaseStudyMapsConfiguration(BrowserView):
-    default_location = (47.654064, 9.636072)    # Somewhere south of Germany
-
+    # default_location = (47.654064, 9.636072)    # Somewhere south of Germany
+    nothing = ""

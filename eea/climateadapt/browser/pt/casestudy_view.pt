@@ -210,6 +210,12 @@
                       <div tal:content="structure python:view.w['sectors'].render()"/>
                       <h4>Climate impacts</h4>
                       <div tal:content="structure python:view.w['climate_impacts'].render()"/>
+                      <div tal:condition="python: view.governance_level() != ''">
+                          <h4>Governance level</h4>
+                          <div tal:repeat="level python: view.governance_level()">
+                              <span tal:content="level"></span>
+                          </div>
+                      </div>
                       <h4>Geographic characterization</h4>
                       <div metal:use-macro="context/ace_macros/macros/geochar"></div>
                     </div>
