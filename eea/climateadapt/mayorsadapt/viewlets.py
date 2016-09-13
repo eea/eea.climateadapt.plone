@@ -34,7 +34,7 @@ class EditMenuViewlet(ViewletBase):
 
     def can_submit_for_publication(self):
         # TODO: return True if transition submit is available
-        return self.current_state() == 'private'
+        return self.current_state() in ['private', 'sent']
 
     def get_working_copy(self):
 

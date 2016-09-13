@@ -99,7 +99,6 @@ class CityMayorUserFactory(BasePlugin):
 
     def createAnonymousUser(self):
         self.REQUEST.set('disable_border', True)
-        #print "creating city mayor user", self.REQUEST['ACTUAL_URL']
         return CityMayorUser()
 
     def enumerateUsers(self, **kw):

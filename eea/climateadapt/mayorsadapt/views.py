@@ -70,6 +70,7 @@ class CityProfileEditController(BrowserView):
 
         policy = ICheckinCheckoutPolicy(context)
         wc = policy.checkout(location)
+        transition(wc, to_state='sent')
 
         # we do this for metadata update side affects which will update lock info
         context.reindexObject('review_state')
@@ -82,10 +83,8 @@ class CityProfileEditController(BrowserView):
     def handle_edit(self):
         policy = ICheckinCheckoutPolicy(self.context)
         obj = policy.getWorkingCopy()
-        #baseline = policy.getBaseline()
 
-        # print "WC: ", obj
-        # print "Baseline: ", baseline
+        #baseline = policy.getBaseline()
 
         if obj is None:
             obj = self.context
@@ -103,8 +102,8 @@ class CityProfileEditController(BrowserView):
             return self.request.response.redirect(url)
 
         elif state == 'pending':
-            # create copy, go to it
-            transition(obj, to_state='private')
+            # retract object, go to it
+            transition(obj, to_state='sent')
             url = '{0}/edit'.format(obj.absolute_url())
             return self.request.response.redirect(url)
 
