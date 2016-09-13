@@ -3,6 +3,10 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added click handler for marker and fixed some map errors
+  [iulianpetchesi #75527]
+* Bugfix: Fixed case study gallery error
+  [iulianpetchesi #76207]
 * Bugfix: Added the governance level field to respective aceitems
   [iulianpetchesi #76209]
 * Bugfix: Made the city heading bold
