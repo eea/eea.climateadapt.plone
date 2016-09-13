@@ -72,10 +72,10 @@ function fix_map(){
                     if ((this).hasOwnProperty('_latlng')) {
                         // get the marker
                         var marker = $(this)
+                        var shadow = $(marker[0]._icon).parent().parent().children('.leaflet-shadow-pane')
 
                         // show the marker and it's shadow
                         marker[0]._icon.hidden = false;
-                        var shadow = $(marker[0]._icon).parent().parent().children('.leaflet-shadow-pane')
                         shadow[0].style.display = "block";
 
                         // update marker coords to the click location
@@ -89,7 +89,7 @@ function fix_map(){
                 })
             });
         }
-        // handler for fix_map function when
+        // handler for fix_map function
         $("#fieldsetlegend-geographic_information").on('click', fix_map);
         $("#fieldsetlegend-general_information").on('click', fix_map);
 
