@@ -443,7 +443,7 @@ class AceViewApi(object):
         text = value
         if isinstance(value, (list, tuple)):
             text = u", ".join(value)
-        return u"<p>City: <br/>{0}</p>".format(text)
+        return u"<div class='sidebar_bold'>City: <br/><p>{0}</p></div>".format(text)
 
     def render_geochar(self, value):
         # value is a mapping such as:
