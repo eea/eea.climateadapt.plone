@@ -495,6 +495,8 @@ class AceViewApi(object):
         return d[self.context.search_type]
 
     def governance_level(self):
+        if self.context.governance_level is None:
+            return ""
         if len(self.context.governance_level) == 0:
             return ""
 
