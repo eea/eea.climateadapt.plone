@@ -17,9 +17,9 @@
         />
 
     <javascript authenticated="False" bundle="default" cacheable="True"
-         compression="none" conditionalcomment="" cookable="True" enabled="True"
-         expression="python:member is None" id="++resource++plone.app.jquery.js"
-         inline="False"/>
+        compression="none" conditionalcomment="" cookable="True" enabled="True"
+        expression="python:member is None" id="++resource++plone.app.jquery.js"
+        inline="False"/>
 
     <javascript authenticated="True" bundle="default" cacheable="True"
         compression="none" conditionalcomment="" cookable="True" enabled="True"
