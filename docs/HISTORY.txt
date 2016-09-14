@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed a javascript error when the map is not present
+  [iulianpetchesi #75527]
 * Bugfix: Optimized loading of css files for anonymous users
   [iulianpetchesi #75886]
 * Bug fix: manually trigger IWorkingCopyDeletedEvent to avoid dangling

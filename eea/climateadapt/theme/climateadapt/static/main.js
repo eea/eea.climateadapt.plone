@@ -65,6 +65,10 @@ function fix_map(){
                 map.whenReady(fix_map)
             }
 
+            // handler for fix_map function
+            $("#fieldsetlegend-geographic_information").on('click', fix_map);
+            $("#fieldsetlegend-general_information").on('click', fix_map);
+
             // map click event handler
             map.on('click', function(e) {
                 $.each(map._layers, function (ml) {
@@ -89,9 +93,6 @@ function fix_map(){
                 })
             });
         }
-        // handler for fix_map function
-        $("#fieldsetlegend-geographic_information").on('click', fix_map);
-        $("#fieldsetlegend-general_information").on('click', fix_map);
 
 		$('.tile-container').each(function(){
 			var span = $(this).find('.tile-type-name');
