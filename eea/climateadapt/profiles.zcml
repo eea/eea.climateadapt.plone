@@ -367,4 +367,23 @@
             import_profile="eea.climateadapt:eeaclimateadapt_to_20"
             />
     </genericsetup:upgradeSteps>
+
+
+    <!-- v21 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_21"
+        title="Upgrade profile for eea.climateadapt v21"
+        description=""
+        directory="profiles/upgrades/to_21"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="21"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v21"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_21"
+            />
+    </genericsetup:upgradeSteps>
 </configure>
