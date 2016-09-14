@@ -246,8 +246,15 @@
     <adapter
         for="*"
         provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".stringinterp.cityprofile_private_edit_link"
+        factory=".stringinterp.cityprofile_new_private_edit_link"
         name="cityprofile_private_edit_link"
+        />
+
+    <adapter
+        for="*"
+        provides="plone.stringinterp.interfaces.IStringSubstitution"
+        factory=".stringinterp.cityprofile_existing_private_edit_link"
+        name="cityprofile_existing_private_edit_link"
         />
 
     <adapter

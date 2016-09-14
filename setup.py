@@ -58,6 +58,7 @@ setup(name='eea.climateadapt',
       [console_scripts]
       climateadapt_importer = eea.climateadapt._importer:main
       sync_to_arcgis = eea.climateadapt.scripts.sync_to_arcgis:main
+      send_mayoradapt_reminders = eea.climateadapt.mayorsadapt.scripts:send_reminders
       """,
       # The next two lines may be deleted after you no longer need
       # addcontent support from paster and before you distribute

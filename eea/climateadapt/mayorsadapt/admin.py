@@ -6,6 +6,7 @@ from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser import BrowserView
 from datetime import date
 from eea.climateadapt.city_profile import TOKEN_EXPIRES_KEY
+from eea.climateadapt.city_profile import TOKEN_KEY
 from eea.climateadapt.mayorsadapt.events import ResetTokenEvent
 from eea.climateadapt.mayorsadapt.events import TokenAboutToExpireEvent
 from eea.climateadapt.mayorsadapt.events import TokenExpiredEvent
@@ -75,39 +76,38 @@ class SendTokenEmail(BrowserView):
         return self.request.response.redirect(self.context.absolute_url())
 
 
-class BatchSendReminders(BrowserView):
-    """ A view to be called from cron that will send email reminders
+def _send_reminders(site):
+    catalog = getToolByName(site, 'portal_catalog')
+    search = catalog.searchResults
 
-    TODO: needs to be refactored into a zoperunner script
+    for city in search(portal_type='eea.climateadapt.city_profile',
+                       review_state='published'):
+        city = city.getObject()
+
+        if has_token(city):
+            diff = time_difference(city)
+
+            if diff <= 7: # has 1 week left
+                notify(TokenAboutToExpireEvent(city))
+
+            if diff == 0: # token expired
+                notify(TokenExpiredEvent(city))
+
+
+
+class BatchSendReminders(BrowserView):
+    """ Debugging view that will send email reminders
     """
 
     def __call__(self):
-        # TODO: don't check all cityprofiles, only checkout copied or
-        # non-published
-        catalog = getToolByName(self.context, 'portal_catalog')
-        search = catalog.searchResults
-        for city in search(portal_type='eea.climateadapt.city_profile'):
-            city = city.getObject()
-
-            if has_token(city):
-                diff = time_difference(city)
-
-                if diff <= 7:
-                    """ Send mail informing he has 1 week left
-                    """
-                    notify(TokenAboutToExpireEvent(city))
-
-                if diff == 0:
-                    """ Send mail saying that the period expired to mayor
-                        and administrator
-                    """
-                    notify(TokenExpiredEvent(city))
-
+        _send_reminders(self.context)
         return self.index()
 
 
 def has_token(city):
-    return bool(IAnnotations(city).get(TOKEN_EXPIRES_KEY))
+    expires = IAnnotations(city).get(TOKEN_EXPIRES_KEY)
+    public = IAnnotations(city).get(TOKEN_KEY, None)
+    return bool(expires and public)
 
 
 def time_difference(city):

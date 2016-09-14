@@ -27,8 +27,18 @@ class cityprofile_contact_email(BaseSubstitution):
         return getattr(self.context, 'e_mail_of_contact_person', '')
 
 
-class cityprofile_private_edit_link(BaseSubstitution):
-    description = u"CityProfile private edit link"
+class cityprofile_existing_private_edit_link(BaseSubstitution):
+    description = u"CityProfile: Existing private edit link"
+    category = 'CityProfile'
+
+    adapts(ICityProfile)
+
+    def safe_call(self):
+        return self.context.get_private_edit_link()
+
+
+class cityprofile_new_private_edit_link(BaseSubstitution):
+    description = u"CityProfile: New private edit link"
     category = 'CityProfile'
 
     adapts(ICityProfile)

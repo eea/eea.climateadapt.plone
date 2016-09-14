@@ -18,6 +18,7 @@ import tokenlib
 
 TOKEN_COOKIE_NAME = 'cptk'
 TOKEN_EXPIRES_KEY = 'eea.climateadapt.cityprofile_token_expires'
+TOKEN_KEY = 'eea.climateadapt.cityprofile_token'
 SECRET_KEY = 'eea.climateadapt.cityprofile_secret'
 TIMEOUT = 2419200    # How long a token link is valid? 28 days default
 
@@ -99,10 +100,23 @@ class CityProfile(dexterity.Container):
 
         expiry_date = date.today() + timedelta(seconds=TIMEOUT)
         IAnnotations(self)[TOKEN_EXPIRES_KEY] = expiry_date
+        IAnnotations(self)[TOKEN_KEY] = public
 
         return public
 
-    security.declareProtected('Modify portal content', 'get_private_edit_link')
+    security.declarePrivate('get_existing_edit_link')
+    def get_existing_edit_link(self):
+        site = getSite()
+        publictoken = IAnnotations(self).get(TOKEN_KEY, '-missingtoken-')
+        url = "{0}/cptk/{1}/{2}".format(site.absolute_url(),
+                                        publictoken,
+                                        self.getId()
+                                        )
+        print "Token url: ", url
+        return url
+
+    #security.declareProtected('Modify portal content', 'get_private_edit_link')
+    security.declarePrivate('get_private_edit_link')
     def get_private_edit_link(self):
         """ Returns the link to edit a city profile
         """
