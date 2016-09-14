@@ -3,6 +3,9 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bug fix: manually trigger IWorkingCopyDeletedEvent to avoid dangling
+  locks on baseline objects
+  [tiberich #74389]
 * Bugfix: Added click handler for marker and fixed some map errors
   [iulianpetchesi #75527]
 * Bugfix: Fixed case study gallery error

@@ -129,7 +129,7 @@
 
     ------[ Workflow Message Functionality: ]--------
 
-    <subscriber for=".workflow.IWorkflowMessageEvent" handler=".utils.trigger_contentrules" />
+    <subscriber for=".workflow.IWorkflowMessageEvent" handler=".events.trigger_contentrules" />
 
     <interface
         interface=".workflow.IWorkflowMessageEvent"
@@ -150,5 +150,11 @@
         class=".workflow.WorkflowTransitionMessage"
         permission="cmf.ReviewPortalContent"
         />
+
+    <subscriber
+       for="plone.app.iterate.interfaces.IWorkingCopy
+            OFS.interfaces.IObjectWillBeRemovedEvent"
+       handler=".events.handle_iterate_wc_deletion"
+       />
 
 </configure>
