@@ -1,17 +1,22 @@
+#!/usr/bin/env python
+
 """ A script to sync to arcgis
 """
 
-
-from Products.CMFCore.utils import getToolByName
-from eea.climateadapt.rabbitmq import consume_messages
-from eea.climateadapt.scripts import get_plone_site
+from eea.climateadapt.acemeasure import _measure_id
 from functools import partial
 import json
-import ogr, osr
+import logging
+import ogr
+import os
+import osr
 import requests
 
+logger = logging.getLogger('eea.climateadapt.arcgis')
+
+
 USERNAME = "eea_casestudies"
-PASSWORD = ""
+PASSWORD = os.environ.get('GISPASS', "")
 
 SERVER_NAME = "LcQjj2sL7Txk9Lag"
 ENDPOINT = "http://services.arcgis.com/{0}/ArcGIS/rest".format(SERVER_NAME)
@@ -19,7 +24,7 @@ ENDPOINT = "http://services.arcgis.com/{0}/ArcGIS/rest".format(SERVER_NAME)
 FEATURE = "casestudies_pointLayer_clone"
 LAYER_URL = "{0}/services/{1}/FeatureServer/0".format(ENDPOINT, FEATURE)
 
-REFERER = 'eea.climateadapt.casestudy'
+REFERER = 'climate-adapt.europa.eu CaseStudies Sync'
 
 ARCGIS_EPSG = 3857
 GEO_EPSG = 4326     # See Arcgis docs on "Geographic Coordinate Systems"
@@ -43,7 +48,7 @@ def generate_token(url):
     return token
 
 
-def query_layer(token):
+def query_layer(token=None, filter="1=1"):
     """ Returns a mapping of 2 members: features and fields
 
     features is a list of records.
@@ -86,8 +91,8 @@ def query_layer(token):
     data = {
         'f': 'json',
         'useGlobalIds': True,
-        'where': "1=1",
-        #'outFields': 'objectid,itemname,measureid,FID,globalid', #"*"
+        'where': filter,
+        # 'outFields': 'objectid,itemname,measureid,FID,globalid', #"*"
         'outFields': '*',
         'token': token,
         'referer': REFERER
@@ -100,6 +105,7 @@ def query_layer(token):
 def _transform_coords(x, y, insys, outsys):
     """ Converts a pair of points between two system of coordinates
     """
+
     inSpatialRef = osr.SpatialReference()
     inSpatialRef.ImportFromEPSG(insys)
 
@@ -126,18 +132,21 @@ def to_arcgis_coords(lat, lon):
     >>> assert xc == x
     >>> assert yc == y
     """
+
     return _transform_coords(lat, lon, GEO_EPSG, ARCGIS_EPSG)
 
 
 def to_geo_coords(x, y):
     """ Converts from ArcGIS coordinates to lat/long pair
     """
+
     return _transform_coords(x, y, ARCGIS_EPSG, GEO_EPSG)
 
 
 def test_edit(token):
     """ Debugging function, shows how to edit
     """
+
     data = {
         'f': 'json',
         'token': token,
@@ -170,55 +179,118 @@ def describe_service(token):
     return resp.json()
 
 
-def _arcgis_req(entry, op='edits'):
-    token_url = get_token_service_url()
-    token = generate_token(token_url)
+def _arcgis_req(entry, op='updates', token=None):
+
+    if token is None:
+        token_url = get_token_service_url()
+        token = generate_token(token_url)
 
     data = {
         'f': 'json',
         'token': token,
         'referer': REFERER,
-        'edits': json.dumps([
-            {'id': 0,
-             op: [entry._repr_for_arcgis()]
-             }
-        ]),
+        op: json.dumps([entry]),
     }
     url = "{0}/applyEdits".format(LAYER_URL)
     resp = requests.post(url, data=data)
-    return resp.json()
+    res = resp.json()
+    return res
 
 
-def arcgis_add_entry(entry):
-    return _arcgis_req(entry, op='adds')
+def arcgis_add_entry(entry, token=None):
+    return _arcgis_req(entry, op='adds', token=token)
 
 
-def arcgis_del_entry(entry):
-    return _arcgis_req(entry, op='deletes')
+def arcgis_del_entry(entry, token=None):
+    return _arcgis_req(entry, op='deletes', token=token)
 
 
-def arcgis_edit_entry(entry):
-    return _arcgis_req(entry, op='updates')
+def arcgis_edit_entry(entry, token=None):
+    return _arcgis_req(entry, op='updates', token=token)
 
 
-def _get_obj_by_uid(context, uid):
-    catalog = getToolByName(context, 'portal_catalog')
-    return catalog.searchResults(UID=uid)[0].getObject()
+def _get_obj_by_measure_id(site, uid):
+    from Products.CMFCore.utils import getToolByName
+    catalog = getToolByName(site, 'portal_catalog')
+
+    if len(str(uid)) > 6:
+        q = {'UID': uid}
+    else:
+        q = {'acemeasure_id': uid}
+
+    return catalog.searchResults(**q)[0].getObject()
 
 
-def handle_ObjectAddedEvent(context, uid):
-    obj = _get_obj_by_uid(context, uid)
+def _get_obj_FID(obj, token=None):
+    """ The "Object ID Field" for the casestudies_pointLayer is "FID".
+
+    Because the casestudies_pointLayer doesn't use Global Ids, we need to
+    identify objects by their FID.
+    """
+
+    if token is None:
+        token_url = get_token_service_url()
+        token = generate_token(token_url)
+
+    measureid = _measure_id(obj)
+    res = query_layer(filter='measureid={0}'.format(measureid), token=token)
+
+    fid = res['features'][0]['attributes']['FID']
+    logger.info("Got FID %s for measureid %s", fid, measureid)
+    return fid
+
+
+# Handlers for events.
+def handle_ObjectAddedEvent(site, uid):
+    import pdb; pdb.set_trace()
+
+    obj = _get_obj_by_measure_id(site, uid)
     entry = obj._repr_for_arcgis()
-    arcgis_add_entry(entry)
+
+    token_url = get_token_service_url()
+    token = generate_token(token_url)
+    arcgis_add_entry(entry, token=token)
+
+    # TODO: ???
+
+def handle_ObjectModifiedEvent(site, uid):
+    obj = _get_obj_by_measure_id(site, uid)
+    repr = obj._repr_for_arcgis()
+
+    token_url = get_token_service_url()
+    token = generate_token(token_url)
+
+    fid = _get_obj_FID(obj, token=token)
+    repr['attributes']['FID'] = fid
+    res = arcgis_edit_entry(repr, token=token)
+
+    assert res['updateResults']
+    assert res['updateResults'][0]['objectId'] == fid
+
+
+def handle_ObjectWillBeRemovedEvent(site, uid):
+    # TODO: ???
+    obj = _get_obj_by_measure_id(site, uid)
+    repr = obj._repr_for_arcgis()
+
+    import pdb; pdb.set_trace()
+    fid = _get_obj_FID(obj, token=token)
+    repr['attributes']['FID'] = fid
+    res = arcgis_del_entry(repr, token=token)
+
+    assert res['deleteResults']
+    assert res['deleteResults'][0]['objectId'] == fid
 
 
 HANDLERS = {
     'ObjectAddedEvent': handle_ObjectAddedEvent,
+    'ObjectModifiedEvent': handle_ObjectModifiedEvent,
+    'ObjectWillBeRemovedEvent': handle_ObjectWillBeRemovedEvent,
 }
 
 
 def _consume_msg(*args, **kw):
-    """ A closure for consumers. If python had curried functions
+    """ Consume RabbitMQ messages. Dispatches to proper handler
     """
 
     resp, props, msg = args[0]
@@ -233,13 +305,34 @@ def main():
 
     This should be run through the zope client script running machinery, like so:
 
-    bin/www1 run bin/sync_to_arcgis
+    GISPASS="..." bin/www1 run bin/sync_to_arcgis
 
     It will consume all messages found in the queue and then exit
     """
+
+    from eea.climateadapt.rabbitmq import consume_messages
+    from eea.climateadapt.scripts import get_plone_site
 
     site = get_plone_site()
     consume_messages(
         partial(_consume_msg, context=site),
         queue='eea.climateadapt.casestudies'
     )
+
+
+if __name__ == "__main__":
+    # Needs env vars:
+    #     LD_LIBRARY_PATH=<buildout-directory>/parts/gdal-compile/lib
+    #     GISPASS=''
+
+    token_url = get_token_service_url()
+    token = generate_token(token_url)
+
+    import sys
+    if sys.argv[1] == 'url':
+        print "Token:", token
+        print "Feature URL: ", LAYER_URL + "?token=" + token
+    elif sys.argv[1] == 'dump':
+        print "Dumping..."
+        res = query_layer(token=token)
+        import pdb;pdb.set_trace()

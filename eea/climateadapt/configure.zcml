@@ -109,22 +109,25 @@
         />
 
     <subscriber
-       for="eea.climateadapt.acemeasure.CaseStudy
+       for="eea.climateadapt.acemeasure.ICaseStudy
             zope.lifecycleevent.interfaces.IObjectAddedEvent"
        handler=".acemeasure.handle_for_arcgis_sync"
     />
 
     <subscriber
-       for="eea.climateadapt.acemeasure.CaseStudy
+       for="eea.climateadapt.acemeasure.ICaseStudy
             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
        handler=".acemeasure.handle_for_arcgis_sync"
     />
 
     <subscriber
-       for="eea.climateadapt.acemeasure.CaseStudy
+       for="eea.climateadapt.acemeasure.ICaseStudy
             zope.lifecycleevent.interfaces.IObjectRemovedEvent"
        handler=".acemeasure.handle_for_arcgis_sync"
     />
+
+    <subscriber for="ZPublisher.interfaces.IPubSuccess" handler=".acemeasure.pub_success" />
+    <subscriber for="ZPublisher.interfaces.IPubBeforeCommit" handler=".acemeasure.pub_before_commit" />
 
 
     ------[ Workflow Message Functionality: ]--------

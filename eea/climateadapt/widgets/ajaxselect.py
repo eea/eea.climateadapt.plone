@@ -54,5 +54,4 @@ class BetterAjaxSelectWidgetConverter(BaseDC):
         value = parser.unescape(value)
         value = list(set(v.strip() for v in (valueType and valueType(v) or v
             for v in value.split(separator))))
-        print "better", value
         return collectionType(value)

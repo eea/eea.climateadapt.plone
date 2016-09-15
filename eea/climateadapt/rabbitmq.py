@@ -11,6 +11,8 @@ from zope.component import getUtility
 from zope.interface import Interface
 from zope.schema import TextLine, Int
 
+RABBIT_QUEUE = 'eea.climateadapt'
+
 
 class IRabbitMQClientSettings(Interface):
     """ Client settings for RabbitMQ
@@ -32,8 +34,6 @@ RabbitMQClientControlPanelView = layout.wrap_form(
     RabbitMQClientControlPanelForm, ControlPanelFormWrapper)
 RabbitMQClientControlPanelView.label = u"RabbitMQ Client settings"
 
-
-RABBIT_QUEUE = 'eea.climateadapt'
 
 def get_rabbitmq_conn(context=None, queue=None):
     """ Returns a RabbitMQConnector instance
