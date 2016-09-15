@@ -12,7 +12,9 @@
     five python: 4 * two;">
     <tr tal:repeat="brain brains">
       <td>
-        » <a href="" tal:content="brain/Title" tal:attributes="href brain/getURL">» Link</a>
+        » <img tal:condition="python: brain.getObject().featured == 1"
+               src="++theme++climateadapt/static/cca/img/featured-icon.png"> 
+        <a href="" tal:content="brain/Title" tal:attributes="href brain/getURL">» Link</a>
       </td>
       <td class="table_year_css" tal:content="python: brain.year or '' ">year</td>
     </tr>

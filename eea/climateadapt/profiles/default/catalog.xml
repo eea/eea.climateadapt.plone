@@ -48,6 +48,10 @@
         <indexed_attr value="countries"/>
     </index>
 
+    <index name="featured" meta_type="BooleanIndex">
+        <indexed_attr value="featured"/>
+    </index>
+
     <index name="imported_ids" meta_type="KeywordIndex">
         <indexed_attr value="imported_ids"/>
     </index>

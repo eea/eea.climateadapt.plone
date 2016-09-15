@@ -11,7 +11,9 @@
     five python: 4 * two;">
     <tr tal:repeat="brain brains">
       <td tal:define="title brain/Title">
-        »<span tal:condition="brain/acronym">
+        » <img tal:condition="python: brain.getObject().featured == 1"
+               src="++theme++climateadapt/static/cca/img/featured-icon.png">
+        <span tal:condition="brain/acronym">
             <a href="" tal:content="brain/acronym" tal:attributes="href brain/getURL">» Link</a>
         </span>
         - <span tal:replace="python: title">
