@@ -5,7 +5,7 @@
     xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="eea.climateadapt">
 
-    <include file="overrides.zcml" />
+    <include file="integration.zcml" />
     <include file="admin.zcml" />
     <include file="frontpage.zcml" />
     <include file="faceted.zcml" />
