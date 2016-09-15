@@ -8,6 +8,9 @@ from Products.CMFPlone import utils
 
 
 class DisplaySubMenuItem(DSMI):
+    """ Override because we have covers with id 'index_html' and we want to
+    be able to choose the display template for them
+    """
 
     @memoize
     def disabled(self):
@@ -18,9 +21,9 @@ class DisplaySubMenuItem(DSMI):
             context = utils.parent(context)
         if not getattr(context, 'isPrincipiaFolderish', False):
             return False
-        # elif 'index_html' not in context:
-        #     return False
-        # elif 'index_html' in context:
-        #     return False
+        # By default an index_html signals disabled Display Menu, we don't want
+        # that, so we return False, not disabled, by default
+        elif 'index_html' in context:
+            return False
         else:
             return False

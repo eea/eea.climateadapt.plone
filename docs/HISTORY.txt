@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bug fix: enable Display menu for index_html Covers
+  [tiberich #74531]
 * Bugfix: Added "featured" field to database items
   [iulianpetchesi #21755]
 * Feature: added cron script runner to send remainders to CityMayor
