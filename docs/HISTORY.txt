@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added "featured" field to database items
+  [iulianpetchesi #21755]
 * Feature: added cron script runner to send remainders to CityMayor
   [tiberich #71389]
 * Bugfix: Fixed a javascript error when the map is not present

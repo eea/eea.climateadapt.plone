@@ -49,7 +49,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['title', 'long_description', 'keywords', 'sectors',
-                          'climate_impacts', 'elements', 'year',]
+                          'climate_impacts', 'elements', 'year', 'featured']
                   )
 
     form.fieldset('reference_information',
@@ -123,6 +123,11 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                 description=u"Date of publication/release/update of the item",
                 required=False
                 )
+
+    featured = Bool(title=_(u"Featured"),
+                     required=False,
+                     default=False,
+                     )
 
     # -----------[ "reference_information" fields ]------------------
 

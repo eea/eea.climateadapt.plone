@@ -65,7 +65,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['title', 'long_description', 'climate_impacts',
-                          'keywords', 'sectors', 'year']
+                          'keywords', 'sectors', 'year', 'featured']
                   )
 
     form.fieldset('additional_details',
@@ -143,6 +143,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                 description=u"Date of publication/release/update of the items "
                 u"related source",
                 required=False,)
+
+    featured = Bool(title=_(u"Featured"),
+                     required=False,
+                     default=False,
+                     )
 
     # -----------[ "additional_details" fields ]------------------
 

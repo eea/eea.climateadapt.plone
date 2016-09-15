@@ -47,7 +47,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                   label=u'Item Description',
                   fields=['acronym', 'title', 'lead', 'long_description',
                           'partners', 'keywords', 'sectors', 'climate_impacts',
-                          'elements', 'funding', 'duration'])
+                          'elements', 'funding', 'duration', 'featured'])
 
     form.fieldset('reference_information',
                   label=u'Reference information',
@@ -145,6 +145,11 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         description=_(u"Provide duration of project - Start and end date [yr]"),
         required=False,
     )
+
+    featured = Bool(title=_(u"Featured"),
+                     required=False,
+                     default=False,
+                     )
 
     # -----------[ "reference_information" fields ]------------------
     directives.widget('websites', TextLinesWidget)
