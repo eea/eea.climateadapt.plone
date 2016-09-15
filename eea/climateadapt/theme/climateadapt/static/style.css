@@ -959,6 +959,9 @@ div.position-0 { margin-left: -100%; }
 #content ul {
     margin-bottom: 10px;
 }
+.field ul {
+    margin-bottom: 0px !important;
+}
 #content li {
     list-style-type: disc;
   /*list-style-image: url("cca/img/01_plus.png");*/
