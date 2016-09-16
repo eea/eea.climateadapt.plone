@@ -126,10 +126,6 @@
        handler=".acemeasure.handle_for_arcgis_sync"
     />
 
-    <subscriber for="ZPublisher.interfaces.IPubSuccess" handler=".acemeasure.pub_success" />
-    <subscriber for="ZPublisher.interfaces.IPubBeforeCommit" handler=".acemeasure.pub_before_commit" />
-
-
     ------[ Workflow Message Functionality: ]--------
 
     <subscriber for=".workflow.IWorkflowMessageEvent" handler=".events.trigger_contentrules" />

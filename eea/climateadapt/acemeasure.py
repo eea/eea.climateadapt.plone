@@ -6,8 +6,8 @@ from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.rabbitmq import queue_msg
 from eea.climateadapt.schema import Year
-from eea.climateadapt.utils import shorten
 from eea.climateadapt.utils import _unixtime
+from eea.climateadapt.utils import shorten
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.api.portal import get_tool
 from plone.app.contenttypes.interfaces import IImage
@@ -516,27 +516,21 @@ def _measure_id(obj):
 
 
 def handle_for_arcgis_sync(obj, event):
-    print "-------------object removed", obj
-    return
 
     event_name = event.__class__.__name__
     uid = _measure_id(obj)
     msg =  "{0}|{1}".format(event_name, uid)
     logger.info("Queuing RabbitMQ message: %s", msg)
 
-    import pdb; pdb.set_trace()
-    # debugging
-    from eea.climateadapt.scripts.sync_to_arcgis import HANDLERS
-    HANDLERS[event_name](obj, uid)
-
     try:
-        queue_msg(msg, queue='eea.climateadapt.casestudies')
+        queue_msg(msg,
+                  queue='eea.climateadapt.casestudies',
+                  swallow_exceptions=True)
     except Exception:
         logger.exception("Couldn't queue RabbitMQ message for case study event")
 
+    return
 
-def pub_success(event):
-    print "success", event.request['ACTUAL_URL']
-
-def pub_before_commit(event):
-    print "before commit", event.request['ACTUAL_URL']
+    # debugging
+    from eea.climateadapt.scripts.sync_to_arcgis import HANDLERS
+    HANDLERS[event_name](obj, uid)
