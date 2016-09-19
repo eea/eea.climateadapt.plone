@@ -1,15 +1,34 @@
 #!/usr/bin/env python
 
 """ A script to sync to arcgis
+
+Note: at this time this module is hackish, being used in developing
+and understanding ArcGIS integration.
+
+It has multiple entry points that all do different things:
+
+* Call it from a script such as:
+
+    #!/bin/bash
+    export LD_LIBRARY_PATH=../../../../../parts/gdal-compile/lib
+    export GISPASS=mypass
+    ../../../../../bin/zopepy sync_to_arcgis.py "$@"
+
+This commands accepts various parameter. Look at __main__ to see what it does.
+
+* Call it with its exported console script main():
+
+    bin/www1 run bin/sync_to_arcgis
+
+This connects to Plone to read RabbitMQ server configuration then connects to
+RabbitMQ to read all queued messages and process them.
 """
 
 from eea.climateadapt.acemeasure import _measure_id
 from functools import partial
 import json
 import logging
-import ogr
 import os
-import osr
 import requests
 
 logger = logging.getLogger('eea.climateadapt.arcgis')
@@ -25,9 +44,6 @@ FEATURE = "casestudies_pointLayer_clone"
 LAYER_URL = "{0}/services/{1}/FeatureServer/0".format(ENDPOINT, FEATURE)
 
 REFERER = 'climate-adapt.europa.eu CaseStudies Sync'
-
-ARCGIS_EPSG = 3857
-GEO_EPSG = 4326     # See Arcgis docs on "Geographic Coordinate Systems"
 
 
 def get_token_service_url():
@@ -48,7 +64,7 @@ def generate_token(url):
     return token
 
 
-def query_layer(token=None, filter="1=1"):
+def query_layer(token, filter="1=1"):
     """ Returns a mapping of 2 members: features and fields
 
     features is a list of records.
@@ -102,69 +118,6 @@ def query_layer(token=None, filter="1=1"):
     return resp.json()
 
 
-def _transform_coords(x, y, insys, outsys):
-    """ Converts a pair of points between two system of coordinates
-    """
-
-    inSpatialRef = osr.SpatialReference()
-    inSpatialRef.ImportFromEPSG(insys)
-
-    outSpatialRef = osr.SpatialReference()
-    outSpatialRef.ImportFromEPSG(outsys)
-
-    coordTransform = osr.CoordinateTransformation(inSpatialRef, outSpatialRef)
-
-    point = ogr.Geometry(ogr.wkbPoint)
-    point.AddPoint(x, y)
-    point.Transform(coordTransform)
-
-    return (point.GetX(), point.GetY())
-
-
-def to_arcgis_coords(lat, lon):
-    """ Converts from lat/lon coordinates to ArcGIS coordinates
-
-    >>> x = -318130.9
-    >>> y = 7116746
-
-    >>> (lat, lon) = to_geo_coords(x, y)
-    >>> xc, yc = to_arcgis_coords(lat, lon)
-    >>> assert xc == x
-    >>> assert yc == y
-    """
-
-    return _transform_coords(lat, lon, GEO_EPSG, ARCGIS_EPSG)
-
-
-def to_geo_coords(x, y):
-    """ Converts from ArcGIS coordinates to lat/long pair
-    """
-
-    return _transform_coords(x, y, ARCGIS_EPSG, GEO_EPSG)
-
-
-def test_edit(token):
-    """ Debugging function, shows how to edit
-    """
-
-    data = {
-        'f': 'json',
-        'token': token,
-        'referer': REFERER,
-        'features': json.dumps([
-            {
-                'attributes': {
-                    "FID": 48,
-                    'itemname': 'test changed by tibi',
-                }
-            }
-        ]),
-    }
-    url = "{0}/updateFeatures".format(LAYER_URL)
-    resp = requests.post(url, data=data)
-    return resp.json()
-
-
 def describe_service(token):
     """ Debugging function. Returns service information
     """
@@ -179,7 +132,9 @@ def describe_service(token):
     return resp.json()
 
 
-def _arcgis_req(entry, op='updates', token=None):
+def _arcgis_req(data, op='updates', token=None):
+    """ Makes a request to arcgis
+    """
 
     if token is None:
         token_url = get_token_service_url()
@@ -189,7 +144,7 @@ def _arcgis_req(entry, op='updates', token=None):
         'f': 'json',
         'token': token,
         'referer': REFERER,
-        op: json.dumps([entry]),
+        op: data,
     }
     url = "{0}/applyEdits".format(LAYER_URL)
     resp = requests.post(url, data=data)
@@ -198,6 +153,7 @@ def _arcgis_req(entry, op='updates', token=None):
 
 
 def arcgis_add_entry(entry, token=None):
+    entry = json.dumps([entry])
     return _arcgis_req(entry, op='adds', token=token)
 
 
@@ -206,6 +162,7 @@ def arcgis_del_entry(entry, token=None):
 
 
 def arcgis_edit_entry(entry, token=None):
+    entry = json.dumps([entry])
     return _arcgis_req(entry, op='updates', token=token)
 
 
@@ -242,7 +199,6 @@ def _get_obj_FID(obj, token=None):
 
 # Handlers for events.
 def handle_ObjectAddedEvent(site, uid):
-    import pdb; pdb.set_trace()
 
     obj = _get_obj_by_measure_id(site, uid)
     entry = obj._repr_for_arcgis()
@@ -273,7 +229,6 @@ def handle_ObjectWillBeRemovedEvent(site, uid):
     obj = _get_obj_by_measure_id(site, uid)
     repr = obj._repr_for_arcgis()
 
-    import pdb; pdb.set_trace()
     fid = _get_obj_FID(obj, token=token)
     repr['attributes']['FID'] = fid
     res = arcgis_del_entry(repr, token=token)
@@ -320,19 +275,187 @@ def main():
     )
 
 
+def test_edit(token):
+    """ Debugging function, shows how to edit
+    """
+
+    data = {
+        'f': 'json',
+        'token': token,
+        'referer': REFERER,
+        'features': json.dumps([
+            {
+                'attributes': {
+                    "FID": 48,
+                    'itemname': 'test changed by tibi',
+                }
+            }
+        ]),
+    }
+    url = "{0}/updateFeatures".format(LAYER_URL)
+    resp = requests.post(url, data=data)
+    return resp.json()
+
+
+def backup_data(data, path='out.xml'):
+    """ Makes an XML backup data from existing data in ArcGIS
+    """
+    from lxml.etree import Element, SubElement, tostring
+    root = Element("casestudies")
+
+    for cs in data:
+        e_cs = SubElement(root, 'casestudy')
+        e_attrs = SubElement(e_cs, 'attributes')
+        for k, v in cs['attributes'].items():
+            el = Element(k)
+            el.text = unicode(v)
+            e_attrs.append(el)
+        e_geo = SubElement(e_cs, 'geometry')
+        for k, v in cs['geometry'].items():
+            el = Element(k)
+            el.text = unicode(v)
+            e_geo.append(el)
+
+    with open(path, 'w') as f:
+        out = tostring(root, pretty_print=True)
+        f.write(out)
+
+
+def delete_casestudy(fid):
+    """ Delete a casestudy. To be used from command line
+    """
+    return _arcgis_req(fid, op='deletes', token=token)
+
+
+def delete_all_casestudies(token):
+    res = query_layer(token)
+    all_ids = [x['attributes']['FID'] for x in res['features']]
+    return _arcgis_req(all_ids, op='deletes', token=token)
+
+
+def add_casestudy(entry):
+    """ Add a casestudy to ArgGIS
+    """
+    # return _arcgis_req(entry, op='deletes', token=token)
+
+
+def parse_dump(path):
+    from lxml.etree import fromstring
+
+    with open(path) as f:
+        txt = f.read()
+
+    entries = []
+    root = fromstring(txt)
+    for e_cs in root.xpath('//casestudy'):
+        e = {'geometry':{}, 'attributes':{}}
+        e_attrs = e_cs.find('attributes')
+        e_geo = e_cs.find('geometry')
+        for c in e_attrs.iterchildren():
+            e['attributes'][c.tag] = (c.text or "").strip()
+        for c in e_geo.iterchildren():
+            e['geometry'][c.tag] = float(c.text.strip())
+
+        entries.append(e)
+
+    return entries
+
+
+def edit_casestudy(fid, path, token):
+    """ Used from command line
+    """
+    from lxml.html import fromstring, tostring
+
+    entries = parse_dump(path)
+    entry = None
+    for e in entries:
+        if e['attributes']['FID'] == fid:
+            entry = e
+            break
+
+    assert entry
+    desc = entry['attributes']['desc_']
+    html = fromstring(desc)
+    desc = tostring(html, encoding='utf-8', method='text').strip()
+    entry['attributes']['desc_'] = desc
+    res = _arcgis_req(json.dumps([entry]), op='updates', token=token)
+
+    assert 'error' not in res
+
+    return res
+
+
+def add_all_casestudies(path):
+    """ Used from command line
+    """
+    from lxml.html import fromstring, tostring
+    entries = parse_dump(path)
+
+    # need to escape html
+    for entry in entries:
+        desc = entry['attributes']['desc_']
+        html = fromstring(desc)
+        desc = tostring(html, encoding='utf-8', method='text').strip()
+        entry['attributes']['desc_'] = desc
+
+    res = _arcgis_req(json.dumps(entries), op='adds', token=token)
+    return res
+
+
 if __name__ == "__main__":
     # Needs env vars:
     #     LD_LIBRARY_PATH=<buildout-directory>/parts/gdal-compile/lib
     #     GISPASS=''
 
+    import sys
+
     token_url = get_token_service_url()
     token = generate_token(token_url)
 
-    import sys
     if sys.argv[1] == 'url':
+        print
         print "Token:", token
+        print
         print "Feature URL: ", LAYER_URL + "?token=" + token
+        print
+        print "Query URL: ", LAYER_URL + "/query?token=" + token
+        print
+
     elif sys.argv[1] == 'dump':
         print "Dumping..."
+        if len(sys.argv) > 2:
+            path = sys.argv[2]
+        else:
+            path = 'out.xml'
         res = query_layer(token=token)
-        import pdb;pdb.set_trace()
+        backup_data(res['features'], path=path)
+
+    elif sys.argv[1] == 'summary':
+        res = query_layer(token=token)
+        print "Summary {0} entries...".format(len(res['features']))
+        for entry in res['features']:
+            geo = '{0} x {1}'.format(*entry['geometry'].values())
+            attr = entry['attributes']
+            print attr['FID'], ': ', attr['itemname'], ' @ ', geo
+
+    elif sys.argv[1] == 'del':
+        print "Deleting..."
+        fid = sys.argv[2]
+        res = delete_casestudy(int(fid))
+        print res
+
+    elif sys.argv[1] == 'delall':
+        print "Deleting all..."
+        print delete_all_casestudies(token)
+
+    elif sys.argv[1] == 'addall':
+        path = sys.argv[2]
+        print add_all_casestudies(path)
+
+    elif sys.argv[1] == 'edit':
+        print "Editing..."
+        fid = sys.argv[2]
+        path = sys.argv[3]
+        edit_casestudy(fid, path, token)
+    else:
+        print "Invalid command"

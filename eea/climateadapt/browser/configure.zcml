@@ -398,4 +398,11 @@
         class=".casestudy.CaseStudiesJson"
         />
 
+    <browser:page
+        name="casestudies_xml"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        permission="zope2.View"
+        class=".casestudy.CaseStudiesXML"
+        />
+
 </configure>

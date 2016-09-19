@@ -8,6 +8,8 @@ from eea.climateadapt.rabbitmq import queue_msg
 from eea.climateadapt.schema import Year
 from eea.climateadapt.utils import _unixtime
 from eea.climateadapt.utils import shorten
+from eea.climateadapt.utils import to_arcgis_coords
+from eea.climateadapt.vocabulary import BIOREGIONS
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.api.portal import get_tool
 from plone.app.contenttypes.interfaces import IImage
@@ -28,6 +30,7 @@ from zope.component import adapter
 from zope.interface import implementer, implements
 from zope.schema import List, Text, TextLine, Tuple
 from zope.schema import URI, Bool, Choice, Int
+import json
 import logging
 
 logger = logging.getLogger('eea.climateadapt.acemeasure')
@@ -66,7 +69,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['title', 'long_description', 'climate_impacts',
-                          'keywords', 'sectors', 'year', 'featured']
+                          'keywords', 'sectors', 'year', 'featured',
+                          'highlight']
                   )
 
     form.fieldset('additional_details',
@@ -146,9 +150,13 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                 required=False,)
 
     featured = Bool(title=_(u"Featured"),
+                    description=u"Feature in search and Case Study Search Tool",
+                    required=False,
+                    default=False)
+    highlight = Bool(title=_(u"Highlight"),
+                     description=u"Show as highlight in Case Study Search Tool",
                      required=False,
-                     default=False,
-                     )
+                     default=False)
 
     # -----------[ "additional_details" fields ]------------------
 
@@ -450,33 +458,69 @@ class CaseStudy(dexterity.Container):
             portal_transforms = get_tool(name='portal_transforms')
             data = portal_transforms.convertTo('text/plain',
                                             html, mimetype='text/html')
-            html = shorten(data.getData(), to=254)
+            html = shorten(data.getData(), to=100)
         return html
 
+    def _get_area(self):
+        if not self.geochars:
+            return ''
+
+        try:
+            chars = json.loads(self.geochars)
+            els = chars['geoElements']
+            if not 'biotrans' in els.keys():
+                return ''
+            bio = els['biotrans']
+            if not bio:
+                return ''
+            bio = BIOREGIONS[bio[0]]    # NOTE: we take the first one
+            return bio
+        except:
+            logger.exception("Error getting biochar area for case study %s",
+                             self.absolute_url())
+            return ''
+
     def _repr_for_arcgis(self):
-        geo = self.geolocation
-        return {
+        is_featured = getattr(self, 'featured', False)
+        is_highlight = getattr(self, 'highlight', False)
+        classes = {
+            (False, False): 'normal',
+            (True, False): 'featured',
+            (True, True): 'featured-highlight',
+            (False, True): 'highlight',
+        }
+        client_cls = classes[(is_featured, is_highlight)]
+
+        if self.geolocation and self.geolocation.latitude:
+            geo = to_arcgis_coords(
+                self.geolocation.longitude,
+                self.geolocation.latitude)
+            geometry = {'x': geo[0], 'y':geo[1]}
+        else:
+            geometry = {'x': '', 'y': ''}
+
+        res = {
             'attributes': {
-                'area': '',
+                'area': self._get_area(),
                 'itemname': self.Title(),
                 'desc_': self._short_description(),
                 'website': ';'.join(self.websites or []),
                 'sectors': ';'.join(self.sectors or []),
                 'risks': ';'.join(self.climate_impacts or []),
                 'measureid': getattr(self, '_acemeasure_id', '') or self.UID(),
-                'featured': 'no',
+                'featured': is_featured and 'yes' or 'no',
                 'newitem': 'no',
-                'casestudyf': '',
-                'client_cls': '',
+                'casestudyf': 'CASESEARCH;',    # TODO: implement this
+                'client_cls': client_cls,
                 'CreationDate': _unixtime(self.creation_date),
                 'Creator': self.creators[-1],
                 'EditDate': _unixtime(self.modification_date),
                 'Editor': self.workflow_history[
-                    'cca_items_workflow'][-1]['actor'],
+                    'cca_items_workflow'][-1]['actor'], # NOTE: I think this is computed by ArcGIS
             },
-            'geometry': {'x': geo and geo.latitude or '',
-                        'y': geo and geo.longitude or ''}
+            'geometry': geometry,
         }
+        return res
 
 
 class AdaptationOption(dexterity.Container):
@@ -516,6 +560,7 @@ def _measure_id(obj):
 
 
 def handle_for_arcgis_sync(obj, event):
+    return
 
     event_name = event.__class__.__name__
     uid = _measure_id(obj)

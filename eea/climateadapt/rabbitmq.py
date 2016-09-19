@@ -12,9 +12,9 @@ from zope.component import getUtility
 from zope.component.hooks import getSite
 from zope.interface import Interface
 from zope.schema import TextLine, Int
+import logging
 import threading
 import transaction
-import logging
 
 logger = logging.getLogger("eea.climateadat.rabbitmq")
 
@@ -90,6 +90,7 @@ class MessagesDataManager(threading.local):
         self.messages = []
 
     def tpc_vote(self, txn):
+        # TODO: vote by trying to connect to rabbitmq server
         pass
 
     def tpc_abort(self, txn):
@@ -152,9 +153,6 @@ class Savepoint(object):
                             self.sp, self.dm.sp)
         self.dm.sp = self.sp
         self.dm.messages = self.messages[:]
-
-
-#_mdm = MessagesDataManager()
 
 
 def send_message(msg, queue, context=None):

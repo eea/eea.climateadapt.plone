@@ -2,6 +2,7 @@ from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser import BrowserView
 from eea.climateadapt.browser import AceViewApi
 from eea.climateadapt.vocabulary import _relevance
+from lxml.etree import Element, SubElement, tostring
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.edit import DefaultEditForm
 from plone.dexterity.browser.view import DefaultView
@@ -89,6 +90,45 @@ class CaseStudiesJson(BrowserView):
             cs = brain.getObject()
             res.append(cs._repr_for_arcgis())
         return json.dumps(res)
+
+from plone.transformchain.interfaces import DISABLE_TRANSFORM_REQUEST_KEY
+
+class CaseStudiesXML(BrowserView):
+    """ A view to return all case studies as XML.
+
+    Useful in debugging in developing the SAT mapping tool. See CaseStudiesJson
+    for details on meaning of data.
+    """
+
+
+    def __call__(self):
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+
+        cat = getToolByName(self.context, 'portal_catalog')
+        root = Element("casestudies")
+
+        for brain in cat.searchResults(
+            portal_type='eea.climateadapt.casestudy', review_state='published'):
+            cs = brain.getObject()
+            cs = cs._repr_for_arcgis()
+            e_cs = SubElement(root, 'casestudy')
+            e_attrs = SubElement(e_cs, 'attributes')
+            for k, v in cs['attributes'].items():
+                el = Element(k)
+
+                if isinstance(v, str):
+                    el.text = v.decode('utf-8').strip()
+                else:
+                    el.text = unicode(v).strip()
+                e_attrs.append(el)
+            e_geo = SubElement(e_cs, 'geometry')
+            for k, v in cs['geometry'].items():
+                el = Element(k)
+                el.text = unicode(v)
+                e_geo.append(el)
+
+        res = tostring(root, pretty_print=True)
+        return res
 
 
 class CaseStudyMapsConfiguration(BrowserView):
