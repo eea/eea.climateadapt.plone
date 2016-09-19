@@ -227,7 +227,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         description=_(u"List the Website where the option can be found"
                       u" or is described. Note: may refer to the original "
                       u"document describing a measure and does not have to "
-                      u"refer back to the project e.g. collected measures."),
+                      u"refer back to the project e.g. collected measures. "
+                      u"NOTE: Add http:// in front of every website link."),
         required=False,
         value_type=URI(),
         missing_value=(),
@@ -560,8 +561,6 @@ def _measure_id(obj):
 
 
 def handle_for_arcgis_sync(obj, event):
-    return
-
     event_name = event.__class__.__name__
     uid = _measure_id(obj)
     msg =  "{0}|{1}".format(event_name, uid)
@@ -573,8 +572,6 @@ def handle_for_arcgis_sync(obj, event):
                   swallow_exceptions=True)
     except Exception:
         logger.exception("Couldn't queue RabbitMQ message for case study event")
-
-    return
 
     # debugging
     from eea.climateadapt.scripts.sync_to_arcgis import HANDLERS

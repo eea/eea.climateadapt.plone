@@ -7,6 +7,7 @@ from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.edit import DefaultEditForm
 from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityEditForm
+from plone.transformchain.interfaces import DISABLE_TRANSFORM_REQUEST_KEY
 from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
 from zope.interface import classImplements
@@ -86,12 +87,12 @@ class CaseStudiesJson(BrowserView):
     def __call__(self):
         cat = getToolByName(self.context, 'portal_catalog')
         res = []
-        for brain in cat.searchResults(portal_type='eea.climateadapt.casestudy'):
+        for brain in cat.searchResults(portal_type='eea.climateadapt.casestudy',
+                                       review_state='published'):
             cs = brain.getObject()
             res.append(cs._repr_for_arcgis())
         return json.dumps(res)
 
-from plone.transformchain.interfaces import DISABLE_TRANSFORM_REQUEST_KEY
 
 class CaseStudiesXML(BrowserView):
     """ A view to return all case studies as XML.
@@ -129,8 +130,3 @@ class CaseStudiesXML(BrowserView):
 
         res = tostring(root, pretty_print=True)
         return res
-
-
-class CaseStudyMapsConfiguration(BrowserView):
-    # default_location = (47.654064, 9.636072)    # Somewhere south of Germany
-    nothing = ""

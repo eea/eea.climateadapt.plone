@@ -118,20 +118,6 @@ def query_layer(token, filter="1=1"):
     return resp.json()
 
 
-def describe_service(token):
-    """ Debugging function. Returns service information
-    """
-
-    data = {
-        'f': 'json',
-        'token': token,
-        'referer': REFERER,
-    }
-    url = "{0}".format(LAYER_URL)
-    resp = requests.get(url, params=data)
-    return resp.json()
-
-
 def _arcgis_req(data, op='updates', token=None):
     """ Makes a request to arcgis
     """
@@ -152,20 +138,6 @@ def _arcgis_req(data, op='updates', token=None):
     return res
 
 
-def arcgis_add_entry(entry, token=None):
-    entry = json.dumps([entry])
-    return _arcgis_req(entry, op='adds', token=token)
-
-
-def arcgis_del_entry(entry, token=None):
-    return _arcgis_req(entry, op='deletes', token=token)
-
-
-def arcgis_edit_entry(entry, token=None):
-    entry = json.dumps([entry])
-    return _arcgis_req(entry, op='updates', token=token)
-
-
 def _get_obj_by_measure_id(site, uid):
     from Products.CMFCore.utils import getToolByName
     catalog = getToolByName(site, 'portal_catalog')
@@ -178,7 +150,7 @@ def _get_obj_by_measure_id(site, uid):
     return catalog.searchResults(**q)[0].getObject()
 
 
-def _get_obj_FID(obj, token=None):
+def _get_obj_FID(obj=None, uid=None, token=None):
     """ The "Object ID Field" for the casestudies_pointLayer is "FID".
 
     Because the casestudies_pointLayer doesn't use Global Ids, we need to
@@ -189,7 +161,11 @@ def _get_obj_FID(obj, token=None):
         token_url = get_token_service_url()
         token = generate_token(token_url)
 
-    measureid = _measure_id(obj)
+    if obj is not None:
+        measureid = _measure_id(obj)
+    else:
+        measureid = uid
+
     res = query_layer(filter='measureid={0}'.format(measureid), token=token)
 
     fid = res['features'][0]['attributes']['FID']
@@ -205,9 +181,14 @@ def handle_ObjectAddedEvent(site, uid):
 
     token_url = get_token_service_url()
     token = generate_token(token_url)
-    arcgis_add_entry(entry, token=token)
 
-    # TODO: ???
+    entry = json.dumps([entry])
+    # TODO: add asserts
+
+    logger.info("ArcGIS: Adding CaseStudy with measure id %s", uid)
+
+    return _arcgis_req(entry, op='adds', token=token)
+
 
 def handle_ObjectModifiedEvent(site, uid):
     obj = _get_obj_by_measure_id(site, uid)
@@ -218,20 +199,25 @@ def handle_ObjectModifiedEvent(site, uid):
 
     fid = _get_obj_FID(obj, token=token)
     repr['attributes']['FID'] = fid
-    res = arcgis_edit_entry(repr, token=token)
+
+    logger.info("ArcGIS: Updating CaseStudy with FID %s", fid)
+
+    entry = json.dumps([repr])
+    res = _arcgis_req(entry, op='updates', token=token)
 
     assert res['updateResults']
     assert res['updateResults'][0]['objectId'] == fid
 
 
-def handle_ObjectWillBeRemovedEvent(site, uid):
-    # TODO: ???
-    obj = _get_obj_by_measure_id(site, uid)
-    repr = obj._repr_for_arcgis()
+def handle_ObjectRemovedEvent(site, uid):
+    token_url = get_token_service_url()
+    token = generate_token(token_url)
 
-    fid = _get_obj_FID(obj, token=token)
-    repr['attributes']['FID'] = fid
-    res = arcgis_del_entry(repr, token=token)
+    fid = _get_obj_FID(obj=None, uid=uid, token=token)
+
+    logger.info("ArcGIS: Deleting CaseStudy with FID %s", fid)
+
+    res = _arcgis_req(fid, op='deletes', token=token)
 
     assert res['deleteResults']
     assert res['deleteResults'][0]['objectId'] == fid
@@ -240,7 +226,7 @@ def handle_ObjectWillBeRemovedEvent(site, uid):
 HANDLERS = {
     'ObjectAddedEvent': handle_ObjectAddedEvent,
     'ObjectModifiedEvent': handle_ObjectModifiedEvent,
-    'ObjectWillBeRemovedEvent': handle_ObjectWillBeRemovedEvent,
+    'ObjectRemovedEvent': handle_ObjectRemovedEvent,
 }
 
 
@@ -273,28 +259,6 @@ def main():
         partial(_consume_msg, context=site),
         queue='eea.climateadapt.casestudies'
     )
-
-
-def test_edit(token):
-    """ Debugging function, shows how to edit
-    """
-
-    data = {
-        'f': 'json',
-        'token': token,
-        'referer': REFERER,
-        'features': json.dumps([
-            {
-                'attributes': {
-                    "FID": 48,
-                    'itemname': 'test changed by tibi',
-                }
-            }
-        ]),
-    }
-    url = "{0}/updateFeatures".format(LAYER_URL)
-    resp = requests.post(url, data=data)
-    return resp.json()
 
 
 def backup_data(data, path='out.xml'):
