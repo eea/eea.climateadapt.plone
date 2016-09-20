@@ -368,7 +368,6 @@
             />
     </genericsetup:upgradeSteps>
 
-
     <!-- v21 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_21"
@@ -386,4 +385,23 @@
             import_profile="eea.climateadapt:eeaclimateadapt_to_21"
             />
     </genericsetup:upgradeSteps>
+
+    <!-- v22 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_22"
+        title="Upgrade profile for eea.climateadapt v22"
+        description=""
+        directory="profiles/upgrades/to_22"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="22"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v22"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_22"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>

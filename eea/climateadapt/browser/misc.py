@@ -1,20 +1,15 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
-from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 from Acquisition import aq_inner
-from eea.climateadapt.config import CONTACT_MAIL_LIST, REGISTER_MAIL_LIST
+from eea.climateadapt.config import CONTACT_MAIL_LIST
 from eea.climateadapt.schema import Email
 from plone import api
 from plone.directives import form
-from plone.formwidget.recaptcha.interfaces import IReCaptchaSettings
 from plone.formwidget.recaptcha.widget import ReCaptchaFieldWidget
 from Products.Five.browser import BrowserView
 from z3c.form import button, field
 from zope import schema
 from zope.component import getMultiAdapter
-from zope.interface import Interface, Invalid, implements, invariant
+from zope.interface import Interface, implements
 
 
 class ISimplifiedResourceRegistriesView(Interface):
@@ -23,11 +18,13 @@ class ISimplifiedResourceRegistriesView(Interface):
 
 class TransRegionView(BrowserView):
     """ Custom view for /transnational-regions """
+
     implements(ISimplifiedResourceRegistriesView)
 
 
 class CountriesView (BrowserView):
     """ Custom view for http://climate-adapt.eea.europa.eu/countries """
+
     implements(ISimplifiedResourceRegistriesView)
 
 
@@ -39,11 +36,6 @@ class MapViewerView (BrowserView):
     def __call__(self):
         return self.request.response.redirect('/tools/map-viewer?' +
                                               self.request['QUERY_STRING'])
-
-
-class SatView(BrowserView):
-    """ A http://climate-adapt.eea.europa.eu/sat custom view """
-    implements(ISimplifiedResourceRegistriesView)
 
 
 class AdaptationStrategyView (BrowserView):
@@ -131,6 +123,7 @@ class ContactForm(form.SchemaForm):
 
 
 class IContactFooterForm(form.Schema):
+
     name = schema.TextLine(title=u"Name:", required=True)
     email = Email(title=u"Your Email:", required=True)
     subject = schema.TextLine(title=u"Subject", required=True)

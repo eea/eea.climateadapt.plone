@@ -54,5 +54,6 @@
     </record>
 
     <records interface="eea.climateadapt.rabbitmq.IRabbitMQClientSettings" />
+    <records interface="eea.climateadapt.sat.settings.IArcGISClientSettings" />
 
 </registry>

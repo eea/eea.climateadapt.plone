@@ -5,10 +5,10 @@ from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.rabbitmq import queue_msg
+from eea.climateadapt.sat.utils import to_arcgis_coords
 from eea.climateadapt.schema import Year
 from eea.climateadapt.utils import _unixtime
 from eea.climateadapt.utils import shorten
-from eea.climateadapt.utils import to_arcgis_coords
 from eea.climateadapt.vocabulary import BIOREGIONS
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.api.portal import get_tool
@@ -70,7 +70,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                   label=u'Item Description',
                   fields=['title', 'long_description', 'climate_impacts',
                           'keywords', 'sectors', 'year', 'featured',
-                          'highlight']
+                          ]
                   )
 
     form.fieldset('additional_details',
@@ -153,10 +153,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                     description=u"Feature in search and Case Study Search Tool",
                     required=False,
                     default=False)
-    highlight = Bool(title=_(u"Highlight"),
-                     description=u"Show as highlight in Case Study Search Tool",
-                     required=False,
-                     default=False)
 
     # -----------[ "additional_details" fields ]------------------
 
@@ -483,14 +479,15 @@ class CaseStudy(dexterity.Container):
 
     def _repr_for_arcgis(self):
         is_featured = getattr(self, 'featured', False)
-        is_highlight = getattr(self, 'highlight', False)
-        classes = {
-            (False, False): 'normal',
-            (True, False): 'featured',
-            (True, True): 'featured-highlight',
-            (False, True): 'highlight',
-        }
-        client_cls = classes[(is_featured, is_highlight)]
+        # is_highlight = getattr(self, 'highlight', False)
+        # classes = {
+        #     (False, False): 'normal',
+        #     (True, False): 'featured',
+        #     (True, True): 'featured-highlight',
+        #     (False, True): 'highlight',
+        # }
+        # client_cls = classes[(is_featured, is_highlight)]
+        client_cls = is_featured and 'featured' or 'normal'
 
         if self.geolocation and self.geolocation.latitude:
             geo = to_arcgis_coords(
@@ -525,6 +522,9 @@ class CaseStudy(dexterity.Container):
 
 
 class AdaptationOption(dexterity.Container):
+    """ The AdaptationObject content type.
+    """
+
     implements(IAdaptationOption, IClimateAdaptContent)
 
     search_type = "MEASURE"
@@ -553,14 +553,25 @@ def SpecialTagsFieldWidget(field, request):
 def _measure_id(obj):
     """ Returns the measureid of casestudy as PK for gis operations
 
-    By default it returns the AceMeasureId field inherited from the old site.
-    In absense of that, it returns the UUID of the object.
+    If the object doesn't have a measureid, it assigns a new one
     """
 
-    return getattr(obj, '_acemeasure_id', '') or obj.UID()
+    mid = getattr(obj, '_acemeasure_id', None)
+    if mid:
+        return mid
+
+    catalog = get_tool(name='portal_catalog')
+    ids = sorted(filter(None, catalog.uniqueValuesFor('acemeasure_id')))
+    obj._acemeasure_id = ids[-1] + 1
+    obj.reindexObject(idxs=['acemeasure_id'])
+
+    return obj._acemeasure_id
 
 
 def handle_for_arcgis_sync(obj, event):
+    """ Dispatch event to RabbitMQ to trigger synchronization to ArcGIS
+    """
+
     event_name = event.__class__.__name__
     uid = _measure_id(obj)
     msg =  "{0}|{1}".format(event_name, uid)
@@ -574,5 +585,15 @@ def handle_for_arcgis_sync(obj, event):
         logger.exception("Couldn't queue RabbitMQ message for case study event")
 
     # debugging
-    from eea.climateadapt.scripts.sync_to_arcgis import HANDLERS
-    HANDLERS[event_name](obj, uid)
+    # from eea.climateadapt.scripts.sync_to_arcgis import HANDLERS
+    # HANDLERS[event_name](obj, uid)
+
+
+def handle_measure_added(obj, event):
+    """ Assign a new measureid to this AceMeasure
+    """
+
+    catalog = get_tool(name='portal_catalog')
+    ids = sorted(filter(None, catalog.uniqueValuesFor('acemeasure_id')))
+    obj._acemeasure_id = ids[-1] + 1
+    obj.reindexObject(idxs=['acemeasure_id'])
