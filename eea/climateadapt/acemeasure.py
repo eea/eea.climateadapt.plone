@@ -574,7 +574,7 @@ def handle_for_arcgis_sync(obj, event):
 
     event_name = event.__class__.__name__
     uid = _measure_id(obj)
-    msg =  "{0}|{1}".format(event_name, uid)
+    msg = "{0}|{1}".format(event_name, uid)
     logger.info("Queuing RabbitMQ message: %s", msg)
 
     try:

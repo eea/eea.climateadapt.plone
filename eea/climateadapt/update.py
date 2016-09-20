@@ -121,3 +121,31 @@ def update_to_22(context):
             obj.featured = True
             obj._p_changed = True
             logger.info("Fixed featured for %s", res[0].getURL())
+
+    # fix sectors
+    results = catalog.searchResults(sectors="AGRICULTURE")
+    for b in results:
+        b = b.getObject()
+        if hasattr(b, 'sectors'):
+            if b.sectors is None:
+                continue
+            else:
+                if "AGRICULTURE" in b.sectors:
+                    b.sectors.append("FORESTRY".decode('utf-8'))
+                    b.reindexObject()
+                    b._p_changed = True
+
+    results = catalog.searchResults(sectors="INFRASTRUCTURE")
+    for b in results:
+        b = b.getObject()
+        if hasattr(b, 'sectors'):
+            if b.sectors is None:
+                continue
+            else:
+                if "INFRASTRUCTURE" in b.sectors:
+                    b.sectors.remove("INFRASTRUCTURE")
+                    b.sectors.append("ENERGY".decode('utf-8'))
+                    b.sectors.append("TRANSPORT".decode('utf-8'))
+                    b.sectors.append("BUILDINGS".decode('utf-8'))
+                    b.reindexObject()
+                    b._p_changed = True
