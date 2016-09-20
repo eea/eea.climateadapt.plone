@@ -127,6 +127,12 @@ dl.portlet a:link {
     overflow: hidden;
 }
 
+.template-sat .iframe-container {
+    position: relative;
+    padding-bottom: 78.25%;
+    overflow: inherit;
+}
+
 .iframe-container iframe {
     position: absolute;
     top:0;
