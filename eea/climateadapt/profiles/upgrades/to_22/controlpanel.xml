@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="eea.climateadapt"
+    purge="False">
+
+    <configlet title="ArcGIS Integration Settings"
+        action_id="arcgis_client_settings"
+        appId="eea.climateadapt"
+        category="Products"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@arcgis-client-controlpanel"
+        visible="True"
+        i18n:attributes="title">
+      <permission>Manage portal</permission>
+    </configlet>
+
+    <configlet title="RabbitMQ Settings"
+        action_id="rabbitmq_client_settings"
+        appId="eea.climateadapt"
+        category="Products"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@rabbitmq-client-controlpanel"
+        visible="True"
+        i18n:attributes="title">
+      <permission>Manage portal</permission>
+    </configlet>
+
+</object>
