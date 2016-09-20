@@ -123,7 +123,9 @@ alsoProvides(aceitem_storagetypes_vocabulary, IVocabularyFactory)
 
 
 _sectors = [    # this is the canonical
-    ("AGRICULTURE", "Agriculture and Forest"),
+    # ("AGRICULTURE", "Agriculture and Forest"),
+    ("AGRICULTURE", "Agriculture"),
+    ("FORESTRY", "Forestry"),
     ("BIODIVERSITY", "Biodiversity"),
     ("COASTAL", "Coastal areas"),
     ("DISASTERRISKREDUCTION", "Disaster Risk Reduction"),
@@ -622,5 +624,3 @@ SUBNATIONAL_REGIONS = {
    "SUBN_Northern_Ireland__UK_": "Northern Ireland (UK)",
    "SUBN_Extra_Regio_NUTS_2__UK_": "Extra-Regio NUTS 2 (UK)",
    }
-
-
