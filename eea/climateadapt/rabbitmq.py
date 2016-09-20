@@ -13,7 +13,6 @@ from zope.component.hooks import getSite
 from zope.interface import Interface
 from zope.schema import TextLine, Int
 import logging
-import threading
 import transaction
 
 logger = logging.getLogger("eea.climateadat.rabbitmq")
@@ -60,21 +59,18 @@ def get_rabbitmq_conn(queue, context=None):
     rb.close_connection()
 
 
-def consume_messages(callback, queue=None, context=None):
+def consume_messages(consumer, queue=None, context=None):
     """ Executes the callback on all messages existing in the queue
-
-    # TODO: implement a lockfile mechanism ???, see
-    # http://fasteners.readthedocs.io/en/latest/api/lock.html#decorators
     """
 
     with get_rabbitmq_conn(queue, context) as conn:
         while not conn.is_queue_empty(queue):
             msg = conn.get_message(queue)
-            callback(msg)
+            consumer(msg)
             conn.get_channel().basic_ack(msg[0].delivery_tag)
 
 
-class MessagesDataManager(threading.local):
+class MessagesDataManager(object):
     """ Transaction aware data manager for RabbitMQ connections
     """
 
@@ -107,14 +103,11 @@ class MessagesDataManager(threading.local):
     def commit(self, txn):
         self._checkTransaction(txn)
 
-        for queue, msg, swallow_exceptions in self.messages:
-            if swallow_exceptions:
-                try:
-                    send_message(queue, msg)
-                except Exception:
-                    logger.exception("RabbitMQ Connection exception")
-            else:
+        for queue, msg in self.messages:
+            try:
                 send_message(queue, msg)
+            except Exception:
+                logger.exception("RabbitMQ Connection exception")
 
         self.txn = None
         self.messages = []
@@ -126,9 +119,9 @@ class MessagesDataManager(threading.local):
     def sortKey(self):
         return self.__class__.__name__
 
-    def add(self, queue, msg, swallow_exceptions):
+    def add(self, queue, msg):
         logger.info("Add msg to queue: %s => %s", msg, queue)
-        self.messages.append((queue, msg, swallow_exceptions))
+        self.messages.append((queue, msg))
 
     def _checkTransaction(self, txn):
         if (txn is not self.txn and self.txn is not None):
@@ -160,10 +153,10 @@ def send_message(msg, queue, context=None):
         conn.send_message(queue, msg)
 
 
-def queue_msg(msg, queue=None, swallow_exceptions=False):
+def queue_msg(msg, queue=None):
     """ Queues a rabbitmq message in the given queue
     """
 
     _mdm = MessagesDataManager()
     transaction.get().join(_mdm)
-    _mdm.add(queue, msg, swallow_exceptions)
+    _mdm.add(queue, msg)

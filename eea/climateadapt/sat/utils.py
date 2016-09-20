@@ -1,4 +1,5 @@
 from Products.CMFCore.utils import getToolByName
+from plone.api.portal import get_tool
 import ogr
 import osr
 
@@ -56,3 +57,21 @@ def _get_obj_by_measure_id(site, uid):
         q = {'acemeasure_id': uid}
 
     return catalog.searchResults(**q)[0].getObject()
+
+
+def _measure_id(obj):
+    """ Returns the measureid of casestudy as PK for gis operations
+
+    If the object doesn't have a measureid, it assigns a new one
+    """
+
+    mid = getattr(obj, '_acemeasure_id', None)
+    if mid:
+        return mid
+
+    catalog = get_tool(name='portal_catalog')
+    ids = sorted(filter(None, catalog.uniqueValuesFor('acemeasure_id')))
+    obj._acemeasure_id = ids[-1] + 1
+    obj.reindexObject(idxs=['acemeasure_id'])
+
+    return obj._acemeasure_id

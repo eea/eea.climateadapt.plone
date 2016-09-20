@@ -39,8 +39,6 @@ def main():
     from eea.climateadapt.rabbitmq import consume_messages
     from eea.climateadapt.scripts import get_plone_site
 
-    # TODO: this needs rabbitmq server configuration???
-
     site = get_plone_site()
     consume_messages(
         partial(_consume_msg, context=site),

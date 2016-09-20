@@ -5,6 +5,10 @@ from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.rabbitmq import queue_msg
+from eea.climateadapt.sat.datamanager import queue_callback
+from eea.climateadapt.sat.handlers import HANDLERS
+from eea.climateadapt.sat.settings import get_settings
+from eea.climateadapt.sat.utils import _measure_id
 from eea.climateadapt.sat.utils import to_arcgis_coords
 from eea.climateadapt.schema import Year
 from eea.climateadapt.utils import _unixtime
@@ -550,24 +554,6 @@ def SpecialTagsFieldWidget(field, request):
     return widget
 
 
-def _measure_id(obj):
-    """ Returns the measureid of casestudy as PK for gis operations
-
-    If the object doesn't have a measureid, it assigns a new one
-    """
-
-    mid = getattr(obj, '_acemeasure_id', None)
-    if mid:
-        return mid
-
-    catalog = get_tool(name='portal_catalog')
-    ids = sorted(filter(None, catalog.uniqueValuesFor('acemeasure_id')))
-    obj._acemeasure_id = ids[-1] + 1
-    obj.reindexObject(idxs=['acemeasure_id'])
-
-    return obj._acemeasure_id
-
-
 def handle_for_arcgis_sync(obj, event):
     """ Dispatch event to RabbitMQ to trigger synchronization to ArcGIS
     """
@@ -577,16 +563,15 @@ def handle_for_arcgis_sync(obj, event):
     msg = "{0}|{1}".format(event_name, uid)
     logger.info("Queuing RabbitMQ message: %s", msg)
 
+    settings = get_settings()
+    if settings.skip_rabbitmq:
+        queue_callback(lambda:HANDLERS[event_name](obj, uid))
+        return
+
     try:
-        queue_msg(msg,
-                  queue='eea.climateadapt.casestudies',
-                  swallow_exceptions=True)
+        queue_msg(msg, queue='eea.climateadapt.casestudies')
     except Exception:
         logger.exception("Couldn't queue RabbitMQ message for case study event")
-
-    # debugging
-    # from eea.climateadapt.scripts.sync_to_arcgis import HANDLERS
-    # HANDLERS[event_name](obj, uid)
 
 
 def handle_measure_added(obj, event):

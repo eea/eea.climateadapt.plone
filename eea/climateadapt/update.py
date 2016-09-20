@@ -105,15 +105,16 @@ def _fix_tags(tags):
 
 
 def update_to_22(context):
-    #  fix featured field for casestudies
+    site = context.getSite()
+    catalog = site.portal_catalog
+
+    # Bring back the featured field values from the old database
     ids = ("3402 3403 4704 4706 4202 3323 3505 4102 5301 5901 6301 3503 3504 "
            "3326 3325 4302 4703 3502 4201 3401 3801 4705 3327 4301 6001 4901 "
            "5001 5002 5003 5101 5201 4401 3311 5801 5503 5401 5501 5601 5902 "
            "6201 6101 6202")
     ids = [int(x) for x in ids.split(" ") if x]
 
-    site = context.getSite()
-    catalog = site.portal_catalog
     for id in ids:
         res = catalog.searchResults(acemeasure_id=id)
         if res:
@@ -121,8 +122,10 @@ def update_to_22(context):
             obj.featured = True
             obj._p_changed = True
             logger.info("Fixed featured for %s", res[0].getURL())
+        else:
+            logger.warn("Couldn't get measure with id %s", id)
 
-    # fix sectors
+    # fix sectors, split Agriculture and Infrastructure sectors
     results = catalog.searchResults(sectors="AGRICULTURE")
     for b in results:
         b = b.getObject()
@@ -131,9 +134,9 @@ def update_to_22(context):
                 continue
             else:
                 if "AGRICULTURE" in b.sectors:
-                    b.sectors.append("FORESTRY".decode('utf-8'))
-                    b.reindexObject()
+                    b.sectors = sorted(set(b.sectors + ["FORESTRY"]))
                     b._p_changed = True
+                    b.reindexObject()
 
     results = catalog.searchResults(sectors="INFRASTRUCTURE")
     for b in results:
@@ -144,8 +147,23 @@ def update_to_22(context):
             else:
                 if "INFRASTRUCTURE" in b.sectors:
                     b.sectors.remove("INFRASTRUCTURE")
-                    b.sectors.append("ENERGY".decode('utf-8'))
-                    b.sectors.append("TRANSPORT".decode('utf-8'))
-                    b.sectors.append("BUILDINGS".decode('utf-8'))
+                    b.sectors = sorted(set(b.sectors + \
+                                           ["ENERGY", "TRANSPORT", "BUILDINGS"])
+                                       )
                     b.reindexObject()
                     b._p_changed = True
+
+    # assign a measure id for all case studies, it's needed for the /sat map
+    _ids = sorted(filter(None, catalog.uniqueValuesFor('acemeasure_id')))
+    results = catalog.searchResults(portal_type="eea.climateadapt.casestudy")
+    for b in results:
+        obj = b.getObject()
+        mid = getattr(obj, '_acemeasure_id', None)
+        if mid:
+            continue
+        mid = _ids[-1] + 1
+        obj._acemeasure_id = mid
+        obj.reindexObject(idxs=['acemeasure_id'])
+        _ids.append(mid)
+
+    return obj._acemeasure_id

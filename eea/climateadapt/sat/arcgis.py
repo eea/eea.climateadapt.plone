@@ -1,7 +1,7 @@
 """ Settings and Utilities to integrate with the ArcGIS server, for the SAT tool
 """
 
-from eea.climateadapt.acemeasure import _measure_id
+from eea.climateadapt.sat.utils import _measure_id
 from eea.climateadapt.sat.settings import get_endpoint_url
 from eea.climateadapt.sat.settings import get_feature_url
 from eea.climateadapt.sat.settings import get_settings
