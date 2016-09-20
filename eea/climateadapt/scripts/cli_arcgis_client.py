@@ -8,6 +8,8 @@ Call it from a script such as:
     ../../../../../bin/zopepy sync_to_arcgis.py "$@"
 
 This commands accepts various parameter. Look at __main__ to see what it does.
+
+# TODO: this script is hackish. Maybe optparse would improve feeling.
 """
 
 from eea.climateadapt.sat.arcgis import _get_obj_FID

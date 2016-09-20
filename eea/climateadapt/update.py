@@ -102,3 +102,22 @@ def _fix_tags(tags):
         tags = tags.replace('-', '_')
 
     return list(set(filter(None, tags)))
+
+
+def update_to_22(context):
+    #  fix featured field for casestudies
+    ids = ("3402 3403 4704 4706 4202 3323 3505 4102 5301 5901 6301 3503 3504 "
+           "3326 3325 4302 4703 3502 4201 3401 3801 4705 3327 4301 6001 4901 "
+           "5001 5002 5003 5101 5201 4401 3311 5801 5503 5401 5501 5601 5902 "
+           "6201 6101 6202")
+    ids = [int(x) for x in ids.split(" ") if x]
+
+    site = context.getSite()
+    catalog = site.portal_catalog
+    for id in ids:
+        res = catalog.searchResults(acemeasure_id=id)
+        if res:
+            obj = res[0].getObject()
+            obj.featured = True
+            obj._p_changed = True
+            logger.info("Fixed featured for %s", res[0].getURL())
