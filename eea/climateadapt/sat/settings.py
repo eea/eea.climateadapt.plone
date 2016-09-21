@@ -13,10 +13,11 @@ logger = logging.getLogger('eea.climateadapt.arcgis')
 # FEATURE = "casestudies_pointLayer"
 
 _DEFAULTS = {
-    'username' : u"eea_casestudies",
-    'password' : os.environ.get('GISPASS', ""),
-    'server' : u"LcQjj2sL7Txk9Lag",
-    'feature_service' : u"casestudies_pointLayer_clone",
+    'username': u"eea_casestudies",
+    'password': os.environ.get('GISPASS', ""),
+    'server': u"LcQjj2sL7Txk9Lag",
+    'feature_service': u"casestudies_pointLayer_clone",
+    'skip_rabbitmq': True,
 }
 
 
@@ -40,7 +41,8 @@ class IArcGISClientSettings(Interface):
                       required=True, default=_DEFAULTS['server'])
 
     feature_service = TextLine(title=u"Feature Service",
-                      required=True, default=_DEFAULTS['feature_service'])
+                               required=True,
+                               default=_DEFAULTS['feature_service'])
 
     skip_rabbitmq = Bool(title=u"Disable message queue",
                          description=u"Direct processing, without RabbitMQ",
@@ -62,7 +64,7 @@ def get_settings():
     try:
         reg = get_tool('portal_registry')
         s = reg.forInterface(IArcGISClientSettings)
-    except: # not in Plone context, return defaults
+    except:     # not in Plone context, return defaults
         logger.info("Couldn't get Plone settings, using defaults")
         s = _defaults()
     return s
