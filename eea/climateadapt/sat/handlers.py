@@ -1,5 +1,10 @@
+""" Handlers for various lifecycle events of CaseStudies
+"""
 
 from eea.climateadapt.sat.arcgis import apply_edits
+from eea.climateadapt.sat.arcgis import get_auth_token
+from eea.climateadapt.sat.arcgis import _get_obj_FID
+from eea.climateadapt.sat.utils import _get_obj_by_measure_id
 from plone.api.content import get_state
 from plone.app.iterate.interfaces import IWorkingCopy
 import json
@@ -12,8 +17,7 @@ def handle_ObjectModifiedEvent(site, uid):
     obj = _get_obj_by_measure_id(site, uid)
     repr = obj._repr_for_arcgis()
 
-    token_url = get_token_service_url()
-    token = generate_token(token_url)
+    token = get_auth_token()
 
     fid = _get_obj_FID(obj, token=token)
     repr['attributes']['FID'] = fid
@@ -21,15 +25,14 @@ def handle_ObjectModifiedEvent(site, uid):
     logger.info("ArcGIS: Updating CaseStudy with FID %s", fid)
 
     entry = json.dumps([repr])
-    res = _arcgis_req(entry, op='updates', token=token)
+    res = apply_edits(entry, op='updates', token=token)
 
     assert res['updateResults']
     assert res['updateResults'][0]['objectId'] == fid
 
 
 def handle_ObjectRemovedEvent(site, uid):
-    token_url = get_token_service_url()
-    token = generate_token(token_url)
+    token = get_auth_token()
 
     fid = _get_obj_FID(obj=None, uid=uid, token=token)
 
@@ -61,8 +64,7 @@ def handle_ObjectStateModified(site, uid):
 
     state = get_state(obj)
 
-    token_url = get_token_service_url()
-    token = generate_token(token_url)
+    token = get_auth_token()
     fid = _get_obj_FID(obj=obj, token=token)
 
     if (state != 'published') and fid:
@@ -82,7 +84,7 @@ def handle_ObjectStateModified(site, uid):
         if fid is None:
             logger.info("ArcGIS: Adding CaseStudy with measure id %s", uid)
             entry = json.dumps([repr])
-            res = _arcgis_req(entry, op='adds', token=token)
+            res = apply_edits(entry, op='adds', token=token)
             assert len(res.get('addResults', [])) > 1
             assert res['addResults'][0]['success'] == True
 
