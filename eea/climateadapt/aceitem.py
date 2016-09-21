@@ -99,6 +99,8 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                    description=_(u"Select one or more relevant sector policies"
                                  u" that this item relates to."),
                    required=True,
+                   missing_value=[],
+                   default=None,
                    value_type=Choice(
                        vocabulary="eea.climateadapt.aceitems_sectors",),
                    )
@@ -108,6 +110,8 @@ class IAceItem(form.Schema, IImageScaleTraversable):
         description=_(u"Select one or more climate change impact topics that "
                       u"this item relates to."),
         required=True,
+        missing_value=[],
+        default=None,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_climateimpacts",),
     )
@@ -125,9 +129,9 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                 )
 
     featured = Bool(title=_(u"Featured"),
-                     required=False,
-                     default=False,
-                     )
+                    required=False,
+                    default=False,
+                    )
 
     # -----------[ "reference_information" fields ]------------------
 

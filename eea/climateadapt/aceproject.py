@@ -115,6 +115,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         description=_(u"Select one or more relevant sector policies that "
                       u"this item relates to."),
         required=True,
+        missing_value=[],
+        default=None,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_sectors",),
     )
@@ -123,6 +125,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         title=_(u"Climate impacts"),
         description=_(u"Select one or more climate change impact topics that "
                       u"this item relates to."),
+        missing_value=[],
+        default=None,
         required=True,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_climateimpacts",),

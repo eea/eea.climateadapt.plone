@@ -33,7 +33,7 @@ from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import implementer, implements
 from zope.schema import List, Text, TextLine, Tuple
-from zope.schema import URI, Bool, Choice, Int
+from zope.schema import URI, Bool, Choice, Int, Set
 import json
 import logging
 
@@ -120,6 +120,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_(u"Climate impacts"),
+        missing_value=[],
+        default=None,
         description=_(u"Select one or more climate change impact topics that "
                       u"this item relates to:"),
         required=True,
@@ -144,8 +146,10 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                    description=_(u"Select one or more relevant sector policies"
                                  u" that this item relates to:"),
                    required=True,
+                   missing_value=[],
+                   default=None,
                    value_type=Choice(
-                       vocabulary="eea.climateadapt.aceitems_sectors",),
+                         vocabulary="eea.climateadapt.aceitems_sectors",),
                    )
 
     year = Year(title=_(u"Year"),
@@ -383,6 +387,8 @@ class ICaseStudy(IAceMeasure):  #, IGeolocatable):
     relevance = List(
         title=_(u"Relevance"),
         required=True,
+        missing_value=[],
+        default=None,
         description=_(u"Select only one category below that best describes "
                       u"how relevant this case study is to climate change "
                       u"adaptation:"),
