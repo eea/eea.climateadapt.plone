@@ -3,7 +3,7 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
-* Bugfix: Created migration script for sectors field
+* Bugfix: Fixed fields not being required
   [iulianpetchesi #77093]
 * Bugfix: Created migration script for sectors field
   [iulianpetchesi #75968]
