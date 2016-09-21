@@ -59,7 +59,7 @@ class CallbacksDataManager(object):
     def sortKey(self):
         return self.__class__.__name__
 
-    def add(self, callback, swallow_exceptions):
+    def add(self, callback):
         logger.info("Add callback to queue", callback)
         self.callbacks.append(callback)
 
