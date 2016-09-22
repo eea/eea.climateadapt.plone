@@ -2061,6 +2061,15 @@ li.dropdown-submenu {
     display: block;
 }
 
+#case-study-selector-em > div > em {
+    background-image: url("cca/img/ico-arrow.png");
+    background-repeat: no-repeat;
+    background-position: 0px 5px;
+    padding-left: 1em;
+    margin-top: 1.4em;
+    display: block;
+}
+
 #case-study-selector-em h4 {
     margin-top: 2em;
 }
