@@ -563,6 +563,7 @@ def SpecialTagsFieldWidget(field, request):
 def handle_for_arcgis_sync(obj, event):
     """ Dispatch event to RabbitMQ to trigger synchronization to ArcGIS
     """
+    return
 
     event_name = event.__class__.__name__
     uid = _measure_id(obj)
