@@ -165,5 +165,3 @@ def update_to_22(context):
         obj._acemeasure_id = mid
         obj.reindexObject(idxs=['acemeasure_id'])
         _ids.append(mid)
-
-    return obj._acemeasure_id
