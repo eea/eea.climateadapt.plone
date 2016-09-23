@@ -309,6 +309,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     # TODO: specialtagging is not used in any view jsp, only in add and edit
     # views
 
+    form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(title=_(u"Elements"),
                     description=_(u"TODO: Elements description here"),
                     required=False,

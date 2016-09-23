@@ -2381,6 +2381,15 @@ table.dataTable thead .sorting_desc {
     margin-right: 0.3em;
 }
 
+/* elements checkbox widget editing */
+#form-widgets-elements label {
+    display: block;
+}
+#form-widgets-elements input[type="checkbox"] {
+    float: left;
+    margin-right: 0.3em;
+}
+
 /* tile composing fixes */
 .edit-tile-link {
     color: Red !important;

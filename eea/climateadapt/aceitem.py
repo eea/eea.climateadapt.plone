@@ -95,6 +95,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
         missing_value=None,
     )
 
+    form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(title=_(u"Sectors"),
                    description=_(u"Select one or more relevant sector policies"
                                  u" that this item relates to."),
@@ -105,6 +106,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                        vocabulary="eea.climateadapt.aceitems_sectors",),
                    )
 
+    form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_(u"Climate impacts"),
         description=_(u"Select one or more climate change impact topics that "
@@ -116,6 +118,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
             vocabulary="eea.climateadapt.aceitems_climateimpacts",),
     )
 
+    form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(title=_(u"Elements"),
                     description=_(u"Select one or more elements."),
                     required=False,
