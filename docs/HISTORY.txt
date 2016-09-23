@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed a required error for geochar field
+  [iulianpetchesi #77093]
 * Bugfix: Added checkbox widget to list fields
   [iulianpetchesi #77093]
 * Bugfix: Fixed style for source field in case studies

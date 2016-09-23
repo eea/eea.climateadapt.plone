@@ -259,11 +259,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     )
 
     form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
-    geochars = Text(
-        title=_(u"Geographic characterization"),
-        required=True, default=u"",
-        description=_(u"Input the characterisation for this case study")
-    )
+    geochars = Text(title=_(u"Geographic characterisation"),
+                    required=True,
+                    default=u'{"geoElements":{"element":"GLOBAL", "macrotrans":null,"biotrans":null,"countries":[],"subnational":[],"city":""}}',
+                    description=u"Select the characterisation for this item",
+                    )
 
     comments = Text(title=_(u"Comments"), required=False, default=u"",
                     description=_(u"Comments about this database item "

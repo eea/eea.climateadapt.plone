@@ -178,11 +178,11 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     # -----------[ "geographic_information" fields ]------------------
     form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
-    geochars = Text(
-        title=_(u"Geographic characterization"),
-        description=_(u"Select the characterisation for this project"),
-        required=True,
-    )
+    geochars = Text(title=_(u"Geographic characterisation"),
+                    required=True,
+                    default=u'{"geoElements":{"element":"GLOBAL", "macrotrans":null,"biotrans":null,"countries":[],"subnational":[],"city":""}}',
+                    description=u"Select the characterisation for this item",
+                    )
 
     comments = Text(
         title=_(u"Source"),
