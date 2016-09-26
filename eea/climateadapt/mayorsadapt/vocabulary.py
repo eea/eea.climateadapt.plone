@@ -49,15 +49,19 @@ alsoProvides(status_of_adapt_signature_vocabulary, IVocabularyFactory)
 # CityProfile is defined differently in the Java code, the relevant people
 # would need to agree on this
 _key_vulnerable_adapt_sector = [
-    ("AGRI_AND_FOREST", "Agriculture and Forest"),
+    # ("AGRI_AND_FOREST", "Agriculture and Forest"),
+    ("AGRICULTURE", "Agriculture"),
+    ("FORESTRY", "Forestry"),
     ("COASTAL_AREAS", "Coastal areas"),
     ("DISASTER_RISK", "Disaster Risk Reduction"),
     ("FINANCIAL", "Financial"),
     ("HEALTH", "Health"),
-    ("INFRASTRUCTURE", "Infrastructure"),
+    # ("INFRASTRUCTURE", "Infrastructure"),
+    ("ENERGY", "Energy"),
+    ("TRANSPORT", "Transport"),
+    ("BUILDINGS", "Buildings"),
     ("MARINE_AND_FISH", "Marine and Fisheries"),
     ("TOURISM", "Tourism"),
-    ("ENERGY", "Energy"),
     ("OTHER", "Other"),
     ("BIODIVERSITY", "Biodiversity"),
     ("WATER_MANAGEMENT", "Water Management"),

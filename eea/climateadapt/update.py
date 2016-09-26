@@ -165,3 +165,38 @@ def update_to_22(context):
         obj._acemeasure_id = mid
         obj.reindexObject(idxs=['acemeasure_id'])
         _ids.append(mid)
+
+
+def update_to_23(context):
+    site = context.getSite()
+    catalog = site.portal_catalog
+
+    MAPPING = {
+        'INFRASTRUCTURE': ["ENERGY", "TRANSPORT", "BUILDINGS"],
+        'AGRICULTURE': ["FORESTRY", "AGRICULTURE"],
+        'AGRI_AND_FOREST': ["FORESTRY", "AGRICULTURE"],
+    }
+
+    profiles = catalog.searchResults(
+               portal_type="eea.climateadapt.city_profile")
+    for b in profiles:
+        obj = b.getObject()
+        if hasattr(obj, 'key_vulnerable_adaptation_sector'):
+            if obj.key_vulnerable_adaptation_sector is None:
+                continue
+
+            sectors = obj.key_vulnerable_adaptation_sector
+            if isinstance(sectors, str):
+                sectors = set(sectors, )
+            else:
+                sectors = set(sectors)
+
+            for val in MAPPING.keys():
+                if val in sectors:
+                    sectors.remove(val)
+                    sectors.update(MAPPING.get(val))
+                    obj._p_changed = True
+            if obj._p_changed is True:
+                logger.info("Fixed sectors on %s", obj.absolute_url())
+                obj.key_vulnerable_adaptation_sector = sectors
+                obj.reindexObject()

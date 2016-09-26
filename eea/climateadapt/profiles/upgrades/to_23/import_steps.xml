@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<import-steps>
+    <import-step id="import_feature_field_values" version="2016-09-23"
+        handler="eea.climateadapt.update.update_to_23"
+        title="EEA Climate Adapt: Change sectors for city profiles">
+    </import-step>
+</import-steps>

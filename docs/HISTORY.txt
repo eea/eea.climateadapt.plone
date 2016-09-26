@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Migration for fixing sectors on city profiles
+  [iulianpetchesi #75968]
 * Bugfix: Fixed an error in the migration script
   [iulianpetchesi #75968]
 * Bugfix: Fixed a required error for geochar field
