@@ -37,7 +37,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     dexteritytextindexer.searchable('geochars')
 
-    dexteritytextindexer.searchable('specialtagging')
+    # dexteritytextindexer.searchable('specialtagging')
     dexteritytextindexer.searchable('special_tags')
     dexteritytextindexer.searchable('important')
     dexteritytextindexer.searchable('spatial_layer')

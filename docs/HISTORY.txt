@@ -3,8 +3,10 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Commented specialtagging for aceprojects
+  [iulianpetchesi #77274]
 * Bugfix: New attribute will be assigned to case studies only if they
-  aren't older than 90 days 
+  aren't older than 90 days
   [iulianpetchesi #71836]
 * Bugfix: Arcgis fixes for /sat
   [iulianpetchesi #71836]
