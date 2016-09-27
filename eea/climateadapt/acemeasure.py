@@ -2,6 +2,7 @@
 """
 
 from collective import dexteritytextindexer
+from datetime import date
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.rabbitmq import queue_msg
@@ -508,6 +509,18 @@ class CaseStudy(dexterity.Container):
         else:
             geometry = {'x': '', 'y': ''}
 
+        if hasattr(self.effective_date, 'date'):
+            effective = self.effective_date.date()
+        else:
+            effective = self.effective_date.asdatetime().date()
+        today = date.today()
+        timedelta = today - effective
+
+        if timedelta.days > 90:
+            newitem = 'no'
+        else:
+            newitem = 'yes'
+
         res = {
             'attributes': {
                 'area': self._get_area(),
@@ -518,7 +531,7 @@ class CaseStudy(dexterity.Container):
                 'risks': ';'.join(self.climate_impacts or []),
                 'measureid': getattr(self, '_acemeasure_id', '') or self.UID(),
                 'featured': is_featured and 'yes' or 'no',
-                'newitem': 'no',
+                'newitem': newitem,
                 'casestudyf': 'CASESEARCH;',    # TODO: implement this
                 'client_cls': client_cls,
                 'CreationDate': _unixtime(self.creation_date),
