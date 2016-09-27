@@ -85,7 +85,7 @@ def handle_ObjectStateModified(site, uid):
             logger.info("ArcGIS: Adding CaseStudy with measure id %s", uid)
             entry = json.dumps([repr])
             res = apply_edits(entry, op='adds', token=token)
-            assert len(res.get('addResults', [])) > 1
+            assert len(res.get('addResults', [])) == 1
             assert res['addResults'][0]['success'] == True
 
         # existing case study, sync its info

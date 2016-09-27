@@ -15,8 +15,11 @@ This commands accepts various parameter. Look at __main__ to see what it does.
 from eea.climateadapt.sat.arcgis import _get_obj_FID
 from eea.climateadapt.sat.arcgis import apply_edits
 from eea.climateadapt.sat.arcgis import get_auth_token
+from eea.climateadapt.sat.arcgis import _get_token_service_url
 from eea.climateadapt.sat.arcgis import query_layer
 from eea.climateadapt.sat.settings import _DEFAULTS
+from eea.climateadapt.sat.settings import get_endpoint_url
+from eea.climateadapt.sat.settings import get_feature_url
 import json
 import sys
 
@@ -134,12 +137,16 @@ def main():
     token = get_auth_token()
 
     if sys.argv[1] == 'url':
+
+        url = get_feature_url()
+        #url = _get_token_service_url(endpoint)
+        token = get_auth_token()
         print
         print "Token:", token
         print
-        print "Feature URL: ", _DEFAULTS['LAYER_URL'] + "?token=" + token
+        print "Feature URL: ", url + "?token=" + token
         print
-        print "Query URL: ", _DEFAULTS['LAYER_URL'] + "/query?token=" + token
+        print "Query URL: ", url + "/query?token=" + token
         print
 
     elif sys.argv[1] == 'dump':
