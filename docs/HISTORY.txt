@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Removed return to test arcgis
+  [iulianpetchesi #71836]
 * Bugfix: Commented specialtagging for aceprojects
   [iulianpetchesi #77274]
 * Bugfix: New attribute will be assigned to case studies only if they
