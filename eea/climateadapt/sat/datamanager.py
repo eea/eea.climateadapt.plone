@@ -76,10 +76,10 @@ class Savepoint(object):
         self.dm = dm
         self.sp = dm.sp
         self.callbacks = dm.callbacks[:]
-        self.transaction = dm.transaction
+        self.txn = dm.txn
 
     def rollback(self):
-        if self.transaction is not self.dm.transaction:
+        if self.txn is not self.dm.txn:
             raise TypeError("Attempt to rollback stale rollback")
         if self.dm.sp < self.sp:
             raise TypeError("Attempt to roll back to invalid save point",

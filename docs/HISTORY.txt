@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bug fix: fix CallbackDataManager bug due to incomplete refactoring
+  [tiberich #77382]
 * Bugfix: Removed return to test arcgis
   [iulianpetchesi #71836]
 * Bugfix: Commented specialtagging for aceprojects
