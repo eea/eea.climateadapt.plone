@@ -539,6 +539,7 @@ class CaseStudy(dexterity.Container):
                 'EditDate': _unixtime(self.modification_date),
                 'Editor': self.workflow_history[
                     'cca_items_workflow'][-1]['actor'], # NOTE: I think this is computed by ArcGIS
+                'EffectiveDate': _unixtime(self.effective_date),
             },
             'geometry': geometry,
         }
