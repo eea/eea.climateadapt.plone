@@ -311,6 +311,7 @@ acesearch-geochars-lbl-TRANS_MACRO_IND_OCEAN_AREA=Indian Ocean Area
 acesearch-geochars-lbl-TRANS_BIO_ALPINE=Alpine
 acesearch-geochars-lbl-TRANS_BIO_ATLANTIC=Atlantic
 acesearch-geochars-lbl-TRANS_BIO_ARCTIC=Arctic
+acesearch-geochars-lbl-TRANS_BIO_BOREAL=Boreal
 acesearch-geochars-lbl-TRANS_BIO_CONTINENTAL=Continental
 acesearch-geochars-lbl-TRANS_BIO_MEDIT=Mediterranean
 acesearch-geochars-lbl-TRANS_BIO_PANONIAN=Panonian

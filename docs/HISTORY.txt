@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added "Boreal" bioregion
+  [iulianpetchesi #73378]
 * Bugfix: Added effective_date to arcgis
   [iulianpetchesi #73358]
 * Bug fix: fix CallbackDataManager bug due to incomplete refactoring
