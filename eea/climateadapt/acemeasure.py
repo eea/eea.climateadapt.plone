@@ -526,7 +526,7 @@ class CaseStudy(dexterity.Container):
                 'area': self._get_area(),
                 'itemname': self.Title(),
                 'desc_': self._short_description(),
-                'website': ';'.join(self.websites or []),
+                'website': self.websites and self.websites[0] or '',
                 'sectors': ';'.join(self.sectors or []),
                 'risks': ';'.join(self.climate_impacts or []),
                 'measureid': getattr(self, '_acemeasure_id', '') or self.UID(),
