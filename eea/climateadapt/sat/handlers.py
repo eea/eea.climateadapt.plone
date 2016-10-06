@@ -20,15 +20,23 @@ def handle_ObjectModifiedEvent(site, uid):
     token = get_auth_token()
 
     fid = _get_obj_FID(obj, token=token)
-    repr['attributes']['FID'] = fid
 
-    logger.info("ArcGIS: Updating CaseStudy with FID %s", fid)
+    if fid is None:
+        logger.info("ArcGIS: Adding CaseStudy with measure id %s", uid)
+        entry = json.dumps([repr])
+        res = apply_edits(entry, op='adds', token=token)
+        assert len(res.get('addResults', [])) == 1
+        assert res['addResults'][0]['success'] == True
+    else:
+        repr['attributes']['FID'] = fid
 
-    entry = json.dumps([repr])
-    res = apply_edits(entry, op='updates', token=token)
+        logger.info("ArcGIS: Updating CaseStudy with FID %s", fid)
 
-    assert res['updateResults']
-    assert res['updateResults'][0]['objectId'] == fid
+        entry = json.dumps([repr])
+        res = apply_edits(entry, op='updates', token=token)
+
+        assert res['updateResults']
+        assert res['updateResults'][0]['objectId'] == fid
 
 
 def handle_ObjectRemovedEvent(site, uid):

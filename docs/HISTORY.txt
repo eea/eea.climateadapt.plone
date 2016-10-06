@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed a case study error edit for arcgis
+  [iulianpetchesi #77155]
 * Bugfix: Added "Boreal" bioregion
   [iulianpetchesi #73378]
 * Bugfix: Added effective_date to arcgis
