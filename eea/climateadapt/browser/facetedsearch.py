@@ -134,3 +134,15 @@ class ListingGeneric(BrowserView):
         if url.endswith('index_html'):
             return url[:-len('index_html')]
         return url
+
+    def new_item(self, brain):
+        from datetime import datetime
+
+        effective = brain.getObject().effective().asdatetime().date()
+        today = datetime.now().date()
+        difference = today - effective
+
+        if difference.days > 90:
+            return False
+        else:
+            return True

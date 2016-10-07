@@ -11,7 +11,9 @@
     five python: 4 * two;">
     <tr tal:repeat="brain brains">
       <td tal:define="title brain/Title">
-        » <a href="" tal:attributes="href python:view.cover_url(brain)">
+        » <span tal:condition="python: view.new_item(brain)"
+                style="color:purple;font-size:0.8em;">NEW</span> 
+        <a href="" tal:attributes="href python:view.cover_url(brain)">
           <span tal:replace="python:brain.Title or 'untitled' " />
         </a>
         <tal:nothing replace="nothing">
