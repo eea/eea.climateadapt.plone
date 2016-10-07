@@ -200,3 +200,32 @@ def update_to_23(context):
                 logger.info("Fixed sectors on %s", obj.absolute_url())
                 obj.key_vulnerable_adaptation_sector = sectors
                 obj.reindexObject()
+
+
+def update_to_24(context):
+    site = context.getSite()
+    catalog = site.portal_catalog
+    query = {'portal_type': [
+        'eea.climateadapt.aceproject',
+        'eea.climateadapt.adaptationoption',
+        'eea.climateadapt.casestudy',
+        'eea.climateadapt.guidancedocument',
+        'eea.climateadapt.indicator',
+        'eea.climateadapt.informationportal',
+        'eea.climateadapt.mapgraphdataset',
+        'eea.climateadapt.organisation',
+        'eea.climateadapt.publicationreport',
+        'eea.climateadapt.researchproject',
+        'eea.climateadapt.tool'
+    ]}
+
+    results = catalog.searchResults(**query)
+
+    for b in results:
+        obj = b.getObject()
+
+        if obj.climate_impacts is None:
+            logger.info("Fixing tags on %s", b.getURL())
+            obj.climate_impacts = []
+            obj._p_changed = True
+            obj.reindexObject()

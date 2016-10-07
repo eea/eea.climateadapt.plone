@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<import-steps>
+    <import-step id="import_feature_field_values" version="2016-10-7"
+        handler="eea.climateadapt.update.update_to_24"
+        title="EEA Climate Adapt: Change climate_impacts for aceitems">
+    </import-step>
+</import-steps>

@@ -422,4 +422,22 @@
             />
     </genericsetup:upgradeSteps>
 
+    <!-- v24 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_24"
+        title="Upgrade profile for eea.climateadapt v24"
+        description=""
+        directory="profiles/upgrades/to_24"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="24"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v24"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_24"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>
