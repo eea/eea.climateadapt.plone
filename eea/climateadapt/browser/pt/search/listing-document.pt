@@ -14,8 +14,8 @@
       <td tal:define="title brain/Title">
         » <img tal:condition="python: brain.getObject().featured == 1"
                src="++theme++climateadapt/static/cca/img/featured-icon.png">
-          <span tal:condition="python: view.new_item(brain)"
-               style="color:purple;font-size:0.8em;">NEW</span>       
+          <img tal:condition="python: view.new_item(brain)"
+               src="++theme++climateadapt/static/cca/img/new-en.gif">     
         <a href="" tal:content="title" tal:attributes="href brain/getURL">» Link</a>
         - <span tal:define="text python: view.html2text(brain.long_description.raw)">
             <span tal:replace="python: text[:208-len(title)]" />...

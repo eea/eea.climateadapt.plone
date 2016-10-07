@@ -14,8 +14,8 @@
       <td>
         » <img tal:condition="python: brain.getObject().featured == 1"
                src="++theme++climateadapt/static/cca/img/featured-icon.png">
-          <span tal:condition="python: view.new_item(brain)"
-               style="color:purple;font-size:0.8em;">NEW</span>
+          <img tal:condition="python: view.new_item(brain)"
+               src="++theme++climateadapt/static/cca/img/new-en.gif">
         <a href="" tal:content="brain/Title" tal:attributes="href brain/getURL">» Link</a>
       </td>
       <td class="table_year_css" tal:content="python: brain.year or '' ">year</td>
