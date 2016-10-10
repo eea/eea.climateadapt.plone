@@ -440,4 +440,22 @@
             />
     </genericsetup:upgradeSteps>
 
+    <!-- v25 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_25"
+        title="Upgrade profile for eea.climateadapt v25"
+        description=""
+        directory="profiles/upgrades/to_25"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="25"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v25"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_25"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<import-steps>
+    <import-step id="import_file_extension" version="2016-10-10"
+        handler="eea.climateadapt.update.update_to_25"
+        title="EEA Climate Adapt: Update file extension">
+    </import-step>
+</import-steps>

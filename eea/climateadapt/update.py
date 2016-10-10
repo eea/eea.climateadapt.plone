@@ -1,4 +1,5 @@
 from Acquisition import aq_self
+from Products.MimetypesRegistry.mime_types.magic import guessMime
 import logging
 
 logger = logging.getLogger('eea.climateadapt.migration')
@@ -229,3 +230,50 @@ def update_to_24(context):
             obj.climate_impacts = []
             obj._p_changed = True
             obj.reindexObject()
+
+
+def update_to_25(context):
+    site = context.getSite()
+    catalog = site.portal_catalog
+    query = {'portal_type': [
+        'eea.climateadapt.aceproject',
+        'eea.climateadapt.adaptationoption',
+        'eea.climateadapt.casestudy',
+        'eea.climateadapt.guidancedocument',
+        'eea.climateadapt.indicator',
+        'eea.climateadapt.informationportal',
+        'eea.climateadapt.mapgraphdataset',
+        'eea.climateadapt.organisation',
+        'eea.climateadapt.publicationreport',
+        'eea.climateadapt.researchproject',
+        'eea.climateadapt.tool'
+    ]}
+    results = catalog.searchResults(**query)
+
+    extension = {
+        'application/pdf': '.pdf',
+        'application/zip': '.zip',
+        'image/jpeg': '.jpg',
+    }
+
+    for b in results:
+        items = b.getObject().contentValues()
+
+        for item in items:
+            if item.portal_type == 'File':
+                filex = item.file
+                filetype = guessMime(filex._data)
+
+                if filetype is not None:
+                    if filex.filename.find(extension[filetype]) == -1:
+                        filex.contentType = filetype
+                        filex.filename = filex.filename.replace(
+                            '.', extension[filetype])
+                        filex._p_changed = True
+                        logger.info("Fixing file: %s", filex.filename)
+                        logger.info("URL: %s", item.absolute_url())
+                else:
+                    logger.info('Not Fixed:')
+                    logger.info("Type: %s", filetype)
+                    logger.info("URL: %s", item.absolute_url())
+                    logger.info("Item: %s", item)
