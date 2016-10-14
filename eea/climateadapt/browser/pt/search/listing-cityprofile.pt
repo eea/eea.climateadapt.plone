@@ -1,4 +1,4 @@
-<table class="listing-table" tal:define="brains view/brains; nr_res python: len(brains);">
+<table class="listing-table" tal:define="brains view/brains; nr_res python: len(brains);" tal:on-error="nothing">
   <thead>
     <tr>
       <th>Title</th>
@@ -8,10 +8,11 @@
     two python: nr_res / 5;
     three python: 2 * two;
     four python: 3 * two;
-    five python: 4 * two;">
-    <tr tal:repeat="brain brains">
-      <td tal:define="title brain/Title">
-        » <a href="" tal:content="title" tal:attributes="href brain/getURL">» Link</a>
+    five python: 4 * two;"
+    tal:on-error="nothing">
+    <tr tal:repeat="brain brains" tal:on-error="nothing">
+      <td tal:define="title brain/Title" tal:on-error="nothing">
+        » <a href="" tal:content="title" tal:attributes="href brain/getURL" tal:on-error="nothing">» Link</a>
       </td>
     </tr>
   </tbody>

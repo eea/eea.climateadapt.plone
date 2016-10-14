@@ -1,4 +1,4 @@
-<table class="listing-table" tal:define="brains view/brains; nr_res python: len(brains);">
+<table class="listing-table" tal:define="brains view/brains; nr_res python: len(brains);" tal:on-error="nothing">
   <thead>
     <tr>
       <th>Title</th>
@@ -9,16 +9,17 @@
     two python: nr_res / 5;
     three python: 2 * two;
     four python: 3 * two;
-    five python: 4 * two;">
-    <tr tal:repeat="brain brains">
+    five python: 4 * two;"
+    tal:on-error="nothing">
+    <tr tal:repeat="brain brains" tal:on-error="nothing">
       <td>
-        » <img tal:condition="python: brain.getObject().featured == 1"
+        » <img tal:condition="python: brain.getObject().featured == 1" tal:on-error="nothing"
                src="++theme++climateadapt/static/cca/img/featured-icon.png">
-          <img tal:condition="python: view.new_item(brain)"
+          <img tal:condition="python: view.new_item(brain)" tal:on-error="nothing"
                src="++theme++climateadapt/static/cca/img/new-en.gif">
-        <a href="" tal:content="brain/Title" tal:attributes="href brain/getURL">» Link</a>
+        <a href="" tal:content="brain/Title" tal:attributes="href brain/getURL" tal:on-error="nothing">» Link</a>
       </td>
-      <td class="table_year_css" tal:content="python: brain.year or '' ">year</td>
+      <td class="table_year_css" tal:content="python: brain.year or '' " tal:on-error="nothing">year</td>
     </tr>
   </tbody>
 </table>

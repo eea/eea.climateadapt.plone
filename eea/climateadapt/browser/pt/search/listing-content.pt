@@ -1,4 +1,4 @@
-<table class="listing-table" tal:define="brains view/brains; nr_res python: len(brains);">
+<table class="listing-table" tal:define="brains view/brains; nr_res python: len(brains);" tal:on-error="nothing">
   <thead>
     <tr>
       <th>Title</th>
@@ -8,18 +8,19 @@
     two python: nr_res / 5;
     three python: 2 * two;
     four python: 3 * two;
-    five python: 4 * two;">
-    <tr tal:repeat="brain brains">
-      <td tal:define="title brain/Title">
-        » <img tal:condition="python: view.new_item(brain)"
+    five python: 4 * two;"
+    tal:on-error="nothing">
+    <tr tal:repeat="brain brains" tal:on-error="nothing">
+      <td tal:define="title brain/Title" tal:on-error="nothing">
+        » <img tal:condition="python: view.new_item(brain)" tal:on-error="nothing"
                src="++theme++climateadapt/static/cca/img/new-en.gif">
-        <a href="" tal:attributes="href python:view.cover_url(brain)">
-          <span tal:replace="python:brain.Title or 'untitled' " />
+        <a href="" tal:attributes="href python:view.cover_url(brain)" tal:on-error="nothing">
+          <span tal:on-error="nothing" tal:replace="python:brain.Title or 'untitled' " />
         </a>
-        <tal:nothing replace="nothing">
+        <tal:nothing replace="nothing" tal:on-error="nothing">
         - <span tal:define="text python: view.html2text(brain.Description);
-                            desc python: text[:208-len(title)]">
-                            <tal:cond condition="desc"><span tal:replace="desc" />...</tal:cond>
+                            desc python: text[:208-len(title)]" tal:on-error="nothing">
+                            <tal:cond condition="desc"><span tal:replace="desc" tal:on-error="nothing"/>...</tal:cond>
           </span>
         </tal:nothing>
       </td>

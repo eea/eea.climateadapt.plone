@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed a search page error and modified templates
+  [iulianpetchesi #77761]
 * Bugfix: Migration upgrade for fixing file extensions
   [iulianpetchesi #77459]
 * Bugfix: Migration upgrade for fixing climate_impacts

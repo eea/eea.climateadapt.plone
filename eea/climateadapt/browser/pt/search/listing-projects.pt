@@ -1,4 +1,4 @@
-<table class="listing-table" tal:define="brains view/brains; nr_res python: len(brains);">
+<table class="listing-table" tal:define="brains view/brains; nr_res python: len(brains);" tal:on-error="nothing">
   <thead>
     <tr>
       <th>Title</th>
@@ -8,17 +8,18 @@
     two python: nr_res / 5;
     three python: 2 * two;
     four python: 3 * two;
-    five python: 4 * two;">
-    <tr tal:repeat="brain brains">
-      <td tal:define="title brain/Title">
-        » <img tal:condition="python: brain.getObject().featured == 1"
+    five python: 4 * two;"
+    tal:on-error="nothing">
+    <tr tal:repeat="brain brains" tal:on-error="nothing">
+      <td tal:define="title brain/Title" tal:on-error="nothing">
+        » <img tal:condition="python: brain.getObject().featured == 1" tal:on-error="nothing"
                src="++theme++climateadapt/static/cca/img/featured-icon.png">
-          <img tal:condition="python: view.new_item(brain)"
+          <img tal:condition="python: view.new_item(brain)" tal:on-error="nothing"
                src="++theme++climateadapt/static/cca/img/new-en.gif">
-        <span tal:condition="brain/acronym">
-            <a href="" tal:content="brain/acronym" tal:attributes="href brain/getURL">» Link</a>
+        <span tal:condition="brain/acronym" tal:on-error="nothing">
+            <a href="" tal:content="brain/acronym" tal:attributes="href brain/getURL" tal:on-error="nothing">» Link</a>
         </span>
-        - <span tal:replace="python: title">
+        - <span tal:replace="python: title" tal:on-error="nothing">
         </span> ...
       </td>
     </tr>
