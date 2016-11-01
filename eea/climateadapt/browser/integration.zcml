@@ -42,7 +42,7 @@
     <!-- Fix RichText widget: the plone.app.widgets provided one has proper relatedItems configuration -->
     <adapter
         for="plone.app.textfield.interfaces.IRichText eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        factory="plone.app.widgets.dx.RichTextFieldWidget"
+        factory="eea.climateadapt.browser.overrides.RichTextFieldWidgett"
         />
 
     <adapter

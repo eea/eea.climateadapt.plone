@@ -15,4 +15,6 @@
         factory=".overrides.DisplaySubMenuItem"
         provides="plone.app.contentmenu.interfaces.IContentMenuItem" />
 
+    <adapter factory=".overrides.RichTextFieldWidget" />
+
 </configure>
