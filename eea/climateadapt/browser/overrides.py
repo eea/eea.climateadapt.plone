@@ -62,6 +62,7 @@ class OverrideRichText (RichTextWidget):
         args['pattern_options']['tiny']['theme_advanced_buttons3'] = buttons
         args['pattern_options']['tiny']['toolbar'] = toolbar
         args['pattern_options']['tiny']['plugins'].append('tabs')
+        args['pattern_options']['tiny']['plugins'].remove('contextmenu')
 
         return args
 
