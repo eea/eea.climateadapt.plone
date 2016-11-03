@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Tinymce Accordion override
+  [iulianpetchesi #77133]
 * Bugfix: Tinymce Tabs override
   [iulianpetchesi #77133]
 * Bugfix: Fixed a search page error and modified templates

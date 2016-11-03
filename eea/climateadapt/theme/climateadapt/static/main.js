@@ -53,6 +53,18 @@ function fix_map(){
 			});
 		},100);
 
+        var accordionHeadExists = document.getElementsByClassName('tiny-acchead');
+        var accordionBodyExists = document.getElementsByClassName('tiny-accbody');
+
+        if (accordionBodyExists.length != 0 && accordionHeadExists.length != 0) {
+            accordionHeadExists[0].classList.remove('collapsed');
+
+            for(i=1; i<accordionBodyExists.length; i++) {
+                accordionHeadExists[i].classList.add('collapsed');
+                accordionBodyExists[i].classList.remove('in');
+            }
+        }
+
         // check if the map container exists in the DOM
         var elementExists = document.getElementsByClassName("leaflet-container");
         if (elementExists.length != 0) {
