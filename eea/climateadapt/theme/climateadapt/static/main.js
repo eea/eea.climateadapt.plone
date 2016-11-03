@@ -58,6 +58,7 @@ function fix_map(){
 
         if (accordionBodyExists.length != 0 && accordionHeadExists.length != 0) {
             accordionHeadExists[0].classList.remove('collapsed');
+            accordionBodyExists[0].classList.add('in');
 
             for(i=1; i<accordionBodyExists.length; i++) {
                 accordionHeadExists[i].classList.add('collapsed');
