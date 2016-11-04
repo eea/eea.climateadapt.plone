@@ -86,7 +86,7 @@ def _send_reminders(site):
         if has_token(city):
             diff = time_difference(city)
 
-            if diff <= 7 and diff > 0:  # has 1 week left
+            if diff == 7:  # has 1 week left
                 notify(TokenAboutToExpireEvent(city))
 
             if diff == 0:  # token expired
