@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Modified the script for reminders
+  [iulianpetchesi #71389]
 * Bugfix: Tinymce Accordion override
   [iulianpetchesi #77133]
 * Bugfix: Tinymce Tabs override

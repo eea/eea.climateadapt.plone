@@ -81,18 +81,16 @@ def _send_reminders(site):
     search = catalog.searchResults
 
     for city in search(portal_type='eea.climateadapt.city_profile',
-                       review_state='published'):
+                       review_state='sent'):
         city = city.getObject()
-
         if has_token(city):
             diff = time_difference(city)
 
-            if diff <= 7: # has 1 week left
+            if diff <= 7 and diff > 0:  # has 1 week left
                 notify(TokenAboutToExpireEvent(city))
 
-            if diff == 0: # token expired
+            if diff == 0:  # token expired
                 notify(TokenExpiredEvent(city))
-
 
 
 class BatchSendReminders(BrowserView):
@@ -101,7 +99,8 @@ class BatchSendReminders(BrowserView):
 
     def __call__(self):
         _send_reminders(self.context)
-        return self.index()
+        return "Done."
+        # return self.index()
 
 
 def has_token(city):
