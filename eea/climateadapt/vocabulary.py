@@ -314,7 +314,7 @@ acesearch-geochars-lbl-TRANS_BIO_ARCTIC=Arctic
 acesearch-geochars-lbl-TRANS_BIO_BOREAL=Boreal
 acesearch-geochars-lbl-TRANS_BIO_CONTINENTAL=Continental
 acesearch-geochars-lbl-TRANS_BIO_MEDIT=Mediterranean
-acesearch-geochars-lbl-TRANS_BIO_PANONIAN=Panonian
+acesearch-geochars-lbl-TRANS_BIO_PANNONIAN=Pannonian
 """
 
 BIOREGIONS = {}

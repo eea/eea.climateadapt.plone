@@ -458,4 +458,22 @@
             />
     </genericsetup:upgradeSteps>
 
+    <!-- v26 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_26"
+        title="Upgrade profile for eea.climateadapt v26"
+        description=""
+        directory="profiles/upgrades/to_26"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="26"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v26"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_26"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>

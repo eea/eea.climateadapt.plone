@@ -100,7 +100,7 @@
                       <option value="TRANS_BIO_BOREAL" >Boreal</option>
                       <option value="TRANS_BIO_CONTINENTAL" >Continental</option>
                       <option value="TRANS_BIO_MEDIT">Mediterranean</option>
-                      <option value="TRANS_BIO_PANONIAN">Panonian</option>
+                      <option value="TRANS_BIO_PANNONIAN">Pannonian</option>
                     </select>
                   </td>
                 </tr>

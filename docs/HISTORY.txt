@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Upgrade step for fixing "panonian" bioregion
+  [iulianpetchesi #77833]
 * Bugfix: Modified the script for reminders
   [iulianpetchesi #71389]
 * Bugfix: Tinymce Accordion override

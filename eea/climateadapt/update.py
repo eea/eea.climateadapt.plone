@@ -233,6 +233,7 @@ def update_to_24(context):
 
 
 def update_to_25(context):
+    return ""
     site = context.getSite()
     catalog = site.portal_catalog
     query = {'portal_type': [
@@ -277,3 +278,22 @@ def update_to_25(context):
                     logger.info("Type: %s", filetype)
                     logger.info("URL: %s", item.absolute_url())
                     logger.info("Item: %s", item)
+
+
+def update_to_26(context):
+        site = context.getSite()
+        catalog = site.portal_catalog
+        query = {'portal_type': [
+            'eea.climateadapt.casestudy',
+        ]}
+        results = catalog.searchResults(**query)
+
+        for b in results:
+            obj = b.getObject()
+
+            if obj.geochars:
+                if obj.geochars.find("PANONIAN") != -1:
+                    obj.geochars = obj.geochars.replace("PANONIAN", "PANNONIAN")
+                    logger.info("Fixing Bioregion on %s", obj.absolute_url())
+                    logger.info("New geochars: %s", obj.geochars)
+        logger.info("Finished update 26")
