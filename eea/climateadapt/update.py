@@ -296,4 +296,4 @@ def update_to_26(context):
                     obj.geochars = obj.geochars.replace("PANONIAN", "PANNONIAN")
                     logger.info("Fixing Bioregion on %s", obj.absolute_url())
                     logger.info("New geochars: %s", obj.geochars)
-        logger.info("Finished update 26")
+        logger.info("Finished the update.")

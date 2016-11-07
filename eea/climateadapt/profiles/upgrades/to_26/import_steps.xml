@@ -2,6 +2,6 @@
 <import-steps>
     <import-step id="upgrade_dummy" version="2016-07-11"
         handler="eea.climateadapt.update.update_to_26"
-        title="EEA Climate Adapt: Dummy">
+        title="EEA Climate Adapt: Update bioregions">
     </import-step>
 </import-steps>
