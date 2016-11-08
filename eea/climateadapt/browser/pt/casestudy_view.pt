@@ -94,10 +94,10 @@
                               <li class="first">
                                 <a href="#contact" style="text-decoration: underline">Contact</a>
                               </li>
-                              <li>
+                              <li tal:define="links python:view.get_websites()" tal:condition="links">
                                 <a href="#websites" style="text-decoration: underline">Websites</a>
                               </li>
-                              <li class="last">
+                              <li class="last" tal:condition="context/source | nothing">
                                 <a href="#source" style="text-decoration: underline">Source</a>
                               </li>
                             </ul>
@@ -162,8 +162,11 @@
                         <em id="contact" style="text-decoration: underline">Contact</em>
                         <div tal:content="structure python: view.w['contact'].render()"></div>
 
-                        <em id="websites" style="text-decoration: underline">Websites</em>
-                        <div metal:use-macro="context/ace_macros/macros/websites"></div>
+                        <div tal:define="links python:view.get_websites()"
+                             tal:condition="links">
+                            <em id="websites" style="text-decoration: underline">Websites</em>
+                            <div metal:use-macro="context/ace_macros/macros/websites"></div>
+                        </div>
 
                         <div tal:condition="context/source | nothing">
                             <em id="source" style="text-decoration: underline">Source</em>

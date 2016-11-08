@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Hide fields if they are empty in casestudies view
+  [iulianpetchesi #77973]
 * Bugfix: Added related case studies to adaptation options
   [iulianpetchesi #77574]
 * Bugfix: Upgrade step for fixing "panonian" bioregion
