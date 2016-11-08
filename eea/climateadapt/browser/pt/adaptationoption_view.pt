@@ -125,6 +125,16 @@
                 <h4>Geographic characterisation</h4>
                 <metal:macro use-macro="context/ace_macros/macros/geochar" />
             </div>
+
+            <h4>Case studies related to this option</h4>
+            <div tal:define="dictionary python: view.get_related_casestudies();
+                             titles python: dictionary['title'];
+                             urls python: dictionary['url']"
+                 tal:repeat="item python: range(len(titles))">
+                <a tal:content="python: titles[item]" href=""
+                   tal:attributes="href python: urls[item]"/>
+                <br><br>
+            </div>
           </div>
         </metal:macro>
       </tal:main-macro>
