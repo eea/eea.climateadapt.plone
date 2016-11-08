@@ -1,3 +1,4 @@
+import plone.api as api
 from Acquisition import aq_inner
 from eea.climateadapt.browser import AceViewApi
 from plone.dexterity.browser.add import DefaultAddForm
@@ -21,18 +22,20 @@ class AdaptationOptionView(DefaultView, AceViewApi):
     def get_related_casestudies(self):
         titles = []
         urls = []
-
         catalog = getUtility(ICatalog)
         intids = getUtility(IIntIds)
-        result = []
+
         for rel in catalog.findRelations(
                     dict(to_id=intids.getId(aq_inner(self.context)),
                          from_attribute='adaptationoptions')
                 ):
             obj = intids.queryObject(rel.from_id)
+
             if obj is not None and checkPermission('zope2.View', obj):
-                titles.append(obj.title)
-                urls.append(obj.absolute_url())
+                obj_state = api.content.get_state(obj)
+                if obj_state == 'published':
+                    titles.append(obj.title)
+                    urls.append(obj.absolute_url())
 
         return {'url': urls, 'title': titles}
 
