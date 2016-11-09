@@ -3,6 +3,8 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: City profile state will be changed to submit when the period expires
+  [iulianpetchesi #78851]
 * Bugfix: Fix an error where the 'browse' function for the adaptation options
   widget wouldn't work
   [iulianpetchesi #76336]
