@@ -3,6 +3,9 @@ Changelog
 
 1.3.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fix an error where the 'browse' function for the adaptation options
+  widget wouldn't work
+  [iulianpetchesi #76336]
 * Bugfix: Hide fields if they are empty in casestudies view
   [iulianpetchesi #77973]
 * Bugfix: Added related case studies to adaptation options

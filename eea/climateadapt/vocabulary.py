@@ -86,6 +86,12 @@ class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
         except AttributeError:
             catalog = getToolByName(getSite(), 'portal_catalog')
 
+        if parsed.get('path'):
+            if parsed['path'].get('depth'):
+                parsed['path']['query'].append(u'/cca/metadata/adaptation-options')
+                if u'/cca' in parsed['path']['query']:
+                    parsed['path']['query'].remove(u'/cca')
+
         brains = catalog(**parsed)
 
         return CatalogVocabulary.fromItems(brains, context)
