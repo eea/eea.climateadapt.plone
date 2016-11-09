@@ -94,6 +94,9 @@ def _send_reminders(site):
                 notify(TokenExpiredEvent(city))
                 transition(city, 'submit')
 
+            if diff < 0:
+                transition(city, 'submit')
+
 
 class BatchSendReminders(BrowserView):
     """ Debugging view that will send email reminders
