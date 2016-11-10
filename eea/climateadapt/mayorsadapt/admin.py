@@ -15,6 +15,9 @@ from plone.api.portal import show_message
 from zope.annotation.interfaces import IAnnotations
 from zope.event import notify
 from plone.api.content import transition
+import logging
+
+logger = logging.getLogger('eea.climateadapt')
 
 
 class CityAdminView (BrowserView):
@@ -92,9 +95,11 @@ def _send_reminders(site):
 
             if diff == 0:  # token expired
                 notify(TokenExpiredEvent(city))
+                logger.info("City transition with diff == 0, %s", city.title)
                 transition(city, 'submit')
 
             if diff < 0:
+                logger.info("City transition with diff < 0, %s", city.title)
                 transition(city, 'submit')
 
 
