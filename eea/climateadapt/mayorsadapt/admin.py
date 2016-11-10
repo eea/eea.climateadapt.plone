@@ -14,10 +14,7 @@ from plone.api.content import get_state
 from plone.api.portal import show_message
 from zope.annotation.interfaces import IAnnotations
 from zope.event import notify
-from plone.api.content import transition
-import logging
-
-logger = logging.getLogger('eea.climateadapt')
+import transaction
 
 
 class CityAdminView (BrowserView):
@@ -90,17 +87,18 @@ def _send_reminders(site):
         if has_token(city):
             diff = time_difference(city)
 
+            workflowTool = getToolByName(city, 'portal_workflow')
             if diff == 7:  # has 1 week left
                 notify(TokenAboutToExpireEvent(city))
 
             if diff == 0:  # token expired
                 notify(TokenExpiredEvent(city))
-                logger.info("City transition with diff == 0, %s", city.title)
-                transition(city, 'submit')
+                workflowTool.doActionFor(city, 'submit')
+                transaction.commit()
 
             if diff < 0:
-                logger.info("City transition with diff < 0, %s", city.title)
-                transition(city, 'submit')
+                workflowTool.doActionFor(city, 'submit')
+                transaction.commit()
 
 
 class BatchSendReminders(BrowserView):
