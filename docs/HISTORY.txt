@@ -6,6 +6,8 @@ Changelog
 
 1.3 - (2016-11-10)
 ------------------
+* Change: set the "Send back" transition to use the workflow message setting form
+  [iulianpetchesi #78687]
 * Bug fix: monkeypatch plone.dexterity.content.Container.manage_pasteObjects
   permission to check for "Add portal content" instead of "Modify portal
   content"
@@ -329,4 +331,3 @@ Changelog
 1.0 - (08-06-2016)
 ----------------------
 - Initial release
-
