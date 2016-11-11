@@ -476,22 +476,4 @@
             />
     </genericsetup:upgradeSteps>
 
-    <!-- v27 upgrade -->
-    <genericsetup:registerProfile
-        name="eeaclimateadapt_to_27"
-        title="Upgrade profile for eea.climateadapt v27"
-        description=""
-        directory="profiles/upgrades/to_27"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
-    <genericsetup:upgradeSteps
-        source="*"
-        destination="27"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v27"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_27"
-            />
-    </genericsetup:upgradeSteps>
-
 </configure>
