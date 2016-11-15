@@ -6,6 +6,8 @@ Changelog
 
 1.3 - (2016-11-10)
 ------------------
+* Bugfix: Added the necessary countries to the vocabulary
+  [iulianpetchesi #79012]
 * Change: set the "Send back" transition to use the workflow message setting form
   [iulianpetchesi #78687]
 * Bug fix: monkeypatch plone.dexterity.content.Container.manage_pasteObjects

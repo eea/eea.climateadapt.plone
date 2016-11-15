@@ -204,17 +204,18 @@ _implementationtypes = (("grey", "Technical ('grey')"),
 acemeasure_implementationtype_vocabulary = generic_vocabulary(_implementationtypes)
 alsoProvides(acemeasure_implementationtype_vocabulary, IVocabularyFactory)
 
-
+# Used for aceitems
 european_countries = ['AD', 'AL', 'AM', 'AT', 'AZ', 'BA', 'BE', 'BG', 'BY',
                       'CH', 'RS', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI',
                       'FO', 'FR', 'GB', 'GE', 'GR', 'HR', 'HU', 'IE', 'IL',
                       'IS', 'IT', 'KZ', 'LI', 'LT', 'LU', 'LV', 'MC', 'MD',
                       'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'RU', 'SE', 'SI',
-                      'SK', 'SM', 'TR', 'UA']
+                      'SK', 'SM', 'TR', 'UA', 'ME']
 ace_countries = [(x.alpha2, x.name) for x in pycountry.countries
                  if x.alpha2 in european_countries]
 ace_countries.append(('FYROM', 'F. Y. R. O. Macedonia'))
 ace_countries.append(('MK', 'Republic of Macedonia'))
+ace_countries.append(('XK', 'Kosovo under UN Security Council Resolution 1244/99'))
 ace_countries_dict = dict(ace_countries)
 
 ace_countries_vocabulary = generic_vocabulary(ace_countries)
@@ -225,9 +226,12 @@ eu_countries_selection = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 
                           'DE', 'GR', 'HU', 'IS', 'IE', 'IT', 'LV', 'LI', 'LT', 'LU',
                           'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE',
                           'CH', 'TR', 'GB']
-ace_countries_selection = [(x.alpha2, x.name) for x in pycountry.countries
-                          if x.alpha2 in eu_countries_selection]
 
+# Used for dropdowns
+ace_countries_selection = [(x.alpha2, x.name) for x in pycountry.countries
+                           if x.alpha2 in eu_countries_selection]
+
+# Used for faceted search in /data-and-downloads
 faceted_countries = ['AL', 'AT', 'BE', 'BG', 'BA', 'HR', 'CY', 'CZ', 'DK',
                      'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT',
                      'KZ', 'LV', 'LI', 'LT', 'LU', 'MT', 'ME', 'NL', 'NO',
