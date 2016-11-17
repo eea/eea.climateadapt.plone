@@ -100,7 +100,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                    description=_(u"Select one or more relevant sector policies"
                                  u" that this item relates to."),
                    required=True,
-                   missing_value=[],
+                   missing_value=None,
                    default=None,
                    value_type=Choice(
                        vocabulary="eea.climateadapt.aceitems_sectors",),

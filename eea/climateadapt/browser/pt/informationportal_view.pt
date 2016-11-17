@@ -43,8 +43,8 @@
             <tal:block content="structure python:view.w['elements'].render()" />
 
 
-            <!-- <h4>Sectors</h4>
-            <tal:block content="structure python:view.w['sectors'].render()" /> -->
+            <h4>Sectors</h4>
+            <tal:block content="structure python:view.w['sectors'].render()" />
 
             <h4>Geographic characterisation</h4>
             <metal:macro use-macro="context/ace_macros/macros/geochar" />
