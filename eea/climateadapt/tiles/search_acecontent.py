@@ -161,7 +161,10 @@ class AceTileMixin(object):
                         # keyword indexes appear ex:
                         #     'sectors': {'operator': 'or', 'query': [u'AGRICULTURE']}
                         if index in KEYWORD_INDEXES:
-                            x[index] = v['query']
+                            if isinstance(v, str):
+                                x[index] = v
+                            else:
+                                x[index] = v['query']
                         else:
                             x[index] = v
 
