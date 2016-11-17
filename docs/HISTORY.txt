@@ -6,6 +6,8 @@ Changelog
 
 1.3 - (2016-11-10)
 ------------------
+* Bugfix: Fixed a templating error for information portals
+  [iulianpetchesi #79114]
 * Bugfix: Added the necessary countries to the vocabulary
   [iulianpetchesi #79012]
 * Change: set the "Send back" transition to use the workflow message setting form
