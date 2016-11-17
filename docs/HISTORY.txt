@@ -6,6 +6,8 @@ Changelog
 
 1.3 - (2016-11-10)
 ------------------
+* Bugfix: Added a margin-top to the list
+  [iulianpetchesi #79052]
 * Bugfix: Fixed a templating error for information portals
   [iulianpetchesi #79114]
 * Bugfix: Added the necessary countries to the vocabulary
