@@ -15,5 +15,8 @@ def handle_iterate_wc_deletion(object, event):
     derivate of Archetype's relations, which is not used in the dexterity
     implementation.
     """
-    baseline = get_baseline(object)
+    try:
+        baseline = get_baseline(object)
+    except:
+        return
     notify(WorkingCopyDeletedEvent(object, baseline, relation=None) )

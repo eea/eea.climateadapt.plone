@@ -273,7 +273,10 @@ class IterateControl(Control):
         if policy is None:
             return False
 
-        original = policy.getBaseline()
+        try:
+            original = policy.getBaseline()
+        except:
+            return False
         if original is None:
             return False
 
