@@ -4,6 +4,8 @@ Changelog
 1.4.dev0 - (unreleased)
 -----------------------
 
+* Bugfix: Modified templates for eea.pdf + style fixes
+  [iulianpetchesi #22793]
 * Bugfix: Added condition to delete bad items
   [iulianpetchesi #78955]
 

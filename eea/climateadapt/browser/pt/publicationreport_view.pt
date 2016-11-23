@@ -27,7 +27,7 @@
 
             <h5>Source:</h5>
             <tal:block content="structure python: view.w['source'].render()" />
-            
+
             <div metal:use-macro="context/ace_macros/macros/comments"></div>
           </div>
 
@@ -55,6 +55,7 @@
           </div>
 
         </metal:macro>
+        <div id="viewlet-below-content-body" tal:content="structure provider:plone.belowcontentbody" tal:condition="not:ajax_load" />
 
       </tal:main-macro>
     </metal:main>
