@@ -1,5 +1,5 @@
 <metadata>
-  <version>26</version>
+  <version>28</version>
     <dependencies>
         <dependency>profile-plone.app.dexterity:default</dependency>
         <dependency>profile-plone.app.contenttypes:default</dependency>

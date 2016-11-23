@@ -297,3 +297,41 @@ def update_to_26(context):
                     logger.info("Fixing Bioregion on %s", obj.absolute_url())
                     logger.info("New geochars: %s", obj.geochars)
         logger.info("Finished the update.")
+
+
+def update_to_27(context):
+    """ Dummy upgrade """
+    pass
+
+
+def update_to_28(context):
+    site = context.getSite()
+    catalog = site.portal_catalog
+    query = {'portal_type': [
+        'eea.climateadapt.publicationreport',
+        'eea.climateadapt.organisation',
+        'eea.climateadapt.informationportal',
+        'eea.climateadapt.guidancedocument',
+        'eea.climateadapt.tool',
+        'eea.climateadapt.indicator',
+        'eea.climateadapt.mapgraphdataset',
+        'eea.climateadapt.researchproject',
+    ]}
+    results = catalog.searchResults(**query)
+
+    for b in results:
+        obj = b.getObject()
+        changed = False
+
+        if obj.sectors in [None, []]:
+            logger.info("Fixing sector on %s", obj.absolute_url())
+            obj.sectors = ()
+            changed = True
+        if obj.climate_impacts in [None, []]:
+            logger.info("Fixing climate impacts on %s", obj.absolute_url())
+            obj.climate_impacts = ()
+            changed = True
+        if changed:
+            logger.info("Reindexing.")
+            obj.reindexObject()
+            obj._p_changed = True

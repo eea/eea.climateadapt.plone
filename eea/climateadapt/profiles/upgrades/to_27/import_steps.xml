@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<import-steps>
+    <import-step id="dummy_climate_upgrade" version="2016-23-11"
+        handler="eea.climateadapt.update.update_to_27"
+        title="EEA Climate Adapt: Dummy Upgrade">
+    </import-step>
+</import-steps>

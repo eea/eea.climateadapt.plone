@@ -4,6 +4,8 @@ Changelog
 1.4.dev0 - (unreleased)
 -----------------------
 
+* Bugfix: Migration script for fixing sector and climate impact fields
+  [iulianpetchesi #79155]
 * Bugfix: Modified templates for eea.pdf + style fixes
   [iulianpetchesi #22793]
 * Bugfix: Added condition to delete bad items
