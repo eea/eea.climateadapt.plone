@@ -530,4 +530,22 @@
             />
     </genericsetup:upgradeSteps>
 
+    <!-- v30 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_30"
+        title="Upgrade profile for eea.climateadapt v30"
+        description=""
+        directory="profiles/upgrades/to_30"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="30"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v30"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_30"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>

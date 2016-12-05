@@ -364,3 +364,44 @@ def update_to_29(context):
             obj.websites = ()
             obj._p_changed = True
             obj.reindexObject()
+
+
+def update_to_30(context):
+    site = context.getSite()
+    catalog = site.portal_catalog
+    query = {'portal_type': [
+        'eea.climateadapt.aceproject',
+        'eea.climateadapt.adaptationoption',
+        'eea.climateadapt.casestudy',
+        'eea.climateadapt.guidancedocument',
+        'eea.climateadapt.indicator',
+        'eea.climateadapt.informationportal',
+        'eea.climateadapt.mapgraphdataset',
+        'eea.climateadapt.organisation',
+        'eea.climateadapt.publicationreport',
+        'eea.climateadapt.researchproject',
+        'eea.climateadapt.tool',
+    ]}
+    results = catalog.searchResults(**query)
+
+    for b in results:
+        obj = b.getObject()
+        changed = False
+
+        if obj.sectors in [None, []]:
+            logger.info("Fixing sector on %s", obj.absolute_url())
+            obj.sectors = ()
+            changed = True
+        if obj.climate_impacts in [None, []]:
+            logger.info("Fixing climate impacts on %s", obj.absolute_url())
+            obj.climate_impacts = ()
+            changed = True
+        if hasattr(obj, 'relevance'):
+            if obj.relevance is None:
+                logger.info("Fixing relevance on %s", obj.absolute_url())
+                obj.relevance = []
+                changed = True
+        if changed:
+            logger.info("Reindexing.")
+            obj.reindexObject()
+            obj._p_changed = True

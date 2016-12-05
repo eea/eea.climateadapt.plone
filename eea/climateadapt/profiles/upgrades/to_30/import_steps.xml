@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<import-steps>
+    <import-step id="sectors_and_impacts" version="2016-05-12"
+        handler="eea.climateadapt.update.update_to_30"
+        title="EEA Climate Adapt: Migration for sectors and impacts fields">
+    </import-step>
+</import-steps>
