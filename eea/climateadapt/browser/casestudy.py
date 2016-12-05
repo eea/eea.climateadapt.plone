@@ -43,6 +43,7 @@ class CaseStudyFormExtender(FormExtender):
     def update(self):
         self.move('IGeolocatable.geolocation', after='geochars')
         self.move('primary_photo', after='long_description')
+        self.move('primary_photo_copyright', after='primary_photo')
         self.move('relevance', after='climate_impacts')
         self.move('solutions', after='climate_impacts')
         self.move('adaptationoptions', after='climate_impacts')

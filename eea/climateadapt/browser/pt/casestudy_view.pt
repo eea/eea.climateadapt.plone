@@ -24,8 +24,9 @@
                     <div metal:fill-slot="title-slot"></div>
                     <div metal:fill-slot="ace-left-slot">
                       <div class="case-studies-top">
-                        <div class="case-studies-review-image-wrapper" tal:condition="primephoto">
+                        <div class="case-studies-review-image-wrapper" tal:condition="primephoto" style="width: 34%;">
                           <img tal:condition="primephoto" tal:replace="structure context/@@images/primary_photo/mini"/>
+                          <div tal:content="context/primary_photo_copyright"/>
                         </div>
                         <div class="case-studies-top-title">
                           <div metal:use-macro="context/ace_macros/macros/title_date"></div>

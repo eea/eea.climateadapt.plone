@@ -423,6 +423,11 @@ class ICaseStudy(IAceMeasure):  #, IGeolocatable):
         required=False,
     )
 
+    primary_photo_copyright = TextLine(
+        title=_(u"Primary Photo Copyright"), required=False, default=u"",
+        description=_(u"Copyright statement or other rights information for  "
+                      u"the primary photo."))
+
     # BBB fields, only used during migration
     primephoto = RelationChoice(
         title=_(u"Prime photo"),
