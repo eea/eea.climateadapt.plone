@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<import-steps>
+    <import-step id="websites" version="2016-05-12"
+        handler="eea.climateadapt.update.update_to_29"
+        title="EEA Climate Adapt: Migration websites field">
+    </import-step>
+</import-steps>

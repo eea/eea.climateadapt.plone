@@ -335,3 +335,32 @@ def update_to_28(context):
             logger.info("Reindexing.")
             obj.reindexObject()
             obj._p_changed = True
+
+
+def update_to_29(context):
+    site = context.getSite()
+    catalog = site.portal_catalog
+    query = {'portal_type': [
+        'eea.climateadapt.aceproject',
+        'eea.climateadapt.adaptationoption',
+        'eea.climateadapt.casestudy',
+        'eea.climateadapt.guidancedocument',
+        'eea.climateadapt.indicator',
+        'eea.climateadapt.informationportal',
+        'eea.climateadapt.mapgraphdataset',
+        'eea.climateadapt.organisation',
+        'eea.climateadapt.publicationreport',
+        'eea.climateadapt.researchproject',
+        'eea.climateadapt.tool',
+    ]}
+    results = catalog.searchResults(**query)
+
+    for b in results:
+        obj = b.getObject()
+
+        if obj.websites in [None, []]:
+            logger.info("Websites value: %s", obj.websites)
+            logger.info("Fixing websites on url: %s", obj.absolute_url())
+            obj.websites = ()
+            obj._p_changed = True
+            obj.reindexObject()
