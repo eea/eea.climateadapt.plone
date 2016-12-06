@@ -5,6 +5,18 @@ from plone.app.layout.viewlets import ViewletBase
 from plone.app.layout.viewlets.common import PathBarViewlet as BasePathBarViewlet
 from plone.app.layout.viewlets.common import SearchBoxViewlet as BaseSearchViewlet
 from zope.component import getMultiAdapter
+from Products.CMFCore.utils import getToolByName
+from Acquisition import aq_inner
+from Products.CMFPlone.utils import base_hasattr
+
+import pkg_resources
+try:
+    pkg_resources.get_distribution('plone.app.relationfield')
+except pkg_resources.DistributionNotFound:
+    HAS_RELATIONFIELD = False
+else:
+    from plone.app.relationfield.behavior import IRelatedItems
+    HAS_RELATIONFIELD = True
 
 
 class SharePageSubMenuViewlet(ViewletBase):
@@ -17,6 +29,65 @@ class SharePageSubMenuViewlet(ViewletBase):
 
 class SearchBoxViewlet(BaseSearchViewlet):
     index = ViewPageTemplateFile('pt/searchbox.pt')
+
+
+class RelatedItemsViewlet(ViewletBase):
+    """ Override to hide files and images in the related content viewlet
+    """
+
+    def related_items(self):
+        context = aq_inner(self.context)
+        res = ()
+
+        # Archetypes
+        if base_hasattr(context, 'getRawRelatedItems'):
+            catalog = getToolByName(context, 'portal_catalog')
+            related = context.getRawRelatedItems()
+            if not related:
+                return ()
+            brains = catalog(UID=related)
+            if brains:
+                # build a position dict by iterating over the items once
+                positions = dict([(v, i) for (i, v) in enumerate(related)])
+                # We need to keep the ordering intact
+                res = list(brains)
+
+                def _key(brain):
+                    return positions.get(brain.UID, -1)
+                res.sort(key=_key)
+
+        # Dexterity
+        if HAS_RELATIONFIELD and IRelatedItems.providedBy(context):
+            related = context.relatedItems
+            if not related:
+                return ()
+            res = self.related2brains(related)
+
+        return res
+
+    def related2brains(self, related):
+        """Return a list of brains based on a list of relations. Will filter
+        relations if the user has no permission to access the content.
+
+        :param related: related items
+        :type related: list of relations
+        :return: list of catalog brains
+        """
+        catalog = getToolByName(self.context, 'portal_catalog')
+        brains = []
+
+        for r in related:
+            path = r.to_path
+            # the query will return an empty list if the user has no
+            # permission to see the target object
+            brains.extend(catalog(path=dict(query=path, depth=0)))
+
+        res = []
+        for b in brains:
+            if b.getObject().portal_type not in ['File', 'Image']:
+                res.append(b)
+
+        return res
 
 
 class PathBarViewlet(BasePathBarViewlet):

@@ -4,6 +4,8 @@ Changelog
 1.4.dev0 - (unreleased)
 -----------------------
 
+* Bugfix: Removed related items from sidebar for cca items
+  [iulianpetchesi #79656]
 * Bugfix: Added copyright field for primary photo
   [iulianpetchesi #79444]
 * Bugfix: Migration script for fixing the relevance field + sector and impacts

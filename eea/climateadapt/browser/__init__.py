@@ -61,8 +61,14 @@ class AceViewApi(object):
         return result
 
     def get_files(self):
-        return [r.to_object for r in self.context.relatedItems] \
-            + self.context.contentValues({'portal_type': 'File'})
+        files = self.context.contentValues({'portal_type': 'File'})
+        for r in self.context.relatedItems:
+            if r.to_object.portal_type in ['File', 'Image']:
+                files.append(r.to_object)
+
+        # return [r.to_object for r in self.context.relatedItems] \
+        #     + self.context.contentValues({'portal_type': 'File'})
+        return files
 
     def _render_geochar_element(self, value):
         value = BIOREGIONS[value]
