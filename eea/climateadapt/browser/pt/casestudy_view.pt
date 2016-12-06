@@ -169,6 +169,8 @@
                             <div metal:use-macro="context/ace_macros/macros/websites"></div>
                         </div>
 
+                        <div tal:content="structure provider:plone.abovecontentbody" />
+
                         <div tal:condition="context/source | nothing">
                             <em id="source" style="text-decoration: underline">Source</em>
                             <div tal:content="structure context/source/output | nothing"></div>

@@ -22,6 +22,8 @@
             <h5>Websites:</h5>
             <div metal:use-macro="context/ace_macros/macros/websites"></div>
 
+            <div tal:content="structure provider:plone.abovecontentbody" />
+
             <h5>Source:</h5>
             <tal:block content="structure python: view.w['source'].render()"/>
 

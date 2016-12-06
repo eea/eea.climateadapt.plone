@@ -34,6 +34,8 @@
             <h5>Link to metadata:</h5>
             <div tal:content="structure python: view.w['metadata'].render()"></div>
 
+            <div tal:content="structure provider:plone.abovecontentbody" />
+
             <div metal:use-macro="context/ace_macros/macros/comments"></div>
           </div>
 

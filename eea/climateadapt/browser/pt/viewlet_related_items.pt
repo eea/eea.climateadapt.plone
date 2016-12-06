@@ -11,7 +11,7 @@
                           getInfoFor python:wf_tool.getInfoFor;
                           site_properties context/portal_properties/site_properties;
                           use_view_action site_properties/typesUseViewActionInListings|python:();">
-        <dt i18n:translate="label_related_items">Related content</dt>
+        <dt i18n:translate="label_related_items">Related content:</dt>
         <tal:related repeat="item related">
             <dd tal:define="
                     desc                item/Description;

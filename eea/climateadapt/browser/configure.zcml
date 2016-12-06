@@ -352,6 +352,15 @@
 
     <browser:viewlet
         name="plone.belowcontentbody.relateditems"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        class=".viewlets.RelatedItemsViewlet"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        template="pt/viewlet_related_items.pt"
+        permission="zope2.View"
+        />
+
+    <browser:viewlet
+        name="plone.belowcontentbody.relateditems"
         manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
         class=".viewlets.RelatedItemsViewlet"
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
