@@ -4,6 +4,8 @@ Changelog
 1.4.dev0 - (unreleased)
 -----------------------
 
+* Bugfix: Enabled pdf export for cover and pages
+  [iulianpetchesi #22793]
 * Bugfix: Removed related items from sidebar for cca items
   [iulianpetchesi #79656]
 * Bugfix: Added copyright field for primary photo

@@ -40,6 +40,19 @@
         directory="theme/climateadapt"
         type="theme" />
 
+    <class class="collective.cover.content.Cover">
+      <implements interface="eea.pdf.interfaces.IPDFAware" />
+    </class>
+
+    <class class="plone.app.contenttypes.content.Document">
+      <implements interface="eea.pdf.interfaces.IPDFAware" />
+    </class>
+
+    <class class="eea.pdf.themes.page.body.Body">
+        <implements interface="plone.app.blocks.interfaces.IBlocksTransformEnabled" />
+    </class>
+
+
     -------[ Catalog indexes adapters ]-------
 
     <adapter name="aceitem_id" factory=".catalog.aceitem_id" />

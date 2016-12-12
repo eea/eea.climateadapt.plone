@@ -2024,7 +2024,7 @@ li.dropdown-submenu {
     float: left;
     padding-right: 10px;
     position: relative;
-    /*width: 45%;*/
+    /*width: 34%;*/
 }
 .case-studies-top-title {
     padding-right: 3px;
@@ -2565,9 +2565,103 @@ table.listing a {
     .cover-body {display: none;}
     .cover-copyright{margin: 0; font-size: 12pt; padding-top: 22pt;}
     .cover-copyright-contact{position: inherit;}
+    .cover-title{text-align: left;}
     #cityprofile-admin-menu{display:none;}
     #wrapper{max-width: 100%;}
     #content-core .center-area{width: 100%;}
     #content-core .right-area{width: 100%;}
     #footer{display: none;}
+    .aceitem-filter-relevant-tile label {margin-bottom: 0;}
+    .panel .collapse {display: block;}
+    .panel .collapse > .panel-body {
+        border-left-width: 1px;
+        border-bottom-width: 1px;
+        border-right-width: 1px;
+        border-right-color: rgb(170, 170, 170);
+        border-bottom-color: rgb(170, 170, 170);
+        border-left-color: rgb(170, 170, 170);
+        border-bottom-style: solid;
+        border-left-style: solid;
+        border-right-style: solid;
+    }
+    .panel-group .panel-title > a {
+        background: #ffffff none no-repeat right top;
+        border-left-width: 1px;
+        border-top-width: 1px;
+        border-right-width: 1px;
+        border-right-color: rgb(170, 170, 170);
+        border-top-color: rgb(170, 170, 170);
+        border-bottom-color: rgb(170, 170, 170);
+        border-left-color: rgb(170, 170, 170);
+        border-top-style: solid;
+        border-bottom-style: solid;
+        border-left-style: solid;
+        border-right-style: solid;
+    }
+    .panel-group > .panel .panel-title > a:before {
+        font-family: monospace;
+        font-size: 10px;
+        content: "▼  ";
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .nav-tabs > p:last-child{
+    }
+
+    .nav-tabs > p {
+        display: table-row;
+    }
+
+    .nav-tabs {display: inline-table;}
+
+    #content .sweet-tabs .nav-tabs li, #content .sweet-tabs .nav-tabs li a {
+        border-top-color: rgb(149, 172, 193);
+        border-left-color: rgb(149, 172, 193);
+        border-right-color: rgb(149, 172, 193);
+        border-bottom: 1px solid white !important;
+        background: none;
+    }
+
+    #content-core #case-studies-homepage-slider-wrapper .case-studies-homepage-slider-content .case-studies-homepage-slider-image {
+        width: 100%;
+    }
+
+    #content-core #case-studies-homepage-slider-wrapper .case-studies-homepage-slider-content .case-studies-homepage-slider-description {
+        padding-top: 5em;
+        float: left;
+        width: 100%;
+    }
+
+    .section-frontpage #content-core .row:nth-child(2) {
+        margin-top: 13em;
+    }
+
+    .section-frontpage #content-core .row:nth-child(2) #fp-country-selector {
+        margin-right: 0;
+    }
+
+    .section-frontpage #content-core .row:nth-child(2) .fp-image-tile {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .section-frontpage #content-core .row:nth-child(2) .col-md-3 {
+        display: inline-flex;
+    }
+
+    .section-frontpage #content-core .row:nth-child(3) .col-md-3 {
+        border: none;
+    }
+
+    .section-frontpage #content-core .row:nth-child(3) .col-md-3 .fp-tile-fixes {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .section-frontpage #content-core .row:nth-child(5) .col-md-6 {
+        width: 48%;
+    }
 }

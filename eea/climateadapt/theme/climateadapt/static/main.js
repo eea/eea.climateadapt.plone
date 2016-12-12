@@ -243,6 +243,24 @@ function fix_map(){
 			}
 		});
 
+        // Print Event for PDF's
+        if (window.location.pathname.indexOf('pdf.body') !== -1) {
+            var bodyParagraphs = $('.tab-content').children();
+            var elem = $('.nav-tabs').children();
+
+            var $tabs = $(elem).insertBefore(".sweet-tabs");
+            $(bodyParagraphs).insertBefore(".sweet-tabs");
+
+            var $tab_content = $(".tab-pane");
+            var $tab_content_length = $tab_content.length;
+            $tabs.each(function(index) {
+                if ($tab_content_length - 1 === index) {
+                    return false;
+                }
+                $(this).insertAfter($tab_content.eq(index));
+            });
+        }
+
 		// Initialize blueimp gallery
 		if (document.getElementById('links') != null) {
 			document.getElementById('links').onclick = function (event) {
