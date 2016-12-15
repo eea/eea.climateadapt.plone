@@ -2664,4 +2664,51 @@ table.listing a {
     .section-frontpage #content-core .row:nth-child(5) .col-md-6 {
         width: 48%;
     }
+
+    .section-help #content-core .row:nth-child(2) .col-md-3:nth-child(3) {
+        display: inline-flex;
+        padding-left: 1.1em;
+        width: 45%;
+    }
+
+    .section-help #content-core .row:nth-child(2) .col-md-3:nth-child(2) {
+        display: inline-flex;
+        width: 45%;
+    }
+
+    .section-help #content-core .row:nth-child(2) .col-md-3:nth-child(4) {
+        width: 100%;
+    }
+
+    .section-help #content-core .row:nth-child(2) .col-md-3:nth-child(4) table {
+        width: 100%;
+    }
+
+    .section-help #content-core .row:nth-child(2) .col-md-3:nth-child(4) img{
+        width: 100% !important;
+    }
+
+
+    .section-help #content-core .row:nth-child(2) .col-md-3:nth-child(1) {
+        width: 100%;
+    }
+
+    .section-help #content-core .row:nth-child(2) .col-md-3:nth-child(1) table {
+        width: 100%;
+    }
+
+    .section-help #content-core .row:nth-child(2) .col-md-3:nth-child(1) img{
+        width: 100% !important;
+    }
+
+    .section-help #content-core .row:nth-child(1) .col-md-12 td:nth-child(1) {
+        width: 32%;
+    }
+
+    .section-help #content-core .row:nth-child(1) .col-md-12 td:nth-child(1) img {
+        width: 100% !important;
+    }
+
+
+
 }

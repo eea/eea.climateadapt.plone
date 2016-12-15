@@ -4,6 +4,8 @@ Changelog
 1.4.dev0 - (unreleased)
 -----------------------
 
+* Bugfix: Style fix for help page
+  [iulianpetchesi #22793]
 * Bugfix: Enabled pdf export for cover and pages
   [iulianpetchesi #22793]
 * Bugfix: Removed related items from sidebar for cca items
