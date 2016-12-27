@@ -2747,3 +2747,13 @@ table.listing a {
 .subsection-tools-urban-ast #contact-link .urban-ast-section-pdf {
     margin-top: 1em;
 }
+
+.casestudies-gallery-copyright {
+    display: block;
+    position: absolute;
+    width: 200px;
+    left: 15px;
+    bottom: 15px;
+    color: #fff;
+    font-size: 1.3em;
+}

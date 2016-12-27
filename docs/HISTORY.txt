@@ -4,7 +4,9 @@ Changelog
 1.4.dev0 - (unreleased)
 -----------------------
 
-* Bugfix: Style fix for help page
+* Bugfix: Added copyright field to case studies images in the gallery
+  [iulianpetchesi #79444]
+* Bugfix: Enabled pdf export for ast/u-ast
   [iulianpetchesi #79845]
 * Bugfix: Style fix for help page
   [iulianpetchesi #22793]

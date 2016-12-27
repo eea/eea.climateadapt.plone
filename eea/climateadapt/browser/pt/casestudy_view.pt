@@ -190,6 +190,7 @@
                             <a class="prev">‹</a>
                             <a class="next">›</a>
                             <a class="close">×</a>
+                            <p class="casestudies-gallery-copyright"></p>
                             <a class="play-pause"></a>
                             <ol class="indicator"></ol>
                         </div>
@@ -202,7 +203,8 @@
                                   data-description="Something"
                                   tal:attributes="href string:${photo/absolute_url}/@@images/image/large;
                                   title photo/Title;
-                                  data-description photo/description">
+                                  data-description photo/description;
+                                  data-copyright photo/rights">
                                   <img tal:attributes="src string:${photo/absolute_url}/@@images/image/medium" />
                               </a>
                             </div>
@@ -268,6 +270,7 @@
                                       }
                                     };
                                     initializeAdditional(index, 'data-description', '.description', self);
+                                    initializeAdditional(index, 'data-copyright', '.casestudies-gallery-copyright', self);
                                   }
                                 },
                                 links = this.getElementsByTagName('a');
