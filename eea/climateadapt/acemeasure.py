@@ -34,7 +34,7 @@ from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import implementer, implements
 from zope.schema import List, Text, TextLine, Tuple
-from zope.schema import URI, Bool, Choice, Int, Set
+from zope.schema import URI, Bool, Choice, Int
 import json
 import logging
 
@@ -118,7 +118,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     long_description = RichText(title=_(u"Description"), required=True,)
 
-    form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    form.widget(
+        climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_(u"Climate impacts"),
         missing_value=[],
@@ -158,10 +159,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                 u"related source",
                 required=False,)
 
-    featured = Bool(title=_(u"Featured"),
-                    description=u"Feature in search and Case Study Search Tool",
-                    required=False,
-                    default=False)
+    featured = Bool(
+        title=_(u"Featured"),
+        description=u"Feature in search and Case Study Search Tool",
+        required=False,
+        default=False)
 
     # -----------[ "additional_details" fields ]------------------
 
@@ -199,15 +201,16 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                       u"etc.) (5,000 characters limit)"))
 
     dexteritytextindexer.searchable('legal_aspects')
-    legal_aspects = RichText(title=_(u"Legal aspects"),
-                             required=False,
-                             default=u"",
-                             description=_(u"Describe the Legislation "
-                                           u"framework from which the case "
-                                           u"originated, relevant institutional"
-                                           u" opportunities and constrains, "
-                                           u"which determined the case as it "
-                                           u"is (5000 character limit):"))
+    legal_aspects = RichText(
+        title=_(u"Legal aspects"),
+        required=False,
+        default=u"",
+        description=_(u"Describe the Legislation "
+                      u"framework from which the case "
+                      u"originated, relevant institutional"
+                      u" opportunities and constrains, "
+                      u"which determined the case as it "
+                      u"is (5000 character limit):"))
 
     dexteritytextindexer.searchable('implementation_time')
     implementation_time = RichText(
@@ -249,7 +252,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     # -----------[ "geographic_information" fields ]------------------
 
-    form.widget(governance_level="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    form.widget(
+        governance_level="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     governance_level = List(
         title=_(u"Governance Level"),
         description=_(u"Select the one governance level that relates to this "
@@ -262,7 +266,10 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
     geochars = Text(title=_(u"Geographic characterisation"),
                     required=True,
-                    default=u'{"geoElements":{"element":"GLOBAL", "macrotrans":null,"biotrans":null,"countries":[],"subnational":[],"city":""}}',
+                    default=u"""{
+                    "geoElements":{"element":"GLOBAL",
+                    "macrotrans":null,"biotrans":null,"countries":[],
+                    "subnational":[],"city":""}}""",
                     description=u"Select the characterisation for this item",
                     )
 
@@ -354,7 +361,7 @@ class IAdaptationOption(IAceMeasure):
     )
 
 
-class ICaseStudy(IAceMeasure):  #, IGeolocatable):
+class ICaseStudy(IAceMeasure):  # , IGeolocatable):
     """ Case study
     """
 
@@ -412,8 +419,8 @@ class ICaseStudy(IAceMeasure):  #, IGeolocatable):
         value_type=RelationChoice(
             title=_(u"Related"),
             vocabulary="eea.climateadapt.adaptation_options"
-            #source=ObjPathSourceBinder(),
-            #source=CatalogSource(portal_type='eea.cliamteadapt.adaptionoption'),
+            # source=ObjPathSourceBinder(),
+            # source=CatalogSource(portal_type='eea.cliamteadapt.adaptionoption'),
         ),
         required=False,
     )
@@ -471,7 +478,7 @@ class CaseStudy(dexterity.Container):
         if html:
             portal_transforms = get_tool(name='portal_transforms')
             data = portal_transforms.convertTo('text/plain',
-                                            html, mimetype='text/html')
+                                               html, mimetype='text/html')
             html = shorten(data.getData(), to=100)
         return html
 
@@ -482,7 +489,7 @@ class CaseStudy(dexterity.Container):
         try:
             chars = json.loads(self.geochars)
             els = chars['geoElements']
-            if not 'biotrans' in els.keys():
+            if 'biotrans' not in els.keys():
                 return ''
             bio = els['biotrans']
             if not bio:
@@ -510,7 +517,7 @@ class CaseStudy(dexterity.Container):
             geo = to_arcgis_coords(
                 self.geolocation.longitude,
                 self.geolocation.latitude)
-            geometry = {'x': geo[0], 'y':geo[1]}
+            geometry = {'x': geo[0], 'y': geo[1]}
         else:
             geometry = {'x': '', 'y': ''}
 
@@ -543,7 +550,7 @@ class CaseStudy(dexterity.Container):
                 'Creator': self.creators[-1],
                 'EditDate': _unixtime(self.modification_date),
                 'Editor': self.workflow_history[
-                    'cca_items_workflow'][-1]['actor'], # NOTE: I think this is computed by ArcGIS
+                    'cca_items_workflow'][-1]['actor'],
                 'EffectiveDate': _unixtime(self.effective_date),
             },
             'geometry': geometry,
@@ -590,13 +597,14 @@ def handle_for_arcgis_sync(obj, event):
 
     settings = get_settings()
     if settings.skip_rabbitmq:
-        queue_callback(lambda:HANDLERS[event_name](obj, uid))
+        queue_callback(lambda: HANDLERS[event_name](obj, uid))
         return
 
     try:
         queue_msg(msg, queue='eea.climateadapt.casestudies')
     except Exception:
-        logger.exception("Couldn't queue RabbitMQ message for case study event")
+        logger.exception(
+            "Couldn't queue RabbitMQ message for case study event")
 
 
 def handle_measure_added(obj, event):
