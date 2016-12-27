@@ -52,6 +52,13 @@
         <implements interface="plone.app.blocks.interfaces.IBlocksTransformEnabled" />
     </class>
 
+    <class class="plone.dexterity.content.Container">
+      <implements interface="eea.pdf.interfaces.ICollectionPDFAware" />
+    </class>
+
+    <class class="plone.dexterity.content.Container">
+      <implements interface="eea.pdf.interfaces.IPDFAware" />
+    </class>
 
     -------[ Catalog indexes adapters ]-------
 

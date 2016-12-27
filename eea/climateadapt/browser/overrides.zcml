@@ -17,4 +17,16 @@
 
     <adapter factory=".overrides.RichTextFieldWidget" />
 
+    <browser:page
+      name="folder.pdf.body"
+      layer="eea.pdf.interfaces.ILayer"
+      for="plone.dexterity.interfaces.IDexterityContainer"
+      class=".overrides.FolderPdfBody"
+      permission="eea.pdf.download"
+      />
+
+    <class class=".overrides.FolderPdfBody">
+       <implements interface="plone.app.blocks.interfaces.IBlocksTransformEnabled" />
+    </class>
+
 </configure>

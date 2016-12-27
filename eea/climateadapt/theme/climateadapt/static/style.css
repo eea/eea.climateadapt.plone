@@ -2709,6 +2709,41 @@ table.listing a {
         width: 100% !important;
     }
 
+    .subsection-tools-urban-ast #contact-link {
+        margin-left: 0.5em;
+        width: 260px;
+    }
 
+    .subsection-tools-urban-ast #next-link {
+        width: 120px;
+    }
 
+    .subsection-tools-urban-ast .ast_header h1 {
+        padding-left: 0.5em;
+    }
+
+    .subsection-tools-urban-ast .CSSTableGenerator {
+        width: 90% !important;
+    }
+
+    .subsection-tools-urban-ast #content ul#ast-menu {
+        display: none;
+    }
+
+    .subsection-tools-adaptation-support-tool #content ul#ast-menu {
+        display: none;
+    }
+
+    .subsection-tools-adaptation-support-tool .lfc-single-image {
+        display: none;
+    }
+
+    .subsection-tools-adaptation-support-tool .ast_header h1 {
+        padding-left: 0.5em;
+    }
+
+}
+
+.subsection-tools-urban-ast #contact-link .urban-ast-section-pdf {
+    margin-top: 1em;
 }

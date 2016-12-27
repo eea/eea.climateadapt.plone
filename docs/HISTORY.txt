@@ -5,6 +5,8 @@ Changelog
 -----------------------
 
 * Bugfix: Style fix for help page
+  [iulianpetchesi #79845]
+* Bugfix: Style fix for help page
   [iulianpetchesi #22793]
 * Bugfix: Enabled pdf export for cover and pages
   [iulianpetchesi #22793]

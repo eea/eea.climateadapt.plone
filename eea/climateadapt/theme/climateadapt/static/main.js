@@ -261,6 +261,22 @@ function fix_map(){
             });
         }
 
+        // Urban ast export section pdf button
+        if (window.location.pathname.indexOf('/tools/urban-ast') !== -1 && window.location.pathname.indexOf('pdf.body') === -1) {
+            var x = '<a href="/tools/urban-ast/download.pdf" class="bluebutton urban-ast-section-pdf" ' +
+                    'style="cursor: pointer;">Download section as pdf</a>';
+            $('div#contact-link a').after(x);
+        }
+
+        // Ast export section pdf button
+        if (window.location.pathname.indexOf('/tools/adaptation-support-tool') !== -1 && window.location.pathname.indexOf('pdf.body') === -1) {
+            var x = '<a href="/tools/adaptation-support-tool/download.pdf" class="bluebutton ast-section-pdf" ' +
+                    'style="cursor: pointer;">Download section as pdf</a>';
+            $('li#document-action-download_pdf a').after(x);
+        }
+
+
+
 		// Initialize blueimp gallery
 		if (document.getElementById('links') != null) {
 			document.getElementById('links').onclick = function (event) {
