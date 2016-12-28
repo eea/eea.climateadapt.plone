@@ -2757,3 +2757,17 @@ table.listing a {
     color: #fff;
     font-size: 1.3em;
 }
+
+.image-copyright-tinymce-inline {
+    display: -webkit-box;
+}
+
+.image-copyright-tinymce-left {
+    float:left;
+    clear: left;
+}
+
+.image-copyright-tinymce-right {
+    float:right;
+    clear:right;
+}

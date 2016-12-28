@@ -3,7 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
-
+* Bugfix: For images added by the tinymce editor, use the title field for copyright
+  [iulianpetchesi #79444]
 * Bugfix: Added copyright field to case studies images in the gallery
   [iulianpetchesi #79444]
 * Bugfix: Enabled pdf export for ast/u-ast

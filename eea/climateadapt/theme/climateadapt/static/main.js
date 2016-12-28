@@ -275,7 +275,55 @@ function fix_map(){
             $('li#document-action-download_pdf a').after(x);
         }
 
+        // Tinymce use image title as copyright
+        // We have 3 types of image classes (inline/left/right)
+        $('.image-inline').each(function() {
+            if ($('.image-inline').attr('title')) {
+                var copyright_text = $('<span>');
+                copyright_text.attr('class','image-copyright-tinymce-inline');
+                copyright_text.text('Image © : ' + $('.image-inline').attr('title'));
 
+                if($(this).attr('style')) {
+                    if ($(this).attr('style').indexOf('float') !== -1) {
+                        if ($(this).attr('style').indexOf('float: left') !== -1) {
+                            if (copyright_text.attr('style')) {
+                                copyright_text.attr('style', copyright_text.attr('style') + 'float: left; clear: left;');
+                            }
+                            else {
+                                copyright_text.attr('style', 'float: left; clear: left;');
+                            }
+                        }
+                        if ($(this).attr('style').indexOf('float: right') !== -1) {
+                            if (copyright_text.attr('style')) {
+                                copyright_text.attr('style', copyright_text.attr('style') + 'float: right; clear: right;');
+                            }
+                            else {
+                                copyright_text.attr('style', 'float: right; clear: right;');
+                            }
+                        }
+                    }
+                }
+                $(copyright_text).insertAfter($(this));
+            }
+        });
+
+        $('.image-left').each(function() {
+            if ($('.image-right').attr('title')) {
+                var copyright_text = $('<span>');
+                copyright_text.attr('class','image-copyright-tinymce-left');
+                copyright_text.text('Image © : ' + $('.image-left').attr('title'));
+                $(copyright_text).insertAfter($(this));
+            }
+        });
+
+        $('.image-right').each(function() {
+            if ($('.image-right').attr('title')) {
+                var copyright_text = $('<span>');
+                copyright_text.attr('class','image-copyright-tinymce-right');
+                copyright_text.text('Image © : ' + $('.image-right').attr('title'));
+                $(copyright_text).insertAfter($(this));
+            }
+        });
 
 		// Initialize blueimp gallery
 		if (document.getElementById('links') != null) {
