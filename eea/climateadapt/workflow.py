@@ -58,6 +58,13 @@ class WorkflowTransitionMessage(form.SchemaForm):
         action = self.request.get('form.widgets.workflow_action')
         return u"This will trigger the {0} transition".format(action)
 
+    def updateWidgets(self, prefix=None):
+        super(WorkflowTransitionMessage, self).updateWidgets()
+        v = self.request.get('form.widgets.workflow_action', None)
+        if v:
+            self.widgets['workflow_action'].value = v
+        return
+
     @button.buttonAndHandler(u"Save")
     def handleApply(self, action):
         data, errors = self.extractData()

@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fix set_workflow_message error
+  [iulianpetchesi #80275]
 * Bugfix: For images added by the tinymce editor, use the title field for copyright
   [iulianpetchesi #79444]
 * Bugfix: Added copyright field to case studies images in the gallery
