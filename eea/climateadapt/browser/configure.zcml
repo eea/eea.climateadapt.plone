@@ -306,6 +306,15 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        class=".misc.DetectBrokenLinksView"
+        for="*"
+        name="broken-links"
+        permission="zope2.View"
+        template="pt/detect_links.pt"
+        />
+
+
     <!-- Tile helpers -->
 
     <browser:page

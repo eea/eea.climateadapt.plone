@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n" name="portal_actions" meta_type="Plone Actions Tool">
+    <object name="user" meta_type="CMF Action Category">
+        <object name="broken_links" meta_type="CMF Action" i18n:domain="plone">
+            <property name="title" i18n:translate="">Check broken external links</property>
+            <property name="description" i18n:translate=""/>
+            <property name="url_expr">
+            string:${globals_view/navigationRootUrl}/broken-links
+            </property>
+            <property name="available_expr">
+                python:member is not None
+            </property>
+            <property name="permissions">
+                <element value="View"/>
+            </property>
+            <property name="visible">True</property>
+        </object>
+    </object>
+</object>

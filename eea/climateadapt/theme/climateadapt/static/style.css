@@ -2771,3 +2771,80 @@ table.listing a {
     float:right;
     clear:right;
 }
+
+.template-broken-links #content .CSSTableGenerator table {
+    display: block;
+}
+
+.template-broken-links #content .CSSTableGenerator table thead{
+    display: block;
+    width: 100%;
+}
+
+.template-broken-links #content .CSSTableGenerator table thead tr{
+    display: block;
+    width: 100%;
+}
+
+.template-broken-links #content .CSSTableGenerator table thead tr > th:nth-child(1) {
+    display: inline-block;
+    width: 50%;
+}
+
+.template-broken-links #content .CSSTableGenerator table thead tr > th:nth-child(2) {
+    display: inline-block;
+    width: 40%;
+}
+
+.template-broken-links #content .CSSTableGenerator table thead tr > th:nth-child(3) {
+    display: inline-block;
+    width: 9%;
+}
+
+
+.template-broken-links #content .CSSTableGenerator table tbody{
+    display: block;
+    width: 100%;
+}
+
+.template-broken-links #content .CSSTableGenerator table tbody tr{
+    display: block;
+    width: 100%;
+}
+
+.template-broken-links #content .CSSTableGenerator table tbody tr > td:nth-child(1){
+    display: inline-block;
+    width: 50%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.template-broken-links #content .CSSTableGenerator table tbody tr > td:nth-child(2){
+    display: inline-block;
+    width: 40%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.template-broken-links #content .CSSTableGenerator table tbody tr > td:nth-child(3){
+    display: inline-block;
+    width: 9%;
+}
+
+.template-broken-links #content .CSSTableGenerator table tbody tr > td:nth-child(1) a{
+    display: inline-block;
+    width: 50%;
+    cursor: pointer;
+}
+
+.template-broken-links #content .CSSTableGenerator table tbody tr > td:nth-child(2) a{
+    display: inline-block;
+    width: 40%;
+    cursor: pointer;
+}
+
+.template-broken-links #content .CSSTableGenerator tr:first-child td {
+    text-align: left;
+}

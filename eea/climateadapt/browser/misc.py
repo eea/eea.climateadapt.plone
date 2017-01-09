@@ -10,6 +10,14 @@ from z3c.form import button, field
 from zope import schema
 from zope.component import getMultiAdapter
 from zope.interface import Interface, implements
+import requests
+import logging
+from Products.CMFPlone.utils import getToolByName
+from zope.annotation.interfaces import IAnnotations
+import transaction
+
+
+logger = logging.getLogger('eea.climateadapt')
 
 
 class ISimplifiedResourceRegistriesView(Interface):
@@ -57,6 +65,114 @@ class RedirectToSearchView (BrowserView):
             url += '#searchtype=' + type_name
 
         return self.request.response.redirect(url)
+
+
+class DetectBrokenLinksView (BrowserView):
+    """ View for detecting broken links"""
+
+    def __call__(self):
+        """ This view gets the data saved in IAnnotations(site)['broken_links_data']
+        """
+        self.results = IAnnotations(self.context).get('broken_links_data', None)
+        return self.index()
+
+
+def _get_data(site):
+    """ Script that will get called by cron once per day
+    """
+    get_links_results = get_links(site)
+
+    results = []
+    for res_dict in get_links_results:
+        if check_link(res_dict['link'], res_dict['object_url']) is not None:
+            results.append(check_link(res_dict['link'], res_dict['object_url']))
+    IAnnotations(site)['broken_links_data'] = results
+    transaction.commit()
+
+
+def get_links(site):
+    """ Gets the links for all our items by using the websites field
+        along with the respective object urls
+    """
+
+    catalog = getToolByName(site, 'portal_catalog')
+    query = {'portal_type': [
+        'eea.climateadapt.aceproject',
+        'eea.climateadapt.adaptationoption',
+        'eea.climateadapt.casestudy',
+        'eea.climateadapt.guidancedocument',
+        'eea.climateadapt.indicator',
+        'eea.climateadapt.informationportal',
+        'eea.climateadapt.mapgraphdataset',
+        'eea.climateadapt.organisation',
+        'eea.climateadapt.publicationreport',
+        'eea.climateadapt.researchproject',
+        'eea.climateadapt.tool',
+        'eea.climateadapt.city_profile',
+    ]}
+    brains = catalog.searchResults(**query)
+
+    urls = []
+    for b in brains:
+        obj = b.getObject()
+
+        if hasattr(obj, 'websites'):
+            if isinstance(obj.websites, str):
+                urls.append({'link': obj.websites, 'object_url': b.getURL()})
+            else:
+                for url in obj.websites:
+                    urls.append({'link': url, 'object_url': b.getURL()})
+        else:
+            if obj.portal_type == 'eea.climateadapt.city_profile':
+                urls.append(
+                    {'link': obj.website_of_the_local_authority,
+                     'object_url': b.getURL()
+                    })
+            else:
+                logger.info("Portal type: %s" % obj.portal_type)
+    logger.info("Finished getting links.")
+    return urls
+
+
+def check_link(link, object_url):
+    """ Check the links and return only the broken ones with the respective
+        status codes
+    """
+    if link:
+        resp = None
+        if isinstance(link, unicode):
+            link = link.encode()
+        if link[0:7].find('http') == -1:
+            link = 'http://' + link
+
+        logger.info("LINK: %s", link)
+        try:
+            resp = requests.head(link, timeout=5, allow_redirects=True)
+        except requests.exceptions.ReadTimeout:
+            return {'status': '504', 'url': link, 'object_url': object_url}
+        except requests.exceptions.ConnectTimeout:
+            logger.info("Timed out.")
+            logger.info("Trying again with link: %s", link)
+            try:
+                resp = requests.head(link, timeout=30, allow_redirects=True)
+            except:
+                return {'status': '504', 'url': link, 'object_url': object_url}
+        except requests.exceptions.TooManyRedirects:
+            logger.info("Redirected.")
+            logger.info("Trying again with link: %s", link)
+            try:
+                resp = requests.head(link, timeout=30, allow_redirects=True)
+            except:
+                return {'status': '301', 'url': link, 'object_url': object_url}
+        except requests.exceptions.URLRequired:
+            return {'status': '400', 'url': link, 'object_url': object_url}
+        except requests.exceptions.ProxyError:
+            return {'status': '305', 'url': link, 'object_url': object_url}
+        except requests.exceptions.HTTPError:
+            return {'status': '505', 'url': link, 'object_url': object_url}
+        except:
+            return {'status': '404', 'url': link, 'object_url': object_url}
+    return
 
 
 class IContactForm(form.Schema):

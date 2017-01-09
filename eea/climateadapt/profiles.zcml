@@ -548,4 +548,22 @@
             />
     </genericsetup:upgradeSteps>
 
+        <!-- v31 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_31"
+        title="Upgrade profile for eea.climateadapt v31"
+        description=""
+        directory="profiles/upgrades/to_31"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="31"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v31"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_31"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>
