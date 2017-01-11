@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+
+* Bugfix: Last update tile styling
+  [iulianpetchesi #80532]
 * Bugfix: Created page to check for broken external links
   [iulianpetchesi #77571]
 * Bugfix: Fix set_workflow_message error

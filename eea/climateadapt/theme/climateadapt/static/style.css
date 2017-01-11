@@ -2848,3 +2848,12 @@ table.listing a {
 .template-broken-links #content .CSSTableGenerator tr:first-child td {
     text-align: left;
 }
+
+.last-update-tile {
+    font-size: 12px;
+    font-weight: 200;
+    line-height: 1.3em;
+    margin-top: 1em;
+    margin-left: 2em;
+    color: gray;
+}

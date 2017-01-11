@@ -1,2 +1,5 @@
-<span>Last update</span>
-<p tal:content="python: view.formated_date(context.modified())">Date</p>
+<div class="last-update-tile">
+    <p>
+      <span>Last update:</span><span tal:content="python: view.formated_date(context.modified())"></span>
+    </p>
+</div>
