@@ -4,6 +4,8 @@ Changelog
 1.4.dev0 - (unreleased)
 -----------------------
 
+* Bugfix: Modified the workaround so that it works with urls that contain 'resolveuid'
+  [iulianpetchesi #80564]
 * Bugfix: Last update tile styling
   [iulianpetchesi #80532]
 * Bugfix: Created page to check for broken external links

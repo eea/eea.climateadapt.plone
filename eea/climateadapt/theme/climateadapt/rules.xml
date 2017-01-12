@@ -24,16 +24,32 @@
 	<copy attributes="role" css:content="content" css:theme="contentspace" />
     <replace css:content="#portal-columns" css:theme="#content" />
 
+    <!--This is a work-around for a problem in plone.outputfilters html transformation
+        Tickets: Refs #79364 / Refs #80564
+
+        Basically you check if the href attribute of the <a> tag has 'resolveuid' in 
+        its composition, if it does you keep it like it is.
+
+        If it doesn't then you copy the element as it is and you replace the 'href' attribute
+        value with the value of 'data-val' attribute.
+    -->
     <xsl:template match="a">
       <xsl:choose>
         <xsl:when test="@data-val">
-        <a>
-            <xsl:copy-of select="@*|b/@*" />
-            <xsl:attribute name="href">
-                <xsl:value-of select="@data-val" />
-            </xsl:attribute>
-            <xsl:apply-templates />
-        </a>
+            <xsl:if test="contains(string(@href), 'resolveuid')">
+                <a href="{@href}" data-val="{@data-val}" data-linktype="{@data-linktype}">
+                    <xsl:value-of select="text()"/>
+                </a>
+            </xsl:if>
+            <xsl:if test="not(contains(string(@href), 'resolveuid'))">
+                <a>
+                    <xsl:copy-of select="@*|b/@*" />
+                    <xsl:attribute name="href">
+                        <xsl:value-of select="@data-val" />
+                    </xsl:attribute>
+                    <xsl:apply-templates />
+                </a>
+            </xsl:if>
         </xsl:when>
         <xsl:otherwise>
           <xsl:copy>
