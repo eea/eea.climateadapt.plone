@@ -1,27 +1,127 @@
 """
 Various page overrides
 """
-from plone.app.contentmenu.menu import DisplaySubMenuItem as DSMI
-from plone.app.content.browser.interfaces import IContentsPage
-from plone.memoize.instance import memoize
 from Products.CMFPlone import utils
-
-from plone.app.widgets.dx import RichTextWidget
+from Products.CMFPlone.utils import safe_unicode
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from collective.excelexport.exportables.dexterityfields import BaseFieldRenderer
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
+from eea.climateadapt.schema import Year
+from eea.pdf.interfaces import IPDFTool
+from plone.app.content.browser.interfaces import IContentsPage
+from plone.app.contentmenu.menu import DisplaySubMenuItem as DSMI
+from plone.app.contenttypes.behaviors.richtext import IRichText  # noqa
+from plone.app.widgets.dx import RichTextWidget
+from plone.app.widgets.interfaces import IWidgetsLayer
+from plone.formwidget.geolocation.interfaces import IGeolocationField
+from plone.memoize.instance import memoize
 from z3c.form.interfaces import IFieldWidget
+from z3c.form.interfaces import IFormLayer
+from z3c.form.interfaces import NO_VALUE
+from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from zope.component import adapter
-from zope.interface import implementer
-from z3c.form.util import getSpecification
-from plone.app.contenttypes.behaviors.richtext import IRichText  # noqa
-from z3c.form.interfaces import IFormLayer
-from plone.app.widgets.interfaces import IWidgetsLayer
-
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from eea.pdf.interfaces import IPDFTool
+from zope.component import adapts
 from zope.component import queryUtility
-from Products.Five.browser import BrowserView
+from zope.interface import Interface
+from zope.interface import implementer
+from zope.schema.interfaces import ITextLine, ITuple
+
+
+class GeolocationFieldRenderer(BaseFieldRenderer):
+    """ Geolocation field adapter for excel export"""
+
+    adapts(IGeolocationField, Interface, Interface)
+
+    def _get_text(self, value):
+        return value
+
+    def render_value(self, obj):
+        """Gets the value to render in excel file from content value
+        """
+        value = self.get_value(obj)
+        if not value or value == NO_VALUE:
+            return ""
+
+        text = safe_unicode(self._get_text(value))
+
+        location = {'latitude': text.latitude, 'longitude': text.longitude}
+
+        return str(location)
+
+
+class WebsitesFieldRenderer(BaseFieldRenderer):
+    """ Websites field adapter for excel export"""
+
+    adapts(ITuple, Interface, Interface)
+
+    def _get_text(self, value):
+        return value
+
+    def render_value(self, obj):
+        """Gets the value to render in excel file from content value
+        """
+        value = self.get_value(obj)
+        if not value or value == NO_VALUE:
+            return ""
+
+        text = safe_unicode(self._get_text(value))
+
+        if len(text) > 10:
+            return text[0:10]
+
+        if isinstance(text, str) is False:
+            if isinstance(text, tuple):
+                text = tuple([x + '\n' for x in text])
+            else:
+                counter = 0
+                while counter < len(text):
+                    text[counter] += '\n'
+                    counter += 1
+        return text
+
+
+class TextLineFieldRenderer(BaseFieldRenderer):
+    """ TextLine field adapter for excel export"""
+
+    adapts(ITextLine, Interface, Interface)
+
+    def _get_text(self, value):
+        return value
+
+    def render_value(self, obj):
+        """Gets the value to render in excel file from content value
+        """
+        value = self.get_value(obj)
+        if not value or value == NO_VALUE:
+            return ""
+
+        text = safe_unicode(self._get_text(value))
+        if len(text) > 50:
+            return text[:47] + u"..."
+
+        return text
+
+
+class YearFieldRenderer(BaseFieldRenderer):
+    """ Year field adapter for excel export"""
+
+    adapts(Year, Interface, Interface)
+
+    def _get_text(self, value):
+        return value
+
+    def render_value(self, obj):
+        """Gets the value to render in excel file from content value
+        """
+        value = self.get_value(obj)
+
+        if not value or value == NO_VALUE:
+            return ""
+        text = safe_unicode(self._get_text(value))
+
+        return str(text)
 
 
 class DisplaySubMenuItem(DSMI):

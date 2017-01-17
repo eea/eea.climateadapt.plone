@@ -67,6 +67,10 @@ class RedirectToSearchView (BrowserView):
         return self.request.response.redirect(url)
 
 
+class ExcelCsvExportView (BrowserView):
+    """ View with links to the excel export for portal types """
+
+
 class DetectBrokenLinksView (BrowserView):
     """ View for detecting broken links"""
 

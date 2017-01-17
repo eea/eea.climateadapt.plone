@@ -1,0 +1,64 @@
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xml:lang="en"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="eea.climateadapt">
+
+  <body>
+    <metal:main fill-slot="main">
+      <tal:main-macro metal:define-macro="content-core">
+        <p style="font-weight: 200; font-size: 2em;">Export the following portal types in excel:</p>
+        <li>
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/publications/@@collective.excelexport'" target="_blank">
+                Publications and reports excel export
+            </a>
+        </li>
+        <li>
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/guidances/@@collective.excelexport'" target="_blank">
+                Guidances excel export
+            </a>
+        </li>
+        <li>
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/portals/@@collective.excelexport'" target="_blank">
+                Information portals excel export
+            </a>
+        </li>
+        <li>
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/tools/@@collective.excelexport'" target="_blank">
+                Tools excel export
+            </a>
+        </li>
+        <li>
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/organisations/@@collective.excelexport'" target="_blank">
+                Organisations excel export
+            </a>
+        </li>
+        <li>
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/indicators/@@collective.excelexport'" target="_blank">
+                Indicators and reports excel export
+            </a>
+        </li>
+        <li>
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/adaptation-options/@@collective.excelexport'" target="_blank">
+                Adaptation Options excel export
+            </a>
+        </li>
+        <li>
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/projects/@@collective.excelexport'" target="_blank">
+                Research and knowledge projects excel export
+            </a>
+        </li>
+        <li>
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/case-studies/@@collective.excelexport'" target="_blank">
+                Case studies excel export
+            </a>
+        </li>
+
+      </tal:main-macro>
+    </metal:main>
+  </body>
+</html>

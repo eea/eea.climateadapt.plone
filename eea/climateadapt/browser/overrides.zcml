@@ -29,4 +29,16 @@
        <implements interface="plone.app.blocks.interfaces.IBlocksTransformEnabled" />
     </class>
 
+    <adapter factory=".overrides.YearFieldRenderer"
+      provides="collective.excelexport.interfaces.IExportable" />
+
+    <adapter factory=".overrides.TextLineFieldRenderer"
+      provides="collective.excelexport.interfaces.IExportable" />
+
+    <adapter factory=".overrides.WebsitesFieldRenderer"
+      provides="collective.excelexport.interfaces.IExportable" />
+
+    <adapter factory=".overrides.GeolocationFieldRenderer"
+      provides="collective.excelexport.interfaces.IExportable" />
+
 </configure>

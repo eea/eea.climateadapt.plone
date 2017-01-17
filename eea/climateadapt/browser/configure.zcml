@@ -314,6 +314,14 @@
         template="pt/detect_links.pt"
         />
 
+    <browser:page
+        class=".misc.ExcelCsvExportView"
+        for="*"
+        name="export-excel"
+        permission="zope2.View"
+        template="pt/export_portaltypes.pt"
+        />
+
 
     <!-- Tile helpers -->
 
