@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th>Published</th>
     </tr>
   </thead>
   <tbody tal:define="
@@ -14,6 +15,7 @@
       <td tal:define="title brain/Title" tal:on-error="nothing">
         » <a href="" tal:content="title" tal:attributes="href brain/getURL" tal:on-error="nothing">» Link</a>
       </td>
+      <td class="table_date_css" tal:content="python: view.get_publication_date(brain)" tal:on-error="nothing">Publish Date</td>
     </tr>
   </tbody>
 </table>

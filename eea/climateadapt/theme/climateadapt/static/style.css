@@ -1695,6 +1695,10 @@ tbody .table_year_css {
     width: 10%;
 }
 
+tbody .table_date_css {
+    width: 15%;
+}
+
 .section-data-and-downloads .searchButton{
 border: 1px solid #a3af29;
     background: linear-gradient(to bottom,#c7d544 0,#aebe20 100%);

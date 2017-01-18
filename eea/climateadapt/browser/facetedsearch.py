@@ -6,6 +6,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collections import defaultdict
 from eea.facetednavigation.browser.app.view import FacetedContainerView
 from plone import api
+from plone.api import portal
 from zope.component import getMultiAdapter, queryMultiAdapter
 from zope.interface import alsoProvides
 from zope.schema.interfaces import IVocabularyFactory
@@ -146,3 +147,9 @@ class ListingGeneric(BrowserView):
             return False
         else:
             return True
+
+    def get_publication_date(self, brain):
+        obj = brain.getObject()
+        date = obj.effective_date
+
+        return portal.get_localized_time(datetime=date).encode('utf-8')

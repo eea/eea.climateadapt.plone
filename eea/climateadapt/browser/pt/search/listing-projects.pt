@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th>Published</th>
     </tr>
   </thead>
   <tbody tal:define="
@@ -22,6 +23,7 @@
         - <span tal:replace="python: title" tal:on-error="nothing">
         </span> ...
       </td>
+      <td class="table_date_css" tal:content="python: view.get_publication_date(brain)" tal:on-error="nothing">Publish Date</td>
     </tr>
   </tbody>
 </table>
