@@ -41,4 +41,7 @@
     <adapter factory=".overrides.GeolocationFieldRenderer"
       provides="collective.excelexport.interfaces.IExportable" />
 
+    <adapter factory=".overrides.ListFieldRenderer"
+      provides="collective.excelexport.interfaces.IExportable" />
+
 </configure>

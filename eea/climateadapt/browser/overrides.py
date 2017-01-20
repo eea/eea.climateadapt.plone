@@ -26,7 +26,40 @@ from zope.component import adapts
 from zope.component import queryUtility
 from zope.interface import Interface
 from zope.interface import implementer
-from zope.schema.interfaces import ITextLine, ITuple
+from zope.schema.interfaces import ITextLine, ITuple, IList
+
+
+class ListFieldRenderer(BaseFieldRenderer):
+    """ List field adapter for excel export"""
+    adapts(IList, Interface, Interface)
+
+    def _get_text(self, value):
+        return value
+
+    def render_value(self, obj):
+        """Gets the value to render in excel file from content value
+        """
+
+        value = self.get_value(obj)
+        if not value or value == NO_VALUE:
+            return ""
+
+        text = safe_unicode(self._get_text(value))
+        if isinstance(text, str) is False:
+            if len(text) > 40:
+                text = text[0:40]
+            if isinstance(text, tuple):
+                text = tuple([x + ';\n' for x in text])
+            else:
+                new_text = []
+                for item in text:
+                    if isinstance(item, (str, unicode)):
+                        new_text.append(item + ';\n')
+                    else:
+                        if item.__module__ == 'z3c.relationfield.relation' and item.to_object is not None:
+                            new_text.append(item.to_object.Title() + ';\n')
+                text = new_text
+        return text
 
 
 class GeolocationFieldRenderer(BaseFieldRenderer):
@@ -68,16 +101,15 @@ class WebsitesFieldRenderer(BaseFieldRenderer):
 
         text = safe_unicode(self._get_text(value))
 
-        if len(text) > 10:
-            return text[0:10]
-
         if isinstance(text, str) is False:
+            if len(text) > 10:
+                text = text[0:10]
             if isinstance(text, tuple):
-                text = tuple([x + '\n' for x in text])
+                text = tuple([x + ';\n' for x in text])
             else:
                 counter = 0
                 while counter < len(text):
-                    text[counter] += '\n'
+                    text[counter] += ';\n'
                     counter += 1
         return text
 

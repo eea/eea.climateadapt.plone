@@ -4,6 +4,8 @@ Changelog
 1.4.dev0 - (unreleased)
 -----------------------
 
+* Bugfix: Added list field adapter and separator
+  [iulianpetchesi #78846]
 * Bugfix: Added possibility to filter the search by published date
   [iulianpetchesi #77549]
 * Bugfix: Added adapters and a view for the excel export of cca items
