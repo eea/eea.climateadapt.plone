@@ -26,7 +26,34 @@ from zope.component import adapts
 from zope.component import queryUtility
 from zope.interface import Interface
 from zope.interface import implementer
-from zope.schema.interfaces import ITextLine, ITuple, IList
+from zope.schema.interfaces import ITextLine, ITuple, IList, IText
+from z3c.relationfield.interfaces import IRelationList
+
+
+class RelationListFieldRenderer(BaseFieldRenderer):
+    """ Renderer for related items """
+    adapts(IRelationList, Interface, Interface)
+
+    def _get_text(self, value):
+        return value
+
+    def render_value(self, obj):
+        """Gets the value to render in excel file from content value
+        """
+
+        value = self.get_value(obj)
+        if not value or value == NO_VALUE:
+            return ""
+
+        text = safe_unicode(self._get_text(value))
+
+        new_text = []
+        for item in text:
+            if item.to_object is not None:
+                new_text.append(item.to_object.Title() + ';\n')
+            else:
+                pass
+        return new_text
 
 
 class ListFieldRenderer(BaseFieldRenderer):
@@ -55,16 +82,12 @@ class ListFieldRenderer(BaseFieldRenderer):
                 for item in text:
                     if isinstance(item, (str, unicode)):
                         new_text.append(item + ';\n')
-                    else:
-                        if item.__module__ == 'z3c.relationfield.relation' and item.to_object is not None:
-                            new_text.append(item.to_object.Title() + ';\n')
                 text = new_text
         return text
 
 
 class GeolocationFieldRenderer(BaseFieldRenderer):
     """ Geolocation field adapter for excel export"""
-
     adapts(IGeolocationField, Interface, Interface)
 
     def _get_text(self, value):
@@ -84,9 +107,8 @@ class GeolocationFieldRenderer(BaseFieldRenderer):
         return str(location)
 
 
-class WebsitesFieldRenderer(BaseFieldRenderer):
-    """ Websites field adapter for excel export"""
-
+class TupleFieldRenderer(BaseFieldRenderer):
+    """ Tuple field adapter for excel export"""
     adapts(ITuple, Interface, Interface)
 
     def _get_text(self, value):
@@ -116,7 +138,6 @@ class WebsitesFieldRenderer(BaseFieldRenderer):
 
 class TextLineFieldRenderer(BaseFieldRenderer):
     """ TextLine field adapter for excel export"""
-
     adapts(ITextLine, Interface, Interface)
 
     def _get_text(self, value):
@@ -130,8 +151,25 @@ class TextLineFieldRenderer(BaseFieldRenderer):
             return ""
 
         text = safe_unicode(self._get_text(value))
-        if len(text) > 50:
-            return text[:47] + u"..."
+
+        return text
+
+
+class TextFieldRenderer(BaseFieldRenderer):
+    """ Text field adapter for excel export"""
+    adapts(IText, Interface, Interface)
+
+    def _get_text(self, value):
+        return value
+
+    def render_value(self, obj):
+        """Gets the value to render in excel file from content value
+        """
+        value = self.get_value(obj)
+        if not value or value == NO_VALUE:
+            return ""
+
+        text = safe_unicode(self._get_text(value))
 
         return text
 

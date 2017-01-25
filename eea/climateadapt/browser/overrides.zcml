@@ -35,13 +35,19 @@
     <adapter factory=".overrides.TextLineFieldRenderer"
       provides="collective.excelexport.interfaces.IExportable" />
 
-    <adapter factory=".overrides.WebsitesFieldRenderer"
+    <adapter factory=".overrides.TupleFieldRenderer"
       provides="collective.excelexport.interfaces.IExportable" />
 
     <adapter factory=".overrides.GeolocationFieldRenderer"
       provides="collective.excelexport.interfaces.IExportable" />
 
     <adapter factory=".overrides.ListFieldRenderer"
+      provides="collective.excelexport.interfaces.IExportable" />
+
+    <adapter factory=".overrides.TextFieldRenderer"
+      provides="collective.excelexport.interfaces.IExportable" />
+
+    <adapter factory=".overrides.RelationListFieldRenderer"
       provides="collective.excelexport.interfaces.IExportable" />
 
 </configure>

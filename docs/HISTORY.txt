@@ -3,7 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
-
+* Bugfix: Added relationlist and text field adapter
+  [iulianpetchesi #78846]
 * Bugfix: Disabled tinymce relative links
   [iulianpetchesi #79364]
 * Bugfix: Added list field adapter and separator
