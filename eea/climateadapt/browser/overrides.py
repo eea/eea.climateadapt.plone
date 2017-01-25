@@ -386,6 +386,11 @@ class OverrideRichText (RichTextWidget):
         args['pattern_options']['tiny']['plugins'].append('accordion')
         args['pattern_options']['tiny']['plugins'].remove('contextmenu')
 
+
+        # Disable relative urls
+        args['pattern_options']['tiny']['relative_urls'] = False
+        args['pattern_options']['tiny']['convert_urls'] = False
+
         return args
 
     def render(self):
