@@ -1,5 +1,5 @@
 jQuery(document).ready(function(){
-    $("#tags-admin button").click(function(){
+    $("#tags-admin button.more-links").click(function(){
         $('span', this).toggleClass('glyphicon glyphicon-zoom-in');
         $('span', this).toggleClass('glyphicon glyphicon-zoom-out');
         var $placeholder = $(this).parent().find('.links');
@@ -24,6 +24,27 @@ jQuery(document).ready(function(){
         }, 'json');
     });
 
-    $("#tags-admin").DataTable();
+    $(".rename-tag-button").click(function(){
+        var tag = $(this).parent().find('input').val();
+        var dial = $(this).siblings('.rename-tag-dialog').dialog({
+            height: 200,
+            width: 400,
+        });
+        dial.find('.input-tag').val(tag)
 
+        $('.ui-dialog').keydown(function(e){
+            if (e.keyCode === 27) {
+                dial.dialog('destroy');
+                dial.css('display', 'none');
+            }
+        });
+
+        $('.ui-dialog').css('z-index', '1111');
+        $('.ui-dialog-titlebar-close').on('click', function() {
+            dial.dialog('destroy');
+            dial.css('display', 'none');
+        });
+    });
+
+    $("#tags-admin").DataTable();
 });

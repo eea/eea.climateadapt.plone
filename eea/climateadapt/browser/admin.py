@@ -7,30 +7,10 @@ from z3c.form import button
 from zope import schema
 from zope.interface import Invalid, invariant
 import json
+import logging
 
 
-class KeywordsAdminView (BrowserView):
-    """ Custom view for the administration of keywords
-    """
-
-    @view.memoize
-    def keywords(self):
-        return self.context.portal_catalog.uniqueValuesFor('keywords')
-
-    def get_keyword_length(self, key):
-        catalog = self.context.portal_catalog._catalog
-        return len(catalog.indexes['keywords']._index[key])
-
-
-class KeywordObjects (BrowserView):
-    """ Gets the links for the keyword that we get in the request
-    """
-
-    def __call__(self):
-        key = self.request.form['keyword'].decode('utf-8')
-        key_obj = [b.getURL() + '/edit' for b in
-                   self.context.portal_catalog.searchResults(keywords=key)]
-        return json.dumps(key_obj)
+logger = logging.getLogger('eea.climateadapt')
 
 
 class InvalidMenuConfiguration(Invalid):
@@ -158,12 +138,59 @@ class SpecialTagsView(BrowserView):
     """
 
     def __call__(self):
-        self.sp_tags = []
+        action = self.request.form.get('action', None)
+        tag = self.request.form.get('tag', None)
 
-        for tag in self.context.portal_catalog.uniqueValuesFor('special_tags'):
-            self.sp_tags.append(tag)
-
+        if action:
+            getattr(self, 'handle_' + action)(tag)
         return self.index()
+
+    def special_tags(self):
+        return self.context.portal_catalog.uniqueValuesFor('special_tags')
+
+    def get_tag_length(self, tag):
+        catalog = self.context.portal_catalog._catalog
+        return len(catalog.indexes['special_tags']._index[tag])
+
+    def handle_delete(self, tag):
+        catalog = self.context.portal_catalog
+
+        brains = catalog.searchResults(special_tags=tag)
+        for b in brains:
+            obj = b.getObject()
+            if obj.special_tags:
+                if isinstance(obj.special_tags, list):
+                    obj.special_tags = [
+                        key for key in obj.special_tags if key != tag]
+                elif isinstance(obj.special_tags, tuple):
+                    obj.special_tags = tuple(
+                        key for key in obj.special_tags if key != tag)
+                obj.reindexObject()
+                obj._p_changed = True
+        logger.info("Deleted tag: %s", tag)
+
+    def handle_add(self, tag):
+        pass
+
+    def handle_rename(self, tag):
+        catalog = self.context.portal_catalog
+        newtag = self.request.form.get('newtag', None)
+
+        brains = catalog.searchResults(special_tags=tag)
+        for b in brains:
+            obj = b.getObject()
+            if obj.special_tags:
+                if isinstance(obj.special_tags, list):
+                    obj.special_tags = [
+                        key for key in obj.special_tags if key != tag]
+                    obj.special_tags.append(newtag)
+                elif isinstance(obj.special_tags, tuple):
+                    obj.special_tags = tuple(
+                        key for key in obj.special_tags if key != tag)
+                    obj.special_tags += (newtag, )
+                obj._p_changed = True
+                obj.reindexObject()
+        logger.info("Finished renaming: %s TO %s", tag, newtag)
 
 
 class SpecialTagsObjects (BrowserView):
@@ -175,3 +202,75 @@ class SpecialTagsObjects (BrowserView):
         tag_obj = [b.getURL() + '/edit' for b in
                    self.context.portal_catalog.searchResults(special_tags=tag)]
         return json.dumps(tag_obj)
+
+
+class KeywordsAdminView (BrowserView):
+    """ Custom view for the administration of keywords
+    """
+
+    def __call__(self):
+        action = self.request.form.get('action', None)
+        keyword = self.request.form.get('keyword', None)
+
+        if action:
+            getattr(self, 'handle_' + action)(keyword)
+
+        return self.index()
+
+    def keywords(self):
+        return self.context.portal_catalog.uniqueValuesFor('keywords')
+
+    def get_keyword_length(self, key):
+        catalog = self.context.portal_catalog._catalog
+        return len(catalog.indexes['keywords']._index[key])
+
+    def handle_delete(self, keyword):
+        catalog = self.context.portal_catalog
+
+        brains = catalog.searchResults(keywords=keyword)
+        for b in brains:
+            obj = b.getObject()
+            if obj.keywords:
+                if isinstance(obj.keywords, list):
+                    obj.keywords = [
+                        key for key in obj.keywords if key != keyword]
+                elif isinstance(obj.keywords, tuple):
+                    obj.keywords = tuple(
+                        key for key in obj.keywords if key != keyword)
+                obj.reindexObject()
+                obj._p_changed = True
+        logger.info("Deleted keyword: %s", keyword)
+
+    def handle_add(self, keyword):
+        pass
+
+    def handle_rename(self, keyword):
+        catalog = self.context.portal_catalog
+        newkeyword = self.request.form.get('newkeyword', None)
+
+        brains = catalog.searchResults(keywords=keyword)
+        for b in brains:
+            obj = b.getObject()
+            if obj.keywords:
+                if isinstance(obj.keywords, list):
+                    obj.keywords = [
+                        key for key in obj.keywords if key != keyword]
+                    obj.keywords.append(newkeyword)
+                elif isinstance(obj.keywords, tuple):
+                    obj.keywords = tuple(
+                        key for key in obj.keywords if key != keyword)
+                    obj.keywords += (newkeyword, )
+                obj._p_changed = True
+                obj.reindexObject()
+        logger.info("Finished renaming: %s TO %s", keyword, newkeyword)
+
+
+class KeywordObjects (BrowserView):
+    """ Gets the links for the keyword that we get in the request
+    """
+
+    def __call__(self):
+        key = self.request.form['keyword'].decode('utf-8')
+        key_obj = [b.getURL() + '/edit' for b in
+                   self.context.portal_catalog.searchResults(keywords=key)]
+        return json.dumps(key_obj)

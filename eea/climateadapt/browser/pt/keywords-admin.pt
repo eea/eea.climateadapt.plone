@@ -28,11 +28,28 @@
               <td>
                 <input type="hidden" value="" tal:attributes="value key" />
                 <strong tal:content="key" class="admin-keywords"></strong>
-                <button><span class="glyphicon glyphicon-zoom-in"></span></button>
+                <button class="more-links"><span class="glyphicon glyphicon-zoom-in"></span></button>
                 <div class="links"></div>
+
+                <form id="delete-keyword-form" style="display: inline-block;">
+                    <input type="text" name="action" value="delete" style="display:none;">
+                    <input type="text" name="keyword" style="display:none;" class="input-keyword" tal:attributes="value key">
+                    <input type="submit" value="Delete keyword">
+                </form>
+
+                <button class="rename-keyword-button">Rename keyword</button>
+
+                <div class="rename-keyword-dialog" style="display:none;" title="Rename Keyword">
+                  <form>
+                    <p style="font-size: 1.3em;">Enter the new name you want to give to the keyword:</p>
+                    <input type="text" value="" size="45" name="newkeyword">
+                    <input type="text" name="action" value="rename" style="display:none;">
+                    <input type="text" name="keyword" value="" style="display:none;" class="input-keyword">
+                    <input type="submit" value="Submit">
+                  </form>
+                </div>
               </td>
-              <td tal:content="python: view.get_keyword_length(key)" style="text-align:center;">
-              </td>
+              <td tal:content="python: view.get_keyword_length(key)" style="text-align:center;"></td>
             </tr>
           </tbody>
         </table>

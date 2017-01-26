@@ -12,28 +12,47 @@
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core">
 
-          <script src="/++theme++climateadapt/static/cca/js/specialtagsadmin.js"></script>
+        <script src="/++theme++climateadapt/static/cca/js/specialtagsadmin.js"></script>
 
-          <h1>Search tags administration</h1>
+        <h1>Special tags administration</h1>
 
-          <table class="table table-striped" id="tags-admin" tal:define="keys view/sp_tags">
-            <thead>
-              <tr>
-                <th>Tag</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr tal:repeat="key keys">
-                <td>
-                  <input type="hidden" value="" tal:attributes="value key" />
-                  <strong tal:content="key"></strong>
-                  <button><span class="glyphicon glyphicon-zoom-in"></span></button>
-                  <div class="links"></div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <table class="table table-striped" id="tags-admin" tal:define="tags view/special_tags">
+          <thead>
+            <tr>
+              <th>Tag</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr tal:repeat="tag tags">
+              <td>
+                <input type="hidden" value="" tal:attributes="value tag" />
+                <strong tal:content="tag" class="admin-tags"></strong>
+                <button class="more-links"><span class="glyphicon glyphicon-zoom-in"></span></button>
+                <div class="links"></div>
 
+                <form id="delete-tag-form" style="display: inline-block;">
+                    <input type="text" name="action" value="delete" style="display:none;">
+                    <input type="text" name="tag" style="display:none;" class="input-tag" tal:attributes="value tag">
+                    <input type="submit" value="Delete tag">
+                </form>
+
+                <button class="rename-tag-button">Rename tag</button>
+
+                <div class="rename-tag-dialog" style="display:none;" title="Rename tag">
+                  <form>
+                    <p style="font-size: 1.3em;">Enter the new name you want to give to the tag:</p>
+                    <input type="text" value="" size="45" name="newtag">
+                    <input type="text" name="action" value="rename" style="display:none;">
+                    <input type="text" name="tag" value="" style="display:none;" class="input-tag">
+                    <input type="submit" value="Submit">
+                  </form>
+                </div>
+              </td>
+              <td tal:content="python: view.get_tag_length(tag)" style="text-align:center;"></td>
+            </tr>
+          </tbody>
+        </table>
       </tal:main-macro>
     </metal:main>
   </body>
