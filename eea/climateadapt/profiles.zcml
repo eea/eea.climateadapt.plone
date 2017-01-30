@@ -566,4 +566,22 @@
             />
     </genericsetup:upgradeSteps>
 
+    <!-- v32 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_32"
+        title="Upgrade profile for eea.climateadapt v32"
+        description=""
+        directory="profiles/upgrades/to_32"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="32"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v32"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_32"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>
