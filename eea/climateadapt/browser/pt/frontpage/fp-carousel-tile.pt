@@ -158,28 +158,26 @@
         </div>
       </li>
 
-      <li class="" style="display: none;">
+      <li class="" style="display: none;" tal:define="item view/last_casestudy">
         <div class="case-studies-homepage-slider-image">
-          <img src="/++resource++eea.climateadapt/frontpage/madrid.jpg" alt="Case Study" />
+          <img src="" alt="Case Study" tal:attributes="src python: item.absolute_url() + '/@@images/primary_photo/preview'"/>
         </div>
         <div class="case-studies-homepage-slider-description">
-          <h2>White roof, innovative solar shadings and bioclimatic design in Madrid</h2>
-          <p>
-          </p>
-          <p>Climate change impacts which are expected to be very relevant for the Madrid region include extreme heat in summer, water scarcity and sometimes, heavy rainfall.  </p>
-          <a class="homepage-read-more" href="/viewmeasure?ace_measure_id=6202"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
+          <h2 tal:content="item/title"> Title </h2>
+          <p></p>
+          <p tal:content="python: view.html2text(item.long_description.output)[:220] + '...'"> Description </p>
+          <a class="homepage-read-more" href="" tal:attributes="href item/absolute_url" target="_blank"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
         </div>
       </li>
 
-      <li class="" style="display: none;">
-
+      <li class="" style="display: none;" tal:define="item view/last_dbitem">
         <div class="case-studies-homepage-slider-image">
           <img src="/++resource++eea.climateadapt/frontpage/aceitem_picture.jpg" alt="Ace Item" />
         </div>
         <div class="case-studies-homepage-slider-description">
-          <h2>Overview of CAP Reform 2014-2020 </h2>
-          <p>The new agreement on CAP reform reached in 2013 is historic since for the first time the entire CAP was reviewed all at once and the European Parliament acted as colegislator with the Council. </p>
-          <a class="homepage-read-more" href="/viewaceitem?aceitem_id=17104">
+          <h2 tal:content="item/title"> Title</h2>
+          <p tal:content="python: view.html2text(item.long_description.output)[:220] + '...'"> Description </p>
+          <a class="homepage-read-more" href="" tal:attributes="href item/absolute_url" target="_blank">
             <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
         </div>
       </li>
@@ -187,12 +185,11 @@
       <li class="" style="display: none;">
         <div class="case-studies-homepage-slider-image">
           <img src="/++resource++eea.climateadapt/frontpage/events.jpg" alt="Events" />
-
         </div>
-        <div class="case-studies-homepage-slider-description">
-          <h2>First Baltic Earth Conference: Multiple drivers for Earth system changes in the Baltic Sea region </h2>
-          <p>The scope of this first Baltic Earth Conference is to describe the different factors for change, their impacts on the Earth system of the Baltic Sea region, and to demonstrate the capacity to model any of these factors in a single or a coupled approach. </p>
-          <a class="homepage-read-more" href="http://www.baltic-earth.eu/nida2016/index.html"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
+        <div class="case-studies-homepage-slider-description" tal:define="item view/news_items">
+          <h2 tal:content="item/title"> Title </h2>
+          <p tal:content="item/description"> Description </p>
+          <a class="homepage-read-more" href="" tal:attributes="href item/event_url" target="_blank"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
         </div>
       </li>
 

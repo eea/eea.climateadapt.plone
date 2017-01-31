@@ -8,6 +8,7 @@ from Products.Five.browser import BrowserView
 from eea.climateadapt.vocabulary import ace_countries_selection
 from zope.component.hooks import getSite
 from plone.api import portal
+from plone import api
 
 
 class AceContentSearch(BrowserView):
@@ -33,13 +34,54 @@ class FrontPageCarousel(BrowserView):
     """ A view to render the frontpage carousel
     """
 
-    def items(self):
+    def news_items(self):
+        """ Gets the most recent updated news/events item"""
         site = getSite()
-        parent = site['site-news']
-        return parent.getFolderContents({'portal_type': 'News Item',
-                                         'review_state': 'published',
-                                         'sort_by': 'effective'},
-                                        full_objects=True)[:5]
+        catalog = site.portal_catalog
+        result = catalog.searchResults({'portal_type': ['News Item', 'Event'],
+                                        'review_state': 'published',
+                                        'sort_by': 'effective'},
+                                       full_objects=True)[0]
+        return result.getObject()
+
+    def last_casestudy(self):
+        """ Gets the most recent updated casestudy"""
+        site = getSite()
+        catalog = site.portal_catalog
+        result = catalog.searchResults({
+            'portal_type': 'eea.climateadapt.casestudy',
+            'review_state': 'published',
+            'sort_by': 'effective'}, full_objects=True)[0]
+
+        return result.getObject()
+
+    def html2text(self, html):
+        if not isinstance(html, basestring):
+            return u""
+        portal_transforms = api.portal.get_tool(name='portal_transforms')
+        data = portal_transforms.convertTo('text/plain',
+                                           html, mimetype='text/html')
+        text = data.getData()
+        return text
+
+    def last_dbitem(self):
+        """ Gets the most recent updated aceitem"""
+        site = getSite()
+        catalog = site.portal_catalog
+        result = catalog.searchResults({
+            'portal_type': [
+                'eea.climateadapt.publicationreport',
+                'eea.climateadapt.informationportal',
+                'eea.climateadapt.guidancedocument',
+                'eea.climateadapt.tool',
+                'eea.climateadapt.mapgraphdataset',
+                'eea.climateadapt.indicator',
+                'eea.climateadapt.organisation'
+            ],
+            'review_state': 'published',
+            'sort_by': 'effective'}, full_objects=True)[0]
+
+        return result.getObject()
 
 
 class ListingTile(BrowserView):
