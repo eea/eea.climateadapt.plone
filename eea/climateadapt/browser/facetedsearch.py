@@ -92,11 +92,11 @@ class ListingView(BrowserView):
 
         return results
 
-    def key(method, self, name, brains):
-        print "caching ", name
-        return method.__name__
+    # def key(method, self, name, brains):
+    #     print "caching ", name
+    #     return method.__name__
 
-    @cache(key)
+    # @cache(key, lifetime=40)
     def render(self, name, brains):
         print "rendering ", name
 
