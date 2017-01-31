@@ -12,6 +12,7 @@ from zope.interface import alsoProvides
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+from eea.cache import cache
 
 
 # TODO: should use the FACETED_SECTIONS LIST
@@ -83,7 +84,7 @@ class ListingView(BrowserView):
         return dict(SEARCH_TYPES)
 
     def results(self, batch):
-        results = defaultdict(lambda:[])
+        results = defaultdict(lambda: [])
         for brain in batch:
             if brain.search_type:
                 if brain.search_type in self.labels:
@@ -91,14 +92,19 @@ class ListingView(BrowserView):
 
         return results
 
+    def key(method, self, name, brains):
+        print "caching ", name
+        return method.__name__
+
+    @cache(key)
     def render(self, name, brains):
         print "rendering ", name
 
         view = queryMultiAdapter((self.context, self.request),
-                               name='faceted_listing_' + name)
+                                 name='faceted_listing_' + name)
         if view is None:
             view = getMultiAdapter((self.context, self.request),
-                                name='faceted_listing_GENERIC')
+                                   name='faceted_listing_GENERIC')
 
         view.brains = brains
         return view()

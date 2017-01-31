@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Configured eea.cache for search page using memcache
+  [iulianpetchesi #81160]
 * Bugfix: Added tags-admin page to the top-right menu
   [iulianpetchesi #74011]
 * Bugfix: Added option to delete/rename keywords and special tags from their pages
