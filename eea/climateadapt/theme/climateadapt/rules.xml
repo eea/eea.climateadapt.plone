@@ -33,7 +33,7 @@
         If it doesn't then you copy the element as it is and you replace the 'href' attribute
         value with the value of 'data-val' attribute.
     -->
-    <xsl:template match="a">
+<!--     <xsl:template match="a">
       <xsl:choose>
         <xsl:when test="@data-val">
             <xsl:if test="contains(string(@href), 'resolveuid')">
@@ -57,7 +57,7 @@
           </xsl:copy>
         </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
+    </xsl:template> -->
 
     <!--Viewlets-->
     <replace css:content="#portal-personaltools" css:theme="#user" />

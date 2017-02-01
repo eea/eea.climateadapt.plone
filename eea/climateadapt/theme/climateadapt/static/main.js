@@ -216,6 +216,11 @@ function fix_map(){
 			$('#year-end-input').val(9999);
 		});
 
+        // Hide the download pdf on the search page
+        if (window.location.pathname === "/data-and-downloads") {
+            $("#document-action-download_pdf").parent().hide();
+        }
+
 		// Make the first photo of gallery visible
 		$('#links').children('.gallery-hide').eq(0).css('display', 'block');
 

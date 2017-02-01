@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Hide the download pdf from the search page + update rulex.xml
+  [iulianpetchesi #81176]
 * Bugfix: Configured front page carousel to use last updated items
   [iulianpetchesi #81161]
 * Bugfix: Configured eea.cache for search page using memcache
