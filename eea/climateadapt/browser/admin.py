@@ -5,7 +5,7 @@ from eea.climateadapt.browser.site import _extract_menu
 from plone.directives import form
 from z3c.form import button
 from zope import schema
-from zope.interface import Invalid, invariant
+from zope.interface import Invalid, invariant, Interface, implements
 import json
 import logging
 
@@ -133,9 +133,14 @@ class ListTilesWithTitleView (BrowserView):
                 self.walk(x)
 
 
+class SpecialTagsInterface(Interface):
+    """ Marker interface for /tags-admin """
+
+
 class SpecialTagsView(BrowserView):
     """ Custom view for administration of special tags
     """
+    implements(SpecialTagsInterface)
 
     def __call__(self):
         action = self.request.form.get('action', None)

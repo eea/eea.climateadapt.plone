@@ -34,10 +34,12 @@
                 <form id="delete-tag-form" style="display: inline-block;">
                     <input type="text" name="action" value="delete" style="display:none;">
                     <input type="text" name="tag" style="display:none;" class="input-tag" tal:attributes="value tag">
-                    <input type="submit" value="Delete tag">
+                    <input type="submit" value="Delete tag" style="border-radius: 4px;">
                 </form>
 
-                <button class="rename-tag-button">Rename tag</button>
+                <button class="rename-tag-button" style="border-radius: 4px;background-color: white;border-color: white;">
+                  <span class="glyphicon glyphicon-edit"></span>
+                </button>
 
                 <div class="rename-tag-dialog" style="display:none;" title="Rename tag">
                   <form>

@@ -41,7 +41,7 @@
         for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
         name="tags-admin"
         template="pt/special-tags-admin.pt"
-        permission="cmf.ManagePortal"
+        permission="zope2.View"
         />
 
     <browser:page
