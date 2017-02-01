@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Changed the default sorting from 'Title' to 'Published' on search page
+  [iulianpetchesi #77549]
 * Bugfix: Changed tags-admin permission to zope2.View
   [iulianpetchesi #81126]
 * Bugfix: Hide the download pdf from the search page + update rulex.xml

@@ -74,8 +74,18 @@
                   glyph.toggleClass('glyphicon-chevron-down');
                 });
               });
-              $('.listing-table').dataTable({
-                "order": [0, "asc"]
+              $('.listing-table').each(function(index) {
+                if (index === 0) {
+                  $(this).dataTable({
+                    "order": [0, "asc"]
+                  });
+                }
+                else {
+                  var orderindex = $(this).find('thead').find('th').length;
+                  $(this).dataTable({
+                    "order": [orderindex - 1, "desc"]
+                  });
+                }
               });
             });
           </script>
