@@ -8,6 +8,8 @@ from zope import schema
 from zope.interface import Invalid, invariant, Interface, implements
 import json
 import logging
+from zope.component import getMultiAdapter
+
 
 
 logger = logging.getLogger('eea.climateadapt')
@@ -143,8 +145,14 @@ class SpecialTagsView(BrowserView):
     implements(SpecialTagsInterface)
 
     def __call__(self):
+        portal_state = getMultiAdapter(
+            (self.context, self.request), name="plone_portal_state")
+
         action = self.request.form.get('action', None)
         tag = self.request.form.get('tag', None)
+
+        if portal_state.anonymous():
+            return self.index()
 
         if action:
             getattr(self, 'handle_' + action)(tag)
