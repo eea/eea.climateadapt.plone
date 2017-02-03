@@ -13,6 +13,18 @@
         name="eea.climateadapt.faceted_search_types_vocabulary"
         component=".facetedsearch.faceted_search_types_vocabulary" />
 
+    <subscriber
+      for="..interfaces.IClimateAdaptContent
+           Products.CMFCore.interfaces.IActionSucceededEvent"
+      handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
+      />
+
+    <subscriber
+      for="plone.dexterity.interfaces.IDexterityContent
+           Products.CMFCore.interfaces.IActionSucceededEvent"
+      handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
+      />
+
     <faceted:view
         name="faceted-climate-listing-view"
         class=".facetedsearch.ListingView"
