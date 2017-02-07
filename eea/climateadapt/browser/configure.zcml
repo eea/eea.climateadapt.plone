@@ -424,4 +424,10 @@
         class=".casestudy.CaseStudiesXML"
         />
 
+    <subscriber
+      for="plone.app.contenttypes.content.Folder
+           OFS.interfaces.IObjectWillBeRemovedEvent"
+      handler=".misc.preventFolderDeletionEvent"
+    />
+
 </configure>

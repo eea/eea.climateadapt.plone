@@ -15,6 +15,7 @@ import logging
 from Products.CMFPlone.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
 import transaction
+from OFS.ObjectManager import BeforeDeleteException
 
 
 logger = logging.getLogger('eea.climateadapt')
@@ -307,3 +308,11 @@ is sending feedback about the site you administer at %(url)s.
             return mail_host.send(mime_msg.as_string())
         else:
             self.description = u"Please complete the Captcha."
+
+
+def preventFolderDeletionEvent(object, event):
+    for obj in object.listFolderContents():
+        iterate_control = obj.restrictedTraverse('@@iterate_control')
+        if iterate_control.is_checkout():
+            # Cancel deletion
+            raise BeforeDeleteException
