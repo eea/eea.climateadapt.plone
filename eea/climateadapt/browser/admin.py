@@ -11,8 +11,29 @@ import logging
 from zope.component import getMultiAdapter
 
 
-
 logger = logging.getLogger('eea.climateadapt')
+
+
+class CheckCopyPasteLocation(BrowserView):
+    """ Performs a check which doesn't allow user to Copy cca-items
+        if they belong to the group extranet-cca-editors
+    """
+
+    def __call__(self, action, object):
+        return self.check(action, object)
+
+    def check(self, action, object):
+        portal_state = getMultiAdapter(
+            (self.context, self.request), name="plone_portal_state")
+        user = portal_state.member().getUser().getId()
+        groups = getToolByName(self, 'portal_groups').getGroupsByUserId(user)
+
+        for group in groups:
+            if group.id == 'extranet-cca-editors' and 'metadata' in self.context.getPhysicalPath():
+                logger.info("Can't Copy: returning False")
+                return False
+        logger.info("Can Copy: returning True")
+        return True
 
 
 class InvalidMenuConfiguration(Invalid):

@@ -58,4 +58,12 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        class=".admin.CheckCopyPasteLocation"
+        for="*"
+        name="CheckCopyPasteLocation"
+        template="pt/check_copy_paste.pt"
+        permission="zope2.View"
+        />
+
 </configure>

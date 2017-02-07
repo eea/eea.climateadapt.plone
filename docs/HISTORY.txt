@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Disallow copy of cca-items by members of extranet-cca-editors
+  [iulianpetchesi #79311]
 * Bugfix: Added check if user is anonymous
   [iulianpetchesi #81126]
 * Bugfix: Added event subscriber for cache invalidation on workflow change
