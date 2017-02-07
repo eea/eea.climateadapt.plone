@@ -28,7 +28,7 @@
               <td>
                 <input type="hidden" value="" tal:attributes="value tag" />
                 <strong tal:content="tag" class="admin-tags"></strong>
-                <button class="more-links"><span class="glyphicon glyphicon-zoom-in"></span></button>
+                <button class="more-links"><img src="++theme++climateadapt/static/cca/img/vergrootglas.png"></button>
                 <div class="links"></div>
 
                 <form id="delete-tag-form" style="display: inline-block;">
@@ -37,8 +37,8 @@
                     <input type="submit" value="Delete tag" style="border-radius: 4px;">
                 </form>
 
-                <button class="rename-tag-button" style="border-radius: 4px;background-color: white;border-color: white;">
-                  <span class="glyphicon glyphicon-edit"></span>
+                <button class="rename-tag-button" style="border-radius: 4px;">
+                  <span>Rename Tag</span>
                 </button>
 
                 <div class="rename-tag-dialog" style="display:none;" title="Rename tag">
