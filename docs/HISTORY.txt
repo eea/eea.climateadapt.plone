@@ -4,6 +4,8 @@ Changelog
 1.4.dev0 - (unreleased)
 -----------------------
 * Bugfix: Prevent folder deletion if it contains checked out items
+  [iulianpetchesi #82033]
+* Bugfix: Prevent folder deletion if it contains checked out items
   [iulianpetchesi #81673]
 * Bugfix: Added buttons back till glyphicons work properly
   [iulianpetchesi #81126]

@@ -94,6 +94,9 @@ class ListingView(BrowserView):
 
     def key(method, self, name, brains):
         print "caching ", name
+        if self.request.form.get('SearchableText[]', None):
+            return name + self.request.form.get('SearchableText[]')
+
         return name
 
     @cache(key, dependencies=['eea.facetednavigation'], lifetime=1800)
