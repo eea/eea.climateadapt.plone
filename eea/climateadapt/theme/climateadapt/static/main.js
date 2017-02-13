@@ -280,6 +280,28 @@ function fix_map(){
             $('li#document-action-download_pdf a').after(x);
         }
 
+        // Show subnational regions on checkbox click
+        $("input[type='checkbox']").on('click', function(){
+            var faja = $(this).parents('.subnationals-checkbox-ul');
+            if (faja[0]) {
+                if (this.checked) {
+                    $('#subnationals').children().each(function(index, domObject){
+                        var cc = $(this).val();
+                        if(domObject.text.indexOf(cc) !== -1) {
+                            $(domObject).show();
+                        }
+                    }.bind(this));
+                }
+                else {
+                    $('#subnationals').children().each(function(index, domObject){
+                        var cc = $(this).val();
+                        if(domObject.text.indexOf(cc) !== -1) {
+                            $(domObject).hide();
+                        }
+                    }.bind(this));
+                }
+            }
+        });
         // Tinymce use image title as copyright
         // We have 3 types of image classes (inline/left/right)
         $('.image-inline').each(function() {

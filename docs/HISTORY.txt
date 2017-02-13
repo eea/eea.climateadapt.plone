@@ -3,7 +3,10 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
-* Bugfix: Prevent folder deletion if it contains checked out items
+* Bugfix: Hide subnational regions if no countries are selected in the
+  geochar widget
+  [iulianpetchesi #77134]
+* Bugfix: Fixed search results when searching by keywords
   [iulianpetchesi #82033]
 * Bugfix: Prevent folder deletion if it contains checked out items
   [iulianpetchesi #81673]

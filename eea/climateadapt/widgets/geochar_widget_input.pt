@@ -112,7 +112,7 @@
               <ul>
                 <li class="first last submenu" >
                   <p><em>Select one or more European Union countries covered by this item</em></p>
-                  <ul class="five-col" >
+                  <ul class="five-col subnationals-checkbox-ul" >
                     <li class="first"><label for="chk_countries_AL"><input type= "checkbox" class="chk_countries_geochars" name="chk_countries_AL" id="chk_countries_AL" value="AL" />Albania</label></li>
                     <li><label for="chk_countries_AT"><input type="checkbox" class="chk_countries_geochars" name="chk_countries_AT" id="chk_countries_AT" value="AT" />Austria</label></li>
                     <li><label for="chk_countries_BE"> <input type="checkbox" class= "chk_countries_geochars" name="chk_countries_BE" id= "chk_countries_BE" value="BE"/>Belgium</label></li>
@@ -527,6 +527,28 @@
               $(el).attr('checked', 'checked');
             }
           });
+
+          // Checks on page load if there are any inputs checked and
+          // shows the options for the countries that are checked
+          var subs = $('#subnationals').children();
+          $(subs).each(function (i, el) {
+            for (index = 0; index < this.length; index++) {
+              if (el.text.indexOf(this[index]) > -1) {
+                $(el).show();
+                break;
+              }
+              else {
+                $(el).hide();
+              }
+            }
+          }.bind(countries));
+
+          // If no inputs are checked, don't show any options on page load
+          if (countries.length === 0) {
+            $(subs).each(function(e, el){
+              $(el).hide()
+            });
+          }
 
           $(".shared_form_city").val(geo.city);
         }
