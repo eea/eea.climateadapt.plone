@@ -286,12 +286,14 @@ ace_countries_selection = [(x.alpha2, x.name) for x in pycountry.countries
 # Used for faceted search in /data-and-downloads
 faceted_countries = ['AL', 'AT', 'BE', 'BG', 'BA', 'HR', 'CY', 'CZ', 'DK',
                      'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT',
-                     'KZ', 'LV', 'LI', 'LT', 'LU', 'MT', 'ME', 'NL', 'NO',
-                     'PL', 'PT', 'RO', 'RS', 'SK', 'SI', 'ES', 'SE', 'CH',
-                     'TR', 'GB']
+                     'LV', 'LI', 'LT', 'LU', 'MT', 'ME', 'NL', 'NO', 'PL',
+                     'PT', 'RO', 'RS', 'SK', 'SI', 'ES', 'SE', 'CH', 'TR',
+                     'GB']
 faceted_countries = [(x.alpha2, x.name) for x in pycountry.countries
                      if x.alpha2 in faceted_countries]
 faceted_countries.append(('FYROM', 'F. Y. R. O. Macedonia'))
+faceted_countries.append(('XK', 'Kosovo under UN Security Council Resolution 1244/99'))
+
 faceted_countries_dict = dict(faceted_countries)
 
 faceted_countries_vocabulary = generic_vocabulary(faceted_countries)
