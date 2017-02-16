@@ -34,10 +34,15 @@
                 <form id="delete-keyword-form" style="display: inline-block;">
                     <input type="text" name="action" value="delete" style="display:none;">
                     <input type="text" name="keyword" style="display:none;" class="input-keyword" tal:attributes="value key">
-                    <input type="submit" value="Delete keyword">
+                    <input type="submit" value="Delete keyword" class="delete-keyword-button">
                 </form>
 
                 <button class="rename-keyword-button">Rename keyword</button>
+
+                <a href="/add-keyword" class="plone-btn plone-btn-large plone-btn-primary pat-plone-modal"
+                                  data-pat-plone-modal="width: 800">Add keyword</a>
+                <div id="modal1" style="display: none">
+                </div>
 
                 <div class="rename-keyword-dialog" style="display:none;" title="Rename Keyword">
                   <form>

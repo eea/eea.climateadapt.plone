@@ -97,6 +97,58 @@ class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
         return CatalogVocabulary.fromItems(brains, context)
 
 
+@implementer(IVocabularyFactory)
+class CCAItemsVocabulary(CatalogVocabularyFactory):
+
+    def __call__(self, context, query=None):
+        query = query or {}
+
+        if 'criteria' not in query:
+            query['criteria'] = []
+
+        query['criteria'].append(
+            {u'i': u'portal_type',
+             u'o': u'plone.app.querystring.operation.selection.is',
+             u'v':
+             [
+                 u'eea.climateadapt.adaptationoption',
+                 u'eea.climateadapt.aceproject',
+                 u'eea.climateadapt.casestudy',
+                 u'eea.climateadapt.guidancedocument',
+                 u'eea.climateadapt.indicator',
+                 u'eea.climateadapt.informationportal',
+                 u'eea.climateadapt.mapgraphdataset',
+                 u'eea.climateadapt.organisation',
+                 u'eea.climateadapt.publicationreport',
+                 u'eea.climateadapt.researchproject',
+                 u'eea.climateadapt.tool',
+                 u'eea.climateadapt.city_profile',
+                 u'Folder',
+             ]}
+        )
+
+        parsed = {}
+        if query:
+            parsed = queryparser.parseFormquery(context, query['criteria'])
+            if 'sort_on' in query:
+                parsed['sort_on'] = query['sort_on']
+            if 'sort_order' in query:
+                parsed['sort_order'] = str(query['sort_order'])
+        try:
+            catalog = getToolByName(context, 'portal_catalog')
+        except AttributeError:
+            catalog = getToolByName(getSite(), 'portal_catalog')
+
+        if parsed.get('path'):
+            if parsed['path'].get('depth'):
+                parsed['path']['query'].append(u'/cca/metadata')
+                if u'/cca' in parsed['path']['query']:
+                    parsed['path']['query'].remove(u'/cca')
+        brains = catalog(**parsed)
+
+        return CatalogVocabulary.fromItems(brains, context)
+
+
 # changes title and buttons (what to add) in view for AceItem
 # extracted from JAVA code:
 _datatypes = [

@@ -2861,3 +2861,47 @@ table.listing a {
     margin-left: 2em;
     color: gray;
 }
+
+.rename-keyword-button {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    border-radius: 4px;
+    background-color: #2980b9;
+    border-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    color: black;
+}
+
+.delete-keyword-button {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    border-radius: 4px;
+    background-color: #2980b9;
+    border-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    color: black;
+}
+
+.template-keywords-admin #content .plone-btn-primary {
+    color: black;
+}

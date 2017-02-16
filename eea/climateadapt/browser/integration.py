@@ -33,6 +33,7 @@ class VocabularyView(vocab.VocabularyView):
         ('eea.climateadapt.keywords', 'keywords'),
         ('eea.climateadapt.special_tags', 'special_tags'),
         ('eea.climateadapt.adaptation_options', 'adaptationoptions'),
+        ('eea.climateadapt.cca_items', 'ccaitems')
     ]
 
     def get_vocabulary(self):

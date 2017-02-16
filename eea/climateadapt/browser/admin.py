@@ -1,14 +1,22 @@
-from plone.memoize import view
+import json
+import logging
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from eea.climateadapt.browser.site import _extract_menu
+from plone.app.widgets.dx import RelatedItemsWidget
+from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.directives import form
+from plone.memoize import view
 from z3c.form import button
+from z3c.form.interfaces import IFieldWidget
+from z3c.form.util import getSpecification
+from z3c.form.widget import FieldWidget
+from z3c.relationfield.schema import RelationChoice, RelationList
 from zope import schema
-from zope.interface import Invalid, invariant, Interface, implements
-import json
-import logging
+from zope.component import adapter
 from zope.component import getMultiAdapter
+from zope.interface import Invalid, invariant, Interface, implements
+from zope.interface import implementer
 
 
 logger = logging.getLogger('eea.climateadapt')
@@ -238,6 +246,60 @@ class SpecialTagsObjects (BrowserView):
         return json.dumps(tag_obj)
 
 
+class IAddKeywordForm(form.Schema):
+    keyword = schema.TextLine(title=u"Keyword:", required=True)
+    ccaitems = RelationList(
+        title=u"Select where to implement the new keyword",
+        default=[],
+        description=(u"Items related to the keyword:"),
+        value_type=RelationChoice(
+            title=(u"Related"),
+            vocabulary="eea.climateadapt.cca_items"
+        ),
+        required=False,
+    )
+
+
+class AddKeywordForm (form.SchemaForm):
+    schema = IAddKeywordForm
+    ignoreContext = True
+
+    label = u"Add keyword"
+    description = u""" Enter the new keyword you want to add """
+
+    @button.buttonAndHandler(u"Submit")
+    def handleApply(self, action):
+        data, errors = self.extractData()
+        if errors:
+            self.status = self.formErrorsMessage
+            return
+
+        keyword = data.get('keyword', None)
+        objects = data.get('ccaitems', [])
+        if keyword:
+            for obj in objects:
+                if isinstance(obj.keywords, (list, tuple)):
+                    obj.keywords = list(obj.keywords)
+                    obj.keywords.append(keyword)
+                    obj._p_changed = True
+                    obj.reindexObject()
+            self.status = "Keyword added"
+            return self.status
+
+
+@adapter(getSpecification(IAddKeywordForm['ccaitems']), IWidgetsLayer)
+@implementer(IFieldWidget)
+def CcaItemsFieldWidget(field, request):
+    """ The vocabulary view is overridden so that
+        the widget will show all cca items
+        Check browser/overrides.py for more details
+    """
+    widget = FieldWidget(field, RelatedItemsWidget(request))
+    widget.vocabulary = 'eea.climateadapt.cca_items'
+    widget.vocabulary_override = True
+    return widget
+
+
 class KeywordsAdminView (BrowserView):
     """ Custom view for the administration of keywords
     """
@@ -274,9 +336,6 @@ class KeywordsAdminView (BrowserView):
                 obj.reindexObject()
                 obj._p_changed = True
         logger.info("Deleted keyword: %s", keyword)
-
-    def handle_add(self, keyword):
-        pass
 
     def handle_rename(self, keyword):
         catalog = self.context.portal_catalog

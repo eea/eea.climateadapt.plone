@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Included option for adding keywords
+  [iulianpetchesi #74014]
 * Bugfix: Hide subnational regions if no countries are selected in the
   geochar widget
   [iulianpetchesi #77134]

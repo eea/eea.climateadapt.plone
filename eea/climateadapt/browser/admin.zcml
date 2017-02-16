@@ -66,4 +66,11 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        class=".admin.AddKeywordForm"
+        for="*"
+        name="add-keyword"
+        permission="cmf.ManagePortal"
+        />
+
 </configure>
