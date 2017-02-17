@@ -320,3 +320,21 @@ class IterateControl(Control):
             return False
 
         return True
+
+    def cancel_allowed(self):
+        """Check to see if the user can cancel the checkout on the given
+           working copy.
+        """
+        policy = ICheckinCheckoutPolicy(self.context, None)
+        if policy is None:
+            return False
+        wc = policy.getWorkingCopy()
+
+        if wc is None:
+            return False
+
+        has_wc = (wc is not None)
+        is_wc = (self.context.aq_inner.aq_self is wc.aq_inner.aq_self)
+        res = has_wc and is_wc
+        print "Checkout cancel allowed: ", res
+        return res
