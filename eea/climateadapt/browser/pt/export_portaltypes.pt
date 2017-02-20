@@ -57,6 +57,11 @@
                 Case studies excel export
             </a>
         </li>
+        <li>
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/map-graphs/@@collective.excelexport'" target="_blank">
+                Map, graphs, dataset excel export
+            </a>
+        </li>
 
       </tal:main-macro>
     </metal:main>

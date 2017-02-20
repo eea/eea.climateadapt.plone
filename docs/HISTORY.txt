@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added excel export for maps graph datasets
+  [iulianpetchesi #82487]
 * Bugfix: Added a view to fix getBaseline error for checkout copies
   [iulianpetchesi #82422]
 * Bugfix: Added verification to allow checkout cancel only on copies
