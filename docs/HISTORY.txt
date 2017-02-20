@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added a view to fix getBaseline error for checkout copies
+  [iulianpetchesi #82422]
 * Bugfix: Added verification to allow checkout cancel only on copies
   [iulianpetchesi #82422]
 * Bugfix: Removed kazakhsthan and added Kosovo from faceted search countries 

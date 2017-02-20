@@ -322,6 +322,13 @@
         template="pt/export_portaltypes.pt"
         />
 
+    <browser:page
+        class=".misc.FixCheckout"
+        for="*"
+        name="fix-checkout"
+        permission="cmf.ManagePortal"
+        />
+
 
     <!-- Tile helpers -->
 

@@ -17,8 +17,22 @@ from zope.annotation.interfaces import IAnnotations
 import transaction
 from OFS.ObjectManager import BeforeDeleteException
 
+from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
+
 
 logger = logging.getLogger('eea.climateadapt')
+
+
+class FixCheckout(BrowserView):
+    """ A view to fix getBaseline error when the original item was deleted
+    and only the copy remains.
+    """
+    def __call__(self):
+        policy = ICheckinCheckoutPolicy(self.context, None)
+        relation = policy._get_relation_to_baseline()
+        relation.from_object = relation.to_object
+        relation._p_changed = True
+        return "Fixed"
 
 
 class ISimplifiedResourceRegistriesView(Interface):
