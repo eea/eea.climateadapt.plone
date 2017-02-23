@@ -81,9 +81,8 @@
                   });
                 }
                 else {
-                  var orderindex = $(this).find('thead').find('th').length;
                   $(this).dataTable({
-                    "order": [orderindex - 1, "desc"]
+                    "order": [1, "desc"]
                   });
                 }
               });

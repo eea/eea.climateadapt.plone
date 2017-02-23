@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Changed search page listing sort to use year instead of publication
+  date
+  [iulianpetchesi #82578]
 * Bugfix: Added excel export for maps graph datasets
   [iulianpetchesi #82487]
 * Bugfix: Added a view to fix getBaseline error for checkout copies
