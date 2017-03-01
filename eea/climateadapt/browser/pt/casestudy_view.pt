@@ -173,7 +173,7 @@
 
                         <div tal:condition="context/source | nothing">
                             <em id="source" style="text-decoration: underline">Source</em>
-                            <div tal:content="structure context/source/output | nothing"></div>
+                            <div tal:content="structure context/source | nothing"></div>
                         </div>
                         <div metal:use-macro="context/ace_macros/macros/comments"></div>
                       </div>
