@@ -1,5 +1,7 @@
 from Acquisition import aq_self
 from Products.MimetypesRegistry.mime_types.magic import guessMime
+from plone.api import portal
+from plone.app.textfield.interfaces import ITransformer
 import logging
 
 logger = logging.getLogger('eea.climateadapt.migration')
@@ -405,3 +407,38 @@ def update_to_30(context):
             logger.info("Reindexing.")
             obj.reindexObject()
             obj._p_changed = True
+
+
+def update_to_33(context):
+    """ Fix the value of the source field since we changed the field from
+        richtext to textline
+    """
+    catalog = portal.get_tool(name='portal_catalog')
+    query = {'portal_type': [
+        'eea.climateadapt.aceproject',
+        'eea.climateadapt.adaptationoption',
+        'eea.climateadapt.casestudy',
+        'eea.climateadapt.guidancedocument',
+        'eea.climateadapt.indicator',
+        'eea.climateadapt.informationportal',
+        'eea.climateadapt.mapgraphdataset',
+        'eea.climateadapt.organisation',
+        'eea.climateadapt.publicationreport',
+        'eea.climateadapt.researchproject',
+        'eea.climateadapt.tool',
+    ]}
+    results = catalog.searchResults(**query)
+
+    for brain in results:
+        try:
+            obj = brain.getObject()
+        except:
+            logger.info("SKIPPED %s", brain.getURL())
+            continue
+        if hasattr(obj, 'source'):
+            if obj.source:
+                bumblebee = ITransformer(obj)
+                obj.source = bumblebee(obj.source, 'text/plain')
+                logger.info("Migrated source field for %s", obj.absolute_url())
+                obj._p_changed = True
+                obj.reindexObject()

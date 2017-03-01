@@ -40,7 +40,7 @@ class CheckCopyPasteLocation(BrowserView):
             if group.id == 'extranet-cca-editors' and 'metadata' in self.context.getPhysicalPath():
                 logger.info("Can't Copy: returning False")
                 return False
-        logger.info("Can Copy: returning True")
+        # logger.info("Can Copy: returning True")
         return True
 
 

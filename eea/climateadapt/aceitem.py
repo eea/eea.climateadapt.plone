@@ -148,7 +148,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
         missing_value=(),
     )
 
-    source = RichText(title=_(u"Source"),
+    source = TextLine(title=_(u"Source"),
                       required=False,
                       description=u"Describe the original source of the item "
                                   u"description (250 character limit)")

@@ -170,7 +170,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     )
 
     dexteritytextindexer.searchable('source')
-    source = RichText(
+    source = TextLine(
         title=_(u"Source"),
         description=_(u"Provide source from which project was retrieved (e.g. "
                       u"specific DB) "),

@@ -584,4 +584,12 @@
             />
     </genericsetup:upgradeSteps>
 
+    <!-- v33 upgrade -->
+    <genericsetup:upgradeStep
+        title="Upgrade eea.climateadapt to v33"
+        description=""
+        source="*"
+        destination="33"
+        handler=".update.update_to_33"
+        profile="eea.climateadapt:default" />
 </configure>

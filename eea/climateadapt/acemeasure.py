@@ -243,7 +243,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     )
 
     dexteritytextindexer.searchable('source')
-    source = RichText(title=_(u"Source"),
+    source = TextLine(title=_(u"Source"),
                       required=False,
                       description=_(u"Describe the original source (like name "
                                     u"of a certain project) of the adaptation "
