@@ -433,7 +433,7 @@ def update_to_33(context):
         try:
             obj = brain.getObject()
         except:
-            logger.info("SKIPPED %s", brain.getURL())
+            logger.warn("SKIPPED %s", brain.getURL())
             continue
         if hasattr(obj, 'source'):
             if obj.source:
