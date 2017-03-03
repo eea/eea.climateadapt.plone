@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added a better cache key for the database search
+  [iulianpetchesi #83019]
 * Bugfix: Added rdf modifier for the extraction of information from the geochars
   field so it can be more easily consumed by the eea search service
   [iulianpetchesi #82861]

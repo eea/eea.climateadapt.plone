@@ -94,10 +94,19 @@ class ListingView(BrowserView):
 
     def key(method, self, name, brains):
         print "caching ", name
-        if self.request.form.get('SearchableText[]', None):
-            return name + self.request.form.get('SearchableText[]')
 
-        return name
+        request_vars = ['countries[]', 'climateimpacts[]', 'SearchableText[]',
+                        'elements[]', 'sectors[]', 'searchtype[]']
+        cache_key = name
+
+        for var in request_vars:
+            data = self.request.form.get(var, '')
+            if isinstance(data, list):
+                for string in data:
+                    cache_key += string
+            else:
+                cache_key += self.request.form.get(var, '')
+        return cache_key
 
     @cache(key, dependencies=['eea.facetednavigation'], lifetime=1800)
     def render(self, name, brains):
