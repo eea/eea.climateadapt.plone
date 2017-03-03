@@ -161,6 +161,9 @@
        handler=".acemeasure.handle_for_arcgis_sync"
     />
 
+    <subscriber factory=".marshaller.GeoCharsFieldModifier"
+        provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
+
     ------[ Workflow Message Functionality: ]--------
 
     <subscriber for=".workflow.IWorkflowMessageEvent" handler=".events.trigger_contentrules" />

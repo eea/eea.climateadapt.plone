@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added rdf modifier for the extraction of information from the geochars
+  field so it can be more easily consumed by the eea search service
+  [iulianpetchesi #82861]
 * Bugfix: Changed the source field from richtext to textline
   [iulianpetchesi #82863]
 * Bugfix: Changed search page listing sort to use year instead of publication
