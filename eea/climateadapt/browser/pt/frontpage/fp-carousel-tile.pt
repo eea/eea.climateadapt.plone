@@ -189,7 +189,7 @@
         <div class="case-studies-homepage-slider-description" tal:define="item view/news_items">
           <h2 tal:content="item/title"> Title </h2>
           <p tal:content="item/description"> Description </p>
-          <a class="homepage-read-more" href="" tal:attributes="href item/event_url" target="_blank"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
+          <a class="homepage-read-more" href="" tal:attributes="href item/event_url | item/absolute_url" target="_blank"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
         </div>
       </li>
 

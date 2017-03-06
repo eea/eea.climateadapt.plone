@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Fixed a templating error for the rotating banner
+  [iulianpetchesi #83077]
 * Bugfix: Added dct:spatial to geochars modifier and got rid of useless spaces
   [iulianpetchesi #82861]
 * Bugfix: Added a better cache key for the database search
