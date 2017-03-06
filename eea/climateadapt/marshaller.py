@@ -37,20 +37,26 @@ class GeoCharsFieldModifier(object):
         order = ['element', 'macrotrans', 'biotrans',
                  'countries', 'subnational', 'city']
 
+        spatial = []
         for key in order:
             element = value['geoElements'].get(key)
             if element:
                 renderer = getattr(self, "_render_geochar_" + key)
                 values = renderer(element).split(':')
+                values[1] = values[1].split(',')
+                values[1] = [x.strip() for x in values[1]]
+                spatial += values[1]
+
                 setattr(resource, '%s_%s' % ("eea", values[0]),
-                        [values[1]])
+                        values[1])
+        setattr(resource, "dcterms_spatial", spatial)
 
     def _render_geochar_element(self, value):
         value = BIOREGIONS[value]
-        return u"region: {0}".format(value)
+        return u"region:{0}".format(value)
 
     def _render_geochar_macrotrans(self, value):
-        tpl = u"macro-transnational-region: {0}"
+        tpl = u"macro-transnational-region:{0}"
         return tpl.format(u", ".join([BIOREGIONS[x] for x in value]))
 
     def _render_geochar_biotrans(self, value):
