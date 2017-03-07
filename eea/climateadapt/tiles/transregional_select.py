@@ -8,7 +8,7 @@ from collective.cover.tiles.base import PersistentCoverTile
 from eea.climateadapt import MessageFactory as _
 from zope import schema
 from zope.component.hooks import getSite
-from zope.interface import implements
+from zope.interface import implements, providedBy
 
 
 class ITransRegionalSelectTile(IPersistentCoverTile):
@@ -180,12 +180,20 @@ class TransRegionalSelectTile(PersistentCoverTile):
         q = {
             "object_provides":
                 "eea.climateadapt.interfaces.ITransnationalRegionMarker",
-            'sort_on':'sortable_title'
+            'sort_on': 'sortable_title'
         }
         brains = catalog.searchResults(**q)
 
-        return sorted([{'url': b.getURL(), 'title': b.Title} for b in brains],
-                      key=lambda x:x['title'])
+        results = []
+        for b in brains:
+            obj = b.getObject()
+            provides = ["%s.%s" % (iface.__module__ or '', iface.__name__)
+                        for iface in providedBy(obj)]
+            if "eea.climateadapt.interfaces.ITransnationalRegionMarker" in provides:
+                results.append(b)
+
+        return sorted([{'url': b.getURL(), 'title': b.Title} for b in results],
+                      key=lambda x: x['title'])
 
     def countries(self):
         # a list of {'name': Country name, 'link': Country Link}
