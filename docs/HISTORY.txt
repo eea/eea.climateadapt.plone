@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added TLSPU Cookie Policy announcer
+  [iulianpetchesi #19956]
 * Bugfix: Added additional verification for transnational regions dropdown
   [iulianpetchesi #83119]
 * Bugfix: Fixed a templating error for the rotating banner

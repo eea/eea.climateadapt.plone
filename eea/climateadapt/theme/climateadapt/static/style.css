@@ -2905,3 +2905,37 @@ table.listing a {
 .template-keywords-admin #content .plone-btn-primary {
     color: black;
 }
+
+#viewlet-below-content #viewlet-cookiepolicy {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+}
+
+#viewlet-below-content #tlspu_cookiepolicy_title {
+    font-family: 'Open Sans', Verdana, Helvetica, Arial, sans-serif;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+}
+
+#viewlet-below-content #tlspu_cookiepolicy_message, #tlspu_cookiepolicy_form {
+    margin: 0 auto;
+    max-width: 70%;
+    padding: 0;
+    padding-left: 20vw;
+    font-family: 'Open Sans', Verdana, Helvetica, Arial, sans-serif;
+    display: inline-block;
+}
+
+#viewlet-below-content #tlspu_cookiepolicy_form {
+    border: none;
+    max-width: 140px;
+    padding: 0;
+}
+
+#viewlet-below-content #viewlet-cookiepolicy.portalMessage {
+    border: none;
+    margin: 0 !important;
+}

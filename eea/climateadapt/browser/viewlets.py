@@ -8,6 +8,7 @@ from zope.component import getMultiAdapter
 from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_inner
 from Products.CMFPlone.utils import base_hasattr
+from tlspu.cookiepolicy.browser.viewlets import CookiePolicyViewlet
 
 import pkg_resources
 try:
@@ -115,3 +116,10 @@ class PathBarViewlet(BasePathBarViewlet):
         self.br_exists = True
         if self.context.id == 'frontpage':
             self.br_exists = False
+
+
+class CookiesViewlet(CookiePolicyViewlet):
+    render = ViewPageTemplateFile("pt/cookiepolicy.pt")
+
+    def update(self):
+        return super(CookiesViewlet, self).render()

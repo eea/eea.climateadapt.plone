@@ -417,6 +417,14 @@
         permission="zope2.View"
         />
 
+    <browser:viewlet
+        name="tlspu.cookiepolicy"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+        class=".viewlets.CookiesViewlet"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        permission="zope2.View"
+        />
+
     <browser:page
         name="casestudies.json"
         for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
