@@ -1,0 +1,11 @@
+<div id="viewlet-cookiepolicy" class="portalMessage"
+     style="display:none"
+     i18n:domain="tlspu.cookiepolicy"
+     tal:condition="view/enabled">
+    <h1 id="tlspu_cookiepolicy_title"
+        tal:content="view/title">Title</h1>
+    <p id="tlspu_cookiepolicy_message" tal:content="structure view/message" i18n:translate="">Message</p>
+    <form id="tlspu_cookiepolicy_form">
+    <button id="tlspu_cookiepolicy_button" value="hide" i18n:translate="">I am fine with this</button>
+    </form>
+</div>
