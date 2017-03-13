@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Task: Added carousel tile for the frontpage, made the first and fifth slide
+  editable
+  [iulianpetchesi #68264]
 * Bugfix: Added TLSPU Cookie Policy announcer
   [iulianpetchesi #19956]
 * Bugfix: Added additional verification for transnational regions dropdown

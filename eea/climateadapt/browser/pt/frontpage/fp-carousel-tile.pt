@@ -132,29 +132,22 @@
   </style>
   <div class="case-studies-homepage-slider-content">
     <ul class="blank">
-
-      <li class="first submenu" style="display: none;">
-        <div class="case-studies-homepage-slider-image">
-          <img src="/++resource++eea.climateadapt/frontpage/first_banner.jpg" alt="About Climate Change Adaptation in Europe" />
+      <li class="first submenu" style="display: none;"
+          tal:define="item python: view.get_tile('s1')">
+        <div class="case-studies-homepage-slider-image" 
+             tal:define="picture python: view.get_image(item.s1_primary_photo, 's1_primary_photo')">
+          <img src="" tal:attributes = "src picture"
+               alt="About Climate Change Adaptation in Europe" />
         </div>
         <div class="case-studies-homepage-slider-description">
-          <h2>About Climate Change Adaptation in Europe </h2>
-          <p> The European Climate Adaptation Platform (Climate-ADAPT) aims to support
-            Europe in adapting to <a href="/glossary#linkClimateChange"
-              class="glossary-inline-term">climate change </a>. It is an initiative of
-            the European Commission and helps users to access and share information on:
-          </p>
-          <ul>
-            <li class="active-content first"> Expected climate change in Europe </li>
-            <li class="active-content"> Current and future <a href="/glossary#linkVulnerability" class="glossary-inline-term">vulnerability </a> of regions and sectors </li>
-            <li class="active-content"> National and transnational adaptation strategies </li>
-            <li class="active-content"> <a href="/glossary#linkAdaptation" class="glossary-inline-term">Adaptation </a> case studies and potential adaptation options </li>
-            <li class="last"> Tools that support adaptation planning </li>
-          </ul>
+          <h2 tal:content="item/s1_title"> Title </h2>
+          <div tal:content="structure python: item.s1_description.output"> Description </div>
           <p>
-            <a class="homepage-read-more" href="adaptation-information/general"><img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
+            <a class="homepage-read-more" href="" tal:attributes="href item/s1_read_more_link" target="_blank">
+                <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
+                <span tal:content="item/s1_read_more_text | nothing"> Read more </span>
+            </a>
           </p>
-
         </div>
       </li>
 
@@ -193,22 +186,21 @@
         </div>
       </li>
 
-      <li class="" style="display: none;">
-        <div class="case-studies-homepage-slider-image">
-          <img src="/++resource++eea.climateadapt/frontpage/mayors_adapt.jpg" alt="Mayors Adapt" />
+      <li class="" style="display: none;" tal:define="item python: view.get_tile('s5')">
+        <div class="case-studies-homepage-slider-image"
+             tal:define="picture python: view.get_image(item.s1_primary_photo, 's5_primary_photo')">
+          <img src="" tal:attributes = "src picture"
+               alt="About Climate Change Adaptation in Europe" />
         </div>
         <div class="case-studies-homepage-slider-description">
-          <h2 style="margin-bottom: 10px">Mayors Adapt: Promoting urban leadership in adaptation to climate change </h2>
-
-          <div style="float:right; margin: 0 8px 0 10px;">
-            <img alt="" src="/++resource++eea.climateadapt/frontpage/mayors-adapt-logo.png" style="height: 60px; width: 126px;border: 1px solid #aebe20" />
-          </div>
-          <p>The Covenant of Mayors Initiative on Climate Change Adaptation has been set up by the European Commission to engage cities in taking action on climate change adaptation.  </p>
-          <p>The initiative, provides a platform for supporting adaptation, networking and public awareness at the local level where the impacts of climate change will be felt the most.  </p>
-
-          <a class="homepage-read-more" href="http://www.mayors-adapt.eu" target="_blank">
-            <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Want to join the initiative?
-          </a>
+          <h2 tal:content="item/s5_title"> Title </h2>
+          <div tal:content="structure python: item.s5_description.output"> Description </div>
+          <p tal:define="absolute view/context/absolute_url">
+            <a class="homepage-read-more" href="" tal:attributes="href item/s5_read_more_link" target="_blank">
+                <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
+                <span tal:content="item/s5_read_more_text | nothing"> Read more </span>
+            </a>
+          </p>
         </div>
       </li>
     </ul>

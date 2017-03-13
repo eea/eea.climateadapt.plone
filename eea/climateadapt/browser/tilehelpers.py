@@ -5,10 +5,17 @@ developed and tested.
 """
 
 from Products.Five.browser import BrowserView
+from collective.cover.tiles.base import IPersistentCoverTile
+from collective.cover.tiles.base import PersistentCoverTile
 from eea.climateadapt.vocabulary import ace_countries_selection
-from zope.component.hooks import getSite
-from plone.api import portal
 from plone import api
+from plone.api import portal
+from plone.app.textfield import RichText
+from plone.namedfile.field import NamedBlobImage
+from plone.tiles.interfaces import ITileDataManager
+from zope import schema
+from zope.component.hooks import getSite
+from zope.interface import implements
 
 
 class AceContentSearch(BrowserView):
@@ -30,9 +37,63 @@ class FrontPageCountries(BrowserView):
         return ace_countries_selection
 
 
-class FrontPageCarousel(BrowserView):
-    """ A view to render the frontpage carousel
+class ICarousel(IPersistentCoverTile):
+    """ Frontpage carousel tile schema """
+
+    # Slide 1 fields
+    s1_title = schema.Text(title=u"First slide Title", required=True)
+    s1_description = RichText(title=u"First slide description", required=False)
+
+    s1_primary_photo = NamedBlobImage(
+        title=(u"First Slide Photo"),
+        required=True,
+    )
+
+    s1_read_more_text = schema.Text(title=u"First slide read more text",
+                                    required=False)
+    s1_read_more_link = schema.Text(title=u"First slide read more link",
+                                    required=False)
+
+    # Slide 5 fields
+    s5_title = schema.Text(title=u"Fifth slide title", required=True)
+    s5_description = RichText(title=u"Fifth slide text", required=False)
+
+    s5_primary_photo = NamedBlobImage(
+        title=(u"Fifth slide photo"),
+        required=True,
+    )
+
+    s5_read_more_text = schema.Text(title=u"Fifth slide read more text",
+                                    required=False)
+    s5_read_more_link = schema.Text(title=u"Fifth slide read more link",
+                                    required=False)
+
+
+class Carousel(PersistentCoverTile):
+    """ Frontpage Carousel tile
     """
+    implements(ICarousel)
+
+    is_configurable = True
+    is_editable = True
+    is_droppable = False
+    ignoreContext = False
+    short_name = 'eea.carousel.tile'
+
+    def get_tile(self, slide_id):
+        tile = ITileDataManager(self)
+        data = tile.annotations[tile.key]
+
+        for key in data.keys():
+            if slide_id in key:
+                setattr(self, key, data.get(key, ''))
+        return self
+
+    def get_image(self, image, fieldname):
+        url = self.context.absolute_url() + '/@@edit-tile/' + self.short_name
+        url += '/' + self.id + '/++widget++' + self.short_name + '.' + fieldname
+        url += '/@@download/' + image.filename
+        return url
 
     def news_items(self):
         """ Gets the most recent updated news/events item"""

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<registry>
+    <record name="plone.app.tiles">
+        <value purge="false">
+            <element>eea.carousel.tile</element>
+        </value>
+    </record>
+    <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
+        <value purge="false">
+            <element>eea.carousel.tile</element>
+        </value>
+    </record>
+</registry>

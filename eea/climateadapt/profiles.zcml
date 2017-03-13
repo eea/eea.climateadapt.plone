@@ -592,4 +592,14 @@
         destination="33"
         handler=".update.update_to_33"
         profile="eea.climateadapt:default" />
+
+    <!-- v34 upgrade -->
+    <genericsetup:upgradeStep
+        title="Upgrade eea.climateadapt to v34"
+        description=""
+        source="*"
+        destination="34"
+        handler=".update.update_to_34"
+        profile="eea.climateadapt:default" />
+
 </configure>

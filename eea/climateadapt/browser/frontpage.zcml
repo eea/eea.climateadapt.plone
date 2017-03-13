@@ -3,8 +3,10 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:z3c="http://namespaces.zope.org/z3c"
+    xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="eea.climateadapt">
 
+    <include package="plone.tiles" file="meta.zcml" />
 
     <browser:page
         name="fp-ast-tile"
@@ -21,12 +23,17 @@
         class=".tilehelpers.FrontPageCountries"
         />
 
-    <browser:page
-        name="fp-promotions-carousel-tile"
+    <plone:tile
+        name="eea.carousel.tile"
+        title="Frontpage Tile"
+        description="Carousel Frontpage"
+        icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".tilehelpers.ICarousel"
+        class=".tilehelpers.Carousel"
+        permission="zope2.View"
         for="*"
         template="pt/frontpage/fp-carousel-tile.pt"
-        permission="zope.Public"
-        class=".tilehelpers.FrontPageCarousel"
         />
 
     <browser:page

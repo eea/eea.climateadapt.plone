@@ -16,6 +16,7 @@
             <element>eea.climateadapt.urbanmenu</element>
             <element>eea.climateadapt.formtile</element>
             <element>eea.climateadapt.section_nav</element>
+            <element>eea.carousel.tile</element>
         </value>
     </record>
     <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
@@ -33,6 +34,7 @@
             <element>eea.climateadapt.urbanmenu</element>
             <element>eea.climateadapt.formtile</element>
             <element>eea.climateadapt.section_nav</element>
+            <element>eea.carousel.tile</element>
         </value>
     </record>
     <record name="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings.public_key">

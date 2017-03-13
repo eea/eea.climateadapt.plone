@@ -5,6 +5,7 @@ from plone.app.textfield.interfaces import ITransformer
 import logging
 
 logger = logging.getLogger('eea.climateadapt.migration')
+default_profile = 'profile-eea.climateadapt:default'
 
 
 def fixtiles(context):
@@ -442,3 +443,10 @@ def update_to_33(context):
                 logger.info("Migrated source field for %s", obj.absolute_url())
                 obj._p_changed = True
                 obj.reindexObject()
+
+
+def update_to_34(context):
+    logger.info("Upgrading to 34")
+
+    # need to reimport eea.climateadapt, it has updated registry settings
+    context.runImportStepFromProfile(default_profile, 'plone.app.registry')
