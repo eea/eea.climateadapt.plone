@@ -132,7 +132,7 @@
   </style>
   <div class="case-studies-homepage-slider-content">
     <ul class="blank">
-      <li class="first submenu" style="display: none;"
+<!--       <li class="first submenu" style="display: none;"
           tal:define="item python: view.get_tile('s1')">
         <div class="case-studies-homepage-slider-image" 
              tal:define="picture python: view.get_image(item.s1_primary_photo, 's1_primary_photo')">
@@ -146,6 +146,25 @@
             <a class="homepage-read-more" href="" tal:attributes="href item/s1_read_more_link" target="_blank">
                 <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
                 <span tal:content="item/s1_read_more_text | nothing"> Read more </span>
+            </a>
+          </p>
+        </div>
+      </li>
+ -->
+      <li class="first submenu" style="display: none;"
+          tal:define="item python: view.get_tile('s2')">
+        <div class="case-studies-homepage-slider-image" 
+             tal:define="picture python: view.get_image(item.s2_primary_photo, 's2_primary_photo')">
+          <img src="" tal:attributes = "src picture"
+               alt="About Climate Change Adaptation in Europe" />
+        </div>
+        <div class="case-studies-homepage-slider-description">
+          <h2 tal:content="item/s2_title"> Title </h2>
+          <div tal:content="structure python: item.s2_description.output"> Description </div>
+          <p>
+            <a class="homepage-read-more" href="" tal:attributes="href item/s2_read_more_link" target="_blank">
+                <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
+                <span tal:content="item/s2_read_more_text | nothing"> Read more </span>
             </a>
           </p>
         </div>
@@ -188,7 +207,7 @@
 
       <li class="" style="display: none;" tal:define="item python: view.get_tile('s5')">
         <div class="case-studies-homepage-slider-image"
-             tal:define="picture python: view.get_image(item.s1_primary_photo, 's5_primary_photo')">
+             tal:define="picture python: view.get_image(item.s5_primary_photo, 's5_primary_photo')">
           <img src="" tal:attributes = "src picture"
                alt="About Climate Change Adaptation in Europe" />
         </div>

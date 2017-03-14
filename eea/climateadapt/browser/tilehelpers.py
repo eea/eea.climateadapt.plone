@@ -46,12 +46,26 @@ class ICarousel(IPersistentCoverTile):
 
     s1_primary_photo = NamedBlobImage(
         title=(u"First Slide Photo"),
-        required=True,
+        required=False,
     )
 
     s1_read_more_text = schema.Text(title=u"First slide read more text",
                                     required=False)
     s1_read_more_link = schema.Text(title=u"First slide read more link",
+                                    required=False)
+
+    # Slide 2 fields
+    s2_title = schema.Text(title=u"Second slide Title", required=True)
+    s2_description = RichText(title=u"Second slide description", required=False)
+
+    s2_primary_photo = NamedBlobImage(
+        title=(u"Second Slide Photo"),
+        required=True,
+    )
+
+    s2_read_more_text = schema.Text(title=u"Second slide read more text",
+                                    required=False)
+    s2_read_more_link = schema.Text(title=u"Second slide read more link",
                                     required=False)
 
     # Slide 5 fields

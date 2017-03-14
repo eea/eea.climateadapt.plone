@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added new carousel slide
+  [iulianpetchesi #83142]
 * Bugfix: Fixed map-layer link for maps graphs datasets
   [iulianpetchesi #83117]
 * Task: Added carousel tile for the frontpage, made the first and fifth slide
