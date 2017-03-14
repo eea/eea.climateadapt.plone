@@ -49,7 +49,7 @@ class AceViewApi(object):
         result = []
         for link in websites:
             if (storage_type == 'MAPLAYER'):
-                url = '/tools/map-viewer?layerid=' + link
+                url = '/tools/map-viewer?&layerid=' + link
                 if (self.context.search_type == 'MAPGRAPHDATASET'):
                     result.append({'url': url,
                                    'title': 'View map ' + self.context.title})
