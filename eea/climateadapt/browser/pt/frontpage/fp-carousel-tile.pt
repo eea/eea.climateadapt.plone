@@ -132,7 +132,7 @@
   </style>
   <div class="case-studies-homepage-slider-content">
     <ul class="blank">
-<!--       <li class="first submenu" style="display: none;"
+      <li class="first submenu" style="display: none;"
           tal:define="item python: view.get_tile('s1')">
         <div class="case-studies-homepage-slider-image" 
              tal:define="picture python: view.get_image(item.s1_primary_photo, 's1_primary_photo')">
@@ -150,8 +150,8 @@
           </p>
         </div>
       </li>
- -->
-      <li class="first submenu" style="display: none;"
+
+      <li class="" style="display: none;"
           tal:define="item python: view.get_tile('s2')">
         <div class="case-studies-homepage-slider-image" 
              tal:define="picture python: view.get_image(item.s2_primary_photo, 's2_primary_photo')">
@@ -172,7 +172,7 @@
 
       <li class="" style="display: none;" tal:define="item view/last_casestudy">
         <div class="case-studies-homepage-slider-image">
-          <img src="" alt="Case Study" tal:attributes="src python: item.absolute_url() + '/@@images/primary_photo/preview'"/>
+          <img src="" alt="Case Study" tal:attributes="src python: item.absolute_url() + '/@@images/primary_photo/case-front'"/>
         </div>
         <div class="case-studies-homepage-slider-description">
           <h2 tal:content="item/title"> Title </h2>
