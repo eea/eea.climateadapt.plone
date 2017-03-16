@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Add copyright field for image
+  [iulianpetchesi #83142]
 * Bugfix: Added new carousel slide
   [iulianpetchesi #83142]
 * Bugfix: Fixed map-layer link for maps graphs datasets

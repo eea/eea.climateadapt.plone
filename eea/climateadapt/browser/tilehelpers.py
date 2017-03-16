@@ -49,6 +49,8 @@ class ICarousel(IPersistentCoverTile):
         required=False,
     )
 
+    s1_photo_copyright = schema.Text(title=u"Photo Copyright", required=True)
+
     s1_read_more_text = schema.Text(title=u"First slide read more text",
                                     required=False)
     s1_read_more_link = schema.Text(title=u"First slide read more link",

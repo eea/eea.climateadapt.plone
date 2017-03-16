@@ -148,6 +148,10 @@
                 <span tal:content="item/s1_read_more_text | nothing"> Read more </span>
             </a>
           </p>
+        <br>
+          <p style="font-weight: bold;"> Picture credit:
+            <span tal:content="item/s1_photo_copyright | nothing"> </span>
+          </p>
         </div>
       </li>
 
