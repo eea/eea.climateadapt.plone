@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added an improved cache key for faceted search based on 
+  cacheKeyFacetedNavigation from eea.facetednavigation
+  [iulianpetchesi #82635]
 * Bugfix: Style adjustments
   [iulianpetchesi #83142]
 * Bugfix: Add copyright field for image

@@ -13,7 +13,7 @@ from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 from eea.cache import cache
-
+from eea.facetednavigation.caching.cache import cacheKeyFacetedNavigation
 
 # TODO: should use the FACETED_SECTIONS LIST
 SEARCH_TYPES = [
@@ -95,17 +95,8 @@ class ListingView(BrowserView):
     def key(method, self, name, brains):
         print "caching ", name
 
-        request_vars = ['countries[]', 'climateimpacts[]', 'SearchableText[]',
-                        'elements[]', 'sectors[]', 'searchtype[]']
-        cache_key = name
-
-        for var in request_vars:
-            data = self.request.form.get(var, '')
-            if isinstance(data, list):
-                for string in data:
-                    cache_key += string
-            else:
-                cache_key += self.request.form.get(var, '')
+        cache_key = cacheKeyFacetedNavigation(method, self, name, brains)
+        cache_key += (name, )
         return cache_key
 
     @cache(key, dependencies=['eea.facetednavigation'], lifetime=1800)
