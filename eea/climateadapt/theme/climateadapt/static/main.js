@@ -472,7 +472,7 @@ $(document).ready(function() {
 	});
 
 	var numBanners = $('#case-studies-homepage-slider-wrapper .case-studies-homepage-slider-content ul.blank').children().length;
-	var activeIndex=1;
+	var activeIndex=0;
 	var fadeOutSpeed = 200;
 	var fadeInSpeed = 200;
 	var bannerTimer = setTimeout(transitionSlides, 200);
