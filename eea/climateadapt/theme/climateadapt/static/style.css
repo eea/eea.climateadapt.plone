@@ -2939,3 +2939,7 @@ table.listing a {
     border: none;
     margin: 0 !important;
 }
+
+.case-studies-illustrations .blueimp-gallery>.slides {
+    height: 110%;
+}

@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Style fixes for casestudy gallery
+  [iulianpetchesi #83501]
 * Bugfix: Added an improved cache key for faceted search based on 
   cacheKeyFacetedNavigation from eea.facetednavigation
   [iulianpetchesi #82635]
