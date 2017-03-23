@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Created field for GIS map layer and upgrade step to migrate layer ids
+  from websites field
+  [iulianpetchesi #83117]
 * Bugfix: Style fixes for casestudy gallery
   [iulianpetchesi #83501]
 * Bugfix: Added an improved cache key for faceted search based on 

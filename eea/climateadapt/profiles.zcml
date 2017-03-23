@@ -602,4 +602,14 @@
         handler=".update.update_to_34"
         profile="eea.climateadapt:default" />
 
+    <!-- v35 upgrade -->
+    <genericsetup:upgradeStep
+        title="Upgrade eea.climateadapt to v35"
+        description=""
+        source="*"
+        destination="35"
+        handler=".update.update_to_35"
+        profile="eea.climateadapt:default" />
+
+
 </configure>

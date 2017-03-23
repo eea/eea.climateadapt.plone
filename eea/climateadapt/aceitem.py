@@ -291,6 +291,10 @@ class IAction(IAceItem):
 class IMapGraphDataset(IAceItem):
     """ Maps, Graphs and Datasets Interface
     """
+    gis_layer_id = TextLine(
+        title=_(u"GIS Layer ID"),
+        description=u"Item Name (250 character limit)",
+        required=False, default=u"")
 
 
 class IResearchProject(IAceItem):

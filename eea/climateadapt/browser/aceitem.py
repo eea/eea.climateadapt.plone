@@ -31,12 +31,6 @@ class ToolView(DefaultView, AceViewApi):
     type_label = u"Tools"
 
 
-class MapGraphDatasetView(DefaultView, AceViewApi):
-    """
-    """
-    type_label = u"Map Graph Data Set"
-
-
 class IndicatorView(DefaultView, AceViewApi):
     """
     """

@@ -123,7 +123,7 @@
     <browser:page
         name="view"
         for="eea.climateadapt.aceitem.IMapGraphDataset"
-        class="eea.climateadapt.browser.aceitem.MapGraphDatasetView"
+        class="eea.climateadapt.browser.mapgraphsdataset.MapGraphDatasetView"
         template="pt/mapgraphdataset_view.pt"
         permission="zope2.View"
         />
@@ -201,6 +201,31 @@
         .adaptationoption.AdaptationOptionAddForm
         "
         factory=".adaptationoption.AdaptationOptionFormExtender"
+        />
+
+    -----[ Maps Graphs Form customizations ]----
+
+    <browser:page
+        for="eea.climateadapt.aceitem.IMapGraphDataset"
+        name="edit"
+        class=".mapgraphsdataset.MapsEditView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="eea.climateadapt.aceitem.IMapGraphDataset
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .mapgraphsdataset.MapsEditForm"
+        factory=".mapgraphsdataset.MapsFormExtender"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="Products.CMFCore.interfaces.IFolderish
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .mapgraphsdataset.MapsAddForm"
+        factory=".mapgraphsdataset.MapsFormExtender"
         />
 
     ------

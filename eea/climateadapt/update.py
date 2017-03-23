@@ -450,3 +450,44 @@ def update_to_34(context):
 
     # need to reimport eea.climateadapt, it has updated registry settings
     context.runImportStepFromProfile(default_profile, 'plone.app.registry')
+
+
+def update_to_35(context):
+    """ Migrate layer id from website to gis_layer_id field
+    """
+
+    catalog = portal.get_tool(name='portal_catalog')
+    query = {'portal_type': [
+        'eea.climateadapt.mapgraphdataset',
+    ]}
+    results = catalog.searchResults(**query)
+
+    for brain in results:
+        obj = brain.getObject()
+        websites = obj.websites
+
+        if isinstance(websites, (list, tuple)):
+            for layer_id in websites:
+                if check_layer_id(layer_id):
+                    obj.gis_layer_id = layer_id
+                    obj.websites = [i for i in websites if i != layer_id]
+                    obj.reindexObject()
+                    obj._p_changed = True
+                    logger.info("Migrated layer for %s", obj.absolute_url())
+        elif isinstance(websites, str):
+            if check_layer_id(layer_id):
+                obj.gis_layer_id = websites
+                obj.websites = ""
+                obj.reindexObject()
+                obj._p_changed = True
+                logger.info("Migrated layer for %s", obj.absolute_url())
+    logger.info("Finished the layer ids migration %s", obj.absolute_url())
+
+
+def check_layer_id(value):
+    if not value:
+        return False
+
+    if value.startswith('/') or value.startswith('http'):
+        return False
+    return True

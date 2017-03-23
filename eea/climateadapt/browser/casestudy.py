@@ -30,6 +30,7 @@ class CaseStudyEditForm(DefaultEditForm):
     """ Edit form for case studies
     """
 
+
 CaseStudyEditView = layout.wrap_form(CaseStudyEditForm)
 classImplements(CaseStudyEditView, IDexterityEditForm)
 
