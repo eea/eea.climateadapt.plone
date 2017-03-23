@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Modified the template for maps graps dataset so that it includes the
+  new field
+  [iulianpetchesi #83117]
 * Bugfix: Created field for GIS map layer and upgrade step to migrate layer ids
   from websites field
   [iulianpetchesi #83117]

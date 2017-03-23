@@ -24,8 +24,11 @@
             <h4>Reference information</h4>
 
             <h5>Link to Map Viewer: </h5>
+            <div tal:define="link python: view.compose_layer_link()">
+              <a tal:attributes="href link/url" tal:content="link/title"></a>
+            </div>
 
-            <h5>Go to the service</h5>
+            <h5>Websites:</h5>
             <div metal:use-macro="context/ace_macros/macros/websites"></div>
 
             <h5>Source:</h5>

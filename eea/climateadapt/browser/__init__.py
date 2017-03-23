@@ -44,20 +44,10 @@ class AceViewApi(object):
         them in various ways
         """
         websites = self.context.websites
-        storage_type = getattr(self.context, 'storage_type', None)
 
         result = []
         for link in websites:
-            if (storage_type == 'MAPLAYER'):
-                url = '/tools/map-viewer?&layerid=' + link
-                if (self.context.search_type == 'MAPGRAPHDATASET'):
-                    result.append({'url': url,
-                                   'title': 'View map ' + self.context.title})
-                else:
-                    result.append({'url': self.linkify(link), 'title': link})
-            else:
-                result.append({'url': self.linkify(link), 'title': link})
-
+            result.append({'url': self.linkify(link), 'title': link})
         return result
 
     def get_files(self):

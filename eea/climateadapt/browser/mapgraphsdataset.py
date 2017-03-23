@@ -9,13 +9,21 @@ from plone.dexterity.interfaces import IDexterityEditForm
 
 
 class MapGraphDatasetView(DefaultView, AceViewApi):
-    """
+    """ Maps graph datasets view
     """
     type_label = u"Map Graph Data Set"
 
     def compose_layer_link(self):
-        pass
-        # import pdb; pdb.set_trace( )
+        """ Function to compose the map layer url """
+        if self.context.gis_layer_id in ['', None]:
+            return {'url': '', 'title': 'No map layer id provided'}
+
+        url = '/tools/map-viewer?&layerid=' + self.context.gis_layer_id
+        if (self.context.search_type == 'MAPGRAPHDATASET'):
+            result = {'url': url,
+                      'title': 'View map ' + self.context.title}
+            return result
+        return ''
 
 
 class MapsEditForm(DefaultEditForm):

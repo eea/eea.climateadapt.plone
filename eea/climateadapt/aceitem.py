@@ -293,7 +293,7 @@ class IMapGraphDataset(IAceItem):
     """
     gis_layer_id = TextLine(
         title=_(u"GIS Layer ID"),
-        description=u"Item Name (250 character limit)",
+        description=u"Enter the layer id for the map-viewer (250 character limit)",
         required=False, default=u"")
 
 
