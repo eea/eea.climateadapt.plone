@@ -228,7 +228,40 @@
         factory=".mapgraphsdataset.MapsFormExtender"
         />
 
+    -----[ Videos Form customizations ]----
+
+    <browser:page
+        for="eea.climateadapt.acevideo.IAceVideos"
+        name="edit"
+        class=".videos.VideosEditView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="eea.climateadapt.acevideo.IAceVideos
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .videos.VideosEditForm"
+        factory=".videos.VideosFormExtender"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="eea.climateadapt.acevideo.IAceVideos
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .videos.VideosAddForm"
+        factory=".videos.VideosFormExtender"
+        />
+
     ------
+
+    <browser:page
+        name="view"
+        for="eea.climateadapt.acevideo.IAceVideos"
+        class=".videos.VideosView"
+        template="pt/videos_view.pt"
+        permission="zope2.View"
+        />
 
     <browser:page
         name="view"

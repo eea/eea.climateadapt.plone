@@ -491,3 +491,14 @@ def check_layer_id(value):
     if value.startswith('/') or value.startswith('http'):
         return False
     return True
+
+
+def update_to_36(context):
+    logger.info("Upgrading to 36")
+
+    # need to reimport eea.climateadapt, it has updated registry settings
+    context.runImportStepFromProfile(default_profile, 'typeinfo')
+    context.runImportStepFromProfile(default_profile, 'propertiestool')
+    context.runImportStepFromProfile(default_profile, 'repositorytool')
+    context.runImportStepFromProfile(default_profile, 'workflow')
+    context.runImportStepFromProfile(default_profile, 'contentrules')

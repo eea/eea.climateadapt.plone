@@ -611,5 +611,13 @@
         handler=".update.update_to_35"
         profile="eea.climateadapt:default" />
 
+    <!-- v36 upgrade -->
+    <genericsetup:upgradeStep
+        title="Upgrade eea.climateadapt to v36"
+        description=""
+        source="*"
+        destination="36"
+        handler=".update.update_to_36"
+        profile="eea.climateadapt:default" />
 
 </configure>

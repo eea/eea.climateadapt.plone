@@ -18,11 +18,12 @@
      <element>eea.climateadapt.tool</element>
      <element>eea.climateadapt.adaptationoption</element>
      <element>eea.climateadapt.informationportal</element>
+     <element>eea.climateadapt.videos</element>
     </property>
    </condition>
   </conditions>
   <actions>
-   <action type="plone.actions.MailGroup">
+   <action type="plone.actions.Mail">
     <property name="source"/>
     <property name="message">A database item has been edited
      
@@ -51,11 +52,12 @@
      <element>eea.climateadapt.tool</element>
      <element>eea.climateadapt.adaptationoption</element>
      <element>eea.climateadapt.informationportal</element>
+     <element>eea.climateadapt.videos</element>
     </property>
    </condition>
   </conditions>
   <actions>
-   <action type="plone.actions.MailGroup">
+   <action type="plone.actions.Mail">
     <property name="source"/>
     <property name="message">A database item has been created.
      

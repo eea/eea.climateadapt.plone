@@ -13,6 +13,7 @@
     <object name="eea.climateadapt.tool" meta_type="Dexterity FTI" />
     <object name="collective.cover.content" meta_type="Dexterity FTI"/>
     <object name="eea.climateadapt.city_profile" meta_type="Dexterity FTI" />
+    <object name="eea.climateadapt.videos" meta_type="Dexterity FTI" />
 
     <!-- <object name="Collection" -->
     <!--     meta_type="Factory&#45;based Type Information with dynamic views"/> -->

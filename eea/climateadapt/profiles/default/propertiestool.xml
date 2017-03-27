@@ -44,6 +44,7 @@
             <element value="eea.climateadapt.researchproject"/>
             <element value="eea.climateadapt.tool"/>
             <element value="eea.climateadapt.city_profile"/>
+            <element value="eea.climateadapt.videos"/>
             <element value="News Item"/>
             <element value="Event"/>
             <element value="Image"/>

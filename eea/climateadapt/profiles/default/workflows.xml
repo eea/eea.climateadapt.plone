@@ -59,5 +59,8 @@
         <type type_id="eea.climateadapt.tool">
             <bound-workflow workflow_id="cca_items_workflow"/>
         </type>
+        <type type_id="eea.climateadapt.videos">
+            <bound-workflow workflow_id="cca_items_workflow"/>
+        </type>
     </bindings>
 </object>

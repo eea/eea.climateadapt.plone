@@ -53,5 +53,9 @@
             <policy name="at_edit_autoversion"/>
             <policy name="version_on_revert"/>
         </type>
+        <type name="eea.climateadapt.videos">
+            <policy name="at_edit_autoversion"/>
+            <policy name="version_on_revert"/>
+        </type>
     </policymap>
 </repositorytool>
