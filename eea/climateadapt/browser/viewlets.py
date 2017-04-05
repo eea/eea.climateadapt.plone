@@ -4,11 +4,17 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.layout.viewlets import ViewletBase
 from plone.app.layout.viewlets.common import PathBarViewlet as BasePathBarViewlet
 from plone.app.layout.viewlets.common import SearchBoxViewlet as BaseSearchViewlet
+from plone.app.layout.viewlets.common import PersonalBarViewlet as BasePersonalBarViewlet
 from zope.component import getMultiAdapter
 from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_inner
 from Products.CMFPlone.utils import base_hasattr
 from tlspu.cookiepolicy.browser.viewlets import CookiePolicyViewlet
+from zope.globalrequest import getRequest
+from Products.statusmessages.interfaces import IStatusMessage
+from zope.site.hooks import getSite
+from Products.LDAPUserFolder.LDAPDelegate import filter_format
+from plone.api import group
 
 import pkg_resources
 try:
@@ -18,6 +24,49 @@ except pkg_resources.DistributionNotFound:
 else:
     from plone.app.relationfield.behavior import IRelatedItems
     HAS_RELATIONFIELD = True
+
+
+def redirect_to_personal_preferences():
+    site = getSite()
+    request = getRequest()
+
+    messages = IStatusMessage(request)
+    messages.add(
+        u"Please complete your profile by adding your Professional " +
+        "thematic domain.", type=u"info")
+
+    if request.get('came_from', None):
+        request['came_from'] = ''
+        request.form['came_from'] = ''
+
+    edit_profile_url = site.portal_url() + '/@@personal-preferences'
+    request.RESPONSE.redirect(edit_profile_url)
+
+
+def check_sectors(user):
+    our_group = group.get('extranet-cca-thematicexperts')
+    user_ids = our_group.getAllGroupMemberIds()
+    sectors = user.getProperty('thematic_sectors', '')
+
+    if sectors == '' and user.id in user_ids:
+        return True
+    else:
+        return False
+
+
+class CustomizedPersonalBarViewlet(BasePersonalBarViewlet):
+    """ Redirect users who belong to extranet-cca-thematicexperts group to
+        personal-preferences page
+    """
+
+    def update(self):
+        super(CustomizedPersonalBarViewlet, self).update()
+        if not self.anonymous:
+            mt = getToolByName(self, 'portal_membership')
+            user = mt.getAuthenticatedMember()
+            if self.request.getURL() != self.portal_url + '/@@personal-preferences':
+                if check_sectors(user):
+                    redirect_to_personal_preferences()
 
 
 class SharePageSubMenuViewlet(ViewletBase):

@@ -6,12 +6,19 @@ from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.excelexport.exportables.dexterityfields import BaseFieldRenderer
+from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 from eea.climateadapt.schema import Year
 from eea.pdf.interfaces import IPDFTool
 from plone.app.content.browser.interfaces import IContentsPage
 from plone.app.contentmenu.menu import DisplaySubMenuItem as DSMI
 from plone.app.contenttypes.behaviors.richtext import IRichText  # noqa
+from plone.app.controlpanel.widgets import MultiCheckBoxVocabularyWidget
+from plone.app.users.browser.personalpreferences import IPersonalPreferences
+from plone.app.users.browser.personalpreferences import LanguageWidget
+from plone.app.users.browser.personalpreferences import PersonalPreferencesPanel
+from plone.app.users.browser.personalpreferences import PersonalPreferencesPanelAdapter
+from plone.app.users.browser.personalpreferences import WysiwygEditorWidget
 from plone.app.widgets.dx import RichTextWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.formwidget.geolocation.interfaces import IGeolocationField
@@ -21,13 +28,73 @@ from z3c.form.interfaces import IFormLayer
 from z3c.form.interfaces import NO_VALUE
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
+from z3c.relationfield.interfaces import IRelationList
 from zope.component import adapter
 from zope.component import adapts
 from zope.component import queryUtility
+from zope.formlib import form
 from zope.interface import Interface
 from zope.interface import implementer
+from zope.schema import List, Choice
 from zope.schema.interfaces import ITextLine, ITuple, IList, IText
-from z3c.relationfield.interfaces import IRelationList
+from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+
+
+thematic_sectors = SimpleVocabulary([
+    SimpleTerm(value='AGRICULTURE', title=_(u'Agriculture')),
+    SimpleTerm(value='FORESTRY', title=_(u'Forestry')),
+    SimpleTerm(value='BIODIVERSITY', title=_(u'Biodiversity')),
+    SimpleTerm(value='COASTAL', title=_(u'Coastal areas')),
+    SimpleTerm(value='DISASTERRISKREDUCTION', title=_(u'Disaster Risk Reduction')),
+    SimpleTerm(value='FINANCIAL', title=_(u'Financial')),
+    SimpleTerm(value='HEALTH', title=_(u'Health')),
+    SimpleTerm(value='URBAN', title=_(u'Urban')),
+    SimpleTerm(value='MARINE', title=_(u'Marine and Fisheries')),
+    SimpleTerm(value='ENERGY', title=_(u'Energy')),
+    SimpleTerm(value='TRANSPORT', title=_(u'Transport')),
+    SimpleTerm(value='BUILDINGS', title=_(u'Buildings')),
+    SimpleTerm(value='WATERMANAGEMENT', title=_(u'Water management')),
+])
+
+
+class IEnhancedPersonalPreferencesSchema(IPersonalPreferences):
+    """ Use all the fields from the default user personal preferences schema,
+        and add the thematic_sectors field.
+    """
+    thematic_sectors = List(
+        title=_(u'Professional thematic domain'),
+        description=_(u"Select the sectors for which you want to receive a notification email when an item is modified."),
+        required=True,
+        value_type=Choice(
+            vocabulary=thematic_sectors))
+
+
+class EnhancedPersonalPreferencesPanelAdapter(PersonalPreferencesPanelAdapter):
+    """ Adapter for the personalpreferences panel
+    """
+    def get_thematic_sectors(self):
+        value = []
+        thematic_sectors = self.context.getProperty('thematic_sectors', '')
+        if thematic_sectors:
+            value = thematic_sectors.split(',')
+        return value
+
+    def set_thematic_sectors(self, value):
+        thematic_sectors = ','.join(value)
+        return self.context.setMemberProperties(
+            {'thematic_sectors': thematic_sectors})
+    thematic_sectors = property(get_thematic_sectors, set_thematic_sectors)
+
+
+class CustomizedPersonalPrefPanel(PersonalPreferencesPanel):
+    form_fields = form.FormFields(IEnhancedPersonalPreferencesSchema)
+
+    # Apply same widget overrides as in the base class
+    form_fields['language'].custom_widget = LanguageWidget
+    form_fields['wysiwyg_editor'].custom_widget = WysiwygEditorWidget
+
+    # Our widget
+    form_fields['thematic_sectors'].custom_widget = MultiCheckBoxVocabularyWidget
 
 
 class RelationListFieldRenderer(BaseFieldRenderer):

@@ -50,4 +50,19 @@
     <adapter factory=".overrides.RelationListFieldRenderer"
       provides="collective.excelexport.interfaces.IExportable" />
 
+    <adapter 
+      provides=".overrides.IEnhancedPersonalPreferencesSchema"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      factory=".overrides.EnhancedPersonalPreferencesPanelAdapter"
+    />
+
+    <browser:page
+      for="Products.CMFPlone.Portal.PloneSite"
+      name="personal-preferences"
+      class=".overrides.CustomizedPersonalPrefPanel"
+      permission="cmf.SetOwnProperties"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    />
+
+
 </configure>

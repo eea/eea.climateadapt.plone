@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Feature: Added notification for thematic experts via content-rules and personal
+  preferences panel
+  [iulianpetchesi #79149]
 * Feature: Added video content type
   [iulianpetchesi #22797]
 * Bugfix: Modified the template for maps graps dataset so that it includes the

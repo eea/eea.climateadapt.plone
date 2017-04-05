@@ -483,6 +483,14 @@
         permission="zope2.View"
         />
 
+    <browser:viewlet
+        name="plone.personal_bar"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".viewlets.CustomizedPersonalBarViewlet"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        permission="zope2.View"
+        />
+
     <browser:page
         name="casestudies.json"
         for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"

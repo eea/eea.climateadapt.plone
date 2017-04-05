@@ -14,6 +14,13 @@
     <adapter
         for="*"
         provides="plone.stringinterp.interfaces.IStringSubstitution"
+        factory=".stringinterp.cca_thematicexperts"
+        name="cca_thematicexperts_emails"
+        />
+
+    <adapter
+        for="*"
+        provides="plone.stringinterp.interfaces.IStringSubstitution"
         factory=".stringinterp.cca_ma"
         name="cca_ma_emails"
         />
