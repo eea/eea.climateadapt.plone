@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Updated the email substitution method
+  [iulianpetchesi #79149]
 * Feature: Added notification for thematic experts via content-rules and personal
   preferences panel
   [iulianpetchesi #79149]

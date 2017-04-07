@@ -57,11 +57,13 @@ class LdapMailsForThematicExperts(BaseSubstitution):
             if user_sectors == '':
                 continue
             user_sectors = user_sectors.split(',')
+            user_has_sector = False
             for user_sector in user_sectors:
                 if user_sector in object_sectors:
+                    user_has_sector = True
                     break
-                else:
-                    uids.remove(uid)
+            if user_has_sector is False:
+                uids.remove(uid)
         if len(uids) == 0:
             logger.warning("There are no users with any of the following " +
                            "sectors:  %s", ", ".join(object_sectors))
