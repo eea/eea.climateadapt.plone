@@ -43,3 +43,12 @@ class VideosFormExtender(FormExtender):
     def update(self):
         self.move('youtube_url', after='title')
         self.move('video_height', after='youtube_url')
+        self.remove('ICategorization.subjects')
+        self.remove('ICategorization.language')
+        self.remove('IPublication.effective')
+        self.remove('IPublication.expires')
+        self.remove('IOwnership.creators')
+        self.remove('IOwnership.contributors')
+        self.remove('IOwnership.rights')
+        labels = ['label_schema_dates', 'label_schema_ownership']
+        self.form.groups = [group for group in self.form.groups if group.label not in labels]

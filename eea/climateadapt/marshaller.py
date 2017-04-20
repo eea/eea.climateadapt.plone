@@ -5,6 +5,13 @@ from zope.interface import implements
 from eea.climateadapt.vocabulary import BIOREGIONS
 from eea.climateadapt.vocabulary import SUBNATIONAL_REGIONS
 from eea.climateadapt.vocabulary import ace_countries_dict
+from eea.rdfmarshaller.dexterity import Dexterity2Surf
+from eea.climateadapt.city_profile import ICityProfile
+from eea.rdfmarshaller.interfaces import ISurfSession
+from eea.rdfmarshaller.value import Value2Surf
+from plone.formwidget.geolocation.interfaces import IGeolocation
+from plone.namedfile.interfaces import INamedBlobImage
+from plone.namedfile.interfaces import INamedBlobFile
 import logging
 import json
 # import rdflib
@@ -88,3 +95,43 @@ class GeoCharsFieldModifier(object):
         if isinstance(value, (list, tuple)):
             text = u", ".join(value)
         return u"city:{0}".format(text)
+
+
+class CityProfile2Surf(Dexterity2Surf):
+    adapts(ICityProfile, ISurfSession)
+
+    @property
+    def prefix(self):
+        """ Prefix """
+        if self.portalType.lower() == 'eeaclimateadaptcity_profile':
+            return 'eeaclimateadaptcityprofile'
+        return self.portalType.lower()
+
+
+class Geolocation2Surf(Value2Surf):
+    """IValue2Surf implementation for plone.formwidget.Geolocation """
+    adapts(IGeolocation)
+
+    def __init__(self, value):
+        self.value = value
+        self.longitude = 'longitude: %s' % value.longitude
+        self.latitude = 'latitude: %s' % value.latitude
+
+    def __call__(self, *args, **kwds):
+        return [self.longitude, self.latitude]
+
+
+class File2Surf(Value2Surf):
+    """IValue2Surf implementation for plone.namedfile.file.NamedBlobFile """
+    adapts(INamedBlobFile)
+
+    def __init__(self, value):
+        self.value = value.filename
+
+
+class Image2Surf(Value2Surf):
+    """IValue2Surf implementation for plone.namedfile.file.NamedBlobImage """
+    adapts(INamedBlobImage)
+
+    def __init__(self, value):
+        self.value = value.filename

@@ -23,6 +23,14 @@
         factory=".cityprofile.CityProfileFormExtender"
         />
 
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="Products.CMFCore.interfaces.IFolderish
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .cityprofile.CityProfileAddForm"
+        factory=".cityprofile.CityProfileFormExtender"
+        />
+
     TODO: is this needed?
     <plone:behavior
         title="CityProfile Staging"

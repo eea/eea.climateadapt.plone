@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Enabled behaviors, added formexternder to hide additional fields,
+  added fields for rdf export
+  [iulianpetchesi #84170]
 * Bugfix: Updated the email substitution method
   [iulianpetchesi #79149]
 * Feature: Added notification for thematic experts via content-rules and personal

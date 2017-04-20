@@ -6,6 +6,7 @@ from plone.dexterity.browser.add import DefaultAddForm
 from plone.z3cform import layout
 from zope.interface import classImplements
 from plone.dexterity.interfaces import IDexterityEditForm
+# from plone.memoize import view
 
 
 class MapGraphDatasetView(DefaultView, AceViewApi):
@@ -13,6 +14,7 @@ class MapGraphDatasetView(DefaultView, AceViewApi):
     """
     type_label = u"Map Graph Data Set"
 
+    # @view.memoize
     def compose_layer_link(self):
         """ Function to compose the map layer url """
         if self.context.gis_layer_id in ['', None]:
@@ -43,3 +45,12 @@ class MapsAddForm(DefaultAddForm):
 class MapsFormExtender(FormExtender):
     def update(self):
         self.move('gis_layer_id', after='websites')
+        self.remove('ICategorization.subjects')
+        self.remove('ICategorization.language')
+        self.remove('IPublication.effective')
+        self.remove('IPublication.expires')
+        self.remove('IOwnership.creators')
+        self.remove('IOwnership.contributors')
+        self.remove('IOwnership.rights')
+        labels = ['label_schema_dates', 'label_schema_ownership']
+        self.form.groups = [group for group in self.form.groups if group.label not in labels]

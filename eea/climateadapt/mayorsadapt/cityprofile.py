@@ -3,6 +3,7 @@ from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.z3cform.fieldsets.extensible import FormExtender
 from zope.component import getUtility
+from plone.dexterity.browser.add import DefaultAddForm
 
 
 class CityProfileView(DefaultView):
@@ -133,6 +134,20 @@ class CityProfileFormExtender(FormExtender):
             self.move('IGeolocatable.geolocation', after='country')
             self.remove('city_background_information_about_the_city')
             self.remove('status_of_mayors_adapt_signature')
+            self.remove('ICategorization.subjects')
+            self.remove('ICategorization.language')
+            self.remove('IPublication.effective')
+            self.remove('IPublication.expires')
+            self.remove('IOwnership.creators')
+            self.remove('IOwnership.contributors')
+            self.remove('IOwnership.rights')
+            labels = ['label_schema_categorization', 'label_schema_dates', 'label_schema_ownership']
+            self.form.groups = [group for group in self.form.groups if group.label not in labels]
         except Exception:   # registered too loosely
             pass
         # self.remove('signature_date')
+
+
+class CityProfileAddForm(DefaultAddForm):
+    """ Add Form for City profile
+    """

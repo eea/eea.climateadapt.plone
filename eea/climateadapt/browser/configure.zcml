@@ -253,12 +253,187 @@
         factory=".videos.VideosFormExtender"
         />
 
+    -----[ Publication Reports Form customizations ]----
+
+    <browser:page
+        for="eea.climateadapt.aceitem.IPublicationReport"
+        name="edit"
+        class=".aceitem.PublicationReportEditView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="eea.climateadapt.aceitem.IPublicationReport
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .aceitem.PublicationReportEditForm"
+        factory=".aceitem.PublicationReportFormExtender"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="Products.CMFCore.interfaces.IFolderish
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .aceitem.PublicationReportAddForm"
+        factory=".aceitem.PublicationReportFormExtender"
+        />
+
+    -----[ Information Portals Form customizations ]----
+
+    <browser:page
+        for="eea.climateadapt.aceitem.IInformationPortal"
+        name="edit"
+        class=".aceitem.InformationPortalEditView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="eea.climateadapt.aceitem.IInformationPortal
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .aceitem.InformationPortalEditForm"
+        factory=".aceitem.InformationPortalFormExtender"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="Products.CMFCore.interfaces.IFolderish
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .aceitem.InformationPortalAddForm"
+        factory=".aceitem.InformationPortalFormExtender"
+        />
+
+    -----[ Maps Graphs Form customizations ]----
+
+    <browser:page
+        for="eea.climateadapt.aceitem.IGuidanceDocument"
+        name="edit"
+        class=".aceitem.GuidanceDocumentEditView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="eea.climateadapt.aceitem.IGuidanceDocument
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .aceitem.GuidanceDocumentEditForm"
+        factory=".aceitem.GuidanceDocumentFormExtender"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="Products.CMFCore.interfaces.IFolderish
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .aceitem.GuidanceDocumentAddForm"
+        factory=".aceitem.GuidanceDocumentFormExtender"
+        />
+
+    -----[ Tools Form customizations ]----
+
+    <browser:page
+        for="eea.climateadapt.aceitem.ITool"
+        name="edit"
+        class=".aceitem.ToolEditView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="eea.climateadapt.aceitem.ITool
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .aceitem.ToolEditForm"
+        factory=".aceitem.ToolFormExtender"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="Products.CMFCore.interfaces.IFolderish
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .aceitem.ToolAddForm"
+        factory=".aceitem.ToolFormExtender"
+        />
+
+    -----[ Indicators Form customizations ]----
+
+    <browser:page
+        for="eea.climateadapt.aceitem.IIndicator"
+        name="edit"
+        class=".aceitem.IndicatorEditView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="eea.climateadapt.aceitem.IIndicator
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .aceitem.IndicatorEditForm"
+        factory=".aceitem.IndicatorFormExtender"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="Products.CMFCore.interfaces.IFolderish
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .aceitem.IndicatorAddForm"
+        factory=".aceitem.IndicatorFormExtender"
+        />
+
+    -----[ Organisations Form customizations ]----
+
+    <browser:page
+        for="eea.climateadapt.aceitem.IOrganisation"
+        name="edit"
+        class=".aceitem.OrganisationEditView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="eea.climateadapt.aceitem.IOrganisation
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .aceitem.OrganisationEditForm"
+        factory=".aceitem.OrganisationFormExtender"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="Products.CMFCore.interfaces.IFolderish
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .aceitem.OrganisationAddForm"
+        factory=".aceitem.OrganisationFormExtender"
+        />
+
+    -----[ Ace Project Form customizations ]----
+
+    <browser:page
+        for="eea.climateadapt.aceproject.IAceProject"
+        name="edit"
+        class=".aceproject.AceProjectEditView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="eea.climateadapt.aceproject.IAceProject
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .aceproject.AceProjectEditForm"
+        factory=".aceproject.AceProjectFormExtender"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="Products.CMFCore.interfaces.IFolderish
+        zope.publisher.interfaces.browser.IDefaultBrowserLayer
+        .aceproject.AceProjectAddForm"
+        factory=".aceproject.AceProjectFormExtender"
+        />
+
     ------
 
     <browser:page
         name="view"
         for="eea.climateadapt.acevideo.IAceVideos"
-        class=".videos.VideosView"
+        class="eea.climateadapt.browser.videos.VideosView"
         template="pt/videos_view.pt"
         permission="zope2.View"
         />

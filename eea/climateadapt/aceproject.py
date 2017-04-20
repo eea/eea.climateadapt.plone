@@ -14,6 +14,7 @@ from z3c.form.widget import FieldWidget
 from zope.component import adapter
 from zope.interface import implementer, implements
 from zope.schema import URI, Bool, Choice, Int, List, Text, TextLine, Tuple
+from zope.schema import Datetime
 
 
 class IAceProject(form.Schema, IImageScaleTraversable):
@@ -206,7 +207,20 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     directives.omitted(IAddForm, 'spatial_layer')
     directives.omitted(IEditForm, 'spatial_values')
     directives.omitted(IAddForm, 'spatial_values')
+    directives.omitted(IAddForm, 'modification_date')
+    directives.omitted(IEditForm, 'modification_date')
+    directives.omitted(IAddForm, 'creation_date')
+    directives.omitted(IEditForm, 'creation_date')
+    directives.omitted(IAddForm, 'id')
+    directives.omitted(IEditForm, 'id')
+
     # end
+
+    creation_date = Datetime(title=_(u"Created"), required=False,)
+
+    modification_date = Datetime(title=_(u"Last Modified"), required=False,)
+
+    id = TextLine(title=_(u"Object ID"), required=False,)
 
     specialtagging = TextLine(
         title=_(u"Special Tagging"),

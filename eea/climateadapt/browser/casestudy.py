@@ -12,16 +12,19 @@ from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
 from zope.interface import classImplements
 import json
+# from plone.memoize import view
 
 
 class CaseStudyView(DefaultView, AceViewApi):
     """ Default view for case studies
     """
 
+    # @view.memoize
     def get_adaptation_options(self):
         # TODO: filter by published
         return [o.to_object for o in self.context.adaptationoptions]
 
+    # @view.memoize
     def relevances_dict(self):
         return dict(_relevance)
 
@@ -51,13 +54,22 @@ class CaseStudyFormExtender(FormExtender):
         self.move('objectives', after='climate_impacts')
         self.move('challenges', after='climate_impacts')
         self.move('contact', before='websites')
+        self.remove('ICategorization.subjects')
+        self.remove('ICategorization.language')
+        self.remove('IPublication.effective')
+        self.remove('IPublication.expires')
+        self.remove('IOwnership.creators')
+        self.remove('IOwnership.contributors')
+        self.remove('IOwnership.rights')
+        labels = ['label_schema_dates', 'label_schema_ownership']
+        self.form.groups = [group for group in self.form.groups if group.label not in labels]
 
 
 class CaseStudyJson(BrowserView):
     """ @@json view
     """
     def __call__(self):
-        return json.dumps(self.context._to_json())
+        return json.dumps(self.context._repr_for_arcgis())
 
 
 class CaseStudiesJson(BrowserView):

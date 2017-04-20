@@ -168,6 +168,11 @@
     <subscriber factory=".marshaller.GeoCharsFieldModifier"
         provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
+    <adapter factory=".marshaller.CityProfile2Surf" />
+    <adapter factory=".marshaller.Geolocation2Surf" />
+    <adapter factory=".marshaller.File2Surf" />
+    <adapter factory=".marshaller.Image2Surf" />
+
     ------[ Workflow Message Functionality: ]--------
 
     <subscriber for=".workflow.IWorkflowMessageEvent" handler=".events.trigger_contentrules" />

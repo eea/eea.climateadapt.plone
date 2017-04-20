@@ -43,6 +43,15 @@ class AdaptationOptionView(DefaultView, AceViewApi):
 class AdaptationOptionFormExtender(FormExtender):
     def update(self):
         self.move('category', before='stakeholder_participation')
+        self.remove('ICategorization.subjects')
+        self.remove('ICategorization.language')
+        self.remove('IPublication.effective')
+        self.remove('IPublication.expires')
+        self.remove('IOwnership.creators')
+        self.remove('IOwnership.contributors')
+        self.remove('IOwnership.rights')
+        labels = ['label_schema_dates', 'label_schema_ownership']
+        self.form.groups = [group for group in self.form.groups if group.label not in labels]
 
 
 class AdaptationOptionEditForm(DefaultEditForm):

@@ -18,6 +18,7 @@ from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import implements
 from zope.schema import Bool, Choice, Int, List, Text, TextLine, Tuple, URI
+from zope.schema import Datetime
 
 
 class IAceItem(form.Schema, IImageScaleTraversable):
@@ -193,6 +194,15 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     directives.omitted(IAddForm, 'rating')
     directives.omitted(IEditForm, 'rating')
 
+    directives.omitted(IAddForm, 'modification_date')
+    directives.omitted(IEditForm, 'modification_date')
+
+    directives.omitted(IAddForm, 'creation_date')
+    directives.omitted(IEditForm, 'creation_date')
+
+    directives.omitted(IAddForm, 'id')
+    directives.omitted(IEditForm, 'id')
+
     # -----------[ "backend" fields ]------------------
 
     special_tags = Tuple(
@@ -228,6 +238,12 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                      required=False, default=False)
 
     metadata = TextLine(title=_(u"Metadata"), required=False,)
+
+    creation_date = Datetime(title=_(u"Created"), required=False,)
+
+    modification_date = Datetime(title=_(u"Last Modified"), required=False,)
+
+    id = TextLine(title=_(u"Object ID"), required=False,)
 
     # TODO: see if possible to use eea.promotions for this
     # featured = List(title=_(u"Featured in location"),

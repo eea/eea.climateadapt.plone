@@ -35,6 +35,7 @@ from zope.component import adapter
 from zope.interface import implementer, implements
 from zope.schema import List, Text, TextLine, Tuple
 from zope.schema import URI, Bool, Choice, Int
+from zope.schema import Datetime
 import json
 import logging
 
@@ -296,7 +297,12 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     directives.omitted(IAddForm, 'important')
     directives.omitted(IEditForm, 'rating')
     directives.omitted(IAddForm, 'rating')
-
+    directives.omitted(IAddForm, 'modification_date')
+    directives.omitted(IEditForm, 'modification_date')
+    directives.omitted(IAddForm, 'creation_date')
+    directives.omitted(IEditForm, 'creation_date')
+    directives.omitted(IAddForm, 'id')
+    directives.omitted(IEditForm, 'id')
     # end
 
     implementation_type = Choice(
@@ -341,6 +347,12 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         value_type=TextLine(),
         missing_value=(None),
     )
+
+    creation_date = Datetime(title=_(u"Created"), required=False,)
+
+    modification_date = Datetime(title=_(u"Last Modified"), required=False,)
+
+    id = TextLine(title=_(u"Object ID"), required=False,)
 
     # dexteritytextindexer.searchable('summary')
     # summary = Text(title=_(u"Summary"), required=False, default=u"")

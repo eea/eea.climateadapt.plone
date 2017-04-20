@@ -2,6 +2,7 @@
 """
 
 
+import inspect
 from Acquisition import Explicit
 from Acquisition import aq_inner
 from OFS.Image import Image
@@ -10,6 +11,13 @@ from UserDict import UserDict
 from collective.cover.interfaces import ITileEditForm
 from collective.cover.tiles.edit import CustomEditForm as CoverEditForm
 from collective.cover.tiles.edit import CustomTileEdit as CoverTileEdit
+from eea.climateadapt.browser.aceitem import PublicationReportAddForm, ToolAddForm, \
+GuidanceDocumentAddForm, ToolAddForm, IndicatorAddForm, OrganisationAddForm, InformationPortalAddForm
+from eea.climateadapt.browser.aceproject import AceProjectAddForm
+from eea.climateadapt.browser.adaptationoption import AdaptationOptionAddForm
+from eea.climateadapt.browser.casestudy import CaseStudyAddForm
+from eea.climateadapt.browser.mapgraphsdataset import MapsAddForm
+from eea.climateadapt.browser.videos import VideosAddForm
 from plone.api import portal
 from plone.app.layout.globals.layout import LayoutPolicy
 from plone.app.widgets.browser import vocabulary as vocab
@@ -21,7 +29,7 @@ from zope.component import queryUtility
 from zope.interface import implementer
 from zope.interface.common.mapping import IMapping
 from zope.schema.interfaces import IVocabularyFactory
-import inspect
+from eea.climateadapt.mayorsadapt.cityprofile import CityProfileAddForm
 
 
 class VocabularyView(vocab.VocabularyView):
@@ -83,14 +91,25 @@ class AddView(DefaultAddView):
         self.request = request
 
         if self.form is not None:
+            forms_dict = {
+                'eea.climateadapt.acemeasure.CaseStudy': CaseStudyAddForm,
+                'eea.climateadapt.acemeasure.AdaptationOption': AdaptationOptionAddForm,
+                'eea.climateadapt.aceitem.PublicationReport': PublicationReportAddForm,
+                'eea.climateadapt.aceitem.InformationPortal': InformationPortalAddForm,
+                'eea.climateadapt.aceitem.GuidanceDocument': GuidanceDocumentAddForm,
+                'eea.climateadapt.aceitem.Tool': ToolAddForm,
+                'eea.climateadapt.aceitem.Organisation': OrganisationAddForm,
+                'eea.climateadapt.aceitem.Indicator': IndicatorAddForm,
+                'eea.climateadapt.aceitem.MapGraphDataset': MapsAddForm,
+                # 'eea.climateadapt.aceitem.ResearchProject':
+                'eea.climateadapt.aceproject.AceProject': AceProjectAddForm,
+                'eea.climateadapt.acevideo.Videos': VideosAddForm,
+                'eea.climateadapt.city_profile.CityProfile': CityProfileAddForm,
+            }
 
-            if ti.klass == 'eea.climateadapt.acemeasure.CaseStudy':
-                from eea.climateadapt.browser.casestudy import CaseStudyAddForm
-                self.form = CaseStudyAddForm
-            elif ti.klass == 'eea.climateadapt.acemeasure.AdaptationOption':
-                from eea.climateadapt.browser.adaptationoption import \
-                    AdaptationOptionAddForm
-                self.form = AdaptationOptionAddForm
+            klass = forms_dict.get(ti.klass, None)
+            if klass:
+                self.form = klass
 
             self.form_instance = self.form(aq_inner(self.context), self.request)
             self.form_instance.__name__ = self.__name__
