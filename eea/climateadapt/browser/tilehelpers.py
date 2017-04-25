@@ -16,6 +16,7 @@ from plone.tiles.interfaces import ITileDataManager
 from zope import schema
 from zope.component.hooks import getSite
 from zope.interface import implements
+# from plone.memoize import view
 
 
 class AceContentSearch(BrowserView):
@@ -33,6 +34,7 @@ class FrontPageCountries(BrowserView):
     form
     """
 
+    # @view.memoize
     def countries(self):
         return ace_countries_selection
 
@@ -41,33 +43,33 @@ class ICarousel(IPersistentCoverTile):
     """ Frontpage carousel tile schema """
 
     # Slide 1 fields
-    s1_title = schema.Text(title=u"First slide Title", required=True)
-    s1_description = RichText(title=u"First slide description", required=False)
+    # s1_title = schema.Text(title=u"First slide Title", required=True)
+    # s1_description = RichText(title=u"First slide description", required=False)
 
-    s1_primary_photo = NamedBlobImage(
-        title=(u"First Slide Photo"),
-        required=False,
-    )
+    # s1_primary_photo = NamedBlobImage(
+    #     title=(u"First Slide Photo"),
+    #     required=False,
+    # )
 
-    s1_photo_copyright = schema.Text(title=u"Photo Copyright", required=True)
+    # s1_photo_copyright = schema.Text(title=u"Photo Copyright", required=True)
 
-    s1_read_more_text = schema.Text(title=u"First slide read more text",
-                                    required=False)
-    s1_read_more_link = schema.Text(title=u"First slide read more link",
-                                    required=False)
+    # s1_read_more_text = schema.Text(title=u"First slide read more text",
+    #                                 required=False)
+    # s1_read_more_link = schema.Text(title=u"First slide read more link",
+    #                                 required=False)
 
     # Slide 2 fields
-    s2_title = schema.Text(title=u"Second slide Title", required=True)
-    s2_description = RichText(title=u"Second slide description", required=False)
+    s2_title = schema.Text(title=u"First slide Title", required=True)
+    s2_description = RichText(title=u"First slide description", required=False)
 
     s2_primary_photo = NamedBlobImage(
-        title=(u"Second Slide Photo"),
+        title=(u"First Slide Photo"),
         required=True,
     )
 
-    s2_read_more_text = schema.Text(title=u"Second slide read more text",
+    s2_read_more_text = schema.Text(title=u"First slide read more text",
                                     required=False)
-    s2_read_more_link = schema.Text(title=u"Second slide read more link",
+    s2_read_more_link = schema.Text(title=u"First slide read more link",
                                     required=False)
 
     # Slide 5 fields
