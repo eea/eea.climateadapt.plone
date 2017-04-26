@@ -50,6 +50,9 @@
     <adapter factory=".overrides.RelationListFieldRenderer"
       provides="collective.excelexport.interfaces.IExportable" />
 
+    <adapter factory=".overrides.DateTimeFieldRenderer"
+      provides="collective.excelexport.interfaces.IExportable" />
+
     <adapter 
       provides=".overrides.IEnhancedPersonalPreferencesSchema"
       for="Products.CMFCore.interfaces.ISiteRoot"

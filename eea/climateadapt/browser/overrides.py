@@ -10,6 +10,7 @@ from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 from eea.climateadapt.schema import Year
 from eea.pdf.interfaces import IPDFTool
+from plone.api import portal
 from plone.app.content.browser.interfaces import IContentsPage
 from plone.app.contentmenu.menu import DisplaySubMenuItem as DSMI
 from plone.app.contenttypes.behaviors.richtext import IRichText  # noqa
@@ -36,7 +37,7 @@ from zope.formlib import form
 from zope.interface import Interface
 from zope.interface import implementer
 from zope.schema import List, Choice
-from zope.schema.interfaces import ITextLine, ITuple, IList, IText
+from zope.schema.interfaces import ITextLine, ITuple, IList, IText, IDatetime
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
 
@@ -95,6 +96,25 @@ class CustomizedPersonalPrefPanel(PersonalPreferencesPanel):
 
     # Our widget
     form_fields['thematic_sectors'].custom_widget = MultiCheckBoxVocabularyWidget
+
+
+class DateTimeFieldRenderer(BaseFieldRenderer):
+    """ Datetime field adapter for excel export"""
+    adapts(IDatetime, Interface, Interface)
+
+    def _get_text(self, value):
+        return portal.get_localized_time(datetime=value)
+
+    def render_value(self, obj):
+        """Gets the value to render in excel file from content value
+        """
+        value = self.get_value(obj)
+        if not value or value == NO_VALUE:
+            return ""
+
+        text = safe_unicode(self._get_text(value))
+
+        return text
 
 
 class RelationListFieldRenderer(BaseFieldRenderer):

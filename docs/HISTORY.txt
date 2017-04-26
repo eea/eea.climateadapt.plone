@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Created datetime adapter for the excel export
+  [iulianpetchesi #84646]
 * Task: Deactivated the first slide in the frontpage banner
   [iulianpetchesi #84468]
 * Bugfix: Enabled behaviors, added formexternder to hide additional fields,
