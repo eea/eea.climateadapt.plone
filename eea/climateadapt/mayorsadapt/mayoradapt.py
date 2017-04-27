@@ -1,5 +1,6 @@
 # coding=utf-8
 
+import json
 from Acquisition import Implicit
 from Acquisition import aq_inner
 from Products.Five.browser import BrowserView
@@ -12,11 +13,11 @@ from eea.climateadapt.vocabulary import ace_countries
 from plone.api.portal import show_message
 from plone.directives import form
 from plone.formwidget.recaptcha.widget import ReCaptchaFieldWidget
+from plone.memoize import view
 from z3c.form import button, field
 from zope import schema
 from zope.component import getMultiAdapter
 from zope.event import notify
-import json
 
 
 class IRegisterCityForm(form.Schema):
@@ -92,21 +93,25 @@ class MayorsAdaptPage(BrowserView):
 # TODO: make the following 4 classes a single class
 
 class B_M_Climate_Impacts(BrowserView):
+    @view.memoize
     def __call__(self):
         return json.dumps(_climateimpacts)
 
 
 class A_M_Country(BrowserView):
+    @view.memoize
     def __call__(self):
         return json.dumps(ace_countries)
 
 
 class B_M_Sector(BrowserView):
+    @view.memoize
     def __call__(self):
         return json.dumps(_sectors)
 
 
 class C_M_Stage_Of_The_Implementation_Cycle(BrowserView):
+    @view.memoize
     def __call__(self):
         return json.dumps(_stage_implementation_cycle)
 

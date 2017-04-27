@@ -16,11 +16,14 @@ from plone.app.iterate.permissions import CheckoutPermission
 from zExceptions import NotFound
 import json
 import logging
+from plone.memoize import view
+
 
 logger = logging.getLogger('eea.climateadapt')
 
 
 class AceViewApi(object):
+    @view.memoize
     def html2text(self, html):
         if not isinstance(html, basestring):
             return u""
@@ -102,6 +105,7 @@ class AceViewApi(object):
             text = u", ".join(value)
         return u"<div class='sidebar_bold'>City: <br/><p>{0}</p></div>".format(text)
 
+    @view.memoize
     def render_geochar(self, value):
         # value is a mapping such as:
         # u'{"geoElements":{"element":"EUROPE",

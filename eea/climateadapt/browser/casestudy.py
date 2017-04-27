@@ -12,19 +12,19 @@ from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
 from zope.interface import classImplements
 import json
-# from plone.memoize import view
+from plone.memoize import view
 
 
 class CaseStudyView(DefaultView, AceViewApi):
     """ Default view for case studies
     """
 
-    # @view.memoize
+    @view.memoize
     def get_adaptation_options(self):
         # TODO: filter by published
         return [o.to_object for o in self.context.adaptationoptions]
 
-    # @view.memoize
+    @view.memoize
     def relevances_dict(self):
         return dict(_relevance)
 

@@ -30,6 +30,7 @@ class CheckCopyPasteLocation(BrowserView):
     def __call__(self, action, object):
         return self.check(action, object)
 
+    @view.memoize
     def check(self, action, object):
         portal_state = getMultiAdapter(
             (self.context, self.request), name="plone_portal_state")
@@ -78,6 +79,7 @@ class MainNavigationMenuEdit(form.SchemaForm):
         return getToolByName(self.context,
                               'portal_properties')['site_properties']
 
+    @view.memoize
     def getContent(self):
         content = {'menu': self.ptool.getProperty('main_navigation_menu')}
         return content
@@ -144,6 +146,7 @@ class ListTilesWithTitleView (BrowserView):
 
         return self.index()
 
+    @view.memoize
     def linkify(self, text):
         if not text:
             return
@@ -187,6 +190,7 @@ class SpecialTagsView(BrowserView):
             getattr(self, 'handle_' + action)(tag)
         return self.index()
 
+    @view.memoize
     def special_tags(self):
         return self.context.portal_catalog.uniqueValuesFor('special_tags')
 
@@ -313,6 +317,7 @@ class KeywordsAdminView (BrowserView):
 
         return self.index()
 
+    @view.memoize
     def keywords(self):
         return self.context.portal_catalog.uniqueValuesFor('keywords')
 

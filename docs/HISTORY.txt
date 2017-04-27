@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Memoized code
+  [iulianpetchesi #76301]
 * Bugfix: Created datetime adapter for the excel export
   [iulianpetchesi #84646]
 * Task: Deactivated the first slide in the frontpage banner

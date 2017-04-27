@@ -193,9 +193,11 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
     is_droppable = False
     short_name = u'Search AceContent'
 
+    @view.memoize
     def is_empty(self):
         return False
 
+    @view.memoize
     def accepted_ct(self):
         """Return an empty list as no content types are accepted."""
         return []
@@ -296,9 +298,11 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
                            # 'RESEARCHPROJECT' || aceitemtype eq 'MEASURE' ||
                            # aceitemtype eq 'ORGANISATION'}" >
 
+    @view.memoize
     def is_empty(self):
         return False
 
+    @view.memoize
     def accepted_ct(self):
         """ Return accepted drag/drop content types for this tile.
         """
@@ -504,6 +508,7 @@ class FilteringForm(Form):   #form.SchemaForm):
             request = request['PARENT_REQUEST']
         super(FilteringForm, self).__init__(context, request, *args, **kwargs)
 
+    @view.memoize
     def action(self):
         return self.context.absolute_url()
 

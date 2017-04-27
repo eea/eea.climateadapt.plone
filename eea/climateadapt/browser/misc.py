@@ -1,23 +1,23 @@
-from email.MIMEText import MIMEText
+import logging
 from Acquisition import aq_inner
+from OFS.ObjectManager import BeforeDeleteException
+from Products.CMFPlone.utils import getToolByName
+from Products.Five.browser import BrowserView
 from eea.climateadapt.config import CONTACT_MAIL_LIST
 from eea.climateadapt.schema import Email
+from email.MIMEText import MIMEText
 from plone import api
+from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 from plone.directives import form
 from plone.formwidget.recaptcha.widget import ReCaptchaFieldWidget
-from Products.Five.browser import BrowserView
+from plone.memoize import view
+import requests
+import transaction
 from z3c.form import button, field
 from zope import schema
+from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.interface import Interface, implements
-import requests
-import logging
-from Products.CMFPlone.utils import getToolByName
-from zope.annotation.interfaces import IAnnotations
-import transaction
-from OFS.ObjectManager import BeforeDeleteException
-
-from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 
 
 logger = logging.getLogger('eea.climateadapt')
@@ -66,6 +66,7 @@ class AdaptationStrategyView (BrowserView):
         to /countries-view-map
     """
 
+    @view.memoize
     def __call__(self):
         return self.request.response.redirect('/countries')
 

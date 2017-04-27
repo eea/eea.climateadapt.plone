@@ -16,7 +16,7 @@ from plone.tiles.interfaces import ITileDataManager
 from zope import schema
 from zope.component.hooks import getSite
 from zope.interface import implements
-# from plone.memoize import view
+from plone.memoize import view
 
 
 class AceContentSearch(BrowserView):
@@ -34,7 +34,6 @@ class FrontPageCountries(BrowserView):
     form
     """
 
-    # @view.memoize
     def countries(self):
         return ace_countries_selection
 
@@ -134,6 +133,7 @@ class Carousel(PersistentCoverTile):
 
         return result.getObject()
 
+    @view.memoize
     def html2text(self, html):
         if not isinstance(html, basestring):
             return u""
@@ -183,10 +183,12 @@ class NewsTile(ListingTile):
         site = getSite()
         return site['news-archive']
 
+    @view.memoize
     def get_item_date(self, item):
         date = item.effective_date.strftime('%d %b %Y')
         return date
 
+    @view.memoize
     def get_external_url(self, item):
         url = getattr(item, 'remoteUrl', None)
         if url:
@@ -220,10 +222,12 @@ class EventsTile(ListingTile):
         site = getSite()
         return site['more-events']
 
+    @view.memoize
     def get_item_date(self, item):
         date = item.end.strftime('%d %b %Y')
         return date
 
+    @view.memoize
     def get_external_url(self, item):
         url = item.event_url
         if url == '':

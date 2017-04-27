@@ -8,6 +8,7 @@ from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.vocabulary import ace_countries_selection
 from zope import schema
 from zope.interface import implements
+from plone.memoize import view
 
 
 class ICountrySelectTile(IPersistentCoverTile):
@@ -38,9 +39,11 @@ class CountrySelectTile(PersistentCoverTile):
     is_droppable = False
     short_name = u'Select country'
 
+    @view.memoize
     def is_empty(self):
         return False
 
+    @view.memoize
     def countries(self):
         countries = [(c[0], c[1].replace(" ", "-")) for c in
                      ace_countries_selection]
