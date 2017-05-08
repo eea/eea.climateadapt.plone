@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added upgrade step in order to fix effective_date attribute of 
+  some aceprojects
+  [iulianpetchesi #84924]
 * Bugfix: Memoized code
   [iulianpetchesi #76301]
 * Bugfix: Created datetime adapter for the excel export

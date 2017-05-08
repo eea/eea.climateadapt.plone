@@ -502,3 +502,25 @@ def update_to_36(context):
     context.runImportStepFromProfile(default_profile, 'repositorytool')
     context.runImportStepFromProfile(default_profile, 'workflow')
     context.runImportStepFromProfile(default_profile, 'contentrules')
+
+
+def update_to_37(context):
+    logger.info("Upgrading to 37")
+    logger.info("Setting the proper effective date for some aceprojects")
+
+    catalog = portal.get_tool(name='portal_catalog')
+    query = {'portal_type': 'eea.climateadapt.aceproject',
+             'review_state': 'published'}
+    brains = catalog.searchResults(**query)
+
+    for brain in brains:
+        obj = brain.getObject()
+        if obj.effective_date is None:
+            wf_history = obj.workflow_history.get('cca_items_workflow', [])
+            for wf in wf_history:
+                if wf.get('action', '') == 'publish':
+                    obj.effective_date = wf.get('time', None)
+                    obj.reindexObject()
+                    obj._p_changed = True
+                    continue
+    logger.info("Finished modifying the effective dates for aceprojects")
