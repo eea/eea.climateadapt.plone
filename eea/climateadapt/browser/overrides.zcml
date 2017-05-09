@@ -53,6 +53,12 @@
     <adapter factory=".overrides.DateTimeFieldRenderer"
       provides="collective.excelexport.interfaces.IExportable" />
 
+    <adapter
+      name="objectstate"
+      provides="collective.excelexport.interfaces.IExportable"
+      factory=".overrides.ObjectStateExportable"
+    />
+
     <adapter 
       provides=".overrides.IEnhancedPersonalPreferencesSchema"
       for="Products.CMFCore.interfaces.ISiteRoot"

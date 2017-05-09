@@ -5,12 +5,12 @@ from Products.CMFPlone import utils
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from collective.excelexport.exportables.dexterityfields import BaseFieldRenderer
+from collective.excelexport.exportables.dexterityfields import BaseFieldRenderer, FieldRenderer
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 from eea.climateadapt.schema import Year
 from eea.pdf.interfaces import IPDFTool
-from plone.api import portal
+from plone.api import portal, content
 from plone.app.content.browser.interfaces import IContentsPage
 from plone.app.contentmenu.menu import DisplaySubMenuItem as DSMI
 from plone.app.contenttypes.behaviors.richtext import IRichText  # noqa
@@ -96,6 +96,20 @@ class CustomizedPersonalPrefPanel(PersonalPreferencesPanel):
 
     # Our widget
     form_fields['thematic_sectors'].custom_widget = MultiCheckBoxVocabularyWidget
+
+
+class ObjectStateExportable(FieldRenderer):
+    """ Set the objects portal state in a separate column in the excel """
+
+    def render_header(self):
+        """Gets the value to render on the first row of excel sheet for this field
+        """
+        return self.field.title
+
+    def render_value(self, obj):
+        """Gets the value to render in excel file from content
+        """
+        return content.get_state(obj)
 
 
 class DateTimeFieldRenderer(BaseFieldRenderer):
