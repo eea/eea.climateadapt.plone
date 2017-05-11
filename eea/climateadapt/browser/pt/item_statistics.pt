@@ -1,0 +1,40 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  xml:lang="en"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="eea.climateadapt">
+
+  <body>
+    <metal:main fill-slot="main">
+    <style>
+        
+    </style>
+      <tal:main-macro metal:define-macro="content-core" 
+       tal:define="years view/get_years;">
+        <div class="" tal:repeat="year years">
+          <h2>Year: <span tal:content="year">2000</span></h2>
+          <table class="listing">
+            <thead>
+              <tr>
+                <th>Portal Type</th>
+                <th>Published</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr tal:repeat="type python: view.get_portal_types(year)">
+                    <td tal:content="type">Type 1</td>
+                    <td tal:content="python: view.get_published(year, type)">Nr Items</td>
+                    <td tal:content="python: view.get_private(year, type)">Nr Items</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </tal:main-macro>
+    </metal:main>
+  </body>
+</html>
