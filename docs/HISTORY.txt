@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added browser view for item statistics in CCA
+  [iulianpetchesi #84964]
 * Bugfix: Added new column to the excel export in order to display the objects
   portal state
   [iulianpetchesi #84924]

@@ -73,6 +73,21 @@
         />
 
     <browser:page
+        name="calculate-item-statistics"
+        for="*"
+        class=".misc.calculateItemStatistics"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <browser:page
+        name="get-item-statistics"
+        for="*"
+        class=".misc.getItemStatistics"
+        permission="zope2.View"
+        template="pt/item_statistics.pt"
+        />
+
+    <browser:page
         name="no_title_cover_view"
         for="*"
         class=".CoverNoTitleView"

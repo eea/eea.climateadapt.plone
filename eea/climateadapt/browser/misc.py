@@ -23,6 +23,115 @@ from zope.interface import Interface, implements
 logger = logging.getLogger('eea.climateadapt')
 
 
+class calculateItemStatistics(BrowserView):
+    def __call__(self):
+        return self.initialize()
+
+    def initialize(self):
+        self.initializeAnnotations()
+        self.search()
+        self.cleanUpData()
+
+    def initializeAnnotations(self):
+        logger.info('Initializing Annotations')
+        IAnnotations(self.context)['cca-item-statistics'] = {}
+        content_types = getToolByName(self.context, 'portal_types').listContentTypes()
+
+        for year in range(1969, 2018):
+            annotation_dictionary = {}
+            for ctype in content_types:
+                annotation_dictionary[ctype] = {'published': 0, 'total': 0}
+            IAnnotations(self.context)['cca-item-statistics'][year] = annotation_dictionary
+        logger.info("Finished Initializing Annotations")
+
+    def search(self):
+        logger.info("Starting the catalog search")
+        catalog = self.context.portal_catalog
+        query = {'portal_type': [
+                    'eea.climateadapt.aceproject',
+                    'eea.climateadapt.tool',
+                    'eea.climateadapt.researchproject',
+                    'eea.climateadapt.publicationreport',
+                    'eea.climateadapt.organisation',
+                    'eea.climateadapt.city_profile',
+                    'eea.climateadapt.mapgraphdataset',
+                    'eea.climateadapt.informationportal',
+                    'eea.climateadapt.indicator',
+                    'eea.climateadapt.guidancedocument',
+                    'eea.climateadapt.casestudy',
+                    'eea.climateadapt.adaptationoption',
+                    'Link',
+                    'Document',
+                    'News Item',
+                    'Event',
+                    'collective.cover.content',
+                    'Folder']
+                }
+
+        brains = catalog.searchResults(**query)
+        logger.info('Got %s results.' % len(brains))
+        items_count = 0
+        for brain in brains:
+            if items_count % 100 == 0:
+                logger.info('Went through %s brains' % items_count)
+            obj = brain.getObject()
+            if api.content.get_state(obj) == 'published':
+                if obj.effective_date is None:
+                    logger.info("No date found")
+                    continue
+                year = obj.effective().year()
+                portal_type = obj.portal_type
+                self.saveToAnnotations(year, portal_type, True)
+            else:
+                year = obj.created().year()
+                portal_type = obj.portal_type
+                self.saveToAnnotations(year, portal_type, False)
+            items_count += 1
+        logger.info('Finished the search.')
+
+    def saveToAnnotations(self, year, content_type, published):
+        if published:
+            IAnnotations(self.context)['cca-item-statistics'][year][content_type]['published'] += 1
+        IAnnotations(self.context)['cca-item-statistics'][year][content_type]['total'] += 1
+
+    def cleanUpData(self):
+        logger.info('Cleaning up DATA')
+        for year in range(1969, 2018):
+            annotation = IAnnotations(self.context)['cca-item-statistics'][year]
+            keys = annotation.keys()
+            for key in keys:
+                if annotation[key]['total'] == 0:
+                    annotation.pop(key, None)
+            keys = annotation.keys()
+            if len(keys) == 0:
+                IAnnotations(self.context)['cca-item-statistics'].pop(year)
+                continue
+        logger.info('Finished cleaning up data')
+
+
+class getItemStatistics(BrowserView):
+    """ """
+
+    def __call__(self):
+        return self.index()
+
+    def get_portal_types(self, year):
+        # types = [(xx[0], xx[1].title) for xx in self.context.portal_types.objectItems()]
+        return IAnnotations(self.context)['cca-item-statistics'][year].keys()
+
+    def get_years(self):
+        years = IAnnotations(self.context)['cca-item-statistics'].keys()
+        years.sort()
+        print years
+        return years
+
+    def get_published(self, year, portal_type):
+        return IAnnotations(self.context)['cca-item-statistics'][year][portal_type]['published']
+
+    def get_private(self, year, portal_type):
+        return IAnnotations(self.context)['cca-item-statistics'][year][portal_type]['total']
+
+
 class FixCheckout(BrowserView):
     """ A view to fix getBaseline error when the original item was deleted
     and only the copy remains.
