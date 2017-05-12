@@ -24,6 +24,14 @@ logger = logging.getLogger('eea.climateadapt')
 
 
 class calculateItemStatistics(BrowserView):
+    """ Performs a catalog search for the portal types defined in the search()
+        After visiting the view /calculate-item-statistics it initializes
+        IAnnotations(site) -> performs the catalog search and saves the 
+        results to IAnnotations(site)
+
+        'Total' refers to the number of total items, regardless of their review
+        state (published/private/sent/pending/etc)
+    """
     def __call__(self):
         return self.initialize()
 
@@ -33,40 +41,44 @@ class calculateItemStatistics(BrowserView):
         self.cleanUpData()
 
     def initializeAnnotations(self):
+        """ Initializing Annotations """
         logger.info('Initializing Annotations')
         IAnnotations(self.context)['cca-item-statistics'] = {}
-        content_types = getToolByName(self.context, 'portal_types').listContentTypes()
+        types = getToolByName(self.context, 'portal_types').listContentTypes()
 
         for year in range(1969, 2018):
-            annotation_dictionary = {}
-            for ctype in content_types:
-                annotation_dictionary[ctype] = {'published': 0, 'total': 0}
-            IAnnotations(self.context)['cca-item-statistics'][year] = annotation_dictionary
+            annotation = {}
+            for ctype in types:
+                annotation[ctype] = {'published': 0, 'total': 0}
+            IAnnotations(self.context)['cca-item-statistics'][year] = annotation
         logger.info("Finished Initializing Annotations")
 
     def search(self):
+        """ Catalog search for all content types used """
         logger.info("Starting the catalog search")
         catalog = self.context.portal_catalog
         query = {'portal_type': [
-                    'eea.climateadapt.aceproject',
-                    'eea.climateadapt.tool',
-                    'eea.climateadapt.researchproject',
-                    'eea.climateadapt.publicationreport',
-                    'eea.climateadapt.organisation',
-                    'eea.climateadapt.city_profile',
-                    'eea.climateadapt.mapgraphdataset',
-                    'eea.climateadapt.informationportal',
-                    'eea.climateadapt.indicator',
-                    'eea.climateadapt.guidancedocument',
-                    'eea.climateadapt.casestudy',
-                    'eea.climateadapt.adaptationoption',
-                    'Link',
-                    'Document',
-                    'News Item',
-                    'Event',
-                    'collective.cover.content',
-                    'Folder']
-                }
+                 'eea.climateadapt.aceproject',
+                 'eea.climateadapt.tool',
+                 'eea.climateadapt.researchproject',
+                 'eea.climateadapt.publicationreport',
+                 'eea.climateadapt.organisation',
+                 'eea.climateadapt.city_profile',
+                 'eea.climateadapt.mapgraphdataset',
+                 'eea.climateadapt.informationportal',
+                 'eea.climateadapt.indicator',
+                 'eea.climateadapt.guidancedocument',
+                 'eea.climateadapt.casestudy',
+                 'eea.climateadapt.adaptationoption',
+                 'Link',
+                 'Document',
+                 'News Item',
+                 'Event',
+                 'collective.cover.content',
+                 'Folder',
+                 'EasyForm',
+                 'Collection']
+                 }
 
         brains = catalog.searchResults(**query)
         logger.info('Got %s results.' % len(brains))
@@ -90,11 +102,14 @@ class calculateItemStatistics(BrowserView):
         logger.info('Finished the search.')
 
     def saveToAnnotations(self, year, content_type, published):
+        """ Saves the number of brains depending on its review state """
+        annotations = IAnnotations(self.context)['cca-item-statistics']
         if published:
-            IAnnotations(self.context)['cca-item-statistics'][year][content_type]['published'] += 1
-        IAnnotations(self.context)['cca-item-statistics'][year][content_type]['total'] += 1
+            annotations[year][content_type]['published'] += 1
+        annotations[year][content_type]['total'] += 1
 
     def cleanUpData(self):
+        """ Cleans up all the unnecessary indexes """
         logger.info('Cleaning up DATA')
         for year in range(1969, 2018):
             annotation = IAnnotations(self.context)['cca-item-statistics'][year]
@@ -110,26 +125,41 @@ class calculateItemStatistics(BrowserView):
 
 
 class getItemStatistics(BrowserView):
-    """ """
+    """ BrowserView used in order to display the total number of brains present
+        on the site in each year
+
+        path: site/@@get-item-statistics
+    """
 
     def __call__(self):
         return self.index()
 
     def get_portal_types(self, year):
-        # types = [(xx[0], xx[1].title) for xx in self.context.portal_types.objectItems()]
-        return IAnnotations(self.context)['cca-item-statistics'][year].keys()
+        """ Filters out the portal types """
+        all_types = [{xx[0]: xx[1].title} for xx in self.context.portal_types.objectItems()]
+        annotations = IAnnotations(self.context)['cca-item-statistics']
+
+        types = []
+        for pair in all_types:
+            if pair.keys()[0] in annotations[year].keys():
+                    types.append(pair)
+        return types
 
     def get_years(self):
+        """ Gets the years present in IAnnotations and sorts them ascending """
         years = IAnnotations(self.context)['cca-item-statistics'].keys()
         years.sort()
-        print years
         return years
 
     def get_published(self, year, portal_type):
-        return IAnnotations(self.context)['cca-item-statistics'][year][portal_type]['published']
+        """ Gets the number of published items depending on year/portal_type"""
+        annotations = IAnnotations(self.context)['cca-item-statistics']
+        return annotations[year][portal_type]['published']
 
-    def get_private(self, year, portal_type):
-        return IAnnotations(self.context)['cca-item-statistics'][year][portal_type]['total']
+    def get_total(self, year, portal_type):
+        """ Gets the number of total items depending on year/portal_type """
+        annotations = IAnnotations(self.context)['cca-item-statistics']
+        return annotations[year][portal_type]['total']
 
 
 class FixCheckout(BrowserView):

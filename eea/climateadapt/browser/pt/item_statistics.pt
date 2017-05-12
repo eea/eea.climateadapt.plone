@@ -27,9 +27,9 @@
             </thead>
             <tbody>
                 <tr tal:repeat="type python: view.get_portal_types(year)">
-                    <td tal:content="type">Type 1</td>
-                    <td tal:content="python: view.get_published(year, type)">Nr Items</td>
-                    <td tal:content="python: view.get_private(year, type)">Nr Items</td>
+                    <td tal:content="python: type.values()[0]">Type 1</td>
+                    <td tal:content="python: view.get_published(year, type.keys()[0])">Nr Items</td>
+                    <td tal:content="python: view.get_total(year, type.keys()[0])">Nr Items</td>
                 </tr>
             </tbody>
           </table>
