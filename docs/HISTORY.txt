@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Code improvements and clean-up
+  [iulianpetchesi #84964]
 * Bugfix: Removed image from mayors adapt and fixed frontpage banner
   [iulianpetchesi #85112]
 * Bugfix: Added browser view for item statistics in CCA

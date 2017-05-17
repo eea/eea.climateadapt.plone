@@ -87,17 +87,20 @@ class calculateItemStatistics(BrowserView):
             if items_count % 100 == 0:
                 logger.info('Went through %s brains' % items_count)
             obj = brain.getObject()
-            if api.content.get_state(obj) == 'published':
-                if obj.effective_date is None:
-                    logger.info("No date found")
+            obj_state = api.content.get_state(obj)
+            creation_year = obj.created().year()
+            portal_type = obj.portal_type
+            if creation_year is None:
+                logger.info("No creation date found for %s" % obj.absolute_url())
+                continue
+
+            self.saveToAnnotations(creation_year, portal_type, False)
+            if obj_state == 'published':
+                publish_year = obj.effective().year()
+                if publish_year is None:
+                    logger.info("No publishing date found for %s" % obj.absolute_url())
                     continue
-                year = obj.effective().year()
-                portal_type = obj.portal_type
-                self.saveToAnnotations(year, portal_type, True)
-            else:
-                year = obj.created().year()
-                portal_type = obj.portal_type
-                self.saveToAnnotations(year, portal_type, False)
+                self.saveToAnnotations(publish_year, portal_type, True)
             items_count += 1
         logger.info('Finished the search.')
 
