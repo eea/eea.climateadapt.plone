@@ -164,13 +164,15 @@
         </div>
         <div class="case-studies-homepage-slider-description">
           <h2 tal:content="item/s2_title"> Title </h2>
-          <div tal:content="structure python:view.html2text(item.s2_description.output)"> Description </div>
-          <p>
-            <a class="homepage-read-more" href="" tal:attributes="href item/s2_read_more_link" target="_blank">
-                <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
-                <span tal:content="item/s2_read_more_text | nothing"> Read more </span>
-            </a>
-          </p>
+          <div class="read-more-first-slide">
+            <div tal:replace="structure python:item.s2_description.output"> Description </div>
+            <p>
+              <a class="homepage-read-more" href="" tal:attributes="href item/s2_read_more_link" target="_blank">
+                  <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
+                  <span tal:content="item/s2_read_more_text | nothing"> Read more </span>
+              </a>
+            </p>
+          </div>
         </div>
       </li>
 
@@ -217,7 +219,7 @@
         </div>
         <div class="case-studies-homepage-slider-description">
           <h2 tal:content="item/s5_title"> Title </h2>
-          <div tal:content="structure python:view.html2text(item.s5_description.output)[:300] + '...'"> Description </div>
+          <div tal:content="structure python:item.s5_description.output[:300] + '...'"> Description </div>
           <p tal:define="absolute view/context/absolute_url">
             <a class="homepage-read-more" href="" tal:attributes="href item/s5_read_more_link" target="_blank">
                 <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
