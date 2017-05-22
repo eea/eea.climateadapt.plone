@@ -133,7 +133,7 @@
   <div class="case-studies-homepage-slider-content">
     <ul class="blank">
 <!-- Do not remove the commented part until I proper solution is available -->
-<!--       <li class="first submenu" style="display: none;"
+      <li class="first submenu" style="display: none;"
           tal:define="item python: view.get_tile('s1')">
         <div class="case-studies-homepage-slider-image" 
              tal:define="picture python: view.get_image(item.s1_primary_photo, 's1_primary_photo')">
@@ -154,7 +154,7 @@
           </p>
         </div>
       </li>
- -->
+
       <li class="" style="display: none;"
           tal:define="item python: view.get_tile('s2')">
         <div class="case-studies-homepage-slider-image" 
