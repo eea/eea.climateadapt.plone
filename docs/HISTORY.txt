@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added new slide for frontpage carousel and grouped the fields into
+  fieldsets for each respective slide
+  [iulianpetchesi #85247]
 * Bugfix: Activated survey slide in banner
   [iulianpetchesi #85279]
 * Bugfix: Code improvements and clean-up
