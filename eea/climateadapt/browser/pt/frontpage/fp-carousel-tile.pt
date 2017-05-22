@@ -235,15 +235,22 @@
           <img src="" tal:attributes = "src picture"
                alt="ECCA 2017" />
         </div>
-        <div class="case-studies-homepage-slider-description">
+        <div class="case-studies-homepage-slider-description" style="font-size: 11.4px;">
           <h2 tal:content="item/s7_title"> Title </h2>
-          <div tal:content="structure python:item.s7_description.output"> Description </div>
-          <p tal:define="absolute view/context/absolute_url">
+          <div> 
+            <style scoped>
+                p {
+                    margin-bottom: 0 !important;
+                }
+            </style>
+            <span tal:replace="structure python:item.s7_description.output"> Description </span> 
+          </div>
+          <span tal:define="absolute view/context/absolute_url">
             <a class="homepage-read-more" href="" tal:attributes="href item/s7_read_more_link" target="_blank">
                 <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
                 <span tal:content="item/s7_read_more_text | nothing"> Read more </span>
             </a>
-          </p>
+          </span>
         </div>
       </li>
 
