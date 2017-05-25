@@ -95,7 +95,7 @@
 		 #case-studies-homepage-slider-wrapper .case-studies-homepage-slider-content .case-studies-homepage-slider-description h2 {
 			border-bottom: 1px solid #aebe20;
 			margin-bottom: .25em;
-			margin-top: 0.5em;
+			margin-top: 0.2em;
 			font-weight: normal;
 			font-size: 19px;
 			color: #02213d;
@@ -249,6 +249,31 @@
             <a class="homepage-read-more" href="" tal:attributes="href item/s7_read_more_link" target="_blank">
                 <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
                 <span tal:content="item/s7_read_more_text | nothing"> Read more </span>
+            </a>
+          </span>
+        </div>
+      </li>
+
+      <li class="" style="display: none;" tal:define="item python: view.get_tile('s8')">
+        <div class="case-studies-homepage-slider-image"
+             tal:define="picture python: view.get_image(item.s8_primary_photo, 's8_primary_photo')">
+          <img src="" tal:attributes = "src picture"
+               alt="" />
+        </div>
+        <div class="case-studies-homepage-slider-description" style="font-size: 11.4px;">
+          <h2 tal:content="item/s8_title"> Title </h2>
+          <div> 
+            <style scoped>
+                p {
+                    margin-bottom: 0 !important;
+                }
+            </style>
+            <span tal:replace="structure python:item.s8_description.output"> Description </span> 
+          </div>
+          <span tal:define="absolute view/context/absolute_url">
+            <a class="homepage-read-more" href="" tal:attributes="href item/s8_read_more_link" target="_blank">
+                <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
+                <span tal:content="item/s8_read_more_text | nothing"> Read more </span>
             </a>
           </span>
         </div>

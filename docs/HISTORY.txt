@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added new slide to the frontpage banner
+  [iulianpetchesi #85220]
 * Bugfix: Added new slide for frontpage carousel and grouped the fields into
   fieldsets for each respective slide
   [iulianpetchesi #85247]

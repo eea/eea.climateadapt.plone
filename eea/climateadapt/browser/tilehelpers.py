@@ -65,6 +65,12 @@ class ICarousel(IPersistentCoverTile):
                           's7_read_more_text', 's7_read_more_link']
                   )
 
+    form.fieldset('slide8',
+                  label=u'Slide 8',
+                  fields=['s8_title', 's8_description', 's8_primary_photo',
+                          's8_read_more_text', 's8_read_more_link']
+                  )
+
     # Slide 1 fields
     s1_title = schema.Text(title=u"First slide Title", required=True)
     s1_description = RichText(title=u"First slide description", required=False)
@@ -121,6 +127,20 @@ class ICarousel(IPersistentCoverTile):
     s7_read_more_text = schema.Text(title=u"Seventh slide read more text",
                                     required=False)
     s7_read_more_link = schema.Text(title=u"Seventh slide read more link",
+                                    required=False)
+
+    # Slide 8 fields
+    s8_title = schema.Text(title=u"Slide title", required=True)
+    s8_description = RichText(title=u"Slide text", required=False)
+
+    s8_primary_photo = NamedBlobImage(
+        title=(u"Slide photo"),
+        required=True,
+    )
+
+    s8_read_more_text = schema.Text(title=u"Slide read more text",
+                                    required=False)
+    s8_read_more_link = schema.Text(title=u"Slide read more link",
                                     required=False)
 
 
