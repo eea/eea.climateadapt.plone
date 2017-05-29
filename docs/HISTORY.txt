@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Changed profiles.zcml so that upgrades aren't run again on new upgrade
+  [iulianpetchesi #85251]
 * Bugfix: Added new slide to the frontpage banner
   [iulianpetchesi #85220]
 * Bugfix: Added new slide for frontpage carousel and grouped the fields into

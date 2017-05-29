@@ -109,6 +109,7 @@ def _fix_tags(tags):
 
 
 def update_to_22(context):
+    return
     site = context.getSite()
     catalog = site.portal_catalog
 
@@ -172,6 +173,7 @@ def update_to_22(context):
 
 
 def update_to_23(context):
+    return
     site = context.getSite()
     catalog = site.portal_catalog
 
@@ -207,6 +209,7 @@ def update_to_23(context):
 
 
 def update_to_24(context):
+    return
     site = context.getSite()
     catalog = site.portal_catalog
     query = {'portal_type': [
@@ -284,30 +287,32 @@ def update_to_25(context):
 
 
 def update_to_26(context):
-        site = context.getSite()
-        catalog = site.portal_catalog
-        query = {'portal_type': [
-            'eea.climateadapt.casestudy',
-        ]}
-        results = catalog.searchResults(**query)
+    return
+    site = context.getSite()
+    catalog = site.portal_catalog
+    query = {'portal_type': [
+        'eea.climateadapt.casestudy',
+    ]}
+    results = catalog.searchResults(**query)
 
-        for b in results:
-            obj = b.getObject()
+    for b in results:
+        obj = b.getObject()
 
-            if obj.geochars:
-                if obj.geochars.find("PANONIAN") != -1:
-                    obj.geochars = obj.geochars.replace("PANONIAN", "PANNONIAN")
-                    logger.info("Fixing Bioregion on %s", obj.absolute_url())
-                    logger.info("New geochars: %s", obj.geochars)
-        logger.info("Finished the update.")
+        if obj.geochars:
+            if obj.geochars.find("PANONIAN") != -1:
+                obj.geochars = obj.geochars.replace("PANONIAN", "PANNONIAN")
+                logger.info("Fixing Bioregion on %s", obj.absolute_url())
+                logger.info("New geochars: %s", obj.geochars)
+    logger.info("Finished the update.")
 
 
 def update_to_27(context):
     """ Dummy upgrade """
-    pass
+    return
 
 
 def update_to_28(context):
+    return
     site = context.getSite()
     catalog = site.portal_catalog
     query = {'portal_type': [
@@ -341,6 +346,7 @@ def update_to_28(context):
 
 
 def update_to_29(context):
+    return
     site = context.getSite()
     catalog = site.portal_catalog
     query = {'portal_type': [
@@ -370,6 +376,7 @@ def update_to_29(context):
 
 
 def update_to_30(context):
+    return
     site = context.getSite()
     catalog = site.portal_catalog
     query = {'portal_type': [
@@ -414,6 +421,7 @@ def update_to_33(context):
     """ Fix the value of the source field since we changed the field from
         richtext to textline
     """
+    return
     catalog = portal.get_tool(name='portal_catalog')
     query = {'portal_type': [
         'eea.climateadapt.aceproject',
@@ -446,6 +454,7 @@ def update_to_33(context):
 
 
 def update_to_34(context):
+    return
     logger.info("Upgrading to 34")
 
     # need to reimport eea.climateadapt, it has updated registry settings
@@ -455,7 +464,7 @@ def update_to_34(context):
 def update_to_35(context):
     """ Migrate layer id from website to gis_layer_id field
     """
-
+    return
     catalog = portal.get_tool(name='portal_catalog')
     query = {'portal_type': [
         'eea.climateadapt.mapgraphdataset',
@@ -494,6 +503,7 @@ def check_layer_id(value):
 
 
 def update_to_36(context):
+    return
     logger.info("Upgrading to 36")
 
     # need to reimport eea.climateadapt, it has updated registry settings
@@ -505,6 +515,7 @@ def update_to_36(context):
 
 
 def update_to_37(context):
+    return
     logger.info("Upgrading to 37")
     logger.info("Setting the proper effective date for some aceprojects")
 
