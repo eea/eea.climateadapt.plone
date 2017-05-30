@@ -66,8 +66,6 @@ function fix_map(){
             }
         }
 
-        $("#content-core").screentimeAnalytics();
-
         // check if the map container exists in the DOM
         var elementExists = document.getElementsByClassName("leaflet-container");
         if (elementExists.length != 0) {
