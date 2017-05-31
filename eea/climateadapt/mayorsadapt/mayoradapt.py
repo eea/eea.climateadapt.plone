@@ -91,7 +91,7 @@ class MayorsAdaptPage(BrowserView):
         request = self.context.REQUEST
         url = self.context.absolute_url()
         if url.find('eu-adaptation-policy') == -1:
-            request.response.redirect('/eu-adaptation-policy/mayors-adapt')
+            request.response.redirect('/eu-adaptation-policy/covenant-of-mayors')
         else:
             return self.index()
 
