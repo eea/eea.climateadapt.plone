@@ -1,9 +1,10 @@
-L.Map.addInitHook(function(){
-    // "patches" construction of L.Map to add a _map property to keep a reference
-    // to the constructed map, from the map container
-    this._container._map = this;
-});
-
+if (typeof L !== 'undefined') {
+    L.Map.addInitHook(function(){
+        // "patches" construction of L.Map to add a _map property to keep a reference
+        // to the constructed map, from the map container
+        this._container._map = this;
+    });
+}
 
 function fix_map(){
     // solve a problem with the Leaflet map for CaseStudy edit form

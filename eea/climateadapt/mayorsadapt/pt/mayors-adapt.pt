@@ -41,8 +41,8 @@
     margin-top: 1em;
 	}
 	#mayorsDiv{
-		height:100px;
-		width:33%;
+		height:250px;
+		width:100%;
 		float:left;
     text-align:center;
 	}
@@ -117,37 +117,39 @@
 </style>
 
 <div id="headLogos">
-  <div id="mayorsDiv"><img src="/++resource++eea.climateadapt/img/mayors_adapt_logo.png" /></div>
-  <div id="registerDiv"><a class="bluebutton" href="/mayors-adapt/register" style="margin-top: 60px; margin-right: 80px;">Register your City</a></div>
-  <div id="mayorsDiv"><img src="/++theme++climateadapt/static/cca/img/mayors-adapt-logo.jpg" /></div>
+  <div id="mayorsDiv"><img src="/++theme++climateadapt/static/cca/img/mayors-adapt-logo-big.jpg" style="max-height: 100%;"/></div>
 </div>
 
+<p>&nbsp;</p>
+<h2>The Covenant of Mayors for Climate & Energy</h2>
+<p>&nbsp;</p>
 <div class="journal-content-article" style="margin-right: 10px;">
-  <p><a href="http://mayors-adapt.eu/" target="_blank">Mayors Adapt</a> - the Covenant of Mayors Initiative on Climate Change Adaptation was set up by the European Commission to engage cities in taking action to adapt to climate change. Cities signing up to the initiative commit to contributing to the overall aim of the EU Adaptation Strategy by developing a comprehensive local adaptation strategy and/or integrating adaptation to climate change into relevant existing plans.</p>
-  <p>In October 2015, the Mayors Adapt initiative was officially merged with the Covenant of Mayors to create the new <a href="http://www.covenantofmayors.eu/index_en.html" target="_blank">Covenant of Mayors for Climate & Energy</a>. The new Covenant addresses both mitigation and adaptation.</p>
-  <p>Mayors Adapt - and likewise the new integrated Covenant - aims to increase support for local activities, provide a platform for greater engagement and networking by cities, and raise public awareness about adaptation and the measures needed.<br/>
-    To help bring this about, the EC initiative offers signatories:</p>
+  <p><a href="http://mayors-adapt.eu/" target="_blank">Mayors Adapt</a> – the Covenant of Mayors Initiative on Climate Change Adaptation – was set up by the European Commission to engage cities in taking action to adapt to climate change. It was launched in 2014 as a parallel adaptation initiative to the Covenant of Mayors, which focused on mitigation. In 2015, the European Commission merged the two initiatives in an effort to promote an integrated approach to climate and energy action. From 2017 onwards, adaptation and therefore the Mayors Adapt initiative is entirely integrated into the Covenant of Mayors for Climate and Energy.</p>
 
+  <p><span style="font-weight: bold;">The Covenant of Mayors for climate and energy</span> aims to increase support for local activities, provide a platform for greater engagement and networking by cities, and raise public awareness about adaptation and mitigation and the measures needed.<br/>
+
+  To help bring this about, the EC initiative offers signatories:</p>
   <ul>
     <li>A dedicated helpdesk to support them in implementing their commitment to action on adaptation;</li>
-    <li>Information, tools and other resources relevant for their work, including the Urban Adaptation Support Tool, dedicated case studies on action and city profile factsheets on signatories;</li>
+    <li>Information, tools and other resources relevant for their work, including the Urban Adaptation Support Tool and dedicated case studies on actions of <a href="http://www.eumayors.eu/Adaptation.html" target="_blank">signatories</a>;</li>
     <li>Networking and peer-to-peer learning opportunities through dedicated events, city twinning activities, a practitioners group etc. to support the growing community of practice;</li>
     <li>A platform to showcase their action and leadership through the initiative's annual Signature Ceremony, as well as communications and outreach support.</li>
   </ul>
 
   <p>&nbsp;</p>
 
-  <p>For additional information about Mayors Adapt, please visit:</p>
-
+  <p>For additional information please visit:</p>
   <ul>
-    <li>The <a href="http://mayors-adapt.eu/" target="_blank">Mayors Adapt</a> Outreach website</li>
+    <li>The <a href="http://www.covenantofmayors.eu/index_en.html" target="_blank">Covenant of Mayors</a> website</li>
   </ul>
-  For more resources (tools, guidance, publications, case studies, etc.), visit: 
+  Local authorities willing to make a formal adaptation commitment now integrated with mitigation action should sign up to the Covenant of Mayors for Climate & Energy by presenting and discussing the full <a href="http://www.covenantofmayors.eu/Covenant-core-documents.html" target="_blank">Political Commitment Document</a> in their municipal council. Once a decision to sign up is formally made, local authorities should complete and sign the adhesion form and send it via email to: <a href="mailto:info@eumayors.eu" target="_top">info@eumayors.eu</a>. Once your adhesion is confirmed by the Covenant of Mayors Office, you will be able to fully benefit from the initiative.
 
+  <p>&nbsp;</p>
+
+  <p>For more resources (tools, guidance, publications, case studies, etc.), visit:</p>
   <ul>
-    <li>The <a href="http://climate-adapt.eea.europa.eu/cities">Cities and towns</a> section in Climate-ADAPT.</li>
+    <li>The <a href="http://climate-adapt.eea.europa.eu/cities" target="_blank">Cities and towns</a> section in Climate-ADAPT.</li>
   </ul>
-  Local authorities willing to make a formal adaptation commitment now integrated with mitigation action should sign up to the new Covenant by presenting and discussing the full <a href="http://mayors-adapt.eu/materials" target="_blank">Political Commitment Document</a> in their municipal council. Once a decision to sign up is formally made, local authorities should complete and sign the adhesion form and send it via email to: <a href="mailto:info@eumayors.eu" target="_top">info@eumayors.eu</a>. Once your adhesion is confirmed by the Covenant of Mayors Office, you will then be able to fully benefit from the initiative.
 
   <p>&nbsp;</p>
 

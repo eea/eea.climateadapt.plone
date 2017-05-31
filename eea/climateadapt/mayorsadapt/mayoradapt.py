@@ -87,7 +87,11 @@ message with details on how to proceed further."""
 
 class MayorsAdaptPage(BrowserView):
     """ Custom page for http://climate-adapt.eea.europa.eu/mayors-adapt """
-    # TODO: remove this page
+    def __call__(self):
+        request = self.context.REQUEST
+        if self.context.getParentNode().portal_type != 'Folder':
+            request.response.redirect('/eu-adaptation-policy/mayors-adapt')
+        return self.index()
 
 
 # TODO: make the following 4 classes a single class

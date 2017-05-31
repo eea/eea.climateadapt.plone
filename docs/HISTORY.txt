@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Mayors adapt page modifications and main.js fix
+  [iulianpetchesi #85494]
 * Bugfix: Make it so that the slide text no longer has the text truncated
   [iulianpetchesi #85492]
 * Bugfix: Added separate script for screentime initialization
