@@ -89,9 +89,11 @@ class MayorsAdaptPage(BrowserView):
     """ Custom page for http://climate-adapt.eea.europa.eu/mayors-adapt """
     def __call__(self):
         request = self.context.REQUEST
-        if self.context.getParentNode().portal_type != 'Folder':
+        url = self.context.absolute_url()
+        if url.find('eu-adaptation-policy') == -1:
             request.response.redirect('/eu-adaptation-policy/mayors-adapt')
-        return self.index()
+        else:
+            return self.index()
 
 
 # TODO: make the following 4 classes a single class
