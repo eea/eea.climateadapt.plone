@@ -1,22 +1,42 @@
-from eea.rdfmarshaller.interfaces import ISurfResourceModifier
-from plone.dexterity.interfaces import IDexterityContent
-from zope.component import adapts
-from zope.interface import implements
+import json
+import logging
+from Products.CMFCore.utils import getToolByName
+from eea.climateadapt.city_profile import ICityProfile
 from eea.climateadapt.vocabulary import BIOREGIONS
 from eea.climateadapt.vocabulary import SUBNATIONAL_REGIONS
 from eea.climateadapt.vocabulary import ace_countries_dict
 from eea.rdfmarshaller.dexterity import Dexterity2Surf
-from eea.climateadapt.city_profile import ICityProfile
+from eea.rdfmarshaller.interfaces import ISurfResourceModifier
 from eea.rdfmarshaller.interfaces import ISurfSession
 from eea.rdfmarshaller.value import Value2Surf
+from plone.app.contenttypes.interfaces import ICollection
+from plone.dexterity.interfaces import IDexterityContent
 from plone.formwidget.geolocation.interfaces import IGeolocation
-from plone.namedfile.interfaces import INamedBlobImage
 from plone.namedfile.interfaces import INamedBlobFile
-import logging
-import json
+from plone.namedfile.interfaces import INamedBlobImage
+from zope.component import adapts
+from zope.interface import implements
 # import rdflib
 
 logger = logging.getLogger('eea.climateadapt')
+
+
+class Collection2Surf(Dexterity2Surf):
+    adapts(ICollection, ISurfSession)
+
+    @property
+    def blacklist_map(self):
+        ptool = getToolByName(self.context, 'portal_properties')
+        props = getattr(ptool, 'rdfmarshaller_properties', None)
+        if props:
+            blacklist = props.getProperty('blacklist') + ('query', )
+            return list(
+                props.getProperty('%s_blacklist' % self.portalType.lower(),
+                                  blacklist)
+            )
+        else:
+            self._blacklist.append('query')
+            return self._blacklist
 
 
 class GeoCharsFieldModifier(object):

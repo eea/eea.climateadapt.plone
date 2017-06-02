@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added ICollection override for rdf export in order to blacklist the
+  query field
+  [iulianpetchesi #85565]
 * Bugfix: Mayors adapt page modifications and main.js fix
   [iulianpetchesi #85494]
 * Bugfix: Make it so that the slide text no longer has the text truncated

@@ -172,6 +172,7 @@
     <adapter factory=".marshaller.Geolocation2Surf" />
     <adapter factory=".marshaller.File2Surf" />
     <adapter factory=".marshaller.Image2Surf" />
+    <adapter factory=".marshaller.Collection2Surf" />
 
     ------[ Workflow Message Functionality: ]--------
 
