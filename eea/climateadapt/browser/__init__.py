@@ -1,5 +1,8 @@
+import json
+import logging
 from AccessControl import getSecurityManager
 from Acquisition import aq_inner
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from collective.cover.browser.cover import Standard
 from eea.climateadapt.vocabulary import BIOREGIONS
@@ -13,10 +16,8 @@ from plone.app.iterate.interfaces import IObjectArchiver
 from plone.app.iterate.interfaces import IWorkingCopy
 from plone.app.iterate.permissions import CheckinPermission
 from plone.app.iterate.permissions import CheckoutPermission
-from zExceptions import NotFound
-import json
-import logging
 from plone.memoize import view
+from zExceptions import NotFound
 
 
 logger = logging.getLogger('eea.climateadapt')
@@ -164,6 +165,17 @@ class AceViewApi(object):
         from eea.climateadapt.vocabulary import _governance
         d = dict(_governance)
         return [d.get(b) for b in self.context.governance_level]
+
+    def check_user_role(self):
+        mt = getToolByName(self.context, 'portal_membership')
+        user = mt.getAuthenticatedMember()
+        roles = user.getRoles()
+        to_check = ['Reviewer', 'Site Administrator', 'extranet-cca-powerusers']
+
+        check_roles = [role for role in roles if role in to_check]
+        if len(check_roles) > 0:
+            return True
+        return False
 
 
 class ViewAceItem(BrowserView):

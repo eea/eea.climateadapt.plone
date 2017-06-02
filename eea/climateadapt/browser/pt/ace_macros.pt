@@ -84,7 +84,7 @@
 
   <metal:macro define-macro="comments">
       <div tal:define="portal_state context/@@plone_portal_state">
-          <div tal:condition="python: portal_state.anonymous() != True">
+          <div tal:condition="python: view.check_user_role()">
               <h5 style="text-decoration: underline" tal:condition="python: view.context.comments">Comments:</h5>
               <div tal:content="python: view.context.comments"></div>
           </div>
