@@ -23,10 +23,24 @@ from zope.interface import Interface, implements
 logger = logging.getLogger('eea.climateadapt')
 
 
+class NewsletterRedirect(BrowserView):
+    """ Redirect to newsletter #84251"""
+
+    def __call__(self):
+        return self.request.response.redirect('/newsletter')
+
+
+class WebEmptyView(BrowserView):
+    """ Empty view for /web #84251"""
+
+    def __call__(self):
+        return self.request.response.redirect('/newsletter')
+
+
 class calculateItemStatistics(BrowserView):
     """ Performs a catalog search for the portal types defined in the search()
         After visiting the view /calculate-item-statistics it initializes
-        IAnnotations(site) -> performs the catalog search and saves the 
+        IAnnotations(site) -> performs the catalog search and saves the
         results to IAnnotations(site)
 
         'Total' refers to the number of total items, regardless of their review

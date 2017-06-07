@@ -504,6 +504,20 @@
     <!-- Special pages, reimplemented as standalone views, and their AJAX helpers -->
 
     <browser:page
+        class=".misc.NewsletterRedirect"
+        for="*"
+        name="guest;jsessionid=607E735A83C3649F5D76F1CEF2441501"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        class=".misc.WebEmptyView"
+        for="*"
+        name="web"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
         class=".misc.ContactForm"
         for="*"
         name="contact-form"

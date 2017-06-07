@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added newsletter redirect
+  [iulianpetchesi #84251]
 * Bugfix: Show object comments only to certain user roles
   [iulianpetchesi #82404]
 * Bugfix: Added ICollection override for rdf export in order to blacklist the
