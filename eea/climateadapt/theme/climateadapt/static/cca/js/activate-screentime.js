@@ -1,3 +1,3 @@
 $(document).ready(function() {
-        $("#content-core").screentimeAnalytics();
+    $("#content-core").screentimeAnalytics();
 });
