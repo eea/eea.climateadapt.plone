@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Modified sort order on catalog search for news and events
+  [iulianpetchesi #85698]
 * Bugfix: Added newsletter redirect
   [iulianpetchesi #84251]
 * Bugfix: Show object comments only to certain user roles

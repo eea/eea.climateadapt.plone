@@ -176,7 +176,8 @@ class Carousel(PersistentCoverTile):
         catalog = site.portal_catalog
         result = catalog.searchResults({'portal_type': ['News Item', 'Event'],
                                         'review_state': 'published',
-                                        'sort_by': 'effective'},
+                                        'sort_on': 'effective',
+                                        'sort_order': 'reverse'},
                                        full_objects=True)[0]
         return result.getObject()
 
