@@ -132,8 +132,7 @@
   </style>
   <div class="case-studies-homepage-slider-content">
     <ul class="blank">
-<!-- Do not remove the commented part until I proper solution is available -->
-      <li class="first submenu" style="display: none;"
+<!--       <li class="first submenu" style="display: none;"
           tal:define="item python: view.get_tile('s1')">
         <div class="case-studies-homepage-slider-image" 
              tal:define="picture python: view.get_image(item.s1_primary_photo, 's1_primary_photo')">
@@ -153,7 +152,7 @@
             <span tal:content="item/s1_photo_copyright | nothing"> </span>
           </p>
         </div>
-      </li>
+      </li> -->
 
       <li class="" style="display: none;"
           tal:define="item python: view.get_tile('s2')">
@@ -229,7 +228,7 @@
         </div>
       </li>
 
-      <li class="" style="display: none;" tal:define="item python: view.get_tile('s7')">
+<!--       <li class="" style="display: none;" tal:define="item python: view.get_tile('s7')">
         <div class="case-studies-homepage-slider-image"
              tal:define="picture python: view.get_image(item.s7_primary_photo, 's7_primary_photo')">
           <img src="" tal:attributes = "src picture"
@@ -252,7 +251,7 @@
             </a>
           </span>
         </div>
-      </li>
+      </li> -->
 
       <li class="" style="display: none;" tal:define="item python: view.get_tile('s8')">
         <div class="case-studies-homepage-slider-image"

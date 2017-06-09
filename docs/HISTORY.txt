@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Change: Hide 2 slides from the carousel
+  [iulianpetchesi #85832]
 * Bugfix: Modified sort order on catalog search for news and events
   [iulianpetchesi #85698]
 * Bugfix: Added newsletter redirect
