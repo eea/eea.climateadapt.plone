@@ -175,15 +175,28 @@
         </div>
       </li>
 
-      <li class="" style="display: none;" tal:define="item view/last_casestudy">
-        <div class="case-studies-homepage-slider-image">
-          <img src="" alt="Case Study" tal:attributes="src python: item.absolute_url() + '/@@images/primary_photo/case-front'"/>
+      <li class="" style="display: none;" tal:define="item python: view.get_tile('s8')">
+        <div class="case-studies-homepage-slider-image"
+             tal:define="picture python: view.get_image(item.s8_primary_photo, 's8_primary_photo')">
+          <img src="" tal:attributes = "src picture"
+               alt="" />
         </div>
-        <div class="case-studies-homepage-slider-description">
-          <h2 tal:content="item/title"> Title </h2>
-          <p></p>
-          <p tal:content="python: view.html2text(item.long_description.output)[:300] + '...'"> Description </p>
-          <a class="homepage-read-more" href="" tal:attributes="href item/absolute_url" target="_blank"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
+        <div class="case-studies-homepage-slider-description" style="font-size: 11.4px;">
+          <h2 tal:content="item/s8_title"> Title </h2>
+          <div> 
+            <style scoped>
+                p {
+                    margin-bottom: 0 !important;
+                }
+            </style>
+            <span tal:replace="structure python:item.s8_description.output"> Description </span> 
+          </div>
+          <span tal:define="absolute view/context/absolute_url">
+            <a class="homepage-read-more" href="" tal:attributes="href item/s8_read_more_link" target="_blank">
+                <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
+                <span tal:content="item/s8_read_more_text | nothing"> Read more </span>
+            </a>
+          </span>
         </div>
       </li>
 
@@ -253,28 +266,15 @@
         </div>
       </li> -->
 
-      <li class="" style="display: none;" tal:define="item python: view.get_tile('s8')">
-        <div class="case-studies-homepage-slider-image"
-             tal:define="picture python: view.get_image(item.s8_primary_photo, 's8_primary_photo')">
-          <img src="" tal:attributes = "src picture"
-               alt="" />
+      <li class="" style="display: none;" tal:define="item view/last_casestudy">
+        <div class="case-studies-homepage-slider-image">
+          <img src="" alt="Case Study" tal:attributes="src python: item.absolute_url() + '/@@images/primary_photo/case-front'"/>
         </div>
-        <div class="case-studies-homepage-slider-description" style="font-size: 11.4px;">
-          <h2 tal:content="item/s8_title"> Title </h2>
-          <div> 
-            <style scoped>
-                p {
-                    margin-bottom: 0 !important;
-                }
-            </style>
-            <span tal:replace="structure python:item.s8_description.output"> Description </span> 
-          </div>
-          <span tal:define="absolute view/context/absolute_url">
-            <a class="homepage-read-more" href="" tal:attributes="href item/s8_read_more_link" target="_blank">
-                <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
-                <span tal:content="item/s8_read_more_text | nothing"> Read more </span>
-            </a>
-          </span>
+        <div class="case-studies-homepage-slider-description">
+          <h2 tal:content="item/title"> Title </h2>
+          <p></p>
+          <p tal:content="python: view.html2text(item.long_description.output)[:300] + '...'"> Description </p>
+          <a class="homepage-read-more" href="" tal:attributes="href item/absolute_url" target="_blank"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
         </div>
       </li>
 

@@ -41,16 +41,22 @@ class FrontPageCountries(BrowserView):
 
 class ICarousel(IPersistentCoverTile):
     """ Frontpage carousel tile schema """
-    form.fieldset('slide1',
-                  label=u'Slide 1',
-                  fields=['s1_title', 's1_description', 's1_primary_photo',
-                          's1_photo_copyright', 's1_read_more_text',
-                          's1_read_more_link']
-                  )
+    # form.fieldset('slide1',
+    #               label=u'Slide 1',
+    #               fields=['s1_title', 's1_description', 's1_primary_photo',
+    #                       's1_photo_copyright', 's1_read_more_text',
+    #                       's1_read_more_link']
+    #               )
     form.fieldset('slide2',
-                  label=u'Slide 2',
+                  label=u'Slide 1',
                   fields=['s2_title', 's2_description', 's2_primary_photo',
                           's2_read_more_text', 's2_read_more_link']
+                  )
+
+    form.fieldset('slide8',
+                  label=u'Slide 2',
+                  fields=['s8_title', 's8_description', 's8_primary_photo',
+                          's8_read_more_text', 's8_read_more_link']
                   )
 
     form.fieldset('slide5',
@@ -59,33 +65,27 @@ class ICarousel(IPersistentCoverTile):
                           's5_read_more_text', 's5_read_more_link']
                   )
 
-    form.fieldset('slide7',
-                  label=u'Slide 7',
-                  fields=['s7_title', 's7_description', 's7_primary_photo',
-                          's7_read_more_text', 's7_read_more_link']
-                  )
-
-    form.fieldset('slide8',
-                  label=u'Slide 8',
-                  fields=['s8_title', 's8_description', 's8_primary_photo',
-                          's8_read_more_text', 's8_read_more_link']
-                  )
+    # form.fieldset('slide7',
+    #               label=u'Slide 7',
+    #               fields=['s7_title', 's7_description', 's7_primary_photo',
+    #                       's7_read_more_text', 's7_read_more_link']
+    #               )
 
     # Slide 1 fields
-    s1_title = schema.Text(title=u"First slide Title", required=True)
-    s1_description = RichText(title=u"First slide description", required=False)
+    # s1_title = schema.Text(title=u"First slide Title", required=True)
+    # s1_description = RichText(title=u"First slide description", required=False)
 
-    s1_primary_photo = NamedBlobImage(
-        title=(u"First Slide Photo"),
-        required=False,
-    )
+    # s1_primary_photo = NamedBlobImage(
+    #     title=(u"First Slide Photo"),
+    #     required=False,
+    # )
 
-    s1_photo_copyright = schema.Text(title=u"Photo Copyright", required=True)
+    # s1_photo_copyright = schema.Text(title=u"Photo Copyright", required=True)
 
-    s1_read_more_text = schema.Text(title=u"First slide read more text",
-                                    required=False)
-    s1_read_more_link = schema.Text(title=u"First slide read more link",
-                                    required=False)
+    # s1_read_more_text = schema.Text(title=u"First slide read more text",
+    #                                 required=False)
+    # s1_read_more_link = schema.Text(title=u"First slide read more link",
+    #                                 required=False)
 
     # Slide 2 fields
     s2_title = schema.Text(title=u"Second slide Title", required=True)
@@ -116,18 +116,18 @@ class ICarousel(IPersistentCoverTile):
                                     required=False)
 
     # Slide 7 fields
-    s7_title = schema.Text(title=u"Seventh slide title", required=True)
-    s7_description = RichText(title=u"Seventh slide text", required=False)
+    # s7_title = schema.Text(title=u"Seventh slide title", required=True)
+    # s7_description = RichText(title=u"Seventh slide text", required=False)
 
-    s7_primary_photo = NamedBlobImage(
-        title=(u"Seventh slide photo"),
-        required=True,
-    )
+    # s7_primary_photo = NamedBlobImage(
+    #     title=(u"Seventh slide photo"),
+    #     required=True,
+    # )
 
-    s7_read_more_text = schema.Text(title=u"Seventh slide read more text",
-                                    required=False)
-    s7_read_more_link = schema.Text(title=u"Seventh slide read more link",
-                                    required=False)
+    # s7_read_more_text = schema.Text(title=u"Seventh slide read more text",
+    #                                 required=False)
+    # s7_read_more_link = schema.Text(title=u"Seventh slide read more link",
+    #                                 required=False)
 
     # Slide 8 fields
     s8_title = schema.Text(title=u"Slide title", required=True)
