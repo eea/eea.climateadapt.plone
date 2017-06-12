@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Make it so that screentime-analytics plugin is properly initialized
+  for the search page
+  [iulianpetchesi #85622]
 * Change: Change order of carousel elements
   [iulianpetchesi #85858]
 * Change: Hide 2 slides from the carousel
