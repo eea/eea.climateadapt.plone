@@ -162,6 +162,7 @@ _datatypes = [
     ("MEASURE", "Adaptation options"),
     ("ACTION", "Case studies"),
     ("ORGANISATION", "Organisations"),
+    # ("VIDEOS", "Videos"),
 ]
 aceitem_datatypes_vocabulary = generic_vocabulary(_datatypes)
 alsoProvides(aceitem_datatypes_vocabulary, IVocabularyFactory)
@@ -314,6 +315,7 @@ _cca_types = [
     ("MEASURE","Adaptation Option"),
     ("ACTION", "Case Studies"),
     ("ORGANISATION", "Organisation"),
+    # ("VIDEOS", "Videos"),
 ]
 cca_types = generic_vocabulary(_cca_types)
 alsoProvides(cca_types, IVocabularyFactory)
@@ -373,12 +375,16 @@ acesearch-geochars-lbl-TRANS_MACRO_CAR_AREA=Caribbean Area
 acesearch-geochars-lbl-TRANS_MACRO_MACRONESIA=Macronesia
 acesearch-geochars-lbl-TRANS_MACRO_IND_OCEAN_AREA=Indian Ocean Area
 acesearch-geochars-lbl-TRANS_BIO_ALPINE=Alpine
-acesearch-geochars-lbl-TRANS_BIO_ATLANTIC=Atlantic
+acesearch-geochars-lbl-TRANS_BIO_ANATOLIAN=Anatolian
 acesearch-geochars-lbl-TRANS_BIO_ARCTIC=Arctic
+acesearch-geochars-lbl-TRANS_BIO_ATLANTIC=Atlantic
+acesearch-geochars-lbl-TRANS_BIO_BLACKSEA=Black Sea
 acesearch-geochars-lbl-TRANS_BIO_BOREAL=Boreal
 acesearch-geochars-lbl-TRANS_BIO_CONTINENTAL=Continental
+acesearch-geochars-lbl-TRANS_BIO_MACARO=Macaronesia
 acesearch-geochars-lbl-TRANS_BIO_MEDIT=Mediterranean
 acesearch-geochars-lbl-TRANS_BIO_PANNONIAN=Pannonian
+acesearch-geochars-lbl-TRANS_BIO_STEPPIC=Steppic
 """
 
 BIOREGIONS = {}

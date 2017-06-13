@@ -95,12 +95,16 @@
                   <td width="45%" >
                     <select id="trans_bio_nationals" style="height:100px;width:200px;" multiple="multiple">
                       <option value="TRANS_BIO_ALPINE">Alpine</option>
-                      <option value="TRANS_BIO_ATLANTIC">Atlantic</option>
+                      <option value="TRANS_BIO_ANATOLIAN">Anatolian</option>
                       <option value="TRANS_BIO_ARCTIC">Arctic</option>
+                      <option value="TRANS_BIO_ATLANTIC">Atlantic</option>
+                      <option value="TRANS_BIO_BLACKSEA">Black Sea</option>
                       <option value="TRANS_BIO_BOREAL" >Boreal</option>
                       <option value="TRANS_BIO_CONTINENTAL" >Continental</option>
+                      <option value="TRANS_BIO_MACARO" >Macaronesia</option>
                       <option value="TRANS_BIO_MEDIT">Mediterranean</option>
                       <option value="TRANS_BIO_PANNONIAN">Pannonian</option>
+                      <option value="TRANS_BIO_STEPPIC">Steppic</option>
                     </select>
                   </td>
                 </tr>
