@@ -260,6 +260,7 @@ class ClearMacrotransnationalRegions (BrowserView):
     """
 
     def __call__(self):
+        return
         logger.info('Starting to clear regions.')
         for brain in self.catalog_search():
             self.clear_regions(brain.getObject())
