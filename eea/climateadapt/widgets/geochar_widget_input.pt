@@ -57,7 +57,7 @@
       <li >
         <label for="rad_geochars_EUROPE" >
           <input type="radio" name= "rad_geo_chars" id="europe_geo_chars" value="EUROPE" />
-          Europe (If this publication and reports applies to the whole of Europe, please select all the Macro-Transnational Regions below)
+          Europe
         </label>
       </li>
       <li style="list-style: none; display: inline">

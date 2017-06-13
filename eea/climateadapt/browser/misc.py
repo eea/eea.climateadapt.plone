@@ -1,7 +1,8 @@
+import json
 import logging
 from Acquisition import aq_inner
 from OFS.ObjectManager import BeforeDeleteException
-from Products.CMFPlone.utils import getToolByName
+from Products.CMFPlone.utils import getToolByName, isExpired
 from Products.Five.browser import BrowserView
 from eea.climateadapt.config import CONTACT_MAIL_LIST
 from eea.climateadapt.schema import Email
@@ -251,6 +252,73 @@ class DetectBrokenLinksView (BrowserView):
         """
         self.results = IAnnotations(self.context).get('broken_links_data', None)
         return self.index()
+
+
+class ClearMacrotransnationalRegions (BrowserView):
+    """ Clear the macrotransnational regions from geographic localization
+    if all the regions are selected
+    """
+
+    def __call__(self):
+        logger.info('Starting to clear regions.')
+        for brain in self.catalog_search():
+            self.clear_regions(brain.getObject())
+        logger.info('Finished clearing regions.')
+
+    def catalog_search(self):
+        catalog = self.context.portal_catalog
+        query = {'portal_type': [
+            'eea.climateadapt.aceproject',
+            'eea.climateadapt.adaptationoption',
+            'eea.climateadapt.casestudy',
+            'eea.climateadapt.guidancedocument',
+            'eea.climateadapt.indicator',
+            'eea.climateadapt.informationportal',
+            'eea.climateadapt.mapgraphdataset',
+            'eea.climateadapt.organisation',
+            'eea.climateadapt.publicationreport',
+            'eea.climateadapt.researchproject',
+            'eea.climateadapt.tool',
+        ]}
+        brains = catalog.searchResults(**query)
+        return brains
+
+    def clear_regions(self, obj):
+        if obj.geochars in [None, u'', '', []]:
+            return
+
+        geochars = json.loads(obj.geochars)
+        macro = geochars['geoElements'].get('macrotrans', [])
+
+        if macro:
+            if len(macro) == 13:
+                logger.info('Clearing regions on %s' % obj.absolute_url())
+                geochars['geoElements']['macrotrans'] = []
+                geochars = json.dumps(geochars).encode()
+                obj.geochars = geochars
+                obj._p_changed = True
+                obj.reindexObject()
+
+
+# class TestArchive (BrowserView):
+#     """  """
+#     def __call__(self):
+#         _archive_news(self.context)
+
+
+# def _archive_news(site):
+#     """ Script that will get called by cron once per day
+#     """
+#     catalog = getToolByName(site, 'portal_catalog')
+#     query = {'portal_type': ['News Item'], 'review_state': 'published'}
+#     brains = catalog.searchResults(**query)
+
+#     for b in brains:
+#         obj = b.getObject()
+#         if isExpired(obj) == 1 and api.content.get_state(obj) != 'archived':
+#             logger.info('Archiving %s' % obj.absolute_url())
+#             api.content.transition(obj, 'archive')
+#             transaction.commit()
 
 
 def _get_data(site):
