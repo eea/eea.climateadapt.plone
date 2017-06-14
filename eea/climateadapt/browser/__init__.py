@@ -168,11 +168,14 @@ class AceViewApi(object):
 
     def check_user_role(self):
         mt = getToolByName(self.context, 'portal_membership')
+        groups_tool = getToolByName(self.context, 'portal_groups')
         user = mt.getAuthenticatedMember()
-        roles = user.getRoles()
-        to_check = ['Reviewer', 'Site Administrator', 'extranet-cca-powerusers']
 
-        check_roles = [role for role in roles if role in to_check]
+        user_groups = [group.id for group in groups_tool.getGroupsByUserId(user.id)]
+        to_check = ['extranet-cca-reviewers',
+                    'Administrators',
+                    'extranet-cca-powerusers']
+        check_roles = [group for group in user_groups if group in to_check]
         if len(check_roles) > 0:
             return True
         return False
