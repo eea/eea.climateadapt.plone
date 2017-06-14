@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added BrowserView for writing objects url to files belonging to
+  specific macrotrans regions
+  [iulianpetchesi #85925]
 * Bugfix: Remove macrotransnational regions if all of them are checked
   [iulianpetchesi #30901]
 * Change: Add new elements to biogeographical regions

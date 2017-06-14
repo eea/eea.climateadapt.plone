@@ -80,6 +80,13 @@
         />
 
     <browser:page
+        name="write-macrotrans-regions"
+        for="*"
+        class=".misc.GetItemsForMacrotransRegions"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <browser:page
         name="clear-macrotrans-regions"
         for="*"
         class=".misc.ClearMacrotransnationalRegions"

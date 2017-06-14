@@ -301,6 +301,56 @@ class ClearMacrotransnationalRegions (BrowserView):
                 obj.reindexObject()
 
 
+class GetItemsForMacrotransRegions (BrowserView):
+    """ Write to files the url of objects belonging to either the caribbean
+    or se-europe region
+    """
+
+    def __call__(self):
+        for b in self.catalog_search():
+            obj = b.getObject()
+            if obj.geochars in [None, u'', '', []]:
+                continue
+            geochars = json.loads(obj.geochars)
+            macro = geochars['geoElements'].get('macrotrans', [])
+
+            if macro:
+                if 'TRANS_MACRO_CAR_AREA' in macro:
+                    self.write_caribbean(obj)
+
+                if 'TRANS_MACRO_SE_EUR' in macro:
+                    self.write_se_europe(obj)
+        logger.info('Completed writing to files.')
+
+    def write_caribbean(self, obj):
+        logger.info('Writing %s to CARIBBEAN' % obj.absolute_url())
+        with open('caribbean', 'a') as f:
+            f.writelines('Object URL: %s \n' % obj.absolute_url())
+
+    def write_se_europe(self, obj):
+        logger.info('Writing %s to SE EUROPE' % obj.absolute_url())
+        with open('se-europe', 'a') as f:
+            f.writelines('Object URL: %s \n' % obj.absolute_url())
+
+    def catalog_search(self):
+        catalog = self.context.portal_catalog
+        query = {'portal_type': [
+            'eea.climateadapt.aceproject',
+            'eea.climateadapt.adaptationoption',
+            'eea.climateadapt.casestudy',
+            'eea.climateadapt.guidancedocument',
+            'eea.climateadapt.indicator',
+            'eea.climateadapt.informationportal',
+            'eea.climateadapt.mapgraphdataset',
+            'eea.climateadapt.organisation',
+            'eea.climateadapt.publicationreport',
+            'eea.climateadapt.researchproject',
+            'eea.climateadapt.tool',
+        ]}
+        brains = catalog.searchResults(**query)
+        return brains
+
+
 # class TestArchive (BrowserView):
 #     """  """
 #     def __call__(self):
