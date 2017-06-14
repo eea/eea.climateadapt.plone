@@ -3,6 +3,7 @@ from Products.MimetypesRegistry.mime_types.magic import guessMime
 from plone.api import portal
 from plone.app.textfield.interfaces import ITransformer
 import logging
+import json
 
 logger = logging.getLogger('eea.climateadapt.migration')
 default_profile = 'profile-eea.climateadapt:default'
@@ -535,3 +536,65 @@ def update_to_37(context):
                     obj._p_changed = True
                     continue
     logger.info("Finished modifying the effective dates for aceprojects")
+
+
+def update_to_39(context):
+    logger.info("Upgrading to 39")
+    logger.info("Setting the new macrotransnational regions for some aceitems")
+
+    catalog = portal.get_tool(name='portal_catalog')
+    query = {'portal_type': [
+            'eea.climateadapt.aceproject',
+            'eea.climateadapt.adaptationoption',
+            'eea.climateadapt.casestudy',
+            'eea.climateadapt.guidancedocument',
+            'eea.climateadapt.indicator',
+            'eea.climateadapt.informationportal',
+            'eea.climateadapt.mapgraphdataset',
+            'eea.climateadapt.organisation',
+            'eea.climateadapt.publicationreport',
+            'eea.climateadapt.researchproject',
+            'eea.climateadapt.tool']}
+
+    brains = catalog.searchResults(**query)
+    logger.info('Got %s results.' % len(brains))
+    items_count = 0
+    for b in brains:
+        obj = b.getObject()
+
+        items_count += 1
+        if items_count % 100 == 0:
+            logger.info('Went through %s brains' % items_count)
+
+        if obj.geochars in [None, u'', '', []]:
+            continue
+
+        geochars = json.loads(obj.geochars)
+        macro = geochars['geoElements'].get('macrotrans', [])
+        modified = False
+
+        if macro:
+            if 'TRANS_MACRO_CAR_AREA' in macro:
+                macro.append(u'TRANS_MACRO_AMAZONIA')
+                modified = True
+
+            if 'TRANS_MACRO_SE_EUR' in macro:
+                macro.remove('TRANS_MACRO_SE_EUR')
+                macro.append(u'TRANS_MACRO_DANUBE')
+                macro.append(u'TRANS_MACRO_ADR_IONIAN')
+                macro.append(u'TRANS_MACRO_BALKAN_MED')
+                modified = True
+
+            if 'TRANS_MACRO_MACRONESIA' in macro:
+                macro.remove('TRANS_MACRO_MACRONESIA')
+                if 'TRANS_MACRO_ATL_AREA' not in macro:
+                    macro.append(u'TRANS_MACRO_ATL_AREA')
+                modified = True
+
+            if modified:
+                logger.info('Reindexing object %s' % obj.absolute_url())
+                geochars['geoElements']['macrotrans'] = macro
+                obj.geochars = json.dumps(geochars).encode()
+                obj._p_changed = True
+                obj.reindexObject()
+    logger.info('Finished upgrade 39')

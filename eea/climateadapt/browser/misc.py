@@ -307,6 +307,7 @@ class GetItemsForMacrotransRegions (BrowserView):
     """
 
     def __call__(self):
+        return
         for b in self.catalog_search():
             obj = b.getObject()
             if obj.geochars in [None, u'', '', []]:

@@ -77,9 +77,11 @@
                     <option value="TRANS_MACRO_CEN_EUR">Central Europe</option>
                     <option value="TRANS_MACRO_SW_EUR">South West Europe</option>
                     <option value="TRANS_MACRO_MED">Mediterranean</option>
-                    <option value="TRANS_MACRO_SE_EUR">South East Europe</option>
+                    <option value="TRANS_MACRO_DANUBE">Danube</option>
+                    <option value="TRANS_MACRO_ADR_IONIAN">Adriatic-Ionian</option>
+                    <option value="TRANS_MACRO_BALKAN_MED">Balkan-Mediterranean</option>
                     <option value="TRANS_MACRO_CAR_AREA">Caribbean Area</option>
-                    <option value="TRANS_MACRO_MACRONESIA">Macronesia</option>
+                    <option value="TRANS_MACRO_AMAZONIA">Amazonia</option>
                     <option value="TRANS_MACRO_IND_OCEAN_AREA">Indian Ocean Area</option>
                   </select>
                 </td>

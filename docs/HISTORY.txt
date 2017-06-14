@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bugfix: Added upgrade step for the migration of macrotransnational regions
+  [iulianpetchesi #85925]
 * Bugfix: Added BrowserView for writing objects url to files belonging to
   specific macrotrans regions
   [iulianpetchesi #85925]

@@ -574,4 +574,13 @@
             />
     </genericsetup:upgradeSteps>
 
+    <!-- v39 upgrade -->
+    <genericsetup:upgradeStep
+        title="Upgrade eea.climateadapt to v39"
+        description=""
+        source="38"
+        destination="39"
+        handler=".update.update_to_39"
+        profile="eea.climateadapt:default" />
+
 </configure>
