@@ -324,12 +324,12 @@ class GetItemsForMacrotransRegions (BrowserView):
 
     def write_caribbean(self, obj):
         logger.info('Writing %s to CARIBBEAN' % obj.absolute_url())
-        with open('caribbean', 'a') as f:
+        with open('/'.join([CLIENT_HOME, 'caribbean']), 'a') as f:
             f.writelines('Object URL: %s \n' % obj.absolute_url())
 
     def write_se_europe(self, obj):
         logger.info('Writing %s to SE EUROPE' % obj.absolute_url())
-        with open('se-europe', 'a') as f:
+        with open('/'.join([CLIENT_HOME, 'se-europe']), 'a') as f:
             f.writelines('Object URL: %s \n' % obj.absolute_url())
 
     def catalog_search(self):
