@@ -583,4 +583,22 @@
         handler=".update.update_to_39"
         profile="eea.climateadapt:default" />
 
+    <!-- v40 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_40"
+        title="Upgrade profile for eea.climateadapt v40"
+        description=""
+        directory="profiles/upgrades/to_40"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="39"
+        destination="40"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v40"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_40"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>

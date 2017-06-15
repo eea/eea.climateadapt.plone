@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Change: Add 'archive' state to cca_webpages_workflow
+  [iulianpetchesi #85584]
 * Bugfix: Search for user groups when displaying object comments
   [iulianpetchesi #82404]
 * Bugfix: Added upgrade step for the migration of macrotransnational regions
@@ -56,7 +58,7 @@ Changelog
 * Bugfix: Added new column to the excel export in order to display the objects
   portal state
   [iulianpetchesi #84924]
-* Bugfix: Added upgrade step in order to fix effective_date attribute of 
+* Bugfix: Added upgrade step in order to fix effective_date attribute of
   some aceprojects
   [iulianpetchesi #84924]
 * Bugfix: Memoized code
@@ -83,7 +85,7 @@ Changelog
   [iulianpetchesi #83117]
 * Bugfix: Style fixes for casestudy gallery
   [iulianpetchesi #83501]
-* Bugfix: Added an improved cache key for faceted search based on 
+* Bugfix: Added an improved cache key for faceted search based on
   cacheKeyFacetedNavigation from eea.facetednavigation
   [iulianpetchesi #82635]
 * Bugfix: Style adjustments
@@ -121,7 +123,7 @@ Changelog
   [iulianpetchesi #82422]
 * Bugfix: Added verification to allow checkout cancel only on copies
   [iulianpetchesi #82422]
-* Bugfix: Removed kazakhsthan and added Kosovo from faceted search countries 
+* Bugfix: Removed kazakhsthan and added Kosovo from faceted search countries
   [iulianpetchesi #74014]
 * Bugfix: Included option for adding keywords
   [iulianpetchesi #74014]
