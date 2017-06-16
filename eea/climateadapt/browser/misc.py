@@ -352,25 +352,21 @@ class GetItemsForMacrotransRegions (BrowserView):
         return brains
 
 
-# class TestArchive (BrowserView):
-#     """  """
-#     def __call__(self):
-#         _archive_news(self.context)
+def _archive_news(site):
+    """ Script that will get called by cron once per day
+    """
+    catalog = getToolByName(site, 'portal_catalog')
+    query = {'portal_type': ['News Item', 'Link', 'Event'],
+             'review_state': 'published'}
+    brains = catalog.searchResults(**query)
 
-
-# def _archive_news(site):
-#     """ Script that will get called by cron once per day
-#     """
-#     catalog = getToolByName(site, 'portal_catalog')
-#     query = {'portal_type': ['News Item'], 'review_state': 'published'}
-#     brains = catalog.searchResults(**query)
-
-#     for b in brains:
-#         obj = b.getObject()
-#         if isExpired(obj) == 1 and api.content.get_state(obj) != 'archived':
-#             logger.info('Archiving %s' % obj.absolute_url())
-#             api.content.transition(obj, 'archive')
-#             transaction.commit()
+    for b in brains:
+        obj = b.getObject()
+        # if isExpired(obj) == 1 and api.content.get_state(obj) != 'archived':
+        if isExpired(obj) == 1:
+            logger.info('Archiving %s' % obj.absolute_url())
+            api.content.transition(obj, 'archive')
+            transaction.commit()
 
 
 def _get_data(site):

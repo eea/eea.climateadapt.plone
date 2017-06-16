@@ -1,10 +1,14 @@
 """ Utilities for faceted search
 """
 
+from collections import defaultdict
+from datetime import datetime
+from Products.CMFPlone.utils import isExpired
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from collections import defaultdict
+from eea.cache import cache
 from eea.facetednavigation.browser.app.view import FacetedContainerView
+from eea.facetednavigation.caching.cache import cacheKeyFacetedNavigation
 from plone import api
 from plone.api import portal
 from zope.component import getMultiAdapter, queryMultiAdapter
@@ -12,8 +16,7 @@ from zope.interface import alsoProvides
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-from eea.cache import cache
-from eea.facetednavigation.caching.cache import cacheKeyFacetedNavigation
+
 
 # TODO: should use the FACETED_SECTIONS LIST
 SEARCH_TYPES = [
@@ -29,6 +32,7 @@ SEARCH_TYPES = [
     ("ACTION", "Case studies"),
     ("MAYORSADAPT", "Mayors Adapt city profiles"),
     ("ORGANISATION", "Organisations"),
+    # ("VIDEOS", "Videos"),
 ]
 
 FACETED_SEARCH_TYPES = [
@@ -43,6 +47,7 @@ FACETED_SEARCH_TYPES = [
     ("DOCUMENT", "Publication and Reports"),
     ("RESEARCHPROJECT", "Research and knowledge projects"),
     ("TOOL", "Tools"),
+    # ("VIDEOS", "Videos"),
 ]
 
 
@@ -90,6 +95,14 @@ class ListingView(BrowserView):
                 if brain.search_type in self.labels:
                     results[brain.search_type].append(brain)
 
+        # ADD News/Events to faceted results unde 'CONTENT'
+        site = api.portal.getSite()
+        catalog = api.portal.getToolByName(site, 'portal_catalog')
+        query = {'portal_type': ['News Item', 'Link', 'Event'],
+                 'review_state': 'archived'}
+        brains = catalog.searchResults(**query)
+        for brain in brains:
+            results['CONTENT'].append(brain)
         return results
 
     def key(method, self, name, brains):
@@ -146,7 +159,8 @@ class ListingGeneric(BrowserView):
         return url
 
     def new_item(self, brain):
-        from datetime import datetime
+        if brain.getObject().portal_type in ['News Item', 'Link', 'Event']:
+            return False
 
         effective = brain.getObject().effective().asdatetime().date()
         today = datetime.now().date()
@@ -162,3 +176,11 @@ class ListingGeneric(BrowserView):
         date = obj.effective_date
 
         return portal.get_localized_time(datetime=date).encode('utf-8')
+
+    def expired(self, brain):
+        if brain.getObject().portal_type not in ['News Item', 'Link', 'Event']:
+            return False
+
+        if isExpired(brain) == 1:
+            return True
+        return False

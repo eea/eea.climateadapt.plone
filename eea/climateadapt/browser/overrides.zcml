@@ -59,7 +59,7 @@
       factory=".overrides.ObjectStateExportable"
     />
 
-    <adapter 
+    <adapter
       provides=".overrides.IEnhancedPersonalPreferencesSchema"
       for="Products.CMFCore.interfaces.ISiteRoot"
       factory=".overrides.EnhancedPersonalPreferencesPanelAdapter"

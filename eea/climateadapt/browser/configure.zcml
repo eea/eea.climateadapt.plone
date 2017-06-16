@@ -93,13 +93,6 @@
         permission="cmf.ModifyPortalContent"
         />
 
-<!--     <browser:page
-        name="test-archive"
-        for="*"
-        class=".misc.TestArchive"
-        permission="zope2.View"
-        /> -->
-
     <browser:page
         name="get-item-statistics"
         for="*"

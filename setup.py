@@ -60,6 +60,7 @@ setup(name='eea.climateadapt',
       sync_to_arcgis = eea.climateadapt.scripts.sync_to_arcgis:main
       send_mayoradapt_reminders = eea.climateadapt.mayorsadapt.scripts:send_reminders
       get_broken_links = eea.climateadapt.browser.scripts:get_broken_links
+      archive_news = eea.climateadapt.browser.scripts:archive_news
       """,
       # The next two lines may be deleted after you no longer need
       # addcontent support from paster and before you distribute
