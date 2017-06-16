@@ -2,5 +2,6 @@
   <p><strong>
       The database contains quality checked information and is annotated by climate adaptation experts with keywords.</strong></p>
   <p>
-    Search the database using the keywords field below and filter the results using one or more of the filters from the left side bar</p>
+      Please check our <a href="/help/guidance" target="_blank">Guidance to search function</a> for more help on how to search the database.
+  </p> 
 </metal:macro>
