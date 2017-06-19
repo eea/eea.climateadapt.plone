@@ -2947,3 +2947,7 @@ table.listing a {
 #content .read-more-first-slide p{
     margin-bottom: 0;
 }
+
+.state-expired {
+    color: Red !important
+}

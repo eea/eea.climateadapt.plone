@@ -100,7 +100,7 @@ class ListingView(BrowserView):
         catalog = api.portal.getToolByName(site, 'portal_catalog')
         query = {'portal_type': ['News Item', 'Link', 'Event'],
                  'review_state': 'archived'}
-        brains = catalog.searchResults(**query)
+        brains = catalog.unrestrictedSearchResults(**query)
         for brain in brains:
             results['CONTENT'].append(brain)
         return results

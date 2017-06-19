@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Change: Use unrestricted catalog search for the archived news/events
+  [iulianpetchesi #85584]
 * Change: Added archiving script and archived news/events now appear at search
   [iulianpetchesi #85584]
 * Change: Add 'archive' state to cca_webpages_workflow
