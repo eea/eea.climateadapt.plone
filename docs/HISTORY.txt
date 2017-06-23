@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Change: Pdf style modifications
+  [iulianpetchesi #86181]
 * Change: Added border for tables in /help
   [iulianpetchesi #80348]
 * Change: Use unrestricted catalog search for the archived news/events

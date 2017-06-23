@@ -2565,6 +2565,40 @@ table.listing a {
 
 /* Used for PDF */
 @media print {
+    body {
+      min-width: 10cm;
+      width: auto;
+      position: relative;
+      height: auto;
+      float: none !important;
+    }
+
+    #site {position: relative;}
+    #content {
+      white-space: normal;
+      position: relative;
+      float: none !important;
+    }
+
+    .cover-body {
+      display: none;
+    }
+
+    #wrapper {
+      background-color: white;
+    }
+
+    .template-pdf-cover #wrapper {
+        min-height: 15cm;
+    }
+
+    .template-pdf-cover .cover-title {text-align: center;}
+
+    #main {
+      width: 95%;
+      font-size: 9pt;
+    }
+
     div.position-0 {margin-left: 0;}
     .cover-body {display: none;}
     .cover-copyright{margin: 0; font-size: 12pt; padding-top: 22pt;}
