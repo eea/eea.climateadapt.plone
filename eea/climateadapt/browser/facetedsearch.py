@@ -112,7 +112,7 @@ class ListingView(BrowserView):
         cache_key += (name, )
         return cache_key
 
-    @cache(key, dependencies=['eea.facetednavigation'], lifetime=1800)
+    @cache(key, dependencies=['eea.facetednavigation'], lifetime=18000)
     def render(self, name, brains):
         print "rendering ", name
 
