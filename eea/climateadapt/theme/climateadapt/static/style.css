@@ -2951,3 +2951,7 @@ table.listing a {
 .state-expired {
     color: Red !important
 }
+
+.section-help .row:nth-child(2) table {
+    border: 1px solid black;
+}
