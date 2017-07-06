@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bug: Fix 'CONTENT' under search so that it won't show expired items
+  [iulianpetchesi #86613]
 * Change: Pdf style modifications
   [iulianpetchesi #86181]
 * Change: Added border for tables in /help

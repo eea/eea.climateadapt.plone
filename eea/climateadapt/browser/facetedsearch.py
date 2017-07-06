@@ -16,6 +16,7 @@ from zope.interface import alsoProvides
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+from zope.annotation.interfaces import IAnnotations
 
 
 # TODO: should use the FACETED_SECTIONS LIST
@@ -57,6 +58,7 @@ def faceted_search_types_vocabulary(context):
         SimpleTerm(x[0], x[0], x[1]) for x in FACETED_SEARCH_TYPES
     ])
 
+
 alsoProvides(faceted_search_types_vocabulary, IVocabularyFactory)
 
 
@@ -94,15 +96,6 @@ class ListingView(BrowserView):
             if brain.search_type:
                 if brain.search_type in self.labels:
                     results[brain.search_type].append(brain)
-
-        # ADD News/Events to faceted results unde 'CONTENT'
-        site = api.portal.getSite()
-        catalog = api.portal.getToolByName(site, 'portal_catalog')
-        query = {'portal_type': ['News Item', 'Link', 'Event'],
-                 'review_state': 'archived'}
-        brains = catalog.unrestrictedSearchResults(**query)
-        for brain in brains:
-            results['CONTENT'].append(brain)
         return results
 
     def key(method, self, name, brains):
@@ -121,6 +114,15 @@ class ListingView(BrowserView):
         if view is None:
             view = getMultiAdapter((self.context, self.request),
                                    name='faceted_listing_GENERIC')
+
+        if name == 'CONTENT':
+            site = api.portal.getSite()
+            catalog = api.portal.getToolByName(site, 'portal_catalog')
+            query = {'portal_type': ['News Item', 'Link', 'Event'],
+                     'review_state': 'archived'}
+            new_brains = catalog.unrestrictedSearchResults(**query)
+            for brain in new_brains:
+                brains.append(brain)
 
         view.brains = brains
         return view()
