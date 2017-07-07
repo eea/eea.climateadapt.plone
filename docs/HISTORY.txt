@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bug: Added new cache, fixed search type for News/Events/Links + upgrade step
+  for fixing search_type
+  [iulianpetchesi #86276]
 * Bug: Fix 'CONTENT' under search so that it won't show expired items
   [iulianpetchesi #86613]
 * Change: Pdf style modifications

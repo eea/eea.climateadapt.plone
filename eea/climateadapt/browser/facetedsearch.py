@@ -115,15 +115,6 @@ class ListingView(BrowserView):
             view = getMultiAdapter((self.context, self.request),
                                    name='faceted_listing_GENERIC')
 
-        if name == 'CONTENT':
-            site = api.portal.getSite()
-            catalog = api.portal.getToolByName(site, 'portal_catalog')
-            query = {'portal_type': ['News Item', 'Link', 'Event'],
-                     'review_state': 'archived'}
-            new_brains = catalog.unrestrictedSearchResults(**query)
-            for brain in new_brains:
-                brains.append(brain)
-
         view.brains = brains
         return view()
 
@@ -144,6 +135,46 @@ class FacetedViewNoTitle(FacetedContainerView):
 class ListingGeneric(BrowserView):
     """
     """
+    def key(method, self):
+        site = api.portal.getSite()
+        portal_type = self.brains[0].getObject().portal_type
+
+        cca_types = [
+            'eea.climateadapt.adaptationoption',
+            'eea.climateadapt.aceproject',
+            'eea.climateadapt.casestudy',
+            'eea.climateadapt.guidancedocument',
+            'eea.climateadapt.indicator',
+            'eea.climateadapt.informationportal',
+            'eea.climateadapt.mapgraphdataset',
+            'eea.climateadapt.organisation',
+            'eea.climateadapt.publicationreport',
+            'eea.climateadapt.researchproject',
+            'eea.climateadapt.tool',
+            'eea.climateadapt.city_profile',
+        ]
+
+        cache_key = cacheKeyFacetedNavigation(method, self)
+        cache_key += (portal_type, )
+
+        if not IAnnotations(site).get('cca-search', None):
+            IAnnotations(site)['cca-search'] = {}
+
+        if portal_type not in cca_types:
+            if not IAnnotations(site)['cca-search'].get('CONTENT', None):
+                IAnnotations(site)['cca-search']['CONTENT'] = []
+            IAnnotations(site)['cca-search']['CONTENT'].append(cache_key)
+        else:
+            if not IAnnotations(site)['cca-search'].get(portal_type, None):
+                IAnnotations(site)['cca-search'][portal_type] = []
+            IAnnotations(site)['cca-search'][portal_type].append(cache_key)
+
+        print "caching ", portal_type
+        return cache_key
+
+    @cache(key, lifetime=18000)
+    def __call__(self):
+        return self.index()
 
     def html2text(self, html):
         if not isinstance(html, basestring):

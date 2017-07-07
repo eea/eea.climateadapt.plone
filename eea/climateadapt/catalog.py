@@ -1,6 +1,6 @@
 from city_profile import ICityProfile
 from collective.cover.interfaces import ICover
-from eea.climateadapt.interfaces import IClimateAdaptContent
+from eea.climateadapt.interfaces import IClimateAdaptContent, INewsEventsLinks
 from plone.indexer import indexer
 from zope.annotation.interfaces import IAnnotations
 from zope.interface import Interface
@@ -62,6 +62,13 @@ def countries(object):
 
 
 @indexer(ICover)
+def search_type(object):
+    """
+    """
+    return "CONTENT"
+
+
+@indexer(INewsEventsLinks)
 def search_type(object):
     """
     """

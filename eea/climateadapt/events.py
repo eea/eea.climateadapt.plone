@@ -1,7 +1,13 @@
+from eea.cache import event
+from plone import api
 from plone.app.contentrules.handlers import execute_rules
 from plone.app.iterate.dexterity.utils import get_baseline
 from plone.app.iterate.event import WorkingCopyDeletedEvent
+from zope.annotation.interfaces import IAnnotations
 from zope.event import notify
+
+
+InvalidateCacheEvent = event.InvalidateCacheEvent
 
 
 def trigger_contentrules(event):
@@ -19,4 +25,27 @@ def handle_iterate_wc_deletion(object, event):
         baseline = get_baseline(object)
     except:
         return
-    notify(WorkingCopyDeletedEvent(object, baseline, relation=None) )
+    notify(WorkingCopyDeletedEvent(object, baseline, relation=None))
+
+
+def invalidate_cache_faceted_sections(obj, evt):
+    """ Invalidate faceted sections cache after cache keys
+    """
+    site = api.portal.getSite()
+    portal_type = obj.portal_type
+    types = IAnnotations(site)['cca-search'].keys()
+
+    print "INVALIDATING CACHE"
+
+    if portal_type not in types:
+        portal_type = 'CONTENT'
+    keys = IAnnotations(site)['cca-search'].get(portal_type, [])
+
+    for key in keys:
+        notify(InvalidateCacheEvent(raw=True, key=key))
+        keys.remove(key)
+    IAnnotations(site)['cca-search'][portal_type] = keys
+
+
+def invalidate_cache(obj, evt):
+    notify(InvalidateCacheEvent(raw=True))

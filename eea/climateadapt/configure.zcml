@@ -64,6 +64,20 @@
       <implements interface="eea.pdf.interfaces.IPDFAware" />
     </class>
 
+    -------[ Marker Interface for News/Events/Links ]-------
+
+    <class class="plone.app.contenttypes.content.Link">
+      <implements interface="eea.climateadapt.interfaces.INewsEventsLinks" />
+    </class>
+
+    <class class="plone.app.contenttypes.content.NewsItem">
+      <implements interface="eea.climateadapt.interfaces.INewsEventsLinks" />
+    </class>
+
+    <class class="plone.app.contenttypes.content.Event">
+      <implements interface="eea.climateadapt.interfaces.INewsEventsLinks" />
+    </class>
+
     -------[ Catalog indexes adapters ]-------
 
     <adapter name="aceitem_id" factory=".catalog.aceitem_id" />
@@ -133,6 +147,78 @@
         for="plone.dexterity.interfaces.IDexterityContent
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
         handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
+        />
+
+    <subscriber
+        for="eea.climateadapt.aceitem.IPublicationReport
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
+        for="eea.climateadapt.aceitem.IInformationPortal
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
+        for="eea.climateadapt.aceitem.IGuidanceDocument
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
+        for="eea.climateadapt.aceitem.ITool
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
+        for="eea.climateadapt.aceitem.IOrganisation
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
+        for="eea.climateadapt.aceitem.IIndicator
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
+        for="eea.climateadapt.aceitem.IAction
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
+        for="eea.climateadapt.aceitem.IMapGraphDataset
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
+        for="eea.climateadapt.aceitem.IResearchProject
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
+        for="eea.climateadapt.acemeasure.IAdaptationOption
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
+        for="eea.climateadapt.acemeasure.ICaseStudy
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
+        for="eea.climateadapt.acemeasure.ICaseStudy
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.invalidate_cache_faceted_sections"
         />
 
     <subscriber

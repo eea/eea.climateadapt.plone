@@ -64,3 +64,8 @@ class IContentRoot(Interface):
 class ITransRegioRoot(Interface):
     """ A marker interface for /transnations-regions
     """
+
+
+class INewsEventsLinks(Interface):
+    """ A marker interface for News, Events, Links content types
+    """

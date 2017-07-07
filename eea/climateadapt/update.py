@@ -598,3 +598,27 @@ def update_to_39(context):
                 obj._p_changed = True
                 obj.reindexObject()
     logger.info('Finished upgrade 39')
+
+
+def update_to_41(context):
+    logger.info("Upgrading to 41")
+    logger.info("Setting the search type to CONTENT for News/Events/Links")
+
+    catalog = portal.get_tool(name='portal_catalog')
+    query = {'portal_type': ['News Item', 'Event', 'Link']}
+
+    brains = catalog.searchResults(**query)
+    logger.info('Got %s results.' % len(brains))
+    items_count = 0
+    for b in brains:
+        obj = b.getObject()
+
+        items_count += 1
+        if items_count % 100 == 0:
+            logger.info('Went through %s brains' % items_count)
+
+        if not hasattr(obj, 'search_type'):
+            setattr(obj, 'search_type', 'CONTENT')
+            obj._p_changed = True
+            obj.reindexObject()
+            logger.info('Reindexing object %s' % obj.absolute_url())
