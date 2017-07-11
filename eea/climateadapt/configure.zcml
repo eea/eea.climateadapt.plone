@@ -150,6 +150,18 @@
         />
 
     <subscriber
+        for="plone.dexterity.interfaces.IDexterityContent
+             Products.CMFCore.interfaces.IActionSucceededEvent"
+        handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
+        />
+
+    <subscriber
+        for="eea.climateadapt.aceitem.IPublicationReport
+             Products.CMFCore.interfaces.IActionSucceededEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
         for="eea.climateadapt.aceitem.IPublicationReport
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
         handler=".events.invalidate_cache_faceted_sections"
@@ -162,8 +174,20 @@
         />
 
     <subscriber
+        for="eea.climateadapt.aceitem.IInformationPortal
+             Products.CMFCore.interfaces.IActionSucceededEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
         for="eea.climateadapt.aceitem.IGuidanceDocument
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
+        for="eea.climateadapt.aceitem.IGuidanceDocument
+             Products.CMFCore.interfaces.IActionSucceededEvent"
         handler=".events.invalidate_cache_faceted_sections"
         />
 
@@ -174,8 +198,20 @@
         />
 
     <subscriber
+        for="eea.climateadapt.aceitem.ITool
+             Products.CMFCore.interfaces.IActionSucceededEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
         for="eea.climateadapt.aceitem.IOrganisation
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
+        for="eea.climateadapt.aceitem.IOrganisation
+             Products.CMFCore.interfaces.IActionSucceededEvent"
         handler=".events.invalidate_cache_faceted_sections"
         />
 
@@ -186,8 +222,20 @@
         />
 
     <subscriber
+        for="eea.climateadapt.aceitem.IIndicator
+             Products.CMFCore.interfaces.IActionSucceededEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
         for="eea.climateadapt.aceitem.IAction
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
+        for="eea.climateadapt.aceitem.IAction
+             Products.CMFCore.interfaces.IActionSucceededEvent"
         handler=".events.invalidate_cache_faceted_sections"
         />
 
@@ -198,8 +246,20 @@
         />
 
     <subscriber
+        for="eea.climateadapt.aceitem.IMapGraphDataset
+             Products.CMFCore.interfaces.IActionSucceededEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
         for="eea.climateadapt.aceitem.IResearchProject
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
+        for="eea.climateadapt.aceitem.IResearchProject
+             Products.CMFCore.interfaces.IActionSucceededEvent"
         handler=".events.invalidate_cache_faceted_sections"
         />
 
@@ -210,6 +270,12 @@
         />
 
     <subscriber
+        for="eea.climateadapt.acemeasure.IAdaptationOption
+             Products.CMFCore.interfaces.IActionSucceededEvent"
+        handler=".events.invalidate_cache_faceted_sections"
+        />
+
+    <subscriber
         for="eea.climateadapt.acemeasure.ICaseStudy
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
         handler=".events.invalidate_cache_faceted_sections"
@@ -217,7 +283,7 @@
 
     <subscriber
         for="eea.climateadapt.acemeasure.ICaseStudy
-             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+             Products.CMFCore.interfaces.IActionSucceededEvent"
         handler=".events.invalidate_cache_faceted_sections"
         />
 

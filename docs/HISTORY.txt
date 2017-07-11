@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bug: Added event subscribers for cache invalidation
+  [iulianpetchesi #86276]
 * Bug: Added new cache, fixed search type for News/Events/Links + upgrade step
   for fixing search_type
   [iulianpetchesi #86276]
