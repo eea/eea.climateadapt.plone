@@ -150,31 +150,31 @@ class FacetedViewNoTitle(FacetedContainerView):
 class ListingGeneric(BrowserView):
     """
     """
-    def key(method, self):
-        site = api.portal.getSite()
-        portal_type = self.brains[0].getObject().portal_type
+    # def key(method, self):
+    #     site = api.portal.getSite()
+    #     portal_type = self.brains[0].getObject().portal_type
 
-        cache_key = cacheKeyFacetedNavigation(method, self)
-        cache_key += (portal_type, )
+    #     cache_key = cacheKeyFacetedNavigation(method, self)
+    #     cache_key += (portal_type, )
 
-        if not IAnnotations(site).get('cca-search', None):
-            IAnnotations(site)['cca-search'] = {}
+    #     if not IAnnotations(site).get('cca-search', None):
+    #         IAnnotations(site)['cca-search'] = {}
 
-        if portal_type not in CCA_TYPES:
-            if not IAnnotations(site)['cca-search'].get('CONTENT', None):
-                IAnnotations(site)['cca-search']['CONTENT'] = []
-            IAnnotations(site)['cca-search']['CONTENT'].append(cache_key)
-        else:
-            if not IAnnotations(site)['cca-search'].get(portal_type, None):
-                IAnnotations(site)['cca-search'][portal_type] = []
-            IAnnotations(site)['cca-search'][portal_type].append(cache_key)
+    #     if portal_type not in CCA_TYPES:
+    #         if not IAnnotations(site)['cca-search'].get('CONTENT', None):
+    #             IAnnotations(site)['cca-search']['CONTENT'] = []
+    #         IAnnotations(site)['cca-search']['CONTENT'].append(cache_key)
+    #     else:
+    #         if not IAnnotations(site)['cca-search'].get(portal_type, None):
+    #             IAnnotations(site)['cca-search'][portal_type] = []
+    #         IAnnotations(site)['cca-search'][portal_type].append(cache_key)
 
-        print "caching ", portal_type
-        return cache_key
+    #     print "caching ", portal_type
+    #     return cache_key
 
-    @cache(key, lifetime=36000)
-    def __call__(self):
-        return self.index()
+    # @cache(key, lifetime=36000)
+    # def __call__(self):
+    #     return self.index()
 
     def html2text(self, html):
         if not isinstance(html, basestring):

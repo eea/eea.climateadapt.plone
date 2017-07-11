@@ -32,6 +32,7 @@ def handle_iterate_wc_deletion(object, event):
 def invalidate_cache_faceted_sections(obj, evt):
     """ Invalidate faceted sections cache after cache keys
     """
+    return
     site = api.portal.getSite()
     portal_type = obj.portal_type
 
@@ -42,7 +43,7 @@ def invalidate_cache_faceted_sections(obj, evt):
     keys = IAnnotations(site)['cca-search'].get(portal_type, [])
 
     for key in keys:
-        notify(InvalidateCacheEvent(raw=True, key=key))
+        notify(InvalidateCacheEvent(raw=False, key=key))
         keys.remove(key)
     IAnnotations(site)['cca-search'][portal_type] = keys
 
