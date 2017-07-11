@@ -5,6 +5,7 @@ from plone.app.iterate.dexterity.utils import get_baseline
 from plone.app.iterate.event import WorkingCopyDeletedEvent
 from zope.annotation.interfaces import IAnnotations
 from zope.event import notify
+from eea.climateadapt.browser.facetedsearch import CCA_TYPES
 
 
 InvalidateCacheEvent = event.InvalidateCacheEvent
@@ -33,11 +34,10 @@ def invalidate_cache_faceted_sections(obj, evt):
     """
     site = api.portal.getSite()
     portal_type = obj.portal_type
-    types = IAnnotations(site)['cca-search'].keys()
 
     print "INVALIDATING CACHE"
 
-    if portal_type not in types:
+    if portal_type not in CCA_TYPES:
         portal_type = 'CONTENT'
     keys = IAnnotations(site)['cca-search'].get(portal_type, [])
 

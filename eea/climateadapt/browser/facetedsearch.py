@@ -51,6 +51,21 @@ FACETED_SEARCH_TYPES = [
     # ("VIDEOS", "Videos"),
 ]
 
+CCA_TYPES = [
+    'eea.climateadapt.adaptationoption',
+    'eea.climateadapt.aceproject',
+    'eea.climateadapt.casestudy',
+    'eea.climateadapt.guidancedocument',
+    'eea.climateadapt.indicator',
+    'eea.climateadapt.informationportal',
+    'eea.climateadapt.mapgraphdataset',
+    'eea.climateadapt.organisation',
+    'eea.climateadapt.publicationreport',
+    'eea.climateadapt.researchproject',
+    'eea.climateadapt.tool',
+    'eea.climateadapt.city_profile',
+]
+
 
 def faceted_search_types_vocabulary(context):
 
@@ -139,28 +154,13 @@ class ListingGeneric(BrowserView):
         site = api.portal.getSite()
         portal_type = self.brains[0].getObject().portal_type
 
-        cca_types = [
-            'eea.climateadapt.adaptationoption',
-            'eea.climateadapt.aceproject',
-            'eea.climateadapt.casestudy',
-            'eea.climateadapt.guidancedocument',
-            'eea.climateadapt.indicator',
-            'eea.climateadapt.informationportal',
-            'eea.climateadapt.mapgraphdataset',
-            'eea.climateadapt.organisation',
-            'eea.climateadapt.publicationreport',
-            'eea.climateadapt.researchproject',
-            'eea.climateadapt.tool',
-            'eea.climateadapt.city_profile',
-        ]
-
         cache_key = cacheKeyFacetedNavigation(method, self)
         cache_key += (portal_type, )
 
         if not IAnnotations(site).get('cca-search', None):
             IAnnotations(site)['cca-search'] = {}
 
-        if portal_type not in cca_types:
+        if portal_type not in CCA_TYPES:
             if not IAnnotations(site)['cca-search'].get('CONTENT', None):
                 IAnnotations(site)['cca-search']['CONTENT'] = []
             IAnnotations(site)['cca-search']['CONTENT'].append(cache_key)
