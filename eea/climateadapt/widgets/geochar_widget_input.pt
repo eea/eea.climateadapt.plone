@@ -68,21 +68,21 @@
               <tr >
                 <td width="45%" >
                   <select id="trans_macro_nationals" style="height:150px;width:200px;" multiple="multiple">
-                    <option value="TRANS_MACRO_NORTHPERI">Northern Periphery</option>
-                    <option value="TRANS_MACRO_BACLITC">Baltic Sea</option>
-                    <option value="TRANS_MACRO_NW_EUROPE">North West Europe</option>
-                    <option value="TRANS_MACRO_N_SEA">North Sea</option>
-                    <option value="TRANS_MACRO_ATL_AREA" >Atlantic Area</option>
-                    <option value="TRANS_MACRO_ALP_SPACE">Alpine Space</option>
-                    <option value="TRANS_MACRO_CEN_EUR">Central Europe</option>
-                    <option value="TRANS_MACRO_SW_EUR">South West Europe</option>
-                    <option value="TRANS_MACRO_MED">Mediterranean</option>
-                    <option value="TRANS_MACRO_DANUBE">Danube</option>
                     <option value="TRANS_MACRO_ADR_IONIAN">Adriatic-Ionian</option>
-                    <option value="TRANS_MACRO_BALKAN_MED">Balkan-Mediterranean</option>
-                    <option value="TRANS_MACRO_CAR_AREA">Caribbean Area</option>
+                    <option value="TRANS_MACRO_ALP_SPACE">Alpine Space</option>
                     <option value="TRANS_MACRO_AMAZONIA">Amazonia</option>
+                    <option value="TRANS_MACRO_ATL_AREA" >Atlantic Area</option>
+                    <option value="TRANS_MACRO_BALKAN_MED">Balkan-Mediterranean</option>
+                    <option value="TRANS_MACRO_BACLITC">Baltic Sea</option>
+                    <option value="TRANS_MACRO_CAR_AREA">Caribbean Area</option>
+                    <option value="TRANS_MACRO_CEN_EUR">Central Europe</option>
+                    <option value="TRANS_MACRO_DANUBE">Danube</option>
                     <option value="TRANS_MACRO_IND_OCEAN_AREA">Indian Ocean Area</option>
+                    <option value="TRANS_MACRO_MED">Mediterranean</option>
+                    <option value="TRANS_MACRO_NORTHPERI">Northern Periphery</option>
+                    <option value="TRANS_MACRO_N_SEA">North Sea</option>
+                    <option value="TRANS_MACRO_NW_EUROPE">North West Europe</option>
+                    <option value="TRANS_MACRO_SW_EUR">South West Europe</option>
                   </select>
                 </td>
               </tr>

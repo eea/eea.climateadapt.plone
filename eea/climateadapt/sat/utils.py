@@ -1,7 +1,12 @@
 from Products.CMFCore.utils import getToolByName
 from plone.api.portal import get_tool
-import ogr
-import osr
+
+try:
+    import ogr
+    import osr
+except:
+    from osgeo import ogr
+    from osgeo import osr
 
 
 ARCGIS_EPSG = 3857
