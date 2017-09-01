@@ -267,6 +267,19 @@ function fix_map(){
             });
         }
 
+        // Open all links out of the tool in a new window
+        if ($('.subsection-tools-urban-ast')) {
+            $.each($('#content-core').find('a'), function (index, value){
+                $(value).attr('target', '_blank');
+            })
+        }
+
+        if ($('.subsection-tools-adaptation-support-tool')) {
+            $.each($('#content-core').find('a'), function (index, value){
+                $(value).attr('target', '_blank');
+            })
+        }
+
         // Urban ast export section pdf button
         if (window.location.pathname.indexOf('/tools/urban-ast') !== -1 && window.location.pathname.indexOf('pdf.body') === -1) {
             var x = '<a href="/tools/urban-ast/download.pdf" class="bluebutton urban-ast-section-pdf" ' +
