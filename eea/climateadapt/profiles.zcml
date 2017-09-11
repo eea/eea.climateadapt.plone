@@ -610,4 +610,13 @@
         handler=".update.update_to_41"
         profile="eea.climateadapt:default" />
 
+    <!-- v42 upgrade -->
+    <genericsetup:upgradeStep
+        title="Upgrade eea.climateadapt to v42"
+        description=""
+        source="41"
+        destination="42"
+        handler=".update.update_to_42"
+        profile="eea.climateadapt:default" />
+
 </configure>

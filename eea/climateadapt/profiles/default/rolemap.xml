@@ -4,5 +4,9 @@
     <role name="CityMayor"/>
   </roles>
   <permissions>
+    <permission name="eea.cache: Invalidate" acquire="True">
+      <role name="Manager"/>
+      <role name="Owner"/>
+    </permission>
   </permissions>
 </rolemap>

@@ -539,6 +539,7 @@ def update_to_37(context):
 
 
 def update_to_39(context):
+    return
     logger.info("Upgrading to 39")
     logger.info("Setting the new macrotransnational regions for some aceitems")
 
@@ -601,6 +602,7 @@ def update_to_39(context):
 
 
 def update_to_41(context):
+    return
     logger.info("Upgrading to 41")
     logger.info("Setting the search type to CONTENT for News/Events/Links")
 
@@ -622,3 +624,12 @@ def update_to_41(context):
             obj._p_changed = True
             obj.reindexObject()
             logger.info('Reindexing object %s' % obj.absolute_url())
+
+
+def update_to_42(context):
+    logger.info("Upgrading to 42")
+    logger.info("Updating the invalidating cache permission with new roles")
+
+    context.runImportStepFromProfile(default_profile, 'rolemap')
+
+    logger.info('Finished upgrade 42')
