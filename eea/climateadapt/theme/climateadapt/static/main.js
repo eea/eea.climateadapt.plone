@@ -268,13 +268,13 @@ function fix_map(){
     }
 
     // Open all links out of the tool in a new window
-    if ($('.subsection-tools-urban-ast')) {
+    if ($('.subsection-tools-urban-ast').length) {
       $.each($('#content-core').find('a'), function (index, value){
         $(value).attr('target', '_blank');
       })
     }
 
-    if ($('.subsection-tools-adaptation-support-tool')) {
+    if ($('.subsection-tools-adaptation-support-tool').length) {
       $.each($('#content-core').find('a'), function (index, value){
         $(value).attr('target', '_blank');
       })

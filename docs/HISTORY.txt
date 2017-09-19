@@ -3,6 +3,7 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bug fix: fix bug where all links where set with target=blank
 * Change: Change the eea cache invalidate permission roles
   [iulianpetchesi #88059]
 * Bug: Open all links out of the ast/u-ast tool in a new window
