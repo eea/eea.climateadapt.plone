@@ -1,11 +1,10 @@
 """ Debugging code, historical code
 """
 
-from eea.climateadapt.acemeasure import _measure_id
-from functools import partial
 import json
 import logging
 import os
+
 import requests
 
 logger = logging.getLogger('eea.climateadapt.arcgis')
@@ -16,11 +15,11 @@ PASSWORD = os.environ.get('GISPASS', "")
 
 SERVER_NAME = "LcQjj2sL7Txk9Lag"
 ENDPOINT = "http://services.arcgis.com/{0}/ArcGIS/rest".format(SERVER_NAME)
-#FEATURE = "casestudies_pointLayer"
 FEATURE = "casestudies_pointLayer_clone"
 LAYER_URL = "{0}/services/{1}/FeatureServer/0".format(ENDPOINT, FEATURE)
 
 REFERER = 'climate-adapt.europa.eu CaseStudies Sync'
+
 
 def test_edit(token):
     """ Debugging function, shows how to edit
@@ -41,6 +40,7 @@ def test_edit(token):
     }
     url = "{0}/updateFeatures".format(LAYER_URL)
     resp = requests.post(url, data=data)
+
     return resp.json()
 
 
@@ -55,4 +55,5 @@ def describe_service(token):
     }
     url = "{0}".format(LAYER_URL)
     resp = requests.get(url, params=data)
+
     return resp.json()

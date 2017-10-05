@@ -1,5 +1,5 @@
-from Products.CMFPlone.utils import getToolByName
-from Products.Five.browser import BrowserView
+import json
+
 from eea.climateadapt.browser import AceViewApi
 from eea.climateadapt.vocabulary import _relevance
 from lxml.etree import Element, SubElement, tostring
@@ -7,12 +7,13 @@ from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.edit import DefaultEditForm
 from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityEditForm
+from plone.memoize import view
 from plone.transformchain.interfaces import DISABLE_TRANSFORM_REQUEST_KEY
 from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
+from Products.CMFPlone.utils import getToolByName
+from Products.Five.browser import BrowserView
 from zope.interface import classImplements
-import json
-from plone.memoize import view
 
 
 class CaseStudyView(DefaultView, AceViewApi):
@@ -22,6 +23,7 @@ class CaseStudyView(DefaultView, AceViewApi):
     @view.memoize
     def get_adaptation_options(self):
         # TODO: filter by published
+
         return [o.to_object for o in self.context.adaptationoptions]
 
     @view.memoize
@@ -62,7 +64,9 @@ class CaseStudyFormExtender(FormExtender):
         self.remove('IOwnership.contributors')
         self.remove('IOwnership.rights')
         labels = ['label_schema_dates', 'label_schema_ownership']
-        self.form.groups = [group for group in self.form.groups if group.label not in labels]
+        self.form.groups = [
+            group for group in self.form.groups if group.label not in labels
+        ]
 
 
 class CaseStudyJson(BrowserView):
@@ -101,10 +105,14 @@ class CaseStudiesJson(BrowserView):
     def __call__(self):
         cat = getToolByName(self.context, 'portal_catalog')
         res = []
-        for brain in cat.searchResults(portal_type='eea.climateadapt.casestudy',
-                                       review_state='published'):
+
+        for brain in cat.searchResults(
+            portal_type='eea.climateadapt.casestudy',
+            review_state='published'
+        ):
             cs = brain.getObject()
             res.append(cs._repr_for_arcgis())
+
         return json.dumps(res)
 
 
@@ -112,9 +120,9 @@ class CaseStudiesXML(BrowserView):
     """ A view to return all case studies as XML.
 
     Useful in debugging in developing the SAT mapping tool. See CaseStudiesJson
+
     for details on meaning of data.
     """
-
 
     def __call__(self):
         self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
@@ -123,11 +131,14 @@ class CaseStudiesXML(BrowserView):
         root = Element("casestudies")
 
         for brain in cat.searchResults(
-            portal_type='eea.climateadapt.casestudy', review_state='published'):
+            portal_type='eea.climateadapt.casestudy',
+            review_state='published'
+        ):
             cs = brain.getObject()
             cs = cs._repr_for_arcgis()
             e_cs = SubElement(root, 'casestudy')
             e_attrs = SubElement(e_cs, 'attributes')
+
             for k, v in cs['attributes'].items():
                 el = Element(k)
 
@@ -137,10 +148,12 @@ class CaseStudiesXML(BrowserView):
                     el.text = unicode(v).strip()
                 e_attrs.append(el)
             e_geo = SubElement(e_cs, 'geometry')
+
             for k, v in cs['geometry'].items():
                 el = Element(k)
                 el.text = unicode(v)
                 e_geo.append(el)
 
         res = tostring(root, pretty_print=True)
+
         return res

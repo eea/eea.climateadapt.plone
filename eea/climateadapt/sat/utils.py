@@ -1,16 +1,17 @@
-from Products.CMFCore.utils import getToolByName
 from plone.api.portal import get_tool
+from Products.CMFCore.utils import getToolByName
 
 try:
     import ogr
     import osr
-except:
+except ImportError:
     from osgeo import ogr
     from osgeo import osr
 
 
 ARCGIS_EPSG = 3857
 GEO_EPSG = 4326     # See Arcgis docs on "Geographic Coordinate Systems"
+
 
 def _transform_coords(x, y, insys, outsys):
     """ Converts a pair of points between two system of coordinates
@@ -71,6 +72,7 @@ def _measure_id(obj):
     """
 
     mid = getattr(obj, '_acemeasure_id', None)
+
     if mid:
         return mid
 

@@ -12,32 +12,30 @@ This commands accepts various parameter. Look at __main__ to see what it does.
 # TODO: this script is hackish. Maybe optparse would improve feeling.
 """
 
-from eea.climateadapt.sat.arcgis import _get_obj_FID
-from eea.climateadapt.sat.arcgis import apply_edits
-from eea.climateadapt.sat.arcgis import get_auth_token
-from eea.climateadapt.sat.arcgis import _get_token_service_url
-from eea.climateadapt.sat.arcgis import query_layer
-from eea.climateadapt.sat.settings import _DEFAULTS
-from eea.climateadapt.sat.settings import get_endpoint_url
-from eea.climateadapt.sat.settings import get_feature_url
 import json
 import sys
+
+from eea.climateadapt.sat.arcgis import (_get_obj_FID, apply_edits,
+                                         get_auth_token, query_layer)
+from eea.climateadapt.sat.settings import get_feature_url
+from lxml.etree import Element, SubElement, fromstring, tostring
 
 
 def backup_data(data, path='out.xml'):
     """ Makes an XML backup data from existing data in ArcGIS
     """
-    from lxml.etree import Element, SubElement, tostring
     root = Element("casestudies")
 
     for cs in data:
         e_cs = SubElement(root, 'casestudy')
         e_attrs = SubElement(e_cs, 'attributes')
+
         for k, v in cs['attributes'].items():
             el = Element(k)
             el.text = unicode(v)
             e_attrs.append(el)
         e_geo = SubElement(e_cs, 'geometry')
+
         for k, v in cs['geometry'].items():
             el = Element(k)
             el.text = unicode(v)
@@ -51,12 +49,14 @@ def backup_data(data, path='out.xml'):
 def delete_casestudy(fid, token):
     """ Delete a casestudy. To be used from command line
     """
+
     return apply_edits(fid, op='deletes', token=token)
 
 
 def delete_all_casestudies(token):
     res = query_layer(token)
     all_ids = [x['attributes']['FID'] for x in res['features']]
+
     return apply_edits(all_ids, op='deletes', token=token)
 
 
@@ -67,19 +67,21 @@ def add_casestudy(entry):
 
 
 def parse_dump(path):
-    from lxml.etree import fromstring
 
     with open(path) as f:
         txt = f.read()
 
     entries = []
     root = fromstring(txt)
+
     for e_cs in root.xpath('//casestudy'):
-        e = {'geometry':{}, 'attributes':{}}
+        e = {'geometry': {}, 'attributes': {}}
         e_attrs = e_cs.find('attributes')
         e_geo = e_cs.find('geometry')
+
         for c in e_attrs.iterchildren():
             e['attributes'][c.tag] = (c.text or "").strip()
+
         for c in e_geo.iterchildren():
             e['geometry'][c.tag] = float(c.text.strip())
 
@@ -91,13 +93,14 @@ def parse_dump(path):
 def edit_casestudy(fid, path, token):
     """ Used from command line
     """
-    from lxml.html import fromstring, tostring
 
     entries = parse_dump(path)
     entry = None
+
     for e in entries:
         if e['attributes']['FID'] == fid:
             entry = e
+
             break
 
     assert entry
@@ -115,10 +118,10 @@ def edit_casestudy(fid, path, token):
 def add_all_casestudies(path, token):
     """ Used from command line
     """
-    from lxml.html import fromstring, tostring
     entries = parse_dump(path)
 
     # need to escape html
+
     for entry in entries:
         desc = entry['attributes']['desc_']
         html = fromstring(desc)
@@ -126,6 +129,7 @@ def add_all_casestudies(path, token):
         entry['attributes']['desc_'] = desc
 
     res = apply_edits(json.dumps(entries), op='adds', token=token)
+
     return res
 
 
@@ -139,7 +143,7 @@ def main():
     if sys.argv[1] == 'url':
 
         url = get_feature_url()
-        #url = _get_token_service_url(endpoint)
+        # url = _get_token_service_url(endpoint)
         token = get_auth_token()
         print
         print "Token:", token
@@ -151,6 +155,7 @@ def main():
 
     elif sys.argv[1] == 'dump':
         print "Dumping..."
+
         if len(sys.argv) > 2:
             path = sys.argv[2]
         else:
@@ -161,6 +166,7 @@ def main():
     elif sys.argv[1] == 'summary':
         res = query_layer(token=token)
         print "Summary {0} entries...".format(len(res['features']))
+
         for entry in res['features']:
             geo = '{0} x {1}'.format(*entry['geometry'].values())
             attr = entry['attributes']

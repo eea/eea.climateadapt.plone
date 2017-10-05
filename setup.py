@@ -1,13 +1,14 @@
-from setuptools import setup, find_packages
 import os
+
+from setuptools import find_packages, setup
 
 NAME = "eea.climateadapt"
 PATH = NAME.split('.') + ['version.txt']
 VERSION = open(os.path.join(*PATH)).read().strip()
 
 
-long_description=(open("README.rst").read() + "\n" +
-                open(os.path.join("docs", "HISTORY.txt")).read()),
+long_description = (open("README.rst").read() + "\n" +
+                    open(os.path.join("docs", "HISTORY.txt")).read()),
 
 setup(name='eea.climateadapt',
       version=VERSION,
@@ -26,7 +27,7 @@ setup(name='eea.climateadapt',
       url='http://eea.github.io',
       license='gpl',
       packages=find_packages(),
-      #package_dir = {'': 'eea'},
+      # package_dir = {'': 'eea'},
       namespace_packages=['eea'],
       include_package_data=True,
       zip_safe=False,

@@ -11,8 +11,9 @@ This connects to Plone to read RabbitMQ server configuration then connects to
 RabbitMQ to read all queued messages and process them.
 """
 
-from eea.climateadapt.sat.handlers import HANDLERS
 from functools import partial
+
+from eea.climateadapt.sat.handlers import HANDLERS
 
 
 def _consume_msg(*args, **kw):
@@ -29,7 +30,7 @@ def _consume_msg(*args, **kw):
 def main():
     """ Run the sync import process
 
-    This should be run through the zope client script running machinery, like so:
+    This should be run through the zope client script running machinery, like:
 
     GISPASS="..." bin/www1 run bin/sync_to_arcgis
 

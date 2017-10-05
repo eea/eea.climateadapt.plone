@@ -1,12 +1,12 @@
-""" Settings and Utilities to integrate with the ArcGIS server, for the SAT tool
+""" Settings, utilities to integrate with the ArcGIS server, for the SAT tool
 """
 
-from eea.climateadapt.sat.utils import _measure_id
-from eea.climateadapt.sat.settings import get_endpoint_url
-from eea.climateadapt.sat.settings import get_feature_url
-from eea.climateadapt.sat.settings import get_settings
 import logging
+
 import requests
+from eea.climateadapt.sat.settings import (get_endpoint_url, get_feature_url,
+                                           get_settings)
+from eea.climateadapt.sat.utils import _measure_id
 
 logger = logging.getLogger("eea.climateadapt.arcgis")
 
@@ -18,13 +18,15 @@ def _get_token_service_url(endpoint):
 
     url = endpoint + "/info?f=pjson"
     j = requests.get(url).json()
+
     return j['authInfo']['tokenServicesUrl']
 
 
 def get_auth_token(settings=None):
     """ Retrieves an authentication token
     """
-    if settings == None:
+
+    if settings is None:
         settings = get_settings()
     endpoint = get_endpoint_url(settings)
     token_url = _get_token_service_url(endpoint)
@@ -36,6 +38,7 @@ def get_auth_token(settings=None):
     }
     resp = requests.post(token_url, data=data)
     token = resp.json()['token']
+
     return token
 
 
@@ -91,6 +94,7 @@ def query_layer(token, filter="1=1"):
     }
     url = "{0}/query".format(layer_url)
     resp = requests.get(url, params=data)
+
     return resp.json()
 
 
@@ -101,6 +105,7 @@ def apply_edits(data, op='updates', token=None):
     """
 
     settings = get_settings()
+
     if token is None:
         token = get_auth_token(settings)
 
@@ -115,6 +120,7 @@ def apply_edits(data, op='updates', token=None):
     url = "{0}/applyEdits".format(layer_url)
     resp = requests.post(url, data=data)
     res = resp.json()
+
     return res
 
 

@@ -6,6 +6,7 @@ integrity.
 """
 
 import logging
+
 import transaction
 
 logger = logging.getLogger("eea.climateadat.rabbitmq")
@@ -54,6 +55,7 @@ class CallbacksDataManager(object):
 
     def savepoint(self):
         self.sp += 1
+
         return Savepoint(self)
 
     def sortKey(self):
@@ -81,6 +83,7 @@ class Savepoint(object):
     def rollback(self):
         if self.txn is not self.dm.txn:
             raise TypeError("Attempt to rollback stale rollback")
+
         if self.dm.sp < self.sp:
             raise TypeError("Attempt to roll back to invalid save point",
                             self.sp, self.dm.sp)

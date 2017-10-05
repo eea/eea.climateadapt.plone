@@ -1,12 +1,13 @@
+import logging
+import os
+
 from plone.api.portal import get_tool
-from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
-from plone.app.registry.browser.controlpanel import RegistryEditForm
+from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
+                                                     RegistryEditForm)
 from plone.z3cform import layout
 from z3c.form import form
 from zope.interface import Interface
-from zope.schema import TextLine, Bool
-import os
-import logging
+from zope.schema import Bool, TextLine
 
 logger = logging.getLogger('eea.climateadapt.arcgis')
 
@@ -53,6 +54,7 @@ class ArcGISClientControlPanelForm(RegistryEditForm):
     form.extends(RegistryEditForm)
     schema = IArcGISClientSettings
 
+
 ArcGISClientControlPanelView = layout.wrap_form(
     ArcGISClientControlPanelForm,
     ControlPanelFormWrapper
@@ -67,6 +69,7 @@ def get_settings():
     except:     # not in Plone context, return defaults
         logger.info("Couldn't get Plone settings, using defaults")
         s = _defaults()
+
     return s
 
 
@@ -74,7 +77,8 @@ def get_endpoint_url(settings=None):
     if settings is None:
         settings = get_settings()
 
-    return u"http://services.arcgis.com/{0}/ArcGIS/rest".format(settings.server)
+    return u"http://services.arcgis.com/{0}/ArcGIS/rest".format(
+            settings.server)
 
 
 def get_feature_url(settings=None):
