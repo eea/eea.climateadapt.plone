@@ -12,7 +12,9 @@ This commands accepts various parameter. Look at __main__ to see what it does.
 # TODO: this script is hackish. Maybe optparse would improve feeling.
 """
 
+import argparse
 import json
+import os
 import sys
 
 from eea.climateadapt.sat.arcgis import (_get_obj_FID, apply_edits,
@@ -138,13 +140,36 @@ def main():
     #     LD_LIBRARY_PATH=<buildout-directory>/parts/gdal-compile/lib
     #     GISPASS=''
 
+    parser = argparse.ArgumentParser(
+        description="Manual operations with ArcGIS"
+    )
+    parser.add_argument("-u", "--get-feature-url", action="store_true")
+    parser.add_argument("-d", "--dump", action="store_true")
+    parser.add_argument("-s", "--summary", action="store_true")
+
+    parser.add_argument("-x", "--delete", action="store_true")
+    parser.add_argument("-g", "--get-fid", action="store_true")
+
+    parser.add_argument("fid", nargs="?", type=int, default=None)
+
+    parser.add_argument("-X", "--delete-all", action="store_true")
+
+    parser.add_argument("-f", "--import-file", type=str, action="store")
+    parser.add_argument("-e", "--edit-file", type=str, action="store")
+
+    args = parser.parse_args()
+
+    passwd = os.environ.get('GISPASS')
+
+    if not passwd:
+        print("You need to provide the GISPASS env variable")
+        sys.exit(1)
+
     token = get_auth_token()
 
-    if sys.argv[1] == 'url':
-
+    if args.get_feature_url:
         url = get_feature_url()
         # url = _get_token_service_url(endpoint)
-        token = get_auth_token()
         print
         print "Token:", token
         print
@@ -153,7 +178,7 @@ def main():
         print "Query URL: ", url + "/query?token=" + token
         print
 
-    elif sys.argv[1] == 'dump':
+    if args.dump:
         print "Dumping..."
 
         if len(sys.argv) > 2:
@@ -163,7 +188,7 @@ def main():
         res = query_layer(token=token)
         backup_data(res['features'], path=path)
 
-    elif sys.argv[1] == 'summary':
+    if args.summary:
         res = query_layer(token=token)
         print "Summary {0} entries...".format(len(res['features']))
 
@@ -172,33 +197,30 @@ def main():
             attr = entry['attributes']
             print attr['FID'], ': ', attr['itemname'], ' @ ', geo
 
-    elif sys.argv[1] == 'del':
+    if args.delete:
         print "Deleting..."
-        fid = sys.argv[2]
-        res = delete_casestudy(int(fid))
+        res = delete_casestudy(args.fid, token)
         print res
 
-    elif sys.argv[1] == 'delall':
+    if args.delete_all:
         print "Deleting all..."
         print delete_all_casestudies(token)
 
-    elif sys.argv[1] == 'addall':
-        path = sys.argv[2]
-        print add_all_casestudies(path, token)
+    if args.import_file:
+        print add_all_casestudies(args.import_file, token)
 
-    elif sys.argv[1] == 'edit':
+    if args.edit_file:
         print "Editing..."
-        fid = sys.argv[2]
-        path = sys.argv[3]
-        edit_casestudy(fid, path, token)
+        fid = args.fid
+        assert fid is not None
+        edit_casestudy(fid, args.edit_file, token)
 
-    elif sys.argv[1] == 'getfid':
+    if args.get_fid:
         print "Getting FID for measureid..."
-        measureid = sys.argv[2]
+        measureid = args.fid    # I know, fake
         print "FID: ", _get_obj_FID(uid=int(measureid))
 
-    else:
-        print "Invalid command"
+    print "No arguments"
 
 
 if __name__ == "__main__":

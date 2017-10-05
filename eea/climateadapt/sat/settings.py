@@ -17,7 +17,8 @@ _DEFAULTS = {
     'username': u"eea_casestudies",
     'password': os.environ.get('GISPASS', ""),
     'server': u"LcQjj2sL7Txk9Lag",
-    'feature_service': u"casestudies_pointLayer_clone",
+    # 'feature_service': u"casestudies_pointLayer_clone",
+    'feature_service': u"casestudies_pointLayer",
     'skip_rabbitmq': True,
 }
 
