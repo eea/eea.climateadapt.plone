@@ -1,22 +1,27 @@
-#from plone.api import portal
-from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from plone.app.layout.viewlets import ViewletBase
-from plone.app.layout.viewlets.common import PathBarViewlet as BasePathBarViewlet
-from plone.app.layout.viewlets.common import SearchBoxViewlet as BaseSearchViewlet
-from plone.app.layout.viewlets.common import PersonalBarViewlet as BasePersonalBarViewlet
-from zope.component import getMultiAdapter
-from Products.CMFCore.utils import getToolByName
-from Acquisition import aq_inner
-from Products.CMFPlone.utils import base_hasattr
-from tlspu.cookiepolicy.browser.viewlets import CookiePolicyViewlet
-from zope.globalrequest import getRequest
-from Products.statusmessages.interfaces import IStatusMessage
-from zope.site.hooks import getSite
-from Products.LDAPUserFolder.LDAPDelegate import filter_format
-from plone.api import group
-
 import pkg_resources
+
+from Acquisition import aq_inner
+from plone.api import group
+from plone.api.content import get_state
+from plone.app.layout.viewlets import ViewletBase
+from plone.app.layout.viewlets.common import \
+    PathBarViewlet as BasePathBarViewlet
+from plone.app.layout.viewlets.common import \
+    PersonalBarViewlet as BasePersonalBarViewlet
+from plone.app.layout.viewlets.common import \
+    SearchBoxViewlet as BaseSearchViewlet
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
+from Products.CMFPlone.utils import base_hasattr
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.statusmessages.interfaces import IStatusMessage
+from tlspu.cookiepolicy.browser.viewlets import CookiePolicyViewlet
+from zope.component import getMultiAdapter
+from zope.globalrequest import getRequest
+from zope.site.hooks import getSite
+
+# from Products.LDAPUserFolder.LDAPDelegate import filter_format
+
 try:
     pkg_resources.get_distribution('plone.app.relationfield')
 except pkg_resources.DistributionNotFound:
@@ -61,10 +66,14 @@ class CustomizedPersonalBarViewlet(BasePersonalBarViewlet):
 
     def update(self):
         super(CustomizedPersonalBarViewlet, self).update()
+
         if not self.anonymous:
             mt = getToolByName(self, 'portal_membership')
             user = mt.getAuthenticatedMember()
-            if self.request.getURL() != self.portal_url + '/@@personal-preferences':
+
+            if self.request.getURL() != (self.portal_url +
+                                         '/@@personal-preferences'):
+
                 if check_sectors(user):
                     redirect_to_personal_preferences()
 
@@ -74,7 +83,8 @@ class SharePageSubMenuViewlet(ViewletBase):
 
     def update(self):
         super(SharePageSubMenuViewlet, self).update()
-        self.base_url = '/'.join((self.context.portal_url(), 'share-your-info'))
+        self.base_url = '/'.join((self.context.portal_url(),
+                                  'share-your-info'))
 
 
 class SearchBoxViewlet(BaseSearchViewlet):
@@ -90,12 +100,15 @@ class RelatedItemsViewlet(ViewletBase):
         res = ()
 
         # Archetypes
+
         if base_hasattr(context, 'getRawRelatedItems'):
             catalog = getToolByName(context, 'portal_catalog')
             related = context.getRawRelatedItems()
+
             if not related:
                 return ()
             brains = catalog(UID=related)
+
             if brains:
                 # build a position dict by iterating over the items once
                 positions = dict([(v, i) for (i, v) in enumerate(related)])
@@ -107,8 +120,10 @@ class RelatedItemsViewlet(ViewletBase):
                 res.sort(key=_key)
 
         # Dexterity
+
         if HAS_RELATIONFIELD and IRelatedItems.providedBy(context):
             related = context.relatedItems
+
             if not related:
                 return ()
             res = self.related2brains(related)
@@ -133,6 +148,7 @@ class RelatedItemsViewlet(ViewletBase):
             brains.extend(catalog(path=dict(query=path, depth=0)))
 
         res = []
+
         for b in brains:
             if b.getObject().portal_type not in ['File', 'Image']:
                 res.append(b)
@@ -154,7 +170,7 @@ class PathBarViewlet(BasePathBarViewlet):
 
     def update(self):
         portal_state = getMultiAdapter((self.context, self.request),
-                                            name=u'plone_portal_state')
+                                       name=u'plone_portal_state')
         self.navigation_root_url = portal_state.navigation_root_url()
 
         self.is_rtl = portal_state.is_rtl()
@@ -163,6 +179,7 @@ class PathBarViewlet(BasePathBarViewlet):
                                            name='breadcrumbs_view')
         self.breadcrumbs = breadcrumbs_view.breadcrumbs()
         self.br_exists = True
+
         if self.context.id == 'frontpage':
             self.br_exists = False
 
@@ -172,3 +189,15 @@ class CookiesViewlet(CookiePolicyViewlet):
 
     def update(self):
         return super(CookiesViewlet, self).render()
+
+
+class ArchivedStateViewlet(ViewletBase):
+    index = ViewPageTemplateFile("pt/archived_state_viewlet.pt")
+
+    def render(self):
+        state = get_state(self.context)
+
+        if state == "archived":
+            return self.index()
+
+        return ""

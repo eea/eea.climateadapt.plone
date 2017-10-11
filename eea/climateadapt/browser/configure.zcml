@@ -694,6 +694,14 @@
         />
 
     <browser:viewlet
+        name="archived-state"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        class=".viewlets.ArchivedStateViewlet"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        permission="zope2.View"
+        />
+
+    <browser:viewlet
         name="tlspu.cookiepolicy"
         manager="plone.app.layout.viewlets.interfaces.IBelowContent"
         class=".viewlets.CookiesViewlet"

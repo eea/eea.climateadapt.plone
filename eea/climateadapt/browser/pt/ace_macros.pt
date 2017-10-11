@@ -17,6 +17,7 @@
         <metal:macro define-slot="title-slot">
           <h1 tal:content="context/title">Title here</h1>
         </metal:macro>
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
       </div>
 
       <div class="col-md-9">
