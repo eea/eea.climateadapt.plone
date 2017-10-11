@@ -1,9 +1,10 @@
+import json
+import logging
+
 from Acquisition import aq_self
-from Products.MimetypesRegistry.mime_types.magic import guessMime
 from plone.api import portal
 from plone.app.textfield.interfaces import ITransformer
-import logging
-import json
+from Products.MimetypesRegistry.mime_types.magic import guessMime
 
 logger = logging.getLogger('eea.climateadapt.migration')
 default_profile = 'profile-eea.climateadapt:default'
@@ -61,8 +62,10 @@ def _fix_content(site):
             continue
 
         tags = []
+
         for attr in ['special_tags', 'specialtagging']:
             st = getattr(obj, attr, []) or []
+
             if isinstance(st, basestring):
                 tags.append(st)
             else:
@@ -86,12 +89,14 @@ def _fix_covers(self):
 
     for cover in covers:
         cover = cover.getObject()
+
         if hasattr(cover, '__annotations__'):
             for tile_id in list(cover.__annotations__.keys()):
                 tile_id = tile_id.encode()
 
                 if 'plone.tiles.data' in tile_id:
                     tile = cover.__annotations__[tile_id]
+
                     if 'special_tags' and 'search_text' in tile.keys():
                         tile['special_tags'] = _fix_tags(tile['special_tags'])
                         tile['search_text'] = _fix_tags(tile['search_text'])
@@ -101,6 +106,7 @@ def _fix_covers(self):
 
 def _fix_tags(tags):
     # TODO: rename this function, needs better name
+
     if isinstance(tags, (list, tuple)):
         tags = [i.replace('-', '_') for i in tags]
     elif tags:
@@ -123,6 +129,7 @@ def update_to_22(context):
 
     for id in ids:
         res = catalog.searchResults(acemeasure_id=id)
+
         if res:
             obj = res[0].getObject()
             obj.featured = True
@@ -133,8 +140,10 @@ def update_to_22(context):
 
     # fix sectors, split Agriculture and Infrastructure sectors
     results = catalog.searchResults(sectors="AGRICULTURE")
+
     for b in results:
         b = b.getObject()
+
         if hasattr(b, 'sectors'):
             if b.sectors is None:
                 continue
@@ -145,8 +154,10 @@ def update_to_22(context):
                     b.reindexObject()
 
     results = catalog.searchResults(sectors="INFRASTRUCTURE")
+
     for b in results:
         b = b.getObject()
+
         if hasattr(b, 'sectors'):
             if b.sectors is None:
                 continue
@@ -162,9 +173,11 @@ def update_to_22(context):
     # assign a measure id for all case studies, it's needed for the /sat map
     _ids = sorted(filter(None, catalog.uniqueValuesFor('acemeasure_id')))
     results = catalog.searchResults(portal_type="eea.climateadapt.casestudy")
+
     for b in results:
         obj = b.getObject()
         mid = getattr(obj, '_acemeasure_id', None)
+
         if mid:
             continue
         mid = _ids[-1] + 1
@@ -186,13 +199,16 @@ def update_to_23(context):
 
     profiles = catalog.searchResults(
                portal_type="eea.climateadapt.city_profile")
+
     for b in profiles:
         obj = b.getObject()
+
         if hasattr(obj, 'key_vulnerable_adaptation_sector'):
             if obj.key_vulnerable_adaptation_sector is None:
                 continue
 
             sectors = obj.key_vulnerable_adaptation_sector
+
             if isinstance(sectors, str):
                 sectors = set(sectors, )
             else:
@@ -203,6 +219,7 @@ def update_to_23(context):
                     sectors.remove(val)
                     sectors.update(MAPPING.get(val))
                     obj._p_changed = True
+
             if obj._p_changed is True:
                 logger.info("Fixed sectors on %s", obj.absolute_url())
                 obj.key_vulnerable_adaptation_sector = sectors
@@ -309,6 +326,7 @@ def update_to_26(context):
 
 def update_to_27(context):
     """ Dummy upgrade """
+
     return
 
 
@@ -336,10 +354,12 @@ def update_to_28(context):
             logger.info("Fixing sector on %s", obj.absolute_url())
             obj.sectors = ()
             changed = True
+
         if obj.climate_impacts in [None, []]:
             logger.info("Fixing climate impacts on %s", obj.absolute_url())
             obj.climate_impacts = ()
             changed = True
+
         if changed:
             logger.info("Reindexing.")
             obj.reindexObject()
@@ -403,15 +423,18 @@ def update_to_30(context):
             logger.info("Fixing sector on %s", obj.absolute_url())
             obj.sectors = ()
             changed = True
+
         if obj.climate_impacts in [None, []]:
             logger.info("Fixing climate impacts on %s", obj.absolute_url())
             obj.climate_impacts = ()
             changed = True
+
         if hasattr(obj, 'relevance'):
             if obj.relevance is None:
                 logger.info("Fixing relevance on %s", obj.absolute_url())
                 obj.relevance = []
                 changed = True
+
         if changed:
             logger.info("Reindexing.")
             obj.reindexObject()
@@ -422,6 +445,7 @@ def update_to_33(context):
     """ Fix the value of the source field since we changed the field from
         richtext to textline
     """
+
     return
     catalog = portal.get_tool(name='portal_catalog')
     query = {'portal_type': [
@@ -444,7 +468,9 @@ def update_to_33(context):
             obj = brain.getObject()
         except:
             logger.warn("SKIPPED %s", brain.getURL())
+
             continue
+
         if hasattr(obj, 'source'):
             if obj.source:
                 bumblebee = ITransformer(obj)
@@ -465,6 +491,7 @@ def update_to_34(context):
 def update_to_35(context):
     """ Migrate layer id from website to gis_layer_id field
     """
+
     return
     catalog = portal.get_tool(name='portal_catalog')
     query = {'portal_type': [
@@ -500,6 +527,7 @@ def check_layer_id(value):
 
     if value.startswith('/') or value.startswith('http'):
         return False
+
     return True
 
 
@@ -527,13 +555,16 @@ def update_to_37(context):
 
     for brain in brains:
         obj = brain.getObject()
+
         if obj.effective_date is None:
             wf_history = obj.workflow_history.get('cca_items_workflow', [])
+
             for wf in wf_history:
                 if wf.get('action', '') == 'publish':
                     obj.effective_date = wf.get('time', None)
                     obj.reindexObject()
                     obj._p_changed = True
+
                     continue
     logger.info("Finished modifying the effective dates for aceprojects")
 
@@ -560,10 +591,12 @@ def update_to_39(context):
     brains = catalog.searchResults(**query)
     logger.info('Got %s results.' % len(brains))
     items_count = 0
+
     for b in brains:
         obj = b.getObject()
 
         items_count += 1
+
         if items_count % 100 == 0:
             logger.info('Went through %s brains' % items_count)
 
@@ -588,6 +621,7 @@ def update_to_39(context):
 
             if 'TRANS_MACRO_MACRONESIA' in macro:
                 macro.remove('TRANS_MACRO_MACRONESIA')
+
                 if 'TRANS_MACRO_ATL_AREA' not in macro:
                     macro.append(u'TRANS_MACRO_ATL_AREA')
                 modified = True
@@ -612,10 +646,12 @@ def update_to_41(context):
     brains = catalog.searchResults(**query)
     logger.info('Got %s results.' % len(brains))
     items_count = 0
+
     for b in brains:
         obj = b.getObject()
 
         items_count += 1
+
         if items_count % 100 == 0:
             logger.info('Went through %s brains' % items_count)
 
@@ -633,3 +669,13 @@ def update_to_42(context):
     context.runImportStepFromProfile(default_profile, 'rolemap')
 
     logger.info('Finished upgrade 42')
+
+
+def update_to_43(context):
+    logger.info("Upgrading to 43")
+    logger.info("Importing workflow")
+
+    context.runImportStepFromProfile(
+        'profile-eea.climateadapt:eeaclimateadapt_to_43', 'workflow')
+
+    logger.info('Finished upgrade 43')

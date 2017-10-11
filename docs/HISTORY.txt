@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Feature: added the archived state to cca_items_workflow and box in
+  ace_macros to show this state
+  [tiberich #83426]
 * Change: added and improved the bin/arcgis_cli script based on old version
 * Bug fix: fix bug where all links where set with target=blank
 * Change: Change the eea cache invalidate permission roles

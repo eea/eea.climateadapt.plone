@@ -619,4 +619,20 @@
         handler=".update.update_to_42"
         profile="eea.climateadapt:default" />
 
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_43"
+        title="Upgrade profile for eea.climateadapt v43"
+        description=""
+        directory="profiles/upgrades/to_43"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:upgradeStep
+        title="Upgrade eea.climateadapt to v43"
+        description=""
+        source="*"
+        destination="43"
+        handler=".update.update_to_43"
+        profile="eea.climateadapt:default" />
+
 </configure>
