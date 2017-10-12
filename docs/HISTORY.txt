@@ -3,8 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Feature: sync workflows from production
 * Feature: added the archived state to cca_items_workflow and box in
-  ace_macros to show this state
+  ace_macros to show this state, plus scripts to set/unset expiration_date
   [tiberich #83426]
 * Change: added and improved the bin/arcgis_cli script based on old version
 * Bug fix: fix bug where all links where set with target=blank
