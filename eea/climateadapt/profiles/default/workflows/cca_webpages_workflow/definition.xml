@@ -6,6 +6,29 @@
  <permission>View</permission>
  <permission>iterate : Check in content</permission>
  <permission>iterate : Check out content</permission>
+ <state state_id="archived" title="Archived">
+  <description>Visible to everyone, editable by the owner.</description>
+  <exit-transition transition_id="publish"/>
+  <exit-transition transition_id="retract"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Anonymous</permission-role>
+  </permission-map>
+  <permission-map name="Change portal events" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Anonymous</permission-role>
+  </permission-map>
+ </state>
  <state state_id="pending" title="Pending review">
   <description>Waiting to be reviewed, not editable by the owner.</description>
   <exit-transition transition_id="publish"/>
@@ -54,6 +77,7 @@
  <state state_id="private" title="Private">
   <description>Can only be seen and edited by the owner.</description>
   <exit-transition transition_id="publish"/>
+  <exit-transition transition_id="archive"/>
   <exit-transition transition_id="submit"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Contributor</permission-role>
@@ -97,6 +121,7 @@
  </state>
  <state state_id="published" title="Published">
   <description>Visible to everyone, editable by the owner.</description>
+  <exit-transition transition_id="archive"/>
   <exit-transition transition_id="retract"/>
   <exit-transition transition_id="reject"/>
   <permission-map name="Access contents information" acquired="False">
@@ -129,6 +154,13 @@
    <permission-role>Site Administrator</permission-role>
   </permission-map>
  </state>
+ <transition transition_id="archive" title="Reviewer archives content" new_state="archived" trigger="USER" before_script="" after_script="">
+  <description>Archive the item.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=archive" category="workflow" icon="">Archive</action>
+  <guard>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </transition>
  <transition transition_id="publish" title="Reviewer publishes content" new_state="published" trigger="USER" before_script="" after_script="">
   <description>Publishing the item makes it visible to other users.</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=publish" category="workflow" icon="">PublishMe</action>

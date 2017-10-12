@@ -1,26 +1,26 @@
 <?xml version="1.0"?>
-<dc-workflow workflow_id="newsevents_workflow" title="News and Events Workflow" description="Workflow for news and events, a simplified three state workflow." state_variable="review_state" initial_state="private" manager_bypass="False">
+<dc-workflow workflow_id="plone_workflow" title="Community Workflow" description=" - Users can create content that is immediately publicly accessible. - Content can be submitted for publication by the content's creator or a Manager, which is typically done to promote events or news to the front page. - Reviewers can publish or reject content, content owners can retract their submissions. - While the content is awaiting review it is readable by anybody. - If content is published, it can only be retracted by a Manager." state_variable="review_state" initial_state="visible" manager_bypass="False">
  <permission>Access contents information</permission>
  <permission>Change portal events</permission>
  <permission>Modify portal content</permission>
  <permission>View</permission>
- <state state_id="archived" title="Archived">
-  <description>Visible to everyone, editable by the owner.</description>
+ <state state_id="pending" title="Pending review">
+  <description>Waiting to be reviewed, not editable by the owner.</description>
+  <exit-transition transition_id="hide"/>
   <exit-transition transition_id="publish"/>
+  <exit-transition transition_id="reject"/>
   <exit-transition transition_id="retract"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Anonymous</permission-role>
   </permission-map>
   <permission-map name="Change portal events" acquired="False">
-   <permission-role>Editor</permission-role>
    <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
+   <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
-   <permission-role>Editor</permission-role>
    <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
+   <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
@@ -29,12 +29,12 @@
  </state>
  <state state_id="private" title="Private">
   <description>Can only be seen and edited by the owner.</description>
-  <exit-transition transition_id="publish"/>
+  <exit-transition transition_id="show"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
-   <permission-role>Editor</permission-role>
    <permission-role>Reader</permission-role>
+   <permission-role>Editor</permission-role>
    <permission-role>Contributor</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
@@ -53,52 +53,93 @@
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
-   <permission-role>Editor</permission-role>
    <permission-role>Reader</permission-role>
+   <permission-role>Editor</permission-role>
    <permission-role>Contributor</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
  </state>
  <state state_id="published" title="Published">
-  <description>Visible to everyone, editable by the owner.</description>
-  <exit-transition transition_id="archive"/>
+  <description>Visible to everyone, not editable by the owner.</description>
+  <exit-transition transition_id="reject"/>
   <exit-transition transition_id="retract"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Anonymous</permission-role>
   </permission-map>
   <permission-map name="Change portal events" acquired="False">
-   <permission-role>Editor</permission-role>
    <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
-   <permission-role>Editor</permission-role>
    <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Anonymous</permission-role>
   </permission-map>
  </state>
- <transition transition_id="archive" title="Reviewer archives content" new_state="archived" trigger="USER" before_script="" after_script="set_archive_expiration_date">
-  <description>Archive the item.</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=archive" category="workflow" icon="">Archive</action>
+ <state state_id="visible" title="Public draft">
+  <description>Visible to everyone, but not approved by the reviewers.</description>
+  <exit-transition transition_id="hide"/>
+  <exit-transition transition_id="publish"/>
+  <exit-transition transition_id="submit"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Anonymous</permission-role>
+  </permission-map>
+  <permission-map name="Change portal events" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Editor</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Editor</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Anonymous</permission-role>
+  </permission-map>
+ </state>
+ <transition transition_id="hide" title="Member makes content private" new_state="private" trigger="USER" before_script="" after_script="">
+  <description>Making an item private means that it will not be visible to anyone but the owner and the site administrator.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=hide" category="workflow" icon="">Make private</action>
   <guard>
-   <guard-permission>Review portal content</guard-permission>
+   <guard-permission>Modify portal content</guard-permission>
   </guard>
  </transition>
- <transition transition_id="publish" title="Reviewer publishes content" new_state="published" trigger="USER" before_script="" after_script="unexpire">
+ <transition transition_id="publish" title="Reviewer publishes content" new_state="published" trigger="USER" before_script="" after_script="">
   <description>Publishing the item makes it visible to other users.</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=publish" category="workflow" icon="">Publish</action>
   <guard>
    <guard-permission>Review portal content</guard-permission>
   </guard>
  </transition>
- <transition transition_id="retract" title="Member retracts submission" new_state="private" trigger="USER" before_script="" after_script="">
+ <transition transition_id="reject" title="Reviewer sends content back for re-drafting" new_state="visible" trigger="USER" before_script="" after_script="">
+  <description>Sending the item back will return the item to the original author instead of publishing it. You should preferably include a reason for why it was not published.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=reject" category="workflow" icon="">Send back</action>
+  <guard>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="retract" title="Member retracts submission" new_state="visible" trigger="USER" before_script="" after_script="">
   <description>If you submitted the item by mistake or want to perform additional edits, this will take it back.</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=retract" category="workflow" icon="">Retract</action>
+  <guard>
+   <guard-permission>Request review</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="show" title="Member promotes content to public draft" new_state="visible" trigger="USER" before_script="" after_script="">
+  <description>Promotes your private item to a public draft.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=show" category="workflow" icon="">Promote to Draft</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="submit" title="Member submits content for publication" new_state="pending" trigger="USER" before_script="" after_script="">
+  <description>Puts your item in a review queue, so it can be published on the site.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=submit" category="workflow" icon="">Submit for publication</action>
   <guard>
    <guard-permission>Request review</guard-permission>
   </guard>
@@ -121,7 +162,7 @@
   </guard>
  </variable>
  <variable variable_id="actor" for_catalog="False" for_status="True" update_always="True">
-  <description>The ID of the user who performed the previous transition</description>
+  <description>The ID of the user who performed the last transition</description>
   <default>
    
    <expression>user/getId</expression>
@@ -158,6 +199,4 @@
   <guard>
   </guard>
  </variable>
- <script script_id="set_archive_expiration_date" type="Script (Python)" filename="workflows/newsevents_workflow/scripts/set_archive_expiration_date.py" module="" function=""/>
- <script script_id="unexpire" type="Script (Python)" filename="workflows/newsevents_workflow/scripts/unexpire.py" module="" function=""/>
 </dc-workflow>
