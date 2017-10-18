@@ -3,6 +3,7 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Change: don't show archived/private links in broken links screen
 * Feature: sync workflows from production
 * Feature: added the archived state to cca_items_workflow and box in
   ace_macros to show this state, plus scripts to set/unset expiration_date
