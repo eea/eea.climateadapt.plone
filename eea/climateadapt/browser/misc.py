@@ -1,25 +1,26 @@
 import json
 import logging
+from email.MIMEText import MIMEText
+
+import requests
+import transaction
 from Acquisition import aq_inner
-from OFS.ObjectManager import BeforeDeleteException
-from Products.CMFPlone.utils import getToolByName, isExpired
-from Products.Five.browser import BrowserView
 from eea.climateadapt.config import CONTACT_MAIL_LIST
 from eea.climateadapt.schema import Email
-from email.MIMEText import MIMEText
+from OFS.ObjectManager import BeforeDeleteException
 from plone import api
+from plone.api.content import get_state
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 from plone.directives import form
 from plone.formwidget.recaptcha.widget import ReCaptchaFieldWidget
 from plone.memoize import view
-import requests
-import transaction
+from Products.CMFPlone.utils import getToolByName, isExpired
+from Products.Five.browser import BrowserView
 from z3c.form import button, field
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.interface import Interface, implements
-
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -38,7 +39,7 @@ class WebEmptyView(BrowserView):
         return self.request.response.redirect('/newsletter')
 
 
-class calculateItemStatistics(BrowserView):
+class CalculateItemStatistics(BrowserView):
     """ Performs a catalog search for the portal types defined in the search()
         After visiting the view /calculate-item-statistics it initializes
         IAnnotations(site) -> performs the catalog search and saves the
@@ -58,14 +59,16 @@ class calculateItemStatistics(BrowserView):
     def initializeAnnotations(self):
         """ Initializing Annotations """
         logger.info('Initializing Annotations')
-        IAnnotations(self.context)['cca-item-statistics'] = {}
+        annot = IAnnotations(self.context)
+        annot['cca-item-statistics'] = {}
         types = getToolByName(self.context, 'portal_types').listContentTypes()
 
         for year in range(1969, 2018):
             annotation = {}
+
             for ctype in types:
                 annotation[ctype] = {'published': 0, 'total': 0}
-            IAnnotations(self.context)['cca-item-statistics'][year] = annotation
+            annot['cca-item-statistics'][year] = annotation
         logger.info("Finished Initializing Annotations")
 
     def search(self):
@@ -98,6 +101,7 @@ class calculateItemStatistics(BrowserView):
         brains = catalog.searchResults(**query)
         logger.info('Got %s results.' % len(brains))
         items_count = 0
+
         for brain in brains:
             if items_count % 100 == 0:
                 logger.info('Went through %s brains' % items_count)
@@ -105,15 +109,22 @@ class calculateItemStatistics(BrowserView):
             obj_state = api.content.get_state(obj)
             creation_year = obj.created().year()
             portal_type = obj.portal_type
+
+            url = obj.absolute_url()
+
             if creation_year is None:
-                logger.info("No creation date found for %s" % obj.absolute_url())
+                logger.info("No creation date found for %s" % url)
+
                 continue
 
             self.saveToAnnotations(creation_year, portal_type, False)
+
             if obj_state == 'published':
                 publish_year = obj.effective().year()
+
                 if publish_year is None:
-                    logger.info("No publishing date found for %s" % obj.absolute_url())
+                    logger.info("No publishing date found for %s" % url)
+
                     continue
                 self.saveToAnnotations(publish_year, portal_type, True)
             items_count += 1
@@ -122,6 +133,7 @@ class calculateItemStatistics(BrowserView):
     def saveToAnnotations(self, year, content_type, published):
         """ Saves the number of brains depending on its review state """
         annotations = IAnnotations(self.context)['cca-item-statistics']
+
         if published:
             annotations[year][content_type]['published'] += 1
         annotations[year][content_type]['total'] += 1
@@ -129,15 +141,20 @@ class calculateItemStatistics(BrowserView):
     def cleanUpData(self):
         """ Cleans up all the unnecessary indexes """
         logger.info('Cleaning up DATA')
+
         for year in range(1969, 2018):
-            annotation = IAnnotations(self.context)['cca-item-statistics'][year]
+            annot = IAnnotations(self.context)
+            annotation = annot['cca-item-statistics'][year]
             keys = annotation.keys()
+
             for key in keys:
                 if annotation[key]['total'] == 0:
                     annotation.pop(key, None)
             keys = annotation.keys()
+
             if len(keys) == 0:
                 IAnnotations(self.context)['cca-item-statistics'].pop(year)
+
                 continue
         logger.info('Finished cleaning up data')
 
@@ -154,29 +171,35 @@ class getItemStatistics(BrowserView):
 
     def get_portal_types(self, year):
         """ Filters out the portal types """
-        all_types = [{xx[0]: xx[1].title} for xx in self.context.portal_types.objectItems()]
+        all_types = [{xx[0]: xx[1].title}
+                     for xx in self.context.portal_types.objectItems()]
         annotations = IAnnotations(self.context)['cca-item-statistics']
 
         types = []
+
         for pair in all_types:
             if pair.keys()[0] in annotations[year].keys():
                     types.append(pair)
+
         return types
 
     def get_years(self):
         """ Gets the years present in IAnnotations and sorts them ascending """
         years = IAnnotations(self.context)['cca-item-statistics'].keys()
         years.sort()
+
         return years
 
     def get_published(self, year, portal_type):
         """ Gets the number of published items depending on year/portal_type"""
         annotations = IAnnotations(self.context)['cca-item-statistics']
+
         return annotations[year][portal_type]['published']
 
     def get_total(self, year, portal_type):
         """ Gets the number of total items depending on year/portal_type """
         annotations = IAnnotations(self.context)['cca-item-statistics']
+
         return annotations[year][portal_type]['total']
 
 
@@ -189,6 +212,7 @@ class FixCheckout(BrowserView):
         relation = policy._get_relation_to_baseline()
         relation.from_object = relation.to_object
         relation._p_changed = True
+
         return "Fixed"
 
 
@@ -234,6 +258,7 @@ class RedirectToSearchView (BrowserView):
     def __call__(self):
         type_name = self.context.getProperty('search_type_name', '')
         url = '/data-and-downloads'
+
         if type_name:
             url += '#searchtype=' + type_name
 
@@ -247,21 +272,30 @@ class ExcelCsvExportView (BrowserView):
 class DetectBrokenLinksView (BrowserView):
     """ View for detecting broken links"""
 
-    def __call__(self):
-        """ This view gets the data saved in IAnnotations(site)['broken_links_data']
-        """
-        self.results = IAnnotations(self.context).get('broken_links_data', None)
-        return self.index()
+    def results(self):
+        annot = IAnnotations(self.context)
+        res = []
+
+        for info in annot.get('broken_links_data', []):
+            obj = self.context.restrictedTraverse(info['object_url'])
+            state = get_state(obj)
+
+            if state not in ['private', 'archived']:
+                res.append(info)
+
+        return res
 
 
 class ClearMacrotransnationalRegions (BrowserView):
     """ Clear the macrotransnational regions from geographic localization
+
     if all the regions are selected
     """
 
     def __call__(self):
         return
         logger.info('Starting to clear regions.')
+
         for brain in self.catalog_search():
             self.clear_regions(brain.getObject())
         logger.info('Finished clearing regions.')
@@ -282,6 +316,7 @@ class ClearMacrotransnationalRegions (BrowserView):
             'eea.climateadapt.tool',
         ]}
         brains = catalog.searchResults(**query)
+
         return brains
 
     def clear_regions(self, obj):
@@ -301,15 +336,19 @@ class ClearMacrotransnationalRegions (BrowserView):
                 obj.reindexObject()
 
 
-class GetItemsForMacrotransRegions (BrowserView):
+class GetItemsForMacrotransRegions(BrowserView):
     """ Write to files the url of objects belonging to either the caribbean
     or se-europe region
+
+    NOTE: this is one time use only view
     """
 
     def __call__(self):
         return
+
         for b in self.catalog_search():
             obj = b.getObject()
+
             if obj.geochars in [None, u'', '', []]:
                 continue
             geochars = json.loads(obj.geochars)
@@ -325,30 +364,33 @@ class GetItemsForMacrotransRegions (BrowserView):
 
     def write_caribbean(self, obj):
         logger.info('Writing %s to CARIBBEAN' % obj.absolute_url())
-        with open('/'.join([CLIENT_HOME, 'caribbean']), 'a') as f:
+        with open('/'.join(['/tmp/', 'caribbean']), 'a') as f:
             f.writelines('Object URL: %s \n' % obj.absolute_url())
 
     def write_se_europe(self, obj):
         logger.info('Writing %s to SE EUROPE' % obj.absolute_url())
-        with open('/'.join([CLIENT_HOME, 'se-europe']), 'a') as f:
+        with open('/'.join(['/tmp/', 'se-europe']), 'a') as f:
             f.writelines('Object URL: %s \n' % obj.absolute_url())
 
     def catalog_search(self):
         catalog = self.context.portal_catalog
-        query = {'portal_type': [
-            'eea.climateadapt.aceproject',
-            'eea.climateadapt.adaptationoption',
-            'eea.climateadapt.casestudy',
-            'eea.climateadapt.guidancedocument',
-            'eea.climateadapt.indicator',
-            'eea.climateadapt.informationportal',
-            'eea.climateadapt.mapgraphdataset',
-            'eea.climateadapt.organisation',
-            'eea.climateadapt.publicationreport',
-            'eea.climateadapt.researchproject',
-            'eea.climateadapt.tool',
-        ]}
+        query = {
+            'portal_type': [
+                'eea.climateadapt.aceproject',
+                'eea.climateadapt.adaptationoption',
+                'eea.climateadapt.casestudy',
+                'eea.climateadapt.guidancedocument',
+                'eea.climateadapt.indicator',
+                'eea.climateadapt.informationportal',
+                'eea.climateadapt.mapgraphdataset',
+                'eea.climateadapt.organisation',
+                'eea.climateadapt.publicationreport',
+                'eea.climateadapt.researchproject',
+                'eea.climateadapt.tool',
+            ]
+        }
         brains = catalog.searchResults(**query)
+
         return brains
 
 
@@ -363,21 +405,27 @@ def _archive_news(site):
     for b in brains:
         obj = b.getObject()
         # if isExpired(obj) == 1 and api.content.get_state(obj) != 'archived':
+
         if isExpired(obj) == 1:
             logger.info('Archiving %s' % obj.absolute_url())
             api.content.transition(obj, 'archive')
             transaction.commit()
 
 
-def _get_data(site):
+def compute_broken_links(site):
     """ Script that will get called by cron once per day
     """
-    get_links_results = get_links(site)
+    links = get_links(site)
 
     results = []
-    for res_dict in get_links_results:
-        if check_link(res_dict['link'], res_dict['object_url']) is not None:
-            results.append(check_link(res_dict['link'], res_dict['object_url']))
+
+    for info in links:
+        res = check_link(info['link'])
+
+        if res is not None:
+            res['object_url'] = info['object_url']
+            results.append(res)
+
     IAnnotations(site)['broken_links_data'] = results
     transaction.commit()
 
@@ -388,82 +436,96 @@ def get_links(site):
     """
 
     catalog = getToolByName(site, 'portal_catalog')
-    query = {'portal_type': [
-        'eea.climateadapt.aceproject',
-        'eea.climateadapt.adaptationoption',
-        'eea.climateadapt.casestudy',
-        'eea.climateadapt.guidancedocument',
-        'eea.climateadapt.indicator',
-        'eea.climateadapt.informationportal',
-        'eea.climateadapt.mapgraphdataset',
-        'eea.climateadapt.organisation',
-        'eea.climateadapt.publicationreport',
-        'eea.climateadapt.researchproject',
-        'eea.climateadapt.tool',
-        'eea.climateadapt.city_profile',
-    ]}
+    query = {
+        'portal_type': [
+            'eea.climateadapt.aceproject',
+            'eea.climateadapt.adaptationoption',
+            'eea.climateadapt.casestudy',
+            'eea.climateadapt.guidancedocument',
+            'eea.climateadapt.indicator',
+            'eea.climateadapt.informationportal',
+            'eea.climateadapt.mapgraphdataset',
+            'eea.climateadapt.organisation',
+            'eea.climateadapt.publicationreport',
+            'eea.climateadapt.researchproject',
+            'eea.climateadapt.tool',
+            'eea.climateadapt.city_profile',
+        ]
+    }
     brains = catalog.searchResults(**query)
 
     urls = []
+
     for b in brains:
         obj = b.getObject()
+        path = obj.getPhysicalPath()
 
         if hasattr(obj, 'websites'):
             if isinstance(obj.websites, str):
-                urls.append({'link': obj.websites, 'object_url': b.getURL()})
+                urls.append({
+                    'link': obj.websites,
+                    'object_url': path
+                })
             else:
                 for url in obj.websites:
-                    urls.append({'link': url, 'object_url': b.getURL()})
+                    urls.append({
+                        'link': url,
+                        'object_url': path
+                    })
         else:
             if obj.portal_type == 'eea.climateadapt.city_profile':
-                urls.append(
-                    {'link': obj.website_of_the_local_authority,
-                     'object_url': b.getURL()
-                    })
+                urls.append({
+                    'link': obj.website_of_the_local_authority,
+                    'object_url': path
+                })
             else:
                 logger.info("Portal type: %s" % obj.portal_type)
+
     logger.info("Finished getting links.")
+
     return urls
 
 
-def check_link(link, object_url):
+def check_link(link):
     """ Check the links and return only the broken ones with the respective
         status codes
     """
+
     if link:
-        resp = None
         if isinstance(link, unicode):
             link = link.encode()
+
         if link[0:7].find('http') == -1:
             link = 'http://' + link
 
         logger.info("LINK: %s", link)
         try:
-            resp = requests.head(link, timeout=5, allow_redirects=True)
+            requests.head(link, timeout=5, allow_redirects=True)
         except requests.exceptions.ReadTimeout:
-            return {'status': '504', 'url': link, 'object_url': object_url}
+            return {'status': '504', 'url': link}
         except requests.exceptions.ConnectTimeout:
             logger.info("Timed out.")
             logger.info("Trying again with link: %s", link)
             try:
-                resp = requests.head(link, timeout=30, allow_redirects=True)
+                requests.head(link, timeout=30, allow_redirects=True)
             except:
-                return {'status': '504', 'url': link, 'object_url': object_url}
+                return {'status': '504', 'url': link}
         except requests.exceptions.TooManyRedirects:
             logger.info("Redirected.")
             logger.info("Trying again with link: %s", link)
             try:
-                resp = requests.head(link, timeout=30, allow_redirects=True)
+                requests.head(link, timeout=30, allow_redirects=True)
             except:
-                return {'status': '301', 'url': link, 'object_url': object_url}
+                return {'status': '301', 'url': link}
         except requests.exceptions.URLRequired:
-            return {'status': '400', 'url': link, 'object_url': object_url}
+            return {'status': '400', 'url': link}
         except requests.exceptions.ProxyError:
-            return {'status': '305', 'url': link, 'object_url': object_url}
+            return {'status': '305', 'url': link}
         except requests.exceptions.HTTPError:
-            return {'status': '505', 'url': link, 'object_url': object_url}
+            return {'status': '505', 'url': link}
         except:
-            return {'status': '404', 'url': link, 'object_url': object_url}
+            return {'status': '404', 'url': link}
+
     return
 
 
@@ -504,13 +566,16 @@ class ContactForm(form.SchemaForm):
     @button.buttonAndHandler(u"Submit")
     def handleApply(self, action):
         data, errors = self.extractData()
+
         if errors:
             self.status = self.formErrorsMessage
+
             return
         captcha = getMultiAdapter(
             (aq_inner(self.context), self.request),
             name='recaptcha'
         )
+
         if captcha.verify():
             mail_host = api.portal.get_tool(name='MailHost')
             # emailto = str(api.portal.getSite().email_from_address)
@@ -525,6 +590,7 @@ class ContactForm(form.SchemaForm):
                 mime_msg['To'] = m
 
             self.description = u"Email Sent."
+
             return mail_host.send(mime_msg.as_string())
         else:
             self.description = u"Please complete the Captcha."
@@ -564,13 +630,16 @@ class ContactFooterForm(form.SchemaForm):
     @button.buttonAndHandler(u"Submit")
     def handleApply(self, action):
         data, errors = self.extractData()
+
         if errors:
             self.status = self.formErrorsMessage
+
             return
         captcha = getMultiAdapter(
             (aq_inner(self.context), self.request),
             name='recaptcha'
         )
+
         if captcha.verify():
             mail_host = api.portal.get_tool(name='MailHost')
 
@@ -584,7 +653,7 @@ Climate Adapt Website
 You are receiving this mail because %(name)s
 %(mail)s
 is sending feedback about the site you administer at %(url)s.
-"""         % info
+""" % info
 
             mime_msg = MIMEText(data.get('message') + text)
             mime_msg['Subject'] = data.get('subject')
@@ -592,6 +661,7 @@ is sending feedback about the site you administer at %(url)s.
             mime_msg['To'] = str(api.portal.getSite().email_from_address)
 
             self.description = u"Email Sent."
+
             return mail_host.send(mime_msg.as_string())
         else:
             self.description = u"Please complete the Captcha."
@@ -600,6 +670,7 @@ is sending feedback about the site you administer at %(url)s.
 def preventFolderDeletionEvent(object, event):
     for obj in object.listFolderContents():
         iterate_control = obj.restrictedTraverse('@@iterate_control')
+
         if iterate_control.is_checkout():
             # Cancel deletion
             raise BeforeDeleteException

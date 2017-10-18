@@ -75,7 +75,7 @@
     <browser:page
         name="calculate-item-statistics"
         for="*"
-        class=".misc.calculateItemStatistics"
+        class=".misc.CalculateItemStatistics"
         permission="cmf.ModifyPortalContent"
         />
 

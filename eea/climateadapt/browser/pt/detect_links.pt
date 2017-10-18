@@ -1,43 +1,43 @@
 <html
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:tal="http://xml.zope.org/namespaces/tal"
-    xmlns:metal="http://xml.zope.org/namespaces/metal"
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    xml:lang="en"
-    lang="en"
-    metal:use-macro="context/main_template/macros/master"
-    i18n:domain="eea.climateadapt">
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  xml:lang="en"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="eea.climateadapt">
 
-    <body>
-        <metal:main fill-slot="main">
-          <tal:main-macro metal:define-macro="content-core">
-            <div class="CSSTableGenerator">
-              <table tal:define="results view/results">
-                <thead>
-                  <tr>
-                    <th>Broken Links</th>
-                    <th>Object URL</th>
-                    <th>Status Code</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr tal:repeat="result results">
-                      <td tal:condition="python: result is not None">
-                        <a href="" tal:attributes="href python: result['url']"
-                           target="_blank" tal:content="python: result['url']">
-                        </a>
-                      </td>
-                      <td tal:condition="python: result is not None">
-                        <a href="" tal:attributes="href python: result['object_url']" 
-                           target="_blank" tal:content="python: result['object_url']">
-                        </a>
-                      </td>
-                      <td tal:content="python: result['status']" tal:condition="python: result is not None"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </tal:main-macro>
-        </metal:main>
-    </body>
+  <body>
+    <metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="content-core">
+    <div class="CSSTableGenerator">
+      <table tal:define="results view/results">
+        <thead>
+          <tr>
+            <th>Broken Links</th>
+            <th>Object URL</th>
+            <th>Status Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr tal:repeat="result view/results">
+            <td tal:condition="python: result is not None">
+              <a href="" tal:attributes="href python: result['url']"
+                 target="_blank" tal:content="python: result['url']">
+              </a>
+            </td>
+            <td tal:condition="python: result is not None">
+              <a href="" tal:attributes="href python: result['object_url']"
+                 target="_blank" tal:content="python: result['object_url']">
+              </a>
+            </td>
+            <td tal:content="python: result['status']" tal:condition="python: result is not None"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </tal:main-macro>
+    </metal:main>
+  </body>
 </html>
