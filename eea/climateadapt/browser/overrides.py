@@ -1,44 +1,43 @@
 """
 Various page overrides
 """
-from Products.CMFPlone import utils
-from Products.CMFPlone.utils import safe_unicode
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from collective.excelexport.exportables.dexterityfields import BaseFieldRenderer, FieldRenderer
+
+from collective.excelexport.exportables.dexterityfields import (BaseFieldRenderer,
+                                                                FieldRenderer)
+
 from eea.climateadapt import MessageFactory as _
-from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 from eea.climateadapt.schema import Year
 from eea.pdf.interfaces import IPDFTool
-from plone.api import portal, content
+from plone.api import content, portal
 from plone.app.content.browser.interfaces import IContentsPage
 from plone.app.contentmenu.menu import DisplaySubMenuItem as DSMI
 from plone.app.contenttypes.behaviors.richtext import IRichText  # noqa
 from plone.app.controlpanel.widgets import MultiCheckBoxVocabularyWidget
-from plone.app.users.browser.personalpreferences import IPersonalPreferences
-from plone.app.users.browser.personalpreferences import LanguageWidget
-from plone.app.users.browser.personalpreferences import PersonalPreferencesPanel
-from plone.app.users.browser.personalpreferences import PersonalPreferencesPanelAdapter
-from plone.app.users.browser.personalpreferences import WysiwygEditorWidget
+from plone.app.users.browser.personalpreferences import (IPersonalPreferences,
+                                                         LanguageWidget,
+                                                         PersonalPreferencesPanel,
+                                                         PersonalPreferencesPanelAdapter,
+                                                         WysiwygEditorWidget)
 from plone.app.widgets.dx import RichTextWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.formwidget.geolocation.interfaces import IGeolocationField
 from plone.memoize.instance import memoize
-from z3c.form.interfaces import IFieldWidget
-from z3c.form.interfaces import IFormLayer
-from z3c.form.interfaces import NO_VALUE
+from Products.CMFPlone import utils
+from Products.CMFPlone.utils import safe_unicode
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from z3c.form.interfaces import NO_VALUE, IFieldWidget, IFormLayer
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.interfaces import IRelationList
-from zope.component import adapter
-from zope.component import adapts
-from zope.component import queryUtility
+from zope.component import adapter, adapts, queryUtility
 from zope.formlib import form
-from zope.interface import Interface
-from zope.interface import implementer
-from zope.schema import List, Choice
-from zope.schema.interfaces import ITextLine, ITuple, IList, IText, IDatetime
-from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+from zope.interface import Interface, implementer
+from zope.schema import Choice, List
+from zope.schema.interfaces import IDatetime, IList, IText, ITextLine, ITuple
+from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
+
+# from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 
 
 thematic_sectors = SimpleVocabulary([
@@ -46,7 +45,8 @@ thematic_sectors = SimpleVocabulary([
     SimpleTerm(value='FORESTRY', title=_(u'Forestry')),
     SimpleTerm(value='BIODIVERSITY', title=_(u'Biodiversity')),
     SimpleTerm(value='COASTAL', title=_(u'Coastal areas')),
-    SimpleTerm(value='DISASTERRISKREDUCTION', title=_(u'Disaster Risk Reduction')),
+    SimpleTerm(value='DISASTERRISKREDUCTION',
+               title=_(u'Disaster Risk Reduction')),
     SimpleTerm(value='FINANCIAL', title=_(u'Financial')),
     SimpleTerm(value='HEALTH', title=_(u'Health')),
     SimpleTerm(value='URBAN', title=_(u'Urban')),
@@ -64,7 +64,8 @@ class IEnhancedPersonalPreferencesSchema(IPersonalPreferences):
     """
     thematic_sectors = List(
         title=_(u'Professional thematic domain'),
-        description=_(u"Select the sectors for which you want to receive a notification email when an item is modified."),
+        description=_(u"Select the sectors for which you want to receive a "
+                      u"notification email when an item is modified."),
         required=True,
         value_type=Choice(
             vocabulary=thematic_sectors))
@@ -76,14 +77,18 @@ class EnhancedPersonalPreferencesPanelAdapter(PersonalPreferencesPanelAdapter):
     def get_thematic_sectors(self):
         value = []
         thematic_sectors = self.context.getProperty('thematic_sectors', '')
+
         if thematic_sectors:
             value = thematic_sectors.split(',')
+
         return value
 
     def set_thematic_sectors(self, value):
         thematic_sectors = ','.join(value)
+
         return self.context.setMemberProperties(
             {'thematic_sectors': thematic_sectors})
+
     thematic_sectors = property(get_thematic_sectors, set_thematic_sectors)
 
 
@@ -91,11 +96,15 @@ class CustomizedPersonalPrefPanel(PersonalPreferencesPanel):
     form_fields = form.FormFields(IEnhancedPersonalPreferencesSchema)
 
     # Apply same widget overrides as in the base class
+
     form_fields['language'].custom_widget = LanguageWidget
+
     form_fields['wysiwyg_editor'].custom_widget = WysiwygEditorWidget
 
     # Our widget
-    form_fields['thematic_sectors'].custom_widget = MultiCheckBoxVocabularyWidget
+
+    form_fields['thematic_sectors'].custom_widget = \
+        MultiCheckBoxVocabularyWidget
 
 
 class ObjectStateExportable(FieldRenderer):
@@ -104,11 +113,13 @@ class ObjectStateExportable(FieldRenderer):
     def render_header(self):
         """Gets the value to render on the first row of excel sheet for this field
         """
+
         return self.field.title
 
     def render_value(self, obj):
         """Gets the value to render in excel file from content
         """
+
         return content.get_state(obj)
 
 
@@ -123,6 +134,7 @@ class DateTimeFieldRenderer(BaseFieldRenderer):
         """Gets the value to render in excel file from content value
         """
         value = self.get_value(obj)
+
         if not value or value == NO_VALUE:
             return ""
 
@@ -143,17 +155,20 @@ class RelationListFieldRenderer(BaseFieldRenderer):
         """
 
         value = self.get_value(obj)
+
         if not value or value == NO_VALUE:
             return ""
 
         text = safe_unicode(self._get_text(value))
 
         new_text = []
+
         for item in text:
             if item.to_object is not None:
                 new_text.append(item.to_object.Title() + ';\n')
             else:
                 pass
+
         return new_text
 
 
@@ -169,21 +184,26 @@ class ListFieldRenderer(BaseFieldRenderer):
         """
 
         value = self.get_value(obj)
+
         if not value or value == NO_VALUE:
             return ""
 
         text = safe_unicode(self._get_text(value))
+
         if isinstance(text, str) is False:
             if len(text) > 40:
                 text = text[0:40]
+
             if isinstance(text, tuple):
                 text = tuple([x + ';\n' for x in text])
             else:
                 new_text = []
+
                 for item in text:
                     if isinstance(item, (str, unicode)):
                         new_text.append(item + ';\n')
                 text = new_text
+
         return text
 
 
@@ -198,6 +218,7 @@ class GeolocationFieldRenderer(BaseFieldRenderer):
         """Gets the value to render in excel file from content value
         """
         value = self.get_value(obj)
+
         if not value or value == NO_VALUE:
             return ""
 
@@ -219,6 +240,7 @@ class TupleFieldRenderer(BaseFieldRenderer):
         """Gets the value to render in excel file from content value
         """
         value = self.get_value(obj)
+
         if not value or value == NO_VALUE:
             return ""
 
@@ -227,13 +249,16 @@ class TupleFieldRenderer(BaseFieldRenderer):
         if isinstance(text, str) is False:
             if len(text) > 10:
                 text = text[0:10]
+
             if isinstance(text, tuple):
                 text = tuple([x + ';\n' for x in text])
             else:
                 counter = 0
+
                 while counter < len(text):
                     text[counter] += ';\n'
                     counter += 1
+
         return text
 
 
@@ -248,6 +273,7 @@ class TextLineFieldRenderer(BaseFieldRenderer):
         """Gets the value to render in excel file from content value
         """
         value = self.get_value(obj)
+
         if not value or value == NO_VALUE:
             return ""
 
@@ -267,6 +293,7 @@ class TextFieldRenderer(BaseFieldRenderer):
         """Gets the value to render in excel file from content value
         """
         value = self.get_value(obj)
+
         if not value or value == NO_VALUE:
             return ""
 
@@ -305,8 +332,10 @@ class DisplaySubMenuItem(DSMI):
         if IContentsPage.providedBy(self.request):
             return True
         context = self.context
+
         if self.context_state.is_default_page():
             context = utils.parent(context)
+
         if not getattr(context, 'isPrincipiaFolderish', False):
             return False
         # By default an index_html signals disabled Display Menu, we don't want
@@ -335,8 +364,10 @@ class FolderPdfBody (BrowserView):
     def theme(self, context=None):
         """ PDF Theme
         """
+
         if context:
             tool = queryUtility(IPDFTool)
+
             return tool.theme(context)
 
         if self._theme is None:
@@ -348,72 +379,89 @@ class FolderPdfBody (BrowserView):
     def getValue(self, name, context='', default=None):
         """ Get value
         """
+
         if context == '':
             context = self.context
 
         getField = getattr(context, 'getField', lambda name: None)
         field = getField(name)
+
         if not field:
             return default
 
         value = field.getAccessor(context)()
+
         return value or default
 
     @property
     def macro(self):
         """ ZPT macro to use while rendering PDF
         """
+
         return self._macro
 
     @property
     def maxdepth(self):
         """ Maximum depth
         """
+
         if self._maxdepth is None:
-            self._maxdepth = self.getValue('pdfMaxDepth',
-                   default=self.getValue('maxdepth', self.theme(), default=0))
+            self._maxdepth = self.getValue(
+                'pdfMaxDepth', default=self.getValue('maxdepth',
+                                                     self.theme(), default=0))
+
         return self._maxdepth
 
     @property
     def maxbreadth(self):
         """ Maximum breadth
         """
+
         if self._maxbreadth is None:
-            self._maxbreadth = self.getValue('pdfMaxBreadth',
-                   default=self.getValue('maxbreadth', self.theme(), default=0))
+            self._maxbreadth = self.getValue(
+                'pdfMaxBreadth', default=self.getValue(
+                    'maxbreadth', self.theme(), default=0))
+
         return self._maxbreadth
 
     @property
     def maxitems(self):
         """ Maximum items
         """
+
         if self._maxitems is None:
-            self._maxitems = self.getValue('pdfMaxItems',
-                 default=self.getValue('maxitems', self.theme(), default=0))
+            self._maxitems = self.getValue(
+                'pdfMaxItems', default=self.getValue('maxitems',
+                                                     self.theme(), default=0))
+
         return self._maxitems
 
     @property
     def depth(self):
         """ Current depth
         """
+
         return self._depth
 
     @property
     def count(self):
         """ Current counter
         """
+
         return self._count
 
     @property
     def brains(self):
         """ Brains
         """
+
         return self.context.getFolderContents()[:self.maxbreadth]
 
     def show_limit_page(self):
         """ Returns the pdf limit page
         """
         pdf = self.context.restrictedTraverse("@@pdf.limit")
+
         return pdf()
 
     @property
@@ -427,17 +475,21 @@ class FolderPdfBody (BrowserView):
                 contentFilter={
                     'portal_type': ['Folder', 'Collection', 'Topic']
                 })
+
             if brains:
                 self.request['pdf_last_brain_url'] = brains[-1].getURL()
                 # 31424 in case there is only one result from the content
                 # filter then we need to reset the depth in order to
                 # get the content of the brain
+
                 if len(brains) == 1:
                     self._depth -= 1
+
         if self.depth > self.maxdepth:
             if self.context.absolute_url() == \
                     self.request.get('pdf_last_brain_url'):
                 yield self.show_limit_page()
+
             return
 
         ajax_load = self.request.get('ajax_load', True)
@@ -448,22 +500,27 @@ class FolderPdfBody (BrowserView):
                 if not self.request.get('pdflimit'):
                     self.request['pdflimit'] = "reached"
                     yield self.show_limit_page()
+
                 break
 
             doc = brain.getObject()
             theme = self.theme(doc)
             body = getattr(theme, 'body', '')
+
             if not body:
                 continue
 
             if isinstance(body, unicode):
                 body = body.encode('utf-8')
+
             if (self.theme(self.context).id == theme.id and
-                self.depth == self.maxdepth):
+                    self.depth == self.maxdepth):
+
                 if brain.getURL() == self.request.get('pdf_last_brain_url'):
                     if not self.request.get('pdflimit'):
                         self.request['pdflimit'] = "reached"
                         yield self.show_limit_page()
+
                 continue
             try:
                 pdf = doc.restrictedTraverse(body.split("?")[0])
@@ -497,6 +554,7 @@ class FolderPdfBody (BrowserView):
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
         self.update(**kwargs)
+
         return self.template(**kwargs)
 
 
@@ -509,9 +567,12 @@ class OverrideRichText (RichTextWidget):
 
         # Get tinymce options
         tinyoptions = args['pattern_options']['tiny']
-        buttons = 'tabs tabsDelete tabsItemDelete tabsItemInsertAfter tabsItemInsertBefore accordion accordionDelete accordionItemDelete accordionItemInsertAfter accordionItemInsertBefore  '
+        buttons = 'tabs tabsDelete tabsItemDelete tabsItemInsertAfter '\
+            'tabsItemInsertBefore accordion accordionDelete '\
+            'accordionItemDelete accordionItemInsertAfter '\
+            'accordionItemInsertBefore '
         toolbar = tinyoptions['toolbar']
-        plugins = tinyoptions['plugins']
+        # plugins = tinyoptions['plugins']
 
         # Modify toolbar
         toolbar = toolbar.split('|')
@@ -524,7 +585,6 @@ class OverrideRichText (RichTextWidget):
         args['pattern_options']['tiny']['plugins'].append('tabs')
         args['pattern_options']['tiny']['plugins'].append('accordion')
         args['pattern_options']['tiny']['plugins'].remove('contextmenu')
-
 
         # Disable relative urls
         args['pattern_options']['tiny']['relative_urls'] = False
