@@ -4,7 +4,7 @@
 import json
 import logging
 
-from eea.climateadapt.sat.arcgis import (_get_obj_FID, apply_edits,
+from eea.climateadapt.sat.arcgis import (_get_obj_OBJECTID, apply_edits,
                                          get_auth_token)
 from eea.climateadapt.sat.utils import _get_obj_by_measure_id
 from plone.api.content import get_state
@@ -19,7 +19,7 @@ def handle_ObjectModifiedEvent(site, uid):
 
     token = get_auth_token()
 
-    fid = _get_obj_FID(obj, token=token)
+    fid = _get_obj_OBJECTID(obj, token=token)
 
     if fid is None:
         logger.info("ArcGIS: Adding CaseStudy with measure id %s", uid)
@@ -28,9 +28,9 @@ def handle_ObjectModifiedEvent(site, uid):
         assert len(res.get('addResults', [])) == 1
         assert res['addResults'][0]['success'] is True
     else:
-        repr['attributes']['FID'] = fid
+        repr['attributes']['OBJECTID'] = fid
 
-        logger.info("ArcGIS: Updating CaseStudy with FID %s", fid)
+        logger.info("ArcGIS: Updating CaseStudy with OBJECTID %s", fid)
 
         entry = json.dumps([repr])
         res = apply_edits(entry, op='updates', token=token)
@@ -42,9 +42,9 @@ def handle_ObjectModifiedEvent(site, uid):
 def handle_ObjectRemovedEvent(site, uid):
     token = get_auth_token()
 
-    fid = _get_obj_FID(obj=None, uid=uid, token=token)
+    fid = _get_obj_OBJECTID(obj=None, uid=uid, token=token)
 
-    logger.info("ArcGIS: Deleting CaseStudy with FID %s", fid)
+    logger.info("ArcGIS: Deleting CaseStudy with OBJECTID %s", fid)
 
     res = apply_edits(fid, op='deletes', token=token)
 
@@ -76,11 +76,11 @@ def handle_ObjectStateModified(site, uid):
     state = get_state(obj)
 
     token = get_auth_token()
-    fid = _get_obj_FID(obj=obj, token=token)
+    fid = _get_obj_OBJECTID(obj=obj, token=token)
 
     if (state != 'published') and fid:
         # it's unpublished, we'll remove the object
-        logger.info("ArcGIS: Deleting CaseStudy with FID %s", fid)
+        logger.info("ArcGIS: Deleting CaseStudy with OBJECTID %s", fid)
 
         res = apply_edits(fid, op='deletes', token=token)
 
@@ -103,9 +103,9 @@ def handle_ObjectStateModified(site, uid):
 
         # existing case study, sync its info
         else:
-            logger.info("ArcGIS: Updating CaseStudy with FID %s", fid)
+            logger.info("ArcGIS: Updating CaseStudy with OBJECTID %s", fid)
 
-            repr['attributes']['FID'] = fid
+            repr['attributes']['OBJECTID'] = fid
             entry = json.dumps([repr])
             res = apply_edits(entry, op='updates', token=token)
 

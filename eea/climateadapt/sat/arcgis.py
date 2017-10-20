@@ -124,11 +124,11 @@ def apply_edits(data, op='updates', token=None):
     return res
 
 
-def _get_obj_FID(obj=None, uid=None, token=None):
-    """ The "Object ID Field" for the casestudies_pointLayer is "FID".
+def _get_obj_OBJECTID(obj=None, uid=None, token=None):
+    """ The "Object ID Field" for the casestudies_pointLayer is "OBJECTID".
 
     Because the casestudies_pointLayer doesn't use Global Ids, we need to
-    identify objects by their FID.
+    identify objects by their OBJECTID.
     """
 
     if token is None:
@@ -144,7 +144,8 @@ def _get_obj_FID(obj=None, uid=None, token=None):
     if len(res['features']) == 0:
         return None
 
-    fid = res['features'][0]['attributes']['FID']
-    logger.info("Got FID %s for measureid %s", fid, measureid)
+    # fid = res['features'][0]['attributes']['FID']
+    fid = res['features'][0]['attributes']['OBJECTID']
+    logger.info("Got OBJECTID %s for measureid %s", fid, measureid)
 
     return fid
