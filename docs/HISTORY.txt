@@ -3,7 +3,7 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
-* Bug: Fix AST links
+* Bug: Fix AST nav menu links
   [krisztina #89126]
 * Bug fix: use OBJECTID instead of FID to sync to arcgis
   [tiberich #88553]

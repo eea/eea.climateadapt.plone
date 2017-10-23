@@ -32,7 +32,7 @@ def test_edit(token):
         'features': json.dumps([
             {
                 'attributes': {
-                    "FID": 48,
+                    "OBJECTID": 48,
                     'itemname': 'test changed by tibi',
                 }
             }

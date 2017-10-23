@@ -17,10 +17,11 @@ import json
 import os
 import sys
 
-from eea.climateadapt.sat.arcgis import (_get_obj_FID, apply_edits,
+from lxml.etree import Element, SubElement, fromstring, tostring
+
+from eea.climateadapt.sat.arcgis import (_get_obj_OBJECTID, apply_edits,
                                          get_auth_token, query_layer)
 from eea.climateadapt.sat.settings import get_feature_url
-from lxml.etree import Element, SubElement, fromstring, tostring
 
 
 def backup_data(data, path='out.xml'):
@@ -57,7 +58,7 @@ def delete_casestudy(fid, token):
 
 def delete_all_casestudies(token):
     res = query_layer(token)
-    all_ids = [x['attributes']['FID'] for x in res['features']]
+    all_ids = [x['attributes']['OBJECTID'] for x in res['features']]
 
     return apply_edits(all_ids, op='deletes', token=token)
 
@@ -100,7 +101,7 @@ def edit_casestudy(fid, path, token):
     entry = None
 
     for e in entries:
-        if e['attributes']['FID'] == fid:
+        if e['attributes']['OBJECTID'] == fid:
             entry = e
 
             break
@@ -195,7 +196,7 @@ def main():
         for entry in res['features']:
             geo = '{0} x {1}'.format(*entry['geometry'].values())
             attr = entry['attributes']
-            print attr['FID'], ': ', attr['itemname'], ' @ ', geo
+            print attr['OBJECTID'], ': ', attr['itemname'], ' @ ', geo
 
     if args.delete:
         print "Deleting..."
@@ -216,9 +217,9 @@ def main():
         edit_casestudy(fid, args.edit_file, token)
 
     if args.get_fid:
-        print "Getting FID for measureid..."
+        print "Getting OBJECTID for measureid..."
         measureid = args.fid    # I know, fake
-        print "FID: ", _get_obj_FID(uid=int(measureid))
+        print "OBJECTID: ", _get_obj_OBJECTID(uid=int(measureid))
 
     print "No arguments"
 
