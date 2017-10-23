@@ -3,6 +3,10 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bug: Fix AST links
+  [krisztina #89126]
+* Bug fix: use OBJECTID instead of FID to sync to arcgis
+  [tiberich #88553]
 * Change: don't show archived/private links in broken links screen
 * Feature: sync workflows from production
 * Feature: added the archived state to cca_items_workflow and box in
