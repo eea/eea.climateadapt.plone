@@ -1,156 +1,186 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:five="http://namespaces.zope.org/five"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    xmlns:grok="http://namespaces.zope.org/grok"
-    xmlns:plone="http://namespaces.plone.org/plone"
-    xmlns:faceted="http://namespaces.zope.org/faceted"
-    i18n_domain="eea.climateadapt">
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:grok="http://namespaces.zope.org/grok"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  xmlns:faceted="http://namespaces.zope.org/faceted"
+  i18n_domain="eea.climateadapt">
 
-    <utility
-        name="eea.climateadapt.faceted_search_types_vocabulary"
-        component=".facetedsearch.faceted_search_types_vocabulary" />
+  <utility
+    name="eea.climateadapt.faceted_search_types_vocabulary"
+    component=".facetedsearch.faceted_search_types_vocabulary" />
 
-    <subscriber
-      for="..interfaces.IClimateAdaptContent
-           Products.CMFCore.interfaces.IActionSucceededEvent"
-      handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
-      />
+  <subscriber
+    for="..interfaces.IClimateAdaptContent
+    Products.CMFCore.interfaces.IActionSucceededEvent"
+    handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
+    />
 
-    <subscriber
-      for="plone.dexterity.interfaces.IDexterityContent
-           Products.CMFCore.interfaces.IActionSucceededEvent"
-      handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
-      />
+  <subscriber
+    for="plone.dexterity.interfaces.IDexterityContent
+    Products.CMFCore.interfaces.IActionSucceededEvent"
+    handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
+    />
 
-    <faceted:view
-        name="faceted-climate-listing-view"
-        class=".facetedsearch.ListingView"
-        template="pt/search/faceted-listing-view.pt"
-        title="ClimateAdapt Listing View"
-        permission="zope2.View"
-        />
+  <faceted:view
+    name="faceted-climate-listing-view"
+    class=".facetedsearch.ListingView"
+    template="pt/search/faceted-listing-view.pt"
+    title="ClimateAdapt Listing View"
+    permission="zope2.View"
+    />
 
-    <browser:page
-        name="faceted-search-text-portlet"
-        for="*"
-        permission="zope.Public"
-        class=".facetedsearch..FacetedSearchTextPortlet"
-        />
+  <browser:page
+    name="faceted-search-text-portlet"
+    for="*"
+    permission="zope.Public"
+    class=".facetedsearch..FacetedSearchTextPortlet"
+    />
 
-    <browser:page
-        for="eea.climateadapt.interfaces.ISiteSearchFacetedView"
-        name="facetednavigation_view"
-        template="pt/search/faceted-search-view.pt"
-        class=".facetedsearch.FacetedViewNoTitle"
-        permission="zope2.View"
-        />
+  <browser:page
+    for="eea.climateadapt.interfaces.ISiteSearchFacetedView"
+    name="facetednavigation_view"
+    template="pt/search/faceted-search-view.pt"
+    class=".facetedsearch.FacetedViewNoTitle"
+    permission="zope2.View"
+    />
 
-    <!-- Listing pages with results -->
-    <browser:page
-        for="*"
-        name="faceted_listing_GENERIC"
-        template="pt/search/listing-generic.pt"
-        class=".facetedsearch.ListingGeneric"
-        permission="zope2.View"
-        />
+  <!-- Listing pages with results -->
+  <browser:page
+    for="*"
+    name="faceted_listing_GENERIC"
+    class=".facetedsearch.FacetedListingGeneric"
+    permission="zope2.View"
+    />
+  template="pt/search/listing-generic.pt"
 
-    <browser:page
-        for="*"
-        name="faceted_listing_CONTENT"
-        template="pt/search/listing-content.pt"
-        class=".facetedsearch.ListingGeneric"
-        permission="zope2.View"
-        />
+  <browser:page
+    for="*"
+    name="faceted_listing_CONTENT"
+    class=".facetedsearch.FacetedListingGeneric"
+    permission="zope2.View"
+    />
+  template="pt/search/listing-content.pt"
 
-    <browser:page
-        for="*"
-        name="faceted_listing_DOCUMENT"
-        template="pt/search/listing-document.pt"
-        class=".facetedsearch.ListingGeneric"
-        permission="zope2.View"
-        />
+  <browser:page
+    for="*"
+    name="faceted_listing_DOCUMENT"
+    class=".facetedsearch.FacetedListingGeneric"
+    permission="zope2.View"
+    />
 
-    <browser:page
-        for="*"
-        name="faceted_listing_INFORMATIONSOURCE"
-        template="pt/search/listing-document.pt"
-        class=".facetedsearch.ListingGeneric"
-        permission="zope2.View"
-        />
+  <browser:page
+    for="*"
+    name="faceted_listing_INFORMATIONSOURCE"
+    class=".facetedsearch.FacetedListingGeneric"
+    permission="zope2.View"
+    />
 
-    <browser:page
-        for="*"
-        name="faceted_listing_GUIDANCE"
-        template="pt/search/listing-document.pt"
-        class=".facetedsearch.ListingGeneric"
-        permission="zope2.View"
-        />
+  <browser:page
+    for="*"
+    name="faceted_listing_GUIDANCE"
+    class=".facetedsearch.FacetedListingGeneric"
+    permission="zope2.View"
+    />
 
-    <browser:page
-        for="*"
-        name="faceted_listing_TOOL"
-        template="pt/search/listing-document.pt"
-        class=".facetedsearch.ListingGeneric"
-        permission="zope2.View"
-        />
 
-    <browser:page
-        for="*"
-        name="faceted_listing_MAPGRAPHDATASET"
-        template="pt/search/listing-maps.pt"
-        class=".facetedsearch.ListingGeneric"
-        permission="zope2.View"
-        />
+  <browser:page
+    for="*"
+    name="faceted_listing_TOOL"
+    class=".facetedsearch.FacetedListingGeneric"
+    permission="zope2.View"
+    />
 
-    <browser:page
-        for="*"
-        name="faceted_listing_INDICATOR"
-        template="pt/search/listing-indicators.pt"
-        class=".facetedsearch.ListingGeneric"
-        permission="zope2.View"
-        />
+  <browser:page
+    for="*"
+    name="faceted_listing_MAPGRAPHDATASET"
+    class=".facetedsearch.FacetedListingNoYear"
+    permission="zope2.View"
+    />
 
-    <browser:page
-        for="*"
-        name="faceted_listing_RESEARCHPROJECT"
-        template="pt/search/listing-projects.pt"
-        class=".facetedsearch.ListingGeneric"
-        permission="zope2.View"
-        />
+  <browser:page
+    for="*"
+    name="faceted_listing_INDICATOR"
+    class=".facetedsearch.FacetedListingNoYear"
+    permission="zope2.View"
+    />
 
-    <browser:page
-        for="*"
-        name="faceted_listing_ACTION"
-        template="pt/search/listing-casestudies.pt"
-        class=".facetedsearch.ListingGeneric"
-        permission="zope2.View"
-        />
+  <browser:page
+    for="*"
+    name="faceted_listing_RESEARCHPROJECT"
+    class=".facetedsearch.FacetedListingNoYear"
+    permission="zope2.View"
+    />
 
-    <browser:page
-        for="*"
-        name="faceted_listing_ORGANISATION"
-        template="pt/search/listing-organizations.pt"
-        class=".facetedsearch.ListingGeneric"
-        permission="zope2.View"
-        />
+  <!-- Case studies section -->
+  <browser:page
+    for="*"
+    name="faceted_listing_ACTION"
+    class=".facetedsearch.FacetedListingGeneric"
+    permission="zope2.View"
+    />
 
-    <browser:page
-        for="*"
-        name="faceted_listing_MEASURE"
-        template="pt/search/listing-adaptoption.pt"
-        class=".facetedsearch.ListingGeneric"
-        permission="zope2.View"
-        />
+  <browser:page
+    for="*"
+    name="faceted_listing_ORGANISATION"
+    class=".facetedsearch.FacetedListingNoYear"
+    permission="zope2.View"
+    />
 
-    <browser:page
-        for="*"
-        name="faceted_listing_MAYORSADAPT"
-        template="pt/search/listing-cityprofile.pt"
-        class=".facetedsearch.ListingGeneric"
-        permission="zope2.View"
-        />
+  <browser:page
+    for="*"
+    name="faceted_listing_MEASURE"
+    class=".facetedsearch.FacetedListingGeneric"
+    permission="zope2.View"
+    />
 
+  <browser:page
+    for="*"
+    name="faceted_listing_MAYORSADAPT"
+    class=".facetedsearch.FacetedListingNoYear"
+    permission="zope2.View"
+    />
+
+  template="pt/search/listing-adaptoption.pt"
+  template="pt/search/listing-casestudies.pt"
+  template="pt/search/listing-cityprofile.pt"
+  template="pt/search/listing-indicators.pt"
+  template="pt/search/listing-maps.pt"
+  template="pt/search/listing-organizations.pt"
+  template="pt/search/listing-projects.pt"
+
+  <!-- <browser:page -->
+    <!--     for="*" -->
+    <!--     name="faceted_listing_DOCUMENT" -->
+    <!--     template="pt/search/listing&#45;document.pt" -->
+    <!--     class=".facetedsearch.ListingGeneric" -->
+    <!--     permission="zope2.View" -->
+    <!--     /> -->
+
+  <!-- <browser:page -->
+    <!--     for="*" -->
+    <!--     name="faceted_listing_INFORMATIONSOURCE" -->
+    <!--     template="pt/search/listing&#45;document.pt" -->
+    <!--     class=".facetedsearch.ListingGeneric" -->
+    <!--     permission="zope2.View" -->
+    <!--     /> -->
+
+  <!-- <browser:page -->
+    <!--     for="*" -->
+    <!--     name="faceted_listing_GUIDANCE" -->
+    <!--     template="pt/search/listing&#45;document.pt" -->
+    <!--     class=".facetedsearch.ListingGeneric" -->
+    <!--     permission="zope2.View" -->
+    <!--     /> -->
+
+  <!-- <browser:page -->
+    <!--     for="*" -->
+    <!--     name="faceted_listing_TOOL" -->
+    <!--     template="pt/search/listing&#45;document.pt" -->
+    <!--     class=".facetedsearch.ListingGeneric" -->
+    <!--     permission="zope2.View" -->
+    <!--     /> -->
 </configure>

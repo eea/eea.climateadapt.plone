@@ -635,4 +635,22 @@
         handler=".update.update_to_43"
         profile="eea.climateadapt:default" />
 
+    <!-- v3 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_44"
+        title="Upgrade profile for eea.climateadapt v44"
+        description=""
+        directory="profiles/upgrades/to_44"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="44"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v44"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_44"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>

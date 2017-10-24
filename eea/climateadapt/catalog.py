@@ -1,17 +1,21 @@
-from city_profile import ICityProfile
+import json
+
 from collective.cover.interfaces import ICover
+
+from eea.climateadapt.city_profile import ICityProfile
 from eea.climateadapt.interfaces import IClimateAdaptContent, INewsEventsLinks
 from plone.indexer import indexer
 from zope.annotation.interfaces import IAnnotations
 from zope.interface import Interface
-import json
 
 
 @indexer(Interface)
 def imported_ids(object):
     annot = IAnnotations(object).get('eea.climateadapt.imported_ids')
+
     if annot is None:
         return
+
     return list(annot)
 
 
@@ -47,17 +51,20 @@ def countries(object):
         value = object.spatial_values
 
     if value:
-        #print "Return spatial values", object, value
+        # print "Return spatial values", object, value
+
         return value
 
     if hasattr(object, 'geochars'):
         value = object.geochars
+
         if not value:
             return None
 
         value = json.loads(value)['geoElements'].get('countries', []) or None
         # if value:
         #     #print "Returning", object, value
+
         return value
 
 
@@ -65,13 +72,15 @@ def countries(object):
 def search_type(object):
     """
     """
+
     return "CONTENT"
 
 
 @indexer(INewsEventsLinks)
-def search_type(object):
+def search_type_for_newsevents(object):
     """
     """
+
     return "CONTENT"
 
 
@@ -100,7 +109,6 @@ def city_long_description(city):
     return ""
 
 
-# @indexer(IClimateAdaptContent)
-# def climate_adapt_content_searchabletext(obj):
-#     import pdb; pdb.set_trace()
-#     pass
+@indexer(IClimateAdaptContent)
+def featured(obj):
+    return obj.featured

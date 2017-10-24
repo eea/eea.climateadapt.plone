@@ -90,7 +90,9 @@
     <adapter name="imported_ids" factory=".catalog.imported_ids" />
     <adapter name="long_description" factory=".catalog.city_long_description" />
     <adapter name="search_type" factory=".catalog.search_type" />
+    <adapter name="search_type" factory=".catalog.search_type_for_newsevents" />
     <adapter name="sectors" factory=".catalog.city_sectors" />
+    <adapter name="featured" factory=".catalog.featured" />
     <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> -->
 
     ----[ Vocabularies: ]------
@@ -156,136 +158,148 @@
         />
 
     <subscriber
-        for="eea.climateadapt.aceitem.IPublicationReport
+        for="zope.interface.Interface
              Products.CMFCore.interfaces.IActionSucceededEvent"
-        handler=".events.invalidate_cache_faceted_sections"
+        handler=".events.invalidate_cache_faceted_object_row"
         />
 
     <subscriber
-        for="eea.climateadapt.aceitem.IPublicationReport
+        for="zope.interface.Interface
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".events.invalidate_cache_faceted_sections"
+        handler=".events.invalidate_cache_faceted_object_row"
         />
 
-    <subscriber
-        for="eea.climateadapt.aceitem.IInformationPortal
-             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.aceitem.IInformationPortal
-             Products.CMFCore.interfaces.IActionSucceededEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.aceitem.IGuidanceDocument
-             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.aceitem.IGuidanceDocument
-             Products.CMFCore.interfaces.IActionSucceededEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.aceitem.ITool
-             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.aceitem.ITool
-             Products.CMFCore.interfaces.IActionSucceededEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.aceitem.IOrganisation
-             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.aceitem.IOrganisation
-             Products.CMFCore.interfaces.IActionSucceededEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.aceitem.IIndicator
-             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.aceitem.IIndicator
-             Products.CMFCore.interfaces.IActionSucceededEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.aceitem.IAction
-             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.aceitem.IAction
-             Products.CMFCore.interfaces.IActionSucceededEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.aceitem.IMapGraphDataset
-             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.aceitem.IMapGraphDataset
-             Products.CMFCore.interfaces.IActionSucceededEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.aceitem.IResearchProject
-             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.aceitem.IResearchProject
-             Products.CMFCore.interfaces.IActionSucceededEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.acemeasure.IAdaptationOption
-             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.acemeasure.IAdaptationOption
-             Products.CMFCore.interfaces.IActionSucceededEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.acemeasure.ICaseStudy
-             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
-
-    <subscriber
-        for="eea.climateadapt.acemeasure.ICaseStudy
-             Products.CMFCore.interfaces.IActionSucceededEvent"
-        handler=".events.invalidate_cache_faceted_sections"
-        />
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.IPublicationReport -->
+    <!--          Products.CMFCore.interfaces.IActionSucceededEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.IPublicationReport -->
+    <!--          zope.lifecycleevent.interfaces.IObjectModifiedEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.IInformationPortal -->
+    <!--          zope.lifecycleevent.interfaces.IObjectModifiedEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.IInformationPortal -->
+    <!--          Products.CMFCore.interfaces.IActionSucceededEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.IGuidanceDocument -->
+    <!--          zope.lifecycleevent.interfaces.IObjectModifiedEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.IGuidanceDocument -->
+    <!--          Products.CMFCore.interfaces.IActionSucceededEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.ITool -->
+    <!--          zope.lifecycleevent.interfaces.IObjectModifiedEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.ITool -->
+    <!--          Products.CMFCore.interfaces.IActionSucceededEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.IOrganisation -->
+    <!--          zope.lifecycleevent.interfaces.IObjectModifiedEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.IOrganisation -->
+    <!--          Products.CMFCore.interfaces.IActionSucceededEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.IIndicator -->
+    <!--          zope.lifecycleevent.interfaces.IObjectModifiedEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.IIndicator -->
+    <!--          Products.CMFCore.interfaces.IActionSucceededEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.IAction -->
+    <!--          zope.lifecycleevent.interfaces.IObjectModifiedEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.IAction -->
+    <!--          Products.CMFCore.interfaces.IActionSucceededEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.IMapGraphDataset -->
+    <!--          zope.lifecycleevent.interfaces.IObjectModifiedEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.IMapGraphDataset -->
+    <!--          Products.CMFCore.interfaces.IActionSucceededEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.IResearchProject -->
+    <!--          zope.lifecycleevent.interfaces.IObjectModifiedEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.aceitem.IResearchProject -->
+    <!--          Products.CMFCore.interfaces.IActionSucceededEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.acemeasure.IAdaptationOption -->
+    <!--          zope.lifecycleevent.interfaces.IObjectModifiedEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.acemeasure.IAdaptationOption -->
+    <!--          Products.CMFCore.interfaces.IActionSucceededEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.acemeasure.ICaseStudy -->
+    <!--          zope.lifecycleevent.interfaces.IObjectModifiedEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
+    <!--  -->
+    <!-- <subscriber -->
+    <!--     for="eea.climateadapt.acemeasure.ICaseStudy -->
+    <!--          Products.CMFCore.interfaces.IActionSucceededEvent" -->
+    <!--     handler=".events.invalidate_cache_faceted_sections" -->
+    <!--     /> -->
 
     <subscriber
        for="eea.climateadapt.acemeasure.IAceMeasure

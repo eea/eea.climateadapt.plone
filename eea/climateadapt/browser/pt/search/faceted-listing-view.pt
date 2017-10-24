@@ -23,6 +23,8 @@
             <span tal:content="python: sum([len(all_results[s]) for s in sections])">0</span>
           </div>
 
+          <h3>Sectiuni</h3>
+
           <div tal:repeat="search_type sections">
 
             <tal:def tal:define="results python: all_results[search_type];

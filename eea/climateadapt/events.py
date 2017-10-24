@@ -1,12 +1,11 @@
 from eea.cache import event
+from eea.climateadapt.browser.facetedsearch import CCA_TYPES
 from plone import api
 from plone.app.contentrules.handlers import execute_rules
 from plone.app.iterate.dexterity.utils import get_baseline
 from plone.app.iterate.event import WorkingCopyDeletedEvent
 from zope.annotation.interfaces import IAnnotations
 from zope.event import notify
-from eea.climateadapt.browser.facetedsearch import CCA_TYPES
-
 
 InvalidateCacheEvent = event.InvalidateCacheEvent
 
@@ -29,24 +28,37 @@ def handle_iterate_wc_deletion(object, event):
     notify(WorkingCopyDeletedEvent(object, baseline, relation=None))
 
 
-def invalidate_cache_faceted_sections(obj, evt):
-    """ Invalidate faceted sections cache after cache keys
-    """
-    return
-    site = api.portal.getSite()
-    portal_type = obj.portal_type
-
-    print "INVALIDATING CACHE"
-
-    if portal_type not in CCA_TYPES:
-        portal_type = 'CONTENT'
-    keys = IAnnotations(site)['cca-search'].get(portal_type, [])
-
-    for key in keys:
-        notify(InvalidateCacheEvent(raw=False, key=key))
-        keys.remove(key)
-    IAnnotations(site)['cca-search'][portal_type] = keys
+def invalidate_cache_faceted_object_row(obj, evt):
+    try:
+        uid = obj.UID()
+    except Exception:
+        # logger.warning("Could not detect UID for obj, %s", obj)
+        uid = ''
+    key = 'row-' + uid
+    notify(InvalidateCacheEvent(raw=False, key=key))
 
 
-def invalidate_cache(obj, evt):
-    notify(InvalidateCacheEvent(raw=True))
+# def invalidate_cache_faceted_sections(obj, evt):
+#     """ Invalidate faceted sections cache after cache keys
+#     """
+#
+#     return
+#     site = api.portal.getSite()
+#     portal_type = obj.portal_type
+#
+#     print "INVALIDATING CACHE"
+#
+#     if portal_type not in CCA_TYPES:
+#         portal_type = 'CONTENT'
+#
+#     keys = IAnnotations(site)['cca-search'].get(portal_type, [])
+#
+#     for key in keys:
+#         notify(InvalidateCacheEvent(raw=False, key=key))
+#         keys.remove(key)
+#
+#     IAnnotations(site)['cca-search'][portal_type] = keys
+
+
+# def invalidate_cache(obj, evt):
+#     notify(InvalidateCacheEvent(raw=True))

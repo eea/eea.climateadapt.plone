@@ -5,11 +5,7 @@
       <th>Published</th>
     </tr>
   </thead>
-  <tbody tal:define="
-    two python: nr_res / 5;
-    three python: 2 * two;
-    four python: 3 * two;
-    five python: 4 * two;"
+  <tbody
     tal:on-error="nothing">
     <tr tal:repeat="brain brains" tal:on-error="nothing">
       <td tal:define="title brain/Title" tal:on-error="nothing">
