@@ -272,6 +272,20 @@ class ExcelCsvExportView (BrowserView):
 class DetectBrokenLinksView (BrowserView):
     """ View for detecting broken links"""
 
+    # def show_obj(self, path):
+    #     """ Don't show objects which are not published
+    #     """
+    #     path = '/'.join(path)
+    #     obj = self.context.restrictedTraverse(path)
+    #     state = get_state(obj)
+    #
+    #     return state == 'published'
+
+    def url(self, path):
+        path = '/'.join(path[1:])
+
+        return path
+
     def results(self):
         annot = IAnnotations(self.context)
         res = []
