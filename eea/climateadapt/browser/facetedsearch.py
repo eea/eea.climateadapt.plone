@@ -250,7 +250,7 @@ class BaseSectionRenderer(ListingGeneric):
     def key(method, self, brain):
         return 'row-' + brain.UID
 
-    @cache(key)
+    # @cache(key)
     def render_row(self, brain):
         ld = getattr(brain.long_description, 'raw', brain.long_description)
 
