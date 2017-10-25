@@ -282,7 +282,7 @@ class DetectBrokenLinksView (BrowserView):
     #     return state == 'published'
 
     def url(self, path):
-        path = '/'.join(path[1:])
+        path = '/'.join(path[2:])
 
         return path
 
