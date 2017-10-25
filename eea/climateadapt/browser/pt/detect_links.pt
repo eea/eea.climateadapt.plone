@@ -22,25 +22,25 @@
         </thead>
         <tbody>
           <tal:rep repeat="result view/results">
+            <tr tal:condition="result">
+              <td>
+                <a href="" tal:attributes="href python: result['url']"
+                  target="_blank" tal:content="python: result['url']">
+                </a>
+              </td>
+              <td>
+                <a
+                  href=""
+                  target="_blank"
+                  tal:define="url python: view.url(result['object_url'])"
+                  tal:attributes="href url"
+                  tal:content="url">
+                  URL
+                </a>
+              </td>
+              <td tal:content="python: result['status']"></td>
+            </tr>
           </tal:rep>
-          <tr tal:condition="result">
-            <td>
-              <a href="" tal:attributes="href python: result['url']"
-                 target="_blank" tal:content="python: result['url']">
-              </a>
-            </td>
-            <td>
-              <a
-                 href=""
-                 target="_blank"
-                 tal:define="url python: view.url(result['object_url'])"
-                 tal:attributes="href url"
-                 tal:content="url">
-                URL
-              </a>
-            </td>
-            <td tal:content="python: result['status']"></td>
-          </tr>
         </tbody>
       </table>
     </div>
