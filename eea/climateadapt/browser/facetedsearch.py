@@ -268,7 +268,7 @@ class BaseSectionRenderer(ListingGeneric):
             'img_new': img_new,
             'url': brain.getURL(),
             'text': text[:208-len(title)],
-            'year': brain.year,
+            'year': brain.year or ' ',
             'pub_date': self.get_publication_date(brain)
         }
 
