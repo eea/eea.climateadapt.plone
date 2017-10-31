@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bug fix: don't fail in archived state viewlet if content has no workflow
+  state
+  [tiberich]
 * Bug fix: improve caching in faceted search results
   [tiberich, krisztina, #86276]
 * Bug: Fix AST nav menu links

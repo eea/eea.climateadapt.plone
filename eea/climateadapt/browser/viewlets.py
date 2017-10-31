@@ -11,6 +11,7 @@ from plone.app.layout.viewlets.common import \
 from plone.app.layout.viewlets.common import \
     SearchBoxViewlet as BaseSearchViewlet
 from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.CMFPlone.utils import base_hasattr
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -195,7 +196,10 @@ class ArchivedStateViewlet(ViewletBase):
     index = ViewPageTemplateFile("pt/archived_state_viewlet.pt")
 
     def render(self):
-        state = get_state(self.context)
+        try:
+            state = get_state(self.context)
+        except WorkflowException:
+            return ""
 
         if state == "archived":
             return self.index()
