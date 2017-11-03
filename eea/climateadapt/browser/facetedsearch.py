@@ -259,7 +259,11 @@ class BaseSectionRenderer(ListingGeneric):
 
         text = self.html2text(ld)
         title = brain.Title.decode('utf-8')
-        img_featured = brain.featured == 1 and _IMG_FEATURED or ''
+        try:
+            img_featured = brain.featured == 1 and _IMG_FEATURED or ''
+        except AttributeError:
+            img_featured = ''
+
         img_new = self.new_item(brain) and _IMG_NEW or ''
 
         values = {
