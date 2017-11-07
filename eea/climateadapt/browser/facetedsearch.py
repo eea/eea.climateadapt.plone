@@ -6,7 +6,8 @@
 from collections import defaultdict
 from datetime import datetime
 
-from eea.cache import cache
+# from eea.cache import cache
+from eea.facetednavigation.browser.app.query import FacetedQueryHandler
 from eea.facetednavigation.browser.app.view import FacetedContainerView
 from eea.facetednavigation.caching.cache import cacheKeyFacetedNavigation
 from plone import api
@@ -95,6 +96,49 @@ alsoProvides(faceted_search_types_vocabulary, IVocabularyFactory)
 # ]
 #
 
+
+class DoSearch(BrowserView, FacetedQueryHandler):
+
+    @property
+    def labels(self):
+        return dict(SEARCH_TYPES)
+
+    def __call__(self, *args, **kwargs):
+        kwargs['batch'] = False
+        brains = self.query(**kwargs)
+
+        search_types = [
+            x for x in self.labels.keys()
+            if x in self.request.QUERY_STRING.split("search_type=")[-1]]
+
+        results = brains
+
+        if len(search_types) > 0:
+            results = []
+
+            for brain in brains:
+                if brain.search_type:
+                    if brain.search_type in self.labels:
+                        if brain.search_type in search_types:
+                            results.append(brain)
+
+        return results
+
+
+def do_search(request, context, search_type):
+    url = "do_search"
+    if "search_type" in request.QUERY_STRING:
+        old = [x for x in dict(SEARCH_TYPES) if x in request.QUERY_STRING][0]
+        request.QUERY_STRING = request.QUERY_STRING.replace(old, search_type)
+    elif len(request.QUERY_STRING) < 2:
+        request.QUERY_STRING += "?search_type=" + search_type
+    else:
+        request.QUERY_STRING += "&search_type=" + search_type
+
+    brains = context.unrestrictedTraverse(url)()
+    return brains
+
+
 class ListingView(BrowserView):
     """ Faceted listing view for ClimateAdapt
     """
@@ -114,8 +158,20 @@ class ListingView(BrowserView):
             if brain.search_type:
                 if brain.search_type in self.labels:
                     results[brain.search_type].append(brain)
-
         return results
+
+    def results_by_type(self, batch, search_type):
+        results = []
+
+        for brain in batch:
+            if brain.search_type:
+                if brain.search_type in self.labels:
+                    if brain.search_type == search_type:
+                        results.append(brain)
+        return results
+
+    def search_by_type(self, search_type):
+        return do_search(self.request, self.context, search_type)
 
     def key(method, self, name, brains):
         print "caching ", name
@@ -125,7 +181,7 @@ class ListingView(BrowserView):
 
         return cache_key
 
-    @cache(key, dependencies=['eea.facetednavigation'])  # , lifetime=36000
+    # @cache(key, dependencies=['eea.facetednavigation'])  # , lifetime=36000
     def render(self, name, brains):
         print "rendering ", name
 

@@ -25,7 +25,7 @@
 
           <div tal:repeat="search_type sections">
 
-            <tal:def tal:define="results python: all_results[search_type];
+            <tal:def tal:define="results python: self.results_by_type(folderContents, search_type);
                                  section_id string:collapsed_${repeat/search_type/index};
                                  results python: list(results);
                                  nr_res python: len(results);
@@ -42,7 +42,18 @@
                 </h3>
 
                 <div class="collapse" tal:attributes="id section_id">
-                  <table tal:replace="structure python:self.render(search_type, results)" />
+                  <!-- <table tal:replace="structure python:self.render(search_type, results)" /> -->
+                  <!-- WIP HERE -->
+                  <p tal:replace="python:len(self.search_by_type(search_type))"></p>
+
+                  <table tal:replace="structure python:self.render(
+                    search_type,
+                    self.results_by_type(folderContents, search_type))" />
+
+                  <table class="search-type-results"
+                         tal:attributes="data-search-type python:search_type">
+                  </table>
+
                 </div>
               </div>
             </tal:def>
@@ -72,6 +83,11 @@
                   var glyph = acc.parent().find('.glyphicon');
                   glyph.toggleClass('glyphicon-chevron-right');
                   glyph.toggleClass('glyphicon-chevron-down');
+
+                  var search_type = $(
+                      "#" + $(this).attr('aria-controls') + ' table.search-type-results'
+                      ).attr('data-search-type');
+                  console.log(search_type);
                 });
               });
               $('.listing-table').each(function(index) {

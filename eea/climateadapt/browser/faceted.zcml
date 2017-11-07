@@ -48,6 +48,13 @@
     permission="zope2.View"
     />
 
+  <browser:page
+    for="*"
+    name="do_search"
+    class=".facetedsearch.DoSearch"
+    permission="zope2.View"
+    />
+
   <!-- Listing pages with results -->
   <browser:page
     for="*"
