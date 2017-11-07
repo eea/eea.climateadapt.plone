@@ -43,17 +43,20 @@
 
                 <div class="collapse" tal:attributes="id section_id">
                   <!-- <table tal:replace="structure python:self.render(search_type, results)" /> -->
-                  <!-- WIP HERE -->
-                  <table tal:replace="structure python:self.search_by_type(search_type)" />
+                  <!-- <table tal:replace="structure python:self.search_by_type(search_type)" /> -->
 
                   <!-- <table tal:replace="structure python:self.render( -->
                   <!--   search_type, -->
                   <!--   self.results_by_type(folderContents, search_type))" /> -->
 
                   <table class="search-type-results"
-                         tal:attributes="data-search-type python:search_type">
+                         tal:attributes="data-search-type python:search_type;
+                                         data-search-url
+                                         python:'{}/do_search?search_type={}'.format(self.context.absolute_url(),
+                                         search_type)">
                   </table>
 
+                  <!-- WIP HERE -->
                 </div>
               </div>
             </tal:def>
@@ -84,10 +87,13 @@
                   glyph.toggleClass('glyphicon-chevron-right');
                   glyph.toggleClass('glyphicon-chevron-down');
 
-                  var search_type = $(
-                      "#" + $(this).attr('aria-controls') + ' table.search-type-results'
-                      ).attr('data-search-type');
-                  console.log(search_type);
+                  var $table = $("#" + $(this).attr('aria-controls') + ' table.search-type-results');
+
+                  var search_type = $table.attr('data-search-type');
+                  var search_url = $table.attr('data-search-url');
+
+                  // debugger;
+                  $table.load(search_url);
                 });
               });
               $('.listing-table').each(function(index) {

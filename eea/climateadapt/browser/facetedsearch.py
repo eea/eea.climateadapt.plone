@@ -3,24 +3,22 @@
 """ Utilities for faceted search
 """
 
+# from eea.cache import cache
+# from zope.annotation.interfaces import IAnnotations
+from Products.CMFPlone.utils import isExpired
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collections import defaultdict
 from datetime import datetime
-
-# from eea.cache import cache
 from eea.facetednavigation.browser.app.query import FacetedQueryHandler
 from eea.facetednavigation.browser.app.view import FacetedContainerView
 from eea.facetednavigation.caching.cache import cacheKeyFacetedNavigation
 from plone import api
 from plone.api import portal
-from Products.CMFPlone.utils import isExpired
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getMultiAdapter, queryMultiAdapter
 from zope.interface import alsoProvides
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
-
-# from zope.annotation.interfaces import IAnnotations
 
 # TODO: should use the FACETED_SECTIONS LIST
 SEARCH_TYPES = [
