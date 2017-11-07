@@ -44,11 +44,11 @@
                 <div class="collapse" tal:attributes="id section_id">
                   <!-- <table tal:replace="structure python:self.render(search_type, results)" /> -->
                   <!-- WIP HERE -->
-                  <p tal:replace="python:len(self.search_by_type(search_type))"></p>
+                  <table tal:replace="structure python:self.search_by_type(search_type)" />
 
-                  <table tal:replace="structure python:self.render(
-                    search_type,
-                    self.results_by_type(folderContents, search_type))" />
+                  <!-- <table tal:replace="structure python:self.render( -->
+                  <!--   search_type, -->
+                  <!--   self.results_by_type(folderContents, search_type))" /> -->
 
                   <table class="search-type-results"
                          tal:attributes="data-search-type python:search_type">

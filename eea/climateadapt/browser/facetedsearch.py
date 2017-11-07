@@ -103,32 +103,56 @@ class DoSearch(BrowserView, FacetedQueryHandler):
     def labels(self):
         return dict(SEARCH_TYPES)
 
+    # @cache(key, dependencies=['eea.facetednavigation'])  # , lifetime=36000
+    def render(self, name, brains):
+        print "rendering ", name
+
+        # if name != 'DOCUMENT':
+        #     return ''
+
+        view = queryMultiAdapter((self.context, self.request),
+                                 name='faceted_listing_' + name)
+
+        if view is None:
+            view = getMultiAdapter((self.context, self.request),
+                                   name='faceted_listing_GENERIC')
+
+        view.brains = brains
+
+        return view()
+
     def __call__(self, *args, **kwargs):
         kwargs['batch'] = False
         brains = self.query(**kwargs)
 
-        search_types = [
-            x for x in self.labels.keys()
-            if x in self.request.QUERY_STRING.split("search_type=")[-1]]
+        try:
+            search_type = [
+                x for x in self.labels.keys()
+                if x in self.request.QUERY_STRING.split(
+                    "search_type=")[-1]][0]
+        except Exception:
+            search_type = None
 
         results = brains
 
-        if len(search_types) > 0:
+        if search_type is not None:
             results = []
 
             for brain in brains:
                 if brain.search_type:
                     if brain.search_type in self.labels:
-                        if brain.search_type in search_types:
+                        if brain.search_type == search_type:
                             results.append(brain)
 
-        return results
+        return self.render(search_type, results)
 
 
 def do_search(request, context, search_type):
     url = "do_search"
     if "search_type" in request.QUERY_STRING:
         old = [x for x in dict(SEARCH_TYPES) if x in request.QUERY_STRING][0]
+
+        # TODO: Replace only the value for search_type.
         request.QUERY_STRING = request.QUERY_STRING.replace(old, search_type)
     elif len(request.QUERY_STRING) < 2:
         request.QUERY_STRING += "?search_type=" + search_type
