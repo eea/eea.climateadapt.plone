@@ -131,11 +131,11 @@ class DoSearch(BrowserView, FacetedQueryHandler):
                 if x in self.request.QUERY_STRING.split(
                     "search_type=")[-1]][0]
         except Exception:
-            search_type = None
+            search_type = ""
 
         results = brains
 
-        if search_type is not None:
+        if len(search_type) > 0:
             results = []
 
             for brain in brains:
