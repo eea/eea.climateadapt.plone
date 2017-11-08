@@ -62,7 +62,9 @@
                       </tr>
                     </thead>
                   </table>
-                  <p class="loading-text">Loading...</p>
+                  <p class="loading">
+                    <img src="./++resource++faceted_images/ajax-loader-small.gif" alt="Loading..."/>
+                  </p>
                   <!-- WIP HERE -->
                 </div>
               </div>
@@ -106,7 +108,7 @@
                         "order": [0, "asc"]
                       });
                       $table.addClass('initialized');
-                      $section.find("p.loading-text").hide();
+                      $section.find("p.loading").hide();
                     });
                   }
                 });
