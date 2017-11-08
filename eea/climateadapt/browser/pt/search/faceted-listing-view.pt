@@ -99,11 +99,14 @@
                   var search_type = $table.attr('data-search-type');
                   var search_url = $table.attr('data-search-url');
 
-                  $table.load(search_url, function() {
-                    $table.dataTable({
-                      "order": [0, "asc"]
+                  if(!$table.hasClass('initialized')) {
+                    $table.load(search_url, function() {
+                      $table.dataTable({
+                        "order": [0, "asc"]
+                      });
+                      $table.addClass('initialized');
                     });
-                  });
+                  }
                 });
               });
               // $('.listing-table').each(function(index) {
