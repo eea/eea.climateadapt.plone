@@ -104,28 +104,23 @@
 
                   if(!$table.hasClass('initialized')) {
                     $table.load(search_url, function() {
-                      $table.dataTable({
-                        "order": [0, "asc"],
-                        "bDestroy": true
-                      });
+                      if($("table.search-type-results").index($table) === 0) {
+                        $table.dataTable({
+                          "order": [0, "asc"],
+                          "bDestroy": true
+                        });
+                      } else {
+                        $table.dataTable({
+                          "order": [1, "desc"],
+                          "bDestroy": true
+                        });
+                      }
                       $table.addClass('initialized');
                       $section.find("p.loading").hide();
                     });
                   }
                 });
               });
-              // $('.listing-table').each(function(index) {
-              //   if (index === 0) {
-              //     $(this).dataTable({
-              //       "order": [0, "asc"]
-              //     });
-              //   }
-              //   else {
-              //     $(this).dataTable({
-              //       "order": [1, "desc"]
-              //     });
-              //   }
-              // });
             });
           </script>
 
