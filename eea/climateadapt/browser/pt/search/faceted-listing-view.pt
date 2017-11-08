@@ -54,6 +54,13 @@
                                          data-search-url
                                          python:'{}/do_search?search_type={}'.format(self.context.absolute_url(),
                                          search_type)">
+                    <thead>
+                      <tr>
+                          <th>Title</th>
+                          <th>Year</th>
+                          <th>Published</th>
+                      </tr>
+                    </thead>
                   </table>
 
                   <!-- WIP HERE -->
@@ -92,22 +99,25 @@
                   var search_type = $table.attr('data-search-type');
                   var search_url = $table.attr('data-search-url');
 
-                  // debugger;
-                  $table.load(search_url);
+                  $table.load(search_url, function() {
+                    $table.dataTable({
+                      "order": [0, "asc"]
+                    });
+                  });
                 });
               });
-              $('.listing-table').each(function(index) {
-                if (index === 0) {
-                  $(this).dataTable({
-                    "order": [0, "asc"]
-                  });
-                }
-                else {
-                  $(this).dataTable({
-                    "order": [1, "desc"]
-                  });
-                }
-              });
+              // $('.listing-table').each(function(index) {
+              //   if (index === 0) {
+              //     $(this).dataTable({
+              //       "order": [0, "asc"]
+              //     });
+              //   }
+              //   else {
+              //     $(this).dataTable({
+              //       "order": [1, "desc"]
+              //     });
+              //   }
+              // });
             });
           </script>
 
