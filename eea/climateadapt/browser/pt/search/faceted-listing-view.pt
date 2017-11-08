@@ -105,7 +105,8 @@
                   if(!$table.hasClass('initialized')) {
                     $table.load(search_url, function() {
                       $table.dataTable({
-                        "order": [0, "asc"]
+                        "order": [0, "asc"],
+                        "bDestroy": true
                       });
                       $table.addClass('initialized');
                       $section.find("p.loading").hide();
