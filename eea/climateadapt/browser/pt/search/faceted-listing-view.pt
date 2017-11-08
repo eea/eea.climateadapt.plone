@@ -55,14 +55,14 @@
                                          python:'{}/do_search?search_type={}'.format(self.context.absolute_url(),
                                          search_type)">
                     <thead>
-                      <tr>
-                          <th>Title</th>
-                          <th>Year</th>
-                          <th>Published</th>
+                      <tr style="display:none;"><!-- dataTable placeholder -->
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Published</th>
                       </tr>
                     </thead>
                   </table>
-
+                  <p class="loading-text">Loading...</p>
                   <!-- WIP HERE -->
                 </div>
               </div>
@@ -94,7 +94,8 @@
                   glyph.toggleClass('glyphicon-chevron-right');
                   glyph.toggleClass('glyphicon-chevron-down');
 
-                  var $table = $("#" + $(this).attr('aria-controls') + ' table.search-type-results');
+                  var $section = $("#" + $(this).attr('aria-controls'));
+                  var $table = $section.find('table.search-type-results');
 
                   var search_type = $table.attr('data-search-type');
                   var search_url = $table.attr('data-search-url');
@@ -105,6 +106,7 @@
                         "order": [0, "asc"]
                       });
                       $table.addClass('initialized');
+                      $section.find("p.loading-text").hide();
                     });
                   }
                 });
