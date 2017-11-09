@@ -120,7 +120,7 @@ class DoSearch(BrowserView, FacetedQueryHandler):
         return view()
 
     def __call__(self, *args, **kwargs):
-        kwargs['batch'] = False
+        # kwargs['batch'] = False
         brains = self.query(**kwargs)
 
         try:
@@ -141,6 +141,8 @@ class DoSearch(BrowserView, FacetedQueryHandler):
                     if brain.search_type in self.labels:
                         if brain.search_type == search_type:
                             results.append(brain)
+
+        print self.context.absolute_url()
 
         if "debug_mode" in self.request.QUERY_STRING:
             print "DEBUG: " + self.request.QUERY_STRING
@@ -208,6 +210,19 @@ class ListingView(BrowserView):
             return do_search(
                 self.request, self.context, search_type, debug_mode=True)
         return do_search(self.request, self.context, search_type)
+
+    def search_url(self, search_type):
+        if len(self.request.QUERY_STRING) > 1:
+            return """{}/do_search?{}&search_type={}""".format(
+                self.context.absolute_url(),
+                self.request.QUERY_STRING,
+                search_type
+            )
+
+        return """{}/do_search?search_type={}""".format(
+            self.context.absolute_url(),
+            search_type
+        )
 
     def key(method, self, name, brains):
         print "caching ", name
