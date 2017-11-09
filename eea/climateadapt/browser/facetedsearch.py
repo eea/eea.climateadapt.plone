@@ -143,8 +143,10 @@ class DoSearch(BrowserView, FacetedQueryHandler):
                             results.append(brain)
 
         if "debug_mode" in self.request.QUERY_STRING:
+            print "DEBUG: " + self.request.QUERY_STRING
             return results
 
+        print "NORMAL: " + self.request.QUERY_STRING
         return self.render(search_type, results)
 
 
@@ -165,7 +167,8 @@ def do_search(request, context, search_type, debug_mode=False):
         request.QUERY_STRING += "&search_type=" + search_type
 
     if debug_mode is True:
-        request.QUERY_STRING += "&debug_mode=1"
+        if "debug_mode=1" not in request.QUERY_STRING:
+            request.QUERY_STRING += "&debug_mode=1"
     return context.unrestrictedTraverse(url)()
 
 

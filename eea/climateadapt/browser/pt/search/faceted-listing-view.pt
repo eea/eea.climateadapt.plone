@@ -111,6 +111,7 @@
 
                   if(!$table.hasClass('initialized')) {
                     $table.load(search_url, function() {
+                      console.log(search_type);
                       if($("table.search-type-results").index($table) === 0) {
                         $table.dataTable({
                           "order": [0, "asc"],
