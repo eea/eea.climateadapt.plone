@@ -120,7 +120,7 @@ class DoSearch(BrowserView, FacetedQueryHandler):
         return view()
 
     def __call__(self, *args, **kwargs):
-        # kwargs['batch'] = False
+        kwargs['batch'] = False
         brains = self.query(**kwargs)
 
         try:
