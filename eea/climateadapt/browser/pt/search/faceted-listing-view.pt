@@ -42,25 +42,12 @@
                 </h3>
 
                 <div class="collapse" tal:attributes="id section_id">
-                  <!-- <table tal:replace="structure python:self.render(search_type, results)" /> -->
-                  <!-- <table tal:replace="structure python:self.search_by_type(search_type)" /> -->
-
-                  <!-- <table tal:replace="structure python:self.render( -->
-                  <!--   search_type, -->
-                  <!--   self.results_by_type(folderContents, search_type))" /> -->
-
-                  <!-- <p tal:content="python:search_type"></p> -->
-                  <!-- <p tal:content="python:len(self.results_by_type(folderContents, search_type))"></p> -->
-                  <!-- <p tal:content="python:len(self.search_by_type(search_type, debug_mode=True))"></p> -->
                   <table class="search-type-results"
                          tal:attributes="data-search-type python:search_type;
-                                         data-search-url python:self.search_url(search_type);
-                         ">
+                                         data-search-url python:self.search_url(search_type);">
                     <thead>
-                      <tr style="display:none;"><!-- dataTable placeholder -->
-                        <th>Title</th>
-                        <th>Year</th>
-                        <th>Published</th>
+                      <tr style="display:none;">
+                        <th>Title</th><th>Year</th><th>Published</th>
                       </tr>
                     </thead>
                   </table>
@@ -73,15 +60,7 @@
           </div>
           <script>
             $(document).ready(function() {
-              $.ajaxSetup ({
-                // Disable caching of AJAX responses
-                cache: false
-              });
-
               jQuery(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function(evt){
-                console.log($('.listing-table'));
-                // alert('success');
-                console.log('success');
                 $('.listing-table').DataTable(
                   {
                     paging: true,
@@ -104,13 +83,11 @@
 
                   var $section = $("#" + $(this).attr('aria-controls'));
                   var $table = $section.find('table.search-type-results');
-
                   var search_type = $table.attr('data-search-type');
                   var search_url = $table.attr('data-search-url');
 
                   if(!$table.hasClass('initialized')) {
                     $table.load(search_url, function() {
-                      console.log(search_type);
                       if($("table.search-type-results").index($table) === 0) {
                         $table.dataTable({
                           "order": [0, "asc"],
@@ -130,9 +107,7 @@
               });
             });
           </script>
-
         </div>
-
       </metal:block>
     </metal:content-core>
   </body>
