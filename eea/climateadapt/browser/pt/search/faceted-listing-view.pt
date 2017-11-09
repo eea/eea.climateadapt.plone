@@ -49,6 +49,9 @@
                   <!--   search_type, -->
                   <!--   self.results_by_type(folderContents, search_type))" /> -->
 
+                  <p tal:content="python:search_type"></p>
+                  <p tal:content="python:len(self.results_by_type(folderContents, search_type))"></p>
+                  <p tal:content="python:len(self.search_by_type(search_type, debug_mode=True))"></p>
                   <table class="search-type-results"
                          tal:attributes="data-search-type python:search_type;
                                          data-search-url
@@ -65,13 +68,17 @@
                   <p class="loading">
                     <img src="./++resource++faceted_images/ajax-loader-small.gif" alt="Loading..."/>
                   </p>
-                  <!-- WIP HERE -->
                 </div>
               </div>
             </tal:def>
           </div>
           <script>
             $(document).ready(function() {
+              $.ajaxSetup ({
+                // Disable caching of AJAX responses
+                cache: false
+              });
+
               jQuery(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function(evt){
                 console.log($('.listing-table'));
                 // alert('success');

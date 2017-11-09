@@ -142,10 +142,17 @@ class DoSearch(BrowserView, FacetedQueryHandler):
                         if brain.search_type == search_type:
                             results.append(brain)
 
+        if "debug_mode" in self.request.QUERY_STRING:
+            return results
+
         return self.render(search_type, results)
 
 
-def do_search(request, context, search_type):
+def do_search(request, context, search_type, debug_mode=False):
+    """ Return result of /do_search?search_type=CONTENT
+
+        Use debug mode if you want the list of brains instead of rendered html
+    """
     url = "do_search"
     if "search_type" in request.QUERY_STRING:
         old = [x for x in dict(SEARCH_TYPES) if x in request.QUERY_STRING][0]
@@ -157,8 +164,9 @@ def do_search(request, context, search_type):
     else:
         request.QUERY_STRING += "&search_type=" + search_type
 
-    brains = context.unrestrictedTraverse(url)()
-    return brains
+    if debug_mode is True:
+        request.QUERY_STRING += "&debug_mode=1"
+    return context.unrestrictedTraverse(url)()
 
 
 class ListingView(BrowserView):
@@ -192,7 +200,10 @@ class ListingView(BrowserView):
                         results.append(brain)
         return results
 
-    def search_by_type(self, search_type):
+    def search_by_type(self, search_type, debug_mode=False):
+        if debug_mode is True:
+            return do_search(
+                self.request, self.context, search_type, debug_mode=True)
         return do_search(self.request, self.context, search_type)
 
     def key(method, self, name, brains):
