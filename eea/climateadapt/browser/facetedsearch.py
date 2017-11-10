@@ -3,7 +3,7 @@
 """ Utilities for faceted search
 """
 
-# from eea.cache import cache
+from eea.cache import cache
 # from zope.annotation.interfaces import IAnnotations
 from Products.CMFPlone.utils import isExpired
 from Products.Five.browser import BrowserView
@@ -101,12 +101,8 @@ class DoSearch(BrowserView, FacetedQueryHandler):
     def labels(self):
         return dict(SEARCH_TYPES)
 
-    # @cache(key, dependencies=['eea.facetednavigation'])  # , lifetime=36000
     def render(self, name, brains):
         print "rendering ", name
-
-        # if name != 'DOCUMENT':
-        #     return ''
 
         view = queryMultiAdapter((self.context, self.request),
                                  name='faceted_listing_' + name)
@@ -142,13 +138,6 @@ class DoSearch(BrowserView, FacetedQueryHandler):
                         if brain.search_type == search_type:
                             results.append(brain)
 
-        print self.context.absolute_url()
-
-        if "debug_mode" in self.request.QUERY_STRING:
-            print "DEBUG: " + self.request.QUERY_STRING
-            return results
-
-        print "NORMAL: " + self.request.QUERY_STRING
         return self.render(search_type, results)
 
 
@@ -204,7 +193,7 @@ class ListingView(BrowserView):
 
         return cache_key
 
-    # @cache(key, dependencies=['eea.facetednavigation'])  # , lifetime=36000
+    @cache(key, dependencies=['eea.facetednavigation'])  # , lifetime=36000
     def render(self, name, brains):
         print "rendering ", name
 
@@ -329,7 +318,7 @@ class BaseSectionRenderer(ListingGeneric):
     def key(method, self, brain):
         return 'row-' + brain.UID
 
-    # @cache(key)
+    @cache(key)
     def render_row(self, brain):
         ld = getattr(brain.long_description, 'raw', brain.long_description)
 
