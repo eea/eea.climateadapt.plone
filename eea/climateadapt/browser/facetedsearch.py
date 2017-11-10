@@ -152,28 +152,6 @@ class DoSearch(BrowserView, FacetedQueryHandler):
         return self.render(search_type, results)
 
 
-def do_search(request, context, search_type, debug_mode=False):
-    """ Return result of /do_search?search_type=CONTENT
-
-        Use debug mode if you want the list of brains instead of rendered html
-    """
-    url = "do_search"
-    if "search_type" in request.QUERY_STRING:
-        old = [x for x in dict(SEARCH_TYPES) if x in request.QUERY_STRING][0]
-
-        # TODO: Replace only the value for search_type.
-        request.QUERY_STRING = request.QUERY_STRING.replace(old, search_type)
-    elif len(request.QUERY_STRING) < 2:
-        request.QUERY_STRING += "?search_type=" + search_type
-    else:
-        request.QUERY_STRING += "&search_type=" + search_type
-
-    if debug_mode is True:
-        if "debug_mode=1" not in request.QUERY_STRING:
-            request.QUERY_STRING += "&debug_mode=1"
-    return context.unrestrictedTraverse(url)()
-
-
 class ListingView(BrowserView):
     """ Faceted listing view for ClimateAdapt
     """
@@ -204,12 +182,6 @@ class ListingView(BrowserView):
                     if brain.search_type == search_type:
                         results.append(brain)
         return results
-
-    def search_by_type(self, search_type, debug_mode=False):
-        if debug_mode is True:
-            return do_search(
-                self.request, self.context, search_type, debug_mode=True)
-        return do_search(self.request, self.context, search_type)
 
     def search_url(self, search_type):
         if len(self.request.QUERY_STRING) > 1:
