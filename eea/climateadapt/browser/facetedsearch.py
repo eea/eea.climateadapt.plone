@@ -20,7 +20,6 @@ from zope.interface import alsoProvides
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
-# TODO: should use the FACETED_SECTIONS LIST
 SEARCH_TYPES = [
     ("CONTENT", "Content in Climate-ADAPT"),
     ("DOCUMENT", "Publication and Reports"),
@@ -76,23 +75,6 @@ def faceted_search_types_vocabulary(context):
 
 
 alsoProvides(faceted_search_types_vocabulary, IVocabularyFactory)
-
-
-# FACETED_SECTIONS = [
-#     ("CITYPROFILE", "Mayors Adapt city profiles"),
-#     ("CONTENT", "Content in Climate-ADAPT"),
-#     ("DOCUMENT", "Publication & Report"),
-#     ("INFORMATIONSOURCE", "Information Portal"),
-#     ("GUIDANCE","Guidance"),
-#     ("TOOL", "Tools"),
-#     ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
-#     ("INDICATOR", "Indicators"),
-#     ("RESEARCHPROJECT","Research and knowledge Projects"),
-#     ("MEASURE","Adaptation Option"),
-#     ("ACTION", "Case Studies"),
-#     ("ORGANISATION", "Organisations"),
-# ]
-#
 
 
 class DoSearch(BrowserView, FacetedQueryHandler):
