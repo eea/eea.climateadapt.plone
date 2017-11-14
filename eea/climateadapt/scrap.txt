@@ -1,0 +1,47 @@
+
+<!--       <li class="first submenu" style="display: none;"
+          tal:define="item python: view.get_tile('s1')">
+        <div class="case-studies-homepage-slider-image"
+             tal:define="picture python: view.get_image(item.s1_primary_photo, 's1_primary_photo')">
+          <img src="" tal:attributes = "src picture"
+               alt="About Climate Change Adaptation in Europe" />
+        </div>
+        <div class="case-studies-homepage-slider-description">
+          <h2 tal:content="item/s1_title"> Title </h2>
+          <div tal:content="structure python: item.s1_description.output"> Description </div>
+          <p>
+            <a class="homepage-read-more" href="" tal:attributes="href item/s1_read_more_link" target="_blank">
+                <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
+                <span tal:content="item/s1_read_more_text | nothing"> Read more </span>
+            </a>
+          </p>
+          <p style="font-size: 10px;"> Picture credit:
+            <span tal:content="item/s1_photo_copyright | nothing"> </span>
+          </p>
+        </div>
+      </li> -->
+
+<!--       <li class="" style="display: none;" tal:define="item python: view.get_tile('s7')">
+        <div class="case-studies-homepage-slider-image"
+             tal:define="picture python: view.get_image(item.s7_primary_photo, 's7_primary_photo')">
+          <img src="" tal:attributes = "src picture"
+               alt="ECCA 2017" />
+        </div>
+        <div class="case-studies-homepage-slider-description" style="font-size: 11.4px;">
+          <h2 tal:content="item/s7_title"> Title </h2>
+          <div>
+            <style scoped>
+                p {
+                    margin-bottom: 0 !important;
+                }
+            </style>
+            <span tal:replace="structure python:item.s7_description.output"> Description </span>
+          </div>
+          <span tal:define="absolute view/context/absolute_url">
+            <a class="homepage-read-more" href="" tal:attributes="href item/s7_read_more_link" target="_blank">
+                <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
+                <span tal:content="item/s7_read_more_text | nothing"> Read more </span>
+            </a>
+          </span>
+        </div>
+      </li> -->

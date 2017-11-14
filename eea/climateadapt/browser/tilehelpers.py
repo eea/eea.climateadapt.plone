@@ -4,20 +4,21 @@ It helps to separate the tiles from the views, those views can be easier
 developed and tested.
 """
 
-from Products.Five.browser import BrowserView
-from collective.cover.tiles.base import IPersistentCoverTile
-from collective.cover.tiles.base import PersistentCoverTile
+from collective.cover.tiles.base import (IPersistentCoverTile,
+                                         PersistentCoverTile)
+
 from eea.climateadapt.vocabulary import ace_countries_selection
 from plone import api
 from plone.api import portal
 from plone.app.textfield import RichText
+from plone.directives import form
+from plone.memoize import view
 from plone.namedfile.field import NamedBlobImage
 from plone.tiles.interfaces import ITileDataManager
+from Products.Five.browser import BrowserView
 from zope import schema
 from zope.component.hooks import getSite
 from zope.interface import implements
-from plone.memoize import view
-from plone.directives import form
 
 
 class AceContentSearch(BrowserView):
@@ -32,6 +33,7 @@ class AceContentSearch(BrowserView):
 
 class FrontPageCountries(BrowserView):
     """ A view to render the frontpage tile with countries and country select
+
     form
     """
 
@@ -47,6 +49,7 @@ class ICarousel(IPersistentCoverTile):
     #                       's1_photo_copyright', 's1_read_more_text',
     #                       's1_read_more_link']
     #               )
+
     form.fieldset('slide2',
                   label=u'Slide 1',
                   fields=['s2_title', 's2_description', 's2_primary_photo',
@@ -162,12 +165,14 @@ class Carousel(PersistentCoverTile):
         for key in data.keys():
             if slide_id in key:
                 setattr(self, key, data.get(key, ''))
+
         return self
 
     def get_image(self, image, fieldname):
         url = self.context.absolute_url() + '/@@edit-tile/' + self.short_name
         url += '/' + self.id + '/++widget++' + self.short_name + '.' + fieldname
         url += '/@@download/' + image.filename
+
         return url
 
     def news_items(self):
@@ -179,6 +184,7 @@ class Carousel(PersistentCoverTile):
                                         'sort_on': 'effective',
                                         'sort_order': 'reverse'},
                                        full_objects=True)[0]
+
         return result.getObject()
 
     def last_casestudy(self):
@@ -188,7 +194,9 @@ class Carousel(PersistentCoverTile):
         result = catalog.searchResults({
             'portal_type': 'eea.climateadapt.casestudy',
             'review_state': 'published',
-            'sort_by': 'effective'}, full_objects=True)[0]
+            'sort_on': 'effective',
+            'sort_order': 'descending',
+        }, full_objects=True)[0]
 
         return result.getObject()
 
@@ -200,6 +208,7 @@ class Carousel(PersistentCoverTile):
         data = portal_transforms.convertTo('text/plain',
                                            html, mimetype='text/html')
         text = data.getData()
+
         return text
 
     def last_dbitem(self):
@@ -240,21 +249,25 @@ class NewsTile(ListingTile):
     @property
     def parent(self):
         site = getSite()
+
         return site['news-archive']
 
     @view.memoize
     def get_item_date(self, item):
         date = item.effective_date.strftime('%d %b %Y')
+
         return date
 
     @view.memoize
     def get_external_url(self, item):
         url = getattr(item, 'remoteUrl', None)
+
         if url:
             if url.find('http://') != -1:
                 return url
             else:
                 return 'http://' + url
+
         return item.absolute_url()
 
     def items(self):
@@ -279,16 +292,19 @@ class EventsTile(ListingTile):
     @property
     def parent(self):
         site = getSite()
+
         return site['more-events']
 
     @view.memoize
     def get_item_date(self, item):
         date = item.end.strftime('%d %b %Y')
+
         return date
 
     @view.memoize
     def get_external_url(self, item):
         url = item.event_url
+
         if url == '':
             url = item.absolute_url()
 
