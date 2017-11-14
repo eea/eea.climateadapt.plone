@@ -58,23 +58,10 @@
               </div>
             </tal:def>
           </div>
+
           <script>
             $(document).ready(function() {
               jQuery(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function(evt){
-                $('.listing-table').DataTable(
-                  {
-                    paging: true,
-                    pagingType: 'full',
-                    pageLength: 10,
-                    retrieve: true,
-                    "dom": '<"top">rt<"bottom"ip><"clear">',
-                    columnDefs: [
-                      // {'visible': false, 'targets': 1}
-                      // {'visible': false, 'targets': 2}
-                    ]
-                  }
-                );
-
                 $('.listing-result h3 a').on('click', function(event){
                   var acc = $(this);
                   var glyph = acc.parent().find('.glyphicon');
@@ -107,6 +94,7 @@
               });
             });
           </script>
+
         </div>
       </metal:block>
     </metal:content-core>
