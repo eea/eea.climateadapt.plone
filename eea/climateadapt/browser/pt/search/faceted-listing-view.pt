@@ -62,12 +62,15 @@
           <script>
             $(document).ready(function() {
               jQuery(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function(evt){
+
                 $('.listing-result h3 a').on('click', function(event){
                   var acc = $(this);
                   var glyph = acc.parent().find('.glyphicon');
                   glyph.toggleClass('glyphicon-chevron-right');
                   glyph.toggleClass('glyphicon-chevron-down');
+                });
 
+                $('.listing-result h3 a').each(function(event){
                   var $section = $("#" + $(this).attr('aria-controls'));
                   var $table = $section.find('table.search-type-results');
                   var search_type = $table.attr('data-search-type');
@@ -91,6 +94,7 @@
                     });
                   }
                 });
+
               });
             });
           </script>
