@@ -214,13 +214,13 @@
 
       <li class="" style="display: none;" tal:define="item view/last_casestudy">
         <div class="case-studies-homepage-slider-image">
-          <img src="" alt="Case Study" tal:attributes="src python: item.absolute_url() + '/@@images/primary_photo/case-front'"/>
+          <img src="" alt="Case Study" tal:attributes="src item/image"/>
         </div>
         <div class="case-studies-homepage-slider-description">
           <h2 tal:content="item/title"> Title </h2>
           <p></p>
-          <p tal:content="python: view.html2text(item.long_description.output)[:300] + '...'"> Description </p>
-          <a class="homepage-read-more" href="" tal:attributes="href item/absolute_url" target="_blank"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
+          <p tal:content="python: item['description'][:300] + '...'"> Description </p>
+          <a class="homepage-read-more" href="" tal:attributes="href item/url" target="_blank"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
         </div>
       </li>
 

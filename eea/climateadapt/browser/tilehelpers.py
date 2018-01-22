@@ -76,7 +76,8 @@ class ICarousel(IPersistentCoverTile):
 
     # Slide 1 fields
     # s1_title = schema.Text(title=u"First slide Title", required=True)
-    # s1_description = RichText(title=u"First slide description", required=False)
+    # s1_description = RichText(title=u"First slide description",
+    # required=False)
 
     # s1_primary_photo = NamedBlobImage(
     #     title=(u"First Slide Photo"),
@@ -92,7 +93,8 @@ class ICarousel(IPersistentCoverTile):
 
     # Slide 2 fields
     s2_title = schema.Text(title=u"Second slide Title", required=True)
-    s2_description = RichText(title=u"Second slide description", required=False)
+    s2_description = RichText(title=u"Second slide description",
+                              required=False)
 
     s2_primary_photo = NamedBlobImage(
         title=(u"Second Slide Photo"),
@@ -170,7 +172,9 @@ class Carousel(PersistentCoverTile):
 
     def get_image(self, image, fieldname):
         url = self.context.absolute_url() + '/@@edit-tile/' + self.short_name
-        url += '/' + self.id + '/++widget++' + self.short_name + '.' + fieldname
+        url += '/{0}/++widget++{1}.{2}'.format(self.id, self.short_name,
+                                               fieldname)
+        # '/' + self.id + '/++widget++' + self.short_name + '.' + fieldname
         url += '/@@download/' + image.filename
 
         return url
@@ -191,14 +195,26 @@ class Carousel(PersistentCoverTile):
         """ Gets the most recent updated casestudy"""
         site = getSite()
         catalog = site.portal_catalog
-        result = catalog.searchResults({
+        brain = catalog.searchResults({
             'portal_type': 'eea.climateadapt.casestudy',
             'review_state': 'published',
             'sort_on': 'effective',
             'sort_order': 'descending',
         }, full_objects=True)[0]
 
-        return result.getObject()
+        cs = brain.getObject()
+
+        return {
+            'image':
+            "{0}/@@images/primary_photo/case-front?c={1}".format(
+                cs.absolute_url(),
+                brain.modified and brain.modified.ISO() or ''
+            ),
+            'title': cs.Title(),
+            'description': self.html2text(cs.long_description.output),
+            'url': cs.absolute_url(),
+
+        }
 
     @view.memoize
     def html2text(self, html):
@@ -271,7 +287,8 @@ class NewsTile(ListingTile):
         return item.absolute_url()
 
     def items(self):
-        return self.parent.getFolderContents({'portal_type': ['Link', 'News Item'],
+        return self.parent.getFolderContents({'portal_type': ['Link',
+                                                              'News Item'],
                                               'sort_on': 'effective',
                                               "sort_order": "reverse",
                                               'review_state': 'published',
