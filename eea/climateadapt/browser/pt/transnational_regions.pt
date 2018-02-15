@@ -84,8 +84,8 @@
                 parseOnLoad: true
             };
         </script>
-        <script src="http://js.arcgis.com/3.13compact/"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://js.arcgis.com/3.13compact/"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>
             var map;
             var capita;

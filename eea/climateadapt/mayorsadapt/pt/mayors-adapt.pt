@@ -1,8 +1,8 @@
 <metal:use-macro use-macro="context/main_template/macros/master">
   <metal:fill-slot fill-slot="javascript_head_slot">
     <script>var dojoConfig = { parseOnLoad:true };</script>
-    <script src="http://js.arcgis.com/3.13compact/"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://js.arcgis.com/3.13compact/"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="/++theme++climateadapt/static/cca/js/mayoradaptload.js"></script>
 
     <script type="text/javascript" src="/++resource++collective.js.bootstrap/js/bootstrap.min.js"></script>

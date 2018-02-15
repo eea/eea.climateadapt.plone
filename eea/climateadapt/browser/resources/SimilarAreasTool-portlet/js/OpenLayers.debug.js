@@ -61927,7 +61927,7 @@ OpenLayers.Format.WMTSCapabilities = OpenLayers.Class(OpenLayers.Format.XML.Vers
  * the current frozen version, for example:
  *
  * (code)
- * <script src="http://maps.google.com/maps/api/js?v=3.7&amp;sensor=false"></script>
+ * <script src="https://maps.google.com/maps/api/js?v=3.7&amp;sensor=false"></script>
  * (end)
  * 
  * but that development code should use the latest 'nightly' version, so that any
@@ -63093,7 +63093,7 @@ OpenLayers.Marker.Box = OpenLayers.Class(OpenLayers.Marker, {
     * sz - {<OpenLayers.Size>} 
     * 
     * Returns: 
-    * {DOMElement} A new DOM Image with this marker´s icon set at the 
+    * {DOMElement} A new DOM Image with this markerï¿½s icon set at the 
     *         location passed-in
     */
     draw: function(px, sz) {
