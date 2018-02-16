@@ -23,7 +23,7 @@
                 <div class="iframe-container">
                     <iframe class='ace-iframe' frameborder='0'
                         style='min-height:800px' height='100%%'
-                        scrolling='no' src='http://maps.eea.europa.eu/wab/ClimateAdaptCaseStudies/'></iframe>
+                        scrolling='no' src='https://maps.eea.europa.eu/wab/ClimateAdaptCaseStudies/'></iframe>
                 </div>
                 <br/><br/>
                 <h3>Other Case Study Portals</h3>
