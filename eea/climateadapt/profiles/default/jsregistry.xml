@@ -8,7 +8,7 @@
 
     <javascript authenticated="0" bundle="default" cacheable="True"
         compression="none" conditionalcomment="" cookable="False" enabled="on"
-        expression="" id="http://code.jquery.com/jquery-migrate-1.2.1.js" inline="False"
+        expression="" id="https://code.jquery.com/jquery-migrate-1.2.1.js" inline="False"
         />
 
     <javascript authenticated="0" bundle="default" cacheable="True"

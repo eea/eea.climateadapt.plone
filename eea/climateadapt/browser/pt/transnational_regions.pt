@@ -1,7 +1,7 @@
 <metal:use-macro use-macro="context/main_template/macros/master">
     <metal:fill-slot fill-slot="style_slot">
-        <link href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css" rel="stylesheet"/>
-        <link href="http://js.arcgis.com/3.13/esri/css/esri.css" rel="stylesheet"/>
+        <link href="https://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css" rel="stylesheet"/>
+        <link href="https://js.arcgis.com/3.13/esri/css/esri.css" rel="stylesheet"/>
         <style type="text/css">
             #mapDiv,
             .map.container,
