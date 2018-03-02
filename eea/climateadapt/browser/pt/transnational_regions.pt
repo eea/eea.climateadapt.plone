@@ -160,7 +160,7 @@
 
                 var highlightSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([125, 125, 125]), 1), new Color([125, 125, 125, 0.35]));
 
-                var regions = new FeatureLayer("http://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/REGIONS_COUNTRIES/FeatureServer/0", {
+                var regions = new FeatureLayer("https://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/REGIONS_COUNTRIES/FeatureServer/0", {
                     mode: FeatureLayer.MODE_SNAPSHOT,
                     infoTemplate: iTemplate,
                     outFields: ["pgm_name", "CCI", "Countries", "LINK"]
@@ -208,7 +208,7 @@
 
                 regions.on("load", regionsCargadas);
 
-                var queryTask = new QueryTask("http://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/COUNTRIES_MAYORS_ADAPT/FeatureServer/0");
+                var queryTask = new QueryTask("https://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/COUNTRIES_MAYORS_ADAPT/FeatureServer/0");
 
                 var query = new Query();
 
