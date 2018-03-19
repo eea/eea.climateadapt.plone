@@ -3,18 +3,19 @@
 """ Utilities for faceted search
 """
 
-from eea.cache import cache
-# from zope.annotation.interfaces import IAnnotations
-from Products.CMFPlone.utils import isExpired
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collections import defaultdict
 from datetime import datetime
+
+from eea.cache import cache
 from eea.facetednavigation.browser.app.query import FacetedQueryHandler
 from eea.facetednavigation.browser.app.view import FacetedContainerView
 from eea.facetednavigation.caching.cache import cacheKeyFacetedNavigation
 from plone import api
 from plone.api import portal
+# from zope.annotation.interfaces import IAnnotations
+from Products.CMFPlone.utils import isExpired
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getMultiAdapter, queryMultiAdapter
 from zope.interface import alsoProvides
 from zope.schema.interfaces import IVocabularyFactory
@@ -24,7 +25,7 @@ SEARCH_TYPES = [
     ("CONTENT", "Content in Climate-ADAPT"),
     ("DOCUMENT", "Publication and Reports"),
     ("INFORMATIONSOURCE", "Information Portals"),
-    ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
+    # ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
     ("INDICATOR", "Indicators"),
     ("GUIDANCE", "Guidance"),
     ("TOOL", "Tools"),
@@ -42,7 +43,7 @@ FACETED_SEARCH_TYPES = [
     ("GUIDANCE", "Guidance"),
     ("INDICATOR", "Indicators"),
     ("INFORMATIONSOURCE", "Information Portals"),
-    ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
+    # ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
     ("MAYORSADAPT", "Mayors Adapt city profiles"),
     ("ORGANISATION", "Organisations"),
     ("DOCUMENT", "Publication and Reports"),
@@ -104,6 +105,7 @@ class DoSearch(BrowserView, FacetedQueryHandler):
         try:
             search_type = [
                 x for x in self.labels.keys()
+
                 if x in self.request.QUERY_STRING.split(
                     "search_type=")[-1]][0]
         except Exception:
@@ -142,6 +144,7 @@ class ListingView(BrowserView):
             if brain.search_type:
                 if brain.search_type in self.labels:
                     results[brain.search_type].append(brain)
+
         return results
 
     def results_by_type(self, batch, search_type):
@@ -152,6 +155,7 @@ class ListingView(BrowserView):
                 if brain.search_type in self.labels:
                     if brain.search_type == search_type:
                         results.append(brain)
+
         return results
 
     def search_url(self, search_type):

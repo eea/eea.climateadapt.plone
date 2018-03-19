@@ -1,8 +1,7 @@
-from eea.facetednavigation.widgets.checkbox.widget import Widget as BaseCheckboxWidget
 from eea.facetednavigation.widgets import ViewPageTemplateFile
-from Products.Archetypes.public import Schema
-from Products.Archetypes.public import StringField
-
+from eea.facetednavigation.widgets.checkbox.widget import \
+    Widget as BaseCheckboxWidget
+from Products.Archetypes.public import Schema, StringField
 
 EditSchema = Schema((
 
@@ -24,7 +23,7 @@ class SearchPageCheckbox(BaseCheckboxWidget):
     widget_type = 'searchpagecheckbox'
     index = ViewPageTemplateFile('searchpagecheckbox.pt')
 
-    edit_schema = BaseCheckboxWidget.edit_schema.copy() + EditSchema
+    # edit_schema = BaseCheckboxWidget.edit_schema.copy() + EditSchema
 
     # def __init__(self, context, request, data=None):
     #     self.context = context

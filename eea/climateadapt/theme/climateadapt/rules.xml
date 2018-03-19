@@ -5,26 +5,31 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <theme href="index.html" css:if-content="#visual-portal-wrapper" />
+  <theme href="header-template.html" css:if-content=".simplified-template-header" />
 
-  <!--Plone.app.toolbar-->
-  <append theme="/html/body" content="//div[@data-iframe='toolbar']" />
+  <theme href="footer-template.html" css:if-content=".simplified-template-footer" />
+  <replace css:content-children="#portal-footer" css:theme="#footer-info" />
 
-  <!--Head-->
-  <copy css:content="html" css:theme="html" attributes="lang dir" />
-  <drop css:theme="head script" css:if-content=".template-sat"/>
-  <before css:content="head style, head link, head script, head meta" css:theme-children="head" />
-  <replace css:content="head title" css:theme="head title" />
-  <copy css:content="head base" css:theme="head base" />
-  <drop css:content="head link[rel='shortcut icon']" />
-  <drop css:content="head link[rel='apple-touch-icon']" />
+  <rules css:if-content="#visual-portal-wrapper">
+    <!--Plone.app.toolbar-->
+    <append theme="/html/body" content="//div[@data-iframe='toolbar']" />
 
-  <!--Content-->
-  <merge attributes="class" css:content="body" css:theme="body" />
-  <copy attributes="id dir" css:content="body" css:theme="body" />
-  <copy attributes="role" css:content="content" css:theme="contentspace" />
-  <replace css:content="#portal-columns" css:theme="#content" />
+    <!--Head-->
+    <copy css:content="html" css:theme="html" attributes="lang dir" />
+    <drop css:theme="head script" css:if-content=".template-sat"/>
+    <before css:content="head style, head link, head script, head meta" css:theme-children="head" />
+    <replace css:content="head title" css:theme="head title" />
+    <copy css:content="head base" css:theme="head base" />
+    <drop css:content="head link[rel='shortcut icon']" />
+    <drop css:content="head link[rel='apple-touch-icon']" />
 
-  <!--This is a work-around for a problem in plone.outputfilters html transformation
+    <!--Content-->
+    <merge attributes="class" css:content="body" css:theme="body" />
+    <copy attributes="id dir" css:content="body" css:theme="body" />
+    <copy attributes="role" css:content="content" css:theme="contentspace" />
+    <replace css:content="#portal-columns" css:theme="#content" />
+
+    <!--This is a work-around for a problem in plone.outputfilters html transformation
         Tickets: Refs #79364 / Refs #80564
 
         Basically you check if the href attribute of the <a> tag has 'resolveuid' in
@@ -87,5 +92,15 @@
     <!-- <before css:content&#45;children=".kssattr&#45;fieldset&#45;default"> -->
       <!--     <include css:content="#formfield&#45;form&#45;widgets&#45;IGeolocatable&#45;geolocation" /> -->
       <!-- </before> -->
+
+
+    <!-- Search support for data&#45;and&#45;downloads based on EEA Search Appliance -->
+    <!-- <replace -->
+      <!--   css:if&#45;content="#search&#45;target" -->
+      <!--   css:content="html" -->
+      <!--   css:theme="#content" -->
+      <!--   href="http://search&#45;app:3000" -->
+      <!--   method="document" /> -->
+  </rules>
 
   </rules>

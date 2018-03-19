@@ -1,9 +1,9 @@
 from plone.api import portal
+from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.z3cform.fieldsets.extensible import FormExtender
 from zope.component import getUtility
-from plone.dexterity.browser.add import DefaultAddForm
 
 
 class CityProfileView(DefaultView):
@@ -15,6 +15,7 @@ class CityProfileView(DefaultView):
 
     def formated_date(self, modifiedTime):
         modif_date = portal.get_localized_time(datetime=modifiedTime)
+
         return modif_date
 
         # import datetime
@@ -35,6 +36,7 @@ class CityProfileView(DefaultView):
             resource_directory='++resource++eea.climateadapt/img',
             filename=_map.get(self.context.stage_of_the_implementation_cycle)
         )
+
         return url
 
     def labels_from_choice(self, fname):
@@ -45,6 +47,7 @@ class CityProfileView(DefaultView):
         ftype = ftype.bind(self.context)
         vocab = ftype.vocabulary
         titles = []
+
         if getattr(self.context, fname):
             for token in getattr(self.context, fname):
                 try:
@@ -61,8 +64,10 @@ class CityProfileView(DefaultView):
         ftype = schema.get(fname)
         ftype = ftype.bind(self.context)
         vocab = ftype.vocabulary
+
         if getattr(self.context, fname):
             term = vocab.getTermByToken(getattr(self.context, fname))
+
             return term.title
 
     def html_to_text(self, html):
@@ -73,6 +78,7 @@ class CityProfileView(DefaultView):
         )
 
         data = data.getData().strip()
+
         return data
 
     def check_richtext(self, fname):
@@ -84,8 +90,10 @@ class CityProfileView(DefaultView):
             html = fname.output
 
         text = self.html_to_text(html)
+
         if text in ['-', '']:
             return False
+
         return True
 
     def check_sections(self, number):
@@ -100,16 +108,20 @@ class CityProfileView(DefaultView):
         }
 
         section = sections.get(number)
+
         if len(section) == 1:
             if section[0] in [None, '-', '']:
                 return False
+
             return True
         else:
             for b in section:
                 if hasattr(b, 'output'):
                     b = self.html_to_text(b.output)
+
                 if b not in [None, '-', '']:
                     return True
+
         return False
 
     def linkify(self, text):
