@@ -343,7 +343,7 @@ function initmap(metadata, world, flags) {
 jQuery(document).ready(function() {
 
   // initialize the countries map
-  var cpath = '++theme++climateadapt/static/countries/tmp.geojson';
+  var cpath = '++theme++climateadapt/static/countries/euro-countries.geojson';
   // var cpath = '++theme++climateadapt/static/countries/countries.geo.json';
   // var cpath = '++theme++climateadapt/static/countries/world-110m.json';
   var fpath = '++theme++climateadapt/static/countries/countries.tsv';
