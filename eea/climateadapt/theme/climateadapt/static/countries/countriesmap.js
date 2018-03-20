@@ -1,4 +1,5 @@
-window._selectedMapSection = null;
+var _selectedMapSection = null;
+var _mapTooltip = null;
 
 function makeid() {
   var text = '';
@@ -37,9 +38,12 @@ function setCountryFlags(countries, flags) {
   });
 }
 
+// function getCountryMetadata(name, countrySettings) {
+//   var countryMetadata = countrySettings[name];
+//   return countryMetadata;
+// }
 
 function drawCountries(countrySettings, countries) {
-  console.log('Drawing countries');
   var svg = d3
     .select("body")
     .select("#countries-map svg")
@@ -47,12 +51,7 @@ function drawCountries(countrySettings, countries) {
 
   svg.selectAll("*").remove();
 
-  // console.log("Country settings", countrySettings);
-  // console.log("World", world);
-
-  var graticule = d3.geoGraticule().step([20,10]);
-
-  var globalMapProjection = d3.geoRobinson();   // azimuthalEquidistant conicEquidistant()
+  var globalMapProjection = d3.geoAzimuthalEqualArea();   // azimuthalEquidistant conicEquidistant()
   // var globalMapProjection = d3.geoConicEquidistant();   // azimuthalEquidistant ()
 
   globalMapProjection
@@ -72,7 +71,7 @@ function drawCountries(countrySettings, countries) {
   var height = 500;
   var b = path.bounds(focusCountriesFeature);
 
-  var zoomLevel = 0.8;
+  var zoomLevel = 0.9;
 
   var x = 0;
   var y = 0;
@@ -107,22 +106,22 @@ function drawCountries(countrySettings, countries) {
     .append('g')
     .attr('class', 'graticule')
     .selectAll('path')
-    .data(graticule.lines())
+    .data(d3.geoGraticule().step([20,10]).lines())
+    .enter()
+    .append('path')
+    .attr('d', path)
+  ;
+  g
+    .append('g')
+    .attr('class', 'semi-graticule')
+    .selectAll('path')
+    .data(d3.geoGraticule().step([5,5]).lines())
     .enter()
     .append('path')
     .attr('d', path)
   ;
 
   var cprectid = makeid();
-
-  function getSectionMetadata(name) {
-    if (window._selectedMapSection) {
-      var countryMetadata = countrySettings[name];
-      if (countryMetadata) {
-        return countryMetadata[window._selectedMapSection];
-      }
-    }
-  }
 
   g
     .append('g')
@@ -131,12 +130,15 @@ function drawCountries(countrySettings, countries) {
     .enter()
     .append('path')
     .attr('class', function(d) {
-      // console.log('Country', d);
       var k = 'country-outline';
       if (focusCountryNames.indexOf(d.properties.name) !== -1) {
         k += ' country-selected';
       }
-      if (getSectionMetadata(d.properties.name)) k += ' country-green';
+
+      var meta = countrySettings[d.properties.name];
+      if (meta && meta[0] && meta[0][_selectedMapSection]) {
+        k += ' country-green';
+      }
       return k;
     })
     .attr('id', function(d) {
@@ -230,38 +232,85 @@ function drawCountries(countrySettings, countries) {
       }
     })
     .on('click', function(d) {
-      console.log(getSectionMetadata(d.properties.name));
+      var coords = [d3.event.pageY, d3.event.pageX];
+      var info = countrySettings[d.properties.name];
+      var content = info[0];
+      var url = info[1];
+
+      console.log(info);
+      if (content) toggleTooltip({
+        'coords': coords,
+        content: content,
+        name: d.properties.name,
+        url: url
+      });
     })
   ;
 }
 
+function toggleTooltip(opts) {
+  console.log('OPts:', opts);
+  var x = opts['coords'][0];
+  var y = opts['coords'][0];
+  var content = opts['content'][_selectedMapSection];
+  var name = opts['name'];
+  var url = opts['url'];
 
-function createSectionsSelector(sections, callback) {
+  $('#map-tooltip').remove();
+  var style = 'top:' + x + 'px; left: ' + y + 'px';
+  var tooltip = $("<div id='map-tooltip'>")
+    .attr('style', style)
+    .append(content)
+  ;
+  $('body').append(tooltip);
+}
+
+
+function createSectionsSelector(sections, countries, callback) {
   var container = $("#countries-map");
 
   var widget = $("<div class='sections-selector' />");
 
-  sections.forEach(function(key) {
-    var span = $("<div>");
-    var label = $("<label>").append(key);
-    var inp = $("<input type='radio' style='float: left; margin-right: 0.3em' name='country-map-section' />").attr('value', key);
-    label.append(inp);
-    span.append(label);
-    widget.append(span);
+  sections.forEach(function(key, index) {
+    var label = $("<label>");
+    var inp = $("<input type='radio'>")
+      .attr('style', 'float: left; margin-right: 0.3em')
+      .attr('name', 'country-map-section')
+      .attr('value', key)
+    ;
+    if (index === 0) {
+      window._selectedMapSection = key;
+      inp.attr('checked', 'checked');
+    }
+    label
+      .append(inp)
+      .append(key)
+    ;
+    widget.append($("<div>").append(label));
   });
 
   $('input', widget).on('change', function() {
     var selectedSection = $(this).attr('value');
     window._selectedMapSection = selectedSection;
-    console.log("This value:", selectedSection);
     callback();
   });
 
+  var select = $('<select>');
+  select.append("<option value=''>Choose a country</option>");
+
+  var countryNames = Object.keys(countries);
+  countryNames.sort();
+  countryNames.forEach(function(name) {
+    select.append($("<option>").append(name));
+  });
+  widget.prepend(select);
+
   container.parent().append(widget);
-  return widget;
+  callback();
 }
 
 function initmap(metadata, world, flags) {
+  console.log(metadata);
   var countrySettings = metadata[0];
   var sections = metadata[1];
 
@@ -272,12 +321,15 @@ function initmap(metadata, world, flags) {
     drawCountries(countrySettings, countries);
   });
 
-  console.log(countrySettings);
-  var selectorWidget = createSectionsSelector(sections, function() {
-    drawCountries(countrySettings, countries);
-  });
+  createSectionsSelector(
+    sections,
+    countrySettings,
+    function() {
+      drawCountries(countrySettings, countries);
+    }
+  );
 
-  drawCountries(countrySettings, countries);
+  // drawCountries(countrySettings, countries);
 }
 
 
