@@ -17,7 +17,7 @@ function filterCountriesByNames(countries, filterIds) {
     features: []
   };
   countries.forEach(function(c) {
-    if (filterIds.indexOf(c.properties.name) === -1) {
+    if (filterIds.indexOf(c.properties.SHRT_ENGL) === -1) {
       return;
     }
     features.features.push(c);
@@ -29,7 +29,13 @@ function setCountryFlags(countries, flags) {
   // annotates each country with its own flag property
   // debugger;
   countries.forEach(function(c) {
-    var cname = c.properties.name.replace(' ', '_');
+    var name = c.properties.SHRT_ENGL;
+    if (!name) {
+      console.log('No flag for', c.properties);
+      return;
+    }
+    var cname = name.replace(' ', '_');
+    console.log('cname', cname);
     flags.forEach(function(f) {
       if (f.url.indexOf(cname) > -1) {
         c.url = f.url;
@@ -131,11 +137,11 @@ function drawCountries(countrySettings, countries) {
     .append('path')
     .attr('class', function(d) {
       var k = 'country-outline';
-      if (focusCountryNames.indexOf(d.properties.name) !== -1) {
+      if (focusCountryNames.indexOf(d.properties.SHRT_ENGL) !== -1) {
         k += ' country-selected';
       }
 
-      var meta = countrySettings[d.properties.name];
+      var meta = countrySettings[d.properties.SHRT_ENGL];
       if (meta && meta[0] && meta[0][_selectedMapSection]) {
         k += ' country-green';
       }
@@ -211,7 +217,7 @@ function drawCountries(countrySettings, countries) {
       if (window.isGlobalMap) {
         return tooltip
         .style("visibility", "visible")
-        .html(d.name);
+        .html(d.SHRT_ENGL);
       }
     })
     .on('mousemove', function(d) {
@@ -220,7 +226,7 @@ function drawCountries(countrySettings, countries) {
         .style("visibility", "visible")
         .style("top", (d3.event.pageY) + "px")
         .style("left", (d3.event.pageX + 10) + "px")
-        .html(d.name);
+        .html(d.SHRT_ENGL);
       }
     })
     .on('mouseout', function(d) {
@@ -233,7 +239,7 @@ function drawCountries(countrySettings, countries) {
     })
     .on('click', function(d) {
       var coords = [d3.event.pageY, d3.event.pageX];
-      var info = countrySettings[d.properties.name];
+      var info = countrySettings[d.properties.SHRT_ENGL];
       var content = info[0];
       var url = info[1];
 
@@ -241,7 +247,7 @@ function drawCountries(countrySettings, countries) {
       if (content) toggleTooltip({
         'coords': coords,
         content: content,
-        name: d.properties.name,
+        name: d.properties.SHRT_ENGL,
         url: url
       });
     })
@@ -310,12 +316,13 @@ function createSectionsSelector(sections, countries, callback) {
 }
 
 function initmap(metadata, world, flags) {
-  console.log(metadata);
+  console.log(flags);
   var countrySettings = metadata[0];
   var sections = metadata[1];
 
   var countries = world.features;
   setCountryFlags(countries, flags);
+  console.log('The countries now', countries);
 
   $(window).resize(function() {
     drawCountries(countrySettings, countries);
@@ -336,7 +343,8 @@ function initmap(metadata, world, flags) {
 jQuery(document).ready(function() {
 
   // initialize the countries map
-  var cpath = '++theme++climateadapt/static/countries/countries.geo.json';
+  var cpath = '++theme++climateadapt/static/countries/tmp.geojson';
+  // var cpath = '++theme++climateadapt/static/countries/countries.geo.json';
   // var cpath = '++theme++climateadapt/static/countries/world-110m.json';
   var fpath = '++theme++climateadapt/static/countries/countries.tsv';
 
