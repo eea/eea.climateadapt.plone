@@ -742,7 +742,7 @@
         class=".countries.CountriesMetadataExtract"
         for="*"
         name="countries-metadata-extract"
-        permission="cmf.ManagePortal"
+        permission="zope2.View"
         />
 
         <!-- class=".misc.CountriesD3View" -->
