@@ -27,15 +27,13 @@ function filterCountriesByNames(countries, filterIds) {
 
 function setCountryFlags(countries, flags) {
   // annotates each country with its own flag property
-  // debugger;
   countries.forEach(function(c) {
     var name = c.properties.SHRT_ENGL;
     if (!name) {
-      console.log('No flag for', c.properties);
+      // console.log('No flag for', c.properties);
       return;
     }
     var cname = name.replace(' ', '_');
-    console.log('cname', cname);
     flags.forEach(function(f) {
       if (f.url.indexOf(cname) > -1) {
         c.url = f.url;
@@ -148,7 +146,8 @@ function drawCountries(countrySettings, countries) {
       return k;
     })
     .attr('id', function(d) {
-      return 'c-' + cprectid + '-' + d.id;
+      console.log(d);
+      return 'c-' + cprectid + '-' + d.properties.id;
     })
     .attr('d', path)
     .attr('x', x)
@@ -164,7 +163,7 @@ function drawCountries(countrySettings, countries) {
     .enter()
     .append('clipPath')
     .attr('id', function(d) {
-      return 'cp-' + cprectid + '-' + d.id;
+      return 'cp-' + cprectid + '-' + d.properties.id;
     })
     .append('path')
     .attr('d', path)
@@ -181,26 +180,27 @@ function drawCountries(countrySettings, countries) {
     .enter()
     .append('image')
     .attr('href', function(d) {
+      console.log('Link will be: ', d.url);
       return d.url;
     })
     .attr('class', 'country-flag')
     .attr('clip-path', function(d) {
-      return 'url(#cp-' + cprectid + '-' + d.id + ')';
+      return 'url(#cp-' + cprectid + '-' + d.properties.id + ')';
     })
     .attr("x", function (d) {
-      var pbox = d3.select('#c-' + cprectid + '-' + d.id).node().getBBox();
+      var pbox = d3.select('#c-' + cprectid + '-' + d.properties.id).node().getBBox();
       return pbox.x;
     })
     .attr("y", function (d) {
-      var pbox = d3.select('#c-' + cprectid + '-' + d.id).node().getBBox();
+      var pbox = d3.select('#c-' + cprectid + '-' + d.properties.id).node().getBBox();
       return pbox.y;
     })
     .attr("width", function (d) {
-      var pbox = d3.select('#c-' + cprectid + '-' + d.id).node().getBBox();
+      var pbox = d3.select('#c-' + cprectid + '-' + d.properties.id).node().getBBox();
       return pbox.width;
     })
     .attr("height", function (d) {
-      var pbox = d3.select('#c-' + cprectid + '-' + d.id).node().getBBox();
+      var pbox = d3.select('#c-' + cprectid + '-' + d.properties.id).node().getBBox();
       return pbox.height;
     })
     .attr("preserveAspectRatio", "none")
@@ -209,33 +209,25 @@ function drawCountries(countrySettings, countries) {
       return window.isHeaderMap ? '1' : '0';
     })
     .on('mouseover', function(d) {
-      if (window.isHeaderMap) {
-        $('.country-flag').css('cursor', 'unset');
-        return;
-      }
+      console.log('Over: ', d);
+      $('.country-flag').css('cursor', 'unset');
       d3.select(this).attr('opacity', 1);
-      if (window.isGlobalMap) {
-        return tooltip
-        .style("visibility", "visible")
-        .html(d.SHRT_ENGL);
-      }
     })
     .on('mousemove', function(d) {
-      if (window.isGlobalMap) {
-        return tooltip
-        .style("visibility", "visible")
-        .style("top", (d3.event.pageY) + "px")
-        .style("left", (d3.event.pageX + 10) + "px")
-        .html(d.SHRT_ENGL);
-      }
+      // if (window.isGlobalMap) {
+      //   return tooltip
+      //   .style("visibility", "visible")
+      //   .style("top", (d3.event.pageY) + "px")
+      //   .style("left", (d3.event.pageX + 10) + "px")
+      //   .html(d.SHRT_ENGL);
+      // }
     })
     .on('mouseout', function(d) {
-      if (window.isHeaderMap) return;
       d3.select(this).attr('opacity', 0);
-      if (window.isGlobalMap) {
-        return tooltip
-        .style("visibility", "hidden");
-      }
+      // if (window.isGlobalMap) {
+      //   return tooltip
+      //   .style("visibility", "hidden");
+      // }
     })
     .on('click', function(d) {
       var coords = [d3.event.pageY, d3.event.pageX];
@@ -243,7 +235,7 @@ function drawCountries(countrySettings, countries) {
       var content = info[0];
       var url = info[1];
 
-      console.log(info);
+      // console.log(info);
       if (content) toggleTooltip({
         'coords': coords,
         content: content,
@@ -255,7 +247,7 @@ function drawCountries(countrySettings, countries) {
 }
 
 function toggleTooltip(opts) {
-  console.log('OPts:', opts);
+  // console.log('OPts:', opts);
   var x = opts['coords'][0];
   var y = opts['coords'][0];
   var content = opts['content'][_selectedMapSection];
@@ -316,13 +308,13 @@ function createSectionsSelector(sections, countries, callback) {
 }
 
 function initmap(metadata, world, flags) {
-  console.log(flags);
+  // console.log(flags);
   var countrySettings = metadata[0];
   var sections = metadata[1];
 
   var countries = world.features;
   setCountryFlags(countries, flags);
-  console.log('The countries now', countries);
+  // console.log('The countries now', countries);
 
   $(window).resize(function() {
     drawCountries(countrySettings, countries);
