@@ -1,103 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rules
-        xmlns="http://namespaces.plone.org/diazo"
-        xmlns:css="http://namespaces.plone.org/diazo/css"
-        xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  xmlns="http://namespaces.plone.org/diazo"
+  xmlns:css="http://namespaces.plone.org/diazo/css"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-    <theme href="index.html" css:if-content="#visual-portal-wrapper"/>
-    <theme href="test-template.html" css:if-content=".simplified-header"/>
+  <theme href="index.html" css:if-content="#visual-portal-wrapper"/>
+
+  <rules css:if-content=".simplified-template-header">
     <theme href="header-template.html" css:if-content=".simplified-template-header"/>
-    <theme href="footer-template.html" css:if-content=".simplified-template-footer"/>
+    <!--<replace css:content="head" css:theme="head"/>-->
+    <!--<replace css:content="head" css:theme="head" href="../" method="document"/>-->
 
-    <!--<xsl:template match="img">-->
-        <!--<xsl:attribute name="href">-->
-            <!--&lt;!&ndash;<xsl:value-of select="."/>&ndash;&gt;-->
-            <!--aaaaaaaaaaaaaa-->
-        <!--</xsl:attribute>-->
-        <!--<xsl:apply-templates/>-->
+    <replace css:content="#portal-personaltools" css:theme="#user"/>
+    <copy attributes="href title" css:content="#portal-logo" css:theme="#logo a"/>
+
+    <copy attributes="src" css:content="#portal-logo img" css:theme="#logo a img"/>
+    <replace css:content="#portal-header p.hiddenStructure" css:theme="#accessibility"/>
+    <drop css:content=".searchSection"/>
+    <replace css:content="#portal-searchbox" css:theme="#search"/>
+    <replace css:content="#navbar" css:theme="#mainnav" href="@@site_navbar" method="document"/>
+
+    <replace content="//a[@id='portal-logo']/img">
+      <img src="{//base/@href}static/logo.png">
+        <xsl:copy-of select="current()/@alt" />
+        <xsl:copy-of select="current()/@title" />
+      </img>
+    </replace>
+
+    <replace css:theme="#logo a img" content="//a[@id='portal-logo']/img" />
+
+    <!-- <replace css:theme="#logo a img"> -->
+      <!--  -->
+      <!--   <xsl:variable name="reallink" select="//a[@id='portal&#45;logo']/@href"/> -->
+      <!--  -->
+      <!--   <img src="{$reallink}/static/logo.png" alt="tes test" /> -->
+      <!--  -->
+      <!--   <!&#45;&#45;<xsl:attribute name='src'>&#45;&#45;> -->
+        <!--     <!&#45;&#45;<xsl:value&#45;of select="$reallink"/>&#45;&#45;> -->
+        <!--     <!&#45;&#45;</xsl:attribute>&#45;&#45;> -->
+      <!--   <!&#45;&#45;q1&#45;&#45;> -->
+      <!--   <!&#45;&#45;<xsl:copy&#45;of select="//a[@id='portal&#45;logo']"/>&#45;&#45;> -->
+      <!--   <!&#45;&#45;q2&#45;&#45;> -->
+      <!--   <!&#45;&#45;<xsl:value&#45;of select="$reallink"/>&#45;&#45;> -->
+      <!--  -->
+      <!-- </replace> -->
+
+  </rules>
+
+  <!--<xsl:template match="img">-->
+    <!--<xsl:attribute name="href">-->
+      <!--&lt;!&ndash;<xsl:value-of select="."/>&ndash;&gt;-->
+      <!--aaaaaaaaaaaaaa-->
+      <!--</xsl:attribute>-->
+    <!--<xsl:apply-templates/>-->
     <!--</xsl:template>-->
 
-    <!--<replace css:content="a">-->
-        <!--<a>-->
-            <!--<xsl:variable name="reallink" select="concat(current()/@href, 'bla')"/>-->
-            <!--<xsl:attribute name='href'>-->
-                <!--<xsl:copy-of select="$reallink"/>-->
-            <!--</xsl:attribute>-->
-            <!--&lt;!&ndash; <xsl:copy&#45;of select="current()/@href" /> &ndash;&gt;-->
-            <!--<xsl:value-of select="current()/text()"/>-->
-        <!--</a>-->
+  <!--<replace css:content="a">-->
+    <!--<a>-->
+      <!--<xsl:variable name="reallink" select="concat(current()/@href, 'bla')"/>-->
+      <!--<xsl:attribute name='href'>-->
+        <!--<xsl:copy-of select="$reallink"/>-->
+        <!--</xsl:attribute>-->
+      <!--&lt;!&ndash; <xsl:copy&#45;of select="current()/@href" /> &ndash;&gt;-->
+      <!--<xsl:value-of select="current()/text()"/>-->
+      <!--</a>-->
     <!--</replace>-->
 
-    <rules css:if-content=".simplified-header">
-        <!--<replace css:content="head" css:theme="head"/>-->
-        <!--<replace css:content="head" css:theme="head" href="../" method="document"/>-->
-        <replace css:content="#portal-personaltools" css:theme="#user"/>
-        <copy attributes="href title" css:content="#portal-logo" css:theme="#logo a"/>
-        <!--<replace css:content="#portal-header p.hiddenStructure" css:theme="#accessibility"/>-->
-        <!--<drop css:content=".searchSection"/>-->
-        <replace css:content="#portal-searchbox" css:theme="#search"/>
-        <replace css:content="#navbar" css:theme="#mainnav" href="@@site_navbar" method="document"/>
-        <replace css:content="#portal-siteactions" css:theme="#siteactions"/>
-        <!--<replace css:content="#portal-footer" css:theme="#footer-info"/>-->
-    </rules>
-
-    <rules css:if-content=".simplified-template-header">
-        <!--<replace css:content="head" css:theme="head"/>-->
-        <!--<replace css:content="head" css:theme="head" href="../" method="document"/>-->
-        <replace css:content="#portal-personaltools" css:theme="#user"/>
-        <copy attributes="href title" css:content="#portal-logo" css:theme="#logo a"/>
-
-        <!--<copy attributes="src" css:content="#portal-logo img" css:theme="#logo a img"/>-->
-        <!--<replace css:content="#portal-header p.hiddenStructure" css:theme="#accessibility"/>-->
-        <!--<drop css:content=".searchSection"/>-->
-        <replace css:content="#portal-searchbox" css:theme="#search"/>
-        <replace css:content="#navbar" css:theme="#mainnav" href="@@site_navbar" method="document"/>
+  <!-- <rules css:if&#45;content=".simplified&#45;header"> -->
+    <!--     <!&#45;&#45;<replace css:content="head" css:theme="head"/>&#45;&#45;> -->
+    <!--     <!&#45;&#45;<replace css:content="head" css:theme="head" href="../" method="document"/>&#45;&#45;> -->
+    <!--     <replace css:content="#portal&#45;personaltools" css:theme="#user"/> -->
+    <!--     <copy attributes="href title" css:content="#portal&#45;logo" css:theme="#logo a"/> -->
+    <!--     <!&#45;&#45;<replace css:content="#portal&#45;header p.hiddenStructure" css:theme="#accessibility"/>&#45;&#45;> -->
+    <!--     <!&#45;&#45;<drop css:content=".searchSection"/>&#45;&#45;> -->
+    <!--     <replace css:content="#portal&#45;searchbox" css:theme="#search"/> -->
+    <!--     <replace css:content="#navbar" css:theme="#mainnav" href="@@site_navbar" method="document"/> -->
+    <!--     <replace css:content="#portal&#45;siteactions" css:theme="#siteactions"/> -->
+    <!--     <!&#45;&#45;<replace css:content="#portal&#45;footer" css:theme="#footer&#45;info"/>&#45;&#45;> -->
+    <!-- </rules> -->
 
 
-        <replace css:theme="#logo a img">
-            <xsl:variable name="reallink" select="//a[@id='portal-logo']/@href"/>
-            <img src="{$reallink}" alt="tes test"/>
-
-                <!--<xsl:attribute name='src'>-->
-                    <!--<xsl:value-of select="$reallink"/>-->
-                <!--</xsl:attribute>-->
-                <!--q1-->
-                <!--<xsl:copy-of select="//a[@id='portal-logo']"/>-->
-                <!--q2-->
-                <!--<xsl:value-of select="$reallink"/>-->
-
-        </replace>
-
-
-    </rules>
-
-    <rules css:if-content=".simplified-template-footer">
-        <replace css:content="#portal-siteactions" css:theme="#siteactions"/>
-        <!--<replace css:content="#portal-footer" css:theme="#footer-info"/>-->
-    </rules>
+  <rules css:if-content=".simplified-template-footer">
+    <theme href="footer-template.html" css:if-content=".simplified-template-footer"/>
+    <replace css:content="#portal-siteactions" css:theme="#siteactions"/>
+    <!--<replace css:content="#portal-footer" css:theme="#footer-info"/>-->
+  </rules>
 
 
 
-    <rules css:if-content="#visual-portal-wrapper">
-        <!--Plone.app.toolbar-->
-        <append theme="/html/body" content="//div[@data-iframe='toolbar']"/>
+  <rules css:if-content="#visual-portal-wrapper">
+    <!--Plone.app.toolbar-->
+    <append theme="/html/body" content="//div[@data-iframe='toolbar']"/>
 
-        <!--Head-->
-        <copy css:content="html" css:theme="html" attributes="lang dir"/>
-        <drop css:theme="head script" css:if-content=".template-sat"/>
-        <before css:content="head style, head link, head script, head meta" css:theme-children="head"/>
-        <replace css:content="head title" css:theme="head title"/>
-        <copy css:content="head base" css:theme="head base"/>
-        <drop css:content="head link[rel='shortcut icon']"/>
-        <drop css:content="head link[rel='apple-touch-icon']"/>
+    <!--Head-->
+    <copy css:content="html" css:theme="html" attributes="lang dir"/>
+    <drop css:theme="head script" css:if-content=".template-sat"/>
+    <before css:content="head style, head link, head script, head meta" css:theme-children="head"/>
+    <replace css:content="head title" css:theme="head title"/>
+    <copy css:content="head base" css:theme="head base"/>
+    <drop css:content="head link[rel='shortcut icon']"/>
+    <drop css:content="head link[rel='apple-touch-icon']"/>
 
-        <!--Content-->
-        <merge attributes="class" css:content="body" css:theme="body"/>
-        <copy attributes="id dir" css:content="body" css:theme="body"/>
-        <copy attributes="role" css:content="content" css:theme="contentspace"/>
-        <replace css:content="#portal-columns" css:theme="#content"/>
+    <!--Content-->
+    <merge attributes="class" css:content="body" css:theme="body"/>
+    <copy attributes="id dir" css:content="body" css:theme="body"/>
+    <copy attributes="role" css:content="content" css:theme="contentspace"/>
+    <replace css:content="#portal-columns" css:theme="#content"/>
 
-        <!--This is a work-around for a problem in plone.outputfilters html transformation
+    <!--This is a work-around for a problem in plone.outputfilters html transformation
             Tickets: Refs #79364 / Refs #80564
 
             Basically you check if the href attribute of the <a> tag has 'resolveuid' in
@@ -160,17 +170,17 @@
 
         <!-- Form fieldset fixes -->
         <!-- <before css:content&#45;children=".kssattr&#45;fieldset&#45;default"> -->
-        <!--     <include css:content="#formfield&#45;form&#45;widgets&#45;IGeolocatable&#45;geolocation" /> -->
-        <!-- </before> -->
+          <!--     <include css:content="#formfield&#45;form&#45;widgets&#45;IGeolocatable&#45;geolocation" /> -->
+          <!-- </before> -->
 
 
         <!-- Search support for data&#45;and&#45;downloads based on EEA Search Appliance -->
         <!-- <replace -->
-        <!--   css:if&#45;content="#search&#45;target" -->
-        <!--   css:content="html" -->
-        <!--   css:theme="#content" -->
-        <!--   href="http://search&#45;app:3000" -->
-        <!--   method="document" /> -->
-    </rules>
+          <!--   css:if&#45;content="#search&#45;target" -->
+          <!--   css:content="html" -->
+          <!--   css:theme="#content" -->
+          <!--   href="http://search&#45;app:3000" -->
+          <!--   method="document" /> -->
+      </rules>
 
 </rules>

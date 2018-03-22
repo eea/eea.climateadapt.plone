@@ -400,3 +400,8 @@ class KeywordObjects (BrowserView):
                    self.context.portal_catalog.searchResults(keywords=key)]
 
         return json.dumps(key_obj)
+
+
+class GoPDB(BrowserView):
+    def __call__(self):
+        import pdb; pdb.set_trace()
