@@ -16,7 +16,7 @@ function filterCountriesByNames(countries, filterIds) {
     type: 'FeatureCollection',
     features: []
   };
-  countries.forEach(function(c) {
+  countries.forEach(function (c) {
     if (filterIds.indexOf(c.properties.SHRT_ENGL) === -1) {
       return;
     }
@@ -27,14 +27,14 @@ function filterCountriesByNames(countries, filterIds) {
 
 function setCountryFlags(countries, flags) {
   // annotates each country with its own flag property
-  countries.forEach(function(c) {
+  countries.forEach(function (c) {
     var name = c.properties.SHRT_ENGL;
     if (!name) {
       // console.log('No flag for', c.properties);
       return;
     }
     var cname = name.replace(' ', '_');
-    flags.forEach(function(f) {
+    flags.forEach(function (f) {
       if (f.url.indexOf(cname) > -1) {
         c.url = f.url;
       }
@@ -51,7 +51,7 @@ function drawCountries(countrySettings, countries) {
   var svg = d3
     .select("body")
     .select("#countries-map svg")
-  ;
+    ;
 
   svg.selectAll("*").remove();
 
@@ -61,7 +61,7 @@ function drawCountries(countrySettings, countries) {
   globalMapProjection
     .scale(1)
     .translate([0, 0])
-  ;
+    ;
 
   var path = d3.geoPath().projection(globalMapProjection);   // the path transformer
 
@@ -93,37 +93,37 @@ function drawCountries(countrySettings, countries) {
 
   var g = svg
     .append('g')
-  ;
+    ;
 
   g     // the world sphere, acts as ocean
     .append("path")
     .datum(
-      {
-        type: "Sphere"
-      }
+    {
+      type: "Sphere"
+    }
     )
     .attr("class", "sphere")
     .attr("d", path)
-  ;
+    ;
 
   g
     .append('g')
     .attr('class', 'graticule')
     .selectAll('path')
-    .data(d3.geoGraticule().step([20,10]).lines())
+    .data(d3.geoGraticule().step([20, 10]).lines())
     .enter()
     .append('path')
     .attr('d', path)
-  ;
+    ;
   g
     .append('g')
     .attr('class', 'semi-graticule')
     .selectAll('path')
-    .data(d3.geoGraticule().step([5,5]).lines())
+    .data(d3.geoGraticule().step([5, 5]).lines())
     .enter()
     .append('path')
     .attr('d', path)
-  ;
+    ;
 
   var cprectid = makeid();
 
@@ -133,7 +133,7 @@ function drawCountries(countrySettings, countries) {
     .data(countries)
     .enter()
     .append('path')
-    .attr('class', function(d) {
+    .attr('class', function (d) {
       var k = 'country-outline';
       if (focusCountryNames.indexOf(d.properties.SHRT_ENGL) !== -1) {
         k += ' country-selected';
@@ -145,14 +145,14 @@ function drawCountries(countrySettings, countries) {
       }
       return k;
     })
-    .attr('id', function(d) {
-      console.log(d);
+    .attr('id', function (d) {
+      // console.log(d);
       return 'c-' + cprectid + '-' + d.properties.id;
     })
     .attr('d', path)
     .attr('x', x)
     .attr('y', y)
-  ;
+    ;
 
   var defs = svg.append('defs');
 
@@ -162,14 +162,14 @@ function drawCountries(countrySettings, countries) {
     .data(countries)
     .enter()
     .append('clipPath')
-    .attr('id', function(d) {
+    .attr('id', function (d) {
       return 'cp-' + cprectid + '-' + d.properties.id;
     })
     .append('path')
     .attr('d', path)
     .attr('x', x)
     .attr('y', y)
-  ;
+    ;
 
   var imgs = svg.append('g');
   imgs
@@ -179,12 +179,12 @@ function drawCountries(countrySettings, countries) {
     .data(focusCountriesFeature.features)
     .enter()
     .append('image')
-    .attr('href', function(d) {
-      console.log('Link will be: ', d.url);
+    .attr('href', function (d) {
+      // console.log('Link will be: ', d.url);
       return d.url;
     })
     .attr('class', 'country-flag')
-    .attr('clip-path', function(d) {
+    .attr('clip-path', function (d) {
       return 'url(#cp-' + cprectid + '-' + d.properties.id + ')';
     })
     .attr("x", function (d) {
@@ -205,15 +205,15 @@ function drawCountries(countrySettings, countries) {
     })
     .attr("preserveAspectRatio", "none")
 
-    .attr('opacity', function() {
+    .attr('opacity', function () {
       return window.isHeaderMap ? '1' : '0';
     })
-    .on('mouseover', function(d) {
+    .on('mouseover', function (d) {
       console.log('Over: ', d);
       $('.country-flag').css('cursor', 'unset');
       d3.select(this).attr('opacity', 1);
     })
-    .on('mousemove', function(d) {
+    .on('mousemove', function (d) {
       // if (window.isGlobalMap) {
       //   return tooltip
       //   .style("visibility", "visible")
@@ -222,28 +222,28 @@ function drawCountries(countrySettings, countries) {
       //   .html(d.SHRT_ENGL);
       // }
     })
-    .on('mouseout', function(d) {
+    .on('mouseout', function (d) {
       d3.select(this).attr('opacity', 0);
       // if (window.isGlobalMap) {
       //   return tooltip
       //   .style("visibility", "hidden");
       // }
     })
-    .on('click', function(d) {
+    .on('click', function (d) {
       var coords = [d3.event.pageY, d3.event.pageX];
       var info = countrySettings[d.properties.SHRT_ENGL];
       var content = info[0];
       var url = info[1];
 
-      // console.log(info);
+      console.log(coords);
       if (content) toggleTooltip({
-        'coords': coords,
+        coords: coords,
         content: content,
         name: d.properties.SHRT_ENGL,
         url: url
       });
     })
-  ;
+    ;
 }
 
 function toggleTooltip(opts) {
@@ -256,10 +256,17 @@ function toggleTooltip(opts) {
 
   $('#map-tooltip').remove();
   var style = 'top:' + x + 'px; left: ' + y + 'px';
+  var h3_name = $('<h3>')
+    .append(name)
+  var link_tag = $('<a>') 
+    .attr('href', url)
+    .append(h3_name)
+    ;
   var tooltip = $("<div id='map-tooltip'>")
     .attr('style', style)
+    .append(link_tag)
     .append(content)
-  ;
+    ;
   $('body').append(tooltip);
 }
 
@@ -269,25 +276,26 @@ function createSectionsSelector(sections, countries, callback) {
 
   var widget = $("<div class='sections-selector' />");
 
-  sections.forEach(function(key, index) {
+  sections.forEach(function (key, index) {
     var label = $("<label>");
     var inp = $("<input type='radio'>")
       .attr('style', 'float: left; margin-right: 0.3em')
       .attr('name', 'country-map-section')
       .attr('value', key)
-    ;
+      ;
     if (index === 0) {
       window._selectedMapSection = key;
       inp.attr('checked', 'checked');
     }
+
     label
       .append(inp)
       .append(key)
-    ;
+      ;
     widget.append($("<div>").append(label));
   });
 
-  $('input', widget).on('change', function() {
+  $('input', widget).on('change', function () {
     var selectedSection = $(this).attr('value');
     window._selectedMapSection = selectedSection;
     callback();
@@ -298,7 +306,7 @@ function createSectionsSelector(sections, countries, callback) {
 
   var countryNames = Object.keys(countries);
   countryNames.sort();
-  countryNames.forEach(function(name) {
+  countryNames.forEach(function (name) {
     select.append($("<option>").append(name));
   });
   widget.prepend(select);
@@ -316,14 +324,14 @@ function initmap(metadata, world, flags) {
   setCountryFlags(countries, flags);
   // console.log('The countries now', countries);
 
-  $(window).resize(function() {
+  $(window).resize(function () {
     drawCountries(countrySettings, countries);
   });
 
   createSectionsSelector(
     sections,
     countrySettings,
-    function() {
+    function () {
       drawCountries(countrySettings, countries);
     }
   );
@@ -332,7 +340,7 @@ function initmap(metadata, world, flags) {
 }
 
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
 
   // initialize the countries map
   var cpath = '++theme++climateadapt/static/countries/euro-countries.geojson';
@@ -340,9 +348,9 @@ jQuery(document).ready(function() {
   // var cpath = '++theme++climateadapt/static/countries/world-110m.json';
   var fpath = '++theme++climateadapt/static/countries/countries.tsv';
 
-  d3.json(cpath, function(world){
-    $.get('@@countries-metadata-extract', function(metadata) {
-      d3.tsv(fpath, function(flags) {
+  d3.json(cpath, function (world) {
+    $.get('@@countries-metadata-extract', function (metadata) {
+      d3.tsv(fpath, function (flags) {
         initmap(metadata, world, flags);
       });
     });
