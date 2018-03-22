@@ -771,6 +771,12 @@
         template="pt/search/external-template-footer.pt"
         permission="zope2.View"
         />
+    <browser:page
+        name="external-template-test"
+        for="*"
+        template="pt/search/external-template-test.pt"
+        permission="zope2.View"
+        />
 
     <subscriber
       for="plone.app.contenttypes.content.Folder
