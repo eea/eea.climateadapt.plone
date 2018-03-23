@@ -237,8 +237,8 @@ function drawMaplets(opts) {
 
   countries.forEach(function(name, index) {
     var feature = filterCountriesByNames(world, [name]);
-    var boxw = 80;
-    var boxh = 80;
+    var boxw = 50;
+    var boxh = 50;
     var space = 10;
 
     var msp = getMapletStartingPoint(
@@ -266,10 +266,54 @@ function drawMaplets(opts) {
       },
       'zoom': 0.7
     };
-    renderCountriesBox(zo);
+    drawMaplet(zo);
   });
 }
 
+function drawMaplet(opts) {
+  var svg = opts.svg;
+
+  var msp = opts.coordinates;
+  svg
+    .append('rect')
+    .attr('class', 'maplet-outline')
+    .attr('x', msp.x)
+    .attr('y', msp.y)
+    .attr('width', msp.width)
+    .attr('height', msp.height)
+    .append('text')
+    .html('hello')
+  ;
+
+  var countryName = opts.focusCountries.names[0];
+  var label = svg.append('text')
+    .attr('x', 0)
+    .attr('y', 0)
+    .attr('class', 'country-focus-label')
+    .attr('text-anchor', 'middle')
+    .text(countryName)
+  ;
+
+  var lbbox = label.node().getBBox();
+  var textboxh = lbbox.height + lbbox.height / 4;
+
+  label
+    .attr('x', msp.x + msp.width/2)
+    .attr('y', msp.y + msp.height - textboxh / 2)   //  - textboxh / 3
+  ;
+
+  // svg
+  //   .append('rect')
+  //   .attr('class', 'country-focus-text-bg')
+  //   .attr('x', msp.x)
+  //   .attr('y', msp.y - textboxh)
+  //   .attr('width', boxw)
+  //   .attr('height', textboxh)
+  // ;
+
+  renderCountriesBox(opts);
+  label.raise();
+}
 
 function drawCountries(world) {
   var svg = d3
@@ -309,8 +353,8 @@ function drawCountries(world) {
     'world': world,
     'viewport': [width, height],
     'countries': ['Romania', 'Hungary'],
-    'start': [10, 100],
-    'side': 'bottom'
+    'start': [width - 70, 10],
+    'side': 'left'
     // 'size': 80,
     // 'space': 6,
   }

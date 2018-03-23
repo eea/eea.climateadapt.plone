@@ -4,6 +4,7 @@
 <style>
 /* This is the tooltip that shows up on click for countries */
 
+
 #map-tooltip {
   position: absolute;
   background-color: #e9ecc9;
@@ -51,6 +52,15 @@
   stroke: gray;
   stroke-dasharray:1,1;
   stroke-width: 0.6;
+}
+.maplet-outline {
+  stroke: black;
+  stroke-width: 1;
+}
+.country-focus-label {
+  font-size: 8px;
+  fill: white;
+  font-weight: bolder;
 }
 .country-outline {
   fill: #909670;
