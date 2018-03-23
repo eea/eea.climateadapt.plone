@@ -135,12 +135,11 @@ function renderCountriesBox(opts) {
     .append('path')
     .attr('class', function (d) {
       var k = 'country-outline';
-      if (countries.names.indexOf(d.properties.SHRT_ENGL) !== -1) {
-        k += ' country-selected';
-      }
+      var available = countries.names.indexOf(d.properties.SHRT_ENGL) !== -1;
+      if (available) k += ' country-selected';
 
       var meta = countrySettings[d.properties.SHRT_ENGL];
-      if (meta && meta[0] && meta[0][_selectedMapSection]) {
+      if (available && meta && meta[0] && meta[0][_selectedMapSection]) {
         k += ' country-green';
       }
       return k;
@@ -352,7 +351,7 @@ function drawCountries(world) {
     'svg': svg,
     'world': world,
     'viewport': [width, height],
-    'countries': ['Romania', 'Hungary'],
+    'countries': ['Malta', 'Liechtenstein', 'Luxembourg'],
     'start': [width - 70, 10],
     'side': 'left'
     // 'size': 80,

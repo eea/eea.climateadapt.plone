@@ -58,7 +58,7 @@
   stroke-width: 1;
 }
 .country-focus-label {
-  font-size: 8px;
+  font-size: 7px;
   fill: white;
   font-weight: bolder;
 }
