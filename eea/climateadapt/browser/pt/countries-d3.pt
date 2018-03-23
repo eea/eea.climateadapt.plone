@@ -14,29 +14,26 @@
   text-decoration: none;
 }
 
-#country-name a{
+#country-name a {
   text-decoration: none;
 }
 
-#countrymap-container {
-  display: flex;
-}
-#countries-map {
-  flex-grow:2;
-}
-#content-list{
+#tooltip-content{
   border-top: 2.5px solid brown;
-
+  padding-top: 0.6rem;
 }
 
-#content-list li{
-  display: inherit;
+#tooltip-content ul {
+  padding-left: 1rem;
+  list-style: inherit;
+}
+#tooltip-content li {
+  display: list-item;
 }
 
 /* selection widget */
 .sections-selector {
   margin-left: 1rem;
-  width:30rem;
 }
 
 .sphere {
@@ -101,13 +98,18 @@ window.define = undefined;
 
   <metal:fill-slot fill-slot="content-core">
 
-    <div class="cover-richtext-tile tile-content" id="countrymap-container">
+    <div tal:content="structure context/text/output"></div>
 
-      <!-- <div id="countries&#45;overview">Loading...</div> -->
+    <!-- <div tal:content="context/text/output"></div> -->
+    <div class="cover-richtext-tile tile-content row" id="countrymap-container">
 
-      <svg-container id="countries-map">
-        <svg height="500" width="100%"></svg>
-      </svg-container>
+      <div class="col-md-9 col-xs-12">
+        <svg-container id="countries-map">
+          <svg height="500" width="100%"></svg>
+        </svg-container>
+      </div>
+
+      <div class="col-md-3 cols-xs-12" id="countries-map-selector"></div>
 
     </div>
 

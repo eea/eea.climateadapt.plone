@@ -745,12 +745,13 @@
         permission="zope2.View"
         />
 
-        <!-- class=".misc.CountriesD3View" -->
+        <!--  -->
     <browser:page
         for="*"
         name="countries-view-map-d3"
         template="pt/countries-d3.pt"
         permission="zope2.View"
+        class=".countries.CountriesD3View"
         />
 
     <browser:page

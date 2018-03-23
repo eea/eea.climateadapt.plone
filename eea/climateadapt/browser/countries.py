@@ -80,6 +80,8 @@ class CountriesMetadataExtract(BrowserView):
         res = {}
 
         for child in self.context.contentValues():
+            if child.portal_type != 'Folder':
+                continue
             res[child.Title()] = [
                 self.extract_country_metadata(child),
                 child.absolute_url()
@@ -92,6 +94,8 @@ class CountriesMetadataExtract(BrowserView):
 
 class CountryMetadataExtract(object):
     """ This is a demo view, shows metadata extracted from country
+
+    It's not used in real code, it's mainly for debugging
     """
 
     def __init__(self, context, request):
@@ -126,3 +130,15 @@ class CountryMetadataExtract(object):
         self.request.response.setHeader("Content-type", "application/json")
 
         return json.dumps([res])
+
+
+class CountriesD3View(BrowserView):
+    """
+    """
+    def text(self):
+        import pdb; pdb.set_trace()
+        page = self.context
+
+        text = "bla"
+
+        return text

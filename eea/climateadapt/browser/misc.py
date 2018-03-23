@@ -3,6 +3,7 @@ import logging
 from email.MIMEText import MIMEText
 
 import requests
+
 import transaction
 from Acquisition import aq_inner
 from eea.climateadapt.config import CONTACT_MAIL_LIST
