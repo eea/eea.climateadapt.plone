@@ -11,10 +11,10 @@
   width: 30rem;
   border: 1.5px solid #545454;
   font-size: 14px;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
-#name a{
+#country-name a{
   text-decoration: none;
 }
 

@@ -268,7 +268,7 @@ function toggleTooltip(opts) {
     .append(h3_name)
   ;
   var name_div = $('<div>')
-    .attr('id', 'name')
+    .attr('id', 'country-name')
     .append(link_tag)
   ;
   var tooltip = $("<div id='map-tooltip'>")
