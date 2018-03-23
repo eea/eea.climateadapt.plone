@@ -256,16 +256,25 @@ function toggleTooltip(opts) {
 
   $('#map-tooltip').remove();
   var style = 'top:' + x + 'px; left: ' + y + 'px';
+  var content_div = $('<div>')
+    .attr('id', 'content-list')
+    .append(content)
+  ;
   var h3_name = $('<h3>')
     .append(name)
-  var link_tag = $('<a>') 
+  ;
+  var link_tag = $('<a>')
     .attr('href', url)
     .append(h3_name)
-    ;
+  ;
+  var name_div = $('<div>')
+    .attr('id', 'name')
+    .append(link_tag)
+  ;
   var tooltip = $("<div id='map-tooltip'>")
     .attr('style', style)
-    .append(link_tag)
-    .append(content)
+    .append(name_div)
+    .append(content_div)
     ;
   $('body').append(tooltip);
 }

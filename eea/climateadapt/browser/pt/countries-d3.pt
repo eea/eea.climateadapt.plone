@@ -3,11 +3,19 @@
 
 <style>
 /* This is the tooltip that shows up on click for countries */
+
 #map-tooltip {
   position: absolute;
-  background-color: pink;
-  padding: 1rem;
+  background-color: #e9ecc9;
+  padding: 1.5rem;
   width: 30rem;
+  border: 1.5px solid #545454;
+  font-size: 14px;
+  text-decoration: none; 
+}
+
+#name a{
+  text-decoration: none;
 }
 
 #countrymap-container {
@@ -15,6 +23,17 @@
 }
 #countries-map {
   flex-grow:2;
+}
+#content-list{
+  border-top: 2.5px solid brown;
+
+}
+
+.ul {
+  font-color:pink;
+}
+* li {
+  display: inherit;
 }
 
 /* selection widget */
