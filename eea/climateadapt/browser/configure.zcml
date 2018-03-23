@@ -764,18 +764,33 @@
         for="*"
         template="pt/search/external-template-header.pt"
         permission="zope2.View"
+        class=".externaltemplates.ExternalTemplateHeader"
         />
+
     <browser:page
         name="external-template-footer"
         for="*"
         template="pt/search/external-template-footer.pt"
         permission="zope2.View"
         />
+    <!-- <browser:page -->
+    <!--     name="external&#45;template&#45;test" -->
+    <!--     for="*" -->
+    <!--     template="pt/search/external&#45;template&#45;test.pt" -->
+    <!--     permission="zope2.View" -->
+    <!--     /> -->
 
     <subscriber
       for="plone.app.contenttypes.content.Folder
            OFS.interfaces.IObjectWillBeRemovedEvent"
       handler=".misc.preventFolderDeletionEvent"
+    />
+
+  <browser:page
+    name="gopdb"
+    for="*"
+    class=".admin.GoPDB"
+    permission="cmf.ManagePortal"
     />
 
 </configure>
