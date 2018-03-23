@@ -29,10 +29,7 @@
 
 }
 
-.ul {
-  font-color:pink;
-}
-* li {
+#content-list li{
   display: inherit;
 }
 
