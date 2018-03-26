@@ -388,7 +388,7 @@ function drawMaplet(opts) {
     .attr('y', 0)
     .attr('class', 'country-focus-label')
     .attr('text-anchor', 'middle')
-    .text(countryName)
+    .text(countryName.toUpperCase())
   ;
 
   var lbbox = label.node().getBBox();

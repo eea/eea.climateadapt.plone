@@ -57,12 +57,6 @@
   stroke: black;
   stroke-width: 2;
 }
-.country-focus-label {
-  font-size: 7px;
-  fill: white;
-  font-weight: bolder;
-  cursor: pointer;
-}
 .place-label {
   font-size: 7px;
   font-weight: normal;
@@ -88,6 +82,9 @@
   fill: #75ad0a;
   cursor: pointer;
 }
+.country-flag {
+  cursor: pointer;
+}
 
 .country-green {
   fill: #b4e63b;
@@ -95,15 +92,24 @@
 }
 
 .maplet-container .country-outline {
-  fill: gray;
+  fill: wheat;
 }
 .maplet-container .country-selected {
   fill: #75ad0a;
 }
+.maplet-container .country-green {
+  fill: #b4e63b;
+}
 .maplet-container .sphere {
-  fill: gray;
+  fill: wheat;
 }
 
+.country-focus-label {
+  font-size: 6px;
+  fill: black;
+  font-weight: normal;
+  cursor: pointer;
+}
 </style>
 
   </metal:fill-slot>
