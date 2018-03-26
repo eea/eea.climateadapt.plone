@@ -55,12 +55,29 @@
 }
 .maplet-outline {
   stroke: black;
-  stroke-width: 1;
+  stroke-width: 2;
 }
 .country-focus-label {
   font-size: 7px;
   fill: white;
   font-weight: bolder;
+  cursor: pointer;
+}
+.place-label {
+  font-size: 7px;
+  font-weight: normal;
+  fill: black;
+  opacity: 1;
+  cursor: pointer;
+}
+.place-label-bg {
+  fill: #CCC;
+  opacity: 1;
+  font-size: 7px;
+  font-weight: normal;
+  stroke: black;
+  stroke-width: 0.6;
+  cursor: pointer;
 }
 .country-outline {
   fill: #909670;
@@ -69,10 +86,22 @@
 }
 .country-selected {
   fill: #75ad0a;
+  cursor: pointer;
 }
 
 .country-green {
   fill: #b4e63b;
+  cursor: pointer;
+}
+
+.maplet-container .country-outline {
+  fill: gray;
+}
+.maplet-container .country-selected {
+  fill: #75ad0a;
+}
+.maplet-container .sphere {
+  fill: gray;
 }
 
 </style>
@@ -92,6 +121,14 @@ window.define = undefined;
     <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.js"></script>
     <script src="https://d3js.org/d3-queue.v3.min.js"></script>
+
+
+    <!-- Force stuff -->
+    <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+    <script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
+    <script src="https://d3js.org/d3-quadtree.v1.min.js"></script>
+    <script src="https://d3js.org/d3-timer.v1.min.js"></script>
+    <script src="https://d3js.org/d3-force.v1.min.js"></script>
 
     <script>
 // window.define = window._old_define;

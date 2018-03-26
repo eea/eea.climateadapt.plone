@@ -7,8 +7,6 @@ jQuery(document).ready(function () {
 
   // initialize the countries map
   var cpath = '++theme++climateadapt/static/countries/euro-countries.geojson';
-  // var cpath = '++theme++climateadapt/static/countries/countries.geo.json';
-  // var cpath = '++theme++climateadapt/static/countries/world-110m.json';
   var fpath = '++theme++climateadapt/static/countries/countries.tsv';
 
   d3.json(cpath, function (world) {
@@ -29,10 +27,6 @@ function initmap(metadata, world, flags) {
   var world = world.features;
 
   setCountryFlags(world, flags);
-
-  $(window).resize(function () {
-    drawCountries(world);
-  });
 
   createSectionsSelector(
     sections,
@@ -68,6 +62,9 @@ function renderCountriesBox(opts) {
   var y = coords.y;
   var width = coords.width;
   var height = coords.height;
+  // var extent = [[x + 20, y + 20], [x + coords.width - 20 , y + coords.height - 20]];
+  // console.log('fitting extent', extent);
+  // globalMapProjection.fitExtent(extent, countries.feature);
 
   var b = path.bounds(countries.feature);
   var cwRatio = (b[1][0] - b[0][0]) / width;    // bounds to width ratio
@@ -168,11 +165,29 @@ function renderCountriesBox(opts) {
     .attr('y', y)
     ;
 
+  function id(d) {
+    return '#c-' + cprectid + '-' + d.properties.id;
+  }
+
+  function countryBBox(d) {
+    // console.log('ID', d.properties.id);
+    // console.log(globalMapProjection, path);
+    return d3.select(id(d)).node().getBBox();
+
+    // if (d.properties.id == 'PT') debugger;
+    // var b = path.bounds(d);
+    // console.log('Bounds', b);
+    // return {
+    //   x: b[0][0],
+    //   y: b[1][0],
+    //   width: b[1][0] - b[0][0],
+    //   height: b[1][1] - b[0][1],
+    // }
+  }
+
   var imgs = svg.append('g');
   imgs
-    .attr('class', 'flag-images')
     .selectAll('image')
-    .attr('class', 'country-flags')
     .data(countries.feature.features)
     .enter()
     .append('image')
@@ -184,44 +199,124 @@ function renderCountriesBox(opts) {
       return 'url(#cp-' + cprectid + '-' + d.properties.id + ')';
     })
     .attr("x", function (d) {
-      var pbox = d3.select('#c-' + cprectid + '-' + d.properties.id).node().getBBox();
-      return pbox.x;
+      return countryBBox(d).x;
     })
     .attr("y", function (d) {
-      var pbox = d3.select('#c-' + cprectid + '-' + d.properties.id).node().getBBox();
-      return pbox.y;
+      return countryBBox(d).y;
     })
     .attr("width", function (d) {
-      var pbox = d3.select('#c-' + cprectid + '-' + d.properties.id).node().getBBox();
-      return pbox.width;
+      return countryBBox(d).width;
     })
     .attr("height", function (d) {
-      var pbox = d3.select('#c-' + cprectid + '-' + d.properties.id).node().getBBox();
-      return pbox.height;
+      return countryBBox(d).height;
     })
     .attr("preserveAspectRatio", "none")
-
-    .attr('opacity', function () {
-      return window.isHeaderMap ? '1' : '0';
-    })
+    .attr('opacity', '0')
     .on('mouseover', function (d) {
       $('.country-flag').css('cursor', 'unset');
       d3.select(this).attr('opacity', 1);
     })
-    .on('mousemove', function (d) {
-      // if (window.isGlobalMap) {
-      //   return tooltip
-      //   .style("visibility", "visible")
-      //   .style("top", (d3.event.pageY) + "px")
-      //   .style("left", (d3.event.pageX + 10) + "px")
-      //   .html(d.SHRT_ENGL);
-      // }
-    })
+    .on('mousemove', function (d) {})
     .on('mouseout', function (d) {
       d3.select(this).attr('opacity', 0);
     })
     .on('click', showMapTooltip)
+  ;
+
+  var foci = [],
+    labels = [];
+
+  // Store the projected coordinates of the places for the foci and the labels
+  countries.feature.features.forEach(function(d, i) {
+    if (
+      // these are very small countries that we will create a maplet for;
+      d.properties.SHRT_ENGL === 'Liechtenstein' ||
+      d.properties.SHRT_ENGL === 'Luxembourg' ||
+      d.properties.SHRT_ENGL === 'Malta'
+    ) return;
+    var c = path.centroid(d);
+    foci.push({x: c[0], y: c[1]});
+    labels.push({
+      x: c[0],
+      y: c[1],
+      label: d.properties.SHRT_ENGL,
+      properties: d.properties
+    })
+  });
+
+  var simulation = d3
+    .forceSimulation()
+    .force("charge", d3.forceManyBody().strength(-1))
+    .force("collide", d3.forceCollide().strength(2).radius(8).iterations(1))
+    .nodes(labels)
+  ;
+
+  setTimeout(function() {
+
+    // var node = svg.append("g")
+    //   .attr("class", "node")
+    //   .selectAll("circle")
+    //   .data(labels)
+    //   .enter().append("circle")
+    //   .attr("r", function(d) { return 10; })
+    //   .attr("fill", 'red')
+    //   .attr("cx", function(d){ return d.x; })
+    //   .attr("cy", function(d){ return d.y; })
+    // ;
+    //
+    // var node = svg.append("g")
+    //   .attr("class", "node")
+    //   .selectAll("circle")
+    //   .data(foci)
+    //   .enter().append("circle")
+    //   .attr("r", function(d) { return 3; })
+    //   .attr("fill", 'black')
+    //   .attr("cx", function(d){ return d.x; })
+    //   .attr("cy", function(d){ return d.y; })
+    // ;
+
+    var placeLabels = svg.selectAll('.place-label-overlay')
+      .data(labels)
+      .enter()
+      .append('text')
+      .attr('class', 'place-label')
+      .attr('id', function(d) {
+        return 'pl-' + d.index;
+      })
+      .attr('x', function(d) { return d.x; })
+      .attr('y', function(d) { return d.y; })
+      .attr('text-anchor', 'middle')
+      .text(function(d) { return d.label.toUpperCase(); })
+      .on('click', showMapTooltip)
     ;
+
+    function getPLBbox(d) {
+      var b = $('#pl-' + d.index).get(0).getBBox();
+      b.x -= 1;
+      b.y -= 1;
+      b.width += 2;
+      b.height += 2;
+      return b;
+    }
+
+    var placeBgs = svg.selectAll('.place-label-bg')
+      .data(labels)
+      .enter()
+      .append('rect')
+      .attr('class', 'place-label-bg')
+      .attr('x', function(d) { return getPLBbox(d).x; })
+      .attr('y', function(d) { return getPLBbox(d).y; })
+      .attr('width', function(d) { return getPLBbox(d).width; })
+      .attr('height', function(d) { return getPLBbox(d).height; })
+      .on('click', showMapTooltip)
+    ;
+
+    d3.selectAll('.place-label').raise();
+
+  }, 100);
+
+
+
 }
 
 
@@ -231,6 +326,11 @@ function drawMaplets(opts) {
   var viewport = opts.viewport;
   var start = opts.start;
   var side = opts.side;
+
+  var g = svg   // the map will be drawn in this group
+    .append('g')
+    .attr('class', 'maplet-container')
+    ;
 
   var countries = opts.countries;
 
@@ -252,7 +352,7 @@ function drawMaplets(opts) {
 
     var zo = {
       'world': world,
-      'svg': svg,
+      'svg': g,
       'coordinates': {
         'x': msp.x,
         'y': msp.y,
@@ -263,7 +363,7 @@ function drawMaplets(opts) {
         'names': [name],
         'feature': feature
       },
-      'zoom': 0.7
+      'zoom': 0.5
     };
     drawMaplet(zo);
   });
@@ -280,8 +380,6 @@ function drawMaplet(opts) {
     .attr('y', msp.y)
     .attr('width', msp.width)
     .attr('height', msp.height)
-    .append('text')
-    .html('hello')
   ;
 
   var countryName = opts.focusCountries.names[0];
@@ -298,17 +396,8 @@ function drawMaplet(opts) {
 
   label
     .attr('x', msp.x + msp.width/2)
-    .attr('y', msp.y + msp.height - textboxh / 2)   //  - textboxh / 3
+    .attr('y', msp.y + msp.height - textboxh / 3)   //  - textboxh / 3
   ;
-
-  // svg
-  //   .append('rect')
-  //   .attr('class', 'country-focus-text-bg')
-  //   .attr('x', msp.x)
-  //   .attr('y', msp.y - textboxh)
-  //   .attr('width', boxw)
-  //   .attr('height', textboxh)
-  // ;
 
   renderCountriesBox(opts);
   label.raise();
@@ -320,6 +409,16 @@ function drawCountries(world) {
     .select("#countries-map svg")
     ;
   svg.selectAll("*").remove();
+  var filter = '<filter id="dropshadow" height="130%">'
+    + '<feGaussianBlur in="SourceAlpha" stdDeviation="3"/>'
+    + '<feOffset dx="2" dy="2" result="offsetblur"/>'
+    + '<feComponentTransfer>'
+    + '<feFuncA type="linear" slope="0.5"/>'
+    + '</feComponentTransfer>'
+    + '<feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>'
+    + '</filter>'
+  ;
+  $(svg.node()).append($('<defs>' + filter + '</defs>'));
 
   var focusCountryNames = Object.keys(countrySettings);
 
@@ -352,7 +451,7 @@ function drawCountries(world) {
     'world': world,
     'viewport': [width, height],
     'countries': ['Malta', 'Liechtenstein', 'Luxembourg'],
-    'start': [width - 70, 10],
+    'start': [width - 60, 10],
     'side': 'left'
     // 'size': 80,
     // 'space': 6,
@@ -490,6 +589,11 @@ function createSectionsSelector(sections, countries, callback) {
 
   container.append(widget);
   callback();
+
+  $(window).resize(function () {
+    drawCountries(world);
+  });
+
 }
 
 
@@ -510,7 +614,7 @@ function travelToOppositeMutator(start, viewport, delta) {
   // viewport: array of width, height
   // delta: array of dimensions to travel
 
-  var center = findCenter(viewport);
+  var center = [viewport[0] / 2, viewport[1] / 2];
 
   var dirx = start[0] > center[0] ? -1 : 1;
   var diry = start[1] > center[1] ? -1 : 1;
@@ -522,11 +626,6 @@ function travelToOppositeMutator(start, viewport, delta) {
     ];
     return res;
   };
-}
-
-
-function findCenter(viewport) {
-  return [viewport[0] / 2, viewport[1] / 2];
 }
 
 
@@ -576,5 +675,3 @@ function getMapletStartingPoint(
     y: mutPoint[1]
   };
 }
-
-
