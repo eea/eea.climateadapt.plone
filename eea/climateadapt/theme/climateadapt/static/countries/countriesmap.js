@@ -590,9 +590,7 @@ function createSectionsSelector(sections, countries, callback) {
   container.append(widget);
   callback();
 
-  $(window).resize(function () {
-    drawCountries(world);
-  });
+  $(window).resize(callback);
 
 }
 
