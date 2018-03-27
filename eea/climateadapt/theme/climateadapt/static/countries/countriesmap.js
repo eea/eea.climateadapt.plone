@@ -37,6 +37,142 @@ function initmap(metadata, world, flags) {
   );
 }
 
+function renderGraticule(container, klass, steps, pathTransformer) {
+  container     // draw primary graticule lines
+    .append('g')
+    .attr('class', klass)
+    .selectAll('path')
+    .data(d3.geoGraticule().step(steps).lines())
+    .enter()
+    .append('path')
+    .attr('d', pathTransformer)
+    ;
+}
+
+function getCountryClass(country, countries) {
+  var k = 'country-outline';
+  var available = countries.names.indexOf(country.properties.SHRT_ENGL) !== -1;
+  if (available) k += ' country-available';
+
+  var meta = countrySettings[country.properties.SHRT_ENGL];
+  if (available && meta && meta[0] && meta[0][_selectedMapSection]) {
+    k += ' country-green';
+  }
+  return k;
+}
+
+function renderCountry(map, country, path, countries, x, y) {
+  // console.log('Rendering', country);
+
+  var cprectid = makeid();    // unique id for this map drawing
+  var klass = getCountryClass(country, countries);
+  var cId = 'c-' + cprectid + '-' + country.properties.id;
+  var cpId = 'cp-' + cprectid + '-' + country.properties.id;
+
+  var available = countries.names.indexOf(country.properties.SHRT_ENGL) !== -1;
+
+  var parent = map
+    .append('g')
+    .attr('class', klass)
+  ;
+
+  parent       // define clipping path for this country
+    .append('defs')
+    .append('clipPath')
+    .attr('id', cpId)
+    .append('path')
+    .attr('d', path(country))
+    .attr('x', x)
+    .attr('y', y)
+  ;
+
+  var outline = parent       // this is the country fill and outline
+    .append('path')
+    .attr('id', cId)
+    .attr('x', x)
+    .attr('y', y)
+    .attr('d', path(country))
+  ;
+
+  if (available) {
+    var bbox = outline.node().getBBox();
+    renderCountryFlag(parent, country, bbox, cpId);
+    renderCountryLabel(country, path);
+  }
+}
+
+function renderCountryLabel(country, path) {
+  var parent = d3.select('svg');
+  var g = parent
+    .append('g')
+    .attr('class', 'country-label')
+  ;
+  if (
+      // these are very small countries that we will create a maplet for;
+      country.properties.SHRT_ENGL === 'Liechtenstein' ||
+      country.properties.SHRT_ENGL === 'Luxembourg' ||
+      country.properties.SHRT_ENGL === 'Malta'
+    ) return;
+
+  var pId = 'pl-' + country.id;
+  var center = path.centroid(country);
+
+  var label = g
+    .append('text')
+    .attr('class', 'place-label')
+    .attr('id', pId)
+    .attr('x', center[0])
+    .attr('y', center[1])
+    .attr('text-anchor', 'middle')
+    .text(country.properties.SHRT_ENGL.toUpperCase())
+    .on('click', function() {
+      showMapTooltip(country);
+    })
+  ;
+
+  var bbox = label.node().getBBox();
+
+  g
+    .append('rect')
+    .attr('class', 'place-label-bg')
+    .attr('x', bbox.x - 1)
+    .attr('y', bbox.y - 1)
+    .attr('width', bbox.width + 2)
+    .attr('height', bbox.height + 2)
+    .on('click', function() {
+      showMapTooltip(country);
+    })
+  ;
+
+  label.raise();
+
+}
+
+function renderCountryFlag(parent, country, bbox, cpId) {
+  var flag = parent
+    .append('image')
+    .attr('class', 'country-flag')
+    .attr('href', country.url)
+    .attr("preserveAspectRatio", "none")
+    .attr('opacity', '0')
+    .attr('clip-path', 'url(#' + cpId + ')')
+    .attr('x', bbox.x)
+    .attr('y', bbox.y)
+    .attr('height', bbox.height)
+    .attr('width', bbox.width)
+    .on('click', function() {
+      showMapTooltip(country)
+    })
+    // .on('mouseover', function (e) {
+    //   // $('.country-flag').css('cursor', 'unset');
+    //   d3.select(this).attr('opacity', 1);
+    // })
+    // .on('mouseout', function (d) {
+    //   d3.select(this).attr('opacity', 0);
+    // })
+  ;
+  return flag;
+}
 
 function renderCountriesBox(opts) {
 
@@ -77,9 +213,8 @@ function renderCountriesBox(opts) {
 
   globalMapProjection.scale(s).translate(t);
 
-  var defs = svg.append('defs');
-
-  defs    // rectangular clipping path for the whole drawn map
+  svg
+    .append('defs')    // rectangular clipping path for the whole drawn map
     .append('clipPath')
     .attr('id', cprectid)
     .append('rect')
@@ -89,12 +224,12 @@ function renderCountriesBox(opts) {
     .attr('width', width)
   ;
 
-  var g = svg   // the map will be drawn in this group
+  var map = svg   // the map will be drawn in this group
     .append('g')
     .attr('clip-path', 'url(#' + cprectid + ')')
     ;
 
-  g     // the world sphere, acts as ocean
+  map     // the world sphere, acts as ocean
     .append("path")
     .datum(
     {
@@ -105,217 +240,12 @@ function renderCountriesBox(opts) {
     .attr("d", path)
     ;
 
-  g     // draw primary graticule lines
-    .append('g')
-    .attr('class', 'graticule')
-    .selectAll('path')
-    .data(d3.geoGraticule().step([20, 10]).lines())
-    .enter()
-    .append('path')
-    .attr('d', path)
-    ;
-  g   // draw secondary graticule lines
-    .append('g')
-    .attr('class', 'semi-graticule')
-    .selectAll('path')
-    .data(d3.geoGraticule().step([5, 5]).lines())
-    .enter()
-    .append('path')
-    .attr('d', path)
-    ;
+  renderGraticule(map, 'graticule', [20, 10], path);
+  renderGraticule(map, 'semi-graticule', [5, 5], path);
 
-  g     // draw a path for each country
-    .append('g')
-    .selectAll('path')
-    .data(world)
-    .enter()
-    .append('path')
-    .attr('class', function (d) {
-      var k = 'country-outline';
-      var available = countries.names.indexOf(d.properties.SHRT_ENGL) !== -1;
-      if (available) k += ' country-selected';
-
-      var meta = countrySettings[d.properties.SHRT_ENGL];
-      if (available && meta && meta[0] && meta[0][_selectedMapSection]) {
-        k += ' country-green';
-      }
-      return k;
-    })
-    .attr('id', function (d) {
-      return 'c-' + cprectid + '-' + d.properties.id;
-    })
-    .attr('d', path)
-    .attr('x', x)
-    .attr('y', y)
-    ;
-
-  // define clipping paths for all focused countries
-  var defs = svg.append('defs');
-  defs
-    .selectAll('clipPath')
-    .data(countries.feature.features)
-    .enter()
-    .append('clipPath')
-    .attr('id', function (d) {
-      return 'cp-' + cprectid + '-' + d.properties.id;
-    })
-    .append('path')
-    .attr('d', path)
-    .attr('x', x)
-    .attr('y', y)
-    ;
-
-  function id(d) {
-    return '#c-' + cprectid + '-' + d.properties.id;
-  }
-
-  function countryBBox(d) {
-    // console.log('ID', d.properties.id);
-    // console.log(globalMapProjection, path);
-    return d3.select(id(d)).node().getBBox();
-
-    // if (d.properties.id == 'PT') debugger;
-    // var b = path.bounds(d);
-    // console.log('Bounds', b);
-    // return {
-    //   x: b[0][0],
-    //   y: b[1][0],
-    //   width: b[1][0] - b[0][0],
-    //   height: b[1][1] - b[0][1],
-    // }
-  }
-
-  var imgs = svg.append('g');
-  imgs
-    .selectAll('image')
-    .data(countries.feature.features)
-    .enter()
-    .append('image')
-    .attr('href', function (d) {
-      return d.url;
-    })
-    .attr('class', 'country-flag')
-    .attr('clip-path', function (d) {
-      return 'url(#cp-' + cprectid + '-' + d.properties.id + ')';
-    })
-    .attr("x", function (d) {
-      return countryBBox(d).x;
-    })
-    .attr("y", function (d) {
-      return countryBBox(d).y;
-    })
-    .attr("width", function (d) {
-      return countryBBox(d).width;
-    })
-    .attr("height", function (d) {
-      return countryBBox(d).height;
-    })
-    .attr("preserveAspectRatio", "none")
-    .attr('opacity', '0')
-    .on('mouseover', function (d) {
-      $('.country-flag').css('cursor', 'unset');
-      d3.select(this).attr('opacity', 1);
-    })
-    .on('mousemove', function (d) {})
-    .on('mouseout', function (d) {
-      d3.select(this).attr('opacity', 0);
-    })
-    .on('click', showMapTooltip)
-  ;
-
-  var foci = [],
-    labels = [];
-
-  // Store the projected coordinates of the places for the foci and the labels
-  countries.feature.features.forEach(function(d, i) {
-    if (
-      // these are very small countries that we will create a maplet for;
-      d.properties.SHRT_ENGL === 'Liechtenstein' ||
-      d.properties.SHRT_ENGL === 'Luxembourg' ||
-      d.properties.SHRT_ENGL === 'Malta'
-    ) return;
-    var c = path.centroid(d);
-    foci.push({x: c[0], y: c[1]});
-    labels.push({
-      x: c[0],
-      y: c[1],
-      label: d.properties.SHRT_ENGL,
-      properties: d.properties
-    })
+  world.forEach(function(country) {
+    renderCountry(map, country, path, countries, x, y);
   });
-
-  var simulation = d3
-    .forceSimulation()
-    .force("charge", d3.forceManyBody().strength(-1))
-    .force("collide", d3.forceCollide().strength(2).radius(8).iterations(1))
-    .nodes(labels)
-  ;
-
-  setTimeout(function() {
-
-    // var node = svg.append("g")
-    //   .attr("class", "node")
-    //   .selectAll("circle")
-    //   .data(labels)
-    //   .enter().append("circle")
-    //   .attr("r", function(d) { return 10; })
-    //   .attr("fill", 'red')
-    //   .attr("cx", function(d){ return d.x; })
-    //   .attr("cy", function(d){ return d.y; })
-    // ;
-    //
-    // var node = svg.append("g")
-    //   .attr("class", "node")
-    //   .selectAll("circle")
-    //   .data(foci)
-    //   .enter().append("circle")
-    //   .attr("r", function(d) { return 3; })
-    //   .attr("fill", 'black')
-    //   .attr("cx", function(d){ return d.x; })
-    //   .attr("cy", function(d){ return d.y; })
-    // ;
-
-    var placeLabels = svg.selectAll('.place-label-overlay')
-      .data(labels)
-      .enter()
-      .append('text')
-      .attr('class', 'place-label')
-      .attr('id', function(d) {
-        return 'pl-' + d.index;
-      })
-      .attr('x', function(d) { return d.x; })
-      .attr('y', function(d) { return d.y; })
-      .attr('text-anchor', 'middle')
-      .text(function(d) { return d.label.toUpperCase(); })
-      .on('click', showMapTooltip)
-    ;
-
-    function getPLBbox(d) {
-      var b = $('#pl-' + d.index).get(0).getBBox();
-      b.x -= 1;
-      b.y -= 1;
-      b.width += 2;
-      b.height += 2;
-      return b;
-    }
-
-    var placeBgs = svg.selectAll('.place-label-bg')
-      .data(labels)
-      .enter()
-      .append('rect')
-      .attr('class', 'place-label-bg')
-      .attr('x', function(d) { return getPLBbox(d).x; })
-      .attr('y', function(d) { return getPLBbox(d).y; })
-      .attr('width', function(d) { return getPLBbox(d).width; })
-      .attr('height', function(d) { return getPLBbox(d).height; })
-      .on('click', showMapTooltip)
-    ;
-
-    d3.selectAll('.place-label').raise();
-
-  }, 100);
-
-
 
 }
 
@@ -409,16 +339,6 @@ function drawCountries(world) {
     .select("#countries-map svg")
     ;
   svg.selectAll("*").remove();
-  var filter = '<filter id="dropshadow" height="130%">'
-    + '<feGaussianBlur in="SourceAlpha" stdDeviation="3"/>'
-    + '<feOffset dx="2" dy="2" result="offsetblur"/>'
-    + '<feComponentTransfer>'
-    + '<feFuncA type="linear" slope="0.5"/>'
-    + '</feComponentTransfer>'
-    + '<feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>'
-    + '</filter>'
-  ;
-  $(svg.node()).append($('<defs>' + filter + '</defs>'));
 
   var focusCountryNames = Object.keys(countrySettings);
 
@@ -460,6 +380,7 @@ function drawCountries(world) {
 }
 
 function showMapTooltip(d) {
+  console.log("tooltip", d);
   var coords = [d3.event.pageY, d3.event.pageX];
   var info = countrySettings[d.properties.SHRT_ENGL];
   var content = info[0];

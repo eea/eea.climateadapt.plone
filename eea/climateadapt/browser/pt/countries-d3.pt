@@ -73,12 +73,15 @@
   stroke-width: 0.6;
   cursor: pointer;
 }
-.country-outline {
+.country-outline path {
   fill: #909670;
   stroke: black;
   stroke-width: 1;
 }
-.country-selected {
+.country-outline :hover {
+  opacity: 1;
+}
+.country-available path {
   fill: #75ad0a;
   cursor: pointer;
 }
@@ -86,7 +89,7 @@
   cursor: pointer;
 }
 
-.country-green {
+.country-green path {
   fill: #b4e63b;
   cursor: pointer;
 }
