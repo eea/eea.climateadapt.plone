@@ -62,7 +62,6 @@ function getCountryClass(country, countries) {
 }
 
 function renderCountry(map, country, path, countries, x, y) {
-  // console.log('Rendering', country);
 
   var cprectid = makeid();    // unique id for this map drawing
   var klass = getCountryClass(country, countries);
@@ -74,7 +73,7 @@ function renderCountry(map, country, path, countries, x, y) {
   var parent = map
     .append('g')
     .attr('class', klass)
-  ;
+    ;
 
   parent       // define clipping path for this country
     .append('defs')
@@ -84,7 +83,7 @@ function renderCountry(map, country, path, countries, x, y) {
     .attr('d', path(country))
     .attr('x', x)
     .attr('y', y)
-  ;
+    ;
 
   var outline = parent       // this is the country fill and outline
     .append('path')
@@ -92,7 +91,7 @@ function renderCountry(map, country, path, countries, x, y) {
     .attr('x', x)
     .attr('y', y)
     .attr('d', path(country))
-  ;
+    ;
 
   if (available) {
     var bbox = outline.node().getBBox();
@@ -106,13 +105,13 @@ function renderCountryLabel(country, path) {
   var g = parent
     .append('g')
     .attr('class', 'country-label')
-  ;
+    ;
   if (
-      // these are very small countries that we will create a maplet for;
-      country.properties.SHRT_ENGL === 'Liechtenstein' ||
-      country.properties.SHRT_ENGL === 'Luxembourg' ||
-      country.properties.SHRT_ENGL === 'Malta'
-    ) return;
+    // these are very small countries that we will create a maplet for;
+    country.properties.SHRT_ENGL === 'Liechtenstein' ||
+    country.properties.SHRT_ENGL === 'Luxembourg' ||
+    country.properties.SHRT_ENGL === 'Malta'
+  ) return;
 
   var pId = 'pl-' + country.id;
   var center = path.centroid(country);
@@ -125,10 +124,10 @@ function renderCountryLabel(country, path) {
     .attr('y', center[1])
     .attr('text-anchor', 'middle')
     .text(country.properties.SHRT_ENGL.toUpperCase())
-    .on('click', function() {
+    .on('click', function () {
       showMapTooltip(country);
     })
-  ;
+    ;
 
   var bbox = label.node().getBBox();
 
@@ -139,10 +138,10 @@ function renderCountryLabel(country, path) {
     .attr('y', bbox.y - 1)
     .attr('width', bbox.width + 2)
     .attr('height', bbox.height + 2)
-    .on('click', function() {
+    .on('click', function () {
       showMapTooltip(country);
     })
-  ;
+    ;
 
   label.raise();
 
@@ -160,7 +159,7 @@ function renderCountryFlag(parent, country, bbox, cpId) {
     .attr('y', bbox.y)
     .attr('height', bbox.height)
     .attr('width', bbox.width)
-    .on('click', function() {
+    .on('click', function () {
       showMapTooltip(country)
     })
     // .on('mouseover', function (e) {
@@ -170,7 +169,7 @@ function renderCountryFlag(parent, country, bbox, cpId) {
     // .on('mouseout', function (d) {
     //   d3.select(this).attr('opacity', 0);
     // })
-  ;
+    ;
   return flag;
 }
 
@@ -189,7 +188,7 @@ function renderCountriesBox(opts) {
   globalMapProjection
     .scale(1)
     .translate([0, 0])
-  ;
+    ;
 
   // the path transformer
   var path = d3.geoPath().projection(globalMapProjection);
@@ -222,7 +221,7 @@ function renderCountriesBox(opts) {
     .attr('y', y)
     .attr('height', height)
     .attr('width', width)
-  ;
+    ;
 
   var map = svg   // the map will be drawn in this group
     .append('g')
@@ -243,7 +242,7 @@ function renderCountriesBox(opts) {
   renderGraticule(map, 'graticule', [20, 10], path);
   renderGraticule(map, 'semi-graticule', [5, 5], path);
 
-  world.forEach(function(country) {
+  world.forEach(function (country) {
     renderCountry(map, country, path, countries, x, y);
   });
 
@@ -264,7 +263,7 @@ function drawMaplets(opts) {
 
   var countries = opts.countries;
 
-  countries.forEach(function(name, index) {
+  countries.forEach(function (name, index) {
     var feature = filterCountriesByNames(world, [name]);
     var boxw = 50;
     var boxh = 50;
@@ -310,7 +309,7 @@ function drawMaplet(opts) {
     .attr('y', msp.y)
     .attr('width', msp.width)
     .attr('height', msp.height)
-  ;
+    ;
 
   var countryName = opts.focusCountries.names[0];
   var label = svg.append('text')
@@ -319,15 +318,15 @@ function drawMaplet(opts) {
     .attr('class', 'country-focus-label')
     .attr('text-anchor', 'middle')
     .text(countryName.toUpperCase())
-  ;
+    ;
 
   var lbbox = label.node().getBBox();
   var textboxh = lbbox.height + lbbox.height / 4;
 
   label
-    .attr('x', msp.x + msp.width/2)
+    .attr('x', msp.x + msp.width / 2)
     .attr('y', msp.y + msp.height - textboxh / 3)   //  - textboxh / 3
-  ;
+    ;
 
   renderCountriesBox(opts);
   label.raise();
@@ -380,7 +379,6 @@ function drawCountries(world) {
 }
 
 function showMapTooltip(d) {
-  console.log("tooltip", d);
   var coords = [d3.event.pageY, d3.event.pageX];
   var info = countrySettings[d.properties.SHRT_ENGL];
   var content = info[0];
@@ -394,7 +392,7 @@ function showMapTooltip(d) {
   });
 
   // TODO: are there multiple onclick handlers here??
-  $("body").on('click', function() {
+  $("body").on('click', function () {
     $('#map-tooltip').remove();
   });
 
@@ -447,18 +445,18 @@ function createTooltip(opts) {
   var content_div = $('<div>')
     .attr('id', 'tooltip-content')
     .append(content)
-  ;
+    ;
   var h3_name = $('<h3>')
     .append(name)
-  ;
+    ;
   var link_tag = $('<a>')
     .attr('href', url)
     .append(h3_name)
-  ;
+    ;
   var name_div = $('<div>')
     .attr('id', 'country-name')
     .append(link_tag)
-  ;
+    ;
   var tooltip = $("<div id='map-tooltip'>")
     .attr('style', style)
     .append(name_div)
@@ -467,6 +465,7 @@ function createTooltip(opts) {
   $('body').append(tooltip);
 }
 
+// aici faci partea cu link la selector
 
 function createSectionsSelector(sections, countries, callback) {
   var container = $("#countries-map-selector");
@@ -503,18 +502,25 @@ function createSectionsSelector(sections, countries, callback) {
 
   var countryNames = Object.keys(countries);
   countryNames.sort();
-  countryNames.forEach(function (name) {
-    select.append($("<option>").append(name));
-  });
-  widget.prepend(select);
 
+  countryNames.forEach(function (name) {
+    select
+      .append(
+      $("<option>").append(name)
+      );
+  });
+
+  select.on('change', function () {
+    var name = $(this).val();
+    if (!name) return;
+    window.location = countries[name][1];
+  })
+
+  widget.prepend(select);
   container.append(widget);
   callback();
-
   $(window).resize(callback);
-
 }
-
 
 function makeid() {
   var text = '';
@@ -538,7 +544,7 @@ function travelToOppositeMutator(start, viewport, delta) {
   var dirx = start[0] > center[0] ? -1 : 1;
   var diry = start[1] > center[1] ? -1 : 1;
 
-  return function(point) {
+  return function (point) {
     var res = [
       point[0] + delta[0] * dirx,
       point[1] + delta[1] * diry
