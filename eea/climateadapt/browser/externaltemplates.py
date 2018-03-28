@@ -5,7 +5,7 @@ from Products.Five.browser import BrowserView
 from zope.component import getUtility
 
 
-class ExternalTemplateHeader(BrowserView):
+class ExternalTemplateHeader(object):
 
     def theme_base_url(self):
         reg = getUtility(IRegistry)
