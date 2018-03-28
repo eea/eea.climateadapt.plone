@@ -116,7 +116,7 @@ function renderCountryLabel(country, path, force) {
     ) && !force
   ) return;
 
-  var delta = force ? 18 : 0;
+  var delta = force ? 20 : 0;
 
   var pId = 'pl-' + country.id;
   var center = path.centroid(country);
