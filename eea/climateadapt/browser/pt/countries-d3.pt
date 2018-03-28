@@ -57,33 +57,46 @@
   stroke: black;
   stroke-width: 2;
 }
-.place-label {
+
+
+.country-label {
   font-size: 7px;
   font-weight: normal;
   fill: black;
   opacity: 1;
   cursor: pointer;
 }
-.place-label-bg {
+.country-label rect {
   fill: #CCC;
-  opacity: 1;
-  font-size: 7px;
-  font-weight: normal;
   stroke: black;
   stroke-width: 0.6;
   cursor: pointer;
 }
+.country-label text {
+  fill: black;
+  font-size: 7px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.country-label:hover rect {
+  fill: black;
+}
+.country-label:hover text {
+  fill: white;
+}
 .maplet-label text.place-label {
   font-size: 6px;
 }
+
 .country-outline path {
   fill: #909670;
   stroke: black;
   stroke-width: 1;
 }
-.country-outline :hover {
-  opacity: 1;
-}
+/* .country-outline :hover { */
+/*   opacity: 1; */
+/* } */
 .country-available path {
   fill: #75ad0a;
   cursor: pointer;
@@ -115,12 +128,6 @@
   fill: gray;
 }
 
-.country-focus-label {
-  font-size: 6px;
-  fill: black;
-  font-weight: normal;
-  cursor: pointer;
-}
 </style>
 
   </metal:fill-slot>

@@ -123,7 +123,7 @@ function renderCountryLabel(country, path, force) {
 
   var label = g
     .append('text')
-    .attr('class', 'place-label')
+    // .attr('class', 'place-label')
     .attr('id', pId)
     .attr('x', center[0])
     .attr('y', center[1] + delta)
@@ -138,7 +138,7 @@ function renderCountryLabel(country, path, force) {
 
   g
     .append('rect')
-    .attr('class', 'place-label-bg')
+    // .attr('class', 'place-label-bg')
     .attr('x', bbox.x - 1)
     .attr('y', bbox.y - 1)
     .attr('width', bbox.width + 2)
@@ -149,7 +149,7 @@ function renderCountryLabel(country, path, force) {
     ;
 
   label.raise();
-
+  passThruEvents(g);
 }
 
 function renderCountryFlag(parent, country, bbox, cpId) {
@@ -167,13 +167,13 @@ function renderCountryFlag(parent, country, bbox, cpId) {
     .on('click', function () {
       showMapTooltip(country)
     })
-    // .on('mouseover', function (e) {
-    //   // $('.country-flag').css('cursor', 'unset');
-    //   d3.select(this).attr('opacity', 1);
-    // })
-    // .on('mouseout', function (d) {
-    //   d3.select(this).attr('opacity', 0);
-    // })
+    .on('mouseover', function (e) {
+      // $('.country-flag').css('cursor', 'unset');
+      d3.select(this).attr('opacity', 1);
+    })
+    .on('mouseout', function (d) {
+      d3.select(this).attr('opacity', 0);
+    })
     ;
   return flag;
 }
@@ -318,27 +318,6 @@ function drawMaplet(opts) {
 
   var path = renderCountriesBox(opts);
   renderCountryLabel(opts.focusCountries.feature.features[0], path, true);
-
-  // var countryName = opts.focusCountries.names[0];
-  // var label = svg.append('text')
-  //   .attr('x', 0)
-  //   .attr('y', 0)
-  //   .attr('class', 'country-focus-label')
-  //   .attr('text-anchor', 'middle')
-  //   .text(countryName.toUpperCase())
-  //   ;
-  //
-  // var lbbox = label.node().getBBox();
-  // var textboxh = lbbox.height + lbbox.height / 4;
-  //
-  // label
-  //   .attr('x', msp.x + msp.width / 2)
-  //   .attr('y', msp.y + msp.height - textboxh / 3)   //  - textboxh / 3
-  //   ;
-  //
-  // var path = renderCountriesBox(opts);
-  // label.raise();
-  // return path;
 }
 
 function drawCountries(world) {
@@ -608,4 +587,45 @@ function getMapletStartingPoint(
     x: mutPoint[0],
     y: mutPoint[1]
   };
+}
+
+function passThruEvents(g) {
+  g
+    // .on('mousemove.passThru', passThru)
+    .on('mouseover', passThru)
+  // .on('mousedown.passThru', passThru)
+  ;
+
+  function passThru(d) {
+    console.log('passing through');
+    var e = d3.event;
+
+    var prev = this.style.pointerEvents;
+    this.style.pointerEvents = 'none';
+
+    var el = document.elementFromPoint(d3.event.x, d3.event.y);
+
+    var e2 = document.createEvent('MouseEvent');
+    e2.initMouseEvent(
+      e.type,
+      e.bubbles,
+      e.cancelable,
+      e.view,
+      e.detail,
+      e.screenX,
+      e.screenY,
+      e.clientX,
+      e.clientY,
+      e.ctrlKey,
+      e.altKey,
+      e.shiftKey,
+      e.metaKey,
+      e.button,
+      e.relatedTarget
+    );
+
+    el.dispatchEvent(e2);
+
+    this.style.pointerEvents = prev;
+  }
 }
