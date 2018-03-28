@@ -94,19 +94,22 @@
   cursor: pointer;
 }
 
-.maplet-container .country-outline {
-  fill: #6cbcf7;
-  /* fill: wheat; */
+.maplet-container .country-outline path {
+  /* fill: #6cbcf7; */
+  fill: wheat;
 }
-.maplet-container .country-selected {
+.maplet-container .country-available path {
+  fill: #909670;
+}
+.maplet-container .country-selected path {
   fill: #75ad0a;
 }
-.maplet-container .country-green {
+.maplet-container .country-green path {
   fill: #b4e63b;
 }
 .maplet-container .sphere {
-  fill: #6cbcf7;
-  /* fill: wheat; */
+  /* fill: #6cbcf7; */
+  fill: wheat;
 }
 
 .country-focus-label {
