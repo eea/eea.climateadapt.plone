@@ -100,18 +100,23 @@ function renderCountry(map, country, path, countries, x, y) {
   }
 }
 
-function renderCountryLabel(country, path) {
+function renderCountryLabel(country, path, force) {
   var parent = d3.select('svg');
+  var klass = force ? 'country-label maplet-label' : 'country-label'
   var g = parent
     .append('g')
-    .attr('class', 'country-label')
+    .attr('class', klass)
     ;
   if (
     // these are very small countries that we will create a maplet for;
-    country.properties.SHRT_ENGL === 'Liechtenstein' ||
-    country.properties.SHRT_ENGL === 'Luxembourg' ||
-    country.properties.SHRT_ENGL === 'Malta'
+    (
+      country.properties.SHRT_ENGL === 'Liechtenstein' ||
+      country.properties.SHRT_ENGL === 'Luxembourg' ||
+      country.properties.SHRT_ENGL === 'Malta'
+    ) && !force
   ) return;
+
+  var delta = force ? 18 : 0;
 
   var pId = 'pl-' + country.id;
   var center = path.centroid(country);
@@ -121,7 +126,7 @@ function renderCountryLabel(country, path) {
     .attr('class', 'place-label')
     .attr('id', pId)
     .attr('x', center[0])
-    .attr('y', center[1])
+    .attr('y', center[1] + delta)
     .attr('text-anchor', 'middle')
     .text(country.properties.SHRT_ENGL.toUpperCase())
     .on('click', function () {
@@ -246,6 +251,7 @@ function renderCountriesBox(opts) {
     renderCountry(map, country, path, countries, x, y);
   });
 
+  return path;
 }
 
 
@@ -299,9 +305,8 @@ function drawMaplets(opts) {
 }
 
 function drawMaplet(opts) {
-  var svg = opts.svg;
-
   var msp = opts.coordinates;
+  var svg = opts.svg;
   svg
     .append('rect')
     .attr('class', 'maplet-outline')
@@ -311,25 +316,29 @@ function drawMaplet(opts) {
     .attr('height', msp.height)
     ;
 
-  var countryName = opts.focusCountries.names[0];
-  var label = svg.append('text')
-    .attr('x', 0)
-    .attr('y', 0)
-    .attr('class', 'country-focus-label')
-    .attr('text-anchor', 'middle')
-    .text(countryName.toUpperCase())
-    ;
+  var path = renderCountriesBox(opts);
+  renderCountryLabel(opts.focusCountries.feature.features[0], path, true);
 
-  var lbbox = label.node().getBBox();
-  var textboxh = lbbox.height + lbbox.height / 4;
-
-  label
-    .attr('x', msp.x + msp.width / 2)
-    .attr('y', msp.y + msp.height - textboxh / 3)   //  - textboxh / 3
-    ;
-
-  renderCountriesBox(opts);
-  label.raise();
+  // var countryName = opts.focusCountries.names[0];
+  // var label = svg.append('text')
+  //   .attr('x', 0)
+  //   .attr('y', 0)
+  //   .attr('class', 'country-focus-label')
+  //   .attr('text-anchor', 'middle')
+  //   .text(countryName.toUpperCase())
+  //   ;
+  //
+  // var lbbox = label.node().getBBox();
+  // var textboxh = lbbox.height + lbbox.height / 4;
+  //
+  // label
+  //   .attr('x', msp.x + msp.width / 2)
+  //   .attr('y', msp.y + msp.height - textboxh / 3)   //  - textboxh / 3
+  //   ;
+  //
+  // var path = renderCountriesBox(opts);
+  // label.raise();
+  // return path;
 }
 
 function drawCountries(world) {

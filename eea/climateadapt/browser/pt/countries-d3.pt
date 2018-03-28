@@ -73,6 +73,9 @@
   stroke-width: 0.6;
   cursor: pointer;
 }
+.maplet-label text.place-label {
+  font-size: 6px;
+}
 .country-outline path {
   fill: #909670;
   stroke: black;
@@ -96,7 +99,7 @@
 
 .maplet-container .country-outline path {
   /* fill: #6cbcf7; */
-  fill: wheat;
+  fill: gray;
 }
 .maplet-container .country-available path {
   fill: #909670;
@@ -109,7 +112,7 @@
 }
 .maplet-container .sphere {
   /* fill: #6cbcf7; */
-  fill: wheat;
+  fill: gray;
 }
 
 .country-focus-label {
