@@ -483,7 +483,7 @@ function createSectionsSelector(sections, countries, callback) {
     callback();
   });
 
-  var select = $('<select>');
+  var select = $("<select>");
   // country selector
   select.append("<option value=''>Choose a country</option>");
 
@@ -503,10 +503,10 @@ function createSectionsSelector(sections, countries, callback) {
     window.location = countries[name][1];
   })
 
-
   widget.prepend(select);
   container
     .append(widget);
+  select.select2();
 
   callback();
   $(window).resize(callback);
