@@ -2,8 +2,86 @@
   <metal:fill-slot fill-slot="style_slot">
 
 <style>
-/* This is the tooltip that shows up on click for countries */
 
+/* Legend */
+.legend-text {
+    display: inline-block;
+    height: 1rem;
+    line-height: 2rem;
+    vertical-align: top;
+
+}
+.legend {
+    font-size: 1em;
+    text-align:left;
+    padding: 1rem !important;
+}
+
+.content-available-box,
+.no-content-box,
+.no-focus-box {
+    width: 3rem;
+    padding: 1rem;
+    display: inline-block;
+}
+.content-available-box {
+    background-color: #b4e63b;
+}
+.no-content-box {
+    background-color: #75ad0a;
+}
+.no-focus-box {
+    background-color: #909670;
+}
+#left {
+    float:left;
+    width:100px;
+}
+#center {
+    display: inline-block;
+    margin:0 auto;
+    width:100px;
+}
+#right {
+    float:right;
+    width:100px;
+}
+
+/* Disclaimer */
+
+.disclaimer {
+    color: #009ae5;
+}
+.disclaimer:hover #hover-content {
+  display: block !important;
+}
+
+#disclaimer {
+    font-size: 14px;
+}
+
+#disclaimer + #hover-content{
+}
+
+#hover-content{
+  display: none;
+  font-size: 13px;
+}
+
+#legend,
+#disclaimer,
+#hover-content{
+  padding: 0 0 0 1rem;
+}
+
+/*Misc*/
+
+a.managePortletsFallback{
+  margin-left: 4rem;
+  }
+
+
+/* This is the tooltip that shows up on click for countries */
 
 #map-tooltip {
   position: absolute;
@@ -73,17 +151,21 @@
   stroke-width: 0.6;
   cursor: pointer;
 }
+
 .maplet-label text.place-label {
   font-size: 6px;
 }
+
 .country-outline path {
   fill: #909670;
   stroke: black;
   stroke-width: 1;
 }
+
 .country-outline :hover {
   opacity: 1;
 }
+
 .country-available path {
   fill: #75ad0a;
   cursor: pointer;
@@ -101,15 +183,19 @@
   /* fill: #6cbcf7; */
   fill: gray;
 }
+
 .maplet-container .country-available path {
   fill: #909670;
 }
+
 .maplet-container .country-selected path {
   fill: #75ad0a;
 }
+
 .maplet-container .country-green path {
   fill: #b4e63b;
 }
+
 .maplet-container .sphere {
   /* fill: #6cbcf7; */
   fill: gray;
@@ -164,6 +250,7 @@ window.define = undefined;
 
     <div tal:content="structure context/text/output"></div>
 
+
     <!-- <div tal:content="context/text/output"></div> -->
     <div class="cover-richtext-tile tile-content row" id="countrymap-container">
 
@@ -172,12 +259,36 @@ window.define = undefined;
           <svg height="500" width="100%"></svg>
         </svg-container>
       </div>
-
-      <div class="col-md-3 cols-xs-12" id="countries-map-selector"></div>
+    <div class="col-md-3 col-xs-12" id="countries-map-selector"></div>
+      
+    <div class='disclaimer'>
+      <div id="disclaimer">[Disclaimer]</div>
+      <div id="hover-content">
+      The information presented in these pages is based on the reporting according to the Monitoring Mechanism     
+      Regulation (Regulation (EU) No 525/2013) and updates by the EEA member countries
+      </div>
+    </div>
 
     </div>
 
     <script src='++theme++climateadapt/static/countries/countriesmap.js'></script>
+    
+    <div class="row legend">
+        <div class="col-xs-3">
+            <div class="content-available-box"></div>
+            <div class="legend-text">Content available</div>
+        </div>
+        <div class="col-xs-3">
+            <div class="no-content-box"></div>
+            <div class="legend-text">Theme info unavailable</div>
+        </div>
+        <div class="col-xs-3">
+            <div class="no-focus-box"></div>
+            <div class="legend-text">No content available</div>
+        </div>
+        <div class="col-xs-3">
 
+        </div>
+    </div>
   </metal:fill-slot>
 </metal:use-macro>

@@ -474,8 +474,6 @@ function createTooltip(opts) {
   $('body').append(tooltip);
 }
 
-// aici faci partea cu link la selector
-
 function createSectionsSelector(sections, countries, callback) {
   var container = $("#countries-map-selector");
 
@@ -507,6 +505,7 @@ function createSectionsSelector(sections, countries, callback) {
   });
 
   var select = $('<select>');
+  // country selector
   select.append("<option value=''>Choose a country</option>");
 
   var countryNames = Object.keys(countries);
@@ -525,8 +524,11 @@ function createSectionsSelector(sections, countries, callback) {
     window.location = countries[name][1];
   })
 
+
   widget.prepend(select);
-  container.append(widget);
+  container
+    .append(widget);
+
   callback();
   $(window).resize(callback);
 }
