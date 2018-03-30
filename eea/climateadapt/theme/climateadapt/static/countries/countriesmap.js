@@ -454,9 +454,8 @@ function createTooltip(opts) {
 }
 
 function createSectionsSelector(sections, countries, callback) {
-  var container = $("#countries-map-selector");
-
-  var widget = $("<div class='sections-selector' />");
+  // var container = $("#countries-map-selector");
+  var widget = $("#sections-selector");
 
   sections.forEach(function (key, index) {
     var label = $("<label>");
@@ -483,12 +482,10 @@ function createSectionsSelector(sections, countries, callback) {
     callback();
   });
 
-  var select = $("<select>");
   // country selector
-  select.append("<option value=''>Choose a country</option>");
-
   var countryNames = Object.keys(countries);
   countryNames.sort();
+  var select = $("#country-selector select");
 
   countryNames.forEach(function (name) {
     select
@@ -502,11 +499,10 @@ function createSectionsSelector(sections, countries, callback) {
     if (!name) return;
     window.location = countries[name][1];
   })
-
-  widget.prepend(select);
-  container
-    .append(widget);
   select.select2();
+
+  // widget.prepend(select);
+  // container.append(widget);
 
   callback();
   $(window).resize(callback);

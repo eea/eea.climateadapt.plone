@@ -22,7 +22,7 @@
 }
 .legend-el {
   display: inline;
-  padding: 0 2rem;
+  padding: 0 1.3rem;
 }
 .legend-box {
   width: 3rem;
@@ -87,11 +87,12 @@ a.managePortletsFallback{
 }
 
 /* selection widget */
-.sections-selector {
-  margin-left: 1rem;
+#sections-selector {
+  padding-left: 1rem;
 }
-.sections-selector .select2-container a.select2-choice {
+#country-selector a.select2-choice {
   border-bottom: 1px solid #CCC !important;
+  text-decoration: none;
 }
 
 .sphere {
@@ -232,29 +233,38 @@ window.define = undefined;
 
     <div tal:content="structure context/text/output"></div>
 
-
-    <!-- <div tal:content="context/text/output"></div> -->
     <div class="cover-richtext-tile tile-content row" id="countrymap-container">
 
-      <div class="col-md-9 col-xs-12">
+      <!-- Select list with countries above map -->
+      <div id="country-selector" class='col-xs-12 col-md-12'>
+        Select a country to go to country's page:
+        <select>
+          <option value=''>Choose a country</option>
+        </select>
+      </div>
+
+      <!-- The real map -->
+      <div class="col-md-8 col-xs-12">
         <svg-container id="countries-map">
           <svg height="500" width="100%"></svg>
         </svg-container>
       </div>
-    <div class="col-md-3 col-xs-12" id="countries-map-selector"></div>
 
-    <div id='disclaimer' class='col-md-3'>
-      <label>[Disclaimer]</label>
-      <div>
-      The information presented in these pages is based on the reporting according to the Monitoring Mechanism
-      Regulation (Regulation (EU) No 525/2013) and updates by the EEA member countries
+      <!-- Sections selector on right side of map -->
+      <div class="col-md-4 col-xs-12" id="sections-selector"></div>
+
+      <!-- Disclaimer in right side of map -->
+      <div id='disclaimer' class='col-md-3'>
+        <label>[Disclaimer]</label>
+        <div>
+          The information presented in these pages is based on the reporting according to the Monitoring Mechanism
+          Regulation (Regulation (EU) No 525/2013) and updates by the EEA member countries
+        </div>
       </div>
-    </div>
 
     </div>
 
-    <script src='++theme++climateadapt/static/countries/countriesmap.js'></script>
-
+    <!-- Map legend underneath the map -->
     <div class="row legend">
       <label>Legend:</label>
       <div class="legend-el">
@@ -270,5 +280,7 @@ window.define = undefined;
         <span class="legend-text">No content available</span>
       </div>
     </div>
+
+    <script src='++theme++climateadapt/static/countries/countriesmap.js'></script>
   </metal:fill-slot>
 </metal:use-macro>
