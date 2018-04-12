@@ -73,5 +73,12 @@
       layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
 
+    <browser:page
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      name="change-password"
+      class=".overrides.PasswordAccountPanel"
+      permission="cmf.SetOwnPassword"
+      />
+
 
 </configure>

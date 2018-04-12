@@ -15,6 +15,7 @@ from plone.app.contenttypes.behaviors.richtext import IRichText  # noqa
 from plone.app.controlpanel.widgets import MultiCheckBoxVocabularyWidget
 from plone.app.users.browser.personalpreferences import (IPersonalPreferences,
                                                          LanguageWidget,
+                                                         PasswordAccountPanel,
                                                          PersonalPreferencesPanel,
                                                          PersonalPreferencesPanelAdapter,
                                                          WysiwygEditorWidget)
@@ -606,3 +607,7 @@ def RichTextFieldWidget(field, request):
 @implementer(IFieldWidget)
 def RichTextFieldWidgett(field, request):
     return FieldWidget(field, OverrideRichText(request))
+
+
+class PasswordAccountPanel(PasswordAccountPanel):
+    template = ViewPageTemplateFile('pt/password-account-panel.pt')
