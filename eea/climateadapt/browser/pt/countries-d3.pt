@@ -3,6 +3,25 @@
 
 <style>
 
+/* viewlet-below-content-body 
+#viewlet-below-content-body{
+  background-color: #DDD;
+  padding: 0 20px;
+
+}
+*/
+
+
+/* Content */
+.template-countries-view-map-d3 #content {
+  background-color: #DDD;
+  padding: 20px;
+}
+
+.template-countries-view-map-d3 #content h1{
+  margin: 0 !important;
+}
+
 /* Disclaimer */
 #disclaimer {
   color: #009ae5;
@@ -20,21 +39,26 @@
 .legend {
   padding: 1rem 0;
 }
+
 .legend-el {
   display: inline;
   padding: 0 1.3rem;
 }
+
 .legend-box {
   width: 3rem;
   height: 2rem;
   display: inline-block;
 }
+
 .content-available {
   background-color: #b4e63b;
 }
+
 .no-content {
   background-color: #75ad0a;
 }
+
 .no-focus {
   background-color: #909670;
 }
@@ -44,20 +68,7 @@
   font-size: 13px;
 }
 
-#legend,
-#disclaimer,
-#hover-content{
-  padding: 0 0 0 1rem;
-}
-
-/*Misc*/
-
-a.managePortletsFallback{
-  margin-left: 4rem;
-}
-
-
-/* This is the tooltip that shows up on click for countries */
+/* Tooltip */
 
 #map-tooltip {
   position: absolute;
@@ -69,27 +80,29 @@ a.managePortletsFallback{
   text-decoration: none;
 }
 
-#country-name a {
+<!-- #country-name a {
   text-decoration: none;
-}
+} -->
 
 #tooltip-content{
   border-top: 2.5px solid brown;
   padding-top: 0.6rem;
 }
 
-#tooltip-content ul {
+<!-- #tooltip-content ul {
   padding-left: 1rem;
   list-style: inherit;
-}
+} -->
+
 #tooltip-content li {
   display: list-item;
 }
 
-/* selection widget */
+<!-- /* selection widget */
 #sections-selector {
   padding-left: 1rem;
-}
+} -->
+
 #country-selector a.select2-choice {
   border-bottom: 1px solid #CCC !important;
   text-decoration: none;
@@ -98,6 +111,7 @@ a.managePortletsFallback{
 .sphere {
   fill: #6cbcf7;
 }
+
 .graticule {
   fill: none;
   stroke: black;
@@ -111,11 +125,11 @@ a.managePortletsFallback{
   stroke-dasharray:1,1;
   stroke-width: 0.6;
 }
+
 .maplet-outline {
   stroke: black;
   stroke-width: 2;
 }
-
 
 .country-label {
   font-size: 7px;
@@ -124,12 +138,14 @@ a.managePortletsFallback{
   opacity: 1;
   cursor: pointer;
 }
+
 .country-label rect {
   fill: #CCC;
   stroke: black;
   stroke-width: 0.6;
   cursor: pointer;
 }
+
 .country-label text {
   fill: black;
   font-size: 7px;
@@ -140,9 +156,11 @@ a.managePortletsFallback{
 .country-label:hover rect {
   fill: black;
 }
+
 .country-label:hover text {
   fill: white;
 }
+
 .maplet-label text.place-label {
   font-size: 6px;
 }
@@ -152,13 +170,16 @@ a.managePortletsFallback{
   stroke: black;
   stroke-width: 1;
 }
+
 /* .country-outline :hover { */
 /*   opacity: 1; */
 /* } */
+
 .country-available path {
   fill: #75ad0a;
   cursor: pointer;
 }
+
 .country-flag {
   cursor: pointer;
 }
