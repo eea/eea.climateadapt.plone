@@ -1,14 +1,17 @@
 import json
 import logging
 from email.MIMEText import MIMEText
+from itertools import islice
 
 import requests
+
 import transaction
 from Acquisition import aq_inner
 from eea.climateadapt.config import CONTACT_MAIL_LIST
 from eea.climateadapt.schema import Email
 from OFS.ObjectManager import BeforeDeleteException
 from plone import api
+from plone.api import portal
 from plone.api.content import get_state
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 from plone.directives import form
@@ -688,3 +691,17 @@ def preventFolderDeletionEvent(object, event):
         if iterate_control.is_checkout():
             # Cancel deletion
             raise BeforeDeleteException
+
+
+class ViewGoogleAnalyticsReport(BrowserView):
+    """ A view to view the google analytics report data
+    """
+
+    def report_data(self):
+
+        site = portal.get()
+        report = site.__annotations__.get('google-analytics-cache-data', {})
+
+        reports = reversed(sorted(report.items(), key=lambda x: x[1]))
+
+        return islice(reports, 0, 10)
