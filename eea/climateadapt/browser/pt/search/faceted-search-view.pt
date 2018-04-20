@@ -7,10 +7,22 @@
   i18n:domain="eea">
 
 <metal:jsslot fill-slot="javascript_head_slot">
-  <script type="text/javascript"
-    tal:content="string:jQuery(document).ready(function(evt){
-        Faceted.Load(evt, '${context/absolute_url}/');
-    });"></script>
+  <script type="text/javascript" tal:content="string:
+  jQuery(document).ready(function(evt){
+    var btn = jQuery('#SearchableText_button');
+    btn.parent().on('submit', function() {
+      var text = jQuery.trim(jQuery('#SearchableText').val()).toLowerCase();
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'page',
+        eventAction: 'searchOnPage',
+        eventLabel: text,
+        eventValue: 1
+      });
+    });
+    Faceted.Load(evt, '${context/absolute_url}/');
+  });
+"></script>
   <script type="text/javascript"
     tal:content="string:jQuery(window).unload(function(){
         Faceted.Unload();

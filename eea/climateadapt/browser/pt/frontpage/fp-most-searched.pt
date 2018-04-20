@@ -1,0 +1,18 @@
+<div class="eu-climate-policy-tile">
+  <h3>
+    <a href="/data-and-downloads">Most searched</a>
+  </h3>
+  <div style="padding-top:6px;">
+    <ul tal:define="entries view/report_data">
+      <li tal:repeat="entry entries">
+        <a href=""
+          tal:attributes="href python: context.portal_url() + '/data-and-downloads#SearchableText=' + entry[0]" >
+        <span tal:content="python: entry[0]">Water</span>
+        </a>
+        (
+        <span tal:content="python: entry[1]">12</span>
+        )
+      </li>
+    </ul>
+  </div>
+</div>

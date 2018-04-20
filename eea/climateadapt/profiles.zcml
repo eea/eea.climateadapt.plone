@@ -653,4 +653,22 @@
             />
     </genericsetup:upgradeSteps>
 
+    <!-- v3 upgrade -->
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_45"
+        title="Upgrade profile for eea.climateadapt v45"
+        description=""
+        directory="profiles/upgrades/to_45"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <genericsetup:upgradeSteps
+        source="*"
+        destination="45"
+        profile="eea.climateadapt:default">
+        <genericsetup:upgradeDepends
+            title="Upgrade profile eeaclimate to v45"
+            import_profile="eea.climateadapt:eeaclimateadapt_to_45"
+            />
+    </genericsetup:upgradeSteps>
+
 </configure>
