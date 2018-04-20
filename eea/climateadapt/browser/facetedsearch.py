@@ -24,7 +24,7 @@ SEARCH_TYPES = [
     ("CONTENT", "Content in Climate-ADAPT"),
     ("DOCUMENT", "Publication and Reports"),
     ("INFORMATIONSOURCE", "Information Portals"),
-    ## ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
+    # ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
     ("INDICATOR", "Indicators"),
     ("GUIDANCE", "Guidance"),
     ("TOOL", "Tools"),
@@ -42,7 +42,11 @@ FACETED_SEARCH_TYPES = [
     ("GUIDANCE", "Guidance"),
     ("INDICATOR", "Indicators"),
     ("INFORMATIONSOURCE", "Information Portals"),
+<<<<<<< HEAD
     ## ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
+=======
+    # ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
+>>>>>>> origin/remove-maps-from-search
     ("MAYORSADAPT", "Mayors Adapt city profiles"),
     ("ORGANISATION", "Organisations"),
     ("DOCUMENT", "Publication and Reports"),
