@@ -1,0 +1,307 @@
+<metal:use-macro use-macro="context/main_template/macros/master">
+  <metal:fill-slot fill-slot="style_slot">
+
+<style>
+
+/* viewlet-below-content-body 
+#viewlet-below-content-body{
+  background-color: #DDD;
+  padding: 0 20px;
+
+}
+*/
+
+
+/* Content */
+.template-countries-view-map-d3 #content {
+  background-color: #DDD;
+  padding: 20px;
+}
+
+.template-countries-view-map-d3 #content h1{
+  margin: 0 !important;
+}
+
+/* Disclaimer */
+#disclaimer {
+  color: #009ae5;
+  font-size: 14px;
+  padding: 1rem;
+}
+#disclaimer div {
+  display: none;
+}
+#disclaimer:hover div {
+  display: block !important;
+}
+
+/* Legend */
+.legend {
+  padding: 1rem 0;
+}
+
+.legend-el {
+  display: inline;
+  padding: 0 1.3rem;
+}
+
+.legend-box {
+  width: 3rem;
+  height: 2rem;
+  display: inline-block;
+}
+
+.content-available {
+  background-color: #b4e63b;
+}
+
+.no-content {
+  background-color: #75ad0a;
+}
+
+.no-focus {
+  background-color: #909670;
+}
+
+#hover-content{
+  display: none;
+  font-size: 13px;
+}
+
+/* Tooltip */
+
+#map-tooltip {
+  position: absolute;
+  background-color: #e9ecc9;
+  padding: 1.5rem;
+  width: 30rem;
+  border: 1.5px solid #545454;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+<!-- #country-name a {
+  text-decoration: none;
+} -->
+
+#tooltip-content{
+  border-top: 2.5px solid brown;
+  padding-top: 0.6rem;
+}
+
+<!-- #tooltip-content ul {
+  padding-left: 1rem;
+  list-style: inherit;
+} -->
+
+#tooltip-content li {
+  display: list-item;
+}
+
+<!-- /* selection widget */
+#sections-selector {
+  padding-left: 1rem;
+} -->
+
+#country-selector a.select2-choice {
+  border-bottom: 1px solid #CCC !important;
+  text-decoration: none;
+}
+
+.sphere {
+  fill: #6cbcf7;
+}
+
+.graticule {
+  fill: none;
+  stroke: black;
+  stroke-dasharray:10,10;
+  stroke-width: 1;
+}
+
+.semi-graticule {
+  fill: none;
+  stroke: gray;
+  stroke-dasharray:1,1;
+  stroke-width: 0.6;
+}
+
+.maplet-outline {
+  stroke: black;
+  stroke-width: 2;
+}
+
+.country-label {
+  font-size: 7px;
+  font-weight: normal;
+  fill: black;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.country-label rect {
+  fill: #CCC;
+  stroke: black;
+  stroke-width: 0.6;
+  cursor: pointer;
+}
+
+.country-label text {
+  fill: black;
+  font-size: 7px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.country-label:hover rect {
+  fill: black;
+}
+
+.country-label:hover text {
+  fill: white;
+}
+
+.maplet-label text.place-label {
+  font-size: 6px;
+}
+
+.country-outline path {
+  fill: #909670;
+  stroke: black;
+  stroke-width: 1;
+}
+
+/* .country-outline :hover { */
+/*   opacity: 1; */
+/* } */
+
+.country-available path {
+  fill: #75ad0a;
+  cursor: pointer;
+}
+
+.country-flag {
+  cursor: pointer;
+}
+
+.country-green path {
+  fill: #b4e63b;
+  cursor: pointer;
+}
+
+.maplet-container .country-outline path {
+  /* fill: #6cbcf7; */
+  fill: gray;
+}
+
+.maplet-container .country-available path {
+  fill: #909670;
+}
+
+.maplet-container .country-selected path {
+  fill: #75ad0a;
+}
+
+.maplet-container .country-green path {
+  fill: #b4e63b;
+}
+
+.maplet-container .sphere {
+  /* fill: #6cbcf7; */
+  fill: gray;
+}
+
+  </style>
+
+  </metal:fill-slot>
+
+  <metal:fill-slot fill-slot="javascript_head_slot">
+
+  <script>
+window._old_define = window.define;
+window.define = undefined;
+  </script>
+
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/d3-array.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.js"></script>
+    <script src="https://d3js.org/d3-queue.v3.min.js"></script>
+
+
+    <!-- Force stuff -->
+    <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+    <script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
+    <script src="https://d3js.org/d3-quadtree.v1.min.js"></script>
+    <script src="https://d3js.org/d3-timer.v1.min.js"></script>
+    <script src="https://d3js.org/d3-force.v1.min.js"></script>
+
+    <script>
+// window.define = window._old_define;
+    </script>
+
+
+    <script type="text/javascript" src="/++resource++collective.js.bootstrap/js/bootstrap.min.js"></script>
+
+  </metal:fill-slot>
+
+  <metal:fill-slot fill-slot="content-title">
+    <h1>Country information</h1>
+  </metal:fill-slot>
+
+  <metal:fill-slot fill-slot="content-core">
+
+    <div tal:content="structure context/text/output"></div>
+
+    <div class="cover-richtext-tile tile-content row" id="countrymap-container">
+
+      <!-- Select list with countries above map -->
+      <div id="country-selector" class='col-xs-12 col-md-12'>
+        Select a country to go to country's page:
+        <select>
+          <option value=''>Choose a country</option>
+        </select>
+      </div>
+
+      <!-- The real map -->
+      <div class="col-md-8 col-xs-12">
+        <svg-container id="countries-map">
+          <svg height="500" width="100%"></svg>
+        </svg-container>
+      </div>
+
+      <!-- Sections selector on right side of map -->
+      <div class="col-md-4 col-xs-12" id="sections-selector"></div>
+
+      <!-- Disclaimer in right side of map -->
+      <div id='disclaimer' class='col-md-3'>
+        <label>[Disclaimer]</label>
+        <div>
+          The information presented in these pages is based on the reporting according to the Monitoring Mechanism
+          Regulation (Regulation (EU) No 525/2013) and updates by the EEA member countries
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Map legend underneath the map -->
+    <div class="row legend">
+      <label>Legend:</label>
+      <div class="legend-el">
+        <span class="content-available legend-box"></span>
+        <span class="legend-text">Content available</span>
+      </div>
+      <div class="legend-el">
+        <span class="no-content legend-box"></span>
+        <span class="legend-text">Theme info unavailable</span>
+      </div>
+      <div class="legend-el">
+        <span class="no-focus legend-box"></span>
+        <span class="legend-text">No content available</span>
+      </div>
+    </div>
+
+    <script src='++theme++climateadapt/static/countries/countriesmap.js'></script>
+  </metal:fill-slot>
+</metal:use-macro>

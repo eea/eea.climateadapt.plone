@@ -6,6 +6,7 @@ from eea.climateadapt.browser.site import _extract_menu
 from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
 from eea.climateadapt.scripts import get_plone_site
 from oauth2client.service_account import ServiceAccountCredentials
+from plone.api import portal
 from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
                                                      RegistryEditForm)
 from plone.app.widgets.dx import RelatedItemsWidget
@@ -46,12 +47,12 @@ class CheckCopyPasteLocation(BrowserView):
         groups = getToolByName(self, 'portal_groups').getGroupsByUserId(user)
 
         for group in groups:
-            if (group.id == 'extranet-cca-editors') and \
-                    'metadata' in self.context.getPhysicalPath():
+            if group.id == 'extranet-cca-editors' and 'metadata' in \
+                    self.context.getPhysicalPath():
+
                 logger.info("Can't Copy: returning False")
 
                 return False
-        # logger.info("Can Copy: returning True")
 
         return True
 
@@ -528,8 +529,9 @@ def _refresh_analytics_data(site):
     return res
 
 
-def refresh_analytics_data():
-    site = get_plone_site()
+def refresh_analytics_data(site=None):
+    if site is None:
+        site = get_plone_site()
     _refresh_analytics_data(site)
 
 
@@ -553,3 +555,8 @@ class ViewGoogleAnalyticsReport(BrowserView):
         site = portal.get()
 
         return str(site.__annotations__.get('google-analytics-cache-data', {}))
+
+
+class GoPDB(BrowserView):
+    def __call__(self):
+        import pdb; pdb.set_trace()

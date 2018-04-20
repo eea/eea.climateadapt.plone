@@ -731,10 +731,67 @@
         class=".casestudy.CaseStudiesXML"
         />
 
+    <browser:page
+        class=".countries.CountryMetadataExtract"
+        for="*"
+        name="country-metadata-extract"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        class=".countries.CountriesMetadataExtract"
+        for="*"
+        name="countries-metadata-extract"
+        permission="zope2.View"
+        />
+
+        <!--  -->
+    <browser:page
+        for="*"
+        name="countries-view-map-d3"
+        template="pt/countries-d3.pt"
+        permission="zope2.View"
+        class=".countries.CountriesD3View"
+        />
+
+    <browser:page
+        name="external-template-head"
+        for="*"
+        template="pt/search/external-template-head.pt"
+        permission="zope2.View"
+        />
+    <browser:page
+        name="external-template-header"
+        for="*"
+        template="pt/search/external-template-header.pt"
+        permission="zope2.View"
+        class=".externaltemplates.ExternalTemplateHeader"
+        />
+
+    <browser:page
+        name="external-template-footer"
+        for="*"
+        template="pt/search/external-template-footer.pt"
+        permission="zope2.View"
+        />
+    <!-- <browser:page -->
+    <!--     name="external&#45;template&#45;test" -->
+    <!--     for="*" -->
+    <!--     template="pt/search/external&#45;template&#45;test.pt" -->
+    <!--     permission="zope2.View" -->
+    <!--     /> -->
+
     <subscriber
       for="plone.app.contenttypes.content.Folder
            OFS.interfaces.IObjectWillBeRemovedEvent"
       handler=".misc.preventFolderDeletionEvent"
+    />
+
+  <browser:page
+    name="gopdb"
+    for="*"
+    class=".admin.GoPDB"
+    permission="cmf.ManagePortal"
     />
 
 </configure>

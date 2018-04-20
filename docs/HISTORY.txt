@@ -3,6 +3,7 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+<<<<<<< HEAD
 * Change: Commented map viewer options from faceted searc
   [davidsilaghi #91968]
 * Change: Changed links for external resources from http: to https:
@@ -11,6 +12,10 @@ Changelog
   [davidsilaghi #93460]
 * Change: override the password change page to link to Eionet
   [tiberich #92501]
+=======
+* Bug fix: Changed the covenant of mayors link
+  [davidsilaghi #93460]
+>>>>>>> origin/external-templates
 * Bug fix: added cache busting for case study image
   [tiberich #91896]
 * Bug fix: don't fail in archived state viewlet if content has no workflow

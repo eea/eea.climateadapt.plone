@@ -1,0 +1,16 @@
+<link rel="shortcut icon" href="http://localhost:8080/cca/frontpage/cca/++theme++climateadapt/static/favicon.ico" type="image/x-icon"/>
+<link href='https://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css' />
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+
+<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:8080/cca/portal_css/Sunburst%20Theme/reset.css">
+<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:8080/cca/portal_css/Sunburst%20Theme/base.css">
+<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:8080/cca/portal_css/Sunburst%20Theme/public.css">
+<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:8080/cca/portal_css/Sunburst%20Theme/authoring.css">
+<link rel="stylesheet" href="http://localhost:8080/cca/frontpage/cca/++theme++climateadapt/static/bs3/css/bootstrap.css" type="text/css"/>
+<script type="text/javascript" src="http://localhost:8080/cca/frontpage/cca/++theme++climateadapt/static/main.js?ts=14"></script>
+<link rel="apple-touch-icon" href="http://localhost:8080/cca/frontpage/cca/++theme++climateadapt/static/touch_icon.png"/>
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/cca/frontpage/cca/++theme++climateadapt/static/jquery.qtip.css"/>
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/cca/frontpage/cca/++theme++climateadapt/static/style.css?ts=46"/>
+<script type="text/javascript" src="http://localhost:8080/cca/frontpage/++theme++climateadapt/static/jquery.qtip.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>

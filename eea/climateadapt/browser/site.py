@@ -3,6 +3,7 @@
 
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
+from eea.climateadapt.browser.externaltemplates import ExternalTemplateHeader
 import logging
 
 logger = logging.getLogger('eea.climateadapt')
@@ -144,7 +145,7 @@ def _extract_menu(value):
     return sections
 
 
-class Navbar(BrowserView):
+class Navbar(BrowserView, ExternalTemplateHeader):
     """ The global site navbar
     """
 

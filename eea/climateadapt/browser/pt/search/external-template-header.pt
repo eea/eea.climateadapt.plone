@@ -1,0 +1,14 @@
+<div class="simplified-template-header"
+     xmlns:i18n="http://www.w3.org/1999/xhtml">
+
+  <base tal:attributes="href python: view.theme_base_url()" />
+  <div id="portal-top" class="row" i18n:domain="plone" >
+    <div class="cell width-full position-0">
+      <div tal:replace="structure provider:plone.portaltop" ></div>
+    </div>
+  </div>
+
+  <div id="portal-columns" class="row">
+    <div id="portal-column-content" class="cell"></div>
+  </div>
+</div>
