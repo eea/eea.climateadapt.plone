@@ -14,8 +14,11 @@
 
 /* Content */
 .template-countries-view-map-d3 #content {
-  background-color: #DDD;
   padding: 20px;
+}
+
+#countrymap-container {
+  background-color: #DDD;
 }
 
 .template-countries-view-map-d3 #content h1{
