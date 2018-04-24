@@ -6,8 +6,6 @@
 /* viewlet-below-content-body 
 #viewlet-below-content-body{
   background-color: #DDD;
-  padding: 0 20px;
-
 }
 */
 
@@ -17,8 +15,9 @@
   padding: 20px;
 }
 
-#countrymap-container {
+#viewlet-below-content-body {
   background-color: #DDD;
+  padding: 10px 10px;
 }
 
 .template-countries-view-map-d3 #content h1{
