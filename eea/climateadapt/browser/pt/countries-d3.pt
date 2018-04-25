@@ -17,7 +17,7 @@
 
 #viewlet-below-content-body {
   background-color: #DDD;
-  padding: 10px 10px;
+  padding: 20px;
 }
 
 .template-countries-view-map-d3 #content h1{
