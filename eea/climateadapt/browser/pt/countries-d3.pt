@@ -3,25 +3,22 @@
 
 <style>
 
-/* viewlet-below-content-body 
-#viewlet-below-content-body{
-  background-color: #DDD;
-}
-*/
-
-
 /* Content */
 .template-countries-view-map-d3 #content {
   padding: 20px;
 }
 
-#viewlet-below-content-body {
-  background-color: #DDD;
-  padding: 20px;
+#countrymap-container {
+  background-color: #EEE;
+  padding: 1rem;
 }
 
 .template-countries-view-map-d3 #content h1{
   margin: 0 !important;
+}
+
+.template-countries-view-map-d3 .select2-container {
+  margin-bottom: 0.3em;
 }
 
 /* Disclaimer */
@@ -39,7 +36,8 @@
 
 /* Legend */
 .legend {
-  padding: 1rem 0;
+  padding: 0.4rem 0 1rem 1rem;
+  background-color: #EEE;
 }
 
 .legend-el {
@@ -67,7 +65,6 @@
 
 #hover-content{
   display: none;
-  font-size: 13px;
 }
 
 /* Tooltip */
@@ -82,9 +79,9 @@
   text-decoration: none;
 }
 
-<!-- #country-name a {
+#country-name a {
   text-decoration: none;
-} -->
+}
 
 #tooltip-content{
   border-top: 2.5px solid brown;
