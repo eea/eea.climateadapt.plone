@@ -10,12 +10,13 @@
     <!--<replace css:content="head" css:theme="head" href="../" method="document"/>-->
 
     <replace css:content="#portal-personaltools" css:theme="#user"/>
-    <copy attributes="href title" css:content="#portal-logo" css:theme="#logo a"/>
+    <copy attributes="title" css:content="#portal-logo" css:theme="#logo a"/>
     <replace css:content="#navbar" css:theme="#mainnav" href="@@site_navbar" method="document"/>
 
     <!--<replace css:content="#portal-header p.hiddenStructure" css:theme="#accessibility"/>-->
     <!--<drop css:content=".searchSection"/>-->
-    <replace css:content="#portal-searchbox" css:theme="#search"/>
+
+    <!--<replace css:content="#portal-searchbox" css:theme="#search"/>-->
 
     <replace content="//a[@id='portal-logo']/img">
       <img src="{//base/@href}static/logo.png">
@@ -23,7 +24,7 @@
         <xsl:copy-of select="current()/@title"/>
       </img>
     </replace>
-
+    <!--<replace css:theme="#logo a" content="//a[@id='portal-logo']"/>-->
     <replace css:theme="#logo a img" content="//a[@id='portal-logo']/img"/>
 
   </rules>
