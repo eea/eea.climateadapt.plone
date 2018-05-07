@@ -133,9 +133,9 @@ class CountryMetadataExtract(object):
         return json.dumps([res])
 
 
-# class CountriesD3View(BrowserView):
-#     """
-#     """
+class CountriesD3View(BrowserView):
+    """
+    """
 
     # def text(self):
     #     import pdb
