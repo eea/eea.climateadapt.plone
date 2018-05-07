@@ -54,9 +54,9 @@ class CountriesMetadataExtract(BrowserView):
         rows = e.xpath('//table[contains(@class, "listing")]/tbody/tr')
 
         res = {}
-       
+
         for row in rows:
-            
+
             try:
                 cells = row.xpath('td')
                 key = cells[0].text_content().strip()
@@ -136,12 +136,3 @@ class CountryMetadataExtract(object):
 class CountriesD3View(BrowserView):
     """
     """
-
-    # def text(self):
-    #     import pdb
-    #     pdb.set_trace()
-    #     page = self.context
-
-    #     text = "bla"
-
-    #     return text
