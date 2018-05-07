@@ -54,11 +54,15 @@ class CountriesMetadataExtract(BrowserView):
         rows = e.xpath('//table[contains(@class, "listing")]/tbody/tr')
 
         res = {}
+        if obj.getId() == 'latvia':
+            import pdb
+            pdb.set_trace()
 
         for row in rows:
+            
             try:
                 cells = row.xpath('td')
-                key = cells[0].text.strip()
+                key = cells[0].text_content().strip()
                 children = list(cells[2])
 
                 text = [lxml.etree.tostring(c) for c in children]
@@ -132,13 +136,15 @@ class CountryMetadataExtract(object):
         return json.dumps([res])
 
 
-class CountriesD3View(BrowserView):
-    """
-    """
-    def text(self):
-        import pdb; pdb.set_trace()
-        page = self.context
+# class CountriesD3View(BrowserView):
+#     """
+#     """
 
-        text = "bla"
+    # def text(self):
+    #     import pdb
+    #     pdb.set_trace()
+    #     page = self.context
 
-        return text
+    #     text = "bla"
+
+    #     return text
