@@ -54,10 +54,7 @@ class CountriesMetadataExtract(BrowserView):
         rows = e.xpath('//table[contains(@class, "listing")]/tbody/tr')
 
         res = {}
-        if obj.getId() == 'latvia':
-            import pdb
-            pdb.set_trace()
-
+       
         for row in rows:
             
             try:
