@@ -472,41 +472,36 @@ def get_links(site):
         ]
     }
     brains = catalog.searchResults(**query)
-
     urls = []
+
+    append_urls = lambda link, path: urls.append({
+        'link': link,
+        'object_url': path
+    })
 
     for b in brains:
         obj = b.getObject()
         path = obj.getPhysicalPath()
         if hasattr(obj, 'websites'):
             if isinstance(obj.websites, str):
-                urls.append({
-                    'link': obj.websites,
-                    'object_url': path
-                })
+                append_urls(obj.websites, path)
             else:
                 for url in obj.websites:
-                    urls.append({
-                        'link': url,
-                        'object_url': path
-                    })
+                    append_urls(url, path)
         else:
             if obj.portal_type == 'eea.climateadapt.city_profile':
-                urls.append({
-                    'link': obj.website_of_the_local_authority,
-                    'object_url': path
-                })
+                append_urls(obj.website_of_the_local_authority, path)
+
             elif obj.portal_type == 'collective.cover.content':
                 for tile in obj.list_tiles():
                     if 'richtext' in obj.get_tile_type(tile):
                         richtext = obj.get_tile(tile).getText()
                         bs = BeautifulSoup(richtext)
-                        for link in bs.findAll('a', attrs={'href': re.compile("^https?://")}):
-                            urls.append({
-                                'link': link.get('href'),
-                                'object_url': path
-                            })
-
+                        links = bs.findAll(
+                            'a', attrs={'href': re.compile("^https?://")}
+                        )
+                        for link in links:
+                            append_urls(link.get('href'), path)
             else:
                 logger.info("Portal type: %s" % obj.portal_type)
 
