@@ -1,14 +1,15 @@
 import json
 import logging
-from email.MIMEText import MIMEText
-from itertools import islice
-
+import re
 import requests
-
 import transaction
+
 from Acquisition import aq_inner
+from BeautifulSoup import BeautifulSoup
 from eea.climateadapt.config import CONTACT_MAIL_LIST
 from eea.climateadapt.schema import Email
+from email.MIMEText import MIMEText
+from itertools import islice
 from OFS.ObjectManager import BeforeDeleteException
 from plone import api
 from plone.api import portal
@@ -24,6 +25,7 @@ from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.interface import Interface, implements
+
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -292,7 +294,6 @@ class DetectBrokenLinksView (BrowserView):
     def results(self):
         annot = IAnnotations(self.context)
         res = []
-
         for info in annot.get('broken_links_data', []):
             obj = self.context.restrictedTraverse(info['object_url'])
             state = get_state(obj)
@@ -467,6 +468,7 @@ def get_links(site):
             'eea.climateadapt.researchproject',
             'eea.climateadapt.tool',
             'eea.climateadapt.city_profile',
+            'collective.cover.content',
         ]
     }
     brains = catalog.searchResults(**query)
@@ -476,7 +478,6 @@ def get_links(site):
     for b in brains:
         obj = b.getObject()
         path = obj.getPhysicalPath()
-
         if hasattr(obj, 'websites'):
             if isinstance(obj.websites, str):
                 urls.append({
@@ -495,6 +496,17 @@ def get_links(site):
                     'link': obj.website_of_the_local_authority,
                     'object_url': path
                 })
+            elif obj.portal_type == 'collective.cover.content':
+                for tile in obj.list_tiles():
+                    if 'richtext' in obj.get_tile_type(tile):
+                        richtext = obj.get_tile(tile).getText()
+                        bs = BeautifulSoup(richtext)
+                        for link in bs.findAll('a', attrs={'href': re.compile("^https?://")}):
+                            urls.append({
+                                'link': link.get('href'),
+                                'object_url': path
+                            })
+
             else:
                 logger.info("Portal type: %s" % obj.portal_type)
 
