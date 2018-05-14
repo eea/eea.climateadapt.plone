@@ -11,10 +11,9 @@
     height: 24px;
     display: inline;
 }
-.jstree-anchor {
-    margin-top: -18px;
+.jstree-node.facetview_filterchoice.leaf a.jstree-anchor {
     height: 24px;
-    display: inline-block;
+    display: inline-flex;
     position: static;
 }
 .nav.navbar-nav {
@@ -25,9 +24,10 @@
     margin: 0px;
 }
 #navbar {
+    border-width: 0 0 1px;
     font-size: 13.2px;
     font-family: Arial;
-    min-height: 40px;
+    min-height: 30px;
     height: auto;
     margin: 0px;
 }
