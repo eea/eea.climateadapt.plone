@@ -1,7 +1,7 @@
 <nav id="navbar" class="navbar navbar-inverse navbar-static-top marginBottom-0" role="navigation" tal:define="menu view/menu">
 
-<link rel="stylesheet" tal:attributes="href python: view.theme_base_url() + 'static/vendor/bootstrap-submenu.css'"/>
-<script type="text/javascript" tal:attributes="src python: view.theme_base_url() + 'static/vendor/bootstrap-submenu.js'"></script>
+<link rel="stylesheet" tal:attributes="href python: view.theme_base() + 'static/vendor/bootstrap-submenu.css'"/>
+<script type="text/javascript" tal:attributes="src python: view.theme_base() + 'static/vendor/bootstrap-submenu.js'"></script>
 <!--<link rel="stylesheet" href="/++theme++climateadapt/static/vendor/bootstrap-submenu.css">-->
 <!--<script type="text/javascript" src="/++theme++climateadapt/static/vendor/bootstrap-submenu.js"></script>-->
 

@@ -14,3 +14,9 @@ class ExternalTemplateHeader(object):
         base_url = portal.absolute_url()
 
         return base_url + '/++theme++' + settings.currentTheme + '/'
+
+    def theme_base(self):
+        reg = getUtility(IRegistry)
+        settings = reg.forInterface(IThemeSettings, False)
+
+        return '/++theme++' + settings.currentTheme + '/'
