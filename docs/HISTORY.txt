@@ -3,7 +3,10 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
-* Change: Commented map viewer options from faceted searc
+  
+* Bug fix: Fixed error while extracting information from France.
+  [davidsilaghi #91561]
+* Change: Commented map viewer options from faceted search
   [davidsilaghi #91968]
 * Change: Changed links for external resources from http: to https:
   [laszlocseh #89310]
