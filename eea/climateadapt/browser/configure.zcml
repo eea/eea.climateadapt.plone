@@ -586,7 +586,7 @@
         class=".misc.DetectBrokenLinksView"
         for="*"
         name="broken-links"
-        permission="zope2.View"
+        permission="cmf.ManagePortal"
         template="pt/detect_links.pt"
         />
 
@@ -594,7 +594,7 @@
         class=".misc.ExcelCsvExportView"
         for="*"
         name="export-excel"
-        permission="zope2.View"
+        permission="cmf.ManagePortal"
         template="pt/export_portaltypes.pt"
         />
 
