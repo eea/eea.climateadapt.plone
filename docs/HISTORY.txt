@@ -3,7 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
-
+* Change: export-excel and broken-links can now be accessed only by Managers
+  [ichim-david refs #96087]
 * Change: Added new slide in the carousel
   [iulianpetchesi #96217]
 * Bug fix: Fixed error while extracting information from France.
