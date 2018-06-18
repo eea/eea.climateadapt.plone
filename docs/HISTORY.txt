@@ -3,7 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
-  
+
+* Change: Added new slide in the carousel
+  [iulianpetchesi #96217]
 * Bug fix: Fixed error while extracting information from France.
   [davidsilaghi #91561]
 * Change: Commented map viewer options from faceted search
