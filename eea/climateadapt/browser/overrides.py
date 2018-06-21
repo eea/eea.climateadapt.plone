@@ -6,7 +6,7 @@ from collective.excelexport.exportables.dexterityfields import (BaseFieldRendere
                                                                 FieldRenderer)
 
 from eea.climateadapt import MessageFactory as _
-from eea.climateadapt.schema import Year
+from eea.climateadapt.schema import Year, PortalType, AbsoluteUrl, Uploader
 from eea.pdf.interfaces import IPDFTool
 from plone.api import content, portal
 from plone.app.content.browser.interfaces import IContentsPage
@@ -281,6 +281,45 @@ class TextLineFieldRenderer(BaseFieldRenderer):
         text = safe_unicode(self._get_text(value))
 
         return text
+
+
+class PortalTypeRenderer(BaseFieldRenderer):
+    """ Portal type adapter for excel export"""
+    adapts(PortalType, Interface, Interface)
+
+    def _get_text(self, value):
+        return value
+
+    def render_value(self, obj):
+        """Gets the value to render in excel file from content value
+        """
+        return portal.get().portal_types.get(obj.portal_type).title
+
+
+class AbsoluteUrlRenderer(BaseFieldRenderer):
+    """ Absolute url adapter for excel export"""
+    adapts(AbsoluteUrl, Interface, Interface)
+
+    def _get_text(self, value):
+        return value
+
+    def render_value(self, obj):
+        """Gets the value to render in excel file from content value
+        """
+        return obj.absolute_url()
+
+
+class UploaderRenderer(BaseFieldRenderer):
+    """ Uploader adapter for excel export"""
+    adapts(Uploader, Interface, Interface)
+
+    def _get_text(self, value):
+        return value
+
+    def render_value(self, obj):
+        """Gets the value to render in excel file from content value
+        """
+        return '; '.join(obj.creators)
 
 
 class TextFieldRenderer(BaseFieldRenderer):

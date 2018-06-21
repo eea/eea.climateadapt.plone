@@ -1,7 +1,7 @@
 from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
-from eea.climateadapt.schema import Year
+from eea.climateadapt.schema import Year, PortalType, AbsoluteUrl, Uploader
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.app.textfield import RichText
 from plone.app.widgets.interfaces import IWidgetsLayer
@@ -170,6 +170,15 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                                 u"climate-adapt]")
 
     # -----------[ "omitted" fields ]------------------
+    directives.omitted(IAddForm, 'portal_type')
+    directives.omitted(IEditForm, 'portal_type')
+
+    directives.omitted(IAddForm, 'item_link')
+    directives.omitted(IEditForm, 'item_link')
+
+    directives.omitted(IAddForm, 'uploader')
+    directives.omitted(IEditForm, 'uploader')
+
     directives.omitted(IAddForm, 'data_type')
     directives.omitted(IEditForm, 'data_type')
 
@@ -215,6 +224,20 @@ class IAceItem(form.Schema, IImageScaleTraversable):
         missing_value=None,
     )
 
+    portal_type = PortalType(title=_(u"Portal type"),
+                             required=False,
+                             default=u""
+                             )
+
+    item_link = AbsoluteUrl(title=_(u"Item link"),
+                             required=False,
+                             default=u""
+                             )
+
+    uploader = Uploader(title=_(u"Uploaded by"),
+                             required=False,
+                             default=u""
+                             )
     # fix???
     data_type = Choice(title=_(u"Data Type"),
                        required=False,

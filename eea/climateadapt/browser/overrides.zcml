@@ -32,6 +32,15 @@
     <adapter factory=".overrides.YearFieldRenderer"
       provides="collective.excelexport.interfaces.IExportable" />
 
+    <adapter factory=".overrides.PortalTypeRenderer"
+      provides="collective.excelexport.interfaces.IExportable" />
+
+    <adapter factory=".overrides.AbsoluteUrlRenderer"
+      provides="collective.excelexport.interfaces.IExportable" />
+
+    <adapter factory=".overrides.UploaderRenderer"
+      provides="collective.excelexport.interfaces.IExportable" />
+
     <adapter factory=".overrides.TextLineFieldRenderer"
       provides="collective.excelexport.interfaces.IExportable" />
 
