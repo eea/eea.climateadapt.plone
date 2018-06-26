@@ -44,6 +44,7 @@ setup(
         'tokenlib',
         'eea.rabbitmq.client',    # schedule jobs
         'google-api-python-client',       # google analytics API integration
+        'oauth2client',
     ],
     extras_require={
         'test': [

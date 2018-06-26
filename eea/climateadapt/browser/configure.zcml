@@ -60,6 +60,14 @@
 
     <browser:page
         for="*"
+        name="dashboard-v2"
+        template="pt/dashboard.pt"
+        class=".dashboard.DashboardView"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
         name="listing-with-dates"
         template="pt/listing-with-dates.pt"
         permission="zope2.View"
