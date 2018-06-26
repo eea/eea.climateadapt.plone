@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Change: Modified the broken links script so that it gets more results
+  [iulianpetchesi #93475]
 * add uploader, portal type and link to object to the excel export
   [valipod refs #96088]
 * Change: export-excel and broken-links can now be accessed only by Managers
