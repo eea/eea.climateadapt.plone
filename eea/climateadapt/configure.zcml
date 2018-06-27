@@ -40,6 +40,11 @@
         directory="theme/climateadapt"
         type="theme" />
 
+    <plone:static
+        name="climateadaptv2"
+        directory="theme/climateadaptv2"
+        type="theme" />
+
     <class class=".acemeasure.CaseStudy">
       <implements interface="plone.app.imagecropping.dx.IImageCroppingDX" />
     </class>

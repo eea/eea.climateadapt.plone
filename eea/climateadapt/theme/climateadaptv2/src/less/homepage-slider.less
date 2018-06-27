@@ -1,0 +1,71 @@
+/*** home page slider ***/
+
+.slider-image-wrapper {
+  border-bottom: 5px solid #7D9600;
+  height: 420px;
+  overflow: hidden;
+  position: relative;
+  vertical-align: top;
+}
+
+
+/* center image  */
+.slider-image-wrapper img {
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  left: 50%;
+  position: absolute;
+  top: 30%;
+}
+
+.slider-caption {
+  background-color: rgba(255, 255, 255, 0.8);
+  bottom: 30px;
+  height: 145px;
+  padding: 15px;
+  position: absolute;
+  width: 435px;
+}
+
+.slider-bottom-caption a {
+  color: #4f4f4f;
+  font-size: 13px;
+}
+
+.slider-bottom-caption .slick-dots {
+  bottom: 5px;
+  text-align: left;
+}
+
+.slider .slick-prev,
+.slider .slick-next {
+  bottom: 30px;
+  top: auto;
+}
+
+.slider .slick-prev {
+  left: 25px;
+  z-index: 9;
+}
+
+.slider .slick-next {
+  left: 65px;
+}
+
+.slider .slick-prev:before,
+.slider .slick-next:before {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #4F4F4F;
+  font-family: FontAwesome;
+  font-size: 28px;
+  padding: 5px 12px;
+}
+
+.slider .slick-prev:before {
+  content: '\f104';
+}
+
+.slider .slick-next:before {
+  content: '\f105';
+}
