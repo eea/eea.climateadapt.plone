@@ -2,8 +2,7 @@
 <link href='https://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css' />
 
 
-<!--<script type="text/javascript" src="http://localhost:8080/cca/portal_javascripts/Sunburst%20Theme/++resource++plone.app.jquery.js"></script>-->
-<!--<script type="text/javascript" src="http://localhost:8080/cca/portal_javascripts/Sunburst%20Theme/++resource++plone.app.event/event.js"></script>-->
+<!--<script type="text/javascript" src="/portal_javascripts/Sunburst%20Theme/++resource++plone.app.jquery.js"></script>-->
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 

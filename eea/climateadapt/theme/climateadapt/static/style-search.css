@@ -7,6 +7,10 @@
     margin: 0px;
     background-color: white;
 }
+ul#portal-personaltools {
+    display: none;
+}
+
 .jstree-node {
     height: 24px;
     display: inline;
@@ -162,6 +166,9 @@ div#facetview_rightcol {
     }
     #eea-above-columns {
         display: block;
+    }
+    .jstree-node.facetview_filterchoice.leaf a.jstree-anchor {
+        height: 36px;
     }
 }
 @media (max-width: 600px) {
