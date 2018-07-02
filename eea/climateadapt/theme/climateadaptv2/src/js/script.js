@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  // initialize homepage slider
+  // HOMEPAGE: initialize slick slider
   $('.slider').slick({
     infinite: true,
     speed: 500,
@@ -11,9 +11,12 @@ $(document).ready(function() {
     autoplaySpeed: 4000,
   });
 
-  // move slick slider dots to slider caption area
+
+  // HOMEPAGE: move slick slider dots to slider caption area
   $(".slick-dots").prependTo(".slider-bottom-caption");
 
+
+  // HOMEPAGE: align slider caption and slider arrows to the main content area
   function getPageContainerPadding() {
     var cw = $(".content-container").width();
     var ww = $(window).width();
@@ -44,24 +47,15 @@ $(document).ready(function() {
   });
 
 
-  $('.action-btn').each(function() {
-    $(this).hover(function() {
-      if ($(this).hasClass('regional-btn')) {
-        $(this).siblings('.action-bubble').toggleClass('regional-bubble');
-        $(this).siblings('.triangle ').toggleClass('regional-triangle-active');
-      }
-      if ($(this).hasClass('transnational-btn')) {
-        $(this).siblings('.action-bubble').toggleClass('transnational-bubble');
-        $(this).siblings('.triangle').toggleClass('transnational-triangle-active');
-      }
-      if ($(this).hasClass('national-btn')) {
-        $(this).siblings('.action-bubble').toggleClass('national-bubble');
-        $(this).siblings('.triangle').toggleClass('national-triangle-active');
-      }
-    })
-  })
+  // HOMEPAGE: Tabs functionality
+  $("ul.nav-tabs a").click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  });
 
-  // center tabs menu items on click on small screen sizes
+
+  // HOMEPAGE: Dynamic area:
+  // on click center tab items on small screen sizes
   $(".main-tab-heading ul li a").click(function() {
     var $parent = $(this).parent();
     centerTabItem($parent, '.main-tab-heading ul');
@@ -85,13 +79,56 @@ $(document).ready(function() {
     }, 500);
   }
 
-  // homepage tabs functionality
-  $("ul.nav-tabs a").click(function (e) {
-    e.preventDefault();
-    $(this).tab('show');
+
+  // HOMEPAGE: Dynamic area - Getting started:
+  // On button hover toggle class on the bubble section
+  $('.action-btn').each(function() {
+    $(this).hover(function() {
+      if ($(this).hasClass('regional-btn')) {
+        $(this).siblings('.action-bubble').toggleClass('regional-bubble');
+        $(this).siblings('.triangle ').toggleClass('regional-triangle-active');
+      }
+      if ($(this).hasClass('transnational-btn')) {
+        $(this).siblings('.action-bubble').toggleClass('transnational-bubble');
+        $(this).siblings('.triangle').toggleClass('transnational-triangle-active');
+      }
+      if ($(this).hasClass('national-btn')) {
+        $(this).siblings('.action-bubble').toggleClass('national-bubble');
+        $(this).siblings('.triangle').toggleClass('national-triangle-active');
+      }
+    })
+  })
+
+
+  // HOMEPAGE: Dynamic area - Adaptation support tool:
+  // Highlight steps on hover
+  $(".ast-step-wrapper").hover(function() {
+    $(this).children('.ast-circle').css({
+      'background-color': '#FFD554',
+      'border': '2px solid #F2C94C',
+      'transform': 'scale(1.08)',
+      'color': '#4F4F4F'
+    });
+    $(this).children('.step-text').css({
+      'background-color': '#FFD554',
+      'transform': 'scale(1.08)',
+    });
+
+    }, function() {
+    $(this).children('.ast-circle').css({
+      'background-color': '#B8D42F',
+      'border': '2px solid #A5BF26',
+      'transform': 'scale(1)',
+      'color': '#fff'
+    });
+    $(this).children('.step-text').css({
+      'background-color': '#f5f5f5',
+      'transform': 'scale(1)'
+    });
   });
 
-  // eu policies sub-tab section close functionality
+  // HOMEPAGE: Dynamic area - EU Sector policies:
+  // Sub-tab section close functionality
   $(".close-tab-pane").click(function() {
     var $contentParent = $(this).closest('.policies-tab-content');
     var $mainParent = $(this).closest('.sub-tab-section');
@@ -113,7 +150,6 @@ $(document).ready(function() {
   // mobile - show submenus on click
   $('.menu-toggle').on('click', function(e) {
     $(this).siblings('.sub-menu-wrapper').toggle();
-    // $(this).children('.fa').toggleClass('fa-angle-down fa-angle-up');
     $(this).parent().siblings('li').find('.sub-menu-wrapper').hide();
     e.stopPropagation();
   });
