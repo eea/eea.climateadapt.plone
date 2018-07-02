@@ -10,7 +10,7 @@ module.exports = {
       files: {
         // '<%= path.static %>/static/css/main.css': '<%= path.src %>/less/main.less',
         '<%= path.static %>/static/css/compiled-less.css': '<%= path.src %>/less/main.less',
-        '<%= path.static %>/static/css/compiles-css.css': '<%= path.src %>/css/*.css',
+        '<%= path.static %>/static/css/compiled-css.css': '<%= path.src %>/css/*.css',
 
         // '<%= path.static %>/css/east.css': '<%= path.src %>/less/east.less',
         // '<%= path.static %>/css/south.css': '<%= path.src %>/less/south.less'
