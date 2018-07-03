@@ -561,6 +561,9 @@ a.read-more:hover {
   padding: 0;
   position: relative;
 }
+.dynamic-area h2 {
+  font-size: 25px;
+}
 .map-caption {
   position: absolute;
   bottom: 20px;
@@ -597,11 +600,9 @@ a.read-more:hover {
 .getting-started .intro-text {
   text-align: center;
 }
-.getting-started h2 {
-  font-size: 25px;
-}
 .action-box {
   position: relative;
+  padding-top: 20px;
 }
 .action-bubble {
   background-color: #F9F9F9;
@@ -723,6 +724,7 @@ a.read-more:hover {
 .db-categories {
   justify-content: center;
   flex-wrap: wrap;
+  padding-bottom: 0;
 }
 .db-category-wrapper {
   text-align: center;
@@ -944,8 +946,8 @@ a.read-more:hover {
   padding-right: 40px;
 }
 .case-study-search {
-  flex: 1;
   text-align: center;
+  margin-top: 20px;
 }
 .case-study-search img {
   display: block;
@@ -955,17 +957,15 @@ a.read-more:hover {
   margin: 30px auto;
   width: 70%;
 }
-.case-study .action-flex-item:first-child {
-  flex: 1 1 300px;
+.case-study-description p {
+  margin: 15px 0;
 }
-.ast-content img {
-  float: left;
+.ast-content {
+  padding-bottom: 30px;
 }
-.ast-map-image {
-  position: relative;
-}
-#t-adapt .flex-wrapper {
-  padding-top: 0;
+.ast-content h2 {
+  text-align: center;
+  padding: 17px 0;
 }
 .ast-map-image p {
   font-size: 12px;
@@ -977,7 +977,7 @@ a.read-more:hover {
 }
 .circle-2-text {
   top: 60px;
-  right: -235px;
+  right: -240px;
 }
 .circle-3-text {
   top: 135px;
@@ -1020,14 +1020,16 @@ a.read-more:hover {
   border: 2px solid #A5BF26;
   border-radius: 50%;
   box-sizing: initial;
-  box-sizing: content-box;
   color: #fff;
-  height: 41px;
-  width: 41px;
+  height: 40px;
+  width: 40px;
   font-size: 22px;
-  line-height: 41px;
+  line-height: 40px;
   text-align: center;
   position: absolute;
+  -webkit-transition: transform .2s;
+  -moz-transition: transform .2s;
+  -o-transition: transform .2s;
   transition: transform .2s;
 }
 .ast-map-image .step-text {
@@ -1038,6 +1040,9 @@ a.read-more:hover {
   padding-right: 5px;
   border-radius: 5px;
   text-align: center;
+  -webkit-transition: transform .2s;
+  -moz-transition: transform .2s;
+  -o-transition: transform .2s;
   transition: transform .2s;
 }
 .ast-map-image .circle-1 {
@@ -1065,12 +1070,7 @@ a.read-more:hover {
   top: 56px;
 }
 .ast-steps {
-  overflow: hidden;
-  padding-left: 10%;
   display: none;
-}
-.ast-steps li {
-  position: relative;
 }
 .ast-steps li:not(:last-child) {
   margin-bottom: 25px;
@@ -1084,35 +1084,17 @@ a.read-more:hover {
   position: absolute;
   width: 2px;
 }
-.ast-steps li p:first-child {
+.ast-steps .step-number {
   color: #0170B7;
-  float: left;
   font-family: RobotoM;
   padding-right: 5px;
 }
-.ast-steps li a p {
-  display: inline-block;
+.ast-steps li a {
   font-family: RobotoM;
-  margin: 0;
-  overflow: hidden;
-}
-.ast-steps li a p:hover {
-  color: #0170B7;
-}
-.ast-steps li a i {
-  bottom: 2px;
-  color: #FFD554;
-  font-size: 25px;
-  left: 5px;
-  position: relative;
-  visibility: hidden;
-}
-.ast-steps li a:hover i {
-  visibility: visible;
+  color: #4F4F4F;
 }
 .urban-area {
   text-align: center;
-  margin-top: 20px;
 }
 .urban-area p {
   margin: 40px 0 20px 0;
@@ -1121,7 +1103,7 @@ a.read-more:hover {
   margin: 20px auto 0 auto;
   text-align: center;
   border-top: 1px solid #dcdada;
-  padding-top: 10px;
+  padding-top: 20px;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: -moz-box;
@@ -1325,14 +1307,8 @@ a.read-more:hover {
   .policy-description {
     text-align: justify;
   }
-  #t-adapt .flex-wrapper {
-    flex-wrap: wrap;
-  }
   .ast-steps li:not(:last-child):after {
     content: none;
-  }
-  .ast-steps li p:first-child {
-    float: none;
   }
   /* footer section */
   .footer-nav {
@@ -1502,11 +1478,6 @@ a.read-more:hover {
     float: none;
     margin: auto;
   }
-  .ast-steps {
-    padding-left: 0;
-    margin-top: 50px;
-    text-align: center;
-  }
   .database-search-box input {
     width: 70%;
   }
@@ -1541,6 +1512,8 @@ a.read-more:hover {
   }
   .ast-steps {
     display: block;
+    margin-top: 50px;
+    text-align: center;
   }
   .step-text {
     display: none;
@@ -1592,6 +1565,9 @@ a.read-more:hover {
   }
   .case-study .flex-wrapper {
     padding: 0;
+  }
+  .urban-area {
+    margin-top: 20px;
   }
   /*** main area ***/
   .news-section {

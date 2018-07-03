@@ -6,9 +6,8 @@ module.exports = {
         sourceMap: false
       },
       files: {
-        '<%= path.static %>/css/main.css': '<%= path.src %>/less/main.less',
-        '<%= path.static %>/css/east.css': '<%= path.src %>/less/east.less',
-        '<%= path.static %>/css/south.css': '<%= path.src %>/less/south.less'
+        '<%= path.static %>/static/css/compiled-less.css': '<%= path.src %>/less/main.less',
+        '<%= path.static %>/static/css/compiled-css.css': '<%= path.src %>/css/*.css'
       }
     }
   },
