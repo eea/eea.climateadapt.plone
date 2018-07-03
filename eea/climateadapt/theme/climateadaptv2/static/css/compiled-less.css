@@ -268,20 +268,25 @@ a.read-more:hover {
   right: 20px;
 }
 .search-box .line {
+  -webkit-transition: 0.3s width ease-in-out;
+  -moz-transition: 0.3s width ease-in-out;
+  -o-transition: 0.3s width ease-in-out;
+  transition: 0.3s width ease-in-out;
   background-color: darkgrey;
   bottom: -5px;
   display: block;
   height: 2px;
   position: absolute;
-  transition: 0.3s width ease-in-out;
   width: 0px;
 }
 .search-box input {
   -webkit-transition: width 0.4s ease-in-out;
+  -moz-transition: width 0.4s ease-in-out;
+  -o-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
   background-color: transparent;
   border: none;
   height: 25px;
-  transition: width 0.4s ease-in-out;
   width: 50%;
 }
 .search-box input:focus {
@@ -324,19 +329,22 @@ a.read-more:hover {
   background-color: #005C96;
   text-align: center;
 }
-.nav-menu > ul {
-  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.4);
+.nav-menu .main-nav {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
   display: flex;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.4);
 }
-.nav-menu > ul > li {
+.main-nav li {
   flex-grow: 1;
   position: relative;
 }
-.nav-menu > ul > li > a {
+.main-nav li > a {
   color: #fff;
   display: block;
   font-size: 17px;
-  padding: 12px 10px;
+  padding: 12px 0;
   text-transform: uppercase;
 }
 .nav-menu > ul > li > a:not(:last-child) {
@@ -363,7 +371,7 @@ a.read-more:hover {
   height: auto;
   background-color: #F7F7F7;
   text-align: left;
-  padding: 20px 0;
+  padding: 1rem 0;
   border-bottom: 5px solid #7D9600;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
 }
@@ -381,7 +389,6 @@ a.read-more:hover {
   display: table-cell;
 }
 .sub-menu-wrapper .main-sub-menu > li > a {
-  text-transform: uppercase;
   font-size: 14px;
   padding: 10px 0;
   color: #0170B7;
@@ -389,19 +396,13 @@ a.read-more:hover {
 .sub-menu-wrapper li a:hover {
   color: #7D9600;
 }
-.main-sub-menu > li:not(:last-child) {
-  padding-bottom: 25px;
-  display: block;
-}
-.main-sub-menu > li > ul > li {
-  padding: 8px 0;
-}
 .main-sub-menu > li > ul > li:last-child {
   padding-bottom: 0;
 }
-.main-sub-menu > li > ul > li > a {
+.main-sub-menu-item .sub-menu-wrapper li a {
   color: #4f4f4f;
   font-family: RobotoR;
+  text-transform: none;
   font-size: 13px;
 }
 .main-sub-menu > li {
@@ -420,9 +421,11 @@ a.read-more:hover {
 }
 /* center image  */
 .slider-image-wrapper img {
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   left: 50%;
   position: absolute;
   top: 30%;
@@ -472,8 +475,6 @@ a.read-more:hover {
 /*** dynamic area  - tab section ***/
 .main-tab-heading ul.main-tabs li {
   flex-grow: 1;
-  float: none;
-  white-space: nowrap;
 }
 .main-tab-heading ul.main-tabs li.active:after {
   background-color: #fff;
@@ -503,13 +504,17 @@ a.read-more:hover {
   background-color: transparent;
 }
 .main-tab-heading ul.main-tabs li:not(:last-child):before {
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   background-color: #dcdada;
   content: '';
-  height: 80%;
   position: absolute;
   right: -7px;
   top: 50%;
-  transform: translate(-50%, -50%);
+  height: 80%;
   width: 1px;
 }
 .main-tab-heading ul.main-tabs li.active:before {
@@ -574,6 +579,9 @@ a.read-more:hover {
 }
 .dynamic-area .main-tabs {
   border-bottom: none;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
   display: flex;
   text-align: center;
 }
@@ -642,10 +650,9 @@ a.read-more:hover {
   z-index: 9;
 }
 .flex-wrapper {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
   display: flex;
   padding: 20px 0;
 }
@@ -752,6 +759,9 @@ a.read-more:hover {
 /*** dynamic area  - EU Policies ***/
 .policies-nav {
   border-bottom: none;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
   display: flex;
   flex-wrap: wrap;
 }
@@ -948,11 +958,6 @@ a.read-more:hover {
 .case-study .action-flex-item:first-child {
   flex: 1 1 300px;
 }
-.special-link {
-  color: #0170B7;
-  font-size: 17px;
-  margin-top: 20px;
-}
 .ast-content img {
   float: left;
 }
@@ -1107,6 +1112,7 @@ a.read-more:hover {
 }
 .urban-area {
   text-align: center;
+  margin-top: 20px;
 }
 .urban-area p {
   margin: 40px 0 20px 0;
@@ -1116,11 +1122,15 @@ a.read-more:hover {
   text-align: center;
   border-top: 1px solid #dcdada;
   padding-top: 10px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
   display: flex;
   justify-content: space-between;
 }
 .see-more-link p {
   display: inline;
+  margin: 5px auto;
 }
 .see-more-link a {
   font-size: 16px;
@@ -1217,6 +1227,9 @@ a.read-more:hover {
   border: 1px solid transparent;
 }
 .content-body {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -1226,8 +1239,11 @@ a.read-more:hover {
   text-align: center;
 }
 .info-title-section {
-  align-items: center;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
   display: flex;
+  align-items: center;
   margin: auto;
 }
 .info-section .info-title {
@@ -1394,6 +1410,7 @@ a.read-more:hover {
     text-align: left;
     overflow-y: auto;
     height: 83vh;
+    margin-top: 15px;
   }
   .mobile-header .nav-menu ul {
     box-shadow: none;
@@ -1407,7 +1424,7 @@ a.read-more:hover {
     padding: 25px 10px;
   }
   .mobile-header .nav-menu ul li ul li a {
-    padding: 10px 20px;
+    padding: 10px 0;
     font-size: 13px;
     color: #464646;
   }
@@ -1467,7 +1484,7 @@ a.read-more:hover {
     font-size: 14px;
   }
   .nav-menu > ul > li:not(:last-child) {
-    border-bottom: 2px solid #f4f4f4;
+    border-bottom: 1px solid #f4f4f4;
   }
   .mobile-header .top-menu {
     height: auto;
@@ -1494,7 +1511,7 @@ a.read-more:hover {
     width: 70%;
   }
   .policies-nav li {
-    flex: 1 26%;
+    flex: 1 160px;
   }
   /* homepage carousel */
   .slick-arrow {
@@ -1537,12 +1554,14 @@ a.read-more:hover {
   }
   .policies-nav li {
     padding: 10px 5px;
+    flex: 1 120px;
   }
   .policies-second-nav > li > a {
     padding: 10px;
   }
   .flex-wrapper {
     flex-wrap: wrap;
+    padding: 0;
   }
   .database-search-box input {
     width: 80%;
@@ -1563,6 +1582,16 @@ a.read-more:hover {
   .action-bubble {
     width: 90%;
     margin: auto;
+  }
+  .see-more-link a {
+    display: block;
+  }
+  .case-study .action-flex-item {
+    padding: 0;
+    margin-bottom: 10px;
+  }
+  .case-study .flex-wrapper {
+    padding: 0;
   }
   /*** main area ***/
   .news-section {

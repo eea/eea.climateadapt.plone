@@ -149,8 +149,8 @@ $(document).ready(function() {
 
   // mobile - show submenus on click
   $('.menu-toggle').on('click', function(e) {
-    $(this).siblings('.sub-menu-wrapper').toggle();
-    $(this).parent().siblings('li').find('.sub-menu-wrapper').hide();
+    $(this).siblings('.main-sub-menu-wrapper').toggle();
+    $(this).parent().siblings('li').find('.main-sub-menu-wrapper').hide();
     e.stopPropagation();
   });
 

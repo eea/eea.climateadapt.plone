@@ -57,21 +57,26 @@
 }
 
 .search-box .line {
+  -webkit-transition: .3s width ease-in-out;
+  -moz-transition: .3s width ease-in-out;
+  -o-transition: .3s width ease-in-out;
+  transition: .3s width ease-in-out;
   background-color: darkgrey;
   bottom: -5px;
   display: block;
   height: 2px;
   position: absolute;
-  transition: .3s width ease-in-out;
   width: 0px;
 }
 
 .search-box input {
   -webkit-transition: width 0.4s ease-in-out;
+  -moz-transition: width 0.4s ease-in-out;
+  -o-transition:  width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
   background-color: transparent;
   border: none;
   height: 25px;
-  transition: width 0.4s ease-in-out;
   width: 50%;
 }
 
