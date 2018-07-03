@@ -15,12 +15,15 @@
 }
 
 .nav-menu > ul > li > a {
-  border-right: 1px solid #014673;
   color: #fff;
   display: block;
   font-size: 17px;
   padding: 12px 10px;
   text-transform: uppercase;
+}
+
+.nav-menu > ul > li > a:not(:last-child) {
+  border-right: 1px solid #014673;
 }
 
 .nav-menu > ul > li > a:not(:last-child) {
@@ -62,7 +65,7 @@
 }
 
 .main-sub-menu {
-  padding: 0 1rem;
+  padding: 0 1rem !important;
   min-width: 250px;
   text-align: left;
   white-space: normal;
@@ -86,8 +89,11 @@
 }
 
 .main-sub-menu > li > ul > li {
-  padding: 10px 0;
-  display: block;
+  padding: 8px 0;
+}
+
+.main-sub-menu > li > ul > li:last-child {
+  padding-bottom: 0;
 }
 
 .main-sub-menu > li > ul > li > a{

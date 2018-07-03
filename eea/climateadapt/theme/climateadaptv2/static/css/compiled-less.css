@@ -116,6 +116,8 @@ section {
 body {
   background-color: #eee;
   line-height: 1;
+  position: relative;
+  height: 100vh;
 }
 html {
   -moz-box-sizing: border-box;
@@ -197,6 +199,14 @@ a.read-more:hover {
   position: relative;
   width: 100%;
 }
+.site-container {
+  margin-top: 25px;
+  background-color: #fff;
+  min-height: 600px;
+}
+.page-body {
+  padding: 2rem;
+}
 .standard-button {
   font-family: RobotoB;
   font-size: 18px;
@@ -214,6 +224,9 @@ a.read-more:hover {
 .header {
   position: absolute;
   width: 100%;
+}
+.top-page-area .header {
+  position: relative;
 }
 .top-menu {
   background-color: rgba(255, 255, 255, 0.8);
@@ -320,12 +333,14 @@ a.read-more:hover {
   position: relative;
 }
 .nav-menu > ul > li > a {
-  border-right: 1px solid #014673;
   color: #fff;
   display: block;
   font-size: 17px;
   padding: 12px 10px;
   text-transform: uppercase;
+}
+.nav-menu > ul > li > a:not(:last-child) {
+  border-right: 1px solid #014673;
 }
 .nav-menu > ul > li > a:not(:last-child) {
   border-left: none;
@@ -359,7 +374,7 @@ a.read-more:hover {
   left: -85px;
 }
 .main-sub-menu {
-  padding: 0 1rem;
+  padding: 0 1rem !important;
   min-width: 250px;
   text-align: left;
   white-space: normal;
@@ -379,8 +394,10 @@ a.read-more:hover {
   display: block;
 }
 .main-sub-menu > li > ul > li {
-  padding: 10px 0;
-  display: block;
+  padding: 8px 0;
+}
+.main-sub-menu > li > ul > li:last-child {
+  padding-bottom: 0;
 }
 .main-sub-menu > li > ul > li > a {
   color: #4f4f4f;
@@ -1117,6 +1134,9 @@ a.read-more:hover {
 .footer {
   background-color: #fff;
   margin-top: 25px;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 .footer-nav {
   background-color: #005C96;
