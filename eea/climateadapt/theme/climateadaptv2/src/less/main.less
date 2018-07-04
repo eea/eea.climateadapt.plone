@@ -27,9 +27,6 @@
     padding-left: 0;
     padding-right: 0;
   }
-  .policy-description {
-    text-align: justify;
-  }
 
   .ast-steps li:not(:last-child):after {
     content: none;
@@ -38,21 +35,6 @@
   /* footer section */
   .footer-nav {
     text-align: center;
-  }
-  .footer-content {
-    flex-wrap: wrap;
-    padding: 20px;
-  }
-  .footer-content .site-info {
-    border-bottom: 1px solid #E8E8E8;
-    flex: 0 1 100%;
-    max-width: 100%;
-    padding: 20px 0;
-    text-align: center;
-  }
-  .footer-content .eu-system {
-    flex: 1 0 50%;
-    padding-top: 20px;
   }
   .footer-nav nav ul li {
     padding: 15px;
@@ -76,6 +58,16 @@
   }
   .see-more-link {
     display: block;
+  }
+  .footer-content .site-info {
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #E8E8E8;
+  }
+  .footer-content .eu-system p {
+    margin: 15px;
   }
 }
 
@@ -277,6 +269,9 @@
   .policy-image {
     display: none;
   }
+  .policy-description {
+    width: 100% !important;
+  }
   #t-policies {
     padding: 10px 0;
   }
@@ -322,5 +317,8 @@
   /*** footer ***/
   .footer-logos-list li {
     display: inline-table;
+  }
+  .footer-content .site-info {
+    max-width: auto;
   }
 }
