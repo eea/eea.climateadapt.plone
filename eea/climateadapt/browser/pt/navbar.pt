@@ -1,60 +1,41 @@
-<nav id="navbar" class="navbar navbar-inverse navbar-static-top marginBottom-0" role="navigation" tal:define="menu view/menu">
+<ul id="navbar" class="main-nav" tal:define="menu view/menu">
+  <li tal:repeat="section menu">
+    <a tal:define="has_children python: bool(section[2])" href=""
+                                                          tal:attributes="href python:section[1];
+                                                          class python: has_children and 'dropdown-toggle' or '';
+                                                          data-toggle python: has_children and 'dropdown' or False;
+                                                          ">
+      <span tal:content="python: section[0]">Home</span>
+      <b class="caret" tal:condition="has_children" />
+    </a>
+    <ul tal:condition="python: section[2]" class="dropdown-menu">
 
-<link rel="stylesheet" tal:attributes="href python: view.theme_base() + 'static/vendor/bootstrap-submenu.css'"/>
-<script type="text/javascript" tal:attributes="src python: view.theme_base() + 'static/vendor/bootstrap-submenu.js'"></script>
-<!--<link rel="stylesheet" href="/++theme++climateadapt/static/vendor/bootstrap-submenu.css">-->
-<!--<script type="text/javascript" src="/++theme++climateadapt/static/vendor/bootstrap-submenu.js"></script>-->
+      <tal:rep tal:repeat="child python:section[2]">
+      <li tal:define="has_subchildren python: bool(child[2])" tal:attributes="class python:has_subchildren and 'dropdown-submenu' or ''">
+        <a href=""
+           tal:attributes="href python:child[1];
+           data-submenu python:has_subchildren and 'data-submenu' or '';
+           data-toggle python: has_subchildren and 'dropdown' or False;
+           "
+           tal:content="python: child[0]">Home</a>
+        <div class="menu-toggle">
+          <i class="fa fa-angle-down"></i>
+        </div>
 
-   <script>
-   (function($){
-        $(document).ready(function(){
-            $('[data-submenu]').submenupicker();
-        });
-   }(window.jQuery));
-   </script>
+        <div class="sub-menu-wrapper main-sub-menu-wrapper">
+          <ul tal:condition="has_subchildren" class="main-sub-menu">
+            <li tal:repeat="subchild python:child[2]">
+              <a href="" tal:attributes="href python:subchild[1]"
+                 tal:content="python:subchild[0]">Label
+                 <b class="caret" tal:condition="has_children" />
+              </a>
+            </li>
+          </ul>
+        </div>
 
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"/>
-    </button>
-  </div>
-
-  <div class="collapse navbar-collapse" id="navbar-collapse-1">
-    <ul class="nav navbar-nav">
-      <li tal:repeat="section menu" class="dropdown">
-        <a tal:define="has_children python: bool(section[2])" href=""
-          tal:attributes="href python:section[1];
-                          class python: has_children and 'dropdown-toggle' or '';
-                          data-toggle python: has_children and 'dropdown' or False;
-                          ">
-          <span tal:content="python: section[0]">Home</span>
-          <b class="caret" tal:condition="has_children" />
-        </a>
-        <ul tal:condition="python: section[2]" class="dropdown-menu">
-
-        <tal:rep tal:repeat="child python:section[2]">
-          <li tal:define="has_subchildren python: bool(child[2])" tal:attributes="class python:has_subchildren and 'dropdown-submenu' or ''">
-              <a href=""
-                tal:attributes="href python:child[1];
-                                data-submenu python:has_subchildren and 'data-submenu' or '';
-                                data-toggle python: has_subchildren and 'dropdown' or False;
-                                "
-                tal:content="python: child[0]">Home</a>
-              <ul tal:condition="has_subchildren" class="dropdown-menu">
-                <li tal:repeat="subchild python:child[2]">
-                  <a href="" tal:attributes="href python:subchild[1]"
-                             tal:content="python:subchild[0]">Label
-                    <b class="caret" tal:condition="has_children" />
-                  </a>
-                </li>
-              </ul>
-          </li>
-          </tal:rep>
-
-        </ul>
       </li>
+      </tal:rep>
 
     </ul>
-  </div>
-</nav>
+  </li>
+</ul>

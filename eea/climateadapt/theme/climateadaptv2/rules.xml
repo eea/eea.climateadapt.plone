@@ -24,7 +24,8 @@
     <copy attributes="id dir" css:content="body" css:theme="body"/>
     <copy attributes="role" css:content="content" css:theme="contentspace"/>
 
-    <replace css:content="#portal-columns" css:theme=".page-body"/>
+    <replace css:content="#portal-columns" css:theme="#page-body"/>
+    <replace css:content="#navbar" css:theme=".main-nav" href="@@site_navbar" method="document"/>
 
     <!--Viewlets-->
     <!-- <replace css:content="#portal&#45;personaltools" css:theme="#user"/> -->
@@ -33,7 +34,7 @@
     <!-- <drop css:content=".searchSection"/> -->
     <!-- <replace css:content="#portal&#45;searchbox" css:theme="#search"/> -->
     <!--  -->
-    <!-- <replace css:content="#navbar" css:theme="#mainnav" href="@@site_navbar" method="document"/> -->
+
 
     <!-- <replace css:content&#45;children="#portal&#45;footer" css:theme="#footer&#45;info"/> -->
     <!-- <replace css:content="#portal&#45;siteactions" css:theme&#45;children="#siteactions"/> -->
