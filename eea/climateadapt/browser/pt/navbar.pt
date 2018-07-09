@@ -1,41 +1,44 @@
 <ul id="navbar" class="main-nav" tal:define="menu view/menu">
   <li tal:repeat="section menu">
     <a tal:define="has_children python: bool(section[2])" href=""
-                                                          tal:attributes="href python:section[1];
-                                                          class python: has_children and 'dropdown-toggle' or '';
-                                                          data-toggle python: has_children and 'dropdown' or False;
-                                                          ">
+      tal:attributes="href python:section[1];
+      class python: has_children and 'dropdown-toggle' or '';
+      data-toggle python: has_children and 'dropdown' or False;
+      ">
       <span tal:content="python: section[0]">Home</span>
       <b class="caret" tal:condition="has_children" />
+      <!-- <div class="menu&#45;toggle"> -->
+        <!--   <i class="fa fa&#45;angle&#45;down"></i> -->
+        <!-- </div> -->
     </a>
-    <ul tal:condition="python: section[2]" class="dropdown-menu">
 
-      <tal:rep tal:repeat="child python:section[2]">
-      <li tal:define="has_subchildren python: bool(child[2])" tal:attributes="class python:has_subchildren and 'dropdown-submenu' or ''">
-        <a href=""
-           tal:attributes="href python:child[1];
-           data-submenu python:has_subchildren and 'data-submenu' or '';
-           data-toggle python: has_subchildren and 'dropdown' or False;
-           "
-           tal:content="python: child[0]">Home</a>
-        <div class="menu-toggle">
-          <i class="fa fa-angle-down"></i>
-        </div>
+    <div class="sub-menu-wrapper main-sub-menu-wrapper " tal:condition="python: section[2]" >
+      <div class="menu-flex-wrapper">
 
-        <div class="sub-menu-wrapper main-sub-menu-wrapper">
-          <ul tal:condition="has_subchildren" class="main-sub-menu">
-            <li tal:repeat="subchild python:child[2]">
-              <a href="" tal:attributes="href python:subchild[1]"
-                 tal:content="python:subchild[0]">Label
-                 <b class="caret" tal:condition="has_children" />
-              </a>
-            </li>
-          </ul>
-        </div>
+        <tal:rep tal:repeat="child python:section[2]">
+        <ul
+           tal:define="has_subchildren python: bool(child[2])"
+           class="main-sub-menu action-flex-item"
+           tal:attributes="class python: has_subchildren and 'main-sub-menu action-flex-item' or 'main-sub-menu'"
+           >
+           <li class='main-sub-menu-item'>
+             <a href=""
+                tal:attributes="href python:child[1];"
+                tal:content="python: child[0]">Home</a>
 
-      </li>
-      </tal:rep>
+             <ul tal:condition="has_subchildren" class="sub-menu-wrapper">
+               <li tal:repeat="subchild python:child[2]">
+                 <a href="" tal:attributes="href python:subchild[1]"
+                    tal:content="python:subchild[0]">Label
+                    <!-- <b class="caret" tal:condition="has_children" /> -->
+                 </a>
+               </li>
+             </ul>
+           </li>
+        </ul>
+        </tal:rep>
 
-    </ul>
+      </div>
+    </div>
   </li>
 </ul>

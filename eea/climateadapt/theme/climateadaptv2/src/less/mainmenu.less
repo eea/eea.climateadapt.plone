@@ -42,7 +42,9 @@
   z-index: 10;
 }
 
-.nav-menu .main-sub-menu .sub-menu-wrapper,
+.nav-menu .main-sub-menu .sub-menu-wrapper {
+  display: block;
+}
 .nav-menu > ul > li:hover > .main-sub-menu-wrapper {
   display: block;
 }
@@ -57,6 +59,13 @@
   padding: 1rem 0;
   border-bottom: 5px solid #7D9600;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.40);
+  // display: block;
+}
+.menu-flex-wrapper {
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 400px;
+  display: flex;
 }
 
 .nav-menu .sub-menu-wrapper {

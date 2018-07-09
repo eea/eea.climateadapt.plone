@@ -15,7 +15,6 @@ $(document).ready(function() {
   // HOMEPAGE: move slick slider dots to slider caption area
   $(".slick-dots").prependTo(".slider-bottom-caption");
 
-
   // HOMEPAGE: align slider caption and slider arrows to the main content area
   function getPageContainerPadding() {
     var cw = $(".content-container").width();
@@ -46,13 +45,11 @@ $(document).ready(function() {
     });
   });
 
-
   // HOMEPAGE: Tabs functionality
   $("ul.nav-tabs a").click(function (e) {
     e.preventDefault();
     $(this).tab('show');
   });
-
 
   // HOMEPAGE: Dynamic area:
   // on click center tab items on small screen sizes
@@ -135,7 +132,6 @@ $(document).ready(function() {
     $mainParent.find('.action-flex-item').removeClass('active');
     $contentParent.removeClass('active');
   });
-
 
   // mobile menu button on click event
   $('.mobile-menu i').on('click', function() {
