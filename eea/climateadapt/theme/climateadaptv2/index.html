@@ -290,7 +290,7 @@
         <div class="slider-image-wrapper">
           <img src="static/images/image-1.jpg"/>
           <div class="slider-caption">
-            <h3>Title goes here</h3>
+            <h3>About Climate Change Adaptation in Europe</h3>
             <p>Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
             <div class="slider-bottom-caption">
               <div class="read-more-wrapper">
@@ -305,8 +305,8 @@
         <div class="slider-image-wrapper">
           <img src="static/images/image-2.jpg"/>
           <div class="slider-caption">
-            <h3>Title goes here</h3>
-            <p>Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
+            <h3>Implementation of the Vitoria-Gasteiz Green Urban Infrastructure Strategy </h3>
+            <p>The Green Urban Infrastructure Strategy was launched by the City Council of Vitoria-Gasteiz in 2012. Its main objectives are the regeneration of degraded areas through eco-design techniques.</p>
             <div class="slider-bottom-caption">
               <div class="read-more-wrapper">
                 <a href="" class="read-more">
@@ -324,46 +324,41 @@
       <div class="main-tab-heading">
         <div class="content-container">
     
-          <ul class="nav nav-tabs main-tabs">
-            <li class="active">
+          <ul class="nav nav-tabs main-nav-tabs">
+            <li class="main-tab-item active">
               <a href="#t-started">
                 <i class="fa fa-user"></i>
-                Getting
-                <span>Started</span>
+                Getting </br> Started
               </a>
             </li>
-            <li class="db-highlighted">
+            <li class="main-tab-item db-highlighted">
               <a href="#t-database">
                 <i class="fa fa-database"></i>
                 Search the Database
               </a>
             </li>
-            <li>
+            <li class="main-tab-item">
               <a href="#t-policies">
                 <i class="fa fa-inbox"></i>
-                EU Sector
-                <span>Policies</span>
+                EU Sector </br> Policies
               </a>
             </li>
-            <li>
+            <li class="main-tab-item">
               <a href="#t-countries">
                 <i class="fa fa-map-marker"></i>
-                Country
-                <span>Profiles</span>
+                Country </br> Profiles
               </a>
             </li>
-            <li>
+            <li class="main-tab-item">
               <a href="#t-studies">
                 <i class="fa fa-file"></i>
-                Case
-                <span>Studies</span>
+                Case </br> Studies
               </a>
             </li>
-            <li class="ast-section">
+            <li class="main-tab-item ast-section">
               <a href="#t-adapt">
                 <div class="ast-icon"></div>
-                Adaptation
-                <span>Support Tool</span>
+                Adaptation </br> Support Tool
               </a>
             </li>
           </ul>
@@ -376,21 +371,16 @@
           <div class="tab-content tab-body">
     
             <div class="tab-pane active fade in getting-started" id="t-started">
-              <div class="intro-text">
-                <h2>Are you new to Climate-ADAPT?</h2>
-                <p>Do you need help to find the information you want on the knowledge platform - Climate-ADAPT?</p>
-                <p>Help is at hand! Use this new guide to learn how:</p>
-              </div>
+              <h2>Are you new to Climate-ADAPT?</h2>
+              <p>Do you need help to find the information you want on the knowledge platform - Climate-ADAPT?</p>
+              <p>Help is at hand! Use this new guide to learn how:</p>
     
               <div class="row">
     
                 <div class="col-6 col-md-4">
                   <div class="action-box">
                     <div class="action-bubble">
-                      <p>I want to plan or implement adaptation measures at <span>LOCAL</span> level</p>
-                    </div>
-                    <div class="triangle">
-                      <div class="empty"></div>
+                      <p>I want to plan or implement adaptation measures at <span class="action-highlighted">local</span> level</p>
                     </div>
                     <button class="standard-button action-btn regional-btn">Learn more</button>
                   </div>
@@ -399,10 +389,7 @@
                 <div class="col-6 col-md-4">
                   <div class="action-box">
                     <div class="action-bubble">
-                      <p>I want to develop a <span>NATIONAL</span> or <span>REGIONAL</span> adaptation strategy or action plan</p>
-                    </div>
-                    <div class="triangle">
-                      <div class="empty"></div>
+                      <p>I want to develop a <span>NATIONAL</span> or <span class="action-highlighted">regional</span> adaptation strategy or action plan</p>
                     </div>
                     <button class="standard-button action-btn transnational-btn">Learn more</button>
                   </div>
@@ -411,10 +398,7 @@
                 <div class="col-6 col-md-4">
                   <div class="action-box">
                     <div class="action-bubble">
-                      <p>I want to plan strategies or implement adaptation measures in a <span>TRANSNATIONAL</span> region</p>
-                    </div>
-                    <div class="triangle">
-                      <div class="empty"></div>
+                      <p>I want to plan strategies or implement adaptation measures in a <span class="action-highlighted">transnational</span> region</p>
                     </div>
                     <button class="standard-button action-btn national-btn">Learn more</button>
                   </div>
@@ -503,12 +487,12 @@
                     <p>Publication </br> and Reports</p>
                   </a>
                 </div>
-                <div class="db-category-wrapper action-flex-item">
+                <div class="db-category-wrapper db-research action-flex-item">
                   <a href="#">
                     <span class="db-category-icon db-research-icon">
                       <div class="research-icon"></div>
-                      <span class="total-items">120</span>
                     </span>
+                    <span class="total-items">120</span>
                     <p>Research and </br> Knowledge projects</p>
                   </a>
                 </div>
@@ -908,8 +892,16 @@
               <img src="static/images/country_profile_map_1.png"/>
               <div class="map-caption">
                 <p>EEA Member countries are at different stages of preparing, developing and implementing national adaptation strategies and plans.</p>
-                <p><strong>Click on a specific country</strong> on the map to see the country profile or see:</p>
-                <button class="standard-button countries-button">Countries webpage</button>
+                <p>Click on a specific country on the map or select from the dropdown to see the country profile:</p>
+                <span class="country-dropdown">
+                  <select>
+                    <option selected="selected">Go to country...</option>
+                    <option>
+                      Country name
+                    </option>
+                  </select>
+                </span>
+                <button class="standard-button primary-button sm-button">See countries webpage</button>
               </div>
             </div>
     
@@ -920,6 +912,15 @@
                   <h2>What are case studies?</h2>
                   <p>Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events. </p>
                   <p>Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href="https://climate-adapt.eea.europa.eu/repository/11090223.pdf">criteria</a> and also in collaboration with the main stakeholders.</p>
+                  <div class="ca-booklet">
+                    <img src="static/images/ca-booklet.png">
+                    <p>See how Europe is adapting to climate change:
+                      <a class="ca-booklet-link" href="#">
+                        <i class="fa fa-angle-double-right"></i>
+                        Case studies booklet
+                      </a>
+                    </p>
+                  </div>
                 </div>
     
                 <div class="case-study-search col-md-4">
@@ -933,26 +934,16 @@
             </div>
     
             <div class="see-more-link">
-              <div>
-                <p>For more informations visit:
-                  <a href="#">
-                    <i class="fa fa-angle-double-right"></i>
-                    Case studies
-                  </a>
-                </p>
-              </div>
-              <div>
-                <p>See how Europe is adapting to climate change:
-                  <a href="#">
-                    <i class="fa fa-angle-double-right"></i>
-                    Case studies booklet
-                  </a>
-                </p>
-              </div>
+              <p>For more informations visit:
+                <a href="#">
+                  <i class="fa fa-angle-double-right"></i>
+                  Case studies
+                </a>
+              </p>
             </div>
           </div>
     
-            <div class="tab-pane fade" id="t-adapt">
+            <div class="tab-pane fade ast-tab-pane" id="t-adapt">
     
               <div class="ast-content">
                 <h2>Adaptation Support Tool</h2>
@@ -1050,14 +1041,17 @@
               </div>
     
               <div class="see-more-link">
-                <div>
-                  <p>For more informations visit:</p>
-                  <a href="#">
-                    <i class="fa fa-angle-double-right"></i>
-                    Adaptation support tool
-                  </a>
+                <div class="ast-link">
+                  <div class="ast-link-wrapper">
+                    <p>For more informations visit:</p>
+                    <a href="#">
+                      <i class="fa fa-angle-double-right"></i>
+                      Adaptation support tool
+                    </a>
+                  </div>
                 </div>
                 <div class="urban-area">
+                  <img src="static/images/uast.png">
                   <p>For urban areas guidance visit:</p>
                   <a class="special-link" href="#">
                   <i class="fa fa-angle-double-right"></i>
@@ -1077,13 +1071,13 @@
       <div class="main-area">
       
         <div class="row first-row">
-          <div class="main-area-box col-md-3 col-sm-6 col-xs-12">
+          <div class="main-box col-md-3 col-sm-6 col-xs-12">
             <div class="box-container info-section">
               <div class="content-body">
                 <div class="info-title-section">
-                  <img src="static/images/share-info-icons.png"/>
+                  <img src="static/images/share-info.png"/>
                   <div class="info-title">
-                    <h5>Share <span>your information</span></h5>
+                    <h5>Share <span>your </br> information</span></h5>
                   </div>
                 </div>
                 <p>Find out how to contribute different types of information to Climate-ADAPT</p>
@@ -1092,7 +1086,7 @@
             </div>
           </div>
       
-          <div class="main-area-box col-md-3 col-sm-6 col-xs-12">
+          <div class="main-box col-md-3 col-sm-6 col-xs-12">
             <div class="box-container">
               <h2>EU Funding and Adaptation </h2>
               <ul class="box-listing">
@@ -1118,12 +1112,12 @@
             </div>
           </div>
       
-          <div class="triangle-box col-md-6 col-sm-12 col-xs-12">
+          <div class="main-box col-md-6 col-sm-12 col-xs-12">
             <div class="box-container">
               <img src="static/images/COM_logo.png"/>
               <p>Covenant of Mayors Initiative on Climate Change Adaptation – was set up by the European Commission to engage cities in taking action to adapt to climate change. It was launched in 2014 as a parallel adaptation initiative to the Covenant of Mayors, which focused on mitigation. In 2015, the European Commission merged the two initiatives in an effort to promote an integrated approach to climate and energy action.</p>
               <div class="read-more-wrapper">
-                <a href="" class="read-more">
+                <a href="#" class="read-more">
                   <i class="fa fa-angle-double-right"></i>
                   Read more
                 </a>
@@ -1133,22 +1127,22 @@
         </div>
       
         <div class="row second-row">
-          <div class="main-area-box col-md-3 col-sm-6 col-xs-12">
+          <div class="main-box col-md-3 col-sm-6 col-xs-12">
             <div class="box-container">
               <h2>News</h2>
-              <div class="news-title">
+              <div>
                 <a href="#">
                   Hiding from a warmer climate in the forest
                 </a>
                 <p class="news-time">11 Jan 2018</p>
               </div>
-              <div class="news-title">
+              <div>
                 <a href="#">
                   Agriculture at risk in Italy: the potential impacts of climate change
                 </a>
                 <p class="news-time">09 Jan 2018</p>
               </div>
-              <div class="news-title">
+              <div>
                 <a href="#">
                   Trees' spring awakening is becoming less and less sensitive to altitude differences
                 </a>
@@ -1164,22 +1158,22 @@
             </div>
           </div>
       
-          <div class="main-area-box col-md-3 col-sm-6 col-xs-12">
+          <div class="main-box col-md-3 col-sm-6 col-xs-12">
             <div class="box-container">
               <h2>Events</h2>
-              <div class="news-title">
+              <div>
                 <a href="#">
                   EU Adaptation  Strategy evaluation: public consultation meeting
                 </a>
                 <p class="news-time">23 Jan 2018</p>
               </div>
-              <div class="news-title">
+              <div>
                 <a href="#">
                   Public consultation launched on EU Adaptation Strategy
                 </a>
                 <p class="news-time">01 Mar 2018 </p>
               </div>
-              <div class="news-title">
+              <div>
                 <a href="#">
                   Stakeholder dialogue on solutions for strategic adaptation planning in European cities
                 </a>
@@ -1194,7 +1188,7 @@
             </div>
           </div>
       
-          <div class="main-area-box col-md-3 col-sm-6 col-xs-12">
+          <div class="main-box col-md-3 col-sm-6 col-xs-12">
             <div class="box-container">
               <div class="newsletter-wrapper content-body">
                 <h4>Newsletter</h4>
@@ -1204,7 +1198,7 @@
             </div>
           </div>
       
-          <div class="main-area-box col-md-3 col-sm-6 col-xs-12">
+          <div class="main-box col-md-3 col-sm-6 col-xs-12">
             <div class="box-container">
               <div class="rss-feed-wrapper content-body">
                 <i class="fa fa-rss"></i>
@@ -1218,29 +1212,31 @@
       </div>
     </div>
 
-    <footer class="footer">
-      <div class="footer-nav">
+    <footer>
+    
+      <div class="footer-nav-wrapper">
         <div class="content-container">
-          <nav>
+          <nav role="navigation">
             <ul>
-              <li>
-                <a href="#">Home</a>
+              <li class="footer-nav-item">
+                <a href="#" class="footer-nav-link">Home</a>
               </li>
-              <li>
-                <a href="#">Contact</a>
+              <li class="footer-nav-item">
+                <a href="#" class="footer-nav-link">Contact</a>
               </li>
-              <li>
-                <a href="#">Sitemap</a>
+              <li class="footer-nav-item">
+                <a href="#" class="footer-nav-link">Sitemap</a>
               </li>
-              <li>
-                <a href="#">Legal notice</a>
+              <li class="footer-nav-item">
+                <a href="#" class="footer-nav-link">Legal notice</a>
               </li>
             </ul>
           </nav>
         </div>
       </div>
+    
       <div class="content-container">
-        <div class="footer-content row">
+        <div class="row footer-content">
           <div class="site-info col-md-6">
             <p>The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href="https://ec.europa.eu/">European Commission</a> and the <a href="https://www.eea.europa.eu/">European Environment Agency.</a></p>
             <div class="footer-logos-wrapper">
@@ -1248,29 +1244,30 @@
                 <img src="static/images/ec_logo.png"/>
               </a>
               <a href="https://www.eea.europa.eu/">
-                <img class="eea-logo" src="static/images/eea_mini.png"/>
+                <img src="static/images/eea_mini.png"/>
               </a>
             </div>
           </div>
-          <div class="eu-system col-md-6">
+    
+          <div class="eu-systems col-md-6">
             <p>EU Information Systems:</p>
-            <ul class="footer-logos-list">
-              <li>
+            <ul class="footer-logos">
+              <li class="footer-logo-item">
                 <a href="https://biodiversity.europa.eu/">
                   <img src="static/images/bise-logo.png"/>
                 </a>
               </li>
-              <li>
+              <li class="footer-logo-item">
                 <a href="https://water.europa.eu/">
                   <img src="static/images/wise-logo.png"/>
                 </a>
               </li>
-              <li>
+              <li class="footer-logo-item">
                 <a href="http://climate.copernicus.eu/">
                   <img src="static/images/c3s-logo.png"/>
                 </a>
               </li>
-              <li>
+              <li class="footer-logo-item">
                 <a href="http://drmkc.jrc.ec.europa.eu/">
                   <img src="static/images/drmkc-logo.png"/>
                 </a>
@@ -1279,6 +1276,7 @@
           </div>
         </div>
       </div>
+    
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

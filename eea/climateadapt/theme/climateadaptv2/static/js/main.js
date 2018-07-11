@@ -83,15 +83,12 @@ $(document).ready(function() {
     $(this).hover(function() {
       if ($(this).hasClass('regional-btn')) {
         $(this).siblings('.action-bubble').toggleClass('regional-bubble');
-        $(this).siblings('.triangle ').toggleClass('regional-triangle-active');
       }
       if ($(this).hasClass('transnational-btn')) {
         $(this).siblings('.action-bubble').toggleClass('transnational-bubble');
-        $(this).siblings('.triangle').toggleClass('transnational-triangle-active');
       }
       if ($(this).hasClass('national-btn')) {
         $(this).siblings('.action-bubble').toggleClass('national-bubble');
-        $(this).siblings('.triangle').toggleClass('national-triangle-active');
       }
     })
   })

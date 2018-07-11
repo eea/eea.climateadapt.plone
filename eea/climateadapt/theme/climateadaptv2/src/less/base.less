@@ -1,6 +1,5 @@
 body {
 	background-color: #eee;
-	line-height: 1;
 	position: relative;
   height: 100vh;
 }
@@ -18,6 +17,12 @@ table {
 }
 button {
 	border: solid;
+}
+button:focus {
+	outline:0;
+}
+select {
+	outline: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -55,15 +60,16 @@ p {
 }
 
 a {
-  color: #1E7CB3;
+  color: #2D9CDB;
   font-family: RobotoM;
   font-size: 14px;
 }
 
 a:focus,
 a:hover {
-  color: #2AA5ED;
+  color: #1E7CB3;
   text-decoration: none;
+	outline: none;
 }
 
 .fa {
@@ -71,8 +77,8 @@ a:hover {
 }
 
 .read-more-wrapper {
+	position: absolute;
   bottom: 15px;
-  position: absolute;
   right: 15px;
 }
 
@@ -105,8 +111,12 @@ a.read-more:hover {
 .standard-button {
   font-family: RobotoB;
   font-size: 18px;
-  padding: 10px 15px;
+  padding: 10px 25px;
   border-radius: 5px;
+}
+
+.sm-button {
+	font-size: 14px;
 }
 
 .primary-button {
