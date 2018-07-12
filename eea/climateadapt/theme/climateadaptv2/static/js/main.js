@@ -11,7 +11,6 @@ $(document).ready(function() {
     autoplaySpeed: 4000,
   });
 
-
   // HOMEPAGE: move slick slider dots to slider caption area
   $(".slick-dots").prependTo(".slider-bottom-caption");
 
@@ -33,7 +32,14 @@ $(document).ready(function() {
     return getPageContainerPadding() +  'px';
   });
 
+  // fire resize event after the browser window resizing it's completed
+  var resizeTimer;
   $(window).resize(function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(doneResizing, 500);
+  });
+
+  function doneResizing() {
     $('.slider .slick-prev').css('left', function() {
       return getPageContainerPadding() +  'px';
     });
@@ -43,7 +49,8 @@ $(document).ready(function() {
     $('.slider-caption').css('right', function() {
       return getPageContainerPadding() +  'px';
     });
-  });
+  }
+
 
   // HOMEPAGE: Tabs functionality
   $("ul.nav-tabs a").click(function (e) {
@@ -53,9 +60,9 @@ $(document).ready(function() {
 
   // HOMEPAGE: Dynamic area:
   // on click center tab items on small screen sizes
-  $(".main-tab-heading ul li a").click(function() {
+  $(".main-nav-tabs li a").click(function() {
     var $parent = $(this).parent();
-    centerTabItem($parent, '.main-tab-heading ul');
+    centerTabItem($parent, '.main-tab-heading .main-nav-tabs');
   });
 
   function centerTabItem(target, outer) {

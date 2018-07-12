@@ -74,9 +74,9 @@
   background: url("../images/ast-icon-sprite.png") no-repeat;
   background-position: 0 0;
   height: 29px;
+  width: 29px;
   margin: 0 auto;
   margin-bottom: 8px;
-  width: 29px;
 }
 
 .main-tab-heading .main-tab-item.active .ast-icon {
@@ -85,12 +85,14 @@
 
 .tab-container {
   position: relative;
+  border-bottom: 20px solid #0170B7;
 }
 
 .tab-body {
+  height: auto;
   background-color: #fff;
   border-bottom: 5px solid #7D9600;
-  height: auto;
+  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.3);
 }
 
 .tab-pane {
@@ -165,7 +167,7 @@
 .tab-container .blue-bg {
   position: absolute;
   top: 0;
-  height: 105%;
+  height: 100%;
   width: 100%;
   background-color: #0170B7;
   z-index: -2;
@@ -406,33 +408,29 @@
 /*** dynamic area  - EU Policies ***/
 
 .policies-nav {
-  border-bottom: none;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: -moz-box;
   display: flex;
   flex-wrap: wrap;
+  border-bottom: none;
 }
 
-.policies-nav li.active a p {
+.policies-nav-item {
+  text-align: center;
+  width: 160px;
+  flex: 1 1 auto;
+}
+
+.policies-nav-item.active .policies-nav-link p {
   color: #7D9600;
 }
 
-.policies-nav>li>a {
-  border: none;
-}
-
-.policies-nav>li.active>a,
-.policies-nav>li.active>a:hover,
-.policies-nav>li.active>a:focus {
-  border: none;
-}
-
-.policies-nav li {
-  text-align: center;
-  float: none;
-  width: 160px;
-  padding: 0 10px;
+.policies-nav-link,
+.policies-nav-item.active .policies-nav-link,
+.policies-nav-item.active .policies-nav-link:hover,
+.policies-nav-item.active .policies-nav-link:focus {
+  border: none !important;
 }
 
 .policy-icons {
@@ -498,81 +496,81 @@
   background-position: -355px -111px;
 }
 
-.policies-nav li a:hover p {
+.policies-nav-link:hover p {
   color: #7D9600;
 }
 
-.policies-nav li a:hover {
-  background-color: #fff;
+.policies-nav .policies-nav-link:hover {
+  background-color: transparent;
 }
 
-.policies-nav li a:hover .policy-icons.agriculture,
-.policies-nav li.active .policy-icons.agriculture {
+.policies-nav-link:hover .policy-icons.agriculture,
+.policies-nav-item.active .policy-icons.agriculture {
   background-position: -12px -58px;
 }
 
-.policies-nav li a:hover .policy-icons.forestry,
-.policies-nav li.active .policy-icons.forestry {
+.policies-nav-link:hover .policy-icons.forestry,
+.policies-nav-item.active .policy-icons.forestry {
   background-position: -66px -58px;
 }
 
-.policies-nav li a:hover .policy-icons.buildings,
-.policies-nav li.active .policy-icons.buildings {
+.policies-nav-link:hover .policy-icons.buildings,
+.policies-nav-item.active .policy-icons.buildings {
   background-position: -127px -58px;
 }
 
-.policies-nav li a:hover .policy-icons.energy,
-.policies-nav li.active .policy-icons.energy {
+.policies-nav-link:hover .policy-icons.energy,
+.policies-nav-item.active .policy-icons.energy {
   background-position: -180px -58px;
 }
 
-.policies-nav li a:hover .policy-icons.transport,
-.policies-nav li.active .policy-icons.transport {
+.policies-nav-link:hover .policy-icons.transport,
+.policies-nav-item.active .policy-icons.transport {
   background-position: -233px -58px;
 }
 
-.policies-nav li a:hover .policy-icons.financial,
-.policies-nav li.active .policy-icons.financial {
+.policies-nav-link:hover .policy-icons.financial,
+.policies-nav-item.active .policy-icons.financial {
   background-position: -296px -58px;
 }
 
-.policies-nav li a:hover .policy-icons.health,
-.policies-nav li.active .policy-icons.health {
+.policies-nav-link:hover .policy-icons.health,
+.policies-nav-item.active .policy-icons.health {
   background-position: -354px -58px;
 }
 
-.policies-nav li a:hover .policy-icons.urban,
-.policies-nav li.active .policy-icons.urban {
+.policies-nav-link:hover .policy-icons.urban,
+.policies-nav-item.active .policy-icons.urban {
   background-position: -7px -165px;
 }
 
-.policies-nav li a:hover .policy-icons.water,
-.policies-nav li.active .policy-icons.water {
+.policies-nav-link:hover .policy-icons.water,
+.policies-nav-item.active .policy-icons.water {
   background-position: -63px -164px;
 }
 
-.policies-nav li a:hover .policy-icons.coastal,
-.policies-nav li.active .policy-icons.coastal {
+.policies-nav-link:hover .policy-icons.coastal,
+.policies-nav-item.active .policy-icons.coastal {
   background-position: -121px -162px;
 }
 
-.policies-nav li a:hover .policy-icons.biodiversity,
-.policies-nav li.active .policy-icons.biodiversity {
+.policies-nav-link:hover .policy-icons.biodiversity,
+.policies-nav-item.active .policy-icons.biodiversity {
   background-position: -182px -162px;
 }
 
-.policies-nav li a:hover .policy-icons.marine,
-.policies-nav li.active .policy-icons.marine {
+.policies-nav-link:hover .policy-icons.marine,
+.policies-nav-item.active .policy-icons.marine {
   background-position: -243px -162px;
 }
 
-.policies-nav li a:hover .policy-icons.disaster,
-.policies-nav li.active .policy-icons.disaster {
+.policies-nav-link:hover .policy-icons.disaster,
+.policies-nav-item.active .policy-icons.disaster {
   background-position: -304px -162px;
 }
 
-.policies-nav li a:hover .policy-icons.green-infrastructure,
-.policies-nav li.active .policy-icons.green-infrastructure {
+.policies-nav-link:hover .policy-icons.green-infrastructure,
+.policies-nav-item.active .policy-icons.green-infrastructure {
   background-position: -355px -160px;
 }
 
@@ -583,8 +581,7 @@
 }
 
 .policies-tab-content .close-tab-pane {
-float: right;
-  cursor: pointer;
+  float: right;
   color: #4F4F4F;
 }
 
@@ -593,12 +590,8 @@ float: right;
 }
 
 .policies-tab-content .policy-image {
-  // float: left;
   height: 137px;
-  // margin-right: 15px;
   overflow: hidden;
-  position: relative;
-  // width: 252px;
 }
 
 .policies-tab-content .row {
@@ -612,16 +605,14 @@ float: right;
   -ms-transform: translateY(-50%) translateX(-50%);
   -o-transform: translateY(-50%) translateX(-50%);
   transform: translateY(-50%) translateX(-50%);
-  left: 50%;
   position: absolute;
+  left: 50%;
   top: 50%;
   width: 100%;
 }
 
 .policy-description {
-  position: relative;
-  height: 100%;
-  padding-right: 0 !important;
+  padding-right: 0;
 }
 
 .policy-description h4 {
@@ -638,19 +629,9 @@ float: right;
 
 /*** dynamic area  - Case studies ***/
 
-.content-wrapper {
-  border-right: 1px solid #F2F2F2;
-  padding-right: 40px;
-}
-
 .case-study-search {
   text-align: center;
   margin: 20px 0;
-}
-
-.case-study-search img {
-  display: block;
-  margin: 0 auto;
 }
 
 .case-study-search p {
@@ -679,6 +660,8 @@ float: right;
   display: block;
 }
 
+/*** dynamic area  - Adaptation support tool ***/
+
 .ast-tab-pane .see-more-link {
   border-top: none;
   padding-top: 0;
@@ -687,11 +670,6 @@ float: right;
 
 .ast-tab-pane .see-more-link a {
   display: block;
-}
-
-.ast-tab-pane .urban-area img {
-  display: block;
-  margin: 5px auto;
 }
 
 .ast-tab-pane .ast-link-wrapper {
@@ -758,10 +736,10 @@ float: right;
 .arrow-round::after {
   content: "";
   position: absolute;
-  border: 35px  solid #005C96;
-  border-bottom-color: #005C96;
   top: 6px;
   left: -8px;
+  border: 35px  solid #005C96;
+  border-bottom-color: #005C96;
   border-bottom-width: 0;
   border-right-width: 0;
   border-left-color: transparent;
@@ -864,10 +842,6 @@ float: right;
   text-align: center;
 }
 
-.urban-area p {
-  margin: 40px 0 20px 0;
-}
-
 .see-more-link {
   text-align: center;
   border-top: 1px solid #dcdada;
@@ -879,17 +853,12 @@ float: right;
   justify-content: space-between;
 }
 
-.see-more-link p {
-  display: inline;
-  margin: 5px auto;
-}
-
 .see-more-link a {
   font-size: 16px;
   margin-left: 10px;
 }
 
-.see-more-link .fa{
+.see-more-link .fa {
   font-size: 20px;
   margin-right: 4px;
 }

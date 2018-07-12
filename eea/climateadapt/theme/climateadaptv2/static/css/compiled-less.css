@@ -566,20 +566,22 @@ a.read-more:hover {
   background: url("../images/ast-icon-sprite.png") no-repeat;
   background-position: 0 0;
   height: 29px;
+  width: 29px;
   margin: 0 auto;
   margin-bottom: 8px;
-  width: 29px;
 }
 .main-tab-heading .main-tab-item.active .ast-icon {
   background-position: -28px 0;
 }
 .tab-container {
   position: relative;
+  border-bottom: 20px solid #0170B7;
 }
 .tab-body {
+  height: auto;
   background-color: #fff;
   border-bottom: 5px solid #7D9600;
-  height: auto;
+  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.3);
 }
 .tab-pane {
   padding: 20px 30px;
@@ -644,7 +646,7 @@ a.read-more:hover {
 .tab-container .blue-bg {
   position: absolute;
   top: 0;
-  height: 105%;
+  height: 100%;
   width: 100%;
   background-color: #0170B7;
   z-index: -2;
@@ -837,29 +839,26 @@ a.read-more:hover {
 }
 /*** dynamic area  - EU Policies ***/
 .policies-nav {
-  border-bottom: none;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: -moz-box;
   display: flex;
   flex-wrap: wrap;
+  border-bottom: none;
 }
-.policies-nav li.active a p {
+.policies-nav-item {
+  text-align: center;
+  width: 160px;
+  flex: 1 1 auto;
+}
+.policies-nav-item.active .policies-nav-link p {
   color: #7D9600;
 }
-.policies-nav > li > a {
-  border: none;
-}
-.policies-nav > li.active > a,
-.policies-nav > li.active > a:hover,
-.policies-nav > li.active > a:focus {
-  border: none;
-}
-.policies-nav li {
-  text-align: center;
-  float: none;
-  width: 160px;
-  padding: 0 10px;
+.policies-nav-link,
+.policies-nav-item.active .policies-nav-link,
+.policies-nav-item.active .policies-nav-link:hover,
+.policies-nav-item.active .policies-nav-link:focus {
+  border: none !important;
 }
 .policy-icons {
   background: url("../images/policies_icons.png") no-repeat;
@@ -909,66 +908,66 @@ a.read-more:hover {
 .policy-icons.green-infrastructure {
   background-position: -355px -111px;
 }
-.policies-nav li a:hover p {
+.policies-nav-link:hover p {
   color: #7D9600;
 }
-.policies-nav li a:hover {
-  background-color: #fff;
+.policies-nav .policies-nav-link:hover {
+  background-color: transparent;
 }
-.policies-nav li a:hover .policy-icons.agriculture,
-.policies-nav li.active .policy-icons.agriculture {
+.policies-nav-link:hover .policy-icons.agriculture,
+.policies-nav-item.active .policy-icons.agriculture {
   background-position: -12px -58px;
 }
-.policies-nav li a:hover .policy-icons.forestry,
-.policies-nav li.active .policy-icons.forestry {
+.policies-nav-link:hover .policy-icons.forestry,
+.policies-nav-item.active .policy-icons.forestry {
   background-position: -66px -58px;
 }
-.policies-nav li a:hover .policy-icons.buildings,
-.policies-nav li.active .policy-icons.buildings {
+.policies-nav-link:hover .policy-icons.buildings,
+.policies-nav-item.active .policy-icons.buildings {
   background-position: -127px -58px;
 }
-.policies-nav li a:hover .policy-icons.energy,
-.policies-nav li.active .policy-icons.energy {
+.policies-nav-link:hover .policy-icons.energy,
+.policies-nav-item.active .policy-icons.energy {
   background-position: -180px -58px;
 }
-.policies-nav li a:hover .policy-icons.transport,
-.policies-nav li.active .policy-icons.transport {
+.policies-nav-link:hover .policy-icons.transport,
+.policies-nav-item.active .policy-icons.transport {
   background-position: -233px -58px;
 }
-.policies-nav li a:hover .policy-icons.financial,
-.policies-nav li.active .policy-icons.financial {
+.policies-nav-link:hover .policy-icons.financial,
+.policies-nav-item.active .policy-icons.financial {
   background-position: -296px -58px;
 }
-.policies-nav li a:hover .policy-icons.health,
-.policies-nav li.active .policy-icons.health {
+.policies-nav-link:hover .policy-icons.health,
+.policies-nav-item.active .policy-icons.health {
   background-position: -354px -58px;
 }
-.policies-nav li a:hover .policy-icons.urban,
-.policies-nav li.active .policy-icons.urban {
+.policies-nav-link:hover .policy-icons.urban,
+.policies-nav-item.active .policy-icons.urban {
   background-position: -7px -165px;
 }
-.policies-nav li a:hover .policy-icons.water,
-.policies-nav li.active .policy-icons.water {
+.policies-nav-link:hover .policy-icons.water,
+.policies-nav-item.active .policy-icons.water {
   background-position: -63px -164px;
 }
-.policies-nav li a:hover .policy-icons.coastal,
-.policies-nav li.active .policy-icons.coastal {
+.policies-nav-link:hover .policy-icons.coastal,
+.policies-nav-item.active .policy-icons.coastal {
   background-position: -121px -162px;
 }
-.policies-nav li a:hover .policy-icons.biodiversity,
-.policies-nav li.active .policy-icons.biodiversity {
+.policies-nav-link:hover .policy-icons.biodiversity,
+.policies-nav-item.active .policy-icons.biodiversity {
   background-position: -182px -162px;
 }
-.policies-nav li a:hover .policy-icons.marine,
-.policies-nav li.active .policy-icons.marine {
+.policies-nav-link:hover .policy-icons.marine,
+.policies-nav-item.active .policy-icons.marine {
   background-position: -243px -162px;
 }
-.policies-nav li a:hover .policy-icons.disaster,
-.policies-nav li.active .policy-icons.disaster {
+.policies-nav-link:hover .policy-icons.disaster,
+.policies-nav-item.active .policy-icons.disaster {
   background-position: -304px -162px;
 }
-.policies-nav li a:hover .policy-icons.green-infrastructure,
-.policies-nav li.active .policy-icons.green-infrastructure {
+.policies-nav-link:hover .policy-icons.green-infrastructure,
+.policies-nav-item.active .policy-icons.green-infrastructure {
   background-position: -355px -160px;
 }
 .policies-tab-content {
@@ -978,7 +977,6 @@ a.read-more:hover {
 }
 .policies-tab-content .close-tab-pane {
   float: right;
-  cursor: pointer;
   color: #4F4F4F;
 }
 .policies-tab-content .close-tab-pane:hover {
@@ -987,7 +985,6 @@ a.read-more:hover {
 .policies-tab-content .policy-image {
   height: 137px;
   overflow: hidden;
-  position: relative;
 }
 .policies-tab-content .row {
   margin-right: 0;
@@ -999,15 +996,13 @@ a.read-more:hover {
   -ms-transform: translateY(-50%) translateX(-50%);
   -o-transform: translateY(-50%) translateX(-50%);
   transform: translateY(-50%) translateX(-50%);
-  left: 50%;
   position: absolute;
+  left: 50%;
   top: 50%;
   width: 100%;
 }
 .policy-description {
-  position: relative;
-  height: 100%;
-  padding-right: 0 !important;
+  padding-right: 0;
 }
 .policy-description h4 {
   color: #7D9600;
@@ -1020,17 +1015,9 @@ a.read-more:hover {
   right: 0;
 }
 /*** dynamic area  - Case studies ***/
-.content-wrapper {
-  border-right: 1px solid #F2F2F2;
-  padding-right: 40px;
-}
 .case-study-search {
   text-align: center;
   margin: 20px 0;
-}
-.case-study-search img {
-  display: block;
-  margin: 0 auto;
 }
 .case-study-search p {
   margin: 30px auto;
@@ -1053,6 +1040,7 @@ a.read-more:hover {
 .ca-booklet .ca-booklet-link {
   display: block;
 }
+/*** dynamic area  - Adaptation support tool ***/
 .ast-tab-pane .see-more-link {
   border-top: none;
   padding-top: 0;
@@ -1060,10 +1048,6 @@ a.read-more:hover {
 }
 .ast-tab-pane .see-more-link a {
   display: block;
-}
-.ast-tab-pane .urban-area img {
-  display: block;
-  margin: 5px auto;
 }
 .ast-tab-pane .ast-link-wrapper {
   position: absolute;
@@ -1118,10 +1102,10 @@ a.read-more:hover {
 .arrow-round::after {
   content: "";
   position: absolute;
-  border: 35px  solid #005C96;
-  border-bottom-color: #005C96;
   top: 6px;
   left: -8px;
+  border: 35px  solid #005C96;
+  border-bottom-color: #005C96;
   border-bottom-width: 0;
   border-right-width: 0;
   border-left-color: transparent;
@@ -1207,9 +1191,6 @@ a.read-more:hover {
 .urban-area {
   text-align: center;
 }
-.urban-area p {
-  margin: 40px 0 20px 0;
-}
 .see-more-link {
   text-align: center;
   border-top: 1px solid #dcdada;
@@ -1219,10 +1200,6 @@ a.read-more:hover {
   display: -moz-box;
   display: flex;
   justify-content: space-between;
-}
-.see-more-link p {
-  display: inline;
-  margin: 5px auto;
 }
 .see-more-link a {
   font-size: 16px;
@@ -1245,9 +1222,15 @@ footer {
   display: inline-block;
   padding: 15px 20px 15px 0;
 }
+.footer-nav-item:last-child {
+  padding-right: 0;
+}
 .footer-nav-link {
   color: #fff;
   text-transform: uppercase;
+}
+.footer-nav-link:hover {
+  color: #fff;
 }
 .footer-content {
   padding-top: 20px;
@@ -1282,7 +1265,7 @@ footer {
   margin-left: -10px;
 }
 .main-area .row:first-child {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 .main-area h2 {
   padding-top: 0;
@@ -1348,10 +1331,6 @@ footer {
   border: 2px solid #fff;
   color: #0170B7;
 }
-.news-section,
-.events-section {
-  position: relative;
-}
 .news-time {
   font-size: 10px;
 }
@@ -1372,12 +1351,6 @@ footer {
 .rss-feed-wrapper button {
   margin: auto;
 }
-.news-section .read-more-wrapper,
-.events-section .read-more-wrapper {
-  position: relative;
-  text-align: right;
-  bottom: auto;
-}
 .rss-feed-wrapper i {
   font-size: 50px;
   color: #FF6600;
@@ -1388,43 +1361,25 @@ footer {
   .nav-menu ul li a {
     font-size: 14px;
   }
-  .main-tab-heading {
-    width: 100%;
-  }
-  .main-tab-heading .main-tabs {
+  /* homepage dynamic area */
+  .main-tab-heading .main-nav-tabs {
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
-  }
-  /* homepage dynamic area */
-  .tab-body .tab-content-wrapper {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .ast-steps li:not(:last-child):after {
-    content: none;
   }
   /* footer section */
   .footer-nav {
     text-align: center;
   }
-  .footer-nav nav ul li {
-    padding: 15px;
-  }
 }
 @media (max-width: 1080px) {
   .db-category-wrapper {
-    text-align: center;
-    padding: 10px;
     flex: 1 1 170px;
   }
 }
 @media (max-width: 991px) {
   .main-area {
     padding: 0 10px;
-  }
-  .main-area .row:nth-child(2) {
-    margin-top: 0;
   }
   .see-more-link {
     display: block;
@@ -1439,16 +1394,14 @@ footer {
     padding-bottom: 15px;
     border-bottom: 1px solid #E8E8E8;
   }
-  .footer-content .eu-system p {
+  .footer-content .eu-systems {
+    margin-top: 20px;
+  }
+  .footer-content .eu-systems p {
     margin: 15px;
   }
 }
 @media (max-width: 800px) {
-  .content-wrapper {
-    border-right: none;
-    padding: 20px 0;
-    border-bottom: 1px solid #F2F2F2;
-  }
   /* header area */
   .mobile-menu {
     display: block;
@@ -1562,19 +1515,12 @@ footer {
     top: -30px;
     left: -20px;
   }
+  /* dynamic area */
   .main-tab-heading .db-highlighted a {
     padding: 1em 3em !important;
   }
-  /* dynamic area */
-  .ast-map-image {
-    float: none;
-    margin: auto;
-  }
   .database-search-box input {
     width: 70%;
-  }
-  .policies-nav li {
-    flex: 1 160px;
   }
   /* homepage carousel */
   .slick-arrow {
@@ -1622,15 +1568,12 @@ footer {
   .tab-pane {
     padding: 20px 15px;
   }
-  .tab-container .blue-bg {
-    height: 102%;
+  #t-policies {
+    padding: 20px 0;
   }
   .policies-nav li {
     padding: 10px 5px;
     flex: 1 120px;
-  }
-  .policies-second-nav > li > a {
-    padding: 10px;
   }
   .flex-wrapper {
     flex-wrap: wrap;
@@ -1639,21 +1582,14 @@ footer {
   .database-search-box input {
     width: 80%;
   }
+  .policy-description {
+    padding: 0;
+  }
   .policy-image {
     display: none;
   }
   .policy-description {
     width: 100% !important;
-  }
-  #t-policies {
-    padding: 10px 0;
-  }
-  .case-study-search {
-    padding-top: 20px;
-  }
-  .getting-started .action-flex-item {
-    padding-bottom: 0;
-    padding-top: 30px;
   }
   .action-bubble {
     width: 90%;
@@ -1662,33 +1598,11 @@ footer {
   .see-more-link a {
     display: block;
   }
-  .case-study .action-flex-item {
-    padding: 0;
-    margin-bottom: 10px;
-  }
-  .case-study .flex-wrapper {
-    padding: 0;
-  }
   .urban-area {
     margin-top: 20px;
   }
-  /*** main area ***/
-  .news-section {
-    border-bottom: 1px solid #E8E8E8;
-  }
-  .news-section,
-  .events-section {
-    width: 100%;
-    float: none;
-    padding-right: 0;
-    padding: 10px 0;
-  }
-  /*** footer ***/
-  .footer-logos-list li {
-    display: inline-table;
-  }
-  .footer-content .site-info {
-    max-width: auto;
+  .footer-logo-item {
+    display: inline-block;
   }
 }
 /*# sourceMappingURL=./source.css.map */
