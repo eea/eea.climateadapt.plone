@@ -1,4 +1,5 @@
 module.exports = {
+
   less: {
     production: {
       options: {
@@ -6,11 +7,21 @@ module.exports = {
         sourceMap: false
       },
       files: {
-        '<%= path.static %>/static/css/compiled-less.css': '<%= path.src %>/less/main.less',
-        '<%= path.static %>/static/css/compiled-css.css': '<%= path.src %>/css/*.css'
+        '<%= path.static %>/css/compiled-less.css': '<%= path.src %>/less/main.less',
+        '<%= path.static %>/css/compiled-css.css': '<%= path.src %>/css/*.css'
       }
     }
   },
+
+  concat: {
+    scripts: {
+      src: [
+        '<%= path.src %>/js/**/*.js'
+      ],
+      dest: '<%= path.static %>/js/main.js'
+    },
+  },
+
   uglify: {
     scripts: {
       files: [{
@@ -21,15 +32,4 @@ module.exports = {
       }]
     }
   },
-  postcss: {
-    production: {
-      src: '<%= path.static %>/css/*.css',
-      options: {
-        map: false,
-        processors: [
-          require('autoprefixer')()
-        ]
-      }
-    }
-  }
 }

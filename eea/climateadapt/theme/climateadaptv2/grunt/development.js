@@ -4,44 +4,25 @@ module.exports = {
       options: {
         compress: false,
         sourceMap: true,
-        sourceMapFilename: '<%= path.static %>/static/css/source.css.map',
+        sourceMapFilename: '<%= path.static %>/css/source.css.map',
         sourceMapURL: './source.css.map'
       },
       files: {
-        // '<%= path.static %>/static/css/main.css': '<%= path.src %>/less/main.less',
-        '<%= path.static %>/static/css/compiled-less.css': '<%= path.src %>/less/main.less',
-        '<%= path.static %>/static/css/compiled-css.css': '<%= path.src %>/css/*.css'
+        '<%= path.static %>/css/compiled-less.css': '<%= path.src %>/less/main.less',
+        '<%= path.static %>/css/compiled-css.css': '<%= path.src %>/css/*.css'
       }
     }
   },
+
   concat: {
     scripts: {
       src: [
         '<%= path.src %>/js/**/*.js'
       ],
-      dest: '<%= path.static %>/static/js/main.js'
+      dest: '<%= path.static %>/js/main.js'
     },
-    // styles: {
-    //   src: [
-    //     '<%= path.static %>/static/css/compiled-css.css',
-    //     '<%= path.static %>/static/css/compiled-less.css'
-    //   ],
-    //   dest: '<%= path.static %>/static/css/cca.css'
-    // }
   },
-  // copy: {
-  //   scripts: {
-  //     files: [
-  //       { expand: true,
-  //         cwd: '<%= path.src%>/js/',
-  //         src: [
-  //           'bootstrap.dropdown.js'
-  //         ],
-  //         dest: '<%= path.static %>/js/'
-  //       }
-  //     ]
-  //   }
-  // },
+
   watch: {
     styles: {
       files: ['<%= path.src %>/less/**/*.less'],

@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       config = {};
 
   config.path = {
-    'static': '.',
+    'static': './static/',
     'src': 'src',
     'node': 'node_modules'
   };
@@ -33,10 +33,8 @@ module.exports = function(grunt) {
   grunt.registerTask('production', [
     'template:dev',
     'less:production',
-    // 'copy',
     'concat',
     'uglify',
-    'postcss'
   ]);
 
   grunt.registerTask('default', [

@@ -1,44 +1,42 @@
 <ul id="navbar" class="main-nav" tal:define="menu view/menu">
   <li tal:repeat="section menu">
-    <a tal:define="has_children python: bool(section[2])" href=""
-      tal:attributes="href python:section[1];
+    <div tal:replace="python: view.pp(section)"></div>
+
+    <a tal:define="has_children python: bool(section['children'][-1])" href=""
+      tal:attributes="href section/link;
       class python: has_children and 'dropdown-toggle' or '';
       data-toggle python: has_children and 'dropdown' or False;
       ">
-      <span tal:content="python: section[0]">Home</span>
+      <span tal:content="python: section['label']">Home</span>
       <b class="caret" tal:condition="has_children" />
       <!-- <div class="menu&#45;toggle"> -->
         <!--   <i class="fa fa&#45;angle&#45;down"></i> -->
         <!-- </div> -->
     </a>
 
-    <div class="sub-menu-wrapper main-sub-menu-wrapper " tal:condition="python: section[2]" >
-      <div class="menu-flex-wrapper">
+    <div class="sub-menu-wrapper main-sub-menu-wrapper "
+      tal:condition="python: section['children'][-1]" >
+      <tal:column tal:repeat="column python:section['children']">
 
-        <tal:rep tal:repeat="child python:section[2]">
-        <ul
-           tal:define="has_subchildren python: bool(child[2])"
-           class="main-sub-menu action-flex-item"
-           tal:attributes="class python: has_subchildren and 'main-sub-menu action-flex-item' or 'main-sub-menu'"
-           >
-           <li class='main-sub-menu-item'>
-             <a href=""
-                tal:attributes="href python:child[1];"
-                tal:content="python: child[0]">Home</a>
-
-             <ul tal:condition="has_subchildren" class="sub-menu-wrapper">
-               <li tal:repeat="subchild python:child[2]">
-                 <a href="" tal:attributes="href python:subchild[1]"
-                    tal:content="python:subchild[0]">Label
-                    <!-- <b class="caret" tal:condition="has_children" /> -->
-                 </a>
-               </li>
-             </ul>
-           </li>
+        <ul class="main-submenu" tal:repeat="group column">
+          <li class="main-submenu-item">
+            <a href=""
+              tal:attributes="href group/link"
+              tal:content="group/label">
+              Title here
+            </a>
+            <ul class="sub-menu-wrapper" tal:condition="group/children">
+              <li tal:repeat="child group/children">
+                <a href=""
+                  tal:attributes="href child/link"
+                  tal:content="child/label">
+                  Title here
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
-        </tal:rep>
-
-      </div>
+      </tal:column>
     </div>
   </li>
 </ul>
