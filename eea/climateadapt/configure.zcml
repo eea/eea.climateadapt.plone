@@ -367,6 +367,8 @@
         permission="cmf.ReviewPortalContent"
         />
 
+    ------[ Indicator Message Functionality: ]--------
+
     <subscriber
         for=".indicator.IIndicatorMessageEvent"
         handler=".events.trigger_indicator_contentrule"
@@ -385,12 +387,12 @@
         name="cca_indicator_message"
         />
 
-    <browser:page
-        name="get_indicator_message"
-        for="*"
-        permission="zope2.View"
-        class=".indicator.GetIndicator"
-        />
+    <!--<browser:page-->
+        <!--name="get_indicator_message"-->
+        <!--for="*"-->
+        <!--permission="zope2.View"-->
+        <!--class=".indicator.GetIndicator"-->
+        <!--/>-->
 
 
     <subscriber
