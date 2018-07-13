@@ -39,7 +39,7 @@ module.exports = {
       }
     },
     templates: {
-      files: ['<%= path.static %>/src/tpl/**/*.hbs'],
+      files: ['<%= path.src %>/tpl/**/*.hbs'],
       tasks: ['template:dev'],
       options: {
         nospawn: true

@@ -207,8 +207,10 @@ a.read-more:hover {
 }
 .site-container {
   margin-top: 25px;
-  background-color: #fff;
+  /* background-color: #fff; */
   min-height: 600px;
+  overflow: hidden;
+  /* change box model */
 }
 .page-body {
   padding: 2rem;
@@ -1620,5 +1622,19 @@ footer {
   .footer-logo-item {
     display: inline-block;
   }
+}
+#edit-bar {
+  min-height: 2.34em;
+  margin-bottom: 0;
+  background-color: #ad0aa0;
+  border: 0.25em solid #ad0aa0;
+}
+#content-views {
+  background-color: #ad0aa0;
+}
+#content {
+  margin: 0;
+  padding: 1.5em;
+  background: white;
 }
 /*# sourceMappingURL=./source.css.map */

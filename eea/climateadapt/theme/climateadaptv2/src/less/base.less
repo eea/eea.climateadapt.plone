@@ -1,32 +1,32 @@
 body {
-	background-color: #eee;
-	position: relative;
+  background-color: #eee;
+  position: relative;
   height: 100vh;
 }
 html {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 ol, ul {
-	list-style: none;
+  list-style: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 button {
-	border: solid;
+  border: solid;
 }
 button:focus {
-	outline:0;
+  outline:0;
 }
 select {
-	outline: none;
+  outline: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: RobotoB;
+  font-family: RobotoB;
 }
 
 h1 {
@@ -69,7 +69,7 @@ a:focus,
 a:hover {
   color: #1E7CB3;
   text-decoration: none;
-	outline: none;
+  outline: none;
 }
 
 .fa {
@@ -77,7 +77,7 @@ a:hover {
 }
 
 .read-more-wrapper {
-	position: absolute;
+  position: absolute;
   bottom: 15px;
   right: 15px;
 }
@@ -99,13 +99,14 @@ a.read-more:hover {
 }
 
 .site-container {
-	margin-top: 25px;
-	background-color: #fff;
-	min-height: 600px;
+  margin-top: 25px;
+  /* background-color: #fff; */
+  min-height: 600px;
+  overflow: hidden;  /* change box model */
 }
 
 .page-body {
-	padding: 2rem;
+  padding: 2rem;
 }
 
 .standard-button {
@@ -116,7 +117,7 @@ a.read-more:hover {
 }
 
 .sm-button {
-	font-size: 14px;
+  font-size: 14px;
 }
 
 .primary-button {

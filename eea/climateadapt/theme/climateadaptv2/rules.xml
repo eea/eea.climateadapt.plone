@@ -27,6 +27,9 @@
     <replace css:content="#portal-columns" css:theme="#page-body"/>
     <replace css:content="#navbar" css:theme=".main-nav" href="@@site_navbar" method="document"/>
 
+    <drop attributes="class" css:content="#portal-columns" />
+    <drop attributes="class" css:content="#portal-column-content" />
+
     <!--Viewlets-->
     <!-- <replace css:content="#portal&#45;personaltools" css:theme="#user"/> -->
     <!-- <copy attributes="href title" css:content="#portal&#45;logo" css:theme="#logo a"/> -->
@@ -42,6 +45,13 @@
 
     <!-- <after css:content="#visual&#45;portal&#45;wrapper .row:last&#45;child script" css:theme="head script:last&#45;child"/> -->
     <after css:content="#visual-portal-wrapper script[data-diazo='google-analytics']" css:theme-children='body'/>
+
+    <!-- Global Search box -->
+    <copy attributes="action method" css:content="#portal-searchbox form" css:theme=".search-box form" />
+
+    <!-- Personal menu -->
+    <replace css:theme-children=".login-container" css:content="#portal-personaltools-wrapper ul" />
+    <replace css:theme="#personal-menu a" css:content="#portal-personaltools-wrapper dl dt a" />
 
   </rules>
 
