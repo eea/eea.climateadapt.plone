@@ -342,7 +342,10 @@
 
     ------[ Workflow Message Functionality: ]--------
 
-    <subscriber for=".workflow.IWorkflowMessageEvent" handler=".events.trigger_contentrules" />
+    <subscriber
+        for=".workflow.IWorkflowMessageEvent"
+        handler=".events.trigger_contentrules"
+    />
 
     <interface
         interface=".workflow.IWorkflowMessageEvent"
@@ -363,6 +366,32 @@
         class=".workflow.WorkflowTransitionMessage"
         permission="cmf.ReviewPortalContent"
         />
+
+    <subscriber
+        for=".indicator.IIndicatorMessageEvent"
+        handler=".events.trigger_indicator_contentrule"
+        />
+
+    <interface
+        interface=".indicator.IIndicatorMessageEvent"
+        type="plone.contentrules.rule.interfaces.IRuleEventType"
+        name="Indicator modified"
+        />
+
+    <adapter
+        for="*"
+        provides="plone.stringinterp.interfaces.IStringSubstitution"
+        factory=".indicator.indicator_message"
+        name="cca_indicator_message"
+        />
+
+    <browser:page
+        name="get_indicator_message"
+        for="*"
+        permission="zope2.View"
+        class=".indicator.GetIndicator"
+        />
+
 
     <subscriber
        for="plone.app.iterate.interfaces.IWorkingCopy

@@ -1,17 +1,23 @@
 from eea.cache import event
 from eea.climateadapt.browser.facetedsearch import CCA_TYPES
 from plone import api
-from plone.app.contentrules.handlers import execute_rules
+from plone.app.contentrules.handlers import execute_rules, execute
 from plone.app.iterate.dexterity.utils import get_baseline
 from plone.app.iterate.event import WorkingCopyDeletedEvent
 from zope.annotation.interfaces import IAnnotations
 from zope.event import notify
+
 
 InvalidateCacheEvent = event.InvalidateCacheEvent
 
 
 def trigger_contentrules(event):
     execute_rules(event)
+
+
+def trigger_indicator_contentrule(event):
+    # context = aq_parent(aq_inner(event.object))
+    execute(event.object, event)
 
 
 def handle_iterate_wc_deletion(object, event):
