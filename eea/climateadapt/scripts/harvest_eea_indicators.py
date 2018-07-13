@@ -1,4 +1,4 @@
-import threading
+
 from dateutil.parser import parse
 from sparql import SparqlException, query
 from eea.climateadapt.scripts import get_plone_site
@@ -7,7 +7,7 @@ from zope.event import notify
 from eea.climateadapt.indicator import (IndicatorMessageEvent,
     threadlocals, MESSAGE_KEY)
 
-DAYS = 30
+DAYS = 1
 ENDPOINT = "http://semantic.eea.europa.eu/sparql"
 Q = """
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>

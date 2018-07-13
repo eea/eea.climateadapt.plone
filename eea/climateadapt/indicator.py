@@ -4,11 +4,9 @@
 import threading
 from Products.CMFCore.interfaces import IContentish
 from plone.stringinterp.adapters import BaseSubstitution
-from zope.annotation.interfaces import IAnnotations
 from zope.component import adapts
 from zope.component.interfaces import ObjectEvent, IObjectEvent
 from zope.event import notify
-from zope.globalrequest import getRequest
 from zope.interface import implements
 from Products.Five.browser import BrowserView
 
@@ -37,14 +35,14 @@ class indicator_message(BaseSubstitution):
         return message
 
 
-class GetIndicator(BrowserView):
-    def render(self):
-        import pdb;pdb.set_trace()
-        notify(IndicatorMessageEvent(self.context))
-        return "render"
-
-    def __call__(self):
-        import pdb;pdb.set_trace()
-        notify(IndicatorMessageEvent(self.context))
-        return "call"
+# class GetIndicator(BrowserView):
+#     def render(self):
+#         import pdb;pdb.set_trace()
+#         notify(IndicatorMessageEvent(self.context))
+#         return "render"
+#
+#     def __call__(self):
+#         import pdb;pdb.set_trace()
+#         notify(IndicatorMessageEvent(self.context))
+#         return "call"
 
