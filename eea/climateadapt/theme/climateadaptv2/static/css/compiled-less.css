@@ -261,6 +261,17 @@ a.read-more:hover {
 .top-menu-right-section a:hover {
   color: #0170B7;
 }
+.angle-down {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 5px dashed;
+  border-top: 5px solid \9;
+  border-right: 5px solid #0000;
+  border-left: 5px solid #0000;
+}
 .mobile-menu {
   display: none;
 }
@@ -268,13 +279,24 @@ a.read-more:hover {
   color: #005C96;
   font-size: 28px;
 }
-.menu-toggle {
-  display: none;
-}
 .search-box {
   display: inline-block;
   position: relative;
   right: 20px;
+}
+.search-box:after {
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  content: '';
+  background-color: #4f4f4f;
+  position: absolute;
+  right: -7px;
+  top: 50%;
+  height: 80%;
+  width: 2px;
 }
 .search-box .line {
   -webkit-transition: 0.3s width ease-in-out;
@@ -337,6 +359,8 @@ a.read-more:hover {
 .nav-menu {
   background-color: #005C96;
   text-align: center;
+  position: relative;
+  z-index: 10;
 }
 .nav-menu .main-nav {
   display: -webkit-flex;
@@ -365,10 +389,6 @@ a.read-more:hover {
 .nav-menu > ul > li > a:hover {
   background: #7D9600;
 }
-.nav-menu-wrapper {
-  position: relative;
-  z-index: 10;
-}
 .nav-menu .main-sub-menu .sub-menu-wrapper {
   display: block;
 }
@@ -396,7 +416,7 @@ a.read-more:hover {
   display: none;
 }
 .nav-menu .sub-menu-knowledge {
-  left: -85px;
+  left: -93px;
 }
 .main-sub-menu {
   padding: 0 1rem !important;
@@ -424,9 +444,6 @@ a.read-more:hover {
 }
 .main-sub-menu > li {
   position: relative;
-}
-.main-sub-menu .menu-toggle {
-  top: 0;
 }
 /*** home page slider ***/
 .slider-image-wrapper {
@@ -1045,6 +1062,11 @@ a.read-more:hover {
   border-top: none;
   padding-top: 0;
   margin: 0;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: flex;
+  justify-content: space-between;
 }
 .ast-tab-pane .see-more-link a {
   display: block;
@@ -1195,11 +1217,6 @@ a.read-more:hover {
   text-align: center;
   border-top: 1px solid #dcdada;
   padding-top: 20px;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: -moz-box;
-  display: flex;
-  justify-content: space-between;
 }
 .see-more-link a {
   font-size: 16px;
@@ -1409,7 +1426,7 @@ footer {
     right: 20px;
     top: 20px;
   }
-  .nav-menu-wrapper,
+  .nav-menu,
   .top-menu-content,
   .separator {
     display: none;
@@ -1491,12 +1508,11 @@ footer {
   .nav-menu .sub-menu-knowledge {
     left: auto;
   }
-  .menu-toggle {
+  .angle-down {
     display: inline-block;
     position: absolute;
     right: 12px;
     top: 20px;
-    font-size: 23px;
   }
   .nav-menu > ul > li:hover > .sub-menu-wrapper {
     display: none;

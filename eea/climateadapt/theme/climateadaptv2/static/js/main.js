@@ -53,7 +53,7 @@ $(document).ready(function() {
 
 
   // HOMEPAGE: Tabs functionality
-  $("ul.nav-tabs a").click(function (e) {
+  $("ul.nav-tabs a").click(function(e) {
     e.preventDefault();
     $(this).tab('show');
   });
@@ -142,7 +142,7 @@ $(document).ready(function() {
     $('body').toggleClass('no-ovf');
     $(this).toggleClass('fa-bars fa-times');
     $('.header').toggleClass('mobile-header');
-    $('.nav-menu-wrapper, .top-menu-content').toggleClass('nav-toggle');
+    $('.nav-menu, .top-menu-content').toggleClass('nav-toggle');
 
     return false;
   });
