@@ -1,16 +1,17 @@
 $(document).ready(function() {
 
   // HOMEPAGE: initialize slick slider
-  $('.slider').slick({
-    infinite: true,
-    speed: 500,
-    fade: true,
-    slidesToShow: 1,
-    dots:  true,
-    autoplay: true,
-    autoplaySpeed: 4000,
-  });
-
+  if ($('.slider').slick) {
+    $('.slider').slick({
+        infinite: true,
+        speed: 500,
+        fade: true,
+        slidesToShow: 1,
+        dots:  true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+    });
+  }
   // HOMEPAGE: move slick slider dots to slider caption area
   $(".slick-dots").prependTo(".slider-bottom-caption");
 
