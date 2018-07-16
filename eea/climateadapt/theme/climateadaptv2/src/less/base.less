@@ -1,3 +1,5 @@
+@import "variables.less";
+
 body {
   background-color: #eee;
   position: relative;
@@ -30,19 +32,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  color: #005C96;
+  color: @primary-blue;
   font-size: 23px;
 }
 
 h2 {
-  color: #4F4F4F;
+  color: @dark-gray;
   font-size: 21px;
   line-height: 24px;
   padding: 10px 0;
 }
 
 h3 {
-  color: #4F4F4F;
+  color: @dark-gray;
   font-size: 18px;
 }
 
@@ -52,7 +54,7 @@ input:focus {
 }
 
 p {
-  color: #4F4F4F;
+  color: @dark-gray;
   font-family: RobotoR;
   font-size: 14px;
   line-height: 20px;
@@ -60,9 +62,21 @@ p {
 }
 
 a {
-  color: #2D9CDB;
+  color: @link-color;
   font-family: RobotoM;
   font-size: 14px;
+}
+
+#content a:link,
+a:link,
+#content a:visited,
+a:visited {
+  color: @link-color;
+  border-bottom: none;
+}
+
+#content a:hover {
+  color: #1E7CB3 !important;
 }
 
 a:focus,

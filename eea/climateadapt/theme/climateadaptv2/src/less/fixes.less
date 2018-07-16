@@ -11,8 +11,84 @@
   background-color: @edit-interface-bg-color;
 }
 
+#contentActionMenus {
+  background: @edit-interface-bg-color;
+}
+
+#contentActionMenus dl.actionMenu a {
+  background-color: transparent;
+}
+
 #content {
   margin: 0;
   padding: 1.5em;
   background: white;
+}
+
+#breadcrumbs-you-are-here {
+  display: none;
+}
+
+#portal-breadcrumbs a {
+  font-family: RobotoR;
+}
+
+#content a.link-overlay {
+  border-bottom: none !important;
+}
+
+#content div.documentByLine {
+  font-family: RobotoR;
+  font-size: 90%;
+}
+
+#content ul, #content ol {
+  font-family: RobotoR;
+  font-size: 14px;
+  color: @dark-gray;
+}
+
+#breadcrumbs-current {
+  font-family: RobotoB;
+  color: #7D9600;
+  font-size: 14px;
+}
+
+.breadcrumbSeparator {
+  display: none;
+}
+
+#portal-breadcrumbs span:not(:last-child):after {
+  content: '\f105';
+  font-family: 'FontAwesome';
+  color: #2D9CDB;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+  background-color: transparent;
+}
+
+.top-menu-items .login {
+  display: inline-block;
+  margin-left: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+#portal-personaltools {
+  width: 100%;
+  float: none;
+  background: #e3e3e3;
+  position: absolute;
+  top: 20px;
+  right: 0;
+  padding: 0.50em 0.80em;
+  font-size: 100%;
+  border-radius: 0;
+}
+
+.login-container {
+  display: none;
 }

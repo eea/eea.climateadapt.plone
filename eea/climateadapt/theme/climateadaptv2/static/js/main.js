@@ -148,10 +148,16 @@ $(document).ready(function() {
   });
 
   // mobile - show submenus on click
-  $('.menu-toggle').on('click', function(e) {
-    $(this).siblings('.main-sub-menu-wrapper').toggle();
+  $('.angle-down').on('click', function(e) {
+
+    $(this).parent().siblings('.main-sub-menu-wrapper').toggle();
     $(this).parent().siblings('li').find('.main-sub-menu-wrapper').hide();
     e.stopPropagation();
+  });
+
+  $('.personal-menu-action').click(function() {
+    $(this).toggleClass('action-selected');
+    $('.login-container ').slideToggle();
   });
 
 });
