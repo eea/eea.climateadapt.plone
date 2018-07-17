@@ -5,7 +5,6 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <rules css:if-content="#visual-portal-wrapper">
-    <theme href="page.html" />
 
     <!--Plone.app.toolbar-->
     <append theme="/html/body" content="//div[@data-iframe='toolbar']"/>
@@ -24,6 +23,12 @@
     <copy attributes="id dir" css:content="body" css:theme="body"/>
     <copy attributes="role" css:content="content" css:theme="contentspace"/>
 
+    <rules css:if-content=".section-frontpage">
+      <theme href="index.html" />
+    </rules>
+    <rules css:if-not-content=".section-frontpage">
+      <theme href="page.html" />
+    </rules>
     <replace css:content="#portal-columns" css:theme="#page-body"/>
     <replace css:content="#navbar" css:theme=".main-nav" href="@@site_navbar" method="document"/>
 
