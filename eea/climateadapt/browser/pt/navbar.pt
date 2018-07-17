@@ -1,5 +1,5 @@
 <ul id="navbar" class="main-nav" tal:define="menu view/menu">
-  <li tal:repeat="section menu">
+  <li class="main-nav-item" tal:repeat="section menu">
     <div tal:replace="python: view.pp(section)"></div>
 
     <a tal:define="has_children python: bool(section['children'][-1])" href=""
@@ -8,26 +8,25 @@
       data-toggle python: has_children and 'dropdown' or False;
       ">
       <span tal:content="python: section['label']">Home</span>
-      <b class="caret" tal:condition="has_children" />
-      <!-- <div class="menu&#45;toggle"> -->
-        <!--   <i class="fa fa&#45;angle&#45;down"></i> -->
-        <!-- </div> -->
+      <i class="angle-down-icon" tal:condition="has_children"></i>
     </a>
 
-    <div class="sub-menu-wrapper main-sub-menu-wrapper "
+    <div class="sub-menu-wrapper"
       tal:condition="python: section['children'][-1]" >
       <tal:column tal:repeat="column python:section['children']">
 
-        <ul class="main-submenu" tal:repeat="group column">
-          <li class="main-submenu-item">
+        <ul class="sub-menu">
+          <li class="sub-menu-item" tal:repeat="group column">
             <a href=""
+              class="sub-menu-link"
               tal:attributes="href group/link"
               tal:content="group/label">
               Title here
             </a>
-            <ul class="sub-menu-wrapper" tal:condition="group/children">
-              <li tal:repeat="child group/children">
+            <ul class="sub-sub-menu-wrapper" tal:condition="group/children">
+              <li class="sub-sub-menu-item" tal:repeat="child group/children">
                 <a href=""
+                  class="sub-sub-menu-link"
                   tal:attributes="href child/link"
                   tal:content="child/label">
                   Title here

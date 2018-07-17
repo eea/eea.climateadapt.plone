@@ -12,7 +12,7 @@
 
 @media (max-width: 1200px) {
   /* header navigation */
-  .nav-menu ul li a {
+  .header .main-nav ul li a {
     font-size: 14px;
   }
 
@@ -70,7 +70,7 @@
     top: 20px;
   }
 
-  .nav-menu,
+  .header .main-nav,
   .top-menu-content,
   .separator {
     display: none;
@@ -87,37 +87,37 @@
     background-color: #fff;
     z-index: 10;
   }
-  .mobile-header .nav-menu {
+  .mobile-header .header .main-nav {
     background-color: transparent;
     text-align: left;
     overflow-y: auto;
     height: 83vh;
     margin-top: 15px;
   }
-  .mobile-header .nav-menu ul {
+  .mobile-header .header .main-nav ul {
     box-shadow: none;
     display: block;
     padding: 0;
   }
-  .mobile-header .nav-menu ul li a {
+  .mobile-header .header .main-nav ul li a {
     border-right: none;
     color: #005C96;
     display: inline-block;
     padding: 25px 10px;
   }
-  .mobile-header .nav-menu ul li ul li a {
+  .mobile-header .header .main-nav ul li ul li a {
     padding: 10px 0;
     font-size: 13px;
     color: #464646;
   }
-  .mobile-header .nav-menu ul li ul li ul li {
+  .mobile-header .header .main-nav ul li ul li ul li {
     padding: 0;
   }
-  .mobile-header .nav-menu ul li ul li ul li a {
+  .mobile-header .header .main-nav ul li ul li ul li a {
     color: #464646;
     padding-left: 25px;
   }
-  .mobile-header .nav-menu ul li a:hover {
+  .mobile-header .header .main-nav ul li a:hover {
     background: none;
     color: #7D9600;
   }
@@ -127,7 +127,7 @@
     padding: 0 10px;
     margin: 55px 0 0 10px;
   }
-  .nav-menu .sub-menu-wrapper {
+  .header .main-nav .sub-menu-wrapper {
     position: relative;
     box-shadow: none;
     border-bottom: none;
@@ -149,22 +149,16 @@
     border-bottom: 1px solid #f5f5f5;
     margin-top: 20px;
   }
-  .nav-menu .sub-menu-knowledge {
+  .header .main-nav .sub-menu-knowledge {
     left: auto;
   }
-  .angle-down {
-    display: inline-block;
-    position: absolute;
-    right: 12px;
-    top: 20px;
-  }
-  .nav-menu > ul > li:hover > .sub-menu-wrapper {
+  .header .main-nav > ul > li:hover > .sub-menu-wrapper {
     display: none;
   }
   .sub-menu-wrapper .main-sub-menu > li > a {
     font-size: 14px;
   }
-  .nav-menu > ul > li:not(:last-child) {
+  .header .main-nav > ul > li:not(:last-child) {
     border-bottom: 1px solid #f4f4f4;
   }
   .mobile-header .top-menu {
