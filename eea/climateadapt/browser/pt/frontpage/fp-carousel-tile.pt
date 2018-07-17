@@ -138,7 +138,7 @@
             <div tal:replace="structure python:item.s2_description.output"> Description </div>
             <p>
               <a class="homepage-read-more" href="" tal:attributes="href item/s2_read_more_link" target="_blank">
-                  <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
+                  <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/ico-arrow.png" alt="arrow" />
                   <span tal:content="item/s2_read_more_text | nothing"> Read more </span>
               </a>
             </p>
@@ -164,7 +164,7 @@
           </div>
           <span tal:define="absolute view/context/absolute_url">
             <a class="homepage-read-more" href="" tal:attributes="href item/s8_read_more_link" target="_blank">
-                <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
+                <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/ico-arrow.png" alt="arrow" />
                 <span tal:content="item/s8_read_more_text | nothing"> Read more </span>
             </a>
           </span>
@@ -173,24 +173,24 @@
 
       <li class="" style="display: none;" tal:define="item view/last_dbitem">
         <div class="case-studies-homepage-slider-image">
-          <img src="/++resource++eea.climateadapt/frontpage/aceitem_picture.jpg" alt="Ace Item" />
+          <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/aceitem_picture.jpg" alt="Ace Item" />
         </div>
         <div class="case-studies-homepage-slider-description">
           <h2 tal:content="item/title"> Title</h2>
           <p tal:content="python: view.html2text(item.long_description.output)[:300] + '...'"> Description </p>
           <a class="homepage-read-more" href="" tal:attributes="href item/absolute_url" target="_blank">
-            <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
+            <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
         </div>
       </li>
 
       <li class="" style="display: none;">
         <div class="case-studies-homepage-slider-image">
-          <img src="/++resource++eea.climateadapt/frontpage/events.jpg" alt="Events" />
+          <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/events.jpg" alt="Events" />
         </div>
         <div class="case-studies-homepage-slider-description" tal:define="item view/news_items">
           <h2 tal:content="item/title"> Title </h2>
           <p tal:content="item/description"> Description </p>
-          <a class="homepage-read-more" href="" tal:attributes="href item/event_url | item/absolute_url" target="_blank"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
+          <a class="homepage-read-more" href="" tal:attributes="href item/event_url | item/absolute_url" target="_blank"> <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
         </div>
       </li>
 
@@ -205,7 +205,7 @@
           <div tal:content="structure python:item.s5_description.output"> Description </div>
           <p tal:define="absolute view/context/absolute_url">
             <a class="homepage-read-more" href="" tal:attributes="href item/s5_read_more_link" target="_blank">
-                <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
+                <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/ico-arrow.png" alt="arrow" />
                 <span tal:content="item/s5_read_more_text | nothing"> Read more </span>
             </a>
           </p>
@@ -220,7 +220,7 @@
           <h2 tal:content="item/title"> Title </h2>
           <p></p>
           <p tal:content="python: item['description'][:300] + '...'"> Description </p>
-          <a class="homepage-read-more" href="" tal:attributes="href item/url" target="_blank"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
+          <a class="homepage-read-more" href="" tal:attributes="href item/url" target="_blank"> <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
         </div>
       </li>
 
@@ -235,7 +235,7 @@
           <div tal:content="structure python:item.s7_description.output"> Description </div>
           <p tal:define="absolute view/context/absolute_url">
             <a class="homepage-read-more" href="" tal:attributes="href item/s7_read_more_link" target="_blank">
-                <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
+                <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/ico-arrow.png" alt="arrow" />
                 <span tal:content="item/s7_read_more_text | nothing"> Read more </span>
             </a>
           </p>

@@ -8,12 +8,12 @@
         <tr>
           <td>
             <a href="http://ec.europa.eu/clima/">
-              <img alt="EC Climate Action " src="/++resource++eea.climateadapt/frontpage/eu-flag.jpg" style="width: 116px; height: 58px;" />
+              <img alt="EC Climate Action " tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/eu-flag.jpg" style="width: 116px; height: 58px;" />
             </a>
           </td>
           <td>
             <a href="https://www.eea.europa.eu/themes/climate-change-adaptation" style="color: rgb(117, 136, 22);">
-              <img alt="EEA Climate Change topic" src="/++resource++eea.climateadapt/frontpage/eu-climate-change-topic.jpg" style="width: 77px; height: 68px;" />
+              <img alt="EEA Climate Change topic" tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/eu-climate-change-topic.jpg" style="width: 77px; height: 68px;" />
             </a>
           </td>
         </tr>

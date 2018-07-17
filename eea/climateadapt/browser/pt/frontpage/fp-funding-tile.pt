@@ -8,17 +8,17 @@
         <tr>
           <td>
             <a href="/eu-adaptation-policy/funding/life">
-              <img alt="Life Climate Action" src="/++resource++eea.climateadapt/frontpage/life-climate-action.jpg" style="width: 93px; height: 68px;" />
+              <img alt="Life Climate Action" tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/life-climate-action.jpg" style="width: 93px; height: 68px;" />
             </a>
           </td>
           <td>
             <a href="/eu-adaptation-policy/funding/esi">
-              <img alt="ESI funds" src="/++resource++eea.climateadapt/frontpage/esi-funds.jpg" style="width: 97px; height: 74px;" />
+              <img alt="ESI funds" tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/esi-funds.jpg" style="width: 97px; height: 74px;" />
             </a>
           </td>
           <td>
             <a href="/eu-adaptation-policy/funding/h2020">
-              <img alt="H2020" src="/++resource++eea.climateadapt/frontpage/h2020.jpg" style="width: 95px; height: 69px;" />
+              <img alt="H2020" tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/h2020.jpg" style="width: 95px; height: 69px;" />
             </a>
           </td>
         </tr>

@@ -14,7 +14,7 @@
               <img
                 onmouseout="javascript:this.src='/++resource++eea.climateadapt/frontpage/agriculture_g.png';$('#agriculture').toggle();"
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/agriculture_v.png';$('#agriculture').toggle();"
-                src="/++resource++eea.climateadapt/frontpage/agriculture_g.png" />
+                tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/agriculture_g.png" />
             </a>
           </td> 
           <td width="79px">
@@ -22,7 +22,7 @@
               <img
                 onmouseout="javascript:this.src='/++resource++eea.climateadapt/frontpage/forestry_g.png';$('#forestry').toggle();"
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/forestry_v.png';$('#forestry').toggle();"
-                src="/++resource++eea.climateadapt/frontpage/forestry_g.png" />
+                tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/forestry_g.png" />
             </a>
           </td> 
           <td width="79px">
@@ -30,7 +30,7 @@
               <img
                 onmouseout="javascript:this.src='/++resource++eea.climateadapt/frontpage/biodiversity_g.png';$('#biodiversity').toggle();"
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/biodiversity_v.png';$('#biodiversity').toggle();"
-                src="/++resource++eea.climateadapt/frontpage/biodiversity_g.png" />
+                tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/biodiversity_g.png" />
             </a>
           </td> 
           <td width="79px">
@@ -38,7 +38,7 @@
               <img
                 onmouseout="javascript:this.src='/++resource++eea.climateadapt/frontpage/costal_areas_g.png';$('#costal_areas').toggle();"
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/costal_areas_v.png';$('#costal_areas').toggle();"
-                src="/++resource++eea.climateadapt/frontpage/costal_areas_g.png" />
+                tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/costal_areas_g.png" />
             </a>
           </td> 
           <td width="79px">
@@ -46,7 +46,7 @@
               <img
                 onmouseout="javascript:this.src='/++resource++eea.climateadapt/frontpage/Disaster_g.png';$('#disaster').toggle();"
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/Disaster_v.png';$('#disaster').toggle();"
-                src="/++resource++eea.climateadapt/frontpage/Disaster_g.png" />
+                tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/Disaster_g.png" />
             </a>
           </td> 
           <td width="79px">
@@ -54,7 +54,7 @@
               <img
                 onmouseout="javascript:this.src='/++resource++eea.climateadapt/frontpage/financial_g.png';$('#financial').toggle();"
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/financial_v.png';$('#financial').toggle();"
-                src="/++resource++eea.climateadapt/frontpage/financial_g.png" />
+                tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/financial_g.png" />
             </a>
           </td> 
           <td width="79px">
@@ -62,7 +62,7 @@
               <img
                 onmouseout="javascript:this.src='/++resource++eea.climateadapt/frontpage/buildings_g.png';$('#buildings').toggle();"
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/buildings_v.png';$('#buildings').toggle();"
-                src="/++resource++eea.climateadapt/frontpage/buildings_g.png" />
+                tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/buildings_g.png" />
             </a>
           </td> 
           <td width="79px">
@@ -70,7 +70,7 @@
               <img
                 onmouseout="javascript:this.src='/++resource++eea.climateadapt/frontpage/energy_g.png';$('#energy').toggle();"
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/energy_v.png';$('#energy').toggle();"
-                src="/++resource++eea.climateadapt/frontpage/energy_g.png" />
+                tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/energy_g.png" />
             </a>
           </td> 
           <td
@@ -79,7 +79,7 @@
               <img
                 onmouseout="javascript:this.src='/++resource++eea.climateadapt/frontpage/transport_g.png';$('#transport').toggle();"
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/transport_v.png';$('#transport').toggle();"
-                src="/++resource++eea.climateadapt/frontpage/transport_g.png" />
+                tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/transport_g.png" />
             </a>
           </td>
 
@@ -88,7 +88,7 @@
               <img
                 onmouseout="javascript:this.src='/++resource++eea.climateadapt/frontpage/health_g.png';$('#health').toggle();"
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/health_v.png';$('#health').toggle();"
-                src="/++resource++eea.climateadapt/frontpage/health_g.png" />
+                tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/health_g.png" />
             </a>
           </td>
 
@@ -97,7 +97,7 @@
               <img
                 onmouseout="javascript:this.src='/++resource++eea.climateadapt/frontpage/water_g.png';$('#water').toggle();"
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/water_v.png';$('#water').toggle();"
-                src="/++resource++eea.climateadapt/frontpage/water_g.png" />
+                tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/water_g.png" />
             </a>
           </td>
 
@@ -106,7 +106,7 @@
               <img
                 onmouseout="javascript:this.src='/++resource++eea.climateadapt/frontpage/marine_fisheries_g.png';$('#marine').toggle();"
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/marine_fisheries_v.png';$('#marine').toggle();"
-                src="/++resource++eea.climateadapt/frontpage/marine_fisheries_g.png" />
+                tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/marine_fisheries_g.png" />
             </a>
           </td>
 

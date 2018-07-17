@@ -13,7 +13,7 @@
       $("#country-select").change(function(){
         var cid = $(this).val();
         var country = $("#country-select option[value='" + cid + "']").text();
-        var res = country.split(" ").join("-")
+        var res = country.split(" ").join("-");
         console.log(cid, res);
         if (country.length) {
           document.location = '/countries/' + res.toLowerCase();
