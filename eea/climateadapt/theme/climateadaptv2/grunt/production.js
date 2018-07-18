@@ -19,7 +19,7 @@ module.exports = {
         '<%= path.src %>/js/**/*.js'
       ],
       dest: '<%= path.static %>/js/main.js'
-    },
+    }
   },
 
   uglify: {
@@ -31,5 +31,5 @@ module.exports = {
         dest: '<%= path.static %>/js'
       }]
     }
-  },
-}
+  }
+};

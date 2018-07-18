@@ -20,7 +20,7 @@ module.exports = {
         '<%= path.src %>/js/**/*.js'
       ],
       dest: '<%= path.static %>/js/main.js'
-    },
+    }
   },
 
   watch: {
@@ -46,4 +46,4 @@ module.exports = {
       }
     }
   }
-}
+};

@@ -55,7 +55,14 @@
     <copy attributes="action method" css:content="#portal-searchbox form" css:theme=".search-box form" />
 
     <!-- Personal menu -->
-    <replace css:theme-children=".login-container" css:content="#portal-personaltools-wrapper ul" />
+
+    <rules if="$is_anon">
+      <replace css:theme-children=".login-container" css:content="#portal-personaltools-wrapper ul" />
+    </rules>
+    <rules if-not="$is_anon">
+      <drop css:theme=".login-form" />
+      <replace css:theme-children="#portal-personaltools li" css:content="#portal-personaltools-wrapper ul" />
+    </rules>
     <replace css:theme="#personal-menu .user-name" css:content="#portal-personaltools-wrapper dl dt a" />
 
   </rules>
