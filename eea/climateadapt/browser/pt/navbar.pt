@@ -8,7 +8,7 @@
       data-toggle python: has_children and 'dropdown' or False;
       ">
       <span tal:content="python: section['label']">Home</span>
-      <i class="angle-down-icon" tal:condition="has_children"></i>
+      <button class="toggle-down" tal:condition="has_children"><i class="angle-down-icon"></i></button>
     </a>
 
     <div class="sub-menu-wrapper"
