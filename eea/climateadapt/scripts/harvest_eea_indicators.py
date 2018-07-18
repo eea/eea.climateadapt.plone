@@ -37,7 +37,7 @@ def create_message(result):
     variables = result.variables
 
     for row in result.fetchone():
-
+        m = list()
         for i in range(0, len(variables)):
             value = unicode(row[i])
 
@@ -49,9 +49,11 @@ def create_message(result):
             else:
                 formatted_value = value
 
-            message.append("{}: {}".format(variables[i], formatted_value))
+            m.append("{}: {}".format(variables[i], formatted_value))
 
-    return "\n".join(message)
+        message.append("\n".join(m))
+
+    return "\n------------\n".join(message)
 
 
 def trigger_content_rule(message):

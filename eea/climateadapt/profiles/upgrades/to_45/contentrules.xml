@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<contentrules>
+    <rule name="rule-3" title="EEA Indicator"
+          cascading="False" description="Send an email when an indicator is modified"
+          enabled="True"
+          event="eea.climateadapt.indicator.IIndicatorMessageEvent"
+          stop-after="False">
+        <conditions/>
+        <actions>
+            <action type="plone.actions.Mail">
+                <property name="source"/>
+                <property name="message">The following indicators were recently created or modified please create/update
+                    their content:
+
+                    ${cca_indicator_message}
+                </property>
+                <property name="subject">New indicators were harvested from SDS</property>
+                <property name="recipients">laszlo.cseh@eaudeweb.ro</property>
+                <property name="exclude_actor">False</property>
+            </action>
+        </actions>
+    </rule>
+    <assignment name="rule-3" bubbles="True" enabled="True" location=""/>
+</contentrules>
