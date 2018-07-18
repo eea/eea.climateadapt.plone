@@ -150,10 +150,10 @@ $(document).ready(function() {
   });
 
   // mobile - show submenus on click
-  $('.angle-down').on('click', function(e) {
-    $(this).parent().siblings('.main-sub-menu-wrapper').toggle();
-    $(this).parent().siblings('li').find('.main-sub-menu-wrapper').hide();
-    e.stopPropagation();
+  $('.angle-down-icon').on('click', function() {
+    $(this).parent().siblings('.sub-menu-wrapper').toggle();
+    $(this).parent().siblings('li').find('.sub-menu-wrapper').hide();
+    return false;
   });
 
   $('.personal-menu-action a').click(function() {
