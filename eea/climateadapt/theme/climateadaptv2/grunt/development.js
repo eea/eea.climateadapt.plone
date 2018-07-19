@@ -4,8 +4,9 @@ module.exports = {
       options: {
         compress: false,
         sourceMap: true,
-        sourceMapFilename: '<%= path.static %>/css/source.css.map',
-        sourceMapURL: './source.css.map'
+          outputSourceFiles: true,
+          sourceMapFileInline: true,
+          sourceMapRootpath: '../../',
       },
       files: {
         '<%= path.static %>/css/compiled-less.css': '<%= path.src %>/less/main.less',
