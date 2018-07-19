@@ -5,10 +5,15 @@
   margin-bottom: 0;
   background-color: @edit-interface-bg-color;
   border: 0.25em solid @edit-interface-bg-color;
+  border-bottom: 2px solid darken(@edit-interface-bg-color, 10%);
 }
 
 #content-views {
-  background-color: @edit-interface-bg-color;
+  background-color: transparent;
+  li.selected {
+    top: 1px;
+    position: relative;
+  }
 }
 
 #contentActionMenus {
