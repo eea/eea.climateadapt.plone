@@ -67,18 +67,142 @@ a {
   font-size: 14px;
 }
 
-#content a:link,
-a:link,
-#content a:visited,
-a:visited {
-  color: @link-color;
-  border-bottom: none;
+//#content a:link,
+//a:link,
+//#content a:visited,
+//a:visited {
+//  color: @link-color;
+//  border-bottom: none;
+//}
+//
+//#content a:hover {
+//  color: #1E7CB3 !important;
+//}
+
+/* @group Invisibles */
+.hiddenStructure {
+  display: block;
+  /* safari bug */
+  background: transparent none;
+  border: none;
+  height: 0.1em;
+  overflow: hidden;
+  padding: 0;
+  margin: -0.1em 0 0 -0.1em;
+  width: 1px;
 }
 
-#content a:hover {
-  color: #1E7CB3 !important;
+.visualNoMarker {
+  list-style:none;
+  margin-left: 0;
 }
 
+.visualClear {
+  clear: both;
+}
+/* @end */
+/* @group Overlay windows */
+
+/* styling for overlays (popups) */
+
+.overlay {
+    width: auto;
+    height: auto;
+    /* initially overlay is hidden */
+    display: none;
+    /* some padding to layout nested elements nicely  */
+    margin: 1em;
+    font-size: 80%;
+}
+
+.overlay-iframe,
+.overlay-ajax {
+    width: 60%;
+    min-height: 100px;
+    z-index: 99; /* overlays should be above everything */
+}
+
+.overlay-iframe {
+    height: 60%;
+}
+
+/* default close button positioned on upper-left corner */
+.overlaybg .close,
+.overlay .close {
+    background-image: url(pb_close.png);
+    position: absolute;
+    left: -14px;
+    top: -14px;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+
+.pb-ajax {
+    overflow-y: auto;
+}
+
+.pb-ajax, .pb-image, .overlay iframe {
+    background-color: #fff;
+    border: 1px solid #999;
+    white-space: normal;
+    box-shadow: 0 0 3em 0.5em #666;
+    -moz-box-shadow: 0 0 3em 0.5em #666;
+    -webkit-box-shadow: 0 0 3em #666;
+}
+
+.pb-ajax > div {
+    width: 92%;
+    padding: 1em;
+}
+
+.pb-ajax .documentActions {display:none}
+
+.overlay .close span {
+    display: block;
+    height: 1px;
+    margin: -1px 0 0 -1px;
+    overflow: hidden;
+    padding: 0;
+    width: 1px;
+}
+
+.overlay textarea { width: 100%; }
+
+/* Hide form elements that don't make sense within an overlay. */
+.overlay .link-parent { display: none; }
+.overlay #createGroup legend { display: none; }
+.overlay #createGroup fieldset { border: none; }
+
+/* lets play nice with paragraphs, links, tabbed pages in overlay e.g. when plone.openid is installed */
+.overlay p {
+    margin-bottom: 1em;
+}
+.overlay label {
+    margin-bottom: 0.25em;
+}
+.overlay a:hover {
+    color: #75ad0a;
+}
+.overlay a:hover label{
+    cursor: pointer;
+}
+.overlay .selected {
+    color: #000000;
+}
+.overlay .formTab {
+    margin-right:1em;
+    font-weight: bold;
+}
+.overlay .formTab.lastFormTab {
+    margin-right:0em;
+}
+.overlay .formControls a {
+    display: block;
+    margin: 0.75em;
+}
+
+/* @end */
 a:focus,
 a:hover {
   color: #1E7CB3;
