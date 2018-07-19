@@ -86,17 +86,48 @@ textarea:focus {
 
 #portal-personaltools {
   width: 100%;
+  min-width: 200px;
   float: none;
-  background: #e3e3e3;
+  background-color: #F7F7F7;
   position: absolute;
   top: 20px;
   right: 0;
   padding: 0.50em 0.80em;
   font-size: 100%;
   border-radius: 0;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
   li {
     display: list-item;
     line-height: 1.5;
   }
 }
 
+#fieldset-openid-login .formControls input, #login-form .formControls input {
+  font-family: RobotoB;
+  font-size: 18px;
+  padding: 10px 25px;
+  border-radius: 5px;
+  border: none;
+  background-color: #efefef;
+  color: @dark-gray;
+}
+
+#fieldset-openid-login .formControls input:hover, #login-form .formControls input:hover {
+  background-color: #E0E0E0;
+}
+
+#fieldset-openid-login label, #login-form label {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-family: RobotoM;
+  color: @dark-gray;
+}
+
+.pb-ajax > div {
+   width: 100%;
+  }
+
+#login-form .field {
+  margin: 1em 0;
+}

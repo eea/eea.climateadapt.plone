@@ -40,12 +40,26 @@
   justify-content: space-between;
 }
 
-.top-menu-right-section a {
+.top-menu-right-section a,
+.personal-menu-action {
   color: @dark-gray;
+  font-family: RobotoM;
+  font-size: 14px;
 }
 
-.top-menu-right-section a:hover {
+.top-menu-right-section a:hover,
+.personal-menu-action:hover {
   color: @secondary-blue;
+}
+
+.action-selected,
+.action-selected a {
+  color: @secondary-blue;
+}
+
+.personal-menu-action:hover > .angle-down-icon,
+.action-selected .angle-down-icon {
+  border-top: 4px solid @secondary-blue !important;
 }
 
 .angle-down-icon {
@@ -56,6 +70,10 @@
   border-right: 4px solid transparent;
   border-top: 4px solid #fff;
   margin-bottom: 2px;
+}
+
+.personal-menu-action .angle-down-icon {
+  border-top: 4px solid @dark-gray;
 }
 
 .mobile-menu {

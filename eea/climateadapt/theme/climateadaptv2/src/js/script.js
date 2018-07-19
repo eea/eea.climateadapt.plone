@@ -151,9 +151,12 @@ $(document).ready(function() {
     $(this).parent().siblings('.sub-menu-wrapper').toggle();
   });
 
-  $('.personal-menu-action a').click(function() {
+  $('.personal-menu-action').click(function() {
     $(this).toggleClass('action-selected');
     $('.login-container ').slideToggle();
+  });
+  $('#user-name').click(function(e) {
+    e.preventDefault();
   });
 
   // Navigation menu: align sub-menu to the right
