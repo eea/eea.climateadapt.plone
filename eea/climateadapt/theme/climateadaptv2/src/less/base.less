@@ -10,9 +10,6 @@ html {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-ol, ul {
-  list-style: none;
-}
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -34,18 +31,25 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   color: @primary-blue;
   font-size: 23px;
+  margin-bottom: 1em;
 }
 
 h2 {
   color: @dark-gray;
   font-size: 21px;
   line-height: 24px;
-  padding: 10px 0;
+  margin-bottom: 1em;
 }
 
 h3 {
   color: @dark-gray;
   font-size: 18px;
+}
+
+em {
+  font-family: RobotoI;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 textarea:focus,
@@ -152,7 +156,7 @@ a {
 }
 
 .pb-ajax > div {
-    width: 92%;
+    width: 100%;
     padding: 1em;
 }
 
@@ -202,6 +206,10 @@ a {
     margin: 0.75em;
 }
 
+.pull-left {
+    margin: 0 1em 1em 0;
+}
+
 /* @end */
 a:focus,
 a:hover {
@@ -237,10 +245,9 @@ a.read-more:hover {
 }
 
 .site-container {
-  margin-top: 25px;
-  /* background-color: #fff; */
+  margin-top: 1em;
   min-height: 600px;
-  overflow: hidden;  /* change box model */
+  // overflow: hidden;  /* change box model */
 }
 
 .page-body {
@@ -270,4 +277,96 @@ a.read-more:hover {
 
 .portalMessage {
   background-color: lightgrey;
+}
+
+#content .eu-strategy td > ul > li,
+#content .aceitem-relevant-tile > ul > li,
+#content ul.arrow-items > li,
+#content ul#ast-menu ul > li {
+  list-style-type: none;
+  padding-left: 1.3em;
+  margin-bottom: 1em;
+}
+
+#content .eu-strategy td > ul > li:before,
+#content .aceitem-relevant-tile > ul > li:before,
+#content ul.arrow-items > li:before,
+#content ul#ast-menu ul > li:before {
+  content: "\f101";
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.3em; /* same as padding-left set on li */
+  width: 1.3em; /* same as padding-left set on li */
+  color: #2D9CDB;
+}
+
+#content .aceitem-relevant-tile h2 {
+  color: @primary-green;
+  font-family: RobotoM;
+  font-size: 18px;
+}
+
+.panel-default {
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.panel-default > .panel-heading {
+  text-align: right;
+  background-color: transparent;
+}
+
+.panel-default > .panel-heading a {
+  text-transform: uppercase;
+  color: #EF7000;
+}
+
+.panel-default > .panel-heading a:hover {
+  color: #ff963a;
+}
+
+.section-eu-adaptation-policy #content {
+  background-color:  transparent;
+  padding: 0;
+}
+
+.content-column,
+.content-sidebar {
+  background-color: #fff;
+  padding: 20px;
+}
+
+.content-column .tile-content p {
+  margin: 0;
+}
+
+.content-sidebar .aceitem-search-tile ul li {
+  list-style-type: none;
+  padding-left: 1.3em;
+  margin-bottom: 1em;
+}
+
+.content-sidebar .aceitem-search-tile ul li:before {
+  content: "\f105";
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.3em;
+  width: 1.3em;
+  color: @dark-gray;
+}
+
+.content-sidebar .aceitem-search-tile ul li a {
+  color: @dark-gray;
+  font-family: RobotoR;
+}
+
+.content-sidebar .aceitem-search-tile h2 {
+  color: @primary-blue;
+  font-size: 14px;
+}
+
+.share-your-info-ace-button button {
+  font-size: 17px;
+  font-family: RobotoM;
 }

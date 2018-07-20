@@ -186,4 +186,12 @@ $(document).ready(function() {
     }
   });
 
+  $('.column.col-md-9').children().wrapAll('<div class="content-column"/>');
+  $('.column.col-md-3').children().wrapAll('<div class="content-sidebar"/>');
+
+  $('.content-column').find('img').parent().addClass('clearfix');
+  $('.content-column').children('.col-md-4').wrapAll('<div class="row"/>');
+
+  $('.share-your-info-ace-button button').addClass('standard-button primary-button');
+
 });

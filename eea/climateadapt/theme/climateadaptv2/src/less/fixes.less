@@ -9,7 +9,7 @@
 }
 
 #edit-bar li {
-    display: inline;
+  display: inline;
 }
 
 #content-views {
@@ -29,13 +29,16 @@
 }
 
 #content {
-  margin: 0;
   padding: 1.5em;
-  background: white;
+  background-color: #fff;
 }
 
 #breadcrumbs-you-are-here {
   display: none;
+}
+
+#portal-breadcrumbs {
+  margin-bottom: 1em;
 }
 
 #portal-breadcrumbs a {
@@ -48,7 +51,11 @@
 
 #content div.documentByLine {
   font-family: RobotoR;
-  font-size: 90%;
+  font-size: 12px;
+}
+
+#content div.documentByLine a {
+  font-size: 13px;
 }
 
 #content ul, #content ol {
@@ -71,6 +78,10 @@
   content: '\f105';
   font-family: 'FontAwesome';
   color: #2D9CDB;
+}
+
+#viewlet-below-content .row {
+  margin: 0;
 }
 
 input[type="text"]:focus,
@@ -106,9 +117,22 @@ textarea:focus {
   }
 }
 
-#fieldset-openid-login .formControls input, #login-form .formControls input {
-  font-family: RobotoB;
-  font-size: 18px;
+#document-action-download_pdf {
+  list-style: none;
+  margin-top: 1.5em;
+}
+
+#document-action-download_pdf a:before {
+  content: '\f019';
+  font-family: FontAwesome;
+  margin-right: 10px;
+}
+
+#fieldset-openid-login .formControls input,
+#login-form .formControls input,
+#document-action-download_pdf a {
+  font-family: RobotoM;
+  font-size: 16px;
   padding: 10px 25px;
   border-radius: 5px;
   border: none;
@@ -116,21 +140,20 @@ textarea:focus {
   color: @dark-gray;
 }
 
-#fieldset-openid-login .formControls input:hover, #login-form .formControls input:hover {
+#fieldset-openid-login .formControls input:hover,
+#login-form .formControls input:hover,
+#document-action-download_pdf a:hover {
   background-color: #E0E0E0;
 }
 
-#fieldset-openid-login label, #login-form label {
+#fieldset-openid-login label,
+#login-form label {
   display: block;
   margin: 0 auto;
   text-align: center;
   font-family: RobotoM;
   color: @dark-gray;
 }
-
-.pb-ajax > div {
-   width: 100%;
-  }
 
 #login-form .field {
   margin: 1em 0;
