@@ -1,10 +1,10 @@
-<div class="fp-tile-fixes">
-  <h3><a href="" tal:content="view/title" tal:define="url view/parent/absolute_url" tal:attributes="href url"></a></h3>
-  <ul tal:define="items view/items" style="padding-left:0.2em">
-    <li tal:repeat="obj items" style="list-style-image: url(/++theme++climateadapt/static/cca/img/01_plus.png)">
+<div tal:attributes="class view/__name__">
+  <h2><a href="" tal:content="view/title" tal:define="url view/parent/absolute_url" tal:attributes="href url"></a></h2>
+  <ul tal:define="items view/items">
+    <li tal:repeat="obj items">
       <a href="" tal:attributes="href python: view.get_external_url(obj)">
-          <span tal:content="python: view.get_item_date(obj)"></span>,
           <span tal:content="obj/Title"></span>
+          <p tal:content="python: view.get_item_date(obj)" class="news-time"></p>
       </a>
     </li>
   </ul>

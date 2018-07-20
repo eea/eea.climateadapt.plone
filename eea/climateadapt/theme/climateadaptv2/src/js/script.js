@@ -194,4 +194,7 @@ $(document).ready(function() {
 
   $('.share-your-info-ace-button button').addClass('standard-button primary-button');
 
+  // add btn class to download as pdf
+  $("#document-action-download_pdf").find('a').addClass('btn btn-primary');
+
 });

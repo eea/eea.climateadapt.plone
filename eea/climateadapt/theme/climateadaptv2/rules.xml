@@ -25,9 +25,13 @@
 
     <rules css:if-content=".section-frontpage">
       <theme href="index.html" />
+      <replace css:content-children=".fp-news-tile" css:theme-children=".fp-news-tile" />
+      <replace css:content-children=".fp-events-tile" css:theme-children=".fp-events-tile" />
+
     </rules>
     <rules css:if-not-content=".section-frontpage">
       <theme href="page.html" />
+
     </rules>
     <replace css:content="#portal-columns" css:theme="#page-body"/>
     <replace css:content="#navbar" css:theme=".main-nav" href="@@site_navbar" method="document"/>
