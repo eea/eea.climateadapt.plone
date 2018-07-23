@@ -282,6 +282,19 @@ a.read-more:hover {
   color: #FFF;
 }
 
+.secondary-button {
+  font-family: RobotoM;
+  font-size: 16px;
+  border: none;
+  background-color: #efefef;
+  color: @dark-gray;
+}
+
+.secondary-button:hover {
+  background-color: #E0E0E0;
+  color: inherit;
+}
+
 .portalMessage {
   background-color: lightgrey;
 }
@@ -317,6 +330,7 @@ a.read-more:hover {
   border: none;
   background-color: transparent;
   box-shadow: none;
+  margin-top: 20px;
 }
 
 .panel-default > .panel-heading {
@@ -341,7 +355,7 @@ a.read-more:hover {
 .content-column,
 .content-sidebar {
   background-color: #fff;
-  padding: 20px;
+  padding: 15px;
 }
 
 .content-column .tile-content p {
@@ -376,4 +390,13 @@ a.read-more:hover {
 .share-your-info-ace-button button {
   font-size: 17px;
   font-family: RobotoM;
+  position: relative;
+  padding: 10px 13px 10px 45px;
+}
+
+.share-your-info-ace-button button:before {
+  content: url("../images/info-share-btn.png");
+  position: absolute;
+  top: 9px;
+  left: 10px;
 }

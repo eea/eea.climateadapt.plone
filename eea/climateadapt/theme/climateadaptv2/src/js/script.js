@@ -189,12 +189,20 @@ $(document).ready(function() {
   $('.column.col-md-9').children().wrapAll('<div class="content-column"/>');
   $('.column.col-md-3').children().wrapAll('<div class="content-sidebar"/>');
 
-  $('.content-column').find('img').parent().addClass('clearfix');
+  $('.content-column').find('img').closest('.tile-content').addClass('clearfix');
   $('.content-column').children('.col-md-4').wrapAll('<div class="row"/>');
 
+  // add primary button class to share your information
   $('.share-your-info-ace-button button').addClass('standard-button primary-button');
+  $('.share-your-info-ace-button button')
 
   // add btn class to download as pdf
-  $("#document-action-download_pdf").find('a').addClass('btn btn-primary');
+  $("#document-action-download_pdf").find('a').addClass('standard-button secondary-button');
+  $("#login-form .formControls input").addClass('standard-button secondary-button');
+
+  var isPolicyPage = $('.subsection-sector-policies').length > 0;
+  if (isPolicyPage) {
+    $('#document-action-download_pdf').parent().appendTo(".content-column");
+  }
 
 });
