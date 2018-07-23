@@ -635,7 +635,7 @@
         handler=".update.update_to_43"
         profile="eea.climateadapt:default" />
 
-    <!-- v3 upgrade -->
+    <!-- v44 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_44"
         title="Upgrade profile for eea.climateadapt v44"
@@ -653,7 +653,7 @@
             />
     </genericsetup:upgradeSteps>
 
-    <!-- v3 upgrade -->
+    <!-- v45 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_45"
         title="Upgrade profile for eea.climateadapt v45"
@@ -671,7 +671,7 @@
             />
     </genericsetup:upgradeSteps>
 
-    <!-- v3 upgrade -->
+    <!-- v46 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_46"
         title="Upgrade profile for eea.climateadapt v46"
@@ -688,5 +688,14 @@
             import_profile="eea.climateadapt:eeaclimateadapt_to_46"
             />
     </genericsetup:upgradeSteps>
+
+    <!-- v47 upgrade -->
+    <genericsetup:upgradeStep
+        title="Upgrade eea.climateadapt to v47"
+        description=""
+        source="46"
+        destination="47"
+        handler=".update.update_to_47"
+        profile="eea.climateadapt:default" />
 
 </configure>

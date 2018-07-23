@@ -663,6 +663,7 @@ def update_to_41(context):
 
 
 def update_to_42(context):
+    return
     logger.info("Upgrading to 42")
     logger.info("Updating the invalidating cache permission with new roles")
 
@@ -672,6 +673,7 @@ def update_to_42(context):
 
 
 def update_to_43(context):
+    return
     logger.info("Upgrading to 43")
     logger.info("Importing workflow")
 
@@ -679,3 +681,50 @@ def update_to_43(context):
         'profile-eea.climateadapt:eeaclimateadapt_to_43', 'workflow')
 
     logger.info('Finished upgrade 43')
+
+
+def update_to_47(context):
+    logger.info("Upgrading to 47.")
+
+    catalog = portal.get_tool(name='portal_catalog')
+    query = {'portal_type': [
+        'eea.climateadapt.aceproject',
+        'eea.climateadapt.adaptationoption',
+        'eea.climateadapt.casestudy',
+        'eea.climateadapt.guidancedocument',
+        'eea.climateadapt.indicator',
+        'eea.climateadapt.informationportal',
+        'eea.climateadapt.mapgraphdataset',
+        'eea.climateadapt.organisation',
+        'eea.climateadapt.publicationreport',
+        'eea.climateadapt.researchproject',
+        'eea.climateadapt.tool',
+        # 'eea.climateadapt.city_profile',
+    ]}
+    results = catalog.searchResults(**query)
+    logger.info('Got %s results.' % len(results))
+    items_count = 0
+
+    for brain in results:
+        obj = brain.getObject()
+
+        if items_count % 100 == 0:
+            logger.info('Went through %s brains' % items_count)
+        items_count += 1
+        modified = 0
+        climate = obj.climate_impacts
+        sectors = obj.sectors
+
+        if len(climate) == 7 and 'NONSPECIFIC' not in climate:
+            modified += 1
+            climate = ['NONSPECIFIC']
+        if len(sectors) == 13 and 'NONSPECIFIC' not in sectors:
+            modified += 1
+            sectors = ['NONSPECIFIC']
+
+        if modified != 0:
+            obj.climate_impacts = climate
+            obj.sectors = sectors
+            obj.reindexObject()
+            obj._p_changed = True
+    logger.info("Finished upgrade 47.")

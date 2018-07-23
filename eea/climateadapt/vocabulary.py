@@ -199,6 +199,7 @@ _sectors = [    # this is the canonical
     ("BUILDINGS", "Buildings"),
     #   ("OTHER", "Other"),
     ("WATERMANAGEMENT", "Water management"),
+    ("NONSPECIFIC", "Non specific"),
 ]
 aceitem_sectors_vocabulary = generic_vocabulary(_sectors)
 alsoProvides(aceitem_sectors_vocabulary, IVocabularyFactory)
@@ -232,6 +233,7 @@ _climateimpacts = [
     ("DROUGHT", "Droughts"),
     ("STORM", "Storms"),
     ("ICEANDSNOW", "Ice and Snow"),
+    ("NONSPECIFIC", "Non specific"),
 ]
 aceitem_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts)
 alsoProvides(aceitem_climateimpacts_vocabulary, IVocabularyFactory)

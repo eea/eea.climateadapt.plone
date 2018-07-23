@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Task: Added new tag for climate impacts/sectors and migration step
+  [iulianpetchesi #96733]
 * Add Export to Excel action link to the /admin page
   [dumitval #96088]
 * Change: Modified the broken links script so that it gets more results
