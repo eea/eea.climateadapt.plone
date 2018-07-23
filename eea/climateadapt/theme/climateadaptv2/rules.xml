@@ -27,6 +27,8 @@
       <theme href="index.html" />
       <replace css:content-children=".fp-news-tile" css:theme-children=".fp-news-tile" />
       <replace css:content-children=".fp-events-tile" css:theme-children=".fp-events-tile" />
+      <!-- slider -->
+      
 
     </rules>
     <rules css:if-not-content=".section-frontpage.template-standard">
