@@ -23,13 +23,13 @@
     <copy attributes="id dir" css:content="body" css:theme="body"/>
     <copy attributes="role" css:content="content" css:theme="contentspace"/>
 
-    <rules css:if-content=".section-frontpage">
+    <rules css:if-content=".section-frontpage.template-standard">
       <theme href="index.html" />
       <replace css:content-children=".fp-news-tile" css:theme-children=".fp-news-tile" />
       <replace css:content-children=".fp-events-tile" css:theme-children=".fp-events-tile" />
 
     </rules>
-    <rules css:if-not-content=".section-frontpage">
+    <rules css:if-not-content=".section-frontpage.template-standard">
       <theme href="page.html" />
 
     </rules>
