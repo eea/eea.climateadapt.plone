@@ -794,4 +794,19 @@
     permission="cmf.ManagePortal"
     />
 
+  <browser:page
+    class=".main.FullWidthContentTypes"
+    for="*"
+    name="fullwidth_content_types"
+    permission="zope.Public"
+  />
+
+  <browser:page
+      for="*"
+      name="main_template"
+      template="../skins/eea_overrides_templates/main_template.pt"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+      permission="zope.Public"
+  />
+
 </configure>
