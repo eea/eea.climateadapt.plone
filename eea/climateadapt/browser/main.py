@@ -1,12 +1,10 @@
 """ Controllers
 """
 from Products.Five.browser import BrowserView
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone import utils as putils
-from Acquisition import aq_base, aq_inner, aq_parent
 from plone.memoize.view import memoize
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
+
 
 class FullWidthContentTypes(BrowserView):
     """ Fullwidth body class content-types
@@ -30,5 +28,5 @@ class FullWidthContentTypes(BrowserView):
         """ content registry cache
         """
         registry = getUtility(IRegistry)
-        return registry.get('eea.climateadapt.browser.interfaces.'
-                            'IEEAContentTypesSettings.fullwidthFor')
+        return registry.get('eea.climateadapt.interfaces.'
+                            'ICCAContentTypesSettings.fullwidthFor')

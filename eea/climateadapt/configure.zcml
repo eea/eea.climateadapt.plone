@@ -26,6 +26,7 @@
     <include package="._importer" />
     <include package=".upgrades" />
 
+    <include file="skins.zcml" />
     <include file="profiles.zcml" />
     <include file="stringinterp.zcml" />
     <include file="cache.zcml" />
