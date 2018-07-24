@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<registry>
+        <record interface="eea.climateadapt.browser.interfaces.IEEAContentTypesSettings" field="fullwidthFor">
+            <value purge="false">
+                <element>Document</element>
+            </value>
+        </record>
+</registry>

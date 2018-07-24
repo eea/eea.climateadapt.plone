@@ -8,30 +8,6 @@ from plone.memoize.view import memoize
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
 
-
-class Main(BrowserView):
-    """ Main View
-    """
-    def _getRoot(self):
-        """ Return the root of our application. """
-        if not putils.base_hasattr(self, '_root'):
-            portal_url = getToolByName(self.context, 'portal_url')
-            portal = portal_url.getPortalObject()
-            obj = self.context
-            while aq_base(obj) is not aq_base(portal):
-                obj = aq_parent(aq_inner(obj))
-            self._root = [obj]
-        return self._root[0]
-
-    def inApplication(self):
-        """ Application?
-        """
-        root = self._getRoot()
-        portal_url = getToolByName(self.context, 'portal_url')
-        portal = portal_url.getPortalObject()
-        return root != aq_base(portal)
-
-
 class FullWidthContentTypes(BrowserView):
     """ Fullwidth body class content-types
     """
@@ -54,5 +30,5 @@ class FullWidthContentTypes(BrowserView):
         """ content registry cache
         """
         registry = getUtility(IRegistry)
-        return registry.get('Products.EEAContentTypes.browser.interfaces.'
+        return registry.get('eea.climateadapt.browser.interfaces.'
                             'IEEAContentTypesSettings.fullwidthFor')
