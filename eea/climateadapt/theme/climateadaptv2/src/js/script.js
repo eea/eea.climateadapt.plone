@@ -186,23 +186,61 @@ $(document).ready(function() {
     }
   });
 
-  $('.column.col-md-9').children().wrapAll('<div class="content-column"/>');
-  $('.column.col-md-3').children().wrapAll('<div class="content-sidebar"/>');
-
-  $('.content-column').find('img').closest('.tile-content').addClass('clearfix');
-  $('.content-column').children('.col-md-4').wrapAll('<div class="row"/>');
-
   // add primary button class to share your information
   $('.share-your-info-ace-button button').addClass('standard-button primary-button');
-  $('.share-your-info-ace-button button')
 
   // add btn class to download as pdf
   $("#document-action-download_pdf").find('a').addClass('standard-button secondary-button');
   $("#login-form .formControls input").addClass('standard-button secondary-button');
 
+  // EU sector policies
+  $('.column.col-md-9').children().wrapAll('<div class="content-column"/>');
+  $('.column.col-md-3').children().wrapAll('<div class="content-sidebar"/>');
+
+  $('.content-column').find('img').closest('.tile-content').addClass('main-tile-content');
+  $('.content-column').children('.col-md-4').wrapAll('<div class="row"/>');
+
   var isPolicyPage = $('.subsection-sector-policies').length > 0;
+
   if (isPolicyPage) {
+    // move pdf button and 'last modified' viewlet to the main content area
     $('#document-action-download_pdf').parent().appendTo(".content-column");
+    $('.content-column').prepend($('#viewlet-below-content-title'));
+
+    var policySubTitles = $('.read_more_second').children('h2');
+
+    policySubTitles.each(function() {
+      $(this).replaceWith($('<p><strong>' + this.innerHTML + '</strong><p>'));
+    })
+
+    // restructure the content
+    $('.main-tile-content').prepend('<div class="flex-wrapper"/>');
+    $('.flex-wrapper').append([
+      $('.main-tile-content img'),
+      $('.read_more_first')
+    ]);
+
+    var policyTitle = $('.main-tile-content').children('h2');
+    $('.main-tile-content').prepend([
+      policyTitle,
+      $('.main-tile-content').children().find('h2')
+    ]);
+
+    // Eu sector policy factsheet
+    var factsheetIMG = $('.content-sidebar .image-inline').parent();
+    var factheetCategory = $('.main-tile-content h2').text();
+
+    factsheetIMG.html(function(i,h) {
+      return h.replace(/&nbsp;/g,'');
+    });
+
+    $('.column.col-md-3').prepend(factsheetIMG);
+    $('.column.col-md-3 .image-inline').parent().append(
+    '<div class="factsheet-pdf">' +
+    '<i class="fa fa-angle-double-right"></i>' +
+    '<div class="factsheet-title">Factsheet on <span>' +
+    factheetCategory + '</span></div></div>');
+    $('.column.col-md-3 .image-inline').hide();
   }
 
 });

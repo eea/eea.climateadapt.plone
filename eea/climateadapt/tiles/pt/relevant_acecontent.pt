@@ -46,11 +46,12 @@
 
     <div class="cover-richtext-tile tile-content aceitem-relevant-tile" tal:condition="not: is_compose" tal:define="assigned view/assigned">
 
-      <div style="margin-top:0.4em; margin-right: 0.6em;float:left" class="hiddenForAnon">
+      <div style="margin-top:0.2em; margin-right: 0.6em;float:left" class="hiddenForAnon">
         <a href=""
           class="pat-plone-modal"
           tal:attributes="href string:#info${view/id}">
-          <img src="/++theme++climateadapt/static/cca/img/vergrootglas.png" />
+          <!-- <img src="/++theme++climateadapt/static/cca/img/vergrootglas.png" /> -->
+          <i class="fa fa-search"></i>
         </a>
         <div tal:attributes="id string:info${view/id}" style="display:none" >
           <h1>Relevant tile info</h1>
