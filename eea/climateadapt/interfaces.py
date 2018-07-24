@@ -87,3 +87,17 @@ class IGoogleAnalyticsAPI(Interface):
         description=u"Use the https://ga-dev-tools.appspot.com/"
         u"account-explorer/ to find a view ID "
     )
+
+
+class ICCAContentTypesSettings(Interface):
+    """ portal_registry ICCAContentTypes settings
+    """
+
+    fullwidthFor = schema.Tuple(
+        title=u"Fullwidth ContentTypes",
+        description=u"Enable body fullwidth class for the "
+                      "following content-types",
+        required=False,
+        value_type=schema.Choice(
+            vocabulary="plone.app.vocabularies.ReallyUserFriendlyTypes")
+    )
