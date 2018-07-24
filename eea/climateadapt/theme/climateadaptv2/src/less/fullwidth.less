@@ -23,10 +23,15 @@
 
 
   .footer-content {
-    padding-bottom: 45px;
+    padding-bottom: 50px;
 
-    .eu-systems p {
-      margin-bottom: 0;
+    .eu-systems {
+      width: 25%;
+      margin-left: 50%;
+
+      p {
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -45,6 +50,29 @@
     & > .content-container {
       max-width: 100%;
       padding-left: 1.9em;
+    }
+
+    .site-info {
+      width: 25%;
+    }
+  }
+
+  @media handheld, screen and (max-device-width: 967px){
+    .footer-content {
+      .eu-systems {
+        width: inherit;
+        margin-left: inherit;
+
+        p {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    footer {
+      .site-info {
+        width: 50%;
+      }
     }
   }
 
