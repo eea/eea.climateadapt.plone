@@ -40,8 +40,18 @@
     }
   }
 
-  footer > .content-container {
-    max-width: 100%;
-    padding-left: 1.9em;
+  footer {
+
+    & > .content-container {
+      max-width: 100%;
+      padding-left: 1.9em;
+    }
   }
+
+  @media handheld, screen and (max-device-width: 480px){
+    #portal-column-one, #portal-column-two, #portal-column-content {
+      margin-left: 0;
+    }
+  }
+  
 }
