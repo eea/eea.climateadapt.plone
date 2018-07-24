@@ -20,6 +20,8 @@
 
   .site-container {
     max-width: 100%;
+    width: 100%;
+    overflow: hidden;
   }
 
   #portal-breadcrumbs {
@@ -59,18 +61,22 @@
 
     .site-info {
       width: 25%;
+      p {
+        text-align: justify;
+      }
     }
   }
 
-  @media handheld, screen and (max-device-width: 967px){
+  @media screen and (max-width: 967px){
     .footer-content {
       .eu-systems {
-        width: inherit;
-        margin-left: inherit;
+        width: initial;
+        margin:0 auto;
+        margin-top: 20px;
 
         p {
           margin-bottom: 0;
-          text-align: justify;
+          text-align: center;
         }
       }
     }
@@ -78,14 +84,23 @@
     footer {
       .site-info {
         width: 50%;
+
       }
     }
   }
 
-  @media handheld, screen and (max-device-width: 480px){
+  @media screen and (max-width: 480px){
+
     #portal-column-one, #portal-column-two, #portal-column-content {
       margin-left: 0;
     }
+
+    footer {
+      .site-info {
+        width: 75%;
+
+      }
+    }
   }
-  
+
 }
