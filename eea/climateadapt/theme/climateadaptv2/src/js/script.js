@@ -256,17 +256,22 @@ $(document).ready(function() {
     $('.column.col-md-3 .image-inline').hide();
   }
 
-  if (window.matchMedia("(max-width: 480px)").matches) {
-    $.each( $(".content-container table table"),function (indx, item) {
-        if($(item).parent().prop("tagName") !== "DIV" ){
-          $(item).wrapAll('<div style="overflow-x: auto;width: 86vw; "></div>');
-        } else {
-          $(item).parent().css({
-              "overflow-x": "auto",
-              "width" : "86vw"
+  function resizehandlerforContentTables(ev){
+      if (window.matchMedia("(max-width: 480px)").matches) {
+          $.each( $(".content-container table"),function (indx, item) {
+              if($(item).parent().prop("tagName") !== "DIV" ){
+                  $(item).wrapAll('<div style="overflow-x: auto;width: 86vw; "></div>');
+              } else {
+                  $(item).parent().css({
+                      "overflow-x": "auto",
+                      "width" : "86vw"
+                  });
+              }
           });
-        }
-    });
+      }
   }
+  resizehandlerforContentTables();
+
+  $( window ).resize(resizehandlerforContentTables);
 
 });
