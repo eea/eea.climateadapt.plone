@@ -14,7 +14,7 @@ $(document).ready(function() {
   }
 
   // HOMEPAGE: move slick slider dots to slider caption area
-  $(".slick-dots").prependTo(".slider-bottom-caption");
+  // $(".slick-dots").prependTo(".slider-bottom-caption");
 
   // HOMEPAGE: align slider caption and slider arrows to the main content area
   function getPageContainerPadding() {

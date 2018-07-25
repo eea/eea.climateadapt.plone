@@ -29,6 +29,8 @@
       <replace css:content-children=".fp-events-tile" css:theme-children=".fp-events-tile" />
       <replace css:theme=".country-dropdown select" css:content="#fp-country-selector"  />
 
+      <replace css:theme=".slider" css:content=".slider"  />
+
       <!-- slider -->
       
 
