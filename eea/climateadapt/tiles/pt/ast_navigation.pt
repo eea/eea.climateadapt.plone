@@ -59,8 +59,61 @@
     });
   </script>
 
-  <ul id="ast-menu">
+  <div class="ast-map-image ast-map">
+    <div class="arrow-round">
+      <span class="ast-image-title">Adaptation <br /> Support Tool</span>
+      <div>
+        <a class="ast-step-wrapper" href="/adaptation-support-tool/step-1">
+          <span class="ast-circle circle-1">1</span>
+          <span class="step-text circle-1-text">
+            <p>Preparing the ground for adaptation</p>
+          </span>
+        </a>
+      </div>
+      <div>
+        <a class="ast-step-wrapper" href="/adaptation-support-tool/step-2">
+          <span class="ast-circle circle-2">2</span>
+          <span class="step-text circle-2-text">
+            <p>Assessing risks and vulnerability <br> to climate change</p>
+          </span>
+        </a>
+      </div>
+      <div>
+        <a class="ast-step-wrapper" href="/adaptation-support-tool/step-3">
+          <span class="ast-circle circle-3">3</span>
+          <span class="step-text circle-3-text">
+            <p>Identifying adaptation options</p>
+          </span>
+        </a>
+      </div>
+      <div>
+        <a class="ast-step-wrapper" href="/adaptation-support-tool/step-4">
+          <span class="ast-circle circle-4">4</span>
+          <span class="step-text circle-4-text">
+            <p>Assessing adaptation options</p>
+          </span>
+        </a>
+      </div>
+      <div>
+        <a class="ast-step-wrapper" href="/adaptation-support-tool/step-5">
+          <span class="ast-circle circle-5">5</span>
+          <span class="step-text circle-5-text">
+            <p>Implementation</p>
+          </span>
+        </a>
+      </div>
+      <div>
+        <a class="ast-step-wrapper" href="/adaptation-support-tool/step-6">
+          <span class="ast-circle circle-6">6</span>
+          <span class="step-text circle-6-text">
+            <p>Monitoring & Evaluation (M&E)</p>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
 
+  <ul id="ast-menu">
     <li>
       <a href="/adaptation-support-tool" name="step-0" onclick="document.location.href='/adaptation-support-tool'">The Adaptation Support Tool - Getting started</a>
       <ul id="step-0">

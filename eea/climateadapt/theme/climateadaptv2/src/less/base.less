@@ -356,6 +356,7 @@ a.read-more {
   font-size: 18px;
 }
 
+// EU sector policies
 .section-eu-adaptation-policy #content {
   background-color:  transparent;
   padding: 0;
@@ -481,4 +482,141 @@ a.read-more {
 .factsheet-pdf:hover {
   background-color: @primary-green;
   color: #fff;
+}
+
+
+// Adaptation support tool
+#ast-menu .ui-state-default .ui-icon {
+  float: left;
+  display: none;
+}
+
+#ast-menu .ui-accordion .ui-accordion-header {
+  border-radius: 0;
+}
+
+#ast-menu .ui-state-default {
+  border: none;
+  border-radius: 0;
+  padding: 10px 8px;
+  background: @primary-blue;
+}
+
+#content #ast-menu .ui-state-active {
+  background: none;
+  background-color: #F2C94C;
+  color: @dark-gray !important;
+}
+
+#ast-menu .ui-accordion-content {
+  padding: 1em;
+  border: none;
+  background: #F2F2F2;
+  border-radius: 0;
+}
+
+#ast-menu .ui-state-hover {
+  background: #F2C94C;
+}
+
+#ast-menu .ui-accordion-li-fix {
+  padding-top: 5px;
+}
+
+#ast-menu .ui-accordion-li-fix:first-child > a {
+  background: transparent;
+  color: @dark-gray !important;
+  border: 1px solid #D9D6D6;
+}
+
+#ast-menu .ui-widget-content a {
+  font-family: RobotoR;
+}
+
+#content ul#ast-menu ul > li:before {
+  color: @primary-blue;
+}
+
+#ast-menu .ui-accordion-content-active a.active {
+  color: @primary-blue;
+  font-family: RobotoM;
+}
+
+.ast-map {
+  margin-bottom: 55px;
+
+  .ast-image-title {
+    text-align: center;
+    font-family: RobotoM;
+    color: @primary-blue;
+    position: absolute;
+    top: 66px;
+    left: 35px;
+  }
+}
+
+.ast-title-step {
+  background-color: #FFD554;
+  border: 2px solid #F2C94C;
+  border-radius: 50%;
+  box-sizing: initial;
+  height: 35px;
+  width: 35px;
+  font-family: RobotoB;
+  font-size: 18px;
+  color: @dark-gray;
+  line-height: 35px;
+  text-align: center;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.ast-map .ast-circle:hover {
+  background-color: #FFD554;
+  border: 2px solid #F2C94C;
+  transform: scale(1.08);
+  color: #4F4F4F;
+}
+
+.ast-map .ast-circle:hover > .step-text  {
+  display: block;
+}
+
+.ast-map .step-text {
+  display: none;
+  background-color: #FFD554;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+  z-index: 99;
+}
+
+.ast-map .circle-1-text {
+  top: 47px;
+  right: -90px;
+}
+
+.ast-map .circle-2-text {
+  top: 110px;
+  right: -100px;
+}
+
+.ast-map .circle-3-text {
+  top: 170px;
+  right: -80px;
+}
+
+.ast-map .circle-4-text {
+  min-width: 190px;
+  max-width: 100%;
+  bottom: -70px;
+  right: -17px;
+}
+
+.ast-map .circle-5-text {
+  top: 167px;
+  left: -41px;
+}
+
+.ast-map .circle-6-text {
+  top: 106px;
+  left: -106px;
 }
