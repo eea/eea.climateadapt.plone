@@ -27,7 +27,6 @@
          }
         });
 
-        $("a.ui-state-active").parent().css('background-color', '#6D7A2B');
         var b = new Array();
         $("#ast-menu li a").each(function() {
             b.push($(this).attr("href"))
@@ -73,7 +72,7 @@
     </li>
 
     <li>
-      <a href="/adaptation-support-tool/step-1" name="step-1" onclick="document.location.href='/adaptation-support-tool/step-1'"><strong>1.</strong> Preparing the ground for adaptation</a>
+      <a href="/adaptation-support-tool/step-1" name="step-1" onclick="document.location.href='/adaptation-support-tool/step-1'">1. Preparing the ground for adaptation</a>
       <ul id="step-1">
         <li><a href="/adaptation-support-tool/step-1/high-level-support" name="step-1-1" onclick="document.location.href='/adaptation-support-tool/step-1/high-level-support'">Obtain high-level support</a></li>
         <li><a href="/adaptation-support-tool/step-1/set-up-process" name="step-1-2" onclick="document.location.href='/adaptation-support-tool/step-1/set-up-process'">Set up the process</a></li>
@@ -88,7 +87,7 @@
     </li>
 
     <li>
-      <a href="/adaptation-support-tool/step-2" name="step-2" onclick="document.location.href='/adaptation-support-tool/step-2'"><strong>2.</strong> Assessing risks and vulnerabilities to climate change</a>
+      <a href="/adaptation-support-tool/step-2" name="step-2" onclick="document.location.href='/adaptation-support-tool/step-2'">2. Assessing risks and vulnerabilities to climate change</a>
       <ul id="step-2">
         <li><a href="/adaptation-support-tool/step-2/past-weather-events" name="step-2-1" onclick="document.location.href='/adaptation-support-tool/step-2/past-weather-events'">Analyse how past weather events have affected your area</a></li>
         <li><a href="/adaptation-support-tool/step-2/risk-vulnerability-assessment" name="step-2-2" onclick="document.location.href='/adaptation-support-tool/step-2/risk-vulnerability-assessment'">Undertake a climate change risks and vulnerability assessment</a></li>
@@ -102,7 +101,7 @@
       </ul>
     </li>
 
-    <li><a href="/adaptation-support-tool/step-3" name="step-3" onclick="document.location.href='/adaptation-support-tool/step-3'"><strong>3.</strong> Identifying adaptation options</a>
+    <li><a href="/adaptation-support-tool/step-3" name="step-3" onclick="document.location.href='/adaptation-support-tool/step-3'">3. Identifying adaptation options</a>
       <ul id="step-3">
         <li><a href="/adaptation-support-tool/step-3/collect-options" name="step-3-1" onclick="document.location.href='/adaptation-support-tool/step-3/collect-options'">Collect appropriate adaptation options given your country´s main concerns</a></li>
         <li><a href="/adaptation-support-tool/step-3/explore-good-practices" name="step-3-2" onclick="document.location.href='/adaptation-support-tool/step-3/explore-good-practices'">Explore good practices and existing measures</a></li>
@@ -115,7 +114,7 @@
     </li>
 
     <li>
-      <a href="/adaptation-support-tool/step-4" name="step-4" onclick="document.location.href='/adaptation-support-tool/step-4'"><strong>4.</strong> Assessing adaptation options</a>
+      <a href="/adaptation-support-tool/step-4" name="step-4" onclick="document.location.href='/adaptation-support-tool/step-4'">4. Assessing adaptation options</a>
       <ul id="step-4">
         <li><a href="/adaptation-support-tool/step-4/assess-time-cost-benefits" name="step-4-1" onclick="document.location.href='/adaptation-support-tool/step-4/assess-time-cost-benefits'">Assess possible options in terms of time, cost, benefits and efforts</a></li>
         <li><a href="/adaptation-support-tool/step-4/cross-cutting-issues" name="step-4-2" onclick="document.location.href='/adaptation-support-tool/step-4/cross-cutting-issues'">Assess cross-cutting issues, trade-offs and synergies of adaptation options</a></li>
@@ -128,7 +127,7 @@
       </ul>
     </li>
 
-    <li><a href="/adaptation-support-tool/step-5" name="step-5" onclick="document.location.href='/adaptation-support-tool/step-5'"><strong>5.</strong> Implementation</a>
+    <li><a href="/adaptation-support-tool/step-5" name="step-5" onclick="document.location.href='/adaptation-support-tool/step-5'">5. Implementation</a>
       <ul id="step-5">
         <li><a href="/adaptation-support-tool/step-5/mainstreaming" name="step-5-1" onclick="document.location.href='/adaptation-support-tool/step-5/mainstreaming'">Mainstreaming: Identify and make use of entry points for adaptation</a></li>
         <li><a href="/adaptation-support-tool/step-5/seek-agreements" name="step-5-2" onclick="document.location.href='/adaptation-support-tool/step-5/seek-agreements'">Seek agreements with stakeholders responsible for implementation</a></li>
@@ -141,7 +140,7 @@
     </li>
 
     <li>
-      <a href="/adaptation-support-tool/step-6" name="step-6" onclick="document.location.href='/adaptation-support-tool/step-6'"><strong>6.</strong> Monitoring and evaluation</a>
+      <a href="/adaptation-support-tool/step-6" name="step-6" onclick="document.location.href='/adaptation-support-tool/step-6'">6. Monitoring and evaluation</a>
       <ul id="step-6">
         <li><a href="/adaptation-support-tool/step-6/understanding-drivers" name="step-6-1"
             onclick="document.location.href='/adaptation-support-tool/step-6/understanding-drivers'">Understanding drivers and purposes</a>

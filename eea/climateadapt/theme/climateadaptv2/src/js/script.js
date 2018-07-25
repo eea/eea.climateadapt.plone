@@ -194,13 +194,26 @@ $(document).ready(function() {
   $("#login-form .formControls input").addClass('standard-button secondary-button');
 
   // EU sector policies
+  var currentLocation = window.location.pathname;
+  var lastPathName = currentLocation.substr(currentLocation.lastIndexOf('/') + 1);
+
+  var policyClass = 'subsection-sector-policies-' + lastPathName;
+
+  // add a specific class for policy pages
+  var bodyClassList = $('body').attr('class').split(/\s+/);
+  $.each(bodyClassList, function(index, item) {
+    if (item === policyClass) {
+      $('body').addClass('eu-policy-page');
+    }
+  });
+
   $('.column.col-md-9').children().wrapAll('<div class="content-column"/>');
   $('.column.col-md-3').children().wrapAll('<div class="content-sidebar"/>');
 
   $('.content-column').find('img').closest('.tile-content').addClass('main-tile-content');
   $('.content-column').children('.col-md-4').wrapAll('<div class="row"/>');
 
-  var isPolicyPage = $('.subsection-sector-policies').length > 0;
+  var isPolicyPage = $('.eu-policy-page').length > 0;
 
   if (isPolicyPage) {
     // move pdf button and 'last modified' viewlet to the main content area

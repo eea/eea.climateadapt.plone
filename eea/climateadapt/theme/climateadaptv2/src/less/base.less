@@ -238,10 +238,10 @@ a:hover {
 a.read-more {
   color: #EF7000;
   font-size: 12px;
-}
 
-a.read-more:hover {
-  color: #ff963a;
+  &:hover {
+    color: #ff963a;
+  }
 }
 
 .content-container {
@@ -276,11 +276,11 @@ a.read-more:hover {
   background: @secondary-blue linear-gradient(#0170B7, #1697E9) no-repeat;
   color: #fff;
   border: 2px solid @secondary-blue;
-}
 
-.primary-button:hover {
-  background: @secondary-blue;
-  color: #FFF;
+  &:hover {
+    background: @secondary-blue;
+    color: #fff;
+  }
 }
 
 .secondary-button {
@@ -289,11 +289,11 @@ a.read-more:hover {
   border: none;
   background-color: #efefef;
   color: @dark-gray;
-}
 
-.secondary-button:hover {
-  background-color: #E0E0E0;
-  color: inherit;
+  &:hover {
+    background-color: #E0E0E0;
+    color: inherit;
+  }
 }
 
 .portalMessage {
@@ -361,14 +361,17 @@ a.read-more:hover {
   padding: 0;
 }
 
+.eu-policy-page #content {
+  background-color: transparent;
+  padding: 0;
+}
+
 .column {
-  padding-right: 10px;
-  padding-left: 10px;
+  padding: 0 10px;
 }
 
 .row {
-  margin-right: -10px;
-  margin-left: -10px;
+  margin: 0 -10px;
 }
 
 .content-column,
@@ -412,12 +415,12 @@ a.read-more:hover {
   font-size: 14px;
 }
 
-.content-column .aceitem-relevant-tile .fa-search {
+.aceitem-relevant-tile .fa-search {
   font-size: 18px;
   color: @primary-green;
 }
 
-.content-sidebar .aceitem-search-tile .fa-search {
+.aceitem-search-tile .fa-search {
   font-size: 16px;
   color: @primary-blue;
 }
@@ -438,9 +441,14 @@ a.read-more:hover {
 }
 
 .main-tile-content img {
-    float: none !important;
-    margin-bottom: 0;
-    align-self: flex-start;
+  float: none !important;
+  margin-bottom: 0;
+  align-self: flex-start;
+  flex: 1;
+}
+
+.main-tile-content .read_more_first {
+  flex: 1;
 }
 
 .main-tile-content .flex-wrapper {

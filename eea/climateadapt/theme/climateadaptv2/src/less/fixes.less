@@ -31,6 +31,7 @@
 #content {
   padding: 1.5em;
   background-color: #fff;
+  border: 1px solid #E5E5E5;
 }
 
 #breadcrumbs-you-are-here {
@@ -62,6 +63,7 @@
   font-family: RobotoR;
   font-size: 14px;
   color: @dark-gray;
+  list-style-position: inside;
 }
 
 #breadcrumbs-current {
@@ -161,4 +163,55 @@ textarea:focus {
 
 #login-form .field {
   margin: 1em 0;
+}
+
+.panel-body {
+  padding: 0;
+}
+
+// adaptation support tool accordion
+#ast-menu .ui-state-default .ui-icon {
+  float: left;
+  display: none;
+}
+
+#ast-menu .ui-accordion .ui-accordion-header {
+  border-radius: 0;
+}
+
+#ast-menu .ui-accordion-li-fix:first-child a {
+  background: transparent;
+  color: @dark-gray;
+}
+
+#ast-menu .ui-state-default {
+  border: none;
+  border-radius: 0;
+  padding: 10px;
+  background: @primary-blue;
+}
+
+#ast-menu .ui-state-active {
+  background: none;
+  background-color: #F2C94C;
+  color: @dark-gray !important;
+}
+
+#ast-menu .ui-accordion-content {
+  padding: 1em;
+  border: none;
+  background: #F2F2F2;
+  border-radius: 0;
+}
+
+#ast-menu .ui-state-hover {
+  background: #F2C94C;
+}
+
+#ast-menu .ui-accordion-li-fix {
+  padding-top: 5px;
+}
+
+#ast-menu .ui-widget-content a {
+  font-family: RobotoR;
 }
