@@ -215,3 +215,46 @@ textarea:focus {
 #ast-menu .ui-widget-content a {
   font-family: RobotoR;
 }
+
+/*@media screen and (max-width: 967px){
+  .tile-content div div > table {
+    !*width: 100% !important;*!
+
+    td {
+
+      p {
+        margin-left: 0 !important;
+      }
+    }
+  }
+}*/
+
+@media screen and (max-width: 480px) {
+  /* For devices with narrow screens, phones, tablets, etc. */
+  #portal-column-one,
+  #portal-column-two,
+  #portal-column-content {
+    clear: both;
+    width: 97.75%;
+    margin-left: 0;
+    overflow-x: auto;
+  }
+
+  .tile-content div div  table {
+    td {
+      /*float:left;*/
+      /*width: 100% !important;*/
+
+      /*table {
+        width: 100% !important;
+      }
+      width: 86vw;*/
+      p {
+        width: 86vw;
+      }
+
+
+    }
+  }
+
+}
