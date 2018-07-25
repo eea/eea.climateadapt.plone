@@ -102,7 +102,7 @@ $(document).ready(function() {
 
   // HOMEPAGE: Dynamic area - Adaptation support tool:
   // Highlight steps on hover
-  $(".ast-step-wrapper").hover(function() {
+  $('.dynamic-area .ast-step-wrapper').hover(function() {
     $(this).children('.ast-circle').css({
       'background-color': '#FFD554',
       'border': '2px solid #F2C94C',
@@ -255,6 +255,32 @@ $(document).ready(function() {
     factheetCategory + '</span></div></div>');
     $('.column.col-md-3 .image-inline').hide();
   }
+
+  // AST section
+  $('.lfc-single-image').remove();
+
+  $(".ast-map .ast-circle").hover(function() {
+    $(this).siblings(".step-text").css('display', 'block');
+  }, function() {
+    $(this).siblings(".step-text").css('display', 'none');
+  });
+
+  var currentStep = $('.ast-title-step').text();
+  var circleStep = $('.ast-circle');
+
+  if (currentStep == 0) {
+    $('.ast-title-step').remove();
+  }
+
+  circleStep.each(function() {
+    if ($(this).text() === currentStep) {
+      $(this).css({
+        'background-color': '#FFD554',
+        'border': '2px solid #F2C94C',
+        'color': '#4F4F4F'
+      });
+    }
+  });
 
   function resizehandlerforContentTables(ev){
       if (window.matchMedia("(max-width: 480px)").matches) {
