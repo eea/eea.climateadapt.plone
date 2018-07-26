@@ -257,7 +257,17 @@ $(document).ready(function() {
   }
 
   // AST section
-  $('.lfc-single-image').remove();
+  var isASTPage = $('.subsection-tools-adaptation-support-tool').length > 0;
+  $('.lfc-single-image').remove(); // remove existing AST image
+
+  if (isASTPage) {
+    $('.col-md-8').children('.tile:nth-child(2)').addClass('tile-wrapper');
+
+    var titleAST = $('.tile-content').children('h1');
+    titleAST.each(function() {
+      $('<h2>' + $(this).html() + '</h2>').replaceAll(this);
+    });
+  }
 
   $(".ast-map .ast-circle").hover(function() {
     $(this).siblings(".step-text").css('display', 'block');
@@ -272,6 +282,7 @@ $(document).ready(function() {
     $('.ast-title-step').remove();
   }
 
+  // highlight the current step
   circleStep.each(function() {
     if ($(this).text() === currentStep) {
       $(this).css({
