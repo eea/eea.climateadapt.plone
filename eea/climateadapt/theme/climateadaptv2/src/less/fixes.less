@@ -227,27 +227,7 @@ textarea:focus {
   font-family: RobotoR;
 }
 
-.aceitem-search-tile {
-  li {
-    display: block;
-    text-decoration: none;
-    line-height: 0.8em;
-    float: left;
-    clear: left;
 
-    &:before {
-      position: absolute;
-    }
-
-    & > a {
-      display: inline-block;
-
-      span {
-        line-height: 2em;
-      }
-    }
-  }
-}
 
 .eu-policy-page #content {
   background: transparent !important;
@@ -290,6 +270,31 @@ textarea:focus {
   }
 
 
+}
+
+#content .tile-content.aceitem-search-tile {
+  li {
+    display: block;
+    text-decoration: none;
+    line-height: 0.8em;
+    float: left;
+    clear: left;
+
+    &:before {
+      position: absolute;
+      top: 0.5em;
+      left: 1em;
+      color: @dark-gray  !important;
+    }
+
+    & > a {
+      display: inline-block;
+
+      span {
+        line-height: 2em;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 480px) {
