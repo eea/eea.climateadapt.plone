@@ -296,8 +296,20 @@ $(document).ready(function() {
           });
       }
   }
+  function stylingFixes(){
+    $.each($("#content .cover-richtext-tile.tile-content:not(aceitem-urban-menu-tile) li"), function (idx, item) {
+          if( !$(item).parent().hasClass("menu-urban-sub") && !$(item).parent().hasClass("menu-urban") && $(item).find("a").length > 0 ){
+            $(item).addClass("fa").addClass("fa-angle-double-right");
+          }
+    });
+  }
+
+
   resizehandlerforContentTables();
 
+
   $( window ).resize(resizehandlerforContentTables);
+
+    stylingFixes();
 
 });

@@ -29,8 +29,8 @@
 }
 
 #content {
-  padding: 1.5em;
-  background-color: #fff;
+  padding: 1.5em !important;
+  background-color: #fff !important;
   border: 1px solid #E5E5E5;
 }
 
@@ -121,7 +121,7 @@ textarea:focus {
 
 #document-action-download_pdf {
   list-style: none;
-  margin: 1em 0;
+  margin: 1.5em 0;
 }
 
 #document-action-download_pdf a:before {
@@ -228,6 +228,29 @@ textarea:focus {
     }
   }
 }*/
+
+#content .tile-content {
+  div {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  ul {
+    margin-top: 1rem;
+
+    li {
+      position: relative;
+      display: block;
+      margin-bottom: 0.5em;
+      &.fa.fa-angle-double-right:before {
+        color: @link-color;
+        margin-right: 0.5em;
+      }
+    }
+  }
+
+
+}
 
 @media screen and (max-width: 480px) {
   /* For devices with narrow screens, phones, tablets, etc. */
