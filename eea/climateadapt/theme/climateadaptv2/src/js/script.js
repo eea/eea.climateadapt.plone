@@ -177,8 +177,8 @@ $(document).ready(function() {
     }
   });
 
-  // Navigation menu: divide the content
-  // in sub-menu in 2 columns if 'sub-sub-menu' exist
+  // Navigation menu:
+  // divide the sub-menu in 2 columns if 'sub-sub-menu' exist
   var navigationItem = $('.main-nav-item');
   navigationItem.each(function() {
     if ($(this).find('.sub-sub-menu-wrapper').length > 0) {
@@ -195,17 +195,32 @@ $(document).ready(function() {
 
   // EU sector policies
   var currentLocation = window.location.pathname;
-  var lastPathName = currentLocation.substr(currentLocation.lastIndexOf('/') + 1);
+  var lastPathName;
+  var parts = currentLocation.split("/");
+
+  if (parts[parts.length-1].length == 0) {
+    lastPathName = parts[parts.length - 2];
+  } else {
+    lastPathName = parts[parts.length - 1];
+  }
 
   var policyClass = 'subsection-sector-policies-' + lastPathName;
+  var regionClass = 'subsection-transnational-regions-' + lastPathName;
 
-  // add a specific class for policy pages
+  // add a specific class for policy pages and transnational regions
   var bodyClassList = $('body').attr('class').split(/\s+/);
   $.each(bodyClassList, function(index, item) {
     if (item === policyClass) {
       $('body').addClass('eu-policy-page');
     }
+    if (item === regionClass) {
+      $('body').addClass('region-page');
+    }
   });
+
+  $('.region-page .column.col-md-2').removeClass('col-md-2').addClass('col-md-3');
+  $('.region-page .column.col-md-10').removeClass('col-md-2').addClass('col-md-9');
+  $('.region-page #content-core .row').prepend($('.column.col-md-9'));
 
   $('.column.col-md-9').children().wrapAll('<div class="content-column"/>');
   $('.column.col-md-3').children().wrapAll('<div class="content-sidebar"/>');
@@ -213,13 +228,21 @@ $(document).ready(function() {
   $('.content-column').find('img').closest('.tile-content').addClass('main-tile-content');
   $('.content-column').children('.col-md-4').wrapAll('<div class="row"/>');
 
+  // move pdf button and 'last modified' viewlet to the main content area
+  $('#document-action-download_pdf').parent().appendTo(".content-column");
+  $('.content-column').prepend($('#viewlet-below-content-title'));
+
+
+  $('.region-page #trans-region-select').siblings('div').addClass('region-countries');
+  var regionsTitle = $('.region-countries').children('strong');
+
+  regionsTitle.each(function() {
+    $(this).replaceWith($('<h5>' + this.innerHTML + '</h5>'));
+  })
+
   var isPolicyPage = $('.eu-policy-page').length > 0;
 
   if (isPolicyPage) {
-    // move pdf button and 'last modified' viewlet to the main content area
-    $('#document-action-download_pdf').parent().appendTo(".content-column");
-    $('.content-column').prepend($('#viewlet-below-content-title'));
-
     var policySubTitles = $('.read_more_second').children('h2');
 
     policySubTitles.each(function() {

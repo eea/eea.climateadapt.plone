@@ -10,6 +10,7 @@ body {
   background-color: #eee;
   position: relative;
   height: 100vh;
+  font-family: RobotoR;
 }
 html {
   -moz-box-sizing: border-box;
@@ -32,24 +33,22 @@ select {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: RobotoB;
+  color: @dark-gray;
+  margin-bottom: 1em;
 }
 
 h1,
 .main-tile-content h2 {
   color: @primary-blue;
   font-size: 23px;
-  margin-bottom: 1em;
 }
 
 h2 {
-  color: @dark-gray;
   font-size: 21px;
   line-height: 24px;
-  margin-bottom: 1em;
 }
 
 h3 {
-  color: @dark-gray;
   font-size: 18px;
 }
 
@@ -371,9 +370,11 @@ a.read-more {
 
 // EU sector policies
 
-.eu-policy-page #content {
+.eu-policy-page #content,
+.region-page #content {
   background-color: transparent;
   padding: 0;
+  border: none;
 }
 
 .column {
@@ -414,6 +415,20 @@ a.read-more {
   margin-left: -1em;
   width: 1em;
   color: @dark-gray;
+}
+
+.content-sidebar .tile img.left {
+  float: none;
+  margin: 0 auto;
+  margin-bottom: 2em;
+}
+
+.content-sidebar .cover-banner-tile {
+  text-align: center;
+}
+
+.region-countries {
+  font-size: 14px;
 }
 
 .content-sidebar .aceitem-search-tile ul li a {
