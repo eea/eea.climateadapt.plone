@@ -232,20 +232,6 @@ textarea:focus {
   font-family: RobotoR;
 }
 
-
-/*@media screen and (max-width: 967px){
-  .tile-content div div > table {
-    !*width: 100% !important;*!
-
-    td {
-
-      p {
-        margin-left: 0 !important;
-      }
-    }
-  }
-}*/
-
 #content .tile-content {
   // div {
   //   margin-top: 1.5rem;
@@ -258,9 +244,12 @@ textarea:focus {
     li {
       position: relative;
       display: block;
-      // margin-bottom: 0.5em;
+      //margin-bottom: 0.5em;
       // text-decoration: none;
 
+      &.fa.fa-angle-double-right {
+        margin-bottom: 0.5em;
+      }
 
       &.fa.fa-angle-double-right:before {
         color: @link-color;
@@ -280,11 +269,11 @@ textarea:focus {
     float: left;
     clear: left;
 
-    &:before {
+    &.fa.fa-angle-double-right:before {
       position: absolute;
       top: 0.5em;
       left: 1em;
-      color: @dark-gray  !important;
+      color: @dark-gray ;
     }
 
     & > a {
@@ -310,20 +299,12 @@ textarea:focus {
 
   .tile-content div div table {
     td {
-      /*float:left;*/
-      /*width: 100% !important;*/
-
-      /*table {
-        width: 100% !important;
-      }
-      width: 86vw;*/
-
       p, span {
         width: 86vw;
       }
 
       p {
-        margin-left: 0 !important;
+        margin-left: 0;
       }
 
       ul {
