@@ -9,7 +9,7 @@ $(document).ready(function() {
       slidesToShow: 1,
       dots:  true,
       autoplay: true,
-      autoplaySpeed: 4000,
+      autoplaySpeed: 4000
     });
   }
 
@@ -98,7 +98,7 @@ $(document).ready(function() {
         $(this).siblings('.action-bubble').toggleClass('national-bubble');
       }
     })
-  })
+  });
 
   // HOMEPAGE: Dynamic area - Adaptation support tool:
   // Highlight steps on hover
@@ -111,7 +111,7 @@ $(document).ready(function() {
     });
     $(this).children('.step-text').css({
       'background-color': '#FFD554',
-      'transform': 'scale(1.08)',
+      'transform': 'scale(1.08)'
     });
 
     }, function() {
@@ -172,7 +172,7 @@ $(document).ready(function() {
     if (mainMenuWidth - (subMenuWidth + subMenuLeft) < 0) {
       $(this).children('.sub-menu-wrapper').css({
         'right': 0,
-        'left': 'auto',
+        'left': 'auto'
       });
     }
   });
@@ -238,7 +238,7 @@ $(document).ready(function() {
 
   regionsTitle.each(function() {
     $(this).replaceWith($('<h5>' + this.innerHTML + '</h5>'));
-  })
+  });
 
   var isPolicyPage = $('.eu-policy-page').length > 0;
 
@@ -247,7 +247,7 @@ $(document).ready(function() {
 
     policySubTitles.each(function() {
       $(this).replaceWith($('<p><strong>' + this.innerHTML + '</strong><p>'));
-    })
+    });
 
     // restructure the content
     $('.main-tile-content').prepend('<div class="flex-wrapper"/>');
