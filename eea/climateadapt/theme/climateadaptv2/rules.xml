@@ -2,6 +2,7 @@
 <rules
   xmlns="http://namespaces.plone.org/diazo"
   xmlns:css="http://namespaces.plone.org/diazo/css"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <rules css:if-content="#visual-portal-wrapper">
@@ -35,6 +36,8 @@
       
 
     </rules>
+
+
     <rules css:if-not-content=".section-frontpage.template-standard">
       <theme href="page.html" />
 
@@ -78,4 +81,12 @@
 
   </rules>
 
+    <!-- cca/eu-adaptation-policy/sector-policies CA - EU sector policies.png  tab policies override -->
+    <rules css:if-content=".template-standard.subsection-sector-policies-index_html">
+        <replace css:content=".sector-policies-table">
+            <xi:include href="tab-policies-rule.html" />
+        </replace>
+    </rules>
+
 </rules>
+
