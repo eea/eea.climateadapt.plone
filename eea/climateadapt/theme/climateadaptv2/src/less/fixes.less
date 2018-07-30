@@ -205,6 +205,52 @@ textarea:focus {
   font-family: RobotoR;
 }
 
+// portal message styling
+.portalMessage {
+  padding: 10px 5px;
+  border-radius: 9px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  border: 1px solid transparent;
+}
+
+.portalMessage.warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #efd37e;
+}
+
+.portalMessage.info {
+  color: #383d41;
+  background-color: #e2e3e5;
+  border-color: #d6d8db;
+}
+
+.portalMessage.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.portalMessage dt {
+  display: inline;
+  font-family: RobotoM;
+}
+
+.portalMessage dd {
+  display: inline;
+}
+
+.portalMessage strong {
+  font-weight: normal;
+  font-family: RobotoB;
+}
+
+.portalMessage a {
+  font-size: 15px;
+  color: inherit;
+}
+
 #content .tile-content.aceitem-search-tile {
   li {
     display: block;
@@ -220,7 +266,7 @@ textarea:focus {
       color: @dark-gray ;
     }
 
-    & > a { 
+    & > a {
       display: inline-block;
       margin-left: 0;
 
