@@ -405,7 +405,7 @@ a.read-more {
 .content-sidebar .aceitem-search-tile ul li {
   list-style-type: none;
   padding-left: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
 .content-sidebar .aceitem-search-tile ul li:before {
@@ -483,6 +483,7 @@ a.read-more {
 
 .factsheet-pdf {
   background-color: #FFD554;
+  border: 1px solid #F2C94C;
   padding: 15px;
   width: 100%;
   height: auto;
@@ -506,8 +507,49 @@ a.read-more {
 
 .factsheet-pdf:hover {
   background-color: @primary-green;
+  border: 1px solid #A5BF26;
   color: #fff;
 }
+
+// Transnational regions
+.region-subpage .cover-section_nav-tile {
+  margin-bottom: 1.5em;
+
+  ul {
+    border-bottom: 1px solid #dee2e6;
+  }
+  li {
+    display: inline-block !important;
+    margin-bottom: -1px;
+  }
+  a {
+    color: @dark-gray;
+    font-family: RobotoR;
+    padding: 1em 2em;
+    display: block;
+    border: 1px solid #0000;
+    border-top-left-radius: .25em;
+    border-top-right-radius: .25em;
+  }
+  a.active-nav {
+    color: @primary-green;
+    font-family: RobotoB;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+  }
+  a:hover {
+    color: @primary-green;
+  }
+}
+
+.region-subpage .panel-default {
+  margin-top: 2em;
+}
+
+.region-subpage .tile-content {
+  margin-bottom: 3em;
+}
+
 
 
 // Adaptation support tool

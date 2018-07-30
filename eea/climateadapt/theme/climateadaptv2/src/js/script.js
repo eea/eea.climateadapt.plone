@@ -136,7 +136,7 @@ $(document).ready(function() {
     $contentParent.removeClass('active');
   });
 
-  // mobile menu button on click event
+  // Mobile menu button on click event
   $('.mobile-menu i').click(function() {
     $('body').toggleClass('no-ovf');
     $(this).toggleClass('fa-bars fa-times');
@@ -146,11 +146,12 @@ $(document).ready(function() {
     return false;
   });
 
-  // mobile - show submenus on click
+  // Mobile - show submenus on click
   $('.angle-down-icon').click(function() {
     $(this).parent().siblings('.sub-menu-wrapper').toggle();
   });
 
+  // Top menu login toggle section
   $('.personal-menu-action').click(function() {
     $(this).toggleClass('action-selected');
     $('.login-container ').slideToggle();
@@ -177,7 +178,6 @@ $(document).ready(function() {
     }
   });
 
-  // Navigation menu:
   // divide the sub-menu in 2 columns if 'sub-sub-menu' exist
   var navigationItem = $('.main-nav-item');
   navigationItem.each(function() {
@@ -193,7 +193,8 @@ $(document).ready(function() {
   $("#document-action-download_pdf").find('a').addClass('standard-button secondary-button');
   $("#login-form .formControls input").addClass('standard-button secondary-button');
 
-  // EU sector policies
+  // EU POLICY PAGES AND TRANSNATIONAL REGIONS:
+  // add a specific class for policy pages and transnational regions
   var currentLocation = window.location.pathname;
   var lastPathName;
   var parts = currentLocation.split("/");
@@ -207,7 +208,6 @@ $(document).ready(function() {
   var policyClass = 'subsection-sector-policies-' + lastPathName;
   var regionClass = 'subsection-transnational-regions-' + lastPathName;
 
-  // add a specific class for policy pages and transnational regions
   var bodyClassList = $('body').attr('class').split(/\s+/);
   $.each(bodyClassList, function(index, item) {
     if (item === policyClass) {
@@ -218,29 +218,31 @@ $(document).ready(function() {
     }
   });
 
-  $('.region-page .column.col-md-2').removeClass('col-md-2').addClass('col-md-3');
-  $('.region-page .column.col-md-10').removeClass('col-md-2').addClass('col-md-9');
-  $('.region-page #content-core .row').prepend($('.column.col-md-9'));
+  var isPolicyPage = $('.eu-policy-page').length > 0;
+  var isRegionPage = $('.region-page').length > 0;
 
-  $('.column.col-md-9').children().wrapAll('<div class="content-column"/>');
-  $('.column.col-md-3').children().wrapAll('<div class="content-sidebar"/>');
+  if (isPolicyPage || isRegionPage) {
+    $('.region-page .column.col-md-2').removeClass('col-md-2').addClass('col-md-3');
+    $('.region-page .column.col-md-10').removeClass('col-md-10').addClass('col-md-9');
+    $('.region-page #content-core .row').prepend($('.column.col-md-9'));
 
-  $('.content-column').find('img').closest('.tile-content').addClass('main-tile-content');
-  $('.content-column').children('.col-md-4').wrapAll('<div class="row"/>');
+    $('.column.col-md-9').children().wrapAll('<div class="content-column"/>');
+    $('.column.col-md-3').children().wrapAll('<div class="content-sidebar"/>');
 
-  // move pdf button and 'last modified' viewlet to the main content area
-  $('#document-action-download_pdf').parent().appendTo(".content-column");
-  $('.content-column').prepend($('#viewlet-below-content-title'));
+    $('.content-column').find('img').closest('.tile-content').addClass('main-tile-content');
+    $('.content-column').children('.col-md-4').wrapAll('<div class="row"/>');
 
+    // move pdf button and 'last modified' viewlet to the main content area
+    $('#document-action-download_pdf').parent().appendTo(".content-column");
+    $('.content-column').prepend($('#viewlet-below-content-title'));
+  }
 
   $('.region-page #trans-region-select').siblings('div').addClass('region-countries');
-  var regionsTitle = $('.region-countries').children('strong');
 
+  var regionsTitle = $('.region-countries').children('strong');
   regionsTitle.each(function() {
     $(this).replaceWith($('<h5>' + this.innerHTML + '</h5>'));
   });
-
-  var isPolicyPage = $('.eu-policy-page').length > 0;
 
   if (isPolicyPage) {
     var policySubTitles = $('.read_more_second').children('h2');
@@ -249,7 +251,6 @@ $(document).ready(function() {
       $(this).replaceWith($('<p><strong>' + this.innerHTML + '</strong><p>'));
     });
 
-    // restructure the content
     $('.main-tile-content').prepend('<div class="flex-wrapper"/>');
     $('.flex-wrapper').append([
       $('.main-tile-content img'),
@@ -279,7 +280,31 @@ $(document).ready(function() {
     $('.column.col-md-3 .image-inline').hide();
   }
 
-  // AST section
+  var isBalticSubpage = $('.subsection-transnational-regions-baltic-sea-region-adaptation').length > 0;
+  var isCarpathianSubpage = $('.subsection-transnational-regions-carpathian-mountains').length > 0;
+
+  if (isBalticSubpage || isCarpathianSubpage) {
+    $('body').addClass('region-subpage');
+    $('#content-core .column.col-md-3').remove();
+    $('#content-core .column.col-md-9').removeClass('col-md-9');
+
+    $('.tile-content').addClass('clearfix');
+
+    // add active class on current page sub-navigation item
+    $(function() {
+      var current = window.location.pathname;
+      var current = current.substring(current.lastIndexOf("/") + 1, current.length);
+      $('.cover-section_nav-tile a').each(function() {
+        var getURL = $(this).attr('href');
+        var getURL = getURL.substring(getURL.lastIndexOf("/") + 1, getURL.length);
+        if(getURL.indexOf(current) !== -1) {
+          $(this).addClass('active-nav');
+        }
+      })
+    })
+  }
+
+  // ADAPTATION SUPPORT TOOL
   var isASTPage = $('.subsection-tools-adaptation-support-tool').length > 0;
   $('.lfc-single-image').remove(); // remove existing AST image
 
@@ -292,7 +317,7 @@ $(document).ready(function() {
     });
   }
 
-  $(".ast-map .ast-circle").hover(function() {
+  $('.ast-map .ast-circle').hover(function() {
     $(this).siblings(".step-text").css('display', 'block');
   }, function() {
     $(this).siblings(".step-text").css('display', 'none');
