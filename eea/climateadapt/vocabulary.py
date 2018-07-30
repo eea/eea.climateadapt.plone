@@ -184,24 +184,24 @@ alsoProvides(aceitem_storagetypes_vocabulary, IVocabularyFactory)
 _sectors = [    # this is the canonical
     # ("AGRICULTURE", "Agriculture and Forest"),
     ("AGRICULTURE", "Agriculture"),
-    ("FORESTRY", "Forestry"),
     ("BIODIVERSITY", "Biodiversity"),
+    ("BUILDINGS", "Buildings"),
     ("COASTAL", "Coastal areas"),
     ("DISASTERRISKREDUCTION", "Disaster Risk Reduction"),
+    ("ENERGY", "Energy"),
     ("FINANCIAL", "Financial"),
+    ("FORESTRY", "Forestry"),
     ("HEALTH", "Health"),
     # ("INFRASTRUCTURE", "Infrastructure"),
-    ("URBAN", "Urban"),
     ("MARINE", "Marine and Fisheries"),
     #   ("TOURISM", "Tourism"),
-    ("ENERGY", "Energy"),
     ("TRANSPORT", "Transport"),
-    ("BUILDINGS", "Buildings"),
+    ("URBAN", "Urban"),
     #   ("OTHER", "Other"),
     ("WATERMANAGEMENT", "Water management"),
     ("NONSPECIFIC", "Non specific"),
 ]
-aceitem_sectors_vocabulary = generic_vocabulary(_sectors)
+aceitem_sectors_vocabulary = generic_vocabulary(_sectors, sort=False)
 alsoProvides(aceitem_sectors_vocabulary, IVocabularyFactory)
 
 _elements = [
@@ -226,16 +226,17 @@ faceted_elements = generic_vocabulary(fac_elements, sort=False)
 alsoProvides(faceted_elements, IVocabularyFactory)
 
 _climateimpacts = [
-    ("EXTREMETEMP", "Extreme Temperatures"),
-    ("WATERSCARCE", "Water Scarcity"),
-    ("FLOODING", "Flooding"),
-    ("SEALEVELRISE", "Sea Level Rise"),
     ("DROUGHT", "Droughts"),
-    ("STORM", "Storms"),
+    ("EXTREMETEMP", "Extreme Temperatures"),
+    ("FLOODING", "Flooding"),
     ("ICEANDSNOW", "Ice and Snow"),
+    ("SEALEVELRISE", "Sea Level Rise"),
+    ("STORM", "Storms"),
+    ("WATERSCARCE", "Water Scarcity"),
     ("NONSPECIFIC", "Non specific"),
 ]
-aceitem_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts)
+aceitem_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts,
+                                                       sort=False)
 alsoProvides(aceitem_climateimpacts_vocabulary, IVocabularyFactory)
 
 
