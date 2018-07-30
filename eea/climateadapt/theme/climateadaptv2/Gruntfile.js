@@ -27,13 +27,15 @@ module.exports = function(grunt) {
   grunt.registerTask('development', [
     'template:dev',
     'less:development',
-    'concat',
+    // 'concat',
+    'copy'
   ]);
 
   grunt.registerTask('production', [
     'template:dev',
     'less:production',
-    'concat',
+    // 'concat',
+     'copy',
     'uglify',
   ]);
 

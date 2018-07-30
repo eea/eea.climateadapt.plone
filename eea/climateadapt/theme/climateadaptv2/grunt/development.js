@@ -9,12 +9,24 @@ module.exports = {
           sourceMapRootpath: '../../',
       },
       files: {
-        '<%= path.static %>/css/compiled-less.css': '<%= path.src %>/less/main.less',
-        '<%= path.static %>/css/compiled-css.css': '<%= path.src %>/css/*.css'
+        '<%= path.static %>css/compiled-less.css': '<%= path.src %>/less/main.less',
+        '<%= path.static %>css/compiled-css.css': '<%= path.src %>/css/*.css'
       }
     }
   },
-
+  copy: {
+      scripts: {
+          files: [
+              { expand: true,
+                  flatten: true,
+                  src: [
+                      '<%= path.src %>/js/*.js'
+                  ],
+                  dest: '<%= path.static %>/js/'
+              }
+          ]
+      }
+  },
   concat: {
     scripts: {
       src: [
@@ -34,7 +46,8 @@ module.exports = {
     },
     scripts: {
       files: ['<%= path.src %>/js/**/*.js'],
-      tasks: ['concat'],
+      // tasks: ['concat'],
+      tasks: ['copy'],
       options: {
         nospawn: true
       }

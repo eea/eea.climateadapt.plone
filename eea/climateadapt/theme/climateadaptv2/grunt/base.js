@@ -4,8 +4,12 @@ module.exports = {
       engine: 'handlebars',
       cwd: 'src/tpl/',
       partials: ['src/tpl/partials/*.hbs'],
-      // data: 'test/fixtures/data/data.json',
+      // data: 'src/tpl/helpers.json',
       options: {
+          //  you can reference in template {{ themeurl }}
+          helpers: {
+              'themeurl': '/cca/++theme++climateadaptv2/'
+          }
       },
       files: [
         {
