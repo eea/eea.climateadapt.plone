@@ -351,12 +351,44 @@ $(document).ready(function() {
           });
       }
   }
+
+  var isCities = $(".subsection-cities.subsection-cities-index_html").length > 0;
+
   function stylingFixes(){
-    $.each($("#content .cover-richtext-tile.tile-content:not(aceitem-urban-menu-tile) li"), function (idx, item) {
-          if( !$(item).parent().hasClass("menu-urban-sub") && !$(item).parent().hasClass("menu-urban") && $(item).find("a").length > 0 ){
+    $.each($("#content .cover-richtext-tile.tile-content:not(aceitem-urban-menu-tile) ul > li"), function (idx, item) {
+          if( !$(item).parent().hasClass("menu-urban-sub")
+              && !$(item).parent().hasClass("menu-urban")
+              && !$(item).parent().hasClass("aceitem-search-tile-listing")
+              && $(item).parent().find("ul").length === 0
+              && $(item).find("a").length > 0
+              && !$(item).hasClass("fa")
+          ){
+
             $(item).addClass("fa").addClass("fa-angle-double-right");
           }
     });
+
+    $(".aceitem-search-tile").parent().parent().addClass('content-sidebar');
+
+    $(".subsection-tools-general.subsection-tools-general-index_html ul li").removeClass("fa").removeClass("fa-angle-double-right");
+
+    /* Cities fixes */
+    var divs = $(".subsection-cities-index_html #content-core > div > div.column.col-md-9 > div");
+    $(".subsection-cities-index_html #content-core > div > div.column.col-md-9").append('<div class="content-column"></div>');
+    $(".subsection-cities-index_html #content-core > div > div.column.col-md-9 .content-column").append(divs);
+
+    $(".subsection-cities-index_html #content-core > div > div.column.col-md-9 .content-column").append( $(".subsection-cities-index_html #document-action-download_pdf"));
+
+    $(".subsection-cities-index_html #document-action-download_pdf").css({
+       "display": "block",
+       "clear" : "both",
+       "float" : "none"
+    });
+
+    var sib = $(".subsection-cities-index_html #content-core div.column.col-md-9 .tile-default").siblings();
+    $(".subsection-cities-index_html #content-core div.column.col-md-9 .content-column").append('<div class="row"></div>');
+    $(".subsection-cities-index_html #content-core div.column.col-md-9 .content-column > .row").append(sib);
+
   }
 
 
