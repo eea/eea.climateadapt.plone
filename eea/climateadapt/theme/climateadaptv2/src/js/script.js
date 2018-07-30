@@ -203,6 +203,7 @@ $(document).ready(function() {
 
   var policyClass = 'subsection-sector-policies-' + lastPathName;
   var regionClass = 'subsection-transnational-regions-' + lastPathName;
+  var countryClass = 'subsection-countries-' + lastPathName;
 
   var bodyClassList = $('body').attr('class').split(/\s+/);
   $.each(bodyClassList, function(index, item) {
@@ -212,10 +213,14 @@ $(document).ready(function() {
     if (item === regionClass) {
       $('body').addClass('region-page');
     }
+    if (item === countryClass) {
+      $('body').addClass('country-page');
+    }
   });
 
   var isPolicyPage = $('.eu-policy-page').length > 0;
   var isRegionPage = $('.region-page').length > 0;
+  var isCountryPage = $('.country-page').length > 0;
 
   if (isPolicyPage || isRegionPage) {
     $('.region-page .column.col-md-2').removeClass('col-md-2').addClass('col-md-3');
@@ -298,6 +303,14 @@ $(document).ready(function() {
         }
       })
     })
+  }
+
+  if (isCountryPage) {
+    $('.column.col-md-10').parents('.row').removeClass('row').addClass('country-wrapper');
+    $('.column.col-md-2').removeClass('col-md-2');
+    $('.column.col-md-10').removeClass('col-md-10');
+    $('.sweet-tabs').attr('id', 'country-tab');
+    $('#document-action-download_pdf').parent().appendTo(".tab-content");
   }
 
   // ADAPTATION SUPPORT TOOL

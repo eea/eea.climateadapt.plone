@@ -308,7 +308,7 @@ a.read-more {
   background-color: lightgrey;
 }
 
-#content .tile-content {
+.tile-content {
   // div {
   //   margin-top: 1.5rem;
   //   margin-bottom: 1.5rem;
@@ -583,6 +583,7 @@ a.read-more {
     border: 1px solid #0000;
     border-top-left-radius: .25em;
     border-top-right-radius: .25em;
+    margin-left: 0 !important;
   }
   a.active-nav {
     color: @primary-green;
@@ -742,4 +743,84 @@ a.read-more {
 .ast-map .circle-6-text {
   top: 106px;
   left: -106px;
+}
+
+// countries pages
+.country-page #content {
+  background-color: transparent;
+  border: none;
+}
+#country-tab > ul > li:before {
+  content: '';
+}
+
+#country-tab .nav-tabs {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: flex;
+  border-bottom: none;
+  text-align: center;
+  background-color: #E5E5E5;
+}
+
+#country-tab .nav-tabs li {
+  flex-grow: 1;
+  margin-bottom: 0;
+}
+
+#country-tab .nav-tabs li.active {
+  background-color: #fff;
+}
+
+#country-tab .nav-tabs li.active > a {
+  border: none;
+  color: @primary-green;
+}
+
+#country-tab .nav-tabs a {
+  background-color: transparent;
+  margin-left: 0;
+  padding: 2em 2em;
+  color: @primary-blue;
+}
+
+#country-tab .nav-tabs>li>a:hover {
+  border-color: transparent;
+}
+
+#country-tab .tab-content {
+  background-color: #fff;
+}
+
+.country-page .listing {
+  table-layout: fixed;
+  width: 100%;
+  font-size: 14px;
+  font-family: RobotoR;
+  color: @dark-gray;
+
+  td {
+    padding: 8px;
+  }
+  td:not(:last-child) {
+    border-right: 1px solid #d7d7d7;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+}
+
+.country-page .listing thead {
+  th {
+    text-align: center;
+    font-size: 16px;
+    font-family: RobotoB;
+    color: @primary-blue;
+    border-bottom: 1px solid #d7d7d7;
+    padding: 12px 0;
+  }
+  th:not(:last-child) {
+    border-right: 1px solid #d7d7d7;
+  }
 }
