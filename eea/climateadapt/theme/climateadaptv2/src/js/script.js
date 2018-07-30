@@ -384,6 +384,8 @@ $(document).ready(function() {
     $(".aceitem-search-tile").parent().parent().addClass('content-sidebar');
 
     $(".subsection-tools-general.subsection-tools-general-index_html ul li").removeClass("fa").removeClass("fa-angle-double-right");
+    $(".subsection-adaptation-information-climate-services.subsection-adaptation-information-climate-services-climate-services " +
+        ".tile-content ul li.fa.fa-angle-double-right").removeClass("fa").removeClass("fa-angle-double-right");
 
     /* Cities fixes */
     var divs = $(".subsection-cities-index_html #content-core > div > div.column.col-md-9 > div");
