@@ -308,6 +308,44 @@ a.read-more {
   background-color: lightgrey;
 }
 
+#content .tile-content {
+  // div {
+  //   margin-top: 1.5rem;
+  //   margin-bottom: 1.5rem;
+  // }
+
+  ul {
+    // margin-top: 1rem;
+
+    li {
+      position: relative;
+      display: block;
+      line-height: 1em;
+      //margin-bottom: 0.5em;
+      // text-decoration: none;
+
+      &.fa.fa-angle-double-right {
+        margin-bottom: 0.5em;
+      }
+
+      a {
+        display: inline-block;
+        line-height: 1.5em;
+        margin-left: 1rem;
+
+      }
+
+      &.fa.fa-angle-double-right:before {
+        color: @link-color;
+        position: absolute;
+        top: 0px;
+        // margin-right: 0.5em;
+      }
+
+    }
+  }
+}
+
 #content .eu-strategy td > ul > li,
 #content .aceitem-relevant-tile > ul > li,
 #content ul.arrow-items > li,
@@ -337,6 +375,17 @@ a.read-more {
 
 #content .aceitem-relevant-tile a {
   font-family: RobotoR;
+}
+
+#content .aceitem-relevant-tile ul li {
+  a {
+    margin-left: 0;
+  }
+
+  &.fa.fa-angle-double-right:before {
+    top: 2px;
+  }
+
 }
 
 .panel-default {
