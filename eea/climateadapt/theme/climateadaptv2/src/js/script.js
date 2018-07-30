@@ -151,11 +151,7 @@ $(document).ready(function() {
     $(this).parent().siblings('.sub-menu-wrapper').toggle();
   });
 
-  // Top menu login toggle section
-  $('.personal-menu-action').click(function() {
-    $(this).toggleClass('action-selected');
-    $('.login-container ').slideToggle();
-  });
+  // Top menu login
   $('#user-name').click(function(e) {
     e.preventDefault();
   });

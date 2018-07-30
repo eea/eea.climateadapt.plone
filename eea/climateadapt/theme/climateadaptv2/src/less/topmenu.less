@@ -16,16 +16,6 @@
   z-index: 99;
 }
 
-.top-menu-items {
-  display: inline-block;
-  vertical-align: top;
-  margin-top: 5px;
-}
-
-.help-item {
-  float: left;
-}
-
 .top-menu .fa-bars {
   color: @primary-blue;
   font-size: 28px;
@@ -47,13 +37,64 @@
   font-size: 14px;
 }
 
-.top-menu-right-section a:hover,
-.personal-menu-action:hover {
+.action-selected,
+.action-selected a {
   color: @secondary-blue;
 }
 
-.action-selected,
-.action-selected a {
+.top-menu-nav {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 5px;
+}
+
+.top-menu-nav-item {
+  display: inline-block;
+  margin-left: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.login-container {
+  display: none;
+}
+
+.top-menu-nav-item:hover .login > .login-container {
+  display: block;
+}
+
+.top-menu-items .login {
+  display: inline-block;
+  margin-left: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.top-menu-nav-item:hover #user-name,
+.top-menu-nav-item:hover > .login #personal-menu .personal-menu-action {
+  color: @secondary-blue;
+}
+
+#portal-personaltools {
+  width: 100%;
+  min-width: 230px;
+  float: none;
+  background-color: #F7F7F7;
+  border-bottom: 5px solid @primary-blue;
+  position: absolute;
+  top: 20px;
+  right: 0;
+  padding: 0.50em 0.80em;
+  font-size: 100%;
+  border-radius: 0;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+  li {
+    display: list-item;
+    line-height: 1.5;
+  }
+}
+
+#portal-personaltools a:hover {
   color: @secondary-blue;
 }
 
