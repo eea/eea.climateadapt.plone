@@ -380,8 +380,6 @@ $(document).ready(function() {
 
           }
     });
-
-    $(".aceitem-search-tile").parent().parent().addClass('content-sidebar');
   }
 
   function AdaptationOptions(){
@@ -407,7 +405,6 @@ $(document).ready(function() {
     $(".subsection-cities-index_html #content-core > div > div.column.col-md-9 .content-column").append(divs);
 
     $(".subsection-cities-index_html #content-core > div > div.column.col-md-9 .content-column").append( $(".subsection-cities-index_html #document-action-download_pdf"));
-
     $(".subsection-cities-index_html #document-action-download_pdf").css({
        "display": "block",
        "clear" : "both",
@@ -415,16 +412,71 @@ $(document).ready(function() {
     });
 
     var sib = $(".subsection-cities-index_html #content-core div.column.col-md-9 .tile-default").siblings();
-    $(".subsection-cities-index_html #content-core div.column.col-md-9 .content-column").append('<div class="row"></div>');
-    $(".subsection-cities-index_html #content-core div.column.col-md-9 .content-column > .row").append(sib);
+
+      $(".subsection-cities-index_html #content-core div.column.col-md-9 .content-column").append('<div class="row"></div>');
+      $(".subsection-cities-index_html #content-core div.column.col-md-9 .content-column > .row").append(sib);
+    $(".subsection-cities-index_html #document-action-download_pdf").wrap("<ul></ul>");
+
+    /* Sidebar fixes */
+    var sels = [
+        ".subsection-cities.subsection-cities-index_html .aceitem-search-tile",
+        ".subsection-adaptation-information-vulnerabilities-and-risks-index_html .aceitem-search-tile"
+    ];
+
+    $.each(sels , function (ix, sel){
+      $(sel).parent().parent().prepend('<div class="content-sidebar"></div>');
+      var sib = $(sel).parent().parent().find(".content-sidebar").siblings();
+
+      $(sel).parent().parent().find(".content-sidebar").append(sib);
+    });
+
+  }
+  function VulnerabilitiesAndRisksFixes(){
+
+      if( $(".subsection-adaptation-information-vulnerabilities-and-risks-index_html .aceitem-search-tile").length > 0 ){
+          $("#content").css({
+              "background-color" :"transparent",
+              "padding" : 0,
+              "margin" : 0,
+              "border" : 0
+          });
+
+          $($("#content-core .column")[0]).prepend('<div class="content-column"></div>');
+
+          $("#content-core .content-column").append($("#content-core .content-column").siblings());
+          $("#content-core .content-column").append('<div class="clearfix"></div>');
+
+          $("#content-core .content-column").append( $(" #document-action-download_pdf"));
+      }
+  }
+
+  function addingLinetoMoreThan1Tile(){
+    $.each( $(".content-column"), function (idx, col) {
+        if( $(col).find(".tile").length > 1){
+          $(col).find(".tile-default").css({
+             "padding-bottom" : "2rem",
+             "border-bottom" : "1px solid #eee",
+              "margin-bottom" : "2.5rem"
+
+          });
+
+
+        }
+    } );
+
+  }
+
+  function StylingFixes(){
+    DoubleAngleListStyle();
+    AdaptationOptions();
+    CitiesFixes();
+    VulnerabilitiesAndRisksFixes();
+    addingLinetoMoreThan1Tile();
   }
 
   resizehandlerforContentTables();
   $( window ).resize(resizehandlerforContentTables);
 
-  DoubleAngleListStyle();
-  AdaptationOptions();
-  CitiesFixes();
-
+  StylingFixes();
 
 });
