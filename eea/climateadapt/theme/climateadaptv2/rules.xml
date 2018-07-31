@@ -88,7 +88,7 @@
         </replace>
     </rules>
 
-  <rules if="contains($host, 'localhost')">
+  <rules if="contains($host, 'local')">
     <!--<xsl:value-of select="$host" /> shows value of given variable -->
     <after css:theme="footer">
       <script src="/cca/++theme++climateadaptv2/static/js/dev_fixes.js">
