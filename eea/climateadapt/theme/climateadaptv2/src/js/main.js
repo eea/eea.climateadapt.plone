@@ -310,7 +310,17 @@ $(document).ready(function() {
     $('.column.col-md-2').removeClass('col-md-2');
     $('.column.col-md-10').removeClass('col-md-10');
     $('.sweet-tabs').attr('id', 'country-tab');
-    $('#document-action-download_pdf').parent().appendTo(".tab-content");
+
+    $('.country-wrapper .column:first-child').addClass('country-header-map');
+    $('.country-wrapper .column:nth-child(2)').addClass('country-content');
+
+    $('.country-select-tile').parent().addClass('countries-dropdown');
+    $('.country-select-tile img').remove();
+
+    $('.country-header-map').append($('<div class="country-map">'));
+    $('.country-content .last-update-tile').addClass('clearfix').prependTo('.tab-pane');
+
+    $('#document-action-download_pdf').parent().appendTo(".tab-pane");
   }
 
   // ADAPTATION SUPPORT TOOL

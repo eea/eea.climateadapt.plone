@@ -31,6 +31,12 @@ select {
   outline: none;
 }
 
+strong {
+  font-weight: normal;
+  font-family: RobotoB;
+  color: @dark-gray;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: RobotoB;
   color: @dark-gray;
@@ -749,44 +755,88 @@ a.read-more {
 .country-page #content {
   background-color: transparent;
   border: none;
+  padding: 0;
 }
+
+.country-page .column {
+  padding: 0
+}
+
 #country-tab > ul > li:before {
   content: '';
 }
 
 #country-tab .nav-tabs {
+  border-bottom: none;
+  text-align: center;
+  background-color: #E5E5E5;
+
   display: -webkit-flex;
   display: -ms-flexbox;
   display: -moz-box;
   display: flex;
-  border-bottom: none;
-  text-align: center;
-  background-color: #E5E5E5;
 }
 
 #country-tab .nav-tabs li {
   flex-grow: 1;
   margin-bottom: 0;
+  position: relative;
+}
+
+#country-tab .nav-tabs li:not(:last-child):before {
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: #dcdada;
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: 50%;
+  height: 80%;
+  width: 1px;
+}
+
+#country-tab .nav-tabs li.active:before {
+  display: none;
 }
 
 #country-tab .nav-tabs li.active {
   background-color: #fff;
+
+  >a {
+    border: none;
+    color: @primary-green;
+  }
+  >a:after {
+    content: '';
+    background-color: #fff;
+    height: 5px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: -5px;
+    width: 100%;
+  }
 }
 
-#country-tab .nav-tabs li.active > a {
-  border: none;
-  color: @primary-green;
+#country-tab .nav-tabs {
+  a {
+    background-color: transparent;
+    margin: 0;
+    padding: 2em 2em;
+    color: #0170B7;
+    display: block;
+    font-size: 16px;
+  }
+  a:hover {
+    border-color: transparent;
+  }
 }
 
-#country-tab .nav-tabs a {
-  background-color: transparent;
-  margin-left: 0;
-  padding: 2em 2em;
-  color: @primary-blue;
-}
-
-#country-tab .nav-tabs>li>a:hover {
-  border-color: transparent;
+#country-tab .tab-pane {
+  padding: 30px;
 }
 
 #country-tab .tab-content {
@@ -823,4 +873,35 @@ a.read-more {
   th:not(:last-child) {
     border-right: 1px solid #d7d7d7;
   }
+}
+
+.country-content .last-update-tile {
+  margin-bottom: 10px;
+
+  p {
+    float: right;
+    color: #868686;
+  }
+}
+
+.country-header-map {
+  height: 310px;
+  position: relative;
+}
+
+.country-header-map .country-map {
+  width: 100vw;
+  position: relative;
+  margin-left: -50vw;
+  left: 50%;
+  border-top: 3px solid #fff;
+  border-bottom: 5px solid @primary-green;
+  height: 100%;
+}
+
+.countries-dropdown {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
 }
