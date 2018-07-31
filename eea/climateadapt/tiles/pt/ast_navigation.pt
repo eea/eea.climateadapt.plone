@@ -9,27 +9,28 @@
         navigation: true,
         navigationFilter: function(){
           // assumes tool/ in url before /step
-          var doc_rel_href = document.location.href.substr( document.location.href.indexOf('tool/step')+4 );
+          // var doc_rel_href = document.location.href.substr( document.location.href.indexOf('tool/step')+4 );
+          //
+          // var this_rel_href = $(this).attr('href');
+          // this_rel_href = this_rel_href.substr( this_rel_href.indexOf('tool/step')+4 );
 
-          var this_rel_href = $(this).attr('href');
-          this_rel_href = this_rel_href.substr( this_rel_href.indexOf('tool/step')+4 );
-
-          if(doc_rel_href.indexOf('?') > 0) {
-            doc_rel_href = doc_rel_href.substr(0, doc_rel_href.indexOf('?') );
-          }
-          if( (doc_rel_href.indexOf(this_rel_href) != -1) ) {
-            $(this).addClass("active");
-            return true;
-          }
-          else {
+          // if(doc_rel_href.indexOf('?') > 0) {
+          //   doc_rel_href = doc_rel_href.substr(0, doc_rel_href.indexOf('?') );
+          // }
+          // if( (doc_rel_href.indexOf(this_rel_href) != -1) ) {
+          //   $(this).addClass("active");
+          //   return true;
+          // }
+          // else {
             return false;
-          }
+          // }
          }
         });
 
         var b = new Array();
-        $("#ast-menu li a").each(function() {
-            b.push($(this).attr("href"))
+        $("#ast-menu li a").each(function(ev) {
+            b.push($(this).attr("href"));
+            ev.preventDefault();
         });
         var a = b.length;
         i = 0;
@@ -115,102 +116,102 @@
 
   <ul id="ast-menu">
     <li>
-      <a href="/adaptation-support-tool" name="step-0" onclick="document.location.href='/adaptation-support-tool'">The Adaptation Support Tool - Getting started</a>
+      <a href="/adaptation-support-tool" name="step-0" >The Adaptation Support Tool - Getting started</a>
       <ul id="step-0">
-        <li><a href="/adaptation-support-tool/european-climate" name="step-0-1" onclick="document.location.href='/adaptation-support-tool/european-climate'">How is the European climate changing?</a></li>
-        <li><a href="/adaptation-support-tool/why-adapt" name="step-0-2" onclick="document.location.href='/adaptation-support-tool/why-adapt'">Why adapt to climate change?</a></li>
-        <li><a href="/adaptation-support-tool/key-principles" name="step-0-3" onclick="document.location.href='/adaptation-support-tool/key-principles'">Key principles for adaptation</a></li>
-        <li><a href="/adaptation-support-tool/how-to-use" name="step-0-4" onclick="document.location.href='/adaptation-support-tool/how-to-use'">How to use the Adaptation Support Tool?</a></li>
+        <li><a href="/adaptation-support-tool/european-climate" name="step-0-1" >How is the European climate changing?</a></li>
+        <li><a href="/adaptation-support-tool/why-adapt" name="step-0-2">Why adapt to climate change?</a></li>
+        <li><a href="/adaptation-support-tool/key-principles" name="step-0-3" >Key principles for adaptation</a></li>
+        <li><a href="/adaptation-support-tool/how-to-use" name="step-0-4" >How to use the Adaptation Support Tool?</a></li>
       </ul>
     </li>
 
     <li>
-      <a href="/adaptation-support-tool/step-1" name="step-1" onclick="document.location.href='/adaptation-support-tool/step-1'">1. Preparing the ground for adaptation</a>
+      <a href="/adaptation-support-tool/step-1" name="step-1" >1. Preparing the ground for adaptation</a>
       <ul id="step-1">
-        <li><a href="/adaptation-support-tool/step-1/high-level-support" name="step-1-1" onclick="document.location.href='/adaptation-support-tool/step-1/high-level-support'">Obtain high-level support</a></li>
-        <li><a href="/adaptation-support-tool/step-1/set-up-process" name="step-1-2" onclick="document.location.href='/adaptation-support-tool/step-1/set-up-process'">Set up the process</a></li>
-        <li><a href="/adaptation-support-tool/step-1/ressources" name="step-1-3" onclick="document.location.href='/adaptation-support-tool/step-1/ressources'">Estimate human and financial resources and identify funding opportunities</a></li>
-        <li><a href="/adaptation-support-tool/step-1/collect-information" name="step-1-4" onclick="document.location.href='/adaptation-support-tool/step-1/collect-information'">Collect information</a></li>
-        <li><a href="/adaptation-support-tool/step-1/communicate-raise-awareness" name="step-1-5" onclick="document.location.href='/adaptation-support-tool/step-1/communicate-raise-awareness'">Communicate and raise awareness</a>
+        <li><a href="/adaptation-support-tool/step-1/high-level-support" name="step-1-1" >Obtain high-level support</a></li>
+        <li><a href="/adaptation-support-tool/step-1/set-up-process" name="step-1-2" >Set up the process</a></li>
+        <li><a href="/adaptation-support-tool/step-1/ressources" name="step-1-3" >Estimate human and financial resources and identify funding opportunities</a></li>
+        <li><a href="/adaptation-support-tool/step-1/collect-information" name="step-1-4" >Collect information</a></li>
+        <li><a href="/adaptation-support-tool/step-1/communicate-raise-awareness" name="step-1-5" >Communicate and raise awareness</a>
           <ul id="step-1-5">
-            <li><a href="/adaptation-support-tool/step-1/self-check" name="step-1-5-1" onclick="document.location.href='/adaptation-support-tool/step-1/self-check'">SELF-CHECK</a></li>
+            <li><a href="/adaptation-support-tool/step-1/self-check" name="step-1-5-1" >SELF-CHECK</a></li>
           </ul>
         </li>
       </ul>
     </li>
 
     <li>
-      <a href="/adaptation-support-tool/step-2" name="step-2" onclick="document.location.href='/adaptation-support-tool/step-2'">2. Assessing risks and vulnerabilities to climate change</a>
+      <a href="/adaptation-support-tool/step-2" name="step-2" >2. Assessing risks and vulnerabilities to climate change</a>
       <ul id="step-2">
-        <li><a href="/adaptation-support-tool/step-2/past-weather-events" name="step-2-1" onclick="document.location.href='/adaptation-support-tool/step-2/past-weather-events'">Analyse how past weather events have affected your area</a></li>
-        <li><a href="/adaptation-support-tool/step-2/risk-vulnerability-assessment" name="step-2-2" onclick="document.location.href='/adaptation-support-tool/step-2/risk-vulnerability-assessment'">Undertake a climate change risks and vulnerability assessment</a></li>
-        <li><a href="/adaptation-support-tool/step-2/trans-boundary-issues" name="step-2-3" onclick="document.location.href='/adaptation-support-tool/step-2/trans-boundary-issues'">Take trans-boundary issues into account</a></li>
-        <li><a href="/adaptation-support-tool/step-2/knowlegde-uncertainty" name="step-2-4" onclick="document.location.href='/adaptation-support-tool/step-2/knowlegde-uncertainty'">Develop an approach for addressing knowledge gaps and for dealing with uncertainties</a></li>
-        <li><a href="/adaptation-support-tool/step-2/strategic-direction" name="step-2-5" onclick="document.location.href='/adaptation-support-tool/step-2/strategic-direction'">Select your area’s main concerns and set your strategic direction</a>
+        <li><a href="/adaptation-support-tool/step-2/past-weather-events" name="step-2-1" >Analyse how past weather events have affected your area</a></li>
+        <li><a href="/adaptation-support-tool/step-2/risk-vulnerability-assessment" name="step-2-2" >Undertake a climate change risks and vulnerability assessment</a></li>
+        <li><a href="/adaptation-support-tool/step-2/trans-boundary-issues" name="step-2-3" >Take trans-boundary issues into account</a></li>
+        <li><a href="/adaptation-support-tool/step-2/knowlegde-uncertainty" name="step-2-4" >Develop an approach for addressing knowledge gaps and for dealing with uncertainties</a></li>
+        <li><a href="/adaptation-support-tool/step-2/strategic-direction" name="step-2-5" >Select your area’s main concerns and set your strategic direction</a>
           <ul id="step-2-5">
-            <li><a href="/adaptation-support-tool/step-2/self-check" name="step-2-5-1" onclick="document.location.href='/adaptation-support-tool/step-2/self-check'">SELF-CHECK</a></li>
+            <li><a href="/adaptation-support-tool/step-2/self-check" name="step-2-5-1" >SELF-CHECK</a></li>
           </ul>
         </li>
       </ul>
     </li>
 
-    <li><a href="/adaptation-support-tool/step-3" name="step-3" onclick="document.location.href='/adaptation-support-tool/step-3'">3. Identifying adaptation options</a>
+    <li><a href="/adaptation-support-tool/step-3" name="step-3" >3. Identifying adaptation options</a>
       <ul id="step-3">
-        <li><a href="/adaptation-support-tool/step-3/collect-options" name="step-3-1" onclick="document.location.href='/adaptation-support-tool/step-3/collect-options'">Collect appropriate adaptation options given your country´s main concerns</a></li>
-        <li><a href="/adaptation-support-tool/step-3/explore-good-practices" name="step-3-2" onclick="document.location.href='/adaptation-support-tool/step-3/explore-good-practices'">Explore good practices and existing measures</a></li>
-        <li><a href="/adaptation-support-tool/step-3/describe-options" name="step-3-3" onclick="document.location.href='/adaptation-support-tool/step-3/describe-options'">Describe adaptation options in detail</a>
+        <li><a href="/adaptation-support-tool/step-3/collect-options" name="step-3-1" >Collect appropriate adaptation options given your country´s main concerns</a></li>
+        <li><a href="/adaptation-support-tool/step-3/explore-good-practices" name="step-3-2" >Explore good practices and existing measures</a></li>
+        <li><a href="/adaptation-support-tool/step-3/describe-options" name="step-3-3" >Describe adaptation options in detail</a>
           <ul id="step-3-3">
-            <li><a href="/adaptation-support-tool/step-3/self-check" name="step-3-3-1" onclick="document.location.href='/adaptation-support-tool/step-3/self-check'">SELF-CHECK</a></li>
+            <li><a href="/adaptation-support-tool/step-3/self-check" name="step-3-3-1" >SELF-CHECK</a></li>
           </ul>
         </li>
       </ul>
     </li>
 
     <li>
-      <a href="/adaptation-support-tool/step-4" name="step-4" onclick="document.location.href='/adaptation-support-tool/step-4'">4. Assessing adaptation options</a>
+      <a href="/adaptation-support-tool/step-4" name="step-4" >4. Assessing adaptation options</a>
       <ul id="step-4">
-        <li><a href="/adaptation-support-tool/step-4/assess-time-cost-benefits" name="step-4-1" onclick="document.location.href='/adaptation-support-tool/step-4/assess-time-cost-benefits'">Assess possible options in terms of time, cost, benefits and efforts</a></li>
-        <li><a href="/adaptation-support-tool/step-4/cross-cutting-issues" name="step-4-2" onclick="document.location.href='/adaptation-support-tool/step-4/cross-cutting-issues'">Assess cross-cutting issues, trade-offs and synergies of adaptation options</a></li>
-        <li><a href="/adaptation-support-tool/step-4/prioritise-and-select" name="step-4-3" onclick="document.location.href='/adaptation-support-tool/step-4/prioritise-and-select'">Prioritise adaptation options and select preferred ones</a></li>
-        <li><a href="/adaptation-support-tool/step-4/strategy-and-approval" name="step-4-4" onclick="document.location.href='/adaptation-support-tool/step-4/strategy-and-approval'">Prepare a strategy document and get political approval</a>
+        <li><a href="/adaptation-support-tool/step-4/assess-time-cost-benefits" name="step-4-1" >Assess possible options in terms of time, cost, benefits and efforts</a></li>
+        <li><a href="/adaptation-support-tool/step-4/cross-cutting-issues" name="step-4-2" >Assess cross-cutting issues, trade-offs and synergies of adaptation options</a></li>
+        <li><a href="/adaptation-support-tool/step-4/prioritise-and-select" name="step-4-3" >Prioritise adaptation options and select preferred ones</a></li>
+        <li><a href="/adaptation-support-tool/step-4/strategy-and-approval" name="step-4-4" >Prepare a strategy document and get political approval</a>
           <ul id="step-4-4">
-            <li><a href="/adaptation-support-tool/step-4/self-check" name="step-4-4-1" onclick="document.location.href='/adaptation-support-tool/step-4/self-check'">SELF-CHECK</a></li>
+            <li><a href="/adaptation-support-tool/step-4/self-check" name="step-4-4-1" >SELF-CHECK</a></li>
           </ul>
         </li>
       </ul>
     </li>
 
-    <li><a href="/adaptation-support-tool/step-5" name="step-5" onclick="document.location.href='/adaptation-support-tool/step-5'">5. Implementation</a>
+    <li><a href="/adaptation-support-tool/step-5" name="step-5" >5. Implementation</a>
       <ul id="step-5">
-        <li><a href="/adaptation-support-tool/step-5/mainstreaming" name="step-5-1" onclick="document.location.href='/adaptation-support-tool/step-5/mainstreaming'">Mainstreaming: Identify and make use of entry points for adaptation</a></li>
-        <li><a href="/adaptation-support-tool/step-5/seek-agreements" name="step-5-2" onclick="document.location.href='/adaptation-support-tool/step-5/seek-agreements'">Seek agreements with stakeholders responsible for implementation</a></li>
-        <li><a href="/adaptation-support-tool/step-5/action-plan" name="step-5-3" onclick="document.location.href='/adaptation-support-tool/step-5/action-plan'">Develop an action plan</a>
+        <li><a href="/adaptation-support-tool/step-5/mainstreaming" name="step-5-1" >Mainstreaming: Identify and make use of entry points for adaptation</a></li>
+        <li><a href="/adaptation-support-tool/step-5/seek-agreements" name="step-5-2" >Seek agreements with stakeholders responsible for implementation</a></li>
+        <li><a href="/adaptation-support-tool/step-5/action-plan" name="step-5-3" >Develop an action plan</a>
           <ul id="step-5-3">
-            <li><a href="/adaptation-support-tool/step-5/self-check" name="step-5-3-1" onclick="document.location.href='/adaptation-support-tool/step-5/self-check'">SELF-CHECK</a></li>
+            <li><a href="/adaptation-support-tool/step-5/self-check" name="step-5-3-1" >SELF-CHECK</a></li>
           </ul>
         </li>
       </ul>
     </li>
 
     <li>
-      <a href="/adaptation-support-tool/step-6" name="step-6" onclick="document.location.href='/adaptation-support-tool/step-6'">6. Monitoring and evaluation</a>
+      <a href="/adaptation-support-tool/step-6" name="step-6" >6. Monitoring and evaluation</a>
       <ul id="step-6">
         <li><a href="/adaptation-support-tool/step-6/understanding-drivers" name="step-6-1"
-            onclick="document.location.href='/adaptation-support-tool/step-6/understanding-drivers'">Understanding drivers and purposes</a>
+            >Understanding drivers and purposes</a>
         </li>
         <li><a href="/adaptation-support-tool/step-6/who-should-be-involved" name="step-6-2"
-            onclick="document.location.href='/adaptation-support-tool/step-6/who-should-be-involved'">Who should be involved?</a>
+            >Who should be involved?</a>
         </li>
         <li><a href="/adaptation-support-tool/step-6/mixed-methods" name="step-6-3"
-            onclick="document.location.href='/adaptation-support-tool/step-6/mixed-methods'">A mixed-methods approach</a>
+            >A mixed-methods approach</a>
         </li>
         <li>
           <a href="/adaptation-support-tool/step-6/communicating-results" name="step-6-4"
-            onclick="document.location.href='/adaptation-support-tool/step-6/communicating-results'">Communicating results to inform policy and practice</a>
+            >Communicating results to inform policy and practice</a>
         </li>
         <ul id="step-6-4">
           <li><a href="/adaptation-support-tool/step-6/self-check" name="step-6-4-1"
-              onclick="document.location.href='/adaptation-support-tool/step-6/self-check'">SELF-CHECK</a></li>
+              >SELF-CHECK</a></li>
         </ul>
       </ul>
     </li>
