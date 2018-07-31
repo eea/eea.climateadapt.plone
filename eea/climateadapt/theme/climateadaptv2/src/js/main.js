@@ -321,6 +321,53 @@ $(document).ready(function() {
     $('.country-content .last-update-tile').addClass('clearfix').prependTo('.tab-pane');
 
     $('#document-action-download_pdf').parent().appendTo(".tab-pane");
+
+    // custom country dropdown functionality
+    $('.dd-country-title .options li').on('click', function() {
+      $('.dd-country-title .selected').html($(this).text());
+      $('.dd-country-title .selected-inp').val($(this).data('value')).trigger('change');
+      $('.dd-country-title .options').removeClass('show');
+    });
+
+    $('.dd-title-wrapper').on('click', function(e) {
+      $('.dd-country-title .options').fadeToggle().toggleClass('show');
+      $('.dd-country-title i').toggleClass('fa fa-angle-up fa fa-angle-down');
+      e.stopPropagation()
+    });
+
+    $('.dd-country-title .selected-inp').on('change', function(ev) {
+      var url = ev.target.value;
+      var country = $(".dd-country-title li[data-value='" + url + "']").text();
+
+      if (country.length) {
+        document.location = '/countries/' + country.toLowerCase();
+      }
+    });
+
+    $.fn.resizeselectList = function(settings) {
+      return this.each(function() {
+        $(this).change(function() {
+          var $this = $(this);
+          var $selected = $this.parents().find('.dd-country-title .selected');
+          var text = $selected.text();
+          console.log(text);
+
+          var $test = $("<span class='xx'/>").html(text).css({
+            "font-size": $selected.css("font-size"),
+            "font-weight": $selected.css("font-weight"),
+            "visibility": "hidden"
+          });
+
+
+          $test.appendTo($this.parent());
+          var width = $test.width();
+          $test.remove();
+
+          $this.width(width + 45);
+        }).change();
+      });
+    };
+    $(".resizeselect-list").resizeselectList();
   }
 
   // ADAPTATION SUPPORT TOOL
