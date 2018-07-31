@@ -367,10 +367,8 @@ $(document).ready(function() {
 
   var isCities = $(".subsection-cities.subsection-cities-index_html").length > 0;
 
-  function stylingFixes(){
+  function DoubleAngleListStyle(){
     $.each($("#content .cover-richtext-tile.tile-content:not(aceitem-urban-menu-tile) ul > li"), function (idx, item) {
-          //if($(item).find("a").length > 0  ) debugger;
-
           if( !$(item).parent().hasClass("menu-urban-sub")
               && !$(item).parent().hasClass("menu-urban")
               && !$(item).parent().hasClass("aceitem-search-tile-listing")
@@ -384,7 +382,9 @@ $(document).ready(function() {
     });
 
     $(".aceitem-search-tile").parent().parent().addClass('content-sidebar');
+  }
 
+  function AdaptationOptions(){
      /*
      *  Adaptation options
      *
@@ -398,9 +398,9 @@ $(document).ready(function() {
       var ia = $(item).find("a").prop('outerHTML');
       $(item).replaceWith('<li class="fa fa-angle-double-right">'+ ia +'</li>');
     });
+  }
 
-
-
+  function CitiesFixes(){
     /* Cities fixes */
     var divs = $(".subsection-cities-index_html #content-core > div > div.column.col-md-9 > div");
     $(".subsection-cities-index_html #content-core > div > div.column.col-md-9").append('<div class="content-column"></div>');
@@ -417,15 +417,14 @@ $(document).ready(function() {
     var sib = $(".subsection-cities-index_html #content-core div.column.col-md-9 .tile-default").siblings();
     $(".subsection-cities-index_html #content-core div.column.col-md-9 .content-column").append('<div class="row"></div>');
     $(".subsection-cities-index_html #content-core div.column.col-md-9 .content-column > .row").append(sib);
-
   }
 
-
   resizehandlerforContentTables();
-
-
   $( window ).resize(resizehandlerforContentTables);
 
-    stylingFixes();
+  DoubleAngleListStyle();
+  AdaptationOptions();
+  CitiesFixes();
+
 
 });
