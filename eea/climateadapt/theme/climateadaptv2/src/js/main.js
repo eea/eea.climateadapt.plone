@@ -438,7 +438,7 @@ $(document).ready(function() {
       var $parent = $item.parent();
       var $parent_class = $parent.attr('class');
 
-      if( !$parent_class.indexOf("menu-urban-sub")
+      if( $parent_class!== undefined && !$parent_class.indexOf("menu-urban-sub")
           && !$parent_class.indexOf("menu-urban")
           && !$parent_class.indexOf("aceitem-search-tile-listing")
           && $parent.find("ul").length === 0
@@ -450,14 +450,12 @@ $(document).ready(function() {
     });
   }
 
-  /* WIP
-
-  *  Adaptation options -
+  /*
+  *  Adaptation options
+  * - http://climate-local.com/cca/knowledge/adaptation-information/adaptation-measures
   * - remove double list decoration
-  * -
   * */
   function AdaptationOptions(){
-
     $(".subsection-tools-general.subsection-tools-general-index_html ul li").removeClass("fa").removeClass("fa-angle-double-right");
 
     $(".subsection-adaptation-information-climate-services.subsection-adaptation-information-climate-services-climate-services " +
@@ -470,27 +468,28 @@ $(document).ready(function() {
         fixSidebarAndColumns();
     }
 
-    $.each( $(".subsection-adaptation-information-adaptation-measures-index_html .content-sidebar .aceitem-search-tile  li ul li"), function(idx, item){
-        var ia = $(item).find("a").prop('outerHTML');
-        debugger;
-        $(item).replaceWith('<li class="fa fa-angle-double-right">'+ ia +'</li>');
-    });
-
+    if($(".subsection-adaptation-information-adaptation-measures-index_html").length > 0){
+        $.each( $(".aceitem-search-tile li ul li"), function(idx, item){
+            var ia = $(item).find("a").prop('outerHTML');
+            $(item).replaceWith('<li class="fa fa-angle-double-right">'+ ia +'</li>');
+        });
+    }
   }
 
   /*
   *
   * Cities fixes
-  * - Page: http://climate-local.com/knowledge/tools/urban-adaptation/introduction/index_html/eu-adaptation-policy/sector-policies/forestry/index_html/knowledge/adaptation-information/vulnerabilities-and-risks/index_html/countries-regions/cities/index_html/eu-adaptation-policy/sector-policies/forestry/index_html/countries-regions/cities
+  * - Page: http://climate-local.com/cca/countries-regions/cities
   * - fixing HTML structure
     * */
   function CitiesFixes(){
     /*
     * adding to first column .content-column and moving siblings
     * */
-    if(isCities){
-        var divs = $("#content-core .column.col-md-9 div");
-        $("#content-core .column.col-md-9").append('<div class="content-column"></div>');
+    if( isCities){
+
+        var divs = $("#content-core .column.col-md-9 > div");
+        $("#content-core .column.col-md-9").prepend('<div class="content-column"></div>');
         $("#content-core .column.col-md-9 .content-column").append(divs);
 
         // moving download button to .content-column
@@ -513,9 +512,9 @@ $(document).ready(function() {
 
   function SidebarFixes() {
       /* Sidebar fixes
-      * - http://climate-local.com/knowledge/tools/urban-adaptation/introduction/index_html/eu-adaptation-policy/sector-policies/forestry/index_html/knowledge/adaptation-information/vulnerabilities-and-risks/index_html/countries-regions/cities/index_html/eu-adaptation-policy/sector-policies/forestry/index_html/countries-regions/cities
-      * - http://climate-local.com/eu-adaptation-policy/sector-policies/health/index_html/knowledge/tools/general/index_html/knowledge/tools/adaptation-support-tool/index_html/knowledge/adaptation-information/adaptation-measures/index_html/knowledge/adaptation-information/vulnerabilities-and-risks
-      * - http://climate-local.com/eu-adaptation-policy/sector-policies/health/index_html/knowledge/tools/general/index_html/knowledge/tools/adaptation-support-tool/index_html/knowledge/adaptation-information/adaptation-measures/index_html/knowledge/adaptation-information/vulnerabilities-and-risks/index_html/knowledge/adaptation-information/adaptation-measures
+      * - http://climate-local.com/cca/countries-regions/cities
+      * - http://climate-local.com/cca/knowledge/adaptation-information/vulnerabilities-and-risks
+      * - http://climate-local.com/cca/knowledge/adaptation-information/adaptation-measures
       * */
     var sels = [
         ".subsection-cities.subsection-cities-index_html .aceitem-search-tile",
@@ -534,7 +533,7 @@ $(document).ready(function() {
 
   /*
   * Vulnerabilities and fixes
-  * - http://climate-local.com/eu-adaptation-policy/sector-policies/health/index_html/knowledge/tools/general/index_html/knowledge/tools/adaptation-support-tool/index_html/knowledge/adaptation-information/adaptation-measures/index_html/knowledge/adaptation-information/vulnerabilities-and-risks/index_html/knowledge/adaptation-information/adaptation-measures/index_html/knowledge/adaptation-information/vulnerabilities-and-risks
+  * - http://climate-local.com/cca/knowledge/adaptation-information/vulnerabilities-and-risks
   * */
   function VulnerabilitiesAndRisksFixes(){
       if( $(".subsection-adaptation-information-vulnerabilities-and-risks-index_html .aceitem-search-tile").length > 0 ){
