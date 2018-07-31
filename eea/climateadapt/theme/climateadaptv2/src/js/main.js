@@ -369,6 +369,8 @@ $(document).ready(function() {
 
   function stylingFixes(){
     $.each($("#content .cover-richtext-tile.tile-content:not(aceitem-urban-menu-tile) ul > li"), function (idx, item) {
+          //if($(item).find("a").length > 0  ) debugger;
+
           if( !$(item).parent().hasClass("menu-urban-sub")
               && !$(item).parent().hasClass("menu-urban")
               && !$(item).parent().hasClass("aceitem-search-tile-listing")
@@ -376,8 +378,8 @@ $(document).ready(function() {
               && $(item).find("a").length > 0
               && !$(item).hasClass("fa")
           ){
-
             $(item).addClass("fa").addClass("fa-angle-double-right");
+
           }
     });
 
@@ -385,7 +387,23 @@ $(document).ready(function() {
 
     $(".subsection-tools-general.subsection-tools-general-index_html ul li").removeClass("fa").removeClass("fa-angle-double-right");
     $(".subsection-adaptation-information-climate-services.subsection-adaptation-information-climate-services-climate-services " +
-        ".tile-content ul li.fa.fa-angle-double-right").removeClass("fa").removeClass("fa-angle-double-right");
+        ".tile-content ul li.fa.fa-angle-double-right")
+        .removeClass("fa").removeClass("fa-angle-double-right");
+
+    $.each( $(".subsection-adaptation-information-adaptation-measures-index_html .content-sidebar .aceitem-search-tile ul li ul li"), function(idx, item){
+      var ia = $(item).find("a").prop('outerHTML');
+      $(item).replaceWith('<li class="fa fa-angle-double-right">'+ ia +'</li>');
+    });
+
+    /*$(".subsection-adaptation-information-adaptation-measures-index_html .content-sidebar .aceitem-search-tile ul li:before").css({
+        "display": "none",
+        "content": "",
+        "margin" : 0,
+        "padding" : 0
+    });*/
+
+    /*$(".subsection-adaptation-information-adaptation-measures-index_html #content .tile-content.aceitem-search-tile ul li ul li")
+        .removeClass("fa").removeClass("fa-angle-double-right");*/
 
     /* Cities fixes */
     var divs = $(".subsection-cities-index_html #content-core > div > div.column.col-md-9 > div");
