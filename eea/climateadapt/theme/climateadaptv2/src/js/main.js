@@ -407,6 +407,11 @@ $(document).ready(function() {
     }
   });
 
+  /*
+  * For mobile: fix table styling issues
+  *
+  *
+  * */
   function resizehandlerforContentTables(ev){
       if (window.matchMedia("(max-width: 480px)").matches) {
           $.each( $(".content-container table"),function (indx, item) {
@@ -424,6 +429,9 @@ $(document).ready(function() {
 
   var isCities = $(".subsection-cities.subsection-cities-index_html").length > 0;
 
+  /*
+  * added font awesome arrows for menu item section
+  * */
   function DoubleAngleListStyle(){
     $.each($("#content .cover-richtext-tile.tile-content:not(aceitem-urban-menu-tile) ul > li"), function (idx, item) {
           if( !$(item).parent().hasClass("menu-urban-sub")
@@ -439,72 +447,116 @@ $(document).ready(function() {
     });
   }
 
+  /* WIP
+
+  *  Adaptation options -
+  * - remove double list decoration
+  * -
+  * */
   function AdaptationOptions(){
-     /*
-     *  Adaptation options
-     *
-     * */
+
     $(".subsection-tools-general.subsection-tools-general-index_html ul li").removeClass("fa").removeClass("fa-angle-double-right");
+
     $(".subsection-adaptation-information-climate-services.subsection-adaptation-information-climate-services-climate-services " +
         ".tile-content ul li.fa.fa-angle-double-right")
         .removeClass("fa").removeClass("fa-angle-double-right");
 
+    if( $(".subsection-adaptation-information-adaptation-measures-index_html .aceitem-search-tile").length > 0 ||
+        $(".subsection-adaptation-information-climate-services.subsection-adaptation-information-climate-services-climate-services .aceitem-search-tile").length > 0 )
+    {
+
+        fixSidebarAndColumns();
+    }
+
     $.each( $(".subsection-adaptation-information-adaptation-measures-index_html .content-sidebar .aceitem-search-tile ul li ul li"), function(idx, item){
-      var ia = $(item).find("a").prop('outerHTML');
-      $(item).replaceWith('<li class="fa fa-angle-double-right">'+ ia +'</li>');
+        var ia = $(item).find("a").prop('outerHTML');
+        debugger;
+        $(item).replaceWith('<li class="fa fa-angle-double-right">'+ ia +'</li>');
     });
+
   }
 
+  /*
+  *
+  * Cities fixes
+  * - Page: http://climate-local.com/knowledge/tools/urban-adaptation/introduction/index_html/eu-adaptation-policy/sector-policies/forestry/index_html/knowledge/adaptation-information/vulnerabilities-and-risks/index_html/countries-regions/cities/index_html/eu-adaptation-policy/sector-policies/forestry/index_html/countries-regions/cities
+  * - fixing HTML structure
+    * */
   function CitiesFixes(){
-    /* Cities fixes */
+    /*
+    * adding to first column .content-column and moving siblings
+    * */
     var divs = $(".subsection-cities-index_html #content-core > div > div.column.col-md-9 > div");
     $(".subsection-cities-index_html #content-core > div > div.column.col-md-9").append('<div class="content-column"></div>');
     $(".subsection-cities-index_html #content-core > div > div.column.col-md-9 .content-column").append(divs);
 
+    // moving download button to .content-column
     $(".subsection-cities-index_html #content-core > div > div.column.col-md-9 .content-column").append( $(".subsection-cities-index_html #document-action-download_pdf"));
     $(".subsection-cities-index_html #document-action-download_pdf").css({
        "display": "block",
        "clear" : "both",
        "float" : "none"
     });
-
-    var sib = $(".subsection-cities-index_html #content-core div.column.col-md-9 .tile-default").siblings();
-
-      $(".subsection-cities-index_html #content-core div.column.col-md-9 .content-column").append('<div class="row"></div>');
-      $(".subsection-cities-index_html #content-core div.column.col-md-9 .content-column > .row").append(sib);
     $(".subsection-cities-index_html #document-action-download_pdf").wrap("<ul></ul>");
 
-    /* Sidebar fixes */
+    // adding .row to .tile-default
+    var sib = $(".subsection-cities-index_html #content-core div.column.col-md-9 .tile-default").siblings();
+    $(".subsection-cities-index_html #content-core div.column.col-md-9 .content-column").append('<div class="row"></div>');
+    $(".subsection-cities-index_html #content-core div.column.col-md-9 .content-column > .row").append(sib);
+
+  }
+
+  function SidebarFixes() {
+      /* Sidebar fixes
+      * - http://climate-local.com/knowledge/tools/urban-adaptation/introduction/index_html/eu-adaptation-policy/sector-policies/forestry/index_html/knowledge/adaptation-information/vulnerabilities-and-risks/index_html/countries-regions/cities/index_html/eu-adaptation-policy/sector-policies/forestry/index_html/countries-regions/cities
+      * - http://climate-local.com/eu-adaptation-policy/sector-policies/health/index_html/knowledge/tools/general/index_html/knowledge/tools/adaptation-support-tool/index_html/knowledge/adaptation-information/adaptation-measures/index_html/knowledge/adaptation-information/vulnerabilities-and-risks
+      * - http://climate-local.com/eu-adaptation-policy/sector-policies/health/index_html/knowledge/tools/general/index_html/knowledge/tools/adaptation-support-tool/index_html/knowledge/adaptation-information/adaptation-measures/index_html/knowledge/adaptation-information/vulnerabilities-and-risks/index_html/knowledge/adaptation-information/adaptation-measures
+      * */
     var sels = [
         ".subsection-cities.subsection-cities-index_html .aceitem-search-tile",
-        ".subsection-adaptation-information-vulnerabilities-and-risks-index_html .aceitem-search-tile"
+        ".subsection-adaptation-information-vulnerabilities-and-risks-index_html .aceitem-search-tile",
+        ".subsection-adaptation-information-adaptation-measures-index_html .aceitem-search-tile"
     ];
 
+    // adding .content-sidebar to .aceitem-search-tile parent
     $.each(sels , function (ix, sel){
       $(sel).parent().parent().prepend('<div class="content-sidebar"></div>');
       var sib = $(sel).parent().parent().find(".content-sidebar").siblings();
 
       $(sel).parent().parent().find(".content-sidebar").append(sib);
     });
-
   }
+
+  /*
+  * Vulnerabilities and fixes
+  * - http://climate-local.com/eu-adaptation-policy/sector-policies/health/index_html/knowledge/tools/general/index_html/knowledge/tools/adaptation-support-tool/index_html/knowledge/adaptation-information/adaptation-measures/index_html/knowledge/adaptation-information/vulnerabilities-and-risks/index_html/knowledge/adaptation-information/adaptation-measures/index_html/knowledge/adaptation-information/vulnerabilities-and-risks
+  * */
   function VulnerabilitiesAndRisksFixes(){
-
       if( $(".subsection-adaptation-information-vulnerabilities-and-risks-index_html .aceitem-search-tile").length > 0 ){
-          $("#content").css({
-              "background-color" :"transparent",
-              "padding" : 0,
-              "margin" : 0,
-              "border" : 0
-          });
-
-          $($("#content-core .column")[0]).prepend('<div class="content-column"></div>');
-
-          $("#content-core .content-column").append($("#content-core .content-column").siblings());
-          $("#content-core .content-column").append('<div class="clearfix"></div>');
-
-          $("#content-core .content-column").append( $(" #document-action-download_pdf"));
+          fixSidebarAndColumns();
       }
+  }
+
+  function fixSidebarAndColumns(){
+    // fix background of #content
+    $("#content").css({
+        "background-color" :"transparent",
+        "padding" : 0,
+        "margin" : 0,
+        "border" : 0
+    });
+
+    // add content-column to first column
+    $($("#content-core .column")[0]).prepend('<div class="content-column"></div>');
+
+    $("#content-core .content-column").append($("#content-core .content-column").siblings());
+
+    // add "clearfix" div to fix height issue
+    $("#content-core .content-column").append('<div class="clearfix"></div>');
+
+    // move download button to content-column
+    $("#content-core .content-column").append( $(" #document-action-download_pdf"));
+
   }
 
   function addingLinetoMoreThan1Tile(){
@@ -528,6 +580,7 @@ $(document).ready(function() {
     AdaptationOptions();
     CitiesFixes();
     VulnerabilitiesAndRisksFixes();
+    SidebarFixes();
     addingLinetoMoreThan1Tile();
   }
 
