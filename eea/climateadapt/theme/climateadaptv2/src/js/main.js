@@ -434,16 +434,19 @@ $(document).ready(function() {
   * */
   function DoubleAngleListStyle(){
     $.each($("#content .cover-richtext-tile.tile-content:not(aceitem-urban-menu-tile) ul > li"), function (idx, item) {
-          if( !$(item).parent().hasClass("menu-urban-sub")
-              && !$(item).parent().hasClass("menu-urban")
-              && !$(item).parent().hasClass("aceitem-search-tile-listing")
-              && $(item).parent().find("ul").length === 0
-              && $(item).find("a").length > 0
-              && !$(item).hasClass("fa")
-          ){
-            $(item).addClass("fa").addClass("fa-angle-double-right");
+      var $item = $(item);
+      var $parent = $item.parent();
+      var $parent_class = $parent.attr('class');
 
-          }
+      if( !$parent_class.indexOf("menu-urban-sub")
+          && !$parent_class.indexOf("menu-urban")
+          && !$parent_class.indexOf("aceitem-search-tile-listing")
+          && $parent.find("ul").length === 0
+          && $item.find("a").length > 0
+          && !$item.hasClass("fa")
+      ){
+        $item.addClass("fa fa-angle-double-right");
+      }
     });
   }
 
@@ -464,11 +467,10 @@ $(document).ready(function() {
     if( $(".subsection-adaptation-information-adaptation-measures-index_html .aceitem-search-tile").length > 0 ||
         $(".subsection-adaptation-information-climate-services.subsection-adaptation-information-climate-services-climate-services .aceitem-search-tile").length > 0 )
     {
-
         fixSidebarAndColumns();
     }
 
-    $.each( $(".subsection-adaptation-information-adaptation-measures-index_html .content-sidebar .aceitem-search-tile ul li ul li"), function(idx, item){
+    $.each( $(".subsection-adaptation-information-adaptation-measures-index_html .content-sidebar .aceitem-search-tile  li ul li"), function(idx, item){
         var ia = $(item).find("a").prop('outerHTML');
         debugger;
         $(item).replaceWith('<li class="fa fa-angle-double-right">'+ ia +'</li>');
@@ -486,23 +488,26 @@ $(document).ready(function() {
     /*
     * adding to first column .content-column and moving siblings
     * */
-    var divs = $(".subsection-cities-index_html #content-core > div > div.column.col-md-9 > div");
-    $(".subsection-cities-index_html #content-core > div > div.column.col-md-9").append('<div class="content-column"></div>');
-    $(".subsection-cities-index_html #content-core > div > div.column.col-md-9 .content-column").append(divs);
+    if(isCities){
+        var divs = $("#content-core .column.col-md-9 div");
+        $("#content-core .column.col-md-9").append('<div class="content-column"></div>');
+        $("#content-core .column.col-md-9 .content-column").append(divs);
 
-    // moving download button to .content-column
-    $(".subsection-cities-index_html #content-core > div > div.column.col-md-9 .content-column").append( $(".subsection-cities-index_html #document-action-download_pdf"));
-    $(".subsection-cities-index_html #document-action-download_pdf").css({
-       "display": "block",
-       "clear" : "both",
-       "float" : "none"
-    });
-    $(".subsection-cities-index_html #document-action-download_pdf").wrap("<ul></ul>");
+        // moving download button to .content-column
+        $(" #content-core .content-column").append( $(".subsection-cities-index_html #document-action-download_pdf"));
+        $("#document-action-download_pdf").css({
+            "display": "block",
+            "clear" : "both",
+            "float" : "none"
+        });
 
-    // adding .row to .tile-default
-    var sib = $(".subsection-cities-index_html #content-core div.column.col-md-9 .tile-default").siblings();
-    $(".subsection-cities-index_html #content-core div.column.col-md-9 .content-column").append('<div class="row"></div>');
-    $(".subsection-cities-index_html #content-core div.column.col-md-9 .content-column > .row").append(sib);
+        $("#document-action-download_pdf").wrap("<ul></ul>");
+
+        // adding .row to .tile-default
+        var sib = $("#content-core .column.col-md-9 .tile-default").siblings();
+        $("#content-core div.column.col-md-9 .content-column").append('<div class="row"></div>');
+        $("#content-core div.column.col-md-9 .content-column > .row").append(sib);
+    }
 
   }
 
@@ -568,8 +573,6 @@ $(document).ready(function() {
               "margin-bottom" : "2.5rem"
 
           });
-
-
         }
     } );
 
