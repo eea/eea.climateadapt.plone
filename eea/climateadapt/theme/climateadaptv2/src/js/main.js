@@ -385,6 +385,10 @@ $(document).ready(function() {
 
     $(".aceitem-search-tile").parent().parent().addClass('content-sidebar');
 
+     /*
+     *  Adaptation options
+     *
+     * */
     $(".subsection-tools-general.subsection-tools-general-index_html ul li").removeClass("fa").removeClass("fa-angle-double-right");
     $(".subsection-adaptation-information-climate-services.subsection-adaptation-information-climate-services-climate-services " +
         ".tile-content ul li.fa.fa-angle-double-right")
@@ -395,15 +399,7 @@ $(document).ready(function() {
       $(item).replaceWith('<li class="fa fa-angle-double-right">'+ ia +'</li>');
     });
 
-    /*$(".subsection-adaptation-information-adaptation-measures-index_html .content-sidebar .aceitem-search-tile ul li:before").css({
-        "display": "none",
-        "content": "",
-        "margin" : 0,
-        "padding" : 0
-    });*/
 
-    /*$(".subsection-adaptation-information-adaptation-measures-index_html #content .tile-content.aceitem-search-tile ul li ul li")
-        .removeClass("fa").removeClass("fa-angle-double-right");*/
 
     /* Cities fixes */
     var divs = $(".subsection-cities-index_html #content-core > div > div.column.col-md-9 > div");
