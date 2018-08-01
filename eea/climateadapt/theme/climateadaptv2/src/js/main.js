@@ -583,27 +583,23 @@ $(document).ready(function() {
 
   /* Share your info:
   * - http://climate-local.com/cca/help/share-your-info
+  * - http://climate-local.com/help/share-your-info/general
   * - added font awesome arrows
+  * - added font awesome arrows to #third-level-menu
   * */
   function ShareYourInfo(){
     if( $(".subsection-share-your-info").length > 0){
-      $.each ( $(".cover-richtext-tile.tile-content ul li") , function(idx, item){
-        if( $(item).find("a").length > 0 ){
-          $(item).addClass("fa").addClass("fa-angle-double-right");
-        }
+      var arr = [
+          ".cover-richtext-tile.tile-content ul li",
+          "#third-level-menu li"
+      ];
+      return arr.map(function (sel){
+          $.each ( $(sel) , function(idx, item){
+              if( $(item).find("a").length > 0 ){
+                  $(item).addClass("fa").addClass("fa-angle-double-right");
+              }
+          });
       });
-
-      /*
-      * - http://climate-local.com/help/share-your-info/general
-      * - added font awesome arrows to #third-level-menu
-      * */
-      $.each ( $("#third-level-menu li") , function(idx, item){
-        if( $(item).find("a").length > 0 ){
-          $(item).addClass("fa").addClass("fa-angle-double-right");
-
-        }
-      });
-
     }
   }
 
