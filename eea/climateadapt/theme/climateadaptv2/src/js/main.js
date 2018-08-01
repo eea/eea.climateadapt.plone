@@ -586,12 +586,19 @@ $(document).ready(function() {
   * - added font awesome arrows
   * */
   function ShareYourInfo(){
-    if( $(".subsection-share-your-info-index_html").length > 0){
+    if( $(".subsection-share-your-info").length > 0){
       $.each ( $(".cover-richtext-tile.tile-content ul li") , function(idx, item){
         if( $(item).find("a").length > 0 ){
           $(item).addClass("fa").addClass("fa-angle-double-right");
         }
       });
+      $.each ( $("#third-level-menu li") , function(idx, item){
+        if( $(item).find("a").length > 0 ){
+          $(item).addClass("fa").addClass("fa-angle-double-right");
+
+        }
+      });
+
     }
   }
 

@@ -233,7 +233,8 @@ textarea:focus {
   color: inherit;
 }
 
-#content .tile-content.aceitem-search-tile {
+#content .tile-content.aceitem-search-tile
+ {
   li {
     display: block;
     text-decoration: none;
@@ -259,6 +260,22 @@ textarea:focus {
   }
 }
 
+#third-level-menu {
+  li {
+    display: block;
+    margin-bottom: 0.5rem;
+    &.fa.fa-angle-double-right:before {
+      position: absolute;
+      color: @link-color ;
+    }
+    & > a {
+      display: inline-block;
+      margin-left: 1rem;
+    }
+  }
+}
+
+
 .subsection-adaptation-information-vulnerabilities-and-risks-index_html .aceitem-relevant-tile,
 .subsection-adaptation-information-observations-and-scenarios-index_html .aceitem-relevant-tile
 {
@@ -270,6 +287,8 @@ textarea:focus {
     margin-top: -0.3em
   }
 }
+
+
 
 @media screen and (max-width: 480px) {
   /* For devices with narrow screens, phones, tablets, etc. */
