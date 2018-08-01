@@ -462,6 +462,7 @@ $(document).ready(function() {
           && $parent.find("ul").length === 0
           && $item.find("a").length > 0
           && !$item.hasClass("fa")
+          && $("subsection-sector-policies-index_html").length === 0
       ){
         $item.addClass("fa fa-angle-double-right");
       }
