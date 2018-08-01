@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   // HOMEPAGE: initialize slick slider
   if ($('.slider').slick) {
     $('.slider').slick({
@@ -13,9 +12,6 @@ $(document).ready(function() {
     });
   }
 
-  // HOMEPAGE: move slick slider dots to slider caption area
-  // $(".slick-dots").prependTo(".slider-bottom-caption");
-
   // HOMEPAGE: align slider caption and slider arrows to the main content area
   function getPageContainerPadding() {
     var cw = $(".content-container").width();
@@ -24,13 +20,16 @@ $(document).ready(function() {
     return cwRight;
   }
 
-  $('.slider .slick-prev').css('left', function() {
+  var $slider = $('.slider');
+  var $sliderCaption = $('.slider-caption');
+
+  $slider.find('.slick-prev').css('left', function() {
     return getPageContainerPadding() +  'px';
   });
-  $('.slider .slick-next').css('left', function() {
+  $slider.find('.slick-next').css('left', function() {
     return getPageContainerPadding() + 45 +  'px';
   });
-  $('.slider-caption').css('right', function() {
+  $sliderCaption.css('right', function() {
     return getPageContainerPadding() +  'px';
   });
 
@@ -42,13 +41,13 @@ $(document).ready(function() {
   });
 
   function doneResizing() {
-    $('.slider .slick-prev').css('left', function() {
+    $slider.find('.slick-prev').css('left', function() {
       return getPageContainerPadding() +  'px';
     });
-    $('.slider .slick-next').css('left', function() {
+    $slider.find('.slick-next').css('left', function() {
       return getPageContainerPadding() + 45 +  'px';
     });
-    $('.slider-caption').css('right', function() {
+    $sliderCaption.css('right', function() {
       return getPageContainerPadding() +  'px';
     });
   }
@@ -87,15 +86,16 @@ $(document).ready(function() {
   // HOMEPAGE: Dynamic area - Getting started:
   // On button hover toggle class on the bubble section
   $('.action-btn').each(function() {
-    $(this).hover(function() {
-      if ($(this).hasClass('regional-btn')) {
-        $(this).siblings('.action-bubble').toggleClass('regional-bubble');
+    var $this = $(this);
+    $this.hover(function() {
+      if ($this.hasClass('regional-btn')) {
+        $this.siblings('.action-bubble').toggleClass('regional-bubble');
       }
-      if ($(this).hasClass('transnational-btn')) {
-        $(this).siblings('.action-bubble').toggleClass('transnational-bubble');
+      if ($this.hasClass('transnational-btn')) {
+        $this.siblings('.action-bubble').toggleClass('transnational-bubble');
       }
-      if ($(this).hasClass('national-btn')) {
-        $(this).siblings('.action-bubble').toggleClass('national-bubble');
+      if ($this.hasClass('national-btn')) {
+        $this.siblings('.action-bubble').toggleClass('national-bubble');
       }
     })
   });
@@ -129,7 +129,7 @@ $(document).ready(function() {
 
   // HOMEPAGE: Dynamic area - EU Sector policies:
   // Sub-tab section close functionality
-  $(".close-tab-pane").click(function() {
+  $('.close-tab-pane').click(function() {
     var $contentParent = $(this).closest('.policies-tab-content');
     var $mainParent = $(this).closest('.sub-tab-section');
     $mainParent.find('.action-flex-item').removeClass('active');
@@ -161,13 +161,14 @@ $(document).ready(function() {
   var mainMenuWidth = $('.main-nav').width();
 
   $('.main-nav li').mouseenter(function() {
-    var subMenuWidth = $(this).children('.sub-menu-wrapper').width();
-    if ($(this).find('.sub-menu-wrapper').length > 0) {
-      var subMenuLeft = $(this).children('.sub-menu-wrapper').offset().left;
+    var $this = $(this);
+    var subMenuWidth = $this.children('.sub-menu-wrapper').width();
+    if ($this.find('.sub-menu-wrapper').length > 0) {
+      var subMenuLeft = $this.children('.sub-menu-wrapper').offset().left;
     }
 
     if (mainMenuWidth - (subMenuWidth + subMenuLeft) < 0) {
-      $(this).children('.sub-menu-wrapper').css({
+      $this.children('.sub-menu-wrapper').css({
         'right': 0,
         'left': 'auto'
       });
@@ -177,8 +178,9 @@ $(document).ready(function() {
   // divide the sub-menu in 2 columns if 'sub-sub-menu' exist
   var navigationItem = $('.main-nav-item');
   navigationItem.each(function() {
-    if ($(this).find('.sub-sub-menu-wrapper').length > 0) {
-      $(this).find('.sub-menu-wrapper').css('column-count', '2');
+    var $this = $(this);
+    if ($this.find('.sub-sub-menu-wrapper').length > 0) {
+      $this.find('.sub-menu-wrapper').css('column-count', '2');
     }
   });
 
@@ -186,16 +188,18 @@ $(document).ready(function() {
   $('.share-your-info-ace-button button').addClass('standard-button primary-button');
 
   // add btn class to download as pdf
-  $("#document-action-download_pdf").find('a').addClass('standard-button secondary-button');
-  $("#login-form .formControls input").addClass('standard-button secondary-button');
+  $('#document-action-download_pdf').find('a').addClass('standard-button secondary-button');
+  $('#login-form .formControls input').addClass('standard-button secondary-button');
 
-  // EU POLICY PAGES AND TRANSNATIONAL REGIONS:
-  // add a specific class for policy pages and transnational regions
+  // Add a specific class for policy pages, transnational regions and country pages
+  // url: .../cca/countries-regions/transnational-regions/baltic-sea-region
+  //      .../cca/eu-adaptation-policy/sector-policies/agriculture
+  //      .../cca/countries-regions/countries/austria
   var currentLocation = window.location.pathname;
   var lastPathName;
-  var parts = currentLocation.split("/");
+  var parts = currentLocation.split('/');
 
-  if (parts[parts.length-1].length == 0) {
+  if (parts[parts.length - 1].length === 0) {
     lastPathName = parts[parts.length - 2];
   } else {
     lastPathName = parts[parts.length - 1];
@@ -205,16 +209,17 @@ $(document).ready(function() {
   var regionClass = 'subsection-transnational-regions-' + lastPathName;
   var countryClass = 'subsection-countries-' + lastPathName;
 
-  var bodyClassList = $('body').attr('class').split(/\s+/);
+  var $body = $('body');
+  var bodyClassList = $body.attr('class').split(/\s+/);
   $.each(bodyClassList, function(index, item) {
     if (item === policyClass) {
-      $('body').addClass('eu-policy-page');
+      $body.addClass('eu-policy-page');
     }
     if (item === regionClass) {
-      $('body').addClass('region-page');
+      $body.addClass('region-page');
     }
     if (item === countryClass) {
-      $('body').addClass('country-page');
+      $body.addClass('country-page');
     }
   });
 
@@ -223,19 +228,23 @@ $(document).ready(function() {
   var isCountryPage = $('.country-page').length > 0;
 
   if (isPolicyPage || isRegionPage) {
-    $('.region-page .column.col-md-2').removeClass('col-md-2').addClass('col-md-3');
-    $('.region-page .column.col-md-10').removeClass('col-md-10').addClass('col-md-9');
-    $('.region-page #content-core .row').prepend($('.column.col-md-9'));
+    var $region = $('.region-page');
+
+    $region.find('.column.col-md-2').removeClass('col-md-2').addClass('col-md-3');
+    $region.find('.column.col-md-10').removeClass('col-md-10').addClass('col-md-9');
+    $region.find('#content-core .row').prepend($('.column.col-md-9'));
 
     $('.column.col-md-9').children().wrapAll('<div class="content-column"/>');
     $('.column.col-md-3').children().wrapAll('<div class="content-sidebar"/>');
 
-    $('.content-column').find('img').closest('.tile-content').addClass('main-tile-content');
-    $('.content-column').children('.col-md-4').wrapAll('<div class="row"/>');
+    var $content = $('.content-column');
+
+    $content.find('img').closest('.tile-content').addClass('main-tile-content');
+    $content.children('.col-md-4').wrapAll('<div class="row"/>');
 
     // move pdf button and 'last modified' viewlet to the main content area
-    $('#document-action-download_pdf').parent().appendTo(".content-column");
-    $('.content-column').prepend($('#viewlet-below-content-title'));
+    $('#document-action-download_pdf').parent().appendTo('.content-column');
+    $content.prepend($('#viewlet-below-content-title'));
   }
 
   $('.region-page #trans-region-select').siblings('div').addClass('region-countries');
@@ -274,10 +283,10 @@ $(document).ready(function() {
 
     $('.column.col-md-3').prepend(factsheetIMG);
     $('.column.col-md-3 .image-inline').parent().append(
-    '<div class="factsheet-pdf">' +
-    '<i class="fa fa-angle-double-right"></i>' +
-    '<div class="factsheet-title">Factsheet on <span>' +
-    factheetCategory + '</span></div></div>');
+      '<div class="factsheet-pdf">' +
+      '<i class="fa fa-angle-double-right"></i>' +
+      '<div class="factsheet-title">Factsheet on <span>' +
+      factheetCategory + '</span></div></div>');
     $('.column.col-md-3 .image-inline').hide();
   }
 
@@ -294,11 +303,11 @@ $(document).ready(function() {
     // add active class on current page sub-navigation item
     $(function() {
       var current = window.location.pathname;
-      var current = current.substring(current.lastIndexOf("/") + 1, current.length);
+      current = current.substring(current.lastIndexOf('/') + 1, current.length);
       $('.cover-section_nav-tile a').each(function() {
         var getURL = $(this).attr('href');
-        var getURL = getURL.substring(getURL.lastIndexOf("/") + 1, getURL.length);
-        if(getURL.indexOf(current) !== -1) {
+        getURL = getURL.substring(getURL.lastIndexOf('/') + 1, getURL.length);
+        if (getURL.indexOf(current) !== -1) {
           $(this).addClass('active-nav');
         }
       })
@@ -320,18 +329,21 @@ $(document).ready(function() {
     $('.country-header-map').append($('<div class="country-map">'));
     $('.country-content .last-update-tile').addClass('clearfix').prependTo('.tab-pane');
 
-    $('#document-action-download_pdf').parent().appendTo(".tab-pane");
+    $('table').addClass('listing');
+    $('#document-action-download_pdf').parent().appendTo('.tab-pane');
 
     // custom country dropdown functionality
+    // url: .../cca/countries-regions/countries/austria
+    var $countryTitle = $('.dd-country-title');
     $('.dd-country-title .options li').on('click', function() {
-      $('.dd-country-title .selected').html($(this).text());
-      $('.dd-country-title .selected-inp').val($(this).data('value')).trigger('change');
-      $('.dd-country-title .options').removeClass('show');
+      $countryTitle.find('.selected').html($(this).text());
+      $countryTitle.find('.selected-inp').val($(this).data('value')).trigger('change');
+      $countryTitle.find('.options').removeClass('show');
     });
 
     $('.dd-title-wrapper').on('click', function(e) {
-      $('.dd-country-title .options').fadeToggle().toggleClass('show');
-      $('.dd-country-title i').toggleClass('fa fa-angle-up fa fa-angle-down');
+      $countryTitle.find('.options').fadeToggle().toggleClass('show');
+      $countryTitle.find('i').toggleClass('fa fa-angle-up fa fa-angle-down');
       e.stopPropagation()
     });
 
@@ -344,33 +356,34 @@ $(document).ready(function() {
       }
     });
 
+    // resize the country dropdown list to the country title
     $.fn.resizeselectList = function(settings) {
       return this.each(function() {
         $(this).change(function() {
           var $this = $(this);
           var $selected = $this.parents().find('.dd-country-title .selected');
           var text = $selected.text();
-          console.log(text);
 
-          var $test = $("<span class='xx'/>").html(text).css({
-            "font-size": $selected.css("font-size"),
-            "font-weight": $selected.css("font-weight"),
-            "visibility": "hidden"
+          var $titlePlaceholder = $('<span/>').html(text).css({
+            'font-size': $selected.css('font-size'),
+            'font-weight': $selected.css('font-weight'),
+            'visibility': 'hidden'
           });
 
-
-          $test.appendTo($this.parent());
-          var width = $test.width();
-          $test.remove();
+          $titlePlaceholder.appendTo($this.parent());
+          // get country title width
+          var width = $titlePlaceholder.width();
+          $titlePlaceholder.remove();
 
           $this.width(width + 45);
         }).change();
       });
     };
-    $(".resizeselect-list").resizeselectList();
+    $('.resizeselect-list').resizeselectList();
   }
 
   // ADAPTATION SUPPORT TOOL
+  // url: .../cca/knowledge/tools/adaptation-support-tool
   var isASTPage = $('.subsection-tools-adaptation-support-tool').length > 0;
   $('.lfc-single-image').remove(); // remove existing AST image
 
@@ -383,21 +396,22 @@ $(document).ready(function() {
     });
   }
 
-  $('.ast-map .ast-circle').hover(function() {
-    $(this).siblings(".step-text").css('display', 'block');
+  var $circleStep = $('.ast-map .ast-circle');
+
+  $circleStep.hover(function() {
+    $(this).siblings('.step-text').css('display', 'block');
   }, function() {
-    $(this).siblings(".step-text").css('display', 'none');
+    $(this).siblings('.step-text').css('display', 'none');
   });
 
   var currentStep = $('.ast-title-step').text();
-  var circleStep = $('.ast-circle');
 
   if (currentStep == 0) {
     $('.ast-title-step').remove();
   }
 
   // highlight the current step
-  circleStep.each(function() {
+  $circleStep.each(function() {
     if ($(this).text() === currentStep) {
       $(this).css({
         'background-color': '#FFD554',
@@ -406,6 +420,10 @@ $(document).ready(function() {
       });
     }
   });
+
+  // HELP PAGE: Glossary
+  // url: .../cca/help/glossary
+  $('.GlossaryHeader').parents(':eq(2)').addClass('glossary-table');
 
   /*
   * For mobile: fix table styling issues

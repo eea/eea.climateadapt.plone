@@ -547,7 +547,7 @@ a.read-more {
 
 .factsheet-pdf {
   background-color: #FFD554;
-  border: 1px solid #F2C94C;
+  border: 1px solid @yellow;
   padding: 15px;
   width: 100%;
   height: auto;
@@ -621,26 +621,24 @@ a.read-more {
 .ast_header h1 {
   display: inline-block;
 }
-#ast-menu .ui-state-default .ui-icon {
-  float: left;
-  display: none;
-}
 
-#ast-menu .ui-accordion .ui-accordion-header {
+#ast-menu .ui-accordion-header {
   border-radius: 0;
+  border: none;
+  padding: 0.8em;
+
+  .ui-icon {
+    display: none;
+  }
 }
 
 #ast-menu .ui-state-default {
-  border: none;
-  border-radius: 0;
-  padding: 10px 8px;
   background: @primary-blue;
 }
 
-#content #ast-menu .ui-state-active {
-  background: none;
-  background-color: #F2C94C;
-  color: @dark-gray !important;
+#ast-menu .ui-state-active {
+  background: @yellow;
+  color: @dark-gray;
 }
 
 #ast-menu .ui-accordion-content {
@@ -651,11 +649,15 @@ a.read-more {
 }
 
 #ast-menu .ui-state-hover {
-  background: #F2C94C;
+  background: @yellow;
 }
 
 #ast-menu .ui-accordion-li-fix {
   padding-top: 5px;
+}
+
+#ast-menu ul > li:last-child {
+  margin-bottom: 0 !important;
 }
 
 #ast-menu .ui-accordion-li-fix:first-child > a {
@@ -692,7 +694,7 @@ a.read-more {
 
 .ast-title-step {
   background-color: #FFD554;
-  border: 2px solid #F2C94C;
+  border: 2px solid @yellow;
   border-radius: 50%;
   box-sizing: initial;
   height: 35px;
@@ -708,7 +710,7 @@ a.read-more {
 
 .ast-map .ast-circle:hover {
   background-color: #FFD554;
-  border: 2px solid #F2C94C;
+  border: 2px solid @yellow;
   transform: scale(1.08);
   color: #4F4F4F;
 }
@@ -965,12 +967,46 @@ a.read-more {
 }
 
 .dd-country-title .options li {
-  background: #eee;
+  background-color: #f7f7f7;;
   cursor: pointer;
   padding: 8px 0 8px 5px;
-  color: #565656;
+  color: @dark-gray;
 }
 
 .dd-country-title .options li:hover {
   background: #fbfbfb;
+}
+
+// Help page glossary
+.glossary-table {
+  width: 100%;
+  table-layout: fixed;
+}
+.glossary-item {
+  margin-top: 1.5em;
+  color: #4f4f4f;
+  font-family: RobotoR;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 5px 0;
+}
+
+.GlossaryTitle {
+  color: @primary-blue;
+  margin: 10px 0;
+  font-family: RobotoB;
+  background-color: #ddd;
+  padding: 5px;
+
+  a {
+    float: right;
+  }
+  br {
+    display: none;
+  }
+}
+.GlossaryTitle a:before {
+  content: '\f0aa';
+  font-family: FontAwesome;
+  margin-right: 5px;
 }
