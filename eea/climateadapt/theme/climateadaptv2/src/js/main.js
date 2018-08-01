@@ -481,7 +481,8 @@ $(document).ready(function() {
         .removeClass("fa").removeClass("fa-angle-double-right");
 
     if( $(".subsection-adaptation-information-adaptation-measures-index_html .aceitem-search-tile").length > 0 ||
-        $(".subsection-adaptation-information-climate-services.subsection-adaptation-information-climate-services-climate-services .aceitem-search-tile").length > 0 )
+        $(".subsection-adaptation-information-climate-services.subsection-adaptation-information-climate-services-climate-services .aceitem-search-tile").length > 0
+    )
     {
         fixSidebarAndColumns();
     }
@@ -491,6 +492,21 @@ $(document).ready(function() {
             var ia = $(item).find("a").prop('outerHTML');
             $(item).replaceWith('<li class="fa fa-angle-double-right">'+ ia +'</li>');
         });
+    }
+  }
+
+  /*
+  * Adaptation Information
+  * - http://climate-local.com/cca/knowledge/adaptation-information/research-projects
+  * */
+  function AdaptationInformation(){
+    if( $(".subsection-adaptation-information-research-projects-index_html").length > 0 ){
+      
+      $.each ( $(".cover-richtext-tile.tile-content ul li") , function(idx, item){
+        if( $(item).find("a").length > 0 ){
+          $(item).addClass("fa").addClass("fa-angle-double-right");
+        }
+      });
     }
   }
 
@@ -610,10 +626,12 @@ $(document).ready(function() {
   function StylingFixes(){
     DoubleAngleListStyle();
     AdaptationOptions();
+    AdaptationInformation();
     CitiesFixes();
     VulnerabilitiesAndRisksFixes();
     ObservationsAndScenarios();
     SidebarFixes();
+
     addingLinetoMoreThan1Tile();
   }
 
