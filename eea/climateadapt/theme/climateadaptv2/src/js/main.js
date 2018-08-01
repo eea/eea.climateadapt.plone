@@ -515,11 +515,13 @@ $(document).ready(function() {
       * - http://climate-local.com/cca/countries-regions/cities
       * - http://climate-local.com/cca/knowledge/adaptation-information/vulnerabilities-and-risks
       * - http://climate-local.com/cca/knowledge/adaptation-information/adaptation-measures
+      * - http://climate-local.com/cca/knowledge/adaptation-information/observations-and-scenarios
       * */
     var sels = [
         ".subsection-cities.subsection-cities-index_html .aceitem-search-tile",
         ".subsection-adaptation-information-vulnerabilities-and-risks-index_html .aceitem-search-tile",
-        ".subsection-adaptation-information-adaptation-measures-index_html .aceitem-search-tile"
+        ".subsection-adaptation-information-adaptation-measures-index_html .aceitem-search-tile",
+        ".subsection-adaptation-information-observations-and-scenarios-index_html .aceitem-search-tile"
     ];
 
     // adding .content-sidebar to .aceitem-search-tile parent
@@ -529,6 +531,16 @@ $(document).ready(function() {
 
       $(sel).parent().parent().find(".content-sidebar").append(sib);
     });
+  }
+
+  /*
+  * Observations and Scenarios:
+  * - http://climate-local.com/cca/knowledge/adaptation-information/observations-and-scenarios
+  * */
+  function ObservationsAndScenarios(){
+    if( $(".subsection-adaptation-information-observations-and-scenarios-index_html .aceitem-search-tile").length > 0 ){
+      fixSidebarAndColumns();
+    }
   }
 
   /*
@@ -582,6 +594,7 @@ $(document).ready(function() {
     AdaptationOptions();
     CitiesFixes();
     VulnerabilitiesAndRisksFixes();
+    ObservationsAndScenarios();
     SidebarFixes();
     addingLinetoMoreThan1Tile();
   }
