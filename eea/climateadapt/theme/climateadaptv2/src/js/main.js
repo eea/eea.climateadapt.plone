@@ -496,21 +496,6 @@ $(document).ready(function() {
   }
 
   /*
-  * Adaptation Information
-  * - http://climate-local.com/cca/knowledge/adaptation-information/research-projects
-  * */
-  function AdaptationInformation(){
-    if( $(".subsection-adaptation-information-research-projects-index_html").length > 0 ){
-      
-      $.each ( $(".cover-richtext-tile.tile-content ul li") , function(idx, item){
-        if( $(item).find("a").length > 0 ){
-          $(item).addClass("fa").addClass("fa-angle-double-right");
-        }
-      });
-    }
-  }
-
-  /*
   *
   * Cities fixes
   * - Page: http://climate-local.com/cca/countries-regions/cities
@@ -544,7 +529,74 @@ $(document).ready(function() {
 
   }
 
-  function SidebarFixes() {
+  /*
+  * Observations and Scenarios:
+  * - http://climate-local.com/cca/knowledge/adaptation-information/observations-and-scenarios
+  * */
+  function ObservationsAndScenarios(){
+    if( $(".subsection-adaptation-information-observations-and-scenarios-index_html .aceitem-search-tile").length > 0 ){
+      fixSidebarAndColumns();
+    }
+  }
+
+  /*
+  * Vulnerabilities and fixes
+  * - http://climate-local.com/cca/knowledge/adaptation-information/vulnerabilities-and-risks
+  * - sidebar and center column structure fixes
+  * */
+  function VulnerabilitiesAndRisksFixes(){
+      if( $(".subsection-adaptation-information-vulnerabilities-and-risks-index_html .aceitem-search-tile").length > 0 ){
+          fixSidebarAndColumns();
+      }
+  }
+
+  /*
+  * Adaptation Information
+  * - http://climate-local.com/cca/knowledge/adaptation-information/research-projects
+  * - added font awesome arrows
+  * */
+  function AdaptationInformation(){
+    if( $(".subsection-adaptation-information-research-projects-index_html").length > 0 ){
+
+      $.each ( $(".cover-richtext-tile.tile-content ul li") , function(idx, item){
+        if( $(item).find("a").length > 0 ){
+          $(item).addClass("fa").addClass("fa-angle-double-right");
+        }
+      });
+    }
+  }
+
+  /*
+  * Uncertainty Guidance:
+  * - http://climate-local.com/cca/knowledge/tools/knowledge/tools/uncertainty-guidance
+  * - added font awesome arrows
+  * */
+  function UncertaintyGuidance(){
+    if($(".subsection-tools-uncertainty-guidance-index_html").length > 0){
+       $.each ( $(".cover-richtext-tile.tile-content ul li") , function(idx, item){
+        if( $(item).find("a").length > 0 ){
+          $(item).addClass("fa").addClass("fa-angle-double-right");
+        }
+      });
+    }
+  }
+
+  /* Share your info:
+  * - http://climate-local.com/cca/help/share-your-info
+  * - added font awesome arrows
+  * */
+  function ShareYourInfo(){
+    if( $(".subsection-share-your-info-index_html").length > 0){
+      $.each ( $(".cover-richtext-tile.tile-content ul li") , function(idx, item){
+        if( $(item).find("a").length > 0 ){
+          $(item).addClass("fa").addClass("fa-angle-double-right");
+        }
+      });
+    }
+  }
+
+
+   function sidebarFixes() {
       /* Sidebar fixes
       * - http://climate-local.com/cca/countries-regions/cities
       * - http://climate-local.com/cca/knowledge/adaptation-information/vulnerabilities-and-risks
@@ -565,26 +617,6 @@ $(document).ready(function() {
 
       $(sel).parent().parent().find(".content-sidebar").append(sib);
     });
-  }
-
-  /*
-  * Observations and Scenarios:
-  * - http://climate-local.com/cca/knowledge/adaptation-information/observations-and-scenarios
-  * */
-  function ObservationsAndScenarios(){
-    if( $(".subsection-adaptation-information-observations-and-scenarios-index_html .aceitem-search-tile").length > 0 ){
-      fixSidebarAndColumns();
-    }
-  }
-
-  /*
-  * Vulnerabilities and fixes
-  * - http://climate-local.com/cca/knowledge/adaptation-information/vulnerabilities-and-risks
-  * */
-  function VulnerabilitiesAndRisksFixes(){
-      if( $(".subsection-adaptation-information-vulnerabilities-and-risks-index_html .aceitem-search-tile").length > 0 ){
-          fixSidebarAndColumns();
-      }
   }
 
   function fixSidebarAndColumns(){
@@ -629,8 +661,11 @@ $(document).ready(function() {
     AdaptationInformation();
     CitiesFixes();
     VulnerabilitiesAndRisksFixes();
+    UncertaintyGuidance()
     ObservationsAndScenarios();
-    SidebarFixes();
+    ShareYourInfo();
+
+    sidebarFixes();
 
     addingLinetoMoreThan1Tile();
   }
