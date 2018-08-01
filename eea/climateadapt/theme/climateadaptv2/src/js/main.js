@@ -592,6 +592,11 @@ $(document).ready(function() {
           $(item).addClass("fa").addClass("fa-angle-double-right");
         }
       });
+
+      /*
+      * - http://climate-local.com/help/share-your-info/general
+      * - added font awesome arrows to #third-level-menu
+      * */
       $.each ( $("#third-level-menu li") , function(idx, item){
         if( $(item).find("a").length > 0 ){
           $(item).addClass("fa").addClass("fa-angle-double-right");
