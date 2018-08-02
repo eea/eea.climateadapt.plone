@@ -1,5 +1,5 @@
 <div tal:attributes="class view/__name__">
-  <h2><a href="" tal:content="view/title" tal:define="url view/parent/absolute_url" tal:attributes="href url"></a></h2>
+  <h2 tal:content="view/title"></h2>
   <ul tal:define="items view/items">
     <li tal:repeat="obj items">
       <a href="" tal:attributes="href python: view.get_external_url(obj)">
@@ -8,8 +8,13 @@
       </a>
     </li>
   </ul>
-  <div class="tile-listing-footer">
-    <a href="" tal:define="info view/more_url; title python: info[1]; url python: info[0]"
-      tal:attributes="href url" tal:content="title"></a>
+
+  <div class="read-more-wrapper">
+    <a href=""
+       tal:define="info view/more_url; title python: info[1]; url python: info[0]"
+       tal:attributes="href url" class="read-more">
+      <i class="fa fa-angle-double-right"></i>
+      <span tal:content="title"></span>
+    </a>
   </div>
 </div>

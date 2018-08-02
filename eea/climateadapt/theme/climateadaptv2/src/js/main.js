@@ -136,6 +136,15 @@ $(document).ready(function() {
     $contentParent.removeClass('active');
   });
 
+  // HOMEPAGE: Main area
+  // Get heighest div and make equal heights on every boxes
+  var $mainBox = $('.main-box');
+  var mainBoxMaxHeight = 0;
+  $mainBox.each(function() {
+    mainBoxMaxHeight = ($(this).outerHeight() > mainBoxMaxHeight) ? $(this).outerHeight() : mainBoxMaxHeight;
+  });
+  $mainBox.height(mainBoxMaxHeight)
+
   // Mobile menu button on click event
   $('.mobile-menu i').click(function() {
     $('body').toggleClass('no-ovf');
