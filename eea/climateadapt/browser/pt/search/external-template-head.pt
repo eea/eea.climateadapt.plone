@@ -12,9 +12,9 @@
 <!--<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:8080/cca/portal_css/Sunburst%20Theme/public.css">-->
 <!--<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:8080/cca/portal_css/Sunburst%20Theme/authoring.css">-->
 <link rel="stylesheet" href="/frontpage/cca/++theme++climateadapt/static/bs3/css/bootstrap.css" type="text/css"/>
-<script type="text/javascript" src="/frontpage/cca/++theme++climateadapt/static/main.js?ts=14"></script>
+<script type="text/javascript" src="/frontpage/cca/++theme++climateadaptv2/static/js/main.js?ts=14"></script>
 <link rel="apple-touch-icon" href="/frontpage/cca/++theme++climateadapt/static/touch_icon.png"/>
-<link type="text/css" rel="stylesheet" href="/frontpage/cca/++theme++climateadapt/static/style.css?ts=46"/>
+<link type="text/css" rel="stylesheet" href="/frontpage/cca/++theme++climateadaptv2/static/css/compiled-css.css?ts=46"/>
 <link type="text/css" rel="stylesheet" href="/frontpage/cca/++theme++climateadapt/static/jquery.qtip.css"/>
 <!--<script type="text/javascript" src="http://localhost:8080/cca/frontpage/++theme++climateadapt/static/jquery.qtip.min.js"></script>-->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
