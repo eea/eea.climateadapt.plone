@@ -33,7 +33,7 @@
       <replace css:theme=".slider" css:content=".slider"  />
 
       <!-- slider -->
-      
+
 
     </rules>
 
@@ -42,6 +42,8 @@
       <theme href="page.html" />
 
     </rules>
+
+
     <replace css:content="#portal-columns" css:theme="#page-body"/>
     <replace css:content="#navbar" css:theme=".main-nav" href="@@site_navbar" method="document"/>
 
@@ -87,6 +89,21 @@
             <xi:include href="tab-policies-rule.html" />
         </replace>
     </rules>
+
+  <!-- enable later to have two column layout without js transformation -->
+  <!--<rules css:if-content=".column">-->
+   <!--<replace css:content="#content">-->
+            <!--<div id="content" class="columned">-->
+                <!--<xsl:apply-templates select="./*"/>-->
+            <!--</div>-->
+        <!--</replace>-->
+    <!--&lt;!&ndash; cca/countries-regions/transnational-regions/baltic-sea-region-->
+         <!--insert viewlet-below below the first header &ndash;&gt;-->
+    <!--<drop css:content="#viewlet-below-content-title" />-->
+    <!--<after css:content="h1">-->
+      <!--<xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />-->
+    <!--</after>-->
+  <!--</rules>-->
 
   <rules if="contains($host, 'local')">
     <!--<xsl:value-of select="$host" /> shows value of given variable -->

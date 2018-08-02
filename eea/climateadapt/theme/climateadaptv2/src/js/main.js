@@ -136,6 +136,15 @@ $(document).ready(function() {
     $contentParent.removeClass('active');
   });
 
+  // HOMEPAGE: Main area
+  // Get heighest div and make equal heights on every boxes
+  var $mainBox = $('.main-box');
+  var mainBoxMaxHeight = 0;
+  $mainBox.each(function() {
+    mainBoxMaxHeight = ($(this).outerHeight() > mainBoxMaxHeight) ? $(this).outerHeight() : mainBoxMaxHeight;
+  });
+  $mainBox.height(mainBoxMaxHeight)
+
   // Mobile menu button on click event
   $('.mobile-menu i').click(function() {
     $('body').toggleClass('no-ovf');
@@ -183,9 +192,6 @@ $(document).ready(function() {
       $this.find('.sub-menu-wrapper').css('column-count', '2');
     }
   });
-
-  // add primary button class to share your information
-  $('.share-your-info-ace-button button').addClass('standard-button primary-button');
 
   // add btn class to download as pdf
   $('#document-action-download_pdf').find('a').addClass('standard-button secondary-button');
