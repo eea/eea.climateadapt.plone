@@ -193,9 +193,6 @@ $(document).ready(function() {
     }
   });
 
-  // add primary button class to share your information
-  $('.share-your-info-ace-button button').addClass('standard-button primary-button');
-
   // add btn class to download as pdf
   $('#document-action-download_pdf').find('a').addClass('standard-button secondary-button');
   $('#login-form .formControls input').addClass('standard-button secondary-button');

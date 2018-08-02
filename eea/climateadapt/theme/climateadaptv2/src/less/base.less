@@ -431,7 +431,12 @@ a.read-more {
 
 // EU sector policies
 
-.grid-layout #content {
+.grid-layout #content,
+.eu-policy-page #content,
+.region-page #content,
+#content.columned,
+.subsection-cities-index_html #content
+{
   background-color: transparent;
   padding: 0;
   border: none;
@@ -444,6 +449,19 @@ a.read-more {
 .row {
   margin: 0 -10px;
 }
+
+// attempt to split into columns using css enable after uncommenting rules.xml rules
+//.columned .column {
+//  padding: 20px;
+//  background: white;
+//  border-right: 20px solid #eee;
+//}
+//.columned .row {
+//  margin: 0;
+//}
+//.columned .column:last-of-type {
+//  border-right: 0;
+//}
 
 .content-column,
 .content-sidebar {
