@@ -333,7 +333,7 @@ def _extract_menu(value):
     return result
 
 
-class Navbar(BrowserView, ExternalTemplateHeader):
+class Navbar(ExternalTemplateHeader):
     """ The global site navbar
     """
 
