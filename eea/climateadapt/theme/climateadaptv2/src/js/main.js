@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  var $body = $('body');
+
   // HOMEPAGE: initialize slick slider
   if ($('.slider').slick) {
     $('.slider').slick({
@@ -143,11 +145,11 @@ $(document).ready(function() {
   $mainBox.each(function() {
     mainBoxMaxHeight = ($(this).outerHeight() > mainBoxMaxHeight) ? $(this).outerHeight() : mainBoxMaxHeight;
   });
-  $mainBox.height(mainBoxMaxHeight)
+  $mainBox.css('min-height', mainBoxMaxHeight);
 
   // Mobile menu button on click event
   $('.mobile-menu i').click(function() {
-    $('body').toggleClass('no-ovf');
+    $body.toggleClass('no-ovf');
     $(this).toggleClass('fa-bars fa-times');
     $('.header').toggleClass('mobile-header');
     $('.header .main-nav, .top-menu-content').toggleClass('nav-toggle');
@@ -184,7 +186,7 @@ $(document).ready(function() {
     }
   });
 
-  // divide the sub-menu in 2 columns if 'sub-sub-menu' exist
+  // Divide the sub-menu in 2 columns if 'sub-sub-menu' exist
   var navigationItem = $('.main-nav-item');
   navigationItem.each(function() {
     var $this = $(this);
@@ -194,7 +196,7 @@ $(document).ready(function() {
   });
 
   // add btn class to download as pdf
-  $('#document-action-download_pdf').find('a').addClass('standard-button secondary-button');
+  $('#document-action-download_pdf').addClass('standard-button secondary-button');
   $('#login-form .formControls input').addClass('standard-button secondary-button');
 
   // Add a specific class for grid layout pages
@@ -213,8 +215,7 @@ $(document).ready(function() {
   var countryClass = 'subsection-countries-' + lastPathName;
 
   // url: .../cca/countries-regions/cities
-  var citiesClass = 'subsection-' + lastPathName;
-
+  var citiesClass = 'subsection-cities';
   // url: .../cca/knowledge/adaptation-information/vulnerabilities-and-risks
   var vulnerabilitiesClass = 'subsection-adaptation-information-vulnerabilities-and-risks';
   // url: .../cca/knowledge/adaptation-information/observations-and-scenarios
@@ -304,8 +305,8 @@ $(document).ready(function() {
   // url: .../cca/eu-adaptation-policy/sector-policies/agriculture
   function policyLayout() {
     if (isPolicyPage) {
-      var policySubTitles = $('.read_more_second').children('h2');
 
+      var policySubTitles = $('.read_more_second').children('h2');
       policySubTitles.each(function() {
         $(this).replaceWith($('<p><strong>' + this.innerHTML + '</strong><p>'));
       });
@@ -333,13 +334,13 @@ $(document).ready(function() {
     //     .../cca/countries-regions/transnational-regions/carpathian-mountains/general
     function regionSubpageLayout() {
       if (isBalticSubpage || isCarpathianSubpage) {
-        $('body').addClass('region-subpage');
+        $body.addClass('region-subpage');
         $('#content-core .column.col-md-3').remove();
         $('#content-core .column.col-md-9').removeClass('col-md-9');
 
         $('.tile-content').addClass('clearfix');
 
-        // add active class on current page sub-navigation item
+        // Add active class on current page sub-navigation item
         $(function() {
           var current = window.location.pathname;
           current = current.substring(current.lastIndexOf('/') + 1, current.length);
@@ -358,21 +359,24 @@ $(document).ready(function() {
     // url: .../cca/countries-regions/countries/austria
     function countryPageLayout() {
       if (isCountryPage) {
-        $('.column.col-md-10').parents('.row').removeClass('row').addClass('country-wrapper');
-        $('.column').removeClass('col-md-2 col-md-10');
+        $('#content-core').children().addClass('country-wrapper').removeClass('row');
         $('.sweet-tabs').attr('id', 'country-tab');
 
-        $('.country-wrapper .column:first-child').addClass('country-header-map');
-        $('.country-wrapper .column:nth-child(2)').addClass('country-content');
+        var $countryW = $('.country-wrapper');
+        $countryW.children().removeClass('col-md-2 col-md-10');
+        $countryW.find('.column:first-child').addClass('country-header-map');
+        $countryW.find('.column:nth-child(2)').addClass('country-content');
 
-        $('.country-select-tile').parent().addClass('countries-dropdown');
-        $('.country-select-tile img').remove();
+        var $countrySelect = $('.country-select-tile');
+        $countrySelect.parent().addClass('countries-dropdown');
+        $countrySelect.find('img').remove();
 
+        var $tabPane = $('.tab-pane');
         $('.country-header-map').append($('<div class="country-map">'));
-        $('.country-content .last-update-tile').addClass('clearfix').prependTo('.tab-pane');
+        $('.country-content .last-update-tile').addClass('clearfix').prependTo($tabPane);
 
         $('table').addClass('listing');
-        $('#document-action-download_pdf').parent().appendTo('.tab-pane');
+        $('#document-action-download_pdf').parent().appendTo($tabPane);
 
         // custom country dropdown functionality
         var $countryTitle = $('.dd-country-title');
@@ -471,7 +475,6 @@ $(document).ready(function() {
   countryPageLayout();
   astLayout();
 
-
   $('.region-page #trans-region-select').siblings('div').addClass('region-countries');
 
   var regionsTitle = $('.region-countries').children('strong');
@@ -484,6 +487,11 @@ $(document).ready(function() {
   // url: .../cca/help/glossary
   $('.GlossaryHeader').parents(':eq(2)').addClass('glossary-table');
 
+  // Remove double angle '»' from 'Search result' listings
+  $(".aceitem-search-tile-listing li ul li").each(function() {
+    var $this = $(this);
+    $this.html($this.html().replace('»', ''));
+  });
 
   /*
   * For mobile: fix table styling issues
@@ -505,113 +513,7 @@ $(document).ready(function() {
       }
   }
 
-  /*
-  * added font awesome arrows for menu item section
-  * */
-  function DoubleAngleListStyle(){
-    $.each($("#content .cover-richtext-tile.tile-content:not(aceitem-urban-menu-tile) ul > li"), function (idx, item) {
-      var $item = $(item);
-      var $parent = $item.parent();
-      var $parent_class = $parent.attr('class');
-
-      if( $parent_class!== undefined && !$parent_class.indexOf("menu-urban-sub")
-          && !$parent_class.indexOf("menu-urban")
-          && !$parent_class.indexOf("aceitem-search-tile-listing")
-          && $parent.find("ul").length === 0
-          && $item.find("a").length > 0
-          && !$item.hasClass("fa")
-          && $("subsection-sector-policies-index_html").length === 0
-      ){
-        $item.addClass("fa fa-angle-double-right");
-      }
-    });
-  }
-
-  /*
-  *  Adaptation options
-  * - http://climate-local.com/cca/knowledge/adaptation-information/adaptation-measures
-  * - remove double list decoration
-  * */
-  function AdaptationOptions(){
-    $(".subsection-tools-general.subsection-tools-general-index_html ul li").removeClass("fa").removeClass("fa-angle-double-right");
-
-    $(".subsection-adaptation-information-climate-services.subsection-adaptation-information-climate-services-climate-services " +
-        ".tile-content ul li.fa.fa-angle-double-right")
-        .removeClass("fa").removeClass("fa-angle-double-right");
-
-
-    if($(".subsection-adaptation-information-adaptation-measures-index_html").length > 0){
-        $.each( $(".aceitem-search-tile li ul li"), function(idx, item){
-            var ia = $(item).find("a").prop('outerHTML');
-            $(item).replaceWith('<li class="fa fa-angle-double-right">'+ ia +'</li>');
-        });
-    }
-  }
-
-  /*
-  * Adaptation Information
-  * - http://climate-local.com/cca/knowledge/adaptation-information/research-projects
-  * - added font awesome arrows
-  * */
-  function AdaptationInformation(){
-    if( $(".subsection-adaptation-information-research-projects-index_html").length > 0 ){
-
-      $.each ( $(".cover-richtext-tile.tile-content ul li") , function(idx, item){
-        if( $(item).find("a").length > 0 ){
-          $(item).addClass("fa").addClass("fa-angle-double-right");
-        }
-      });
-    }
-  }
-
-  /*
-  * Uncertainty Guidance:
-  * - http://climate-local.com/cca/knowledge/tools/knowledge/tools/uncertainty-guidance
-  * - added font awesome arrows
-  * */
-  function UncertaintyGuidance(){
-    if($(".subsection-tools-uncertainty-guidance-index_html").length > 0){
-       $.each ( $(".cover-richtext-tile.tile-content ul li") , function(idx, item){
-        if( $(item).find("a").length > 0 ){
-          $(item).addClass("fa").addClass("fa-angle-double-right");
-        }
-      });
-    }
-  }
-
-  /* Share your info:
-  * - http://climate-local.com/cca/help/share-your-info
-  * - http://climate-local.com/help/share-your-info/general
-  * - added font awesome arrows
-  * - added font awesome arrows to #third-level-menu
-  * */
-  function ShareYourInfo(){
-    if( $(".subsection-share-your-info").length > 0){
-      var arr = [
-          ".cover-richtext-tile.tile-content ul li",
-          "#third-level-menu li"
-      ];
-      return arr.map(function (sel){
-          $.each ( $(sel) , function(idx, item){
-              if( $(item).find("a").length > 0 ){
-                  $(item).addClass("fa").addClass("fa-angle-double-right");
-              }
-          });
-      });
-    }
-  }
-
-  function StylingFixes(){
-    DoubleAngleListStyle();
-    AdaptationOptions();
-    AdaptationInformation();
-    UncertaintyGuidance()
-    ShareYourInfo();
-  }
-
   resizehandlerforContentTables();
   $( window ).resize(resizehandlerforContentTables);
-
-  StylingFixes();
 
 });

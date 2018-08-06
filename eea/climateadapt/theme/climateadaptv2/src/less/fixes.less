@@ -63,11 +63,6 @@
   border: 1px solid #E5E5E5;
 }
 
-.eu-policy-page #content {
-  border: none;
-}
-
-
 #breadcrumbs-you-are-here {
   display: none;
 }
@@ -134,18 +129,22 @@ textarea:focus {
 #document-action-download_pdf {
   list-style: none;
   margin-top: 3em;
+  display: inline-block;
   a {
-    display: inline-block;
+    color: @dark-gray;
     margin-left: 0;
   }
   a:before {
-    content: '\f019';
-    font-family: FontAwesome;
-    margin-right: 10px;
+    content: '' !important;
   }
 }
+
 #document-action-download_pdf:before {
-  content: '';
+  content: '\f019';
+  font-family: FontAwesome;
+  margin-right: 10px;
+  position: relative;
+  color: @dark-gray;
 }
 
 #viewlet-below-content-title {
@@ -187,77 +186,15 @@ textarea:focus {
   padding: 0;
 }
 
-// portal message styling
-.portalMessage {
-  padding: 10px 5px;
-  border-radius: 9px;
-  margin-bottom: 10px;
-  font-size: 15px;
-  border: 1px solid transparent;
+#lock-icon img {
+  display: none;
 }
 
-.portalMessage.warning {
-  color: #856404;
-  background-color: #fff3cd;
-  border-color: #efd37e;
-}
-
-.portalMessage.info {
-  color: #383d41;
-  background-color: #e2e3e5;
-  border-color: #d6d8db;
-}
-
-.portalMessage.error {
-  color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
-}
-
-.portalMessage dt {
-  display: inline;
-  font-family: RobotoM;
-}
-
-.portalMessage dd {
-  display: inline;
-}
-
-.portalMessage strong {
-  font-weight: normal;
-  font-family: RobotoB;
-}
-
-.portalMessage a {
-  font-size: 15px;
-  color: inherit;
-}
-
-#content .tile-content.aceitem-search-tile
- {
-  li {
-    display: block;
-    text-decoration: none;
-    line-height: 0.8em;
-    float: left;
-    clear: left;
-
-    &.fa.fa-angle-double-right:before {
-      position: absolute;
-      top: 0.6em;
-      left: 1em;
-      color: @dark-gray ;
-    }
-
-    & > a {
-      display: inline-block;
-      margin-left: 0;
-
-      span {
-        line-height: 2em;
-      }
-    }
-  }
+#lock-icon:before {
+  content: '\f023';
+  font-family: FontAwesome;
+  color: #d09b00;
+  font-size: 14px;
 }
 
 #third-level-menu {
@@ -274,20 +211,6 @@ textarea:focus {
     }
   }
 }
-
-
-.subsection-adaptation-information-vulnerabilities-and-risks-index_html .aceitem-relevant-tile,
-.subsection-adaptation-information-observations-and-scenarios-index_html .aceitem-relevant-tile
-{
-  margin-top: 1.5rem;
-}
-
-.subsection-adaptation-information-adaptation-measures-index_html .aceitem-search-tile li ul li {
-  &.fa.fa-angle-double-right:before {
-    margin-top: -0.3em
-  }
-}
-
 
 
 @media screen and (max-width: 480px) {
@@ -314,33 +237,6 @@ textarea:focus {
       ul {
         width: 86vw;
       }
-
     }
   }
-
-  .tile-content div div > table {
-    /*display: block;*/
-
-    & > td {
-      /*display: block;*/
-    }
-  }
-}
-
-.slick-dots {
-  bottom: 46px;
-  left: 55.5%;
-  width: 20%;
-  text-align: left;
-}
-
-#lock-icon img {
-  display: none;
-}
-
-#lock-icon:before {
-  content: '\f023';
-  font-family: FontAwesome;
-  color: #d09b00;
-  font-size: 14px;
 }

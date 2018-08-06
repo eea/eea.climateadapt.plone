@@ -250,7 +250,7 @@ a:hover {
 .read-more-wrapper {
   position: absolute;
   bottom: 15px;
-  right: 15px;
+  right: 20px;
 }
 
 a.read-more {
@@ -272,7 +272,6 @@ a.read-more {
 .site-container {
   margin-top: 1em;
   min-height: 600px;
-  // overflow: hidden;  /* change box model */
 }
 
 .page-body {
@@ -314,62 +313,20 @@ a.read-more {
   }
 }
 
-.portalMessage {
-  background-color: lightgrey;
-}
-
-.tile-content {
-  // div {
-  //   margin-top: 1.5rem;
-  //   margin-bottom: 1.5rem;
-  // }
-
-  ul {
-    // margin-top: 1rem;
-
-    li {
-      position: relative;
-      display: block;
-      line-height: 20px;
-      //margin-bottom: 0.5em;
-      // text-decoration: none;
-
-      &.fa.fa-angle-double-right {
-        margin-bottom: 0.5em;
-      }
-
-      a {
-        display: inline-block;
-        line-height: 1.5em;
-        margin-left: 1rem;
-
-      }
-
-      &.fa.fa-angle-double-right:before {
-        color: @link-color;
-        position: absolute;
-        top: 0px;
-        // margin-right: 0.5em;
-      }
-
-    }
-  }
-}
-
-#content .eu-strategy td > ul > li,
-#content .aceitem-relevant-tile > ul > li,
-#content ul.arrow-items > li,
-#content ul#ast-menu ul > li {
+.tile-content ul > li,
+#ast-menu ul > li {
   list-style-type: none;
-  padding-left: 1em;
   margin-bottom: 1em;
-  position: relative;
 }
 
-#content .eu-strategy td > ul > li:before,
-#content .aceitem-relevant-tile > ul > li:before,
-#content ul.arrow-items > li:before,
-#content ul#ast-menu ul > li:before {
+.tile-content ul > li > a {
+  position: relative;
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.tile-content ul > li > a:before,
+#ast-menu ul > li:before {
   content: "\f101";
   font-family: FontAwesome;
   display: inline-block;
@@ -379,25 +336,14 @@ a.read-more {
   position: absolute;
 }
 
-#content .aceitem-relevant-tile h2 {
+.aceitem-relevant-tile h2 {
   color: @primary-green;
   font-family: RobotoM;
   font-size: 18px;
 }
 
-#content .aceitem-relevant-tile a {
+.aceitem-relevant-tile a {
   font-family: RobotoR;
-}
-
-#content .aceitem-relevant-tile ul li {
-  a {
-    margin-left: 0;
-  }
-
-  &.fa.fa-angle-double-right:before {
-    top: 2px;
-  }
-
 }
 
 .panel-default {
@@ -476,19 +422,30 @@ a.read-more {
   margin-bottom: 2.5rem;
 }
 
-.content-sidebar .aceitem-search-tile ul li {
-  list-style-type: none;
+.content-sidebar .aceitem-search-tile > ul > li {
   padding-left: 1em;
-  margin-bottom: 0 !important;
 }
 
-.content-sidebar .aceitem-search-tile ul li:before {
+.content-sidebar .aceitem-search-tile > ul li:before {
   content: "\f105";
   font-family: FontAwesome;
   display: inline-block;
   margin-left: -1em;
   width: 1em;
   color: @dark-gray;
+}
+
+.content-sidebar .aceitem-search-tile > ul > li a {
+  margin-left: 0 !important;
+  display: inline !important;
+}
+
+.content-sidebar .aceitem-search-tile li a:before {
+  content: '' !important;
+}
+
+.content-sidebar .aceitem-search-tile > ul > li > ul > li {
+  margin-left: 1em;
 }
 
 .content-sidebar .tile img.left {
@@ -531,7 +488,6 @@ a.read-more {
   position: relative;
   padding: 10px 13px 10px 45px;
   width: 100%;
-  margin-top: 2.5rem;
 }
 
 .share-your-info-ace-button button:before {
@@ -594,18 +550,19 @@ a.read-more {
     border-bottom: 1px solid #dee2e6;
   }
   li {
-    display: inline-block !important;
+    display: inline-block;
     margin-bottom: -1px;
   }
   a {
     color: @dark-gray;
-    font-family: RobotoR;
     padding: 1em 2em;
-    display: block;
     border: 1px solid #0000;
     border-top-left-radius: .25em;
     border-top-right-radius: .25em;
-    margin-left: 0 !important;
+    margin-left: 0;
+  }
+  a:before {
+    content: '';
   }
   a.active-nav {
     color: @primary-green;
@@ -626,8 +583,6 @@ a.read-more {
   margin-bottom: 3em;
 }
 
-
-
 // Adaptation support tool
 .ast_header h1 {
   display: inline-block;
@@ -647,13 +602,12 @@ a.read-more {
   background: @primary-blue;
 }
 
-#ast-menu .ui-state-active {
+#content #ast-menu .ui-state-active {
   background: @yellow;
-  color: @dark-gray;
+  color: @dark-gray !important;
 }
 
 #ast-menu .ui-accordion-content {
-  padding: 1em;
   border: none;
   background: #F2F2F2;
   border-radius: 0;
@@ -769,7 +723,7 @@ a.read-more {
   left: -106px;
 }
 
-// countries pages
+// Countries profile page
 .country-page #content {
   background-color: transparent;
   border: none;
@@ -799,6 +753,10 @@ a.read-more {
   flex-grow: 1;
   margin-bottom: 0;
   position: relative;
+
+  >a:before {
+    content: '';
+  }
 }
 
 #country-tab .nav-tabs li:not(:last-child):before {
@@ -918,6 +876,8 @@ a.read-more {
   height: 100%;
 }
 
+
+/* Custom country profile dropdown */
 .countries-dropdown {
   position: absolute;
   top: 3px;
@@ -925,7 +885,6 @@ a.read-more {
   z-index: 9;
 }
 
-/* custom country profile title dropdown */
 .dd-title-wrapper {
   color: @dark-gray;
   font-family: RobotoB;
@@ -988,7 +947,7 @@ a.read-more {
   background: #fbfbfb;
 }
 
-// Help page glossary
+// Help page: Glossary
 .glossary-table {
   width: 100%;
   table-layout: fixed;
@@ -1020,4 +979,50 @@ a.read-more {
   content: '\f0aa';
   font-family: FontAwesome;
   margin-right: 5px;
+}
+
+// Portal messages
+.portalMessage {
+  padding: 10px 5px;
+  border-radius: 9px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  border: 1px solid transparent;
+}
+
+.portalMessage.warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #efd37e;
+}
+
+.portalMessage.info {
+  color: #383d41;
+  background-color: #e2e3e5;
+  border-color: #d6d8db;
+}
+
+.portalMessage.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.portalMessage dt {
+  display: inline;
+  font-family: RobotoM;
+}
+
+.portalMessage dd {
+  display: inline;
+}
+
+.portalMessage strong {
+  font-weight: normal;
+  font-family: RobotoB;
+}
+
+.portalMessage a {
+  font-size: 15px;
+  color: inherit;
 }
