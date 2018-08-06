@@ -223,7 +223,10 @@ $(document).ready(function() {
   // url: .../cca/knowledge/adaptation-information/adaptation-measures
   var adaptationClass = 'subsection-adaptation-information-adaptation-measures';
 
-  var bodyClassList = $body.attr('class').split(/\s+/);
+  var $body = $('body');
+
+
+  var bodyClassList = $body.attr('class') !== undefined ? $body.attr('class').split(/\s+/) : [];
 
   var selectedClasses = [];
   selectedClasses.push(
