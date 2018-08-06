@@ -37,6 +37,8 @@
 <link type="text/css" rel="stylesheet" href="/portal_css/Sunburst%20Theme/++resource++select2/select2.css?ts=46"/>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="/frontpage/cca/portal_css/Sunburst%20Theme/mobile.css" type="text/css" />
+
 
 <link type="text/css" rel="stylesheet" href="/frontpage/cca/++theme++climateadaptv2/static/css/compiled-css.css?ts=46"/>
 <link type="text/css" rel="stylesheet" href="/frontpage/cca/++theme++climateadaptv2/static/css/compiled-less.css?ts=46"/>
