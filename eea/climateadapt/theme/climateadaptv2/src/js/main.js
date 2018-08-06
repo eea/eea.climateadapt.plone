@@ -223,7 +223,9 @@ $(document).ready(function() {
   var adaptationClass = 'subsection-adaptation-information-adaptation-measures';
 
   var $body = $('body');
-  var bodyClassList = $body.attr('class').split(/\s+/);
+
+
+  var bodyClassList = $body.attr('class') !== undefined ? $body.attr('class').split(/\s+/) : [];
 
   var selectedClasses = [];
   selectedClasses.push(
