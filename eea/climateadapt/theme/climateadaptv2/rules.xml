@@ -90,20 +90,84 @@
         </replace>
     </rules>
 
-  <!-- enable later to have two column layout without js transformation -->
-  <!--<rules css:if-content=".column">-->
-   <!--<replace css:content="#content">-->
-            <!--<div id="content" class="columned">-->
-                <!--<xsl:apply-templates select="./*"/>-->
-            <!--</div>-->
-        <!--</replace>-->
-    <!--&lt;!&ndash; cca/countries-regions/transnational-regions/baltic-sea-region-->
-         <!--insert viewlet-below below the first header &ndash;&gt;-->
-    <!--<drop css:content="#viewlet-below-content-title" />-->
-    <!--<after css:content="h1">-->
-      <!--<xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />-->
-    <!--</after>-->
-  <!--</rules>-->
+  <!-- two column layout -->
+  <rules css:if-content=".column.col-md-9">
+    <replace css:content="#content">
+      <div id="content" class="columned">
+        <xsl:apply-templates select="./*"/>
+      </div>
+    </replace>
+
+    <drop css:content="#document-action-download_pdf" />
+    <drop css:content="#viewlet-below-content-title" />
+    <drop css:content=".tile.col-md-4"/>
+    <drop css:content=".col-md-9 .tile-default > .tile-content > h2" />
+
+    <replace css:content=".col-md-9">
+      <div class="column col-md-9">
+        <div class="content-column">
+          <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
+          <xsl:apply-templates css:select=".col-md-9 .tile-default > .tile-content > h2" mode="raw"/>
+          <xsl:apply-templates select="./*"/>
+          <div class="row">
+            <xsl:apply-templates css:select=".tile.col-md-4" mode="raw"/>
+          </div>
+          <xsl:copy-of select='//*[@id="document-action-download_pdf"]' />
+        </div>
+      </div>
+    </replace>
+
+    <replace css:content=".col-md-3">
+      <div class="column col-md-3">
+        <div class="content-sidebar">
+          <xsl:apply-templates select="./*"/>
+        </div>
+      </div>
+    </replace>
+  </rules>
+
+  <!-- two column layout for transnational region pages : -->
+  <!-- ex. cca/countries-regions/transnational-regions/baltic-sea-region -->
+  <rules css:if-content=".subsection-transnational-regions">
+    <drop css:content="#viewlet-below-content-title" />
+    <drop css:content=".column.col-md-2" />
+
+    <after css:content=".column.col-md-10">
+      <div class="column col-md-3">
+        <div class="content-sidebar">
+          <xsl:copy-of select='//*[contains(@class,"column col-md-2 ")]/*' />
+        </div>
+      </div>
+    </after>
+
+    <replace css:content=".col-md-10">
+      <div class="column col-md-9">
+        <div class="content-column">
+          <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
+          <xsl:apply-templates select="./*"/>
+        </div>
+      </div>
+    </replace>
+  </rules>
+
+  <!-- layout for country profile pages : -->
+  <!-- ex. cca/countries-regions/countries/austria  -->
+  <rules css:if-content=".subsection-countries">
+
+    <replace css:content=".subsection-countries .col-md-2">
+      <div class="column country-header-map">
+        <xsl:apply-templates select="./*"/>
+      </div>
+    </replace>
+
+    <replace css:content=".subsection-countries .col-md-10">
+      <div class="column country-content">
+        <xsl:apply-templates select="./*"/>
+      </div>
+    </replace>
+
+  </rules>
+
 
   <rules if="contains($host, 'local')">
     <!--<xsl:value-of select="$host" /> shows value of given variable -->
@@ -114,4 +178,3 @@
   </rules>
 
 </rules>
-

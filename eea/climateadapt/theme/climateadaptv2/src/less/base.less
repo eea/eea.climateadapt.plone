@@ -44,7 +44,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1,
-.main-tile-content h2 {
+.tile-title {
   color: @primary-blue;
   font-size: 23px;
 }
@@ -351,6 +351,7 @@ a.read-more {
   background-color: transparent;
   box-shadow: none;
   margin: 0;
+  clear: both;
 }
 
 .panel-default > .panel-heading {
@@ -395,19 +396,6 @@ a.read-more {
 .row {
   margin: 0 -10px;
 }
-
-// attempt to split into columns using css enable after uncommenting rules.xml rules
-//.columned .column {
-//  padding: 20px;
-//  background: white;
-//  border-right: 20px solid #eee;
-//}
-//.columned .row {
-//  margin: 0;
-//}
-//.columned .column:last-of-type {
-//  border-right: 0;
-//}
 
 .content-column,
 .content-sidebar {
@@ -556,7 +544,7 @@ a.read-more {
   a {
     color: @dark-gray;
     padding: 1em 2em;
-    border: 1px solid #0000;
+    border: 1px solid transparent;
     border-top-left-radius: .25em;
     border-top-right-radius: .25em;
     margin-left: 0;

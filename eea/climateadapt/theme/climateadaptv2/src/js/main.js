@@ -214,37 +214,7 @@ $(document).ready(function() {
   var regionClass = 'subsection-transnational-regions-' + lastPathName;
   var countryClass = 'subsection-countries-' + lastPathName;
 
-  // url: .../cca/countries-regions/cities
-  var citiesClass = 'subsection-cities';
-  // url: .../cca/knowledge/adaptation-information/vulnerabilities-and-risks
-  var vulnerabilitiesClass = 'subsection-adaptation-information-vulnerabilities-and-risks';
-  // url: .../cca/knowledge/adaptation-information/observations-and-scenarios
-  var observationsClass = 'subsection-adaptation-information-observations-and-scenarios';
-  // url: .../cca/knowledge/adaptation-information/adaptation-measures
-  var adaptationClass = 'subsection-adaptation-information-adaptation-measures';
-
-  var $body = $('body');
-
-
   var bodyClassList = $body.attr('class') !== undefined ? $body.attr('class').split(/\s+/) : [];
-
-  var selectedClasses = [];
-  selectedClasses.push(
-    policyClass,
-    regionClass,
-    countryClass,
-    citiesClass,
-    vulnerabilitiesClass,
-    observationsClass,
-    adaptationClass
-  );
-
-  // add grid layout class for the selected pages
-  for (var i = 0 ; i < bodyClassList.length; i++ ) {
-    if (jQuery.inArray(bodyClassList[i],selectedClasses) > -1) {
-      $body.addClass('grid-layout');
-    }
-  }
 
   $.each(bodyClassList, function(index, item) {
     if (item === policyClass) {
@@ -258,48 +228,15 @@ $(document).ready(function() {
     }
   });
 
-  var isGridLayout = $('.grid-layout').length > 0;
   var isPolicyPage = $('.eu-policy-page').length > 0;
-  var isRegionPage = $('.region-page').length > 0;
   var isCountryPage = $('.country-page').length > 0;
-  var isDBItemPage = $('.subsection-portals').length > 0;
   var isBalticSubpage = $('.subsection-transnational-regions-baltic-sea-region-adaptation').length > 0;
   var isCarpathianSubpage = $('.subsection-transnational-regions-carpathian-mountains').length > 0;
   var isASTPage = $('.subsection-tools-adaptation-support-tool').length > 0;
 
-  function createGridLayout() {
-    if (isGridLayout) {
-      var $region = $('.region-page');
-      $region.find('.column.col-md-2').removeClass('col-md-2').addClass('col-md-3');
-      $region.find('.column.col-md-10').removeClass('col-md-10').addClass('col-md-9');
-      $region.find('#content-core .row').prepend($('.column.col-md-9'));
+  var $content = $('.content-column');
+  $content.find('h2').first().addClass('tile-title');
 
-      $('.col-md-9').children().wrapAll('<div class="content-column"/>');
-      $('.col-md-3').children().wrapAll('<div class="content-sidebar"/>');
-
-      var $content = $('.content-column');
-      $content.find('img').closest('.tile-content').addClass('main-tile-content');
-      $content.children('.col-md-4').wrapAll('<div class="row"/>');
-
-      // move pdf button and 'last modified' viewlet to the main content area
-      $('#document-action-download_pdf').parent().appendTo('.content-column');
-      $content.prepend($('#viewlet-below-content-title'));
-
-      $('.main-tile-content').prepend('<div class="flex-wrapper"/>');
-      $('.flex-wrapper').append([
-        $('.main-tile-content img'),
-        $('.read_more_first')
-      ]);
-
-      var pageTitle = $('.main-tile-content').children('h2');
-      $('.main-tile-content').prepend([
-        pageTitle,
-        $('.main-tile-content').children().find('h2')
-      ]);
-
-      $('.content-column').find(".tile-default").addClass('tile-wrapper');
-    }
-  }
 
   // EU SECTOR POLICIES
   // url: .../cca/eu-adaptation-policy/sector-policies/agriculture
@@ -313,7 +250,7 @@ $(document).ready(function() {
 
       // Eu sector policy factsheet
       var factsheetIMG = $('.content-sidebar .image-inline').parent();
-      var factheetCategory = $('.main-tile-content h2').text();
+      var factheetCategory = $('.tile-title').text();
 
       factsheetIMG.html(function(i,h) {
         return h.replace(/&nbsp;/g,'');
@@ -361,11 +298,6 @@ $(document).ready(function() {
       if (isCountryPage) {
         $('#content-core').children().addClass('country-wrapper').removeClass('row');
         $('.sweet-tabs').attr('id', 'country-tab');
-
-        var $countryW = $('.country-wrapper');
-        $countryW.children().removeClass('col-md-2 col-md-10');
-        $countryW.find('.column:first-child').addClass('country-header-map');
-        $countryW.find('.column:nth-child(2)').addClass('country-content');
 
         var $countrySelect = $('.country-select-tile');
         $countrySelect.parent().addClass('countries-dropdown');
@@ -469,7 +401,7 @@ $(document).ready(function() {
       });
     }
 
-  createGridLayout();
+  // createGridLayout();
   policyLayout();
   regionSubpageLayout();
   countryPageLayout();
