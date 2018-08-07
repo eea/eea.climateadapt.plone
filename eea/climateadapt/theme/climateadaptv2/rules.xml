@@ -176,6 +176,40 @@
 
   </rules>
 
+  <!-- two column layout for transnational region pages : -->
+  <!-- ex. cca/countries-regions/transnational-regions/baltic-sea-region -->
+  <rules css:if-content=".section-metadata">
+    <replace css:content="#content">
+      <div id="content" class="columned">
+        <div class="row">
+          <xsl:apply-templates select="./*"/>
+        </div>
+      </div>
+    </replace>
+
+    <drop css:content="#document-action-download_pdf" />
+    <drop css:content=".aceitem_top" />
+
+    <replace css:content=".section-metadata .col-md-9">
+      <div class="column col-md-9">
+        <div class="content-column">
+          <xsl:copy-of select='//*[contains(@class,"aceitem_top")]/*' />
+          <xsl:apply-templates select="./*"/>
+          <xsl:copy-of select='//*[@id="document-action-download_pdf"]' />
+        </div>
+      </div>
+    </replace>
+
+    <replace css:content=".section-metadata .col-md-3">
+      <div class="column col-md-3">
+        <div class="content-sidebar">
+          <xsl:apply-templates select="./*"/>
+        </div>
+      </div>
+    </replace>
+
+  </rules>
+
 
   <rules if="contains($host, 'local')">
     <!--<xsl:value-of select="$host" /> shows value of given variable -->

@@ -11,6 +11,8 @@ body {
   position: relative;
   height: 100vh;
   font-family: RobotoR;
+  font-size: 14px;
+  color: @dark-gray;
 }
 html {
   -moz-box-sizing: border-box;
@@ -928,6 +930,36 @@ a.read-more {
 
 .dd-country-title .options li:hover {
   background: #fbfbfb;
+}
+
+// DB item PAGES
+
+.aceitem_page h2 {
+  color: #fff;
+  background-color: #848484;
+  padding: 10px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+#aceitem_sidebar h4 {
+  color: @primary-blue;
+}
+
+#aceitem_sidebar .list-field,
+#aceitem_sidebar > div > div {
+  margin-bottom: 1.3em;
+  display: block;
+}
+
+.ace-content-column .share-your-info-ace-button {
+  display: inline-block;
+  float: right;
+  margin-top: 2em;
+}
+
+.aceitem_page #document-action-download_pdf {
+  margin-top: 1.5em;
 }
 
 // Help page: Glossary

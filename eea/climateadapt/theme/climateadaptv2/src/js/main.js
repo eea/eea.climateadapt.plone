@@ -234,14 +234,14 @@ $(document).ready(function() {
   var isCarpathianSubpage = $('.subsection-transnational-regions-carpathian-mountains').length > 0;
   var isASTPage = $('.subsection-tools-adaptation-support-tool').length > 0;
 
-  var $content = $('.content-column');
-  $content.find('h2').first().addClass('tile-title');
 
 
   // EU SECTOR POLICIES
   // url: .../cca/eu-adaptation-policy/sector-policies/agriculture
   function policyLayout() {
     if (isPolicyPage) {
+      var $content = $('.content-column');
+      $content.find('h2').first().addClass('tile-title');
 
       var policySubTitles = $('.read_more_second').children('h2');
       policySubTitles.each(function() {
