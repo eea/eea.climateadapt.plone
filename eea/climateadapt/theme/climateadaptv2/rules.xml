@@ -91,7 +91,7 @@
     </rules>
 
   <!-- two column layout -->
-  <rules css:if-content=".column.col-md-9">
+  <rules css:if-content=".column.col-md-9" css:if-not-content=".subsection-transnational-regions">
     <replace css:content="#content">
       <div id="content" class="columned">
         <xsl:apply-templates select="./*"/>
@@ -129,8 +129,15 @@
   <!-- two column layout for transnational region pages : -->
   <!-- ex. cca/countries-regions/transnational-regions/baltic-sea-region -->
   <rules css:if-content=".subsection-transnational-regions">
+    <replace css:content="#content">
+      <div id="content" class="columned">
+        <xsl:apply-templates select="./*"/>
+      </div>
+    </replace>
+
     <drop css:content="#viewlet-below-content-title" />
     <drop css:content=".column.col-md-2" />
+    <drop css:content="#document-action-download_pdf" />
 
     <after css:content=".column.col-md-10">
       <div class="column col-md-3">
@@ -145,6 +152,7 @@
         <div class="content-column">
           <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
           <xsl:apply-templates select="./*"/>
+          <xsl:copy-of select='//*[@id="document-action-download_pdf"]' />
         </div>
       </div>
     </replace>

@@ -253,7 +253,7 @@ $(document).ready(function() {
       var factheetCategory = $('.tile-title').text();
 
       factsheetIMG.html(function(i,h) {
-        return h.replace(/&nbsp;/g,'');
+        return h.replace(/&nbsp;/g,''); // remove whitespaces
       });
 
       $('.column.col-md-3').prepend(factsheetIMG);
@@ -266,7 +266,7 @@ $(document).ready(function() {
       }
     }
 
-    // TRANSNATIONAL SUBPAGES
+    // TRANSNATIONAL SUBPAGES (two specific subpages)
     // url: .../cca/countries-regions/transnational-regions/baltic-sea-region
     //     .../cca/countries-regions/transnational-regions/carpathian-mountains/general
     function regionSubpageLayout() {
@@ -401,7 +401,6 @@ $(document).ready(function() {
       });
     }
 
-  // createGridLayout();
   policyLayout();
   regionSubpageLayout();
   countryPageLayout();
