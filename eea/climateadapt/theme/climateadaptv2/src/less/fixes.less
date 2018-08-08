@@ -2,7 +2,7 @@
 
 // edit bar
 #edit-bar {
-  min-height: 2.34em;
+  min-height: 2.65em;
   margin-bottom: 0;
   background-color: @edit-interface-bg-color;
   border: 0.25em solid @edit-interface-bg-color;
@@ -37,6 +37,23 @@
   background-color: #3c3b3b !important;
 }
 
+div.formControls {
+  margin: 1em 0;
+}
+
+.formHelp {
+  font-size: 14px;
+  font-family: RobotoR;
+}
+
+.formTabs {
+  margin-bottom: 1.5em;
+}
+
+#content select {
+  vertical-align: unset;
+}
+
 #content-views {
   background-color: transparent;
   li.selected {
@@ -57,7 +74,8 @@
   background-color: transparent;
 }
 
-#content {
+#content,
+.region-subpage #content {
   padding: 1.5em;
   background-color: #fff;
   border: 1px solid #E5E5E5;

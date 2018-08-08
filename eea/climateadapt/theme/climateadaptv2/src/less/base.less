@@ -11,6 +11,9 @@ body {
   position: relative;
   height: 100vh;
   font-family: RobotoR;
+  font-size: 14px;
+  color: @dark-gray;
+  line-height: 20px;
 }
 html {
   -moz-box-sizing: border-box;
@@ -44,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1,
-.main-tile-content h2 {
+.tile-title {
   color: @primary-blue;
   font-size: 23px;
 }
@@ -351,6 +354,7 @@ a.read-more {
   background-color: transparent;
   box-shadow: none;
   margin: 0;
+  clear: both;
 }
 
 .panel-default > .panel-heading {
@@ -377,12 +381,7 @@ a.read-more {
 
 // EU sector policies
 
-.grid-layout #content,
-.eu-policy-page #content,
-.region-page #content,
-#content.columned,
-.subsection-cities-index_html #content
-{
+#content.columned {
   background-color: transparent;
   padding: 0;
   border: none;
@@ -396,21 +395,14 @@ a.read-more {
   margin: 0 -10px;
 }
 
-// attempt to split into columns using css enable after uncommenting rules.xml rules
-//.columned .column {
-//  padding: 20px;
-//  background: white;
-//  border-right: 20px solid #eee;
-//}
-//.columned .row {
-//  margin: 0;
-//}
-//.columned .column:last-of-type {
-//  border-right: 0;
-//}
-
 .content-column,
-.content-sidebar {
+.content-sidebar,
+.template-edit #content,
+.template-folder_contents #content,
+.template-layoutedit #content,
+.template-manage-content-rules #content,
+.template-sharing #content,
+.template-cache-settings #content {
   background-color: #fff;
   padding: 20px;
   border: 1px solid #E5E5E5;
@@ -556,7 +548,7 @@ a.read-more {
   a {
     color: @dark-gray;
     padding: 1em 2em;
-    border: 1px solid #0000;
+    border: 1px solid transparent;
     border-top-left-radius: .25em;
     border-top-right-radius: .25em;
     margin-left: 0;
@@ -821,34 +813,11 @@ a.read-more {
 
 .country-page .listing {
   table-layout: fixed;
-  width: 100% !important;
-  font-size: 14px;
-  font-family: RobotoR;
-  color: @dark-gray;
-
-  td {
-    padding: 8px;
-  }
-  td:not(:last-child) {
-    border-right: 1px solid #d7d7d7;
-  }
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
 }
 
 .country-page .listing thead {
   th {
     text-align: center;
-    font-size: 16px;
-    font-family: RobotoB;
-    color: @primary-blue;
-    border-bottom: 1px solid #d7d7d7;
-    padding: 12px 0;
-    width: auto !important;
-  }
-  th:not(:last-child) {
-    border-right: 1px solid #d7d7d7;
   }
 }
 
@@ -947,6 +916,36 @@ a.read-more {
   background: #fbfbfb;
 }
 
+// DB item PAGES
+
+.aceitem_page h2 {
+  color: #fff;
+  background-color: #848484;
+  padding: 5px 10px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+#aceitem_sidebar h4 {
+  color: @primary-blue;
+}
+
+#aceitem_sidebar .list-field,
+#aceitem_sidebar > div > div {
+  margin-bottom: 1.3em;
+  display: block;
+}
+
+.ace-content-column .share-your-info-ace-button {
+  display: inline-block;
+  float: right;
+  margin-top: 2em;
+}
+
+.aceitem_page #document-action-download_pdf {
+  margin-top: 1.5em;
+}
+
 // Help page: Glossary
 .glossary-table {
   width: 100%;
@@ -1025,4 +1024,58 @@ a.read-more {
 .portalMessage a {
   font-size: 15px;
   color: inherit;
+}
+
+// table styling
+
+.listing {
+  width: 100% !important;
+  font-size: 14px;
+  font-family: RobotoR;
+  color: @dark-gray;
+  margin-bottom: 1.5em;
+
+  td {
+    padding: 8px;
+  }
+  td:not(:last-child) {
+    border-right: 1px solid #d7d7d7;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+}
+
+.listing thead {
+  th {
+    text-align: left;
+    font-size: 16px;
+    font-family: RobotoB;
+    color: @primary-blue;
+    border-bottom: 1px solid #d7d7d7;
+    padding: 12px 0;
+    width: auto !important;
+  }
+  th:not(:last-child) {
+    border-right: 1px solid #d7d7d7;
+  }
+}
+
+// fields and forms
+
+#folderContentsForm .context {
+  margin-right: 0.5em;
+}
+
+#fieldset-default label {
+  font-family: RobotoB;
+  font-size: 18px;
+  margin-bottom: 0.5em;
+  color: @primary-green;
+}
+
+#fieldset-default .field {
+  border-bottom: 1px solid #E0E0E0;
+  margin: 0;
+  padding: 2em 0;
 }
