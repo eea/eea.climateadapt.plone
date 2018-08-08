@@ -1,4 +1,5 @@
 <div class="simplified-template-footer">
+  <div class="eea-pdf-viewlet"></div>
   <div id="portal-footer-wrapper" class="row" i18n:domain="plone">
     <div class="cell width-full position-0">
       <div tal:replace="structure provider:plone.portalfooter" ></div>
