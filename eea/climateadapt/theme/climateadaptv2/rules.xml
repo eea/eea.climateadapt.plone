@@ -85,9 +85,10 @@
 
     <!-- cca/eu-adaptation-policy/sector-policies CA - EU sector policies.png  tab policies override -->
     <rules css:if-content=".template-standard.subsection-sector-policies-index_html">
-        <replace css:content=".sector-policies-table">
-            <xi:include href="tab-policies-rule.html" />
-        </replace>
+      <drop css:content="table" />
+      <after css:content=".tile-content > div">
+        <xi:include href="tab-policies-rule.html" />
+      </after>
     </rules>
 
   <!-- two column layout -->
@@ -176,8 +177,8 @@
 
   </rules>
 
-  <!-- two column layout for transnational region pages : -->
-  <!-- ex. cca/countries-regions/transnational-regions/baltic-sea-region -->
+  <!-- two column layout for database item pages : -->
+  <!-- ex. cca/metadata/portals/climate-information-platform-for-ireland-icip-climate-ireland/ -->
   <rules css:if-content=".section-metadata">
     <replace css:content="#content">
       <div id="content" class="columned">

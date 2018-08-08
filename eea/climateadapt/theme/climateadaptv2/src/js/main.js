@@ -195,9 +195,9 @@ $(document).ready(function() {
     }
   });
 
-  // add btn class to download as pdf
-  $('#document-action-download_pdf').addClass('standard-button secondary-button');
-  $('#login-form .formControls input').addClass('standard-button secondary-button');
+  // add btn class
+  $('#document-action-download_pdf, #login-form .formControls input, #folderlisting-main-table .context, input[type=submit]')
+  .addClass('standard-button secondary-button');
 
   // Add a specific class for grid layout pages
   var currentLocation = window.location.pathname;
@@ -423,6 +423,8 @@ $(document).ready(function() {
     var $this = $(this);
     $this.html($this.html().replace('»', ''));
   });
+
+  $('.share-your-info-ace-button').wrapAll('<div class="clearfix"/>');
 
   /*
   * For mobile: fix table styling issues

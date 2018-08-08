@@ -13,6 +13,7 @@ body {
   font-family: RobotoR;
   font-size: 14px;
   color: @dark-gray;
+  line-height: 20px;
 }
 html {
   -moz-box-sizing: border-box;
@@ -395,7 +396,13 @@ a.read-more {
 }
 
 .content-column,
-.content-sidebar {
+.content-sidebar,
+.template-edit #content,
+.template-folder_contents #content,
+.template-layoutedit #content,
+.template-manage-content-rules #content,
+.template-sharing #content,
+.template-cache-settings #content {
   background-color: #fff;
   padding: 20px;
   border: 1px solid #E5E5E5;
@@ -806,34 +813,11 @@ a.read-more {
 
 .country-page .listing {
   table-layout: fixed;
-  width: 100% !important;
-  font-size: 14px;
-  font-family: RobotoR;
-  color: @dark-gray;
-
-  td {
-    padding: 8px;
-  }
-  td:not(:last-child) {
-    border-right: 1px solid #d7d7d7;
-  }
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
 }
 
 .country-page .listing thead {
   th {
     text-align: center;
-    font-size: 16px;
-    font-family: RobotoB;
-    color: @primary-blue;
-    border-bottom: 1px solid #d7d7d7;
-    padding: 12px 0;
-    width: auto !important;
-  }
-  th:not(:last-child) {
-    border-right: 1px solid #d7d7d7;
   }
 }
 
@@ -937,7 +921,7 @@ a.read-more {
 .aceitem_page h2 {
   color: #fff;
   background-color: #848484;
-  padding: 10px;
+  padding: 5px 10px;
   font-size: 14px;
   display: inline-block;
 }
@@ -1040,4 +1024,58 @@ a.read-more {
 .portalMessage a {
   font-size: 15px;
   color: inherit;
+}
+
+// table styling
+
+.listing {
+  width: 100% !important;
+  font-size: 14px;
+  font-family: RobotoR;
+  color: @dark-gray;
+  margin-bottom: 1.5em;
+
+  td {
+    padding: 8px;
+  }
+  td:not(:last-child) {
+    border-right: 1px solid #d7d7d7;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+}
+
+.listing thead {
+  th {
+    text-align: left;
+    font-size: 16px;
+    font-family: RobotoB;
+    color: @primary-blue;
+    border-bottom: 1px solid #d7d7d7;
+    padding: 12px 0;
+    width: auto !important;
+  }
+  th:not(:last-child) {
+    border-right: 1px solid #d7d7d7;
+  }
+}
+
+// fields and forms
+
+#folderContentsForm .context {
+  margin-right: 0.5em;
+}
+
+#fieldset-default label {
+  font-family: RobotoB;
+  font-size: 18px;
+  margin-bottom: 0.5em;
+  color: @primary-green;
+}
+
+#fieldset-default .field {
+  border-bottom: 1px solid #E0E0E0;
+  margin: 0;
+  padding: 2em 0;
 }
