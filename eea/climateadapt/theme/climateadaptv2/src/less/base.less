@@ -40,6 +40,11 @@ strong {
   color: @dark-gray;
 }
 
+u {
+  font-weight: normal;
+  font-family: RobotoB;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: RobotoB;
   color: @dark-gray;
@@ -50,6 +55,7 @@ h1,
 .tile-title {
   color: @primary-blue;
   font-size: 23px;
+  line-height: 26px;
 }
 
 h2 {
@@ -322,14 +328,16 @@ a.read-more {
   margin-bottom: 1em;
 }
 
-.tile-content ul > li > a {
+.tile-content ul > li > a,
+.subsection-share-your-info-index_html ul > li > span > a {
   position: relative;
   display: inline-block;
   margin-left: 1rem;
 }
 
 .tile-content ul > li > a:before,
-#ast-menu ul > li:before {
+#ast-menu ul > li:before,
+.subsection-share-your-info-index_html ul > li > span > a:before {
   content: "\f101";
   font-family: FontAwesome;
   display: inline-block;
@@ -350,10 +358,13 @@ a.read-more {
 }
 
 .panel-default {
+  margin-bottom: 1.5em;
+  padding-bottom: 1em;
   border: none;
+  border-bottom: 1px solid #ddd;
   background-color: transparent;
   box-shadow: none;
-  margin: 0;
+  border-radius: 0;
   clear: both;
 }
 
@@ -402,7 +413,8 @@ a.read-more {
 .template-layoutedit #content,
 .template-manage-content-rules #content,
 .template-sharing #content,
-.template-cache-settings #content {
+.template-cache-settings #content,
+.portaltype-folder #content {
   background-color: #fff;
   padding: 20px;
   border: 1px solid #E5E5E5;
@@ -474,7 +486,8 @@ a.read-more {
   color: @primary-blue;
 }
 
-.share-your-info-ace-button button {
+.share-your-info-ace-button button,
+.share-info-btn {
   font-size: 17px;
   font-family: RobotoM;
   position: relative;
@@ -482,7 +495,8 @@ a.read-more {
   width: 100%;
 }
 
-.share-your-info-ace-button button:before {
+.share-your-info-ace-button button:before,
+.share-info-btn:before {
   content: url("../images/info-share-btn.png");
   position: absolute;
   top: 9px;
@@ -942,6 +956,12 @@ a.read-more {
   margin-top: 2em;
 }
 
+.ace-content-column h4 {
+  border-top: 1px solid #ddd;
+  padding-top: 1em;
+  margin-top: 1em;
+}
+
 .aceitem_page #document-action-download_pdf {
   margin-top: 1.5em;
 }
@@ -1140,6 +1160,24 @@ table.listing th {
   padding: 2em 0;
 }
 
+#form-widgets-sectors input[type="checkbox"],
+#form-widgets-climate_impacts input[type="checkbox"],
+#form-widgets-elements input[type="checkbox"] {
+    float: left;
+    margin-right: 0.3em;
+}
+
+#form-widgets-sectors label,
+#form-widgets-climate_impacts label,
+#form-widgets-elements label {
+  display: block;
+}
+
+.label {
+  color: @dark-gray;
+  display: inline;
+}
+
 // Iframes
 
 .iframe-container {
@@ -1148,20 +1186,20 @@ table.listing th {
   padding-top: 35px;
   height: 0;
   overflow: hidden;
+
+  iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .template-sat .iframe-container {
   position: relative;
   padding-bottom: 78.25%;
   overflow: inherit;
-}
-
-.iframe-container iframe {
-  position: absolute;
-  top:0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 
 .subsection-tools-map-viewer .cover-embed-tile {
@@ -1178,4 +1216,82 @@ table.listing th {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+
+// share your information
+
+.share-info-wrapper {
+  margin-top: 2em;
+}
+
+.share-info-wrapper #third-level-menu {
+  border-right: 2px solid @primary-green;
+  >li {
+    margin-bottom: 0;
+  }
+  a {
+    text-transform: uppercase;
+    font-family: RobotoR;
+    color: @dark-gray;
+    display: block;
+    padding: 10px 8px;
+    font-size: 13px;
+    margin-left: 0;
+  }
+  a:hover {
+    color: @primary-green;
+  }
+  a.active-nav {
+    background-color: @primary-green;
+    font-family: RobotoM;
+    color: #fff;
+  }
+}
+
+.aceitem-share-info-tile {
+  margin-top: 1.5em;
+  margin-left: -10px;
+}
+
+// Help page
+
+#content .help-section-wrapper {
+  flex-wrap: wrap;
+
+  .help-section {
+    text-align: center;
+    padding: 10px 20px;
+    flex: 1 1 230px;
+  }
+  .help-section-header {
+    display: block;
+  }
+}
+
+.help-icon {
+  width: 50px;
+  height: 50px;
+  margin: 10px auto;
+  display: inline-block;
+  vertical-align: middle;
+
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -ms-transition: all .3s;
+  -o-transition: all .3s;
+}
+
+.help-icon.glossary-icon { background: url("../images/help_glossary.png") center top no-repeat; }
+.help-icon.search-icon { background: url("../images/help_search.png") center top no-repeat; }
+.help-icon.providers-icon { background: url("../images/help_providers.png") center top no-repeat; }
+.help-icon.users-icon { background: url("../images/help_users.png") center top no-repeat; }
+.help-icon.videos-icon { background: url("../images/help_videos.png") center top no-repeat; }
+
+.help-section-header:hover > .help-icon { background-position: center -50px; }
+.help-section-header:hover > .help-section-title { color: @primary-green; }
+
+.help-section-title {
+  color: #0170B7;
+  font-family: RobotoM;
 }

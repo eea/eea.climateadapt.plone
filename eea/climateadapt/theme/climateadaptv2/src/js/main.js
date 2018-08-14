@@ -199,17 +199,36 @@ $(document).ready(function() {
   $('#document-action-download_pdf, #login-form .formControls input, #folderlisting-main-table .context, input[type=submit]')
   .addClass('standard-button secondary-button');
 
-  // Add a specific class for grid layout pages
   var currentLocation = window.location.pathname;
   var lastPathName;
-  var parts = currentLocation.split('/');
+  var pathParts = currentLocation.split('/');
 
-  if (parts[parts.length - 1].length === 0) {
-    lastPathName = parts[parts.length - 2];
+  if (pathParts[pathParts.length - 1].length === 0) {
+    lastPathName = pathParts[pathParts.length - 2];
   } else {
-    lastPathName = parts[parts.length - 1];
+    lastPathName = pathParts[pathParts.length - 1];
   }
 
+  if (lastPathName === 'index_html') {
+    lastPathName = pathParts[pathParts.length - 3];
+  } else {
+    lastPathName = currentLocation.substring(currentLocation.lastIndexOf('/') + 1, currentLocation.length);
+  }
+
+  // Add active class on sub-navigation items
+  // special transnational subpages, ex:
+  // url: .../cca/countries-regions/transnational-regions/baltic-sea-region/adaptation/policy-framework
+  // help page: share your information subpages, ex:
+  // url: .../cca/help/share-your-info/publications-and-reports
+  $('.share-info-wrapper #third-level-menu a, .cover-section_nav-tile a').each(function() {
+    var getURL = $(this).attr('href');
+    getURL = getURL.substring(getURL.lastIndexOf('/') + 1, getURL.length);
+    if (getURL.indexOf(lastPathName) !== -1) {
+      $(this).addClass('active-nav');
+    }
+  })
+
+  // Add a specific class for grid layout pages
   var policyClass = 'subsection-sector-policies-' + lastPathName;
   var regionClass = 'subsection-transnational-regions-' + lastPathName;
   var countryClass = 'subsection-countries-' + lastPathName;
@@ -233,7 +252,6 @@ $(document).ready(function() {
   var isBalticSubpage = $('.subsection-transnational-regions-baltic-sea-region-adaptation').length > 0;
   var isCarpathianSubpage = $('.subsection-transnational-regions-carpathian-mountains').length > 0;
   var isASTPage = $('.subsection-tools-adaptation-support-tool').length > 0;
-
 
 
   // EU SECTOR POLICIES
@@ -276,19 +294,6 @@ $(document).ready(function() {
         $('#content-core .column.col-md-9').removeClass('col-md-9');
 
         $('.tile-content').addClass('clearfix');
-
-        // Add active class on current page sub-navigation item
-        $(function() {
-          var current = window.location.pathname;
-          current = current.substring(current.lastIndexOf('/') + 1, current.length);
-          $('.cover-section_nav-tile a').each(function() {
-            var getURL = $(this).attr('href');
-            getURL = getURL.substring(getURL.lastIndexOf('/') + 1, getURL.length);
-            if (getURL.indexOf(current) !== -1) {
-              $(this).addClass('active-nav');
-            }
-          })
-        })
       }
     }
 

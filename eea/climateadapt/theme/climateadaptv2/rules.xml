@@ -80,7 +80,6 @@
       <replace css:theme-children="#portal-personaltools" css:content="#portal-personaltools-wrapper li" />
     </rules>
     <replace css:theme="#personal-menu .user-name" css:content="#portal-personaltools-wrapper dl dt a" />
-
   </rules>
 
     <!-- cca/eu-adaptation-policy/sector-policies CA - EU sector policies.png  tab policies override -->
@@ -91,8 +90,19 @@
       </after>
     </rules>
 
+    <!-- cca/eu-adaptation-policy/sector-policies CA - EU sector policies.png  tab policies override -->
+    <rules css:if-content=".subsection-index_html">
+      <drop css:content="#content-core > .row:nth-child(2)" />
+      <drop css:content="#content-core > .row:last-child" />
+      <after css:content=".subsection-index_html #content-core > .row:first-child">
+        <xi:include href="help.html" />
+      </after>
+    </rules>
+
   <!-- two column layout -->
-  <rules css:if-content=".column.col-md-9" css:if-not-content=".subsection-transnational-regions">
+  <rules css:if-content=".column.col-md-9"
+         css:if-not-content=".subsection-transnational-regions">
+
     <replace css:content="#content">
       <div id="content" class="columned">
         <xsl:apply-templates select="./*"/>
@@ -126,6 +136,10 @@
       </div>
     </replace>
   </rules>
+
+  <!-- add edit bar for the homepage, also move it to the top -->
+  <replace css:content-children='#edit-bar' css:theme-children='#edit-bar' />
+  <drop css:content="#edit-bar" />
 
   <!-- two column layout for transnational region pages : -->
   <!-- ex. cca/countries-regions/transnational-regions/baltic-sea-region -->
@@ -174,7 +188,6 @@
         <xsl:apply-templates select="./*"/>
       </div>
     </replace>
-
   </rules>
 
   <!-- two column layout for database item pages : -->
@@ -194,9 +207,9 @@
     <replace css:content=".section-metadata .col-md-9">
       <div class="column col-md-9">
         <div class="content-column">
-          <xsl:copy-of select='//*[contains(@class,"aceitem_top")]/*' />
+          <xsl:copy-of select='//*[contains(@class,"aceitem_top")]/*'/>
           <xsl:apply-templates select="./*"/>
-          <xsl:copy-of select='//*[@id="document-action-download_pdf"]' />
+          <xsl:copy-of select='//*[@id="document-action-download_pdf"]'/>
         </div>
       </div>
     </replace>
@@ -208,7 +221,36 @@
         </div>
       </div>
     </replace>
+  </rules>
 
+  <!-- hide pdf button from the main help introduction page -->
+  <rules css:if-content=".subsection-index_html">
+    <drop css:content="#document-action-download_pdf"/>
+  </rules>
+
+  <!-- layout for the help subpages -->
+  <rules css:if-content=".subsection-share-your-info"
+         css:if-not-content=".subsection-share-your-info-index_html">
+
+    <drop css:content="#viewlet-above-content-body"/>
+    <drop css:content="#content-core > .row"/>
+    <drop css:content="#viewlet-below-content-body"/>
+
+    <replace css:content="#content">
+      <div id="content">
+        <xsl:apply-templates select="./*"/>
+        <div class="row share-info-wrapper">
+          <div class="col-md-4">
+            <xsl:copy-of select='//*[contains(@id,"viewlet-above-content-body")]' />
+          </div>
+          <div class="col-md-8">
+            <xsl:copy-of select='//*[contains(@id,"content-core")]/*[contains(@class,"row")]/*[contains(@class, "col-md-8")]/*' />
+            <xsl:copy-of select='//*[contains(@id,"content-core")]/*[contains(@class,"row")]/*[contains(@class, "col-md-12")]' />
+          </div>
+        </div>
+        <xsl:copy-of select='//*[contains(@id,"viewlet-below-content-body")]' />
+      </div>
+    </replace>
   </rules>
 
 
