@@ -486,6 +486,12 @@ $(document).ready(function() {
 
   $('.share-your-info-ace-button').wrapAll('<div class="clearfix"/>');
 
+  $('.news-item').parent().parent().children('h2').addClass('news-title');
+
+  // Add a placeholder message for search input fields
+  $('#search-field input[type="text"]').attr('placeholder', 'type here...');
+
+
   /*
   * For mobile: fix table styling issues
   *

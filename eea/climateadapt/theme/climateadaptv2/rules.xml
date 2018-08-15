@@ -138,7 +138,7 @@
   </rules>
 
   <!-- add edit bar for the homepage, also move it to the top -->
-  <replace css:content-children='#edit-bar' css:theme-children='#edit-bar' />
+  <replace css:content="#edit-bar" css:theme="#edit-bar" method="raw"/>
   <drop css:content="#edit-bar" />
 
   <!-- two column layout for transnational region pages : -->
@@ -251,6 +251,21 @@
         <xsl:copy-of select='//*[contains(@id,"viewlet-below-content-body")]' />
       </div>
     </replace>
+  </rules>
+
+
+  <rules css:if-content=".section-news-archive">
+    <drop css:content="#viewlet-below-content > #category"/>
+    <after css:content="#viewlet-below-content-body">
+      <xsl:copy-of select='//*[contains(@id,"viewlet-below-content")]/*[contains(@id,"category")]' />
+    </after>
+  </rules>
+
+  <rules css:if-content=".section-more-events">
+    <drop css:content="#viewlet-below-content > #category"/>
+    <after css:content="#viewlet-below-content-body">
+      <xsl:copy-of select='//*[contains(@id,"viewlet-below-content")]/*[contains(@id,"category")]' />
+    </after>
   </rules>
 
 

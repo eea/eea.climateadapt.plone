@@ -3,7 +3,8 @@
 // edit bar
 .edit-bar-wrapper {
   background-color: @edit-interface-bg-color;
-  border-bottom: 2px solid darken(@edit-interface-bg-color, 10%);
+  position: relative;
+  z-index: 99;
 }
 
 #edit-bar {
@@ -72,8 +73,8 @@ div.formControls {
 
 #content-views {
   background-color: transparent;
-    top: 1px;
-    position: relative;
+  top: 1px;
+  position: relative;
   @media (max-width: 767px) {
     float: none;
   }
@@ -236,7 +237,7 @@ textarea:focus {
 #lock-icon:before {
   content: '\f023';
   font-family: FontAwesome;
-  color: #d09b00;
+  color: #ffbe00;
   font-size: 14px;
 }
 

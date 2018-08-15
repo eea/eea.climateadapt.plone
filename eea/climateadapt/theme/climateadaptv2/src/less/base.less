@@ -28,21 +28,24 @@ button {
   border: solid;
 }
 button:focus {
-  outline:0;
+  outline: 0;
 }
-select {
+select,
+textarea:focus,
+input:focus {
   outline: none;
 }
-
 strong {
   font-weight: normal;
   font-family: RobotoB;
   color: @dark-gray;
 }
-
 u {
   font-weight: normal;
   font-family: RobotoB;
+}
+cite {
+  font-family: RobotoI;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -52,7 +55,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1,
-.tile-title {
+.tile-title,
+.news-title {
   color: @primary-blue;
   font-size: 23px;
   line-height: 26px;
@@ -73,11 +77,6 @@ em {
   font-weight: bold;
 }
 
-textarea:focus,
-input:focus {
-  outline: none;
-}
-
 p {
   color: @dark-gray;
   font-family: RobotoR;
@@ -91,22 +90,11 @@ a {
   font-family: RobotoM;
   font-size: 14px;
 }
+
 .label {
-  color: #000;
+  color: transparent;
   padding: 0 0.5em 0 0;
 }
-
-//#content a:link,
-//a:link,
-//#content a:visited,
-//a:visited {
-//  color: @link-color;
-//  border-bottom: none;
-//}
-//
-//#content a:hover {
-//  color: #1E7CB3 !important;
-//}
 
 #content .eu-strategy td {
   padding: 1em 1em 1em 0em;
@@ -246,7 +234,8 @@ a {
 
 /* @end */
 a:focus,
-a:hover {
+a:hover,
+a:focus {
   color: #1E7CB3;
   text-decoration: none;
   outline: none;
@@ -265,6 +254,7 @@ a:hover {
 a.read-more {
   color: #EF7000;
   font-size: 12px;
+  text-transform: uppercase;
 
   &:hover {
     color: #ff963a;
@@ -325,7 +315,7 @@ a.read-more {
 .tile-content ul > li,
 #ast-menu ul > li {
   list-style-type: none;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
 .tile-content ul > li > a,
@@ -391,7 +381,6 @@ a.read-more {
 }
 
 // EU sector policies
-
 #content.columned {
   background-color: transparent;
   padding: 0;
@@ -1178,6 +1167,24 @@ table.listing th {
   display: inline;
 }
 
+#content fieldset {
+  border: none;
+}
+
+#search-field {
+  margin: 1em auto;
+  text-align: center;
+}
+
+#search-field input[type="text"] {
+  border: none;
+  border-bottom: 2px solid #E0E0E0;
+  max-width: 450px;
+  width: 100%;
+  height: 35px;
+  background-color: #fff;
+}
+
 // Iframes
 
 .iframe-container {
@@ -1255,7 +1262,6 @@ table.listing th {
 }
 
 // Help page
-
 #content .help-section-wrapper {
   flex-wrap: wrap;
 
@@ -1294,4 +1300,245 @@ table.listing th {
 .help-section-title {
   color: #0170B7;
   font-family: RobotoM;
+}
+
+// Events page
+.event_listing nav {
+  min-height: 2.3em;
+  margin-bottom: 3em;
+}
+
+#content .event_listing nav ul {
+  background-color: #0000;
+  top: 1px;
+  position: relative;
+}
+
+#content .event_listing nav ul li a {
+  line-height: 26px;
+  padding: 0 0.75em;
+}
+
+.event_listing ul.mode_selector li.selected {
+  font-weight: normal;
+}
+
+.event_listing ul.mode_selector li.selected > a {
+  font-family: RobotoB;
+  color: @primary-green;
+}
+
+article.vevent {
+  background-color: transparent;
+  border-radius: 0;
+}
+
+article.vevent:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+}
+
+.vevent div.cal_date {
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vevent div.cal_info {
+  border-left: 1px solid #ddd;
+  padding-left: 1.5em;
+}
+
+.vevent span.cal_wkday {
+  color: #EF7000;
+  border-bottom: 3px solid #EF7000;
+}
+
+.event_listing div.location {
+  display: block;
+  color: #fff;
+  font-family: RobotoM;
+  padding: 0.5em;
+  margin: 0.5em 0;
+  background-color: @primary-blue;
+  width: 100%;
+  max-width: 230px;
+  text-align: center;
+}
+
+.event_listing div.location:before {
+  content: '\f041';
+  font-family: FontAwesome;
+  color: #fff;
+  margin-right: 0.5em;
+  font-size: 16px;
+}
+
+.cal_info h2 a {
+  font-size: 21px;
+  color: @primary-blue;
+}
+
+.cal_info .documentByLine:before {
+  content: '\f073';
+  font-family: FontAwesome;
+  color: @dark-gray;
+  margin-right: 0.5em;
+  font-size: 16px;
+}
+
+abbr[data-original-title],
+abbr[title] {
+  border-bottom: none;
+}
+
+article.vevent .documentByLine,
+article.vevent .dtstart,
+.dtend,
+.explain {
+  color: @dark-gray !important;
+  font-weight: normal;
+  font-family: RobotoM;
+}
+
+li.category span {
+  padding: 0.3em;
+  background-color: #ddd;
+  border-radius: 3px;
+}
+
+#content .vevent ul.horizontal li {
+  display: inline;
+}
+
+.event.summary {
+  float: none;
+}
+
+.summary.details dt {
+  font-family: RobotoM;
+  color: @primary-blue;
+  padding: 0.3em 0;
+}
+
+.vevent span.cal_month,
+.vevent span.cal_day {
+  font-family: RobotoB;
+}
+
+// News page
+.news-item {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1em;
+  padding-bottom: 0;
+}
+
+.news-item  h3 a {
+  font-size: 16px;
+}
+
+#content .discreet,
+#sidebar .discreet,
+.portletStaticText .discreet {
+  color: #666;
+  font-size: 85%;
+  font-weight: normal;
+}
+
+.news-title {
+  border-bottom: 0 !important;
+}
+
+
+// Search results
+#search-results-bar {
+  position: relative;
+  z-index: 1;
+  float: left;
+  width: 100%;
+  border-top: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+  padding: 1em 0;
+  >* {
+    float: left;
+  }
+}
+
+#search-results .discreet span,
+#search-results .discreet a {
+  font-size: 12px;
+}
+
+#search-results dt {
+  margin-top: 1em;
+}
+
+#search-results dd {
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #ddd;
+}
+
+#searchResultsSort {
+  float: right;
+}
+
+#search-filter {
+  background: #ddd;
+}
+
+#content #search-filter legend {
+  background: #0000;
+  font-size: 1.1em;
+  padding: 0.5em 0.9em;
+}
+
+#search-filter .field {
+  background: #eee;
+  padding: 1em 1.5em;
+  margin: 0;
+}
+
+#search-results-bar dt.actionMenuHeader a::after {
+  content: "▼";
+}
+
+dl.actionMenu.activated dd div {
+  margin: 0;
+}
+
+.contenttype-event > a,
+.contenttype-news-item > a {
+  font-size: 18px;
+  margin-bottom: 0.5em;
+  display: inline-block;
+}
+
+.contenttype-event:before,
+.contenttype-news-item:before {
+  font-family: FontAwesome;
+  color: @dark-gray;
+  margin-right: 0.5em;
+  font-size: 16px;
+}
+
+.contenttype-event:before {
+  content: '\f073';
+}
+
+.contenttype-news-item:before {
+  content: '\f1ea';
+}
+
+.searchPage .row {
+  margin: 0px;
+}
+
+#category a.link-category,
+span.selectedTag {
+  color: @dark-gray;
+  padding: 0.25em 0.5em;
+  background: #ddd;
+  border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
 }
