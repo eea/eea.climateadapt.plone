@@ -195,9 +195,28 @@ $(document).ready(function() {
     }
   });
 
-  // add btn class
-  $('#document-action-download_pdf, #login-form .formControls input, #folderlisting-main-table .context, input[type=submit]')
+  // GENERAL
+  // add button class
+  $('#document-action-download_pdf, #login-form .formControls input, #folderlisting-main-table .context')
   .addClass('standard-button secondary-button');
+
+  // Add table class
+  $('.CSSTableGenerator').addClass('listing');
+
+  var $blueButton = $('.bluebutton');
+  $blueButton.addClass('standard-button primary-button');
+  $blueButton.parent().css('text-align', 'left');
+
+  // add button classes for form buttons
+  var $submitButton = $('input[type=submit]');
+  $submitButton.each(function () {
+    if ($(this).val() === 'Save') {
+      $(this).addClass('standard-button primary-button');
+    } else if ($(this).val() === 'Cancel') {
+      $(this).addClass('standard-button secondary-button');
+    }
+  })
+
 
   var currentLocation = window.location.pathname;
   var lastPathName;
@@ -419,7 +438,7 @@ $(document).ready(function() {
   });
 
 
-  // HELP PAGE: Glossary
+  // HELP: Glossary page
   // url: .../cca/help/glossary
   $('.GlossaryHeader').parents(':eq(2)').addClass('glossary-table');
 
@@ -484,6 +503,7 @@ $(document).ready(function() {
     $this.html($this.html().replace('»', ''));
   });
 
+  // Fix floating button
   $('.share-your-info-ace-button').wrapAll('<div class="clearfix"/>');
 
   $('.news-item').parent().parent().children('h2').addClass('news-title');

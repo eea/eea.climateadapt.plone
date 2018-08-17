@@ -2,10 +2,6 @@
 
 /*** dynamic area  - tab section ***/
 
-.dynamic-area ul {
-  list-style: none;
-}
-
 .main-tab-heading .main-tab-item {
   flex-grow: 1;
 }
@@ -28,7 +24,7 @@
 .main-tab-heading .main-tab-item.active a,
 .main-tab-heading .main-tab-item.active a:hover {
   border: none !important;
-  color: #7D9600 !important;
+  color: @primary-green !important;
 }
 
 .main-tab-heading .main-tab-item a {
@@ -188,10 +184,6 @@
 
 .getting-started .row {
   padding-top: 20px;
-}
-
-.action-box {
-  position: relative;
 }
 
 .action-bubble {
@@ -408,9 +400,12 @@
   color: #7D9600;
 }
 
+.db-category-wrapper a:hover p {
+  font-family: RobotoM;
+}
+
 .policies-nav li p,
 .db-category-wrapper p {
-  font-family: RobotoM;
   font-size: 12px;
   margin-top: 10px;
 }
@@ -435,13 +430,16 @@
 
 .policies-nav-item.active .policies-nav-link p {
   color: #7D9600;
+  font-family: RobotoM;
 }
 
 .policies-nav-link,
 .policies-nav-item.active .policies-nav-link,
 .policies-nav-item.active .policies-nav-link:hover,
 .policies-nav-item.active .policies-nav-link:focus {
-  border: none !important;
+  // border: none !important;
+  border-bottom-color: #ddd;
+  border-radius: 4px;
 }
 
 .policies-nav-link:before {

@@ -4,8 +4,6 @@
 
     <a tal:define="has_children python: bool(section['children'][-1])" href=""
       tal:attributes="href section/link;
-      class python: has_children and 'dropdown-toggle' or '';
-      data-toggle python: has_children and 'dropdown' or False;
       ">
       <span tal:content="python: section['label']">Home</span>
       <button class="toggle-down" tal:condition="has_children"><i class="angle-down-icon"></i></button>

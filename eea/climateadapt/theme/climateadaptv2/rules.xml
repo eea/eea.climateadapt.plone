@@ -91,15 +91,16 @@
     </rules>
 
     <!-- cca/eu-adaptation-policy/sector-policies CA - EU sector policies.png  tab policies override -->
-    <rules css:if-content=".subsection-index_html">
-      <drop css:content="#content-core > .row:nth-child(2)" />
+    <rules css:if-content=".section-help">
+      <!-- <drop css:content="#content-core > .row:nth-child(2)" />
       <drop css:content="#content-core > .row:last-child" />
-      <after css:content=".subsection-index_html #content-core > .row:first-child">
+       -->
+      <after css:content=".subsection-index_html .col-md-12 table">
         <xi:include href="help.html" />
       </after>
     </rules>
 
-  <!-- two column layout -->
+  <!-- two column layout ex: eu sector policies -->
   <rules css:if-content=".column.col-md-9"
          css:if-not-content=".subsection-transnational-regions">
 
@@ -235,6 +236,7 @@
     <drop css:content="#viewlet-above-content-body"/>
     <drop css:content="#content-core > .row"/>
     <drop css:content="#viewlet-below-content-body"/>
+    <drop css:content="#document-action-download_pdf" />
 
     <replace css:content="#content">
       <div id="content">

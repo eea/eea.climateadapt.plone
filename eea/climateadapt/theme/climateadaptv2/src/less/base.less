@@ -44,13 +44,12 @@ u {
   font-weight: normal;
   font-family: RobotoB;
 }
-cite {
+cite, em {
   font-family: RobotoI;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: RobotoB;
-  color: @dark-gray;
   margin-bottom: 1em;
 }
 
@@ -71,17 +70,8 @@ h3 {
   font-size: 18px;
 }
 
-em {
-  font-family: RobotoI;
-  font-size: 14px;
-  font-weight: bold;
-}
-
 p {
   color: @dark-gray;
-  font-family: RobotoR;
-  font-size: 14px;
-  line-height: 20px;
   margin-bottom: 0.8em;
 }
 
@@ -103,6 +93,12 @@ a {
 
 #content .eu-strategy tr:first-child td {
   padding: 0em 0em 1em 0em;
+}
+
+#content p a:link {
+  border-bottom: 1px solid #1e76a9;
+  word-wrap: break-word;
+  font-family: RobotoR;
 }
 
 /* @group Invisibles */
@@ -233,10 +229,11 @@ a {
 }
 
 /* @end */
+
 a:focus,
 a:hover,
 a:focus {
-  color: #1E7CB3;
+  color: #23527c;
   text-decoration: none;
   outline: none;
 }
@@ -279,9 +276,13 @@ a.read-more {
 
 .standard-button {
   font-family: RobotoB;
-  font-size: 18px;
+  font-size: 16px;
   padding: 10px 25px;
   border-radius: 5px;
+}
+
+form .standard-button {
+  margin-right: 0.5em;
 }
 
 .sm-button {
@@ -301,13 +302,14 @@ a.read-more {
 
 .secondary-button {
   font-family: RobotoM;
-  font-size: 16px;
   border: none;
   background-color: #efefef;
+  border: 2px solid #efefef;
   color: @dark-gray;
 
   &:hover {
     background-color: #E0E0E0;
+    border: 2px solid #E0E0E0;
     color: inherit;
   }
 }
@@ -320,7 +322,6 @@ a.read-more {
 
 .tile-content ul > li > a,
 .subsection-share-your-info-index_html ul > li > span > a {
-  position: relative;
   display: inline-block;
   margin-left: 1rem;
 }
@@ -330,11 +331,9 @@ a.read-more {
 .subsection-share-your-info-index_html ul > li > span > a:before {
   content: "\f101";
   font-family: FontAwesome;
-  display: inline-block;
   margin-left: -1em; /* same as padding-left set on li */
   width: 1em; /* same as padding-left set on li */
-  color: #2D9CDB;
-  position: absolute;
+  display: inline-block;
 }
 
 .aceitem-relevant-tile h2 {
@@ -356,21 +355,20 @@ a.read-more {
   box-shadow: none;
   border-radius: 0;
   clear: both;
-}
 
-.panel-default > .panel-heading {
-  text-align: right;
-  background-color: transparent;
-  border: none;
-}
+  >.panel-heading {
+    text-align: right;
+    background-color: transparent;
+    border: none;
 
-.panel-default > .panel-heading a {
-  text-transform: uppercase;
-  color: #EF7000;
-}
-
-.panel-default > .panel-heading a:hover {
-  color: #ff963a;
+    a {
+      text-transform: uppercase;
+      color: #EF7000;
+    }
+    a:hover {
+      color: #ff963a;
+    }
+  }
 }
 
 .panel-heading .accordion-toggle:before {
@@ -405,14 +403,8 @@ a.read-more {
 .template-cache-settings #content,
 .portaltype-folder #content {
   background-color: #fff;
-  padding: 20px;
+  padding: 1.5em;
   border: 1px solid #E5E5E5;
-}
-
-.tile-wrapper {
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #E0E0E0;
-  margin-bottom: 2.5rem;
 }
 
 .content-sidebar .aceitem-search-tile > ul > li {
@@ -451,10 +443,6 @@ a.read-more {
   text-align: center;
 }
 
-.region-countries {
-  font-size: 14px;
-}
-
 .content-sidebar .aceitem-search-tile ul li a {
   color: @dark-gray;
   font-family: RobotoR;
@@ -475,6 +463,10 @@ a.read-more {
   color: @primary-blue;
 }
 
+.content-sidebar .share-your-info-ace-button {
+  margin-top: 1em;
+}
+
 .share-your-info-ace-button button,
 .share-info-btn {
   font-size: 17px;
@@ -485,34 +477,18 @@ a.read-more {
 }
 
 .share-your-info-ace-button button:before,
-.share-info-btn:before {
+.share-info-btn:before,
+.bluebutton:before {
   content: url("../images/info-share-btn.png");
   position: absolute;
   top: 9px;
   left: 10px;
 }
 
-.main-tile-content img {
-  float: none !important;
-  margin-bottom: 0;
-  align-self: flex-start;
-  flex: 1;
-}
-
-.main-tile-content .read_more_first {
-  flex: 1;
-}
-
-.main-tile-content .flex-wrapper {
-  padding: 0;
-}
-
 .factsheet-pdf {
   background-color: #FFD554;
   border: 1px solid @yellow;
   padding: 15px;
-  width: 100%;
-  height: auto;
   color: @dark-gray;
   font-size: 20px;
   margin-bottom: 20px;
@@ -524,10 +500,10 @@ a.read-more {
   }
   .factsheet-title {
     margin: auto;
+    line-height: 26px;
   }
   span {
     font-size: 23px;
-    display: block;
   }
 }
 
@@ -647,8 +623,8 @@ a.read-more {
     font-family: RobotoM;
     color: @primary-blue;
     position: absolute;
-    top: 66px;
-    left: 35px;
+    top: 65px;
+    left: 40px;
   }
 }
 
@@ -661,7 +637,6 @@ a.read-more {
   width: 35px;
   font-family: RobotoB;
   font-size: 18px;
-  color: @dark-gray;
   line-height: 35px;
   text-align: center;
   margin-right: 10px;
@@ -672,7 +647,7 @@ a.read-more {
   background-color: #FFD554;
   border: 2px solid @yellow;
   transform: scale(1.08);
-  color: #4F4F4F;
+  color: @dark-gray;
 }
 
 .ast-map .ast-circle:hover > .step-text  {
@@ -909,18 +884,16 @@ a.read-more {
 }
 
 .dd-country-title .options li {
-  background-color: #f7f7f7;;
+  background-color: #f7f7f7;
   cursor: pointer;
   padding: 8px 0 8px 5px;
-  color: @dark-gray;
 }
 
 .dd-country-title .options li:hover {
   background: #fbfbfb;
 }
 
-// DB item PAGES
-
+// DB item pages
 .aceitem_page h2 {
   color: #fff;
   background-color: #848484;
@@ -948,33 +921,14 @@ a.read-more {
 .ace-content-column h4 {
   border-top: 1px solid #ddd;
   padding-top: 1em;
-  margin-top: 1em;
-}
-
-.aceitem_page #document-action-download_pdf {
-  margin-top: 1.5em;
 }
 
 // Help page: Glossary
-.glossary-table {
-  width: 100%;
-  table-layout: fixed;
-}
-.glossary-item {
-  margin-top: 1.5em;
-  color: #4f4f4f;
-  font-family: RobotoR;
-  font-size: 14px;
-  line-height: 20px;
-  margin: 5px 0;
-}
-
 .GlossaryTitle {
   color: @primary-blue;
   margin: 10px 0;
   font-family: RobotoB;
   border-bottom: 1px solid #ececec;
-  padding: 5px 0;
 
   a {
     float: right;
@@ -1001,7 +955,7 @@ a.read-more {
 
 .glossary-list .g-heading {
   font-size: 18px;
-  color: @primary-blue;
+  color: @primary-green;
   background-color: #ececec;
   display: block;
   padding: 5px;
@@ -1017,7 +971,6 @@ a.read-more {
 }
 
 // Portal messages
-
 .portalMessage {
   margin: 1em 0;
   border-radius: 3px;
@@ -1030,7 +983,8 @@ dl.warning, .portalMessage.warning {
   background-color: #fff3cd;
 }
 
-dl.info, .portalMessage.info {
+dl.info, .portalMessage.info,
+dl.structure, .portalMessage.structure {
   border: 1px solid #84b790;
   background-color: #d4edda;
 }
@@ -1072,18 +1026,13 @@ dl.error, .portalMessage.error{
 }
 
 .portalMessage a {
-  font-size: 15px;
   color: inherit;
   border-bottom: 1px solid @dark-gray;
 }
 
-// table styling
-
+// Table styling
 .listing {
   width: 100% !important;
-  font-size: 14px;
-  font-family: RobotoR;
-  color: @dark-gray;
   margin-bottom: 1.5em;
 
   td {
@@ -1130,17 +1079,26 @@ table.listing th {
   vertical-align: top;
 }
 
-// fields and forms
+.CSSTableGenerator tr:first-child td {
+  background-color: @primary-green;
+}
 
+.CSSTableGenerator tr:first-child td p {
+  color: #fff;
+  margin: 5px 0;
+  font-family: RobotoM;
+}
+
+// Fields and forms
 #folderContentsForm .context {
   margin-right: 0.5em;
 }
 
 #fieldset-default label {
   font-family: RobotoB;
-  font-size: 18px;
+  font-size: 17px;
   margin-bottom: 0.5em;
-  color: @primary-green;
+  color: @primary-blue;
 }
 
 #fieldset-default .field {
@@ -1152,8 +1110,8 @@ table.listing th {
 #form-widgets-sectors input[type="checkbox"],
 #form-widgets-climate_impacts input[type="checkbox"],
 #form-widgets-elements input[type="checkbox"] {
-    float: left;
-    margin-right: 0.3em;
+  float: left;
+  margin-right: 0.3em;
 }
 
 #form-widgets-sectors label,
@@ -1171,6 +1129,10 @@ table.listing th {
   border: none;
 }
 
+#content label {
+  padding: 7px 0;
+}
+
 #search-field {
   margin: 1em auto;
   text-align: center;
@@ -1186,7 +1148,6 @@ table.listing th {
 }
 
 // Iframes
-
 .iframe-container {
   position: relative;
   padding-bottom: 56.25%;
@@ -1225,9 +1186,7 @@ table.listing th {
   height: 100%;
 }
 
-
 // share your information
-
 .share-info-wrapper {
   margin-top: 2em;
 }
@@ -1262,17 +1221,13 @@ table.listing th {
 }
 
 // Help page
-#content .help-section-wrapper {
-  flex-wrap: wrap;
+.help-section {
+  text-align: center;
+  flex: 1 1 230px !important;
+}
 
-  .help-section {
-    text-align: center;
-    padding: 10px 20px;
-    flex: 1 1 230px;
-  }
-  .help-section-header {
-    display: block;
-  }
+.help-section-header {
+  display: block;
 }
 
 .help-icon {
@@ -1343,11 +1298,6 @@ article.vevent:not(:last-child) {
   padding: 0;
 }
 
-.vevent div.cal_info {
-  border-left: 1px solid #ddd;
-  padding-left: 1.5em;
-}
-
 .vevent span.cal_wkday {
   color: #EF7000;
   border-bottom: 3px solid #EF7000;
@@ -1355,20 +1305,15 @@ article.vevent:not(:last-child) {
 
 .event_listing div.location {
   display: block;
-  color: #fff;
   font-family: RobotoM;
-  padding: 0.5em;
-  margin: 0.5em 0;
-  background-color: @primary-blue;
+  margin: 1em 0;
   width: 100%;
   max-width: 230px;
-  text-align: center;
 }
 
 .event_listing div.location:before {
   content: '\f041';
   font-family: FontAwesome;
-  color: #fff;
   margin-right: 0.5em;
   font-size: 16px;
 }
@@ -1381,7 +1326,6 @@ article.vevent:not(:last-child) {
 .cal_info .documentByLine:before {
   content: '\f073';
   font-family: FontAwesome;
-  color: @dark-gray;
   margin-right: 0.5em;
   font-size: 16px;
 }
@@ -1436,18 +1380,38 @@ li.category span {
   font-size: 16px;
 }
 
-#content .discreet,
-#sidebar .discreet,
-.portletStaticText .discreet {
-  color: #666;
-  font-size: 85%;
-  font-weight: normal;
-}
-
 .news-title {
   border-bottom: 0 !important;
 }
 
+// Pagination style
+div.listingBar {
+  display: block;
+}
+
+div.listingBar .next {
+  display: inline-block;
+  float: right;
+}
+
+div.listingBar a {
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  color: @dark-gray;
+}
+
+div.listingBar a:hover {
+  color: @primary-green;
+}
+
+div.listingBar .current {
+  color: @primary-green;
+  font-family: RobotoB;
+  font-size: 16px;
+  padding: 0.25em 0.5em;
+  border: 0.1em solid #ccc;
+  border-radius: 0;
+}
 
 // Search results
 #search-results-bar {
@@ -1516,7 +1480,6 @@ dl.actionMenu.activated dd div {
 .contenttype-event:before,
 .contenttype-news-item:before {
   font-family: FontAwesome;
-  color: @dark-gray;
   margin-right: 0.5em;
   font-size: 16px;
 }
@@ -1541,4 +1504,67 @@ span.selectedTag {
   border-radius: 0.5em;
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
+}
+
+// Sitemap
+#portal-sitemap {
+  margin-top: 1em;
+
+  a {
+    margin-bottom: 0.5em;
+    display: block;
+  }
+}
+
+#portal-sitemap .navTreeLevel2,
+#portal-sitemap .navTreeLevel2 ul {
+  margin-bottom: 0;
+  padding: 0.25em 0;
+  margin-left: 2em;
+}
+
+#portal-sitemap > .navTreeItem > div > a {
+  font-size: 16px;
+  color: @primary-blue;
+}
+
+#portal-sitemap .navTreeItem a:hover {
+  color: @primary-green;
+}
+
+.icons-on .contenttype-folder:before {
+  content: '\f07b';
+  font-family: FontAwesome;
+  color: #f3b702;
+  margin-right: 5px;
+}
+
+
+@media (max-width: 480px) {
+  .region-subpage .cover-section_nav-tile ul,
+  .sweet-tabs .nav-tabs {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+
+  #portal-breadcrumbs {
+    margin-left: 1em;
+  }
+
+  #portal-personaltools {
+    right: -90px !important;
+  }
+
+  .tile-content div div table td p,
+  .tile-content div div table td span,
+  .tile-content div div table td ul,
+  #country-tab .tab-pane  {
+    width: auto !important;
+  }
+
+  #edit-bar, .managePortletsFallback, .documentByLine {
+    display: none!important;
+}
+
 }

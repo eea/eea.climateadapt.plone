@@ -5,14 +5,14 @@
   background-color: @edit-interface-bg-color;
   position: relative;
   z-index: 99;
+  border-bottom: 2px solid darken(@edit-interface-bg-color, 10%);
 }
 
 #edit-bar {
-  min-height: 2.65em;
+  min-height: 2.5em;
   margin-bottom: 0;
   background-color: @edit-interface-bg-color;
   border: 0.25em solid @edit-interface-bg-color;
-  // border-bottom: 2px solid darken(@edit-interface-bg-color, 10%);
 }
 
 #edit-bar li {
@@ -81,15 +81,19 @@ div.formControls {
 }
 
 #content-views li.selected a,
-#content-views li a:hover {
-  padding: 0 0.75em 0.1em 0.75em;
-}
-
-#content-views li.selected a,
 #content li.formTab a.selected,
 #content-core li.formTab a.selected {
   font-weight: normal;
   font-family: RobotoM;
+}
+
+#content-core li.formTab a.selected {
+  color: @primary-green;
+  font-family: RobotoB;
+}
+
+#content-core li.formTab a:hover {
+  color: @primary-green;
 }
 
 
@@ -122,30 +126,22 @@ div.formControls {
 }
 
 #content div.documentByLine {
-  font-family: RobotoR;
   font-size: 12px;
   margin-bottom: 1em;
 }
 
 #content div.documentByLine a {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 #content ul, #content ol {
-  font-family: RobotoR;
-  font-size: 14px;
-  color: @dark-gray;
   list-style-position: inside;
-  line-height: 20px;
 }
 
-#content select {
-  font-family: RobotoR;
-}
 
 #breadcrumbs-current {
   font-family: RobotoB;
-  color: #7D9600;
+  color: @primary-green;
   font-size: 14px;
 }
 
@@ -202,28 +198,51 @@ textarea:focus {
   border: none;
   background-color: #efefef;
   color: @dark-gray;
+  font-size: 14px !important;
+  margin-top: 10px;
 }
 
 #login-form .formControls input {
   font-size: 100%;
 }
 
-#fieldset-openid-login .formControls input:hover {
+#login-form .formControls input:hover {
   background-color: #E0E0E0;
 }
 
-#fieldset-openid-login label,
 #login-form label {
   display: block;
-  margin: 0 auto;
+  margin: 5px auto;
   text-align: center;
   font-family: RobotoM;
   color: @dark-gray;
+  font-size: 14px;
 }
 
 #login-form .field {
   margin: 1em 0;
   text-align: center;
+}
+
+#login-form .field > label[for="__ac_name"]:before,
+#login-form .field > label[for="__ac_password"]:before, {
+  font-family: FontAwesome;
+  margin-right: 0.5em;
+  font-size: 16px;
+  color: @primary-blue;
+}
+
+#login-form .field > label[for="__ac_name"]:before {
+  content: '\f007';
+}
+
+#login-form .field > label[for="__ac_password"]:before {
+  content: '\f084';
+}
+
+#login-form input[type="text"]:focus,
+#login-form input[type="password"]:focus {
+  border: 1px solid @primary-blue;
 }
 
 .panel-body {
@@ -241,6 +260,10 @@ textarea:focus {
   font-size: 14px;
 }
 
+.hiddenForAnon {
+  margin-top: 0.2em !important;
+}
+
 #third-level-menu {
   li {
     display: block;
@@ -256,6 +279,21 @@ textarea:focus {
   }
 }
 
+.subsection-funding-h2020 h2 > a,
+.subsection-funding-h2020 h2 > strong > a {
+  font-size:inherit;
+}
+
+.subsection-funding-h2020 h2 {
+  margin-top: 1em;
+}
+
+.bluebutton {
+  display: inline-block;
+  position: relative;
+  margin-top: 0.5em;
+  padding: 10px 13px 10px 45px;
+}
 
 @media screen and (max-width: 480px) {
   /* For devices with narrow screens, phones, tablets, etc. */
@@ -268,19 +306,4 @@ textarea:focus {
     overflow-x: auto;
   }
 
-  .tile-content div div table {
-    td {
-      p, span {
-        width: 86vw;
-      }
-
-      p {
-        margin-left: 0;
-      }
-
-      ul {
-        width: 86vw;
-      }
-    }
-  }
 }
