@@ -28,7 +28,6 @@
     <include file="profiles.zcml" />
     <include file="stringinterp.zcml" />
     <include file="cache.zcml" />
-    <include file="rabbitmq.zcml" />
 
     <browser:jbot
         directory="browser/pt-overrides"
