@@ -161,6 +161,10 @@ class MenuParser:
     SECTION_SEPARATOR = 'SECTION_SEPARATOR'
     ITEM = 'ITEM'
     SUBITEM = 'SUBITEM'
+    site_url = None
+
+    def __init__(self, site_url):
+        self.site_url = site_url
 
     def _get_list_item(self, line):
         item = self._make_section()
@@ -175,7 +179,7 @@ class MenuParser:
         item.update({
                 'icon': icon.strip(),
                 'label': label.strip(),
-                'link': link.strip(),
+                'link': self.site_url + '/' + link.strip(),
             })
 
         return item
@@ -193,13 +197,8 @@ class MenuParser:
         lines = value.split('\n')
         lines = [l.strip() for l in lines]
 
-        # text = text.strip()
-        # self.lines = text.split('\n')
-
         self.reset()
         self.out = []
-
-        # import pdb; pdb.set_trace()
 
         for line in lines:
             self.process(line)
@@ -241,8 +240,8 @@ class MenuParser:
         self.reset()
 
     def handle_ITEM(self, item):
-        if not self.c_column:      # this is a main section
-            item['children'] = [[]]    # prepare the columns
+        if not self.c_column:           # this is a main section
+            item['children'] = [[]]     # prepare the columns
             self.c_column = item
         else:
             self.c_group = item
@@ -253,18 +252,12 @@ class MenuParser:
 
     def handle_SECTION_SEPARATOR(self, payload):
         self.c_column['children'].append([])
-        # self.c_column['children'].append(self.c_subsection)
 
     def reset(self):
         self.c_column = None
 
-        # self.current_section = self._make_section()
-        # self.current_subsection = []
-        # # self.current_section['children'].append(self.current_subsection)
-        # self.current_group = None
 
-
-def _extract_menu(value):
+def _extract_menu(value, site_url):
     """ Construct the data for the menu.
 
     Terminology in the menu:
@@ -281,54 +274,8 @@ def _extract_menu(value):
     | <link 4>                      |                           |
     |-----------------------------------------------------------|
     """
-    parser = MenuParser()
+    parser = MenuParser(site_url)
     result = parser.parse(value)
-
-    # for s in split_sections(lines):
-    #     s = process_section(s)
-    #     result.append(s)
-    # for line in lines:
-    #     line = line.strip()
-    #
-    #     # new section (line is empty)
-    #
-    #     if (not line) and column[sections]:
-    #         result.append(column)
-    #         column = make_column()
-    #
-    #         continue
-    #
-    #     # new section
-    #
-    #     if line:        #  and (not this_section[-1])
-    #         if '/' not in line:
-    #             raise ValueError("No link in menu entry: %s" % line)
-    #         label, link = line.split('/', 1)
-    #         this_section[-1] = [label.strip(), link.strip(), []]
-    #
-    #         continue
-    #
-    #     # link inside section
-    #
-    #     if line and this_section and line[0] != '-':
-    #         if '/' not in line:
-    #             raise ValueError("No link in menu entry")
-    #         label, link = line.split('/', 1)
-    #         this_section[2].append((label.strip(), link.strip(), []))
-    #
-    #         continue
-    #
-    #     # link inside subsection
-    #
-    #     if line and this_section and line[0] == '-':
-    #         if '/' not in line:
-    #             raise ValueError("No link in menu entry")
-    #         label, link = line.split('/', 1)
-    #         this_section[2][-1][2].append((label.strip()[1:], link.strip()))
-    #
-    # if this_section:
-    #     result.append(this_section)
-    #
 
     return result
 
@@ -351,4 +298,6 @@ class Navbar(ExternalTemplateHeader):
         except Exception, e:
             logger.exception("Error while rendering navigation menu: %s", e)
 
-            return _extract_menu(DEFAULT_MENU)
+            site_url = self.context.portal_url()
+
+            return _extract_menu(DEFAULT_MENU, site_url)
