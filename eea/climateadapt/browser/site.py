@@ -175,7 +175,7 @@ class MenuParser:
         match = LINKER.match(label)
 
         if match:
-            icon = match.group('icon')
+            icon = match.group('icon').replace('[', '').replace(']', '')
             label = match.group('label').replace('[', '').replace(']', '')
 
         item.update({
