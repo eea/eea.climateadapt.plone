@@ -7,6 +7,8 @@ import re
 from eea.climateadapt.browser.externaltemplates import ExternalTemplateHeader
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
+from zope.component.hooks import getSite
+
 
 LINKER = re.compile('(?P<icon>\[.+?\])(?P<label>.+)')
 
@@ -257,7 +259,7 @@ class MenuParser:
         self.c_column = None
 
 
-def _extract_menu(value, site_url):
+def _extract_menu(value, site_url=None):
     """ Construct the data for the menu.
 
     Terminology in the menu:
@@ -274,6 +276,8 @@ def _extract_menu(value, site_url):
     | <link 4>                      |                           |
     |-----------------------------------------------------------|
     """
+    if not site_url:
+        site_url = getSite().absolute_url()
     parser = MenuParser(site_url)
     result = parser.parse(value)
 
