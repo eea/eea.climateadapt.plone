@@ -95,7 +95,7 @@
       <!-- <drop css:content="#content-core > .row:nth-child(2)" />
       <drop css:content="#content-core > .row:last-child" />
        -->
-      <after css:content=".subsection-index_html .col-md-12 table">
+      <after css:content=".section-help .col-md-12 table">
         <xi:include href="help.html" />
       </after>
     </rules>
@@ -269,6 +269,13 @@
       <xsl:copy-of select='//*[contains(@id,"viewlet-below-content")]/*[contains(@id,"category")]' />
     </after>
   </rules>
+
+
+  <!-- <rules css:if-content=".subsection-tools-urban-adaptation-climatic-threats">
+    <before theme-children="/html/body">
+      <xsl:attribute name="class"><xsl:value-of select="/html/body/@class" /> fullwidth</xsl:attribute>
+    </before>
+  </rules> -->
 
 
   <rules if="contains($host, 'local')">

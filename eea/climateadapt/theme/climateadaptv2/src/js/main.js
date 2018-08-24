@@ -140,12 +140,19 @@ $(document).ready(function() {
 
   // HOMEPAGE: Main area
   // Get heighest div and make equal heights on every boxes
+  var windowsize = $(window).width();
   var $mainBox = $('.main-box');
   var mainBoxMaxHeight = 0;
+
   $mainBox.each(function() {
     mainBoxMaxHeight = ($(this).outerHeight() > mainBoxMaxHeight) ? $(this).outerHeight() : mainBoxMaxHeight;
   });
-  $mainBox.css('min-height', mainBoxMaxHeight);
+
+  if( windowsize <= 600 ) {
+    $mainBox.css('min-height', 'auto');
+  } else {
+    $mainBox.css('min-height', mainBoxMaxHeight);
+  }
 
   // Mobile menu button on click event
   $('.mobile-menu i').click(function() {
@@ -218,9 +225,25 @@ $(document).ready(function() {
   })
 
 
+  // Add active class on sub-navigation active items
+  // special transnational subpages, ex:
+  // url: .../cca/countries-regions/transnational-regions/baltic-sea-region/adaptation/policy-framework
+  // help page: share your information subpages, ex:
+  // url: .../cca/help/share-your-info/publications-and-reports
+
+  var current = window.location.href;
+  $('.share-info-wrapper #third-level-menu a, .cover-section_nav-tile a, .uvmb-nav a').each(function() {
+    var $this = $(this);
+    if (current.indexOf($this.attr('href')) > -1 || $this.attr('href').indexOf(current) > -1) {
+      $this.addClass('active-nav');
+    }
+  })
+
+
+  // Add a specific class for grid layout pages
   var currentLocation = window.location.pathname;
-  var lastPathName;
   var pathParts = currentLocation.split('/');
+  var lastPathName;
 
   if (pathParts[pathParts.length - 1].length === 0) {
     lastPathName = pathParts[pathParts.length - 2];
@@ -231,23 +254,9 @@ $(document).ready(function() {
   if (lastPathName === 'index_html') {
     lastPathName = pathParts[pathParts.length - 3];
   } else {
-    lastPathName = currentLocation.substring(currentLocation.lastIndexOf('/') + 1, currentLocation.length);
+    lastPathName = pathParts[pathParts.length - 1];
   }
 
-  // Add active class on sub-navigation items
-  // special transnational subpages, ex:
-  // url: .../cca/countries-regions/transnational-regions/baltic-sea-region/adaptation/policy-framework
-  // help page: share your information subpages, ex:
-  // url: .../cca/help/share-your-info/publications-and-reports
-  $('.share-info-wrapper #third-level-menu a, .cover-section_nav-tile a').each(function() {
-    var getURL = $(this).attr('href');
-    getURL = getURL.substring(getURL.lastIndexOf('/') + 1, getURL.length);
-    if (getURL.indexOf(lastPathName) !== -1) {
-      $(this).addClass('active-nav');
-    }
-  })
-
-  // Add a specific class for grid layout pages
   var policyClass = 'subsection-sector-policies-' + lastPathName;
   var regionClass = 'subsection-transnational-regions-' + lastPathName;
   var countryClass = 'subsection-countries-' + lastPathName;
@@ -389,8 +398,6 @@ $(document).ready(function() {
     function astLayout() {
 
       if (isASTPage) {
-        $('.lfc-single-image').remove(); // remove existing AST image
-
         $('.col-md-8').children('.tile:nth-child(2)').addClass('tile-wrapper');
 
         var titleAST = $('.tile-content').children('h1');
@@ -510,29 +517,5 @@ $(document).ready(function() {
 
   // Add a placeholder message for search input fields
   $('#search-field input[type="text"]').attr('placeholder', 'type here...');
-
-
-  /*
-  * For mobile: fix table styling issues
-  *
-  *
-  * */
-  function resizehandlerforContentTables(ev){
-      if (window.matchMedia("(max-width: 480px)").matches) {
-          $.each( $(".content-container table"),function (indx, item) {
-              if($(item).parent().prop("tagName") !== "DIV" ){
-                  $(item).wrapAll('<div style="overflow-x: auto;width: 86vw; "></div>');
-              } else {
-                  $(item).parent().css({
-                      "overflow-x": "auto",
-                      "width" : "86vw"
-                  });
-              }
-          });
-      }
-  }
-
-  resizehandlerforContentTables();
-  $( window ).resize(resizehandlerforContentTables);
 
 });

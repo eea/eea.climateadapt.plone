@@ -4,7 +4,7 @@
 .edit-bar-wrapper {
   background-color: @edit-interface-bg-color;
   position: relative;
-  z-index: 99;
+  z-index: 999;
   border-bottom: 2px solid darken(@edit-interface-bg-color, 10%);
 }
 
@@ -19,11 +19,16 @@
   display: inline;
 }
 
-#plone-contentmenu-workflow .state-private,
 #plone-contentmenu-workflow .state-published {
-  padding: 3px 10px;
   background-color: #1d1d1d;
-  border: none;
+}
+
+#plone-contentmenu-workflow .state-private {
+  background-color: #a0a0a0;
+}
+
+.state-private, .state-visible, .state-published, .state-pending {
+  border-color: transparent !important;
 }
 
 #contentActionMenus dl.actionMenu a {

@@ -318,6 +318,7 @@ form .standard-button {
 #ast-menu ul > li {
   list-style-type: none;
   margin-bottom: 0.5em;
+  // display: inline-block;
 }
 
 .tile-content ul > li > a,
@@ -514,35 +515,37 @@ form .standard-button {
 }
 
 // Transnational regions
-.region-subpage .cover-section_nav-tile {
+.cover-section_nav-tile,
+.uvmb-nav {
   margin-bottom: 1.5em;
 
   ul {
     border-bottom: 1px solid #dee2e6;
-  }
-  li {
-    display: inline-block;
-    margin-bottom: -1px;
-  }
-  a {
-    color: @dark-gray;
-    padding: 1em 2em;
-    border: 1px solid transparent;
-    border-top-left-radius: .25em;
-    border-top-right-radius: .25em;
-    margin-left: 0;
-  }
-  a:before {
-    content: '';
-  }
-  a.active-nav {
-    color: @primary-green;
-    font-family: RobotoB;
-    background-color: #fff;
-    border-color: #dee2e6 #dee2e6 #fff;
-  }
-  a:hover {
-    color: @primary-green;
+
+    li {
+      display: inline-block;
+      margin-bottom: -1px;
+    }
+    a {
+      color: @dark-gray;
+      padding: 1em 2em;
+      border: 1px solid transparent;
+      border-top-left-radius: .25em;
+      border-top-right-radius: .25em;
+      margin-left: 0;
+    }
+    a:before {
+      content: '' !important;
+    }
+    a.active-nav {
+      color: @primary-green;
+      font-family: RobotoB;
+      background-color: #fff;
+      border-color: #dee2e6 #dee2e6 #fff;
+    }
+    a:hover {
+      color: @primary-green;
+    }
   }
 }
 
@@ -966,8 +969,14 @@ form .standard-button {
   content: ''!important;
 }
 
+.glossary-list > li {
+  display: block !important;
+  list-style-type: disc;
+}
+
 .glossary-list > li > ul > li {
   list-style-type: disc;
+  display: block;
 }
 
 // Portal messages
@@ -1008,7 +1017,8 @@ dl.error, .portalMessage.error{
   background-color: #efc855;
 }
 
-.portalMessage.info dt {
+.portalMessage.info dt,
+.portalMessage.info strong {
   background-color: #84b790;
 }
 
@@ -1127,10 +1137,6 @@ table.listing th {
 
 #content fieldset {
   border: none;
-}
-
-#content label {
-  padding: 7px 0;
 }
 
 #search-field {
@@ -1259,23 +1265,35 @@ table.listing th {
 
 // Events page
 .event_listing nav {
-  min-height: 2.3em;
   margin-bottom: 3em;
-}
+  border: 0.3em solid #ddd;
+  border-bottom: none;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  background-color: #ddd;
 
-#content .event_listing nav ul {
-  background-color: #0000;
-  top: 1px;
-  position: relative;
+  ul {
+    top: 1px;
+    position: relative;
+
+    li {
+      display: inline-block;
+      padding: 0 0.75em;
+    }
+  }
 }
 
 #content .event_listing nav ul li a {
   line-height: 26px;
   padding: 0 0.75em;
+  display: inline-block;
 }
 
 .event_listing ul.mode_selector li.selected {
   font-weight: normal;
+  background: #fff;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
 }
 
 .event_listing ul.mode_selector li.selected > a {
@@ -1284,31 +1302,29 @@ table.listing th {
 }
 
 article.vevent {
-  background-color: transparent;
-  border-radius: 0;
-}
-
-article.vevent:not(:last-child) {
+  padding: 2em 0;
   border-bottom: 1px solid #ddd;
 }
 
 .vevent div.cal_date {
-  box-shadow: none;
-  margin: 0;
-  padding: 0;
+  float: left;
+}
+
+.vevent div.cal_info {
+  margin-left: 8em;
 }
 
 .vevent span.cal_wkday {
   color: #EF7000;
   border-bottom: 3px solid #EF7000;
+  display: block;
+  font-size: 2.3em;
+  padding-bottom: 0.3em;
+  font-family: RobotoB;
 }
 
 .event_listing div.location {
-  display: block;
-  font-family: RobotoM;
   margin: 1em 0;
-  width: 100%;
-  max-width: 230px;
 }
 
 .event_listing div.location:before {
@@ -1330,18 +1346,14 @@ article.vevent:not(:last-child) {
   font-size: 16px;
 }
 
-abbr[data-original-title],
-abbr[title] {
-  border-bottom: none;
-}
-
 article.vevent .documentByLine,
 article.vevent .dtstart,
 .dtend,
-.explain {
-  color: @dark-gray !important;
-  font-weight: normal;
+.explain,
+.location {
   font-family: RobotoM;
+  font-size: 14px;
+  border-bottom: none !important;
 }
 
 li.category span {
@@ -1367,6 +1379,22 @@ li.category span {
 .vevent span.cal_month,
 .vevent span.cal_day {
   font-family: RobotoB;
+}
+
+.vevent span.cal_day {
+  font-size: 1.7em;
+  display: inline-block;
+  padding-top: 0.3em;
+}
+
+.vevent span.cal_month {
+  font-size: 1.3em;
+  line-height: 1.3em;
+  display: inline-block;
+}
+
+.vevent .horizontal.metadata li:after {
+  content: " \2014 ";
 }
 
 // News page
@@ -1532,13 +1560,24 @@ span.selectedTag {
   color: @primary-green;
 }
 
+#content span.link-external > a:before {
+  content: '\f0ac';
+  font-family: FontAwesome;
+  margin: 0 5px;
+}
+
 .icons-on .contenttype-folder:before {
   content: '\f07b';
   font-family: FontAwesome;
   color: #f3b702;
   margin-right: 5px;
 }
-
+.icons-on .contenttype-link:before {
+  content: '\f0ac';
+  font-family: FontAwesome;
+  color: #f3b702;
+  margin-right: 5px;
+}
 
 @media (max-width: 480px) {
   .region-subpage .cover-section_nav-tile ul,
@@ -1562,9 +1601,14 @@ span.selectedTag {
   #country-tab .tab-pane  {
     width: auto !important;
   }
+  #country-tab .tab-pane {
+    padding: 15px;
+  }
 
   #edit-bar, .managePortletsFallback, .documentByLine {
     display: none!important;
-}
-
+  }
+  .edit-bar-wrapper {
+    border-bottom: none !important;
+  }
 }
