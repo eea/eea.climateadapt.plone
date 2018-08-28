@@ -197,7 +197,6 @@
                           <option value='SUBN_Essex__UK_'>Essex (UK)</option>
                           <option value='SUBN_Liguria__IT_'>Liguria (IT)</option>
                           <option value='SUBN_Languedoc_Roussillon__FR_'>Languedoc-Roussillon (FR)</option>
-                          <option value='SUBN_South_Yorkshire__UK_'>South Yorkshire (UK)</option>
                           <option value='SUBN_Luxembourg__LU_'>Luxembourg (LU)</option>
                           <option value='SUBN_Adana_Mersin_TR_'>Adana, Mersin (TR)</option>
                           <option value='SUBN_Bursa_Eskişehir_Bilecik_TR_'>Bursa, Eskişehir, Bilecik (TR)</option>
@@ -238,7 +237,7 @@
                           <option value='SUBN_Hamburg__DE_'>Hamburg (DE)</option>
                           <option value='SUBN_Nordwestschweiz_CH_'>Nordwestschweiz (CH)</option>
                           <option value='SUBN_Pohjois__ja_Itä_Suomi__FI'>Pohjois- ja Itä-Suomi (FI)</option>
-                          <option value='SUBN_Aνατολική_Μακεδονία__Θράκ'>Aνατολική Μακεδονία, Θράκη (Anatoliki Makedonia, Thraki) (EL)</option>
+                          <option value='SUBN_Aνατολική_Μακεδονία__Θράκ__EL_'>Aνατολική Μακεδονία, Θράκη (Anatoliki Makedonia, Thraki) (EL)</option>
                           <option value='SUBN_Algarve__PT_'>Algarve (PT)</option>
                           <option value='SUBN_Berkshire__Buckinghamshir'>Berkshire, Buckinghamshire and Oxfordshire (UK)</option>
                           <option value='SUBN_Detmold__DE_'>Detmold (DE)</option>
@@ -247,7 +246,7 @@
                           <option value='SUBN_Hatay_Kahramanmaraş_Osmaniye_TR_'>Hatay, Kahramanmaraş, Osmaniye (TR)</option>
                           <option value='SUBN_Střední_Čechy__CZ_'>Střední Čechy (CZ)</option>
                           <option value='SUBN_Friesland__NL___NL_'>Friesland (NL) (NL)</option>
-                          <option value='SUBN_Δυτική_Ελλάδα__Dytiki_Ell'>Δυτική Ελλάδα (Dytiki Ellada) (EL)</option>
+                          <option value='SUBN_Δυτική_Ελλάδα__Dytiki_Ell__EL_'>Δυτική Ελλάδα (Dytiki Ellada) (EL)</option>
                           <option value='SUBN_Cataluña__ES_'>Cataluña (ES)</option>
                           <option value='SUBN_Ciudad_Autónoma_de_Ceuta_'>Ciudad Autónoma de Ceuta (ES)</option>
                           <option value='SUBN_Tekirdağ_Edirne_Kırklareli_TR_'>Tekirdağ, Edirne, Kırklareli (TR)</option>
@@ -260,7 +259,8 @@
                           <option value='SUBN_Oberbayern__DE_'>Oberbayern (DE)</option>
                           <option value='SUBN_Bratislavský_kraj__SK_'>Bratislavský kraj (SK)</option>
                           <option value='SUBN_Noord_Brabant__NL_'>Noord-Brabant (NL)</option>
-                          <option value='SUBN_Inner_London__UK_'>Inner London (UK)</option>
+                          <option value='SUBN_Inner_London_WEST__UK_'>Inner London - WEST (UK)</option>
+                          <option value='SUBN_Inner_London_EAST__UK_'>Inner London - EAST (UK)</option>
                           <option value='SUBN_País_Vasco__ES_'>País Vasco (ES)</option>
                           <option value='SUBN_Zürich_CH_'>Zürich (CH)</option>
                           <option value='SUBN_Etelä_Suomi__FI_'>Etelä-Suomi (FI)</option>
@@ -285,7 +285,7 @@
                           <option value='SUBN_Bremen__DE_'>Bremen (DE)</option>
                           <option value='SUBN_Lubelskie__PL_'>Lubelskie (PL)</option>
                           <option value='SUBN_Bucureşti___Ilfov__RO_'>Bucureşti - Ilfov (RO)</option>
-                          <option value='SUBN_Ιόνια_Νησιά__Ionia_Nisia_'>Ιόνια Νησιά (Ionia Nisia) (EL)</option>
+                          <option value='SUBN_Ιόνια_Νησιά__Ionia_Nisia__EL_'>Ιόνια Νησιά (Ionia Nisia) (EL)</option>
                           <option value='SUBN_Aydın_Denizli_Muğla_TR_'>Aydın, Denizli, Muğla (TR)</option>
                           <option value='SUBN_Prov__Limburg__BE___BE_'>Prov. Limburg (BE) (BE)</option>
                           <option value='SUBN_Warmińsko_Mazurskie__PL_'>Warmińsko-Mazurskie (PL)</option>
@@ -302,16 +302,16 @@
                           <option value='SUBN_Extra_Regio_NUTS_2__CZ_'>Extra-Regio NUTS 2 (CZ)</option>
                           <option value='SUBN_Zachodniopomorskie__PL_'>Zachodniopomorskie (PL)</option>
                           <option value='SUBN_Emilia_Romagna__IT_'>Emilia-Romagna (IT)</option>
-                          <option value='SUBN_Νότιο_Αιγαίο__Notio_Aigai'>Νότιο Αιγαίο (Notio Aigaio) (EL)</option>
+                          <option value='SUBN_Νότιο_Αιγαίο__Notio_Aigai__EL_'>Νότιο Αιγαίο (Notio Aigaio) (EL)</option>
                           <option value='SUBN_Extra_Regio_NUTS_2__UK_'>Extra-Regio NUTS 2 (UK)</option>
-                          <option value='SUBN_Δυτική_Μακεδονία__Dytiki_'>Δυτική Μακεδονία (Dytiki Makedonia) (EL)</option>
-                          <option value='SUBN_Πελοπόννησος__Peloponniso'>Πελοπόννησος (Peloponnisos) (EL)</option>
+                          <option value='SUBN_Δυτική_Μακεδονία__Dytiki__EL_'>Δυτική Μακεδονία (Dytiki Makedonia) (EL)</option>
+                          <option value='SUBN_Πελοπόννησος__Peloponniso__EL_'>Πελοπόννησος (Peloponnisos) (EL)</option>
                           <option value='SUBN_Małopolskie__PL_'>Małopolskie (PL)</option>
                           <option value='SUBN_Východné_Slovensko__SK_'>Východné Slovensko (SK)</option>
                           <option value='SUBN_Steiermark__AT_'>Steiermark (AT)</option>
                           <option value='SUBN_Basse_Normandie__FR_'>Basse-Normandie (FR)</option>
                           <option value='SUBN_Sardegna__IT_'>Sardegna (IT)</option>
-                          <option value='SUBN_Κρήτη__Kriti___EL_'>Κρήτη (Kriti) (EL)</option>
+                          <option value='SUBN_Κρήτη__Kriti__EL_'>Κρήτη (Kriti) (EL)</option>
                           <option value='SUBN_Västsverige__SE_'>Västsverige (SE)</option>
                           <option value='SUBN_Champagne_Ardenne__FR_'>Champagne-Ardenne (FR)</option>
                           <option value='SUBN_Centre__FR_'>Centre (FR)</option>
@@ -354,7 +354,7 @@
                           <option value='SUBN_Vzhodna_Slovenija__SI_'>Vzhodna Slovenija (SI)</option>
                           <option value='SUBN_Nord___Pas_de_Calais__FR_'>Nord - Pas-de-Calais (FR)</option>
                           <option value='SUBN_Κύπρος__Kýpros___CY_'>Κύπρος (Kýpros) (CY)</option>
-                          <option value='SUBN_Aττική__Attiki___EL_'>Aττική (Attiki) (EL)</option>
+                          <option value='SUBN_Aττική__Attiki__EL_'>Aττική (Attiki) (EL)</option>
                           <option value='SUBN_Alsace__FR_'>Alsace (FR)</option>
                           <option value='SUBN_Rhône_Alpes__FR_'>Rhône-Alpes (FR)</option>
                           <option value='SUBN_East_Anglia__UK_'>East Anglia (UK)</option>
@@ -409,8 +409,10 @@
                           <option value='SUBN_Extra_Regio_NUTS_2__FR_'>Extra-Regio NUTS 2 (FR)</option>
                           <option value='SUBN_Brandenburg__DE_'>Brandenburg (DE)</option>
                           <option value='SUBN_Centro__PT___PT_'>Centro (PT) (PT)</option>
-                          <option value='SUBN_Κεντρική_Μακεδονία__Kentr'>Κεντρική Μακεδονία (Kentriki Makedonia) (EL)</option>
-                          <option value='SUBN_Outer_London__UK_'>Outer London (UK)</option>
+                          <option value='SUBN_Κεντρική_Μακεδονία__Kentr__EL_'>Κεντρική Μακεδονία (Kentriki Makedonia) (EL)</option>
+                          <option value='SUBN_Outer_London_ENE__UK_'>Outer London - East and North East (UK)</option>
+                          <option value='SUBN_Outer_London_S__UK_'>Outer London - South (UK)</option>
+                          <option value='SUBN_Outer_London_WNW__UK_'>Outer London - West and North West (UK)</option>
                           <option value='SUBN_Provincia_Autonoma_di_Tre'>Provincia Autonoma di Trento (IT)</option>
                           <option value='SUBN_Extra_Regio_NUTS_2__RO_'>Extra-Regio NUTS 2 (RO)</option>
                           <option value='SUBN_Northumberland_and_Tyne_a'>Northumberland and Tyne and Wear (UK)</option>
@@ -433,7 +435,6 @@
                           <option value='SUBN_Região_Autónoma_da_Madeir'>Região Autónoma da Madeira (PT)</option>
                           <option value='SUBN_Extra_Regio_NUTS_2__SE_'>Extra-Regio NUTS 2 (SE)</option>
                           <option value='SUBN_Jihozápad__CZ_'>Jihozápad (CZ)</option>
-                          <option value='SUBN_Ήπειρος__Ipeiros___EL_'>Ήπειρος (Ipeiros) (EL)</option>
                           <option value='SUBN_Övre_Norrland__SE_'>Övre Norrland (SE)</option>
                           <option value='SUBN_Umbria__IT_'>Umbria (IT)</option>
                           <option value='SUBN_Köln__DE_'>Köln (DE)</option>
@@ -454,7 +455,7 @@
                           <option value='SUBN_Severovýchod__CZ_'>Severovýchod (CZ)</option>
                           <option value='SUBN_Sydsverige__SE_'>Sydsverige (SE)</option>
                           <option value='SUBN_Trøndelag_NO_'>Trøndelag (NO)</option>
-                          <option value='SUBN_Στερεά_Ελλάδα__Sterea_Ell'>Στερεά Ελλάδα (Sterea Ellada) (EL)</option>
+                          <option value='SUBN_Στερεά_Ελλάδα__Sterea_Ell__EL_'>Στερεά Ελλάδα (Sterea Ellada) (EL)</option>
                           <option value='SUBN_Overijssel__NL_'>Overijssel (NL)</option>
                           <option value='SUBN_Gießen__DE_'>Gießen (DE)</option>
                           <option value='SUBN_Franche_Comté__FR_'>Franche-Comté (FR)</option>
@@ -473,7 +474,7 @@
                           <option value='SUBN_Trier__DE_'>Trier (DE)</option>
                           <option value='SUBN_Kassel__DE_'>Kassel (DE)</option>
                           <option value='SUBN_Qender_AL_'>Qender (AL)</option>
-                          <option value='SUBN_Βόρειο_Αιγαίο__Voreio_Aig'>Βόρειο Αιγαίο (Voreio Aigaio) (EL)</option>
+                          <option value='SUBN_Βόρειο_Αιγαίο__Voreio_Aig__EL_'>Βόρειο Αιγαίο (Voreio Aigaio) (EL)</option>
                           <option value='SUBN_Dél_Alföld__HU_'>Dél-Alföld (HU)</option>
                           <option value='SUBN_Śląskie__PL_'>Śląskie (PL)</option>
                           <option value='SUBN_Dorset_and_Somerset__UK_'>Dorset and Somerset (UK)</option>
@@ -490,7 +491,7 @@
                           <option value='SUBN_Vorarlberg__AT_'>Vorarlberg (AT)</option>
                           <option value='SUBN_Région_de_Bruxelles_Capit'>Région de Bruxelles-Capitale/Brussels Hoofdstedelijk Gewest (BE)</option>
                           <option value='SUBN_Oberösterreich__AT_'>Oberösterreich (AT)</option>
-                          <option value='SUBN_North_Yorkshire__UK_'>North Yorkshire (UK)</option>
+                          <option value='SUBN_North_Yorkshire__UK_'>Yorkshire (UK)</option>
                           <option value='SUBN_Limburg__NL___NL_'>Limburg (NL) (NL)</option>
                           <option value='SUBN_Eesti__EE_'>Eesti (EE)</option>
                           <option value='SUBN_Freiburg__DE_'>Freiburg (DE)</option>
@@ -513,7 +514,7 @@
                           <option value='SUBN_Île_de_France__FR_'>Île de France (FR)</option>
                           <option value='SUBN_Lancashire__UK_'>Lancashire (UK)</option>
                           <option value='SUBN_Erzurum_Erzincan_Bayburt_TR_'>Erzurum, Erzincan, Bayburt (TR)</option>
-                          <option value='SUBN_Θεσσαλία__Thessalia___EL_'>Θεσσαλία (Thessalia) (EL)</option>
+                          <option value='SUBN_Θεσσαλία__Thessalia__EL_'>Θεσσαλία (Thessalia) (EL)</option>
                           <option value='SUBN_Norte__PT_'>Norte (PT)</option>
                           <option value='SUBN_Prov__Liège__BE_'>Prov. Liège (BE)</option>
                           <option value='SUBN_West_Midlands__UK_'>West Midlands (UK)</option>
