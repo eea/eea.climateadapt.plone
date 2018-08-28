@@ -205,7 +205,7 @@
                                   title photo/Title;
                                   data-description photo/description;
                                   data-copyright photo/rights">
-                                  <img tal:attributes="src string:${photo/absolute_url}/@@images/image/medium" />
+                                  <img tal:attributes="src string:${photo/absolute_url}/@@images/image/large" />
                               </a>
                             </div>
                         </div>
