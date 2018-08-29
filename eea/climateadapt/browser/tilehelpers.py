@@ -206,7 +206,7 @@ class Carousel(PersistentCoverTile):
 
         return {
             'image':
-            "{0}/@@images/primary_photo/case-front?c={1}".format(
+            "{0}/@@images/primary_photo/?c={1}".format(
                 cs.absolute_url(),
                 brain.modified and brain.modified.ISO() or ''
             ),
