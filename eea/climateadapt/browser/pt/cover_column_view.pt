@@ -22,7 +22,9 @@
 
       <metal:bodytext define-slot="main">
 
-      <div id="viewlet-above-content-title" tal:content="structure provider:plone.abovecontenttitle" tal:condition="not:ajax_load" />
+      <div id="viewlet-above-content-title" tal:content="structure
+      provider:plone.abovecontenttitle" tal:condition="not:ajax_load" ></div>
+
         <metal:title define-slot="content-title">
         <metal:comment tal:content="nothing">
         If you write a custom title always use
