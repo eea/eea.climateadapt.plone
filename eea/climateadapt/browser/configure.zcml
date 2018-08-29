@@ -46,6 +46,10 @@
             title="Standard with no title"
             action="no_title_cover_view"
             />
+        <browser:menuItem
+            title="Columned View"
+            action="column_view"
+            />
     </browser:menuItems>
 
     <browser:menuItems
@@ -106,6 +110,14 @@
         for="*"
         class=".CoverNoTitleView"
         template="pt/no_title_cover_view.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="column_view"
+        for="*"
+        class=".CoverNoTitleView"
+        template="pt/cover_column_view.pt"
         permission="zope2.View"
         />
 

@@ -101,42 +101,42 @@
     </rules>
 
   <!-- two column layout ex: eu sector policies -->
-  <rules css:if-content=".column.col-md-9"
-         css:if-not-content=".subsection-transnational-regions">
-
-    <replace css:content="#content">
-      <div id="content" class="columned">
-        <xsl:apply-templates select="./*"/>
-      </div>
-    </replace>
-
-    <drop css:content="#document-action-download_pdf" />
-    <drop css:content="#viewlet-below-content-title" />
-    <drop css:content=".tile.col-md-4"/>
-    <drop css:content=".col-md-9 .tile-default > .tile-content > h2" />
-
-    <replace css:content=".col-md-9">
-      <div class="column col-md-9">
-        <div class="content-column">
-          <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
-          <xsl:apply-templates css:select=".col-md-9 .tile-default > .tile-content > h2" mode="raw"/>
-          <xsl:apply-templates select="./*"/>
-          <div class="row">
-            <xsl:apply-templates css:select=".tile.col-md-4" mode="raw"/>
-          </div>
-          <xsl:copy-of select='//*[@id="document-action-download_pdf"]' />
-        </div>
-      </div>
-    </replace>
-
-    <replace css:content=".col-md-3">
-      <div class="column col-md-3">
-        <div class="content-sidebar">
-          <xsl:apply-templates select="./*"/>
-        </div>
-      </div>
-    </replace>
-  </rules>
+  <!-- <rules css:if&#45;content=".column.col&#45;md&#45;9" -->
+  <!--        css:if&#45;not&#45;content=".subsection&#45;transnational&#45;regions"> -->
+  <!--  -->
+  <!--   <replace css:content="#content"> -->
+  <!--     <div id="content" class="columned"> -->
+  <!--       <xsl:apply&#45;templates select="./*"/> -->
+  <!--     </div> -->
+  <!--   </replace> -->
+  <!--  -->
+  <!--   <drop css:content="#document&#45;action&#45;download_pdf" /> -->
+  <!--   <drop css:content="#viewlet&#45;below&#45;content&#45;title" /> -->
+  <!--   <drop css:content=".tile.col&#45;md&#45;4"/> -->
+  <!--   <drop css:content=".col&#45;md&#45;9 .tile&#45;default > .tile&#45;content > h2" /> -->
+  <!--  -->
+  <!--   <replace css:content=".col&#45;md&#45;9"> -->
+  <!--     <div class="column col&#45;md&#45;9"> -->
+  <!--       <div class="content&#45;column"> -->
+  <!--         <xsl:copy&#45;of select='//*[@id="viewlet&#45;below&#45;content&#45;title"]' /> -->
+  <!--         <xsl:apply&#45;templates css:select=".col&#45;md&#45;9 .tile&#45;default > .tile&#45;content > h2" mode="raw"/> -->
+  <!--         <xsl:apply&#45;templates select="./*"/> -->
+  <!--         <div class="row"> -->
+  <!--           <xsl:apply&#45;templates css:select=".tile.col&#45;md&#45;4" mode="raw"/> -->
+  <!--         </div> -->
+  <!--         <xsl:copy&#45;of select='//*[@id="document&#45;action&#45;download_pdf"]' /> -->
+  <!--       </div> -->
+  <!--     </div> -->
+  <!--   </replace> -->
+  <!--  -->
+  <!--   <replace css:content=".col&#45;md&#45;3"> -->
+  <!--     <div class="column col&#45;md&#45;3"> -->
+  <!--       <div class="content&#45;sidebar"> -->
+  <!--         <xsl:apply&#45;templates select="./*"/> -->
+  <!--       </div> -->
+  <!--     </div> -->
+  <!--   </replace> -->
+  <!-- </rules> -->
 
   <!-- add edit bar for the homepage, also move it to the top -->
   <replace css:content="#edit-bar" css:theme="#edit-bar" method="raw"/>
