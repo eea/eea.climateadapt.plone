@@ -106,6 +106,16 @@
 
   </rules>
 
+  <!-- two column layout ex: eu sector policies -->
+  <rules css:if-content=".subsection-tools-adaptation-support-tool">
+
+    <drop css:content="#plone-document-byline" />
+    <after css:content=".ast_header > h1">
+      <xsl:copy-of select='//*[@id="plone-document-byline"]' />
+    </after>
+
+  </rules>
+
   <!-- add edit bar for the homepage, also move it to the top -->
   <replace css:content="#edit-bar" css:theme="#edit-bar" method="raw"/>
   <drop css:content="#edit-bar" />

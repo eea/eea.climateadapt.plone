@@ -315,7 +315,6 @@ form .standard-button {
 #ast-menu ul > li {
   list-style-type: none;
   margin-bottom: 0.5em;
-  // display: inline-block;
 }
 
 .tile-content ul > li > a,
@@ -638,6 +637,10 @@ form .standard-button {
   font-family: RobotoM;
 }
 
+#uast-menu li > ul > li > a p {
+  display: inline;
+}
+
 .ast-map {
   margin-bottom: 55px;
 
@@ -715,6 +718,87 @@ form .standard-button {
   top: 106px;
   left: -106px;
 }
+
+
+// Urban Adaptation support tool
+#uast-menu {
+  font-size: 13px;
+}
+
+#uast-menu .ui-accordion-header {
+  border-radius: 0;
+  border: none;
+  padding: 0 0 0.5em 0;
+  display: flex;
+
+  .ui-icon {
+    display: none;
+  }
+}
+
+#uast-menu .ui-state-default {
+  background: none;
+}
+
+#uast-menu .ui-state-default strong {
+  background-color: #96B32B;
+  padding: 10px 12px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  color: #fff;
+}
+
+#uast-menu .ui-state-default .uast-title {
+  background-color: #009AA9;
+  padding: 10px 10px;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  width: 100%;
+  margin-left: 5px;
+}
+
+#content #uast-menu .ui-state-active > .uast-title {
+  background-color: #96B32B;
+}
+
+#uast-menu .ui-accordion-content {
+  border: none;
+  border-radius: 0;
+  list-style-position: outside;
+  padding: 1em 0 1em 3.5em;
+}
+
+#uast-menu .ui-state-hover > .uast-title {
+  background-color: #96B32B;
+  color: #fff;
+}
+
+#uast-menu ul > li:last-child {
+  margin-bottom: 0 !important;
+}
+
+#uast-menu .ui-widget-content a {
+  font-family: RobotoR;
+}
+
+#content ul#uast-menu ul > li:before {
+  color: @primary-blue;
+}
+
+#uast-menu .ui-accordion-content-active a:hover {
+  color: #96B32B;
+}
+
+#uast-menu .ui-accordion-content-active a.active {
+  color: #96B32B;
+  font-family: RobotoM;
+}
+
+#uast-menu ul > li {
+  list-style-type: disc;
+  margin-bottom: 1em;
+}
+
 
 // Countries profile page
 .country-page #content {
@@ -1663,29 +1747,76 @@ div.width-1\3a 4 {
 #formfield-form-widgets-geochars ul {
   margin-left: 1em;
 }
+
 #formfield-form-widgets-geochars li {
   list-style-type: none;
 }
+
 #formfield-form-widgets-geochars .five-col li {
   width: 12em;
   margin-right: 1em;
 }
+
 #formfield-form-widgets-geochars .five-col input {
   margin-right: 0.3em;
 }
 #formfield-form-widgets-geochars .five-col label {
   font-weight: normal;
 }
+
 .europe_geochar_class {
   margin-top:2em;
   overflow: hidden;
 }
+
 .case-studies-tabbed-content-table-for-lists {
   width: 80%;
 }
+
 .subnationals-checkbox-ul {
   column-count: 5;
 }
+
 #form-widgets-geochars {
   display: none;
+}
+
+/* bottom menu in urban ast pages */
+#bottom-menu {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin: 20px 0;
+}
+
+#previous-link a,
+#next-link a {
+  color: @dark-gray;
+}
+
+#previous-link a:hover,
+#next-link a:hover {
+  color: @primary-green;
+}
+
+#contact-link {
+  .fa-envelope {
+    float: left;
+    margin: 8px 13px 0 0;
+    font-size: 23px;
+  }
+  .contact-button {
+    float: right;
+    text-align: center;
+  }
+  a {
+    padding: 8px 15px;
+    display: inline-block;
+    font-size: 14px;
+  }
 }
