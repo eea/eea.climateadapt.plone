@@ -59,6 +59,16 @@
   text-align: center;
 }
 
+#content label {
+  font-family: RobotoM;
+}
+
+#content legend {
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 100%;
+  padding-left: 0;
+}
+
 .formHelp {
   font-size: 14px;
   font-family: RobotoR;
@@ -168,6 +178,11 @@ input[type="text"]:focus,
 input[type="password"]:focus,
 textarea:focus {
   background-color: transparent;
+}
+
+.eu-policy-page #document-action-download_pdf {
+  float: left;
+  clear: left;
 }
 
 #document-action-download_pdf {
@@ -300,13 +315,24 @@ textarea:focus {
   padding: 10px 13px 10px 45px;
 }
 
+#portal-columns {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: flex;
+}
+
+#portal-column-content {
+  width: 100%;
+}
+
 @media screen and (max-width: 480px) {
   /* For devices with narrow screens, phones, tablets, etc. */
   #portal-column-one,
   #portal-column-two,
   #portal-column-content {
     clear: both;
-    width: 97.75%;
+    // width: 97.75%;
     margin-left: 0;
     overflow-x: auto;
   }

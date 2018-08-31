@@ -2,12 +2,15 @@
   <li class="main-nav-item" tal:repeat="section menu">
     <div tal:replace="python: view.pp(section)"></div>
 
-    <a tal:define="has_children python: bool(section['children'][-1])" href=""
-      tal:attributes="href section/link;
-      ">
-      <span tal:content="python: section['label']">Home</span>
+    <span tal:define="has_children python: bool(section['children'][-1])">
+      <a href=""
+        class="main-nav-link"
+        tal:attributes="href section/link;
+        ">
+        <span tal:content="python: section['label']">Home</span>
+      </a>
       <button class="toggle-down" tal:condition="has_children"><i class="angle-down-icon"></i></button>
-    </a>
+    </span>
 
     <div class="sub-menu-wrapper"
       tal:condition="python: section['children'][-1]" >

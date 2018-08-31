@@ -617,6 +617,19 @@
         permission="cmf.ManagePortal"
         />
 
+    <browser:page
+        for="*"
+        name="help-categories"
+        template="pt/help-categories.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="eu-sector-policies"
+        template="pt/eu-sector-policies.pt"
+        permission="zope2.View"
+        />
 
     <!-- Tile helpers -->
 

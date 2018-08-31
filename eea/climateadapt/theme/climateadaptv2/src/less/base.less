@@ -24,9 +24,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-button {
-  border: solid;
-}
 button:focus {
   outline: 0;
 }
@@ -318,18 +315,17 @@ form .standard-button {
 #ast-menu ul > li {
   list-style-type: none;
   margin-bottom: 0.5em;
-  // display: inline-block;
 }
 
 .tile-content ul > li > a,
-.subsection-share-your-info-index_html ul > li > span > a {
+.subsection-share-your-info-index_html .tile-content li > span > a {
   display: inline-block;
   margin-left: 1rem;
 }
 
 .tile-content ul > li > a:before,
 #ast-menu ul > li:before,
-.subsection-share-your-info-index_html ul > li > span > a:before {
+.subsection-share-your-info-index_html .tile-content li > span > a:before {
   content: "\f101";
   font-family: FontAwesome;
   margin-left: -1em; /* same as padding-left set on li */
@@ -380,6 +376,14 @@ form .standard-button {
 }
 
 // EU sector policies
+
+// .eu-policy-page .content-sidebar {
+//   position: relative;
+//   right: 0;
+//   top: 130px;
+// }
+
+// two columned layout
 #content.columned {
   background-color: transparent;
   padding: 0;
@@ -406,6 +410,22 @@ form .standard-button {
   background-color: #fff;
   padding: 1.5em;
   border: 1px solid #E5E5E5;
+}
+
+.content-column.col-md-9 {
+  margin-right: 2%;
+}
+
+.content-sidebar.col-md-3 {
+  width: 23%;
+}
+
+.columned .row {
+  margin: 0;
+}
+
+.template-edit #content > .row {
+  margin: 0;
 }
 
 .content-sidebar .aceitem-search-tile > ul > li {
@@ -470,11 +490,10 @@ form .standard-button {
 
 .share-your-info-ace-button button,
 .share-info-btn {
-  font-size: 17px;
+  font-size: 16px;
   font-family: RobotoM;
   position: relative;
-  padding: 10px 13px 10px 45px;
-  width: 100%;
+  padding: 10px 13px 10px 43px;
 }
 
 .share-your-info-ace-button button:before,
@@ -618,6 +637,10 @@ form .standard-button {
   font-family: RobotoM;
 }
 
+#uast-menu li > ul > li > a p {
+  display: inline;
+}
+
 .ast-map {
   margin-bottom: 55px;
 
@@ -695,6 +718,87 @@ form .standard-button {
   top: 106px;
   left: -106px;
 }
+
+
+// Urban Adaptation support tool
+#uast-menu {
+  font-size: 13px;
+}
+
+#uast-menu .ui-accordion-header {
+  border-radius: 0;
+  border: none;
+  padding: 0 0 0.5em 0;
+  display: flex;
+
+  .ui-icon {
+    display: none;
+  }
+}
+
+#uast-menu .ui-state-default {
+  background: none;
+}
+
+#uast-menu .ui-state-default strong {
+  background-color: #96B32B;
+  padding: 10px 12px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  color: #fff;
+}
+
+#uast-menu .ui-state-default .uast-title {
+  background-color: #009AA9;
+  padding: 10px 10px;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  width: 100%;
+  margin-left: 5px;
+}
+
+#content #uast-menu .ui-state-active > .uast-title {
+  background-color: #96B32B;
+}
+
+#uast-menu .ui-accordion-content {
+  border: none;
+  border-radius: 0;
+  list-style-position: outside;
+  padding: 1em 0 1em 3.5em;
+}
+
+#uast-menu .ui-state-hover > .uast-title {
+  background-color: #96B32B;
+  color: #fff;
+}
+
+#uast-menu ul > li:last-child {
+  margin-bottom: 0 !important;
+}
+
+#uast-menu .ui-widget-content a {
+  font-family: RobotoR;
+}
+
+#content ul#uast-menu ul > li:before {
+  color: @primary-blue;
+}
+
+#uast-menu .ui-accordion-content-active a:hover {
+  color: #96B32B;
+}
+
+#uast-menu .ui-accordion-content-active a.active {
+  color: #96B32B;
+  font-family: RobotoM;
+}
+
+#uast-menu ul > li {
+  list-style-type: disc;
+  margin-bottom: 1em;
+}
+
 
 // Countries profile page
 .country-page #content {
@@ -1104,17 +1208,20 @@ table.listing th {
   margin-right: 0.5em;
 }
 
-#fieldset-default label {
-  font-family: RobotoB;
+#fieldset-default label,
+#fieldset-geographic_information .horizontal {
   font-size: 17px;
   margin-bottom: 0.5em;
   color: @primary-blue;
 }
 
-#fieldset-default .field {
-  border-bottom: 1px solid #E0E0E0;
+fieldset .field {
   margin: 0;
-  padding: 2em 0;
+  padding: 1.5em 0;
+}
+
+fieldset .field:not(:last-child) {
+  border-bottom: 1px solid #efefef;
 }
 
 #form-widgets-sectors input[type="checkbox"],
@@ -1133,6 +1240,7 @@ table.listing th {
 .label {
   color: @dark-gray;
   display: inline;
+  font-weight: normal;
 }
 
 #content fieldset {
@@ -1227,9 +1335,14 @@ table.listing th {
 }
 
 // Help page
-.help-section {
+.flex-wrapper .help-section {
   text-align: center;
-  flex: 1 1 230px !important;
+  flex: 1 1 100px;
+  padding: 0 40px 0 0;
+}
+
+.flex-wrapper .help-section:last-child {
+  padding-right: 0;
 }
 
 .help-section-header {
@@ -1261,6 +1374,10 @@ table.listing th {
 .help-section-title {
   color: #0170B7;
   font-family: RobotoM;
+}
+
+.help-section p {
+  font-size: 13px;
 }
 
 // Events page
@@ -1610,5 +1727,96 @@ span.selectedTag {
   }
   .edit-bar-wrapper {
     border-bottom: none !important;
+  }
+}
+
+div.width-1\3a 4 {
+  margin-left: 2%;
+  background-color: #fff;
+  margin-top: 35px;
+  padding: 2em;
+  border: 1px solid #E5E5E5;
+}
+
+.configlets li {
+  list-style-type: none;
+  padding-bottom: 6px;
+}
+
+/* geochar widget stuff */
+#formfield-form-widgets-geochars ul {
+  margin-left: 1em;
+}
+
+#formfield-form-widgets-geochars li {
+  list-style-type: none;
+}
+
+#formfield-form-widgets-geochars .five-col li {
+  width: 12em;
+  margin-right: 1em;
+}
+
+#formfield-form-widgets-geochars .five-col input {
+  margin-right: 0.3em;
+}
+#formfield-form-widgets-geochars .five-col label {
+  font-weight: normal;
+}
+
+.europe_geochar_class {
+  margin-top:2em;
+  overflow: hidden;
+}
+
+.case-studies-tabbed-content-table-for-lists {
+  width: 80%;
+}
+
+.subnationals-checkbox-ul {
+  column-count: 5;
+}
+
+#form-widgets-geochars {
+  display: none;
+}
+
+/* bottom menu in urban ast pages */
+#bottom-menu {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin: 20px 0;
+}
+
+#previous-link a,
+#next-link a {
+  color: @dark-gray;
+}
+
+#previous-link a:hover,
+#next-link a:hover {
+  color: @primary-green;
+}
+
+#contact-link {
+  .fa-envelope {
+    float: left;
+    margin: 8px 13px 0 0;
+    font-size: 23px;
+  }
+  .contact-button {
+    float: right;
+    text-align: center;
+  }
+  a {
+    padding: 8px 15px;
+    display: inline-block;
+    font-size: 14px;
   }
 }
