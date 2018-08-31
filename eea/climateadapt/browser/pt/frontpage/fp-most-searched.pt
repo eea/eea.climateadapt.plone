@@ -6,7 +6,7 @@
     <ul tal:define="entries view/report_data">
       <li tal:repeat="entry entries">
         <a href=""
-          tal:attributes="href python: context.portal_url() + '/data-and-downloads#SearchableText=' + entry[0]" >
+          tal:attributes="href python: context.portal_url() + '/data-and-downloads?SearchableText=' + entry[0]" >
         <span tal:content="python: entry[0]">Water</span>
         </a>
         (

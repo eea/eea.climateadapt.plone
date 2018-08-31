@@ -21,13 +21,14 @@
     </div>
 
     <metal:main fill-slot="content">
-
+        <div tal:content="python: view.getanalyticsid()" id="analyticsID"></div>
     </metal:main>
     <metal:main fill-slot="content-title"></metal:main>
     <metal:main fill-slot="content-description"></metal:main>
     <metal:main fill-slot="content-core">
         <div id="search-app-holder"></div>
         <div class="eea-pdf-viewlet"></div>
+
     </metal:main>
 
 </div>

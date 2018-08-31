@@ -1,9 +1,12 @@
+import json
 from plone import api
+from plone.api import portal
 from plone.app.theming.interfaces import IThemeSettings
 from plone.registry.interfaces import IRegistry
 from Products.Five.browser import BrowserView
 from zope.component import getUtility
 from Products.CMFCore.utils import getToolByName
+from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
 
 class ExternalTemplateHeader(BrowserView):
 
@@ -36,3 +39,15 @@ class ExternalTemplateHeader(BrowserView):
             logger.exception("Error while rendering navigation menu: %s", e)
 
             return _extract_menu(DEFAULT_MENU)
+
+    def getanalyticsid(self):
+        site = portal.get()
+        registry = getUtility(IRegistry, context=site)
+        s = registry.forInterface(IGoogleAnalyticsAPI)
+
+        #credentials_data = json.loads(s.credentials_json)
+        # view_id = s.analytics_app_id
+
+        print "#################"
+        print s.credentials_json
+        print "#################"
