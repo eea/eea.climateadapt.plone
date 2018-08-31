@@ -1,13 +1,15 @@
-<ul id="third-level-menu">
-  <li><a tal:attributes="href string:/help/share-your-info/general">General</a></li>
-  <li><a tal:attributes="href string:/help/share-your-info/publications-and-reports">Publications and reports</a></li>
-  <li><a tal:attributes="href string:/help/share-your-info/information-portals">Information Portals</a></li>
-  <li><a tal:attributes="href string:/help/share-your-info/guidance-documents">Guidance documents</a></li>
-  <li><a tal:attributes="href string:/help/share-your-info/tools">Tools</a></li>
-  <li><a tal:attributes="href string:/help/share-your-info/research-and-knowledge-projects">Research and knowledge projects</a></li>
-  <li><a tal:attributes="href string:/help/share-your-info/adaptation-options">Adaptation options</a></li>
-  <li><a tal:attributes="href string:/help/share-your-info/case-studies">Case studies</a></li>
-  <li><a tal:attributes="href string:/help/share-your-info/organisations">Organisations</a></li>
-  <li><a tal:attributes="href string:/help/share-your-info/indicators">Indicators</a></li>
-  <li><a tal:attributes="href string:/help/share-your-info/map-graph-data">Map Graph Data</a></li>
-</ul>
+<div tal:define="portal_url context/portal_url">
+  <ul id="third-level-menu">
+    <li><a tal:attributes="href string:${portal_url}/help/share-your-info/general">General</a></li>
+    <li><a tal:attributes="href string:${portal_url}/help/share-your-info/publications-and-reports">Publications and reports</a></li>
+    <li><a tal:attributes="href string:${portal_url}/help/share-your-info/information-portals">Information Portals</a></li>
+    <li><a tal:attributes="href string:${portal_url}/help/share-your-info/guidance-documents">Guidance documents</a></li>
+    <li><a tal:attributes="href string:${portal_url}/help/share-your-info/tools">Tools</a></li>
+    <li><a tal:attributes="href string:${portal_url}/help/share-your-info/research-and-knowledge-projects">Research and knowledge projects</a></li>
+    <li><a tal:attributes="href string:${portal_url}/help/share-your-info/adaptation-options">Adaptation options</a></li>
+    <li><a tal:attributes="href string:${portal_url}/help/share-your-info/case-studies">Case studies</a></li>
+    <li><a tal:attributes="href string:${portal_url}/help/share-your-info/organisations">Organisations</a></li>
+    <li><a tal:attributes="href string:${portal_url}/help/share-your-info/indicators">Indicators</a></li>
+    <li><a tal:attributes="href string:${portal_url}/help/share-your-info/map-graph-data">Map Graph Data</a></li>
+  </ul>
+</div>

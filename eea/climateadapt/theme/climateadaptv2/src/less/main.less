@@ -70,11 +70,14 @@
 @media (max-width: 800px) {
 
   /* header area */
+
+  .top-menu {
+    border-bottom: 1px solid #E5E5E5;
+  }
+
   .mobile-header .top-menu {
     height: auto;
-    background-color: #f5f5f5;
     border-bottom: 1px solid #d3d3d3;
-    padding-bottom: 20px;
   }
 
   .mobile-header .top-menu-right-section {
@@ -98,15 +101,13 @@
     display: block;
     text-align: center;
     padding: 10px 0;
-    border-top: 1px solid #f5f5f5;
-    border-bottom: 1px solid #f5f5f5;
-    margin-top: 20px;
+    margin-top: 5px;
   }
 
   .mobile-header .toggle-down {
     position: absolute;
     right: 10px;
-    top: 32px;
+    top: 22px;
   }
 
   .mobile-header .angle-down-icon {
@@ -118,8 +119,8 @@
   .mobile-menu {
     display: block;
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 10px;
+    top: 15px;
   }
 
   .header .main-nav,
@@ -141,13 +142,12 @@
 
   .mobile-header .main-nav {
     display: block;
-    background-color: #fff;
+    background-color: @primary-blue;
     text-align: left;
     overflow-y: auto;
-    height: 100vh;
+    height: 89vh;
     box-shadow: none;
     display: block;
-    padding: 0 10px;
   }
 
   .mobile-header .main-nav-item {
@@ -159,18 +159,27 @@
     border-bottom: 1px solid #e2e1e1;
   }
 
-  .mobile-header .main-nav-item > a {
-    color: @primary-blue;
-    padding: 25px 0;
+  .mobile-header .main-nav-link {
+    padding: 20px 10px;
     display: inline-block;
+    font-size: 15px;
   }
 
-  .mobile-header .main-nav-item:hover > a {
+  .main-nav-item .angle-down-icon {
+    border-top: 6px solid #fff;
+  }
+
+  .mobile-header .main-nav-item:hover > span {
     background: none;
   }
 
+  .header .sub-sub-menu-item:not(:first-child),
   .mobile-header .sub-sub-menu-item {
-    padding: 8px 0;
+    padding: 4px 0;
+  }
+
+  .header .sub-menu-wrapper ul > li > a {
+    padding: 10px;
   }
 
   .mobile-header .sub-menu-link {
@@ -180,16 +189,20 @@
   }
 
   .mobile-header .sub-sub-menu-link {
-    padding: 0 20px;
+    padding: 0 10px;
   }
 
   .mobile-header .sub-menu-wrapper {
     position: relative;
     box-shadow: none;
     border-bottom: none;
-    background-color: transparent;
+    background-color: #fff;
     padding: 0;
     column-count: auto !important;
+  }
+
+  .header .main-nav-item:hover > .sub-menu-wrapper {
+    display: none;
   }
 
   .main-tile-content .flex-wrapper {
@@ -298,7 +311,7 @@
 
   .top-menu-nav  {
     position: absolute;
-    top: -15px;
+    top: -25px;
     left: -30px;
   }
 

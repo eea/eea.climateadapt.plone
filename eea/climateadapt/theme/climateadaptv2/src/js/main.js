@@ -165,9 +165,12 @@ $(document).ready(function() {
   });
 
   // Mobile - show submenus on click
-  $('.angle-down-icon').click(function() {
+  $('.toggle-down').click(function() {
     $(this).parent().siblings('.sub-menu-wrapper').toggle();
+    $(this).parent().parent().siblings().children('.sub-menu-wrapper').hide();
+    return false;
   });
+
 
   // Top menu login
   $('#user-name').click(function(e) {
@@ -220,6 +223,8 @@ $(document).ready(function() {
     if ($(this).val() === 'Save') {
       $(this).addClass('standard-button primary-button');
     } else if ($(this).val() === 'Cancel') {
+      $(this).addClass('standard-button secondary-button');
+    } else {
       $(this).addClass('standard-button secondary-button');
     }
   })
@@ -286,29 +291,15 @@ $(document).ready(function() {
   // url: .../cca/eu-adaptation-policy/sector-policies/agriculture
   function policyLayout() {
     if (isPolicyPage) {
-      var $content = $('.content-column');
-      $content.find('h2').first().addClass('tile-title');
 
       var policySubTitles = $('.read_more_second').children('h2');
       policySubTitles.each(function() {
         $(this).replaceWith($('<p><strong>' + this.innerHTML + '</strong><p>'));
       });
 
-      // Eu sector policy factsheet
-      var factsheetIMG = $('.content-sidebar .image-inline').parent();
-      var factheetCategory = $('.tile-title').text();
-
-      factsheetIMG.html(function(i,h) {
-        return h.replace(/&nbsp;/g,''); // remove whitespaces
-      });
-
-      $('.column.col-md-3').prepend(factsheetIMG);
-      $('.column.col-md-3 .image-inline').parent().append(
-        '<div class="factsheet-pdf">' +
-        '<i class="fa fa-angle-double-right"></i>' +
-        '<div class="factsheet-title">Factsheet on <span>' +
-        factheetCategory + '</span></div></div>');
-        $('.column.col-md-3 .image-inline').hide();
+      // move eu sector policy factsheet
+      var $sidebar = $('.column.col-md-3');
+      $sidebar.before($sidebar.find('.factsheet-pdf').parent());
       }
     }
 
