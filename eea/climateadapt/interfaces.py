@@ -88,11 +88,11 @@ class IGoogleAnalyticsAPI(Interface):
         u"account-explorer/ to find a view ID "
     )
 
-    """analytics_tracking_id = schema.TextLine(
+    analytics_tracking_id = schema.TextLine(
         title=u"Analytics Tracking ID",
         description=u"The tracking ID to send data in the client"
     )
-    """
+
 
 class ICCAContentTypesSettings(Interface):
     """ portal_registry ICCAContentTypes settings

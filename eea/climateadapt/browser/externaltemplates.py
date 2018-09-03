@@ -45,9 +45,4 @@ class ExternalTemplateHeader(BrowserView):
         registry = getUtility(IRegistry, context=site)
         s = registry.forInterface(IGoogleAnalyticsAPI)
 
-        #credentials_data = json.loads(s.credentials_json)
-        # view_id = s.analytics_app_id
-
-        print "#################"
-        print s.credentials_json
-        print "#################"
+        return s.analytics_tracking_id

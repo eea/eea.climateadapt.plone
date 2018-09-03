@@ -13,22 +13,21 @@
 
   </div>
 
-    <div id="portal-columns" class="row">
+    <div id="portal-columns" class="row"  >
     <div id="portal-column-content" class="cell"></div>
   </div>
     <div metal:use-macro="context/main_template/macros/master" >
-        <div  metal:fill-slot="header"></div>
+        <div metal:fill-slot="header"></div>
     </div>
 
     <metal:main fill-slot="content">
-        <div tal:content="python: view.getanalyticsid()" id="analyticsID"></div>
+        <div id="analyticsID" class="hide" tal:attributes="data-tracking python: view.getanalyticsid()"></div>
     </metal:main>
     <metal:main fill-slot="content-title"></metal:main>
     <metal:main fill-slot="content-description"></metal:main>
     <metal:main fill-slot="content-core">
         <div id="search-app-holder"></div>
         <div class="eea-pdf-viewlet"></div>
-
     </metal:main>
 
 </div>
