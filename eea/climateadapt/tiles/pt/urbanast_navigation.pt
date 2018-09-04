@@ -228,7 +228,7 @@
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-3-1" name="step-3-3" onclick="document.location.href='/tools/urban-ast/step-3-3'">
+          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-3-3" name="step-3-3">
             3.3 How do I identify the existing adaptation options in my city/town?
           </a>
           <ul id="step-3-3">

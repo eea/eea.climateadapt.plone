@@ -149,11 +149,6 @@ div.formControls {
   font-size: 12px;
 }
 
-#content ul, #content ol {
-  list-style-position: inside;
-}
-
-
 #breadcrumbs-current {
   font-family: RobotoB;
   color: @primary-green;
@@ -165,9 +160,14 @@ div.formControls {
 }
 
 #portal-breadcrumbs span:not(:last-child):after {
-  content: '\f105';
-  font-family: 'FontAwesome';
-  color: #2D9CDB;
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 4px solid #0000;
+  border-bottom: 4px solid #0000;
+  border-left: 4px solid #0083c3;
+  display: inline-block;
+  margin: 0 3px;
 }
 
 #viewlet-below-content .row {
@@ -185,25 +185,9 @@ textarea:focus {
   clear: left;
 }
 
-#document-action-download_pdf {
-  list-style: none;
-  margin-top: 3em;
-  display: inline-block;
-  a {
-    color: @dark-gray;
-    margin-left: 0;
-  }
-  a:before {
-    content: '' !important;
-  }
-}
-
-#document-action-download_pdf:before {
-  content: '\f019';
-  font-family: FontAwesome;
-  margin-right: 10px;
-  position: relative;
-  color: @dark-gray;
+.subsection-tools-urban-ast #document-action-download_pdf,
+.subsection-tools-adaptation-support-tool #document-action-download_pdf{
+  margin-top: 1em;
 }
 
 #viewlet-below-content-title {
@@ -326,13 +310,17 @@ textarea:focus {
   width: 100%;
 }
 
+.plone-modal.in .plone-modal-dialog {
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+  border: 1px solid #E5E5E5;
+}
+
 @media screen and (max-width: 480px) {
   /* For devices with narrow screens, phones, tablets, etc. */
   #portal-column-one,
   #portal-column-two,
   #portal-column-content {
     clear: both;
-    // width: 97.75%;
     margin-left: 0;
     overflow-x: auto;
   }
