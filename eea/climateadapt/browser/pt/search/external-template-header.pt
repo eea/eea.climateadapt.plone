@@ -21,7 +21,7 @@
     </div>
 
     <metal:main fill-slot="content">
-        <div id="analyticsID" class="hide" tal:attributes="data-tracking python: view.getanalyticsid()"></div>
+        <!--?<div id="analyticsID" class="hide" tal:attributes="data-tracking python: view.getanalyticsid()"></div>-->
     </metal:main>
     <metal:main fill-slot="content-title"></metal:main>
     <metal:main fill-slot="content-description"></metal:main>
