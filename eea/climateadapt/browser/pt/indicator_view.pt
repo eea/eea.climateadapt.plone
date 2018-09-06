@@ -6,10 +6,11 @@
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   lang="en"
   metal:use-macro="context/main_template/macros/master"
-  i18n:domain="example.conference">
+  >
   <body>
 
-    <metal:main fill-slot="main">
+    <metal:main fill-slot="body">
+
       <tal:main-macro metal:define-macro="content-core">
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
@@ -54,7 +55,9 @@
           </div>
 
         </metal:macro>
-        <div id="viewlet-below-content-body" tal:content="structure provider:plone.belowcontentbody" tal:condition="not:ajax_load" />
+        <div id="viewlet-below-content-body"
+          tal:content="structure provider:plone.belowcontentbody"
+          tal:condition="not:ajax_load" />
 
       </tal:main-macro>
     </metal:main>

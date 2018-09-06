@@ -1,67 +1,46 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      lang="en"
-      metal:use-macro="context/main_template/macros/master"
-      i18n:domain="collective.cover">
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="collective.cover">
 
   <body>
 
-    <metal:title fill-slot="content-title">
-    </metal:title>
-
+    <metal:title fill-slot="content-title"></metal:title>
 
     <metal:slot fill-slot="body">
-    <metal:slot define-macro="body">
-    <div id="content" class="columned">
+      <div id="content" class="columned">
 
-      <metal:header define-slot="header" tal:content="nothing">
-      Visual Header
-      </metal:header>
+          <div id="viewlet-above-content-title" tal:content="structure
+            provider:plone.abovecontenttitle" tal:condition="not:ajax_load" ></div>
 
-      <metal:bodytext define-slot="main">
+          <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view">
+            Generic KSS Title. Is rendered with class="documentFirstHeading".
+          </h1>
 
-      <div id="viewlet-above-content-title" tal:content="structure
-      provider:plone.abovecontenttitle" tal:condition="not:ajax_load" ></div>
-
-        <metal:title define-slot="content-title">
-        <metal:comment tal:content="nothing">
-        If you write a custom title always use
-        <h1 class="documentFirstHeading"></h1> for it
-        </metal:comment>
-        <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view">
-          Generic KSS Title. Is rendered with class="documentFirstHeading".
-        </h1>
-        </metal:title>
-
-          <metal:description define-slot="content-description">
-          <metal:comment tal:content="nothing">
-          If you write a custom description always use
-          <div class="documentDescription"></div> for it
-          </metal:comment>
           <div metal:use-macro="context/kss_generic_macros/macros/generic_description_view">
             Generic KSS Description. Is rendered with class="documentDescription".
           </div>
-          </metal:description>
 
-          <div id="viewlet-above-content-body" tal:content="structure provider:plone.abovecontentbody" tal:condition="not:ajax_load" />
-            <div id="content-core">
-              <div id="viewlet-below-content-title" tal:content="structure provider:plone.belowcontenttitle" tal:condition="not:ajax_load" />
+          <div id="viewlet-above-content-body"
+            tal:content="structure provider:plone.abovecontentbody"
+            tal:condition="not:ajax_load" />
 
-              <div tal:define="layout nocall:context/@@layout"
-                 tal:replace="structure layout/render_view" />
+          <div id="content-core">
+            <div id="viewlet-below-content-title"
+              tal:content="structure provider:plone.belowcontenttitle" tal:condition="not:ajax_load" />
 
-                <metal:text define-slot="content-core" tal:content="nothing">
+            <div tal:define="layout nocall:context/@@layout"
+              tal:replace="structure layout/render_view" />
+          </div>
 
-                Page body text
-                </metal:text>
-              </div>
-              <div id="viewlet-below-content-body" tal:content="structure provider:plone.belowcontentbody" tal:condition="not:ajax_load" />
+          <div id="viewlet-below-content-body"
+            tal:content="structure provider:plone.belowcontentbody"
+            tal:condition="not:ajax_load" />
 
-      </metal:bodytext>
-              </div>
-    </metal:slot>
+      </div>
     </metal:slot>
 
   </body>

@@ -1,125 +1,134 @@
 <div>
 
   <metal:macro define-macro="title_date">
-    <h1>
-      <span tal:replace="context/title"></span>
-      <tal:cond tal:condition="context/year">(<span tal:replace="context/year"></span>)</tal:cond>
-    </h1>
+  <h1>
+    <span tal:replace="context/title"></span>
+    <tal:cond tal:condition="context/year">(<span tal:replace="context/year"></span>)</tal:cond>
+  </h1>
   </metal:macro>
 
   <metal:macro define-macro="ace_layout">
+  <div id="content" class="columned">
+
     <div class="aceitem_page">
 
-      <div class="aceitem_top">
-        <div style="display: none" tal:content="context/special_tags | nothing">Special tags, for debugging</div>
-        <a href="" tal:attributes="href view/link_to_original" style="display: none">Original page</a>
-        <h2 tal:content="view/type_label">Project</h2>
-        <metal:macro define-slot="title-slot">
-          <h1 tal:content="context/title">Title here</h1>
-        </metal:macro>
-        <div tal:replace="structure provider:plone.belowcontenttitle" />
-      </div>
 
-      <div class="col-md-9">
-        <div class="ace-content-column">
-          <metal:slot metal:define-slot="ace-left-slot"></metal:slot>
-          <div class="share-your-info-ace-button">
-            <form method="POST" action="/help/share-your-info">
-              <button class="standard-button primary-button">Share your information</button>
-            </form>
+      <div id="content-core">
+
+        <div class="col-md-9 content-column">
+
+          <div class="aceitem_top">
+            <div style="display: none" tal:content="context/special_tags | nothing">Special tags, for debugging</div>
+            <a href="" tal:attributes="href view/link_to_original" style="display: none">Original page</a>
+            <h2 tal:content="view/type_label">Project</h2>
+            <metal:macro define-slot="title-slot">
+            <h1 tal:content="context/title">Title here</h1>
+            </metal:macro>
+            <div tal:replace="structure provider:plone.belowcontenttitle" />
+            </div>
+
+            <div class="ace-content-column">
+              <metal:slot metal:define-slot="ace-left-slot"></metal:slot>
+              <div class="share-your-info-ace-button">
+                <form method="POST" action="/help/share-your-info">
+                  <button class="standard-button primary-button">Share your information</button>
+                </form>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div class="col-md-3">
-        <div id="aceitem_sidebar">
-          <metal:slot metal:define-slot="ace-right-slot"></metal:slot>
-        </div>
-      </div>
+          <div class="col-md-3 content-sidebar">
+            <div id="aceitem_sidebar">
+              <metal:slot metal:define-slot="ace-right-slot"></metal:slot>
+            </div>
+          </div>
 
+        </div>
+
+      </div>
     </div>
 
   </metal:macro>
 
   <metal:macro define-macro="description">
-    <h3>Description:</h3>
-    <tal:block tal:define="description python: view.w['long_description'].render();" content="structure description"/>
+  <h3>Description:</h3>
+  <tal:block tal:define="description python: view.w['long_description'].render();" content="structure description"/>
   </metal:macro>
 
   <metal:macro define-macro="lead">
-    <tal:cond condition="context/lead">
-      <h5>Lead</h5>
-      <p tal:replace="structure context/lead"/>
-    </tal:cond>
+  <tal:cond condition="context/lead">
+  <h5>Lead</h5>
+  <p tal:replace="structure context/lead"/>
+  </tal:cond>
   </metal:macro>
 
   <metal:macro define-macro="partners">
-    <tal:def define="partners python: view.w['partners'].render();">
-      <tal:cond condition="partners">
-        <h5>Partners</h5>
-        <p tal:replace="structure partners"/>
-      </tal:cond>
-    </tal:def>
+  <tal:def define="partners python: view.w['partners'].render();">
+  <tal:cond condition="partners">
+  <h5>Partners</h5>
+  <p tal:replace="structure partners"/>
+  </tal:cond>
+  </tal:def>
   </metal:macro>
 
   <metal:macro define-macro="funding">
-    <tal:def define="funding context/funding">
-      <tal:cond condition="funding">
-        <h5>Source of funding</h5>
-        <p tal:replace="structure funding"/>
-      </tal:cond>
-    </tal:def>
+  <tal:def define="funding context/funding">
+  <tal:cond condition="funding">
+  <h5>Source of funding</h5>
+  <p tal:replace="structure funding"/>
+  </tal:cond>
+  </tal:def>
   </metal:macro>
 
   <metal:macro define-macro="websites">
-    <div tal:define="links python:view.get_websites()">
-      <dl tal:condition="links" tal:repeat="link links">
-        <a tal:content="link/title" tal:attributes="href link/url"/>
-      </dl>
-    </div>
+  <div tal:define="links python:view.get_websites()">
+    <dl tal:condition="links" tal:repeat="link links">
+      <a tal:content="link/title" tal:attributes="href link/url"/>
+    </dl>
+  </div>
   </metal:macro>
 
   <metal:macro define-macro="keywords">
-    <div tal:content="python: ', '.join(sorted(set(context.keywords or [])))"></div>
+  <div tal:content="python: ', '.join(sorted(set(context.keywords or [])))"></div>
   </metal:macro>
 
   <metal:macro define-macro="comments">
-      <div tal:define="portal_state context/@@plone_portal_state">
-          <div tal:condition="python: view.check_user_role()">
-              <h5 style="text-decoration: underline" tal:condition="python: view.context.comments">Comments:</h5>
-              <div tal:content="python: view.context.comments"></div>
-          </div>
-      </div>
+  <div tal:define="portal_state context/@@plone_portal_state">
+    <div tal:condition="python: view.check_user_role()">
+      <h5 style="text-decoration: underline" tal:condition="python: view.context.comments">Comments:</h5>
+      <div tal:content="python: view.context.comments"></div>
+    </div>
+  </div>
   </metal:macro>
 
   <metal:macro define-macro="files">
-    <tal:def define="files view/get_files">
-      <div tal:condition="files" class="sidebar_files">
-        <h4><span tal:replace="view/type_label" /> Documents (<span tal:content="python: len(files)"></span>) </h4>
-        <ul>
-          <li tal:repeat="file files">
-            <a tal:attributes="href file/absolute_url" tal:content="file/Title"></a>
-          </li>
-        </ul>
-      </div>
-    </tal:def>
+  <tal:def define="files view/get_files">
+  <div tal:condition="files" class="sidebar_files">
+    <h4><span tal:replace="view/type_label" /> Documents (<span tal:content="python: len(files)"></span>) </h4>
+    <ul>
+      <li tal:repeat="file files">
+        <a tal:attributes="href file/absolute_url" tal:content="file/Title"></a>
+      </li>
+    </ul>
+  </div>
+  </tal:def>
   </metal:macro>
 
   <metal:macro define-macro="geochar">
-    <tal:def define="geochar python:view.render_geochar(context.geochars)">
+  <tal:def define="geochar python:view.render_geochar(context.geochars)">
 
-      <div tal:content="structure geochar" tal:condition="geochar"/>
+  <div tal:content="structure geochar" tal:condition="geochar"/>
 
-      <tal:cond condition="not: geochar">
-        <div tal:condition="context/spatial_layer | nothing" tal:content="context/spatial_layer"/>
+    <tal:cond condition="not: geochar">
+    <div tal:condition="context/spatial_layer | nothing" tal:content="context/spatial_layer"/>
 
-        <p tal:condition="context/spatial_values">
-          <span style="font-weight:bold;">Countries:</span><br>
-          <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
-        </p>
-      </tal:cond>
+      <p tal:condition="context/spatial_values">
+      <span style="font-weight:bold;">Countries:</span><br>
+      <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
+      </p>
+    </tal:cond>
 
-    </tal:def>
+  </tal:def>
   </metal:macro>
 
-</div>
+    </div>

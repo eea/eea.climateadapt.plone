@@ -28,20 +28,15 @@
       <theme href="index.html" />
       <replace css:content-children=".fp-news-tile" css:theme-children=".fp-news-tile" />
       <replace css:content-children=".fp-events-tile" css:theme-children=".fp-events-tile" />
-      <replace css:theme=".eu-policy-tiles" css:content=".fp-news-tile" />
       <replace css:theme=".country-dropdown select" css:content="#fp-country-selector"  />
 
-      <replace css:theme=".slider" css:content=".slider"  />
-
       <!-- slider -->
-
-
+      <replace css:theme=".slider" css:content=".slider"  />
     </rules>
 
 
     <rules css:if-not-content=".section-frontpage.template-standard">
       <theme href="page.html" />
-
     </rules>
 
 
@@ -71,7 +66,6 @@
     <copy attributes="action method" css:content="#portal-searchbox form" css:theme=".search-box form" />
 
     <!-- Personal menu -->
-
     <rules if="$is_anon">
       <replace css:theme-children=".login-container" css:content="#portal-personaltools-wrapper ul" />
     </rules>
@@ -84,20 +78,21 @@
   </rules>
 
   <!-- two column layout ex: eu sector policies -->
-  <rules css:if-content=".column.col-md-9"
-         css:if-not-content=".subsection-transnational-regions">
+  <rules css:if-content=".columned">
 
     <drop css:content=".col-md-9 .tile-default > .tile-content > h2" />
+    <drop css:content=".col-md-9 .tile-default > .tile-content > h1" />
+
+    <drop css:content="h1.documentFirstHeading" />
+    <before css:content=".content-column > .tile-default">
+      <xsl:copy-of select='//*[@class="documentFirstHeading"]' />
+    </before>
 
     <drop css:content="#viewlet-below-content-title" />
     <before css:content=".content-column > .tile-default">
       <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
     </before>
 
-    <drop css:content="h1.documentFirstHeading" />
-    <before css:content=".content-column > .tile-default">
-      <xsl:copy-of select='//*[@class="documentFirstHeading"]' />
-    </before>
 
     <drop css:content="#document-action-download_pdf" />
     <after css:content=".content-column > .tile:last-child">
@@ -106,51 +101,24 @@
 
   </rules>
 
-  <!-- two column layout ex: eu sector policies -->
+  <!-- AST & UAST: move last modified under the h1 title -->
   <rules css:if-content=".subsection-tools-adaptation-support-tool">
-
     <drop css:content="#plone-document-byline" />
     <after css:content=".ast_header > h1">
       <xsl:copy-of select='//*[@id="plone-document-byline"]' />
     </after>
+  </rules>
 
+  <rules css:if-content=".subsection-tools-urban-ast">
+    <drop css:content="#plone-document-byline" />
+    <after css:content=".ast_header > h1">
+      <xsl:copy-of select='//*[@id="plone-document-byline"]' />
+    </after>
   </rules>
 
   <!-- add edit bar for the homepage, also move it to the top -->
   <replace css:content="#edit-bar" css:theme="#edit-bar" method="raw"/>
   <drop css:content="#edit-bar" />
-
-  <!-- two column layout for transnational region pages : -->
-  <!-- ex. cca/countries-regions/transnational-regions/baltic-sea-region -->
-  <rules css:if-content=".subsection-transnational-regions">
-    <replace css:content="#content">
-      <div id="content" class="columned">
-        <xsl:apply-templates select="./*"/>
-      </div>
-    </replace>
-
-    <drop css:content="#viewlet-below-content-title" />
-    <drop css:content=".column.col-md-2" />
-    <drop css:content="#document-action-download_pdf" />
-
-    <after css:content=".column.col-md-10">
-      <div class="column col-md-3">
-        <div class="content-sidebar">
-          <xsl:copy-of select='//*[contains(@class,"column col-md-2 ")]/*' />
-        </div>
-      </div>
-    </after>
-
-    <replace css:content=".col-md-10">
-      <div class="column col-md-9">
-        <div class="content-column">
-          <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
-          <xsl:apply-templates select="./*"/>
-          <xsl:copy-of select='//*[@id="document-action-download_pdf"]' />
-        </div>
-      </div>
-    </replace>
-  </rules>
 
   <!-- layout for country profile pages : -->
   <!-- ex. cca/countries-regions/countries/austria  -->
@@ -171,7 +139,7 @@
 
   <!-- two column layout for database item pages : -->
   <!-- ex. cca/metadata/portals/climate-information-platform-for-ireland-icip-climate-ireland/ -->
-  <rules css:if-content=".section-metadata">
+  <!-- <rules css:if-content=".section-metadata">
     <replace css:content="#content">
       <div id="content" class="columned">
         <div class="row">
@@ -200,7 +168,7 @@
         </div>
       </div>
     </replace>
-  </rules>
+  </rules> -->
 
   <!-- hide pdf button from the main help introduction page -->
   <rules css:if-content=".subsection-index_html">
@@ -254,7 +222,6 @@
       <xsl:attribute name="class"><xsl:value-of select="/html/body/@class" /> fullwidth</xsl:attribute>
     </before>
   </rules> -->
-
 
   <rules if="contains($host, 'local')">
     <!--<xsl:value-of select="$host" /> shows value of given variable -->

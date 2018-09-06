@@ -4,10 +4,10 @@
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   lang="en"
   metal:use-macro="context/main_template/macros/master"
-  i18n:domain="example.conference">
+  >
   <body>
 
-    <metal:main fill-slot="main">
+    <metal:main fill-slot="body">
       <tal:main-macro metal:define-macro="content-core" >
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">

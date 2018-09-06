@@ -39,7 +39,7 @@ strong {
 }
 u {
   font-weight: normal;
-  font-family: RobotoB;
+  text-decoration: none;
 }
 cite, em {
   font-family: RobotoI;
@@ -95,7 +95,6 @@ a {
 #content p a:link {
   border-bottom: 1px solid #1e76a9;
   word-wrap: break-word;
-  font-family: RobotoR;
 }
 
 /* @group Invisibles */
@@ -271,9 +270,10 @@ a.read-more {
   padding: 2rem;
 }
 
+// Buttons
+
 .standard-button {
   font-family: RobotoB;
-  font-size: 16px;
   padding: 10px 25px;
   border-radius: 5px;
 }
@@ -311,8 +311,47 @@ form .standard-button {
   }
 }
 
-.tile-content ul > li,
-#ast-menu ul > li {
+#document-action-download_pdf {
+  list-style: none;
+  margin-top: 3em;
+  display: inline-block;
+  a {
+    color: @dark-gray;
+    margin-left: 0;
+  }
+  a:before {
+    content: '' !important;
+  }
+}
+
+#document-action-download_pdf:before,
+.ast-section-pdf:before {
+  content: '\f019';
+  font-family: FontAwesome;
+  margin-right: 10px;
+  position: relative;
+  color: inherit;
+}
+
+.ast-section-pdf {
+  border: 2px solid @primary-blue;
+  color: @primary-blue;
+  font-size: 14px;
+  display: inline-block;
+  margin-top: 3em;
+  padding: 10px 20px;
+}
+
+.ast-section-pdf:hover {
+  background: @primary-blue;
+  color: #fff !important;
+}
+
+.ast-section-pdf:before:hover {
+  color: #fff;
+}
+
+.tile-content ul > li {
   list-style-type: none;
   margin-bottom: 0.5em;
 }
@@ -577,6 +616,19 @@ form .standard-button {
 }
 
 // Adaptation support tool
+#ast-menu {
+  font-size: 14px;
+}
+
+#ast-menu ul > li {
+  list-style-type: none;
+  margin-bottom: 0.8em;
+
+  >ul {
+    padding: 0.6em 0 0 1.3em;
+  }
+}
+
 .ast_header h1 {
   display: inline-block;
 }
@@ -592,7 +644,7 @@ form .standard-button {
 }
 
 #ast-menu .ui-state-default {
-  background: @primary-blue;
+  background: @secondary-blue;
 }
 
 #content #ast-menu .ui-state-active {
@@ -628,17 +680,13 @@ form .standard-button {
   font-family: RobotoR;
 }
 
-#content ul#ast-menu ul > li:before {
-  color: @primary-blue;
-}
-
 #ast-menu .ui-accordion-content-active a.active {
   color: @primary-blue;
   font-family: RobotoM;
 }
 
-#uast-menu li > ul > li > a p {
-  display: inline;
+#ast-menu .ui-widget-content a {
+  color: @dark-gray;
 }
 
 .ast-map {
@@ -723,6 +771,10 @@ form .standard-button {
 // Urban Adaptation support tool
 #uast-menu {
   font-size: 13px;
+
+  .ui-state-active {
+    background: none;
+  }
 }
 
 #uast-menu .ui-accordion-header {
@@ -740,32 +792,60 @@ form .standard-button {
   background: none;
 }
 
-#uast-menu .ui-state-default strong {
+#uast-menu .ui-state-default strong,
+#uast-menu .ui-state-active strong {
   background-color: #96B32B;
-  padding: 10px 12px;
+  padding: 10px  ;
   border-top-right-radius: 15px;
   border-bottom-left-radius: 15px;
   color: #fff;
 }
 
+#uast-menu a.ui-state-active {
+  color: #fff;
+}
+
 #uast-menu .ui-state-default .uast-title {
   background-color: #009AA9;
-  padding: 10px 10px;
+  padding: 10px 4px;
   border-top-left-radius: 15px;
   border-bottom-right-radius: 15px;
   width: 100%;
-  margin-left: 5px;
+  margin-left: 3px;
+}
+
+.subsection-tools-urban-ast .ast-title-step {
+  background-color: #96B32B;
+  padding: 10px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  color: #fff;
+  border: none;
+  line-height: normal;
+  font-size: inherit;
+  height: auto;
+  width: auto;
 }
 
 #content #uast-menu .ui-state-active > .uast-title {
   background-color: #96B32B;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  width: 100%;
+  margin-left: 3px;
+}
+
+#uast-menu {
+  font-size: 14px;
 }
 
 #uast-menu .ui-accordion-content {
   border: none;
   border-radius: 0;
   list-style-position: outside;
-  padding: 1em 0 1em 3.5em;
+  padding: 1em 0 1em 4em;
 }
 
 #uast-menu .ui-state-hover > .uast-title {
@@ -797,6 +877,16 @@ form .standard-button {
 #uast-menu ul > li {
   list-style-type: disc;
   margin-bottom: 1em;
+}
+
+#uast-menu ul > li > ul {
+  padding: 0.6em 0 0 1.3em;
+}
+
+.example-cases {
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: 1px solid #ddd;
 }
 
 
@@ -1678,7 +1768,7 @@ span.selectedTag {
 }
 
 #content span.link-external > a:before {
-  content: '\f0ac';
+  content: '\f08e';
   font-family: FontAwesome;
   margin: 0 5px;
 }
@@ -1797,6 +1887,7 @@ div.width-1\3a 4 {
 #previous-link a,
 #next-link a {
   color: @dark-gray;
+  font-family: RobotoR;
 }
 
 #previous-link a:hover,
@@ -1818,5 +1909,15 @@ div.width-1\3a 4 {
     padding: 8px 15px;
     display: inline-block;
     font-size: 14px;
+  }
+}
+
+#content .panel-body {
+  ul {
+    list-style-position: outside;
+    padding: 0.5em 0 0 1.5em;
+    li {
+      list-style-type: disc;
+    }
   }
 }

@@ -395,6 +395,8 @@ $(document).ready(function() {
         titleAST.each(function() {
           $('<h2>' + $(this).html() + '</h2>').replaceAll(this);
         });
+
+        $('.cover-richtext-tile ul li a').attr('target', '_blank');
       }
 
       var $circleStep = $('.ast-map .ast-circle');
@@ -508,5 +510,61 @@ $(document).ready(function() {
 
   // Add a placeholder message for search input fields
   $('#search-field input[type="text"]').attr('placeholder', 'type here...');
+
+  var $h2 = $('.subsection-tools-urban-ast h2');
+  $h2.each(function() {
+    if ($(this).text().indexOf('Example cases:') >= 0) {
+      $(this).addClass('example-cases');
+    }
+  });
+
+  // Open all links out of the tool in a new window
+  var isUrbanAST = $('.subsection-tools-urban-ast').length > 0;
+  if (isUrbanAST) {
+    $('.cover-richtext-tile ul li a').attr('target', '_blank');
+  }
+
+  var $pdfButton = $('#document-action-download_pdf');
+  // Urban AST export section pdf button
+  if (currentLocation.indexOf('/tools/urban-ast') !== -1 && currentLocation.indexOf('pdf.body') === -1) {
+    var $sectionPDF = '<a href="/tools/urban-ast/download.pdf"' +
+    'class="standard-button ast-section-pdf">' +
+    'Download section as PDF</a>';
+    $pdfButton.parent().before($sectionPDF);
+  }
+
+  // AST export section pdf button
+  if (currentLocation.indexOf('/tools/adaptation-support-tool') !== -1 && currentLocation.indexOf('pdf.body') === -1) {
+    var $sectionPDF = '<a href="/tools/adaptation-support-tool/download.pdf"' +
+    'class="standard-button ast-section-pdf">' +
+    'Download section as PDF</a>';
+    $pdfButton.parent().before($sectionPDF);
+  }
+
+  // fix tiles edit button
+  $('.tile-container').each(function() {
+    var $this = $(this);
+    var tileName = $this.find('.tile-type-name');
+    var editbtn = $this.children('a');
+    var contentWrapper = $this.children('div');
+    if (tileName.text() == 'Relevant AceContent') {
+      tileName.detach().appendTo(contentWrapper);
+    }
+    if (editbtn.text() == 'Edit') {
+      editbtn.detach().appendTo(contentWrapper);
+    }
+  });
+
+  // Toggle text on accordion
+  var $panelTitle = $('.panel-title a');
+  $panelTitle.click(function() {
+    var $this = $(this);
+    var panelTitleText = $this.text().toLowerCase();
+    if (panelTitleText.indexOf('read more') > -1 || panelTitleText.indexOf('read less') > -1) {
+      $this.text(function (a, b) {
+        return (b == 'Read more' ? 'Read less' : 'Read more');
+      });
+    }
+  });
 
 });

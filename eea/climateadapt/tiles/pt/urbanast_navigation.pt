@@ -2,57 +2,37 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
   <script src="/mark_special_links.js" tal:attributes="src string: ${context/portal_url}/mark_special_links.js"></script>
   <script type="text/javascript">
-      $(document).ready(function() {
-          var c = document.location.href;
-          $("#uast-menu").accordion({
-              autoHeight: false,
-              navigation: true,
-              navigationFilter: function() {
-                  var e = c.substr(document.location.href.indexOf("ast/step") + 4);
-                  var d = $(this).attr("href");
-                  d = d.substr(d.indexOf("ast/step") + 4);
-                  if (e.indexOf("?") > 0) {
-                      e = e.substr(0, e.indexOf("?"))
-                  }
-                  if ((e.indexOf(d) != -1)) {
-                      $(this).addClass("active");
-                      return true
-                  } else {
-                      return false
-                  }
-              }
-          });
-
-          var b = new Array();
-          $("#uast-menu li a").each(function() {
-              b.push($(this).attr("href"))
-          });
-          var a = b.length;
-          i = 0;
-          pos = -1;
-          previous = "";
-          next = "";
-          while (i < a && pos < 0) {
-              pos = c.search(b[i]);
-              if (pos > 0) {
-                  if (i == 0) {
-                      previous = b[a - 1];
-                      next = b[1]
-                  } else {
-                      if (i == a - 1) {
-                          previous = b[a - 2];
-                          next = b[0]
-                      } else {
-                          previous = b[i - 1];
-                          next = b[i + 1]
-                      }
-                  }
-              }
-              i++
+    $(document).ready(function() {
+      var c = document.location.href;
+      $("#uast-menu").accordion({
+        autoHeight: false,
+        navigation: true,
+        navigationFilter: function() {
+          var e = c.substr(document.location.href.indexOf("ast/step") + 4);
+          var d = $(this).attr("href");
+          d = d.substr(d.indexOf("ast/step") + 4);
+          if (e.indexOf("?") > 0) {
+            e = e.substr(0, e.indexOf("?"))
           }
-          $("#previous-link a").attr("href", previous);
-          $("#next-link a").attr("href", next)
+          if ((e.indexOf(d) != -1)) {
+            $(this).addClass("active");
+            return true;
+          } else {
+            return false;
+          }
+        }
       });
+
+      var activeNav = $("#uast-menu a.active");
+      var anchors = $("#uast-menu a");
+
+      var pos = anchors.index(activeNav);
+      var next = anchors.get(pos+1);
+      var previous = anchors.get(pos-1);
+
+      $("#previous-link a").attr("href", previous);
+      $("#next-link a").attr("href", next);
+    });
   </script>
 
   <ul id="uast-menu">
@@ -228,7 +208,7 @@
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-3-1" name="step-3-3" onclick="document.location.href='/tools/urban-ast/step-3-3'">
+          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-3-3" name="step-3-3">
             3.3 How do I identify the existing adaptation options in my city/town?
           </a>
           <ul id="step-3-3">
