@@ -30,7 +30,7 @@
             <metal:macro use-macro="context/ace_macros/macros/partners" />
             <metal:macro use-macro="context/ace_macros/macros/funding" />
 
-            <h4>Reference information</h4>
+            <h4 class="reference-title">Reference information</h4>
             <h5>Websites:</h5>
             <metal:macro use-macro="context/ace_macros/macros/websites" />
 
@@ -40,17 +40,17 @@
 
           <div metal:fill-slot="ace-right-slot">
             <metal:macro use-macro="context/ace_macros/macros/files" />
-            <h4>Keywords</h4>
+            <h4>Keywords:</h4>
             <metal:macro use-macro="context/ace_macros/macros/keywords" />
-            <h4>Duration</h4>
+            <h4>Duration:</h4>
             <p tal:replace="structure context/duration"/>
-            <h4>Climate impacts</h4>
+            <h4>Climate impacts:</h4>
             <p tal:replace="structure python:view.w['climate_impacts'].render()"/>
-            <h4>Elements</h4>
+            <h4>Elements:</h4>
             <p tal:replace="structure python:view.w['elements'].render()"/>
-            <h4>Sectors</h4>
+            <h4>Sectors:</h4>
             <p tal:replace="structure python:view.w['sectors'].render()"/>
-            <h4>Geographic characterization</h4>
+            <h4>Geographic characterization:</h4>
             <tal:def define="geochar python:view.render_geochar(context.geochars)">
 
               <div tal:content="structure geochar" tal:condition="geochar"/>

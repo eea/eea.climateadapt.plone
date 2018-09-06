@@ -93,9 +93,13 @@
       <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
     </before>
 
-
     <drop css:content="#document-action-download_pdf" />
     <after css:content=".content-column > .tile:last-child">
+      <xsl:copy-of select='//*[@id="document-action-download_pdf"]' />
+    </after>
+
+    <!-- for database items move here: -->
+    <after css:content=".ace-content-column">
       <xsl:copy-of select='//*[@id="document-action-download_pdf"]' />
     </after>
 
@@ -112,6 +116,14 @@
   <rules css:if-content=".subsection-tools-urban-ast">
     <drop css:content="#plone-document-byline" />
     <after css:content=".ast_header > h1">
+      <xsl:copy-of select='//*[@id="plone-document-byline"]' />
+    </after>
+  </rules>
+
+  <!-- Case studies database items: move last modified under the h1 title -->
+  <rules css:if-content=".aceitem_page .case-studies-top">
+    <drop css:content="#plone-document-byline" />
+    <after css:content=".case-studies-top > h1">
       <xsl:copy-of select='//*[@id="plone-document-byline"]' />
     </after>
   </rules>

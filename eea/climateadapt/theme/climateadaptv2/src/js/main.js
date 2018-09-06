@@ -567,4 +567,27 @@ $(document).ready(function() {
     }
   });
 
+  // Make the first photo of gallery visible
+  $('#links').children('.gallery-hide').eq(0).css('display', 'block');
+
+  // CASE STUDIES - DATABASE ITEMS
+  // Display event for gallery open
+  $('#links').on('click', function(event) {
+    $(this).children('.gallery-hide').css('display', 'block');
+  });
+
+  // Display events for gallery close
+  $('#blueimp-gallery').on('click', function(event) {
+    if(event.target.className == "slide " ||
+      event.target.className == "close"  ||
+      event.target.className == "slide") {
+      // get the maximum number of slices
+      var nr_of_slices = $('#links').children('.gallery-hide').length
+      $('#links').children('.gallery-hide').slice(1, nr_of_slices).css('display', 'none');
+    }
+  });
+
+  // remove inline styles
+  $('.ace-content-column p, .ace-content-column ul').removeAttr('style');
+
 });
