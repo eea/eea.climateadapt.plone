@@ -9,7 +9,7 @@
     i18n:domain="eea.climateadapt">
 
     <body>
-        <metal:main fill-slot="main">
+        <metal:main fill-slot="body">
             <tal:main-macro metal:define-macro="content-core">
 
                 <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">

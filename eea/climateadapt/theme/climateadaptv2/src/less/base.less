@@ -414,14 +414,6 @@ form .standard-button {
   font-size: 18px;
 }
 
-// EU sector policies
-
-// .eu-policy-page .content-sidebar {
-//   position: relative;
-//   right: 0;
-//   top: 130px;
-// }
-
 // two columned layout
 #content.columned {
   background-color: transparent;
@@ -449,6 +441,11 @@ form .standard-button {
   background-color: #fff;
   padding: 1.5em;
   border: 1px solid #E5E5E5;
+}
+
+#content.columned ul,
+#content.columned ol {
+  list-style-position: inside;
 }
 
 .content-column.col-md-9 {
@@ -1115,11 +1112,6 @@ form .standard-button {
   margin-top: 2em;
 }
 
-.ace-content-column h4 {
-  border-top: 1px solid #ddd;
-  padding-top: 1em;
-}
-
 // Help page: Glossary
 .GlossaryTitle {
   color: @primary-blue;
@@ -1686,7 +1678,7 @@ div.listingBar .current {
 }
 
 #content #search-filter legend {
-  background: #0000;
+  background: transparent;
   font-size: 1.1em;
   padding: 0.5em 0.9em;
 }

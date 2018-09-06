@@ -137,39 +137,6 @@
     </replace>
   </rules>
 
-  <!-- two column layout for database item pages : -->
-  <!-- ex. cca/metadata/portals/climate-information-platform-for-ireland-icip-climate-ireland/ -->
-  <!-- <rules css:if-content=".section-metadata">
-    <replace css:content="#content">
-      <div id="content" class="columned">
-        <div class="row">
-          <xsl:apply-templates select="./*"/>
-        </div>
-      </div>
-    </replace>
-
-    <drop css:content="#document-action-download_pdf" />
-    <drop css:content=".aceitem_top" />
-
-    <replace css:content=".section-metadata .col-md-9">
-      <div class="column col-md-9">
-        <div class="content-column">
-          <xsl:copy-of select='//*[contains(@class,"aceitem_top")]/*'/>
-          <xsl:apply-templates select="./*"/>
-          <xsl:copy-of select='//*[@id="document-action-download_pdf"]'/>
-        </div>
-      </div>
-    </replace>
-
-    <replace css:content=".section-metadata .col-md-3">
-      <div class="column col-md-3">
-        <div class="content-sidebar">
-          <xsl:apply-templates select="./*"/>
-        </div>
-      </div>
-    </replace>
-  </rules> -->
-
   <!-- hide pdf button from the main help introduction page -->
   <rules css:if-content=".subsection-index_html">
     <drop css:content="#document-action-download_pdf"/>
