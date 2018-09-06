@@ -8,7 +8,14 @@
   </metal:macro>
 
   <metal:macro define-macro="ace_layout">
+      <div id="content" class="columned">
+
     <div class="aceitem_page">
+
+
+      <div id="content-core">
+
+        <div class="col-md-9 content-column">
 
       <div class="aceitem_top">
         <div style="display: none" tal:content="context/special_tags | nothing">Special tags, for debugging</div>
@@ -20,23 +27,25 @@
         <div tal:replace="structure provider:plone.belowcontenttitle" />
       </div>
 
-      <div class="col-md-9">
-        <div class="ace-content-column">
-          <metal:slot metal:define-slot="ace-left-slot"></metal:slot>
-          <div class="share-your-info-ace-button">
-            <form method="POST" action="/help/share-your-info">
-              <button class="standard-button primary-button">Share your information</button>
-            </form>
+          <div class="ace-content-column">
+            <metal:slot metal:define-slot="ace-left-slot"></metal:slot>
+            <div class="share-your-info-ace-button">
+              <form method="POST" action="/help/share-your-info">
+                <button class="standard-button primary-button">Share your information</button>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-md-3">
-        <div id="aceitem_sidebar">
-          <metal:slot metal:define-slot="ace-right-slot"></metal:slot>
+        <div class="col-md-3 content-sidebar">
+          <div id="aceitem_sidebar">
+            <metal:slot metal:define-slot="ace-right-slot"></metal:slot>
+          </div>
         </div>
+
       </div>
 
+    </div>
     </div>
 
   </metal:macro>
