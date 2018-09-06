@@ -78,20 +78,21 @@
   </rules>
 
   <!-- two column layout ex: eu sector policies -->
-  <rules css:if-content=".column.col-md-9"
-         css:if-not-content=".subsection-transnational-regions">
+  <rules css:if-content=".columned">
 
     <drop css:content=".col-md-9 .tile-default > .tile-content > h2" />
+    <drop css:content=".col-md-9 .tile-default > .tile-content > h1" />
+
+    <drop css:content="h1.documentFirstHeading" />
+    <before css:content=".content-column > .tile-default">
+      <xsl:copy-of select='//*[@class="documentFirstHeading"]' />
+    </before>
 
     <drop css:content="#viewlet-below-content-title" />
     <before css:content=".content-column > .tile-default">
       <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
     </before>
 
-    <drop css:content="h1.documentFirstHeading" />
-    <before css:content=".content-column > .tile-default">
-      <xsl:copy-of select='//*[@class="documentFirstHeading"]' />
-    </before>
 
     <drop css:content="#document-action-download_pdf" />
     <after css:content=".content-column > .tile:last-child">
@@ -119,38 +120,6 @@
   <replace css:content="#edit-bar" css:theme="#edit-bar" method="raw"/>
   <drop css:content="#edit-bar" />
 
-  <!-- two column layout for transnational region pages : -->
-  <!-- ex. cca/countries-regions/transnational-regions/baltic-sea-region -->
-  <rules css:if-content=".subsection-transnational-regions">
-    <replace css:content="#content">
-      <div id="content" class="columned">
-        <xsl:apply-templates select="./*"/>
-      </div>
-    </replace>
-
-    <drop css:content="#viewlet-below-content-title" />
-    <drop css:content=".column.col-md-2" />
-    <drop css:content="#document-action-download_pdf" />
-
-    <after css:content=".column.col-md-10">
-      <div class="column col-md-3">
-        <div class="content-sidebar">
-          <xsl:copy-of select='//*[contains(@class,"column col-md-2 ")]/*' />
-        </div>
-      </div>
-    </after>
-
-    <replace css:content=".col-md-10">
-      <div class="column col-md-9">
-        <div class="content-column">
-          <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
-          <xsl:apply-templates select="./*"/>
-          <xsl:copy-of select='//*[@id="document-action-download_pdf"]' />
-        </div>
-      </div>
-    </replace>
-  </rules>
-
   <!-- layout for country profile pages : -->
   <!-- ex. cca/countries-regions/countries/austria  -->
   <rules css:if-content=".subsection-countries">
@@ -170,7 +139,7 @@
 
   <!-- two column layout for database item pages : -->
   <!-- ex. cca/metadata/portals/climate-information-platform-for-ireland-icip-climate-ireland/ -->
-  <rules css:if-content=".section-metadata">
+  <!-- <rules css:if-content=".section-metadata">
     <replace css:content="#content">
       <div id="content" class="columned">
         <div class="row">
@@ -199,7 +168,7 @@
         </div>
       </div>
     </replace>
-  </rules>
+  </rules> -->
 
   <!-- hide pdf button from the main help introduction page -->
   <rules css:if-content=".subsection-index_html">
