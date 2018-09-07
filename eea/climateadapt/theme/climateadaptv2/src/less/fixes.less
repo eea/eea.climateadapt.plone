@@ -8,6 +8,10 @@
   border-bottom: 2px solid darken(@edit-interface-bg-color, 10%);
 }
 
+.userrole-anonymous .edit-bar-wrapper {
+  border-bottom: 0;
+}
+
 #edit-bar {
   min-height: 2.5em;
   margin-bottom: 0;
@@ -167,8 +171,8 @@ div.formControls {
   content: '';
   width: 0;
   height: 0;
-  border-top: 4px solid #0000;
-  border-bottom: 4px solid #0000;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
   border-left: 4px solid #0083c3;
   display: inline-block;
   margin: 0 3px;

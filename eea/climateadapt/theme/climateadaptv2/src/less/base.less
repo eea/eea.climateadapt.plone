@@ -414,14 +414,6 @@ form .standard-button {
   font-size: 18px;
 }
 
-// EU sector policies
-
-// .eu-policy-page .content-sidebar {
-//   position: relative;
-//   right: 0;
-//   top: 130px;
-// }
-
 // two columned layout
 #content.columned {
   background-color: transparent;
@@ -449,6 +441,12 @@ form .standard-button {
   background-color: #fff;
   padding: 1.5em;
   border: 1px solid #E5E5E5;
+}
+
+#content.columned ul,
+#content.columned ol {
+  list-style-position: outside;
+  margin-left: 1.5em;
 }
 
 .content-column.col-md-9 {
@@ -550,7 +548,7 @@ form .standard-button {
   padding: 15px;
   color: @dark-gray;
   font-size: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 2%;
   text-align: center;
   display: flex;
   align-items: center;
@@ -1101,6 +1099,7 @@ form .standard-button {
 
 #aceitem_sidebar h4 {
   color: @primary-blue;
+  margin-bottom: 0;
 }
 
 #aceitem_sidebar .list-field,
@@ -1113,11 +1112,6 @@ form .standard-button {
   display: inline-block;
   float: right;
   margin-top: 2em;
-}
-
-.ace-content-column h4 {
-  border-top: 1px solid #ddd;
-  padding-top: 1em;
 }
 
 // Help page: Glossary
@@ -1686,7 +1680,7 @@ div.listingBar .current {
 }
 
 #content #search-filter legend {
-  background: #0000;
+  background: transparent;
   font-size: 1.1em;
   padding: 0.5em 0.9em;
 }
@@ -1920,4 +1914,75 @@ div.width-1\3a 4 {
       list-style-type: disc;
     }
   }
+}
+
+// Database items
+
+.sidebar_bold h5 {
+  font-family: RobotoM;
+}
+
+#links {
+  background-color: @yellow;
+  overflow: hidden;
+  // border-radius: 5px;
+  text-align: center;
+}
+
+#links > span {
+  cursor: pointer;
+  padding: 5px;
+  display: inline-block;
+  font-family: RobotoM;
+  >.fa-camera {
+    padding-left: 10px;
+  }
+}
+
+.case-studies-illustrations img {
+  width: 100%;
+}
+
+.case-studies-review-image-wrapper {
+  margin: 0 1em 1em 0;
+  float: left;
+  position: relative;
+
+  .image-copyright {
+    font-size: 12px;
+    width: 70%;
+  }
+}
+
+.case-studies-illustrations {
+  margin-bottom: 2%;
+}
+
+.ace-content-column ul > li {
+  margin-bottom: 0.5em;
+  >p {
+    display: inline-block;
+  }
+  >ul {
+    margin-left: 0.8em;
+  }
+}
+
+.reference-title {
+  border-top: 1px solid #ddd;
+  padding-top: 1.5em;
+  margin-top: 1.5em;
+}
+
+.sidebar_files {
+  margin-bottom: 2%;
+  display: flex;
+  align-items: center;
+}
+
+.files-wrapper {
+  background-color: #fff;
+  border: 1px solid #E5E5E5;
+  padding: 1.5em;
+  width: 100%;
 }
