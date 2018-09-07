@@ -1,12 +1,13 @@
 <ul id="navbar" class="main-nav" tal:define="menu view/menu">
   <li class="main-nav-item" tal:repeat="section menu">
-    <div tal:replace="python: view.pp(section)"></div>
+    <!--?<div tal:replace="python: view.pp(section)"></div>-->
 
     <span tal:define="has_children python: bool(section['children'][-1])">
       <a href=""
         class="main-nav-link"
         tal:attributes="href section/link;
         ">
+          <tal:block tal:condition="python: section['icon']" tal:content="structure python: section['icon']" />
         <span tal:content="python: section['label']">Home</span>
       </a>
       <button class="toggle-down" tal:condition="has_children"><i class="angle-down-icon"></i></button>
@@ -18,6 +19,8 @@
 
         <ul class="sub-menu">
           <li class="sub-menu-item" tal:repeat="group column">
+            <tal:block tal:condition="python: group['icon']" tal:content="structure python: group['icon']">
+            </tal:block>
             <a href=""
               class="sub-menu-link"
               tal:attributes="href group/link"
@@ -26,6 +29,8 @@
             </a>
             <ul class="sub-sub-menu-wrapper" tal:condition="group/children">
               <li class="sub-sub-menu-item" tal:repeat="child group/children">
+                  <tal:block tal:condition="python: child['icon']" tal:content="structure python: child['icon']">
+                  </tal:block>
                 <a href=""
                   class="sub-sub-menu-link"
                   tal:attributes="href child/link"

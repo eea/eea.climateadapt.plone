@@ -201,7 +201,13 @@ $(document).ready(function() {
   navigationItem.each(function() {
     var $this = $(this);
     if ($this.find('.sub-sub-menu-wrapper').length > 0) {
-      $this.find('.sub-menu-wrapper').css('column-count', '2');
+      var submenuwrapper = $this.find('.sub-menu-wrapper');
+      var submenucols = submenuwrapper.find(".sub-menu").length > 1 ? submenuwrapper.find(".sub-menu").length : 2;
+      submenuwrapper.css({
+          'column-count': submenucols,
+          '-webkit-column-count' : submenucols,
+          '-moz-column-count': submenucols,
+      });
     }
   });
 
