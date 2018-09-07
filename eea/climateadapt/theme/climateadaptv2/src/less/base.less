@@ -445,7 +445,8 @@ form .standard-button {
 
 #content.columned ul,
 #content.columned ol {
-  list-style-position: inside;
+  list-style-position: outside;
+  margin-left: 1.5em;
 }
 
 .content-column.col-md-9 {
@@ -547,7 +548,7 @@ form .standard-button {
   padding: 15px;
   color: @dark-gray;
   font-size: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 2%;
   text-align: center;
   display: flex;
   align-items: center;
@@ -1098,6 +1099,7 @@ form .standard-button {
 
 #aceitem_sidebar h4 {
   color: @primary-blue;
+  margin-bottom: 0;
 }
 
 #aceitem_sidebar .list-field,
@@ -1923,7 +1925,8 @@ div.width-1\3a 4 {
 #links {
   background-color: @yellow;
   overflow: hidden;
-  border-radius: 5px;
+  // border-radius: 5px;
+  text-align: center;
 }
 
 #links > span {
@@ -1941,7 +1944,7 @@ div.width-1\3a 4 {
 }
 
 .case-studies-review-image-wrapper {
-  margin: 0 0.5em 0.5em 0;
+  margin: 0 1em 1em 0;
   float: left;
   position: relative;
 
@@ -1949,6 +1952,10 @@ div.width-1\3a 4 {
     font-size: 12px;
     width: 70%;
   }
+}
+
+.case-studies-illustrations {
+  margin-bottom: 2%;
 }
 
 .ace-content-column ul > li {
@@ -1965,4 +1972,17 @@ div.width-1\3a 4 {
   border-top: 1px solid #ddd;
   padding-top: 1.5em;
   margin-top: 1.5em;
+}
+
+.sidebar_files {
+  margin-bottom: 2%;
+  display: flex;
+  align-items: center;
+}
+
+.files-wrapper {
+  background-color: #fff;
+  border: 1px solid #E5E5E5;
+  padding: 1.5em;
+  width: 100%;
 }

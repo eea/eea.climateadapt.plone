@@ -102,12 +102,17 @@
   <metal:macro define-macro="files">
     <tal:def define="files view/get_files">
     <div tal:condition="files" class="sidebar_files">
-      <h4><span tal:replace="view/type_label" /> Documents (<span tal:content="python: len(files)"></span>) </h4>
-      <ul>
-        <li tal:repeat="file files">
-          <a tal:attributes="href file/absolute_url" tal:content="file/Title"></a>
-        </li>
-      </ul>
+      <div class="files-wrapper">
+        <h4>
+          <span tal:replace="view/type_label" /> Documents (<span tal:content="python: len(files)"></span>)
+        </h4>
+        <div tal:repeat="file files">
+          <a tal:attributes="href file/absolute_url">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span tal:content="file/Title"></span>
+          </a>
+        </div>
+      </div>
     </div>
     </tal:def>
   </metal:macro>
