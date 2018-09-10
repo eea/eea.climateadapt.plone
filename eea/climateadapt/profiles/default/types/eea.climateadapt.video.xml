@@ -4,11 +4,11 @@
     i18n:domain="eea.climateadapt" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
     <!-- Basic metadata -->
-    <property name="title" i18n:translate="">Videos</property>
+    <property name="title" i18n:translate="">Video</property>
     <property name="description"
-        i18n:translate="">Videos</property>
+        i18n:translate="">A container for embeded videos</property>
     <property name="icon_expr">string:${portal_url}/document_icon.png</property>
-    <property name="factory">eea.climateadapt.videos</property>
+    <property name="factory">eea.climateadapt.video</property>
     <property name="global_allow">True</property>
     <property name="filter_content_types">True</property>
     <property name="allowed_content_types">
@@ -17,8 +17,8 @@
     <property name="allow_discussion">False</property>
 
     <!-- schema and class used for content items -->
-    <property name="schema">eea.climateadapt.acevideo.IAceVideos</property>
-    <property name="klass">eea.climateadapt.acevideo.Videos</property>
+    <property name="schema">eea.climateadapt.acevideo.IAceVideo</property>
+    <property name="klass">eea.climateadapt.acevideo.Video</property>
 
     <property name="behaviors">
         <element value="plone.app.lockingbehavior.behaviors.ILocking"/>
