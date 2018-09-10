@@ -9,11 +9,11 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="eea.climateadapt">
 
-    <browser:page
+<!--    <browser:page
         name="rabbitmq-client-controlpanel"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         permission="cmf.ManagePortal"
         class=".rabbitmq.RabbitMQClientControlPanelView"
         />
-
+-->
 </configure>

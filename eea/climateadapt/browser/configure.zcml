@@ -272,26 +272,26 @@
     -----[ Videos Form customizations ]----
 
     <browser:page
-        for="eea.climateadapt.acevideo.IAceVideos"
+        for="eea.climateadapt.acevideo.IAceVideo"
         name="edit"
-        class=".videos.VideosEditView"
+        class=".video.VideoEditView"
         permission="cmf.ModifyPortalContent"
         />
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.acevideo.IAceVideos
+        for="eea.climateadapt.acevideo.IAceVideo
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .videos.VideosEditForm"
-        factory=".videos.VideosFormExtender"
+        .video.VideoEditForm"
+        factory=".video.VideoFormExtender"
         />
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.acevideo.IAceVideos
+        for="eea.climateadapt.acevideo.IAceVideo
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .videos.VideosAddForm"
-        factory=".videos.VideosFormExtender"
+        .video.VideoAddForm"
+        factory=".video.VideoFormExtender"
         />
 
     -----[ Publication Reports Form customizations ]----
@@ -473,9 +473,9 @@
 
     <browser:page
         name="view"
-        for="eea.climateadapt.acevideo.IAceVideos"
-        class="eea.climateadapt.browser.videos.VideosView"
-        template="pt/videos_view.pt"
+        for="eea.climateadapt.acevideo.IAceVideo"
+        class="eea.climateadapt.browser.video.VideoView"
+        template="pt/video_view.pt"
         permission="zope2.View"
         />
 
