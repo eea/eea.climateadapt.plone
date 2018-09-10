@@ -75,7 +75,7 @@
       import_profile="eea.climateadapt:eeaclimateadapt_to_40"
     />
   </genericsetup:upgradeSteps>
-  
+
   <genericsetup:upgradeStep
     title="Upgrade eea.climateadapt to v39"
     description=""
@@ -93,7 +93,6 @@
       import_profile="eea.climateadapt:eeaclimateadapt_to_38"
     />
   </genericsetup:upgradeSteps>
-
 
   <genericsetup:upgradeStep
     title="Upgrade eea.climateadapt to v37"
@@ -313,6 +312,7 @@
       import_profile="eea.climateadapt:eeaclimateadapt_to_14"
     />
   </genericsetup:upgradeSteps>
+
   <genericsetup:upgradeSteps
     source="12"
     destination="13"
@@ -322,6 +322,7 @@
       import_profile="eea.climateadapt:eeaclimateadapt_to_13"
     />
   </genericsetup:upgradeSteps>
+
   <genericsetup:upgradeSteps
     source="11"
     destination="12"
@@ -331,6 +332,7 @@
       import_profile="eea.climateadapt:eeaclimateadapt_to_12"
     />
   </genericsetup:upgradeSteps>
+
   <genericsetup:upgradeSteps
     source="10"
     destination="11"
@@ -340,6 +342,7 @@
       import_profile="eea.climateadapt:eeaclimateadapt_to_11"
     />
   </genericsetup:upgradeSteps>
+
   <genericsetup:upgradeSteps
     source="9"
     destination="10"
@@ -385,6 +388,7 @@
       import_profile="eea.climateadapt:eeaclimateadapt_to_6"
     />
   </genericsetup:upgradeSteps>
+
   <genericsetup:upgradeSteps
     source="4"
     destination="5"
@@ -394,6 +398,7 @@
       import_profile="eea.climateadapt:eeaclimateadapt_to_5"
     />
   </genericsetup:upgradeSteps>
+
   <genericsetup:upgradeSteps
     source="3"
     destination="4"
@@ -423,4 +428,5 @@
       import_profile="eea.climateadapt:eeaclimateadapt_to_2"
     />
   </genericsetup:upgradeSteps>
+
 </configure>

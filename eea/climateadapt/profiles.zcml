@@ -217,24 +217,6 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-    <genericsetup:upgradeStep
-        title="Upgrade eea.climateadapt to v43"
-        description=""
-        source="42"
-        destination="43"
-        handler=".update.update_to_43"
-        profile="eea.climateadapt:default" />
-
-    <!-- v44 upgrade -->
-    <genericsetup:upgradeSteps
-        source="43"
-        destination="44"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v44"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_44"
-            />
-    </genericsetup:upgradeSteps>
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_44"
         title="Upgrade profile for eea.climateadapt v44"
@@ -243,7 +225,6 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-    <!-- v45 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_45"
         title="Upgrade profile for eea.climateadapt v45"
@@ -251,17 +232,7 @@
         directory="profiles/upgrades/to_45"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="44"
-        destination="45"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v45"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_45"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v46 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_46"
         title="Upgrade profile for eea.climateadapt v46"
@@ -269,24 +240,7 @@
         directory="profiles/upgrades/to_46"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="45"
-        destination="46"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v46"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_46"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v47 upgrade -->
-    <genericsetup:upgradeStep
-        title="Upgrade eea.climateadapt to v47"
-        description=""
-        source="46"
-        destination="47"
-        handler=".update.update_to_47"
-        profile="eea.climateadapt:default" />
     <genericsetup:registerProfile
       name="eeaclimateadapt_to_47"
       title="Upgrade profile for eea.climateadapt v47"
