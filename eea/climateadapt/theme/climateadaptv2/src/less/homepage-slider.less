@@ -1,0 +1,95 @@
+@import "variables.less";
+
+/*** home page slider ***/
+
+.slider-image-wrapper {
+  border-bottom: 5px solid @primary-green;
+  height: 420px;
+  overflow: hidden;
+  position: relative;
+  vertical-align: top;
+}
+
+.slider-image {
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+.slider-caption {
+  background-color: rgba(255, 255, 255, 0.8);
+  bottom: 30px;
+  padding: 15px;
+  position: absolute;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  max-height: 230px;
+  height: auto;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.slider-description {
+  max-height: 168px;
+  overflow: hidden;
+  text-overflow: clip;
+  color: @dark-gray;
+  font-size: 14px;
+}
+
+.slider-bottom-caption {
+  display: flex;
+  align-self: flex-end;
+}
+
+.slider-bottom-caption a {
+  color: @dark-gray;
+  font-size: 13px;
+}
+
+.slick-dots {
+  bottom: 46px;
+  left: 50.5%;
+  width: 20%;
+  text-align: left;
+}
+
+.slider-bottom-caption .read-more-wrapper {
+  bottom: auto;
+  position: relative;
+  right: auto;
+}
+
+.slider .slick-prev,
+.slider .slick-next {
+  bottom: 30px;
+  top: auto;
+}
+
+.slider .slick-prev {
+  left: 25px;
+  z-index: 9;
+}
+
+.slider .slick-next {
+  left: 65px;
+}
+
+.slider .slick-prev:before,
+.slider .slick-next:before {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: @dark-gray;
+  font-family: FontAwesome;
+  font-size: 28px;
+  padding: 5px 12px;
+}
+
+.slider .slick-prev:before {
+  content: '\f104';
+}
+
+.slider .slick-next:before {
+  content: '\f105';
+}

@@ -1,10 +1,24 @@
-<div style="clear:both; padding: 1em;">
-  <hr />
+<div>
   <div id="bottom-menu">
-    <div id="previous-link"><a href="">« Previous question</a></div>
-    <div id="contact-link" class="bluebuttondiv">
-      <a href="/tools/urban-ast/contact" class="bluebutton">Contact us with your questions,<br/>comments and suggestions</a></div>
-    <div id="next-link"><a href="">Next question »</a></div>
+    <div id="previous-link">
+      <a href="">
+        <i class="fa fa-arrow-left"></i>
+        Previous question
+      </a>
+    </div>
+    <div id="next-link">
+      <a href="">
+        Next question
+        <i class="fa fa-arrow-right"></i>
+      </a>
+    </div>
   </div>
-  <div class="clear-both"></div>
+  <div id="contact-link">
+    <a href="/tools/urban-ast/contact" class="standard-button secondary-button">
+      <i class="fa fa-envelope"></i>
+      <span class="contact-button">
+        Contact us with your questions,<br/>comments and suggestions
+      </span>
+    </a>
+  </div>
 </div>

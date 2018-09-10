@@ -52,6 +52,10 @@
             title="Standard with no title"
             action="no_title_cover_view"
             />
+        <browser:menuItem
+            title="Columned View"
+            action="column_view"
+            />
     </browser:menuItems>
 
     <browser:menuItems
@@ -112,6 +116,14 @@
         for="*"
         class=".CoverNoTitleView"
         template="pt/no_title_cover_view.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="column_view"
+        for="*"
+        class=".CoverNoTitleView"
+        template="pt/cover_column_view.pt"
         permission="zope2.View"
         />
 
@@ -266,26 +278,26 @@
     -----[ Videos Form customizations ]----
 
     <browser:page
-        for="eea.climateadapt.acevideo.IAceVideos"
+        for="eea.climateadapt.acevideo.IAceVideo"
         name="edit"
-        class=".videos.VideosEditView"
+        class=".video.VideoEditView"
         permission="cmf.ModifyPortalContent"
         />
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.acevideo.IAceVideos
+        for="eea.climateadapt.acevideo.IAceVideo
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .videos.VideosEditForm"
-        factory=".videos.VideosFormExtender"
+        .video.VideoEditForm"
+        factory=".video.VideoFormExtender"
         />
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.acevideo.IAceVideos
+        for="eea.climateadapt.acevideo.IAceVideo
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .videos.VideosAddForm"
-        factory=".videos.VideosFormExtender"
+        .video.VideoAddForm"
+        factory=".video.VideoFormExtender"
         />
 
     -----[ Publication Reports Form customizations ]----
@@ -467,9 +479,9 @@
 
     <browser:page
         name="view"
-        for="eea.climateadapt.acevideo.IAceVideos"
-        class="eea.climateadapt.browser.videos.VideosView"
-        template="pt/videos_view.pt"
+        for="eea.climateadapt.acevideo.IAceVideo"
+        class="eea.climateadapt.browser.video.VideoView"
+        template="pt/video_view.pt"
         permission="zope2.View"
         />
 
@@ -611,6 +623,19 @@
         permission="cmf.ManagePortal"
         />
 
+    <browser:page
+        for="*"
+        name="help-categories"
+        template="pt/help-categories.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="eu-sector-policies"
+        template="pt/eu-sector-policies.pt"
+        permission="zope2.View"
+        />
 
     <!-- Tile helpers -->
 
@@ -799,5 +824,12 @@
     class=".admin.GoPDB"
     permission="cmf.ManagePortal"
     />
+
+  <browser:page
+    class=".main.FullWidthContentTypes"
+    for="*"
+    name="fullwidth_content_types"
+    permission="zope.Public"
+  />
 
 </configure>

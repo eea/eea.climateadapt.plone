@@ -1,20 +1,50 @@
-<link rel="shortcut icon" href="/frontpage/cca/++theme++climateadapt/static/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="/frontpage/cca/++theme++climateadaptv2/static/images/favicon.ico" type="image/x-icon"/>
 <link href='https://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css' />
 
 
 <!--<script type="text/javascript" src="/portal_javascripts/Sunburst%20Theme/++resource++plone.app.jquery.js"></script>-->
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<!--?<script type="text/javascript" src="/frontpage/cca/portal_javascripts/Sunburst%20Theme/++resource++plone.app.jquery.js?ts=14"></script>-->
 
 <!--<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:8080/cca/portal_css/Sunburst%20Theme/reset.css">-->
 <!--<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:8080/cca/portal_css/Sunburst%20Theme/base.css">-->
 <!--<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:8080/cca/portal_css/Sunburst%20Theme/public.css">-->
 <!--<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:8080/cca/portal_css/Sunburst%20Theme/authoring.css">-->
-<link rel="stylesheet" href="/frontpage/cca/++theme++climateadapt/static/bs3/css/bootstrap.css" type="text/css"/>
-<script type="text/javascript" src="/frontpage/cca/++theme++climateadapt/static/main.js?ts=14"></script>
-<link rel="apple-touch-icon" href="/frontpage/cca/++theme++climateadapt/static/touch_icon.png"/>
-<link type="text/css" rel="stylesheet" href="/frontpage/cca/++theme++climateadapt/static/style.css?ts=46"/>
-<link type="text/css" rel="stylesheet" href="/frontpage/cca/++theme++climateadapt/static/jquery.qtip.css"/>
+<!--?<link rel="stylesheet" href="/frontpage/cca/++theme++climateadapt/static/bs3/css/bootstrap.css" type="text/css"/>-->
+
+<script type="text/javascript" src="/frontpage/cca/++theme++climateadaptv2/static/js/main.js?ts=14"></script>
+<script type="text/javascript" src="/frontpage/cca/++theme++climateadaptv2/static/js/dev_fixes.js?ts=14"></script>
+<!--?<script type="text/javascript" src="/frontpage/cca/++theme++climateadaptv2/static/js/slick.min.js?ts=14"></script>-->
+
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="/frontpage/cca/portal_javascripts/Sunburst%20Theme/++resource++select2/select2.min.js?ts=14"></script>
+<script type="text/javascript" src="/frontpage/cca/portal_javascripts/Sunburst%20Theme/dropdown.js?ts=14"></script>
+<!--?<script type="text/javascript" src="/portal_javascripts/Sunburst%20Theme/styleswitcher.js?ts=14"></script>-->
+
+<script type="text/javascript" src="/frontpage/cca/portal_javascripts/Sunburst%20Theme/collective.js.jqueryui.custom.min.js?ts=14"></script>
+<!--?<script type="text/javascript" src="/frontpage/cca/portal_javascripts/Sunburst%20Theme/++resource++plone.app.jquerytools.js?ts=14"></script>-->
+<!--?<script type="text/javascript" src="/frontpage/cca/portal_javascripts/Sunburst%20Theme/++resource++plone.app.jquerytools.form.js?ts=14"></script>
+<script type="text/javascript" src="/frontpage/cca/portal_javascripts/Sunburst%20Theme/++resource++plone.app.jquerytools.overlayhelpers.js?ts=14"></script>-->
+
+
+<link rel="apple-touch-icon" href="/frontpage/cca/++theme++climateadaptv2/static/images/touch_icon.png"/>
+
+
+<link type="text/css" rel="stylesheet" href="/portal_css/Sunburst%20Theme/member.css?ts=46"/>
+<link type="text/css" rel="stylesheet" href="/portal_css/Sunburst%20Theme/++resource++select2/select2.css?ts=46"/>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="/frontpage/cca/portal_css/Sunburst%20Theme/mobile.css" type="text/css" />
+
+
+<link type="text/css" rel="stylesheet" href="/frontpage/cca/++theme++climateadaptv2/static/css/compiled-css.css?ts=46"/>
+<link type="text/css" rel="stylesheet" href="/frontpage/cca/++theme++climateadaptv2/static/css/compiled-less.css?ts=46"/>
+<link type="text/css" rel="stylesheet" href="/frontpage/cca/++theme++climateadaptv2/static/css/jquery.qtip.css?ts=46"/>
+<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css"/>
+
+
 <!--<script type="text/javascript" src="http://localhost:8080/cca/frontpage/++theme++climateadapt/static/jquery.qtip.min.js"></script>-->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 

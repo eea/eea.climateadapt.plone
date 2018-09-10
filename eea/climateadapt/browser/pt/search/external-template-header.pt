@@ -1,14 +1,33 @@
 <div class="simplified-template-header"
-     xmlns:i18n="http://www.w3.org/1999/xhtml">
+     xmlns:i18n="http://www.w3.org/1999/xhtml"
+    metal:use-macro="context/main_template/macros/master"
+>
 
   <base tal:attributes="href python: view.theme_base()" />
+
   <div id="portal-top" class="row" i18n:domain="plone" >
     <div class="cell width-full position-0">
-      <div tal:replace="structure provider:plone.portaltop" ></div>
+        <div tal:replace="structure provider:plone.portaltop" >
+        </div>
     </div>
+
   </div>
 
-  <div id="portal-columns" class="row">
+    <div id="portal-columns" class="row"  >
     <div id="portal-column-content" class="cell"></div>
   </div>
+    <div metal:use-macro="context/main_template/macros/master" >
+        <div metal:fill-slot="header"></div>
+    </div>
+
+    <metal:main fill-slot="content">
+        <!--?<div id="analyticsID" class="hide" tal:attributes="data-tracking python: view.getanalyticsid()"></div>-->
+    </metal:main>
+    <metal:main fill-slot="content-title"></metal:main>
+    <metal:main fill-slot="content-description"></metal:main>
+    <metal:main fill-slot="content-core">
+        <div id="search-app-holder"></div>
+        <div class="eea-pdf-viewlet"></div>
+    </metal:main>
+
 </div>

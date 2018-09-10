@@ -1,4 +1,176 @@
-<div id="case-studies-homepage-slider-wrapper">
+<div class="slider">
+    <!--? slide 1 -->
+    <div class="slider-image-wrapper" tal:define="item python: view.get_tile('s2')">
+        <div tal:define="picture python: view.get_image(item.s2_primary_photo, 's2_primary_photo')"
+             tal:attributes="style string: background-image:url('${picture}')"
+             class="slider-image">
+        </div>
+
+        <div class="slider-caption">
+            <h3 tal:content="item/s2_title">About Climate Change Adaptation in Europe</h3>
+            <div class="slider-description">
+                <p tal:replace="structure python:item.s2_description.output">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
+            </div>
+            <div class="slider-bottom-caption">
+                <div class="read-more-wrapper">
+                    <a href="" class="read-more" tal:attributes="href item/s2_read_more_link" target="_blank">
+                        <i class="fa fa-angle-double-right"></i>
+                        Read more
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--? end slide 1 -->
+
+    <!--? slide 2 -->
+    <div class="slider-image-wrapper" tal:define="item python: view.get_tile('s8')">
+      <div tal:define="picture python: view.get_image(item.s8_primary_photo, 's8_primary_photo')"
+           tal:attributes="style string: background:url('${picture}')"
+           class="slider-image">
+      </div>
+        <img src="" tal:define="picture python: view.get_image(item.s8_primary_photo, 's8_primary_photo')" tal:attributes = "src picture"
+             alt="About Climate Change Adaptation in Europe" />
+        <div class="slider-caption">
+            <h3 tal:content="item/s8_title">About Climate Change Adaptation in Europe</h3>
+            <div class="slider-description">
+                <p tal:replace="structure python:item.s8_description.output">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
+            </div>
+            <div class="slider-bottom-caption">
+                <div class="read-more-wrapper">
+                    <a href="" class="read-more" tal:attributes="href item/s8_read_more_link" target="_blank">
+                        <i class="fa fa-angle-double-right"></i>
+                        Read more
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--? end slide 2 -->
+
+    <!--? slide 3 -->
+    <div class="slider-image-wrapper" tal:define="item python: view.last_dbitem()">
+      <div tal:define="picture string: ${context/++resource++eea.climateadapt}/frontpage/aceitem_picture.jpg"
+           tal:attributes="style string: background-image:url('${picture}')"
+           class="slider-image">
+      </div>
+
+        <div class="slider-caption">
+            <h3 tal:content="item/title">About Climate Change Adaptation in Europe</h3>
+            <div class="slider-description">
+                <p tal:replace="python: view.html2text(item.long_description.output)[:300] + '...'">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
+            </div>
+            <div class="slider-bottom-caption">
+                <div class="read-more-wrapper">
+                    <a href="" class="read-more" tal:attributes="href item/absolute_url" target="_blank">
+                        <i class="fa fa-angle-double-right"></i>
+                        Read more
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--? slide 3 -->
+
+    <!--? slide 4 -->
+    <div class="slider-image-wrapper" tal:define="item view/news_items">
+      <div tal:define="picture string: ${context/++resource++eea.climateadapt}/frontpage/events.jpg"
+           tal:attributes="style string: background-image:url('${picture}')"
+           class="slider-image">
+      </div>
+
+        <div class="slider-caption">
+            <h3 tal:content="item/title">About Climate Change Adaptation in Europe</h3>
+            <div class="slider-description">
+                <p tal:replace="item/description">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
+            </div>
+            <div class="slider-bottom-caption">
+                <div class="read-more-wrapper">
+                    <a href="" class="read-more" tal:attributes="href item/absolute_url" target="_blank">
+                        <i class="fa fa-angle-double-right"></i>
+                        Read more
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--? end slide 4 -->
+
+    <!--? slide 5 -->
+    <div class="slider-image-wrapper" tal:define="item python: view.get_tile('s5')">
+      <div tal:define="picture python: view.get_image(item.s5_primary_photo, 's5_primary_photo')"
+           tal:attributes="style string: background-image:url('${picture}')"
+           class="slider-image">
+      </div>
+
+        <div class="slider-caption">
+            <h3 tal:content="item/s5_title">About Climate Change Adaptation in Europe</h3>
+            <div class="slider-description">
+                <p tal:replace="structure python:item.s5_description.output">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
+            </div>
+            <div class="slider-bottom-caption">
+                <div class="read-more-wrapper">
+                    <a href="" class="read-more" tal:attributes="href item/s5_read_more_link" target="_blank">
+                        <i class="fa fa-angle-double-right"></i>
+                        Read more
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--? end slide 5 -->
+
+    <!--? slide 6 -->
+    <div class="slider-image-wrapper" tal:define="item python: view.last_casestudy()">
+      <div tal:define="picture item/image"
+           tal:attributes="style string: background-image:url('${picture}')"
+           class="slider-image">
+      </div>
+
+        <div class="slider-caption">
+            <h3 tal:content="item/title">About Climate Change Adaptation in Europe</h3>
+            <div class="slider-description">
+                <p tal:replace="python: item['description'][:300] + '...'">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
+            </div>
+            <div class="slider-bottom-caption">
+                <div class="read-more-wrapper">
+                    <a href="" class="read-more" tal:attributes="href item/url" target="_blank">
+                        <i class="fa fa-angle-double-right"></i>
+                        Read more
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--? end slide 6 -->
+
+    <!--? slide 7 -->
+    <div class="slider-image-wrapper" tal:define="item python: view.get_tile('s7')">
+      <div tal:define="picture python: view.get_image(item.s7_primary_photo, 's7_primary_photo')"
+           tal:attributes="style string: background-image:url('${picture}')"
+           class="slider-image">
+      </div>
+
+        <div class="slider-caption">
+            <h3 tal:content="item/s7_title">About Climate Change Adaptation in Europe</h3>
+            <div class="slider-description">
+                <p tal:replace="structure python:item.s7_description.output">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
+            </div>
+            <div class="slider-bottom-caption">
+                <div class="read-more-wrapper">
+                    <a href="" class="read-more" tal:attributes="href item/s7_read_more_link" target="_blank">
+                        <i class="fa fa-angle-double-right"></i>
+                        Read more
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--? end slide 7 -->
+</div>
+
+<!-- old slider: -->
+<!-- <div id="case-studies-homepage-slider-wrapper" tal:replace="nothing">
   <style>
 /* Portlet CSS Starts Here */
 /* ======================= */
@@ -138,7 +310,7 @@
             <div tal:replace="structure python:item.s2_description.output"> Description </div>
             <p>
               <a class="homepage-read-more" href="" tal:attributes="href item/s2_read_more_link" target="_blank">
-                  <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
+                  <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/ico-arrow.png" alt="arrow" />
                   <span tal:content="item/s2_read_more_text | nothing"> Read more </span>
               </a>
             </p>
@@ -164,7 +336,7 @@
           </div>
           <span tal:define="absolute view/context/absolute_url">
             <a class="homepage-read-more" href="" tal:attributes="href item/s8_read_more_link" target="_blank">
-                <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
+                <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/ico-arrow.png" alt="arrow" />
                 <span tal:content="item/s8_read_more_text | nothing"> Read more </span>
             </a>
           </span>
@@ -173,24 +345,24 @@
 
       <li class="" style="display: none;" tal:define="item view/last_dbitem">
         <div class="case-studies-homepage-slider-image">
-          <img src="/++resource++eea.climateadapt/frontpage/aceitem_picture.jpg" alt="Ace Item" />
+          <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/aceitem_picture.jpg" alt="Ace Item" />
         </div>
         <div class="case-studies-homepage-slider-description">
           <h2 tal:content="item/title"> Title</h2>
           <p tal:content="python: view.html2text(item.long_description.output)[:300] + '...'"> Description </p>
           <a class="homepage-read-more" href="" tal:attributes="href item/absolute_url" target="_blank">
-            <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
+            <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
         </div>
       </li>
 
       <li class="" style="display: none;">
         <div class="case-studies-homepage-slider-image">
-          <img src="/++resource++eea.climateadapt/frontpage/events.jpg" alt="Events" />
+          <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/events.jpg" alt="Events" />
         </div>
         <div class="case-studies-homepage-slider-description" tal:define="item view/news_items">
           <h2 tal:content="item/title"> Title </h2>
           <p tal:content="item/description"> Description </p>
-          <a class="homepage-read-more" href="" tal:attributes="href item/event_url | item/absolute_url" target="_blank"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
+          <a class="homepage-read-more" href="" tal:attributes="href item/event_url | item/absolute_url" target="_blank"> <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
         </div>
       </li>
 
@@ -205,7 +377,7 @@
           <div tal:content="structure python:item.s5_description.output"> Description </div>
           <p tal:define="absolute view/context/absolute_url">
             <a class="homepage-read-more" href="" tal:attributes="href item/s5_read_more_link" target="_blank">
-                <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
+                <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/ico-arrow.png" alt="arrow" />
                 <span tal:content="item/s5_read_more_text | nothing"> Read more </span>
             </a>
           </p>
@@ -220,7 +392,7 @@
           <h2 tal:content="item/title"> Title </h2>
           <p></p>
           <p tal:content="python: item['description'][:300] + '...'"> Description </p>
-          <a class="homepage-read-more" href="" tal:attributes="href item/url" target="_blank"> <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
+          <a class="homepage-read-more" href="" tal:attributes="href item/url" target="_blank"> <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/ico-arrow.png" alt="arrow" />Read more </a>
         </div>
       </li>
 
@@ -235,7 +407,7 @@
           <div tal:content="structure python:item.s7_description.output"> Description </div>
           <p tal:define="absolute view/context/absolute_url">
             <a class="homepage-read-more" href="" tal:attributes="href item/s7_read_more_link" target="_blank">
-                <img src="/++resource++eea.climateadapt/frontpage/ico-arrow.png" alt="arrow" />
+                <img tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/ico-arrow.png" alt="arrow" />
                 <span tal:content="item/s7_read_more_text | nothing"> Read more </span>
             </a>
           </p>
@@ -248,4 +420,4 @@
     <ul id="slidercontainer">
     </ul>
   </div>
-</div>
+</div> -->

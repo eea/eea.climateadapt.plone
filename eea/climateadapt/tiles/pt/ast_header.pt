@@ -7,10 +7,8 @@
   <body>
     <div class="tile-content">
       <div class="ast_header">
-        <h1>
-          <img tal:attributes="src string:/++theme++climateadapt/static/cca/img/bullit${view/data/step}.png" src="" />
-          <span tal:replace="structure view/data/title" />
-        </h1>
+        <span class="ast-title-step" tal:content="view/data/step"></span>
+        <h1 tal:content="view/data/title"></h1>
       </div>
     </div>
   </body>

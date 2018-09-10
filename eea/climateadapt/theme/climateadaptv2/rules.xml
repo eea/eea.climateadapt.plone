@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules
+  xmlns="http://namespaces.plone.org/diazo"
+  xmlns:css="http://namespaces.plone.org/diazo/css"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+  <rules css:if-content="#visual-portal-wrapper">
+
+    <!--Plone.app.toolbar-->
+    <append theme="/html/body" content="//div[@data-iframe='toolbar']"/>
+
+    <!--Head-->
+    <copy css:content="html" css:theme="html" attributes="lang dir"/>
+    <drop css:theme="head script" css:if-content=".template-sat"/>
+    <before css:content="head style, head link, head script, head meta" css:theme-children="head"/>
+    <replace css:content="head title" css:theme="head title"/>
+    <copy css:content="head base" css:theme="head base"/>
+    <drop css:content="head link[rel='shortcut icon']"/>
+    <drop css:content="head link[rel='apple-touch-icon']"/>
+
+    <!--Content-->
+    <merge attributes="class" css:content="body" css:theme="body"/>
+    <copy attributes="id dir" css:content="body" css:theme="body"/>
+    <copy attributes="role" css:content="content" css:theme="contentspace"/>
+
+    <rules css:if-content=".section-frontpage.template-standard">
+      <theme href="index.html" />
+      <replace css:content-children=".fp-news-tile" css:theme-children=".fp-news-tile" />
+      <replace css:content-children=".fp-events-tile" css:theme-children=".fp-events-tile" />
+      <replace css:theme=".country-dropdown select" css:content="#fp-country-selector"  />
+
+      <!-- slider -->
+      <replace css:theme=".slider" css:content=".slider"  />
+    </rules>
+
+
+    <rules css:if-not-content=".section-frontpage.template-standard">
+      <theme href="page.html" />
+    </rules>
+
+
+    <replace css:content="#portal-columns" css:theme="#page-body"/>
+    <replace css:content="#navbar" css:theme=".main-nav" href="@@site_navbar" method="document"/>
+
+    <drop attributes="class" css:content="#portal-columns" />
+    <!-- <drop attributes="class" css:content="#portal-column-content" /> -->
+
+    <!--Viewlets-->
+    <!-- <replace css:content="#portal-personaltools" css:theme="#user"/> -->
+    <!-- <copy attributes="href title" css:content="#portal-logo" css:theme="#logo a"/> -->
+    <!-- <replace css:content="#portal-header p.hiddenStructure" css:theme="#accessibility"/> -->
+    <!-- <drop css:content=".searchSection"/> -->
+    <!-- <replace css:content="#portal-searchbox" css:theme="#search"/> -->
+    <!--  -->
+
+
+    <!-- <replace css:content-children="#portal-footer" css:theme="#footer-info"/> -->
+    <!-- <replace css:content="#portal-siteactions" css:theme-children="#siteactions"/> -->
+    <!-- <after css:content="#portal-languageselector" css:theme="#logo"/> -->
+
+    <!-- <after css:content="#visual-portal-wrapper .row:last-child script" css:theme="head script:last-child"/> -->
+    <after css:content="#visual-portal-wrapper script[data-diazo='google-analytics']" css:theme-children='body'/>
+
+    <!-- Global Search box -->
+    <copy attributes="action method" css:content="#portal-searchbox form" css:theme=".search-box form" />
+
+    <!-- Personal menu -->
+    <rules if="$is_anon">
+      <replace css:theme-children=".login-container" css:content="#portal-personaltools-wrapper ul" />
+    </rules>
+    <rules if-not="$is_anon">
+      <drop css:theme=".login-text" />
+      <drop css:theme=".login-form" />
+      <replace css:theme-children="#portal-personaltools" css:content="#portal-personaltools-wrapper li" />
+    </rules>
+    <replace css:theme="#personal-menu .user-name" css:content="#portal-personaltools-wrapper dl dt a" />
+  </rules>
+
+  <!-- two column layout ex: eu sector policies -->
+  <rules css:if-content=".columned">
+
+    <drop css:content=".col-md-9 .tile-default > .tile-content > h2" />
+    <drop css:content=".col-md-9 .tile-default > .tile-content > h1" />
+
+    <drop css:content="h1.documentFirstHeading" />
+    <before css:content=".content-column > .tile-default">
+      <xsl:copy-of select='//*[@class="documentFirstHeading"]' />
+    </before>
+
+    <drop css:content="#viewlet-below-content-title" />
+    <before css:content=".content-column > .tile-default">
+      <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
+    </before>
+
+    <drop css:content="#document-action-download_pdf" />
+    <after css:content=".content-column > .tile:last-child">
+      <xsl:copy-of select='//*[@id="document-action-download_pdf"]' />
+    </after>
+
+    <!-- for database items move here: -->
+    <after css:content=".ace-content-column">
+      <xsl:copy-of select='//*[@id="document-action-download_pdf"]' />
+    </after>
+
+  </rules>
+
+  <!-- AST & UAST: move last modified under the h1 title -->
+  <rules css:if-content=".subsection-tools-adaptation-support-tool">
+    <drop css:content="#plone-document-byline" />
+    <after css:content=".ast_header > h1">
+      <xsl:copy-of select='//*[@id="plone-document-byline"]' />
+    </after>
+  </rules>
+
+  <rules css:if-content=".subsection-tools-urban-ast">
+    <drop css:content="#plone-document-byline" />
+    <after css:content=".ast_header > h1">
+      <xsl:copy-of select='//*[@id="plone-document-byline"]' />
+    </after>
+  </rules>
+
+  <!-- Case studies database items: move last modified under the h1 title -->
+  <rules css:if-content=".aceitem_page .case-studies-top">
+    <drop css:content="#plone-document-byline" />
+    <after css:content=".case-studies-top > h1">
+      <xsl:copy-of select='//*[@id="plone-document-byline"]' />
+    </after>
+  </rules>
+
+  <!-- add edit bar for the homepage, also move it to the top -->
+  <replace css:content="#edit-bar" css:theme="#edit-bar" method="raw"/>
+  <drop css:content="#edit-bar" />
+
+  <!-- layout for country profile pages : -->
+  <!-- ex. cca/countries-regions/countries/austria  -->
+  <rules css:if-content=".subsection-countries">
+
+    <replace css:content=".subsection-countries .col-md-2">
+      <div class="column country-header-map">
+        <xsl:apply-templates select="./*"/>
+      </div>
+    </replace>
+
+    <replace css:content=".subsection-countries .col-md-10">
+      <div class="column country-content">
+        <xsl:apply-templates select="./*"/>
+      </div>
+    </replace>
+  </rules>
+
+  <!-- hide pdf button from the main help introduction page -->
+  <rules css:if-content=".subsection-index_html">
+    <drop css:content="#document-action-download_pdf"/>
+  </rules>
+
+  <!-- layout for the help subpages -->
+  <rules css:if-content=".subsection-share-your-info"
+         css:if-not-content=".subsection-share-your-info-index_html">
+
+    <drop css:content="#viewlet-above-content-body"/>
+    <drop css:content="#content-core > .row"/>
+    <drop css:content="#viewlet-below-content-body"/>
+    <drop css:content="#document-action-download_pdf" />
+
+    <replace css:content="#content">
+      <div id="content">
+        <xsl:apply-templates select="./*"/>
+        <div class="row share-info-wrapper">
+          <div class="col-md-4">
+            <xsl:copy-of select='//*[contains(@id,"viewlet-above-content-body")]' />
+          </div>
+          <div class="col-md-8">
+            <xsl:copy-of select='//*[contains(@id,"content-core")]/*[contains(@class,"row")]/*[contains(@class, "col-md-8")]/*' />
+            <xsl:copy-of select='//*[contains(@id,"content-core")]/*[contains(@class,"row")]/*[contains(@class, "col-md-12")]' />
+          </div>
+        </div>
+        <xsl:copy-of select='//*[contains(@id,"viewlet-below-content-body")]' />
+      </div>
+    </replace>
+  </rules>
+
+
+  <rules css:if-content=".section-news-archive">
+    <drop css:content="#viewlet-below-content > #category"/>
+    <after css:content="#viewlet-below-content-body">
+      <xsl:copy-of select='//*[contains(@id,"viewlet-below-content")]/*[contains(@id,"category")]' />
+    </after>
+  </rules>
+
+  <rules css:if-content=".section-more-events">
+    <drop css:content="#viewlet-below-content > #category"/>
+    <after css:content="#viewlet-below-content-body">
+      <xsl:copy-of select='//*[contains(@id,"viewlet-below-content")]/*[contains(@id,"category")]' />
+    </after>
+  </rules>
+
+
+  <!-- <rules css:if-content=".subsection-tools-urban-adaptation-climatic-threats">
+    <before theme-children="/html/body">
+      <xsl:attribute name="class"><xsl:value-of select="/html/body/@class" /> fullwidth</xsl:attribute>
+    </before>
+  </rules> -->
+
+  <rules if="contains($host, 'local')">
+    <!--<xsl:value-of select="$host" /> shows value of given variable -->
+    <after css:theme="footer">
+      <script src="/cca/++theme++climateadaptv2/static/js/dev_fixes.js">
+      </script>
+    </after>
+  </rules>
+
+</rules>

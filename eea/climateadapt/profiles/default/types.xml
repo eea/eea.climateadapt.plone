@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <object name="portal_types" meta_type="Plone Types Tool">
+
     <object name="eea.climateadapt.aceproject" meta_type="Dexterity FTI" />
     <object name="eea.climateadapt.adaptationoption" meta_type="Dexterity FTI" />
     <object name="eea.climateadapt.casestudy" meta_type="Dexterity FTI" />
@@ -13,9 +14,6 @@
     <object name="eea.climateadapt.tool" meta_type="Dexterity FTI" />
     <object name="collective.cover.content" meta_type="Dexterity FTI"/>
     <object name="eea.climateadapt.city_profile" meta_type="Dexterity FTI" />
-    <object name="eea.climateadapt.videos" meta_type="Dexterity FTI" />
-
-    <!-- <object name="Collection" -->
-    <!--     meta_type="Factory&#45;based Type Information with dynamic views"/> -->
+    <object name="eea.climateadapt.video" meta_type="Dexterity FTI" />
 
 </object>

@@ -1,0 +1,125 @@
+@import "variables.less";
+
+/*** main area  ***/
+.main-area .row {
+  margin-right: -10px;
+  margin-left: -10px;
+  display: flex;
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+}
+
+.main-area .row:first-child {
+  margin-top: 10px;
+}
+
+.main-box {
+  padding: 10px;
+  height: auto;
+}
+
+.box-container {
+  background-color: #fff;
+  border: 1px solid #E5E5E5;
+  height: 100%;
+  padding: 20px;
+  position: relative;
+  li {
+    list-style-type: none;
+  }
+}
+
+.box-listing li {
+  padding: 15px 0;
+  display: block;
+}
+
+.info-section {
+  background-color: @secondary-blue;
+  border: 1px solid transparent;
+}
+
+.content-body {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.info-section p {
+  color: #fff;
+  text-align: center;
+}
+
+.info-title-section {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+
+.info-section .info-title {
+  margin-left: 20px;
+}
+
+.info-section .info-title h5 {
+  color: #fff;
+  font-size: 27px;
+  font-family: RobotoM;
+  margin-bottom: 0;
+  line-height: 30px;
+}
+
+.info-section .info-title span {
+  color: @yellow;
+  font-family: RobotoB;
+}
+
+.info-section .info-button {
+  background-color: transparent;
+  border: 2px solid #fff;
+  margin: auto;
+  color: #fff;
+}
+
+.info-section .info-button:hover {
+  background-color: #fff;
+  border: 2px solid #fff;
+  color: @secondary-blue;
+}
+
+.news-time {
+  font-size: 10px;
+  color: @dark-gray;
+}
+
+.newsletter-wrapper,
+.rss-feed-wrapper {
+  text-align: center;
+}
+
+.newsletter-wrapper h4 {
+  font-size: 27px;
+  color: @dark-gray;
+  margin: auto 0;
+}
+
+.newsletter-wrapper p,
+.rss-feed-wrapper p {
+  margin: 0 auto;
+}
+
+.main-link-wrapper {
+  margin: auto;
+}
+
+.rss-feed-wrapper i {
+  font-size: 50px;
+  color: #FF6600;
+  margin: auto 0;
+}

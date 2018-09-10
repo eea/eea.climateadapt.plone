@@ -776,6 +776,6 @@ class ViewGoogleAnalyticsReport(BrowserView):
         site = portal.get()
         report = site.__annotations__.get('google-analytics-cache-data', {})
 
-        reports = reversed(sorted(report.items(), key=lambda x: x[1]))
+        reports = reversed( sorted(report.items(), key=lambda x: int(x[1]) ))
 
         return islice(reports, 0, 10)

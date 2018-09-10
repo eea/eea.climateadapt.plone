@@ -1,5 +1,6 @@
 import json
 import logging
+import datetime
 
 from apiclient.discovery import build
 from eea.climateadapt.browser.site import _extract_menu
@@ -437,12 +438,14 @@ def initialize_analyticsreporting(credentials_data):
         credentials_data, SCOPES)
 
     # Build the service object.
+
     analytics = build('analyticsreporting', 'v4', credentials=credentials)
 
     return analytics
 
 
 def custom_report(analytics, view_id):
+    now = datetime.datetime.now()
 
     return analytics.reports().batchGet(
         body={"reportRequests": [
@@ -451,7 +454,7 @@ def custom_report(analytics, view_id):
                 "dateRanges": [
                     {
                         "startDate": "2018-04-13",
-                        "endDate": "2018-04-13"
+                        "endDate": now.strftime("%Y-%m-%d")
                     }
                 ],
                 "metrics": [
@@ -474,6 +477,24 @@ def custom_report(analytics, view_id):
                         "metrics": [
                             {
                                 "expression": "ga:users"
+                            }
+                        ]
+                    }
+                ],
+                "orderBys": [
+                    {
+                        "fieldName": "ga:totalEvents",
+                        "sortOrder": "DESCENDING"
+                    }
+                ],
+                "dimensionFilterClauses": [
+                    {
+                        "filters": [
+                            {
+                                "dimensionName": "ga:eventCategory",
+                                "expressions": [
+                                    "database-search"
+                                ]
                             }
                         ]
                     }
@@ -501,7 +522,9 @@ def parse_response(response):
 
     for row in report.get('data', {}).get('rows', []):
         label = row['dimensions'][0]
-        value = row['metrics'][0]['pivotValueRegions'][0]['values'][0]
+
+        # value = row['metrics'][0]['pivotValueRegions'][0]['values'][0]
+        value = row['metrics'][0]['values'][0]
 
         result[label] = value
 

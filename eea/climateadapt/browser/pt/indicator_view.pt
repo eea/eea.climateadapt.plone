@@ -6,10 +6,11 @@
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   lang="en"
   metal:use-macro="context/main_template/macros/master"
-  i18n:domain="example.conference">
+  >
   <body>
 
-    <metal:main fill-slot="main">
+    <metal:main fill-slot="body">
+
       <tal:main-macro metal:define-macro="content-core">
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
@@ -18,7 +19,7 @@
             <h3>Description</h3>
             <div tal:content="structure python: view.w['long_description'].render()">description here</div>
 
-            <h4>Reference information</h4>
+            <h4 class="reference-title">Reference information</h4>
             <h5>Websites:</h5>
             <metal:macro use-macro="context/ace_macros/macros/websites" />
 
@@ -37,24 +38,26 @@
 
             <metal:macro use-macro="context/ace_macros/macros/files" />
 
-            <h4>Keywords</h4>
+            <h4>Keywords:</h4>
             <metal:macro use-macro="context/ace_macros/macros/keywords" />
 
-            <h4>Climate impacts</h4>
+            <h4>Climate impacts:</h4>
             <tal:block content="structure python:view.w['climate_impacts'].render()"/>
 
-            <h4>Elements</h4>
+            <h4>Elements:</h4>
             <tal:block content="structure python:view.w['elements'].render()"/>
 
             <h4>Sectors</h4>
             <tal:block content="structure python:view.w['sectors'].render()"/>
-            <h4>Geographic characterization</h4>
+            <h4>Geographic characterization:</h4>
             <metal:macro use-macro="context/ace_macros/macros/geochar" />
 
           </div>
 
         </metal:macro>
-        <div id="viewlet-below-content-body" tal:content="structure provider:plone.belowcontentbody" tal:condition="not:ajax_load" />
+        <div id="viewlet-below-content-body"
+          tal:content="structure provider:plone.belowcontentbody"
+          tal:condition="not:ajax_load" />
 
       </tal:main-macro>
     </metal:main>

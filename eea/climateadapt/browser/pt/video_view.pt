@@ -14,16 +14,23 @@
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
 
-          <div class="aceitem-left" metal:fill-slot="ace-left-slot" tal:define="url python: view.form_youtube_url()">
+          <div class="aceitem-left"
+               metal:fill-slot="ace-left-slot"
+               tal:define="embed view/context/embed | nothing"
+               >
 
-            <div>
+            <div tal:condition="embed">
+              <span tal:replace="structure embed"></span>
+            </div>
+
+            <div tal:define="url view/embed_url" tal:condition="not: embed">
               <iframe tal:attributes="height context/video_height; src url"
                 frameborder="0"
                 width="100%"
                 allowfullscreen
-                tal:condition="url | nothing">
+                tal:condition="url">
               </iframe>
-              <p tal:condition="python: url is None">The URL entered is not valid.</p>
+              <p tal:condition="not: url">The URL entered is not valid.</p>
             </div>
 
             <div style="margin-top: 1em;">

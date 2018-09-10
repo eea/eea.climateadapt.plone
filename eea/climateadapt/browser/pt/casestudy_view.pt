@@ -9,7 +9,7 @@
     i18n:domain="eea.climateadapt">
 
     <body>
-        <metal:main fill-slot="main">
+        <metal:main fill-slot="body">
             <tal:main-macro metal:define-macro="content-core">
 
                 <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
@@ -24,12 +24,12 @@
                     <div metal:fill-slot="title-slot"></div>
                     <div metal:fill-slot="ace-left-slot">
                       <div class="case-studies-top">
-                        <div class="case-studies-review-image-wrapper" tal:condition="primephoto" style="width: 34%;">
+                        <div metal:use-macro="context/ace_macros/macros/title_date"></div>
+                        <div class="case-studies-review-image-wrapper" tal:condition="primephoto">
                           <img tal:condition="primephoto" tal:replace="structure context/@@images/primary_photo/mini"/>
-                          <div tal:content="context/primary_photo_copyright"/>
+                          <div tal:content="context/primary_photo_copyright" class="image-copyright"/>
                         </div>
                         <div class="case-studies-top-title">
-                          <div metal:use-macro="context/ace_macros/macros/title_date"></div>
                           <div tal:content="structure python: view.w['long_description'].render()">
                             Description
                           </div>
@@ -117,10 +117,10 @@
                         <p tal:replace="structure python: view.w['objectives'].render()"></p>
 
                         <div tal:condition="view/get_adaptation_options | nothing">
-                            <em id="adapt_options_anchor" style="text-decoration: underline">Adaptation Options Implemented In This Case</em>
-                            <div tal:define="adaptations view/get_adaptation_options" tal:on-error="nothing">
-                              <a tal:repeat="obj adaptations" tal:attributes="href obj/absolute_url" tal:content="obj/Title" style="text-decoration: underline">Link</a>
-                            </div>
+                          <em id="adapt_options_anchor" style="text-decoration: underline">Adaptation Options Implemented In This Case</em>
+                          <div tal:define="adaptations view/get_adaptation_options" tal:on-error="nothing">
+                            <a tal:repeat="obj adaptations" tal:attributes="href obj/absolute_url" tal:content="obj/Title" style="text-decoration: underline">Link</a>
+                          </div>
                         </div>
 
                         <em id="solutions_anchor" style="text-decoration: underline">Solutions</em>
@@ -159,7 +159,7 @@
                             style="text-decoration: underline">Life Time</em>
                         <div tal:content="structure context/lifetime/output | nothing"></div>
 
-                        <h4>Reference Information</h4>
+                        <h4 class="reference-title">Reference Information</h4>
                         <em id="contact" style="text-decoration: underline">Contact</em>
                         <div tal:content="structure python: view.w['contact'].render()"></div>
 
@@ -182,49 +182,52 @@
                     <div metal:fill-slot="ace-right-slot">
 
                       <div class="case-studies-illustrations" tal:condition="supphotos">
-                        <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls"
-                            data-use-bootstrap-modal="false">
-                            <div class="slides"></div>
-                            <h3 class="title"></h3>
-                            <p class="description"></p>
-                            <a class="prev">‹</a>
-                            <a class="next">›</a>
-                            <a class="close">×</a>
-                            <p class="casestudies-gallery-copyright"></p>
-                            <a class="play-pause"></a>
-                            <ol class="indicator"></ol>
+                        <div id="blueimp-gallery"
+                             class="blueimp-gallery blueimp-gallery-controls"
+                             data-use-bootstrap-modal="false">
+                          <div class="slides"></div>
+                          <h3 class="title"></h3>
+                          <p class="description"></p>
+                          <a class="prev">‹</a>
+                          <a class="next">›</a>
+                          <a class="close">×</a>
+                          <p class="casestudies-gallery-copyright"></p>
+                          <a class="play-pause"></a>
+                          <ol class="indicator"></ol>
                         </div>
-                        <div id="links" class="bluebutton">
-                            <span>
-                                Case Study Illustrations (<span tal:replace="python:len(supphotos)"/>)
-                            </span>
-                            <div tal:repeat="photo supphotos" class="gallery-hide" style="display:none;">
-                              <a data-gallery href="" title=""
-                                  data-description="Something"
-                                  tal:attributes="href string:${photo/absolute_url}/@@images/image/large;
-                                  title photo/Title;
-                                  data-description photo/description;
-                                  data-copyright photo/rights">
-                                  <img tal:attributes="src string:${photo/absolute_url}/@@images/image/large" />
-                              </a>
-                            </div>
+
+                        <div id="links">
+                          <span>
+                            Case Study Illustrations (<span tal:replace="python:len(supphotos)"/>)
+                            <i class="fa fa-camera"></i>
+                          </span>
+                          <div tal:repeat="photo supphotos" class="gallery-hide" style="display:none;">
+                            <a data-gallery href="" title=""
+                                data-description="Something"
+                                tal:attributes="href string:${photo/absolute_url}/@@images/image/large;
+                                title photo/Title;
+                                data-description photo/description;
+                                data-copyright photo/rights">
+                                <img tal:attributes="src string:${photo/absolute_url}/@@images/image/medium" />
+                            </a>
+                          </div>
                         </div>
                       </div>
 
                       <div metal:use-macro="context/ace_macros/macros/files"></div>
-                      <h4>Keywords</h4>
+                      <h4>Keywords:</h4>
                       <div metal:use-macro="context/ace_macros/macros/keywords"></div>
-                      <h4>Sectors</h4>
+                      <h4>Sectors:</h4>
                       <div tal:content="structure python:view.w['sectors'].render()"/>
-                      <h4>Climate impacts</h4>
+                      <h4>Climate impacts:</h4>
                       <div tal:content="structure python:view.w['climate_impacts'].render()"/>
                       <div tal:condition="python: view.governance_level() != ''">
-                          <h4>Governance level</h4>
-                          <div tal:repeat="level python: view.governance_level()">
-                              <span tal:content="level"></span>
-                          </div>
+                        <h4>Governance level:</h4>
+                        <div tal:repeat="level python: view.governance_level()">
+                          <span tal:content="level"></span>
+                        </div>
                       </div>
-                      <h4>Geographic characterization</h4>
+                      <h4>Geographic characterization:</h4>
                       <div metal:use-macro="context/ace_macros/macros/geochar"></div>
                     </div>
                   </metal:macro>

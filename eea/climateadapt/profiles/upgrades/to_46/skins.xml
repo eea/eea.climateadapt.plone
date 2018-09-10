@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<object name="portal_skins" meta_type="Plone Skins Tool">
+
+  <object name="cca_templates_overrides" meta_type="Filesystem Directory View"
+    directory="eea.climateadapt:skins/cca_overrides_templates"/>
+
+  <skin-path name="*">
+    <layer insert-after="custom" name="cca_templates_overrides"/>
+  </skin-path>
+
+</object>
