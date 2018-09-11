@@ -24,7 +24,7 @@ from eea.climateadapt.browser.aceproject import AceProjectAddForm
 from eea.climateadapt.browser.adaptationoption import AdaptationOptionAddForm
 from eea.climateadapt.browser.casestudy import CaseStudyAddForm
 from eea.climateadapt.browser.mapgraphsdataset import MapsAddForm
-from eea.climateadapt.browser.videos import VideoAddForm
+from eea.climateadapt.browser.video import VideoAddForm
 from eea.climateadapt.mayorsadapt.cityprofile import CityProfileAddForm
 from OFS.Image import Image
 from OFS.Traversable import Traversable
