@@ -407,70 +407,70 @@ function fix_map(){
 
   //Add tooltips to glossary terms
   $(document).ready(function() {
-    // function qtip2Initializer() {
-    //   // Make sure to only match links to the glossary
-    //   $('a[href*="glossary#link"]').each(function() {
-    //     var that = this;
-    //
-    //     var url = $(this).attr('href');
-    //
-    //     var thisLinkTerm = url.substring(url.indexOf("#")+1);
-    //
-    //     //add glossary CSS class
-    //     $(this).addClass("glossary-inline-term");
-    //
-    //     // Your logic to execute when qTip2 is available
-    //     // We make use of the .each() loop to gain access to each element via the "this" keyword...
-    //     $(that).qtip({
-    //       content: {
-    //         text: function(event, api) {
-    //           var thatText = $(that).text();
-    //
-    //           $.ajax({
-    //             // url: element.data('url') // Use data-url attribute for the URL
-    //             url: $(that).attr('href')
-    //           })
-    //             .then(function(content) {
-    //               // Set the tooltip content upon successful retrieval
-    //               var htmlFiltered = $(content).find("#" + thisLinkTerm);
-    //               api.set('content.text', htmlFiltered);
-    //             }, function(xhr, status, error) {
-    //               // Upon failure... set the tooltip content to the status and error value
-    //               api.set('content.text', status + ': ' + error);
-    //             });
-    //           return '<div class="GlossaryTitle">' + thatText.charAt(0).toUpperCase() + thatText.slice(1) + '</div><p>Loading glossary term...</p>'; // Set some initial text
-    //         }
-    //       },
-    //       position: {
-    //         at: 'bottom center', // Position the tooltip above the link
-    //         my: 'top center',
-    //         viewport: $(window), // Keep the tooltip on-screen at all times
-    //         effect: false // Disable positioning animation
-    //       },
-    //       show: {
-    //         event: 'mouseenter',
-    //         solo: true // Only show one tooltip at a time
-    //       },
-    //       hide: {
-    //         event: 'mouseleave'
-    //       },
-    //       style: {
-    //         classes: 'ui-tooltip-blue ui-tooltip-shadow ui-tooltip-rounded'
-    //       }
-    //     });   // END qtip
-    //
-    //   });
-    // }
-    //
-    // if(window.require && window.requirejs) {
-    //   requirejs.config({
-    //     paths: {
-    //       // You may also need to tell set the jquery path, as some sites (like BBC) use a different name!
-    //       qtip2: '//cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.1/jquery.qtip.min'
-    //     }
-    //   });
-    //   requirejs(['qtip2'], qtip2Initializer); // Load it using RequireJS, and execute the qtip2 logic
-    // }
+    function qtip2Initializer() {
+      // Make sure to only match links to the glossary
+      $('a[href*="glossary#link"]').each(function() {
+        var that = this;
+
+        var url = $(this).attr('href');
+
+        var thisLinkTerm = url.substring(url.indexOf("#")+1);
+
+        //add glossary CSS class
+        $(this).addClass("glossary-inline-term");
+
+        // Your logic to execute when qTip2 is available
+        // We make use of the .each() loop to gain access to each element via the "this" keyword...
+        $(that).qtip({
+          content: {
+            text: function(event, api) {
+              var thatText = $(that).text();
+
+              $.ajax({
+                // url: element.data('url') // Use data-url attribute for the URL
+                url: $(that).attr('href')
+              })
+                .then(function(content) {
+                  // Set the tooltip content upon successful retrieval
+                  var htmlFiltered = $(content).find("#" + thisLinkTerm);
+                  api.set('content.text', htmlFiltered);
+                }, function(xhr, status, error) {
+                  // Upon failure... set the tooltip content to the status and error value
+                  api.set('content.text', status + ': ' + error);
+                });
+              return '<div class="GlossaryTitle">' + thatText.charAt(0).toUpperCase() + thatText.slice(1) + '</div><p>Loading glossary term...</p>'; // Set some initial text
+            }
+          },
+          position: {
+            at: 'bottom center', // Position the tooltip above the link
+            my: 'top center',
+            viewport: $(window), // Keep the tooltip on-screen at all times
+            effect: false // Disable positioning animation
+          },
+          show: {
+            event: 'mouseenter',
+            solo: true // Only show one tooltip at a time
+          },
+          hide: {
+            event: 'mouseleave'
+          },
+          style: {
+            classes: 'ui-tooltip-blue ui-tooltip-shadow ui-tooltip-rounded'
+          }
+        });   // END qtip
+
+      });
+    }
+
+    if(window.require && window.requirejs) {
+      requirejs.config({
+        paths: {
+          // You may also need to tell set the jquery path, as some sites (like BBC) use a different name!
+          qtip2: '//cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.1/jquery.qtip.min'
+        }
+      });
+      requirejs(['qtip2'], qtip2Initializer); // Load it using RequireJS, and execute the qtip2 logic
+    }
 
 
     // Make sure it doesn't follow the link when we click it
