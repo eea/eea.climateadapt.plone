@@ -154,33 +154,6 @@
     <drop css:content="#document-action-download_pdf"/>
   </rules>
 
-  <!-- layout for the help subpages -->
-  <rules css:if-content=".subsection-share-your-info"
-         css:if-not-content=".subsection-share-your-info-index_html">
-
-    <drop css:content="#viewlet-above-content-body"/>
-    <drop css:content="#content-core > .row"/>
-    <drop css:content="#viewlet-below-content-body"/>
-    <drop css:content="#document-action-download_pdf" />
-
-    <replace css:content="#content">
-      <div id="content">
-        <xsl:apply-templates select="./*"/>
-        <div class="row share-info-wrapper">
-          <div class="col-md-4">
-            <xsl:copy-of select='//*[contains(@id,"viewlet-above-content-body")]' />
-          </div>
-          <div class="col-md-8">
-            <xsl:copy-of select='//*[contains(@id,"content-core")]/*[contains(@class,"row")]/*[contains(@class, "col-md-8")]/*' />
-            <xsl:copy-of select='//*[contains(@id,"content-core")]/*[contains(@class,"row")]/*[contains(@class, "col-md-12")]' />
-          </div>
-        </div>
-        <xsl:copy-of select='//*[contains(@id,"viewlet-below-content-body")]' />
-      </div>
-    </replace>
-  </rules>
-
-
   <rules css:if-content=".section-news-archive">
     <drop css:content="#viewlet-below-content > #category"/>
     <after css:content="#viewlet-below-content-body">
@@ -194,13 +167,6 @@
       <xsl:copy-of select='//*[contains(@id,"viewlet-below-content")]/*[contains(@id,"category")]' />
     </after>
   </rules>
-
-
-  <!-- <rules css:if-content=".subsection-tools-urban-adaptation-climatic-threats">
-    <before theme-children="/html/body">
-      <xsl:attribute name="class"><xsl:value-of select="/html/body/@class" /> fullwidth</xsl:attribute>
-    </before>
-  </rules> -->
 
   <rules if="contains($host, 'local')">
     <!--<xsl:value-of select="$host" /> shows value of given variable -->

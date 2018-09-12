@@ -56,6 +56,10 @@
             title="Columned View"
             action="column_view"
             />
+        <browser:menuItem
+            title="Vertical Tab View"
+            action="vertical_tab_view"
+            />
     </browser:menuItems>
 
     <browser:menuItems
@@ -124,6 +128,14 @@
         for="*"
         class=".CoverNoTitleView"
         template="pt/cover_column_view.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="vertical_tab_view"
+        for="*"
+        class=".CoverNoTitleView"
+        template="pt/vertical_tab_view.pt"
         permission="zope2.View"
         />
 

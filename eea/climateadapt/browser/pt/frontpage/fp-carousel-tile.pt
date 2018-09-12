@@ -1,50 +1,48 @@
 <div class="slider">
     <!--? slide 1 -->
     <div class="slider-image-wrapper" tal:define="item python: view.get_tile('s2')">
-        <div tal:define="picture python: view.get_image(item.s2_primary_photo, 's2_primary_photo')"
-             tal:attributes="style string: background-image:url('${picture}')"
-             class="slider-image">
-        </div>
+      <div tal:define="picture python: view.get_image(item.s2_primary_photo, 's2_primary_photo')"
+           tal:attributes="style string: background-image:url('${picture}')"
+           class="slider-image">
+      </div>
 
-        <div class="slider-caption">
-            <h3 tal:content="item/s2_title">About Climate Change Adaptation in Europe</h3>
-            <div class="slider-description">
-                <p tal:replace="structure python:item.s2_description.output">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
-            </div>
-            <div class="slider-bottom-caption">
-                <div class="read-more-wrapper">
-                    <a href="" class="read-more" tal:attributes="href item/s2_read_more_link" target="_blank">
-                        <i class="fa fa-angle-double-right"></i>
-                        Read more
-                    </a>
-                </div>
-            </div>
+      <div class="slider-caption">
+        <h3 tal:content="item/s2_title">About Climate Change Adaptation in Europe</h3>
+        <div class="slider-description">
+          <p tal:replace="structure python:item.s2_description.output">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
         </div>
+        <div class="slider-bottom-caption">
+          <div class="read-more-wrapper">
+            <a href="" class="read-more" tal:attributes="href item/s2_read_more_link" target="_blank">
+              <i class="fa fa-angle-double-right"></i>
+              Read more
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <!--? end slide 1 -->
 
     <!--? slide 2 -->
     <div class="slider-image-wrapper" tal:define="item python: view.get_tile('s8')">
       <div tal:define="picture python: view.get_image(item.s8_primary_photo, 's8_primary_photo')"
-           tal:attributes="style string: background:url('${picture}')"
+           tal:attributes="style string: background-image:url('${picture}')"
            class="slider-image">
       </div>
-        <img src="" tal:define="picture python: view.get_image(item.s8_primary_photo, 's8_primary_photo')" tal:attributes = "src picture"
-             alt="About Climate Change Adaptation in Europe" />
-        <div class="slider-caption">
-            <h3 tal:content="item/s8_title">About Climate Change Adaptation in Europe</h3>
-            <div class="slider-description">
-                <p tal:replace="structure python:item.s8_description.output">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
-            </div>
-            <div class="slider-bottom-caption">
-                <div class="read-more-wrapper">
-                    <a href="" class="read-more" tal:attributes="href item/s8_read_more_link" target="_blank">
-                        <i class="fa fa-angle-double-right"></i>
-                        Read more
-                    </a>
-                </div>
-            </div>
+      <div class="slider-caption">
+        <h3 tal:content="item/s8_title">About Climate Change Adaptation in Europe</h3>
+        <div class="slider-description">
+          <p tal:replace="structure python:item.s8_description.output">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
         </div>
+        <div class="slider-bottom-caption">
+          <div class="read-more-wrapper">
+            <a href="" class="read-more" tal:attributes="href item/s8_read_more_link" target="_blank">
+              <i class="fa fa-angle-double-right"></i>
+              Read more
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <!--? end slide 2 -->
 
@@ -55,20 +53,20 @@
            class="slider-image">
       </div>
 
-        <div class="slider-caption">
-            <h3 tal:content="item/title">About Climate Change Adaptation in Europe</h3>
-            <div class="slider-description">
-                <p tal:replace="python: view.html2text(item.long_description.output)[:300] + '...'">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
-            </div>
-            <div class="slider-bottom-caption">
-                <div class="read-more-wrapper">
-                    <a href="" class="read-more" tal:attributes="href item/absolute_url" target="_blank">
-                        <i class="fa fa-angle-double-right"></i>
-                        Read more
-                    </a>
-                </div>
-            </div>
+      <div class="slider-caption">
+        <h3 tal:content="item/title">About Climate Change Adaptation in Europe</h3>
+        <div class="slider-description">
+          <p tal:replace="python: view.html2text(item.long_description.output)[:300] + '...'">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
         </div>
+        <div class="slider-bottom-caption">
+          <div class="read-more-wrapper">
+            <a href="" class="read-more" tal:attributes="href item/absolute_url" target="_blank">
+              <i class="fa fa-angle-double-right"></i>
+              Read more
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <!--? slide 3 -->
 
@@ -79,20 +77,20 @@
            class="slider-image">
       </div>
 
-        <div class="slider-caption">
-            <h3 tal:content="item/title">About Climate Change Adaptation in Europe</h3>
-            <div class="slider-description">
-                <p tal:replace="item/description">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
-            </div>
-            <div class="slider-bottom-caption">
-                <div class="read-more-wrapper">
-                    <a href="" class="read-more" tal:attributes="href item/absolute_url" target="_blank">
-                        <i class="fa fa-angle-double-right"></i>
-                        Read more
-                    </a>
-                </div>
-            </div>
+      <div class="slider-caption">
+        <h3 tal:content="item/title">About Climate Change Adaptation in Europe</h3>
+        <div class="slider-description">
+          <p tal:replace="item/description">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
         </div>
+        <div class="slider-bottom-caption">
+          <div class="read-more-wrapper">
+            <a href="" class="read-more" tal:attributes="href item/absolute_url" target="_blank">
+              <i class="fa fa-angle-double-right"></i>
+              Read more
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <!--? end slide 4 -->
 
@@ -103,20 +101,20 @@
            class="slider-image">
       </div>
 
-        <div class="slider-caption">
-            <h3 tal:content="item/s5_title">About Climate Change Adaptation in Europe</h3>
-            <div class="slider-description">
-                <p tal:replace="structure python:item.s5_description.output">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
-            </div>
-            <div class="slider-bottom-caption">
-                <div class="read-more-wrapper">
-                    <a href="" class="read-more" tal:attributes="href item/s5_read_more_link" target="_blank">
-                        <i class="fa fa-angle-double-right"></i>
-                        Read more
-                    </a>
-                </div>
-            </div>
+      <div class="slider-caption">
+        <h3 tal:content="item/s5_title">About Climate Change Adaptation in Europe</h3>
+        <div class="slider-description">
+          <p tal:replace="structure python:item.s5_description.output">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
         </div>
+        <div class="slider-bottom-caption">
+          <div class="read-more-wrapper">
+            <a href="" class="read-more" tal:attributes="href item/s5_read_more_link" target="_blank">
+              <i class="fa fa-angle-double-right"></i>
+              Read more
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <!--? end slide 5 -->
 
@@ -127,20 +125,20 @@
            class="slider-image">
       </div>
 
-        <div class="slider-caption">
-            <h3 tal:content="item/title">About Climate Change Adaptation in Europe</h3>
-            <div class="slider-description">
-                <p tal:replace="python: item['description'][:300] + '...'">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
-            </div>
-            <div class="slider-bottom-caption">
-                <div class="read-more-wrapper">
-                    <a href="" class="read-more" tal:attributes="href item/url" target="_blank">
-                        <i class="fa fa-angle-double-right"></i>
-                        Read more
-                    </a>
-                </div>
-            </div>
+      <div class="slider-caption">
+        <h3 tal:content="item/title">About Climate Change Adaptation in Europe</h3>
+        <div class="slider-description">
+          <p tal:replace="python: item['description'][:300] + '...'">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
         </div>
+        <div class="slider-bottom-caption">
+          <div class="read-more-wrapper">
+            <a href="" class="read-more" tal:attributes="href item/url" target="_blank">
+              <i class="fa fa-angle-double-right"></i>
+              Read more
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <!--? end slide 6 -->
 
@@ -151,22 +149,47 @@
            class="slider-image">
       </div>
 
-        <div class="slider-caption">
-            <h3 tal:content="item/s7_title">About Climate Change Adaptation in Europe</h3>
-            <div class="slider-description">
-                <p tal:replace="structure python:item.s7_description.output">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
-            </div>
-            <div class="slider-bottom-caption">
-                <div class="read-more-wrapper">
-                    <a href="" class="read-more" tal:attributes="href item/s7_read_more_link" target="_blank">
-                        <i class="fa fa-angle-double-right"></i>
-                        Read more
-                    </a>
-                </div>
-            </div>
+      <div class="slider-caption">
+        <h3 tal:content="item/s7_title">About Climate Change Adaptation in Europe</h3>
+        <div class="slider-description">
+          <p tal:replace="structure python:item.s7_description.output">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
         </div>
+        <div class="slider-bottom-caption">
+          <div class="read-more-wrapper">
+            <a href="" class="read-more" tal:attributes="href item/s7_read_more_link" target="_blank">
+              <i class="fa fa-angle-double-right"></i>
+              Read more
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <!--? end slide 7 -->
+
+    <!--? slide 8 -->
+    <div class="slider-image-wrapper" tal:define="item python: view.last_publication()">
+      <div tal:define="picture string: ${context/++resource++eea.climateadapt}/frontpage/last_publication.jpg"
+           tal:attributes="style string: background-image:url('${picture}')"
+           class="slider-image">
+      </div>
+
+      <div class="slider-caption">
+        <h3 tal:content="item/title">About Climate Change Adaptation in Europe</h3>
+        <div class="slider-description">
+          <p tal:replace="python: view.html2text(item.long_description.output)[:300] + '...'">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
+        </div>
+        <div class="slider-bottom-caption">
+          <div class="read-more-wrapper">
+            <a href="" class="read-more" tal:attributes="href item/absolute_url" target="_blank">
+              <i class="fa fa-angle-double-right"></i>
+                Read more
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--? end slide 8 -->
+
 </div>
 
 <!-- old slider: -->

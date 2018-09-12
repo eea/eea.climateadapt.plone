@@ -1,10 +1,10 @@
 <div>
 
   <metal:macro define-macro="title_date">
-  <h1>
-    <span tal:replace="context/title"></span>
-    <tal:cond tal:condition="context/year">(<span tal:replace="context/year"></span>)</tal:cond>
-  </h1>
+    <h1>
+      <span tal:replace="context/title"></span>
+      <tal:cond tal:condition="context/year">(<span tal:replace="context/year"></span>)</tal:cond>
+    </h1>
   </metal:macro>
 
   <metal:macro define-macro="ace_layout">
@@ -104,7 +104,8 @@
     <div tal:condition="files" class="sidebar_files">
       <div class="files-wrapper">
         <h4>
-          <span tal:replace="view/type_label" /> Documents (<span tal:content="python: len(files)"></span>)
+          <span tal:replace="view/type_label" />
+          Documents (<span tal:content="python: len(files)"></span>)
         </h4>
         <div tal:repeat="file files">
           <a tal:attributes="href file/absolute_url">
