@@ -327,6 +327,7 @@ $(document).ready(function() {
     function countryPageLayout() {
       if (isCountryPage) {
         $('.country-select-tile').closest('.row').css('margin', '0');
+        $('.sweet-tabs').attr('id', 'country-tab');
 
         // custom country dropdown functionality
         var $countryTitle = $('.dd-country-title');
