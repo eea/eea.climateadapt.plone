@@ -1,19 +1,22 @@
-<div class="country-select-tile" tal:define="image view/get_image">
-  <img tal:condition="image" tal:attributes="src string:${image/absolute_url}" />
+<div class="country-header">
+  <div class="country-select-tile" tal:define="image view/get_image">
+    <!-- <img tal:condition="image" tal:attributes="src string:${image/absolute_url}" /> -->
 
-  <div class="dd-country-title">
-    <div class="dd-title-wrapper">
-      <div class="select-text">Choose a country:</div>
-      <div class="selected resizeselect" tal:content="context/Title"></div>
-      <i class="fa fa-angle-down"></i>
+    <div class="dd-country-title">
+      <div class="dd-title-wrapper">
+        <div class="select-text">Choose a country:</div>
+        <div class="selected resizeselect" tal:content="context/Title"></div>
+        <i class="fa fa-angle-down"></i>
+      </div>
+      <input class="selected-inp" type="hidden">
+      <ul class="options resizeselect-list">
+        <li tal:repeat="c view/countries"
+            tal:attributes="data-value python:c[0]"
+            tal:content="python: c[1]";>
+        </li>
+      </ul>
     </div>
-    <input class="selected-inp" type="hidden">
-    <ul class="options resizeselect-list">
-      <li tal:repeat="c view/countries"
-          tal:attributes="data-value python:c[0]"
-          tal:content="python: c[1]";>
-      </li>
-    </ul>
-  </div>
 
+  </div>
+  <div class="country-map"></div>
 </div>

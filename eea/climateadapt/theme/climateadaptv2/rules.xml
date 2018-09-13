@@ -134,19 +134,20 @@
 
   <!-- layout for country profile pages : -->
   <!-- ex. cca/countries-regions/countries/austria  -->
-  <rules css:if-content=".subsection-countries">
+  <rules css:if-content=".subsection-countries .sweet-tabs">
 
-    <replace css:content=".subsection-countries .col-md-2">
-      <div class="column country-header-map">
-        <xsl:apply-templates select="./*"/>
+    <drop css:content=".last-update-tile"/>
+    <drop css:content="#disclaimer"/>
+    <drop css:content="#document-action-download_pdf" />
+    <replace css:content=".tab-content">
+      <div class="tab-content">
+         <xsl:copy-of select='//*[contains(@class,"last-update-tile")]' />
+         <xsl:apply-templates select="./*"/>
+         <xsl:copy-of select='//*[@id="disclaimer"]' />
+         <xsl:copy-of select='//*[@id="document-action-download_pdf"]' />
       </div>
     </replace>
 
-    <replace css:content=".subsection-countries .col-md-10">
-      <div class="column country-content">
-        <xsl:apply-templates select="./*"/>
-      </div>
-    </replace>
   </rules>
 
   <!-- hide pdf button from the main help introduction page -->

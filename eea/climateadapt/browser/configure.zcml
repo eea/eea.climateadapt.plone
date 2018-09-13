@@ -644,6 +644,13 @@
 
     <browser:page
         for="*"
+        name="country-disclaimer"
+        template="pt/country_disclaimer.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
         name="eu-sector-policies"
         template="pt/eu-sector-policies.pt"
         permission="zope2.View"

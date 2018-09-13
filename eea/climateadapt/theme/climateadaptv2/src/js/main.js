@@ -326,19 +326,7 @@ $(document).ready(function() {
     // url: .../cca/countries-regions/countries/austria
     function countryPageLayout() {
       if (isCountryPage) {
-        $('#content-core').children().addClass('country-wrapper').removeClass('row');
-        $('.sweet-tabs').attr('id', 'country-tab');
-
-        var $countrySelect = $('.country-select-tile');
-        $countrySelect.parent().addClass('countries-dropdown');
-        $countrySelect.find('img').remove();
-
-        var $tabPane = $('.tab-pane');
-        $('.country-header-map').append($('<div class="country-map">'));
-        $('.country-content .last-update-tile').addClass('clearfix').prependTo($tabPane);
-
-        $('table').addClass('listing');
-        $('#document-action-download_pdf').parent().appendTo($tabPane);
+        $('.country-select-tile').closest('.row').css('margin', '0');
 
         // custom country dropdown functionality
         var $countryTitle = $('.dd-country-title');
@@ -351,7 +339,7 @@ $(document).ready(function() {
         $('.dd-title-wrapper').on('click', function(e) {
           $countryTitle.find('.options').fadeToggle().toggleClass('show');
           $countryTitle.find('i').toggleClass('fa fa-angle-up fa fa-angle-down');
-          e.stopPropagation()
+          e.stopPropagation();
         });
 
         $('.dd-country-title .selected-inp').on('change', function(ev) {
