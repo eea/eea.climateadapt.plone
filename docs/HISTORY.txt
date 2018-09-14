@@ -3,6 +3,12 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Change: Added upgrade step 48
+  [davidsilaghi #98367]
+* Bug fix: Fixed icons issues
+  [davidsilaghi #98367]
+* Task: fixed icons issues
+  [davidsilaghi #98367]
 * Bug fix: Fixed case study frontpage image and gallery
   [iulianpetchesi #97419]
 * Task: Added new subnational regions
