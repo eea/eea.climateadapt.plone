@@ -88,10 +88,10 @@
       <ul tal:condition="not: assigned" class="list-items">
         <li tal:repeat="brain view/items">
           <a href="" tal:attributes="href brain/getURL" tal:content="brain/Title">Title here</a>
-          <tal:def tal:define="icons python: view.get_icons(brain)">
+          <!-- <tal:def tal:define="icons python: view.get_icons(brain)">
             <img class="tile-icon-help" tal:repeat="icon icons" tal:attributes="src icon/absolute_url;
             title icon/title_or_id" />
-          </tal:def>
+          </tal:def> -->
         </li>
       </ul>
       <div class="tile-footer">

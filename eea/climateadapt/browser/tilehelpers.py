@@ -233,7 +233,6 @@ class Carousel(PersistentCoverTile):
         catalog = site.portal_catalog
         result = catalog.searchResults({
             'portal_type': [
-                'eea.climateadapt.publicationreport',
                 'eea.climateadapt.informationportal',
                 'eea.climateadapt.guidancedocument',
                 'eea.climateadapt.tool',
@@ -246,6 +245,18 @@ class Carousel(PersistentCoverTile):
 
         return result.getObject()
 
+    def last_publication(self):
+        """ Gets the most recent updated publication and report"""
+        site = getSite()
+        catalog = site.portal_catalog
+        result = catalog.searchResults({
+            'portal_type': 'eea.climateadapt.publicationreport',
+            'review_state': 'published',
+            'sort_on': 'effective',
+            'sort_order': 'descending',
+        }, full_objects=True)[0]
+
+        return result.getObject()
 
 class ListingTile(BrowserView):
     """ Helper for listing tiles on fronpage

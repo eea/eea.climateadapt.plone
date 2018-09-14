@@ -139,7 +139,7 @@ $(document).ready(function() {
   });
 
   // HOMEPAGE: Main area
-  // Get heighest div and make equal heights on every boxes
+  // Get the heighest div and make equal height on every boxes
   var windowsize = $(window).width();
   var $mainBox = $('.main-box');
   var mainBoxMaxHeight = 0;
@@ -148,7 +148,7 @@ $(document).ready(function() {
     mainBoxMaxHeight = ($(this).outerHeight() > mainBoxMaxHeight) ? $(this).outerHeight() : mainBoxMaxHeight;
   });
 
-  if( windowsize <= 600 ) {
+  if (windowsize <= 600) {
     $mainBox.css('min-height', 'auto');
   } else {
     $mainBox.css('min-height', mainBoxMaxHeight);
@@ -213,8 +213,9 @@ $(document).ready(function() {
 
   // GENERAL
   // add button class
-  $('#document-action-download_pdf, #login-form .formControls input, #folderlisting-main-table .context')
-  .addClass('standard-button secondary-button');
+  $('#document-action-download_pdf,' +
+    '#login-form .formControls input,' +
+    '#folderlisting-main-table .context').addClass('standard-button secondary-button');
 
   // Add table class
   $('.CSSTableGenerator').addClass('listing');
@@ -249,7 +250,6 @@ $(document).ready(function() {
       $this.addClass('active-nav');
     }
   })
-
 
   // Add a specific class for grid layout pages
   var currentLocation = window.location.pathname;
@@ -326,19 +326,8 @@ $(document).ready(function() {
     // url: .../cca/countries-regions/countries/austria
     function countryPageLayout() {
       if (isCountryPage) {
-        $('#content-core').children().addClass('country-wrapper').removeClass('row');
+        $('.country-select-tile').closest('.row').css('margin', '0');
         $('.sweet-tabs').attr('id', 'country-tab');
-
-        var $countrySelect = $('.country-select-tile');
-        $countrySelect.parent().addClass('countries-dropdown');
-        $countrySelect.find('img').remove();
-
-        var $tabPane = $('.tab-pane');
-        $('.country-header-map').append($('<div class="country-map">'));
-        $('.country-content .last-update-tile').addClass('clearfix').prependTo($tabPane);
-
-        $('table').addClass('listing');
-        $('#document-action-download_pdf').parent().appendTo($tabPane);
 
         // custom country dropdown functionality
         var $countryTitle = $('.dd-country-title');
@@ -351,7 +340,7 @@ $(document).ready(function() {
         $('.dd-title-wrapper').on('click', function(e) {
           $countryTitle.find('.options').fadeToggle().toggleClass('show');
           $countryTitle.find('i').toggleClass('fa fa-angle-up fa fa-angle-down');
-          e.stopPropagation()
+          e.stopPropagation();
         });
 
         $('.dd-country-title .selected-inp').on('change', function(ev) {
@@ -441,66 +430,6 @@ $(document).ready(function() {
   var regionsTitle = $('.region-countries').children('strong');
   regionsTitle.each(function() {
     $(this).replaceWith($('<h5>' + this.innerHTML + '</h5>'));
-  });
-
-
-  // HELP: Glossary page
-  // url: .../cca/help/glossary
-  $('.GlossaryHeader').parents(':eq(2)').addClass('glossary-table');
-
-  // Lists glossary items with letter headings
-  var $glossaryTable = $('.glossary-table');
-  var $glossaryList = $('<ul class="glossary-list"/>');
-  $glossaryList.insertBefore($glossaryTable);
-
-  var glossaryList = {
-    letters: []
-  };
-  var glossaryItems = $glossaryTable.find('.GlossaryHeader a');
-
-  glossaryItems.each(function() {
-    var itmLetter;
-    var title = $(this).text();
-
-    if (title.indexOf('(') === 0) {
-      var word = title.split(')')[1];
-      var word = word.replace(/^\s+/g, '');
-      itmLetter = word.substring(0,1).toUpperCase();
-    } else {
-      itmLetter = $(this).text().substring(0,1).toUpperCase();
-    }
-
-    if (!(itmLetter in glossaryList)) {
-      glossaryList[itmLetter] = [];
-      glossaryList.letters.push(itmLetter);
-    }
-
-    glossaryList[itmLetter].push($(this));
-  });
-
-  glossaryList.letters.sort();
-  $glossaryTable.remove();
-
-  $.each(glossaryList.letters, function(i, letter) {
-    glossaryList[letter].sort(function(a, b) {
-      return $(a).text().toUpperCase().localeCompare($(b).text().toUpperCase());
-    });
-
-    var $ul = $("<ul/>");
-    $.each(glossaryList[letter], function(idx, itm) {
-      var $li = $("<li/>");
-      $ul.append($li);
-      $li.append(itm);
-    });
-
-    $('.glossary-list')
-      .append($("<li/>")
-      .append($("<a/>")
-      .attr("name", letter.toLowerCase())
-      .addClass("g-heading")
-      .html(letter))
-      .append($ul)
-    );
   });
 
   // Remove double angle '»' from 'Search result' listings
@@ -594,7 +523,10 @@ $(document).ready(function() {
   });
 
   // remove inline styles
-  $('.ace-content-column p, .ace-content-column ul, .ace-content-column li').removeAttr('style');
+  $('.ace-content-column p,' +
+   '.ace-content-column ul,' +
+   '.ace-content-column li' +
+   '.column p').removeAttr('style');
 
   // move case studies gallery
   var $aceSidebar = $('.subsection-case-studies .aceitem_page .col-md-3');

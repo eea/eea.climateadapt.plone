@@ -1,1 +1,1 @@
-jQuery(function(a){var b=window.location.origin+"/cca/",c=a("base").attr("href");if(c){var d=c.length;a(".sub-menu-link, .sub-sub-menu-link, .main-nav-item > a").each(function(a,c){var e=c.href,f=e.length,g=e.substr(d,f);c.href=b+g})}});
+jQuery(function(a){var b=(window.location.origin+"/cca/",a("base").attr("href"))});

@@ -5,37 +5,41 @@
     <span tal:define="has_children python: bool(section['children'][-1])">
       <a href=""
         class="main-nav-link"
-        tal:attributes="href section/link;
-        ">
-          <tal:block tal:condition="python: section['icon']" tal:content="structure python: section['icon']" />
-        <span tal:content="python: section['label']">Home</span>
+        tal:attributes="href section/link;">
+          <tal:block tal:condition="python: section['icon']"
+                     tal:content="structure python: section['icon']" />
+          <span tal:content="python: section['label']">Home</span>
       </a>
-      <button class="toggle-down" tal:condition="has_children"><i class="angle-down-icon"></i></button>
+      <button class="toggle-down" tal:condition="has_children">
+        <i class="angle-down-icon"></i>
+      </button>
     </span>
 
     <div class="sub-menu-wrapper"
-      tal:condition="python: section['children'][-1]" >
+         tal:condition="python: section['children'][-1]" >
       <tal:column tal:repeat="column python:section['children']">
 
         <ul class="sub-menu">
           <li class="sub-menu-item" tal:repeat="group column">
-            <tal:block tal:condition="python: group['icon']" tal:content="structure python: group['icon']">
+            <tal:block tal:condition="python: group['icon']"
+                       tal:content="structure python: group['icon']">
             </tal:block>
             <a href=""
-              class="sub-menu-link"
-              tal:attributes="href group/link"
-              tal:content="group/label">
-              Title here
+               class="sub-menu-link"
+               tal:attributes="href group/link"
+               tal:content="group/label">
+               Title here
             </a>
             <ul class="sub-sub-menu-wrapper" tal:condition="group/children">
               <li class="sub-sub-menu-item" tal:repeat="child group/children">
-                  <tal:block tal:condition="python: child['icon']" tal:content="structure python: child['icon']">
+                  <tal:block tal:condition="python: child['icon']"
+                             tal:content="structure python: child['icon']">
                   </tal:block>
                 <a href=""
-                  class="sub-sub-menu-link"
-                  tal:attributes="href child/link"
-                  tal:content="child/label">
-                  Title here
+                   class="sub-sub-menu-link"
+                   tal:attributes="href child/link"
+                   tal:content="child/label">
+                   Title here
                 </a>
               </li>
             </ul>
@@ -43,5 +47,6 @@
         </ul>
       </tal:column>
     </div>
+
   </li>
 </ul>
