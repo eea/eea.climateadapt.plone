@@ -249,4 +249,12 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
     />
 
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_48"
+      title="Upgrade profile for eea.climateadapt v48"
+      description=""
+      directory="profiles/upgrades/to_48"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
 </configure>
