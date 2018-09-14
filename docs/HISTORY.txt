@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bug fix: Created upgrade step in order to add allowed_sizes attribute to
+  the registry
+  [iulianpetchesi #98421]
 * Change: Added upgrade step 48
   [davidsilaghi #98367]
 * Bug fix: Fixed icons issues
