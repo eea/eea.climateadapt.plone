@@ -310,6 +310,10 @@ $(document).ready(function() {
     }
 
     // TRANSNATIONAL SUBPAGES (two specific subpages)
+    // move detailed content under the sidebar (baltic sea, central europe)
+    var $sidebar = $('.subsection-transnational-regions .column.col-md-3');
+    $sidebar.after($sidebar.find('.tile-default:last-child'));
+
     // url: .../cca/countries-regions/transnational-regions/baltic-sea-region
     //     .../cca/countries-regions/transnational-regions/carpathian-mountains/general
     function regionSubpageLayout() {
