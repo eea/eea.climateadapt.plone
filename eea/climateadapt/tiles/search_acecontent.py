@@ -143,6 +143,7 @@ class AceTileMixin(object):
         # the special_tags field is indexed into the SearchableText
         st = self.data.get('special_tags')
 
+
         if st:
             query.pop('special_tags', None)
 
@@ -358,7 +359,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         return tile_icons.objectValues()
 
     def get_icons(self, brain):
-        special_tags = brain.special_tags
+        special_tags = brain.special_tags or []
         images = self.icon_images()
         icons = [image for image in images if image.getId() in special_tags]
 
@@ -395,9 +396,9 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
             for uuid in [i[0] for i in ordered_uuids]:
                 obj = uuidToObject(uuid)
-
                 if obj:
                     results.append(obj)
+
                 else:
                     # maybe the user has no permission to access the object
                     # so we try to get it bypassing the restrictions
