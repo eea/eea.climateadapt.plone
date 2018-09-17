@@ -276,7 +276,9 @@ a.read-more {
 
 // Buttons
 
-.standard-button {
+.standard-button,
+#buttons-save,
+#buttons-cancel {
   font-family: RobotoB;
   padding: 10px 25px;
   border-radius: 5px;
@@ -290,7 +292,8 @@ form .standard-button {
   font-size: 14px;
 }
 
-.primary-button {
+.primary-button,
+#buttons-save {
   background: @secondary-blue linear-gradient(#0170B7, #1697E9) no-repeat;
   color: #fff;
   border: 2px solid @secondary-blue;
@@ -301,7 +304,8 @@ form .standard-button {
   }
 }
 
-.secondary-button {
+.secondary-button,
+#buttons-cancel {
   font-family: RobotoM;
   border: none;
   background-color: #efefef;
@@ -2043,4 +2047,23 @@ div.width-1\3a 4 {
   border: 1px solid #E5E5E5;
   padding: 1.5em;
   width: 100%;
+}
+
+/* Edit tiles layout */
+#tile-configure.in.hide {
+  display: block !important;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+}
+
+.modal-backdrop.in {
+  opacity: .5;
 }
