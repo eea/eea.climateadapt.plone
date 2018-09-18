@@ -2067,3 +2067,63 @@ div.width-1\3a 4 {
 .modal-backdrop.in {
   opacity: .5;
 }
+
+// HELP -> Use cases table styling
+.use-cases-listing {
+  table-layout: fixed;
+}
+
+.use-cases-listing tr:last-child > th,
+.use-cases-listing td {
+  border: 1px solid #E0E0E0;
+  text-align: center;
+}
+
+.use-cases-listing th,
+.use-cases-listing td {
+  padding: 0.8em;
+}
+
+.use-cases-listing thead {
+  th {
+    color: @primary-blue;
+    font-family: RobotoM;
+  }
+  tr:last-child > th:nth-child(4),
+  tr:last-child > th:nth-child(5),
+  tr:last-child > th:nth-child(6),
+  tr:last-child > th:nth-child(7),
+  tr:last-child > th:nth-child(8),
+  tr:last-child > th:nth-child(9) {
+    background-color: #FAFAFA;
+  }
+}
+
+.use-cases-listing {
+  tr > th:first-child,
+  tr > td:first-child {
+    width: 40px;
+    border-left: 1px solid transparent;
+  }
+  tr > th:last-child,
+  tr > td:last-child {
+    width: 40px;
+    border-right: 1px solid transparent;
+  }
+  td:nth-child(4),
+  td:nth-child(5),
+  td:nth-child(6),
+  td:nth-child(7),
+  td:nth-child(8),
+  td:nth-child(9),
+  th[colspan="6"] {
+    background-color: #FAFAFA;
+  }
+  th[colspan="6"] {
+  text-transform: uppercase;
+  color: #EF7000;
+  border-top: 1px solid #E0E0E0;
+  border-left: 1px solid #E0E0E0;
+  border-right: 1px solid #E0E0E0;
+  }
+}
