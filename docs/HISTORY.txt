@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Task: Use cases table tooltip feature
+  [krisztina  #98335]
 * Task: Use cases table styling
   [krisztina #91571]
 * Bug: Fix layout tiles display; Change: remove CDN bootstrap css & js

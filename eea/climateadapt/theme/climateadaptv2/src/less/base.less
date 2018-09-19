@@ -2082,6 +2082,7 @@ div.width-1\3a 4 {
 .use-cases-listing th,
 .use-cases-listing td {
   padding: 0.8em;
+  position: relative;
 }
 
 .use-cases-listing thead {
@@ -2105,8 +2106,8 @@ div.width-1\3a 4 {
     width: 40px;
     border-left: 1px solid transparent;
   }
-  tr > th:last-child,
-  tr > td:last-child {
+  tr > th:nth-last-child(2),
+  tr > td:nth-last-child(2) {
     width: 40px;
     border-right: 1px solid transparent;
   }
@@ -2126,4 +2127,37 @@ div.width-1\3a 4 {
   border-left: 1px solid #E0E0E0;
   border-right: 1px solid #E0E0E0;
   }
+}
+
+.template-compose .use-cases-listing tr > th:last-child,
+.template-compose .use-cases-listing tr > td:last-child {
+  width: auto;
+}
+
+.template-compose .use-cases-listing tr > th:last-child,
+.template-compose .use-cases-listing tr > td:last-child {
+  display: block;
+}
+
+.use-cases-listing tr > th:last-child,
+.use-cases-listing tr > td:last-child {
+  display: none;
+}
+
+.use-cases-listing tr td:nth-child(2):hover {
+  color: @primary-green;
+}
+
+.use-cases-listing .use-case-tooltip {
+  position: absolute;
+  left: 190px;
+  top: 20px;
+  display: none;
+  width: 250px;
+  height: auto;
+  background-color: @primary-green;
+  padding: 0.5em;
+  color: #fff;
+  border-radius: 5px;
+  z-index: 99;
 }

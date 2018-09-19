@@ -537,4 +537,22 @@ $(document).ready(function() {
   $aceSidebar.before($aceSidebar.find('.case-studies-illustrations'));
   $aceSidebar.before($aceSidebar.find('.sidebar_files'));
 
+  // HELP: Use cases
+  // use the table last column data as a tooltip on hover on each case;
+  // this last column is not visible for the visitor,
+  // only visible for the editors on compose/edit section
+  var $tr = $('.use-cases-listing tbody tr');
+  $tr.each(function() {
+    var $this = $(this);
+    var useCaseTitle = $this.find('td:last-child').text();
+    $this.find('td:first-child').append($('<span class="use-case-tooltip"/>'));
+    $this.find('.use-case-tooltip').text(useCaseTitle);
+  });
+
+  $('.use-cases-listing tr td:nth-child(2)').hover(function() {
+    $(this).siblings().find('.use-case-tooltip').css('display', 'block');
+  }, function() {
+    $(this).siblings().find('.use-case-tooltip').css('display', 'none');
+  });
+
 });
