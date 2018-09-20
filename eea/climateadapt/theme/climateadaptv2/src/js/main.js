@@ -555,4 +555,27 @@ $(document).ready(function() {
     $(this).siblings().find('.use-case-tooltip').css('display', 'none');
   });
 
+  // Show subnational regions on checkbox click
+  $("input[type='checkbox']").on('click', function(){
+    var faja = $(this).parents('.subnationals-checkbox-ul');
+    if (faja[0]) {
+      if (this.checked) {
+        $('#subnationals').children().each(function(index, domObject){
+          var cc = $(this).val();
+          if(domObject.text.indexOf(cc) !== -1) {
+            $(domObject).show();
+          }
+        }.bind(this));
+      }
+      else {
+        $('#subnationals').children().each(function(index, domObject){
+          var cc = $(this).val();
+          if(domObject.text.indexOf(cc) !== -1) {
+            $(domObject).hide();
+          }
+        }.bind(this));
+      }
+    }
+  });
+
 });
