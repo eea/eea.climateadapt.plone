@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bug: Fix case study gallery
+  [krisztina #91562]
 * Feature: Added RichImage content type which will be used for frontpage
   slides
   [iulianpetchesi #98315]

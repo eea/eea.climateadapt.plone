@@ -506,13 +506,22 @@ $(document).ready(function() {
     }
   });
 
-  // Make the first photo of gallery visible
-  $('#links').children('.gallery-hide').eq(0).css('display', 'block');
+  // Hide the download pdf on the search page
+  if (window.location.href.indexOf("data-and-downloads") > -1) {
+    $("#document-action-download_pdf").parent().hide();
+  }
 
   // CASE STUDIES - DATABASE ITEM
-  // Display event for gallery open
-  $('#links').on('click', function(event) {
-    $(this).children('.gallery-hide').css('display', 'block');
+  // Make the first photo of gallery visible
+  var $links = $('#links');
+  $links.children('.gallery-hide').eq(0).css('display', 'block');
+
+  $(document).keyup(function(e) {
+    if (e.keyCode === 27) {
+      // get the maximum number of slices
+      var nr_of_slices = $links.children('.gallery-hide').length;
+      $links.children('.gallery-hide').slice(1, nr_of_slices).css('display', 'none');
+    }
   });
 
   // Display events for gallery close
