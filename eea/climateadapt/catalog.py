@@ -1,12 +1,18 @@
+import logging
 import json
 
 from collective.cover.interfaces import ICover
 
+from eea.climateadapt.browser.frontpage_slides import IRichImage
 from eea.climateadapt.city_profile import ICityProfile
 from eea.climateadapt.interfaces import IClimateAdaptContent, INewsEventsLinks
 from plone.indexer import indexer
+from plone.rfc822.interfaces import IPrimaryFieldInfo
 from zope.annotation.interfaces import IAnnotations
 from zope.interface import Interface
+
+
+logger = logging.getLogger('eea.climateadapt')
 
 
 @indexer(Interface)
@@ -112,3 +118,16 @@ def city_long_description(city):
 @indexer(IClimateAdaptContent)
 def featured(obj):
     return obj.featured
+
+
+@indexer(IRichImage)
+def getObjSize_image(obj):
+    try:
+        primary_field_info = IPrimaryFieldInfo(obj)
+    except TypeError:
+        logger.warn(
+            u'Lookup of PrimaryField failed for {0} If renaming or importing '
+            u'please reindex!'.format(obj.absolute_url())
+        )
+        return
+    return obj.getObjSize(None, primary_field_info.value.size)

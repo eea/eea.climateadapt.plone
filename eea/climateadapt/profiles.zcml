@@ -265,4 +265,11 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
     />
 
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_50"
+      title="Upgrade profile for eea.climateadapt v50"
+      description=""
+      directory="profiles/upgrades/to_50"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
 </configure>

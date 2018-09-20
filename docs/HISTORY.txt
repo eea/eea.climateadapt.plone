@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Feature: Added RichImage content type which will be used for frontpage
+  slides
+  [iulianpetchesi #98315]
 * Bug: Fix regions display on checkbox click in geographic information
   [krisztina #94108]
 * Task: Use cases table tooltip feature

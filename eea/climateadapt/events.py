@@ -1,5 +1,6 @@
 from eea.cache import event
 from eea.climateadapt.browser.facetedsearch import CCA_TYPES
+from eea.climateadapt.browser.frontpage_slides import IRichImage
 from plone import api
 from plone.app.contentrules.handlers import execute_rules
 from plone.app.iterate.dexterity.utils import get_baseline
@@ -36,6 +37,27 @@ def invalidate_cache_faceted_object_row(obj, evt):
         uid = ''
     key = 'row-' + uid
     notify(InvalidateCacheEvent(raw=False, key=key))
+
+
+def set_title_description(obj, event):
+    ''' Sets title to filename if no title
+        was provided.
+        Also sets an empty unicode as description if
+        no description was provided.
+    '''
+    title = obj.title
+    if not title:
+        if IRichImage.providedBy(obj):
+            datafield = obj.image
+        else:
+            datafield = obj.file
+        if datafield:
+            filename = datafield.filename
+            obj.title = filename
+
+    description = obj.description
+    if not description:
+        obj.description = u''
 
 
 # def invalidate_cache_faceted_sections(obj, evt):

@@ -8,6 +8,27 @@
 
   <include package="plone.tiles" file="meta.zcml" />
 
+
+  <browser:page
+      name="view"
+      for=".frontpage_slides.IRichImage"
+      template="pt/frontpage/richimage.pt"
+      permission="zope2.View"
+      menu="plone_displayviews"
+      title="View Image"
+      />
+
+
+  <browser:page
+      name="richimage_view_fullscreen"
+      for=".frontpage_slides.IRichImage"
+      template="pt/frontpage/richimage_view_fullscreen.pt"
+      permission="zope2.View"
+      menu="plone_displayviews"
+      title="View Image Fullscreen"
+      />
+
+
   <browser:page
     name="fp-ast-tile"
     for="*"

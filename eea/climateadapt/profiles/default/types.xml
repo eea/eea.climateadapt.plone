@@ -15,5 +15,5 @@
     <object name="collective.cover.content" meta_type="Dexterity FTI"/>
     <object name="eea.climateadapt.city_profile" meta_type="Dexterity FTI" />
     <object name="eea.climateadapt.video" meta_type="Dexterity FTI" />
-
+    <object name="RichImage" meta_type="Dexterity FTI" />
 </object>

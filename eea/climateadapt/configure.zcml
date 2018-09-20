@@ -70,6 +70,10 @@
       <implements interface="eea.pdf.interfaces.IPDFAware" />
     </class>
 
+    <class class="plone.namedfile.field.NamedBlobImage">
+      <implements interface="plone.rfc822.interfaces.IPrimaryField" />
+    </class>
+
     -------[ Marker Interface for News/Events/Links ]-------
 
     <class class="plone.app.contenttypes.content.Link">
@@ -99,6 +103,7 @@
     <adapter name="search_type" factory=".catalog.search_type_for_newsevents" />
     <adapter name="sectors" factory=".catalog.city_sectors" />
     <adapter name="featured" factory=".catalog.featured" />
+    <adapter name="getObjSize" factory=".catalog.getObjSize_image" />
     <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> -->
 
     ----[ Vocabularies: ]------
@@ -375,5 +380,13 @@
             OFS.interfaces.IObjectWillBeRemovedEvent"
        handler=".events.handle_iterate_wc_deletion"
        />
+
+    ------[ RichImage Title Functionality ]--------
+
+    <subscriber
+       for="eea.climateadapt.browser.frontpage_slides.IRichImage
+            zope.lifecycleevent.interfaces.IObjectCreatedEvent"
+       handler=".events.set_title_description"
+    />
 
 </configure>
