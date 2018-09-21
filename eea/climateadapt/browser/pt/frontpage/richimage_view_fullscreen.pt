@@ -47,7 +47,8 @@
     <a tal:attributes="href request/HTTP_REFERER"
         tal:condition="request/HTTP_REFERER"
       ><span i18n:translate="label_back_to_site">Back to site</span>
-      <tal:block replace="structure context/@@images/image" />
+      <tal:block replace="structure context/@@images/rich_image" />
+
     </a>
     <a tal:attributes="href context/portal_url"
         tal:condition="not: request/HTTP_REFERER"

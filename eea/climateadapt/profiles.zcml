@@ -272,4 +272,12 @@
       directory="profiles/upgrades/to_50"
       provides="Products.GenericSetup.interfaces.EXTENSION"
     />
+
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_51"
+      title="Upgrade profile for eea.climateadapt v51"
+      description=""
+      directory="profiles/upgrades/to_51"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
 </configure>
