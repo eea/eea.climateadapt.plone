@@ -451,10 +451,13 @@ form .standard-button {
   border: 1px solid #E5E5E5;
 }
 
-#content.columned ul,
-#content.columned ol {
+#content.columned ul {
   list-style-position: outside;
   // margin-left: 1.5em;
+}
+
+#content.columned ol {
+  list-style-position: inside;
 }
 
 .content-column.col-md-9 {
@@ -2048,6 +2051,40 @@ div.width-1\3a 4 {
   border: 1px solid #E5E5E5;
   padding: 1.5em;
   width: 100%;
+}
+
+/* Case study image gallery */
+.blueimp-gallery > .description {
+  position: absolute;
+  top: 50px;
+  left: 15px;
+  color: #fff;
+  display: none;
+  font-size: 1.3em;
+}
+
+.blueimp-gallery-display > .description {
+  display: block;
+  float: left;
+}
+
+#blueimp-gallery .next,
+#blueimp-gallery .prev {
+  display: block;
+}
+
+.blueimp-gallery > .title {
+  left: 15px;
+}
+
+#links {
+  background-color: #aab91d;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.case-studies-illustrations {
+  padding-top: 5px;
 }
 
 /* Edit tiles layout */
