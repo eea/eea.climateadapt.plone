@@ -508,7 +508,19 @@ $(document).ready(function() {
 
   // Hide the download pdf on the search page
   if (window.location.href.indexOf("data-and-downloads") > -1) {
-    $("#document-action-download_pdf").parent().hide();
+    $pdfButton.parent().hide();
+  }
+
+  // Move interactive tools content under the sidebar
+  // eg. ../cca/knowledge/adaptation-information/observations-and-scenarios
+  var $mapView = $('.speedbutton');
+  if ($mapView.length > 0) {
+    var $sidebar = $('.col-md-3.content-sidebar');
+    var $mapViewParent = $mapView.closest('.tile-default');
+    var $mapViewParentSibling = $mapViewParent.prev();
+    $mapViewParentSibling.addClass('interactive-maps');
+    $sidebar.after($sidebar.find($mapViewParentSibling));
+    $mapViewParentSibling.append($mapViewParent);
   }
 
   // CASE STUDIES - DATABASE ITEM

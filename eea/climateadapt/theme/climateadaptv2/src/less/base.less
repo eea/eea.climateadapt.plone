@@ -382,8 +382,7 @@ form .standard-button {
 
 .aceitem-relevant-tile h2 {
   color: @primary-green;
-  font-family: RobotoM;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .aceitem-relevant-tile a {
@@ -451,11 +450,6 @@ form .standard-button {
   border: 1px solid #E5E5E5;
 }
 
-#content.columned ul {
-  list-style-position: outside;
-  // margin-left: 1.5em;
-}
-
 #content.columned ol {
   list-style-position: inside;
 }
@@ -466,6 +460,7 @@ form .standard-button {
 
 .content-sidebar.col-md-3 {
   width: 23%;
+  margin-bottom: 2%;
 }
 
 .columned .row {
@@ -485,7 +480,6 @@ form .standard-button {
   font-family: FontAwesome;
   display: inline-block;
   margin-left: -1em;
-  width: 1em;
   color: @dark-gray;
 }
 
@@ -517,9 +511,18 @@ form .standard-button {
   font-family: RobotoR;
 }
 
-.content-sidebar .aceitem-search-tile h2 {
+.interactive-maps .speedbutton {
+  text-align: center;
+  display: block;
+  img {
+    margin-top: 1em;
+  }
+}
+
+.content-sidebar .aceitem-search-tile h2,
+.interactive-maps h2 {
   color: @primary-blue;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .aceitem-relevant-tile .fa-search {
@@ -527,7 +530,8 @@ form .standard-button {
   color: @primary-green;
 }
 
-.aceitem-search-tile .fa-search {
+.aceitem-search-tile .fa-search,
+.interactive-maps .fa-search {
   font-size: 16px;
   color: @primary-blue;
 }
@@ -542,6 +546,7 @@ form .standard-button {
   font-family: RobotoM;
   position: relative;
   padding: 10px 13px 10px 43px;
+  margin-bottom: 0;
 }
 
 .share-your-info-ace-button button:before,
@@ -581,17 +586,17 @@ form .standard-button {
   color: #fff;
 }
 
-// Transnational regions
+.interactive-maps,
 .detailed-content {
   background-color: #fff;
   padding: 1.5em;
   border: 1px solid #E5E5E5;
   display: table;
-  text-align: center;
 }
 
-.subsection-transnational-regions .content-sidebar {
-  margin-bottom: 2%;
+// Transnational regions
+.detailed-content {
+  text-align: center;
 }
 
 .cover-section_nav-tile,
@@ -1162,8 +1167,17 @@ form .standard-button {
   display: inline-block;
 }
 
+#aceitem_sidebar h4,
+#aceitem_sidebar h5 {
+  margin-bottom: 0;
+}
+
 #aceitem_sidebar h4 {
   color: @primary-blue;
+}
+
+.sidebar_bold:last-child p,
+#aceitem_sidebar > div:last-child > div {
   margin-bottom: 0;
 }
 
@@ -1984,6 +1998,7 @@ div.width-1\3a 4 {
 
 // Database items
 
+// Case study image gallery
 .sidebar_bold h5 {
   font-family: RobotoM;
 }
@@ -1991,7 +2006,6 @@ div.width-1\3a 4 {
 #links {
   background-color: @yellow;
   overflow: hidden;
-  // border-radius: 5px;
   text-align: center;
 }
 
@@ -2053,7 +2067,6 @@ div.width-1\3a 4 {
   width: 100%;
 }
 
-/* Case study image gallery */
 .blueimp-gallery > .description {
   position: absolute;
   top: 50px;
@@ -2075,16 +2088,6 @@ div.width-1\3a 4 {
 
 .blueimp-gallery > .title {
   left: 15px;
-}
-
-#links {
-  background-color: #aab91d;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.case-studies-illustrations {
-  padding-top: 5px;
 }
 
 /* Edit tiles layout */
@@ -2198,4 +2201,8 @@ div.width-1\3a 4 {
   color: #fff;
   border-radius: 5px;
   z-index: 99;
+}
+
+.userrole-anonymous .hiddenForAnon {
+  display: none;
 }
