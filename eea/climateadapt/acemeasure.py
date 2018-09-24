@@ -5,7 +5,7 @@ from collective import dexteritytextindexer
 from datetime import date
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
-from eea.rabbitmq.client.rabbitmq import queue_msg
+from eea.rabbitmq.client.rabbitmq_plone import queue_msg
 from eea.climateadapt.sat.datamanager import queue_callback
 from eea.climateadapt.sat.handlers import HANDLERS
 from eea.climateadapt.sat.settings import get_settings
