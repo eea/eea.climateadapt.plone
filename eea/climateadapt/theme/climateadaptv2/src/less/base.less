@@ -471,29 +471,17 @@ form .standard-button {
   margin: 0;
 }
 
-.content-sidebar .aceitem-search-tile > ul > li {
-  padding-left: 1em;
-}
-
-.content-sidebar .aceitem-search-tile > ul li:before {
-  content: "\f105";
-  font-family: FontAwesome;
-  display: inline-block;
-  margin-left: -1em;
-  color: @dark-gray;
-}
-
 .content-sidebar .aceitem-search-tile > ul > li a {
   margin-left: 0 !important;
   display: inline !important;
 }
 
-.content-sidebar .aceitem-search-tile li a:before {
-  content: '' !important;
+.content-sidebar .aceitem-search-tile > ul > li > ul a {
+  margin-left: 1em;
 }
 
-.content-sidebar .aceitem-search-tile > ul > li > ul > li {
-  margin-left: 1em;
+.content-sidebar .aceitem-search-tile li > ul a:before {
+  content: '' !important;
 }
 
 .content-sidebar .tile img.left {
@@ -504,6 +492,10 @@ form .standard-button {
 
 .content-sidebar .cover-banner-tile {
   text-align: center;
+}
+
+.content-sidebar .aceitem-search-tile > ul {
+  margin-left: 1em;
 }
 
 .content-sidebar .aceitem-search-tile ul li a {
@@ -592,6 +584,13 @@ form .standard-button {
   padding: 1.5em;
   border: 1px solid #E5E5E5;
   display: table;
+}
+
+.template-compose .interactive-maps, .detailed-content {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  display: initial;
 }
 
 // Transnational regions

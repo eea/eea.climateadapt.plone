@@ -84,12 +84,12 @@
     <drop css:content=".col-md-9 .tile-default > .tile-content > h1" />
 
     <drop css:content="h1.documentFirstHeading" />
-    <before css:content=".content-column > .tile-default">
+    <before css:content=".content-column > .tile-default:first-child">
       <xsl:copy-of select='//*[@class="documentFirstHeading"]' />
     </before>
 
     <drop css:content="#viewlet-below-content-title" />
-    <before css:content=".content-column > .tile-default">
+    <before css:content=".content-column > .tile-default:first-child">
       <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
     </before>
 

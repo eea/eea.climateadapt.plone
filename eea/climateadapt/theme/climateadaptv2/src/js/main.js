@@ -314,18 +314,6 @@ $(document).ready(function() {
     var $sidebar = $('.subsection-transnational-regions .column.col-md-3');
     $sidebar.after($sidebar.find('.detailed-content').parentsUntil('.tile-default'));
 
-    // url: .../cca/countries-regions/transnational-regions/baltic-sea-region
-    //     .../cca/countries-regions/transnational-regions/carpathian-mountains/general
-    function regionSubpageLayout() {
-      if (isBalticSubpage || isCarpathianSubpage) {
-        $body.addClass('region-subpage');
-        $('#content-core .column.col-md-3').remove();
-        $('#content-core .column.col-md-9').removeClass('col-md-9');
-
-        $('.tile-content').addClass('clearfix');
-      }
-    }
-
     // COUNTRY PAGES
     // url: .../cca/countries-regions/countries/austria
     function countryPageLayout() {
@@ -425,7 +413,6 @@ $(document).ready(function() {
     }
 
   policyLayout();
-  regionSubpageLayout();
   countryPageLayout();
   astLayout();
 
@@ -434,12 +421,6 @@ $(document).ready(function() {
   var regionsTitle = $('.region-countries').children('strong');
   regionsTitle.each(function() {
     $(this).replaceWith($('<h5>' + this.innerHTML + '</h5>'));
-  });
-
-  // Remove double angle '»' from 'Search result' listings
-  $(".aceitem-search-tile-listing li ul li").each(function() {
-    var $this = $(this);
-    $this.html($this.html().replace('»', ''));
   });
 
   // Fix floating button
@@ -511,7 +492,7 @@ $(document).ready(function() {
     $pdfButton.parent().hide();
   }
 
-  // Move interactive tools content under the sidebar
+  // Move interactive maps under the sidebar
   // eg. ../cca/knowledge/adaptation-information/observations-and-scenarios
   var $mapView = $('.speedbutton');
   if ($mapView.length > 0) {
