@@ -5,7 +5,6 @@ from collective import dexteritytextindexer
 from datetime import date
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
-from eea.rabbitmq.client.rabbitmq_plone import queue_msg
 from eea.climateadapt.sat.datamanager import queue_callback
 from eea.climateadapt.sat.handlers import HANDLERS
 from eea.climateadapt.sat.settings import get_settings
@@ -16,6 +15,7 @@ from eea.climateadapt.utils import _unixtime
 from eea.climateadapt.utils import shorten
 from eea.climateadapt.vocabulary import BIOREGIONS
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+from eea.rabbitmq_plone.rabbitmq import queue_msg
 from plone.api.portal import get_tool
 from plone.app.contenttypes.interfaces import IImage
 from plone.app.textfield import RichText
@@ -33,9 +33,9 @@ from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import implementer, implements
+from zope.schema import Datetime
 from zope.schema import List, Text, TextLine, Tuple
 from zope.schema import URI, Bool, Choice, Int
-from zope.schema import Datetime
 import json
 import logging
 
