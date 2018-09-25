@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Task: WIP thematic maps
+  [krisztina #98318]
 * Task: Use columned display for transregional special subpages
   [krisztina #91562]
 * Task: Style improvements

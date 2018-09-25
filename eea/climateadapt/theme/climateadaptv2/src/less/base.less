@@ -2205,3 +2205,224 @@ div.width-1\3a 4 {
 .userrole-anonymous .hiddenForAnon {
   display: none;
 }
+
+// Country informations
+
+.map-wrapper {
+  position: relative;
+  margin-top: 4em;
+}
+
+.map-wrapper #disclaimer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  #hover-content {
+    right: 0;
+    left: auto;
+  }
+}
+
+.map-wrapper .choose-title {
+  color: @primary-green;
+  font-family: RobotoM;
+  font-size: 20px;
+  padding-left: 1em;
+}
+
+#sections-selector {
+  padding-left: 1em;
+  margin-top: 3em;
+
+  label {
+    margin: 0.7em 0;
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+}
+
+/* Content */
+.template-countries-view-map-d3 #content {
+  padding: 20px;
+}
+
+#countrymap-container {
+  padding: 1rem;
+}
+
+.template-countries-view-map-d3 #content h1{
+  margin: 0 !important;
+}
+
+.template-countries-view-map-d3 .select2-container {
+  margin-bottom: 0.3em;
+}
+
+/* Legend */
+.legend {
+  margin: 2em;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.legend-el {
+  padding: 0.8em 0;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.legend-box {
+  width: 31px;
+  height: 21px;
+  margin-right: 0.5em;
+}
+
+.content-available {
+  background-color: #b4e63b;
+}
+
+.no-content {
+  background-color: #75ad0a;
+}
+
+.no-focus {
+  background-color: #EFE7D4; // #909670
+
+}
+
+/* Tooltip */
+
+#map-tooltip {
+  position: absolute;
+  background-color: #e9ecc9;
+  padding: 1.5rem;
+  width: 30rem;
+  border: 1.5px solid #545454;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+#country-name a {
+  text-decoration: none;
+}
+
+#tooltip-content{
+  border-top: 2.5px solid brown;
+  padding-top: 0.6rem;
+}
+
+#tooltip-content li {
+  display: list-item;
+}
+
+#country-selector a.select2-choice {
+  border-bottom: 1px solid #CCC !important;
+  text-decoration: none;
+}
+
+.sphere {
+  fill: #9ac2e6; // 6cbcf7
+}
+
+.graticule {
+  fill: none;
+  stroke: black;
+  stroke-dasharray:10,10;
+  stroke-width: 1;
+}
+
+.semi-graticule {
+  fill: none;
+  stroke: gray;
+  stroke-dasharray:1,1;
+  stroke-width: 0.6;
+}
+
+.maplet-outline {
+  stroke: black;
+  stroke-width: 2;
+}
+
+.country-label {
+  font-size: 7px;
+  font-weight: normal;
+  fill: black;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.country-label rect {
+  fill: #CCC;
+  stroke: black;
+  stroke-width: 0.6;
+  cursor: pointer;
+}
+
+.country-label text {
+  fill: black;
+  font-size: 7px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.country-label:hover rect {
+  fill: black;
+}
+
+.country-label:hover text {
+  fill: white;
+}
+
+.maplet-label text.place-label {
+  font-size: 6px;
+}
+
+.country-outline path {
+  fill: #EFE7D4;
+  stroke: black;
+  stroke-width: 1;
+}
+
+/* .country-outline :hover { */
+/*   opacity: 1; */
+/* } */
+
+.country-available path {
+  fill: #75ad0a;
+  cursor: pointer;
+}
+
+.country-flag {
+  cursor: pointer;
+}
+
+.country-green path {
+  fill: #b4e63b;
+  cursor: pointer;
+}
+
+.maplet-container .country-outline path {
+  /* fill: #6cbcf7; */
+  fill: gray;
+}
+
+.maplet-container .country-available path {
+  fill: #EFE7D4;
+}
+
+.maplet-container .country-selected path {
+  fill: #75ad0a;
+}
+
+.maplet-container .country-green path {
+  fill: #b4e63b;
+}
+
+.maplet-container .sphere {
+  /* fill: #6cbcf7; */
+  fill: gray;
+}
