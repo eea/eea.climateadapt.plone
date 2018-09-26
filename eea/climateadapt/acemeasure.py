@@ -15,7 +15,7 @@ from eea.climateadapt.utils import _unixtime
 from eea.climateadapt.utils import shorten
 from eea.climateadapt.vocabulary import BIOREGIONS
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
-from eea.rabbitmq_plone.rabbitmq import queue_msg
+from eea.rabbitmq.plone.rabbitmq import queue_msg
 from plone.api.portal import get_tool
 from plone.app.contenttypes.interfaces import IImage
 from plone.app.textfield import RichText
