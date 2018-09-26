@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Task: Make the map legend dynamic depending on which layer is selected
+  [krisztina #98318]
 * Task: WIP thematic maps
   [krisztina #98318]
 * Task: Use columned display for transregional special subpages

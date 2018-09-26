@@ -458,6 +458,7 @@ function createSectionsSelector(sections, countries, callback) {
 
   sections.forEach(function (key, index) {
     var label = $("<label>");
+    var span = $("<span class='radiobtn'>");
     var inp = $("<input type='radio'>")
       .attr('style', 'margin-right: 0.3em')
       .attr('name', 'country-map-section')
@@ -471,14 +472,19 @@ function createSectionsSelector(sections, countries, callback) {
     label
       .append(inp)
       .append(key)
+      .append(span)
       ;
     widget.append($(label));
   });
 
   $('input', widget).on('change', function () {
     var selectedSection = $(this).attr('value');
-    if ($(this).is(':checked') && $(this).val() == 'Yes') {
-        // append goes here
+    var $this = $(this);
+    var $mapType = $('.map-type');
+    if ($this.val().indexOf("NAS") != -1) {
+      $mapType.text('NAS');
+    } else if ($this.val().indexOf("NAP") != -1) {
+      $mapType.text('NAP');
     }
     window._selectedMapSection = selectedSection;
     callback();

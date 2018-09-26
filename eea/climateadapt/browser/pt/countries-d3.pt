@@ -72,11 +72,11 @@
           <div class="legend">
             <div class="legend-el">
               <span class="content-available legend-box"></span>
-              <p class="legend-text"><span class="map-type"></span> available</p>
+              <p class="legend-text"><span class="map-type">NAS</span> available</p>
             </div>
             <div class="legend-el">
               <span class="no-content legend-box"></span>
-              <p class="legend-text"><span class="map-type"></span> not available</p>
+              <p class="legend-text"><span class="map-type">NAS</span> not available</p>
             </div>
             <div class="legend-el">
               <span class="no-focus legend-box"></span>
@@ -98,11 +98,5 @@
     </div>
 
     <script src='++theme++climateadaptv2/static/countries/countriesmap.js'></script>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        console.log($('#sections-selector').children());
-        // console.log($('input:radio[name="country-map-section"]'));
-      });
-    </script>
   </metal:fill-slot>
 </metal:use-macro>
