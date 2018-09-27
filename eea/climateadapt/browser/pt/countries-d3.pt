@@ -45,12 +45,12 @@
 
     <p>Filter by any of the topics in the drop-down list ('Choose Thematic Map') and the map will indicate if links on the topic are available for each country. To navigate to the information just scroll over to one country on the map and a pop-up window will show the existing link(s) and allow clicking on them.</p>
 
-    <div class="cover-richtext-tile tile-content row" id="countrymap-container">
+    <div class="cover-richtext-tile tile-content" id="countrymap-container">
 
       <!-- Select list with countries above map -->
-      <div id="country-selector" class='col-xs-12 col-md-12'>
+      <div id="country-selector">
         Select a country to go to country's page:
-        <select>
+        <select class="form-control">
           <option value=''>Choose a country</option>
         </select>
       </div>

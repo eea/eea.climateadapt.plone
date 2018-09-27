@@ -44,7 +44,12 @@ class CountriesMetadataExtract(BrowserView):
 
         layout = cover.cover_layout
         layout = json.loads(layout)
-        main_tile = layout[0]['children'][1]['children'][1]
+
+        try:
+            main_tile = layout[0]['children'][1]['children'][1]
+        except:
+            main_tile = layout[0]['children'][0]['children'][2]
+
         assert main_tile['tile-type'] == 'collective.cover.richtext'
 
         uid = main_tile['id']
@@ -109,7 +114,12 @@ class CountryMetadataExtract(object):
 
         layout = cover.cover_layout
         layout = json.loads(layout)
-        main_tile = layout[0]['children'][1]['children'][1]
+
+        try:
+            main_tile = layout[0]['children'][1]['children'][1]
+        except:
+            main_tile = layout[0]['children'][0]['children'][2]
+
         assert main_tile['tile-type'] == 'collective.cover.richtext'
 
         uid = main_tile['id']

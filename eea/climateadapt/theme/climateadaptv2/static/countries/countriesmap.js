@@ -8,6 +8,12 @@ $(document).ready(function () {
   var cpath = '++theme++climateadaptv2/static/countries/euro-countries.geojson';
   var fpath = '++theme++climateadaptv2/static/countries/countries.tsv';
 
+  var $sw = $('#countries-map');
+  var $load = $('<div class="map-loader">' +
+  '<div class="loading-spinner"></div>' +
+  '<span class="loading-text">Loading map ...</span></div>');
+  $sw.append($load);
+
   d3.json(cpath, function (world) {
     $.get('@@countries-metadata-extract', function (metadata) {
       d3.tsv(fpath, function (flags) {
@@ -34,6 +40,8 @@ function initmap(metadata, world, flags) {
       drawCountries(world);
     }
   );
+
+  $('.map-loader').fadeOut(600);
 }
 
 function renderGraticule(container, klass, steps, pathTransformer) {
@@ -507,7 +515,7 @@ function createSectionsSelector(sections, countries, callback) {
     if (!name) return;
     window.location = countries[name][1];
   })
-  select.select2();
+  // select.select2();
 
   // widget.prepend(select);
   // container.append(widget);
