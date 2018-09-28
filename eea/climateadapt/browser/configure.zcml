@@ -522,6 +522,14 @@
         template="pt/navbar.pt"
         />
 
+    <browser:page
+        name="help-nav"
+        class=".site.Navbar"
+        for="*"
+        permission="zope.Public"
+        template="pt/help-nav.pt"
+        />
+
     <!-- # portal link redirections, compatibility with old site -->
     <browser:page
         class=".ViewAceItem"

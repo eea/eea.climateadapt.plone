@@ -179,9 +179,9 @@ $(document).ready(function() {
 
   // Navigation menu: align sub-menu to the right
   // if overflows the main navigation menu
-  var mainMenuWidth = $('.main-nav').width();
+  var mainMenuWidth = $('.main-nav-menu').width();
 
-  $('.main-nav li').mouseenter(function() {
+  $('.main-nav-menu li').mouseenter(function() {
     var $this = $(this);
     var subMenuWidth = $this.children('.sub-menu-wrapper').width();
     if ($this.find('.sub-menu-wrapper').length > 0) {

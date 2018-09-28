@@ -41,7 +41,10 @@
 
 
     <replace css:content="#portal-columns" css:theme="#page-body"/>
-    <replace css:content="#navbar" css:theme=".main-nav" href="@@site_navbar" method="document"/>
+    <replace css:content="#navbar" css:theme=".main-nav-menu" href="@@site_navbar" method="document"/>
+
+    <!-- top menu help section -->
+    <replace css:theme-children="#help-items" css:content="#help-navbar" href="@@help-nav" css:theme=".help-nav-menu" method="document"/>
 
     <drop attributes="class" css:content="#portal-columns" />
     <!-- <drop attributes="class" css:content="#portal-column-content" /> -->

@@ -59,11 +59,20 @@
   cursor: pointer;
 }
 
-.login-container {
+.help-menu {
+  margin-right: 10px;
+}
+
+.login-container,
+.help-container {
   display: none;
 }
 
 .top-menu-nav-item:hover .login > .login-container {
+  display: block;
+}
+
+.help-menu:hover > .help-container {
   display: block;
 }
 
@@ -76,11 +85,19 @@
 
 .top-menu-nav-item:hover #user-name,
 .top-menu-nav-item:hover > .login #personal-menu .personal-menu-action,
+.top-menu-nav-item:hover > .help-link,
 .top-menu-right-section a:hover {
   color: @secondary-blue;
 }
 
-#portal-personaltools {
+
+.top-menu-nav-item:hover .help-link > .angle-down-icon,
+.top-menu-nav-item:hover .personal-menu-action > .angle-down-icon {
+  border-top: 4px solid @secondary-blue;
+}
+
+#portal-personaltools,
+#help-items {
   width: 100%;
   min-width: 230px;
   float: none;
@@ -89,17 +106,24 @@
   position: absolute;
   top: 20px;
   right: 0;
-  padding: 0.50em 0.80em;
+  padding: 10px;
   font-size: 100%;
   border-radius: 0;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
   li {
-    padding: 5px 0;
     display: list-item;
     line-height: 1.5;
     clear: both;
     float: left;
   }
+  li:not(:last-child) {
+    padding-bottom: 10px;
+  }
+}
+
+.help-main-nav-link {
+  padding-bottom: 10px;
+  display: block;
 }
 
 #portal-personaltools a:hover {
@@ -121,7 +145,7 @@
   margin-bottom: 2px;
 }
 
-.personal-menu-action .angle-down-icon {
+.top-menu-nav-item .angle-down-icon {
   border-top: 4px solid @dark-gray;
 }
 

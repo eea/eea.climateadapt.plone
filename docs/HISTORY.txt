@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Change: Move main navigation help section to the top menu
+  [krisztina #91562]
 * Task: Map improvements, add loading spinner for map
   [krisztina #98318]
 * Task: Make the map legend dynamic depending on which layer is selected
