@@ -249,13 +249,13 @@
         <li>
           <a tal:attributes="href string:${portal_url}/adaptation-support-tool/step-6/communicating-results" name="step-6-4"
             >Communicating results to inform policy and practice</a>
+            <ul id="step-6-4">
+              <li>
+                <a tal:attributes="href string:${portal_url}/adaptation-support-tool/step-6/self-check" name="step-6-4-1"
+                  >SELF-CHECK</a>
+              </li>
+            </ul>
         </li>
-        <ul id="step-6-4">
-          <li>
-            <a tal:attributes="href string:${portal_url}/adaptation-support-tool/step-6/self-check" name="step-6-4-1"
-              >SELF-CHECK</a>
-          </li>
-        </ul>
       </ul>
     </li>
   </ul>

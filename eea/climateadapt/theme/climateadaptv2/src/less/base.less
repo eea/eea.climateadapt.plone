@@ -97,9 +97,15 @@ a {
   word-wrap: break-word;
 }
 
-#content ul {
-  list-style-position: inside;
+
+.site-container ul,
+.site-container ol {
+  padding-left: 1em;
+  li {
+    padding-bottom: 0.8em;
+  }
 }
+
 
 /* @group Invisibles */
 .hiddenStructure {
@@ -307,8 +313,6 @@ form .standard-button {
 
 .secondary-button,
 #buttons-cancel {
-  font-family: RobotoM;
-  border: none;
   background-color: #efefef;
   border: 2px solid #efefef;
   color: @dark-gray;
@@ -316,12 +320,10 @@ form .standard-button {
   &:hover {
     background-color: #E0E0E0;
     border: 2px solid #E0E0E0;
-    color: inherit;
   }
 }
 
 #document-action-download_pdf {
-  list-style: none;
   margin-top: 3em;
   display: inline-block;
   a {
@@ -360,19 +362,35 @@ form .standard-button {
   color: #fff;
 }
 
-.tile-content ul > li {
-  list-style-type: none;
-  margin-bottom: 0.5em;
+.aceitem-relevant-tile {
+  margin-top: 2em;
 }
 
-.tile-content ul > li > a,
+.aceitem-relevant-tile ul,
+.subsection-share-your-info-index_html .tile-content ul {
+  padding-left: 0;
+}
+
+.aceitem-search-tile li:last-child {
+  padding-bottom: 0;
+}
+
+.aceitem-search-tile ul > li,
+.aceitem-relevant-tile ul > li,
+.subsection-share-your-info-index_html .tile-content li {
+  list-style-type: none;
+}
+
+.aceitem-search-tile ul > li > a,
+.aceitem-relevant-tile ul > li > a,
 .subsection-share-your-info-index_html .tile-content li > span > a {
   display: inline-block;
   margin-left: 1rem;
 }
 
-.tile-content ul > li > a:before,
 #ast-menu ul > li:before,
+.aceitem-search-tile ul > li > a:before,
+.aceitem-relevant-tile ul > li > a:before,
 .subsection-share-your-info-index_html .tile-content li > span > a:before {
   content: "\f101";
   font-family: FontAwesome;
@@ -391,7 +409,7 @@ form .standard-button {
 }
 
 .panel-default {
-  margin-bottom: 1.5em;
+  // margin-bottom: 1.5em;
   padding-bottom: 1em;
   border: none;
   border-bottom: 1px solid #ddd;
@@ -473,8 +491,7 @@ form .standard-button {
 }
 
 .content-sidebar .aceitem-search-tile > ul > li a {
-  margin-left: 0 !important;
-  display: inline !important;
+  margin-left: 0;
 }
 
 .content-sidebar .aceitem-search-tile > ul > li > ul a {
@@ -493,10 +510,6 @@ form .standard-button {
 
 .content-sidebar .cover-banner-tile {
   text-align: center;
-}
-
-.content-sidebar .aceitem-search-tile > ul {
-  margin-left: 1em;
 }
 
 .content-sidebar .aceitem-search-tile ul li a {
@@ -644,14 +657,10 @@ form .standard-button {
 // Adaptation support tool
 #ast-menu {
   font-size: 14px;
-}
-
-#ast-menu ul > li {
-  list-style-type: none;
-  margin-bottom: 0.8em;
-
-  >ul {
-    padding: 0.6em 0 0 1.3em;
+  padding-left: 0;
+  li > ul {
+    list-style-type: none;
+    padding-top: 0.8em;
   }
 }
 
@@ -682,6 +691,7 @@ form .standard-button {
   border: none;
   background: #F2F2F2;
   border-radius: 0;
+  padding: 1em 2em;
 }
 
 #ast-menu .ui-state-hover {
@@ -690,10 +700,11 @@ form .standard-button {
 
 #ast-menu .ui-accordion-li-fix {
   padding-top: 5px;
+  padding-bottom: 0;
 }
 
 #ast-menu ul > li:last-child {
-  margin-bottom: 0 !important;
+  padding-bottom: 0;
 }
 
 #ast-menu .ui-accordion-li-fix:first-child > a {
@@ -1042,7 +1053,7 @@ form .standard-button {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 99;
+  z-index: 9;
 }
 
 .country-map {
@@ -1983,16 +1994,6 @@ div.width-1\3a 4 {
     padding: 8px 15px;
     display: inline-block;
     font-size: 14px;
-  }
-}
-
-#content .panel-body {
-  ul {
-    list-style-position: outside;
-    padding: 0.5em 0 0 1.5em;
-    li {
-      list-style-type: disc;
-    }
   }
 }
 
