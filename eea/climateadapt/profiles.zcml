@@ -13,7 +13,7 @@
         name="default"
         title="eea.climateadapt"
         directory="profiles/default"
-        description="Install eea.climateadapt"
+        description="ClimateAdapt specific extensions (eea.climateadapt)"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
@@ -280,4 +280,13 @@
       directory="profiles/upgrades/to_51"
       provides="Products.GenericSetup.interfaces.EXTENSION"
     />
+
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_52"
+      title="Upgrade profile for eea.climateadapt v52"
+      description=""
+      directory="profiles/upgrades/to_52"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
 </configure>
