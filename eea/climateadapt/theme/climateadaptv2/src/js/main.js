@@ -580,4 +580,10 @@ $(document).ready(function() {
     }
   });
 
+  // add fullwidth class for UVMB climatic threats pages
+  var isClimaticThreatsPage = $('.subsection-tools-urban-adaptation-climatic-threats').length > 0;
+  if (isClimaticThreatsPage) {
+    $body.addClass('fullwidth');
+  }
+
 });

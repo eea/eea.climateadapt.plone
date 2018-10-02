@@ -622,6 +622,7 @@ form .standard-button {
     li {
       display: inline-block;
       margin-bottom: -1px;
+      padding-bottom: 0.9em;
     }
     a {
       color: @dark-gray;
@@ -1263,6 +1264,16 @@ form .standard-button {
   border-radius: 3px;
   overflow: hidden;
   line-height: 30px;
+
+  input[type="submit"] {
+    background-color: #0000;
+    border: none;
+    padding: 0;
+    border-bottom: 1px solid #3a3a3a;
+    border-radius: 0;
+    margin: 0;
+    line-height: 15px;
+  }
 }
 
 dl.warning, .portalMessage.warning {

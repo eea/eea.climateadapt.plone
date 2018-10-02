@@ -123,6 +123,14 @@
     </after>
   </rules>
 
+  <!-- UVMB: move last modified under the h1 title -->
+  <rules css:if-content=".subsection-tools-urban-adaptation-introduction">
+    <before css:content="#plone-document-byline">
+      <xsl:copy-of select='//h1' />
+    </before>
+    <drop css:content=".tile-content > h1" />
+  </rules>
+
   <!-- Case studies database items: move last modified under the h1 title -->
   <rules css:if-content=".aceitem_page .case-studies-top">
     <drop css:content="#plone-document-byline" />
