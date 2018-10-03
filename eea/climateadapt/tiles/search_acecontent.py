@@ -304,6 +304,10 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
     view_more = False
 
+    @property
+    def is_available(self):
+        return bool(self.items())
+
     def show_share_btn(self):
         search_type = self.data.get('search_type')
 
@@ -365,6 +369,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
         return icons
 
+    @view.memoize
     def items(self):
         count = self.data.get('nr_items', 5) or 5
         query = self.build_query()
@@ -396,6 +401,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
             for uuid in [i[0] for i in ordered_uuids]:
                 obj = uuidToObject(uuid)
+
                 if obj:
                     results.append(obj)
 

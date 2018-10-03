@@ -44,7 +44,9 @@
       </dl>
     </div>
 
-    <div class="cover-richtext-tile tile-content aceitem-relevant-tile" tal:condition="not: is_compose" tal:define="assigned view/assigned">
+    <div class="cover-richtext-tile tile-content aceitem-relevant-tile"
+      tal:condition="python: (not is_compose) and view.is_available"
+      tal:define="assigned view/assigned">
 
       <div style="margin-top:0.2em; margin-right: 0.6em;float:left" class="hiddenForAnon">
         <a href=""
