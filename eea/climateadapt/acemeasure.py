@@ -1,18 +1,24 @@
 """ CaseStudy and AdaptationOption implementations
 """
 
-from collective import dexteritytextindexer
+import json
+import logging
 from datetime import date
+
+from collective import dexteritytextindexer
+from zope.component import adapter
+from zope.interface import implementer, implements
+from zope.schema import (URI, Bool, Choice, Datetime, Int, List, Text,
+                         TextLine, Tuple)
+
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.sat.datamanager import queue_callback
 from eea.climateadapt.sat.handlers import HANDLERS
 from eea.climateadapt.sat.settings import get_settings
-from eea.climateadapt.sat.utils import _measure_id
-from eea.climateadapt.sat.utils import to_arcgis_coords
+from eea.climateadapt.sat.utils import _measure_id, to_arcgis_coords
 from eea.climateadapt.schema import Year
-from eea.climateadapt.utils import _unixtime
-from eea.climateadapt.utils import shorten
+from eea.climateadapt.utils import _unixtime, shorten
 from eea.climateadapt.vocabulary import BIOREGIONS
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from eea.rabbitmq.plone.rabbitmq import queue_msg
@@ -31,13 +37,6 @@ from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
-from zope.component import adapter
-from zope.interface import implementer, implements
-from zope.schema import Datetime
-from zope.schema import List, Text, TextLine, Tuple
-from zope.schema import URI, Bool, Choice, Int
-import json
-import logging
 
 logger = logging.getLogger('eea.climateadapt.acemeasure')
 
@@ -58,6 +57,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('legal_aspects')
     dexteritytextindexer.searchable('lifetime')
     dexteritytextindexer.searchable('long_description')
+    dexteritytextindexer.searchable('description')
     dexteritytextindexer.searchable('measure_type')
     dexteritytextindexer.searchable('objectives')
     dexteritytextindexer.searchable('sectors')
@@ -74,8 +74,9 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.fieldset('default',
                   label=u'Item Description',
-                  fields=['title', 'long_description', 'climate_impacts',
-                          'keywords', 'sectors', 'year', 'featured',
+                  fields=['title', 'long_description', 'description',
+                          'climate_impacts', 'keywords', 'sectors', 'year',
+                          'featured',
                           ]
                   )
 
@@ -118,6 +119,12 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                      required=True)
 
     long_description = RichText(title=_(u"Description"), required=True,)
+
+    description = Text(
+        title=_(u"Short summary"),
+        required=False,
+        description=u"Enter a short summary that will be used in listings.",
+    )
 
     form.widget(
         climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
@@ -479,6 +486,7 @@ def AdaptationOptionsFieldWidget(field, request):
     widget = FieldWidget(field, RelatedItemsWidget(request))
     widget.vocabulary = 'eea.climateadapt.adaptation_options'
     widget.vocabulary_override = True
+
     return widget
 
 
@@ -496,6 +504,7 @@ class CaseStudy(dexterity.Container):
             data = portal_transforms.convertTo('text/plain',
                                                html, mimetype='text/html')
             html = shorten(data.getData(), to=100)
+
         return html
 
     def _get_area(self):
@@ -505,16 +514,20 @@ class CaseStudy(dexterity.Container):
         try:
             chars = json.loads(self.geochars)
             els = chars['geoElements']
+
             if 'biotrans' not in els.keys():
                 return ''
             bio = els['biotrans']
+
             if not bio:
                 return ''
             bio = BIOREGIONS[bio[0]]    # NOTE: we take the first one
+
             return bio
         except:
             logger.exception("Error getting biochar area for case study %s",
                              self.absolute_url())
+
             return ''
 
     def _repr_for_arcgis(self):
@@ -571,6 +584,7 @@ class CaseStudy(dexterity.Container):
             },
             'geometry': geometry,
         }
+
         return res
 
 
@@ -592,6 +606,7 @@ def KeywordsFieldWidget(field, request):
     """
     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.keywords'
+
     return widget
 
 
@@ -600,6 +615,7 @@ def KeywordsFieldWidget(field, request):
 def SpecialTagsFieldWidget(field, request):
     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.special_tags'
+
     return widget
 
 
@@ -612,8 +628,10 @@ def handle_for_arcgis_sync(obj, event):
     logger.info("Queuing RabbitMQ message: %s", msg)
 
     settings = get_settings()
+
     if settings.skip_rabbitmq:
         queue_callback(lambda: HANDLERS[event_name](obj, uid))
+
         return
 
     try:

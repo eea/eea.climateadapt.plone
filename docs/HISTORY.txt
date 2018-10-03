@@ -5,6 +5,9 @@ Changelog
 -----------------------
 * Bug fix: don't show (in view) the relevant tile if there are no items
   [davidsilaghi]
+* Change: added description (short summary) field to AceItems and AceMeasure
+  objects
+  [davidsilaghi]
 * Change: UVMB page improvements
   [krisztina #91562]
 * Task: Fix listings

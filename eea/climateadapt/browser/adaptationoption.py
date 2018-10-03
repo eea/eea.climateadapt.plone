@@ -1,3 +1,8 @@
+from zope.component import getUtility
+from zope.interface import classImplements
+from zope.intid.interfaces import IIntIds
+from zope.security import checkPermission
+
 import plone.api as api
 from Acquisition import aq_inner
 from eea.climateadapt.browser import AceViewApi
@@ -8,10 +13,6 @@ from plone.dexterity.interfaces import IDexterityEditForm
 from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
 from zc.relation.interfaces import ICatalog
-from zope.component import getUtility
-from zope.interface import classImplements
-from zope.intid.interfaces import IIntIds
-from zope.security import checkPermission
 
 
 class AdaptationOptionView(DefaultView, AceViewApi):
@@ -33,6 +34,7 @@ class AdaptationOptionView(DefaultView, AceViewApi):
 
             if obj is not None and checkPermission('zope2.View', obj):
                 obj_state = api.content.get_state(obj)
+
                 if obj_state == 'published':
                     titles.append(obj.title)
                     urls.append(obj.absolute_url())
@@ -42,6 +44,7 @@ class AdaptationOptionView(DefaultView, AceViewApi):
 
 class AdaptationOptionFormExtender(FormExtender):
     def update(self):
+        self.move('description', before='long_description')
         self.move('category', before='stakeholder_participation')
         self.remove('ICategorization.subjects')
         self.remove('ICategorization.language')
@@ -51,12 +54,14 @@ class AdaptationOptionFormExtender(FormExtender):
         self.remove('IOwnership.contributors')
         self.remove('IOwnership.rights')
         labels = ['label_schema_dates', 'label_schema_ownership']
-        self.form.groups = [group for group in self.form.groups if group.label not in labels]
+        self.form.groups = [group for group in self.form.groups
+                            if group.label not in labels]
 
 
 class AdaptationOptionEditForm(DefaultEditForm):
     """ Edit form for case studies
     """
+
 
 AdaptationOptionEditView = layout.wrap_form(AdaptationOptionEditForm)
 classImplements(AdaptationOptionEditView, IDexterityEditForm)

@@ -1,8 +1,10 @@
 import json
 
+from lxml.etree import Element, SubElement, tostring
+from zope.interface import classImplements
+
 from eea.climateadapt.browser import AceViewApi
 from eea.climateadapt.vocabulary import _relevance
-from lxml.etree import Element, SubElement, tostring
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.edit import DefaultEditForm
 from plone.dexterity.browser.view import DefaultView
@@ -13,7 +15,6 @@ from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
 from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser import BrowserView
-from zope.interface import classImplements
 
 
 class CaseStudyView(DefaultView, AceViewApi):
@@ -48,6 +49,7 @@ class CaseStudyAddForm(DefaultAddForm):
 class CaseStudyFormExtender(FormExtender):
     def update(self):
         self.move('IGeolocatable.geolocation', after='geochars')
+        self.move('description', before='long_description')
         self.move('primary_photo', after='long_description')
         self.move('primary_photo_copyright', after='primary_photo')
         self.move('relevance', after='climate_impacts')
