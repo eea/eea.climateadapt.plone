@@ -197,19 +197,19 @@ $(document).ready(function() {
   });
 
   // Divide the sub-menu in 2 columns if 'sub-sub-menu' exist
-  var navigationItem = $('.main-nav-item');
-  navigationItem.each(function() {
-    var $this = $(this);
-    if ($this.find('.sub-sub-menu-wrapper').length > 0) {
-      var submenuwrapper = $this.find('.sub-menu-wrapper');
-      var submenucols = submenuwrapper.find(".sub-menu").length > 1 ? submenuwrapper.find(".sub-menu").length : 2;
-      submenuwrapper.css({
-          'column-count': submenucols,
-          '-webkit-column-count' : submenucols,
-          '-moz-column-count': submenucols,
-      });
-    }
-  });
+  // var navigationItem = $('.main-nav-item');
+  // navigationItem.each(function() {
+  //   var $this = $(this);
+  //   if ($this.find('.sub-sub-menu-wrapper').length > 0) {
+  //     var submenuwrapper = $this.find('.sub-menu-wrapper');
+  //     var submenucols = submenuwrapper.find(".sub-menu").length > 1 ? submenuwrapper.find(".sub-menu").length : 2;
+  //     submenuwrapper.css({
+  //       'column-count': submenucols,
+  //       '-webkit-column-count' : submenucols,
+  //       '-moz-column-count': submenucols,
+  //     });
+  //   }
+  // });
 
   // GENERAL
   // add button class
@@ -425,8 +425,6 @@ $(document).ready(function() {
 
   // Fix floating button
   $('.share-your-info-ace-button').wrapAll('<div class="clearfix"/>');
-
-  $('.news-item').parent().parent().children('h2').addClass('news-title');
 
   // Add a placeholder message for search input fields
   $('#search-field input[type="text"]').attr('placeholder', 'type here...');

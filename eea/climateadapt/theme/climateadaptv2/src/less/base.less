@@ -600,7 +600,8 @@ form .standard-button {
   display: table;
 }
 
-.template-compose .interactive-maps, .detailed-content {
+.template-compose .interactive-maps,
+.template-compose .detailed-content {
   background-color: transparent;
   padding: 0;
   border: none;
@@ -1226,38 +1227,6 @@ form .standard-button {
   margin-right: 5px;
 }
 
-.glossary-list {
-  column-count: 3;
-  margin-top: 2em;
-}
-
-.glossary-list a {
-  margin-left: 0 !important;
-}
-
-.glossary-list .g-heading {
-  font-size: 18px;
-  color: @primary-green;
-  background-color: #ececec;
-  display: block;
-  padding: 5px;
-  margin: 0.5em 0;
-}
-
-.glossary-list a:before {
-  content: ''!important;
-}
-
-.glossary-list > li {
-  display: block !important;
-  list-style-type: disc;
-}
-
-.glossary-list > li > ul > li {
-  list-style-type: disc;
-  display: block;
-}
-
 // Portal messages
 .portalMessage {
   margin: 1em 0;
@@ -1705,14 +1674,20 @@ li.category span {
   border-bottom: 1px solid #ddd;
   margin-bottom: 1em;
   padding-bottom: 0;
+  list-style: none
 }
 
-.news-item  h3 a {
-  font-size: 16px;
-}
-
-.news-title {
-  border-bottom: 0 !important;
+.news-item {
+  h3 {
+    margin-bottom: 0.2em;
+  }
+  a {
+    font-size: 16px;
+  }
+  .discreet {
+    margin-bottom: 1em;
+    display: block;
+  }
 }
 
 // Pagination style
