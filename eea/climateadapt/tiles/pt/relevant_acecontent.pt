@@ -89,21 +89,25 @@
       </ul>
       <ul tal:condition="not: assigned" class="list-items">
         <li tal:repeat="brain view/items">
-          <a href="" tal:attributes="href brain/getURL" tal:content="brain/Title">Title here</a>
-          <tal:def tal:define="icons python: view.get_icons(brain)">
+          <a href="" tal:attributes="href brain/getURL; title brain/Description" tal:content="brain/Title">Title here</a>
+          <div style="display: none"
+            class="hover-icon"
+            tal:define="icons python: view.get_icons(brain)">
             <img class="tile-icon-help" tal:repeat="icon icons" tal:attributes="src icon/absolute_url;
             title icon/title_or_id" />
-          </tal:def>
+          </div>
         </li>
       </ul>
       <div class="tile-footer">
         <a href="" tal:attributes="href view/view_more_url" tal:condition="view/view_more">View more</a>
 
+        <div tal:condition="nothing">
         <!-- <div tal:condition="python:view.data.get('show_share_btn') or view.show_share_btn()">
         <a href="/share-your-info" >
           <button>Share information</button>
         </a>
       </div> -->
+        </div>
       </div>
     </div>
   </body>
