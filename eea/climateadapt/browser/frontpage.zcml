@@ -30,6 +30,14 @@
 
 
   <browser:page
+    name="fp-search-dynamic"
+    for="*"
+    template="pt/frontpage/fp-search-dynamic.pt"
+    permission="zope.Public"
+    class=".frontpage_slides.FrontpageSearch"
+    />
+
+  <browser:page
     name="fp-ast-tile"
     for="*"
     template="pt/frontpage/fp-ast-tile.pt"

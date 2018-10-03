@@ -1,12 +1,17 @@
-from plone import api
-from plone.directives import form, dexterity
-from plone.namedfile.field import NamedBlobImage
-from plone.namedfile.interfaces import IImageScaleTraversable
-from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
+from collections import namedtuple
+
 from zope.interface import implements
 from zope.lifecycleevent import modified
 from zope.schema import TextLine
+
+from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
+from plone import api
+from plone.api.portal import get_tool
 from plone.app.textfield import RichText
+from plone.directives import dexterity, form
+from plone.namedfile.field import NamedBlobImage
+from plone.namedfile.interfaces import IImageScaleTraversable
+from Products.Five.browser import BrowserView
 
 
 class RichImageSchema(form.Schema, IImageScaleTraversable):
@@ -45,6 +50,7 @@ class RichImage(dexterity.Container):
         data = portal_transforms.convertTo('text/plain',
                                            html, mimetype='text/html')
         text = data.getData()
+
         return text.strip()
 
     def PUT(self, REQUEST=None, RESPONSE=None):
@@ -61,6 +67,7 @@ class RichImage(dexterity.Container):
             data=infile.read(), filename=unicode(filename))
 
         modified(self)
+
         return response
 
     def get_size(self):
@@ -68,3 +75,45 @@ class RichImage(dexterity.Container):
 
     def content_type(self):
         return getattr(self.image, 'contentType', None)
+
+
+Section = namedtuple('Section', ['title', 'count', 'search_id', 'icon_class'])
+
+SEARCH_TYPES_ICONS = [
+    ("MEASURE", "Adaptation options", 'fa-cogs'),
+    ("ACTION", "Case studies", 'fa-file-text-o'),
+    ("GUIDANCE", "Guidance", 'fa-compass'),
+    ("INDICATOR", "Indicators", 'fa-area-chart'),
+    ("INFORMATIONSOURCE", "Information Portals", 'fa-info-circle'),
+
+    # ("MAPGRAPHDATASET", "Maps, graphs and datasets"),       # replaced by
+    # video
+    ("VIDEOS", "Videos", ''),
+
+    ("ORGANISATION", "Organisations", 'fa-sitemap'),
+    ("DOCUMENT", "Publication and Reports", 'fa-newspaper-o'),
+    ("RESEARCHPROJECT", "Research and knowledge projects",
+     'db-category-icon db-research-icon'),
+    ("TOOL", "Tools", 'fa-wrench'),
+
+]
+
+
+class FrontpageSearch(BrowserView):
+
+    # TODO: implement cache using eea.cache
+    # @cache
+    def sections(self):
+        catalog = get_tool('portal_catalog')
+        counts = {}
+
+        for search_type, _x, _y in SEARCH_TYPES_ICONS:
+            count = len(catalog.searchResults(search_type=search_type,
+                                              review_state='published'))
+            counts[search_type] = count
+
+        return [
+            Section(x[1], counts.get(x[0], 0), x[0], x[2])
+
+            for x in SEARCH_TYPES_ICONS
+        ]

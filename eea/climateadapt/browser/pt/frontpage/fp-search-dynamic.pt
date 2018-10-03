@@ -1,0 +1,111 @@
+<div class="db-categories flex-wrapper" tal:define="sections view/sections">
+
+  <div class="db-category-wrapper action-flex-item"
+       tal:repeat="section sections">
+
+    <a href="#">
+      <span class="db-category-icon">
+        <i class="fa fa-cogs" tal:attributes="class string:fa ${section/icon_class}"></i>
+        <span class="total-items" tal:content="section/count">120</span>
+      </span>
+      <p tal:content="section/title">Adaptation <br> Options</p>
+    </a>
+  </div>
+
+</div>
+
+
+<div tal:replace="nothing">
+<div class="db-categories flex-wrapper">
+  <div class="db-category-wrapper action-flex-item">
+    <a href="#">
+      <span class="db-category-icon">
+        <i class="fa fa-cogs"></i>
+        <span class="total-items">120</span>
+      </span>
+      <p>Adaptation <br> Options</p>
+    </a>
+  </div>
+  <div class="db-category-wrapper action-flex-item">
+    <a href="#">
+      <span class="db-category-icon">
+        <i class="fa fa-file-text-o"></i>
+        <span class="total-items">120</span>
+      </span>
+      <p>Case studies</p>
+    </a>
+  </div>
+  <div class="db-category-wrapper action-flex-item">
+    <a href="#">
+      <span class="db-category-icon">
+        <i class="fa fa-compass"></i>
+        <span class="total-items">120</span>
+      </span>
+      <p>Guidance</p>
+    </a>
+  </div>
+  <div class="db-category-wrapper action-flex-item">
+    <a href="#">
+      <span class="db-category-icon">
+        <i class="fa fa-area-chart"></i>
+        <span class="total-items">120</span>
+      </span>
+      <p>Indicators</p>
+    </a>
+  </div>
+  <div class="db-category-wrapper action-flex-item">
+    <a href="#">
+      <span class="db-category-icon">
+        <i class="fa fa-info-circle"></i>
+        <span class="total-items">120</span>
+      </span>
+      <p>Information <br> Portals</p>
+    </a>
+  </div>
+  <div class="db-category-wrapper action-flex-item">
+    <a href="#">
+      <span class="db-category-icon">
+        <i class="fa fa-bar-chart"></i>
+        <span class="total-items">120</span>
+      </span>
+      <p>Maps, graphs <br> and datasets</p>
+    </a>
+  </div>
+  <div class="db-category-wrapper action-flex-item">
+    <a href="#">
+      <span class="db-category-icon">
+        <i class="fa fa-sitemap"></i>
+        <span class="total-items">120</span>
+      </span>
+      <p>Organizations</p>
+    </a>
+  </div>
+  <div class="db-category-wrapper action-flex-item">
+    <a href="#">
+      <span class="db-category-icon">
+        <i class="fa fa-newspaper-o"></i>
+        <span class="total-items">120</span>
+      </span>
+      <p>Publication <br> and Reports</p>
+    </a>
+  </div>
+  <div class="db-category-wrapper db-research action-flex-item">
+    <a href="#">
+      <span class="db-category-icon db-research-icon">
+        <div class="research-icon"></div>
+      </span>
+      <span class="total-items">120</span>
+      <p>Research and <br> Knowledge projects</p>
+    </a>
+  </div>
+  <div class="db-category-wrapper action-flex-item">
+    <a href="#">
+      <span class="db-category-icon">
+        <i class="fa fa-wrench"></i>
+        <span class="total-items">120</span>
+      </span>
+      <p>Tools</p>
+    </a>
+  </div>
+</div>
+</div>
