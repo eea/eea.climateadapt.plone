@@ -1,6 +1,6 @@
 <ul id="navbar" class="main-nav main-nav-menu" tal:define="menu view/menu">
   <tal:block tal:repeat="section python: view.menu()">
-  <li class="main-nav-item" tal:attributes="id string:main-nav-item-${repeat/section/index}"tal:condition="python: section['label'] != 'Help'">
+  <li class="main-nav-item" tal:attributes="id string:main-nav-item-${repeat/section/index}" tal:condition="python: section['label'] != 'Help'">
 
       <span tal:define="has_children python: bool(section['children'][-1])">
         <a href=""
