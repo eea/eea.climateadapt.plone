@@ -5,6 +5,8 @@ Changelog
 -----------------------
 * Bug fix: make the search frontpage tile display result counts
   [davidsilaghi]
+* Change: Customized special submenus of navigation bar
+  [krisztina #91562]
 * Bug fix: don't show (in view) the relevant tile if there are no items
   [davidsilaghi]
 * Change: added description (short summary) field to AceItems and AceMeasure
