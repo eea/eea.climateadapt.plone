@@ -47,11 +47,13 @@ class AceViewApi(object):
 
         if creator:
             member = get(creator)
-            creator = member.getProperty('fullname') or creator
+            if member:
+                creator = member.getProperty('fullname') or creator
 
         if reviewer:
             member = get(reviewer)
-            reviewer = member.getProperty('fullname') or reviewer
+            if member:
+                reviewer = member.getProperty('fullname') or reviewer
 
         return ReviewInfo(creator, reviewer)
 

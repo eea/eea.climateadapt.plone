@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Fix getProperty error
+  [krisztina #91562]
 * Bug fix: Fix AST menu 'Getting started' active state
   Change: Broken links page table styling
   [krisztina #91562]
