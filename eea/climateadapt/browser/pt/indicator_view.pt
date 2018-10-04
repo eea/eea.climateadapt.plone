@@ -37,6 +37,8 @@
           <div class="aceitem-right" metal:fill-slot="ace-right-slot">
 
             <metal:macro use-macro="context/ace_macros/macros/files" />
+            <!-- <h4>Updated:</h4>
+            <div tal:content="context/modified"></div> -->
 
             <h4>Keywords:</h4>
             <metal:macro use-macro="context/ace_macros/macros/keywords" />

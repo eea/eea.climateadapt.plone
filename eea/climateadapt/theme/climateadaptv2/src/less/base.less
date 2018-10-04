@@ -1322,7 +1322,7 @@ dl.error, .portalMessage.error{
     color: @primary-blue;
     border-bottom: 1px solid #d7d7d7;
     padding: 12px 0;
-    width: auto !important;
+    width: auto;
   }
   th:not(:last-child) {
     border-right: 1px solid #d7d7d7;
@@ -1356,6 +1356,76 @@ table.listing th {
   margin: 5px 0;
   font-family: RobotoM;
 }
+
+
+// Broken links table styling
+
+.template-broken-links .CSSTableGenerator {
+  table,
+  table thead,
+  table tbody,
+  table tbody tr,
+  table thead tr {
+    display: block;
+  }
+
+  table {
+    thead {
+      tr > th {
+        display: inline-block;
+      }
+      tr > th:nth-child(1) {
+        width: 50%;
+      }
+      tr > th:nth-child(2) {
+        width: 40%;
+      }
+      tr > th:nth-child(3) {
+        width: 9%;
+      }
+    }
+
+    tbody {
+      tr:first-child td {
+        background-color: transparent;
+      }
+      tr > td {
+        display: inline-block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      tr > td:nth-child(1) {
+        width: 50%;
+      }
+      tr > td:nth-child(2) {
+        width: 40%;
+      }
+      tr > td:nth-child(3) {
+        width: 9%;
+      }
+    }
+  }
+
+  #content {
+    clear: both;
+  }
+
+  div.position-0 {
+    margin-left: -100%;
+  }
+
+  div.width-full {
+    width: 100%;
+  }
+
+  div.cell {
+    position: relative;
+    float: left;
+    left: 100%;
+  }
+}
+
 
 // Fields and forms
 #folderContentsForm .context {

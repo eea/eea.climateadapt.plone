@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bug fix: Fix AST menu 'Getting started' active state
+  Change: Broken links page table styling
+  [krisztina #91562]
 * Show information about creator and reviewer on aceitem objects
   [davidsilaghi]
 * Bug fix: make the search frontpage tile display result counts
