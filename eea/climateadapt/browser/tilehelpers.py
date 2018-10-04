@@ -6,6 +6,9 @@ developed and tested.
 
 from collective.cover.tiles.base import (IPersistentCoverTile,
                                          PersistentCoverTile)
+from zope import schema
+from zope.component.hooks import getSite
+from zope.interface import implements
 
 from eea.climateadapt.vocabulary import ace_countries_selection
 from plone import api
@@ -16,9 +19,6 @@ from plone.memoize import view
 from plone.namedfile.field import NamedBlobImage
 from plone.tiles.interfaces import ITileDataManager
 from Products.Five.browser import BrowserView
-from zope import schema
-from zope.component.hooks import getSite
-from zope.interface import implements
 
 
 class AceContentSearch(BrowserView):
@@ -193,6 +193,7 @@ class Carousel(PersistentCoverTile):
 
     def last_casestudy(self):
         """ Gets the most recent updated casestudy"""
+        # import pdb; pdb.set_trace()
         site = getSite()
         catalog = site.portal_catalog
         brain = catalog.searchResults({
