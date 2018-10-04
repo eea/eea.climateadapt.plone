@@ -1,11 +1,12 @@
-from eea.climateadapt.browser import AceViewApi
-from plone.dexterity.browser.view import DefaultView
-from plone.z3cform import layout
 from zope.interface import classImplements
-from plone.z3cform.fieldsets.extensible import FormExtender
-from plone.dexterity.browser.edit import DefaultEditForm
+
+from eea.climateadapt.browser import AceViewApi
 from plone.dexterity.browser.add import DefaultAddForm
+from plone.dexterity.browser.edit import DefaultEditForm
+from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityEditForm
+from plone.z3cform import layout
+from plone.z3cform.fieldsets.extensible import FormExtender
 
 
 class AceItemView(DefaultView, AceViewApi):
