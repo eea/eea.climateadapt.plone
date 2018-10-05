@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Extract bio_regions and macro_regions as values for indexing
+  [davidsilaghi]
 * Show related items viewlet below text in aceitems view
   [davidsilaghi]
 * Fix getProperty error

@@ -22,6 +22,16 @@
       />
     </genericsetup:upgradeSteps>
 
+   <genericsetup:upgradeSteps
+      source="*"
+      destination="53"
+      profile="eea.climateadapt:default">
+      <genericsetup:upgradeDepends
+        title="Upgrade profile eeaclimate to v53"
+        import_profile="eea.climateadapt:eeaclimateadapt_to_53"
+      />
+    </genericsetup:upgradeSteps>
+
   <genericsetup:upgradeSteps
      source="48"
      destination="49"

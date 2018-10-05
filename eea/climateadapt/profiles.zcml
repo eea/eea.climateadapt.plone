@@ -289,4 +289,12 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
     />
 
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_53"
+      title="Upgrade profile for eea.climateadapt v53"
+      description=""
+      directory="profiles/upgrades/to_53"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
 </configure>

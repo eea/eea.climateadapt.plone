@@ -83,6 +83,18 @@ class ISearchAceContentTile(IPersistentCoverTile):
                      )
                      )
 
+    macro_regions = List(title=_(u"Macro-Transnational Regions"),
+                         required=False,
+                         value_type=Choice(
+                             vocabulary="eea.climateadapt.regions"
+                         ))
+
+    bio_regions = List(title=_(u"Biogeographical Regions"),
+                       required=False,
+                       value_type=Choice(
+                           vocabulary="eea.climateadapt.bioregions"
+                       ))
+
     nr_items = Int(
         title=_(u"Nr of items to show"),
         required=True,
@@ -117,6 +129,9 @@ class AceTileMixin(object):
             'search_text': 'SearchableText',
             'special_tags': 'special_tags',
             'sector': 'sectors',
+            'countries': 'countries',
+            'macro_regions': 'macro_regions',
+            'bio_regions': 'bio_regions',
         }
 
         sort_map = {
@@ -143,7 +158,6 @@ class AceTileMixin(object):
         # the special_tags field is indexed into the SearchableText
         st = self.data.get('special_tags')
 
-
         if st:
             query.pop('special_tags', None)
 
@@ -151,6 +165,8 @@ class AceTileMixin(object):
                 st = st.split(u' ')
             words = query.pop('SearchableText', u'').split(u' ')
             query['SearchableText'] = u' '.join(set(words + st))
+
+        print query
 
         return query
 

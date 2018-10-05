@@ -17,6 +17,7 @@
     <utility name="eea.climateadapt.element_types_vocabulary" component=".vocabulary.ElementsVocabularyFactory"/>
     <utility name="eea.climateadapt.search_types_vocabulary" component=".vocabulary.SearchTypesVocabularyFactory"/>
     <utility name="eea.climateadapt.regions" component=".vocabulary.regions_vocabulary"/>
+    <utility name="eea.climateadapt.bioregions" component=".vocabulary.bioregions_vocab_factory"/>
 
     <browser:resourceDirectory
         name="eea.climateadapt.tiles"

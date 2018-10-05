@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 
-from Products.CMFCore.utils import getToolByName
 from collections import namedtuple
+
+from zope.component.hooks import getSite
+from zope.interface import alsoProvides, implementer
+from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
+
+import pycountry
 from plone.app.querystring import queryparser
 from plone.app.vocabularies.catalog import CatalogVocabulary as BCV
-from plone.app.vocabularies.catalog import CatalogVocabularyFactory
 from plone.app.vocabularies.catalog import KeywordsVocabulary as BKV
+from plone.app.vocabularies.catalog import CatalogVocabularyFactory
 from plone.uuid.interfaces import IUUID
-from zope.component.hooks import getSite
-from zope.interface import alsoProvides
-from zope.interface import implementer
-from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm
-from zope.schema.vocabulary import SimpleVocabulary
-import pycountry
+from Products.CMFCore.utils import getToolByName
 
 
 def generic_vocabulary(_terms, sort=True):
@@ -21,7 +21,7 @@ def generic_vocabulary(_terms, sort=True):
     """
 
     if _terms and isinstance(_terms, dict):
-        _terms = dict.items()
+        _terms = _terms.items()
     elif _terms and isinstance(_terms[0], basestring):
         _terms = [(x, x) for x in _terms]
 
@@ -50,11 +50,13 @@ class CatalogVocabulary(BCV):
             uid = value
         else:
             uid = IUUID(value)
+
         for term in self._terms:
             try:
                 term_uid = term.value.UID
             except AttributeError:
                 term_uid = term.value
+
             if uid == term_uid:
                 return term
 
@@ -75,10 +77,13 @@ class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
         )
 
         parsed = {}
+
         if query:
             parsed = queryparser.parseFormquery(context, query['criteria'])
+
             if 'sort_on' in query:
                 parsed['sort_on'] = query['sort_on']
+
             if 'sort_order' in query:
                 parsed['sort_order'] = str(query['sort_order'])
         try:
@@ -89,6 +94,7 @@ class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
         if parsed.get('path'):
             if parsed['path'].get('depth'):
                 parsed['path']['query'].append(u'/cca/metadata/adaptation-options')
+
                 if u'/cca' in parsed['path']['query']:
                     parsed['path']['query'].remove(u'/cca')
 
@@ -128,10 +134,13 @@ class CCAItemsVocabulary(CatalogVocabularyFactory):
         )
 
         parsed = {}
+
         if query:
             parsed = queryparser.parseFormquery(context, query['criteria'])
+
             if 'sort_on' in query:
                 parsed['sort_on'] = query['sort_on']
+
             if 'sort_order' in query:
                 parsed['sort_order'] = str(query['sort_order'])
         try:
@@ -142,6 +151,7 @@ class CCAItemsVocabulary(CatalogVocabularyFactory):
         if parsed.get('path'):
             if parsed['path'].get('depth'):
                 parsed['path']['query'].append(u'/cca/metadata')
+
                 if u'/cca' in parsed['path']['query']:
                     parsed['path']['query'].remove(u'/cca')
         brains = catalog(**parsed)
