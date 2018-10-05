@@ -5,6 +5,11 @@ Changelog
 -----------------------
 * Extract bio_regions and macro_regions as values for indexing
   [davidsilaghi]
+* Stylized creator and reviewer on aceitem objects
+  [krisztina]
+* Task: DB items: include the date when the item was created/updated;
+  add a "go back to search results" link
+  [krisztina #98321]
 * Show related items viewlet below text in aceitems view
   [davidsilaghi]
 * Fix getProperty error

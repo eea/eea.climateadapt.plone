@@ -124,20 +124,12 @@
     </after>
   </rules>
 
-  <!-- UVMB: move last modified under the h1 title -->
+  <!-- UVMB: move h1 title before last modified -->
   <rules css:if-content=".subsection-tools-urban-adaptation-introduction">
     <before css:content="#plone-document-byline">
-      <xsl:copy-of select='//h1' />
+      <xsl:copy-of select="//*[contains(@class, 'tile-content')]/h1" />
     </before>
     <drop css:content=".tile-content > h1" />
-  </rules>
-
-  <!-- Case studies database items: move last modified under the h1 title -->
-  <rules css:if-content=".aceitem_page .case-studies-top">
-    <drop css:content="#plone-document-byline" />
-    <after css:content=".case-studies-top > h1">
-      <xsl:copy-of select='//*[@id="plone-document-byline"]' />
-    </after>
   </rules>
 
   <!-- add edit bar for the homepage, also move it to the top -->

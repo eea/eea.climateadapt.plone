@@ -533,7 +533,7 @@ $(document).ready(function() {
    '.column p').removeAttr('style');
 
   // move case studies gallery
-  var $aceSidebar = $('.subsection-case-studies .aceitem_page .col-md-3');
+  var $aceSidebar = $('.aceitem_page .col-md-3');
   $aceSidebar.before($aceSidebar.find('.case-studies-illustrations'));
   $aceSidebar.before($aceSidebar.find('.sidebar_files'));
 

@@ -15,8 +15,14 @@
         <div id="content-core">
 
           <div class="col-md-9 content-column">
+            <div class="search-back">
+              <a href="/data-and-downloads">
+                <i class="fa fa-reply" aria-hidden="true"></i>
+                Go back to search results
+              </a>
+            </div>
 
-            <div class="aceitem_top" tal:define="plone nocall: context/@@plone_portal_state">
+            <div class="aceitem_top">
               <div style="display: none" tal:content="context/special_tags | nothing">Special tags, for debugging</div>
               <a href="" tal:attributes="href view/link_to_original" style="display: none">Original page</a>
               <h2 tal:content="view/type_label">Project</h2>
@@ -24,25 +30,6 @@
                 <h1 tal:content="context/title">Title here</h1>
               </metal:macro>
 
-              <div
-                tal:condition="plone/anonymous"
-                tal:define="info view/get_review_info; reviewer info/reviewer; creator info/creator"
-                class="ace_review_info">
-                <div tal:condition="python: creator and not reviewer">
-                  Created by <span tal:content="creator">John</span>
-                </div>
-                <div tal:condition="python: creator is reviewer">
-                  Created by <span tal:content="creator">John</span>
-                </div>
-                <div tal:condition="python: reviewer and not creator">
-                  Reviewed by <span tal:content="reviewer">John</span>
-                </div>
-                <div tal:condition="python: (reviewer and creator) and (reviewer != creator)">
-                  Created by <span tal:content="creator">John</span>,
-                  reviewed by <span tal:content="reviewer">John</span>
-                </div>
-
-              </div>
               <div tal:replace="structure provider:plone.belowcontenttitle" />
             </div>
 
@@ -61,6 +48,32 @@
 
           <div class="col-md-3 content-sidebar">
             <div id="aceitem_sidebar">
+              <tal:block tal:define="plone nocall: context/@@plone_portal_state">
+                <div
+                  tal:condition="plone/anonymous"
+                  tal:define="info view/get_review_info; reviewer info/reviewer; creator info/creator"
+                  class="ace_review_info">
+                  <div tal:condition="python: creator and not reviewer">
+                    <h4>Created by:</h4>
+                    <span class="review-name" tal:content="creator">John</span>
+                  </div>
+                  <div tal:condition="python: creator is reviewer">
+                    <h4>Created by:</h4>
+                    <span class="review-name" tal:content="creator">John</span>
+                  </div>
+                  <div tal:condition="python: reviewer and not creator">
+                    <h4>Reviewed by:</h4>
+                    <span class="review-name" tal:content="reviewer">John</span>
+                  </div>
+                  <div tal:condition="python: (reviewer and creator) and (reviewer != creator)">
+                    <h4>Created by:</h4>
+                    <span class="review-name" tal:content="creator">John</span>
+                    <h4>Reviewed by:</h4>
+                    <span class="review-name" tal:content="reviewer">John</span>
+                  </div>
+
+                </div>
+              </tal:block>
               <metal:slot metal:define-slot="ace-right-slot"></metal:slot>
             </div>
           </div>
@@ -130,12 +143,13 @@
             <span tal:replace="view/type_label" />
             Documents (<span tal:content="python: len(files)"></span>)
           </h4>
-          <div tal:repeat="file files">
-            <a tal:attributes="href file/absolute_url">
-              <i class="fa fa-file-text-o" aria-hidden="true"></i>
-              <span tal:content="file/Title"></span>
-            </a>
-          </div>
+          <ul tal:repeat="file files">
+            <li>
+              <a tal:attributes="href file/absolute_url">
+                <span tal:content="file/Title"></span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </tal:def>
