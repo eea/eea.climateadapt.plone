@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Stylized creator and reviewer on aceitem objects
+  [krisztina]
 * Task: DB items: include the date when the item was created/updated;
   add a "go back to search results" link
   [krisztina #98321]
