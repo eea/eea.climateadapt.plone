@@ -34,6 +34,7 @@ class AceViewApi(object):
         """
 
         creator = self.context.Creator()
+        reviewer = None
 
         if creator is 'tibi':
             creator = None
@@ -47,11 +48,13 @@ class AceViewApi(object):
 
         if creator:
             member = get(creator)
+
             if member:
                 creator = member.getProperty('fullname') or creator
 
         if reviewer:
             member = get(reviewer)
+
             if member:
                 reviewer = member.getProperty('fullname') or reviewer
 

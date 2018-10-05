@@ -193,7 +193,6 @@ class Carousel(PersistentCoverTile):
 
     def last_casestudy(self):
         """ Gets the most recent updated casestudy"""
-        # import pdb; pdb.set_trace()
         site = getSite()
         catalog = site.portal_catalog
         brain = catalog.searchResults({

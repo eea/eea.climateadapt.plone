@@ -37,7 +37,7 @@
                 <div tal:condition="python: reviewer and not creator">
                   Reviewed by <span tal:content="reviewer">John</span>
                 </div>
-                <div tal:condition="python: (reviewer and creator) and (reviewer is not creator)">
+                <div tal:condition="python: (reviewer and creator) and (reviewer != creator)">
                   Created by <span tal:content="creator">John</span>,
                   reviewed by <span tal:content="reviewer">John</span>
                 </div>
