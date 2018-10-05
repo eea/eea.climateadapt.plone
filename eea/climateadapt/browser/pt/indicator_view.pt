@@ -7,13 +7,17 @@
   lang="en"
   metal:use-macro="context/main_template/macros/master"
   >
-  <body>
 
+  <body>
     <metal:main fill-slot="body">
 
       <tal:main-macro metal:define-macro="content-core">
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
+
+          <div metal:fill-slot="title-slot">
+            <div metal:use-macro="context/ace_macros/macros/title_date"></div>
+          </div>
 
           <div class="aceitem-left" metal:fill-slot="ace-left-slot">
             <h3>Description</h3>
@@ -37,22 +41,36 @@
           <div class="aceitem-right" metal:fill-slot="ace-right-slot">
 
             <metal:macro use-macro="context/ace_macros/macros/files" />
-            <!-- <h4>Updated:</h4>
-            <div tal:content="context/modified"></div> -->
 
-            <h4>Keywords:</h4>
-            <metal:macro use-macro="context/ace_macros/macros/keywords" />
+            <div class="macro-category">
+              <h4>Updated:</h4>
+              <div tal:content="python: context.EffectiveDate().split('T')[0]"> Date </div>
+            </div>
 
-            <h4>Climate impacts:</h4>
-            <tal:block content="structure python:view.w['climate_impacts'].render()"/>
+            <div class="macro-category">
+              <h4>Keywords:</h4>
+              <metal:macro use-macro="context/ace_macros/macros/keywords" />
+            </div>
 
-            <h4>Elements:</h4>
-            <tal:block content="structure python:view.w['elements'].render()"/>
+            <div class="macro-category">
+              <h4>Climate impacts:</h4>
+              <tal:block content="structure python:view.w['climate_impacts'].render()"/>
+            </div>
 
-            <h4>Sectors</h4>
-            <tal:block content="structure python:view.w['sectors'].render()"/>
-            <h4>Geographic characterization:</h4>
-            <metal:macro use-macro="context/ace_macros/macros/geochar" />
+            <div class="macro-category">
+              <h4>Elements:</h4>
+              <tal:block content="structure python:view.w['elements'].render()"/>
+            </div>
+
+            <div class="macro-category">
+              <h4>Sectors</h4>
+              <tal:block content="structure python:view.w['sectors'].render()"/>
+            </div>
+
+            <div class="macro-category">
+              <h4>Geographic characterization:</h4>
+              <metal:macro use-macro="context/ace_macros/macros/geochar" />
+            </div>
 
           </div>
 

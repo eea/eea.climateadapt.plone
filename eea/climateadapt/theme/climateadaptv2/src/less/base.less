@@ -1178,6 +1178,7 @@ form .standard-button {
   padding: 5px 10px;
   font-size: 14px;
   display: inline-block;
+  margin-bottom: 1.5em;
 }
 
 #aceitem_sidebar h4,
@@ -1190,12 +1191,11 @@ form .standard-button {
 }
 
 .sidebar_bold:last-child p,
-#aceitem_sidebar > div:last-child > div {
+#aceitem_sidebar .macro-category:last-child {
   margin-bottom: 0;
 }
 
-#aceitem_sidebar .list-field,
-#aceitem_sidebar > div > div {
+#aceitem_sidebar .macro-category {
   margin-bottom: 1.3em;
   display: block;
 }
@@ -1235,7 +1235,8 @@ form .standard-button {
   line-height: 30px;
 
   input[type="submit"] {
-    background-color: #0000;
+    background-color: transparent;
+    font-family: RobotoM;
     border: none;
     padding: 0;
     border-bottom: 1px solid #3a3a3a;
@@ -2105,6 +2106,10 @@ div.width-1\3a 4 {
   }
 }
 
+#content-core .ace-content-column ul > li {
+  margin-bottom: 0;
+}
+
 .reference-title {
   border-top: 1px solid #ddd;
   padding-top: 1.5em;
@@ -2145,6 +2150,18 @@ div.width-1\3a 4 {
 
 .blueimp-gallery > .title {
   left: 15px;
+}
+
+.search-back {
+  margin-bottom: 1.5em;
+  a {
+    color: #EF7000;
+    font-size: 13px;
+
+    .fa {
+      margin-right: 0.3em;
+    }
+  }
 }
 
 /* Edit tiles layout */

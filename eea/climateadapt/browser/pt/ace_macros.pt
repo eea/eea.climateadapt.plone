@@ -15,6 +15,12 @@
         <div id="content-core">
 
           <div class="col-md-9 content-column">
+            <div class="search-back">
+              <a href="/data-and-downloads">
+                <i class="fa fa-reply" aria-hidden="true"></i>
+                Go back to search results
+              </a>
+            </div>
 
             <div class="aceitem_top" tal:define="plone nocall: context/@@plone_portal_state">
               <div style="display: none" tal:content="context/special_tags | nothing">Special tags, for debugging</div>
