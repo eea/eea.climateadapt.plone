@@ -1,3 +1,5 @@
+import json
+import urllib
 from collections import namedtuple
 
 from zope.interface import implements
@@ -77,7 +79,8 @@ class RichImage(dexterity.Container):
         return getattr(self.image, 'contentType', None)
 
 
-Section = namedtuple('Section', ['title', 'count', 'search_id', 'icon_class'])
+Section = namedtuple('Section',
+                     ['title', 'count', 'link', 'icon_class'])
 
 SEARCH_TYPES_ICONS = [
     ("MEASURE", "Adaptation options", 'fa-cogs'),
@@ -103,6 +106,26 @@ class FrontpageSearch(BrowserView):
 
     # TODO: implement cache using eea.cache
     # @cache
+    def _make_link(self, search_type):
+        t = {u'function_score':
+             {u'query':
+              {u'bool':
+               {u'filter':
+                {u'bool':
+                 {u'should':
+                  [{u'term': {u'typeOfData': search_type}}]
+                  }
+                 },
+                }
+               }
+              }
+             }
+
+        q = {'query': t}
+        l = '/data-and-downloads?source=' + urllib.quote(json.dumps(q))
+
+        return l
+
     def sections(self):
         catalog = get_tool('portal_catalog')
         counts = {}
@@ -113,7 +136,7 @@ class FrontpageSearch(BrowserView):
             counts[search_type] = count
 
         return [
-            Section(x[1], counts.get(x[0], 0), x[0], x[2])
+            Section(x[1], counts.get(x[0], 0), self._make_link(x[1]), x[2])
 
             for x in SEARCH_TYPES_ICONS
         ]

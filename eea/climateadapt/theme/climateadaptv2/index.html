@@ -453,10 +453,13 @@
     
             <div class="tab-pane fade main-tab-pane" id="t-database">
               <div class="database-search-box">
-                <input type="text" placeholder="type here ..."/>
-                <button class="search-submit">
+              <form method="GET" action="/data-and-downloads">
+                <input type="text" placeholder="type here ..."
+                name="SearchableText" />
+                <button class="search-submit" type="submit">
                   <i class="fa fa-search"></i>
                 </button>
+                </form>
               </div>
     
               <div class="db-categories flex-wrapper">
