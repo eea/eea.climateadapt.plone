@@ -1,6 +1,5 @@
 <div class="country-header">
-  <div class="country-select-tile" tal:define="image view/get_image">
-    <!-- <img tal:condition="image" tal:attributes="src string:${image/absolute_url}" /> -->
+  <div class="country-select-tile">
 
     <div class="dd-country-title">
       <div class="dd-title-wrapper">
@@ -11,12 +10,40 @@
       <input class="selected-inp" type="hidden">
       <ul class="options resizeselect-list">
         <li tal:repeat="c view/countries"
-            tal:attributes="data-value python:c[0]"
-            tal:content="python: c[1]";>
+          tal:attributes="data-value python:c[0]"
+          tal:content="python: c[1]";>
         </li>
       </ul>
     </div>
 
   </div>
-  <div class="country-map"></div>
+
+
+  <div class="country-map">
+    <div class="country-header header-bg">
+      <svg-container
+         class="svg-header-wrapper svg-map-container"
+         tal:attributes="data-settings string:${context/absolute_url}/@@mapSingleCountrySettings">
+        <svg height="302"></svg>
+      </svg-container>
+    </div>
+  </div>
+
+  <script>
+// d3 uses define, we don't want it, let's trick it.
+window._old_define = window.define;
+window.define = null;
+  </script>
+  <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+  <script src="https://d3js.org/d3-array.v1.min.js"></script>
+  <script src="https://d3js.org/d3-geo.v1.min.js"></script>
+  <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+  <script src="https://unpkg.com/topojson@3"></script>
+  <script src="https://d3js.org/d3-queue.v3.min.js"></script>
+  <script>
+window.define = window._old_define;
+  </script>
+
+  <script src="/++resource++eea.climateadapt.tiles/countrymap.js" ></script>
+
 </div>
