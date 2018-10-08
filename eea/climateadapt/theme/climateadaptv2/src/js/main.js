@@ -140,7 +140,7 @@ $(document).ready(function() {
 
   // HOMEPAGE: Main area
   // Get the heighest div and make equal height on every boxes
-  var windowsize = $(window).width();
+  var windowWidth = $(window).width();
   var $mainBox = $('.main-box');
   var mainBoxMaxHeight = 0;
 
@@ -148,7 +148,7 @@ $(document).ready(function() {
     mainBoxMaxHeight = ($(this).outerHeight() > mainBoxMaxHeight) ? $(this).outerHeight() : mainBoxMaxHeight;
   });
 
-  if (windowsize <= 600) {
+  if (windowWidth <= 767) {
     $mainBox.css('min-height', 'auto');
   } else {
     $mainBox.css('min-height', mainBoxMaxHeight);

@@ -1,6 +1,6 @@
 <div class="db-categories flex-wrapper" tal:define="sections view/sections">
 
-  <div class="db-category-wrapper action-flex-item" tal:repeat="section sections">
+  <div class="db-category-wrapper" tal:repeat="section sections">
 
     <a href="#" tal:attributes="href section/link">
       <span class="db-category-icon">
