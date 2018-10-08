@@ -52,6 +52,13 @@
     class=".tilehelpers.FrontPageCountries"
     />
 
+  <browser:page
+    name="countries-tile-metadata"
+    for="*"
+    permission="zope.Public"
+    class=".tilehelpers.CountriesTileMetadata"
+    />
+
   <plone:tile
     name="eea.carousel.tile"
     title="Frontpage Tile"
