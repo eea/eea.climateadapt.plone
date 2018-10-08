@@ -8,7 +8,7 @@ $(document).ready(function () {
   var cpath = '++theme++climateadaptv2/static/countries/euro-countries.geojson';
   var fpath = '++theme++climateadaptv2/static/countries/countries.tsv';
 
-  var $sw = $('#countries-map');
+  var $sw = $('#country-map');
   var $load = $('<div class="map-loader">' +
   '<div class="loading-spinner"></div>' +
   '<span class="loading-text">Loading map ...</span></div>');
