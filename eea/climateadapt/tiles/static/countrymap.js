@@ -60,17 +60,11 @@ function getCountryClass(country, countries) {
   var available = countries.names.indexOf(country.properties.SHRT_ENGL) !== -1;
   if (available) k += ' country-available';
 
-  // var meta = countrySettings[country.properties.SHRT_ENGL];
-  // if (available && meta && meta[0] && meta[0][_selectedMapSection]) {
-  //   k += ' country-green';
-  // }
   return k;
 }
 
 function renderCountry(map, country, path, countries, x, y) {
 
-  // debugger;
-  // console.log('countries', countries);
   var cprectid = makeid();    // unique id for this map drawing
   var klass = getCountryClass(country, countries);
   var cId = 'c-' + cprectid + '-' + country.properties.id;
@@ -101,91 +95,8 @@ function renderCountry(map, country, path, countries, x, y) {
     .attr('d', path(country))
     ;
 
-  // TEMP
-  // if (available) {
-  //   var bbox = outline.node().getBBox();
-  //   renderCountryFlag(parent, country, bbox, cpId);
-  //   renderCountryLabel(country, path);
-  // }
 }
 
-function renderCountryLabel(country, path, force) {
-  var parent = d3.select('svg');
-  var klass = force ? 'country-label maplet-label' : 'country-label'
-  var g = parent
-    .append('g')
-    .attr('class', klass)
-    ;
-  if (
-    // these are very small countries that we will create a maplet for;
-    (
-      country.properties.SHRT_ENGL === 'Liechtenstein' ||
-      country.properties.SHRT_ENGL === 'Luxembourg' ||
-      country.properties.SHRT_ENGL === 'Malta'
-    ) && !force
-  ) return;
-
-  var delta = force ? 20 : 0;
-
-  var pId = 'pl-' + country.id;
-  var center = path.centroid(country);
-
-  var label = g
-    .append('text')
-    // .attr('class', 'place-label')
-    .attr('id', pId)
-    .attr('x', center[0])
-    .attr('y', center[1] + delta)
-    .attr('text-anchor', 'middle')
-    .text(country.properties.SHRT_ENGL.toUpperCase())
-    // .on('click', function () {
-    //   showMapTooltip(country);
-    // })
-    ;
-
-  var bbox = label.node().getBBox();
-
-  g
-    .append('rect')
-    // .attr('class', 'place-label-bg')
-    .attr('x', bbox.x - 1)
-    .attr('y', bbox.y - 1)
-    .attr('width', bbox.width + 2)
-    .attr('height', bbox.height + 2)
-    // .on('click', function () {
-    //   showMapTooltip(country);
-    // })
-    ;
-
-  label.raise();
-  passThruEvents(g);
-}
-
-function renderCountryFlag(parent, country, bbox, cpId) {
-  var flag = parent
-    .append('image')
-    .attr('class', 'country-flag')
-    .attr('href', country.url)
-    .attr("preserveAspectRatio", "none")
-    .attr('opacity', '0')
-    .attr('clip-path', 'url(#' + cpId + ')')
-    .attr('x', bbox.x)
-    .attr('y', bbox.y)
-    .attr('height', bbox.height)
-    .attr('width', bbox.width)
-    // .on('click', function () {
-    //   showMapTooltip(country)
-    // })
-    .on('mouseover', function (e) {
-      // $('.country-flag').css('cursor', 'unset');
-      d3.select(this).attr('opacity', 1);
-    })
-    .on('mouseout', function (d) {
-      d3.select(this).attr('opacity', 0);
-    })
-    ;
-  return flag;
-}
 
 function renderCountriesBox(opts) {
 
@@ -265,71 +176,6 @@ function renderCountriesBox(opts) {
 }
 
 
-// function drawMaplets(opts) {
-//   var svg = opts.svg;
-//   var world = opts.world;
-//   var viewport = opts.viewport;
-//   var start = opts.start;
-//   var side = opts.side;
-//
-//   var g = svg   // the map will be drawn in this group
-//     .append('g')
-//     .attr('class', 'maplet-container')
-//     ;
-//
-//   var countries = opts.countries;
-//
-//   countries.forEach(function (name, index) {
-//     var feature = filterCountriesByNames(world, [name]);
-//     var boxw = 50;
-//     var boxh = 50;
-//     var space = 10;
-//
-//     var msp = getMapletStartingPoint(
-//       viewport,
-//       start,
-//       index,
-//       side,
-//       space,
-//       [boxw, boxh],
-//       0
-//     );
-//
-//     var zo = {
-//       'world': world,
-//       'svg': g,
-//       'coordinates': {
-//         'x': msp.x,
-//         'y': msp.y,
-//         'width': boxw,
-//         'height': boxh
-//       },
-//       'focusCountries': {
-//         'names': [name],
-//         'feature': feature
-//       },
-//       'zoom': 0.5
-//     };
-//     drawMaplet(zo);
-//   });
-// }
-//
-// function drawMaplet(opts) {
-//   var msp = opts.coordinates;
-//   var svg = opts.svg;
-//   svg
-//     .append('rect')
-//     .attr('class', 'maplet-outline')
-//     .attr('x', msp.x)
-//     .attr('y', msp.y)
-//     .attr('width', msp.width)
-//     .attr('height', msp.height)
-//     ;
-//
-//   var path = renderCountriesBox(opts);
-//   renderCountryLabel(opts.focusCountries.feature.features[0], path, true);
-// }
-
 function drawCountries(world, focusCountry) {
   var svg = d3
     .select("body")
@@ -366,41 +212,8 @@ function drawCountries(world, focusCountry) {
     'zoom': 0.8
   }
   renderCountriesBox(opts);
-
-  // var mo = {
-  //   'svg': svg,
-  //   'world': world,
-  //   'viewport': [width, height],
-  //   'countries': ['Malta', 'Liechtenstein', 'Luxembourg'],
-  //   'start': [width - 60, 10],
-  //   'side': 'left'
-  //   // 'size': 80,
-  //   // 'space': 6,
-  // }
-  // drawMaplets(mo);
 }
 
-// function showMapTooltip(d) {
-//   var coords = [d3.event.pageY, d3.event.pageX];
-//   var info = countrySettings[d.properties.SHRT_ENGL];
-//   var content = info[0];
-//   var url = info[1];
-//
-//   if (content) createTooltip({
-//     coords: coords,
-//     content: content,
-//     name: d.properties.SHRT_ENGL,
-//     url: url
-//   });
-//
-//   // TODO: are there multiple onclick handlers here??
-//   $("body").on('click', function () {
-//     $('#map-tooltip').remove();
-//   });
-//
-//   d3.event.stopPropagation();
-// }
-//
 
 function filterCountriesByNames(countries, filterIds) {
   var features = {
@@ -435,39 +248,6 @@ function setCountryFlags(countries, flags) {
 }
 
 
-// function createTooltip(opts) {
-//   var x = opts['coords'][0];
-//   var y = opts['coords'][1];
-//   var content = opts['content'][_selectedMapSection];
-//   var name = opts['name'];
-//   var url = opts['url'];
-//
-//   $('#map-tooltip').remove();
-//   var style = 'top:' + x + 'px; left: ' + y + 'px';
-//   var content_div = $('<div>')
-//     .attr('id', 'tooltip-content')
-//     .append(content)
-//     ;
-//   var h3_name = $('<h3>')
-//     .append(name)
-//     ;
-//   var link_tag = $('<a>')
-//     .attr('href', url)
-//     .append(h3_name)
-//     ;
-//   var name_div = $('<div>')
-//     .attr('id', 'country-name')
-//     .append(link_tag)
-//     ;
-//   var tooltip = $("<div id='map-tooltip'>")
-//     .attr('style', style)
-//     .append(name_div)
-//     .append(content_div)
-//     ;
-//   $('body').append(tooltip);
-// }
-//
-
 function makeid() {
   var text = '';
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -498,93 +278,3 @@ function travelToOppositeMutator(start, viewport, delta) {
     return res;
   };
 }
-
-
-function getMapletStartingPoint(
-  viewport,   // an array of two integers, width and height
-  startPoint, // an array of two numbers, x, y for position in viewport
-  index,      // integer, position in layout
-  side,       // one of ['top', 'bottom', 'left', right']
-  spacer,     // integer with amount of space to leave between Maplets
-  boxDim,      // array of two numbers, box width and box height
-  titleHeight // height of title box
-) {
-
-  // return value is array of x,y
-  // x: horizontal coordinate
-  // y: vertical coordinate
-
-  var bws = boxDim[0] + spacer;   // box width including space to the right
-  var bhs = boxDim[1] + spacer + titleHeight;
-
-  var mutator = travelToOppositeMutator(startPoint, viewport, [bws, bhs]);
-
-  var mutPoint = [startPoint[0], startPoint[1]];
-
-  for (var i = 0; i < index; i++) {
-    mutPoint = mutator(mutPoint, index);
-  }
-
-  // TODO: this could be improved, there are many edge cases
-  switch (side) {
-    case 'top':
-      mutPoint[1] = startPoint[1];
-      break;
-    case 'bottom':
-      mutPoint[1] = startPoint[1] - bhs;
-      break;
-    case 'left':
-      mutPoint[0] = startPoint[0];
-      break;
-    case 'right':
-      mutPoint[0] = startPoint[0] - bws;
-      break;
-  }
-
-  return {
-    x: mutPoint[0],
-    y: mutPoint[1]
-  };
-}
-
-function passThruEvents(g) {
-  g
-    // .on('mousemove.passThru', passThru)
-    .on('mouseover', passThru)
-  // .on('mousedown.passThru', passThru)
-  ;
-
-  function passThru(d) {
-    console.log('passing through');
-    var e = d3.event;
-
-    var prev = this.style.pointerEvents;
-    this.style.pointerEvents = 'none';
-
-    var el = document.elementFromPoint(d3.event.x, d3.event.y);
-
-    var e2 = document.createEvent('MouseEvent');
-    e2.initMouseEvent(
-      e.type,
-      e.bubbles,
-      e.cancelable,
-      e.view,
-      e.detail,
-      e.screenX,
-      e.screenY,
-      e.clientX,
-      e.clientY,
-      e.ctrlKey,
-      e.altKey,
-      e.shiftKey,
-      e.metaKey,
-      e.button,
-      e.relatedTarget
-    );
-
-    el.dispatchEvent(e2);
-
-    this.style.pointerEvents = prev;
-  }
-}
-
