@@ -9,7 +9,7 @@ $(document).ready(function () {
   var cpath = '++theme++climateadaptv2/static/countries/euro-countries.geojson';
   var fpath = '++theme++climateadaptv2/static/countries/countries.tsv';
 
-  var $sw = $('#countries-map');
+  var $sw = $('.svg-fp-container');
   var $load = $('<div class="map-loader">' +
     '<div class="loading-spinner"></div>' +
     '<span class="loading-text">Loading map ...</span></div>');
@@ -34,7 +34,10 @@ $(document).ready(function () {
     if ($(tab).data('tab') == 'countries') {
       var world = window._world.features;
       // TODO: wait for the world to load??
-      if (world) { drawCountries(world) };
+      if (world) {
+        $('.map-loader').fadeOut(600);
+        drawCountries(world);
+      };
     }
   })
 
@@ -42,9 +45,6 @@ $(document).ready(function () {
 
 
 function drawCountriesMap() {   // old initmap()
-
-
-  $('.map-loader').fadeOut(600);
   drawCountries(world);
 }
 
@@ -175,9 +175,11 @@ function renderCountryFlag(parent, country, bbox, cpId) {
     .attr('y', bbox.y)
     .attr('height', bbox.height)
     .attr('width', bbox.width)
-    // .on('click', function () {
-    //   showMapTooltip(country)
-    // })
+    .on('click', function (e) {
+      var link = country.properties.SHRT_ENGL.toLowerCase();
+      location.href = '/countries-regions/countries/' + link;
+      // showMapTooltip(country)
+    })
     .on('mouseover', function (e) {
       // $('.country-flag').css('cursor', 'unset');
       d3.select(this).attr('opacity', 1);
@@ -487,7 +489,7 @@ function passThruEvents(g) {
   ;
 
   function passThru(d) {
-    console.log('passing through');
+    // console.log('passing through');
     var e = d3.event;
 
     var prev = this.style.pointerEvents;
@@ -519,4 +521,3 @@ function passThruEvents(g) {
     this.style.pointerEvents = prev;
   }
 }
-
