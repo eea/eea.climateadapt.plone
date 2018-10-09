@@ -198,6 +198,7 @@ _sectors = [    # this is the canonical
     ("BUILDINGS", "Buildings"),
     ("COASTAL", "Coastal areas"),
     ("DISASTERRISKREDUCTION", "Disaster Risk Reduction"),
+    ("ECOSYSTEM", "Ecosystem-based approaches (GI)"),
     ("ENERGY", "Energy"),
     ("FINANCIAL", "Financial"),
     ("FORESTRY", "Forestry"),
