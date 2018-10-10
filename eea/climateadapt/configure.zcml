@@ -348,6 +348,9 @@
     <subscriber factory=".marshaller.GeoCharsFieldModifier"
         provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
+    <!-- <subscriber factory=".marshaller.TransnationalRegionModifier" -->
+    <!--     provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" /> -->
+
     <adapter factory=".marshaller.CityProfile2Surf" />
     <adapter factory=".marshaller.Geolocation2Surf" />
     <adapter factory=".marshaller.File2Surf" />

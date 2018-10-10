@@ -1,14 +1,15 @@
 """ A tile to implement the transregional select dropdown
 """
 
-from Products.CMFCore.utils import getToolByName
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from collective.cover.tiles.base import IPersistentCoverTile
-from collective.cover.tiles.base import PersistentCoverTile
-from eea.climateadapt import MessageFactory as _
+from collective.cover.tiles.base import (IPersistentCoverTile,
+                                         PersistentCoverTile)
 from zope import schema
 from zope.component.hooks import getSite
 from zope.interface import implements, providedBy
+
+from eea.climateadapt import MessageFactory as _
+from Products.CMFCore.utils import getToolByName
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class ITransRegionalSelectTile(IPersistentCoverTile):
@@ -23,6 +24,7 @@ class ITransRegionalSelectTile(IPersistentCoverTile):
         vocabulary="eea.climateadapt.regions",
         required=True,
     )
+
 
 regions = {
     'Adriatic-Ionian': [
@@ -185,11 +187,14 @@ class TransRegionalSelectTile(PersistentCoverTile):
         brains = catalog.searchResults(**q)
 
         results = []
+
         for b in brains:
             obj = b.getObject()
             provides = ["%s.%s" % (iface.__module__ or '', iface.__name__)
                         for iface in providedBy(obj)]
-            if "eea.climateadapt.interfaces.ITransnationalRegionMarker" in provides:
+
+            if "eea.climateadapt.interfaces.ITransnationalRegionMarker" \
+                    in provides:
                 results.append(b)
 
         return sorted([{'url': b.getURL(), 'title': b.Title} for b in results],
@@ -198,6 +203,8 @@ class TransRegionalSelectTile(PersistentCoverTile):
     def countries(self):
         # a list of {'name': Country name, 'link': Country Link}
         region = self.data.get('region', None)
+
         if not region:
             return []
+
         return regions[region]
