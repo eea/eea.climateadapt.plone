@@ -25,30 +25,32 @@
                         style='min-height:800px' height='100%%'
                         scrolling='no' src='https://maps.eea.europa.eu/wab/ClimateAdaptCaseStudies/'></iframe>
                 </div>
-                <br/><br/>
-                <h3>Other Case Study Portals</h3>
-                <p>
-                    Please note that the case studies presented in the following external information sources do not use the
-                    same definitions and criteria as applied for case studies presented in the Climate-ADAPT case study search tool.
-                </p>
-                <ul>
-                    <li><a href="http://www.circle-era.eu/np4/%7B$clientServletPath%7D/?newsId=432&fileName=BOOK_150_dpi.pdf" target="_blank">
-                            Circle-2 Adaptation Inspiration Book</a></li>
-                    <li><a href="http://www.future-cities.eu/fileadmin/user_upload/pdf/FC_AdaptationCompass_Supplement_web.pdf" target="_blank">
-                            Future Cities project</a></li>
-                    <li><a href="http://www.interreg4c.eu/good-practices" target="_blank">
-                            GRaBS project- Green and blue infrastructure</a></li>
-                    <li><a href="http://www.sic-adapt.eu/outputs/knowledge-platform.html" target="_blank">
-                            SIC adapt</a></li>
-                    <li><a href="http://en.klimatilpasning.dk/cases.aspx" target="_blank">
-                            Klimatilpassning.dk (English / Danish)</a></li>
-                    <li><a href="http://www.umweltbundesamt.de/themen/klima-energie/klimafolgen-anpassung/werkzeuge-der-anpassung/tatenbank/Tatenbank/DE/Home/home_node.html" target="_blank">
-                            KomPass Tatenbank (German)</a></li>
-                    <li><a href="http://www.unisdr.org/campaign/resilientcities/home/rolemodel" target="_blank">
-                            Making cities resilient - Role models</a></li>
-                    <li><a href="http://www.nwrm.eu/list-of-all-case-studies" target="_blank">
-                            Natural Water Retention Measures - NWRM platform</a></li>
-                </ul>
+
+                <div tal:replace="structure context/text/output | nothing"></div>
+                <!-- <br/><br/> -->
+                <!-- <h3>Other Case Study Portals</h3> -->
+                <!-- <p> -->
+                <!--     Please note that the case studies presented in the following external information sources do not use the -->
+                <!--     same definitions and criteria as applied for case studies presented in the Climate&#45;ADAPT case study search tool. -->
+                <!-- </p> -->
+                <!-- <ul> -->
+                <!--     <li><a href="http://www.circle&#45;era.eu/np4/%7B$clientServletPath%7D/?newsId=432&#38;fileName=BOOK_150_dpi.pdf" target="_blank"> -->
+                <!--             Circle&#45;2 Adaptation Inspiration Book</a></li> -->
+                <!--     <li><a href="http://www.future&#45;cities.eu/fileadmin/user_upload/pdf/FC_AdaptationCompass_Supplement_web.pdf" target="_blank"> -->
+                <!--             Future Cities project</a></li> -->
+                <!--     <li><a href="http://www.interreg4c.eu/good&#45;practices" target="_blank"> -->
+                <!--             GRaBS project&#45; Green and blue infrastructure</a></li> -->
+                <!--     <li><a href="http://www.sic&#45;adapt.eu/outputs/knowledge&#45;platform.html" target="_blank"> -->
+                <!--             SIC adapt</a></li> -->
+                <!--     <li><a href="http://en.klimatilpasning.dk/cases.aspx" target="_blank"> -->
+                <!--             Klimatilpassning.dk (English / Danish)</a></li> -->
+                <!--     <li><a href="http://www.umweltbundesamt.de/themen/klima&#45;energie/klimafolgen&#45;anpassung/werkzeuge&#45;der&#45;anpassung/tatenbank/Tatenbank/DE/Home/home_node.html" target="_blank"> -->
+                <!--             KomPass Tatenbank (German)</a></li> -->
+                <!--     <li><a href="http://www.unisdr.org/campaign/resilientcities/home/rolemodel" target="_blank"> -->
+                <!--             Making cities resilient &#45; Role models</a></li> -->
+                <!--     <li><a href="http://www.nwrm.eu/list&#45;of&#45;all&#45;case&#45;studies" target="_blank"> -->
+                <!--             Natural Water Retention Measures &#45; NWRM platform</a></li> -->
+                <!-- </ul> -->
             </tal:main-macro>
         </metal:main>
     </body>
