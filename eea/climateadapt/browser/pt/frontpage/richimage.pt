@@ -29,6 +29,12 @@
     </figcaption>
     </a>
   </figure>
+  <div class="read-more-wrapper">
+      <a href="" class="read-more" tal:attributes="href python: context.read_more_link" target="_blank">
+        <i class="fa fa-angle-double-right"></i>
+        Read more
+      </a>
+  </div>
 </metal:block>
 </metal:content-core>
 

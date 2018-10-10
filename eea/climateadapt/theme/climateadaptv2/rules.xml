@@ -31,7 +31,9 @@
       <replace css:theme=".country-dropdown select" css:content="#fp-country-selector"  />
 
       <!-- slider -->
-      <replace css:theme=".slider" css:content=".slider"  />
+      <!-- <replace css:theme=".slider" css:content=".slider"  /> -->
+      <replace css:theme=".slider" css:content=".slider" href="/@@slides-frontpage" method="document" />
+
     </rules>
 
 

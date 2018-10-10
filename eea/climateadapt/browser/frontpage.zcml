@@ -8,6 +8,13 @@
 
   <include package="plone.tiles" file="meta.zcml" />
 
+  <browser:page
+      name="slides-frontpage"
+      for="*"
+      permission="zope.Public"
+      template="pt/frontpage/slides.pt"
+      class=".frontpage_slides.FrontpageSlidesView"
+      />
 
   <browser:page
       name="view"
@@ -18,7 +25,6 @@
       title="View Image"
       />
 
-
   <browser:page
       name="richimage_view_fullscreen"
       for=".frontpage_slides.IRichImage"
@@ -27,7 +33,6 @@
       menu="plone_displayviews"
       title="View Image Fullscreen"
       />
-
 
   <browser:page
     name="fp-ast-tile"

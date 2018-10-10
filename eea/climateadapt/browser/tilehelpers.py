@@ -258,6 +258,7 @@ class Carousel(PersistentCoverTile):
 
         return result.getObject()
 
+
 class ListingTile(BrowserView):
     """ Helper for listing tiles on fronpage
     """

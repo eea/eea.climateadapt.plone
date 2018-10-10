@@ -1,0 +1,24 @@
+<div class="slider" tal:define="images python: view.images">
+    <div class="slider-image-wrapper" tal:repeat="image images">
+      <div tal:define="picture python: view.getImageUrl(image)"
+           tal:attributes="style string: background-image:url('${picture}')"
+           class="slider-image">
+      </div>
+
+      <div class="slider-caption">
+        <h3 tal:content="python: view.getTitle(image)">About Climate Change Adaptation in Europe</h3>
+        <div class="slider-description">
+          <!-- <p tal:replace="structure python: view.getDescription(image)">Climate-ADAPT aims ....</p> -->
+          <p tal:replace="python: view.getDescription(image)[:300] + '...'">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
+        </div>
+        <div class="slider-bottom-caption">
+          <div class="read-more-wrapper">
+            <a href="" class="read-more" tal:attributes="href python: view.getMoreLink(image)" target="_blank">
+              <i class="fa fa-angle-double-right"></i>
+              Read more
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
