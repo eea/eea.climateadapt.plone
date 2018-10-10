@@ -515,13 +515,26 @@ function createSectionsSelector(sections, countries, callback) {
     if (!name) return;
     window.location = countries[name][1];
   })
-  // select.select2();
 
-  // widget.prepend(select);
   // container.append(widget);
 
-  callback();
-  $(window).resize(callback);
+  function drawMap(width) {
+    callback();
+  }
+
+  // fire resize event after the browser window resizing it's completed
+  var resizeTimer;
+  $(window).resize(function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(doneResizing, 500);
+  });
+
+  var width = $('#countries-map svg').width();
+  function doneResizing() {
+    drawMap(width);
+  }
+
+  drawMap(width);
 }
 
 function makeid() {

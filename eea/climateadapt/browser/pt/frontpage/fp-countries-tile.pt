@@ -1,10 +1,6 @@
 <div id="fp-country-selector">
 
-  <!-- <a href="/countries&#45;regions/countries"> -->
-  <!--   <img src="/++theme++climateadaptv2/static/images/country_profile_map_1.png" /> -->
-  <!-- </a> -->
-
-  <svg-container class="svg-map-container">
+  <svg-container class="svg-map-container svg-fp-container">
     <svg height="300" width="100%">
     </svg>
   </svg-container>
@@ -20,34 +16,36 @@
         </select>
       </form>
     </div>
-    <a href="../countries-regions" class="standard-button primary-button sm-button">See countries webpage</a>
+    <a href="../countries-regions/countries" class="standard-button primary-button sm-button">See countries webpage</a>
   </div>
 
 
   <script>
 // <![CDATA[
-jQuery(document).ready(function(){
-  $("#country-select").change(function(){
-  var cid = $(this).val();
-  document.location = '/countries/' + cid;
-});
-});
+    jQuery(document).ready(function(){
+      $("#country-select").change(function(){
+      var cid = $(this).val();
+      document.location = '/countries/' + cid;
+    });
+    });
   // ]]>
   </script>
 
   <script>
-// d3 uses define, we don't want it, let's trick it.
-window._old_define = window.define;
-window.define = null;
+    // d3 uses define, we don't want it, let's trick it.
+    window._old_define = window.define;
+    window.define = null;
   </script>
+
   <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
   <script src="https://d3js.org/d3-array.v1.min.js"></script>
   <script src="https://d3js.org/d3-geo.v1.min.js"></script>
   <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
   <script src="https://unpkg.com/topojson@3"></script>
   <script src="https://d3js.org/d3-queue.v3.min.js"></script>
+
   <script>
-window.define = window._old_define;
+    window.define = window._old_define;
   </script>
 
   <script src="/++theme++climateadaptv2/static/countries/countries-tile.js"></script>

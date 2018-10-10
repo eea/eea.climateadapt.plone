@@ -8,7 +8,7 @@ $(document).ready(function () {
   var cpath = '++theme++climateadaptv2/static/countries/euro-countries.geojson';
   var fpath = '++theme++climateadaptv2/static/countries/countries.tsv';
 
-  var $sw = $('#country-map');
+  var $sw = $('.svg-header-wrapper');
   var $load = $('<div class="map-loader">' +
   '<div class="loading-spinner"></div>' +
   '<span class="loading-text">Loading map ...</span></div>');
@@ -33,12 +33,24 @@ function initmap(metadata, world, flags) {
   setCountryFlags(world, flags);
 
   var focusCountry = metadata.focusCountry;
-  drawCountries(world, focusCountry);
 
-  // TODO: add timeout?
-  $(window).resize(function () {
-    drawCountries(world);
+  function drawMap(width) {
+    drawCountries(world, focusCountry);
+  }
+
+  // fire resize event after the browser window resizing it's completed
+  var resizeTimer;
+  $(window).resize(function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(doneResizing, 500);
   });
+
+  var width = $('.svg-header-wrapper svg').width();
+  function doneResizing() {
+    drawMap(width);
+  }
+
+  drawMap(width);
 
   $('.map-loader').fadeOut(600);
 }
@@ -95,6 +107,30 @@ function renderCountry(map, country, path, countries, x, y) {
     .attr('d', path(country))
     ;
 
+  if (available) {
+    var bbox = outline.node().getBBox();
+    renderCountryFlag(parent, country, bbox, cpId);
+  }
+}
+
+function renderCountryFlag(parent, country, bbox, cpId) {
+  var flag = parent
+    .append('image')
+    .attr('class', 'country-flag')
+    .attr('href', country.url)
+    .attr("preserveAspectRatio", "none")
+    .attr('opacity', '1')
+    .attr('clip-path', 'url(#' + cpId + ')')
+    .attr('x', bbox.x)
+    .attr('y', bbox.y)
+    .attr('height', bbox.height)
+    .attr('width', bbox.width)
+    .on('mouseover', function (e) {
+      $('.country-flag').css('cursor', 'unset');
+    })
+    ;
+  // passThruEvents(flag);
+  return flag;
 }
 
 
@@ -168,7 +204,6 @@ function renderCountriesBox(opts) {
   renderGraticule(map, 'semi-graticule', [5, 5], path);
 
   world.forEach(function (country) {
-    // console.log('Rendering country', country);
     renderCountry(map, country, path, countries, x, y);
   });
 
@@ -185,7 +220,6 @@ function drawCountries(world, focusCountry) {
   var svgw = $(window).width();
   svg.style('width', '100%');
 
-  // debugger;
   // var focusCountryNames = Object.keys(countrySettings);
   var focusCountryNames = [focusCountry];
 
