@@ -3,6 +3,51 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Countries map improvements
+  [krisztina]
+* Add missing icons for DB items on the frontpage; style fixes
+  [krisztina]
+* Extract bio_regions and macro_regions as values for indexing
+  [davidsilaghi]
+* Stylized creator and reviewer on aceitem objects
+  [krisztina]
+* Task: DB items: include the date when the item was created/updated;
+  add a "go back to search results" link
+  [krisztina #98321]
+* Show related items viewlet below text in aceitems view
+  [davidsilaghi]
+* Fix getProperty error
+  [krisztina #91562]
+* Bug fix: Fix AST menu 'Getting started' active state
+  Change: Broken links page table styling
+  [krisztina #91562]
+* Show information about creator and reviewer on aceitem objects
+  [davidsilaghi]
+* Bug fix: make the search frontpage tile display result counts
+  [davidsilaghi]
+* Change: Customized special submenus of navigation bar
+  [krisztina #91562]
+* Bug fix: don't show (in view) the relevant tile if there are no items
+  [davidsilaghi]
+* Change: added description (short summary) field to AceItems and AceMeasure
+  objects
+  [davidsilaghi]
+* Change: UVMB page improvements
+  [krisztina #91562]
+* Task: Fix listings
+  [krisztina #91562]
+* Task: Style improvements
+  [krisztina #91562]
+* Change: Move main navigation help section to the top menu
+  [krisztina #91562]
+* Task: Map improvements, add loading spinner for map
+  [krisztina #98318]
+* Task: Make the map legend dynamic depending on which layer is selected
+  [krisztina #98318]
+* Task: WIP thematic maps
+  [krisztina #98318]
+* Task: Use columned display for transregional special subpages
+  [krisztina #91562]
 * Task: Style improvements
   [krisztina #91562]
 * Bug: Fix case study gallery

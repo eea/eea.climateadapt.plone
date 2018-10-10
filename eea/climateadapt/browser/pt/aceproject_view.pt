@@ -40,35 +40,58 @@
 
           <div metal:fill-slot="ace-right-slot">
             <metal:macro use-macro="context/ace_macros/macros/files" />
-            <h4>Keywords:</h4>
-            <metal:macro use-macro="context/ace_macros/macros/keywords" />
-            <h4>Duration:</h4>
-            <p tal:replace="structure context/duration"/>
-            <h4>Climate impacts:</h4>
-            <p tal:replace="structure python:view.w['climate_impacts'].render()"/>
-            <h4>Elements:</h4>
-            <p tal:replace="structure python:view.w['elements'].render()"/>
-            <h4>Sectors:</h4>
-            <p tal:replace="structure python:view.w['sectors'].render()"/>
-            <h4>Geographic characterization:</h4>
-            <tal:def define="geochar python:view.render_geochar(context.geochars)">
 
-              <div tal:content="structure geochar" tal:condition="geochar"/>
+            <div class="macro-category">
+              <h4>Updated:</h4>
+              <div tal:content="python: context.EffectiveDate().split('T')[0]"> Date </div>
+            </div>
 
-              <tal:cond condition="not: geochar">
-                <div tal:condition="context/spatial_layer | nothing">
+            <div class="macro-category">
+              <h4>Keywords:</h4>
+              <metal:macro use-macro="context/ace_macros/macros/keywords" />
+            </div>
+
+            <div class="macro-category">
+              <h4>Duration:</h4>
+              <p tal:replace="structure context/duration"/>
+            </div>
+
+            <div class="macro-category">
+              <h4>Climate impacts:</h4>
+              <p tal:replace="structure python:view.w['climate_impacts'].render()"/>
+            </div>
+
+            <div class="macro-category">
+              <h4>Elements:</h4>
+              <p tal:replace="structure python:view.w['elements'].render()"/>
+            </div>
+
+            <div class="macro-category">
+              <h4>Sectors:</h4>
+              <p tal:replace="structure python:view.w['sectors'].render()"/>
+            </div>
+
+            <div class="macro-category">
+              <h4>Geographic characterization:</h4>
+              <tal:def define="geochar python:view.render_geochar(context.geochars)">
+
+                <div tal:content="structure geochar" tal:condition="geochar"/>
+
+                <tal:cond condition="not: geochar">
+                  <div tal:condition="context/spatial_layer | nothing">
                     <div tal:repeat="spatial_layer context/spatial_layer">
-                        <div tal:content="spatial_layer"/>
+                      <div tal:content="spatial_layer"/>
                     </div>
-                </div>
+                  </div>
 
-                <p tal:condition="context/spatial_values">
-                  Countries:
-                  <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
-                </p>
-              </tal:cond>
+                  <p tal:condition="context/spatial_values">
+                    Countries:
+                    <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
+                  </p>
+                </tal:cond>
 
-            </tal:def>
+              </tal:def>
+            </div>
           </div>
         </metal:macro>
         <div id="viewlet-below-content-body" tal:content="structure provider:plone.belowcontentbody" tal:condition="not:ajax_load" />

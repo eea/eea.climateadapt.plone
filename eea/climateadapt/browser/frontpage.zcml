@@ -35,6 +35,14 @@
       />
 
   <browser:page
+    name="fp-search-dynamic"
+    for="*"
+    template="pt/frontpage/fp-search-dynamic.pt"
+    permission="zope.Public"
+    class=".frontpage_slides.FrontpageSearch"
+    />
+
+  <browser:page
     name="fp-ast-tile"
     for="*"
     template="pt/frontpage/fp-ast-tile.pt"
@@ -47,6 +55,13 @@
     template="pt/frontpage/fp-countries-tile.pt"
     permission="zope.Public"
     class=".tilehelpers.FrontPageCountries"
+    />
+
+  <browser:page
+    name="countries-tile-metadata"
+    for="*"
+    permission="zope.Public"
+    class=".tilehelpers.CountriesTileMetadata"
     />
 
   <plone:tile

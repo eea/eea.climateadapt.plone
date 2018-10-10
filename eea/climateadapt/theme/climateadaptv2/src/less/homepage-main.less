@@ -28,16 +28,32 @@
   li {
     list-style-type: none;
   }
+  img {
+    margin-bottom: 1.5em;
+  }
+
+  .standard-button {
+    display: block;
+  }
 }
 
-.box-listing li {
-  padding: 15px 0;
-  display: block;
+.box-listing {
+  li {
+    padding-bottom: 0.5em;
+    display: block;
+  }
+  p {
+    margin-bottom: 0;
+  }
 }
 
-.info-section {
-  background-color: @secondary-blue;
-  border: 1px solid transparent;
+.main-box {
+  h2 {
+    margin-bottom: 0.5em;
+  }
+  // p {
+  //   margin-bottom: 0;
+  // }
 }
 
 .content-body {
@@ -49,48 +65,54 @@
   height: 100%;
 }
 
-.info-section p {
-  color: #fff;
-  text-align: center;
-}
+.info-section {
+  background-color: @secondary-blue;
+  border: 1px solid transparent;
 
-.info-title-section {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: -moz-box;
-  display: flex;
-  align-items: center;
-  margin: auto;
-}
+  p {
+    color: #fff;
+    text-align: center;
+  }
 
-.info-section .info-title {
-  margin-left: 20px;
-}
+  .info-title-section {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: -moz-box;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    img {
+      margin-bottom: 0;
+    }
+  }
 
-.info-section .info-title h5 {
-  color: #fff;
-  font-size: 27px;
-  font-family: RobotoM;
-  margin-bottom: 0;
-  line-height: 30px;
-}
+  .info-title {
+    margin-left: 20px;
 
-.info-section .info-title span {
-  color: @yellow;
-  font-family: RobotoB;
-}
+    h5 {
+      color: #fff;
+      font-size: 27px;
+      font-family: RobotoM;
+      margin-bottom: 0;
+      line-height: 30px;
+    }
+    span {
+      color: @yellow;
+      font-family: RobotoB;
+    }
+  }
 
-.info-section .info-button {
-  background-color: transparent;
-  border: 2px solid #fff;
-  margin: auto;
-  color: #fff;
-}
-
-.info-section .info-button:hover {
-  background-color: #fff;
-  border: 2px solid #fff;
-  color: @secondary-blue;
+  .info-button {
+    background-color: transparent;
+    border: 2px solid #fff;
+    margin: auto;
+    color: #fff;
+  }
+  .info-button:hover {
+    background-color: #fff;
+    border: 2px solid #fff;
+    color: @secondary-blue;
+  }
 }
 
 .news-time {

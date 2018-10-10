@@ -1,15 +1,20 @@
+import json
+import urllib
+from collections import namedtuple
+
+from zope.interface import implements
+from zope.lifecycleevent import modified
+from zope.schema import TextLine
+
+from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 from plone import api
-from plone.api.portal import getSite
+from plone.api.portal import get_tool, getSite
 from plone.app.textfield import RichText
-from plone.directives import form, dexterity
+from plone.directives import dexterity, form
 from plone.memoize import view
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
 from Products.Five.browser import BrowserView
-from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
-from zope.interface import implements
-from zope.lifecycleevent import modified
-from zope.schema import TextLine
 
 
 class RichImageSchema(form.Schema, IImageScaleTraversable):
@@ -52,6 +57,7 @@ class RichImage(dexterity.Container):
         data = portal_transforms.convertTo('text/plain',
                                            html, mimetype='text/html')
         text = data.getData()
+
         return text.strip()
 
     def PUT(self, REQUEST=None, RESPONSE=None):
@@ -68,6 +74,7 @@ class RichImage(dexterity.Container):
             data=infile.read(), filename=unicode(filename))
 
         modified(self)
+
         return response
 
     def get_size(self):
@@ -223,3 +230,66 @@ class FrontpageSlidesView (BrowserView):
             'url': publi.absolute_url(),
 
         }
+
+
+Section = namedtuple('Section',
+                     ['title', 'count', 'link', 'icon_class'])
+
+SEARCH_TYPES_ICONS = [
+    ("MEASURE", "Adaptation options", 'fa-cogs'),
+    ("ACTION", "Case studies", 'fa-file-text-o'),
+    ("GUIDANCE", "Guidance", 'fa-compass'),
+    ("INDICATOR", "Indicators", 'fa-area-chart'),
+    ("INFORMATIONSOURCE", "Information Portals", 'fa-info-circle'),
+
+    # ("MAPGRAPHDATASET", "Maps, graphs and datasets"),       # replaced by
+    # video
+    ("VIDEOS", "Videos", 'fa-file-video-o'),
+
+    ("ORGANISATION", "Organisations", 'fa-sitemap'),
+    ("DOCUMENT", "Publication and Reports", 'fa-newspaper-o'),
+    ("RESEARCHPROJECT", "Research and knowledge projects",
+     'research-icon'),
+    ("TOOL", "Tools", 'fa-wrench'),
+
+]
+
+
+class FrontpageSearch(BrowserView):
+
+    # TODO: implement cache using eea.cache
+    # @cache
+    def _make_link(self, search_type):
+        t = {u'function_score':
+             {u'query':
+              {u'bool':
+               {u'filter':
+                {u'bool':
+                 {u'should':
+                  [{u'term': {u'typeOfData': search_type}}]
+                  }
+                 },
+                }
+               }
+              }
+             }
+
+        q = {'query': t}
+        l = '/data-and-downloads?source=' + urllib.quote(json.dumps(q))
+
+        return l
+
+    def sections(self):
+        catalog = get_tool('portal_catalog')
+        counts = {}
+
+        for search_type, _x, _y in SEARCH_TYPES_ICONS:
+            count = len(catalog.searchResults(search_type=search_type,
+                                              review_state='published'))
+            counts[search_type] = count
+
+        return [
+            Section(x[1], counts.get(x[0], 0), self._make_link(x[1]), x[2])
+
+            for x in SEARCH_TYPES_ICONS
+        ]

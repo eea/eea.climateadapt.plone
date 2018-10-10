@@ -104,6 +104,9 @@
     <adapter name="sectors" factory=".catalog.city_sectors" />
     <adapter name="featured" factory=".catalog.featured" />
     <adapter name="getObjSize" factory=".catalog.getObjSize_image" />
+
+    <adapter name="bio_regions" factory=".catalog.bio_regions" />
+    <adapter name="macro_regions" factory=".catalog.macro_regions" />
     <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> -->
 
     ----[ Vocabularies: ]------

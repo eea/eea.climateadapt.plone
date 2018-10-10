@@ -4,8 +4,13 @@ It helps to separate the tiles from the views, those views can be easier
 developed and tested.
 """
 
+import json
+
 from collective.cover.tiles.base import (IPersistentCoverTile,
                                          PersistentCoverTile)
+from zope import schema
+from zope.component.hooks import getSite
+from zope.interface import implements
 
 from eea.climateadapt.vocabulary import ace_countries_selection
 from plone import api
@@ -16,9 +21,6 @@ from plone.memoize import view
 from plone.namedfile.field import NamedBlobImage
 from plone.tiles.interfaces import ITileDataManager
 from Products.Five.browser import BrowserView
-from zope import schema
-from zope.component.hooks import getSite
-from zope.interface import implements
 
 
 class AceContentSearch(BrowserView):
@@ -38,7 +40,16 @@ class FrontPageCountries(BrowserView):
     """
 
     def countries(self):
-        return ace_countries_selection
+        countries_folder = self.context.restrictedTraverse(
+            'countries-regions/countries'
+        )
+
+        countries = [c for c in countries_folder.contentValues()]
+
+        res = [(c.getId(), c.Title())
+               for c in countries if c.portal_type == 'Folder']
+
+        return res
 
 
 class ICarousel(IPersistentCoverTile):
@@ -357,3 +368,16 @@ class LastUpdateTile(BrowserView):
     """
     def formated_date(self, modifiedTime):
         return portal.get_localized_time(datetime=modifiedTime)
+
+
+class CountriesTileMetadata(BrowserView):
+    def __call__(self):
+        countries_folder = self.context.restrictedTraverse(
+            'countries-regions/countries'
+        )
+
+        countries = [c for c in countries_folder.contentValues()]
+
+        res = [c.Title() for c in countries if c.portal_type == 'Folder']
+
+        return json.dumps(res)

@@ -153,7 +153,6 @@
                 iTemplate.setTitle("See region(s) selected");
 
                 iTemplate.setContent("<b>Region: </b><a href='$\{LINK\}'>$\{pgm_name\}</a><br><b>Countries</b><br/>   $\{Countries\}<br>");
-                console.log(iTemplate);
 
                 dialog = new TooltipDialog({id: "tooltipDialog", style: "position: absolute; width: 250px; font: normal normal normal 10pt Helvetica;z-index:100"});
                 dialog.startup();

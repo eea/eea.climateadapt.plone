@@ -4,11 +4,11 @@
 import logging
 import re
 
+from zope.component.hooks import getSite
+
 from eea.climateadapt.browser.externaltemplates import ExternalTemplateHeader
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
-from zope.component.hooks import getSite
-
 
 LINKER = re.compile('(?P<icon>\[.+?\])(?P<label>.+)')
 
@@ -32,7 +32,7 @@ EU policy                                    /eu-adaptation-policy
         -Forestry                            /eu-adaptation-policy/sector-policies/forestry
         -Water management                    /eu-adaptation-policy/sector-policies/water-management
         -Marine and fisheries                /eu-adaptation-policy/sector-policies/marine-and-fisheries
-        -Ecosystem-based approaches(GI)      /eu-adaptation-policy/sector-policies/ecosystem 
+        -Ecosystem-based approaches(GI)      /eu-adaptation-policy/sector-policies/ecosystem
         -Disaster risk reduction             /eu-adaptation-policy/sector-policies/disaster-risk-reduction
         -Financial                           /eu-adaptation-policy/sector-policies/financial
         -Buildings                           /eu-adaptation-policy/sector-policies/buildings
@@ -67,7 +67,7 @@ Knowledge                                                     /knowledge
         -Adaptation options                                   /knowledge/adaptation-information/adaptation-measures
         -Uncertainty guidance                                 /knowledge/tools/uncertainty-guidance
         -MRE                                                  /knowledge
-        -EU vulnerability to outside Europe climate impacts   /knowledge   
+        -EU vulnerability to outside Europe climate impacts   /knowledge
     DATA AND INDICATORS                                       /knowledge
         -Climate services(>C3S)                               /knowledge/adaptation-information/climate-services/
         -Indicators in C-A                                    /knowledge
@@ -91,7 +91,7 @@ About                    /about
     Visual site-map      /about/visual-site-map
     Profile of C-A       /about/profile
 
-C-A Database            /data-and-downloads 
+C-A Database            /data-and-downloads
 
 Networks                /network
     Organisations       /network/organisations
@@ -283,6 +283,7 @@ def _extract_menu(value, site_url=None):
     | <link 4>                      |                           |
     |-----------------------------------------------------------|
     """
+
     if not site_url:
         site_url = getSite().absolute_url()
     parser = MenuParser(site_url)

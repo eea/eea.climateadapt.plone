@@ -43,6 +43,7 @@ setup(
         'collective.easyform',
         'tokenlib',
         'eea.rabbitmq.client',    # schedule jobs
+        'eea.rabbitmq.plone',
         'google-api-python-client',       # google analytics API integration
     ],
     extras_require={

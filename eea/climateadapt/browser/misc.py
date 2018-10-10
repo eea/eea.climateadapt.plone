@@ -296,7 +296,10 @@ class DetectBrokenLinksView (BrowserView):
         annot = IAnnotations(self.context)
         res = []
         for info in annot.get('broken_links_data', []):
-            obj = self.context.restrictedTraverse(info['object_url'])
+            try:
+                obj = self.context.restrictedTraverse(info['object_url'])
+            except:
+                continue
             state = get_state(obj)
 
             if state not in ['private', 'archived']:

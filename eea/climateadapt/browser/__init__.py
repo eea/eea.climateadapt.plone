@@ -1,29 +1,72 @@
 import json
 import logging
+from collections import namedtuple
+
+from collective.cover.browser.cover import Standard
+from zope.component import queryAdapter
+
 from AccessControl import getSecurityManager
 from Acquisition import aq_inner
+from eea.climateadapt.vocabulary import (BIOREGIONS, SUBNATIONAL_REGIONS,
+                                         ace_countries_dict)
+from eea.geotags.behavior.geotags import ISingleGeoTag
+from plone import api
+from plone.api.user import get
+from plone.app.iterate.browser.control import Control
+from plone.app.iterate.interfaces import (ICheckinCheckoutPolicy,
+                                          IIterateAware, IObjectArchiver,
+                                          IWorkingCopy)
+from plone.app.iterate.permissions import CheckinPermission, CheckoutPermission
+from plone.memoize import view
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
-from collective.cover.browser.cover import Standard
-from eea.climateadapt.vocabulary import BIOREGIONS
-from eea.climateadapt.vocabulary import SUBNATIONAL_REGIONS
-from eea.climateadapt.vocabulary import ace_countries_dict
-from plone import api
-from plone.app.iterate.browser.control import Control
-from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
-from plone.app.iterate.interfaces import IIterateAware
-from plone.app.iterate.interfaces import IObjectArchiver
-from plone.app.iterate.interfaces import IWorkingCopy
-from plone.app.iterate.permissions import CheckinPermission
-from plone.app.iterate.permissions import CheckoutPermission
-from plone.memoize import view
 from zExceptions import NotFound
-
 
 logger = logging.getLogger('eea.climateadapt')
 
+ReviewInfo = namedtuple('ReviewInfo', ['creator', 'reviewer'])
+
 
 class AceViewApi(object):
+
+    def geotag(self):
+        tag = queryAdapter(self.context, ISingleGeoTag)
+
+        return tag
+
+    def get_review_info(self):
+        """ Return review information.
+
+        See https://taskman.eionet.europa.eu/issues/90376
+        """
+
+        creator = self.context.Creator()
+        reviewer = None
+
+        if creator is 'tibi':
+            creator = None
+
+        wh = self.context.workflow_history
+        wf = wh['cca_items_workflow']
+
+        for reviewer_metadata in wf:
+            if reviewer_metadata['review_state'] == 'published':
+                reviewer = reviewer_metadata['actor']
+
+        if creator:
+            member = get(creator)
+
+            if member:
+                creator = member.getProperty('fullname') or creator
+
+        if reviewer:
+            member = get(reviewer)
+
+            if member:
+                reviewer = member.getProperty('fullname') or reviewer
+
+        return ReviewInfo(creator, reviewer)
+
     @view.memoize
     def html2text(self, html):
         if not isinstance(html, basestring):
@@ -32,6 +75,7 @@ class AceViewApi(object):
         data = portal_transforms.convertTo('text/plain',
                                            html, mimetype='text/html')
         text = data.getData()
+
         return text.strip()
 
     def linkify(self, text):
@@ -50,22 +94,27 @@ class AceViewApi(object):
         websites = self.context.websites
 
         result = []
+
         for link in websites:
             result.append({'url': self.linkify(link), 'title': link})
+
         return result
 
     def get_files(self):
         files = self.context.contentValues({'portal_type': 'File'})
+
         for r in self.context.relatedItems:
             if r.to_object.portal_type in ['File', 'Image']:
                 files.append(r.to_object)
 
         # return [r.to_object for r in self.context.relatedItems] \
         #     + self.context.contentValues({'portal_type': 'File'})
+
         return files
 
     def _render_geochar_element(self, value):
         value = BIOREGIONS[value]
+
         return u"<p>{0}</p>".format(value)
         # if value == 'Global':
         #     return value + u"<br/>"
@@ -73,38 +122,51 @@ class AceViewApi(object):
         #     return value + u":<br/>"
 
     def _render_geochar_macrotrans(self, value):
-        tpl = u"<div class='sidebar_bold'><h5>Macro-Transnational region:</h5><p>{0}</p></div>"
+        tpl = (u"<div class='sidebar_bold'>"
+               u"<h5>Macro-Transnational region:</h5><p>{0}</p></div>")
+
         return tpl.format(u", ".join([BIOREGIONS[x] for x in value]))
 
     def _render_geochar_biotrans(self, value):
-        tpl = u"<div class='sidebar_bold'><h5>Biographical regions:</h5><p>{0}</p></div>"
+        tpl = (u"<div class='sidebar_bold'>"
+               u"<h5>Biographical regions:</h5><p>{0}</p></div>")
+
         return tpl.format(u", ".join([BIOREGIONS.get(x, x) for x in value]))
 
     def _render_geochar_countries(self, value):
         tpl = u"<div class='sidebar_bold'><h5>Countries:</h5><p>{0}</p></div>"
+
         return tpl.format(u", ".join(self.get_countries(value)))
 
     def _render_geochar_subnational(self, value):
-        tpl = u"<div class='sidebar_bold'><h5>Sub Nationals:</h5><p>{0}</p></div>"
+        tpl = (u"<div class='sidebar_bold'>"
+               u"<h5>Sub Nationals:</h5><p>{0}</p></div>")
         # a list like: ['SUBN_Marche__IT_']
 
         out = []
+
         for line in value:
             line = line.encode('utf-8')
+
             if line in SUBNATIONAL_REGIONS:
                 out.append(SUBNATIONAL_REGIONS[line])
+
                 continue
             else:
                 logger.error("Subnational region not found: %s", line)
 
         text = u", ".join([x.decode('utf-8') for x in out])
+
         return tpl.format(text)
 
     def _render_geochar_city(self, value):
         text = value
+
         if isinstance(value, (list, tuple)):
             text = u", ".join(value)
-        return u"<div class='sidebar_bold'><h5>City:</h5><p>{0}</p></div>".format(text)
+
+        return (u"<div class='sidebar_bold'>"
+                u"<h5>City:</h5><p>{0}</p></div>".format(text))
 
     @view.memoize
     def render_geochar(self, value):
@@ -127,6 +189,7 @@ class AceViewApi(object):
 
         for key in order:
             element = value['geoElements'].get(key)
+
             if element:
                 renderer = getattr(self, "_render_geochar_" + key)
                 out.append(renderer(element))
@@ -137,12 +200,15 @@ class AceViewApi(object):
         """ Returns link to original object, to allow easy comparison
         """
         site = "http://climate-adapt-old.eea.europa.eu"
+
         if hasattr(self.context, '_aceitem_id'):
             return ("{0}/viewaceitem?aceitem_id={1}".format(
                 site, self.context._aceitem_id))
+
         if hasattr(self.context, '_acemeasure_id'):
             return ("{0}/viewmeasure?ace_measure_id={1}".format(
                 site, self.context._acemeasure_id))
+
         if hasattr(self.context, '_aceproject_id'):
             return (
                 "{0}/projects1?ace_project_id={1}".format(
@@ -154,16 +220,19 @@ class AceViewApi(object):
     def type_label(self):
         from eea.climateadapt.vocabulary import _datatypes
         d = dict(_datatypes)
+
         return d[self.context.search_type]
 
     def governance_level(self):
         if self.context.governance_level is None:
             return ""
+
         if len(self.context.governance_level) == 0:
             return ""
 
         from eea.climateadapt.vocabulary import _governance
         d = dict(_governance)
+
         return [d.get(b) for b in self.context.governance_level]
 
     def check_user_role(self):
@@ -171,14 +240,17 @@ class AceViewApi(object):
         groups_tool = getToolByName(self.context, 'portal_groups')
         user = mt.getAuthenticatedMember()
 
-        user_groups = [group.id for group in groups_tool.getGroupsByUserId(user.id)]
+        user_groups = [group.id
+                       for group in groups_tool.getGroupsByUserId(user.id)]
         to_check = ['extranet-cca-reviewers',
                     'Administrators',
                     'extranet-cca-powerusers',
                     'extranet-cca-managers']
         check_roles = [group for group in user_groups if group in to_check]
+
         if len(check_roles) > 0:
             return True
+
         return False
 
 
@@ -189,6 +261,7 @@ class ViewAceItem(BrowserView):
     def __call__(self, REQUEST):
 
         aceitem_id = REQUEST.get('aceitem_id')
+
         if aceitem_id:
             try:
                 aceitem_id = int(aceitem_id)
@@ -207,6 +280,7 @@ class ViewAceMeasure(BrowserView):
     def __call__(self, REQUEST):
 
         acemeasure_id = REQUEST.get('ace_measure_id')
+
         if (not acemeasure_id) or (not acemeasure_id.isdigit()):
             raise NotFound
 
@@ -222,6 +296,7 @@ class ViewAceProject(BrowserView):
     def __call__(self, REQUEST):
 
         aceproject_id = REQUEST.get('ace_project_id')
+
         if not aceproject_id or not aceproject_id.isdigit():
             raise NotFound
 
@@ -233,9 +308,11 @@ class ViewAceProject(BrowserView):
 def redirect(site, REQUEST, key, itemid):
     portal_catalog = site.portal_catalog
     brains = portal_catalog({key: itemid})
+
     if not brains:
         raise NotFound
     ob = brains[0].getObject()
+
     return REQUEST.RESPONSE.redirect(ob.absolute_url(), status=301)
 
 
@@ -260,6 +337,7 @@ class IterateControl(Control):
             return False
 
         archiver = IObjectArchiver(context)
+
         if not archiver.isVersionable():
             return False
 
@@ -279,6 +357,7 @@ class IterateControl(Control):
             return False
 
         archiver = IObjectArchiver(context)
+
         if not archiver.isVersionable():
             return False
 
@@ -286,6 +365,7 @@ class IterateControl(Control):
             return False
 
         policy = ICheckinCheckoutPolicy(context, None)
+
         if policy is None:
             return False
 
@@ -293,10 +373,12 @@ class IterateControl(Control):
             original = policy.getBaseline()
         except:
             return False
+
         if original is None:
             return False
 
         checkPermission = getSecurityManager().checkPermission
+
         if not checkPermission(CheckinPermission, original):
             return False
 
@@ -311,10 +393,12 @@ class IterateControl(Control):
             return False
 
         archiver = IObjectArchiver(context)
+
         if not archiver.isVersionable():
             return False
 
         policy = ICheckinCheckoutPolicy(context, None)
+
         if policy is None:
             return False
 
@@ -322,10 +406,12 @@ class IterateControl(Control):
             return False
 
         # check if its is a checkout
+
         if policy.getBaseline() is not None:
             return False
 
         checkPermission = getSecurityManager().checkPermission
+
         if not checkPermission(CheckoutPermission, context):
             return False
 
@@ -336,6 +422,7 @@ class IterateControl(Control):
            working copy.
         """
         policy = ICheckinCheckoutPolicy(self.context, None)
+
         if policy is None:
             return False
         wc = policy.getWorkingCopy()
@@ -347,4 +434,5 @@ class IterateControl(Control):
         is_wc = (self.context.aq_inner.aq_self is wc.aq_inner.aq_self)
         res = has_wc and is_wc
         print "Checkout cancel allowed: ", res
+
         return res

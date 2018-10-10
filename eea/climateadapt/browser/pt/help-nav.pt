@@ -1,0 +1,30 @@
+<ul id="help-navbar" class="main-nav help-nav-menu" tal:define="menu view/menu">
+
+  <tal:block tal:repeat="section python: view.menu()">
+    <li tal:condition="python: section['label'] == 'Help'">
+
+      <span tal:define="has_children python: bool(section['children'][-1])">
+        <a href="" tal:attributes="href section/link;" class="help-main-nav-link">
+          <span tal:content="python: section['label'] + ' introduction'">
+            Help
+          </span>
+        </a>
+      </span>
+
+      <div tal:condition="python: section['children'][-1]" >
+        <tal:column tal:repeat="column python:section['children']">
+          <ul>
+            <li tal:repeat="group column">
+              <a href=""
+                 tal:attributes="href group/link"
+                 tal:content="group/label">
+                 Title here
+              </a>
+            </li>
+          </ul>
+        </tal:column>
+      </div>
+
+    </li>
+  </tal:block>
+</ul>

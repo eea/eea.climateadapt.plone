@@ -28,12 +28,11 @@
       <theme href="index.html" />
       <replace css:content-children=".fp-news-tile" css:theme-children=".fp-news-tile" />
       <replace css:content-children=".fp-events-tile" css:theme-children=".fp-events-tile" />
-      <replace css:theme=".country-dropdown select" css:content="#fp-country-selector"  />
+      <replace css:theme-children="#t-countries" css:content="#fp-country-selector"  />
 
       <!-- slider -->
-      <!-- <replace css:theme=".slider" css:content=".slider"  /> -->
       <replace css:theme=".slider" css:content=".slider" href="/@@slides-frontpage" method="document" />
-
+      <replace css:theme=".db-categories" css:content=".db-categories" href="@@fp-search-dynamic" method="document"/>
     </rules>
 
 
@@ -43,7 +42,10 @@
 
 
     <replace css:content="#portal-columns" css:theme="#page-body"/>
-    <replace css:content="#navbar" css:theme=".main-nav" href="@@site_navbar" method="document"/>
+    <replace css:content="#navbar" css:theme=".main-nav-menu" href="@@site_navbar" method="document"/>
+
+    <!-- top menu help section -->
+    <replace css:theme-children="#help-items" css:content="#help-navbar" href="@@help-nav" css:theme=".help-nav-menu" method="document"/>
 
     <drop attributes="class" css:content="#portal-columns" />
     <!-- <drop attributes="class" css:content="#portal-column-content" /> -->
@@ -86,12 +88,12 @@
     <drop css:content=".col-md-9 .tile-default > .tile-content > h1" />
 
     <drop css:content="h1.documentFirstHeading" />
-    <before css:content=".content-column > .tile-default">
+    <before css:content=".content-column > .tile-default:first-child">
       <xsl:copy-of select='//*[@class="documentFirstHeading"]' />
     </before>
 
     <drop css:content="#viewlet-below-content-title" />
-    <before css:content=".content-column > .tile-default">
+    <before css:content=".content-column > .tile-default:first-child">
       <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
     </before>
 
@@ -122,12 +124,12 @@
     </after>
   </rules>
 
-  <!-- Case studies database items: move last modified under the h1 title -->
-  <rules css:if-content=".aceitem_page .case-studies-top">
-    <drop css:content="#plone-document-byline" />
-    <after css:content=".case-studies-top > h1">
-      <xsl:copy-of select='//*[@id="plone-document-byline"]' />
-    </after>
+  <!-- UVMB: move h1 title before last modified -->
+  <rules css:if-content=".subsection-tools-urban-adaptation-introduction">
+    <before css:content="#plone-document-byline">
+      <xsl:copy-of select="//*[contains(@class, 'tile-content')]/h1" />
+    </before>
+    <drop css:content=".tile-content > h1" />
   </rules>
 
   <!-- add edit bar for the homepage, also move it to the top -->
@@ -178,5 +180,16 @@
       </script>
     </after>
   </rules>
+
+
+  <xsl:template match="a[@data-linktype = 'external']">
+    <a>
+      <xsl:copy-of select="@*|b/@*" />
+      <xsl:attribute name="href">
+        <xsl:value-of select="@data-val" />
+      </xsl:attribute>
+      <xsl:apply-templates />
+    </a>
+  </xsl:template>
 
 </rules>

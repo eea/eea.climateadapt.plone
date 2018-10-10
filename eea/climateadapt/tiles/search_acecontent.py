@@ -83,6 +83,18 @@ class ISearchAceContentTile(IPersistentCoverTile):
                      )
                      )
 
+    macro_regions = List(title=_(u"Macro-Transnational Regions"),
+                         required=False,
+                         value_type=Choice(
+                             vocabulary="eea.climateadapt.regions"
+                         ))
+
+    bio_regions = List(title=_(u"Biogeographical Regions"),
+                       required=False,
+                       value_type=Choice(
+                           vocabulary="eea.climateadapt.bioregions"
+                       ))
+
     nr_items = Int(
         title=_(u"Nr of items to show"),
         required=True,
@@ -117,6 +129,9 @@ class AceTileMixin(object):
             'search_text': 'SearchableText',
             'special_tags': 'special_tags',
             'sector': 'sectors',
+            'countries': 'countries',
+            'macro_regions': 'macro_regions',
+            'bio_regions': 'bio_regions',
         }
 
         sort_map = {
@@ -143,7 +158,6 @@ class AceTileMixin(object):
         # the special_tags field is indexed into the SearchableText
         st = self.data.get('special_tags')
 
-
         if st:
             query.pop('special_tags', None)
 
@@ -151,6 +165,8 @@ class AceTileMixin(object):
                 st = st.split(u' ')
             words = query.pop('SearchableText', u'').split(u' ')
             query['SearchableText'] = u' '.join(set(words + st))
+
+        print query
 
         return query
 
@@ -304,6 +320,10 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
     view_more = False
 
+    @property
+    def is_available(self):
+        return bool(self.items())
+
     def show_share_btn(self):
         search_type = self.data.get('search_type')
 
@@ -365,6 +385,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
         return icons
 
+    @view.memoize
     def items(self):
         count = self.data.get('nr_items', 5) or 5
         query = self.build_query()
@@ -396,6 +417,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
             for uuid in [i[0] for i in ordered_uuids]:
                 obj = uuidToObject(uuid)
+
                 if obj:
                     results.append(obj)
 

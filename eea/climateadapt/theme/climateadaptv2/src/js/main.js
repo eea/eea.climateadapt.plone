@@ -140,7 +140,7 @@ $(document).ready(function() {
 
   // HOMEPAGE: Main area
   // Get the heighest div and make equal height on every boxes
-  var windowsize = $(window).width();
+  var windowWidth = $(window).width();
   var $mainBox = $('.main-box');
   var mainBoxMaxHeight = 0;
 
@@ -148,7 +148,7 @@ $(document).ready(function() {
     mainBoxMaxHeight = ($(this).outerHeight() > mainBoxMaxHeight) ? $(this).outerHeight() : mainBoxMaxHeight;
   });
 
-  if (windowsize <= 600) {
+  if (windowWidth <= 767) {
     $mainBox.css('min-height', 'auto');
   } else {
     $mainBox.css('min-height', mainBoxMaxHeight);
@@ -179,9 +179,9 @@ $(document).ready(function() {
 
   // Navigation menu: align sub-menu to the right
   // if overflows the main navigation menu
-  var mainMenuWidth = $('.main-nav').width();
+  var mainMenuWidth = $('.main-nav-menu').width();
 
-  $('.main-nav li').mouseenter(function() {
+  $('.main-nav-menu li').mouseenter(function() {
     var $this = $(this);
     var subMenuWidth = $this.children('.sub-menu-wrapper').width();
     if ($this.find('.sub-menu-wrapper').length > 0) {
@@ -197,19 +197,19 @@ $(document).ready(function() {
   });
 
   // Divide the sub-menu in 2 columns if 'sub-sub-menu' exist
-  var navigationItem = $('.main-nav-item');
-  navigationItem.each(function() {
-    var $this = $(this);
-    if ($this.find('.sub-sub-menu-wrapper').length > 0) {
-      var submenuwrapper = $this.find('.sub-menu-wrapper');
-      var submenucols = submenuwrapper.find(".sub-menu").length > 1 ? submenuwrapper.find(".sub-menu").length : 2;
-      submenuwrapper.css({
-          'column-count': submenucols,
-          '-webkit-column-count' : submenucols,
-          '-moz-column-count': submenucols,
-      });
-    }
-  });
+  // var navigationItem = $('.main-nav-item');
+  // navigationItem.each(function() {
+  //   var $this = $(this);
+  //   if ($this.find('.sub-sub-menu-wrapper').length > 0) {
+  //     var submenuwrapper = $this.find('.sub-menu-wrapper');
+  //     var submenucols = submenuwrapper.find(".sub-menu").length > 1 ? submenuwrapper.find(".sub-menu").length : 2;
+  //     submenuwrapper.css({
+  //       'column-count': submenucols,
+  //       '-webkit-column-count' : submenucols,
+  //       '-moz-column-count': submenucols,
+  //     });
+  //   }
+  // });
 
   // GENERAL
   // add button class
@@ -314,18 +314,6 @@ $(document).ready(function() {
     var $sidebar = $('.subsection-transnational-regions .column.col-md-3');
     $sidebar.after($sidebar.find('.detailed-content').parentsUntil('.tile-default'));
 
-    // url: .../cca/countries-regions/transnational-regions/baltic-sea-region
-    //     .../cca/countries-regions/transnational-regions/carpathian-mountains/general
-    function regionSubpageLayout() {
-      if (isBalticSubpage || isCarpathianSubpage) {
-        $body.addClass('region-subpage');
-        $('#content-core .column.col-md-3').remove();
-        $('#content-core .column.col-md-9').removeClass('col-md-9');
-
-        $('.tile-content').addClass('clearfix');
-      }
-    }
-
     // COUNTRY PAGES
     // url: .../cca/countries-regions/countries/austria
     function countryPageLayout() {
@@ -425,7 +413,6 @@ $(document).ready(function() {
     }
 
   policyLayout();
-  regionSubpageLayout();
   countryPageLayout();
   astLayout();
 
@@ -436,16 +423,8 @@ $(document).ready(function() {
     $(this).replaceWith($('<h5>' + this.innerHTML + '</h5>'));
   });
 
-  // Remove double angle '»' from 'Search result' listings
-  $(".aceitem-search-tile-listing li ul li").each(function() {
-    var $this = $(this);
-    $this.html($this.html().replace('»', ''));
-  });
-
   // Fix floating button
   $('.share-your-info-ace-button').wrapAll('<div class="clearfix"/>');
-
-  $('.news-item').parent().parent().children('h2').addClass('news-title');
 
   // Add a placeholder message for search input fields
   $('#search-field input[type="text"]').attr('placeholder', 'type here...');
@@ -511,7 +490,7 @@ $(document).ready(function() {
     $pdfButton.parent().hide();
   }
 
-  // Move interactive tools content under the sidebar
+  // Move interactive maps under the sidebar
   // eg. ../cca/knowledge/adaptation-information/observations-and-scenarios
   var $mapView = $('.speedbutton');
   if ($mapView.length > 0) {
@@ -554,7 +533,7 @@ $(document).ready(function() {
    '.column p').removeAttr('style');
 
   // move case studies gallery
-  var $aceSidebar = $('.subsection-case-studies .aceitem_page .col-md-3');
+  var $aceSidebar = $('.aceitem_page .col-md-3');
   $aceSidebar.before($aceSidebar.find('.case-studies-illustrations'));
   $aceSidebar.before($aceSidebar.find('.sidebar_files'));
 
@@ -598,5 +577,11 @@ $(document).ready(function() {
       }
     }
   });
+
+  // add fullwidth class for UVMB climatic threats pages
+  var isClimaticThreatsPage = $('.subsection-tools-urban-adaptation-climatic-threats').length > 0;
+  if (isClimaticThreatsPage) {
+    $body.addClass('fullwidth');
+  }
 
 });

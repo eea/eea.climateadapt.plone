@@ -5,8 +5,8 @@
   lang="en"
   metal:use-macro="context/main_template/macros/master"
   >
-  <body>
 
+  <body>
     <metal:main fill-slot="body">
       <tal:main-macro metal:define-macro="content-core" >
 
@@ -33,22 +33,40 @@
 
           <div metal:fill-slot="ace-right-slot">
 
-            <metal:macro use-macro="context/ace_macros/macros/files" />
-            <h4>Keywords:</h4>
-            <metal:macro use-macro="context/ace_macros/macros/keywords" />
+            <div class="macro-category">
+              <h4>Updated:</h4>
+              <div tal:content="python: context.EffectiveDate().split('T')[0]"> Date </div>
+            </div>
 
-            <h4>Climate impacts:</h4>
-            <tal:block content="structure python:view.w['climate_impacts'].render()" />
+            <div class="macro-category">
+              <metal:macro use-macro="context/ace_macros/macros/files" />
+            </div>
 
-            <h4>Elements:</h4>
-            <tal:block content="structure python:view.w['elements'].render()" />
+            <div class="macro-category">
+              <h4>Keywords:</h4>
+              <metal:macro use-macro="context/ace_macros/macros/keywords" />
+            </div>
 
+            <div class="macro-category">
+              <h4>Climate impacts:</h4>
+              <tal:block content="structure python:view.w['climate_impacts'].render()" />
+            </div>
 
-            <h4>Sectors:</h4>
-            <tal:block content="structure python:view.w['sectors'].render()" />
+            <div class="macro-category">
+              <h4>Elements:</h4>
+              <tal:block content="structure python:view.w['elements'].render()" />
+            </div>
 
-            <h4>Geographic characterisation:</h4>
-            <metal:macro use-macro="context/ace_macros/macros/geochar" />
+            <div class="macro-category">
+              <h4>Sectors:</h4>
+              <tal:block content="structure python:view.w['sectors'].render()" />
+            </div>
+
+            <div class="macro-category">
+              <h4>Geographic characterisation:</h4>
+              <metal:macro use-macro="context/ace_macros/macros/geochar" />
+            </div>
+
           </div>
 
         </metal:macro>
