@@ -1,58 +1,52 @@
-from functools import partial
-from collections import defaultdict
-from collections import namedtuple
-
-from Products.Five.browser import BrowserView
-from plone.app.layout.viewlets.content import ContentHistoryViewlet
+# from functools import partial
+from collections import defaultdict, namedtuple
 
 import plone.api as api
+from Products.Five.browser import BrowserView
+
+# from plone.app.layout.viewlets.content import ContentHistoryViewlet
 
 
 FMT_DATE = '%d-%m-%Y'
 
-TYPES = (
-    'eea.climateadapt.indicator',
-    'eea.climateadapt.publicationreport',
-    'eea.climateadapt.informationportal',
-    'eea.climateadapt.guidancedocument',
-    'eea.climateadapt.tool',
-    'eea.climateadapt.aceproject',
-    'eea.climateadapt.adaptationoption',
-    'eea.climateadapt.casestudy',
-    'eea.climateadapt.organisation',
-    'eea.climateadapt.mapgraphdataset',
-)
 
+TYPE_INFO = [
+    ('eea.climateadapt.indicator',
+     'metadata/indicators',
+     'Indicator'
+     ),
+    ('eea.climateadapt.publicationreport',
+     'metadata/publications',
+     'Publication and Report',
+     ),
+    ('eea.climateadapt.informationportal',
+     'metadata/portals',
+     'Information Portal',),
+    ('eea.climateadapt.guidancedocument',
+     'metadata/guidances',
+     'Guidance Document'
+     ),
+    ('eea.climateadapt.tool',
+     'metadata/tools',
+     'Tool',),
+    ('eea.climateadapt.aceproject',
+     'metadata/projects',
+     'Research and Knowledge Project'),
+    ('eea.climateadapt.adaptationoption',
+     'metadata/adaptation-options',
+     'Adaptation Option'),
+    ('eea.climateadapt.casestudy',
+     'metadata/case-studies',
+     'Case Study'),
+    ('eea.climateadapt.organisation',
+     'metadata/organisations',
+     'Organization'),
+    ('eea.climateadapt.mapgraphdataset',
+     'metadata/map-graphs',
+     'Map, Graph or Dataset'),
+]
 
-PATHS = (
-    'metadata/indicators',
-    'metadata/publications',
-    'metadata/portals',
-    'metadata/guidances',
-    'metadata/tools',
-    'metadata/projects',
-    'metadata/adaptation-options',
-    'metadata/case-studies',
-    'metadata/organisations',
-    'metadata/map-graphs',
-)
-
-
-NAMES = (
-    'Indicator',
-    'Publication and Report',
-    'Information Portal',
-    'Guidance Document',
-    'Tool',
-    'Research and Knowledge Project',
-    'Adaptation Option',
-    'Case Study',
-    'Organization',
-    'Map, Graph or Dataset',
-)
-
-
-TYPE_INFO = zip(TYPES, PATHS, NAMES)
+TYPES = [x[0] for x in TYPE_INFO]
 
 Entry = namedtuple('Entry', (
     'brain',
@@ -64,6 +58,7 @@ Entry = namedtuple('Entry', (
     'created',
     'modified',
     'history',
+    'review_state',
 ))
 
 
@@ -75,26 +70,42 @@ def extract_metadata(brain):
     member = api.user.get(user_id)
     user_name = member.getProperty('fullname') if member else user_id
 
-    obj = brain.getObject()
+    # obj = brain.getObject()
     # history_view = ContentHistoryViewlet(obj, obj.REQUEST, 'historyview')
     # history_view.update()
     # history = history_view.fullHistory()
     # history = history_view.revisionHistory()
     history = []
-    # import pdb; pdb.set_trace()
 
     return Entry(
-        brain, brain.portal_type, brain.getURL(), brain.Title,
-        user_name, user_id, created, modified, history,
+        brain,
+        brain.portal_type,
+        brain.getURL(),
+        brain.Title,
+        user_name,
+        user_id,
+        created,
+        modified,
+        history,
+        brain.review_state,
     )
 
 
 def classify_brains(acc, brain):
     acc[brain.portal_type].append(extract_metadata(brain))
+
     return acc
 
 
 class DashboardView(BrowserView):
+    def plural(self, name):
+        if name[-1] == 'y':
+            name = name[:-1] + 'ies'
+        else:
+            name = name + 's'
+
+        return name
+
     def items(self):
         catalog = api.portal.get_tool('portal_catalog')
         brains = catalog(portal_type=TYPES)
