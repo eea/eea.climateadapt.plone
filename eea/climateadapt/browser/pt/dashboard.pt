@@ -1,0 +1,50 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="eea">
+<body>
+
+<metal:main fill-slot="main">
+  <tal:item repeat="item view/items">
+    <h2 tal:define="portal_type python:item['portal_type']; name python:item['name']">
+      <tal:portal_type replace="name" /> (<tal:count replace="python:len(item['entries'])" /> items)
+      <a tal:attributes="href string:${portal_url}/${item/path}/++add++/${portal_type}">Add new <tal:name replace="name" /></a>
+    </h2>
+    <div class="type-section">
+      <table class="listing">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Created</th>
+            <th>Modified</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tal:entry repeat="entry python:item['entries']">
+            <tr>
+              <td><a tal:attributes="href entry/url" tal:content="entry/title"></a></td>
+              <td>
+                <time tal:content="entry/created"></time>
+                (<a tal:attributes="href string:${portal_url}/author/${entry/user_id}" tal:content="entry/user_name"></a>)
+              </td>
+              <td>
+                <time tal:content="entry/modified"></time>
+              </td>
+            </tr>
+          </tal:entry>
+        </tbody>
+      </table>
+    </div>
+  </tal:item>
+  <script>
+    $('.type-section table').dataTable();
+  </script>
+</metal:main>
+
+</body>
+</html>
