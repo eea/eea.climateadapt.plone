@@ -31,7 +31,7 @@
       <replace css:theme-children="#t-countries" css:content="#fp-country-selector"  />
 
       <!-- slider -->
-      <replace css:theme=".slider" css:content=".slider"  />
+      <replace css:theme=".slider" css:content=".slider" href="/@@slides-frontpage" method="document" />
       <replace css:theme=".db-categories" css:content=".db-categories" href="@@fp-search-dynamic" method="document"/>
     </rules>
 
