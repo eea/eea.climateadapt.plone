@@ -47,7 +47,7 @@
           </div>
 
           <div class="col-md-3 content-sidebar">
-            <div id="aceitem_sidebar">
+            <div id="aceitem_sidebar" tal:define='geotag view/geotag'>
               <tal:block tal:define="plone nocall: context/@@plone_portal_state">
                 <div
                   tal:condition="plone/anonymous"
@@ -75,8 +75,12 @@
                 </div>
               </tal:block>
               <metal:slot metal:define-slot="ace-right-slot"></metal:slot>
+
+              <div tal:condition="geotag" tal:content="geotag/location"></div>
+
             </div>
           </div>
+
 
         </div>
       </div>

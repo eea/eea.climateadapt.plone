@@ -3,11 +3,13 @@ import logging
 from collections import namedtuple
 
 from collective.cover.browser.cover import Standard
+from zope.component import queryAdapter
 
 from AccessControl import getSecurityManager
 from Acquisition import aq_inner
 from eea.climateadapt.vocabulary import (BIOREGIONS, SUBNATIONAL_REGIONS,
                                          ace_countries_dict)
+from eea.geotags.behavior.geotags import ISingleGeoTag
 from plone import api
 from plone.api.user import get
 from plone.app.iterate.browser.control import Control
@@ -26,6 +28,11 @@ ReviewInfo = namedtuple('ReviewInfo', ['creator', 'reviewer'])
 
 
 class AceViewApi(object):
+
+    def geotag(self):
+        tag = queryAdapter(self.context, ISingleGeoTag)
+
+        return tag
 
     def get_review_info(self):
         """ Return review information.
