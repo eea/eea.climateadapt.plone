@@ -45,6 +45,7 @@ setup(
         'eea.rabbitmq.client',    # schedule jobs
         'eea.rabbitmq.plone',
         'google-api-python-client',       # google analytics API integration
+        'oauth2client',
     ],
     extras_require={
         'test': [
