@@ -90,7 +90,7 @@
       <ul tal:condition="not: assigned" class="list-items">
         <li tal:repeat="brain view/items">
           <a href="" tal:attributes="href brain/getURL; title brain/Description" tal:content="brain/Title">Title here</a>
-          <div style="display: none"
+          <div 
             class="hover-icon"
             tal:define="icons python: view.get_icons(brain)">
             <img class="tile-icon-help" tal:repeat="icon icons" tal:attributes="src icon/absolute_url;

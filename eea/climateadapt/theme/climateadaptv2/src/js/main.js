@@ -212,13 +212,13 @@ $(document).ready(function() {
   // });
 
   // GENERAL
+  // Add table class
+  $('.CSSTableGenerator').addClass('listing');
+
   // add button class
   $('#document-action-download_pdf,' +
     '#login-form .formControls input,' +
     '#folderlisting-main-table .context').addClass('standard-button secondary-button');
-
-  // Add table class
-  $('.CSSTableGenerator').addClass('listing');
 
   var $blueButton = $('.bluebutton');
   $blueButton.addClass('standard-button primary-button');
@@ -236,6 +236,7 @@ $(document).ready(function() {
     }
   })
 
+  $('.select-widget').addClass('form-control');
 
   // Add active class on sub-navigation active items
   // special transnational subpages, ex:
@@ -268,160 +269,135 @@ $(document).ready(function() {
     lastPathName = pathParts[pathParts.length - 1];
   }
 
-  var policyClass = 'subsection-sector-policies-' + lastPathName;
-  var regionClass = 'subsection-transnational-regions-' + lastPathName;
   var countryClass = 'subsection-countries-' + lastPathName;
-
   var bodyClassList = $body.attr('class') !== undefined ? $body.attr('class').split(/\s+/) : [];
 
   $.each(bodyClassList, function(index, item) {
-    if (item === policyClass) {
-      $body.addClass('eu-policy-page');
-    }
-    if (item === regionClass) {
-      $body.addClass('region-page');
-    }
     if (item === countryClass) {
       $body.addClass('country-page');
     }
   });
 
-  var isPolicyPage = $('.eu-policy-page').length > 0;
+  var isPolicyPage = $('.subsection-sector-policies').length > 0;
   var isCountryPage = $('.country-page').length > 0;
-  var isBalticSubpage = $('.subsection-transnational-regions-baltic-sea-region-adaptation').length > 0;
-  var isCarpathianSubpage = $('.subsection-transnational-regions-carpathian-mountains').length > 0;
   var isASTPage = $('.subsection-tools-adaptation-support-tool').length > 0;
-
 
   // EU SECTOR POLICIES
   // url: .../cca/eu-adaptation-policy/sector-policies/agriculture
-  function policyLayout() {
-    if (isPolicyPage) {
+  if (isPolicyPage) {
+    var policySubTitles = $('.read_more_second').children('h2');
+    policySubTitles.each(function() {
+      $(this).replaceWith($('<p><strong>' + this.innerHTML + '</strong><p>'));
+    });
 
-      var policySubTitles = $('.read_more_second').children('h2');
-      policySubTitles.each(function() {
-        $(this).replaceWith($('<p><strong>' + this.innerHTML + '</strong><p>'));
+    // move eu sector policy factsheet
+    var $sidebar = $('.column.col-md-3');
+    $sidebar.before($sidebar.find('.factsheet-pdf').parent());
+  }
+
+  // TRANSNATIONAL SUBPAGES (two specific subpages)
+  // move detailed content under the sidebar (baltic sea, central europe)
+  var $sidebar = $('.subsection-transnational-regions .column.col-md-3');
+  $sidebar.after($sidebar.find('.detailed-content').parentsUntil('.tile-default'));
+
+  // COUNTRY PAGES
+  // url: .../cca/countries-regions/countries/austria
+  function countryPageLayout() {
+    if (isCountryPage) {
+      $('.country-select-tile').closest('.row').css('margin', '0');
+      $('.sweet-tabs').attr('id', 'country-tab');
+
+      // custom country dropdown functionality
+      var $countryTitle = $('.dd-country-title');
+      $('.dd-country-title .options li').on('click', function() {
+        $countryTitle.find('.selected').html($(this).text());
+        $countryTitle.find('.selected-inp').val($(this).data('value')).trigger('change');
+        $countryTitle.find('.options').removeClass('show');
       });
 
-      // move eu sector policy factsheet
-      var $sidebar = $('.column.col-md-3');
-      $sidebar.before($sidebar.find('.factsheet-pdf').parent());
-      }
-    }
-
-    // TRANSNATIONAL SUBPAGES (two specific subpages)
-    // move detailed content under the sidebar (baltic sea, central europe)
-    var $sidebar = $('.subsection-transnational-regions .column.col-md-3');
-    $sidebar.after($sidebar.find('.detailed-content').parentsUntil('.tile-default'));
-
-    // COUNTRY PAGES
-    // url: .../cca/countries-regions/countries/austria
-    function countryPageLayout() {
-      if (isCountryPage) {
-        $('.country-select-tile').closest('.row').css('margin', '0');
-        $('.sweet-tabs').attr('id', 'country-tab');
-
-        // custom country dropdown functionality
-        var $countryTitle = $('.dd-country-title');
-        $('.dd-country-title .options li').on('click', function() {
-          $countryTitle.find('.selected').html($(this).text());
-          $countryTitle.find('.selected-inp').val($(this).data('value')).trigger('change');
-          $countryTitle.find('.options').removeClass('show');
-        });
-
-        $('.dd-title-wrapper').on('click', function(e) {
-          $countryTitle.find('.options').fadeToggle().toggleClass('show');
-          $countryTitle.find('i').toggleClass('fa fa-angle-up fa fa-angle-down');
-          e.stopPropagation();
-        });
-
-        $('.dd-country-title .selected-inp').on('change', function(ev) {
-          var url = ev.target.value;
-          var country = $(".dd-country-title li[data-value='" + url + "']").text();
-
-          if (country.length) {
-            document.location = '/countries/' + country.toLowerCase();
-          }
-        });
-
-        // resize the country dropdown list to the country title
-        $.fn.resizeselectList = function(settings) {
-          return this.each(function() {
-            $(this).change(function() {
-              var $this = $(this);
-              var $selected = $this.parents().find('.dd-country-title .selected');
-              var text = $selected.text();
-
-              var $titlePlaceholder = $('<span/>').html(text).css({
-                'font-size': $selected.css('font-size'),
-                'font-weight': $selected.css('font-weight'),
-                'visibility': 'hidden'
-              });
-
-              $titlePlaceholder.appendTo($this.parent());
-              // get country title width
-              var width = $titlePlaceholder.width();
-              $titlePlaceholder.remove();
-
-              $this.width(width + 45);
-            }).change();
-          });
-        };
-        $('.resizeselect-list').resizeselectList();
-      }
-    }
-
-    // ADAPTATION SUPPORT TOOL
-    // url: .../cca/knowledge/tools/adaptation-support-tool
-    function astLayout() {
-
-      if (isASTPage) {
-        $('.col-md-8').children('.tile:nth-child(2)').addClass('tile-wrapper');
-
-        var titleAST = $('.tile-content').children('h1');
-        titleAST.each(function() {
-          $('<h2>' + $(this).html() + '</h2>').replaceAll(this);
-        });
-
-        $('.cover-richtext-tile ul li a').attr('target', '_blank');
-      }
-
-      var $circleStep = $('.ast-map .ast-circle');
-
-      $circleStep.hover(function() {
-        $(this).siblings('.step-text').css('display', 'block');
-      }, function() {
-        $(this).siblings('.step-text').css('display', 'none');
+      $('.dd-title-wrapper').on('click', function(e) {
+        $countryTitle.find('.options').fadeToggle().toggleClass('show');
+        $countryTitle.find('i').toggleClass('fa fa-angle-up fa fa-angle-down');
+        e.stopPropagation();
       });
 
-      var currentStep = $('.ast-title-step').text();
+      $('.dd-country-title .selected-inp').on('change', function(ev) {
+        var url = ev.target.value;
+        var country = $(".dd-country-title li[data-value='" + url + "']").text();
 
-      if (currentStep == 0) {
-        $('.ast-title-step').remove();
-      }
-
-      // highlight the current step
-      $circleStep.each(function() {
-        if ($(this).text() === currentStep) {
-          $(this).css({
-            'background-color': '#FFD554',
-            'border': '2px solid #F2C94C',
-            'color': '#4F4F4F'
-          });
+        if (country.length) {
+          document.location = '/countries/' + country.toLowerCase();
         }
       });
+
+      // resize the country dropdown list to the country title
+      $.fn.resizeselectList = function(settings) {
+        return this.each(function() {
+          $(this).change(function() {
+            var $this = $(this);
+            var $selected = $this.parents().find('.dd-country-title .selected');
+            var text = $selected.text();
+
+            var $titlePlaceholder = $('<span/>').html(text).css({
+              'font-size': $selected.css('font-size'),
+              'font-weight': $selected.css('font-weight'),
+              'visibility': 'hidden'
+            });
+
+            $titlePlaceholder.appendTo($this.parent());
+            // get country title width
+            var width = $titlePlaceholder.width();
+            $titlePlaceholder.remove();
+
+            $this.width(width + 45);
+          }).change();
+        });
+      };
+      $('.resizeselect-list').resizeselectList();
+    }
+  }
+
+  // ADAPTATION SUPPORT TOOL
+  // url: .../cca/knowledge/tools/adaptation-support-tool
+  function astLayout() {
+
+    if (isASTPage) {
+      $('.col-md-8').children('.tile:nth-child(2)').addClass('tile-wrapper');
+
+      var titleAST = $('.tile-content').children('h1');
+      titleAST.each(function() {
+        $('<h2>' + $(this).html() + '</h2>').replaceAll(this);
+      });
+
+      $('.cover-richtext-tile ul li a').attr('target', '_blank');
     }
 
-  policyLayout();
+    var $circleStep = $('.ast-map .ast-circle');
+    $circleStep.hover(function() {
+      $(this).siblings('.step-text').css('display', 'block');
+    }, function() {
+      $(this).siblings('.step-text').css('display', 'none');
+    });
+
+    var currentStep = $('.ast-title-step').text();
+    if (currentStep == 0) {
+      $('.ast-title-step').remove();
+    }
+
+    // highlight the current step
+    $circleStep.each(function() {
+      if ($(this).text() === currentStep) {
+        $(this).css({
+          'background-color': '#FFD554',
+          'border': '2px solid #F2C94C',
+          'color': '#4F4F4F'
+        });
+      }
+    });
+  }
+
   countryPageLayout();
   astLayout();
-
-  $('.region-page #trans-region-select').siblings('div').addClass('region-countries');
-
-  var regionsTitle = $('.region-countries').children('strong');
-  regionsTitle.each(function() {
-    $(this).replaceWith($('<h5>' + this.innerHTML + '</h5>'));
-  });
 
   // Fix floating button
   $('.share-your-info-ace-button').wrapAll('<div class="clearfix"/>');
@@ -442,7 +418,28 @@ $(document).ready(function() {
     $('.cover-richtext-tile ul li a').attr('target', '_blank');
   }
 
+  // Move PDF button in the content area
   var $pdfButton = $('#document-action-download_pdf');
+  $pdfButton.parent().wrapAll('<div class="documentExportActions"/>');
+  var $pdfExport = $('.documentExportActions');
+  var $isColumnedPage = $('.content-column').length > 0;
+
+  if ($isColumnedPage) {
+    $('.content-column').append($pdfExport);
+  } else if (isCountryPage) {
+    $('.tab-content').append($pdfExport);
+    $pdfExport.css({
+      'float':'none',
+      'display': 'inline-block'
+    });
+  } else {
+    $('#content').append($pdfExport);
+    $pdfExport.css({
+      'float':'none',
+      'display': 'inline-block'
+    });
+  }
+
   // Urban AST export section pdf button
   if (currentLocation.indexOf('/tools/urban-ast') !== -1 && currentLocation.indexOf('pdf.body') === -1) {
     var $sectionPDF = '<a href="/tools/urban-ast/download.pdf"' +
@@ -495,11 +492,11 @@ $(document).ready(function() {
   var $mapView = $('.speedbutton');
   if ($mapView.length > 0) {
     var $sidebar = $('.col-md-3.content-sidebar');
-    var $mapViewParent = $mapView.closest('.tile-default');
-    var $mapViewParentSibling = $mapViewParent.prev();
-    $mapViewParentSibling.addClass('interactive-maps');
-    $sidebar.after($sidebar.find($mapViewParentSibling));
-    $mapViewParentSibling.append($mapViewParent);
+    var $mapViewParent = $mapView.closest('.tile-default').addClass('interactive-map-wrapper');
+    var $mapViewParentSibling = $mapViewParent.prev().addClass('map-list-wrapper');
+    $('.interactive-map-wrapper, .map-list-wrapper').wrapAll('<div class="interactive-maps" />')
+    var $mapWrapper = $('.interactive-maps');
+    $sidebar.after($sidebar.find($mapWrapper));
   }
 
   // CASE STUDIES - DATABASE ITEM
@@ -583,5 +580,14 @@ $(document).ready(function() {
   if (isClimaticThreatsPage) {
     $body.addClass('fullwidth');
   }
+
+  // Hide empty tiles
+  var $tile = $('.tile');
+  $tile.each(function () {
+    $this = $(this);
+    if ($this.children().length === 0 ) {
+      $this.hide();
+    }
+  })
 
 });

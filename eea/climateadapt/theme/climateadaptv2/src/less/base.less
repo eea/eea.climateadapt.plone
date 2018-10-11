@@ -100,9 +100,12 @@ a {
 
 .site-container ul,
 .site-container ol {
-  padding: 0 0 0.8em 1em;
-  li {
-    padding-bottom: 0.3em;
+  padding-left: 1em;
+  li:not(:last-child) {
+    padding-bottom: 0.5em;
+    ul {
+      padding-top: 0.5em;
+    }
   }
 }
 
@@ -322,25 +325,27 @@ form .standard-button {
   }
 }
 
-#document-action-download_pdf {
+.documentExportActions {
+  float: left;
+  clear: left;
   margin-top: 3em;
-  display: inline-block;
-  a {
-    color: @dark-gray;
-    margin-left: 0;
-  }
-  a:before {
-    content: '' !important;
-  }
-}
+  ul {
+    padding-left: 0;
+    list-style-type: none;
 
-#document-action-download_pdf:before,
-.ast-section-pdf:before {
-  content: '\f019';
-  font-family: FontAwesome;
-  margin-right: 10px;
-  position: relative;
-  color: inherit;
+    a {
+      color: @dark-gray;
+    }
+
+    #document-action-download_pdf:before,
+    .ast-section-pdf:before {
+      content: '\f019';
+      font-family: FontAwesome;
+      margin-right: 10px;
+      position: relative;
+      color: inherit;
+    }
+  }
 }
 
 .ast-section-pdf {
@@ -363,6 +368,20 @@ form .standard-button {
 
 .aceitem-relevant-tile {
   margin-top: 2em;
+  padding: 0 0.5em;
+}
+
+.tile-footer {
+  text-align: left;
+  margin-top: 0.5em;
+
+  a {
+    padding: 0.5em;
+    text-decoration: underline;
+  }
+  a:before{
+
+  }
 }
 
 .aceitem-relevant-tile ul,
@@ -383,19 +402,19 @@ form .standard-button {
 .aceitem-search-tile ul > li > a,
 .aceitem-relevant-tile ul > li > a,
 .subsection-share-your-info-index_html .tile-content li > span > a {
-  display: inline-block;
-  margin-left: 1rem;
+  // display: inline-block;
+  // margin-left: 1rem;
 }
 
 #ast-menu ul > li:before,
-.aceitem-search-tile ul > li > a:before,
-.aceitem-relevant-tile ul > li > a:before,
+.aceitem-search-tile ul > li:before,
+.aceitem-relevant-tile ul > li:before,
 .subsection-share-your-info-index_html .tile-content li > span > a:before {
   content: "\f101";
   font-family: FontAwesome;
-  margin-left: -1em;
-  width: 1em;
+  margin-left: 3px;
   display: inline-block;
+  color: @link-color;
 }
 
 .aceitem-relevant-tile h2 {
@@ -437,6 +456,16 @@ form .standard-button {
   font-family: FontAwesome;
   margin-right: 5px;
   font-size: 18px;
+}
+
+.image-left {
+  float: left;
+  margin-right: 1em;
+}
+
+.image-right {
+  float: right;
+  margin-left: 1em;
 }
 
 // two columned layout
@@ -489,16 +518,27 @@ form .standard-button {
   margin: 0;
 }
 
-.content-sidebar .aceitem-search-tile > ul > li a {
-  margin-left: 0;
+.content-sidebar .aceitem-search-tile {
+  ul {
+    li a {
+      margin-left: 0;
+      display: inline;
+    }
+    li a:hover {
+      color: #0083c3;
+    }
+    li > ul {
+      padding-left: 1em;
+      li:first-child {
+        padding-top: 0.5em;
+      }
+    }
+  }
 }
 
-.content-sidebar .aceitem-search-tile > ul > li > ul a {
-  margin-left: 1em;
-}
 
-.content-sidebar .aceitem-search-tile li > ul a:before {
-  content: '' !important;
+.content-sidebar ul {
+  padding: 0;
 }
 
 .content-sidebar .tile img.left {
@@ -604,7 +644,11 @@ form .standard-button {
   background-color: transparent;
   padding: 0;
   border: none;
-  display: initial;
+}
+
+.interactive-maps .aceitem-relevant-tile {
+  margin-top: 0;
+  padding: 0;
 }
 
 // Transnational regions
@@ -661,7 +705,12 @@ form .standard-button {
   padding-left: 0;
   li > ul {
     list-style-type: none;
-    padding-top: 0.8em;
+    li:before {
+      color: @primary-blue;
+    }
+    li>ul {
+      padding-top: 0.5em;
+    }
   }
 }
 
@@ -692,7 +741,7 @@ form .standard-button {
   border: none;
   background: #F2F2F2;
   border-radius: 0;
-  padding: 1em 2em;
+  padding: 1em;
 }
 
 #ast-menu .ui-state-hover {
@@ -808,7 +857,8 @@ form .standard-button {
 
 // Urban Adaptation support tool
 #uast-menu {
-  font-size: 13px;
+  font-size: 14px;
+  padding-left: 0;
 
   .ui-state-active {
     background: none;
@@ -816,7 +866,6 @@ form .standard-button {
 }
 
 #uast-menu .ui-accordion-header {
-  border-radius: 0;
   border: none;
   padding: 0 0 0.5em 0;
   display: flex;
@@ -869,30 +918,16 @@ form .standard-button {
 
 #content #uast-menu .ui-state-active > .uast-title {
   background-color: #96B32B;
-  border-top-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  width: 100%;
-  margin-left: 3px;
-}
-
-#uast-menu {
-  font-size: 14px;
 }
 
 #uast-menu .ui-accordion-content {
   border: none;
-  border-radius: 0;
-  list-style-position: outside;
-  padding: 1em 0 1em 4em;
+  padding: 1em 0 1em 3.5em;
 }
 
 #uast-menu .ui-state-hover > .uast-title {
   background-color: #96B32B;
   color: #fff;
-}
-
-#uast-menu ul > li:last-child {
-  margin-bottom: 0 !important;
 }
 
 #uast-menu .ui-widget-content a {
@@ -914,7 +949,6 @@ form .standard-button {
 
 #uast-menu ul > li {
   list-style-type: disc;
-  margin-bottom: 1em;
 }
 
 #uast-menu ul > li > ul {
@@ -1204,6 +1238,12 @@ form .standard-button {
   display: inline-block;
   float: right;
   margin-top: 2em;
+}
+
+.hover-icon {
+  display: inline-block;
+  position: relative;
+  bottom: 2px;
 }
 
 // Help page: Glossary
@@ -2341,11 +2381,6 @@ div.width-1\3a 4 {
   font-family: RobotoM;
   font-size: 20px;
   padding-left: 1em;
-}
-
-#country-selector select {
-  width: auto;
-  display: inline-block;
 }
 
 #sections-selector {
