@@ -53,3 +53,49 @@ def initialize(context):
                           visibility=None
                           )
 
+
+from eea.notifications import utils, vocabulary
+from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
+
+
+LABELS = {}
+
+
+# Monkey eea.notifications get_tags
+def get_tags_cca(obj):
+    try:
+        tags = obj.keywords
+    except Exception:
+        tags = ()
+    return tags
+
+
+utils.get_tags = get_tags_cca
+
+
+# def vocab_from_values_cca(values):
+#     # terms = [SimpleTerm(x, x, LABELS.get(x, x)) for x in values]
+#
+#     terms = []
+#     for x in values:
+#         if isinstance(x, unicode):
+#             x = x.encode('utf-8')
+#         # else:
+#             # import pdb; pdb.set_trace()
+#         print x
+#         try:
+#             term = SimpleTerm(x, x, LABELS.get(x, x))
+#         except:
+#             import pdb; pdb.set_trace()
+#         terms.append(term)
+#
+#     try:
+#         terms.sort(key=lambda t: t.title)
+#     except UnicodeDecodeError:
+#         pass
+#
+#     vocab = SimpleVocabulary(terms)
+#     return vocab
+#
+#
+# vocabulary.vocab_from_values = vocab_from_values_cca
