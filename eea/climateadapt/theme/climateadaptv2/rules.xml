@@ -97,16 +97,6 @@
       <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
     </before>
 
-    <drop css:content="#document-action-download_pdf" />
-    <after css:content=".content-column > .tile:last-child">
-      <xsl:copy-of select='//*[@id="document-action-download_pdf"]' />
-    </after>
-
-    <!-- for database items move here: -->
-    <after css:content=".ace-content-column">
-      <xsl:copy-of select='//*[@id="document-action-download_pdf"]' />
-    </after>
-
   </rules>
 
   <!-- AST & UAST: move last modified under the h1 title -->
@@ -142,13 +132,11 @@
 
     <drop css:content=".last-update-tile"/>
     <drop css:content="#disclaimer"/>
-    <drop css:content="#document-action-download_pdf" />
     <replace css:content=".tab-content">
       <div class="tab-content">
          <xsl:copy-of select='//*[contains(@class,"last-update-tile")]' />
          <xsl:apply-templates select="./*"/>
          <xsl:copy-of select='//*[@id="disclaimer"]' />
-         <xsl:copy-of select='//*[@id="document-action-download_pdf"]' />
       </div>
     </replace>
 

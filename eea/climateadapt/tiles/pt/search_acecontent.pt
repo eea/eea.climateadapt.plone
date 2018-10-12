@@ -89,7 +89,7 @@
                 </a>
                 <ul>
                   <li tal:repeat="brain brains">
-                    » <a href="" tal:attributes="href brain/getURL" tal:content="brain/Title">Link</a>
+                    <a href="" tal:attributes="href brain/getURL" tal:content="brain/Title">Link</a>
                   </li>
                 </ul>
               </li>
