@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Frontpage map tile: added islands, changed geojson; Multiple fixes
+  [krisztina #91562]
 * Style fixes, code cleanup
   [krisztina #91562]
 * Feature: Implemented new slides functionality for frontpage

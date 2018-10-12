@@ -14,7 +14,7 @@
 
         <div id="content-core">
 
-          <div class="col-md-9 content-column">
+          <div class="col-md-9 col-xs-12 content-column">
             <div class="search-back">
               <a href="/data-and-downloads">
                 <i class="fa fa-reply" aria-hidden="true"></i>
@@ -46,7 +46,7 @@
             </div>
           </div>
 
-          <div class="col-md-3 content-sidebar">
+          <div class="col-md-3 col-xs-12 content-sidebar">
             <div id="aceitem_sidebar" tal:define='geotag view/geotag'>
               <tal:block tal:define="plone nocall: context/@@plone_portal_state">
                 <div

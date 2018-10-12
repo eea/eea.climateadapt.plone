@@ -44,6 +44,7 @@
                 </li>
               </ul>
             </li>
+            <div class="mobile-clearfix"></div>
           </ul>
         </tal:column>
       </div>

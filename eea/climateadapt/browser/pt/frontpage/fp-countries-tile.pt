@@ -1,10 +1,5 @@
 <div id="fp-country-selector">
 
-  <svg-container class="svg-map-container svg-fp-container">
-    <svg height="300" width="100%">
-    </svg>
-  </svg-container>
-
   <div class="map-caption">
     <p>EEA Member countries are at different stages of preparing, developing and implementing national adaptation strategies and plans.</p>
     <p>Click on a specific country on the map or select from the dropdown to see the country profile:</p>
@@ -17,6 +12,16 @@
       </form>
     </div>
     <a href="../countries-regions/countries" class="standard-button primary-button sm-button">See countries webpage</a>
+  </div>
+
+  <svg-container class="svg-map-container svg-fp-container">
+    <svg height="350" width="100%">
+    </svg>
+  </svg-container>
+
+  <div class="map-islands">
+    <img src="/cca/++theme++climateadaptv2/static/images/azores-maplet.png" />
+    <img src="/cca/++theme++climateadaptv2/static/images/canary-maplet.png" />
   </div>
 
 

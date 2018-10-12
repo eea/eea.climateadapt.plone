@@ -6,7 +6,7 @@ var _world = {};
 $(document).ready(function () {
 
   // initialize the countries map
-  var cpath = '++theme++climateadaptv2/static/countries/euro-countries.geojson';
+  var cpath = '++theme++climateadaptv2/static/countries/euro-countries-simplified.geojson';
   var fpath = '++theme++climateadaptv2/static/countries/countries.tsv';
 
   var $sw = $('.svg-fp-container');
@@ -36,7 +36,24 @@ $(document).ready(function () {
       // TODO: wait for the world to load??
       if (world) {
         $('.map-loader').fadeOut(600);
-        drawCountries(world);
+
+        function drawMap(width) {
+          drawCountries(world);
+        }
+
+        // fire resize event after the browser window resizing it's completed
+        var resizeTimer;
+        $(window).resize(function() {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(doneResizing, 500);
+        });
+
+        var width = $('.svg-fp-container svg').width();
+        function doneResizing() {
+          drawMap(width);
+        }
+
+        drawMap(width);
       };
     }
   })
@@ -204,10 +221,20 @@ function renderCountriesBox(opts) {
 
   var globalMapProjection = d3.geoAzimuthalEqualArea();
 
-  globalMapProjection
+  var windowWidth = $(window).width();
+
+  if (windowWidth <= 991) {
+      globalMapProjection
+      .scale(1)
+      .translate([0, 0])
+      ;
+  } else {
+    globalMapProjection
     .scale(1)
-    .translate([0, 0])
+    .translate([-0.25, 0])
     ;
+  }
+
 
   // the path transformer
   var path = d3.geoPath().projection(globalMapProjection);

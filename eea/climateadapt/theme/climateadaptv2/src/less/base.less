@@ -14,6 +14,7 @@ body {
   font-size: 14px;
   color: @dark-gray;
   line-height: 20px;
+  // word-break: break-all;
 }
 html {
   -moz-box-sizing: border-box;
@@ -60,7 +61,7 @@ h1,
 
 h2 {
   font-size: 21px;
-  line-height: 24px;
+  line-height: 28px;
 }
 
 h3 {
@@ -299,6 +300,7 @@ form .standard-button {
 
 .sm-button {
   font-size: 14px;
+  display: inline-block;
 }
 
 .primary-button,
@@ -412,7 +414,7 @@ form .standard-button {
 .subsection-share-your-info-index_html .tile-content li > span > a:before {
   content: "\f101";
   font-family: FontAwesome;
-  margin-left: 3px;
+  margin-right: 3px;
   display: inline-block;
   color: @link-color;
 }
@@ -703,6 +705,7 @@ form .standard-button {
 #ast-menu {
   font-size: 14px;
   padding-left: 0;
+  margin-bottom: 1.5em;
   li > ul {
     list-style-type: none;
     li:before {
@@ -859,6 +862,7 @@ form .standard-button {
 #uast-menu {
   font-size: 14px;
   padding-left: 0;
+  margin-bottom: 1.5em;
 
   .ui-state-active {
     background: none;
@@ -867,7 +871,7 @@ form .standard-button {
 
 #uast-menu .ui-accordion-header {
   border: none;
-  padding: 0 0 0.5em 0;
+  padding: 0;
   display: flex;
 
   .ui-icon {
@@ -914,6 +918,10 @@ form .standard-button {
   font-size: inherit;
   height: auto;
   width: auto;
+}
+
+.lfc-single-image {
+  text-align: center;
 }
 
 #content #uast-menu .ui-state-active > .uast-title {
@@ -1342,8 +1350,13 @@ dl.error, .portalMessage.error{
 // Table styling
 .listing {
   width: 100% !important;
-  margin-bottom: 1.5em;
-
+  margin: 1.5em 0;
+  thead {
+    tr:first-child {
+      background-color: #f9f9f9;
+      border-top: 1px solid #d7d7d7;
+    }
+  }
   td {
     padding: 8px;
   }
@@ -1801,9 +1814,15 @@ li.category span {
   }
 }
 
+#foldercontents-show-batched,
+#foldercontents-show-all {
+
+}
+
 // Pagination style
 div.listingBar {
   display: block;
+  margin: 1.5em 0;
 }
 
 div.listingBar .next {
@@ -1976,12 +1995,16 @@ span.selectedTag {
     white-space: nowrap;
   }
 
-  #portal-breadcrumbs {
-    margin-left: 1em;
-  }
-
   #portal-personaltools {
     right: -90px !important;
+  }
+
+  #help-items {
+    right: -170px !important;
+  }
+
+  .field input[type="text"] {
+    width: 100%;
   }
 
   .tile-content div div table td p,
@@ -2606,6 +2629,20 @@ div.width-1\3a 4 {
 
 .maplet-container .sphere {
   fill: gray;
+}
+
+// homepage tile map
+.svg-fp-container {
+  display: block;
+  line-height: 0;
+}
+
+.dynamic-area .graticule {
+  stroke: #c1c1c1;
+}
+
+.dynamic-area .semi-graticule {
+  stroke: #b3b3b3;
 }
 
 /***** map loading spinner *****/

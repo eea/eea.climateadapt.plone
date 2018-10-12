@@ -19,9 +19,11 @@
     font-size: 14px;
   }
 
-  #portal-breadcrumbs,
+  #portal-breadcrumbs {
+    margin: 0 1em;
+  }
   .logo {
-    margin-left: 1em;
+    margin: 1em;
   }
 
   .portalMessage {
@@ -54,7 +56,7 @@
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 992px) {
   .main-area {
     padding: 0 10px;
   }
@@ -80,14 +82,50 @@
   .action-btn {
     margin-bottom: 25px;
   }
+
+  .map-caption {
+    position: relative;
+    top: 0;
+    left: auto;
+    max-width: none;
+    padding: 1em;
+    bottom: auto;
+    text-align: center;
+    p {
+      font-family: RobotoR;
+    }
+  }
+
+  .map-islands {
+    left: 1em;
+    bottom: 1em;
+  }
+
+  .footer-content {
+    margin: 0;
+  }
+
+  // content
+  .content-sidebar.col-md-3 {
+    width:100%;
+    margin-top: 2%;
+  }
+  .content-column.col-md-9 {
+    margin-right: 0;
+  }
+  .factsheet-pdf {
+    display: block;
+    margin-top: 2%;
+  }
+  .documentExportActions {
+    float: none;
+    display: inline-block;
+  }
 }
 
 @media (max-width: 800px) {
 
   /* header area */
-  .top-menu {
-    border-bottom: 1px solid #E5E5E5;
-  }
 
   .mobile-header .top-menu {
     height: auto;
@@ -137,6 +175,27 @@
     top: 15px;
   }
 
+  .mobile-header {
+    .sub-menu-item:last-child,
+    .sub-menu-item:first-child {
+      padding: 13px 0;
+    }
+
+    .main-nav-item {
+      display: block;
+      text-align: left;
+    }
+  }
+
+  .mobile-header .mobile-clearfix {
+    display: block;
+    clear: both;
+  }
+
+  .mobile-header .sub-menu-item:last-child {
+    border-bottom: none;
+  }
+
   .header .main-nav,
   .top-menu-content,
   .search-box:after {
@@ -149,14 +208,8 @@
     position: relative;
   }
 
-  .mobile-header {
-    height: 110vh;
-    background-color: #fff;
-  }
-
   .mobile-header .main-nav {
     display: block;
-    background-color: @primary-blue;
     text-align: left;
     overflow-y: auto;
     height: 89vh;
@@ -164,8 +217,12 @@
     display: block;
   }
 
-  .mobile-header .main-nav-item {
-    display: block;
+  #help-navbar{
+    height: auto;
+  }
+
+  .mobile-header #main-nav-item-2 .sub-menu > .sub-menu-item:not(:first-child) {
+    padding: 13px 0;
   }
 
   .mobile-header .main-nav-item:not(:last-child) {
@@ -189,21 +246,17 @@
 
   .header .sub-sub-menu-item:not(:first-child),
   .mobile-header .sub-sub-menu-item {
-    padding: 4px 0;
-  }
-
-  .header .sub-menu-wrapper ul > li > a {
-    padding: 10px;
+    padding: 0;
   }
 
   .mobile-header .sub-menu-link {
-    padding: 10px 0;
+    padding: 10px;
     font-size: 13px;
     color: #464646;
   }
 
   .mobile-header .sub-sub-menu-link {
-    padding: 0 10px;
+    padding: 5px 10px;
   }
 
   .mobile-header .sub-menu-wrapper {
@@ -221,6 +274,10 @@
 
   .main-tile-content .flex-wrapper {
     flex-direction: column;
+  }
+
+  .no-ovf .logo {
+    display:none;
   }
 
   /* dynamic area */
@@ -313,6 +370,12 @@
   }
   .urban-area {
     margin-top: 20px;
+  }
+  .map-islands {
+    display: none;
+  }
+  .country-dropdown {
+    margin-bottom: 1em;
   }
 
   .footer-logo-item {

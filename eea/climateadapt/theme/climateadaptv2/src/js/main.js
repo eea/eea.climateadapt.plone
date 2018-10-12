@@ -401,6 +401,13 @@ $(document).ready(function() {
 
   // Fix floating button
   $('.share-your-info-ace-button').wrapAll('<div class="clearfix"/>');
+  // $('.sub-menu-item').wrapAll('<div class="clearfix"/>');
+
+  // var windowWidth = $(window).width();
+
+  if (windowWidth <= 800) {
+    $('#main-nav-item-3').children('.sub-menu-wrapper').append($('<div class="mobile-clearfix"/>'));
+  }
 
   // Add a placeholder message for search input fields
   $('#search-field input[type="text"]').attr('placeholder', 'type here...');
