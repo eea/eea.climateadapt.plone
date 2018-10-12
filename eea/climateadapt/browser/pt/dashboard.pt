@@ -30,11 +30,11 @@ h1+p { margin-bottom: 3rem; }
 
     </style>
     <h1 tal:content="context/Title">Personal dashboard</h1>
-    <div tal:replace="structure context/text/output">
+    <!-- <div tal:replace="structure context/text/output">
       <p>Here you can find an overview of your personally created Climate-Adapt
       content.
       </p>
-    </div>
+    </div> -->
       <tal:item repeat="item view/items">
         <div class="item-section"
           tal:define="name python:item['name']; portal_type python:item['portal_type'];"
