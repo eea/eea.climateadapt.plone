@@ -1,0 +1,24 @@
+<div class="trans-regions-section">
+
+  <p>To go to one of the region's pages, choose a region from the drop-down list.</p>
+
+  <script>
+    $(document).ready(function(){
+      $("#region-select").change(function() {
+        var url = $(this).val();
+        if (url.length) {
+          document.location = url;
+        }
+      });
+    });
+  </script>
+
+  <select id="region-select" class="form-control">
+    <option value="">Choose a region</option>
+    <option
+      tal:repeat="region view/regions"
+      tal:attributes="value region/url"
+      tal:content="region/title">Region</option>
+  </select>
+
+</div>

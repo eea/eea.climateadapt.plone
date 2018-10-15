@@ -70,20 +70,20 @@
     display: none;
   }
 
-  .sub-menu-item:first-child {
+  .sub-menu-item {
+    padding: 13px 0;
+  }
+
+  .sub-menu-item:first-of-type {
     padding-top: 0;
   }
 
-  .sub-menu-item:last-child {
+  .sub-menu-item:last-of-type {
     padding-bottom: 0;
   }
 
-  .sub-menu-item:not(:last-child) {
+  .sub-menu-item:not(:last-of-type) {
     border-bottom: 1px solid #ddd;
-  }
-
-  .sub-menu-item {
-    padding: 13px 0;
   }
 
   .sub-menu-link {

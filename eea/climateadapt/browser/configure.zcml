@@ -672,6 +672,14 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        class=".regions_select.TransRegionSelect"
+        for="*"
+        name="regions-section"
+        template="pt/regions-section.pt"
+        permission="zope2.View"
+        />
+
     <!-- Tile helpers -->
 
     <browser:page

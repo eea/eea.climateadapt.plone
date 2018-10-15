@@ -11,7 +11,7 @@
         </select>
       </form>
     </div>
-    <a href="../countries-regions/countries" class="standard-button primary-button sm-button">See countries webpage</a>
+    <a href="../countries-regions/countries" class="standard-button tile-button">See countries webpage</a>
   </div>
 
   <svg-container class="svg-map-container svg-fp-container">
