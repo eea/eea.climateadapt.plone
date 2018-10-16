@@ -227,12 +227,13 @@ $(document).ready(function() {
   // add button classes for form buttons
   var $submitButton = $('input[type=submit]');
   $submitButton.each(function () {
-    if ($(this).val() === 'Save') {
-      $(this).addClass('standard-button primary-button');
-    } else if ($(this).val() === 'Cancel') {
-      $(this).addClass('standard-button secondary-button');
+    var $this = $(this);
+    if ($this.val().match(/^(Save|Activate|Deactivate)$/i)) {
+      $this.addClass('standard-button primary-button');
+    } else if ($this.val() === 'Cancel') {
+      $this.addClass('standard-button secondary-button');
     } else {
-      $(this).addClass('standard-button secondary-button');
+      $this.addClass('standard-button secondary-button');
     }
   })
 
@@ -401,9 +402,6 @@ $(document).ready(function() {
 
   // Fix floating button
   $('.share-your-info-ace-button').wrapAll('<div class="clearfix"/>');
-  // $('.sub-menu-item').wrapAll('<div class="clearfix"/>');
-
-  // var windowWidth = $(window).width();
 
   if (windowWidth <= 800) {
     $('#main-nav-item-3').children('.sub-menu-wrapper').append($('<div class="mobile-clearfix"/>'));
@@ -592,7 +590,7 @@ $(document).ready(function() {
   var $tile = $('.tile');
   $tile.each(function () {
     $this = $(this);
-    if ($this.children().length === 0 ) {
+    if ($this.children().length === 0) {
       $this.hide();
     }
   })

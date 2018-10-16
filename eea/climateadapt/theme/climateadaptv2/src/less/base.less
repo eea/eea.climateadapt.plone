@@ -666,6 +666,35 @@ form .standard-button {
   text-align: center;
 }
 
+.region-wrapper {
+  text-align: center;
+  flex: 1 1 180px;
+  padding: 1em 0;
+  a {
+    display: inline-block;
+    overflow: hidden;
+    border: 1px solid #ddd;
+  }
+  a:hover {
+    border: 1px solid @primary-blue;
+  }
+  a:hover img {
+    transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+  }
+  img {
+    transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+  }
+  h6 {
+    font-size: 11px;
+    margin-bottom: 0.5em;
+    line-height: 11px;
+  }
+}
+
 .cover-section_nav-tile,
 .uvmb-nav {
   margin-bottom: 1.5em;
