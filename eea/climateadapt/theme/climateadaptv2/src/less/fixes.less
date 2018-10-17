@@ -102,6 +102,7 @@
 .formHelp {
   font-size: 14px;
   font-family: RobotoR;
+  color: #555 !important;
 }
 
 .formTabs {
@@ -353,4 +354,53 @@ textarea:focus {
     overflow-x: auto;
   }
 
+}
+
+// manage subscriptions fixes
+// cca/manage_subscriptions
+
+#formfield-form-widgets-tags,
+#formfield-form-widgets-events {
+  max-height: 100% !important;
+  overflow-y: inherit !important;
+  border: none !important;
+  padding: 0 !important;
+  margin-top: 30px;
+
+  label.horizontal {
+    font-size: 17px;
+    margin-bottom: 0.5em;
+    color: #005C96;
+  }
+}
+
+#form-widgets-events {
+  margin: 0.5em 0;
+}
+
+#form-widgets-events{
+  float: none !important;
+
+  .option {
+    float: none !important;
+    display: block;
+  }
+}
+
+#form-widgets-tags {
+  float: none !important;
+  border: 1px solid #ccc;
+  display: block;
+  padding: 1em;
+  max-height: 250px;
+  overflow-y: auto;
+
+  .option {
+    float: none !important;
+    display: block;
+    min-width: 100% !important;
+  }
+  label {
+    display: inline;
+  }
 }

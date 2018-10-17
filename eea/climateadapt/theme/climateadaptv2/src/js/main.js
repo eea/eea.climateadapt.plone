@@ -228,7 +228,7 @@ $(document).ready(function() {
   var $submitButton = $('input[type=submit]');
   $submitButton.each(function () {
     var $this = $(this);
-    if ($this.val().match(/^(Save|Activate|Deactivate)$/i)) {
+    if ($this.val().match(/^(Save|Activate|Deactivate|Update subscriptions)$/i)) {
       $this.addClass('standard-button primary-button');
     } else if ($this.val() === 'Cancel') {
       $this.addClass('standard-button secondary-button');
