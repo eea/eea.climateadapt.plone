@@ -5,13 +5,13 @@
     <p>Click on a specific country on the map or select from the dropdown to see the country profile:</p>
     <div class="country-dropdown">
       <form>
-        <select id="country-select">
+        <select id="country-select" class="form-control">
           <option id="no-selection-option" value="" selected="selected">Go to country...</option>
           <option tal:repeat="c view/countries" tal:attributes="value python:c[0]" tal:content="python: c[1]"></option>
         </select>
       </form>
     </div>
-    <a href="../countries-regions/countries" class="standard-button tile-button">See countries webpage</a>
+    <a href="../countries-regions/countries" class="form-control">See countries webpage</a>
   </div>
 
   <svg-container class="svg-map-container svg-fp-container">

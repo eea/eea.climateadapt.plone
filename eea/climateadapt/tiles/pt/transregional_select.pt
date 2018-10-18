@@ -5,9 +5,72 @@
   i18n:domain="collective.cover">
 
   <body tal:define="is_compose view/is_compose_mode">
-    <strong tal:condition="is_compose">Transregional select</strong>
 
-    <!-- <h2 tal:content="python: view.data.get('title')">Title here</h2> -->
+    <!-- lightbox gallery css -->
+    <link rel="stylesheet" href="/++resource++eea.climateadapt.tiles/featherlight.css">
+
+    <!-- custom style for gallery/lightbox-->
+    <style>
+      #gallery {
+        margin: 0 auto 1.5em;
+        width: 100%;
+        max-width: 250px;
+        position: relative;
+      }
+      .fa-search-plus {
+        font-size: 25px;
+        color: #fff;
+        left: 50%;
+        margin-left: -10px;
+        margin-top: -10px;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        -webkit-transition: opacity 0.3s ease 0s;
+        -o-transition: opacity 0.3s ease 0s;
+        transition: opacity 0.3s ease 0s;
+      }
+      .gallery-layer {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        -webkit-transition: background-color 0.15s ease 0s;
+        -o-transition: background-color 0.15s ease 0s;
+        transition: background-color 0.15s ease 0s;
+      }
+      .thumb-wrapper {
+        border: 1px solid #ddd;
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+      .thumb-wrapper:hover {
+        border: 1px solid #005C96;
+      }
+      .thumb-wrapper:hover > .thumb {
+        -webkit-transform: scale3d(1.2, 1.2, 1.2);
+        transform: scale3d(1.2, 1.2, 1.2);
+      }
+      .thumb-wrapper:hover .gallery-layer {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+      .thumb-wrapper:hover .gallery-layer > .fa-search-plus {
+        opacity: 1;
+      }
+      .thumb {
+        width: 100%;
+        -webkit-transition: -webkit-transform 0.15s ease 0s;
+        -moz-transition: -moz-transform 0.15s ease 0s;
+        -o-transition: -o-transform 0.15s ease 0s;
+        transition: transform 0.15s ease 0s;
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1);
+      }
+    </style>
+
+    <strong tal:condition="is_compose">Transregional select</strong>
 
     <dl tal:condition="view/is_compose_mode">
       <dt>Transnational regions select</dt>
@@ -28,6 +91,27 @@
       });
       </script>
 
+      <section id="gallery">
+        <tal:block tal:condition="view/countries">
+          <tal:rep tal:repeat="info python: view.countries()[1]">
+            <a data-featherlight="image"
+               class="thumb-wrapper"
+               tal:attributes="href python: '/++resource++eea.climateadapt.tiles/images/' + info">
+
+              <img class="thumb"
+                   tal:attributes="src python: '/++resource++eea.climateadapt.tiles/images/' + info;
+                   alt python:context.Title();
+                   title python:context.Title()">
+
+              <div class="gallery-layer">
+                <i class="fa fa-search-plus" aria-hidden="true"></i>
+              </div>
+            </a>
+          </tal:rep>
+        </tal:block>
+        <p class="region-image-info">Click on the image above for higher resolution.</p>
+      </section>
+
       <select id="trans-region-select" class="form-control">
         <option value="">Choose a region</option>
         <option
@@ -36,9 +120,9 @@
           tal:content="region/title" >1</option>
       </select>
 
-      <div style="padding-top: 1em" class="region-countries">
+      <div tal:condition="view/countries" class="region-countries">
         <h5>Region's countries:</h5>
-        <tal:rep tal:repeat="info view/countries">
+        <tal:rep tal:repeat="info python: view.countries()[0]">
           <a href="" tal:omit-tag="python: not info[1]"
             tal:attributes="href python:info[1]"
             tal:content="python: info[0]">
@@ -48,5 +132,9 @@
         </tal:rep>
       </div>
     </div>
+
+    <!-- lightbox gallery js -->
+    <script src="/++resource++eea.climateadapt.tiles/featherlight.min.js"></script>
+
   </body>
 </html>
