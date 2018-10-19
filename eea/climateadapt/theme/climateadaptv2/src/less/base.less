@@ -1,10 +1,4 @@
 @import "variables.less";
-//@import "./bootstrap/variables.less";
-//@import "./bootstrap/mixins/buttons.less";
-//@import "./bootstrap/mixins/vendor-prefixes.less";
-//@import "./bootstrap/mixins/tab-focus.less";
-//@import "./bootstrap/mixins/opacity.less";
-//@import "./bootstrap/buttons.less";
 
 body {
   background-color: #eee;
@@ -14,7 +8,6 @@ body {
   font-size: 14px;
   color: @dark-gray;
   line-height: 20px;
-  // word-break: break-all;
 }
 html {
   -moz-box-sizing: border-box;
@@ -74,7 +67,7 @@ p {
 }
 
 a, a:active, a:focus {
-   outline: none;
+  outline: none;
 }
 
 a {
@@ -101,7 +94,6 @@ a {
   border-bottom: 1px solid #1e76a9;
   word-wrap: break-word;
 }
-
 
 .site-container ul,
 .site-container ol {
@@ -300,7 +292,7 @@ a.read-more {
 
 form .standard-button {
   margin: 0.5em 0;
-  padding: 10px 25px !important;
+  padding: 10px 25px;
 }
 
 .sm-button {
@@ -602,8 +594,6 @@ form .standard-button {
 
 .share-your-info-ace-button button,
 .share-info-btn {
-  font-size: 16px;
-  font-family: RobotoM;
   position: relative;
   padding: 10px 13px 10px 43px;
   margin-bottom: 0;
@@ -1868,11 +1858,6 @@ li.category span {
   }
 }
 
-#foldercontents-show-batched,
-#foldercontents-show-all {
-
-}
-
 // Pagination style
 div.listingBar {
   display: block;
@@ -2436,7 +2421,6 @@ div.width-1\3a 4 {
 }
 
 // Country informations
-
 .map-wrapper {
   position: relative;
   margin: 2em 0;
@@ -2457,7 +2441,7 @@ div.width-1\3a 4 {
   color: @primary-green;
   font-family: RobotoM;
   font-size: 20px;
-  padding-left: 1em;
+  padding-left: 0.7em;
 }
 
 #sections-selector {
@@ -2519,7 +2503,7 @@ div.width-1\3a 4 {
 
 /* Legend */
 .legend {
-  margin: 2em;
+  margin: 2em 1em;
 
   p {
     margin-bottom: 0;
@@ -2540,16 +2524,15 @@ div.width-1\3a 4 {
 }
 
 .content-available {
-  background-color: @primary-green;
+  background-color: @secondary-blue;
 }
 
 .no-content {
-  background-color: @yellow;
+  background-color: #72DFFE;
 }
 
 .no-focus {
-  background-color: #EFE7D4; // #909670
-
+  background-color: #EFE7D4;
 }
 
 /* Tooltip */
@@ -2589,7 +2572,7 @@ div.width-1\3a 4 {
 }
 
 .sphere {
-  fill: #DCEBF3; // 6cbcf7
+  fill: #DCEBF3;
 }
 
 .graticule {
@@ -2602,7 +2585,7 @@ div.width-1\3a 4 {
 .semi-graticule {
   fill: none;
   stroke: gray;
-  stroke-dasharray:1,1;
+  stroke-dasharray: 1,1;
   stroke-width: 0.6;
 }
 
@@ -2652,8 +2635,12 @@ div.width-1\3a 4 {
 }
 
 .country-available path {
-  fill: @yellow;
+  fill: #72DFFE;
   cursor: pointer;
+}
+
+#fp-country-selector .country-available path {
+  fill: @secondary-blue; // color fix for the homepage map (Country profiles)
 }
 
 .country-flag {
@@ -2661,7 +2648,7 @@ div.width-1\3a 4 {
 }
 
 .country-green path {
-  fill: @primary-green;
+  fill: @secondary-blue;
   cursor: pointer;
 }
 
@@ -2678,7 +2665,7 @@ div.width-1\3a 4 {
 }
 
 .maplet-container .country-green path {
-  fill: @primary-green;
+  fill: @secondary-blue;
 }
 
 .maplet-container .sphere {
