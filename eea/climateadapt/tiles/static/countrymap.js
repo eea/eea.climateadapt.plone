@@ -117,7 +117,13 @@ function renderCountryFlag(parent, country, bbox, cpId) {
   var flag = parent
     .append('image')
     .attr('class', 'country-flag')
-    .attr('href', country.url)
+    .attr('href', function() {
+      if (getIEVersion() > 0) {
+        return '++theme++climateadaptv2/static/images/fallback.svg';
+      } else {
+        return country.url;
+      }
+    })
     .attr("preserveAspectRatio", "none")
     .attr('opacity', '1')
     .attr('clip-path', 'url(#' + cpId + ')')
@@ -125,6 +131,7 @@ function renderCountryFlag(parent, country, bbox, cpId) {
     .attr('y', bbox.y)
     .attr('height', bbox.height)
     .attr('width', bbox.width)
+    .attr('style', 'cursor:default')
     .on('mouseover', function (e) {
       $('.country-flag').css('cursor', 'unset');
     })
@@ -290,6 +297,22 @@ function makeid() {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
 
   return text;
+}
+
+function getIEVersion() {
+  var sAgent = window.navigator.userAgent;
+  var Idx = sAgent.indexOf("MSIE");
+
+  // If IE, return version number.
+  if (Idx > 0)
+    return parseInt(sAgent.substring(Idx+ 5, sAgent.indexOf(".", Idx)));
+
+  // If IE 11 then look for Updated user agent string.
+  else if (!!navigator.userAgent.match(/Trident\/7\./))
+    return 11;
+
+  else
+    return 0; //It is not IE
 }
 
 
