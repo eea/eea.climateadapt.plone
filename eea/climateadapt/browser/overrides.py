@@ -4,9 +4,15 @@ Various page overrides
 
 from collective.excelexport.exportables.dexterityfields import (BaseFieldRenderer,
                                                                 FieldRenderer)
+from zope.component import adapter, adapts, queryUtility
+from zope.formlib import form
+from zope.interface import Interface, implementer
+from zope.schema import Choice, List
+from zope.schema.interfaces import IDatetime, IList, IText, ITextLine, ITuple
+from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 from eea.climateadapt import MessageFactory as _
-from eea.climateadapt.schema import Year, PortalType, AbsoluteUrl, Uploader
+from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader, Year
 from eea.pdf.interfaces import IPDFTool
 from plone.api import content, portal
 from plone.app.content.browser.interfaces import IContentsPage
@@ -31,12 +37,6 @@ from z3c.form.interfaces import NO_VALUE, IFieldWidget, IFormLayer
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.interfaces import IRelationList
-from zope.component import adapter, adapts, queryUtility
-from zope.formlib import form
-from zope.interface import Interface, implementer
-from zope.schema import Choice, List
-from zope.schema.interfaces import IDatetime, IList, IText, ITextLine, ITuple
-from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 # from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 
@@ -293,6 +293,7 @@ class PortalTypeRenderer(BaseFieldRenderer):
     def render_value(self, obj):
         """Gets the value to render in excel file from content value
         """
+
         return portal.get().portal_types.get(obj.portal_type).title
 
 
@@ -306,6 +307,7 @@ class AbsoluteUrlRenderer(BaseFieldRenderer):
     def render_value(self, obj):
         """Gets the value to render in excel file from content value
         """
+
         return obj.absolute_url()
 
 
@@ -319,6 +321,7 @@ class UploaderRenderer(BaseFieldRenderer):
     def render_value(self, obj):
         """Gets the value to render in excel file from content value
         """
+
         return '; '.join(obj.creators)
 
 
@@ -602,6 +605,7 @@ class OverrideRichText (RichTextWidget):
     """ Richtext field override for tinymce tabs plugin """
 
     def _base_args(self):
+        import pdb; pdb.set_trace()
         # Get options
         args = super(OverrideRichText, self)._base_args()
 
@@ -638,13 +642,13 @@ class OverrideRichText (RichTextWidget):
 
 @adapter(getSpecification(IRichText['text']), IWidgetsLayer)
 @implementer(IFieldWidget)
-def RichTextFieldWidget(field, request):
+def WidgetsLayerRichTextFieldWidget(field, request):
     return FieldWidget(field, OverrideRichText(request))
 
 
 @adapter(getSpecification(IRichText['text']), IFormLayer)
 @implementer(IFieldWidget)
-def RichTextFieldWidgett(field, request):
+def FormLayerRichTextFieldWidget(field, request):
     return FieldWidget(field, OverrideRichText(request))
 
 

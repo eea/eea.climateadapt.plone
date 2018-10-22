@@ -47,7 +47,10 @@ class AceViewApi(object):
             creator = None
 
         wh = self.context.workflow_history
-        wf = wh['cca_items_workflow']
+        wf = wh.get('cca_items_workflow', None)
+
+        if not wf:
+            return None
 
         for reviewer_metadata in wf:
             if reviewer_metadata['review_state'] == 'published':

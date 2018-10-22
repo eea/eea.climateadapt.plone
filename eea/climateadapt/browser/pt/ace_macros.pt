@@ -52,6 +52,7 @@
                 <div
                   tal:condition="plone/anonymous"
                   tal:define="info view/get_review_info; reviewer info/reviewer; creator info/creator"
+                  tal:on-error="nothing"
                   class="ace_review_info">
                   <div tal:condition="python: creator and not reviewer">
                     <h4>Created by:</h4>
