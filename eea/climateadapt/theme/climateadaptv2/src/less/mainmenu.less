@@ -118,24 +118,27 @@
   // customized special submenus
 
   #main-nav-item-1 .sub-menu-wrapper {
-    min-width: 450px;
+    min-width: 480px;
   }
+
   #main-nav-item-1,
   #main-nav-item-2 {
     .sub-menu-wrapper {
       column-count: auto !important;
     }
 
-    .sub-menu > .sub-menu-item:first-child > ul {
+    .sub-menu > .sub-menu-item:first-child > ul,
+    .sub-menu > .sub-menu-item:nth-child(2) > ul {
       column-count: 2;
     }
+  }
 
+  #main-nav-item-2 {
     .sub-menu > .sub-menu-item:not(:first-child) {
       float: left;
       width: 47%;
       padding-bottom: 0;
     }
-
     .sub-menu > .sub-menu-item:nth-child(2) {
       border-bottom: none;
       border-right: 1px solid #ddd;
