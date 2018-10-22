@@ -434,7 +434,6 @@ form .standard-button {
 }
 
 .panel-default {
-  // margin-bottom: 1.5em;
   padding-bottom: 1em;
   border: none;
   border-bottom: 1px solid #ddd;
@@ -458,7 +457,20 @@ form .standard-button {
   }
 }
 
-.panel-heading .accordion-toggle:before {
+.collapse-header {
+  text-align: right;
+  text-transform: uppercase;
+  font-family: RobotoM;
+  color: #EF7000;
+  cursor: pointer;
+}
+
+.collapse-header:hover {
+  color: #ff963a;
+}
+
+.panel-heading .accordion-toggle:before,
+.collapse-header:before {
   content: '\f107';
   font-family: FontAwesome;
   margin-right: 5px;

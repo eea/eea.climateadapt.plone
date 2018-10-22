@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bug: Quick fix for the missing accordion buttons in TinyMCE
+  [krisztina]
 * Bug: Add flag fallback for country profile pages; fixed cursor type in IE
   [krisztina #91563]
 * Bug: Add fallback for the map flags in IE
