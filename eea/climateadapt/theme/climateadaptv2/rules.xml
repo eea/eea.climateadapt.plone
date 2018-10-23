@@ -35,7 +35,6 @@
       <replace css:theme=".db-categories" css:content=".db-categories" href="@@fp-search-dynamic" method="document"/>
     </rules>
 
-
     <rules css:if-not-content=".section-frontpage.template-standard">
       <theme href="page.html" />
     </rules>
@@ -122,7 +121,7 @@
     <drop css:content=".tile-content > h1" />
   </rules>
 
-  <!-- add edit bar for the homepage, also move it to the top -->
+  <!-- move edit bar to the top -->
   <replace css:content="#edit-bar" css:theme="#edit-bar" method="raw"/>
   <drop css:content="#edit-bar" />
 

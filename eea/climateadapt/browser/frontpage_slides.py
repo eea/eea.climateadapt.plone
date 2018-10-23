@@ -35,6 +35,10 @@ class RichImageSchema(form.Schema, IImageScaleTraversable):
 
     rich_image = NamedBlobImage(
         title=(u"Image"),
+        description=u"Image size should be at least 1100 pixel in width or wider, "
+        u"and 600 pixel in height, but the recommended size is at minimum "
+        u"1920 pixel in width for the best quality image. "
+        u"Anything less than this size will result a blurry image.",
         required=True,
     )
 

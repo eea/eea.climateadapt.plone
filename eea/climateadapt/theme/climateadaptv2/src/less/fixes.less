@@ -4,7 +4,7 @@
 .edit-bar-wrapper {
   background-color: @edit-interface-bg-color;
   position: relative;
-  z-index: 999;
+  z-index: 99999;
   border-bottom: 2px solid darken(@edit-interface-bg-color, 10%);
 }
 
@@ -17,10 +17,17 @@
   margin-bottom: 0;
   background-color: @edit-interface-bg-color;
   border: 0.25em solid @edit-interface-bg-color;
-}
 
-#edit-bar li {
-  display: inline;
+  li {
+    display: inline;
+  }
+
+  .state-private,
+  .state-visible,
+  .state-published,
+  .state-pending {
+    border-color: transparent !important;
+  }
 }
 
 #edit-bar, #content ul.formTabs, #content-core ul.formTabs {
@@ -33,10 +40,6 @@
 
 #plone-contentmenu-workflow .state-private {
   background-color: #a0a0a0;
-}
-
-.state-private, .state-visible, .state-published, .state-pending {
-  border-color: transparent !important;
 }
 
 #contentActionMenus dl.actionMenu a {
@@ -344,6 +347,30 @@ textarea:focus {
   border: 1px solid #E5E5E5;
 }
 
+table.controlpanel-listing dd {
+  margin-left: 0;
+}
+
+.filter-option {
+  display: block;
+}
+
+#content .field input[type="text"] {
+  font-size: 14px;
+}
+
+#searchrow input {
+  font-family: RobotoM;
+  color: @dark-gray;
+}
+
+@media screen and (max-width: 950px) {
+  #contentActionMenus {
+    position: absolute;
+    top: 30px;
+  }
+}
+
 @media screen and (max-width: 480px) {
   /* For devices with narrow screens, phones, tablets, etc. */
   #portal-column-one,
@@ -353,7 +380,6 @@ textarea:focus {
     margin-left: 0;
     overflow-x: auto;
   }
-
 }
 
 // manage subscriptions fixes

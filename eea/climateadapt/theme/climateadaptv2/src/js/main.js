@@ -228,7 +228,7 @@ $(document).ready(function() {
   var $submitButton = $('input[type=submit]');
   $submitButton.each(function () {
     var $this = $(this);
-    if ($this.val().match(/^(Save|Activate|Deactivate|Update subscriptions)$/i)) {
+    if ($this.val().match(/^(Save|Activate|Deactivate|Update subscriptions|Apply Changes)$/i)) {
       $this.addClass('standard-button primary-button');
     } else if ($this.val() === 'Cancel') {
       $this.addClass('standard-button secondary-button');
@@ -237,7 +237,10 @@ $(document).ready(function() {
     }
   })
 
-  $('.select-widget').addClass('form-control');
+  $('select').addClass('form-control');
+
+  // hide edit bar from HOMEPAGE
+  // $('.section-frontpage').find('.edit-bar-wrapper').hide();
 
   // Add active class on sub-navigation active items
   // special transnational subpages, ex:
@@ -611,19 +614,19 @@ $(document).ready(function() {
     $this.text(text.replace(/([A-Z])/g, ' $1').trim());
   });
 
-  var isGrouped = $collapseHeader.parent().parent().parent().hasClass('tile-content');
-  var isNotGrouped = $collapseHeader.parent().parent().hasClass('tile-content');
-
-  if (isNotGrouped) {
-    $collapseHeader.nextAll().wrapAll('<div class="collapse-body"/>');
-  } else if (isGrouped) {
-    $collapseHeader.parent().nextAll().wrapAll('<div class="collapse-body"/>');
-  }
+  $collapseHeader.parent().nextAll().wrapAll('<div class="collapse-body"/>');
+  $collapseHeader.nextAll().wrapAll('<div class="collapse-body"/>');
 
   var $collapseBody = $('.collapse-body');
-  $collapseBody .hide();
+  $collapseBody.hide();
   $collapseHeader.click(function() {
-    $collapseBody .slideToggle('slow');
+    $collapseBody.slideToggle('slow', function() {
+      if ($(this).is(':visible')) {
+        $collapseHeader.text('Read less');
+      } else {
+        $collapseHeader.text('Read more');
+      }
+    });
   });
 
 });

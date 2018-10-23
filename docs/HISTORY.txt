@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Add slider image requirement description, TinyMCE accordion and
+  general fixes and improvements
+  [krisztina #91562]
 * Bug: Quick fix for the missing accordion buttons in TinyMCE
   [krisztina]
 * Bug: Add flag fallback for country profile pages; fixed cursor type in IE
