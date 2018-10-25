@@ -35,7 +35,7 @@
         }
         .dataTables_paginate .current {
           color: #7D9600;
-          font-family: RobotoB;
+          font-family: OpenSansB;
           font-size: 16px;
           padding: 0.25em 0.5em;
           border: 0.1em solid #ccc;

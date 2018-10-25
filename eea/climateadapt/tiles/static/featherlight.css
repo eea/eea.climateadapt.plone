@@ -99,7 +99,7 @@ html.with-featherlight {
 	/* styling */
 	cursor: pointer;
 	text-align: center;
-	font-family: RobotoB;
+	font-family: OpenSansB;
 	font-size: 45px;
 	background: transparent; /* Set the background in case it overlaps the content */
 	color: #7D9600;
