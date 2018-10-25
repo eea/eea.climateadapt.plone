@@ -43,7 +43,7 @@
 .main-tab-heading .main-tab-item.active a,
 .main-tab-heading .main-tab-item.active a:hover {
   border: none !important;
-  color: @primary-green !important;
+  color: @secondary-green !important;
 }
 
 .main-tab-heading .main-tab-item a {
@@ -89,7 +89,7 @@
 }
 
 .main-tab-heading .db-highlighted a {
-  font-family: RobotoB;
+  font-family: OpenSansB;
 }
 
 .main-tab-heading .ast-icon {
@@ -113,7 +113,7 @@
 .tab-body {
   height: auto;
   background-color: #fff;
-  border-bottom: 5px solid #7D9600;
+  border-bottom: 5px solid @primary-green;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3), 0px 0px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -139,7 +139,7 @@
   height: auto;
 
   p {
-    font-family: RobotoM;
+    font-family: OpenSansM;
     word-break: normal;
   }
 }
@@ -194,7 +194,7 @@
 .action-bubble {
   border: 1px solid #D6D6D6;
   border-radius: 8px;
-  padding: 20px;
+  padding: 15px;
   margin: 0 1em;
   position: relative;
 }
@@ -245,11 +245,11 @@
 }
 
 .national-bubble {
-  border: 1px solid #7D9600;
+  border: 1px solid @primary-green;
 }
 
 .national-bubble:before {
-  border-top-color: #7D9600;
+  border-top-color: @primary-green;
 }
 
 .flex-wrapper {
@@ -267,7 +267,7 @@
 }
 
 .action-highlighted {
-  font-family: RobotoB;
+  font-family: OpenSansB;
   text-transform: uppercase;
   font-size: 15px;
 }
@@ -281,7 +281,7 @@
 }
 
 .national-bubble .action-highlighted {
-  color: #7D9600;
+  color: @secondary-green;
 }
 
 .action-btn {
@@ -303,15 +303,15 @@
 }
 
 .action-btn.regional-btn:hover~.regional-bubble {
-  border: 2px solid #7D9600;
+  border: 2px solid @primary-green;
 }
 
 .action-btn.national-btn {
-  border: 2px solid #7D9600;
+  border: 2px solid @primary-green;
 }
 
 .action-btn.national-btn:hover {
-  background: #7D9600 linear-gradient(#7D9600, #A2BF10) no-repeat;
+  background: @primary-green linear-gradient(@primary-green, #B4CB4C) no-repeat;
 }
 
 .action-btn.transnational-btn {
@@ -403,13 +403,12 @@
 
 .db-category-wrapper a:hover i,
 .db-category-wrapper a:hover p {
-  color: #7D9600;
+  color: @primary-green;
 }
 
 .policies-nav li p,
 .db-category-wrapper p {
-  font-size: 12px;
-  max-width: 60%;
+  font-size: 13px;
   margin: 5px auto;
 }
 
@@ -418,7 +417,7 @@
 
 .policies-nav {
   border-bottom: none;
-  padding: 0;
+  padding: 0 !important;
 }
 
 .policies-nav-item {
@@ -434,7 +433,7 @@
 }
 
 .policies-nav-item.active .policies-nav-link p {
-  color: #7D9600;
+  color: @primary-green;
 }
 
 .policies-nav-link,
@@ -509,7 +508,7 @@
 }
 
 .policies-nav-link:hover p {
-  color: #7D9600;
+  color: @primary-green;
 }
 
 .policies-nav-link:hover .policy-icons.agriculture,
@@ -621,7 +620,7 @@
   padding-left: 1em;
 
   h4 {
-    color: #7D9600;
+    color: @primary-green;
     font-size: 17px;
     margin-bottom: 0.5em;
     display: inline-block;
@@ -701,17 +700,17 @@
 
 .circle-1-text {
   top: 0;
-  right: -230px;
+  right: -245px;
 }
 
 .circle-2-text {
   top: 60px;
-  right: -240px;
+  right: -250px;
 }
 
 .circle-3-text {
   top: 135px;
-  right: -193px;
+  right: -210px;
 }
 
 .circle-4-text {
@@ -722,12 +721,12 @@
 
 .circle-5-text {
   top: 133px;
-  left: -117px;
+  left: -134px;
 }
 
 .circle-6-text {
   top: 60px;
-  left: -225px;
+  left: -237px;
 }
 
 .arrow-round {
@@ -753,8 +752,8 @@
 }
 
 .ast-map-image .ast-circle {
-  background-color: #B8D42F;
-  border: 2px solid #A5BF26;
+  background-color: @primary-green;
+  border: 2px solid #788833;
   border-radius: 50%;
   box-sizing: initial;
   color: #fff;
@@ -836,12 +835,12 @@
 
 .ast-steps .step-number {
   color: @secondary-blue;
-  font-family: RobotoM;
+  font-family: OpenSansM;
   padding-right: 5px;
 }
 
 .ast-steps li a {
-  font-family: RobotoM;
+  font-family: OpenSansM;
   color: @dark-gray;
 }
 

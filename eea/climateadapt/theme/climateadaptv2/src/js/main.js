@@ -118,8 +118,8 @@ $(document).ready(function() {
 
     }, function() {
     $(this).children('.ast-circle').css({
-      'background-color': '#B8D42F',
-      'border': '2px solid #A5BF26',
+      'background-color': '#8A9C3A',
+      'border': '2px solid #788833',
       'transform': 'scale(1)',
       'color': '#fff'
     });
@@ -392,8 +392,8 @@ $(document).ready(function() {
     $circleStep.each(function() {
       if ($(this).text() === currentStep) {
         $(this).css({
-          'background-color': '#FFD554',
-          'border': '2px solid #F2C94C',
+          'background-color': '#8A9C3A',
+          'border': '2px solid #788833',
           'color': '#4F4F4F'
         });
       }

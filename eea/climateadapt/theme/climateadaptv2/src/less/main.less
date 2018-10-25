@@ -97,7 +97,7 @@
     bottom: auto;
     text-align: center;
     p {
-      font-family: RobotoR;
+      font-family: OpenSansR;
     }
   }
 
@@ -262,9 +262,18 @@
   }
 
   .mobile-header .sub-menu-link {
-    padding: 10px;
+    padding: 0 10px;
     font-size: 13px;
     color: #464646;
+    display:inline-block;
+  }
+
+  .mobile-header .sub-menu-item:last-of-type {
+    padding-bottom: 10px;
+  }
+
+  .mobile-header .main-nav-menu .fa-database {
+    margin: 0 0 0 10px;
   }
 
   .mobile-header .sub-sub-menu-link {
@@ -329,6 +338,7 @@
     display: block;
     margin-top: 50px;
     text-align: center;
+    list-style-type: none;
   }
   .step-text {
     display: none;
@@ -341,8 +351,7 @@
     display: block;
   }
   .ast-tab-pane .ast-link-wrapper {
-    position: relative;
-    margin-top: 20px
+    position: relative !important;
   }
 
   /* homepage dynamic area */

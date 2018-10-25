@@ -4,10 +4,9 @@ body {
   background-color: #eee;
   position: relative;
   height: 100vh;
-  font-family: RobotoR;
+  font-family: OpenSansR;
   font-size: 14px;
   color: @dark-gray;
-  line-height: 20px;
 }
 html {
   -moz-box-sizing: border-box;
@@ -28,7 +27,7 @@ input:focus {
 }
 strong {
   font-weight: normal;
-  font-family: RobotoB;
+  font-family: OpenSansB;
   color: @dark-gray;
 }
 u {
@@ -36,11 +35,11 @@ u {
   text-decoration: none;
 }
 cite, em {
-  font-family: RobotoI;
+  font-family: OpenSansI;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: RobotoB;
+  font-family: OpenSansB;
   margin-bottom: 1em;
 }
 
@@ -72,7 +71,7 @@ a, a:active, a:focus {
 
 a {
   color: @link-color;
-  font-family: RobotoM;
+  font-family: OpenSansM;
   font-size: 14px;
 }
 
@@ -91,8 +90,12 @@ a {
 }
 
 #content p a:link {
-  border-bottom: 1px solid #1e76a9;
+  border-bottom: 1px solid @link-color;
   word-wrap: break-word;
+}
+
+#content table p a:link {
+  border-bottom: none;
 }
 
 .site-container ul,
@@ -104,6 +107,11 @@ a {
       padding-top: 0.5em;
     }
   }
+}
+
+#content-core ul,
+#content-core ol {
+  padding-bottom: 0.8em;
 }
 
 
@@ -210,7 +218,7 @@ a {
     margin-bottom: 0.25em;
 }
 .overlay a:hover {
-    color: #7D9600;
+    color: @secondary-green;
 }
 .overlay a:hover label{
     cursor: pointer;
@@ -254,13 +262,26 @@ a:focus {
 }
 
 a.read-more {
-  color: #EF7000;
+  color: #bf5900;
   font-size: 12px;
   text-transform: uppercase;
 
   &:hover {
-    color: #ff963a;
+    color: #e66b00;
   }
+}
+
+a.read-more::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  background: #e66b00;
+  transition: width .3s;
+}
+
+a.read-more:hover::after {
+  width: 100%;
 }
 
 .content-container {
@@ -284,10 +305,11 @@ a.read-more {
 .standard-button,
 #buttons-save,
 #buttons-cancel {
-  font-family: RobotoM;
+  font-family: OpenSansM;
   padding: 10px 25px;
   border-radius: 5px;
   font-size: 16px;
+  display: inline-block;
 }
 
 form .standard-button {
@@ -393,7 +415,7 @@ form .standard-button {
 
 .aceitem-relevant-tile ul,
 .subsection-share-your-info-index_html .tile-content ul {
-  padding-left: 0;
+  padding: 0;
 }
 
 .aceitem-search-tile li:last-child {
@@ -425,12 +447,12 @@ form .standard-button {
 }
 
 .aceitem-relevant-tile h2 {
-  color: @primary-green;
+  color: @secondary-green;
   font-size: 16px;
 }
 
 .aceitem-relevant-tile a {
-  font-family: RobotoR;
+  font-family: OpenSansR;
 }
 
 .panel-default {
@@ -449,10 +471,10 @@ form .standard-button {
 
     a {
       text-transform: uppercase;
-      color: #EF7000;
+      color: #bf5900;
     }
     a:hover {
-      color: #ff963a;
+      color: #e66b00;
     }
   }
 }
@@ -460,7 +482,7 @@ form .standard-button {
 .collapse-header {
   text-align: right;
   text-transform: uppercase;
-  font-family: RobotoM;
+  font-family: OpenSansM;
   color: #EF7000;
   cursor: pointer;
 }
@@ -556,7 +578,7 @@ form .standard-button {
 }
 
 
-.content-sidebar ul {
+#content-core .content-sidebar ul {
   padding: 0;
 }
 
@@ -572,7 +594,7 @@ form .standard-button {
 
 .content-sidebar .aceitem-search-tile ul li a {
   color: @dark-gray;
-  font-family: RobotoR;
+  font-family: OpenSansR;
 }
 
 .interactive-maps .speedbutton {
@@ -591,7 +613,7 @@ form .standard-button {
 
 .aceitem-relevant-tile .fa-search {
   font-size: 18px;
-  color: @primary-green;
+  color: @secondary-green;
 }
 
 .aceitem-search-tile .fa-search,
@@ -609,6 +631,7 @@ form .standard-button {
   position: relative;
   padding: 10px 9px 10px 43px;
   margin-bottom: 0;
+  font-size: 14px;
 }
 
 .share-your-info-ace-button button:before,
@@ -736,7 +759,7 @@ form .standard-button {
     }
     a.active-nav {
       color: @primary-green;
-      font-family: RobotoB;
+      font-family: OpenSansB;
       background-color: #fff;
       border-color: #dee2e6 #dee2e6 #fff;
     }
@@ -778,6 +801,7 @@ form .standard-button {
   border-radius: 0;
   border: none;
   padding: 0.8em;
+  font-size: 13px;
 
   .ui-icon {
     display: none;
@@ -820,12 +844,12 @@ form .standard-button {
 }
 
 #ast-menu .ui-widget-content a {
-  font-family: RobotoR;
+  font-family: OpenSansR;
 }
 
 #ast-menu .ui-accordion-content-active a.active {
   color: @primary-blue;
-  font-family: RobotoM;
+  font-family: OpenSansM;
 }
 
 #ast-menu .ui-widget-content a {
@@ -837,7 +861,7 @@ form .standard-button {
 
   .ast-image-title {
     text-align: center;
-    font-family: RobotoM;
+    font-family: OpenSansM;
     color: @primary-blue;
     position: absolute;
     top: 65px;
@@ -852,7 +876,7 @@ form .standard-button {
   box-sizing: initial;
   height: 35px;
   width: 35px;
-  font-family: RobotoB;
+  font-family: OpenSansB;
   font-size: 18px;
   line-height: 35px;
   text-align: center;
@@ -949,6 +973,11 @@ form .standard-button {
   color: #fff;
 }
 
+#uast-menu a.ui-state-default {
+  font-size: 13px;
+}
+
+
 #uast-menu .ui-state-default .uast-title {
   background-color: #009AA9;
   padding: 10px 4px;
@@ -992,7 +1021,7 @@ form .standard-button {
 }
 
 #uast-menu .ui-widget-content a {
-  font-family: RobotoR;
+  font-family: OpenSansR;
 }
 
 #content ul#uast-menu ul > li:before {
@@ -1005,7 +1034,7 @@ form .standard-button {
 
 #uast-menu .ui-accordion-content-active a.active {
   color: #96B32B;
-  font-family: RobotoM;
+  font-family: OpenSansM;
 }
 
 #uast-menu ul > li {
@@ -1169,14 +1198,14 @@ form .standard-button {
 
 #disclaimer {
   color: #EF8930;
-  font-family: RobotoB;
+  font-family: OpenSansB;
   position: relative;
   cursor: pointer;
 }
 
 #hover-content {
   display: none;
-  font-family: RobotoM;
+  font-family: OpenSansM;
   color: #fff;
   background-color: rgba(239, 136, 46, 0.92);
   padding: 1em;
@@ -1203,7 +1232,7 @@ form .standard-button {
 
 .dd-title-wrapper {
   color: @dark-gray;
-  font-family: RobotoB;
+  font-family: OpenSansB;
   background-color: #fff;
   padding: 5px 8px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
@@ -1215,7 +1244,7 @@ form .standard-button {
 
 .dd-title-wrapper .select-text {
   font-size: 12px;
-  font-family: RobotoR;
+  font-family: OpenSansR;
 }
 
 .dd-country-title .selected,
@@ -1311,7 +1340,7 @@ form .standard-button {
 .GlossaryTitle {
   color: @primary-blue;
   margin: 10px 0;
-  font-family: RobotoB;
+  font-family: OpenSansB;
   border-bottom: 1px solid #ececec;
 
   a {
@@ -1337,7 +1366,7 @@ form .standard-button {
 
   input[type="submit"] {
     background-color: transparent;
-    font-family: RobotoM;
+    font-family: OpenSansM;
     border: none;
     padding: 0;
     border-bottom: 1px solid #3a3a3a;
@@ -1370,7 +1399,7 @@ dl.error, .portalMessage.error{
   padding: 0.5em 0.75em;
   color: #fff;
   font-weight: normal;
-  font-family: RobotoB;
+  font-family: OpenSansB;
 }
 
 .portalMessage.warning strong {
@@ -1388,7 +1417,7 @@ dl.error, .portalMessage.error{
 
 .portalMessage dt {
   display: inline;
-  font-family: RobotoM;
+  font-family: OpenSansM;
 }
 
 .portalMessage dd {
@@ -1425,7 +1454,7 @@ dl.error, .portalMessage.error{
   th {
     text-align: left;
     font-size: 16px;
-    font-family: RobotoB;
+    font-family: OpenSansB;
     color: @primary-blue;
     border-bottom: 1px solid #d7d7d7;
     padding: 12px 0;
@@ -1461,7 +1490,7 @@ table.listing th {
 .CSSTableGenerator tr:first-child td p {
   color: #fff;
   margin: 5px 0;
-  font-family: RobotoM;
+  font-family: OpenSansM;
 }
 
 
@@ -1648,7 +1677,7 @@ fieldset .field:not(:last-child) {
   }
   a {
     text-transform: uppercase;
-    font-family: RobotoR;
+    font-family: OpenSansR;
     color: @dark-gray;
     display: block;
     padding: 10px 8px;
@@ -1660,7 +1689,7 @@ fieldset .field:not(:last-child) {
   }
   a.active-nav {
     background-color: @primary-green;
-    font-family: RobotoM;
+    font-family: OpenSansM;
     color: #fff;
   }
 }
@@ -1708,7 +1737,7 @@ fieldset .field:not(:last-child) {
 
 .help-section-title {
   color: #0170B7;
-  font-family: RobotoM;
+  font-family: OpenSansM;
 }
 
 .help-section p {
@@ -1749,7 +1778,7 @@ fieldset .field:not(:last-child) {
 }
 
 .event_listing ul.mode_selector li.selected > a {
-  font-family: RobotoB;
+  font-family: OpenSansB;
   color: @primary-green;
 }
 
@@ -1772,7 +1801,7 @@ article.vevent {
   display: block;
   font-size: 2.3em;
   padding-bottom: 0.3em;
-  font-family: RobotoB;
+  font-family: OpenSansB;
 }
 
 .event_listing div.location {
@@ -1803,7 +1832,7 @@ article.vevent .dtstart,
 .dtend,
 .explain,
 .location {
-  font-family: RobotoM;
+  font-family: OpenSansM;
   font-size: 14px;
   border-bottom: none !important;
 }
@@ -1823,14 +1852,14 @@ li.category span {
 }
 
 .summary.details dt {
-  font-family: RobotoM;
+  font-family: OpenSansM;
   color: @primary-blue;
   padding: 0.3em 0;
 }
 
 .vevent span.cal_month,
 .vevent span.cal_day {
-  font-family: RobotoB;
+  font-family: OpenSansB;
 }
 
 .vevent span.cal_day {
@@ -1893,7 +1922,7 @@ div.listingBar a:hover {
 
 div.listingBar .current {
   color: @primary-green;
-  font-family: RobotoB;
+  font-family: OpenSansB;
   font-size: 16px;
   padding: 0.25em 0.5em;
   border: 0.1em solid #ccc;
@@ -2152,7 +2181,7 @@ div.width-1\3a 4 {
 #previous-link a,
 #next-link a {
   color: @dark-gray;
-  font-family: RobotoR;
+  font-family: OpenSansR;
 }
 
 #previous-link a:hover,
@@ -2181,7 +2210,7 @@ div.width-1\3a 4 {
 
 // Case study image gallery
 .sidebar_bold h5 {
-  font-family: RobotoM;
+  font-family: OpenSansM;
 }
 
 #links {
@@ -2194,7 +2223,7 @@ div.width-1\3a 4 {
   cursor: pointer;
   padding: 5px;
   display: inline-block;
-  font-family: RobotoM;
+  font-family: OpenSansM;
   >.fa-camera {
     padding-left: 10px;
   }
@@ -2364,7 +2393,7 @@ div.width-1\3a 4 {
 .use-cases-listing thead {
   th {
     color: @primary-blue;
-    font-family: RobotoM;
+    font-family: OpenSansM;
   }
   tr:last-child > th:nth-child(4),
   tr:last-child > th:nth-child(5),
@@ -2460,8 +2489,8 @@ div.width-1\3a 4 {
 }
 
 .map-wrapper .choose-title {
-  color: @primary-green;
-  font-family: RobotoM;
+  color: @secondary-green;
+  font-family: OpenSansM;
   font-size: 20px;
   padding-left: 0.7em;
 }
@@ -2683,7 +2712,7 @@ div.width-1\3a 4 {
 }
 
 .maplet-container .country-selected path {
-  fill: #7D9600;
+  fill: @primary-green;
 }
 
 .maplet-container .country-green path {
@@ -2742,7 +2771,7 @@ div.width-1\3a 4 {
   left: 45%;
   top: 48%;
   color: @dark-gray;
-  font-family: RobotoM;
+  font-family: OpenSansM;
 }
 
 @-webkit-keyframes spin {
