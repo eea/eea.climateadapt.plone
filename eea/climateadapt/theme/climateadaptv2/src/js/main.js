@@ -392,8 +392,8 @@ $(document).ready(function() {
     $circleStep.each(function() {
       if ($(this).text() === currentStep) {
         $(this).css({
-          'background-color': '#8A9C3A',
-          'border': '2px solid #788833',
+          'background-color': '#FFD554',
+          'border': '2px solid #F2C94C',
           'color': '#4F4F4F'
         });
       }
