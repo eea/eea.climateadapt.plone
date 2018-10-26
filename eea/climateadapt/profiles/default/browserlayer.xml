@@ -1,6 +1,6 @@
 <layers>
-    <layer 
-        name="eea.climateadapt"
-        interface="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        />
+  <layer
+    name="eea.climateadapt"
+    interface="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    />
 </layers>

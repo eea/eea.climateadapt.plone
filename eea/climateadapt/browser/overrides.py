@@ -12,13 +12,16 @@ from zope.schema.interfaces import IDatetime, IList, IText, ITextLine, ITuple
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 from eea.climateadapt import MessageFactory as _
+from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader, Year
 from eea.pdf.interfaces import IPDFTool
 from plone.api import content, portal
 from plone.app.content.browser.interfaces import IContentsPage
 from plone.app.contentmenu.menu import DisplaySubMenuItem as DSMI
-from plone.app.contenttypes.behaviors.richtext import IRichText  # noqa
+from plone.app.contenttypes.behaviors.richtext import \
+    IRichText as IRichTextBehavior
 from plone.app.controlpanel.widgets import MultiCheckBoxVocabularyWidget
+from plone.app.textfield.interfaces import IRichText
 from plone.app.users.browser.personalpreferences import (IPersonalPreferences,
                                                          LanguageWidget,
                                                          PasswordAccountPanel,
@@ -37,9 +40,6 @@ from z3c.form.interfaces import NO_VALUE, IFieldWidget, IFormLayer
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.interfaces import IRelationList
-
-# from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
-
 
 thematic_sectors = SimpleVocabulary([
     SimpleTerm(value='AGRICULTURE', title=_(u'Agriculture')),
@@ -601,11 +601,10 @@ class FolderPdfBody (BrowserView):
         return self.template(**kwargs)
 
 
-class OverrideRichText (RichTextWidget):
+class OverrideRichText(RichTextWidget):
     """ Richtext field override for tinymce tabs plugin """
 
     def _base_args(self):
-        import pdb; pdb.set_trace()
         # Get options
         args = super(OverrideRichText, self)._base_args()
 
@@ -640,15 +639,21 @@ class OverrideRichText (RichTextWidget):
         return super(OverrideRichText, self).render()
 
 
-@adapter(getSpecification(IRichText['text']), IWidgetsLayer)
+@adapter(getSpecification(IRichTextBehavior['text']), IWidgetsLayer)
 @implementer(IFieldWidget)
 def WidgetsLayerRichTextFieldWidget(field, request):
     return FieldWidget(field, OverrideRichText(request))
 
 
-@adapter(getSpecification(IRichText['text']), IFormLayer)
+@adapter(getSpecification(IRichTextBehavior['text']), IFormLayer)
 @implementer(IFieldWidget)
 def FormLayerRichTextFieldWidget(field, request):
+    return FieldWidget(field, OverrideRichText(request))
+
+
+@adapter(IRichText, IWidgetsLayer)
+@implementer(IFieldWidget)
+def RichTextFieldWidget(field, request):
     return FieldWidget(field, OverrideRichText(request))
 
 

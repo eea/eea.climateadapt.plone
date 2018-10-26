@@ -17,6 +17,7 @@
 
   <adapter factory=".overrides.WidgetsLayerRichTextFieldWidget" />
   <adapter factory=".overrides.FormLayerRichTextFieldWidget" />
+  <adapter factory=".overrides.RichTextFieldWidget" />
 
   <browser:page
     name="folder.pdf.body"

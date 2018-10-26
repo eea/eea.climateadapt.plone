@@ -1,12 +1,10 @@
+from zope.event import notify
+
 from eea.cache import event
-from eea.climateadapt.browser.facetedsearch import CCA_TYPES
 from eea.climateadapt.browser.frontpage_slides import IRichImage
-from plone import api
 from plone.app.contentrules.handlers import execute_rules
 from plone.app.iterate.dexterity.utils import get_baseline
 from plone.app.iterate.event import WorkingCopyDeletedEvent
-from zope.annotation.interfaces import IAnnotations
-from zope.event import notify
 
 InvalidateCacheEvent = event.InvalidateCacheEvent
 
@@ -46,20 +44,26 @@ def set_title_description(obj, event):
         no description was provided.
     '''
     title = obj.title
+
     if not title:
         if IRichImage.providedBy(obj):
             datafield = obj.image
         else:
             datafield = obj.file
+
         if datafield:
             filename = datafield.filename
             obj.title = filename
 
     description = obj.description
+
     if not description:
         obj.description = u''
 
 
+# from eea.climateadapt.browser.facetedsearch import CCA_TYPES
+# from plone import api
+# from zope.annotation.interfaces import IAnnotations
 # def invalidate_cache_faceted_sections(obj, evt):
 #     """ Invalidate faceted sections cache after cache keys
 #     """
@@ -80,7 +84,5 @@ def set_title_description(obj, event):
 #         keys.remove(key)
 #
 #     IAnnotations(site)['cca-search'][portal_type] = keys
-
-
 # def invalidate_cache(obj, evt):
 #     notify(InvalidateCacheEvent(raw=True))

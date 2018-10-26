@@ -40,10 +40,12 @@
   </configure>
 
   <!-- Fix RichText widget: the plone.app.widgets provided one has proper relatedItems configuration -->
-  <adapter
-    for="plone.app.textfield.interfaces.IRichText eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    factory="eea.climateadapt.browser.overrides.FormLayerRichTextFieldWidget"
-    />
+  <!-- <adapter -->
+  <!--   for="plone.app.textfield.interfaces.IRichText -->
+  <!--        eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+  <!--   factory="eea.climateadapt.browser.overrides.FormLayerRichTextFieldWidget" -->
+  <!--   /> -->
+  <adapter factory="eea.climateadapt.browser.overrides.RichTextFieldWidget" />
 
   <adapter
     for="zope.annotation.interfaces.IAnnotatable
