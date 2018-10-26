@@ -31,7 +31,7 @@
 }
 
 #edit-bar, #content ul.formTabs, #content-core ul.formTabs {
-  padding-bottom: 0;
+  padding: 0;
 }
 
 #plone-contentmenu-workflow .state-published {
@@ -137,12 +137,12 @@ div.formControls {
 }
 
 #content-core li.formTab a.selected {
-  color: @primary-green;
+  color: @secondary-green;
   font-family: OpenSansB;
 }
 
 #content-core li.formTab a:hover {
-  color: @primary-green;
+  color: @secondary-green;
 }
 
 
@@ -191,6 +191,14 @@ div.formControls {
 
 .breadcrumbSeparator {
   display: none;
+}
+
+form .widget label { display: initial; }
+
+#contentchooser-content-show-button {
+  z-index: 0;
+  display: inline-block;
+  float: none;
 }
 
 #portal-breadcrumbs span:not(:last-child):after {
