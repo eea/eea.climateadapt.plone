@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Add favicon
+  [krisztina #91562]
 * Task: Change Roboto font to OpenSans; Adjust the green color used on the platform
   [krisztina #91562]
 * Add box shadow for the dynamic tab area
