@@ -98,9 +98,11 @@ class FrontpageSlidesView (BrowserView):
         slides = [o for o in sf.contentValues()
                   if api.content.get_state(o) == 'published']
         images = []
+
         for slide in slides:
             handler = getattr(self, 'handle_' + slide.title.encode(), None)
             slide_data = {}
+
             if handler:
                 slide_data = handler()
             else:
@@ -111,10 +113,12 @@ class FrontpageSlidesView (BrowserView):
                     'url': slide.read_more_link}
             images.append(slide_data)
         self.images = images
+
         return self.index()
 
     def getDescription(self, image):
         description = image.get('description', '')
+
         if hasattr(description, 'output'):
             return self.html2text(description.output)
         else:
