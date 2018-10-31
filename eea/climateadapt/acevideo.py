@@ -18,7 +18,7 @@ class IAceVideo(IAceItem):
 
     embed_url = TextLine(title=_(u"Video URL"),
                          description=u"Enter the video URL",
-                         required=False)
+                         required=True)
 
     video_height = TextLine(title=_(u"Video Height"),
                             description=u"Enter the video height",
