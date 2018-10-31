@@ -127,8 +127,7 @@
             tal:attributes="href python:info[1]"
             tal:content="python: info[0]">
             UK
-          </a>
-          <span tal:condition="not: repeat/info/end">, </span>
+          </a><span tal:omit-tag="" tal:condition="not: repeat/info/end">, </span>
         </tal:rep>
       </div>
     </div>

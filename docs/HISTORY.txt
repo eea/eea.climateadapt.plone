@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* WIP: Add maplets for the homepage countries map
+  [krisztina #91562]
 * Task: Added upgrade step to enable video content type
   [iulianpetchesi #98315]
 * Add favicon

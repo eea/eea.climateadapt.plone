@@ -598,37 +598,6 @@ $(document).ready(function() {
     }
   })
 
-  // Quick fix for the missing accordion buttons in TinyMCE
-  // if 'ReadMore' text exists in tile content,
-  // create an accordion with the text below it
-  var $tileContent = $('.tile-content');
-
-  $tileContent.find('p:contains("ReadMore")').addClass('collapse-header');
-  $tileContent.find('p strong:contains("ReadMore")').addClass('collapse-header');
-
-  var $collapseHeader = $('.collapse-header');
-  // add a space in "ReadMore" -> "Read more"
-  $collapseHeader.each(function() {
-    var $this = $(this);
-    var text = $this.text();
-    $this.text(text.replace(/([A-Z])/g, ' $1').trim());
-  });
-
-  $collapseHeader.parent().nextAll().wrapAll('<div class="collapse-body"/>');
-  $collapseHeader.nextAll().wrapAll('<div class="collapse-body"/>');
-
-  var $collapseBody = $('.collapse-body');
-  $collapseBody.hide();
-  $collapseHeader.click(function() {
-    $collapseBody.slideToggle('slow', function() {
-      if ($(this).is(':visible')) {
-        $collapseHeader.text('Read less');
-      } else {
-        $collapseHeader.text('Read more');
-      }
-    });
-  });
-
   function qtip2Initializer() {
     // Make sure to only match links to the glossary
     $('a[href*="glossary#link"]').each(function() {
