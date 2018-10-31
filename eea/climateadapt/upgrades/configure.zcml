@@ -3,6 +3,36 @@
            i18n_domain="eea.climateadapt">
 
    <genericsetup:upgradeSteps
+      source="53"
+      destination="54"
+      profile="eea.climateadapt:default">
+      <genericsetup:upgradeDepends
+        title="Upgrade profile eeaclimate to v54"
+        import_profile="eea.climateadapt:eeaclimateadapt_to_54"
+      />
+    </genericsetup:upgradeSteps>
+
+   <genericsetup:upgradeSteps
+      source="52"
+      destination="53"
+      profile="eea.climateadapt:default">
+      <genericsetup:upgradeDepends
+        title="Upgrade profile eeaclimate to v53"
+        import_profile="eea.climateadapt:eeaclimateadapt_to_53"
+      />
+    </genericsetup:upgradeSteps>
+
+   <genericsetup:upgradeSteps
+      source="51"
+      destination="52"
+      profile="eea.climateadapt:default">
+      <genericsetup:upgradeDepends
+        title="Upgrade profile eeaclimate to v52"
+        import_profile="eea.climateadapt:eeaclimateadapt_to_52"
+      />
+    </genericsetup:upgradeSteps>
+
+   <genericsetup:upgradeSteps
       source="50"
       destination="51"
       profile="eea.climateadapt:default">
