@@ -598,6 +598,18 @@ $(document).ready(function() {
     }
   })
 
+  // Open external links in new tab
+  $('a').each(function() {
+   var a = new RegExp('/' + window.location.host + '/');
+   if (!a.test(this.href)) {
+     $(this).click(function(event) {
+       event.preventDefault();
+       event.stopPropagation();
+       window.open(this.href, '_blank');
+     });
+   }
+  });
+
   function qtip2Initializer() {
     // Make sure to only match links to the glossary
     $('a[href*="glossary#link"]').each(function() {
@@ -662,4 +674,5 @@ $(document).ready(function() {
     });
     requirejs(['qtip2'], qtip2Initializer); // Load it using RequireJS, and execute the qtip2 logic
   }
+
 });

@@ -5,7 +5,7 @@ var countrySettings = {};   // country settings extracted from ajax json
 $(document).ready(function () {
 
   // initialize the countries map
-  var cpath = '++theme++climateadaptv2/static/countries/euro-countries.geojson';
+  var cpath = '++theme++climateadaptv2/static/countries/euro-countries-simplified.geojson';
   var fpath = '++theme++climateadaptv2/static/countries/countries.tsv';
 
   var $sw = $('#countries-map');
@@ -103,7 +103,7 @@ function renderCountry(map, country, path, countries, x, y) {
   if (available) {
     var bbox = outline.node().getBBox();
     renderCountryFlag(parent, country, bbox, cpId);
-    renderCountryLabel(country, path);
+    // renderCountryLabel(country, path);
   }
 }
 
@@ -180,12 +180,26 @@ function renderCountryFlag(parent, country, bbox, cpId) {
     .on('click', function () {
       showMapTooltip(country)
     })
-    .on('mouseover', function (e) {
+    .on('mouseover', function() {
       // $('.country-flag').css('cursor', 'unset');
+      var countryName = country.properties.SHRT_ENGL.toUpperCase();
       d3.select(this).attr('opacity', 1);
+      return tooltip
+      .style("display", "block")
+      .html(countryName);
     })
-    .on('mouseout', function (d) {
+    .on('mousemove', function() {
+      var countryName = country.properties.SHRT_ENGL.toUpperCase();
+      return tooltip
+      .style("display", "block")
+      .style("top", (d3.event.pageY) + "px")
+      .style("left", (d3.event.pageX + 10) + "px")
+      .html(countryName);
+    })
+    .on('mouseout', function() {
       d3.select(this).attr('opacity', 0);
+      return tooltip
+      .style("display", "none")
     })
     ;
   return flag;
@@ -378,6 +392,12 @@ function drawCountries(world) {
   }
   drawMaplets(mo);
 }
+
+// tooltip with country names on hover
+var tooltip = d3.select("body")
+    .append("div")
+    .attr('class', 'tooltip')
+    ;
 
 function showMapTooltip(d) {
   var coords = [d3.event.pageY, d3.event.pageX];
@@ -646,7 +666,7 @@ function passThruEvents(g) {
   ;
 
   function passThru(d) {
-    console.log('passing through');
+    // console.log('passing through');
     var e = d3.event;
 
     var prev = this.style.pointerEvents;

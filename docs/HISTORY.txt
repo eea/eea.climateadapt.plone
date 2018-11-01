@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Open external links in new tab; Fix map flag issue by only show the names on hover;
+  Change to simplified geojson and add the islands as images; Style improvements
+  [krisztina #91562]
 * WIP: Add maplets for the homepage countries map
   [krisztina #91562]
 * Task: Added upgrade step to enable video content type

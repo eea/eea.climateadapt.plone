@@ -43,7 +43,7 @@
 
     <p>For other EEA Member countries, the information provided is based on voluntary submissions to EEA.</p>
 
-    <p>Filter by any of the topics in the drop-down list ('Choose Thematic Map') and the map will indicate if links on the topic are available for each country. To navigate to the information just scroll over to one country on the map and a pop-up window will show the existing link(s) and allow clicking on them.</p>
+    <p>Filter by any of the topics in the drop-down list ('Choose Thematic Map') and the map will indicate if links on the topic are available for each country. To navigate to the information just click one country on the map and a pop-up window will show the existing link(s) and allow clicking on them.</p>
 
     <div class="cover-richtext-tile tile-content" id="countrymap-container">
 
@@ -61,6 +61,11 @@
           <svg-container id="countries-map">
             <svg height="500" width="100%"></svg>
           </svg-container>
+
+          <div class="map-islands">
+            <img src="/cca/++theme++climateadaptv2/static/images/azores-maplet.png" />
+            <img src="/cca/++theme++climateadaptv2/static/images/canary-maplet.png" />
+          </div>
         </div>
 
         <!-- Sections selector on right side of map -->

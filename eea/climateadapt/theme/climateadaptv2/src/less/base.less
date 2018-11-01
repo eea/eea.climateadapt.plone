@@ -1117,7 +1117,7 @@ form .standard-button {
 
   >a {
     border: none;
-    color: @primary-green;
+    color: @secondary-green;
   }
   >a:after {
     content: '';
@@ -1201,7 +1201,7 @@ form .standard-button {
 }
 
 #disclaimer {
-  color: #EF8930;
+  color: #bf5900;
   font-family: OpenSansB;
   position: relative;
   cursor: pointer;
@@ -1211,7 +1211,7 @@ form .standard-button {
   display: none;
   font-family: OpenSansM;
   color: #fff;
-  background-color: rgba(239, 136, 46, 0.92);
+  background-color: #bf5900;
   padding: 1em;
   border-radius: 5px;
   position: absolute;
@@ -1253,7 +1253,7 @@ form .standard-button {
 
 .dd-country-title .selected,
 .dd-country-title i {
-  color: @primary-green;
+  color: @secondary-green;
   font-size: 2em;
   cursor: pointer;
 }
@@ -2484,6 +2484,11 @@ div.width-1\3a 4 {
     right: 0;
     left: auto;
   }
+
+}
+.map-wrapper .map-islands {
+  left: 3em;
+  bottom: 1.5em;
 }
 
 .map-wrapper .choose-title {
@@ -2665,13 +2670,13 @@ div.width-1\3a 4 {
   cursor: pointer;
 }
 
-.country-label:hover rect {
-  fill: black;
-}
-
-.country-label:hover text {
-  fill: white;
-}
+// .country-label:hover rect {
+//   fill: black;
+// }
+//
+// .country-label:hover text {
+//   fill: white;
+// }
 
 .maplet-label text.place-label {
   font-size: 6px;
@@ -2686,6 +2691,17 @@ div.width-1\3a 4 {
 .country-available path {
   fill: #72DFFE;
   cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 10;
+  color: white;
+  background-color: #2a2a2a;
+  padding: 3px;
+  border-radius: 3px;
+  display: none;
+  font-size: 10px;
 }
 
 #fp-country-selector .country-available path {
