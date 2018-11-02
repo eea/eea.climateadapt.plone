@@ -1,6 +1,44 @@
 @import "variables.less";
 
 /*** home page slider ***/
+.slider {
+  position: relative;
+}
+
+.slider-nav {
+	width: 600px;
+  position: absolute;
+  bottom: 20px;
+  right: 40px;
+
+  .slick-next,
+  .slick-prev {
+    display: none !important;
+  }
+}
+
+.slider-nav .slick-slide {
+  margin: 0 5px;
+  width: 120px !important;
+}
+
+.slider-nav-wrapper {
+  height: 60px;
+  position: relative;
+}
+
+.slider-category {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 5px;
+  width: 100%;
+  font-size: 13px;
+  font-family: OpenSansB;
+  color: #fff;
+  line-height: 14px;
+  text-shadow: 2px 2px 5px #000;
+}
 
 .slider-image-wrapper {
   border-bottom: 5px solid @primary-green;
@@ -19,13 +57,13 @@
 
 .slider-caption {
   background-color: rgba(255, 255, 255, 0.8);
-  bottom: 30px;
+  bottom: 87px;
   padding: 15px;
   position: absolute;
   width: 100%;
   max-width: 600px;
   display: flex;
-  max-height: 230px;
+  max-height: 200px;
   height: auto;
   flex-direction: column;
   justify-content: space-between;

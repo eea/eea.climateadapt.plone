@@ -22,9 +22,6 @@
   #portal-breadcrumbs {
     margin: 0 1em;
   }
-  .logo {
-    margin: 1em;
-  }
 
   .portalMessage {
     margin-left: 1em;
@@ -301,6 +298,14 @@
     display:none;
   }
 
+  .slider .slick-prev {
+    left: 5% !important;
+  }
+
+  .slider .slick-next {
+    left: 15% !important;
+  }
+
   /* dynamic area */
   .main-tab-heading .db-highlighted a {
     padding: 1em 3em !important;
@@ -310,10 +315,11 @@
   }
 
   /* homepage carousel */
-  .slick-arrow {
-    display: none !important;
-  }
-  .slider-caption {
+  // .slick-arrow {
+  //   display: none !important;
+  // }
+  .slider-caption,
+  .slider-nav {
     left: 0;
     margin-left: auto;
     margin-right: auto;
@@ -331,6 +337,9 @@
 }
 
 @media (max-width: 600px) {
+  .slider-nav {
+    display: none;
+  }
   .main-box  {
     height: auto;
   }

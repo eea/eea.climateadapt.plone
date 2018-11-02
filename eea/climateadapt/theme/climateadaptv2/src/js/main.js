@@ -3,14 +3,23 @@ $(document).ready(function() {
 
   // HOMEPAGE: initialize slick slider
   if ($('.slider').slick) {
-    $('.slider').slick({
+
+    $('.slider-for').slick({
       infinite: true,
-      speed: 500,
-      fade: true,
       slidesToShow: 1,
-      dots:  true,
+      slidesToScroll: 1,
+      fade: true,
+      asNavFor: '.slider-nav',
       autoplay: true,
       autoplaySpeed: 4000
+    });
+
+    $('.slider-nav').slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      asNavFor: '.slider-for',
+      centerMode: true,
+      focusOnSelect: true
     });
   }
 
@@ -24,6 +33,7 @@ $(document).ready(function() {
 
   var $slider = $('.slider');
   var $sliderCaption = $('.slider-caption');
+  var $sliderNav = $('.slider-nav');
 
   $slider.find('.slick-prev').css('left', function() {
     return getPageContainerPadding() +  'px';
@@ -32,6 +42,10 @@ $(document).ready(function() {
     return getPageContainerPadding() + 45 +  'px';
   });
   $sliderCaption.css('right', function() {
+    return getPageContainerPadding() +  'px';
+  });
+
+  $sliderNav.css('right', function() {
     return getPageContainerPadding() +  'px';
   });
 
@@ -49,7 +63,12 @@ $(document).ready(function() {
     $slider.find('.slick-next').css('left', function() {
       return getPageContainerPadding() + 45 +  'px';
     });
+
     $sliderCaption.css('right', function() {
+      return getPageContainerPadding() +  'px';
+    });
+
+    $sliderNav.css('right', function() {
       return getPageContainerPadding() +  'px';
     });
   }

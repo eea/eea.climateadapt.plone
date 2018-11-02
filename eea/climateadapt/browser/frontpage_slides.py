@@ -21,7 +21,9 @@ class RichImageSchema(form.Schema, IImageScaleTraversable):
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['title', 'long_description',
-                          'rich_image', 'read_more_link']
+                          'category',
+                          'rich_image',
+                          'read_more_link']
                   )
 
     title = TextLine(title=(u"Title"),
@@ -32,6 +34,11 @@ class RichImageSchema(form.Schema, IImageScaleTraversable):
                                 description=u"Provide a description of the "
                                 u"item.(5,000 character limit)",
                                 required=True)
+
+    category = TextLine(title=(u"Category"),
+                     description=u"Slider thumbnail title. "
+                     u"Keep it short (20 character limit)",
+                     required=True)
 
     rich_image = NamedBlobImage(
         title=(u"Image"),
@@ -110,6 +117,7 @@ class FrontpageSlidesView (BrowserView):
                     'image': slide.absolute_url(),
                     'title': slide.title,
                     'description': slide.long_description,
+                    'category': slide.category,
                     'url': slide.read_more_link}
             images.append(slide_data)
         self.images = images
@@ -132,6 +140,9 @@ class FrontpageSlidesView (BrowserView):
 
     def getMoreLink(self, image):
         return image.get('url', '')
+
+    def getCategory(self, image):
+        return image.get('category', '')
 
     def handle_news_items(self):
         """ Gets the most recent updated news/events item"""
@@ -175,6 +186,7 @@ class FrontpageSlidesView (BrowserView):
             ),
             'title': cs.Title(),
             'description': cs.long_description,
+            'category': 'Case study',
             'url': cs.absolute_url(),
 
         }
@@ -213,6 +225,7 @@ class FrontpageSlidesView (BrowserView):
             "/++resource++eea.climateadapt/frontpage/aceitem_picture.jpg",
             'title': db_item.Title(),
             'description': db_item.long_description,
+            'category': 'Database item',
             'url': db_item.absolute_url(),
 
         }
@@ -235,6 +248,7 @@ class FrontpageSlidesView (BrowserView):
             "/++resource++eea.climateadapt/frontpage/last_publication.jpg",
             'title': publi.Title(),
             'description': publi.long_description,
+            'category': 'Publication',
             'url': publi.absolute_url(),
 
         }

@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Replace slider dots with thumbnails
+  [krisztina #91562]
 * Add country name tooltip for the homepage countries map; fix z-index problem
   in header
   [krisztina #91562]
