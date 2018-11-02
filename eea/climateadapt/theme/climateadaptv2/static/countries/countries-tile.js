@@ -188,11 +188,25 @@ function renderCountryFlag(parent, country, bbox, cpId) {
       var link = country.properties.SHRT_ENGL.toLowerCase();
       location.href = '/countries-regions/countries/' + link;
     })
-    .on('mouseover', function(e) {
+    .on('mouseover', function() {
+      var countryName = country.properties.SHRT_ENGL.toUpperCase();
       d3.select(this).attr('opacity', 1);
+      return countryNameTooltip
+      .style("display", "block")
+      .html(countryName);
     })
-    .on('mouseout', function(d) {
+    .on('mousemove', function() {
+      var countryName = country.properties.SHRT_ENGL.toUpperCase();
+      return countryNameTooltip
+      .style("display", "block")
+      .style("top", (d3.event.pageY) + "px")
+      .style("left", (d3.event.pageX + 10) + "px")
+      .html(countryName);
+    })
+    .on('mouseout', function() {
       d3.select(this).attr('opacity', 0);
+      return countryNameTooltip
+      .style("display", "none");
     })
     ;
   return flag;
@@ -401,6 +415,12 @@ function drawCountries(world) {
   }
   drawMaplets(mo);
 }
+
+// tooltip with country names on hover
+var countryNameTooltip = d3.select("body")
+    .append("div")
+    .attr('class', 'tooltip')
+    ;
 
 
 function filterCountriesByNames(countries, filterIds) {

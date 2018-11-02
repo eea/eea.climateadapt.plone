@@ -184,13 +184,13 @@ function renderCountryFlag(parent, country, bbox, cpId) {
       // $('.country-flag').css('cursor', 'unset');
       var countryName = country.properties.SHRT_ENGL.toUpperCase();
       d3.select(this).attr('opacity', 1);
-      return tooltip
+      return countryNameTooltip
       .style("display", "block")
       .html(countryName);
     })
     .on('mousemove', function() {
       var countryName = country.properties.SHRT_ENGL.toUpperCase();
-      return tooltip
+      return countryNameTooltip
       .style("display", "block")
       .style("top", (d3.event.pageY) + "px")
       .style("left", (d3.event.pageX + 10) + "px")
@@ -198,8 +198,8 @@ function renderCountryFlag(parent, country, bbox, cpId) {
     })
     .on('mouseout', function() {
       d3.select(this).attr('opacity', 0);
-      return tooltip
-      .style("display", "none")
+      return countryNameTooltip
+      .style("display", "none");
     })
     ;
   return flag;
@@ -394,7 +394,7 @@ function drawCountries(world) {
 }
 
 // tooltip with country names on hover
-var tooltip = d3.select("body")
+var countryNameTooltip = d3.select("body")
     .append("div")
     .attr('class', 'tooltip')
     ;
