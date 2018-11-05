@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Remove Covenant of Mayors introduction text from template
+  [krisztina #91562]
 * Replace slider dots with thumbnails
   [krisztina #91562]
 * Add country name tooltip for the homepage countries map; fix z-index problem
