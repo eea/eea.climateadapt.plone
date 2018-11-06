@@ -10,13 +10,53 @@
 
   <body>
     <metal:main fill-slot="main">
+      <style>
+        .dataTables_paginate .current {
+          color: #7D9600;
+          font-family: OpenSansB;
+          font-size: 16px;
+          padding: 0.25em 0.5em;
+          border: 0.1em solid #ccc;
+          border-radius: 0;
+        }
+        .paginate_button {
+          margin: 0 0.3em;
+          color: #3a3a3a;
+          cursor: pointer;
+        }
+        .paginate_button.next,
+        .paginate_button.previous {
+          padding: 0.25em 0.5em;
+        }
+        .paginate_button.next:hover,
+        .paginate_button.previous:hover {
+          color: #7D9600;
+        }
+        .paginate_button.next:after {
+          content: '»';
+          margin: 0 0.3em;
+        }
+        .paginate_button.previous:before {
+          content: '«';
+          margin: 0 0.3em;
+        }
+        .dataTables_length {
+          float: left;
+          margin-bottom: 1em;
+        }
+        .dataTables_filter input {
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          padding: 0.3em;
+        }
+      </style>
       <tal:main-macro metal:define-macro="content-core">
 
         <script src="/++theme++climateadapt/static/cca/js/specialtagsadmin.js"></script>
 
         <h1>Special tags administration</h1>
 
-        <table class="table table-striped" id="tags-admin" tal:define="tags view/special_tags">
+        <table class="table listing" id="tags-admin" tal:define="tags view/special_tags">
           <thead>
             <tr>
               <th>Tag</th>
@@ -28,18 +68,18 @@
               <td>
                 <input type="hidden" value="" tal:attributes="value tag" />
                 <strong tal:content="tag" class="admin-tags"></strong>
-                <button class="more-links"><img src="++theme++climateadapt/static/cca/img/vergrootglas.png"></button>
+                <button class="more-links">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
                 <div class="links"></div>
 
                 <form id="delete-tag-form" style="display: inline-block;">
                     <input type="text" name="action" value="delete" style="display:none;">
                     <input type="text" name="tag" style="display:none;" class="input-tag" tal:attributes="value tag">
-                    <input type="submit" value="Delete tag" style="border-radius: 4px;">
+                    <input type="submit" value="Delete tag" class="delete-keyword-button">
                 </form>
 
-                <button class="rename-tag-button" style="border-radius: 4px;">
-                  <span>Rename Tag</span>
-                </button>
+                <button class="rename-tag-button rename-keyword-button">Rename Tag</button>
 
                 <div class="rename-tag-dialog" style="display:none;" title="Rename tag">
                   <form>

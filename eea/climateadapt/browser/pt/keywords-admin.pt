@@ -10,13 +10,53 @@
 
   <body>
     <metal:main fill-slot="main">
+      <style>
+        .dataTables_paginate .current {
+          color: #7D9600;
+          font-family: OpenSansB;
+          font-size: 16px;
+          padding: 0.25em 0.5em;
+          border: 0.1em solid #ccc;
+          border-radius: 0;
+        }
+        .paginate_button {
+          margin: 0 0.3em;
+          color: #3a3a3a;
+          cursor: pointer;
+        }
+        .paginate_button.next,
+        .paginate_button.previous {
+          padding: 0.25em 0.5em;
+        }
+        .paginate_button.next:hover,
+        .paginate_button.previous:hover {
+          color: #7D9600;
+        }
+        .paginate_button.next:after {
+          content: '»';
+          margin: 0 0.3em;
+        }
+        .paginate_button.previous:before {
+          content: '«';
+          margin: 0 0.3em;
+        }
+        .dataTables_length {
+          float: left;
+          margin-bottom: 1em;
+        }
+        .dataTables_filter input {
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          padding: 0.3em;
+        }
+      </style>
       <tal:main-macro metal:define-macro="content-core">
 
         <script src="/++theme++climateadapt/static/cca/js/keywordadmin.js"></script>
 
         <h1>Keywords administration</h1>
 
-        <table class="table table-striped" id="keywords-admin" tal:define="keys view/keywords">
+        <table class="table listing" id="keywords-admin" tal:define="keys view/keywords">
           <thead>
             <tr>
               <th>Keyword</th>
@@ -28,21 +68,22 @@
               <td>
                 <input type="hidden" value="" tal:attributes="value key" />
                 <strong tal:content="key" class="admin-keywords"></strong>
-                <button class="more-links"><span class="glyphicon glyphicon-zoom-in"></span></button>
+                <button class="more-links">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
                 <div class="links"></div>
 
                 <form id="delete-keyword-form" style="display: inline-block;">
-                    <input type="text" name="action" value="delete" style="display:none;">
-                    <input type="text" name="keyword" style="display:none;" class="input-keyword" tal:attributes="value key">
-                    <input type="submit" value="Delete keyword" class="delete-keyword-button">
+                  <input type="text" name="action" value="delete" style="display:none;">
+                  <input type="text" name="keyword" style="display:none;" class="input-keyword" tal:attributes="value key">
+                  <input type="submit" value="Delete keyword" class="delete-keyword-button">
                 </form>
 
                 <button class="rename-keyword-button">Rename keyword</button>
 
                 <a href="/add-keyword" class="plone-btn plone-btn-large plone-btn-primary pat-plone-modal"
                                   data-pat-plone-modal="width: 800">Add keyword</a>
-                <div id="modal1" style="display: none">
-                </div>
+                <div id="modal1" style="display: none"></div>
 
                 <div class="rename-keyword-dialog" style="display:none;" title="Rename Keyword">
                   <form>
