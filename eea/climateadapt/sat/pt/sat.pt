@@ -21,6 +21,7 @@
 
                 </style>
 
+                <h1 class="documentFirstHeading" tal:content='context/Title'>Title here</h1>
                 <div tal:replace="structure context/text/output | nothing"></div>
                 <div class="iframe-container">
                     <iframe class='ace-iframe' frameborder='0'
