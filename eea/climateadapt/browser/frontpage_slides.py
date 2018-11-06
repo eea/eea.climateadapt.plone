@@ -21,7 +21,7 @@ class FrontpageSlideSchema(form.Schema):
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['title', 'long_description',
-                          'category',
+                          'category', 'read_more_link',
                           ]
                   )
 
@@ -38,6 +38,9 @@ class FrontpageSlideSchema(form.Schema):
                         description=u"Slider thumbnail title. "
                         u"Keep it short (20 character limit)",
                         required=True)
+
+    read_more_link = TextLine(title=u"Read more link",
+                              required=False)
 
 
 class IFrontpageSlide(FrontpageSlideSchema):
@@ -71,7 +74,7 @@ class FrontpageSlidesView (BrowserView):
                     'title': slide.title,
                     'description': slide.long_description,
                     'category': slide.category,
-                    'url': slide.absolute_url()}
+                    'url': slide.read_more_link}
             images.append(slide_data)
         self.images = images
 
