@@ -1,10 +1,11 @@
 
-from dateutil.parser import parse
-from sparql import SparqlException, query
-from eea.climateadapt.scripts import get_plone_site
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+from dateutil.parser import parse
+
+from eea.climateadapt.scripts import get_plone_site
+from sparql import query  # SparqlException,
 
 DAYS = 1
 ENDPOINT = "http://semantic.eea.europa.eu/sparql"
@@ -12,7 +13,7 @@ Q = """
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX cr: <http://cr.eionet.europa.eu/ontologies/contreg.rdf#>
 
-SELECT  ?resource, ?modified, ?created 
+SELECT  ?resource, ?modified, ?created
 WHERE {
 
 ?resource a <http://www.eea.europa.eu/portal_types/Specification#Specification>;
@@ -20,14 +21,14 @@ WHERE {
    <http://purl.org/dc/terms/modified> ?modified
 
 bind(NOW() as ?today)
-bind(xsd:date(concat(str(year(?today)),"-", str(month(?today)),"-", str(day(?today)))) 
+bind(xsd:date(concat(str(year(?today)),"-", str(month(?today)),"-", str(day(?today))))
    as ?date_today)
-bind(xsd:date(concat(str(year(?created)),"-", str(month(?created)),"-", str(day(?created)))) 
+bind(xsd:date(concat(str(year(?created)),"-", str(month(?created)),"-", str(day(?created))))
    as ?date_created)
 bind(?date_today - ?modified as ?difference)
 FILTER(?difference <= 86400*%s)
 
-} ORDER BY desc(?modified)  
+} ORDER BY desc(?modified)
         """ % DAYS
 
 BOOTSTRAP = '<link rel="stylesheet" type="text/css" ' \
@@ -53,6 +54,7 @@ def create_message(result):
 
     variables = result.variables
     message.append("<tr>")
+
     for variable in variables:
         message.append("<th>{}</th>".format(variable))
     message.append("</tr>")
