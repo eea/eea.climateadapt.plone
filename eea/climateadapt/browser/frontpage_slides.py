@@ -45,7 +45,7 @@ class IFrontpageSlide(FrontpageSlideSchema):
 
 
 class FrontpageSlide(dexterity.Container):
-    """ Image content type for which we the richtext behavior is activated """
+    """ Slide content type for which the richtext behavior is activated """
     implements(IFrontpageSlide, IEEAClimateAdaptInstalled)
 
 
@@ -211,8 +211,12 @@ class FrontpageSlidesView (BrowserView):
 
         publi = result.getObject()
 
+        image = self.getImages(slide)
+        if len(image) is 0:
+            image = "/++resource++eea.climateadapt/frontpage/last_publication.jpg"
+
         return {
-            'image': self.getImages(slide),
+            'image': image,
             'title': publi.Title(),
             'description': publi.long_description,
             'category': 'Publication',
