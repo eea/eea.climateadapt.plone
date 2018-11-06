@@ -88,6 +88,9 @@ class FrontpageSlidesView (BrowserView):
     def getImages(self, slide):
         images = [image.getObject() for image in slide.getFolderContents()]
 
+        if len(images) is 0:
+            return ''
+
         now = self.getCurrentDate()
         try:
             image = images[now.day / 7]
