@@ -8,7 +8,7 @@
 
     <javascript authenticated="0" bundle="default" cacheable="True"
         compression="none" conditionalcomment="" cookable="False" enabled="on"
-        expression="" id="http://code.jquery.com/jquery-migrate-1.2.1.js" inline="False"
+        expression="" id="https://code.jquery.com/jquery-migrate-1.2.1.js" inline="False"
         />
 
     <javascript authenticated="0" bundle="default" cacheable="True"
@@ -54,5 +54,11 @@
         compression="safe" conditionalcomment="" cookable="True" enabled="False"
         id="++resource++jquery.jstree.js" inline="False"
         insert-after="++resource++jquery.bbq.js"/>
+
+    <javascript authenticated="False" bundle="default" cacheable="True"
+        compression="safe" conditionalcomment="" cookable="True" enabled="True"
+        expression="python: object.portal_type == 'Folder' and request.URL1.replace(request.URL2, '').startswith('/admin') "
+        id="++resource++export_to_excel.js" inline="False"
+        insert-after="++resource++jquery.jstree.js" />
 
 </object>

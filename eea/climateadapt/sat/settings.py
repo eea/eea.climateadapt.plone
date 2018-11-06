@@ -78,7 +78,7 @@ def get_endpoint_url(settings=None):
     if settings is None:
         settings = get_settings()
 
-    return u"http://services.arcgis.com/{0}/ArcGIS/rest".format(
+    return u"https://services.arcgis.com/{0}/ArcGIS/rest".format(
             settings.server)
 
 

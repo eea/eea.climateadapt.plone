@@ -11,27 +11,29 @@
   <body>
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core">
-        <h2 style="border-bottom:3px solid #bdcb2e" tal:content="context/Title">All News</h2>
+        <h2 tal:content="context/Title">All News</h2>
 
-       <div tal:define= "batch python: context.results(batch=True,
-                                                                                   b_start=request.get('b_start', 0),
-                                                                                   b_size=10);
-                                                                                   ">
-           <tal:results repeat= "result batch">
-               <li style="list-style: none" class="news-item">
-                   <h3>
-                       <a href="" tal:content="result/Title" tal:attributes="href result/getURL">
-                           News Title with href
-                       </a>
-                   </h3>
-                   <small class="discreet" tal:content="python: result.EffectiveDate().split('T')[0]"> Date </small>
-                   <p tal:content="result/Description"> Description </p>
-               </li>
-
+         <div tal:define="batch python: context.results(batch=True,
+                          b_start=request.get('b_start', 0),
+                          b_size=10);"
+                          >
+           <tal:results repeat="result batch">
+             <li class="news-item">
+               <h3>
+                 <a href="" tal:content="result/Title" tal:attributes="href result/getURL">
+                  News Title with href
+                 </a>
+               </h3>
+               <small class="discreet" tal:content="python: result.EffectiveDate().split('T')[0]"> Date </small>
+               <p tal:content="result/Description"> Description </p>
+             </li>
            </tal:results>
+
            <div metal:use-macro= "context/batch_macros/macros/navigation"/>
-       </div>
+         </div>
+
       </tal:main-macro>
     </metal:main>
+
   </body>
 </html>

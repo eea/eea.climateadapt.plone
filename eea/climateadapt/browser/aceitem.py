@@ -1,11 +1,12 @@
-from eea.climateadapt.browser import AceViewApi
-from plone.dexterity.browser.view import DefaultView
-from plone.z3cform import layout
 from zope.interface import classImplements
-from plone.z3cform.fieldsets.extensible import FormExtender
-from plone.dexterity.browser.edit import DefaultEditForm
+
+from eea.climateadapt.browser import AceViewApi
 from plone.dexterity.browser.add import DefaultAddForm
+from plone.dexterity.browser.edit import DefaultEditForm
+from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityEditForm
+from plone.z3cform import layout
+from plone.z3cform.fieldsets.extensible import FormExtender
 
 
 class AceItemView(DefaultView, AceViewApi):
@@ -65,19 +66,6 @@ PublicationReportEditView = layout.wrap_form(PublicationReportEditForm)
 classImplements(PublicationReportEditView, IDexterityEditForm)
 
 
-class PublicationReportFormExtender(FormExtender):
-    def update(self):
-        self.remove('ICategorization.subjects')
-        self.remove('ICategorization.language')
-        self.remove('IPublication.effective')
-        self.remove('IPublication.expires')
-        self.remove('IOwnership.creators')
-        self.remove('IOwnership.contributors')
-        self.remove('IOwnership.rights')
-        labels = ['label_schema_dates', 'label_schema_ownership']
-        self.form.groups = [group for group in self.form.groups if group.label not in labels]
-
-
 class InformationPortalEditForm(DefaultEditForm):
     """ Edit form for Information Portals
     """
@@ -90,19 +78,6 @@ class InformationPortalAddForm(DefaultAddForm):
 
 InformationPortalEditView = layout.wrap_form(InformationPortalEditForm)
 classImplements(InformationPortalEditView, IDexterityEditForm)
-
-
-class InformationPortalFormExtender(FormExtender):
-    def update(self):
-        self.remove('ICategorization.subjects')
-        self.remove('ICategorization.language')
-        self.remove('IPublication.effective')
-        self.remove('IPublication.expires')
-        self.remove('IOwnership.creators')
-        self.remove('IOwnership.contributors')
-        self.remove('IOwnership.rights')
-        labels = ['label_schema_dates', 'label_schema_ownership']
-        self.form.groups = [group for group in self.form.groups if group.label not in labels]
 
 
 class GuidanceDocumentEditForm(DefaultEditForm):
@@ -119,19 +94,6 @@ GuidanceDocumentEditView = layout.wrap_form(GuidanceDocumentEditForm)
 classImplements(GuidanceDocumentEditView, IDexterityEditForm)
 
 
-class GuidanceDocumentFormExtender(FormExtender):
-    def update(self):
-        self.remove('ICategorization.subjects')
-        self.remove('ICategorization.language')
-        self.remove('IPublication.effective')
-        self.remove('IPublication.expires')
-        self.remove('IOwnership.creators')
-        self.remove('IOwnership.contributors')
-        self.remove('IOwnership.rights')
-        labels = ['label_schema_dates', 'label_schema_ownership']
-        self.form.groups = [group for group in self.form.groups if group.label not in labels]
-
-
 class ToolEditForm(DefaultEditForm):
     """ Edit form for Tools
     """
@@ -144,19 +106,6 @@ class ToolAddForm(DefaultAddForm):
 
 ToolEditView = layout.wrap_form(ToolEditForm)
 classImplements(ToolEditView, IDexterityEditForm)
-
-
-class ToolFormExtender(FormExtender):
-    def update(self):
-        self.remove('ICategorization.subjects')
-        self.remove('ICategorization.language')
-        self.remove('IPublication.effective')
-        self.remove('IPublication.expires')
-        self.remove('IOwnership.creators')
-        self.remove('IOwnership.contributors')
-        self.remove('IOwnership.rights')
-        labels = ['label_schema_dates', 'label_schema_ownership']
-        self.form.groups = [group for group in self.form.groups if group.label not in labels]
 
 
 class IndicatorEditForm(DefaultEditForm):
@@ -173,19 +122,6 @@ IndicatorEditView = layout.wrap_form(IndicatorEditForm)
 classImplements(IndicatorEditView, IDexterityEditForm)
 
 
-class IndicatorFormExtender(FormExtender):
-    def update(self):
-        self.remove('ICategorization.subjects')
-        self.remove('ICategorization.language')
-        self.remove('IPublication.effective')
-        self.remove('IPublication.expires')
-        self.remove('IOwnership.creators')
-        self.remove('IOwnership.contributors')
-        self.remove('IOwnership.rights')
-        labels = ['label_schema_dates', 'label_schema_ownership']
-        self.form.groups = [group for group in self.form.groups if group.label not in labels]
-
-
 class OrganisationEditForm(DefaultEditForm):
     """ Edit form for Organisations
     """
@@ -200,7 +136,7 @@ OrganisationEditView = layout.wrap_form(OrganisationEditForm)
 classImplements(OrganisationEditView, IDexterityEditForm)
 
 
-class OrganisationFormExtender(FormExtender):
+class AceItemFormExtender(FormExtender):
     def update(self):
         self.remove('ICategorization.subjects')
         self.remove('ICategorization.language')
@@ -210,4 +146,7 @@ class OrganisationFormExtender(FormExtender):
         self.remove('IOwnership.contributors')
         self.remove('IOwnership.rights')
         labels = ['label_schema_dates', 'label_schema_ownership']
-        self.form.groups = [group for group in self.form.groups if group.label not in labels]
+        self.form.groups = [group
+                            for group in self.form.groups
+
+                            if group.label not in labels]

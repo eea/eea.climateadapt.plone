@@ -34,7 +34,7 @@ SEARCH_TYPES = [
     ("ACTION", "Case studies"),
     ("MAYORSADAPT", "Mayors Adapt city profiles"),
     ("ORGANISATION", "Organisations"),
-    # ("VIDEOS", "Videos"),
+    ("VIDEO", "Videos"),
 ]
 
 FACETED_SEARCH_TYPES = [
@@ -49,7 +49,7 @@ FACETED_SEARCH_TYPES = [
     ("DOCUMENT", "Publication and Reports"),
     ("RESEARCHPROJECT", "Research and knowledge projects"),
     ("TOOL", "Tools"),
-    # ("VIDEOS", "Videos"),
+    ("VIDEO", "Videos"),
 ]
 
 CCA_TYPES = [

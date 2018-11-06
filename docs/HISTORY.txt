@@ -3,6 +3,147 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Remove Covenant of Mayors introduction text from template
+  [krisztina #91562]
+* Replace slider dots with thumbnails
+  [krisztina #91562]
+* Add country name tooltip for the homepage countries map; fix z-index problem
+  in header
+  [krisztina #91562]
+* Open external links in new tab; Fix map flag issue by only show the names on hover;
+  Change to simplified geojson and add the islands as images; Style improvements
+  [krisztina #91562]
+* WIP: Add maplets for the homepage countries map
+  [krisztina #91562]
+* Task: Added upgrade step to enable video content type
+  [iulianpetchesi #98315]
+* Add favicon
+  [krisztina #91562]
+* Task: Change Roboto font to OpenSans; Adjust the green color used on the platform
+  [krisztina #91562]
+* Add box shadow for the dynamic tab area
+  [krisztina #91562]
+* Add slider image requirement description, TinyMCE accordion and
+  general fixes and improvements
+  [krisztina #91562]
+* Bug: Quick fix for the missing accordion buttons in TinyMCE
+  [krisztina]
+* Bug: Add flag fallback for country profile pages; fixed cursor type in IE
+  [krisztina #91563]
+* Bug: Add fallback for the map flags in IE
+  [krisztina #91563]
+* Task: Gallery implemented for the individual transnational region pages
+  [krisztina #98337]
+* Dashboard page: styling; fix add new db item link
+  [krisztina]
+* Task: Transnational regions: added regions
+  [krisztina #98337]
+* Task: WIP Transnational regions: created regions selection
+  [krisztina #98337]
+* Frontpage map tile: added islands, changed geojson; Multiple fixes
+  [krisztina #91562]
+* Style fixes, code cleanup
+  [krisztina #91562]
+* Feature: Implemented new slides functionality for frontpage
+  [iulianpetchesi #98315]
+* Countries map improvements
+  [krisztina]
+* Add missing icons for DB items on the frontpage; style fixes
+  [krisztina]
+* Extract bio_regions and macro_regions as values for indexing
+  [davidsilaghi]
+* Stylized creator and reviewer on aceitem objects
+  [krisztina]
+* Task: DB items: include the date when the item was created/updated;
+  add a "go back to search results" link
+  [krisztina #98321]
+* Show related items viewlet below text in aceitems view
+  [davidsilaghi]
+* Fix getProperty error
+  [krisztina #91562]
+* Bug fix: Fix AST menu 'Getting started' active state
+  Change: Broken links page table styling
+  [krisztina #91562]
+* Show information about creator and reviewer on aceitem objects
+  [davidsilaghi]
+* Bug fix: make the search frontpage tile display result counts
+  [davidsilaghi]
+* Change: Customized special submenus of navigation bar
+  [krisztina #91562]
+* Bug fix: don't show (in view) the relevant tile if there are no items
+  [davidsilaghi]
+* Change: added description (short summary) field to AceItems and AceMeasure
+  objects
+  [davidsilaghi]
+* Change: UVMB page improvements
+  [krisztina #91562]
+* Task: Fix listings
+  [krisztina #91562]
+* Task: Style improvements
+  [krisztina #91562]
+* Change: Move main navigation help section to the top menu
+  [krisztina #91562]
+* Task: Map improvements, add loading spinner for map
+  [krisztina #98318]
+* Task: Make the map legend dynamic depending on which layer is selected
+  [krisztina #98318]
+* Task: WIP thematic maps
+  [krisztina #98318]
+* Task: Use columned display for transregional special subpages
+  [krisztina #91562]
+* Task: Style improvements
+  [krisztina #91562]
+* Bug: Fix case study gallery
+  [krisztina #91562]
+* Feature: Added RichImage content type which will be used for frontpage
+  slides, fixed image attribute not found error + upgrade step to add RichImage
+  to typesUseViewActionInListings under site_properties
+  [iulianpetchesi #98315]
+* Bug: Fix regions display on checkbox click in geographic information
+  [krisztina #94108]
+* Task: Use cases table tooltip feature
+  [krisztina  #98335]
+* Task: Use cases table styling
+  [krisztina #91571]
+* Bug: Fix layout tiles display; Change: remove CDN bootstrap css & js
+  [krisztina #91560]
+* Task: Fix detailed content display, added permanent logo in header
+  [krisztina #91560]
+* Bug fix: Created upgrade step in order to add allowed_sizes attribute to
+  the registry
+  [iulianpetchesi #98421]
+* Change: Added upgrade step 48
+  [davidsilaghi #98367]
+* Bug fix: Fixed icons issues
+  [davidsilaghi #98367]
+* Task: fixed icons issues
+  [davidsilaghi #98367]
+* Bug fix: Fixed case study frontpage image and gallery
+  [iulianpetchesi #97419]
+* Task: Added new subnational regions
+  [iulianpetchesi #94108]
+* Task: Added new tag for climate impacts/sectors and migration step
+  [iulianpetchesi #96733]
+* Add Export to Excel action link to the /admin page
+  [dumitval #96088]
+* Change: Modified the broken links script so that it gets more results
+  [iulianpetchesi #93475]
+* add uploader, portal type and link to object to the excel export
+  [valipod refs #96088]
+* Change: export-excel and broken-links can now be accessed only by Managers
+  [ichim-david refs #96087]
+* Change: Added new slide in the carousel
+  [iulianpetchesi #96217]
+* Bug fix: Fixed error while extracting information from France.
+  [davidsilaghi #91561]
+* Change: Commented map viewer options from faceted search
+  [davidsilaghi #91968]
+* Change: Changed links for external resources from http: to https:
+  [laszlocseh #89310]
+* Bug fix: Changed the covenant of mayors link
+  [davidsilaghi #93460]
+* Change: override the password change page to link to Eionet
+  [tiberich #92501]
 * Bug fix: Changed the covenant of mayors link
   [davidsilaghi #93460]
 * Bug fix: added cache busting for case study image

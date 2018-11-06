@@ -9,4 +9,6 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="eea.climateadapt">
 
+    <includeOverrides file="browser/overrides.zcml" />
+
 </configure>

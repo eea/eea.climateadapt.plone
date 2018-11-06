@@ -4,8 +4,13 @@ It helps to separate the tiles from the views, those views can be easier
 developed and tested.
 """
 
+import json
+
 from collective.cover.tiles.base import (IPersistentCoverTile,
                                          PersistentCoverTile)
+from zope import schema
+from zope.component.hooks import getSite
+from zope.interface import implements
 
 from eea.climateadapt.vocabulary import ace_countries_selection
 from plone import api
@@ -16,9 +21,6 @@ from plone.memoize import view
 from plone.namedfile.field import NamedBlobImage
 from plone.tiles.interfaces import ITileDataManager
 from Products.Five.browser import BrowserView
-from zope import schema
-from zope.component.hooks import getSite
-from zope.interface import implements
 
 
 class AceContentSearch(BrowserView):
@@ -38,7 +40,16 @@ class FrontPageCountries(BrowserView):
     """
 
     def countries(self):
-        return ace_countries_selection
+        countries_folder = self.context.restrictedTraverse(
+            'countries-regions/countries'
+        )
+
+        countries = [c for c in countries_folder.contentValues()]
+
+        res = [(c.getId(), c.Title())
+               for c in countries if c.portal_type == 'Folder']
+
+        return res
 
 
 class ICarousel(IPersistentCoverTile):
@@ -68,11 +79,11 @@ class ICarousel(IPersistentCoverTile):
                           's5_read_more_text', 's5_read_more_link']
                   )
 
-    # form.fieldset('slide7',
-    #               label=u'Slide 7',
-    #               fields=['s7_title', 's7_description', 's7_primary_photo',
-    #                       's7_read_more_text', 's7_read_more_link']
-    #               )
+    form.fieldset('slide7',
+                  label=u'Slide 7',
+                  fields=['s7_title', 's7_description', 's7_primary_photo',
+                          's7_read_more_text', 's7_read_more_link']
+                  )
 
     # Slide 1 fields
     # s1_title = schema.Text(title=u"First slide Title", required=True)
@@ -121,18 +132,18 @@ class ICarousel(IPersistentCoverTile):
                                     required=False)
 
     # Slide 7 fields
-    # s7_title = schema.Text(title=u"Seventh slide title", required=True)
-    # s7_description = RichText(title=u"Seventh slide text", required=False)
+    s7_title = schema.Text(title=u"Seventh slide title", required=True)
+    s7_description = RichText(title=u"Seventh slide text", required=False)
 
-    # s7_primary_photo = NamedBlobImage(
-    #     title=(u"Seventh slide photo"),
-    #     required=True,
-    # )
+    s7_primary_photo = NamedBlobImage(
+        title=(u"Seventh slide photo"),
+        required=True,
+    )
 
-    # s7_read_more_text = schema.Text(title=u"Seventh slide read more text",
-    #                                 required=False)
-    # s7_read_more_link = schema.Text(title=u"Seventh slide read more link",
-    #                                 required=False)
+    s7_read_more_text = schema.Text(title=u"Seventh slide read more text",
+                                    required=False)
+    s7_read_more_link = schema.Text(title=u"Seventh slide read more link",
+                                    required=False)
 
     # Slide 8 fields
     s8_title = schema.Text(title=u"Slide title", required=True)
@@ -206,7 +217,7 @@ class Carousel(PersistentCoverTile):
 
         return {
             'image':
-            "{0}/@@images/primary_photo/case-front?c={1}".format(
+            "{0}/@@images/primary_photo/?c={1}".format(
                 cs.absolute_url(),
                 brain.modified and brain.modified.ISO() or ''
             ),
@@ -233,7 +244,6 @@ class Carousel(PersistentCoverTile):
         catalog = site.portal_catalog
         result = catalog.searchResults({
             'portal_type': [
-                'eea.climateadapt.publicationreport',
                 'eea.climateadapt.informationportal',
                 'eea.climateadapt.guidancedocument',
                 'eea.climateadapt.tool',
@@ -243,6 +253,19 @@ class Carousel(PersistentCoverTile):
             ],
             'review_state': 'published',
             'sort_by': 'effective'}, full_objects=True)[0]
+
+        return result.getObject()
+
+    def last_publication(self):
+        """ Gets the most recent updated publication and report"""
+        site = getSite()
+        catalog = site.portal_catalog
+        result = catalog.searchResults({
+            'portal_type': 'eea.climateadapt.publicationreport',
+            'review_state': 'published',
+            'sort_on': 'effective',
+            'sort_order': 'descending',
+        }, full_objects=True)[0]
 
         return result.getObject()
 
@@ -345,3 +368,16 @@ class LastUpdateTile(BrowserView):
     """
     def formated_date(self, modifiedTime):
         return portal.get_localized_time(datetime=modifiedTime)
+
+
+class CountriesTileMetadata(BrowserView):
+    def __call__(self):
+        countries_folder = self.context.restrictedTraverse(
+            'countries-regions/countries'
+        )
+
+        countries = [c for c in countries_folder.contentValues()]
+
+        res = [c.Title() for c in countries if c.portal_type == 'Folder']
+
+        return json.dumps(res)

@@ -33,10 +33,11 @@
 
     <div class="cover-richtext-tile tile-content aceitem-search-tile" tal:condition="not: is_compose">
       <div style="margin-top:0.4em; margin-right: 0.6em;float:left" class="hiddenForAnon">
-        <a href="" 
-          class="pat-plone-modal" 
+        <a href=""
+          class="pat-plone-modal"
           tal:attributes="href string:#info${view/id}">
-          <img src="/++theme++climateadapt/static/cca/img/vergrootglas.png" />
+          <!-- <img src="/++theme++climateadapt/static/cca/img/vergrootglas.png" /> -->
+          <i class="fa fa-search"></i>
         </a>
         <div tal:attributes="id string:info${view/id}" style="display:none" >
           <h1>Relevant tile info</h1>
@@ -59,7 +60,7 @@
             <dt>Number of items: </dt>
             <dd tal:content="python: view.data.get('nr_items')" />
         </dl>  </div>
-      </div>     
+      </div>
       <h2 tal:content="python: view.data.get('title')">Title here</h2>
 
       <h3 style="display:none">Search tile</h3>
@@ -75,10 +76,10 @@
           </li>
         </ul>
         <tal:cond tal:condition="python: len(sections) == 1">
-          <tal:def define="section python:sections[0]; 
-            section_title python:section[0]; 
+          <tal:def define="section python:sections[0];
+            section_title python:section[0];
             count python:section[1];
-            section_url python:section[2]; 
+            section_url python:section[2];
             brains python:section[3];
             ">
             <ul class="aceitem-search-tile-listing">
@@ -88,7 +89,7 @@
                 </a>
                 <ul>
                   <li tal:repeat="brain brains">
-                    » <a href="" tal:attributes="href brain/getURL" tal:content="brain/Title">Link</a>
+                    <a href="" tal:attributes="href brain/getURL" tal:content="brain/Title">Link</a>
                   </li>
                 </ul>
               </li>
@@ -99,7 +100,7 @@
 
       <div class="share-your-info-ace-button">
         <form method="POST" action="/share-your-info">
-          <button>Share your information</button>
+          <button class="standard-button primary-button">Share your information</button>
         </form>
       </div>
     </div>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<registry>
+    <records
+    interface="plone.app.imaging.interfaces.IImagingSchema"
+    prefix="plone">
+  <value key="allowed_sizes" purge="false">
+    <element>listing 16:16</element>
+    <element>icon 32:32</element>
+    <element>tile 64:64</element>
+    <element>thumb 128:128</element>
+    <element>mini 200:200</element>
+    <element>preview 400:400</element>
+    <element>large 768:768</element>
+    <element>wide 325:183</element>
+  </value>
+</records>
+</registry>

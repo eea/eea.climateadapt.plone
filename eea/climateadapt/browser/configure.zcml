@@ -31,6 +31,12 @@
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         />
 
+    <browser:resource
+        name="export_to_excel.js"
+        file="resources/export_to_excel.js"
+        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+        />
+
     <z3c:widgetTemplate
         mode="display"
         widget="z3c.form.interfaces.IOrderedSelectWidget"
@@ -46,6 +52,14 @@
             title="Standard with no title"
             action="no_title_cover_view"
             />
+        <browser:menuItem
+            title="Columned View"
+            action="column_view"
+            />
+        <browser:menuItem
+            title="Vertical Tab View"
+            action="vertical_tab_view"
+            />
     </browser:menuItems>
 
     <browser:menuItems
@@ -57,6 +71,14 @@
             title="Listing with dates"
             />
     </browser:menuItems>
+
+    <browser:page
+        for="*"
+        name="dashboard-v2"
+        template="pt/dashboard.pt"
+        class=".dashboard.DashboardView"
+        permission="zope2.View"
+        />
 
     <browser:page
         for="*"
@@ -106,6 +128,22 @@
         for="*"
         class=".CoverNoTitleView"
         template="pt/no_title_cover_view.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="column_view"
+        for="*"
+        class=".CoverNoTitleView"
+        template="pt/cover_column_view.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="vertical_tab_view"
+        for="*"
+        class=".CoverNoTitleView"
+        template="pt/vertical_tab_view.pt"
         permission="zope2.View"
         />
 
@@ -260,26 +298,26 @@
     -----[ Videos Form customizations ]----
 
     <browser:page
-        for="eea.climateadapt.acevideo.IAceVideos"
+        for="eea.climateadapt.acevideo.IAceVideo"
         name="edit"
-        class=".videos.VideosEditView"
+        class=".video.VideoEditView"
         permission="cmf.ModifyPortalContent"
         />
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.acevideo.IAceVideos
+        for="eea.climateadapt.acevideo.IAceVideo
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .videos.VideosEditForm"
-        factory=".videos.VideosFormExtender"
+        .video.VideoEditForm"
+        factory=".video.VideoFormExtender"
         />
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.acevideo.IAceVideos
+        for="eea.climateadapt.acevideo.IAceVideo
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .videos.VideosAddForm"
-        factory=".videos.VideosFormExtender"
+        .video.VideoAddForm"
+        factory=".video.VideoFormExtender"
         />
 
     -----[ Publication Reports Form customizations ]----
@@ -296,7 +334,7 @@
         for="eea.climateadapt.aceitem.IPublicationReport
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
         .aceitem.PublicationReportEditForm"
-        factory=".aceitem.PublicationReportFormExtender"
+        factory=".aceitem.AceItemFormExtender"
         />
 
     <adapter
@@ -304,7 +342,7 @@
         for="Products.CMFCore.interfaces.IFolderish
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
         .aceitem.PublicationReportAddForm"
-        factory=".aceitem.PublicationReportFormExtender"
+        factory=".aceitem.AceItemFormExtender"
         />
 
     -----[ Information Portals Form customizations ]----
@@ -321,7 +359,7 @@
         for="eea.climateadapt.aceitem.IInformationPortal
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
         .aceitem.InformationPortalEditForm"
-        factory=".aceitem.InformationPortalFormExtender"
+        factory=".aceitem.AceItemFormExtender"
         />
 
     <adapter
@@ -329,7 +367,7 @@
         for="Products.CMFCore.interfaces.IFolderish
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
         .aceitem.InformationPortalAddForm"
-        factory=".aceitem.InformationPortalFormExtender"
+        factory=".aceitem.AceItemFormExtender"
         />
 
     -----[ Maps Graphs Form customizations ]----
@@ -346,7 +384,7 @@
         for="eea.climateadapt.aceitem.IGuidanceDocument
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
         .aceitem.GuidanceDocumentEditForm"
-        factory=".aceitem.GuidanceDocumentFormExtender"
+        factory=".aceitem.AceItemFormExtender"
         />
 
     <adapter
@@ -354,7 +392,7 @@
         for="Products.CMFCore.interfaces.IFolderish
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
         .aceitem.GuidanceDocumentAddForm"
-        factory=".aceitem.GuidanceDocumentFormExtender"
+        factory=".aceitem.AceItemFormExtender"
         />
 
     -----[ Tools Form customizations ]----
@@ -371,7 +409,7 @@
         for="eea.climateadapt.aceitem.ITool
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
         .aceitem.ToolEditForm"
-        factory=".aceitem.ToolFormExtender"
+        factory=".aceitem.AceItemFormExtender"
         />
 
     <adapter
@@ -379,7 +417,7 @@
         for="Products.CMFCore.interfaces.IFolderish
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
         .aceitem.ToolAddForm"
-        factory=".aceitem.ToolFormExtender"
+        factory=".aceitem.AceItemFormExtender"
         />
 
     -----[ Indicators Form customizations ]----
@@ -396,7 +434,7 @@
         for="eea.climateadapt.aceitem.IIndicator
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
         .aceitem.IndicatorEditForm"
-        factory=".aceitem.IndicatorFormExtender"
+        factory=".aceitem.AceItemFormExtender"
         />
 
     <adapter
@@ -404,7 +442,7 @@
         for="Products.CMFCore.interfaces.IFolderish
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
         .aceitem.IndicatorAddForm"
-        factory=".aceitem.IndicatorFormExtender"
+        factory=".aceitem.AceItemFormExtender"
         />
 
     -----[ Organisations Form customizations ]----
@@ -421,7 +459,7 @@
         for="eea.climateadapt.aceitem.IOrganisation
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
         .aceitem.OrganisationEditForm"
-        factory=".aceitem.OrganisationFormExtender"
+        factory=".aceitem.AceItemFormExtender"
         />
 
     <adapter
@@ -429,7 +467,7 @@
         for="Products.CMFCore.interfaces.IFolderish
         zope.publisher.interfaces.browser.IDefaultBrowserLayer
         .aceitem.OrganisationAddForm"
-        factory=".aceitem.OrganisationFormExtender"
+        factory=".aceitem.AceItemFormExtender"
         />
 
     -----[ Ace Project Form customizations ]----
@@ -461,9 +499,9 @@
 
     <browser:page
         name="view"
-        for="eea.climateadapt.acevideo.IAceVideos"
-        class="eea.climateadapt.browser.videos.VideosView"
-        template="pt/videos_view.pt"
+        for="eea.climateadapt.acevideo.IAceVideo"
+        class="eea.climateadapt.browser.video.VideoView"
+        template="pt/video_view.pt"
         permission="zope2.View"
         />
 
@@ -490,6 +528,14 @@
         for="*"
         permission="zope.Public"
         template="pt/navbar.pt"
+        />
+
+    <browser:page
+        name="help-nav"
+        class=".site.Navbar"
+        for="*"
+        permission="zope.Public"
+        template="pt/help-nav.pt"
         />
 
     <!-- # portal link redirections, compatibility with old site -->
@@ -586,7 +632,7 @@
         class=".misc.DetectBrokenLinksView"
         for="*"
         name="broken-links"
-        permission="zope2.View"
+        permission="cmf.ManagePortal"
         template="pt/detect_links.pt"
         />
 
@@ -594,7 +640,7 @@
         class=".misc.ExcelCsvExportView"
         for="*"
         name="export-excel"
-        permission="zope2.View"
+        permission="cmf.ManagePortal"
         template="pt/export_portaltypes.pt"
         />
 
@@ -605,6 +651,34 @@
         permission="cmf.ManagePortal"
         />
 
+    <browser:page
+        for="*"
+        name="help-categories"
+        template="pt/help-categories.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="country-disclaimer"
+        template="pt/country_disclaimer.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="eu-sector-policies"
+        template="pt/eu-sector-policies.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        class=".regions_select.TransRegionSelect"
+        for="*"
+        name="regions-section"
+        template="pt/regions-section.pt"
+        permission="zope2.View"
+        />
 
     <!-- Tile helpers -->
 
@@ -793,5 +867,12 @@
     class=".admin.GoPDB"
     permission="cmf.ManagePortal"
     />
+
+  <browser:page
+    class=".main.FullWidthContentTypes"
+    for="*"
+    name="fullwidth_content_types"
+    permission="zope.Public"
+  />
 
 </configure>

@@ -75,7 +75,7 @@ require([
     );
 
     // Layer of cities.
-    var ciudades = new FeatureLayer("http://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/Efnau/FeatureServer/0", {
+    var ciudades = new FeatureLayer("https://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/Efnau/FeatureServer/0", {
         mode: FeatureLayer.MODE_SNAPSHOT,
         outFields: ["f1", "f2", "f3", "f6", "f7", "f8", "f9", "f10", "f11", "f12", "f13", "f14", "f15", "f16", "f17", "f18", "f19", "f20", "f21", "f22", "f23", "f24", "f25", "f26", "f27", "f28"]
     });

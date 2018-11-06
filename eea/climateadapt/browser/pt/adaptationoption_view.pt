@@ -7,8 +7,9 @@
   lang="en"
   metal:use-macro="context/main_template/macros/master"
   i18n:domain="eea.climateadapt">
+
   <body>
-    <metal:main fill-slot="main">
+    <metal:main fill-slot="body">
       <tal:main-macro metal:define-macro="content-core">
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
           <div metal:fill-slot="title-slot">
@@ -105,42 +106,66 @@
 
           <div metal:fill-slot="ace-right-slot">
             <metal:macro use-macro="context/ace_macros/macros/files" />
-            <div tal:condition="nothing | python: context.year != 0">
-                <h4>Year:</h4>
-                <tal:block content="structure context/year"/>
-            </div>
-            <h4>Keywords</h4>
-            <metal:macro use-macro="context/ace_macros/macros/keywords" />
-            <h4>Sectors</h4>
-            <tal:block content="structure python:view.w['sectors'].render()"/>
-            <h4>Climate impacts</h4>
-            <tal:block content="structure python:view.w['climate_impacts'].render()"/>
-            <div tal:condition="python: view.governance_level() != ''">
-                <h4>Governance level</h4>
-                <div tal:repeat="level python: view.governance_level()">
-                    <span tal:content="level"></span>
-                </div>
-            </div>
-            <div tal:condition="python: view.render_geochar(context.geochars)">
-                <h4>Geographic characterisation</h4>
-                <metal:macro use-macro="context/ace_macros/macros/geochar" />
+            <div class="macro-category">
+              <h4>Updated:</h4>
+              <div tal:content="python: context.EffectiveDate().split('T')[0]"> Date </div>
             </div>
 
-            <div tal:define="dictionary python: view.get_related_casestudies();
-                             titles python: dictionary['title'];
-                             urls python: dictionary['url']"
-                 tal:condition="python: len(dictionary.values()[0]) > 0">
-                <h4> Case studies related to this option </h4>
-                <div tal:repeat="item python: range(len(titles))">
-                    <a tal:content="python: titles[item]" href=""
-                       tal:attributes="href python: urls[item]"/>
-                    <br><br>
-                </div>
+            <div class="macro-category">
+              <div tal:condition="nothing | python: context.year != 0">
+                <h4>Year:</h4>
+                <tal:block content="structure context/year"/>
+              </div>
             </div>
+
+            <div class="macro-category">
+              <h4>Keywords:</h4>
+              <metal:macro use-macro="context/ace_macros/macros/keywords" />
+            </div>
+
+            <div class="macro-category">
+              <h4>Sectors:</h4>
+              <tal:block content="structure python:view.w['sectors'].render()"/>
+            </div>
+
+            <div class="macro-category">
+              <h4>Climate impacts:</h4>
+              <tal:block content="structure python:view.w['climate_impacts'].render()"/>
+            </div>
+
+            <div class="macro-category">
+              <div tal:condition="python: view.governance_level() != ''">
+                <h4>Governance level:</h4>
+                <div tal:repeat="level python: view.governance_level()">
+                  <span tal:content="level"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="macro-category">
+              <div tal:condition="python: view.render_geochar(context.geochars)">
+                <h4>Geographic characterisation:</h4>
+                <metal:macro use-macro="context/ace_macros/macros/geochar" />
+              </div>
+            </div>
+
+            <div class="macro-category">
+              <div tal:define="dictionary python: view.get_related_casestudies();
+                titles python: dictionary['title'];
+                urls python: dictionary['url']"
+                tal:condition="python: len(dictionary.values()[0]) > 0">
+                <h4>Case studies related to this option:</h4>
+                <div tal:repeat="item python: range(len(titles))">
+                  <a class="related-items" tal:content="python: titles[item]" href=""
+                    tal:attributes="href python: urls[item]"/>
+                </div>
+              </div>
+            </div>
+
           </div>
         </metal:macro>
         <div id="viewlet-below-content-body" tal:content="structure provider:plone.belowcontentbody" tal:condition="not:ajax_load" />
-        
+
       </tal:main-macro>
     </metal:main>
   </body>

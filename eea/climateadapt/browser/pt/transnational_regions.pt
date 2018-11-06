@@ -1,7 +1,7 @@
 <metal:use-macro use-macro="context/main_template/macros/master">
     <metal:fill-slot fill-slot="style_slot">
-        <link href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css" rel="stylesheet"/>
-        <link href="http://js.arcgis.com/3.13/esri/css/esri.css" rel="stylesheet"/>
+        <link href="https://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css" rel="stylesheet"/>
+        <link href="https://js.arcgis.com/3.13/esri/css/esri.css" rel="stylesheet"/>
         <style type="text/css">
             #mapDiv,
             .map.container,
@@ -84,8 +84,8 @@
                 parseOnLoad: true
             };
         </script>
-        <script src="http://js.arcgis.com/3.13compact/"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://js.arcgis.com/3.13compact/"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>
             var map;
             var capita;
@@ -153,14 +153,13 @@
                 iTemplate.setTitle("See region(s) selected");
 
                 iTemplate.setContent("<b>Region: </b><a href='$\{LINK\}'>$\{pgm_name\}</a><br><b>Countries</b><br/>   $\{Countries\}<br>");
-                console.log(iTemplate);
 
                 dialog = new TooltipDialog({id: "tooltipDialog", style: "position: absolute; width: 250px; font: normal normal normal 10pt Helvetica;z-index:100"});
                 dialog.startup();
 
                 var highlightSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([125, 125, 125]), 1), new Color([125, 125, 125, 0.35]));
 
-                var regions = new FeatureLayer("http://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/REGIONS_COUNTRIES/FeatureServer/0", {
+                var regions = new FeatureLayer("https://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/REGIONS_COUNTRIES/FeatureServer/0", {
                     mode: FeatureLayer.MODE_SNAPSHOT,
                     infoTemplate: iTemplate,
                     outFields: ["pgm_name", "CCI", "Countries", "LINK"]
@@ -208,7 +207,7 @@
 
                 regions.on("load", regionsCargadas);
 
-                var queryTask = new QueryTask("http://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/COUNTRIES_MAYORS_ADAPT/FeatureServer/0");
+                var queryTask = new QueryTask("https://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/COUNTRIES_MAYORS_ADAPT/FeatureServer/0");
 
                 var query = new Query();
 

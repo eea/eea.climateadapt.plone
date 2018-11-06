@@ -24,11 +24,12 @@
     <include package=".sat" />
     <include package=".mayorsadapt" />
     <include package="._importer" />
+    <include package=".upgrades" />
 
+    <include file="skins.zcml" />
     <include file="profiles.zcml" />
     <include file="stringinterp.zcml" />
     <include file="cache.zcml" />
-    <include file="rabbitmq.zcml" />
 
     <browser:jbot
         directory="browser/pt-overrides"
@@ -38,6 +39,11 @@
     <plone:static
         name="climateadapt"
         directory="theme/climateadapt"
+        type="theme" />
+
+    <plone:static
+        name="climateadaptv2"
+        directory="theme/climateadaptv2"
         type="theme" />
 
     <class class=".acemeasure.CaseStudy">
@@ -62,6 +68,10 @@
 
     <class class="plone.dexterity.content.Container">
       <implements interface="eea.pdf.interfaces.IPDFAware" />
+    </class>
+
+    <class class="plone.namedfile.field.NamedBlobImage">
+      <implements interface="plone.rfc822.interfaces.IPrimaryField" />
     </class>
 
     -------[ Marker Interface for News/Events/Links ]-------
@@ -93,6 +103,10 @@
     <adapter name="search_type" factory=".catalog.search_type_for_newsevents" />
     <adapter name="sectors" factory=".catalog.city_sectors" />
     <adapter name="featured" factory=".catalog.featured" />
+    <adapter name="getObjSize" factory=".catalog.getObjSize_image" />
+
+    <adapter name="bio_regions" factory=".catalog.bio_regions" />
+    <adapter name="macro_regions" factory=".catalog.macro_regions" />
     <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> -->
 
     ----[ Vocabularies: ]------
@@ -334,6 +348,9 @@
     <subscriber factory=".marshaller.GeoCharsFieldModifier"
         provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
+    <!-- <subscriber factory=".marshaller.TransnationalRegionModifier" -->
+    <!--     provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" /> -->
+
     <adapter factory=".marshaller.CityProfile2Surf" />
     <adapter factory=".marshaller.Geolocation2Surf" />
     <adapter factory=".marshaller.File2Surf" />
@@ -400,5 +417,13 @@
             OFS.interfaces.IObjectWillBeRemovedEvent"
        handler=".events.handle_iterate_wc_deletion"
        />
+
+    ------[ RichImage Title Functionality ]--------
+
+    <subscriber
+       for="eea.climateadapt.browser.frontpage_slides.IRichImage
+            zope.lifecycleevent.interfaces.IObjectCreatedEvent"
+       handler=".events.set_title_description"
+    />
 
 </configure>

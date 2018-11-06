@@ -13,7 +13,7 @@
         name="default"
         title="eea.climateadapt"
         directory="profiles/default"
-        description="Install eea.climateadapt"
+        description="ClimateAdapt specific extensions (eea.climateadapt)"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
@@ -25,8 +25,6 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-
-    <!-- v2 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_2"
         title="Upgrade profile for eea.climateadapt v2"
@@ -34,17 +32,7 @@
         directory="profiles/upgrades/to_2"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="1"
-        destination="2"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v2"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_2"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v3 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_3"
         title="Upgrade profile for eea.climateadapt v3"
@@ -52,17 +40,7 @@
         directory="profiles/upgrades/to_3"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="2"
-        destination="3"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v3"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_3"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v4 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_4"
         title="Upgrade profile for eea.climateadapt v4"
@@ -70,17 +48,7 @@
         directory="profiles/upgrades/to_4"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="3"
-        destination="4"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v4"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_4"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v5 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_5"
         title="Upgrade profile for eea.climateadapt v5"
@@ -88,17 +56,7 @@
         directory="profiles/upgrades/to_5"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="4"
-        destination="5"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v5"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_5"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v6 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_6"
         title="Upgrade profile for eea.climateadapt v6"
@@ -106,17 +64,7 @@
         directory="profiles/upgrades/to_6"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="5"
-        destination="6"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v6"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_6"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v7 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_7"
         title="Upgrade profile for eea.climateadapt v7"
@@ -124,17 +72,7 @@
         directory="profiles/upgrades/to_7"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="6"
-        destination="7"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v7"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_7"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v8 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_8"
         title="Upgrade profile for eea.climateadapt v8"
@@ -142,17 +80,7 @@
         directory="profiles/upgrades/to_8"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="7"
-        destination="8"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v8"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_8"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v9 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_9"
         title="Upgrade profile for eea.climateadapt v9"
@@ -160,17 +88,7 @@
         directory="profiles/upgrades/to_9"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="8"
-        destination="9"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v9"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_9"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v10 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_10"
         title="Upgrade profile for eea.climateadapt v10"
@@ -178,17 +96,7 @@
         directory="profiles/upgrades/to_10"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="9"
-        destination="10"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v10"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_10"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v11 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_11"
         title="Upgrade profile for eea.climateadapt v11"
@@ -196,17 +104,7 @@
         directory="profiles/upgrades/to_11"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="10"
-        destination="11"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v11"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_11"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v12 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_12"
         title="Upgrade profile for eea.climateadapt v12"
@@ -214,17 +112,7 @@
         directory="profiles/upgrades/to_12"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="11"
-        destination="12"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v12"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_12"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v13 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_13"
         title="Upgrade profile for eea.climateadapt v13"
@@ -232,17 +120,7 @@
         directory="profiles/upgrades/to_13"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="12"
-        destination="13"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v13"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_13"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v14 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_14"
         title="Upgrade profile for eea.climateadapt v14"
@@ -250,17 +128,7 @@
         directory="profiles/upgrades/to_14"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="13"
-        destination="14"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v14"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_14"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v15 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_15"
         title="Upgrade profile for eea.climateadapt v15"
@@ -268,17 +136,7 @@
         directory="profiles/upgrades/to_15"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="14"
-        destination="15"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v15"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_15"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v16 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_16"
         title="Upgrade profile for eea.climateadapt v16"
@@ -286,17 +144,6 @@
         directory="profiles/upgrades/to_16"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="15"
-        destination="16"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v16"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_16"
-            />
-    </genericsetup:upgradeSteps>
-
-    <!-- v17 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_17"
         title="Upgrade profile for eea.climateadapt v17"
@@ -304,17 +151,6 @@
         directory="profiles/upgrades/to_17"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="16"
-        destination="17"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v17"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_17"
-            />
-    </genericsetup:upgradeSteps>
-
-    <!-- v18 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_18"
         title="Upgrade profile for eea.climateadapt v18"
@@ -322,17 +158,6 @@
         directory="profiles/upgrades/to_18"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="17"
-        destination="18"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v18"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_18"
-            />
-    </genericsetup:upgradeSteps>
-
-    <!-- v19 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_19"
         title="Upgrade profile for eea.climateadapt v19"
@@ -340,17 +165,6 @@
         directory="profiles/upgrades/to_19"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="18"
-        destination="19"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v19"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_19"
-            />
-    </genericsetup:upgradeSteps>
-
-    <!-- v20 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_20"
         title="Upgrade profile for eea.climateadapt v20"
@@ -358,16 +172,6 @@
         directory="profiles/upgrades/to_20"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="19"
-        destination="20"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v20"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_20"
-            />
-    </genericsetup:upgradeSteps>
-
     <!-- v21 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_21"
@@ -376,106 +180,6 @@
         directory="profiles/upgrades/to_21"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="20"
-        destination="21"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v21"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_21"
-            />
-    </genericsetup:upgradeSteps>
-
-    <!-- v22 upgrade -->
-    <genericsetup:upgradeStep
-        source="21"
-        destination="22"
-        description=""
-        title="Upgrade profile for eea.climateadapt v22"
-        handler=".update.update_to_22"
-        profile="eea.climateadapt:default"
-        />
-
-    <!-- v23 upgrade -->
-    <genericsetup:upgradeStep
-        source="22"
-        destination="23"
-        description=""
-        title="Upgrade profile for eea.climateadapt v23"
-        handler=".update.update_to_23"
-        profile="eea.climateadapt:default"
-        />
-
-    <!-- v24 upgrade -->
-    <genericsetup:upgradeStep
-        source="23"
-        destination="24"
-        description=""
-        title="Upgrade profile for eea.climateadapt v24"
-        handler=".update.update_to_24"
-        profile="eea.climateadapt:default"
-        />
-
-    <!-- v25 upgrade -->
-    <genericsetup:upgradeStep
-        source="24"
-        destination="25"
-        description=""
-        title="Upgrade profile for eea.climateadapt v25"
-        handler=".update.update_to_25"
-        profile="eea.climateadapt:default"
-        />
-
-    <!-- v26 upgrade -->
-    <genericsetup:upgradeStep
-        source="25"
-        destination="26"
-        description=""
-        title="Upgrade profile for eea.climateadapt v26"
-        handler=".update.update_to_26"
-        profile="eea.climateadapt:default"
-        />
-
-    <!-- v27 upgrade -->
-    <genericsetup:upgradeStep
-        source="26"
-        destination="27"
-        description=""
-        title="Upgrade profile for eea.climateadapt v27"
-        handler=".update.update_to_27"
-        profile="eea.climateadapt:default"
-        />
-
-    <!-- v28 upgrade -->
-    <genericsetup:upgradeStep
-        source="27"
-        destination="28"
-        description=""
-        title="Upgrade profile for eea.climateadapt v28"
-        handler=".update.update_to_28"
-        profile="eea.climateadapt:default"
-        />
-
-    <!-- v29 upgrade -->
-    <genericsetup:upgradeStep
-        source="28"
-        destination="29"
-        description=""
-        title="Upgrade profile for eea.climateadapt v29"
-        handler=".update.update_to_29"
-        profile="eea.climateadapt:default"
-        />
-
-    <!-- v30 upgrade -->
-    <genericsetup:upgradeStep
-        title="Upgrade profile eeaclimate to v30"
-        description=""
-        source="29"
-        destination="30"
-        handler=".update.update_to_30"
-        profile="eea.climateadapt:default" />
-
-        <!-- v31 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_31"
         title="Upgrade profile for eea.climateadapt v31"
@@ -483,17 +187,6 @@
         directory="profiles/upgrades/to_31"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="30"
-        destination="31"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v31"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_31"
-            />
-    </genericsetup:upgradeSteps>
-
-    <!-- v32 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_32"
         title="Upgrade profile for eea.climateadapt v32"
@@ -501,62 +194,6 @@
         directory="profiles/upgrades/to_32"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="31"
-        destination="32"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v32"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_32"
-            />
-    </genericsetup:upgradeSteps>
-
-    <!-- v33 upgrade -->
-    <genericsetup:upgradeStep
-        title="Upgrade eea.climateadapt to v33"
-        description=""
-        source="32"
-        destination="33"
-        handler=".update.update_to_33"
-        profile="eea.climateadapt:default" />
-
-    <!-- v34 upgrade -->
-    <genericsetup:upgradeStep
-        title="Upgrade eea.climateadapt to v34"
-        description=""
-        source="33"
-        destination="34"
-        handler=".update.update_to_34"
-        profile="eea.climateadapt:default" />
-
-    <!-- v35 upgrade -->
-    <genericsetup:upgradeStep
-        title="Upgrade eea.climateadapt to v35"
-        description=""
-        source="34"
-        destination="35"
-        handler=".update.update_to_35"
-        profile="eea.climateadapt:default" />
-
-    <!-- v36 upgrade -->
-    <genericsetup:upgradeStep
-        title="Upgrade eea.climateadapt to v36"
-        description=""
-        source="35"
-        destination="36"
-        handler=".update.update_to_36"
-        profile="eea.climateadapt:default" />
-
-    <!-- v37 upgrade -->
-    <genericsetup:upgradeStep
-        title="Upgrade eea.climateadapt to v37"
-        description=""
-        source="36"
-        destination="37"
-        handler=".update.update_to_37"
-        profile="eea.climateadapt:default" />
-
-    <!-- v38 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_38"
         title="Upgrade profile for eea.climateadapt v38"
@@ -564,26 +201,7 @@
         directory="profiles/upgrades/to_38"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="37"
-        destination="38"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v38"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_38"
-            />
-    </genericsetup:upgradeSteps>
 
-    <!-- v39 upgrade -->
-    <genericsetup:upgradeStep
-        title="Upgrade eea.climateadapt to v39"
-        description=""
-        source="38"
-        destination="39"
-        handler=".update.update_to_39"
-        profile="eea.climateadapt:default" />
-
-    <!-- v40 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_40"
         title="Upgrade profile for eea.climateadapt v40"
@@ -591,34 +209,6 @@
         directory="profiles/upgrades/to_40"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="39"
-        destination="40"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v40"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_40"
-            />
-    </genericsetup:upgradeSteps>
-
-    <!-- v41 upgrade -->
-    <genericsetup:upgradeStep
-        title="Upgrade eea.climateadapt to v41"
-        description=""
-        source="40"
-        destination="41"
-        handler=".update.update_to_41"
-        profile="eea.climateadapt:default" />
-
-    <!-- v42 upgrade -->
-    <genericsetup:upgradeStep
-        title="Upgrade eea.climateadapt to v42"
-        description=""
-        source="41"
-        destination="42"
-        handler=".update.update_to_42"
-        profile="eea.climateadapt:default" />
-
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_43"
         title="Upgrade profile for eea.climateadapt v43"
@@ -627,15 +217,6 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-    <genericsetup:upgradeStep
-        title="Upgrade eea.climateadapt to v43"
-        description=""
-        source="*"
-        destination="43"
-        handler=".update.update_to_43"
-        profile="eea.climateadapt:default" />
-
-    <!-- v3 upgrade -->
     <genericsetup:registerProfile
         name="eeaclimateadapt_to_44"
         title="Upgrade profile for eea.climateadapt v44"
@@ -643,15 +224,86 @@
         directory="profiles/upgrades/to_44"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <genericsetup:upgradeSteps
-        source="*"
-        destination="44"
-        profile="eea.climateadapt:default">
-        <genericsetup:upgradeDepends
-            title="Upgrade profile eeaclimate to v44"
-            import_profile="eea.climateadapt:eeaclimateadapt_to_44"
-            />
-    </genericsetup:upgradeSteps>
+
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_45"
+        title="Upgrade profile for eea.climateadapt v45"
+        description=""
+        directory="profiles/upgrades/to_45"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:registerProfile
+        name="eeaclimateadapt_to_46"
+        title="Upgrade profile for eea.climateadapt v46"
+        description=""
+        directory="profiles/upgrades/to_46"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_47"
+      title="Upgrade profile for eea.climateadapt v47"
+      description=""
+      directory="profiles/upgrades/to_47"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_48"
+      title="Upgrade profile for eea.climateadapt v48"
+      description=""
+      directory="profiles/upgrades/to_48"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_49"
+      title="Upgrade profile for eea.climateadapt v49"
+      description=""
+      directory="profiles/upgrades/to_49"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_50"
+      title="Upgrade profile for eea.climateadapt v50"
+      description=""
+      directory="profiles/upgrades/to_50"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_51"
+      title="Upgrade profile for eea.climateadapt v51"
+      description=""
+      directory="profiles/upgrades/to_51"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_52"
+      title="Upgrade profile for eea.climateadapt v52"
+      description=""
+      directory="profiles/upgrades/to_52"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_53"
+      title="Upgrade profile for eea.climateadapt v53"
+      description=""
+      directory="profiles/upgrades/to_53"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_54"
+      title="Upgrade profile for eea.climateadapt v54"
+      description=""
+      directory="profiles/upgrades/to_54"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
 
     <!-- v45 upgrade -->
     <genericsetup:registerProfile

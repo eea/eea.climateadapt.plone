@@ -79,4 +79,18 @@
             <property name="visible">True</property>
         </object>
     </object>
+
+    <object name="object_buttons" meta_type="CMF Action Category">
+        <object name="export_to_excel" meta_type="CMF Action" i18n:domain="plone">
+            <property name="title" i18n:translate="">Export to Excel</property>
+            <property name="description" i18n:translate=""/>
+            <property name="url_expr">string:${object_url}</property>
+            <property name="available_expr">python:object.portal_type == 'Folder' and request.URL1.replace(request.URL2, '').startswith('/admin')</property>
+            <property name="permissions">
+                <element value="Manage portal"/>
+            </property>
+            <property name="visible">True</property>
+        </object>
+    </object>
+
 </object>

@@ -1,100 +1,82 @@
 <metal:use-macro use-macro="context/main_template/macros/master">
   <metal:fill-slot fill-slot="style_slot">
-    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css"/>
-    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css"/>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.13/esri/css/esri.css"/>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css"/>
 
-      <style type="text/css">
-        #mapDiv,
-        .map.container,
-        body,
-        html {
-          padding: 0;
-          margin: 0;
-          height: 100%;
-        }
-        #legendDiv {
-          background-color: #fff;
-          top: 10px;
-          right: 20px;
-          width: 300px;
-          height: 300px;
-        }
-        #contenidoCombos {
-          position: absolute;
-          top: 0;
-          right: 10px;
-          height: 100%;
-          width: 300px;
-        }
-        #contenidoMapa {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 320px;
-          height: 100%;
-        }
-        #contenido {
-          position: relative;
-          height: 500px;
-        }
-        #HomeButton {
-          position: absolute;
-          top: 95px;
-          left: 20px;
-          z-index: 50;
-        }
-        #search {
-          display: block;
-          position: absolute;
-          z-index: 2;
-          top: 20px;
-          left: 74px;
-        }
-        #hover-content {
-          display: none;
-        }
-        #disclaimer:hover #hover-content {
-          display: block;
-        }
-        #disclaimer {
-          color: #009ae5;
-        }
-        #colorLink,
-        #xDialog {
-          color: #0057E5;
-          font-weight: bold;
-        }
-
-      </style>
+    <style type="text/css">
+      #mapDiv,
+      .map.container,
+      body,
+      html {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+      }
+      #legendDiv {
+        background-color: #fff;
+        top: 10px;
+        right: 20px;
+        width: 300px;
+        height: 300px;
+      }
+      #contenidoCombos {
+        position: absolute;
+        top: 0;
+        right: 10px;
+        height: 100%;
+        width: 300px;
+      }
+      #contenidoMapa {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 320px;
+        height: 100%;
+      }
+      #contenido {
+        position: relative;
+        height: 500px;
+      }
+      #HomeButton {
+        position: absolute;
+        top: 95px;
+        left: 20px;
+        z-index: 50;
+      }
+      #search {
+        display: block;
+        position: absolute;
+        z-index: 2;
+        top: 20px;
+        left: 74px;
+      }
+    </style>
 
   </metal:fill-slot>
 
   <metal:fill-slot fill-slot="javascript_head_slot">
     <!-- <tal:styles replace="structure provider:plone.resourceregistries.scripts" /> -->
-
     <script>
-    Array.prototype.unique2 = function ()
-    {
-    	var n = {}, r = [];
-    	for (var i = 0; i < this.length; i++)
-    	{
-    		if (!n[this[i]])
-    		{
-    			n[this[i]] = true;
-    			r.push(this[i]);
-    		}
-    	}
-    	return r;
-    }
-    var dojoConfig = {parseOnLoad: true};
-
+      Array.prototype.unique2 = function ()
+      {
+      	var n = {}, r = [];
+      	for (var i = 0; i < this.length; i++)
+      	{
+      		if (!n[this[i]])
+      		{
+      			n[this[i]] = true;
+      			r.push(this[i]);
+      		}
+      	}
+      	return r;
+      }
+      var dojoConfig = {parseOnLoad: true};
     </script>
 
     <script type="text/javascript" src="/++resource++collective.js.bootstrap/js/bootstrap.min.js"></script>
-    <script src="http://js.arcgis.com/3.13compact"></script>
+    <script src="https://js.arcgis.com/3.13compact"></script>
     <!-- <script type="text/javascript" src="/++theme++climateadapt/static/jquery.qtip.min.js"></script> -->
     <script type="text/javascript" src="/++theme++climateadapt/static/cca/js/countries.js"></script>
-
     <!-- <script type="text/javascript" src="++resource++plone.app.widgets.js"></script> -->
   </metal:fill-slot>
 
@@ -150,7 +132,9 @@
 
             <p><img src="/++theme++climateadapt/static/cca/img/countriesLegend.png"/></p>
 
-            <div id="disclaimer">[Disclaimer]
+            <div id="disclaimer">
+              <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+              [Disclaimer]
               <div id="hover-content">The information presented in these pages is based on the reporting according to the Monitoring Mechanism Regulation (Regulation (EU) No 525/2013) and updates by the EEA member countries</div>
             </div>
           </div>

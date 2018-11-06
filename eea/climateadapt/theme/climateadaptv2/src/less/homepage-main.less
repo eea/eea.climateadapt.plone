@@ -1,0 +1,141 @@
+@import "variables.less";
+
+/*** main area  ***/
+.main-area .row {
+  margin-right: -10px;
+  margin-left: -10px;
+  display: flex;
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+}
+
+.main-area .row:first-child {
+  margin-top: 10px;
+}
+
+.main-box {
+  padding: 10px;
+  height: auto;
+}
+
+.box-container {
+  background-color: #fff;
+  border: 1px solid #E5E5E5;
+  height: 100%;
+  padding: 20px;
+  position: relative;
+  li {
+    list-style-type: none;
+  }
+  img {
+    margin-bottom: 1.5em;
+  }
+}
+
+.box-listing {
+  li {
+    padding-bottom: 0.5em;
+    display: block;
+  }
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.main-box {
+  h2 {
+    margin-bottom: 0.5em;
+  }
+  // p {
+  //   margin-bottom: 0;
+  // }
+}
+
+.content-body {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.info-section {
+  background-color: @secondary-blue;
+  border: 1px solid transparent;
+
+  p {
+    color: #fff;
+    text-align: center;
+  }
+
+  .info-title-section {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: -moz-box;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    img {
+      margin-bottom: 0;
+    }
+  }
+
+  .info-title {
+      margin-left: 20px;
+      color: #fff;
+      font-size: 27px;
+      font-family: OpenSansM;
+      margin-bottom: 0;
+      line-height: 30px;
+    span {
+      color: @yellow;
+      font-family: OpenSansB;
+    }
+  }
+
+  .info-button {
+    background-color: transparent;
+    border: 2px solid #fff;
+    margin: auto;
+    color: #fff;
+    display: inline-block;
+  }
+  .info-button:hover {
+    background-color: #fff;
+    border: 2px solid #fff;
+    color: @secondary-blue;
+  }
+}
+
+.news-time {
+  font-size: 10px;
+  color: @dark-gray;
+}
+
+.newsletter-wrapper,
+.rss-feed-wrapper {
+  text-align: center;
+}
+
+.newsletter-wrapper h4 {
+  font-size: 27px;
+  color: @dark-gray;
+  margin: auto 0;
+}
+
+.newsletter-wrapper p,
+.rss-feed-wrapper p {
+  margin: 0 auto;
+}
+
+.main-link-wrapper {
+  margin: auto;
+}
+
+.rss-feed-wrapper i {
+  font-size: 50px;
+  color: #FF6600;
+  margin: auto 0;
+}

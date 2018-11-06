@@ -1,0 +1,138 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="eea">
+  <body>
+
+    <metal:main fill-slot="main">
+      <style>
+        h1+p {
+          margin-bottom: 3rem;
+        }
+        .dataTables_wrapper {
+          padding: 2em 0;
+        }
+        .item-section:not(:last-of-type) .dataTables_wrapper {
+          border-bottom: 1px solid #7D9600;
+        }
+        .item-section {
+          padding-bottom: 2rem;
+        }
+        .item-section h2 {
+          margin-bottom: 0;
+        }
+        .add-new {
+          padding: 0.7em 0.5em;
+          margin-top: 1em;
+          display: inline-block;
+          border: 1px solid;
+          border-radius: 3px;
+        }
+        .dataTables_paginate .current {
+          color: #7D9600;
+          font-family: OpenSansB;
+          font-size: 16px;
+          padding: 0.25em 0.5em;
+          border: 0.1em solid #ccc;
+          border-radius: 0;
+        }
+        .paginate_button {
+          margin: 0 0.3em;
+          color: #3a3a3a;
+          cursor: pointer;
+        }
+        .paginate_button.next,
+        .paginate_button.previous {
+          padding: 0.25em 0.5em;
+        }
+        .paginate_button.next:hover,
+        .paginate_button.previous:hover {
+          color: #7D9600;
+        }
+        .paginate_button.next:after {
+          content: '»';
+          margin: 0 0.3em;
+        }
+        .paginate_button.previous:before {
+          content: '«';
+          margin: 0 0.3em;
+        }
+        .dataTables_length {
+          float: left;
+          margin-bottom: 1em;
+        }
+        .dataTables_filter input {
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          padding: 0.3em;
+        }
+      </style>
+
+      <h1 tal:content="context/Title">Personal dashboard</h1>
+      <div tal:condition="context/text|nothing" tal:replace="structure context/text/output">
+        <p>Here you can find an overview of your personally created Climate-Adapt content.</p>
+      </div>
+
+      <tal:item repeat="item view/items">
+        <div class="item-section" tal:define="name python:item['name']; portal_type python:item['portal_type'];">
+
+          <h2 tal:define="count python:len(item['entries']);
+          items_label python: (count == 0 or count > 1) and 'items' or 'item'">
+            <tal:portal_type replace="python: view.plural(name)"/>
+            (<tal:count replace="count"/>
+            <tal:i replace='items_label'/>)
+          </h2>
+          <a class="add-new" tal:attributes="href string:${portal_url}/${item/path}/++add++${portal_type}">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            Add new
+            <tal:name replace="name"/>
+          </a>
+
+          <div class="type-section">
+            <table class="listing">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Created</th>
+                  <th>Modified</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tal:entry repeat="entry python:item['entries']">
+                  <tr>
+                    <td>
+                      <a tal:attributes="href entry/url" tal:content="entry/title"></a>
+                    </td>
+                    <td>
+                      <time tal:content="entry/created"></time>
+                      <!-- (<a tal:attributes="href string:${portal_url}/author/${entry/user_id}" tal:content="entry/user_name"></a>) -->
+                    </td>
+                    <td>
+                      <time tal:content="entry/modified"></time>
+                    </td>
+                    <td>
+                      <time tal:content="entry/review_state"></time>
+                    </td>
+                  </tr>
+                </tal:entry>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </tal:item>
+
+      <script>
+        $('.type-section table').dataTable();
+        $('.type-section').find('select').addClass('form-control');
+      </script>
+
+    </metal:main>
+
+  </body>
+</html>

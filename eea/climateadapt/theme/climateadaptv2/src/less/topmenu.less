@@ -1,0 +1,254 @@
+@import "variables.less";
+
+.header {
+  position: absolute;
+  width: 100%;
+  z-index: 99;
+}
+
+.logo {
+  margin-top: 4px;
+  a {
+    display: block;
+  }
+}
+
+.top-page-area .header {
+  position: relative;
+}
+
+.top-menu {
+  background-color: rgba(255, 255, 255, 0.9);
+  height: 65px;
+  position: relative;
+  z-index: 99;
+}
+
+.top-menu .fa-bars {
+  color: @primary-blue;
+  font-size: 28px;
+}
+
+.top-menu-right-section {
+  margin-top: 20px;
+}
+
+.top-menu-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-menu-right-section a,
+.personal-menu-action {
+  color: @dark-gray;
+  font-family: OpenSansM;
+  font-size: 14px;
+}
+
+.action-selected,
+.action-selected a {
+  color: @secondary-blue;
+}
+
+.top-menu-nav {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 2px;
+}
+
+.top-menu-nav-item {
+  display: inline-block;
+  margin-left: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.help-menu {
+  margin-right: 10px;
+}
+
+.login-container,
+.help-container {
+  display: none;
+}
+
+.top-menu-nav-item:hover .login > .login-container {
+  display: block;
+}
+
+.help-menu:hover > .help-container {
+  display: block;
+}
+
+.top-menu-items .login {
+  display: inline-block;
+  margin-left: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.top-menu-nav-item:hover #user-name,
+.top-menu-nav-item:hover > .login #personal-menu .personal-menu-action,
+.top-menu-nav-item:hover > .help-link,
+.top-menu-right-section a:hover {
+  color: @secondary-blue;
+}
+
+
+.top-menu-nav-item:hover .help-link > .angle-down-icon,
+.top-menu-nav-item:hover .personal-menu-action > .angle-down-icon {
+  border-top: 4px solid @secondary-blue;
+}
+
+#portal-personaltools,
+#help-items {
+  width: 100%;
+  min-width: 230px;
+  float: none;
+  background-color: #F7F7F7;
+  border-bottom: 5px solid @primary-blue;
+  position: absolute;
+  top: 20px;
+  right: 0;
+  padding: 10px;
+  font-size: 100%;
+  border-radius: 0;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+  li {
+    display: list-item;
+    line-height: 1.5;
+    clear: both;
+    float: left;
+  }
+  li:not(:last-child) {
+    padding-bottom: 0.3em;
+  }
+}
+
+.help-main-nav-link {
+  padding-bottom: 0.3em;
+  display: block;
+}
+
+#portal-personaltools a:hover {
+  color: @secondary-blue;
+}
+
+.personal-menu-action:hover > .angle-down-icon,
+.action-selected .angle-down-icon {
+  border-top: 4px solid @secondary-blue !important;
+}
+
+.angle-down-icon {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #fff;
+  margin-bottom: 2px;
+}
+
+.top-menu-nav-item .angle-down-icon {
+  border-top: 4px solid @dark-gray;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+.mobile-menu .fa-times {
+  color: @primary-blue;
+  font-size: 28px;
+}
+
+.search-box {
+  display: inline-block;
+  position: relative;
+  right: 20px;
+}
+
+.search-box:after {
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  content: '';
+  background-color: @dark-gray;
+  position: absolute;
+  right: -7px;
+  top: 50%;
+  height: 80%;
+  width: 2px;
+}
+
+.search-box .line {
+  -webkit-transition: .3s width ease-in-out;
+  -moz-transition: .3s width ease-in-out;
+  -o-transition: .3s width ease-in-out;
+  transition: .3s width ease-in-out;
+  background-color: darkgrey;
+  bottom: -5px;
+  display: block;
+  height: 2px;
+  position: absolute;
+  width: 0px;
+}
+
+.search-box input {
+  -webkit-transition: width 0.4s ease-in-out;
+  -moz-transition: width 0.4s ease-in-out;
+  -o-transition:  width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  background-color: transparent;
+  border: none;
+  height: 25px;
+  width: 50%;
+}
+
+.search-box input:focus {
+  width: 80%;
+}
+
+.search-box input:focus+.line {
+  background-color: @primary-blue;
+  width: 100%;
+}
+
+.search-submit {
+  background-color: transparent;
+  border: none;
+}
+
+.search-box .search-submit i {
+  font-size: 18px;
+}
+
+.search-box .search-submit i:hover {
+  color: @primary-blue;
+}
+
+::-webkit-input-placeholder {
+  color: @dark-gray;
+  font-style: italic;
+}
+
+:-moz-placeholder {
+  color: @dark-gray;
+  font-style: italic;
+}
+
+::-moz-placeholder {
+  color: @dark-gray;
+  font-style: italic;
+}
+
+:-ms-input-placeholder {
+  color: @dark-gray;
+  font-style: italic;
+}
+
+.no-ovf {
+  overflow: hidden;
+}

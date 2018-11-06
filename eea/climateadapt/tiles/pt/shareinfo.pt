@@ -12,8 +12,15 @@
       <dd tal:content="python: view.data.get('shareinfo_type')" />
     </dl>
 
-    <div class="cover-richtext-tile tile-content aceitem-share-info-tile" tal:define="share_type python: view.data.get('shareinfo_type')">
-      <a href="" tal:attributes="href view/link_url" tal:content="view/link_title">Create your type</a>
+    <div class="cover-richtext-tile tile-content aceitem-share-info-tile"
+         tal:define="share_type python: view.data.get('shareinfo_type')">
+
+      <a class="standard-button primary-button share-info-btn"
+         href=""
+         tal:attributes="href view/link_url">
+         Share your information
+       </a>
+
     </div>
   </body>
 </html>

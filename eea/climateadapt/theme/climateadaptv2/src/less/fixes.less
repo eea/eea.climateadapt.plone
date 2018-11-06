@@ -1,0 +1,436 @@
+@import "variables.less";
+
+// edit bar
+.edit-bar-wrapper {
+  background-color: @edit-interface-bg-color;
+  position: relative;
+  z-index: 99999;
+  border-bottom: 2px solid darken(@edit-interface-bg-color, 10%);
+}
+
+.userrole-anonymous .edit-bar-wrapper {
+  border-bottom: 0;
+}
+
+#edit-bar {
+  min-height: 2.5em;
+  margin-bottom: 0;
+  background-color: @edit-interface-bg-color;
+  border: 0.25em solid @edit-interface-bg-color;
+
+  li {
+    display: inline;
+  }
+
+  .state-private,
+  .state-visible,
+  .state-published,
+  .state-pending {
+    border-color: transparent !important;
+  }
+}
+
+#edit-bar, #content ul.formTabs, #content-core ul.formTabs {
+  padding: 0;
+}
+
+#plone-contentmenu-workflow .state-published {
+  background-color: #1d1d1d;
+}
+
+#plone-contentmenu-workflow .state-private {
+  background-color: #a0a0a0;
+}
+
+#contentActionMenus dl.actionMenu a {
+  padding: 0 0.25em;
+  margin: 0;
+  background-color: transparent;
+}
+
+#contentActionMenus dl.actionMenu.activated dd {
+  background-color: #1d1d1d;
+  border-radius: 0;
+  border-bottom: none;
+  padding: 0;
+  z-index: 999;
+}
+
+#contentActionMenus dl.actionMenu.activated dd div {
+  margin: 1em 0.25em;
+}
+
+#contentActionMenus dl.actionMenu.activated dd a:hover {
+  color: #fff;
+  background-color: #3c3b3b !important;
+}
+
+#login-form div.formControls {
+  margin: 1em 0;
+  text-align: center;
+}
+
+#fieldset-openid-login input[type="text"],
+#login-form .field input {
+  height: 30px;
+  border: 1px solid #ddd;
+}
+
+#login-forgotten-password {
+  font-size: 14px;
+}
+
+.discreet, .muted {
+  color: #748284;
+}
+
+#content label {
+  font-family: OpenSansM;
+}
+
+#content ul.configlets li label {
+  font-weight: normal;
+}
+
+#content legend {
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 100%;
+  padding-left: 0;
+}
+
+.site-container .configlets {
+  padding-left: 0;
+}
+
+.formHelp {
+  font-size: 14px;
+  font-family: OpenSansR;
+  color: #555 !important;
+}
+
+.formTabs {
+  margin-bottom: 1.5em;
+}
+
+div.formControls {
+  margin: 1em 0;
+}
+
+#content select {
+  vertical-align: unset;
+}
+
+#content-views {
+  background-color: transparent;
+  top: 1px;
+  position: relative;
+  @media (max-width: 767px) {
+    float: none;
+  }
+}
+
+#content-views li.selected a,
+#content li.formTab a.selected,
+#content-core li.formTab a.selected {
+  font-weight: normal;
+  font-family: OpenSansM;
+}
+
+#content-core li.formTab a.selected {
+  color: @secondary-green;
+  font-family: OpenSansB;
+}
+
+#content-core li.formTab a:hover {
+  color: @secondary-green;
+}
+
+
+#contentActionMenus {
+  background: @edit-interface-bg-color;
+  top: 0;
+}
+
+#content,
+.region-subpage #content {
+  padding: 1.5em;
+  background-color: #fff;
+  border: 1px solid #E5E5E5;
+}
+
+#breadcrumbs-you-are-here {
+  display: none;
+}
+
+#portal-breadcrumbs {
+  margin-bottom: 1em;
+}
+
+#portal-breadcrumbs a {
+  font-family: OpenSansR;
+}
+
+#content a.link-overlay {
+  border-bottom: none !important;
+}
+
+#content div.documentByLine {
+  font-size: 12px;
+  margin-bottom: 1em;
+}
+
+#content div.documentByLine a {
+  font-size: 12px;
+}
+
+#breadcrumbs-current {
+  font-family: OpenSansB;
+  color: @secondary-green;
+  font-size: 14px;
+}
+
+.breadcrumbSeparator {
+  display: none;
+}
+
+form .widget label { display: initial; }
+
+#contentchooser-content-show-button {
+  z-index: 0;
+  display: inline-block;
+  float: none;
+}
+
+#portal-breadcrumbs span:not(:last-child):after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid #0083c3;
+  display: inline-block;
+  margin: 0 3px;
+}
+
+#viewlet-below-content .row {
+  margin: 0;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+  background-color: transparent;
+}
+
+.subsection-tools-urban-ast,
+.subsection-tools-adaptation-support-tool {
+  #document-action-download_pdf {
+    margin-top: 1em;
+  }
+}
+
+.form-control {
+  width: auto;
+  display: inline-block;
+}
+
+#login-form .formControls input {
+  font-family: OpenSansM;
+  font-size: 16px;
+  padding: 10px 25px;
+  border-radius: 5px;
+  border: none;
+  background-color: #efefef;
+  color: @dark-gray;
+  font-size: 14px !important;
+  margin-top: 10px;
+}
+
+#login-form .formControls input {
+  font-size: 100%;
+}
+
+#login-form .formControls input:hover {
+  background-color: #E0E0E0;
+}
+
+#login-form label {
+  display: block;
+  margin: 5px auto;
+  text-align: center;
+  font-family: OpenSansM;
+  color: @dark-gray;
+  font-size: 14px;
+}
+
+#login-form .field {
+  margin: 1em 0;
+  text-align: center;
+}
+
+#login-form .field > label[for="__ac_name"]:before,
+#login-form .field > label[for="__ac_password"]:before, {
+  font-family: FontAwesome;
+  margin-right: 0.5em;
+  font-size: 16px;
+  color: @primary-blue;
+}
+
+#login-form .field > label[for="__ac_name"]:before {
+  content: '\f007';
+}
+
+#login-form .field > label[for="__ac_password"]:before {
+  content: '\f084';
+}
+
+#login-form input[type="text"]:focus,
+#login-form input[type="password"]:focus {
+  border: 1px solid @primary-blue;
+}
+
+.panel-body {
+  padding: 0;
+}
+
+#lock-icon img {
+  display: none;
+}
+
+#lock-icon:before {
+  content: '\f023';
+  font-family: FontAwesome;
+  color: #ffbe00;
+  font-size: 14px;
+}
+
+.hiddenForAnon {
+  margin-top: 0.2em !important;
+}
+
+#third-level-menu {
+  li {
+    display: block;
+    margin-bottom: 0.5rem;
+    &.fa.fa-angle-double-right:before {
+      position: absolute;
+      color: @link-color ;
+    }
+    & > a {
+      display: inline-block;
+      margin-left: 1rem;
+    }
+  }
+}
+
+.subsection-funding-h2020 h2 > a,
+.subsection-funding-h2020 h2 > strong > a {
+  font-size:inherit;
+}
+
+.subsection-funding-h2020 h2 {
+  margin-top: 1em;
+}
+
+.bluebutton {
+  display: inline-block;
+  position: relative;
+  margin-top: 0.5em;
+  padding: 10px 13px 10px 45px;
+}
+
+#portal-columns {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: flex;
+}
+
+#portal-column-content {
+  width: 100%;
+}
+
+.plone-modal.in .plone-modal-dialog {
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+  border: 1px solid #E5E5E5;
+}
+
+table.controlpanel-listing dd {
+  margin-left: 0;
+}
+
+.filter-option {
+  display: block;
+}
+
+#searchrow input {
+  font-family: OpenSansM;
+  color: @dark-gray;
+}
+
+@media screen and (max-width: 950px) {
+  #contentActionMenus {
+    position: absolute;
+    top: 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* For devices with narrow screens, phones, tablets, etc. */
+  #portal-column-one,
+  #portal-column-two,
+  #portal-column-content {
+    clear: both;
+    margin-left: 0;
+    overflow-x: auto;
+  }
+}
+
+// manage subscriptions fixes
+// cca/manage_subscriptions
+
+#formfield-form-widgets-tags,
+#formfield-form-widgets-events {
+  max-height: 100% !important;
+  overflow-y: inherit !important;
+  border: none !important;
+  padding: 0 !important;
+  margin-top: 30px;
+
+  label.horizontal {
+    font-size: 17px;
+    margin-bottom: 0.5em;
+    color: #005C96;
+  }
+}
+
+#form-widgets-events {
+  margin: 0.5em 0;
+}
+
+#form-widgets-events{
+  float: none !important;
+
+  .option {
+    float: none !important;
+    display: block;
+  }
+}
+
+#form-widgets-tags {
+  float: none !important;
+  border: 1px solid #ccc;
+  display: block;
+  padding: 1em;
+  max-height: 250px;
+  overflow-y: auto;
+
+  .option {
+    float: none !important;
+    display: block;
+    min-width: 100% !important;
+  }
+  label {
+    display: inline;
+  }
+}

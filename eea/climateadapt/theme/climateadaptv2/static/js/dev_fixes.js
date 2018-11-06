@@ -1,0 +1,1 @@
+jQuery(function(a){var b=(window.location.origin+"/cca/",a("base").attr("href"))});

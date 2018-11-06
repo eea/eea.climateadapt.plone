@@ -2,29 +2,32 @@
 It renders a search "portlet" for Ace content
 """
 
-from AccessControl import Unauthorized
-from Products.CMFCore.utils import getToolByName
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+import logging
+from urllib import urlencode
+
 from collective.cover.interfaces import ICoverUIDsProvider
-from collective.cover.tiles.base import IPersistentCoverTile
-from collective.cover.tiles.base import PersistentCoverTile
+from collective.cover.tiles.base import (IPersistentCoverTile,
+                                         PersistentCoverTile)
 from collective.cover.tiles.list import IListTile
+from zope.component.hooks import getSite
+from zope.interface import implements
+from zope.schema import Bool, Choice, Dict, Int, List, TextLine
+
+from AccessControl import Unauthorized
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.vocabulary import _datatypes
 from plone import api
+from plone.api import portal
 from plone.app.uuid.utils import uuidToObject
 from plone.directives import form
 from plone.memoize import view
 from plone.tiles.interfaces import ITileDataManager
 from plone.uuid.interfaces import IUUID
-from urllib import urlencode
+from Products.CMFCore.utils import getToolByName
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.form.field import Fields
 from z3c.form.form import Form
 from z3c.form.widget import StaticWidgetAttribute
-from zope.component.hooks import getSite
-from zope.interface import implements
-from zope.schema import TextLine, Choice, List, Int, Bool, Dict
-import logging
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -80,6 +83,18 @@ class ISearchAceContentTile(IPersistentCoverTile):
                      )
                      )
 
+    macro_regions = List(title=_(u"Macro-Transnational Regions"),
+                         required=False,
+                         value_type=Choice(
+                             vocabulary="eea.climateadapt.regions"
+                         ))
+
+    bio_regions = List(title=_(u"Biogeographical Regions"),
+                       required=False,
+                       value_type=Choice(
+                           vocabulary="eea.climateadapt.bioregions"
+                       ))
+
     nr_items = Int(
         title=_(u"Nr of items to show"),
         required=True,
@@ -97,6 +112,7 @@ class AceTileMixin(object):
     @property
     def catalog(self):
         catalog = getToolByName(self.context, 'portal_catalog')
+
         return catalog
 
     def build_query(self):
@@ -113,6 +129,9 @@ class AceTileMixin(object):
             'search_text': 'SearchableText',
             'special_tags': 'special_tags',
             'sector': 'sectors',
+            'countries': 'countries',
+            'macro_regions': 'macro_regions',
+            'bio_regions': 'bio_regions',
         }
 
         sort_map = {
@@ -121,12 +140,14 @@ class AceTileMixin(object):
         }
 
         sort = self.data.get('sortBy')
+
         if sort:
             query['sort_on'] = sort_map[sort]
             query['sort_order'] = 'reverse'
 
         for setting_name, index_name in map.items():
             setting = self.data.get(setting_name, '')
+
             if setting:
                 if index_name in KEYWORD_INDEXES:   # and len(setting) > 1:
                     query[index_name] = {'query': setting, 'operator': 'or'}
@@ -136,12 +157,16 @@ class AceTileMixin(object):
         # get rid of special_tags index, just use the SearchableText
         # the special_tags field is indexed into the SearchableText
         st = self.data.get('special_tags')
+
         if st:
             query.pop('special_tags', None)
+
             if isinstance(st, basestring):
                 st = st.split(u' ')
             words = query.pop('SearchableText', u'').split(u' ')
             query['SearchableText'] = u' '.join(set(words + st))
+
+        print query
 
         return query
 
@@ -150,8 +175,10 @@ class AceTileMixin(object):
         q.update(kw)
         x = {}
         searchtype = q.pop('search_type', None)
+
         if searchtype:
             q['searchtype'] = searchtype
+
         for index, v in q.items():
             if v:
                 if index not in ['sort_on', 'sort_order']:
@@ -159,7 +186,9 @@ class AceTileMixin(object):
                         x[index] = v
                     else:
                         # keyword indexes appear ex:
-                        #     'sectors': {'operator': 'or', 'query': [u'AGRICULTURE']}
+                        #  'sectors': {'operator': 'or',
+                        #  'query': [u'AGRICULTURE']}
+
                         if index in KEYWORD_INDEXES:
                             if isinstance(v, str):
                                 x[index] = v
@@ -200,6 +229,7 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
     @view.memoize
     def accepted_ct(self):
         """Return an empty list as no content types are accepted."""
+
         return []
 
     def sections(self):
@@ -213,6 +243,7 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
         _ace_types = dict(_datatypes)
 
         search_type = self.data.get('search_type')
+
         if search_type and len(search_type) == 1:
             # Special case when we want to show the results, like RelevantTile
             search_type = search_type[0]
@@ -220,11 +251,13 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
             count = self.data.get('nr_items', 5)
             brains = self.catalog.searchResults(**query)
             url = self.build_url(base, query, {})
-            result.append((_ace_types[search_type], len(brains), url, brains[:count]))
+            result.append((_ace_types[search_type],
+                           len(brains), url, brains[:count]))
 
             return result
 
-        # TODO: sync the links here to the index names and to the faceted indexes
+        # TODO: sync the links here to the index names and to the faceted
+        # indexes
         query = self.build_query()
 
         element_type = self.data.pop('element_type', [])
@@ -236,6 +269,7 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
             q = query.copy()
 
             q.update({'search_type': typeid})
+
             if element_type:
                 q.update({'elements': element_type})
 
@@ -267,6 +301,7 @@ class IRelevantAceContentItemsTile(ISearchAceContentTile):
         ),
         required=False,
     )
+
     form.omitted('uuids')
 
 
@@ -285,18 +320,24 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
     view_more = False
 
+    @property
+    def is_available(self):
+        return bool(self.items())
+
     def show_share_btn(self):
         search_type = self.data.get('search_type')
+
         if search_type in ['DOCUMENT', 'INFORMATIONSOURCE',
                            'GUIDANCE', 'TOOL', 'REASEARCHPROJECT',
                            'MEASURE', 'ORGANISATION']:
+
             return True
 
         # <c:if test="${aceitemtype eq 'DOCUMENT' || aceitemtype eq
-                           # 'INFORMATIONSOURCE' || aceitemtype eq 'GUIDANCE' ||
-                           # aceitemtype eq 'TOOL' || aceitemtype eq
-                           # 'RESEARCHPROJECT' || aceitemtype eq 'MEASURE' ||
-                           # aceitemtype eq 'ORGANISATION'}" >
+        # 'INFORMATIONSOURCE' || aceitemtype eq 'GUIDANCE' ||
+        # aceitemtype eq 'TOOL' || aceitemtype eq
+        # 'RESEARCHPROJECT' || aceitemtype eq 'MEASURE' ||
+        # aceitemtype eq 'ORGANISATION'}" >
 
     @view.memoize
     def is_empty(self):
@@ -306,6 +347,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
     def accepted_ct(self):
         """ Return accepted drag/drop content types for this tile.
         """
+
         return ['Document', 'Folder', 'collective.cover.content']
 
     def view_more_url(self):
@@ -317,13 +359,33 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
             'search_type': self.data.get('search_type'),
             'SearchableText': self.data.get('search_text') or ""
         }
+
         return self.build_url(base, q, {})
 
         # "http://climate-adapt.eea.europa.eu/data-and-downloads?searchtext=obs-scen-gen&searchelements=OBSERVATIONS&searchtypes=DOCUMENT"
-        # return "%s/data-and-downloads?searchtext=%s&searchelements=%s&searchtypes=%s" % (
-        #     site.absolute_url(), search_text, element_type, search_type
-        # )
+        # return
+        # "%s/data-and-downloads?searchtext=%s&searchelements=%s&searchtypes=%s"
+        # % ( site.absolute_url(), search_text, element_type, search_type)
 
+    @view.memoize
+    def icon_images(self):
+        root = portal.get()
+
+        if 'tile_icons' not in root.objectIds():
+            return []
+
+        tile_icons = root['tile_icons']
+
+        return tile_icons.objectValues()
+
+    def get_icons(self, brain):
+        special_tags = brain.special_tags or []
+        images = self.icon_images()
+        icons = [image for image in images if image.getId() in special_tags]
+
+        return icons
+
+    @view.memoize
     def items(self):
         count = self.data.get('nr_items', 5) or 5
         query = self.build_query()
@@ -332,7 +394,9 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         if len(res) > count:
             self.view_more = True
 
-        return res[:count]
+        items = res[:count]
+
+        return items
 
     @view.memoize
     def assigned(self):
@@ -340,25 +404,29 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         has no object associated with it, removes the UUID from the list.
         :returns: a list of objects.
         """
-        #self.set_limit()
+        # self.set_limit()
 
         # always get the latest data
         uuids = ITileDataManager(self).get().get('uuids', None)
 
         results = list()
+
         if uuids:
             ordered_uuids = [(k, v) for k, v in uuids.items()]
             ordered_uuids.sort(key=lambda x: x[1]['order'])
 
             for uuid in [i[0] for i in ordered_uuids]:
                 obj = uuidToObject(uuid)
+
                 if obj:
                     results.append(obj)
+
                 else:
                     # maybe the user has no permission to access the object
                     # so we try to get it bypassing the restrictions
                     catalog = api.portal.get_tool('portal_catalog')
                     brain = catalog.unrestrictedSearchResults(UID=uuid)
+
                     if not brain:
                         # the object was deleted; remove it from the tile
                         self.remove_item(uuid)
@@ -374,8 +442,10 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         :param obj: [required] The object to be added
         :type obj: Content object
         """
-        super(RelevantAceContentItemsTile, self).populate_with_object(obj)  # check permission
+        super(RelevantAceContentItemsTile, self).populate_with_object(obj)
+        # check permission
         uuids = ICoverUIDsProvider(obj).getUIDs()
+
         if uuids:
             self.populate_with_uuids(uuids)
 
@@ -385,18 +455,21 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         :param uuids: The list of objects' UUIDs to be used
         :type uuids: List of strings
         """
+
         if not self.isAllowedToEdit():
             raise Unauthorized(
                 _('You are not allowed to add content to this tile'))
-        #self.set_limit()
+        # self.set_limit()
         data_mgr = ITileDataManager(self)
 
         old_data = data_mgr.get()
+
         if old_data['uuids'] is None:
             # If there is no content yet, just assign an empty dict
             old_data['uuids'] = dict()
 
         uuids_dict = old_data.get('uuids')
+
         if not isinstance(uuids_dict, dict):
             # Make sure this is a dict
             uuids_dict = old_data['uuids'] = dict()
@@ -407,6 +480,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
         order_list = [int(val.get('order', 0))
                       for key, val in uuids_dict.items()]
+
         if len(order_list) == 0:
             # First entry
             order = 0
@@ -430,6 +504,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         :param uuids: The list of objects' UUIDs to be used
         :type uuids: List of strings
         """
+
         if not self.isAllowedToEdit():
             raise Unauthorized(
                 _('You are not allowed to add content to this tile'))
@@ -448,6 +523,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         :type obj: content object
         :returns: the object's UUID
         """
+
         return IUUID(obj, None)
 
     def remove_item(self, uuid):
@@ -455,10 +531,12 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         :param uuid: [required] uuid for the object that wants to be removed
         :type uuid: string
         """
-        super(RelevantAceContentItemsTile, self).remove_item(uuid)  # check permission
+        super(RelevantAceContentItemsTile, self).remove_item(uuid)
+        # check permission
         data_mgr = ITileDataManager(self)
         old_data = data_mgr.get()
         uuids = data_mgr.get()['uuids']
+
         if uuid in uuids.keys():
             del uuids[uuid]
         old_data['uuids'] = uuids
@@ -487,7 +565,7 @@ class IFilteringSchema(form.Schema):
     )
 
 
-class FilteringForm(Form):   #form.SchemaForm):
+class FilteringForm(Form):   # form.SchemaForm):
     """ Filtering form handling
     """
 
@@ -534,7 +612,9 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin):
     @property
     def filterform(self):
         form = FilteringForm(self.context, self.request)
+
         form.update()
+
         return form
 
     def items(self):
@@ -547,6 +627,7 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
         if impact:
             query['climate_impacts'] = impact
+
         if sector:
             query['sectors'] = sector
 
@@ -570,6 +651,7 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
         if impact:
             query['climateimpacts'] = impact
+
         if sector:
             query['sectors'] = sector
 

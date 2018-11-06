@@ -53,3 +53,20 @@ def initialize(context):
                           visibility=None
                           )
 
+
+from eea.notifications import utils
+
+
+LABELS = {}
+
+
+# Monkey eea.notifications get_tags
+def get_tags_cca(obj):
+    try:
+        tags = obj.keywords
+    except Exception:
+        tags = ()
+    return tags
+
+
+utils.get_tags = get_tags_cca

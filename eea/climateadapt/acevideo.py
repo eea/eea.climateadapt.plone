@@ -1,15 +1,24 @@
+from zope.interface import implements
+from zope.schema import Text, TextLine
+
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from plone.directives import dexterity
-from zope.schema import TextLine
+
 from .aceitem import IAceItem
-from zope.interface import implements
 
 
-class IAceVideos(IAceItem):
-    youtube_url = TextLine(title=_(u"Video URL"),
-                           description=u"Enter the video URL from youtube",
-                           required=True)
+class IAceVideo(IAceItem):
+    """ Video schema
+    """
+
+    embed = Text(title=_(u"Video Embed code"),
+                 description=u"Optional, enter video embed HTML code",
+                 required=False)
+
+    embed_url = TextLine(title=_(u"Video URL"),
+                         description=u"Enter the video URL",
+                         required=True)
 
     video_height = TextLine(title=_(u"Video Height"),
                             description=u"Enter the video height",
@@ -17,7 +26,10 @@ class IAceVideos(IAceItem):
                             default=u"480")
 
 
-class Videos(dexterity.Container):
-    implements(IAceVideos, IClimateAdaptContent)
+class Video(dexterity.Container):
+    """ A video content type implementation
+    """
 
-    search_type = "VIDEOS"
+    implements(IAceVideo, IClimateAdaptContent)
+
+    search_type = "VIDEO"

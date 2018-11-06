@@ -1,20 +1,31 @@
 import json
 import logging
+import datetime
 
+from apiclient.discovery import build
 from eea.climateadapt.browser.site import _extract_menu
+from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
+from eea.climateadapt.scripts import get_plone_site
+from oauth2client.service_account import ServiceAccountCredentials
+from plone.api import portal
+from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
+                                                     RegistryEditForm)
 from plone.app.widgets.dx import RelatedItemsWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.directives import form
 from plone.memoize import view
+from plone.registry.interfaces import IRegistry
+from plone.z3cform import layout
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
+from z3c.form import form as z3cform
 from z3c.form import button
 from z3c.form.interfaces import IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope import schema
-from zope.component import adapter, getMultiAdapter
+from zope.component import adapter, getMultiAdapter, getUtility
 from zope.interface import (Interface, Invalid, implementer, implements,
                             invariant)
 
@@ -39,10 +50,10 @@ class CheckCopyPasteLocation(BrowserView):
         for group in groups:
             if group.id == 'extranet-cca-editors' and 'metadata' in \
                     self.context.getPhysicalPath():
+
                 logger.info("Can't Copy: returning False")
 
                 return False
-        # logger.info("Can Copy: returning True")
 
         return True
 
@@ -150,8 +161,6 @@ class ListTilesWithTitleView (BrowserView):
             if hasattr(cover, '__annotations__'):
                 for tile_id in self.tiles:
                     tile_id = tile_id.encode()
-                    # tile = cover.__annotations__[
-                    # 'plone.tiles.data.' + tile_id]
                     self.urls.append(cover.absolute_url())
 
         return self.index()
@@ -400,6 +409,175 @@ class KeywordObjects (BrowserView):
                    self.context.portal_catalog.searchResults(keywords=key)]
 
         return json.dumps(key_obj)
+
+
+class GoogleAnalyticsAPIEditForm(RegistryEditForm):
+    """
+    Define form logic
+    """
+
+    z3cform.extends(RegistryEditForm)
+    schema = IGoogleAnalyticsAPI
+
+
+ConfigureGoogleAnalyticsAPI = layout.wrap_form(
+    GoogleAnalyticsAPIEditForm, ControlPanelFormWrapper)
+
+ConfigureGoogleAnalyticsAPI.label = u"Setup Google Analytics API Integration"
+
+
+def initialize_analyticsreporting(credentials_data):
+    """Initializes an Analytics Reporting API V4 service object.
+
+    Returns:
+    An authorized Analytics Reporting API V4 service object.
+    """
+    SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
+    # json_data = json.loads(open(KEY_FILE_LOCATION).read())
+    credentials = ServiceAccountCredentials.from_json_keyfile_dict(
+        credentials_data, SCOPES)
+
+    # Build the service object.
+
+    analytics = build('analyticsreporting', 'v4', credentials=credentials)
+
+    return analytics
+
+
+def custom_report(analytics, view_id):
+    now = datetime.datetime.now()
+
+    return analytics.reports().batchGet(
+        body={"reportRequests": [
+            {
+                "viewId": view_id,
+                "dateRanges": [
+                    {
+                        "startDate": "2018-04-13",
+                        "endDate": now.strftime("%Y-%m-%d")
+                    }
+                ],
+                "metrics": [
+                    {
+                        "expression": "ga:totalEvents"
+                    }
+                ],
+                "dimensions": [
+                    {
+                        "name": "ga:eventLabel"
+                    }
+                ],
+                "pivots": [
+                    {
+                        "dimensions": [
+                            {
+                                "name": "ga:sessionCount"
+                            }
+                        ],
+                        "metrics": [
+                            {
+                                "expression": "ga:users"
+                            }
+                        ]
+                    }
+                ],
+                "orderBys": [
+                    {
+                        "fieldName": "ga:totalEvents",
+                        "sortOrder": "DESCENDING"
+                    }
+                ],
+                "dimensionFilterClauses": [
+                    {
+                        "filters": [
+                            {
+                                "dimensionName": "ga:eventCategory",
+                                "expressions": [
+                                    "database-search"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+              }
+    ).execute()
+
+
+def parse_response(response):
+    """Parses and prints the Analytics Reporting API V4 response.
+
+    Args:
+    response: An Analytics Reporting API V4 response.
+    """
+
+    result = {}
+    reports = response.get('reports', [])
+
+    if not reports:
+        return result
+
+    report = reports[0]
+
+    for row in report.get('data', {}).get('rows', []):
+        label = row['dimensions'][0]
+
+        # value = row['metrics'][0]['pivotValueRegions'][0]['values'][0]
+        value = row['metrics'][0]['values'][0]
+
+        result[label] = value
+
+    return result
+
+
+def _refresh_analytics_data(site):
+
+    registry = getUtility(IRegistry, context=site)
+    s = registry.forInterface(IGoogleAnalyticsAPI)
+
+    credentials_data = json.loads(s.credentials_json)
+    view_id = s.analytics_app_id
+
+    analytics = initialize_analyticsreporting(credentials_data)
+    response = custom_report(analytics, view_id)
+
+    res = parse_response(response)
+
+    site.__annotations__['google-analytics-cache-data'] = res
+    site.__annotations__._p_changed = True
+
+    import transaction; transaction.commit()
+
+    return res
+
+
+def refresh_analytics_data(site=None):
+    if site is None:
+        site = get_plone_site()
+    _refresh_analytics_data(site)
+
+
+class RefreshGoogleAnalyticsReport(BrowserView):
+    """ A view to manually refresh google analytics report data
+    """
+
+    def __call__(self):
+
+        site = portal.get()
+
+        return refresh_analytics_data(site)
+
+
+class ViewGoogleAnalyticsReport(BrowserView):
+    """ A view to view the google analytics report data
+    """
+
+    def __call__(self):
+
+        site = portal.get()
+
+        return str(site.__annotations__.get('google-analytics-cache-data', {}))
 
 
 class GoPDB(BrowserView):

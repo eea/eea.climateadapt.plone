@@ -1,14 +1,15 @@
 """ A tile to implement the transregional select dropdown
 """
 
-from Products.CMFCore.utils import getToolByName
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from collective.cover.tiles.base import IPersistentCoverTile
-from collective.cover.tiles.base import PersistentCoverTile
-from eea.climateadapt import MessageFactory as _
+from collective.cover.tiles.base import (IPersistentCoverTile,
+                                         PersistentCoverTile)
 from zope import schema
 from zope.component.hooks import getSite
 from zope.interface import implements, providedBy
+
+from eea.climateadapt import MessageFactory as _
+from Products.CMFCore.utils import getToolByName
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class ITransRegionalSelectTile(IPersistentCoverTile):
@@ -24,52 +25,58 @@ class ITransRegionalSelectTile(IPersistentCoverTile):
         required=True,
     )
 
+
 regions = {
     'Adriatic-Ionian': [
-        ('Croatia', '/countries/croatia'),
+        [('Croatia', '/countries/croatia'),
         ('Greece', '/countries/greece'),
         ('Italy', '/countries/italy'),
         ('Slovenia', '/countries/slovenia'),
         ('Albania', ''),
         ('Bosnia and Herzegovina', ''),
         ('Montenegro', ''),
-        ('Serbia', ''),
+        ('Serbia', '')],
+        [('adriatic _ionian.jpg')],
     ],
     'Alpine Space': [
-        ('Austria', '/countries/austria'),
+        [('Austria', '/countries/austria'),
         ('France', '/countries/france'),
         ('Germany', '/countries/germany'),
         ('Italy', '/countries/italy'),
         ('Slovenia', '/countries/slovenia'),
         ('Liechtenstein', ''),
-        ('Switzerland', '/countries/switzerland'),
+        ('Switzerland', '/countries/switzerland')],
+        [('alpine_space.jpg')],
     ],
     'Northern Periphery and Artic': [
-        ('Finland', '/countries/finland'),
+        [('Finland', '/countries/finland'),
         ('Ireland', '/countries/ireland'),
         ('Sweden', '/countries/sweden'),
         ('United Kingdom', '/countries/united-kingdom'),
         ('Iceland', '/countries/iceland'),
         ('Norway', '/countries/norway'),
         ('Greenland', ''),
-        ('Faroe Islands', ''),
+        ('Faroe Islands', '')],
+        [('northern_periphery_and_arctic.jpg')],
     ],
     'Atlantic': [
-        ('France', '/countries/france'),
+        [('France', '/countries/france'),
         ('Ireland', '/countries/ireland'),
         ('Portugal', '/countries/portugal'),
         ('Spain', '/countries/spain'),
-        ('United Kingdom', '/countries/united-kingdom'),
+        ('United Kingdom', '/countries/united-kingdom')],
+        [('atlantic_area.jpg')],
     ],
     'Balkan-Mediterranean': [
-        ('Bulgaria', '/countries/bulgaria'),
+        [('Bulgaria', '/countries/bulgaria'),
         ('Cyprus', '/countries/cyprus'),
         ('Greece', '/countries/greece'),
         ('Albania', ''),
-        ('former Yugoslav Republic of Macedonia', ''),
+        ('former Yugoslav Republic of Macedonia', '')],
+        [('balkan_mediterranean.jpg')],
     ],
     'Baltic Sea': [
-        ('Denmark', '/countries/denmark'),
+        [('Denmark', '/countries/denmark'),
         ('Estonia', '/countries/estonia'),
         ('Finland', '/countries/finland'),
         ('Germany', '/countries/germany'),
@@ -79,10 +86,11 @@ regions = {
         ('Sweden', '/countries/sweden'),
         ('Norway', '/countries/norway'),
         ('Russia', ''),
-        ('Belarus', ''),
+        ('Belarus', '')],
+        [('baltic_sea.jpg')],
     ],
     'Central Europe': [
-        ('Austria', '/countries/austria'),
+        [('Austria', '/countries/austria'),
         ('Croatia', '/countries/croatia'),
         ('Czech Republic', '/countries/czech-republic'),
         ('Germany', '/countries/germany'),
@@ -90,10 +98,11 @@ regions = {
         ('Italy', '/countries/italy'),
         ('Poland', '/countries/poland'),
         ('Slovakia', '/countries/slovakia'),
-        ('Slovenia', '/countries/slovenia'),
+        ('Slovenia', '/countries/slovenia')],
+        [('central_europe.jpg')],
     ],
     'Danube': [
-        ('Austria', '/countries/austria'),
+        [('Austria', '/countries/austria'),
         ('Bulgaria', '/countries/bulgaria'),
         ('Croatia', '/countries/croatia'),
         ('Czech Republic', '/countries/czech-republic'),
@@ -106,10 +115,11 @@ regions = {
         ('Montenegro', ''),
         ('Serbia', ''),
         ('Ukraine', ''),
-        ('Republic of Moldova', ''),
+        ('Republic of Moldova', '')],
+        [('danube.jpg')],
     ],
     'Mediterranean': [
-        ('Albania', ''),
+        [('Albania', ''),
         ('Bosnia and Herzegovina', ''),
         ('Croatia', '/countries/croatia'),
         ('Cyprus', '/countries/cyprus'),
@@ -121,36 +131,41 @@ regions = {
         ('Portugal', '/countries/portugal'),
         ('Slovenia', '/countries/slovenia'),
         ('Spain', '/countries/spain'),
-        ('United Kingdom', '/countries/united-kingdom'),
+        ('United Kingdom', '/countries/united-kingdom')],
+        [('mediterranean.jpg')],
     ],
     'North Sea': [
-        ('Belgium', '/countries/belgium'),
+        [('Belgium', '/countries/belgium'),
         ('Denmark', '/countries/denmark'),
         ('Germany', '/countries/germany'),
         ('Netherlands', '/countries/netherlands'),
         ('Sweden', '/countries/sweden'),
         ('United Kingdom', '/countries/united-kingdom'),
-        ('Norway', '/countries/norway'),
+        ('Norway', '/countries/norway')],
+        [('north_sea.jpg')],
     ],
     'North-West Europe': [
-        ('Belgium', '/countries/belgium'),
+        [('Belgium', '/countries/belgium'),
         ('France', '/countries/france'),
         ('Germany', '/countries/germany'),
         ('Ireland', '/countries/ireland'),
         ('Luxembourg', '/countries/luxembourg'),
         ('Netherlands', '/countries/netherlands'),
         ('Switzerland', '/countries/switzerland'),
-        ('United Kingdom', '/countries/united-kingdom'),
+        ('United Kingdom', '/countries/united-kingdom')],
+        [('north_western_europe.jpg')],
     ],
     'South-West Europe': [
-        ('France', '/countries/france'),
+        [('France', '/countries/france'),
         ('Portugal', '/countries/portugal'),
         ('Spain', '/countries/spain'),
         ('United Kingdom', '/countries/united-kingdom'),
-        ('Andorra', ''),
+        ('Andorra', '')],
+        [('south_west_europe.jpg')],
     ],
     'Other regions': [
-        ('', '')
+        [('', '')],
+        [('')]
     ],
 }
 
@@ -185,11 +200,14 @@ class TransRegionalSelectTile(PersistentCoverTile):
         brains = catalog.searchResults(**q)
 
         results = []
+
         for b in brains:
             obj = b.getObject()
             provides = ["%s.%s" % (iface.__module__ or '', iface.__name__)
                         for iface in providedBy(obj)]
-            if "eea.climateadapt.interfaces.ITransnationalRegionMarker" in provides:
+
+            if "eea.climateadapt.interfaces.ITransnationalRegionMarker" \
+                    in provides:
                 results.append(b)
 
         return sorted([{'url': b.getURL(), 'title': b.Title} for b in results],
@@ -198,6 +216,8 @@ class TransRegionalSelectTile(PersistentCoverTile):
     def countries(self):
         # a list of {'name': Country name, 'link': Country Link}
         region = self.data.get('region', None)
+
         if not region:
             return []
+
         return regions[region]

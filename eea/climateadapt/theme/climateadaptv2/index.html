@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/bs3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+    <link rel="stylesheet" href="static/css/compiled-css.css"/>
+    <link rel="stylesheet" href="static/css/compiled-less.css"/>
+    
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="static/images/favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/images/favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/images/favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="static/images/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="static/images/favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="static/images/favicon/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="static/images/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="static/images/favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon/favicon.ico">
+    <meta name="application-name" content="Climate-ADAPT"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+    
+    <title>Climate-ADAPT</title>
+  </head>
+
+  <body>
+
+    <div class="header">
+      <div class="top-menu">
+        <div class="content-container top-menu-wrapper">
+          <div class="logo">
+            <a href="/">
+              <img src="static/images/climate_adapt_logo.png" alt="Climate-ADAPT Logo"/>
+            </a>
+          </div>
+          <div class="top-menu-right-section">
+            <div class="top-menu-content">
+              <div class="search-box">
+                <form>
+                  <input type="text" name="SearchableText" placeholder="Search all site ..."/>
+                  <div class="line"></div>
+                  <button class="search-submit">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </form>
+              </div>
+              <ul class="top-menu-nav">
+                <li class="top-menu-nav-item help-menu">
+                  <a class="help-link">
+                    <i class="fa fa-question-circle"></i>
+                    Help
+                  </a>
+                  <i class="angle-down-icon"></i>
+                  <div class="help-container">
+                    <ul id="help-items">
+                      <li><a href="#">test</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="top-menu-nav-item">
+                  <div class="login">
+                    <div id="personal-menu">
+                      <span class="personal-menu-action">
+                        <i class="fa fa-user"></i>
+                        <span class="login-text">My Climate-ADAPT</span>
+                        <span class="user-name">user name</span>
+                        <i class="angle-down-icon"></i>
+                      </span>
+                    </div>
+                    <div class="login-container">
+                      <form class="login-form">
+                        <input type="text" placeholder="Email" />
+                        <input type="text" placeholder="Password" />
+                        <button type="submit" class="btn btn-header"><i class="fa fa-user" aria-hidden="true"></i> Log in</button>
+                      </form>
+                      <ul id="portal-personaltools">
+                        <li><a href="#">test</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+    
+              </span>
+            </div>
+            <div class="mobile-menu">
+              <i class="fa fa-bars"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="content-container">
+    
+        <ul class="main-nav main-nav-menu">
+          <li>
+            <a href="#">About
+              <i class="angle-down-icon"></i>
+            </a>
+            <div class="sub-menu-wrapper main-sub-menu-wrapper">
+              <ul class="main-sub-menu">
+                <li>
+                  <a href="#">Description</a>
+                </li>
+                <li>
+                  <a href="#">Sitemap</a>
+                </li>
+                <li>
+                  <a href="#">Profile of Climate-ADAPT</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a href="#">EU Policy
+              <i class="angle-down-icon"></i>
+            </a>
+            <div class="sub-menu-wrapper main-sub-menu-wrapper flex-wrapper">
+              <ul class="main-sub-menu action-flex-item">
+    
+                <li class="main-sub-menu-item">
+                  <a href="#">EU adaptation policy</a>
+                  <ul class="sub-menu-wrapper">
+                    <li>
+                      <a href="#">EU Adaptation Strategy</a>
+                    </li>
+                    <li>
+                      <a href="#">EU Reporting on Adaptation (MMR)</a>
+                    </li>
+                    <li>
+                      <a href="#">EU Covenant of Mayors</a>
+                    </li>
+                    <li>
+                      <a href="#">EU funding of adaptation</a>
+                    </li>
+                  </ul>
+                </li>
+    
+                <li class="main-sub-menu-item">
+                  <a href="#">Other EU policies</a>
+                  <ul class="sub-menu-wrapper">
+                    <li>
+                      <a href="#">EU Regional policy</a>
+                    </li>
+                    <li>
+                      <a href="#">EU  Neighbourhood policy</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <ul class="main-sub-menu action-flex-item">
+                <li class="main-sub-menu-item">
+                  <a href="#">EU sector policies</a>
+                  <ul class="sub-menu-wrapper">
+                    <li>
+                      <a href="#">Agriculture</a>
+                    </li>
+                    <li>
+                      <a href="#">Biodiversity</a>
+                    </li>
+                    <li>
+                      <a href="#">Coastal areas</a>
+                    </li>
+                    <li>
+                      <a href="#">Forestry</a>
+                    </li>
+                    <li>
+                      <a href="#">Water management</a>
+                    </li>
+                    <li>
+                      <a href="#">Marine and Fisheries</a>
+                    </li>
+                    <li>
+                      <a href="#">Ecosystem-based approaches (GI)</a>
+                    </li>
+                    <li>
+                      <a href="#">Disaster risk reduction</a>
+                    </li>
+                    <li>
+                      <a href="#">Financial</a>
+                    </li>
+                    <li>
+                      <a href="#">Buildings</a>
+                    </li>
+                    <li>
+                      <a href="#">Energy</a>
+                    </li>
+                    <li>
+                      <a href="#">Transport</a>
+                    </li>
+                    <li>
+                      <a href="#">Health</a>
+                    </li>
+                    <li>
+                      <a href="#">Urban</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a href="#">Countries, Transnational regions, Cities
+              <i class="angle-down-icon"></i>
+            </a>
+            <div class="sub-menu-wrapper main-sub-menu-wrapper">
+              <ul class="main-sub-menu">
+                <li class="main-sub-menu-item">
+                  <a href="#">Country profiles</a>
+                </li>
+                <li class="main-sub-menu-item">
+                  <a href="#">Transnational regions</a>
+                </li>
+                <li class="main-sub-menu-item">
+                  <a href="#">Cities</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a href="#">Knowledge
+              <i class="angle-down-icon"></i>
+            </a>
+            <div class="sub-menu-wrapper main-sub-menu-wrapper sub-menu-knowledge">
+    
+              <ul class="main-sub-menu">
+                <li class="main-sub-menu-item">
+                  <a href="#">Topics</a>
+                  <ul class="sub-menu-wrapper">
+                    <li>
+                      <a href="#">Impacts, vulnerabilities and risks</a>
+                    </li>
+                    <li>
+                      <a href="#">Adaptation options</a>
+                    </li>
+                    <li>
+                      <a href="#">Uncertainity guidance</a>
+                    </li>
+                    <li>
+                      <a href="#">Monitoring, Reporting and Evaluation</a>
+                    </li>
+                    <li>
+                      <a href="#">EU vulnerability to outside Europe climate impacts</a>
+                    </li>
+                    <li>
+                      <a href="#">Economic tools</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="main-sub-menu-item">
+                  <a href="#">Data and indicators</a>
+                  <ul class="sub-menu-wrapper">
+                    <li>
+                      <a href="#">Climate Services (>C3S)</a>
+                    </li>
+                    <li>
+                      <a href="#">Indicators in Climate-ADAPT</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="main-sub-menu-item">
+                  <a href="#">Research</a>
+                  <ul class="sub-menu-wrapper">
+                    <li>
+                      <a href="#">Research projects</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+    
+              <ul class="main-sub-menu">
+                <li class="main-sub-menu-item">
+                  <a href="#">Tools</a>
+                  <ul class="sub-menu-wrapper">
+                    <li>
+                      <a href="#">Adaptation Support Tool</a>
+                    </li>
+                    <li>
+                      <a href="#">Urban Adaptation Support Tool</a>
+                    </li>
+                    <li>
+                      <a href="#">Urban Vulnerability Map Book</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="main-sub-menu-item">
+                  <a href="#">Practice</a>
+                  <ul class="sub-menu-wrapper">
+                    <li>
+                      <a href="#">Case studies</a>
+                    </li>
+                    <li>
+                      <a href="#">LIFE projects</a>
+                    </li>
+                    <li>
+                      <a href="#">INTERREG projects</a>
+                    </li>
+                    <li>
+                      <a href="#">Climate-ADAPT use cases</a>
+                    </li>
+                    <li>
+                      <a href="#">Urban case studies</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="main-sub-menu-item">
+                  <a href="#">
+                    <i class="fa fa-database"></i>
+                    Search the database</a>
+                </li>
+              </ul>
+    
+            </div>
+          </li>
+          <li>
+            <a href="#">Organizations</a>
+          </li>
+        </ul>
+    
+      </div>
+    
+    </div>
+    <div class="slider">
+      <div class="slider-image-wrapper">
+        <img src="static/images/image-1.jpg"/>
+        <div class="slider-caption">
+          <h3>About Climate Change Adaptation in Europe</h3>
+          <p>Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
+          <div class="slider-bottom-caption">
+            <div class="read-more-wrapper">
+              <a href="" class="read-more">
+                <i class="fa fa-angle-double-right"></i>
+                Read more
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dynamic-area">
+      <div class="main-tab-heading">
+        <div class="content-container">
+    
+          <ul class="nav nav-tabs main-nav-tabs">
+            <li class="main-tab-item active">
+              <a href="#t-started">
+                <i class="fa fa-user"></i>
+                Getting <br> Started
+              </a>
+            </li>
+            <li class="main-tab-item db-highlighted">
+              <a href="#t-database">
+                <i class="fa fa-database"></i>
+                Search the Database
+              </a>
+            </li>
+            <li class="main-tab-item">
+              <a href="#t-policies">
+                <i class="fa fa-inbox"></i>
+                EU Sector <br> Policies
+              </a>
+            </li>
+            <li class="main-tab-item">
+              <a href="#t-countries" data-tab='countries' class="map-tab">
+                <i class="fa fa-map-marker"></i>
+                Country <br> Profiles
+              </a>
+            </li>
+            <li class="main-tab-item">
+              <a href="#t-studies">
+                <i class="fa fa-file"></i>
+                Case <br> Studies
+              </a>
+            </li>
+            <li class="main-tab-item ast-section">
+              <a href="#t-adapt">
+                <div class="ast-icon"></div>
+                Adaptation <br> Support Tool
+              </a>
+            </li>
+          </ul>
+    
+        </div>
+      </div>
+    
+      <div class="tab-container">
+        <div class="content-container">
+          <div class="tab-content tab-body clearfix">
+    
+            <div class="tab-pane active fade in getting-started main-tab-pane" id="t-started">
+              <h2>Are you new to Climate-ADAPT?</h2>
+              <p>Do you need help to find the information you want on the knowledge platform - Climate-ADAPT?</p>
+              <p>Help is at hand! Use this new guide to learn how:</p>
+    
+              <div class="row">
+    
+                <div class="col-6 col-md-4">
+                  <div class="action-box">
+                    <div class="action-bubble">
+                      <p>I want to plan or implement adaptation measures at <span class="action-highlighted">local</span> level</p>
+                    </div>
+                    <button class="standard-button action-btn regional-btn">Learn more</button>
+                  </div>
+                </div>
+    
+                <div class="col-6 col-md-4">
+                  <div class="action-box">
+                    <div class="action-bubble">
+                      <p>I want to develop a <span class="action-highlighted">NATIONAL</span> or <span class="action-highlighted">regional</span> adaptation strategy or action plan</p>
+                    </div>
+                    <button class="standard-button action-btn transnational-btn">Learn more</button>
+                  </div>
+                </div>
+    
+                <div class="col-6 col-md-4">
+                  <div class="action-box">
+                    <div class="action-bubble">
+                      <p>I want to plan strategies or implement adaptation measures in a <span class="action-highlighted">transnational</span> region</p>
+                    </div>
+                    <button class="standard-button action-btn national-btn">Learn more</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="tab-pane fade main-tab-pane" id="t-database">
+              <div class="database-search-box">
+              <form method="GET" action="/data-and-downloads">
+                <input type="text" placeholder="type here ..."
+                name="SearchableText" />
+                <button class="search-submit" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+                </form>
+              </div>
+    
+              <div class="db-categories flex-wrapper">
+                <div class="db-category-wrapper">
+                  <a href="#">
+                    <span class="db-category-icon">
+                    <i class="fa fa-cogs"></i>
+                    <span class="total-items">120</span>
+                    </span>
+                    <p>Adaptation <br> Options</p>
+                  </a>
+                </div>
+                <div class="db-category-wrapper">
+                  <a href="#">
+                    <span class="db-category-icon">
+                      <i class="fa fa-file-text-o"></i>
+                      <span class="total-items">120</span>
+                    </span>
+                    <p>Case studies</p>
+                  </a>
+                </div>
+                <div class="db-category-wrapper">
+                  <a href="#">
+                    <span class="db-category-icon">
+                    <i class="fa fa-compass"></i>
+                    <span class="total-items">120</span>
+                    </span>
+                    <p>Guidance</p>
+                  </a>
+                </div>
+                <div class="db-category-wrapper">
+                  <a href="#">
+                    <span class="db-category-icon">
+                      <i class="fa fa-area-chart"></i>
+                      <span class="total-items">120</span>
+                    </span>
+                    <p>Indicators</p>
+                  </a>
+                </div>
+                <div class="db-category-wrapper">
+                  <a href="#">
+                    <span class="db-category-icon">
+                      <i class="fa fa-info-circle"></i>
+                      <span class="total-items">120</span>
+                    </span>
+                    <p>Information <br> Portals</p>
+                  </a>
+                </div>
+                <div class="db-category-wrapper">
+                  <a href="#">
+                    <span class="db-category-icon">
+                      <i class="fa fa-bar-chart"></i>
+                      <span class="total-items">120</span>
+                    </span>
+                    <p>Maps, graphs <br> and datasets</p>
+                  </a>
+                </div>
+                <div class="db-category-wrapper">
+                  <a href="#">
+                    <span class="db-category-icon">
+                      <i class="fa fa-sitemap"></i>
+                      <span class="total-items">120</span>
+                    </span>
+                    <p>Organizations</p>
+                  </a>
+                </div>
+                <div class="db-category-wrapper">
+                  <a href="#">
+                    <span class="db-category-icon">
+                      <i class="fa fa-newspaper-o"></i>
+                      <span class="total-items">120</span>
+                    </span>
+                    <p>Publication <br> and Reports</p>
+                  </a>
+                </div>
+                <div class="db-category-wrapper db-research action-flex-item">
+                  <a href="#">
+                    <span class="db-category-icon db-research-icon">
+                      <div class="research-icon"></div>
+                    </span>
+                    <span class="total-items">120</span>
+                    <p>Research and <br> Knowledge projects</p>
+                  </a>
+                </div>
+                <div class="db-category-wrapper">
+                  <a href="#">
+                    <span class="db-category-icon">
+                      <i class="fa fa-wrench"></i>
+                      <span class="total-items">120</span>
+                    </span>
+                    <p>Tools</p>
+                  </a>
+                </div>
+              </div> <!-- end of db wrapper -->
+    
+              <div class="see-more-link">
+                <p>
+                  <a href="../data-and-downloads">
+                    <i class="fa fa-angle-double-right"></i>
+                    See complete database
+                  </a>
+                </p>
+              </div>
+            </div>
+    
+    
+              <div class="tab-pane fade main-tab-pane" id="t-policies">
+                <ul class="nav nav-tabs flex-wrapper policies-nav">
+                  <li class="policies-nav-item active">
+                    <a href="#agriculture" class="policies-nav-link">
+                      <div class="policy-icons agriculture"></div>
+                      <p>Agriculture</p>
+                    </a>
+                  </li>
+                  <li class="policies-nav-item">
+                    <a href="#forestry" class="policies-nav-link">
+                      <div class="policy-icons forestry"></div>
+                      <p>Forestry</p>
+                    </a>
+                  </li>
+                  <li class="policies-nav-item">
+                    <a href="#buildings" class="policies-nav-link">
+                      <div class="policy-icons buildings"></div>
+                      <p>Buildings</p>
+                    </a>
+                  </li>
+                  <li class="policies-nav-item">
+                    <a href="#energy" class="policies-nav-link">
+                      <div class="policy-icons energy"></div>
+                      <p>Energy</p>
+                    </a>
+                  </li>
+                  <li class="policies-nav-item">
+                    <a href="#transport" class="policies-nav-link">
+                      <div class="policy-icons transport"></div>
+                      <p>Transport</p>
+                    </a>
+                  </li>
+                  <li class="policies-nav-item">
+                    <a href="#financial" class="policies-nav-link">
+                      <div class="policy-icons financial"></div>
+                      <p>Financial</p>
+                    </a>
+                  </li>
+                  <li class="policies-nav-item">
+                    <a href="#health" class="policies-nav-link">
+                      <div class="policy-icons health"></div>
+                      <p>Health</p>
+                    </a>
+                  </li>
+                  <li class="policies-nav-item">
+                    <a href="#urban" class="policies-nav-link">
+                      <div class="policy-icons urban"></div>
+                      <p>Urban</p>
+                    </a>
+                  </li>
+                  <li class="policies-nav-item">
+                    <a href="#water" class="policies-nav-link">
+                      <div class="policy-icons water"></div>
+                      <p>Water <br /> management</p>
+                    </a>
+                  </li>
+                  <li class="policies-nav-item">
+                    <a href="#coastal" class="policies-nav-link">
+                      <div class="policy-icons coastal"></div>
+                      <p>Coastal</p>
+                    </a>
+                  </li>
+                  <li class="policies-nav-item">
+                    <a href="#biodiversity" class="policies-nav-link">
+                      <div class="policy-icons biodiversity"></div>
+                      <p>Biodiversity</p>
+                    </a>
+                  </li>
+                  <li class="policies-nav-item">
+                    <a href="#marine" class="policies-nav-link">
+                      <div class="policy-icons marine"></div>
+                      <p>Marine <br /> &amp; fisheries</p>
+                    </a>
+                  </li>
+                  <li class="policies-nav-item">
+                    <a href="#disaster" class="policies-nav-link">
+                      <div class="policy-icons disaster"></div>
+                      <p>Disaster risk <br /> reduction</p>
+                    </a>
+                  </li>
+                  <li class="policies-nav-item">
+                    <a href="#green-infrastructure" class="policies-nav-link">
+                      <div class="policy-icons green-infrastructure"></div>
+                      <p>Green <br /> infrastructure</p>
+                    </a>
+                  </li>
+                </ul>
+                <div class="tab-content policies-first-row">
+                  <div id="agriculture" class="tab-pane fade active in policies-tab-content">
+                    <div class="row">
+                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                        <img src="/cca/++theme++climateadaptv2/static/images/agriculture.png" alt="Agriculture" title="Agriculture"/>
+                      </div>
+                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                        <h4>Agriculture</h4>
+                        <i class="fa fa-times close-tab-pane"></i>
+                        <p>Climate change has complex effects on the bio-physical processes that underpin agricultural systems, with both negative and positive consequences in different EU regions. Rising atmospheric CO2 concentration, higher temperatures, changes in precipitation patterns and in frequency of extreme events both affect the natural environment as well as the quantity, quality and stability of food production. Climatic variations impact on water resources, soils, pests and diseases, leading to significant changes in agriculture and livestock production.</p>
+                      </div>
+                    </div>
+                    <div class="read-more-wrapper">
+                      <a href="/cca/eu-adaptation-policy/sector-policies/agriculture" class="read-more">
+                      <i class="fa fa-angle-double-right"></i>
+                      Read more
+                      </a>
+                    </div>
+                  </div>
+                  <div id="forestry" class="tab-pane fade policies-tab-content">
+                    <div class="row">
+                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                        <img src="/cca/++theme++climateadaptv2/static/images/forestry.jpg" alt="Forestry" title="Forestry"/>
+                      </div>
+                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                        <h4>Forestry</h4>
+                        <i class="fa fa-times close-tab-pane"></i>
+                        <p>The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector.</p>
+                      </div>
+                    </div>
+                    <div class="read-more-wrapper">
+                      <a href="/cca/eu-adaptation-policy/mainstreaming/forestry" class="read-more">
+                      <i class="fa fa-angle-double-right"></i>
+                      Read more
+                      </a>
+                    </div>
+                  </div>
+                  <div id="buildings" class="tab-pane fade policies-tab-content">
+                    <div class="row">
+                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                        <img src="/cca/++theme++climateadaptv2/static/images/buildings.jpeg" alt="Buildings" title="Buildings"/>
+                      </div>
+                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                        <h4>Buildings</h4>
+                        <i class="fa fa-times close-tab-pane"></i>
+                        <p>Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings  need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy). </p>
+                      </div>
+                    </div>
+                    <div class="read-more-wrapper">
+                      <a href="/cca/eu-adaptation-policy/sector-policies/buildings" class="read-more">
+                      <i class="fa fa-angle-double-right"></i>
+                      Read more
+                      </a>
+                    </div>
+                  </div>
+                  <div id="energy" class="tab-pane fade policies-tab-content">
+                    <div class="row">
+                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                        <img src="/cca/++theme++climateadaptv2/static/images/energy.jpeg" alt="Energy" title="Energy"/>
+                      </div>
+                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                        <h4>Energy</h4>
+                        <i class="fa fa-times close-tab-pane"></i>
+                        <p>Climate change affects the energy sector in multiple ways, ranging from changes in heating and cooling demand; to impacts on energy supply conditions – for example decreased water availability for hydropower during prolonged droughts and reduced availability of cooling water affecting the efficiency of power plants. Furthermore, energy infrastructure can be more exposed to damages by changing climate conditions. The European Commission in general aims to increase the climate resilience of infrastructure including energy by providing strategical frameworks.</p>
+                      </div>
+                    </div>
+                    <div class="read-more-wrapper">
+                      <a href="" class="read-more">
+                      <i class="fa fa-angle-double-right"></i>
+                      Read more
+                      </a>
+                    </div>
+                  </div>
+                  <div id="transport" class="tab-pane fade policies-tab-content">
+                    <div class="row">
+                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                        <img src="/cca/++theme++climateadaptv2/static/images/transport.jpg" alt="Transport" title="Transport"/>
+                      </div>
+                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                        <h4>Transport</h4>
+                        <i class="fa fa-times close-tab-pane"></i>
+                        <p>The need for adapting the transport system to the impact of climate change has been highlighted since the European Commission's Adaptation White Paper (COM (2009)148). Transport adaptation is addressed through a combination of European transport, climate change and research policies. The European Union promotes best practices, mainstreaming adaptation within its transport infrastructure development programmes, and provides guidance, e.g. by developing adequate standards for construction. Action is focused on transport infrastructure, and particularly on the Trans-European Transport Network (TEN-T).</p>
+                      </div>
+                    </div>
+                    <div class="read-more-wrapper">
+                      <a href="/cca/eu-adaptation-policy/sector-policies/energy" class="read-more">
+                      <i class="fa fa-angle-double-right"></i>
+                      Read more
+                      </a>
+                    </div>
+                  </div>
+                  <div id="financial" class="tab-pane fade policies-tab-content">
+                    <div class="row">
+                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                        <img src="/cca/++theme++climateadaptv2/static/images/financial.png" alt="Financial" title="Financial"/>
+                      </div>
+                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                        <h4>Financial</h4>
+                        <i class="fa fa-times close-tab-pane"></i>
+                        <p>Extreme weather events in recent years have increased the urgency to mainstream climate change adaptation into the different EU policy fields. There are few specific EU activities to mainstream climate change adaptation into policies for financial and insurance sectors. However many European policies related to natural disasters (see Disaster risk reduction) are very relevant to the financial and insurance sector, as they may help to prevent significant losses and financial disasters. The European Commission has also committed itself to increasing financing of climate-related activities by ensuring that at least 20% of the European budget is climate-related expenditure.</p>
+                      </div>
+                    </div>
+                    <div class="read-more-wrapper">
+                      <a href="/cca/eu-adaptation-policy/mainstreaming/financial" class="read-more">
+                      <i class="fa fa-angle-double-right"></i>
+                      Read more
+                      </a>
+                    </div>
+                  </div>
+                  <div id="health" class="tab-pane fade policies-tab-content">
+                    <div class="row">
+                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                        <img src="/cca/++theme++climateadaptv2/static/images/health.png" alt="Health" title="Health"/>
+                      </div>
+                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                        <h4>Health</h4>
+                        <i class="fa fa-times close-tab-pane"></i>
+                        <p>Climate change will generate new health risks and amplify current health problems. Both direct and indirect effects on human, plant and animal health are expected from climate change. Direct effects result from changes in the intensity and frequency of extreme weather events like heatwaves and floods. Indirect effects can be felt through changes in the incidence of diseases transmitted by insects (i.e. vector borne diseases caused by mosquitoes and ticks), rodents, or changes in water, food and air quality. The European Commission's EU strategy on adaptation to climate change is accompanied by a Staff Working Document.</p>
+                      </div>
+                    </div>
+                    <div class="read-more-wrapper">
+                      <a href="/cca/eu-adaptation-policy/mainstreaming/health" class="read-more">
+                      <i class="fa fa-angle-double-right"></i>
+                      Read more
+                      </a>
+                    </div>
+                  </div>
+                  <div id="urban" class="tab-pane fade policies-tab-content">
+                    <div class="row">
+                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                        <img src="/cca/++theme++climateadaptv2/static/images/health.png" alt="Urban" title="Urban"/>
+                      </div>
+                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                        <h4>Urban</h4>
+                        <i class="fa fa-times close-tab-pane"></i>
+                        <p>Climate change will generate new health risks and amplify current health problems. Both direct and indirect effects on human, plant and animal health are expected from climate change. Direct effects result from changes in the intensity and frequency of extreme weather events like heatwaves and floods. Indirect effects can be felt through changes in the incidence of diseases transmitted by insects (i.e. vector borne diseases caused by mosquitoes and ticks), rodents, or changes in water, food and air quality. The European Commission's EU strategy on adaptation to climate change is accompanied by a Staff Working Document.</p>
+                      </div>
+                    </div>
+                    <div class="read-more-wrapper">
+                      <a href="/cca/eu-adaptation-policy/mainstreaming/urban" class="read-more">
+                      <i class="fa fa-angle-double-right"></i>
+                      Read more
+                      </a>
+                    </div>
+                  </div>
+                  <div id="water" class="tab-pane fade policies-tab-content">
+                    <div class="row">
+                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                        <img src="/cca/++theme++climateadaptv2/static/images/water.jpeg" alt="Water management" title="Water management"/>
+                      </div>
+                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                        <h4>Water management</h4>
+                        <i class="fa fa-times close-tab-pane"></i>
+                        <p>Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe.</p>
+                      </div>
+                    </div>
+                    <div class="read-more-wrapper">
+                      <a href="/cca/eu-adaptation-policy/mainstreaming/water-management" class="read-more">
+                      <i class="fa fa-angle-double-right"></i>
+                      Read more
+                      </a>
+                    </div>
+                  </div>
+                  <div id="coastal" class="tab-pane fade policies-tab-content">
+                    <div class="row">
+                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                        <img src="/cca/++theme++climateadaptv2/static/images/coastal.jpeg" alt="Coastal areas" title="Coastal areas"/>
+                      </div>
+                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                        <h4>Coastal areas</h4>
+                        <i class="fa fa-times close-tab-pane"></i>
+                        <p>Sea level rise can cause flooding, coastal erosion and the loss of low-lying coastal systems. It will also increase the risk of storm surges and the likelihood of landward intrusion of saltwater and may endanger coastal ecosystems. Expected rises in water temperatures and ocean acidification will contribute to a restructuring of coastal ecosystems; with implications for ocean circulation and biogeochemical cycling.</p>
+                      </div>
+                    </div>
+                    <div class="read-more-wrapper">
+                      <a href="/cca/eu-adaptation-policy/sector-policies/coastal-areas" class="read-more">
+                      <i class="fa fa-angle-double-right"></i>
+                      Read more
+                      </a>
+                    </div>
+                  </div>
+                  <div id="biodiversity" class="tab-pane fade policies-tab-content">
+                    <div class="row">
+                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                        <img src="/cca/++theme++climateadaptv2/static/images/biodiversity.jpeg" alt="Biodiversity" title="Biodiversity"/>
+                      </div>
+                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                        <h4>Biodiversity</h4>
+                        <i class="fa fa-times close-tab-pane"></i>
+                        <p>Biodiversity plays an important role in regulating the climate, thus making a key contribution to climate change mitigation and adaptation.  At the same time, meeting mitigation targets coupled with ecosystem-based approaches is essential to avert biodiversity loss.  Therefore it is impossible to address biodiversity loss without addressing climate change, but it is equally impossible to tackle climate change without addressing biodiversity loss.</p>
+                      </div>
+                    </div>
+                    <div class="read-more-wrapper">
+                      <a href="/cca/eu-adaptation-policy/sector-policies/biodiversity" class="read-more">
+                      <i class="fa fa-angle-double-right"></i>
+                      Read more
+                      </a>
+                    </div>
+                  </div>
+                  <div id="marine" class="tab-pane fade policies-tab-content">
+                    <div class="row">
+                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                        <img src="/cca/++theme++climateadaptv2/static/images/marine_fisheries.jpeg" alt="Marine and fisheries" title="Marine and fisheries"/>
+                      </div>
+                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                        <h4>Marine and fisheries</h4>
+                        <i class="fa fa-times close-tab-pane"></i>
+                        <p>Climate change is expected to have severe impacts on the marine environment. Increase in water temperatures will contribute to a restructuring of marine ecosystems with implications for ocean circulation, biogeochemical cycling and marine biodiversity. Ocean acidification will affect the ability of some calcium carbonate-secreting species (as molluscs, planktons and corals) to produce their shells or skeletons. Warmer and more acidic seawater will therefore negatively affect fishery and aquaculture.</p>
+                      </div>
+                    </div>
+                    <div class="read-more-wrapper">
+                      <a href="/cca/eu-adaptation-policy/sector-policies/marine-and-fisheries" class="read-more">
+                      <i class="fa fa-angle-double-right"></i>
+                      Read more
+                      </a>
+                    </div>
+                  </div>
+                  <div id="disaster" class="tab-pane fade policies-tab-content">
+                    <div class="row">
+                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                        <img src="/cca/++theme++climateadaptv2/static/images/disaster.jpeg" alt="Disaster risk reduction" title="Disaster risk reduction"/>
+                      </div>
+                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                        <h4>Disaster risk reduction</h4>
+                        <i class="fa fa-times close-tab-pane"></i>
+                        <p>Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters.</p>
+                      </div>
+                    </div>
+                    <div class="read-more-wrapper">
+                      <a href="/cca/eu-adaptation-policy/sector-policies/disaster-risk-reduction" class="read-more">
+                      <i class="fa fa-angle-double-right"></i>
+                      Read more
+                      </a>
+                    </div>
+                  </div>
+                  <div id="green-infrastructure" class="tab-pane fade policies-tab-content">
+                    <div class="row">
+                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                        <img src="/cca/++theme++climateadaptv2/static/images/disaster.jpeg" alt="Ecosystem-based approaches (GI)" title="Ecosystem-based approaches (GI)"/>
+                      </div>
+                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                        <h4>Ecosystem-based approaches (GI)</h4>
+                        <i class="fa fa-times close-tab-pane"></i>
+                        <p>Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters.</p>
+                      </div>
+                    </div>
+                    <div class="read-more-wrapper">
+                      <a href="/cca/eu-adaptation-policy/sector-policies/ecosystem" class="read-more">
+                      <i class="fa fa-angle-double-right"></i>
+                      Read more
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="see-more-link">
+                    <p>For more informations visit:
+                        <a href="/cca/eu-adaptation-policy/sector-policies">
+                            <i class="fa fa-angle-double-right"></i>
+                            EU Sector Policies
+                        </a>
+                    </p>
+                </div>
+              </div>
+    
+            <div class="tab-pane fade tab-map" id="t-countries">
+    
+              <svg-container class="svg-header-wrapper svg-map-container"
+                data-settings="./@@mapSingleCountrySettings">
+                <svg height="300"></svg>
+              </svg-container>
+    
+              <img src="static/images/country_profile_map_1.png"/>
+              <div class="map-caption">
+                <p>EEA Member countries are at different stages of preparing, developing and implementing national adaptation strategies and plans.</p>
+                <p>Click on a specific country on the map or select from the dropdown to see the country profile:</p>
+                <span class="country-dropdown">
+                  <select>
+                    <option selected="selected">Go to country...</option>
+                    <option>
+                      Country name
+                    </option>
+                  </select>
+                </span>
+                <a href="../countries-regions/countries" class="standard-button primary-button sm-button">See countries webpage</a>
+              </div>
+            </div>
+    
+            <div class="tab-pane fade" id="t-studies">
+              <div class="case-study row">
+    
+                <div class="col-md-9">
+                  <h2>What are case studies?</h2>
+                  <p>Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events. </p>
+                  <p>Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href="https://climate-adapt.eea.europa.eu/repository/11090223.pdf">criteria</a> and also in collaboration with the main stakeholders.</p>
+                  <div class="ca-booklet">
+                    <img src="static/images/ca-booklet.png">
+                    <p>See how Europe is adapting to climate change:
+                      <a class="ca-booklet-link" href="../about/climate-adapt-10-case-studies-online.pdf">
+                        <i class="fa fa-angle-double-right"></i>
+                        Case studies booklet
+                      </a>
+                    </p>
+                  </div>
+                </div>
+    
+                <div class="case-study-search col-md-3">
+                  <img src="static/images/case_study_prev.png"/>
+                  <p>Find case studies in Europe for different locations as well as for various impacts and sectors:</p>
+                  <a class="special-link" href="../knowledge/tools/sat">
+                    <i class="fa fa-angle-double-right"></i>
+                    Case Study Search Tool
+                  </a>
+                </div>
+            </div>
+    
+            <div class="see-more-link case-study-link">
+              <p>For more informations visit:
+                <a href="../knowledge/tools/sat">
+                  <i class="fa fa-angle-double-right"></i>
+                  Case studies
+                </a>
+              </p>
+            </div>
+          </div>
+    
+            <div class="tab-pane fade ast-tab-pane" id="t-adapt">
+    
+              <div class="ast-content">
+                <h2>Adaptation Support Tool</h2>
+                <div class="ast-map-image">
+                  <div class="arrow-round">
+                    <div>
+                      <a class="ast-step-wrapper" href="../knowledge/tools/adaptation-support-tool/step-1">
+                        <span class="ast-circle circle-1">1</span>
+                        <span class="step-text circle-1-text">
+                          <p>Preparing the ground for adaptation</p>
+                        </span>
+                      </a>
+                    </div>
+                    <div>
+                      <a class="ast-step-wrapper" href="../knowledge/tools/adaptation-support-tool/step-2">
+                        <span class="ast-circle circle-2">2</span>
+                        <span class="step-text circle-2-text">
+                          <p>Assessing risks and vulnerability <br> to climate change</p>
+                        </span>
+                      </a>
+                    </div>
+                    <div>
+                      <a class="ast-step-wrapper" href="../knowledge/tools/adaptation-support-tool/step-3">
+                        <span class="ast-circle circle-3">3</span>
+                        <span class="step-text circle-3-text">
+                          <p>Identifying adaptation options</p>
+                        </span>
+                      </a>
+                    </div>
+                    <div>
+                      <a class="ast-step-wrapper" href="../knowledge/tools/adaptation-support-tool/step-4">
+                        <span class="ast-circle circle-4">4</span>
+                        <span class="step-text circle-4-text">
+                          <p>Assessing adaptation options</p>
+                        </span>
+                      </a>
+                    </div>
+                    <div>
+                      <a class="ast-step-wrapper" href="../knowledge/tools/adaptation-support-tool/step-5">
+                        <span class="ast-circle circle-5">5</span>
+                        <span class="step-text circle-5-text">
+                          <p>Implementation</p>
+                        </span>
+                      </a>
+                    </div>
+                    <div>
+                      <a class="ast-step-wrapper" href="../knowledge/tools/adaptation-support-tool/step-6">
+                        <span class="ast-circle circle-6">6</span>
+                        <span class="step-text circle-6-text">
+                          <p>Monitoring & Evaluation (M&E)</p>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+    
+                <ul class="ast-steps">
+                  <li>
+                    <a href="../knowledge/tools/adaptation-support-tool/step-1">
+                      <span class="step-number">1.</span>
+                      Preparing the ground for adaptation
+                    </a>
+                  </li>
+                  <li>
+                    <a href="../knowledge/tools/adaptation-support-tool/step-2">
+                      <span class="step-number">2.</span>
+                      Assessing risks and vulnerability to climate change
+                    </a>
+                  </li>
+                  <li>
+                    <a href="../knowledge/tools/adaptation-support-tool/step-3">
+                      <span class="step-number">3.</span>
+                      Identifying adaptation options
+                    </a>
+                  </li>
+                  <li>
+                    <a href="../knowledge/tools/adaptation-support-tool/step-4">
+                      <span class="step-number">4.</span>
+                      Assessing adaptation options
+                    </a>
+                  </li>
+                  <li>
+                    <a href="../knowledge/tools/adaptation-support-tool/step-5">
+                      <span class="step-number">5.</span>
+                      Implementation
+                    </a>
+                  </li>
+                  <li>
+                    <a href="../knowledge/tools/adaptation-support-tool/step-6">
+                      <span class="step-number">6.</span>
+                      Monitoring & Evaluation (M&E)
+                    </a>
+                  </li>
+                </ul>
+              </div>
+    
+              <div class="see-more-link">
+                <div class="ast-link">
+                  <div class="ast-link-wrapper">
+                    <p>For more informations visit:</p>
+                    <a href="../knowledge/tools/adaptation-support-tool">
+                      <i class="fa fa-angle-double-right"></i>
+                      Adaptation support tool
+                    </a>
+                  </div>
+                </div>
+                <div class="urban-area">
+                  <img src="static/images/uast.png">
+                  <p>For urban areas guidance visit:</p>
+                  <a class="special-link" href="../knowledge/tools/urban-ast/step-0-0">
+                  <i class="fa fa-angle-double-right"></i>
+                  Urban Adaptation Support Tool
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="blue-bg"></div>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <div class="main-area">
+      
+        <div class="row first-row">
+          <div class="main-box col-md-3 col-sm-6 col-xs-12">
+            <div class="box-container info-section">
+              <div class="content-body">
+                <div class="info-title-section">
+                  <img src="static/images/share-info.png"/>
+                  <h5 class="info-title">Share <span>your </br> information</span></h5>
+                </div>
+                <p>Find out how to contribute different types of information to Climate-ADAPT</p>
+                <div class="main-link-wrapper">
+                  <a class="standard-button info-button"
+                     href="../help/share-your-info">I want to learn more</a>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <div class="main-box col-md-3 col-sm-6 col-xs-12">
+            <div class="box-container">
+              <h2>EU Funding and Adaptation </h2>
+              <ul class="box-listing">
+                <li>
+                  <a href="../eu-adaptation-policy/funding/life">Life climate Action</a>
+                  <p>Developing innovative responses to the challenges of climate change.</p>
+                </li>
+                <li>
+                  <a href="../eu-adaptation-policy/funding/esi">ESI funds</a>
+                  <p>EU budget has an important role to play in promoting climate action.</p>
+                </li>
+                <li>
+                  <a href="../eu-adaptation-policy/funding/h2020">H2020</a>
+                  <p>Financial instrument implementing the Innovation Union.</p>
+                </li>
+              </ul>
+              <div class="read-more-wrapper">
+                <a href="../eu-adaptation-policy/funding" class="read-more">
+                  <i class="fa fa-angle-double-right"></i>
+                  Read more
+                </a>
+              </div>
+            </div>
+          </div>
+      
+          <div class="main-box col-md-6 col-sm-12 col-xs-12">
+            <div class="box-container">
+              <img src="static/images/COM_logo.png"/>
+              <p>Covenant of Mayors Initiative on Climate Change Adaptation – was set up by the European Commission to engage cities in taking action to adapt to climate change. It was launched in 2014 as a parallel adaptation initiative to the Covenant of Mayors, which focused on mitigation. In 2015, the European Commission merged the two initiatives in an effort to promote an integrated approach to climate and energy action.</p>
+              <div class="read-more-wrapper">
+                <a href="../eu-adaptation-policy/covenant-of-mayors" class="read-more">
+                  <i class="fa fa-angle-double-right"></i>
+                  Read more
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+          <div class="row second-row">
+              <div class="main-box col-md-3 col-sm-6 col-xs-12">
+                  <div class="box-container fp-news-tile">
+                      <h2>News</h2>
+                      <ul>
+                          <li>
+                              <a href="#">
+                                  Hiding from a warmer climate in the forest
+                              </a>
+                              <p class="news-time">11 Jan 2018</p>
+                          </li>
+                          <li>
+                              <a href="#">
+                                  Agriculture at risk in Italy: the potential impacts of climate change
+                              </a>
+                              <p class="news-time">09 Jan 2018</p>
+                          </li>
+                          <li>
+                              <a href="#">
+                                  Trees' spring awakening is becoming less and less sensitive to altitude differences
+                              </a>
+                              <p class="news-time">26 Dec 2017</p>
+                          </li>
+                      </ul>
+                      <div class="read-more-wrapper">
+                          <a href="" class="read-more">
+                              <i class="fa fa-angle-double-right"></i>
+                              More news
+                          </a>
+                      </div>
+                  </div>
+              </div>
+      
+              <div class="main-box col-md-3 col-sm-6 col-xs-12">
+                  <div class="box-container fp-events-tile">
+                      <h2>Events</h2>
+                      <div>
+                          <a href="#">
+                              EU Adaptation  Strategy evaluation: public consultation meeting
+                          </a>
+                          <p class="news-time">23 Jan 2018</p>
+                      </div>
+                      <div>
+                          <a href="#">
+                              Public consultation launched on EU Adaptation Strategy
+                          </a>
+                          <p class="news-time">01 Mar 2018 </p>
+                      </div>
+                      <div>
+                          <a href="#">
+                              Stakeholder dialogue on solutions for strategic adaptation planning in European cities
+                          </a>
+                          <p class="news-time">01 Feb 2018</p>
+                      </div>
+                      <div class="read-more-wrapper">
+                          <a href="" class="read-more">
+                              <i class="fa fa-angle-double-right"></i>
+                              More events
+                          </a>
+                      </div>
+                  </div>
+              </div>
+      
+              <div class="main-box col-md-3 col-sm-6 col-xs-12">
+                  <div class="box-container">
+                      <div class="newsletter-wrapper content-body">
+                          <h4>Newsletter</h4>
+                          <p>Check the <a href="../newsletter">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:</p>
+                          <div class="main-link-wrapper">
+                            <a href="http://eea-subscriptions.eu/user/register"
+                               class="standard-button primary-button">
+                                Sign me up!
+                            </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+      
+              <div class="main-box col-md-3 col-sm-6 col-xs-12">
+                  <div class="box-container">
+                      <div class="rss-feed-wrapper content-body">
+                          <i class="fa fa-rss"></i>
+                          <p>Subscribe to our <strong>RSS feed</strong> <br/> and stay up to date!</p>
+                          <div class="main-link-wrapper">
+                            <a href="#"
+                               class="standard-button primary-button">
+                                Subscribe
+                            </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      
+      </div>
+    </div>
+
+    <footer>
+    
+      <div class="footer-nav-wrapper">
+        <div class="content-container">
+          <nav class="footer-nav" role="navigation">
+            <ul>
+              <li class="footer-nav-item">
+                <a href="/cca" class="footer-nav-link">Home</a>
+              </li>
+              <li class="footer-nav-item">
+                <a href="/cca/contact-footer" class="footer-nav-link">Contact</a>
+              </li>
+              <li class="footer-nav-item">
+                <a href="/cca/sitemap" class="footer-nav-link">Sitemap</a>
+              </li>
+              <li class="footer-nav-item">
+                <a href="https://ec.europa.eu/info/legal-notice_en" class="footer-nav-link" target="_blank">Legal notice</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    
+      <div class="content-container">
+        <div class="row footer-content">
+          <div class="site-info col-md-6 col-xs-12">
+            <p>The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href="https://ec.europa.eu/">European Commission</a> and the <a href="https://www.eea.europa.eu/">European Environment Agency.</a></p>
+            <div class="footer-logos-wrapper">
+              <a href="https://ec.europa.eu/">
+                <img src="static/images/ec_logo.png" alt="European Commission Logo" title="European Commission"/>
+              </a>
+              <a href="https://www.eea.europa.eu/">
+                <img src="static/images/eea_mini.png" alt="EEA Logo" alt="EEA Logo" title="European Environment Agency"/>
+              </a>
+            </div>
+          </div>
+    
+          <div class="eu-systems col-md-6 col-xs-12">
+            <div class="eu-systems-wrapper">
+              <p>Other European <br/> Information Systems:</p>
+              <ul class="footer-logos">
+                <li class="footer-logo-item">
+                  <a href="https://biodiversity.europa.eu/">
+                    <img src="static/images/bise-logo.png" alt="BISE Logo" title="Biodiversity Information System for Europe"/>
+                  </a>
+                </li>
+                <li class="footer-logo-item">
+                  <a href="https://water.europa.eu/">
+                    <img src="static/images/wise-logo.png" alt="WISE Logo" title="Water Information System for Europe"/>
+                  </a>
+                </li>
+                <li class="footer-logo-item">
+                  <a href="http://climate.copernicus.eu/">
+                    <img src="static/images/c3s-logo.png" alt="Copernicus Climate Logo" title="Climate Change Service"/>
+                  </a>
+                </li>
+                <li class="footer-logo-item">
+                  <a href="http://drmkc.jrc.ec.europa.eu/">
+                    <img src="static/images/drmkc-logo.png" alt="DRMKC Logo" title="DRMKC"/>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </footer>
+    <script src="static/bs3/js/bootstrap.min.js"></script>
+    <script src="static/js/slick.min.js"></script>
+    <script src="static/js/main.js"></script>
+
+  </body>
+</html>

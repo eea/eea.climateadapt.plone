@@ -1,0 +1,116 @@
+@import "variables.less";
+
+.fullwidth {
+  .header {
+    .main-nav {
+      box-shadow: none;
+      max-width: 1200px;
+    }
+
+    & > .content-container {
+      max-width: 100%;
+      background-color: @primary-blue;
+    }
+
+    .top-menu-wrapper,
+    .edit-bar-wrapper .content-container {
+      max-width: inherit;
+      padding: 0 1.5em;
+    }
+  }
+
+  .site-container {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  #portal-breadcrumbs {
+    margin-left: 1.5em;
+  }
+
+  .portalMessage {
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+  }
+
+  #content {
+    border-left: none;
+    border-right: none;
+  }
+
+  .footer-content {
+    padding-bottom: 50px;
+
+    .eu-systems {
+      float: right;
+    }
+  }
+
+  .footer-nav-wrapper {
+    & > .content-container {
+      max-width: 100%;
+    }
+
+    .footer-nav {
+      padding-left: 1.5em;
+    }
+  }
+
+  footer {
+    & > .content-container {
+      max-width: 100%;
+    }
+
+    .footer-content {
+      padding: 1.5em;
+      margin: 0;
+    }
+
+    .site-info {
+      width: 25%;
+      p {
+        text-align: left;
+      }
+    }
+  }
+
+  @media screen and (max-width: 967px) {
+    .footer-content {
+      .eu-systems,
+      .eu-systems-wrapper {
+        float: none;
+        p {
+          margin-bottom: 0;
+          text-align: center;
+        }
+      }
+    }
+
+    footer {
+      .site-info {
+        width: 100%;
+        padding-top: 0;
+        padding-bottom: 1.5em;
+      }
+      .site-info p {
+        text-align: center;
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+
+    #portal-column-one,
+    #portal-column-two,
+    #portal-column-content {
+      margin-left: 0;
+    }
+
+    footer {
+      .site-info {
+        width: 75%;
+      }
+    }
+  }
+
+}

@@ -1,26 +1,58 @@
-<div class="fp-image-tile">
-  <a href="/countries-regions/countries">
-    <img src="" tal:attributes="src string: ${context/++resource++eea.climateadapt}/img/european-countries.png" />
-  </a>
-  <form id="fp-country-selector">
-  <select id="country-select">
-    <option id="no-selection-option" value="" selected="selected">Choose a country</option>
-    <option tal:repeat="c view/countries" tal:attributes="value python:c[0]" tal:content="python: c[1]"></option>
-  </select>
+<div id="fp-country-selector">
+
+  <div class="map-caption">
+    <p>EEA Member countries are at different stages of preparing, developing and implementing national adaptation strategies and plans.</p>
+    <p>Click on a specific country on the map or select from the dropdown to see the country profile:</p>
+    <div class="country-dropdown">
+      <form>
+        <select id="country-select" class="form-control">
+          <option id="no-selection-option" value="" selected="selected">Go to country...</option>
+          <option tal:repeat="c view/countries" tal:attributes="value python:c[0]" tal:content="python: c[1]"></option>
+        </select>
+      </form>
+    </div>
+    <a href="../countries-regions/countries" class="form-control">See countries webpage</a>
+  </div>
+
+  <svg-container class="svg-map-container svg-fp-container">
+    <svg height="350" width="100%">
+    </svg>
+  </svg-container>
+
+  <div class="map-islands">
+    <img src="/cca/++theme++climateadaptv2/static/images/azores-maplet.png" />
+    <img src="/cca/++theme++climateadaptv2/static/images/canary-maplet.png" />
+  </div>
+
+
   <script>
-    // <![CDATA[
+// <![CDATA[
     jQuery(document).ready(function(){
       $("#country-select").change(function(){
-        var cid = $(this).val();
-        var country = $("#country-select option[value='" + cid + "']").text();
-        var res = country.split(" ").join("-")
-        console.log(cid, res);
-        if (country.length) {
-          document.location = '/countries/' + res.toLowerCase();
-        }
-      });
+      var cid = $(this).val();
+      document.location = '/countries/' + cid;
     });
-    // ]]>
+    });
+  // ]]>
   </script>
-  </form>
+
+  <script>
+    // d3 uses define, we don't want it, let's trick it.
+    window._old_define = window.define;
+    window.define = null;
+  </script>
+
+  <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+  <script src="https://d3js.org/d3-array.v1.min.js"></script>
+  <script src="https://d3js.org/d3-geo.v1.min.js"></script>
+  <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+  <script src="https://unpkg.com/topojson@3"></script>
+  <script src="https://d3js.org/d3-queue.v3.min.js"></script>
+
+  <script>
+    window.define = window._old_define;
+  </script>
+
+  <script src="/++theme++climateadaptv2/static/countries/countries-tile.js"></script>
+
 </div>

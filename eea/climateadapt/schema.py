@@ -45,3 +45,16 @@ class Email(TextLine):
             if check_value != '':
                 raise InvalidEmail
         return True
+
+class PortalType(TextLine):
+    """ plain text line used just to override the getter to return portal type"""
+    pass
+
+class AbsoluteUrl(TextLine):
+    """ plain text line used just to override the getter to return
+        the link to the object"""
+    pass
+
+class Uploader(TextLine):
+    """ plain text line used just to override the getter to return the uploader uid"""
+    pass

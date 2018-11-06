@@ -4,17 +4,27 @@ Various page overrides
 
 from collective.excelexport.exportables.dexterityfields import (BaseFieldRenderer,
                                                                 FieldRenderer)
+from zope.component import adapter, adapts, queryUtility
+from zope.formlib import form
+from zope.interface import Interface, implementer
+from zope.schema import Choice, List
+from zope.schema.interfaces import IDatetime, IList, IText, ITextLine, ITuple
+from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 from eea.climateadapt import MessageFactory as _
-from eea.climateadapt.schema import Year
+from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
+from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader, Year
 from eea.pdf.interfaces import IPDFTool
 from plone.api import content, portal
 from plone.app.content.browser.interfaces import IContentsPage
 from plone.app.contentmenu.menu import DisplaySubMenuItem as DSMI
-from plone.app.contenttypes.behaviors.richtext import IRichText  # noqa
+from plone.app.contenttypes.behaviors.richtext import \
+    IRichText as IRichTextBehavior
 from plone.app.controlpanel.widgets import MultiCheckBoxVocabularyWidget
+from plone.app.textfield.interfaces import IRichText
 from plone.app.users.browser.personalpreferences import (IPersonalPreferences,
                                                          LanguageWidget,
+                                                         PasswordAccountPanel,
                                                          PersonalPreferencesPanel,
                                                          PersonalPreferencesPanelAdapter,
                                                          WysiwygEditorWidget)
@@ -30,15 +40,6 @@ from z3c.form.interfaces import NO_VALUE, IFieldWidget, IFormLayer
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.interfaces import IRelationList
-from zope.component import adapter, adapts, queryUtility
-from zope.formlib import form
-from zope.interface import Interface, implementer
-from zope.schema import Choice, List
-from zope.schema.interfaces import IDatetime, IList, IText, ITextLine, ITuple
-from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
-
-# from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
-
 
 thematic_sectors = SimpleVocabulary([
     SimpleTerm(value='AGRICULTURE', title=_(u'Agriculture')),
@@ -280,6 +281,48 @@ class TextLineFieldRenderer(BaseFieldRenderer):
         text = safe_unicode(self._get_text(value))
 
         return text
+
+
+class PortalTypeRenderer(BaseFieldRenderer):
+    """ Portal type adapter for excel export"""
+    adapts(PortalType, Interface, Interface)
+
+    def _get_text(self, value):
+        return value
+
+    def render_value(self, obj):
+        """Gets the value to render in excel file from content value
+        """
+
+        return portal.get().portal_types.get(obj.portal_type).title
+
+
+class AbsoluteUrlRenderer(BaseFieldRenderer):
+    """ Absolute url adapter for excel export"""
+    adapts(AbsoluteUrl, Interface, Interface)
+
+    def _get_text(self, value):
+        return value
+
+    def render_value(self, obj):
+        """Gets the value to render in excel file from content value
+        """
+
+        return obj.absolute_url()
+
+
+class UploaderRenderer(BaseFieldRenderer):
+    """ Uploader adapter for excel export"""
+    adapts(Uploader, Interface, Interface)
+
+    def _get_text(self, value):
+        return value
+
+    def render_value(self, obj):
+        """Gets the value to render in excel file from content value
+        """
+
+        return '; '.join(obj.creators)
 
 
 class TextFieldRenderer(BaseFieldRenderer):
@@ -558,7 +601,7 @@ class FolderPdfBody (BrowserView):
         return self.template(**kwargs)
 
 
-class OverrideRichText (RichTextWidget):
+class OverrideRichText(RichTextWidget):
     """ Richtext field override for tinymce tabs plugin """
 
     def _base_args(self):
@@ -596,13 +639,23 @@ class OverrideRichText (RichTextWidget):
         return super(OverrideRichText, self).render()
 
 
-@adapter(getSpecification(IRichText['text']), IWidgetsLayer)
+@adapter(getSpecification(IRichTextBehavior['text']), IWidgetsLayer)
+@implementer(IFieldWidget)
+def WidgetsLayerRichTextFieldWidget(field, request):
+    return FieldWidget(field, OverrideRichText(request))
+
+
+@adapter(getSpecification(IRichTextBehavior['text']), IFormLayer)
+@implementer(IFieldWidget)
+def FormLayerRichTextFieldWidget(field, request):
+    return FieldWidget(field, OverrideRichText(request))
+
+
+@adapter(IRichText, IWidgetsLayer)
 @implementer(IFieldWidget)
 def RichTextFieldWidget(field, request):
     return FieldWidget(field, OverrideRichText(request))
 
 
-@adapter(getSpecification(IRichText['text']), IFormLayer)
-@implementer(IFieldWidget)
-def RichTextFieldWidgett(field, request):
-    return FieldWidget(field, OverrideRichText(request))
+class PasswordAccountPanel(PasswordAccountPanel):
+    template = ViewPageTemplateFile('pt/password-account-panel.pt')

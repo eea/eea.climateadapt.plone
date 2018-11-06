@@ -1,14 +1,18 @@
 """ A tile to implement the countries select dropdown
 """
 
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from collective.cover.tiles.base import IPersistentCoverTile
-from collective.cover.tiles.base import PersistentCoverTile
-from eea.climateadapt import MessageFactory as _
-from eea.climateadapt.vocabulary import ace_countries_selection
+import json
+
+from collective.cover.tiles.base import (IPersistentCoverTile,
+                                         PersistentCoverTile)
 from zope import schema
 from zope.interface import implements
+
+from eea.climateadapt import MessageFactory as _
+from eea.climateadapt.vocabulary import ace_countries_selection
 from plone.memoize import view
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class ICountrySelectTile(IPersistentCoverTile):
@@ -18,10 +22,10 @@ class ICountrySelectTile(IPersistentCoverTile):
         required=False,
     )
 
-    image_uuid = schema.TextLine(
-        title=_(u'Image UUID'),
-        required=False,
-    )
+    # image_uuid = schema.TextLine(
+    #     title=_(u'Image UUID'),
+    #     required=False,
+    # )
 
 
 class CountrySelectTile(PersistentCoverTile):
@@ -47,9 +51,22 @@ class CountrySelectTile(PersistentCoverTile):
     def countries(self):
         countries = [(c[0], c[1].replace(" ", "-")) for c in
                      ace_countries_selection]
+
         return countries
 
-    def get_image(self):
-        if self.data['image_uuid']:
-            cat = self.context.portal_catalog
-            return cat.searchResults(UID=self.data['image_uuid'])[0].getObject()
+    # def get_image(self):
+    #     if self.data['image_uuid']:
+    #         cat = self.context.portal_catalog
+    #         return
+    #         cat.searchResults(UID=self.data['image_uuid'])[0].getObject()
+
+
+class SettingsPage(BrowserView):
+    """ JSON for settings for country headers
+    """
+
+    def __call__(self):
+        self.request.response.setHeader('Content-Type', 'application/json')
+        res = {'focusCountry': self.context.Title()}
+
+        return json.dumps(res)

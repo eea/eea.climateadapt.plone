@@ -44,13 +44,16 @@
       </dl>
     </div>
 
-    <div class="cover-richtext-tile tile-content aceitem-relevant-tile" tal:condition="not: is_compose" tal:define="assigned view/assigned">
+    <div class="cover-richtext-tile tile-content aceitem-relevant-tile"
+      tal:condition="python: (not is_compose) and view.is_available"
+      tal:define="assigned view/assigned">
 
-      <div style="margin-top:0.4em; margin-right: 0.6em;float:left" class="hiddenForAnon">
+      <div style="margin-top:0.2em; margin-right: 0.6em;float:left" class="hiddenForAnon">
         <a href=""
           class="pat-plone-modal"
           tal:attributes="href string:#info${view/id}">
-          <img src="/++theme++climateadapt/static/cca/img/vergrootglas.png" />
+          <!-- <img src="/++theme++climateadapt/static/cca/img/vergrootglas.png" /> -->
+          <i class="fa fa-search"></i>
         </a>
         <div tal:attributes="id string:info${view/id}" style="display:none" >
           <h1>Relevant tile info</h1>
@@ -79,24 +82,32 @@
       <h2><span tal:content="python: view.data.get('title')">Title here</span></h2>
 
       <h3 style="display:none">Relevant tile</h3>
-      <ul tal:condition="assigned">
+      <ul tal:condition="assigned" class="list-items">
         <li tal:repeat="obj assigned">
           <a href="" tal:attributes="href obj/absolute_url" tal:content="obj/Title">Title here</a>
         </li>
       </ul>
-      <ul tal:condition="not: assigned">
+      <ul tal:condition="not: assigned" class="list-items">
         <li tal:repeat="brain view/items">
-          <a href="" tal:attributes="href brain/getURL" tal:content="brain/Title">Title here</a>
+          <a href="" tal:attributes="href brain/getURL; title brain/Description" tal:content="brain/Title">Title here</a>
+          <div 
+            class="hover-icon"
+            tal:define="icons python: view.get_icons(brain)">
+            <img class="tile-icon-help" tal:repeat="icon icons" tal:attributes="src icon/absolute_url;
+            title icon/title_or_id" />
+          </div>
         </li>
       </ul>
       <div class="tile-footer">
         <a href="" tal:attributes="href view/view_more_url" tal:condition="view/view_more">View more</a>
 
+        <div tal:condition="nothing">
         <!-- <div tal:condition="python:view.data.get('show_share_btn') or view.show_share_btn()">
         <a href="/share-your-info" >
           <button>Share information</button>
         </a>
       </div> -->
+        </div>
       </div>
     </div>
   </body>

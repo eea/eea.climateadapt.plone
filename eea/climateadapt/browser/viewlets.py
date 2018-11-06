@@ -51,6 +51,8 @@ def redirect_to_personal_preferences():
 
 def check_sectors(user):
     our_group = group.get('extranet-cca-thematicexperts')
+    if our_group is None:
+        return False
     user_ids = our_group.getAllGroupMemberIds()
     sectors = user.getProperty('thematic_sectors', '')
 

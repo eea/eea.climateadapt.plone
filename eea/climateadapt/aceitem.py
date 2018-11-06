@@ -1,7 +1,12 @@
 from collective import dexteritytextindexer
+from zope.component import adapter
+from zope.interface import implementer, implements
+from zope.schema import (URI, Bool, Choice, Datetime, Int, List, Text,
+                         TextLine, Tuple)
+
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
-from eea.climateadapt.schema import Year
+from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader, Year
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.app.textfield import RichText
 from plone.app.widgets.interfaces import IWidgetsLayer
@@ -9,16 +14,9 @@ from plone.autoform import directives
 from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.browser.textlines import TextLinesWidget
-from z3c.form.interfaces import IAddForm
-from z3c.form.interfaces import IEditForm
-from z3c.form.interfaces import IFieldWidget
+from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
-from zope.component import adapter
-from zope.interface import implementer
-from zope.interface import implements
-from zope.schema import Bool, Choice, Int, List, Text, TextLine, Tuple, URI
-from zope.schema import Datetime
 
 
 class IAceItem(form.Schema, IImageScaleTraversable):
@@ -28,6 +26,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     dexteritytextindexer.searchable('title')
     dexteritytextindexer.searchable('long_description')
+    dexteritytextindexer.searchable('description')
     dexteritytextindexer.searchable('keywords')
     dexteritytextindexer.searchable('sectors')
     dexteritytextindexer.searchable('climate_impacts')
@@ -49,8 +48,9 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     form.fieldset('default',
                   label=u'Item Description',
-                  fields=['title', 'long_description', 'keywords', 'sectors',
-                          'climate_impacts', 'elements', 'year', 'featured']
+                  fields=['title', 'description', 'long_description',
+                          'keywords', 'sectors', 'climate_impacts', 'elements',
+                          'year', 'featured']
                   )
 
     form.fieldset('reference_information',
@@ -87,6 +87,12 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                                 u"item.(5,000 character limit)",
                                 required=True)
 
+    description = Text(
+        title=_(u"Short summary"),
+        required=False,
+        description=u"Enter a short summary that will be used in listings.",
+    )
+
     keywords = Tuple(
         title=_(u"Keywords"),
         description=_(u"Describe and tag this item with relevant keywords."
@@ -107,7 +113,8 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                        vocabulary="eea.climateadapt.aceitems_sectors",),
                    )
 
-    form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    form.widget(
+        climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_(u"Climate impacts"),
         description=_(u"Select one or more climate change impact topics that "
@@ -170,6 +177,15 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                                 u"climate-adapt]")
 
     # -----------[ "omitted" fields ]------------------
+    directives.omitted(IAddForm, 'portal_type')
+    directives.omitted(IEditForm, 'portal_type')
+
+    directives.omitted(IAddForm, 'item_link')
+    directives.omitted(IEditForm, 'item_link')
+
+    directives.omitted(IAddForm, 'uploader')
+    directives.omitted(IEditForm, 'uploader')
+
     directives.omitted(IAddForm, 'data_type')
     directives.omitted(IEditForm, 'data_type')
 
@@ -215,6 +231,20 @@ class IAceItem(form.Schema, IImageScaleTraversable):
         missing_value=None,
     )
 
+    portal_type = PortalType(title=_(u"Portal type"),
+                             required=False,
+                             default=u""
+                             )
+
+    item_link = AbsoluteUrl(title=_(u"Item link"),
+                            required=False,
+                            default=u""
+                            )
+
+    uploader = Uploader(title=_(u"Uploaded by"),
+                        required=False,
+                        default=u""
+                        )
     # fix???
     data_type = Choice(title=_(u"Data Type"),
                        required=False,
@@ -314,7 +344,8 @@ class IMapGraphDataset(IAceItem):
     """
     gis_layer_id = TextLine(
         title=_(u"GIS Layer ID"),
-        description=u"Enter the layer id for the map-viewer (250 character limit)",
+        description=u"Enter the layer id for the map-viewer "
+        u"(250 character limit)",
         required=False, default=u"")
 
 
@@ -382,6 +413,7 @@ class Action(dexterity.Container):
 def SpecialTagsFieldWidget(field, request):
     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.special_tags'
+
     return widget
 
 
@@ -390,5 +422,6 @@ def SpecialTagsFieldWidget(field, request):
 def KeywordsFieldWidget(field, request):
     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
     widget.vocabulary = 'eea.climateadapt.keywords'
-    #widget.vocabulary = 'plone.app.vocabularies.Catalog'
+    # widget.vocabulary = 'plone.app.vocabularies.Catalog'
+
     return widget

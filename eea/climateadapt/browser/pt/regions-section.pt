@@ -1,0 +1,94 @@
+<div tal:define="portal_url context/portal_url" class="trans-regions-section">
+
+  <script>
+    $(document).ready(function () {
+      $("#region-select").change(function () {
+        var url = $(this).val();
+        if (url.length) {
+          document.location = url;
+        }
+      });
+    });
+  </script>
+
+  <select id="region-select" class="form-control">
+    <option value="">Choose a region</option>
+    <option tal:repeat="region view/regions" tal:attributes="value region/url" tal:content="region/title">Region</option>
+  </select>
+
+  <div class="flex-wrapper">
+    <div class="region-wrapper">
+      <h6>Adriatic Ionian</h6>
+      <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/adriatic-ionian">
+        <img src="/cca/++theme++climateadaptv2/static/images/adriatic_ionian.png"/>
+      </a>
+    </div>
+    <div class="region-wrapper">
+      <h6>Alpine Space</h6>
+      <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/alpine-space">
+        <img src="/cca/++theme++climateadaptv2/static/images/alpine_space.png"/>
+      </a>
+    </div>
+    <div class="region-wrapper">
+      <h6>Atlantic Area</h6>
+      <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/atlantic-area">
+        <img src="/cca/++theme++climateadaptv2/static/images/atlantic_area.png"/>
+      </a>
+    </div>
+    <div class="region-wrapper">
+      <h6>Balkan Mediterranean</h6>
+      <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/balkan-mediterranean">
+        <img src="/cca/++theme++climateadaptv2/static/images/balkan_mediterranean.png"/>
+      </a>
+    </div>
+    <div class="region-wrapper">
+      <h6>Baltic Sea</h6>
+      <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/baltic-sea-region">
+        <img src="/cca/++theme++climateadaptv2/static/images/baltic_sea.png"/>
+      </a>
+    </div>
+    <div class="region-wrapper">
+      <h6>Central Europe</h6>
+      <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/central-europe">
+        <img src="/cca/++theme++climateadaptv2/static/images/central_europe.png"/>
+      </a>
+    </div>
+
+    <div class="region-wrapper">
+      <h6>Danube</h6>
+      <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/danube">
+        <img src="/cca/++theme++climateadaptv2/static/images/danube.png"/>
+      </a>
+    </div>
+    <div class="region-wrapper">
+      <h6>Mediterranean</h6>
+      <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/mediterranean">
+        <img src="/cca/++theme++climateadaptv2/static/images/mediterranean.png"/>
+      </a>
+    </div>
+    <div class="region-wrapper">
+      <h6>North Sea</h6>
+      <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/north-sea">
+        <img src="/cca/++theme++climateadaptv2/static/images/north_sea.png"/>
+      </a>
+    </div>
+    <div class="region-wrapper">
+      <h6>North Western Europe</h6>
+      <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/north-west-europe">
+        <img src="/cca/++theme++climateadaptv2/static/images/north_western_europe.png"/>
+      </a>
+    </div>
+    <div class="region-wrapper">
+      <h6>Northern Periphery and Arctic</h6>
+      <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/northern-periphery">
+        <img src="/cca/++theme++climateadaptv2/static/images/northern_periphery_and_arctic.png"/>
+      </a>
+    </div>
+    <div class="region-wrapper">
+      <h6>South West Europe</h6>
+      <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/south-west-europe">
+        <img src="/cca/++theme++climateadaptv2/static/images/south_west_europe.png"/>
+      </a>
+    </div>
+  </div>
+</div>

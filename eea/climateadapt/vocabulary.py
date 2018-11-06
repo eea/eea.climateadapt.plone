@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 
-from Products.CMFCore.utils import getToolByName
 from collections import namedtuple
+
+from zope.component.hooks import getSite
+from zope.interface import alsoProvides, implementer
+from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
+
+import pycountry
 from plone.app.querystring import queryparser
 from plone.app.vocabularies.catalog import CatalogVocabulary as BCV
-from plone.app.vocabularies.catalog import CatalogVocabularyFactory
 from plone.app.vocabularies.catalog import KeywordsVocabulary as BKV
+from plone.app.vocabularies.catalog import CatalogVocabularyFactory
 from plone.uuid.interfaces import IUUID
-from zope.component.hooks import getSite
-from zope.interface import alsoProvides
-from zope.interface import implementer
-from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm
-from zope.schema.vocabulary import SimpleVocabulary
-import pycountry
+from Products.CMFCore.utils import getToolByName
 
 
 def generic_vocabulary(_terms, sort=True):
@@ -21,7 +21,7 @@ def generic_vocabulary(_terms, sort=True):
     """
 
     if _terms and isinstance(_terms, dict):
-        _terms = dict.items()
+        _terms = _terms.items()
     elif _terms and isinstance(_terms[0], basestring):
         _terms = [(x, x) for x in _terms]
 
@@ -50,11 +50,13 @@ class CatalogVocabulary(BCV):
             uid = value
         else:
             uid = IUUID(value)
+
         for term in self._terms:
             try:
                 term_uid = term.value.UID
             except AttributeError:
                 term_uid = term.value
+
             if uid == term_uid:
                 return term
 
@@ -75,10 +77,13 @@ class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
         )
 
         parsed = {}
+
         if query:
             parsed = queryparser.parseFormquery(context, query['criteria'])
+
             if 'sort_on' in query:
                 parsed['sort_on'] = query['sort_on']
+
             if 'sort_order' in query:
                 parsed['sort_order'] = str(query['sort_order'])
         try:
@@ -89,6 +94,7 @@ class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
         if parsed.get('path'):
             if parsed['path'].get('depth'):
                 parsed['path']['query'].append(u'/cca/metadata/adaptation-options')
+
                 if u'/cca' in parsed['path']['query']:
                     parsed['path']['query'].remove(u'/cca')
 
@@ -128,10 +134,13 @@ class CCAItemsVocabulary(CatalogVocabularyFactory):
         )
 
         parsed = {}
+
         if query:
             parsed = queryparser.parseFormquery(context, query['criteria'])
+
             if 'sort_on' in query:
                 parsed['sort_on'] = query['sort_on']
+
             if 'sort_order' in query:
                 parsed['sort_order'] = str(query['sort_order'])
         try:
@@ -142,6 +151,7 @@ class CCAItemsVocabulary(CatalogVocabularyFactory):
         if parsed.get('path'):
             if parsed['path'].get('depth'):
                 parsed['path']['query'].append(u'/cca/metadata')
+
                 if u'/cca' in parsed['path']['query']:
                     parsed['path']['query'].remove(u'/cca')
         brains = catalog(**parsed)
@@ -184,23 +194,25 @@ alsoProvides(aceitem_storagetypes_vocabulary, IVocabularyFactory)
 _sectors = [    # this is the canonical
     # ("AGRICULTURE", "Agriculture and Forest"),
     ("AGRICULTURE", "Agriculture"),
-    ("FORESTRY", "Forestry"),
     ("BIODIVERSITY", "Biodiversity"),
+    ("BUILDINGS", "Buildings"),
     ("COASTAL", "Coastal areas"),
     ("DISASTERRISKREDUCTION", "Disaster Risk Reduction"),
+    ("ECOSYSTEM", "Ecosystem-based approaches (GI)"),
+    ("ENERGY", "Energy"),
     ("FINANCIAL", "Financial"),
+    ("FORESTRY", "Forestry"),
     ("HEALTH", "Health"),
     # ("INFRASTRUCTURE", "Infrastructure"),
-    ("URBAN", "Urban"),
     ("MARINE", "Marine and Fisheries"),
     #   ("TOURISM", "Tourism"),
-    ("ENERGY", "Energy"),
     ("TRANSPORT", "Transport"),
-    ("BUILDINGS", "Buildings"),
+    ("URBAN", "Urban"),
     #   ("OTHER", "Other"),
     ("WATERMANAGEMENT", "Water management"),
+    ("NONSPECIFIC", "Non specific"),
 ]
-aceitem_sectors_vocabulary = generic_vocabulary(_sectors)
+aceitem_sectors_vocabulary = generic_vocabulary(_sectors, sort=False)
 alsoProvides(aceitem_sectors_vocabulary, IVocabularyFactory)
 
 _elements = [
@@ -225,15 +237,17 @@ faceted_elements = generic_vocabulary(fac_elements, sort=False)
 alsoProvides(faceted_elements, IVocabularyFactory)
 
 _climateimpacts = [
-    ("EXTREMETEMP", "Extreme Temperatures"),
-    ("WATERSCARCE", "Water Scarcity"),
-    ("FLOODING", "Flooding"),
-    ("SEALEVELRISE", "Sea Level Rise"),
     ("DROUGHT", "Droughts"),
-    ("STORM", "Storms"),
+    ("EXTREMETEMP", "Extreme Temperatures"),
+    ("FLOODING", "Flooding"),
     ("ICEANDSNOW", "Ice and Snow"),
+    ("SEALEVELRISE", "Sea Level Rise"),
+    ("STORM", "Storms"),
+    ("WATERSCARCE", "Water Scarcity"),
+    ("NONSPECIFIC", "Non specific"),
 ]
-aceitem_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts)
+aceitem_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts,
+                                                       sort=False)
 alsoProvides(aceitem_climateimpacts_vocabulary, IVocabularyFactory)
 
 
@@ -417,6 +431,13 @@ SUBNATIONAL_REGIONS = {
    "SUBN_Югозападен__Yugozapaden__": "Югозападен (Yugozapaden) (BG)",
    "SUBN_Южен_централен__Yuzhen_ts": "Южен централен (Yuzhen tsentralen) (BG)",
    "SUBN_Extra_Regio_NUTS_2__BG_": "Extra-Regio NUTS 2 (BG)",
+   "SUBN_Région_lémanique_CH_": "Région lémanique (CH)",
+   "SUBN_Espace_Mittelland_CH_": "Espace Mittelland (CH)",
+   "SUBN_Nordwestschweiz_CH_": "Nordwestschweiz (CH)",
+   "SUBN_Zürich_CH_": "Zürich (CH)",
+   "SUBN_Ostschweiz_CH_": "Ostschweiz (CH)",
+   "SUBN_Zentralschweiz_CH_": "Zentralschweiz (CH)",
+   "SUBN_Ticino_CH_": "Ticino (CH)",
    "SUBN_Praha__CZ_": "Praha (CZ)",
    "SUBN_Střední_Čechy__CZ_": "Střední Čechy (CZ)",
    "SUBN_Jihozápad__CZ_": "Jihozápad (CZ)",
@@ -476,20 +497,19 @@ SUBNATIONAL_REGIONS = {
    "SUBN_Border__Midland_and_Weste": "Border, Midland and Western (IE)",
    "SUBN_Southern_and_Eastern__IE_": "Southern and Eastern (IE)",
    "SUBN_Extra_Regio_NUTS_2__IE_": "Extra-Regio NUTS 2 (IE)",
-   "SUBN_Aνατολική_Μακεδονία__Θράκ": "Aνατολική Μακεδονία, Θράκη (Anatoliki Makedonia, Thraki) (EL)",
-   "SUBN_Κεντρική_Μακεδονία__Kentr": "Κεντρική Μακεδονία (Kentriki Makedonia) (EL)",
-   "SUBN_Δυτική_Μακεδονία__Dytiki_": "Δυτική Μακεδονία (Dytiki Makedonia) (EL)",
-   "SUBN_Θεσσαλία__Thessalia___EL_": "Θεσσαλία (Thessalia) (EL)",
-   "SUBN_Ήπειρος__Ipeiros___EL_": "Ήπειρος (Ipeiros) (EL)",
-   "SUBN_Ιόνια_Νησιά__Ionia_Nisia_": "Ιόνια Νησιά (Ionia Nisia) (EL)",
-   "SUBN_Δυτική_Ελλάδα__Dytiki_Ell": "Δυτική Ελλάδα (Dytiki Ellada) (EL)",
-   "SUBN_Στερεά_Ελλάδα__Sterea_Ell": "Στερεά Ελλάδα (Sterea Ellada) (EL)",
-   "SUBN_Πελοπόννησος__Peloponniso": "Πελοπόννησος (Peloponnisos) (EL)",
-   "SUBN_Aττική__Attiki___EL_": "Aττική (Attiki) (EL)",
-   "SUBN_Βόρειο_Αιγαίο__Voreio_Aig": "Βόρειο Αιγαίο (Voreio Aigaio) (EL)",
-   "SUBN_Νότιο_Αιγαίο__Notio_Aigai": "Νότιο Αιγαίο (Notio Aigaio) (EL)",
-   "SUBN_Κρήτη__Kriti___EL_": "Κρήτη (Kriti) (EL)",
-   "SUBN_Extra_Regio_NUTS_2__EL_": "Extra-Regio NUTS 2 (EL)",
+   "SUBN_Aττική__Attiki__GR_": "Aττική (Attiki) (GR)",
+   "SUBN_Βόρειο_Αιγαίο__Voreio_Aig__GR_": "Βόρειο Αιγαίο (Voreio Aigaio) (GR)",
+   "SUBN_Νότιο_Αιγαίο__Notio_Aigai__GR_": "Νότιο Αιγαίο (Notio Aigaio) (GR)",
+   "SUBN_Κρήτη__Kriti__GR_": "Κρήτη (Kriti) (GR)",
+   "SUBN_Aνατολική_Μακεδονία__Θράκ__GR_": "Aνατολική Μακεδονία, Θράκη (Anatoliki Makedonia, Thraki) (GR)",
+   "SUBN_Κεντρική_Μακεδονία__Kentr__GR_": "Κεντρική Μακεδονία (Kentriki Makedonia) (GR)",
+   "SUBN_Δυτική_Μακεδονία__Dytiki__GR_": "Δυτική Μακεδονία (Dytiki Makedonia) (GR)",
+   "SUBN_Θεσσαλία__Thessalia__GR_": "Θεσσαλία (Thessalia) (GR)",
+   "SUBN_Ιόνια_Νησιά__Ionia_Nisia__GR_": "Ιόνια Νησιά (Ionia Nisia) (GR)",
+   "SUBN_Δυτική_Ελλάδα__Dytiki_Ell__GR_": "Δυτική Ελλάδα (Dytiki Ellada) (GR)",
+   "SUBN_Στερεά_Ελλάδα__Sterea_Ell__GR_": "Στερεά Ελλάδα (Sterea Ellada) (GR)",
+   "SUBN_Πελοπόννησος__Peloponniso__GR_": "Πελοπόννησος (Peloponnisos) (GR)",
+   "SUBN_Extra_Regio_NUTS_2__GR_": "Extra-Regio NUTS 2 (GR)",
    "SUBN_Galicia__ES_": "Galicia (ES)",
    "SUBN_Principado_de_Asturias__E": "Principado de Asturias (ES)",
    "SUBN_Cantabria__ES_": "Cantabria (ES)",
@@ -560,6 +580,8 @@ SUBNATIONAL_REGIONS = {
    "SUBN_Marche__IT_": "Marche (IT)",
    "SUBN_Lazio__IT_": "Lazio (IT)",
    "SUBN_Extra_Regio_NUTS_2__IT_": "Extra-Regio NUTS 2 (IT)",
+   "SUBN_Ísland_IS_": "Ísland (IS)",
+   "SUBN_Liechtenstein_LI_": "Liechtenstein (LI)",
    "SUBN_Κύπρος__Kýpros___CY_": "Κύπρος (Kýpros) (CY)",
    "SUBN_Extra_Regio_NUTS_2__CY_": "Extra-Regio NUTS 2 (CY)",
    "SUBN_Latvija__LV_": "Latvija (LV)",
@@ -578,8 +600,10 @@ SUBNATIONAL_REGIONS = {
    "SUBN_Extra_Regio_NUTS_2__HU_": "Extra-Regio NUTS 2 (HU)",
    "SUBN_Malta__MT_": "Malta (MT)",
    "SUBN_Extra_Regio_NUTS_2__MT_": "Extra-Regio NUTS 2 (MT)",
-   "SUBN_Groningen__NL_": "Groningen (NL)",
+   "SUBN_Црна_Гора_Crna_Gora_ME_": "Црна Гора (Crna Gora) (ME)",
+   "SUBN_Поранешна_југословенска_Република_Македонија_Poranešna_jugoslovenska_Republika_Makedonija_MK_": "Поранешна југословенска Република Македонија (Poranešna jugoslovenska Republika Makedonija) (MK)",
    "SUBN_Friesland__NL___NL_": "Friesland (NL) (NL)",
+   "SUBN_Groningen__NL_": "Groningen (NL)",
    "SUBN_Drenthe__NL_": "Drenthe (NL)",
    "SUBN_Overijssel__NL_": "Overijssel (NL)",
    "SUBN_Gelderland__NL_": "Gelderland (NL)",
@@ -591,6 +615,13 @@ SUBNATIONAL_REGIONS = {
    "SUBN_Noord_Brabant__NL_": "Noord-Brabant (NL)",
    "SUBN_Limburg__NL___NL_": "Limburg (NL) (NL)",
    "SUBN_Extra_Regio_NUTS_2__NL_": "Extra-Regio NUTS 2 (NL)",
+   "SUBN_Oslo_og_Akershus_NO_": "Oslo og Akershus (NO)",
+   "SUBN_Hedmark_og_Oppland_NO_": "Hedmark og Oppland (NO)",
+   "SUBN_Sør_Østlandet_NO_": "Sør-Østlandet (NO)",
+   "SUBN_Agder_og_Rogaland_NO_": "Agder og Rogaland (NO)",
+   "SUBN_Vestlandet_NO_": "Vestlandet (NO)",
+   "SUBN_Trøndelag_NO_": "Trøndelag (NO)",
+   "SUBN_Nord_Norge_NO_": "Nord-Norge (NO)",
    "SUBN_Burgenland__AT___AT_": "Burgenland (AT) (AT)",
    "SUBN_Niederösterreich__AT_": "Niederösterreich (AT)",
    "SUBN_Wien__AT_": "Wien (AT)",
@@ -601,6 +632,9 @@ SUBNATIONAL_REGIONS = {
    "SUBN_Tirol__AT_": "Tirol (AT)",
    "SUBN_Vorarlberg__AT_": "Vorarlberg (AT)",
    "SUBN_Extra_Regio_NUTS_2__AT_": "Extra-Regio NUTS 2 (AT)",
+   "SUBN_Veri_AL_": "Veri (AL)",
+   "SUBN_Qender_AL_": "Qender (AL)",
+   "SUBN_Jug_AL_": "Jug (AL)",
    "SUBN_Łódzkie__PL_": "Łódzkie (PL)",
    "SUBN_Mazowieckie__PL_": "Mazowieckie (PL)",
    "SUBN_Małopolskie__PL_": "Małopolskie (PL)",
@@ -635,6 +669,10 @@ SUBNATIONAL_REGIONS = {
    "SUBN_Sud_Vest_Oltenia__RO_": "Sud-Vest Oltenia (RO)",
    "SUBN_Vest__RO_": "Vest (RO)",
    "SUBN_Extra_Regio_NUTS_2__RO_": "Extra-Regio NUTS 2 (RO)",
+   "SUBN_Beogradski_region_RS_": "Beogradski region (RS)",
+   "SUBN_Region_Vojvodine_RS_": "Region Vojvodine (RS)",
+   "SUBN_Region_Šumadije_iZapadne_Srbije_RS_": "Region Šumadije iZapadne Srbije (RS)",
+   "SUBN_Region_Južne_i_Istočne_Srbije_RS_": "Region Južne i Istočne Srbije (RS)",
    "SUBN_Vzhodna_Slovenija__SI_": "Vzhodna Slovenija (SI)",
    "SUBN_Zahodna_Slovenija__SI_": "Zahodna Slovenija (SI)",
    "SUBN_Extra_Regio_NUTS_2__SI_": "Extra-Regio NUTS 2 (SI)",
@@ -658,42 +696,70 @@ SUBNATIONAL_REGIONS = {
    "SUBN_Mellersta_Norrland__SE_": "Mellersta Norrland (SE)",
    "SUBN_Övre_Norrland__SE_": "Övre Norrland (SE)",
    "SUBN_Extra_Regio_NUTS_2__SE_": "Extra-Regio NUTS 2 (SE)",
-   "SUBN_Tees_Valley_and_Durham__U": "Tees Valley and Durham (UK)",
-   "SUBN_Northumberland_and_Tyne_a": "Northumberland and Tyne and Wear (UK)",
-   "SUBN_Cumbria__UK_": "Cumbria (UK)",
-   "SUBN_Greater_Manchester__UK_": "Greater Manchester (UK)",
-   "SUBN_Lancashire__UK_": "Lancashire (UK)",
-   "SUBN_Cheshire__UK_": "Cheshire (UK)",
-   "SUBN_Merseyside__UK_": "Merseyside (UK)",
-   "SUBN_East_Yorkshire_and_Northe": "East Yorkshire and Northern Lincolnshire (UK)",
-   "SUBN_North_Yorkshire__UK_": "North Yorkshire (UK)",
-   "SUBN_South_Yorkshire__UK_": "South Yorkshire (UK)",
-   "SUBN_West_Yorkshire__UK_": "West Yorkshire (UK)",
-   "SUBN_Derbyshire_and_Nottingham": "Derbyshire and Nottinghamshire (UK)",
-   "SUBN_Leicestershire__Rutland_a": "Leicestershire, Rutland and Northamptonshire (UK)",
-   "SUBN_Lincolnshire__UK_": "Lincolnshire (UK)",
-   "SUBN_Herefordshire__Worcesters": "Herefordshire, Worcestershire and Warwickshire (UK)",
-   "SUBN_Shropshire_and_Staffordsh": "Shropshire and Staffordshire (UK)",
-   "SUBN_West_Midlands__UK_": "West Midlands (UK)",
-   "SUBN_East_Anglia__UK_": "East Anglia (UK)",
-   "SUBN_Bedfordshire_and_Hertford": "Bedfordshire and Hertfordshire (UK)",
-   "SUBN_Essex__UK_": "Essex (UK)",
-   "SUBN_Inner_London__UK_": "Inner London (UK)",
-   "SUBN_Outer_London__UK_": "Outer London (UK)",
-   "SUBN_Berkshire__Buckinghamshir": "Berkshire, Buckinghamshire and Oxfordshire (UK)",
-   "SUBN_Surrey__East_and_West_Sus": "Surrey, East and West Sussex (UK)",
-   "SUBN_Hampshire_and_Isle_of_Wig": "Hampshire and Isle of Wight (UK)",
-   "SUBN_Kent__UK_": "Kent (UK)",
-   "SUBN_Gloucestershire__Wiltshir": "Gloucestershire, Wiltshire and Bristol/Bath area (UK)",
-   "SUBN_Dorset_and_Somerset__UK_": "Dorset and Somerset (UK)",
-   "SUBN_Cornwall_and_Isles_of_Sci": "Cornwall and Isles of Scilly (UK)",
-   "SUBN_Devon__UK_": "Devon (UK)",
-   "SUBN_West_Wales_and_The_Valley": "West Wales and The Valleys (UK)",
-   "SUBN_East_Wales__UK_": "East Wales (UK)",
-   "SUBN_Eastern_Scotland__UK_": "Eastern Scotland (UK)",
-   "SUBN_South_Western_Scotland__U": "South Western Scotland (UK)",
-   "SUBN_North_Eastern_Scotland__U": "North Eastern Scotland (UK)",
-   "SUBN_Highlands_and_Islands__UK": "Highlands and Islands (UK)",
-   "SUBN_Northern_Ireland__UK_": "Northern Ireland (UK)",
-   "SUBN_Extra_Regio_NUTS_2__UK_": "Extra-Regio NUTS 2 (UK)",
+   "SUBN_İstanbul_TR_": "İstanbul (TR)",
+   "SUBN_Tekirdağ_Edirne_Kırklareli_TR_": "Tekirdağ, Edirne, Kırklareli (TR)",
+   "SUBN_Balıkesir_Çanakkale_TR_": "Balıkesir, Çanakkale (TR)",
+   "SUBN_İzmir_TR_": "İzmir (TR)",
+   "SUBN_Aydın_Denizli_Muğla_TR_": "Aydın, Denizli, Muğla (TR)",
+   "SUBN_Manisa_Afyonkarahisar_Kütahya_Uşak_TR_": "Manisa, Afyonkarahisar, Kütahya, Uşak (TR)",
+   "SUBN_Bursa_Eskişehir_Bilecik_TR_": "Bursa, Eskişehir, Bilecik (TR)",
+   "SUBN_Kocaeli_Sakarya_Düzce_Bolu_Yalova_TR_": "Kocaeli, Sakarya, Düzce, Bolu, Yalova (TR)",
+   "SUBN_Ankara_TR_": "Ankara (TR)",
+   "SUBN_Konya_Karaman_TR_": "Konya, Karaman (TR)",
+   "SUBN_Antalya_Isparta_Burdur_TR_": "Antalya, Isparta, Burdur (TR)",
+   "SUBN_Adana_Mersin_TR_": "Adana, Mersin (TR)",
+   "SUBN_Hatay_Kahramanmaraş_Osmaniye_TR_": "Hatay, Kahramanmaraş, Osmaniye (TR)",
+   "SUBN_Kırıkkale_Aksaray_Niğde_Nevşehir_Kırşehir_TR_": "Kırıkkale, Aksaray, Niğde, Nevşehir, Kırşehir (TR)",
+   "SUBN_Kayseri_Sivas_Yozgat_TR_": "Kayseri, Sivas, Yozgat (TR)",
+   "SUBN_Zonguldak_Karabük_Bartın_TR_": "Zonguldak, Karabük, Bartın (TR)",
+   "SUBN_Kastamonu_Çankırı_Sinop_TR_": "Kastamonu, Çankırı, Sinop (TR)",
+   "SUBN_Samsun_Tokat_Çorum_Amasya_TR_": "Samsun, Tokat, Çorum, Amasya (TR)",
+   "SUBN_Trabzon_Ordu_Giresun_Rize_Artvin_Gümüşhane_TR_": "Trabzon, Ordu, Giresun, Rize, Artvin, Gümüşhane (TR)",
+   "SUBN_Erzurum_Erzincan_Bayburt_TR_": "Erzurum, Erzincan, Bayburt (TR)",
+   "SUBN_Ağrı_Kars_Iğdır_Ardahan_TR_": "Ağrı, Kars, Iğdır, Ardahan (TR)",
+   "SUBN_Malatya_Elazığ_Bingöl_Tunceli_TR_": "Malatya, Elazığ, Bingöl, Tunceli (TR)",
+   "SUBN_Van_Muş_Bitlis_Hakkari_TR_": "Van, Muş, Bitlis, Hakkari (TR)",
+   "SUBN_Gaziantep_Adıyaman_Kilis_TR_": "Gaziantep, Adıyaman, Kilis (TR)",
+   "SUBN_Şanlıurfa_Diyarbakır_TR_": "Şanlıurfa, Diyarbakır (TR)",
+   "SUBN_Mardin_Batman_Şırnak_Siirt_TR_": "Mardin, Batman, Şırnak, Siirt (TR)",
+   "SUBN_Tees_Valley_and_Durham__U__GB_": "Tees Valley and Durham (UK)",
+   "SUBN_Northumberland_and_Tyne_a__GB_": "Northumberland and Tyne and Wear (UK)",
+   "SUBN_Cumbria__GB_": "Cumbria (UK)",
+   "SUBN_Greater_Manchester__GB_": "Greater Manchester (UK)",
+   "SUBN_Lancashire__GB_": "Lancashire (UK)",
+   "SUBN_Cheshire__GB_": "Cheshire (UK)",
+   "SUBN_Merseyside__GB_": "Merseyside (UK)",
+   "SUBN_East_Yorkshire_and_Northe__GB_": "East Yorkshire and Northern Lincolnshire (UK)",
+   "SUBN_North_Yorkshire__GB_": "Yorkshire (UK)",
+   "SUBN_West_Yorkshire__GB_": "West Yorkshire (UK)",
+   "SUBN_Derbyshire_and_Nottingham__GB_": "Derbyshire and Nottinghamshire (UK)",
+   "SUBN_Leicestershire__Rutland_a__GB_": "Leicestershire, Rutland and Northamptonshire (UK)",
+   "SUBN_Lincolnshire__GB_": "Lincolnshire (UK)",
+   "SUBN_Herefordshire__Worcesters__GB_": "Herefordshire, Worcestershire and Warwickshire (UK)",
+   "SUBN_Shropshire_and_Staffordsh__GB_": "Shropshire and Staffordshire (UK)",
+   "SUBN_West_Midlands__GB_": "West Midlands (UK)",
+   "SUBN_East_Anglia__GB_": "East Anglia (UK)",
+   "SUBN_Bedfordshire_and_Hertford__GB_": "Bedfordshire and Hertfordshire (UK)",
+   "SUBN_Essex__GB_": "Essex (UK)",
+   "SUBN_Inner_London_WEST__GB_": "Inner London - WEST (UK)",
+   "SUBN_Inner_London_EAST__GB_": "Inner London - EAST (UK)",
+   "SUBN_Outer_London_ENE__GB_": "Outer London - East and North East (UK)",
+   "SUBN_Outer_London_S__GB_": "Outer - London South (UK)",
+   "SUBN_Outer_London_WNW__GB_": "Outer London - West and North West (UK)",
+   "SUBN_Berkshire__Buckinghamshir__GB_": "Berkshire, Buckinghamshire and Oxfordshire (UK)",
+   "SUBN_Surrey__East_and_West_Sus__GB_": "Surrey, East and West Sussex (UK)",
+   "SUBN_Hampshire_and_Isle_of_Wig__GB_": "Hampshire and Isle of Wight (UK)",
+   "SUBN_Kent__GB_": "Kent (UK)",
+   "SUBN_Gloucestershire__Wiltshir__GB_": "Gloucestershire, Wiltshire and Bristol/Bath area (UK)",
+   "SUBN_Dorset_and_Somerset__GB_": "Dorset and Somerset (UK)",
+   "SUBN_Cornwall_and_Isles_of_Sci__GB_": "Cornwall and Isles of Scilly (UK)",
+   "SUBN_Devon__GB_": "Devon (UK)",
+   "SUBN_West_Wales_and_The_Valley__GB_": "West Wales and The Valleys (UK)",
+   "SUBN_East_Wales__GB_": "East Wales (UK)",
+   "SUBN_Eastern_Scotland__GB_": "Eastern Scotland (UK)",
+   "SUBN_South_Western_Scotland__U__GB_": "South Western Scotland (UK)",
+   "SUBN_North_Eastern_Scotland__U__GB_": "North Eastern Scotland (UK)",
+   "SUBN_Highlands_and_Islands__GB_": "Highlands and Islands (UK)",
+   "SUBN_Northern_Ireland__GB_": "Northern Ireland (UK)",
+   "SUBN_Extra_Regio_NUTS_2__GB_": "Extra-Regio NUTS 2 (UK)",
    }

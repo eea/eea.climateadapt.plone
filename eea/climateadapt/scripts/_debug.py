@@ -14,7 +14,7 @@ USERNAME = "eea_casestudies"
 PASSWORD = os.environ.get('GISPASS', "")
 
 SERVER_NAME = "LcQjj2sL7Txk9Lag"
-ENDPOINT = "http://services.arcgis.com/{0}/ArcGIS/rest".format(SERVER_NAME)
+ENDPOINT = "https://services.arcgis.com/{0}/ArcGIS/rest".format(SERVER_NAME)
 FEATURE = "casestudies_pointLayer_clone"
 LAYER_URL = "{0}/services/{1}/FeatureServer/0".format(ENDPOINT, FEATURE)
 

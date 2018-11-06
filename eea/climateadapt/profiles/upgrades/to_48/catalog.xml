@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+  <index name="special_tags" meta_type="KeywordIndex">
+    <indexed_attr value="special_tags"/>
+  </index>
+  <column value="special_tags"/>
+</object>

@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="collective.cover">
+
+  <body>
+
+    <metal:title fill-slot="content-title"></metal:title>
+
+    <metal:slot fill-slot="body">
+      <div id="content" class="vertical-tab">
+
+          <div id="viewlet-above-content-title" tal:content="structure
+            provider:plone.abovecontenttitle" tal:condition="not:ajax_load" ></div>
+
+          <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view">
+            Generic KSS Title. Is rendered with class="documentFirstHeading".
+          </h1>
+
+          <div id="viewlet-below-content-title"
+            tal:content="structure provider:plone.belowcontenttitle" tal:condition="not:ajax_load" />
+
+          <div metal:use-macro="context/kss_generic_macros/macros/generic_description_view">
+            Generic KSS Description. Is rendered with class="documentDescription".
+          </div>
+
+          <div id="content-core">
+            <div class="row share-info-wrapper">
+              <div class="col-md-4">
+                <div id="viewlet-above-content-body"
+                  tal:content="structure provider:plone.abovecontentbody"
+                  tal:condition="not:ajax_load">
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div tal:define="layout nocall:context/@@layout"
+                  tal:replace="structure layout/render_view" />
+              </div>
+            </div>
+          </div>
+
+          <div id="viewlet-below-content-body"
+            tal:content="structure provider:plone.belowcontentbody"
+            tal:condition="not:ajax_load" />
+
+      </div>
+    </metal:slot>
+
+  </body>
+</html>

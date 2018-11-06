@@ -9,17 +9,18 @@ from Products.Five.browser import BrowserView
 logger = logging.getLogger('eea.climateadapt')
 
 _MARKERS = [
-    ('national adaptation', 'National adaptation strategy'),
-    ('action plans', 'Action plans'),
-    ('impacts', 'Impacts, vulnerability and adaptation assessments'),
-    ('climate services', 'Climate services / Met office'),
+    ('national adaptation', 'National adaptation strategy (NAS)'),
+    ('action plans', 'National adaptation plans (NAP)'),
+    # ('action plans', 'Action plans'),
+    # ('impacts', 'Impacts, vulnerability and adaptation assessments'),
+    # ('climate services', 'Climate services / Met office'),
 
     # TODO: this is not found in the information extracted in DB
     # this needs to be fixed in content
-    ('adaptation platform', 'Adaptation platform'),
-
-    ('web portal', 'Web portal'),
-    ('national communication', 'National Communication to the UNFCCC'),
+    # ('adaptation platform', 'Adaptation platform'),
+    #
+    # ('web portal', 'Web portal'),
+    # ('national communication', 'National Communication to the UNFCCC'),
 
     # ('monitoring', 'Monitoring, Indicators, Methodologies'),
     # ('research program', 'Research programs')
@@ -43,7 +44,12 @@ class CountriesMetadataExtract(BrowserView):
 
         layout = cover.cover_layout
         layout = json.loads(layout)
-        main_tile = layout[0]['children'][1]['children'][1]
+
+        try:
+            main_tile = layout[0]['children'][1]['children'][1]
+        except:
+            main_tile = layout[0]['children'][0]['children'][2]
+
         assert main_tile['tile-type'] == 'collective.cover.richtext'
 
         uid = main_tile['id']
@@ -56,9 +62,10 @@ class CountriesMetadataExtract(BrowserView):
         res = {}
 
         for row in rows:
+
             try:
                 cells = row.xpath('td')
-                key = cells[0].text.strip()
+                key = cells[0].text_content().strip()
                 children = list(cells[2])
 
                 text = [lxml.etree.tostring(c) for c in children]
@@ -107,7 +114,12 @@ class CountryMetadataExtract(object):
 
         layout = cover.cover_layout
         layout = json.loads(layout)
-        main_tile = layout[0]['children'][1]['children'][1]
+
+        try:
+            main_tile = layout[0]['children'][1]['children'][1]
+        except:
+            main_tile = layout[0]['children'][0]['children'][2]
+
         assert main_tile['tile-type'] == 'collective.cover.richtext'
 
         uid = main_tile['id']
@@ -135,10 +147,3 @@ class CountryMetadataExtract(object):
 class CountriesD3View(BrowserView):
     """
     """
-    def text(self):
-        import pdb; pdb.set_trace()
-        page = self.context
-
-        text = "bla"
-
-        return text

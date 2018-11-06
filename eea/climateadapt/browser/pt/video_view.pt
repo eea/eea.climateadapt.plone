@@ -1,0 +1,82 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="example.conference">
+  <body>
+
+    <metal:main fill-slot="main">
+      <tal:main-macro metal:define-macro="content-core">
+
+        <metal:macro use-macro="context/ace_macros/macros/ace_layout">
+
+          <div class="aceitem-left"
+               metal:fill-slot="ace-left-slot"
+               tal:define="embed view/context/embed | nothing"
+               >
+
+            <div tal:condition="embed">
+              <span tal:replace="structure embed"></span>
+            </div>
+
+            <div tal:define="url view/embed_url" tal:condition="not: embed">
+              <iframe tal:attributes="height context/video_height; src url"
+                frameborder="0"
+                width="100%"
+                allowfullscreen
+                tal:condition="url">
+              </iframe>
+              <p tal:condition="not: url">The URL entered is not valid.</p>
+            </div>
+
+            <div style="margin-top: 1em;">
+              <p tal:replace="structure python: view.w['long_description'].render()">description here</p>
+            </div>
+
+            <h4>Reference information</h4>
+            <h5>Websites:</h5>
+            <metal:macro use-macro="context/ace_macros/macros/websites" />
+
+            <h5>Source:</h5>
+            <tal:block content="structure python: view.w['source'].render()"/>
+
+            <div tal:condition="context/metadata/raw | nothing">
+              <h5>Link to metadata:</h5>
+              <div tal:content="structure python: view.metadata">Metadata</div>
+            </div>
+
+            <div metal:use-macro="context/ace_macros/macros/comments"></div>
+          </div>
+
+          <div class="aceitem-right" metal:fill-slot="ace-right-slot">
+
+            <metal:macro use-macro="context/ace_macros/macros/files" />
+
+            <h4>Keywords</h4>
+            <metal:macro use-macro="context/ace_macros/macros/keywords" />
+
+            <h4>Climate impacts</h4>
+            <tal:block content="structure python:view.w['climate_impacts'].render()"/>
+
+            <h4>Elements</h4>
+            <tal:block content="structure python:view.w['elements'].render()"/>
+
+            <h4>Sectors</h4>
+            <tal:block content="structure python:view.w['sectors'].render()"/>
+            <h4>Geographic characterization</h4>
+            <metal:macro use-macro="context/ace_macros/macros/geochar" />
+
+          </div>
+
+        </metal:macro>
+        <div id="viewlet-below-content-body" tal:content="structure provider:plone.belowcontentbody" tal:condition="not:ajax_load" />
+
+      </tal:main-macro>
+    </metal:main>
+
+  </body>
+</html>

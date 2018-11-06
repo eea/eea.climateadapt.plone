@@ -76,7 +76,7 @@
 
     var highlightSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([255, 0, 0]), 3), new Color([125, 125, 125, 0.35]));
 
-    var paises = new FeatureLayer("http://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/COUNTRIES_MA_LIG/FeatureServer/0", {
+    var paises = new FeatureLayer("https://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/COUNTRIES_MA_LIG/FeatureServer/0", {
       mode: FeatureLayer.MODE_SNAPSHOT,
       outFields: [
         "COUNTRY_1",
@@ -91,7 +91,7 @@
       ]
     });
 
-    var kosovo = new FeatureLayer("http://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/Kosovo/FeatureServer/0", {
+    var kosovo = new FeatureLayer("https://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/Kosovo/FeatureServer/0", {
       mode: FeatureLayer.MODE_SNAPSHOT,
       outFields: [
         "COUNTRY_1",
@@ -198,7 +198,7 @@
 
     paises.on("load", paisesCargadas);
 
-    var queryTask = new QueryTask("http://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/COUNTRIES_MA_LIG/FeatureServer/0");
+    var queryTask = new QueryTask("https://services.arcgis.com/LcQjj2sL7Txk9Lag/arcgis/rest/services/COUNTRIES_MA_LIG/FeatureServer/0");
 
     var query = new Query();
 

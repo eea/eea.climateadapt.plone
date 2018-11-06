@@ -1,0 +1,14 @@
+<div class="db-categories flex-wrapper" tal:define="sections view/sections">
+
+  <div class="db-category-wrapper" tal:repeat="section sections">
+
+    <a href="#" tal:attributes="href section/link">
+      <span class="db-category-icon">
+        <i class="fa fa-cogs" tal:attributes="class string:fa ${section/icon_class}"></i>
+        <span class="total-items" tal:content="section/count">120</span>
+      </span>
+      <p tal:content="section/title">Adaptation <br> Options</p>
+    </a>
+  </div>
+
+</div>
