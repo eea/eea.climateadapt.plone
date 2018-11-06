@@ -5,6 +5,7 @@
   i18n:domain="collective.cover">
 
   <body tal:define="is_compose view/is_compose_mode">
+
     <div class="sortable-tile tile-content" tal:condition="is_compose">
       <h4 style="margin-bottom:0.6em">Relevant AceContent Tile</h4>
 
@@ -87,10 +88,10 @@
           <a href="" tal:attributes="href obj/absolute_url" tal:content="obj/Title">Title here</a>
         </li>
       </ul>
-      <ul tal:condition="not: assigned" class="list-items">
+      <ul tal:condition="view/items" class="list-items">
         <li tal:repeat="brain view/items">
           <a href="" tal:attributes="href brain/getURL; title brain/Description" tal:content="brain/Title">Title here</a>
-          <div 
+          <div
             class="hover-icon"
             tal:define="icons python: view.get_icons(brain)">
             <img class="tile-icon-help" tal:repeat="icon icons" tal:attributes="src icon/absolute_url;
