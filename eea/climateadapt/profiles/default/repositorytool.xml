@@ -57,7 +57,7 @@
             <policy name="at_edit_autoversion"/>
             <policy name="version_on_revert"/>
         </type>
-        <type name="RichImage">
+        <type name="FrontpageSlide">
             <policy name="at_edit_autoversion"/>
             <policy name="version_on_revert"/>
         </type>

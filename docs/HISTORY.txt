@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Task: Refactored the frontpage slides, removed RichImage content type and
+  added a new one called FrontpageSlide
+  [iulianpetchesi #91562]
 * Remove Covenant of Mayors introduction text from template
   [krisztina #91562]
 * Replace slider dots with thumbnails

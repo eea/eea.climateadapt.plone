@@ -44,28 +44,28 @@ def invalidate_cache_faceted_object_row(obj, evt):
     notify(InvalidateCacheEvent(raw=False, key=key))
 
 
-def set_title_description(obj, event):
-    ''' Sets title to filename if no title
-        was provided.
-        Also sets an empty unicode as description if
-        no description was provided.
-    '''
-    title = obj.title
-
-    if not title:
-        if IRichImage.providedBy(obj):
-            datafield = obj.image
-        else:
-            datafield = obj.file
-
-        if datafield:
-            filename = datafield.filename
-            obj.title = filename
-
-    description = obj.description
-
-    if not description:
-        obj.description = u''
+# def set_title_description(obj, event):
+#     ''' Sets title to filename if no title
+#         was provided.
+#         Also sets an empty unicode as description if
+#         no description was provided.
+#     '''
+#     title = obj.title
+#
+#     if not title:
+#         if IRichImage.providedBy(obj):
+#             datafield = obj.image
+#         else:
+#             datafield = obj.file
+#
+#         if datafield:
+#             filename = datafield.filename
+#             obj.title = filename
+#
+#     description = obj.description
+#
+#     if not description:
+#         obj.description = u''
 
 # def invalidate_cache_faceted_sections(obj, evt):
 #     """ Invalidate faceted sections cache after cache keys

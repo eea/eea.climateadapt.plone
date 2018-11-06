@@ -17,13 +17,12 @@ from plone.namedfile.interfaces import IImageScaleTraversable
 from Products.Five.browser import BrowserView
 
 
-class RichImageSchema(form.Schema, IImageScaleTraversable):
+class FrontpageSlideSchema(form.Schema):
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['title', 'long_description',
                           'category',
-                          'rich_image',
-                          'read_more_link']
+                          ]
                   )
 
     title = TextLine(title=(u"Title"),
@@ -36,63 +35,18 @@ class RichImageSchema(form.Schema, IImageScaleTraversable):
                                 required=True)
 
     category = TextLine(title=(u"Category"),
-                     description=u"Slider thumbnail title. "
-                     u"Keep it short (20 character limit)",
-                     required=True)
-
-    rich_image = NamedBlobImage(
-        title=(u"Image"),
-        description=u"Image size should be at least 1100 pixel in width or wider, "
-        u"and 600 pixel in height, but the recommended size is at minimum "
-        u"1920 pixel in width for the best quality image. "
-        u"Anything less than this size will result a blurry image.",
-        required=True,
-    )
-
-    read_more_link = TextLine(title=u"Read more link",
-                              required=False)
+                        description=u"Slider thumbnail title. "
+                        u"Keep it short (20 character limit)",
+                        required=True)
 
 
-class IRichImage(RichImageSchema):
-    """ Interface for the RichImage content type """
+class IFrontpageSlide(FrontpageSlideSchema):
+    """ Interface for the FrontapgeSlide content type """
 
 
-class RichImage(dexterity.Container):
+class FrontpageSlide(dexterity.Container):
     """ Image content type for which we the richtext behavior is activated """
-    implements(IRichImage, IEEAClimateAdaptInstalled)
-
-    def html2text(self, html):
-        if not isinstance(html, basestring):
-            return u""
-        portal_transforms = api.portal.get_tool(name='portal_transforms')
-        data = portal_transforms.convertTo('text/plain',
-                                           html, mimetype='text/html')
-        text = data.getData()
-
-        return text.strip()
-
-    def PUT(self, REQUEST=None, RESPONSE=None):
-        """DAV method to replace image field with a new resource."""
-        request = REQUEST if REQUEST is not None else self.REQUEST
-        response = RESPONSE if RESPONSE is not None else request.response
-
-        self.dav__init(request, response)
-        self.dav__simpleifhandler(request, response, refresh=1)
-
-        infile = request.get('BODYFILE', None)
-        filename = request['PATH_INFO'].split('/')[-1]
-        self.image = NamedBlobImage(
-            data=infile.read(), filename=unicode(filename))
-
-        modified(self)
-
-        return response
-
-    def get_size(self):
-        return getattr(self.rich_image, 'size', None)
-
-    def content_type(self):
-        return getattr(self.image, 'contentType', None)
+    implements(IFrontpageSlide, IEEAClimateAdaptInstalled)
 
 
 class FrontpageSlidesView (BrowserView):
@@ -105,24 +59,38 @@ class FrontpageSlidesView (BrowserView):
         slides = [o for o in sf.contentValues()
                   if api.content.get_state(o) == 'published']
         images = []
-
         for slide in slides:
             handler = getattr(self, 'handle_' + slide.title.encode(), None)
             slide_data = {}
 
             if handler:
-                slide_data = handler()
+                slide_data = handler(slide)
             else:
                 slide_data = {
-                    'image': slide.absolute_url(),
+                    'image': self.getImages(slide),
                     'title': slide.title,
                     'description': slide.long_description,
                     'category': slide.category,
-                    'url': slide.read_more_link}
+                    'url': slide.absolute_url()}
             images.append(slide_data)
         self.images = images
 
         return self.index()
+
+    @view.memoize
+    def getCurrentDate(self):
+        import datetime
+        return datetime.datetime.now()
+
+    def getImages(self, slide):
+        images = [image.getObject() for image in slide.getFolderContents()]
+
+        now = self.getCurrentDate()
+        try:
+            image = images[now.day / 7]
+        except:
+            image = images[-1]
+        return image.absolute_url()
 
     def getDescription(self, image):
         description = image.get('description', '')
@@ -144,7 +112,7 @@ class FrontpageSlidesView (BrowserView):
     def getCategory(self, image):
         return image.get('category', '')
 
-    def handle_news_items(self):
+    def handle_news_items(self, slide):
         """ Gets the most recent updated news/events item"""
         site = getSite()
         catalog = site.portal_catalog
@@ -165,7 +133,7 @@ class FrontpageSlidesView (BrowserView):
 
         }
 
-    def handle_last_casestudy(self):
+    def handle_last_casestudy(self, slide):
         """ Gets the most recent updated casestudy"""
         site = getSite()
         catalog = site.portal_catalog
@@ -202,7 +170,7 @@ class FrontpageSlidesView (BrowserView):
 
         return text
 
-    def handle_last_dbitem(self):
+    def handle_last_dbitem(self, slide):
         """ Gets the most recent updated aceitem"""
         site = getSite()
         catalog = site.portal_catalog
@@ -230,7 +198,7 @@ class FrontpageSlidesView (BrowserView):
 
         }
 
-    def handle_last_publication(self):
+    def handle_last_publication(self, slide):
         """ Gets the most recent updated publication and report"""
         site = getSite()
         catalog = site.portal_catalog
@@ -244,8 +212,7 @@ class FrontpageSlidesView (BrowserView):
         publi = result.getObject()
 
         return {
-            'image':
-            "/++resource++eea.climateadapt/frontpage/last_publication.jpg",
+            'image': self.getImages(slide),
             'title': publi.Title(),
             'description': publi.long_description,
             'category': 'Publication',

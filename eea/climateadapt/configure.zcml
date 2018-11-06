@@ -103,7 +103,7 @@
     <adapter name="search_type" factory=".catalog.search_type_for_newsevents" />
     <adapter name="sectors" factory=".catalog.city_sectors" />
     <adapter name="featured" factory=".catalog.featured" />
-    <adapter name="getObjSize" factory=".catalog.getObjSize_image" />
+    <!-- <adapter name="getObjSize" factory=".catalog.getObjSize_image" /> -->
 
     <adapter name="bio_regions" factory=".catalog.bio_regions" />
     <adapter name="macro_regions" factory=".catalog.macro_regions" />
@@ -420,10 +420,10 @@
 
     ------[ RichImage Title Functionality ]--------
 
-    <subscriber
+    <!--<subscriber
        for="eea.climateadapt.browser.frontpage_slides.IRichImage
             zope.lifecycleevent.interfaces.IObjectCreatedEvent"
        handler=".events.set_title_description"
-    />
+    /> -->
 
 </configure>
