@@ -7,7 +7,7 @@
   <body tal:define="is_compose view/is_compose_mode">
 
     <div class="sortable-tile tile-content" tal:condition="is_compose">
-      <h4 style="margin-bottom:0.6em">Relevant AceContent Tile</h4>
+      <h3 style="margin-bottom:0.6em">Relevant AceContent Tile</h3>
 
       <tal:items repeat="obj view/assigned">
         <div class="list-item" style="position:relative;"
@@ -23,7 +23,7 @@
         </div>
       </tal:items>
 
-      <dl style="margin-top:1em">
+      <dl class="aceitem-tile">
 
         <dt>Element type:</dt>
         <dd tal:content="python: view.data.get('element_type')" />
