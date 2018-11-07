@@ -135,6 +135,7 @@ class FrontpageSlidesView (BrowserView):
             "/++resource++eea.climateadapt/frontpage/events.jpg",
             'title': news.Title(),
             'description': news.description,
+            'category': 'News & Events',
             'url': news.absolute_url(),
 
         }
@@ -225,7 +226,7 @@ class FrontpageSlidesView (BrowserView):
             'image': image,
             'title': publi.Title(),
             'description': publi.long_description,
-            'category': 'Publication',
+            'category': 'Publication & Report',
             'url': publi.absolute_url(),
 
         }
