@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Add image and text for Urban and GI EU sector policies
+  [krisztina #91562]
 * Add category name for News/Events slider thumbnail
   [krisztina #91562]
 * Improve slider thumbnails; fixes
