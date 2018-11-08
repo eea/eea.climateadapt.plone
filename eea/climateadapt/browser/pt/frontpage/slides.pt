@@ -45,5 +45,10 @@
       </tal:block>
     </div>
 
+    <div class="slider-controls">
+      <span class="pause"></span>
+      <span class="play"></span>
+    </div>
+
   </div>
 </tal:block>

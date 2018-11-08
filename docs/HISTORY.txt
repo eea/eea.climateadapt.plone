@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* WIP: Add slider controls
+  [krisztina #91562]
 * Add active state on slider thumbnails
   [krisztina #91562]
 * UAST accordion changes

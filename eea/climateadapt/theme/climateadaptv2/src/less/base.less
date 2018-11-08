@@ -408,11 +408,8 @@ form .standard-button,
   margin-top: 0.5em;
 
   a {
-    padding: 0.5em;
     text-decoration: underline;
-  }
-  a:before{
-
+    font-family: OpenSansM !important;
   }
 }
 
@@ -429,13 +426,6 @@ form .standard-button,
 .aceitem-relevant-tile ul > li,
 .subsection-share-your-info-index_html .tile-content li {
   list-style-type: none;
-}
-
-.aceitem-search-tile ul > li > a,
-.aceitem-relevant-tile ul > li > a,
-.subsection-share-your-info-index_html .tile-content li > span > a {
-  // display: inline-block;
-  // margin-left: 1rem;
 }
 
 #ast-menu ul > li:before,
@@ -1435,6 +1425,22 @@ dl.error, .portalMessage.error{
 .portalMessage a {
   color: inherit;
   border-bottom: 1px solid @dark-gray;
+}
+
+.context-state-archived {
+  margin: 1em 0;
+  border-radius: 3px;
+  overflow: hidden;
+  line-height: 30px;
+  border: 1px solid #a4cdd4;
+  background-color: #d1ecf1;
+  padding: 0 10px;
+  color: #0c5460;
+}
+
+.context-state-archived:before {
+  content: '\f05a';
+  font-family: FontAwesome;
 }
 
 // Table styling

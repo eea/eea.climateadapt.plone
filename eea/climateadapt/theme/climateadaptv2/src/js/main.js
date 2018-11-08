@@ -26,6 +26,14 @@ $(document).ready(function() {
     });
   }
 
+  $('.pause').on('click', function() {
+    $('.slider-for').slick('slickPause')
+  });
+
+  $('.play').on('click', function() {
+    $('.slider-for').slick('slickPlay')
+  });
+
   // HOMEPAGE: align slider caption and slider arrows to the main content area
   function getPageContainerPadding() {
     var cw = $(".content-container").width();
@@ -38,11 +46,17 @@ $(document).ready(function() {
   var $sliderCaption = $('.slider-caption');
   var $sliderNav = $('.slider-nav');
 
-  $slider.find('.slick-prev').css('left', function() {
+  // $slider.find('.slick-prev').css('left', function() {
+  //   return getPageContainerPadding() +  'px';
+  // });
+  // $slider.find('.slick-next').css('left', function() {
+  //   return getPageContainerPadding() + 45 +  'px';
+  // });
+  $slider.find('.pause').css('left', function() {
     return getPageContainerPadding() +  'px';
   });
-  $slider.find('.slick-next').css('left', function() {
-    return getPageContainerPadding() + 45 +  'px';
+  $slider.find('.play').css('left', function() {
+    return getPageContainerPadding() + 35 +  'px';
   });
   $sliderCaption.css('right', function() {
     return getPageContainerPadding() +  'px';
@@ -60,11 +74,18 @@ $(document).ready(function() {
   });
 
   function doneResizing() {
-    $slider.find('.slick-prev').css('left', function() {
+    // $slider.find('.slick-prev').css('left', function() {
+    //   return getPageContainerPadding() +  'px';
+    // });
+    // $slider.find('.slick-next').css('left', function() {
+    //   return getPageContainerPadding() + 45 +  'px';
+    // });
+
+    $slider.find('.pause').css('left', function() {
       return getPageContainerPadding() +  'px';
     });
-    $slider.find('.slick-next').css('left', function() {
-      return getPageContainerPadding() + 45 +  'px';
+    $slider.find('.play').css('left', function() {
+      return getPageContainerPadding() + 35 +  'px';
     });
 
     $sliderCaption.css('right', function() {
