@@ -36,7 +36,7 @@ class FrontpageSlideSchema(form.Schema):
 
     category = TextLine(title=(u"Category"),
                         description=u"Slider thumbnail title. "
-                        u"Keep it short (20 character limit)",
+                        u"Keep it short (25 character limit)",
                         required=True)
 
     read_more_link = TextLine(title=u"Read more link",

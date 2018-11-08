@@ -11,10 +11,18 @@ $(document).ready(function() {
       autoplay: true,
       autoplaySpeed: 4000
     });
+
     $('.slider-nav a').click(function(e) {
       e.preventDefault();
       var slideIndex = $(this).index();
       $('.slider-for').slick('slickGoTo', parseInt(slideIndex));
+    });
+
+    // add active class for the current slider thumbnail
+    $('.slider-for').on('setPosition', function() {
+      var currentSlide = $('.slider-for').slick('slickCurrentSlide') + 1;
+      $('.slider-nav a').removeClass('active-slider');
+      $('.slider-nav a:nth-child('+ currentSlide +')').addClass('active-slider');
     });
   }
 
