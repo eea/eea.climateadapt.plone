@@ -12,10 +12,13 @@ $(document).ready(function() {
       autoplaySpeed: 4000
     });
 
+    // slider thumbnails
     $('.slider-nav a').click(function(e) {
       e.preventDefault();
       var slideIndex = $(this).index();
       $('.slider-for').slick('slickGoTo', parseInt(slideIndex));
+      // start autoplay on click
+      $('.slider-for').slick('slickPlay');
     });
 
     // add active class for the current slider thumbnail
@@ -24,17 +27,15 @@ $(document).ready(function() {
       $('.slider-nav a').removeClass('active-slider');
       $('.slider-nav a:nth-child('+ currentSlide +')').addClass('active-slider');
     });
+
+    $('.pause').on('click', function() {
+      $('.slider-for').slick('slickPause')
+    });
   }
 
-  $('.pause').on('click', function() {
-    $('.slider-for').slick('slickPause')
-  });
 
-  $('.play').on('click', function() {
-    $('.slider-for').slick('slickPlay')
-  });
-
-  // HOMEPAGE: align slider caption and slider arrows to the main content area
+  // HOMEPAGE: align slider caption, pause button
+  // and thumbnails to the main content area
   function getPageContainerPadding() {
     var cw = $(".content-container").width();
     var ww = $(window).width();
@@ -46,18 +47,13 @@ $(document).ready(function() {
   var $sliderCaption = $('.slider-caption');
   var $sliderNav = $('.slider-nav');
 
-  // $slider.find('.slick-prev').css('left', function() {
-  //   return getPageContainerPadding() +  'px';
-  // });
-  // $slider.find('.slick-next').css('left', function() {
-  //   return getPageContainerPadding() + 45 +  'px';
-  // });
   $slider.find('.pause').css('left', function() {
+    return getPageContainerPadding() + 2 + 'px';
+  });
+  $slider.find('.pause-circle').css('left', function() {
     return getPageContainerPadding() +  'px';
   });
-  $slider.find('.play').css('left', function() {
-    return getPageContainerPadding() + 35 +  'px';
-  });
+
   $sliderCaption.css('right', function() {
     return getPageContainerPadding() +  'px';
   });
@@ -74,18 +70,11 @@ $(document).ready(function() {
   });
 
   function doneResizing() {
-    // $slider.find('.slick-prev').css('left', function() {
-    //   return getPageContainerPadding() +  'px';
-    // });
-    // $slider.find('.slick-next').css('left', function() {
-    //   return getPageContainerPadding() + 45 +  'px';
-    // });
-
     $slider.find('.pause').css('left', function() {
-      return getPageContainerPadding() +  'px';
+      return getPageContainerPadding() + 2 + 'px';
     });
-    $slider.find('.play').css('left', function() {
-      return getPageContainerPadding() + 35 +  'px';
+    $slider.find('.pause-circle').css('left', function() {
+      return getPageContainerPadding() +  'px';
     });
 
     $sliderCaption.css('right', function() {
@@ -282,15 +271,12 @@ $(document).ready(function() {
 
   $('select').addClass('form-control');
 
-  // hide edit bar from HOMEPAGE
-  // $('.section-frontpage').find('.edit-bar-wrapper').hide();
 
   // Add active class on sub-navigation active items
   // special transnational subpages, ex:
   // url: .../cca/countries-regions/transnational-regions/baltic-sea-region/adaptation/policy-framework
   // help page: share your information subpages, ex:
   // url: .../cca/help/share-your-info/publications-and-reports
-
   var current = window.location.href;
   $('.share-info-wrapper #third-level-menu a, .cover-section_nav-tile a, .uvmb-nav a').each(function() {
     var $this = $(this);
@@ -634,7 +620,7 @@ $(document).ready(function() {
 
   // Hide empty tiles
   var $tile = $('.tile');
-  $tile.each(function () {
+  $tile.each(function() {
     $this = $(this);
     if ($this.children().length === 0) {
       $this.hide();

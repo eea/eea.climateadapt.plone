@@ -10,13 +10,18 @@
         </div>
 
         <div class="slider-caption">
-          <h3 tal:content="python: view.getTitle(image)">About Climate Change Adaptation in Europe</h3>
-          <div class="slider-description">
-            <p tal:replace="python: view.getDescription(image)[:300] + '...'">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.</p>
-          </div>
+          <h3 tal:content="python: view.getTitle(image)">
+            About Climate Change Adaptation in Europe
+          </h3>
+          <p>
+            <tal:block tal:replace="python: view.getDescription(image)[:300] + '...'">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.
+            </tal:block>
+          </p>
           <div class="slider-bottom-caption">
             <div class="read-more-wrapper">
-              <a href="" class="read-more" tal:attributes="href python: view.getMoreLink(image)" target="_blank">
+              <a href="" class="read-more"
+                 tal:attributes="href python: view.getMoreLink(image)"
+                 target="_blank">
                 <i class="fa fa-angle-double-right"></i>
                 Read more
               </a>
@@ -27,17 +32,17 @@
       </tal:block>
     </div>
 
-
     <div class="slider-nav flex-wrapper">
       <tal:block tal:repeat="image images">
 
           <a class="slider-nav-wrapper">
             <div tal:define="picture python: view.getImageUrl(image)"
-              tal:attributes="style string: background-image:url('${picture}')"
-              class="slider-image">
+                 tal:attributes="style string: background-image:url('${picture}')"
+                 class="slider-image">
             </div>
             <div class="slider-layer"></div>
-            <span class="slider-category" tal:content="python: view.getCategory(image)">
+            <span class="slider-category"
+                  tal:content="python: view.getCategory(image)">
               About Climate Change Adaptation in Europe
             </span>
           </a>
@@ -47,7 +52,7 @@
 
     <div class="slider-controls">
       <span class="pause"></span>
-      <span class="play"></span>
+      <span class="pause-circle"></span>
     </div>
 
   </div>
