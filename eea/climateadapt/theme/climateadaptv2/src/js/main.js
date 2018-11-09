@@ -520,6 +520,21 @@ $(document).ready(function() {
     }
   });
 
+  $('.panel-heading').before($('.panel-collapse'));
+  var $panelLayer = $('<div class="panel-layer fadein"/>');
+  $('.panel-collapse').prepend($panelLayer);
+  var panelCollapse = $panelTitle.closest('.panel-heading').siblings();
+
+  $panelTitle.toggle(
+    function() {
+      panelCollapse.addClass('panel-opened');
+      panelCollapse.children('.panel-layer').removeClass('fadein').addClass('fadeout');
+    }, function() {
+      panelCollapse.removeClass('panel-opened');
+      panelCollapse.children('.panel-layer').removeClass('fadeout').addClass('fadein');
+    }
+  );
+
   // Hide the download pdf on the search page
   if (window.location.href.indexOf("data-and-downloads") > -1) {
     $pdfButton.parent().hide();
