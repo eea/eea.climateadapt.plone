@@ -8,8 +8,9 @@ $(document).ready(function() {
       speed: 500,
       fade: true,
       slidesToShow: 1,
+      dots: true,
       autoplay: true,
-      autoplaySpeed: 4000
+      autoplaySpeed: 4000,
     });
 
     // slider thumbnails
