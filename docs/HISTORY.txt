@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* WIP: print style fixes
+  [krisztina #91562]
 * Fade out text for accordion
   [krisztina #91562]
 * Slider improvements on mobile: use dots instead of thumbnails
