@@ -5,9 +5,11 @@ from collective.cover.interfaces import ICover
 from zope.annotation.interfaces import IAnnotations
 from zope.interface import Interface
 
+from eea.climateadapt.aceitem import IAceItem
 # from eea.climateadapt.browser.frontpage_slides import IRichImage
 from eea.climateadapt.city_profile import ICityProfile
 from eea.climateadapt.interfaces import IClimateAdaptContent, INewsEventsLinks
+from plone.api.portal import get_tool
 from plone.indexer import indexer
 from plone.rfc822.interfaces import IPrimaryFieldInfo
 
@@ -166,3 +168,33 @@ def macro_regions(object):
         value = json.loads(value)['geoElements'].get('macrotrans', []) or None
 
         return value
+
+
+@indexer(IAceItem)
+def get_aceitem_description(object):
+    """ Simplify the long description rich text in a simple 2 paragraphs
+    "summary"
+    """
+    v = object.Description()
+
+    if v:
+        return v
+
+    if not object.long_description:
+        return ''
+
+    text = object.long_description.raw
+    portal_transforms = get_tool(name='portal_transforms')
+
+    # Output here is a single <p> which contains <br /> for newline
+    data = portal_transforms.convertTo('text/plain',
+                                       text,
+                                       mimetype='text/html')
+    text = data.getData().strip()
+
+    # the following is a very bad algorithm. Needs to use nltk.tokenize
+    pars = text.split('.')
+
+    return '.'. join(pars[:2])
+
+    return text

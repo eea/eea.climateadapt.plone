@@ -15,6 +15,7 @@ from zope.schema import Bool, Choice, Dict, Int, List, TextLine
 
 from AccessControl import Unauthorized
 from eea.climateadapt import MessageFactory as _
+from eea.climateadapt.catalog import get_aceitem_description
 from eea.climateadapt.vocabulary import _datatypes
 from plone import api
 from plone.api import portal
@@ -342,6 +343,14 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
     @view.memoize
     def is_empty(self):
         return False
+
+    def get_description(self, item):
+        # TODO: move this code to an indexer and a metadata column
+
+        adapter = get_aceitem_description(item)
+        value = adapter()
+
+        return value
 
     @view.memoize
     def accepted_ct(self):

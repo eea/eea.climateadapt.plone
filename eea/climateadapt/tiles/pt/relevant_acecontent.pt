@@ -83,19 +83,34 @@
       <h2><span tal:content="python: view.data.get('title')">Title here</span></h2>
 
       <h3 style="display:none">Relevant tile</h3>
+
       <ul tal:condition="assigned" class="list-items">
         <li tal:repeat="obj assigned">
-          <a href="" tal:attributes="href obj/absolute_url" tal:content="obj/Title">Title here</a>
+          <a href=""
+            tal:attributes="href obj/absolute_url;
+            title python:view.get_description(obj)"
+            tal:content="obj/Title">Title here</a>
+          <div
+            class="hover-icon"
+            tal:define="icons python: view.get_icons(obj)">
+            <img class="tile-icon-help"
+              tal:repeat="icon icons"
+              tal:attributes="src icon/absolute_url; title icon/title_or_id" />
+          </div>
         </li>
       </ul>
+
       <ul tal:condition="view/items" class="list-items">
         <li tal:repeat="brain view/items">
-          <a href="" tal:attributes="href brain/getURL; title brain/Description" tal:content="brain/Title">Title here</a>
+          <a href="" tal:attributes="href brain/getURL;
+            title brain/Description"
+            tal:content="brain/Title">Title here</a>
           <div
             class="hover-icon"
             tal:define="icons python: view.get_icons(brain)">
-            <img class="tile-icon-help" tal:repeat="icon icons" tal:attributes="src icon/absolute_url;
-            title icon/title_or_id" />
+            <img class="tile-icon-help"
+              tal:repeat="icon icons"
+              tal:attributes="src icon/absolute_url; title icon/title_or_id" />
           </div>
         </li>
       </ul>
