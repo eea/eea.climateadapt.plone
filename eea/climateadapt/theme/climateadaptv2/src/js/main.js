@@ -49,7 +49,7 @@ $(document).ready(function() {
   var $sliderNav = $('.slider-nav');
 
   $slider.find('.pause').css('left', function() {
-    return getPageContainerPadding() + 2 + 'px';
+    return getPageContainerPadding() + 3 + 'px';
   });
   $slider.find('.pause-circle').css('left', function() {
     return getPageContainerPadding() +  'px';
@@ -72,7 +72,7 @@ $(document).ready(function() {
 
   function doneResizing() {
     $slider.find('.pause').css('left', function() {
-      return getPageContainerPadding() + 2 + 'px';
+      return getPageContainerPadding() + 3 + 'px';
     });
     $slider.find('.pause-circle').css('left', function() {
       return getPageContainerPadding() +  'px';
@@ -91,6 +91,26 @@ $(document).ready(function() {
   $('ul.nav-tabs a').click(function(e) {
     $(this).tab('show');
     e.preventDefault();
+  });
+
+  $('.policies-tile .nav-tabs a').hover(function() {
+    $(this).tab('show');
+  });
+
+  var url = window.location.href;
+
+  $('.policies-tile .nav-tabs a').click(function(e) {
+    e.preventDefault();
+    var href = $(this).attr('href');
+    var href = href.substring(1);
+
+    if (url.indexOf("index_html") > -1) {
+      url = url.replace('index_html', href)
+      document.location = url;
+    } else {
+      document.location = url + '/' + href;
+    }
+
   });
 
   // HOMEPAGE: Dynamic area:
@@ -510,20 +530,20 @@ $(document).ready(function() {
 
   // Toggle text on accordion
   var $panelTitle = $('.panel-title a');
+
+  // $panelTitle.addClass('pressed');
   $panelTitle.click(function() {
-    var $this = $(this);
-    var panelTitleText = $this.text().toLowerCase();
-    if (panelTitleText.indexOf('read more') > -1 || panelTitleText.indexOf('read less') > -1) {
-      $this.text(function (a, b) {
-        return (b == 'Read more' ? 'Read less' : 'Read more');
-      });
-    }
-  });
+   $(this).text(function(i, text) {
+     return text === "Read more" ? "Read less" : "Read more";
+   })
+   // $(this).toggleClass("collapsed pressed");
+ });
 
   $('.panel-heading').before($('.panel-collapse'));
   var $panelLayer = $('<div class="panel-layer fadein"/>');
   $('.panel-collapse').prepend($panelLayer);
   var panelCollapse = $panelTitle.closest('.panel-heading').siblings();
+  panelCollapse.addClass('panel-opened');
 
   $panelTitle.toggle(
     function() {

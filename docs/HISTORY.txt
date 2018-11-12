@@ -3,6 +3,10 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Eu sector policies page: show tabs on hover;
+  remove case study link;
+  replace covenant logo
+  [krisztina #91562]
 * WIP: print style fixes
   [krisztina #91562]
 * Fade out text for accordion
