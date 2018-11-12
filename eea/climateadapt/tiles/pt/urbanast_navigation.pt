@@ -39,37 +39,27 @@
       <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-0-0;
         onclick string:document.location.href='${portal_url}/tools/urban-ast/step-0-0'"
         name="step-0-0">
-      <strong>0</strong>
-      <span class="uast-title">The Urban Adaptation Support Tool - Getting started</span>
+      <strong>&nbsp;&nbsp;</strong>
+      <span class="uast-title">Getting started</span>
       </a>
       <ul id="step-0">
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-0-1" name="step-0-1">
-          0.1 How to use the Urban Adaptation Support Tool?</a>
+          About the Urban Adaptation Support Tool</a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-0-2" name="step-0-2">
-          0.2 How is the European climate changing and what are the consequences for urban areas?
+          Climate change impacts on European cities
           </a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-0-3" name="step-0-3">
-          0.3 What is adaptation to climate change and why does it matter in my city/town?
+          Adaptation to climate change in urban areas
           </a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-0-4" name="step-0-4">
-          0.4 What are the key principles for adaptation?
-          </a>
-        </li>
-        <li>
-          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-0-5" name="step-0-5">
-          0.5 How to address the inter-relationships and co-benefits between adaptation and mitigation?
-          </a>
-        </li>
-        <li>
-          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-0-6" name="step-0-6">
-            0.6 Where can I find support for adaptation planning in the form of advice and capacity building?
+          Principles and success factors
           </a>
         </li>
       </ul>
@@ -84,45 +74,48 @@
       <ul id="step-1">
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-1-1" name="step-1-1">
-            1.1 How do I ensure high level political support for adaptation now and in the long run?
+            1.1 Obtaining political support for adaptation
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-1-2" name="step-1-2">
-            1.2 How do I set up the adaptation process within my municipality?
+          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-1-2" name="step-1-5">
+            1.2 Collecting initial information
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-1-3" name="step-1-3">
-            1.3 What human, technical and financial resources are required for adaptation planning and management?
+          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-1-3" name="step-1-2">
+            1.3 Setting up adaptation processes within and beyond the municipality
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-1-4" name="step-1-4">
-            1.4 What financial support is available for adaptation?
+          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-1-4" name="step-1-3">
+            1.4 Identifying and obtaining human and technical resources
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-1-5" name="step-1-5">
-            1.5 What initial information do I need to collect?
+          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-1-5" name="step-1-4">
+            1.5 Identifying and obtaining financing and funding
           </a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-1-6" name="step-1-6">
-            1.6 Who are the main (internal and external) players and stakeholders in adaptation processes and how do I involve them?
+            1.6 Identifying and engaging stakeholders
           </a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-1-7" name="step-1-7">
-            1.7 How do I communicate adaptation to climate change?
+            1.7 Communicating adaptation to different target audiences
           </a>
-          <ul id="step-1-7">
-            <li>
-              <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-1-check" name="step-1-7-1">
-                Self-check
-              </a>
-            </li>
-          </ul>
+        </li>
+        <li>
+          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-1-8" name="step-1-8">
+            1.8 Finding additional support
+          </a>
+        </li>
+        <li>
+          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-1-check" name="step-1-9">
+            1.9 Preparing the ground for adaptation: Self check
+          </a>
         </li>
       </ul>
     </li>
@@ -131,60 +124,43 @@
         onclick string:document.location.href='${portal_url}/tools/urban-ast/step-2-0'"
         name="step-2-0">
         <strong>2</strong>
-        <span class="uast-title">Assessing risks and vulnerabilities to climate change</span>
+        <span class="uast-title">Assessing climate change risks and vulnerabilities</span>
       </a>
       <ul id="step-2">
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-2-1" name="step-2-1">
-            2.1 What impacts has the past and current weather had/have on my city/town?
+            2.1 Recognizing past and present climate impacts
           </a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-2-2" name="step-2-2">
-            2.2 What methodology can I use for carrying out risk or vulnerability assessment?
+            2.2 Understanding climate projections and future impacts
           </a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-2-3" name="step-2-3">
-            2.3 Where can I find future climate and impact projections for my city/town and how to understand them?
+            2.3 Identifying vulnerable urban sectors
           </a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-2-4" name="step-2-4">
-            2.4 How certain are future climate projections and how do I deal with the uncertainty?
+            2.4 Conducting risk and vulnerability assessments
           </a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-2-5" name="step-2-5">
-            2.5 Which sectors in my city/town are most likely to be impacted by climate change and how?
+            2.5 Understanding the role of surrounding areas in adaptation
           </a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-2-6" name="step-2-6">
-            2.6 What is the role of the surrounding areas in adaptation and how do I take that into account?
+            2.6 Identifying main adaptation concerns and defining objectives
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-2-7" name="step-2-7">
-            2.7 Whom can I approach for further information, data and analysis assistance?
+          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-2-check" name="step-2-9-1">
+            2.7 Assessing climate change risks and vulnerabilities: Self check
           </a>
-        </li>
-        <li>
-          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-2-8" name="step-2-8">
-            2.8 How do I identify the main adaptation concerns and set the strategic direction?
-          </a>
-        </li>
-        <li>
-          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-2-9" name="step-2-9">
-            2.9 How to set concrete targets for adaptation?
-          </a>
-          <ul id="step-2-9">
-            <li>
-              <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-2-check" name="step-2-9-1">
-                Self-check
-              </a>
-            </li>
-          </ul>
         </li>
       </ul>
     </li>
@@ -198,25 +174,18 @@
       <ul id="step-3">
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-3-1" name="step-3-1">
-            3.1 What are the possible adaptation measures for urban areas and how to collect them in a catalogue of potential measures?
+            3.1 Creating a catalogue of relevant adaptation options
           </a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-3-2" name="step-3-2">
-            3.2 Where can I find examples of good adaptation practice of other cities and towns?
+            3.2 Finding examples of good adaptation practices
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-3-3" name="step-3-3">
-            3.3 How do I identify the existing adaptation options in my city/town?
+          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-3-check" name="step-3-3-1">
+            3.3 Identifying adaptation options: Self check
           </a>
-          <ul id="step-3-3">
-            <li>
-              <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-3-check" name="step-3-3-1">
-                Self-check
-              </a>
-            </li>
-          </ul>
         </li>
       </ul>
     </li>
@@ -230,30 +199,23 @@
       <ul id="step-4">
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-4-1" name="step-4-1">
-            4.1 What are the main aspects of adaptation measures that need to be assessed in order to choose the most appropriate ones for my city or town?
+            4.1 Choosing an assessment framework for adaptation options
           </a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-4-2" name="step-4-2">
-            4.2 How do I carry out cost-benefit analysis?
+            4.2 Conducting a cost-benefit analysis of adaptation measures
           </a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-4-3" name="step-4-3">
-            4.3 How to assess cross-cutting issues, trade-offs and synergies of adaptation options?
+            4.3 Prioritising adaptation options
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-4-4" name="step-4-4">
-            4.4 How to prioritise adaptation options and select the preferable ones?
+          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-4-check" name="step-4-4-1">
+            4.4 Assessing and selecting adaptation options: Self check
           </a>
-          <ul id="step-4-4">
-            <li>
-              <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-4-check" name="step-4-4-1">
-                Self-check
-              </a>
-            </li>
-          </ul>
         </li>
       </ul>
     </li>
@@ -262,30 +224,33 @@
         onclick string:document.location.href='${portal_url}/tools/urban-ast/step-5-0'"
         name="step-5-0">
         <strong>5</strong>
-        <span class="uast-title">Implementation</span>
+        <span class="uast-title">Implementing adaptation</span>
       </a>
       <ul id="step-5">
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-5-1" name="step-5-1">
-            5.1 What are the main elements of a good adaptation strategy?
+            5.1 Designing an effective adaptation action plan
           </a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-5-2" name="step-5-2">
-            5.2 Where do I find good examples of existing adaptation strategies and action plans in urban areas?
+            5.2 Finding examples of adaptation action plans
           </a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-5-3" name="step-5-3">
-            5.3 How can I best apply mainstreaming adaptation into the existing urban policy framework and what instruments can I put in place?
+            5.3 Mainstreaming adaptation in urban policies and plans
           </a>
-          <ul id="step-5-3">
-            <li>
-              <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-5-check" name="step-5-3-1">
-                Self-check
-              </a>
-            </li>
-          </ul>
+        </li>
+        <li>
+          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-5-4" name="step-5-4">
+            5.4 Addressing climate change through adaptation and mitigation
+          </a>
+        </li>
+        <li>
+          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-5-check" name="step-5-3-1">
+            5.5 Implementing adaptation: Self check
+          </a>
         </li>
       </ul>
     </li>
@@ -294,30 +259,33 @@
         onclick string:document.location.href='${portal_url}/tools/urban-ast/step-6-0'"
         name="step-6-0">
         <strong>6</strong>
-        <span class="uast-title">Monitoring and evaluation</span>
+        <span class="uast-title">Monitoring and evaluating adaptation</span>
       </a>
       <ul id="step-6">
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-6-1" name="step-6-1">
-            6.1 What approaches for monitoring and evaluation can I apply?
+            6.1 Developing the monitoring and evaluation approach
           </a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-6-2" name="step-6-2">
-            6.2 How do I develop indicators for adaptation?
+            6.2 Defining monitoring indicators
           </a>
         </li>
         <li>
           <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-6-3" name="step-6-3">
-            6.3 Where can I find examples of adaptation indicators?
+            6.3 Finding examples of adaptation monitoring indicators
           </a>
-          <ul id="step-6-3">
-            <li>
-              <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-6-check" name="step-6-3-1">
-                Self-check
-              </a>
-            </li>
-          </ul>
+        </li>
+        <li>
+          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-6-4" name="step-6-4">
+            6.4 Using monitoring results to enhance the process of adaptation
+          </a>
+        </li>
+        <li>
+          <a tal:attributes="href string:${portal_url}/tools/urban-ast/step-6-check" name="step-6-3-1">
+            6.5 Monitoring and evaluating adaptation: Self check
+          </a>
         </li>
       </ul>
     </li>

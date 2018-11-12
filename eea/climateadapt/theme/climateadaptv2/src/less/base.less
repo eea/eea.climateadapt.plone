@@ -408,11 +408,8 @@ form .standard-button,
   margin-top: 0.5em;
 
   a {
-    padding: 0.5em;
     text-decoration: underline;
-  }
-  a:before{
-
+    font-family: OpenSansM !important;
   }
 }
 
@@ -429,13 +426,6 @@ form .standard-button,
 .aceitem-relevant-tile ul > li,
 .subsection-share-your-info-index_html .tile-content li {
   list-style-type: none;
-}
-
-.aceitem-search-tile ul > li > a,
-.aceitem-relevant-tile ul > li > a,
-.subsection-share-your-info-index_html .tile-content li > span > a {
-  // display: inline-block;
-  // margin-left: 1rem;
 }
 
 #ast-menu ul > li:before,
@@ -466,6 +456,7 @@ form .standard-button,
   box-shadow: none;
   border-radius: 0;
   clear: both;
+  position: relative;
 
   >.panel-heading {
     text-align: right;
@@ -475,11 +466,47 @@ form .standard-button,
     a {
       text-transform: uppercase;
       color: #bf5900;
+      padding: 5px;
     }
     a:hover {
       color: #e66b00;
     }
   }
+}
+
+// faded collapse content
+.panel-collapse.collapse {
+  display: block !important;
+  height: 130px;
+  overflow: hidden;
+  position: relative;
+}
+
+.panel-collapse.panel-opened {
+  height: 100%;
+  overflow: unset;
+}
+
+.panel-layer {
+  height:100%;
+  width:100%;
+  position:absolute;
+  bottom:0;
+  left: 0;
+  background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 90%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(95%,rgba(255,255,255,1)));
+  background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 90%);
+  background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 90%);
+  background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 90%);
+  background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 90%);
+}
+
+.panel-layer.fadeout {
+  display: none;
+}
+
+.panel-layer.fadein {
+  display: block;
 }
 
 .collapse-header {
@@ -515,7 +542,7 @@ form .standard-button,
 // two columned layout
 #content.columned {
   background-color: transparent;
-  padding: 0;
+  padding: 0 !important;
   border: none;
 }
 
@@ -945,6 +972,9 @@ form .standard-button,
   .ui-state-active {
     background: none;
   }
+  >li {
+    list-style-type: none;
+  }
 }
 
 #uast-menu .ui-accordion-header {
@@ -986,6 +1016,7 @@ form .standard-button,
   border-bottom-right-radius: 15px;
   width: 100%;
   margin-left: 3px;
+  color: #fff;
 }
 
 .subsection-tools-urban-ast .ast-title-step {
@@ -1064,7 +1095,7 @@ form .standard-button,
 .country-page #content {
   background-color: transparent;
   border: none;
-  padding: 0;
+  padding: 0 !important;
 }
 
 .country-page .column {
@@ -1435,6 +1466,22 @@ dl.error, .portalMessage.error{
 .portalMessage a {
   color: inherit;
   border-bottom: 1px solid @dark-gray;
+}
+
+.context-state-archived {
+  margin: 1em 0;
+  border-radius: 3px;
+  overflow: hidden;
+  line-height: 30px;
+  border: 1px solid #a4cdd4;
+  background-color: #d1ecf1;
+  padding: 0 10px;
+  color: #0c5460;
+}
+
+.context-state-archived:before {
+  content: '\f05a';
+  font-family: FontAwesome;
 }
 
 // Table styling

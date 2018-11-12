@@ -31,6 +31,21 @@
   display: inline-block;
   flex: 1 1 auto;
   cursor: pointer;
+  position: relative;
+}
+
+.slider-nav-wrapper:after {
+  content: '';
+  width: 100%;
+  height: 3px;
+  background-color: @primary-blue;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+}
+
+.active-slider:after {
+  background-color: @primary-green;
 }
 
 .slider-nav-wrapper:not(:last-of-type) {
@@ -52,7 +67,7 @@
   left: 0;
   padding: 2px;
   width: 100%;
-  font-size: 11px;
+  font-size: 10px;
   font-family: OpenSansB;
   color: #fff;
   line-height: 14px;
@@ -88,77 +103,62 @@
 
 .slider-caption {
   background-color: rgba(255, 255, 255, 0.8);
-  color: @dark-gray;
   bottom: 80px;
   padding: 10px;
   position: absolute;
   width: 100%;
   max-width: 600px;
-  display: flex;
   max-height: 200px;
   height: auto;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.slider-description {
-  max-height: 168px;
-  overflow: hidden;
-  text-overflow: clip;
-  color: @dark-gray;
-  font-size: 14px;
-}
-
-.slider-bottom-caption {
-  display: flex;
-  align-self: flex-end;
 }
 
 .slider-bottom-caption a {
   font-size: 13px;
 }
 
-.slick-dots {
-  bottom: 46px;
-  left: 50.5%;
-  width: 20%;
-  text-align: left;
-}
-
 .slider-bottom-caption .read-more-wrapper {
   bottom: auto;
   position: relative;
   right: auto;
+  text-align: right;
 }
 
 .slider .slick-prev,
 .slider .slick-next {
-  bottom: 30px;
-  top: auto;
+  display: none !important;
 }
 
-.slider .slick-prev {
-  left: 25px;
-  z-index: 9;
+.slick-dots {
+  bottom: 46px;
+  display: none !important;
 }
 
-.slider .slick-next {
-  left: 65px;
-}
+.slider-controls {
+  position: relative;
 
-.slider .slick-prev:before,
-.slider .slick-next:before {
-  background-color: rgba(255, 255, 255, 0.8);
-  color: @dark-gray;
-  font-family: FontAwesome;
-  font-size: 28px;
-  padding: 5px 12px;
-}
+  .pause {
+    position: absolute;
+    bottom: 40px;
+    z-index: 999;
+    cursor: pointer;
+    left: 25px;
+  }
+  .pause:before {
+    color: #fff;
+    font-family: FontAwesome;
+    font-size: 20px;
+    padding: 10px;
+    opacity: 0.8;
+    content: '\f04c';
+  }
 
-.slider .slick-prev:before {
-  content: '\f104';
-}
-
-.slider .slick-next:before {
-  content: '\f105';
+  .pause-circle {
+    position: absolute;
+    bottom: 30px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    opacity: 0.8;
+  }
 }

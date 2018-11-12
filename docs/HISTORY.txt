@@ -3,6 +3,22 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* WIP: print style fixes
+  [krisztina #91562]
+* Fade out text for accordion
+  [krisztina #91562]
+* Slider improvements on mobile: use dots instead of thumbnails
+  [krisztina #91562]
+* Add pause button for slider; code cleanup
+  [krisztina #91562]
+* WIP: Add slider controls
+  [krisztina #91562]
+* Add active state on slider thumbnails
+  [krisztina #91562]
+* UAST accordion changes
+  [krisztina #91562]
+* Add image and text for Urban and GI EU sector policies
+  [krisztina #91562]
 * Add category name for News/Events slider thumbnail
   [krisztina #91562]
 * Improve slider thumbnails; fixes

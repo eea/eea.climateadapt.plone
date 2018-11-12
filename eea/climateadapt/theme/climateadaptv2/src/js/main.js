@@ -8,17 +8,35 @@ $(document).ready(function() {
       speed: 500,
       fade: true,
       slidesToShow: 1,
+      dots: true,
       autoplay: true,
-      autoplaySpeed: 4000
+      autoplaySpeed: 4000,
     });
+
+    // slider thumbnails
     $('.slider-nav a').click(function(e) {
       e.preventDefault();
       var slideIndex = $(this).index();
       $('.slider-for').slick('slickGoTo', parseInt(slideIndex));
+      // start autoplay on click
+      $('.slider-for').slick('slickPlay');
+    });
+
+    // add active class for the current slider thumbnail
+    $('.slider-for').on('setPosition', function() {
+      var currentSlide = $('.slider-for').slick('slickCurrentSlide') + 1;
+      $('.slider-nav a').removeClass('active-slider');
+      $('.slider-nav a:nth-child('+ currentSlide +')').addClass('active-slider');
+    });
+
+    $('.pause').on('click', function() {
+      $('.slider-for').slick('slickPause')
     });
   }
 
-  // HOMEPAGE: align slider caption and slider arrows to the main content area
+
+  // HOMEPAGE: align slider caption, pause button
+  // and thumbnails to the main content area
   function getPageContainerPadding() {
     var cw = $(".content-container").width();
     var ww = $(window).width();
@@ -30,12 +48,13 @@ $(document).ready(function() {
   var $sliderCaption = $('.slider-caption');
   var $sliderNav = $('.slider-nav');
 
-  $slider.find('.slick-prev').css('left', function() {
+  $slider.find('.pause').css('left', function() {
+    return getPageContainerPadding() + 2 + 'px';
+  });
+  $slider.find('.pause-circle').css('left', function() {
     return getPageContainerPadding() +  'px';
   });
-  $slider.find('.slick-next').css('left', function() {
-    return getPageContainerPadding() + 45 +  'px';
-  });
+
   $sliderCaption.css('right', function() {
     return getPageContainerPadding() +  'px';
   });
@@ -52,11 +71,11 @@ $(document).ready(function() {
   });
 
   function doneResizing() {
-    $slider.find('.slick-prev').css('left', function() {
-      return getPageContainerPadding() +  'px';
+    $slider.find('.pause').css('left', function() {
+      return getPageContainerPadding() + 2 + 'px';
     });
-    $slider.find('.slick-next').css('left', function() {
-      return getPageContainerPadding() + 45 +  'px';
+    $slider.find('.pause-circle').css('left', function() {
+      return getPageContainerPadding() +  'px';
     });
 
     $sliderCaption.css('right', function() {
@@ -253,15 +272,12 @@ $(document).ready(function() {
 
   $('select').addClass('form-control');
 
-  // hide edit bar from HOMEPAGE
-  // $('.section-frontpage').find('.edit-bar-wrapper').hide();
 
   // Add active class on sub-navigation active items
   // special transnational subpages, ex:
   // url: .../cca/countries-regions/transnational-regions/baltic-sea-region/adaptation/policy-framework
   // help page: share your information subpages, ex:
   // url: .../cca/help/share-your-info/publications-and-reports
-
   var current = window.location.href;
   $('.share-info-wrapper #third-level-menu a, .cover-section_nav-tile a, .uvmb-nav a').each(function() {
     var $this = $(this);
@@ -504,6 +520,21 @@ $(document).ready(function() {
     }
   });
 
+  $('.panel-heading').before($('.panel-collapse'));
+  var $panelLayer = $('<div class="panel-layer fadein"/>');
+  $('.panel-collapse').prepend($panelLayer);
+  var panelCollapse = $panelTitle.closest('.panel-heading').siblings();
+
+  $panelTitle.toggle(
+    function() {
+      panelCollapse.addClass('panel-opened');
+      panelCollapse.children('.panel-layer').removeClass('fadein').addClass('fadeout');
+    }, function() {
+      panelCollapse.removeClass('panel-opened');
+      panelCollapse.children('.panel-layer').removeClass('fadeout').addClass('fadein');
+    }
+  );
+
   // Hide the download pdf on the search page
   if (window.location.href.indexOf("data-and-downloads") > -1) {
     $pdfButton.parent().hide();
@@ -605,7 +636,7 @@ $(document).ready(function() {
 
   // Hide empty tiles
   var $tile = $('.tile');
-  $tile.each(function () {
+  $tile.each(function() {
     $this = $(this);
     if ($this.children().length === 0) {
       $this.hide();

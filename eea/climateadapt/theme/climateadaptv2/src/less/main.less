@@ -65,7 +65,6 @@
   }
   .footer-content .site-info {
     margin: 0 auto;
-    text-align: center;
     padding: 1.5em;
     border-bottom: 1px solid #E8E8E8;
   }
@@ -79,6 +78,10 @@
   }
   .footer-content .eu-systems p {
     margin: 15px;
+  }
+
+  .footer-content .site-info p {
+    text-align: center;
   }
 
   .action-btn {
@@ -135,6 +138,10 @@
 @media (max-width: 800px) {
 
   /* header area */
+
+  .top-menu {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
 
   .mobile-header .top-menu {
     height: auto;
@@ -298,12 +305,8 @@
     display:none;
   }
 
-  .slider .slick-prev {
-    left: 5% !important;
-  }
-
-  .slider .slick-next {
-    left: 15% !important;
+  .slider-controls {
+    display: none;
   }
 
   /* dynamic area */
@@ -315,15 +318,16 @@
   }
 
   /* homepage carousel */
-  // .slick-arrow {
-  //   display: none !important;
-  // }
+  .slider-caption {
+    max-height: 100%;
+  }
   .slider-caption,
   .slider-nav {
     left: 0;
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+    max-width: 100%;
   }
 
   .newsletter-wrapper p,
@@ -334,11 +338,19 @@
   .db-category-wrapper {
     flex: 1 1 120px;
   }
+
+  #content,
+  .region-subpage #content {
+    border-left: 0 !important;
+    border-right: 0 !important;
+  }
+
 }
 
 @media (max-width: 600px) {
-  .slider-nav {
-    display: none;
+  .header #main-nav-item-3 .sub-menu-wrapper,
+  .header #main-nav-item-1 .sub-menu-wrapper {
+    min-width: 100%;
   }
   .main-box  {
     height: auto;
@@ -417,10 +429,63 @@
     top: -25px;
     left: -30px;
   }
+}
 
+@media (max-width: 480px) {
+  .slider-caption {
+    bottom: 30px;
+  }
+  .slider-nav {
+    display: none;
+  }
   .slick-dots {
     width: auto;
     left: 2em;
+    display: block !important;
+  }
+
+  .top-menu {
+    height: 48px;
+  }
+  .mobile-menu {
+    top: 10px;
+  }
+  .logo img {
+    max-width: 70%;
+  }
+  .header .sub-menu {
+    min-width: 100%;
+  }
+
+  #content, .region-subpage #content,
+  .content-column,
+  .footer-content .site-info {
+    padding: 1em !important;
+  }
+
+  .footer-content {
+    padding: 0;
+  }
+
+}
+
+@media print {
+  .panel .collapse {
+    display: block;
+  }
+  .panel-layer.fadein {
+    display: none;
+  }
+  .panel-collapse.collapse {
+    height: 100%;
+    overflow: unset;
+  }
+  .panel-heading {
+    display: none;
+  }
+
+  .edit-bar-wrapper {
+    display: none;
   }
 }
 
