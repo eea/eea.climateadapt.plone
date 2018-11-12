@@ -93,7 +93,9 @@ class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
 
         if parsed.get('path'):
             if parsed['path'].get('depth'):
-                parsed['path']['query'].append(u'/cca/metadata/adaptation-options')
+                parsed['path']['query'].append(
+                    u'/cca/metadata/adaptation-options'
+                )
 
                 if u'/cca' in parsed['path']['query']:
                     parsed['path']['query'].remove(u'/cca')

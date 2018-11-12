@@ -348,7 +348,22 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         """ Return accepted drag/drop content types for this tile.
         """
 
-        return ['Document', 'Folder', 'collective.cover.content']
+        cca_types = [
+                 u'eea.climateadapt.adaptationoption',
+                 u'eea.climateadapt.aceproject',
+                 u'eea.climateadapt.casestudy',
+                 u'eea.climateadapt.guidancedocument',
+                 u'eea.climateadapt.indicator',
+                 u'eea.climateadapt.informationportal',
+                 u'eea.climateadapt.mapgraphdataset',
+                 u'eea.climateadapt.organisation',
+                 u'eea.climateadapt.publicationreport',
+                 u'eea.climateadapt.researchproject',
+                 u'eea.climateadapt.tool',
+                 u'eea.climateadapt.video',
+        ]
+
+        return cca_types + ['Document', 'Folder', 'collective.cover.content']
 
     def view_more_url(self):
         site = getSite()
