@@ -862,13 +862,6 @@
     />
 
   <browser:page
-    name="gopdb"
-    for="*"
-    class=".admin.GoPDB"
-    permission="cmf.ManagePortal"
-    />
-
-  <browser:page
     class=".main.FullWidthContentTypes"
     for="*"
     name="fullwidth_content_types"

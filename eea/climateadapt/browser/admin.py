@@ -1,6 +1,12 @@
+import datetime
 import json
 import logging
-import datetime
+
+from collective.cover.tiles.list import ListTile
+from zope import schema
+from zope.component import adapter, getMultiAdapter, getUtility
+from zope.interface import (Interface, Invalid, implementer, implements,
+                            invariant)
 
 from apiclient.discovery import build
 from eea.climateadapt.browser.site import _extract_menu
@@ -8,6 +14,7 @@ from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
 from eea.climateadapt.scripts import get_plone_site
 from oauth2client.service_account import ServiceAccountCredentials
 from plone.api import portal
+from plone.api.portal import get_tool
 from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
                                                      RegistryEditForm)
 from plone.app.widgets.dx import RelatedItemsWidget
@@ -24,10 +31,6 @@ from z3c.form.interfaces import IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
-from zope import schema
-from zope.component import adapter, getMultiAdapter, getUtility
-from zope.interface import (Interface, Invalid, implementer, implements,
-                            invariant)
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -547,7 +550,8 @@ def _refresh_analytics_data(site):
     site.__annotations__['google-analytics-cache-data'] = res
     site.__annotations__._p_changed = True
 
-    import transaction; transaction.commit()
+    import transaction
+    transaction.commit()
 
     return res
 
@@ -582,4 +586,44 @@ class ViewGoogleAnalyticsReport(BrowserView):
 
 class GoPDB(BrowserView):
     def __call__(self):
-        import pdb; pdb.set_trace()
+        import pdb
+        pdb.set_trace()
+
+
+class MigrateTiles(BrowserView):
+
+    def process(self, cover):
+        tileids = cover.list_tiles(
+            types=['eea.climateadapt.relevant_acecontent']
+        )
+
+        for tid in tileids:
+            tile = cover.get_tile(tid)
+
+            if not tile.assigned():
+                brains = tile.items()
+                uids = [b.UID for b in brains]
+
+                if uids:
+                    tile.populate_with_uuids(uids)
+                    print("Fixed cover %s, tile %s with uids %r" % (
+                                cover.absolute_url(),
+                                tid,
+                                uids,
+                                ))
+
+                # logger.info("Fixed cover %s, tile %s with uids %r",
+                #             cover.absolute_url(),
+                #             tid,
+                #             uids,
+                #             )
+
+    def __call__(self):
+        catalog = get_tool('portal_catalog')
+        brains = catalog(portal_type='collective.cover.content')
+
+        for brain in brains:
+            obj = brain.getObject()
+            self.process(obj)
+
+        return 'done'

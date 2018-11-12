@@ -303,6 +303,11 @@ class IRelevantAceContentItemsTile(ISearchAceContentTile):
         required=False,
     )
 
+    alpha_sort = Bool(
+        title=_(u"Sort assigned items alphabetically"),
+        default=True,
+    )
+
     form.omitted('uuids')
 
 
@@ -409,7 +414,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
         return icons
 
-    @view.memoize
+    # @view.memoize
     def items(self):
         count = self.data.get('nr_items', 5) or 5
         query = self.build_query()
@@ -422,7 +427,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
         return items
 
-    @view.memoize
+    # @view.memoize
     def assigned(self):
         """Return the list of objects stored in the tile as UUID. If an UUID
         has no object associated with it, removes the UUID from the list.
@@ -540,7 +545,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         # Repopulate with clean list
         self.populate_with_uuids(uuids)
 
-    @view.memoize
+    # @view.memoize
     def get_uuid(self, obj):
         """Return the UUID of the object.
         :param obj: [required]

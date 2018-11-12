@@ -4,21 +4,19 @@
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   i18n:domain="collective.cover">
 
-  <body tal:define="is_compose view/is_compose_mode">
+  <body tal:define="is_compose view/is_compose_mode; assigned view/assigned; items view/items;">
 
     <div class="sortable-tile tile-content" tal:condition="is_compose">
       <h3 style="margin-bottom:0.6em">Relevant AceContent Tile</h3>
 
-      <tal:items repeat="obj view/assigned">
+      <tal:items repeat="obj assigned">
         <div class="list-item" style="position:relative;"
           tal:attributes="data-tile-id view/id;
           data-content-type obj/portal_type;
           data-content-uuid python:view.get_uuid(obj)">
-
           <h5>
             <a tal:content="obj/Title" tal:attributes="href obj/absolute_url">Title</a>
           </h5>
-
           <div class="visualClear"><!-- --></div>
         </div>
       </tal:items>
@@ -100,8 +98,8 @@
         </li>
       </ul>
 
-      <ul tal:condition="view/items" class="list-items">
-        <li tal:repeat="brain view/items">
+      <ul tal:condition="python: items and not assigned" class="list-items">
+        <li tal:repeat="brain items">
           <a href="" tal:attributes="href brain/getURL;
             title brain/Description"
             tal:content="brain/Title">Title here</a>

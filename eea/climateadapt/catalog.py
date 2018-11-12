@@ -119,21 +119,6 @@ def featured(obj):
     return obj.featured
 
 
-# @indexer(IRichImage)
-# def getObjSize_image(obj):
-#     try:
-#         primary_field_info = IPrimaryFieldInfo(obj)
-#     except TypeError:
-#         logger.warn(
-#             u'Lookup of PrimaryField failed for {0} If renaming or importing '
-#             u'please reindex!'.format(obj.absolute_url())
-#         )
-#
-#         return
-#
-#     return obj.getObjSize(None, primary_field_info.value.size)
-
-
 @indexer(Interface)
 def bio_regions(object):
     """ Provides the list of bioregions, extracted from geochar
