@@ -500,17 +500,25 @@ $(document).ready(function() {
 
   // Urban AST export section pdf button
   if (currentLocation.indexOf('/tools/urban-ast') !== -1 && currentLocation.indexOf('pdf.body') === -1) {
-    var $sectionPDF = '<a href="/tools/urban-ast/ast.pdf"' +
+    var path = window.location.pathname.split('/');
+    path.pop();
+    path = path.join('/') + '/ast.pdf'
+    var $sectionPDF = '<a href="{0}" ' +
     'class="standard-button ast-section-pdf">' +
     'Download section as PDF</a>';
+    $sectionPDF = $sectionPDF.replace("{0}", path)
     $pdfButton.parent().before($sectionPDF);
   }
 
   // AST export section pdf button
   if (currentLocation.indexOf('/tools/adaptation-support-tool') !== -1 && currentLocation.indexOf('pdf.body') === -1) {
-    var $sectionPDF = '<a href="/tools/adaptation-support-tool/ast.pdf"' +
+    var path = window.location.pathname.split('/');
+    path.pop();
+    path = path.join('/') + '/ast.pdf'
+    var $sectionPDF = '<a href="{0}" ' +
     'class="standard-button ast-section-pdf">' +
     'Download section as PDF</a>';
+    $sectionPDF = $sectionPDF.replace("{0}", path)
     $pdfButton.parent().before($sectionPDF);
   }
 
