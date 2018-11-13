@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* PDF print style fixes
+  [krisztina #91562]
 * Eu sector policies page: show tabs on hover;
   remove case study link;
   replace covenant logo
