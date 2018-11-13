@@ -543,7 +543,6 @@ $(document).ready(function() {
   var $panelLayer = $('<div class="panel-layer fadein"/>');
   $('.panel-collapse').prepend($panelLayer);
   var panelCollapse = $panelTitle.closest('.panel-heading').siblings();
-  panelCollapse.addClass('panel-opened');
 
   $panelTitle.toggle(
     function() {
