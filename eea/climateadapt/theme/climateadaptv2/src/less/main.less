@@ -12,6 +12,8 @@
 @import "footer.less";
 @import "cookie.less";
 
+@import "custom-print-pdf.less";
+
 
 @media (max-width: 1200px) {
   /* header navigation */
@@ -345,6 +347,12 @@
     border-right: 0 !important;
   }
 
+  .ast-title-step {
+    float:left;
+  }
+  .ast_header h1 {
+    display: block;
+  }
 }
 
 @media (max-width: 600px) {
@@ -467,26 +475,6 @@
     padding: 0;
   }
 
-}
-
-@media print {
-  .panel .collapse {
-    display: block;
-  }
-  .panel-layer.fadein {
-    display: none;
-  }
-  .panel-collapse.collapse {
-    height: 100%;
-    overflow: unset;
-  }
-  .panel-heading {
-    display: none;
-  }
-
-  .edit-bar-wrapper {
-    display: none;
-  }
 }
 
 @import "fixes.less";
