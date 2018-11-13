@@ -868,4 +868,12 @@
     permission="zope.Public"
   />
 
+  <browser:page
+    name="ast.pdf"
+    layer="eea.pdf.interfaces.ILayer"
+    for="eea.pdf.interfaces.IPDFAware"
+    class="eea.pdf.browser.app.download.Download"
+    permission="eea.pdf.download"
+  />
+
 </configure>

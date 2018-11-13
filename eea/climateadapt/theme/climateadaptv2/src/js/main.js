@@ -500,7 +500,7 @@ $(document).ready(function() {
 
   // Urban AST export section pdf button
   if (currentLocation.indexOf('/tools/urban-ast') !== -1 && currentLocation.indexOf('pdf.body') === -1) {
-    var $sectionPDF = '<a href="/tools/urban-ast/download.pdf"' +
+    var $sectionPDF = '<a href="/tools/urban-ast/ast.pdf"' +
     'class="standard-button ast-section-pdf">' +
     'Download section as PDF</a>';
     $pdfButton.parent().before($sectionPDF);
@@ -508,7 +508,7 @@ $(document).ready(function() {
 
   // AST export section pdf button
   if (currentLocation.indexOf('/tools/adaptation-support-tool') !== -1 && currentLocation.indexOf('pdf.body') === -1) {
-    var $sectionPDF = '<a href="/tools/adaptation-support-tool/download.pdf"' +
+    var $sectionPDF = '<a href="/tools/adaptation-support-tool/ast.pdf"' +
     'class="standard-button ast-section-pdf">' +
     'Download section as PDF</a>';
     $pdfButton.parent().before($sectionPDF);
