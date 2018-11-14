@@ -6,7 +6,15 @@
     $(document).ready(function() {
       var c = document.location.href;
       $("#uast-menu").accordion({
-      active: active_ast_tab
+        active: active_ast_tab
+      });
+
+      var current = window.location.href;
+      $('.ui-accordion-content a').each(function() {
+        var $this = $(this);
+        if (current.indexOf($this.attr('href')) > -1) {
+          $this.addClass('active');
+        }
       });
     });
   </script>
