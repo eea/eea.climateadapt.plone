@@ -103,6 +103,7 @@
       </ul>
 
       <div class="tile-footer">
+        <i class="fa fa-database"></i>
         <a href="" tal:attributes="href view/view_more_url"
           tal:condition="view/view_more">View more</a>
       </div>
