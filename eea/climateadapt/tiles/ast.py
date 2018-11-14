@@ -1,12 +1,14 @@
 """ A tile to implement the AST navigation
 """
 
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from collective.cover.tiles.base import IPersistentCoverTile
-from collective.cover.tiles.base import PersistentCoverTile
-from eea.climateadapt import MessageFactory as _
+from collective.cover.tiles.base import (IPersistentCoverTile,
+                                         PersistentCoverTile)
 from zope import schema
 from zope.interface import implements
+
+from eea.climateadapt import MessageFactory as _
+from eea.climateadapt.interfaces import IASTNavigationRoot
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class IASTNavigationTile(IPersistentCoverTile):
@@ -15,6 +17,29 @@ class IASTNavigationTile(IPersistentCoverTile):
         title=_(u'Title'),
         required=False,
     )
+
+
+def active_tab(context, iface):
+    request = context.REQUEST
+
+    for parent in request.PARENTS:
+        if not iface.providedBy(parent):
+            context = parent
+        else:
+            break
+
+    try:
+        id = context.getId()
+
+        if 'step-' not in id:
+            return 0
+
+        id = id.replace('step-', '')
+        left, right = id.split('-', 1)
+
+        return int(left)
+    except:
+        return 0
 
 
 class ASTNavigationTile(PersistentCoverTile):
@@ -34,6 +59,9 @@ class ASTNavigationTile(PersistentCoverTile):
 
     def is_empty(self):
         return False
+
+    def active_tab(self):
+        return active_tab(self.context, IASTNavigationRoot)
 
 
 class IUrbanASTNavigationTile(IPersistentCoverTile):
@@ -62,73 +90,8 @@ class UrbanASTNavigationTile(PersistentCoverTile):
     def is_empty(self):
         return False
 
-    # def _get_ast_root(self):
-    #
-    #     parent = self.context
-    #     while True:
-    #         if IASTNavigationRoot.providedBy(parent):
-    #             break
-    #         else:
-    #             if hasattr(parent, 'aq_parent'):
-    #                 parent = parent.aq_parent
-    #                 if parent is None:
-    #                     break
-    #             else:
-    #                 break
-    #
-    #     if not IASTNavigationRoot.providedBy(parent):
-    #         raise ValueError('No AST Root was found, mark '
-    #                          'proper root with IASTNavigationRoot')
-    #     return parent
-    #
-    #
-    # def _title(self, obj):
-    #     obj = obj.aq_self
-    #     title = getattr(obj, "_ast_title", obj.Title())
-    #     return title
-    #
-    # def get_nav_struct(self):
-    #     ast_root = self._get_ast_root()
-    #     res = []
-    #
-    #     all_parts = ast_root.contentValues({'portal_type': 'Folder'})
-    #
-    #     step = 0
-    #
-    #     T = self._title
-    #
-    #     while step < len(all_parts):
-    #         for_this_step = [o.getId()
-    #                          for o in all_parts
-    #                          if o.getId().startswith('step-{0}'.format(step))]
-    #         for_this_step.sort()
-    #         step += 1
-    #
-    #         if not for_this_step:
-    #             continue
-    #
-    #         main = ast_root[for_this_step[0]]
-    #         children = [(o['index_html'].Title(), o['index_html'].absolute_url())
-    #                     for o in [ast_root[x] for x in for_this_step[1:]]]
-    #         res.append((step,
-    #                     #main['index_html'].Title(),
-    #                     T(main['index_html']),
-    #                     main['index_html'].absolute_url(),
-    #                     children))
-    #
-    #
-    #     # process extra documents that have weird ids
-    #     for folder in all_parts:
-    #         if not folder.getId().startswith('step'):
-    #             cover = folder['index_html']
-    #             step = getattr(cover, '_ast_navigation_step', 0)
-    #             info = (T(cover), cover.absolute_url())
-    #             # try to find the proper index position
-    #             for branch in res:
-    #                 if branch[0] == step:
-    #                     branch[3].append(info)
-    #
-    #     return res
+    def active_tab(self):
+        return active_tab(self.context, IASTNavigationRoot)
 
 
 class IUrbanMenuTile(IPersistentCoverTile):

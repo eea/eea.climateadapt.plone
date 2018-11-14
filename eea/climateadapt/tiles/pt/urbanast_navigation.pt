@@ -1,40 +1,13 @@
 <div tal:define="portal_url context/portal_url">
-  <script src="/mark_special_links.js" tal:attributes="src string: ${context/portal_url}/mark_special_links.js"></script>
+  <script tal:content="string:
+    var active_ast_tab = ${view/active_tab};
+    "></script>
   <script type="text/javascript">
     $(document).ready(function() {
-    //  if ($.isFunction($.fn.accordion)) {
-    //    console.log('accordion exists');
-    //  }
-
       var c = document.location.href;
       $("#uast-menu").accordion({
-        autoHeight: false,
-        navigation: true,
-        navigationFilter: function() {
-          var e = c.substr(document.location.href.indexOf("ast/step") + 4);
-          var d = $(this).attr("href");
-          d = d.substr(d.indexOf("ast/step") + 4);
-          if (e.indexOf("?") > 0) {
-            e = e.substr(0, e.indexOf("?"))
-          }
-          if ((e.indexOf(d) != -1)) {
-            $(this).addClass("active");
-            return true;
-          } else {
-            return false;
-          }
-        }
+      active: active_ast_tab
       });
-
-      var activeNav = $("#uast-menu a.active");
-      var anchors = $("#uast-menu a");
-
-      var pos = anchors.index(activeNav);
-      var next = anchors.get(pos+1);
-      var previous = anchors.get(pos-1);
-
-      $("#previous-link a").attr("href", previous);
-      $("#next-link a").attr("href", next);
     });
   </script>
 
