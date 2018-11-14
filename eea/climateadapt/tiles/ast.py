@@ -28,6 +28,7 @@ def active_tab(context, iface):
         else:
             break
 
+    import pdb; pdb.set_trace()
     try:
         id = context.getId()
 
@@ -35,9 +36,9 @@ def active_tab(context, iface):
             return 0
 
         id = id.replace('step-', '')
-        left, right = id.split('-', 1)
+        bits = id.split('-', 1)
 
-        return int(left)
+        return int(bits[0])
     except:
         return 0
 
