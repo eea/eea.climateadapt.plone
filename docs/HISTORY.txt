@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Newsletter & Subscription improvements on frontpage
+  [krisztina #91562]
 * Use default accordion on research projects;
   Toggle arrow up and down icon;
   Use simplified geojson on country profile pages
