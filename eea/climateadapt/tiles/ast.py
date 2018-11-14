@@ -28,7 +28,6 @@ def active_tab(context, iface):
         else:
             break
 
-    import pdb; pdb.set_trace()
     try:
         id = context.getId()
 
