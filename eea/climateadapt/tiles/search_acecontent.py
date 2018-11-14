@@ -3,6 +3,7 @@ It renders a search "portlet" for Ace content
 """
 
 import logging
+from collections import namedtuple
 from urllib import urlencode
 
 from collective.cover.interfaces import ICoverUIDsProvider
@@ -25,6 +26,7 @@ from plone.memoize import view
 from plone.tiles.interfaces import ITileDataManager
 from plone.uuid.interfaces import IUUID
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.CatalogTool import sortable_title
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.form.field import Fields
 from z3c.form.form import Form
@@ -311,6 +313,10 @@ class IRelevantAceContentItemsTile(ISearchAceContentTile):
     form.omitted('uuids')
 
 
+Item = namedtuple('Item',
+                  ['Title', 'Description', 'icons', 'sortable_title', 'url'])
+
+
 class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
     """ Relevant AceItem content
     """
@@ -407,8 +413,8 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
         return tile_icons.objectValues()
 
-    def get_icons(self, brain):
-        special_tags = brain.special_tags or []
+    def get_icons(self, obj):
+        special_tags = obj.special_tags or []
         images = self.icon_images()
         icons = [image for image in images if image.getId() in special_tags]
 
@@ -426,6 +432,40 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         items = res[:count]
 
         return items
+
+    def all_items(self):
+        res = []
+
+        for item in self.assigned():
+            adapter = sortable_title(item)
+            st = adapter()
+            o = Item(item.Title(),
+                     self.get_description(item),
+                     self.get_icons(item),
+                     st,
+                     item.absolute_url(),
+                     )
+            res.append(o)
+
+        if res:
+            if self.data.get('alpha_sort', False):
+                return sorted(res, key=lambda o: o.sortable_title)
+            else:
+                return res
+
+        for item in self.items():
+            o = Item(item.Title(),
+                     item.Description(),
+                     self.get_icons(item),
+                     item.sortable_title(),
+                     item.getURL(),
+                     )
+            res.append(o)
+
+        if self.data.get('alpha_sort', False):
+            return sorted(res, key=lambda o: o.sortable_title)
+        else:
+            return res
 
     # @view.memoize
     def assigned(self):
