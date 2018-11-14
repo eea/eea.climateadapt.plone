@@ -2,9 +2,9 @@
   <script src="/mark_special_links.js" tal:attributes="src string: ${context/portal_url}/mark_special_links.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-      if ($.isFunction($.fn.accordion)) {
-        console.log('accordion exists');
-      }
+    //  if ($.isFunction($.fn.accordion)) {
+    //    console.log('accordion exists');
+    //  }
 
       var c = document.location.href;
       $("#uast-menu").accordion({

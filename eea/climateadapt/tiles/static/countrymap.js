@@ -5,7 +5,7 @@ var _mapTooltip = null;
 $(document).ready(function () {
 
   // initialize the countries map
-  var cpath = '++theme++climateadaptv2/static/countries/euro-countries.geojson';
+  var cpath = '++theme++climateadaptv2/static/countries/euro-countries-simplified.geojson';
   var fpath = '++theme++climateadaptv2/static/countries/countries.tsv';
 
   var $sw = $('.svg-header-wrapper');

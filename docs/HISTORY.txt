@@ -3,11 +3,16 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Use default accordion on research projects;
+  Toggle arrow up and down icon;
+  Use simplified geojson on country profile pages
+  [krisztina]
 * Change favicon in search external template; style fixes
   [krisztina #91562]
 * Remove extra semicolon by encoding '&' in html
   [krisztina #91562]
 * Fix AST and UAST links
+  [krisztina]
 * Fix blurry logo in PDF export
   [krisztina #91562]
 * PDF print style fixes

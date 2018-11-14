@@ -444,7 +444,7 @@ form .standard-button,
 }
 
 .panel-default {
-  padding-bottom: 1em;
+  padding: 1em 0;
   border: none;
   border-bottom: 1px solid #ddd;
   background-color: transparent;
@@ -454,11 +454,11 @@ form .standard-button,
   position: relative;
 
   >.panel-heading {
-    text-align: right;
     background-color: transparent;
     border: none;
-
-
+    .panel-title {
+      margin-bottom: 0;
+    }
     a {
       text-transform: uppercase;
       color: #bf5900;
@@ -472,16 +472,10 @@ form .standard-button,
 }
 
 // faded collapse content
-.panel-collapse.collapse {
-  display: block !important;
-  height: 130px;
-  overflow: hidden;
-  position: relative;
-}
 
 .panel-collapse.panel-opened {
-  height: 100%;
-  overflow: unset;
+  height: 100% !important;
+  overflow: unset !important;
 }
 
 .panel-layer {
@@ -519,10 +513,17 @@ form .standard-button,
 }
 
 .panel-heading .accordion-toggle:before {
-  content: '\f107';
   font-family: FontAwesome;
   margin-right: 5px;
   font-size: 18px;
+}
+
+.panel-heading .arrow-up:before {
+  content: '\f106';
+}
+
+.panel-heading .arrow-down:before {
+  content: '\f107';
 }
 
 .image-left {

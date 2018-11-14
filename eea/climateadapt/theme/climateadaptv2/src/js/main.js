@@ -522,7 +522,7 @@ $(document).ready(function() {
     $pdfButton.parent().before($sectionPDF);
   }
 
-  // fix tiles edit button
+  // Fix tiles edit button
   $('.tile-container').each(function() {
     var $this = $(this);
     // var tileName = $this.find('.tile-type-name');
@@ -536,31 +536,51 @@ $(document).ready(function() {
     }
   });
 
-  // Toggle text on accordion
+  // Accordion: Toggle arrow up and down on click
   var $panelTitle = $('.panel-title a');
 
-  // $panelTitle.addClass('pressed');
+  $panelTitle.addClass('arrow-down');
   $panelTitle.click(function() {
-   $(this).text(function(i, text) {
-     return text === "Read more" ? "Read less" : "Read more";
-   })
-   // $(this).toggleClass("collapsed pressed");
- });
+    $(this).toggleClass('arrow-up arrow-down');
+  });
 
-  $('.panel-heading').before($('.panel-collapse'));
-  var $panelLayer = $('<div class="panel-layer fadein"/>');
-  $('.panel-collapse').prepend($panelLayer);
-  var panelCollapse = $panelTitle.closest('.panel-heading').siblings();
+  // Custom accordion with faded text
+  var isResearchProject = $('.subsection-adaptation-information-research-projects').length > 0;
 
-  $panelTitle.toggle(
-    function() {
-      panelCollapse.addClass('panel-opened');
-      panelCollapse.children('.panel-layer').removeClass('fadein').addClass('fadeout');
-    }, function() {
-      panelCollapse.removeClass('panel-opened');
-      panelCollapse.children('.panel-layer').removeClass('fadeout').addClass('fadein');
-    }
-  );
+  if (!isResearchProject) {
+   var $panelHeading = $('.panel-heading');
+   var $panelCollapse = $('.panel-collapse');
+
+   $panelTitle.click(function() {
+    $(this).text(function(i, text) {
+      return text === "Read more" ? "Read less" : "Read more";
+    })
+  });
+
+   $panelCollapse.css({
+     'display': 'block',
+     'height': '130px',
+     'overflow': 'hidden',
+     'position': 'relative'
+   });
+
+   $panelHeading.css('text-align', 'right');
+   $panelHeading.before($panelCollapse);
+
+   var $panelLayer = $('<div class="panel-layer fadein"/>');
+   $panelCollapse.prepend($panelLayer);
+   var panelCollapse = $panelTitle.closest('.panel-heading').siblings();
+
+   $panelTitle.toggle(
+     function() {
+       panelCollapse.addClass('panel-opened');
+       panelCollapse.children('.panel-layer').removeClass('fadein').addClass('fadeout');
+     }, function() {
+       panelCollapse.removeClass('panel-opened');
+       panelCollapse.children('.panel-layer').removeClass('fadeout').addClass('fadein');
+     }
+   );
+  }
 
   // Hide the download pdf on the search page
   if (window.location.href.indexOf("data-and-downloads") > -1) {
