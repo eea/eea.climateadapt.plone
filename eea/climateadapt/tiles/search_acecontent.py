@@ -454,8 +454,8 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
                 return res
 
         for item in self.items():
-            o = Item(item.Title(),
-                     item.Description(),
+            o = Item(item.Title,
+                     item.Description,
                      self.get_icons(item),
                      item.sortable_title(),
                      item.getURL(),
