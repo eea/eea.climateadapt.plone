@@ -1,4 +1,7 @@
-<link rel="shortcut icon" href="/frontpage/cca/++theme++climateadaptv2/static/images/favicon.ico" type="image/x-icon"/>
+<link rel="icon" type="image/png" href="/frontpage/cca/++theme++climateadaptv2/static/images/favicon/favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="/frontpage/cca/++theme++climateadaptv2/static/images/favicon/favicon-16x16.png" sizes="16x16" />
+<link rel="shortcut icon" type="image/x-icon" href="/frontpage/cca/++theme++climateadaptv2/static/images/favicon/favicon.ico">
+
 <link href='https://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css' />
 
 
@@ -28,8 +31,12 @@
 <!--?<script type="text/javascript" src="/frontpage/cca/portal_javascripts/Sunburst%20Theme/++resource++plone.app.jquerytools.form.js?ts=14"></script>
 <script type="text/javascript" src="/frontpage/cca/portal_javascripts/Sunburst%20Theme/++resource++plone.app.jquerytools.overlayhelpers.js?ts=14"></script>-->
 
-
-<link rel="apple-touch-icon" href="/frontpage/cca/++theme++climateadaptv2/static/images/touch_icon.png"/>
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/frontpage/cca/++theme++climateadaptv2/static/images/favicon/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/frontpage/cca/++theme++climateadaptv2/static/images/favicon/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/frontpage/cca/++theme++climateadaptv2/static/images/favicon/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/frontpage/cca/++theme++climateadaptv2/static/images/favicon/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="/frontpage/cca/++theme++climateadaptv2/static/images/favicon/apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="/frontpage/cca/++theme++climateadaptv2/static/images/favicon/apple-touch-icon-152x152.png" />
 
 
 <link type="text/css" rel="stylesheet" href="/portal_css/Sunburst%20Theme/member.css?ts=46"/>
