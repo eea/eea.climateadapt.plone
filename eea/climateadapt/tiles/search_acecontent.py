@@ -448,21 +448,24 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
             res.append(o)
 
         if res:
-            if self.data.get('alpha_sort', False):
+            if self.data.get('alpha_sort', True):
                 return sorted(res, key=lambda o: o.sortable_title)
             else:
                 return res
 
         for item in self.items():
+            obj = item.getObject()
+            adapter = sortable_title(obj)
+            st = adapter()
             o = Item(item.Title,
                      item.Description,
                      self.get_icons(item),
-                     item.sortable_title(),
+                     st,
                      item.getURL(),
                      )
             res.append(o)
 
-        if self.data.get('alpha_sort', False):
+        if self.data.get('alpha_sort', True):
             return sorted(res, key=lambda o: o.sortable_title)
         else:
             return res
