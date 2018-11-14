@@ -75,7 +75,7 @@
         <a class="ast-step-wrapper" tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-6">
           <span class="ast-circle circle-6">6</span>
           <span class="step-text circle-6-text">
-            <p>Monitoring & Evaluation (M&E)</p>
+            <p>Monitoring &amp; Evaluation (M&amp;E)</p>
           </span>
         </a>
       </div>
