@@ -3,6 +3,7 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Fix AST and UAST links
 * Fix blurry logo in PDF export
   [krisztina #91562]
 * PDF print style fixes
