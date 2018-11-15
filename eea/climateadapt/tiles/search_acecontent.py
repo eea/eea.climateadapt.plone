@@ -13,6 +13,7 @@ from collective.cover.tiles.list import IListTile
 from zope.component.hooks import getSite
 from zope.interface import implements
 from zope.schema import Bool, Choice, Dict, Int, List, TextLine
+from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 from AccessControl import Unauthorized
 from eea.climateadapt import MessageFactory as _
@@ -140,13 +141,16 @@ class AceTileMixin(object):
         sort_map = {
             'RATING': 'rating',
             'NAME': 'sortable_title',
+            'MODIFIED': 'modified',
         }
 
         sort = self.data.get('sortBy')
 
         if sort:
             query['sort_on'] = sort_map[sort]
-            query['sort_order'] = 'reverse'
+
+            if sort == 'MODIFIED':
+                query['sort_order'] = 'reverse'
 
         for setting_name, index_name in map.items():
             setting = self.data.get(setting_name, '')
@@ -288,6 +292,17 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
         return result
 
 
+sortby_def = {
+    'MODIFIED': 'Last Modified',
+    'NAME': 'Alphabetical sorting',
+}
+
+sortbyterms = [
+    SimpleTerm(value=k, token=k, title=v) for k, v in sortby_def.items()
+]
+sortby_vocabulary = SimpleVocabulary(sortbyterms)
+
+
 class IRelevantAceContentItemsTile(ISearchAceContentTile):
 
     show_share_btn = Bool(
@@ -305,9 +320,9 @@ class IRelevantAceContentItemsTile(ISearchAceContentTile):
         required=False,
     )
 
-    alpha_sort = Bool(
+    sortBy = Choice(
         title=_(u"Sort assigned items alphabetically"),
-        default=True,
+        vocabulary=sortby_vocabulary,
     )
 
     form.omitted('uuids')
@@ -442,27 +457,28 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
             res.append(o)
 
         if res:
-            if self.data.get('alpha_sort', True):
+            if self.data.get('sortBy', '') == 'NAME':
                 return sorted(res, key=lambda o: o.sortable_title)
             else:
                 return res
 
-        for item in self.items():
-            obj = item.getObject()
-            adapter = sortable_title(obj)
-            st = adapter()
-            o = Item(item.Title,
-                     item.Description,
-                     self.get_icons(item),
-                     st,
-                     item.getURL(),
-                     )
-            res.append(o)
-
-        if self.data.get('alpha_sort', True):
-            return sorted(res, key=lambda o: o.sortable_title)
-        else:
-            return res
+        # Commented because items will come autosorted
+        # for item in self.items():
+        #     obj = item.getObject()
+        #     adapter = sortable_title(obj)
+        #     st = adapter()
+        #     o = Item(item.Title,
+        #              item.Description,
+        #              self.get_icons(item),
+        #              st,
+        #              item.getURL(),
+        #              )
+        #     res.append(o)
+        #
+        # if self.data.get('sortBy', True):
+        #     return sorted(res, key=lambda o: o.sortable_title)
+        # else:
+        #     return res
 
     # @view.memoize
     def assigned(self):
@@ -565,7 +581,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         old_data['uuids'] = uuids_dict
 
         # Whenever we insert an (or rearange), remove the alpha sort
-        old_data['alpha_sort'] = False
+        old_data['sortBy'] = ''
         data_mgr.set(old_data)
 
     def replace_with_uuids(self, uuids):

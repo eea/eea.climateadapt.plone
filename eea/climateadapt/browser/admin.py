@@ -610,7 +610,7 @@ class MigrateTiles(BrowserView):
 
                     data_mgr = ITileDataManager(tile)
                     old_data = data_mgr.get()
-                    old_data['alpha_sort'] = True
+                    old_data['sortBy'] = 'NAME'
                     data_mgr.set(old_data)
 
                     print("Fixed cover %s, tile %s with uids %r" % (
