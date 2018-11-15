@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Add tabs for homepage RSS/Notification section;
+  Multiple fixes
+  [krisztina]
 * AST & UAST: Add active state on substeps
   [krisztina #91562]
 * Newsletter & Subscription improvements on frontpage

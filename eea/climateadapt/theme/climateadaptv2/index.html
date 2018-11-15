@@ -616,7 +616,7 @@
                     </a>
                   </li>
                   <li class="policies-nav-item">
-                    <a href="#disaster" class="policies-nav-link">
+                    <a href="#disaster-risk-reduction" class="policies-nav-link">
                       <div class="policy-icons disaster"></div>
                       <p>Disaster risk <br /> reduction</p>
                     </a>
@@ -845,7 +845,7 @@
                       </a>
                     </div>
                   </div>
-                  <div id="disaster" class="tab-pane fade policies-tab-content">
+                  <div id="disaster-risk-reduction" class="tab-pane fade policies-tab-content">
                     <div class="row">
                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
                         <img src="/cca/++theme++climateadaptv2/static/images/disaster.jpeg" alt="Disaster risk reduction" title="Disaster risk reduction"/>
@@ -1208,18 +1208,43 @@
               </div>
       
               <div class="main-box col-md-3 col-sm-6 col-xs-12">
-                  <div class="box-container">
-                      <div class="rss-feed-wrapper content-body">
-                          <i class="fa fa-bell"></i>
-                          <p>Watch for changes with your favorite keywords, receive email notifications and stay up to date!</p>
-                          <p class="discreet">(Needs EIONET account)</p>
-                          <div class="main-link-wrapper">
-                            <a href="/manage_subscriptions"
-                               class="standard-button primary-button">
-                                Subscribe
-                            </a>
-                          </div>
+                  <div class="box-container feed-container content-body">
+                    <ul class="nav nav-tabs">
+                      <li class="active">
+                        <a href="#rss-tab"><i class="fa fa-rss"></i> RSS feed</a>
+                      </li>
+                      <li>
+                        <a href="#notify-tab"><i class="fa fa-bell"></i> Notifications</a>
+                      </li>
+                    </ul>
+                    <div class="tab-content">
+                      <div class="tab-pane active fade in" id="rss-tab">
+                        <div class="feed-wrapper content-body">
+                            <p>Subscribe to our <br/> <strong> RSS feed </strong> <br/> and stay up to date!</p>
+                            <br />
+                            <div class="main-link-wrapper">
+                              <a href="/latest-modifications-on-climate-adapt/RSS"
+                                 class="standard-button primary-button">
+                                  Subscribe
+                              </a>
+                            </div>
+                        </div>
                       </div>
+                      <div class="tab-pane fade" id="notify-tab">
+                        <div class="feed-wrapper content-body">
+                            <p>Watch for changes with your favorite keywords, and receive email notifications.
+                              <span class="discreet">(Needs EIONET account)</span>
+                            </p>
+                            <div class="main-link-wrapper">
+                              <a href="/manage_subscriptions"
+                                 class="standard-button primary-button">
+                                  Subscribe
+                              </a>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+      
                   </div>
               </div>
           </div>

@@ -303,7 +303,7 @@
           </a>
         </div> -->
       </div>
-      <div id="disaste-risk-reduction" class="tab-pane fade policies-tab-content">
+      <div id="disaster-risk-reduction" class="tab-pane fade policies-tab-content">
         <div class="row">
           <div class="policy-image col-md-3 col-sm-3 col-xs-4">
             <img src="/cca/++theme++climateadaptv2/static/images/disaster.jpeg" alt="Disaster risk reduction" title="Disaster risk reduction"/>

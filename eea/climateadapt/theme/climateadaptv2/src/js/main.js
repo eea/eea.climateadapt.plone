@@ -88,7 +88,7 @@ $(document).ready(function() {
   }
 
   // HOMEPAGE: Tabs functionality
-  $('ul.nav-tabs a').click(function(e) {
+  $('ul.nav-tabs a, .feed-tabs a').click(function(e) {
     $(this).tab('show');
     e.preventDefault();
   });

@@ -33,8 +33,10 @@
         </li>
       </ul>
       <div class="tile-footer">
-        <i class="fa fa-database"></i>
-        <a href="" tal:attributes="href view/view_more_url">View all</a>
+        <a class="read-more" href="" tal:attributes="href view/view_more_url">
+          <i class="fa fa-angle-double-right"></i>
+          View all
+        </a>
       </div>
     </div>
   </body>

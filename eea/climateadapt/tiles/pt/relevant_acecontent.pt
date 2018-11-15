@@ -103,9 +103,11 @@
       </ul>
 
       <div class="tile-footer">
-        <i class="fa fa-database"></i>
-        <a href="" tal:attributes="href view/view_more_url"
-          tal:condition="view/view_more">View more</a>
+        <a class="read-more" href="" tal:attributes="href view/view_more_url"
+          tal:condition="view/view_more">
+          <i class="fa fa-angle-double-right"></i>
+          View more
+        </a>
       </div>
     </div>
   </body>

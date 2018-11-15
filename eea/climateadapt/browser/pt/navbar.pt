@@ -6,7 +6,7 @@
 
       <span tal:define="has_children python: bool(section['children'][-1])">
         <a class="main-nav-link"
-          tal:attributes="href python: section['label'] == 'Network' and section['link'] or None">
+          tal:attributes="href python: section['label'] == 'Networks' and section['link'] or None">
           <tal:block tal:condition="python: section['icon']"
                      tal:content="structure python: section['icon']" />
           <span tal:content="python: section['label']">Home</span>
