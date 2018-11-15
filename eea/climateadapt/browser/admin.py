@@ -22,6 +22,7 @@ from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.directives import form
 from plone.memoize import view
 from plone.registry.interfaces import IRegistry
+from plone.tiles.interfaces import ITileDataManager
 from plone.z3cform import layout
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
@@ -606,17 +607,23 @@ class MigrateTiles(BrowserView):
 
                 if uids:
                     tile.populate_with_uuids(uids)
+
+                    data_mgr = ITileDataManager(tile)
+                    old_data = data_mgr.get()
+                    old_data['alpha_sort'] = True
+                    data_mgr.set(old_data)
+
                     print("Fixed cover %s, tile %s with uids %r" % (
                                 cover.absolute_url(),
                                 tid,
                                 uids,
                                 ))
 
-                # logger.info("Fixed cover %s, tile %s with uids %r",
-                #             cover.absolute_url(),
-                #             tid,
-                #             uids,
-                #             )
+                    logger.info("Fixed cover %s, tile %s with uids %r",
+                                cover.absolute_url(),
+                                tid,
+                                uids,
+                                )
 
     def __call__(self):
         catalog = get_tool('portal_catalog')

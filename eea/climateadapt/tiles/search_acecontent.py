@@ -345,12 +345,6 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
             return True
 
-        # <c:if test="${aceitemtype eq 'DOCUMENT' || aceitemtype eq
-        # 'INFORMATIONSOURCE' || aceitemtype eq 'GUIDANCE' ||
-        # aceitemtype eq 'TOOL' || aceitemtype eq
-        # 'RESEARCHPROJECT' || aceitemtype eq 'MEASURE' ||
-        # aceitemtype eq 'ORGANISATION'}" >
-
     @view.memoize
     def is_empty(self):
         return False
@@ -569,6 +563,9 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
                 order += 1
 
         old_data['uuids'] = uuids_dict
+
+        # Whenever we insert an (or rearange), remove the alpha sort
+        old_data['alpha_sort'] = False
         data_mgr.set(old_data)
 
     def replace_with_uuids(self, uuids):
