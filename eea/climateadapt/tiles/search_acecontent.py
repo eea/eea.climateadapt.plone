@@ -345,7 +345,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
     index = ViewPageTemplateFile('pt/relevant_acecontent.pt')
 
-    view_more = False
+    view_more = True
 
     @property
     def is_available(self):
@@ -435,8 +435,8 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         query = self.build_query()
         res = self.catalog.searchResults(**query)
 
-        if len(res) > count:
-            self.view_more = True
+        if len(res) < count:
+            self.view_more = False
 
         items = res[:count]
 
@@ -462,19 +462,20 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
             else:
                 return res
 
+        for item in self.items():
+            obj = item.getObject()
+            adapter = sortable_title(obj)
+            st = adapter()
+            o = Item(item.Title,
+                     item.Description,
+                     self.get_icons(item),
+                     st,
+                     item.getURL(),
+                     )
+            res.append(o)
+
+        return res
         # Commented because items will come autosorted
-        # for item in self.items():
-        #     obj = item.getObject()
-        #     adapter = sortable_title(obj)
-        #     st = adapter()
-        #     o = Item(item.Title,
-        #              item.Description,
-        #              self.get_icons(item),
-        #              st,
-        #              item.getURL(),
-        #              )
-        #     res.append(o)
-        #
         # if self.data.get('sortBy', True):
         #     return sorted(res, key=lambda o: o.sortable_title)
         # else:
