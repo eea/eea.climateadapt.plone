@@ -349,7 +349,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
     @property
     def is_available(self):
-        return bool(self.items())
+        return bool(self.items() or self.assigned())
 
     def show_share_btn(self):
         search_type = self.data.get('search_type')
