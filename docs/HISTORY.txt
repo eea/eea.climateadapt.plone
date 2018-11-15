@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Homepage: show eu policies tabs content on hover
+  [krisztina]
 * Newsletter & Subscription changes on frontpage;
   Use svg format for logo
   [krisztina]

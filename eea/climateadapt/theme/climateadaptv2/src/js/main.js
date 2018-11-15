@@ -99,7 +99,7 @@ $(document).ready(function() {
 
   var url = window.location.href;
 
-  $('.policies-tile .nav-tabs a').click(function(e) {
+  $('.tab-policies .nav-tabs a').click(function(e) {
     e.preventDefault();
     var href = $(this).attr('href');
     var href = href.substring(1);
@@ -110,7 +110,14 @@ $(document).ready(function() {
     } else {
       document.location = url + '/' + href;
     }
+  });
 
+  $('.policies-tile .nav-tabs a').click(function(e) {
+    e.preventDefault();
+    var href = $(this).attr('href');
+    var href = href.substring(1);
+
+    document.location = url + '/eu-adaptation-policy/sector-policies/' + href;
   });
 
   // HOMEPAGE: Dynamic area:
@@ -546,6 +553,8 @@ $(document).ready(function() {
 
   // Custom accordion with faded text
   var isResearchProject = $('.subsection-adaptation-information-research-projects').length > 0;
+  // var isOrganizationsPage = $('.subsection-organisations').length > 0;
+  // console.log(isOrganizationsPage);
 
   if (!isResearchProject) {
    var $panelHeading = $('.panel-heading');
