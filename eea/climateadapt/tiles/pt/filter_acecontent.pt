@@ -32,7 +32,7 @@
           <a href="" tal:attributes="href brain/getURL" tal:content="brain/Title">Title here</a>
         </li>
       </ul>
-      <div class="tile-footer x">
+      <div class="tile-footer">
         <i class="fa fa-database"></i>
         <a href="" tal:attributes="href view/view_more_url">View all</a>
       </div>
