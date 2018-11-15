@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Newsletter & Subscription changes on frontpage;
+  Use svg format for logo
+  [krisztina]
 * Add tabs for homepage RSS/Notification section;
   Multiple fixes
   [krisztina]

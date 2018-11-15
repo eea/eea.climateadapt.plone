@@ -31,7 +31,7 @@
   </metal:fill-slot>
 
   <metal:fill-slot fill-slot="content-title">
-    <h1>Country information</h1>
+    <h1 tal:content="context/Title">Country information</h1>
   </metal:fill-slot>
 
   <metal:fill-slot fill-slot="content-core">

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 70.114577 13.758333"
+   height="52"
+   width="265">
+  <defs
+     id="defs2">
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       y2="142.886"
+       x2="2.64118"
+       y1="-12.4733"
+       x1="180.386"
+       id="paint0_linear"
+       gradientTransform="matrix(0.31646747,0,0,0.31646686,-139.80689,147.83039)">
+      <stop
+         id="stop819"
+         stop-color="#005C96"
+         offset="0.149171" />
+      <stop
+         id="stop821"
+         stop-color="#1E7CB3"
+         offset="0.712707" />
+    </linearGradient>
+    <linearGradient
+       id="paint0_linear-6"
+       x1="259.073"
+       y1="71.928703"
+       x2="259.073"
+       y2="467.01099"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0.552486"
+         stop-color="#8A9C3A"
+         id="stop901" />
+      <stop
+         offset="1"
+         stop-color="#B4CB4C"
+         id="stop903" />
+    </linearGradient>
+    <linearGradient
+       id="paint1_linear"
+       x1="249.69099"
+       y1="20.480101"
+       x2="49.2038"
+       y2="131.66901"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#005C96"
+         id="stop906" />
+      <stop
+         offset="1"
+         stop-color="#0170B7"
+         id="stop908" />
+    </linearGradient>
+    <linearGradient
+       id="paint0_linear-6-5"
+       x1="259.073"
+       y1="71.928703"
+       x2="259.073"
+       y2="467.01099"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0.552486"
+         stop-color="#8A9C3A"
+         id="stop901-3" />
+      <stop
+         offset="1"
+         stop-color="#B4CB4C"
+         id="stop903-7" />
+    </linearGradient>
+    <linearGradient
+       id="paint1_linear-6"
+       x1="249.69099"
+       y1="20.480101"
+       x2="49.2038"
+       y2="131.66901"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#005C96"
+         id="stop906-8" />
+      <stop
+         offset="1"
+         stop-color="#0170B7"
+         id="stop908-1" />
+    </linearGradient>
+  </defs>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     transform="translate(0,-283.24166)">
+    <g
+       style="fill:none"
+       id="g837"
+       transform="matrix(0.52916666,0,0,0.52916666,32.654776,151.86263)">
+      <g
+         transform="matrix(0.3424438,0,0,0.3424438,-61.419599,212.03268)"
+         id="g1000">
+        <g
+           id="g975"
+           transform="translate(579.87501,21.931457)">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-weight:normal;font-size:13.33333397px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.5"
+             x="-324.6582"
+             y="107.77657"
+             id="text1375"><tspan
+               id="tspan1411"
+               x="-324.6582"
+               y="107.77657"
+               style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:12px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Semi-Bold';fill:#2f2f2f;fill-opacity:1;stroke-width:0.5">SHARING ADAPTATION</tspan></text>
+          <text
+             id="text1419"
+             y="126.21185"
+             x="-325.20309"
+             style="font-style:normal;font-weight:normal;font-size:13.33333397px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.5"
+             xml:space="preserve"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:12px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Semi-Bold';fill:#2f2f2f;fill-opacity:1;stroke-width:0.5"
+               y="126.21185"
+               x="-325.20309"
+               id="tspan1417">INFORMATION</tspan></text>
+          <text
+             id="text1423"
+             y="144.64713"
+             x="-324.07224"
+             style="font-style:normal;font-weight:normal;font-size:13.33333397px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.5"
+             xml:space="preserve"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:12px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Semi-Bold';fill:#2f2f2f;fill-opacity:1;stroke-width:0.5"
+               y="144.64713"
+               x="-324.07224"
+               id="tspan1421">ACROSS EUROPE</tspan></text>
+        </g>
+        <rect
+           style="fill:#2f2f2f;fill-opacity:1;stroke-width:0.35001093"
+           id="rect1431"
+           width="0.5"
+           height="70"
+           x="243.75021"
+           y="108.8513" />
+        <g
+           style="fill:none"
+           id="g933-3"
+           transform="translate(9.7912933,8.5210829)">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+             x="72.393532"
+             y="170.33023"
+             id="text845-6"><tspan
+               id="tspan843-4"
+               x="72.393532"
+               y="170.33023"
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:45.66666794px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Bold';fill:#2f2f2f;fill-opacity:1">ADAPT</tspan></text>
+          <text
+             id="use4570-0"
+             y="130.61375"
+             x="70.069313"
+             style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+             xml:space="preserve"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Bold';fill:#2f2f2f;fill-opacity:1"
+               y="130.61375"
+               x="70.069313"
+               id="tspan5154-3">Climate</tspan></text>
+        </g>
+        <g
+           style="fill:none"
+           id="g927-5"
+           transform="matrix(0.12238671,0,0,0.12238664,16.186523,114.77937)">
+          <g
+             style="fill:none"
+             id="g965"
+             transform="matrix(0.49735437,0,0,0.49735464,-125.65551,-48.437102)">
+            <path
+               id="path939"
+               d="m 348.87,240.175 c 68.738,-1.814 104.224,-31 111.338,-85.018 C 467.323,101.138 428.565,54.994 374.188,47.9292 279.126,35.5785 201.294,128.381 153.573,228.525 c 85.924,-23.142 129.458,13.388 195.297,11.65 z"
+               style="fill:#005c96" />
+            <path
+               id="path941"
+               d="M 190.564,444.085 C 243.571,400.32 253.301,355.483 225.182,308.566 197.063,261.649 137.729,249.185 90.491,277.113 7.90742,325.936 4.5392,446.948 29.4708,555.194 82.6996,484.052 139.792,486.004 190.564,444.085 Z"
+               style="fill:#005c96" />
+            <path
+               id="path943"
+               d="m 600.148,177.499 c 55.196,41.01 101.364,39.969 140.757,1.885 C 780.298,141.3 778.688,81.0876 740.343,41.9622 673.308,-26.4376 554.032,-1.51542 453.845,47.7694 535.899,82.6189 547.281,138.219 600.148,177.499 Z"
+               style="fill:#005c96" />
+            <path
+               id="path945"
+               d="M 568.534,1150 C 889.669,1150 1150,891.44 1150,572.49 1150,424.18 1093.71,288.927 1001.19,186.656 1075.37,632.079 618.531,542.2 336.048,629.099 110.062,698.619 110.159,879.093 137.491,960.861 709.856,1183.72 963.677,839.976 1020.01,640.024 1003.61,1020.99 580.2,1115.85 370.546,1115.66 432.343,1137.88 499.014,1150 568.534,1150 Z"
+               style="fill:#8a9c3a" />
+            <path
+               id="path947"
+               d="m 953.947,146.389 c -42.487,-27.374 -97.073,-45.696 -151.61,-56.3858 26.899,47.5408 27.761,85.1328 28.6,121.7258 0.525,22.882 1.041,45.374 7.909,69.663 18.638,65.912 55.897,93.009 110.494,86.625 2.143,-0.25 4.256,-0.566 6.338,-0.945 14.442,-41.94 18.724,-97.86 6.055,-173.933 z"
+               style="fill:#005c96" />
+            <path
+               id="path949"
+               d="M 195.847,655.193 C 193.607,615.562 172.903,589.161 135.211,574.349 84.0927,554.261 29.449,580.388 9.22272,631.158 -19.5534,703.39 22.6121,781.648 85.8319,846.327 c 2.8162,-22.901 8.4301,-46.606 17.7351,-70.205 17.324,-43.937 46.839,-85.939 92.28,-120.929 z"
+               style="fill:#005c96" />
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
