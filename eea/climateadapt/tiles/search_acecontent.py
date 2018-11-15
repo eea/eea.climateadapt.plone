@@ -321,7 +321,7 @@ class IRelevantAceContentItemsTile(ISearchAceContentTile):
     )
 
     sortBy = Choice(
-        title=_(u"Sort assigned items alphabetically"),
+        title=_(u"Sort order for results and assigned items"),
         vocabulary=sortby_vocabulary,
     )
 
