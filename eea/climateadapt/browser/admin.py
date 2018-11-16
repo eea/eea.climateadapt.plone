@@ -2,7 +2,9 @@ import datetime
 import json
 import logging
 
-from collective.cover.tiles.list import ListTile
+# from collective.cover.tiles.list import ListTile
+from lxml.etree import fromstring
+from pkg_resources import resource_filename
 from zope import schema
 from zope.component import adapter, getMultiAdapter, getUtility
 from zope.interface import (Interface, Invalid, implementer, implements,
@@ -634,3 +636,10 @@ class MigrateTiles(BrowserView):
             self.process(obj)
 
         return 'done'
+
+
+class AdapteCCACaseStudyImporter(BrowserView):
+    def __call__(self):
+        fpath = resource_filename('eea.climateadapt.browser',
+                                  'data/cases_en_cdata.xml')
+        s = open()

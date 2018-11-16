@@ -23,15 +23,21 @@
               <span tal:replace="structure embed"></span>
             </div>
 
-            <div tal:define="url view/embed_url" tal:condition="not: embed">
-              <iframe tal:attributes="height context/video_height; src url"
-                frameborder="0"
-                width="100%"
-                allowfullscreen
-                tal:condition="url">
-              </iframe>
-              <p tal:condition="not: url">The URL entered is not valid.</p>
+            <div tal:condition="not: embed">
+              <a href=""
+                tal:attributes="href context/embed_url"
+                target="_blank">See video outside Climate-ADAPT</a>
             </div>
+
+            <!-- <div tal:define="url view/embed_url" tal:condition="not: embed"> -->
+            <!--   <iframe tal:attributes="height context/video_height; src url" -->
+            <!--     frameborder="0" -->
+            <!--     width="100%" -->
+            <!--     allowfullscreen -->
+            <!--     tal:condition="url"> -->
+            <!--   </iframe> -->
+            <!--   <p tal:condition="not: url">The URL entered is not valid.</p> -->
+            <!-- </div> -->
 
             <div style="margin-top: 1em;">
               <p tal:replace="structure python: view.w['long_description'].render()">description here</p>
