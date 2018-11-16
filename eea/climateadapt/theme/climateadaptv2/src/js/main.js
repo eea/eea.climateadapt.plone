@@ -88,17 +88,19 @@ $(document).ready(function() {
   }
 
   // HOMEPAGE: Tabs functionality
-  $('ul.nav-tabs a, .feed-tabs a').click(function(e) {
+  $('ul.nav-tabs a').click(function(e) {
     $(this).tab('show');
     e.preventDefault();
   });
 
-  $('.policies-tile .nav-tabs a').hover(function() {
+  $('.policies-nav a').hover(function() {
     $(this).tab('show');
   });
 
   var url = window.location.href;
 
+  // Eu sector main page
+  // /eu-adaptation-policy/sector-policies
   $('.policies-tile .nav-tabs a').click(function(e) {
     e.preventDefault();
     var href = $(this).attr('href');
@@ -110,7 +112,15 @@ $(document).ready(function() {
     } else {
       document.location = url + '/' + href;
     }
+  });
 
+  // Homepage policies section
+  $('.policies-dynamic-area a').click(function(e) {
+    e.preventDefault();
+    var href = $(this).attr('href');
+    var href = href.substring(1);
+
+    document.location = url + '/eu-adaptation-policy/sector-policies/' + href;
   });
 
   // HOMEPAGE: Dynamic area:
@@ -545,41 +555,47 @@ $(document).ready(function() {
   });
 
   // Custom accordion with faded text
-  var isResearchProject = $('.subsection-adaptation-information-research-projects').length > 0;
+  var researchProject = $('.subsection-adaptation-information-research-projects').length > 0;
+  var organizationsPage = $('.subsection-organisations').length > 0;
+  var isDefaultAccordionPage = researchProject || organizationsPage;
 
-  if (!isResearchProject) {
-   var $panelHeading = $('.panel-heading');
-   var $panelCollapse = $('.panel-collapse');
+  function customAccordion() {
+    var $panelHeading = $('.panel-heading');
+    var $panelCollapse = $('.panel-collapse');
 
-   $panelTitle.click(function() {
-    $(this).text(function(i, text) {
-      return text === "Read more" ? "Read less" : "Read more";
-    })
-  });
+    $panelTitle.click(function() {
+      $(this).text(function(i, text) {
+        return text === "Read more" ? "Read less" : "Read more";
+      })
+    });
 
-   $panelCollapse.css({
-     'display': 'block',
-     'height': '130px',
-     'overflow': 'hidden',
-     'position': 'relative'
-   });
+    $panelCollapse.css({
+      'display': 'block',
+      'height': '130px',
+      'overflow': 'hidden',
+      'position': 'relative'
+    });
 
-   $panelHeading.css('text-align', 'right');
-   $panelHeading.before($panelCollapse);
+    $panelHeading.css('text-align', 'right');
+    $panelHeading.before($panelCollapse);
 
-   var $panelLayer = $('<div class="panel-layer fadein"/>');
-   $panelCollapse.prepend($panelLayer);
-   var panelCollapse = $panelTitle.closest('.panel-heading').siblings();
+    var $panelLayer = $('<div class="panel-layer fadein"/>');
+    $panelCollapse.prepend($panelLayer);
+    var panelCollapse = $panelTitle.closest('.panel-heading').siblings();
 
-   $panelTitle.toggle(
-     function() {
-       panelCollapse.addClass('panel-opened');
-       panelCollapse.children('.panel-layer').removeClass('fadein').addClass('fadeout');
-     }, function() {
-       panelCollapse.removeClass('panel-opened');
-       panelCollapse.children('.panel-layer').removeClass('fadeout').addClass('fadein');
-     }
-   );
+    $panelTitle.toggle(
+      function() {
+        panelCollapse.addClass('panel-opened');
+        panelCollapse.children('.panel-layer').removeClass('fadein').addClass('fadeout');
+      }, function() {
+        panelCollapse.removeClass('panel-opened');
+        panelCollapse.children('.panel-layer').removeClass('fadeout').addClass('fadein');
+      }
+    );
+  }
+
+  if (!isDefaultAccordionPage) {
+    customAccordion();
   }
 
   // Hide the download pdf on the search page
