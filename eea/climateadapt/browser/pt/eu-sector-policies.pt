@@ -1,5 +1,5 @@
 <div tal:define="portal_url context/portal_url">
-  <div class="tab-policies policies-tile">
+  <div class="policies-tile">
     <ul class="nav nav-tabs flex-wrapper policies-nav">
       <li class="policies-nav-item active">
         <a href="#agriculture" class="policies-nav-link">

@@ -93,13 +93,15 @@ $(document).ready(function() {
     e.preventDefault();
   });
 
-  $('.policies-tile .nav-tabs a').hover(function() {
+  $('.policies-nav a').hover(function() {
     $(this).tab('show');
   });
 
   var url = window.location.href;
 
-  $('.tab-policies .nav-tabs a').click(function(e) {
+  // Eu sector main page
+  // /eu-adaptation-policy/sector-policies
+  $('.policies-tile .nav-tabs a').click(function(e) {
     e.preventDefault();
     var href = $(this).attr('href');
     var href = href.substring(1);
@@ -112,7 +114,8 @@ $(document).ready(function() {
     }
   });
 
-  $('.policies-tile .nav-tabs a').click(function(e) {
+  // Homepage policies section
+  $('.policies-dynamic-area a').click(function(e) {
     e.preventDefault();
     var href = $(this).attr('href');
     var href = href.substring(1);
