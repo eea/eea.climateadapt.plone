@@ -102,7 +102,7 @@
         </li>
       </ul>
 
-      <div class="tile-footer">
+      <div class="tile-footer" tal:condition="nothing">
         <a class="read-more" href="" tal:attributes="href view/view_more_url"
           tal:condition="view/view_more">
           <i class="fa fa-angle-double-right"></i>

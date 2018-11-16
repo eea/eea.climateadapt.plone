@@ -642,4 +642,6 @@ class AdapteCCACaseStudyImporter(BrowserView):
     def __call__(self):
         fpath = resource_filename('eea.climateadapt.browser',
                                   'data/cases_en_cdata.xml')
-        s = open()
+        s = open(fpath).read()
+        e = fromstring(s)
+        import pdb; pdb.set_trace()
