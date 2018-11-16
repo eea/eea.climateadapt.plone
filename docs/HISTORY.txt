@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Use default accordion on organisations page
+  [krisztina]
 * Fix logo in IE
   [krisztina]
 * Homepage: show eu policies tabs content on hover
