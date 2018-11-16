@@ -192,15 +192,6 @@ $(document).ready(function() {
     });
   });
 
-  // HOMEPAGE: Dynamic area - EU Sector policies:
-  // Sub-tab section close functionality
-  $('.close-tab-pane').click(function() {
-    var $contentParent = $(this).closest('.policies-tab-content');
-    var $mainParent = $(this).closest('.sub-tab-section');
-    $mainParent.find('.action-flex-item').removeClass('active');
-    $contentParent.removeClass('active');
-  });
-
   // HOMEPAGE: Main area
   // Get the heighest div and make equal height on every boxes
   var windowWidth = $(window).width();
