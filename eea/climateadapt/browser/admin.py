@@ -11,6 +11,7 @@ from zope.interface import (Interface, Invalid, implementer, implements,
                             invariant)
 
 from apiclient.discovery import build
+from eea.climateadapt._importer.utils import createAndPublishContentInContainer
 from eea.climateadapt.browser.site import _extract_menu
 from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
 from eea.climateadapt.scripts import get_plone_site
@@ -638,10 +639,87 @@ class MigrateTiles(BrowserView):
         return 'done'
 
 
+class Item:
+    def __init__(self, node):
+        self._node = node
+
+    def __getattr__(self, name):
+        name = 'field_' + name
+        field = self._node.find(name)
+
+        return field.text
+
+
 class AdapteCCACaseStudyImporter(BrowserView):
+    """ Demo adaptecca importer
+    """
+
+    def to_terms(self, node):
+        return []
+
+    def node_import(self, container, node):
+        location = container
+
+        f = Item(node)
+
+        challenges = f.challenges
+        impact = f.impact.split(', ')       # TODO: map impacts
+        information = f.information
+        keywords = f.keywords.split(', ')
+        regions = f.regions.split(', ')     # TODO: map regions
+        sectors = f.sectors.split(', ')     # TODO: map sectors
+        title = f.title
+        objectives = f.objectives
+        measures = self.to_terms(node.find('field_measures'))
+
+        import pdb; pdb.set_trace()
+
+        item = createAndPublishContentInContainer(
+            location,
+            'eea.climateadapt.casestudy',
+            _publish=True,
+            adaptationoptions=measures,
+            challenges=t2r(data.challenges),
+            climate_impacts=s2l(data.climateimpacts_),
+            comments=data.comments,
+            contact=t2r(data.contact),
+            cost_benefit=t2r(data.costbenefit),
+            creation_date=creationdate,
+            effective_date=approvaldate,
+            elements=s2l(data.elements_),
+            geochars=data.geochars,
+            geolocation=geoloc,
+            implementation_time=t2r(data.implementationtime),
+            implementation_type=data.implementationtype,
+            keywords=s2l(r2t(data.keywords), separators=[';', ',']),
+            legal_aspects=t2r(data.legalaspects),
+            lifetime=t2r(data.lifetime),
+            long_description=t2r(data.description),
+            measure_type=data.mao_type,
+            objectives=t2r(data.objectives),
+            primephoto=primephoto,
+            rating=data.rating,
+            relatedItems=related,
+            relevance=s2l(data.relevance),
+            sectors=s2l(data.sectors_),
+            solutions=t2r(data.solutions),
+            source=t2r(data.source),
+            spatial_layer=data.spatiallayer,
+            spatial_values=s2l(data.spatialvalues),
+            stakeholder_participation=t2r(data.stakeholderparticipation),
+            success_limitations=t2r(data.succeslimitations),
+            supphotos=supphotos,
+            title=data.name,
+            websites=s2l(r2t(html_unescape(data.website))),
+            year=int(data.year or '0'),
+        )
+
+
     def __call__(self):
         fpath = resource_filename('eea.climateadapt.browser',
                                   'data/cases_en_cdata.xml')
         s = open(fpath).read()
         e = fromstring(s)
-        import pdb; pdb.set_trace()
+
+        for node in e.xpath('//item'):
+            self.node_import(self.context, node)

@@ -368,7 +368,10 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         # TODO: move this code to an indexer and a metadata column
 
         adapter = get_aceitem_description(item)
-        value = adapter()
+        try:
+            value = adapter()
+        except AttributeError:      # object doesn't have long_description
+            return ''
 
         return value
 

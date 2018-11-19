@@ -101,4 +101,11 @@
     permission="cmf.ManagePortal"
     />
 
+  <browser:page
+    name="import-adaptecca"
+    for="*"
+    class=".admin.AdapteCCACaseStudyImporter"
+    permission="cmf.ManagePortal"
+    />
+
 </configure>
