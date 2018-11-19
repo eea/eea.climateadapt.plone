@@ -7,7 +7,7 @@
   <body tal:define="is_compose view/is_compose_mode">
     <strong tal:condition="is_compose">Filterable Relevant AceContent Tile</strong>
 
-    <dl tal:condition="view/is_compose_mode">
+    <dl tal:condition="view/is_compose_mode" class="aceitem-tile">
       <dt>Element type:</dt>
       <dd tal:content="python: view.data.get('element_type')" />
       <dt>Sector:</dt>
