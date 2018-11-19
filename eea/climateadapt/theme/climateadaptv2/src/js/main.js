@@ -574,6 +574,13 @@ $(document).ready(function() {
     }
   });
 
+  $('.template-compose .tile').each(function() {
+     if ($(this).hasClass('col-md-4')) {
+       $(this).removeClass('col-md-4');
+       $(this).parent('.tile-container').addClass('col-md-4');
+     }
+  });
+
   // Accordion: Toggle arrow up and down on click
   var $panelTitle = $('.panel-title a');
 
