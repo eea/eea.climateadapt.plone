@@ -284,7 +284,8 @@ ace_countries = [(x.alpha2, x.name) for x in pycountry.countries
                  if x.alpha2 in european_countries]
 ace_countries.append(('FYROM', 'Former Yugoslav Republic of Macedonia'))
 ace_countries.append(('MK', 'Republic of Macedonia'))
-ace_countries.append(('XK', 'Kosovo under UN Security Council Resolution 1244/99'))
+ace_countries.append(('XK',
+                      'Kosovo under UN Security Council Resolution 1244/99'))
 ace_countries_dict = dict(ace_countries)
 
 ace_countries_vocabulary = generic_vocabulary(ace_countries)
@@ -319,6 +320,10 @@ alsoProvides(faceted_countries_vocabulary, IVocabularyFactory)
 _measure_types = (("A", "Case study"), ("M", "Adaptation option"))
 acemeasure_types = generic_vocabulary(_measure_types)
 alsoProvides(acemeasure_types, IVocabularyFactory)
+
+_origin_website = (("AdapteCCA", "AdapteCCA"), ("CCA", "CCA"))
+origin_website = generic_vocabulary(_origin_website)
+alsoProvides(origin_website, IVocabularyFactory)
 
 _cca_types = [
     ("DOCUMENT", "Publication & Report"),
