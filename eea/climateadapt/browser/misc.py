@@ -741,7 +741,6 @@ class ContactFooterForm(form.SchemaForm):
 
         if data.has_key('captcha'):
             # Verify the user input against the captcha
-            import pdb; pdb.set_trace()
             captcha = CaptchaValidator(self.context, self.request, None, IContactFooterForm['captcha'], None)
             if captcha.validate(data['captcha']):
                 mail_host = api.portal.get_tool(name='MailHost')
@@ -774,6 +773,12 @@ CaptchaForm = wrap_form(ContactForm)
 
 # Register Captcha validator for the captcha field in the IContactForm
 validator.WidgetValidatorDiscriminators(CaptchaValidator, field=IContactForm['captcha'])
+
+
+CaptchaFooterForm = wrap_form(ContactFooterForm)
+
+# Register Captcha validator for the captcha field in the IContactForm
+validator.WidgetValidatorDiscriminators(CaptchaValidator, field=IContactFooterForm['captcha'])
 
 
 def preventFolderDeletionEvent(object, event):

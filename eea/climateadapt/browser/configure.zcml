@@ -597,6 +597,12 @@
         provides=".misc.IContactForm"
         factory=".misc.Captcha" />
 
+    <!-- Captcha factory -->
+    <adapter
+        for="*"
+        provides=".misc.IContactFooterForm"
+        factory=".misc.Captcha" />
+
     <browser:page
         class=".misc.CountriesView"
         for="*"

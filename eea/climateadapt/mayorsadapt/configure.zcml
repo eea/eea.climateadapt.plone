@@ -31,6 +31,12 @@
         factory=".cityprofile.CityProfileFormExtender"
         />
 
+    <!-- Captcha factory -->
+    <adapter
+        for="*"
+        provides=".mayoradapt.IRegisterCityForm"
+        factory=".mayoradapt.Captcha" />
+
     TODO: is this needed?
     <plone:behavior
         title="CityProfile Staging"
