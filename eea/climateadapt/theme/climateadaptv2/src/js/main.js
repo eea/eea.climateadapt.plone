@@ -233,6 +233,15 @@ $(document).ready(function() {
 
   $(window).scroll(function(event) {
     didScroll = true;
+
+    if (windowWidth <= 800) {
+      if ($(window).scrollTop() >= 80) {
+        $('.header').addClass('sticky-header');
+      }
+      else {
+        $('.header').removeClass('sticky-header');
+      }
+    }
   });
 
   if (windowWidth <= 800) {

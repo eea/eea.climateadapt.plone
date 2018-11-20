@@ -142,7 +142,6 @@
   /* header area */
 
   .top-menu {
-    position: fixed;
     top: 0;
     width: 100%;
     background-color: #fff;
@@ -158,10 +157,18 @@
     top: -65px;
   }
 
-  .header.mobile-header {
+  .header {
+    // position: fixed;
+  }
 
+  .mobile-header {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+  }
+
+  .header.mobile-header {
     .top-menu {
-      position: fixed;
       height: auto;
       border-bottom: 1px solid #d3d3d3;
     }
@@ -193,7 +200,7 @@
     .toggle-down {
       position: absolute;
       right: 10px;
-      top: 22px;
+      top: 15px;
     }
 
     .sub-menu-item:last-child,
@@ -219,11 +226,9 @@
       display: block;
       text-align: left;
       overflow-y: auto;
-      height: 99vh;
+      height: 84vh;
       box-shadow: none;
       display: block;
-      position: fixed;
-      top: 107px;
     }
 
     #main-nav-item-2 .sub-menu > .sub-menu-item:not(:first-child) {
@@ -236,9 +241,9 @@
     }
 
     .main-nav-link {
-      padding: 20px 10px;
+      padding: 15px 10px;
       display: inline-block;
-      font-size: 15px;
+      font-size: 14px;
     }
 
     .sub-menu-link {
@@ -296,7 +301,11 @@
 
   .top-menu-nav {
     position: absolute;
-    top: 10px;
+    top: 4px;
+  }
+
+  .top-menu-nav-item {
+    margin-left: 0;
   }
 
   #help-navbar{
@@ -405,7 +414,6 @@
   }
   .policies-nav li {
     padding: 10px 5px;
-    flex: 1 120px;
   }
   .flex-wrapper {
     flex-wrap: wrap;
@@ -475,6 +483,10 @@
   }
   .logo a img {
     height: 38px;
+  }
+
+  .header .sub-menu {
+    min-width: auto;
   }
 
   #content, .region-subpage #content,
