@@ -591,6 +591,12 @@
         permission="zope.Public"
         />
 
+    <!-- Captcha factory -->
+    <adapter
+        for="*"
+        provides=".misc.IContactForm"
+        factory=".misc.Captcha" />
+
     <browser:page
         class=".misc.CountriesView"
         for="*"

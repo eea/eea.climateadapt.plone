@@ -17,18 +17,28 @@ from plone.api import portal
 from plone.api.content import get_state
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 from plone.directives import form
-from plone.formwidget.recaptcha.widget import ReCaptchaFieldWidget
 from plone.memoize import view
 from Products.CMFPlone.utils import getToolByName, isExpired
 from Products.Five.browser import BrowserView
-from z3c.form import button, field
+from z3c.form import button, field, validator
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.interface import Interface, implements
+from plone.formwidget.captcha.widget import CaptchaFieldWidget
+from plone.formwidget.captcha.validator import CaptchaValidator
+from plone.z3cform.layout import wrap_form
 
 
 logger = logging.getLogger('eea.climateadapt')
+
+
+class Captcha(object):
+    subject = u""
+    captcha = u""
+
+    def __init__(self, context):
+        self.context = context
 
 
 class NewsletterRedirect(BrowserView):
@@ -635,7 +645,7 @@ class IContactForm(form.Schema):
     message = schema.Text(title=u"Message:", required=True)
 
     captcha = schema.TextLine(
-        title=u"ReCaptcha",
+        title=u"Captcha",
         description=u"",
         required=False
     )
@@ -655,7 +665,7 @@ class ContactForm(form.SchemaForm):
     """
 
     fields = field.Fields(IContactForm)
-    fields['captcha'].widgetFactory = ReCaptchaFieldWidget
+    fields['captcha'].widgetFactory = CaptchaFieldWidget
 
     @button.buttonAndHandler(u"Submit")
     def handleApply(self, action):
@@ -665,29 +675,28 @@ class ContactForm(form.SchemaForm):
             self.status = self.formErrorsMessage
 
             return
-        captcha = getMultiAdapter(
-            (aq_inner(self.context), self.request),
-            name='recaptcha'
-        )
 
-        if captcha.verify():
-            mail_host = api.portal.get_tool(name='MailHost')
-            # emailto = str(api.portal.getSite().email_from_address)
+        if data.has_key('captcha'):
+            # Verify the user input against the captcha
+            captcha = CaptchaValidator(self.context, self.request, None, IContactForm['captcha'], None)
+            if captcha.validate(data['captcha']):
+                mail_host = api.portal.get_tool(name='MailHost')
+                # emailto = str(api.portal.getSite().email_from_address)
 
-            mime_msg = MIMEText(data.get('message'))
-            mime_msg['Subject'] = data.get('feedback')
-            mime_msg['From'] = data.get('email')
-            # mime_msg['To'] = ','.join(b for b in CONTACT_MAIL_LIST)
-            # mime_msg['To'] = CONTACT_MAIL_LIST
+                mime_msg = MIMEText(data.get('message'))
+                mime_msg['Subject'] = data.get('feedback')
+                mime_msg['From'] = data.get('email')
+                # mime_msg['To'] = ','.join(b for b in CONTACT_MAIL_LIST)
+                # mime_msg['To'] = CONTACT_MAIL_LIST
 
-            for m in CONTACT_MAIL_LIST:
-                mime_msg['To'] = m
+                for m in CONTACT_MAIL_LIST:
+                    mime_msg['To'] = m
 
-            self.description = u"Email Sent."
+                self.description = u"Email Sent."
 
-            return mail_host.send(mime_msg.as_string())
-        else:
-            self.description = u"Please complete the Captcha."
+                return mail_host.send(mime_msg.as_string())
+            else:
+                self.description = u"Please complete the Captcha."
 
 
 class IContactFooterForm(form.Schema):
@@ -719,7 +728,7 @@ class ContactFooterForm(form.SchemaForm):
     """
 
     fields = field.Fields(IContactFooterForm)
-    fields['captcha'].widgetFactory = ReCaptchaFieldWidget
+    fields['captcha'].widgetFactory = CaptchaFieldWidget
 
     @button.buttonAndHandler(u"Submit")
     def handleApply(self, action):
@@ -729,18 +738,18 @@ class ContactFooterForm(form.SchemaForm):
             self.status = self.formErrorsMessage
 
             return
-        captcha = getMultiAdapter(
-            (aq_inner(self.context), self.request),
-            name='recaptcha'
-        )
 
-        if captcha.verify():
-            mail_host = api.portal.get_tool(name='MailHost')
+        if data.has_key('captcha'):
+            # Verify the user input against the captcha
+            import pdb; pdb.set_trace()
+            captcha = CaptchaValidator(self.context, self.request, None, IContactFooterForm['captcha'], None)
+            if captcha.validate(data['captcha']):
+                mail_host = api.portal.get_tool(name='MailHost')
 
-            info = {'name': data.get('name'),
-                    'mail': data.get('email'),
-                    'url': self.context.absolute_url()}
-            text = """
+                info = {'name': data.get('name'),
+                        'mail': data.get('email'),
+                        'url': self.context.absolute_url()}
+                text = """
 
 Climate Adapt Website
 
@@ -759,6 +768,12 @@ is sending feedback about the site you administer at %(url)s.
             return mail_host.send(mime_msg.as_string())
         else:
             self.description = u"Please complete the Captcha."
+
+
+CaptchaForm = wrap_form(ContactForm)
+
+# Register Captcha validator for the captcha field in the IContactForm
+validator.WidgetValidatorDiscriminators(CaptchaValidator, field=IContactForm['captcha'])
 
 
 def preventFolderDeletionEvent(object, event):
