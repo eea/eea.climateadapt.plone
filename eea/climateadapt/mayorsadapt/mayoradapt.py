@@ -12,7 +12,7 @@ from eea.climateadapt.vocabulary import ace_countries
 from plone.api.portal import show_message
 from plone.directives import form
 from plone.formwidget.captcha.widget import CaptchaFieldWidget
-from plone.formwidget.captcha.validator import CaptchaValidator
+from plone.formwidget.captcha.validator import CaptchaValidator, WrongCaptchaCode
 from plone.memoize import view
 from z3c.form import button, field, validator
 from zope import schema
@@ -79,7 +79,15 @@ message with details on how to proceed further."""
         if data.has_key('captcha'):
             # Verify the user input against the captcha
             captcha = CaptchaValidator(self.context, self.request, None, IRegisterCityForm['captcha'], None)
-            if captcha.validate(data['captcha']):
+
+            try:
+                valid = captcha.validate(data['captcha'])
+            except WrongCaptchaCode:
+                show_message(message=u"Invalid Captcha.",
+                             request=self.request, type='error')
+                return
+
+            if valid:
                 name = data.get('name')
                 email = data.get('email')
 

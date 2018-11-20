@@ -15,6 +15,7 @@ from OFS.ObjectManager import BeforeDeleteException
 from plone import api
 from plone.api import portal
 from plone.api.content import get_state
+from plone.api.portal import show_message
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 from plone.directives import form
 from plone.memoize import view
@@ -23,10 +24,9 @@ from Products.Five.browser import BrowserView
 from z3c.form import button, field, validator
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
-from zope.component import getMultiAdapter
 from zope.interface import Interface, implements
 from plone.formwidget.captcha.widget import CaptchaFieldWidget
-from plone.formwidget.captcha.validator import CaptchaValidator
+from plone.formwidget.captcha.validator import CaptchaValidator, WrongCaptchaCode
 from plone.z3cform.layout import wrap_form
 
 
@@ -679,7 +679,15 @@ class ContactForm(form.SchemaForm):
         if data.has_key('captcha'):
             # Verify the user input against the captcha
             captcha = CaptchaValidator(self.context, self.request, None, IContactForm['captcha'], None)
-            if captcha.validate(data['captcha']):
+
+            try:
+                valid = captcha.validate(data['captcha'])
+            except WrongCaptchaCode:
+                show_message(message=u"Invalid Captcha.",
+                             request=self.request, type='error')
+                return
+
+            if valid:
                 mail_host = api.portal.get_tool(name='MailHost')
                 # emailto = str(api.portal.getSite().email_from_address)
 
@@ -742,7 +750,15 @@ class ContactFooterForm(form.SchemaForm):
         if data.has_key('captcha'):
             # Verify the user input against the captcha
             captcha = CaptchaValidator(self.context, self.request, None, IContactFooterForm['captcha'], None)
-            if captcha.validate(data['captcha']):
+
+            try:
+                valid = captcha.validate(data['captcha'])
+            except WrongCaptchaCode:
+                show_message(message=u"Invalid Captcha.",
+                             request=self.request, type='error')
+                return
+
+            if valid:
                 mail_host = api.portal.get_tool(name='MailHost')
 
                 info = {'name': data.get('name'),
