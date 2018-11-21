@@ -1,91 +1,79 @@
-from Products.CMFCore.WorkflowCore import WorkflowException
-from Products.CMFCore.utils import getToolByName
+import json
+import os
+import sys
 from collections import defaultdict
 from datetime import datetime as dt
+
+import dateutil
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
+from zope.annotation.interfaces import IAnnotations
+from zope.component import getMultiAdapter, getUtility
+from zope.interface import alsoProvides, noLongerProvides
+from zope.intid.interfaces import IIntIds
+from zope.sqlalchemy import register
+
+import transaction
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.tweak_sql import fix_relations
-from eea.climateadapt._importer.utils import ACE_ITEM_TYPES
-from eea.climateadapt._importer.utils import _get_latest_version
-from eea.climateadapt._importer.utils import createAndPublishContentInContainer
-from eea.climateadapt._importer.utils import create_cover_at
-from eea.climateadapt._importer.utils import create_folder_at
-from eea.climateadapt._importer.utils import create_plone_content
-from eea.climateadapt._importer.utils import extract_portlet_info
-from eea.climateadapt._importer.utils import extract_simplified_info_from_article_content
-from eea.climateadapt._importer.utils import get_relateditems
-from eea.climateadapt._importer.utils import get_repofile_by_id
-from eea.climateadapt._importer.utils import localize
-from eea.climateadapt._importer.utils import log_call
-from eea.climateadapt._importer.utils import logger
-from eea.climateadapt._importer.utils import make_ast_navigation_tile
-from eea.climateadapt._importer.utils import make_countries_dropdown_tile
-from eea.climateadapt._importer.utils import make_faceted
-from eea.climateadapt._importer.utils import make_group
-from eea.climateadapt._importer.utils import make_iframe_embed_tile
-from eea.climateadapt._importer.utils import make_image_tile
-from eea.climateadapt._importer.utils import make_layout
-from eea.climateadapt._importer.utils import make_richtext_tile
-from eea.climateadapt._importer.utils import make_richtext_with_title_tile
-from eea.climateadapt._importer.utils import make_row
-from eea.climateadapt._importer.utils import make_share_tile
-from eea.climateadapt._importer.utils import make_tile
-from eea.climateadapt._importer.utils import make_tiles
-from eea.climateadapt._importer.utils import make_transregion_dropdown_tile
-from eea.climateadapt._importer.utils import make_urbanast_navigation_tile
-from eea.climateadapt._importer.utils import make_urbanmenu_title
-from eea.climateadapt._importer.utils import make_view_tile
-from eea.climateadapt._importer.utils import pack_to_table
-from eea.climateadapt._importer.utils import parse_settings    #, printe
-from eea.climateadapt._importer.utils import render
-from eea.climateadapt._importer.utils import render_accordion
-from eea.climateadapt._importer.utils import render_tabs
-from eea.climateadapt._importer.utils import s2li, t2r, r2t, s2l, s2d
-from eea.climateadapt._importer.utils import stamp_cover
-from eea.climateadapt._importer.utils import strip_xml
-from eea.climateadapt._importer.utils import to_decimal
-from eea.climateadapt._importer.utils import write_links
+from eea.climateadapt._importer.utils import parse_settings  # , printe
+from eea.climateadapt._importer.utils import (ACE_ITEM_TYPES,
+                                              _get_latest_version,
+                                              create_cover_at,
+                                              create_folder_at,
+                                              create_plone_content,
+                                              createAndPublishContentInContainer,
+                                              extract_portlet_info,
+                                              extract_simplified_info_from_article_content,
+                                              get_relateditems,
+                                              get_repofile_by_id, localize,
+                                              log_call, logger,
+                                              make_ast_navigation_tile,
+                                              make_countries_dropdown_tile,
+                                              make_faceted, make_group,
+                                              make_iframe_embed_tile,
+                                              make_image_tile, make_layout,
+                                              make_richtext_tile,
+                                              make_richtext_with_title_tile,
+                                              make_row, make_share_tile,
+                                              make_tile, make_tiles,
+                                              make_transregion_dropdown_tile,
+                                              make_urbanast_navigation_tile,
+                                              make_urbanmenu_title,
+                                              make_view_tile, pack_to_table,
+                                              r2t, render, render_accordion,
+                                              render_tabs, s2d, s2l, s2li,
+                                              stamp_cover, strip_xml, t2r,
+                                              to_decimal, write_links)
 from eea.climateadapt.config import DEFAULT_LOCATIONS
-from eea.climateadapt.interfaces import IASTNavigationRoot
-from eea.climateadapt.interfaces import IBalticRegionMarker
-from eea.climateadapt.interfaces import IClimateAdaptSharePage
-from eea.climateadapt.interfaces import ICountriesRoot
-from eea.climateadapt.interfaces import IMayorAdaptRoot
-from eea.climateadapt.interfaces import ISiteSearchFacetedView
-from eea.climateadapt.interfaces import ITransRegioRoot
-from eea.climateadapt.interfaces import ITransnationalRegionMarker
-from eea.climateadapt.mayorsadapt.vocabulary import already_devel_adapt_strategy_vocabulary
-from eea.climateadapt.mayorsadapt.vocabulary import stage_implementation_cycle_vocabulary
-from eea.climateadapt.mayorsadapt.vocabulary import status_of_adapt_signature_vocabulary
-from eea.climateadapt.vocabulary import _cca_types
-from eea.climateadapt.vocabulary import ace_countries_vocabulary
-from eea.climateadapt.vocabulary import aceitem_climateimpacts_vocabulary
-from eea.climateadapt.vocabulary import aceitem_elements_vocabulary
-from eea.climateadapt.vocabulary import aceitem_sectors_vocabulary
+from eea.climateadapt.interfaces import (IASTNavigationRoot,
+                                         IBalticRegionMarker,
+                                         IClimateAdaptSharePage,
+                                         ICountriesRoot, IMayorAdaptRoot,
+                                         ISiteSearchFacetedView,
+                                         ITransnationalRegionMarker,
+                                         ITransRegioRoot)
+from eea.climateadapt.mayorsadapt.vocabulary import (already_devel_adapt_strategy_vocabulary,
+                                                     stage_implementation_cycle_vocabulary,
+                                                     status_of_adapt_signature_vocabulary)
+from eea.climateadapt.vocabulary import (_cca_types, ace_countries_vocabulary,
+                                         aceitem_climateimpacts_vocabulary,
+                                         aceitem_elements_vocabulary,
+                                         aceitem_sectors_vocabulary)
 from eea.facetednavigation.layout.interfaces import IFacetedLayout
 from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from persistent.list import PersistentList
 from plone.api import portal
 from plone.api.content import move
 from plone.formwidget.geolocation.geolocation import Geolocation
-from plone.namedfile.file import NamedBlobImage, NamedBlobFile
-from pytz import timezone
-from pytz import utc
+from plone.namedfile.file import NamedBlobFile, NamedBlobImage
+from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.WorkflowCore import WorkflowException
+from pytz import timezone, utc
 from six.moves.html_parser import HTMLParser
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
 from z3c.relationfield.relation import RelationValue
-from zope.annotation.interfaces import IAnnotations
-from zope.component import getMultiAdapter
-from zope.component import getUtility
-from zope.interface import alsoProvides, noLongerProvides
-from zope.intid.interfaces import IIntIds
-from zope.sqlalchemy import register
-import dateutil
-import json
-import os
-import sys
-import transaction
-#from eea.climateadapt.interfaces import ICitiesListingsRoot
+
+# from eea.climateadapt.interfaces import ICitiesListingsRoot
 
 
 ctz = timezone('Europe/Copenhagen')
@@ -107,10 +95,12 @@ def import_aceitem(data, location):
     # should be mapped over AceMeasure and AceProject
 
     creationdate = data.creationdate
+
     if creationdate is not None:
         creationdate = creationdate.replace(tzinfo=ctz)
 
     approvaldate = data.approvaldate
+
     if approvaldate is not None:
         approvaldate = approvaldate.replace(tzinfo=ctz)
 
@@ -130,7 +120,7 @@ def import_aceitem(data, location):
         elements=s2l(data.elements_),
         climate_impacts=s2l(data.climateimpacts_),
         websites=s2l(r2t(html_unescape(data.storedat)),
-                        separators=[';', ',']),
+                     separators=[';', ',']),
         source=t2r(data.source),
         comments=data.comments,
         year=int(data.year or '0'),
@@ -146,7 +136,7 @@ def import_aceitem(data, location):
     item._aceitem_id = data.aceitemid
 
     logger.debug("Imported aceitem %s from sql aceitem %s",
-                    item.absolute_url(1), data.aceitemid)
+                 item.absolute_url(1), data.aceitemid)
     _fix_supdocs(item)
     item.reindexObject()
 
@@ -156,10 +146,12 @@ def import_aceitem(data, location):
 @log_call
 def import_aceproject(data, location):
     creationdate = data.creationdate
+
     if creationdate is not None:
         creationdate = creationdate.replace(tzinfo=ctz)
 
     approvaldate = data.approvaldate
+
     if approvaldate is not None:
         approvaldate = approvaldate.replace(tzinfo=ctz)
 
@@ -208,6 +200,7 @@ def get_measure(id, context):
     """
     catalog = getToolByName(context, 'portal_catalog')
     brains = catalog.searchResults(acemeasure_id=id)
+
     if brains:
         return brains[0].getObject()
     else:
@@ -218,17 +211,19 @@ def get_measure(id, context):
 def import_adaptationoption(data, location):
 
     creationdate = data.creationdate
+
     if creationdate is not None:
         creationdate = creationdate.replace(tzinfo=ctz)
 
     approvaldate = data.approvaldate
+
     if approvaldate is not None:
         approvaldate = approvaldate.replace(tzinfo=ctz)
 
     item = createAndPublishContentInContainer(
         location,
         'eea.climateadapt.adaptationoption',
-        #adaptationoptions=measures,
+        # adaptationoptions=measures,
         challenges=t2r(data.challenges),
         climate_impacts=s2l(data.climateimpacts_),
         comments=data.comments,
@@ -283,29 +278,35 @@ def import_casestudy(data, location):
     measures = [RelationValue(intids.getId(m)) for m in measures]
 
     primephoto = None
+
     if data.primephoto:
         primephoto = get_repofile_by_id(location.aq_inner.aq_parent,
                                         data.primephoto)
     primephoto = primephoto and RelationValue(intids.getId(primephoto)) or None
     supphotos = []
     supphotos_str = data.supphotos is not None and data.supphotos or ''
+
     for supphotoid in supphotos_str.split(';'):
         supphoto = get_repofile_by_id(location, supphotoid)
+
         if supphoto:
             supphotos.append(RelationValue(intids.getId(supphoto)))
 
     related = get_relateditems(data, location)
 
     creationdate = data.creationdate
+
     if creationdate is not None:
         creationdate = creationdate.replace(tzinfo=ctz)
 
     approvaldate = data.approvaldate
+
     if approvaldate is not None:
         approvaldate = approvaldate.replace(tzinfo=ctz)
 
     latitude, longitude = to_decimal(data.lat), to_decimal(data.lon)
     geoloc = None
+
     if latitude and longitude:
         geoloc = Geolocation(latitude=latitude, longitude=longitude)
 
@@ -369,6 +370,7 @@ def import_image(data, location):
     except IOError:
         logger.error("Image with id %d does not exist in the supplied "
                        "document library", data.imageid)
+
         return None
 
     filename = unicode("{0}.{1}".format(data.imageid, data.type_))
@@ -401,6 +403,7 @@ def import_dlfileentry(data, location):
 
     tp = data.treepath[1:-1]
     components = tp.split('/')
+
     if len(components) == 2:
         # we'll get the folderid from the treepath
         # TODO: try by original algorithm
@@ -432,6 +435,7 @@ def import_dlfileentry(data, location):
         logger.error("File with id %d and title '%s' does not exist in the "
                        "supplied document library", data.fileentryid,
                        data.title)
+
         return None
 
     file_data = open(fpath).read()
@@ -562,6 +566,7 @@ def import_layout(layout, site):
 
     if layout.type_ == u'control-panel':
         # we skip control panel pages
+
         return
 
     if layout.friendlyurl in WATCH:
@@ -578,6 +583,7 @@ def import_layout(layout, site):
         folder = create_folder_at(site, this_url)
         folder.setLayout(child_url.split('/')[-1])
         folder.title = strip_xml(ll.name)
+
         return folder
 
     template = settings['layout-template-id'][0]
@@ -595,22 +601,27 @@ def import_layout(layout, site):
     for column, portlet_ids in filter(lambda kv: is_column(kv[0]),
                                       settings.items()):
         structure[column] = []   # a column is a list of portlets
+
         for portletid in portlet_ids:
             content = extract_portlet_info(session, portletid, layout)
             structure[column].append((portletid, content))
     importer = globals().get('import_template_' + template)
     cover = importer(site, layout, structure)
+
     if cover is not None:
         cover.reindexObject()
+
     return cover
 
 
 def import_city_profile(container, journal):
     vals = extract_simplified_info_from_article_content(journal.content)
     data = {}
+
     for _type, name, payload in vals:
         if name is None:
             name = 'image'
+
         if payload:
             data[name] = payload[0]
         else:
@@ -659,6 +670,7 @@ def import_city_profile(container, journal):
 
     def map_titles_to_tokens(context, vocab_factory):
         from zope.schema.interfaces import IVocabularyFactory
+
         if IVocabularyFactory.providedBy(vocab_factory):
             vocab = vocab_factory(context)
             t2t_map = {t.title.lower(): t.token for t in vocab}
@@ -667,18 +679,23 @@ def import_city_profile(container, journal):
 
         def t2tmap(values):
             tokens = []
+
             if isinstance(values, basestring):
                 if values.lower() == 'select':
                     return tokens
                 token = t2t_map.get(values.lower())
+
                 if token:
                     return token
             else:
                 for v in values:
                     token = t2t_map.get(v.lower())
+
                     if token:
                         tokens.append(token)
+
             return tokens
+
         return t2tmap
 
     mpttt = map_titles_to_tokens
@@ -693,6 +710,7 @@ def import_city_profile(container, journal):
 
     def map_to_x(x):
         res = map_adaptation_strategy(x)
+
         return res or ""
 
     _map = {
@@ -804,10 +822,12 @@ def import_city_profile(container, journal):
 
     city_name = strip_xml(journal.title)
     mapped_data = {'title': city_name}
+
     for key in data:
         if key in _map:
             mapping = _map[key]
             newkey = mapping['newkey']
+
             if 'mapping_fnc' in mapping:
                 fnc = mapping['mapping_fnc']
                 val = fnc(data[key])
@@ -817,6 +837,7 @@ def import_city_profile(container, journal):
 
     if data.get('f_picture'):
         img = get_repofile_by_id(portal.get(), data['f_picture'])
+
         if img:
             mapped_data['picture'] = img.image
 
@@ -824,6 +845,7 @@ def import_city_profile(container, journal):
 
     geoloc_lat = s2d(mapped_data.pop('city_latitude'))
     geoloc_long = s2d(mapped_data.pop('city_longitude'))
+
     if geoloc_lat and geoloc_long:
         geoloc = Geolocation(latitude=geoloc_lat, longitude=geoloc_long)
         mapped_data['geolocation'] = geoloc
@@ -836,11 +858,13 @@ def import_city_profile(container, journal):
         **mapped_data
     )
     logger.debug("Imported city profile %s", city_name)
+
     return city
 
 
 def import_city_profiles(site):
     template_pks = {}
+
     for data in session.query(sql.Ddmtemplate):
         name = strip_xml(data.name)
         template_pks[name] = data.templatekey
@@ -925,6 +949,7 @@ def import_template_help(site, layout, structure):
 
     for name in column_names:   # Try to preserve the order of columns
         col = structure.get(name)
+
         if col:
             # each column has two tiles
             tiles = [make_tile(cover, [p], no_titles=True) for p in col]
@@ -965,6 +990,7 @@ def import_template_1_2_1_columns(site, layout, structure):
 
     for name in column_names:   # Try to preserve the order of columns
         col = structure.get(name)
+
         if col:
             tiles.extend([make_tile(cover, [p], no_titles=True) for p in col])
 
@@ -996,15 +1022,18 @@ def import_template_transnationalregion(site, layout, structure):
 
     for record in records['content']:
         type_, id, payload = record
+
         if type_ == 'text':
             country[id] = payload[0]
             tabs.append(id)
+
         if type_ == 'dynamic':
             for info in record[2]:
                 if isinstance(info, basestring):
                     continue
                 t, name, text = info
                 country['Summary'].append((name, text[0]))
+
                 if 'Summary' not in tabs:
                     tabs.append('Summary')
 
@@ -1022,6 +1051,7 @@ def import_template_transnationalregion(site, layout, structure):
     country['Summary'] = render('templates/table.pt', table)
 
     payload = []
+
     for tab in tabs:
         payload.append((tab, country[tab]))
 
@@ -1042,6 +1072,7 @@ def import_template_transnationalregion(site, layout, structure):
 
     layout = make_layout(make_row(image_group, content_group))
     cover.cover_layout = json.dumps(layout)
+
     return cover
 
 
@@ -1059,6 +1090,7 @@ def import_template_ace_layout_2(site, layout, structure):
         # /climate-change-adaptation => /en/adaptation-information/general
         # /en/adaptation-information/general => /adaptation-information/general
         # /vulnerability-assessment => same as above
+
         return
 
     assert(len(structure) == 5)
@@ -1109,6 +1141,7 @@ def import_template_ace_layout_2(site, layout, structure):
     layout = json.dumps(layout)
 
     cover.cover_layout = layout
+
     return cover
 
 
@@ -1171,18 +1204,24 @@ def import_template_ace_layout_3(site, layout, structure):
 
     main = {}
     col1 = structure.pop('column-1')
+
     for line in col1[0][1]['content']:
         if line[0] == 'image':
             try:
                 main['image'] = {'id': line[2][0]}
+
                 continue
             except IndexError:
                 main['image'] = {'id': None}
+
         if line[0] == 'dynamic' and line[1] == 'Title':
             main['title'] = line[2][0]
+
             continue
+
         if line[0] == 'text' and line[1] == 'Body':
             main['body'] = line[2][0]
+
         if line[0] == 'text' and line[1] == 'ReadMoreBody':
             main['readmore'] = line[2][0]
 
@@ -1203,8 +1242,10 @@ def import_template_ace_layout_3(site, layout, structure):
         alsoProvides(cover, IBalticRegionMarker)
 
     main['image'].update({'title': '', 'thumb': ''})
+
     if main['image']['id']:
         image = get_repofile_by_id(site, main['image']['id'])
+
         if image is not None:
             main['image'].update({
                 'title': image.Title(),
@@ -1257,28 +1298,39 @@ def import_template_ace_layout_4(site, layout, structure):
         'Deliverables': 'Deliverables',
     }
     partners = []
+
     for line in structure['column-1'][0][1]['content']:
         if line[0] == 'image':
             if line[2] == None:
                 logger.info("Skipping empty layout %s", layout.friendlyurl)
                 # these are empty projects
+
                 return
             main['image'] = line[2][0]
+
             continue
+
         if line[0] == 'dynamic' and line[1] == 'Subtitle':
             main['subtitle'] = line[2][0]
+
             continue
+
         if line[0] == 'dynamic' and line[1] == 'Title':
             main['title'] = line[2][0]
+
             continue
+
         if line[0] == 'text':
             category = line[1]
             text = line[2][0]
             main['accordion'].append((labels[category], text))
+
             continue
+
         if line[0] == 'dynamic' and line[1] == 'ProjectPartner':
             name = line[2][0][2][0]
             symbol = line[2][1][2][0]
+
             if name:
                 partners.append((name, symbol))
 
@@ -1303,10 +1355,13 @@ def import_template_ace_layout_4(site, layout, structure):
     _sidebar = []
     _contact = []
     _website = None
+
     for dyn, name, payload in _main_sidebar:
         if name == "ProjectWebSite":
             _website = payload[0]
+
             continue
+
         if len(payload) == 1:
             _sidebar.append((name, payload[0]))
         else:
@@ -1351,8 +1406,10 @@ def import_template_ace_layout_4(site, layout, structure):
 
     payload = []
     #import pdb; pdb.set_trace()
+
     for k, v in main['accordion']:
         # TODO: get the keys from dictionary
+
         if not k == 'Project Partners':
             payload.append((k, v))
         else:
@@ -1424,6 +1481,7 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker,
     assert(len(structure['column-2']) >= 2)
 
     section_title = structure['column-2'][1][1]['portlet_title']
+
     if structure['name'] == 'Urban AST step 0-0':
         section_title = structure['name']
 
@@ -1457,6 +1515,7 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker,
         for name in sorted(structure.keys()):
             column = structure[name]
             tiles = []
+
             for tile in column:
                 tile = make_tile(cover, [tile])
                 tiles.append(tile)
@@ -1490,6 +1549,7 @@ def import_template_1_2_columns_i(site, layout, structure):
     logger.error("Please investigate this importer %s with template %s",
                    layout.friendlyurl, '1_2_columns_i')
     raise ValueError
+
     return
 
 
@@ -1504,15 +1564,19 @@ def import_template_1_2_columns_ii(site, layout, structure):
 
     assert(len(structure) == 2 or len(structure) == 3)
     assert(len(structure['column-1']) == 1)
+
     if len(structure) > 2:
         assert(len(structure['column-2']) == 1)
 
     content_portlet = structure['column-1'][0][1]['content']
+
     for bit in content_portlet:
         if bit[0] == 'image':
             image = bit[-1]
+
         if bit[0] == 'text':
             body = bit[-1][0]
+
         if bit[0] == 'dynamic' and bit[1] == 'Title':
             title = bit[-1][0]
 
@@ -1524,6 +1588,7 @@ def import_template_1_2_columns_ii(site, layout, structure):
 
     share_portlet = None
     share_portlet_title = ""
+
     if len(structure) == 3:
         share_portlet = structure['column-2'][0][1]
         share_portlet_title = structure['column-2'][0][0]
@@ -1534,6 +1599,7 @@ def import_template_1_2_columns_ii(site, layout, structure):
 
     if share_portlet:
         sharetype = share_portlet.get('sharetype')
+
         if not sharetype:
             if 'shareprojectportlet' in share_portlet_title:
                 sharetype = 'RESEARCHPROJECT'
@@ -1574,6 +1640,7 @@ def _make_share_page_layout(site, cover, structure, title, body, image,
 
     if share_portlet:
         sharetype = share_portlet.get('sharetype')
+
         if not sharetype:
             if 'shareprojectportlet' in share_portlet_title:
                 sharetype = 'RESEARCHPROJECT'
@@ -1615,6 +1682,7 @@ def import_template_1_column(site, layout, structure):
 
     if structure['column-1'][0][0] in portlet_importers:
         importer = portlet_importers.get(structure['column-1'][0][0])
+
         return importer(layout, structure)
 
     assert len(structure) == 2  # main portlet + layout name
@@ -1623,6 +1691,7 @@ def import_template_1_column(site, layout, structure):
         dict(structure['column-1'][0][1])
     except:
         logger.error("Invalid page structure for %s", layout.friendlyurl)
+
         return
 
     # There are three versions of this template:
@@ -1636,10 +1705,12 @@ def import_template_1_column(site, layout, structure):
     def is_transnational_region():
         if not ('column-1' in structure):
             return False
+
         if not ('content' in structure['column-1'][0][1]):
             return False
         content = structure['column-1'][0][1]['content']
         names = [x[1] for x in content]
+
         if 'region_name' in names:
             return True
 
@@ -1648,6 +1719,7 @@ def import_template_1_column(site, layout, structure):
 
     # try to get the main title and set it on the parent folder
     portlet_title = structure['column-1'][0][1].get('portlet_title')
+
     if portlet_title:
         main_title = portlet_title
     else:
@@ -1659,6 +1731,7 @@ def import_template_1_column(site, layout, structure):
 
     cover = create_cover_at(site, layout.friendlyurl, title=cover_title)
     cover.aq_parent.edit(title=main_title)  # Fix parent title
+
     if layout.friendlyurl in additional_sharepage_layouts:
         alsoProvides(cover, IClimateAdaptSharePage)
     stamp_cover(cover, layout)
@@ -1671,16 +1744,20 @@ def import_template_1_column(site, layout, structure):
 
         col1_tile = make_richtext_tile(cover, {'title': 'col1', 'text': col1})
         col2_tile = make_richtext_tile(cover, {'title': 'col1', 'text': col2})
+
         iframe = structure['column-1'][2][1]['url']
+
         iframe_tile = make_iframe_embed_tile(cover, iframe)
 
         col1_group = make_group(6, col1_tile)
         col2_group = make_group(6, col2_tile)
+
         iframe_group = make_group(12, iframe_tile)
 
         row_1 = make_row(col1_group, col2_group)
         row_2 = make_row(iframe_group)
         layout = make_layout(row_1, row_2)
+
         return layout
 
     def _import_cols():
@@ -1695,11 +1772,14 @@ def import_template_1_column(site, layout, structure):
             #     'Body',
             #     [u'<p><br />\n<strong>Definition: </strong><br />\nMap Graph Data ....</p>\n\n<p>In this section of CLIMATE-ADAPT, map graph data is included at EU level (e.g. from the European Commission) or from countries.</p>\n\n<p>Governmental organisations are expected to provide proposals for this type of content.</p>\n\n<p>See an <a href="/viewaceitem?aceitem_id=3660">example</a> of a CLIMATE-ADAPT map graph data.</p>'])]
             # this is a dynamic portlet
+
             for bit in content:
                 if bit[0] == 'image':
                     image = bit[-1][0]
+
                 if bit[0] == 'text':
                     body = bit[-1][0]
+
                 if bit[0] == 'dynamic' and bit[1] == 'Title':
                     title = bit[-1][0]
             share_portlet_title = title
@@ -1708,12 +1788,14 @@ def import_template_1_column(site, layout, structure):
                 site, cover, structure, title, body, image, share_portlet_title,
                 share_portlet
             )
+
             return layout
 
         tiles = [make_tile(cover, [p]) for p in structure['column-1']]
 
         main_group = make_group(12, *tiles)
         cover_layout = make_layout(make_row(main_group))
+
         return cover_layout
 
     def _import_iframe():
@@ -1726,6 +1808,7 @@ def import_template_1_column(site, layout, structure):
 
     if layout.friendlyurl == u'/tools/urban-ast/contact':
         form_tile = make_tile(cover, structure.get('column-1', []))
+
         form_group = make_group(12, form_tile)
         cover_layout = make_layout(make_row(form_group))
 
@@ -1739,6 +1822,7 @@ def import_template_1_column(site, layout, structure):
 
     cover.cover_layout = json.dumps(cover_layout)
     cover._p_changed = True
+
     return cover
 
 
@@ -1769,6 +1853,7 @@ def import_template_2_columns_i(site, layout, structure):
     main_text_tile = make_richtext_with_title_tile(cover,
                                                    {'title': portlet_title,
                                                     'text': body})
+
     if countries_portlet:
         countries_tile = make_countries_dropdown_tile(cover)
         main_group = make_group(12, main_text_tile, countries_tile)
@@ -1778,6 +1863,7 @@ def import_template_2_columns_i(site, layout, structure):
     layout = make_layout(make_row(main_group))
     cover.cover_layout = json.dumps(layout)
     cover._p_changed = True
+
     return cover
 
 
@@ -1789,6 +1875,7 @@ def import_template_2_columns_ii(site, layout, structure):
     if layout.friendlyurl in ['/observations-and-scenarios',
                               '/adaptation-measures',
                               '/adaptation-support-tool']:
+
         return  # this is imported in another layout
 
     if len(structure) == 1:  # this is a fake page. Ex: /adaptation-sectors
@@ -1803,6 +1890,7 @@ def import_template_2_columns_ii(site, layout, structure):
         cover = create_cover_at(site, layout.friendlyurl, title=title)
         cover.aq_parent.edit(title=title)   # Fix parent title
         stamp_cover(cover, layout)
+
         form_tile = make_tile(cover, structure.get('column-1', []))
         image_tile = make_tile(cover, structure.get('column-2', []))
         side_group = make_group(6, form_tile)
@@ -1811,6 +1899,7 @@ def import_template_2_columns_ii(site, layout, structure):
 
         cover.cover_layout = json.dumps(layout)
         cover.setLayout('no_title_cover_view')
+
         return cover
 
 
@@ -1824,6 +1913,7 @@ def import_template_2_columns_iii(site, layout, structure):
 
     # title = structure['name']
     title = structure['column-1'][0][1]['portlet_title']
+
     if not title:
         title = structure['name']
     body = structure['column-1'][0][1]['content'][0]
@@ -1838,9 +1928,11 @@ def import_template_2_columns_iii(site, layout, structure):
 
     if 'dynamic' in portlet_types:
         # a page with readmore structure
+
         if 'Body' in portlet_names and 'ReadMoreBody' in portlet_names:
 
             main = {}
+
             for _type, name, payload in structure['column-1'][0][1]['content']:
                 if _type == 'image':
                     if isinstance(payload, basestring):
@@ -1849,14 +1941,17 @@ def import_template_2_columns_iii(site, layout, structure):
                         image_id = payload[0]
 
                     image = get_repofile_by_id(site, image_id)
+
                 if _type == 'dynamic' and name == 'Title':
                     if isinstance(payload, basestring):
                         title = payload
                     else:
                         title = payload[0]
+
                 if _type == 'text':
                     if name == 'Body':
                         body = payload[0]
+
                     if name == 'ReadMoreBody':
                         readmore = payload[0]
 
@@ -1891,12 +1986,15 @@ def import_template_2_columns_iii(site, layout, structure):
 
             cover.cover_layout = layout
             cover.setLayout('standard')
+
             return cover
 
         else:
             htmlstring = ''
+
             for row in structure['column-1'][0][1]['content']:
                 row_type = row[0]
+
                 if row_type == 'text':
                     htmlstring += row[2][0]
                 elif row_type == 'dynamic':
@@ -1913,9 +2011,11 @@ def import_template_2_columns_iii(site, layout, structure):
 
         cover.cover_layout = json.dumps(layout)
         cover.setLayout('standard')
+
         return cover
 
     extra_tiles = []
+
     if len(structure['column-1']) == 4:
         # There is only one layout with this structure
         # TODO: do this page, it's the /organisations page
@@ -1927,12 +2027,14 @@ def import_template_2_columns_iii(site, layout, structure):
         body += structure['column-1'][1][1]['content'][0]
 
     image = None
+
     if len(structure) == 3:
         # column-2 has a image
         assert(len(structure['column-2']) == 1)
         image = structure['column-2'][0][1]['content'][0]
 
     # Fix images
+
     if image is not None:
         image = image.replace("/documents/18/0/",
                               "/++theme++climateadapt/static/cca/img/")
@@ -1955,6 +2057,7 @@ def import_template_2_columns_iii(site, layout, structure):
 
     cover.cover_layout = json.dumps(layout)
     cover.setLayout('standard')
+
     return cover
 
 
@@ -1984,6 +2087,7 @@ def import_template_ace_layout_5(site, layout, structure):
 
     texts = structure['column-2'][0][1]['content']
     title = None
+
     if len(texts) > 1:
         for bit in texts:
             title = _titles[bit[1]]
@@ -2038,18 +2142,23 @@ def _import_transnational_region_page(site, layout, structure):
 
     content = structure['column-1'][0][1]['content']
     _info['main_text'] = ''
+
     for _type, name, payload in content:
         if name == 'region_name':
             _info['title'] = payload[0]
+
         if _type == 'image':
             _info['image'] = payload[0]
+
             continue
+
         if name == 'link_to_country':
             # [('dynamic', 'link_to_country_desc', ['Bulgaria']),
             #                                       '/countries/Bulgaria']
             country_name = payload[0][2][0]
             country_link = payload[1]
             _info['countries'].append((country_name, country_link))
+
         if _type == 'text':
             if len(payload) > 1:
                 for bit in payload:
@@ -2128,6 +2237,7 @@ def import_template_faq(site, layout, structure):
 
     col_tiles = [
         make_richtext_tile(cover, {'text': col, 'title': 'column'})
+
         for col in [col1, col2, col3]
     ]
     row_1 = make_row(main_text_group)
@@ -2231,6 +2341,7 @@ def import_template_frontpage(site, layout, structure):
     layout = json.dumps(layout)
 
     cover.cover_layout = layout
+
     return cover
 
 
@@ -2256,8 +2367,10 @@ def import_journal_articles(site):
 
     for info in session.query(sql.Journalarticle).filter_by(type_='events'):
         latest = _get_latest_version(session, info)
+
         if latest.urltitle in parent.contentIds():
             logger.debug("Skipping %s, already imported", info.urltitle)
+
             continue
 
         slug = latest.urltitle
@@ -2275,6 +2388,7 @@ def import_journal_articles(site):
 
         if latest.structureid == 'ACEEVENT':
             attrs = {}
+
             for line in content:
                 name = line[1]
                 val = line[2][0]
@@ -2323,6 +2437,7 @@ def import_journal_articles(site):
 
         if latest.urltitle in parent.contentIds():
             logger.debug("Skipping %s, already imported", info.urltitle)
+
             continue
 
         slug = latest.urltitle
@@ -2330,8 +2445,10 @@ def import_journal_articles(site):
         publish_date = latest.displaydate
 
         content = extract_simplified_info_from_article_content(latest.content)
+
         if latest.structureid == 'ACENEWS':
             attrs = {}
+
             for line in content:
                 name = line[1]
                 val = line[2][0]
@@ -2404,6 +2521,7 @@ def import_aceitems(session, site):
     for aceitem in session.query(sql.AceAceitem):
         if aceitem.datatype in ['ACTION', 'MEASURE', "RESEARCHPROJECT",
                                 "MEASURE", "ACTION"]:
+
             continue
         import_aceitem(aceitem, get_default_location(site, aceitem.datatype))
 
@@ -2418,6 +2536,7 @@ def import_aceitems(session, site):
     for acemeasure in q.filter(sql.AceMeasure.mao_type!='A'):
         import_adaptationoption(acemeasure, get_default_location(site,
                                                                     'MEASURE'))
+
     for acemeasure in q.filter(sql.AceMeasure.mao_type=='A'):
         import_casestudy(acemeasure, get_default_location(site, 'ACTION'))
 
@@ -2436,6 +2555,7 @@ def _fix_casestudy_images(casestudy):
                     casestudy.absolute_url())
 
     casestudy.supphotos = []
+
     if casestudy.primephoto:
         img = casestudy.primephoto.to_object
         casestudy.primary_photo = img.image
@@ -2481,6 +2601,7 @@ def run_importer(site=None):
     wftool = getToolByName(site, "portal_workflow")
 
     structure = [('repository', 'Repository')]
+
     for name, title in structure:
         if name not in site.contentIds():
             site.invokeFactory("Folder", name)
@@ -2504,6 +2625,7 @@ def run_importer(site=None):
             cover = import_layout(layout, site)
         except Exception:
             logger.exception("Couldn't import layout %s", layout.friendlyurl)
+
         if cover:
             cover._imported_comment = \
                 "Imported from layout {0} - {1}".format(layout.layoutid,
@@ -2530,13 +2652,16 @@ def tweak_site(site):
         manage_addCityMayorUserFactory(id="city_mayor_user_plugin",
                                        title="CityMayor Users Plugin")
     plugin_obj = acl_users._getOb('city_mayor_user_plugin')
+
     ifaces = ['IAnonymousUserFactoryPlugin', 'IUserEnumerationPlugin']
     plugin_obj.manage_activateInterfaces(ifaces)
 
     ast_tools = ['tools/urban-ast',
                  'adaptation-support-tool']
+
     for path in ast_tools:
         obj = site.restrictedTraverse(path)
+
         if not IASTNavigationRoot.providedBy(obj):
             alsoProvides(obj, IASTNavigationRoot)
 
@@ -2607,6 +2732,7 @@ def tweak_site(site):
         ('adaptation-information', 'Adaptation Information'),
         ('adaptation-information/general', 'General'),
     ]
+
     for path, title in titles:
         obj = site.restrictedTraverse(path)
         obj.edit(title=title)
@@ -2718,6 +2844,7 @@ def import_handler(context):
 
     Use it like above, start the Zope process with the DB parameter on command line
     """
+
     if context.readDataFile('eea.climateadapt.importer.txt') is None:
         return
     global session

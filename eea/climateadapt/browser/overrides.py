@@ -12,9 +12,10 @@ from zope.schema.interfaces import IDatetime, IList, IText, ITextLine, ITuple
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 from eea.climateadapt import MessageFactory as _
-from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
+# from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader, Year
 from eea.pdf.interfaces import IPDFTool
+from OFS.interfaces import ITraversable
 from plone.api import content, portal
 from plone.app.content.browser.interfaces import IContentsPage
 from plone.app.contentmenu.menu import DisplaySubMenuItem as DSMI
@@ -606,6 +607,19 @@ class OverrideRichText(RichTextWidget):
 
     def _base_args(self):
         # Get options
+
+        # CCA specific: fix the parent in context of cover configuration, with
+        # richtext field in cover. We need a traversable context, so we'll get
+        # one from request, if not possible otherwise.
+        # See https://taskman.eionet.europa.eu/issues/100350
+
+        if not ITraversable.providedBy(self.context):
+            for parent in self.request.PARENTS:
+                if ITraversable.providedBy(parent):
+                    self.context = parent
+
+                    break
+
         args = super(OverrideRichText, self)._base_args()
 
         # Get tinymce options
