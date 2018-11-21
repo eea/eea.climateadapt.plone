@@ -572,22 +572,31 @@ $(document).ready(function() {
   // Fix tiles edit button
   $('.tile-container').each(function() {
     var $this = $(this);
-    // var tileName = $this.find('.tile-type-name');
     var editbtn = $this.children('a');
     var contentWrapper = $this.children('div');
-    // if (tileName.text() == 'Relevant AceContent') {
-    //   tileName.detach().appendTo(contentWrapper);
-    // }
     if (editbtn.text() == 'Edit') {
       editbtn.detach().appendTo(contentWrapper);
     }
   });
 
   $('.template-compose .tile').each(function() {
-     if ($(this).hasClass('col-md-4')) {
-       $(this).removeClass('col-md-4');
-       $(this).parent('.tile-container').addClass('col-md-4');
-     }
+    var $this = $(this);
+    if ($this.hasClass('col-md-4')) {
+     $this.removeClass('col-md-4');
+     $this.parent('.tile-container').addClass('col-md-4');
+    }
+    else if ($this.hasClass('col-md-6')) {
+     $this.removeClass('col-md-6');
+     $this.parent('.tile-container').addClass('col-md-6');
+    }
+  });
+
+  $('.col-md-6').each(function() {
+    var $this = $(this);
+    if ($this.children('.cover-richtext-tile').length > 0) {
+      $this.find('h2').addClass('richtext-tile-title');
+      $('.richtext-tile-title').parent().css('padding', '0 .5em');
+    }
   });
 
   // Accordion: Toggle arrow up and down on click
