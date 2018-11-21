@@ -593,7 +593,8 @@ $(document).ready(function() {
 
   $('.col-md-6').each(function() {
     var $this = $(this);
-    if ($this.children('.cover-richtext-tile').length > 0) {
+    if ($this.children('.cover-richtext-tile').length > 0 &&
+        $this.children('.aceitem-relevant-tile').length == 0) {
       $this.find('h2').addClass('richtext-tile-title');
       $('.richtext-tile-title').parent().css('padding', '0 .5em');
     }
