@@ -2,7 +2,6 @@
 
 import json
 from Acquisition import Implicit
-from Acquisition import aq_inner
 from Products.Five.browser import BrowserView
 from eea.climateadapt.mayorsadapt.events import CityProfileRegisterEvent
 from eea.climateadapt.mayorsadapt.vocabulary import _climateimpacts
@@ -12,12 +11,21 @@ from eea.climateadapt.schema import Email
 from eea.climateadapt.vocabulary import ace_countries
 from plone.api.portal import show_message
 from plone.directives import form
-from plone.formwidget.recaptcha.widget import ReCaptchaFieldWidget
+from plone.formwidget.captcha.widget import CaptchaFieldWidget
+from plone.formwidget.captcha.validator import CaptchaValidator, WrongCaptchaCode
 from plone.memoize import view
-from z3c.form import button, field
+from z3c.form import button, field, validator
 from zope import schema
-from zope.component import getMultiAdapter
 from zope.event import notify
+from plone.z3cform.layout import wrap_form
+
+
+class Captcha(object):
+    subject = u""
+    captcha = u""
+
+    def __init__(self, context):
+        self.context = context
 
 
 class IRegisterCityForm(form.Schema):
@@ -56,7 +64,7 @@ class RegisterCityForm(form.SchemaForm):
     """
 
     fields = field.Fields(IRegisterCityForm)
-    fields['captcha'].widgetFactory = ReCaptchaFieldWidget
+    fields['captcha'].widgetFactory = CaptchaFieldWidget
 
     @button.buttonAndHandler(u"Submit")
     def handleApply(self, action):
@@ -64,25 +72,38 @@ class RegisterCityForm(form.SchemaForm):
         if errors:
             self.status = self.formErrorsMessage
             return
-        captcha = getMultiAdapter(
-            (aq_inner(self.context), self.request),
-            name='recaptcha'
-        )
 
         msg = u"""Registration process completed. You will receive an email
 message with details on how to proceed further."""
 
-        if captcha.verify():
-            name = data.get('name')
-            email = data.get('email')
+        if data.has_key('captcha'):
+            # Verify the user input against the captcha
+            captcha = CaptchaValidator(self.context, self.request, None, IRegisterCityForm['captcha'], None)
 
-            obj = CityProfileRegister(name=name, email=email)
-            obj = obj.__of__(self.context)
-            notify(CityProfileRegisterEvent(obj))
-            show_message(message=msg, request=self.request, type='info')
-        else:
-            show_message(message=u"Please complete the Captcha.",
-                         request=self.request, type='error')
+            try:
+                valid = captcha.validate(data['captcha'])
+            except WrongCaptchaCode:
+                show_message(message=u"Invalid Captcha.",
+                             request=self.request, type='error')
+                return
+
+            if valid:
+                name = data.get('name')
+                email = data.get('email')
+
+                obj = CityProfileRegister(name=name, email=email)
+                obj = obj.__of__(self.context)
+                notify(CityProfileRegisterEvent(obj))
+                show_message(message=msg, request=self.request, type='info')
+            else:
+                show_message(message=u"Please complete the Captcha.",
+                             request=self.request, type='error')
+
+
+CaptchaForm = wrap_form(RegisterCityForm)
+
+# Register Captcha validator for the captcha field in the IRegisterCityForm
+validator.WidgetValidatorDiscriminators(CaptchaValidator, field=IRegisterCityForm['captcha'])
 
 
 class MayorsAdaptPage(BrowserView):

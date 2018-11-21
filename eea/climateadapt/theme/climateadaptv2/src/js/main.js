@@ -233,6 +233,15 @@ $(document).ready(function() {
 
   $(window).scroll(function(event) {
     didScroll = true;
+
+    if (windowWidth <= 800) {
+      if ($(window).scrollTop() >= 80) {
+        $('.header').addClass('sticky-header');
+      }
+      else {
+        $('.header').removeClass('sticky-header');
+      }
+    }
   });
 
   if (windowWidth <= 800) {
@@ -572,6 +581,13 @@ $(document).ready(function() {
     if (editbtn.text() == 'Edit') {
       editbtn.detach().appendTo(contentWrapper);
     }
+  });
+
+  $('.template-compose .tile').each(function() {
+     if ($(this).hasClass('col-md-4')) {
+       $(this).removeClass('col-md-4');
+       $(this).parent('.tile-container').addClass('col-md-4');
+     }
   });
 
   // Accordion: Toggle arrow up and down on click
