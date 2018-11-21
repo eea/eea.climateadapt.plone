@@ -305,8 +305,13 @@ sortby_vocabulary = SimpleVocabulary(sortbyterms)
 
 class IRelevantAceContentItemsTile(ISearchAceContentTile):
 
-    show_share_btn = Bool(
-        title=_(u"Show the share button"),
+    # show_share_btn = Bool(
+    #     title=_(u"Show the share button"),
+    #     default=False,
+    # )
+
+    combine_results = Bool(
+        title=_(u"Show listing results, in addition to assigned items"),
         default=False,
     )
 
@@ -351,14 +356,14 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
     def is_available(self):
         return bool(self.items() or self.assigned())
 
-    def show_share_btn(self):
-        search_type = self.data.get('search_type')
-
-        if search_type in ['DOCUMENT', 'INFORMATIONSOURCE',
-                           'GUIDANCE', 'TOOL', 'REASEARCHPROJECT',
-                           'MEASURE', 'ORGANISATION']:
-
-            return True
+    # def show_share_btn(self):
+    #     search_type = self.data.get('search_type')
+    #
+    #     if search_type in ['DOCUMENT', 'INFORMATIONSOURCE',
+    #                        'GUIDANCE', 'TOOL', 'REASEARCHPROJECT',
+    #                        'MEASURE', 'ORGANISATION']:
+    #
+    #         return True
 
     @view.memoize
     def is_empty(self):
@@ -381,21 +386,27 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         """
 
         cca_types = [
-                 u'eea.climateadapt.adaptationoption',
-                 u'eea.climateadapt.aceproject',
-                 u'eea.climateadapt.casestudy',
-                 u'eea.climateadapt.guidancedocument',
-                 u'eea.climateadapt.indicator',
-                 u'eea.climateadapt.informationportal',
-                 u'eea.climateadapt.mapgraphdataset',
-                 u'eea.climateadapt.organisation',
-                 u'eea.climateadapt.publicationreport',
-                 u'eea.climateadapt.researchproject',
-                 u'eea.climateadapt.tool',
-                 u'eea.climateadapt.video',
+            u'eea.climateadapt.adaptationoption',
+            u'eea.climateadapt.aceproject',
+            u'eea.climateadapt.casestudy',
+            u'eea.climateadapt.guidancedocument',
+            u'eea.climateadapt.indicator',
+            u'eea.climateadapt.informationportal',
+            u'eea.climateadapt.mapgraphdataset',
+            u'eea.climateadapt.organisation',
+            u'eea.climateadapt.publicationreport',
+            u'eea.climateadapt.researchproject',
+            u'eea.climateadapt.tool',
+            u'eea.climateadapt.video',
         ]
 
-        return cca_types + ['Document', 'Folder', 'collective.cover.content']
+        return cca_types + [
+            'Document',
+            'Folder',
+            'collective.cover.content',
+            'Page',
+            'Link',
+        ]
 
     def view_more_url(self):
         site = getSite()
@@ -426,7 +437,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         return tile_icons.objectValues()
 
     def get_icons(self, obj):
-        special_tags = obj.special_tags or []
+        special_tags = getattr(obj, 'special_tags', []) or []
         images = self.icon_images()
         icons = [image for image in images if image.getId() in special_tags]
 
@@ -459,11 +470,14 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
                      )
             res.append(o)
 
-        if res:
-            if self.data.get('sortBy', '') == 'NAME':
-                return sorted(res, key=lambda o: o.sortable_title)
-            else:
-                return res
+        combine = self.data.get('combine_results', False)
+
+        if not combine:
+            if res:
+                if self.data.get('sortBy', '') == 'NAME':
+                    return sorted(res, key=lambda o: o.sortable_title)
+                else:
+                    return res
 
         for item in self.items():
             obj = item.getObject()
@@ -478,11 +492,6 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
             res.append(o)
 
         return res
-        # Commented because items will come autosorted
-        # if self.data.get('sortBy', True):
-        #     return sorted(res, key=lambda o: o.sortable_title)
-        # else:
-        #     return res
 
     # @view.memoize
     def assigned(self):
