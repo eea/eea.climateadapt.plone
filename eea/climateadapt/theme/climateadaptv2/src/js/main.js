@@ -591,7 +591,7 @@ $(document).ready(function() {
     }
   });
 
-  $('.col-md-6').each(function() {
+  $('.col-md-6, .col-md-4').each(function() {
     var $this = $(this);
     if ($this.children('.cover-richtext-tile').length > 0 &&
         $this.children('.aceitem-relevant-tile').length == 0) {
