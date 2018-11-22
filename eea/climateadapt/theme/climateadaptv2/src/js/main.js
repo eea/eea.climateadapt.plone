@@ -569,7 +569,7 @@ $(document).ready(function() {
     $pdfButton.parent().before($sectionPDF);
   }
 
-  // Fix tiles edit button
+  // Fix tiles
   $('.tile-container').each(function() {
     var $this = $(this);
     var editbtn = $this.children('a');
@@ -593,11 +593,9 @@ $(document).ready(function() {
 
   $('.col-md-6, .col-md-4').each(function() {
     var $this = $(this);
-    if ($this.children('.cover-richtext-tile').length > 0 &&
-        $this.children('.aceitem-relevant-tile').length == 0) {
-      $this.find('h2').addClass('richtext-tile-title');
-      $('.richtext-tile-title').parent().css('padding', '0 .5em');
-    }
+
+    $this.find('.cover-richtext-tile').children('h2').addClass('richtext-tile-title');
+    $('.richtext-tile-title').parent().css('padding', '0 .5em');
   });
 
   // Accordion: Toggle arrow up and down on click
