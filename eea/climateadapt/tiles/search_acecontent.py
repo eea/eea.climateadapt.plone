@@ -305,10 +305,10 @@ sortby_vocabulary = SimpleVocabulary(sortbyterms)
 
 class IRelevantAceContentItemsTile(ISearchAceContentTile):
 
-    # show_share_btn = Bool(
-    #     title=_(u"Show the share button"),
-    #     default=False,
-    # )
+    show_share_btn = Bool(
+        title=_(u"Show the share button"),
+        default=False,
+    )
 
     combine_results = Bool(
         title=_(u"Show listing results, in addition to assigned items"),
