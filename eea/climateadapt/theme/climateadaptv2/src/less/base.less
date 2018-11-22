@@ -870,8 +870,12 @@ form .standard-button,
   padding-bottom: 0;
 }
 
-#ast-menu .ui-accordion-li-fix:first-child > a {
-  background: transparent;
+#ast-menu > li {
+  padding-bottom: 0.3em;
+}
+
+#ast-menu li:first-child > .ui-accordion-header {
+  background: transparent !important;
   color: @dark-gray !important;
   border: 1px solid #D9D6D6;
 }
@@ -890,16 +894,7 @@ form .standard-button,
 }
 
 .ast-map {
-  margin-bottom: 55px;
-
-  .ast-image-title {
-    text-align: center;
-    font-family: OpenSansM;
-    color: @primary-blue;
-    position: absolute;
-    top: 65px;
-    left: 40px;
-  }
+  margin: 15px 0 50px 0;
 }
 
 .ast-title-step {
@@ -936,35 +931,36 @@ form .standard-button,
 }
 
 .ast-map .circle-1-text {
-  top: 47px;
-  right: -90px;
+  top: 22px;
+  right: -40px;
+  width: 240px;
 }
 
 .ast-map .circle-2-text {
-  top: 110px;
+  top: 64px;
   right: -100px;
 }
 
 .ast-map .circle-3-text {
-  top: 170px;
-  right: -80px;
+  top: 149px;
+  right: -86px;
 }
 
 .ast-map .circle-4-text {
   min-width: 190px;
   max-width: 100%;
-  bottom: -70px;
-  right: -17px;
+  bottom: -56px;
+  right: -27px;
 }
 
 .ast-map .circle-5-text {
-  top: 167px;
-  left: -41px;
+  top: 169px;
+  left: -43px;
 }
 
 .ast-map .circle-6-text {
-  top: 106px;
-  left: -106px;
+  top: 91px;
+  left: -103px;
 }
 
 
@@ -1076,7 +1072,7 @@ form .standard-button,
 }
 
 #uast-menu > li {
-  padding-bottom: 0.5em;
+  padding-bottom: 0.3em;
 }
 
 #uast-menu ul > li {

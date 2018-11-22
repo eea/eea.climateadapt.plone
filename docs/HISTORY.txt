@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* AST page fixes; remove duplicate viewlets from AST&UAST pages
+  [krisztina]
 * Style fixes
   [krisztina]
 * Removed recaptcha and added another captcha

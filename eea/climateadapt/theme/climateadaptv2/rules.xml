@@ -100,16 +100,16 @@
 
   <!-- AST & UAST: move last modified under the h1 title -->
   <rules css:if-content=".subsection-tools-adaptation-support-tool">
-    <drop css:content="#plone-document-byline" />
+    <drop css:content="#viewlet-below-content-title" />
     <after css:content=".ast_header > h1">
-      <xsl:copy-of select='//*[@id="plone-document-byline"]' />
+      <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
     </after>
   </rules>
 
   <rules css:if-content=".subsection-tools-urban-ast">
-    <drop css:content="#plone-document-byline" />
+    <drop css:content="#viewlet-below-content-title" />
     <after css:content=".ast_header > h1">
-      <xsl:copy-of select='//*[@id="plone-document-byline"]' />
+      <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
     </after>
   </rules>
 

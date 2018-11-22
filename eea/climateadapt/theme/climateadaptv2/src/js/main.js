@@ -491,7 +491,8 @@ $(document).ready(function() {
         $(this).css({
           'background-color': '#FFD554',
           'border': '2px solid #F2C94C',
-          'color': '#4F4F4F'
+          'color': '#4F4F4F',
+          'font-family': 'OpenSansB'
         });
       }
     });
