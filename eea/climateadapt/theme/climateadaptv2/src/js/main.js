@@ -381,6 +381,7 @@ $(document).ready(function() {
     // move eu sector policy factsheet
     var $sidebar = $('.column.col-md-3');
     $sidebar.before($sidebar.find('.factsheet-pdf').parent());
+    $('.factsheet-pdf').parent().css('text-decoration', 'none');
   }
 
   // TRANSNATIONAL SUBPAGES (two specific subpages)

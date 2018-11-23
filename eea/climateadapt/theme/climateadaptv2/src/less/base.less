@@ -76,6 +76,11 @@ a {
   color: @link-color;
   font-family: OpenSansM;
   font-size: 14px;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .label {
@@ -90,11 +95,6 @@ a {
 
 #content .eu-strategy tr:first-child td {
   padding: 0em 0em 1em 0em;
-}
-
-#content p a:link {
-  border-bottom: 1px solid @link-color;
-  word-wrap: break-word;
 }
 
 #content table p a:link {
@@ -305,6 +305,7 @@ a.read-more:hover::after {
   border-radius: 5px;
   display: inline-block;
   font-size: 14px;
+  text-decoration: none;
 }
 
 form .standard-button,
@@ -408,8 +409,7 @@ form .standard-button,
   }
 }
 
-.aceitem-relevant-tile ul,
-.subsection-share-your-info-index_html .tile-content ul {
+.aceitem-relevant-tile ul {
   padding: 0;
 }
 
@@ -418,15 +418,13 @@ form .standard-button,
 }
 
 .aceitem-search-tile ul > li,
-.aceitem-relevant-tile ul > li,
-.subsection-share-your-info-index_html .tile-content li {
+.aceitem-relevant-tile ul > li {
   list-style-type: none;
 }
 
 #ast-menu ul > li:before,
 .aceitem-search-tile ul > li:before,
-.aceitem-relevant-tile ul > li:before,
-.subsection-share-your-info-index_html .tile-content li > span > a:before {
+.aceitem-relevant-tile ul > li:before {
   content: "\f101";
   font-family: FontAwesome;
   margin-right: 3px;
@@ -447,6 +445,7 @@ form .standard-button,
 
 .aceitem-relevant-tile a {
   font-family: OpenSansR;
+  text-decoration: none;
 }
 
 .panel-default {
@@ -470,6 +469,7 @@ form .standard-button,
       color: #bf5900;
       padding: 5px;
       display: block !important;
+      text-decoration: none;
     }
     a:hover {
       color: #e66b00;
@@ -624,6 +624,7 @@ form .standard-button,
 .content-sidebar .aceitem-search-tile ul li a {
   color: @dark-gray;
   font-family: OpenSansR;
+  text-decoration: none;
 }
 
 .interactive-maps .speedbutton {
@@ -782,6 +783,7 @@ form .standard-button,
       border-top-left-radius: .25em;
       border-top-right-radius: .25em;
       margin-left: 0;
+      text-decoration: none;
     }
     a:before {
       content: '' !important;
@@ -794,6 +796,7 @@ form .standard-button,
     }
     a:hover {
       color: @primary-green;
+      text-decoration: none;
     }
   }
 }
@@ -812,6 +815,9 @@ form .standard-button,
   padding-left: 0;
   margin-bottom: 1.5em;
   list-style-type: none;
+  a {
+    text-decoration: none;
+  }
   li > ul {
     list-style-type: none;
     li:not(:last-of-type) {
@@ -824,74 +830,76 @@ form .standard-button,
       padding-top: 0.5em;
     }
   }
+
+  ul > li:last-child {
+    padding-bottom: 0;
+  }
+
+  >li {
+    padding-bottom: 0.3em;
+  }
+
+  .ui-accordion-header {
+    border-radius: 0;
+    border: none;
+    padding: 0.8em 0.4em;
+    font-size: 13px;
+
+    .ui-icon {
+      display: none;
+    }
+  }
+
+  .ui-state-default {
+    background: @secondary-blue;
+  }
+
+  .ui-accordion-content {
+    border: none;
+    background: #F2F2F2;
+    border-radius: 0;
+    padding: 1em;
+    height: auto !important;
+  }
+
+  .ui-state-hover {
+    background: @yellow;
+  }
+
+  .ui-accordion-li-fix {
+    padding-top: 5px;
+    padding-bottom: 0;
+  }
+
+  li:first-child > .ui-accordion-header {
+    background: transparent !important;
+    color: @dark-gray !important;
+    border: 1px solid #D9D6D6;
+  }
+
+  .ui-widget-content a {
+    font-family: OpenSansR;
+  }
+
+  .ui-accordion-content-active a.active {
+    color: @primary-blue;
+    font-family: OpenSansM;
+  }
+
+  .ui-widget-content a {
+    color: @dark-gray;
+  }
+}
+
+#portal-columns {
+  #content .ui-state-active {
+    background: @yellow;
+    color: @dark-gray !important;
+  }
 }
 
 .ast_header h1 {
   display: inline-block;
-}
-
-#ast-menu .ui-accordion-header {
-  border-radius: 0;
-  border: none;
-  padding: 0.8em 0.4em;
-  font-size: 13px;
-
-  .ui-icon {
-    display: none;
-  }
-}
-
-#ast-menu .ui-state-default {
-  background: @secondary-blue;
-}
-
-#content #ast-menu .ui-state-active {
-  background: @yellow;
-  color: @dark-gray !important;
-}
-
-#ast-menu .ui-accordion-content {
-  border: none;
-  background: #F2F2F2;
-  border-radius: 0;
-  padding: 1em;
-  height: auto !important;
-}
-
-#ast-menu .ui-state-hover {
-  background: @yellow;
-}
-
-#ast-menu .ui-accordion-li-fix {
-  padding-top: 5px;
-  padding-bottom: 0;
-}
-
-#ast-menu ul > li:last-child {
-  padding-bottom: 0;
-}
-
-#ast-menu > li {
-  padding-bottom: 0.3em;
-}
-
-#ast-menu li:first-child > .ui-accordion-header {
-  background: transparent !important;
-  color: @dark-gray !important;
-  border: 1px solid #D9D6D6;
-}
-
-#ast-menu .ui-widget-content a {
-  font-family: OpenSansR;
-}
-
-#ast-menu .ui-accordion-content-active a.active {
-  color: @primary-blue;
-  font-family: OpenSansM;
-}
-
-#ast-menu .ui-widget-content a {
-  color: @dark-gray;
 }
 
 .ast-map {
@@ -971,54 +979,102 @@ form .standard-button,
   padding-left: 0;
   margin-bottom: 1.5em;
 
+  a {
+    text-decoration: none;
+  }
+
+  >li {
+    padding-bottom: 0.3em;
+    list-style-type: none;
+  }
+
+  ul > li {
+    list-style-type: disc;
+  }
+
+  li > ul {
+    padding: 0.6em 0 0 1.3em;
+    li:not(:last-of-type) {
+      padding-bottom: 0.5em;
+    }
+  }
+
   .ui-state-active {
     background: none;
   }
-  >li {
-    list-style-type: none;
+
+  .ui-accordion-header {
+    border: none;
+    padding: 0;
+    display: flex;
+
+    .ui-icon {
+      display: none;
+    }
   }
-}
 
-#uast-menu .ui-accordion-header {
-  border: none;
-  padding: 0;
-  display: flex;
-
-  .ui-icon {
-    display: none;
+  .ui-state-default {
+    background: none;
   }
-}
 
-#uast-menu .ui-state-default {
-  background: none;
-}
+  .ui-state-default strong,
+  .ui-state-active strong {
+    background-color: #96B32B;
+    padding: 10px  ;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    color: #fff;
+  }
 
-#uast-menu .ui-state-default strong,
-#uast-menu .ui-state-active strong {
-  background-color: #96B32B;
-  padding: 10px  ;
-  border-top-right-radius: 15px;
-  border-bottom-left-radius: 15px;
-  color: #fff;
-}
+  a.ui-state-active {
+    color: #fff;
+  }
 
-#uast-menu a.ui-state-active {
-  color: #fff;
-}
+  a.ui-state-default {
+    font-size: 13px;
+  }
 
-#uast-menu a.ui-state-default {
-  font-size: 13px;
-}
+  .ui-state-default .uast-title {
+    background-color: #009AA9;
+    padding: 10px 4px;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    width: 100%;
+    margin-left: 3px;
+    color: #fff;
+  }
 
+  .ui-state-active > .uast-title {
+    background-color: #96B32B;
+  }
 
-#uast-menu .ui-state-default .uast-title {
-  background-color: #009AA9;
-  padding: 10px 4px;
-  border-top-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  width: 100%;
-  margin-left: 3px;
-  color: #fff;
+  .ui-accordion-content {
+    border: none;
+    padding: 1em 0 1em 3.5em;
+    height: auto !important;
+  }
+
+  .ui-state-hover > .uast-title {
+    background-color: #96B32B;
+    color: #fff;
+  }
+
+  .ui-widget-content a {
+    font-family: OpenSansR;
+  }
+
+  ul#uast-menu ul > li:before {
+    color: @primary-blue;
+  }
+
+  .ui-accordion-content-active a:hover {
+    color: #96B32B;
+  }
+
+  .ui-accordion-content-active a.active {
+    color: #96B32B;
+    font-family: OpenSansM;
+  }
 }
 
 .subsection-tools-urban-ast .ast-title-step {
@@ -1038,53 +1094,6 @@ form .standard-button,
 
 .lfc-single-image {
   text-align: center;
-}
-
-#content #uast-menu .ui-state-active > .uast-title {
-  background-color: #96B32B;
-}
-
-#uast-menu .ui-accordion-content {
-  border: none;
-  padding: 1em 0 1em 3.5em;
-  height: auto !important;
-}
-
-#uast-menu .ui-state-hover > .uast-title {
-  background-color: #96B32B;
-  color: #fff;
-}
-
-#uast-menu .ui-widget-content a {
-  font-family: OpenSansR;
-}
-
-#content ul#uast-menu ul > li:before {
-  color: @primary-blue;
-}
-
-#uast-menu .ui-accordion-content-active a:hover {
-  color: #96B32B;
-}
-
-#uast-menu .ui-accordion-content-active a.active {
-  color: #96B32B;
-  font-family: OpenSansM;
-}
-
-#uast-menu > li {
-  padding-bottom: 0.3em;
-}
-
-#uast-menu ul > li {
-  list-style-type: disc;
-}
-
-#uast-menu li > ul {
-  padding: 0.6em 0 0 1.3em;
-  li:not(:last-of-type) {
-    padding-bottom: 0.5em;
-  }
 }
 
 .example-cases {
@@ -1492,6 +1501,11 @@ dl.error, .portalMessage.error{
 .listing {
   width: 100% !important;
   margin: 1.5em 0;
+
+  a,
+  a:hover {
+    text-decoration: none !important;
+  }
   thead {
     tr:first-child {
       background-color: #f9f9f9;
@@ -2086,6 +2100,7 @@ span.selectedTag {
   a {
     margin-bottom: 0.5em;
     display: block;
+    text-decoration: none;
   }
 }
 
