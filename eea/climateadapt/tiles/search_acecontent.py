@@ -2,9 +2,10 @@
 It renders a search "portlet" for Ace content
 """
 
+import json
 import logging
+import urllib
 from collections import namedtuple
-from urllib import urlencode
 
 from collective.cover.interfaces import ICoverUIDsProvider
 from collective.cover.tiles.base import (IPersistentCoverTile,
@@ -18,7 +19,9 @@ from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from AccessControl import Unauthorized
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.catalog import get_aceitem_description
-from eea.climateadapt.vocabulary import _datatypes
+from eea.climateadapt.vocabulary import (_climateimpacts, _datatypes,
+                                         _elements, _sectors,
+                                         ace_countries_dict)
 from plone import api
 from plone.api import portal
 from plone.app.uuid.utils import uuidToObject
@@ -32,6 +35,12 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.form.field import Fields
 from z3c.form.form import Form
 from z3c.form.widget import StaticWidgetAttribute
+
+CLIMATE_IMPACTS = dict(_climateimpacts)
+COUNTRIES = ace_countries_dict
+DATATYPES = dict(_datatypes)
+ELEMENTS = dict(_elements)
+SECTORS = dict(_sectors)
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -178,13 +187,11 @@ class AceTileMixin(object):
         return query
 
     def build_url(self, url, query, kw):
+        """ Build urls suitable for the EEA Search engine
+        """
         q = query.copy()
         q.update(kw)
         x = {}
-        searchtype = q.pop('search_type', None)
-
-        if searchtype:
-            q['searchtype'] = searchtype
 
         for index, v in q.items():
             if v:
@@ -194,17 +201,67 @@ class AceTileMixin(object):
                     else:
                         # keyword indexes appear ex:
                         #  'sectors': {'operator': 'or',
-                        #  'query': [u'AGRICULTURE']}
+                        #              'query': [u'AGRICULTURE']}
 
                         if index in KEYWORD_INDEXES:
                             if isinstance(v, str):
-                                x[index] = v
+                                x[index] = [v]
                             else:
                                 x[index] = v['query']
                         else:
-                            x[index] = v
+                            x[index] = [v]
 
-        return url + "#" + urlencode(x, True)
+        terms = []
+
+        # now that the "query" is built, map it to EEA Search format
+
+        for k, v in x.items():
+
+            if k == 'search_type':
+                for s in v:
+                    terms.append({u'term': {u'typeOfData': DATATYPES[s]}})
+
+            if k == 'sectors':
+                for s in v:
+                    terms.append({u'term': {u'sectors': SECTORS[s]}})
+
+            if k == 'climate_impacts':
+                for s in v:
+                    terms.append({u'term': {u'elements': CLIMATE_IMPACTS[s]}})
+
+            if k == 'elements':
+                for s in v:
+                    terms.append({u'term': {u'elements': ELEMENTS[s]}})
+
+            if k == 'countries':
+                for s in v:
+                    terms.append({u'term': {u'places': COUNTRIES[s]}})
+
+            if k == 'macro_regions':
+                for s in v:
+                    terms.append({u'term': {u'macro-transnational-region': s}})
+
+            if k == 'SearchableText':
+                for s in v:
+                    terms.append({u'query_string':
+                                  {u'analyze_wildcard': True,
+                                   u'default_operator': u'OR',
+                                   u'query': s
+                                   }})
+        t = {u'function_score':
+             {u'query':
+              {u'bool':
+               {u'filter':
+                {u'bool':
+                 {u'should': terms}
+                 }}}}}
+
+        q = {'query': t}
+        l = '{}/data-and-downloads?source={}'.format(
+            url, urllib.quote(json.dumps(q))
+        )
+
+        return l
 
 
 class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
@@ -258,8 +315,13 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
             count = self.data.get('nr_items', 5)
             brains = self.catalog.searchResults(**query)
             url = self.build_url(base, query, {})
-            result.append((_ace_types[search_type],
-                           len(brains), url, brains[:count]))
+            r = (
+                _ace_types[search_type],
+                len(brains),
+                url,
+                brains[:count]
+            )
+            result.append(r)
 
             return result
 
@@ -283,11 +345,14 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
             count = len(self.catalog.searchResults(**q))
 
             if count:
-                result.append((
-                    typelabel,
-                    count,
-                    self.build_url(base, q, {}),
-                ))
+                # TODO: this append needs 4 items, not 3
+                url = self.build_url(base, q, {})
+                r = (typelabel,
+                     count,
+                     url,
+                     [],
+                     )
+                result.append(r)
 
         return result
 
