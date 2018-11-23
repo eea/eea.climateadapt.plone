@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Fix new navigation menu structure
+  [krisztina]
 * AST page fixes; remove duplicate viewlets from AST&UAST pages
   [krisztina]
 * Style fixes

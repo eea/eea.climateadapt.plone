@@ -135,14 +135,25 @@
 
   #main-nav-item-2 {
     .sub-menu > .sub-menu-item:not(:first-child) {
-      float: left;
-      width: 47%;
-      padding-bottom: 0;
+      // float: left;
+      // width: 47%;
     }
     .sub-menu > .sub-menu-item:nth-child(2) {
-      border-bottom: none;
-      border-right: 1px solid #ddd;
-      margin-right: 4%;
+      padding-top: 0;
+      border-left: 1px solid #ddd;
+      padding-left: 4%;
+      float: left;
+      width: 48%;
+    }
+    .sub-menu > .sub-menu-item:first-child {
+      float: left;
+      width: 48%;
+    }
+    .sub-menu > .sub-menu-item:last-of-type {
+      clear: both;
+    }
+    .sub-menu > .sub-menu-item:last-of-type ul {
+      column-count: 2;
     }
   }
 
