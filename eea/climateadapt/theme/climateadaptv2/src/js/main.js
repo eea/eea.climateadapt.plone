@@ -18,7 +18,12 @@ $(document).ready(function() {
       e.preventDefault();
       var slideIndex = $(this).index();
       $('.slider-for').slick('slickGoTo', parseInt(slideIndex));
-      // start autoplay on click
+    });
+
+    // pause and play slider on thumbnails hover
+    $('.slider-nav a').mouseenter(function(e) {
+      $('.slider-for').slick('slickPause');
+    }).mouseleave(function() {
       $('.slider-for').slick('slickPlay');
     });
 
@@ -27,10 +32,6 @@ $(document).ready(function() {
       var currentSlide = $('.slider-for').slick('slickCurrentSlide') + 1;
       $('.slider-nav a').removeClass('active-slider');
       $('.slider-nav a:nth-child('+ currentSlide +')').addClass('active-slider');
-    });
-
-    $('.pause').on('click', function() {
-      $('.slider-for').slick('slickPause')
     });
   }
 
@@ -48,13 +49,6 @@ $(document).ready(function() {
   var $sliderCaption = $('.slider-caption');
   var $sliderNav = $('.slider-nav');
 
-  $slider.find('.pause').css('left', function() {
-    return getPageContainerPadding() + 3 + 'px';
-  });
-  $slider.find('.pause-circle').css('left', function() {
-    return getPageContainerPadding() +  'px';
-  });
-
   $sliderCaption.css('right', function() {
     return getPageContainerPadding() +  'px';
   });
@@ -71,13 +65,6 @@ $(document).ready(function() {
   });
 
   function doneResizing() {
-    $slider.find('.pause').css('left', function() {
-      return getPageContainerPadding() + 3 + 'px';
-    });
-    $slider.find('.pause-circle').css('left', function() {
-      return getPageContainerPadding() +  'px';
-    });
-
     $sliderCaption.css('right', function() {
       return getPageContainerPadding() +  'px';
     });
@@ -394,6 +381,7 @@ $(document).ready(function() {
     // move eu sector policy factsheet
     var $sidebar = $('.column.col-md-3');
     $sidebar.before($sidebar.find('.factsheet-pdf').parent());
+    $('.factsheet-pdf').parent().css('text-decoration', 'none');
   }
 
   // TRANSNATIONAL SUBPAGES (two specific subpages)

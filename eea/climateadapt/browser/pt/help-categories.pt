@@ -14,7 +14,7 @@
       <p>Guidance on the Climate-ADAPT Database Search function.</p>
     </div>
     <div class="help-section action-flex-item">
-      <a tal:attributes="href string:${portal_url}/help/share-your-info" class="help-section-header">
+      <a tal:attributes="href string:${portal_url}/help/faq-providers" class="help-section-header">
         <div class="help-icon providers-icon"></div>
         <h3 class="help-section-title">FAQ for providers</h3>
       </a>
@@ -28,7 +28,7 @@
       <p>Frequently asked questions in one place.</p>
     </div>
     <div class="help-section action-flex-item">
-      <a tal:attributes="href string:${portal_url}/help//tutorial-videos" class="help-section-header">
+      <a tal:attributes="href string:${portal_url}/help/tutorial-videos" class="help-section-header">
         <div class="help-icon videos-icon"></div>
         <h3 class="help-section-title">Tutorial videos</h3>
       </a>

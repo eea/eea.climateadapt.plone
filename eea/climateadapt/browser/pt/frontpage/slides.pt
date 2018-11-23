@@ -50,10 +50,5 @@
       </tal:block>
     </div>
 
-    <div class="slider-controls">
-      <span class="pause"></span>
-      <span class="pause-circle"></span>
-    </div>
-
   </div>
 </tal:block>
