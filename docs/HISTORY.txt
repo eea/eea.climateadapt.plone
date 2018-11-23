@@ -3,6 +3,10 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Remove slider pause button;
+  Eu sectors in alphabetical order;
+  Remove case studies title
+  [krisztina]
 * Fix new navigation menu structure
   [krisztina]
 * AST page fixes; remove duplicate viewlets from AST&UAST pages
