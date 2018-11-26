@@ -88,6 +88,12 @@ a:hover {
   padding: 0 0.5em 0 0;
 }
 
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
 #content .eu-strategy td {
   padding: 1em 1em 1em 0em;
   vertical-align: top;

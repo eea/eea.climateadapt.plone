@@ -48,43 +48,69 @@
     <div class="content-container">
       <div class="tab-content tab-body clearfix">
 
-        <div class="tab-pane active fade in getting-started main-tab-pane" id="t-started">
+        {{!-- Getting started --}}
+        <div class="tab-pane active fade in getting-started" id="t-started">
           <h2>Are you new to Climate-ADAPT?</h2>
-          <p>Do you need help to find the information you want on the knowledge platform - Climate-ADAPT?</p>
-          <p>Help is at hand! Use this new guide to learn how:</p>
-
           <div class="row">
 
+            {{!-- Local --}}
             <div class="col-6 col-md-4">
-              <div class="action-box">
-                <div class="action-bubble">
-                  <p>I want to plan or implement adaptation measures at <span class="action-highlighted">local</span> level</p>
+              <a href="https://www.youtube.com/watch?v=e3fSjCWgAe0&index=1&list=PLXfelvgg8D0YRhQsUDJ0GyrAZsWyeX8m8"
+                 class="thumbnail-wrapper">
+                <div class="video-thumbnail">
+                  <div class="thumbnail-bg">
+                    <img src="static/images/climate-adapt-logo.svg"/>
+                    <span class="icon-bg"></span>
+                    <i class="fa fa-play"></i>
+                    <div class="video-caption">
+                      <p>Portal guide "I want to plan or implement adaptation measures at LOCAL level".</p>
+                    </div>
+                  </div>
                 </div>
-                <button class="standard-button action-btn regional-btn">Learn more</button>
-              </div>
+              </a>
+              <h4>Climate-ADAPT: Local</h4>
             </div>
 
+            {{!-- National --}}
             <div class="col-6 col-md-4">
-              <div class="action-box">
-                <div class="action-bubble">
-                  <p>I want to develop a <span class="action-highlighted">NATIONAL</span> or <span class="action-highlighted">regional</span> adaptation strategy or action plan</p>
+              <a href="https://www.youtube.com/watch?v=Zeg7kwcbPCQ&index=2&list=PLXfelvgg8D0YRhQsUDJ0GyrAZsWyeX8m8"
+                 class="thumbnail-wrapper">
+                <div class="video-thumbnail">
+                  <div class="thumbnail-bg">
+                    <img src="static/images/climate-adapt-logo.svg"/>
+                    <span class="icon-bg"></span>
+                    <i class="fa fa-play"></i>
+                    <div class="video-caption">
+                      <p>Portal guide "I want to develop a NATIONAL or REGIONAL adaptation strategy or action plan".</p>
+                    </div>
+                  </div>
                 </div>
-                <button class="standard-button action-btn transnational-btn">Learn more</button>
-              </div>
+              </a>
+              <h4>Climate-ADAPT: National</h4>
             </div>
 
+            {{!-- Transnational --}}
             <div class="col-6 col-md-4">
-              <div class="action-box">
-                <div class="action-bubble">
-                  <p>I want to plan strategies or implement adaptation measures in a <span class="action-highlighted">transnational</span> region</p>
+              <a href="https://www.youtube.com/watch?v=CfBe-rK45aU&index=3&list=PLXfelvgg8D0YRhQsUDJ0GyrAZsWyeX8m8"
+                 class="thumbnail-wrapper">
+                <div class="video-thumbnail">
+                  <div class="thumbnail-bg">
+                    <img src="static/images/climate-adapt-logo.svg"/>
+                    <span class="icon-bg"></span>
+                    <i class="fa fa-play"></i>
+                    <div class="video-caption">
+                      <p>Portal guide "I want to plan strategies or implement adaptation measures in a TRANSNATIONAL region".</p>
+                    </div>
+                  </div>
                 </div>
-                <button class="standard-button action-btn national-btn">Learn more</button>
-              </div>
+              </a>
+              <h4>Climate-ADAPT: Transnational</h4>
             </div>
           </div>
         </div>
 
-        <div class="tab-pane fade main-tab-pane" id="t-database">
+        {{!-- Search the database --}}
+        <div class="tab-pane fade" id="t-database">
           <div class="database-search-box">
           <form method="GET" action="/data-and-downloads">
             <input type="text" placeholder="type here ..."
@@ -186,7 +212,7 @@
                 <p>Tools</p>
               </a>
             </div>
-          </div> <!-- end of db wrapper -->
+          </div> <!-- end of db categories -->
 
           <div class="see-more-link">
             <p>
@@ -198,19 +224,20 @@
           </div>
         </div>
 
-
-          <div class="tab-pane fade main-tab-pane" id="t-policies">
-            {{> partials/tab-policies }}
-            <div class="see-more-link">
-                <p>For more informations visit:
-                    <a href="/cca/eu-adaptation-policy/sector-policies">
-                        <i class="fa fa-angle-double-right"></i>
-                        EU Sector Policies
-                    </a>
-                </p>
-            </div>
+        {{!-- Eu sector policies --}}
+        <div class="tab-pane fade" id="t-policies">
+          {{> partials/tab-policies }}
+          <div class="see-more-link">
+              <p>For more informations visit:
+                  <a href="/cca/eu-adaptation-policy/sector-policies">
+                      <i class="fa fa-angle-double-right"></i>
+                      EU Sector Policies
+                  </a>
+              </p>
           </div>
+        </div>
 
+        {{!-- Country profiles --}}
         <div class="tab-pane fade tab-map" id="t-countries">
 
           <svg-container class="svg-header-wrapper svg-map-container"
@@ -230,13 +257,16 @@
                 </option>
               </select>
             </span>
-            <a href="../countries-regions/countries" class="standard-button primary-button sm-button">See countries webpage</a>
+            <a href="../countries-regions/countries"
+               class="standard-button primary-button sm-button">
+               See countries webpage
+             </a>
           </div>
         </div>
 
+        {{!-- Case studies --}}
         <div class="tab-pane fade" id="t-studies">
           <div class="case-study row">
-
             <div class="col-md-9">
               <p>Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events. </p>
               <p>Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href="https://climate-adapt.eea.europa.eu/repository/11090223.pdf">criteria</a> and also in collaboration with the main stakeholders.</p>
@@ -259,10 +289,10 @@
                 Case Study Search Tool
               </a>
             </div>
+          </div>
         </div>
 
-      </div>
-
+        {{!-- Adaptation support tool --}}
         <div class="tab-pane fade ast-tab-pane" id="t-adapt">
 
           <div class="ast-map-image">
@@ -374,6 +404,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
 

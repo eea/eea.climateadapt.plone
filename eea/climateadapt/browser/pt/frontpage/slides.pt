@@ -17,7 +17,7 @@
             <tal:block tal:replace="python: view.getDescription(image)[:300] + '...'">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.
             </tal:block>
           </p>
-          <div class="slider-bottom-caption">
+          <div class="slider-bottom-caption clearfix">
             <div class="read-more-wrapper">
               <a href="" class="read-more"
                  tal:attributes="href python: view.getMoreLink(image)"

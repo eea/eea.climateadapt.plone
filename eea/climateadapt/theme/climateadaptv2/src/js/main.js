@@ -135,23 +135,6 @@ $(document).ready(function() {
     }, 500);
   }
 
-  // HOMEPAGE: Dynamic area - Getting started:
-  // On button hover toggle class on the bubble section
-  $('.action-btn').each(function() {
-    var $this = $(this);
-    $this.hover(function() {
-      if ($this.hasClass('regional-btn')) {
-        $this.siblings('.action-bubble').toggleClass('regional-bubble');
-      }
-      if ($this.hasClass('transnational-btn')) {
-        $this.siblings('.action-bubble').toggleClass('transnational-bubble');
-      }
-      if ($this.hasClass('national-btn')) {
-        $this.siblings('.action-bubble').toggleClass('national-bubble');
-      }
-    })
-  });
-
   // HOMEPAGE: Dynamic area - Adaptation support tool:
   // Highlight steps on hover
   $('.dynamic-area .ast-step-wrapper').hover(function() {
