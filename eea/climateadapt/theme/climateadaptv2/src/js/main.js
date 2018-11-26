@@ -755,6 +755,10 @@ $(document).ready(function() {
    }
   });
 
+  $('.acecontent_filtering_tile select').on('change', function(event){
+    $(this).parents('form').submit();
+  });
+
   function qtip2Initializer() {
     // Make sure to only match links to the glossary
     $('a[href*="glossary#link"]').each(function() {

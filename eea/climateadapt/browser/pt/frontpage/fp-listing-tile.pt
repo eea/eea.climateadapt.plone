@@ -1,5 +1,4 @@
 <div tal:attributes="class view/__name__">
-  <h2 tal:content="view/title"></h2>
   <ul tal:define="items view/items">
     <li tal:repeat="obj items">
       <a href="" tal:attributes="href python: view.get_external_url(obj)">
