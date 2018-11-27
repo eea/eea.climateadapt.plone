@@ -37,7 +37,7 @@
 
           <a class="slider-nav-wrapper">
             <div tal:define="picture python: view.getImageUrl(image)"
-                 tal:attributes="style string: background-image:url('${picture}')"
+                 tal:attributes="style string: background-image:url('${picture}/@@images/image/thumb')"
                  class="slider-image">
             </div>
             <div class="slider-layer"></div>
