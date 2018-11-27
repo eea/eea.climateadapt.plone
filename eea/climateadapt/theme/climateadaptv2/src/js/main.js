@@ -738,6 +738,12 @@ $(document).ready(function() {
    }
   });
 
+  // Fix image map links on UAST pages
+  var imageMapArea = $('#uast-image-map').children('area');
+  imageMapArea.each(function() {
+    this.href = this.href.replace('/tools', '/knowledge/tools');
+  });
+
   $('.acecontent_filtering_tile select').on('change', function(event){
     $(this).parents('form').submit();
   });
