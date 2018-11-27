@@ -1,14 +1,16 @@
-<div>
+this tile is not used anymore. See eu-sector-policies.pt
+
+<!-- <div>
   <h3>EU Sector Policies</h3>
-  <div class="journal-content-article"> 
+  <div class="journal-content-article">
     <style type="text/css">
       .linkPolicies{color:#a6bf25!important;text-decoration:none!important;display:none}
       .this td{text-align:center}#layout-column_column-4{margin-bottom:-40px!important}
     </style>
 
-    <table align="center" class="this" style="margin-top:25px !important;" width="100%"> 
-      <tbody> 
-        <tr > 
+    <table align="center" class="this" style="margin-top:25px !important;" width="100%">
+      <tbody>
+        <tr >
           <td width="79px">
             <a href="/eu-adaptation-policy/mainstreaming/agriculture">
               <img
@@ -16,7 +18,7 @@
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/agriculture_v.png';$('#agriculture').toggle();"
                 tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/agriculture_g.png" />
             </a>
-          </td> 
+          </td>
           <td width="79px">
             <a href="/eu-adaptation-policy/mainstreaming/forestry">
               <img
@@ -24,7 +26,7 @@
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/forestry_v.png';$('#forestry').toggle();"
                 tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/forestry_g.png" />
             </a>
-          </td> 
+          </td>
           <td width="79px">
             <a href="/eu-adaptation-policy/mainstreaming/biodiversity">
               <img
@@ -32,7 +34,7 @@
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/biodiversity_v.png';$('#biodiversity').toggle();"
                 tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/biodiversity_g.png" />
             </a>
-          </td> 
+          </td>
           <td width="79px">
             <a href="/eu-adaptation-policy/mainstreaming/coastal-areas">
               <img
@@ -40,7 +42,7 @@
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/costal_areas_v.png';$('#costal_areas').toggle();"
                 tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/costal_areas_g.png" />
             </a>
-          </td> 
+          </td>
           <td width="79px">
             <a href="/eu-adaptation-policy/mainstreaming/disaster-risk-reduction">
               <img
@@ -48,7 +50,7 @@
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/Disaster_v.png';$('#disaster').toggle();"
                 tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/Disaster_g.png" />
             </a>
-          </td> 
+          </td>
           <td width="79px">
             <a href="/eu-adaptation-policy/mainstreaming/financial">
               <img
@@ -56,7 +58,7 @@
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/financial_v.png';$('#financial').toggle();"
                 tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/financial_g.png" />
             </a>
-          </td> 
+          </td>
           <td width="79px">
             <a href="/eu-adaptation-policy/mainstreaming/buildings">
               <img
@@ -64,7 +66,7 @@
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/buildings_v.png';$('#buildings').toggle();"
                 tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/buildings_g.png" />
             </a>
-          </td> 
+          </td>
           <td width="79px">
             <a href="/eu-adaptation-policy/mainstreaming/energy">
               <img
@@ -72,7 +74,7 @@
                 onmouseover="javascript:this.src='/++resource++eea.climateadapt/frontpage/energy_v.png';$('#energy').toggle();"
                 tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/energy_g.png" />
             </a>
-          </td> 
+          </td>
           <td
             width="79px">
             <a href="/eu-adaptation-policy/mainstreaming/transport">
@@ -110,47 +112,47 @@
             </a>
           </td>
 
-        </tr> 
+        </tr>
 
-        <tr style="vertical-align:top; height: 3em"> 
+        <tr style="vertical-align:top; height: 3em">
           <td width="79px">
             <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/agriculture" id="agriculture" style="display: none;">Agriculture</a>
-          </td> 
+          </td>
           <td width="79px">
             <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/forestry" id="forestry" style="display: none;">Forestry</a>
-          </td> 
+          </td>
           <td width="79px">
             <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/biodiversity" id="biodiversity" style="display: none;">Biodiversity</a>
-          </td> 
+          </td>
           <td width="79px">
             <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/coastal-areas" id="costal_areas" style="display: none;">Coastal areas</a>
-          </td> 
+          </td>
           <td width="79px">
             <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/disaster-risk-reduction" id="disaster" style="display: none;">Disaster risk reduction</a>
-          </td> 
-          <td width="79px"> 
-            <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/financial" id="financial" style="display: none;">Financial</a> 
-          </td> 
+          </td>
+          <td width="79px">
+            <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/financial" id="financial" style="display: none;">Financial</a>
+          </td>
           <td width="79px">
             <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/buildings" id="buildings" style="display: none;">Buildings</a>
-          </td> 
+          </td>
           <td width="79px">
             <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/energy" id="energy" style="display: none;">Energy</a>
-          </td> 
+          </td>
           <td width="79px">
             <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/transport" id="transport" style="display: none;">Transport</a>
-          </td> 
+          </td>
           <td width="79px">
             <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/health" id="health" style="display: none;">Health</a>
           </td>
           <td width="79px">
             <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/water-management" id="water" style="display: none;">Water</a>
-          </td> 
+          </td>
           <td width="79px">
             <a class="linkPolicies" href="/eu-adaptation-policy/mainstreaming/marine-and-fisheries" id="marine" style="display: none;">Marine and fisheries</a>
-          </td> 
-        </tr> 
-      </tbody> 
-    </table> 
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</div>
+</div> -->
