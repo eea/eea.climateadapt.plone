@@ -132,7 +132,7 @@ class FrontpageSlidesView (BrowserView):
 
         return {
             'image':
-            "/++resource++eea.climateadapt/frontpage/events.jpg",
+            "/++resource++eea.climateadapt/frontpage/news_and_events.jpg",
             'title': news.Title(),
             'description': news.description,
             'category': 'News & Events',
@@ -155,10 +155,7 @@ class FrontpageSlidesView (BrowserView):
 
         return {
             'image':
-            "{0}/@@images/primary_photo/?c={1}".format(
-                cs.absolute_url(),
-                brain.modified and brain.modified.ISO() or ''
-            ),
+            "/++resource++eea.climateadapt/frontpage/case_studies.png",
             'title': cs.Title(),
             'description': cs.long_description,
             'category': 'Case study',
@@ -218,12 +215,8 @@ class FrontpageSlidesView (BrowserView):
 
         publi = result.getObject()
 
-        image = self.getImages(slide)
-        if len(image) is 0:
-            image = "/++resource++eea.climateadapt/frontpage/last_publication.jpg"
-
         return {
-            'image': image,
+            'image': "/++resource++eea.climateadapt/frontpage/last_publication_report.jpg",
             'title': publi.Title(),
             'description': publi.long_description,
             'category': 'Publication & Report',

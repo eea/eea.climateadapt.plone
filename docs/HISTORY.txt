@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Add slider layer over images;
+  Change slider images;
+  [krisztina]
 * Use thumb size for slider thumbnail images
   [krisztina]
 * Fix UAST image map links

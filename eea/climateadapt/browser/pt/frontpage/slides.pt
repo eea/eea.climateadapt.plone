@@ -9,6 +9,8 @@
           class="slider-image">
         </div>
 
+        <div class="slider-layer"></div>
+
         <div class="slider-caption">
           <h3 tal:content="python: view.getTitle(image)">
             About Climate Change Adaptation in Europe
@@ -37,7 +39,7 @@
 
           <a class="slider-nav-wrapper">
             <div tal:define="picture python: view.getImageUrl(image)"
-                 tal:attributes="style string: background-image:url('${picture}/@@images/image/thumb')"
+                 tal:attributes="style string: background-image:url('${picture}')"
                  class="slider-image">
             </div>
             <div class="slider-layer"></div>
