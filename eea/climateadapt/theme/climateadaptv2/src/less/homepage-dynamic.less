@@ -157,7 +157,7 @@
 
 .dynamic-area h2 {
   font-size: 25px;
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
 }
 
 .map-tab:after {
@@ -217,17 +217,29 @@
 }
 
 .video-thumbnail {
-  background-color: #eee;
-  height: 150px;
-  margin: 0 1em;
+  background-color: #dedede;
+  height: 170px;
+  margin: 0 2em;
   position: relative;
   padding: 0.3em;
 
-  .thumbnail-bg {
-    position: relative;
-    background-color: #fff;
+  .video-image {
+    background-size: cover;
+    background-position: center;
     height: 100%;
     width: 100%;
+  }
+
+  .local-image {
+    background-image: url("../images/getting-started-local.png");
+  }
+
+  .national-image {
+    background-image: url("../images/getting-started-national.png");
+  }
+
+  .transnational-image {
+    background-image: url("../images/getting-started-transnational.png");
   }
 
   .fa {
@@ -253,25 +265,10 @@
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2), 0px 0px 2px rgba(0, 0, 0, 0.2);
   }
 
-  img {
-    z-index: 1;
-    opacity: 0.4;
-    margin-top: 1.7em;
-    height: 40px;
+  .slider-layer {
+    background-color: rgba(0, 0, 0, 0.1);
   }
 
-  .video-caption {
-    position: absolute;
-    bottom: 0.3em;
-    padding: 1em;
-    font-size: 11px;
-    z-index: 1;
-    opacity: 0.4;
-    text-align: center;
-    p {
-      margin-bottom: 0;
-    }
-  }
 }
 
 /*** dynamic area  - Database ***/
