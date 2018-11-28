@@ -114,7 +114,7 @@ $(document).ready(function() {
   // on click center tab items on small screen sizes
   $('.main-nav-tabs li a').click(function() {
     var $parent = $(this).parent();
-    centerTabItem($parent, '.main-tab-heading .main-nav-tabs');
+    centerTabItem($parent, '.main-nav-tabs');
   });
 
   function centerTabItem(target, outer) {
@@ -140,7 +140,7 @@ $(document).ready(function() {
   $('.dynamic-area .ast-step-wrapper').hover(function() {
     $(this).children('.ast-circle').css({
       'background-color': '#FFD554',
-      'border': '2px solid #F2C94C',
+      'border': '2px solid #fff',
       'transform': 'scale(1.08)',
       'color': '#4F4F4F'
     });
@@ -152,7 +152,7 @@ $(document).ready(function() {
     }, function() {
     $(this).children('.ast-circle').css({
       'background-color': '#8A9C3A',
-      'border': '2px solid #788833',
+      'border': '2px solid #fff',
       'transform': 'scale(1)',
       'color': '#fff'
     });
