@@ -178,7 +178,13 @@ class MenuParser:
     def _get_list_item(self, line):
         item = self._make_section()
         icon = ''
-        label, link = line.split('/', 1)
+        info = line.split('/', 1)
+
+        if len(info) == 2:
+            label, link = info
+        else:
+            label = info[0]
+            link = None
         match = LINKER.match(label)
 
         if match:
@@ -188,7 +194,7 @@ class MenuParser:
         item.update({
                 'icon': icon.strip() + '</icon>',
                 'label': label.strip(),
-                'link': self.site_url + '/' + link.strip(),
+                'link': link and (self.site_url + '/' + link.strip()) or None,
             })
 
         return item
