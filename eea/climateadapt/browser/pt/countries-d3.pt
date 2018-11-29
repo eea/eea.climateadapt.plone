@@ -37,13 +37,13 @@
   <metal:fill-slot fill-slot="content-core">
 
     <div tal:content="structure context/text/output" tal:condition="context/text|nothing"></div>
-    <p>EEA Member countries are at different stages of preparing, developing and implementing national <a aria-describedby="ui-tooltip-0" class="glossary-inline-term" href="http://climate-adapt.eea.europa.eu/glossary#linkAdaptation" target="_blank">adaptation</a> strategies and plans.</p>
+    <p>EEA Member countries are at different stages of preparing, developing and implementing national adaptation strategies and plans.</p>
 
     <p>See in the map below the information provided by each Member State of the European Union under the European mechanism for monitoring and reporting information relevant to climate change (Regulation (EU) No 525/2013).</p>
 
     <p>For other EEA Member countries, the information provided is based on voluntary submissions to EEA.</p>
 
-    <p>Filter by any of the topics in the drop-down list ('Choose Thematic Map') and the map will indicate if links on the topic are available for each country. To navigate to the information just click one country on the map and a pop-up window will show the existing link(s) and allow clicking on them.</p>
+    <p>Select one of the two options from the list of thematic map (National Adaptation Strategy or National Adaptation Plan) and the map will indicate the content available for each country. To navigate to the information just click one country on the map and a pop-up window will show the existing link(s) and allow clicking on them.</p>
 
     <div class="cover-richtext-tile tile-content" id="countrymap-container">
 

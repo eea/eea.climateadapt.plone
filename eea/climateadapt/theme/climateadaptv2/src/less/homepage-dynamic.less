@@ -21,7 +21,7 @@
       color: @primary-blue;
       font-size: 16px;
       line-height: 18px;
-      padding: 1em 3em;
+      padding: 1em;
       margin: 0;
     }
     a:hover {
@@ -30,41 +30,36 @@
 
     .d-icon {
       background-position: 0 0;
-      height: 30px;
-      width: 30px;
+      height: 40px;
+      width: 40px;
       margin: 0 auto;
       margin-bottom: 8px;
       display: block;
     }
 
-    .d-big-icon {
-      height: 50px;
-      width: 50px;
-    }
-
     .started-icon {
       background: url("../images/d_started_icon.svg") no-repeat;
-      background-position: 4px 0;
+      background-position: 6px 3px;
     }
     .database-icon {
       background: url("../images/d_database_icon.svg") no-repeat;
-      background-position: 6px 0;
+      background-position: 6px 3px;
     }
     .policy-icon {
       background: url("../images/d_policy_icon.svg") no-repeat;
-      background-position: 3px 0;
+      background-position: 6px 3px;
     }
     .case-icon {
       background: url("../images/d_case_icon.svg") no-repeat;
-      background-position: 3px 0;
+      background-position: 3px 3px;
     }
     .ast-icon {
       background: url("../images/d_ast_icon.svg") no-repeat;
-      background-position: 1px 0;
+      background-position: 4px 3px;
     }
     .eu-icon {
       background: url("../images/d_eu_icon.svg") no-repeat;
-      background-position: -1px 0;
+      background-position: 2px 3px;
     }
   }
 
@@ -98,28 +93,22 @@
     }
 
     .started-icon {
-      background-position: -26px 0;
+      background-position: -34px 3px;
     }
     .case-icon {
-      background-position: -27px 0;
+      background-position: -37px 3px;
     }
     .policy-icon {
-      background-position: -27px 0;
+      background-position: -34px 3px;
     }
     .database-icon {
-      background-position: -44px 0;
+      background-position: -34px 3px;
     }
     .ast-icon {
-      background-position: -33px 0;
+      background-position: -36px 3px;
     }
     .eu-icon {
-      background-position: -31px 0;
-    }
-  }
-
-  .db-highlighted {
-    a:after {
-      bottom: -8px !important;
+      background-position: -38px 3px;
     }
   }
 
@@ -214,6 +203,14 @@
 
 .thumbnail-wrapper:hover .fa {
   color: @primary-green;
+}
+
+.video-caption {
+  margin: 0 2.5em;
+
+  p {
+    font-size: 12px;
+  }
 }
 
 .video-thumbnail {
@@ -357,7 +354,7 @@
 .policies-nav li p,
 .db-category-wrapper p {
   font-size: 13px;
-  margin: 5px auto;
+  margin: 0;
 }
 
 
@@ -540,18 +537,10 @@
 }
 
 .policies-tab-content {
-  position: relative;
+  margin-top: 1em;
 
   .row {
     margin: 0;
-  }
-
-  .close-tab-pane {
-    float: right;
-    color: @dark-gray;
-  }
-  .close-tab-pane:hover {
-    color: @secondary-blue;
   }
 }
 

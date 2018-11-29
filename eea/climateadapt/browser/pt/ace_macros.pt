@@ -15,12 +15,6 @@
         <div id="content-core">
 
           <div class="col-md-9 col-xs-12 content-column">
-            <div class="search-back">
-              <a href="/data-and-downloads">
-                <i class="fa fa-reply" aria-hidden="true"></i>
-                Go back to search results
-              </a>
-            </div>
 
             <div class="aceitem_top">
               <div style="display: none" tal:content="context/special_tags | nothing">Special tags, for debugging</div>

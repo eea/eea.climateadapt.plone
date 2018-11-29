@@ -109,7 +109,6 @@
             </a>
           </tal:rep>
         </tal:block>
-        <p class="region-image-info">Click on the image above for higher resolution.</p>
       </section>
 
       <select id="trans-region-select" class="form-control">

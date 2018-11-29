@@ -34,7 +34,7 @@
       <li class="policies-nav-item">
         <a href="#ecosystem" class="policies-nav-link">
           <div class="policy-icons green-infrastructure"></div>
-          <p>Ecosystem-based approaches (GI)</p>
+          <p>Ecosystem-based approaches</p>
         </a>
       </li>
       <li class="policies-nav-item">
@@ -161,7 +161,7 @@
             <img src="/cca/++theme++climateadaptv2/static/images/green-infrastructure.jpeg" alt="Ecosystem-based approaches (GI)" title="Ecosystem-based approaches (GI)"/>
           </div>
           <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-            <h4>Ecosystem-based approaches (GI)</h4>
+            <h4>Ecosystem-based approaches</h4>
             <p>Climate change is expected to have severe impacts on the marine environment. Increase in water temperatures will contribute to a restructuring of marine ecosystems with implications for ocean circulation, biogeochemical cycling and marine biodiversity. Ocean acidification will affect the ability of some calcium carbonate-secreting species (as molluscs, planktons and corals) to produce their shells or skeletons. Warmer and more acidic seawater will therefore negatively affect fishery and aquaculture.</p>
           </div>
         </div>

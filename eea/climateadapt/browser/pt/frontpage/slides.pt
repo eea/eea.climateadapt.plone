@@ -22,8 +22,7 @@
           <div class="slider-bottom-caption clearfix">
             <div class="read-more-wrapper">
               <a href="" class="read-more"
-                 tal:attributes="href python: view.getMoreLink(image)"
-                 target="_blank">
+                 tal:attributes="href python: view.getMoreLink(image)">
                 <i class="fa fa-angle-double-right"></i>
                 Read more
               </a>
@@ -42,7 +41,7 @@
                  tal:attributes="style string: background-image:url('${picture}')"
                  class="slider-image">
             </div>
-            <div class="slider-layer"></div>
+            <div class="slider-layer slider-nav-layer"></div>
             <span class="slider-category"
                   tal:content="python: view.getCategory(image)">
               About Climate Change Adaptation in Europe

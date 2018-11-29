@@ -763,11 +763,6 @@ form .standard-button,
   margin-top: 1.5em;
 }
 
-.region-image-info {
-  font-size: 11px;
-  color: #757575;
-}
-
 .cover-section_nav-tile,
 .uvmb-nav {
   margin: 1.5em 0 2em 0;
@@ -2427,21 +2422,6 @@ div.width-1\3a 4 {
   left: 15px;
 }
 
-.search-back {
-  margin-bottom: 1em;
-  a {
-    color: #bf5900;
-    font-size: 13px;
-    text-decoration: none;
-    .fa {
-      margin-right: 0.3em;
-    }
-  }
-  a:hover {
-    color: #e66b00;
-  }
-}
-
 /* Edit tiles layout */
 #tile-configure.in.hide {
   display: block !important;
@@ -2908,4 +2888,20 @@ div.width-1\3a 4 {
 .dataTables_wrapper .dataTables_filter {
   float: right;
   text-align: right;
+}
+
+// RSS
+#document-action-rss {
+  list-style-type: none;
+  margin-left: -1.5em;
+
+  a {
+    text-decoration: none;
+  }
+  a:before {
+    content: '\f09e';
+    font-family: FontAwesome;
+    margin-right: 0.5em;
+    color: #FF6600;
+  }
 }
