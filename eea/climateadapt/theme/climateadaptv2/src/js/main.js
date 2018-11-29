@@ -325,32 +325,8 @@ $(document).ready(function() {
 
   // Add a specific class for grid layout pages
   var currentLocation = window.location.pathname;
-  var pathParts = currentLocation.split('/');
-  var lastPathName;
-
-  if (pathParts[pathParts.length - 1].length === 0) {
-    lastPathName = pathParts[pathParts.length - 2];
-  } else {
-    lastPathName = pathParts[pathParts.length - 1];
-  }
-
-  if (lastPathName === 'index_html') {
-    lastPathName = pathParts[pathParts.length - 3];
-  } else {
-    lastPathName = pathParts[pathParts.length - 1];
-  }
-
-  var countryClass = 'subsection-countries-' + lastPathName;
-  var bodyClassList = $body.attr('class') !== undefined ? $body.attr('class').split(/\s+/) : [];
-
-  $.each(bodyClassList, function(index, item) {
-    if (item === countryClass) {
-      $body.addClass('country-page');
-    }
-  });
 
   var isPolicyPage = $('.subsection-sector-policies').length > 0;
-  var isCountryPage = $('.country-page').length > 0;
   var isASTPage = $('.subsection-tools-adaptation-support-tool').length > 0;
 
   // EU SECTOR POLICIES
@@ -374,60 +350,58 @@ $(document).ready(function() {
 
   // COUNTRY PAGES
   // url: .../cca/countries-regions/countries/austria
-  function countryPageLayout() {
-    if (isCountryPage) {
-      $('.country-select-tile').closest('.row').css('margin', '0');
-      $('.sweet-tabs').attr('id', 'country-tab');
+  $('.country-header').closest('#content').addClass('country-profile-content');
+  $('.country-select-tile').closest('.row').css('margin', '0');
+  $('.country-profile-content .sweet-tabs').attr('id', 'country-tab');
 
-      // custom country dropdown functionality
-      var $countryTitle = $('.dd-country-title');
-      $('.dd-country-title .options li').on('click', function() {
-        $countryTitle.find('.selected').html($(this).text());
-        $countryTitle.find('.selected-inp').val($(this).data('value')).trigger('change');
-        $countryTitle.find('.options').removeClass('show');
-      });
+  // custom country dropdown functionality
+  var $countryTitle = $('.dd-country-title');
+  $('.dd-country-title .options li').on('click', function() {
+    $countryTitle.find('.selected').html($(this).text());
+    $countryTitle.find('.selected-inp').val($(this).data('value')).trigger('change');
+    $countryTitle.find('.options').removeClass('show');
+  });
 
-      $('.dd-title-wrapper').on('click', function(e) {
-        $countryTitle.find('.options').fadeToggle().toggleClass('show');
-        $countryTitle.find('i').toggleClass('fa fa-angle-up fa fa-angle-down');
-        e.stopPropagation();
-      });
+  $('.dd-title-wrapper').on('click', function(e) {
+    $countryTitle.find('.options').fadeToggle().toggleClass('show');
+    $countryTitle.find('i').toggleClass('fa fa-angle-up fa fa-angle-down');
+    e.stopPropagation();
+  });
 
-      $('.dd-country-title .selected-inp').on('change', function(ev) {
-        var url = ev.target.value;
-        var country = $(".dd-country-title li[data-value='" + url + "']").text();
+  $('.dd-country-title .selected-inp').on('change', function(ev) {
+    var url = ev.target.value;
+    var country = $(".dd-country-title li[data-value='" + url + "']").text();
 
-        if (country.length) {
-          document.location = '/countries/' + country.toLowerCase();
-        }
-      });
-
-      // resize the country dropdown list to the country title
-      $.fn.resizeselectList = function(settings) {
-        return this.each(function() {
-          $(this).change(function() {
-            var $this = $(this);
-            var $selected = $this.parents().find('.dd-country-title .selected');
-            var text = $selected.text();
-
-            var $titlePlaceholder = $('<span/>').html(text).css({
-              'font-size': $selected.css('font-size'),
-              'font-weight': $selected.css('font-weight'),
-              'visibility': 'hidden'
-            });
-
-            $titlePlaceholder.appendTo($this.parent());
-            // get country title width
-            var width = $titlePlaceholder.width();
-            $titlePlaceholder.remove();
-
-            $this.width(width + 45);
-          }).change();
-        });
-      };
-      $('.resizeselect-list').resizeselectList();
+    if (country.length) {
+      document.location = '/countries/' + country.toLowerCase();
     }
-  }
+  });
+
+  // resize the country dropdown list to the country title
+  $.fn.resizeselectList = function(settings) {
+    return this.each(function() {
+      $(this).change(function() {
+        var $this = $(this);
+        var $selected = $this.parents().find('.dd-country-title .selected');
+        var text = $selected.text();
+
+        var $titlePlaceholder = $('<span/>').html(text).css({
+          'font-size': $selected.css('font-size'),
+          'font-weight': $selected.css('font-weight'),
+          'visibility': 'hidden'
+        });
+
+        $titlePlaceholder.appendTo($this.parent());
+        // get country title width
+        var width = $titlePlaceholder.width();
+        $titlePlaceholder.remove();
+
+        $this.width(width + 45);
+      }).change();
+    });
+  };
+  $('.resizeselect-list').resizeselectList();
+
 
   // ADAPTATION SUPPORT TOOL
   // url: .../cca/knowledge/tools/adaptation-support-tool
@@ -469,7 +443,6 @@ $(document).ready(function() {
     });
   }
 
-  countryPageLayout();
   astLayout();
 
   // Fix floating button
@@ -500,10 +473,11 @@ $(document).ready(function() {
   $pdfButton.parent().wrapAll('<div class="documentExportActions"/>');
   var $pdfExport = $('.documentExportActions');
   var $isColumnedPage = $('.content-column').length > 0;
+  var isCountryProfile = $('.country-header').length > 0;
 
   if ($isColumnedPage) {
     $('.content-column').append($pdfExport);
-  } else if (isCountryPage) {
+  } else if (isCountryProfile) {
     $('.tab-content').append($pdfExport);
     $pdfExport.css({
       'float':'none',
@@ -746,6 +720,17 @@ $(document).ready(function() {
 
   $('.acecontent_filtering_tile select').on('change', function(event){
     $(this).parents('form').submit();
+  });
+
+  // Remove main navigation subitems hover state
+  // if doesn't have href attribute
+  $('.sub-menu-link').each(function() {
+    var $this = $(this);
+    if(!$this.attr('href')) {
+      $this.hover(function() {
+        $this.css('color', '#005C96');
+      });
+    }
   });
 
   function qtip2Initializer() {
