@@ -43,7 +43,7 @@
             </div>
             <div class="slider-layer slider-nav-layer"></div>
             <span class="slider-category"
-                  tal:content="python: view.getCategory(image)">
+                  tal:content="structure python: view.getCategory(image)">
               About Climate Change Adaptation in Europe
             </span>
           </a>

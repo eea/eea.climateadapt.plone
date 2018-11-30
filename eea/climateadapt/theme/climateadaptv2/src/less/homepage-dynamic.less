@@ -186,10 +186,6 @@
 .getting-started {
   text-align: center;
   padding: 1.5em 4em;
-
-  h4 {
-    margin: 1em 0 0 0;
-  }
 }
 
 .flex-wrapper {
@@ -201,8 +197,9 @@
   padding: 20px 0;
 }
 
-.thumbnail-wrapper:hover .fa {
-  color: @primary-green;
+.thumbnail-wrapper:hover .fa,
+.thumbnail-wrapper:hover .video-caption strong {
+  color: @secondary-green;
 }
 
 .video-caption {
@@ -210,6 +207,7 @@
 
   p {
     font-size: 12px;
+    font-family: OpenSansR;
   }
 }
 
@@ -305,6 +303,8 @@
   .db-category-icon {
     color: @secondary-blue;
     position: relative;
+    display: inline-block;
+    margin-bottom: 1em;
 
     i {
       font-size: 40px;
@@ -314,14 +314,14 @@
   .total-items {
     background: #333;
     border-radius: 50%;
-    bottom: -5px;
+    bottom: -11px;
     color: #fff;
     font-size: 9.5px;
     height: 26px;
     width: 26px;
     line-height: 26px;
     position: absolute;
-    right: -12px;
+    right: -15px;
   }
 
   a:hover i,
@@ -534,31 +534,28 @@
 .policies-tab-content {
   background-color: #F5F5F5;
   height: auto;
-}
-
-.policies-tab-content {
   margin-top: 1em;
 
   .row {
     margin: 0;
   }
-}
 
-.policies-tab-content .policy-image {
-  height: 137px;
-  overflow: hidden;
+  .policy-image {
+    height: 137px;
+    overflow: hidden;
 
-  img {
-    -webkit-transform: translateY(-50%) translateX(-50%);
-    -moz-transform: translateY(-50%) translateX(-50%);
-    -ms-transform: translateY(-50%) translateX(-50%);
-    -o-transform: translateY(-50%) translateX(-50%);
-    transform: translateY(-50%) translateX(-50%);
+    img {
+      -webkit-transform: translateY(-50%) translateX(-50%);
+      -moz-transform: translateY(-50%) translateX(-50%);
+      -ms-transform: translateY(-50%) translateX(-50%);
+      -o-transform: translateY(-50%) translateX(-50%);
+      transform: translateY(-50%) translateX(-50%);
 
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 100%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100%;
+    }
   }
 }
 
@@ -691,7 +688,6 @@
   border: 15px solid @primary-blue;
   border-radius: 50%;
   margin: 0 auto 20px auto;
-  // border-top-color: transparent;
 }
 
 .white-bg {

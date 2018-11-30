@@ -135,7 +135,7 @@ class FrontpageSlidesView (BrowserView):
             "/++resource++eea.climateadapt/frontpage/news_and_events.jpg",
             'title': news.Title(),
             'description': news.description,
-            'category': 'Latest News & Events',
+            'category': 'Latest <br/> News & Events',
             'url': news.absolute_url(),
 
         }
@@ -158,7 +158,7 @@ class FrontpageSlidesView (BrowserView):
             "/++resource++eea.climateadapt/frontpage/case_studies.png",
             'title': cs.Title(),
             'description': cs.long_description,
-            'category': 'Most recent case study',
+            'category': 'Most recent <br/> Case Study',
             'url': cs.absolute_url(),
 
         }
@@ -219,7 +219,7 @@ class FrontpageSlidesView (BrowserView):
             'image': "/++resource++eea.climateadapt/frontpage/last_publication_report.jpg",
             'title': publi.Title(),
             'description': publi.long_description,
-            'category': 'Most recent Publication or Report',
+            'category': 'Most recent <br/> Publication or Report',
             'url': publi.absolute_url(),
 
         }
