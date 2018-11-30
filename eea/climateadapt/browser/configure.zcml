@@ -685,6 +685,13 @@
         />
 
     <browser:page
+        for="*"
+        name="video-thumbs"
+        template="pt/video_thumbs.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
         class=".regions_select.TransRegionSelect"
         for="*"
         name="regions-section"

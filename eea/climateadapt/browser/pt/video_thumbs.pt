@@ -1,0 +1,50 @@
+<div class="row">
+
+  <!-- Local -->
+  <div class="col-6 col-md-4 col-sm-6">
+    <a href="https://www.youtube.com/watch?v=e3fSjCWgAe0&index=1&list=PLXfelvgg8D0YRhQsUDJ0GyrAZsWyeX8m8"
+       class="thumbnail-wrapper">
+      <div class="video-thumbnail">
+        <div class="video-image local-image"></div>
+        <div class="slider-layer"></div>
+        <span class="icon-bg"></span>
+        <i class="fa fa-play"></i>
+      </div>
+      <div class="video-caption">
+        <p>I want to develop a <strong>LOCAL</strong> adaptation strategy <br> or action plan.</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- National -->
+  <div class="col-6 col-md-4 col-sm-6">
+    <a href="https://www.youtube.com/watch?v=Zeg7kwcbPCQ&index=2&list=PLXfelvgg8D0YRhQsUDJ0GyrAZsWyeX8m8"
+       class="thumbnail-wrapper">
+      <div class="video-thumbnail">
+        <div class="video-image national-image"></div>
+        <div class="slider-layer"></div>
+        <span class="icon-bg"></span>
+        <i class="fa fa-play"></i>
+      </div>
+      <div class="video-caption">
+        <p>I want to develop a <strong>NATIONAL</strong> or <strong>REGIONAL</strong> adaptation strategy or action plan.</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- Transnational -->
+  <div class="col-6 col-md-4 col-sm-6">
+    <a href="https://www.youtube.com/watch?v=CfBe-rK45aU&index=3&list=PLXfelvgg8D0YRhQsUDJ0GyrAZsWyeX8m8"
+       class="thumbnail-wrapper">
+      <div class="video-thumbnail">
+        <div class="video-image transnational-image"></div>
+        <div class="slider-layer"></div>
+        <span class="icon-bg"></span>
+        <i class="fa fa-play"></i>
+      </div>
+      <div class="video-caption">
+        <p>I want to develop a <strong>TRANSNATIONAL</strong> adaptation strategy or action   plan.</p>
+      </div>
+    </a>
+  </div>
+</div>

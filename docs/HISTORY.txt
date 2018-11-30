@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Create video thumbs view
+  [krisztina]
 * Change video thumbnail image
   [krisztina]
 * Change homepage tab icons

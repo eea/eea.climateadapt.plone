@@ -9,6 +9,6 @@
     <li><a tal:attributes="href string:${portal_url}/help/share-your-info/adaptation-options">Adaptation options</a></li>
     <li><a tal:attributes="href string:${portal_url}/help/share-your-info/case-studies">Case studies</a></li>
     <li><a tal:attributes="href string:${portal_url}/help/share-your-info/organisations">Organisations</a></li>
-    <li><a tal:attributes="href string:${portal_url}/help/share-your-info/indicators">Indicators</a></li>
+    <!-- <li><a tal:attributes="href string:${portal_url}/help/share-your-info/indicators">Indicators</a></li> -->
   </ul>
 </div>
