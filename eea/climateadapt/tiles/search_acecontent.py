@@ -257,7 +257,7 @@ class AceTileMixin(object):
                  }}}}}
 
         q = {'query': t}
-        l = 'source={}'.format(url, urllib.quote(json.dumps(q)))
+        l = '{}{}'.format(url, urllib.quote(json.dumps(q)))
 
         return l
 
@@ -298,7 +298,7 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
         """ Returns a list of (section name, section count, section_url)
         """
         site = getSite()
-        base = site.absolute_url() + "/data-and-downloads?"
+        base = site.absolute_url() + "/data-and-downloads?source="
 
         result = []
 
@@ -473,7 +473,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
     def view_more_url(self):
         site = getSite()
-        base = site.absolute_url() + "/data-and-downloads?"
+        base = site.absolute_url() + "/data-and-downloads?source="
 
         q = {
             'elements': self.data.get('element_type'),
@@ -798,7 +798,7 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
     def view_more_url(self):
         site = getSite()
-        base = site.absolute_url() + "/data-and-downloads?"
+        base = site.absolute_url() + "/data-and-downloads?source="
 
         query = {
             'elements': self.data.get('element_type'),
