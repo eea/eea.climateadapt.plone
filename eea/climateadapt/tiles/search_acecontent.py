@@ -257,9 +257,7 @@ class AceTileMixin(object):
                  }}}}}
 
         q = {'query': t}
-        l = '{}/data-and-downloads?source={}'.format(
-            url, urllib.quote(json.dumps(q))
-        )
+        l = 'source={}'.format(url, urllib.quote(json.dumps(q)))
 
         return l
 
