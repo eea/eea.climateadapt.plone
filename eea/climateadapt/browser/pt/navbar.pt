@@ -11,9 +11,9 @@
                      tal:content="structure python: section['icon']" />
           <span tal:content="python: section['label']">Home</span>
         </a>
-        <button class="toggle-down" tal:condition="has_children">
+        <div class="toggle-down" tal:condition="has_children">
           <i class="angle-down-icon"></i>
-        </button>
+        </div>
       </span>
 
       <div class="sub-menu-wrapper"

@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Accessibility improvements;
+  Optimize homepage video thumbs images
+  [krisztina]
 * Create video thumbs view
   [krisztina]
 * Change video thumbnail image
