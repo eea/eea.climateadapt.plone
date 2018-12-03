@@ -35,31 +35,26 @@
       margin: 0 auto;
       margin-bottom: 8px;
       display: block;
+      background: url("../images/d_tab_icons.svg") no-repeat;
     }
 
     .started-icon {
-      background: url("../images/d_started_icon.svg") no-repeat;
-      background-position: 6px 3px;
+      background-position: 0 0;
     }
     .database-icon {
-      background: url("../images/d_database_icon.svg") no-repeat;
-      background-position: 6px 3px;
+      background-position: -40px 0;
     }
     .policy-icon {
-      background: url("../images/d_policy_icon.svg") no-repeat;
-      background-position: 6px 3px;
-    }
-    .case-icon {
-      background: url("../images/d_case_icon.svg") no-repeat;
-      background-position: 3px 3px;
-    }
-    .ast-icon {
-      background: url("../images/d_ast_icon.svg") no-repeat;
-      background-position: 4px 3px;
+      background-position: -80px 0;
     }
     .eu-icon {
-      background: url("../images/d_eu_icon.svg") no-repeat;
-      background-position: 2px 3px;
+      background-position: -120px 0;
+    }
+    .case-icon {
+      background-position: -160px 0;
+    }
+    .ast-icon {
+      background-position: -200px 0;
     }
   }
 
@@ -67,6 +62,25 @@
     background-color: #fff;
     box-shadow: 4px 0 8px -4px rgba(0, 0, 0, 0.2), -4px 0 8px -4px rgba(0, 0, 0, 0.2);
     z-index: 2;
+
+    .started-icon {
+      background-position: 0 -40px;
+    }
+    .database-icon {
+      background-position: -40px -40px;
+    }
+    .policy-icon {
+      background-position: -80px -40px;
+    }
+    .eu-icon {
+      background-position: -120px -40px;
+    }
+    .case-icon {
+      background-position: -160px -40px;
+    }
+    .ast-icon {
+      background-position: -200px -40px;
+    }
 
     a:before,
     a:after {
@@ -92,24 +106,6 @@
       color: @secondary-green !important;
     }
 
-    .started-icon {
-      background-position: -34px 3px;
-    }
-    .case-icon {
-      background-position: -37px 3px;
-    }
-    .policy-icon {
-      background-position: -34px 3px;
-    }
-    .database-icon {
-      background-position: -34px 3px;
-    }
-    .ast-icon {
-      background-position: -36px 3px;
-    }
-    .eu-icon {
-      background-position: -38px 3px;
-    }
   }
 
 }

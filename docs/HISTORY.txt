@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Optimize sector policies images;
+  Use sprite for homepage tabs icons
+  [krisztina]
 * Accessibility improvements;
   Optimize homepage video thumbs images
   [krisztina]
