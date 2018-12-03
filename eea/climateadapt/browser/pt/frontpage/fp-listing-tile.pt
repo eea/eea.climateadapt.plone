@@ -1,7 +1,7 @@
 <div tal:attributes="class view/__name__">
   <ul tal:define="items view/items">
     <li tal:repeat="obj items">
-      <a href="" tal:attributes="href python: view.get_external_url(obj)">
+      <a href="" tal:attributes="href python: view.get_external_url(obj); title python: obj.title">
           <span tal:replace="python: obj.title[:63] + '...'"></span>
           <p tal:content="python: view.get_item_date(obj)" class="news-time"></p>
       </a>
