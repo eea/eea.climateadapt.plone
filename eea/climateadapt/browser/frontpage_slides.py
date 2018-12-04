@@ -132,7 +132,7 @@ class FrontpageSlidesView (BrowserView):
 
         return {
             'image':
-            "/++resource++eea.climateadapt/frontpage/news_and_events.jpg",
+            "/++resource++eea.climateadapt/frontpage/news_and_events.png",
             'title': news.Title(),
             'description': news.description,
             'category': 'Latest <br/> News & Events',
@@ -216,7 +216,7 @@ class FrontpageSlidesView (BrowserView):
         publi = result.getObject()
 
         return {
-            'image': "/++resource++eea.climateadapt/frontpage/last_publication_report.jpg",
+            'image': "/++resource++eea.climateadapt/frontpage/last_publication_report.png",
             'title': publi.Title(),
             'description': publi.long_description,
             'category': 'Most recent <br/> Publication or Report',
