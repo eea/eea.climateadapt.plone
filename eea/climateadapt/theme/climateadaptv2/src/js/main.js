@@ -728,8 +728,9 @@ $(document).ready(function() {
     var $this = $(this);
     if(!$this.attr('href')) {
       $this.hover(function() {
-        $this.css('color', '#005C96');
+        $this.css('color', '#3a3a3a');
       });
+      $this.css('color', '#3a3a3a');
     }
   });
 
