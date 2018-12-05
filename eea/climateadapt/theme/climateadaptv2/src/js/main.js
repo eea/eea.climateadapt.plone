@@ -14,14 +14,16 @@ $(document).ready(function() {
     });
 
     // slider thumbnails
-    $('.slider-nav a').click(function(e) {
+    var $sliderThumb = $('.slider-thumb');
+
+    $sliderThumb.click(function(e) {
       e.preventDefault();
       var slideIndex = $(this).index();
       $('.slider-for').slick('slickGoTo', parseInt(slideIndex));
     });
 
     // pause and play slider on thumbnails hover
-    $('.slider-nav a').mouseenter(function(e) {
+    $sliderThumb.mouseenter(function(e) {
       $('.slider-for').slick('slickPause');
     }).mouseleave(function() {
       $('.slider-for').slick('slickPlay');
@@ -30,9 +32,10 @@ $(document).ready(function() {
     // add active class for the current slider thumbnail
     $('.slider-for').on('setPosition', function() {
       var currentSlide = $('.slider-for').slick('slickCurrentSlide') + 1;
-      $('.slider-nav a').removeClass('active-slider');
-      $('.slider-nav a:nth-child('+ currentSlide +')').addClass('active-slider');
+      $sliderThumb.removeClass('active-slider');
+      $('.slider-thumb:nth-child('+ currentSlide +')').addClass('active-slider');
     });
+
   }
 
 
@@ -706,11 +709,27 @@ $(document).ready(function() {
 
   // Open external links in new tab
   $('a').each(function() {
-   var a = new RegExp('/' + window.location.host + '/');
-   if (!a.test(this.href)) {
-     $(this).attr("target", "_blank");
-   }
+    var $this = $(this);
+    var notNavLink = $this.parents('.header').length == 0;
+    if (notNavLink) {
+      var a = new RegExp('/' + window.location.host + '/');
+      if (!a.test(this.href)) {
+        $this.attr('target', '_blank');
+      }
+    }
   });
+
+  // $('a').attr('target', function() {
+  //   if (this.host == location.host || !this.attr('href')) {
+  //     return '_self'
+  //   } else {
+  //     return '_blank'
+  //   }
+  // });
+
+//   if(!$('a').attr('href')) {
+//      alert("<a> does not have href attribute");
+// }
 
   // Fix image map links on UAST pages
   var imageMapArea = $('#uast-image-map').children('area');

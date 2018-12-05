@@ -36,7 +36,7 @@
     <div class="slider-nav flex-wrapper">
       <tal:block tal:repeat="image images">
 
-          <a class="slider-nav-wrapper">
+          <div class="slider-thumb">
             <div tal:define="picture python: view.getImageUrl(image)"
                  tal:attributes="style string: background-image:url('${picture}')"
                  class="slider-image">
@@ -46,7 +46,7 @@
                   tal:content="structure python: view.getCategory(image)">
               About Climate Change Adaptation in Europe
             </span>
-          </a>
+          </div>
 
       </tal:block>
     </div>

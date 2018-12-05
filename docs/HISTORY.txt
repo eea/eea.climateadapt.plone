@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Frontpage slider optimizations;
+  Change newsletter icon link
+  [krisztina]
 * Slider image optimizations
   [krisztina]
 * Optimize sector policies images;
