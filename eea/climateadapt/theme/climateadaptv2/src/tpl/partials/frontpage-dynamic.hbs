@@ -9,7 +9,7 @@
           Getting <br> Started
         </a>
       </li>
-      <li class="main-tab-item db-highlighted">
+      <li class="main-tab-item">
         <a href="#t-database">
           <span class="d-icon database-icon"></span>
           Search the <br> Database
@@ -104,17 +104,16 @@
 
         {{!-- Search the database --}}
         <div class="tab-pane fade" id="t-database">
-          <div class="database-search-box">
-          <form method="GET" action="/data-and-downloads">
-            <input type="text" placeholder="type here ..."
-            name="SearchableText" />
-            <button class="search-submit"
-                    type="submit"
-                    aria-label="Search on Climate-ADAPT">
-              <i class="fa fa-search"></i>
-            </button>
-            </form>
-          </div>
+
+        <form class="database-search-box" method="GET" action="/data-and-downloads">
+          <input type="text" placeholder="type here ..."
+          name="SearchableText" />
+          <button class="search-submit"
+                  type="submit"
+                  aria-label="Search on Climate-ADAPT">
+            <i class="fa fa-search"></i>
+          </button>
+          </form>
 
           <div class="text-center">
             <p>The database contains quality checked information and is annotated by climate adaptation experts with keywords.</p>
@@ -215,12 +214,10 @@
           </div> <!-- end of db categories -->
 
           <div class="see-more-link">
-            <p>
-              <a href="../data-and-downloads">
-                <i class="fa fa-angle-double-right"></i>
-                See complete database
-              </a>
-            </p>
+            <a href="../data-and-downloads">
+              <i class="fa fa-angle-double-right"></i>
+              See complete database
+            </a>
           </div>
         </div>
 
@@ -228,12 +225,12 @@
         <div class="tab-pane fade" id="t-policies">
           {{> partials/tab-policies }}
           <div class="see-more-link">
-              <p>For more informations visit:
-                  <a href="/cca/eu-adaptation-policy/sector-policies">
-                      <i class="fa fa-angle-double-right"></i>
-                      EU Sector Policies
-                  </a>
-              </p>
+            <p>For more informations visit:
+              <a href="/cca/eu-adaptation-policy/sector-policies">
+                <i class="fa fa-angle-double-right"></i>
+                EU Sector Policies
+              </a>
+            </p>
           </div>
         </div>
 
@@ -282,7 +279,8 @@
             </div>
 
             <div class="case-study-search col-md-3">
-              <img src="static/images/case_study_prev.png"
+              <img data-src="{{ themeurl }}static/images/case_study_prev.png"
+                   class="lazyload"
                    title="Climate-ADAPT case studies"/>
               <p>Find case studies in Europe for different locations as well as for various impacts and sectors:</p>
               <a class="special-link" href="../knowledge/tools/case-studies-climate-adapt">

@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Add lazyload for homepage images;
+  Code cleanup
+  [krisztina]
 * Frontpage slider optimizations;
   Change newsletter icon link
   [krisztina]
