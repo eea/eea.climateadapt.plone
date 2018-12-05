@@ -710,26 +710,14 @@ $(document).ready(function() {
   // Open external links in new tab
   $('a').each(function() {
     var $this = $(this);
-    var notNavLink = $this.parents('.header').length == 0;
-    if (notNavLink) {
+    var notHeaderLink = $this.parents('.header').length == 0;
+    if (notHeaderLink) {
       var a = new RegExp('/' + window.location.host + '/');
       if (!a.test(this.href)) {
         $this.attr('target', '_blank');
       }
     }
   });
-
-  // $('a').attr('target', function() {
-  //   if (this.host == location.host || !this.attr('href')) {
-  //     return '_self'
-  //   } else {
-  //     return '_blank'
-  //   }
-  // });
-
-//   if(!$('a').attr('href')) {
-//      alert("<a> does not have href attribute");
-// }
 
   // Fix image map links on UAST pages
   var imageMapArea = $('#uast-image-map').children('area');
