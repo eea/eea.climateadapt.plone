@@ -45,8 +45,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1,
 h1 strong,
-.tile-title,
-.news-title {
+.tile-title {
   color: @primary-blue;
   font-size: 26px;
 }
@@ -78,7 +77,6 @@ a {
   font-size: 14px;
   text-decoration: underline;
 }
-
 a:hover {
   text-decoration: underline;
 }
@@ -95,12 +93,12 @@ a:hover {
 }
 
 #content .eu-strategy td {
-  padding: 1em 1em 1em 0em;
+  padding: 1em 1em 1em 0;
   vertical-align: top;
 }
 
 #content .eu-strategy tr:first-child td {
-  padding: 0em 0em 1em 0em;
+  padding: 0 0 1em 0;
 }
 
 #content table p a:link {
@@ -234,7 +232,7 @@ a:hover {
     font-weight: bold;
 }
 .overlay .formTab.lastFormTab {
-    margin-right:0em;
+    margin-right: 0;
 }
 .overlay .formControls a {
     display: block;
@@ -260,29 +258,30 @@ a:focus {
   position: absolute;
   bottom: 15px;
   right: 20px;
-}
 
-a.read-more {
-  color: #bf5900;
-  font-size: 12px;
-  text-transform: uppercase;
+  .read-more {
+    color: #bf5900;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-decoration: none;
 
-  &:hover {
-    color: #e66b00;
+    &:hover {
+      color: #e66b00;
+    }
   }
-}
 
-a.read-more::after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 1px;
-  background: #e66b00;
-  transition: width .3s;
-}
+  .read-more::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: #e66b00;
+    transition: width .3s;
+  }
 
-a.read-more:hover::after {
-  width: 100%;
+  .read-more:hover::after {
+    width: 100%;
+  }
 }
 
 .content-container {
@@ -496,10 +495,10 @@ form .standard-button,
 }
 
 .panel-layer {
-  height:100%;
-  width:100%;
-  position:absolute;
-  bottom:0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
   left: 0;
   background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 90%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(95%,rgba(255,255,255,1)));
@@ -1281,8 +1280,6 @@ form .standard-button,
 .country-page {
   #disclaimer {
     display: inline-block;
-    // float: right;
-    // margin: 3em 2em 2em 0;
     margin: 2em;
   }
   #hover-content {
@@ -1317,7 +1314,6 @@ form .standard-button,
 }
 
 .dd-country-title .selected {
-  width: 200px;
   display: inline;
 }
 
@@ -1396,27 +1392,6 @@ form .standard-button,
   display: inline;
   position: relative;
   bottom: 2px;
-}
-
-// Help page: Glossary
-.GlossaryTitle {
-  color: @primary-blue;
-  margin: 10px 0;
-  font-family: OpenSansB;
-  border-bottom: 1px solid #ececec;
-
-  a {
-    float: right;
-  }
-  br {
-    display: none;
-  }
-}
-
-.GlossaryTitle a:before {
-  content: '\f0aa';
-  font-family: FontAwesome;
-  margin-right: 5px;
 }
 
 // Portal messages
@@ -1830,7 +1805,7 @@ fieldset .field:not(:last-of-type) {
 }
 
 #content-core .event_listing nav {
-  margin-bottom: 3em;
+  margin-bottom: 1em;
   border: 0.3em solid #ddd;
   border-bottom: none;
   border-top-left-radius: 0.5em;
@@ -1870,7 +1845,7 @@ fieldset .field:not(:last-of-type) {
 }
 
 article.vevent {
-  padding: 2em 0;
+  padding: 1.5em 0;
   border-bottom: 1px solid #ddd;
 }
 
@@ -1975,11 +1950,10 @@ li.category span {
 }
 
 .news-item {
-  h3 {
-    margin-bottom: 0.2em;
-  }
   a {
     font-size: 16px;
+    color: inherit;
+    text-decoration: none;
   }
   .discreet {
     margin-bottom: 1em;
@@ -2002,6 +1976,7 @@ div.listingBar a {
   display: inline-block;
   padding: 0.25em 0.5em;
   color: @dark-gray;
+  text-decoration: none;
 }
 
 div.listingBar a:hover {
@@ -2019,31 +1994,26 @@ div.listingBar .current {
 
 // Search results
 #search-results-bar {
-  position: relative;
-  z-index: 1;
-  float: left;
-  width: 100%;
   border-top: 1px solid #DDD;
   border-bottom: 1px solid #DDD;
   padding: 1em 0;
-  >* {
-    float: left;
+}
+
+#search-results {
+  .discreet span,
+  .discreet a {
+    font-size: 12px;
   }
-}
 
-#search-results .discreet span,
-#search-results .discreet a {
-  font-size: 12px;
-}
+  dt {
+    margin-top: 1em;
+  }
 
-#search-results dt {
-  margin-top: 1em;
-}
-
-#search-results dd {
-  margin-bottom: 1em;
-  padding-bottom: 1em;
-  border-bottom: 1px solid #ddd;
+  dd {
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #ddd;
+  }
 }
 
 #searchResultsSort {
@@ -2052,19 +2022,18 @@ div.listingBar .current {
 
 #search-filter {
   background: #ddd;
+
+  legend {
+    padding: 0.5em 0.9em;
+  }
+
+  .field {
+    background: #eee;
+    padding: 1em 1.5em;
+    margin: 0;
+  }
 }
 
-#content #search-filter legend {
-  background: transparent;
-  font-size: 1.1em;
-  padding: 0.5em 0.9em;
-}
-
-#search-filter .field {
-  background: #eee;
-  padding: 1em 1.5em;
-  margin: 0;
-}
 
 #search-results-bar dt.actionMenuHeader a::after {
   content: "▼";
@@ -2257,53 +2226,9 @@ div.width-1\3a 4 {
   display: none;
 }
 
-/* bottom menu in urban ast pages */
-#bottom-menu {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: -moz-box;
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 0;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  margin: 20px 0;
-}
-
-#previous-link a,
-#next-link a {
-  color: @dark-gray;
-  font-family: OpenSansR;
-}
-
-#previous-link a:hover,
-#next-link a:hover {
-  color: @primary-green;
-}
-
-#contact-link {
-  .fa-envelope {
-    float: left;
-    margin: 8px 13px 0 0;
-    font-size: 23px;
-  }
-  .contact-button {
-    float: right;
-    text-align: center;
-  }
-  a {
-    padding: 8px 15px;
-    display: inline-block;
-    font-size: 14px;
-  }
-}
-
 // Database items
 
 // Case study image gallery
-.sidebar_bold h5 {
-  font-family: OpenSansM;
-}
 
 #links {
   background-color: @yellow;
@@ -2414,22 +2339,10 @@ div.width-1\3a 4 {
   top: 50px;
   left: 15px;
   color: #fff;
-  display: none;
-  font-size: 1.3em;
 }
 
 .blueimp-gallery-display > .description {
   display: block;
-  float: left;
-}
-
-#blueimp-gallery .next,
-#blueimp-gallery .prev {
-  display: block;
-}
-
-.blueimp-gallery > .title {
-  left: 15px;
 }
 
 /* Edit tiles layout */
@@ -2574,8 +2487,6 @@ div.width-1\3a 4 {
 
 .map-wrapper .choose-title {
   color: @secondary-green;
-  font-family: OpenSansM;
-  font-size: 20px;
   padding-left: 0.7em;
 }
 
@@ -2632,10 +2543,6 @@ div.width-1\3a 4 {
   display: none;
 }
 
-#countrymap-container {
-  margin: 0;
-}
-
 /* Legend */
 .legend {
   margin: 2em 1em;
@@ -2647,7 +2554,6 @@ div.width-1\3a 4 {
 
 .legend-el {
   padding: 0.8em 0;
-  align-items: center;
   display: flex;
   flex-direction: row;
 }
@@ -2677,9 +2583,6 @@ div.width-1\3a 4 {
   background-color: #F7F7F7;
   padding: 1em;
   width: 340px;
-  font-size: 14px;
-  text-decoration: none;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
   border: 1px solid #c7c7c7;
 }
 
@@ -2696,10 +2599,6 @@ div.width-1\3a 4 {
   ol, ul {
     list-style-position: inside;
   }
-}
-
-#tooltip-content li {
-  display: list-item;
 }
 
 #countries-map svg {
@@ -2749,18 +2648,6 @@ div.width-1\3a 4 {
   font-size: 7px;
   font-weight: normal;
   cursor: pointer;
-}
-
-// .country-label:hover rect {
-//   fill: black;
-// }
-//
-// .country-label:hover text {
-//   fill: white;
-// }
-
-.maplet-label text.place-label {
-  font-size: 6px;
 }
 
 .country-outline path {

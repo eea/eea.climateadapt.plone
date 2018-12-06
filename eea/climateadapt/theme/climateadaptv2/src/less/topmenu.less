@@ -8,9 +8,6 @@
 
 .logo {
   margin-top: 8px;
-  a {
-    display: block;
-  }
 }
 
 .sticky-header {
@@ -46,8 +43,6 @@
 .top-menu-right-section a,
 .personal-menu-action {
   color: @dark-gray;
-  font-family: OpenSansM;
-  font-size: 14px;
 }
 
 .action-selected,
@@ -77,19 +72,9 @@
   display: none;
 }
 
-.top-menu-nav-item:hover .login > .login-container {
-  display: block;
-}
-
+.top-menu-nav-item:hover .login > .login-container,
 .help-menu:hover > .help-container {
   display: block;
-}
-
-.top-menu-items .login {
-  display: inline-block;
-  margin-left: 20px;
-  position: relative;
-  cursor: pointer;
 }
 
 .top-menu-nav-item:hover #user-name,
@@ -98,7 +83,6 @@
 .top-menu-right-section a:hover {
   color: @secondary-blue;
 }
-
 
 .top-menu-nav-item:hover .help-link > .angle-down-icon,
 .top-menu-nav-item:hover .personal-menu-action > .angle-down-icon {
@@ -109,22 +93,14 @@
 #help-items {
   width: 100%;
   min-width: 230px;
-  float: none;
   background-color: #F7F7F7;
   border-bottom: 5px solid @primary-blue;
   position: absolute;
   top: 20px;
   right: 0;
   padding: 10px;
-  font-size: 100%;
-  border-radius: 0;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
-  li {
-    display: list-item;
-    line-height: 1.5;
-    clear: both;
-    float: left;
-  }
+
   li:not(:last-child) {
     padding-bottom: 0.3em;
   }
@@ -137,11 +113,6 @@
 
 #portal-personaltools a:hover {
   color: @secondary-blue;
-}
-
-.personal-menu-action:hover > .angle-down-icon,
-.action-selected .angle-down-icon {
-  border-top: 4px solid @secondary-blue !important;
 }
 
 .angle-down-icon {
