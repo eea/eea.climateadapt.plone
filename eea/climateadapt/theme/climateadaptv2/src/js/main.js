@@ -38,6 +38,11 @@ $(document).ready(function() {
 
   }
 
+  // Set timout for slider caption
+  // to prevent the element from jumping when the page is laoding
+  setTimeout(function() {
+    $('.slider-caption, .slider-nav').fadeIn(700);
+  }, 200);
 
   // HOMEPAGE: align slider caption, pause button
   // and thumbnails to the main content area

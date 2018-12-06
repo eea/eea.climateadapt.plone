@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Set timout for slider caption to prevent the element from jumping
+  [krisztina]
 * Add lazyload for homepage images;
   Code cleanup
   [krisztina]
