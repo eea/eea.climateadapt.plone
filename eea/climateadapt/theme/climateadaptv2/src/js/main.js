@@ -570,34 +570,46 @@ $(document).ready(function() {
     var $panelCollapse = $('.panel-collapse');
 
     $panelTitle.click(function() {
-      $(this).text(function(i, text) {
-        return text === "Read more" ? "Read less" : "Read more";
-      })
+      var $this = $(this);
+      if ($this.text() === "Read more") {
+        $this.text("Read less")
+      } else if ($this.text() === "Read less") {
+        $this.text("Read more")
+      }
+      // $(this).text(function(i, text) {
+      //   return text === "Read more" ? "Read less" : "Read more";
+      // })
     });
 
     $panelCollapse.css({
       'display': 'block',
-      'height': '130px',
+      'height': '100px',
       'overflow': 'hidden',
       'position': 'relative'
     });
 
     $panelHeading.css('text-align', 'right');
-    $panelHeading.before($panelCollapse);
 
     var $panelLayer = $('<div class="panel-layer fadein"/>');
     $panelCollapse.prepend($panelLayer);
-    var panelCollapse = $panelTitle.closest('.panel-heading').siblings();
 
-    $panelTitle.toggle(
-      function() {
-        panelCollapse.addClass('panel-opened');
-        panelCollapse.children('.panel-layer').removeClass('fadein').addClass('fadeout');
-      }, function() {
-        panelCollapse.removeClass('panel-opened');
-        panelCollapse.children('.panel-layer').removeClass('fadeout').addClass('fadein');
-      }
-    );
+    $('.panel-default').each(function() {
+      var panelTitle = $('.panel-title a', this);
+      var panelCollapse = $('.panel-collapse', this);
+      var panelLayer = $('.panel-layer', this);
+      $('.panel-heading', this).before(panelCollapse);
+
+      panelTitle.toggle(
+        function() {
+          panelCollapse.addClass('panel-opened');
+          panelLayer.removeClass('fadein').addClass('fadeout');
+        }, function() {
+          panelCollapse.removeClass('panel-opened');
+          panelLayer.removeClass('fadeout').addClass('fadein');
+        }
+      );
+    });
+
   }
 
   if (!isDefaultAccordionPage) {
