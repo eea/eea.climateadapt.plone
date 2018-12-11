@@ -739,9 +739,6 @@ class AdapteCCACaseStudyImporter(BrowserView):
 
         f = Item(node)
 
-        import pdb
-        pdb.set_trace()
-
         item = u.createAndPublishContentInContainer(
             location,
             'eea.climateadapt.casestudy',
@@ -789,6 +786,7 @@ class AdapteCCACaseStudyImporter(BrowserView):
             # Select only one category below that best describes how relevant
             # this case study is to climate change adaptation
             # relevance=s2l(data.relevance),
+            relevance=[],
 
             # comments=data.comments,
             # creation_date=creationdate,
@@ -816,4 +814,7 @@ class AdapteCCACaseStudyImporter(BrowserView):
         e = fromstring(s)
 
         for node in e.xpath('//item'):
-            self.node_import(self.context, node)
+            item = self.node_import(self.context, node)
+            print item.absolute_url()
+
+        return 'ok'

@@ -4,6 +4,7 @@
 import logging
 
 import requests
+
 from eea.climateadapt.sat.settings import (get_endpoint_url, get_feature_url,
                                            get_settings)
 from eea.climateadapt.sat.utils import _measure_id
