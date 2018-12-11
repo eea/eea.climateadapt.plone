@@ -555,10 +555,14 @@ class CaseStudy(dexterity.Container):
         else:
             geometry = {'x': '', 'y': ''}
 
-        if hasattr(self.effective_date, 'date'):
-            effective = self.effective_date.date()
+        if self.effective_data is not None:
+            if hasattr(self.effective_date, 'date'):
+                effective = self.effective_date.date()
+            else:
+                effective = self.effective_date.asdatetime().date()
         else:
-            effective = self.effective_date.asdatetime().date()
+            effective = date.today()        # todo? item not published?
+
         today = date.today()
         timedelta = today - effective
 

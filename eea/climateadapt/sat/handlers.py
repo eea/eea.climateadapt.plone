@@ -65,7 +65,6 @@ def handle_ObjectStateModified(site, uid):
         * check if object exists in ArcGIS
             * if exists, remove it
     """
-    # import pdb; pdb.set_trace()
     obj = _get_obj_by_measure_id(site, uid)
 
     if IWorkingCopy.providedBy(obj):
@@ -75,7 +74,13 @@ def handle_ObjectStateModified(site, uid):
 
     state = get_state(obj)
 
-    token = get_auth_token()
+    try:
+        token = get_auth_token()
+    except KeyError:
+        logger.exception("Could not get an Arcgis auth token")
+
+        return
+
     fid = _get_obj_OBJECTID(obj=obj, token=token)
 
     if (state != 'published') and fid:

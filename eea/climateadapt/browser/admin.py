@@ -674,17 +674,17 @@ class AdapteCCACaseStudyImporter(BrowserView):
             u"Salud humana": "HEALTH",
             # "Industria": "Industry",
             # "Turismo": "Tourism",
-            u"Finanzas – Seguros ": "FINANCIAL",
-            u"Urbanismo y Construcción ": "URBAN",
-            u"Energía ": "ENERGY",
+            u"Finanzas – Seguros": "FINANCIAL",
+            u"Urbanismo y Construcción": "URBAN",
+            u"Energía": "ENERGY",
             # "Sociedad": "Society",
-            u"Zonas costeras ": "COASTAL",
+            u"Zonas costeras": "COASTAL",
             # "Zonas de montaña": "Mountain zones",
-            u"Medio marino y pesca ": "MARINE",
+            u"Medio marino y pesca": "MARINE",
             # "Ámbito Insular": "Islands",
             # "Medio Rural": "Rural environment",
-            u"Medio Urbano ": "URBAN",
-            u"Eventos extremos ": "DISASTERRISKREDUCTION",
+            u"Medio Urbano": "URBAN",
+            u"Eventos extremos": "DISASTERRISKREDUCTION",
         }
 
         return list(set([map.get(x, 'NONSPECIFIC') for x in l]))
@@ -739,9 +739,6 @@ class AdapteCCACaseStudyImporter(BrowserView):
 
         f = Item(node)
 
-        import pdb
-        pdb.set_trace()
-
         item = u.createAndPublishContentInContainer(
             location,
             'eea.climateadapt.casestudy',
@@ -789,6 +786,7 @@ class AdapteCCACaseStudyImporter(BrowserView):
             # Select only one category below that best describes how relevant
             # this case study is to climate change adaptation
             # relevance=s2l(data.relevance),
+            relevance=[],
 
             # comments=data.comments,
             # creation_date=creationdate,
@@ -816,4 +814,7 @@ class AdapteCCACaseStudyImporter(BrowserView):
         e = fromstring(s)
 
         for node in e.xpath('//item'):
-            self.node_import(self.context, node)
+            item = self.node_import(self.context, node)
+            print item.absolute_url()
+
+        return 'ok'
