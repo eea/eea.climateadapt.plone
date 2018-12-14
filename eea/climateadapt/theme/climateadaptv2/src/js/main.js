@@ -561,60 +561,58 @@ $(document).ready(function() {
   });
 
   // Custom accordion with faded text
-  var researchProject = $('.subsection-adaptation-information-research-projects').length > 0;
-  var organizationsPage = $('.subsection-organisations').length > 0;
-  var isDefaultAccordionPage = researchProject || organizationsPage;
+  $('.tile').each(function() {
+    var $this = $(this);
+    if (!$this.hasClass('classic-accordion')) {
+      $this.find('.panel-default').closest('.cover-richtext-tile').addClass('custom-accordion');
+    }
+  });
 
-  function customAccordion() {
-    var $panelHeading = $('.panel-heading');
-    var $panelCollapse = $('.panel-collapse');
+  var $customAccordion = $('.custom-accordion');
+  var $panelHeading = $customAccordion.find('.panel-heading');
+  var $panelCollapse = $customAccordion.find('.panel-collapse');
+  var $panelDefault = $customAccordion.find('.panel-default');
 
-    $panelTitle.click(function() {
-      var $this = $(this);
-      if ($this.text() === "Read more") {
-        $this.text("Read less")
-      } else if ($this.text() === "Read less") {
-        $this.text("Read more")
+  $panelTitle.click(function() {
+    var $this = $(this);
+    if ($this.text() === "Read more") {
+      $this.text("Read less")
+    } else if ($this.text() === "Read less") {
+      $this.text("Read more")
+    }
+    // $(this).text(function(i, text) {
+    //   return text === "Read more" ? "Read less" : "Read more";
+    // })
+  });
+
+  $panelCollapse.css({
+    'display': 'block',
+    'height': '100px',
+    'overflow': 'hidden',
+    'position': 'relative'
+  });
+
+  $panelHeading.css('text-align', 'right');
+
+  var $panelLayer = $('<div class="panel-layer fadein"/>');
+  $panelCollapse.prepend($panelLayer);
+
+  $panelDefault.each(function() {
+    var panelTitle = $('.panel-title a', this);
+    var panelCollapse = $('.panel-collapse', this);
+    var panelLayer = $('.panel-layer', this);
+    $('.panel-heading', this).before(panelCollapse);
+
+    panelTitle.toggle(
+      function() {
+        panelCollapse.addClass('panel-opened');
+        panelLayer.removeClass('fadein').addClass('fadeout');
+      }, function() {
+        panelCollapse.removeClass('panel-opened');
+        panelLayer.removeClass('fadeout').addClass('fadein');
       }
-      // $(this).text(function(i, text) {
-      //   return text === "Read more" ? "Read less" : "Read more";
-      // })
-    });
-
-    $panelCollapse.css({
-      'display': 'block',
-      'height': '100px',
-      'overflow': 'hidden',
-      'position': 'relative'
-    });
-
-    $panelHeading.css('text-align', 'right');
-
-    var $panelLayer = $('<div class="panel-layer fadein"/>');
-    $panelCollapse.prepend($panelLayer);
-
-    $('.panel-default').each(function() {
-      var panelTitle = $('.panel-title a', this);
-      var panelCollapse = $('.panel-collapse', this);
-      var panelLayer = $('.panel-layer', this);
-      $('.panel-heading', this).before(panelCollapse);
-
-      panelTitle.toggle(
-        function() {
-          panelCollapse.addClass('panel-opened');
-          panelLayer.removeClass('fadein').addClass('fadeout');
-        }, function() {
-          panelCollapse.removeClass('panel-opened');
-          panelLayer.removeClass('fadeout').addClass('fadein');
-        }
-      );
-    });
-
-  }
-
-  if (!isDefaultAccordionPage) {
-    customAccordion();
-  }
+    );
+  });
 
   // Hide the download pdf on the search page
   if (window.location.href.indexOf("data-and-downloads") > -1) {
