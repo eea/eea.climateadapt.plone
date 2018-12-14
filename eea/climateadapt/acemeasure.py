@@ -555,7 +555,7 @@ class CaseStudy(dexterity.Container):
         else:
             geometry = {'x': '', 'y': ''}
 
-        if self.effective_data is not None:
+        if self.effective_date is not None:
             if hasattr(self.effective_date, 'date'):
                 effective = self.effective_date.date()
             else:
