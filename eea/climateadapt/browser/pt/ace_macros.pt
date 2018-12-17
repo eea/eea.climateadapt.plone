@@ -91,7 +91,7 @@
   <metal:macro define-macro="lead">
     <tal:cond condition="context/lead">
       <h5>Lead</h5>
-      <p tal:replace="structure context/lead"/>
+      <p tal:content="structure context/lead"/>
     </tal:cond>
   </metal:macro>
 
@@ -108,7 +108,7 @@
     <tal:def define="funding context/funding">
       <tal:cond condition="funding">
         <h5>Source of funding</h5>
-        <p tal:replace="structure funding"/>
+        <p tal:content="structure funding"/>
       </tal:cond>
     </tal:def>
   </metal:macro>

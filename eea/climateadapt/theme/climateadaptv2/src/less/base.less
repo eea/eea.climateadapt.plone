@@ -2275,18 +2275,25 @@ div.width-1\3a 4 {
   >ul {
     margin-left: 0.8em;
   }
-  >ul:last-child {
+}
+
+.ace-content-column ul > li:last-child {
+  >ul {
     padding-bottom: 0;
   }
 }
 
-.ace-content-column h4:not(:first-child) {
-  padding-top: 1em;
+.case-studies-tabbed-content-section > ul {
+  padding-bottom: 0;
+}
+
+.ace-content-column h4 {
+  padding-top: 1.5em;
   border-top: 1px solid #ddd;
   margin-top: 1.5em;
 }
 
-.ace-content-column h5 {
+.aceitem_page h5 {
   text-decoration: underline;
 }
 
@@ -2312,6 +2319,7 @@ div.width-1\3a 4 {
 
   ul {
     padding-left: 0.5em;
+    padding-bottom: 0;
 
     >li {
       list-style: none;
@@ -2321,9 +2329,9 @@ div.width-1\3a 4 {
         margin-left: 0.5em;
         text-decoration: none;
 
-        span {
-          word-break: break-all;
-        }
+        // span {
+        //   word-break: break-all;
+        // }
       }
 
       >a:before {

@@ -51,9 +51,11 @@
             <h4>Adaptation Details</h4>
             <p></p>
             <div id="ao_category" tal:condition="context/category">
-              <em class="adapt-option-em" style="text-decoration: underline">Category</em>
+              <p><em class="adapt-option-em" style="text-decoration: underline">Category</em></p>
               <div tal:repeat="categ context/category">
+                <p>
                   <tal:block content="categ | nothing"/>
+                </p>
               </div>
           </div>
             <div tal:condition="python: context.stakeholder_participation is not None">
