@@ -93,7 +93,7 @@
                 </p>
             </div>
 
-            <h4>Reference information</h4>
+            <h4 class="reference-title">Reference information</h4>
 
             <h5 id="websites" style="text-decoration: underline" class="Adaptation-option-selector">Websites:</h5>
             <metal:macro use-macro="context/ace_macros/macros/websites" />

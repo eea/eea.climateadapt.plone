@@ -21,7 +21,7 @@
             <h3>Description</h3>
             <p tal:replace="structure python: view.w['long_description'].render()">description here</p>
 
-            <h4>Reference information</h4>
+            <h4 class="reference-title">Reference information</h4>
 
             <h5>Link to Map Viewer: </h5>
             <div tal:define="link python: view.compose_layer_link()">

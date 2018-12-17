@@ -118,7 +118,7 @@
                         </li>
                       </ul>
 
-                      <div class="case-studies-case-studies-review-clearing-clearing"></div>
+                      <div tal:omit-tag="" class="case-studies-case-studies-review-clearing-clearing"></div>
                     </div>
                     <div id="case-study-selector-em">
 
@@ -133,13 +133,12 @@
                         <h5 id="adapt_options_anchor">
                           Adaptation Options Implemented In This Case
                         </h5>
-                        <div tal:define="adaptations view/get_adaptation_options" tal:on-error="nothing">
-                          <a tal:repeat="obj adaptations"
-                             tal:attributes="href obj/absolute_url"
-                             tal:content="obj/Title"
-                             style="text-decoration: underline">
-                             Link</a>
-                        </div>
+                        <ul tal:define="adaptations view/get_adaptation_options" tal:on-error="nothing">
+                          <li tal:repeat="obj adaptations">
+                            <a tal:content="obj/Title"
+                               tal:attributes="href obj/absolute_url">Link</a>
+                           </li>
+                        </ul>
                       </div>
 
                       <h5 id="solutions_anchor">Solutions</h5>

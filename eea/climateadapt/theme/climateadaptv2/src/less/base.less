@@ -47,24 +47,18 @@ h1,
 h1 strong,
 .tile-title {
   color: @primary-blue;
-  font-size: 26px;
+  font-size: 2em;
 }
 
-h2 {
-  font-size: 20px;
-}
-
-h3 {
-  font-size: 16px;
-}
-
-h4 {
-  font-size: 14px;
-}
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.17em; }
+h4 { font-size: 1.12em; }
+h5 { font-size: 1em; }
+h6 { font-size: .87em; }
 
 p {
   color: @dark-gray;
-  margin-bottom: 0.8em;
+  margin-bottom: 1em;
 }
 
 a, a:active, a:focus {
@@ -108,7 +102,7 @@ a:hover {
 .site-container ul,
 .site-container ol {
   padding-left: 1.5em;
-  padding-bottom: .8em;
+  padding-bottom: 1em;
   li:not(:last-child) {
     ul {
       padding-top: 0.5em;
@@ -2281,21 +2275,27 @@ div.width-1\3a 4 {
   >ul {
     margin-left: 0.8em;
   }
+  >ul:last-child {
+    padding-bottom: 0;
+  }
 }
 
-.portaltype-eea-climateadapt-casestudy .ace-content-column h5 {
+.ace-content-column h4:not(:first-child) {
   padding-top: 1em;
+  border-top: 1px solid #ddd;
+  margin-top: 1.5em;
+}
+
+.ace-content-column h5 {
   text-decoration: underline;
+}
+
+.ace-content-column dl {
+  margin-bottom: 1em;
 }
 
 #content-core .ace-content-column ul > li {
   margin-bottom: 0;
-}
-
-.reference-title {
-  border-top: 1px solid #ddd;
-  padding-top: 1.5em;
-  margin-top: 1.5em;
 }
 
 .sidebar_files {
@@ -2345,6 +2345,10 @@ div.width-1\3a 4 {
 .related-items {
   margin-top: 0.8em;
   display: block;
+}
+
+.case-studies-illustrations .blueimp-gallery>.slides {
+  height: 110%;
 }
 
 .blueimp-gallery > .description {
