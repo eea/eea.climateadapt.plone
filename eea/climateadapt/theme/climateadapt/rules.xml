@@ -76,7 +76,7 @@
     <!-- Puts the scripts after body, without this the google analytics -->
     <!-- script doesn't appear -->
     <!-- data-diazo="google-analytics" must be added to the script tag -->
-    <after css:content="#visual-portal-wrapper script[data-diazo='google-analytics']" css:theme-children='body'/>
+    <after css:content="#visual-portal-wrapper script[data-diazo='matomo-analytics']" css:theme-children='body'/>
     <!-- <after css:content='#visual-portal-wrapper script' css:theme-children='body'/> -->
 
 
