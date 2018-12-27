@@ -20,8 +20,7 @@
   </svg-container>
 
   <div class="map-islands">
-    <img src="/cca/++theme++climateadaptv2/static/images/azores-maplet.png" />
-    <img src="/cca/++theme++climateadaptv2/static/images/canary-maplet.png" />
+    <img src="/cca/++theme++climateadaptv2/static/images/map_islands.svg" />
   </div>
 
 

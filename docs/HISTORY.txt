@@ -3,7 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
-* Fix custom accordion if there are multiple on the page 
+* Add Madeira islands to the map
+  [krisztina]
+* Fix custom accordion if there are multiple on the page
   [krisztina]
 * Change video thumbs links
   [krisztina]
