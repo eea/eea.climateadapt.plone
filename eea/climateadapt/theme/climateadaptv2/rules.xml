@@ -63,7 +63,7 @@
     <!-- <after css:content="#portal-languageselector" css:theme="#logo"/> -->
 
     <!-- <after css:content="#visual-portal-wrapper .row:last-child script" css:theme="head script:last-child"/> -->
-    <after css:content="#visual-portal-wrapper script[data-diazo='google-analytics']" css:theme-children='body'/>
+    <after css:content="#visual-portal-wrapper script[data-diazo='matomo-analytics']" css:theme-children='body'/>
 
     <!-- Global Search box -->
     <copy attributes="action method" css:content="#portal-searchbox form" css:theme=".search-box form" />
