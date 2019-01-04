@@ -151,6 +151,7 @@ class AceTileMixin(object):
             'RATING': 'rating',
             'NAME': 'sortable_title',
             'MODIFIED': 'modified',
+            'EFFECTIVE': 'effective'
         }
 
         sort = self.data.get('sortBy')
@@ -158,7 +159,7 @@ class AceTileMixin(object):
         if sort:
             query['sort_on'] = sort_map[sort]
 
-            if sort == 'MODIFIED':
+            if sort == 'MODIFIED' or 'EFFECTIVE':
                 query['sort_order'] = 'reverse'
 
         for setting_name, index_name in map.items():
@@ -357,6 +358,7 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
 
 sortby_def = {
     'MODIFIED': 'Last Modified',
+    'EFFECTIVE': 'Last Published',
     'NAME': 'Alphabetical sorting',
 }
 
