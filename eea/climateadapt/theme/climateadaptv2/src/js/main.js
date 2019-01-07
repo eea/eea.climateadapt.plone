@@ -196,12 +196,26 @@ $(document).ready(function() {
     return false;
   });
 
-  // Mobile - show submenus on click
-  $('.toggle-down').click(function() {
-    $(this).parent().siblings('.sub-menu-wrapper').toggle();
-    $(this).parent().parent().siblings().children('.sub-menu-wrapper').hide();
-    return false;
-  });
+  var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    // show submenu on click
+    $('.main-nav-item').each(function() {
+      var $this = $(this);
+      var link = $this.find('.main-nav-link');
+
+      if (!link.attr('href')) {
+
+        $this.click(function() {
+          link.parent().siblings('.sub-menu-wrapper').toggle();
+          link.parent().parent().siblings().find('.sub-menu-wrapper').hide();
+          return false;
+        });
+
+      }
+    });
+  }
+
 
   // Mobile - hide header on scroll down
   var didScroll;
