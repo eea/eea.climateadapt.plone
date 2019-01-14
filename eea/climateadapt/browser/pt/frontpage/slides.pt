@@ -4,15 +4,19 @@
     <div class="slider-for">
       <tal:block tal:repeat="image images">
       <div class="slider-image-wrapper">
-        <div tal:define="picture python: view.getImageUrl(image)"
+        <div tal:define="picture image/image_url"
           tal:attributes="style string: background-image:url('${picture}')"
           class="slider-image">
         </div>
 
         <div class="slider-layer"></div>
 
+        <div class="image-copyright">
+          <p tal:content="image/copyright">Image copyright</p>
+        </div>
+
         <div class="slider-caption">
-          <h3 tal:content="python: view.getTitle(image)">
+          <h3 tal:content="image/title">
             About Climate Change Adaptation in Europe
           </h3>
           <p>
@@ -22,7 +26,7 @@
           <div class="slider-bottom-caption clearfix">
             <div class="read-more-wrapper">
               <a href="" class="read-more"
-                 tal:attributes="href python: view.getMoreLink(image)">
+                 tal:attributes="href image/url">
                 <i class="fa fa-angle-double-right"></i>
                 Read more
               </a>
@@ -38,13 +42,13 @@
         <tal:block tal:repeat="image images">
 
           <div class="slider-thumb">
-            <div tal:define="picture python: view.getImageUrl(image)"
+            <div tal:define="picture image/image_url"
               tal:attributes="style string: background-image:url('${picture}')"
               class="slider-image">
             </div>
             <div class="slider-layer slider-nav-layer"></div>
             <span class="slider-category"
-              tal:content="structure python: view.getCategory(image)">
+              tal:content="structure image/category">
               About Climate Change Adaptation in Europe
             </span>
           </div>

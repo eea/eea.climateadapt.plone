@@ -41,7 +41,7 @@ $(document).ready(function() {
   // Set timout for slider caption
   // to prevent the element from jumping when the page is laoding
   setTimeout(function() {
-    $('.slider-caption, .slider-nav').fadeIn(700);
+    $('.slider-caption, .slider-nav, .image-copyright').fadeIn(700);
   }, 200);
 
   // HOMEPAGE: align slider caption, pause button
@@ -54,14 +54,12 @@ $(document).ready(function() {
   }
 
   var $slider = $('.slider');
-  var $sliderCaption = $('.slider-caption');
-  var $sliderNav = $('.slider-nav');
 
-  $sliderCaption.css('right', function() {
+  $('.slider-caption, .slider-nav').css('right', function() {
     return getPageContainerPadding() +  'px';
   });
 
-  $sliderNav.css('right', function() {
+  $('.image-copyright').css('left', function() {
     return getPageContainerPadding() +  'px';
   });
 
@@ -73,11 +71,11 @@ $(document).ready(function() {
   });
 
   function doneResizing() {
-    $sliderCaption.css('right', function() {
+    $('.slider-caption, .slider-nav').css('right', function() {
       return getPageContainerPadding() +  'px';
     });
 
-    $sliderNav.css('right', function() {
+    $('.image-copyright').css('left', function() {
       return getPageContainerPadding() +  'px';
     });
   }

@@ -62,19 +62,24 @@ class FrontpageSlidesView (BrowserView):
         slides = [o for o in sf.contentValues()
                   if api.content.get_state(o) == 'published']
         images = []
+
         for slide in slides:
             handler = getattr(self, 'handle_' + slide.title.encode(), None)
             slide_data = {}
+
+            image_url, copyright = self.getImages(slide)
 
             if handler:
                 slide_data = handler(slide)
             else:
                 slide_data = {
-                    'image': self.getImages(slide),
+                    'image_url': image_url,
+                    'copyright': copyright,
                     'title': slide.title,
                     'description': slide.long_description,
                     'category': slide.category,
-                    'url': slide.read_more_link}
+                    'url': slide.read_more_link
+                }
             images.append(slide_data)
         self.images = images
 
@@ -96,7 +101,11 @@ class FrontpageSlidesView (BrowserView):
             image = images[now.day / 7]
         except:
             image = images[-1]
-        return image.absolute_url()
+
+        url = image.absolute_url()
+        copyright = image.rights
+
+        return url, copyright
 
     def getDescription(self, image):
         description = image.get('description', '')
@@ -105,18 +114,6 @@ class FrontpageSlidesView (BrowserView):
             return self.html2text(description.output)
         else:
             return description
-
-    def getTitle(self, image):
-        return image.get('title', '')
-
-    def getImageUrl(self, image):
-        return image.get('image', '')
-
-    def getMoreLink(self, image):
-        return image.get('url', '')
-
-    def getCategory(self, image):
-        return image.get('category', '')
 
     def handle_news_items(self, slide):
         """ Gets the most recent updated news/events item"""
@@ -130,14 +127,15 @@ class FrontpageSlidesView (BrowserView):
 
         news = result.getObject()
 
+        image_url, copyright = self.getImages(slide)
+
         return {
-            'image':
-            "/++resource++eea.climateadapt/frontpage/news_and_events.png",
+            'image_url': image_url,
+            'copyright': copyright,
             'title': news.Title(),
             'description': news.description,
             'category': 'Latest <br/> News & Events',
             'url': news.absolute_url(),
-
         }
 
     def handle_last_casestudy(self, slide):
@@ -153,14 +151,15 @@ class FrontpageSlidesView (BrowserView):
 
         cs = brain.getObject()
 
+        image_url, copyright = self.getImages(slide)
+
         return {
-            'image':
-            "/++resource++eea.climateadapt/frontpage/case_studies.png",
+            'image_url': image_url,
+            'copyright': copyright,
             'title': cs.Title(),
             'description': cs.long_description,
             'category': 'Most recent <br/> Case Study',
             'url': cs.absolute_url(),
-
         }
 
     @view.memoize
@@ -174,33 +173,33 @@ class FrontpageSlidesView (BrowserView):
 
         return text
 
-    def handle_last_dbitem(self, slide):
-        """ Gets the most recent updated aceitem"""
-        site = getSite()
-        catalog = site.portal_catalog
-        result = catalog.searchResults({
-            'portal_type': [
-                'eea.climateadapt.informationportal',
-                'eea.climateadapt.guidancedocument',
-                'eea.climateadapt.tool',
-                'eea.climateadapt.mapgraphdataset',
-                'eea.climateadapt.indicator',
-                'eea.climateadapt.organisation'
-            ],
-            'review_state': 'published',
-            'sort_by': 'effective'}, full_objects=True)[0]
-
-        db_item = result.getObject()
-
-        return {
-            'image':
-            "/++resource++eea.climateadapt/frontpage/aceitem_picture.jpg",
-            'title': db_item.Title(),
-            'description': db_item.long_description,
-            'category': 'Database item',
-            'url': db_item.absolute_url(),
-
-        }
+    # Currently UNUSED
+    # def handle_last_dbitem(self, slide):
+    #     """ Gets the most recent updated aceitem"""
+    #     site = getSite()
+    #     catalog = site.portal_catalog
+    #     result = catalog.searchResults({
+    #         'portal_type': [
+    #             'eea.climateadapt.informationportal',
+    #             'eea.climateadapt.guidancedocument',
+    #             'eea.climateadapt.tool',
+    #             'eea.climateadapt.mapgraphdataset',
+    #             'eea.climateadapt.indicator',
+    #             'eea.climateadapt.organisation'
+    #         ],
+    #         'review_state': 'published',
+    #         'sort_by': 'effective'}, full_objects=True)[0]
+    #
+    #     db_item = result.getObject()
+    #
+    #     return {
+    #         'image':
+    #         "/++resource++eea.climateadapt/frontpage/aceitem_picture.jpg",
+    #         'title': db_item.Title(),
+    #         'description': db_item.long_description,
+    #         'category': 'Database item',
+    #         'url': db_item.absolute_url(),
+    #     }
 
     def handle_last_publication(self, slide):
         """ Gets the most recent updated publication and report"""
@@ -215,13 +214,15 @@ class FrontpageSlidesView (BrowserView):
 
         publi = result.getObject()
 
+        image_url, copyright = self.getImages(slide)
+
         return {
-            'image': "/++resource++eea.climateadapt/frontpage/last_publication_report.png",
+            'image_url': image_url,
+            'copyright': copyright,
             'title': publi.Title(),
             'description': publi.long_description,
             'category': 'Most recent <br/> Publication or Report',
             'url': publi.absolute_url(),
-
         }
 
 
