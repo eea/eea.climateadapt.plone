@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Add fullwidth class for Urban Adaptation Map Viewer pages
+  [krisztina]
 * Show copyright for the homepage slider images
   [krisztina]
 * Fix navigation menu on touch screen devices
