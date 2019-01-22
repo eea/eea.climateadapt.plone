@@ -531,3 +531,36 @@ table.controlpanel-listing dd {
     display: inline;
   }
 }
+
+.link-parent {
+  text-decoration: none;
+  margin-bottom: 1em;
+  display: block;
+}
+
+.link-parent:hover,
+.link-parent:focus {
+  text-decoration: none;
+}
+
+.link-parent:before {
+  font-family: FontAwesome;
+  content: '\f112';
+}
+
+.rule-element {
+  overflow: hidden;
+
+  dl {
+    padding-top: 0.8em;
+  }
+
+  .link-overlay {
+    text-decoration: none;
+  }
+
+  .secondary-button {
+    background-color: white;
+    margin-top: 0;
+  }
+}

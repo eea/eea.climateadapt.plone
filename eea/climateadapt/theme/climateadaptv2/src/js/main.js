@@ -726,7 +726,7 @@ $(document).ready(function() {
     if ($this.children().length === 0) {
       $this.hide();
     }
-  })
+  });
 
   // Open external links in new tab
   $('a').each(function() {
