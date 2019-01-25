@@ -207,7 +207,6 @@ $(document).ready(function() {
         $this.click(function() {
           link.parent().siblings('.sub-menu-wrapper').toggle();
           link.parent().parent().siblings().find('.sub-menu-wrapper').hide();
-          return false;
         });
 
       }
@@ -329,6 +328,8 @@ $(document).ready(function() {
 
   $('select').addClass('form-control');
 
+  // hide rss feed link
+  $('#document-action-rss').parent().hide();
 
   // Add active class on sub-navigation active items
   // special transnational subpages, ex:
