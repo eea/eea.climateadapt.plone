@@ -238,7 +238,7 @@ SEARCH_TYPES_ICONS = [
 
     # ("MAPGRAPHDATASET", "Maps, graphs and datasets"),       # replaced by
     # video
-    ("VIDEOS", "Videos", 'fa-file-video-o'),
+    ("VIDEO", "Videos", 'fa-file-video-o'),
 
     ("ORGANISATION", "Organisations", 'fa-sitemap'),
     ("DOCUMENT", "Publication and Reports", 'fa-newspaper-o'),
