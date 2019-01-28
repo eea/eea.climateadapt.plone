@@ -63,6 +63,22 @@ $(document).ready(function() {
     return getPageContainerPadding() +  'px';
   });
 
+  // HOMEPAGE: Main area
+  // Get the heighest div and make equal height on every boxes
+  var windowWidth = $(window).width();
+  var $mainBox = $('.main-box');
+  var mainBoxMaxHeight = 0;
+
+  $mainBox.each(function() {
+    mainBoxMaxHeight = ($(this).outerHeight() > mainBoxMaxHeight) ? $(this).outerHeight() : mainBoxMaxHeight;
+  });
+
+  if (windowWidth >= 767) {
+    $mainBox.css('height', mainBoxMaxHeight);
+  } else {
+    $mainBox.css('height', '');
+  }
+
   // fire resize event after the browser window resizing it's completed
   var resizeTimer;
   $(window).resize(function() {
@@ -78,6 +94,12 @@ $(document).ready(function() {
     $('.image-copyright').css('left', function() {
       return getPageContainerPadding() +  'px';
     });
+
+    if ($(this).width() >= 767) {
+      $mainBox.css('height', mainBoxMaxHeight);
+    } else {
+      $mainBox.css('height', '');
+    }
   }
 
   // HOMEPAGE: Tabs functionality
@@ -167,22 +189,6 @@ $(document).ready(function() {
       'transform': 'scale(1)'
     });
   });
-
-  // HOMEPAGE: Main area
-  // Get the heighest div and make equal height on every boxes
-  var windowWidth = $(window).width();
-  var $mainBox = $('.main-box');
-  var mainBoxMaxHeight = 0;
-
-  $mainBox.each(function() {
-    mainBoxMaxHeight = ($(this).outerHeight() > mainBoxMaxHeight) ? $(this).outerHeight() : mainBoxMaxHeight;
-  });
-
-  if (windowWidth <= 767) {
-    $mainBox.css('min-height', 'auto');
-  } else {
-    $mainBox.css('min-height', mainBoxMaxHeight);
-  }
 
   // Mobile menu button on click event
   $('.mobile-menu i').click(function() {

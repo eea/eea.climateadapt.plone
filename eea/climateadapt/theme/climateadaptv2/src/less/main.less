@@ -110,6 +110,10 @@
     }
   }
 
+  .case-study .case-study-search {
+    margin-top: 1em; 
+  }
+
   .map-caption {
     position: relative;
     top: 0;
@@ -345,6 +349,7 @@
   .slider-caption,
   .slider-nav {
     left: 0;
+    right: 0 !important;
     margin-left: auto;
     margin-right: auto;
     width: 90%;
@@ -458,9 +463,21 @@
   .slider-caption {
     bottom: 30px;
   }
+
+  .image-copyright {
+    width: 90%;
+    overflow: hidden !important;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    p {
+      display: inline-block;
+    }
+  }
+
   .slider-nav {
     display: none !important;
   }
+
   .slick-dots {
     width: auto;
     left: 2em;
