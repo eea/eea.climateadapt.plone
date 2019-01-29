@@ -17,6 +17,7 @@ from eea.climateadapt._importer import utils as u
 from eea.climateadapt.browser.site import _extract_menu
 from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
 from eea.climateadapt.scripts import get_plone_site
+from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
 from oauth2client.service_account import ServiceAccountCredentials
 from plone.api import portal
 from plone.api.portal import get_tool
@@ -196,6 +197,43 @@ class ListTilesWithTitleView (BrowserView):
         elif isinstance(item, list):
             for x in item:
                 self.walk(x)
+
+
+class ForcePingCRView(BrowserView):
+    """ Force pingcr on objects between a set interval """
+
+    def __call__ (self):
+        cat = get_tool('portal_catalog')
+
+        from DateTime import DateTime as dt
+
+        now = dt()
+        past = dt('2018-09-01')
+
+        date_range = {'effective' : {'query': (past, now), 'range': 'min:max'}}
+        results=cat.searchResults(date_range)
+
+        logger.info("Found %s objects between %s and %s" % (len(results), past.strftime("%B %d, %Y"), now.strftime("%B %d, %Y")))
+
+        count = 0
+        options = {}
+        options['create'] = False
+        options['service_to_ping'] = 'http://semantic.eea.europa.eu/ping'
+        for res in results:
+            context = res.getObject()
+            url = res.getURL()
+            options['obj_url'] = url
+
+            logger.info("Pinging: %s", url)
+            ping_CRSDS(context, options)
+            logger.info("Finished pinging: %s", url)
+
+            count += 1
+            if count % 10 == 0:
+                logger.info('Went through %s brains' % count)
+
+        logger.info('Finished pinging all brains')
+        return 'Finished'
 
 
 class SpecialTagsInterface(Interface):

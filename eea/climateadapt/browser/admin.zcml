@@ -14,6 +14,13 @@
     />
 
   <browser:page
+    class=".admin.ForcePingCRView"
+    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+    name="force-pingcr"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
     class=".admin.ListTilesWithTitleView"
     for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
     name="richtext-tiles"
