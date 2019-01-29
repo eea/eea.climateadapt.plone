@@ -210,10 +210,14 @@ class ForcePingCRView(BrowserView):
         now = dt()
         past = dt('2018-09-01')
 
-        date_range = {'effective' : {'query': (past, now), 'range': 'min:max'}}
+        date_range = {
+            'modified' : {'query': (past, now), 'range': 'min:max'},
+            'review_state': 'published'
+        }
         results=cat.searchResults(date_range)
 
-        logger.info("Found %s objects between %s and %s" % (len(results), past.strftime("%B %d, %Y"), now.strftime("%B %d, %Y")))
+        logger.info("Found %s objects between %s and %s" % (len(results),
+                    past.strftime("%B %d, %Y"), now.strftime("%B %d, %Y")))
 
         count = 0
         options = {}
@@ -222,7 +226,7 @@ class ForcePingCRView(BrowserView):
         for res in results:
             context = res.getObject()
             url = res.getURL()
-            options['obj_url'] = url
+            options['obj_url'] = url + '/@@rdf'
 
             logger.info("Pinging: %s", url)
             ping_CRSDS(context, options)
