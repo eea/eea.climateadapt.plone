@@ -205,19 +205,12 @@ class ForcePingCRView(BrowserView):
     def __call__ (self):
         cat = get_tool('portal_catalog')
 
-        from DateTime import DateTime as dt
-
-        now = dt()
-        past = dt('2018-09-01')
-
-        date_range = {
-            'modified' : {'query': (past, now), 'range': 'min:max'},
+        query = {
             'review_state': 'published'
         }
-        results=cat.searchResults(date_range)
+        results=cat.searchResults(query)
 
-        logger.info("Found %s objects between %s and %s" % (len(results),
-                    past.strftime("%B %d, %Y"), now.strftime("%B %d, %Y")))
+        logger.info("Found %s objects " % len(results))
 
         count = 0
         options = {}
@@ -233,7 +226,7 @@ class ForcePingCRView(BrowserView):
             logger.info("Finished pinging: %s", url)
 
             count += 1
-            if count % 10 == 0:
+            if count % 100 == 0:
                 logger.info('Went through %s brains' % count)
 
         logger.info('Finished pinging all brains')

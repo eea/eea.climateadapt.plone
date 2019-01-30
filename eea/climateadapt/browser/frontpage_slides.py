@@ -234,14 +234,14 @@ SEARCH_TYPES_ICONS = [
     ("ACTION", "Case studies", 'fa-file-text-o'),
     ("GUIDANCE", "Guidance", 'fa-compass'),
     ("INDICATOR", "Indicators", 'fa-area-chart'),
-    ("INFORMATIONSOURCE", "Information Portals", 'fa-info-circle'),
+    ("INFORMATIONSOURCE", "Information portals", 'fa-info-circle'),
 
     # ("MAPGRAPHDATASET", "Maps, graphs and datasets"),       # replaced by
     # video
     ("VIDEO", "Videos", 'fa-file-video-o'),
 
     ("ORGANISATION", "Organisations", 'fa-sitemap'),
-    ("DOCUMENT", "Publication and Reports", 'fa-newspaper-o'),
+    ("DOCUMENT", "Publications and reports", 'fa-newspaper-o'),
     ("RESEARCHPROJECT", "Research and knowledge projects",
      'research-icon'),
     ("TOOL", "Tools", 'fa-wrench'),
