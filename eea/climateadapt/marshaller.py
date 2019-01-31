@@ -176,6 +176,29 @@ class Image2Surf(Value2Surf):
     def __init__(self, value):
         self.value = value.filename
 
+
+class IssuedFieldModifier(object):
+    """Add publishing information to rdf export
+    """
+
+    implements(ISurfResourceModifier)
+    adapts(IDexterityContent)
+
+    def __init__(self, context):
+        self.context = context
+
+    def run(self, resource, *args, **kwds):
+        """Change the rdf resource to include issued term
+        """
+        if not hasattr(self.context, 'effective'):
+            return
+
+        value = self.context.effective()
+        date_string = value.strftime("%Y-%m-%d %H:%M:%S")
+
+        setattr(resource, "dcterms_issued", date_string)
+        setattr(resource, "eea_issued", date_string)
+
 #
 # class TransnationalRegionModifier():
 #     implements(ISurfResourceModifier)
