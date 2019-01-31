@@ -190,35 +190,6 @@
         </div>
 
         <div class="right-area">
-            <div tal:on-error="nothing">
-                  <span id='longitude'
-                      style="display:none"
-                      tal:content="context/geolocation/longitude" />
-                  <span id='latitude'
-                      style="display:none"
-                      tal:content="context/geolocation/latitude" />
-                  <div id="map" style="height: 200px; width:100%; display:inline-block"></div>
-                  <script>
-                    function initMap() {
-                      var map;
-                      var longitude = parseFloat($('#longitude').text());
-                      var latitude = parseFloat($('#latitude').text());
-                      var city_name = $('.city-name span').text();
-                      var myLatLng = {lat: latitude, lng: longitude};
-                      map = new google.maps.Map(document.getElementById('map'), {
-                        center: myLatLng,
-                        zoom: 5
-                      });
-                      var marker = new google.maps.Marker({
-                        position: myLatLng,
-                        map: map,
-                        title: city_name
-                      });
-                    }
-                  </script>
-                  <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async="async" defer="defer"></script>
-            </div>
-
             <div>
                 <h3>Climate change impacts</h3>
                 <ul>
