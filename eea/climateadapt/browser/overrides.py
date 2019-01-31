@@ -1,10 +1,10 @@
 """
 Various page overrides
 """
-
+from Acquisition import aq_inner
 from collective.excelexport.exportables.dexterityfields import (BaseFieldRenderer,
                                                                 FieldRenderer)
-from zope.component import adapter, adapts, queryUtility
+from zope.component import adapter, adapts, queryUtility, getMultiAdapter
 from zope.formlib import form
 from zope.interface import Interface, implementer
 from zope.schema import Choice, List
@@ -22,6 +22,8 @@ from plone.app.contentmenu.menu import DisplaySubMenuItem as DSMI
 from plone.app.contenttypes.behaviors.richtext import \
     IRichText as IRichTextBehavior
 from plone.app.controlpanel.widgets import MultiCheckBoxVocabularyWidget
+from plone.app.layout.navigation.interfaces import INavtreeStrategy
+from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.textfield.interfaces import IRichText
 from plone.app.users.browser.personalpreferences import (IPersonalPreferences,
                                                          LanguageWidget,
@@ -35,12 +37,15 @@ from plone.formwidget.geolocation.interfaces import IGeolocationField
 from plone.memoize.instance import memoize
 from Products.CMFPlone import utils
 from Products.CMFPlone.utils import safe_unicode
+from Products.CMFPlone.browser.navigation import CatalogSiteMap
+from Products.CMFPlone.browser.navtree import SitemapQueryBuilder
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.form.interfaces import NO_VALUE, IFieldWidget, IFormLayer
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.interfaces import IRelationList
+
 
 thematic_sectors = SimpleVocabulary([
     SimpleTerm(value='AGRICULTURE', title=_(u'Agriculture')),
@@ -673,3 +678,18 @@ def RichTextFieldWidget(field, request):
 
 class PasswordAccountPanel(PasswordAccountPanel):
     template = ViewPageTemplateFile('pt/password-account-panel.pt')
+
+
+class CustomizedCatalogSiteMap(CatalogSiteMap):
+    def siteMap(self):
+        context = aq_inner(self.context)
+
+        queryBuilder = SitemapQueryBuilder(context)
+        query = queryBuilder()
+        # query['review_state'] = 'published'
+        strategy = getMultiAdapter((context, self), INavtreeStrategy)
+
+        return buildFolderTree(
+            context, obj=context,
+            query=query, strategy=strategy
+        )

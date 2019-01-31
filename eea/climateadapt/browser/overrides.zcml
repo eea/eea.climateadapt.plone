@@ -91,4 +91,14 @@
     permission="cmf.SetOwnPassword"
     />
 
+  <browser:page
+    for="*"
+    name="sitemap_builder_view"
+    class=".overrides.CustomizedCatalogSiteMap"
+    permission="zope.Public"
+    allowed_attributes="siteMap"
+    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    />
+
+
 </configure>
