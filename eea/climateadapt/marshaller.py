@@ -17,7 +17,8 @@ from plone.formwidget.geolocation.interfaces import IGeolocation
 from plone.namedfile.interfaces import INamedBlobFile, INamedBlobImage
 from Products.CMFCore.utils import getToolByName
 
-# import rdflib
+import rdflib
+import pytz
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -193,11 +194,15 @@ class IssuedFieldModifier(object):
         if not hasattr(self.context, 'effective'):
             return
 
-        value = self.context.effective()
-        date_string = value.strftime("%Y-%m-%d %H:%M:%S")
+        value = self.context.effective().utcdatetime()
 
-        setattr(resource, "dcterms_issued", date_string)
-        setattr(resource, "eea_issued", date_string)
+        timezone = pytz.timezone('UTC')
+        utc_date = timezone.localize(value)
+        value = rdflib.term.Literal(utc_date,
+                                    datatype=rdflib.term.URIRef(u'http://www.w3.org/2001/XMLSchema#dateTime'
+                                    ))
+        setattr(resource, "dcterms_issued", value)
+        setattr(resource, "eea_issued", value)
 
 #
 # class TransnationalRegionModifier():
