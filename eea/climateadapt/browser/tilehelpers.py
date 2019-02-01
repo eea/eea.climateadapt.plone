@@ -44,7 +44,12 @@ class FrontPageCountries(BrowserView):
             'countries-regions/countries'
         )
 
-        countries = [c for c in countries_folder.contentValues()]
+        # countries = [c for c in countries_folder.contentValues()]
+
+        countries = [c.getObject() for c in countries_folder.getFolderContents({
+          'sort_on': 'id',
+          'sort_order': 'ascending'
+        })]
 
         res = [(c.getId(), c.Title())
                for c in countries if c.portal_type == 'Folder']
