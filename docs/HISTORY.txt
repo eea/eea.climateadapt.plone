@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* The broken-links page is now zope2.View permission
+  [tiberich]
 * Added pingcr view
   [iulianpetchesi]
 * Add fullwidth class for Urban Adaptation Map Viewer pages
