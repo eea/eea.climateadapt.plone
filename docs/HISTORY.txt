@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Modified the countries key so that it ignores unicode characters
+  [iulianpetchesi]
 * The broken-links page is now zope2.View permission
   [tiberich]
 * Added pingcr view

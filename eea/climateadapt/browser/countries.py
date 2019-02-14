@@ -65,7 +65,10 @@ class CountriesMetadataExtract(BrowserView):
 
             try:
                 cells = row.xpath('td')
-                key = cells[0].text_content().strip()
+                # key = cells[0].text_content().strip()
+                # key = ''.join(cells[0].itertext()).strip()
+                key = ' '.join(
+                    [c for c in cells[0].itertext() if type(c) is not unicode])
                 children = list(cells[2])
 
                 text = [lxml.etree.tostring(c) for c in children]
@@ -133,7 +136,8 @@ class CountryMetadataExtract(object):
 
         for row in rows:
             cells = row.xpath('td')
-            key = cells[0].text.strip()
+            # key = cells[0].text.strip()
+            key = ''.join(cells[0].itertext()).strip()
             children = list(cells[2])
             text = [lxml.etree.tostring(c) for c in children]
             value = u'\n'.join(text)
