@@ -28,6 +28,21 @@ _MARKERS = [
 ]
 
 
+_COUNTRIES_WITH_NAS = [
+    "Austria", "Belgium", "Cyprus", "Czech Republic", "Denmark", "Estonia",
+    "Finland", "France", "Germany", "Greece", "Hungary", "Ireland", "Italy",
+    "Lithuania", "Luxembourg", "Malta", "Netherlands", "Poland", "Portugal",
+    "Romania", "Slovakia", "Slovenia", "Spain", "Sweden", "United Kingdom",
+    "Liechtenstein", "Norway", "Switzerland", "Turkey"
+]
+
+_COUNTRIES_WITH_NAP = [
+    "Austria", "Belgium", "Cyprus", "Czech Republic", "Denmark", "Estonia",
+    "Finland", "France", "Germany", "Ireland", "Lithuania", "Netherlands",
+    "Romania", "Spain", "United Kingdom", "Switzerland", "Turkey"
+]
+
+
 def normalized(key):
 
     for marker, label in _MARKERS:
@@ -71,12 +86,30 @@ class CountriesMetadataExtract(BrowserView):
                     [c for c in cells[0].itertext() if type(c) is not unicode])
                 children = list(cells[2])
 
+                if key in [None, '']:
+                    key = cells[0].text_content().strip()
+
                 text = [lxml.etree.tostring(c) for c in children]
                 value = u'\n'.join(text)
                 key = normalized(key)
 
                 if key is None:
                     continue
+
+                if 'NAP' in key:
+                    if obj.Title() in _COUNTRIES_WITH_NAP:
+                        if len(text) == 0:
+                            text.append('<p>Established</p>')
+                            value = u'\n'.join(text)
+                    else:
+                        value = u''
+                else:
+                    if obj.Title() in _COUNTRIES_WITH_NAS:
+                        if len(text) == 0:
+                            text.append('<p>Established</p>')
+                            value = u'\n'.join(text)
+                    else:
+                        value = u''
                 res[key] = value
             except Exception:
                 logger.warning(
