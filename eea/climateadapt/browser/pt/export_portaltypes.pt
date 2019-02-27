@@ -13,52 +13,52 @@
       <tal:main-macro metal:define-macro="content-core">
         <p style="font-weight: 200; font-size: 2em;">Export the following portal types in excel:</p>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/publications/@@collective.excelexport'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/publications/@@collective.excelexport?review_state=published'" target="_blank">
                 Publications and reports excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/guidances/@@collective.excelexport'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/guidances/@@collective.excelexport?review_state=published'" target="_blank">
                 Guidances excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/portals/@@collective.excelexport'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/portals/@@collective.excelexport?review_state=published'" target="_blank">
                 Information portals excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/tools/@@collective.excelexport'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/tools/@@collective.excelexport?review_state=published'" target="_blank">
                 Tools excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/organisations/@@collective.excelexport'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/organisations/@@collective.excelexport?review_state=published'" target="_blank">
                 Organisations excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/indicators/@@collective.excelexport'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/indicators/@@collective.excelexport?review_state=published'" target="_blank">
                 Indicators and reports excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/adaptation-options/@@collective.excelexport'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/adaptation-options/@@collective.excelexport?review_state=published'" target="_blank">
                 Adaptation Options excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/projects/@@collective.excelexport'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/projects/@@collective.excelexport?review_state=published'" target="_blank">
                 Research and knowledge projects excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/case-studies/@@collective.excelexport'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/case-studies/@@collective.excelexport?review_state=published'" target="_blank">
                 Case studies excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/map-graphs/@@collective.excelexport'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/metadata/map-graphs/@@collective.excelexport?review_state=published'" target="_blank">
                 Map, graphs, dataset excel export
             </a>
         </li>
