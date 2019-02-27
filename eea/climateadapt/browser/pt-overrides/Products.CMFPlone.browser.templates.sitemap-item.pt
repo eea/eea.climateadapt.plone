@@ -8,7 +8,6 @@
                  item_class      python:is_current and item_class + ' navTreeCurrentItem' or item_class;
                  list_unwanted   python:['repository', 'Members', 'city-profile', 'portal_pdf', 'videos', 'mayors-adapt']"
      tal:condition="python: node['id'] not in list_unwanted">
-    <span tal:content="node/id"></span>
   <a tal:attributes="href python:use_remote_url and item_remote_url or item_url;
                      title node/Description;
                      class string:$item_class"
