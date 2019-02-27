@@ -2,6 +2,14 @@
            xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
            i18n_domain="eea.climateadapt">
 
+   <genericsetup:upgradeStep
+     title="Upgrade eea.climateadapt to v57"
+     description=""
+     source="56"
+     destination="57"
+     handler=".update.update_to_57"
+     profile="eea.climateadapt:default" />
+
    <genericsetup:upgradeSteps
       source="55"
       destination="56"

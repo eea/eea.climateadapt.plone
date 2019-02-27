@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Replaced Former Yugoslav Republic of Macedonia with Republic of North
+  Macedonia + upgrade step for data migration and pingcr for reharvest
+  [iulianpetchesi]
 * Updated the national video thumbnail
   [iulianpetchesi]
 * Modified the countries key so that it ignores unicode characters

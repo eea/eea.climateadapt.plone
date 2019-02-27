@@ -72,7 +72,7 @@ regions = {
         ('Cyprus', '/countries/cyprus'),
         ('Greece', '/countries/greece'),
         ('Albania', ''),
-        ('former Yugoslav Republic of Macedonia', '')],
+        ('Republic of North Macedonia', '')],
         [('balkan_mediterranean.jpg')],
     ],
     'Baltic Sea': [

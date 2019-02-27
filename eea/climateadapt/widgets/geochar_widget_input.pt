@@ -130,7 +130,7 @@
                     <li><label for="chk_countries_DK"> <input type="checkbox" class= "chk_countries_geochars" name="chk_countries_DK" id= "chk_countries_DK" value="DK"/>Denmark</label></li>
                     <li><label for="chk_countries_EE"> <input type="checkbox" class= "chk_countries_geochars" name="chk_countries_EE" id= "chk_countries_EE" value="EE"/>Estonia</label></li>
                     <li><label for="chk_countries_FI"> <input type="checkbox" class= "chk_countries_geochars" name="chk_countries_FI" id= "chk_countries_FI" value="FI"/>Finland</label></li>
-                    <li><label for="chk_countries_MK"> <input type="checkbox" class= "chk_countries_geochars" name="chk_countries_MK" id= "chk_countries_MK" value="FYROM"/>Former Yugoslav Republic of Macedonia</label></li>
+                    <li><label for="chk_countries_MK"> <input type="checkbox" class= "chk_countries_geochars" name="chk_countries_MK" id= "chk_countries_MK" value="MK"/>Republic of North Macedonia</label></li>
                     <li><label for="chk_countries_FR"> <input type="checkbox" class= "chk_countries_geochars" name="chk_countries_FR" id= "chk_countries_FR" value="FR"/>France</label></li>
                     <li><label for="chk_countries_DE"> <input type="checkbox" class= "chk_countries_geochars" name="chk_countries_DE" id= "chk_countries_DE" value="DE"/>Germany</label></li>
                     <li><label for="chk_countries_GR"> <input type="checkbox" class= "chk_countries_geochars" name="chk_countries_GR" id= "chk_countries_GR" value="GR"/>Greece</label></li>
@@ -427,7 +427,7 @@
                           <option value='SUBN_Düsseldorf__DE_'>Düsseldorf (DE)</option>
                           <option value='SUBN_Ağrı_Kars_Iğdır_Ardahan_TR_'>Ağrı, Kars, Iğdır, Ardahan (TR)</option>
                           <option value='SUBN_Basilicata__IT_'>Basilicata (IT)</option>
-                          <option value='SUBN_Поранешна_југословенска_Република_Македонија_Poranešna_jugoslovenska_Republika_Makedonija_FYROM_'>Поранешна југословенска Република Македонија (Poranešna jugoslovenska Republika Makedonija) (FYROM)</option>
+                          <option value='SUBN_Поранешна_југословенска_Република_Македонија_Poranešna_jugoslovenska_Republika_Makedonija_MK_'>Поранешна југословенска Република Македонија (Poranešna jugoslovenska Republika Makedonija) (MK)</option>
                           <option value='SUBN_Świętokrzyskie__PL_'>Świętokrzyskie (PL)</option>
                           <option value='SUBN_Border__Midland_and_Weste'>Border, Midland and Western (IE)</option>
                           <option value='SUBN_Samsun_Tokat_Çorum_Amasya_TR_'>Samsun, Tokat, Çorum, Amasya (TR)</option>

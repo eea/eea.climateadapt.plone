@@ -5,6 +5,7 @@ from Acquisition import aq_self
 from plone.api import portal
 from plone.app.textfield.interfaces import ITransformer
 from Products.MimetypesRegistry.mime_types.magic import guessMime
+from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
 
 logger = logging.getLogger('eea.climateadapt.migration')
 default_profile = 'profile-eea.climateadapt:default'
@@ -728,3 +729,52 @@ def update_to_47(context):
             obj.reindexObject()
             obj._p_changed = True
     logger.info("Finished upgrade 47.")
+
+
+def update_to_57(context):
+    logger.info("Upgrading to 57.")
+
+    catalog = portal.get_tool(name='portal_catalog')
+    query = {'portal_type': [
+        'eea.climateadapt.aceproject',
+        'eea.climateadapt.adaptationoption',
+        'eea.climateadapt.casestudy',
+        'eea.climateadapt.guidancedocument',
+        'eea.climateadapt.indicator',
+        'eea.climateadapt.informationportal',
+        'eea.climateadapt.mapgraphdataset',
+        'eea.climateadapt.organisation',
+        'eea.climateadapt.publicationreport',
+        'eea.climateadapt.researchproject',
+        'eea.climateadapt.tool',
+        # 'eea.climateadapt.city_profile',
+    ]}
+    results = catalog.searchResults(**query)
+    logger.info('Got %s results.' % len(results))
+    items_count = 0
+
+    options = {}
+    options['create'] = False
+    options['service_to_ping'] = 'http://semantic.eea.europa.eu/ping'
+    for brain in results:
+        obj = brain.getObject()
+
+        if items_count % 100 == 0:
+            logger.info('Went through %s brains' % items_count)
+        items_count += 1
+
+        if hasattr(obj, 'geochars'):
+            if obj.geochars:
+                if obj.geochars.find("FYROM") != -1:
+                    logger.info("Fixing geochars on %s", obj.absolute_url())
+                    obj.geochars = obj.geochars.replace("FYROM", "MK")
+                    logger.info("New geochars: %s", obj.geochars)
+                    obj.reindexObject()
+                    obj._p_changed = True
+
+                    url = brain.getURL()
+                    options['obj_url'] = url + '/@@rdf'
+                    logger.info("Pinging: %s", url)
+                    ping_CRSDS(context, options)
+                    logger.info("Finished pinging: %s", url)
+    logger.info("Finished upgrade 57.")
