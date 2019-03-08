@@ -102,7 +102,7 @@ class FrontpageSlidesView (BrowserView):
         except:
             image = images[-1]
 
-        url = image.absolute_url()
+        url = image.absolute_url() + "/@@images/image/large"
         copyright = image.rights
 
         return url, copyright
