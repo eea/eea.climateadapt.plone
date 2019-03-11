@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Fix text for Ecosystem-based approaches.
+  (to be the same as for Marine and fisheries)
+  [GhitaB #103468]
 * Added image scaling to frontpage images
   [iulianpetchesi]
 * Export only published items at excel export
