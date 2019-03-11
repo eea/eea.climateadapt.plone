@@ -6,8 +6,12 @@
                  is_current      node/currentItem;
                  item_class      string:state-${node/normalized_review_state} contenttype-${node/normalized_portal_type};
                  item_class      python:is_current and item_class + ' navTreeCurrentItem' or item_class;
-                 list_unwanted   python:['repository', 'Members', 'city-profile', 'portal_pdf', 'videos', 'mayors-adapt']"
+                 list_unwanted   python:['repository', 'Members', 'city-profile', 'portal_pdf', 'videos', 'mayors-adapt',
+                                         'old-adaptation-support-tool', 'fao', '2018-fourth-webinar-on-the-evaluation-of-climate-adapt',
+                                         'ipcc-wgii-ar5-climate-change-2014-impacts-adaptation-and-vulnerability', 'adapt-mont-blanc',
+                                         'step-2', 'step-3', 'step-4', 'step-5', 'step-6']"
      tal:condition="python: node['id'] not in list_unwanted">
+
   <a tal:attributes="href python:use_remote_url and item_remote_url or item_url;
                      title node/Description;
                      class string:$item_class"
