@@ -21,6 +21,7 @@ from plone.directives import form
 from plone.memoize import view
 from Products.CMFPlone.utils import getToolByName, isExpired
 from Products.Five.browser import BrowserView
+from Products.statusmessages.interfaces import IStatusMessage
 from z3c.form import button, field, validator
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
@@ -701,7 +702,9 @@ class ContactForm(form.SchemaForm):
                     mime_msg['To'] = m
 
                 self.description = u"Email Sent."
-
+                IStatusMessage(self.request).addStatusMessage(
+                    "Email SENT",
+                    'info')
                 return mail_host.send(mime_msg.as_string())
             else:
                 self.description = u"Please complete the Captcha."
@@ -779,6 +782,10 @@ is sending feedback about the site you administer at %(url)s.
             mime_msg['To'] = str(api.portal.getSite().email_from_address)
 
             self.description = u"Email Sent."
+
+            IStatusMessage(self.request).addStatusMessage(
+                "Email SENT",
+                'info')
 
             return mail_host.send(mime_msg.as_string())
         else:
