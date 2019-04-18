@@ -61,11 +61,9 @@
             </div>
             <div id="ipcc_category" tal:condition="context/ipcc_category">
               <p><em class="adapt-option-em" style="text-decoration: underline">IPCC categories</em></p>
-              <div tal:repeat="ipcc_categ context/ipcc_category">
-                <p>
-                  <tal:block content="ipcc_categ | nothing"/>
-                </p>
-              </div>
+              <p>
+                <tal:block content="structure python:view.w['ipcc_category'].render()"/>
+              </p>
             </div>
             <div tal:condition="python: context.stakeholder_participation is not None">
                 <p id="stakeholder_participation">
