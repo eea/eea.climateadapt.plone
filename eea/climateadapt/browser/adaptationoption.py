@@ -46,6 +46,7 @@ class AdaptationOptionFormExtender(FormExtender):
     def update(self):
         self.move('description', before='long_description')
         self.move('category', before='stakeholder_participation')
+        self.move('ipcc_category', after='category')
         self.remove('ICategorization.subjects')
         self.remove('ICategorization.language')
         self.remove('IPublication.effective')

@@ -388,6 +388,16 @@ class IAdaptationOption(IAceMeasure):
             vocabulary="eea.climateadapt.aceitems_category",),
     )
 
+    form.widget(ipcc_category="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    ipcc_category = List(
+        title=_(u"IPCC categories (WG II AR5 report - chapter 14)"),
+        description=_(u"Select one or more categories of adaptation options: "
+                      u"The options are:"),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_ipcc_category",),
+    )
+
 
 class ICaseStudy(IAceMeasure):  # , IGeolocatable):
     """ Case study

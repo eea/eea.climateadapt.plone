@@ -367,6 +367,22 @@ _category = [
 category = generic_vocabulary(_category)
 alsoProvides(category, IVocabularyFactory)
 
+_ipcc_category = [
+    ("Structural and physical: Engineering and built environment options", "Structural and physical: Engineering and built environment options"),
+    ("Structural and physical: Technological options", "Structural and physical: Technological options"),
+    ("Structural and physical: Ecosystem-based adaptation options", "Structural and physical: Ecosystem-based adaptation options"),
+    ("Structural and physical: Service options", "Structural and physical: Service options"),
+    ("Social: Educational options", "Social: Educational options"),
+    ("Social: Informational", "Social: Informational"),
+    ("Social: Behavioural", "Social: Behavioural"),
+    ("Institutional: Economic options", "Institutional: Economic options"),
+    ("Institutional: Law and regulations", "Institutional: Law and regulations"),
+    ("Institutional: Government policies and programmes", "Institutional: Government policies and programmes"),
+]
+ipcc_category = generic_vocabulary(_ipcc_category)
+alsoProvides(ipcc_category, IVocabularyFactory)
+
+
 _header_level = (
     ("h1", "Header 1"),
     ("h2", "Header 2"),

@@ -22,6 +22,7 @@
             <h5 class="Adaptation-option-selector">Additional Details</h5>
             <ul>
               <li tal:condition="context/category"> <a href="#ao_category">Category</a> </li>
+              <li tal:condition="context/ipcc_category"> <a href="#ipcc_category">IPCC categories</a> </li>
               <li tal:condition="python: context.stakeholder_participation is not None">
                    <a href="#stakeholder_participation">Stakeholder participation</a>
               </li>
@@ -57,7 +58,15 @@
                   <tal:block content="categ | nothing"/>
                 </p>
               </div>
-          </div>
+            </div>
+            <div id="ipcc_category" tal:condition="context/ipcc_category">
+              <p><em class="adapt-option-em" style="text-decoration: underline">IPCC categories</em></p>
+              <div tal:repeat="ipcc_categ context/ipcc_category">
+                <p>
+                  <tal:block content="ipcc_categ | nothing"/>
+                </p>
+              </div>
+            </div>
             <div tal:condition="python: context.stakeholder_participation is not None">
                 <p id="stakeholder_participation">
                   <em class="adapt-option-em" style="text-decoration: underline">Stakeholder participation</em>
