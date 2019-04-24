@@ -15,3 +15,10 @@ jQuery(function($) {
    //    el.href =  url + last_value;
    // })
 });
+
+$(document).ready(function() {
+    var label_html = $('#formfield-form-widgets-ipcc_category label[for=form-widgets-ipcc_category]').html();
+    var link = "<a href='https://www.ipcc.ch/report/ar5/wg2/adaptation-needs-and-options'>IPCC adaptation options categories</a>";
+    label_html = label_html.replace('IPCC adaptation options categories', link);
+    $('#formfield-form-widgets-ipcc_category label[for=form-widgets-ipcc_category]').html(label_html);
+});

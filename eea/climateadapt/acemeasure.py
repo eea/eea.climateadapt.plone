@@ -380,8 +380,8 @@ class IAdaptationOption(IAceMeasure):
 
     form.widget(category="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     category = List(
-        title=_(u"Category"),
-        description=_(u"Select one or more categories of adaptation options: "
+        title=_(u"General category"),
+        description=_(u"Select one or more categories of adaptation options. "
                       u"The 3 options are:"),
         required=False,
         value_type=Choice(
@@ -390,8 +390,8 @@ class IAdaptationOption(IAceMeasure):
 
     form.widget(ipcc_category="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     ipcc_category = List(
-        title=_(u"IPCC categories (WG II AR5 report - chapter 14)"),
-        description=_(u"Select one or more categories of adaptation options: "
+        title=_(u"IPCC adaptation options categories"),
+        description=_(u"Select one or more categories of adaptation options. "
                       u"The options are:"),
         required=False,
         value_type=Choice(
