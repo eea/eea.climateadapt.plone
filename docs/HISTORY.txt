@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Updated AdapteCCA importer so that it works with the new data
+  [iulianpetchesi]
 * Fix text for Ecosystem-based approaches.
   (to be the same as for Marine and fisheries)
   [GhitaB #103468]

@@ -19,6 +19,7 @@ from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
 from eea.climateadapt.scripts import get_plone_site
 from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
 from oauth2client.service_account import ServiceAccountCredentials
+from plone import api
 from plone.api import portal
 from plone.api.portal import get_tool
 from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
@@ -684,10 +685,19 @@ class Item:
         self._node = node
 
     def __getattr__(self, name):
+        org_name = name
         name = 'field_' + name
         field = self._node.find(name)
 
-        return field.text
+        if field is not None:
+            return field.text
+        if org_name in ['sectors', 'keywords', 'impact', 'websites']:
+            return ''
+        if org_name in ['governance', 'websites']:
+            return []
+        if org_name in ['regions']:
+            return {"geoElements": {"element": "EUROPE", "biotrans": []}}
+        return None
 
 
 class AdapteCCACaseStudyImporter(BrowserView):
@@ -698,28 +708,55 @@ class AdapteCCACaseStudyImporter(BrowserView):
         # Translate values to their CCA equivalent
 
         # TODO: check mapped ids
+        # map = {
+        #     u"Biodiversidad": "BIODIVERSITY",
+        #     u"Recursos hídricos": "WATERMANAGEMENT",
+        #     u"Bosques": "FORESTRY ",
+        #     u"Sector agrario": "AGRICULTURE",
+        #     # "Caza y pesca continental": "Inland hunting and fishing",
+        #     # "Suelos y desertificación": "Soils and desertification",
+        #     u"Transporte": "TRANSPORT",
+        #     u"Salud humana": "HEALTH",
+        #     # "Industria": "Industry",
+        #     # "Turismo": "Tourism",
+        #     u"Finanzas – Seguros": "FINANCIAL",
+        #     u"Urbanismo y Construcción": "URBAN",
+        #     u"Energía": "ENERGY",
+        #     # "Sociedad": "Society",
+        #     u"Zonas costeras": "COASTAL",
+        #     # "Zonas de montaña": "Mountain zones",
+        #     u"Medio marino y pesca": "MARINE",
+        #     # "Ámbito Insular": "Islands",
+        #     # "Medio Rural": "Rural environment",
+        #     u"Medio Urbano": "URBAN",
+        #     u"Eventos extremos": "DISASTERRISKREDUCTION",
+        # }
+
         map = {
-            u"Biodiversidad": "BIODIVERSITY",
-            u"Recursos hídricos": "WATERMANAGEMENT",
-            u"Bosques": "FORESTRY ",
-            u"Sector agrario": "AGRICULTURE",
-            # "Caza y pesca continental": "Inland hunting and fishing",
-            # "Suelos y desertificación": "Soils and desertification",
+            u"Water management": "WATERMANAGEMENT",
+            u"Ecosystem-based approaches (GI)": "ECOSYSTEM",
+            u"Urban": "URBAN",
+            u"Urban Planning and Construction": "URBAN",
+            u"Urban areas": "URBAN",
+            u"Disaster Risk Reduction": "DISASTERRISKREDUCTION",
+            u"Biodiversity": "BIODIVERSITY",
+            u"Coastal areas": "COASTAL",
+            u"BUILDINGS": "BUILDINGS",
+            u"Forestry": "FORESTRY ",
+            u"Forests": "FORESTRY ",
+            u"Agrarian sector": "AGRICULTURE",
+            u"Agriculture": "AGRICULTURE",
+            u"MARINE": "MARINE",
+            u"Financial": "FINANCIAL",
+            u"Energy": "ENERGY",
+            u"Transport": "TRANSPORT",
+            u"Health": "HEALTH",
+            u"Water resources": "WATERMANAGEMENT",
+
+            u"Rural areas": "Rural areas",
+            u"Transnational region (stretching across country borders)PORT": "Transnational region",
+
             u"Transporte": "TRANSPORT",
-            u"Salud humana": "HEALTH",
-            # "Industria": "Industry",
-            # "Turismo": "Tourism",
-            u"Finanzas – Seguros": "FINANCIAL",
-            u"Urbanismo y Construcción": "URBAN",
-            u"Energía": "ENERGY",
-            # "Sociedad": "Society",
-            u"Zonas costeras": "COASTAL",
-            # "Zonas de montaña": "Mountain zones",
-            u"Medio marino y pesca": "MARINE",
-            # "Ámbito Insular": "Islands",
-            # "Medio Rural": "Rural environment",
-            u"Medio Urbano": "URBAN",
-            u"Eventos extremos": "DISASTERRISKREDUCTION",
         }
 
         return list(set([map.get(x, 'NONSPECIFIC') for x in l]))
@@ -727,46 +764,99 @@ class AdapteCCACaseStudyImporter(BrowserView):
     def t_impacts(self, l):
         # Translate values to their CCA equivalent
 
+        # map = {
+        #     u"Sequía / Escasez de agua": "DROUGHT",
+        #     u"Eutrofización / salinización "
+        #     u"/ pérdida de calidad de aguas continentales": "WATERSCARCE",
+        #     u"Inundaciones": "FLOODING",
+        #     # "Desertificación / Degradación forestal y de tierras"
+        #     u"Aumento del nivel de mar": "SEALEVELRISE",
+        #     u"Temperaturas extremas (olas de calor/frio)": "EXTREMETEMP",
+        #     # "Impactos sobre la biodiversidad (fenología, distribución, etc.)"
+        #     # "Impacts on biodiversity (phenology, distribution, etc.)",
+        #     # "Enfermedades y vectores": "Illnesses and vectors",
+        #     u"Vientos extraordinarios": "STORM",
+        # }
+
         map = {
-            u"Sequía / Escasez de agua": "DROUGHT",
-            u"Eutrofización / salinización "
-            u"/ pérdida de calidad de aguas continentales": "WATERSCARCE",
-            u"Inundaciones": "FLOODING",
-            # "Desertificación / Degradación forestal y de tierras"
-            u"Aumento del nivel de mar": "SEALEVELRISE",
-            u"Temperaturas extremas (olas de calor/frio)": "EXTREMETEMP",
-            # "Impactos sobre la biodiversidad (fenología, distribución, etc.)"
-            # "Impacts on biodiversity (phenology, distribution, etc.)",
-            # "Enfermedades y vectores": "Illnesses and vectors",
-            u"Vientos extraordinarios": "STORM",
+            u"Flooding": "FLOODING",
+            u"Sea level rise": "SEALEVELRISE",
+            u"Ice and Snow": "ICEANDSNOW",
+            u"Extreme temperatures": "EXTREMETEMP",
+            u"Extreme temperature (heat and cold waves)": "EXTREMETEMP",
+            u"Storms": "STORM",
+            u"Drought": "DROUGHT",
+            u"Water Scarcity": "WATERSCARCE",
+            u"Desertification / Forest and land degradation": "DROUGHT",
         }
 
         return list(set([map.get(x, 'NONSPECIFIC') for x in l]))
 
-    def t_governance(self, l):
+    def html2text(self, html):
+        if not isinstance(html, basestring):
+            return u""
+        portal_transforms = api.portal.get_tool(name='portal_transforms')
+        data = portal_transforms.convertTo('text/plain',
+                                           html, mimetype='text/html')
+        text = data.getData()
+
+        return text.strip()
+
+    def t_governance(self, level):
         # Translate values to their CCA equivalent
+        # map = {
+        #     u"Local": "LC",
+        #     u"Regional": "SNA",
+        #     u"Nacional": "NAT",
+        #     u"Internacional": "TRANS",
+        # }
+        if level is None:
+            return ''
+
+        level = self.html2text(level)
+        level = [x.strip() for x in level.split('\n')]
 
         map = {
             u"Local": "LC",
             u"Regional": "SNA",
-            u"Nacional": "NAT",
-            u"Internacional": "TRANS",
+            u"Sub National Regions": "SNA",
+            u"National": "NAT",
+            u"Transnational region (stretching across country borders)": "TRANS",
         }
 
-        return map[l]
+        # 'governance_level': ['LC', 'NAT', 'SNA'],
+        return [map.get(x, '') for x in level]
 
     def t_geochars(self, v):
         # TODO: need to convert to geochar format
+        # map = {
+        #     u"Región Alpina": "TRANS_BIO_ALPINE",
+        #     u"Región Atlántica": "TRANS_BIO_ATLANTIC",
+        #     u"Región Mediterránea ": "TRANS_BIO_MEDIT",
+        #     u"Región Macaronésica ": "TRANS_BIO_MACARO",
+        # }
+
         map = {
-            u"Región Alpina": "TRANS_BIO_ALPINE",
-            u"Región Atlántica": "TRANS_BIO_ATLANTIC",
-            u"Región Mediterránea ": "TRANS_BIO_MEDIT",
-            u"Región Macaronésica ": "TRANS_BIO_MACARO",
+            u"Mediterranean": "TRANS_BIO_MEDIT",
+            u"Alpine": "TRANS_BIO_ALPINE",
+            u"Atlantic": "TRANS_BIO_ATLANTIC",
+            u"Pannonian": "TRANS_BIO_PANNONIAN",
+            u"Boreal": "TRANS_BIO_BOREAL",
+            u"Continental": "TRANS_BIO_CONTINENTAL",
+            u"Arctic": "TRANS_BIO_ARCTIC",
         }
 
         # TODO: is this a list or just a bio region?
-        v = {"geoElements": {"element": "EUROPE", "biotrans": [map[v]]}}
+        if type(v) is dict:
+            return json.dumps(v)
 
+        v = [x.strip() for x in v.split(',')]
+        v = {"geoElements":
+                {"element": "EUROPE", "macrotrans": None,
+                 "biotrans": [map.get(x, '') for x in v], "countries": [],
+                 "subnational":[], "city":"",
+                 }
+            }
         return json.dumps(v)
 
     def node_import(self, container, node):
@@ -810,7 +900,7 @@ class AdapteCCACaseStudyImporter(BrowserView):
             # TODO: there is no lifetime in AdapteCCA?
 
             contact=u.t2r(f.contact),
-            websites=u.s2l(u.r2t(html_unescape(f.websites))),
+            websites=u.s2l(u.r2t(html_unescape(f.websites))) or [],
 
             # TODO: make sure we don't have paragraphs?
             source=u.r2t(f.sources),
