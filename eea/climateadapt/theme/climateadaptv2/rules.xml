@@ -183,4 +183,10 @@
     </a>
   </xsl:template>
 
+  <!-- body -->
+  <after css:theme-children="body" css:content="head script" />
+
+  <drop css:content="body script" />
+  <after css:theme-children="body" css:content="body script" method="raw" />
+
 </rules>

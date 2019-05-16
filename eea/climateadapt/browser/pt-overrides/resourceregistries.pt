@@ -1,0 +1,4 @@
+<tal:resourceregistries>
+  <tal:styles replace="structure provider:plone.resourceregistries.styles" />
+  <tal:styles replace="structure provider:plone.resourceregistries.kineticstylesheets" />
+</tal:resourceregistries>
