@@ -13,11 +13,13 @@
     <!--Head-->
     <copy css:content="html" css:theme="html" attributes="lang dir"/>
     <drop css:theme="head script" css:if-content=".template-sat"/>
-    <before css:content="head style, head link, head script, head meta" css:theme-children="head"/>
+    <before css:content="head style, head link, head meta" css:theme-children="head"/>
     <replace css:content="head title" css:theme="head title"/>
     <copy css:content="head base" css:theme="head base"/>
     <drop css:content="head link[rel='shortcut icon']"/>
     <drop css:content="head link[rel='apple-touch-icon']"/>
+
+    <after css:theme-children="body" css:content="head script" />
 
     <!--Content-->
     <merge attributes="class" css:content="body" css:theme="body"/>
@@ -165,14 +167,6 @@
     <xsl:attribute name="class"><xsl:value-of select="/html/body/@class"/> fullwidth</xsl:attribute>
   </prepend>
 
-  <rules if="contains($host, 'local')">
-    <!--<xsl:value-of select="$host" /> shows value of given variable -->
-    <after css:theme="footer">
-      <script src="/cca/++theme++climateadaptv2/static/js/dev_fixes.js">
-      </script>
-    </after>
-  </rules>
-
   <xsl:template match="a[@data-linktype = 'external']">
     <a>
       <xsl:copy-of select="@*|b/@*" />
@@ -184,9 +178,15 @@
   </xsl:template>
 
   <!-- body -->
-  <after css:theme-children="body" css:content="head script" />
-
   <drop css:content="body script" />
   <after css:theme-children="body" css:content="body script" method="raw" />
+
+  <rules if="contains($host, 'local')">
+    <!--<xsl:value-of select="$host" /> shows value of given variable -->
+    <after css:theme-children="body">
+      <script src="/cca/++theme++climateadaptv2/static/js/dev_fixes.js">
+      </script>
+    </after>
+  </rules>
 
 </rules>
