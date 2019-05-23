@@ -167,7 +167,7 @@
 
   <rules if="contains($host, 'local')">
     <!--<xsl:value-of select="$host" /> shows value of given variable -->
-    <after css:theme-children="body">
+    <after css:theme-children="footer">
       <script src="/cca/++theme++climateadaptv2/static/js/dev_fixes.js">
       </script>
     </after>
