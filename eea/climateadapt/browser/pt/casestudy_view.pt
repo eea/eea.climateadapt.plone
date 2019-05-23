@@ -25,7 +25,7 @@
                 <metal:macro use-macro="context/ace_macros/macros/ace_layout">
 
                   <div metal:fill-slot="title-slot">
-                    <div metal:use-macro="context/ace_macros/macros/title_date"></div>
+                    <div metal:use-macro="context/ace_macros/macros/title_date"> </div>
                   </div>
                   <div class="aceitem-left"  metal:fill-slot="ace-left-slot">
                     <div class="case-studies-top">
@@ -284,7 +284,6 @@
                     <div class="macro-category" tal:condition="python: external_source == 'AdapteCCA'">
                       <h4>External source</h4>
                       <div>
-                        <img src="/++theme++climateadaptv2/static/images/logo-adaptecca.png" style="width:30%;height:23px;"/>
                         <a href="https://www.adaptecca.es/">AdapteCCA</a>
                       </div>
                     </div>
