@@ -57,7 +57,7 @@
               <a href="https://youtu.be/uSKMb4sBtJI"
                  class="thumbnail-wrapper">
                 <div class="video-thumbnail">
-                  <div class="video-image local-image"></div>
+                  <div class="video-image lazyload" data-bg="{{ themeurl }}static/images/getting-started-local.png"></div>
                   <div class="slider-layer"></div>
                   <span class="icon-bg"></span>
                   <i class="fa fa-play"></i>
@@ -73,7 +73,7 @@
               <a href="https://youtu.be/vOJQALGwcI0"
                  class="thumbnail-wrapper">
                 <div class="video-thumbnail">
-                  <div class="video-image national-image"></div>
+                  <div class="video-image lazyload" data-bg="{{ themeurl }}static/images/getting-started-national.png"></div>
                   <div class="slider-layer"></div>
                   <span class="icon-bg"></span>
                   <i class="fa fa-play"></i>
@@ -89,7 +89,8 @@
               <a href="https://youtu.be/xaAFzXrN4JA"
                  class="thumbnail-wrapper">
                 <div class="video-thumbnail">
-                  <div class="video-image transnational-image"></div>
+                  <div class="video-image lazyload" data-bg="{{ themeurl }}static/images/getting-started-transnational.png"></div>
+                  <div class="video-image transnational-image" ></div>
                   <div class="slider-layer"></div>
                   <span class="icon-bg"></span>
                   <i class="fa fa-play"></i>
@@ -268,7 +269,7 @@
               <p>Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events. </p>
               <p>Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href="https://climate-adapt.eea.europa.eu/repository/11090223.pdf">criteria</a> and also in collaboration with the main stakeholders.</p>
               <div class="ca-booklet">
-                <img src="static/images/ca-booklet.png">
+                <img class="lazyload" data-src="{{ themeurl }}/static/images/ca-booklet.png">
                 <p>See how Europe is adapting to climate change:
                   <a class="ca-booklet-link" href="../about/climate-adapt-10-case-studies-online.pdf">
                     <i class="fa fa-angle-double-right"></i>
@@ -394,11 +395,11 @@
               </div>
             </div>
             <div class="urban-area">
-              <img src="static/images/uast.png">
+              <img class="lazyload" data-src="{{ themeurl }}/static/images/uast.png">
               <p>For urban areas guidance visit:</p>
               <a href="../knowledge/tools/urban-ast/step-0-0">
-              <i class="fa fa-angle-double-right"></i>
-              Urban Adaptation Support Tool
+                <i class="fa fa-angle-double-right"></i>
+                Urban Adaptation Support Tool
               </a>
             </div>
           </div>
