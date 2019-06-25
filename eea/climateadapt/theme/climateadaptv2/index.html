@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/bs3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
-    <link rel="stylesheet" href="static/css/compiled-css.css"/>
-    <link rel="stylesheet" href="static/css/compiled-less.css"/>
+
+    <link rel="preload" href="static/bs3/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="static/bs3/css/bootstrap.min.css"></noscript>
+
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css"></noscript>
+
+    <link rel="preload" href="static/css/compiled-css.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link rel="stylesheet" href="static/css/compiled-css.css"></noscript>
+
+    <link rel="preload" href="static/css/compiled-less.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link rel="stylesheet" href="static/css/compiled-less.css"></noscript>
 
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="static/images/favicon/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/images/favicon/apple-touch-icon-114x114.png" />
@@ -18,12 +26,11 @@
     <link rel="icon" type="image/png" href="static/images/favicon/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="static/images/favicon/favicon-16x16.png" sizes="16x16" />
     <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon/favicon.ico">
+
     <meta name="application-name" content="Climate-ADAPT"/>
     <meta name="msapplication-TileColor" content="#FFFFFF" />
     <meta name="msapplication-TileImage" content="mstile-144x144.png" />
-
     <meta name="theme-color" content="#005C96">
-
     <title>Climate-ADAPT</title>
   </head>
 
@@ -399,7 +406,7 @@
                   <a href="https://youtu.be/uSKMb4sBtJI"
                      class="thumbnail-wrapper">
                     <div class="video-thumbnail">
-                      <div class="video-image local-image"></div>
+                      <div class="video-image lazyload" data-bg="/cca/++theme++climateadaptv2/static/images/getting-started-local.png"></div>
                       <div class="slider-layer"></div>
                       <span class="icon-bg"></span>
                       <i class="fa fa-play"></i>
@@ -414,7 +421,7 @@
                   <a href="https://youtu.be/vOJQALGwcI0"
                      class="thumbnail-wrapper">
                     <div class="video-thumbnail">
-                      <div class="video-image national-image"></div>
+                      <div class="video-image lazyload" data-bg="/cca/++theme++climateadaptv2/static/images/getting-started-national.png"></div>
                       <div class="slider-layer"></div>
                       <span class="icon-bg"></span>
                       <i class="fa fa-play"></i>
@@ -429,7 +436,8 @@
                   <a href="https://youtu.be/xaAFzXrN4JA"
                      class="thumbnail-wrapper">
                     <div class="video-thumbnail">
-                      <div class="video-image transnational-image"></div>
+                      <div class="video-image lazyload" data-bg="/cca/++theme++climateadaptv2/static/images/getting-started-transnational.png"></div>
+                      <div class="video-image transnational-image" ></div>
                       <div class="slider-layer"></div>
                       <span class="icon-bg"></span>
                       <i class="fa fa-play"></i>
@@ -900,7 +908,7 @@
                   <p>Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events. </p>
                   <p>Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href="https://climate-adapt.eea.europa.eu/repository/11090223.pdf">criteria</a> and also in collaboration with the main stakeholders.</p>
                   <div class="ca-booklet">
-                    <img src="static/images/ca-booklet.png">
+                    <img class="lazyload" data-src="/cca/++theme++climateadaptv2//static/images/ca-booklet.png">
                     <p>See how Europe is adapting to climate change:
                       <a class="ca-booklet-link" href="../about/climate-adapt-10-case-studies-online.pdf">
                         <i class="fa fa-angle-double-right"></i>
@@ -1025,11 +1033,11 @@
                   </div>
                 </div>
                 <div class="urban-area">
-                  <img src="static/images/uast.png">
+                  <img class="lazyload" data-src="/cca/++theme++climateadaptv2//static/images/uast.png">
                   <p>For urban areas guidance visit:</p>
                   <a href="../knowledge/tools/urban-ast/step-0-0">
-                  <i class="fa fa-angle-double-right"></i>
-                  Urban Adaptation Support Tool
+                    <i class="fa fa-angle-double-right"></i>
+                    Urban Adaptation Support Tool
                   </a>
                 </div>
               </div>
@@ -1050,7 +1058,7 @@
             <div class="box-container info-section">
               <a href="../help/share-your-info">
                 <div class="content-body">
-                  <img src="static/images/share-info.svg" title="Information icon"/>
+                  <img class="lazyload" data-src="/cca/++theme++climateadaptv2//static/images/share-info.svg" title="Information icon"/>
                   <h5 class="info-title">Share <span>your information</span></h5>
                   <p>Find out how to contribute different types of information to Climate-ADAPT</p>
                 </div>
@@ -1060,7 +1068,7 @@
 
           <div class="main-box col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="box-container">
-              <img src="static/images/COM_logo.png" title="Covenant of Mayors logo"/>
+              <img class="lazyload" data-src="/cca/++theme++climateadaptv2/static/images/COM_logo.png" title="Covenant of Mayors logo"/>
               <p class="covenant-text">Covenant of Mayors Initiative on Climate Change Adaptation – was set up by the European Commission to engage cities in taking action to adapt to climate change. It was launched in 2014 as a parallel adaptation initiative to the Covenant of Mayors, which focused on mitigation...</p>
               <div class="read-more-wrapper">
                 <a href="../eu-adaptation-policy/covenant-of-mayors" class="read-more">
@@ -1269,7 +1277,7 @@
                   </a>
                 </li>
                 <li class="footer-logo-item">
-                  <a href="http://climate.copernicus.eu/"
+                  <a href="https://climate.copernicus.eu/"
                      rel="noopener">
                     <img data-src="/cca/++theme++climateadaptv2/static/images/c3s-logo.png"
                          alt="Copernicus Climate Logo"
@@ -1278,7 +1286,7 @@
                   </a>
                 </li>
                 <li class="footer-logo-item">
-                  <a href="http://drmkc.jrc.ec.europa.eu/"
+                  <a href="https://drmkc.jrc.ec.europa.eu/"
                      rel="noopener">
                     <img data-src="/cca/++theme++climateadaptv2/static/images/drmkc-logo.png"
                          alt="DRMKC Logo"
@@ -1293,9 +1301,19 @@
       </div>
 
     </footer>
-    <script src="static/js/slick.min.js"></script>
-    <script src="static/js/lazysizes.min.js"></script>
-    <script src="static/js/main.js"></script>
+
+    <script>
+    	(function(){
+    		window.lazySizesConfig = window.lazySizesConfig || {};
+    		window.lazySizesConfig.loadMode = 1;
+    		window.lazySizesConfig.expand = 10;
+    		window.lazySizesConfig.expFactor = 1.5;
+    	})();
+    </script>
+
+    <script type="text/javascript">
+    		!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){function e(){t.media=a}var a=t.media||"all";t.addEventListener?t.addEventListener("load",e):t.attachEvent&&t.attachEvent("onload",e),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(e,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+    </script>
 
   </body>
 </html>

@@ -3,37 +3,38 @@
 
     <div class="slider-for">
       <tal:block tal:repeat="image images">
-      <div class="slider-image-wrapper">
-        <div tal:define="picture image/image_url"
-          tal:attributes="style string: background-image:url('${picture}')"
-          class="slider-image">
-        </div>
+        <div class="slider-image-wrapper">
+          <div tal:define="picture image/image_url"
+            tal:attributes="data-bg string: ${picture}"
+            class="slider-image lazyload">
+          </div>
 
-        <div class="slider-layer"></div>
+          <div class="slider-layer"></div>
 
-        <div class="image-copyright">
-          <p tal:content="image/copyright">Image copyright</p>
-        </div>
+          <div class="image-copyright">
+            <p tal:content="image/copyright">Image copyright</p>
+          </div>
 
-        <div class="slider-caption">
-          <h3 tal:content="image/title">
-            About Climate Change Adaptation in Europe
-          </h3>
-          <p>
-            <tal:block tal:replace="python: view.getDescription(image)[:300] + '...'">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.
-            </tal:block>
-          </p>
-          <div class="slider-bottom-caption clearfix">
-            <div class="read-more-wrapper">
-              <a href="" class="read-more"
-                 tal:attributes="href image/url">
-                <i class="fa fa-angle-double-right"></i>
-                Read more
-              </a>
+          <div class="slider-caption">
+            <h3 tal:content="image/title">
+              About Climate Change Adaptation in Europe
+            </h3>
+            <p>
+              <tal:block tal:replace="python: view.getDescription(image)[:300] + '...'">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.
+              </tal:block>
+            </p>
+
+            <div class="slider-bottom-caption clearfix">
+              <div class="read-more-wrapper">
+                <a href="" class="read-more"
+                   tal:attributes="href image/url">
+                  <i class="fa fa-angle-double-right"></i>
+                  Read more
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </tal:block>
     </div>
 
@@ -43,8 +44,8 @@
 
           <div class="slider-thumb">
             <div tal:define="picture image/image_url"
-              tal:attributes="style string: background-image:url('${picture}')"
-              class="slider-image">
+              tal:attributes="data-bg string: ${picture}"
+              class="slider-image lazyload">
             </div>
             <div class="slider-layer slider-nav-layer"></div>
             <span class="slider-category"

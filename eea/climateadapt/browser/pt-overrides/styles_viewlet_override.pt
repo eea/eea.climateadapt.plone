@@ -1,0 +1,54 @@
+<tal:defines tal:define="
+        sprops context/portal_properties/site_properties;
+        preload_css sprops/preload_css|False;">
+
+    <!-- inline critical.css if climateadaptv2 namespace exists -->
+    <style tal:content="structure python:context.restrictedTraverse('++theme++climateadaptv2/static/css').readFile('critical.css')" tal:condition="exists:context/++theme++climateadaptv2"></style>
+
+    <tal:styles define="view context/@@resourceregistries_styles_view"
+                repeat="style view/styles">
+        <tal:block define="rendering style/rendering;
+                         condcomment style/conditionalcomment">
+            <tal:wcondcomment tal:condition="condcomment">
+                <tal:opencc tal:replace="structure string:&lt;!--[if ${condcomment}]&gt;" />
+            </tal:wcondcomment>
+            <tal:rendering-link condition="python: rendering == 'link'">
+                <tal:csspreload tal:condition="preload_css">
+                    <link rel="style"
+                        tal:define="cssmedia style/media"
+                                 tal:attributes="href style/src;
+                                        media python: cssmedia if cssmedia != 'print' else '';
+                                        rel string:preload;
+                                        as string:style;
+                                        title style/title"
+                        onload="this.onload=null;this.rel='stylesheet'"
+                    />
+                    <noscript><link rel="stylesheet" tal:attributes="href style/src; media style/media" /></noscript>
+                </tal:csspreload>
+                <tal:nocsspreload tal:condition="python: not preload_css">
+                    <link rel="style" type="text/css"
+                             tal:attributes="href style/src;
+                                media style/media;
+                                rel style/rel;
+                                title style/title" />
+                </tal:nocsspreload>
+            </tal:rendering-link>
+            <tal:rendering-import condition="python: rendering == 'import'">
+                <style type="text/css"
+                         tal:attributes="media style/media"
+                         tal:content="structure string:@import url(${style/src});">
+                </style></tal:rendering-import>
+            <tal:rendering-inline condition="python: rendering == 'inline'">
+                <style type="text/css"
+                         tal:attributes="media style/media"
+                         tal:content="structure style/content">
+                </style>
+            </tal:rendering-inline>
+            <tal:wcondcomment tal:condition="condcomment">
+                <tal:closecc tal:replace="structure string:&lt;![endif]--&gt;" />
+            </tal:wcondcomment>
+        </tal:block>
+
+    </tal:styles>
+
+</tal:defines>

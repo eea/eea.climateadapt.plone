@@ -20,7 +20,7 @@
   </svg-container>
 
   <div class="map-islands">
-    <img src="/cca/++theme++climateadaptv2/static/images/map_islands.svg" />
+    <img class="lazyload" data-src="/++theme++climateadaptv2/static/images/map_islands.svg" />
   </div>
 
 
