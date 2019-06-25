@@ -33,24 +33,23 @@ function initmap(metadata, world, flags) {
   setCountryFlags(world, flags);
 
   var focusCountry = metadata.focusCountry;
+  $("svg-container").show();
 
-  function drawMap(width) {
+  function drawMap() {
     drawCountries(world, focusCountry);
   }
 
+  // TODO 25 June: enable
   // fire resize event after the browser window resizing it's completed
   var resizeTimer;
   $(window).resize(function() {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(doneResizing, 500);
+    resizeTimer = setTimeout(drawMap, 500);
   });
 
-  var width = $('.svg-header-wrapper svg').width();
-  function doneResizing() {
-    drawMap(width);
-  }
+  // var width = $('.svg-header-wrapper svg').width();
 
-  drawMap(width);
+  drawMap();    // width
 
   $('.map-loader').fadeOut(600);
 }
@@ -173,27 +172,30 @@ function renderCountriesBox(opts) {
   var cwRatio = (b[1][0] - b[0][0]) / width;    // bounds to width ratio
   var chRatio = (b[1][1] - b[0][1]) / height;   // bounds to height ratio
   var s = zoom / Math.max(cwRatio, chRatio);
+  s = Math.min(s, 6000);
+
   var t = [
     (width - s * (b[1][0] + b[0][0])) / 2 + x,
     (height - s * (b[0][1] + b[1][1])) / 2 + y
   ];
 
-  globalMapProjection.scale(s).translate(t);
+  globalMapProjection.scale(s) .translate(t);
 
   svg
     .append('defs')    // rectangular clipping path for the whole drawn map
-    .append('clipPath')
-    .attr('id', cprectid)
+    // .append('clipPath')
+    // .attr('id', cprectid)
     .append('rect')
     .attr('x', x)
     .attr('y', y)
-    .attr('height', height)
-    .attr('width', width)
+    .attr('height', height - 100)
+    .attr('width', width - 100)
     ;
 
   var map = svg   // the map will be drawn in this group
     .append('g')
-    .attr('clip-path', 'url(#' + cprectid + ')')
+    // Disable the global rectangle clipping path, trying to optimize performance
+    // .attr('clip-path', 'url(#' + cprectid + ')')
     ;
 
   map     // the world sphere, acts as ocean
