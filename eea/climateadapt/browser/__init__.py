@@ -132,7 +132,7 @@ class AceViewApi(object):
 
     def _render_geochar_biotrans(self, value):
         tpl = (u"<div class='sidebar_bold'>"
-               u"<h5>Biographical regions:</h5><p>{0}</p></div>")
+               u"<h5>Biogeographical regions:</h5><p>{0}</p></div>")
 
         return tpl.format(u", ".join([BIOREGIONS.get(x, x) for x in value]))
 
