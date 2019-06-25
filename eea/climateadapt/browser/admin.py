@@ -220,8 +220,11 @@ class ForcePingCRView(BrowserView):
         for res in results:
             context = res.getObject()
             url = res.getURL()
-            options['obj_url'] = url + '/@@rdf'
 
+            if 'https' in url:
+                url = url.replace('https', 'http')
+
+            options['obj_url'] = url + '/@@rdf'
             logger.info("Pinging: %s", url)
             ping_CRSDS(context, options)
             logger.info("Finished pinging: %s", url)

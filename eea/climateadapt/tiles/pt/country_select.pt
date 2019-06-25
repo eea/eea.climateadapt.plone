@@ -22,6 +22,7 @@
   <div class="country-map">
     <div class="country-header header-bg">
       <svg-container
+        style="display: none"
          class="svg-header-wrapper svg-map-container"
          tal:attributes="data-settings string:${context/absolute_url}/@@mapSingleCountrySettings">
         <svg height="302"></svg>
