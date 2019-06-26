@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Fixed a bug with adaptation options edit, caused by upstream changes in
+  plone.app.widgets
+  [tiberich]
 * Added plone.app.jquerytools.form.js override, not to include define
   definition
   [tiberich]

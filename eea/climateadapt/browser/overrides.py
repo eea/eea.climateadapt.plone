@@ -1,16 +1,16 @@
 """
 Various page overrides
 """
-from Acquisition import aq_inner
-from collective.excelexport.exportables.dexterityfields import (BaseFieldRenderer,
-                                                                FieldRenderer)
-from zope.component import adapter, adapts, queryUtility, getMultiAdapter
+from zope.component import adapter, adapts, getMultiAdapter, queryUtility
 from zope.formlib import form
 from zope.interface import Interface, implementer
 from zope.schema import Choice, List
 from zope.schema.interfaces import IDatetime, IList, IText, ITextLine, ITuple
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
+from Acquisition import aq_inner
+from collective.excelexport.exportables.dexterityfields import (
+    BaseFieldRenderer, FieldRenderer)
 from eea.climateadapt import MessageFactory as _
 # from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader, Year
@@ -25,27 +25,24 @@ from plone.app.controlpanel.widgets import MultiCheckBoxVocabularyWidget
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.textfield.interfaces import IRichText
-from plone.app.users.browser.personalpreferences import (IPersonalPreferences,
-                                                         LanguageWidget,
-                                                         PasswordAccountPanel,
-                                                         PersonalPreferencesPanel,
-                                                         PersonalPreferencesPanelAdapter,
-                                                         WysiwygEditorWidget)
+from plone.app.users.browser.personalpreferences import (
+    IPersonalPreferences, LanguageWidget, PasswordAccountPanel,
+    PersonalPreferencesPanel, PersonalPreferencesPanelAdapter,
+    WysiwygEditorWidget)
 from plone.app.widgets.dx import RichTextWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.formwidget.geolocation.interfaces import IGeolocationField
 from plone.memoize.instance import memoize
 from Products.CMFPlone import utils
-from Products.CMFPlone.utils import safe_unicode
 from Products.CMFPlone.browser.navigation import CatalogSiteMap
 from Products.CMFPlone.browser.navtree import SitemapQueryBuilder
+from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.form.interfaces import NO_VALUE, IFieldWidget, IFormLayer
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.interfaces import IRelationList
-
 
 thematic_sectors = SimpleVocabulary([
     SimpleTerm(value='AGRICULTURE', title=_(u'Agriculture')),
@@ -81,6 +78,7 @@ class IEnhancedPersonalPreferencesSchema(IPersonalPreferences):
 class EnhancedPersonalPreferencesPanelAdapter(PersonalPreferencesPanelAdapter):
     """ Adapter for the personalpreferences panel
     """
+
     def get_thematic_sectors(self):
         value = []
         thematic_sectors = self.context.getProperty('thematic_sectors', '')
@@ -158,7 +156,7 @@ class RelationListFieldRenderer(BaseFieldRenderer):
         return value
 
     def render_value(self, obj):
-        """Gets the value to render in excel file from content value
+        """ Gets the value to render in excel file from content value
         """
 
         value = self.get_value(obj)

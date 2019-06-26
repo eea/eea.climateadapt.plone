@@ -157,7 +157,7 @@
     <adapter factory=".aceitem.KeywordsFieldWidget" />
     <adapter factory=".aceitem.SpecialTagsFieldWidget" />
 
-    <adapter factory=".acemeasure.AdaptationOptionsFieldWidget" />
+    <!-- <adapter factory=".acemeasure.AdaptationOptionsFieldWidget" /> -->
     <adapter factory=".acemeasure.KeywordsFieldWidget" />
     <adapter factory=".acemeasure.SpecialTagsFieldWidget" />
 

@@ -5,12 +5,12 @@ import json
 import logging
 from datetime import date
 
-from collective import dexteritytextindexer
 from zope.component import adapter
 from zope.interface import implementer, implements
 from zope.schema import (URI, Bool, Choice, Datetime, Int, List, Text,
                          TextLine, Tuple)
 
+from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.sat.datamanager import queue_callback
@@ -91,7 +91,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.fieldset('reference_information',
                   label=u'Reference information',
                   fields=[  # 'contact',
-                          'websites', 'source']
+                      'websites', 'source']
                   )
 
 # richtext fields in database:
@@ -159,8 +159,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                    missing_value=[],
                    default=None,
                    value_type=Choice(
-                         vocabulary="eea.climateadapt.aceitems_sectors",),
-                   )
+        vocabulary="eea.climateadapt.aceitems_sectors",),
+    )
 
     year = Year(title=_(u"Year"),
                 description=u"Date of publication/release/update of the items "
@@ -458,7 +458,7 @@ class ICaseStudy(IAceMeasure):  # , IGeolocatable):
             title=_(u"Related"),
             vocabulary="eea.climateadapt.adaptation_options"
             # source=ObjPathSourceBinder(),
-            # source=CatalogSource(portal_type='eea.cliamteadapt.adaptionoption'),
+            # source=CatalogSource(portal_type='eea.climateadapt.adaptionoption'),
         ),
         required=False,
     )
@@ -491,18 +491,22 @@ class ICaseStudy(IAceMeasure):  # , IGeolocatable):
     )
 
 
-@adapter(getSpecification(ICaseStudy['adaptationoptions']), IWidgetsLayer)
-@implementer(IFieldWidget)
-def AdaptationOptionsFieldWidget(field, request):
-    """ The vocabulary view is overridden so that
-        the widget will show only adaptation options
-        Check browser/overrides.py for more details
-    """
-    widget = FieldWidget(field, RelatedItemsWidget(request))
-    widget.vocabulary = 'eea.climateadapt.adaptation_options'
-    widget.vocabulary_override = True
-
-    return widget
+# this was to fix (probably) a bug in plone.app.widgets. This fix is no longer
+# needed with plone.app.widgets 1.10.dev4
+# @adapter(getSpecification(ICaseStudy['adaptationoptions']), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def AdaptationOptionsFieldWidget(field, request):
+#     """ The vocabulary view is overridden so that
+#         the widget will show only adaptation options
+#         Check browser/overrides.py for more details
+#     """
+#     import pdb
+#     pdb.set_trace()
+#     widget = FieldWidget(field, RelatedItemsWidget(request))
+#     widget.vocabulary = 'eea.climateadapt.adaptation_options'
+#     widget.vocabulary_override = True
+#
+#     return widget
 
 
 class CaseStudy(dexterity.Container):
