@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Added plone.app.jquerytools.form.js override, not to include define
+  definition
+  [tiberich]
 * Updated AdapteCCA importer so that it works with the new data
   [iulianpetchesi]
 * Fix text for Ecosystem-based approaches.

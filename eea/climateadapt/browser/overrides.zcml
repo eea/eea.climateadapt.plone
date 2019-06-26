@@ -19,6 +19,12 @@
   <adapter factory=".overrides.FormLayerRichTextFieldWidget" />
   <adapter factory=".overrides.RichTextFieldWidget" />
 
+  <browser:resource
+    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    name="plone.app.jquerytools.form.js"
+    file="resources/plone.app.jquerytools.form.js"
+    />
+
   <browser:page
     name="folder.pdf.body"
     layer="eea.pdf.interfaces.ILayer"
