@@ -2373,20 +2373,35 @@ div.width-1\3a 4 {
   display: block;
 }
 
+
+// Case studies gallery
+
 .case-studies-illustrations .blueimp-gallery>.slides {
   height: 110%;
 }
 
-.blueimp-gallery > .description {
-  position: absolute;
-  top: 50px;
-  left: 15px;
-  color: #fff;
+.blueimp-gallery {
+  .description,
+  .casestudies-gallery-copyright {
+    position: absolute;
+    color: #fff;
+    left: 15px;
+  }
+
+  > .description {
+    top: 50px;
+  }
+
+  > .casestudies-gallery-copyright {
+    top: 77px;
+    font-size: 12px;
+  }
 }
 
-.blueimp-gallery-display > .description {
-  display: block;
-}
+// .blueimp-gallery-display > .description {
+//   display: block;
+// }
+
 
 /* Edit tiles layout */
 #tile-configure.in.hide {
