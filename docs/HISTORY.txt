@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Extend the website source for all db items, add "EEA" as a new value
+  [krisztina]
 * Fixed a bug with adaptation options edit, caused by upstream changes in
   plone.app.widgets
   [tiberich]
