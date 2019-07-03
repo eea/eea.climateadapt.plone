@@ -21,8 +21,8 @@
 
   <browser:resource
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    name="plone.app.jquerytools.form.js"
-    file="resources/plone.app.jquerytools.form.js"
+    name="plone.app.jquerytools.form.nonrequire.js"
+    file="resources/plone.app.jquerytools.form.nonrequire.js"
     />
 
   <browser:page
