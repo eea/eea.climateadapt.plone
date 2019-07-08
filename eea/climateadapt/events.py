@@ -1,12 +1,13 @@
-from eea.cache import event
-from eea.climateadapt.browser.facetedsearch import CCA_TYPES
-from plone import api
-from plone.app.contentrules.handlers import execute_rules, execute
-from plone.app.iterate.dexterity.utils import get_baseline
-from plone.app.iterate.event import WorkingCopyDeletedEvent
-from zope.annotation.interfaces import IAnnotations
+import logging
+
 from zope.event import notify
 
+from eea.cache import event
+from plone.app.contentrules.handlers import execute, execute_rules
+from plone.app.iterate.dexterity.utils import get_baseline
+from plone.app.iterate.event import WorkingCopyDeletedEvent
+
+logger = logging.getLogger('eea.climateadapt')
 
 InvalidateCacheEvent = event.InvalidateCacheEvent
 
@@ -31,7 +32,11 @@ def handle_iterate_wc_deletion(object, event):
         baseline = get_baseline(object)
     except:
         return
-    notify(WorkingCopyDeletedEvent(object, baseline, relation=None))
+    try:
+        notify(WorkingCopyDeletedEvent(object, baseline, relation=None))
+    except:
+        logger.exception("Exception in handling iterate working copy deletion")
+        pass
 
 
 def invalidate_cache_faceted_object_row(obj, evt):
@@ -42,6 +47,11 @@ def invalidate_cache_faceted_object_row(obj, evt):
         uid = ''
     key = 'row-' + uid
     notify(InvalidateCacheEvent(raw=False, key=key))
+
+
+# from zope.annotation.interfaces import IAnnotations
+# from eea.climateadapt.browser.facetedsearch import CCA_TYPES
+# from plone import api
 
 
 # def set_title_description(obj, event):
