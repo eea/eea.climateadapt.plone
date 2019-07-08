@@ -9,8 +9,11 @@ from Products.Five.browser import BrowserView
 logger = logging.getLogger('eea.climateadapt')
 
 _MARKERS = [
-    ('national adaptation', 'National adaptation strategy (NAS)'),
-    ('action plans', 'National adaptation plans (NAP)'),
+    ('national adaptation strategy', 'National adaptation strategy (NAS)'),
+    ('national adaptation plan', 'National adaptation plan (NAP)'),
+
+    # ('action plans', 'National adaptation plans (NAP)'),
+
     # ('action plans', 'Action plans'),
     # ('impacts', 'Impacts, vulnerability and adaptation assessments'),
     # ('climate services', 'Climate services / Met office'),
@@ -55,6 +58,10 @@ class CountriesMetadataExtract(BrowserView):
     """
 
     def extract_country_metadata(self, obj):
+        # if 'romania' in obj.absolute_url().lower():
+        #     import pdb
+        #     pdb.set_trace()
+
         cover = obj['index_html']
 
         layout = cover.cover_layout
