@@ -32,7 +32,7 @@ _MARKERS = [
 
 
 _COUNTRIES_WITH_NAS = [
-    "Austria", "Belgium", "Cyprus", "Czech Republic", "Denmark", "Estonia",
+    "Austria", "Belgium", "Cyprus", "Czechia", "Denmark", "Estonia",
     "Finland", "France", "Germany", "Greece", "Hungary", "Ireland", "Italy",
     "Lithuania", "Luxembourg", "Malta", "Netherlands", "Poland", "Portugal",
     "Romania", "Slovakia", "Slovenia", "Spain", "Sweden", "United Kingdom",
@@ -40,7 +40,7 @@ _COUNTRIES_WITH_NAS = [
 ]
 
 _COUNTRIES_WITH_NAP = [
-    "Austria", "Belgium", "Cyprus", "Czech Republic", "Denmark", "Estonia",
+    "Austria", "Belgium", "Cyprus", "Czechia", "Denmark", "Estonia",
     "Finland", "France", "Germany", "Ireland", "Lithuania", "Netherlands",
     "Romania", "Spain", "United Kingdom", "Switzerland", "Turkey"
 ]
@@ -58,7 +58,7 @@ class CountriesMetadataExtract(BrowserView):
     """
 
     def extract_country_metadata(self, obj):
-        # if 'romania' in obj.absolute_url().lower():
+        # if 'czechia' in obj.absolute_url().lower():
         #     import pdb
         #     pdb.set_trace()
 
