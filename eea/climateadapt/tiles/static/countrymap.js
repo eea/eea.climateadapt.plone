@@ -1,3 +1,5 @@
+// This code is used to render the map in a specific country page. For example:
+// /countries-regions/countries/ireland
 var _selectedMapSection = null;
 var _mapTooltip = null;
 // var countrySettings = {};   // country settings extracted from ajax json

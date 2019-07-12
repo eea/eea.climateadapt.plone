@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Introduce 2 properties for NAP/NAS status on country folders
+  [tiberich]
 * Replace EU sector policies images
   [krisztina #101909]
 * Show case studies gallery images information for not logged in users as well

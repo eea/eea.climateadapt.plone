@@ -8,6 +8,20 @@ from Products.Five.browser import BrowserView
 
 logger = logging.getLogger('eea.climateadapt')
 
+_COUNTRIES_WITH_NAS = [
+    "Austria", "Belgium", "Cyprus", "Czechia", "Denmark", "Estonia",
+    "Finland", "France", "Germany", "Greece", "Hungary", "Ireland", "Italy",
+    "Lithuania", "Luxembourg", "Malta", "Netherlands", "Poland", "Portugal",
+    "Romania", "Slovakia", "Slovenia", "Spain", "Sweden", "United Kingdom",
+    "Liechtenstein", "Norway", "Switzerland", "Turkey"
+]
+
+_COUNTRIES_WITH_NAP = [
+    "Austria", "Belgium", "Cyprus", "Czechia", "Denmark", "Estonia",
+    "Finland", "France", "Germany", "Ireland", "Lithuania", "Netherlands",
+    "Romania", "Spain", "United Kingdom", "Switzerland", "Turkey"
+]
+
 _MARKERS = [
     ('national adaptation strategy', 'National adaptation strategy (NAS)'),
     ('national adaptation plan', 'National adaptation plan (NAP)'),
@@ -31,26 +45,71 @@ _MARKERS = [
 ]
 
 
-_COUNTRIES_WITH_NAS = [
-    "Austria", "Belgium", "Cyprus", "Czechia", "Denmark", "Estonia",
-    "Finland", "France", "Germany", "Greece", "Hungary", "Ireland", "Italy",
-    "Lithuania", "Luxembourg", "Malta", "Netherlands", "Poland", "Portugal",
-    "Romania", "Slovakia", "Slovenia", "Spain", "Sweden", "United Kingdom",
-    "Liechtenstein", "Norway", "Switzerland", "Turkey"
-]
-
-_COUNTRIES_WITH_NAP = [
-    "Austria", "Belgium", "Cyprus", "Czechia", "Denmark", "Estonia",
-    "Finland", "France", "Germany", "Ireland", "Lithuania", "Netherlands",
-    "Romania", "Spain", "United Kingdom", "Switzerland", "Turkey"
-]
-
-
 def normalized(key):
+    """ Returns NAP/NAS label if they key is NAP or NAS
+    """
+    # We depend on human entered labels in the first column
+    # We need to "normalize" it, because sometimes the case is wrong or some
+    # parts of the text are missing (for example the NAS/NAP bit)
 
     for marker, label in _MARKERS:
         if marker in key.lower():
             return label
+
+
+def get_nap_nas(obj, text, country):
+    res = {}
+    e = lxml.html.fromstring(text)
+    rows = e.xpath('//table[contains(@class, "listing")]/tbody/tr')
+
+    for row in rows:
+
+        try:
+            cells = row.xpath('td')
+            # key = cells[0].text_content().strip()
+            # key = ''.join(cells[0].itertext()).strip()
+            key = ' '.join(
+                [c for c in cells[0].itertext() if type(c) is not unicode])
+            children = list(cells[2])
+
+            if key in [None, '']:
+                key = cells[0].text_content().strip()
+
+            text = [lxml.etree.tostring(c) for c in children]
+            value = u'\n'.join(text)
+            key = normalized(key)
+
+            if key is None:
+                continue
+
+            # If there's no text in the last column, write "Established".
+
+            is_nap_country = country in _COUNTRIES_WITH_NAP
+            is_nas_country = country in _COUNTRIES_WITH_NAS
+
+            if (not value) and (is_nap_country or is_nas_country):
+                value = u'<p>Established</p>'
+
+            if "NAP" in key:
+                prop = 'nap'
+            else:
+                prop = 'nas'
+
+            # We're using a manually added property to set the availability of
+            # NAP or NAS on a country. To use it, add two boolean properties:
+            # nap and nas on the country folder. For example here:
+            # /countries-regions/countries/ireland/manage_addProperty
+            is_nap_nas = obj.getProperty(prop, False)
+
+            res[key] = [is_nap_nas, value]
+
+        except Exception:
+            logger.exception(
+                "Error in extracting information from country %s",
+                country
+            )
+
+    return res
 
 
 class CountriesMetadataExtract(BrowserView):
@@ -58,7 +117,7 @@ class CountriesMetadataExtract(BrowserView):
     """
 
     def extract_country_metadata(self, obj):
-        # if 'czechia' in obj.absolute_url().lower():
+        # if 'ireland' in obj.absolute_url().lower():
         #     import pdb
         #     pdb.set_trace()
 
@@ -78,51 +137,7 @@ class CountriesMetadataExtract(BrowserView):
         tile_data = cover.__annotations__['plone.tiles.data.' + uid]
         text = tile_data['text'].raw
 
-        e = lxml.html.fromstring(text)
-        rows = e.xpath('//table[contains(@class, "listing")]/tbody/tr')
-
-        res = {}
-
-        for row in rows:
-
-            try:
-                cells = row.xpath('td')
-                # key = cells[0].text_content().strip()
-                # key = ''.join(cells[0].itertext()).strip()
-                key = ' '.join(
-                    [c for c in cells[0].itertext() if type(c) is not unicode])
-                children = list(cells[2])
-
-                if key in [None, '']:
-                    key = cells[0].text_content().strip()
-
-                text = [lxml.etree.tostring(c) for c in children]
-                value = u'\n'.join(text)
-                key = normalized(key)
-
-                if key is None:
-                    continue
-
-                if 'NAP' in key:
-                    if obj.Title() in _COUNTRIES_WITH_NAP:
-                        if len(text) == 0:
-                            text.append('<p>Established</p>')
-                            value = u'\n'.join(text)
-                    else:
-                        value = u''
-                else:
-                    if obj.Title() in _COUNTRIES_WITH_NAS:
-                        if len(text) == 0:
-                            text.append('<p>Established</p>')
-                            value = u'\n'.join(text)
-                    else:
-                        value = u''
-                res[key] = value
-            except Exception:
-                logger.warning(
-                    "Error in extracting information from country %s",
-                    obj.Title()
-                )
+        res = get_nap_nas(obj, text, country=obj.Title())
 
         return res
 

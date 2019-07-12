@@ -62,7 +62,7 @@ function getCountryClass(country, countries) {
   if (available) k += ' country-available';
 
   var meta = countrySettings[country.properties.SHRT_ENGL];
-  if (available && meta && meta[0] && meta[0][_selectedMapSection]) {
+  if (available && meta && meta[0] && meta[0][_selectedMapSection][0]) {
     k += ' country-green';
   }
   return k;
@@ -457,7 +457,7 @@ function setCountryFlags(countries, flags) {
 function createTooltip(opts) {
   var x = opts['coords'][0];
   var y = opts['coords'][1];
-  var content = opts['content'][_selectedMapSection];
+  var content = opts['content'][_selectedMapSection][1];
   var name = opts['name'];
   var url = opts['url'];
 
