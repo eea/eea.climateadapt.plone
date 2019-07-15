@@ -62,7 +62,7 @@ function getCountryClass(country, countries) {
   if (available) k += ' country-available';
 
   var meta = countrySettings[country.properties.SHRT_ENGL];
-  if (available && meta && meta[0] && meta[0][_selectedMapSection][0]) {
+  if (available && meta && meta[0] && meta[0][_selectedMapSection] && meta[0][_selectedMapSection][0]) {
     k += ' country-green';
   }
   return k;
@@ -520,6 +520,7 @@ function createSectionsSelector(sections, countries, callback) {
     } else if ($this.val().indexOf("NAP") != -1) {
       $mapType.text('NAP');
     }
+    console.log("Selected section", selectedSection);
     window._selectedMapSection = selectedSection;
     callback();
   });
