@@ -71,11 +71,11 @@
           <div class="legend">
             <div class="legend-el">
               <span class="content-available legend-box"></span>
-              <p class="legend-text"><span class="map-type">NAS</span> available</p>
+              <p class="legend-text"><span class="map-type">NAS</span> adopted</p>
             </div>
             <div class="legend-el">
               <span class="no-content legend-box"></span>
-              <p class="legend-text"><span class="map-type">NAS</span> not available</p>
+              <p class="legend-text"><span class="map-type">NAS</span> not adopted</p>
             </div>
             <div class="legend-el">
               <span class="no-focus legend-box"></span>

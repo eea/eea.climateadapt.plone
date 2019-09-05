@@ -14,10 +14,13 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-postcss": "^0.8.0",
     "grunt-template-html": "^0.1.4",
-    "handlebars": "^4.0.8",
+    "handlebars": "^4.2.0",
     "load-grunt-tasks": "^3.4.1",
     "merge": "^1.2.0"
   },
   "author": "Tiberiu Ichim, Eaudeweb, EEA",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.3.0"
+  }
 }
