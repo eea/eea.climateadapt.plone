@@ -59,57 +59,64 @@ def normalized(key):
 
 def get_nap_nas(obj, text, country):
     res = {}
-    e = lxml.html.fromstring(text)
-    rows = e.xpath('//table[contains(@class, "listing")]/tbody/tr')
 
-    for row in rows:
-
-        try:
-            cells = row.xpath('td')
-            # key = cells[0].text_content().strip()
-            # key = ''.join(cells[0].itertext()).strip()
-            key = ' '.join(
-                [c for c in cells[0].itertext() if type(c) is not unicode])
-            children = list(cells[2])
-
-            if key in [None, '']:
-                key = cells[0].text_content().strip()
-
-            text = [lxml.etree.tostring(c) for c in children]
-            value = u'\n'.join(text)
-            key = normalized(key)
-
-            if key is None:
-                continue
-
-            # If there's no text in the last column, write "Established".
-
-            is_nap_country = country in _COUNTRIES_WITH_NAP
-            is_nas_country = country in _COUNTRIES_WITH_NAS
-
-            if (not value) and (is_nap_country or is_nas_country):
-                value = u'<p>Established</p>'
-
-            if "NAP" in key:
-                prop = 'nap'
-            else:
-                prop = 'nas'
-
-            # We're using a manually added property to set the availability of
-            # NAP or NAS on a country. To use it, add two boolean properties:
-            # nap and nas on the country folder. For example here:
-            # /countries-regions/countries/ireland/manage_addProperty
-            is_nap_nas = obj.getProperty(prop, False)
-
-            res[key] = [is_nap_nas, value]
-
-        except Exception:
-            logger.exception(
-                "Error in extracting information from country %s",
-                country
-            )
+    for name in ['nap', 'nas']:
+        if obj.hasProperty(name):
+            res[name] = obj.getProperty(name)
 
     return res
+
+    # e = lxml.html.fromstring(text)
+    # rows = e.xpath('//table[contains(@class, "listing")]/tbody/tr')
+    #
+    # for row in rows:
+    #
+    #     try:
+    #         cells = row.xpath('td')
+    #         # key = cells[0].text_content().strip()
+    #         # key = ''.join(cells[0].itertext()).strip()
+    #         key = ' '.join(
+    #             [c for c in cells[0].itertext() if type(c) is not unicode])
+    #         children = list(cells[2])
+    #
+    #         if key in [None, '']:
+    #             key = cells[0].text_content().strip()
+    #
+    #         text = [lxml.etree.tostring(c) for c in children]
+    #         value = u'\n'.join(text)
+    #         key = normalized(key)
+    #
+    #         if key is None:
+    #             continue
+    #
+    #         # If there's no text in the last column, write "Established".
+    #
+    #         is_nap_country = country in _COUNTRIES_WITH_NAP
+    #         is_nas_country = country in _COUNTRIES_WITH_NAS
+    #
+    #         if (not value) and (is_nap_country or is_nas_country):
+    #             value = u'<p>Established</p>'
+    #
+    #         if "NAP" in key:
+    #             prop = 'nap'
+    #         else:
+    #             prop = 'nas'
+    #
+    #         # We're using a manually added property to set the availability of
+    #         # NAP or NAS on a country. To use it, add two boolean properties:
+    #         # nap and nas on the country folder. For example here:
+    #         # /countries-regions/countries/ireland/manage_addProperty
+    #         is_nap_nas = obj.getProperty(prop, False)
+    #
+    #         res[key] = [is_nap_nas, value]
+    #
+    #     except Exception:
+    #         logger.exception(
+    #             "Error in extracting information from country %s",
+    #             country
+    #         )
+    #
+    # return res
 
 
 class CountriesMetadataExtract(BrowserView):
