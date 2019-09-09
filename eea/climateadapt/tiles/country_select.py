@@ -52,7 +52,7 @@ class CountrySelectTile(PersistentCoverTile):
         countries = [(c[0], c[1].replace(" ", "-")) for c in
                      ace_countries_selection]
 
-        return countries
+        return sorted(countries, key=lambda c: c[1])
 
     # def get_image(self):
     #     if self.data['image_uuid']:
