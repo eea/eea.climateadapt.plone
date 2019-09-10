@@ -1,8 +1,10 @@
+/* global d3, $, jQuery */
+
 var _selectedMapSection = null;
-var _mapTooltip = null;
+// var _mapTooltip = null;
 var countrySettings = {};   // country settings extracted from ajax json
 
-$(document).ready(function () {
+jQuery(document).ready(function () {
 
   // initialize the countries map
   var cpath = '++theme++climateadaptv2/static/countries/euro-countries-simplified.geojson';
@@ -29,7 +31,7 @@ function initmap(metadata, world, flags) {
   countrySettings = metadata[0];
   var sections = metadata[1];
 
-  var world = world.features;
+  world = world.features;
 
   setCountryFlags(world, flags);
 
@@ -58,13 +60,29 @@ function renderGraticule(container, klass, steps, pathTransformer) {
 
 function getCountryClass(country, countries) {
   var k = 'country-outline';
-  var available = countries.names.indexOf(country.properties.SHRT_ENGL) !== -1;
-  if (available) k += ' country-available';
 
-  var meta = countrySettings[country.properties.SHRT_ENGL];
-  if (available && meta && meta[0] && meta[0][_selectedMapSection] && meta[0][_selectedMapSection][0]) {
+  // console.log('countryclass', country, countries)
+
+  // var available = countries.names.indexOf(country.properties.SHRT_ENGL) !== -1;
+  // if (available) k += ' country-available';
+
+  var countryName = country.properties.SHRT_ENGL
+  var meta = countrySettings[countryName];
+  if (!meta) {
+    return k
+  }
+
+  var napnas = meta[0];
+  // console.log("Selected Map section", _selectedMapSection, napnas, countryName);
+
+  if (Object.keys(napnas).indexOf(_selectedMapSection) > -1) {
+    k += ' country-available';
+  }
+
+  if (napnas[_selectedMapSection] === true) {
     k += ' country-green';
   }
+
   return k;
 }
 
@@ -100,6 +118,7 @@ function renderCountry(map, country, path, countries, x, y) {
     .attr('d', path(country))
     ;
 
+  available = true;
   if (available) {
     var bbox = outline.node().getBBox();
     renderCountryFlag(parent, country, bbox, cpId);
@@ -405,6 +424,10 @@ function showMapTooltip(d) {
   var content = info[0];
   var url = info[1];
 
+  if (content) {
+    content = content[window._selectedMapSection + '_info'];
+  }
+
   if (content) createTooltip({
     coords: coords,
     content: content,
@@ -453,11 +476,10 @@ function setCountryFlags(countries, flags) {
   });
 }
 
-
 function createTooltip(opts) {
   var x = opts['coords'][0];
   var y = opts['coords'][1];
-  var content = opts['content'][_selectedMapSection][1];
+  var content = opts['content'];
   var name = opts['name'];
   var url = opts['url'];
 
@@ -486,6 +508,11 @@ function createTooltip(opts) {
   $('body').append(tooltip);
 }
 
+function updateSelectedMapSection(key) {
+  window._selectedMapSection = (key.toLowerCase().indexOf('nas') > -1)
+    ? 'nas' : 'nap';
+}
+
 function createSectionsSelector(sections, countries, callback) {
   // var container = $("#countries-map-selector");
   var widget = $("#sections-selector");
@@ -498,8 +525,8 @@ function createSectionsSelector(sections, countries, callback) {
       .attr('name', 'country-map-section')
       .attr('value', key)
       ;
-    if (index === 0) {
-      window._selectedMapSection = key;
+    if (index === 0) {    // set initial value;
+      updateSelectedMapSection(key);
       inp.attr('checked', 'checked');
     }
 
@@ -520,8 +547,8 @@ function createSectionsSelector(sections, countries, callback) {
     } else if ($this.val().indexOf("NAP") != -1) {
       $mapType.text('NAP');
     }
-    console.log("Selected section", selectedSection);
-    window._selectedMapSection = selectedSection;
+    // console.log("Selected section", selectedSection);
+    updateSelectedMapSection(selectedSection);
     callback();
   });
 
@@ -583,7 +610,7 @@ function getIEVersion() {
     return parseInt(sAgent.substring(Idx+ 5, sAgent.indexOf(".", Idx)));
 
   // If IE 11 then look for Updated user agent string.
-  else if (!!navigator.userAgent.match(/Trident\/7\./))
+  else if (navigator.userAgent.match(/Trident\/7\./))
     return 11;
 
   else
