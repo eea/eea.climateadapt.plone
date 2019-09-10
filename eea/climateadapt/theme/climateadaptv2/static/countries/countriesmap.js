@@ -421,6 +421,7 @@ var countryNameTooltip = d3.select("body")
 function showMapTooltip(d) {
   var coords = [d3.event.pageY, d3.event.pageX];
   var info = countrySettings[d.properties.SHRT_ENGL];
+  if (!info) return;
   var content = info[0];
   var url = info[1];
 
