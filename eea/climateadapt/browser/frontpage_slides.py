@@ -64,7 +64,7 @@ class FrontpageSlidesView (BrowserView):
         images = []
 
         for slide in slides:
-            handler = getattr(self, 'handle_' + slide.title.encode(), None)
+            handler = getattr(self, 'handle_' + slide.title.encode('utf-8'), None)
             slide_data = {}
 
             image_url, copyright = self.getImages(slide)
