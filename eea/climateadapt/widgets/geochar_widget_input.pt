@@ -157,7 +157,7 @@
                     <li><label for="chk_countries_SE"> <input type="checkbox" class= "chk_countries_geochars" name="chk_countries_SE" id= "chk_countries_SE" value="SE"/>Sweden</label></li>
                     <li><label for="chk_countries_CH"> <input type="checkbox" class= "chk_countries_geochars" name="chk_countries_CH" id= "chk_countries_CH" value="CH"/>Switzerland</label></li>
                     <li><label for="chk_countries_TR"> <input type="checkbox" class= "chk_countries_geochars" name="chk_countries_TR" id= "chk_countries_TR" value="TR"/>Turkey</label></li>
-                    <li class="last"><label for="chk_countries_GB"> <input type= "checkbox" class="chk_countries_geochars" name="chk_countries_GB" id="chk_countries_GB" value="GB"/>United Kingdom</label></li>
+                    <li class="last"><label for="chk_countries_GB"> <input type= "checkbox" class="chk_countries_geochars" name="chk_countries_GB" id="chk_countries_GB" value="UK"/>United Kingdom</label></li>
                   </ul>
                 </li>
               </ul>
