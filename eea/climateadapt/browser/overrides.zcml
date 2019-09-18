@@ -37,45 +37,6 @@
     <implements interface="plone.app.blocks.interfaces.IBlocksTransformEnabled" />
   </class>
 
-  <adapter factory=".overrides.YearFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".overrides.PortalTypeRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".overrides.AbsoluteUrlRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".overrides.UploaderRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".overrides.TextLineFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".overrides.TupleFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".overrides.GeolocationFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".overrides.ListFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".overrides.TextFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".overrides.RelationListFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".overrides.DateTimeFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter
-    name="objectstate"
-    provides="collective.excelexport.interfaces.IExportable"
-    factory=".overrides.ObjectStateExportable"
-    />
-
   <adapter
     provides=".overrides.IEnhancedPersonalPreferencesSchema"
     for="Products.CMFCore.interfaces.ISiteRoot"

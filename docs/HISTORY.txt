@@ -3,6 +3,12 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Added Creator and View State columns for Excel Export
+  [davidsilaghi #104060]
+* Fixed a bug with UK subnational regions not showing on checkbox for Case Study submissions
+  [davidsilaghi #105910]
+* Fixed a bug with frontpage breaking when a frontpage slide gets a non-ASCII character
+  [davidsilaghi #104426]
 * Introduce 2 properties for NAP/NAS status on country folders
   [tiberich]
 * Replace EU sector policies images

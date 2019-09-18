@@ -1,22 +1,17 @@
 """
 Various page overrides
 """
-from zope.component import adapter, adapts, getMultiAdapter, queryUtility
+
+from zope.component import adapter, getMultiAdapter, queryUtility
 from zope.formlib import form
-from zope.interface import Interface, implementer
+from zope.interface import implementer
 from zope.schema import Choice, List
-from zope.schema.interfaces import IDatetime, IList, IText, ITextLine, ITuple
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 from Acquisition import aq_inner
-from collective.excelexport.exportables.dexterityfields import (
-    BaseFieldRenderer, FieldRenderer)
 from eea.climateadapt import MessageFactory as _
-# from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
-from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader, Year
 from eea.pdf.interfaces import IPDFTool
 from OFS.interfaces import ITraversable
-from plone.api import content, portal
 from plone.app.content.browser.interfaces import IContentsPage
 from plone.app.contentmenu.menu import DisplaySubMenuItem as DSMI
 from plone.app.contenttypes.behaviors.richtext import \
@@ -25,24 +20,18 @@ from plone.app.controlpanel.widgets import MultiCheckBoxVocabularyWidget
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.textfield.interfaces import IRichText
-from plone.app.users.browser.personalpreferences import (
-    IPersonalPreferences, LanguageWidget, PasswordAccountPanel,
-    PersonalPreferencesPanel, PersonalPreferencesPanelAdapter,
-    WysiwygEditorWidget)
+from plone.app.users.browser import personalpreferences as prefs
 from plone.app.widgets.dx import RichTextWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
-from plone.formwidget.geolocation.interfaces import IGeolocationField
 from plone.memoize.instance import memoize
 from Products.CMFPlone import utils
 from Products.CMFPlone.browser.navigation import CatalogSiteMap
 from Products.CMFPlone.browser.navtree import SitemapQueryBuilder
-from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from z3c.form.interfaces import NO_VALUE, IFieldWidget, IFormLayer
+from z3c.form.interfaces import IFieldWidget, IFormLayer
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
-from z3c.relationfield.interfaces import IRelationList
 
 thematic_sectors = SimpleVocabulary([
     SimpleTerm(value='AGRICULTURE', title=_(u'Agriculture')),
@@ -62,7 +51,7 @@ thematic_sectors = SimpleVocabulary([
 ])
 
 
-class IEnhancedPersonalPreferencesSchema(IPersonalPreferences):
+class IEnhancedPersonalPreferencesSchema(prefs.IPersonalPreferences):
     """ Use all the fields from the default user personal preferences schema,
         and add the thematic_sectors field.
     """
@@ -75,7 +64,8 @@ class IEnhancedPersonalPreferencesSchema(IPersonalPreferences):
             vocabulary=thematic_sectors))
 
 
-class EnhancedPersonalPreferencesPanelAdapter(PersonalPreferencesPanelAdapter):
+class EnhancedPersonalPreferencesPanelAdapter(
+        prefs.PersonalPreferencesPanelAdapter):
     """ Adapter for the personalpreferences panel
     """
 
@@ -97,276 +87,19 @@ class EnhancedPersonalPreferencesPanelAdapter(PersonalPreferencesPanelAdapter):
     thematic_sectors = property(get_thematic_sectors, set_thematic_sectors)
 
 
-class CustomizedPersonalPrefPanel(PersonalPreferencesPanel):
+class CustomizedPersonalPrefPanel(prefs.PersonalPreferencesPanel):
     form_fields = form.FormFields(IEnhancedPersonalPreferencesSchema)
 
     # Apply same widget overrides as in the base class
 
-    form_fields['language'].custom_widget = LanguageWidget
+    form_fields['language'].custom_widget = prefs.LanguageWidget
 
-    form_fields['wysiwyg_editor'].custom_widget = WysiwygEditorWidget
+    form_fields['wysiwyg_editor'].custom_widget = prefs.WysiwygEditorWidget
 
     # Our widget
 
     form_fields['thematic_sectors'].custom_widget = \
         MultiCheckBoxVocabularyWidget
-
-
-class ObjectStateExportable(FieldRenderer):
-    """ Set the objects portal state in a separate column in the excel """
-
-    def render_header(self):
-        """Gets the value to render on the first row of excel sheet for this field
-        """
-
-        return self.field.title
-
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content
-        """
-
-        return content.get_state(obj)
-
-
-class DateTimeFieldRenderer(BaseFieldRenderer):
-    """ Datetime field adapter for excel export"""
-    adapts(IDatetime, Interface, Interface)
-
-    def _get_text(self, value):
-        return portal.get_localized_time(datetime=value)
-
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-        value = self.get_value(obj)
-
-        if not value or value == NO_VALUE:
-            return ""
-
-        text = safe_unicode(self._get_text(value))
-
-        return text
-
-
-class RelationListFieldRenderer(BaseFieldRenderer):
-    """ Renderer for related items """
-    adapts(IRelationList, Interface, Interface)
-
-    def _get_text(self, value):
-        return value
-
-    def render_value(self, obj):
-        """ Gets the value to render in excel file from content value
-        """
-
-        value = self.get_value(obj)
-
-        if not value or value == NO_VALUE:
-            return ""
-
-        text = safe_unicode(self._get_text(value))
-
-        new_text = []
-
-        for item in text:
-            if item.to_object is not None:
-                new_text.append(item.to_object.Title() + ';\n')
-            else:
-                pass
-
-        return new_text
-
-
-class ListFieldRenderer(BaseFieldRenderer):
-    """ List field adapter for excel export"""
-    adapts(IList, Interface, Interface)
-
-    def _get_text(self, value):
-        return value
-
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-
-        value = self.get_value(obj)
-
-        if not value or value == NO_VALUE:
-            return ""
-
-        text = safe_unicode(self._get_text(value))
-
-        if isinstance(text, str) is False:
-            if len(text) > 40:
-                text = text[0:40]
-
-            if isinstance(text, tuple):
-                text = tuple([x + ';\n' for x in text])
-            else:
-                new_text = []
-
-                for item in text:
-                    if isinstance(item, (str, unicode)):
-                        new_text.append(item + ';\n')
-                text = new_text
-
-        return text
-
-
-class GeolocationFieldRenderer(BaseFieldRenderer):
-    """ Geolocation field adapter for excel export"""
-    adapts(IGeolocationField, Interface, Interface)
-
-    def _get_text(self, value):
-        return value
-
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-        value = self.get_value(obj)
-
-        if not value or value == NO_VALUE:
-            return ""
-
-        text = safe_unicode(self._get_text(value))
-
-        location = {'latitude': text.latitude, 'longitude': text.longitude}
-
-        return str(location)
-
-
-class TupleFieldRenderer(BaseFieldRenderer):
-    """ Tuple field adapter for excel export"""
-    adapts(ITuple, Interface, Interface)
-
-    def _get_text(self, value):
-        return value
-
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-        value = self.get_value(obj)
-
-        if not value or value == NO_VALUE:
-            return ""
-
-        text = safe_unicode(self._get_text(value))
-
-        if isinstance(text, str) is False:
-            if len(text) > 10:
-                text = text[0:10]
-
-            if isinstance(text, tuple):
-                text = tuple([x + ';\n' for x in text])
-            else:
-                counter = 0
-
-                while counter < len(text):
-                    text[counter] += ';\n'
-                    counter += 1
-
-        return text
-
-
-class TextLineFieldRenderer(BaseFieldRenderer):
-    """ TextLine field adapter for excel export"""
-    adapts(ITextLine, Interface, Interface)
-
-    def _get_text(self, value):
-        return value
-
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-        value = self.get_value(obj)
-
-        if not value or value == NO_VALUE:
-            return ""
-
-        text = safe_unicode(self._get_text(value))
-
-        return text
-
-
-class PortalTypeRenderer(BaseFieldRenderer):
-    """ Portal type adapter for excel export"""
-    adapts(PortalType, Interface, Interface)
-
-    def _get_text(self, value):
-        return value
-
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-
-        return portal.get().portal_types.get(obj.portal_type).title
-
-
-class AbsoluteUrlRenderer(BaseFieldRenderer):
-    """ Absolute url adapter for excel export"""
-    adapts(AbsoluteUrl, Interface, Interface)
-
-    def _get_text(self, value):
-        return value
-
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-
-        return obj.absolute_url()
-
-
-class UploaderRenderer(BaseFieldRenderer):
-    """ Uploader adapter for excel export"""
-    adapts(Uploader, Interface, Interface)
-
-    def _get_text(self, value):
-        return value
-
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-
-        return '; '.join(obj.creators)
-
-
-class TextFieldRenderer(BaseFieldRenderer):
-    """ Text field adapter for excel export"""
-    adapts(IText, Interface, Interface)
-
-    def _get_text(self, value):
-        return value
-
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-        value = self.get_value(obj)
-
-        if not value or value == NO_VALUE:
-            return ""
-
-        text = safe_unicode(self._get_text(value))
-
-        return text
-
-
-class YearFieldRenderer(BaseFieldRenderer):
-    """ Year field adapter for excel export"""
-
-    adapts(Year, Interface, Interface)
-
-    def _get_text(self, value):
-        return value
-
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-        value = self.get_value(obj)
-
-        if not value or value == NO_VALUE:
-            return ""
-        text = safe_unicode(self._get_text(value))
-
-        return str(text)
 
 
 class DisplaySubMenuItem(DSMI):
@@ -674,7 +407,7 @@ def RichTextFieldWidget(field, request):
     return FieldWidget(field, OverrideRichText(request))
 
 
-class PasswordAccountPanel(PasswordAccountPanel):
+class PasswordAccountPanel(prefs.PasswordAccountPanel):
     template = ViewPageTemplateFile('pt/password-account-panel.pt')
 
 

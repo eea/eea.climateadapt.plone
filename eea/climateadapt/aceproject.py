@@ -213,8 +213,6 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     directives.omitted(IEditForm, 'creation_date')
     directives.omitted(IAddForm, 'id')
     directives.omitted(IEditForm, 'id')
-    directives.omitted(IAddForm, 'objectstate')
-    directives.omitted(IEditForm, 'objectstate')
 
     # end
 
@@ -223,8 +221,6 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     modification_date = Datetime(title=_(u"Last Modified"), required=False,)
 
     id = TextLine(title=_(u"Object ID"), required=False,)
-
-    objectstate = TextLine(title=_(u"Object State"), required=False,)
 
     specialtagging = TextLine(
         title=_(u"Special Tagging"),

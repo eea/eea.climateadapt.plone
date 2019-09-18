@@ -224,9 +224,6 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     directives.omitted(IAddForm, 'id')
     directives.omitted(IEditForm, 'id')
 
-    directives.omitted(IAddForm, 'objectstate')
-    directives.omitted(IEditForm, 'objectstate')
-
     # -----------[ "backend" fields ]------------------
 
     special_tags = Tuple(
@@ -280,8 +277,6 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     creation_date = Datetime(title=_(u"Created"), required=False,)
 
     modification_date = Datetime(title=_(u"Last Modified"), required=False,)
-
-    objectstate = TextLine(title=_(u"Object State"), required=False,)
 
     id = TextLine(title=_(u"Object ID"), required=False,)
 

@@ -310,8 +310,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     directives.omitted(IEditForm, 'creation_date')
     directives.omitted(IAddForm, 'id')
     directives.omitted(IEditForm, 'id')
-    directives.omitted(IAddForm, 'objectstate')
-    directives.omitted(IEditForm, 'objectstate')
     # end
 
     implementation_type = Choice(
@@ -367,8 +365,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     modification_date = Datetime(title=_(u"Last Modified"), required=False,)
 
     id = TextLine(title=_(u"Object ID"), required=False,)
-
-    objectstate = TextLine(title=_(u"Object State"), required=False,)
 
     # dexteritytextindexer.searchable('summary')
     # summary = Text(title=_(u"Summary"), required=False, default=u"")

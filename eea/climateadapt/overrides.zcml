@@ -1,14 +1,51 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:five="http://namespaces.zope.org/five"
-    xmlns:z3c="http://namespaces.zope.org/z3c"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    xmlns:grok="http://namespaces.zope.org/grok"
-    xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="eea.climateadapt">
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:grok="http://namespaces.zope.org/grok"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  i18n_domain="eea.climateadapt">
 
-    <includeOverrides file="browser/overrides.zcml" />
+  <includeOverrides file="browser/overrides.zcml" />
+
+  <adapter factory=".excelexport.YearFieldRenderer"
+    provides="collective.excelexport.interfaces.IExportable" />
+
+  <adapter factory=".excelexport.PortalTypeRenderer"
+    provides="collective.excelexport.interfaces.IExportable" />
+
+  <adapter factory=".excelexport.AbsoluteUrlRenderer"
+    provides="collective.excelexport.interfaces.IExportable" />
+
+  <adapter factory=".excelexport.UploaderRenderer"
+    provides="collective.excelexport.interfaces.IExportable" />
+
+  <adapter factory=".excelexport.TextLineFieldRenderer"
+    provides="collective.excelexport.interfaces.IExportable" />
+
+  <adapter factory=".excelexport.TupleFieldRenderer"
+    provides="collective.excelexport.interfaces.IExportable" />
+
+  <adapter factory=".excelexport.GeolocationFieldRenderer"
+    provides="collective.excelexport.interfaces.IExportable" />
+
+  <adapter factory=".excelexport.ListFieldRenderer"
+    provides="collective.excelexport.interfaces.IExportable" />
+
+  <adapter factory=".excelexport.TextFieldRenderer"
+    provides="collective.excelexport.interfaces.IExportable" />
+
+  <adapter factory=".excelexport.RelationListFieldRenderer"
+    provides="collective.excelexport.interfaces.IExportable" />
+
+  <adapter factory=".excelexport.DateTimeFieldRenderer"
+    provides="collective.excelexport.interfaces.IExportable" />
+
+  <adapter factory=".excelexport.MetadataExportablesFactory"
+           provides="collective.excelexport.interfaces.IExportableFactory"
+           name="cca_metadata"/>
 
 </configure>
