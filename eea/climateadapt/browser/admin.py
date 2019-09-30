@@ -27,6 +27,7 @@ from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
 from plone.app.widgets.dx import RelatedItemsWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.directives import form
+from plone.i18n.normalizer import idnormalizer
 from plone.memoize import view
 from plone.registry.interfaces import IRegistry
 from plone.tiles.interfaces import ITileDataManager
@@ -945,4 +946,33 @@ class AdapteCCACaseStudyImporter(BrowserView):
             item = self.node_import(self.context, node)
             print item.absolute_url()
 
-        return 'ok'
+        return 'AdapteCCA case study importer'
+
+class AdapteCCACurrentCaseStudyFixImportIDs(BrowserView):
+    """ AdapteCCA current case study fix import ids
+    """
+
+    def __call__(self):
+        fpath = resource_filename('eea.climateadapt.browser',
+                                  'data/cases_en_cdata.xml')
+        s = open(fpath).read()
+        e = fromstring(s)
+
+        for item_node in e.xpath('//item'):
+            item_id, field_title = '', ''
+            for child in item_node.iterchildren():
+                if child.tag == 'item_id':
+                    item_id = child.text
+                if child.tag == 'field_title':
+                    field_title = idnormalizer.normalize(child.text, None, 500)
+
+            if item_id and field_title:
+                try:
+                    self.context['metadata']['case-studies'][field_title].__annotations__['original_import_id'] = item_id
+                except:
+                    print (field_title)
+
+                self.context.__annotations__._p_changed = True  # because changed non-persistent value of 
+                                                                # a persistent-object attribute (might work without it)
+        
+        return 'AdapteCCA current case study fix import ids'

@@ -114,5 +114,12 @@
     class=".admin.AdapteCCACaseStudyImporter"
     permission="cmf.ManagePortal"
     />
+  
+  <browser:page
+    name="process-current-case-studies"
+    for="*"
+    class=".admin.AdapteCCACurrentCaseStudyFixImportIDs"
+    permission="cmf.ManagePortal"
+    />
 
 </configure>
