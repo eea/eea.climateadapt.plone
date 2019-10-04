@@ -11,7 +11,7 @@ from zope import schema
 from zope.component import adapter, getMultiAdapter, getUtility
 from zope.interface import (Interface, Invalid, implementer, implements,
                             invariant)
-
+from zope.annotation.interfaces import IAnnotations
 from apiclient.discovery import build
 from eea.climateadapt._importer import utils as u
 from eea.climateadapt.browser.site import _extract_menu
@@ -21,7 +21,7 @@ from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
 from oauth2client.service_account import ServiceAccountCredentials
 from plone import api
 from plone.api import portal
-from plone.api.portal import get_tool
+from plone.api.portal import get_tool, getSite
 from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
                                                      RegistryEditForm)
 from plone.app.widgets.dx import RelatedItemsWidget
@@ -32,6 +32,7 @@ from plone.memoize import view
 from plone.registry.interfaces import IRegistry
 from plone.tiles.interfaces import ITileDataManager
 from plone.z3cform import layout
+from persistent.mapping import PersistentMapping
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from six.moves.html_parser import HTMLParser
@@ -41,6 +42,8 @@ from z3c.form.interfaces import IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
+
+from DateTime import DateTime
 
 html_unescape = HTMLParser().unescape
 
@@ -189,9 +192,9 @@ class ListTilesWithTitleView (BrowserView):
             return text
 
         return "http://" + text
-
     def walk(self, item):
         if isinstance(item, dict):
+
             if item.get('tile-type') == 'eea.climateadapt.richtext_with_title':
                 self.tiles.append(item['id'])
 
@@ -695,6 +698,9 @@ class Item:
 
         if field is not None:
             return field.text
+        if org_name in ['item_id', 'item_changed']:
+            field = self._node.find(org_name)
+            return field.text
         if org_name in ['sectors', 'keywords', 'impact', 'websites']:
             return ''
         if org_name in ['governance', 'websites']:
@@ -703,6 +709,10 @@ class Item:
             return {"geoElements": {"element": "EUROPE", "biotrans": []}}
         return None
 
+class NoUpdates(Exception):
+    """ Already in Case Studies without modifications
+    """
+    pass
 
 class AdapteCCACaseStudyImporter(BrowserView):
     """ Demo adaptecca importer
@@ -863,11 +873,48 @@ class AdapteCCACaseStudyImporter(BrowserView):
             }
         return json.dumps(v)
 
+    def update_content_in_container(self, shortname, *args, **kwargs):
+        """Update content in case-studies to match AdapteCCA data"""
+        
+        item = self.context[shortname]
+        
+        for attr in kwargs.keys():
+            setattr(item, attr, kwargs[attr]) #(object, name, value)
+        
+        item.reindexObject()
+        item._p_changed = True
+        
+        return item
+
     def node_import(self, container, node):
-        location = container
-
         f = Item(node)
+        location = container
+        import_id = f.item_id
+        last_modified = DateTime(f.item_changed)
+        shortname = idnormalizer.normalize(f.title, None, 500)
 
+        try:
+            original = location[shortname]
+        except KeyError:
+            return self.create_obj(location, f, import_id)
+        else:
+            for obj in location.contentValues():
+                annot = getattr(obj.aq_inner.aq_self, '__annotations__', {})
+                test_id = annot.get('original_import_id')
+                if test_id == import_id:
+                    return self.update_obj(obj, f)
+                else:
+                    if not hasattr(original.aq_inner.aq_self, '__annotations__'):
+                        original.__annotations__ = PersistentMapping()
+
+                    original.__annotations__['original_import_id'] = import_id
+                    
+                    if last_modified > original.modified():
+                        return self.update_obj(obj, f)
+                    else:
+                        raise NoUpdates
+        
+    def create_obj(self, location, f, import_id):
         item = u.createAndPublishContentInContainer(
             location,
             'eea.climateadapt.casestudy',
@@ -934,19 +981,61 @@ class AdapteCCACaseStudyImporter(BrowserView):
             origin_website='AdapteCCA',
         )
 
+        annot = IAnnotations(item)
+        annot['import_id'] = import_id
+
         return item
 
+    def update_obj(self, obj, node):
+        item = self.update_content_in_container(
+            shortname,
+            'eea.climateadapt.casestudy',
+            _publish=True,
+            title=f.title,
+            long_description=u.t2r(f.information),
+            keywords=f.keywords.split(', '),
+            sectors=self.t_sectors(f.sectors.split(', ')),
+            climate_impacts=self.t_impacts(f.impact.split(', ')),
+            governance_level=self.t_governance(f.governance),
+            geochars=self.t_geochars(f.regions),
+            challenges=u.t2r(f.challenges),
+            objectives=u.t2r(f.objectives),
+            measure_type='A',       # it's a case study
+            solutions=u.t2r(f.solutions),
+            stakeholder_participation=u.t2r(f.stakeholder),
+            success_limitations=u.t2r(f.factors),
+            cost_benefit=u.t2r(f.budget),
+            legal_aspects=u.t2r(f.legal),
+            implementation_time=u.t2r(f.implementation),
+            contact=u.t2r(f.contact),
+            websites=u.s2l(u.r2t(html_unescape(f.websites))) or [],
+            source=u.r2t(f.sources),
+            year=f.year,
+            relevance=[],
+            origin_website='AdapteCCA',
+        )
+
+        return item
+        
     def __call__(self):
+        if self.context.title != 'Case studies':
+            return 'Wrong path. Only use this view on Case Studies'
+        
         fpath = resource_filename('eea.climateadapt.browser',
                                   'data/cases_en_cdata.xml')
         s = open(fpath).read()
         e = fromstring(s)
 
         for node in e.xpath('//item'):
-            item = self.node_import(self.context, node)
-            print item.absolute_url()
+            try:
+                item = self.node_import(self.context, node)
+            except NoUpdates:
+                continue
+
+            logger.info('{}', item.absolute_url())
 
         return 'AdapteCCA case study importer'
+
 
 class AdapteCCACurrentCaseStudyFixImportIDs(BrowserView):
     """ AdapteCCA current case study fix import ids
@@ -957,6 +1046,7 @@ class AdapteCCACurrentCaseStudyFixImportIDs(BrowserView):
                                   'data/cases_en_cdata.xml')
         s = open(fpath).read()
         e = fromstring(s)
+        container = getSite()['metadata']['case-studies']
 
         for item_node in e.xpath('//item'):
             item_id, field_title = '', ''
@@ -967,12 +1057,7 @@ class AdapteCCACurrentCaseStudyFixImportIDs(BrowserView):
                     field_title = idnormalizer.normalize(child.text, None, 500)
 
             if item_id and field_title:
-                try:
-                    self.context['metadata']['case-studies'][field_title].__annotations__['original_import_id'] = item_id
-                except:
-                    print (field_title)
-
-                self.context.__annotations__._p_changed = True  # because changed non-persistent value of 
-                                                                # a persistent-object attribute (might work without it)
-        
-        return 'AdapteCCA current case study fix import ids'
+                annot = IAnnotations(container[field_title])
+                annot['import_id'] = item_id
+                
+        return 'AdapteCCA current case study fixed import_ids'
