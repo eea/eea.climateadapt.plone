@@ -179,6 +179,10 @@ function renderCountryLabel(country, path, force) {
 }
 
 function renderCountryFlag(parent, country, bbox, cpId) {
+  var countryName = country.properties.SHRT_ENGL.toUpperCase();
+  if (countryName == 'CZECHIA') {
+    country.url = 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_Czech_Republic.svg'
+  }
   var flag = parent
     .append('image')
     .attr('class', 'country-flag')
@@ -201,7 +205,6 @@ function renderCountryFlag(parent, country, bbox, cpId) {
     })
     .on('mouseover', function() {
       // $('.country-flag').css('cursor', 'unset');
-      var countryName = country.properties.SHRT_ENGL.toUpperCase();
       d3.select(this).attr('opacity', 1);
       return countryNameTooltip
       .style("display", "block")
