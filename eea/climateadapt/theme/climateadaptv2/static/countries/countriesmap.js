@@ -66,10 +66,10 @@ function getCountryClass(country, countries) {
   // var available = countries.names.indexOf(country.properties.SHRT_ENGL) !== -1;
   // if (available) k += ' country-available';
 
-  var countryName = country.properties.SHRT_ENGL
+  var countryName = country.properties.SHRT_ENGL;
   var meta = countrySettings[countryName];
   if (!meta) {
-    return k
+    return k;
   }
 
   var napnas = meta[0];
@@ -180,9 +180,6 @@ function renderCountryLabel(country, path, force) {
 
 function renderCountryFlag(parent, country, bbox, cpId) {
   var countryName = country.properties.SHRT_ENGL.toUpperCase();
-  if (countryName == 'CZECHIA') {
-    country.url = 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_Czech_Republic.svg'
-  }
   var flag = parent
     .append('image')
     .attr('class', 'country-flag')
@@ -470,6 +467,9 @@ function setCountryFlags(countries, flags) {
     if (!name) {
       // console.log('No flag for', c.properties);
       return;
+    }
+    else if (name === 'Czechia') {
+      name = 'Czech Republic';
     }
     var cname = name.replace(' ', '_');
     flags.forEach(function (f) {

@@ -283,8 +283,8 @@ function setCountryFlags(countries, flags) {
       // console.log('No flag for', c.properties);
       return;
     }
-    if (name === 'Czechia') {
-      name = 'Czech';
+    else if (name === 'Czechia') {
+      name = 'Czech Republic';
     }
     var cname = name.replace(' ', '_');
     flags.forEach(function (f) {
