@@ -412,7 +412,7 @@ function drawCountries(world) {
     'side': 'left'
     // 'size': 80,
     // 'space': 6,
-  }
+  };
   drawMaplets(mo);
 }
 
@@ -445,6 +445,9 @@ function setCountryFlags(countries, flags) {
     if (!name) {
       // console.log('No flag for', c.properties);
       return;
+    }
+    else if (name === 'Czechia') {
+      name = 'Czech Republic';
     }
     var cname = name.replace(' ', '_');
     flags.forEach(function (f) {
