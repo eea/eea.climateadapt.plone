@@ -151,6 +151,8 @@
     <interface interface="eea.climateadapt.interfaces.IClimateAdaptSharePage" />
     <interface interface="eea.climateadapt.interfaces.ICountriesRoot" />
     <interface interface="eea.climateadapt.interfaces.ICitiesListingsRoot" />
+    <interface interface="eea.climateadapt.interfaces.ICCACountry" />
+
 
     ------[ Widgets: ]--------
 

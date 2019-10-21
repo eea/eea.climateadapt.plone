@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Added marker interface for Country Profiles
+  [davidsilaghi]
 * Fixed Czechia's flag on country map
   [davidsilaghi Bug #109841]
 * WIP Implemented updates for Case Studies

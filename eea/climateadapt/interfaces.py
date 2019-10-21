@@ -1,6 +1,10 @@
 from zope import schema
 from zope.interface import Interface
 
+class ICCACountry(Interface):
+    """ Marker interface for Country Profiles
+    """
+
 
 class IClimateAdaptContent(Interface):
     """ Marker interface for climate adapt content
