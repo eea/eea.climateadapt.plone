@@ -295,7 +295,7 @@ function renderCountriesBox(opts) {
   renderGraticule(map, 'graticule', [20, 10], path);
   renderGraticule(map, 'semi-graticule', [5, 5], path);
 
-  setCountryFlags(countries.feature.features, window._flags)
+  setCountryFlags(countries.feature.features, window._flags);
 
   world.forEach(function (country) {
     renderCountry(map, country, path, countries, x, y);
@@ -324,6 +324,10 @@ function drawMaplets(opts) {
     var boxw = 50;
     var boxh = 50;
     var space = 10;
+
+    // var mapletMap = world.filter(function(country) { 
+    //   return country.properties.SHRT_ENGL === name;
+    // });
 
     var msp = getMapletStartingPoint(
       viewport,

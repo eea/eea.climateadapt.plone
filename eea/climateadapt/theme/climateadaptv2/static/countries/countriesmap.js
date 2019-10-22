@@ -19,6 +19,7 @@ jQuery(document).ready(function () {
   d3.json(cpath, function (world) {
     $.get('@@countries-metadata-extract', function (metadata) {
       d3.tsv(fpath, function (flags) {
+        window._flags = flags;
         initmap(metadata, world, flags);
       });
     });
@@ -33,7 +34,7 @@ function initmap(metadata, world, flags) {
 
   world = world.features;
 
-  setCountryFlags(world, flags);
+  // setCountryFlags(world, flags);
 
   createSectionsSelector(
     sections,
@@ -118,7 +119,6 @@ function renderCountry(map, country, path, countries, x, y) {
     .attr('d', path(country))
     ;
 
-  available = true;
   if (available) {
     var bbox = outline.node().getBBox();
     renderCountryFlag(parent, country, bbox, cpId);
@@ -198,7 +198,7 @@ function renderCountryFlag(parent, country, bbox, cpId) {
     .attr('height', bbox.height)
     .attr('width', bbox.width)
     .on('click', function () {
-      showMapTooltip(country)
+      showMapTooltip(country);
     })
     .on('mouseover', function() {
       // $('.country-flag').css('cursor', 'unset');
@@ -276,7 +276,7 @@ function renderCountriesBox(opts) {
 
   var map = svg   // the map will be drawn in this group
     .append('g')
-    .attr('clip-path', 'url(#' + cprectid + ')')
+    .attr('clip-path', opts.isMaplet ? 'url(#' + cprectid + ')': null)
     ;
 
   map     // the world sphere, acts as ocean
@@ -292,6 +292,8 @@ function renderCountriesBox(opts) {
 
   renderGraticule(map, 'graticule', [20, 10], path);
   renderGraticule(map, 'semi-graticule', [5, 5], path);
+
+  setCountryFlags(countries.feature.features, window._flags); 
 
   world.forEach(function (country) {
     renderCountry(map, country, path, countries, x, y);
@@ -320,6 +322,10 @@ function drawMaplets(opts) {
     var boxw = 50;
     var boxh = 50;
     var space = 10;
+    
+    var mapletMap = world.filter(function(country) { 
+        return country.properties.SHRT_ENGL === name;
+      });
 
     var msp = getMapletStartingPoint(
       viewport,
@@ -332,7 +338,7 @@ function drawMaplets(opts) {
     );
 
     var zo = {
-      'world': world,
+      'world': mapletMap,
       'svg': g,
       'coordinates': {
         'x': msp.x,
@@ -344,7 +350,8 @@ function drawMaplets(opts) {
         'names': [name],
         'feature': feature
       },
-      'zoom': 0.5
+      'zoom': 0.5,
+      isMaplet: true
     };
     drawMaplet(zo);
   });
@@ -396,7 +403,7 @@ function drawCountries(world) {
       'feature': focusCountriesFeature
     },
     'zoom': 0.95
-  }
+  };
   renderCountriesBox(opts);
 
   var mo = {
@@ -408,7 +415,7 @@ function drawCountries(world) {
     'side': 'left'
     // 'size': 80,
     // 'space': 6,
-  }
+  };
   drawMaplets(mo);
 }
 
