@@ -652,7 +652,7 @@
         class=".misc.ExcelCsvExportView"
         for="*"
         name="export-excel"
-        permission="cmf.ManagePortal"
+        permission="zope2.View"
         template="pt/export_portaltypes.pt"
         />
 
