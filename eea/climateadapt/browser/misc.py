@@ -1,16 +1,17 @@
 import json
 import logging
 import re
-import requests
-import transaction
+from email.MIMEText import MIMEText
+from itertools import islice
 
+import requests
+
+import transaction
 from Acquisition import aq_inner
 from BeautifulSoup import BeautifulSoup
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.config import CONTACT_MAIL_LIST
 from eea.climateadapt.schema import Email
-from email.MIMEText import MIMEText
-from itertools import islice
 from OFS.ObjectManager import BeforeDeleteException
 from plone import api
 from plone.api import portal
@@ -18,7 +19,11 @@ from plone.api.content import get_state
 from plone.api.portal import show_message
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 from plone.directives import form
+from plone.formwidget.captcha.validator import (CaptchaValidator,
+                                                WrongCaptchaCode)
+from plone.formwidget.captcha.widget import CaptchaFieldWidget
 from plone.memoize import view
+from plone.z3cform.layout import wrap_form
 from Products.CMFPlone.utils import getToolByName, isExpired
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
@@ -26,10 +31,6 @@ from z3c.form import button, field, validator
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.interface import Interface, implements
-from plone.formwidget.captcha.widget import CaptchaFieldWidget
-from plone.formwidget.captcha.validator import CaptchaValidator, WrongCaptchaCode
-from plone.z3cform.layout import wrap_form
-
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -65,6 +66,7 @@ class CalculateItemStatistics(BrowserView):
         'Total' refers to the number of total items, regardless of their review
         state (published/private/sent/pending/etc)
     """
+
     def __call__(self):
         return self.initialize()
 
@@ -196,7 +198,7 @@ class getItemStatistics(BrowserView):
 
         for pair in all_types:
             if pair.keys()[0] in annotations[year].keys():
-                    types.append(pair)
+                types.append(pair)
 
         return types
 
@@ -224,6 +226,7 @@ class FixCheckout(BrowserView):
     """ A view to fix getBaseline error when the original item was deleted
     and only the copy remains.
     """
+
     def __call__(self):
         policy = ICheckinCheckoutPolicy(self.context, None)
         relation = policy._get_relation_to_baseline()
@@ -306,6 +309,7 @@ class DetectBrokenLinksView (BrowserView):
     def results(self):
         annot = IAnnotations(self.context)
         res = []
+
         for info in annot.get('broken_links_data', []):
             try:
                 obj = self.context.restrictedTraverse(info['object_url'])
@@ -448,22 +452,28 @@ def _archive_news(site):
 def convert_to_string(item):
     """ Convert to string other types
     """
+
     if not item:
         return ''
+
     if not isinstance(item, basestring):
         new_item = ""
         try:
             iterator = iter(item)
         except TypeError, err:
             value = getattr(item, 'raw', None)
+
             if value:
                 return value
             logger.error(err)
+
             return ''
         else:
             for i in iterator:
                 new_item += i
+
         return new_item
+
     return item
 
 
@@ -474,15 +484,18 @@ def discover_links(string_to_search):
     # [a-z]{2,4}/)(?:[^\s()<>]|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>
     # ]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'\".,<>?\xab\xbb\u201c\u201d\u2018
     # \u2019]))')
-    REGEX = re.compile('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
+    REGEX = re.compile(
+        'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
 
     try:
         result = re.findall(REGEX, string_to_search) or []
+
         if isinstance(result, basestring):
             result = [result]
     except Exception, err:
         logger.error(err)
         result = []
+
     return result
 
 
@@ -530,15 +543,17 @@ def get_links(site):
     brains = catalog.searchResults(**query)
     urls = []
 
-    append_urls = lambda link, path: urls.append({
+    def append_urls(link, path): return urls.append({
         'link': link,
         'object_url': path
     })
     count = 0
     logger.info('Got %s objects' % len(brains))
+
     for b in brains:
         obj = b.getObject()
         path = obj.getPhysicalPath()
+
         if hasattr(obj, 'websites'):
             if isinstance(obj.websites, str):
                 append_urls(obj.websites, path)
@@ -549,6 +564,7 @@ def get_links(site):
             if obj.portal_type == 'eea.climateadapt.city_profile':
                 append_urls(obj.website_of_the_local_authority, path)
         attrs = ['long_description', 'description', 'source', 'comments']
+
         for attr in attrs:
             string_to_search = convert_to_string(getattr(obj, attr, ''))
 
@@ -566,6 +582,7 @@ def get_links(site):
 
                     # get rid of duplicates
                     links = list(set(links))
+
                     for link in links:
                         append_urls(link, path)
 
@@ -577,14 +594,17 @@ def get_links(site):
                     links = bs.findAll(
                         'a', attrs={'href': re.compile("^https?://")}
                     )
+
                     for link in links:
                         append_urls(link.get('href'), path)
 
         count += 1
+
         if count % 100 == 0:
             logger.info('Finished going through %s objects' % count)
 
     logger.info("Finished getting links.")
+
     return urls
 
 
@@ -595,7 +615,12 @@ def check_link(link):
 
     if link:
         if isinstance(link, unicode):
-            link = link.encode()
+            try:
+                link = link.encode()
+            except UnicodeEncodeError:
+                logger.info('UnicodeEncodeError on link %s', link)
+
+                return {'status': 504, 'url': link}
 
         try:
             if link[0:7].find('http') == -1:
@@ -679,7 +704,8 @@ class ContactForm(form.SchemaForm):
 
         if data.has_key('captcha'):
             # Verify the user input against the captcha
-            captcha = CaptchaValidator(self.context, self.request, None, IContactForm['captcha'], None)
+            captcha = CaptchaValidator(
+                self.context, self.request, None, IContactForm['captcha'], None)
 
             try:
                 valid = captcha.validate(data['captcha'])
@@ -752,7 +778,8 @@ class ContactFooterForm(form.SchemaForm):
 
         if data.has_key('captcha'):
             # Verify the user input against the captcha
-            captcha = CaptchaValidator(self.context, self.request, None, IContactFooterForm['captcha'], None)
+            captcha = CaptchaValidator(
+                self.context, self.request, None, IContactFooterForm['captcha'], None)
 
             try:
                 valid = captcha.validate(data['captcha'])
@@ -795,13 +822,15 @@ is sending feedback about the site you administer at %(url)s.
 CaptchaForm = wrap_form(ContactForm)
 
 # Register Captcha validator for the captcha field in the IContactForm
-validator.WidgetValidatorDiscriminators(CaptchaValidator, field=IContactForm['captcha'])
+validator.WidgetValidatorDiscriminators(
+    CaptchaValidator, field=IContactForm['captcha'])
 
 
 CaptchaFooterForm = wrap_form(ContactFooterForm)
 
 # Register Captcha validator for the captcha field in the IContactForm
-validator.WidgetValidatorDiscriminators(CaptchaValidator, field=IContactFooterForm['captcha'])
+validator.WidgetValidatorDiscriminators(
+    CaptchaValidator, field=IContactFooterForm['captcha'])
 
 
 def preventFolderDeletionEvent(object, event):
@@ -822,6 +851,6 @@ class ViewGoogleAnalyticsReport(BrowserView):
         site = portal.get()
         report = site.__annotations__.get('google-analytics-cache-data', {})
 
-        reports = reversed( sorted(report.items(), key=lambda x: int(x[1]) ))
+        reports = reversed(sorted(report.items(), key=lambda x: int(x[1])))
 
         return islice(reports, 0, 10)
