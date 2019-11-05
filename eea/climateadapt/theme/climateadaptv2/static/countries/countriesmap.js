@@ -274,7 +274,8 @@ function renderCountriesBox(opts) {
     .attr('width', width)
     ;
 
-  var map = svg   // the map will be drawn in this group
+
+    var map = svg   // the map will be drawn in this group
     .append('g')
     .attr('clip-path', opts.isMaplet ? 'url(#' + cprectid + ')': null)
     ;
@@ -323,9 +324,10 @@ function drawMaplets(opts) {
     var boxh = 50;
     var space = 10;
     
-    var mapletMap = world.filter(function(country) { 
+    var mapletWorld = world.filter(function(country) { 
         return country.properties.SHRT_ENGL === name;
       });
+    
 
     var msp = getMapletStartingPoint(
       viewport,
@@ -338,7 +340,7 @@ function drawMaplets(opts) {
     );
 
     var zo = {
-      'world': mapletMap,
+      'world': mapletWorld,
       'svg': g,
       'coordinates': {
         'x': msp.x,

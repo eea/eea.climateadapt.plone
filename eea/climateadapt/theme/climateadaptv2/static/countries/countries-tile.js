@@ -221,7 +221,7 @@ function renderCountriesBox(opts) {
   var world = opts.world;
   var zoom = opts.zoom;
   var cprectid = makeid();    // unique id for this map drawing
-
+  
   var globalMapProjection = d3.geoAzimuthalEqualArea();
 
   globalMapProjection
@@ -278,7 +278,8 @@ function renderCountriesBox(opts) {
 
   var map = svg   // the map will be drawn in this group
     .append('g')
-    .attr('clip-path', 'url(#' + cprectid + ')')
+    // .attr('clip-path', 'url(#' + cprectid + ')')
+    .attr('clip-path', opts.isMaplet ? 'url(#' + cprectid + ')': null)
     ;
 
   map     // the world sphere, acts as ocean
@@ -325,9 +326,9 @@ function drawMaplets(opts) {
     var boxh = 50;
     var space = 10;
 
-    // var mapletMap = world.filter(function(country) { 
-    //   return country.properties.SHRT_ENGL === name;
-    // });
+    var mapletWorld = world.filter(function(country) { 
+      return country.properties.SHRT_ENGL === name;
+    });
 
     var msp = getMapletStartingPoint(
       viewport,
@@ -340,7 +341,7 @@ function drawMaplets(opts) {
     );
 
     var zo = {
-      'world': world,
+      'world': mapletWorld,
       'svg': g,
       'coordinates': {
         'x': msp.x,
@@ -352,7 +353,8 @@ function drawMaplets(opts) {
         'names': [name],
         'feature': feature
       },
-      'zoom': 0.5
+      'zoom': 0.5,
+      isMaplet: true
     };
     drawMaplet(zo);
   });

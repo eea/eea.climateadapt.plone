@@ -105,7 +105,7 @@ $(document).ready(function() {
   // HOMEPAGE: Tabs functionality
   $('ul.nav-tabs a').click(function(e) {
     $(this).tab('show');
-    e.preventDefault();
+    // e.preventDefault();
   });
 
   $('.policies-nav a').hover(function() {
