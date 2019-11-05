@@ -8,13 +8,6 @@
       // window.define = undefined;
     </script>
 
-    <!-- <script src="++theme++climateadaptv2/static/js/d3.v4.min.js" charset="utf-8"></script>
-    <script src="++theme++climateadaptv2/static/js/d3-array.v1.min.js"></script>
-    <script src="++theme++climateadaptv2/static/js/d3-geo.v1.min.js"></script>
-    <script src="++theme++climateadaptv2/static/js/d3-geo-projection.v2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.js"></script>
-    <script src="++theme++climateadaptv2/static/js/d3-queue.v3.min.js"></script> -->
-
     <!-- Force stuff -->
     <script src="https://d3js.org/d3-collection.v1.min.js"></script>
     <script src="https://d3js.org/d3-dispatch.v1.min.js"></script>

@@ -36,13 +36,6 @@
     // window.define = null;
   </script>
 
-  <!-- <script src="++theme++climateadaptv2/static/js/d3.v4.min.js" charset="utf-8"></script>
-  <script src="++theme++climateadaptv2/static/js/d3-array.v1.min.js"></script>
-  <script src="++theme++climateadaptv2/static/js/d3-geo.v1.min.js"></script>
-  <script src="++theme++climateadaptv2/static/js/d3-geo-projection.v2.min.js"></script>
-  <script src="https://unpkg.com/topojson@3"></script>
-  <script src="++theme++climateadaptv2/static/js/d3-queue.v3.min.js"></script> -->
-
   <script>
     window.define = window._old_define;
   </script>
