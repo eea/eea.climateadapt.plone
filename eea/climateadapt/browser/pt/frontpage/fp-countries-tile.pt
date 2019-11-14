@@ -25,7 +25,7 @@
 
 
   <script>
-//     <![CDATA[
+// <![CDATA[
     jQuery(document).ready(function(){
       $("#country-select").change(function(){
       var cid = $(this).val();
