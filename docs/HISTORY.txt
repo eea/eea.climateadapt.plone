@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Improved broken-links page, styiling, added date, link type, 
+  search and sorting
+  [davidsilaghi]
 * Improved map performance for countries map
   [davidsilaghi]
 * Fixed Czechia's flag on countries tile

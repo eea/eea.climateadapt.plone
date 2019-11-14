@@ -12,33 +12,35 @@
     <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="content-core">
     <div class="CSSTableGenerator">
-      <table tal:define="results view/results">
+      <table class="table table-striped table-bordered table-sm" id="broken-links-table">
         <thead>
           <tr>
-            <th>Broken Links</th>
+            <th>Destination Links</th>
+            <th>Code</th>
             <th>Object URL</th>
-            <th>Status Code</th>
+            <th>Date</th>
+            <th>Type</th>
           </tr>
         </thead>
-        <tbody>
-          <tal:rep repeat="result view/results">
-            <tr tal:condition="result">
-              <td>
-                <a href="" tal:attributes="href python: result['url']"
-                  target="_blank" tal:content="python: result['url']">
+        <tbody tal:define="results view/results">
+          <tal:rep tal:repeat="url python: results.keys()">
+            <tr>
+              <td class="left">
+                <a tal:attributes="href url" 
+                  target="_blank" tal:content="url"></a>
+              </td>
+              <td tal:content="python: results[url]['status']"></td>
+              <td class="left">
+                <a target="_blank"
+                    tal:define="url python: view.url(results[url]['object_url'])"
+                    tal:attributes="href url"
+                    tal:content="url">
+                    URL
                 </a>
               </td>
-              <td>
-                <a
-                  href=""
-                  target="_blank"
-                  tal:define="url python: view.url(result['object_url'])"
-                  tal:attributes="href url"
-                  tal:content="url">
-                  URL
-                </a>
-              </td>
-              <td tal:content="python: result['status']"></td>
+              <td tal:content="python: results[url]['date']"></td>
+              <td tal:condition="python: 'climate-adapt.eea' not in url">external</td>
+              <td tal:condition="python: 'climate-adapt.eea' in url">internal</td>
             </tr>
           </tal:rep>
         </tbody>

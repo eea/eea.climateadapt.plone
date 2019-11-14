@@ -1546,6 +1546,10 @@ table.listing th {
 
 
 // Broken links table styling
+a.paginate_button {
+  padding-right: 0.5rem;
+}
+
 
 .template-broken-links .CSSTableGenerator {
   table,
@@ -1557,18 +1561,28 @@ table.listing th {
   }
 
   table {
+    td.left {
+      text-align:left;
+    }
     thead {
       tr > th {
         display: inline-block;
+        text-align: center;
       }
       tr > th:nth-child(1) {
-        width: 50%;
+        width: 39%;
       }
       tr > th:nth-child(2) {
-        width: 40%;
+        width: 3.55%;
       }
       tr > th:nth-child(3) {
-        width: 9%;
+        width: 30.79%;
+      }
+      tr > th:nth-child(4) {
+        width: 8.1%;
+      }
+      tr > th:nth-child(5) {
+        width: 5.05%;
       }
     }
 
@@ -1578,17 +1592,21 @@ table.listing th {
       }
       tr > td {
         display: inline-block;
+        text-align: center;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
       }
       tr > td:nth-child(1) {
-        width: 50%;
+        width: 40.25%;
       }
       tr > td:nth-child(2) {
-        width: 40%;
+        width: 4.45%;
       }
       tr > td:nth-child(3) {
+        width: 31.62%;
+      }
+      tr > td:nth-child(4) {
         width: 9%;
       }
     }
@@ -1613,6 +1631,41 @@ table.listing th {
   }
 }
 
+@media (max-width: 1024px) {
+  table {
+    thead {
+      tr > th:nth-child(1) {
+        width: 33% !important;
+      }
+      tr > th:nth-child(2) {
+        width: 5.5% !important;
+      }
+      tr > th:nth-child(3) {
+        width: 30% !important;
+      }
+      tr > th:nth-child(4) {
+        width: 6.1% !important;
+      }
+      tr > th:nth-child(5) {
+        width: 7.35% !important;
+      }
+    }
+    tbody {
+      tr > td:nth-child(1) {
+        width: 34.65% !important;
+      }
+      tr > td:nth-child(2) {
+        width: 6.64% !important;
+      }
+      tr > td:nth-child(3) {
+        width: 31.2% !important;
+      }
+      tr > td:nth-child(4) {
+        width: 7.45% !important;
+      }
+    }
+  }
+}
 
 // Fields and forms
 #folderContentsForm .context {
@@ -2265,7 +2318,7 @@ div.width-1\3a 4 {
 }
 
 @media screen and (max-width: 1024px) {
-    .case-studies-review-image-wrapper .image-copyright {
+  .case-studies-review-image-wrapper .image-copyright {
         bottom: 0;
         opacity: unset;
         position: relative;

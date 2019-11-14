@@ -1,5 +1,6 @@
 $(document).ready(function() {
   var $body = $('body');
+  $('#broken-links-table').DataTable();
 
   // HOMEPAGE: initialize slick slider
   if ($('.slider').slick) {

@@ -7,6 +7,7 @@ from itertools import islice
 import requests
 
 import transaction
+from DateTime import DateTime
 from Acquisition import aq_inner
 from BeautifulSoup import BeautifulSoup
 from eea.climateadapt import MessageFactory as _
@@ -31,6 +32,7 @@ from z3c.form import button, field, validator
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.interface import Interface, implements
+from ZODB.PersistentMapping import PersistentMapping
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -303,22 +305,29 @@ class DetectBrokenLinksView (BrowserView):
 
     def url(self, path):
         path = '/'.join(path[2:])
-
         return path
 
     def results(self):
-        annot = IAnnotations(self.context)
-        res = []
+        annot = IAnnotations(self.context)['broken_links_data']
+        latest_dates = sorted(annot.keys())[-5:]
+        res = {}
+        broken_links = []
 
-        for info in annot.get('broken_links_data', []):
-            try:
-                obj = self.context.restrictedTraverse(info['object_url'])
-            except:
-                continue
-            state = get_state(obj)
+        for date in latest_dates:
+            for info in annot[date]:
+                info = info.copy()
+                try:
+                    obj = self.context.restrictedTraverse(info['object_url'])
+                except:
+                    continue
 
-            if state not in ['private', 'archived']:
-                res.append(info)
+                state = get_state(obj)
+                if state not in ['private', 'archived']:
+                    info['date'] = date.Date() if isinstance(date, DateTime) else date
+                    broken_links.append(info)
+
+        for link in broken_links:
+            res[link['url']] = link
 
         return res
 
@@ -502,20 +511,34 @@ def discover_links(string_to_search):
 def compute_broken_links(site):
     """ Script that will get called by cron once per day
     """
-    links = get_links(site)
 
     results = []
+    annot = IAnnotations(site)['broken_links_data']
+    now = DateTime()
+    links = get_links(site)
+
+    if isinstance(annot, list):
+        # store old data
+        old_data = annot
+        annot = PersistentMapping()
+        IAnnotations(site)['broken_links_data'] = annot
+        annot['pre_nov7_data'] = old_data
 
     for info in links:
         res = check_link(info['link'])
-
         if res is not None:
             res['object_url'] = info['object_url']
             results.append(res)
 
-    IAnnotations(site)['broken_links_data'] = results
-    transaction.commit()
+    annot[now] = results
+    dates = annot.keys()
 
+    if len(dates) >= 5: # maximum no. of dates stored
+        # delete oldest data except 'pre_nov7_data'
+        del annot[sorted(dates)[0]] 
+
+    IAnnotations(site)._p_changed = True
+    transaction.commit()
 
 def get_links(site):
     """ Gets the links for all our items by using the websites field
@@ -628,7 +651,8 @@ def check_link(link):
         except Exception, err:
             logger.error(err)
 
-        logger.info("LINK: %s", link)
+        logger.warning("Now checking: %s", link)
+        
         try:
             requests.head(link, timeout=5, allow_redirects=True)
         except requests.exceptions.ReadTimeout:

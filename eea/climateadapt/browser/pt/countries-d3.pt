@@ -4,11 +4,21 @@
   <metal:fill-slot fill-slot="javascript_head_slot">
 
     <script>
-      // window._old_define = window.define;
-      // window.define = undefined;
+      window._old_define = window.define;
+      window.define = undefined;
     </script>
 
     <!-- Force stuff -->
+    
+    <!-- d3 resources -->
+    <script src="/++theme++climateadaptv2/static/js/d3-array.v1.min.js"></script>
+    <script src="/++theme++climateadaptv2/static/js/d3.v4.min.js"></script>
+    <script src="/++theme++climateadaptv2/static/js/d3-geo.v1.min.js"></script>
+    <script src="/++theme++climateadaptv2/static/js/d3-geo-projection.v2.min.js"></script>
+    <script src="/++theme++climateadaptv2/static/js/topojson.js"></script>
+    <script src="/++theme++climateadaptv2/static/js/d3-queue.v3.min.js"></script>
+
+
     <script src="https://d3js.org/d3-collection.v1.min.js"></script>
     <script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
     <script src="https://d3js.org/d3-quadtree.v1.min.js"></script>
@@ -16,7 +26,7 @@
     <script src="https://d3js.org/d3-force.v1.min.js"></script>
 
     <script>
-      // window.define = window._old_define;
+      window.define = window._old_define;
     </script>
 
     <script type="text/javascript" src="/++resource++collective.js.bootstrap/js/bootstrap.min.js"></script>
