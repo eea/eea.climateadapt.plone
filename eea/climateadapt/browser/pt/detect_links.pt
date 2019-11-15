@@ -9,7 +9,14 @@
   i18n:domain="eea.climateadapt">
 
   <body>
+    
     <metal:main fill-slot="main">
+    <script src="++resource++eea.climateadapt/jquery.dataTables.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#broken-links-table').DataTable();
+      });
+    </script>
     <tal:main-macro metal:define-macro="content-core">
     <div class="CSSTableGenerator">
       <table class="table table-striped table-bordered table-sm" id="broken-links-table">
