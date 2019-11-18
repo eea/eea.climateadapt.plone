@@ -185,7 +185,7 @@ function renderCountryFlag(parent, country, bbox, cpId) {
     .attr('height', bbox.height)
     .attr('width', bbox.width)
     .on('click', function (e) {
-      var link = country.properties.SHRT_ENGL.toLowerCase();
+      var link = country.properties.SHRT_ENGL.toLowerCase().replace(" ", "-");
       location.href = '/countries-regions/countries/' + link;
     })
     .on('mouseover', function() {

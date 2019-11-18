@@ -70,18 +70,21 @@ def get_nap_nas(obj, text, country):
     rows = e.xpath('//table[contains(@class, "listing")]/tbody/tr')
 
     for row in rows:
-
         try:
             cells = row.xpath('td')
             # key = cells[0].text_content().strip()
             # key = ''.join(cells[0].itertext()).strip()
             key = ' '.join(
                 [c for c in cells[0].itertext() if type(c) is not unicode])
-            children = list(cells[2])
 
             if key in [None, '']:
                 key = cells[0].text_content().strip()
 
+            if len(list(cells)) < 3:
+                children = []
+            else:
+                children = list(cells[2])
+            
             text = [lxml.etree.tostring(c) for c in children]
             value = u'\n'.join(text)
             key = normalized(key)
@@ -128,7 +131,10 @@ class CountriesMetadataExtract(BrowserView):
         #     import pdb
         #     pdb.set_trace()
 
-        cover = obj['index_html']
+        if 'index_html' in obj.contentIds():
+            cover = obj['index_html']
+        else:
+            cover = obj
 
         layout = cover.cover_layout
         layout = json.loads(layout)
@@ -152,8 +158,10 @@ class CountriesMetadataExtract(BrowserView):
         res = {}
 
         for child in self.context.contentValues():
-            if child.portal_type != 'Folder':
+            if child.portal_type \
+                 not in ['Folder', 'collective.cover.content']:
                 continue
+            
             res[child.Title()] = [
                 self.extract_country_metadata(child),
                 child.absolute_url()

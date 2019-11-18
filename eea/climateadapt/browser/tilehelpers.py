@@ -33,9 +33,8 @@ class AceContentSearch(BrowserView):
 
 
 class FrontPageCountries(BrowserView):
-    """ A view to render the frontpage tile with countries and country select
-
-    form
+    """ A view to render the frontpage tile with countries and 
+        country select form
     """
 
     def countries(self):
@@ -52,7 +51,8 @@ class FrontPageCountries(BrowserView):
             })]
 
         res = [(c.getId(), c.Title())
-               for c in countries if c.portal_type == 'Folder']
+               for c in countries if c.portal_type in \
+                   ['Folder', 'collective.cover.content']]
 
         return res
 
@@ -384,6 +384,7 @@ class CountriesTileMetadata(BrowserView):
 
         countries = [c for c in countries_folder.contentValues()]
 
-        res = [c.Title() for c in countries if c.portal_type == 'Folder']
+        res = [c.Title() for c in countries if c.portal_type \
+            in ['Folder', 'collective.cover.content']]
 
         return json.dumps(res)
