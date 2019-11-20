@@ -2,13 +2,17 @@ import json
 import logging
 
 from zope.component import adapts
-from zope.interface import implements
+from zope.interface import Interface, implements
 
+import pytz
+import rdflib
 from eea.climateadapt.catalog import macro_regions
 from eea.climateadapt.city_profile import ICityProfile
+from eea.climateadapt.interfaces import ICCACountry
 from eea.climateadapt.vocabulary import (BIOREGIONS, SUBNATIONAL_REGIONS,
                                          ace_countries_dict)
 from eea.rdfmarshaller.dexterity import Dexterity2Surf
+from eea.rdfmarshaller.dexterity.fields import DXField2Surf
 from eea.rdfmarshaller.interfaces import ISurfResourceModifier, ISurfSession
 from eea.rdfmarshaller.value import Value2Surf
 from plone.app.contenttypes.interfaces import ICollection
@@ -16,9 +20,6 @@ from plone.dexterity.interfaces import IDexterityContent
 from plone.formwidget.geolocation.interfaces import IGeolocation
 from plone.namedfile.interfaces import INamedBlobFile, INamedBlobImage
 from Products.CMFCore.utils import getToolByName
-
-import rdflib
-import pytz
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -149,6 +150,20 @@ class CityProfile2Surf(Dexterity2Surf):
         return self.portalType.lower()
 
 
+class CountryTitle2Surf(DXField2Surf):
+    """ Override the country title to include more information
+    """
+    adapts(Interface, ICCACountry, ISurfSession)
+
+    def value(self):
+        title = self.context.Title()
+
+        if isinstance(title, unicode):
+            title = title.encode('utf-8')
+
+        return title + ' - ClimateADAPT country profile'
+
+
 class Geolocation2Surf(Value2Surf):
     """IValue2Surf implementation for plone.formwidget.Geolocation """
     adapts(IGeolocation)
@@ -191,6 +206,7 @@ class IssuedFieldModifier(object):
     def run(self, resource, *args, **kwds):
         """Change the rdf resource to include issued term
         """
+
         if not hasattr(self.context, 'effective'):
             return
 
@@ -200,7 +216,7 @@ class IssuedFieldModifier(object):
         utc_date = timezone.localize(value)
         value = rdflib.term.Literal(utc_date,
                                     datatype=rdflib.term.URIRef(u'http://www.w3.org/2001/XMLSchema#dateTime'
-                                    ))
+                                                                ))
         setattr(resource, "dcterms_issued", value)
         setattr(resource, "eea_issued", value)
 

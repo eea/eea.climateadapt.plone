@@ -229,6 +229,7 @@
     <adapter factory=".marshaller.File2Surf" />
     <adapter factory=".marshaller.Image2Surf" />
     <adapter factory=".marshaller.Collection2Surf" />
+    <adapter factory=".marshaller.CountryTitle2Surf" name="title"/>
 
     ------[ Workflow Message Functionality: ]--------
 
