@@ -308,7 +308,8 @@ class DetectBrokenLinksView (BrowserView):
         return path
 
     def results(self):
-        annot = IAnnotations(self.context)['broken_links_data']
+        portal = api.portal.get()
+        annot = IAnnotations(portal)['broken_links_data']
         latest_dates = sorted(annot.keys())[-5:]
         res = {}
         broken_links = []
