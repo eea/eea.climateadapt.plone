@@ -15,7 +15,9 @@
     <drop css:theme="head script" css:if-content=".template-sat"/>
     <before css:content="head style, head link, head meta" css:theme-children="head"/>
     <replace css:content="head title" css:theme="head title"/>
+
     <copy css:content="head base" css:theme="head base"/>
+
     <drop css:content="head link[rel='shortcut icon']"/>
     <drop css:content="head link[rel='apple-touch-icon']"/>
 
@@ -28,6 +30,10 @@
 
     <rules css:if-content=".section-frontpage.template-standard">
       <theme href="index.html" />
+      <drop css:theme="head base" />
+      <append css:theme="head">
+        <base><xsl:attribute name="href"><xsl:value-of select="$portal_url"/></xsl:attribute></base>
+      </append>
       <replace css:content-children=".fp-news-tile" css:theme-children=".fp-news-tile" />
       <replace css:content-children=".fp-events-tile" css:theme-children=".fp-events-tile" />
       <replace css:theme-children="#t-countries" css:content="#fp-country-selector"  />
