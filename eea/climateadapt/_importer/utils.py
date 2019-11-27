@@ -179,7 +179,6 @@ def is_html(text):
 def detect_richtext_fields(session):
     """ Detect all the fields that contain richtext.
     """
-    #import pdb; pdb.set_trace()
     result = {}
     for klass in [sql.AceAceitem, sql.AceProject, sql.AceMeasure]:
         print "Looking up", klass
@@ -1352,7 +1351,6 @@ def fix_inner_link(site, href):
         return get_repofile_by_id(site, uuid)
     else:
         logger.debug("Couldn't find proper equivalent link for %s", href)
-        #import pdb; pdb.set_trace()
         return href
 
     return href

@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Created a script which takes Case Studies from an url
+  and updates the container in the database
+  [davidsilaghi #104037]
 * Improved broken-links page, styiling, added date, link type, 
   search and sorting
   [davidsilaghi]

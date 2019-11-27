@@ -108,12 +108,12 @@
     permission="cmf.ManagePortal"
     />
 
-  <browser:page
+  <!--browser:page
     name="import-adaptecca"
     for="*"
     class=".admin.AdapteCCACaseStudyImporter"
     permission="cmf.ManagePortal"
-    />
+    /-->
 
   <browser:page
     name="fix-current-case-studies"

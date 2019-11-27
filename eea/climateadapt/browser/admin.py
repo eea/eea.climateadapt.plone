@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-
-import datetime
 import json
 import logging
 
 # from collective.cover.tiles.list import ListTile
-from lxml.etree import fromstring
 from pkg_resources import resource_filename
 from zope import schema
 from zope.component import adapter, getMultiAdapter, getUtility
@@ -27,6 +24,7 @@ from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
 from plone.app.widgets.dx import RelatedItemsWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.directives import form
+from lxml.etree import fromstring
 from plone.i18n.normalizer import idnormalizer
 from plone.memoize import view
 from plone.registry.interfaces import IRegistry
@@ -42,8 +40,6 @@ from z3c.form.interfaces import IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
-
-from DateTime import DateTime
 
 html_unescape = HTMLParser().unescape
 
@@ -709,333 +705,6 @@ class Item:
             return {"geoElements": {"element": "EUROPE", "biotrans": []}}
         return None
 
-class NoUpdates(Exception):
-    """ Already in Case Studies without modifications
-    """
-    pass
-
-class AdapteCCACaseStudyImporter(BrowserView):
-    """ Demo adaptecca importer
-    """
-
-    def t_sectors(self, l):
-        # Translate values to their CCA equivalent
-
-        # TODO: check mapped ids
-        # map = {
-        #     u"Biodiversidad": "BIODIVERSITY",
-        #     u"Recursos hídricos": "WATERMANAGEMENT",
-        #     u"Bosques": "FORESTRY ",
-        #     u"Sector agrario": "AGRICULTURE",
-        #     # "Caza y pesca continental": "Inland hunting and fishing",
-        #     # "Suelos y desertificación": "Soils and desertification",
-        #     u"Transporte": "TRANSPORT",
-        #     u"Salud humana": "HEALTH",
-        #     # "Industria": "Industry",
-        #     # "Turismo": "Tourism",
-        #     u"Finanzas – Seguros": "FINANCIAL",
-        #     u"Urbanismo y Construcción": "URBAN",
-        #     u"Energía": "ENERGY",
-        #     # "Sociedad": "Society",
-        #     u"Zonas costeras": "COASTAL",
-        #     # "Zonas de montaña": "Mountain zones",
-        #     u"Medio marino y pesca": "MARINE",
-        #     # "Ámbito Insular": "Islands",
-        #     # "Medio Rural": "Rural environment",
-        #     u"Medio Urbano": "URBAN",
-        #     u"Eventos extremos": "DISASTERRISKREDUCTION",
-        # }
-
-        map = {
-            u"Water management": "WATERMANAGEMENT",
-            u"Ecosystem-based approaches (GI)": "ECOSYSTEM",
-            u"Urban": "URBAN",
-            u"Urban Planning and Construction": "URBAN",
-            u"Urban areas": "URBAN",
-            u"Disaster Risk Reduction": "DISASTERRISKREDUCTION",
-            u"Biodiversity": "BIODIVERSITY",
-            u"Coastal areas": "COASTAL",
-            u"BUILDINGS": "BUILDINGS",
-            u"Forestry": "FORESTRY ",
-            u"Forests": "FORESTRY ",
-            u"Agrarian sector": "AGRICULTURE",
-            u"Agriculture": "AGRICULTURE",
-            u"MARINE": "MARINE",
-            u"Financial": "FINANCIAL",
-            u"Energy": "ENERGY",
-            u"Transport": "TRANSPORT",
-            u"Health": "HEALTH",
-            u"Water resources": "WATERMANAGEMENT",
-
-            u"Rural areas": "Rural areas",
-            u"Transnational region (stretching across country borders)PORT": "Transnational region",
-
-            u"Transporte": "TRANSPORT",
-        }
-
-        return list(set([map.get(x, 'NONSPECIFIC') for x in l]))
-
-    def t_impacts(self, l):
-        # Translate values to their CCA equivalent
-
-        # map = {
-        #     u"Sequía / Escasez de agua": "DROUGHT",
-        #     u"Eutrofización / salinización "
-        #     u"/ pérdida de calidad de aguas continentales": "WATERSCARCE",
-        #     u"Inundaciones": "FLOODING",
-        #     # "Desertificación / Degradación forestal y de tierras"
-        #     u"Aumento del nivel de mar": "SEALEVELRISE",
-        #     u"Temperaturas extremas (olas de calor/frio)": "EXTREMETEMP",
-        #     # "Impactos sobre la biodiversidad (fenología, distribución, etc.)"
-        #     # "Impacts on biodiversity (phenology, distribution, etc.)",
-        #     # "Enfermedades y vectores": "Illnesses and vectors",
-        #     u"Vientos extraordinarios": "STORM",
-        # }
-
-        map = {
-            u"Flooding": "FLOODING",
-            u"Sea level rise": "SEALEVELRISE",
-            u"Ice and Snow": "ICEANDSNOW",
-            u"Extreme temperatures": "EXTREMETEMP",
-            u"Extreme temperature (heat and cold waves)": "EXTREMETEMP",
-            u"Storms": "STORM",
-            u"Drought": "DROUGHT",
-            u"Water Scarcity": "WATERSCARCE",
-            u"Desertification / Forest and land degradation": "DROUGHT",
-        }
-
-        return list(set([map.get(x, 'NONSPECIFIC') for x in l]))
-
-    def html2text(self, html):
-        if not isinstance(html, basestring):
-            return u""
-        portal_transforms = api.portal.get_tool(name='portal_transforms')
-        data = portal_transforms.convertTo('text/plain',
-                                           html, mimetype='text/html')
-        text = data.getData()
-
-        return text.strip()
-
-    def t_governance(self, level):
-        # Translate values to their CCA equivalent
-        # map = {
-        #     u"Local": "LC",
-        #     u"Regional": "SNA",
-        #     u"Nacional": "NAT",
-        #     u"Internacional": "TRANS",
-        # }
-        if level is None:
-            return ''
-
-        level = self.html2text(level)
-        level = [x.strip() for x in level.split('\n')]
-
-        map = {
-            u"Local": "LC",
-            u"Regional": "SNA",
-            u"Sub National Regions": "SNA",
-            u"National": "NAT",
-            u"Transnational region (stretching across country borders)": "TRANS",
-        }
-
-        # 'governance_level': ['LC', 'NAT', 'SNA'],
-        return [map.get(x, '') for x in level]
-
-    def t_geochars(self, v):
-        # TODO: need to convert to geochar format
-        # map = {
-        #     u"Región Alpina": "TRANS_BIO_ALPINE",
-        #     u"Región Atlántica": "TRANS_BIO_ATLANTIC",
-        #     u"Región Mediterránea ": "TRANS_BIO_MEDIT",
-        #     u"Región Macaronésica ": "TRANS_BIO_MACARO",
-        # }
-
-        map = {
-            u"Mediterranean": "TRANS_BIO_MEDIT",
-            u"Alpine": "TRANS_BIO_ALPINE",
-            u"Atlantic": "TRANS_BIO_ATLANTIC",
-            u"Pannonian": "TRANS_BIO_PANNONIAN",
-            u"Boreal": "TRANS_BIO_BOREAL",
-            u"Continental": "TRANS_BIO_CONTINENTAL",
-            u"Arctic": "TRANS_BIO_ARCTIC",
-        }
-
-        # TODO: is this a list or just a bio region?
-        if type(v) is dict:
-            return json.dumps(v)
-
-        v = [x.strip() for x in v.split(',')]
-        v = {"geoElements":
-                {"element": "EUROPE", "macrotrans": None,
-                 "biotrans": [map.get(x, '') for x in v], "countries": [],
-                 "subnational":[], "city":"",
-                 }
-            }
-        return json.dumps(v)
-
-    def update_content_in_container(self, shortname, *args, **kwargs):
-        """Update content in case-studies to match AdapteCCA data"""
-        
-        item = self.context[shortname]
-        
-        for attr in kwargs.keys():
-            setattr(item, attr, kwargs[attr]) #(object, name, value)
-        
-        item.reindexObject()
-        item._p_changed = True
-        
-        return item
-
-    def node_import(self, container, node):
-        f = Item(node)
-        location = container
-        import_id = f.item_id
-        last_modified = DateTime(f.item_changed)
-        shortname = idnormalizer.normalize(f.title, None, 500)
-
-        try:
-            original = location[shortname]
-        except KeyError:
-            return self.create_obj(location, f, import_id)
-        else:
-            for obj in location.contentValues():
-                annot = getattr(obj.aq_inner.aq_self, '__annotations__', {})
-                test_id = annot.get('original_import_id')
-                if test_id == import_id:
-                    return self.update_obj(obj, f)
-                else:
-                    if not hasattr(original.aq_inner.aq_self, '__annotations__'):
-                        original.__annotations__ = PersistentMapping()
-
-                    original.__annotations__['original_import_id'] = import_id
-                    
-                    if last_modified > original.modified():
-                        return self.update_obj(obj, f)
-                    else:
-                        raise NoUpdates
-        
-    def create_obj(self, location, f, import_id):
-        item = u.createAndPublishContentInContainer(
-            location,
-            'eea.climateadapt.casestudy',
-            _publish=True,
-            title=f.title,
-            long_description=u.t2r(f.information),
-            keywords=f.keywords.split(', '),
-            sectors=self.t_sectors(f.sectors.split(', ')),
-            climate_impacts=self.t_impacts(f.impact.split(', ')),
-            governance_level=self.t_governance(f.governance),
-            # regions
-            geochars=self.t_geochars(f.regions),
-            challenges=u.t2r(f.challenges),
-            objectives=u.t2r(f.objectives),
-
-            # in CCA this is a related items field
-            # in AdapteCCA, these measures are linked concepts to other content
-            # we'll ignore them for the time being?
-            #
-            # measures=self.to_terms(node.find('field_measures')),
-            # adaptationoptions=measures,
-
-            measure_type='A',       # it's a case study
-
-            solutions=u.t2r(f.solutions),
-            # f.adaptation
-            # f.interest
-            stakeholder_participation=u.t2r(f.stakeholder),
-            success_limitations=u.t2r(f.factors),
-            cost_benefit=u.t2r(f.budget),
-            legal_aspects=u.t2r(f.legal),
-            implementation_time=u.t2r(f.implementation),
-
-            # TODO: there is no lifetime in AdapteCCA?
-
-            contact=u.t2r(f.contact),
-            websites=u.s2l(u.r2t(html_unescape(f.websites))) or [],
-
-            # TODO: make sure we don't have paragraphs?
-            source=u.r2t(f.sources),
-            year=f.year,
-            # images
-
-            # TODO: in AdapteCCA, this is free text, we have 3 options
-            # Select only one category below that best describes how relevant
-            # this case study is to climate change adaptation
-            # relevance=s2l(data.relevance),
-            relevance=[],
-
-            # comments=data.comments,
-            # creation_date=creationdate,
-            # effective_date=approvaldate,
-            # elements=s2l(data.elements_),
-            # geochars=data.geochars,
-            # geolocation=geoloc,
-            # implementation_type=data.implementationtype,
-            # legal_aspects=t2r(data.legalaspects),
-            # lifetime=t2r(data.lifetime),
-            # primephoto=primephoto,
-            # spatial_layer=data.spatiallayer,
-            # spatial_values=s2l(data.spatialvalues),
-            # supphotos=supphotos,
-
-            origin_website='AdapteCCA',
-        )
-
-        annot = IAnnotations(item)
-        annot['import_id'] = import_id
-
-        return item
-
-    def update_obj(self, obj, node):
-        item = self.update_content_in_container(
-            shortname,
-            'eea.climateadapt.casestudy',
-            _publish=True,
-            title=f.title,
-            long_description=u.t2r(f.information),
-            keywords=f.keywords.split(', '),
-            sectors=self.t_sectors(f.sectors.split(', ')),
-            climate_impacts=self.t_impacts(f.impact.split(', ')),
-            governance_level=self.t_governance(f.governance),
-            geochars=self.t_geochars(f.regions),
-            challenges=u.t2r(f.challenges),
-            objectives=u.t2r(f.objectives),
-            measure_type='A',       # it's a case study
-            solutions=u.t2r(f.solutions),
-            stakeholder_participation=u.t2r(f.stakeholder),
-            success_limitations=u.t2r(f.factors),
-            cost_benefit=u.t2r(f.budget),
-            legal_aspects=u.t2r(f.legal),
-            implementation_time=u.t2r(f.implementation),
-            contact=u.t2r(f.contact),
-            websites=u.s2l(u.r2t(html_unescape(f.websites))) or [],
-            source=u.r2t(f.sources),
-            year=f.year,
-            relevance=[],
-            origin_website='AdapteCCA',
-        )
-
-        return item
-        
-    def __call__(self):
-        if self.context.title != 'Case studies':
-            return 'Wrong path. Only use this view on Case Studies'
-        
-        fpath = resource_filename('eea.climateadapt.browser',
-                                  'data/cases_en_cdata.xml')
-        s = open(fpath).read()
-        e = fromstring(s)
-
-        for node in e.xpath('//item'):
-            try:
-                item = self.node_import(self.context, node)
-            except NoUpdates:
-                continue
-
-            logger.info('{}', item.absolute_url())
-
-        return 'AdapteCCA case study importer'
-
 
 class AdapteCCACurrentCaseStudyFixImportIDs(BrowserView):
     """ AdapteCCA current case study fix import ids
@@ -1044,6 +713,7 @@ class AdapteCCACurrentCaseStudyFixImportIDs(BrowserView):
     def __call__(self):
         fpath = resource_filename('eea.climateadapt.browser',
                                   'data/cases_en_cdata.xml')
+        
         s = open(fpath).read()
         e = fromstring(s)
         container = getSite()['metadata']['case-studies']

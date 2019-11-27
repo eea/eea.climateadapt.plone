@@ -1,5 +1,18 @@
 from eea.climateadapt.browser.misc import _archive_news, compute_broken_links
+from eea.climateadapt.browser.external_links import AdapteCCACaseStudyImporter
 from eea.climateadapt.scripts import get_plone_site
+
+def sync_adaptecca_casestudies():
+    """ A cron callable script to get AdapteCCA case studies
+
+    This should be run through the zope client script running machinery,:
+
+    bin/zeo_client run bin/get_case_studies
+    """
+    
+    site = get_plone_site()
+    adapteCCA = AdapteCCACaseStudyImporter(site)
+    adapteCCA()
 
 
 def get_broken_links():
@@ -7,7 +20,7 @@ def get_broken_links():
 
     This should be run through the zope client script running machinery,:
 
-    bin/www1 run bin/get_broken_links
+    bin/zeo_client run bin/get_broken_links
     """
     site = get_plone_site()
     compute_broken_links(site)
@@ -18,7 +31,7 @@ def archive_news():
 
     This should be run through the zope client script running machinery:
 
-    bin/www1 run bin/archive_news
+    bin/zeo_client run bin/archive_news
     """
     site = get_plone_site()
     _archive_news(site)
