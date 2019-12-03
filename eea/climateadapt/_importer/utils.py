@@ -66,12 +66,13 @@ def createAndPublishContentInContainer(*args, **kwargs):
     _publish = kwargs.get('_publish', True)
     if (args[1] not in ('File', 'Image',)) and _publish:
         try:
-            wftool.doActionFor(content, 'publish')
+            wftool.doActionFor(content, 'immediately_publish')
         except WorkflowException:
             # a workflow exception is risen if the state transition is not available
             # (the sampleProperty content is in a workflow state which
             # does not have a "submit" transition)
             logger.error("Could not publish:" + content)
+            raise
 
     return content
 

@@ -66,6 +66,7 @@ setup(
       send_mayoradapt_reminders = eea.climateadapt.mayorsadapt.scripts:send_reminders
       get_broken_links = eea.climateadapt.browser.scripts:get_broken_links
       sync_adaptecca_casestudies = eea.climateadapt.browser.scripts:sync_adaptecca_casestudies
+      import_drmkc = eea.climateadapt.browser.scripts:import_drmkc
       archive_news = eea.climateadapt.browser.scripts:archive_news
       harvest_eea_indicators = eea.climateadapt.scripts.harvest_eea_indicators:main
       refresh_analytics_data = eea.climateadapt.browser.admin:refresh_analytics_data

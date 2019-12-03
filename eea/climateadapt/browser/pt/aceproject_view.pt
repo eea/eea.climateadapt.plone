@@ -8,10 +8,8 @@
   metal:use-macro="context/main_template/macros/master"
   >
   <body>
-
     <metal:main fill-slot="body">
       <tal:main-macro metal:define-macro="content-core">
-
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
           <div metal:fill-slot="title-slot">
             <h1>
@@ -31,9 +29,10 @@
             <metal:macro use-macro="context/ace_macros/macros/funding" />
 
             <h4 class="reference-title">Reference information</h4>
-            <h5>Websites:</h5>
-            <metal:macro use-macro="context/ace_macros/macros/websites" />
-
+            <tal:err tal:on-error="nothing">
+              <h5>Websites:</h5>
+              <metal:macro use-macro="context/ace_macros/macros/websites" />
+            </tal:err>
             <div metal:use-macro="context/ace_macros/macros/comments"></div>
 
           </div>
@@ -95,7 +94,6 @@
           </div>
         </metal:macro>
         <div id="viewlet-below-content-body" tal:content="structure provider:plone.belowcontentbody" tal:condition="not:ajax_load" />
-
       </tal:main-macro>
     </metal:main>
 

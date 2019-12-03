@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
-import json
 import urllib2
 import logging
 import transaction
+import json, requests
 from admin import Item
 from DateTime import DateTime
 from lxml.etree import fromstring
 from six.moves.html_parser import HTMLParser
+from persistent.mapping import PersistentMapping
+from zope.annotation.interfaces import IAnnotations
 
 from plone import api
 from plone.i18n.normalizer import idnormalizer
@@ -15,8 +17,188 @@ from eea.climateadapt._importer import utils as u
 html_unescape = HTMLParser().unescape
 logger = logging.getLogger('eea.climateadapt')
 
+class DRMKCItem:
+    def __init__(self, result):
+        for attr in result.keys():
+            setattr(self, attr, result[attr])
+
+class DRMKCImporter():
+    def __init__ (self, site):
+        self.container = site['metadata']['projects']
+        self.url = 'https://drmkc.jrc.ec.europa.eu/API/ProjectsExplorer/Query/Filter'
+        self.payload = """{"Operator": "AND",
+            "Rules": [ {
+            "Property": "terms.fundingPrograms",
+            "Value": "ENV-CLIMA",
+            "Operator": "equals"
+            }
+            ],
+            "Groups": [],
+            "Aggregations": [],
+            "Sorts": [ {
+            "Property": "titleForSort.keyword",
+            "Direction": "Asc"
+            }
+            ],
+            "Start": 0,
+            "Limit": 10,
+            "Types": [
+            "project"
+            ]}"""
+        self.headers = {'Content-type':'application/json'}
+
+    def get_response(self):
+        response = requests.post(self.url, data=self.payload, headers=self.headers)
+        return response.json()
+
+    def create_obj(self, f, shortname, import_id):
+        item = u.createAndPublishContentInContainer(
+            self.container,
+            'eea.climateadapt.aceproject',
+            _publish=True,
+            title=f.Title,
+            long_description=u.t2r(f.Description),
+            creation_date=DateTime(f.CreatedOnDate),
+            acronym =f.Acronym,
+            source ='DRMKC',
+            lead =f.CreatedByUser[u'DisplayName'],
+            partners=u.t2r(''),
+            sectors=[],
+            climate_impacts=[],
+            geochars = '',
+            rating = 0,
+            websites=()
+            # f.Country,
+            # f.EndDate,
+            # f.ExternalIds,
+            # f.Highlights,
+            # f.Id,
+            # f.LastModifiedByUser,
+            # f.LastModifiedOnDate,
+            # f.LengthInYears,
+            # f.Location,
+            # f.ModuleId,
+            # f.NumCountries,
+            # f.NumPartners,
+            # f.NumPublications,
+            # f.Organisations,
+            # f.Publications,
+            # f.StartDate,
+            # f.TabId,
+            # f.Terms,
+            # f.Title,
+            # f.TotalCost,
+            # f.TotalCostPerYear,
+            # f.TotalEcContribution,
+            # f.TotalEcContributionPerYear,
+            # f.Years,
+            # f.Score
+            # f.getGeoProperties
+            )
+
+        annot = IAnnotations(item)
+        annot['import_id'] = import_id
+        logger.warning('CREATING: %s', f.Title)
+        return item
+    
+    def update_obj(self, f):
+        item = self.update_content_in_container(
+            self.container,
+            'eea.climateadapt.aceproject',
+            _publish=True,
+            title=f.Title,
+            long_description=u.t2r(f.Description),
+            creation_date=DateTime(f.CreatedOnDate),
+            acronym =f.Acronym,
+            source ='DRMKC',
+            lead =f.CreatedByUser[u'DisplayName'],
+            partners=u.t2r(''),
+            sectors=[],
+            climate_impacts=[],
+            geochars = '',
+            rating = 0,
+            websites=()
+            # rating= f.Score,
+            # f.Country,
+            # f.CreatedByUser,
+            # f.EndDate,
+            # f.ExternalIds,
+            # f.Highlights,
+            # f.Id,
+            # f.LastModifiedByUser,
+            # f.LastModifiedOnDate,
+            # f.LengthInYears,
+            # f.Location,
+            # f.ModuleId,
+            # f.NumCountries,
+            # f.NumPartners,
+            # f.NumPublications,
+            # f.Organisations,
+            # f.Publications,
+            # f.StartDate,
+            # f.TabId,
+            # f.Terms,
+            # f.Title,
+            # f.TotalCost,
+            # f.TotalCostPerYear,
+            # f.TotalEcContribution,
+            # f.TotalEcContributionPerYear,
+            # f.Years,
+            # f.getGeoProperties
+            )
+
+        logger.warning('UPDATING: %s. Last modified %s', obj.title, obj.modified())
+        return item
+
+    def update_content_in_container(self, shortname, *args, **kwargs):
+        """Update content in projects database to match DRMKC data"""
+
+        item = self.container[shortname]
+
+        for attr in kwargs.keys():
+            setattr(item, attr, kwargs[attr]) #(object, name, value)
+
+        item.reindexObject()
+        item._p_changed = True
+
+        return item
+    
+    def response_import(self, result):
+        f = DRMKCItem(result)
+        import_id = f.Id
+        last_modified = DateTime(f.LastModifiedOnDate)
+        shortname = idnormalizer.normalize(f.Title, None, 500)
+        
+        try:
+            original = self.container[shortname]
+        except KeyError:
+            return self.create_obj(f, shortname, import_id)
+
+        annot = getattr(original.aq_inner.aq_self, '__annotations__', {})
+        test_id = annot.get('original_import_id')
+        
+        if (test_id == import_id) and (last_modified > original.modified()):
+            return self.update_obj(f, shortname)
+        else:
+            if not hasattr(original.aq_inner.aq_self, '__annotations__'):
+                original.__annotations__ = PersistentMapping()
+            
+            original.__annotations__['original_import_id'] = import_id
+            raise NoUpdates
+    
+    def __call__(self):
+        response = self.get_response()
+        for result in response['Result']:
+            try:
+                obj = self.response_import(result)
+            except NoUpdates:
+                continue
+        
+        transaction.commit()
+
+
 class NoUpdates(Exception):
-    """ Already in Case Studies without modifications
+    """ Already in database without modifications
     """
     pass
 

@@ -1,6 +1,19 @@
-from eea.climateadapt.browser.misc import _archive_news, compute_broken_links
-from eea.climateadapt.browser.external_links import AdapteCCACaseStudyImporter
 from eea.climateadapt.scripts import get_plone_site
+from eea.climateadapt.browser.misc import _archive_news, compute_broken_links
+from eea.climateadapt.browser.external_links import AdapteCCACaseStudyImporter, DRMKCImporter
+
+def import_drmkc():
+    """ A cron callable script to get DRMKC projects
+
+    This should be run through the zope client script running machinery,:
+
+    bin/zeo_client run bin/import_drmkc
+    """
+    site = get_plone_site()
+    # import pdb; pdb.set_trace()
+    drmkc = DRMKCImporter(site)
+    drmkc()
+
 
 def sync_adaptecca_casestudies():
     """ A cron callable script to get AdapteCCA case studies
@@ -9,7 +22,6 @@ def sync_adaptecca_casestudies():
 
     bin/zeo_client run bin/get_case_studies
     """
-    
     site = get_plone_site()
     adapteCCA = AdapteCCACaseStudyImporter(site)
     adapteCCA()

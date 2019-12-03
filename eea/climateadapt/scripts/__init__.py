@@ -1,6 +1,9 @@
 """ Script utilities
 """
 
+from zope.interface import alsoProvides
+from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
+
 HOST = 'climate-adapt.eea.europa.eu'
 PLONE = "/cca"
 
@@ -17,6 +20,7 @@ def get_plone_site():
     app.REQUEST['PARENTS'] = [app]
     app.REQUEST.other['VirtualRootPhysicalPath'] = path
     from zope.globalrequest import setRequest
+    alsoProvides(app.REQUEST, IEEAClimateAdaptInstalled)
     setRequest(app.REQUEST)
 
     from AccessControl.SpecialUsers import system as user
