@@ -16,13 +16,12 @@
               <span tal:on-error="nothing" tal:content="context/acronym"></span>
               <span tal:content="context/title"></span>
               <tal:cond tal:on-error="nothing" tal:condition="context/year">(<span tal:replace="context/year"></span>)</tal:cond>
-              <tal:cond tal:condition="python: getattr(context, 'origin_website', '') == 'AdapteCCA'"><img src="adaptecca.png" style="height:23px;"/></tal:cond>
             </h1>
             <div class="project-source" style="float: right; font-size: small">
               <tal:cond tal:condition="python: getattr(context, 'origin_website', '') == 'DRMKC'">
                 This item is also part of: 
-                <img src='drmkc-logo.png' style="height:28px;"/>
-              </tal:cond> <br\>
+                <img tal:attributes= "src python: context.portal_url() + '/drmkc-logo.png'" style="height:28px;"/>
+              </tal:cond> <br/>
               <a tal:on-error="nothing"
                   tal:condition="context/partners_source_link"
                   tal:attributes="href context/partners_source_link">Link
