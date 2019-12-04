@@ -52,7 +52,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     form.fieldset('reference_information',
                   label=u'Reference information',
-                  fields=['websites', 'source'])
+                  fields=['websites', 'source', 'origin_website', 'partners_source_link'])
 
     form.fieldset('geographic_information',
                   label=u'Geographic Information',
@@ -258,7 +258,16 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                           value_type=Choice(
                               vocabulary="eea.climateadapt.ace_countries"),
                           )
-
+    
+    origin_website = Choice(title=_(u"Origin website"),
+                            required=True,
+                            default="Climate-ADAPT",
+                            vocabulary="eea.climateadapt.origin_website")
+    
+    partners_source_link = URI(title=_(u"Partners Source Link"), 
+                              description=(u"Provide URL from project partners"),
+                              required=False,
+                              )
 
 class AceProject(dexterity.Container):
     implements(IAceProject, IClimateAdaptContent)

@@ -3,7 +3,7 @@
   <metal:macro define-macro="title_date">
     <h1>
       <span tal:replace="context/title"></span>
-      <tal:cond tal:condition="context/year">(<span tal:replace="context/year"></span>)</tal:cond>
+      <tal:cond tal:on-error="nothing" tal:condition="context/year">(<span tal:replace="context/year"></span>)</tal:cond>
       <tal:cond tal:condition="python: getattr(context, 'origin_website', '') == 'AdapteCCA'"><img src="adaptecca.png" style="height:23px;"/></tal:cond>
     </h1>
   </metal:macro>
