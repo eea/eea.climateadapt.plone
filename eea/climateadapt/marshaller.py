@@ -6,7 +6,8 @@ from zope.interface import Interface, implements
 
 import pytz
 import rdflib
-from eea.climateadapt.catalog import macro_regions
+import surf
+# from eea.climateadapt.catalog import macro_regions
 from eea.climateadapt.city_profile import ICityProfile
 from eea.climateadapt.interfaces import ICCACountry
 from eea.climateadapt.vocabulary import (BIOREGIONS, SUBNATIONAL_REGIONS,
@@ -20,6 +21,8 @@ from plone.dexterity.interfaces import IDexterityContent
 from plone.formwidget.geolocation.interfaces import IGeolocation
 from plone.namedfile.interfaces import INamedBlobFile, INamedBlobImage
 from Products.CMFCore.utils import getToolByName
+
+from .vocabulary import ace_countries
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -214,13 +217,61 @@ class IssuedFieldModifier(object):
 
         timezone = pytz.timezone('UTC')
         utc_date = timezone.localize(value)
-        value = rdflib.term.Literal(utc_date,
-                                    datatype=rdflib.term.URIRef(u'http://www.w3.org/2001/XMLSchema#dateTime'
-                                                                ))
+        value = rdflib.term.Literal(
+            utc_date,
+            datatype=rdflib.term.URIRef(
+                u'http://www.w3.org/2001/XMLSchema#dateTime')
+        )
         setattr(resource, "dcterms_issued", value)
         setattr(resource, "eea_issued", value)
 
-#
+
+country_to_code = {v: k for k, v in ace_countries}
+
+
+class CountryModifier(object):
+    """Add publishing information to rdf export
+    """
+
+    implements(ISurfResourceModifier)
+    adapts(ICCACountry)
+
+    def __init__(self, context):
+        self.context = context
+
+    def run(self, resource, adapter, session, **kwds):
+        """Change the rdf resource to include issued term
+        """
+
+# <dcterms:spatial>
+# <geo:SpatialThing rdf:about="#geotag0">
+# <geo:long
+# rdf:datatype="http://www.w3.org/2001/XMLSchema#double">15.4749544</geo:long>
+# <geo:lat
+# rdf:datatype="http://www.w3.org/2001/XMLSchema#double">49.8167003</geo:lat>
+# <dcterms:type>administrative</dcterms:type>
+# <dcterms:title>Czechia</dcterms:title>
+# <rdfs:comment>Czechia</rdfs:comment>
+# <rdfs:label>Czechia</rdfs:label>
+# </geo:SpatialThing>
+# </dcterms:spatial>
+        country = self.context.Title()
+        code = country_to_code[country]
+
+        SpatialThing = session.get_class(surf.ns.GEO.SpatialThing)
+
+        st = session.get_resource("#geotag-" + country, SpatialThing)
+        st[surf.ns.DCTERMS['title']] = country
+        st[surf.ns.DCTERMS['type']] = 'administrative'
+        st[surf.ns.RDFS['label']] = country
+
+        uri = 'http://rdfdata.eionet.europa.eu/eea/countries/%s' % code
+        st[surf.ns.OWL['sameAs']] = rdflib.URIRef(uri)
+        st.update()
+
+        setattr(resource, "dcterms_spatial", st)
+
+
 # class TransnationalRegionModifier():
 #     implements(ISurfResourceModifier)
 #     adapts(IDexterityContent)

@@ -221,6 +221,9 @@
     <subscriber factory=".marshaller.GeoCharsFieldModifier"
         provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
+    <subscriber factory=".marshaller.CountryModifier"
+        provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
+
     <subscriber factory=".marshaller.IssuedFieldModifier"
         provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
