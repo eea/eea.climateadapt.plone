@@ -397,7 +397,7 @@ $(document).ready(function() {
 
   $('.dd-country-title .selected-inp').on('change', function(ev) {
     var url = ev.target.value;
-    var country = $(".dd-country-title li[data-value='" + url + "']").text();
+    var country = $(".dd-country-title li[data-value='" + url + "']").text().replace(' ', '-');
 
     if (country.length) {
       document.location = '/countries/' + country.toLowerCase();

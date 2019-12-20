@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Fixed broken link on "Unit Kingdom" from drop down menu of Country profiles
+  [davidsilaghi #111757]
 * Created a script that imports DRMKC projects in the database
   [davidsilaghi #111031]
 * Created a script which takes Case Studies from an url
