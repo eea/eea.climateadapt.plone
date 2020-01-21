@@ -3,9 +3,15 @@
 
 import time
 
+from DateTime import DateTime
+
+
 def _unixtime(d):
     """ Converts a datetime to unixtime
     """
+
+    if isinstance(d, DateTime):
+        d = d.utcdatetime()
 
     try:
         return int(time.mktime(d.utctimetuple()))
@@ -21,7 +27,8 @@ def shorten(t, to=254):
         el = u'...'
     else:
         el = '...'
-    if len(t) > to-3:
-        t = t[:to-3] + el
-    return t
 
+    if len(t) > to - 3:
+        t = t[:to - 3] + el
+
+    return t
