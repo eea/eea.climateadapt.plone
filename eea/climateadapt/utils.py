@@ -1,9 +1,12 @@
 """ Generic utilities
 """
 
+import logging
 import time
 
 from DateTime import DateTime
+
+logger = logging.getLogger('eea.climateadapt')
 
 
 def _unixtime(d):
@@ -16,6 +19,8 @@ def _unixtime(d):
     try:
         return int(time.mktime(d.utctimetuple()))
     except AttributeError:
+        logger.exception('Error converting to unix datetime %r', d)
+
         return ""
 
 
