@@ -5,12 +5,12 @@ import json
 import logging
 from datetime import date
 
+from collective import dexteritytextindexer
 from zope.component import adapter
 from zope.interface import implementer, implements
 from zope.schema import (URI, Bool, Choice, Datetime, Int, List, Text,
                          TextLine, Tuple)
 
-from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.sat.datamanager import queue_callback
@@ -561,7 +561,10 @@ class CaseStudy(dexterity.Container):
             geo = to_arcgis_coords(
                 self.geolocation.longitude,
                 self.geolocation.latitude)
-            geometry = {'x': geo[0], 'y': geo[1]}
+            geometry = {
+                'x': geo[0],
+                'y': geo[1],
+            }
         else:
             geometry = {'x': '', 'y': ''}
 
@@ -594,8 +597,8 @@ class CaseStudy(dexterity.Container):
                 'newitem': newitem,
                 'casestudyf': 'CASESEARCH;',    # TODO: implement this
                 'client_cls': client_cls,
-                'CreationDate': _unixtime(self.creation_date),
                 'Creator': self.creators[-1],
+                'CreationDate': _unixtime(self.creation_date),
                 'EditDate': _unixtime(self.modification_date),
                 'Editor': self.workflow_history[
                     'cca_items_workflow'][-1]['actor'],

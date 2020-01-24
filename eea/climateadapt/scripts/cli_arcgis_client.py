@@ -14,6 +14,7 @@ This commands accepts various parameter. Look at __main__ to see what it does.
 
 import argparse
 import json
+import logging
 import os
 import sys
 
@@ -22,6 +23,9 @@ from lxml.etree import Element, SubElement, fromstring, tostring
 from eea.climateadapt.sat.arcgis import (_get_obj_OBJECTID, apply_edits,
                                          get_auth_token, query_layer)
 from eea.climateadapt.sat.settings import get_feature_url
+
+logger = logging.getLogger('eea.climateadapt')
+logging.basicConfig()
 
 
 def backup_data(data, path='out.xml'):
@@ -37,9 +41,10 @@ def backup_data(data, path='out.xml'):
             el = Element(k)
             el.text = unicode(v)
             e_attrs.append(el)
+
         e_geo = SubElement(e_cs, 'geometry')
 
-        for k, v in cs['geometry'].items():
+        for k, v in cs.get('geometry', {}).items():
             el = Element(k)
             el.text = unicode(v)
             e_geo.append(el)
@@ -80,12 +85,17 @@ def parse_dump(path):
     for e_cs in root.xpath('//casestudy'):
         e = {'geometry': {}, 'attributes': {}}
         e_attrs = e_cs.find('attributes')
-        e_geo = e_cs.find('geometry')
 
         for c in e_attrs.iterchildren():
             e['attributes'][c.tag] = (c.text or "").strip()
 
+        e_geo = e_cs.find('geometry')
+
         for c in e_geo.iterchildren():
+            if not c.text:
+                logger.error('No value for geo')
+
+                continue
             e['geometry'][c.tag] = float(c.text.strip())
 
         entries.append(e)
@@ -126,9 +136,16 @@ def add_all_casestudies(path, token):
     # need to escape html
 
     for entry in entries:
+        entry['geometry']["spatialReference"] = {"wkid": 3857}
+
         desc = entry['attributes']['desc_']
-        html = fromstring(desc)
-        desc = tostring(html, encoding='utf-8', method='text').strip()
+        try:
+            html = fromstring(desc)
+            desc = tostring(html, encoding='utf-8', method='text').strip()
+        except:
+            # probably already plain text
+            logger.error("Could not convert %s", desc)
+
         entry['attributes']['desc_'] = desc
 
     res = apply_edits(json.dumps(entries), op='adds', token=token)
@@ -163,7 +180,7 @@ def main():
     passwd = os.environ.get('GISPASS')
 
     if not passwd:
-        print("You need to provide the GISPASS env variable")
+        logger.error("You need to provide the GISPASS env variable")
         sys.exit(1)
 
     token = get_auth_token()
@@ -171,16 +188,16 @@ def main():
     if args.get_feature_url:
         url = get_feature_url()
         # url = _get_token_service_url(endpoint)
-        print
-        print "Token:", token
-        print
-        print "Feature URL: ", url + "?token=" + token
-        print
-        print "Query URL: ", url + "/query?token=" + token
-        print
-
+        logger.warning(" ")
+        logger.warning("Token: %s", token)
+        logger.warning(" ")
+        logger.warning("Feature URL: %s ?token= %s", url, token)
+        logger.warning(" ")
+        logger.warning("Query URL: %s/query?token=%s", url,  token)
+        logger.warning(" ")
+        
     if args.dump:
-        print "Dumping..."
+        logger.warning("Dumping...")
 
         if len(sys.argv) > 2:
             path = sys.argv[2]
@@ -191,37 +208,37 @@ def main():
 
     if args.summary:
         res = query_layer(token=token)
-        print "Summary {0} entries...".format(len(res['features']))
+        logger.warning("Summary %s entries.... ", len(res['features']))
 
         for entry in res['features']:
             geo = '{0} x {1}'.format(*entry['geometry'].values())
             attr = entry['attributes']
-            print attr['OBJECTID'], ': ', attr['itemname'], ' @ ', geo
+            logger.warning('%s:%s @ %s', attr['OBJECTID'], attr['itemname'], geo)
 
     if args.delete:
-        print "Deleting..."
+        logger.warning("Deleting...")
         res = delete_casestudy(args.fid, token)
-        print res
+        logger.warning(res)
 
     if args.delete_all:
-        print "Deleting all..."
-        print delete_all_casestudies(token)
+        logger.warning("Deleting all...")
+        logger.warning(delete_all_casestudies(token))
 
     if args.import_file:
-        print add_all_casestudies(args.import_file, token)
+        logger.warning(add_all_casestudies(args.import_file, token))
 
     if args.edit_file:
-        print "Editing..."
+        logger.warning("Editing...")
         fid = args.fid
         assert fid is not None
         edit_casestudy(fid, args.edit_file, token)
 
     if args.get_fid:
-        print "Getting OBJECTID for measureid..."
+        logger.warning ("Getting OBJECTID for measureid...")
         measureid = args.fid    # I know, fake
-        print "OBJECTID: ", _get_obj_OBJECTID(uid=int(measureid))
+        logger.warning("OBJECTID: %s", _get_obj_OBJECTID(uid=int(measureid)))
 
-    print "No arguments"
+    logger.warning("No arguments")
 
 
 if __name__ == "__main__":

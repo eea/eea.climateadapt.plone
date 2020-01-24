@@ -16,12 +16,13 @@ def _unixtime(d):
     if isinstance(d, DateTime):
         d = d.utcdatetime()
 
-    try:
-        return int(time.mktime(d.utctimetuple()))
-    except AttributeError:
-        logger.exception('Error converting to unix datetime %r', d)
-
-        return ""
+    return d.isoformat()
+    # try:
+    #     return int(time.mktime(d.utctimetuple()))
+    # except AttributeError:
+    #     logger.exception('Error converting to unix datetime %r', d)
+    #
+    #     return ""
 
 
 def shorten(t, to=254):

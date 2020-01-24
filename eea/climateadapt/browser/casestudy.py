@@ -74,6 +74,7 @@ class CaseStudyFormExtender(FormExtender):
 class CaseStudyJson(BrowserView):
     """ @@json view
     """
+
     def __call__(self):
         return json.dumps(self.context._repr_for_arcgis())
 
