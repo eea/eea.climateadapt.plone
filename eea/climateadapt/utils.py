@@ -16,7 +16,11 @@ def _unixtime(d):
     if isinstance(d, DateTime):
         d = d.utcdatetime()
 
-    return d.isoformat()
+    if d:
+        return d.isoformat()
+
+    return
+
     # try:
     #     return int(time.mktime(d.utctimetuple()))
     # except AttributeError:
