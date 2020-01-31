@@ -80,10 +80,10 @@
               <span class="no-content legend-box"></span>
               <p class="legend-text"><span class="map-type">NAS</span> not adopted</p>
             </div>
-            <div class="legend-el">
-              <span class="no-focus legend-box"></span>
-              <p class="legend-text">No content available</p>
-            </div>
+<!--             <div class="legend-el"> -->
+<!--               <span class="no-focus legend-box"></span> -->
+<!--               <p class="legend-text">No content available</p> -->
+<!--             </div> -->
           </div>
         </div>
 
