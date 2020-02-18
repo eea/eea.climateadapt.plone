@@ -3,7 +3,6 @@ import urllib
 from collections import namedtuple
 
 from zope.interface import implements
-from zope.lifecycleevent import modified
 from zope.schema import TextLine
 
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
@@ -12,9 +11,11 @@ from plone.api.portal import get_tool, getSite
 from plone.app.textfield import RichText
 from plone.directives import dexterity, form
 from plone.memoize import view
-from plone.namedfile.field import NamedBlobImage
-from plone.namedfile.interfaces import IImageScaleTraversable
 from Products.Five.browser import BrowserView
+
+# from zope.lifecycleevent import modified
+# from plone.namedfile.field import NamedBlobImage
+# from plone.namedfile.interfaces import IImageScaleTraversable
 
 
 class FrontpageSlideSchema(form.Schema):
@@ -64,7 +65,8 @@ class FrontpageSlidesView (BrowserView):
         images = []
 
         for slide in slides:
-            handler = getattr(self, 'handle_' + slide.title.encode('utf-8'), None)
+            handler = getattr(self, 'handle_' +
+                              slide.title.encode('utf-8'), None)
             slide_data = {}
 
             image_url, copyright = self.getImages(slide)
@@ -88,12 +90,13 @@ class FrontpageSlidesView (BrowserView):
     @view.memoize
     def getCurrentDate(self):
         import datetime
+
         return datetime.datetime.now()
 
     def getImages(self, slide):
         images = [image.getObject() for image in slide.getFolderContents()]
 
-        if len(images) is 0:
+        if len(images) == 0:
             return ''
 
         now = self.getCurrentDate()
@@ -122,7 +125,9 @@ class FrontpageSlidesView (BrowserView):
         result = catalog.searchResults({'portal_type': ['News Item', 'Event'],
                                         'review_state': 'published',
                                         'sort_on': 'effective',
-                                        'sort_order': 'reverse'},
+                                        'sort_order': 'reverse',
+                                        'path': {'query': '/cca/news-archive'},
+                                        },
                                        full_objects=True)[0]
 
         news = result.getObject()
