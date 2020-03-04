@@ -343,10 +343,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           default="A",
                           vocabulary="eea.climateadapt.acemeasure_types")
 
-    origin_website = Choice(title=_(u"Origin website"),
-                            required=True,
-                            default="Climate-ADAPT",
-                            vocabulary="eea.climateadapt.origin_website")
+    origin_website = List(title=_(u"Origin website"),
+                          required=True,
+                          value_type=Choice(
+                              vocabulary="eea.climateadapt.origin_website"),
+                          )
 
     important = Bool(title=_(u"High importance"), required=False,
                      default=False)

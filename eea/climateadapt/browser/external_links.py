@@ -164,11 +164,15 @@ class DRMKCImporter():
         return item
     
     def response_import(self, result):
+        if not result['CreatedByUser']: ### edgecase when result['CreatedByUser'] is None
+            result['CreatedByUser'] =  {u'DisplayName': u''}
+
         f = DRMKCItem(result)
         import_id = f.Id
         last_modified = DateTime(f.LastModifiedOnDate)
         shortname = idnormalizer.normalize(f.Title, None, 500)
-        
+        print(shortname)
+
         try:
             original = self.container[shortname]
         except KeyError:

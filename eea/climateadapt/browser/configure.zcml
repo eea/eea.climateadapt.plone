@@ -12,6 +12,13 @@
 
     <browser:page
         for="*"
+        name="convert_origin"
+        class=".misc.ConvertSiteOrigin"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        for="*"
         name="iterate_control"
         class=".IterateControl"
         permission="zope2.View"

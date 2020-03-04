@@ -78,10 +78,11 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     # set(['description', 'storedat', 'admincomment', 'comments', 'source',
     #      'keyword', 'textsearch'])
 
-    origin_website = Choice(title=_(u"Origin website"),
-                            required=True,
-                            default="Climate-ADAPT",
-                            vocabulary="eea.climateadapt.origin_website")
+    origin_website = List(title=_(u"Origin website"),
+                          required=True,
+                          value_type=Choice(
+                              vocabulary="eea.climateadapt.origin_website"),
+                          )
 
     title = TextLine(title=_(u"Title"),
                      description=u"Item Name (250 character limit)",

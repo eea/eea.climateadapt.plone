@@ -259,11 +259,12 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                               vocabulary="eea.climateadapt.ace_countries"),
                           )
     
-    origin_website = Choice(title=_(u"Origin website"),
-                            required=True,
-                            default="Climate-ADAPT",
-                            vocabulary="eea.climateadapt.origin_website")
-    
+    origin_website = List(title=_(u"Origin website"),
+                          required=True,
+                          value_type=Choice(
+                              vocabulary="eea.climateadapt.origin_website"),
+                          )
+
     partners_source_link = URI(title=_(u"Partners Source Link"), 
                               description=(u"Provide URL from project partners"),
                               required=False,

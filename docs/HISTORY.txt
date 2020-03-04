@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Changed origin website from dropdown to single select.
+  [davidsilaghi #115054]
 * Use specific location for frontpage news
   [tiberiuichim]
 * Removed "no content available" from the country profiles map legend
