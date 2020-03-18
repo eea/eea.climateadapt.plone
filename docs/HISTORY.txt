@@ -3,8 +3,10 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Fix: made error handler in casestudy view
+  [davidsilaghi #115999]
 * Made default active tab different every month
-  [davidsilaghi ##115055]
+  [davidsilaghi #115055]
 * Changed origin website from dropdown to single select.
   [davidsilaghi #115054]
 * Use specific location for frontpage news

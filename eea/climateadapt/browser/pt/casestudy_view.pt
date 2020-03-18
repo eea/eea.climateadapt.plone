@@ -31,7 +31,7 @@
               <div class="case-studies-top">
                 <!-- <div metal:use-macro="context/ace_macros/macros/title_date"></div> -->
                 <div class="case-studies-review-image-wrapper" tal:condition="primephoto">
-                  <img tal:condition="primephoto" tal:replace="structure context/@@images/primary_photo/mini"/>
+                  <img tal:condition="primephoto" tal:on-error="nothing" tal:replace="structure context/@@images/primary_photo/mini"/>
                   <div tal:content="context/primary_photo_copyright" class="image-copyright"/>
                 </div>
                 <div class="case-studies-top-title">
