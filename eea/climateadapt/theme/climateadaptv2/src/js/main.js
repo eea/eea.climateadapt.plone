@@ -1,5 +1,9 @@
 $(document).ready(function() {
   var $body = $('body');
+  var d = new Date();
+  var month = d.getMonth();
+  
+  rotateActiveTab(month);
 
   // HOMEPAGE: initialize slick slider
   if ($('.slider').slick) {
@@ -35,8 +39,8 @@ $(document).ready(function() {
       $sliderThumb.removeClass('active-slider');
       $('.slider-thumb:nth-child('+ currentSlide +')').addClass('active-slider');
     });
-
   }
+ 
 
   // Set timout for slider caption
   // to prevent the element from jumping when the page is laoding
@@ -101,7 +105,7 @@ $(document).ready(function() {
       $mainBox.css('height', '');
     }
   }
-
+  
   // HOMEPAGE: Tabs functionality
   $('ul.nav-tabs a').click(function(e) {
     $(this).tab('show');
@@ -161,6 +165,16 @@ $(document).ready(function() {
     outer.animate({
       scrollLeft: Math.max(0, q - (outerW - targetW) / 2)
     }, 500);
+  }
+
+  // HOMEPAGE: Change tab orders.
+
+  function rotateActiveTab(month) {
+    monthR = month % 5;
+    var $list = $('ul.main-nav-tabs');
+    $('ul.main-nav-tabs li').removeClass('active');
+    var item = $list.children('li')[monthR];
+    $(item).addClass('active');
   }
 
   // HOMEPAGE: Dynamic area - Adaptation support tool:
@@ -330,7 +344,7 @@ $(document).ready(function() {
     } else {
       $this.addClass('standard-button secondary-button');
     }
-  })
+  });
 
   $('select').addClass('form-control');
 
@@ -348,7 +362,7 @@ $(document).ready(function() {
     if (current.indexOf($this.attr('href')) > -1 || $this.attr('href').indexOf(current) > -1) {
       $this.addClass('active-nav');
     }
-  })
+  });
 
   // Add a specific class for grid layout pages
   var currentLocation = window.location.pathname;

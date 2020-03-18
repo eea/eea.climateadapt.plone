@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Made default active tab different every month
+  [davidsilaghi ##115055]
 * Changed origin website from dropdown to single select.
   [davidsilaghi #115054]
 * Use specific location for frontpage news
