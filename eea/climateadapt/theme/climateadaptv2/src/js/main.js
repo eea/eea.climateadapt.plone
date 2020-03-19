@@ -2,7 +2,7 @@ $(document).ready(function() {
   var $body = $('body');
   var d = new Date();
   var month = d.getMonth();
-  
+
   rotateActiveTab(month);
 
   // HOMEPAGE: initialize slick slider
@@ -40,7 +40,7 @@ $(document).ready(function() {
       $('.slider-thumb:nth-child('+ currentSlide +')').addClass('active-slider');
     });
   }
- 
+
 
   // Set timout for slider caption
   // to prevent the element from jumping when the page is laoding
@@ -105,7 +105,7 @@ $(document).ready(function() {
       $mainBox.css('height', '');
     }
   }
-  
+
   // HOMEPAGE: Tabs functionality
   $('ul.nav-tabs a').click(function(e) {
     $(this).tab('show');
@@ -167,14 +167,12 @@ $(document).ready(function() {
     }, 500);
   }
 
-  // HOMEPAGE: Change tab orders.
-
+  // HOMEPAGE: rotate active tabs depending on month
   function rotateActiveTab(month) {
-    monthR = month % 5;
+    var monthR = month % 5;
     var $list = $('ul.main-nav-tabs');
-    $('ul.main-nav-tabs li').removeClass('active');
     var item = $list.children('li')[monthR];
-    $(item).addClass('active');
+    var href = $('a', item).tab('show');
   }
 
   // HOMEPAGE: Dynamic area - Adaptation support tool:
