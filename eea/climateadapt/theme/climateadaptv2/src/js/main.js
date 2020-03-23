@@ -172,7 +172,10 @@ $(document).ready(function() {
     var monthR = month % 5;
     var $list = $('ul.main-nav-tabs');
     var item = $list.children('li')[monthR];
-    var href = $('a', item).tab('show');
+    if (item) {
+      var $hrefs = $('a', item);
+      $hrefs.length && $hrefs.tab('show');
+    }
   }
 
   // HOMEPAGE: Dynamic area - Adaptation support tool:
