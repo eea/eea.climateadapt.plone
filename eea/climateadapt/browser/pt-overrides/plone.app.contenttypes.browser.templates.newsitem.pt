@@ -9,9 +9,8 @@
   <metal:content-core fill-slot="content-core">
     <div style="width:50%; text-align:right; float: right" class="news-item1">
       <div class="discreet">created: <span tal:content="python: context.creation_date.strftime('%Y-%m-%d')"> Date </span>
+      </div>
     </div>
-  </div>
-
   </metal:content-core>
 </body>
 </html>
