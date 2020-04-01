@@ -1,10 +1,15 @@
+/* eslint-env jquery */
+/* global d3 */
+
 var _selectedMapSection = null;
-var _mapTooltip = null;
 var countrySettings = [];   // country list extracted from ajax json
-var _world = {};
 
-$(document).ready(function() {
+// var _mapTooltip = null;
+// var _world = {};
 
+// $(document).ready(function() {});
+
+function initCountriesMapTile() {
   // initialize the countries map
   var cpath = '++theme++climateadaptv2/static/countries/euro-countries-simplified.geojson';
   var fpath = '++theme++climateadaptv2/static/countries/countries.tsv';
@@ -27,16 +32,20 @@ $(document).ready(function() {
 
   $('.main-tab-item > a').on('shown.bs.tab', function (e) {
     var tab = e.target; // newly activated tab
-    var extab = e.relatedTarget; // previous active tab
+    // var extab = e.relatedTarget; // previous active tab
+
+    function drawMap() {    // width
+      drawCountries(world);
+    }
+
+    function doneResizing() {
+      drawMap(width);
+    }
 
     if ($(tab).data('tab') == 'countries') {
       var world = window._world.features;
       if (world) {
         $('.map-loader').fadeOut(600);
-
-        function drawMap(width) {
-          drawCountries(world);
-        }
 
         // fire resize event after the browser window resizing it's completed
         var resizeTimer;
@@ -46,15 +55,11 @@ $(document).ready(function() {
         });
 
         var width = $('.svg-fp-container svg').width();
-        function doneResizing() {
-          drawMap(width);
-        }
         drawMap(width);
       }
     }
   })
-
-});
+}
 
 
 function renderGraticule(container, klass, steps, pathTransformer) {
@@ -184,7 +189,7 @@ function renderCountryFlag(parent, country, bbox, cpId) {
     .attr('y', bbox.y)
     .attr('height', bbox.height)
     .attr('width', bbox.width)
-    .on('click', function (e) {
+    .on('click', function () {
       var link = country.properties.SHRT_ENGL.toLowerCase().replace(" ", "-");
       location.href = '/countries-regions/countries/' + link;
     })
@@ -221,7 +226,7 @@ function renderCountriesBox(opts) {
   var world = opts.world;
   var zoom = opts.zoom;
   var cprectid = makeid();    // unique id for this map drawing
-  
+
   var globalMapProjection = d3.geoAzimuthalEqualArea();
 
   globalMapProjection
@@ -326,7 +331,7 @@ function drawMaplets(opts) {
     var boxh = 50;
     var space = 10;
 
-    var mapletWorld = world.filter(function(country) { 
+    var mapletWorld = world.filter(function(country) {
       return country.properties.SHRT_ENGL === name;
     });
 
@@ -465,114 +470,114 @@ function setCountryFlags(countries, flags) {
 }
 
 
-function createTooltip(opts) {
-  var x = opts['coords'][0];
-  var y = opts['coords'][1];
-  var content = opts['content'][_selectedMapSection];
-  var name = opts['name'];
-  var url = opts['url'];
+// function createTooltip(opts) {
+//   var x = opts['coords'][0];
+//   var y = opts['coords'][1];
+//   var content = opts['content'][_selectedMapSection];
+//   var name = opts['name'];
+//   var url = opts['url'];
+//
+//   $('#map-tooltip').remove();
+//   var style = 'top:' + x + 'px; left: ' + y + 'px';
+//   var content_div = $('<div>')
+//     .attr('id', 'tooltip-content')
+//     .append(content)
+//     ;
+//   var h3_name = $('<h3>')
+//     .append(name)
+//     ;
+//   var link_tag = $('<a>')
+//     .attr('href', url)
+//     .append(h3_name)
+//     ;
+//   var name_div = $('<div>')
+//     .attr('id', 'country-name')
+//     .append(link_tag)
+//     ;
+//   var tooltip = $("<div id='map-tooltip'>")
+//     .attr('style', style)
+//     .append(name_div)
+//     .append(content_div)
+//     ;
+//   $('body').append(tooltip);
+// }
 
-  $('#map-tooltip').remove();
-  var style = 'top:' + x + 'px; left: ' + y + 'px';
-  var content_div = $('<div>')
-    .attr('id', 'tooltip-content')
-    .append(content)
-    ;
-  var h3_name = $('<h3>')
-    .append(name)
-    ;
-  var link_tag = $('<a>')
-    .attr('href', url)
-    .append(h3_name)
-    ;
-  var name_div = $('<div>')
-    .attr('id', 'country-name')
-    .append(link_tag)
-    ;
-  var tooltip = $("<div id='map-tooltip'>")
-    .attr('style', style)
-    .append(name_div)
-    .append(content_div)
-    ;
-  $('body').append(tooltip);
-}
-
-function createSectionsSelector(sections, countries, callback) {
-  // var container = $("#countries-map-selector");
-  var widget = $("#sections-selector");
-
-  sections.forEach(function (key, index) {
-    var label = $("<label>");
-    var span = $("<span class='radiobtn'>");
-    var inp = $("<input type='radio'>")
-      .attr('style', 'margin-right: 0.3em')
-      .attr('name', 'country-map-section')
-      .attr('value', key)
-      ;
-    if (index === 0) {
-      window._selectedMapSection = key;
-      inp.attr('checked', 'checked');
-    }
-
-    label
-      .append(inp)
-      .append(key)
-      .append(span)
-      ;
-    widget.append($(label));
-  });
-
-  $('input', widget).on('change', function () {
-    var selectedSection = $(this).attr('value');
-    var $this = $(this);
-    var $mapType = $('.map-type');
-    if ($this.val().indexOf("NAS") != -1) {
-      $mapType.text('NAS');
-    } else if ($this.val().indexOf("NAP") != -1) {
-      $mapType.text('NAP');
-    }
-    window._selectedMapSection = selectedSection;
-    callback();
-  });
-
-  // country selector
-  var countryNames = Object.keys(countries);
-  countryNames.sort();
-  var select = $("#country-selector select");
-
-  countryNames.forEach(function (name) {
-    select
-      .append(
-      $("<option>").append(name)
-      );
-  });
-
-  select.on('change', function () {
-    var name = $(this).val();
-    if (!name) return;
-    window.location = countries[name][1];
-  })
-
-  // container.append(widget);
-
-  function drawMap(width) {
-    callback();
-  }
-
-  // fire resize event after the browser window resizing it's completed
-  var resizeTimer;
-  $(window).resize(function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(doneResizing, 500);
-  });
-
-  var width = $('#countries-map svg').width();
-  function doneResizing() {
-    drawMap(width);
-  }
-
-  drawMap(width);
-}
+// function createSectionsSelector(sections, countries, callback) {
+//   // var container = $("#countries-map-selector");
+//   var widget = $("#sections-selector");
+//
+//   sections.forEach(function (key, index) {
+//     var label = $("<label>");
+//     var span = $("<span class='radiobtn'>");
+//     var inp = $("<input type='radio'>")
+//       .attr('style', 'margin-right: 0.3em')
+//       .attr('name', 'country-map-section')
+//       .attr('value', key)
+//       ;
+//     if (index === 0) {
+//       window._selectedMapSection = key;
+//       inp.attr('checked', 'checked');
+//     }
+//
+//     label
+//       .append(inp)
+//       .append(key)
+//       .append(span)
+//       ;
+//     widget.append($(label));
+//   });
+//
+//   $('input', widget).on('change', function () {
+//     var selectedSection = $(this).attr('value');
+//     var $this = $(this);
+//     var $mapType = $('.map-type');
+//     if ($this.val().indexOf("NAS") != -1) {
+//       $mapType.text('NAS');
+//     } else if ($this.val().indexOf("NAP") != -1) {
+//       $mapType.text('NAP');
+//     }
+//     window._selectedMapSection = selectedSection;
+//     callback();
+//   });
+//
+//   // country selector
+//   var countryNames = Object.keys(countries);
+//   countryNames.sort();
+//   var select = $("#country-selector select");
+//
+//   countryNames.forEach(function (name) {
+//     select
+//       .append(
+//       $("<option>").append(name)
+//       );
+//   });
+//
+//   select.on('change', function () {
+//     var name = $(this).val();
+//     if (!name) return;
+//     window.location = countries[name][1];
+//   })
+//
+//   // container.append(widget);
+//
+//   function drawMap(width) {
+//     callback();
+//   }
+//
+//   // fire resize event after the browser window resizing it's completed
+//   var resizeTimer;
+//   $(window).resize(function() {
+//     clearTimeout(resizeTimer);
+//     resizeTimer = setTimeout(doneResizing, 500);
+//   });
+//
+//   var width = $('#countries-map svg').width();
+//   function doneResizing() {
+//     drawMap(width);
+//   }
+//
+//   drawMap(width);
+// }
 
 function makeid() {
   var text = '';
@@ -676,7 +681,7 @@ function passThruEvents(g) {
   // .on('mousedown.passThru', passThru)
   ;
 
-  function passThru(d) {
+  function passThru() {
     // console.log('passing through');
     var e = d3.event;
 

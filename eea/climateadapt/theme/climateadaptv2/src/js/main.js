@@ -174,6 +174,9 @@ function rotateActiveTab() {
     var $hrefs = $('a', item);
     $hrefs.length && $hrefs.tab('show');
   }
+
+  console.log('initCountriesMapTile', initCountriesMapTile);
+  initCountriesMapTile();
 }
 
 function qtip2Initializer() {
