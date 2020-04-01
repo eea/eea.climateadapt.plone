@@ -175,8 +175,7 @@ function rotateActiveTab() {
     $hrefs.length && $hrefs.tab('show');
   }
 
-  console.log('initCountriesMapTile', initCountriesMapTile);
-  initCountriesMapTile();
+  if (window.initCountriesMapTile) initCountriesMapTile();
 }
 
 function qtip2Initializer() {
@@ -664,15 +663,20 @@ function initCustomAccordions() {
     var panelLayer = $('.panel-layer', this);
     $('.panel-heading', this).before(panelCollapse);
 
-    panelTitle.toggle(
-      function() {
-        panelCollapse.addClass('panel-opened');
+    var opened = false;
+
+    panelTitle.on('click', function() {
+      if (!opened) {
+        panelCollapse.toggleClass('panel-opened');
         panelLayer.removeClass('fadein').addClass('fadeout');
-      }, function() {
+        opened = true;
+      } else {
         panelCollapse.removeClass('panel-opened');
         panelLayer.removeClass('fadeout').addClass('fadein');
+        opened = false;
       }
-    );
+    });
+
   });
 
 }
