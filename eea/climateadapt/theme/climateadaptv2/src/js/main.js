@@ -667,7 +667,7 @@ function initCustomAccordions() {
 
     panelTitle.on('click', function() {
       if (!opened) {
-        panelCollapse.toggleClass('panel-opened');
+        panelCollapse.addClass('panel-opened');
         panelLayer.removeClass('fadein').addClass('fadeout');
         opened = true;
       } else {
