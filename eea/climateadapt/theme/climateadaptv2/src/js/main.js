@@ -164,17 +164,7 @@ function initMainTabs() {
 function rotateActiveTab() {
   // HOMEPAGE: rotate active tabs depending on month
 
-  var d = new Date();
-  var month = d.getMonth();
-
-  var monthR = month % 5;
-  var $list = $('ul.main-nav-tabs');
-  var item = $list.children('li')[monthR];
-  if (item) {
-    var $hrefs = $('a', item);
-    $hrefs.length && $hrefs.tab('show');
-  }
-
+  // note: code about rotation of tabs has been moved to countries-tile.js
   if (window.initCountriesMapTile) initCountriesMapTile();
 }
 

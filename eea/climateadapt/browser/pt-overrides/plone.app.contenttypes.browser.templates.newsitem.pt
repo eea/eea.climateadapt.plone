@@ -9,6 +9,7 @@
   <metal:content-core fill-slot="content-core" tal:define="toc context/table_of_contents|nothing;">
 
     <div id="parent-fieldname-text"
+      style="margin-top: 1rem"
       tal:condition="context/text"
       tal:content="structure python:context.text.output_relative_to(view.context)"
       tal:attributes="class python: toc and 'pat-autotoc' or ''" />
