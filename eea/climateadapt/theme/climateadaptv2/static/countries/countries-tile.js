@@ -25,12 +25,26 @@ function initCountriesMapTile() {
         window._world = world;
         window.countrySettings = metadata;
         window._flags = flags;
+
+        // monthly change the active tab;
+        var d = new Date();
+        var month = d.getMonth();
+
+        var monthR = month % 5;
+        var $list = $('ul.main-nav-tabs');
+        var item = $list.children('li')[monthR];
+        if (item) {
+          var $hrefs = $('a', item);
+          $hrefs.length && $hrefs.tab('show');
+        }
+
       });
     });
   });
 
   $('.main-tab-item > a').on('shown.bs.tab', function (e) {
     var tab = e.target; // newly activated tab
+    console.log('shown', tab);
     // var extab = e.relatedTarget; // previous active tab
 
     function drawMap() {    // width
@@ -59,16 +73,6 @@ function initCountriesMapTile() {
     }
   })
 
-  var d = new Date();
-  var month = d.getMonth();
-
-  var monthR = month % 5;
-  var $list = $('ul.main-nav-tabs');
-  var item = $list.children('li')[monthR];
-  if (item) {
-    var $hrefs = $('a', item);
-    $hrefs.length && $hrefs.tab('show');
-  }
 }
 
 
