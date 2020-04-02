@@ -4,8 +4,7 @@
 var _selectedMapSection = null;
 var countrySettings = [];   // country list extracted from ajax json
 
-// var _mapTooltip = null;
-// var _world = {};
+window._world = {};
 
 // $(document).ready(function() {});
 
@@ -21,7 +20,7 @@ function initCountriesMapTile() {
   $sw.append($load);
 
   d3.json(cpath, function (world) {
-    $.get('@@countries-tile-metadata', function (metadata) {
+    $.get(window.portal_url + '/@@countries-tile-metadata', function (metadata) {
       d3.tsv(fpath, function (flags) {
         window._world = world;
         window.countrySettings = metadata;
