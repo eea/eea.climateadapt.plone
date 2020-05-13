@@ -127,12 +127,12 @@ function initMainTabs() {
   });
   //
   // Homepage policies section
-  $('.policies-dynamic-area a').click(function(e) {
-    e.preventDefault();
-    var href = $(this).attr('href').substring(1);
-
-    document.location = url + '/eu-adaptation-policy/sector-policies/' + href;
-  });
+  // $('.policies-dynamic-area a').click(function(e) {
+  //   e.preventDefault();
+  //   var href = $(this).attr('href').substring(1);
+  //
+  //   document.location = url + '/eu-adaptation-policy/sector-policies/' + href;
+  // });
 
   // HOMEPAGE: Dynamic area:
   // on click center tab items on small screen sizes
