@@ -9,8 +9,12 @@ from Products.Five.browser import BrowserView
 
 class HealthHomepageItems(BrowserView):
 
-    def getFolderContext(self):
-        return self.context.description
+    def days_elapsed_mapping(self, p):
+        mapping = [(80, 'big'), (90, 'med')]
+        for check, value in mapping:
+            if p <= check:
+                return value
+        return 'sma'
 
     def upcomingEvents(self):
         results = []
@@ -33,14 +37,9 @@ class HealthHomepageItems(BrowserView):
                         -datetime.datetime.now()
                     ).days
 
-            if days<10:
-                size='big'
-            elif days<21:
-                size='med'
-            else:
-                size='sma'
+            size = self.days_elapsed_mapping(days)
             object = {
-                'title': item.getObject().title,
+                'title': item.Title,
                 'size': size,
                 'url': item.getURL(),
                 'date': item.getObject().start.strftime('%d.%m.%Y')
@@ -66,55 +65,13 @@ class HealthHomepageItems(BrowserView):
                     -datetime.datetime.now()
                 ).days
 
-            if days>-7:
-                size='big'
-            elif days>-14:
-                size='med'
-            else:
-                size='sma'
+            size = self.days_elapsed_mapping(days*-1)
             object = {
-                'title': item.getObject().title,
+                'title': item.Title,
                 'size': size,
                 'url': item.getURL(),
                 'date': item.getObject().created().strftime('%d.%m.%Y')
                 }
             results.append(object)
 
-        return results
-
-    def trendsProjections(self):
-        response = 0
-
-        portal_catalog = api.portal.get_tool('portal_catalog')
-        items = portal_catalog.queryCatalog(
-                {"portal_type":"health_home_trends_projection",
-                "sort_limit":"5",
-                "review_state":"published"}
-                )
-        for item in items:
-            response = {
-                'title': item.getObject().title,
-                'right_description': item.getObject().rightdescription.output,
-                'bottom_description': item.getObject().bottom_description.output,
-                'source_website': item.getObject().source_website,
-                'tags': item.getObject().subject
-            }
-        return response
-
-    def heatExtrems(self):
-        results = []
-
-        portal_catalog = api.portal.get_tool('portal_catalog')
-        items = portal_catalog.queryCatalog(
-                {"portal_type":"health_heat_extremes",
-                "sort_limit":"5",
-                "review_state":"published"}
-                )
-        for item in items:
-            results.append({
-                'title': item.getObject().title,
-                'description': item.getObject().long_description,
-                'url': item.getObject().url_more,
-                'item_url': item.getURL(),
-            })
         return results

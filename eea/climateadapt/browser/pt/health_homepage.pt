@@ -11,9 +11,9 @@
   <body>
     <metal:main fill-slot="body">
 
-<p class="folder_health_context" tal:content="view/getFolderContext"></p>
+<p class="folder_health_context" tal:content="context/description"></p>
 
-<a class="health_climate_link_main d-sm-none" href="">Health & Climate Virtual Observatory</a>
+<a class="health_climate_link_main d-sm-none" href="">Health &amp; Climate Virtual Observatory</a>
 
 <div class="box-container list_news_events">
     <ul class="nav nav-tabs">
