@@ -35,6 +35,13 @@
     permission="cmf.ManagePortal"
     />
 
+    <browser:page
+      class=".admin.HealthNavigationMenuEdit"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      name="edit-health-navigation-menu"
+      permission="cmf.ManagePortal"
+      />
+
   <browser:page
     class=".admin.KeywordsAdminView"
     for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"

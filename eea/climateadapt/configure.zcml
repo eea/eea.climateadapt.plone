@@ -9,6 +9,7 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="eea.climateadapt">
 
+    <include package="plone.restapi" file="permissions.zcml"/>
     <includeDependencies package="." />
 
     <i18n:registerTranslations directory="locales" />

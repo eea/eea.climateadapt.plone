@@ -1,0 +1,77 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  >
+
+  <body>
+    <metal:main fill-slot="body">
+
+<p class="folder_health_context" tal:content="view/getFolderContext"></p>
+
+<a class="health_climate_link_main d-sm-none" href="">Health & Climate Virtual Observatory</a>
+
+<div class="box-container list_news_events">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="/cca/health#news-tab">News</a>
+        </li>
+        <li class="">
+            <a href="/cca/health#events-tab">Events</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade active in" id="news-tab">
+            <div class="fp-news-tile" tal:define="items view/latestNews">
+                <table class="health_homepage health_listing bluebox"
+                       tal:define="items view/latestNews">
+                    <tbody>
+                        <tr tal:repeat="item items">
+                            <td style="width:20%;text-align:center;"><span tal:attributes="class python:'circle_'+item['size'];"></span></td>
+                            <td class="align-middle"><p tal:content="item/date"></p></td>
+                            <td>
+                                <p tal:content="item/title"></p><a tal:attributes="href item/url">Read more ...</a>
+                            </td>
+                        </tr>
+                        <tr tal:condition="python: not items">
+                          <td>
+                              No items so far :-(
+                          </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="events-tab">
+            <div class="fp-events-tile">
+                <table class="health_homepage health_listing bluebox"
+                       tal:define="items view/upcomingEvents">
+                    <tbody>
+                        <tr tal:repeat="item items">
+                            <td style="width:20%;text-align:center;"><span tal:attributes="class python:'circle_'+item['size'];"></span></td>
+                            <td class="align-middle"><p tal:content="item/date"></p></td>
+                            <td>
+                                <p tal:content="item/title"></p><a tal:attributes="href item/url">Read more ...</a>
+                            </td>
+                        </tr>
+                        <tr tal:condition="python: not items">
+                          <td>
+                              No events so far :-(
+                          </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</metal:main>
+</body>
+</html>

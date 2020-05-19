@@ -126,6 +126,45 @@ class MainNavigationMenuEdit(form.SchemaForm):
         self.status = u"Saved, please check."
 
 
+class HealthNavigationMenuEdit(form.SchemaForm):
+    """ A page to edit the main site navigation menu
+    """
+
+    schema = IMainNavigationMenu
+    ignoreContext = False
+
+    label = u"Fill in the content of the health navigation menu"
+    description = u"""This should be a structure for health menu. Use a single
+    empty line to separate main menu entries. All lines after the main menu
+    entry, and before an empty line, will form entries in that section menu. To
+    create a submenu for a section, start a line with a dash (-).  Links should
+    start with a slash (/)."""
+
+    @property
+    def ptool(self):
+        return getToolByName(self.context,
+                             'portal_properties')['site_properties']
+
+    @view.memoize
+    def getContent(self):
+        content = {'menu': self.ptool.getProperty('health_navigation_menu')}
+
+        return content
+
+    @button.buttonAndHandler(u"Save")
+    def handleApply(self, action):
+        data, errors = self.extractData()
+
+        if errors:
+            self.status = self.formErrorsMessage
+
+            return
+
+        self.ptool._updateProperty('health_navigation_menu', data['menu'])
+
+        self.status = u"Saved, please check."
+
+
 class ForceUnlock(BrowserView):
     """ Forcefully unlock a content item
     """
@@ -713,7 +752,7 @@ class AdapteCCACurrentCaseStudyFixImportIDs(BrowserView):
     def __call__(self):
         fpath = resource_filename('eea.climateadapt.browser',
                                   'data/cases_en_cdata.xml')
-        
+
         s = open(fpath).read()
         e = fromstring(s)
         container = getSite()['metadata']['case-studies']
@@ -729,5 +768,5 @@ class AdapteCCACurrentCaseStudyFixImportIDs(BrowserView):
             if item_id and field_title:
                 annot = IAnnotations(container[field_title])
                 annot['import_id'] = item_id
-                
+
         return 'AdapteCCA current case study fixed import_ids'

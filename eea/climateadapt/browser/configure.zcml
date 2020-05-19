@@ -538,6 +538,14 @@
         />
 
     <browser:page
+        name="health_navbar"
+        class=".health_menu.Navbar"
+        for="*"
+        permission="zope.Public"
+        template="pt/navbar.pt"
+        />
+
+    <browser:page
         name="help-nav"
         class=".site.Navbar"
         for="*"
@@ -901,5 +909,13 @@
     class="eea.pdf.browser.app.download.Download"
     permission="eea.pdf.download"
   />
+
+  <browser:page
+    name="health_homepage"
+    for="*"
+    class=".health.HealthHomepageItems"
+    template="pt/health_homepage.pt"
+    permission="zope2.View"
+    />
 
 </configure>

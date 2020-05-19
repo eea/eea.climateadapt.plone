@@ -43,6 +43,28 @@
       <replace css:theme=".db-categories" css:content=".db-categories" href="@@fp-search-dynamic" method="document"/>
     </rules>
 
+    <rules css:if-content=".health_homepage">
+      <theme href="health.html" />
+      <drop css:theme="head base" />
+      <append css:theme="head">
+        <base><xsl:attribute name="href"><xsl:value-of select="$portal_url"/></xsl:attribute></base>
+      </append>
+      <!--
+      <replace css:content-children=".fp-news-tile" css:theme-children=".fp-news-tile" />
+      <replace css:content-children=".fp-events-tile" css:theme-children=".fp-events-tile" />
+      <replace css:theme-children="#t-countries" css:content="#fp-country-selector"  /> -->
+
+
+      <!-- <replace css:theme=".slider" css:content=".slider" href="/@@slides-frontpage" method="document" /> -->
+      <replace css:theme=".list_news_events" css:content=".list_news_events" />
+      <replace css:theme=".folder_health_context" css:content=".folder_health_context" />
+
+      <replace css:content="#navbar" css:theme=".main-nav-menu" href="@@health_navbar" method="document"/>
+      <drop css:theme-children=".footer-nav-wrapper" />
+      <before css:theme-children=".header > .content-container" css:content=".health_climate_link_main" />
+    </rules>
+
+
     <rules css:if-not-content=".section-frontpage.template-standard">
       <theme href="page.html" />
     </rules>
