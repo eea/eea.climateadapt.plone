@@ -65,7 +65,7 @@ Publications and outreach
 
 
 class Navbar(ExternalTemplateHeader):
-    """ The global site navbar
+    """ The health seaction navbar
     """
 
     def pp(self, v):
