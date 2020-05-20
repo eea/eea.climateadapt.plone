@@ -11,7 +11,8 @@ module.exports = {
       files: {
         '<%= path.static %>css/compiled-less.css': '<%= path.src %>/less/main.less',
         '<%= path.static %>css/critical.css': '<%= path.src %>/less/critical.less',
-        '<%= path.static %>css/compiled-css.css': '<%= path.src %>/css/*.css'
+        '<%= path.static %>css/compiled-css.css': '<%= path.src %>/css/*.css',
+        '<%= path.static %>css/health.css': '<%= path.src %>/less/health.less'
       }
     }
   },
