@@ -4,6 +4,25 @@ body.section-health {
   .header > .content-container{
     top:30px;
   }
+
+  .header {
+    #main-nav-item-3 {
+      border-right: 0px;
+      .sub-menu-wrapper {
+        column-count: unset !important;
+        min-width: unset !important;
+        min-width: 0px;
+      }
+      .sub-menu:first-child {
+        border-right: 0px;
+      }
+      .submenu {
+        float:none;
+        width:100%;
+      }
+    }
+  }
+
   .main-box {
     min-height: 300px;
     border-right: 1px solid #ddd;
@@ -21,35 +40,12 @@ body.section-health {
   }
   .health_top_items {
     padding-bottom: 40px;
-  }
-  .health_top_items h5 {
-    text-transform: uppercase;
-  }
-  .health_top_items img {
-    height: 128px;
-  }
-  .health_heat_extremes {
-    border-top: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    padding:5px;
-  }
-  .health_heat_extremes .title{
-    color:#808080;
-    font-weight: normal;
-    font-size: 15pt;
-  }
-  .health_heat_extremes div.item{
-    background-color: #ddd;
-    margin:4px;
-    padding:5px;
-  }
-  .health_heat_extremes div.item .top{
-    color:#8B4513;
-    font-size: 15pt;
-    font-weight: bold;
-  }
-  .health_heat_extremes .item a{
-    text-align: left;
+    h5 {
+      text-transform: uppercase;
+    }
+    img {
+      height: 128px;
+    }
   }
   .greenbox h4{
     background-color: #717e32;
@@ -59,51 +55,46 @@ body.section-health {
     margin-bottom: 0px;
     text-align:left;
   }
-  .bluebox table{
-    width:100% !important;
-  }
-  .bluebox th{
-    background-color: #005C96;
-    font-size:14pt;
-    color:#fff;
-    padding: 5pt;
-    text-align:left;
-  }
-  .bluebox tbody td {
-    border:1px solid #ddd;
-    padding:2pt;
-  }
-  .health_heat_extremes div.item {
-    min-height: 160px;
+  .bluebox {
+    table{
+      width:100% !important;
+    }
+    th{
+      background-color: #005C96;
+      font-size:14pt;
+      color:#fff;
+      padding: 5pt;
+      text-align:left;
+    }
+    tbody td {
+      border:1px solid #ddd;
+      padding:2pt;
+    }
   }
   .list_news_events {
     border:1px solid #ddd;
-  }
-  .list_news_events ul {
-    padding:0px;
-  }
-  .list_news_events .tab-pane {
-    padding:0px;
-  }
-  .list_news_events .nav-tabs {
-    background-color: #005C96;
-    font-size:14pt;
-    color:#fff;
-    padding: 0pt;
-    padding-left:5pt;
-    padding-top:5pt;
-    text-align:left;
-  }
-  .list_news_events .nav-tabs li a{
-    color:#fff;
-  }
-  .list_news_events .nav-tabs li.active a,
-  .list_news_events .nav-tabs li a:hover{
-    color:#000;
-  }
-  .trends_and_projections {
-    border:1px solid #ddd;
-    padding:5pt;
+    ul {
+      padding:0px;
+    }
+    .tab-pane {
+      padding:0px;
+    }
+    .nav-tabs {
+      background-color: #005C96;
+      font-size:14pt;
+      color:#fff;
+      padding: 0pt;
+      padding-left:5pt;
+      padding-top:5pt;
+      text-align:left;
+    }
+    .nav-tabs li a{
+      color:#fff;
+    }
+    .nav-tabs li.active a,
+    .nav-tabs li a:hover{
+      color:#000;
+    }
   }
   .circle_sma {
     height: 25px;
@@ -172,21 +163,27 @@ body.section-health {
       &:hover a span{
         color:#fff;
       }
+      .toggle-down {
+        padding-right:10px;
+      }
     }
   }
 
   .site-container {
     top:148px;
+    #content {
+        border:0px;
+    }
   }
   .health_contribute {
     padding-top: 40px;
-  }
-  .health_contribute h4{
-    color:#007cb9;
-  }
-  .health_contribute a{
-    width:100%;
-    color:#fff;
+    h4{
+      color:#007cb9;
+    }
+    a{
+      width:100%;
+      color:#fff;
+    }
   }
   a.health_climate_link_main{
     background-color: #ccc;
@@ -210,21 +207,4 @@ body.section-health {
     }
   }
 
-}
-
-
-body.section-health .header #main-nav-item-2 .sub-menu-wrapper {
-    column-count: unset !important;
-    min-width: unset !important;
-    min-width: 0px;
-}
-body.section-health .header #main-nav-item-3 .sub-menu:first-child {
-    border-right: 0px;
-}
-body.section-health .header #main-nav-item-3 {
-    border-right: 0px;
-    .submenu {
-        float:none;
-        width:100%;
-    }
 }
