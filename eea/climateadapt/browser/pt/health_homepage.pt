@@ -32,10 +32,9 @@
                        tal:define="items view/latestNews">
                     <tbody>
                         <tr tal:repeat="item items">
-                            <td style="width:20%;text-align:center;"><span tal:attributes="class python:'circle_'+item['size'];"></span></td>
-                            <td class="align-middle"><p tal:content="item/date"></p></td>
                             <td>
-                                <p tal:content="item/title"></p><a tal:attributes="href item/url">Read more ...</a>
+                                <a tal:attributes="href item/url" tal:content="item/title">Read more ...</a>
+                                <p tal:content="item/date"></p>
                             </td>
                         </tr>
                         <tr tal:condition="python: not items">
@@ -54,10 +53,9 @@
                        tal:define="items view/upcomingEvents">
                     <tbody>
                         <tr tal:repeat="item items">
-                            <td style="width:20%;text-align:center;"><span tal:attributes="class python:'circle_'+item['size'];"></span></td>
-                            <td class="align-middle"><p tal:content="item/date"></p></td>
                             <td>
-                                <p tal:content="item/title"></p><a tal:attributes="href item/url">Read more ...</a>
+                                <a tal:content="item/title" tal:attributes="href item/url"></a>
+                                <p tal:content="item/date"></p>
                             </td>
                         </tr>
                         <tr tal:condition="python: not items">

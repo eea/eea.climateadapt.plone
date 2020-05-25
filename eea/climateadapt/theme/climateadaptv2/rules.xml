@@ -55,6 +55,8 @@
 
       <replace css:content="#navbar" css:theme=".main-nav-menu" href="@@health_navbar" method="document"/>
       <drop css:theme-children=".footer-nav-wrapper" />
+      <drop css:theme-children=".search-box" />
+      <drop css:theme-children=".help-menu" />
       <before css:theme-children=".header > .content-container" css:content=".health_climate_link_main" />
     </rules>
 

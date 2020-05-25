@@ -26,7 +26,7 @@ class HealthHomepageItems(BrowserView):
         items = portal_catalog.queryCatalog({
                 "portal_type":"Event",
                 "start" : date_range_query,
-                "sort_limit":"5",
+                "sort_limit":"3",
                 "review_state":"published",
                 "sort_on":'start'
             })
@@ -53,7 +53,7 @@ class HealthHomepageItems(BrowserView):
         portal_catalog = api.portal.get_tool('portal_catalog')
         items = portal_catalog.queryCatalog({
                 "portal_type":"News Item",
-                "sort_limit":"5",
+                "sort_limit":"3",
                 "review_state":"published",
                 "sort_on":'created',
                 "sort_order":'descending'
