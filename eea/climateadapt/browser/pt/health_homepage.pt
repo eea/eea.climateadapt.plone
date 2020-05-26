@@ -18,53 +18,31 @@
 <div class="box-container list_news_events">
     <ul class="nav nav-tabs">
         <li class="active">
-            <a href="/cca/health#news-tab">News</a>
+            <a href="/cca/health#news-tab" tal:attributes="href python:context.absolute_url()+'#news-tab'">News</a>
         </li>
-        <li class="">
-            <a href="/cca/health#events-tab">Events</a>
+        <li>
+            <a href="/cca/health#events-tab" tal:attributes="href python:context.absolute_url()+'#events-tab'">Events</a>
         </li>
     </ul>
-
     <div class="tab-content">
-        <div class="tab-pane fade active in" id="news-tab">
+        <div class="tab-pane active fade in" id="news-tab">
             <div class="fp-news-tile" tal:define="items view/latestNews">
-                <table class="health_homepage health_listing bluebox"
-                       tal:define="items view/latestNews">
-                    <tbody>
-                        <tr tal:repeat="item items">
-                            <td>
-                                <a tal:attributes="href item/url" tal:content="item/title">Read more ...</a>
-                                <p tal:content="item/date"></p>
-                            </td>
-                        </tr>
-                        <tr tal:condition="python: not items">
-                          <td>
-                              No items so far :-(
-                          </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <ul>
+                    <li tal:repeat="item items">
+                        <a tal:attributes="href item/url;title item/title" tal:content="item/title"></a>
+                        <p class="news-time" tal:content="item/date"></p>
+                    </li>
+                </ul>
             </div>
         </div>
-
         <div class="tab-pane fade" id="events-tab">
-            <div class="fp-events-tile">
-                <table class="health_homepage health_listing bluebox"
-                       tal:define="items view/upcomingEvents">
-                    <tbody>
-                        <tr tal:repeat="item items">
-                            <td>
-                                <a tal:content="item/title" tal:attributes="href item/url"></a>
-                                <p tal:content="item/date"></p>
-                            </td>
-                        </tr>
-                        <tr tal:condition="python: not items">
-                          <td>
-                              No events so far :-(
-                          </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="fp-events-tile" tal:define="items view/upcomingEvents">
+                <ul>
+                    <li tal:repeat="item items">
+                        <a tal:attributes="href item/url;title item/title" tal:content="item/title"></a>
+                        <p class="news-time" tal:content="item/date"></p>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

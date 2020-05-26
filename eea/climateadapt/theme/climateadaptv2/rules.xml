@@ -43,7 +43,7 @@
       <replace css:theme=".db-categories" css:content=".db-categories" href="@@fp-search-dynamic" method="document"/>
     </rules>
 
-    <rules css:if-content=".health_homepage">
+    <rules css:if-content=".template-health_homepage">
       <theme href="health.html" />
       <drop css:theme="head base" />
       <append css:theme="head">
