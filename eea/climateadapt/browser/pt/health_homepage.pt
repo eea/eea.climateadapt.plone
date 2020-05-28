@@ -13,6 +13,10 @@
 
 <p class="folder_health_context" tal:content="context/description"></p>
 
+<a href="/health" class="health_logo">
+    <img src="/++theme++climateadaptv2/static/images/climate-adapt-health-logo.jpg" alt="Climate-ADAPT Health Logo">
+</a>
+
 <a class="health_climate_link_main d-sm-none" href="">Health &amp; Climate Virtual Observatory</a>
 
 <div class="box-container list_news_events">

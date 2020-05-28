@@ -58,6 +58,7 @@
       <drop css:theme-children=".search-box" />
       <drop css:theme-children=".help-menu" />
       <before css:theme-children=".header > .content-container" css:content=".health_climate_link_main" />
+      <before css:theme-children=".header .logo" css:content=".health_logo" />
     </rules>
 
 
