@@ -8,50 +8,46 @@
   metal:use-macro="context/main_template/macros/master"
   >
 
-  <body>
-    <metal:main fill-slot="body">
+<body>
+  <metal:main fill-slot="body">
 
-<p class="folder_health_context" tal:content="context/description"></p>
+    <p class="folder_health_context" tal:content="context/description"></p>
 
-<a href="/health" class="health_logo">
-    <img src="/++theme++climateadaptv2/static/images/climate-adapt-health-logo.jpg" alt="Climate-ADAPT Health Logo">
-</a>
+    <a class="health_climate_link_main d-sm-none" href="">EU Observatory for Climate Change and Health</a>
 
-<a class="health_climate_link_main d-sm-none" href="">EU Observatory for Climate Change and Health</a>
-
-<div class="box-container list_news_events">
-    <ul class="nav nav-tabs">
+    <div class="box-container list_news_events">
+      <ul class="nav nav-tabs">
         <li class="active">
-            <a href="/cca/health#news-tab" tal:attributes="href python:context.absolute_url()+'#news-tab'">News</a>
+          <a href="/cca/health#news-tab" tal:attributes="href python:context.absolute_url()+'#news-tab'">News</a>
         </li>
         <li>
-            <a href="/cca/health#events-tab" tal:attributes="href python:context.absolute_url()+'#events-tab'">Events</a>
+          <a href="/cca/health#events-tab" tal:attributes="href python:context.absolute_url()+'#events-tab'">Events</a>
         </li>
-    </ul>
-    <div class="tab-content">
+      </ul>
+      <div class="tab-content">
         <div class="tab-pane active fade in" id="news-tab">
-            <div class="fp-news-tile" tal:define="items view/latestNews">
-                <ul>
-                    <li tal:repeat="item items">
-                        <a tal:attributes="href item/url;title item/title" tal:content="item/title"></a>
-                        <p class="news-time" tal:content="item/date"></p>
-                    </li>
-                </ul>
-            </div>
+          <div class="fp-news-tile" tal:define="items view/latestNews">
+            <ul>
+              <li tal:repeat="item items">
+                <a tal:attributes="href item/url;title item/title" tal:content="item/title"></a>
+                <p class="news-time" tal:content="item/date"></p>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="tab-pane fade" id="events-tab">
-            <div class="fp-events-tile" tal:define="items view/upcomingEvents">
-                <ul>
-                    <li tal:repeat="item items">
-                        <a tal:attributes="href item/url;title item/title" tal:content="item/title"></a>
-                        <p class="news-time" tal:content="item/date"></p>
-                    </li>
-                </ul>
-            </div>
+          <div class="fp-events-tile" tal:define="items view/upcomingEvents">
+            <ul>
+              <li tal:repeat="item items">
+                <a tal:attributes="href item/url;title item/title" tal:content="item/title"></a>
+                <p class="news-time" tal:content="item/date"></p>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
-</metal:main>
+  </metal:main>
 </body>
 </html>
