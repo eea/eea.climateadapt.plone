@@ -3,15 +3,13 @@
 
 import logging
 import re
+from site import MenuParser, _extract_menu
 
 from zope.component.hooks import getSite
 
 from eea.climateadapt.browser.externaltemplates import ExternalTemplateHeader
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
-
-from site import MenuParser
-from site import _extract_menu
 
 LINKER = re.compile('(?P<icon>\[.+?\])(?P<label>.+)')
 
@@ -34,7 +32,7 @@ Evidence on climate change and health
         -Vectore borne diseases
         -Food and water born diseases
         -Air polution
-        -Wildfiore
+        -Wildfire
         -Flooding
         -Etc.
     Indicators
@@ -48,7 +46,7 @@ Evidence on climate change and health
         -Vibrio map viewer                           /a/b
         -National and sub-national warning systems   /a/b
 
-Resource Catalogue
+Resource catalogue      /health/resource-catalogue
 
 Publications and outreach
     Publications                          /a/c
