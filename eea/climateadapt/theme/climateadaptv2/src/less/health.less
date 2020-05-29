@@ -1,5 +1,19 @@
+.userrole-anonymous .edit-bar-wrapper {
+  // fixes a problem with position relative
+  border-bottom: 1px solid white !important;
+}
+
 body.section-health {
   background-color: #fff;
+
+  .logo {
+    margin-top: 20px;
+    a:nth-child(2) img {
+      height: 40px;
+      display: inline-block;
+      margin-left: 20px;
+    }
+  }
 
   .header > .content-container{
     top:30px;
@@ -39,10 +53,13 @@ body.section-health {
   .health_top_items {
     padding-bottom: 40px;
     h5 {
+      margin-top:0.3em;
       text-transform: uppercase;
+      height: 35px;
     }
     img {
       width: 100%;
+      border: 1px solid #CCC;
     }
     .box-container {
         padding:0px;
@@ -116,16 +133,17 @@ body.section-health {
 
   div.health-top{
     // background-image: url("/++theme++climateadaptv2/static/images/health-lead-2.jpg");
-    background-image: url("/++theme++climateadaptv2/static/images/Climate-Change-distress.jpg");
+    background: url("/++theme++climateadaptv2/static/images/climate-4691943.jpg") no-repeat center center;
     clear: both;
-    position: relative;
-    padding-top: 120px;
-    height:250px;
+    // position: relative;
+    // padding-top: 120px;
+    margin-top: 140px;
+    height:350px;
+    // background-position: center 100px;
     background-size: cover;
-    background-position: center 100px;
-    background-repeat: no-repeat;
+    // background-repeat: no-repeat;
     overflow: hidden;
-    top:39px;
+    top:40px;
   }
 
   ul#navbar {
@@ -138,7 +156,7 @@ body.section-health {
     a {
       span{
         color:#000;
-        font-size:12px;
+        font-size:14px;
       }
       &.main-nav-link{
         padding-top:5px;
@@ -191,13 +209,17 @@ body.section-health {
     }
   }
   a.health_climate_link_main{
-    background-color: #ccc;
-    font-size: 20px;
+    // background-color: #ccc;
+    // font-size: 20px;
     line-height: 48px;
     padding: 10px;
-    color: #000;
+    color: white;
     margin: 0px;
-    font-family: Arial;
+    position: absolute;
+    margin-top: 300px;
+    font-family: OpenSansB;
+    font-size: 34px;
+    text-shadow: black 2px 3px 10px;
   }
   a.health_climate_link_main:hover{
     background-color: #000;
