@@ -3,7 +3,7 @@
   border-bottom: 1px solid white !important;
 }
 
-body.section-health {
+body.section-observatory {
   background-color: #fff;
 
   .logo {
@@ -37,22 +37,13 @@ body.section-health {
     }
   }
 
-  .main-box {
-    min-height: 300px;
-    //padding-left:4px;
-  }
-  .health-right {
-    padding-left: 2em;
-  }
-  .box-container-border{
-    //margin-left:10px;
-  }
   p.health_title {
     color:#808080;
     font-weight: normal;
     font-size: 15pt;
     padding-top: 40px;
   }
+
   .health_top_items {
     padding-bottom: 40px;
     h5 {
@@ -105,12 +96,13 @@ body.section-health {
         width:90% !important;
     }
   }
+
   .list_news_events {
-    margin-bottom: 40px;
-    border:1px solid #ddd;
+    margin-bottom: 30px;
+
     ul {
-      padding-left:0px;
-      padding-bottom:0px;
+      padding-left: 0px;
+      padding-bottom: 0px;
     }
   }
   .circle_sma {
@@ -147,7 +139,7 @@ body.section-health {
     background-size: cover;
     // background-repeat: no-repeat;
     overflow: hidden;
-    top:40px;
+    // top:40px;
   }
 
   ul#navbar {
@@ -197,9 +189,8 @@ body.section-health {
   .site-container {
     top:39px;
     #content {
-        border:0px;
-        margin:0px;
-        padding:0px;
+      border: 0px;
+      padding: 0px;
     }
   }
   .health_contribute {
@@ -239,6 +230,35 @@ body.section-health {
     .nav-down .mobile-menu {
         top:80px;
     }
+  }
+
+  .health-homepage-specific {
+    >.row {
+      margin: 0 -15px;
+    }
+  }
+
+  .health-left,
+  .health-right {
+    padding: 0 15px;
+  }
+
+  .health-left #portal-column-one {
+    margin: 0;
+    border: none;
+    padding: 0;
+  }
+
+  .portletWrapper,
+  .health_contribute {
+    margin-bottom: 30px;
+    border: 1px solid #E5E5E5;
+    padding: 1.2em;
+  }
+
+  .portlets-manager {
+    background-color: #f5f5f5;
+    padding: 1.2em;
   }
 
 }

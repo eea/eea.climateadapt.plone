@@ -43,7 +43,7 @@
       <replace css:theme=".db-categories" css:content=".db-categories" href="@@fp-search-dynamic" method="document"/>
     </rules>
 
-    <rules css:if-content=".section-health">
+    <rules css:if-content=".section-observatory">
 
       <drop css:theme="head base" />
       <append css:theme="head">
@@ -59,16 +59,26 @@
         <theme href="health.html" />
         <replace css:theme=".list_news_events" css:content=".list_news_events" />
         <replace css:theme=".folder_health_context" css:content=".folder_health_context" />
-        <drop css:theme="#page-body" />
+
+        <!-- <drop css:theme="#page-body" /> -->
+        <drop css:content="#viewlet-above-content" />
+        <drop css:content=".documentEditable" />
+        <replace css:theme="#portlet-manager" css:content-children="#portal-column-one" />
+
+        <drop css:content="#portal-column-one" />
+        <drop css:content="#portal-column-two" />
       </rules>
 
       <rules css:if-not-content=".template-health_homepage">
         <theme href="health-page.html" />
         <drop css:theme=".health_top_items" />
         <drop css:theme=".list_news_events" />
+
+        <replace css:theme="#portlet-manager" css:content-children="#portal-column-one" />
+        <drop css:content="#portal-column-one" />
+        <drop css:content="#portal-column-two" />
       </rules>
     </rules>
-
 
     <rules css:if-not-content=".section-frontpage.template-standard">
       <theme href="page.html" />
