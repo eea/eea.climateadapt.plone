@@ -82,7 +82,7 @@
         <replace css:theme="#portlet-manager" css:content-children="#portal-column-one" />
         <drop css:content="#portal-column-one" />
         <drop css:content="#portal-column-two" />
-        <before css:theme-children=".health-left" css:content="#aceitem_sidebar" />
+        <after css:theme-children=".health-left" css:content="#aceitem_sidebar" />
       </rules>
     </rules>
 

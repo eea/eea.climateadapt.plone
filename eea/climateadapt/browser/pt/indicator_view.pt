@@ -42,9 +42,11 @@
 
             <metal:macro use-macro="context/ace_macros/macros/files" />
 
-            <div class="macro-category">
+            <div class="macro-category" tal:define="effective context/effective">
               <h4>Updated:</h4>
-              <div tal:content="python: context.EffectiveDate().split('T')[0]"> Date </div>
+              <div tal:condition="effective">
+                <span tal:replace="effective/dd" >01</span>-<span tal:replace="effective/mm">01</span>-<span tal:replace="effective/year">2000</span>
+              </div>
             </div>
 
             <div class="macro-category">

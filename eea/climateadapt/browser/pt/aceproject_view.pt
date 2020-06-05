@@ -19,7 +19,7 @@
             </h1>
             <div class="project-source" style="float: right; font-size: small">
               <tal:cond tal:condition="python: getattr(context, 'origin_website', '') == 'DRMKC'">
-                This item is also part of: 
+                This item is also part of:
                 <img tal:attributes= "src python: context.portal_url() + '/drmkc-logo.png'" style="height:28px;"/>
               </tal:cond> <br/>
               <a tal:on-error="nothing"
@@ -50,9 +50,11 @@
           <div metal:fill-slot="ace-right-slot">
             <metal:macro use-macro="context/ace_macros/macros/files" />
 
-            <div class="macro-category">
+            <div class="macro-category" tal:define="effective context/effective">
               <h4>Updated:</h4>
-              <div tal:content="python: context.EffectiveDate().split('T')[0]"> Date </div>
+              <div tal:condition="effective">
+                <span tal:replace="effective/dd" >01</span>-<span tal:replace="effective/mm">01</span>-<span tal:replace="effective/year">2000</span>
+              </div>
             </div>
 
             <div class="macro-category">
