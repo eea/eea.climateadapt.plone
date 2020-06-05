@@ -82,6 +82,7 @@
         <replace css:theme="#portlet-manager" css:content-children="#portal-column-one" />
         <drop css:content="#portal-column-one" />
         <drop css:content="#portal-column-two" />
+        <before css:theme-children=".health-left" css:content="#aceitem_sidebar" />
       </rules>
     </rules>
 
@@ -213,6 +214,19 @@
   <prepend theme="/html/body" css:if-content="body.subsection-tools-urban-adaptation">
     <xsl:attribute name="class"><xsl:value-of select="/html/body/@class"/> fullwidth</xsl:attribute>
   </prepend>
+
+    Strip the classes "col-md-3 col-xs-12 content-sidebar" from the parent of aceitem-sidebar
+  <xsl:template match="div[contains(@class, 'content-sidebar') and ancestor::*[contains(@class, 'section-observatory')]]">
+    <xsl:copy-of select="node()" />
+  </xsl:template>
+
+    Replace col-md-9 with col-md-12 in observatory section, aceitems
+  <xsl:template match="div[contains(@class, 'content-column') and ancestor::*[contains(@class, 'section-observatory')]]">
+    <div>
+      <xsl:attribute name="class">col-md-12 col-xs-12 content-column</xsl:attribute>
+      <xsl:copy-of select="node()" />
+    </div>
+  </xsl:template>
 
   <xsl:template match="a[@data-linktype = 'external']">
     <a>
