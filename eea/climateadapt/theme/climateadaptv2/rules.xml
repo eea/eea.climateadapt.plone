@@ -82,7 +82,7 @@
         <replace css:theme="#portlet-manager" css:content-children="#portal-column-one" />
         <drop css:content="#portal-column-one" />
         <drop css:content="#portal-column-two" />
-        <after css:theme-children=".health-left" css:content="#aceitem_sidebar" />
+        <after css:theme-children=".health-left" css:content="#aceitem_sidebar" method="raw"/>
       </rules>
     </rules>
 
@@ -217,7 +217,7 @@
 
     Strip the classes "col-md-3 col-xs-12 content-sidebar" from the parent of aceitem-sidebar
   <xsl:template match="div[contains(@class, 'content-sidebar') and ancestor::*[contains(@class, 'section-observatory')]]">
-    <xsl:copy-of select="node()" />
+    <xsl:copy-of select="node()[not(contains(@id, 'aceitem_sidebar'))]" />
   </xsl:template>
 
     Replace col-md-9 with col-md-12 in observatory section, aceitems
