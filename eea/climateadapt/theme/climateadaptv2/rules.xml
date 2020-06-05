@@ -62,7 +62,8 @@
 
       <rules css:if-content=".template-health_homepage">
         <theme href="health.html" />
-        <replace css:theme=".list_news_events" css:content=".list_news_events" />
+        <replace css:theme=".list_news_events" css:content=".list_news_events" method="raw"/>
+        <drop css:content=".list_news_events" />
         <replace css:theme=".folder_health_context" css:content=".folder_health_context" />
 
         <!-- <drop css:theme="#page-body" /> -->
