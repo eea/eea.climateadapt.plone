@@ -12,7 +12,7 @@
 
     <!--Head-->
     <copy css:content="html" css:theme="html" attributes="lang dir"/>
-    <drop css:theme="head script" css:if-content=".template-sat"/>
+    <!-- <drop css:theme="head script" css:if&#45;content=".template&#45;sat"/> -->
     <before css:content="head style, head link, head meta" css:theme-children="head"/>
     <replace css:content="head title" css:theme="head title"/>
 
@@ -21,7 +21,11 @@
     <drop css:content="head link[rel='shortcut icon']"/>
     <drop css:content="head link[rel='apple-touch-icon']"/>
 
-    <after css:theme-children="body" css:content="head script" />
+    <drop css:content="body script" />
+    <rules css:if-not-content=".template-external-template-header">
+      <after css:theme-children="body" css:content="head script" />
+      <after css:theme-children="body" css:content="body script" method="raw"/>
+    </rules>
 
     <!--Content-->
     <merge attributes="class" css:content="body" css:theme="body"/>
@@ -48,6 +52,7 @@
       <drop css:theme="head base" />
       <append css:theme="head">
         <base><xsl:attribute name="href"><xsl:value-of select="$portal_url"/></xsl:attribute></base>
+        <link rel="stylesheet" type="text/css" href="/++theme++climateadaptv2/static/css/health.css" />
       </append>
       <replace css:content="#navbar" css:theme=".main-nav-menu" href="@@health_navbar" method="document"/>
 
@@ -220,8 +225,9 @@
   </xsl:template>
 
   <!-- body -->
-  <drop css:content="body script" />
-  <after css:theme-children="body" css:content="body script" method="raw" />
+
+  <!-- <drop css:content="body script" /> -->
+  <!-- <after css:theme&#45;children="body" css:content="body script" method="raw" /> -->
 
   <rules if="contains($host, 'local')">
     <!--<xsl:value-of select="$host" /> shows value of given variable -->

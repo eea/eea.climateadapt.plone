@@ -3,13 +3,15 @@
 
 import logging
 import re
-from site import MenuParser, _extract_menu
-
-from zope.component.hooks import getSite
 
 from eea.climateadapt.browser.externaltemplates import ExternalTemplateHeader
 from Products.CMFCore.utils import getToolByName
-from Products.Five.browser import BrowserView
+
+from .site import _extract_menu
+
+# from zope.component.hooks import getSite
+
+# from Products.Five.browser import BrowserView
 
 LINKER = re.compile('(?P<icon>\[.+?\])(?P<label>.+)')
 
@@ -59,7 +61,7 @@ Publications and outreach
     Capacity building            /a/b/c
         -Webinars                /a/b/c
         -Training                /a/b/c
-    """
+"""
 
 
 class Navbar(ExternalTemplateHeader):
@@ -72,14 +74,8 @@ class Navbar(ExternalTemplateHeader):
         return pprint.pprint(v)
 
     def menu(self):
-        try:
-            ptool = getToolByName(self.context,
-                                  'portal_properties')['site_properties']
-
-            return _extract_menu(ptool.getProperty('health_navigation_menu'))
-        except Exception, e:
-            logger.exception("Error while rendering navigation menu: %s", e)
-
-            site_url = self.context.portal_url()
-
-            return _extract_menu(DEFAULT_MENU, site_url)
+        ptool = getToolByName(self.context,
+                              'portal_properties')['site_properties']
+        value = ptool.getProperty('health_navigation_menu') or DEFAULT_MENU
+        site_url = self.context.portal_url()
+        return _extract_menu(value, site_url)

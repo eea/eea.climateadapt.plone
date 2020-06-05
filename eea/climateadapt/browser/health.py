@@ -1,6 +1,5 @@
-# from functools import partial
 import datetime
-from collections import defaultdict, namedtuple
+from collections import defaultdict
 
 import DateTime
 import plone.api as api
@@ -33,20 +32,21 @@ class HealthHomepageItems(BrowserView):
         })
 
         for item in items:
+            # TODO: don't convert DateTime to datetime and back
             days = (datetime.datetime.strptime(
                 item.getObject().start.strftime('%d.%m.%Y'), '%d.%m.%Y')
                 - datetime.datetime.now()
             ).days
 
             size = self.days_elapsed_mapping(days)
-            object = {
+            info = {
                 'title': item.Title,
                 'size': size,
                 'url': item.getURL(),
                 'date': item.getObject().start.strftime('%d.%m.%Y'),
                 "Subject": ("Observatory", ),
             }
-            results.append(object)
+            results.append(info)
 
         return results
 
@@ -58,22 +58,25 @@ class HealthHomepageItems(BrowserView):
             "sort_limit": "3",
             "review_state": "published",
             "sort_on": 'created',
-            "sort_order": 'descending'
+            "sort_order": 'descending',
+            "Subject": ("Observatory", ),
         })
 
+        strptime = datetime.datetime.strptime
+
         for item in items:
-            days = (datetime.datetime.strptime(
-                    item.getObject().created().strftime('%d.%m.%Y'), '%d.%m.%Y')
-                    - datetime.datetime.now()
-                    ).days
+            # TODO: don't convert DateTime to datetime and back
+            created = item.getObject().created().strftime('%d.%m.%Y')
+            now = datetime.datetime.now()
+            days = (strptime(created, '%d.%m.%Y') - now).days
 
             size = self.days_elapsed_mapping(days * -1)
-            object = {
+            info = {
                 'title': item.Title,
                 'size': size,
                 'url': item.getURL(),
                 'date': item.getObject().created().strftime('%d.%m.%Y')
             }
-            results.append(object)
+            results.append(info)
 
         return results

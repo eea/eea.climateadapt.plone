@@ -16,7 +16,7 @@
 <!--<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:8080/cca/portal_css/Sunburst%20Theme/authoring.css">-->
 <!--?<link rel="stylesheet" href="/frontpage/cca/++theme++climateadapt/static/bs3/css/bootstrap.css" type="text/css"/>-->
 
-<script type="text/javascript" src="++theme++climateadaptv2/static/js/lazysizes.min.js"></script>
+<script type="text/javascript" src="/++theme++climateadaptv2/static/js/lazysizes.min.js"></script>
 <script type="text/javascript" src="/frontpage/cca/++theme++climateadaptv2/static/js/main.js?ts=14"></script>
 <script type="text/javascript" src="/frontpage/cca/++theme++climateadaptv2/static/js/dev_fixes.js?ts=14"></script>
 <!--?<script type="text/javascript" src="/frontpage/cca/++theme++climateadaptv2/static/js/slick.min.js?ts=14"></script>-->

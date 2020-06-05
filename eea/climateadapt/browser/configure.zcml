@@ -338,17 +338,13 @@
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.aceitem.IPublicationReport
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .aceitem.PublicationReportEditForm"
+        for="eea.climateadapt.aceitem.IPublicationReport zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.PublicationReportEditForm"
         factory=".aceitem.AceItemFormExtender"
         />
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .aceitem.PublicationReportAddForm"
+        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.PublicationReportAddForm"
         factory=".aceitem.AceItemFormExtender"
         />
 
@@ -363,17 +359,13 @@
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.aceitem.IInformationPortal
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .aceitem.InformationPortalEditForm"
+        for="eea.climateadapt.aceitem.IInformationPortal zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.InformationPortalEditForm"
         factory=".aceitem.AceItemFormExtender"
         />
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .aceitem.InformationPortalAddForm"
+        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.InformationPortalAddForm"
         factory=".aceitem.AceItemFormExtender"
         />
 
@@ -388,17 +380,13 @@
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.aceitem.IGuidanceDocument
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .aceitem.GuidanceDocumentEditForm"
+        for="eea.climateadapt.aceitem.IGuidanceDocument zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.GuidanceDocumentEditForm"
         factory=".aceitem.AceItemFormExtender"
         />
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .aceitem.GuidanceDocumentAddForm"
+        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.GuidanceDocumentAddForm"
         factory=".aceitem.AceItemFormExtender"
         />
 
@@ -413,17 +401,13 @@
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.aceitem.ITool
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .aceitem.ToolEditForm"
+        for="eea.climateadapt.aceitem.ITool zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.ToolEditForm"
         factory=".aceitem.AceItemFormExtender"
         />
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .aceitem.ToolAddForm"
+        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.ToolAddForm"
         factory=".aceitem.AceItemFormExtender"
         />
 
@@ -438,17 +422,13 @@
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.aceitem.IIndicator
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .aceitem.IndicatorEditForm"
+        for="eea.climateadapt.aceitem.IIndicator zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.IndicatorEditForm"
         factory=".aceitem.AceItemFormExtender"
         />
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .aceitem.IndicatorAddForm"
+        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.IndicatorAddForm"
         factory=".aceitem.AceItemFormExtender"
         />
 
@@ -463,17 +443,13 @@
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.aceitem.IOrganisation
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .aceitem.OrganisationEditForm"
+        for="eea.climateadapt.aceitem.IOrganisation zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.OrganisationEditForm"
         factory=".aceitem.AceItemFormExtender"
         />
 
     <adapter
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .aceitem.OrganisationAddForm"
+        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.OrganisationAddForm"
         factory=".aceitem.AceItemFormExtender"
         />
 

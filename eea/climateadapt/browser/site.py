@@ -8,7 +8,8 @@ from zope.component.hooks import getSite
 
 from eea.climateadapt.browser.externaltemplates import ExternalTemplateHeader
 from Products.CMFCore.utils import getToolByName
-from Products.Five.browser import BrowserView
+
+# from Products.Five.browser import BrowserView
 
 LINKER = re.compile('(?P<icon>\[.+?\])(?P<label>.+)')
 
@@ -192,10 +193,10 @@ class MenuParser:
             label = match.group('label').replace('[', '').replace(']', '')
 
         item.update({
-                'icon': icon.strip() + '</icon>',
-                'label': label.strip(),
-                'link': link and (self.site_url + '/' + link.strip()) or None,
-            })
+            'icon': icon.strip() + '</icon>',
+            'label': label.strip(),
+            'link': link and (self.site_url + '/' + link.strip()) or None,
+        })
 
         return item
 
