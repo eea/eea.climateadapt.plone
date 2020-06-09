@@ -1,22 +1,23 @@
 # -*- coding: utf-8 -*-
+import datetime
 import json
 import logging
 
-# from collective.cover.tiles.list import ListTile
+from lxml.etree import fromstring
 from pkg_resources import resource_filename
 from zope import schema
+from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter, getMultiAdapter, getUtility
 from zope.interface import (Interface, Invalid, implementer, implements,
                             invariant)
-from zope.annotation.interfaces import IAnnotations
+
 from apiclient.discovery import build
-from eea.climateadapt._importer import utils as u
+from DateTime import DateTime
 from eea.climateadapt.browser.site import _extract_menu
 from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
 from eea.climateadapt.scripts import get_plone_site
 from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
 from oauth2client.service_account import ServiceAccountCredentials
-from plone import api
 from plone.api import portal
 from plone.api.portal import get_tool, getSite
 from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
@@ -24,13 +25,11 @@ from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
 from plone.app.widgets.dx import RelatedItemsWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.directives import form
-from lxml.etree import fromstring
 from plone.i18n.normalizer import idnormalizer
 from plone.memoize import view
 from plone.registry.interfaces import IRegistry
 from plone.tiles.interfaces import ITileDataManager
 from plone.z3cform import layout
-from persistent.mapping import PersistentMapping
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from six.moves.html_parser import HTMLParser
@@ -40,6 +39,11 @@ from z3c.form.interfaces import IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
+
+# from plone import api
+# from persistent.mapping import PersistentMapping
+# from collective.cover.tiles.list import ListTile
+# from eea.climateadapt._importer import utils as u
 
 html_unescape = HTMLParser().unescape
 
@@ -201,7 +205,7 @@ class ListTilesWithTitleView (BrowserView):
 
     def __call__(self):
         covers = self.context.portal_catalog.searchResults(
-                              portal_type='collective.cover.content')
+            portal_type='collective.cover.content')
         self.urls = []
 
         for cover in covers:
@@ -227,6 +231,7 @@ class ListTilesWithTitleView (BrowserView):
             return text
 
         return "http://" + text
+
     def walk(self, item):
         if isinstance(item, dict):
 
@@ -242,13 +247,13 @@ class ListTilesWithTitleView (BrowserView):
 class ForcePingCRView(BrowserView):
     """ Force pingcr on objects between a set interval """
 
-    def __call__ (self):
+    def __call__(self):
         cat = get_tool('portal_catalog')
 
         query = {
             'review_state': 'published'
         }
-        results=cat.searchResults(query)
+        results = cat.searchResults(query)
 
         logger.info("Found %s objects " % len(results))
 
@@ -591,7 +596,7 @@ def custom_report(analytics, view_id):
                 ]
             }
         ]
-              }
+        }
     ).execute()
 
 
@@ -700,10 +705,10 @@ class MigrateTiles(BrowserView):
                     data_mgr.set(old_data)
 
                     print("Fixed cover %s, tile %s with uids %r" % (
-                                cover.absolute_url(),
-                                tid,
-                                uids,
-                                ))
+                        cover.absolute_url(),
+                        tid,
+                        uids,
+                    ))
 
                     logger.info("Fixed cover %s, tile %s with uids %r",
                                 cover.absolute_url(),
@@ -770,3 +775,23 @@ class AdapteCCACurrentCaseStudyFixImportIDs(BrowserView):
                 annot['import_id'] = item_id
 
         return 'AdapteCCA current case study fixed import_ids'
+
+
+class ConvertPythonDatetime(BrowserView):
+    """ Convert effective_date and creation_date from python datetime to
+    DateTime
+    """
+
+    def __call__(self):
+
+        brains = self.context.portal_catalog.searchResults(wrong_index=True)
+        for brain in brains:
+            obj = brain.getObject()
+            obj = obj.aq_inner.aq_self
+            for name in ['creation_date', 'effective_date']:
+                attr = getattr(obj, name, None)
+                if isinstance(attr, datetime.datetime):
+                    setattr(obj, name, DateTime(attr))
+                    logger.info("Fix %s: %s - %s", brain.getURL(), name, attr)
+
+        return "done"
