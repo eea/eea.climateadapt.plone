@@ -9,6 +9,10 @@
   xmlns:plone="http://namespaces.plone.org/plone"
   i18n_domain="eea.climateadapt">
 
+<adapter
+  factory=".misc.DatetimeDataConverter"
+  for="zope.schema.interfaces.IDatetime plone.app.widgets.dx.IDatetimeWidget" />
+
   eea.climateadapt.interfaces.IEEAClimateAdaptInstalled
   <adapter for="* *"
     name="plone.contentmenu.display"

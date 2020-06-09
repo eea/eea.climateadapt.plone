@@ -25,6 +25,7 @@
     factory=".integration.AddView"
     />
 
+
   <class class=".integration.AddView">
     <require
       permission="cmf.AddPortalContent"

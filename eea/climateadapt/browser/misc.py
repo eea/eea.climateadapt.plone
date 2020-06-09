@@ -5,21 +5,24 @@ from email.MIMEText import MIMEText
 from itertools import islice
 
 import requests
-
 import transaction
-from DateTime import DateTime
-from Acquisition import aq_inner
+from dateutil.tz import gettz
+from ZODB.PersistentMapping import PersistentMapping
+from zope import schema
+from zope.annotation.interfaces import IAnnotations
+from zope.interface import Interface, implements
+
 from BeautifulSoup import BeautifulSoup
-from eea.climateadapt import MessageFactory as _
+from DateTime import DateTime
 from eea.climateadapt.config import CONTACT_MAIL_LIST
 from eea.climateadapt.schema import Email
 from OFS.ObjectManager import BeforeDeleteException
 from plone import api
 from plone.api import portal
-from plone.api.portal import get_tool
 from plone.api.content import get_state
-from plone.api.portal import show_message
+from plone.api.portal import get_tool, show_message
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
+from plone.app.widgets.dx import DatetimeWidgetConverter as BaseConverter
 from plone.directives import form
 from plone.formwidget.captcha.validator import (CaptchaValidator,
                                                 WrongCaptchaCode)
@@ -30,10 +33,9 @@ from Products.CMFPlone.utils import getToolByName, isExpired
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from z3c.form import button, field, validator
-from zope import schema
-from zope.annotation.interfaces import IAnnotations
-from zope.interface import Interface, implements
-from ZODB.PersistentMapping import PersistentMapping
+
+# from Acquisition import aq_inner
+# from eea.climateadapt import MessageFactory as _
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -325,7 +327,8 @@ class DetectBrokenLinksView (BrowserView):
 
                 state = get_state(obj)
                 if state not in ['private', 'archived']:
-                    info['date'] = date.Date() if isinstance(date, DateTime) else date
+                    info['date'] = date.Date() if isinstance(
+                        date, DateTime) else date
                     broken_links.append(info)
 
         for link in broken_links:
@@ -535,12 +538,13 @@ def compute_broken_links(site):
     annot[now] = results
     dates = annot.keys()
 
-    if len(dates) >= 5: # maximum no. of dates stored
+    if len(dates) >= 5:  # maximum no. of dates stored
         # delete oldest data except 'pre_nov7_data'
-        del annot[sorted(dates)[0]] 
+        del annot[sorted(dates)[0]]
 
     IAnnotations(site)._p_changed = True
     transaction.commit()
+
 
 def get_links(site):
     """ Gets the links for all our items by using the websites field
@@ -654,7 +658,7 @@ def check_link(link):
             logger.error(err)
 
         logger.warning("Now checking: %s", link)
-        
+
         try:
             requests.head(link, timeout=5, allow_redirects=True)
         except requests.exceptions.ReadTimeout:
@@ -728,10 +732,10 @@ class ContactForm(form.SchemaForm):
 
             return
 
-        if data.has_key('captcha'):
+        if 'captcha' in data:
             # Verify the user input against the captcha
-            captcha = CaptchaValidator(
-                self.context, self.request, None, IContactForm['captcha'], None)
+            captcha = CaptchaValidator(self.context, self.request, None,
+                                       IContactForm['captcha'], None)
 
             try:
                 valid = captcha.validate(data['captcha'])
@@ -802,10 +806,11 @@ class ContactFooterForm(form.SchemaForm):
 
             return
 
-        if data.has_key('captcha'):
+        if 'captcha' in data:
             # Verify the user input against the captcha
-            captcha = CaptchaValidator(
-                self.context, self.request, None, IContactFooterForm['captcha'], None)
+            captcha = CaptchaValidator(self.context,
+                                       self.request, None,
+                                       IContactFooterForm['captcha'], None)
 
             try:
                 valid = captcha.validate(data['captcha'])
@@ -881,10 +886,11 @@ class ViewGoogleAnalyticsReport(BrowserView):
 
         return islice(reports, 0, 10)
 
+
 class ConvertSiteOrigin(BrowserView):
     """ Convert the site origin from string to list
     """
-    
+
     def __call__(self):
         catalog = get_tool('portal_catalog')
         brains = catalog.searchResults({'portal_type': [
@@ -920,5 +926,17 @@ class ConvertSiteOrigin(BrowserView):
 
             obj._p_changed = True
             obj.reindexObject()
-        
+
         return 'done'
+
+
+class DatetimeDataConverter(BaseConverter):
+    """ Avoid problem with missing tzinfo from default datetime widgets
+    """
+
+    def toFieldValue(self, value):
+        value = super(DatetimeDataConverter, self).toFieldValue(value)
+        if value is not self.field.missing_value:
+            if not getattr(value, 'tzinfo', None):
+                value = value.replace(tzinfo=gettz())
+        return value
