@@ -28,7 +28,7 @@ class HealthHomepageItems(BrowserView):
             "sort_limit": "3",
             "review_state": "published",
             "sort_on": 'start',
-            "Subject": ("Observatory", ),
+            "Subject": ("Health Observatory", ),
         })
 
         for item in items:
@@ -44,7 +44,7 @@ class HealthHomepageItems(BrowserView):
                 'size': size,
                 'url': item.getURL(),
                 'date': item.getObject().start.strftime('%d.%m.%Y'),
-                "Subject": ("Observatory", ),
+                "Subject": ("Health Observatory", ),
             }
             results.append(info)
 
@@ -59,7 +59,7 @@ class HealthHomepageItems(BrowserView):
             "review_state": "published",
             "sort_on": 'created',
             "sort_order": 'descending',
-            "Subject": ("Observatory", ),
+            "Subject": ("Health Observatory", ),
         })
 
         strptime = datetime.datetime.strptime
