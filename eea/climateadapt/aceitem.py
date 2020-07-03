@@ -13,10 +13,12 @@ from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
+from plone.namedfile.field import NamedBlobImage
 from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
+from z3c.relationfield.schema import RelationChoice, RelationList
 
 
 class IAceItem(form.Schema, IImageScaleTraversable):
@@ -172,7 +174,9 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     form.widget(geochars='eea.climateadapt.widgets.geochar.GeoCharFieldWidget')
     geochars = Text(title=_(u"Geographic characterisation"),
                     required=True,
-                    default=u'{"geoElements":{"element":"GLOBAL", "macrotrans":null,"biotrans":null,"countries":[],"subnational":[],"city":""}}',
+                    default=u'{"geoElements":{"element":"GLOBAL", "macrotrans"'
+                            u':null,"biotrans":null,"countries":[],'
+                            u'"subnational":[],"city":""}}',
                     description=u"Select the characterisation for this item",
                     )
 
@@ -181,6 +185,19 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                                 u"[information entered below will not be"
                                 u"displayed on the public pages of"
                                 u"climate-adapt]")
+
+    contributors = RelationList(
+        title=u"Contributors list:",
+        default=[],
+        description=_(u"Select one or more contributors for this item "),
+        value_type=RelationChoice(
+            title=_(u"Related"),
+            vocabulary="eea.climateadapt.organisations"
+            # source=ObjPathSourceBinder(),
+            # source=CatalogSource(portal_type='eea.climateadapt.adaptionoption'),
+        ),
+        required=False,
+    )
 
     # -----------[ "omitted" fields ]------------------
     directives.omitted(IAddForm, 'portal_type')
@@ -330,6 +347,11 @@ class ITool(IAceItem):
 
 class IOrganisation(IAceItem):
     """ Organisation Interface"""
+
+    logo = NamedBlobImage(
+        title=_(u"Logo"),
+        required=False,
+    )
 
 
 class IIndicator(IAceItem):

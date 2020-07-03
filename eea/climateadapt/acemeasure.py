@@ -25,7 +25,6 @@ from eea.rabbitmq.plone.rabbitmq import queue_msg
 from plone.api.portal import get_tool
 from plone.app.contenttypes.interfaces import IImage
 from plone.app.textfield import RichText
-from plone.app.widgets.dx import RelatedItemsWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.directives import dexterity, form
@@ -287,6 +286,19 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                                   u"displayed on the public pages of "
                                   u"climate-adapt]")
                     )
+
+    contributors = RelationList(
+        title=u"Contributors list:",
+        default=[],
+        description=_(u"Select one or more contributors for this item "),
+        value_type=RelationChoice(
+            title=_(u"Related"),
+            vocabulary="eea.climateadapt.organisations"
+            # source=ObjPathSourceBinder(),
+            # source=CatalogSource(portal_type='eea.climateadapt.adaptionoption'),
+        ),
+        required=False,
+    )
 
     # -----------[ "omitted" fields ]------------------
 

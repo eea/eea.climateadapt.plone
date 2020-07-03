@@ -3,6 +3,10 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Fix: relations list to oraganisations
+  upload logo option for organisation
+  clear html for only article view
+  [eugentripon #117767]
 * Fix: added date on individual news item
   [davidsilaghi #115810]
 * Fix: made error handler in casestudy view

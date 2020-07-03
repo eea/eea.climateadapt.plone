@@ -45,6 +45,7 @@
       <!-- slider -->
       <replace css:theme=".slider" css:content=".slider" href="/@@slides-frontpage" method="document" />
       <replace css:theme=".db-categories" css:content=".db-categories" href="@@fp-search-dynamic" method="document"/>
+
     </rules>
 
     <rules css:if-content=".section-observatory">
@@ -89,6 +90,13 @@
 
     <rules css:if-not-content=".section-frontpage.template-standard">
       <theme href="page.html" />
+      <rules css:if-content="#show_only_article">
+          <drop css:theme=".top-page-area" />
+          <drop css:theme="footer" />
+          <drop css:theme="head" />
+
+          <drop css:content="#viewlet-above-content" />
+      </rules>
     </rules>
 
     <replace css:content="#portal-columns" css:theme="#page-body"/>

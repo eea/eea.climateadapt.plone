@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import pdb
 from collections import namedtuple
 
 from zope.component.hooks import getSite
@@ -96,6 +95,50 @@ class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
             if parsed['path'].get('depth'):
                 parsed['path']['query'].append(
                     u'/cca/metadata/adaptation-options'
+                )
+
+                if u'/cca' in parsed['path']['query']:
+                    parsed['path']['query'].remove(u'/cca')
+
+        brains = catalog(**parsed)
+
+        return CatalogVocabulary.fromItems(brains, context)
+
+
+@implementer(IVocabularyFactory)
+class OrganisationsVocabulary(CatalogVocabularyFactory):
+
+    def __call__(self, context, query=None):
+        query = query or {}
+
+        if 'criteria' not in query:
+            query['criteria'] = []
+
+        query['criteria'].append(
+            {u'i': u'portal_type',
+             u'o': u'plone.app.querystring.operation.selection.is',
+             u'v': [u'eea.climateadapt.organisation']}
+        )
+
+        parsed = {}
+
+        if query:
+            parsed = queryparser.parseFormquery(context, query['criteria'])
+
+            if 'sort_on' in query:
+                parsed['sort_on'] = query['sort_on']
+
+            if 'sort_order' in query:
+                parsed['sort_order'] = str(query['sort_order'])
+        try:
+            catalog = getToolByName(context, 'portal_catalog')
+        except AttributeError:
+            catalog = getToolByName(getSite(), 'portal_catalog')
+
+        if parsed.get('path'):
+            if parsed['path'].get('depth'):
+                parsed['path']['query'].append(
+                    u'/cca/metadata/organisations'
                 )
 
                 if u'/cca' in parsed['path']['query']:

@@ -16,7 +16,10 @@
             <div metal:use-macro="context/ace_macros/macros/title_date"></div>
           </div>
 
-          <div metal:fill-slot="ace-left-slot">
+          <div metal:fill-slot="ace-left-slot" tal:define="only_article python:request.get('only_article',0)">
+            <div tal:define="only_article python:request.get('only_article',0)">
+                <div tal:condition="only_article" id="show_only_article"></div>
+            </div>
             <h3>Description</h3>
             <tal:block replace="structure python: view.w['long_description'].render()" />
 
