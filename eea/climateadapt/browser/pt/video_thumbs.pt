@@ -5,7 +5,8 @@
     <a href="https://youtu.be/uSKMb4sBtJI"
        class="thumbnail-wrapper">
       <div class="video-thumbnail">
-        <div class="video-image local-image"></div>
+        <div class="video-image"
+          style="background-image: url(/cca/++theme++climateadaptv2/static/images/getting-started-local.png)" />
         <div class="slider-layer"></div>
         <span class="icon-bg"></span>
         <i class="fa fa-play"></i>
@@ -21,7 +22,8 @@
     <a href="https://youtu.be/vOJQALGwcI0"
        class="thumbnail-wrapper">
       <div class="video-thumbnail">
-        <div class="video-image national-image"></div>
+        <div class="video-image"
+             style="background-image: url(/cca/++theme++climateadaptv2/static/images/getting-started-national.png)" />
         <div class="slider-layer"></div>
         <span class="icon-bg"></span>
         <i class="fa fa-play"></i>
@@ -37,7 +39,8 @@
     <a href="https://youtu.be/xaAFzXrN4JA"
        class="thumbnail-wrapper">
       <div class="video-thumbnail">
-        <div class="video-image transnational-image"></div>
+        <div class="video-image"
+             style="background-image: url(/cca/++theme++climateadaptv2/static/images/getting-started-transnational.png)" />
         <div class="slider-layer"></div>
         <span class="icon-bg"></span>
         <i class="fa fa-play"></i>

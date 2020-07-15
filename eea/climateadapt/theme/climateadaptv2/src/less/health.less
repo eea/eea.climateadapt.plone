@@ -18,8 +18,8 @@ body.section-observatory {
     }
   }
 
-  .header > .content-container{
-    top:30px;
+  .header > .content-container {
+    top: 30px;
   }
 
   .header {
@@ -41,32 +41,37 @@ body.section-observatory {
   }
 
   p.health_title {
-    color:#808080;
+    color: #808080;
     font-weight: normal;
     font-size: 15pt;
     padding-top: 40px;
   }
 
   .health_top_items {
-    padding-bottom: 40px;
+    padding: 1.5em 0;
+
     h5 {
-      margin-top:0.3em;
+      margin-top: 0.3em;
       text-transform: uppercase;
       height: 35px;
     }
+
     img {
       width: 100%;
       border: 1px solid #CCC;
     }
+
     .box-container {
-        padding:0px;
-        border:0px;
+      padding: 0px;
+      border: 0px;
     }
+
     div.main-box {
-        height:300px;
+      height: 300px;
     }
   }
-  .greenbox h4{
+
+  .greenbox h4 {
     background-color: #717e32;
     font-size:14pt;
     color:#fff;
@@ -74,29 +79,34 @@ body.section-observatory {
     margin-bottom: 0px;
     text-align:left;
   }
+
   .bluebox {
-    table{
+    table {
       width:100% !important;
     }
-    th{
+
+    th {
       background-color: #005C96;
-      font-size:12px;
-      color:#fff;
+      font-size: 12px;
+      color: #fff;
       padding: 5pt 5pt 1pt 5pt;
-      text-align:left;
+      text-align: left;
     }
+
     tbody td {
-      font-size:12px;
-      padding:5pt;
+      font-size: 12px;
+      padding: 5pt;
       a {
-        font-size:14px;
+        font-size: 14px;
       }
     }
-    tbody tr>td:nth-child(1){
-        width:10% !important;
+
+    tbody tr>td:nth-child(1) {
+      width: 10% !important;
     }
-    tbody tr>td:nth-child(2){
-        width:90% !important;
+
+    tbody tr>td:nth-child(2) {
+      width: 90% !important;
     }
   }
 
@@ -108,77 +118,72 @@ body.section-observatory {
       padding-bottom: 0px;
     }
   }
-  .circle_sma {
-    height: 25px;
-    width: 25px;
-    background-color: #555;
-    border-radius: 50%;
-    display: inline-block;
-  }
-  .circle_med {
-    height: 35px;
-    width: 35px;
-    background-color: #555;
-    border-radius: 50%;
-    display: inline-block;
-  }
-  .circle_big {
-    height: 45px;
-    width: 45px;
-    background-color: #555;
-    border-radius: 50%;
-    display: inline-block;
-  }
 
-  div.health-top{
-    // background-image: url("/++theme++climateadaptv2/static/images/health-lead-2.jpg");
+  // .circle_sma {
+  //   height: 25px;
+  //   width: 25px;
+  //   background-color: #555;
+  //   border-radius: 50%;
+  //   display: inline-block;
+  // }
+  // .circle_med {
+  //   height: 35px;
+  //   width: 35px;
+  //   background-color: #555;
+  //   border-radius: 50%;
+  //   display: inline-block;
+  // }
+  // .circle_big {
+  //   height: 45px;
+  //   width: 45px;
+  //   background-color: #555;
+  //   border-radius: 50%;
+  //   display: inline-block;
+  // }
+
+  div.health-top {
     background: url("/++theme++climateadaptv2/static/images/climate-4691943.jpg") no-repeat center center;
     clear: both;
-    // position: relative;
-    // padding-top: 120px;
     margin-top: 140px;
-    height:350px;
-    // background-position: center 100px;
+    height: 350px;
     background-size: cover;
-    // background-repeat: no-repeat;
     overflow: hidden;
-    // top:40px;
   }
 
   ul#navbar {
     background-color: #fff;
-    border:0px;
-    box-shadow:none;
-    float:right;
+    border: 0px;
+    box-shadow: none;
+    float: right;
     margin-top: 6px;
 
     a {
-      span{
-        color:#000;
-        font-size:14px;
+      span {
+        color: #000;
+        font-size: 14px;
       }
+
       &.main-nav-link{
-        padding-top:5px;
-        padding-bottom:5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         padding-left: 10px;
         padding-right: 10px;
         text-transform: none;
       }
-
     }
 
     .main-nav-item {
       &:not:first-child {
-        border-left:1px solid #818A32;
+        border-left: 1px solid #818A32;
       }
       &:hover>span {
         background-color: #818A32;
       }
       &:hover a span{
-        color:#fff;
+        color: #fff;
       }
       .toggle-down {
-        padding-right:10px;
+        padding-right: 10px;
       }
       .angle-down-icon {
         border-top-color: #000;
@@ -190,28 +195,33 @@ body.section-observatory {
   }
 
   .site-container {
-    top:39px;
+    top: 39px;
+
     #content {
       border: 0px;
       padding: 0px;
     }
   }
+
   .health_contribute {
-    margin-top: 2.3em;
-    h4{
-      color:#007cb9;
+    // margin-top: 2.3em;
+    h4 {
+      color: #007cb9;
       font-size: 1.1em;
     }
-    a{
-      width:100%;
-      color:#fff;
+
+    a {
+      width: 100%;
+      color: #fff;
+      .fa-envelope {
+        margin-top: 3px;
+      }
     }
   }
-  a.health_climate_link_main{
-    // background-color: #ccc;
-    // font-size: 20px;
+
+  a.health_climate_link_main {
     line-height: 48px;
-    padding: 10px;
+    padding: 10px 0;
     color: white;
     margin: 0px;
     position: absolute;
@@ -220,19 +230,22 @@ body.section-observatory {
     font-size: 34px;
     text-shadow: black 2px 3px 10px;
   }
-  a.health_climate_link_main:hover{
+
+  a.health_climate_link_main:hover {
     // background-color: #000;
-    color:#fff;
+    color: #fff;
   }
-  footer{
-    margin-top:160px;
-  }
+
+  // footer {
+  //   margin-top:160px;
+  // }
+
   @media only screen and (max-width: 800px) {
     .d-sm-none {
       display: none;
     }
     .nav-down .mobile-menu {
-        top:80px;
+      top: 80px;
     }
   }
 
@@ -264,5 +277,4 @@ body.section-observatory {
     background-color: #f5f5f5;
     padding: 1.2em;
   }
-
 }
