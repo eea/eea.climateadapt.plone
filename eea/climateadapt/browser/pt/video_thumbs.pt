@@ -2,52 +2,31 @@
 
   <!-- Local -->
   <div class="col-6 col-md-4 col-sm-6">
-    <a href="https://youtu.be/uSKMb4sBtJI"
-       class="thumbnail-wrapper">
-      <div class="video-thumbnail">
-        <div class="video-image"
-          style="background-image: url(/cca/++theme++climateadaptv2/static/images/getting-started-local.png)" />
-        <div class="slider-layer"></div>
-        <span class="icon-bg"></span>
-        <i class="fa fa-play"></i>
-      </div>
-      <div class="video-caption">
-        <p>I want to develop a <strong>LOCAL</strong> adaptation strategy <br> or action plan.</p>
-      </div>
-    </a>
+    <center>
+        <video data-matomo-title="Climate ADAPT Local" controls="controls" preload="metadata" poster="/cca/++theme++climateadaptv2/static/images/getting-started-local.png" src="https://cmshare.eea.europa.eu/s/KbaSFnSGyQZra5L/download" type="video/mp4" width="100%" style="max-width:300px;" height="180"> </video>
+    </center>
+    <div class="video-caption">
+        <p>I want to develop a <strong>LOCAL</strong> adaptation strategy <br> or action plan. test message.</p>
+    </div>
   </div>
 
   <!-- National -->
   <div class="col-6 col-md-4 col-sm-6">
-    <a href="https://youtu.be/vOJQALGwcI0"
-       class="thumbnail-wrapper">
-      <div class="video-thumbnail">
-        <div class="video-image"
-             style="background-image: url(/cca/++theme++climateadaptv2/static/images/getting-started-national.png)" />
-        <div class="slider-layer"></div>
-        <span class="icon-bg"></span>
-        <i class="fa fa-play"></i>
-      </div>
+    <center>
+    <video data-matomo-title="Climate ADAPT National" controls="controls" preload="metadata" poster="/cca/++theme++climateadaptv2/static/images/getting-started-national.png" src="https://cmshare.eea.europa.eu/s/7XiT5R6miLTXXFt/download" type="video/mp4" width="100%" style="max-width:300px;" height="180"> </video>
+    </center>
       <div class="video-caption">
         <p>I want to develop a <strong>NATIONAL</strong> or <strong>REGIONAL</strong> adaptation strategy or action plan.</p>
       </div>
-    </a>
   </div>
 
   <!-- Transnational -->
   <div class="col-6 col-md-4 col-sm-6">
-    <a href="https://youtu.be/xaAFzXrN4JA"
-       class="thumbnail-wrapper">
-      <div class="video-thumbnail">
-        <div class="video-image"
-             style="background-image: url(/cca/++theme++climateadaptv2/static/images/getting-started-transnational.png)" />
-        <div class="slider-layer"></div>
-        <span class="icon-bg"></span>
-        <i class="fa fa-play"></i>
-      </div>
+    <center>
+    <video data-matomo-title="Climate ADAPT TransNational" controls="controls" preload="metadata" poster="/cca/++theme++climateadaptv2/static/images/getting-started-transnational.png" src="https://cmshare.eea.europa.eu/s/wRWfQsPzREXWrwn/download" type="video/mp4" width="100%" style="max-width:300px;" height="180"> </video>
+    </center>
       <div class="video-caption">
         <p>I want to develop a <strong>TRANSNATIONAL</strong> adaptation strategy or action   plan.</p>
       </div>
-    </a>
   </div>
 </div>
