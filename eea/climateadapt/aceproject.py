@@ -111,6 +111,17 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         missing_value=(None),
     )
 
+    partner_organisations = Choice(title=_(u"Partner organisation"),
+                            required=True,
+                            vocabulary="eea.climateadapt.partner_organisations")
+
+    health_impacts = Choice(title=_(u"Health impacts"),
+                            required=True,
+                            vocabulary="eea.climateadapt.health_impacts")
+
+    include_in_observatory = Bool(title=_(u"Include in observatory"),
+                     required=False, default=False)
+
     form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(
         title=_(u"Sectors"),
@@ -258,14 +269,14 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                           value_type=Choice(
                               vocabulary="eea.climateadapt.ace_countries"),
                           )
-    
+
     origin_website = List(title=_(u"Origin website"),
                           required=True,
                           value_type=Choice(
                               vocabulary="eea.climateadapt.origin_website"),
                           )
 
-    partners_source_link = URI(title=_(u"Partners Source Link"), 
+    partners_source_link = URI(title=_(u"Partners Source Link"),
                               description=(u"Provide URL from project partners"),
                               required=False,
                               )

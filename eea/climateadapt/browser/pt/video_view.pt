@@ -62,6 +62,20 @@
 
             <metal:macro use-macro="context/ace_macros/macros/files" />
 
+            <div class="macro-category" tal:condition="python:health_impacts is not None and health_impacts!='-NONSPECIFIC-'" tal:define="health_impacts context/health_impacts">
+              <h4>Health impact:</h4>
+              <div tal:condition="health_impacts">
+                <span tal:replace="health_impacts">health impacts</span>
+              </div>
+            </div>
+
+            <div class="macro-category" tal:condition="python:partner_organisations is not None and partner_organisations!='-NONE-'" tal:define="partner_organisations context/partner_organisations">
+              <h4>Partner organisation:</h4>
+              <div tal:condition="partner_organisations">
+                <span tal:replace="partner_organisations">partner organisation</span>
+              </div>
+            </div>
+
             <h4>Keywords</h4>
             <metal:macro use-macro="context/ace_macros/macros/keywords" />
 
