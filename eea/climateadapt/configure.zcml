@@ -133,7 +133,6 @@
     <utility name="eea.climateadapt.acemeasure_types" component=".vocabulary.acemeasure_types"/>
     <utility name="eea.climateadapt.origin_website" component=".vocabulary.origin_website"/>
     <utility name="eea.climateadapt.health_impacts" component=".vocabulary.health_impacts"/>
-    <utility name="eea.climateadapt.partner_organisations" component=".vocabulary.partner_organisations"/>
     <utility name="eea.climateadapt.cca_types" component=".vocabulary.cca_types"/>
 
     <utility name="eea.climateadapt.special_tags" component=".vocabulary.SpecialTagsVocabularyFactory" />

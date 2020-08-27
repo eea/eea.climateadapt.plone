@@ -56,10 +56,10 @@
               </div>
             </div>
 
-            <div class="macro-category" tal:condition="python:partner_organisations is not None and partner_organisations!='-NONE-'" tal:define="partner_organisations context/partner_organisations">
+            <div class="macro-category" tal:condition="partner_organisation" tal:define="partner_organisation python:context.partner_organisation">
               <h4>Partner organisation:</h4>
-              <div tal:condition="partner_organisations">
-                <span tal:replace="partner_organisations">partner organisation</span>
+              <div tal:condition="partner_organisation">
+                <span tal:replace="python:partner_organisation.to_object.title">partner organisation</span>
               </div>
             </div>
 

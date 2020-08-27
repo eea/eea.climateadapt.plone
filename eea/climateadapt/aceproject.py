@@ -11,6 +11,7 @@ from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
+from z3c.relationfield.schema import RelationChoice
 from zope.component import adapter
 from zope.interface import implementer, implements
 from zope.schema import URI, Bool, Choice, Int, List, Text, TextLine, Tuple
@@ -111,9 +112,9 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         missing_value=(None),
     )
 
-    partner_organisations = Choice(title=_(u"Partner organisation"),
-                            required=True,
-                            vocabulary="eea.climateadapt.partner_organisations")
+    partner_organisation  = RelationChoice(title=_(u"Partner organisation"),
+                                required=False,
+                                vocabulary="eea.climateadapt.organisations")
 
     health_impacts = Choice(title=_(u"Health impacts"),
                             required=True,

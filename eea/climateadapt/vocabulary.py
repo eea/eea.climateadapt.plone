@@ -391,21 +391,6 @@ _health_impacts = (("-NONSPECIFIC-", "-NONSPECIFIC-"),
 health_impacts = generic_vocabulary(_health_impacts)
 alsoProvides(health_impacts, IVocabularyFactory)
 
-_partner_organisations = (("-NONE-", "-NONE-"),
-                    ("WHO", "WHO"),
-                    ("Lancet Countdown", "Lancet Countdown"),
-                    ("EEA", "EEA"),
-                    ("ECDC", "ECDC"),
-                    ("EFSA", "EFSA"),
-                    ("C3S", "C3S"),
-                    ("DG CLIMA", "DG CLIMA"),
-                    ("DG SANTE", "DG SANTE"),
-                    ("DG JRC", "DG JRC"),
-                    ("EC - other DGs", "EC - other DGs"))
-
-partner_organisations = generic_vocabulary(_partner_organisations)
-alsoProvides(partner_organisations, IVocabularyFactory)
-
 _cca_types = [
     ("DOCUMENT", "Publication & Report"),
     ("INFORMATIONSOURCE", "Information Portal"),
