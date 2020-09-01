@@ -35,7 +35,7 @@ class UpdateFields():
 
         util = getUtility(IIntIds, context=self.context)
         for title in map_organisations.keys():
-            orgs = self.context.portal_catalog.searchResults(portal_type="eea.climateadapt.organisation", title=title)
+            orgs = self.context.portal_catalog.searchResults(portal_type="eea.climateadapt.organisation", getId=title)
             if not orgs:
                 logger.warning("Organisation not found: %s", title)
                 return
