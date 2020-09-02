@@ -281,10 +281,14 @@ class FrontpageSearch(BrowserView):
     def sections(self):
         catalog = get_tool('portal_catalog')
         counts = {}
+        metadata = self.context.restrictedTraverse('metadata')
+        path = '/'.join(metadata.getPhysicalPath())
 
         for search_type, _x, _y in SEARCH_TYPES_ICONS:
             count = len(catalog.searchResults(search_type=search_type,
-                                              review_state='published'))
+                                              review_state='published',
+                                              path={'query': path, 'depth': 10}
+                                              ))
             counts[search_type] = count
 
         return [
