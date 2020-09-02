@@ -360,6 +360,16 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           value_type=Choice(
                               vocabulary="eea.climateadapt.origin_website"),
                           )
+    partner_organisation  = RelationChoice(title=_(u"Partner organisation"),
+                                required=False,
+                                vocabulary="eea.climateadapt.organisations")
+
+    health_impacts = Choice(title=_(u"Health impacts"),
+                            required=True,
+                            vocabulary="eea.climateadapt.health_impacts")
+
+    include_in_observatory = Bool(title=_(u"Include in observatory"),
+                     required=False, default=False)
 
     important = Bool(title=_(u"High importance"), required=False,
                      default=False)

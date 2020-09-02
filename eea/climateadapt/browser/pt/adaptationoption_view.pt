@@ -107,25 +107,40 @@
             <h5 id="websites" style="text-decoration: underline" class="Adaptation-option-selector">Websites:</h5>
             <metal:macro use-macro="context/ace_macros/macros/websites" />
 
-            <h5 id="source" style="text-decoration: underline" class="Adaptation-option-selector">Source:</h5>
+            <h5 id="source" style="text-decoration: underline" class="Adaptation-option-selector">References:</h5>
             <div tal:content="structure python: view.w['source'].render()">Source here</div>
+
+            <div class="macro-category" tal:define="effective context/effective">
+            <h4>Published in CA:</h4>
+            <div tal:condition="effective">
+                <span tal:replace="effective/dd" >01</span>-<span tal:replace="effective/mm">01</span>-<span tal:replace="effective/year">2000</span>
+            </div>
+            </div>
 
             <div metal:use-macro="context/ace_macros/macros/comments"></div>
           </div>
 
           <div metal:fill-slot="ace-right-slot">
             <metal:macro use-macro="context/ace_macros/macros/files" />
-            <div class="macro-category" tal:define="effective context/effective">
-              <h4>Updated:</h4>
-              <div tal:condition="effective">
-                <span tal:replace="effective/dd" >01</span>-<span tal:replace="effective/mm">01</span>-<span tal:replace="effective/year">2000</span>
-              </div>
-            </div>
 
             <div class="macro-category">
               <div tal:condition="nothing | python: context.year != 0">
-                <h4>Year:</h4>
+                <h4>Item’s creation:</h4>
                 <tal:block content="structure context/year"/>
+              </div>
+            </div>
+
+            <div class="macro-category health-information" tal:condition="python:health_impacts is not None and health_impacts!='-NONSPECIFIC-'" tal:define="health_impacts context/health_impacts">
+              <h4>Health impact:</h4>
+              <div tal:condition="health_impacts">
+                <span tal:replace="health_impacts">health impacts</span>
+              </div>
+            </div>
+
+            <div class="macro-category health-information" tal:condition="partner_organisation" tal:define="partner_organisation python:context.partner_organisation">
+              <h4>Partner organisation:</h4>
+              <div tal:condition="partner_organisation">
+                <span tal:replace="python:partner_organisation.to_object.title">partner organisation</span>
               </div>
             </div>
 

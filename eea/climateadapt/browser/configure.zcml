@@ -894,4 +894,12 @@
     permission="zope2.View"
     />
 
+  <browser:page
+    name="update_health_items"
+    for="*"
+    template="pt/update_health_items.pt"
+    class=".health_items.UpdateFields"
+    permission="cmf.ManagePortal"
+    />
+
 </configure>

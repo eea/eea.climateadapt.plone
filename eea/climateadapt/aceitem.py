@@ -86,6 +86,17 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                               vocabulary="eea.climateadapt.origin_website"),
                           )
 
+    partner_organisation  = RelationChoice(title=_(u"Partner organisation"),
+                                required=False,
+                                vocabulary="eea.climateadapt.organisations")
+
+    health_impacts = Choice(title=_(u"Health impacts"),
+                            required=True,
+                            vocabulary="eea.climateadapt.health_impacts")
+
+    include_in_observatory = Bool(title=_(u"Include in observatory"),
+                     required=False, default=False)
+
     title = TextLine(title=_(u"Title"),
                      description=u"Item Name (250 character limit)",
                      required=True)

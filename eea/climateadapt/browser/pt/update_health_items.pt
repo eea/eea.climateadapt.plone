@@ -1,0 +1,18 @@
+<h1>Hello world</h1>
+<form action="/update_health_items" method="post" enctype="multipart/form-data">
+  <br>ID ROW NR:<input type="text" name="row_nr_id" />
+  <br>ID ROW title:<input type="text" name="row_nr_title" />
+  <br>ID ROW funding:<input type="text" name="row_nr_funding" />
+  <br>Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload" />
+  <input type="submit" value="Process CSV" name="submit" />
+</form>
+<table tal:define="items view/list">
+    <tr tal:repeat="item items">
+        <td tal:content="item/id"></td>
+        <td tal:content="item/title"></td>
+        <td tal:content="item/include_in_observatory|nothing"></td>
+        <td tal:content="item/health_impacts|nothing"></td>
+        <td tal:content="item/url"></td>
+    </tr>
+</table>
