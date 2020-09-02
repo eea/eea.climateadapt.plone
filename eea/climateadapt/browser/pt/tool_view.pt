@@ -44,14 +44,14 @@
               </div>
             </div>
 
-            <div class="macro-category" tal:condition="python:health_impacts is not None and health_impacts!='-NONSPECIFIC-'" tal:define="health_impacts context/health_impacts">
+            <div class="macro-category health-information" tal:condition="python:health_impacts is not None and health_impacts!='-NONSPECIFIC-'" tal:define="health_impacts context/health_impacts">
               <h4>Health impact:</h4>
               <div tal:condition="health_impacts">
                 <span tal:replace="health_impacts">health impacts</span>
               </div>
             </div>
 
-            <div class="macro-category" tal:condition="partner_organisation" tal:define="partner_organisation python:context.partner_organisation">
+            <div class="macro-category health-information" tal:condition="partner_organisation" tal:define="partner_organisation python:context.partner_organisation">
               <h4>Partner organisation:</h4>
               <div tal:condition="partner_organisation">
                 <span tal:replace="python:partner_organisation.to_object.title">partner organisation</span>

@@ -38,14 +38,6 @@ class ToolView(DefaultView, AceViewApi):
     type_label = u"Tools"
 
 
-from Products.Five.browser import BrowserView
-class GoPDB(BrowserView):
-    def __call__(self):
-        import pdb
-        pdb.set_trace()
-        return "done"
-
-
 class IndicatorView(DefaultView, AceViewApi):
     """
     """

@@ -97,9 +97,6 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     include_in_observatory = Bool(title=_(u"Include in observatory"),
                      required=False, default=False)
 
-    important = Bool(title=_(u"High importance"),
-                     required=False, default=False)
-
     title = TextLine(title=_(u"Title"),
                      description=u"Item Name (250 character limit)",
                      required=True)
