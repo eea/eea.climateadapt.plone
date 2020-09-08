@@ -1,4 +1,3 @@
-<h3>Hello world</h3>
 <form action="/update_health_items" method="post" enctype="multipart/form-data">
   <br>overwrite<input type="checkbox" name="overwrite" value="1"/>
   <input type="submit" value="Process CSV" name="submit" />

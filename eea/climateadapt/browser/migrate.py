@@ -40,21 +40,23 @@ class YearToDate():
             brains = catalog.searchResults(**{'portal_type': type})
             for brain in brains:
                 brainUpdated = False
-                if brain.getObject().year and isinstance(brain.getObject().year, int) and brain.getObject().year>0:
+                obj = brain.getObject()
+                if obj.year and isinstance(obj.year, int) and obj.year>0:
                     brainUpdated = True
-                    brain.getObject().publication_date = date(brain.getObject().year, 1, 1)
-                if isinstance(brain.getObject().health_impacts, str):
+                    obj.publication_date = date(obj.year, 1, 1)
+                if isinstance(obj.health_impacts, str):
                     brainUpdated = True
                     temp = []
-                    temp.append(brain.getObject().health_impacts)
-                    brain.getObject().health_impacts = temp
+                    temp.append(obj.health_impacts)
+                    obj.health_impacts = temp
 
                 if brainUpdated:
-                    brain.getObject()._p_changed = True
+                    obj._p_changed = True
 
-                res.append({'title':brain.getObject().title,'id':brain.UID,'url':brain.getURL(),'year':brain.getObject().year,
-                        'publication_date':brain.getObject().publication_date,
-                        'health_impacts':brain.getObject().health_impacts
+                res.append({'title':obj.title, 'id':brain.UID,'url':obj,
+                        'year':obj.year,
+                        'publication_date': obj.publication_date,
+                        'health_impacts': obj.health_impacts
                     })
 
         return res

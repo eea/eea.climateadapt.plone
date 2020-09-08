@@ -130,8 +130,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     )
 
     publication_date = Date(title=_(u"Year"),
-                description=u"Date of publication/release/update of the items "
-                u"related source",
+                description=u"Publication/last update date"
+                            u" for the original item",
                 required=False
                 )
     include_in_observatory = Bool(title=_(u"Include in observatory"),

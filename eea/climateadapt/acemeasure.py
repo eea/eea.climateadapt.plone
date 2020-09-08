@@ -169,8 +169,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                 required=False,)
 
     publication_date = Date(title=_(u"Date publication"),
-                description=u"Date of publication/release/update of the items "
-                u"related source",
+                description=u"Publication/last update date"
+                            u" for the original item",
                 required=False
                 )
 

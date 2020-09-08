@@ -46,7 +46,7 @@
             <div class="macro-category health-information" tal:condition="python:health_impacts" tal:define="health_impacts context/health_impacts">
               <h4>Health impact:</h4>
               <div tal:condition="health_impacts">
-                <span tal:replace="python:', '.join(health_impacts) if isinstance(health_impacts, list) else health_impacts">health impacts</span>
+                <span tal:replace="python:', '.join(health_impacts)">health impacts</span>
               </div>
             </div>
 

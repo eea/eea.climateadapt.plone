@@ -98,7 +98,8 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                             )
 
     thumbnail = NamedBlobImage(
-        title=_(u"Thumbnail"),
+        title=_(u"Thumbnail or logo"),
+        description=_(u"Recomanded size 366/180, aspect ratio 2x"),
         required=False,
     )
 
@@ -167,8 +168,8 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                 )
 
     publication_date = Date(title=_(u"Date publication"),
-                description=u"Date of publication/release/update of the items "
-                u"related source",
+                description=u"Publication/last update date"
+                            u" for the original item",
                 required=False
                 )
 
