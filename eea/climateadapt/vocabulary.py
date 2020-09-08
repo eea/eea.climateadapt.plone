@@ -119,6 +119,11 @@ class OrganisationsVocabulary(CatalogVocabularyFactory):
              u'o': u'plone.app.querystring.operation.selection.is',
              u'v': [u'eea.climateadapt.organisation']}
         )
+        query['criteria'].append(
+            {u'i': u'review_state',
+             u'o': u'plone.app.querystring.operation.selection.is',
+             u'v': [u'published']}
+        )
 
         parsed = {}
 

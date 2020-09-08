@@ -1,7 +1,7 @@
 from collective import dexteritytextindexer
 from zope.component import adapter
 from zope.interface import implementer, implements
-from zope.schema import (URI, Bool, Choice, Datetime, Int, List, Text,
+from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
                          TextLine, Tuple)
 
 from eea.climateadapt import MessageFactory as _
@@ -87,12 +87,20 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                           )
 
     partner_organisation  = RelationChoice(title=_(u"Partner organisation"),
+                                description=_(u"Please create a new organisation item from the menu, if the organisation is not present"),
                                 required=False,
                                 vocabulary="eea.climateadapt.organisations")
 
-    health_impacts = Choice(title=_(u"Health impacts"),
-                            required=True,
-                            vocabulary="eea.climateadapt.health_impacts")
+    health_impacts = List(title=_(u"Health impacts"),
+                            required = False,
+                            value_type = Choice(
+                                vocabulary = "eea.climateadapt.health_impacts")
+                            )
+
+    thumbnail = NamedBlobImage(
+        title=_(u"Thumbnail"),
+        required=False,
+    )
 
     include_in_observatory = Bool(title=_(u"Include in observatory"),
                      required=False, default=False)
@@ -155,6 +163,12 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     year = Year(title=_(u"Year"),
                 description=u"Date of publication/release/update of the item",
+                required=False
+                )
+
+    publication_date = Date(title=_(u"Date publication"),
+                description=u"Date of publication/release/update of the items "
+                u"related source",
                 required=False
                 )
 
@@ -355,9 +369,33 @@ class ITool(IAceItem):
     """ Tool Interface
     """
 
+    directives.omitted(IAddForm, 'year')
+    directives.omitted(IEditForm, 'year')
+
+    source = TextLine(title=_(u"Organisation's source"),
+                      required=False,
+                      description=u"Describe the original source of the item "
+                                  u"description (250 character limit)")
 
 class IOrganisation(IAceItem):
     """ Organisation Interface"""
+
+    directives.omitted(IAddForm, 'year')
+    directives.omitted(IEditForm, 'year')
+    directives.omitted(IAddForm, 'health_impacts')
+    directives.omitted(IEditForm, 'health_impacts')
+    directives.omitted(IAddForm, 'source')
+    directives.omitted(IEditForm, 'source')
+
+    acronym = TextLine(title=_(u"Acronym"),
+                       description=_(u"Acronym of the organisation"),
+                       required=True,
+                       )
+
+    contact = TextLine(title=_(u"Contact"),
+                       description=_(u"Corporate email or link to contact form"),
+                       required=True,
+                       )
 
     logo = NamedBlobImage(
         title=_(u"Logo"),

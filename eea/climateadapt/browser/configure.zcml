@@ -895,6 +895,14 @@
     />
 
   <browser:page
+    name="migrate_year_to_date"
+    for="*"
+    template="pt/migrate_year_to_date.pt"
+    class=".migrate.YearToDate"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
     name="update_health_items"
     for="*"
     template="pt/update_health_items.pt"

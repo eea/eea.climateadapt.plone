@@ -24,21 +24,22 @@
 
             <div tal:content="structure provider:plone.abovecontentbody" />
 
-            <h5>Source:</h5>
-            <tal:block content="structure python: view.w['source'].render()"/>
+            <div tal:define="effective context/effective">
+              <h4>Published in CA:</h4>
+              <div tal:condition="effective">
+                <span tal:replace="effective/dd" >01</span>-<span tal:replace="effective/mm">01</span>-<span tal:replace="effective/year">2000</span>
+              </div>
+            </div>
+            <div tal:condition="pubdate" tal:define="pubdate context/publication_date">
+                <h4>Publication date:</h4>
+                <div tal:content="python:pubdate.strftime('%Y-%m')"></div>
+            </div>
 
             <div metal:use-macro="context/ace_macros/macros/comments"></div>
           </div>
 
           <div metal:fill-slot="ace-right-slot">
             <div metal:use-macro="context/ace_macros/macros/files"></div>
-
-            <div class="macro-category" tal:define="effective context/effective">
-              <h4>Updated:</h4>
-              <div tal:condition="effective">
-                <span tal:replace="effective/dd" >01</span>-<span tal:replace="effective/mm">01</span>-<span tal:replace="effective/year">2000</span>
-              </div>
-            </div>
 
             <div class="macro-category health-information" tal:condition="python:health_impacts is not None and health_impacts!='-NONSPECIFIC-'" tal:define="health_impacts context/health_impacts">
               <h4>Health impact:</h4>

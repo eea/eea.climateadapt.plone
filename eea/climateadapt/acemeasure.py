@@ -8,7 +8,7 @@ from datetime import date
 from collective import dexteritytextindexer
 from zope.component import adapter
 from zope.interface import implementer, implements
-from zope.schema import (URI, Bool, Choice, Datetime, Int, List, Text,
+from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
                          TextLine, Tuple)
 
 from eea.climateadapt import MessageFactory as _
@@ -18,6 +18,7 @@ from eea.climateadapt.sat.handlers import HANDLERS
 from eea.climateadapt.sat.settings import get_settings
 from eea.climateadapt.sat.utils import _measure_id, to_arcgis_coords
 from eea.climateadapt.schema import Year
+#from eea.climateadapt.schema import Date
 from eea.climateadapt.utils import _unixtime, shorten
 from eea.climateadapt.vocabulary import BIOREGIONS
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
@@ -70,6 +71,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('title')
     dexteritytextindexer.searchable('websites')
     dexteritytextindexer.searchable('year')
+    dexteritytextindexer.searchable('publication_date')
 
     form.fieldset('default',
                   label=u'Item Description',
@@ -165,6 +167,12 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                 description=u"Date of publication/release/update of the items "
                 u"related source",
                 required=False,)
+
+    publication_date = Date(title=_(u"Date publication"),
+                description=u"Date of publication/release/update of the items "
+                u"related source",
+                required=False
+                )
 
     featured = Bool(
         title=_(u"Featured"),
@@ -359,14 +367,22 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           required=True,
                           value_type=Choice(
                               vocabulary="eea.climateadapt.origin_website"),
-                          )
+                        )
     partner_organisation  = RelationChoice(title=_(u"Partner organisation"),
+                                description=_(u"Please create a new organisation item from the menu, if the organisation is not present"),
                                 required=False,
                                 vocabulary="eea.climateadapt.organisations")
 
-    health_impacts = Choice(title=_(u"Health impacts"),
-                            required=True,
-                            vocabulary="eea.climateadapt.health_impacts")
+    health_impacts = List(title=_(u"Health impacts"),
+                            required = False,
+                            value_type = Choice(
+                                vocabulary = "eea.climateadapt.health_impacts")
+                            )
+
+    thumbnail = NamedBlobImage(
+        title=_(u"Thumbnail"),
+        required=False,
+    )
 
     include_in_observatory = Bool(title=_(u"Include in observatory"),
                      required=False, default=False)

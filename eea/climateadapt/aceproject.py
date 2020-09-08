@@ -7,6 +7,7 @@ from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.directives import dexterity, form
 from plone.namedfile.interfaces import IImageScaleTraversable
+from plone.namedfile.field import NamedBlobImage
 from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 from z3c.form.util import getSpecification
@@ -14,7 +15,7 @@ from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice
 from zope.component import adapter
 from zope.interface import implementer, implements
-from zope.schema import URI, Bool, Choice, Int, List, Text, TextLine, Tuple
+from zope.schema import URI, Bool, Choice, Date, Int, List, Text, TextLine, Tuple
 from zope.schema import Datetime
 
 
@@ -113,13 +114,26 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     )
 
     partner_organisation  = RelationChoice(title=_(u"Partner organisation"),
+                                description=_(u"Please create a new organisation item from the menu, if the organisation is not present"),
                                 required=False,
                                 vocabulary="eea.climateadapt.organisations")
 
-    health_impacts = Choice(title=_(u"Health impacts"),
-                            required=True,
-                            vocabulary="eea.climateadapt.health_impacts")
+    health_impacts = List(title=_(u"Health impacts"),
+                            required = False,
+                            value_type = Choice(
+                                vocabulary = "eea.climateadapt.health_impacts")
+                            )
 
+    thumbnail = NamedBlobImage(
+        title=_(u"Thumbnail"),
+        required=False,
+    )
+
+    publication_date = Date(title=_(u"Year"),
+                description=u"Date of publication/release/update of the items "
+                u"related source",
+                required=False
+                )
     include_in_observatory = Bool(title=_(u"Include in observatory"),
                      required=False, default=False)
 
@@ -184,7 +198,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     dexteritytextindexer.searchable('source')
     source = TextLine(
-        title=_(u"Source"),
+        title=_(u"Reference"),
         description=_(u"Provide source from which project was retrieved (e.g. "
                       u"specific DB) "),
         required=False)

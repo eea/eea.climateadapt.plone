@@ -1,0 +1,14 @@
+<h3>Hello world</h3>
+<form action="/update_health_items" method="post" enctype="multipart/form-data">
+  <br>overwrite<input type="checkbox" name="overwrite" value="1"/>
+  <input type="submit" value="Process CSV" name="submit" />
+</form>
+<hr>
+<table tal:define="items view/list">
+    <tr tal:repeat="item items">
+        <td tal:content="item/year"></td>
+        <td tal:content="item/publication_date"></td>
+        <td tal:content="item/url"></td>
+        <td tal:content="item/health_impacts"></td>
+    </tr>
+</table>
