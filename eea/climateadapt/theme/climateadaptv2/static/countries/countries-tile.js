@@ -95,7 +95,7 @@ function getCountryClass(country, countries) {
 
   var meta = countrySettings[country.properties.SHRT_ENGL];
   if (available && meta && meta[0] && meta[0][_selectedMapSection]) {
-    k += ' country-green';
+    k += ' country-blue';
   }
   return k;
 }

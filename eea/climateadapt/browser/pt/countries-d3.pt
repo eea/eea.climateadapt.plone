@@ -9,7 +9,7 @@
     </script>
 
     <!-- Force stuff -->
-    
+
     <!-- d3 resources -->
     <script src="/++theme++climateadaptv2/static/js/d3-array.v1.min.js"></script>
     <script src="/++theme++climateadaptv2/static/js/d3.v4.min.js"></script>
@@ -84,6 +84,29 @@
 <!--               <span class="no-focus legend-box"></span> -->
 <!--               <p class="legend-text">No content available</p> -->
 <!--             </div> -->
+          </div>
+
+          <div class="legend nasnap-legend">
+            <div class="legend-el">
+              <span class="country-nasnap legend-box"></span>
+              <p class="legend-text">NAS and NAP adopted</p>
+            </div>
+            <div class="legend-el">
+              <span class="country-nap legend-box"></span>
+              <p class="legend-text">Only NAP adopted</p>
+            </div>
+            <div class="legend-el">
+              <span class="country-nas legend-box"></span>
+              <p class="legend-text">Only NAS adopted</p>
+            </div>
+            <div class="legend-el">
+              <span class="country-none legend-box"></span>
+              <p class="legend-text">Neither NAS nor NAP are adopted</p>
+            </div>
+            <div class="legend-el">
+              <span class="country-nodata legend-box"></span>
+              <p class="legend-text">No data</p>
+            </div>
           </div>
         </div>
 

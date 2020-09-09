@@ -2688,13 +2688,32 @@ div.width-1\3a 4 {
   background-color: #EFE7D4;
 }
 
+.legend.nasnap-legend {
+  display: none;
+  .country-nasnap {
+    background-color: @secondary-blue;
+  }
+  .country-nas {
+    background-color: #acedff;
+  }
+  .country-nap {
+    background-color: #11cbff;
+  }
+  .country-none {
+    background-color: #999;
+  }
+  .country-nodata {
+    background-color: #EFE7D4;
+  }
+}
+
 /* Tooltip */
 
 #map-tooltip {
   position: absolute;
   background-color: #F7F7F7;
   padding: 1em;
-  width: 340px;
+  width: 400px;
   border: 1px solid #c7c7c7;
 }
 
@@ -2705,11 +2724,20 @@ div.width-1\3a 4 {
 #tooltip-content {
   border-top: 2px solid @primary-blue;
   padding-top: 1em;
+
+  > span {
+    padding: 0.5em 0;
+    display: block;
+  }
   p {
     margin-bottom: 0;
   }
   ol, ul {
-    list-style-position: inside;
+    list-style:outside disc;
+    margin-left: 20px;
+    > li {
+      padding-left: 0;
+    }
   }
 }
 
@@ -2792,8 +2820,33 @@ div.width-1\3a 4 {
   cursor: pointer;
 }
 
-.country-green path {
+.country-blue path {
   fill: @secondary-blue;
+  cursor: pointer;
+}
+
+.country-nasnap path {
+  fill: @secondary-blue;
+  cursor: pointer;
+}
+
+.country-nas path {
+  fill: #acedff;
+  cursor: pointer;
+}
+
+.country-nap path {
+  fill: #11cbff;
+  cursor: pointer;
+}
+
+.country-none path {
+  fill: #999;
+  cursor: pointer;
+}
+
+.country-nodata path {
+  fill: #EFE7D4;
   cursor: pointer;
 }
 
@@ -2810,7 +2863,7 @@ div.width-1\3a 4 {
   fill: @primary-green;
 }
 
-.maplet-container .country-green path {
+.maplet-container .country-blue path {
   fill: @secondary-blue;
 }
 

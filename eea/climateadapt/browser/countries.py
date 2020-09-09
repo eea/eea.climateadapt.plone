@@ -25,6 +25,7 @@ _COUNTRIES_WITH_NAP = [
 _MARKERS = [
     ('national adaptation strategy', 'National adaptation strategy (NAS)'),
     ('national adaptation plan', 'National adaptation plan (NAP)'),
+    ('national adaption policy', 'National adaption policy'),
 
     # ('action plans', 'National adaptation plans (NAP)'),
 
@@ -84,7 +85,7 @@ def get_nap_nas(obj, text, country):
                 children = []
             else:
                 children = list(cells[2])
-            
+
             text = [lxml.etree.tostring(c) for c in children]
             value = u'\n'.join(text)
             key = normalized(key)
@@ -161,7 +162,7 @@ class CountriesMetadataExtract(BrowserView):
             if child.portal_type \
                  not in ['Folder', 'collective.cover.content']:
                 continue
-            
+
             res[child.Title()] = [
                 self.extract_country_metadata(child),
                 child.absolute_url()
