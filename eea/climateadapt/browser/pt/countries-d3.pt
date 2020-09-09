@@ -103,10 +103,6 @@
               <span class="country-none legend-box"></span>
               <p class="legend-text">Neither NAS nor NAP are adopted</p>
             </div>
-            <div class="legend-el">
-              <span class="country-nodata legend-box"></span>
-              <p class="legend-text">No data</p>
-            </div>
           </div>
         </div>
 
