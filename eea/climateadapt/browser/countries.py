@@ -23,9 +23,9 @@ _COUNTRIES_WITH_NAP = [
 ]
 
 _MARKERS = [
+    ('national adaption policy', 'National adaption policy'),
     ('national adaptation strategy', 'National adaptation strategy (NAS)'),
     ('national adaptation plan', 'National adaptation plan (NAP)'),
-    ('national adaption policy', 'National adaption policy'),
 
     # ('action plans', 'National adaptation plans (NAP)'),
 

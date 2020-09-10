@@ -2664,32 +2664,31 @@ div.width-1\3a 4 {
   }
 }
 
-.legend-el {
-  padding: 0.8em 0;
-  display: flex;
-  flex-direction: row;
-}
-
-.legend-box {
-  width: 31px;
-  height: 19px;
-  margin-right: 0.5em;
-}
-
-.content-available {
-  background-color: @secondary-blue;
-}
-
-.no-content {
-  background-color: #72DFFE;
-}
-
-.no-focus {
-  background-color: #EFE7D4;
+.legend {
+  display: none;
+  .legend-el {
+    padding: 0.8em 0;
+    display: flex;
+    flex-direction: row;
+  }
+  .legend-box {
+    width: 31px;
+    height: 19px;
+    margin-right: 0.5em;
+  }
+  .content-available {
+    background-color: @secondary-blue;
+  }
+  .no-content {
+    background-color: #72DFFE;
+  }
+  .no-focus {
+    background-color: #EFE7D4;
+  }
 }
 
 .legend.nasnap-legend {
-  display: none;
+  display: block;
   .country-nasnap {
     background-color: @secondary-blue;
   }
