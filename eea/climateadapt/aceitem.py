@@ -20,7 +20,6 @@ from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 
-
 class IAceItem(form.Schema, IImageScaleTraversable):
     """
     Defines content-type schema for Ace Item
@@ -48,6 +47,9 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('metadata')
     dexteritytextindexer.searchable('special_tags')
 
+    #directives.omitted(IAddForm, 'relatedItems')
+    #directives.omitted(IEditForm, 'relatedItems')
+
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['title', 'description', 'long_description',
@@ -57,17 +59,22 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     form.fieldset('reference_information',
                   label=u'Reference information',
-                  fields=['websites', 'source']
+                  fields=['websites', 'source', 'comments', 'special_tags']
                   )
 
     form.fieldset('geographic_information',
                   label=u'Geographic Information',
-                  fields=['geochars', 'comments']
+                  fields=['geochars']
                   )
 
-    form.fieldset('categorization',
-                  label=u'Categorization',
-                  fields=['special_tags']
+    #form.fieldset('categorization',
+    #              label=u'Categorization',
+    #              fields=['special_tags']
+    #              )
+
+    form.fieldset('inclusion_health_observatory',
+                  label=u'Inclusion in the Health Observatory',
+                  fields=['health_impacts']
                   )
 
     form.fieldset('backend',
@@ -85,9 +92,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                           value_type=Choice(
                               vocabulary="eea.climateadapt.origin_website"),
                           )
-
-    partner_organisation  = RelationChoice(title=_(u"Partner organisation"),
-                                description=_(u"Please create a new organisation item from the menu, if the organisation is not present"),
+    partner_organisation  = RelationChoice(title=_(u"New contributor"),
                                 required=False,
                                 vocabulary="eea.climateadapt.organisations")
 
@@ -96,7 +101,6 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                             value_type = Choice(
                                 vocabulary = "eea.climateadapt.health_impacts")
                             )
-
     thumbnail = NamedBlobImage(
         title=_(u"Thumbnail or logo"),
         description=_(u"Recomanded size 366/180, aspect ratio 2x"),
@@ -167,9 +171,11 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                 required=False
                 )
 
-    publication_date = Date(title=_(u"Date publication"),
-                description=u"Publication/last update date"
-                            u" for the original item",
+    publication_date = Date(title=_(u"Date of item's creation"),
+                description=u"The date refers to the moment in which the item "
+                            u"has been prepared by contributing expeerts to be "
+                            u"submitted for the publication in Climate "
+                            u"ADAPTPublication/last update date",
                 required=False
                 )
 
@@ -190,10 +196,12 @@ class IAceItem(form.Schema, IImageScaleTraversable):
         missing_value=(),
     )
 
-    source = TextLine(title=_(u"Source"),
+    source = TextLine(title=_(u"References"),
                       required=False,
-                      description=u"Describe the original source of the item "
-                                  u"description (250 character limit)")
+                      description=_(u"Describe the references (projects, a"
+                                  u" tools reports,etc.) used for the "
+                                  u" preparation of the adaptation option "
+                                  u" description"))
 
     # -----------[ "geographic_information" fields ]------------------
 
@@ -213,9 +221,11 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                                 u"climate-adapt]")
 
     contributors = RelationList(
-        title=u"Contributors list:",
+        title=u"List of contributors:",
         default=[],
-        description=_(u"Select one or more contributors for this item "),
+        description=_(u"Select from the Climate ADAPT \"Organisation\" items"
+                      u" the organisations contributing to/ involved in this"
+                      u" item"),
         value_type=RelationChoice(
             title=_(u"Related"),
             vocabulary="eea.climateadapt.organisations"
@@ -355,15 +365,43 @@ class IPublicationReport(IAceItem):
     """ Publication Report Interface
     """
 
+    directives.omitted(IEditForm, 'year')
+    directives.omitted(IAddForm, 'year')
+    directives.omitted(IEditForm, 'featured')
+    directives.omitted(IAddForm, 'featured')
+
+    publication_date = Date(title=_(u"Date of item's creation"),
+                description=u"The date refers to the latest date of publication"
+                            u" of the item (different from the date of item's"
+                            u" publication in Climate ADAPT)",
+                required=False
+                )
 
 class IInformationPortal(IAceItem):
     """ Information Portal Interface
     """
 
+    directives.omitted(IEditForm, 'year')
+    directives.omitted(IAddForm, 'year')
+    directives.omitted(IEditForm, 'featured')
+    directives.omitted(IAddForm, 'featured')
+
 
 class IGuidanceDocument(IAceItem):
     """ Guidance Document Interface
     """
+
+    directives.omitted(IEditForm, 'featured')
+    directives.omitted(IAddForm, 'featured')
+    directives.omitted(IEditForm, 'year')
+    directives.omitted(IAddForm, 'year')
+
+    publication_date = Date(title=_(u"Date of item's creation"),
+                description=u"The date refers to the latest date of publication"
+                            u" of the item (different from the date of item's"
+                            u" publication in Climate ADAPT)",
+                required=False
+                )
 
 
 class ITool(IAceItem):
@@ -372,11 +410,14 @@ class ITool(IAceItem):
 
     directives.omitted(IAddForm, 'year')
     directives.omitted(IEditForm, 'year')
+    directives.omitted(IEditForm, 'featured')
+    directives.omitted(IAddForm, 'featured')
 
     source = TextLine(title=_(u"Organisation's source"),
                       required=False,
                       description=u"Describe the original source of the item "
                                   u"description (250 character limit)")
+
 
 class IOrganisation(IAceItem):
     """ Organisation Interface"""
@@ -387,6 +428,12 @@ class IOrganisation(IAceItem):
     directives.omitted(IEditForm, 'health_impacts')
     directives.omitted(IAddForm, 'source')
     directives.omitted(IEditForm, 'source')
+    directives.omitted(IEditForm, 'contributors')
+    directives.omitted(IAddForm, 'contributors')
+    directives.omitted(IEditForm, 'partner_organisation')
+    directives.omitted(IAddForm, 'partner_organisation')
+    directives.omitted(IEditForm, 'featured')
+    directives.omitted(IAddForm, 'featured')
 
     acronym = TextLine(title=_(u"Acronym"),
                        description=_(u"Acronym of the organisation"),
@@ -398,6 +445,22 @@ class IOrganisation(IAceItem):
                        required=True,
                        )
 
+    acronym = TextLine(title=_(u"Acronym"),
+                       #description=_(u"Acronym"),
+                       required=True,
+                       )
+
+    #title = TextLine(title=_(u"Name"),
+    #                 description=u"Item Name (250 character limit)",
+    #                 required=True)
+
+    #form.fieldset('default',
+    #              label=u'Item Description',
+    #              fields=['acronym', 'title', 'description', 'long_description',
+    #                      'keywords', 'sectors', 'climate_impacts', 'elements',
+    #                      ]
+    #              )
+
     logo = NamedBlobImage(
         title=_(u"Logo"),
         required=False,
@@ -406,6 +469,16 @@ class IOrganisation(IAceItem):
 
 class IIndicator(IAceItem):
     """ Indicator Interface"""
+
+    directives.omitted(IEditForm, 'year')
+    directives.omitted(IAddForm, 'year')
+    directives.omitted(IEditForm, 'featured')
+    directives.omitted(IAddForm, 'featured')
+
+    map_graphs = Text(
+        title=_(u"Map/Graphs"),
+        required=False,
+    )
 
 
 class IAction(IAceItem):

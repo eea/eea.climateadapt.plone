@@ -7,6 +7,12 @@ from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityEditForm
 from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
+from eea.depiction.browser.dexterity import DexterityImageView
+
+from zope.interface import implements
+from Products.Five.browser import BrowserView
+from eea.depiction.browser.interfaces import IImageView
+from zope.publisher.interfaces import NotFound
 
 
 class AceItemView(DefaultView, AceViewApi):
@@ -152,3 +158,25 @@ class AceItemFormExtender(FormExtender):
                             for group in self.form.groups
 
                             if group.label not in labels]
+
+
+class ImageViewFigure(DexterityImageView):
+    """ Get cover image from folder contents
+    """
+    _field = "thumbnail"
+
+    @property
+    def field(self):
+        """ Image field
+        """
+        return getattr(self.context, self._field)
+
+    def __call__(self, scalename='thumb'):
+        #import pdb; pdb.set_trace()
+        if not self.display(scalename):
+            raise NotFound(self.request, scalename)
+
+        scaleview = queryMultiAdapter((self.img, self.request), name='images')
+        scale = scaleview.scale(self._field, scale=scalename)
+
+        return scale or ""

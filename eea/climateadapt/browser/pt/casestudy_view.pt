@@ -24,9 +24,6 @@
 
           <metal:macro use-macro="context/ace_macros/macros/ace_layout">
 
-            <div metal:fill-slot="title-slot">
-              <div metal:use-macro="context/ace_macros/macros/title_date"> </div>
-            </div>
             <div class="aceitem-left"  metal:fill-slot="ace-left-slot">
               <div class="case-studies-top">
                 <!-- <div metal:use-macro="context/ace_macros/macros/title_date"></div> -->
@@ -205,10 +202,6 @@
                     <span tal:replace="effective/dd" >01</span>-<span tal:replace="effective/mm">01</span>-<span tal:replace="effective/year">2000</span>
                   </div>
                 </div>
-                <div tal:condition="pubdate" tal:define="pubdate context/publication_date">
-                    <h5>Publication date:</h5>
-                    <div tal:content="python:pubdate.strftime('%Y-%m')"></div>
-                </div>
 
                 <hr>
                 <p>Please contact us for any other enquiry on this Case Study or to share a new Case Study (email <a href="mailto: climate.adapt@eea.europa.eu">climate.adapt@eea.europa.eu</a>)</p>
@@ -261,6 +254,13 @@
               <div class="macro-category">
                 <div metal:use-macro="context/ace_macros/macros/files"></div>
               </div>
+
+              <div class="macro-category">
+                    <div tal:condition="pubdate" tal:define="pubdate context/publication_date">
+                        <h4>Publication date:</h4>
+                        <div tal:content="python:pubdate.strftime('%Y-%m')"></div>
+                    </div>
+                </div>
 
               <div class="macro-category health-information" tal:condition="python:health_impacts" tal:define="health_impacts context/health_impacts">
                 <h4>Health impact:</h4>

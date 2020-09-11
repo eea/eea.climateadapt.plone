@@ -75,9 +75,9 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.fieldset('default',
                   label=u'Item Description',
-                  fields=['title', 'long_description', 'description',
-                          'climate_impacts', 'keywords', 'sectors', 'year',
-                          'featured',
+                  fields=['publication_date', 'title', 'long_description',
+                          'description', 'climate_impacts', 'keywords',
+                          'sectors', 'year', 'featured',
                           ]
                   )
 
@@ -86,13 +86,19 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                   fields=['stakeholder_participation',
                           'success_limitations',
                           'cost_benefit', 'legal_aspects',
+                          'include_in_observatory', 'health_impacts',
                           'implementation_time', 'lifetime']
                   )
+
+    #form.fieldset('inclusion_health_observatory',
+    #              label=u'Inclusion in health observatory',
+    #              fields=['include_in_observatory', 'health_impacts']
+    #              )
 
     form.fieldset('reference_information',
                   label=u'Reference information',
                   fields=[  # 'contact',
-                      'websites', 'source']
+                      'websites', 'source', 'comments', 'special_tags']
                   )
 
 # richtext fields in database:
@@ -103,13 +109,13 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.fieldset('geographic_information',
                   label=u'Geographic Information',
-                  fields=['governance_level', 'geochars', 'comments']
+                  fields=['governance_level', 'geochars']
                   )
 
-    form.fieldset('categorization',
-                  label=u'Categorization',
-                  fields=['special_tags']
-                  )
+    #form.fieldset('categorization',
+    #              label=u'Categorization',
+    #              fields=['']
+    #              )
 
     # -----------[ "default" fields ]------------------
 
@@ -168,9 +174,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                 u"related source",
                 required=False,)
 
-    publication_date = Date(title=_(u"Date publication"),
-                description=u"Publication/last update date"
-                            u" for the original item",
+    publication_date = Date(title=_(u"Date of item's creation"),
+                description=u"The date refers to the moment in which the item "
+                            u"has been prepared by contributing expeerts to be "
+                            u"submitted for the publication in Climate "
+                            u"ADAPTPublication/last update date",
                 required=False
                 )
 
@@ -258,12 +266,12 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     )
 
     dexteritytextindexer.searchable('source')
-    source = TextLine(title=_(u"Source"),
+    source = TextLine(title=_(u"References"),
                       required=False,
-                      description=_(u"Describe the original source (like name "
-                                    u"of a certain project) of the adaptation "
-                                    u"option description (250 character limit)"
-                                    ))
+                      description=_(u"Describe the references (projects, a"
+                                  u" tools reports,etc.) used for the "
+                                  u" preparation of the adaptation option "
+                                  u" description"))
 
     # -----------[ "geographic_information" fields ]------------------
 
@@ -296,9 +304,10 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                     )
 
     contributors = RelationList(
-        title=u"Contributors list:",
+        title=u"List of contributors:",
         default=[],
-        description=_(u"Select one or more contributors for this item "),
+        description=_(u"Select from the Climate ADAPT Organisation items the "
+                      u"organisations contributing to/ involved in this item"),
         value_type=RelationChoice(
             title=_(u"Related"),
             vocabulary="eea.climateadapt.organisations"
@@ -368,7 +377,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           value_type=Choice(
                               vocabulary="eea.climateadapt.origin_website"),
                         )
-    partner_organisation  = RelationChoice(title=_(u"Partner organisation"),
+    partner_organisation  = RelationChoice(title=_(u"New contributor"),
                                 description=_(u"Please create a new organisation item from the menu, if the organisation is not present"),
                                 required=False,
                                 vocabulary="eea.climateadapt.organisations")
@@ -380,7 +389,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                             )
 
     thumbnail = NamedBlobImage(
-        title=_(u"Thumbnail"),
+        title=_(u"Thumbnail or logo"),
         required=False,
     )
 
@@ -413,6 +422,11 @@ class IAdaptationOption(IAceMeasure):
     """ Adaptation Option
     """
 
+    directives.omitted(IEditForm, 'year')
+    directives.omitted(IAddForm, 'year')
+    directives.omitted(IEditForm, 'featured')
+    directives.omitted(IAddForm, 'featured')
+
     form.widget(category="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     category = List(
         title=_(u"General category"),
@@ -438,10 +452,16 @@ class ICaseStudy(IAceMeasure):  # , IGeolocatable):
     """ Case study
     """
 
+    directives.omitted(IEditForm, 'year')
+    directives.omitted(IAddForm, 'year')
+    directives.omitted(IEditForm, 'featured')
+    directives.omitted(IAddForm, 'featured')
     directives.omitted(IEditForm, 'primephoto')
     directives.omitted(IAddForm, 'primephoto')
     directives.omitted(IEditForm, 'supphotos')
     directives.omitted(IAddForm, 'supphotos')
+    #directives.omitted(IEditForm, 'relatedItems')
+    #directives.omitted(IAddForm, 'relatedItems')
 
     challenges = RichText(
         title=_(u"Challenges"), required=True, default=None,

@@ -32,10 +32,6 @@
                 <div tal:condition="effective" tal:define="effective context/effective">
                 <span tal:replace="effective/dd" >01</span>-<span tal:replace="effective/mm">01</span>-<span tal:replace="effective/year">2000</span>
             </div>
-            <div class="macro-category" tal:condition="pubdate" tal:define="pubdate context/publication_date">
-                <br><h5>Publication date:</h5>
-                <div tal:content="python:pubdate.strftime('%Y-%m')"></div>
-            </div>
 
             <div metal:use-macro="context/ace_macros/macros/comments"></div>
           </div>
@@ -55,6 +51,11 @@
               <div tal:condition="partner_organisation">
                 <span tal:replace="python:partner_organisation.to_object.title">partner organisation</span>
               </div>
+            </div>
+
+            <div class="macro-category" tal:condition="pubdate" tal:define="pubdate context/publication_date">
+                <h4>Publication date:</h4>
+                <div tal:content="python:pubdate.strftime('%Y-%m')"></div>
             </div>
 
             <div class="macro-category">
