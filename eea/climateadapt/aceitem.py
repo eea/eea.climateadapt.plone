@@ -74,7 +74,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     form.fieldset('inclusion_health_observatory',
                   label=u'Inclusion in the Health Observatory',
-                  fields=['health_impacts']
+                  fields=['health_impacts', 'include_in_observatory']
                   )
 
     form.fieldset('backend',
