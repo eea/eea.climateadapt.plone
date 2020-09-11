@@ -160,7 +160,7 @@ class AceItemFormExtender(FormExtender):
                             if group.label not in labels]
 
 
-class ImageViewFigure(DexterityImageView):
+class CCAContentDepictionView(DexterityImageView):
     """ Get cover image from folder contents
     """
     _field = "thumbnail"

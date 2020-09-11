@@ -23,6 +23,8 @@
             <h3>Description</h3>
             <div tal:content="structure python: view.w['long_description'].render()">description here</div>
 
+            <div tal:condition="context/map_graphs" tal:content="structure context/map_graphs">ifram map</div>
+
             <h4 class="reference-title">Reference information</h4>
             <h5>Websites:</h5>
             <metal:macro use-macro="context/ace_macros/macros/websites" />
