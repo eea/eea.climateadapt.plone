@@ -48,13 +48,15 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     form.fieldset('default',
                   label=u'Item Description',
-                  fields=['acronym', 'title', 'lead', 'long_description',
-                          'partners', 'keywords', 'sectors', 'climate_impacts',
-                          'elements', 'funding', 'duration', 'featured'])
+                  fields=['acronym', 'title', 'lead',
+                          'long_description', 'partners', 'keywords', 'sectors',
+                          'climate_impacts', 'elements', 'funding', 'duration',
+                          'featured'])
 
     form.fieldset('reference_information',
                   label=u'Reference information',
-                  fields=['websites', 'source', 'origin_website', 'partners_source_link'])
+                  fields=['websites', 'source',
+                          'special_tags', 'partners_source_link'])
 
     form.fieldset('geographic_information',
                   label=u'Geographic Information',
@@ -62,7 +64,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     form.fieldset('categorization',
                   label=u'Categorization',
-                  fields=['special_tags']
+                  fields=['include_in_observatory', 'health_impacts']
                   )
 
     # -----------[ "default" fields ]------------------
@@ -113,6 +115,19 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         missing_value=(None),
     )
 
+    origin_website = List(title=_(u"Origin website"),
+                          required=True,
+                          value_type=Choice(
+                              vocabulary="eea.climateadapt.origin_website"),
+                          )
+
+    image = NamedBlobImage(
+        title=_(u"Thumbnail"),
+        description=_(u"Upload a representative picture or logo for the item."
+                      u" Recomanded size 366/180, aspect ratio 2x"),
+        required=False,
+    )
+
     partner_organisation  = RelationChoice(title=_(u"Partner organisation"),
                                 description=_(u"Please create a new organisation item from the menu, if the organisation is not present"),
                                 required=False,
@@ -124,16 +139,14 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                                 vocabulary = "eea.climateadapt.health_impacts")
                             )
 
-    thumbnail = NamedBlobImage(
-        title=_(u"Thumbnail"),
-        required=False,
-    )
-
-    publication_date = Date(title=_(u"Year"),
-                description=u"Publication/last update date"
-                            u" for the original item",
+    publication_date = Date(title=_(u"Date of item's creation"),
+                description=u"The date refers to the moment in which the item "
+                            u"has been prepared by contributing expeerts to be "
+                            u"submitted for the publication in Climate "
+                            u"ADAPTPublication/last update date",
                 required=False
                 )
+
     include_in_observatory = Bool(title=_(u"Include in observatory"),
                      required=False, default=False)
 
@@ -283,12 +296,6 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                           required=False,
                           value_type=Choice(
                               vocabulary="eea.climateadapt.ace_countries"),
-                          )
-
-    origin_website = List(title=_(u"Origin website"),
-                          required=True,
-                          value_type=Choice(
-                              vocabulary="eea.climateadapt.origin_website"),
                           )
 
     partners_source_link = URI(title=_(u"Partners Source Link"),

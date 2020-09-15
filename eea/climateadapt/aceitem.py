@@ -59,7 +59,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     form.fieldset('reference_information',
                   label=u'Reference information',
-                  fields=['websites', 'source', 'comments', 'special_tags']
+                  fields=['websites', 'source', 'special_tags', 'comments']
                   )
 
     form.fieldset('geographic_information',
@@ -67,15 +67,15 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                   fields=['geochars']
                   )
 
-    #form.fieldset('categorization',
-    #              label=u'Categorization',
-    #              fields=['special_tags']
-    #              )
-
-    form.fieldset('inclusion_health_observatory',
-                  label=u'Inclusion in the Health Observatory',
-                  fields=['health_impacts', 'include_in_observatory']
+    form.fieldset('categorization',
+                  label=u'Categorization',
+                  fields=['include_in_observatory', 'health_impacts']
                   )
+
+    #form.fieldset('inclusion_health_observatory',
+    #              label=u'Inclusion in the Health Observatory',
+    #              fields=['health_impacts', 'include_in_observatory']
+    #              )
 
     form.fieldset('backend',
                   label=u'Backend fields',
@@ -92,6 +92,14 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                           value_type=Choice(
                               vocabulary="eea.climateadapt.origin_website"),
                           )
+
+    image = NamedBlobImage(
+        title=_(u"Thumbnail or logo"),
+        description=_(u"Upload a representative picture or logo for the item."
+                      u" Recomanded size 366/180, aspect ratio 2x"),
+        required=False,
+    )
+
     partner_organisation  = RelationChoice(title=_(u"New contributor"),
                                 required=False,
                                 vocabulary="eea.climateadapt.organisations")
@@ -101,12 +109,6 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                             value_type = Choice(
                                 vocabulary = "eea.climateadapt.health_impacts")
                             )
-    thumbnail = NamedBlobImage(
-        title=_(u"Thumbnail or logo"),
-        description=_(u"Recomanded size 366/180, aspect ratio 2x"),
-        required=False,
-    )
-
     include_in_observatory = Bool(title=_(u"Include in observatory"),
                      required=False, default=False)
 
@@ -221,7 +223,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                                 u"climate-adapt]")
 
     contributors = RelationList(
-        title=u"List of contributors:",
+        title=u"Contributor(s)",
         default=[],
         description=_(u"Select from the Climate ADAPT \"Organisation\" items"
                       u" the organisations contributing to/ involved in this"
@@ -450,9 +452,9 @@ class IOrganisation(IAceItem):
                        required=True,
                        )
 
-    #title = TextLine(title=_(u"Name"),
-    #                 description=u"Item Name (250 character limit)",
-    #                 required=True)
+    title = TextLine(title=_(u"Name"),
+                     description=u"Item Name (250 character limit)",
+                     required=True)
 
     #form.fieldset('default',
     #              label=u'Item Description',

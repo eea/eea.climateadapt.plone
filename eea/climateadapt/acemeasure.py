@@ -98,7 +98,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.fieldset('reference_information',
                   label=u'Reference information',
                   fields=[  # 'contact',
-                      'websites', 'source', 'comments', 'special_tags']
+                      'websites', 'source', 'special_tags', 'comments']
                   )
 
 # richtext fields in database:
@@ -112,10 +112,10 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                   fields=['governance_level', 'geochars']
                   )
 
-    #form.fieldset('categorization',
-    #              label=u'Categorization',
-    #              fields=['']
-    #              )
+    form.fieldset('categorization',
+                  label=u'Categorization',
+                  fields=['include_in_observatory', 'health_impacts']
+                  )
 
     # -----------[ "default" fields ]------------------
 
@@ -303,8 +303,21 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                                   u"climate-adapt]")
                     )
 
+    origin_website = List(title=_(u"Origin website"),
+                          required=True,
+                          value_type=Choice(
+                              vocabulary="eea.climateadapt.origin_website"),
+                        )
+
+    image = NamedBlobImage(
+        title=_(u"Thumbnail or logo"),
+        description=_(u"Upload a representative picture or logo for the item."
+                      u" Recomanded size 366/180, aspect ratio 2x"),
+        required=False,
+    )
+
     contributors = RelationList(
-        title=u"List of contributors:",
+        title=u"Contributor(s)",
         default=[],
         description=_(u"Select from the Climate ADAPT Organisation items the "
                       u"organisations contributing to/ involved in this item"),
@@ -372,11 +385,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           default="A",
                           vocabulary="eea.climateadapt.acemeasure_types")
 
-    origin_website = List(title=_(u"Origin website"),
-                          required=True,
-                          value_type=Choice(
-                              vocabulary="eea.climateadapt.origin_website"),
-                        )
     partner_organisation  = RelationChoice(title=_(u"New contributor"),
                                 description=_(u"Please create a new organisation item from the menu, if the organisation is not present"),
                                 required=False,
@@ -388,10 +396,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                                 vocabulary = "eea.climateadapt.health_impacts")
                             )
 
-    thumbnail = NamedBlobImage(
-        title=_(u"Thumbnail or logo"),
-        required=False,
-    )
 
     include_in_observatory = Bool(title=_(u"Include in observatory"),
                      required=False, default=False)
