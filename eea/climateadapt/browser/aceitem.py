@@ -141,6 +141,10 @@ class OrganisationAddForm(DefaultAddForm):
 OrganisationEditView = layout.wrap_form(OrganisationEditForm)
 classImplements(OrganisationEditView, IDexterityEditForm)
 
+class OrganisationFormExtender(FormExtender):
+    def update(self):
+        self.move('acronym', before='title')
+
 
 class AceItemFormExtender(FormExtender):
     def update(self):
@@ -163,8 +167,8 @@ class AceItemFormExtender(FormExtender):
 class CCAContentDepictionView(DexterityImageView):
     """ Get cover image from folder contents
     """
-    _field = "thumbnail"
 
+    _field = "image"
     @property
     def field(self):
         """ Image field
