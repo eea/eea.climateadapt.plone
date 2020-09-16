@@ -916,6 +916,14 @@
     permission="cmf.ManagePortal"
     />
 
+    <browser:page
+      name="migrate_health_impacts"
+      for="*"
+      template="pt/migrate_health_impacts.pt"
+      class=".migrate.HealthImpacts"
+      permission="cmf.ManagePortal"
+      />
+
   <browser:page
     name="update_health_items"
     for="*"

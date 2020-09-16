@@ -60,3 +60,44 @@ class YearToDate():
                     })
 
         return res
+
+class HealthImpacts():
+    def list(self):
+        #overwrite = int(self.request.form.get('overwrite', 0))
+
+        catalog = api.portal.get_tool('portal_catalog')
+
+        catalog = api.portal.get_tool('portal_catalog')
+        types = ['eea.climateadapt.adaptationoption',
+                'eea.climateadapt.casestudy',
+                'eea.climateadapt.guidancedocument',
+                'eea.climateadapt.indicator',
+                'eea.climateadapt.informationportal',
+                'eea.climateadapt.organisation',
+                'eea.climateadapt.publicationreport',
+
+                'eea.climateadapt.tool',
+                'eea.climateadapt.video'
+                ]
+        res = []
+        for type in types:
+            #import pdb; pdb.set_trace()
+            brains = catalog.searchResults(**{'portal_type': type, 'include_in_observatoty': True})
+            for brain in brains:
+                brainUpdated = False
+                obj = brain.getObject()
+                if isinstance(obj.health_impacts, str):
+                    brainUpdated = True
+                    temp = []
+                    temp.append(obj.health_impacts)
+                    obj.health_impacts = temp
+
+                if brainUpdated:
+                    obj._p_changed = True
+
+                res.append({'title':obj.title, 'id':brain.UID,'url':obj,
+                        'publication_date': obj.publication_date,
+                        'health_impacts': obj.health_impacts
+                    })
+
+        return res

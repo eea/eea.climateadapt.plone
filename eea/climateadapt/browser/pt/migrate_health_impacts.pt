@@ -1,0 +1,7 @@
+<table tal:define="items view/list">
+    <tr tal:repeat="item items">
+        <td tal:content="item/title"></td>
+        <td tal:content="item/publication_date"></td>
+        <td tal:content="item/health_impacts"></td>
+    </tr>
+</table>
