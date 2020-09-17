@@ -63,7 +63,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                   fields=['geochars', 'comments'])
 
     form.fieldset('categorization',
-                  label=u'Categorization',
+                  label=u'Inclusion in the Health Observatory',
                   fields=['include_in_observatory', 'health_impacts']
                   )
 
@@ -72,6 +72,18 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     # These fields are richtext in the db:
     #set(['keywords', 'partners', 'admincomment', 'abstracts', 'source'])
+    origin_website = List(title=_(u"Origin website"),
+                          required=True,
+                          value_type=Choice(
+                              vocabulary="eea.climateadapt.origin_website"),
+                          )
+
+    image = NamedBlobImage(
+        title=_(u"Thumbnail"),
+        description=_(u"Upload a representative picture or logo for the item."
+                      u" Recomanded size 360/180, aspect ratio 2x"),
+        required=False,
+    )
 
     acronym = TextLine(title=_(u"Acronym"),
                        description=_(u"Acronym of the project"),
@@ -114,24 +126,6 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         value_type=TextLine(),
         missing_value=(None),
     )
-
-    origin_website = List(title=_(u"Origin website"),
-                          required=True,
-                          value_type=Choice(
-                              vocabulary="eea.climateadapt.origin_website"),
-                          )
-
-    image = NamedBlobImage(
-        title=_(u"Thumbnail"),
-        description=_(u"Upload a representative picture or logo for the item."
-                      u" Recomanded size 366/180, aspect ratio 2x"),
-        required=False,
-    )
-
-    partner_organisation  = RelationChoice(title=_(u"Partner organisation"),
-                                description=_(u"Please create a new organisation item from the menu, if the organisation is not present"),
-                                required=False,
-                                vocabulary="eea.climateadapt.organisations")
 
     health_impacts = List(title=_(u"Health impacts"),
                             required = False,
@@ -201,8 +195,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     # -----------[ "reference_information" fields ]------------------
     directives.widget('websites', TextLinesWidget)
     websites = Tuple(
-        title=_(u"Website"),
-        description=_(u"List the Website where the item can be found or is "
+        title=_(u"Websites"),
+        description=_(u"List the Websites where the item can be found or is "
                       u"described. Please place each website on a new line"),
         required=False,
         value_type=URI(),

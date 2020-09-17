@@ -68,7 +68,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                   )
 
     form.fieldset('categorization',
-                  label=u'Categorization',
+                  label=u'Inclusion in the Health Observatory',
                   fields=['include_in_observatory', 'health_impacts']
                   )
 
@@ -96,13 +96,9 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     image = NamedBlobImage(
         title=_(u"Thumbnail or logo"),
         description=_(u"Upload a representative picture or logo for the item."
-                      u" Recomanded size 366/180, aspect ratio 2x"),
+                      u" Recomanded size 360/180, aspect ratio 2x"),
         required=False,
     )
-
-    partner_organisation  = RelationChoice(title=_(u"New contributor"),
-                                required=False,
-                                vocabulary="eea.climateadapt.organisations")
 
     health_impacts = List(title=_(u"Health impacts"),
                             required = False,
@@ -190,8 +186,8 @@ class IAceItem(form.Schema, IImageScaleTraversable):
 
     directives.widget('websites', TextLinesWidget)
     websites = Tuple(
-        title=_(u"Website"),
-        description=_(u"List the Website where the item can be found or is "
+        title=_(u"Websites"),
+        description=_(u"List the Websites where the item can be found or is "
                       u"described. Please place each website on a new line"),
         required=False,
         value_type=URI(),
@@ -217,9 +213,9 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                     )
 
     comments = Text(title=_(u"Comments"), required=False, default=u"",
-                    description=u"Comments about this database item"
-                                u"[information entered below will not be"
-                                u"displayed on the public pages of"
+                    description=u"Comments about this database item "
+                                u"[information entered below will not be "
+                                u"displayed on the public pages of "
                                 u"climate-adapt]")
 
     contributors = RelationList(
@@ -372,7 +368,7 @@ class IPublicationReport(IAceItem):
     directives.omitted(IEditForm, 'featured')
     directives.omitted(IAddForm, 'featured')
 
-    publication_date = Date(title=_(u"Date of item's creation"),
+    publication_date = Date(title=_(u"Date of item's publication"),
                 description=u"The date refers to the latest date of publication"
                             u" of the item (different from the date of item's"
                             u" publication in Climate ADAPT)",
@@ -398,7 +394,7 @@ class IGuidanceDocument(IAceItem):
     directives.omitted(IEditForm, 'year')
     directives.omitted(IAddForm, 'year')
 
-    publication_date = Date(title=_(u"Date of item's creation"),
+    publication_date = Date(title=_(u"Date of item's publication"),
                 description=u"The date refers to the latest date of publication"
                             u" of the item (different from the date of item's"
                             u" publication in Climate ADAPT)",
@@ -432,8 +428,6 @@ class IOrganisation(IAceItem):
     directives.omitted(IEditForm, 'source')
     directives.omitted(IEditForm, 'contributors')
     directives.omitted(IAddForm, 'contributors')
-    directives.omitted(IEditForm, 'partner_organisation')
-    directives.omitted(IAddForm, 'partner_organisation')
     directives.omitted(IEditForm, 'featured')
     directives.omitted(IAddForm, 'featured')
 

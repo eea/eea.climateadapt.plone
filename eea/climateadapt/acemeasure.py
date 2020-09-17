@@ -86,7 +86,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                   fields=['stakeholder_participation',
                           'success_limitations',
                           'cost_benefit', 'legal_aspects',
-                          'include_in_observatory', 'health_impacts',
                           'implementation_time', 'lifetime']
                   )
 
@@ -113,7 +112,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                   )
 
     form.fieldset('categorization',
-                  label=u'Categorization',
+                  label=u'Inclusion in the Health Observatory',
                   fields=['include_in_observatory', 'health_impacts']
                   )
 
@@ -254,8 +253,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     directives.widget('websites', TextLinesWidget)
     websites = Tuple(
-        title=_(u"Website"),
-        description=_(u"List the Website where the option can be found"
+        title=_(u"Websites"),
+        description=_(u"List the Websites where the option can be found"
                       u" or is described. Note: may refer to the original "
                       u"document describing a measure and does not have to "
                       u"refer back to the project e.g. collected measures. "
@@ -312,7 +311,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     image = NamedBlobImage(
         title=_(u"Thumbnail or logo"),
         description=_(u"Upload a representative picture or logo for the item."
-                      u" Recomanded size 366/180, aspect ratio 2x"),
+                      u" Recomanded size 360/180, aspect ratio 2x"),
         required=False,
     )
 
@@ -384,11 +383,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           required=True,
                           default="A",
                           vocabulary="eea.climateadapt.acemeasure_types")
-
-    partner_organisation  = RelationChoice(title=_(u"New contributor"),
-                                description=_(u"Please create a new organisation item from the menu, if the organisation is not present"),
-                                required=False,
-                                vocabulary="eea.climateadapt.organisations")
 
     health_impacts = List(title=_(u"Health impacts"),
                             required = False,
