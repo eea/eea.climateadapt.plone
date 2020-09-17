@@ -141,13 +141,6 @@
               </div>
             </div>
 
-            <div class="macro-category health-information" tal:condition="partner_organisation" tal:define="partner_organisation python:context.partner_organisation">
-              <h4>Partner organisation:</h4>
-              <div tal:condition="partner_organisation">
-                <span tal:replace="python:partner_organisation.to_object.title">partner organisation</span>
-              </div>
-            </div>
-
             <div class="macro-category">
               <h4>Keywords:</h4>
               <metal:macro use-macro="context/ace_macros/macros/keywords" />
