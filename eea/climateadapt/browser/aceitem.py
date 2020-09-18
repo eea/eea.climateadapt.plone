@@ -143,6 +143,7 @@ classImplements(OrganisationEditView, IDexterityEditForm)
 
 class OrganisationFormExtender(FormExtender):
     def update(self):
+        self.move('IRelatedItems.relatedItems', after='comments')
         self.move('acronym', before='title')
 
 

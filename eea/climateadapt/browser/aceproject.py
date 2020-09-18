@@ -28,6 +28,7 @@ classImplements(AceProjectEditView, IDexterityEditForm)
 
 class AceProjectFormExtender(FormExtender):
     def update(self):
+        self.move('IRelatedItems.relatedItems', after='partners_source_link')
         self.remove('ICategorization.subjects')
         self.remove('ICategorization.language')
         self.remove('IPublication.effective')
