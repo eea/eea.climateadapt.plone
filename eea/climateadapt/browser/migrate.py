@@ -25,6 +25,7 @@ class YearToDate():
 
         catalog = api.portal.get_tool('portal_catalog')
         types = ['eea.climateadapt.adaptationoption',
+                'eea.climateadapt.aceproject',
                 'eea.climateadapt.casestudy',
                 'eea.climateadapt.guidancedocument',
                 'eea.climateadapt.indicator',
@@ -69,6 +70,7 @@ class HealthImpacts():
 
         catalog = api.portal.get_tool('portal_catalog')
         types = ['eea.climateadapt.adaptationoption',
+                'eea.climateadapt.aceproject',
                 'eea.climateadapt.casestudy',
                 'eea.climateadapt.guidancedocument',
                 'eea.climateadapt.indicator',
