@@ -170,11 +170,11 @@ class CCAContentDepictionView(DexterityImageView):
     """
 
     _field = "image"
-    @property
-    def field(self):
-        """ Image field
-        """
-        return getattr(self.context, self._field)
+    #@property
+    #def field(self):
+    #    """ Image field
+    #    """
+    #    return getattr(self.context, self._field)
 
     def __call__(self, scalename='thumb'):
         #import pdb; pdb.set_trace()
