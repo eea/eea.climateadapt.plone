@@ -1,5 +1,6 @@
 <div tal:define="portal_url context/portal_url">
-  <script src="/mark_special_links.js" tal:attributes="src string: ${context/portal_url}/mark_special_links.js"></script>
+  <script src="/mark_special_links.js"
+    tal:attributes="src string: ${context/portal_url}/mark_special_links.js"></script>
   <script tal:content="string:
     var active_ast_tab = ${view/active_tab};
     "></script>
@@ -96,24 +97,22 @@
         1. Preparing the ground for adaptation</a>
       <ul id="step-1">
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-1/high-level-support" name="step-1-1">Obtaining high-level political support for adaptation</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-1/high-level-support" name="step-1-1">1.1 Obtaining high-level political support for adaptation</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-1/set-up-process" name="step-1-2">Setting up the process in a structured way</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-1/set-up-process" name="step-1-2">1.2 Setting up the process in a structured way</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-1/ressources" name="step-1-3">Estimating human and financial resources needed and identifying potential sources of long-term funding</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-1/ressources" name="step-1-3">1.3 Estimating human and financial resources needed and identifying potential sources of long-term funding</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-1/collect-information" name="step-1-4">Collecting information</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-1/collect-information" name="step-1-4">1.4 Collecting information</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-1/communicate-raise-awareness" name="step-1-5">Communicating adaptation and raising awareness</a>
-          <ul id="step-1-5">
-            <li>
-              <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-1/self-check" name="step-1-5-1">Preparing the ground for adaptation: Self-check</a>
-            </li>
-          </ul>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-1/communicate-raise-awareness" name="step-1-5">1.5 Communicating adaptation and raising awareness</a>
+        </li>
+        <li>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-1/self-check" name="step-1-5-1">1.6 Preparing the ground for adaptation: Self-check</a>
         </li>
       </ul>
     </li>
@@ -124,49 +123,45 @@
         2. Assessing climate change risks and vulnerabilities</a>
       <ul id="step-2">
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-2/past-weather-events" name="step-2-1">Understanding climate risks</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-2/past-weather-events" name="step-2-1">2.1 Understanding climate risks</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-2/risk-vulnerability-assessment" name="step-2-2">Frameworks for assessing climate impacts, vulnerabilities and risks</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-2/risk-vulnerability-assessment" name="step-2-2">2.2 Frameworks for assessing climate impacts, vulnerabilities and risks</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-2/trans-boundary-issues" name="step-2-3">General sequence for climate impacts, vulnerabilities and risk assessments</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-2/trans-boundary-issues" name="step-2-3">2.3 General sequence for climate impacts, vulnerabilities and risk assessments</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-2/knowlegde-uncertainty" name="step-2-4">Taking trans-boundary issues into account</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-2/knowlegde-uncertainty" name="step-2-4">2.4 Taking trans-boundary issues into account</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-2/strategic-direction" name="step-2-5">Addressing knowledge gaps and dealing with uncertainties</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-2/strategic-direction" name="step-2-5">2.5 Addressing knowledge gaps and dealing with uncertainties</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-2/identify-main-adaptation" name="step-2-6">Identifying main adaptation concerns and setting a strategic direction</a>
-          <ul id="step-2-6">
-            <li>
-              <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-2/self-check" name="step-2-5-1">Assessing climate change risks and vulnerabilities: Self-check</a>
-            </li>
-          </ul>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-2/identify-main-adaptation" name="step-2-6">2.6 Identifying main adaptation concerns and setting a strategic direction</a>
+        </li>
+        <li>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-2/self-check" name="step-2-5-1">2.7 Assessing climate change risks and vulnerabilities: Self-check</a>
         </li>
       </ul>
     </li>
 
     <li>
       <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-3;
-      onclick string:document.location.href='${portal_url}/knowledge/tools/adaptation-support-tool/step-3'" name="step-3">
-      3. Identifying adaptation options</a>
+        onclick string:document.location.href='${portal_url}/knowledge/tools/adaptation-support-tool/step-3'" name="step-3">
+        3. Identifying adaptation options</a>
       <ul id="step-3">
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-3/collect-options" name="step-3-1">Creating a catalogue of relevant adaptation options</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-3/collect-options" name="step-3-1">3.1 Creating a catalogue of relevant adaptation options</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-3/explore-good-practices" name="step-3-2">Finding examples of good adaptation practices</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-3/explore-good-practices" name="step-3-2">3.2 Finding examples of good adaptation practices</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-3/describe-options" name="step-3-3">Describing adaptation options in detail</a>
-          <ul id="step-3-3">
-            <li>
-              <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-3/self-check" name="step-3-3-1">Identifying adaptation options: Self-check</a>
-            </li>
-          </ul>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-3/describe-options" name="step-3-3">3.3 Describing adaptation options in detail</a>
+        </li>
+        <li>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-3/self-check" name="step-3-3-1">3.4 Identifying adaptation options: Self-check</a>
         </li>
       </ul>
     </li>
@@ -177,46 +172,42 @@
         4. Assessing adaptation options</a>
       <ul id="step-4">
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-4/assess-time-cost-benefits" name="step-4-1">Assessing possible adaptation options in terms of effects, time, costs, benefits and efforts</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-4/assess-time-cost-benefits" name="step-4-1">4.1 Assessing possible adaptation options in terms of effects, time, costs, benefits and efforts</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-4/cross-cutting-issues" name="step-4-2">Prioritising adaptation options and selecting preferred ones</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-4/cross-cutting-issues" name="step-4-2">4.2 Prioritising adaptation options and selecting preferred ones</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-4/prioritise-and-select" name="step-4-3">Preparing a strategy document and getting political approval</a>
-          <ul id="step-4-4">
-            <li>
-              <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-4/self-check" name="step-4-4-1">Assessing and selecting adaptation options: Self-check</a>
-            </li>
-          </ul>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-4/prioritise-and-select" name="step-4-3">4.3 Preparing a strategy document and getting political approval</a>
+        </li>
+        <li>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-4/self-check" name="step-4-4-1">4.4 Assessing and selecting adaptation options: Self-check</a>
         </li>
         <!-- <li> -->
-        <!--   <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation&#45;support&#45;tool/step&#45;4/strategy&#45;and&#45;approval" name="step&#45;4&#45;4">Prepare a strategy document and get political approval</a> -->
-        <!-- </li> -->
+          <!--   <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation&#45;support&#45;tool/step&#45;4/strategy&#45;and&#45;approval" name="step&#45;4&#45;4">Prepare a strategy document and get political approval</a> -->
+          <!-- </li> -->
       </ul>
     </li>
 
     <li>
       <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-5;
         onclick string:document.location.href='${portal_url}/knowledge/tools/adaptation-support-tool/step-5'" name="step-5">
-      5. Implementing Adaptation</a>
+        5. Implementing Adaptation</a>
       <ul id="step-5">
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-5/developing-adaptation-plan" name="step-5-3">Developing an adaptation action plan</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-5/developing-adaptation-plan" name="step-5-3">5.1 Developing an adaptation action plan</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-5/organising-governance" name="step-5-0">Organising governance of implementation across sectors and levels</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-5/organising-governance" name="step-5-0">5.2 Organising governance of implementation across sectors and levels</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-5/mainstreaming" name="step-5-1">Mainstreaming: Integrating adaptation into instruments and sector policies</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-5/mainstreaming" name="step-5-1">5.3 Mainstreaming: Integrating adaptation into instruments and sector policies</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-5/seek-agreements" name="step-5-2">Multilevel coordination and supportive governance framework</a>
-          <ul id="step-5-3">
-            <li>
-              <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-5/self-check" name="step-5-3-1">Implementing Adaptation: Self-check</a>
-            </li>
-          </ul>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-5/seek-agreements" name="step-5-2">5.4 Multilevel coordination and supportive governance framework</a>
+        </li>
+        <li>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-5/self-check" name="step-5-3-1">5.5 Implementing Adaptation: Self-check</a>
         </li>
       </ul>
     </li>
@@ -225,22 +216,19 @@
       <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-6;
         onclick string:document.location.href='${portal_url}/knowledge/tools/adaptation-support-tool/step-6'" name="step-6">
         6. Monitoring and Evaluating Adaptation</a>
+      <!-- <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation&#45;support&#45;tool/step&#45;6/communicating&#45;results" name="step&#45;6&#45;4">Communicating results to inform policy and practice</a> -->
       <ul id="step-6">
-        <!-- <li> -->
-        <!--   <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation&#45;support&#45;tool/step&#45;6/understanding&#45;drivers" name="step&#45;6&#45;1" -->
-        <!--     >Understanding drivers and purposes</a> -->
-          <!-- <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation&#45;support&#45;tool/step&#45;6/communicating&#45;results" name="step&#45;6&#45;4">Communicating results to inform policy and practice</a> -->
-        <!-- </li> -->
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-6/who-should-be-involved" name="step-6-2">Deciding who to involve in the process</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-6/understanding-drivers" name="step-6-1">6.1 Understanding drivers and purposes</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-6/mixed-methods" name="step-6-3">Defining MRE indicators and mixed-methods approach</a>
-            <ul id="step-6-4">
-              <li>
-                <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-6/self-check" name="step-6-4-1">Monitoring and evaluating adaptation: Self-check</a>
-              </li>
-            </ul>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-6/who-should-be-involved" name="step-6-2">6.2 Deciding who to involve in the process</a>
+        </li>
+        <li>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-6/mixed-methods" name="step-6-3">6.3 Defining MRE indicators and mixed-methods approach</a>
+        </li>
+        <li>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-6/self-check" name="step-6-4-1">6.4 Monitoring and evaluating adaptation: Self-check</a>
         </li>
       </ul>
     </li>
