@@ -1,18 +1,18 @@
-from zope.interface import classImplements
+from zope.component import queryMultiAdapter  # getMultiAdapter,
+from zope.interface import classImplements  # , implements
+from zope.publisher.interfaces import NotFound
 
 from eea.climateadapt.browser import AceViewApi
+from eea.depiction.browser.dexterity import DexterityImageView
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.edit import DefaultEditForm
 from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityEditForm
 from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
-from eea.depiction.browser.dexterity import DexterityImageView
 
-from zope.interface import implements
-from Products.Five.browser import BrowserView
-from eea.depiction.browser.interfaces import IImageView
-from zope.publisher.interfaces import NotFound
+# from eea.depiction.browser.interfaces import IImageView
+# from Products.Five.browser import BrowserView
 
 
 class AceItemView(DefaultView, AceViewApi):
@@ -141,6 +141,7 @@ class OrganisationAddForm(DefaultAddForm):
 OrganisationEditView = layout.wrap_form(OrganisationEditForm)
 classImplements(OrganisationEditView, IDexterityEditForm)
 
+
 class OrganisationFormExtender(FormExtender):
     def update(self):
         self.move('IRelatedItems.relatedItems', after='comments')
@@ -170,14 +171,14 @@ class CCAContentDepictionView(DexterityImageView):
     """
 
     _field = "image"
-    #@property
-    #def field(self):
+    # @property
+    # def field(self):
     #    """ Image field
     #    """
     #    return getattr(self.context, self._field)
 
     def __call__(self, scalename='thumb'):
-        #import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         if not self.display(scalename):
             raise NotFound(self.request, scalename)
 
