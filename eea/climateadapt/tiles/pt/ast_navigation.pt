@@ -119,7 +119,7 @@
           <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/communicate-raise-awareness" name="step-1-5">1.5 Communicating adaptation and raising awareness</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-1/step-1-self-check" name="step-1-5-1">1.6 Preparing the ground for adaptation: Self-check</a>
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-1-self-check" name="step-1-5-1">1.6 Preparing the ground for adaptation: Self-check</a>
         </li>
       </ul>
     </li>
