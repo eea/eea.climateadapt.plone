@@ -136,8 +136,7 @@
 
     <li>
       <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-2-0;
-        onclick string:document.location.href='${portal_url}/knowledge/tools/adaptation-support-tool/step-2-0"
-         name="step-2-0">
+        onclick string:document.location.href='${portal_url}/knowledge/tools/adaptation-support-tool/step-2-0'" name="step-2-0">
         2. Assessing climate change risks and vulnerabilities</a>
       <ul id="step-2">
         <li>
@@ -210,7 +209,7 @@
             4.2 Prioritising adaptation options and selecting preferred ones</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-4-2" name="step-4-3">
+          <a tal:attributes="href string:${portal_url}/knowledge/tools/adaptation-support-tool/step-4-3" name="step-4-3">
             4.3 Preparing a strategy document and getting political approval</a>
         </li>
         <li>
