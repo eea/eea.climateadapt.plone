@@ -13,6 +13,7 @@ from zope.interface import implements
 from Products.Five.browser import BrowserView
 from eea.depiction.browser.interfaces import IImageView
 from zope.publisher.interfaces import NotFound
+from zope.component import queryMultiAdapter
 
 
 class AceItemView(DefaultView, AceViewApi):
@@ -170,14 +171,22 @@ class CCAContentDepictionView(DexterityImageView):
     """
 
     _field = "image"
-    #@property
-    #def field(self):
-    #    """ Image field
-    #    """
-    #    return getattr(self.context, self._field)
+
+    @property
+    def img(self):
+        """
+        """
+        return self.context
+
+    @property
+    def field(self):
+        """ Image field
+        """
+        return getattr(self.context, self._field)
 
     def __call__(self, scalename='thumb'):
         #import pdb; pdb.set_trace()
+
         if not self.display(scalename):
             raise NotFound(self.request, scalename)
 

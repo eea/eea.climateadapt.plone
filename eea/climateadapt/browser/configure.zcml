@@ -890,15 +890,85 @@
   <!-- imgview -->
   for="eea.climateadapt.interfaces.IClimateAdaptContent"
 
-    <browser:page
-        for="plone.dexterity.interfaces.IDexterityContent"
-        name="imgview"
-        class=".aceitem.CCAContentDepictionView"
-        permission="zope.Public"
-        allowed_interface="eea.depiction.browser.interfaces.IImageView"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        />
+  <browser:page
+      for="plone.dexterity.interfaces.IDexterityContent"
+      name="imgview"
+      class=".aceitem.CCAContentDepictionView"
+      permission="zope.Public"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+      />
 
+  <browser:page
+      for="eea.climateadapt.aceitem.IGuidanceDocument"
+      name="imgview"
+      class=".aceitem.CCAContentDepictionView"
+      permission="zope.Public"
+      allowed_interface="eea.depiction.browser.interfaces.IImageView"
+      />
+
+  <browser:page
+      for="eea.climateadapt.aceitem.IIndicator"
+      name="imgview"
+      class=".aceitem.CCAContentDepictionView"
+      permission="zope.Public"
+      allowed_interface="eea.depiction.browser.interfaces.IImageView"
+      />
+
+  <browser:page
+      for="eea.climateadapt.aceitem.IInformationPortal"
+      name="imgview"
+      class=".aceitem.CCAContentDepictionView"
+      permission="zope.Public"
+      allowed_interface="eea.depiction.browser.interfaces.IImageView"
+      />
+
+  <browser:page
+      for="eea.climateadapt.aceitem.IOrganisation"
+      name="imgview"
+      class=".aceitem.CCAContentDepictionView"
+      permission="zope.Public"
+      allowed_interface="eea.depiction.browser.interfaces.IImageView"
+      />
+
+  <browser:page
+      for="eea.climateadapt.aceitem.IPublicationReport"
+      name="imgview"
+      class=".aceitem.CCAContentDepictionView"
+      permission="zope.Public"
+      allowed_interface="eea.depiction.browser.interfaces.IImageView"
+      />
+
+  <browser:page
+      for="eea.climateadapt.aceproject.IAceProject"
+      name="imgview"
+      class=".aceitem.CCAContentDepictionView"
+      permission="zope.Public"
+      allowed_interface="eea.depiction.browser.interfaces.IImageView"
+      />
+
+  <browser:page
+      for="eea.climateadapt.aceitem.ITool"
+      name="imgview"
+      class=".aceitem.CCAContentDepictionView"
+      permission="zope.Public"
+      allowed_interface="eea.depiction.browser.interfaces.IImageView"
+      />
+
+  <browser:page
+      for="eea.climateadapt.acevideo.IAceVideo"
+      name="imgview"
+      class=".aceitem.CCAContentDepictionView"
+      permission="zope.Public"
+      allowed_interface="eea.depiction.browser.interfaces.IImageView"
+      />
+
+  <browser:page
+      for="eea.climateadapt.acemeasure.IAdaptationOption"
+      name="imgview"
+      class=".aceitem.CCAContentDepictionView"
+      permission="zope.Public"
+      allowed_interface="eea.depiction.browser.interfaces.IImageView"
+      />
 
   <browser:page
     name="health_homepage"
