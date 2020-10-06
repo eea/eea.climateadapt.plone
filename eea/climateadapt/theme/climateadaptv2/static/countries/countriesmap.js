@@ -81,7 +81,29 @@ function getCountryClass(country, countries) {
   }
 
   if (napnas[_selectedMapSection] === true) {
-    k += ' country-green';
+    k += ' country-blue';
+  }
+
+  var {nap, nas} = napnas;
+  var nasNapAdopted = (nap && nas);
+  var onlyNasAdopted = (!nap && nas);
+  var onlyNapAdopted = (nap && !nas);
+  var noneAdopted = !(('nap' in napnas) && ('nas' in napnas));
+
+  if (_selectedMapSection === 'overview') {
+    if (nasNapAdopted) {
+      k += ' country-nasnap';
+    } else if (nap || onlyNapAdopted) {
+      k += ' country-nap';
+    } else if (nas || onlyNasAdopted) {
+      k += ' country-nas';
+    } else if (noneAdopted) {
+      k += ' country-none';
+    }
+  }
+
+  if (countryName === "United Kingdom") {
+    k += ' country-nodata';
   }
 
   return k;
@@ -294,7 +316,7 @@ function renderCountriesBox(opts) {
   renderGraticule(map, 'graticule', [20, 10], path);
   renderGraticule(map, 'semi-graticule', [5, 5], path);
 
-  setCountryFlags(countries.feature.features, window._flags); 
+  setCountryFlags(countries.feature.features, window._flags);
 
   world.forEach(function (country) {
     renderCountry(map, country, path, countries, x, y);
@@ -323,11 +345,10 @@ function drawMaplets(opts) {
     var boxw = 50;
     var boxh = 50;
     var space = 10;
-    
-    var mapletWorld = world.filter(function(country) { 
-        return country.properties.SHRT_ENGL === name;
-      });
-    
+
+    var mapletWorld = world.filter(function(country) {
+      return country.properties.SHRT_ENGL === name;
+    });
 
     var msp = getMapletStartingPoint(
       viewport,
@@ -434,8 +455,28 @@ function showMapTooltip(d) {
   var content = info[0];
   var url = info[1];
 
+  var isOverview = (_selectedMapSection === 'overview');
+  var napInfo, nasInfo;
+  if (content['nap_info'] != '') {
+    napInfo = '<span>National adaptation strategy:</span>' +
+    content['nap_info'];
+  } else {
+    napInfo = '';
+  }
+
+  if (content['nas_info'] != '') {
+    nasInfo = '<span>National adaptation strategy:</span>' +
+    content['nas_info'];
+  } else {
+    nasInfo = '';
+  }
+
   if (content) {
-    content = content[window._selectedMapSection + '_info'];
+    if (isOverview) {
+      content = napInfo + nasInfo;
+    } else {
+      content = content[window._selectedMapSection + '_info'];
+    }
   }
 
   if (content) createTooltip({
@@ -522,8 +563,12 @@ function createTooltip(opts) {
 }
 
 function updateSelectedMapSection(key) {
-  window._selectedMapSection = (key.toLowerCase().indexOf('nas') > -1)
-    ? 'nas' : 'nap';
+  if (key.toLowerCase().indexOf('policy') > -1) {
+    window._selectedMapSection = 'overview';
+  } else {
+    window._selectedMapSection = (key.toLowerCase().indexOf('nas') > -1)
+      ? 'nas' : 'nap';
+  }
 }
 
 function createSectionsSelector(sections, countries, callback) {
@@ -555,12 +600,21 @@ function createSectionsSelector(sections, countries, callback) {
     var selectedSection = $(this).attr('value');
     var $this = $(this);
     var $mapType = $('.map-type');
+
     if ($this.val().indexOf("NAS") != -1) {
       $mapType.text('NAS');
     } else if ($this.val().indexOf("NAP") != -1) {
       $mapType.text('NAP');
     }
-    // console.log("Selected section", selectedSection);
+
+    if ($this.val().toLowerCase().indexOf('policy') > -1) {
+      widget.siblings('.legend').hide();
+      widget.siblings('.nasnap-legend').show();
+    } else {
+      widget.siblings('.legend').show();
+      widget.siblings('.nasnap-legend').hide();
+    }
+
     updateSelectedMapSection(selectedSection);
     callback();
   });
