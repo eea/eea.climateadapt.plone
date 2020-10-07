@@ -11,16 +11,11 @@ from plone.dexterity.interfaces import IDexterityEditForm
 from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
 
-<<<<<<< HEAD
 from zope.interface import implements
 from Products.Five.browser import BrowserView
 from eea.depiction.browser.interfaces import IImageView
 from zope.publisher.interfaces import NotFound
 from zope.component import queryMultiAdapter
-=======
-# from eea.depiction.browser.interfaces import IImageView
-# from Products.Five.browser import BrowserView
->>>>>>> 563de9737f87b1cc37d997b02f60667105481db8
 
 
 class AceItemView(DefaultView, AceViewApi):
