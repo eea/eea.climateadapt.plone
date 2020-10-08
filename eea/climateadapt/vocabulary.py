@@ -396,6 +396,21 @@ _health_impacts = (("-NONSPECIFIC-", "-NONSPECIFIC-"),
 health_impacts = generic_vocabulary(_health_impacts)
 alsoProvides(health_impacts, IVocabularyFactory)
 
+_funding_programme = (("Other", "Other"),
+                    ("COST Action", "COST Action"),
+                    ("Environment and climate action (LIFE)", "Environment and climate action (LIFE)"),
+                    ("European earth observation programme (Copernicus)", "European earth observation programme (Copernicus)"),
+                    ("Fifth Framework Programme (FP5: 1998-2002)", "Fifth Framework Programme (FP5: 1998-2002)"),
+                    ("Horizon 2020", "Horizon 2020"),
+                    ("Interreg", "Interreg"),
+                    ("National Funding", "National Funding"),
+                    ("Seventh Framework Programme (FP7: 2007-2013)", "Seventh Framework Programme (FP7: 2007-2013)"),
+                    ("Sixth Framework Programme (FP6: 2002-2006)", "Sixth Framework Programme (FP6: 2002-2006)"),
+                    )
+
+funding_programme  = generic_vocabulary(_funding_programme)
+alsoProvides(funding_programme, IVocabularyFactory)
+
 _cca_types = [
     ("DOCUMENT", "Publication & Report"),
     ("INFORMATIONSOURCE", "Information Portal"),

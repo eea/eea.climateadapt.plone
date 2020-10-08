@@ -103,3 +103,45 @@ class HealthImpacts():
                     })
 
         return res
+
+class FundingProgramme():
+    def list(self):
+        response = []
+        fileUploaded = self.request.form.get('fileToUpload', None)
+
+        #import pdb; pdb.set_trace()
+
+        if not (fileUploaded != None):
+            return response
+
+        reader = csv.reader(
+            fileUploaded,
+            delimiter=',',
+            quotechar='"',
+        #    dialect='excel',
+        )
+
+        for row in reader:
+            item = {}
+            item['title'] = row[0]
+            item['funding_programme'] = row[3]
+            item['url'] = row[4]
+            item['uid'] = row[6]
+
+            obj = api.content.get(UID=item['uid'])
+            if obj:
+                obj.funding_programme = item['funding_programme']
+                obj._p_changed = True
+                response.append({
+                    'title': obj.title,
+                    'url': item['url'],
+                    'funding_programme': obj.funding_programme
+                })
+            else:
+                response.append({
+                    'title': item['title'],
+                    'url': item['url'],
+                    'funding_programme': 'XXXX'
+                })
+
+        return response

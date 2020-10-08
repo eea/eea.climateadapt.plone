@@ -50,8 +50,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                   label=u'Item Description',
                   fields=['acronym', 'title', 'lead',
                           'long_description', 'partners', 'keywords', 'sectors',
-                          'climate_impacts', 'elements', 'funding', 'duration',
-                          'featured'])
+                          'climate_impacts', 'elements', 'funding',
+                          'funding_programme', 'duration', 'featured'])
 
     form.fieldset('reference_information',
                   label=u'Reference information',
@@ -84,6 +84,13 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                       u" Recomanded size 360/180, aspect ratio 2x"),
         required=False,
     )
+
+    funding_programme = Choice(title=_(u"Funding Programme"),
+                            required = False,
+                            #value_type = Choice(
+                                vocabulary = "eea.climateadapt.funding_programme"
+                            #    )
+                            )
 
     acronym = TextLine(title=_(u"Acronym"),
                        description=_(u"Acronym of the project"),
@@ -176,7 +183,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                         vocabulary="eea.climateadapt.aceitems_elements",),
                     )
 
-    funding = TextLine(title=_(u"Funding"),
+    funding = TextLine(title=_(u"Further information on the funding"),
                        description=_(u"Provide source of funding"),
                        required=False,
                        )
