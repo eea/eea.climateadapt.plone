@@ -16,7 +16,9 @@
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
 
           <div metal:fill-slot="title-slot">
-            <div metal:use-macro="context/ace_macros/macros/title_date"></div>
+            <h1>
+              <span tal:content="context/title"></span>
+            </h1>
           </div>
 
           <div class="aceitem-left" metal:fill-slot="ace-left-slot">
@@ -72,7 +74,7 @@
               <tal:block content="structure python:view.w['climate_impacts'].render()"/>
             </div>
 
-            <div class="macro-category">
+            <div class="macro-category" tal:condition="python:len(elements)" tal:define="elements context/elements">
               <h4>Elements:</h4>
               <tal:block content="structure python:view.w['elements'].render()"/>
             </div>

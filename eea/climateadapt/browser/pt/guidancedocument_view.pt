@@ -33,6 +33,8 @@
                 <span tal:replace="effective/dd" >01</span>-<span tal:replace="effective/mm">01</span>-<span tal:replace="effective/year">2000</span>
             </div>
 
+            <metal:macro use-macro="context/ace_macros/macros/content_dates" />
+
             <div metal:use-macro="context/ace_macros/macros/comments"></div>
           </div>
 

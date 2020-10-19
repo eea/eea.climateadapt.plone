@@ -70,6 +70,19 @@ class AceViewApi(object):
 
         return ReviewInfo(creator, reviewer)
 
+    def get_date_updated(self):
+        wh = self.context.workflow_history
+        wf = wh.get('cca_items_workflow', None)
+
+        if not wf:
+            return None
+
+        for metadata in wf:
+            if metadata['review_state'] == 'published':
+                return metadata['time']
+
+        return None
+
     @view.memoize
     def html2text(self, html):
         if not isinstance(html, basestring):

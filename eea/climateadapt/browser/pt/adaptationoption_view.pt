@@ -13,7 +13,9 @@
       <tal:main-macro metal:define-macro="content-core">
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
           <div metal:fill-slot="title-slot">
-              <metal:macro use-macro="context/ace_macros/macros/title_date" />
+            <h1>
+              <span tal:content="context/title"></span>
+            </h1>
           </div>
           <div metal:fill-slot="ace-left-slot">
 
@@ -131,6 +133,23 @@
               <div tal:condition="nothing | python: context.year != 0">
                 <h4>Item’s creation:</h4>
                 <tal:block content="structure context/year"/>
+              </div>
+            </div>
+
+            <div class="macro-category" tal:condition="effective" tal:define="effective context/effective">
+              <div>
+                <h4>Date of Item creation:</h4>
+                <a href="#" data-toggle="tooltip" class="pat-tooltip"
+                      title="The date refers to the moment in which the item has been prepared or  updated by contributing experts to be submitted for the publication in Climate ADAP">
+                      <span tal:replace="effective/mm">01</span>-<span tal:replace="effective/year">2000</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="macro-category">
+              <div tal:condition="nothing | python: context.publication_date.year > 0">
+                <h4>Date of Item creation:</h4>
+                <tal:block content="python:context.publication_date.year"/>
               </div>
             </div>
 

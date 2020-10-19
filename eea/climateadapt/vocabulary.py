@@ -313,7 +313,7 @@ _relevance = [
      'Case developed and implemented and partially funded as a CCA measure.'),
     ('OTHER_POL_OBJ', 'Case mainly developed and implemented because of other policy objectives, but with significant consideration of CCA aspects'),
 ]
-aceitem_relevance_vocabulary = generic_vocabulary(_relevance)
+aceitem_relevance_vocabulary = generic_vocabulary(_relevance, False)
 alsoProvides(aceitem_relevance_vocabulary, IVocabularyFactory)
 
 _implementationtypes = (("grey", "Technical ('grey')"),
@@ -387,13 +387,13 @@ _origin_website = (("AdapteCCA", "AdapteCCA"),
 origin_website = generic_vocabulary(_origin_website)
 alsoProvides(origin_website, IVocabularyFactory)
 
-_health_impacts = (("-NONSPECIFIC-", "-NONSPECIFIC-"),
-                    ("Heat and cold", "Heat and cold"),
+_health_impacts = (("Heat and cold", "Heat and cold"),
                     ("Floods and storms", "Floods and storms"),
                     ("Infectious diseases", "Infectious diseases"),
-                    ("Air quality and aeroallergens", "Air quality and aeroallergens"))
+                    ("Air quality and aeroallergens", "Air quality and aeroallergens"),
+                    ("-NONSPECIFIC-", "-NONSPECIFIC-"))
 
-health_impacts = generic_vocabulary(_health_impacts)
+health_impacts = generic_vocabulary(_health_impacts, False)
 alsoProvides(health_impacts, IVocabularyFactory)
 
 _funding_programme = (("Other", "Other"),

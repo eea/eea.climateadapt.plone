@@ -72,7 +72,13 @@
 
                 </div>
               </tal:block>
+
               <metal:slot metal:define-slot="ace-right-slot"></metal:slot>
+
+              <div class="macro-category" tal:condition="contributor" tal:define="contributor context/contributors">
+                  <h4>Contributor:</h4>
+                  <span tal:replace="python: contributor[0].to_object.title" ></span>
+              </div>
 
               <div tal:condition="geotag" tal:content="geotag/location"></div>
 
@@ -84,6 +90,12 @@
       </div>
     </div>
 
+  </metal:macro>
+
+  <metal:macro define-macro="content_dates">
+    <h5>Published in CA:</h5>
+    <p tal:replace="python:view.get_date_updated()"/>
+    <h5>Last modified in CA:</h5>
   </metal:macro>
 
   <metal:macro define-macro="description">

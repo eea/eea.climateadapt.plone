@@ -211,6 +211,16 @@
 
             <div metal:fill-slot="ace-right-slot">
 
+                <div class="macro-category" tal:condition="effective" tal:define="effective context/effective">
+                  <div>
+                    <h4>Date of Item creation:</h4>
+                    <a href="#" data-toggle="tooltip" class="pat-tooltip"
+                          title="The date refers to the moment in which the item has been prepared or  updated by contributing experts to be submitted for the publication in Climate ADAP">
+                          <span tal:replace="effective/mm">01</span>-<span tal:replace="effective/year">2000</span>
+                    </a>
+                  </div>
+                </div>
+
               <div class="case-studies-illustrations" tal:condition="supphotos">
                 <div id="blueimp-gallery"
                      class="blueimp-gallery blueimp-gallery-controls"
@@ -255,12 +265,14 @@
                 <div metal:use-macro="context/ace_macros/macros/files"></div>
               </div>
 
+              <!--
               <div class="macro-category">
                     <div tal:condition="pubdate" tal:define="pubdate context/publication_date">
                         <h4>Publication date:</h4>
                         <div tal:content="python:pubdate.strftime('%Y-%m')"></div>
                     </div>
                 </div>
+            -->
 
               <div class="macro-category health-information" tal:condition="python:health_impacts" tal:define="health_impacts context/health_impacts">
                 <h4>Health impact:</h4>
