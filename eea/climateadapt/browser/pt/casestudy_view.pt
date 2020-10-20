@@ -191,7 +191,7 @@
                 <div tal:content="structure provider:plone.abovecontentbody"/>
 
                 <div tal:condition="context/source | nothing">
-                  <h5 id="source">Source</h5>
+                  <h5 id="source">Reference</h5>
                   <div tal:content="structure context/source | nothing"></div>
                 </div>
                 <div metal:use-macro="context/ace_macros/macros/comments"></div>

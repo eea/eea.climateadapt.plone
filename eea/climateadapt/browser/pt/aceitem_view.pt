@@ -37,7 +37,7 @@
 
             <!-- tal:condition="python: context.storage_type=='MAPLAYER'" -->
             <!-- <div tal:content="structure context/websites/output" style="text-decoration: underline">Source here</div> -->
-            <h5>Source:</h5>
+            <h5>Reference:</h5>
             <div tal:content="structure python: view.w['source'].render()">Source here</div>
 
             <div tal:condition="context/metadata/raw | nothing">

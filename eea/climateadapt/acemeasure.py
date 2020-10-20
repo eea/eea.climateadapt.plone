@@ -265,7 +265,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     )
 
     dexteritytextindexer.searchable('source')
-    source = TextLine(title=_(u"References"),
+    source = RichText(title=_(u"References"),
                       required=False,
                       description=_(u"Describe the references (projects, a"
                                   u" tools reports,etc.) used for the "
@@ -315,8 +315,19 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         required=False,
     )
 
+    #TODO: this will be a widget
+    new_contributor = Text(title=_(u"New contributor"), required=False, default=u"",
+                    description=_(u"Please first verify if the contributor is "
+                                  u"already part of the Climate ADAPT Database."
+                                  u" If not, it is suggested to first create a "
+                                  u"new Organisation item (click here). As last"
+                                  u" alternative please add the new "
+                                  u"contributor(s) in the following box, using "
+                                  u"the official name")
+                    )
+
     contributors = RelationList(
-        title=u"Contributor(s)",
+        title=u"Existing or other contributor(s)",
         default=[],
         description=_(u"Select from the Climate ADAPT Organisation items the "
                       u"organisations contributing to/ involved in this item"),
@@ -411,6 +422,14 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     modification_date = Datetime(title=_(u"Last Modified"), required=False,)
 
     id = TextLine(title=_(u"Object ID"), required=False,)
+
+    publication_date = Date(title=_(u"Date of item's creation"),
+                description=u"The date refers to the moment in which the item "
+                            u"has been prepared or  updated by contributing "
+                            u"experts to be submitted for the publication in "
+                            u"Climate ADAPT",
+                required=False
+                )
 
     # dexteritytextindexer.searchable('summary')
     # summary = Text(title=_(u"Summary"), required=False, default=u"")

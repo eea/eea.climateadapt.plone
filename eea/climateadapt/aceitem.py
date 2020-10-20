@@ -194,12 +194,13 @@ class IAceItem(form.Schema, IImageScaleTraversable):
         missing_value=(),
     )
 
-    source = TextLine(title=_(u"References"),
+    source = RichText(title=_(u"References"),
                       required=False,
                       description=_(u"Describe the references (projects, a"
                                   u" tools reports,etc.) used for the "
                                   u" preparation of the adaptation option "
                                   u" description"))
+
 
     # -----------[ "geographic_information" fields ]------------------
 
@@ -411,10 +412,10 @@ class ITool(IAceItem):
     directives.omitted(IEditForm, 'featured')
     directives.omitted(IAddForm, 'featured')
 
-    source = TextLine(title=_(u"Organisation's source"),
-                      required=False,
-                      description=u"Describe the original source of the item "
-                                  u"description (250 character limit)")
+    #source = TextLine(title=_(u"Organisation's source"),
+    #                  required=False,
+    #                  description=u"Describe the original source of the item "
+    #                              u"description (250 character limit)")
 
 
 class IOrganisation(IAceItem):

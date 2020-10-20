@@ -77,11 +77,19 @@ class AceViewApi(object):
         if not wf:
             return None
 
-        for metadata in wf:
-            if metadata['review_state'] == 'published':
-                return metadata['time']
+        response = {};
+        response['cadapt_last_modified'] = None
+        response['cadapt_published'] = None
 
-        return None
+        #import pdb; pdb.set_trace()
+
+        for metadata in wf:
+            if metadata['action'] == 'submit' and metadata['review_state'] == 'pending':
+                response['cadapt_last_modified'] = metadata['time']
+            if metadata['action'] == 'publish' and metadata['review_state'] == 'published':
+                response['cadapt_published'] = metadata['time']
+
+        return response
 
     @view.memoize
     def html2text(self, html):

@@ -93,9 +93,16 @@
   </metal:macro>
 
   <metal:macro define-macro="content_dates">
-    <h5>Published in CA:</h5>
-    <p tal:replace="python:view.get_date_updated()"/>
-    <h5>Last modified in CA:</h5>
+    <div tal:define="dates view/get_date_updated; cadapt_published none | dates/cadapt_published;  cadapt_last_modified none | dates/cadapt_last_modified;">
+        <div tal:condition="cadapt_published">
+            <br><h5>Published in CA:</h5>
+            <p tal:replace="cadapt_published"/>
+        </div>
+        <div tal:condition="cadapt_last_modified">
+            <br><h5>Last Modified in Climate ADAPT:</h5>
+            <p tal:replace="cadapt_last_modified"/>
+        </div>
+    </div>
   </metal:macro>
 
   <metal:macro define-macro="description">
