@@ -85,9 +85,9 @@ class AceViewApi(object):
 
         for metadata in wf:
             if metadata['action'] == 'submit' and metadata['review_state'] == 'pending':
-                response['cadapt_last_modified'] = metadata['time']
-            if metadata['action'] == 'publish' and metadata['review_state'] == 'published':
                 response['cadapt_published'] = metadata['time']
+            if metadata['action'] == 'publish' and metadata['review_state'] == 'published':
+                response['cadapt_last_modified'] = metadata['time']
 
         return response
 
