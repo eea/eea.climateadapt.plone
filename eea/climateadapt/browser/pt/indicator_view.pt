@@ -27,12 +27,16 @@
 
             <div tal:condition="context/map_graphs" tal:content="structure context/map_graphs">ifram map</div>
 
-            <h4 class="reference-title">Reference information</h4>
-            <h5>Websites:</h5>
-            <metal:macro use-macro="context/ace_macros/macros/websites" />
+            <h4 class="reference-title" tal:condition="python:context.websites or context.source">Reference information</h4>
+            <div tal:condition="context/websites">
+                <h5>Websites:</h5>
+                <metal:macro use-macro="context/ace_macros/macros/websites" />
+            </div>
 
-            <h5>Organisation/s source:</h5>
-            <div tal:content="structure python: view.w['source'].render()">Source here</div>
+            <div tal:condition="context/source">
+                <h5>Organisation/s source:</h5>
+                <div tal:content="structure python: view.w['source'].render()">Source here</div>
+            </div>
 
             <div tal:condition="context/metadata/raw | nothing">
               <h5>Link to metadata:</h5>
@@ -64,7 +68,7 @@
               </div>
             </div>
 
-            <div class="macro-category">
+            <div class="macro-category" tal:condition="context/keywords">
               <h4>Keywords:</h4>
               <metal:macro use-macro="context/ace_macros/macros/keywords" />
             </div>

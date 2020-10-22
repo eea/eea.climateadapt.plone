@@ -20,13 +20,17 @@
             <h3>Description</h3>
             <div tal:content="structure python: view.w['long_description'].render()">description here</div>
 
-            <h4 class="reference-title">Reference information</h4>
+            <h4 class="reference-title" tal:condition="python:context.websites or context.source">Reference information</h4>
 
-            <h5>Websites:</h5>
-            <div metal:use-macro="context/ace_macros/macros/websites"></div>
+            <div tal:condition="context/websites">
+                <h5>Websites:</h5>
+                <div metal:use-macro="context/ace_macros/macros/websites"></div>
+            </div>
 
-            <h5>Organisation/s source:</h5>
-            <tal:block content="structure python: view.w['source'].render()" />
+            <div tal:condition="context/source">
+                <h5>Organisation/s source:</h5>
+                <tal:block content="structure python: view.w['source'].render()" />
+            </div>
 
             <div class="macro-category" tal:define="effective context/effective">
               <h5>Published in CA:</h5>
@@ -55,7 +59,7 @@
               <metal:macro use-macro="context/ace_macros/macros/files" />
             </div>
 
-            <div class="macro-category">
+            <div class="macro-category" tal:condition="context/keywords">
               <h4>Keywords:</h4>
               <metal:macro use-macro="context/ace_macros/macros/keywords" />
             </div>

@@ -104,13 +104,17 @@
                 </p>
             </div>
 
-            <h4 class="reference-title">Reference information</h4>
+            <h4 class="reference-title" tal:condition="python:context.websites or context.source">Reference information</h4>
 
-            <h5 id="websites" style="text-decoration: underline" class="Adaptation-option-selector">Websites:</h5>
-            <metal:macro use-macro="context/ace_macros/macros/websites" />
+            <div tal:condition="context/websites">
+                <h5 id="websites" style="text-decoration: underline" class="Adaptation-option-selector">Websites:</h5>
+                <metal:macro use-macro="context/ace_macros/macros/websites" />
+            </div>
 
-            <h5 id="source" style="text-decoration: underline" class="Adaptation-option-selector">References:</h5>
-            <div tal:content="structure python: view.w['source'].render()">Source here</div>
+            <div tal:condition="context/source">
+                <h5 id="source" style="text-decoration: underline" class="Adaptation-option-selector">References:</h5>
+                <div tal:content="structure python: view.w['source'].render()">Source here</div>
+            </div>
 
             <div class="macro-category" tal:define="effective context/effective">
                 <h4>Published in Climate-ADAPT:</h4>
@@ -160,7 +164,7 @@
               </div>
             </div>
 
-            <div class="macro-category">
+            <div class="macro-category" tal:condition="context/keywords">
               <h4>Keywords:</h4>
               <metal:macro use-macro="context/ace_macros/macros/keywords" />
             </div>

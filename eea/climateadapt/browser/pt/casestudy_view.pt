@@ -183,7 +183,7 @@
                 <h5 id="contact">Contact</h5>
                 <div tal:content="structure python: view.w['contact'].render()"></div>
 
-                <div tal:define="links python:view.get_websites()" tal:condition="links">
+                <div tal:define="links python:view.get_websites()" tal:condition="context/websites">
                   <h5 id="websites">Websites</h5>
                   <div metal:use-macro="context/ace_macros/macros/websites"></div>
                 </div>
@@ -192,7 +192,7 @@
 
                 <div tal:condition="context/source | nothing">
                   <h5 id="source">Reference</h5>
-                  <div tal:content="structure context/source | nothing"></div>
+                  <div tal:content="structure python: view.w['source'].render()"></div>
                 </div>
                 <div metal:use-macro="context/ace_macros/macros/comments"></div>
 
@@ -281,7 +281,7 @@
                 </div>
               </div>
 
-              <div class="macro-category">
+              <div class="macro-category" tal:condition="context/keywords">
                 <h4>Keywords:</h4>
                 <div metal:use-macro="context/ace_macros/macros/keywords"></div>
               </div>

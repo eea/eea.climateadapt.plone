@@ -41,7 +41,7 @@
           <div metal:fill-slot="ace-right-slot">
             <div metal:use-macro="context/ace_macros/macros/files"></div>
 
-            <div class="macro-category">
+            <div class="macro-category" tal:condition="context/keywords">
               <h4>Keywords:</h4>
               <div metal:use-macro="context/ace_macros/macros/keywords"></div>
             </div>

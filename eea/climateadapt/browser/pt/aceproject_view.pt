@@ -38,11 +38,11 @@
             <metal:macro use-macro="context/ace_macros/macros/partners" />
             <metal:macro use-macro="context/ace_macros/macros/funding" />
 
-            <h4 class="reference-title">Reference information</h4>
-            <tal:err tal:on-error="nothing">
+            <div tal:condition="context/websites">
+              <h4 class="reference-title">Reference information</h4>
               <h5>Websites:</h5>
               <metal:macro use-macro="context/ace_macros/macros/websites" />
-            </tal:err>
+            </div>
 
             <div class="macro-category" tal:define="effective context/effective">
               <h4>Published in CA:</h4>
@@ -65,7 +65,7 @@
               </div>
             </div>
 
-            <div class="macro-category">
+            <div class="macro-category" tal:condition="context/keywords">
               <h4>Keywords:</h4>
               <metal:macro use-macro="context/ace_macros/macros/keywords" />
             </div>

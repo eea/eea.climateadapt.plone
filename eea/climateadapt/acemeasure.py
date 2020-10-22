@@ -320,7 +320,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                     description=_(u"Please first verify if the contributor is "
                                   u"already part of the Climate ADAPT Database."
                                   u" If not, it is suggested to first create a "
-                                  u"new Organisation item (click here). As last"
+                                  u"new Organisation item (<a href='/metadata/organisations/++add++eea.climateadapt.organisation'>click here</a>). As last"
                                   u" alternative please add the new "
                                   u"contributor(s) in the following box, using "
                                   u"the official name")
