@@ -315,17 +315,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         required=False,
     )
 
-    #TODO: this will be a widget
-    new_contributor = Text(title=_(u"New contributor"), required=False, default=u"",
-                    description=_(u"Please first verify if the contributor is "
-                                  u"already part of the Climate ADAPT Database."
-                                  u" If not, it is suggested to first create a "
-                                  u"new Organisation item (<a href='/metadata/organisations/++add++eea.climateadapt.organisation'>click here</a>). As last"
-                                  u" alternative please add the new "
-                                  u"contributor(s) in the following box, using "
-                                  u"the official name")
-                    )
-
     contributors = RelationList(
         title=u"Existing or other contributor(s)",
         default=[],
@@ -339,6 +328,17 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         ),
         required=False,
     )
+
+    #TODO: this will be a widget
+    new_contributor = Text(title=_(u"New contributor"), required=False, default=u"",
+                    description=_(u"Please first verify if the contributor is "
+                                  u"already part of the Climate ADAPT Database."
+                                  u" If not, it is suggested to first create a "
+                                  u"new Organisation item (<a href='/metadata/organisations/++add++eea.climateadapt.organisation'>click here</a>). As last"
+                                  u" alternative please add the new "
+                                  u"contributor(s) in the following box, using "
+                                  u"the official name")
+                    )
 
     # -----------[ "omitted" fields ]------------------
 

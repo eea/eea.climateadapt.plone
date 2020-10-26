@@ -156,6 +156,7 @@ class AceItemFormExtender(FormExtender):
         self.remove('ICategorization.subjects')
         self.remove('ICategorization.language')
         self.move('IRelatedItems.relatedItems', after='comments')
+        self.move('source', after='contributors')
         # Add the IPublication behavior if you want them, it's not enabled
         # except for the IIndicator, right now
         # self.remove('IPublication.effective')
