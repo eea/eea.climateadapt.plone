@@ -220,7 +220,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                                 u"climate-adapt]")
 
     contributors = RelationList(
-        title=u"Existing or other contributor(s)",
+        title=u"Contributor(s)",
         default=[],
         description=_(u"Select from the Climate ADAPT \"Organisation\" items"
                       u" the organisations contributing to/ involved in this"

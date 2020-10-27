@@ -140,12 +140,13 @@
               </div>
             </div>
 
-            <div class="macro-category" tal:condition="effective" tal:define="effective context/effective">
+            <div class="macro-category" tal:condition="effective" tal:define="effective context/publication_date|nothing">
               <div>
                 <h4>Date of Item creation:</h4>
+                <span tal:replace="python: effective.strftime('%Y')">2000</span>
                 <a href="#" data-toggle="tooltip" class="pat-tooltip"
-                      title="The date refers to the moment in which the item has been prepared or  updated by contributing experts to be submitted for the publication in Climate ADAP">
-                      <span tal:replace="effective/mm">01</span>-<span tal:replace="effective/year">2000</span>
+                      title="This date refers to the latest date of publication of the item">
+                      <i class="fa fa-question-circle"></i>
                 </a>
               </div>
             </div>

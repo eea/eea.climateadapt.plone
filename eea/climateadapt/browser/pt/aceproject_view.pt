@@ -65,6 +65,17 @@
               </div>
             </div>
 
+            <div class="macro-category" tal:condition="effective" tal:define="effective context/publication_date|nothing">
+              <div>
+                <h4>Date of Item creation:</h4>
+                <span tal:replace="python: effective.strftime('%Y')">2000</span>
+                <a href="#" data-toggle="tooltip" class="pat-tooltip"
+                      title="This date refers to the latest date of publication of the item">
+                      <i class="fa fa-question-circle"></i>
+                </a>
+              </div>
+            </div>
+
             <div class="macro-category" tal:condition="context/keywords">
               <h4>Keywords:</h4>
               <metal:macro use-macro="context/ace_macros/macros/keywords" />
