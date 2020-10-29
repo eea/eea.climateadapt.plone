@@ -75,19 +75,11 @@
 
               <metal:slot metal:define-slot="ace-right-slot"></metal:slot>
 
-              <div class="macro-category" tal:condition="contributor" tal:define="contributor context/contributors">
-                  <h4>Contributor:</h4>
-                  <span tal:replace="python: contributor[0].to_object.title" ></span>
-              </div>
               <div class="macro-category" tal:condition="python: contributor or other_contributor" tal:define="contributor context/contributors; other_contributor context/other_contributor|nothing">
-                  <h4>Contributor compose:</h4>
+                  <h4>Contributor:</h4>
                   <span tal:condition="contributor" tal:replace="python: contributor[0].to_object.title" ></span>
                   <br tal:condition="python: contributor and other_contributor" />
                   <span tal:condition="other_contributor" tal:replace="structure python: other_contributor.replace('\n','<br />\n')" ></span>
-              </div>
-              <div class="macro-category" tal:condition="contributor" tal:define="contributor context/other_contributor|nothing">
-                  <h4>Contributor:</h4>
-                  <span tal:replace="structure python: contributor.replace('\n','<br />\n')" ></span>
               </div>
 
               <div tal:condition="geotag" tal:content="geotag/location"></div>
@@ -104,11 +96,11 @@
 
   <metal:macro define-macro="content_dates">
     <div class="documentByLine row" style="padding-top:75px;" tal:define="dates view/get_date_updated; cadapt_published none | dates/cadapt_published;  cadapt_last_modified none | dates/cadapt_last_modified;">
-        <div tal:condition="cadapt_published" class="col-md-6 col-xs-12">
-            <p><strong>Published in Climate ADAPT</strong> <span tal:replace="python: cadapt_published.strftime('%b %d,%Y')" /></p>
-        </div>
-        <div tal:condition="cadapt_last_modified" class="col-md-6 col-xs-12">
-            <p><strong>Last Modified in Climate ADAPT:</strong> <span tal:replace="python: cadapt_last_modified.strftime('%b %d,%Y')"/></p>
+        <div tal:condition="cadapt_published" class="col-md-12 col-xs-12">
+            <p>
+                <strong>Published in Climate ADAPT</strong> <span tal:replace="python: cadapt_published.strftime('%b %d,%Y')" />
+                <strong>Last Modified in Climate ADAPT:</strong> <span tal:replace="python: cadapt_last_modified.strftime('%b %d,%Y')"/>
+            </p>
         </div>
     </div>
   </metal:macro>

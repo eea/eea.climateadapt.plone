@@ -234,6 +234,16 @@ class IAceItem(form.Schema, IImageScaleTraversable):
         required=False,
     )
 
+    other_contributor = Text(title=_(u"Other contributor(s)"), required=False, default=u"",
+                    description=_(u"Please first verify if the contributor is "
+                                  u"already part of the Climate ADAPT Database."
+                                  u" If not, it is suggested to first create a "
+                                  u"new Organisation item (<a target='_blank' href='/metadata/organisations/++add++eea.climateadapt.organisation'>click here</a>). As last"
+                                  u" alternative please add the new "
+                                  u"contributor(s) in the following box, using "
+                                  u"the official name")
+                    )
+
     # -----------[ "omitted" fields ]------------------
     directives.omitted(IAddForm, 'portal_type')
     directives.omitted(IEditForm, 'portal_type')

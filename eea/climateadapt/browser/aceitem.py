@@ -149,6 +149,7 @@ class OrganisationFormExtender(FormExtender):
     def update(self):
         self.move('IRelatedItems.relatedItems', before='comments')
         self.move('acronym', before='title')
+        self.remove('other_contributor')
 
 
 class AceItemFormExtender(FormExtender):
