@@ -196,12 +196,7 @@
                 </div>
                 <div metal:use-macro="context/ace_macros/macros/comments"></div>
 
-                <div tal:define="effective context/effective">
-                  <h5>Published in CA:</h5>
-                  <div tal:condition="effective">
-                    <span tal:replace="effective/dd" >01</span>-<span tal:replace="effective/mm">01</span>-<span tal:replace="effective/year">2000</span>
-                  </div>
-                </div>
+                <metal:macro use-macro="context/ace_macros/macros/content_dates" />
 
                 <hr>
                 <p>Please contact us for any other enquiry on this Case Study or to share a new Case Study (email <a href="mailto: climate.adapt@eea.europa.eu">climate.adapt@eea.europa.eu</a>)</p>

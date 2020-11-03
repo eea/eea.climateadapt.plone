@@ -1,0 +1,8 @@
+<h1>reference migration</h1>
+<table tal:define="items view/list">
+    <tr tal:repeat="item items">
+        <td tal:content="item/title"></td>
+        <td tal:content="item/url"></td>
+        <td tal:content="item/other_contributor|nothing"></td>
+    </tr>
+</table>
