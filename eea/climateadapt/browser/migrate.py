@@ -24,17 +24,18 @@ class YearToDate():
         #overwrite = int(self.request.form.get('overwrite', 0))
 
         catalog = api.portal.get_tool('portal_catalog')
-        types = ['eea.climateadapt.adaptationoption',
-                'eea.climateadapt.aceproject',
-                'eea.climateadapt.casestudy',
-                'eea.climateadapt.guidancedocument',
-                'eea.climateadapt.indicator',
-                'eea.climateadapt.informationportal',
-                'eea.climateadapt.organisation',
-                'eea.climateadapt.publicationreport',
+        types = [
+                #'eea.climateadapt.adaptationoption',
+                #'eea.climateadapt.aceproject',
+                #'eea.climateadapt.casestudy',
+                'eea.climateadapt.guidancedocument'
+                #'eea.climateadapt.indicator',
+                #'eea.climateadapt.informationportal',
+                #'eea.climateadapt.organisation',
+                #'eea.climateadapt.publicationreport',
 
-                'eea.climateadapt.tool',
-                'eea.climateadapt.video'
+                #'eea.climateadapt.tool',
+                #'eea.climateadapt.video'
                 ]
         res = []
         for type in types:
@@ -42,9 +43,10 @@ class YearToDate():
             for brain in brains:
                 brainUpdated = False
                 obj = brain.getObject()
-                if obj.year and isinstance(obj.year, int) and obj.year>0:
-                    brainUpdated = True
-                    obj.publication_date = date(obj.year, 1, 1)
+                if hasattr(obj, 'year'):
+                    if obj.year and isinstance(obj.year, int) and obj.year>0:
+                        brainUpdated = True
+                        obj.publication_date = date(obj.year, 1, 1)
                 if isinstance(obj.health_impacts, str):
                     brainUpdated = True
                     temp = []
@@ -55,9 +57,9 @@ class YearToDate():
                     obj._p_changed = True
 
                 res.append({'title':obj.title, 'id':brain.UID,'url':obj,
-                        'year':obj.year,
-                        'publication_date': obj.publication_date,
-                        'health_impacts': obj.health_impacts
+                        'year':obj.year if hasattr(obj, 'year') else '',
+                        #'publication_date': obj.publication_date.strftime("%Y-%m-%d") if hasattr(obj, 'publication_date') and obj.publication_date else '',
+                        #'health_impacts': obj.health_impacts
                     })
 
         return res
