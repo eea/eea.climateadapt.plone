@@ -103,7 +103,7 @@ class HealthImpacts():
                         {
                             'title': obj.title,
                             'id': brain.UID,
-                            'url': obj,
+                            'url': brain.getURL(),
                             # 'publication_date': obj.publication_date,
                             'health_impacts': obj.health_impacts
                         }
@@ -130,6 +130,7 @@ class FundingProgramme():
             #    dialect='excel',
         )
 
+        # need condition for "Yes"
         for row in reader:
             item = {}
             item['title'] = row[0]

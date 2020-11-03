@@ -1,5 +1,5 @@
 <h1>Update funding programme</h1>
-<form action="/migrate_funding_programme" method="post" enctype="multipart/form-data">
+<form action="./migrate_funding_programme" method="post" enctype="multipart/form-data">
   <br>Select image to upload:
   <input type="file" name="fileToUpload" id="fileToUpload" />
   <input type="submit" value="Process CSV" name="submit" />

@@ -122,6 +122,7 @@
                     <span tal:replace="effective/dd" >01</span>-<span tal:replace="effective/mm">01</span>-<span tal:replace="effective/year">2000</span>
                 </div>
             </div>
+
             <div class="macro-category" tal:condition="pubdate" tal:define="pubdate context/publication_date">
                 <h4>Publication date:</h4>
                 <div tal:content="python:pubdate.strftime('%Y-%m')"></div>
