@@ -12,13 +12,14 @@ from plone.app.textfield import RichText
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.directives import dexterity, form
-from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.namedfile.field import NamedBlobImage
+from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
+
 
 class IAceItem(form.Schema, IImageScaleTraversable):
     """
@@ -47,8 +48,8 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('metadata')
     dexteritytextindexer.searchable('special_tags')
 
-    #directives.omitted(IAddForm, 'relatedItems')
-    #directives.omitted(IEditForm, 'relatedItems')
+    # directives.omitted(IAddForm, 'relatedItems')
+    # directives.omitted(IEditForm, 'relatedItems')
 
     form.fieldset('default',
                   label=u'Item Description',
@@ -72,7 +73,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                   fields=['include_in_observatory', 'health_impacts']
                   )
 
-    #form.fieldset('inclusion_health_observatory',
+    # form.fieldset('inclusion_health_observatory',
     #              label=u'Inclusion in the Health Observatory',
     #              fields=['health_impacts', 'include_in_observatory']
     #              )
@@ -101,12 +102,12 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     )
 
     health_impacts = List(title=_(u"Health impacts"),
-                            required = False,
-                            value_type = Choice(
-                                vocabulary = "eea.climateadapt.health_impacts")
-                            )
+                          required=False,
+                          value_type=Choice(
+        vocabulary="eea.climateadapt.health_impacts")
+    )
     include_in_observatory = Bool(title=_(u"Include in observatory"),
-                     required=False, default=False)
+                                  required=False, default=False)
 
     title = TextLine(title=_(u"Title"),
                      description=u"Item Name (250 character limit)",
@@ -169,13 +170,14 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                 required=False
                 )
 
-    publication_date = Date(title=_(u"Date of item's creation"),
-                description=u"The date refers to the moment in which the item "
-                            u"has been prepared by contributing expeerts to be "
-                            u"submitted for the publication in Climate "
-                            u"ADAPTPublication/last update date",
-                required=False
-                )
+    publication_date = Date(
+        title=_(u"Date of item's creation"),
+        description=u"The date refers to the moment in which the item "
+        u"has been prepared by contributing experts to be "
+        u"submitted for the publication in Climate "
+        u"ADAPT Publication/last update date",
+        required=False
+    )
 
     featured = Bool(title=_(u"Featured"),
                     required=False,
@@ -197,10 +199,9 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     source = RichText(title=_(u"References"),
                       required=False,
                       description=_(u"Describe the references (projects, a"
-                                  u" tools reports,etc.) used for the "
-                                  u" preparation of the adaptation option "
-                                  u" description"))
-
+                                    u" tools reports,etc.) used for the "
+                                    u" preparation of the adaptation option "
+                                    u" description"))
 
     # -----------[ "geographic_information" fields ]------------------
 
@@ -234,15 +235,20 @@ class IAceItem(form.Schema, IImageScaleTraversable):
         required=False,
     )
 
-    other_contributor = Text(title=_(u"Other contributor(s)"), required=False, default=u"",
-                    description=_(u"Please first verify if the contributor is "
-                                  u"already part of the Climate ADAPT Database."
-                                  u" If not, it is suggested to first create a "
-                                  u"new Organisation item (<a target='_blank' href='/metadata/organisations/++add++eea.climateadapt.organisation'>click here</a>). As last"
-                                  u" alternative please add the new "
-                                  u"contributor(s) in the following box, using "
-                                  u"the official name")
-                    )
+    other_contributor = Text(
+        title=_(u"Other contributor(s)"), required=False, default=u"",
+        description=_(
+            u"Please first verify if the contributor is "
+            u"already part of the Climate ADAPT Database."
+            u" If not, it is suggested to first create a "
+            u"new Organisation item "
+            u"(<a target='_blank' "
+            u"href='/metadata/organisations/++add++eea.climateadapt.organisation'>click here</a>). "
+            u"As last alternative please add the new "
+            u"contributor(s) in the following box, using "
+            u"the official name"
+        )
+    )
 
     # -----------[ "omitted" fields ]------------------
     directives.omitted(IAddForm, 'portal_type')
@@ -379,12 +385,14 @@ class IPublicationReport(IAceItem):
     directives.omitted(IEditForm, 'featured')
     directives.omitted(IAddForm, 'featured')
 
-    publication_date = Date(title=_(u"Date of item's publication"),
-                description=u"The date refers to the latest date of publication"
-                            u" of the item (different from the date of item's"
-                            u" publication in Climate ADAPT)",
-                required=False
-                )
+    publication_date = Date(
+        title=_(u"Date of item's publication"),
+        description=u"The date refers to the latest date of publication"
+        u" of the item (different from the date of item's"
+        u" publication in Climate ADAPT)",
+        required=False
+    )
+
 
 class IInformationPortal(IAceItem):
     """ Information Portal Interface
@@ -405,12 +413,13 @@ class IGuidanceDocument(IAceItem):
     directives.omitted(IEditForm, 'year')
     directives.omitted(IAddForm, 'year')
 
-    publication_date = Date(title=_(u"Date of item's publication"),
-                description=u"The date refers to the latest date of publication"
-                            u" of the item (different from the date of item's"
-                            u" publication in Climate ADAPT)",
-                required=False
-                )
+    publication_date = Date(
+        title=_(u"Date of item's publication"),
+        description=u"The date refers to the latest date of publication"
+        u" of the item (different from the date of item's"
+        u" publication in Climate ADAPT)",
+        required=False
+    )
 
 
 class ITool(IAceItem):
@@ -422,7 +431,7 @@ class ITool(IAceItem):
     directives.omitted(IEditForm, 'featured')
     directives.omitted(IAddForm, 'featured')
 
-    #source = TextLine(title=_(u"Organisation's source"),
+    # source = TextLine(title=_(u"Organisation's source"),
     #                  required=False,
     #                  description=u"Describe the original source of the item "
     #                              u"description (250 character limit)")
@@ -448,12 +457,13 @@ class IOrganisation(IAceItem):
                        )
 
     contact = TextLine(title=_(u"Contact"),
-                       description=_(u"Corporate email or link to contact form"),
+                       description=_(
+                           u"Corporate email or link to contact form"),
                        required=True,
                        )
 
     acronym = TextLine(title=_(u"Acronym"),
-                       #description=_(u"Acronym"),
+                       # description=_(u"Acronym"),
                        required=True,
                        )
 
@@ -461,12 +471,12 @@ class IOrganisation(IAceItem):
                      description=u"Item Name (250 character limit)",
                      required=True)
 
-    #form.fieldset('default',
+    # form.fieldset('default',
     #              label=u'Item Description',
-    #              fields=['acronym', 'title', 'description', 'long_description',
-    #                      'keywords', 'sectors', 'climate_impacts', 'elements',
-    #                      ]
-    #              )
+    #         fields=['acronym', 'title', 'description', 'long_description',
+    #                 'keywords', 'sectors', 'climate_impacts', 'elements',
+    #                 ]
+    #         )
 
     logo = NamedBlobImage(
         title=_(u"Logo"),

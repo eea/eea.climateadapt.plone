@@ -136,4 +136,29 @@
     permission="cmf.ManagePortal"
     />
 
+  <browser:page
+    name="migrate_year_to_date"
+    for="*"
+    template="pt/migrate_year_to_date.pt"
+    class=".migrate.YearToDate"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
+    name="migrate_health_impacts"
+    for="*"
+    template="pt/migrate_health_impacts.pt"
+    class=".migrate.HealthImpacts"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
+    name="migrate_funding_programme"
+    for="*"
+    template="pt/migrate_funding_programme.pt"
+    class=".migrate.FundingProgramme"
+    permission="cmf.ManagePortal"
+    />
+
+
 </configure>
