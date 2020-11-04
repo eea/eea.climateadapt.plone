@@ -167,7 +167,14 @@ class SourceToRichText():
         res = []
 
         DB_ITEM_TYPES = [
-            'eea.climateadapt.organisation'
+            'eea.climateadapt.guidancedocument',
+            'eea.climateadapt.indicator',
+            'eea.climateadapt.informationportal',
+            'eea.climateadapt.organisation',
+            'eea.climateadapt.publicationreport',
+
+            'eea.climateadapt.tool'
+
         ]
 
         i = 0
