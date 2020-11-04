@@ -1,0 +1,3 @@
+<h1>migrate source to richtext</h1>
+<table tal:define="items view/list">
+</table>

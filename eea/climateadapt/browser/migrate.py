@@ -1,6 +1,8 @@
 import csv
 import logging
 from datetime import date
+from plone.app.textfield import RichText
+from plone.app.textfield.value import RichTextValue
 
 import transaction
 
@@ -154,3 +156,33 @@ class FundingProgramme():
                         obj.absolute_url())
 
         return response
+
+
+class SourceToRichText():
+    """ Migrate funding_programme field
+    """
+
+    def list(self):
+        catalog = api.portal.get_tool('portal_catalog')
+        res = []
+
+        DB_ITEM_TYPES = [
+            'eea.climateadapt.organisation'
+        ]
+
+        i = 0
+        for _type in DB_ITEM_TYPES:
+            i += 1
+            if i % 100 == 0:
+                transaction.savepoint()
+
+            brains = catalog.searchResults(portal_type=_type)
+
+            for brain in brains:
+                obj = brain.getObject()
+
+                if hasattr(obj, 'source') and \
+                        not isinstance(obj.source, RichText):
+                    #import pdb; pdb.set_trace()
+                    obj.source = RichTextValue(obj.source)
+                    logger.info("Migrated source type for obj: %s", brain.getURL())
