@@ -99,7 +99,7 @@
         <div tal:condition="python: cadapt_published or cadapt_last_modified" class="col-md-12 col-xs-12">
             <p>
                 <span tal:condition="cadapt_published"><strong>Published in Climate ADAPT</strong> <span tal:replace="python: cadapt_published.strftime('%b %d %Y')" /></span>
-                <span tal:condition="python: cadapt_published or cadapt_last_modified"> &nbsp; - &nbsp; </span>
+                <span tal:condition="python: cadapt_published and cadapt_last_modified"> &nbsp; - &nbsp; </span>
                 <span tal:condition="cadapt_last_modified"><strong>Last Modified in Climate ADAPT</strong> <span tal:replace="python: cadapt_last_modified.strftime('%b %d %Y')"/></span>
             </p>
         </div>

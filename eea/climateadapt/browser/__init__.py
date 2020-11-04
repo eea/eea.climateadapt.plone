@@ -74,20 +74,16 @@ class AceViewApi(object):
         wh = self.context.workflow_history
         wf = wh.get('cca_items_workflow', None)
 
-        if not wf:
-            return None
-
         response = {};
-        response['cadapt_last_modified'] = None
-        response['cadapt_published'] = None
+        response['cadapt_last_modified'] = self.context.modified()
+        response['cadapt_published'] = self.context.effective()
 
-        #import pdb; pdb.set_trace()
+        if not wf:
+            return response
 
         for metadata in wf:
-            if metadata['action'] == 'submit' and metadata['review_state'] == 'pending':
+            if metadata['action'] == 'publish':
                 response['cadapt_published'] = metadata['time']
-            if metadata['action'] == 'publish' and metadata['review_state'] == 'published':
-                response['cadapt_last_modified'] = metadata['time']
 
         return response
 
