@@ -184,6 +184,6 @@ class SourceToRichText():
                 if hasattr(obj, 'source') \
                         and not isinstance(obj.source, RichText) \
                         and not isinstance(obj.source, RichTextValue):
-                    #import pdb; pdb.set_trace()
                     obj.source = RichTextValue(obj.source)
+                    obj._p_changed = True
                     logger.info("Migrated source type for obj: %s", brain.getURL())
