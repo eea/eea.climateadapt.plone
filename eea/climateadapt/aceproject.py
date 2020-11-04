@@ -1,4 +1,9 @@
 from collective import dexteritytextindexer
+from zope.component import adapter
+from zope.interface import implementer, implements
+from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
+                         TextLine, Tuple)
+
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
@@ -6,17 +11,14 @@ from plone.app.textfield import RichText
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.directives import dexterity, form
-from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.namedfile.field import NamedBlobImage
+from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
-from z3c.relationfield.schema import RelationChoice
-from zope.component import adapter
-from zope.interface import implementer, implements
-from zope.schema import URI, Bool, Choice, Date, Int, List, Text, TextLine, Tuple
-from zope.schema import Datetime
+
+# from z3c.relationfield.schema import RelationChoice
 
 
 class IAceProject(form.Schema, IImageScaleTraversable):
@@ -49,9 +51,10 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['acronym', 'title', 'lead',
-                          'long_description', 'partners', 'keywords', 'sectors',
-                          'climate_impacts', 'elements', 'funding',
-                          'funding_programme', 'duration', 'featured'])
+                          'long_description', 'partners', 'keywords',
+                          'sectors', 'climate_impacts', 'elements', 'funding',
+                          'funding_programme', 'duration', 'featured'
+                          ])
 
     form.fieldset('reference_information',
                   label=u'Reference information',
@@ -69,9 +72,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     # -----------[ "default" fields ]------------------
 
-
     # These fields are richtext in the db:
-    #set(['keywords', 'partners', 'admincomment', 'abstracts', 'source'])
+    # set(['keywords', 'partners', 'admincomment', 'abstracts', 'source'])
     origin_website = List(title=_(u"Origin website"),
                           required=True,
                           value_type=Choice(
@@ -86,11 +88,11 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     )
 
     funding_programme = Choice(title=_(u"Funding Programme"),
-                            required = False,
-                            #value_type = Choice(
-                                vocabulary = "eea.climateadapt.funding_programme"
-                            #    )
-                            )
+                               required=False,
+                               # value_type = Choice(
+                               vocabulary="eea.climateadapt.funding_programme"
+                               #    )
+                               )
 
     acronym = TextLine(title=_(u"Acronym"),
                        description=_(u"Acronym of the project"),
@@ -135,21 +137,22 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     )
 
     health_impacts = List(title=_(u"Health impacts"),
-                            required = False,
-                            value_type = Choice(
-                                vocabulary = "eea.climateadapt.health_impacts")
-                            )
+                          required=False,
+                          value_type=Choice(
+        vocabulary="eea.climateadapt.health_impacts")
+    )
 
-    publication_date = Date(title=_(u"Date of item's creation"),
-                description=u"The date refers to the moment in which the item "
-                            u"has been prepared by contributing expeerts to be "
-                            u"submitted for the publication in Climate "
-                            u"ADAPTPublication/last update date",
-                required=False
-                )
+    publication_date = Date(
+        title=_(u"Date of item's creation"),
+        description=u"The date refers to the moment in which the item "
+        u"has been prepared by contributing expeerts to be "
+        u"submitted for the publication in Climate "
+        u"ADAPTPublication/last update date",
+        required=False
+    )
 
     include_in_observatory = Bool(title=_(u"Include in observatory"),
-                     required=False, default=False)
+                                  required=False, default=False)
 
     form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(
@@ -190,14 +193,15 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     duration = TextLine(
         title=_(u"Duration"),
-        description=_(u"Provide duration of project - Start and end date [yr]"),
+        description=_(
+            u"Provide duration of project - Start and end date [yr]"),
         required=False,
     )
 
     featured = Bool(title=_(u"Featured"),
-                     required=False,
-                     default=False,
-                     )
+                    required=False,
+                    default=False,
+                    )
 
     # -----------[ "reference_information" fields ]------------------
     directives.widget('websites', TextLinesWidget)
@@ -266,7 +270,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         title=_(u"Special Tagging"),
         description=_(u"Special tags that allow for linking the item"),
         required=False,
-        )
+    )
 
     # special_tags = TextLine(
     #     title=_(u"Special Tagging"),
@@ -290,7 +294,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     spatial_layer = TextLine(
         title=_(u"Spatial Layer"), required=False, default=u"",
-        )
+    )
 
     spatial_values = List(title=_(u"Countries"),
                           description=_(u"European countries"),
@@ -300,9 +304,11 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                           )
 
     partners_source_link = URI(title=_(u"Partners Source Link"),
-                              description=(u"Provide URL from project partners"),
-                              required=False,
-                              )
+                               description=(
+                                   u"Provide URL from project partners"),
+                               required=False,
+                               )
+
 
 class AceProject(dexterity.Container):
     implements(IAceProject, IClimateAdaptContent)

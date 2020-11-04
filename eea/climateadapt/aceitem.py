@@ -6,7 +6,7 @@ from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
 
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
-from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader, Year
+from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader  # , Year
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.app.textfield import RichText
 from plone.app.widgets.interfaces import IWidgetsLayer
@@ -33,7 +33,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('sectors')
     dexteritytextindexer.searchable('climate_impacts')
     dexteritytextindexer.searchable('elements')
-    dexteritytextindexer.searchable('year')
+    # dexteritytextindexer.searchable('year')
 
     dexteritytextindexer.searchable('websites')
     dexteritytextindexer.searchable('source')
@@ -55,7 +55,7 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                   label=u'Item Description',
                   fields=['title', 'description', 'long_description',
                           'keywords', 'sectors', 'climate_impacts', 'elements',
-                          'year', 'featured']
+                          'featured']
                   )
 
     form.fieldset('reference_information',
@@ -165,10 +165,10 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                         vocabulary="eea.climateadapt.aceitems_elements",),
                     )
 
-    year = Year(title=_(u"Year"),
-                description=u"Date of publication/release/update of the item",
-                required=False
-                )
+    # year = Year(title=_(u"Year"),
+    #             description=u"Date of publication/release/update of the item",
+    #             required=False
+    #             )
 
     publication_date = Date(
         title=_(u"Date of item's creation"),
@@ -380,8 +380,8 @@ class IPublicationReport(IAceItem):
     """ Publication Report Interface
     """
 
-    directives.omitted(IEditForm, 'year')
-    directives.omitted(IAddForm, 'year')
+    # directives.omitted(IEditForm, 'year')
+    # directives.omitted(IAddForm, 'year')
     directives.omitted(IEditForm, 'featured')
     directives.omitted(IAddForm, 'featured')
 
@@ -398,8 +398,8 @@ class IInformationPortal(IAceItem):
     """ Information Portal Interface
     """
 
-    directives.omitted(IEditForm, 'year')
-    directives.omitted(IAddForm, 'year')
+    # directives.omitted(IEditForm, 'year')
+    # directives.omitted(IAddForm, 'year')
     directives.omitted(IEditForm, 'featured')
     directives.omitted(IAddForm, 'featured')
 
@@ -410,8 +410,8 @@ class IGuidanceDocument(IAceItem):
 
     directives.omitted(IEditForm, 'featured')
     directives.omitted(IAddForm, 'featured')
-    directives.omitted(IEditForm, 'year')
-    directives.omitted(IAddForm, 'year')
+    # directives.omitted(IEditForm, 'year')
+    # directives.omitted(IAddForm, 'year')
 
     publication_date = Date(
         title=_(u"Date of item's publication"),
@@ -426,8 +426,8 @@ class ITool(IAceItem):
     """ Tool Interface
     """
 
-    directives.omitted(IAddForm, 'year')
-    directives.omitted(IEditForm, 'year')
+    # directives.omitted(IAddForm, 'year')
+    # directives.omitted(IEditForm, 'year')
     directives.omitted(IEditForm, 'featured')
     directives.omitted(IAddForm, 'featured')
 
@@ -440,8 +440,8 @@ class ITool(IAceItem):
 class IOrganisation(IAceItem):
     """ Organisation Interface"""
 
-    directives.omitted(IAddForm, 'year')
-    directives.omitted(IEditForm, 'year')
+    # directives.omitted(IAddForm, 'year')
+    # directives.omitted(IEditForm, 'year')
     directives.omitted(IAddForm, 'health_impacts')
     directives.omitted(IEditForm, 'health_impacts')
     directives.omitted(IAddForm, 'source')
@@ -487,8 +487,8 @@ class IOrganisation(IAceItem):
 class IIndicator(IAceItem):
     """ Indicator Interface"""
 
-    directives.omitted(IEditForm, 'year')
-    directives.omitted(IAddForm, 'year')
+    # directives.omitted(IEditForm, 'year')
+    # directives.omitted(IAddForm, 'year')
     directives.omitted(IEditForm, 'featured')
     directives.omitted(IAddForm, 'featured')
 

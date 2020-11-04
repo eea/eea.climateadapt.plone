@@ -17,8 +17,8 @@ from eea.climateadapt.sat.datamanager import queue_callback
 from eea.climateadapt.sat.handlers import HANDLERS
 from eea.climateadapt.sat.settings import get_settings
 from eea.climateadapt.sat.utils import _measure_id, to_arcgis_coords
-from eea.climateadapt.schema import Year
-#from eea.climateadapt.schema import Date
+# from eea.climateadapt.schema import Year
+# from eea.climateadapt.schema import Date
 from eea.climateadapt.utils import _unixtime, shorten
 from eea.climateadapt.vocabulary import BIOREGIONS
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
@@ -70,14 +70,14 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('success_limitations')
     dexteritytextindexer.searchable('title')
     dexteritytextindexer.searchable('websites')
-    dexteritytextindexer.searchable('year')
+    # dexteritytextindexer.searchable('year')
     dexteritytextindexer.searchable('publication_date')
 
     form.fieldset('default',
                   label=u'Item Description',
                   fields=['publication_date', 'title', 'long_description',
                           'description', 'climate_impacts', 'keywords',
-                          'sectors', 'year', 'featured',
+                          'sectors', 'featured',        # 'year',
                           ]
                   )
 
@@ -89,7 +89,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           'implementation_time', 'lifetime']
                   )
 
-    #form.fieldset('inclusion_health_observatory',
+    # form.fieldset('inclusion_health_observatory',
     #              label=u'Inclusion in health observatory',
     #              fields=['include_in_observatory', 'health_impacts']
     #              )
@@ -168,18 +168,19 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         vocabulary="eea.climateadapt.aceitems_sectors",),
     )
 
-    year = Year(title=_(u"Year"),
-                description=u"Date of publication/release/update of the items "
-                u"related source",
-                required=False,)
+    # year = Year(title=_(u"Year"),
+    #             description=u"Date of publication/release/update of the items "
+    #             u"related source",
+    #             required=False,)
 
-    publication_date = Date(title=_(u"Date of item's creation"),
-                description=u"The date refers to the moment in which the item "
-                            u"has been prepared by contributing expeerts to be "
-                            u"submitted for the publication in Climate "
-                            u"ADAPTPublication/last update date",
-                required=False
-                )
+    publication_date = Date(
+        title=_(u"Date of item's creation"),
+        description=u"The date refers to the moment in which the item "
+        u"has been prepared by contributing expeerts to be "
+        u"submitted for the publication in Climate "
+        u"ADAPTPublication/last update date",
+        required=False
+    )
 
     featured = Bool(
         title=_(u"Featured"),
@@ -268,9 +269,9 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     source = RichText(title=_(u"References"),
                       required=False,
                       description=_(u"Describe the references (projects, a"
-                                  u" tools reports,etc.) used for the "
-                                  u" preparation of the adaptation option "
-                                  u" description"))
+                                    u" tools reports,etc.) used for the "
+                                    u" preparation of the adaptation option "
+                                    u" description"))
 
     # -----------[ "geographic_information" fields ]------------------
 
@@ -306,7 +307,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           required=True,
                           value_type=Choice(
                               vocabulary="eea.climateadapt.origin_website"),
-                        )
+                          )
 
     image = NamedBlobImage(
         title=_(u"Thumbnail or logo"),
@@ -329,16 +330,17 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         required=False,
     )
 
-    #TODO: this will be a widget
-    other_contributor = Text(title=_(u"Other contributor(s)"), required=False, default=u"",
-                    description=_(u"Please first verify if the contributor is "
-                                  u"already part of the Climate ADAPT Database."
-                                  u" If not, it is suggested to first create a "
-                                  u"new Organisation item (<a target='_blank' href='/metadata/organisations/++add++eea.climateadapt.organisation'>click here</a>). As last"
-                                  u" alternative please add the new "
-                                  u"contributor(s) in the following box, using "
-                                  u"the official name")
-                    )
+    # TODO: this will be a widget
+    other_contributor = Text(
+        title=_(u"Other contributor(s)"), required=False, default=u"",
+        description=_(u"Please first verify if the contributor is "
+                      u"already part of the Climate ADAPT Database."
+                      u" If not, it is suggested to first create a "
+                      u"new Organisation item (<a target='_blank' href='/metadata/organisations/++add++eea.climateadapt.organisation'>click here</a>). As last"
+                      u" alternative please add the new "
+                      u"contributor(s) in the following box, using "
+                      u"the official name")
+    )
 
     # -----------[ "omitted" fields ]------------------
 
@@ -396,14 +398,13 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           vocabulary="eea.climateadapt.acemeasure_types")
 
     health_impacts = List(title=_(u"Health impacts"),
-                            required = False,
-                            value_type = Choice(
-                                vocabulary = "eea.climateadapt.health_impacts")
-                            )
-
+                          required=False,
+                          value_type=Choice(
+        vocabulary="eea.climateadapt.health_impacts")
+    )
 
     include_in_observatory = Bool(title=_(u"Include in observatory"),
-                     required=False, default=False)
+                                  required=False, default=False)
 
     important = Bool(title=_(u"High importance"), required=False,
                      default=False)
@@ -423,13 +424,14 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     id = TextLine(title=_(u"Object ID"), required=False,)
 
-    publication_date = Date(title=_(u"Date of item's creation"),
-                description=u"The date refers to the moment in which the item "
-                            u"has been prepared or  updated by contributing "
-                            u"experts to be submitted for the publication in "
-                            u"Climate ADAPT",
-                required=False
-                )
+    publication_date = Date(
+        title=_(u"Date of item's creation"),
+        description=u"The date refers to the moment in which the item "
+        u"has been prepared or  updated by contributing "
+        u"experts to be submitted for the publication in "
+        u"Climate ADAPT",
+        required=False
+    )
 
     # dexteritytextindexer.searchable('summary')
     # summary = Text(title=_(u"Summary"), required=False, default=u"")
@@ -439,8 +441,8 @@ class IAdaptationOption(IAceMeasure):
     """ Adaptation Option
     """
 
-    directives.omitted(IEditForm, 'year')
-    directives.omitted(IAddForm, 'year')
+    # directives.omitted(IEditForm, 'year')
+    # directives.omitted(IAddForm, 'year')
     directives.omitted(IEditForm, 'featured')
     directives.omitted(IAddForm, 'featured')
 
@@ -464,29 +466,30 @@ class IAdaptationOption(IAceMeasure):
             vocabulary="eea.climateadapt.aceitems_ipcc_category",),
     )
 
-    publication_date = Date(title=_(u"Date of item's creation"),
-                description=u"The date refers to the moment in which the item "
-                            u"has been prepared or  updated by contributing "
-                            u"experts to be submitted for the publication in "
-                            u"Climate ADAPT",
-                required=False
-                )
+    publication_date = Date(
+        title=_(u"Date of item's creation"),
+        description=u"The date refers to the moment in which the item "
+        u"has been prepared or  updated by contributing "
+        u"experts to be submitted for the publication in "
+        u"Climate ADAPT",
+        required=False
+    )
 
 
 class ICaseStudy(IAceMeasure):  # , IGeolocatable):
     """ Case study
     """
 
-    directives.omitted(IEditForm, 'year')
-    directives.omitted(IAddForm, 'year')
+    # directives.omitted(IEditForm, 'year')
+    # directives.omitted(IAddForm, 'year')
     directives.omitted(IEditForm, 'featured')
     directives.omitted(IAddForm, 'featured')
     directives.omitted(IEditForm, 'primephoto')
     directives.omitted(IAddForm, 'primephoto')
     directives.omitted(IEditForm, 'supphotos')
     directives.omitted(IAddForm, 'supphotos')
-    #directives.omitted(IEditForm, 'relatedItems')
-    #directives.omitted(IAddForm, 'relatedItems')
+    # directives.omitted(IEditForm, 'relatedItems')
+    # directives.omitted(IAddForm, 'relatedItems')
 
     challenges = RichText(
         title=_(u"Challenges"), required=True, default=None,
