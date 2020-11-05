@@ -30,6 +30,18 @@
           </div>
 
           <div metal:fill-slot="ace-right-slot">
+
+            <div class="macro-category" tal:condition="effective" tal:define="effective context/publication_date|nothing">
+                <div>
+                  <h4>Date of Item creation:</h4>
+                  <span tal:replace="python: effective.strftime('%Y')">2000</span>
+                  <a href="#" data-toggle="tooltip" class="pat-tooltip"
+                        title="The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT">
+                        <i class="fa fa-question-circle"></i>
+                  </a>
+                </div>
+            </div>
+
             <div metal:use-macro="context/ace_macros/macros/files"></div>
 
             <div class="macro-category" tal:condition="context/keywords">
