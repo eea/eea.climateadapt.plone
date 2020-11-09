@@ -50,12 +50,12 @@
 
     <rules css:if-content=".section-observatory">
 
-      <xsl:if test="$external_template">
+      <rules if="$external_template">
         <drop css:theme="head base" />
         <append css:theme="head">
           <base><xsl:attribute name="href"><xsl:value-of select="$portal_url"/></xsl:attribute></base>
         </append>
-      </xsl:if>
+      </rules>
 
       <append css:theme="head">
         <link rel="stylesheet" type="text/css" href="/++theme++climateadaptv2/static/css/health.css" />
