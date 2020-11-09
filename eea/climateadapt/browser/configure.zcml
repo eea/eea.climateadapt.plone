@@ -632,6 +632,13 @@
         />
 
     <browser:page
+        for="*"
+        name="vibriomap-view"
+        template="pt/vibriomap.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
         class=".misc.DetectBrokenLinksView"
         for="*"
         name="broken-links"
