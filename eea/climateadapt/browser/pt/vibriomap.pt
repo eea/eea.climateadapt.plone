@@ -26,10 +26,6 @@
       text-decoration: none;
       }
     </style>
-    <link rel="stylesheet" href="//js.arcgis.com/3.12/dijit/themes/claro/claro.css" />
-    <link rel="stylesheet" href="//js.arcgis.com/3.12/esri/css/esri.css" />
-
-    <link rel="stylesheet" href="++resource++eea.climateadapt/vibrio/css/map-viewer.css" />
   </metal:style>
 
   <metal:head fill-slot="javascript_head_slot"></metal:head>

@@ -1,0 +1,52 @@
+<metal:use-macro use-macro="context/main_template/macros/master">
+  <metal:style fill-slot="style_slot">
+    <style>
+      #indicator-subtitle a {
+      font-size: medium;
+      font-weight: bold;
+      margin-bottom: 2em;
+      text-decoration: none;
+      color: black;
+      }
+      #lancet-subtitle img {
+      width:100px;
+      padding-right: 2em;
+      }
+      #content i.icon-expand:before {
+          content: '\f00e';
+          font-family: FontAwesome;
+          margin: 0 5px;
+      }
+      #map-zoom {
+        text-align: left;
+        display: block;
+      }
+
+      #map-zoom a {
+        display: inline-block;
+        padding: 1em;
+      text-decoration: none;
+      }
+    </style>
+
+  </metal:style>
+
+  <metal:head fill-slot="javascript_head_slot"></metal:head>
+
+  <metal:title fill-slot="content-title">
+    <h1 tal:content="context/Title">Lancet indicator</h1>
+    <div id="indicator-subtitle">
+      <img src="++resource++eea.climateadapt/LancetCLogo.png" />
+      <a href="https://www.lancetcountdown.org/">LANCETCOUNTDOWN</a>
+    </div>
+  </metal:title>
+  <metal:content fill-slot="content-core">
+
+    <div tal:content="structure python: context.text and context.text.output or ''"></div>
+
+    <div tal:condition="context/embed_code">
+      <iframe tal:replace="context/embed_code"></iframe>
+    </div>
+
+  </metal:content>
+</metal:use-macro>

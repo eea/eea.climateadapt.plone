@@ -632,13 +632,6 @@
         />
 
     <browser:page
-        for="*"
-        name="vibriomap-view"
-        template="pt/vibriomap.pt"
-        permission="zope2.View"
-        />
-
-    <browser:page
         class=".misc.DetectBrokenLinksView"
         for="*"
         name="broken-links"
@@ -907,6 +900,21 @@
     template="pt/update_health_items.pt"
     class=".health_items.UpdateFields"
     permission="cmf.ManagePortal"
+    />
+
+  Special pages
+  <browser:page
+    for="*"
+    name="vibriomap-view"
+    template="pt/vibriomap.pt"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    for="*"
+    name="lancet-indicator-view"
+    template="pt/lancet-indicator.pt"
+    permission="zope2.View"
     />
 
 </configure>
