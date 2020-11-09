@@ -3,13 +3,12 @@
 
 from collective.cover.tiles.base import (IPersistentCoverTile,
                                          PersistentCoverTile)
-from zope import schema
-from zope.component.hooks import getSite
-from zope.interface import implements, providedBy
-
 from eea.climateadapt import MessageFactory as _
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope import schema
+from zope.component.hooks import getSite
+from zope.interface import implements, providedBy
 
 
 class ITransRegionalSelectTile(IPersistentCoverTile):
