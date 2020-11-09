@@ -1,0 +1,65 @@
+<metal:use-macro use-macro="context/main_template/macros/master">
+  <metal:style fill-slot="style_slot">
+    <style>
+      #vibrio-subtitle {
+      font-size: medium;
+      font-weight: bold;
+      margin-bottom: 2em;
+      }
+      #vibrio-subtitle img {
+      width:100px;
+      padding-right: 2em;
+      }
+      #content i.icon-expand:before {
+          content: '\f00e';
+          font-family: FontAwesome;
+          margin: 0 5px;
+      }
+      #map-zoom {
+        text-align: left;
+        display: block;
+      }
+
+      #map-zoom a {
+        display: inline-block;
+        padding: 1em;
+      text-decoration: none;
+      }
+    </style>
+  </metal:style>
+
+  <metal:head fill-slot="javascript_head_slot"></metal:head>
+
+  <metal:title fill-slot="content-title">
+    <h1 tal:content="context/Title">Vibrio map viewer</h1>
+    <div id="vibrio-subtitle">
+      <img src="++resource++eea.climateadapt/logo-ecdc.png" />
+        European Centre for Disease Prevention and Control (ECDC)
+    </div>
+  </metal:title>
+  <metal:content fill-slot="content-core">
+
+    <div tal:content="structure python: context.text and context.text.output or ''"></div>
+
+    <p>
+      <span id="map-zoom">
+        <a href="#modal1" class="pat-plone-modal plone-btn plone-btn-primary " data-pat-plone-modal="width: 1200px">
+          <i class="icon-expand" /> View full screen
+        </a>
+        <a href="https://geoportal.ecdc.europa.eu/vibriomapviewer/" class="plone-btn">
+          Go to the source
+        </a>
+      </span>
+      <a href="#modal1" class="pat-plone-modal" data-pat-plone-modal="width: 1200px">
+        <img src="++resource++eea.climateadapt/vibrio-preview.png" width="60%" />
+      </a>
+    </p>
+
+    <div id="modal1" style="display: none">
+      <div id="vibrio-map-embed">
+        <iframe src="https://geoportal.ecdc.europa.eu/vibriomapviewer/" width="100%" height="900px"></iframe>
+      </div>
+    </div>
+
+  </metal:content>
+</metal:use-macro>
