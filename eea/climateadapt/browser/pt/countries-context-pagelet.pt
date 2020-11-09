@@ -12,11 +12,11 @@
   <!--   <a href="../countries&#45;regions/countries" class="form&#45;control">See countries webpage</a> -->
   <!-- </div> -->
 
-  <div class="map-islands" style="bottom: 200px; left: 40px;">
+  <div class="map-islands" style="bottom: 20px; left: 40px;">
     <img class="lazyload" data-src="/++theme++climateadaptv2/static/images/map_islands.svg" />
   </div>
 
-  <svg-container class="svg-map-container svg-fp-container">
+  <svg-container class="svg-map-container svg-fp-container" style="padding: 0.3em; border: 1px solid #CCC">
     <svg height="350" width="100%">
     </svg>
   </svg-container>

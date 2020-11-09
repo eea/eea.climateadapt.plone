@@ -22,7 +22,7 @@
 
       #map-zoom a {
         display: inline-block;
-        padding: 1em;
+        padding: 0.5em;
       text-decoration: none;
       }
     </style>

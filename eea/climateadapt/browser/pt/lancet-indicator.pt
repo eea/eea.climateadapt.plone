@@ -45,7 +45,7 @@
     <div tal:content="structure python: context.text and context.text.output or ''"></div>
 
     <div tal:condition="context/embed_code">
-      <iframe tal:replace="context/embed_code"></iframe>
+      <iframe tal:replace="structure context/embed_code"></iframe>
     </div>
 
   </metal:content>
