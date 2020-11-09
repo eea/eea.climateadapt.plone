@@ -5,14 +5,13 @@ import json
 
 from collective.cover.tiles.base import (IPersistentCoverTile,
                                          PersistentCoverTile)
-from zope import schema
-from zope.interface import implements
-
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.vocabulary import ace_countries_selection
 from plone.memoize import view
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope import schema
+from zope.interface import implements
 
 
 class ICountrySelectTile(IPersistentCoverTile):
@@ -46,10 +45,11 @@ class CountrySelectTile(PersistentCoverTile):
     def countries(self):
         # countries = [(c[0], c[1].replace(" ", "-")) for c in
         #              ace_countries_selection]
-        
+
         # return sorted(countries, key=lambda c: c[1])
-        
+
         return sorted(ace_countries_selection, key=lambda c: c[1])
+
 
 class SettingsPage(BrowserView):
     """ JSON for settings for country headers

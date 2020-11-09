@@ -603,6 +603,14 @@
         />
 
     <browser:page
+        class=".countries.ContextCountriesView"
+        for="*"
+        name="countries-context-pagelet"
+        template="pt/countries-context-pagelet.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
         class=".misc.AdaptationStrategyView"
         for="*"
         name="adaptation-strategies"
