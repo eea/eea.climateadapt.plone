@@ -83,7 +83,11 @@
       </rules>
 
       <rules css:if-not-content=".template-health_homepage">
-        <theme href="health-page.html" />
+        <rules css:if-content=".portaltype-eea-climateadapt-indicator">
+          <theme href="health-page.html" />
+        </rules>
+
+        <theme href="health-page-full.html" />
         <drop css:theme=".health_top_items" />
         <drop css:theme=".list_news_events" />
 
