@@ -41,24 +41,18 @@
 
     <div tal:content="structure python: context.text and context.text.output or ''"></div>
 
-    <p>
+    <div>
+      <div id="vibrio-map-embed">
+        <iframe src="https://geoportal.ecdc.europa.eu/vibriomapviewer/" width="100%" height="900px"></iframe>
+      </div>
       <span id="map-zoom">
-        <a href="#modal1" class="pat-plone-modal plone-btn plone-btn-primary " data-pat-plone-modal="width: 1200px">
-          <i class="icon-expand" /> View full screen
-        </a>
+        <!-- <a href="#modal1" class="pat&#45;plone&#45;modal plone&#45;btn plone&#45;btn&#45;primary " data&#45;pat&#45;plone&#45;modal="width: 1200px"> -->
+        <!--   <i class="icon&#45;expand" /> View full screen -->
+        <!-- </a> -->
         <a href="https://geoportal.ecdc.europa.eu/vibriomapviewer/" class="plone-btn">
           Go to the source
         </a>
       </span>
-      <a href="#modal1" class="pat-plone-modal" data-pat-plone-modal="width: 1200px">
-        <img src="++resource++eea.climateadapt/vibrio-preview.png" width="60%" />
-      </a>
-    </p>
-
-    <div id="modal1" style="display: none">
-      <div id="vibrio-map-embed">
-        <iframe src="https://geoportal.ecdc.europa.eu/vibriomapviewer/" width="100%" height="900px"></iframe>
-      </div>
     </div>
 
   </metal:content>
