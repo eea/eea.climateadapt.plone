@@ -86,6 +86,9 @@
         <rules css:if-content=".portaltype-eea-climateadapt-indicator">
           <theme href="health-page.html" />
         </rules>
+        <rules css:if-content=".portaltype-eea-climateadapt-organisation">
+          <theme href="health-page.html" />
+        </rules>
 
         <theme href="health-page-full.html" />
         <drop css:theme=".health_top_items" />

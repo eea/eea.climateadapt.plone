@@ -17,7 +17,7 @@
   </div>
 
   <svg-container class="svg-map-container svg-fp-container" style="padding: 0.3em; border: 1px solid #CCC">
-    <svg height="350" width="100%">
+    <svg height="700" width="100%">
     </svg>
   </svg-container>
 
