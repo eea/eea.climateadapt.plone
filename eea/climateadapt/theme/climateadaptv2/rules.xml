@@ -90,6 +90,12 @@
           <theme href="health-page.html" />
         </rules>
 
+        <!-- <rules css:if&#45;not&#45;content=".portaltype&#45;eea&#45;climateadapt&#45;indicator"> -->
+        <!--   <drop css:theme=".health&#45;right" /> -->
+        <!-- </rules> -->
+
+        <!-- <drop css:theme=".health&#45;right" /> -->
+
         <theme href="health-page-full.html" />
         <drop css:theme=".health_top_items" />
         <drop css:theme=".list_news_events" />
