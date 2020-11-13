@@ -68,7 +68,7 @@
       <drop css:theme-children=".help-menu" />
 
       <rules css:if-content=".template-health_homepage">
-        <theme href="health.html" />
+        <theme href="health-homepage.html" />
         <replace css:theme=".list_news_events" css:content=".list_news_events" method="raw"/>
         <drop css:content=".list_news_events" />
         <replace css:theme=".folder_health_context" css:content=".folder_health_context" />
@@ -89,12 +89,6 @@
         <rules css:if-content=".portaltype-eea-climateadapt-organisation">
           <theme href="health-page.html" />
         </rules>
-
-        <!-- <rules css:if&#45;not&#45;content=".portaltype&#45;eea&#45;climateadapt&#45;indicator"> -->
-        <!--   <drop css:theme=".health&#45;right" /> -->
-        <!-- </rules> -->
-
-        <!-- <drop css:theme=".health&#45;right" /> -->
 
         <theme href="health-page-full.html" />
         <drop css:theme=".health_top_items" />

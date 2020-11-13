@@ -2,6 +2,7 @@
   // fixes a problem with position relative
   border-bottom: 1px solid white !important;
 }
+
 body.section-observatory {
   background-color: #fff;
 
@@ -118,28 +119,6 @@ body.section-observatory {
     }
   }
 
-  // .circle_sma {
-  //   height: 25px;
-  //   width: 25px;
-  //   background-color: #555;
-  //   border-radius: 50%;
-  //   display: inline-block;
-  // }
-  // .circle_med {
-  //   height: 35px;
-  //   width: 35px;
-  //   background-color: #555;
-  //   border-radius: 50%;
-  //   display: inline-block;
-  // }
-  // .circle_big {
-  //   height: 45px;
-  //   width: 45px;
-  //   background-color: #555;
-  //   border-radius: 50%;
-  //   display: inline-block;
-  // }
-
   div.health-top {
     background: url("/++theme++climateadaptv2/static/images/climate-4691943.jpg")
       no-repeat center center;
@@ -148,6 +127,27 @@ body.section-observatory {
     height: 350px;
     background-size: cover;
     overflow: hidden;
+    display: flex;
+    flex-direction: column-reverse;
+
+    a.health_climate_link_main {
+      line-height: 48px;
+      // padding: 10px 0;
+      padding: 1em;
+      color: white;
+      margin: 0px;
+      // position: absolute;
+      display: inline-block;
+      // margin-top: 269px;
+      font-family: OpenSansB;
+      font-size: 34px;
+      text-shadow: black 2px 3px 10px;
+      text-decoration: none;
+
+      &:hover {
+        color: #fff;
+      }
+    }
   }
 
   ul#navbar {
@@ -194,18 +194,9 @@ body.section-observatory {
     }
   }
 
-  .site-container {
-    top: 39px;
-    margin-bottom: 39px;
-
-    #content {
-      border: 0px;
-      padding: 0px;
-    }
-  }
-
   .health_contribute {
-    // margin-top: 2.3em;
+    margin-top: 30px;
+
     h4 {
       color: #007cb9;
       font-size: 1.1em;
@@ -220,26 +211,27 @@ body.section-observatory {
     }
   }
 
-  a.health_climate_link_main {
-    line-height: 48px;
-    padding: 10px 0;
-    color: white;
-    margin: 0px;
-    position: absolute;
-    margin-top: 300px;
-    font-family: OpenSansB;
-    font-size: 34px;
-    text-shadow: black 2px 3px 10px;
+  .site-container {
+    top: 140px;
+    margin-bottom: 140px;
+
+    #content {
+      border: 0px;
+      padding: 0px;
+    }
   }
 
-  a.health_climate_link_main:hover {
-    // background-color: #000;
-    color: #fff;
-  }
+  .health-homepage-specific {
+    .site-container {
+      top: 39px;
+      margin-bottom: 39px;
 
-  // footer {
-  //   margin-top:160px;
-  // }
+      #content {
+        border: 0px;
+        padding: 0px;
+      }
+    }
+  }
 
   @media only screen and (max-width: 800px) {
     .d-sm-none {
@@ -259,15 +251,6 @@ body.section-observatory {
   .health-left,
   .health-right {
     padding: 0 15px;
-  }
-
-  .health-right {
-    display: none;
-  }
-
-  .portaltype-eea-climateadapt-indicator .health-right,
-  .portaltype-eea-climateadapt-organisation .health-right {
-    display: block;
   }
 
   .health-left #portal-column-one {
@@ -293,3 +276,45 @@ body.section-observatory {
 span.bold {
   font-weight: bolder;
 }
+// .circle_sma {
+//   height: 25px;
+//   width: 25px;
+//   background-color: #555;
+//   border-radius: 50%;
+//   display: inline-block;
+// }
+// .circle_med {
+//   height: 35px;
+//   width: 35px;
+//   background-color: #555;
+//   border-radius: 50%;
+//   display: inline-block;
+// }
+// .circle_big {
+//   height: 45px;
+//   width: 45px;
+//   background-color: #555;
+//   border-radius: 50%;
+//   display: inline-block;
+// }
+
+// .health-right {
+//   display: none;
+// }
+//
+// .portaltype-eea-climateadapt-indicator .health-right,
+// .portaltype-eea-climateadapt-organisation .health-right {
+//   display: block !important;
+// }
+
+// footer {
+//   margin-top:160px;
+// }
+// .health-right {
+//   display: none;
+// }
+//
+// .portaltype-eea-climateadapt-indicator .health-right,
+// .portaltype-eea-climateadapt-organisation .health-right {
+//   display: block !important;
+// }
