@@ -62,13 +62,13 @@
       </append>
 
       <!-- <rules css:if&#45;content=".subsection&#45;background&#45;country&#45;profiles"> -->
-        <replace css:content="head title">
-          <title><xsl:value-of select="
-            substring(/html/head/title/text(),
-              0,
-              string-length(/html/head/title/text()) - string-length('— Climate-ADAPT')
-            )" /> —  Climate and health observatory</title>
-        </replace>
+        <!-- <replace css:content="head title"> -->
+        <!--   <title><xsl:value&#45;of select=" -->
+        <!--     substring(/html/head/title/text(), -->
+        <!--       0, -->
+        <!--       string&#45;length(/html/head/title/text()) &#45; string&#45;length('— Climate&#45;ADAPT') -->
+        <!--     )" /> —  Climate and health observatory</title> -->
+        <!-- </replace> -->
       <!-- </rules> -->
 
       <replace css:content="#navbar" css:theme=".main-nav-menu" href="@@health_navbar" method="document"/>
@@ -93,12 +93,12 @@
       </rules>
 
       <rules css:if-not-content=".template-health_homepage">
-        <rules css:if-content=".portaltype-eea-climateadapt-indicator">
-          <theme href="health-page.html" />
-        </rules>
-        <rules css:if-content=".portaltype-eea-climateadapt-organisation">
-          <theme href="health-page.html" />
-        </rules>
+        <!-- <rules css:if&#45;content=".portaltype&#45;eea&#45;climateadapt&#45;indicator"> -->
+        <!--   <theme href="health&#45;page.html" /> -->
+        <!-- </rules> -->
+        <!-- <rules css:if&#45;content=".portaltype&#45;eea&#45;climateadapt&#45;organisation"> -->
+        <!--   <theme href="health&#45;page.html" /> -->
+        <!-- </rules> -->
 
         <theme href="health-page-full.html" />
         <drop css:theme=".health_top_items" />
