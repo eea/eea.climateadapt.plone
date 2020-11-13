@@ -61,11 +61,15 @@
         <link rel="stylesheet" type="text/css" href="/++theme++climateadaptv2/static/css/health.css" />
       </append>
 
-      <rules css:if-content=".subsection-background-country-profiles-country-profiles">
+      <!-- <rules css:if&#45;content=".subsection&#45;background&#45;country&#45;profiles"> -->
         <replace css:content="head title">
-          <title>Country Profiles - Climate and health observatory</title>
+          <title><xsl:value-of select="
+            substring(/html/head/title/text(),
+              0,
+              string-length(/html/head/title/text()) - string-length('— Climate-ADAPT')
+            )" /> —  Climate and health observatory</title>
         </replace>
-      </rules>
+      <!-- </rules> -->
 
       <replace css:content="#navbar" css:theme=".main-nav-menu" href="@@health_navbar" method="document"/>
 
