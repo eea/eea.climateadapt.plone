@@ -453,17 +453,12 @@ class IOrganisation(IAceItem):
 
     acronym = TextLine(title=_(u"Acronym"),
                        description=_(u"Acronym of the organisation"),
-                       required=True,
+                       required=False,
                        )
 
     contact = TextLine(title=_(u"Contact"),
                        description=_(
                            u"Corporate email or link to contact form"),
-                       required=True,
-                       )
-
-    acronym = TextLine(title=_(u"Acronym"),
-                       # description=_(u"Acronym"),
                        required=True,
                        )
 
@@ -495,6 +490,15 @@ class IIndicator(IAceItem):
     map_graphs = Text(
         title=_(u"Map/Graphs"),
         required=False,
+    )
+
+    publication_date = Date(
+        title=_(u"Date of item's publication"),
+        description=u"The date refers to the moment in which the item "
+        u"has been prepared by contributing experts to be "
+        u"submitted for the publication in Climate "
+        u"ADAPT Publication/last update date",
+        required=False
     )
 
 

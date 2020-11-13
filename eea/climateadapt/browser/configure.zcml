@@ -432,6 +432,12 @@
         factory=".aceitem.AceItemFormExtender"
         />
 
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.IndicatorEditForm"
+        factory=".aceitem.IndicatorFormExtender"
+        />
+
     -----[ Organisations Form customizations ]----
 
     <browser:page

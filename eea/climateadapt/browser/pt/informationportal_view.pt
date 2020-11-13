@@ -12,9 +12,9 @@
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
 
-          <div metal:fill-slot="title-slot">
-            <div metal:use-macro="context/ace_macros/macros/title_date"></div>
-          </div>
+          <h1>
+            <span tal:replace="context/title"></span>
+          </h1>
 
           <div metal:fill-slot="ace-left-slot">
             <h3>Description</h3>

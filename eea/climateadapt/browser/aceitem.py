@@ -168,6 +168,9 @@ class AceItemFormExtender(FormExtender):
 
                             if group.label not in labels]
 
+class IndicatorFormExtender(FormExtender):
+    def update(self):
+        self.move('publication_date', before='map_graphs')
 
 class CCAContentDepictionView(DexterityImageView):
     """ Get cover image from folder contents

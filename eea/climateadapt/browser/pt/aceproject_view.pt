@@ -71,6 +71,11 @@
               </div>
             </div>
 
+            <div class="macro-category" tal:condition="python: hasattr(context, 'funding_programme') and context.funding_programme and context.funding_programme!='Other'">
+              <h4>Funding Programme:</h4>
+              <p tal:replace="context/funding_programme"/>
+            </div>
+
             <div class="macro-category" tal:condition="context/keywords">
               <h4>Keywords:</h4>
               <metal:macro use-macro="context/ace_macros/macros/keywords" />
