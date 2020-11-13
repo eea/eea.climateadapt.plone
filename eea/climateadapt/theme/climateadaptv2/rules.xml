@@ -97,7 +97,7 @@
         <replace css:theme="#portlet-manager" css:content-children="#portal-column-one" />
         <drop css:content="#portal-column-one" />
         <drop css:content="#portal-column-two" />
-        <after css:theme-children=".health-left" css:content="#aceitem_sidebar" method="raw"/>
+        <after css:theme-children=".health-right" css:content="#aceitem_sidebar" method="raw"/>
       </rules>
     </rules>
 
