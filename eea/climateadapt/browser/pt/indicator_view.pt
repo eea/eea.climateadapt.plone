@@ -18,6 +18,7 @@
           <div metal:fill-slot="title-slot">
             <h1>
               <span tal:content="context/title"></span>
+              <img src="image_thumb" style="float:right; padding:10px;" tal:condition="context/image" />
             </h1>
           </div>
 

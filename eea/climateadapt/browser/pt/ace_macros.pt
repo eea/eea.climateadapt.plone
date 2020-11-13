@@ -7,6 +7,7 @@
       <tal:cond tal:condition="python: getattr(context, 'origin_website', '') == 'AdapteCCA'">
         <img tal:attributes= "src python: context.portal_url() + '/adaptecca.png'" style="height:23px;"/>
       </tal:cond>
+      <img src="image_thumb" style="float:right; padding:10px;" tal:condition="context/image" />
     </h1>
   </metal:macro>
 
@@ -24,7 +25,10 @@
               <a href="" tal:attributes="href view/link_to_original" style="display: none">Original page</a>
               <h2 tal:content="view/type_label">Project</h2>
               <metal:macro define-slot="title-slot">
-                <h1 tal:content="context/title">Title here</h1>
+                <h1>
+                  <span tal:content="context/title"></span>
+                  <img src="image_thumb" style="float:right; padding:10px;" tal:condition="context/image" />
+                </h1>
               </metal:macro>
 
               <div tal:replace="structure provider:plone.belowcontenttitle" />
