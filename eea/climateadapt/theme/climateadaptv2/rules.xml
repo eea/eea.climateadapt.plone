@@ -61,16 +61,6 @@
         <link rel="stylesheet" type="text/css" href="/++theme++climateadaptv2/static/css/health.css" />
       </append>
 
-      <!-- <rules css:if&#45;content=".subsection&#45;background&#45;country&#45;profiles"> -->
-        <!-- <replace css:content="head title"> -->
-        <!--   <title><xsl:value&#45;of select=" -->
-        <!--     substring(/html/head/title/text(), -->
-        <!--       0, -->
-        <!--       string&#45;length(/html/head/title/text()) &#45; string&#45;length('— Climate&#45;ADAPT') -->
-        <!--     )" /> —  Climate and health observatory</title> -->
-        <!-- </replace> -->
-      <!-- </rules> -->
-
       <replace css:content="#navbar" css:theme=".main-nav-menu" href="@@health_navbar" method="document"/>
 
       <drop css:theme-children=".footer-nav-wrapper" />
@@ -93,13 +83,6 @@
       </rules>
 
       <rules css:if-not-content=".template-health_homepage">
-        <!-- <rules css:if&#45;content=".portaltype&#45;eea&#45;climateadapt&#45;indicator"> -->
-        <!--   <theme href="health&#45;page.html" /> -->
-        <!-- </rules> -->
-        <!-- <rules css:if&#45;content=".portaltype&#45;eea&#45;climateadapt&#45;organisation"> -->
-        <!--   <theme href="health&#45;page.html" /> -->
-        <!-- </rules> -->
-
         <theme href="health-page-full.html" />
         <drop css:theme=".health_top_items" />
         <drop css:theme=".list_news_events" />
