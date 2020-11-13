@@ -61,6 +61,12 @@
         <link rel="stylesheet" type="text/css" href="/++theme++climateadaptv2/static/css/health.css" />
       </append>
 
+      <rules css:if-content=".subsection-background-country-profiles-country-profiles">
+        <replace css:content="head title">
+          <title>Country Profiles - Climate and health observatory</title>
+        </replace>
+      </rules>
+
       <replace css:content="#navbar" css:theme=".main-nav-menu" href="@@health_navbar" method="document"/>
 
       <drop css:theme-children=".footer-nav-wrapper" />
