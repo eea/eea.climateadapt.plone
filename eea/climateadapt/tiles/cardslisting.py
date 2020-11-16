@@ -49,16 +49,12 @@ class CardsTile(PersistentCoverTile):
         if uuid:
             return uuidToObject(uuid)
 
-    def sections(self):
+    def cards(self):
         context = self.get_context()
         if not context:
             return []
 
-        return context.getFolderContents(
-            contentFilter={
-                'sort_order': 'getObjPositionInParent',
-                'portal_type': 'Folder'}
-        )
+        return context.results()
 
     def accepted_ct(self):
         return ['Collection']

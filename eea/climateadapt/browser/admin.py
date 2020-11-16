@@ -66,6 +66,8 @@ class CheckCopyPasteLocation(BrowserView):
         groups = getToolByName(self, 'portal_groups').getGroupsByUserId(user)
 
         for group in groups:
+            if not group:
+                continue
             if group.id == 'extranet-cca-editors' and 'metadata' in \
                     self.context.getPhysicalPath():
 

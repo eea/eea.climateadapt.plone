@@ -9,6 +9,7 @@
 @import "homepage-dynamic.less";
 @import "footer.less";
 @import "cookie.less";
+@import "cards.less";
 
 @import "custom-print-pdf.less";
 
@@ -100,7 +101,7 @@
 
     .footer-logos-wrapper {
       padding-bottom: 20px;
-      border-bottom: 1px solid #E8E8E8;
+      border-bottom: 1px solid #e8e8e8;
     }
 
     .footer-logo-item {
@@ -139,7 +140,7 @@
     border-right: 0;
   }
   .content-sidebar.col-md-3 {
-    width:100%;
+    width: 100%;
     margin-top: 2%;
   }
   .content-column.col-md-9 {
@@ -156,7 +157,6 @@
 }
 
 @media (max-width: 800px) {
-
   /* header area */
   .top-menu {
     top: 0;
@@ -257,7 +257,7 @@
       padding: 0 10px;
       font-size: 13px;
       color: #464646;
-      display:inline-block;
+      display: inline-block;
     }
 
     .sub-menu-item:last-of-type {
@@ -314,7 +314,7 @@
     margin-left: 0;
   }
 
-  #help-navbar{
+  #help-navbar {
     height: auto;
   }
 
@@ -332,7 +332,7 @@
   }
 
   .no-ovf .logo {
-    display:none;
+    display: none;
   }
 
   /* dynamic area */
@@ -372,12 +372,11 @@
   }
 
   .ast-title-step {
-    float:left;
+    float: left;
   }
   .ast_header h1 {
     display: block;
   }
-
 }
 
 @media (max-width: 600px) {
@@ -385,7 +384,7 @@
   .header #main-nav-item-1 .sub-menu-wrapper {
     min-width: 100%;
   }
-  .main-box  {
+  .main-box {
     height: auto;
   }
   .ast-steps {
@@ -504,7 +503,8 @@
     min-width: auto;
   }
 
-  #content, .region-subpage #content,
+  #content,
+  .region-subpage #content,
   .content-column,
   .footer-content .site-info {
     padding: 1em !important;
@@ -513,14 +513,13 @@
   .footer-content {
     padding: 0;
   }
-
 }
 
 #aceitem_sidebar .health-information {
-    display:none !important;
+  display: none !important;
 }
 body.section-observatory #aceitem_sidebar .health-information {
-    display:block !important;
+  display: block !important;
 }
 
 @import "fixes.less";
@@ -535,15 +534,15 @@ body.section-observatory #aceitem_sidebar .health-information {
 .portaltype-eea-climateadapt-tool,
 .portaltype-eea-climateadapt-video,
 .portaltype-eea-climateadapt-publicationreport {
-    #form-widgets-publication_date-day{
-        display: none !important;
-    }
-    #formfield-form-widgets-origin_website{
-        width:50%;
-        float:left;
-    }
-    #formfield-form-widgets-image {
-        width:49%;
-        display: inline-block;
-    }
+  #form-widgets-publication_date-day {
+    display: none !important;
+  }
+  #formfield-form-widgets-origin_website {
+    width: 50%;
+    float: left;
+  }
+  #formfield-form-widgets-image {
+    width: 49%;
+    display: inline-block;
+  }
 }

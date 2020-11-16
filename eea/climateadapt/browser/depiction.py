@@ -20,7 +20,8 @@ class CCAContentDepictionView(DexterityImageView):
     def field(self):
         """ Image field
         """
-        return getattr(self.context, self._field)
+
+        return getattr(self.context, self._field, None)
 
     def __call__(self, scalename='thumb'):
         if not self.display(scalename):

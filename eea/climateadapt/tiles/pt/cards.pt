@@ -4,17 +4,38 @@
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   i18n:domain="collective.cover">
 
-  <body tal:define="is_empty view/is_empty">
-    <p tal:condition="python: is_empty and view.is_compose_mode()" i18n:translate="">
-      Please drop a Collection here to set the context
-    </p>
-    <div class="cover-cards-tile tile-content" tal:condition="not:is_empty">
-      <ul>
-        <li tal:repeat="section view/sections">
-          <a href="" tal:attributes="href section/getURL" tal:content="section/Title">Section</a>
-        </li>
-      </ul>
-    </div>
-  </body>
-</html>
+<body tal:define="is_empty view/is_empty">
+  <p tal:condition="python: is_empty and view.is_compose_mode()" i18n:translate="">
+    Please drop a Collection here to set the context
+  </p>
+  <div class="cover-cards-tile tile-content" tal:condition="not:is_empty">
 
+    <tal:rep tal:repeat="card view/cards">
+      <div class="ui card" tal:define="obj card/getObject">
+        <div class="image">
+          <a href="" tal:attributes="href card/getURL" >
+            <img tal:condition="python: getattr(obj, 'image', None)" tal:attributes="src string:${card/getURL}/image_thumb" />
+            <div tal:condition="python: not getattr(obj, 'image', None)" class="placeholder" />
+            <!-- <div tal:content="python: dir(card)" /> -->
+          </a>
+        </div>
+        <div class="card-content">
+          <h4 class="card-header" >
+            <a href="" tal:attributes="href card/getURL" tal:content="card/Title">
+              Matthew
+            </a>
+          </h4>
+        </div>
+        <div class="card-extra">
+          <div class="year"><strong>Year:&nbsp;</strong><span class="year" tal:content="obj/year"></span></div>
+          <div class="source">
+            <strong>Source:&nbsp;</strong>
+            <a href="" tal:condition="obj/source" tal:replace="obj/source/output">EEA</a>
+          </div>
+        </div>
+      </div>
+    </tal:rep>
+
+  </div>
+</body>
+</html>
