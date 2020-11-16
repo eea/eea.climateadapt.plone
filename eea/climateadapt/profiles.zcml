@@ -339,7 +339,7 @@
 
     <genericsetup:registerProfile
       name="eeaclimateadapt_to_59"
-      title="Upgrade profile for eea.climateadapt v58"
+      title="Upgrade profile for eea.climateadapt v59"
       description=""
       directory="profiles/upgrades/to_59"
       provides="Products.GenericSetup.interfaces.EXTENSION"
