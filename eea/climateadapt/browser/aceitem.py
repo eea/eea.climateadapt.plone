@@ -1,7 +1,6 @@
 from zope.interface import classImplements  # , implements
 
 from eea.climateadapt.browser import AceViewApi
-# from eea.depiction.browser.interfaces import IImageView
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.edit import DefaultEditForm
 from plone.dexterity.browser.view import DefaultView
@@ -10,8 +9,7 @@ from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
 
 # from zope.interface import implements
-
-
+# from eea.depiction.browser.interfaces import IImageView
 # from Products.Five.browser import BrowserView
 
 

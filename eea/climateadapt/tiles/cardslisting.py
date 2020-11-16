@@ -1,4 +1,4 @@
-""" Subsection navigation
+""" Cards listing
 """
 
 from collective.cover.tiles.base import (IPersistentCoverTile,
@@ -13,7 +13,7 @@ from plone.uuid.interfaces import IUUID
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
-class ISectionNavTile(IPersistentCoverTile):
+class ICardsTile(IPersistentCoverTile):
 
     title = schema.TextLine(
         title=_(u'Title'),
@@ -27,18 +27,18 @@ class ISectionNavTile(IPersistentCoverTile):
     )
 
 
-class SectionNavTile(PersistentCoverTile):
+class CardsTile(PersistentCoverTile):
     """ Generic view tile
     """
 
-    implements(ISectionNavTile)
+    implements(ICardsTile)
 
-    index = ViewPageTemplateFile('pt/section_nav.pt')
+    index = ViewPageTemplateFile('pt/cards.pt')
 
     is_configurable = True
     is_editable = True
     is_droppable = True
-    short_name = u'Section Navigation'
+    short_name = u'Cards'
 
     def is_empty(self):
         return self.data.get('uuid', None) is None or \
@@ -61,10 +61,10 @@ class SectionNavTile(PersistentCoverTile):
         )
 
     def accepted_ct(self):
-        return ['Folder']
+        return ['Collection']
 
     def populate_with_object(self, obj):
-        super(SectionNavTile, self).populate_with_object(
+        super(CardsTile, self).populate_with_object(
             obj)  # check permission
 
         if obj.portal_type in self.accepted_ct():

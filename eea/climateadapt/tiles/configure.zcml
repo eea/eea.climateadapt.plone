@@ -176,6 +176,18 @@
     />
 
   <plone:tile
+    name="eea.climateadapt.cards_tile"
+    title="Cards"
+    description="Listing as cards"
+    icon="++resource++eea.climateadapt.tiles/tile-embed-app.png"
+    add_permission="cmf.ModifyPortalContent"
+    schema=".cardslisting.ICardsTile"
+    class=".cardslisting.CardsTile"
+    permission="zope2.View"
+    for="*"
+    />
+
+  <plone:tile
     name="eea.climateadapt.urbanmenu"
     title="Urban Menu"
     description="Urban menu navigation"

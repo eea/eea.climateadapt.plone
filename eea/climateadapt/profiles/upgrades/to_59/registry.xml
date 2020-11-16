@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<registry>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+    prefix="plone.app.querystring.field.Creator">
+  <value key="operations">
+    <element>plone.app.querystring.operation.string.currentUser</element>
+    <element>plone.app.querystring.operation.string.is</element>
+  </value>
+  <value key="vocabulary" remove="true" />
+</records>
+</registry>
