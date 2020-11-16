@@ -1,10 +1,6 @@
-from zope.component import queryMultiAdapter  # getMultiAdapter,
 from zope.interface import classImplements  # , implements
-# from zope.interface import implements
-from zope.publisher.interfaces import NotFound
 
 from eea.climateadapt.browser import AceViewApi
-from eea.depiction.browser.dexterity import DexterityImageView
 # from eea.depiction.browser.interfaces import IImageView
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.edit import DefaultEditForm
@@ -12,6 +8,9 @@ from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityEditForm
 from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
+
+# from zope.interface import implements
+
 
 # from Products.Five.browser import BrowserView
 
@@ -168,33 +167,7 @@ class AceItemFormExtender(FormExtender):
 
                             if group.label not in labels]
 
+
 class IndicatorFormExtender(FormExtender):
     def update(self):
         self.move('publication_date', before='map_graphs')
-
-class CCAContentDepictionView(DexterityImageView):
-    """ Get cover image from folder contents
-    """
-
-    _field = "image"
-
-    @property
-    def img(self):
-        """
-        """
-        return self.context
-
-    @property
-    def field(self):
-        """ Image field
-        """
-        return getattr(self.context, self._field)
-
-    def __call__(self, scalename='thumb'):
-        if not self.display(scalename):
-            raise NotFound(self.request, scalename)
-
-        scaleview = queryMultiAdapter((self.img, self.request), name='images')
-        scale = scaleview.scale(self._field, scale=scalename)
-
-        return scale or ""
