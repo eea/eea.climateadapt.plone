@@ -25,15 +25,23 @@ function initCountriesMapTile() {
         window._world = world;
         // window.countrySettings = metadata;
         window._flags = flags;
-        initmap(world);
+        initPageletMap(world);
+
       });
     // });
   });
 
+  var select = $("#country-pagelet-selector select");
+  select.on('change', function () {
+    var url = $(this).val();
+    if (!url) return;
+    window.location = url;
+  })
 }
 
+window._select_initialized = false;
 
-function initmap(world) {
+function initPageletMap(world) {
 
   function drawMap() {    // width
     drawCountries(world.features);

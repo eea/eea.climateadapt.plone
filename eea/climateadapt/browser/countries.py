@@ -3,6 +3,7 @@ import logging
 
 import lxml.etree
 import lxml.html
+
 from Products.Five.browser import BrowserView
 
 logger = logging.getLogger('eea.climateadapt')
@@ -226,6 +227,18 @@ class CountriesD3View(BrowserView):
 class ContextCountriesView(BrowserView):
     """ A small pagelet to show the countries as a tile
     """
+
+    def countries(self):
+        objects = self.context.aq_parent.contentValues()
+        available_countries = [
+            "Austria", "Belgium", "Cyprus", "Czechia", "Denmark", "Estonia",
+            "Finland", "France", "Germany", "Greece", "Hungary", "Ireland",
+            "Italy", "Lithuania", "Luxembourg", "Malta", "Netherlands",
+            "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain",
+            "Sweden", "United Kingdom", "Liechtenstein", "Norway",
+            "Switzerland", "Turkey"
+        ]
+        return [x for x in objects if x.Title() in available_countries]
 
     def script_country_settings(self):
         context_titles = [x.Title()
