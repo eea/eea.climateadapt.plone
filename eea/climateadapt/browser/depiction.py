@@ -8,7 +8,13 @@ class CCAContentDepictionView(DexterityImageView):
     """ Get cover image from folder contents
     """
 
-    _field = "image"
+    # _field = "image"
+
+    @property
+    def _field(self):
+        if getattr(self.context, 'thumbnail', None):
+            return 'thumbnail'
+        return "image"
 
     @property
     def img(self):

@@ -195,6 +195,9 @@ class IconWrapper(Traversable):
         if name == "icon":
             return self.context
 
+    def getId(self):
+        return "icon"
+
 
 class AceContentImagesTraverser(ImageScaling):
     """ A hack to use the content type icons for @@images view
@@ -204,8 +207,13 @@ class AceContentImagesTraverser(ImageScaling):
     """
 
     def publishTraverse(self, request, name):
+        # import pdb
+        # pdb.set_trace()
         if name == 'image':
             site = portal.getSite()
+            if not hasattr(self.context, 'getIcon'):
+                return super(AceContentImagesTraverser, self).publishTraverse(
+                    request, name)
             icon = self.context.getIcon()
 
             if icon.startswith('/'):

@@ -77,20 +77,20 @@
     allowed_interface="plone.app.layout.globals.interfaces.ILayoutPolicy"
     />
 
-  <browser:page
-    name="images"
-    for="eea.climateadapt.interfaces.IClimateAdaptContent"
-    class=".integration.AceContentImagesTraverser"
-    allowed_attributes="scale"
-    permission="zope2.View"
-    />
-
-  <browser:page
-    name="images"
-    for="collective.cover.content.Cover"
-    class=".integration.AceContentImagesTraverser"
-    allowed_attributes="scale"
-    permission="zope2.View"
-    />
-
+  <!-- <browser:page -->
+  <!--   name="images" -->
+  <!--   for="eea.climateadapt.interfaces.IClimateAdaptContent" -->
+  <!--   class=".integration.AceContentImagesTraverser" -->
+  <!--   allowed_attributes="scale" -->
+  <!--   permission="zope2.View" -->
+  <!--   /> -->
+  <!--  -->
+  <!-- <browser:page -->
+  <!--   name="images" -->
+  <!--   for="collective.cover.content.Cover" -->
+  <!--   class=".integration.AceContentImagesTraverser" -->
+  <!--   allowed_attributes="scale" -->
+  <!--   permission="zope2.View" -->
+  <!--   /> -->
+  <!--  -->
 </configure>

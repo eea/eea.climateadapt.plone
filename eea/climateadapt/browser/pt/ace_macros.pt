@@ -7,7 +7,13 @@
       <tal:cond tal:condition="python: getattr(context, 'origin_website', '') == 'AdapteCCA'">
         <img tal:attributes= "src python: context.portal_url() + '/adaptecca.png'" style="height:23px;"/>
       </tal:cond>
-      <img src="image_thumb" style="float:right; padding:10px;" tal:condition="context/image" />
+      <img
+        tal:attributes="src string:${context/absolute_url}/@@images/image/thumb"
+        style="float:right; padding:10px;" tal:condition="context/image" />
+      <img
+        style="float:right; padding:10px;"
+        tal:attributes="src string: ${context/absolute_url}/@@images/thumbnail/thumb"
+        tal:condition="python: not getattr(context, 'image') and getattr(context, 'thumbnail')" />
     </h1>
   </metal:macro>
 
@@ -27,7 +33,13 @@
               <metal:macro define-slot="title-slot">
                 <h1>
                   <span tal:content="context/title"></span>
-                  <img src="image_thumb" style="float:right; padding:10px;" tal:condition="context/image" />
+                  <img
+                    tal:attributes="src string:${context/absolute_url}/@@images/image/thumb"
+                    style="float:right; padding:10px;" tal:condition="context/image" />
+                  <img
+                    style="float:right; padding:10px;"
+                    tal:attributes="src string: ${context/absolute_url}/@@images/thumbnail/thumb"
+                    tal:condition="python: not getattr(context, 'image') and getattr(context, 'thumbnail')" />
                 </h1>
               </metal:macro>
 
@@ -55,56 +67,53 @@
                   tal:define="info view/get_review_info; reviewer info/reviewer; creator info/creator"
                   tal:on-error="nothing"
                   class="ace_review_info">
-                  <div tal:condition="python: creator and not reviewer">
-                    <h4>Created by:</h4>
-                    <span class="review-name" tal:content="creator">John</span>
-                  </div>
-                  <div tal:condition="python: creator is reviewer">
-                    <h4>Created by:</h4>
-                    <span class="review-name" tal:content="creator">John</span>
-                  </div>
-                  <div tal:condition="python: reviewer and not creator">
-                    <h4>Reviewed by:</h4>
-                    <span class="review-name" tal:content="reviewer">John</span>
-                  </div>
-                  <div tal:condition="python: (reviewer and creator) and (reviewer != creator)">
-                    <h4>Created by:</h4>
-                    <span class="review-name" tal:content="creator">John</span>
-                    <h4>Reviewed by:</h4>
-                    <span class="review-name" tal:content="reviewer">John</span>
-                  </div>
-
+                <div tal:condition="python: creator and not reviewer">
+                  <h4>Created by:</h4>
+                  <span class="review-name" tal:content="creator">John</span>
                 </div>
-              </tal:block>
+                <div tal:condition="python: creator is reviewer">
+                  <h4>Created by:</h4>
+                  <span class="review-name" tal:content="creator">John</span>
+                </div>
+                <div tal:condition="python: reviewer and not creator">
+                  <h4>Reviewed by:</h4>
+                  <span class="review-name" tal:content="reviewer">John</span>
+                </div>
+                <div tal:condition="python: (reviewer and creator) and (reviewer != creator)">
+                  <h4>Created by:</h4>
+                  <span class="review-name" tal:content="creator">John</span>
+                  <h4>Reviewed by:</h4>
+                  <span class="review-name" tal:content="reviewer">John</span>
+                </div>
 
-              <metal:slot metal:define-slot="ace-right-slot"></metal:slot>
-
-              <div class="macro-category" tal:condition="python: contributor or other_contributor" tal:define="contributor context/contributors; other_contributor context/other_contributor|nothing">
-                  <h4>Contributor:</h4>
-                  <span tal:condition="contributor" tal:replace="python: contributor[0].to_object.title" ></span>
-                  <br tal:condition="python: contributor and other_contributor" />
-                  <span tal:condition="other_contributor" tal:replace="structure python: other_contributor.replace('\n','<br />\n')" ></span>
               </div>
+            </tal:block>
 
-              <div tal:condition="geotag" tal:content="geotag/location"></div>
+            <metal:slot metal:define-slot="ace-right-slot"></metal:slot>
 
+            <div class="macro-category" tal:condition="python: contributor or other_contributor" tal:define="contributor context/contributors; other_contributor context/other_contributor|nothing">
+              <h4>Contributor:</h4>
+              <span tal:condition="contributor" tal:replace="python: contributor[0].to_object.title" ></span>
+              <br tal:condition="python: contributor and other_contributor" />
+              <span tal:condition="other_contributor" tal:replace="structure python: other_contributor.replace('\n','<br />\n')" ></span>
             </div>
+
+            <div tal:condition="geotag" tal:content="geotag/location"></div>
+
           </div>
-
-
         </div>
       </div>
     </div>
-
   </metal:macro>
+
 
   <metal:macro define-macro="content_dates">
     <div class="documentByLine" style="padding-top:25px;" tal:define="dates view/get_date_updated; cadapt_published none | dates/cadapt_published;  cadapt_last_modified none | dates/cadapt_last_modified;">
-        <p tal:condition="python: cadapt_published or cadapt_last_modified">
-            <span tal:condition="cadapt_published"><strong>Published in Climate ADAPT</strong> <span tal:replace="python: cadapt_published.strftime('%b %d %Y')" /></span>
-            <span tal:condition="python: cadapt_published and cadapt_last_modified"> &nbsp; - &nbsp; </span>
-            <span tal:condition="cadapt_last_modified"><strong>Last Modified in Climate ADAPT</strong> <span tal:replace="python: cadapt_last_modified.strftime('%b %d %Y')"/></span>
-        </p>
+      <p tal:condition="python: cadapt_published or cadapt_last_modified">
+        <span tal:condition="cadapt_published"><strong>Published in Climate ADAPT</strong> <span tal:replace="python: cadapt_published.strftime('%b %d %Y')" /></span>
+        <span tal:condition="python: cadapt_published and cadapt_last_modified"> &nbsp; - &nbsp; </span>
+        <span tal:condition="cadapt_last_modified"><strong>Last Modified in Climate ADAPT</strong> <span tal:replace="python: cadapt_last_modified.strftime('%b %d %Y')"/></span>
+      </p>
     </div>
   </metal:macro>
 
@@ -165,34 +174,34 @@
         <div class="files-wrapper">
           <h4>
             <span tal:replace="view/type_label" />
-            Documents (<span tal:content="python: len(files)"></span>)
-          </h4>
-          <ul tal:repeat="file files">
-            <li>
-              <a tal:attributes="href file/absolute_url">
-                <span tal:content="file/Title"></span>
-              </a>
-            </li>
-          </ul>
+              Documents (<span tal:content="python: len(files)"></span>)
+            </h4>
+            <ul tal:repeat="file files">
+              <li>
+                <a tal:attributes="href file/absolute_url">
+                  <span tal:content="file/Title"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </tal:def>
-  </metal:macro>
-
-  <metal:macro define-macro="geochar">
-    <tal:def define="geochar python:view.render_geochar(context.geochars)">
-
-      <div tal:content="structure geochar" tal:condition="geochar"/>
-
-      <tal:cond condition="not: geochar">
-        <div tal:condition="context/spatial_layer | nothing" tal:content="context/spatial_layer"/>
-        <p tal:condition="context/spatial_values">
-          <span style="font-weight:bold;">Countries:</span><br>
-            <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
-          </p>
-        </tal:cond>
-
       </tal:def>
     </metal:macro>
 
-  </div>
+    <metal:macro define-macro="geochar">
+      <tal:def define="geochar python:view.render_geochar(context.geochars)">
+
+        <div tal:content="structure geochar" tal:condition="geochar"/>
+
+        <tal:cond condition="not: geochar">
+          <div tal:condition="context/spatial_layer | nothing" tal:content="context/spatial_layer"/>
+          <p tal:condition="context/spatial_values">
+            <span style="font-weight:bold;">Countries:</span><br>
+              <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
+            </p>
+          </tal:cond>
+
+        </tal:def>
+      </metal:macro>
+
+    </div>

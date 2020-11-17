@@ -18,7 +18,13 @@
           <div metal:fill-slot="title-slot">
             <h1>
               <span tal:content="context/title"></span>
-              <img src="image_thumb" style="float:right; padding:10px;" tal:condition="context/image" />
+              <img
+                tal:attributes="src string:${context/absolute_url}/@@images/image/thumb"
+                style="float:right; padding:10px;" tal:condition="context/image" />
+              <img
+                style="float:right; padding:10px;"
+                tal:attributes="src string: ${context/absolute_url}/@@images/thumbnail/thumb"
+                tal:condition="python: not getattr(context, 'image') and getattr(context, 'thumbnail')" />
             </h1>
           </div>
 
