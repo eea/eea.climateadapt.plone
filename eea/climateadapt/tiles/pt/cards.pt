@@ -33,7 +33,7 @@
           </div>
           <div class="source"
             tal:define="origin obj/origin_website | nothing;
-                python: origin origin and origin[0] or None">
+                origin python: origin and origin[0] or None">
             <strong>Source:&nbsp;</strong>
             <a tal:condition="python: origin == 'EEA'" href="https://eea.europa.eu">EEA</a>
             <a tal:condition="python: origin == 'Lancet Countdown'" href="https://www.lancetcountdown.org/">Lancet Countdown</a>
