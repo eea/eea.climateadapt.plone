@@ -99,14 +99,12 @@
   </metal:macro>
 
   <metal:macro define-macro="content_dates">
-    <div class="documentByLine row" style="padding-top:75px;" tal:define="dates view/get_date_updated; cadapt_published none | dates/cadapt_published;  cadapt_last_modified none | dates/cadapt_last_modified;">
-        <div tal:condition="python: cadapt_published or cadapt_last_modified" class="col-md-12 col-xs-12">
-            <p>
-                <span tal:condition="cadapt_published"><strong>Published in Climate ADAPT</strong> <span tal:replace="python: cadapt_published.strftime('%b %d %Y')" /></span>
-                <span tal:condition="python: cadapt_published and cadapt_last_modified"> &nbsp; - &nbsp; </span>
-                <span tal:condition="cadapt_last_modified"><strong>Last Modified in Climate ADAPT</strong> <span tal:replace="python: cadapt_last_modified.strftime('%b %d %Y')"/></span>
-            </p>
-        </div>
+    <div class="documentByLine" style="padding-top:25px;" tal:define="dates view/get_date_updated; cadapt_published none | dates/cadapt_published;  cadapt_last_modified none | dates/cadapt_last_modified;">
+        <p tal:condition="python: cadapt_published or cadapt_last_modified">
+            <span tal:condition="cadapt_published"><strong>Published in Climate ADAPT</strong> <span tal:replace="python: cadapt_published.strftime('%b %d %Y')" /></span>
+            <span tal:condition="python: cadapt_published and cadapt_last_modified"> &nbsp; - &nbsp; </span>
+            <span tal:condition="cadapt_last_modified"><strong>Last Modified in Climate ADAPT</strong> <span tal:replace="python: cadapt_last_modified.strftime('%b %d %Y')"/></span>
+        </p>
     </div>
   </metal:macro>
 
