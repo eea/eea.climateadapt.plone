@@ -90,7 +90,16 @@
         <replace css:theme="#portlet-manager" css:content-children="#portal-column-one" />
         <drop css:content="#portal-column-one" />
         <drop css:content="#portal-column-two" />
-        <before css:theme-children=".health-right" css:content="#aceitem_sidebar" method="raw"/>
+
+        <!-- <drop css:content=".share&#45;your&#45;info&#45;ace&#45;button" /> -->
+        <after css:content=".content-sidebar" >
+          <xsl:copy >
+            <xsl:apply-templates select="//*[@class='share-your-info-ace-button']" />
+          </xsl:copy>
+        </after>
+
+        <!-- <before css:theme&#45;children=".health&#45;right" css:content="#aceitem_sidebar" method="raw"/> -->
+        <!-- <after css:theme&#45;children=".health&#45;right" css:content=".share&#45;your&#45;info&#45;ace&#45;button" method="raw"/> -->
       </rules>
     </rules>
 

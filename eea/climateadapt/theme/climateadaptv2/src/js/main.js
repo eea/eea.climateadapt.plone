@@ -873,7 +873,7 @@ $(document).ready(function() {
   });
 
   // Fix floating button
-  $('.share-your-info-ace-button').wrapAll('<div class="clearfix"/>');
+  // $('.share-your-info-ace-button').wrapAll('<div class="clearfix"/>');
 
   var windowWidth = $(window).width();
   if (windowWidth <= 800) {

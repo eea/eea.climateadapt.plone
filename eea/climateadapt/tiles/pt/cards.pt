@@ -14,7 +14,7 @@
       <div class="ui card" tal:define="obj card/getObject">
         <div class="image">
           <a href="" tal:attributes="href card/getURL" >
-            <img tal:condition="python: getattr(obj, 'image', None)" tal:attributes="src string:${card/getURL}/image_thumb" />
+            <img tal:condition="python: getattr(obj, 'image', None)" tal:attributes="src string:${card/getURL}/image_mini" />
             <div tal:condition="python: not getattr(obj, 'image', None)" class="placeholder" />
             <!-- <div tal:content="python: dir(card)" /> -->
           </a>
