@@ -81,7 +81,7 @@
               <tal:block content="structure python:view.w['climate_impacts'].render()"/>
             </div>
 
-            <div class="macro-category" tal:condition="python:len(elements)" tal:define="elements context/elements">
+            <div id="cca-macro-category-elements" class="macro-category" tal:condition="python:len(elements)" tal:define="elements context/elements">
               <h4>Elements:</h4>
               <tal:block content="structure python:view.w['elements'].render()"/>
             </div>

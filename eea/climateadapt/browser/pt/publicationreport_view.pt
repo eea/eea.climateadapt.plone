@@ -78,7 +78,7 @@
               <tal:block content="structure python:view.w['climate_impacts'].render()" />
             </div>
 
-            <div class="macro-category">
+            <div id="cca-macro-category-elements" class="macro-category">
               <h4>Elements:</h4>
               <tal:block content="structure python:view.w['elements'].render()" />
             </div>
