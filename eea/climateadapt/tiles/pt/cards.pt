@@ -27,7 +27,10 @@
           </h4>
         </div>
         <div class="card-extra">
-          <div class="year"><strong>Year:&nbsp;</strong><span class="year" tal:content="obj/year"></span></div>
+          <div class="year">
+            <strong>Year:&nbsp;</strong>
+            <span class="year" tal:content="python: getattr(obj, 'publication_date') and obj.publication_date.year or ''"></span>
+          </div>
           <div class="source">
             <strong>Source:&nbsp;</strong>
             <a href="" tal:condition="obj/source" tal:replace="obj/source/output">EEA</a>
