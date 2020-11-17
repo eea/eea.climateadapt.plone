@@ -31,7 +31,9 @@
             <strong>Year:&nbsp;</strong>
             <span class="year" tal:content="python: getattr(obj, 'publication_date') and obj.publication_date.year or ''"></span>
           </div>
-          <div class="source" tal:define="origin obj/origin_website | nothing">
+          <div class="source"
+            tal:define="origin obj/origin_website | nothing;
+                python: origin origin and origin[0] or None">
             <strong>Source:&nbsp;</strong>
             <a tal:condition="python: origin == 'EEA'" href="https://eea.europa.eu">EEA</a>
             <a tal:condition="python: origin == 'Lancet Countdown'" href="https://www.lancetcountdown.org/">Lancet Countdown</a>
