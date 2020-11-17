@@ -95,9 +95,22 @@ class IAceItem(form.Schema, IImageScaleTraversable):
                           )
 
     image = NamedBlobImage(
-        title=_(u"Thumbnail or logo"),
-        description=_(u"Upload a representative picture or logo for the item."
-                      u" Recomanded size 360/180, aspect ratio 2x"),
+        title=_(u"Logo"),
+        description=_(
+            u"Upload a representative picture or logo for the item."
+            u" Recommended size: at least 360/180 px, aspect ratio 2x"
+        ),
+        required=False,
+    )
+
+    thumbnail = NamedBlobImage(
+        title=_(u"Thumbnail for lists"),
+        description=_(
+            u"Upload a representative picture or logo for the item. "
+            u"Recommended size: at least 360/180 px, aspect ratio 2x."
+            u"This image will be used in listings. If this image doesn't "
+            u"exist, then the logo image will be used."
+        ),
         required=False,
     )
 
@@ -494,10 +507,8 @@ class IIndicator(IAceItem):
 
     publication_date = Date(
         title=_(u"Date of item's publication"),
-        description=u"The date refers to the moment in which the item "
-        u"has been prepared by contributing experts to be "
-        u"submitted for the publication in Climate "
-        u"ADAPT Publication/last update date",
+        description=u"The date refers to the latest date of publication of "
+        u"the item",
         required=False
     )
 
