@@ -79,11 +79,23 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                           value_type=Choice(
                               vocabulary="eea.climateadapt.origin_website"),
                           )
-
     image = NamedBlobImage(
-        title=_(u"Thumbnail"),
-        description=_(u"Upload a representative picture or logo for the item."
-                      u" Recomanded size 360/180, aspect ratio 2x"),
+        title=_(u"Logo"),
+        description=_(
+            u"Upload a representative picture or logo for the item."
+            u" Recommended size: at least 360/180 px, aspect ratio 2x"
+        ),
+        required=False,
+    )
+
+    thumbnail = NamedBlobImage(
+        title=_(u"Thumbnail for lists"),
+        description=_(
+            u"Upload a representative picture or logo for the item. "
+            u"Recommended size: at least 360/180 px, aspect ratio 2x."
+            u"This image will be used in listings. If this image doesn't "
+            u"exist, then the logo image will be used."
+        ),
         required=False,
     )
 
