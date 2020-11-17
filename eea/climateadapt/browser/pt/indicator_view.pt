@@ -35,7 +35,7 @@
             </div>
 
             <div tal:condition="context/source">
-                <h5>Organisation/s source:</h5>
+                <h5>Source:</h5>
                 <div tal:content="structure python: view.w['source'].render()">Source here</div>
             </div>
 
