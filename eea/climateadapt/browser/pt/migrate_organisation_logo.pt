@@ -1,0 +1,7 @@
+<h1>migrate source to richtext</h1>
+<table tal:define="items view/list" width="100%">
+    <tr tal:repeat="item items">
+        <td tal:content="item/title"></td>
+        <td tal:content="item/url"></td>
+    </tr>
+</table>

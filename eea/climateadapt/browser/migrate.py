@@ -157,6 +157,31 @@ class FundingProgramme():
 
         return response
 
+class OrganisationLogo():
+    """ Migrate funding_programme field
+    """
+
+    def list(self):
+        catalog = api.portal.get_tool('portal_catalog')
+        brains = catalog.searchResults(portal_type='eea.climateadapt.organisation')
+        response = []
+
+        for brain in brains:
+            obj = brain.getObject()
+
+            logger.info("Organisation: %s", brain.getURL())
+            if hasattr(obj, 'logo') \
+                    and obj.logo:
+                obj.image = obj.logo
+
+                response.append({
+                    'title': obj.title,
+                    'url': brain.getURL()
+                })
+
+                obj._p_changed = True
+                logger.info("Organisation has logo: %s", brain.getURL())
+        return response
 
 class SourceToRichText():
     """ Migrate funding_programme field
