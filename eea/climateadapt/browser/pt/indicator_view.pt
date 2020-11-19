@@ -19,12 +19,12 @@
             <h1>
               <span tal:content="context/title"></span>
               <img
-                tal:attributes="src string:${context/absolute_url}/@@images/image/thumb"
-                style="float:right; padding:10px;" tal:condition="context/image" />
+                tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
+                style="float:right; padding:10px;" tal:condition="context/logo" />
               <img
                 style="float:right; padding:10px;"
-                tal:attributes="src string: ${context/absolute_url}/@@images/thumbnail/thumb"
-                tal:condition="python: not getattr(context, 'image') and getattr(context, 'thumbnail')" />
+                tal:attributes="src string: ${context/absolute_url}/@@images/image/thumb"
+                tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" />
             </h1>
           </div>
 

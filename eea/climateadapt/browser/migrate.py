@@ -172,14 +172,14 @@ class OrganisationLogo():
             logger.info("Organisation: %s", brain.getURL())
             if hasattr(obj, 'logo') \
                     and obj.logo:
-                obj.image = obj.logo
+                #obj.image = obj.logo
+                #obj._p_changed = True
 
                 response.append({
                     'title': obj.title,
                     'url': brain.getURL()
                 })
 
-                obj._p_changed = True
                 logger.info("Organisation has logo: %s", brain.getURL())
         return response
 

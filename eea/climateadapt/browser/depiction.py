@@ -7,8 +7,8 @@ class CCAContentDepictionView(DexterityImageView):
 
     @property
     def fieldname(self):
-        if getattr(self.context, 'thumbnail', None):
-            return 'thumbnail'
+        if getattr(self.context, 'logo', None):
+            return 'logo'
 
         return "image"
 

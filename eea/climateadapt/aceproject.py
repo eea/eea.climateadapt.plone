@@ -79,7 +79,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
                           value_type=Choice(
                               vocabulary="eea.climateadapt.origin_website"),
                           )
-    image = NamedBlobImage(
+    logo = NamedBlobImage(
         title=_(u"Logo"),
         description=_(
             u"Upload a representative picture or logo for the item."
@@ -88,7 +88,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         required=False,
     )
 
-    thumbnail = NamedBlobImage(
+    image = NamedBlobImage(
         title=_(u"Thumbnail for lists"),
         description=_(
             u"Upload a representative picture or logo for the item. "

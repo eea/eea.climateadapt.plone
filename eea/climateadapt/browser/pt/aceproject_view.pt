@@ -16,6 +16,13 @@
               <span tal:on-error="nothing" tal:content="context/acronym"></span>
               <span tal:content="context/title"></span>
               <tal:cond tal:on-error="nothing" tal:condition="context/year">(<span tal:replace="context/year"></span>)</tal:cond>
+              <img
+                tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
+                style="float:right; padding:10px;" tal:condition="context/logo" />
+              <img
+                style="float:right; padding:10px;"
+                tal:attributes="src string: ${context/absolute_url}/@@images/image/thumb"
+                tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" />
             </h1>
             <div class="project-source" style="float: right; font-size: small">
               <tal:cond tal:condition="python: getattr(context, 'origin_website', '') == 'DRMKC'">
