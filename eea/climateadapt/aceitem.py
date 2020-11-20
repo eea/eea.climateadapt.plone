@@ -488,6 +488,10 @@ class IOrganisation(IAceItem):
 
     logo = NamedBlobImage(
         title=_(u"Logo"),
+        description=_(
+            u"Upload a representative picture or logo for the item."
+            u" Recommended size: at least 360/180 px, aspect ratio 2x"
+        ),
         required=False,
     )
 

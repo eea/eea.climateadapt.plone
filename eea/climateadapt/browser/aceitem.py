@@ -142,6 +142,7 @@ classImplements(OrganisationEditView, IDexterityEditForm)
 
 class OrganisationFormExtender(FormExtender):
     def update(self):
+        self.move('logo', before='image')
         self.move('IRelatedItems.relatedItems', before='comments')
         self.move('acronym', before='title')
         self.remove('other_contributor')
