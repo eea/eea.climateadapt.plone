@@ -165,6 +165,15 @@
 
     <browser:page
         name="view"
+        for="eea.climateadapt.aceitem.IC3sIndicator"
+        class="eea.climateadapt.browser.aceitem.C3sIndicatorView"
+        template="pt/c3sindicator_view.pt"
+        permission="zope2.View"
+        />
+
+
+    <browser:page
+        name="view"
         for="eea.climateadapt.aceitem.IPublicationReport"
         class="eea.climateadapt.browser.aceitem.PublicationReportView"
         template="pt/publicationreport_view.pt"
@@ -437,6 +446,33 @@
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
         for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.IndicatorEditForm"
         factory=".aceitem.IndicatorFormExtender"
+        />
+
+    -----[ C3sIndicators Form customizations ]----
+
+    <browser:page
+        for="eea.climateadapt.aceitem.IC3sIndicator"
+        name="edit"
+        class=".aceitem.C3sIndicatorEditView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="eea.climateadapt.aceitem.IC3sIndicator zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.C3sIndicatorEditForm"
+        factory=".aceitem.AceItemFormExtender"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.C3sIndicatorAddForm"
+        factory=".aceitem.C3sIndicatorFormExtender"
+        />
+
+    <adapter
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.C3sIndicatorEditForm"
+        factory=".aceitem.C3sIndicatorFormExtender"
         />
 
     -----[ Organisations Form customizations ]----

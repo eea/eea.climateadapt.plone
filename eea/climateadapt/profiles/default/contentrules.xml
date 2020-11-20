@@ -11,6 +11,7 @@
      <element>eea.climateadapt.casestudy</element>
      <element>eea.climateadapt.researchproject</element>
      <element>eea.climateadapt.aceproject</element>
+     <element>eea.climateadapt.c3sindicator</element>
      <element>eea.climateadapt.indicator</element>
      <element>eea.climateadapt.mapgraphdataset</element>
      <element>eea.climateadapt.organisation</element>
@@ -26,7 +27,7 @@
    <action type="plone.actions.Mail">
     <property name="source"/>
     <property name="message">A database item has been edited
-     
+
      Link: ${url}</property>
     <property name="groups"/>
     <property name="members"/>
@@ -45,6 +46,7 @@
      <element>eea.climateadapt.casestudy</element>
      <element>eea.climateadapt.researchproject</element>
      <element>eea.climateadapt.aceproject</element>
+     <element>eea.climateadapt.c3sindicator</element>
      <element>eea.climateadapt.indicator</element>
      <element>eea.climateadapt.mapgraphdataset</element>
      <element>eea.climateadapt.organisation</element>
@@ -60,7 +62,7 @@
    <action type="plone.actions.Mail">
     <property name="source"/>
     <property name="message">A database item has been created.
-     
+
      URL: ${url}</property>
     <property name="groups">
      <element>Administrators</element>

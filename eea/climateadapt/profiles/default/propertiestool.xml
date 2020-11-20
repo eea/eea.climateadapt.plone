@@ -36,6 +36,7 @@
             <element value="eea.climateadapt.adaptationoption"/>
             <element value="eea.climateadapt.guidancedocument"/>
             <element value="eea.climateadapt.casestudy"/>
+            <element value="eea.climateadapt.c3sindicator"/>
             <element value="eea.climateadapt.indicator"/>
             <element value="eea.climateadapt.informationportal"/>
             <element value="eea.climateadapt.mapgraphdataset"/>

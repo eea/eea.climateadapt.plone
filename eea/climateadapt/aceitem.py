@@ -517,6 +517,22 @@ class IIndicator(IAceItem):
     )
 
 
+class IC3sIndicator(IIndicator):
+    """ Indicator Interface"""
+
+    overview_app_toolbox_url = TextLine(title=_(u"Overview APP Toolbox URL"),
+                     required=True)
+
+    overview_app_parameters = Text(title=(u"Overview APP parameters"),
+                                required=True)
+
+    details_app_toolbox_url = TextLine(title=_(u"Details APP Toolbox URL"),
+                     required=True)
+
+    details_app_parameters = Text(title=(u"Details APP parameters"),
+                                required=True)
+
+
 class IAction(IAceItem):
     """ Action Interface"""
 
@@ -570,6 +586,11 @@ class Indicator(dexterity.Container):
     implements(IIndicator, IClimateAdaptContent)
 
     search_type = "INDICATOR"
+
+class C3sIndicator(dexterity.Container):
+    implements(IIndicator, IClimateAdaptContent)
+
+    search_type = "C3s INDICATOR"
 
 
 class MapGraphDataset(dexterity.Container):

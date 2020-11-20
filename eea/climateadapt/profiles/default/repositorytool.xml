@@ -25,6 +25,10 @@
             <policy name="at_edit_autoversion"/>
             <policy name="version_on_revert"/>
         </type>
+        <type name="eea.climateadapt.c3sindicator">
+            <policy name="at_edit_autoversion"/>
+            <policy name="version_on_revert"/>
+        </type>
         <type name="eea.climateadapt.indicator">
             <policy name="at_edit_autoversion"/>
             <policy name="version_on_revert"/>

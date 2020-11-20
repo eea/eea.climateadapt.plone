@@ -48,6 +48,12 @@ class IndicatorView(DefaultView, AceViewApi):
     type_label = u"Indicator"
 
 
+class C3sIndicatorView(DefaultView, AceViewApi):
+    """
+    """
+    type_label = u"C3s Indicator"
+
+
 class OrganisationView(DefaultView, AceViewApi):
     """
     """
@@ -125,6 +131,18 @@ class IndicatorAddForm(DefaultAddForm):
 IndicatorEditView = layout.wrap_form(IndicatorEditForm)
 classImplements(IndicatorEditView, IDexterityEditForm)
 
+class C3sIndicatorEditForm(DefaultEditForm):
+    """ Edit form for C3sIndicators
+    """
+
+
+class C3sIndicatorAddForm(DefaultAddForm):
+    """ Add Form for C3sIndicators
+    """
+
+
+C3sIndicatorEditView = layout.wrap_form(IndicatorEditForm)
+classImplements(C3sIndicatorEditView, IDexterityEditForm)
 
 class OrganisationEditForm(DefaultEditForm):
     """ Edit form for Organisations
@@ -170,3 +188,8 @@ class AceItemFormExtender(FormExtender):
 class IndicatorFormExtender(FormExtender):
     def update(self):
         self.move('publication_date', before='map_graphs')
+
+
+class C3sIndicatorFormExtender(FormExtender):
+    """ Add Form for C3sIndicator
+    """
