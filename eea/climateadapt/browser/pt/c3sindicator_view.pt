@@ -39,7 +39,7 @@
             </script>
 
             <div class="t-ct">
-                <div id="toolbox-app">
+                <div id="toolbox-app-overview">
                     <div class="pre-app-loading">
                         <img src="https://cds.climate.copernicus.eu/toolbox/assets/spinner.svg" alt="Loading">
                         <div>
@@ -49,14 +49,41 @@
                 </div>
             </div>
 
-            <script type="text/javascript" src="https://cds.climate.copernicus.eu/toolbox/toolbox-4.16.0.js"></script>
             <script>
                 window.define = window._define;
             </script>
-            <script type="text/javascript">
+            <script type="text/javascript" src="https://cds.climate.copernicus.eu/toolbox/toolbox-4.16.0.js"></script>
+            <script type="text/javascript" tal:content="structure view/c3sjs_overview">
                 (function () {
                     document.addEventListener('DOMContentLoaded', function () {
-                        window.cds_toolbox.runApp('toolbox-app', 'https://cds.climate.copernicus.eu/workflows/c3s/hidden-app-health-mosquito-overview-web/master/configuration.json?configuration_version=3.0', {
+                        window.cds_toolbox.runApp('toolbox-app-overview', 'https://cds.climate.copernicus.eu/workflows/c3s/hidden-app-health-mosquito-overview-web/master/configuration.json?configuration_version=3.0', {
+                            workflowParams: {
+                                "indicator": "season_length",
+                            }
+                        });
+                    }, false);
+                })();
+            </script>
+
+            <div class="t-ct">
+                <div id="toolbox-app-details">
+                    <div class="pre-app-loading">
+                        <img src="https://cds.climate.copernicus.eu/toolbox/assets/spinner.svg" alt="Loading">
+                        <div>
+                            ...loading configuration...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                window.define = window._define;
+            </script>
+            <script type="text/javascript" src="https://cds.climate.copernicus.eu/toolbox/toolbox-4.16.0.js"></script>
+            <script type="text/javascript" tal:content="structure view/c3sjs_details">
+                (function () {
+                    document.addEventListener('DOMContentLoaded', function () {
+                        window.cds_toolbox.runApp('toolbox-app-details', 'https://cds.climate.copernicus.eu/workflows/c3s/hidden-app-health-mosquito-overview-web/master/configuration.json?configuration_version=3.0', {
                             workflowParams: {
                                 "indicator": "season_length",
                             }

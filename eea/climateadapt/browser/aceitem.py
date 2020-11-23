@@ -53,6 +53,28 @@ class C3sIndicatorView(DefaultView, AceViewApi):
     """
     type_label = u"C3s Indicator"
 
+    def c3sjs_overview(self):
+        response = """(function () {
+                    document.addEventListener('DOMContentLoaded', function () {
+                        window.cds_toolbox.runApp('toolbox-app-overview', 'SCRIPT_URL', SCRIPT_JSON);
+                    }, false);
+                })();
+                """
+        response = response.replace('SCRIPT_URL', self.context.overview_app_toolbox_url)
+        response = response.replace('SCRIPT_JSON', self.context.overview_app_parameters)
+        return response;
+
+    def c3sjs_details(self):
+        response = """(function () {
+                    document.addEventListener('DOMContentLoaded', function () {
+                        window.cds_toolbox.runApp('toolbox-app-details', 'SCRIPT_URL', SCRIPT_JSON);
+                    }, false);
+                })();
+                """
+        response = response.replace('SCRIPT_URL', self.context.details_app_toolbox_url)
+        response = response.replace('SCRIPT_JSON', self.context.details_app_parameters)
+        return response;
+
 
 class OrganisationView(DefaultView, AceViewApi):
     """
