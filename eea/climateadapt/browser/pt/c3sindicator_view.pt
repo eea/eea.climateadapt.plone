@@ -23,7 +23,7 @@
         <h3>Description</h3>
         <div tal:content="structure python: view.w['long_description'].render()">description here</div>
 
-        <div class="column col-md-12">
+        <div class="column col-md-12" style="padding-top:20px;">
             <a href="#details" class="standard-button primary-button c3s_overview" onclick="c3sView('details');return false;" style="float: right; position: relative;">Explore in details</a>
             <a href="#" class="standard-button primary-button c3s_details" onclick="c3sView('overview');return false;" style="float: left; position: relative;">Go back</a>
         </div>
