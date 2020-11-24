@@ -31,7 +31,7 @@
             <hr style="clear:both;">
         </div>
 
-        <div class="row c3s c3s_overview">
+        <div class="column col-md-12 c3s c3s_overview">
             <script>
                 window._define = window.define;
                 window.define = undefined;
@@ -65,7 +65,7 @@
             </script>
         </div>
 
-        <div class="row c3s c3s_details">
+        <div class="column col-md-12 c3s c3s_details">
 
             <div class="t-ct">
                 <div id="toolbox-app-details">
@@ -83,6 +83,7 @@
                 </script>
             </div>
         </div>
+        <div style="clear:both;" />
         <script>
             window.define = window._define;
         </script>
