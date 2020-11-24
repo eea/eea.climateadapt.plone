@@ -65,14 +65,11 @@ class C3sIndicatorView(DefaultView, AceViewApi):
         return response;
 
     def c3sjs_details(self):
-        response = """(function () {
-                    document.addEventListener('DOMContentLoaded', function () {
-                        window.cds_toolbox.runApp('toolbox-app-details', 'SCRIPT_URL', SCRIPT_JSON);
-                    }, false);
-                })();
-                """
-        response = response.replace('SCRIPT_URL', self.context.details_app_toolbox_url)
-        response = response.replace('SCRIPT_JSON', self.context.details_app_parameters)
+        response = """
+                    var c3s_details_url  = '{0}';
+                    var c3s_details_params  = {1};
+                """.format(self.context.details_app_toolbox_url,
+                            self.context.details_app_parameters)
         return response;
 
 

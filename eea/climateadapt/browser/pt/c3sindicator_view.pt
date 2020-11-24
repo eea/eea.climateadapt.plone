@@ -9,212 +9,117 @@
   >
 
   <body>
-    <metal:main fill-slot="body">
+      <metal:main fill-slot="main">
+          <h1>
+            <span tal:content="context/title"></span>
+            <img
+              tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
+              style="float:right; padding:10px;" tal:condition="context/logo" />
+            <img
+              style="float:right; padding:10px;"
+              tal:attributes="src string: ${context/absolute_url}/@@images/image/thumb"
+              tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" />
+          </h1>
+        <h3>Description</h3>
+        <div tal:content="structure python: view.w['long_description'].render()">description here</div>
 
-      <tal:main-macro metal:define-macro="content-core">
+        <div class="column col-md-12">
+            <a href="#details" class="standard-button primary-button c3s_overview" onclick="c3sView('details');return false;" style="float: right; position: relative;">Explore in details</a>
+            <a href="#" class="standard-button primary-button c3s_details" onclick="c3sView('overview');return false;" style="float: left; position: relative;">Go back</a>
+        </div>
+        <div class="column col-md-12">
+            <hr style="clear:both;">
+        </div>
 
-        <metal:macro use-macro="context/ace_macros/macros/ace_layout">
+        <div class="row c3s c3s_overview">
+            <script>
+                window._define = window.define;
+                window.define = undefined;
+            </script>
+            <script type="text/javascript">
+                window.cds_toolbox = { cds_public_path: 'https://cds.climate.copernicus.eu/toolbox/' };
+            </script>
 
-          <div metal:fill-slot="title-slot">
-            <h1>
-              <span tal:content="context/title"></span>
-              <img
-                tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
-                style="float:right; padding:10px;" tal:condition="context/logo" />
-              <img
-                style="float:right; padding:10px;"
-                tal:attributes="src string: ${context/absolute_url}/@@images/image/thumb"
-                tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" />
-            </h1>
-          </div>
-
-          <div class="aceitem-left" metal:fill-slot="ace-left-slot">
-            <h3>Description</h3>
-            <div tal:content="structure python: view.w['long_description'].render()">description here</div>
-
-            <div tal:condition="context/map_graphs" tal:content="structure context/map_graphs">ifram map</div>
-
-
-            <div class="column col-md-12">
-                <a href="#details" class="standard-button primary-button c3s_overview" onclick="c3sView('details');return false;" style="float: right; position: relative;">Explore in details</a>
-                <a href="#" class="standard-button primary-button c3s_details" onclick="c3sView('overview');return false;" style="float: left; position: relative;">Go back</a>
-            </div>
-            <div class="column col-md-12">
-                <hr style="clear:both;">
-            </div>
-            <div class="row c3s c3s_overview">
-                <script type="text/javascript">
-                    window.cds_toolbox = { cds_public_path: 'https://cds.climate.copernicus.eu/toolbox/' };
-                </script>
-
-                <div class="t-ct">
-                    <div id="toolbox-app-overview">
-                        <div class="pre-app-loading">
-                            <img src="https://cds.climate.copernicus.eu/toolbox/assets/spinner.svg" alt="Loading">
-                            <div>
-                                ...loading configuration...
-                            </div>
+            <div class="t-ct">
+                <div id="toolbox-app-overview">
+                    <div class="pre-app-loading">
+                        <img src="https://cds.climate.copernicus.eu/toolbox/assets/spinner.svg" alt="Loading">
+                        <div>
+                            ...loading configuration...
                         </div>
                     </div>
                 </div>
-
-                <script>
-                    window.define = window._define;
-                </script>
-                <script type="text/javascript" src="https://cds.climate.copernicus.eu/toolbox/toolbox-4.16.0.js"></script>
-                <script type="text/javascript" tal:content="structure view/c3sjs_overview">
-                    (function () {
-                        document.addEventListener('DOMContentLoaded', function () {
-                            window.cds_toolbox.runApp('toolbox-app-overview', 'https://cds.climate.copernicus.eu/workflows/c3s/hidden-app-health-mosquito-overview-web/master/configuration.json?configuration_version=3.0', {
-                                workflowParams: {
-                                    "indicator": "season_length",
-                                }
-                            });
-                        }, false);
-                    })();
-                </script>
             </div>
 
-            <div class="row c3s c3s_details">
-                <script>
-                    window.define = window._define;
-                </script>
+            <script type="text/javascript" src="https://cds.climate.copernicus.eu/toolbox/toolbox-4.16.0.js"></script>
+            <script type="text/javascript" tal:content="structure view/c3sjs_overview">
+                (function () {
+                    document.addEventListener('DOMContentLoaded', function () {
+                        window.cds_toolbox.runApp('toolbox-app-overview', 'https://cds.climate.copernicus.eu/workflows/c3s/hidden-app-health-mosquito-overview-web/master/configuration.json?configuration_version=3.0', {
+                            workflowParams: {
+                                "indicator": "season_length",
+                            }
+                        });
+                    }, false);
+                })();
+            </script>
+        </div>
 
-                <div class="t-ct">
-                    <div id="toolbox-app-details">
-                        <div class="pre-app-loading">
-                            <img src="https://cds.climate.copernicus.eu/toolbox/assets/spinner.svg" alt="Loading">
-                            <div>
-                                ...loading configuration...
-                            </div>
+        <div class="row c3s c3s_details">
+
+            <div class="t-ct">
+                <div id="toolbox-app-details">
+                    <div class="pre-app-loading">
+                        <img src="https://cds.climate.copernicus.eu/toolbox/assets/spinner.svg" alt="Loading">
+                        <div>
+                            ...loading configuration...
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <script>
-                    window.define = window._define;
-                </script>
-                <script type="text/javascript" src="https://cds.climate.copernicus.eu/toolbox/toolbox-4.16.0.js"></script>
+            <div id="c3s_details_js">
                 <script type="text/javascript" tal:content="structure view/c3sjs_details">
-                    (function () {
-                        document.addEventListener('DOMContentLoaded', function () {
-                            window.cds_toolbox.runApp('toolbox-app-details', 'https://cds.climate.copernicus.eu/workflows/c3s/hidden-app-health-mosquito-overview-web/master/configuration.json?configuration_version=3.0', {
-                                workflowParams: {
-                                    "indicator": "season_length",
-                                }
-                            });
-                        }, false);
-                    })();
                 </script>
             </div>
-<style>
-.row.c3s {
-    clear:both;
-}
-.c3s h2 {
-    color:#000;
-    background-color:#fff;
-}
-hr {
-    background: #005C96;
-    height: 4px;
-}
-</style>
-<script>
-if(window.location.hash && window.location.hash=="#details") {
-    c3sView('details');
-} else {
-    c3sView('overview');
-}
-function c3sView(type) {
-    if (type=='details') {
-        location.hash = '#details';
-        $('.c3s_details').show();
-        $('.c3s_overview').hide();
-    } else {
-        location.hash = '';
-        $('.c3s_details').hide();
-        $('.c3s_overview').show();
-    }
-}
-</script>
-            <h4 class="reference-title" tal:condition="python:context.websites or context.source">Reference information</h4>
-            <div tal:condition="context/websites">
-                <h5>Websites:</h5>
-                <metal:macro use-macro="context/ace_macros/macros/websites" />
-            </div>
+        </div>
+        <script>
+            window.define = window._define;
+        </script>
 
-            <div tal:condition="context/source">
-                <h5>Source:</h5>
-                <div tal:content="structure python: view.w['source'].render()">Source here</div>
-            </div>
+        <style>
+        .row.c3s {
+            clear:both;
+        }
+        .c3s h2 {
+            color:#000;
+            background-color:#fff;
+        }
+        hr {
+            background: #005C96;
+            height: 4px;
+        }
+        </style>
+        <script>
+        if(window.location.hash && window.location.hash=="#details") {
+            c3sView('details');
+        } else {
+            c3sView('overview');
+        }
+        function c3sView(type) {
+            if (type=='details') {
+                location.hash = '#details';
+                $('.c3s_overview').hide();
+                $('.c3s_details').show();
+                window.cds_toolbox.runApp('toolbox-app-details', c3s_details_url, c3s_details_params);
+            } else {
+                location.hash = '';
+                $('.c3s_details').hide();
+                $('.c3s_overview').show();
+            }
+        }
+        </script>
 
-            <div tal:condition="context/metadata/raw | nothing">
-              <h5>Link to metadata:</h5>
-              <div tal:content="structure python: view.w['metadata'].render()">Metadata</div>
-            </div>
-
-            <metal:macro use-macro="context/ace_macros/macros/content_dates" />
-
-            <div metal:use-macro="context/ace_macros/macros/comments"></div>
-          </div>
-
-          <div class="aceitem-right" metal:fill-slot="ace-right-slot">
-
-            <metal:macro use-macro="context/ace_macros/macros/files" />
-
-            <div class="macro-category health-information" tal:condition="python:health_impacts" tal:define="health_impacts context/health_impacts">
-              <h4>Health impact:</h4>
-              <div tal:condition="health_impacts">
-                <span tal:replace="python:', '.join(health_impacts) if isinstance(health_impacts, list) else health_impacts">health impacts</span>
-              </div>
-            </div>
-
-            <div class="macro-category" tal:condition="effective" tal:define="effective context/publication_date|nothing">
-              <div>
-                <h4>Date of Item publication:</h4>
-                <span tal:replace="python: effective.strftime('%Y')">2000</span>
-                <a href="#" data-toggle="tooltip" class="pat-tooltip"
-                      title="The date refers to the latest date of publication of the item">
-                      <i class="fa fa-question-circle"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="macro-category" tal:condition="context/keywords">
-              <h4>Keywords:</h4>
-              <metal:macro use-macro="context/ace_macros/macros/keywords" />
-            </div>
-
-            <div class="macro-category">
-              <h4>Climate impacts:</h4>
-              <tal:block content="structure python:view.w['climate_impacts'].render()"/>
-            </div>
-
-            <div id="cca-macro-category-elements" class="macro-category" tal:condition="python:len(elements)" tal:define="elements context/elements">
-              <h4>Elements:</h4>
-              <tal:block content="structure python:view.w['elements'].render()"/>
-            </div>
-
-            <div class="macro-category">
-              <h4>Sectors</h4>
-              <tal:block content="structure python:view.w['sectors'].render()"/>
-            </div>
-
-            <div class="macro-category">
-              <h4>Geographic characterization:</h4>
-              <metal:macro use-macro="context/ace_macros/macros/geochar" />
-            </div>
-
-          </div>
-
-        </metal:macro>
-        <div id="viewlet-below-content-body"
-          tal:content="structure provider:plone.belowcontentbody"
-          tal:condition="not:ajax_load" />
-
-      </tal:main-macro>
-    </metal:main>
-
+      </metal:main>
   </body>
 </html>

@@ -106,6 +106,10 @@
     </div>
   </metal:macro>
 
+  <metal:macro define-macro="ace_c3s">
+    <div id="content" class="columned">
+    </div>
+  </metal:macro>
 
   <metal:macro define-macro="content_dates">
     <div class="documentByLine" style="padding-top:25px;" tal:define="dates view/get_date_updated; cadapt_published none | dates/cadapt_published;  cadapt_last_modified none | dates/cadapt_last_modified;">
