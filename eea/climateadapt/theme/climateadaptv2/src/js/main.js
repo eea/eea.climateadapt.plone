@@ -898,6 +898,13 @@ $(document).ready(function() {
     }
   });
 
+  $('.row.container-themes .col-md-3').click(function() {
+      console.log($(this).attr('data-url'));
+      if ($(this).attr('data-url') !== undefined) {
+          window.location = $(this).attr('data-url');
+      }
+  });
+
 });
 
 // Divide the sub-menu in 2 columns if 'sub-sub-menu' exist
