@@ -520,6 +520,10 @@ class IIndicator(IAceItem):
 class IC3sIndicator(IIndicator):
     """ Indicator Interface"""
 
+    definition_app = RichText(title=(u"App definition"),
+                                description=u"Provide a short description",
+                                required=True)
+
     overview_app_toolbox_url = TextLine(title=_(u"Overview APP Toolbox URL"),
                      required=True)
 

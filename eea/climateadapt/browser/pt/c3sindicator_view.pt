@@ -20,52 +20,57 @@
               tal:attributes="src string: ${context/absolute_url}/@@images/image/thumb"
               tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" />
           </h1>
-        <h3>Description</h3>
-        <div tal:content="structure python: view.w['long_description'].render()">description here</div>
-
-        <div class="column col-md-12" style="padding-top:20px;">
-            <a href="#details" class="standard-button primary-button c3s_overview" onclick="c3sView('details');return false;" style="float: right; position: relative;">Explore in details</a>
-            <a href="#" class="standard-button primary-button c3s_details" onclick="c3sView('overview');return false;" style="float: left; position: relative;">Go back</a>
-        </div>
-        <div class="column col-md-12">
-            <hr style="clear:both;">
-        </div>
-
         <div class="column col-md-12 c3s c3s_overview">
-            <script>
-                window._define = window.define;
-                window.define = undefined;
-            </script>
-            <script type="text/javascript">
-                window.cds_toolbox = { cds_public_path: 'https://cds.climate.copernicus.eu/toolbox/' };
-            </script>
+            <h3>Description</h3>
+            <div tal:content="structure python: view.w['long_description'].render()">description here</div>
 
-            <div class="t-ct">
-                <div id="toolbox-app-overview">
-                    <div class="pre-app-loading">
-                        <img src="https://cds.climate.copernicus.eu/toolbox/assets/spinner.svg" alt="Loading">
-                        <div>
-                            ...loading configuration...
+            <div style="clear:both;padding-top:50px;" />
+
+            <div class="row">
+                <div class="column col-md-8">
+                    <script>
+                        window._define = window.define;
+                        window.define = undefined;
+                    </script>
+                    <script type="text/javascript">
+                        window.cds_toolbox = { cds_public_path: 'https://cds.climate.copernicus.eu/toolbox/' };
+                    </script>
+
+                    <div class="t-ct">
+                        <div id="toolbox-app-overview">
+                            <div class="pre-app-loading">
+                                <img src="https://cds.climate.copernicus.eu/toolbox/assets/spinner.svg" alt="Loading">
+                                <div>
+                                    ...loading configuration...
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <script type="text/javascript" src="https://cds.climate.copernicus.eu/toolbox/toolbox-4.16.0.js"></script>
+                    <script type="text/javascript" tal:content="structure view/c3sjs_overview">
+                        (function () {
+                            document.addEventListener('DOMContentLoaded', function () {
+                                window.cds_toolbox.runApp('toolbox-app-overview', 'https://cds.climate.copernicus.eu/workflows/c3s/hidden-app-health-mosquito-overview-web/master/configuration.json?configuration_version=3.0', {
+                                    workflowParams: {
+                                        "indicator": "season_length",
+                                    }
+                                });
+                            }, false);
+                        })();
+                    </script>
+                </div>
+                <div class="column col-md-4">
+                    <div tal:content="structure context/definition_app/output"></div>
+                    <a href="#details" class="standard-button primary-button c3s_overview" onclick="c3sView('details');return false;" style="float: right; position: relative;">Explore in details</a>
                 </div>
             </div>
-
-            <script type="text/javascript" src="https://cds.climate.copernicus.eu/toolbox/toolbox-4.16.0.js"></script>
-            <script type="text/javascript" tal:content="structure view/c3sjs_overview">
-                (function () {
-                    document.addEventListener('DOMContentLoaded', function () {
-                        window.cds_toolbox.runApp('toolbox-app-overview', 'https://cds.climate.copernicus.eu/workflows/c3s/hidden-app-health-mosquito-overview-web/master/configuration.json?configuration_version=3.0', {
-                            workflowParams: {
-                                "indicator": "season_length",
-                            }
-                        });
-                    }, false);
-                })();
-            </script>
         </div>
 
         <div class="column col-md-12 c3s c3s_details">
+
+            <a href="#" class="standard-button primary-button c3s_details" onclick="c3sView('overview');return false;" style="float: left; position: relative;">Go back</a>
+            <div style="clear:both;" />
 
             <div class="t-ct">
                 <div id="toolbox-app-details">
