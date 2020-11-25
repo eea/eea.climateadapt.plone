@@ -90,9 +90,8 @@
         </div>
         <div style="clear:both;padding-top:25px;width:100%;text-align:right;"
             tal:condition="python: context.relatedItems and len(context.relatedItems)"
-            tal:define="related_url python: context.relatedItems[0].to_object.absolute_url()"
             >
-            <a tal:attributes="href related_url;" href="" class="standard-button primary-button">Open as database item</a>
+            <a tal:define="related_url python: context.relatedItems[0].to_object.absolute_url()" tal:attributes="href related_url;" href="" class="standard-button primary-button">Open as database item</a>
         </div>
 
         <div style="clear:both;" />
