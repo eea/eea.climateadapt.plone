@@ -61,7 +61,7 @@
                     </script>
                 </div>
                 <div class="column col-md-4">
-                    <div tal:content="structure context/definition_app/output"></div>
+                    <div tal:condition="context/definition_app" tal:content="structure context/definition_app/output"></div>
                     <a href="#details" class="standard-button primary-button c3s_overview" onclick="c3sView('details');return false;" style="float: right; position: relative;">Explore in details</a>
                 </div>
             </div>
@@ -88,7 +88,15 @@
                 </script>
             </div>
         </div>
+        <div style="clear:both;padding-top:25px;width:100%;text-align:right;"
+            tal:condition="python: context.relatedItems and len(context.relatedItems)"
+            tal:define="related_url python: context.relatedItems[0].to_object.absolute_url()"
+            >
+            <a tal:attributes="href related_url;" href="" class="standard-button primary-button">Open as database item</a>
+        </div>
+
         <div style="clear:both;" />
+
         <script>
             window.define = window._define;
         </script>
