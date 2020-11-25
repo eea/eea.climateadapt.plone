@@ -21,7 +21,6 @@
               tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" />
           </h1>
         <div class="column col-md-12 c3s c3s_overview">
-            <h3>Description</h3>
             <div tal:content="structure python: view.w['long_description'].render()">description here</div>
 
             <div style="clear:both;padding-top:50px;" />
@@ -91,7 +90,10 @@
         <div style="clear:both;padding-top:25px;width:100%;text-align:right;"
             tal:condition="python: context.relatedItems and len(context.relatedItems)"
             >
-            <a tal:define="related_url python: context.relatedItems[0].to_object.absolute_url()" tal:attributes="href related_url;" href="" class="standard-button primary-button">Open as database item</a>
+            <a tal:define="related_url python: context.relatedItems[0].to_object.absolute_url()"
+                tal:attributes="href related_url;"
+                href=""
+                class="standard-button primary-button">Open as database item</a>
         </div>
 
         <div style="clear:both;" />
