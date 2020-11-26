@@ -19,16 +19,6 @@
                tal:define="embed view/context/embed | nothing"
                >
 
-            <div tal:condition="embed">
-              <span tal:replace="structure embed"></span>
-            </div>
-
-            <div tal:condition="not: embed">
-              <a href=""
-                tal:attributes="href context/embed_url"
-                target="_blank">See video outside Climate-ADAPT</a>
-            </div>
-
             <!-- <div tal:define="url view/embed_url" tal:condition="not: embed"> -->
             <!--   <iframe tal:attributes="height context/video_height; src url" -->
             <!--     frameborder="0" -->
@@ -60,6 +50,16 @@
             </div>
 
             <metal:macro use-macro="context/ace_macros/macros/contributors" />
+
+            <div tal:condition="embed">
+              <span tal:replace="structure embed"></span>
+            </div>
+
+            <div tal:condition="not: embed">
+              <a href=""
+                tal:attributes="href context/embed_url"
+                target="_blank">See video outside Climate-ADAPT</a>
+            </div>
 
             <div metal:use-macro="context/ace_macros/macros/comments"></div>
           </div>
