@@ -91,16 +91,25 @@
                 <metal:macro use-macro="context/ace_macros/macros/keywords" />
             </div>
 
-            <h4>Climate impacts</h4>
-            <tal:block content="structure python:view.w['climate_impacts'].render()"/>
+            <div class="macro-category">
+                <h4>Climate impacts</h4>
+                <tal:block content="structure python:view.w['climate_impacts'].render()"/>
+            </div>
 
-            <h4>Elements</h4>
-            <tal:block content="structure python:view.w['elements'].render()"/>
+            <div class="macro-category" tal:condition="context/elements">
+                <h4>Elements</h4>
+                <tal:block content="structure python:view.w['elements'].render()"/>
+            </div>
 
-            <h4>Sectors</h4>
-            <tal:block content="structure python:view.w['sectors'].render()"/>
-            <h4>Geographic characterization</h4>
-            <metal:macro use-macro="context/ace_macros/macros/geochar" />
+            <div class="macro-category">
+                <h4>Sectors</h4>
+                <tal:block content="structure python:view.w['sectors'].render()"/>
+            </div>
+
+            <div class="macro-category">
+                <h4>Geographic characterization</h4>
+                <metal:macro use-macro="context/ace_macros/macros/geochar" />
+            </div>
 
           </div>
 
