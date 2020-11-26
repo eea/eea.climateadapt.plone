@@ -194,6 +194,9 @@
                   <h5 id="source">Reference</h5>
                   <div tal:content="structure python: view.w['source'].render()"></div>
                 </div>
+
+                <metal:macro use-macro="context/ace_macros/macros/contributors" />
+
                 <div metal:use-macro="context/ace_macros/macros/comments"></div>
 
                 <metal:macro use-macro="context/ace_macros/macros/content_dates" />

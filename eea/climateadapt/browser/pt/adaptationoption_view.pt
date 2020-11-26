@@ -123,9 +123,11 @@
                 <div tal:content="structure python: view.w['source'].render()">Source here</div>
             </div>
 
-            <metal:macro use-macro="context/ace_macros/macros/content_dates" />
+            <div metal:use-macro="context/ace_macros/macros/contributors"></div>
 
             <div metal:use-macro="context/ace_macros/macros/comments"></div>
+
+            <metal:macro use-macro="context/ace_macros/macros/content_dates" />
           </div>
 
           <div metal:fill-slot="ace-right-slot">

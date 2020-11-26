@@ -91,13 +91,6 @@
 
             <metal:slot metal:define-slot="ace-right-slot"></metal:slot>
 
-            <div class="macro-category" tal:condition="python: contributor or other_contributor" tal:define="contributor context/contributors; other_contributor context/other_contributor|nothing">
-              <h4>Contributor:</h4>
-              <span tal:condition="contributor" tal:replace="python: contributor[0].to_object.title" ></span>
-              <br tal:condition="python: contributor and other_contributor" />
-              <span tal:condition="other_contributor" tal:replace="structure python: other_contributor.replace('\n','<br />\n')" ></span>
-            </div>
-
             <div tal:condition="geotag" tal:content="geotag/location"></div>
 
           </div>
@@ -161,6 +154,15 @@
 
   <metal:macro define-macro="keywords">
     <div tal:content="python: ', '.join(sorted(set(context.keywords or [])))"></div>
+  </metal:macro>
+
+  <metal:macro define-macro="contributors">
+      <div tal:condition="python: contributor or other_contributor" tal:define="contributor context/contributors; other_contributor context/other_contributor|nothing">
+        <br/><h5>Contributor:</h5>
+        <span tal:condition="contributor" tal:replace="python: contributor[0].to_object.title" ></span>
+        <br tal:condition="python: contributor and other_contributor" />
+        <span tal:condition="other_contributor" tal:replace="structure python: other_contributor.replace('\n','<br />\n')" ></span>
+      </div>
   </metal:macro>
 
   <metal:macro define-macro="comments">

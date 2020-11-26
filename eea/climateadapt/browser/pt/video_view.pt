@@ -59,6 +59,8 @@
               <div tal:content="structure python: view.metadata">Metadata</div>
             </div>
 
+            <metal:macro use-macro="context/ace_macros/macros/contributors" />
+
             <div metal:use-macro="context/ace_macros/macros/comments"></div>
           </div>
 
