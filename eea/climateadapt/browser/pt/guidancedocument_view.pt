@@ -49,7 +49,7 @@
 
             <div class="macro-category" tal:condition="effective" tal:define="effective context/publication_date|nothing">
               <div>
-                <h4>Date of Item publication:</h4>
+                <h4>Date of publication:</h4>
                 <span tal:replace="python: effective.strftime('%Y')">2000</span>
                 <a href="#" data-toggle="tooltip" class="pat-tooltip"
                       title="The date refers to the latest date of publication of the item">

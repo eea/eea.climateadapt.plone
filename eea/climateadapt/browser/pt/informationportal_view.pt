@@ -48,7 +48,7 @@
 
             <div class="macro-category" tal:condition="effective" tal:define="effective context/publication_date|nothing">
               <div>
-                <h4>Date of Item creation:</h4>
+                <h4>Date of creation:</h4>
                 <span tal:replace="python: effective.strftime('%Y')">2000</span>
                 <a href="#" data-toggle="tooltip" class="pat-tooltip"
                       title="The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT">
