@@ -10,17 +10,24 @@
 
   <body>
       <metal:main fill-slot="main">
-          <h1>
-            <span tal:content="context/title"></span>
+<style>
+    .bottom > * {
+      vertical-align: bottom;
+    }
+</style>
+          <div class="bottom" style="padding-bottom: 40px;">
+            <h1 tal:content="context/title" style="display: inline-block; margin-bottom:0px;"></h1>
             <img
               tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
-              style="float:right; padding:10px;" tal:condition="context/logo" />
+              tal:condition="context/logo"
+              style=" padding-left:20px;"
+              />
             <img
-              style="float:right; padding:10px;"
+              style=" padding:10px;"
               tal:attributes="src string: ${context/absolute_url}/@@images/image/thumb"
               tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" />
-          </h1>
-        <div class="column col-md-12 c3s c3s_overview">
+          </div>
+        <div class="c3s c3s_overview">
             <div tal:content="structure python: view.w['long_description'].render()">description here</div>
 
             <div style="clear:both;padding-top:50px;"
@@ -71,7 +78,7 @@
             </div>
         </div>
 
-        <div class="column col-md-12 c3s c3s_details">
+        <div class="c3s c3s_details">
 
             <a href="#" class="standard-button primary-button c3s_details" onclick="c3sView('overview');return false;" style="float: left; position: relative;">Go back</a>
             <div style="clear:both;" />

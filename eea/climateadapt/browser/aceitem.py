@@ -212,3 +212,5 @@ class IndicatorFormExtender(FormExtender):
 class C3sIndicatorFormExtender(FormExtender):
     """ Add Form for C3sIndicator
     """
+    def update(self):
+        self.move('IRelatedItems.relatedItems', after='details_app_parameters')
