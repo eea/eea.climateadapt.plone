@@ -384,7 +384,7 @@ alsoProvides(acemeasure_types, IVocabularyFactory)
 
 _origin_website = (("AdapteCCA", "AdapteCCA"),
                    ("Climate-ADAPT", "Climate-ADAPT"), ("EEA", "EEA"),
-                   ('DRMKC', 'DRMKC'),
+                   ('DRMKC', 'DRMKC'), ('C3S', 'C3S'),
                    ('Lancet Countdown', 'Lancet Countdown')
                    )
 origin_website = generic_vocabulary(_origin_website)
