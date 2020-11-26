@@ -20,12 +20,8 @@
             <img
               tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
               tal:condition="context/logo"
-              style=" padding-left:20px;"
+              style=" padding-left:20px; max-height: 50px;"
               />
-            <img
-              style=" padding:10px;"
-              tal:attributes="src string: ${context/absolute_url}/@@images/image/thumb"
-              tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" />
           </div>
         <div class="c3s c3s_overview">
             <div tal:content="structure python: view.w['long_description'].render()">description here</div>
