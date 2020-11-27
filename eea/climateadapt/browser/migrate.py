@@ -158,29 +158,36 @@ class FundingProgramme():
         return response
 
 class OrganisationLogo():
-    """ Migrate funding_programme field
+    """ Migrate organisation logo field
     """
 
     def list(self):
-        catalog = api.portal.get_tool('portal_catalog')
-        brains = catalog.searchResults(portal_type='eea.climateadapt.organisation')
         response = []
 
-        for brain in brains:
-            obj = brain.getObject()
+        catalog = api.portal.get_tool('portal_catalog')
+        for _type in DB_ITEM_TYPES:
+            brains = catalog.searchResults(portal_type=_type)
 
-            logger.info("Organisation: %s", brain.getURL())
-            if hasattr(obj, 'logo') \
-                    and obj.logo:
-                #obj.image = obj.logo
-                #obj._p_changed = True
+            for brain in brains:
+                obj = brain.getObject()
 
-                response.append({
-                    'title': obj.title,
-                    'url': brain.getURL()
-                })
+                logger.info("Organisation: %s", brain.getURL())
+                #if hasattr(obj, 'image') \
+                #        and obj.image:
+                if hasattr(obj, 'logo') \
+                        and obj.logo:
+                #if hasattr(obj, 'thumbnail') \
+                #        and obj.thumbnail:
+                    #obj.image = obj.logo
+                    #obj._p_changed = True
 
-                logger.info("Organisation has logo: %s", brain.getURL())
+                    response.append({
+                        'title': obj.title,
+                        'url': brain.getURL()
+                    })
+
+                    logger.info("Organisation has logo: %s", brain.getURL())
+        logger.info("Articles in response: %s", len(response))
         return response
 
 class SourceToRichText():
@@ -219,3 +226,40 @@ class SourceToRichText():
                     obj.source = RichTextValue(obj.source)
                     obj._p_changed = True
                     logger.info("Migrated source type for obj: %s", brain.getURL())
+
+class DrmkcSource():
+    """ Override to hide files and images in the related content viewlet
+    """
+
+    def list(self):
+        # issues/125183
+
+        catalog = api.portal.get_tool('portal_catalog')
+        res = []
+
+        i = 0
+        for _type in DB_ITEM_TYPES:
+            i += 1
+            if i % 100 == 0:
+                transaction.savepoint()
+
+            brains = catalog.searchResults(portal_type=_type)
+
+            for brain in brains:
+                obj = brain.getObject()
+
+                if hasattr(obj, 'partners_source_link'):
+                    if obj.partners_source_link is not None and obj.partners_source_link.startswith('https://drmkc.jrc.ec.europa.eu/knowledge/PROJECT-EXPLORER/Projects-Explorer#project-explorer/631/'):
+                        obj.partners_source_link = obj.partners_source_link.replace('project-explorer/631/', 'project-explorer/1035/')
+                        obj._p_changed = True
+
+                        logger.info("Update partner link obj: %s", brain.getURL())
+
+                        res.append(
+                            {
+                                'title': obj.title,
+                                'url': brain.getURL(),
+                            }
+                        )
+
+        return res
