@@ -479,6 +479,20 @@ class IAdaptationOption(IAceMeasure):
             vocabulary="eea.climateadapt.aceitems_ipcc_category",),
     )
 
+    casestudies = RelationList(
+        title=u"Case studies implemented in the adaption:",
+        default=[],
+        description=_(u"Select one or more case study that this item "
+                      u"relates to:"),
+        value_type=RelationChoice(
+            title=_(u"Related"),
+            vocabulary="eea.climateadapt.case_studies"
+            # source=ObjPathSourceBinder(),
+            # source=CatalogSource(portal_type='eea.climateadapt.adaptionoption'),
+        ),
+        required=False,
+    )
+
     publication_date = Date(
         title=_(u"Date of item's creation"),
         description=u"The date refers to the moment in which the item "

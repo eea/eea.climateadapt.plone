@@ -141,6 +141,7 @@
 
     <utility name="eea.climateadapt.faceted_elements_voc" component=".vocabulary.faceted_elements"/>
     <utility name="eea.climateadapt.adaptation_options" factory=".vocabulary.AdaptationOptionsVocabulary"/>
+    <utility name="eea.climateadapt.case_studies" factory=".vocabulary.CaseStudiesVocabulary"/>
     <utility name="eea.climateadapt.organisations" factory=".vocabulary.OrganisationsVocabulary"/>
     <utility name="eea.climateadapt.faceted_countries" component=".vocabulary.faceted_countries_vocabulary"/>
     <utility name="eea.climateadapt.cca_items" factory=".vocabulary.CCAItemsVocabulary"/>

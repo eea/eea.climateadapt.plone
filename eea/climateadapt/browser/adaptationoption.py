@@ -39,6 +39,17 @@ class AdaptationOptionView(DefaultView, AceViewApi):
                     titles.append(obj.title)
                     urls.append(obj.absolute_url())
 
+        cstudies = [o.to_object for o in self.context.casestudies]
+
+        for obj in cstudies:
+            if obj.absolute_url() in urls:
+                continue
+
+            obj_state = api.content.get_state(obj)
+            if obj_state == 'published':
+                titles.append(obj.title)
+                urls.append(obj.absolute_url())
+
         return {'url': urls, 'title': titles}
 
 
@@ -48,6 +59,7 @@ class AdaptationOptionFormExtender(FormExtender):
         self.move('category', before='stakeholder_participation')
         self.move('ipcc_category', after='category')
         self.move('IRelatedItems.relatedItems', after='comments')
+        self.move('casestudies', after='sectors')
         self.remove('ICategorization.subjects')
         self.remove('ICategorization.language')
         self.remove('IPublication.effective')
