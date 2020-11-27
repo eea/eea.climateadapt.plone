@@ -24,15 +24,14 @@
                 tal:attributes="src string: ${context/absolute_url}/@@images/image/thumb"
                 tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" />
             </h1>
-            <div class="project-source" style="float: right; font-size: small">
-              <tal:cond tal:condition="python: getattr(context, 'origin_website', '') == 'DRMKC'">
-                This item is also part of:
-                <img tal:attributes= "src python: context.portal_url() + '/drmkc-logo.png'" style="height:28px;"/>
-              </tal:cond> <br/>
-              <a tal:on-error="nothing"
+            <div class="project-source" style="float: right; font-size: small; text-align: right;">
+                <tal:cond tal:condition="python: 'DRMKC' in getattr(context, 'origin_website', [])">
+                 <img src="/++theme++climateadaptv2/static/images/drmkc-logo.png" style="height:28px;margin-bottom:15px;"/><br />
+                </tal:cond>
+                <a tal:on-error="nothing"
                   tal:condition="context/partners_source_link"
-                  tal:attributes="href context/partners_source_link">Link
-              </a>
+                  tal:attributes="href context/partners_source_link">View on DRMKC
+                </a>
             </div>
           </div>
 
