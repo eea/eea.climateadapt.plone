@@ -1,23 +1,11 @@
 import csv
 import logging
 from datetime import date
-from plone.app.textfield import RichText
-from plone.app.textfield.value import RichTextValue
 
 import transaction
-
 from plone import api
-
-# import StringIO
-# import sys
-# import urlparse
-# from eea.climateadapt.vocabulary import _health_impacts
-# from zope.component import getUtility
-# from zope.intid.interfaces import IIntIds
-# from zope.schema import Choice
-# from zope.schema.interfaces import IVocabularyFactory
-
-# from z3c.relationfield import RelationValue
+from plone.app.textfield import RichText
+from plone.app.textfield.value import RichTextValue
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -157,6 +145,7 @@ class FundingProgramme():
 
         return response
 
+
 class OrganisationLogo():
     """ Migrate organisation logo field
     """
@@ -172,14 +161,14 @@ class OrganisationLogo():
                 obj = brain.getObject()
 
                 logger.info("Organisation: %s", brain.getURL())
-                #if hasattr(obj, 'image') \
+                # if hasattr(obj, 'image') \
                 #        and obj.image:
                 if hasattr(obj, 'logo') \
                         and obj.logo:
-                #if hasattr(obj, 'thumbnail') \
-                #        and obj.thumbnail:
-                    #obj.image = obj.logo
-                    #obj._p_changed = True
+                    # if hasattr(obj, 'thumbnail') \
+                    #        and obj.thumbnail:
+                    # obj.image = obj.logo
+                    # obj._p_changed = True
 
                     response.append({
                         'title': obj.title,
@@ -190,13 +179,13 @@ class OrganisationLogo():
         logger.info("Articles in response: %s", len(response))
         return response
 
+
 class SourceToRichText():
     """ Migrate funding_programme field
     """
 
     def list(self):
         catalog = api.portal.get_tool('portal_catalog')
-        res = []
 
         DB_ITEM_TYPES = [
             'eea.climateadapt.guidancedocument',
@@ -225,16 +214,48 @@ class SourceToRichText():
                         and not isinstance(obj.source, RichTextValue):
                     obj.source = RichTextValue(obj.source)
                     obj._p_changed = True
-                    logger.info("Migrated source type for obj: %s", brain.getURL())
+                    logger.info("Migrated source type for obj: %s",
+                                brain.getURL())
+
+
+DRMKC_SRC = 'https://drmkc.jrc.ec.europa.eu/knowledge/PROJECT-EXPLORER/Projects-Explorer#project-explorer/631/'
+
 
 class DrmkcSource():
     """ Override to hide files and images in the related content viewlet
     """
 
+    def process_type(self, _type):
+        catalog = api.portal.get_tool('portal_catalog')
+        brains = catalog.searchResults(portal_type=_type)
+
+        res = []
+
+        for brain in brains:
+            obj = brain.getObject()
+
+            if hasattr(obj, 'partners_source_link'):
+                link = obj.partners_source_link
+                if link is not None and link.startswith(DRMKC_SRC):
+                    obj.partners_source_link = link.replace(
+                        'project-explorer/631/', 'project-explorer/1035/')
+                    obj._p_changed = True
+
+                    logger.info("Update partner link obj: %s",
+                                brain.getURL())
+
+                    res.append(
+                        {
+                            'title': obj.title,
+                            'url': brain.getURL(),
+                        }
+                    )
+
+        return res
+
     def list(self):
         # issues/125183
 
-        catalog = api.portal.get_tool('portal_catalog')
         res = []
 
         i = 0
@@ -242,24 +263,6 @@ class DrmkcSource():
             i += 1
             if i % 100 == 0:
                 transaction.savepoint()
-
-            brains = catalog.searchResults(portal_type=_type)
-
-            for brain in brains:
-                obj = brain.getObject()
-
-                if hasattr(obj, 'partners_source_link'):
-                    if obj.partners_source_link is not None and obj.partners_source_link.startswith('https://drmkc.jrc.ec.europa.eu/knowledge/PROJECT-EXPLORER/Projects-Explorer#project-explorer/631/'):
-                        obj.partners_source_link = obj.partners_source_link.replace('project-explorer/631/', 'project-explorer/1035/')
-                        obj._p_changed = True
-
-                        logger.info("Update partner link obj: %s", brain.getURL())
-
-                        res.append(
-                            {
-                                'title': obj.title,
-                                'url': brain.getURL(),
-                            }
-                        )
+                res.extend(self.process_type(_type))
 
         return res
