@@ -6,19 +6,12 @@ import logging
 from datetime import date
 
 from collective import dexteritytextindexer
-from zope.component import adapter
-from zope.interface import implementer, implements
-from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
-                         TextLine, Tuple)
-
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.sat.datamanager import queue_callback
 from eea.climateadapt.sat.handlers import HANDLERS
 from eea.climateadapt.sat.settings import get_settings
 from eea.climateadapt.sat.utils import _measure_id, to_arcgis_coords
-# from eea.climateadapt.schema import Year
-# from eea.climateadapt.schema import Date
 from eea.climateadapt.utils import _unixtime, shorten
 from eea.climateadapt.vocabulary import BIOREGIONS
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
@@ -37,8 +30,21 @@ from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
+from zope.component import adapter
+from zope.interface import implementer, implements
+from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
+                         TextLine, Tuple)
+
+# from eea.climateadapt.schema import Year
+# from eea.climateadapt.schema import Date
 
 logger = logging.getLogger('eea.climateadapt.acemeasure')
+
+ADD_ORGANISATION_URL = (
+    u"<a target='_blank' "
+    u"href='/metadata/organisations/++add++eea.climateadapt.organisation'>"
+    u"click here</a>"
+)
 
 
 class IAceMeasure(form.Schema, IImageScaleTraversable):
@@ -169,9 +175,9 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     )
 
     # year = Year(title=_(u"Year"),
-    #             description=u"Date of publication/release/update of the items "
-    #             u"related source",
-    #             required=False,)
+    # description=u"Date of publication/release/update of the items "
+    # u"related source",
+    # required=False,)
 
     publication_date = Date(
         title=_(u"Date of item's creation"),
@@ -349,13 +355,28 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         description=_(u"Please first verify if the contributor is "
                       u"already part of the Climate ADAPT Database."
                       u" If not, it is suggested to first create a "
-                      u"new Organisation item (<a target='_blank' href='/metadata/organisations/++add++eea.climateadapt.organisation'>click here</a>). As last"
+                      u"new Organisation item (%s). As last"
                       u" alternative please add the new "
                       u"contributor(s) in the following box, using "
-                      u"the official name")
+                      u"the official name" % ADD_ORGANISATION_URL)
     )
 
     # -----------[ "omitted" fields ]------------------
+
+    # for name in [
+    #         'implementation_type',
+    #         'spatial_layer',
+    #         'spatial_values',
+    #         'elements',
+    #         'measure_type',
+    #         'important',
+    #         'rating',
+    #         'modification_date',
+    #         'creation_date',
+    #         'id'
+    # ]:
+    #     directives.omitted(IEditForm, name)
+    #     directives.omitted(IAddForm, name)
 
     directives.omitted(IEditForm, 'implementation_type')
     directives.omitted(IAddForm, 'implementation_type')
@@ -410,10 +431,12 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                           default="A",
                           vocabulary="eea.climateadapt.acemeasure_types")
 
-    health_impacts = List(title=_(u"Health impacts"),
-                          required=False,
-                          value_type=Choice(
-        vocabulary="eea.climateadapt.health_impacts")
+    health_impacts = List(
+        title=_(u"Health impacts"),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.health_impacts"
+        )
     )
 
     include_in_observatory = Bool(title=_(u"Include in observatory"),
@@ -454,10 +477,11 @@ class IAdaptationOption(IAceMeasure):
     """ Adaptation Option
     """
 
-    # directives.omitted(IEditForm, 'year')
-    # directives.omitted(IAddForm, 'year')
     directives.omitted(IEditForm, 'featured')
     directives.omitted(IAddForm, 'featured')
+
+    # directives.omitted(IEditForm, 'year')
+    # directives.omitted(IAddForm, 'year')
 
     form.widget(category="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     category = List(
@@ -480,7 +504,7 @@ class IAdaptationOption(IAceMeasure):
     )
 
     casestudies = RelationList(
-        title=u"Case studies implemented in the adaption:",
+        title=u"Case studies implemented in the adaption",
         default=[],
         description=_(u"Select one or more case study that this item "
                       u"relates to:"),
@@ -507,14 +531,21 @@ class ICaseStudy(IAceMeasure):  # , IGeolocatable):
     """ Case study
     """
 
-    # directives.omitted(IEditForm, 'year')
-    # directives.omitted(IAddForm, 'year')
+    # for name in [
+    #         'features', 'primephoto', 'supphotos'
+    # ]:
+    #     directives.omitted(IEditForm, name)
+    #     directives.omitted(IAddForm, name)
+
     directives.omitted(IEditForm, 'featured')
     directives.omitted(IAddForm, 'featured')
     directives.omitted(IEditForm, 'primephoto')
     directives.omitted(IAddForm, 'primephoto')
     directives.omitted(IEditForm, 'supphotos')
     directives.omitted(IAddForm, 'supphotos')
+
+    # directives.omitted(IEditForm, 'year')
+    # directives.omitted(IAddForm, 'year')
     # directives.omitted(IEditForm, 'relatedItems')
     # directives.omitted(IAddForm, 'relatedItems')
 
@@ -599,24 +630,6 @@ class ICaseStudy(IAceMeasure):  # , IGeolocatable):
         ),
         required=False,
     )
-
-
-# this was to fix (probably) a bug in plone.app.widgets. This fix is no longer
-# needed with plone.app.widgets 1.10.dev4
-# @adapter(getSpecification(ICaseStudy['adaptationoptions']), IWidgetsLayer)
-# @implementer(IFieldWidget)
-# def AdaptationOptionsFieldWidget(field, request):
-#     """ The vocabulary view is overridden so that
-#         the widget will show only adaptation options
-#         Check browser/overrides.py for more details
-#     """
-#     import pdb
-#     pdb.set_trace()
-#     widget = FieldWidget(field, RelatedItemsWidget(request))
-#     widget.vocabulary = 'eea.climateadapt.adaptation_options'
-#     widget.vocabulary_override = True
-#
-#     return widget
 
 
 class CaseStudy(dexterity.Container):
@@ -785,3 +798,21 @@ def handle_measure_added(obj, event):
     ids = sorted(filter(None, catalog.uniqueValuesFor('acemeasure_id')))
     obj._acemeasure_id = ids[-1] + 1
     obj.reindexObject(idxs=['acemeasure_id'])
+
+
+# this was to fix (probably) a bug in plone.app.widgets. This fix is no longer
+# needed with plone.app.widgets 1.10.dev4
+# @adapter(getSpecification(ICaseStudy['adaptationoptions']), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def AdaptationOptionsFieldWidget(field, request):
+#     """ The vocabulary view is overridden so that
+#         the widget will show only adaptation options
+#         Check browser/overrides.py for more details
+#     """
+#     import pdb
+#     pdb.set_trace()
+#     widget = FieldWidget(field, RelatedItemsWidget(request))
+#     widget.vocabulary = 'eea.climateadapt.adaptation_options'
+#     widget.vocabulary_override = True
+#
+#     return widget

@@ -189,15 +189,12 @@
               </div>
             </div>
 
-            <div class="macro-category">
-              <div tal:define="dictionary python: view.get_related_casestudies();
-                titles python: dictionary['title'];
-                urls python: dictionary['url']"
-                tal:condition="python: len(dictionary.values()[0]) > 0">
+            <div class="macro-category" tal:define="casestudies python: view.get_related_casestudies();">
+              <div tal:condition="casestudies">
                 <h4>Case studies related to this option:</h4>
-                <div tal:repeat="item python: range(len(titles))">
-                  <a class="related-items" tal:content="python: titles[item]" href=""
-                    tal:attributes="href python: urls[item]"/>
+                <div tal:repeat="item casestudies">
+                  <a class="related-items" tal:content="item/title" href=""
+                    tal:attributes="href item/url"/>
                 </div>
               </div>
             </div>
