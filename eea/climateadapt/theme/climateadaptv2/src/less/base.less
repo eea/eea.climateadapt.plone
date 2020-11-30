@@ -2119,10 +2119,53 @@ div.listingBar .current {
   padding: 1em 0;
 }
 
+.template-search {
+  .aceitems-search-info {
+    /* max-width: 30em; */
+    /* margin: 0 auto; */
+    font-size: smaller;
+    margin-top: -2em;
+    text-align: center;
+  }
+  #rss-subscription {
+    display: none;
+  }
+  #search-filter {
+    legend {
+      padding-left: 1em;
+    }
+
+    & > :first-child {
+      display: none;
+    }
+  }
+
+  cite {
+    display: block;
+    margin-top: 1em;
+    font-size: x-small;
+    .breadcrumbSeparator {
+      display: unset !important;
+    }
+  }
+  .searchResults {
+    dt {
+      font-size: medium;
+    }
+    dd {
+      .discreet {
+        display: block;
+        margin-bottom: 0.4em;
+      }
+    }
+  }
+
+}
+
 #search-results {
   .discreet span,
   .discreet a {
-    font-size: 12px;
+    font-size: x-small;
   }
 
   dt {
