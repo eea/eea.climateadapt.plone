@@ -11,6 +11,21 @@
     <metal:main fill-slot="body">
       <tal:main-macro metal:define-macro="content-core">
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
+
+          <metal:slot metal:fill-slot="title-link">
+            <div class="project-source" id="aceproject-logo" >
+              <a tal:on-error="nothing"
+                tal:condition="context/partners_source_link"
+                tal:attributes="href context/partners_source_link">View on DRMKC</a>
+
+              <a href="https://drmkc.jrc.ec.europa.eu/">
+                <img tal:condition="python: 'DRMKC' in getattr(context, 'origin_website', [])"
+                  src="/++theme++climateadaptv2/static/images/drmkc-logo.png"
+                  style=""/>
+              </a>
+            </div>
+          </metal:slot>
+
           <div metal:fill-slot="title-slot">
             <h1>
               <span tal:on-error="nothing" tal:content="context/acronym"></span>
@@ -24,15 +39,6 @@
                 tal:attributes="src string: ${context/absolute_url}/@@images/image/thumb"
                 tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" />
             </h1>
-            <div class="project-source" style="float: right; font-size: small; text-align: right;">
-                <tal:cond tal:condition="python: 'DRMKC' in getattr(context, 'origin_website', [])">
-                 <img src="/++theme++climateadaptv2/static/images/drmkc-logo.png" style="height:28px;margin-bottom:15px;"/><br />
-                </tal:cond>
-                <a tal:on-error="nothing"
-                  tal:condition="context/partners_source_link"
-                  tal:attributes="href context/partners_source_link">View on DRMKC
-                </a>
-            </div>
           </div>
 
           <div metal:fill-slot="ace-left-slot">
