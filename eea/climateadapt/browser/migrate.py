@@ -263,6 +263,6 @@ class DrmkcSource():
             i += 1
             if i % 100 == 0:
                 transaction.savepoint()
-                res.extend(self.process_type(_type))
+            res.extend(self.process_type(_type))
 
         return res
