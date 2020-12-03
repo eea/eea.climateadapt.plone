@@ -16,6 +16,21 @@ import logging
 
 logger = logging.getLogger('eea.climateadapt')
 
+DB_ITEM_TYPES = [
+    'eea.climateadapt.adaptationoption',
+    'eea.climateadapt.aceproject',
+    'eea.climateadapt.casestudy',
+    'eea.climateadapt.guidancedocument',
+    'eea.climateadapt.indicator',
+    'eea.climateadapt.informationportal',
+    'eea.climateadapt.organisation',
+    'eea.climateadapt.publicationreport',
+
+    'eea.climateadapt.tool',
+    'eea.climateadapt.video'
+]
+
+
 class YearToDate():
     """ Override to hide files and images in the related content viewlet
     """
@@ -183,5 +198,55 @@ class ReferenceOtherContributor():
                     res.append({'title':obj.title, 'id':brain.UID,'url':obj,
                             'other_contributor': obj.other_contributor
                         })
+
+        return res
+
+
+DRMKC_SRC = 'https://drmkc.jrc.ec.europa.eu/knowledge/PROJECT-EXPLORER/Projects-Explorer#project-explorer/631/'
+
+
+class DrmkcSource():
+    """ Override to hide files and images in the related content viewlet
+    """
+
+    def process_type(self, _type):
+        catalog = api.portal.get_tool('portal_catalog')
+        brains = catalog.searchResults(portal_type=_type)
+
+        res = []
+
+        for brain in brains:
+            obj = brain.getObject()
+
+            if hasattr(obj, 'partners_source_link'):
+                link = obj.partners_source_link
+                if link is not None and link.startswith(DRMKC_SRC):
+                    obj.partners_source_link = link.replace(
+                        'project-explorer/631/', 'project-explorer/1035/')
+                    obj._p_changed = True
+
+                    logger.info("Update partner link obj: %s",
+                                brain.getURL())
+
+                    res.append(
+                        {
+                            'title': obj.title,
+                            'url': brain.getURL(),
+                        }
+                    )
+
+        return res
+
+    def list(self):
+        # issues/125183
+
+        res = []
+
+        i = 0
+        for _type in DB_ITEM_TYPES:
+            i += 1
+            if i % 100 == 0:
+                transaction.savepoint()
+            res.extend(self.process_type(_type))
 
         return res
