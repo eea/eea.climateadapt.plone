@@ -1963,12 +1963,29 @@ li.category span {
 
 .event.summary {
   float: none;
+  background: #EEE;
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  .category {
+    // display: none;
+  }
+  dt {
+    text-align: right;
+    margin-bottom: 0.4em;
+    // font-size: medium;
+  }
+  dd {
+    margin-left: 1em;
+  }
+  .row {
+  }
 }
 
 .summary.details dt {
   font-family: OpenSansM;
   color: @primary-blue;
-  padding: 0.3em 0;
+  // padding: 0.3em 0;
 }
 
 .vevent span.cal_month,
@@ -2984,4 +3001,8 @@ div.width-1\3a 4 {
     margin-right: 0.5em;
     color: #FF6600;
   }
+}
+
+.hiddenStructure {
+  display: none;
 }
