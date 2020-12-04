@@ -567,15 +567,15 @@ body.section-observatory #aceitem_sidebar .health-information {
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 500px) {
     #portal-personaltools{
-        display: flex;
-        flex-wrap: wrap;
-        min-width: 350px;
+        min-width: 400px;
+        columns: 2;
     }
-    #portal-personaltools li {
-        display: flex;
-        flex: 1 0 46%;
+}
+@media screen and (min-width: 500px) and (max-width: 800px) {
+    #portal-personaltools{
+        left:0px;
     }
 }
 .portaltype-collective-cover-content {
