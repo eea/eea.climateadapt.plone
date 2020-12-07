@@ -5,17 +5,20 @@
 
 body.site-observatory {
   background-color: #fff;
+
   .content-column .share-your-info-ace-button {
     display: none;
   }
 
   .logo {
     margin-top: 20px;
+
     a:nth-child(2) img {
       height: 40px;
       display: inline-block;
       margin-left: 20px;
     }
+
     .health_logo img {
       height: 50px;
     }
@@ -28,14 +31,17 @@ body.site-observatory {
   .header {
     #main-nav-item-3 {
       border-right: 0px;
+
       .sub-menu-wrapper {
         column-count: unset !important;
         min-width: unset !important;
         min-width: 0px;
       }
+
       .sub-menu:first-child {
         border-right: 0px;
       }
+
       .submenu {
         float: none;
         width: 100%;
@@ -45,7 +51,7 @@ body.site-observatory {
 
   div.health-top {
     background: url("/++theme++climateadaptv2/static/images/climate-4691943.jpg")
-      no-repeat center center;
+    no-repeat center center;
     clear: both;
     margin-top: 140px;
     height: 350px;
@@ -127,22 +133,32 @@ body.site-observatory {
     }
 
     .main-nav-item {
+      .sub-menu {
+        width: auto;
+        white-space: nowrap;
+      }
+
       &:not:first-child {
         border-left: 1px solid #818a32;
       }
+
       &:hover > span {
         background-color: #818a32;
       }
+
       &:hover a span {
         color: #fff;
       }
+
       .toggle-down {
         padding-right: 10px;
       }
+
       .angle-down-icon {
         border-top-color: #000;
       }
     }
+
     .main-nav-item:hover span .angle-down-icon {
       border-top-color: #fff;
     }
@@ -157,6 +173,7 @@ body.site-observatory {
     a {
       width: 100%;
       color: #fff;
+
       .fa-envelope {
         margin-top: 3px;
       }
