@@ -228,7 +228,7 @@ class ContextCountriesView(BrowserView):
     """
 
     available_countries = [
-        "Austria", "Belgium", "Bulgaria", "Croatia", "Latvia", "Cyprus",
+        "Austria", "Belgium", "Bulgaria", "Croatia", "Iceland", "Latvia", "Cyprus",
         "Czechia", "Denmark", "Estonia", "Finland", "France", "Germany",
         "Greece", "Hungary", "Ireland", "Italy", "Lithuania", "Luxembourg",
         "Malta", "Netherlands", "Poland", "Portugal", "Romania",
