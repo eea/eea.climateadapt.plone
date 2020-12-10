@@ -1,0 +1,26 @@
+<div id="countries-selector">
+  <div id="countries-tile-selector">
+    <!-- Select a country to go to country's page: -->
+    <select class="form-control">
+      <option value=''>Go to country</option>
+      <option
+        tal:repeat="country view/countries"
+        tal:attributes="value country/absolute_url"
+        tal:content="country/Title">Country</option>
+    </select>
+  </div>
+
+  <script>
+    jQuery(document).ready(function() {
+      var $table = $(".country-page-header table");
+      $table.removeAttr("style").css("width", "100%");
+      var $select = $("#countries-tile-selector select");
+      $select.on("change", function () {
+        var url = $(this).val();
+        if (!url) return;
+        window.location = url;
+      })
+    });
+  </script>
+
+</div>
