@@ -386,11 +386,11 @@ function drawCountries(world) {
   // var focusCountryNames = window.countrySettings; // Object.keys(countrySettings);
   var focusCountryNames = [
             "Austria", "Belgium", "Cyprus", "Czechia", "Denmark", "Estonia",
-            "Finland", "France", "Germany", "Greece", "Hungary", "Ireland",
-            "Italy", "Lithuania", "Luxembourg", "Malta", "Netherlands",
-            "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain",
-            "Sweden", "United Kingdom", "Liechtenstein", "Norway",
-            "Switzerland", "Turkey"
+            "Finland", "France", "Germany", "Greece", "Hungary", "Iceland",
+            "Ireland", "Italy", "Lithuania", "Luxembourg", "Malta",
+            "Netherlands", "Poland", "Portugal", "Romania", "Slovakia",
+            "Slovenia", "Spain", "Sweden", "United Kingdom", "Liechtenstein",
+            "Norway", "Switzerland", "Turkey"
         ];
 
   var focusCountriesFeature = filterCountriesByNames(
