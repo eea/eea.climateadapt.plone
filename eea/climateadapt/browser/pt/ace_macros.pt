@@ -35,6 +35,7 @@
               </div>
               <metal:macro define-slot="title-slot">
                 <h1>
+                  <span tal:condition="context/acronym" tal:content="python: context.acronym + ' - '">ACRONYM - </span>
                   <span tal:content="context/title"></span>
                   <img
                     tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
