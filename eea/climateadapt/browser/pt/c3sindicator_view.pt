@@ -9,121 +9,152 @@
   >
 
   <body>
-      <metal:main fill-slot="main">
-<style>
-    .bottom > * {
-      vertical-align: bottom;
-    }
-</style>
-          <div class="bottom" style="padding-bottom: 40px;">
-            <h1 tal:content="context/title" style="display: inline-block; margin-bottom:0px;"></h1>
-            <img
-              tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
-              tal:condition="context/logo"
-              style=" padding-left:20px; max-height: 50px;"
-              />
-          </div>
+    <metal:main fill-slot="main">
+
+      <style>
+        .bottom > * {
+          vertical-align: bottom;
+        }
+      </style>
+
+      <div class="bottom">
+        <h1 tal:content="context/title"></h1>
+        <img
+          tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
+          tal:condition="context/logo"
+          style=" padding-left: 20px; max-height: 50px;"
+          />
+        </div>
+
         <div class="c3s c3s_overview">
-            <div tal:content="structure python: view.w['long_description'].render()">description here</div>
+          <div tal:content="structure python: view.w['long_description'].render()">
+            description here
+          </div>
 
-            <div style="clear:both;padding-top:50px;"
-                tal:condition="context/definition_app"
-                tal:content="structure context/definition_app/output">
-            </div>
+          <div style="clear: both; padding-top: 50px;"
+              tal:condition="context/definition_app"
+              tal:content="structure context/definition_app/output">
+          </div>
 
-            <div style="clear:both;padding-top:50px;" />
+          <div style="clear: both; padding-top: 50px;" />
 
-            <div class="column col-md-12">
-                <a href="#details" class="standard-button primary-button c3s_overview" onclick="c3sView('details');return false;" style="float: right; position: relative;">Explore in details</a>
-            </div>
-            <div class="column col-md-12">
-                <hr>
-            </div>
-            <div class="column col-md-12">
-                <script>
-                    window._define = window.define;
-                    window.define = undefined;
-                </script>
-                <script type="text/javascript">
-                    window.cds_toolbox = { cds_public_path: 'https://cds.climate.copernicus.eu/toolbox/' };
-                </script>
+          <div class="column col-md-12">
+            <a href="#details"
+               class="standard-button primary-button c3s_overview"
+               onclick="c3sView('details');return false;"
+               style="float: right; position: relative;">
+               Explore in details
+            </a>
+            <div style="clear: both;" />
+          </div>
 
-                <div class="t-ct">
-                    <div id="toolbox-app-overview">
-                        <div class="pre-app-loading">
-                            <img src="https://cds.climate.copernicus.eu/toolbox/assets/spinner.svg" alt="Loading">
-                            <div>
-                                ...loading configuration...
-                            </div>
-                        </div>
-                    </div>
+          <div class="column col-md-12">
+            <hr>
+          </div>
+
+          <div class="column col-md-12">
+            <script>
+              window._define = window.define;
+              window.define = undefined;
+            </script>
+
+            <script type="text/javascript">
+              window.cds_toolbox = { cds_public_path: 'https://cds.climate.copernicus.eu/toolbox/' };
+            </script>
+
+            <div class="t-ct">
+              <div id="toolbox-app-overview">
+                <div class="pre-app-loading">
+                  <img
+                    src="https://cds.climate.copernicus.eu/toolbox/assets/spinner.svg"
+                    alt="Loading" />
+                  <div>
+                      ...loading configuration...
+                  </div>
                 </div>
-
-                <script type="text/javascript" src="https://cds.climate.copernicus.eu/toolbox/toolbox-4.16.0.js"></script>
-                <script type="text/javascript" tal:content="structure view/c3sjs_overview">
-                    (function () {
-                        document.addEventListener('DOMContentLoaded', function () {
-                            window.cds_toolbox.runApp('toolbox-app-overview', 'https://cds.climate.copernicus.eu/workflows/c3s/hidden-app-health-mosquito-overview-web/master/configuration.json?configuration_version=3.0', {
-                                workflowParams: {
-                                    "indicator": "season_length",
-                                }
-                            });
-                        }, false);
-                    })();
-                </script>
+              </div>
             </div>
+
+            <script
+              type="text/javascript"
+              src="https://cds.climate.copernicus.eu/toolbox/toolbox-4.16.0.js"></script>
+            <script type="text/javascript" tal:content="structure view/c3sjs_overview">
+                (function () {
+                    document.addEventListener('DOMContentLoaded', function () {
+                        window.cds_toolbox.runApp('toolbox-app-overview', 'https://cds.climate.copernicus.eu/workflows/c3s/hidden-app-health-mosquito-overview-web/master/configuration.json?configuration_version=3.0', {
+                            workflowParams: {
+                                "indicator": "season_length",
+                            }
+                        });
+                    }, false);
+                })();
+            </script>
+          </div>
         </div>
 
         <div class="c3s c3s_details">
 
-            <a href="#" class="standard-button primary-button c3s_details" onclick="c3sView('overview');return false;" style="float: left; position: relative;">Go back</a>
-            <div style="clear:both;" />
+          <a href="#"
+             class="standard-button primary-button c3s_details"
+             onclick="c3sView('overview');return false;"
+             style="float: left; position: relative;">
+             Go back</a>
 
-            <div class="t-ct">
-                <div id="toolbox-app-details">
-                    <div class="pre-app-loading">
-                        <img src="https://cds.climate.copernicus.eu/toolbox/assets/spinner.svg" alt="Loading">
-                        <div>
-                            ...loading configuration...
-                        </div>
-                    </div>
+          <div style="clear:both;" />
+
+          <div class="t-ct">
+            <div id="toolbox-app-details">
+              <div class="pre-app-loading">
+                <img
+                  src="https://cds.climate.copernicus.eu/toolbox/assets/spinner.svg"
+                  alt="Loading" />
+                <div>
+                    ...loading configuration...
                 </div>
+              </div>
             </div>
+          </div>
 
-            <div id="c3s_details_js">
-                <script type="text/javascript" tal:content="structure view/c3sjs_details">
-                </script>
-            </div>
+          <div id="c3s_details_js">
+            <script type="text/javascript" tal:content="structure view/c3sjs_details">
+            </script>
+          </div>
         </div>
+
         <div style="clear:both;padding-top:25px;width:100%;text-align:right;"
-            tal:condition="python: context.relatedItems and len(context.relatedItems)"
-            >
-            <a tal:define="related_url python: context.relatedItems[0].to_object.absolute_url()"
-                tal:attributes="href related_url;"
-                href=""
-                class="standard-button primary-button">Open as database item</a>
+             tal:condition="python: context.relatedItems and len(context.relatedItems)"
+        >
+          <a tal:define="related_url python: context.relatedItems[0].to_object.absolute_url()"
+              tal:attributes="href related_url;"
+              href=""
+              class="standard-button primary-button">
+              Open as database item
+          </a>
         </div>
 
-        <div style="clear:both;" />
+      <div style="clear:both;" />
 
-        <script>
-            window.define = window._define;
-        </script>
+      <script>
+        window.define = window._define;
+      </script>
 
-        <style>
-        .row.c3s {
-            clear:both;
-        }
-        .c3s h2 {
-            color:#000;
-            background-color:#fff;
-        }
-        hr {
-            background: #005C96;
-            height: 4px;
-        }
-        </style>
-        <script>
+      <style>
+      .row.c3s {
+        clear:both;
+      }
+
+      .c3s h2 {
+        color:#000;
+        background-color:#fff;
+      }
+
+      hr {
+        background: #005C96;
+        height: 4px;
+      }
+      </style>
+
+      <script>
         if(window.location.hash && window.location.hash=="#details") {
             c3sView('details');
         } else {
@@ -141,8 +172,7 @@
                 $('.c3s_overview').show();
             }
         }
-        </script>
-
-      </metal:main>
+      </script>
+    </metal:main>
   </body>
 </html>

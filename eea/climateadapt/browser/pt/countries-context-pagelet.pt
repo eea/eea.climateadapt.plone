@@ -1,7 +1,7 @@
 <div id="fp-country-selector">
 
   <div class="row">
-    <div class="col-md-9 col-xs-12">
+    <div class="column col-md-9 col-xs-12">
       <svg-container class="svg-map-container svg-fp-container" style="padding: 0.3em; border: 1px solid #CCC">
         <div class="map-islands" style="top: 420px; bottom: unset; left: 20px;">
           <img class="lazyload" data-src="/++theme++climateadaptv2/static/images/map_islands.svg" />
@@ -10,10 +10,10 @@
         </svg>
       </svg-container>
     </div>
-    <div class="col-md-3 col-xs-12" style="padding-left: 2em">
+    <div class="column col-md-3 col-xs-12">
       <div id="country-pagelet-selector">
         Select a country to go to country's page:
-        <select class="form-control">
+        <select class="form-control" style="margin-top: 1em">
           <option value=''>Choose a country</option>
           <option
             tal:repeat="country view/countries"
@@ -46,4 +46,3 @@
   <script src="/++theme++climateadaptv2/static/countries/countries-context-pagelet.js"></script>
 
 </div>
-
