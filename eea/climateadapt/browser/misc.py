@@ -1,6 +1,7 @@
 import json
 import logging
 import re
+import urllib
 from email.MIMEText import MIMEText
 from itertools import islice
 
@@ -280,14 +281,52 @@ class AdaptationStrategyView (BrowserView):
 class RedirectToSearchView (BrowserView):
     """ Custom view for /content """
 
+    def __init__(self, context, request):
+        # Each view instance receives context and request as construction parameters
+        self.context = context
+        self.request = request
+
     def __call__(self):
-        type_name = self.context.getProperty('search_type_name', '')
-        url = '/data-and-downloads'
+        url_segments = self.request["ACTUAL_URL"].split('/')
+        link = '/data-and-downloads'
 
-        if type_name:
-            url += '#searchtype=' + type_name
+        if (len(url_segments)>=5):
+            dictSearchType = {
+                    'adaptation-options' : 'Adaptation options',
+                    'case-studies'       : 'Case studies',
+                    'guidances'          : 'Guidance',
+                    'indicators'         : 'Indicators',
+                    'portals'            : 'Information portals',
+                    'organisations'      : 'Organisations',
+                    'publications'       : 'Publications and reports',
+                    'portals'            : 'Information portals',
+                    'projects'           : 'Research and knowledge projects',
+                    'tools'              : 'Tools',
+                    'videos'             : 'Videos',
+                }
 
-        return self.request.response.redirect(url)
+            search_type = url_segments[4]
+            if (search_type in dictSearchType):
+                t = {u'function_score':
+                     {u'query':
+                      {u'bool':
+                       {u'filter':
+                        {u'bool':
+                         {u'should':
+                          [{u'term': {u'typeOfData': dictSearchType[search_type]}}]
+                          }
+                         },
+                        }
+                       }
+                      }
+                    }
+
+                q = {'query': t}
+                link = link + '?source=' + urllib.quote(json.dumps(q))
+
+        #import pdb; pdb.set_trace()
+
+        return self.request.response.redirect(link)
 
 
 class ExcelCsvExportView (BrowserView):
