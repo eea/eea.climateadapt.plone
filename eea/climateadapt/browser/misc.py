@@ -364,10 +364,14 @@ class DetectBrokenLinksView (BrowserView):
                 except:
                     continue
 
+
                 state = get_state(obj)
                 if state not in ['private', 'archived']:
                     info['date'] = date.Date() if isinstance(
                         date, DateTime) else date
+                    if (isinstance(date, str) and date=='pre_nov7_data'):
+                        continue
+
                     broken_links.append(info)
 
         for link in broken_links:
