@@ -56,8 +56,6 @@ function initSlider() {
     return cwRight;
   }
 
-  // var $slider = $('.slider');
-
   $(".slider-caption, .slider-nav").css("right", function () {
     return getPageContainerPadding() + "px";
   });
