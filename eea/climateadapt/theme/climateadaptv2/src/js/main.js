@@ -967,7 +967,24 @@ $(document).ready(function () {
       window.location = $(this).attr("data-url");
     }
   });
+
+    if ($( "div[data-fieldname^='form.widgets.organisational_']" ).length) {
+        organisationOrganisationalElements();
+    }
+    $("#formfield-form-widgets-include_in_observatory input[type='checkbox']").on( "click", function() {
+        if ($( "div[data-fieldname^='form.widgets.organisational_']" ).length) {
+            organisationOrganisationalElements();
+        }
+    });
+    function organisationOrganisationalElements() {
+        if ($("#formfield-form-widgets-include_in_observatory input[type='checkbox']").is(":checked")) {
+            $( "div[data-fieldname^='form.widgets.organisational_']" ).removeClass( "hide" );
+        } else {
+            $( "div[data-fieldname^='form.widgets.organisational_']" ).addClass( "hide" );
+        }
+    }
 });
+
 
 // Divide the sub-menu in 2 columns if 'sub-sub-menu' exist
 // var navigationItem = $('.main-nav-item');

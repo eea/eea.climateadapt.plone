@@ -479,6 +479,45 @@ class IOrganisation(IAceItem):
                      description=u"Item Name (250 character limit)",
                      required=True)
 
+    organisational_misssion = Text(title=_(u"Organisational mission"),
+                     description=u"Please describe the mission of your"
+                                    u" organisation",
+                     required=False)
+
+    organisational_key_activities = Text(title=_(u"Key activities within"
+                                    u" climate change and health"),
+                     description=u"Please describe the key activities"
+                            u" undertaken by your organisation that are related"
+                            u" to the topic of 'climate change and health'."
+                            u" Please concentrate on activities with most"
+                            u" direct relevance to the Observatory. You may"
+                            u" include any hyperlinks to relevant projects in"
+                            u" the text",
+                     required=False)
+
+    organisational_links = Text(title=_(u"Links to further information "
+                            u"(relevant for the Observatory)"),
+                     description=u"Please provide a hyperlink to the homepage"
+                            u" of your organisation in the \"Reference"
+                            u" Information section\", here you may also"
+                            u" provide links to up to two relevant units of"
+                            u" the organisation that have directly contributed"
+                            u" to the Observatory and/or up to two hyperlinks"
+                            u" to relevant networks (e.g. with countries) that"
+                            u" are administered by your organisation",
+                     required=False)
+
+    organisational_contact = Text(title=_(u"Contact information for the"
+                                    u" Observatory"),
+                     description=u"please provide email or contact form link "
+                            u" into the \"Default\" section, here you may"
+                            u" provide further contact information relevant for"
+                            u" the organisation's contribution to the"
+                            u" Observatory in addition, under \"Contact"
+                            u" Information\" please a text field with \"name\""
+                            u" and \"Telephone number\"",
+                     required=False)
+
     # form.fieldset('default',
     #              label=u'Item Description',
     #         fields=['acronym', 'title', 'description', 'long_description',

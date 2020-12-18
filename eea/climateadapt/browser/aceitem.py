@@ -176,12 +176,31 @@ class OrganisationAddForm(DefaultAddForm):
 OrganisationEditView = layout.wrap_form(OrganisationEditForm)
 classImplements(OrganisationEditView, IDexterityEditForm)
 
+    if ($( "div[data-fieldname^='form.widgets.organisational_']" ).length) {
+        organisationOrganisationalElements();
+    }
+    $("#formfield-form-widgets-include_in_observatory input[type='checkbox']").on( "click", function() {
+        if ($( "div[data-fieldname^='form.widgets.organisational_']" ).length) {
+            organisationOrganisationalElements();
+        }
+    });
+    function organisationOrganisationalElements() {
+        if ($("#formfield-form-widgets-include_in_observatory input[type='checkbox']").is(":checked")) {
+            $( "div[data-fieldname^='form.widgets.organisational_']" ).removeClass( "hide" );
+        } else {
+            $( "div[data-fieldname^='form.widgets.organisational_']" ).addClass( "hide" );
+        }
+    }
 
 class OrganisationFormExtender(FormExtender):
     def update(self):
         self.move('logo', before='image')
         self.move('IRelatedItems.relatedItems', before='comments')
         self.move('acronym', before='title')
+        self.move('organisational_contact', after='include_in_observatory')
+        self.move('organisational_links', after='include_in_observatory')
+        self.move('organisational_key_activities', after='include_in_observatory')
+        self.move('organisational_misssion', after='include_in_observatory')
         self.remove('other_contributor')
 
 
