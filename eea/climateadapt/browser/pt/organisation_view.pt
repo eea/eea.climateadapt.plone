@@ -33,9 +33,13 @@
             <h5>Websites:</h5>
             <div metal:use-macro="context/ace_macros/macros/websites"></div>
             <div tal:condition="view/is_observatory_page">
-                <div tal:condition="context/organisational_links">
+                <div tal:on-error="nothing" tal:condition="context/organisational_links">
                     <h5>Links to further information</h5>
-                    <p tal:content="structure context/organisational_links"></p>
+                    <div  tal:define="links python:view.get_websites('organisational_links')">
+                      <dl tal:condition="links" tal:repeat="link links">
+                        <a tal:content="link/title" tal:attributes="href link/url"/>
+                      </dl>
+                    </div>
                 </div>
 
                 <div tal:condition="context/organisational_contact">

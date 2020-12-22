@@ -218,6 +218,37 @@ class SourceToRichText():
                                 brain.getURL())
 
 
+class OrganisationOrganisational():
+    """ Migrate funding_programme field
+    """
+
+    def list(self):
+        catalog = api.portal.get_tool('portal_catalog')
+
+        DB_ITEM_TYPES = [
+            #'eea.climateadapt.guidancedocument',
+            #'eea.climateadapt.indicator',
+            #'eea.climateadapt.informationportal',
+            'eea.climateadapt.organisation',
+            #'eea.climateadapt.publicationreport',
+            #'eea.climateadapt.tool'
+        ]
+
+        i = 0
+        for _type in DB_ITEM_TYPES:
+            i += 1
+            if i % 100 == 0:
+                transaction.savepoint()
+
+            brains = catalog.searchResults(portal_type=_type)
+
+            for brain in brains:
+                obj = brain.getObject()
+
+                obj.organisational_links = tuple()
+                obj._p_changed = True
+
+
 DRMKC_SRC = 'https://drmkc.jrc.ec.europa.eu/knowledge/PROJECT-EXPLORER/Projects-Explorer#project-explorer/631/'
 
 

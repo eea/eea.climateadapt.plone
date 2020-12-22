@@ -1,0 +1,2 @@
+<h1>Migrate</h1>
+<div tal:define="items view/list" />

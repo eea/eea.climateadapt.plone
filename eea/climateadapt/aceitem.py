@@ -479,12 +479,12 @@ class IOrganisation(IAceItem):
                      description=u"Item Name (250 character limit)",
                      required=True)
 
-    organisational_misssion = Text(title=_(u"Organisational mission"),
+    organisational_misssion = RichText(title=_(u"Organisational mission"),
                      description=u"Please describe the mission of your"
                                     u" organisation",
                      required=False)
 
-    organisational_key_activities = Text(title=_(u"Key activities within"
+    organisational_key_activities = RichText(title=_(u"Key activities within"
                                     u" climate change and health"),
                      description=u"Please describe the key activities"
                             u" undertaken by your organisation that are related"
@@ -495,7 +495,9 @@ class IOrganisation(IAceItem):
                             u" the text",
                      required=False)
 
-    organisational_links = Text(title=_(u"Links to further information "
+    directives.widget('organisational_links', TextLinesWidget)
+
+    organisational_links = Tuple(title=_(u"Links to further information "
                             u"(relevant for the Observatory)"),
                      description=u"Please provide a hyperlink to the homepage"
                             u" of your organisation in the \"Reference"
@@ -505,7 +507,10 @@ class IOrganisation(IAceItem):
                             u" to the Observatory and/or up to two hyperlinks"
                             u" to relevant networks (e.g. with countries) that"
                             u" are administered by your organisation",
-                     required=False)
+                    required=False,
+                    value_type=URI(),
+                    missing_value=(),
+                )
 
     organisational_contact = Text(title=_(u"Contact information for the"
                                     u" Observatory"),

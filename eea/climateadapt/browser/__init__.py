@@ -107,13 +107,18 @@ class AceViewApi(object):
 
         return "http://" + text
 
-    def get_websites(self):
+    def get_websites(self, field_name = 'websites'):
         """ This returns a list of websites. Because of BBB, we need to treat
         them in various ways
         """
-        websites = self.context.websites
 
         result = []
+
+        if not hasattr(self.context, field_name):
+            return result
+
+        websites = getattr(self.context, field_name)
+
 
         for link in websites:
             result.append({'url': self.linkify(link), 'title': link})
