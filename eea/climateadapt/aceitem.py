@@ -509,13 +509,14 @@ class IOrganisation(IAceItem):
 
     organisational_contact = Text(title=_(u"Contact information for the"
                                     u" Observatory"),
-                     description=u"please provide email or contact form link "
-                            u" into the \"Default\" section, here you may"
-                            u" provide further contact information relevant for"
-                            u" the organisation's contribution to the"
-                            u" Observatory in addition, under \"Contact"
-                            u" Information\" please a text field with \"name\""
-                            u" and \"Telephone number\"",
+                     description=u"Please provide a corporate email or contact"
+                            u" form link into the \"Default section\", here you"
+                            u" may provide further contact information relevant"
+                            u" for the organisation's contribution to the"
+                            u" Observatory.",
+                     required=False)
+
+    organisational_name_phone = Text(title=_(u"Name and Telephone number"),
                      required=False)
 
     # form.fieldset('default',

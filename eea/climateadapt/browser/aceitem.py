@@ -78,6 +78,14 @@ class OrganisationView(DefaultView, AceViewApi):
     """
     type_label = u"Organisation"
 
+    def __init__(self, context, request):
+        # Each view instance receives context and request as construction parameters
+        self.context = context
+        self.request = request
+
+    def is_observatory_page(self):
+        return self.request["QUERY_STRING"] == 'only_article=1'
+
 
 # Form Extenders + add/edit forms
 
@@ -181,6 +189,7 @@ class OrganisationFormExtender(FormExtender):
         self.move('logo', before='image')
         self.move('IRelatedItems.relatedItems', before='comments')
         self.move('acronym', before='title')
+        self.move('organisational_name_phone', after='include_in_observatory')
         self.move('organisational_contact', after='include_in_observatory')
         self.move('organisational_links', after='include_in_observatory')
         self.move('organisational_key_activities', after='include_in_observatory')
