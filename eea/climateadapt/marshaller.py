@@ -271,6 +271,52 @@ class CountryModifier(object):
 
         setattr(resource, "dcterms_spatial", st)
 
+class ContributorModifier(object):
+    """Add publishing information to rdf export
+    """
+
+    implements(ISurfResourceModifier)
+    adapts(IDexterityContent)
+
+    def __init__(self, context):
+        self.context = context
+
+    def run(self, resource, adapter, session, **kwds):
+        """Change the rdf resource to include issued term
+        """
+
+        map_contributor_values = {
+            'WHO Regional Office for Europe (WHO Europe)':
+                'World Health Organization-Europe',
+            'Lancet Countdown':
+                'Lancet Countdown',
+            'European Environment Agency':
+                'European Environment Agency',
+            'European Centre for Disease Prevention and Control':
+                'European Centre for Disease Prevention and Control',
+            'European Centre for Disease Prevention and Control':
+                'European Centre for Disease Prevention and Control',
+            'European Food Safety Authority':
+                'European Food Safety Authority',
+            'Copernicus Climate Change Service':
+                'Copernicus Climate Change Service (implemented by ECMWF)',
+            'European Commission':
+                'European Commission',
+            'World Health Organization':
+                'World Health Organization',
+        }
+        contributors = getattr(self.context, 'contributors', None)
+        if contributors:
+            contributors_list = []
+            for contributor in contributors:
+                title = contributor.to_object.title
+                if title in map_contributor_values:
+                    contributors_list.append(map_contributor_values[title])
+                elif 'Other Organisation' not in contributors_list:
+                    contributors_list.append('Other Organisation')
+
+            import pdb; pdb.set_trace()
+            setattr(resource, "eea_contributors", contributors_list)
 
 # class TransnationalRegionModifier():
 #     implements(ISurfResourceModifier)

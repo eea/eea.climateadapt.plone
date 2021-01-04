@@ -229,6 +229,9 @@
     <subscriber factory=".marshaller.CountryModifier"
         provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
+    <subscriber factory=".marshaller.ContributorModifier"
+        provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
+
     <subscriber factory=".marshaller.IssuedFieldModifier"
         provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
