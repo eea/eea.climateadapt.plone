@@ -315,8 +315,7 @@ class ContributorModifier(object):
                 elif 'Other Organisation' not in contributors_list:
                     contributors_list.append('Other Organisation')
 
-            import pdb; pdb.set_trace()
-            setattr(resource, "eea_contributors", contributors_list)
+            setattr(resource, "eea_partner_contributors", contributors_list)
 
 # class TransnationalRegionModifier():
 #     implements(ISurfResourceModifier)
