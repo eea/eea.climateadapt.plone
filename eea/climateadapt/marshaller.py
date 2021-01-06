@@ -7,7 +7,6 @@ from zope.interface import Interface, implements
 import pytz
 import rdflib
 import surf
-# from eea.climateadapt.catalog import macro_regions
 from eea.climateadapt.city_profile import ICityProfile
 from eea.climateadapt.interfaces import ICCACountry
 from eea.climateadapt.vocabulary import (BIOREGIONS, SUBNATIONAL_REGIONS,
@@ -24,7 +23,8 @@ from Products.CMFCore.utils import getToolByName
 
 from .vocabulary import ace_countries
 
-logger = logging.getLogger('eea.climateadapt')
+logger = logging.getLogger("eea.climateadapt")
+# from eea.climateadapt.catalog import macro_regions
 
 
 class Collection2Surf(Dexterity2Surf):
@@ -32,25 +32,23 @@ class Collection2Surf(Dexterity2Surf):
 
     @property
     def blacklist_map(self):
-        ptool = getToolByName(self.context, 'portal_properties')
-        props = getattr(ptool, 'rdfmarshaller_properties', None)
+        ptool = getToolByName(self.context, "portal_properties")
+        props = getattr(ptool, "rdfmarshaller_properties", None)
 
         if props:
-            blacklist = props.getProperty('blacklist') + ('query', )
+            blacklist = props.getProperty("blacklist") + ("query",)
 
             return list(
-                props.getProperty('%s_blacklist' % self.portalType.lower(),
-                                  blacklist)
+                props.getProperty("%s_blacklist" % self.portalType.lower(), blacklist)
             )
         else:
-            self._blacklist.append('query')
+            self._blacklist.append("query")
 
             return self._blacklist
 
 
 class GeoCharsFieldModifier(object):
-    """Add geographic information to rdf export
-    """
+    """Add geographic information to rdf export"""
 
     implements(ISurfResourceModifier)
     adapts(IDexterityContent)
@@ -59,10 +57,9 @@ class GeoCharsFieldModifier(object):
         self.context = context
 
     def run(self, resource, *args, **kwds):
-        """Change the rdf resource to include geochar terms
-        """
+        """Change the rdf resource to include geochar terms"""
 
-        if not hasattr(self.context, 'geochars'):
+        if not hasattr(self.context, "geochars"):
             return
 
         value = self.context.geochars
@@ -72,23 +69,28 @@ class GeoCharsFieldModifier(object):
 
         value = json.loads(value)
 
-        order = ['element', 'macrotrans', 'biotrans',
-                 'countries', 'subnational', 'city']
+        order = [
+            "element",
+            "macrotrans",
+            "biotrans",
+            "countries",
+            "subnational",
+            "city",
+        ]
 
         spatial = []
 
         for key in order:
-            element = value['geoElements'].get(key)
+            element = value["geoElements"].get(key)
 
             if element:
                 renderer = getattr(self, "_render_geochar_" + key)
-                values = renderer(element).split(':')
-                values[1] = values[1].split(',')
+                values = renderer(element).split(":")
+                values[1] = values[1].split(",")
                 values[1] = [x.strip() for x in values[1]]
                 spatial += values[1]
 
-                setattr(resource, '%s_%s' % ("eea", values[0]),
-                        values[1])
+                setattr(resource, "%s_%s" % ("eea", values[0]), values[1])
         setattr(resource, "dcterms_spatial", spatial)
 
     def _render_geochar_element(self, value):
@@ -118,7 +120,7 @@ class GeoCharsFieldModifier(object):
         out = []
 
         for line in value:
-            line = line.encode('utf-8')
+            line = line.encode("utf-8")
 
             if line in SUBNATIONAL_REGIONS:
                 out.append(SUBNATIONAL_REGIONS[line])
@@ -127,7 +129,7 @@ class GeoCharsFieldModifier(object):
             else:
                 logger.error("Subnational region not found: %s", line)
 
-        text = u", ".join([x.decode('utf-8') for x in out])
+        text = u", ".join([x.decode("utf-8") for x in out])
 
         return tpl.format(text)
 
@@ -147,34 +149,35 @@ class CityProfile2Surf(Dexterity2Surf):
     def prefix(self):
         """ Prefix """
 
-        if self.portalType.lower() == 'eeaclimateadaptcity_profile':
-            return 'eeaclimateadaptcityprofile'
+        if self.portalType.lower() == "eeaclimateadaptcity_profile":
+            return "eeaclimateadaptcityprofile"
 
         return self.portalType.lower()
 
 
 class CountryTitle2Surf(DXField2Surf):
-    """ Override the country title to include more information
-    """
+    """Override the country title to include more information"""
+
     adapts(Interface, ICCACountry, ISurfSession)
 
     def value(self):
         title = self.context.Title()
 
         if isinstance(title, unicode):
-            title = title.encode('utf-8')
+            title = title.encode("utf-8")
 
-        return title + ' - ClimateADAPT country profile'
+        return title + " - ClimateADAPT country profile"
 
 
 class Geolocation2Surf(Value2Surf):
     """IValue2Surf implementation for plone.formwidget.Geolocation """
+
     adapts(IGeolocation)
 
     def __init__(self, value):
         self.value = value
-        self.longitude = 'longitude: %s' % value.longitude
-        self.latitude = 'latitude: %s' % value.latitude
+        self.longitude = "longitude: %s" % value.longitude
+        self.latitude = "latitude: %s" % value.latitude
 
     def __call__(self, *args, **kwds):
         return [self.longitude, self.latitude]
@@ -182,6 +185,7 @@ class Geolocation2Surf(Value2Surf):
 
 class File2Surf(Value2Surf):
     """IValue2Surf implementation for plone.namedfile.file.NamedBlobFile """
+
     adapts(INamedBlobFile)
 
     def __init__(self, value):
@@ -190,6 +194,7 @@ class File2Surf(Value2Surf):
 
 class Image2Surf(Value2Surf):
     """IValue2Surf implementation for plone.namedfile.file.NamedBlobImage """
+
     adapts(INamedBlobImage)
 
     def __init__(self, value):
@@ -197,8 +202,7 @@ class Image2Surf(Value2Surf):
 
 
 class IssuedFieldModifier(object):
-    """Add publishing information to rdf export
-    """
+    """Add publishing information to rdf export"""
 
     implements(ISurfResourceModifier)
     adapts(IDexterityContent)
@@ -207,20 +211,18 @@ class IssuedFieldModifier(object):
         self.context = context
 
     def run(self, resource, *args, **kwds):
-        """Change the rdf resource to include issued term
-        """
+        """Change the rdf resource to include issued term"""
 
-        if not hasattr(self.context, 'effective'):
+        if not hasattr(self.context, "effective"):
             return
 
         value = self.context.effective().utcdatetime()
 
-        timezone = pytz.timezone('UTC')
+        timezone = pytz.timezone("UTC")
         utc_date = timezone.localize(value)
         value = rdflib.term.Literal(
             utc_date,
-            datatype=rdflib.term.URIRef(
-                u'http://www.w3.org/2001/XMLSchema#dateTime')
+            datatype=rdflib.term.URIRef(u"http://www.w3.org/2001/XMLSchema#dateTime"),
         )
         setattr(resource, "dcterms_issued", value)
         setattr(resource, "eea_issued", value)
@@ -230,8 +232,7 @@ country_to_code = {v: k for k, v in ace_countries}
 
 
 class CountryModifier(object):
-    """Add publishing information to rdf export
-    """
+    """Add publishing information to rdf export"""
 
     implements(ISurfResourceModifier)
     adapts(ICCACountry)
@@ -240,40 +241,39 @@ class CountryModifier(object):
         self.context = context
 
     def run(self, resource, adapter, session, **kwds):
-        """Change the rdf resource to include issued term
-        """
+        """Change the rdf resource to include issued term"""
 
-# <dcterms:spatial>
-# <geo:SpatialThing rdf:about="#geotag0">
-# <geo:long
-# rdf:datatype="http://www.w3.org/2001/XMLSchema#double">15.4749544</geo:long>
-# <geo:lat
-# rdf:datatype="http://www.w3.org/2001/XMLSchema#double">49.8167003</geo:lat>
-# <dcterms:type>administrative</dcterms:type>
-# <dcterms:title>Czechia</dcterms:title>
-# <rdfs:comment>Czechia</rdfs:comment>
-# <rdfs:label>Czechia</rdfs:label>
-# </geo:SpatialThing>
-# </dcterms:spatial>
+        # <dcterms:spatial>
+        # <geo:SpatialThing rdf:about="#geotag0">
+        # <geo:long
+        # rdf:datatype="http://www.w3.org/2001/XMLSchema#double">15.4749544</geo:long>
+        # <geo:lat
+        # rdf:datatype="http://www.w3.org/2001/XMLSchema#double">49.8167003</geo:lat>
+        # <dcterms:type>administrative</dcterms:type>
+        # <dcterms:title>Czechia</dcterms:title>
+        # <rdfs:comment>Czechia</rdfs:comment>
+        # <rdfs:label>Czechia</rdfs:label>
+        # </geo:SpatialThing>
+        # </dcterms:spatial>
         country = self.context.Title()
         code = country_to_code[country]
 
         SpatialThing = session.get_class(surf.ns.GEO.SpatialThing)
 
         st = session.get_resource("#geotag-" + country, SpatialThing)
-        st[surf.ns.DCTERMS['title']] = country
-        st[surf.ns.DCTERMS['type']] = 'administrative'
-        st[surf.ns.RDFS['label']] = country
+        st[surf.ns.DCTERMS["title"]] = country
+        st[surf.ns.DCTERMS["type"]] = "administrative"
+        st[surf.ns.RDFS["label"]] = country
 
-        uri = 'http://rdfdata.eionet.europa.eu/eea/countries/%s' % code
-        st[surf.ns.OWL['sameAs']] = rdflib.URIRef(uri)
+        uri = "http://rdfdata.eionet.europa.eu/eea/countries/%s" % code
+        st[surf.ns.OWL["sameAs"]] = rdflib.URIRef(uri)
         st.update()
 
         setattr(resource, "dcterms_spatial", st)
 
+
 class ContributorModifier(object):
-    """Add publishing information to rdf export
-    """
+    """ Add contributor information to rdf export"""
 
     implements(ISurfResourceModifier)
     adapts(IDexterityContent)
@@ -282,41 +282,34 @@ class ContributorModifier(object):
         self.context = context
 
     def run(self, resource, adapter, session, **kwds):
-        """Change the rdf resource to include issued term
-        """
+        """Change the rdf resource to include issued term"""
 
         map_contributor_values = {
-            'WHO Regional Office for Europe (WHO Europe)':
-                'World Health Organization-Europe',
-            'Lancet Countdown':
-                'Lancet Countdown',
-            'European Environment Agency':
-                'European Environment Agency',
-            'European Centre for Disease Prevention and Control':
-                'European Centre for Disease Prevention and Control',
-            'European Centre for Disease Prevention and Control':
-                'European Centre for Disease Prevention and Control',
-            'European Food Safety Authority':
-                'European Food Safety Authority',
-            'Copernicus Climate Change Service':
-                'Copernicus Climate Change Service (implemented by ECMWF)',
-            'European Commission':
-                'European Commission',
-            'World Health Organization':
-                'World Health Organization',
+            "WHO Regional Office for Europe (WHO Europe)": "World Health Organization-Europe",
+            "Lancet Countdown": "Lancet Countdown",
+            "European Environment Agency": "European Environment Agency",
+            "European Centre for Disease Prevention and Control": "European Centre for Disease Prevention and Control",
+            "European Centre for Disease Prevention and Control": "European Centre for Disease Prevention and Control",
+            "European Food Safety Authority": "European Food Safety Authority",
+            "Copernicus Climate Change Service": "Copernicus Climate Change Service (implemented by ECMWF)",
+            "European Commission": "European Commission",
+            "World Health Organization": "World Health Organization",
         }
-        contributors = getattr(self.context, 'contributors', None)
+        contributors = getattr(self.context, "contributors", None)
+
         if contributors:
             contributors_list = []
+
             for contributor in contributors:
                 title = contributor.to_object.title
+
                 if title in map_contributor_values:
                     contributors_list.append(map_contributor_values[title])
-                elif 'Other Organisation' not in contributors_list:
-                    contributors_list.append('Other Organisation')
+                elif "Other Organisation" not in contributors_list:
+                    contributors_list.append("Other Organisation")
 
-            import pdb; pdb.set_trace()
             setattr(resource, "eea_contributors", contributors_list)
+
 
 # class TransnationalRegionModifier():
 #     implements(ISurfResourceModifier)
