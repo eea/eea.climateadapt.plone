@@ -322,15 +322,17 @@ function initAst() {
 
   // Remove main navigation subitems hover state
   // if doesn't have href attribute
-  $(".sub-menu-link").each(function () {
-    var $this = $(this);
-    if (!$this.attr("href")) {
-      $this.hover(function () {
+  if ($(".template-health_homepage").length === 0) {
+    $(".sub-menu-link").each(function () {
+      var $this = $(this);
+      if (!$this.attr("href")) {
+        $this.hover(function () {
+          $this.css("color", "#3a3a3a");
+        });
         $this.css("color", "#3a3a3a");
-      });
-      $this.css("color", "#3a3a3a");
-    }
-  });
+      }
+    });
+  }
 
   // ADAPTATION SUPPORT TOOL
   // url: .../cca/knowledge/tools/adaptation-support-tool
@@ -968,23 +970,31 @@ $(document).ready(function () {
     }
   });
 
-    if ($( "div[data-fieldname^='form.widgets.organisational_']" ).length) {
+  if ($("div[data-fieldname^='form.widgets.organisational_']").length) {
+    organisationOrganisationalElements();
+  }
+  $("#formfield-form-widgets-include_in_observatory input[type='checkbox']").on(
+    "click",
+    function () {
+      if ($("div[data-fieldname^='form.widgets.organisational_']").length) {
         organisationOrganisationalElements();
+      }
     }
-    $("#formfield-form-widgets-include_in_observatory input[type='checkbox']").on( "click", function() {
-        if ($( "div[data-fieldname^='form.widgets.organisational_']" ).length) {
-            organisationOrganisationalElements();
-        }
-    });
-    function organisationOrganisationalElements() {
-        if ($("#formfield-form-widgets-include_in_observatory input[type='checkbox']").is(":checked")) {
-            $( "div[data-fieldname^='form.widgets.organisational_']" ).removeClass( "hide" );
-        } else {
-            $( "div[data-fieldname^='form.widgets.organisational_']" ).addClass( "hide" );
-        }
+  );
+  function organisationOrganisationalElements() {
+    if (
+      $(
+        "#formfield-form-widgets-include_in_observatory input[type='checkbox']"
+      ).is(":checked")
+    ) {
+      $("div[data-fieldname^='form.widgets.organisational_']").removeClass(
+        "hide"
+      );
+    } else {
+      $("div[data-fieldname^='form.widgets.organisational_']").addClass("hide");
     }
+  }
 });
-
 
 // Divide the sub-menu in 2 columns if 'sub-sub-menu' exist
 // var navigationItem = $('.main-nav-item');

@@ -1,5 +1,6 @@
 import datetime
 from collections import defaultdict
+from zope.component.hooks import getSite
 
 import DateTime
 import plone.api as api
@@ -25,7 +26,7 @@ class HealthHomepageItems(BrowserView):
         items = portal_catalog.queryCatalog({
             "portal_type": "Event",
             "start": date_range_query,
-            "sort_limit": "3",
+            "sort_limit": "2",
             "review_state": "published",
             "sort_on": 'start',
             "Subject": ("Health Observatory", ),
@@ -55,7 +56,7 @@ class HealthHomepageItems(BrowserView):
         portal_catalog = api.portal.get_tool('portal_catalog')
         items = portal_catalog.queryCatalog({
             "portal_type": "News Item",
-            "sort_limit": "3",
+            "sort_limit": "2",
             "review_state": "published",
             "sort_on": 'created',
             "sort_order": 'descending',
@@ -80,3 +81,15 @@ class HealthHomepageItems(BrowserView):
             results.append(info)
 
         return results
+
+    @property
+    def more_news(self):
+        site = getSite()
+        url = site['news-archive'].absolute_url()
+        return [url, "More news"]
+
+    @property
+    def more_events(self):
+        site = getSite()
+        url = site['more-events'].absolute_url()
+        return [url, "More events"]

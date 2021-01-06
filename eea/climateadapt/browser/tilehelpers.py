@@ -33,7 +33,7 @@ class AceContentSearch(BrowserView):
 
 
 class FrontPageCountries(BrowserView):
-    """ A view to render the frontpage tile with countries and 
+    """ A view to render the frontpage tile with countries and
         country select form
     """
 
