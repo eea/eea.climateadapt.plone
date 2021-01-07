@@ -1,0 +1,106 @@
+from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
+                         TextLine, Tuple)
+
+from eea.climateadapt import MessageFactory as _
+from eea.climateadapt.behaviors.aceitem import IAceItem
+from plone.app.textfield import RichText
+from plone.autoform import directives
+from plone.namedfile.field import NamedBlobImage
+from z3c.form.browser.textlines import TextLinesWidget
+from z3c.form.interfaces import IAddForm, IEditForm
+
+
+class IOrganisation(IAceItem):
+    """ Organisation Interface"""
+
+    # directives.omitted(IAddForm, 'year')
+    # directives.omitted(IEditForm, 'year')
+    directives.omitted(IAddForm, "health_impacts")
+    directives.omitted(IEditForm, "health_impacts")
+    directives.omitted(IAddForm, "source")
+    directives.omitted(IEditForm, "source")
+    directives.omitted(IEditForm, "contributors")
+    directives.omitted(IAddForm, "contributors")
+    directives.omitted(IEditForm, "featured")
+    directives.omitted(IAddForm, "featured")
+
+    acronym = TextLine(
+        title=_(u"Acronym"),
+        description=_(u"Acronym of the organisation"),
+        required=False,
+    )
+
+    contact = TextLine(
+        title=_(u"Contact"),
+        description=_(u"Corporate email or link to contact form"),
+        required=True,
+    )
+
+    title = TextLine(
+        title=_(u"Name"), description=u"Item Name (250 character limit)", required=True
+    )
+
+    organisational_misssion = RichText(
+        title=_(u"Organisational mission"),
+        description=u"Please describe the mission of your" u" organisation",
+        required=False,
+    )
+
+    organisational_key_activities = RichText(
+        title=_(u"Key activities within" u" climate change and health"),
+        description=u"Please describe the key activities"
+        u" undertaken by your organisation that are related"
+        u" to the topic of 'climate change and health'."
+        u" Please concentrate on activities with most"
+        u" direct relevance to the Observatory. You may"
+        u" include any hyperlinks to relevant projects in"
+        u" the text",
+        required=False,
+    )
+
+    directives.widget("organisational_links", TextLinesWidget)
+
+    organisational_links = Tuple(
+        title=_(u"Links to further information " u"(relevant for the Observatory)"),
+        description=u"Please provide a hyperlink to the homepage"
+        u' of your organisation in the "Reference'
+        u' Information section", here you may also'
+        u" provide links to up to two relevant units of"
+        u" the organisation that have directly contributed"
+        u" to the Observatory and/or up to two hyperlinks"
+        u" to relevant networks (e.g. with countries) that"
+        u" are administered by your organisation",
+        required=False,
+        value_type=URI(),
+        missing_value=None,
+    )
+
+    organisational_contact = Text(
+        title=_(u"Contact information for the" u" Observatory"),
+        description=u"Please provide a corporate email or contact"
+        u' form link into the "Default section", here you'
+        u" may provide further contact information relevant"
+        u" for the organisation's contribution to the"
+        u" Observatory.",
+        required=False,
+    )
+
+    organisational_name_phone = Text(
+        title=_(u"Name and Telephone number"), required=False
+    )
+
+    # form.fieldset('default',
+    #              label=u'Item Description',
+    #         fields=['acronym', 'title', 'description', 'long_description',
+    #                 'keywords', 'sectors', 'climate_impacts', 'elements',
+    #                 ]
+    #         )
+
+    logo = NamedBlobImage(
+        title=_(u"Logo"),
+        description=_(
+            u"Upload a representative picture or logo for the item."
+            u" Recommended size: at least 360/180 px, aspect ratio 2x"
+        ),
+        required=False,
+    )

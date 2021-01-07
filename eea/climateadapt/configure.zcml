@@ -26,6 +26,7 @@
     <include package=".mayorsadapt" />
     <include package="._importer" />
     <include package=".upgrades" />
+    <include package=".behaviors" />
 
     <include file="skins.zcml" />
     <include file="profiles.zcml" />
@@ -161,15 +162,6 @@
 
     ------[ Widgets: ]--------
 
-    <adapter factory=".aceitem.KeywordsFieldWidget" />
-    <adapter factory=".aceitem.SpecialTagsFieldWidget" />
-
-    <!-- <adapter factory=".acemeasure.AdaptationOptionsFieldWidget" /> -->
-    <adapter factory=".acemeasure.KeywordsFieldWidget" />
-    <adapter factory=".acemeasure.SpecialTagsFieldWidget" />
-
-    <adapter factory=".aceproject.KeywordsFieldWidget" />
-    <adapter factory=".aceproject.SpecialTagsFieldWidget" />
     <adapter factory=".browser.admin.CcaItemsFieldWidget" />
 
     ------[ Subscribers: ]--------
