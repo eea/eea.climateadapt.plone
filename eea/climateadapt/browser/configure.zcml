@@ -10,13 +10,8 @@
     <include file="frontpage.zcml" />
     <include file="faceted.zcml" />
     <include file="depiction.zcml" />
+    <include file="migrations.zcml" />
 
-    <browser:page
-        for="*"
-        name="convert_origin"
-        class=".misc.ConvertSiteOrigin"
-        permission="cmf.ManagePortal"
-        />
 
     <browser:page
         for="*"

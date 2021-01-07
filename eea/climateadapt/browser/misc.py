@@ -364,7 +364,6 @@ class DetectBrokenLinksView (BrowserView):
                 except:
                     continue
 
-
                 state = get_state(obj)
                 if state not in ['private', 'archived']:
                     info['date'] = date.Date() if isinstance(
@@ -928,49 +927,6 @@ class ViewGoogleAnalyticsReport(BrowserView):
         reports = reversed(sorted(report.items(), key=lambda x: int(x[1])))
 
         return islice(reports, 0, 10)
-
-
-class ConvertSiteOrigin(BrowserView):
-    """ Convert the site origin from string to list
-    """
-
-    def __call__(self):
-        catalog = get_tool('portal_catalog')
-        brains = catalog.searchResults({'portal_type': [
-                                        'eea.climateadapt.aceproject',
-                                        'eea.climateadapt.casestudy',
-                                        'eea.climateadapt.adaptationoption',
-                                        'eea.climateadapt.guidancedocument',
-                                        'eea.climateadapt.indicator',
-                                        'eea.climateadapt.informationportal',
-                                        'eea.climateadapt.organisation',
-                                        'eea.climateadapt.publicationreport',
-                                        'eea.climateadapt.researchproject',
-                                        'eea.climateadapt.tool',
-                                        'eea.climateadapt.video']
-                                        })
-
-        for brain in brains:
-            obj = brain.getObject()
-            origin_website = obj.origin_website
-            source = obj.source
-
-            if obj.source == 'DRMKC' and not obj.origin_website:
-                obj.origin_website = [source]
-
-            elif origin_website and isinstance(origin_website, str):
-                obj.origin_website = [origin_website]
-
-            elif origin_website is None:
-                obj.origin_website = []
-
-            else:
-                continue
-
-            obj._p_changed = True
-            obj.reindexObject()
-
-        return 'done'
 
 
 class DatetimeDataConverter(BaseConverter):
