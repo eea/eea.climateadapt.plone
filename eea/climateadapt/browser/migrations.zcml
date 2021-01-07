@@ -68,5 +68,12 @@
     permission="cmf.ManagePortal"
     />
 
+  <browser:page
+    name="update_health_items"
+    for="*"
+    template="pt/update_health_items.pt"
+    class=".migrade.UpdateHealthItemsFields"
+    permission="cmf.ManagePortal"
+    />
 
 </configure>

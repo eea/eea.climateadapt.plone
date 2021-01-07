@@ -10,63 +10,62 @@ from Products.CMFCore.utils import getToolByName
 from .site import _extract_menu
 
 # from zope.component.hooks import getSite
-
 # from Products.Five.browser import BrowserView
 
-LINKER = re.compile('(?P<icon>\[.+?\])(?P<label>.+)')
+LINKER = re.compile("(?P<icon>\[.+?\])(?P<label>.+)")
 
-logger = logging.getLogger('eea.climateadapt')
+logger = logging.getLogger("eea.climateadapt")
 
 # NOTICE: you don't have to edit the menu here. This is a fallback, the menu
 # is rendered live, from information stored in the portal. Use to edit:
 # http://climate-adapt.eea.europa.eu/@@edit-health-navigation-menu
 DEFAULT_MENU = """
-Background Information
-    About the observatory            /about
-        -Mission and objectives      /eu-adaptation-policy/strategy
-        -Network                     /eu-adaptation-policy/strategy
-    European Policies              /about/Outreach
-    National                       /sitemap
+About
+    About the Observatory     /observatory/About/about-the-observatory/
+
+Policy context
+    European Policy Framework
+        - EU adaptation policy /observatory/policy-context/european-policy-framework/eu-adaptation-policy
+        - EU health policy    /observatory/policy-context/european-policy-framework/eu-health-policy
+        - European Environment and Health Process (WHO) /observatory/policy-context/european-policy-framework/eu-environment-health-process-WHO
+    Country Profiles /observatory/policy_context/country-profiles
 
 Evidence on climate change and health
-    Health impacts
-        -Heat efects
-        -Vectore borne diseases
-        -Food and water born diseases
-        -Air polution
+    Health effects
+        -Heat and health
+        -Vector-borne diseases
+        -Water- and food-borne diseases
+        -Air pollution
         -Wildfire
         -Flooding
-        -Etc.
-    Indicators
-    Projections and tools                            /a/b
-        -Infectious diseas                           /a/b
-        -Modelling results                           /a/b
-        -European health service                     /a/b
-        -European climate data explorer              /a/b
+    Indicators                      /observatory/evidence/indicators_intro
+    Projections and tools
+        -European health service
+        -European climate data explorer
+        -Vibrio map viewer                  /observatory/evidence/projections-and-tools/vibrio-map-viewer
     Health warning systems
-        -European warning systems                    /a/b
-        -Vibrio map viewer                           /a/b
-        -National and sub-national warning systems   /a/b
+        -European warning systems
+        -National and sub-national warning systems
 
-Resource catalogue      /health/resource-catalogue
+Resource catalogue      /observatory/catalogue/
+    Complete catalogue      /observatory/catalogue/
 
 Publications and outreach
-    Publications                          /a/c
-        -Policy briefing       /a/b
-        -Anual reports    /a/b
-        -Newsletter              /a
-        -Story maps              /a
+    Observatory publications
+        -Policy briefing
+        -Annual reports
+        -Newsletter
+        -Story maps
     News
-        -News and events         /a
-    Capacity building            /a/b/c
-        -Webinars                /a/b/c
-        -Training                /a/b/c
+        -News and events
+    Capacity building
+        -Webinars
+        -Training
 """
 
 
 class Navbar(ExternalTemplateHeader):
-    """ The health seaction navbar
-    """
+    """The health seaction navbar"""
 
     def pp(self, v):
         import pprint
@@ -74,8 +73,7 @@ class Navbar(ExternalTemplateHeader):
         return pprint.pprint(v)
 
     def menu(self):
-        ptool = getToolByName(self.context,
-                              'portal_properties')['site_properties']
-        value = ptool.getProperty('health_navigation_menu') or DEFAULT_MENU
+        ptool = getToolByName(self.context, "portal_properties")["site_properties"]
+        value = ptool.getProperty("health_navigation_menu") or DEFAULT_MENU
         site_url = self.context.portal_url()
         return _extract_menu(value, site_url)
