@@ -5,6 +5,7 @@
 
 body.site-observatory {
   background-color: #fff;
+  overflow-x: hidden;
 
   .content-column .share-your-info-ace-button {
     display: none;
@@ -222,7 +223,7 @@ body.site-observatory {
       }
 
       &.main-nav-link {
-        font-family: "OpenSansR";
+        font-family: "OpenSansM";
         padding: 5px 18px;
         text-transform: none;
       }
@@ -541,6 +542,26 @@ body.site-observatory {
     background-color: #f5f5f5;
     padding: 1.2em;
   }
+
+  #portal-breadcrumbs {
+    a {
+      color: #949494;
+      font-family: "OpenSansL";
+      font-size: 13px;
+    }
+
+    span:not(:last-child):after {
+      border: none;
+      content: "› ";
+      color: #949494;
+      width: 5px;
+    }
+  }
+
+  #breadcrumbs-current {
+    color: #949494;
+    font-size: 13px;
+  }
 }
 
 span.bold {
@@ -548,10 +569,121 @@ span.bold {
 }
 
 .country-page-header {
-  display: flex;
-  align-items: center;
+  h1 {
+    font-family: "OpenSansR";
+    font-size: 33px;
+    line-height: 33px;
+    color: #1172b5;
+  }
 
-  #countries-selector {
-    float: right;
+  table tbody td {
+    vertical-align: bottom;
+  }
+}
+
+// .country-page-header {
+//   display: flex;
+//   align-items: center;
+//
+//   #countries-selector {
+//     float: right;
+//   }
+// }
+
+#countries-tile-selector {
+  h5 {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #555;
+  }
+
+  .countries-list-tile {
+    padding-left: 0 !important;
+    border-bottom: 1px solid #555;
+
+    li {
+      list-style-type: none;
+      padding-bottom: 0.3em;
+
+      a {
+        color: #555;
+        font-size: 13px;
+        font-family: "OpenSansR";
+      }
+      a.active-country {
+        font-family: "OpenSansB";
+      }
+    }
+  }
+}
+
+// add extra columns margin
+body.subsection-country-profiles {
+  .row {
+    margin-right: -25px;
+    margin-left: -25px;
+
+    .column {
+      padding: 0 25px;
+    }
+  }
+}
+
+body.site-observatory.template-standard.health-header,
+body.site-observatory.template-view.health-header {
+  #portal-breadcrumbs,
+  .documentByLine {
+    position: relative;
+    bottom: -110px;
+  }
+
+  .health-header-title {
+    bottom: 47px;
+  }
+}
+
+body.template-standard.site-observatory.health-header:not(.userrole-anonymous) {
+  #portal-breadcrumbs,
+  .documentByLine {
+    position: relative;
+    bottom: -110px;
+  }
+
+  .health-header-title {
+    bottom: 82px;
+  }
+}
+
+.template-standard,
+.template-view {
+  .health-header-title {
+    width: 100%; // fallback
+    width: 100vw;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: calc(~"-49.6vw + 50%");
+    background: linear-gradient(
+      10deg,
+      rgba(17, 114, 181, 1) 0%,
+      rgba(17, 114, 181, 1) 57%,
+      rgba(131, 153, 72, 1) 100%
+    );
+
+    .tile-content {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 1200px;
+      width: 100%;
+
+      > *,
+      h1 {
+        margin-bottom: 0;
+        font-family: "OpenSansR";
+        font-size: 35px;
+        color: #fff;
+      }
+    }
   }
 }

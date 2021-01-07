@@ -239,6 +239,10 @@
     <xsl:attribute name="class"><xsl:value-of select="/html/body/@class"/> fullwidth</xsl:attribute>
   </prepend>
 
+  <prepend theme="/html/body" css:if-content=".health-header-title">
+    <xsl:attribute name="class"><xsl:value-of select="/html/body/@class"/> health-header</xsl:attribute>
+  </prepend>
+
     Strip the classes "col-md-3 col-xs-12 content-sidebar" from the parent of aceitem-sidebar
   <xsl:template match="div[contains(@class, 'content-sidebar') and ancestor::*[contains(@class, 'section-observatory')]]">
     <xsl:copy-of select="node()[not(contains(@id, 'aceitem_sidebar'))]" />

@@ -662,6 +662,15 @@
         permission="zope2.View"
         />
 
+
+    <browser:page
+        class=".countries.ContextCountriesView"
+        for="*"
+        name="countries-list"
+        template="pt/countries-list.pt"
+        permission="zope2.View"
+        />
+
     <browser:page
         class=".misc.AdaptationStrategyView"
         for="*"
