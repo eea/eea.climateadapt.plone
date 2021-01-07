@@ -10,13 +10,8 @@
     <include file="frontpage.zcml" />
     <include file="faceted.zcml" />
     <include file="depiction.zcml" />
+    <include file="migrations.zcml" />
 
-    <browser:page
-        for="*"
-        name="convert_origin"
-        class=".misc.ConvertSiteOrigin"
-        permission="cmf.ManagePortal"
-        />
 
     <browser:page
         for="*"
@@ -662,6 +657,15 @@
         permission="zope2.View"
         />
 
+
+    <browser:page
+        class=".countries.ContextCountriesView"
+        for="*"
+        name="countries-list"
+        template="pt/countries-list.pt"
+        permission="zope2.View"
+        />
+
     <browser:page
         class=".misc.AdaptationStrategyView"
         for="*"
@@ -952,14 +956,6 @@
     class=".health.HealthHomepageItems"
     template="pt/health_homepage.pt"
     permission="zope2.View"
-    />
-
-  <browser:page
-    name="update_health_items"
-    for="*"
-    template="pt/update_health_items.pt"
-    class=".health_items.UpdateFields"
-    permission="cmf.ManagePortal"
     />
 
   Special pages

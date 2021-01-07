@@ -1,14 +1,14 @@
 <div id="fp-country-selector">
 
-  <div class="row">
+  <svg-container class="svg-map-container svg-fp-container" style="padding: 0.3em; border: 1px solid #CCC">
+    <div class="map-islands" style="top: 420px; bottom: unset; left: 40px;">
+      <img class="lazyload" data-src="/++theme++climateadaptv2/static/images/map_islands.svg" />
+    </div>
+    <svg height="500" width="100%">
+    </svg>
+  </svg-container>
+  <!-- <div class="row">
     <div class="column col-md-9 col-xs-12">
-      <svg-container class="svg-map-container svg-fp-container" style="padding: 0.3em; border: 1px solid #CCC">
-        <div class="map-islands" style="top: 420px; bottom: unset; left: 20px;">
-          <img class="lazyload" data-src="/++theme++climateadaptv2/static/images/map_islands.svg" />
-        </div>
-        <svg height="500" width="100%">
-        </svg>
-      </svg-container>
     </div>
     <div class="column col-md-3 col-xs-12">
       <div id="country-pagelet-selector">
@@ -22,7 +22,7 @@
         </select>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <script>
     // d3 uses define, we don't want it, let's trick it.

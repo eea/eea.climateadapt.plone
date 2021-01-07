@@ -1,0 +1,79 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="eea.climateadapt">
+
+    <browser:page
+        for="*"
+        name="convert_origin"
+        class=".migrate.ConvertSiteOrigin"
+        permission="cmf.ManagePortal"
+        />
+
+  <browser:page
+    name="migrate_year_to_date"
+    for="*"
+    template="pt/migrate_year_to_date.pt"
+    class=".migrate.YearToDate"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
+    name="migrate_organisational"
+    for="*"
+    template="pt/migrate_empty.pt"
+    class=".migrate.OrganisationOrganisational"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
+    name="migrate_organisation_logo"
+    for="*"
+    template="pt/migrate_organisation_logo.pt"
+    class=".migrate.OrganisationLogo"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
+    name="migrate_health_impacts"
+    for="*"
+    template="pt/migrate_health_impacts.pt"
+    class=".migrate.HealthImpacts"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
+    name="migrate_funding_programme"
+    for="*"
+    template="pt/migrate_funding_programme.pt"
+    class=".migrate.FundingProgramme"
+    permission="cmf.ManagePortal"
+    />
+
+    <browser:page
+      name="migrate_drmkc_source"
+      for="*"
+      template="pt/migrate_drmkc_source.pt"
+      class=".migrate.DrmkcSource"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+    name="migrate_source_to_richtext"
+    for="*"
+    template="pt/migrate_source_to_richtext.pt"
+    class=".migrate.SourceToRichText"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
+    name="update_health_items"
+    for="*"
+    template="pt/update_health_items.pt"
+    class=".migrade.UpdateHealthItemsFields"
+    permission="cmf.ManagePortal"
+    />
+
+</configure>
