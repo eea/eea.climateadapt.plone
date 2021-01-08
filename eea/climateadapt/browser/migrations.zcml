@@ -72,7 +72,7 @@
     name="update_health_items"
     for="*"
     template="pt/update_health_items.pt"
-    class=".migrade.UpdateHealthItemsFields"
+    class=".migrate.UpdateHealthItemsFields"
     permission="cmf.ManagePortal"
     />
 
