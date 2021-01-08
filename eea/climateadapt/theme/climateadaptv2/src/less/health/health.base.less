@@ -1,0 +1,67 @@
+body.site-observatory {
+  background-color: #fff;
+  overflow-x: hidden;
+
+  &.userrole-anonymous .edit-bar-wrapper {
+    // fixes a problem with position relative
+    border-bottom: 1px solid #fff !important;
+  }
+
+  .content-column .share-your-info-ace-button {
+    display: none;
+  }
+
+  .site-container {
+    top: 140px;
+    margin-bottom: 140px;
+
+    #content {
+      border: 0;
+      padding: 0;
+    }
+  }
+
+  #portal-breadcrumbs {
+    a {
+      color: #949494;
+      font-family: "OpenSansR";
+      font-size: 13px;
+    }
+
+    span:not(:last-child):after {
+      border: none;
+      content: "› ";
+      color: #949494;
+      width: 5px;
+    }
+  }
+
+  #breadcrumbs-current {
+    color: #949494;
+    font-size: 13px;
+  }
+
+  span.bold {
+    font-weight: bolder;
+  }
+
+  @media only screen and (max-width: 520px) {
+    .top-menu {
+      height: 65px;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .d-sm-none {
+      display: none;
+    }
+
+    .health-top {
+      margin-top: 0;
+    }
+
+    .logo {
+      margin-top: 10px;
+    }
+  }
+}

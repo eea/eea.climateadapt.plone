@@ -107,6 +107,28 @@ function initMainArea() {
   return onResize;
 }
 
+function setSubmenuWidth() {
+  var isSiteObservatory = $(".site-observatory").length;
+  var maxWidth = 0;
+  var itemWidth = 0;
+
+  if (isSiteObservatory) {
+    $(".sub-menu-wrapper > ul").each(function () {
+      var $ul = $(this);
+
+      $($ul.children().find("span")).each(function () {
+        itemWidth = parseInt($(this).css("width"));
+
+        if (itemWidth > maxWidth) {
+          maxWidth = itemWidth;
+        }
+      });
+
+      $ul.css("min-width", maxWidth + "px");
+    });
+  }
+}
+
 function initMainTabs() {
   // HOMEPAGE: Tabs functionality
   $("ul.nav-tabs a").click(function () {
@@ -391,25 +413,6 @@ function initMobileMenu() {
     return false;
   });
 
-  var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
-  );
-
-  if (isMobile) {
-    // show submenu on click
-    $(".main-nav-item").each(function () {
-      var $this = $(this);
-      var link = $this.find(".main-nav-link");
-
-      if (!link.attr("href")) {
-        $this.click(function () {
-          link.parent().siblings(".sub-menu-wrapper").toggle();
-          link.parent().parent().siblings().find(".sub-menu-wrapper").hide();
-        });
-      }
-    });
-  }
-
   // Mobile - hide header on scroll down
   var didScroll;
   var lastScrollTop = 0;
@@ -436,6 +439,19 @@ function initMobileMenu() {
         didScroll = false;
       }
     }, 250);
+
+    // show submenu on click
+    $(".main-nav-item").each(function () {
+      var $this = $(this);
+      var link = $this.find(".main-nav-link");
+
+      if (!link.attr("href")) {
+        $this.click(function () {
+          link.parent().siblings(".sub-menu-wrapper").toggle();
+          link.parent().parent().siblings().find(".sub-menu-wrapper").hide();
+        });
+      }
+    });
   }
 
   function hasScrolled() {
@@ -864,6 +880,7 @@ $(document).ready(function () {
   fixPDFButton();
   fixGallery();
   rotateActiveTab();
+  setSubmenuWidth();
 
   if (window.require && window.requirejs) {
     window.requirejs.config({

@@ -167,6 +167,10 @@
     transition: top 0.2s ease-in-out;
   }
 
+  #help-items {
+    right: auto;
+  }
+
   .header.mobile-header .nav-up {
     top: auto;
   }
@@ -381,19 +385,40 @@
 }
 
 @media (max-width: 600px) {
-  .header #main-nav-item-3 .sub-menu-wrapper,
-  .header #main-nav-item-1 .sub-menu-wrapper {
-    min-width: 100%;
+  .site-cca .header {
+    #main-nav-item-1 .sub-menu > .sub-menu-item:first-child > ul {
+      column-count: auto;
+    }
+
+    #main-nav-item-3 .sub-menu-wrapper,
+    #main-nav-item-1 .sub-menu-wrapper {
+      min-width: 100% !important;
+    }
+
+    #main-nav-item-3 .sub-menu,
+    #main-nav-item-2 .sub-menu > .sub-menu-item:first-child,
+    #main-nav-item-2 .sub-menu > .sub-menu-item:not(:first-child) {
+      float: none;
+      width: 100%;
+      border-right: 1px solid transparent !important;
+    }
+
+    .sub-menu-item:last-of-type {
+      border-bottom: 1px solid #ddd;
+    }
   }
+
   .main-box {
     height: auto;
   }
+
   .ast-steps {
     display: block;
     margin-top: 50px;
     text-align: center;
     list-style-type: none;
   }
+
   .step-text {
     display: none;
   }
@@ -573,11 +598,13 @@ body.section-observatory #aceitem_sidebar .health-information {
     columns: 2;
   }
 }
+
 @media screen and (min-width: 500px) and (max-width: 800px) {
   #portal-personaltools {
     left: 0px;
   }
 }
+
 .portaltype-collective-cover-content {
   .documentDescription {
     display: none;
@@ -588,7 +615,9 @@ body.section-observatory #aceitem_sidebar .health-information {
   color: #ffffff;
 }
 
-body.site-observatory ul#navbar .sub-menu-wrapper li a:not([href]) {
-  color: #a9a9a9;
-  font-style: italic;
+body.userrole-anonymous {
+  #portal-personaltools {
+    min-width: 130px;
+    columns: auto;
+  }
 }
