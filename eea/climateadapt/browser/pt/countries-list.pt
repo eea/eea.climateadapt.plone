@@ -1,0 +1,24 @@
+<div id="countries-tile-selector">
+  <h5>Select a country</h5>
+  <ul class="countries-list-tile">
+    <li tal:repeat="country view/countries">
+      <a tal:content="country/Title"
+         tal:define="url country/absolute_url"
+         tal:attributes="href python: url + '/'">
+        Country
+      </a>
+    </li>
+  </ul>
+
+  <script>
+    jQuery(document).ready(function() {
+      var url = window.location.href;
+      $('.countries-list-tile li a').each(function() {
+        var $this = $(this);
+        if ($this.attr('href') === url){
+          $this.addClass('active-country');
+        }
+      })
+    });
+  </script>
+</div>

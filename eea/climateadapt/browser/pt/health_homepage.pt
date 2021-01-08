@@ -8,46 +8,76 @@
   metal:use-macro="context/main_template/macros/master"
   >
 
-<body>
-  <metal:main fill-slot="body">
+  <body>
+    <metal:main fill-slot="body">
 
-    <p class="folder_health_context" tal:content="context/description"></p>
+      <p class="folder_health_context" tal:content="context/description"></p>
 
-    <!-- <a class="health_climate_link_main d-sm-none" href="">EU Observatory for Climate Change and Health</a> -->
+      <div class="box-container list_news_events">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="/cca/health#news-tab"
+               tal:attributes="href python:context.absolute_url()+'#news-tab'">
+               News</a>
+          </li>
+          <li>
+            <a href="/cca/health#events-tab"
+               tal:attributes="href python:context.absolute_url()+'#events-tab'">
+               Events</a>
+          </li>
+        </ul>
 
-    <div class="box-container list_news_events">
-      <ul class="nav nav-tabs">
-        <li class="active">
-          <a href="/cca/health#news-tab" tal:attributes="href python:context.absolute_url()+'#news-tab'">News</a>
-        </li>
-        <li>
-          <a href="/cca/health#events-tab" tal:attributes="href python:context.absolute_url()+'#events-tab'">Events</a>
-        </li>
-      </ul>
-      <div class="tab-content">
-        <div class="tab-pane active fade in" id="news-tab">
-          <div class="fp-news-tile" tal:define="items view/latestNews">
-            <ul>
-              <li tal:repeat="item items">
-                <a tal:attributes="href item/url;title item/title" tal:content="item/title"></a>
-                <p class="news-time" tal:content="item/date"></p>
-              </li>
-            </ul>
+        <div class="tab-content">
+          <div class="tab-pane active fade in" id="news-tab">
+            <div class="fp-news-tile" tal:define="items view/latestNews">
+              <ul>
+                <li tal:repeat="item items">
+                  <a tal:attributes="href item/url;title item/title"
+                     tal:content="item/title"></a>
+                  <p class="news-time" tal:content="item/date"></p>
+                </li>
+              </ul>
+
+              <div class="read-more-wrapper">
+                <a href=""
+                   tal:define="news view/more_news;
+                   title python: news[1]; url python: news[0]"
+                   tal:attributes="href url" class="read-more">
+                  <span tal:content="title"></span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="tab-pane fade" id="events-tab">
-          <div class="fp-events-tile" tal:define="items view/upcomingEvents">
-            <ul>
-              <li tal:repeat="item items">
-                <a tal:attributes="href item/url;title item/title" tal:content="item/title"></a>
-                <p class="news-time" tal:content="item/date"></p>
-              </li>
-            </ul>
+
+          <div class="tab-pane fade" id="events-tab">
+            <div class="fp-events-tile" tal:define="items view/upcomingEvents">
+              <ul tal:condition="python: items">
+                <li tal:repeat="item items">
+                  <a tal:attributes="href item/url;title item/title"
+                     tal:content="item/title"></a>
+                  <p class="news-time" tal:content="item/date"></p>
+                </li>
+              </ul>
+
+              <div tal:condition="not: items">
+                <p class="no-events">No upcoming events.</p>
+              </div>
+
+              <div class="read-more-wrapper">
+                <a href=""
+                   tal:define="events view/more_events; title python: events[1];
+                   url python: events[0]"
+                   tal:attributes="href url" class="read-more">
+                  <span tal:content="title"></span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-  </metal:main>
-</body>
+    </metal:main>
+  </body>
 </html>

@@ -46,7 +46,8 @@
     
           <div class="logo">
             <a href="/health" class="health_logo">
-              <img src="/++theme++climateadaptv2/static/images/health-logo.png" alt="Health Observatory Logo" />
+              <img src="/++theme++climateadaptv2/static/images/health-logo.png"
+                   alt="Health Observatory Logo" />
             </a>
             <a href="/">
               <img src="static/images/climate-adapt-logo.svg" alt="Climate-ADAPT Logo"/>
@@ -91,7 +92,10 @@
                       <form class="login-form">
                         <input type="text" placeholder="Email" />
                         <input type="text" placeholder="Password" />
-                        <button type="submit" class="btn btn-header"><i class="fa fa-user" aria-hidden="true"></i> Log in</button>
+                        <button type="submit" class="btn btn-header">
+                          <i class="fa fa-user" aria-hidden="true"></i>
+                          Log in
+                        </button>
                       </form>
                       <ul id="portal-personaltools">
                         <li><a href="#">test</a></li>
@@ -340,119 +344,167 @@
     
     </div>
 
-    <div class="health-top">
-      <a class="health_climate_link_main d-sm-none" href="/health">European Climate and Health Observatory</a>
+    <div class="health-top-wrapper">
+      <div class="health-top">
+        <div class="health-image-wrapper">
+          <div
+            class="health-lead-image"
+            style="background-image: url('/cca/++theme++climateadaptv2/static/images/health-lead-image.png')">
+          </div>
+      
+          <div class="health-text-wrapper">
+            <h1>European Climate and Health Observatory</h1>
+            <p>We provide easy access to a wide range of relevant publications, tools,
+               websites and other resources related to climate change and health.
+            </p>
+            <a href="/observatory/About/about-the-observatory" class="health-learn-more">Learn more</a>
+          </div>
+        </div>
+      </div>
+      <div class="health_top_items">
+        <h5 class="health_title">Discover the main topics and tools of the observatory</h5>
+        <div class="row">
+          <div class="column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="box-container box-container-border">
+              <img src="/++theme++climateadaptv2/static/images/health-1-partners.png">
+              <div class="health-top-content">
+                <h5>Partners</h5>
+                <p>Discover who is contributing to the Observatory</p>
+                <a class="health-learn-more" href="/observatory/background/about/partners">
+                  Learn more
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="box-container box-container-border">
+              <img src="/++theme++climateadaptv2/static/images/health-2-country_profiles.png">
+              <div class="health-top-content">
+                <h5>Country profiles</h5>
+                <p>Access the key EU warning systems for health</p>
+                <a class="health-learn-more" href="/observatory/policy-context/country-profiles">
+                  Learn more
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="box-container box-container-border">
+              <img src="/++theme++climateadaptv2/static/images/health-3-indicators.png">
+              <div class="health-top-content">
+                <h5>Indicators</h5>
+                <p>Discover indicators on climate change and health</p>
+                <a class="health-learn-more" href="/observatory/evidence/indicators">
+                  Learn more
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="box-container box-container-border">
+              <img src="/++theme++climateadaptv2/static/images/health-4-catalog.png">
+              <div class="health-top-content">
+                <h5>Resource catalogue</h5>
+                <p>Search and access the Observatory’s database with Case Studies,
+                  Publications, Indicators, Reasearch projects</p>
+                <a class="health-learn-more" href="/observatory/catalogue/">
+                  Learn more
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="content-container site-container main-area">
       <div id="content" class="health-homepage-specific">
         <div class="row">
-          <div class="col-lg-3 col-sm-6 col-xs-12 health-left">
-            <div class="list_news_events">
-              <h4>News/Events</h4>
-              <ul class="nav nav-tabs">
-                <li class="active">
-                  <a href="/cca/health#news-tab">News</a>
-                </li>
-                <li class="">
-                  <a href="/cca/health#events-tab">Events</a>
-                </li>
-              </ul>
-            
-              <div class="tab-content">
-                <div class="tab-pane fade active in" id="news-tab">
-                  <div class="fp-news-tile">
-                    <table class="health_homepage health_listing bluebox">
-                      <tbody>
-                          <tr>
-                            <td style="width:20%;text-align:center;"><span class='circle_big'></span></td>
-                            <td class="align-middle"><p>10.02.2020</p></td>
-                            <td>
-                              <p>Text here</p><a href="">Read more ...</a>
-                            </td>
-                          </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-            
-                <div class="tab-pane fade" id="events-tab">
-                  <div class="fp-events-tile">
-                    <table class="health_homepage health_listing bluebox">
-                        <tbody>
-                          <tr>
-                            <td style="width:20%;text-align:center;"><span clase="circle_med"></span></td>
-                            <td class="align-middle"><p>18.03.2020</p></td>
-                            <td>
-                              <p>Text here</p><a href="">Read more ...</a>
-                            </td>
-                          </tr>
-                        </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="health_contribute">
-              <h4>Contribute to the Observatory</h4>
-              <a href="mailto:climate.adapt@eea.europa.eu"
-                class="submit-widget button-field standard-button primary-button">
-                Send us an email <i class="pull-right fa fa-envelope"></i>
-              </a>
-            </div>
-            
-            <div id="portlet-manager"></div>
-          </div>
-          <div class="col-lg-9 col-sm-6 col-xs-12 health-right">
+          <div class="col-lg-6 col-sm-12 col-xs-12 health-left">
             <p class="folder_health_context"></p>
-            <div class="health_top_items">
-              <h3 class="health_title">DISCOVER THE MAIN TOPICS AND TOOLS OF THE OBSERVATORY</h3>
+            <!-- <div id="page-body"></div> -->
+          </div>
+          <div class="col-lg-6 col-sm-12 col-xs-12 health-right">
+            <div class="main-area">
               <div class="row">
-                <div class="column col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                  <div class="box-container box-container-border">
-                    <img src="/++theme++climateadaptv2/static/images/health-top1.png">
-                    <h5>Partners</h5>
-                    <p>Discover who is contributing to the Observatory</p>
-                    <a href="/observatory/background/about/partners">
-                      Read more
-                      <i class="fa fa-angle-double-right"></i>
+                <div class="main-box col-lg-6 col-sm-6 col-xs-12">
+                  <div class="list_news_events">
+                    <h4>News/Events</h4>
+                    <ul class="nav nav-tabs">
+                      <li class="active">
+                        <a href="#news-tab">News</a>
+                      </li>
+                      <li>
+                        <a href="#events-tab">Events</a>
+                      </li>
+                    </ul>
+            
+                    <div class="tab-content">
+                      <div class="tab-pane active fade in" id="news-tab">
+                        <div class="fp-news-tile">
+                          <ul>
+                            <li>
+                              <a href="#">
+                                Hiding from a warmer climate in the forest
+                              </a>
+                              <p class="news-time">11 Jan 2018</p>
+                            </li>
+                          </ul>
+                          <div class="read-more-wrapper">
+                            <a href="" class="read-more">
+                              <i class="fa fa-angle-double-right"></i>
+                              More news
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+            
+                      <div class="tab-pane fade" id="events-tab">
+                        <div class="fp-events-tile">
+                          <div>
+                            <a href="#">
+                              EU Adaptation Strategy evaluation: public consultation meeting
+                            </a>
+                            <p class="news-time">23 Jan 2018</p>
+                          </div>
+                          <div class="read-more-wrapper">
+                            <a href="" class="read-more">
+                              <i class="fa fa-angle-double-right"></i>
+                              More events
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            
+                <div class="main-box col-lg-6 col-sm-6 col-xs-12">
+                  <div class="box-container info-section">
+                    <a href="../help/share-your-info">
+                      <div class="content-body">
+                        <img src="/cca/++theme++climateadaptv2//static/images/health_share.svg"
+                             title="Information icon"/>
+                        <h5 class="info-title">Share <br /> your information</h5>
+                        <p>Find out how to contribute different types of information to
+                           Climate-ADAPT
+                        </p>
+                      </div>
                     </a>
                   </div>
                 </div>
-                <div class="column col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                  <div class="box-container box-container-border">
-                    <a href="/observatory/catalogue/"><img src="/++theme++climateadaptv2/static/images/health-top2.png"></a>
-                    <h5>Resource catalogue</h5>
-                    <p>Search and access the Observatory’s database with Case Studies,
-                    Publications, Indicators, Reasearch projects</p>
-                    <a href="/observatory/catalogue/">
-                       Read more
-                       <i class="fa fa-angle-double-right"></i>
-                    </a>
-                  </div>
-                </div>
-                <div class="column col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                  <div class="box-container box-container-border">
-                    <img src="/++theme++climateadaptv2/static/images/health-top3.png">
-                    <h5>Indicators</h5>
-                    <p>Discover indicators on climate change and health</p>
-                    <a href="/observatory/evidence/indicators">
-                      Read more
-                      <i class="fa fa-angle-double-right"></i>
-                    </a>
-                  </div>
-                </div>
-                <div class="column col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                  <div class="box-container box-container-border">
-                    <img src="/++theme++climateadaptv2/static/images/health-top4.png">
-                    <h5>EU Health Warning Systems</h5>
-                    <p>Access the key EU warning systems for health</p>
-                  </div>
-                </div>
+            
+                <!-- <div class="health_contribute">
+                  <h4>Contribute to the Observatory</h4>
+                  <a href="mailto:climate.adapt@eea.europa.eu"
+                    class="submit-widget button-field standard-button primary-button">
+                    Send us an email <i class="pull-right fa fa-envelope"></i>
+                  </a>
+                </div> -->
+            
+                <div id="portlet-manager"></div>
               </div>
             </div>
-            <div id="page-body"></div>
           </div>
         </div>
       </div>
@@ -483,7 +535,7 @@
     
       <div class="content-container">
         <div class="row footer-content">
-          <div class="col-md-6 col-xs-12">
+          <div class="column col-md-6 col-xs-12">
             <p class="site-info">This <strong>European Climate and Health
             Observatory</strong> is
             a partnership between the European Commission,
@@ -491,14 +543,14 @@
             <div class="footer-logos-wrapper">
               <a href="https://ec.europa.eu/"
                  rel="noopener">
-                <img data-src="/cca/++theme++climateadaptv2/static/images/ec_logo.png"
+                <img data-src="/cca/++theme++climateadaptv2/static/images/ec_logo.svg"
                      alt="European Commission Logo"
                      title="European Commission"
                      class="lazyload"/>
               </a>
               <a href="https://www.eea.europa.eu/"
                  rel="noopener">
-                <img data-src="/cca/++theme++climateadaptv2/static/images/eea_mini.png"
+                <img data-src="/cca/++theme++climateadaptv2/static/images/EEA-logo.png"
                      alt="EEA Logo"
                      title="European Environment Agency"
                      class="lazyload"/>
@@ -506,16 +558,17 @@
             </div>
           </div>
     
-          <div class="eu-systems col-md-6 col-xs-12">
+          <div class="eu-systems column col-md-6 col-xs-12">
             <div class="eu-systems-wrapper">
-              <p>Other European <br/> Information Systems:</p>
+              <p>Other European Information Systems:</p>
               <ul class="footer-logos">
                 <li class="footer-logo-item">
                   <a href="https://biodiversity.europa.eu/"
                     rel="noopener">
-                    <img data-src="/cca/++theme++climateadaptv2/static/images/bise-logo.png"
+                    <img data-src="/cca/++theme++climateadaptv2/static/images/bise-logo.svg"
                          alt="BISE Logo"
                          title="Biodiversity Information System for Europe"
+                         style="height:35px"
                          class="lazyload"/>
                   </a>
                 </li>

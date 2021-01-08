@@ -322,15 +322,17 @@ function initAst() {
 
   // Remove main navigation subitems hover state
   // if doesn't have href attribute
-  $(".sub-menu-link").each(function () {
-    var $this = $(this);
-    if (!$this.attr("href")) {
-      $this.hover(function () {
+  if ($(".template-health_homepage").length === 0) {
+    $(".sub-menu-link").each(function () {
+      var $this = $(this);
+      if (!$this.attr("href")) {
+        $this.hover(function () {
+          $this.css("color", "#3a3a3a");
+        });
         $this.css("color", "#3a3a3a");
-      });
-      $this.css("color", "#3a3a3a");
-    }
-  });
+      }
+    });
+  }
 
   // ADAPTATION SUPPORT TOOL
   // url: .../cca/knowledge/tools/adaptation-support-tool
@@ -919,6 +921,7 @@ $(document).ready(function () {
   // help page: share your information subpages, ex:
   // url: .../cca/help/share-your-info/publications-and-reports
   var current = window.location.href;
+
   $(
     ".share-info-wrapper #third-level-menu a, .cover-section_nav-tile a, .uvmb-nav a"
   ).each(function () {
@@ -962,29 +965,38 @@ $(document).ready(function () {
   });
 
   $(".row.container-themes .col-md-3").click(function () {
-    console.log($(this).attr("data-url"));
     if ($(this).attr("data-url") !== undefined) {
       window.location = $(this).attr("data-url");
     }
   });
 
-    if ($( "div[data-fieldname^='form.widgets.organisational_']" ).length) {
-        organisationOrganisationalElements();
-    }
-    $("#formfield-form-widgets-include_in_observatory input[type='checkbox']").on( "click", function() {
-        if ($( "div[data-fieldname^='form.widgets.organisational_']" ).length) {
-            organisationOrganisationalElements();
-        }
-    });
-    function organisationOrganisationalElements() {
-        if ($("#formfield-form-widgets-include_in_observatory input[type='checkbox']").is(":checked")) {
-            $( "div[data-fieldname^='form.widgets.organisational_']" ).removeClass( "hide" );
-        } else {
-            $( "div[data-fieldname^='form.widgets.organisational_']" ).addClass( "hide" );
-        }
-    }
-});
+  if ($("div[data-fieldname^='form.widgets.organisational_']").length) {
+    organisationOrganisationalElements();
+  }
 
+  $("#formfield-form-widgets-include_in_observatory input[type='checkbox']").on(
+    "click",
+    function () {
+      if ($("div[data-fieldname^='form.widgets.organisational_']").length) {
+        organisationOrganisationalElements();
+      }
+    }
+  );
+
+  function organisationOrganisationalElements() {
+    if (
+      $(
+        "#formfield-form-widgets-include_in_observatory input[type='checkbox']"
+      ).is(":checked")
+    ) {
+      $("div[data-fieldname^='form.widgets.organisational_']").removeClass(
+        "hide"
+      );
+    } else {
+      $("div[data-fieldname^='form.widgets.organisational_']").addClass("hide");
+    }
+  }
+});
 
 // Divide the sub-menu in 2 columns if 'sub-sub-menu' exist
 // var navigationItem = $('.main-nav-item');
