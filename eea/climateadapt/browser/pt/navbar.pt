@@ -27,9 +27,8 @@
               </tal:block>
               <a href=""
                  class="sub-menu-link"
-                 tal:attributes="href group/link"
-                 tal:content="group/label">
-                 Title here
+                 tal:attributes="href group/link">
+                 <span tal:content="group/label">Title here</span>
               </a>
               <ul class="sub-sub-menu-wrapper" tal:condition="group/children">
                 <li class="sub-sub-menu-item" tal:repeat="child group/children">
@@ -38,9 +37,8 @@
                     </tal:block>
                   <a href=""
                      class="sub-sub-menu-link"
-                     tal:attributes="href child/link"
-                     tal:content="child/label">
-                     Title here
+                     tal:attributes="href child/link">
+                     <span tal:content="child/label">Title here</span>
                   </a>
                 </li>
               </ul>

@@ -11,35 +11,9 @@
   <div class="cover-cards-tile tile-content" tal:condition="not:is_empty">
 
     <tal:rep tal:repeat="card view/cards">
-      <div class="ui card" tal:define="obj card/getObject">
-        <div class="image">
-          <a href="" tal:attributes="href card/getURL" >
-            <img tal:condition="python: getattr(obj, 'image', None)" tal:attributes="src string:${card/getURL}/image_mini" />
-            <div tal:condition="python: not getattr(obj, 'image', None)" class="placeholder" />
-            <!-- <div tal:content="python: dir(card)" /> -->
-          </a>
-        </div>
-        <div class="card-content">
-          <h4 class="card-header" >
-            <a href="" tal:attributes="href card/getURL" tal:content="card/Title">
-              Matthew
-            </a>
-          </h4>
-        </div>
-        <div class="card-extra">
-          <div class="year">
-            <strong>Year:&nbsp;</strong>
-            <span class="year" tal:content="python: getattr(obj, 'publication_date') and obj.publication_date.year or ''"></span>
-          </div>
-          <div class="source"
-            tal:define="origin obj/origin_website | nothing;
-                origin python: origin and origin[0] or None">
-            <strong>Source:&nbsp;</strong>
-            <a tal:condition="python: origin == 'EEA'" href="https://eea.europa.eu">EEA</a>
-            <a tal:condition="python: origin == 'Lancet Countdown'" href="https://www.lancetcountdown.org/">Lancet Countdown</a>
-          </div>
-        </div>
-      </div>
+      <tal:def tal:define="obj card/getObject">
+        <div  tal:replace="structure obj/@@card" />
+      </tal:def>
     </tal:rep>
 
   </div>

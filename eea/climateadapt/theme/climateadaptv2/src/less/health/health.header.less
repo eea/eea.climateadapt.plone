@@ -1,0 +1,31 @@
+body.site-observatory {
+  .logo {
+    margin-top: 10px;
+
+    a:nth-child(2) img {
+      height: 40px;
+      display: inline-block;
+      margin-left: 20px;
+    }
+
+    .health_logo img {
+      height: 50px;
+    }
+
+    @media only screen and (max-width: 520px) {
+      a:nth-child(2) img {
+        height: 30px;
+      }
+
+      .health_logo img {
+        height: 35px;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 800px) {
+    .header > .content-container {
+      top: 30px;
+    }
+  }
+}
