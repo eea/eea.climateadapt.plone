@@ -1,7 +1,12 @@
 @media print {
+  body {
+    background-color: #fff;
+  }
+
   .cover-body {
     display: none;
   }
+
   .cover-title {
     text-align: center;
     font-weight: bold;
@@ -9,9 +14,11 @@
     font-size: 32px;
     margin: 42pt;
   }
+
   .cover-header {
     text-align: center;
   }
+
   .cover-logo {
     text-align: center;
     margin: 60pt 42pt 0;
@@ -22,20 +29,16 @@
     margin: 0;
   }
 
-  body {
-    background-color: #fff;
-  }
-
   .logo {
     a {
       text-align: center;
       margin: 20pt 42pt 0;
     }
+
     img {
       height: 35pt;
     }
   }
-
 
   #content,
   .content-sidebar,
@@ -47,6 +50,7 @@
   .top-menu {
     box-shadow: none !important;
   }
+
   .top-menu-wrapper {
     justify-content: center;
   }
@@ -54,6 +58,7 @@
   .panel .collapse {
     display: block;
   }
+
   .panel-collapse.collapse {
     height: 100%;
     overflow: unset;
@@ -74,5 +79,4 @@
   footer {
     display: none !important;
   }
-
 }

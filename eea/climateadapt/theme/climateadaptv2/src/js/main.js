@@ -109,11 +109,11 @@ function initMainArea() {
 
 function setSubmenuWidth() {
   var isSiteObservatory = $(".site-observatory").length;
-  var maxWidth = 0;
-  var itemWidth = 0;
 
   if (isSiteObservatory) {
     $(".sub-menu-wrapper > ul").each(function () {
+      var maxWidth = 0;
+      var itemWidth = 0;
       var $ul = $(this);
 
       $($ul.children().find("span")).each(function () {
