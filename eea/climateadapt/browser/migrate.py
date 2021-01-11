@@ -10,6 +10,7 @@ from zope.intid.interfaces import IIntIds
 from eea.climateadapt.vocabulary import _health_impacts
 from plone import api
 from plone.api.portal import get_tool
+from plone.api import portal
 from plone.app.textfield import RichText
 from plone.app.textfield.value import RichTextValue
 from Products.Five.browser import BrowserView
@@ -199,6 +200,112 @@ class FundingProgramme:
                 }
             )
             logger.info("Migrated funding programme for obj: %s", obj.absolute_url())
+
+        return response
+
+
+#126085
+class ContributingOrganisationPartner():
+    """ Migrate funding_programme field
+    """
+
+    def get_object(self, path):
+        local_path = path.replace('http://','')
+        local_path = local_path.replace('https://','')
+
+        local_path = local_path[local_path.find('/'):]
+        local_path = local_path[1:]
+
+        #import pdb; pdb.set_trace()
+        site = api.portal.get()
+        object = site.restrictedTraverse(local_path)
+        if object:
+            return object;
+
+        return None
+
+
+    def list(self):
+
+        catalog = api.portal.get_tool('portal_catalog')
+
+        map_organisations = {
+            'World Health Organization - Regional Office for Europe - Climate-ADAPT (europa.eu)':
+                {'url': 'who-regional-office-for-europe-who-europe','id': 0, 'object': None}
+        }
+
+        util = getUtility(IIntIds, context=self.context)
+        for title in map_organisations.keys():
+            orgs = self.context.portal_catalog.searchResults(portal_type="eea.climateadapt.organisation", getId=map_organisations[title]['url'])
+            if not orgs:
+                logger.warning("Organisation not found: %s", title)
+            else:
+                map_organisations[title]['id'] = util.getId(orgs[0].getObject())
+                map_organisations[title]['object'] = orgs[0].getObject()
+
+        response = []
+        fileUploaded = self.request.form.get('fileToUpload', None)
+
+        if not fileUploaded:
+            return response
+
+        reader = csv.reader(
+            fileUploaded,
+            delimiter=',',
+            quotechar='"',
+            #    dialect='excel',
+        )
+
+        for row in reader:
+            item = {}
+            item['title'] = row[0]
+            item['url'] = row[10]
+            item['partners'] = row[17]
+
+            if len(item['url'])<5:
+                continue;
+
+            obj = self.get_object(item['url'])
+
+            logger.info("Object %s", item['url'])
+            logger.info("    Title %s", item['title'])
+            logger.info("    Partner [%s]", item['partners'])
+            if not obj:
+                logger.info("    Object not found")
+                continue
+
+            if item['partners'] not in map_organisations:
+                logger.info("    Partner not found [%s]", item['partners'])
+                continue
+
+            partner_object_id = map_organisations[item['partners']]['id']
+            if not partner_object_id:
+                logger.info("    Partner not match")
+                continue
+
+            if type(obj.contributors) is not list:
+                obj.contributors = []
+
+            #import pdb; pdb.set_trace()
+
+            for contibutor_data in obj.contributors:
+                if partner_object_id == util.getId(contibutor_data.to_object):
+                    logger.info("    Partner already set")
+                    partner_object_id = None
+                    break
+
+            if not partner_object_id:
+                continue
+
+            obj.contributors.append(RelationValue(partner_object_id))
+            logger.info("    Partner added")
+
+            obj._p_changed = True
+            #transaction.savepoint()
+            response.append({
+               'title': obj.title,
+                'url': item['url'],
+            })
 
         return response
 
