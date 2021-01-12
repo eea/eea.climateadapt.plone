@@ -221,9 +221,12 @@ class ContributingOrganisationPartner():
 
         #import pdb; pdb.set_trace()
         site = api.portal.get()
-        object = site.restrictedTraverse(local_path)
-        if object:
-            return object;
+        try:
+            object = site.restrictedTraverse(local_path)
+            if object:
+                return object;
+        except Exception, e:
+            return None
 
         return None
 
@@ -270,40 +273,33 @@ class ContributingOrganisationPartner():
 
             obj = self.get_object(item['url'])
 
-            logger.info("Object %s", item['url'])
-            logger.info("    Title %s", item['title'])
-            logger.info("    Partner [%s]", item['partners'])
             if not obj:
-                logger.info("    Object not found")
+                logger.warning("Object not found: %s", item['url'])
                 continue
 
             if item['partners'] not in map_organisations:
-                logger.info("    Partner not found [%s]", item['partners'])
+                logger.warning("Partner not found: %s [%s]", item['url'], item['partners'])
                 continue
 
             partner_object_id = map_organisations[item['partners']]['id']
             if not partner_object_id:
-                logger.info("    Partner not match")
+                logger.warning("Partner not match: %s [%s]", item['url'], item['partners'])
                 continue
 
             if type(obj.contributors) is not list:
                 obj.contributors = []
 
-            #import pdb; pdb.set_trace()
-
             for contibutor_data in obj.contributors:
                 if partner_object_id == util.getId(contibutor_data.to_object):
-                    logger.info("    Partner already set")
                     partner_object_id = None
                     break
 
             if not partner_object_id:
-                continue
+                logger.info("Partner already set: %s [%s]", item['url'], item['partners'])
+            else:
+                obj.contributors.append(RelationValue(partner_object_id))
+                obj._p_changed = True
 
-            obj.contributors.append(RelationValue(partner_object_id))
-            logger.info("    Partner added")
-
-            obj._p_changed = True
             #transaction.savepoint()
             response.append({
                'title': obj.title,

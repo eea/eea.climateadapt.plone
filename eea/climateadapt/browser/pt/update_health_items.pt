@@ -1,6 +1,6 @@
-<h1>Hello world</h1>
+<h1>Update health items</h1>
 <form action="/update_health_items" method="post" enctype="multipart/form-data">
-  <br>Select image to upload:
+  <br>File to upload:
   <input type="file" name="fileToUpload" id="fileToUpload" />
   <input type="submit" value="Process CSV" name="submit" />
 </form>
