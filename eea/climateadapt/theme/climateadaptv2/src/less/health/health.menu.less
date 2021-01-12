@@ -27,12 +27,19 @@ body.site-observatory {
     }
   }
 
+  @media only screen and (max-width: 1100px) {
+    #navbar > li > span > a span {
+      font-size: 15px !important;
+    }
+  }
+
   @media only screen and (min-width: 800px) {
     #navbar {
       background-color: #fff;
       border: 0;
       box-shadow: none;
-      float: right;
+      // float: right;
+      display: inline-flex;
       margin-top: 6px;
 
       > li > span > a {

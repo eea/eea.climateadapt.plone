@@ -108,6 +108,32 @@ body.site-observatory {
       width: 100%;
     }
 
+    .health-box-image {
+      height: 175px;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+
+      .box-image {
+        height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      .health-box-layer {
+        width: 100%;
+        height: 100%;
+        background-color: #7aafd5;
+      }
+    }
+
     .box-container {
       position: relative;
       background-color: #fff;
@@ -244,7 +270,6 @@ body.site-observatory {
       .fp-news-tile,
       .fp-events-tile {
         ul a {
-          color: #555;
           font-size: 13px;
         }
       }
@@ -343,7 +368,7 @@ body.site-observatory {
       }
 
       .box-container {
-        height: 420px;
+        height: 370px;
       }
 
       .health_title {
@@ -366,6 +391,10 @@ body.site-observatory {
 
     .health-homepage-specific {
       margin-top: 0;
+    }
+
+    .health_top_items .health-box-image {
+      height: 195px;
     }
   }
 
@@ -402,10 +431,6 @@ body.site-observatory {
     .health-top .health-text-wrapper {
       top: 15%;
     }
-
-    .health_top_items .box-container {
-      height: 370px;
-    }
   }
 
   @media only screen and (max-width: 480px) {
@@ -416,6 +441,14 @@ body.site-observatory {
 
       p {
         font-size: 20px;
+      }
+    }
+
+    .health_top_items {
+      bottom: 320px;
+
+      .col-xs-12 {
+        width: 100%;
       }
     }
   }
