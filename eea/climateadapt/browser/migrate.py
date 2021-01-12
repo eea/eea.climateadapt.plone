@@ -69,12 +69,15 @@ class ConvertSiteOrigin(BrowserView):
 
             if obj.source == "DRMKC" and not obj.origin_website:
                 obj.origin_website = [source]
+                logger.info("Migrated site origin : %s %s", brain.getURL(), obj.origin_website)
 
             elif origin_website and isinstance(origin_website, str):
                 obj.origin_website = [origin_website]
+                logger.info("Migrated site origin : %s %s", brain.getURL(), obj.origin_website)
 
             elif origin_website is None:
                 obj.origin_website = []
+                logger.info("Migrated site origin : %s %s", brain.getURL(), obj.origin_website)
 
             else:
                 continue
@@ -145,7 +148,7 @@ class HealthImpacts:
                 ):
                     obj.health_impacts = [obj.health_impacts]
                     obj._p_changed = True
-                    logger.info("Migrated health impact for obj: %s", brain.getURL())
+                    logger.info("Migrated health impact for obj: %s %s", brain.getURL(), obj.health_impacts)
 
                     res.append(
                         {
@@ -218,9 +221,12 @@ class ContributingOrganisationPartner():
 
         #import pdb; pdb.set_trace()
         site = api.portal.get()
-        object = site.restrictedTraverse(local_path)
-        if object:
-            return object;
+        try:
+            object = site.restrictedTraverse(local_path)
+            if object:
+                return object;
+        except Exception, e:
+            return None
 
         return None
 
@@ -267,40 +273,33 @@ class ContributingOrganisationPartner():
 
             obj = self.get_object(item['url'])
 
-            logger.info("Object %s", item['url'])
-            logger.info("    Title %s", item['title'])
-            logger.info("    Partner [%s]", item['partners'])
             if not obj:
-                logger.info("    Object not found")
+                logger.warning("Object not found: %s", item['url'])
                 continue
 
             if item['partners'] not in map_organisations:
-                logger.info("    Partner not found [%s]", item['partners'])
+                logger.warning("Partner not found: %s [%s]", item['url'], item['partners'])
                 continue
 
             partner_object_id = map_organisations[item['partners']]['id']
             if not partner_object_id:
-                logger.info("    Partner not match")
+                logger.warning("Partner not match: %s [%s]", item['url'], item['partners'])
                 continue
 
             if type(obj.contributors) is not list:
                 obj.contributors = []
 
-            #import pdb; pdb.set_trace()
-
             for contibutor_data in obj.contributors:
                 if partner_object_id == util.getId(contibutor_data.to_object):
-                    logger.info("    Partner already set")
                     partner_object_id = None
                     break
 
             if not partner_object_id:
-                continue
+                logger.info("Partner already set: %s [%s]", item['url'], item['partners'])
+            else:
+                obj.contributors.append(RelationValue(partner_object_id))
+                obj._p_changed = True
 
-            obj.contributors.append(RelationValue(partner_object_id))
-            logger.info("    Partner added")
-
-            obj._p_changed = True
             #transaction.savepoint()
             response.append({
                'title': obj.title,
@@ -323,19 +322,18 @@ class OrganisationLogo:
             for brain in brains:
                 obj = brain.getObject()
 
-                logger.info("Organisation: %s", brain.getURL())
                 # if hasattr(obj, 'image') \
                 #        and obj.image:
                 if hasattr(obj, "logo") and obj.logo:
                     # if hasattr(obj, 'thumbnail') \
                     #        and obj.thumbnail:
-                    # obj.image = obj.logo
-                    # obj._p_changed = True
+                    obj.image = obj.logo
+                    obj._p_changed = True
 
                     response.append({"title": obj.title, "url": brain.getURL()})
+                    logger.info("Organisation logo: %s", brain.getURL())
 
-                    logger.info("Organisation has logo: %s", brain.getURL())
-        logger.info("Articles in response: %s", len(response))
+        logger.info("Articles with logo in response: %s", len(response))
         return response
 
 
@@ -422,6 +420,7 @@ class DrmkcSource:
 
             if hasattr(obj, "partners_source_link"):
                 link = obj.partners_source_link
+
                 if link is not None and link.startswith(DRMKC_SRC):
                     obj.partners_source_link = link.replace(
                         "project-explorer/631/", "project-explorer/1035/"
@@ -517,9 +516,14 @@ class UpdateHealthItemsFields:
                 continue
 
             currentPath = urlparse.urlparse(item["url"]).path
-            obj = portal.unrestrictedTraverse(currentPath[1:])
+            try:
+                obj = portal.unrestrictedTraverse(currentPath[1:])
+            except Exception, e:
+                logger.warning("NOT FOUND: %s", item['url'])
+                continue
+
             if obj:
-                logger.info("Processing Health Obs import: %s", obj.absolute_url())
+                logger.info("Object process: %s", item['url'])
                 if item["include_in_observatory"] == "Yes":
                     obj.include_in_observatory = True
                 else:
@@ -527,10 +531,10 @@ class UpdateHealthItemsFields:
 
                 if item["partner_organisation"] in map_organisations:
                     relationId = map_organisations[item["partner_organisation"]]
-                    logger.info("Set relationship %s", relationId)
                     obj.partner_organisation = RelationValue(relationId)
                     # obj.health_impacts = Choice(healthImpactChoice.value)
-                obj.health_impacts = health_impacts.get(item["health_impact"], None)
+
+                obj.health_impacts = [health_impacts.get(item["health_impact"], None)]
                 obj._p_changed = True
 
         # orgs_results = catalog.searchResults(**{'portal_type': 'eea.climateadapt.organisation', 'review_state': 'published'})
