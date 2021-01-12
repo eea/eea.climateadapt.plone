@@ -13,14 +13,13 @@
     </h4>
   </div>
   <div class="card-extra">
-    <div class="contact"
-      tal:define="origin string:origin">
+    <div class="contact">
       <strong>Contact:&nbsp;</strong>
       <span class="year" tal:content="python: getattr(context, 'publication_date') and context.publication_date.year or ''"></span>
     </div>
     <div class="contributions">
       <strong>Observatory contributions:&nbsp;</strong>
-      <a tal:condition="python: origin == 'Lancet Countdown'" href="https://www.lancetcountdown.org/">Lancet Countdown</a>
+      <a href="">...</a>
     </div>
   </div>
 </div>
