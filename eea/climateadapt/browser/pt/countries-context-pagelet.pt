@@ -1,12 +1,13 @@
 <div id="fp-country-selector">
 
-  <svg-container class="svg-map-container svg-fp-container" style="padding: 0.3em; border: 1px solid #CCC">
+  <svg-container class="svg-map-container svg-fp-container">
     <div class="map-islands" style="top: 420px; bottom: unset; left: 40px;">
       <img class="lazyload" data-src="/++theme++climateadaptv2/static/images/map_islands.svg" />
     </div>
     <svg height="500" width="100%">
     </svg>
   </svg-container>
+
   <!-- <div class="row">
     <div class="column col-md-9 col-xs-12">
     </div>

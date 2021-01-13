@@ -65,7 +65,7 @@
 
       <drop css:theme-children=".footer-nav-wrapper" />
       <drop css:theme-children=".search-box" />
-      <drop css:theme-children=".help-menu" />
+      <drop css:theme=".help-menu" />
 
       <rules css:if-content=".template-health_homepage">
         <theme href="health-homepage.html" />

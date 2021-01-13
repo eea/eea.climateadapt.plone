@@ -11,17 +11,26 @@ body.site-observatory {
     display: none;
   }
 
+  #content span.link-external > a:before {
+    content: "";
+    margin: 0;
+  }
+
   .content-container {
     padding: 0 1em;
   }
 
   .site-container {
     top: 140px;
-    margin-bottom: 140px;
+    margin-bottom: 170px;
 
     #content {
       border: 0;
       padding: 0;
+
+      .documentFirstHeading {
+        margin-top: 35px;
+      }
     }
   }
 
