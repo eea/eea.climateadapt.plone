@@ -1,21 +1,35 @@
-<div class="ui card organisation">
-  <div class="image" tal:define="logo python: getattr(context, 'logo', None)">
-    <a href="" tal:attributes="href context/absolute_url" >
-      <img tal:condition="logo" tal:attributes="src string:${context/absolute_url}/image_mini" />
-      <div tal:condition="python: not getattr(context, 'image', None)" class="placeholder" />
-    </a>
-  </div>
-  <div class="card-content">
-    <h4 class="card-header" tal:content="context/Title">
-      Organisation title
-    </h4>
-  </div>
-  <div class="card-extra">
-    <div class="contact" tal:define="contact context/contact | nothing">
-      <a tal:condition="contact" tal:attributes="href view/contact_link">Contact</a>
+<div class="ui column col-md-3 col-sm-4 card organisation">
+  <div class="card-inner-wrapper">
+
+    <div class="image"
+         tal:define="logo python: getattr(context, 'logo', None)">
+      <a href="" tal:attributes="href context/absolute_url" >
+        <img
+          tal:condition="python: getattr(context, 'image', None)"
+          tal:attributes="src string:${context/absolute_url}/@@images/image/mini" />
+        <div
+          class="placeholder"
+          tal:condition="python: not getattr(context, 'image', None)" />
+      </a>
     </div>
-    <div class="contributions">
-      <a href="" tal:attributes="href view/contributions_link">Observatory contributions</a>
+
+    <div class="card-content">
+      <a class="card-header"
+         tal:content="context/Title">
+        Organisation title
+      </a>
+    </div>
+
+    <div class="card-extra">
+      <div class="contact" tal:define="contact context/contact | nothing">
+        <a tal:condition="contact"
+           tal:attributes="href view/contact_link">Contact</a>
+      </div>
+      <div class="contributions">
+        <a href="" tal:attributes="href view/contributions_link">
+          Observatory contributions
+        </a>
+      </div>
     </div>
   </div>
 </div>
