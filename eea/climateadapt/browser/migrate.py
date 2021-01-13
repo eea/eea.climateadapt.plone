@@ -237,7 +237,9 @@ class ContributingOrganisationPartner():
 
         map_organisations = {
             'World Health Organization - Regional Office for Europe - Climate-ADAPT (europa.eu)':
-                {'url': 'who-regional-office-for-europe-who-europe','id': 0, 'object': None}
+                {'url': 'who-regional-office-for-europe-who-europe','id': 0, 'object': None},
+            'World Health Organization - Climate-ADAPT (europa.eu)':
+                {'url': 'world-health-organization','id': 0, 'object': None}
         }
 
         util = getUtility(IIntIds, context=self.context)
