@@ -1,26 +1,21 @@
 <div class="ui card organisation">
-  <div class="image">
+  <div class="image" tal:define="logo python: getattr(context, 'logo', None)">
     <a href="" tal:attributes="href context/absolute_url" >
-      <img tal:condition="python: getattr(context, 'image', None)" tal:attributes="src string:${context/absolute_url}/image_mini" />
+      <img tal:condition="logo" tal:attributes="src string:${context/absolute_url}/image_mini" />
       <div tal:condition="python: not getattr(context, 'image', None)" class="placeholder" />
     </a>
   </div>
   <div class="card-content">
-    <h4 class="card-header" >
-      <a href="" tal:attributes="href context/absolute_url" tal:content="context/Title">
-        Matthew
-      </a>
+    <h4 class="card-header" tal:content="context/Title">
+      Organisation title
     </h4>
   </div>
   <div class="card-extra">
-    <div class="contact"
-      tal:define="origin string:origin">
-      <strong>Contact:&nbsp;</strong>
-      <span class="year" tal:content="python: getattr(context, 'publication_date') and context.publication_date.year or ''"></span>
+    <div class="contact" tal:define="contact context/contact | nothing">
+      <a tal:condition="contact" tal:attributes="href view/contact_link">Contact</a>
     </div>
     <div class="contributions">
-      <strong>Observatory contributions:&nbsp;</strong>
-      <a tal:condition="python: origin == 'Lancet Countdown'" href="https://www.lancetcountdown.org/">Lancet Countdown</a>
+      <a href="" tal:attributes="href view/contributions_link">Observatory contributions</a>
     </div>
   </div>
 </div>
