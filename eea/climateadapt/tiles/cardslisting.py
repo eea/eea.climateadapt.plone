@@ -1,6 +1,9 @@
 """ Cards listing
 """
 
+import json
+import urllib
+
 from collective.cover.tiles.base import (IPersistentCoverTile,
                                          PersistentCoverTile)
 from zope import schema
@@ -89,3 +92,37 @@ class OrganisationCard(BrowserView):
     """Organisation @@card view"""
 
     # index = ViewPageTemplateFile("pt/card_organisation.pt")
+    def contact_link(self):
+        contact = getattr(self.context, "contact", "") or ""
+        if contact.startswith("mailto"):
+            return contact
+
+        if contact.startswith("http"):
+            return contact
+
+        if "@" in contact:
+            return "mailto:%s" % contact
+
+        return "https://%s" % contact
+
+    def contributions_link(self):
+        org = self.context.Title()
+        t = {
+            u"function_score": {
+                u"query": {
+                    u"bool": {
+                        u"filter": {
+                            u"bool": {
+                                u"should": [
+                                    {u"term": {u"eea_partner_contributors": org}}
+                                ]
+                            }
+                        },
+                    }
+                }
+            }
+        }
+
+        q = {"query": t}
+
+        return "/observatory/catalogue?source=" + urllib.quote(json.dumps(q))
