@@ -353,4 +353,12 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
     />
 
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_61"
+      title="Upgrade profile for eea.climateadapt v61"
+      description=""
+      directory="profiles/upgrades/to_61"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
 </configure>
