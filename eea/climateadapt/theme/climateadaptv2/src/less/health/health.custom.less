@@ -73,7 +73,28 @@ body.site-observatory.template-view.health-header {
   }
 
   .health-header-title {
-    bottom: 47px;
+    bottom: 57px;
+
+    @media only screen and (max-width: 1240px) and (min-width: 1160px) {
+      & {
+        bottom: 60px;
+      }
+    }
+  }
+}
+
+body.site-observatory.template-standard.health-header,
+body.site-observatory.template-view.health-header {
+  .header:not(.collapse-nav) {
+    #portal-breadcrumbs,
+    .documentByLine {
+      position: relative;
+      bottom: -40px;
+    }
+
+    .health-header-title {
+      bottom: 123px;
+    }
   }
 }
 
@@ -85,7 +106,7 @@ body.template-standard.site-observatory.health-header:not(.userrole-anonymous) {
   }
 
   .health-header-title {
-    bottom: 82px;
+    bottom: 92px;
   }
 }
 
@@ -99,7 +120,7 @@ body.template-standard.site-observatory.health-header:not(.userrole-anonymous) {
     align-items: center;
     justify-content: center;
     position: relative;
-    left: calc(~"-49.6vw + 50%");
+    left: calc(~"-48.6vw + 50%");
     background: linear-gradient(
       10deg,
       rgba(17, 114, 181, 1) 0%,
@@ -119,6 +140,12 @@ body.template-standard.site-observatory.health-header:not(.userrole-anonymous) {
         font-family: "OpenSansR";
         font-size: 35px;
         color: #fff;
+      }
+
+      @media only screen and (max-width: 1200px) {
+        & {
+          padding: 0 1em;
+        }
       }
     }
   }

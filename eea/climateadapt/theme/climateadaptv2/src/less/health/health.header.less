@@ -12,6 +12,10 @@ body.site-observatory {
       height: 50px;
     }
 
+    .top-menu-nav-item {
+      padding: 7px 0;
+    }
+
     @media only screen and (max-width: 520px) {
       a:nth-child(2) img {
         height: 30px;
@@ -23,9 +27,74 @@ body.site-observatory {
     }
   }
 
+  .user-menu {
+    margin-left: auto;
+  }
+
+  .top-menu-nav {
+    vertical-align: unset;
+    margin-top: 9px;
+
+    #user-name {
+      color: #555;
+    }
+  }
+
+  .personal-menu-action {
+    .login-text {
+      font-family: "OpenSansM";
+      font-size: 14px;
+      color: #3a3a3a;
+    }
+  }
+
+  .top-menu-nav-item {
+    margin-left: 2px;
+  }
+
+  #anon-personalbar {
+    a {
+      color: #3a3a3a;
+    }
+
+    &:hover a {
+      color: #0170b7;
+    }
+  }
+
+  .top-menu-nav-item:hover {
+    .login-text,
+    #user-name {
+      color: #0170b7;
+    }
+  }
+
+  @media only screen and (min-width: 1160px) {
+    .top-menu-right-section {
+      position: absolute;
+      right: 20px;
+      bottom: -50px;
+    }
+  }
+
   @media only screen and (min-width: 800px) {
     .header > .content-container {
-      top: 30px;
+      top: 22px;
     }
+  }
+
+  &.collapsed {
+    .site-container {
+      top: 75px;
+      margin-bottom: 120px;
+    }
+
+    .health-top {
+      margin-top: 65px;
+    }
+  }
+
+  .collapse-nav > .content-container {
+    padding: 0;
   }
 }
