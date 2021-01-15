@@ -186,7 +186,7 @@ function renderCountryFlag(parent, country, bbox, cpId) {
     .on("click", function () {
       var link = country.properties.SHRT_ENGL.toLowerCase().replace(" ", "-");
       if (window.countrySettings.indexOf(country.properties.SHRT_ENGL) > -1)
-        location.href = "./" + link;
+        location.href = location.href.endsWith('/') ? location.href + link : location.href + '/' + link;
     })
     .on("mouseover", function () {
       var countryName = country.properties.SHRT_ENGL.toUpperCase();

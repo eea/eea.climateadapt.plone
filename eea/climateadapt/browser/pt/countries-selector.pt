@@ -1,4 +1,4 @@
-<div id="countries-selector">
+<div id="countries-selector" style="padding: 1em 0em">
   <div id="countries-tile-selector">
     <!-- Select a country to go to country's page: -->
     <select class="form-control">
