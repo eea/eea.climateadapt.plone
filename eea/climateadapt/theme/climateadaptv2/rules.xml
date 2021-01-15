@@ -63,7 +63,7 @@
 
       <replace css:content="#navbar" css:theme=".main-nav-menu" href="@@health_navbar" method="document"/>
 
-      <drop css:theme-children=".footer-nav-wrapper" />
+      <drop css:theme=".footer-nav" />
       <drop css:theme=".search-box" />
       <drop css:theme=".help-menu" />
 
@@ -84,7 +84,7 @@
 
       <rules css:if-not-content=".template-health_homepage">
         <theme href="health-page-full.html" />
-        <drop css:theme=".health_top_items" />
+        <drop css:theme=".health-fp-boxes" />
         <drop css:theme=".list_news_events" />
 
         <replace css:theme="#portlet-manager" css:content-children="#portal-column-one" />

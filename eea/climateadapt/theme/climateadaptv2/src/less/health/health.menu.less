@@ -8,7 +8,7 @@ body.site-observatory {
     border: 0;
     box-shadow: none;
     display: inline-flex;
-    margin-top: 6px;
+    margin-top: 25px;
 
     .main-nav-item {
       border: none;
@@ -42,7 +42,7 @@ body.site-observatory {
       }
 
       > span {
-        padding: 5px 12px;
+        padding: 5px 9px;
       }
 
       &:hover {
@@ -147,6 +147,7 @@ body.site-observatory {
 
   .collapse-nav .main-nav.nav-toggle {
     display: inline-block;
+    margin-top: 0;
   }
 
   .collapse-nav .main-nav {
@@ -171,6 +172,10 @@ body.site-observatory {
   @media only screen and (max-width: 1240px) and (min-width: 1160px) {
     .main-nav .main-nav-item .main-nav-link {
       font-size: 15px;
+    }
+
+    .main-nav-item .sub-menu-wrapper {
+      top: 35px !important;
     }
   }
 }

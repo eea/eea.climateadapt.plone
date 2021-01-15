@@ -986,6 +986,10 @@ $(document).ready(function () {
     }
   });
 
+  var healthText = $(".folder_health_context").text();
+  healthText = healthText.replace(/\n/g, "<br />\n");
+  $(".folder_health_context").html(healthText);
+
   $(".row.container-themes .col-md-3").click(function () {
     if ($(this).attr("data-url") !== undefined) {
       window.location = $(this).attr("data-url");

@@ -1,10 +1,13 @@
 body.site-observatory {
-  .health-top {
+  .header {
     position: relative;
-    margin-top: 130px;
+    background-color: #fff;
+  }
+  .health-fp-image {
+    position: relative;
 
     .health-image-wrapper {
-      height: 800px;
+      height: 850px;
       overflow: hidden;
       position: relative;
     }
@@ -16,10 +19,10 @@ body.site-observatory {
       background-position: center;
     }
 
-    .health-text-wrapper {
+    .image-text-wrapper {
       position: absolute;
       z-index: 2;
-      top: 32%;
+      top: 10%;
       left: 0;
       right: 0;
       margin-left: auto;
@@ -27,6 +30,11 @@ body.site-observatory {
       max-width: 1200px;
       width: 100%;
       padding: 0 1em;
+
+      .fp-image-content {
+        max-width: 600px;
+        width: 100%;
+      }
 
       h1 {
         font-size: 40px;
@@ -62,10 +70,10 @@ body.site-observatory {
     position: relative;
   }
 
-  .health_top_items {
+  .health-fp-boxes {
     position: absolute;
     z-index: 2;
-    bottom: -133px;
+    bottom: 6%;
     left: 0;
     right: 0;
     margin-left: auto;
@@ -161,15 +169,12 @@ body.site-observatory {
     }
   }
 
-  .health-homepage-specific {
-    margin-top: 150px;
-  }
-
   .folder_health_context {
     margin-top: 1em;
     color: #555;
     font-size: 22px;
     font-family: "OpenSansL";
+    white-space: pre-wrap;
   }
 
   .health_contribute {
@@ -228,7 +233,6 @@ body.site-observatory {
   }
 
   .list_news_events {
-    // margin-bottom: 30px;
     background-color: #0170b7;
     border: none;
 
@@ -302,13 +306,9 @@ body.site-observatory {
     ul {
       padding-left: 0;
       padding-bottom: 0;
-      margin-bottom: 80px;
+      margin-bottom: 60px;
     }
   }
-
-  // .main-area {
-  //   padding: 0;
-  // }
 
   .main-area .info-section {
     .info-title,
@@ -322,9 +322,10 @@ body.site-observatory {
 
   &.template-health_homepage {
     .site-container {
-      top: 39px;
-      margin-bottom: 39px;
+      top: 0;
+      margin-bottom: 0;
       padding: 0 1em;
+      min-height: auto;
 
       #content {
         border: 0;
@@ -356,11 +357,21 @@ body.site-observatory {
   }
 
   @media only screen and (max-width: 992px) {
-    .health_top_items {
+    .health-fp-image .health-image-wrapper {
+      height: 450px;
+    }
+
+    .health-fp-image .image-text-wrapper {
+      top: auto;
+      bottom: 9%;
+    }
+
+    .health-fp-boxes {
       position: relative;
+      bottom: auto;
       max-width: 870px;
       margin: 0 auto;
-      bottom: 260px;
+      margin-top: 40px;
 
       .column {
         margin-top: 15px;
@@ -380,45 +391,40 @@ body.site-observatory {
       margin-top: 0;
     }
 
-    .health-top .health-text-wrapper {
+    .health-top .health-image-wrapper {
       top: 21%;
-    }
-
-    &.template-health_homepage .site-container {
-      top: -230px;
-      margin-bottom: 0;
     }
 
     .health-homepage-specific {
       margin-top: 0;
     }
 
-    .health_top_items .health-box-image {
+    .health-fp-boxes .health-box-image {
       height: 195px;
     }
   }
 
   @media only screen and (max-width: 768px) {
-    .health_top_items {
+    .health-fp-boxes {
       .col-xs-12 {
         width: 50%;
       }
     }
   }
 
-  @media only screen and (max-width: 610px) {
-    .health_top_items {
+  @media only screen and (max-width: 530px) {
+    .health-fp-image .image-text-wrapper h1 {
+      font-size: 30px;
+    }
+
+    .health-fp-boxes {
       .column {
         float: none;
-        margin: 15px auto;
+        margin: 25px auto;
       }
 
       .col-xs-12 {
-        width: 80%;
-      }
-
-      .health_title {
-        text-align: center;
+        width: 100%;
       }
     }
 
@@ -428,13 +434,13 @@ body.site-observatory {
       }
     }
 
-    .health-top .health-text-wrapper {
+    .health-top .health-image-wrapper {
       top: 15%;
     }
   }
 
   @media only screen and (max-width: 480px) {
-    .health-top .health-text-wrapper {
+    .health-top .health-image-wrapper {
       h1 {
         font-size: 35px;
       }
@@ -444,9 +450,7 @@ body.site-observatory {
       }
     }
 
-    .health_top_items {
-      bottom: 320px;
-
+    .health-fp-boxes {
       .col-xs-12 {
         width: 100%;
       }

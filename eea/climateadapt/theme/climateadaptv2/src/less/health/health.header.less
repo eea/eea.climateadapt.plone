@@ -32,9 +32,6 @@ body.site-observatory {
   }
 
   .top-menu-nav {
-    vertical-align: unset;
-    margin-top: 9px;
-
     #user-name {
       color: #555;
     }
@@ -50,6 +47,11 @@ body.site-observatory {
 
   .top-menu-nav-item {
     margin-left: 2px;
+    padding-bottom: 8px;
+  }
+
+  #portal-personaltools {
+    top: 26px;
   }
 
   #anon-personalbar {
@@ -73,24 +75,13 @@ body.site-observatory {
     .top-menu-right-section {
       position: absolute;
       right: 20px;
-      bottom: -50px;
+      bottom: -60px;
     }
   }
 
-  @media only screen and (min-width: 800px) {
-    .header > .content-container {
-      top: 22px;
-    }
-  }
-
-  &.collapsed {
-    .site-container {
-      top: 75px;
-      margin-bottom: 120px;
-    }
-
-    .health-top {
-      margin-top: 65px;
+  .collapse-nav {
+    #portal-personaltools {
+      right: auto;
     }
   }
 
