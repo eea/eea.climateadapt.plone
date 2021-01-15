@@ -299,6 +299,7 @@ class ContributingOrganisationPartner():
             if not partner_object_id:
                 logger.info("Partner already set: %s [%s]", item['url'], item['partners'])
             else:
+                logger.info("Partner set: %s [%s]", item['url'], item['partners'])
                 obj.contributors.append(RelationValue(partner_object_id))
                 obj._p_changed = True
 
