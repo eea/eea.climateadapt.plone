@@ -6,8 +6,17 @@
     color: #1172b5;
   }
 
-  table tbody td {
-    vertical-align: bottom;
+  .column {
+    .tile-default:first-child {
+      table {
+        height: auto !important;
+        margin-top: 30px;
+      }
+
+      table tbody td {
+        vertical-align: bottom;
+      }
+    }
   }
 }
 
@@ -29,6 +38,10 @@ body.site-observatory {
     @media only screen and (max-width: 1300px) {
       max-width: 98%;
     }
+  }
+
+  .health-homepage-specific {
+    margin-top: 2em;
   }
 
   #portal-column-content {
