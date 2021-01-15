@@ -9,8 +9,8 @@ from zope.intid.interfaces import IIntIds
 
 from eea.climateadapt.vocabulary import _health_impacts
 from plone import api
-from plone.api.portal import get_tool
 from plone.api import portal
+from plone.api.portal import get_tool
 from plone.app.textfield import RichText
 from plone.app.textfield.value import RichTextValue
 from Products.Five.browser import BrowserView
@@ -207,14 +207,14 @@ class FundingProgramme:
         return response
 
 
-#126085
+# 126085
 class ContributingOrganisationPartner():
     """ Migrate funding_programme field
     """
 
     def get_object(self, path):
-        local_path = path.replace('http://','')
-        local_path = local_path.replace('https://','')
+        local_path = path.replace('http://', '')
+        local_path = local_path.replace('https://', '')
 
         local_path = local_path[local_path.find('/'):]
         local_path = local_path[1:]
@@ -224,12 +224,11 @@ class ContributingOrganisationPartner():
         try:
             object = site.restrictedTraverse(local_path)
             if object:
-                return object;
+                return object
         except Exception, e:
             return None
 
         return None
-
 
     def list(self):
 
@@ -237,14 +236,15 @@ class ContributingOrganisationPartner():
 
         map_organisations = {
             'World Health Organization - Regional Office for Europe - Climate-ADAPT (europa.eu)':
-                {'url': 'who-regional-office-for-europe-who-europe','id': 0, 'object': None},
+                {'url': 'who-regional-office-for-europe-who-europe', 'id': 0, 'object': None},
             'World Health Organization - Climate-ADAPT (europa.eu)':
-                {'url': 'world-health-organization','id': 0, 'object': None}
+                {'url': 'world-health-organization', 'id': 0, 'object': None}
         }
 
         util = getUtility(IIntIds, context=self.context)
         for title in map_organisations.keys():
-            orgs = self.context.portal_catalog.searchResults(portal_type="eea.climateadapt.organisation", getId=map_organisations[title]['url'])
+            orgs = self.context.portal_catalog.searchResults(
+                portal_type="eea.climateadapt.organisation", getId=map_organisations[title]['url'])
             if not orgs:
                 logger.warning("Organisation not found: %s", title)
             else:
@@ -270,8 +270,8 @@ class ContributingOrganisationPartner():
             item['url'] = row[10]
             item['partners'] = row[17]
 
-            if len(item['url'])<5:
-                continue;
+            if len(item['url']) < 5:
+                continue
 
             obj = self.get_object(item['url'])
 
@@ -303,9 +303,9 @@ class ContributingOrganisationPartner():
                 obj.contributors.append(RelationValue(partner_object_id))
                 obj._p_changed = True
 
-            #transaction.savepoint()
+            # transaction.savepoint()
             response.append({
-               'title': obj.title,
+                'title': obj.title,
                 'url': item['url'],
             })
 
