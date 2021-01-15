@@ -129,14 +129,6 @@
     permission="cmf.ManagePortal"
     /-->
 
-    <browser:page
-      name="migrate_drmkc_source"
-      for="*"
-      template="pt/migrate_drmkc_source.pt"
-      class=".migrate.DrmkcSource"
-      permission="cmf.ManagePortal"
-      />
-
   <browser:page
     name="fix-current-case-studies"
     for="*"
