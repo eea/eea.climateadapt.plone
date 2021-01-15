@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+ <index name="include_in_observatory" meta_type="BooleanIndex">
+  <indexed_attr value="include_in_observatory"/>
+ </index>
+ <column value="include_in_observatory"/>
+</object>
