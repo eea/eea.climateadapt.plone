@@ -1,17 +1,14 @@
 <div class="ui column col-md-3 col-sm-4 card organisation">
-  <div class="card-inner-wrapper">
+  <div class="card-inner-wrapper logo">
 
     <div class="image"
-         tal:define="logo python: getattr(context, 'logo', None)">
-      <a href="" tal:attributes="href context/absolute_url" >
-        <img
-          tal:condition="python: getattr(context, 'image', None)"
-          tal:attributes="src string:${context/absolute_url}/@@images/image/mini" />
-        <img
-          class="placeholder"
-          tal:condition="python: not getattr(context, 'image', None)"
-          src="++theme++climateadaptv2/static/images/placeholder-logo.png"
-          />
+      tal:define="logo python: getattr(context, 'logo', None);
+        logo_url python: logo and (context.absolute_url() + '/@@images/logo') or '++theme++climateadaptv2/static/images/placeholder-logo.png';
+      "
+      tal:attributes="style string:background-image: url('$logo_url')"
+      >
+    <a alt="Logo" href="" tal:attributes="href context/absolute_url; " tal:content="context/Title">
+      Logo
       </a>
     </div>
 
