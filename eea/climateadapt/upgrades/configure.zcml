@@ -3,6 +3,16 @@
            i18n_domain="eea.climateadapt">
 
    <genericsetup:upgradeSteps
+     source="61"
+     destination="62"
+     profile="eea.climateadapt:default">
+     <genericsetup:upgradeDepends
+       title="Upgrade profile eeaclimate to v62"
+       import_profile="eea.climateadapt:eeaclimateadapt_to_62"
+     />
+   </genericsetup:upgradeSteps>
+
+   <genericsetup:upgradeSteps
      source="60"
      destination="61"
      profile="eea.climateadapt:default">
