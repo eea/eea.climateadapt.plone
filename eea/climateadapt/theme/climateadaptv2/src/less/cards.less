@@ -13,6 +13,27 @@
     min-height: 280px;
     display: flex;
     flex-direction: column;
+    &.logo {
+      // padding: 0em;
+      padding: 0em 1.6em 1.3em 1.6em;
+      .image {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 180px;
+        // margin-bottom: 1em;
+        a {
+          width: 100%;
+          height: 100%;
+          text-indent: -10000px;
+        }
+      }
+      .card-content {
+        font-weight: bold;
+        padding: 1em 0em;
+        height: 6em;
+      }
+    }
   }
 
   .card {
@@ -21,6 +42,7 @@
     .image {
       text-align: center;
       height: 90px;
+      width: 100%;
 
       a {
         display: inline-block;
@@ -33,6 +55,7 @@
     }
 
     .card-content {
+      // padding: 1.3em 1.6em;
       .card-header {
         font-family: "OpenSansR";
         text-transform: uppercase;
@@ -47,6 +70,7 @@
       color: #555;
       font-family: "OpenSansL";
       font-size: 13px;
+      // padding: 1.3em 1.6em;
 
       span.year {
         line-height: 2em;
