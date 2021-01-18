@@ -7,9 +7,11 @@
         <img
           tal:condition="python: getattr(context, 'image', None)"
           tal:attributes="src string:${context/absolute_url}/@@images/image/mini" />
-        <div
+        <img
           class="placeholder"
-          tal:condition="python: not getattr(context, 'image', None)" />
+          tal:condition="python: not getattr(context, 'image', None)"
+          src="++theme++climateadaptv2/static/images/placeholder-logo.png"
+          />
       </a>
     </div>
 
@@ -21,6 +23,10 @@
     </div>
 
     <div class="card-extra">
+      <div class="website" tal:define="website_link view/website_link">
+        <a tal:condition="website_link"
+           tal:attributes="href website_link">Web site</a>
+      </div>
       <div class="contact" tal:define="contact context/contact | nothing">
         <a tal:condition="contact"
            tal:attributes="href view/contact_link">Contact</a>

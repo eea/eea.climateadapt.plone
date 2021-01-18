@@ -126,3 +126,9 @@ class OrganisationCard(BrowserView):
         q = {"query": t}
 
         return "/observatory/catalogue?source=" + urllib.quote(json.dumps(q))
+
+    def website_link(self):
+        websites = getattr(self.context, "websites", [])
+        if not websites:
+            return None
+        return websites[0]
