@@ -239,6 +239,11 @@
     <xsl:attribute name="class"><xsl:value-of select="/html/body/@class"/> fullwidth</xsl:attribute>
   </prepend>
 
+  <!-- add fullwidth class for Urban Adaptation Mapviewer (health focus) -->
+  <prepend theme="/html/body" css:if-content="body.subsection-projections-and-tools-urban-adaptation-mapviewer-health-focus">
+    <xsl:attribute name="class"><xsl:value-of select="/html/body/@class"/> fullwidth</xsl:attribute>
+  </prepend>
+
   <prepend theme="/html/body" css:if-content=".health-header-title">
     <xsl:attribute name="class"><xsl:value-of select="/html/body/@class"/> health-header</xsl:attribute>
   </prepend>
