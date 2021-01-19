@@ -287,4 +287,9 @@
        handler=".events.handle_iterate_wc_deletion"
        />
 
+    <adapter
+        factory=".traversal.AcquisitionNamespace"
+        name="aq"
+        />
+
 </configure>

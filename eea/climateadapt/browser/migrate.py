@@ -288,20 +288,11 @@ class ContributingOrganisationPartner():
                 logger.warning("Partner not match: %s [%s]", item['url'], item['partners'])
                 continue
 
-            if type(obj.contributors) is not list:
-                obj.contributors = []
+            obj.contributors = []
 
-            for contibutor_data in obj.contributors:
-                if partner_object_id == util.getId(contibutor_data.to_object):
-                    partner_object_id = None
-                    break
-
-            if not partner_object_id:
-                logger.info("Partner already set: %s [%s]", item['url'], item['partners'])
-            else:
-                logger.info("Partner set: %s [%s]", item['url'], item['partners'])
-                obj.contributors.append(RelationValue(partner_object_id))
-                obj._p_changed = True
+            logger.info("Partner set: %s [%s]", item['url'], item['partners'])
+            obj.contributors.append(RelationValue(partner_object_id))
+            obj._p_changed = True
 
             # transaction.savepoint()
             response.append({
