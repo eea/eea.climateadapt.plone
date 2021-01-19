@@ -132,3 +132,6 @@ class OrganisationCard(BrowserView):
         if not websites:
             return None
         return websites[0]
+
+    def organisation_link(self):
+        return "/observatory/++aq++" + "/".join(self.context.getPhysicalPath()[1:])

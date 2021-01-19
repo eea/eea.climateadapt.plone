@@ -20,5 +20,6 @@ class AcquisitionNamespace(object):
         self.request = request
 
     def traverse(self, name, ignore):
+        self.request.form["only_article"] = "1"
         base = self.context.restrictedTraverse(name).aq_base
         return base.__of__(self.context)
