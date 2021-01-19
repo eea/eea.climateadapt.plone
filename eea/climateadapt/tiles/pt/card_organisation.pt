@@ -7,7 +7,8 @@
       "
       tal:attributes="style string:background-image: url('$logo_url')"
       >
-    <a alt="Logo" href="" tal:attributes="href context/absolute_url;" tal:content="context/Title">
+    <a alt="Logo" href=""
+      tal:attributes="href view/organisation_link" tal:content="context/Title">
       Logo
       </a>
     </div>
@@ -16,7 +17,7 @@
       <a href=""
          class="card-header"
          tal:content="context/Title"
-         tal:attributes="href context/absolute_url;">
+         tal:attributes="href view/organisation_link">
         Organisation title
       </a>
     </div>
