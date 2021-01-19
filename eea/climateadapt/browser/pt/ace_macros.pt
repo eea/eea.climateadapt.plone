@@ -163,7 +163,7 @@
   <metal:macro define-macro="contributors">
       <div tal:condition="python: contributor or other_contributor" tal:define="contributor context/contributors; other_contributor context/other_contributor|nothing">
         <br/><h5>Contributor:</h5>
-        <span tal:condition="contributor" tal:replace="python: contributor[0].to_object.title" ></span>
+        <span tal:condition="python: contributor and contributor[0].to_object" tal:replace="python: contributor[0].to_object.title" ></span>
         <br tal:condition="python: contributor and other_contributor" />
         <span tal:condition="other_contributor" tal:replace="structure python: other_contributor.replace('\n','<br />\n')" ></span>
       </div>
