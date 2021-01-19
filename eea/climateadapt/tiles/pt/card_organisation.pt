@@ -14,7 +14,7 @@
 
     <div class="card-content">
       <a href=""
-         class="card-header" 
+         class="card-header"
          tal:content="context/Title"
          tal:attributes="href context/absolute_url;">
         Organisation title

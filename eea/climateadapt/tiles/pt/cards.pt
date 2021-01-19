@@ -8,14 +8,13 @@
   <p tal:condition="python: is_empty and view.is_compose_mode()" i18n:translate="">
     Please drop a Collection here to set the context
   </p>
-  <div class="row cover-cards-tile tile-content" tal:condition="not:is_empty">
 
+  <div id="partners" class="row cover-cards-tile tile-content" tal:condition="not:is_empty">
     <tal:rep tal:repeat="card view/cards">
       <tal:def tal:define="obj card/getObject">
         <div  tal:replace="structure obj/@@card" />
       </tal:def>
     </tal:rep>
-
   </div>
 </body>
 </html>
