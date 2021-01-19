@@ -85,7 +85,8 @@ class CardsTile(PersistentCoverTile):
 class IndicatorCard(BrowserView):
     """Indicator @@card view"""
 
-    # index = ViewPageTemplateFile("pt/card_indicator.pt")
+    def indicator_link(self):
+        return "/observatory/++aq++" + "/".join(self.context.getPhysicalPath()[2:])
 
 
 class OrganisationCard(BrowserView):
@@ -134,4 +135,4 @@ class OrganisationCard(BrowserView):
         return websites[0]
 
     def organisation_link(self):
-        return "/observatory/++aq++" + "/".join(self.context.getPhysicalPath()[1:])
+        return "/observatory/++aq++" + "/".join(self.context.getPhysicalPath()[2:])

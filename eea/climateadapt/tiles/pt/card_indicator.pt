@@ -2,7 +2,7 @@
   <div class="card-inner-wrapper">
 
     <div class="image">
-      <a href="" tal:attributes="href context/absolute_url" >
+      <a href="" tal:attributes="href view/indicator_link" >
         <img
           tal:condition="python: getattr(context, 'image', None)"
           tal:attributes="src string:${context/absolute_url}/@@images/image/mini" />
@@ -15,7 +15,7 @@
     <div class="card-content">
       <a href=""
         class="card-header"
-        tal:attributes="href context/absolute_url"
+        tal:attributes="href view/indicator_link"
         tal:content="context/Title">
         Matthew
       </a>
