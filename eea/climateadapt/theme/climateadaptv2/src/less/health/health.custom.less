@@ -126,17 +126,11 @@ body.site-observatory.template-view.health-header {
   }
 
   .health-header-title {
-    bottom: 57px;
-
-    @media only screen and (max-width: 1240px) and (min-width: 1160px) {
-      & {
-        bottom: 60px;
-      }
-    }
+    bottom: 43px;
 
     @media only screen and (max-width: 444px) {
       & {
-        bottom: 77px;
+        bottom: 62px;
       }
     }
   }
@@ -165,7 +159,7 @@ body.template-standard.site-observatory.health-header:not(.userrole-anonymous) {
   }
 
   .health-header-title {
-    bottom: 92px;
+    bottom: 78px;
   }
 }
 
@@ -174,10 +168,10 @@ body.template-standard.site-observatory.health-header:not(.userrole-anonymous) {
   .health-header-title {
     width: 100%; // fallback
     width: 100vw;
-    height: 120px;
+    height: 100px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    // justify-content: center;
     position: relative;
     margin: 0 !important;
     left: calc(~"-49.6vw + 50%");
@@ -197,18 +191,23 @@ body.template-standard.site-observatory.health-header:not(.userrole-anonymous) {
 
       > *,
       h1 {
-        margin-bottom: 0;
+        margin: 0 !important;
         font-family: "OpenSansR";
         font-size: 35px;
         color: #fff;
-        // padding: 0 20px;
+
+        @media only screen and (max-width: 780px) {
+          font-size: 27px;
+        }
       }
 
       @media only screen and (max-width: 1200px) {
-        & {
-          padding: 0 1em;
-        }
+        padding: 0 1em;
       }
+    }
+
+    @media only screen and (max-width: 480px) {
+      bottom: 43px !important;
     }
   }
 }
