@@ -63,7 +63,7 @@
 
       <replace css:content="#navbar" css:theme=".main-nav-menu" href="@@health_navbar" method="document"/>
 
-      <drop css:theme=".footer-nav" />
+      <!-- <drop css:theme=".footer-nav" /> -->
       <drop css:theme=".search-box" />
       <drop css:theme=".help-menu" />
 
