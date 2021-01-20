@@ -29,7 +29,8 @@ class HealthHomepageItems(BrowserView):
                 "sort_limit": "2",
                 "review_state": "published",
                 "sort_on": "start",
-                "Subject": ("Health Observatory",),
+                "include_in_observatory": True,
+                # "Subject": ("Health Observatory",),
             }
         )
 
@@ -46,7 +47,8 @@ class HealthHomepageItems(BrowserView):
             info = {
                 "title": item.Title,
                 "size": size,
-                "url": item.getURL(),
+                # "url": item.getURL(),
+                "url": "/observatory/++aq++" + "/".join(item.getPhysicalPath()[2:]),
                 "date": item.getObject().start.strftime("%d.%m.%Y"),
                 "Subject": ("Health Observatory",),
             }
@@ -64,7 +66,8 @@ class HealthHomepageItems(BrowserView):
                 "review_state": "published",
                 "sort_on": "created",
                 "sort_order": "descending",
-                "Subject": ("Health Observatory",),
+                "include_in_observatory": True,
+                # "Subject": ("Health Observatory",),
             }
         )
 
@@ -80,7 +83,7 @@ class HealthHomepageItems(BrowserView):
             info = {
                 "title": item.Title,
                 "size": size,
-                "url": item.getURL(),
+                "url": "/observatory/++aq++" + "/".join(item.getPhysicalPath()[2:]),
                 "date": item.getObject().created().strftime("%d.%m.%Y"),
             }
             results.append(info)
