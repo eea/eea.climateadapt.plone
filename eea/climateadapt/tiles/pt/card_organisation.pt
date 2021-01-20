@@ -27,10 +27,10 @@
         <a tal:condition="website_link"
            tal:attributes="href website_link">Web site</a>
       </div>
-      <div class="contact" tal:define="contact context/contact | nothing">
+      <!-- <div class="contact" tal:define="contact context/contact | nothing">
         <a tal:condition="contact"
            tal:attributes="href view/contact_link">Contact</a>
-      </div>
+      </div> -->
       <div class="contributions">
         <a href="" tal:attributes="href view/contributions_link">
           Observatory contributions
