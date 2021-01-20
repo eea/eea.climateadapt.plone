@@ -26,6 +26,7 @@
   "author": "Tiberiu Ichim, Eaudeweb, EEA",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^6.3.0"
+    "eslint": "^6.3.0",
+    "grunt-cache-breaker": "^2.0.1"
   }
 }

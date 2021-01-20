@@ -35,4 +35,20 @@ module.exports = {
       ],
     },
   },
+
+  cachebreaker: {
+    dev: {
+      options: {
+        replacement: "md5",
+        match: [
+          {
+            "health.css": "static/css/health.css",
+          },
+        ],
+      },
+      files: {
+        src: ["src/tpl/partials/health-head.hbs"],
+      },
+    },
+  },
 };

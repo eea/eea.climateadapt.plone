@@ -57,9 +57,9 @@
         </append>
       </rules>
 
-      <append css:theme="head">
+      <!-- <append css:theme="head">
         <link rel="stylesheet" type="text/css" href="/++theme++climateadaptv2/static/css/health.css" />
-      </append>
+      </append> -->
 
       <replace css:content="#navbar" css:theme=".main-nav-menu" href="@@health_navbar" method="document"/>
 

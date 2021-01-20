@@ -2,6 +2,7 @@ module.exports = function (grunt) {
   require("load-grunt-tasks")(grunt);
 
   grunt.loadNpmTasks("grunt-template-html");
+  grunt.loadNpmTasks("grunt-cache-breaker");
 
   // Config
   var merge = require("merge"),
@@ -37,6 +38,7 @@ module.exports = function (grunt) {
     // 'concat',
     "copy",
     "uglify",
+    "cachebreaker",
   ]);
 
   grunt.registerTask("default", [
