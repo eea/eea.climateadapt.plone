@@ -40,14 +40,8 @@ class IOrganisation(IAceItem):
         title=_(u"Name"), description=u"Item Name (250 character limit)", required=True
     )
 
-    organisational_misssion = RichText(
-        title=_(u"Organisational mission"),
-        description=u"Please describe the mission of your" u" organisation",
-        required=False,
-    )
-
     organisational_key_activities = RichText(
-        title=_(u"Key activities within" u" climate change and health"),
+        title=_(u"Key activities within climate change and health"),
         description=u"Please describe the key activities"
         u" undertaken by your organisation that are related"
         u" to the topic of 'climate change and health'."
@@ -60,8 +54,8 @@ class IOrganisation(IAceItem):
 
     directives.widget("organisational_links", TextLinesWidget)
 
-    organisational_links = Tuple(
-        title=_(u"Links to further information " u"(relevant for the Observatory)"),
+    organisational_websites = RichText(
+        title=_(u"Links to further information (relevant for the Observatory)"),
         description=u"Please provide a hyperlink to the homepage"
         u' of your organisation in the "Reference'
         u' Information section", here you may also'
@@ -71,22 +65,16 @@ class IOrganisation(IAceItem):
         u" to relevant networks (e.g. with countries) that"
         u" are administered by your organisation",
         required=False,
-        value_type=URI(),
-        missing_value=None,
     )
 
     organisational_contact = Text(
-        title=_(u"Contact information for the" u" Observatory"),
+        title=_(u"Contact information for the Observatory"),
         description=u"Please provide a corporate email or contact"
         u' form link into the "Default section", here you'
         u" may provide further contact information relevant"
         u" for the organisation's contribution to the"
         u" Observatory.",
         required=False,
-    )
-
-    organisational_name_phone = Text(
-        title=_(u"Name and Telephone number"), required=False
     )
 
     # form.fieldset('default',

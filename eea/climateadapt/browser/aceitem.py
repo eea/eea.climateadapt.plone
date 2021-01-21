@@ -179,11 +179,9 @@ class OrganisationFormExtender(FormExtender):
         self.move("logo", before="image")
         self.move("IRelatedItems.relatedItems", before="comments")
         self.move("acronym", before="title")
-        self.move("organisational_name_phone", after="include_in_observatory")
         self.move("organisational_contact", after="include_in_observatory")
-        self.move("organisational_links", after="include_in_observatory")
+        self.move("organisational_websites", after="include_in_observatory")
         self.move("organisational_key_activities", after="include_in_observatory")
-        self.move("organisational_misssion", after="include_in_observatory")
         self.remove("other_contributor")
 
 

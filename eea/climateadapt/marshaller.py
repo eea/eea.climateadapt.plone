@@ -291,7 +291,7 @@ class ContributorModifier(object):
             "european-environment-agency-eea": "European Environment Agency",
             "european-food-safety-authority": "European Food Safety Authority",
             "lancet-countdown": "Lancet Countdown",
-            "world-health-organization": "World Health Organization-Europe",
+            "who-regional-office-for-europe-who-europe": "World Health Organization-Europe",
         }
         contributors = getattr(self.context, "contributors", None)
 
