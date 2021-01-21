@@ -285,15 +285,13 @@ class ContributorModifier(object):
         """Change the rdf resource to include issued term"""
 
         map_contributor_values = {
-            "WHO Regional Office for Europe (WHO Europe)": "World Health Organization-Europe",
-            "Lancet Countdown": "Lancet Countdown",
-            "European Environment Agency": "European Environment Agency",
-            "European Centre for Disease Prevention and Control": "European Centre for Disease Prevention and Control",
-            "European Centre for Disease Prevention and Control": "European Centre for Disease Prevention and Control",
-            "European Food Safety Authority": "European Food Safety Authority",
-            "Copernicus Climate Change Service": "Copernicus Climate Change Service (implemented by ECMWF)",
-            "European Commission": "European Commission",
-            "World Health Organization": "World Health Organization",
+            "copernicus-climate-change-service-ecmw": "Copernicus Climate Change Service",
+            "european-centre-for-disease-prevention-and-control-ecdc": "European Centre for Disease Prevention and Control",
+            "european-commission": "European Commission",
+            "european-environment-agency-eea": "European Environment Agency",
+            "european-food-safety-authority": "European Food Safety Authority",
+            "lancet-countdown": "Lancet Countdown",
+            "world-health-organization": "World Health Organization-Europe",
         }
         contributors = getattr(self.context, "contributors", None)
 
@@ -301,7 +299,8 @@ class ContributorModifier(object):
             contributors_list = []
 
             for contributor in contributors:
-                title = contributor.to_object.title
+                title = contributor.to_object.getId()
+
 
                 if title in map_contributor_values:
                     contributors_list.append(map_contributor_values[title])
