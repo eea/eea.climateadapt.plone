@@ -12,9 +12,7 @@
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
 
-          <div metal:fill-slot="title-slot">
-            <div metal:use-macro="context/ace_macros/macros/title_date"></div>
-          </div>
+          <h1 tal:content="context/title"></h1>
 
           <div metal:fill-slot="ace-left-slot" tal:define="only_article python:request.get('only_article',0)">
             <div tal:define="only_article python:request.get('only_article',0)">
