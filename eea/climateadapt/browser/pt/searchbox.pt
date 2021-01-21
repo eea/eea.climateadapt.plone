@@ -5,8 +5,8 @@
                  search_input_id view/search_input_id;">
 
     <form id="searchGadget_form"
-          action="/data-and-downloads"
-          tal:attributes="action string:${navigation_root_url}/data-and-downloads;
+          action="/redirect_to_search_page"
+          tal:attributes="action string:${navigation_root_url}/redirect_to_search_page;
                           id string:${search_input_id}_form;">
         <div class="LSBox">
         <label class=""

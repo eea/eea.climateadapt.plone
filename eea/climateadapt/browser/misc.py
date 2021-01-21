@@ -287,44 +287,30 @@ class RedirectToSearchView (BrowserView):
         self.request = request
 
     def __call__(self):
-        url_segments = self.request["ACTUAL_URL"].split('/')
         link = '/data-and-downloads'
 
-        if (len(url_segments)>=5):
-            dictSearchType = {
-                    'adaptation-options' : 'Adaptation options',
-                    'case-studies'       : 'Case studies',
-                    'guidances'          : 'Guidance',
-                    'indicators'         : 'Indicators',
-                    'portals'            : 'Information portals',
-                    'organisations'      : 'Organisations',
-                    'publications'       : 'Publications and reports',
-                    'portals'            : 'Information portals',
-                    'projects'           : 'Research and knowledge projects',
-                    'tools'              : 'Tools',
-                    'videos'             : 'Videos',
+        querystring = self.request.form.get('SearchableText', "")
+        query = {
+            u'display_type': u'list',
+            u'highlight': {
+              u'fields': {
+                u'*': {
                 }
-
-            search_type = url_segments[4]
-            if (search_type in dictSearchType):
-                t = {u'function_score':
-                     {u'query':
-                      {u'bool':
-                       {u'filter':
-                        {u'bool':
-                         {u'should':
-                          [{u'term': {u'typeOfData': dictSearchType[search_type]}}]
-                          }
-                         },
+              }
+            },
+            u'query': {
+                u'bool': {
+                    u'must':
+                        [{u'term': {u'hasWorkflowState': u'published'}},
+                         {u'query_string': {u'analyze_wildcard': True,
+                                            u'default_operator': u'OR',
+                                            u'query': querystring}
+                         }]
                         }
                        }
-                      }
-                    }
+                     }
 
-                q = {'query': t}
-                link = link + '?source=' + urllib.quote(json.dumps(q))
-
-        #import pdb; pdb.set_trace()
+        link = link + '?source=' + urllib.quote(json.dumps(query))
 
         return self.request.response.redirect(link)
 
