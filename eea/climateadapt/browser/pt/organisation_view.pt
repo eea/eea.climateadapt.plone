@@ -30,6 +30,7 @@
             <div tal:condition="view/is_observatory_page">
                 <div tal:on-error="nothing" tal:condition="context/organisational_websites">
                     <h5>Links to further information</h5>
+                    <tal:block content="structure python: view.w['organisational_websites'].render()"/>
                 </div>
 
                 <div tal:condition="context/organisational_contact">
