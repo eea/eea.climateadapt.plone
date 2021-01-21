@@ -18,11 +18,6 @@
             <h3>Description:</h3>
             <tal:block content="structure python: view.w['long_description'].render()"/>
             <div tal:condition="view/is_observatory_page">
-              <div tal:condition="context/organisational_misssion">
-                <h3>Organisational mission</h3>
-                <p tal:content="structure context/organisational_misssion/output | nothing "></p>
-              </div>
-
               <div tal:condition="context/organisational_key_activities">
                 <h3>Key activities within climate change and health</h3>
                 <p tal:content="structure context/organisational_key_activities/output | nothing"></p>
@@ -33,13 +28,8 @@
             <h5>Websites:</h5>
             <div metal:use-macro="context/ace_macros/macros/websites"></div>
             <div tal:condition="view/is_observatory_page">
-                <div tal:on-error="nothing" tal:condition="context/organisational_links">
+                <div tal:on-error="nothing" tal:condition="context/organisational_websites">
                     <h5>Links to further information</h5>
-                    <div  tal:define="links python:view.get_websites('organisational_links')">
-                      <dl tal:condition="links" tal:repeat="link links">
-                        <a tal:content="link/title" tal:attributes="href link/url"/>
-                      </dl>
-                    </div>
                 </div>
 
                 <div tal:condition="context/organisational_contact">
