@@ -16,15 +16,14 @@
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
 
           <div metal:fill-slot="title-slot">
-            <h1>
-              <span tal:content="context/title"></span>
-              <img
+            <h1 tal:content="context/title">
+              <!-- <img
                 tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
                 style="float:right; padding:10px;" tal:condition="context/logo" />
               <img
                 style="float:right; padding:10px;"
                 tal:attributes="src string: ${context/absolute_url}/@@images/image/thumb"
-                tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" />
+                tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" /> -->
             </h1>
           </div>
 

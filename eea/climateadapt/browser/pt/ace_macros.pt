@@ -5,15 +5,16 @@
       <span tal:replace="context/title"></span>
       <tal:cond tal:on-error="nothing" tal:condition="context/year">(<span tal:replace="context/year"></span>)</tal:cond>
       <tal:cond tal:condition="python: getattr(context, 'origin_website', '') == 'AdapteCCA'">
-        <img tal:attributes= "src python: context.portal_url() + '/adaptecca.png'" style="height:23px;"/>
+        <img style="height:23px;"
+             tal:attributes= "src python: context.portal_url() + '/adaptecca.png'"/>
       </tal:cond>
-      <img
+      <!-- <img
         tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
         style="float:right; padding:10px;" tal:condition="context/logo" />
       <img
         style="float:right; padding:10px;"
         tal:attributes="src string: ${context/absolute_url}/@@images/image/thumb"
-        tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" />
+        tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" /> -->
     </h1>
   </metal:macro>
 
@@ -23,43 +24,58 @@
       <div class="aceitem_page">
 
         <div id="content-core">
-
           <div class="col-md-9 col-xs-12 content-column">
-
             <div class="aceitem_top">
-              <div style="display: none" tal:content="context/special_tags | nothing">Special tags, for debugging</div>
-              <a href="" tal:attributes="href view/link_to_original" style="display: none">Original page</a>
-              <div>
-                <div style="float:right"><metal:slot metal:define-slot="title-link" /></div>
-                <h2 tal:content="view/type_label">Project</h2>
+              <!-- <div style="display: none" tal:content="context/special_tags | nothing">
+                Special tags, for debugging
+              </div> -->
+              <!-- <a href="" tal:attributes="href view/link_to_original" style="display: none">
+                Original page
+              </a> -->
+
+              <div class="ace-top-heading">
+                <div>
+                  <span class="ace-label" tal:content="view/type_label">Project</span>
+                </div>
+                <div>
+                  <img
+                    tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
+                    tal:condition="context/logo" />
+                  <img
+                    tal:attributes="src string: ${context/absolute_url}/@@images/image"
+                    tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')"
+                    class="image-thumb"/>
+                </div>
               </div>
+
+              <div><metal:slot metal:define-slot="title-link" /></div>
+
               <metal:macro define-slot="title-slot">
                 <h1>
                   <span tal:content="context/title"></span>
                   <span tal:on-error="nothing" tal:condition="context/acronym | nothing">
                     (<span tal:replace="context/acronym">ACRONYM</span>)
                   </span>
-                  <img
-                    tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
-                    style="float:right; padding:10px;" tal:condition="context/logo" />
-                  <img
-                    style="float:right; padding:10px;"
-                    tal:attributes="src string: ${context/absolute_url}/@@images/image/thumb"
-                    tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" />
                 </h1>
               </metal:macro>
 
               <div tal:replace="structure provider:plone.belowcontenttitle" />
             </div>
 
+
             <div class="ace-content-column">
               <metal:slot metal:define-slot="ace-left-slot"></metal:slot>
 
-              <div id="viewlet-above-content-body" tal:content="structure provider:plone.abovecontentbody" tal:condition="not:ajax_load" />
+              <div
+                id="viewlet-above-content-body"
+                tal:content="structure provider:plone.abovecontentbody"
+                tal:condition="not:ajax_load" />
 
               <div class="share-your-info-ace-button">
                 <form method="POST" action="/help/share-your-info">
-                  <button class="standard-button primary-button">Share your information</button>
+                  <button class="standard-button primary-button">
+                    Share your information
+                  </button>
                 </form>
               </div>
             </div>
@@ -91,7 +107,6 @@
                   <h4>Reviewed by:</h4>
                   <span class="review-name" tal:content="reviewer">John</span>
                 </div>
-
               </div>
             </tal:block>
 
@@ -106,23 +121,33 @@
   </metal:macro>
 
   <metal:macro define-macro="ace_c3s">
-    <div id="content" class="columned">
-    </div>
+    <div id="content" class="columned"></div>
   </metal:macro>
 
   <metal:macro define-macro="content_dates">
-    <div class="documentByLine" style="padding-top:25px;" tal:define="dates view/get_date_updated; cadapt_published none | dates/cadapt_published;  cadapt_last_modified none | dates/cadapt_last_modified;">
+    <div
+      class="documentByLine"
+      style="padding-top:25px;"
+      tal:define="dates view/get_date_updated;
+                  cadapt_published none | dates/cadapt_published;
+                  cadapt_last_modified none | dates/cadapt_last_modified;">
+
       <p tal:condition="python: cadapt_published or cadapt_last_modified">
-        <span tal:condition="cadapt_published"><strong>Published in Climate ADAPT</strong> <span tal:replace="python: cadapt_published.strftime('%b %d %Y')" /></span>
+        <span tal:condition="cadapt_published">
+          <strong>Published in Climate ADAPT</strong> <span tal:replace="python: cadapt_published.strftime('%b %d %Y')" />
+        </span>
         <span tal:condition="python: cadapt_published and cadapt_last_modified"> &nbsp; - &nbsp; </span>
-        <span tal:condition="cadapt_last_modified"><strong>Last Modified in Climate ADAPT</strong> <span tal:replace="python: cadapt_last_modified.strftime('%b %d %Y')"/></span>
+        <span tal:condition="cadapt_last_modified">
+          <strong>Last Modified in Climate ADAPT</strong> <span tal:replace="python: cadapt_last_modified.strftime('%b %d %Y')"/>
+        </span>
       </p>
     </div>
   </metal:macro>
 
   <metal:macro define-macro="description">
     <h3>Description:</h3>
-    <tal:block tal:define="description python: view.w['long_description'].render();" content="structure description"/>
+    <tal:block tal:define="description python: view.w['long_description'].render();"
+               content="structure description"/>
   </metal:macro>
 
   <metal:macro define-macro="lead">
@@ -163,18 +188,22 @@
   </metal:macro>
 
   <metal:macro define-macro="contributors">
-      <div tal:condition="python: contributor or other_contributor" tal:define="contributor context/contributors; other_contributor context/other_contributor|nothing">
-        <br/><h5>Contributor:</h5>
-        <span tal:condition="python: contributor and contributor[0].to_object" tal:replace="python: contributor[0].to_object.title" ></span>
-        <br tal:condition="python: contributor and other_contributor" />
-        <span tal:condition="other_contributor" tal:replace="structure python: other_contributor.replace('\n','<br />\n')" ></span>
-      </div>
+    <div tal:condition="python: contributor or other_contributor"
+         tal:define="contributor context/contributors; other_contributor context/other_contributor|nothing">
+      <br/><h5>Contributor:</h5>
+      <span tal:condition="python: contributor and contributor[0].to_object"
+            tal:replace="python: contributor[0].to_object.title" ></span>
+      <br tal:condition="python: contributor and other_contributor" />
+      <span tal:condition="other_contributor"
+            tal:replace="structure python: other_contributor.replace('\n','<br />\n')" ></span>
+    </div>
   </metal:macro>
 
   <metal:macro define-macro="comments">
     <div tal:define="portal_state context/@@plone_portal_state">
       <div tal:condition="python: view.check_user_role()">
-        <h5 style="text-decoration: underline" tal:condition="python: view.context.comments">Comments:</h5>
+        <h5 style="text-decoration: underline"
+            tal:condition="python: view.context.comments">Comments:</h5>
         <div tal:content="python: view.context.comments"></div>
       </div>
     </div>
@@ -187,33 +216,32 @@
           <h4>
             <span tal:replace="view/type_label" />
               Documents (<span tal:content="python: len(files)"></span>)
-            </h4>
-            <ul tal:repeat="file files">
-              <li>
-                <a tal:attributes="href file/absolute_url">
-                  <span tal:content="file/Title"></span>
-                </a>
-              </li>
-            </ul>
-          </div>
+          </h4>
+          <ul tal:repeat="file files">
+            <li>
+              <a tal:attributes="href file/absolute_url">
+                <span tal:content="file/Title"></span>
+              </a>
+            </li>
+          </ul>
         </div>
-      </tal:def>
-    </metal:macro>
+      </div>
+    </tal:def>
+  </metal:macro>
 
-    <metal:macro define-macro="geochar">
-      <tal:def define="geochar python:view.render_geochar(context.geochars)">
+  <metal:macro define-macro="geochar">
+    <tal:def define="geochar python:view.render_geochar(context.geochars)">
+      <div tal:content="structure geochar" tal:condition="geochar"/>
 
-        <div tal:content="structure geochar" tal:condition="geochar"/>
+      <tal:cond condition="not: geochar">
+        <div tal:condition="context/spatial_layer | nothing"
+             tal:content="context/spatial_layer"/>
+        <p tal:condition="context/spatial_values">
+          <span style="font-weight:bold;">Countries:</span><br>
+          <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
+        </p>
+      </tal:cond>
+    </tal:def>
+  </metal:macro>
 
-        <tal:cond condition="not: geochar">
-          <div tal:condition="context/spatial_layer | nothing" tal:content="context/spatial_layer"/>
-          <p tal:condition="context/spatial_values">
-            <span style="font-weight:bold;">Countries:</span><br>
-              <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
-            </p>
-          </tal:cond>
-
-        </tal:def>
-      </metal:macro>
-
-    </div>
+</div>

@@ -18,10 +18,9 @@
                 tal:condition="context/partners_source_link"
                 tal:attributes="href context/partners_source_link">View on DRMKC</a>
 
-              <a href="https://drmkc.jrc.ec.europa.eu/">
-                <img tal:condition="python: 'DRMKC' in getattr(context, 'origin_website', [])"
-                  src="/++theme++climateadaptv2/static/images/drmkc-logo.png"
-                  style=""/>
+              <a tal:condition="python: 'DRMKC' in getattr(context, 'origin_website', [])"
+                href="https://drmkc.jrc.ec.europa.eu/">
+                <img src="/++theme++climateadaptv2/static/images/drmkc-logo.png"/>
               </a>
             </div>
           </metal:slot>
@@ -31,13 +30,13 @@
               <span tal:on-error="nothing" tal:content="context/acronym"></span>
               <span tal:content="context/title"></span>
               <tal:cond tal:on-error="nothing" tal:condition="context/year">(<span tal:replace="context/year"></span>)</tal:cond>
-              <img
+              <!-- <img
                 tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
                 style="float:right; padding:10px;" tal:condition="context/logo" />
               <img
                 style="float:right; padding:10px;"
                 tal:attributes="src string: ${context/absolute_url}/@@images/image/thumb"
-                tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" />
+                tal:condition="python: not getattr(context, 'logo') and getattr(context, 'image')" /> -->
             </h1>
           </div>
 
