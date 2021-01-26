@@ -95,7 +95,7 @@ class HealthHomepageItems(BrowserView):
     @property
     def more_news(self):
         site = getSite()
-        url = site["observatory"]["news-archive"].absolute_url()
+        url = site["observatory"]["news-archive-observatory"].absolute_url()
         return [url, "More news"]
 
     @property
