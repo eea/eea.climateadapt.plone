@@ -215,9 +215,16 @@ class AceViewApi(object):
         """ At observatory partner page for organisations remove
         a few categorizations
         """
-        if 'only_article' in self.request.form and self.context.include_in_observatory and self.context.search_type == 'ORGANISATION':
-            order.remove('macrotrans')
-            order.remove('countries')
+
+        if (
+            'only_article' in self.request.form
+            and self.context.include_in_observatory
+            and self.context.search_type == 'ORGANISATION'
+        ):
+            if 'macrotrans' in order:
+                order.remove('biotrans')
+            if 'countries' in order:
+                order.remove('countries')
 
         for key in order:
             element = value['geoElements'].get(key)
