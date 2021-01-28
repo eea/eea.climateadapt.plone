@@ -115,7 +115,7 @@ class OrganisationCard(BrowserView):
                         u"filter": {
                             u"bool": {
                                 u"should": [
-                                    {u"term": {u"eea_partner_contributors": org}}
+                                    {u"term": {u"partner_contributors": org}}
                                 ]
                             }
                         },
