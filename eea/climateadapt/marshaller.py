@@ -296,17 +296,21 @@ class ContributorModifier(object):
         }
         contributors = getattr(self.context, "contributors", None)
 
-        if contributors:
+        if hasattr(self.context, 'include_in_observatory') and \
+            self.context.include_in_observatory:
+
             contributors_list = []
+            if contributors:
 
-            for contributor in contributors:
-                title = contributor.to_object.getId()
+                for contributor in contributors:
+                    title = contributor.to_object.getId()
 
-
-                if title in map_contributor_values:
-                    contributors_list.append(map_contributor_values[title])
-                elif "Other Organisation" not in contributors_list:
-                    contributors_list.append("Other Organisation")
+                    if title in map_contributor_values:
+                        contributors_list.append(map_contributor_values[title])
+                    elif "Other Organisation" not in contributors_list:
+                        contributors_list.append("Other Organisation")
+            else:
+                contributors_list.append("Other Organisation")
 
             setattr(resource, "eea_partner_contributors", contributors_list)
 
