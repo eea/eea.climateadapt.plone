@@ -33,9 +33,9 @@
                     <tal:block content="structure python: view.w['organisational_websites'].render()"/>
                 </div>
 
-                <div tal:condition="context/organisational_contact">
+                <div tal:condition="context/organisational_contact_information">
                     <h5>Contact information for the Observatory</h5>
-                    <p tal:content="structure context/organisational_contact"></p>
+                    <p tal:content="structure context/organisational_contact_information/raw"></p>
                 </div>
             </div>
 

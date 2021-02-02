@@ -108,6 +108,10 @@ class OrganisationCard(BrowserView):
 
     def contributions_link(self):
         org = self.context.Title()
+
+        if org == 'World Health Organization - Regional Office for Europe':
+            org = 'World Health Organization-Europe'
+
         t = {
             u"function_score": {
                 u"query": {
@@ -115,7 +119,7 @@ class OrganisationCard(BrowserView):
                         u"filter": {
                             u"bool": {
                                 u"should": [
-                                    {u"term": {u"eea_partner_contributors": org}}
+                                    {u"term": {u"partner_contributors": org}}
                                 ]
                             }
                         },

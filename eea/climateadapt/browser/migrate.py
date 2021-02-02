@@ -235,6 +235,18 @@ class ContributingOrganisationPartner():
         catalog = api.portal.get_tool('portal_catalog')
 
         map_organisations = {
+            'Copernicus Climate Change Service - Climate-ADAPT (europa.eu)':
+                {'url': 'copernicus-climate-change-service-ecmw', 'id': 0, 'object': None},
+            'European Centre for Disease Prevention and Control - Climate-ADAPT (europa.eu)':
+                {'url': 'european-centre-for-disease-prevention-and-control-ecdc', 'id': 0, 'object': None},
+            'European Commission - Climate-ADAPT (europa.eu)':
+                {'url': 'european-commission', 'id': 0, 'object': None},
+            'European Environment Agency - Climate-ADAPT (europa.eu)':
+                {'url': 'european-environment-agency-eea', 'id': 0, 'object': None},
+            'European Food Safety Authority - Climate-ADAPT (europa.eu)':
+                {'url': 'european-food-safety-authority', 'id': 0, 'object': None},
+            'Lancet Countdown - Climate-ADAPT (europa.eu)':
+                {'url': 'lancet-countdown', 'id': 0, 'object': None},
             'World Health Organization - Regional Office for Europe - Climate-ADAPT (europa.eu)':
                 {'url': 'who-regional-office-for-europe-who-europe', 'id': 0, 'object': None},
             'World Health Organization - Climate-ADAPT (europa.eu)':
@@ -273,6 +285,14 @@ class ContributingOrganisationPartner():
             if len(item['url']) < 5:
                 continue
 
+            if len(item['partners']) < 5:
+                continue
+
+            if item['partners'] == 'Other Organisations':
+                continue
+
+            item['partners'] = item['partners'].replace('\xe2\x80\x94', '-')
+
             obj = self.get_object(item['url'])
 
             if not obj:
@@ -298,6 +318,7 @@ class ContributingOrganisationPartner():
             response.append({
                 'title': obj.title,
                 'url': item['url'],
+                'partners': item['partners'],
             })
 
         return response

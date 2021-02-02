@@ -67,7 +67,7 @@ class IOrganisation(IAceItem):
         required=False,
     )
 
-    organisational_contact = Text(
+    organisational_contact_information = RichText(
         title=_(u"Contact information for the Observatory"),
         description=u"Please provide a corporate email or contact"
         u' form link into the "Default section", here you'

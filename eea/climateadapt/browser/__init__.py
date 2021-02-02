@@ -212,6 +212,24 @@ class AceViewApi(object):
         order = ['element', 'macrotrans', 'biotrans',
                  'countries', 'subnational', 'city']
 
+        """ At observatory partner page for organisations remove
+        a few categorizations
+        """
+
+        if (
+            'only_article' in self.request.form
+            and self.context.include_in_observatory
+            and self.context.search_type == 'ORGANISATION'
+        ):
+            if 'macrotrans' in order:
+                order.remove('biotrans')
+            if 'countries' in order:
+                order.remove('countries')
+            if 'subnational' in order:
+                order.remove('subnational')
+            if 'city' in order:
+                order.remove('city')
+
         for key in order:
             element = value['geoElements'].get(key)
 
