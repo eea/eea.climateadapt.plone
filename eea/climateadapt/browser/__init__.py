@@ -225,6 +225,10 @@ class AceViewApi(object):
                 order.remove('biotrans')
             if 'countries' in order:
                 order.remove('countries')
+            if 'subnational' in order:
+                order.remove('subnational')
+            if 'city' in order:
+                order.remove('city')
 
         for key in order:
             element = value['geoElements'].get(key)
