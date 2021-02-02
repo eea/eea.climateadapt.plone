@@ -195,7 +195,7 @@
                   <div tal:content="structure python: view.w['source'].render()"></div>
                 </div>
 
-                <metal:macro use-macro="context/ace_macros/macros/contributors" />
+                <metal:macro use-macro="context/ace_macros/macros/contributor_list" />
 
                 <div metal:use-macro="context/ace_macros/macros/comments"></div>
 

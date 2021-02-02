@@ -294,25 +294,25 @@ class ContributorModifier(object):
             "who-regional-office-for-europe-who-europe": "World Health Organization-Europe",
             "world-health-organization": "World Health Organization"
         }
-        contributors = getattr(self.context, "contributors", None)
+        contributor_list = getattr(self.context, "contributor_list", None)
 
         if hasattr(self.context, 'include_in_observatory') and \
             self.context.include_in_observatory:
 
-            contributors_list = []
-            if contributors:
+            partner_contributors = []
+            if contributor_list:
 
-                for contributor in contributors:
+                for contributor in contributor_list:
                     title = contributor.to_object.getId()
 
                     if title in map_contributor_values:
-                        contributors_list.append(map_contributor_values[title])
-                    elif "Other Organisation" not in contributors_list:
-                        contributors_list.append("Other Organisation")
+                        partner_contributors.append(map_contributor_values[title])
+                    elif "Other Organisation" not in partner_contributors:
+                        partner_contributors.append("Other Organisation")
             else:
-                contributors_list.append("Other Organisation")
+                partner_contributors.append("Other Organisation")
 
-            setattr(resource, "eea_partner_contributors", contributors_list)
+            setattr(resource, "eea_partner_contributors", partner_contributors)
 
 
 # class TransnationalRegionModifier():

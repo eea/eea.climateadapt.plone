@@ -13,8 +13,8 @@ from .indicator import IIndicator
 class IC3sIndicator(IIndicator):
     """ Indicator Interface"""
 
-    directives.omitted(IEditForm, "contributors")
-    directives.omitted(IAddForm, "contributors")
+    directives.omitted(IEditForm, "contributor_list")
+    directives.omitted(IAddForm, "contributor_list")
     directives.omitted(IEditForm, "other_contributor")
     directives.omitted(IAddForm, "other_contributor")
     directives.omitted(IEditForm, "map_graphs")

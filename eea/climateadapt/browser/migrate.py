@@ -308,10 +308,10 @@ class ContributingOrganisationPartner():
                 logger.warning("Partner not match: %s [%s]", item['url'], item['partners'])
                 continue
 
-            obj.contributors = []
+            obj.contributor_list = []
 
             logger.info("Partner set: %s [%s]", item['url'], item['partners'])
-            obj.contributors.append(RelationValue(partner_object_id))
+            obj.contributor_list.append(RelationValue(partner_object_id))
             obj._p_changed = True
 
             # transaction.savepoint()
@@ -322,6 +322,43 @@ class ContributingOrganisationPartner():
             })
 
         return response
+
+class MoveContributorsToList:
+
+    def list(self):
+        # overwrite = int(self.request.form.get('overwrite', 0))
+
+        catalog = api.portal.get_tool("portal_catalog")
+        res = []
+
+        i = 0
+        for _type in DB_ITEM_TYPES:
+            i += 1
+            if i % 100 == 0:
+                transaction.savepoint()
+
+            brains = catalog.searchResults(portal_type=_type)
+
+            for brain in brains:
+                obj = brain.getObject()
+
+                if hasattr(obj, "contributors"):
+                    if obj.contributors:
+                        obj.contributor_list = obj.contributors
+                        delattr(obj, 'contributors')
+                        obj._p_changed = True
+
+                    logger.info("Migrated contributors for obj: %s", brain.getURL())
+
+                    res.append(
+                        {
+                            "title": obj.title,
+                            "id": brain.UID,
+                            "url": brain.getURL()
+                        }
+                    )
+
+        return res
 
 
 class OrganisationLogo:

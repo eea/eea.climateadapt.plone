@@ -262,7 +262,7 @@ class IAceItem(IImageScaleTraversable):
         u"climate-adapt]",
     )
 
-    contributors = RelationList(
+    contributor_list = RelationList(
         title=u"Contributor(s)",
         default=[],
         description=_(

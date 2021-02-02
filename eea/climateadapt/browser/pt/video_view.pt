@@ -49,7 +49,7 @@
               <div tal:content="structure python: view.metadata">Metadata</div>
             </div>
 
-            <metal:macro use-macro="context/ace_macros/macros/contributors" />
+            <metal:macro use-macro="context/ace_macros/macros/contributor_list" />
 
             <div tal:condition="embed">
               <span tal:replace="structure embed"></span>

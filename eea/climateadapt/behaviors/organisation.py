@@ -19,8 +19,8 @@ class IOrganisation(IAceItem):
     directives.omitted(IEditForm, "health_impacts")
     directives.omitted(IAddForm, "source")
     directives.omitted(IEditForm, "source")
-    directives.omitted(IEditForm, "contributors")
-    directives.omitted(IAddForm, "contributors")
+    directives.omitted(IEditForm, "contributor_list")
+    directives.omitted(IAddForm, "contributor_list")
     directives.omitted(IEditForm, "featured")
     directives.omitted(IAddForm, "featured")
 
