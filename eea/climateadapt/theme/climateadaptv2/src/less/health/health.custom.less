@@ -27,19 +27,23 @@ body.site-observatory {
     margin-right: 0;
   }
 
+  #breadcrumbs-home {
+    > a {
+      font-size: 0;
+      color: transparent;
+
+      &:before {
+        content: "\f015";
+        font-size: 13px;
+        color: #949494;
+        font-family: "FontAwesome";
+      }
+    }
+  }
+
   .main-area .row {
     margin-top: 0;
   }
-
-  // .footer-nav-wrapper {
-  //   margin: 0 auto;
-  //   max-width: 95%;
-  //   width: 100%;
-  //
-  //   @media only screen and (max-width: 1300px) {
-  //     max-width: 98%;
-  //   }
-  // }
 
   .health-homepage-specific {
     margin-top: 2em;
