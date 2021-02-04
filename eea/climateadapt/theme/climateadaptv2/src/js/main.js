@@ -493,6 +493,15 @@ function initMainNavMenu() {
       });
     }
   });
+
+  $(function () {
+    var wURL = window.location.href;
+    $("#navbar a").each(function () {
+      var $a = $(this);
+      if ($a.attr("href") == wURL)
+        $a.closest(".main-nav-item").addClass("active-menu");
+    });
+  });
 }
 
 function initExternalLinks() {

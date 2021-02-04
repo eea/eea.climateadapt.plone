@@ -28,7 +28,7 @@ Policy context
         - EU adaptation policy /observatory/policy-context/european-policy-framework/eu-adaptation-policy
         - EU health policy    /observatory/policy-context/european-policy-framework/eu-health-policy
         - European Environment and Health Process (WHO) /observatory/policy-context/european-policy-framework/eu-environment-health-process-WHO
-    Country Profiles /observatory/policy_context/country-profiles
+    Country Profiles /observatory/policy-context/country-profiles
 
 Evidence on climate change and health
     Health effects

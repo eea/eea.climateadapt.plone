@@ -144,8 +144,11 @@
 
     <!-- Personal menu -->
     <rules if="$is_anon">
-      <replace css:theme-children=".login-container" css:content="#portal-personaltools-wrapper ul" />
+      <!-- <replace css:theme-children=".login-container" css:content="#portal-personaltools-wrapper ul" /> -->
+      <replace css:theme-children=".login-text" css:content="#portal-personaltools-wrapper ul" />
+      <drop css:theme="#personal-menu .angle-down-icon" />
     </rules>
+
     <rules if-not="$is_anon">
       <drop css:theme=".login-text" />
       <drop css:theme=".login-form" />

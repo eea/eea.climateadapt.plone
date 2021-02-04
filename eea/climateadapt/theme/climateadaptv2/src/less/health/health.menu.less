@@ -45,21 +45,6 @@ body.site-observatory {
         padding: 5px 9px;
       }
 
-      &:hover {
-        border-bottom: 5px solid #818a32;
-
-        .main-nav-link {
-          color: #818a32;
-        }
-
-        > span {
-          background-color: transparent;
-          > .toggle-down .angle-down-icon {
-            border-top-color: #818a32;
-          }
-        }
-      }
-
       .angle-down-icon {
         border-top-color: #585858;
       }
@@ -186,6 +171,26 @@ body.site-observatory {
     }
     .top-menu-right-section {
       bottom: -38px;
+    }
+  }
+}
+
+body.site-observatory:not(.collapsed) {
+  .main-nav-item {
+    &:hover,
+    &.active-menu {
+      border-bottom: 5px solid #818a32;
+
+      .main-nav-link {
+        color: #818a32;
+      }
+
+      > span {
+        background-color: transparent;
+        > .toggle-down .angle-down-icon {
+          border-top-color: #818a32;
+        }
+      }
     }
   }
 }
