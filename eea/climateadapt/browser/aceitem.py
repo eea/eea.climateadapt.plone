@@ -84,7 +84,11 @@ class OrganisationView(DefaultView, AceViewApi):
         self.request = request
 
     def is_observatory_page(self):
-        return self.request.form.get("only_article") == "1"
+        if self.request.form.get("only_article") == "1":
+            return 1
+        if self.request.form.get("observatory_page") == "1":
+            return 1
+        return 0
 
 
 # Form Extenders + add/edit forms
