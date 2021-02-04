@@ -313,7 +313,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         required=False,
     )
 
-    contributors = RelationList(
+    contributor_list = RelationList(
         title=u"Contributor(s)",
         default=[],
         description=_(u"Select from the Climate ADAPT Organisation items the "

@@ -187,9 +187,9 @@
     <div tal:content="python: ', '.join(sorted(set(context.keywords or [])))"></div>
   </metal:macro>
 
-  <metal:macro define-macro="contributors">
+  <metal:macro define-macro="contributor_list">
     <div tal:condition="python: contributor or other_contributor"
-         tal:define="contributor context/contributors; other_contributor context/other_contributor|nothing">
+         tal:define="contributor context/contributor_list; other_contributor context/other_contributor|nothing">
       <br/><h5>Contributor:</h5>
       <span tal:condition="python: contributor and contributor[0].to_object"
             tal:replace="python: contributor[0].to_object.title" ></span>
