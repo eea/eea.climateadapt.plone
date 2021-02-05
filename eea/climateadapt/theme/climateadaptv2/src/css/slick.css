@@ -117,3 +117,6 @@
 .slick-arrow.slick-hidden {
   display: none;
 }
+body.site-observatory:not([class*="subsection-organisations"]) #observatory_back_button_div {
+    display: block !important;
+}
