@@ -217,7 +217,7 @@ class AceViewApi(object):
         """
 
         if (
-            'only_article' in self.request.form
+            'observatory_page' in self.request.form
             and self.context.include_in_observatory
             and self.context.search_type == 'ORGANISATION'
         ):
