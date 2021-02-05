@@ -420,6 +420,10 @@ class CustomizedCatalogSiteMap(CatalogSiteMap):
         # query['review_state'] = 'published'
         strategy = getMultiAdapter((context, self), INavtreeStrategy)
 
+        # set correct query path based on context
+        if context.id == "observatory":
+            query['path']['query'] = "/".join(context.getPhysicalPath())
+
         return buildFolderTree(
             context, obj=context,
             query=query, strategy=strategy
