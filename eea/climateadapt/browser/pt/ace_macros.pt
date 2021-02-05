@@ -67,11 +67,6 @@
             <div class="ace-content-column">
               <metal:slot metal:define-slot="ace-left-slot"></metal:slot>
 
-              <div
-                id="viewlet-above-content-body"
-                tal:content="structure provider:plone.abovecontentbody"
-                tal:condition="not:ajax_load" />
-
               <div class="share-your-info-ace-button">
                 <form method="POST" action="/help/share-your-info">
                   <button class="standard-button primary-button">
