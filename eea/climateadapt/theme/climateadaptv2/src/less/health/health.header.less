@@ -111,8 +111,40 @@ body.site-observatory {
   }
 }
 
-body.site-observatory:not(.userrole-anonymous) {
+body.site-observatory:not(.userrole-anonymous):not(.search-app) {
   #portal-personaltools {
     top: 26px;
+  }
+}
+
+body.search-app.site-observatory {
+  #personal-menu:hover a {
+    color: #0170B7;
+  }
+
+  #portal-personaltools {
+    min-width: auto;
+    columns: auto;
+    background-color: transparent;
+    top: auto;
+    left: auto;
+    border: none;
+    box-shadow: none;
+    display: inline-flex;
+    right: auto;
+    width: auto;
+    height: auto;
+    vertical-align: bottom;
+    padding: 0;
+    position: relative;
+
+    > a,
+    .personal-menu-action {
+      margin: 0;
+    }
+  }
+
+  .top-menu-nav-item:hover .login > .login-container {
+    display: none;
   }
 }
