@@ -101,5 +101,5 @@ class HealthHomepageItems(BrowserView):
     @property
     def more_events(self):
         site = getSite()
-        url = site["observatory"]["more-events"].absolute_url()
+        url = site["observatory"]["more-events-observatory"].absolute_url()
         return [url, "More events"]
