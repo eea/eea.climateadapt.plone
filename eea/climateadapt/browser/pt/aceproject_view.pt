@@ -13,7 +13,7 @@
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
 
           <metal:slot metal:fill-slot="title-link">
-            <div class="project-source" id="aceproject-logo" >
+            <div class="project-source" id="aceproject-logo" tal:condition="python: 'DRMKC' in getattr(context, 'origin_website', [])">
               <a tal:on-error="nothing"
                 tal:condition="context/partners_source_link"
                 tal:attributes="href context/partners_source_link">View on DRMKC</a>
