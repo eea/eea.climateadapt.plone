@@ -1,5 +1,10 @@
 from zope.interface import classImplements  # , implements
 
+from zc.relation.interfaces import ICatalog
+from zope.component import getUtility
+from zope.intid.interfaces import IIntIds
+from plone import api
+
 from eea.climateadapt.browser import AceViewApi
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.edit import DefaultEditForm
@@ -89,6 +94,27 @@ class OrganisationView(DefaultView, AceViewApi):
         if self.request.form.get("observatory_page") == "1":
             return 1
         return 0
+
+    def get_contributions(self):
+        # TODO: filter by published
+
+        intids = getUtility(IIntIds)
+
+        site = api.portal.get()
+        object = site.restrictedTraverse('metadata/organisations/world-health-organization')
+        query = {'to_id':intids.getId(object), 'from_attribute': 'contributor_list'}
+        relation_catalog = getUtility(ICatalog)
+        results = list(relation_catalog.findRelations(query))
+        response = []
+        for result in results:
+            response.append({
+                    'title': result.from_object.title,
+                    'url':result.from_object.absolute_url()
+                })
+            if len(response)>=10:
+                break
+
+        return response;
 
 
 # Form Extenders + add/edit forms

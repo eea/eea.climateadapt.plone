@@ -24,6 +24,20 @@
               </div>
             </div>
 
+            <div tal:condition="contributions" tal:define="contributions view/get_contributions | nothing">
+                <h5>Contributions:</h5>
+                <ul>
+                    <li tal:repeat="contribution contributions">
+                        <a tal:content="contribution/title" tal:attributes="href contribution/url"/>
+                    </li>
+                </ul>
+            </div>
+
+            <li tal:condition="view/get_adaptation_options | nothing">
+              <a href="#adapt_options_anchor" style="text-decoration: underline">
+                Adaptation Options Implemented In This Case</a>
+            </li>
+
             <h4 class="reference-title">Reference information</h4>
             <h5>Websites:</h5>
             <div metal:use-macro="context/ace_macros/macros/websites"></div>
