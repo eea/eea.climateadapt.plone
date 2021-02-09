@@ -190,13 +190,18 @@ class PathBarViewlet(BasePathBarViewlet):
         portal_url = self.context.portal_url()
         base = self.navigation_root_url
 
-        if '/observatory/metadata' not in url:
-            return url
+        if '/observatory/metadata' in url:
+            path = url.replace(portal_url, '')
+            path = path.replace('/observatory/', '')
+            url = base + '/++aq++' + path
 
-        path = url.replace(portal_url, '')
-        path = path.replace('/observatory/', '')
+        if '/observatory/news-archive' in url:
+            url = '/observatory/news-archive-observatory/'
 
-        return base + '/++aq++' + path
+        if '/observatory/more-events' in url:
+            url = '/observatory/more-events-observatory/'
+
+        return url
 
 
 class CookiesViewlet(CookiePolicyViewlet):
