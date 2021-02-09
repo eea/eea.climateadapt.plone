@@ -27,8 +27,8 @@
 
           <div metal:fill-slot="title-slot">
             <h1>
-              <span tal:on-error="nothing" tal:content="context/acronym"></span>
               <span tal:content="context/title"></span>
+              <span tal:on-error="nothing" tal:content="python: '('+context.acronym+')'" tal:condition="context/acronym"></span>
               <tal:cond tal:on-error="nothing" tal:condition="context/year">(<span tal:replace="context/year"></span>)</tal:cond>
               <!-- <img
                 tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
