@@ -1,8 +1,8 @@
 <div class="ui column col-md-3 col-sm-4 card indicator">
-  <div class="card-inner-wrapper">
+  <div class="card-inner-wrapper" tal:define="tile_link view/indicator_link">
 
     <div class="image">
-      <a href="" tal:attributes="href view/indicator_link" >
+      <a href="" tal:attributes="href python: tile_link + '?bs=0'" >
         <img
           tal:condition="python: getattr(context, 'image', None)"
           tal:attributes="src string:${context/absolute_url}/@@images/image/mini" />
@@ -15,7 +15,7 @@
     <div class="card-content">
       <a href=""
         class="card-header"
-        tal:attributes="href view/indicator_link"
+        tal:attributes="href python: tile_link + '?bs=0'"
         tal:content="context/Title">
         Matthew
       </a>

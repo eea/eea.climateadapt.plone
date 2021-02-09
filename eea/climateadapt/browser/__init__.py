@@ -87,6 +87,11 @@ class AceViewApi(object):
 
         return response
 
+    def hide_back_to_search_button(self):
+        if self.request.form.get("bs") == "0":
+            return 0
+        return 1
+
     @view.memoize
     def html2text(self, html):
         if not isinstance(html, basestring):

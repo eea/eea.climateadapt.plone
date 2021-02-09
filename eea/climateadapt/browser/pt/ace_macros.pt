@@ -22,7 +22,9 @@
     <div id="content" class="columned">
 
       <div class="aceitem_page">
-        <div style="margin-bottom:25px !important;display:none;" id="observatory_back_button_div"><i class="fa fa-arrow-left" aria-hidden="true"></i>  <a style="text-decoration:none;" href="" onclick="window.history.back();return false;">back to search</a><br></div>
+        <div style="margin-bottom:25px !important;display:none;" id="observatory_back_button_div" tal:condition="view/hide_back_to_search_button | nothing">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>  <a style="text-decoration:none;" href="" onclick="window.history.back();return false;">back to search</a><br>
+        </div>
 
         <div id="content-core">
           <div class="col-md-9 col-xs-12 content-column">
