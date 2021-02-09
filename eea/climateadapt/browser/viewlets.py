@@ -186,6 +186,18 @@ class PathBarViewlet(BasePathBarViewlet):
         if self.context.id == 'frontpage':
             self.br_exists = False
 
+    def localize_observatory(self, url):
+        portal_url = self.context.portal_url()
+        base = self.navigation_root_url
+
+        if '/observatory/metadata' not in url:
+            return url
+
+        path = url.replace(portal_url, '')
+        path = path.replace('/observatory/', '')
+
+        return base + '/++aq++' + path
+
 
 class CookiesViewlet(CookiePolicyViewlet):
     render = ViewPageTemplateFile("pt/cookiepolicy.pt")

@@ -12,6 +12,7 @@ from ZODB.PersistentMapping import PersistentMapping
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.interface import Interface, implements
+from zope.component import getMultiAdapter
 
 from BeautifulSoup import BeautifulSoup
 from DateTime import DateTime
@@ -287,7 +288,13 @@ class RedirectToSearchView (BrowserView):
         self.request = request
 
     def __call__(self):
-        link = '/data-and-downloads'
+        portal_state = getMultiAdapter((self.context, self.request),
+                                       name=u'plone_portal_state')
+        navigation_root_url = portal_state.navigation_root_url()
+        if '/observatory' in navigation_root_url:
+            link = '/observatory/catalogue/'
+        else:
+            link = '/data-and-downloads'
 
         querystring = self.request.form.get('SearchableText', "")
         query = {

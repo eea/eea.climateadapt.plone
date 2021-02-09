@@ -1,14 +1,16 @@
 <div id="portal-breadcrumbs"
      i18n:domain="plone" tal:condition="view/br_exists">
 
-    <a i18n:translate="tabs_home" tal:attributes="href view/navigation_root_url">Home</a>
+    <span id="breadcrumbs-home">
+        <a i18n:translate="tabs_home" tal:attributes="href view/navigation_root_url">Home</a>
+    </span>
     <span tal:condition="view/breadcrumbs" class="breadcrumbSeparator">
         <tal:ltr condition="not: view/is_rtl"></tal:ltr>
         <tal:rtl condition="view/is_rtl">»</tal:rtl>
     </span>
     <span tal:repeat="crumb view/breadcrumbs">
-        <span> / </span>
-        <a tal:content="python: crumb['Title']" href="" tal:attributes="href python:crumb['absolute_url']"></a>
+        <a tal:condition="not:repeat/crumb/end" tal:content="python: crumb['Title']" href="" tal:attributes="href python:view.localize_observatory(crumb['absolute_url'])"></a>
+        <span tal:condition="repeat/crumb/end" id="breadcrumbs-current" tal:content="python: crumb['Title']"/>
     </span>
 
 </div>

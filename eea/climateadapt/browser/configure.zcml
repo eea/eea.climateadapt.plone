@@ -837,6 +837,7 @@
         name="plone.path_bar"
         manager="plone.app.layout.viewlets.interfaces.IAboveContent"
         class=".viewlets.PathBarViewlet"
+        template="pt/breadcrumbs.pt"
         layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
         permission="zope2.View"
         />
