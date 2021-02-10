@@ -96,14 +96,18 @@ body.site-observatory {
       text-transform: uppercase;
     }
 
-    .health-learn-more {
+    .health-footer {
+      text-align: center;
       position: absolute;
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
+      width: 100%;
+    }
+
+    .health-learn-more {
       text-transform: capitalize;
-      margin: 10px auto;
-      width: 158px;
+      display: inline-block;
     }
 
     p {
@@ -121,6 +125,7 @@ body.site-observatory {
       width: 100%;
       overflow: hidden;
       position: relative;
+      top: -1px;
 
       .box-image {
         height: 100%;
@@ -310,9 +315,21 @@ body.site-observatory {
     }
   }
 
+  .main-health-box {
+    padding: 15px;
+
+    .box-container {
+      height: 280px;
+    }
+  }
+
   .main-area .info-section {
+    img {
+      margin: 0;
+    }
+
     .info-title {
-      margin: 0 !important;
+      margin: 20px 0 !important;
     }
 
     .info-title,
@@ -322,6 +339,7 @@ body.site-observatory {
 
     p {
       font-size: 13px;
+      margin: 0 !important;
     }
   }
 
@@ -414,6 +432,16 @@ body.site-observatory {
       .col-xs-12 {
         width: 50%;
       }
+    }
+
+    .main-health-box.col-xs-12 {
+      width: 50%;
+    }
+  }
+
+  @media only screen and (max-width: 630px) {
+    .main-health-box.col-xs-12 {
+      width: 100%;
     }
   }
 

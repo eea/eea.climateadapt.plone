@@ -10,23 +10,21 @@
   .row {
     margin-right: -10px;
     margin-left: -10px;
-    // display: flex;
     margin-top: 0.7em;
-    @media (max-width: 767px) {
-      // flex-direction: column;
-    }
   }
 
   .main-box {
     padding: 10px;
+    min-height: 320px;
   }
 
   .box-container {
     background-color: #fff;
-    border: 1px solid #E5E5E5;
+    border: 1px solid #e5e5e5;
     height: 100%;
     padding: 1.2em;
     position: relative;
+
     li {
       list-style-type: none;
     }
@@ -50,7 +48,7 @@
       color: #fff;
       text-align: center;
       margin: auto 0;
-      font-family: OpenSansR;
+      font-family: "OpenSansR";
     }
 
     img {
@@ -61,12 +59,13 @@
       margin-left: 20px;
       color: #fff;
       font-size: 27px;
-      font-family: OpenSansM;
+      font-family: "OpenSansM";
       margin: auto 0;
       line-height: 30px;
+
       span {
         color: @yellow;
-        font-family: OpenSansB;
+        font-family: "OpenSansB";
       }
     }
   }
@@ -76,11 +75,13 @@
   }
 
   .covenant-text {
-    margin-bottom: 1.5em;
+    margin-top: 17px;
   }
 
   .news-time {
     font-size: 10px;
+    margin-top: 5px;
+    margin-bottom: 1.5em;
   }
 
   .nav {
@@ -95,7 +96,7 @@
     border-top: 3px solid @primary-green;
   }
 
-  .nav-tabs>li>a:hover {
+  .nav-tabs > li > a:hover {
     border-bottom-color: transparent;
   }
 
@@ -127,5 +128,4 @@
   .tab-pane {
     padding: 0;
   }
-
 }
