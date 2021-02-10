@@ -36,6 +36,14 @@
     permission="cmf.ManagePortal"
     />
 
+    <browser:page
+      name="migrate_health_impacts_none"
+      for="*"
+      template="pt/migrate_health_impacts_none.pt"
+      class=".migrate.UpdateHealthItemsNone"
+      permission="cmf.ManagePortal"
+      />
+
   <browser:page
     name="migrate_health_impacts"
     for="*"

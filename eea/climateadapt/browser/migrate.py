@@ -508,6 +508,41 @@ class DrmkcSource:
 logger = logging.getLogger("eea.climateadapt")
 
 
+class UpdateHealthItemsNone:
+
+    def list(self):
+        # overwrite = int(self.request.form.get('overwrite', 0))
+
+        catalog = api.portal.get_tool("portal_catalog")
+        res = []
+
+        for _type in DB_ITEM_TYPES:
+
+            brains = catalog.searchResults(portal_type=_type)
+
+            for brain in brains:
+                obj = brain.getObject()
+
+                if hasattr(obj,"health_impacts") \
+                and obj.health_impacts \
+                and [None] == obj.health_impacts:
+                    logger.info("Have none for obj: %s", brain.getURL())
+
+                    res.append(
+                        {
+                            "title": obj.title,
+                            "id": brain.UID,
+                            "url": brain.getURL(),
+                            "health_impacts": obj.health_impacts,
+                        }
+                    )
+
+                    del obj.health_impacts
+                    obj._p_changed = True
+
+        return res
+
+
 class UpdateHealthItemsFields:
     """Override to hide files and images in the related content viewlet"""
 
