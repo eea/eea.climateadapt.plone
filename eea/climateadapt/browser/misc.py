@@ -290,11 +290,26 @@ class RedirectToSearchView (BrowserView):
     def __call__(self):
         portal_state = getMultiAdapter((self.context, self.request),
                                        name=u'plone_portal_state')
+
+        typeOfDataTo = self.request.other['ACTUAL_URL'].split('/')[-1]
+        typeOfDataValues = {
+            'adaptation-options':'Adaptation options',
+            'case-studies':'Case studies',
+            'indicators':'Indicators',
+            'portals':'Information portals',
+            'guidances':'Guidance',
+            'organisations':'Organisations',
+            'publications':'Publications and reports',
+            'projects':'Research and knowledge projects',
+            'tools':'Tools',
+            'videos':'Videos',
+            }
+
         navigation_root_url = portal_state.navigation_root_url()
         if '/observatory' in navigation_root_url:
             link = '/observatory/catalogue/'
         else:
-            link = '/data-and-downloads'
+            link = '/data-and-downloads/'
 
         querystring = self.request.form.get('SearchableText', "")
         query = {
@@ -316,6 +331,8 @@ class RedirectToSearchView (BrowserView):
                         }
                        }
                      }
+        if typeOfDataTo in typeOfDataValues:
+            query['query']['bool']['filter'] = {"bool":{"should":[{"term":{"typeOfData":typeOfDataValues[typeOfDataTo]}}]}}
 
         link = link + '?source=' + urllib.quote(json.dumps(query))
 
