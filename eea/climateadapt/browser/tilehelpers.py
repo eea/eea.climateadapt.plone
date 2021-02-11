@@ -302,6 +302,15 @@ class NewsTile(ListingTile):
 
         return date
 
+    def get_item_title(self, item):
+        name = item.Title()
+        if len(name) > 60:
+            title = name[:60] + ' ...'
+        else:
+            title = name
+
+        return title
+
     @view.memoize
     def get_external_url(self, item):
         url = getattr(item, 'remoteUrl', None)
@@ -345,6 +354,15 @@ class EventsTile(ListingTile):
         date = item.end.strftime('%d %b %Y')
 
         return date
+
+    def get_item_title(self, item):
+        name = item.Title()
+        if len(name) > 60:
+            title = name[:60] + ' ...'
+        else:
+            title = name
+
+        return title
 
     @view.memoize
     def get_external_url(self, item):

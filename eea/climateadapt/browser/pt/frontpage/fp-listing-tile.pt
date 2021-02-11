@@ -1,13 +1,11 @@
 <div tal:attributes="class view/__name__">
   <ul tal:define="items view/items">
     <li tal:repeat="obj items">
-      <a href="" tal:attributes="href python: view.get_external_url(obj); title python: obj.title">
-        <tal:cond tal:condition="python: len(obj.title) > 60">
-          <span tal:content="python: obj.title[:60] + '...'"></span>
-        </tal:cond>
-        <tal:cond tal:condition="python: len(obj.title) < 60">
-          <span tal:content="python: obj.title"></span>
-        </tal:cond>
+      <a href=""
+         tal:attributes="href python: view.get_external_url(obj);
+                         title python: obj.title">
+        <span tal:define="title python: view.get_item_title(obj)"
+              tal:content="title"></span>
         <p tal:content="python: view.get_item_date(obj)" class="news-time"></p>
       </a>
     </li>

@@ -32,7 +32,7 @@
             <div class="fp-news-tile" tal:define="items view/latestNews">
               <ul>
                 <li tal:repeat="item items">
-                  <a tal:attributes="href item/url;title item/title"
+                  <a tal:attributes="href item/url; title item/title"
                      tal:content="item/title"></a>
                   <p class="news-time" tal:content="item/date"></p>
                 </li>
@@ -54,7 +54,7 @@
             <div class="fp-events-tile" tal:define="items view/upcomingEvents">
               <ul tal:condition="python: items">
                 <li tal:repeat="item items">
-                  <a tal:attributes="href item/url;title item/title"
+                  <a tal:attributes="href item/url; title item/title"
                      tal:content="item/title"></a>
                   <p class="news-time" tal:content="item/date"></p>
                 </li>

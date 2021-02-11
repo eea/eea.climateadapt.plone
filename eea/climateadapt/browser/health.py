@@ -44,6 +44,7 @@ class HealthHomepageItems(BrowserView):
             ).days
 
             size = self.days_elapsed_mapping(days)
+
             info = {
                 "title": item.Title,
                 "size": size,
@@ -81,6 +82,7 @@ class HealthHomepageItems(BrowserView):
             days = (strptime(created, "%d.%m.%Y") - now).days
 
             size = self.days_elapsed_mapping(days * -1)
+
             info = {
                 "title": item.Title,
                 "size": size,
