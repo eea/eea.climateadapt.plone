@@ -1,5 +1,3 @@
-from zope.interface import implements
-
 from eea.climateadapt.behaviors import (IAceItem, IAction, IC3sIndicator,
                                         IGuidanceDocument, IIndicator,
                                         IInformationPortal, IMapGraphDataset,
@@ -7,6 +5,7 @@ from eea.climateadapt.behaviors import (IAceItem, IAction, IC3sIndicator,
                                         IResearchProject, ITool)
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from plone.directives import dexterity
+from zope.interface import implements
 
 
 class PublicationReport(dexterity.Container):
