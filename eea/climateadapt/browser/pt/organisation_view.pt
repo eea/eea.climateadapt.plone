@@ -1,12 +1,11 @@
-<html
-  xmlns="http://www.w3.org/1999/xhtml"
-  xml:lang="en"
-  xmlns:tal="http://xml.zope.org/namespaces/tal"
-  xmlns:metal="http://xml.zope.org/namespaces/metal"
-  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  lang="en"
-  metal:use-macro="context/main_template/macros/master"
-  >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xml:lang="en"
+>
 
   <body>
     <metal:main fill-slot="body">
@@ -14,99 +13,123 @@
 
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
 
-          <div metal:fill-slot="ace-left-slot">
+          <metal:slot metal:fill-slot="ace-left-slot">
             <h3>Description:</h3>
-            <tal:block content="structure python: view.w['long_description'].render()"/>
+            <tal:block content="structure python: view.w['long_description'].render()" />
             <div tal:condition="view/is_observatory_page">
               <div tal:condition="context/organisational_key_activities">
                 <h3>Key activities within climate change and health</h3>
-                <p tal:content="structure context/organisational_key_activities/output | nothing"></p>
+                <p tal:content="structure context/organisational_key_activities/output | nothing" />
               </div>
             </div>
 
-            <div tal:condition="contributions" tal:define="contributions view/get_contributions | nothing">
-                <h5>Contributions:</h5>
-                <ul>
-                    <li tal:repeat="contribution contributions">
-                        <a tal:content="contribution/title" tal:attributes="href contribution/url"/>
-                    </li>
-                </ul>
-            </div>
-
-            <li tal:condition="view/get_adaptation_options | nothing">
-              <a href="#adapt_options_anchor" style="text-decoration: underline">
-                Adaptation Options Implemented In This Case</a>
-            </li>
-
             <h4 class="reference-title">Reference information</h4>
             <h5>Websites:</h5>
-            <div metal:use-macro="context/ace_macros/macros/websites"></div>
+            <div metal:use-macro="context/ace_macros/macros/websites" />
             <div tal:condition="view/is_observatory_page">
-                <div tal:on-error="nothing" tal:condition="context/organisational_websites">
-                    <h5>Links to further information</h5>
-                    <tal:block content="structure python: view.w['organisational_websites'].render()"/>
-                </div>
+              <div tal:condition="context/organisational_websites"
+                   tal:on-error="nothing"
+              >
+                <h5>Links to further information</h5>
+                <tal:block content="structure python: view.w['organisational_websites'].render()" />
+              </div>
 
-                <div tal:condition="context/organisational_contact_information">
-                    <h5>Contact information for the Observatory</h5>
-                    <p tal:content="structure context/organisational_contact_information/raw"></p>
-                </div>
+              <div tal:condition="context/organisational_contact_information">
+                <h5>Contact information for the Observatory</h5>
+                <p tal:content="structure context/organisational_contact_information/raw" />
+              </div>
             </div>
 
+            <div tal:define="
+                   contributions view/get_contributions | nothing;
+                 "
+                 tal:condition="contributions"
+            >
+              <h5>Observatory Contributions:</h5>
+              <ul>
+                <li tal:repeat="contribution contributions">
+                  <a tal:content="contribution/title"
+                     tal:attributes="
+                       href contribution/url;
+                     "
+                  />
+                </li>
+              </ul>
+              <div style="margin-top:1em !important">
+                <a href=""
+                   tal:attributes="
+                     href view/contributions_link;
+                   "
+                >View all contributions in the resource catalogue</a>
+              </div>
+            </div>
 
             <div tal:content="structure provider:plone.abovecontentbody" />
 
             <metal:macro use-macro="context/ace_macros/macros/content_dates" />
 
-            <div metal:use-macro="context/ace_macros/macros/comments"></div>
-          </div>
+            <div metal:use-macro="context/ace_macros/macros/comments" />
+          </metal:slot>
 
           <div metal:fill-slot="ace-right-slot">
 
-            <div class="macro-category" tal:condition="effective" tal:define="effective context/publication_date|nothing">
-                <div>
-                  <h4>Date of creation:</h4>
-                  <span tal:replace="python: effective.strftime('%Y')">2000</span>
-                  <a href="#" data-toggle="tooltip" class="pat-tooltip"
-                        title="The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT">
-                        <i class="fa fa-question-circle"></i>
-                  </a>
-                </div>
+            <div class="macro-category"
+                 tal:define="
+                   effective context/publication_date|nothing;
+                 "
+                 tal:condition="effective"
+            >
+              <div>
+                <h4>Date of creation:</h4>
+                <span tal:replace="python: effective.strftime('%Y')">2000</span>
+                <a class="pat-tooltip"
+                   href="#"
+                   title="The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
+                   data-toggle="tooltip"
+                >
+                  <i class="fa fa-question-circle" />
+                </a>
+              </div>
             </div>
 
-            <div metal:use-macro="context/ace_macros/macros/files"></div>
+            <div metal:use-macro="context/ace_macros/macros/files" />
 
-            <div class="macro-category" tal:condition="context/keywords">
+            <div class="macro-category"
+                 tal:condition="context/keywords"
+            >
               <h4>Keywords:</h4>
-              <div metal:use-macro="context/ace_macros/macros/keywords"></div>
+              <div metal:use-macro="context/ace_macros/macros/keywords" />
             </div>
 
             <div class="macro-category">
               <h4>Climate impacts:</h4>
-              <tal:block content="structure python:view.w['climate_impacts'].render()"/>
+              <tal:block content="structure python:view.w['climate_impacts'].render()" />
             </div>
 
-            <div id="cca-macro-category-elements" class="macro-category">
+            <div class="macro-category"
+                 id="cca-macro-category-elements"
+            >
               <h4>Elements:</h4>
-              <tal:block content="structure python:view.w['elements'].render()"/>
+              <tal:block content="structure python:view.w['elements'].render()" />
             </div>
 
             <div class="macro-category">
               <h4>Sectors:</h4>
-              <tal:block content="structure python:view.w['sectors'].render()"/>
+              <tal:block content="structure python:view.w['sectors'].render()" />
             </div>
 
             <div class="macro-category">
               <h4>Geographic characterisation:</h4>
-              <div metal:use-macro="context/ace_macros/macros/geochar"></div>
+              <div metal:use-macro="context/ace_macros/macros/geochar" />
             </div>
 
           </div>
 
         </metal:macro>
         <div id="viewlet-below-content-body"
-          tal:content="structure provider:plone.belowcontentbody"
-          tal:condition="not:ajax_load">
+             tal:condition="not:ajax_load"
+             tal:content="structure provider:plone.belowcontentbody"
+        >
         </div>
 
       </tal:main-macro>

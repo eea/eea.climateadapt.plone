@@ -1,9 +1,6 @@
 import json
 import logging
 
-from zope.component import adapts
-from zope.interface import Interface, implements
-
 import pytz
 import rdflib
 import surf
@@ -20,6 +17,8 @@ from plone.dexterity.interfaces import IDexterityContent
 from plone.formwidget.geolocation.interfaces import IGeolocation
 from plone.namedfile.interfaces import INamedBlobFile, INamedBlobImage
 from Products.CMFCore.utils import getToolByName
+from zope.component import adapts
+from zope.interface import Interface, implements
 
 from .vocabulary import ace_countries
 
@@ -297,7 +296,7 @@ class ContributorModifier(object):
         contributor_list = getattr(self.context, "contributor_list", None)
 
         if hasattr(self.context, 'include_in_observatory') and \
-            self.context.include_in_observatory:
+                self.context.include_in_observatory:
 
             partner_contributors = []
             if contributor_list:

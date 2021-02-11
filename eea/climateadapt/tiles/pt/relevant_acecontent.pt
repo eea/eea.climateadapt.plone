@@ -48,10 +48,10 @@
     </div>
 
     <div class="aceitem-relevant-tile-wrapper"
-     tal:define="element_type python:view.data.get('element_type');
-     sector python:view.data.get('sector');
-     search_type python:view.data.get('search_type');
-     special_tags python:view.data.get('special_tags');
+     tal:define="element_type python:view.data.get('element_type', []) or [];
+     sector python:view.data.get('sector', []) or [];
+     search_type python:view.data.get('search_type', []) or [];
+     special_tags python:view.data.get('special_tags', []) or [];
      search_text python:view.data.get('search_text');"
     >
 

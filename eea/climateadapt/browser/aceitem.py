@@ -1,17 +1,19 @@
-from zope.interface import classImplements  # , implements
-
-from zc.relation.interfaces import ICatalog
-from zope.component import getUtility
-from zope.intid.interfaces import IIntIds
-from plone import api
+import json
+import urllib
+from itertools import chain, islice
 
 from eea.climateadapt.browser import AceViewApi
+from plone import api
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.edit import DefaultEditForm
 from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityEditForm
 from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
+from zc.relation.interfaces import ICatalog
+from zope.component import getUtility
+from zope.interface import classImplements  # , implements
+from zope.intid.interfaces import IIntIds
 
 # from zope.interface import implements
 # from eea.depiction.browser.interfaces import IImageView
@@ -96,25 +98,58 @@ class OrganisationView(DefaultView, AceViewApi):
         return 0
 
     def get_contributions(self):
-        # TODO: filter by published
+        MAX_SIZE = 20
 
-        intids = getUtility(IIntIds)
-
-        site = api.portal.get()
-        object = site.restrictedTraverse('metadata/organisations/world-health-organization')
-        query = {'to_id':intids.getId(object), 'from_attribute': 'contributor_list'}
         relation_catalog = getUtility(ICatalog)
-        results = list(relation_catalog.findRelations(query))
+        intids = getUtility(IIntIds)
+        uid = intids.getId(self.context)
+
+        contributor_list = islice(relation_catalog.findRelations(
+            {'to_id': uid, 'from_attribute': 'contributor_list'}), 20)
+        contributors = islice(relation_catalog.findRelations(
+            {'to_id': uid, 'from_attribute': 'contributors'}), 20)
+
         response = []
-        for result in results:
-            response.append({
-                    'title': result.from_object.title,
-                    'url':result.from_object.absolute_url()
+
+        for item in chain(contributor_list, contributors):
+            obj = item.from_object
+
+            if api.content.get_state(obj) == 'published':
+                response.append({
+                    'title': obj.title,
+                    'url': obj.absolute_url()
                 })
-            if len(response)>=10:
+
+            if len(response) == MAX_SIZE:
                 break
 
-        return response;
+        return response
+
+    def contributions_link(self):
+        org = self.context.Title()
+
+        if org == 'World Health Organization - Regional Office for Europe':
+            org = 'World Health Organization-Europe'
+
+        t = {
+            u"function_score": {
+                u"query": {
+                    u"bool": {
+                        u"filter": {
+                            u"bool": {
+                                u"should": [
+                                    {u"term": {u"partner_contributors": org}}
+                                ]
+                            }
+                        },
+                    }
+                }
+            }
+        }
+
+        q = {"query": t}
+
+        return "/observatory/catalogue/?source=" + urllib.quote(json.dumps(q))
 
 
 # Form Extenders + add/edit forms
