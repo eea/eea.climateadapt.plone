@@ -1,0 +1,28 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="plone"
+    >
+
+  <adapter factory=".contentrules.ReindexActionExecutor" />
+
+  <browser:page
+      name="eea.climateadapt.Reindex"
+      for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
+      class=".contentrules.ReindexAddForm"
+      permission="plone.app.contentrules.ManageContentRules"
+      />
+
+  <plone:ruleAction
+      name="eea.climateadapt.Reindex"
+      title="Reindex object"
+      description="Unindex and index object in Catalog"
+      for="*"
+      event="zope.component.interfaces.IObjectEvent"
+      schema=".contentrules.IReindexAction"
+      factory=".contentrules.ReindexAction"
+      addview="eea.climateadapt.Reindex"
+      />
+
+</configure>
