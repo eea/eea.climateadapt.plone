@@ -7,6 +7,9 @@ import transaction
 from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
 
+from zope.lifecycleevent import ObjectModifiedEvent
+from zope.event import notify
+
 from eea.climateadapt.vocabulary import _health_impacts
 from plone import api
 from plone.api import portal
@@ -396,12 +399,15 @@ class SourceToRichText:
         catalog = api.portal.get_tool("portal_catalog")
 
         DB_ITEM_TYPES = [
+            "eea.climateadapt.adaptationoption",
+            "eea.climateadapt.casestudy",
             "eea.climateadapt.guidancedocument",
             "eea.climateadapt.indicator",
             "eea.climateadapt.informationportal",
             "eea.climateadapt.organisation",
             "eea.climateadapt.publicationreport",
             "eea.climateadapt.tool",
+            "eea.climateadapt.video"
         ]
 
         i = 0
@@ -541,6 +547,120 @@ class UpdateHealthItemsNone:
                     obj._p_changed = True
 
         return res
+
+
+class AllObjectsNotify:
+    """ Migrate funding_programme field
+    """
+
+    def get_object(self, path):
+        local_path = path.replace('http://', '')
+        local_path = local_path.replace('https://', '')
+
+        local_path = local_path[local_path.find('/'):]
+        local_path = local_path[1:]
+
+        #import pdb; pdb.set_trace()
+        site = api.portal.get()
+        try:
+            object = site.restrictedTraverse(local_path)
+            if object:
+                return object
+        except Exception, e:
+            return None
+
+        return None
+
+    def list(self):
+
+        catalog = api.portal.get_tool('portal_catalog')
+
+        map_organisations = {
+            'Copernicus Climate Change Service - Climate-ADAPT (europa.eu)':
+                {'url': 'copernicus-climate-change-service-ecmw', 'id': 0, 'object': None},
+            'European Centre for Disease Prevention and Control - Climate-ADAPT (europa.eu)':
+                {'url': 'european-centre-for-disease-prevention-and-control-ecdc', 'id': 0, 'object': None},
+            'European Commission - Climate-ADAPT (europa.eu)':
+                {'url': 'european-commission', 'id': 0, 'object': None},
+            'European Environment Agency - Climate-ADAPT (europa.eu)':
+                {'url': 'european-environment-agency-eea', 'id': 0, 'object': None},
+            'European Food Safety Authority - Climate-ADAPT (europa.eu)':
+                {'url': 'european-food-safety-authority', 'id': 0, 'object': None},
+            'Lancet Countdown - Climate-ADAPT (europa.eu)':
+                {'url': 'lancet-countdown', 'id': 0, 'object': None},
+            'World Health Organization - Regional Office for Europe - Climate-ADAPT (europa.eu)':
+                {'url': 'who-regional-office-for-europe-who-europe', 'id': 0, 'object': None},
+            'World Health Organization - Climate-ADAPT (europa.eu)':
+                {'url': 'world-health-organization', 'id': 0, 'object': None}
+        }
+
+        util = getUtility(IIntIds, context=self.context)
+        for title in map_organisations.keys():
+            orgs = self.context.portal_catalog.searchResults(
+                portal_type="eea.climateadapt.organisation", getId=map_organisations[title]['url'])
+            if not orgs:
+                logger.warning("Organisation not found: %s", title)
+            else:
+                map_organisations[title]['id'] = util.getId(orgs[0].getObject())
+                map_organisations[title]['object'] = orgs[0].getObject()
+
+        response = []
+        fileUploaded = self.request.form.get('fileToUpload', None)
+
+        if not fileUploaded:
+            return response
+
+        reader = csv.reader(
+            fileUploaded,
+            delimiter=',',
+            quotechar='"',
+            #    dialect='excel',
+        )
+
+        for row in reader:
+            item = {}
+            item['title'] = row[0]
+            item['url'] = row[10]
+            item['partners'] = row[17]
+
+            if len(item['url']) < 5:
+                continue
+
+            if len(item['partners']) < 5:
+                continue
+
+            if item['partners'] == 'Other Organisations':
+                continue
+
+            item['partners'] = item['partners'].replace('\xe2\x80\x94', '-')
+
+            obj = self.get_object(item['url'])
+
+            if not obj:
+                logger.warning("Object not found: %s", item['url'])
+                continue
+
+            if item['partners'] not in map_organisations:
+                logger.warning("Partner not found: %s [%s]", item['url'], item['partners'])
+                continue
+
+            partner_object_id = map_organisations[item['partners']]['id']
+            if not partner_object_id:
+                logger.warning("Partner not match: %s [%s]", item['url'], item['partners'])
+                continue
+
+            obj.contributor_list = []
+
+            logger.info("Notificattion set: %s", item['url'])
+            notify(ObjectModifiedEvent(obj))
+
+            # transaction.savepoint()
+            response.append({
+                'title': obj.title,
+                'url': item['url'],
+            })
+
+        return response
 
 
 class UpdateHealthItemsFields:
