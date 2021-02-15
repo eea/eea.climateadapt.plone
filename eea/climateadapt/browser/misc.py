@@ -312,7 +312,7 @@ class RedirectToSearchView (BrowserView):
             link = '/data-and-downloads/'
 
         if link == '/observatory/catalogue/' and typeOfDataTo == 'organisations':
-            link = '/observatory/About/about-the-observatory';
+            link = '/observatory/About/about-the-observatory#partners';
         else:
             querystring = self.request.form.get('SearchableText', "")
             query = {
