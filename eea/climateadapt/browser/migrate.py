@@ -650,8 +650,6 @@ class AllObjectsNotify:
                 logger.warning("Partner not match: %s [%s]", item['url'], item['partners'])
                 continue
 
-            obj.contributor_list = []
-
             logger.info("Notificattion set: %s", item['url'])
             notify(ObjectModifiedEvent(obj))
 
