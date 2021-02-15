@@ -580,7 +580,7 @@ function createSectionsSelector(callback) {    // sections,
   var sections = ['hhap', 'hhws'];
   var titles = {
     hhap: "Heat-Health Action Plan (HHAP)",
-    hhws: "Heat–Health Warning Systems (HHWSs)"
+    hhws: "Heat–Health Warning Systems (HHWS)"
   }
 
   sections.forEach(function (key, index) {
