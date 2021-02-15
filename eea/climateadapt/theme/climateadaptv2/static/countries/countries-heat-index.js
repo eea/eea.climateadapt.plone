@@ -566,7 +566,7 @@ function createTooltip(opts) {
     .attr('id', 'country-name')
     .append(h3_name)
   ;
-  var tooltip = $("<div id='map-tooltip'>")
+  var tooltip = $("<div id='map-tooltip' style='width:200px !important' >")
     .attr('style', style)
     .append(name_div)
     .append(content_div)

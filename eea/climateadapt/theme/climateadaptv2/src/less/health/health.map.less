@@ -3,8 +3,9 @@
 // this are for the health index map
 
 @nationalhhap: #2e75b6;
-@nohhap: #deebf7;
-@subnationalhhap: #9dc3e6;
+@subnationalhhap: #8baece;
+@nohhap: #cfe3ff;
+@sphere: #deebf7;
 @noinformation: #bfbfbf;
 
 .country-nationalhhap path {
@@ -52,4 +53,10 @@ span.country-no-hhap {
 
 span.country-none {
   background: @noinformation;
+}
+
+#heatindex-map-container {
+  .sphere {
+    fill: @sphere !important;
+  }
 }

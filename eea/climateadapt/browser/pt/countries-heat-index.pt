@@ -20,7 +20,7 @@
   <!-- -->
 
   <div class="cover-richtext-tile tile-content"
-       id="countrymap-container"
+       id="heatindex-map-container"
   >
 
     <!-- The real map -->
