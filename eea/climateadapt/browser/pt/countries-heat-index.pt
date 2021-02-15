@@ -81,15 +81,15 @@
       </div>
 
       <!-- Disclaimer in right side of map -->
-      <div id="disclaimer">
-        <i class="fa fa-exclamation-circle"
-           aria-hidden="true"
-        />
-        [Disclaimer]
-        <div id="hover-content">
-          The information presented in these pages is based on the reporting according to the Monitoring Mechanism Regulation (Regulation (EU) No 525/2013) and updated by the EEA member countries
-        </div>
-      </div>
+      <!-- <div id="disclaimer"> -->
+      <!--   <i class="fa fa&#45;exclamation&#45;circle" -->
+      <!--      aria&#45;hidden="true" -->
+      <!--   /> -->
+      <!--   [Disclaimer] -->
+      <!--   <div id="hover&#45;content"> -->
+      <!--     The information presented in these pages is based on the reporting according to the Monitoring Mechanism Regulation (Regulation (EU) No 525/2013) and updated by the EEA member countries -->
+      <!--   </div> -->
+      <!-- </div> -->
     </div>
 
     <div class="country-tooltip-template"

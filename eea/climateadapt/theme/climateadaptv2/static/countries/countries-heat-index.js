@@ -578,6 +578,10 @@ function createSectionsSelector(callback) {    // sections,
   // var container = $("#countries-map-selector");
   var widget = $("#sections-selector");
   var sections = ['hhap', 'hhws'];
+  var titles = {
+    hhap: "Heat-Health Action Plan (HHAP)",
+    hhws: "Heat–Health Warning Systems (HHWSs)"
+  }
 
   sections.forEach(function (key, index) {
     var label = $("<label>");
@@ -594,7 +598,7 @@ function createSectionsSelector(callback) {    // sections,
 
     label
       .append(inp)
-      .append(key)
+      .append(titles[key])
       .append(span)
     ;
     widget.append($(label));
