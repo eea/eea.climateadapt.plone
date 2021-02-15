@@ -316,6 +316,7 @@ class ContributingOrganisationPartner():
             logger.info("Partner set: %s [%s]", item['url'], item['partners'])
             obj.contributor_list.append(RelationValue(partner_object_id))
             obj._p_changed = True
+            notify(ObjectModifiedEvent(obj))
 
             # transaction.savepoint()
             response.append({
