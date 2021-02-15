@@ -1,0 +1,40 @@
+country_id,country,hhap,hhws,heat_index,heat_index_description,website
+Austria,Austria,National HHAP,HWWS exists,PT; Tmin,perceived temperature; daily minimum temperature,http://warnungen.zamg.at/html/de/heute/alle/at/
+Belgium,Belgium,National HHAP,HWWS exists,Tmax; Tmin; Tcumul,daily maximum temperature; daily minimum temperature; 5-day cumulated threshold exceedance of daily maximum temperature,https://www.meteo.be/en/weather/warnings/overview-belgium
+Bulgaria,Bulgaria,Subnational HHAP,No information,,,
+Croatia,Croatia,National HHAP,No information,,,
+Cyprus,Cyprus,No HHAP,No information,,,
+Czechia,Czechia,Subnational HHAP,No information,,,
+Denmark,Denmark,No HHAP,No information,,,
+Estonia,Estonia,No HHAP,No information,,,
+Finland,Finland,No HHAP,No information,,,
+France,France,National HHAP,HWWS exists,BMI,Biometeorological indicator (combination of daily minimum and maximum temperature over three days),https://vigilance.meteofrance.fr/fr
+Germany,Germany,National HHAP,HWWS exists,PT; Tmin,"perceived temperature (combination of temperature, radiation, wind humidity); daily minimum temperature",https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html
+Greece,Greece,Subnational HHAP,HWWS exists,Tmax; HI,daily maximum temperature; Heat index,http://www.emy.gr/emy/en
+Hungary,Hungary,National HHAP,HWWS exists,Tmean,mean temperature,https://www.met.hu/en/idojaras/veszelyjelzes/
+Iceland,Iceland,No information,No information,,,
+Ireland,Ireland,No information,No information,,,
+Italy,Italy,National HHAP,HWWS exists,Tappmax,maximum apparent temperature,http://www.meteoam.it/
+Latvia,Latvia,No information,No information,,,
+Liechtenstein,Liechtenstein,No information,No information,,,
+Lithuania,Lithuania,Subnational HHAP,No information,,,
+Luxembourg,Luxembourg,No information,No information,,,
+Malta,Malta,National HHAP,No information,,,
+Netherlands,Netherlands,National HHAP,HWWS exists,Tmax,daily maximum temperature,https://www.knmi.nl/nederland-nu/weer/waarschuwingen/
+Norway,Norway,No HHAP,No information,,,
+Poland,Poland,No HHAP,No information,,,
+Portugal,Portugal,National HHAP,HWWS exists,ICARO index,ICARO index (expected excess mortality),http://www.ipma.pt/en/otempo/prev-sam
+Romania,Romania,No information,HWWS exists,Tmax,daily maximum temperature,http://www.meteoromania.ro/avertizari/
+Slovenia,Slovenia,National HHAP,HWWS exists,Tmean; Tmax,mean temperature; daily maximum temperature,http://www.meteo.si/met/sl/warning/
+Slovakia,Slovakia,No information,No information,,,
+Spain,Spain,National HHAP,HWWS exists,Tmax; Tmin,daily maximum temperature; daily minimum temperature,http://www.aemet.es/es/eltiempo/prediccion/avisos
+Sweden,Sweden,National HHAP,HWWS exists,Tmax,daily maximum temperature,http://www.smhi.se/en/weather/sweden-weather/
+Switzerland,Switzerland,National HHAP,HWWS exists,HI,heat index,https://www.naturgefahren.ch/
+Turkey,Turkey,No information,No information,,,
+,,,,,,
+Albania,Albania,Subnational HHAP,No information,,,
+Bosnia-Herzegovina,Bosnia-Herzegovina,No information,No information,,,
+Kosovo (under UNSCR 1244/99),Kosovo (under UNSCR 1244/99),No information,No information,,,
+Montenegro,Montenegro,No HHAP,No information,,,
+North Macedonia,North Macedonia,National HHAP,HWWS exists,Tmax,daily maximum temperature,https://uhmr.gov.mk/
+Serbia,Serbia,No HHAP,No information,,,

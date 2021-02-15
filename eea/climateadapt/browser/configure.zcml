@@ -3,975 +3,1015 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:z3c="http://namespaces.zope.org/z3c"
-    i18n_domain="eea.climateadapt">
+    i18n_domain="eea.climateadapt"
+    >
 
-    <include file="integration.zcml" />
-    <include file="admin.zcml" />
-    <include file="frontpage.zcml" />
-    <include file="faceted.zcml" />
-    <include file="depiction.zcml" />
-    <include file="migrations.zcml" />
+  <include file="integration.zcml" />
+  <include file="admin.zcml" />
+  <include file="frontpage.zcml" />
+  <include file="faceted.zcml" />
+  <include file="depiction.zcml" />
+  <include file="migrations.zcml" />
 
 
-    <browser:page
-        for="*"
-        name="iterate_control"
-        class=".IterateControl"
-        permission="zope2.View"
-        allowed_attributes="checkin_allowed checkout_allowed cancel_allowed is_checkout"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+  <browser:page
+      name="iterate_control"
+      for="*"
+      class=".IterateControl"
+      allowed_attributes="checkin_allowed checkout_allowed cancel_allowed is_checkout"
+      permission="zope2.View"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+      />
+
+  <browser:resourceDirectory
+      name="eea.climateadapt"
+      directory="resources"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+      />
+
+  <browser:resource
+      name="plone.app.jquerytools.overlayhelpers.js"
+      file="resources/overlayhelpers.js"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+      />
+
+  <browser:resource
+      name="export_to_excel.js"
+      file="resources/export_to_excel.js"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+      />
+
+  <z3c:widgetTemplate
+      widget="z3c.form.interfaces.IOrderedSelectWidget"
+      template="pt/orderedselect_display.pt"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+      mode="display"
+      />
+
+  <browser:menuItems
+      menu="plone_displayviews"
+      for="collective.cover.content.ICover"
+      >
+    <browser:menuItem
+        title="Standard with no title"
+        action="no_title_cover_view"
         />
-
-    <browser:resourceDirectory
-        name="eea.climateadapt"
-        directory="resources"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    <browser:menuItem
+        title="Columned View"
+        action="column_view"
         />
-
-    <browser:resource
-        name="plone.app.jquerytools.overlayhelpers.js"
-        file="resources/overlayhelpers.js"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    <browser:menuItem
+        title="Vertical Tab View"
+        action="vertical_tab_view"
         />
+  </browser:menuItems>
 
-    <browser:resource
-        name="export_to_excel.js"
-        file="resources/export_to_excel.js"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+  <browser:menuItems
+      menu="plone_displayviews"
+      for="*"
+      >
+    <browser:menuItem
+        title="Listing with dates"
+        action="listing-with-dates"
         />
+  </browser:menuItems>
 
-    <z3c:widgetTemplate
-        mode="display"
-        widget="z3c.form.interfaces.IOrderedSelectWidget"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        template="pt/orderedselect_display.pt"
-        />
+  <browser:page
+      name="dashboard-v2"
+      for="*"
+      class=".dashboard.DashboardView"
+      template="pt/dashboard.pt"
+      permission="zope2.View"
+      />
 
-    <browser:menuItems
-        for="collective.cover.content.ICover"
-        menu="plone_displayviews"
-        >
-        <browser:menuItem
-            title="Standard with no title"
-            action="no_title_cover_view"
-            />
-        <browser:menuItem
-            title="Columned View"
-            action="column_view"
-            />
-        <browser:menuItem
-            title="Vertical Tab View"
-            action="vertical_tab_view"
-            />
-    </browser:menuItems>
+  <browser:page
+      name="listing-with-dates"
+      for="*"
+      template="pt/listing-with-dates.pt"
+      permission="zope2.View"
+      />
 
-    <browser:menuItems
-        for="*"
-        menu="plone_displayviews"
-        >
-        <browser:menuItem
-            action="listing-with-dates"
-            title="Listing with dates"
-            />
-    </browser:menuItems>
+  <browser:page
+      name="ace_macros"
+      for="*"
+      template="pt/ace_macros.pt"
+      permission="zope.Public"
+      />
 
-    <browser:page
-        for="*"
-        name="dashboard-v2"
-        template="pt/dashboard.pt"
-        class=".dashboard.DashboardView"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="calculate-item-statistics"
+      for="*"
+      class=".misc.CalculateItemStatistics"
+      permission="cmf.ModifyPortalContent"
+      />
 
-    <browser:page
-        for="*"
-        name="listing-with-dates"
-        template="pt/listing-with-dates.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="write-macrotrans-regions"
+      for="*"
+      class=".misc.GetItemsForMacrotransRegions"
+      permission="cmf.ModifyPortalContent"
+      />
 
-    <browser:page
-        name="ace_macros"
-        for="*"
-        template="pt/ace_macros.pt"
-        permission="zope.Public"
-        />
+  <browser:page
+      name="clear-macrotrans-regions"
+      for="*"
+      class=".misc.ClearMacrotransnationalRegions"
+      permission="cmf.ModifyPortalContent"
+      />
 
-    <browser:page
-        name="calculate-item-statistics"
-        for="*"
-        class=".misc.CalculateItemStatistics"
-        permission="cmf.ModifyPortalContent"
-        />
+  <browser:page
+      name="get-item-statistics"
+      for="*"
+      class=".misc.getItemStatistics"
+      template="pt/item_statistics.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="write-macrotrans-regions"
-        for="*"
-        class=".misc.GetItemsForMacrotransRegions"
-        permission="cmf.ModifyPortalContent"
-        />
+  <browser:page
+      name="no_title_cover_view"
+      for="*"
+      class=".CoverNoTitleView"
+      template="pt/no_title_cover_view.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="clear-macrotrans-regions"
-        for="*"
-        class=".misc.ClearMacrotransnationalRegions"
-        permission="cmf.ModifyPortalContent"
-        />
+  <browser:page
+      name="column_view"
+      for="*"
+      class=".CoverNoTitleView"
+      template="pt/cover_column_view.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="get-item-statistics"
-        for="*"
-        class=".misc.getItemStatistics"
-        permission="zope2.View"
-        template="pt/item_statistics.pt"
-        />
+  <browser:page
+      name="vertical_tab_view"
+      for="*"
+      class=".CoverNoTitleView"
+      template="pt/vertical_tab_view.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="no_title_cover_view"
-        for="*"
-        class=".CoverNoTitleView"
-        template="pt/no_title_cover_view.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="view"
+      for="eea.climateadapt.aceitem.IIndicator"
+      class="eea.climateadapt.browser.aceitem.IndicatorView"
+      template="pt/indicator_view.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="column_view"
-        for="*"
-        class=".CoverNoTitleView"
-        template="pt/cover_column_view.pt"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        name="vertical_tab_view"
-        for="*"
-        class=".CoverNoTitleView"
-        template="pt/vertical_tab_view.pt"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        name="view"
-        for="eea.climateadapt.aceitem.IIndicator"
-        class="eea.climateadapt.browser.aceitem.IndicatorView"
-        template="pt/indicator_view.pt"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        name="view"
-        for="eea.climateadapt.aceitem.IC3sIndicator"
-        class="eea.climateadapt.browser.aceitem.C3sIndicatorView"
-        template="pt/c3sindicator_view.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="view"
+      for="eea.climateadapt.aceitem.IC3sIndicator"
+      class="eea.climateadapt.browser.aceitem.C3sIndicatorView"
+      template="pt/c3sindicator_view.pt"
+      permission="zope2.View"
+      />
 
 
-    <browser:page
-        name="view"
-        for="eea.climateadapt.aceitem.IPublicationReport"
-        class="eea.climateadapt.browser.aceitem.PublicationReportView"
-        template="pt/publicationreport_view.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="view"
+      for="eea.climateadapt.aceitem.IPublicationReport"
+      class="eea.climateadapt.browser.aceitem.PublicationReportView"
+      template="pt/publicationreport_view.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="view"
-        for="eea.climateadapt.aceitem.IInformationPortal"
-        class="eea.climateadapt.browser.aceitem.InformationPortalView"
-        template="pt/informationportal_view.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="view"
+      for="eea.climateadapt.aceitem.IInformationPortal"
+      class="eea.climateadapt.browser.aceitem.InformationPortalView"
+      template="pt/informationportal_view.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="view"
-        for="eea.climateadapt.aceitem.IGuidanceDocument"
-        class="eea.climateadapt.browser.aceitem.GuidanceDocumentView"
-        template="pt/guidancedocument_view.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="view"
+      for="eea.climateadapt.aceitem.IGuidanceDocument"
+      class="eea.climateadapt.browser.aceitem.GuidanceDocumentView"
+      template="pt/guidancedocument_view.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="view"
-        for="eea.climateadapt.aceitem.ITool"
-        class="eea.climateadapt.browser.aceitem.ToolView"
-        template="pt/tool_view.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="view"
+      for="eea.climateadapt.aceitem.ITool"
+      class="eea.climateadapt.browser.aceitem.ToolView"
+      template="pt/tool_view.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="view"
-        for="eea.climateadapt.aceitem.IMapGraphDataset"
-        class="eea.climateadapt.browser.mapgraphsdataset.MapGraphDatasetView"
-        template="pt/mapgraphdataset_view.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="view"
+      for="eea.climateadapt.aceitem.IMapGraphDataset"
+      class="eea.climateadapt.browser.mapgraphsdataset.MapGraphDatasetView"
+      template="pt/mapgraphdataset_view.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="view"
-        for="eea.climateadapt.aceitem.IOrganisation"
-        class="eea.climateadapt.browser.aceitem.OrganisationView"
-        template="pt/organisation_view.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="view"
+      for="eea.climateadapt.aceitem.IOrganisation"
+      class="eea.climateadapt.browser.aceitem.OrganisationView"
+      template="pt/organisation_view.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="view"
-        for="eea.climateadapt.acemeasure.ICaseStudy"
-        class=".casestudy.CaseStudyView"
-        template="pt/casestudy_view.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="view"
+      for="eea.climateadapt.acemeasure.ICaseStudy"
+      class=".casestudy.CaseStudyView"
+      template="pt/casestudy_view.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name=".json"
-        for="eea.climateadapt.acemeasure.ICaseStudy"
-        class=".casestudy.CaseStudyJson"
-        permission="zope2.View"
-        />
+  <browser:page
+      name=".json"
+      for="eea.climateadapt.acemeasure.ICaseStudy"
+      class=".casestudy.CaseStudyJson"
+      permission="zope2.View"
+      />
 
     -----[ Case Study Form customizations ]----
 
-    <browser:page
-        for="eea.climateadapt.acemeasure.ICaseStudy"
-        name="edit"
-        class=".casestudy.CaseStudyEditView"
-        permission="cmf.ModifyPortalContent"
-        />
+  <browser:page
+      name="edit"
+      for="eea.climateadapt.acemeasure.ICaseStudy"
+      class=".casestudy.CaseStudyEditView"
+      permission="cmf.ModifyPortalContent"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.acemeasure.ICaseStudy
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .casestudy.CaseStudyEditForm"
-        factory=".casestudy.CaseStudyFormExtender"
-        />
+  <adapter
+      factory=".casestudy.CaseStudyFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="eea.climateadapt.acemeasure.ICaseStudy
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .casestudy.CaseStudyEditForm"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .casestudy.CaseStudyAddForm"
-        factory=".casestudy.CaseStudyFormExtender"
-        />
+  <adapter
+      factory=".casestudy.CaseStudyFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="Products.CMFCore.interfaces.IFolderish
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .casestudy.CaseStudyAddForm"
+      />
 
     -----[ Adaptation Option Form customizations ]----
 
-    <browser:page
-        for="eea.climateadapt.acemeasure.IAdaptationOption"
-        name="edit"
-        class=".adaptationoption.AdaptationOptionEditView"
-        permission="cmf.ModifyPortalContent"
-        />
+  <browser:page
+      name="edit"
+      for="eea.climateadapt.acemeasure.IAdaptationOption"
+      class=".adaptationoption.AdaptationOptionEditView"
+      permission="cmf.ModifyPortalContent"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.acemeasure.IAdaptationOption
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .adaptationoption.AdaptationOptionEditForm
-        "
-        factory=".adaptationoption.AdaptationOptionFormExtender"
-        />
+  <adapter
+      factory=".adaptationoption.AdaptationOptionFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="eea.climateadapt.acemeasure.IAdaptationOption
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .adaptationoption.AdaptationOptionEditForm"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .adaptationoption.AdaptationOptionAddForm
-        "
-        factory=".adaptationoption.AdaptationOptionFormExtender"
-        />
+  <adapter
+      factory=".adaptationoption.AdaptationOptionFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="Products.CMFCore.interfaces.IFolderish
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .adaptationoption.AdaptationOptionAddForm"
+      />
 
     -----[ Maps Graphs Form customizations ]----
 
-    <browser:page
-        for="eea.climateadapt.aceitem.IMapGraphDataset"
-        name="edit"
-        class=".mapgraphsdataset.MapsEditView"
-        permission="cmf.ModifyPortalContent"
-        />
+  <browser:page
+      name="edit"
+      for="eea.climateadapt.aceitem.IMapGraphDataset"
+      class=".mapgraphsdataset.MapsEditView"
+      permission="cmf.ModifyPortalContent"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.aceitem.IMapGraphDataset
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .mapgraphsdataset.MapsEditForm"
-        factory=".mapgraphsdataset.MapsFormExtender"
-        />
+  <adapter
+      factory=".mapgraphsdataset.MapsFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="eea.climateadapt.aceitem.IMapGraphDataset
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .mapgraphsdataset.MapsEditForm"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .mapgraphsdataset.MapsAddForm"
-        factory=".mapgraphsdataset.MapsFormExtender"
-        />
+  <adapter
+      factory=".mapgraphsdataset.MapsFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="Products.CMFCore.interfaces.IFolderish
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .mapgraphsdataset.MapsAddForm"
+      />
 
     -----[ Videos Form customizations ]----
 
-    <browser:page
-        for="eea.climateadapt.acevideo.IAceVideo"
-        name="edit"
-        class=".video.VideoEditView"
-        permission="cmf.ModifyPortalContent"
-        />
+  <browser:page
+      name="edit"
+      for="eea.climateadapt.acevideo.IAceVideo"
+      class=".video.VideoEditView"
+      permission="cmf.ModifyPortalContent"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.acevideo.IAceVideo
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .video.VideoEditForm"
-        factory=".video.VideoFormExtender"
-        />
+  <adapter
+      factory=".video.VideoFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="eea.climateadapt.acevideo.IAceVideo
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .video.VideoEditForm"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.acevideo.IAceVideo
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .video.VideoAddForm"
-        factory=".video.VideoFormExtender"
-        />
+  <adapter
+      factory=".video.VideoFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="eea.climateadapt.acevideo.IAceVideo
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .video.VideoAddForm"
+      />
 
     -----[ Publication Reports Form customizations ]----
 
-    <browser:page
-        for="eea.climateadapt.aceitem.IPublicationReport"
-        name="edit"
-        class=".aceitem.PublicationReportEditView"
-        permission="cmf.ModifyPortalContent"
-        />
+  <browser:page
+      name="edit"
+      for="eea.climateadapt.aceitem.IPublicationReport"
+      class=".aceitem.PublicationReportEditView"
+      permission="cmf.ModifyPortalContent"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.aceitem.IPublicationReport zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.PublicationReportEditForm"
-        factory=".aceitem.AceItemFormExtender"
-        />
+  <adapter
+      factory=".aceitem.AceItemFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="eea.climateadapt.aceitem.IPublicationReport
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.PublicationReportEditForm"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.PublicationReportAddForm"
-        factory=".aceitem.AceItemFormExtender"
-        />
+  <adapter
+      factory=".aceitem.AceItemFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="Products.CMFCore.interfaces.IFolderish
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.PublicationReportAddForm"
+      />
 
     -----[ Information Portals Form customizations ]----
 
-    <browser:page
-        for="eea.climateadapt.aceitem.IInformationPortal"
-        name="edit"
-        class=".aceitem.InformationPortalEditView"
-        permission="cmf.ModifyPortalContent"
-        />
+  <browser:page
+      name="edit"
+      for="eea.climateadapt.aceitem.IInformationPortal"
+      class=".aceitem.InformationPortalEditView"
+      permission="cmf.ModifyPortalContent"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.aceitem.IInformationPortal zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.InformationPortalEditForm"
-        factory=".aceitem.AceItemFormExtender"
-        />
+  <adapter
+      factory=".aceitem.AceItemFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="eea.climateadapt.aceitem.IInformationPortal
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.InformationPortalEditForm"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.InformationPortalAddForm"
-        factory=".aceitem.AceItemFormExtender"
-        />
+  <adapter
+      factory=".aceitem.AceItemFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="Products.CMFCore.interfaces.IFolderish
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.InformationPortalAddForm"
+      />
 
     -----[ Maps Graphs Form customizations ]----
 
-    <browser:page
-        for="eea.climateadapt.aceitem.IGuidanceDocument"
-        name="edit"
-        class=".aceitem.GuidanceDocumentEditView"
-        permission="cmf.ModifyPortalContent"
-        />
+  <browser:page
+      name="edit"
+      for="eea.climateadapt.aceitem.IGuidanceDocument"
+      class=".aceitem.GuidanceDocumentEditView"
+      permission="cmf.ModifyPortalContent"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.aceitem.IGuidanceDocument zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.GuidanceDocumentEditForm"
-        factory=".aceitem.AceItemFormExtender"
-        />
+  <adapter
+      factory=".aceitem.AceItemFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="eea.climateadapt.aceitem.IGuidanceDocument
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.GuidanceDocumentEditForm"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.GuidanceDocumentAddForm"
-        factory=".aceitem.AceItemFormExtender"
-        />
+  <adapter
+      factory=".aceitem.AceItemFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="Products.CMFCore.interfaces.IFolderish
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.GuidanceDocumentAddForm"
+      />
 
     -----[ Tools Form customizations ]----
 
-    <browser:page
-        for="eea.climateadapt.aceitem.ITool"
-        name="edit"
-        class=".aceitem.ToolEditView"
-        permission="cmf.ModifyPortalContent"
-        />
+  <browser:page
+      name="edit"
+      for="eea.climateadapt.aceitem.ITool"
+      class=".aceitem.ToolEditView"
+      permission="cmf.ModifyPortalContent"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.aceitem.ITool zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.ToolEditForm"
-        factory=".aceitem.AceItemFormExtender"
-        />
+  <adapter
+      factory=".aceitem.AceItemFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="eea.climateadapt.aceitem.ITool
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.ToolEditForm"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.ToolAddForm"
-        factory=".aceitem.AceItemFormExtender"
-        />
+  <adapter
+      factory=".aceitem.AceItemFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="Products.CMFCore.interfaces.IFolderish
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.ToolAddForm"
+      />
 
     -----[ Indicators Form customizations ]----
 
-    <browser:page
-        for="eea.climateadapt.aceitem.IIndicator"
-        name="edit"
-        class=".aceitem.IndicatorEditView"
-        permission="cmf.ModifyPortalContent"
-        />
+  <browser:page
+      name="edit"
+      for="eea.climateadapt.aceitem.IIndicator"
+      class=".aceitem.IndicatorEditView"
+      permission="cmf.ModifyPortalContent"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.aceitem.IIndicator zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.IndicatorEditForm"
-        factory=".aceitem.AceItemFormExtender"
-        />
+  <adapter
+      factory=".aceitem.AceItemFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="eea.climateadapt.aceitem.IIndicator
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.IndicatorEditForm"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.IndicatorAddForm"
-        factory=".aceitem.AceItemFormExtender"
-        />
+  <adapter
+      factory=".aceitem.AceItemFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="Products.CMFCore.interfaces.IFolderish
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.IndicatorAddForm"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.IndicatorEditForm"
-        factory=".aceitem.IndicatorFormExtender"
-        />
+  <adapter
+      factory=".aceitem.IndicatorFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="Products.CMFCore.interfaces.IFolderish
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.IndicatorEditForm"
+      />
 
     -----[ C3sIndicators Form customizations ]----
 
-    <browser:page
-        for="eea.climateadapt.aceitem.IC3sIndicator"
-        name="edit"
-        class=".aceitem.C3sIndicatorEditView"
-        permission="cmf.ModifyPortalContent"
-        />
+  <browser:page
+      name="edit"
+      for="eea.climateadapt.aceitem.IC3sIndicator"
+      class=".aceitem.C3sIndicatorEditView"
+      permission="cmf.ModifyPortalContent"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.aceitem.IC3sIndicator zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.C3sIndicatorEditForm"
-        factory=".aceitem.AceItemFormExtender"
-        />
+  <adapter
+      factory=".aceitem.AceItemFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="eea.climateadapt.aceitem.IC3sIndicator
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.C3sIndicatorEditForm"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.C3sIndicatorAddForm"
-        factory=".aceitem.C3sIndicatorFormExtender"
-        />
+  <adapter
+      factory=".aceitem.C3sIndicatorFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="Products.CMFCore.interfaces.IFolderish
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.C3sIndicatorAddForm"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.C3sIndicatorEditForm"
-        factory=".aceitem.C3sIndicatorFormExtender"
-        />
+  <adapter
+      factory=".aceitem.C3sIndicatorFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="Products.CMFCore.interfaces.IFolderish
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.C3sIndicatorEditForm"
+      />
 
     -----[ Organisations Form customizations ]----
 
-    <browser:page
-        for="eea.climateadapt.aceitem.IOrganisation"
-        name="edit"
-        class=".aceitem.OrganisationEditView"
-        permission="cmf.ModifyPortalContent"
-        />
+  <browser:page
+      name="edit"
+      for="eea.climateadapt.aceitem.IOrganisation"
+      class=".aceitem.OrganisationEditView"
+      permission="cmf.ModifyPortalContent"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.aceitem.IOrganisation zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.OrganisationEditForm"
-        factory=".aceitem.OrganisationFormExtender"
-        />
+  <adapter
+      factory=".aceitem.OrganisationFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="eea.climateadapt.aceitem.IOrganisation
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.OrganisationEditForm"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish zope.publisher.interfaces.browser.IDefaultBrowserLayer .aceitem.OrganisationAddForm"
-        factory=".aceitem.OrganisationFormExtender"
-        />
+  <adapter
+      factory=".aceitem.OrganisationFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="Products.CMFCore.interfaces.IFolderish
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.OrganisationAddForm"
+      />
 
     -----[ Ace Project Form customizations ]----
 
-    <browser:page
-        for="eea.climateadapt.aceproject.IAceProject"
-        name="edit"
-        class=".aceproject.AceProjectEditView"
-        permission="cmf.ModifyPortalContent"
-        />
+  <browser:page
+      name="edit"
+      for="eea.climateadapt.aceproject.IAceProject"
+      class=".aceproject.AceProjectEditView"
+      permission="cmf.ModifyPortalContent"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="eea.climateadapt.aceproject.IAceProject
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .aceproject.AceProjectEditForm"
-        factory=".aceproject.AceProjectFormExtender"
-        />
+  <adapter
+      factory=".aceproject.AceProjectFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="eea.climateadapt.aceproject.IAceProject
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceproject.AceProjectEditForm"
+      />
 
-    <adapter
-        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="Products.CMFCore.interfaces.IFolderish
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer
-        .aceproject.AceProjectAddForm"
-        factory=".aceproject.AceProjectFormExtender"
-        />
+  <adapter
+      factory=".aceproject.AceProjectFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="Products.CMFCore.interfaces.IFolderish
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceproject.AceProjectAddForm"
+      />
 
     ------
 
-    <browser:page
-        name="view"
-        for="eea.climateadapt.acevideo.IAceVideo"
-        class="eea.climateadapt.browser.video.VideoView"
-        template="pt/video_view.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="view"
+      for="eea.climateadapt.acevideo.IAceVideo"
+      class="eea.climateadapt.browser.video.VideoView"
+      template="pt/video_view.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="view"
-        for="eea.climateadapt.acemeasure.IAdaptationOption"
-        class="eea.climateadapt.browser.adaptationoption.AdaptationOptionView"
-        template="pt/adaptationoption_view.pt"
-        permission="zope2.View"
-        />
-
-
-    <browser:page
-        name="view"
-        for="eea.climateadapt.aceproject.IAceProject"
-        class="eea.climateadapt.browser.aceproject.AceProjectView"
-        template="pt/aceproject_view.pt"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        name="site_navbar"
-        class=".site.Navbar"
-        for="*"
-        permission="zope.Public"
-        template="pt/navbar.pt"
-        />
-
-    <browser:page
-        name="health_navbar"
-        class=".health_menu.Navbar"
-        for="*"
-        permission="zope.Public"
-        template="pt/navbar.pt"
-        />
-
-    <browser:page
-        name="help-nav"
-        class=".site.Navbar"
-        for="*"
-        permission="zope.Public"
-        template="pt/help-nav.pt"
-        />
-
-    <!-- # portal link redirections, compatibility with old site -->
-    <browser:page
-        class=".ViewAceItem"
-        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-        name="viewaceitem"
-        permission="zope.Public"
-        />
-
-    <browser:page
-        class=".ViewAceMeasure"
-        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-        name="viewmeasure"
-        permission="zope.Public"
-        />
-
-    <browser:page
-        class=".ViewAceProject"
-        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-        name="projects1"
-        permission="zope.Public"
-        />
-    <!-- # end link redirections -->
-
-    <!-- Special pages, reimplemented as standalone views, and their AJAX helpers -->
-
-    <browser:page
-        class=".misc.NewsletterRedirect"
-        for="*"
-        name="guest;jsessionid=607E735A83C3649F5D76F1CEF2441501"
-        permission="zope.Public"
-        />
-
-    <browser:page
-        class=".misc.WebEmptyView"
-        for="*"
-        name="web"
-        permission="cmf.ManagePortal"
-        />
-
-    <browser:page
-        class=".misc.ContactForm"
-        for="*"
-        name="contact-form"
-        permission="zope.Public"
-        />
-
-    <browser:page
-        class=".misc.ContactFooterForm"
-        for="*"
-        name="contact-footer"
-        permission="zope.Public"
-        />
-
-    <!-- Captcha factory -->
-    <adapter
-        for="*"
-        provides=".misc.IContactForm"
-        factory=".misc.Captcha" />
-
-    <!-- Captcha factory -->
-    <adapter
-        for="*"
-        provides=".misc.IContactFooterForm"
-        factory=".misc.Captcha" />
-
-    <browser:page
-        class=".misc.CountriesView"
-        for="*"
-        name="countries-view-map"
-        template="pt/countries.pt"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        class=".countries.ContextCountriesView"
-        for="*"
-        name="countries-context-pagelet"
-        template="pt/countries-context-pagelet.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="view"
+      for="eea.climateadapt.acemeasure.IAdaptationOption"
+      class="eea.climateadapt.browser.adaptationoption.AdaptationOptionView"
+      template="pt/adaptationoption_view.pt"
+      permission="zope2.View"
+      />
 
 
-    <browser:page
-        class=".countries.ContextCountriesView"
-        for="*"
-        name="countries-selector"
-        template="pt/countries-selector.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="view"
+      for="eea.climateadapt.aceproject.IAceProject"
+      class="eea.climateadapt.browser.aceproject.AceProjectView"
+      template="pt/aceproject_view.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="site_navbar"
+      for="*"
+      class=".site.Navbar"
+      template="pt/navbar.pt"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      name="health_navbar"
+      for="*"
+      class=".health_menu.Navbar"
+      template="pt/navbar.pt"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      name="help-nav"
+      for="*"
+      class=".site.Navbar"
+      template="pt/help-nav.pt"
+      permission="zope.Public"
+      />
+
+  <!-- # portal link redirections, compatibility with old site -->
+  <browser:page
+      name="viewaceitem"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".ViewAceItem"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      name="viewmeasure"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".ViewAceMeasure"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      name="projects1"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".ViewAceProject"
+      permission="zope.Public"
+      />
+  <!-- # end link redirections -->
+
+  <!-- Special pages, reimplemented as standalone views, and their AJAX helpers -->
+
+  <browser:page
+      name="guest;jsessionid=607E735A83C3649F5D76F1CEF2441501"
+      for="*"
+      class=".misc.NewsletterRedirect"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      name="web"
+      for="*"
+      class=".misc.WebEmptyView"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="contact-form"
+      for="*"
+      class=".misc.ContactForm"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      name="contact-footer"
+      for="*"
+      class=".misc.ContactFooterForm"
+      permission="zope.Public"
+      />
+
+  <!-- Captcha factory -->
+  <adapter
+      factory=".misc.Captcha"
+      provides=".misc.IContactForm"
+      for="*"
+      />
+
+  <!-- Captcha factory -->
+  <adapter
+      factory=".misc.Captcha"
+      provides=".misc.IContactFooterForm"
+      for="*"
+      />
+
+  <browser:page
+      name="countries-view-map"
+      for="*"
+      class=".misc.CountriesView"
+      template="pt/countries.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="countries-context-pagelet"
+      for="*"
+      class=".countries.ContextCountriesView"
+      template="pt/countries-context-pagelet.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="countries-heat-index"
+      for="*"
+      class=".countries.ContextCountriesView"
+      template="pt/countries-heat-index.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="countries-selector"
+      for="*"
+      class=".countries.ContextCountriesView"
+      template="pt/countries-selector.pt"
+      permission="zope2.View"
+      />
 
 
-    <browser:page
-        class=".countries.ContextCountriesView"
-        for="*"
-        name="countries-list"
-        template="pt/countries-list.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="countries-list"
+      for="*"
+      class=".countries.ContextCountriesView"
+      template="pt/countries-list.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        class=".misc.AdaptationStrategyView"
-        for="*"
-        name="adaptation-strategies"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="adaptation-strategies"
+      for="*"
+      class=".misc.AdaptationStrategyView"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        class=".misc.MapViewerView"
-        for="*"
-        name="map-viewer"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="map-viewer"
+      for="*"
+      class=".misc.MapViewerView"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        class=".misc.RedirectToSearchView"
-        for="*"
-        name="redirect_to_search_page"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="redirect_to_search_page"
+      for="*"
+      class=".misc.RedirectToSearchView"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        class=".misc.TransRegionView"
-        for="*"
-        name="transnational-regions-view"
-        template="pt/transnational_regions.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="transnational-regions-view"
+      for="*"
+      class=".misc.TransRegionView"
+      template="pt/transnational_regions.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        class=".misc.DetectBrokenLinksView"
-        for="*"
-        name="broken-links"
-        permission="zope2.View"
-        template="pt/detect_links.pt"
-        />
+  <browser:page
+      name="broken-links"
+      for="*"
+      class=".misc.DetectBrokenLinksView"
+      template="pt/detect_links.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        class=".misc.ExcelCsvExportView"
-        for="*"
-        name="export-excel"
-        permission="zope2.View"
-        template="pt/export_portaltypes.pt"
-        />
+  <browser:page
+      name="export-excel"
+      for="*"
+      class=".misc.ExcelCsvExportView"
+      template="pt/export_portaltypes.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        class=".misc.FixCheckout"
-        for="*"
-        name="fix-checkout"
-        permission="cmf.ManagePortal"
-        />
+  <browser:page
+      name="fix-checkout"
+      for="*"
+      class=".misc.FixCheckout"
+      permission="cmf.ManagePortal"
+      />
 
-    <browser:page
-        for="*"
-        name="help-categories"
-        template="pt/help-categories.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="help-categories"
+      for="*"
+      template="pt/help-categories.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        for="*"
-        name="country-disclaimer"
-        template="pt/country_disclaimer.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="country-disclaimer"
+      for="*"
+      template="pt/country_disclaimer.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        for="*"
-        name="eu-sector-policies"
-        template="pt/eu-sector-policies.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="eu-sector-policies"
+      for="*"
+      template="pt/eu-sector-policies.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        for="*"
-        name="video-thumbs"
-        template="pt/video_thumbs.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="video-thumbs"
+      for="*"
+      template="pt/video_thumbs.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        class=".regions_select.TransRegionSelect"
-        for="*"
-        name="regions-section"
-        template="pt/regions-section.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="regions-section"
+      for="*"
+      class=".regions_select.TransRegionSelect"
+      template="pt/regions-section.pt"
+      permission="zope2.View"
+      />
 
-    <!-- Tile helpers -->
+  <!-- Tile helpers -->
 
-    <browser:page
-        name="acecontent_search_helper"
-        for="*"
-        class="eea.climateadapt.browser.tilehelpers.AceContentSearch"
-        template="pt/helper_acecontentsearch.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="acecontent_search_helper"
+      for="*"
+      class="eea.climateadapt.browser.tilehelpers.AceContentSearch"
+      template="pt/helper_acecontentsearch.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="view_last_modified"
-        for="*"
-        class="eea.climateadapt.browser.tilehelpers.LastUpdateTile"
-        template="pt/last_update.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="view_last_modified"
+      for="*"
+      class="eea.climateadapt.browser.tilehelpers.LastUpdateTile"
+      template="pt/last_update.pt"
+      permission="zope2.View"
+      />
 
-    <browser:viewlet
-        name="baltic_region_menu"
-        for="eea.climateadapt.interfaces.IBalticRegionMarker"
-        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
-        template="pt/viewlet_transregion_menu.pt"
-        permission="zope2.View"
-        />
+  <browser:viewlet
+      name="baltic_region_menu"
+      for="eea.climateadapt.interfaces.IBalticRegionMarker"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+      template="pt/viewlet_transregion_menu.pt"
+      permission="zope2.View"
+      />
 
-    <!-- SharePageSubMenu -->
-    <browser:viewlet
-        name="share_page_sub_menu"
-        for="eea.climateadapt.interfaces.IClimateAdaptSharePage"
-        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
-        class=".viewlets.SharePageSubMenuViewlet"
-        permission="zope2.View"
-        />
+  <!-- SharePageSubMenu -->
+  <browser:viewlet
+      name="share_page_sub_menu"
+      for="eea.climateadapt.interfaces.IClimateAdaptSharePage"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+      class=".viewlets.SharePageSubMenuViewlet"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="urbanast_bottom_nav"
-        for="*"
-        template="pt/viewlet_urbanast_bottom_nav.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="urbanast_bottom_nav"
+      for="*"
+      template="pt/viewlet_urbanast_bottom_nav.pt"
+      permission="zope2.View"
+      />
 
-    <!-- other viewlet overrides -->
+  <!-- other viewlet overrides -->
 
-    <browser:viewlet
-        name="plone.belowcontentbody.relateditems"
-        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
-        class=".viewlets.RelatedItemsViewlet"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        template="pt/viewlet_related_items.pt"
-        permission="zope2.View"
-        />
+  <browser:viewlet
+      name="plone.belowcontentbody.relateditems"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+      class=".viewlets.RelatedItemsViewlet"
+      template="pt/viewlet_related_items.pt"
+      permission="zope2.View"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+      />
 
-    <browser:viewlet
-        name="plone.belowcontentbody.relateditems"
-        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
-        class=".viewlets.RelatedItemsViewlet"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        template="pt/viewlet_related_items.pt"
-        permission="zope2.View"
-        />
+  <browser:viewlet
+      name="plone.belowcontentbody.relateditems"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+      class=".viewlets.RelatedItemsViewlet"
+      template="pt/viewlet_related_items.pt"
+      permission="zope2.View"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+      />
 
-    <browser:viewlet
-        name="plone.searchbox"
-        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-        class=".viewlets.SearchBoxViewlet"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        permission="zope2.View"
-        />
+  <browser:viewlet
+      name="plone.searchbox"
+      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+      class=".viewlets.SearchBoxViewlet"
+      permission="zope2.View"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+      />
 
-    <browser:viewlet
-        name="plone.resourceregistries"
-        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
-        view=".misc.ISimplifiedResourceRegistriesView"
-        template="pt/resourceregistries.pt"
-        permission="zope2.View"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        />
+  <browser:viewlet
+      name="plone.resourceregistries"
+      view=".misc.ISimplifiedResourceRegistriesView"
+      manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+      template="pt/resourceregistries.pt"
+      permission="zope2.View"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+      />
 
-    <browser:viewlet
-        name="plone.path_bar"
-        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
-        class=".viewlets.PathBarViewlet"
-        template="pt/breadcrumbs.pt"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        permission="zope2.View"
-        />
+  <browser:viewlet
+      name="plone.path_bar"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+      class=".viewlets.PathBarViewlet"
+      template="pt/breadcrumbs.pt"
+      permission="zope2.View"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+      />
 
-    <browser:viewlet
-        name="archived-state"
-        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
-        class=".viewlets.ArchivedStateViewlet"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        permission="zope2.View"
-        />
+  <browser:viewlet
+      name="archived-state"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+      class=".viewlets.ArchivedStateViewlet"
+      permission="zope2.View"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+      />
 
-    <browser:viewlet
-        name="tlspu.cookiepolicy"
-        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
-        class=".viewlets.CookiesViewlet"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        permission="zope2.View"
-        />
+  <browser:viewlet
+      name="tlspu.cookiepolicy"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+      class=".viewlets.CookiesViewlet"
+      permission="zope2.View"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+      />
 
-    <browser:viewlet
-        name="plone.personal_bar"
-        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-        class=".viewlets.CustomizedPersonalBarViewlet"
-        layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-        permission="zope2.View"
-        />
+  <browser:viewlet
+      name="plone.personal_bar"
+      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+      class=".viewlets.CustomizedPersonalBarViewlet"
+      permission="zope2.View"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+      />
 
-    <browser:page
-        name="casestudies.json"
-        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-        permission="zope2.View"
-        class=".casestudy.CaseStudiesJson"
-        />
+  <browser:page
+      name="casestudies.json"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".casestudy.CaseStudiesJson"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="casestudies_xml"
-        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-        permission="zope2.View"
-        class=".casestudy.CaseStudiesXML"
-        />
+  <browser:page
+      name="casestudies_xml"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".casestudy.CaseStudiesXML"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        class=".countries.CountryMetadataExtract"
-        for="*"
-        name="country-metadata-extract"
-        permission="cmf.ManagePortal"
-        />
+  <browser:page
+      name="country-metadata-extract"
+      for="*"
+      class=".countries.CountryMetadataExtract"
+      permission="cmf.ManagePortal"
+      />
 
-    <browser:page
-        class=".countries.CountriesMetadataExtract"
-        for="*"
-        name="countries-metadata-extract"
-        permission="zope2.View"
-        />
+  <browser:page
+      name="countries-metadata-extract"
+      for="*"
+      class=".countries.CountriesMetadataExtract"
+      permission="zope2.View"
+      />
 
-        <!--  -->
-    <browser:page
-        for="*"
-        name="countries-view-map-d3"
-        template="pt/countries-d3.pt"
-        permission="zope2.View"
-        class=".countries.CountriesD3View"
-        />
+  <!-- -->
+  <browser:page
+      name="countries-view-map-d3"
+      for="*"
+      class=".countries.CountriesD3View"
+      template="pt/countries-d3.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="external-template-head"
-        for="*"
-        template="pt/search/external-template-head.pt"
-        permission="zope2.View"
-        />
-    <browser:page
-        name="external-template-header"
-        for="*"
-        template="pt/search/external-template-header.pt"
-        permission="zope2.View"
-        class=".externaltemplates.ExternalTemplateHeader"
-        />
+  <browser:page
+      name="external-template-head"
+      for="*"
+      template="pt/search/external-template-head.pt"
+      permission="zope2.View"
+      />
+  <browser:page
+      name="external-template-header"
+      for="*"
+      class=".externaltemplates.ExternalTemplateHeader"
+      template="pt/search/external-template-header.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        name="external-template-footer"
-        for="*"
-        template="pt/search/external-template-footer.pt"
-        permission="zope2.View"
-        />
-    <!-- <browser:page -->
-    <!--     name="external&#45;template&#45;test" -->
-    <!--     for="*" -->
-    <!--     template="pt/search/external&#45;template&#45;test.pt" -->
-    <!--     permission="zope2.View" -->
-    <!--     /> -->
+  <browser:page
+      name="external-template-footer"
+      for="*"
+      template="pt/search/external-template-footer.pt"
+      permission="zope2.View"
+      />
+  <!-- <browser:page -->
+  <!--     name="external&#45;template&#45;test" -->
+  <!--     for="*" -->
+  <!--     template="pt/search/external&#45;template&#45;test.pt" -->
+  <!--     permission="zope2.View" -->
+  <!--     /> -->
 
-    <subscriber
+  <subscriber
       for="plone.app.contenttypes.content.Folder
            OFS.interfaces.IObjectWillBeRemovedEvent"
       handler=".misc.preventFolderDeletionEvent"
-    />
+      />
 
   <browser:page
-    class=".main.FullWidthContentTypes"
-    for="*"
-    name="fullwidth_content_types"
-    permission="zope.Public"
-  />
+      name="fullwidth_content_types"
+      for="*"
+      class=".main.FullWidthContentTypes"
+      permission="zope.Public"
+      />
 
   <browser:page
-    name="ast.pdf"
-    layer="eea.pdf.interfaces.ILayer"
-    for="eea.pdf.interfaces.IPDFAware"
-    class="eea.pdf.browser.app.download.Download"
-    permission="eea.pdf.download"
-  />
+      name="ast.pdf"
+      for="eea.pdf.interfaces.IPDFAware"
+      class="eea.pdf.browser.app.download.Download"
+      permission="eea.pdf.download"
+      layer="eea.pdf.interfaces.ILayer"
+      />
 
   <browser:page
-    name="health_homepage"
-    for="*"
-    class=".health.HealthHomepageItems"
-    template="pt/health_homepage.pt"
-    permission="zope2.View"
-    />
+      name="health_homepage"
+      for="*"
+      class=".health.HealthHomepageItems"
+      template="pt/health_homepage.pt"
+      permission="zope2.View"
+      />
 
   Special pages
   <browser:page
-    for="*"
-    name="vibriomap-view"
-    template="pt/vibriomap.pt"
-    permission="zope2.View"
-    />
+      name="vibriomap-view"
+      for="*"
+      template="pt/vibriomap.pt"
+      permission="zope2.View"
+      />
 
   <browser:page
-    for="*"
-    name="lancet-indicator-view"
-    template="pt/lancet-indicator.pt"
-    permission="zope2.View"
-    />
+      name="lancet-indicator-view"
+      for="*"
+      template="pt/lancet-indicator.pt"
+      permission="zope2.View"
+      />
 
 </configure>

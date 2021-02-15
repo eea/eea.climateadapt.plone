@@ -1,0 +1,138 @@
+<div xmlns:tal="http://xml.zope.org/namespaces/tal"
+     id="fp-country-selector"
+>
+
+  <!-- <svg&#45;container class="svg&#45;map&#45;container svg&#45;fp&#45;container" -->
+  <!--                style="margin&#45;top: 38px;" -->
+  <!-- > -->
+  <!--   <div class="map&#45;islands" -->
+  <!--        style="top: auto; bottom: 10px; left: 10px;" -->
+  <!--   > -->
+  <!--     <img class="lazyload" -->
+  <!--          data&#45;src="/++theme++climateadaptv2/static/images/map_islands.svg" -->
+  <!--     /> -->
+  <!--   </div> -->
+  <!--   <svg height="500" -->
+  <!--        width="100%" -->
+  <!--   > -->
+  <!--   </svg> -->
+  <!-- </svg&#45;container> -->
+  <!-- -->
+
+  <div class="cover-richtext-tile tile-content"
+       id="countrymap-container"
+  >
+
+    <!-- The real map -->
+    <div class="row map-wrapper">
+      <div class="col-md-9 col-xs-12">
+        <svg-container id="countries-map">
+          <svg height="500"
+               width="100%"
+          />
+        </svg-container>
+
+        <div class="map-islands">
+          <img src="/cca/++theme++climateadaptv2/static/images/map_islands.svg" />
+        </div>
+      </div>
+
+      <!-- Sections selector on right side of map -->
+      <div class="col-md-3 col-xs-12">
+        <h2 class="choose-title">Choose thematic map:</h2>
+        <div id="sections-selector" />
+
+        <!-- Map legend underneath the map -->
+        <div class="legend nasnap-legend hhap-legend">
+          <div class="legend-el">
+            <span class="country-national-hhap legend-box" />
+            <p class="legend-text">National HHAP</p>
+          </div>
+          <div class="legend-el">
+            <span class="country-subnational-hhap legend-box" />
+            <p class="legend-text">Subnational HHAP</p>
+          </div>
+          <div class="legend-el">
+            <span class="country-no-hhap legend-box" />
+            <p class="legend-text">No HHAP</p>
+          </div>
+          <div class="legend-el">
+            <span class="country-none legend-box" />
+            <p class="legend-text">No information</p>
+          </div>
+        </div>
+
+        <div class="legend hhws-legend">
+          <div class="legend-el">
+            <span class="country-national-hhap legend-box" />
+            <p class="legend-text">
+              <span class="map-type">NAS</span>
+                adopted
+            </p>
+          </div>
+          <div class="legend-el">
+            <span class="country-none legend-box" />
+            <p class="legend-text"><span class="map-type">NAS</span>
+                not adopted
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Disclaimer in right side of map -->
+      <div id="disclaimer">
+        <i class="fa fa-exclamation-circle"
+           aria-hidden="true"
+        />
+        [Disclaimer]
+        <div id="hover-content">
+          The information presented in these pages is based on the reporting according to the Monitoring Mechanism Regulation (Regulation (EU) No 525/2013) and updated by the EEA member countries
+        </div>
+      </div>
+    </div>
+
+    <div class="country-tooltip-template"
+         style="display: none"
+    >
+      <div class="tooltip-content">
+        <div class="heat_index_value">
+          <strong>Heat index of HHWS:</strong>
+          <span class="value" />
+        </div>
+        <div class="heat_index_website">
+          <a href="">Website</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    // d3 uses define, we don't want it, let's trick it.
+    window._old_define = window.define;
+    window.define = null;
+    </script>
+
+    <script src="/++theme++climateadaptv2/static/js/d3-array.v1.min.js" />
+    <script src="/++theme++climateadaptv2/static/js/d3.v4.min.js" />
+    <script src="/++theme++climateadaptv2/static/js/d3-geo.v1.min.js" />
+    <script src="/++theme++climateadaptv2/static/js/d3-geo-projection.v2.min.js" />
+    <script src="/++theme++climateadaptv2/static/js/topojson.js" />
+    <script src="/++theme++climateadaptv2/static/js/d3-queue.v3.min.js" />
+
+    <script>
+    window.define = window._old_define;
+    </script>
+
+    <!-- <tal:comment tal:replace="nothing"> -->
+    <!--   window.countrySettings = ['Romania', 'Denmark', ...] -->
+    <!-- </tal:comment> -->
+    <!-- <script tal:content="view/script_country_settings" /> -->
+
+    <script src="/++theme++climateadaptv2/static/countries/countries-heat-index.js" />
+
+    <tal:comment tal:replace="nothing">
+    window.heat_index_info = {'Denmark': {...}}
+    </tal:comment>
+    <script tal:content="view/csv_data_js" />
+
+  </div></div>

@@ -1,10 +1,25 @@
+import csv
 import json
 import logging
 
 import lxml.etree
 import lxml.html
-
+from pkg_resources import resource_filename
 from Products.Five.browser import BrowserView
+
+
+def parse_csv(path):
+    wf = resource_filename("eea.climateadapt", path)
+
+    reader = csv.reader(open(wf))
+    cols = reader.next()
+    out = []
+
+    for line in reader:
+        out.append(dict(zip(cols, line)))
+
+    return out
+
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -304,3 +319,18 @@ class ContextCountriesView(BrowserView):
         ]
 
         return """window.countrySettings = %s;""" % json.dumps(available_countries)
+
+    def csv_data_js(self):
+        # used for heat_index map
+        info = parse_csv("data/heat_index.csv")
+        m = {}
+
+        for line in info:
+            if line["country_id"].strip():
+                m[line["country_id"]] = line
+
+        s = """var heat_index_info = {0};console.log(heat_index_info);""".format(
+            json.dumps(m)
+        )
+
+        return s
