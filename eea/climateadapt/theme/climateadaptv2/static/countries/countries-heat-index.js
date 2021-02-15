@@ -2,12 +2,26 @@
 /* global d3 heat_index_info */
 
 var _selectedMapSection = 'hhap';   // which map type is chosen from the radio
-// var countrySettings = {};   // country settings extracted from ajax json
+var hhap_title = "Heat-Health Action Plan (HHAP)";
+var hhws_title = "Heat–Health Warning Systems (HHWSs)";
 
-var corect_country_names = {
+var correct_country_names = {
   "Former Yugoslav Republic of Macedonia": "North Macedonia",
   "Kosovo": "Kosovo (under UNSCR 1244/99)",
+  "Bosnia and Herzegovina": "Bosnia-Herzegovina",
 }
+
+// Albania
+// Bosnia-Herzegovina
+// Kosovo (under UNSCR 1244/99)
+// Montenegro
+// North Macedonia
+// Serbia
+
+// var inverse_correct_country_names = {
+//   "North Macedonia": "Former Yugoslav Republic of Macedonia",
+//   "Kosovo (under UNSCR 1244/99)": "Kosovo",
+// }
 
 jQuery(document).ready(function () {
 
@@ -54,7 +68,7 @@ function getCountryClass(country) {   // , countries
   // var available = countries.names.indexOf(country.properties.SHRT_ENGL) !== -1;
   // if (available) k += ' country-available';
 
-  var countryName = corect_country_names[country.properties.SHRT_ENGL] || country.properties.SHRT_ENGL;
+  var countryName = correct_country_names[country.properties.SHRT_ENGL] || country.properties.SHRT_ENGL;
   // console.log('country', country.properties.SHRT_ENGL, country.properties);
 
   var meta = heat_index_info[countryName];
@@ -98,6 +112,7 @@ function getCountryClass(country) {   // , countries
 }
 
 function renderCountry(map, country, path, countries, x, y) {
+  // console.log(country.properties.SHRT_ENGL, country);
 
   var cprectid = makeid();    // unique id for this map drawing
   var klass = getCountryClass(country);   // , countries
@@ -105,7 +120,7 @@ function renderCountry(map, country, path, countries, x, y) {
   var cpId = 'cp-' + cprectid + '-' + country.properties.id;
 
 
-  var countryName = corect_country_names[country.properties.SHRT_ENGL] || country.properties.SHRT_ENGL;
+  var countryName = correct_country_names[country.properties.SHRT_ENGL] || country.properties.SHRT_ENGL;
   var available = countries.names.indexOf(countryName) !== -1;
 
   var parent = map
@@ -139,6 +154,7 @@ function renderCountry(map, country, path, countries, x, y) {
 }
 
 function renderCountryLabel(country, path, force) {
+  // used to draw label under a maplet
   var parent = d3.select('svg');
   var klass = force ? 'country-label maplet-label' : 'country-label'
   var g = parent
@@ -166,7 +182,7 @@ function renderCountryLabel(country, path, force) {
     .attr('x', center[0])
     .attr('y', center[1] + delta)
     .attr('text-anchor', 'middle')
-    .text((corect_country_names[country.properties.SHRT_ENGL] || country.properties.SHRT_ENGL).toUpperCase())
+    .text((correct_country_names[country.properties.SHRT_ENGL] || country.properties.SHRT_ENGL).toUpperCase())
     .on('click', function () {
       showMapTooltip(country);
     })
@@ -191,7 +207,7 @@ function renderCountryLabel(country, path, force) {
 }
 
 function renderCountryFlag(parent, country, bbox, cpId) {
-  console.log(country);
+  // console.log(country);
   var countryName = country.properties.SHRT_ENGL.toUpperCase();
   var flag = parent
     .append('image')
@@ -221,7 +237,7 @@ function renderCountryFlag(parent, country, bbox, cpId) {
         .html(countryName);
     })
     .on('mousemove', function() {
-      var countryName = country.properties.SHRT_ENGL.toUpperCase();
+      var countryName = (correct_country_names[country.properties.SHRT_ENGL] || country.properties.SHRT_ENGL).toUpperCase();
       return countryNameTooltip
         .style("display", "block")
         .style("top", (d3.event.pageY) + "px")
@@ -394,11 +410,9 @@ function drawCountries(world) {
   ;
   svg.selectAll("*").remove();
 
+  // has: "Kosovo (under UNSCR 1244/99)", "North Macedonia", "Bosnia-Herzegovina"
   var focusCountryNames = Object.keys(heat_index_info);
-
-  var focusCountriesFeature = filterCountriesByNames(
-    world, focusCountryNames
-  );
+  // console.log('focus', focusCountryNames);
 
   var width = Math.round($(svg.node()).width());
   var height = 500;
@@ -414,7 +428,9 @@ function drawCountries(world) {
     },
     'focusCountries': {
       'names': focusCountryNames,
-      'feature': focusCountriesFeature
+      'feature': filterCountriesByNames(
+        world, focusCountryNames
+      )
     },
     'zoom': 0.95
   };
@@ -446,7 +462,7 @@ function showMapTooltip(d) {
   var info = heat_index_info[d.properties.SHRT_ENGL];
   if (!info) return;
 
-  console.log('info', info);
+  // console.log('info', info);
 
   var content = jQuery('.country-tooltip-template').clone().children();
 
@@ -484,8 +500,14 @@ function filterCountriesByNames(countries, filterIds) {
     type: 'FeatureCollection',
     features: []
   };
+
+  // console.log('filterids', filterIds);
+  // filterIds has "Kosovo (under UNSCR 1244/99)" SHRT_ENGL is Kosovo
+  // filterIds has "Bosnia-Herzegovina", SHRT_ENGL is "Bosnia and Herzegovina"
+
   countries.forEach(function (c) {
-    if (filterIds.indexOf(c.properties.SHRT_ENGL) === -1) {
+    var correct_name = correct_country_names[c.properties.SHRT_ENGL] || c.properties.SHRT_ENGL;
+    if (filterIds.indexOf(correct_name) === -1) {
       return;
     }
     features.features.push(c);
@@ -498,6 +520,8 @@ function setCountryFlags(countries, flags) {
   // annotates each country with its own flag property
   countries.forEach(function (c) {
     var name = c.properties.SHRT_ENGL;
+    // console.log('country name in flags:', name);
+    // if (name.indexOf('Kosovo') > -1) debugger;
     if (!name) {
       // console.log('No flag for', c.properties);
       return;
@@ -506,6 +530,10 @@ function setCountryFlags(countries, flags) {
       name = 'Czech Republic';
     } else if (name === 'Former Yugoslav Republic of Macedonia') {
       name = 'Macedonia';
+    } if (name.indexOf('Kosovo') > -1) {
+      name = 'Kosovo';
+    } if (name.indexOf('Bosnia') > -1) {
+      name = 'Bosnia';
     }
     var cname = name.replace(' ', '_');
     flags.forEach(function (f) {
@@ -514,6 +542,8 @@ function setCountryFlags(countries, flags) {
       }
     });
   });
+
+  // console.log('countries', countries);
 }
 
 function createTooltip(opts) {
@@ -543,18 +573,6 @@ function createTooltip(opts) {
   ;
   $('body').append(tooltip);
 }
-
-// function updateSelectedMapSection(key) {
-//   // if (key.toLowerCase().indexOf('policy') > -1) {
-//   //   window._selectedMapSection = 'overview';
-//   // } else {
-//   //   window._selectedMapSection = (key.toLowerCase().indexOf('nas') > -1)
-//   //     ? 'nas' : 'nap';
-//   // }
-// }
-
-var hhap_title = "Heat-Health Action Plan (HHAP)";
-var hhws_title = "Heat–Health Warning Systems (HHWSs)";
 
 function createSectionsSelector(callback) {    // sections,
   // var container = $("#countries-map-selector");

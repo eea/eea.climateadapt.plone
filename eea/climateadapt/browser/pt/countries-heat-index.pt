@@ -123,11 +123,6 @@
     window.define = window._old_define;
     </script>
 
-    <!-- <tal:comment tal:replace="nothing"> -->
-    <!--   window.countrySettings = ['Romania', 'Denmark', ...] -->
-    <!-- </tal:comment> -->
-    <!-- <script tal:content="view/script_country_settings" /> -->
-
     <script src="/++theme++climateadaptv2/static/countries/countries-heat-index.js" />
 
     <tal:comment tal:replace="nothing">
