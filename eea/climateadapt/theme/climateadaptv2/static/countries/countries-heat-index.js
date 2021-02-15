@@ -4,6 +4,11 @@
 var _selectedMapSection = 'hhap';   // which map type is chosen from the radio
 // var countrySettings = {};   // country settings extracted from ajax json
 
+var corect_country_names = {
+  "Former Yugoslav Republic of Macedonia": "North Macedonia",
+  "Kosovo": "Kosovo (under UNSCR 1244/99)",
+}
+
 jQuery(document).ready(function () {
 
   // initialize the countries map
@@ -20,8 +25,9 @@ jQuery(document).ready(function () {
     d3.tsv(fpath, function (flags) {
       window._flags = flags;
       createSectionsSelector(function () {
-          drawCountries(world.features);
-        });
+        drawCountries(world.features);
+      });
+      // console.log(world.features);
       drawCountries(world.features);
       $('.map-loader').fadeOut(600);
     });
@@ -48,13 +54,15 @@ function getCountryClass(country) {   // , countries
   // var available = countries.names.indexOf(country.properties.SHRT_ENGL) !== -1;
   // if (available) k += ' country-available';
 
-  var countryName = country.properties.SHRT_ENGL;
+  var countryName = corect_country_names[country.properties.SHRT_ENGL] || country.properties.SHRT_ENGL;
+  // console.log('country', country.properties.SHRT_ENGL, country.properties);
+
   var meta = heat_index_info[countryName];
   if (!meta) {
     return k;
   }
 
-  console.log(countryName, meta);
+  // console.log(countryName, meta);
 
   if(_selectedMapSection === 'hhap') {
     switch (meta.hhap) {
@@ -96,7 +104,9 @@ function renderCountry(map, country, path, countries, x, y) {
   var cId = 'c-' + cprectid + '-' + country.properties.id;
   var cpId = 'cp-' + cprectid + '-' + country.properties.id;
 
-  var available = countries.names.indexOf(country.properties.SHRT_ENGL) !== -1;
+
+  var countryName = corect_country_names[country.properties.SHRT_ENGL] || country.properties.SHRT_ENGL;
+  var available = countries.names.indexOf(countryName) !== -1;
 
   var parent = map
     .append('g')
@@ -156,7 +166,7 @@ function renderCountryLabel(country, path, force) {
     .attr('x', center[0])
     .attr('y', center[1] + delta)
     .attr('text-anchor', 'middle')
-    .text(country.properties.SHRT_ENGL.toUpperCase())
+    .text((corect_country_names[country.properties.SHRT_ENGL] || country.properties.SHRT_ENGL).toUpperCase())
     .on('click', function () {
       showMapTooltip(country);
     })
@@ -181,6 +191,7 @@ function renderCountryLabel(country, path, force) {
 }
 
 function renderCountryFlag(parent, country, bbox, cpId) {
+  console.log(country);
   var countryName = country.properties.SHRT_ENGL.toUpperCase();
   var flag = parent
     .append('image')
@@ -493,6 +504,8 @@ function setCountryFlags(countries, flags) {
     }
     else if (name === 'Czechia') {
       name = 'Czech Republic';
+    } else if (name === 'Former Yugoslav Republic of Macedonia') {
+      name = 'Macedonia';
     }
     var cname = name.replace(' ', '_');
     flags.forEach(function (f) {
