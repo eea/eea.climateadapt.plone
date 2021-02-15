@@ -1,5 +1,5 @@
 /* eslint-env jquery */
-/* global d3 */
+/* global d3 heat_index_info */
 
 var _selectedMapSection = null;
 // var countrySettings = [];   // country list extracted from ajax json
@@ -184,9 +184,10 @@ function renderCountryFlag(parent, country, bbox, cpId) {
     .attr("height", bbox.height)
     .attr("width", bbox.width)
     .on("click", function () {
-      var link = country.properties.SHRT_ENGL.toLowerCase().replace(" ", "-");
-      if (window.countrySettings.indexOf(country.properties.SHRT_ENGL) > -1)
-        location.href = location.href.endsWith('/') ? location.href + link : location.href + '/' + link;
+      showMapTooltip(country);
+      // var link = country.properties.SHRT_ENGL.toLowerCase().replace(" ", "-");
+      // if (window.countrySettings.indexOf(country.properties.SHRT_ENGL) > -1)
+      //   location.href = location.href.endsWith('/') ? location.href + link : location.href + '/' + link;
     })
     .on("mouseover", function () {
       var countryName = country.properties.SHRT_ENGL.toUpperCase();
@@ -578,6 +579,84 @@ function passThruEvents(g) {
 
     this.style.pointerEvents = prev;
   }
+}
+
+function createTooltip(opts) {
+  var x = opts['coords'][0];
+  var y = opts['coords'][1];
+  var content = opts['content'];
+  var name = opts['name'];
+  var url = opts['url'];
+
+  $('#map-tooltip').remove();
+  var style = 'top:' + x + 'px; left: ' + y + 'px';
+  var content_div = $('<div>')
+    .attr('id', 'tooltip-content')
+    .append(content)
+    ;
+  var h3_name = $('<h3>')
+    .append(name)
+    ;
+  var link_tag = $('<a>')
+    .attr('href', url)
+    .append(h3_name)
+    ;
+  var name_div = $('<div>')
+    .attr('id', 'country-name')
+    .append(link_tag)
+    ;
+  var tooltip = $("<div id='map-tooltip'>")
+    .attr('style', style)
+    .append(name_div)
+    .append(content_div)
+    ;
+  $('body').append(tooltip);
+}
+
+function showMapTooltip(d) {
+  var coords = [d3.event.pageY, d3.event.pageX];
+  var info = heat_index_info[d.properties.SHRT_ENGL];
+  if (!info) return;
+  var content = info[0];
+  var url = info[1];
+
+  var isOverview = (_selectedMapSection === 'overview');
+  var napInfo, nasInfo;
+  if (content['nap_info'] != '') {
+    napInfo = '<span>National adaptation strategy:</span>' +
+    content['nap_info'];
+  } else {
+    napInfo = '';
+  }
+
+  if (content['nas_info'] != '') {
+    nasInfo = '<span>National adaptation strategy:</span>' +
+    content['nas_info'];
+  } else {
+    nasInfo = '';
+  }
+
+  if (content) {
+    if (isOverview) {
+      content = napInfo + nasInfo;
+    } else {
+      content = content[window._selectedMapSection + '_info'];
+    }
+  }
+
+  if (content) createTooltip({
+    coords: coords,
+    content: content,
+    name: d.properties.SHRT_ENGL,
+    url: url
+  });
+
+  // TODO: are there multiple onclick handlers here??
+  $("body").on('click', function () {
+    $('#map-tooltip').remove();
+  });
+
+  d3.event.stopPropagation();
 }
 
 initCountriesMapTile();

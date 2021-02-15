@@ -1,12 +1,27 @@
+import csv
 import json
 import logging
 
 import lxml.etree
 import lxml.html
-
+from pkg_resources import resource_filename
 from Products.Five.browser import BrowserView
 
 logger = logging.getLogger("eea.climateadapt")
+
+
+def parse_csv(path):
+    wf = resource_filename("eea.climateadapt", path)
+
+    reader = csv.reader(open(wf))
+    cols = reader.next()
+    out = []
+
+    for line in reader:
+        out.append(dict(zip(cols, line)))
+
+    return out
+
 
 _COUNTRIES_WITH_NAS = [
     "Austria",
@@ -250,6 +265,12 @@ class CountriesD3View(BrowserView):
     """"""
 
 
+class HeatIndexInfo(object):
+    def __init__(self, **kw):
+        for k, v in kw.items():
+            setattr(self, k, v)
+
+
 class ContextCountriesView(BrowserView):
     """A small pagelet to show the countries as a tile"""
 
@@ -304,3 +325,16 @@ class ContextCountriesView(BrowserView):
         ]
 
         return """window.countrySettings = %s;""" % json.dumps(available_countries)
+
+    def csv_data_js(self):
+        info = parse_csv("data/heat_index.csv")
+        m = {}
+
+        for line in info:
+            m[line["country_id"]] = line
+
+        s = """var heat_index_info = {0};console.log(heat_index_info);""".format(
+            json.dumps(m)
+        )
+
+        return s
