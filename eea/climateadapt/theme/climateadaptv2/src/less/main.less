@@ -232,6 +232,73 @@
   display: none;
 }
 
+.listing-accordion.init {
+  position: relative;
+
+  &.opened {
+    .accordion-wrapper {
+      height: 100% !important;
+      overflow: unset !important;
+    }
+
+    .panel-layer {
+      display: none;
+    }
+
+    .accordion-toggle {
+      top: auto;
+
+      &.up:before {
+        content: "\f106";
+        top: auto;
+      }
+    }
+  }
+
+  .panel-layer {
+    height: 40%;
+  }
+
+  .accordion-wrapper {
+    display: block;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .accordion-toggle {
+    text-transform: uppercase;
+    color: #bf5900;
+    padding: 5px;
+    display: block !important;
+    text-decoration: none;
+    font-family: "OpenSansM";
+    position: relative;
+    top: -10px;
+    cursor: pointer;
+
+    &:before {
+      content: "\f107";
+      font-family: "FontAwesome";
+      margin-right: 5px;
+      font-size: 18px;
+      position: relative;
+      top: 2px;
+    }
+  }
+}
+
+.listing-accordion:not(.init) {
+  position: relative;
+
+  .accordion-toggle {
+    display: none;
+  }
+
+  .panel-layer {
+    display: none;
+  }
+}
+
 @media (max-width: 1200px) {
   /* header navigation */
   .top-menu-wrapper {

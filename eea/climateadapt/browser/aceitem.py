@@ -98,16 +98,14 @@ class OrganisationView(DefaultView, AceViewApi):
         return 0
 
     def get_contributions(self):
-        MAX_SIZE = 20
-
         relation_catalog = getUtility(ICatalog)
         intids = getUtility(IIntIds)
         uid = intids.getId(self.context)
 
-        contributor_list = islice(relation_catalog.findRelations(
-            {'to_id': uid, 'from_attribute': 'contributor_list'}), 20)
-        contributors = islice(relation_catalog.findRelations(
-            {'to_id': uid, 'from_attribute': 'contributors'}), 20)
+        contributor_list = list(relation_catalog.findRelations(
+            {'to_id': uid, 'from_attribute': 'contributor_list'}))
+        contributors = list(relation_catalog.findRelations(
+            {'to_id': uid, 'from_attribute': 'contributors'}))
 
         response = []
 
@@ -119,9 +117,6 @@ class OrganisationView(DefaultView, AceViewApi):
                     'title': obj.title,
                     'url': obj.absolute_url()
                 })
-
-            if len(response) == MAX_SIZE:
-                break
 
         return response
 

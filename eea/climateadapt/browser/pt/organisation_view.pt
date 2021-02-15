@@ -45,16 +45,23 @@
                  "
                  tal:condition="contributions"
             >
+
               <h5>Observatory Contributions:</h5>
-              <ul>
-                <li tal:repeat="contribution contributions">
-                  <a tal:content="contribution/title"
-                     tal:attributes="
-                       href contribution/url;
-                     "
-                  />
-                </li>
-              </ul>
+              <div class="listing-accordion" data-visible-lines="10">
+                <div class="accordion-wrapper">
+                  <div class="panel-layer"></div>
+                  <div class="accordion-content">
+                    <ul>
+                      <li tal:repeat="contribution contributions">
+                        <a tal:content="contribution/title"
+                          tal:attributes="href contribution/url;"/>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <span class="accordion-toggle down">See more</span>
+              </div>
+
               <div style="margin-top:1em !important">
                 <a href=""
                    tal:attributes="

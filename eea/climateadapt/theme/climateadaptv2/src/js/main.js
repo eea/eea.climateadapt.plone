@@ -702,9 +702,6 @@ function initCustomAccordions() {
     } else if ($this.text() === "Read less") {
       $this.text("Read more");
     }
-    // $(this).text(function(i, text) {
-    //   return text === "Read more" ? "Read less" : "Read more";
-    // })
   });
 
   $panelCollapse.css({
@@ -873,6 +870,43 @@ function fixGallery() {
   });
 }
 
+function initSeeMore() {
+  var $accordion = $(".listing-accordion");
+  var LINE_HEIGHT = 23;
+
+  $accordion.each(function () {
+    var $acc = $(this);
+    var $accToggle = $(".accordion-toggle", this);
+    var $accCollapse = $(".accordion-wrapper", this);
+    var $accContentHeight = $(".accordion-content", this).height();
+    var dataHeight = $acc.data("visible-lines");
+    var height = dataHeight * LINE_HEIGHT;
+    var opened = false;
+
+    if ($accContentHeight > height) {
+      $acc.addClass("init");
+      $accCollapse.height(height);
+    } else {
+      $acc.removeClass("init");
+    }
+
+    $accToggle.on("click", function () {
+      var $this = $(this);
+      $this.toggleClass("up down").text(function (i, text) {
+        return text === "See more" ? "See less" : "See more";
+      });
+
+      if (!opened) {
+        $acc.addClass("opened");
+        opened = true;
+      } else {
+        $acc.removeClass("opened");
+        opened = false;
+      }
+    });
+  });
+}
+
 $(document).ready(function () {
   var onResizeInitSlider = initSlider();
   var onResizeInitMainArea = initMainArea();
@@ -894,6 +928,7 @@ $(document).ready(function () {
   rotateActiveTab();
   setSubmenuWidth();
   autoCollapseNavigation();
+  initSeeMore();
 
   if (window.require && window.requirejs) {
     window.requirejs.config({
