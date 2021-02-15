@@ -27,7 +27,7 @@
                 <div metal:use-macro="context/ace_macros/macros/websites"></div>
             </div>
 
-            <div tal:condition="context/source">
+            <div tal:condition="python: context.source and context.source.output">
                 <h5>Source:</h5>
                 <tal:block content="structure python: view.w['source'].render()" />
             </div>
