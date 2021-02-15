@@ -100,11 +100,13 @@
           <strong>Heat index of HHWS:</strong>
           <span class="value" />
         </div>
-        <div class="heat_index_website">
+        <p class="heat_index_website"
+           style="margin-top:1em"
+        >
           <a href=""
              target="_blank"
           >HHWS website</a>
-        </div>
+        </p>
       </div>
     </div>
 
