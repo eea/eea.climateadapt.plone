@@ -1,4 +1,5 @@
-/* global d3, $, jQuery */
+/* eslint-env jquery */
+/* global d3 */
 
 var _selectedMapSection = null;
 // var _mapTooltip = null;
@@ -28,7 +29,7 @@ jQuery(document).ready(function () {
 });
 
 
-function initmap(metadata, world, flags) {
+function initmap(metadata, world) {   // , flags
   countrySettings = metadata[0];
   var sections = metadata[1];
 
@@ -59,7 +60,7 @@ function renderGraticule(container, klass, steps, pathTransformer) {
     ;
 }
 
-function getCountryClass(country, countries) {
+function getCountryClass(country) {   // , countries
   var k = 'country-outline';
 
   // console.log('countryclass', country, countries)
@@ -639,8 +640,8 @@ function createSectionsSelector(sections, countries, callback) {
 
   // container.append(widget);
 
-  function drawMap(width) {
-    callback();
+  function drawMap() {    // width
+    callback(width);
   }
 
   // fire resize event after the browser window resizing it's completed
@@ -760,7 +761,7 @@ function passThruEvents(g) {
   // .on('mousedown.passThru', passThru)
   ;
 
-  function passThru(d) {
+  function passThru() {   // d
     // console.log('passing through');
     var e = d3.event;
 

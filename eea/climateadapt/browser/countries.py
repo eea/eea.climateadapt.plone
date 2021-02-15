@@ -331,7 +331,8 @@ class ContextCountriesView(BrowserView):
         m = {}
 
         for line in info:
-            m[line["country_id"]] = line
+            if line["country_id"].strip():
+                m[line["country_id"]] = line
 
         s = """var heat_index_info = {0};console.log(heat_index_info);""".format(
             json.dumps(m)
