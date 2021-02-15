@@ -92,6 +92,14 @@
     permission="cmf.ManagePortal"
     />
 
+    <browser:page
+      name="migrate_all_objects_notify"
+      for="*"
+      template="pt/migrate_all_objects_notify.pt"
+      class=".migrate.AllObjectsNotify"
+      permission="cmf.ManagePortal"
+      />
+
   <browser:page
     name="update_health_items"
     for="*"
