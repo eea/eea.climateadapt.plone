@@ -101,7 +101,9 @@
           <span class="value" />
         </div>
         <div class="heat_index_website">
-          <a href="">Website</a>
+          <a href=""
+             target="_blank"
+          >HHWS website</a>
         </div>
       </div>
     </div>

@@ -473,7 +473,7 @@ function showMapTooltip(d) {
   }
 
   if (info.website) {
-    jQuery('.heat_index_website a', content).attr('src', info.website);
+    jQuery('.heat_index_website a', content).attr('href', info.website);
   } else {
     jQuery('.heat_index_website', content).remove();
   }
