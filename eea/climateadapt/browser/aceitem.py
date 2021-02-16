@@ -115,9 +115,11 @@ class OrganisationView(DefaultView, AceViewApi):
             if api.content.get_state(obj) == 'published':
                 response.append({
                     'title': obj.title,
-                    'url': obj.absolute_url()
+                    'url': obj.absolute_url(),
+                    'date': str(obj.creation_date)
                 })
 
+        response.sort(key=lambda x: x.get('date'), reverse=True)
         return response
 
     def contributions_link(self):
