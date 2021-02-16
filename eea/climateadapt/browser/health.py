@@ -1,10 +1,9 @@
 import datetime
 
-from zope.component.hooks import getSite
-
 import DateTime
 import plone.api as api
 from Products.Five.browser import BrowserView
+from zope.component.hooks import getSite
 
 
 class HealthHomepageItems(BrowserView):
@@ -66,7 +65,7 @@ class HealthHomepageItems(BrowserView):
                 "portal_type": "News Item",
                 "sort_limit": "2",
                 "review_state": "published",
-                "sort_on": "created",
+                "sort_on": "effective",
                 "sort_order": "descending",
                 "include_in_observatory": True,
                 # "Subject": ("Health Observatory",),

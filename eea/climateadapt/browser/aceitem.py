@@ -127,7 +127,7 @@ class OrganisationView(DefaultView, AceViewApi):
                     {
                         "title": obj.title,
                         "url": obj.absolute_url(),
-                        "date": str(obj.creation_date),
+                        "date": obj.creation_date,
                     }
                 )
 
