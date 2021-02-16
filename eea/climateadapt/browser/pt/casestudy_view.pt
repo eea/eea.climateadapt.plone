@@ -285,12 +285,12 @@
                 <div metal:use-macro="context/ace_macros/macros/keywords"></div>
               </div>
 
-              <div class="macro-category">
+              <div class="macro-category" tal:condition="is_observatory_page" tal:define="is_observatory_page python:not request.get('observatory_page',0)">
                 <h4>Sectors:</h4>
                 <div tal:content="structure python:view.w['sectors'].render()"/>
               </div>
 
-              <div class="macro-category">
+              <div class="macro-category" tal:condition="is_observatory_page" tal:define="is_observatory_page python:not request.get('observatory_page',0)">
                 <h4>Climate impacts:</h4>
                 <div tal:content="structure python:view.w['climate_impacts'].render()"/>
               </div>

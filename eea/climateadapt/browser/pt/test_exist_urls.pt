@@ -1,0 +1,14 @@
+<h1>Migrate partener organisations</h1>
+<form action="./test_exist_urls" method="post" enctype="multipart/form-data">
+  <br>Select CSV file to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload" />
+  <input type="submit" value="Process CSV" name="submit" />
+</form>
+<table tal:define="items view/list">
+    <tr tal:repeat="item items">
+        <td tal:content="item/exist"></td>
+        <td tal:content="item/title"></td>
+        <td tal:content="item/state"></td>
+        <td tal:content="item/url"></td>
+    </tr>
+</table>
