@@ -58,6 +58,12 @@ span.country-none {
   background-color: @noinformation !important;
 }
 
+.country-none {
+  .country-flag {
+    cursor: auto;
+  }
+}
+
 .map-wrapper .choose-title {
   margin-top: 0 !important;
   padding-left: 0;
@@ -76,6 +82,8 @@ span.country-none {
 }
 
 .legend {
+  margin: 0;
+
   .legend-el {
     display: block;
     position: relative;
@@ -104,8 +112,14 @@ span.country-none {
   }
 }
 
-.legend {
-  margin: 0;
+#country-name {
+  h3 {
+    display: inline-block;
+  }
+
+  .close-tooltip {
+    float: right;
+  }
 }
 
 #heatindex-map-container {

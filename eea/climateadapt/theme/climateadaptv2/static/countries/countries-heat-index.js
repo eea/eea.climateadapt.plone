@@ -564,19 +564,29 @@ function createTooltip(opts) {
     .attr('id', 'tooltip-content')
     .append(content)
   ;
+
   var h3_name = $('<h3>')
     .append(name)
   ;
+
+  var close = $('<i class="fa fa-times close-tooltip"/>');
+
   var name_div = $('<div>')
     .attr('id', 'country-name')
     .append(h3_name)
+    .append(close)
   ;
+
   var tooltip = $("<div id='map-tooltip' style='width:200px !important' >")
     .attr('style', style)
     .append(name_div)
     .append(content_div)
   ;
+
   $('body').append(tooltip);
+  $(".close-tooltip").on("click", function() {
+    $(this).find("#map-tooltip").hide();
+  });
 }
 
 function createSectionsSelector(callback) {    // sections,
