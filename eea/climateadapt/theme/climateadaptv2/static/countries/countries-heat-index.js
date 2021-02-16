@@ -458,8 +458,13 @@ var countryNameTooltip = d3.select("body")
 function showMapTooltip(d) {
   if (_selectedMapSection === 'hhap') return;
   var coords = [d3.event.pageY, d3.event.pageX];
+  var name = d.properties.SHRT_ENGL;
 
-  var info = heat_index_info[d.properties.SHRT_ENGL];
+  if (name === 'Former Yugoslav Republic of Macedonia') {
+    name = 'North Macedonia';
+  }
+
+  var info = heat_index_info[name];
   if (!info) return;
 
   // console.log('info', info);
@@ -481,7 +486,7 @@ function showMapTooltip(d) {
   createTooltip({
     coords: coords,
     content: content,
-    name: d.properties.SHRT_ENGL,
+    name: name,
     url: '', // url
     meta: info,
   });
