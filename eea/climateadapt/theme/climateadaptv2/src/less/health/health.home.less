@@ -19,10 +19,10 @@ body.site-observatory {
       background-position: center;
     }
 
+    .health-image-copyright,
     .image-text-wrapper {
       position: absolute;
       z-index: 2;
-      top: 10%;
       left: 0;
       right: 0;
       margin-left: auto;
@@ -30,6 +30,11 @@ body.site-observatory {
       max-width: 1200px;
       width: 100%;
       padding: 0 1em;
+    }
+
+    .image-text-wrapper {
+      top: 10%;
+      bottom: auto;
 
       .fp-image-content {
         max-width: 600px;
@@ -48,6 +53,21 @@ body.site-observatory {
         max-width: 800px;
         font-family: "OpenSansL";
         margin-bottom: 15px;
+      }
+    }
+
+    .health-image-copyright {
+      top: auto;
+      bottom: 10px;
+      opacity: 0.4;
+      text-align: right;
+
+      span {
+        color: #fff;
+        font-family: "OpenSansM";
+        font-style: italic;
+        font-size: 12px;
+        text-shadow: 1px 1px 1px #000;
       }
     }
   }
