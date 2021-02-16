@@ -584,7 +584,7 @@ function createSectionsSelector(callback) {    // sections,
   var widget = $("#sections-selector");
   var sections = ['hhap', 'hhws'];
   var titles = {
-    hhap: "Heat health action plan (HHAP)",
+    hhap: "Heat health action plans (HHAP)",
     hhws: "Heat health warning systems (HHWS)"
   }
 
