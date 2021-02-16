@@ -127,10 +127,14 @@ class OrganisationView(DefaultView, AceViewApi):
                     {
                         "title": obj.title,
                         "url": obj.absolute_url(),
-                        "date": obj.creation_date,
+                        "date": (
+                            getattr(obj, "publication_date", None)
+                            or obj.creation_date.asdatetime().date()
+                        ),
                     }
                 )
 
+        print(response)
         response.sort(key=lambda x: x.get("date"), reverse=True)
         return response
 
