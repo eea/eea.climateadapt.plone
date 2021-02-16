@@ -465,7 +465,7 @@ function showMapTooltip(d) {
   }
 
   var info = heat_index_info[name];
-  if (!info) return;
+  if (!info || info.hhws === "No information") return;
 
   // console.log('info', info);
 
