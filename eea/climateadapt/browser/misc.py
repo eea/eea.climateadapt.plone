@@ -311,30 +311,33 @@ class RedirectToSearchView (BrowserView):
         else:
             link = '/data-and-downloads/'
 
-        querystring = self.request.form.get('SearchableText', "")
-        query = {
-            u'display_type': u'list',
-            u'highlight': {
-              u'fields': {
-                u'*': {
-                }
-              }
-            },
-            u'query': {
-                u'bool': {
-                    u'must':
-                        [{u'term': {u'hasWorkflowState': u'published'}},
-                         {u'query_string': {u'analyze_wildcard': True,
-                                            u'default_operator': u'OR',
-                                            u'query': querystring}
-                         }]
-                        }
-                       }
-                     }
-        if typeOfDataTo in typeOfDataValues:
-            query['query']['bool']['filter'] = {"bool":{"should":[{"term":{"typeOfData":typeOfDataValues[typeOfDataTo]}}]}}
+        if link == '/observatory/catalogue/' and typeOfDataTo == 'organisations':
+            link = '/observatory/About/about-the-observatory#partners';
+        else:
+            querystring = self.request.form.get('SearchableText', "")
+            query = {
+                u'display_type': u'list',
+                u'highlight': {
+                  u'fields': {
+                    u'*': {
+                    }
+                  }
+                },
+                u'query': {
+                    u'bool': {
+                        u'must':
+                            [{u'term': {u'hasWorkflowState': u'published'}},
+                             {u'query_string': {u'analyze_wildcard': True,
+                                                u'default_operator': u'OR',
+                                                u'query': querystring}
+                             }]
+                            }
+                           }
+                         }
+            if typeOfDataTo in typeOfDataValues:
+                query['query']['bool']['filter'] = {"bool":{"should":[{"term":{"typeOfData":typeOfDataValues[typeOfDataTo]}}]}}
 
-        link = link + '?source=' + urllib.quote(json.dumps(query))
+            link = link + '?source=' + urllib.quote(json.dumps(query))
 
         return self.request.response.redirect(link)
 
