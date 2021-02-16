@@ -24,57 +24,59 @@
   >
 
     <!-- The real map -->
-    <div class="row map-wrapper">
-      <div class="col-md-9 col-xs-12">
-        <svg-container id="countries-map">
+    <div class="row map-wrapper" style="margin-top: 20px;">
+      <div class="column col-md-10 col-xs-12">
+        <svg-container id="countries-map" style="margin: 34px 0; padding-right: 5px;">
+          <div class="map-islands">
+            <img src="/cca/++theme++climateadaptv2/static/images/map_islands.svg" />
+          </div>
+
           <svg height="500"
                width="100%"
           />
         </svg-container>
 
-        <div class="map-islands">
-          <img src="/cca/++theme++climateadaptv2/static/images/map_islands.svg" />
-        </div>
       </div>
 
       <!-- Sections selector on right side of map -->
-      <div class="col-md-3 col-xs-12">
-        <h2 class="choose-title">Choose thematic map:</h2>
+      <div class="column col-md-2 col-xs-12">
+        <h5 class="choose-title">Choose thematic map:</h5>
         <div id="sections-selector" />
 
         <!-- Map legend underneath the map -->
         <div class="legend nasnap-legend hhap-legend">
           <div class="legend-el">
             <span class="country-national-hhap legend-box" />
-            <p class="legend-text">National HHAP</p>
+            <span class="legend-text">National HHAP</span>
           </div>
           <div class="legend-el">
             <span class="country-subnational-hhap legend-box" />
-            <p class="legend-text">Subnational HHAP</p>
+            <span class="legend-text">Subnational or local HHAP</span>
           </div>
           <div class="legend-el">
             <span class="country-no-hhap legend-box" />
-            <p class="legend-text">No HHAP</p>
+            <span class="legend-text">No HHAP</span>
           </div>
           <div class="legend-el">
             <span class="country-none legend-box" />
-            <p class="legend-text">No information</p>
+            <span class="legend-text">No information</span>
           </div>
         </div>
 
         <div class="legend hhws-legend">
           <div class="legend-el">
             <span class="country-national-hhap legend-box" />
-            <p class="legend-text">
-              <span class="map-type">NAS</span>
-                adopted
-            </p>
+            <span class="legend-text">
+              <!-- <span class="map-type">NAS</span> -->
+                HHWS available (click on country for further information)
+            </span>
           </div>
           <div class="legend-el">
             <span class="country-none legend-box" />
-            <p class="legend-text"><span class="map-type">NAS</span>
-                not adopted
-            </p>
+            <span class="legend-text">
+              <!-- <span class="map-type">NAS</span> -->
+                No information
+            </span>
           </div>
         </div>
 
@@ -101,7 +103,7 @@
           <span class="value" />
         </div>
         <p class="heat_index_website"
-           style="margin-top:1em"
+           style="margin-top:2em"
         >
           <a href=""
              target="_blank"

@@ -2,11 +2,11 @@
 
 // this are for the health index map
 
-@nationalhhap: #2e75b6;
+@nationalhhap: #0170b7;
 @subnationalhhap: #8baece;
-@nohhap: #cfe3ff;
-@sphere: #deebf7;
+@nohhap: #868686;
 @noinformation: #bfbfbf;
+@sphere: #dcebf3;
 
 .country-nationalhhap path {
   fill: @nationalhhap !important;
@@ -38,6 +38,9 @@
   cursor: pointer;
 }
 
+.country-outline path {
+  fill: #e9e9e9;
+}
 
 span.country-national-hhap {
   background: @nationalhhap;
@@ -52,7 +55,57 @@ span.country-no-hhap {
 }
 
 span.country-none {
-  background: @noinformation;
+  background-color: @noinformation !important;
+}
+
+.map-wrapper .choose-title {
+  margin-top: 0 !important;
+  padding-left: 0;
+  padding-bottom: 15px;
+  margin-top: 0 !important;
+  border-bottom: 1px solid #6b7427;
+}
+
+#sections-selector {
+  padding-left: 0;
+  margin-bottom: 3em;
+
+  label {
+    text-transform: initial;
+  }
+}
+
+.legend {
+  .legend-el {
+    display: block;
+    position: relative;
+
+    .legend-box,
+    .legend-text {
+      display: inline-block;
+    }
+
+    .legend-box {
+      position: absolute;
+      top: 12px;
+      left: 0;
+    }
+
+    .legend-text {
+      padding-left: 41px;
+    }
+
+    // fix second legend position
+    &:nth-child(2) {
+      .legend-box {
+        top: 14px;
+      }
+    }
+  }
+}
+
+.legend {
+  margin: 0;
 }
 
 #heatindex-map-container {

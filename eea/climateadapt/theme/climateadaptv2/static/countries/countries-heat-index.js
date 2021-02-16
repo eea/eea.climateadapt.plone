@@ -2,8 +2,8 @@
 /* global d3 heat_index_info */
 
 var _selectedMapSection = 'hhap';   // which map type is chosen from the radio
-var hhap_title = "Heat-Health Action Plan (HHAP)";
-var hhws_title = "Heat–Health Warning Systems (HHWSs)";
+var hhap_title = "Heat health action plans (HHAP)";
+var hhws_title = "Heat health warning systems (HHWS)";
 
 var correct_country_names = {
   "Former Yugoslav Republic of Macedonia": "North Macedonia",
@@ -83,7 +83,7 @@ function getCountryClass(country) {   // , countries
       case "National HHAP":
         k += ' country-nationalhhap'
         break
-      case "Subnational HHAP":
+      case "Subnational or local HHAP":
         k += ' country-subnationalhhap'
         break
       case "No HHAP":
@@ -320,8 +320,8 @@ function renderCountriesBox(opts) {
     .attr("d", path)
   ;
 
-  renderGraticule(map, 'graticule', [20, 10], path);
-  renderGraticule(map, 'semi-graticule', [5, 5], path);
+  // renderGraticule(map, 'graticule', [20, 10], path);
+  // renderGraticule(map, 'semi-graticule', [5, 5], path);
 
   setCountryFlags(countries.feature.features, window._flags);
 
@@ -579,8 +579,8 @@ function createSectionsSelector(callback) {    // sections,
   var widget = $("#sections-selector");
   var sections = ['hhap', 'hhws'];
   var titles = {
-    hhap: "Heat-Health Action Plan (HHAP)",
-    hhws: "Heat–Health Warning Systems (HHWS)"
+    hhap: "Heat health action plan (HHAP)",
+    hhws: "Heat health warning systems (HHWS)"
   }
 
   sections.forEach(function (key, index) {
@@ -801,4 +801,3 @@ function passThruEvents(g) {
     this.style.pointerEvents = prev;
   }
 }
-
