@@ -102,31 +102,43 @@ class OrganisationView(DefaultView, AceViewApi):
         intids = getUtility(IIntIds)
         uid = intids.getId(self.context)
 
-        contributor_list = list(relation_catalog.findRelations(
-            {'to_id': uid, 'from_attribute': 'contributor_list'}))
-        contributors = list(relation_catalog.findRelations(
-            {'to_id': uid, 'from_attribute': 'contributors'}))
+        # TODO: don't use from_attribute
+        # contributor_list = list(
+        #     relation_catalog.findRelations(
+        #         {"to_id": uid, "from_attribute": "contributor_list"}
+        #     )
+        # )
+        # contributors = list(
+        #     relation_catalog.findRelations(
+        #         {"to_id": uid, "from_attribute": "contributors"}
+        #     )
+        # )
+
+        contributors = []
+        contributor_list = list(relation_catalog.findRelations({"to_id": uid}))
 
         response = []
 
         for item in chain(contributor_list, contributors):
             obj = item.from_object
 
-            if api.content.get_state(obj) == 'published':
-                response.append({
-                    'title': obj.title,
-                    'url': obj.absolute_url(),
-                    'date': str(obj.creation_date)
-                })
+            if api.content.get_state(obj) == "published":
+                response.append(
+                    {
+                        "title": obj.title,
+                        "url": obj.absolute_url(),
+                        "date": str(obj.creation_date),
+                    }
+                )
 
-        response.sort(key=lambda x: x.get('date'), reverse=True)
+        response.sort(key=lambda x: x.get("date"), reverse=True)
         return response
 
     def contributions_link(self):
         org = self.context.Title()
 
-        if org == 'World Health Organization - Regional Office for Europe':
-            org = 'World Health Organization-Europe'
+        if org == "World Health Organization - Regional Office for Europe":
+            org = "World Health Organization-Europe"
 
         t = {
             u"function_score": {
@@ -134,9 +146,7 @@ class OrganisationView(DefaultView, AceViewApi):
                     u"bool": {
                         u"filter": {
                             u"bool": {
-                                u"should": [
-                                    {u"term": {u"partner_contributors": org}}
-                                ]
+                                u"should": [{u"term": {u"partner_contributors": org}}]
                             }
                         },
                     }

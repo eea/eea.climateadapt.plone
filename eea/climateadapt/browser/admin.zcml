@@ -1,126 +1,127 @@
 <configure
-  xmlns="http://namespaces.zope.org/zope"
-  xmlns:browser="http://namespaces.zope.org/browser"
-  xmlns:i18n="http://namespaces.zope.org/i18n"
-  xmlns:z3c="http://namespaces.zope.org/z3c"
-  i18n_domain="eea.climateadapt">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="eea.climateadapt"
+    >
 
   <browser:page
-    for="*"
-    name="force_unlock"
-    class=".admin.ForceUnlock"
-    permission="cmf.ManagePortal"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    />
+      name="force_unlock"
+      for="*"
+      class=".admin.ForceUnlock"
+      permission="cmf.ManagePortal"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+      />
 
   <browser:page
-    class=".admin.ForcePingCRView"
-    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-    name="force-pingcr"
-    permission="cmf.ManagePortal"
-    />
-
-  <browser:page
-    class=".admin.ConvertPythonDatetime"
-    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-    name="admin-fix-datetime"
-    permission="cmf.ManagePortal"
-    />
-
-  <browser:page
-    class=".admin.ListTilesWithTitleView"
-    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-    name="richtext-tiles"
-    template="pt/list-richtext-tiles.pt"
-    permission="cmf.ManagePortal"
-    />
-
-  <browser:page
-    class=".admin.MainNavigationMenuEdit"
-    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-    name="edit-navigation-menu"
-    permission="cmf.ManagePortal"
-    />
-
-    <browser:page
-      class=".admin.HealthNavigationMenuEdit"
+      name="force-pingcr"
       for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      name="edit-health-navigation-menu"
+      class=".admin.ForcePingCRView"
       permission="cmf.ManagePortal"
       />
 
   <browser:page
-    class=".admin.KeywordsAdminView"
-    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-    name="keywords-admin"
-    template="pt/keywords-admin.pt"
-    permission="cmf.ManagePortal"
-    />
+      name="admin-fix-datetime"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".admin.ConvertPythonDatetime"
+      permission="cmf.ManagePortal"
+      />
 
   <browser:page
-    class=".admin.SpecialTagsView"
-    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-    name="tags-admin"
-    template="pt/special-tags-admin.pt"
-    permission="zope2.View"
-    />
+      name="richtext-tiles"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".admin.ListTilesWithTitleView"
+      template="pt/list-richtext-tiles.pt"
+      permission="cmf.ManagePortal"
+      />
 
   <browser:page
-    class=".admin.KeywordObjects"
-    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-    name="keyword-objects"
-    permission="zope2.View"
-    />
+      name="edit-navigation-menu"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".admin.MainNavigationMenuEdit"
+      permission="cmf.ManagePortal"
+      />
 
   <browser:page
-    class=".admin.SpecialTagsObjects"
-    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-    name="special-tags-objects"
-    permission="zope2.View"
-    />
+      name="edit-health-navigation-menu"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".admin.HealthNavigationMenuEdit"
+      permission="cmf.ManagePortal"
+      />
 
   <browser:page
-    class=".admin.CheckCopyPasteLocation"
-    for="*"
-    name="CheckCopyPasteLocation"
-    template="pt/check_copy_paste.pt"
-    permission="zope2.View"
-    />
+      name="keywords-admin"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".admin.KeywordsAdminView"
+      template="pt/keywords-admin.pt"
+      permission="cmf.ManagePortal"
+      />
 
   <browser:page
-    class=".admin.AddKeywordForm"
-    for="*"
-    name="add-keyword"
-    permission="cmf.ManagePortal"
-    />
+      name="tags-admin"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".admin.SpecialTagsView"
+      template="pt/special-tags-admin.pt"
+      permission="zope2.View"
+      />
 
   <browser:page
-    name="google-analytics-api-configure"
-    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-    class=".admin.ConfigureGoogleAnalyticsAPI"
-    permission="cmf.ManagePortal"
-    />
+      name="keyword-objects"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".admin.KeywordObjects"
+      permission="zope2.View"
+      />
 
   <browser:page
-    name="refresh-google-analytics-report"
-    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-    class=".admin.RefreshGoogleAnalyticsReport"
-    permission="cmf.ManagePortal"
-    />
+      name="special-tags-objects"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".admin.SpecialTagsObjects"
+      permission="zope2.View"
+      />
 
   <browser:page
-    name="gopdb"
-    for="*"
-    class=".admin.GoPDB"
-    permission="cmf.ManagePortal"
-    />
+      name="CheckCopyPasteLocation"
+      for="*"
+      class=".admin.CheckCopyPasteLocation"
+      template="pt/check_copy_paste.pt"
+      permission="zope2.View"
+      />
 
   <browser:page
-    name="migrate-tiles"
-    for="*"
-    class=".admin.MigrateTiles"
-    permission="cmf.ManagePortal"
-    />
+      name="add-keyword"
+      for="*"
+      class=".admin.AddKeywordForm"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="google-analytics-api-configure"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".admin.ConfigureGoogleAnalyticsAPI"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="refresh-google-analytics-report"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".admin.RefreshGoogleAnalyticsReport"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="gopdb"
+      for="*"
+      class=".admin.GoPDB"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="migrate-tiles"
+      for="*"
+      class=".admin.MigrateTiles"
+      permission="cmf.ManagePortal"
+      />
 
   <!--browser:page
     name="import-adaptecca"
@@ -130,10 +131,26 @@
     /-->
 
   <browser:page
-    name="fix-current-case-studies"
-    for="*"
-    class=".admin.AdapteCCACurrentCaseStudyFixImportIDs"
-    permission="cmf.ManagePortal"
-    />
+      name="fix-current-case-studies"
+      for="*"
+      class=".admin.AdapteCCACurrentCaseStudyFixImportIDs"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="rebuild-relations"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".relations.RebuildRelationsControlpanel"
+      template="pt/relations_rebuild.pt"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="inspect-relations"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".relations.InspectRelationsControlpanel"
+      template="pt/relations_inspect.pt"
+      permission="cmf.ManagePortal"
+      />
 
 </configure>

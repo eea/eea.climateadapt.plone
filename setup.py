@@ -3,15 +3,20 @@ import os
 from setuptools import find_packages, setup
 
 NAME = "eea.climateadapt"
-PATH = NAME.split('.') + ['version.txt']
+PATH = NAME.split(".") + ["version.txt"]
 VERSION = open(os.path.join(*PATH)).read().strip()
 
 
-long_description = (open("README.rst").read() + "\n" +
-                    open(os.path.join("docs", "HISTORY.txt")).read()),
+long_description = (
+    (
+        open("README.rst").read()
+        + "\n"
+        + open(os.path.join("docs", "HISTORY.txt")).read()
+    ),
+)
 
 setup(
-    name='eea.climateadapt',
+    name="eea.climateadapt",
     version=VERSION,
     description="EEA ClimateAdapt for Plone",
     long_description=long_description,
@@ -22,38 +27,39 @@ setup(
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    keywords='eea zope plone python',
-    author='European Environment Agency',
-    author_email='webadmin@eea.europa.eu',
-    url='http://eea.github.io',
-    license='gpl',
+    keywords="eea zope plone python",
+    author="European Environment Agency",
+    author_email="webadmin@eea.europa.eu",
+    url="http://eea.github.io",
+    license="gpl",
     packages=find_packages(),
     # package_dir = {'': 'eea'},
-    namespace_packages=['eea'],
+    namespace_packages=["eea"],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'setuptools',
-        'plone.app.dexterity',
-        'plone.namedfile [blobs]',
+        "setuptools",
+        "plone.app.dexterity",
+        "plone.namedfile [blobs]",
         # -*- Extra requirements: -*-
-        'z3c.jbot',
-        'pycountry',
-        'collective.dexteritytextindexer',
-        'collective.easyform',
-        'tokenlib',
-        'eea.rabbitmq.client',    # schedule jobs
-        'eea.rabbitmq.plone',
-        'google-api-python-client',       # google analytics API integration
+        "z3c.jbot",
+        "pycountry",
+        "collective.dexteritytextindexer",
+        "collective.easyform",
+        "tokenlib",
+        "eea.rabbitmq.client",  # schedule jobs
+        "eea.rabbitmq.plone",
+        "google-api-python-client",  # google analytics API integration
+        # "collective.relationhelpers",
     ],
     extras_require={
-        'test': [
-            'plone.app.testing',
+        "test": [
+            "plone.app.testing",
         ],
-        'importer': [
-            'zope.sqlalchemy',
-            'psycopg2',
-        ]
+        "importer": [
+            "zope.sqlalchemy",
+            "psycopg2",
+        ],
     },
     entry_points="""
       # -*- Entry points: -*-
@@ -71,10 +77,10 @@ setup(
       harvest_eea_indicators = eea.climateadapt.scripts.harvest_eea_indicators:main
       refresh_analytics_data = eea.climateadapt.browser.admin:refresh_analytics_data
       """,
-      # The next two lines may be deleted after you no longer need
-      # addcontent support from paster and before you distribute
-      # your package.
-      setup_requires=["PasteScript"],
-      paster_plugins=["templer.localcommands"],
-      # refresh_analytics_data = eea.climateadapt.browser.admin:refresh_analytics_data
-    )
+    # The next two lines may be deleted after you no longer need
+    # addcontent support from paster and before you distribute
+    # your package.
+    setup_requires=["PasteScript"],
+    paster_plugins=["templer.localcommands"],
+    # refresh_analytics_data = eea.climateadapt.browser.admin:refresh_analytics_data
+)
