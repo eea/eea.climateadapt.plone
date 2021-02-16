@@ -365,7 +365,7 @@ def link_objects(source, target, relationship):
     if from_attribute == referencedRelationship:
         # Don't mess with linkintegrity-relations!
         # Refresh them by triggering this subscriber.
-        modifiedContent(source, None)
+        # modifiedContent(source, None)
         return
 
     if from_attribute == ITERATE_RELATION_NAME:
