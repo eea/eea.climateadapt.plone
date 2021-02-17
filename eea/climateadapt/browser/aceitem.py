@@ -80,6 +80,10 @@ class C3sIndicatorView(DefaultView, AceViewApi):
         return response
 
 
+def to_observatory_url(obj):
+    return "/observatory/++aq++" + "/".join(obj.getPhysicalPath()[2:])
+
+
 class OrganisationView(DefaultView, AceViewApi):
     """"""
 
@@ -126,7 +130,7 @@ class OrganisationView(DefaultView, AceViewApi):
                 response.append(
                     {
                         "title": obj.title,
-                        "url": obj.absolute_url(),
+                        "url": to_observatory_url(obj),
                         "date": (
                             getattr(obj, "publication_date", None)
                             or obj.creation_date.asdatetime().date()
