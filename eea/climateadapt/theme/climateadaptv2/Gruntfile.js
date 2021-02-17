@@ -33,12 +33,12 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask("production", [
-    "template:dev",
+    "cachebreaker",
     "less:production",
+    "template:dev",
     // 'concat',
     "copy",
     "uglify",
-    "cachebreaker",
   ]);
 
   grunt.registerTask("default", [
