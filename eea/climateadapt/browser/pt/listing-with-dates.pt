@@ -24,7 +24,7 @@
                   News Title with href
                  </a>
                </h2>
-               <small class="discreet" tal:content="python: result.EffectiveDate().split('T')[0]"> Date </small>
+               <small class="discreet" tal:content="python:result.effective.strftime('%d %b %Y')" />
                <p tal:content="result/Description"> Description </p>
              </li>
            </tal:results>

@@ -50,7 +50,7 @@ class HealthHomepageItems(BrowserView):
                 # "url": item.getURL(),
                 "url": "/observatory/++aq++"
                 + "/".join(item.getObject().getPhysicalPath()[2:]),
-                "date": item.getObject().start.strftime("%d.%m.%Y"),
+                "date": item.getObject().start.strftime("%d %b %Y"),
                 "Subject": ("Health Observatory",),
             }
             results.append(info)
@@ -87,7 +87,7 @@ class HealthHomepageItems(BrowserView):
                 "size": size,
                 "url": "/observatory/++aq++"
                 + "/".join(item.getObject().getPhysicalPath()[2:]),
-                "date": item.getObject().created().strftime("%d.%m.%Y"),
+                "date": item.getObject().created().strftime("%d %b %Y"),
             }
             results.append(info)
 
