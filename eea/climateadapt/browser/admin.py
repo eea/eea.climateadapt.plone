@@ -253,7 +253,7 @@ class ForcePingCRView(BrowserView):
         cat = get_tool('portal_catalog')
 
         query = {
-            'review_state': ['published', 'archived']
+            'review_state': ['published', 'archived', 'private']
         }
         results = cat.searchResults(query)
 

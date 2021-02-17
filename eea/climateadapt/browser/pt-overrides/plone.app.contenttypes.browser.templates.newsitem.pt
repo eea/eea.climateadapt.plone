@@ -15,7 +15,7 @@
       tal:attributes="class python: toc and 'pat-autotoc' or ''" />
 
     <div style="width:50%; text-align:right; float: right; margin-top: 1rem;" class="news-item-view">
-      <div class="discreet">created: <span tal:content="python: context.creation_date.strftime('%Y-%m-%d')"> Date </span>
+      <div class="discreet">Date: <span tal:content="python: context.effective_date.strftime('%d %b %Y')"> Date </span>
       </div>
     </div>
 
