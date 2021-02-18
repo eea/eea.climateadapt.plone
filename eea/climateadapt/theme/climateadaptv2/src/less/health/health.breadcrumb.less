@@ -1,0 +1,36 @@
+#portal-breadcrumbs {
+  margin-left: 0;
+  margin-right: 0;
+
+  a {
+    color: #949494;
+    font-family: "OpenSansR";
+    font-size: 13px;
+  }
+
+  span:not(:last-child):after {
+    border: none;
+    content: "› ";
+    color: #949494;
+    width: 5px;
+  }
+}
+
+#breadcrumbs-current {
+  color: #949494;
+  font-size: 13px;
+}
+
+#breadcrumbs-home {
+  > a {
+    font-size: 0;
+    color: transparent;
+
+    &:before {
+      content: "\f015";
+      font-size: 13px;
+      color: #949494;
+      font-family: "FontAwesome";
+    }
+  }
+}

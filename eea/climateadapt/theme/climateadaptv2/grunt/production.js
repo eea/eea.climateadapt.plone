@@ -43,11 +43,12 @@ module.exports = {
         match: [
           {
             "health.css": "static/css/health.css",
+            "compiled-less.css": "static/css/compiled-less.css",
           },
         ],
       },
       files: {
-        src: ["src/tpl/partials/health-head.hbs"],
+        src: ["src/tpl/partials/health-head.hbs", "src/tpl/partials/head.hbs"],
       },
     },
   },
