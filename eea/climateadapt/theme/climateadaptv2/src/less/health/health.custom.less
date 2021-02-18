@@ -1,115 +1,56 @@
-.country-page-header {
-  h1 {
-    font-family: "OpenSansR";
-    font-size: 33px;
-    line-height: 33px;
-    color: #1172b5;
-    margin: 0 !important;
-  }
-
-  .column {
-    .tile-default:first-child {
-      table {
-        height: auto !important;
-        margin-top: 30px;
-      }
-
-      table tbody td {
-        vertical-align: bottom;
-      }
-    }
+body.site-observatory:not(.userrole-anonymous):not(.search-app) {
+  #portal-personaltools {
+    top: 26px;
   }
 }
 
-body.site-observatory {
-  #portal-breadcrumbs {
-    margin-left: 0;
-    margin-right: 0;
+body.search-app.site-observatory {
+  #personal-menu:hover a {
+    color: #0170b7;
   }
 
-  #breadcrumbs-home {
-    > a {
-      font-size: 0;
-      color: transparent;
-
-      &:before {
-        content: "\f015";
-        font-size: 13px;
-        color: #949494;
-        font-family: "FontAwesome";
-      }
-    }
-  }
-
-  .health-homepage-specific {
-    .main-area .row {
-      margin: 0 -15px 0 -15px;
-    }
-  }
-
-  #countries-map {
+  #portal-personaltools {
+    min-width: auto;
+    columns: auto;
+    background-color: transparent;
+    top: auto;
+    left: auto;
+    border: none;
+    box-shadow: none;
+    display: inline-flex;
+    right: auto;
+    width: auto;
+    height: auto;
+    vertical-align: bottom;
+    padding: 0;
     position: relative;
-    display: block;
-    line-height: 0;
 
-    svg {
-      border: none;
+    > a,
+    .personal-menu-action {
+      margin: 0;
     }
   }
 
-  .main-area .row {
-    margin-top: 0;
-  }
-
-  .map-wrapper {
-    margin-bottom: 20px !important;
-
-    // > .column {
-    //   padding: 0 15px;
-    // }
-
-    .map-islands {
-      bottom: 10px;
-      left: 10px;
-    }
-  }
-
-  .health-homepage-specific {
-    margin-top: 2em;
-  }
-
-  #portal-column-content {
-    overflow-x: unset;
-  }
-
-  .footer-content {
-    font-size: 13px;
+  .top-menu-nav-item:hover .login > .login-container {
+    display: none;
   }
 }
 
-#countries-tile-selector {
-  h5 {
-    padding-bottom: 15px;
-    margin-top: 0 !important;
-    border-bottom: 1px solid #949494;
-  }
+body.site-observatory:not(.collapsed) {
+  .main-nav-item {
+    &:hover,
+    &.active-menu {
+      border-bottom: 5px solid #818a32;
 
-  .countries-list-tile {
-    padding-left: 0 !important;
-    border-bottom: 1px solid #949494;
-
-    li {
-      list-style-type: none;
-      padding-bottom: 0.3em;
-
-      a {
-        color: #555;
-        font-size: 13px;
-        font-family: "OpenSansR";
+      .main-nav-link {
+        color: #818a32;
       }
 
-      a.active-country {
-        font-family: "OpenSansB";
+      > span {
+        background-color: transparent;
+        > .toggle-down .angle-down-icon {
+          border-top-color: #818a32;
+        }
       }
     }
   }

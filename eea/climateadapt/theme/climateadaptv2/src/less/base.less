@@ -1724,36 +1724,39 @@ table {
 }
 
 @media (max-width: 1024px) {
-  table {
-    thead {
-      tr > th:nth-child(1) {
-        width: 33% !important;
+  body:not(.site-observatory) {
+    table {
+      thead {
+        tr > th:nth-child(1) {
+          width: 33% !important;
+        }
+        tr > th:nth-child(2) {
+          width: 5.5% !important;
+        }
+        tr > th:nth-child(3) {
+          width: 30% !important;
+        }
+        tr > th:nth-child(4) {
+          width: 6.1% !important;
+        }
+        tr > th:nth-child(5) {
+          width: 7.35% !important;
+        }
       }
-      tr > th:nth-child(2) {
-        width: 5.5% !important;
-      }
-      tr > th:nth-child(3) {
-        width: 30% !important;
-      }
-      tr > th:nth-child(4) {
-        width: 6.1% !important;
-      }
-      tr > th:nth-child(5) {
-        width: 7.35% !important;
-      }
-    }
-    tbody {
-      tr > td:nth-child(1) {
-        width: 34.65% !important;
-      }
-      tr > td:nth-child(2) {
-        width: 6.64% !important;
-      }
-      tr > td:nth-child(3) {
-        width: 31.2% !important;
-      }
-      tr > td:nth-child(4) {
-        width: 7.45% !important;
+
+      tbody {
+        tr > td:nth-child(1) {
+          width: 34.65% !important;
+        }
+        tr > td:nth-child(2) {
+          width: 6.64% !important;
+        }
+        tr > td:nth-child(3) {
+          width: 31.2% !important;
+        }
+        tr > td:nth-child(4) {
+          width: 7.45% !important;
+        }
       }
     }
   }
