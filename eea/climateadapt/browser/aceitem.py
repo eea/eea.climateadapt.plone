@@ -107,24 +107,23 @@ class OrganisationView(DefaultView, AceViewApi):
         uid = intids.getId(self.context)
 
         # TODO: don't use from_attribute
-        # contributor_list = list(
-        #     relation_catalog.findRelations(
-        #         {"to_id": uid, "from_attribute": "contributor_list"}
-        #     )
-        # )
-        # contributors = list(
-        #     relation_catalog.findRelations(
-        #         {"to_id": uid, "from_attribute": "contributors"}
-        #     )
-        # )
+        contributor_list = list(
+            relation_catalog.findRelations(
+                {"to_id": uid, "from_attribute": "contributor_list"}
+            )
+        )
+        contributors = list(
+            relation_catalog.findRelations(
+                {"to_id": uid, "from_attribute": "contributors"}
+            )
+        )
 
-        contributors = []
-        contributor_list = list(relation_catalog.findRelations({"to_id": uid}))
+        contributor_list_relations = list(relation_catalog.findRelations({"to_id": uid}))
 
         response = []
         urls = []
 
-        for item in chain(contributor_list, contributors):
+        for item in chain(contributor_list, contributors, contributor_list_relations):
             obj = item.from_object
 
             if api.content.get_state(obj) == "published":
