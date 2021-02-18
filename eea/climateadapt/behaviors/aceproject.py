@@ -18,6 +18,7 @@ from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
+from z3c.relationfield.schema import RelationChoice, RelationList
 
 # from z3c.relationfield.schema import RelationChoice
 
@@ -123,6 +124,20 @@ class IAceProject(form.Schema, IImageScaleTraversable):
             u"Recommended size: at least 360/180 px, aspect ratio 2x."
             u"This image will be used in listings. If this image doesn't "
             u"exist, then the logo image will be used."
+        ),
+        required=False,
+    )
+
+    contributor_list = RelationList(
+        title=u"Contributor(s)",
+        default=[],
+        description=_(u"Select from the Climate ADAPT Organisation items the "
+                      u"organisations contributing to/ involved in this item"),
+        value_type=RelationChoice(
+            title=_(u"Related"),
+            vocabulary="eea.climateadapt.organisations"
+            # source=ObjPathSourceBinder(),
+            # source=CatalogSource(portal_type='eea.climateadapt.adaptionoption'),
         ),
         required=False,
     )
