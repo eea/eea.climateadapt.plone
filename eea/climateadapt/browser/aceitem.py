@@ -118,11 +118,16 @@ class OrganisationView(DefaultView, AceViewApi):
         contributor_list = list(relation_catalog.findRelations({"to_id": uid}))
 
         response = []
+        urls = []
 
         for item in chain(contributor_list, contributors):
             obj = item.from_object
 
             if api.content.get_state(obj) == "published":
+                if obj.absolute_url() in urls:
+                    continue
+
+                urls.append(obj.absolute_url())
                 response.append(
                     {
                         "title": obj.title,
