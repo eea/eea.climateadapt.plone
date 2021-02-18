@@ -11,7 +11,7 @@
 
   .main-nav-item {
     border: none;
-    border-bottom: 5px solid #1172b5;
+    border-bottom: 5px solid @secondary-blue;
 
     .main-nav-link {
       font-family: "OpenSansM";
@@ -70,7 +70,7 @@
 .collapse-nav {
   .main-nav {
     display: none;
-    background-color: #005c96;
+    background-color: @primary-blue;
 
     .main-nav-item:hover > .sub-menu-wrapper,
     .sub-menu-wrapper {
@@ -134,10 +134,10 @@
   margin-top: 0;
 }
 
-.collapse-nav .main-nav {
-  display: none;
-  background-color: #005c96;
-}
+// .collapse-nav .main-nav {
+//   display: none;
+//   background-color: @primary-blue;
+// }
 
 .header:not(.collapse-nav) {
   .main-nav-item {
