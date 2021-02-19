@@ -186,14 +186,15 @@
   </metal:macro>
 
   <metal:macro define-macro="contributor_list">
-    <div tal:condition="python: contributor or other_contributor"
-         tal:define="contributor context/contributor_list; other_contributor context/other_contributor|nothing">
-      <br/><h5>Contributor:</h5>
-      <span tal:condition="python: contributor and contributor[0].to_object"
-            tal:replace="python: contributor[0].to_object.title" ></span>
-      <br tal:condition="python: contributor and other_contributor" />
-      <span tal:condition="other_contributor"
-            tal:replace="structure python: other_contributor.replace('\n','<br />\n')" ></span>
+    <div tal:condition="python: contributors or other_contributor"
+         tal:define="contributors context/contributor_list; other_contributor context/other_contributor|nothing">
+      <br/><h5>Contributor2:</h5>
+      <div tal:condition="contributors" tal:repeat="contributor contributors">
+      <span tal:condition="python: contributor.to_object"
+            tal:replace="python: contributor.to_object.title" ></span>
+      </div>
+      <div tal:condition="other_contributor"
+            tal:replace="structure python: other_contributor.replace('\n','<br />\n')" ></div>
     </div>
   </metal:macro>
 
