@@ -34,9 +34,18 @@ span.bold {
   display: none;
 }
 
-#content span.link-external > a:before {
-  content: "";
-  margin: 0;
+#content {
+  span.link-external > a:before {
+    content: "";
+    margin: 0;
+  }
+
+  #parent-fieldname-text,
+  .cover-richtext-tile {
+    p > img {
+      max-width: 100%;
+    }
+  }
 }
 
 .main-area .row {
