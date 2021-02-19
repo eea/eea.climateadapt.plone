@@ -1,17 +1,29 @@
 <div id="fp-country-selector">
 
   <div class="map-caption">
-    <p>EEA Member countries are at different stages of preparing, developing and implementing national adaptation strategies and plans.</p>
-    <p>Click on a specific country on the map or select from the dropdown to see the country profile:</p>
+    <p>EEA Member countries are at different stages of preparing, developing and
+       implementing national adaptation strategies and plans.</p>
+    <p>Click on a specific country on the map or select from the dropdown to see
+       the country profile:</p>
     <div class="country-dropdown">
       <form>
         <select id="country-select" class="form-control">
-          <option id="no-selection-option" value="" selected="selected">Go to country...</option>
-          <option tal:repeat="c view/countries" tal:attributes="value python:c[0]" tal:content="python: c[1]"></option>
+          <option
+            id="no-selection-option"
+            value=""
+            selected="selected">
+            Go to country...
+          </option>
+          <option
+            tal:repeat="c view/countries"
+            tal:attributes="value python:c[0]"
+            tal:content="python: c[1]"></option>
         </select>
       </form>
     </div>
-    <a href="../countries-regions/countries" class="form-control">See countries webpage</a>
+    <a href="../countries-regions/countries" class="form-control">
+      See countries webpage
+    </a>
   </div>
 
   <svg-container class="svg-map-container svg-fp-container">
@@ -20,7 +32,11 @@
   </svg-container>
 
   <div class="map-islands">
-    <img class="lazyload" data-src="/++theme++climateadaptv2/static/images/map_islands.svg" />
+    <img class="lazyload"
+         data-src="/++theme++climateadaptv2/static/images/map_islands.svg"
+         width="110"
+         height="74"
+         />
   </div>
 
 
@@ -40,7 +56,7 @@
     window._old_define = window.define;
     window.define = null;
   </script>
-  
+
   <script src="/++theme++climateadaptv2/static/js/d3-array.v1.min.js"></script>
   <script src="/++theme++climateadaptv2/static/js/d3.v4.min.js"></script>
   <script src="/++theme++climateadaptv2/static/js/d3-geo.v1.min.js"></script>
