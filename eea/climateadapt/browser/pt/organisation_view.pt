@@ -43,7 +43,7 @@
             <div tal:define="
                    contributions view/get_contributions | nothing;
                  "
-                 tal:condition="contributions"
+                 tal:condition="python: contributions and context.include_in_observatory"
             >
 
               <h5>Observatory Contributions:</h5>

@@ -118,7 +118,8 @@ class OrganisationView(DefaultView, AceViewApi):
             )
         )
 
-        contributor_list_relations = list(relation_catalog.findRelations({"to_id": uid}))
+        #contributor_list_relations = list(relation_catalog.findRelations({"to_id": uid}))
+        contributor_list_relations = []
 
         response = []
         urls = []
@@ -147,10 +148,21 @@ class OrganisationView(DefaultView, AceViewApi):
         return response
 
     def contributions_link(self):
-        org = self.context.Title()
+        org = ''
 
-        if org == "World Health Organization - Regional Office for Europe":
-            org = "World Health Organization-Europe"
+        map_contributor_values = {
+            "copernicus-climate-change-service-ecmw": "Copernicus Climate Change Service",
+            "european-centre-for-disease-prevention-and-control-ecdc": "European Centre for Disease Prevention and Control",
+            "european-commission": "European Commission",
+            "european-environment-agency-eea": "European Environment Agency",
+            "european-food-safety-authority": "European Food Safety Authority",
+            "lancet-countdown": "Lancet Countdown",
+            "who-regional-office-for-europe-who-europe": "World Health Organization-Europe",
+            "world-health-organization": "World Health Organization"
+        }
+
+        if self.context.id in map_contributor_values:
+            org = map_contributor_values[self.context.id]
 
         t = {
             u"function_score": {
