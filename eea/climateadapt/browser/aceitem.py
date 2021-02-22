@@ -118,7 +118,8 @@ class OrganisationView(DefaultView, AceViewApi):
             )
         )
 
-        contributor_list_relations = list(relation_catalog.findRelations({"to_id": uid}))
+        #contributor_list_relations = list(relation_catalog.findRelations({"to_id": uid}))
+        contributor_list_relations = []
 
         response = []
         urls = []
