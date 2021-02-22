@@ -1,13 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 355" width="550" height="355">
-	<style>
-		tspan { white-space:pre }
-		.shp0 { fill: none;stroke: #1171b5;stroke-width: 2 } 
-		.shp1 { fill: #1171b5 } 
-	</style>
-	<path id="Shape 1" class="shp0" d="M157 198L217 198L231 177L250 199L266 127C266 127 284.33 242.63 284 243C283.67 243.37 302 179 302 179L318 198L394 198" />
-	<path id="Shape 2 copy 3" class="shp1" d="M173 282L377 282L377 284L173 284L173 282Z" />
-	<path id="Shape 2 copy 4" class="shp1" d="M289 302L377 302L377 304L289 304L289 302Z" />
-	<path id="Shape 2 copy 5" class="shp1" d="M174 67L377 67L377 69L174 69L174 67Z" />
-	<path id="Shape 2 copy 7" class="shp1" d="M174 86L377 86L377 88L174 88L174 86Z" />
-	<path id="Shape 2 copy 6" class="shp1" d="M174 48L262 48L262 50L174 50L174 48Z" />
+	<path fill="none" stroke="#1171b5" stroke-width="2" d="M325 310L425 310" />
+	<path fill="none" stroke="#1171b5" stroke-width="2" d="M125 287L425 287" />
+	<path fill="none" stroke="#1171b5" stroke-width="2" d="M125 198L217 198L231 177C231 177 249.83 200.15 250 200C250.17 199.85 266 127 266 127L284 242L302 179L318 198L425 198" />
+	<path fill="none" stroke="#1171b5" stroke-width="2" d="M125 43L225 43" />
+	<path fill="none" stroke="#1171b5" stroke-width="2" d="M125 68L425 68" />
+	<path fill="none" stroke="#1171b5" stroke-width="2" d="M125 94L425 94" />
 </svg>
