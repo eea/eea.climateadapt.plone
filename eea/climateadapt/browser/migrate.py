@@ -18,6 +18,7 @@ from plone.app.textfield import RichText
 from plone.app.textfield.value import RichTextValue
 from Products.Five.browser import BrowserView
 from z3c.relationfield import RelationValue
+from zc.relation.interfaces import ICatalog
 
 # from zope.schema import Choice
 # from zope.schema.interfaces import IVocabularyFactory
@@ -660,6 +661,43 @@ class AllObjectsNotify:
             })
 
         return response
+
+
+class MigrateFundingProgrammeUpdates:
+    def list(self):
+        funding_programme_updates = {
+            "Environment and climate action (LIFE)": "LIFE - Environment and climate action",
+            "European earth observation programme (Copernicus)": "COPERNICUS - European earth observation programme",
+            "Horizon 2020": "HORIZON 2020",
+            "Interreg": "INTERREG",
+            "Seventh Framework Programme (FP7: 2007-2013)": "FP7: 2007/2013 - Seventh Framework Programme",
+            "Sixth Framework Programme (FP6: 2002-2006)": "FP6: 2002/2006 - Sixth Framework Programme",
+            "Fifth Framework Programme (FP5: 1998-2002)": "FP5: 1998/2002 - Fifth Framework Programme"
+        }
+
+        catalog = get_tool("portal_catalog")
+        brains = catalog.searchResults(portal_type="eea.climateadapt.aceproject")
+
+        res = []
+        for brain in brains:
+            obj = brain.getObject()
+
+            if hasattr(obj,"funding_programme") \
+            and obj.funding_programme in funding_programme_updates:
+                logger.info("Will move for: %s", brain.getURL())
+
+                obj.funding_programme = funding_programme_updates[obj.funding_programme]
+                obj._p_changed = True
+                res.append(
+                    {
+                        "title": obj.title,
+                        "id": brain.UID,
+                        "url": brain.getURL(),
+                        "funding_programme": obj.funding_programme,
+                    }
+                )
+
+        return res
 
 
 class UpdateHealthItemsFields:

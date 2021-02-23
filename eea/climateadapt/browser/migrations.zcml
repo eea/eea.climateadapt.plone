@@ -93,6 +93,14 @@
     />
 
     <browser:page
+      name="migrate_funding_programme_updates"
+      for="*"
+      template="pt/migrate_funding_programme_updates.pt"
+      class=".migrate.MigrateFundingProgrammeUpdates"
+      permission="cmf.ManagePortal"
+      />
+
+    <browser:page
       name="migrate_all_objects_notify"
       for="*"
       template="pt/migrate_all_objects_notify.pt"
