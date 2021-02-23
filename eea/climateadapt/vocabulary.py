@@ -427,7 +427,8 @@ acemeasure_types = generic_vocabulary(_measure_types)
 alsoProvides(acemeasure_types, IVocabularyFactory)
 
 _origin_website = (("AdapteCCA", "AdapteCCA"),
-                   ("Climate-ADAPT", "Climate-ADAPT"), ("EEA", "EEA"),
+                   #("Climate-ADAPT", "Climate-ADAPT"),
+                   ("EEA", "EEA"),
                    ('DRMKC', 'DRMKC'), ('C3S', 'C3S'),
                    ('Lancet Countdown', 'Lancet Countdown')
                    )
