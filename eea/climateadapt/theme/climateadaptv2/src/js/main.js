@@ -9,8 +9,9 @@ function initSlider() {
       fade: true,
       slidesToShow: 1,
       dots: true,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 4000,
+      initialSlide: 2   // TODO: remove this after observatory launch
     });
 
     // slider thumbnails
