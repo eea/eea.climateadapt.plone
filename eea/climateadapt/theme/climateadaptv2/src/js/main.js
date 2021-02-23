@@ -11,7 +11,7 @@ function initSlider() {
       dots: true,
       autoplay: false,
       autoplaySpeed: 4000,
-      initialSlide: 2   // TODO: remove this after observatory launch
+      initialSlide: 1   // TODO: remove this after observatory launch
     });
 
     // slider thumbnails

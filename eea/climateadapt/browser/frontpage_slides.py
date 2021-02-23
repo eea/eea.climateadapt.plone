@@ -126,25 +126,25 @@ class FrontpageSlidesView(BrowserView):
         """ Gets the most recent updated news/events item"""
         site = getSite()
 
-        try:
-            news = site.restrictedTravers(
-                "observatory/more-events-observatory/launch-of-the-european-climate-"
-                "and-health-observatory-keeping-healthy-in-a-changing-climate"
-            )
-        except:  # noqa
-            catalog = site.portal_catalog
-            result = catalog.searchResults(
-                {
-                    "portal_type": ["News Item", "Event"],
-                    "review_state": "published",
-                    "sort_on": "effective",
-                    "sort_order": "reverse",
-                    "path": {"query": "/cca/news-archive"},
-                },
-                full_objects=True,
-            )[0]
+        # try:
+        #     news = site.restrictedTravers(
+        #         "observatory/more-events-observatory/launch-of-the-european-climate-"
+        #         "and-health-observatory-keeping-healthy-in-a-changing-climate"
+        #     )
+        # except:  # noqa
+        catalog = site.portal_catalog
+        result = catalog.searchResults(
+            {
+                "portal_type": ["News Item", "Event"],
+                "review_state": "published",
+                "sort_on": "effective",
+                "sort_order": "reverse",
+                "path": {"query": "/cca/news-archive"},
+            },
+            full_objects=True,
+        )[0]
 
-            news = result.getObject()
+        news = result.getObject()
 
         image_url, copyright = self.getImages(slide)
 
