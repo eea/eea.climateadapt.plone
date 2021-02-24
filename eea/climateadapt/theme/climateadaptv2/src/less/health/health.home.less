@@ -334,7 +334,7 @@
   ul {
     padding-left: 0;
     padding-bottom: 0;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
   }
 }
 
@@ -342,7 +342,7 @@
   padding: 15px;
 
   .box-container {
-    min-height: 290px;
+    // height: 290px;
   }
 }
 
@@ -354,7 +354,7 @@
   }
 
   .info-title {
-    margin: 20px 0 !important;
+    margin: 30px 0 20px 0 !important;
   }
 
   .info-title,
@@ -364,7 +364,9 @@
 
   p {
     font-size: 13px;
-    margin: 0 !important;
+    // margin: 0 !important;
+    margin-top: auto;
+    margin-bottom: 10px;
   }
 }
 
@@ -391,6 +393,12 @@
 .health-left,
 .health-right {
   padding: 0 15px;
+}
+
+.health-right {
+  .row {
+    display: flex;
+  }
 }
 
 .health-left #portal-column-one {
@@ -465,6 +473,9 @@
 }
 
 @media only screen and (max-width: 630px) {
+  .health-right .row {
+    display: block;
+  }
   .main-health-box.col-xs-12 {
     width: 100%;
   }

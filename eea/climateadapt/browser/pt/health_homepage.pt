@@ -15,12 +15,12 @@
 
       <div class="box-container list_news_events">
         <ul class="nav nav-tabs">
-          <li class="active">
+          <li>
             <a href="/cca/health#news-tab"
                tal:attributes="href python:context.absolute_url()+'#news-tab'">
                News</a>
           </li>
-          <li>
+          <li class="active">
             <a href="/cca/health#events-tab"
                tal:attributes="href python:context.absolute_url()+'#events-tab'">
                Events</a>
@@ -28,7 +28,7 @@
         </ul>
 
         <div class="tab-content">
-          <div class="tab-pane active fade in" id="news-tab">
+          <div class="tab-pane fade" id="news-tab">
             <div class="fp-news-tile" tal:define="items view/latestNews">
               <ul>
                 <li tal:repeat="item items">
@@ -50,7 +50,7 @@
             </div>
           </div>
 
-          <div class="tab-pane fade" id="events-tab">
+          <div class="tab-pane active fade in" id="events-tab">
             <div class="fp-events-tile" tal:define="items view/upcomingEvents">
               <ul tal:condition="python: items">
                 <li tal:repeat="item items">
