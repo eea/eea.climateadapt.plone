@@ -684,20 +684,21 @@ class MigrateFundingProgrammeUpdates:
 
             if hasattr(obj,"funding_programme") \
             and obj.funding_programme in funding_programme_updates:
-                logger.info("Will move for: %s", brain.getURL())
+                logger.info("Will update for: %s", brain.getURL())
 
                 obj.funding_programme = funding_programme_updates[obj.funding_programme]
                 obj._p_changed = True
-                notify(ObjectModifiedEvent(obj))
 
-                res.append(
-                    {
-                        "title": obj.title,
-                        "id": brain.UID,
-                        "url": brain.getURL(),
-                        "funding_programme": obj.funding_programme,
-                    }
-                )
+            notify(ObjectModifiedEvent(obj))
+
+            res.append(
+                {
+                    "title": obj.title,
+                    "id": brain.UID,
+                    "url": brain.getURL(),
+                    "funding_programme": obj.funding_programme,
+                }
+            )
 
         return res
 
