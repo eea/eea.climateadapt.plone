@@ -88,7 +88,7 @@ class AceViewApi(object):
         return response
 
     def hide_back_to_search_button(self):
-        if self.request.form.get("bs") == "0":
+        if self.request.form.get("bs") != "1":
             return 0
         return 1
 
