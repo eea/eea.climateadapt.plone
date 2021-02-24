@@ -688,6 +688,8 @@ class MigrateFundingProgrammeUpdates:
 
                 obj.funding_programme = funding_programme_updates[obj.funding_programme]
                 obj._p_changed = True
+                notify(ObjectModifiedEvent(obj))
+
                 res.append(
                     {
                         "title": obj.title,
