@@ -123,7 +123,8 @@ class AceViewApi(object):
             return result
 
         websites = getattr(self.context, field_name)
-
+        if websites is None:
+            return result
 
         for link in websites:
             result.append({'url': self.linkify(link), 'title': link})
