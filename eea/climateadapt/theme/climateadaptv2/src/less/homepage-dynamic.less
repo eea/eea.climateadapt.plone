@@ -190,6 +190,20 @@
   }
 
   .health-boxes {
+    .column {
+      padding-top: 0.5em;
+
+      @media only screen and (max-width: 768px) {
+        padding-top: 20px;
+      }
+    }
+
+    > .col-xs-6 {
+      @media only screen and (max-width: 420px) {
+        width: 100% !important;
+      }
+    }
+
     .health-footer {
       text-align: center;
       position: absolute;
@@ -222,6 +236,10 @@
       color: #555;
       font-family: "OpenSansL";
       font-size: 11px;
+
+      @media only screen and (max-width: 420px) {
+        font-size: 13px;
+      }
     }
 
     .health-box-image {
@@ -261,19 +279,26 @@
 
     .health-top-content {
       padding: 10px;
+      padding-top: 6px;
 
       h5 {
         font-family: "OpenSansR";
         text-transform: uppercase;
         font-size: 13px;
         color: #555;
-        margin-bottom: 5px;
+        margin-bottom: 0;
       }
     }
 
     div.main-box {
       height: 300px;
     }
+  }
+}
+
+@media only screen and (min-width: 991px) and (max-width: 1095px) {
+  .col-sm-12 {
+    width: 100% !important;
   }
 }
 
