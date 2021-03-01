@@ -27,16 +27,16 @@ function initCountriesMapTile() {
         window._flags = flags;
 
         // monthly change the active tab;
-        var d = new Date();
-        var month = d.getMonth();
-
-        var monthR = month % 5;
-        var $list = $('ul.main-nav-tabs');
-        var item = $list.children('li')[monthR];
-        if (item) {
-          var $hrefs = $('a', item);
-          $hrefs.length && $hrefs.tab('show');
-        }
+        // var d = new Date();
+        // var month = d.getMonth();
+        //
+        // var monthR = month % 5;
+        // var $list = $('ul.main-nav-tabs');
+        // var item = $list.children('li')[monthR];
+        // if (item) {
+        //   var $hrefs = $('a', item);
+        //   $hrefs.length && $hrefs.tab('show');
+        // }
 
       });
     });
