@@ -105,10 +105,10 @@ class ISearchAceContentTile(IPersistentCoverTile):
         value_type=Choice(vocabulary="eea.climateadapt.bioregions"),
     )
 
-    funding_programme = List(
+    funding_programme = Choice(
+        vocabulary="eea.climateadapt.funding_programme",
         title=_(u"Funding programmes"),
         required=False,
-        value_type=Choice(vocabulary="eea.climateadapt.funding_programme"),
     )
 
     nr_items = Int(
