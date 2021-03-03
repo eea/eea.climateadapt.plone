@@ -116,7 +116,7 @@ class OrganisationCard(BrowserView):
             "european-environment-agency-eea": "European Environment Agency",
             "european-food-safety-authority": "European Food Safety Authority",
             "lancet-countdown": "Lancet Countdown",
-            "who-regional-office-for-europe-who-europe": "World Health Organization-Europe",
+            "who-regional-office-for-europe-who-europe": "WHO Regional Office for Europe",
             "world-health-organization": "World Health Organization"
         }
 
