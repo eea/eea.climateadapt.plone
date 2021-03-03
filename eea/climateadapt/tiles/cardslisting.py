@@ -110,7 +110,7 @@ class OrganisationCard(BrowserView):
         org = ''
 
         map_contributor_values = {
-            "copernicus-climate-change-service-ecmw": "Copernicus Climate Change Service",
+            "copernicus-climate-change-service-ecmw": "Copernicus Climate Change Service and Copernicus Atmosphere Monitoring Service",
             "european-centre-for-disease-prevention-and-control-ecdc": "European Centre for Disease Prevention and Control",
             "european-commission": "European Commission",
             "european-environment-agency-eea": "European Environment Agency",
