@@ -22,8 +22,14 @@
     <div id="content" class="columned">
 
       <div class="aceitem_page">
-        <div style="margin-bottom:25px !important;display:none;" id="observatory_back_button_div" tal:condition="view/hide_back_to_search_button | nothing">
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>  <a style="text-decoration:none;" href="" onclick="window.history.back();return false;">back to search</a><br>
+        <div tal:condition="view/hide_back_to_search_button | nothing"
+             style="margin-bottom:25px !important; display:none;"
+             id="observatory_back_button_div">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          <a style="text-decoration:none;" href="" onclick="window.history.back(); return false;">
+            back to search
+          </a>
+          <br>
         </div>
 
         <div id="content-core">
@@ -187,8 +193,9 @@
 
   <metal:macro define-macro="contributor_list">
     <div tal:condition="python: contributors or other_contributor"
-         tal:define="contributors context/contributor_list; other_contributor context/other_contributor|nothing">
-      <br/><h5>Contributor:</h5>
+         tal:define="contributors context/contributor_list;
+                     other_contributor context/other_contributor|nothing">
+      <h5>Contributor:</h5>
       <div tal:condition="contributors" tal:repeat="contributor contributors">
       <span tal:condition="python: contributor.to_object"
             tal:replace="python: contributor.to_object.title" ></span>

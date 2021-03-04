@@ -108,18 +108,16 @@ class OrganisationView(DefaultView, AceViewApi):
         response = []
         urls = []
 
-        contributors = list(
-            relation_catalog.findRelations(
-                {"to_id": uid}
-            )
-        )
-        for item in contributors:
-            if item.from_attribute == "relatedItems":
+        contributors = list(relation_catalog.findRelations({"to_id": uid}))
+        for relation in contributors:
+            if relation.from_attribute == "relatedItems":
                 continue
 
-            obj = item.from_object
+            obj = relation.from_object
             if api.content.get_state(obj) == "published":
-                if obj.absolute_url() in urls:
+                if obj.absolute_url() in urls or (
+                    not getattr(obj, "include_in_observatory")
+                ):
                     continue
 
                 urls.append(obj.absolute_url())
@@ -134,22 +132,22 @@ class OrganisationView(DefaultView, AceViewApi):
                     }
                 )
 
-        print(response)
+        # print(response)
         response.sort(key=lambda x: x.get("date"), reverse=True)
         return response
 
     def contributions_link(self):
-        org = ''
+        org = ""
 
         map_contributor_values = {
-            "copernicus-climate-change-service-ecmw": "Copernicus Climate Change Service",
+            "copernicus-climate-change-service-ecmw": "Copernicus Climate Change Service and Copernicus Atmosphere Monitoring Service",
             "european-centre-for-disease-prevention-and-control-ecdc": "European Centre for Disease Prevention and Control",
             "european-commission": "European Commission",
             "european-environment-agency-eea": "European Environment Agency",
             "european-food-safety-authority": "European Food Safety Authority",
             "lancet-countdown": "Lancet Countdown",
-            "who-regional-office-for-europe-who-europe": "World Health Organization-Europe",
-            "world-health-organization": "World Health Organization"
+            "who-regional-office-for-europe-who-europe": "WHO Regional Office for Europe",
+            "world-health-organization": "World Health Organization",
         }
 
         if self.context.id in map_contributor_values:
