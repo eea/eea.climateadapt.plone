@@ -85,8 +85,8 @@ class HealthHomepageItems(BrowserView):
             info = {
                 "title": item.Title,
                 "size": size,
-                "url": item.getURL(),
-                # "/observatory/++aq++" + "/".join(item.getObject().getPhysicalPath()[2:]),
+                "url": "/observatory/++aq++"  # item.getURL()
+                + "/".join(item.getObject().getPhysicalPath()[2:]),
                 "date": item.getObject().effective().strftime("%d %b %Y"),
             }
             results.append(info)
