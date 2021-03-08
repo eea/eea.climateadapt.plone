@@ -16,14 +16,13 @@
          <div tal:define="batch python: context.results(batch=True,
                           b_start=request.get('b_start', 0),
                           b_size=10);
-                          urlPrefix python: '/observatory' if 'observatory' in context.REQUEST.getURL() else '';
-                          domainName python: '/'.join(context.REQUEST.getURL().split('/')[0:3])
+                          is_observatory python: 1 if 'observatory' in context.REQUEST.getURL() else 0;
                           "
                           >
            <tal:results repeat="result batch">
              <li class="news-item">
-               <h2>
-                 <a href="" tal:content="result/Title" tal:attributes="href python: urlPrefix + result.getURL().replace(domainName, '')">
+               <h2 tal:define="item_url python: '/observatory/++aq++news-archive/' + result.getURL().split('/')[-1] if is_observatory else result.getURL()">
+                 <a href="" tal:content="result/Title" tal:attributes="href item_url">
                   News Title with href
                  </a>
                </h2>
