@@ -228,11 +228,15 @@ class AceTileMixin(object):
 
             if k == "climate_impacts":
                 for s in v:
-                    terms.append({u"term": {u"elements": CLIMATE_IMPACTS[s]}})
+                    terms.append({u"term": {u"climate_impacts": CLIMATE_IMPACTS[s]}})
 
             if k == "elements":
                 for s in v:
                     terms.append({u"term": {u"elements": ELEMENTS[s]}})
+
+            if k == "funding_programme":
+                for s in v:
+                    terms.append({u"term": {u"funding_programme": s}})
 
             if k == "countries":
                 for s in v:
@@ -789,11 +793,12 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
     def view_more_url(self):
         site = getSite()
-        base = site.absolute_url() + "/data-and-downloads?source="
+        base = site.absolute_url() + "/data-and-downloads/?source="
 
         query = {
             "elements": self.data.get("element_type"),
             "search_type": self.data.get("search_type"),
+            "funding_programme": self.data.get("funding_programme") or "",
             "SearchableText": self.data.get("search_text") or "",
         }
 
@@ -802,7 +807,7 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         sector = kw["sector"]
 
         if impact:
-            query["climateimpacts"] = impact
+            query["climate_impacts"] = impact
 
         if sector:
             query["sectors"] = sector
