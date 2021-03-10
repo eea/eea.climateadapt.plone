@@ -8,16 +8,30 @@
     <strong tal:condition="is_compose">Filterable Relevant AceContent Tile</strong>
 
     <dl tal:condition="view/is_compose_mode" class="aceitem-tile">
+      <dt>Title:</dt>
+      <dd tal:content="python: view.data.get('title')" />
+      <dt>Search text:</dt>
+      <dd tal:content="python: view.data.get('search_text')" />
+      <dt>Aceitem type:</dt>
+      <dd tal:content="python: view.data.get('search_type')" />
       <dt>Element type:</dt>
       <dd tal:content="python: view.data.get('element_type')" />
       <dt>Sector:</dt>
       <dd tal:content="python: view.data.get('sector')" />
-      <dt>Search type:</dt>
-      <dd tal:content="python: view.data.get('search_type')" />
-      <dd>Search text: </dd>
-      <dt tal:content="python: view.data.get('search_text')" />
+      <dt>Special tags:</dt>
+      <dd tal:content="python: view.data.get('special_tags')" />
+      <dt>Countries:</dt>
+      <dd tal:content="python: view.data.get('countries')" />
       <dd>Number of items: </dd>
       <dt tal:content="python: view.data.get('nr_items')" />
+      <dt>Macro-Transnational Regions:</dt>
+      <dd tal:content="python: view.data.get('macro_regions')" />
+      <dt>Biogeographical Regions:</dt>
+      <dd tal:content="python: view.data.get('bio_regions')" />
+      <dt>Funding programmes:</dt>
+      <dd tal:content="python: view.data.get('funding_programme')" />
+      <dt>Sort by:</dt>
+      <dd tal:content="python: view.data.get('sortBy')" />
     </dl>
 
     <div class="cover-richtext-tile tile-content aceitem-relevant-tile aceitem-filter-relevant-tile" tal:condition="not: is_compose">
