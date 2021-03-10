@@ -18,6 +18,7 @@ def fixtiles(context):
 
 
 def update_to_8(context):
+    return
     if context.readDataFile('eea.climateadapt.update.txt') is None:
         return
 
@@ -28,6 +29,7 @@ def update_to_8(context):
 
 
 def update_to_9(context):
+    return
     if context.readDataFile('eea.climateadapt.update_9.txt') is None:
         return
 
@@ -685,6 +687,7 @@ def update_to_43(context):
 
 
 def update_to_47(context):
+    return
     logger.info("Upgrading to 47.")
 
     catalog = portal.get_tool(name='portal_catalog')
@@ -732,6 +735,7 @@ def update_to_47(context):
 
 
 def update_to_57(context):
+    return
     logger.info("Upgrading to 57.")
 
     catalog = portal.get_tool(name='portal_catalog')
