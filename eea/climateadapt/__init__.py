@@ -73,3 +73,23 @@ def get_tags_cca(obj):
 
 
 utils.get_tags = get_tags_cca
+
+# Raven repr monkey patch
+
+
+from App.ZApplication import ZApplicationWrapper
+
+def ZApplicationWrapper__repr__(self):
+    """ZApplicationWrapper has no __repr__ because it does not inherit
+    from object.
+    For having stack locals in sentry, the raven client tries to make
+    repr() for each object, which fails with the ZApplicationWrapper
+    because there is no implementation.
+    Therefore we add the __repr__ to the ZApplicationWrapper class.
+    """
+    mod = self.__class__.__module__
+    cls = self.__class__.__name__
+    mem = '0x' + hex(id(self))[2:].zfill(8).upper()
+    return '<{0}.{1} instance at {2}>'.format(mod, cls, mem)
+
+ZApplicationWrapper.__repr__ = ZApplicationWrapper__repr__
