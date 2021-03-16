@@ -18,6 +18,9 @@ class IPublicationReport(IAceItem):
         title=_(u"Date of item's publication"),
         description=u"The date refers to the latest date of publication"
         u" of the item (different from the date of item's"
-        u" publication in Climate ADAPT)",
-        required=False,
+        u" publication in Climate ADAPT)."
+        u" Please use the Calendar icon to add day/month/year. If you want to "
+        u"add only the year, please select \"day: 1\", \"month: January\" "
+        u"and then the year",
+        required=True,
     )

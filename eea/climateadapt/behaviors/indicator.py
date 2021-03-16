@@ -20,6 +20,9 @@ class IIndicator(IAceItem):
     publication_date = Date(
         title=_(u"Date of item's publication"),
         description=u"The date refers to the latest date of publication of "
-        u"the item",
-        required=False,
+        u"the item."
+        u" Please use the Calendar icon to add day/month/year. If you want to "
+        u"add only the year, please select \"day: 1\", \"month: January\" "
+        u"and then the year",
+        required=True,
     )

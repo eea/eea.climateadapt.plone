@@ -162,8 +162,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         description=u"The date refers to the moment in which the item "
         u"has been prepared by contributing expeerts to be "
         u"submitted for the publication in Climate "
-        u"ADAPTPublication/last update date",
-        required=False
+        u"ADAPTPublication/last update date."
+        u" Please use the Calendar icon to add day/month/year. If you want to "
+        u"add only the year, please select \"day: 1\", \"month: January\" "
+        u"and then the year",
+        required=True
     )
 
     featured = Bool(
@@ -251,11 +254,13 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     dexteritytextindexer.searchable('source')
     source = RichText(title=_(u"References"),
-                      required=False,
-                      description=_(u"Describe the references (projects, a"
-                                    u" tools reports,etc.) used for the "
-                                    u" preparation of the adaptation option "
-                                    u" description"))
+            required=False,
+            description=_(
+                u"Describe the references (projects, a tools reports, etc.) "
+                u"related to this item, providing further information about "
+                u"it or its source."
+            )
+    )
 
     # -----------[ "geographic_information" fields ]------------------
 
@@ -287,7 +292,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
                                   u"climate-adapt]")
                     )
 
-    origin_website = List(title=_(u"Origin website"),
+    origin_website = List(title=_(u"Item from third parties"),
+                          description=_(u"Used only to highlight items "
+                            u"provided by Third parties. Please don't compile "
+                            u"this field if you are a Climate-ADAPT expert "
+                            u"creating a new item."),
                           required=True,
                           value_type=Choice(
                               vocabulary="eea.climateadapt.origin_website"),
@@ -303,12 +312,12 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     )
 
     image = NamedBlobImage(
-        title=_(u"Thumbnail for lists"),
+        title=_(u"Thumbnail"),
         description=_(
             u"Upload a representative picture or logo for the item. "
-            u"Recommended size: at least 360/180 px, aspect ratio 2x."
-            u"This image will be used in listings. If this image doesn't "
-            u"exist, then the logo image will be used."
+            u"Recommended size: at least 360/180 px, aspect ratio 2x. "
+            u"This image will be used in the search result page - cards view. "
+            u"If this image doesn't exist, then the logo image will be used."
         ),
         required=False,
     )
@@ -427,6 +436,9 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     special_tags = Tuple(
         title=_(u"Special tagging"),
+        description=_(u"Used only by Climate-ADAPT administrator. Please don't "
+        u"compile this field if you are a Climate-ADAPT expert creating a new "
+        u"item."),
         required=False,
         value_type=TextLine(),
         missing_value=(None),
@@ -443,8 +455,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         description=u"The date refers to the moment in which the item "
         u"has been prepared or  updated by contributing "
         u"experts to be submitted for the publication in "
-        u"Climate ADAPT",
-        required=False
+        u"Climate ADAPT."
+        u" Please use the Calendar icon to add day/month/year. If you want to "
+        u"add only the year, please select \"day: 1\", \"month: January\" "
+        u"and then the year",
+        required=True
     )
 
     # dexteritytextindexer.searchable('summary')

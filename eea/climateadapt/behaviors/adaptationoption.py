@@ -58,6 +58,9 @@ class IAdaptationOption(IAceMeasure):
         description=u"The date refers to the moment in which the item "
         u"has been prepared or  updated by contributing "
         u"experts to be submitted for the publication in "
-        u"Climate ADAPT",
-        required=False
+        u"Climate ADAPT."
+        u" Please use the Calendar icon to add day/month/year. If you want to "
+        u"add only the year, please select \"day: 1\", \"month: January\" "
+        u"and then the year",
+        required=True
     )

@@ -94,7 +94,11 @@ class IAceItem(IImageScaleTraversable):
     #      'keyword', 'textsearch'])
 
     origin_website = List(
-        title=_(u"Origin website"),
+        title=_(u"Item from third parties"),
+        description=_(u"Used only to highlight items "
+            u"provided by Third parties. Please don't compile "
+            u"this field if you are a Climate-ADAPT expert "
+            u"creating a new item."),
         required=True,
         value_type=Choice(vocabulary="eea.climateadapt.origin_website"),
     )
@@ -109,12 +113,12 @@ class IAceItem(IImageScaleTraversable):
     )
 
     image = NamedBlobImage(
-        title=_(u"Thumbnail for lists"),
+        title=_(u"Thumbnail"),
         description=_(
             u"Upload a representative picture or logo for the item. "
-            u"Recommended size: at least 360/180 px, aspect ratio 2x."
-            u"This image will be used in listings. If this image doesn't "
-            u"exist, then the logo image will be used."
+            u"Recommended size: at least 360/180 px, aspect ratio 2x. "
+            u"This image will be used in the search result page - cards view. "
+            u"If this image doesn't exist, then the logo image will be used."
         ),
         required=False,
     )
@@ -205,8 +209,11 @@ class IAceItem(IImageScaleTraversable):
         description=u"The date refers to the moment in which the item "
         u"has been prepared by contributing experts to be "
         u"submitted for the publication in Climate "
-        u"ADAPT Publication/last update date",
-        required=False,
+        u"ADAPT Publication/last update date."
+        u" Please use the Calendar icon to add day/month/year. If you want to "
+        u"add only the year, please select \"day: 1\", \"month: January\" "
+        u"and then the year",
+        required=True,
     )
 
     featured = Bool(
@@ -233,10 +240,9 @@ class IAceItem(IImageScaleTraversable):
         title=_(u"References"),
         required=False,
         description=_(
-            u"Describe the references (projects, a"
-            u" tools reports,etc.) used for the "
-            u" preparation of the adaptation option "
-            u" description"
+            u"Describe the references (projects, a tools reports, etc.) "
+            u"related to this item, providing further information about "
+            u"it or its source."
         ),
     )
 
@@ -343,6 +349,9 @@ class IAceItem(IImageScaleTraversable):
 
     special_tags = Tuple(
         title=_(u"Special tagging"),
+        description=_(u"Used only by Climate-ADAPT administrator. Please don't "
+        u"compile this field if you are a Climate-ADAPT expert creating a new "
+        u"item."),
         required=False,
         value_type=TextLine(),
         missing_value=None,
