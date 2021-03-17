@@ -1070,6 +1070,7 @@ $(document).ready(function () {
 
   if ($('body.template-edit div.documentEditable p.discreet').length) {
       $('body.template-edit div.documentEditable p.discreet').after("<p><span style='background-color:Red;height:10px; width:10px !important;float:left;'></span>&nbsp;mandatory information</p>");
+      $('body.template-edit div.documentEditable label[for="form-widgets-IRelatedItems-relatedItems"]').after("<p>Please search other items of the database related with this item</p>");
   }
 });
 
