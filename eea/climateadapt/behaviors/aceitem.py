@@ -96,12 +96,11 @@ class IAceItem(IImageScaleTraversable):
     origin_website = List(
         title=_(u"Item from third parties"),
         description=_(u"Used only to highlight items "
-            u"provided by Third parties. Please don't compile "
-            u"this field if you are a Climate-ADAPT expert "
-            u"creating a new item. <br>Please don't compile "
+            u"provided by Third parties."
+            u"<br>Please don't compile "
             u"this field if you are a Climate-ADAPT expert "
             u"creating a new item."),
-        required=True,
+        required=False,
         value_type=Choice(vocabulary="eea.climateadapt.origin_website"),
     )
 
