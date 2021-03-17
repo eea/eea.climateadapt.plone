@@ -1067,6 +1067,10 @@ $(document).ready(function () {
       $("div[data-fieldname^='form.widgets.organisational_']").addClass("hide");
     }
   }
+
+  if ($('body.template-edit div.documentEditable p.discreet').length) {
+      $('body.template-edit div.documentEditable p.discreet').after("<p><span style='background-color:Red;height:10px; width:10px !important;float:left;'></span>&nbsp;mandatory information</p>");
+  }
 });
 
 // Divide the sub-menu in 2 columns if 'sub-sub-menu' exist
