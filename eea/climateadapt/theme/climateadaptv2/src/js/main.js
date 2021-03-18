@@ -1072,6 +1072,10 @@ $(document).ready(function () {
       $('body.template-edit div.documentEditable p.discreet').after("<p><span style='background-color:Red;height:10px; width:10px !important;float:left;'></span>&nbsp;mandatory information</p>");
       $('body.template-edit div.documentEditable label[for="form-widgets-IRelatedItems-relatedItems"]').after("<p>Please search other items of the database related with this item</p>");
   }
+  if ($("form[class*='++add++eea.climateadapt']").length) {
+      $("form[class*='++add++eea.climateadapt']").before("<p><span style='background-color:Red;height:10px; width:10px !important;float:left;'></span>&nbsp;mandatory information</p>");
+      $("form[class*='++add++eea.climateadapt'] label[for='form-widgets-IRelatedItems-relatedItems']").after("<p>Please search other items of the database related with this item</p>");
+  }
 });
 
 // Divide the sub-menu in 2 columns if 'sub-sub-menu' exist
