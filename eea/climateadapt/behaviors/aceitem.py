@@ -1,9 +1,4 @@
 from collective import dexteritytextindexer
-from zope.component import adapter
-from zope.interface import implementer
-from zope.schema import (URI, Bool, Choice, Date, Datetime, List, Text,
-                         TextLine, Tuple)
-
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader  # , Year
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
@@ -18,6 +13,10 @@ from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
+from zope.component import adapter
+from zope.interface import implementer
+from zope.schema import (URI, Bool, Choice, Date, Datetime, List, Text,
+                         TextLine, Tuple)
 
 
 class IAceItem(IImageScaleTraversable):
@@ -95,11 +94,13 @@ class IAceItem(IImageScaleTraversable):
 
     origin_website = List(
         title=_(u"Item from third parties"),
-        description=_(u"Used only to highlight items "
+        description=_(
+            u"Used only to highlight items "
             u"provided by Third parties."
             u"<br>Please don't compile "
             u"this field if you are a Climate-ADAPT expert "
-            u"creating a new item."),
+            u"creating a new item."
+        ),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.origin_website"),
     )
@@ -212,7 +213,7 @@ class IAceItem(IImageScaleTraversable):
         u"submitted for the publication in Climate "
         u"ADAPT Publication/last update date."
         u" Please use the Calendar icon to add day/month/year. If you want to "
-        u"add only the year, please select \"day: 1\", \"month: January\" "
+        u'add only the year, please select "day: 1", "month: January" '
         u"and then the year",
         required=True,
     )
@@ -283,7 +284,7 @@ class IAceItem(IImageScaleTraversable):
             # source=ObjPathSourceBinder(),
             # source=CatalogSource(portal_type='eea.climateadapt.adaptionoption'),
         ),
-        required=True,
+        required=False,
     )
 
     other_contributor = Text(
@@ -350,9 +351,11 @@ class IAceItem(IImageScaleTraversable):
 
     special_tags = Tuple(
         title=_(u"Special tagging"),
-        description=_(u"Used only by Climate-ADAPT administrator. Please don't "
-        u"compile this field if you are a Climate-ADAPT expert creating a new "
-        u"item."),
+        description=_(
+            u"Used only by Climate-ADAPT administrator. Please don't "
+            u"compile this field if you are a Climate-ADAPT expert creating a new "
+            u"item."
+        ),
         required=False,
         value_type=TextLine(),
         missing_value=None,
