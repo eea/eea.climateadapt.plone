@@ -26,7 +26,7 @@ class IAceVideo(IAceItem):
     )
 
     publication_date = Date(
-        title=_(u"Date of item's creation"),
+        title=_(u"Date of video's release"),
         description=u"The date refers to the moment in which the video has "
         u"been released. Please use the Calendar icon to add day/month/year. "
         u"If you want to add only the year, please select \"day: 1\", "
