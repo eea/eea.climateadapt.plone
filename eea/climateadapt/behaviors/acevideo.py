@@ -1,4 +1,4 @@
-from zope.schema import Text, TextLine
+from zope.schema import Text, TextLine, Date
 
 from eea.climateadapt import MessageFactory as _
 
@@ -23,4 +23,13 @@ class IAceVideo(IAceItem):
         description=u"Enter the video height",
         required=False,
         default=u"480",
+    )
+
+    publication_date = Date(
+        title=_(u"Date of item's creation"),
+        description=u"The date refers to the moment in which the video has "
+        u"been released. Please use the Calendar icon to add day/month/year. "
+        u"If you want to add only the year, please select \"day: 1\", "
+        u"\"month: January\" and then the year",
+        required=True,
     )
