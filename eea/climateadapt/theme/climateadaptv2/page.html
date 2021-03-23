@@ -14,8 +14,8 @@
     <link rel="preload" href="static/css/compiled-css.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
     <noscript><link rel="stylesheet" href="static/css/compiled-css.css"></noscript>
     
-    <link rel="preload" href="static/css/compiled-less.css?rel=021cb73f0d" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=021cb73f0d"></noscript>
+    <link rel="preload" href="static/css/compiled-less.css?rel=9802f3824d" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=9802f3824d"></noscript>
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="static/images/favicon/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/images/favicon/apple-touch-icon-114x114.png" />
@@ -80,6 +80,27 @@
                       </div>
                     </div>
                   </li>
+                  <li class="top-menu-nav-item help-menu">
+                    <a href="/news-archive">
+                      <i class="fa fa-newspaper-o"></i>
+                      News
+                    </a>
+                  </li>
+                  <li class="top-menu-nav-item help-menu">
+                    <a href="/more-events">
+                      <i class="fa fa-calendar"></i>
+                      Evens
+                    </a>
+                  </li>
+                  <li class="top-menu-nav-item help-menu">
+                    <a href="/newsletter">
+                      <i class="fa fa-envelope"></i>
+                      Newsletter
+                    </a>
+                  </li>
+      
+      
+                  <!--
                   <li class="top-menu-nav-item">
                     <div class="login">
                       <div id="personal-menu">
@@ -102,6 +123,7 @@
                       </div>
                     </div>
                   </li>
+              -->
                 </ul>
       
                 </span>
@@ -366,6 +388,34 @@
               </li>
               <li class="footer-nav-item">
                 <a href="/privacy-and-legal-notice" class="footer-nav-link">Privacy and Legal Notice</a>
+              </li>
+              <li class="footer-nav-item align-right footer-login">
+                  <!-- <a href="/login" id="personaltools-login" rel="#pb_1" class="footer-nav-link link-overlay" style="cursor: pointer;"><i class="fa fa-user"></i> Log in</a> -->
+    
+                  <div class="login">
+                    <div id="personal-menu">
+                      <a class="personal-menu-action">
+                        <i class="fa fa-user"></i>
+                        <span class="login-text">Login</span>
+                        <span class="user-name">user name</span>
+                        <i class="angle-down-icon"></i>
+                      </a>
+                    </div>
+                    <div class="login-container">
+                      <form class="login-form">
+                        <input type="text" placeholder="Email" />
+                        <input type="text" placeholder="Password" />
+                        <button type="submit" class="footer-nav-link"><i class="fa fa-user" aria-hidden="true"></i> Log in</button>
+                      </form>
+                      <ul id="portal-personaltools">
+                        <li><a href="#">test</a></li>
+                      </ul>
+                    </div>
+                  </div>
+    
+              </li>
+              <li class="footer-nav-item align-right footer-logged-menu">
+                <a href="/user-dashboard" class="footer-nav-link"><i class="fa fa-user"></i> dashboard</a>
               </li>
             </ul>
           </nav>
