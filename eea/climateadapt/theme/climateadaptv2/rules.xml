@@ -143,21 +143,23 @@
     <copy attributes="action method" css:content="#portal-searchbox form" css:theme=".search-box form" />
 
     <!-- Personal menu -->
-<!--
+    <!--
     <rules if="$is_anon">
       <replace css:theme-children=".login-text" css:content="#portal-personaltools-wrapper ul" />
       <drop css:theme="#personal-menu .angle-down-icon" />
     </rules>
-
     <rules if-not="$is_anon">
       <drop css:theme=".login-text" />
       <drop css:theme=".login-form" />
       <replace css:theme-children="#portal-personaltools" css:content="#portal-personaltools-wrapper li" />
     </rules>
 -->
+
     <!-- Footer login -->
     <rules if="$is_anon">
       <drop css:theme=".footer-nav-item.footer-logged-menu" />
+      <replace css:theme-children=".login-text" css:content="#portal-personaltools-wrapper ul" />
+      <drop css:theme="#personal-menu .angle-down-icon" />
     </rules>
     <rules if-not="$is_anon">
       <drop css:theme=".footer-nav-item.footer-login" />
