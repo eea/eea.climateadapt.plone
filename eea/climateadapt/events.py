@@ -1,11 +1,17 @@
 import logging
+import transaction
 
+from zope import component
 from zope.event import notify
 
 from eea.cache import event
 from plone.app.contentrules.handlers import execute, execute_rules
 from plone.app.iterate.dexterity.utils import get_baseline
 from plone.app.iterate.event import WorkingCopyDeletedEvent
+from zc.relation.interfaces import ICatalog
+from zope.component import queryUtility
+from zope.globalrequest import getRequest
+
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -47,6 +53,54 @@ def invalidate_cache_faceted_object_row(obj, evt):
         uid = ''
     key = 'row-' + uid
     notify(InvalidateCacheEvent(raw=False, key=key))
+
+
+def deletion_confirmed():
+    """Check if we are in the context of a delete confirmation event.
+    We need to be sure we're in the righ event to process it, as
+    `IObjectRemovedEvent` is raised up to three times: the first one
+    when the delete confirmation window is shown; the second when we
+    select the 'Delete' button; and the last, as part of the
+    redirection request to the parent container. Why? I have absolutely
+    no idea. If we select 'Cancel' after the first event, then no more
+    events are fired.
+    """
+    request = getRequest()
+    folder_delete = 'folder_delete' in request.URL
+    is_delete_confirmation = 'delete_confirmation' in request.URL
+    is_post = request.REQUEST_METHOD == 'POST'
+    # form_being_submitted = 'form.submitted' in request.form
+    # return (is_delete_confirmation and is_post and form_being_submitted) \
+    #     or (folder_delete and is_post)
+    return (is_delete_confirmation and is_post) \
+        or (folder_delete and is_post)
+
+
+def remove_broken_relations(obj, event):
+    """ Event handler to remove broken relations when an object is
+        deleted/moved/added/modified
+    """
+    if not deletion_confirmed():
+        return
+    else:
+        request = obj.REQUEST
+
+        catalog = component.queryUtility(ICatalog)
+        if catalog is None:
+            return
+
+
+        for relation in list(catalog.findRelations({'to_id': None})):
+            catalog.unindex(relation)
+            relation.from_object.relatedItems.remove(relation)
+            relation.from_object._p_changed = 1
+            relation.from_object.reindexObject()
+
+        # transaction.commit()
+        if isinstance(request.form['ajax_load'], list):
+            request.form['ajax_load'].pop()
+            request.form['ajax_load'] = request.form['ajax_load'][0]
+        return
 
 
 # from zope.annotation.interfaces import IAnnotations

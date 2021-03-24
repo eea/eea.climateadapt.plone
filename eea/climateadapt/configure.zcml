@@ -5,6 +5,7 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:grok="http://namespaces.zope.org/grok"
     xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:monkey="http://namespaces.plone.org/monkey"
     xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="eea.climateadapt"
@@ -170,6 +171,18 @@
       for=".aceproject.IAceProject"
       name="Description"
       />
+
+<!--  <adapter
+      factory=".catalog.cover_description"
+      name="DescriptionCover"
+      />
+  <adapter
+      factory=".catalog.cover_description"
+      for="collective.cover.interfaces.ICover"
+      name="DescriptionCover"
+      /> -->
+
+
 
   <!-- <adapter name="getObjSize" factory=".catalog.getObjSize_image" /> -->
 
@@ -446,5 +459,23 @@
       factory=".traversal.AcquisitionNamespace"
       name="aq"
       />
+
+  <subscriber
+      for="plone.dexterity.interfaces.IDexterityContent
+           zope.lifecycleevent.interfaces.IObjectRemovedEvent"
+      handler=".events.remove_broken_relations"
+      />
+
+    ------[ Monkey Patched ]--------
+
+  <include package="collective.monkeypatcher" />
+
+  <monkey:patch
+    description="Patch Plone isLinked"
+    module="Products.CMFPlone.utils"
+    original="isLinked"
+    replacement="eea.climateadapt.isLinked"
+    preserveOriginal="false"
+    />
 
 </configure>
