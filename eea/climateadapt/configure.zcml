@@ -459,23 +459,23 @@
       factory=".traversal.AcquisitionNamespace"
       name="aq"
       />
-<!--
+
   <subscriber
       for="plone.dexterity.interfaces.IDexterityContent
            zope.lifecycleevent.interfaces.IObjectRemovedEvent"
       handler=".events.remove_broken_relations"
       />
--->
+
     ------[ Monkey Patched ]--------
 
   <include package="collective.monkeypatcher" />
 
-<!--  <monkey:patch
+  <monkey:patch
     description="Patch Plone isLinked"
     module="Products.CMFPlone.utils"
     original="isLinked"
     replacement="eea.climateadapt.isLinked"
     preserveOriginal="false"
-    /> -->
+    />
 
 </configure>
