@@ -68,12 +68,13 @@ def deletion_confirmed():
     request = getRequest()
     folder_delete = 'folder_delete' in request.URL
     is_delete_confirmation = 'delete_confirmation' in request.URL
+    zmi_delete = 'manage_delObjects' in request.URL
     is_post = request.REQUEST_METHOD == 'POST'
     # form_being_submitted = 'form.submitted' in request.form
     # return (is_delete_confirmation and is_post and form_being_submitted) \
     #     or (folder_delete and is_post)
     return (is_delete_confirmation and is_post) \
-        or (folder_delete and is_post)
+        or (folder_delete and is_post) or (zmi_delete and is_post)
 
 
 def remove_broken_relations(obj, event):
