@@ -97,9 +97,10 @@ def remove_broken_relations(obj, event):
             relation.from_object.reindexObject()
 
         # transaction.commit()
-        if isinstance(request.form['ajax_load'], list):
-            request.form['ajax_load'].pop()
-            request.form['ajax_load'] = request.form['ajax_load'][0]
+        if (request.form.get('ajax_load', None)):
+            if isinstance(request.form['ajax_load'], list):
+                request.form['ajax_load'].pop()
+                request.form['ajax_load'] = request.form['ajax_load'][0]
         return
 
 
