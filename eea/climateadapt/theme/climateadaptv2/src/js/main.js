@@ -1076,6 +1076,21 @@ $(document).ready(function () {
       $("form[class*='++add++eea.climateadapt']").before("<p><span style='background-color:Red;height:10px; width:10px !important;float:left;'></span>&nbsp;mandatory information</p>");
       $("form[class*='++add++eea.climateadapt'] label[for='form-widgets-IRelatedItems-relatedItems']").after("<p>Please search other items of the database related with this item</p>");
   }
+
+    $("#plone-contentmenu-actions-delete").click(function() {
+        setTimeout(function() {
+            $('#delete_confirmation').submit(function() {
+                var url = window.location.href;
+
+                // Uglify doesnt like () => so we had to define setTimeout
+                // in another way
+                // setTimeout(() => window.location.replace(url), 1000);
+                setTimeout(function() {
+                    window.location.replace(url);
+                }, 1000);
+            });
+        }, 2000)
+    });
 });
 
 // Divide the sub-menu in 2 columns if 'sub-sub-menu' exist
