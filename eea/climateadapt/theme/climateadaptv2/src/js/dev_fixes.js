@@ -24,5 +24,20 @@ if(window.jQuery) {
       label_html = label_html.replace('IPCC adaptation options categories', link);
       $('#formfield-form-widgets-ipcc_category label[for=form-widgets-ipcc_category]').html(label_html);
     }
+
+    $("#plone-contentmenu-actions-delete").click(function() {
+        setTimeout(function() {
+            $('#delete_confirmation').submit(function() {
+                var url = window.location.href;
+
+                // Uglify doesnt like () => so we had to define setTimeout
+                // in another way
+                // setTimeout(() => window.location.replace(url), 1000);
+                setTimeout(function() {
+                    window.location.replace(url);
+                }, 1000);
+            });
+        }, 2000)
+    });
   });
 }
