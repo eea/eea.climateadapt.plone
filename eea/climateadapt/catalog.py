@@ -1,8 +1,14 @@
 import json
 import logging
 
-from collective.cover.interfaces import ICover
+from collective.cover.interfaces import ICover, ISearchableText
+from sumy.nlp.tokenizers import Tokenizer
+from sumy.nlp.stemmers import Stemmer
+from sumy.parsers.plaintext import PlaintextParser
+from sumy.summarizers.lsa import LsaSummarizer as Summarizer
+from sumy.utils import get_stop_words
 from zope.annotation.interfaces import IAnnotations
+from zope.component import queryAdapter
 from zope.interface import Interface
 
 from eea.climateadapt.aceitem import IAceItem
@@ -12,6 +18,7 @@ from eea.climateadapt.interfaces import IClimateAdaptContent, INewsEventsLinks
 from plone.api.portal import get_tool
 from plone.indexer import indexer
 from plone.rfc822.interfaces import IPrimaryFieldInfo
+from Products.CMFPlone.utils import safe_unicode
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -180,6 +187,51 @@ def get_aceitem_description(object):
     # the following is a very bad algorithm. Needs to use nltk.tokenize
     pars = text.split('.')
 
-    return '.'. join(pars[:2])
+    return '.'.join(pars[:2])
 
+    return text
+
+
+LANGUAGE = "english"
+SENTENCES_COUNT = 2
+
+
+@indexer(ICover)
+def cover_description(obj):
+    """ Simplify the long description rich text in a simple 2 paragraphs
+    "summary"
+    """
+    v = obj.Description()
+    if v not in [None, '']:
+        return v
+
+    portal_transforms = get_tool(name='portal_transforms')
+    tiles = obj.get_tiles()
+    text = []
+    for tile in tiles:
+        tile_obj = obj.restrictedTraverse('@@{0}/{1}'.format(tile['type'], tile['id']))
+
+        searchable = queryAdapter(tile_obj, ISearchableText)
+        if searchable:
+            text.append(searchable.SearchableText())
+        else:
+            data = portal_transforms.convertTo('text/plain',
+                                                tile_obj.getText(),
+                                                mimetype='text/html')
+            text.append(data.getData().strip())
+
+    text = [safe_unicode(entry) for entry in text if entry]
+
+    text = ".".join(text)
+    parser = PlaintextParser.from_string(text, Tokenizer(LANGUAGE))
+
+    stemmer = Stemmer(LANGUAGE)
+    summarizer = Summarizer(stemmer)
+    summarizer.stop_words = get_stop_words(LANGUAGE)
+
+    text = []
+    for sentence in summarizer(parser.document, SENTENCES_COUNT):
+        text.append(sentence._text)
+
+    text = " ".join(text)
     return text

@@ -172,17 +172,10 @@
       name="Description"
       />
 
-<!--  <adapter
-      factory=".catalog.cover_description"
-      name="DescriptionCover"
-      />
   <adapter
       factory=".catalog.cover_description"
-      for="collective.cover.interfaces.ICover"
-      name="DescriptionCover"
-      /> -->
-
-
+      name="Description"
+      />
 
   <!-- <adapter name="getObjSize" factory=".catalog.getObjSize_image" /> -->
 
