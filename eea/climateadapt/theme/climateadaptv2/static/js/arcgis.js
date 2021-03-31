@@ -76,7 +76,7 @@ require(["esri/Map", "esri/layers/GeoJSONLayer", "esri/views/MapView"], function
               weight: "bold",
               family: "Noto Sans",
               size: "16px"
-            }
+            },
           },
           labelPlacement: "center-center",
         }]
@@ -99,8 +99,7 @@ require(["esri/Map", "esri/layers/GeoJSONLayer", "esri/views/MapView"], function
   });
 
   view.filter = {
-      where: "name  LIKE 'Ion'",
-      //where: "mag >5.4",
+      where: "portal_type 'casestudy'"
   };
 
   view.whenLayerView(geojsonLayer).then(function(layerView) {
@@ -108,8 +107,7 @@ require(["esri/Map", "esri/layers/GeoJSONLayer", "esri/views/MapView"], function
 
     window.mapview = layerView;
     layerView.filter = {
-      where: "where: ''",
-      //where: "mag>5.4",
+      where: "portal_type LIKE 'casestudy'"
     };
 
   });

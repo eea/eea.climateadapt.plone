@@ -44,7 +44,7 @@ class Items(BrowserView):
                 #import pdb; pdb.set_trace()
                 results['features'].append({
                         "properties": {
-                            "portal_type":  obj.portal_type.replace('eea.climateadapt.', '') if iPos % 10 <3 else 'adaptationoption',
+                            "portal_type":  obj.portal_type.replace('eea.climateadapt.', '') if iPos % 10 <2 else 'adaptationoption',
                             #"sectors": obj.sectors,
                             "sectors": ',' + ','.join(obj.sectors) + ',',
                             "impacts": ',' + ','.join(obj.climate_impacts) + ',',
