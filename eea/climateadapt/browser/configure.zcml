@@ -84,6 +84,21 @@
       permission="zope2.View"
       />
 
+      <browser:page
+          name="arcgis.json"
+          for="*"
+          class=".arcgis.Items"
+          permission="zope2.View"
+          />
+
+      <browser:page
+          name="case-study-and-adaptation-options-map-viewer"
+          for="*"
+          template="pt/case-study-and-adaptation-options-map-viewer.pt"
+          permission="zope2.View"
+          />
+
+
   <browser:page
       name="listing-with-dates"
       for="*"

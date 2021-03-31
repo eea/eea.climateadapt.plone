@@ -1,0 +1,110 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="example.conference">
+  <body>
+
+    <metal:main fill-slot="main">
+      <tal:main-macro metal:define-macro="content-core">
+
+<link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css" />
+<script src="https://js.arcgis.com/4.18/"></script>
+<script src="/portal_javascripts/Sunburst%20Theme/++theme++climateadaptv2/static/js/arcgis.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <ul class="nav nav-tabs" id="myArcgisTab" role="tablist">
+                <li class="nav-item active">
+                  <a class="nav-link active" id="home-tab" data-tag="cs" data-toggle="tab" href="#tab-case-study" role="tab" aria-controls="home" aria-selected="true">Case study</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="profile-tab" data-tag="ao" data-toggle="tab" href="#tab-adaptationoption" role="tab" aria-controls="profile" aria-selected="false">Adaptation Options</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <form class="form-inline">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane active" id="tab-case-study" role="tabpanel" aria-labelledby="tab-case-study-tab">
+                    <div class="form-group">
+                        <select name="cs_sectors" class="form-control" id="CaseStudySectors">
+                            <option value="">-Sectors-</option>
+                            <option value="AGRICULTURE">Agriculture</option>
+                            <option value="BIODIVERSITY">Biodiversity</option>
+                            <option value="BUILDINGS">Buildings</option>
+                            <option value="COASTAL">Costal areas</option>
+                            <option value="DISASTERRISKREDUCTION">Disaster Risk Reduction</option>
+                            <option value="ECOSYSTEM">Ecosystem-based approaches (GI)</option>
+                            <option value="ENERGY">Energy</option>
+                            <option value="FINANCIAL">Financial</option>
+                            <option value="FORESTRY">Forestry</option>
+                            <option value="HEALTH">Health</option>
+                            <option value="MARINE">Marine and Fisheries</option>
+                            <option value="TRANSPORT">Transport</option>
+                            <option value="URBAN">Urban</option>
+                            <option value="WATERMANAGEMENT">Water management</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="cs_impacts" id="CaseStudyImpacts">
+                            <option value="">-Impacts-</option>
+                            <option value="DROUGHT">Drought</option>
+                            <option value="EXTREMETEMP">Extreme temperature</option>
+                            <option value="FLOODING">Flooding</option>
+                            <option value="ICEANDSNOW">Ice and snow</option>
+                            <option value="SEALEVELRISE">Sea level rise</option>
+                            <option value="STORM">Storms</option>
+                            <option value="WATERSCARCE">Water scarity</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="tab-pane " id="tab-adaptationoption" role="tabpanel" aria-labelledby="tab-adaptationoption-tab">
+                    <div class="form-group">
+                        <select name="ao_sectors" class="form-control" id="AdaptationOptionSectors">
+                            <option value="">-Sectors-</option>
+                            <option value="Agriculture">Agriculture</option>
+                            <option value="Biodiversity">Biodiversity</option>
+                            <option value="Buildings">Buildings</option>
+                            <option value="Costal areas">Costal areas</option>
+                            <option value="Disaster Risk Reduction">Disaster Risk Reduction</option>
+                            <option value="Ecosystem-based approaches (GI)">Ecosystem-based approaches (GI)</option>
+                            <option value="Energy">Energy</option>
+                            <option value="Financial">Financial</option>
+                            <option value="Forestry">Forestry</option>
+                            <option value="Health">Health</option>
+                            <option value="Marine and Fisheries">Marine and Fisheries</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Urban">Urban</option>
+                            <option value="Water management">Water management</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="ao_impacts" id="AdaptationOptionImpacts">
+                            <option value="">-Impacts-</option>
+                            <option value="DROUGHT">Drought</option>
+                            <option value="EXTREMETEMP">Extreme temperature</option>
+                            <option value="FLOODING">Flooding</option>
+                            <option value="ICEANDSNOW">Ice and snow</option>
+                            <option value="SEALEVELRISE">Sea level rise</option>
+                            <option value="STORM">Storms</option>
+                            <option value="WATERSCARCE">Water scarity</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+        <div id="arcgisDiv" style="min-height:500px;"></div>
+</div>
+
+      </tal:main-macro>
+  </metal:main>
+  </body>
+</html>
