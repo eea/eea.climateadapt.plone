@@ -19,16 +19,35 @@ require(["esri/Map", "esri/layers/GeoJSONLayer", "esri/views/MapView"], function
 
   const template = {
     title: "{title}",
-    content: "",
-    fieldInfos: [
-      {
-        fieldName: 'time',
-        format: {
-          dateFormat: 'short-date-short-time'
-        }
-      }
-    ]
+    outFields: ["*"],
+    content: popupContent
   };
+
+  function popupContent(feature) {
+console.log(feature.graphic.attributes);
+      var div = document.createElement("div");
+      // calculate the population percent change from 2010 to 2013.
+      let sectors = feature.graphic.attributes.sectors_str;
+      let impacts = feature.graphic.attributes.impacts_str;
+      let adaptation_options = feature.graphic.attributes.adaptation_options;
+
+      if (feature.graphic.attributes.image.length) {
+          div.innerHTML += '<br><img src="'+feature.graphic.attributes.image+'" style=\"float: left;margin: 0 15px 0 0;\" />';
+      }
+      if (feature.graphic.attributes.description) {
+          div.innerHTML += feature.graphic.attributes.description + '<br>';
+      }
+      if (adaptation_options.length) {
+          div.innerHTML += '<br><strong>Adaptation options:</strong><ul><li>'+adaptation_options.split('<>').join('</li><li>')+'</li></ul>';
+      }
+      if (sectors.length) {
+          div.innerHTML += '<br><strong>Sectors:</strong><ul><li>'+sectors.split(',').join('</li><li>')+'</li></ul>';
+      }
+      div.innerHTML += '<br><strong>Impacts:</strong><ul><li>'+impacts.split(',').join('</li><li>')+'</li></ul>';
+      div.innerHTML += '<br><a href="'+feature.graphic.attributes.url+'">... read more ...</a>';
+console.log(div.innerHTML);
+      return div;
+  }
 
   const renderer = {
     type: "simple",
@@ -59,10 +78,10 @@ require(["esri/Map", "esri/layers/GeoJSONLayer", "esri/views/MapView"], function
     url: url,
     featureReduction: {
         type: "cluster",
-        clusterRadius: "40px",
-        labelPlacement: "center-center",
-        clusterMinSize: "40px",
-        clusterMaxSize: "40px",
+        //clusterRadius: "40px",
+        //labelPlacement: "center-center",
+        //clusterMinSize: "40px",
+        //clusterMaxSize: "120px",
         labelingInfo: [{
           // turn off deconfliction to ensure all clusters are labeled
           //deconflictionStrategy: "none",
@@ -114,36 +133,23 @@ require(["esri/Map", "esri/layers/GeoJSONLayer", "esri/views/MapView"], function
 });
 
 $( document ).ready(function() {
-
-    $('#myArcgisTab a').click(function(){
-console.log($(this).attr('data-tag'));
-        updateItems($(this).attr('data-tag'));
-    });
-    $('#CaseStudySectors, #CaseStudyImpacts').change(function(){
-        updateItems('cs');
-    });
-    $('#AdaptationOptionSectors, #AdaptationOptionImpacts').change(function(){
-        updateItems('ao');
+    $('#arcgis_case_study_form #CaseStudySectors, #arcgis_case_study_form #CaseStudyImpacts').change(function(){
+        updateItems();
     });
 });
 
 function updateItems(type) {
-    if (type=='ao') {
-        portal_type = 'adaptationoption';
-    } else {
-        portal_type = 'casestudy';
-    }
     where = [];
-    where.push( "portal_type LIKE '"+portal_type+"'" );
+    where.push( "portal_type LIKE 'casestudy'" );
 
-    impacts = $("select[name='"+type+"_impacts']").val();
-console.log('IMPACTS:', "select[name='"+type+"_impacts']", impacts);
+    impacts = $("#arcgis_case_study_form select[name='impacts']").val();
+console.log('IMPACTS:', "#arcgis_case_study_form select[name='impacts']", impacts);
     if (impacts.length) {
         where.push( "impacts LIKE '%"+impacts+"%'" );
     }
 
-    sectors = $("select[name='"+type+"_sectors']").val();
-console.log('SECTORS:', "select[name='"+type+"_sectors']", sectors);
+    sectors = $("#arcgis_case_study_form select[name='sectors']").val();
+console.log('SECTORS:', "#arcgis_case_study_form select[name='sectors']", sectors);
     if (sectors.length) {
         where.push( "sectors LIKE '%"+sectors+"%'" );
     }

@@ -1,8 +1,6 @@
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
-from eea.climateadapt.sat.utils import _measure_id, to_arcgis_coords
-
 import json
 from plone.api.portal import get_tool
 
@@ -38,18 +36,31 @@ class Items(BrowserView):
             obj = brain.getObject()
             #import pdb; pdb.set_trace()
             if hasattr(obj, 'geolocation') and obj.geolocation:
-                geo = to_arcgis_coords(
-                    obj.geolocation.latitude, obj.geolocation.longitude
-                )
+                #import pdb; pdb.set_trace()
+                list_adaptation_options = []
+                adaptation_options = obj.adaptationoptions
+                for ao_related in adaptation_options:
+                    #import pdb; pdb.set_trace()
+                    try:
+                        list_adaptation_options.append(ao_related.to_object.title)
+                    except:
+                        ''
+
                 #import pdb; pdb.set_trace()
                 results['features'].append({
                         "properties": {
-                            "portal_type":  obj.portal_type.replace('eea.climateadapt.', '') if iPos % 10 <2 else 'adaptationoption',
+                            "portal_type":  obj.portal_type.replace('eea.climateadapt.', ''),
                             #"sectors": obj.sectors,
-                            "sectors": ',' + ','.join(obj.sectors) + ',',
-                            "impacts": ',' + ','.join(obj.climate_impacts) + ',',
+                            "sectors":  ','.join(obj.sectors),
+                            "impacts": ','.join(obj.climate_impacts),
+                            "adaptation_options": '<>'.join(list_adaptation_options),
+
+                            "sectors_str": ','.join(obj.sectors),
+                            "impacts_str": ','.join(obj.climate_impacts),
                             "title": obj.title,
-                            "url": brain.getURL()
+                            "description": brain.long_description.raw,
+                            "url": brain.getURL(),
+                            "image": brain.getURL()+'/@@images/primary_photo/mini' if obj.primary_photo else ''
                         },
                         "geometry": {
                             "type": "Point",
