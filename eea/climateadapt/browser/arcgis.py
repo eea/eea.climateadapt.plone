@@ -11,6 +11,11 @@ class Items(BrowserView):
 
     def __call__(self):
         """"""
+        factory = getUtility(IVocabularyFactory, 'eea.climateadapt.aceitems_climateimpacts')
+        vocabulary_impacts = factory(self.context)
+        factory = getUtility(IVocabularyFactory, "eea.climateadapt.aceitems_sectors")
+        vocabulary_sectors = factory(self.context)
+
         results = {
         	"type": "FeatureCollection",
         	"metadata": {
@@ -46,6 +51,20 @@ class Items(BrowserView):
                     except:
                         ''
 
+                sectors_str = [];
+                impacts_str = [];
+                for sector in obj.sectors:
+                    try:
+                        sectors_str.append(vocabulary_sectors.getTerm(sector).title)
+                    except:
+                        ''
+                for impact in obj.climate_impacts:
+                    try:
+                        impacts_str.append(vocabulary_impacts.getTerm(impact).title)
+                    except:
+                        ''
+
+
                 results['features'].append({
                         "properties": {
                             "portal_type":  obj.portal_type.replace('eea.climateadapt.', ''),
@@ -54,8 +73,8 @@ class Items(BrowserView):
                             "impacts": ','+(','.join(obj.climate_impacts))+',',
                             "adaptation_options": '<>'.join(list_adaptation_options),
 
-                            "sectors_str": ','.join(obj.sectors),
-                            "impacts_str": ','.join(obj.climate_impacts),
+                            "sectors_str": ','.join(sectors_str),
+                            "impacts_str": ','.join(impacts_str),
                             "title": obj.title,
                             "description": brain.long_description.raw,
                             "url": brain.getURL(),

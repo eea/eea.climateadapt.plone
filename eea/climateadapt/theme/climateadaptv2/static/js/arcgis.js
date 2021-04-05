@@ -24,7 +24,6 @@ require(["esri/Map", "esri/layers/GeoJSONLayer", "esri/views/MapView"], function
   };
 
   function popupContent(feature) {
-console.log(feature.graphic.attributes);
       var div = document.createElement("div");
       // calculate the population percent change from 2010 to 2013.
       let sectors = feature.graphic.attributes.sectors_str;
@@ -45,7 +44,6 @@ console.log(feature.graphic.attributes);
       }
       div.innerHTML += '<br><strong>Impacts:</strong><ul><li>'+impacts.split(',').join('</li><li>')+'</li></ul>';
       div.innerHTML += '<br><a href="'+feature.graphic.attributes.url+'">... read more ...</a>';
-console.log(div.innerHTML);
       return div;
   }
 
@@ -122,8 +120,6 @@ console.log(div.innerHTML);
   };
 
   view.whenLayerView(geojsonLayer).then(function(layerView) {
-    console.log('whenLayerView', layerView);
-
     window.mapview = layerView;
     layerView.filter = {
       where: "portal_type LIKE 'casestudy'"
@@ -143,20 +139,17 @@ function updateItems(type) {
     where.push( "portal_type LIKE 'casestudy'" );
 
     impacts = $("#arcgis_case_study_form select[name='impacts']").val();
-console.log('IMPACTS:', "#arcgis_case_study_form select[name='impacts']", impacts);
     if (impacts.length) {
         where.push( "impacts LIKE '%"+impacts+"%'" );
     }
 
     sectors = $("#arcgis_case_study_form select[name='sectors']").val();
-console.log('SECTORS:', "#arcgis_case_study_form select[name='sectors']", sectors);
     if (sectors.length) {
         where.push( "sectors LIKE '%"+sectors+"%'" );
     }
 
 
     window.mapview.filter = {where: where.join(' AND ')};
-console.log(where.join(' AND '));
 console.log(window.mapview.filter);
 }
 //window.mapview.filter = {where: "name  LIKE 'Ion' and direction LIKE 'est'"}
