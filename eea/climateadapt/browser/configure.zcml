@@ -94,6 +94,7 @@
       <browser:page
           name="case-study-and-adaptation-options-map-viewer"
           for="*"
+          class=".arcgis.Page"
           template="pt/case-study-and-adaptation-options-map-viewer.pt"
           permission="zope2.View"
           />

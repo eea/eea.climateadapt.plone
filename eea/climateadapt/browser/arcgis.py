@@ -1,3 +1,6 @@
+from zope.component import getUtility
+from zope.schema.interfaces import IVocabularyFactory
+
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -34,25 +37,21 @@ class Items(BrowserView):
         iPos = 0
         for brain in brains:
             obj = brain.getObject()
-            #import pdb; pdb.set_trace()
             if hasattr(obj, 'geolocation') and obj.geolocation:
-                #import pdb; pdb.set_trace()
                 list_adaptation_options = []
                 adaptation_options = obj.adaptationoptions
                 for ao_related in adaptation_options:
-                    #import pdb; pdb.set_trace()
                     try:
                         list_adaptation_options.append(ao_related.to_object.title)
                     except:
                         ''
 
-                #import pdb; pdb.set_trace()
                 results['features'].append({
                         "properties": {
                             "portal_type":  obj.portal_type.replace('eea.climateadapt.', ''),
                             #"sectors": obj.sectors,
-                            "sectors":  ','.join(obj.sectors),
-                            "impacts": ','.join(obj.climate_impacts),
+                            "sectors":  ','+(','.join(obj.sectors))+',',
+                            "impacts": ','+(','.join(obj.climate_impacts))+',',
                             "adaptation_options": '<>'.join(list_adaptation_options),
 
                             "sectors_str": ','.join(obj.sectors),
@@ -77,5 +76,20 @@ class Items(BrowserView):
 
 class Page(BrowserView):
 
-    def __call__(self):
-        """"""
+    def get_climate_impacts(self):
+        factory = getUtility(IVocabularyFactory, 'eea.climateadapt.aceitems_climateimpacts')
+        vocabulary = factory(self.context)
+        response = [];
+        response.append({"key": "", "value": "- FILTER BY IMPACT -"})
+        for term in vocabulary:
+            response.append({"key": term.value, "value": term.title})
+        return response
+
+    def get_sectors(self):
+        factory = getUtility(IVocabularyFactory, "eea.climateadapt.aceitems_sectors")
+        vocabulary = factory(self.context)
+        response = [];
+        response.append({"key": "", "value": "- FILTER BY SECTOR -"})
+        for term in vocabulary:
+            response.append({"key": term.value, "value": term.title})
+        return response
