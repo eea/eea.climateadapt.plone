@@ -110,8 +110,8 @@ require(["esri/Map", "esri/layers/GeoJSONLayer", "esri/views/MapView"], function
 
   const view = new MapView({
     container: "arcgisDiv",
-    center: [8, 56],
-    zoom: 3,
+    center: [8, 53],
+    zoom: 2.7,
     map: map
   });
 

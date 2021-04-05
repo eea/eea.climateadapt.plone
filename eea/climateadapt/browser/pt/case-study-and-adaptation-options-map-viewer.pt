@@ -1,3 +1,4 @@
+<!--
 <html
   xmlns="http://www.w3.org/1999/xhtml"
   xml:lang="en"
@@ -12,29 +13,41 @@
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core">
 
+      <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+<link rel="preload" href="/++theme++climateadaptv2/static/bs3/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+      -->
+
 <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css" />
 <script src="https://js.arcgis.com/4.18/"></script>
 <script src="/portal_javascripts/Sunburst%20Theme/++theme++climateadaptv2/static/js/arcgis.js"></script>
 
-<div class="container">
-    <div class="row">
-        <form class="form-inline" id="arcgis_case_study_form">
-            <div class="form-group" tal:define="sectors view/get_sectors">
-                <select name="sectors" class="form-control" id="CaseStudySectors">
-                    <option tal:repeat="sector sectors" tal:attributes="value sector/key" tal:content="sector/value"></option>
-                </select>
-            </div>
-            <div class="form-group" tal:define="climate_impacts view/get_climate_impacts">
-                <select name="impacts" id="CaseStudyImpacts">
-                    <option tal:repeat="climate_impact climate_impacts" tal:attributes="value climate_impact/key" tal:content="climate_impact/value"></option>
-                </select>
-            </div>
-        </form>
-    </div>
-    <div id="arcgisDiv" style="min-height:500px;"></div>
+<style>
+.esri-popup__header-title{
+    text-align:left;
+}
+</style>
+<div class="row">
+    <form class="form-inline" id="arcgis_case_study_form">
+        <div class="form-group" tal:define="sectors view/get_sectors">
+            <select name="sectors" class="form-control" id="CaseStudySectors">
+                <option tal:repeat="sector sectors" tal:attributes="value sector/key" tal:content="sector/value"></option>
+            </select>
+        </div>
+        <div class="form-group" tal:define="climate_impacts view/get_climate_impacts">
+            <select name="impacts" class="form-control" id="CaseStudyImpacts">
+                <option tal:repeat="climate_impact climate_impacts" tal:attributes="value climate_impact/key" tal:content="climate_impact/value"></option>
+            </select>
+        </div>
+    </form>
 </div>
+<div id="arcgisDiv" style="min-height:550px;"></div>
 
+<!--
       </tal:main-macro>
   </metal:main>
   </body>
 </html>
+-->
