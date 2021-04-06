@@ -1,4 +1,4 @@
-require(["esri/Map", "esri/layers/GeoJSONLayer", "esri/views/MapView"], function (
+require(["https://js.arcgis.com/4.18/esri/Map.js", "https://js.arcgis.com/4.18/esri/layers/GeoJSONLayer.js", "https://js.arcgis.com/4.18/esri/views/MapView.js"], function (
   Map,
   GeoJSONLayer,
   MapView
