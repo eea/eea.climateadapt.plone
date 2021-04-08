@@ -1,4 +1,13 @@
-require(["https://js.arcgis.com/4.18/esri/Map.js", "https://js.arcgis.com/4.18/esri/layers/GeoJSONLayer.js", "https://js.arcgis.com/4.18/esri/views/MapView.js"], function (
+requirejs.config({
+  baseUrl: "https://js.arcgis.com/4.18/"
+});
+console.log(requirejs.s.contexts._.config);
+console.log(requirejs);
+requirejs([
+  "esri/Map",
+  "esri/layers/GeoJSONLayer",
+  "esri/views/MapView"
+], function (
   Map,
   GeoJSONLayer,
   MapView
@@ -7,7 +16,7 @@ require(["https://js.arcgis.com/4.18/esri/Map.js", "https://js.arcgis.com/4.18/e
   // or a proxy is required.
   //const url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
   //url = "http://local.test.com/arcgis.json";
-  url = "/arcgis.json";
+  const url = "/arcgis.json";
 
   // Paste the url into a browser's address bar to download and view the attributes
   // in the GeoJSON file. These attributes include:
@@ -135,21 +144,21 @@ $( document ).ready(function() {
 });
 
 function updateItems(type) {
-    where = [];
+    const where = [];
     where.push( "portal_type LIKE 'casestudy'" );
 
-    impacts = $("#arcgis_case_study_form select[name='impacts']").val();
+    const impacts = $("#arcgis_case_study_form select[name='impacts']").val();
     if (impacts.length) {
         where.push( "impacts LIKE '%"+impacts+"%'" );
     }
 
-    sectors = $("#arcgis_case_study_form select[name='sectors']").val();
+    const sectors = $("#arcgis_case_study_form select[name='sectors']").val();
     if (sectors.length) {
         where.push( "sectors LIKE '%"+sectors+"%'" );
     }
 
 
     window.mapview.filter = {where: where.join(' AND ')};
-console.log(window.mapview.filter);
+  console.log(window.mapview.filter);
 }
 //window.mapview.filter = {where: "name  LIKE 'Ion' and direction LIKE 'est'"}

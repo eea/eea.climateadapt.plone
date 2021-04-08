@@ -22,7 +22,7 @@
 
 <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css" />
 <script src="https://js.arcgis.com/4.18/"></script>
-<script src="/portal_javascripts/Sunburst%20Theme/++theme++climateadaptv2/static/js/arcgis.js"></script>
+<script src="++theme++climateadaptv2/static/js/arcgis.js"></script>
 
 <style>
 .esri-popup__header-title{
