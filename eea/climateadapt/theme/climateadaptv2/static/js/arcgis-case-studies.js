@@ -6,11 +6,13 @@ window.requirejs.config({
 window.requirejs([
   "esri/Map",
   "esri/layers/GeoJSONLayer",
-  "esri/views/MapView"
+  "esri/views/MapView",
+  "esri/geometry/Point"
 ], function (
   Map,
   GeoJSONLayer,
-  MapView
+  MapView,
+  Point
 ) {
   // If GeoJSON files are not on the same domain as your website, a CORS enabled server
   // or a proxy is required.
@@ -42,7 +44,6 @@ window.requirejs([
       if (adaptation_options.length) {
           div.innerHTML += '<p style="font-size:14px;"><strong>Adaptation options:</strong></p><ul><li>'+adaptation_options.split('<>').join('</li><li>')+'</li></ul>';
       }
-      div.innerHTML += '<br><a href="'+feature.graphic.attributes.url+'">... read more ...</a>';
       return div;
   }
 
@@ -75,19 +76,21 @@ window.requirejs([
     url: url,
     featureReduction: {
         type: "cluster",
-        //clusterRadius: "40px",
-        //labelPlacement: "center-center",
-        //clusterMinSize: "40px",
-        //clusterMaxSize: "120px",
+        clusterRadius: "60px",
+        labelPlacement: "center-center",
+        clusterMinSize: "20px",
+        clusterMaxSize: "40px",
         labelingInfo: [{
           // turn off deconfliction to ensure all clusters are labeled
           //deconflictionStrategy: "none",
           labelExpressionInfo: {
-            expression: "Text($feature.cluster_count, '#,###')"
+            expression: "Text($feature.cluster_count, '#,###')",
           },
           symbol: {
             type: "text",
             color: "#ffffff",
+            borderLineSize: 0,
+            //backgroundColor: "#005c96",
             font: {
               weight: "bold",
               family: "Noto Sans",
@@ -109,9 +112,18 @@ window.requirejs([
 
   const view = new MapView({
     container: "arcgisDiv",
-    center: [8, 53],
-    zoom: 2.7,
+    center: [2, 53],
+    zoom: 3,
     map: map
+  });
+
+  window.iugMapView = view;
+  window.iugPoint = Point;
+
+  view.on("click", function (event) {
+      view.center = event.mapPoint;
+      zoomValue = Math.min(view.zoom + 1, 12);
+      view.zoom = zoomValue;
   });
 
   view.filter = {
@@ -147,8 +159,6 @@ function updateItems(type) {
         where.push( "sectors LIKE '%"+sectors+"%'" );
     }
 
-
     window.mapview.filter = {where: where.join(' AND ')};
-  console.log(window.mapview.filter);
+    //console.log(window.mapview.filter);
 }
-//window.mapview.filter = {where: "name  LIKE 'Ion' and direction LIKE 'est'"}
