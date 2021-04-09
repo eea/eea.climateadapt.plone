@@ -17,7 +17,7 @@ window.requirejs([
   const url = "/case-studies-map.arcgis.json";
 
   const template = {
-    title: "{title}",
+    title: "{title} <a href='{url}'>open DB</a>",
     outFields: ["*"],
     content: popupContent
   };
@@ -27,21 +27,21 @@ window.requirejs([
       // calculate the population percent change from 2010 to 2013.
       let sectors = feature.graphic.attributes.sectors_str;
       let impacts = feature.graphic.attributes.impacts_str;
-      let adaptation_options = feature.graphic.attributes.adaptation_options;
+      let adaptation_options = feature.graphic.attributes.adaptation_options_links;
 
       if (feature.graphic.attributes.image.length) {
-          div.innerHTML += '<br><img src="'+feature.graphic.attributes.image+'" style=\"float: left;margin: 0 15px 0 0;\" />';
+          div.innerHTML += '<p><img src="'+feature.graphic.attributes.image+'" /></p>';
       }
-      if (feature.graphic.attributes.description) {
+      /*if (feature.graphic.attributes.description) {
           div.innerHTML += feature.graphic.attributes.description + '<br>';
-      }
-      if (adaptation_options.length) {
-          div.innerHTML += '<br><strong>Adaptation options:</strong><ul><li>'+adaptation_options.split('<>').join('</li><li>')+'</li></ul>';
-      }
+      }*/
       if (sectors.length) {
-          div.innerHTML += '<br><strong>Sectors:</strong><ul><li>'+sectors.split(',').join('</li><li>')+'</li></ul>';
+          div.innerHTML += '<p style="font-size:14px;"><strong style="color:#069;">Sectors:</strong><br>'+sectors+'</p>';
       }
-      div.innerHTML += '<br><strong>Impacts:</strong><ul><li>'+impacts.split(',').join('</li><li>')+'</li></ul>';
+      div.innerHTML += '<p style="font-size:14px;"><strong style="color:#069;">Climate impacts:</strong><br>'+impacts+'</p>';
+      if (adaptation_options.length) {
+          div.innerHTML += '<p style="font-size:14px;"><strong>Adaptation options:</strong></p><ul><li>'+adaptation_options.split('<>').join('</li><li>')+'</li></ul>';
+      }
       div.innerHTML += '<br><a href="'+feature.graphic.attributes.url+'">... read more ...</a>';
       return div;
   }

@@ -44,10 +44,12 @@ class Items(BrowserView):
             obj = brain.getObject()
             if hasattr(obj, 'geolocation') and obj.geolocation:
                 list_adaptation_options = []
+                list_adaptation_options_links = []
                 adaptation_options = obj.adaptationoptions
                 for ao_related in adaptation_options:
                     try:
                         list_adaptation_options.append(ao_related.to_object.title)
+                        list_adaptation_options_links.append('<a href=\''+ao_related.to_object.absolute_url_path()+'\'>'+ao_related.to_object.title+'</a>')
                     except:
                         ''
 
@@ -72,6 +74,7 @@ class Items(BrowserView):
                             "sectors":  ','+(','.join(obj.sectors))+',',
                             "impacts": ','+(','.join(obj.climate_impacts))+',',
                             "adaptation_options": '<>'.join(list_adaptation_options),
+                            "adaptation_options_links": '<>'.join(list_adaptation_options_links),
 
                             "sectors_str": ','.join(sectors_str),
                             "impacts_str": ','.join(impacts_str),
@@ -99,7 +102,7 @@ class Page(BrowserView):
         factory = getUtility(IVocabularyFactory, 'eea.climateadapt.aceitems_climateimpacts')
         vocabulary = factory(self.context)
         response = [];
-        response.append({"key": "", "value": "- FILTER BY IMPACT -"})
+        response.append({"key": "", "value": "Filter by IMPACT"})
         for term in vocabulary:
             response.append({"key": term.value, "value": term.title})
         return response
@@ -108,7 +111,7 @@ class Page(BrowserView):
         factory = getUtility(IVocabularyFactory, "eea.climateadapt.aceitems_sectors")
         vocabulary = factory(self.context)
         response = [];
-        response.append({"key": "", "value": "- FILTER BY SECTOR -"})
+        response.append({"key": "", "value": "Filter by SECTOR"})
         for term in vocabulary:
             response.append({"key": term.value, "value": term.title})
         return response
