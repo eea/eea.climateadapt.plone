@@ -85,16 +85,16 @@
       />
 
       <browser:page
-          name="arcgis.json"
+          name="case-studies-map.arcgis.json"
           for="*"
-          class=".arcgis.Items"
+          class=".casestudies_map.Items"
           permission="zope2.View"
           />
 
       <browser:page
           name="case-study-and-adaptation-options-map-viewer"
           for="*"
-          class=".arcgis.Page"
+          class=".casestudies_map.Page"
           template="pt/case-study-and-adaptation-options-map-viewer.pt"
           permission="zope2.View"
           />
