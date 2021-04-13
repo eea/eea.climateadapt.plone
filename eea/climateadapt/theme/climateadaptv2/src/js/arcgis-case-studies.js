@@ -100,6 +100,14 @@ window.requirejs([
           labelPlacement: "center-center",
         }]
     },
+    renderer: {
+        type: "simple",
+        symbol: {
+            type: "simple-marker",
+            size: 8,
+            color: "#005c96"
+        }
+    },
     copyright: "USGS Earthquakes",
     popupTemplate: template
     //renderer: renderer //optional
