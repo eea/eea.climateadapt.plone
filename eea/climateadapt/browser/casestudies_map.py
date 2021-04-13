@@ -5,7 +5,10 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 import json
+import logging
 from plone.api.portal import get_tool
+
+logger = logging.getLogger("eea.climateadapt")
 
 class Items(BrowserView):
 
@@ -66,6 +69,8 @@ class Items(BrowserView):
                     except:
                         ''
 
+                if (obj.geolocation.longitude == 0):
+                    logger.info("Very south: %s %s %s", obj.geolocation.longitude, obj.geolocation.latitude, brain.getURL())
 
                 results['features'].append({
                         "properties": {
