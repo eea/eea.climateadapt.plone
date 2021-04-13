@@ -38,7 +38,8 @@ class Items(BrowserView):
                 "portal_type": [
                     "eea.climateadapt.casestudy",
                     "eea.climateadapt.adaptationoption",
-                ]
+                ],
+                "review_state": "published"
             }
         )
 
