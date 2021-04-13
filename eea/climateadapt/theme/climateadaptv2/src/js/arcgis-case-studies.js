@@ -151,25 +151,33 @@ window.requirejs([
 });
 
 $( document ).ready(function() {
-    $('#arcgis_case_study_form #CaseStudySectors, #arcgis_case_study_form #CaseStudyImpacts').change(function(){
+    $('#arcgis_case_study_form input[name="impacts"], #arcgis_case_study_form input[name="sectors"]').change(function(){
         updateItems();
     });
 });
 
 function updateItems(type) {
     const where = [];
+    const whereImpacts = [];
+    const whereSectors = [];
     where.push( "portal_type LIKE 'casestudy'" );
 
-    const impacts = $("#arcgis_case_study_form select[name='impacts']").val();
-    if (impacts.length) {
-        where.push( "impacts LIKE '%"+impacts+"%'" );
+    const impacts = $("#arcgis_case_study_form input[name='impacts']:checked");
+    for (index=0;index<impacts.length;index++) {
+        whereImpacts.push( "impacts LIKE '%"+impacts[index].getAttribute('value')+"%'" );
+    }
+    if (whereImpacts.length) {
+        where.push('('+whereImpacts.join(' OR ')+')');
     }
 
-    const sectors = $("#arcgis_case_study_form select[name='sectors']").val();
-    if (sectors.length) {
-        where.push( "sectors LIKE '%"+sectors+"%'" );
+    const sectors = $("#arcgis_case_study_form input[name='sectors']:checked");
+    for (index=0;index<sectors.length;index++) {
+        whereSectors.push( "sectors LIKE '%"+sectors[index].getAttribute('value')+"%'" );
+    }
+    if (whereSectors.length) {
+        where.push('('+whereSectors.join(' OR ')+')');
     }
 
     window.mapview.filter = {where: where.join(' AND ')};
-    //console.log(window.mapview.filter);
+//console.log(window.mapview.filter);
 }

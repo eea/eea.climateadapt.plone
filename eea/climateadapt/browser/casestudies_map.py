@@ -108,7 +108,7 @@ class Page(BrowserView):
         factory = getUtility(IVocabularyFactory, 'eea.climateadapt.aceitems_climateimpacts')
         vocabulary = factory(self.context)
         response = [];
-        response.append({"key": "", "value": "Filter by IMPACT"})
+        #response.append({"key": "", "value": "Filter by IMPACT"})
         for term in vocabulary:
             response.append({"key": term.value, "value": term.title})
         return response
@@ -117,7 +117,7 @@ class Page(BrowserView):
         factory = getUtility(IVocabularyFactory, "eea.climateadapt.aceitems_sectors")
         vocabulary = factory(self.context)
         response = [];
-        response.append({"key": "", "value": "Filter by SECTOR"})
+        #response.append({"key": "", "value": "Filter by SECTOR"})
         for term in vocabulary:
             response.append({"key": term.value, "value": term.title})
         return response

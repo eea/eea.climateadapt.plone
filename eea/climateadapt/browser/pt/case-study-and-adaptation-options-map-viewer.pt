@@ -33,22 +33,68 @@
 .esri-popup__header-title{
     text-align:left;
 }
+#arcgis_case_study_form h4{
+    background-color:#005c96;
+    color:#ffffff;
+    font-size:12px;
+    height:35px;
+    padding:10px;
+}
+#arcgis_case_study_form p{
+    clear:both;
+    padding:2px;
+    line-height:20px;
+}
+#arcgis_case_study_form span{
+    float:left;
+    font-size:12px;
+    font-family:OpenSansM;
+}
+#arcgis_case_study_form input{
+    float:right;
+}
 </style>
 <div class="row">
-    <form class="form-inline" id="arcgis_case_study_form">
-        <div class="form-group" tal:define="sectors view/get_sectors">
-            <select name="sectors" class="form-control" id="CaseStudySectors">
-                <option tal:repeat="sector sectors" tal:attributes="value sector/key" tal:content="sector/value"></option>
-            </select>
+    <div class="col-md-9">
+        <div id="arcgisDiv" style="min-height:550px;"></div>
+    </div>
+    <div class="col-md-3">
+        <form class="form-inline pl-3" id="arcgis_case_study_form" style="padding-left:20px;padding-right:20px;">
+        <div class="row">
+            <div class="cols-md-12" tal:define="sectors view/get_sectors">
+                <h4>Filter by SECTOR</h4>
+                <p tal:repeat="sector sectors">
+                    <span class="float-left" tal:content="sector/value">Sector name</span>
+                    <input type="checkbox" name="sectors" tal:attributes="value sector/key" >
+                </p>
+            </div>
+            <div class="cols-md-12" tal:define="climate_impacts view/get_climate_impacts" style="padding-top:10px;">
+                <h4>Filter by IMPACT</h4>
+                <p tal:repeat="climate_impact climate_impacts">
+                    <span class="float-left" tal:content="climate_impact/value">Sector name</span>
+                    <input type="checkbox" name="impacts" tal:attributes="value climate_impact/key" >
+                </p>
+            </div>
+
+            <!--
+            <div class="cols-md-12">
+                <div class="form-group" tal:define="sectors view/get_sectors">
+                    <select name="sectors" class="form-control" id="CaseStudySectors">
+                        <option tal:repeat="sector sectors" tal:attributes="value sector/key" tal:content="sector/value"></option>
+                    </select>
+                </div>
+            <div class="cols-md-12">
+                <div class="form-group" tal:define="climate_impacts view/get_climate_impacts">
+                    <select name="impacts" class="form-control" id="CaseStudyImpacts">
+                        <option tal:repeat="climate_impact climate_impacts" tal:attributes="value climate_impact/key" tal:content="climate_impact/value"></option>
+                    </select>
+                </div>
+            </div>
+        -->
         </div>
-        <div class="form-group" tal:define="climate_impacts view/get_climate_impacts">
-            <select name="impacts" class="form-control" id="CaseStudyImpacts">
-                <option tal:repeat="climate_impact climate_impacts" tal:attributes="value climate_impact/key" tal:content="climate_impact/value"></option>
-            </select>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
-<div id="arcgisDiv" style="min-height:550px;"></div>
 
 <!--
       </tal:main-macro>
