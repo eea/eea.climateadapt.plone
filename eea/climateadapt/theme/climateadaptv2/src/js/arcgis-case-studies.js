@@ -19,7 +19,7 @@ window.requirejs([
   const url = "/case-studies-map.arcgis.json";
 
   const template = {
-    title: "{title} <a href='{url}'>open DB</a>",
+    title: "<strong>{title}</strong> <a href='{url}'>open DB</a>",
     outFields: ["*"],
     content: popupContent
   };
@@ -105,7 +105,10 @@ window.requirejs([
         symbol: {
             type: "simple-marker",
             size: 8,
-            color: "#005c96"
+            color: "#005c96",
+            outline: {
+                width: 0
+            }
         }
     },
     copyright: "USGS Earthquakes",
@@ -122,7 +125,12 @@ window.requirejs([
     container: "arcgisDiv",
     center: [2, 53],
     zoom: 3,
-    map: map
+    map: map,
+    popup: {
+        actions: [],
+        dockEnabled: false,
+        dockOptions:{buttonEnabled: false}
+    }
   });
 
   window.iugMapView = view;
