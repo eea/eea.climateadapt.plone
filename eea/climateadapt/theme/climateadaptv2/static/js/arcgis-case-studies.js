@@ -34,7 +34,7 @@ window.requirejs([
     let adaptation_options = feature.graphic.attributes.adaptation_options_links;
 
     if (feature.graphic.attributes.image.length) {
-      div.innerHTML += '<p><img src="'+feature.graphic.attributes.image+'" /></p>';
+      div.innerHTML += '<p><cener><img src="'+feature.graphic.attributes.image+'" /></cener></p>';
     }
     /*if (feature.graphic.attributes.description) {
           div.innerHTML += feature.graphic.attributes.description + '<br>';
@@ -46,6 +46,7 @@ window.requirejs([
     if (adaptation_options.length) {
       div.innerHTML += '<p style="font-size:14px;"><strong>Adaptation options:</strong></p><ul><li>'+adaptation_options.split('<>').join('</li><li>')+'</li></ul>';
     }
+    $('.esri-component.esri-popup').css('display', 'block');
     return div;
   }
 
@@ -75,11 +76,13 @@ window.requirejs([
   // };
 
   function onShow(feature) {
-    console.log('show', feature);
     feature.graphic.visible = false;
     var geo = feature.graphic.geometry;   // .latitude, .longitude
 
+    $('.esri-hide2').closest('.esri-component.esri-popup').css('display', 'none');
     view.center = geo;
+    zoomValue = Math.min(view.zoom + 1, 12);
+    view.zoom = zoomValue;
       // view.center = event.mapPoint;
       // zoomValue = Math.min(view.zoom + 1, 12);
       // view.zoom = zoomValue;
@@ -106,9 +109,10 @@ window.requirejs([
             // The ID by which to reference the action in the event handler: {
             id: "zoom-out",
             // Sets the icon font used to style the action button
-            className: "esri-icon-zoom-out-magnifying-glass"
+            className: "esri-hide2 esri-icon-zoom-out-magnifying-glass"
           }
         ],
+        declaredClass: "esri-hide"
       },
       labelingInfo: [{
         // turn off deconfliction to ensure all clusters are labeled
