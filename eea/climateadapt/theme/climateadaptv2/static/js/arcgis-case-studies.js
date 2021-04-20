@@ -1,10 +1,7 @@
 // global: $
-
 window.requirejs.config({
   baseUrl: "https://js.arcgis.com/4.18/"
 });
-//console.log(requirejs.s.contexts._.config);
-//console.log(requirejs);
 window.requirejs([
   "esri/Map",
   "esri/layers/GeoJSONLayer",
@@ -16,8 +13,6 @@ window.requirejs([
   MapView,
   Point
 ) {
-  // If GeoJSON files are not on the same domain as your website, a CORS enabled server
-  // or a proxy is required.
   const url = "./case-studies-map.arcgis.json";
 
   const template = {
@@ -27,65 +22,38 @@ window.requirejs([
   };
 
   function popupContent(feature) {
+    var geo = feature.graphic.geometry;   // .latitude, .longitude
+    view.goTo({center:[geo.longitude, geo.latitude]});
+
     var div = document.createElement("div");
-    // calculate the population percent change from 2010 to 2013.
+
     let sectors = feature.graphic.attributes.sectors_str;
     let impacts = feature.graphic.attributes.impacts_str;
     let adaptation_options = feature.graphic.attributes.adaptation_options_links;
 
     if (feature.graphic.attributes.image.length) {
-      div.innerHTML += '<p><cener><img src="'+feature.graphic.attributes.image+'" /></cener></p>';
+      div.innerHTML += '<span style="background-color:#ddd;display:block;"><center><img style="max-height:133px;" src="'+feature.graphic.attributes.image+'" /></center></span>';
     }
-    /*if (feature.graphic.attributes.description) {
-          div.innerHTML += feature.graphic.attributes.description + '<br>';
-      }*/
     if (sectors.length) {
-      div.innerHTML += '<p style="font-size:14px;"><strong style="color:#069;">Sectors:</strong><br>'+sectors+'</p>';
+      div.innerHTML += '<p style="font-size:12px;margin-bottom:5px;""><span style="color:#069;">Adaptation sectors:</span> '+sectors.split(',').join(', ')+'</p>';
     }
-    div.innerHTML += '<p style="font-size:14px;"><strong style="color:#069;">Climate impacts:</strong><br>'+impacts+'</p>';
+    div.innerHTML += '<p style="font-size:12px;margin-bottom:5px;""><span style="color:#069;">Climate impacts:</span> '+impacts+'</p>';
     if (adaptation_options.length) {
-      div.innerHTML += '<p style="font-size:14px;"><strong>Adaptation options:</strong></p><ul><li>'+adaptation_options.split('<>').join('</li><li>')+'</li></ul>';
+      div.innerHTML += '<p style="font-size:12px;margin-bottom:5px;""><span style="color:#069;">Adaptation options:</span> '+adaptation_options.split('<>').join('; ').replace(/(<([^>]+)>)/gi, "")+'</p>';
     }
     $('.esri-component.esri-popup').css('display', 'block');
     return div;
   }
 
-  // const renderer = {
-  //   type: "simple",
-  //   field: "mag",
-  //   symbol: {
-  //     type: "simple-marker",
-  //     color: "orange",
-  //     outline: {
-  //       color: "white"
-  //     }
-  //   },
-  //   visualVariables: [{
-  //     type: "size",
-  //     field: "mag",
-  //     stops: [{
-  //         value: 2.5,
-  //         size: "4px"
-  //       },
-  //       {
-  //         value: 8,
-  //         size: "40px"
-  //       }
-  //     ]
-  //   }]
-  // };
-
   function onShow(feature) {
     feature.graphic.visible = false;
     var geo = feature.graphic.geometry;   // .latitude, .longitude
 
-    $('.esri-hide2').closest('.esri-component.esri-popup').css('display', 'none');
-    view.center = geo;
+    $('.esri-component.esri-popup').css('display', 'none');
+    //view.center = geo;
+    view.goTo({center:[geo.longitude, geo.latitude],animation: true});
     zoomValue = Math.min(view.zoom + 1, 12);
     view.zoom = zoomValue;
-      // view.center = event.mapPoint;
-      // zoomValue = Math.min(view.zoom + 1, 12);
-      // view.zoom = zoomValue;
 
     return "<div id='popup-cluster'><div>";
   }
@@ -100,23 +68,10 @@ window.requirejs([
       clusterMaxSize: "40px",
       popupEnabled: true,
       popupTemplate: {
-        title: "hello",
-        content: onShow,
-        actions: [
-          {
-            // This text is displayed as a tooltip
-            title: "Zoom out",
-            // The ID by which to reference the action in the event handler: {
-            id: "zoom-out",
-            // Sets the icon font used to style the action button
-            className: "esri-hide2 esri-icon-zoom-out-magnifying-glass"
-          }
-        ],
-        declaredClass: "esri-hide"
+        title: "hello4",
+        content: onShow
       },
       labelingInfo: [{
-        // turn off deconfliction to ensure all clusters are labeled
-        //deconflictionStrategy: "none",
         labelExpressionInfo: {
           expression: "Text($feature.cluster_count, '#,###')",
         },
@@ -124,7 +79,6 @@ window.requirejs([
           type: "text",
           color: "#ffffff",
           borderLineSize: 0,
-          //backgroundColor: "#005c96",
           font: {
             weight: "bold",
             family: "Noto Sans",
@@ -145,9 +99,7 @@ window.requirejs([
         }
       }
     },
-    copyright: "USGS Earthquakes",
     popupTemplate: template
-    //renderer: renderer //optional
   });
 
   const map = new Map({
@@ -169,24 +121,6 @@ window.requirejs([
 
   window.iugMapView = view;
   window.iugPoint = Point;
-
-  // view.popup.on("trigger-action", function(event){
-  //   console.log('trigger');
-  //   // If the zoom-out action is clicked, fire the zoomOut() function
-  //   if(event.action.id === "zoom-out"){
-  //     // zoomOut();
-  //   }
-  // });
-
-  view.on("click", function (event) {
-    console.log('CLICK', {event, view, map});
-    return true;
-    /*
-      view.center = event.mapPoint;
-      zoomValue = Math.min(view.zoom + 1, 12);
-      view.zoom = zoomValue;
-      */
-  });
 
   view.filter = {
     where: "portal_type 'casestudy'"

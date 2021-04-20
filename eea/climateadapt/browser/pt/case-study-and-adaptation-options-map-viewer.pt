@@ -54,7 +54,48 @@
 #arcgis_case_study_form input{
     float:right;
 }
+.esri-feature__main-container li a {
+    font-size:12px;
+}
+.esri-ui-inner-container .esri-component.esri-popup:has(.esri-popup__main-container .esri-hide2){
+    display:none !important;
+}
+.cs-menu a {
+    background-color:#828282;
+    padding:5px;
+    width:100px !important;
+    color:#fff;
+    text-decoration:none;
+    font-weight:normal;
+    display: inline-block;
+    font-size: 13px;
+}
+.cs-menu a.selected {
+    background-color:#005c96;
+}
+.esri-popup__header-title{
+    text-align: center;
+}
+.esri-popup__header-title strong,
+.esri-popup__header-title h2{
+    font-weight:normal;
+    font-size:12px;
+}
+.esri-popup__header-title a{
+    font-size:10px;
+}
+.esri-feature__main-container p,
+.esri-feature__main-container a{
+    font-size:10px;
+}
 </style>
+<div class="row">
+    <div class="col-md-12 cs-menu">
+        <a href="" class="selected">Map</a>
+        <a href="">Charts</a>
+        <a href="../data-and-downloads/?source=%7B%22query%22%3A%20%7B%22function_score%22%3A%20%7B%22query%22%3A%20%7B%22bool%22%3A%20%7B%22filter%22%3A%20%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22typeOfData%22%3A%20%22Adaptation%20options%22%7D%7D%5D%7D%7D%7D%7D%7D%7D%7D">Database</a>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-9">
         <div id="arcgisDiv" style="min-height:605px;"></div>
