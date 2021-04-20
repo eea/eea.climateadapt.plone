@@ -32,14 +32,14 @@ window.requirejs([
     let adaptation_options = feature.graphic.attributes.adaptation_options_links;
 
     if (feature.graphic.attributes.image.length) {
-      div.innerHTML += '<span style="background-color:#ddd;display:block;"><center><img style="max-height:133px;" src="'+feature.graphic.attributes.image+'" /></center></span>';
+      div.innerHTML += '<span style="background-color:#ddd;display:block;margin-bottom:10px;"><center><img style="max-height:133px;" src="'+feature.graphic.attributes.image+'" /></center></span>';
     }
     if (sectors.length) {
       div.innerHTML += '<p style="font-size:12px;margin-bottom:5px;""><span style="color:#069;">Adaptation sectors:</span> '+sectors.split(',').join(', ')+'</p>';
     }
     div.innerHTML += '<p style="font-size:12px;margin-bottom:5px;""><span style="color:#069;">Climate impacts:</span> '+impacts+'</p>';
     if (adaptation_options.length) {
-      div.innerHTML += '<p style="font-size:12px;margin-bottom:5px;""><span style="color:#069;">Adaptation options:</span> '+adaptation_options.split('<>').join('; ').replace(/(<([^>]+)>)/gi, "")+'</p>';
+      div.innerHTML += '<p class="cs_adaptation_casestudies" style="font-size:12px;margin-bottom:5px;""><span style="color:#069;">Adaptation options:</span> '+adaptation_options.split('<>').join('; ')+'</p>';
     }
     $('.esri-component.esri-popup').css('display', 'block');
     return div;
