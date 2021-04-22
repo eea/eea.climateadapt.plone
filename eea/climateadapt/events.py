@@ -93,7 +93,8 @@ def remove_broken_relations(obj, event):
 
         for relation in list(catalog.findRelations({'to_id': None})):
             catalog.unindex(relation)
-            relation.from_object.relatedItems.remove(relation)
+            if relation in relation.from_object.relatedItems:
+                relation.from_object.relatedItems.remove(relation)
             relation.from_object._p_changed = 1
             relation.from_object.reindexObject()
 

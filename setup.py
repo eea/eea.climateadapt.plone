@@ -69,6 +69,7 @@ setup(
       climateadapt_importer = eea.climateadapt._importer:main
       sync_to_arcgis = eea.climateadapt.scripts.sync_to_arcgis:main
       arcgis_cli = eea.climateadapt.scripts.cli_arcgis_client:main
+      c3s = eea.climateadapt.scripts.c3s:main
       send_mayoradapt_reminders = eea.climateadapt.mayorsadapt.scripts:send_reminders
       get_broken_links = eea.climateadapt.browser.scripts:get_broken_links
       sync_adaptecca_casestudies = eea.climateadapt.browser.scripts:sync_adaptecca_casestudies

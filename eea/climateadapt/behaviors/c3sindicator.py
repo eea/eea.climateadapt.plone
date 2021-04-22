@@ -54,6 +54,10 @@ class IC3sIndicator(IIndicator):
         required=False,
     )
 
+    c3s_identifier = TextLine(
+        title=_(u"C3S Identifier"), required=True
+    )
+
     overview_app_toolbox_url = TextLine(
         title=_(u"Overview APP Toolbox URL"), required=True
     )
