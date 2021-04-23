@@ -52,7 +52,7 @@ padding: 2em 0em;
                         plone_view context/@@plone;">
     <tal:listing condition="batch">
 
-        <dl metal:define-slot="entries">
+        <ul metal:define-slot="entries">
             <tal:entry tal:repeat="item batch" metal:define-macro="entries">
             <tal:block tal:define="item_url item/getURL|item/absolute_url;
                                    item_id item/getId|item/id;
@@ -72,7 +72,7 @@ padding: 2em 0em;
                                    item_sametime python: item_start == item_end;
                                    item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False">
                 <metal:block define-slot="entry">
-                <dt metal:define-macro="listitem"
+                <li metal:define-macro="listitem"
                     tal:attributes="class python:test(item_type == 'Event', 'vevent', '')">
 
                     <span class="summary">
@@ -166,12 +166,12 @@ padding: 2em 0em;
                         </tal:byline>
                     </span>
 
-                </dt>
+                </li>
 
             </metal:block>
             </tal:block>
             </tal:entry>
-        </dl>
+        </ul>
 
         <div metal:use-macro="context/batch_macros/macros/navigation" />
 
