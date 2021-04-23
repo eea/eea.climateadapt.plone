@@ -54,13 +54,13 @@ def save_object(obj, indicator):
 
     obj.overview_app_toolbox_url = indicator['overview']
     obj.overview_app_parameters = '{}'
-    if 'indicator' in indicator['vars']['overview'] and indicator['vars']['overview']['indicator']:
-        obj.overview_app_parameters = '{workflowParams:{"indicator": "' + indicator['vars']['overview']['indicator'] + '"}}'
+    if indicator['vars']['overview']:
+        obj.overview_app_parameters = '{workflowParams:' + json.dumps(indicator['vars']['overview']) + '}'
 
     obj.details_app_toolbox_url = indicator['detail']
     obj.details_app_parameters = '{}'
-    if 'indicator' in indicator['vars']['detail'] and indicator['vars']['detail']['indicator']:
-        obj.details_app_parameters = '{workflowParams:{"indicator": "' + indicator['vars']['detail']['indicator'] + '"}}'
+    if indicator['vars']['detail']:
+        obj.overview_app_parameters = '{workflowParams:' + json.dumps(indicator['vars']['detail']) + '}'
 
     obj.sectors = []
     obj.climate_impacts = []
