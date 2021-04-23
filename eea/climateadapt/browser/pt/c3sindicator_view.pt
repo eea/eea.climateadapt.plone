@@ -35,11 +35,6 @@
             description here
           </div>
 
-          <div style="clear: both; padding-top: 50px;"
-              tal:condition="context/definition_app"
-              tal:content="structure context/definition_app/output">
-          </div>
-
           <div style="clear: both; padding-top: 50px;" />
 
           <div class="column col-md-12">
@@ -98,11 +93,27 @@
 
         <div class="c3s c3s_details">
 
+          <div style="clear: both; padding-top: 50px;"
+              tal:condition="context/definition_app"
+              tal:content="structure context/definition_app/output">
+          </div>
+
+          <!--
           <a href="#"
              class="standard-button primary-button c3s_details"
              onclick="c3sView('overview');return false;"
              style="float: left; position: relative;">
              Go back</a>
+         -->
+         <div class="column col-md-12">
+           <a href="#"
+              class="standard-button primary-button c3s_details"
+              onclick="c3sView('overview');return false;"
+              style="float: right; position: relative;">
+              Go back</a>
+           <div style="clear: both;" />
+         </div>
+
 
           <div style="clear:both;" />
 
