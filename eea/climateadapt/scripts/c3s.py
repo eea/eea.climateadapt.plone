@@ -63,6 +63,7 @@ def save_object(obj, indicator):
         obj.details_app_parameters = '{workflowParams:{"indicator": "' + indicator['vars']['detail']['indicator'] + '"}}'
 
     obj.sectors = []
+    obj.climate_impacts = []
     obj._p_changed = True
 
 
