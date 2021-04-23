@@ -39,7 +39,7 @@
 
           <div class="column col-md-12">
             <a href="#details"
-               class="standard-button primary-button c3s_overview"
+               class="standard-button primary-button"
                onclick="c3sView('details');return false;"
                style="float: right; position: relative;">
                Explore in details
@@ -107,9 +107,9 @@
          -->
          <div class="column col-md-12">
            <a href="#"
-              class="standard-button primary-button c3s_details"
+              class="standard-button primary-button"
               onclick="c3sView('overview');return false;"
-              style="float: right; position: relative;">
+              style="float: right; position: relative; width:200px;">
               Go back</a>
            <div style="clear: both;" />
          </div>
@@ -178,13 +178,13 @@
         function c3sView(type) {
             if (type=='details') {
                 location.hash = '#details';
-                $('.c3s_overview').hide();
-                $('.c3s_details').show();
+                $('.c3s_overview').css('display','none');
+                $('.c3s_details').attr('style','display:block;margin-top:-60px;');
                 window.cds_toolbox.runApp('toolbox-app-details', c3s_details_url, c3s_details_params);
             } else {
                 location.hash = '';
-                $('.c3s_details').hide();
-                $('.c3s_overview').show();
+                $('.c3s_details').attr('style','display:none;');
+                $('.c3s_overview').attr('style','display:block;');
             }
         }
       </script>
