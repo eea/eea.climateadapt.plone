@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="column col-md-16 " data-panel="">
+    <div class="tile tile-default" id="b48b97e5-278f-4474-a61b-b73734177559">
+      <div class="cover-richtext-tile tile-content">
+        <div class="cover-richtext-tile tile-content"><div style="float:right;"><a class="right standard-button secundary-button" href="/knowledge/european-climate-data-explorer">Go back</a></div>
+          <h1>Overview list all indicators</h1>
+          <p tal:content="structure view/data/overview_page/description"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" tal:define="data view/data/overview_page">
+    <div class="column col-md-6" tal:repeat="hazard_title data/hazard_list">
+      <h2 tal:content="hazard_title">Heat and cold</h2>
+      <tal:def define="subhazards data/hazard_list/?hazard_title">
+        <tal:rep repeat="subhazard subhazards">
+          <h3 tal:condition="python: len(data['hazard_list'][hazard_title]) > 1" tal:content="subhazard" >Extreme heat</h3>
+          <ul tal:define="indicators data/hazard_list/?hazard_title/?subhazard">
+            <li tal:repeat="info indicators">
+              <a href=""
+                tal:attributes="href python:view.json_indicator_page_to_url(info['url'])"
+                tal:content="info/title">Maximum daily</a>
+            </li>
+          </ul>
+
+        </tal:rep>
+      </tal:def>
+    </div>
+  </div>
+
+
+  <!-- <div tal:content="python: view.data.keys()"></div> -->
+  <!-- <hr /> -->
+  <!-- <div tal:content="python: view.data['themes']"></div> -->
+  <!-- <hr /> -->
+  <!-- <div tal:content="python: view.data['overview_page']"></div> -->
+
+</div>

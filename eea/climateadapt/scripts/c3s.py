@@ -12,6 +12,7 @@ This commands accepts various parameter. Look at __main__ to see what it does.
 # TODO: this script is hackish. Maybe optparse would improve feeling.
 """
 
+import datetime
 import json
 import logging
 
@@ -20,6 +21,7 @@ import urllib2
 from eea.climateadapt.scripts import get_plone_site
 from plone import api
 from plone.app.textfield.value import RichTextValue
+from zope.annotation.interfaces import IAnnotations
 
 logger = logging.getLogger("eea.climateadapt")
 logging.basicConfig()
@@ -66,6 +68,7 @@ def update_object(obj, indicator):
             "{workflowParams:" + json.dumps(indicator["vars"]["detail"]) + "}"
         )
 
+    obj.c3s_identifier = indicator.get("identifier", "")
     obj.sectors = []
     obj.climate_impacts = []
 
@@ -141,12 +144,17 @@ def save_indicator(indicator, site, data):
 def main():
     site = get_plone_site()
     data = get_source_data()
+    base_folder = site["knowledge"]["european-climate-data-explorer"]
+    annot = IAnnotations(base_folder)
+    annot._p_changed = True
+    annot["c3s_json_data"] = {"data": data, "fetched": datetime.datetime.now()}
+
     for indicator_identifier in data["indicators"]:
         # print(data['indicators'][indicator_identifier])
         save_indicator(data["indicators"][indicator_identifier], site, data)
 
     for theme_id in data["themes"]:
-        theme_folder = site["knowledge"]["european-climate-data-explorer"][theme_id]
+        theme_folder = base_folder[theme_id]
         theme_folder.text = RichTextValue(
             data["themes"][theme_id]["description"], "text/plain", "text/html"
         )

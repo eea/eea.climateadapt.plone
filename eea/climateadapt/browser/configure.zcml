@@ -84,20 +84,20 @@
       permission="zope2.View"
       />
 
-      <browser:page
-          name="case-studies-map.arcgis.json"
-          for="*"
-          class=".casestudies_map.Items"
-          permission="zope2.View"
-          />
+  <browser:page
+      name="case-studies-map.arcgis.json"
+      for="*"
+      class=".casestudies_map.Items"
+      permission="zope2.View"
+      />
 
-      <browser:page
-          name="case-study-and-adaptation-options-map-viewer"
-          for="*"
-          class=".casestudies_map.Page"
-          template="pt/case-study-and-adaptation-options-map-viewer.pt"
-          permission="zope2.View"
-          />
+  <browser:page
+      name="case-study-and-adaptation-options-map-viewer"
+      for="*"
+      class=".casestudies_map.Page"
+      template="pt/case-study-and-adaptation-options-map-viewer.pt"
+      permission="zope2.View"
+      />
 
 
   <browser:page
@@ -180,6 +180,14 @@
       for="eea.climateadapt.aceitem.IC3sIndicator"
       class="eea.climateadapt.browser.aceitem.C3sIndicatorView"
       template="pt/c3sindicator_view.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="c3s_indicators_overview"
+      for="*"
+      class="eea.climateadapt.browser.misc.C3sIndicatorsOverview"
+      template="pt/c3s_indicators_overview.pt"
       permission="zope2.View"
       />
 

@@ -7,20 +7,14 @@ from itertools import islice
 
 import requests
 import transaction
-from dateutil.tz import gettz
-from ZODB.PersistentMapping import PersistentMapping
-from zope import schema
-from zope.annotation.interfaces import IAnnotations
-from zope.interface import Interface, implements
-from zope.component import getMultiAdapter
-
 from BeautifulSoup import BeautifulSoup
 from DateTime import DateTime
+from dateutil.tz import gettz
 from eea.climateadapt.config import CONTACT_MAIL_LIST
 from eea.climateadapt.schema import Email
 from OFS.ObjectManager import BeforeDeleteException
 from plone import api
-from plone.api import portal
+from plone.api import content, portal
 from plone.api.content import get_state
 from plone.api.portal import get_tool, show_message
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
@@ -35,6 +29,11 @@ from Products.CMFPlone.utils import getToolByName, isExpired
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from z3c.form import button, field, validator
+from ZODB.PersistentMapping import PersistentMapping
+from zope import schema
+from zope.annotation.interfaces import IAnnotations
+from zope.component import getMultiAdapter
+from zope.interface import Interface, implements
 
 # from Acquisition import aq_inner
 # from eea.climateadapt import MessageFactory as _
@@ -953,3 +952,36 @@ class DatetimeDataConverter(BaseConverter):
             if not getattr(value, 'tzinfo', None):
                 value = value.replace(tzinfo=gettz())
         return value
+
+
+class C3sIndicatorsOverview(BrowserView):
+    """ Overview page for indicators. Registered as @@c3s_indicators_overview
+
+    To be used from inside a collective.cover
+    """
+
+    @property
+    def indicators(self):
+        brains = content.find(portal_type='eea.climateadapt.c3sindicator')
+        return [b.getObject() for b in brains]
+
+    def json_indicator_page_to_url(self, json_indicator_page):
+        """ Given an indicator html page URL, it resolves to an imported indicator
+        """
+        # import pdb; pdb.set_trace()
+        html_page = json_indicator_page.split('/')[-1]
+        for iid, info in self.data.get('indicators', {}).items():
+            if info['overviewpage'] == html_page:
+                for indicator in self.indicators:
+                    if indicator.c3s_identifier == info['identifier']:
+                        return indicator.absolute_url()
+
+    @property
+    def data(self):
+        site = portal.get()
+        base_folder = site["knowledge"]["european-climate-data-explorer"]
+        datastore = IAnnotations(base_folder).get('c3s_json_data', {})
+        return datastore.get('data', {})
+
+    def __call__(self):
+        return self.index()
