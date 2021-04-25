@@ -46,7 +46,10 @@ def update_object(obj, indicator):
     obj.long_description = RichTextValue(indicator["description"])
 
     obj.definition_app = RichTextValue(
-        "<h4>" + indicator["indicator_title"] + "</h4>" + indicator["description_detail"]
+        "<h4>"
+        + indicator["indicator_title"]
+        + "</h4>"
+        + indicator["description_detail"]
     )
 
     obj.overview_app_toolbox_url = indicator["overview"]
@@ -100,8 +103,8 @@ def save_indicator(indicator, site, data):
                 indicatorFound = True
                 update_object(obj, indicator)
                 print("  UPDATE OBJECT")
-        except:
-            """"""
+        except Exception:
+            pass
             # print("C3S Identifier NOT SET")
 
     if not indicatorFound:
@@ -117,8 +120,8 @@ def save_indicator(indicator, site, data):
                 folder, "Folder", title=indicator["theme"]
             )
 
-            folder_indicator.manage_changeProperties(
-                layout="c3s_simplified_listing_view"
+            folder_indicator.manage_addProperty(
+                id="layout", value="c3s_simplified_listing_view", type="string"
             )
             api.content.transition(folder_indicator, "publish")
             folder_indicator._p_changed
