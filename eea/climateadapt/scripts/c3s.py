@@ -45,7 +45,12 @@ def update_object(obj, indicator):
     #    import pdb; pdb.set_trace()
 
     obj.title = indicator["page_title"]
-    obj.long_description = RichTextValue(indicator["description"])
+    obj.long_description = RichTextValue(
+        "<h4>"
+        + indicator["indicator_title"]
+        + "</h4>"
+        + indicator["description"]
+    )
 
     obj.definition_app = RichTextValue(
         "<h4>"
