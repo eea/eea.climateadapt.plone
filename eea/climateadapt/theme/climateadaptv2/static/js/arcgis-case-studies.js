@@ -23,7 +23,30 @@ window.requirejs([
 
   function popupContent(feature) {
     var geo = feature.graphic.geometry;   // .latitude, .longitude
-    view.goTo({center:[geo.longitude, geo.latitude]});
+    /*
+    1->8
+    2->7
+    3->4
+    4->2
+    5->1
+    6->0.9
+    7->0.9
+    8->0.2
+    9->0.1
+    10->0.05
+    11->0.4
+    12->0.2
+    */
+    zoomAdjustment = [8, 7, 4, 2, 1, 0.9, 0.7, 0.2, 0.1, 0.05, 0.04, 0.02 ];
+console.log('Zoom adjustment:'+zoomAdjustment[view.zoom-1]);
+console.log(view.zoom, zoomAdjustment.length >  view.zoom);
+    if (view.zoom && zoomAdjustment.length > view.zoom) {
+console.log(geo.longitude, geo.latitude);
+console.log('Zoom adjustment:'+zoomAdjustment[view.zoom-1]);
+        view.goTo({center:[geo.longitude, geo.latitude-zoomAdjustment[view.zoom-1]]});
+    } else {
+        view.goTo({center:[geo.longitude, geo.latitude]});
+    }
 
     var div = document.createElement("div");
 

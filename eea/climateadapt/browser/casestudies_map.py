@@ -87,7 +87,7 @@ class Items(BrowserView):
                             "title": obj.title,
                             "description": brain.long_description.raw,
                             "url": brain.getURL(),
-                            "image": brain.getURL()+'/@@images/primary_photo/mini' if obj.primary_photo else ''
+                            "image": brain.getURL()+'/@@images/primary_photo/preview' if obj.primary_photo else ''
                         },
                         "geometry": {
                             "type": "Point",

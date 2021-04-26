@@ -71,13 +71,15 @@
     background-color:#005c96;
 }
 .esri-popup__header-title{
-    text-align: center;
+    text-align: left;
     padding:0;
 }
 .esri-popup__header-title strong,
 .esri-popup__header-title h2{
     font-weight:normal;
-    font-size:12px;
+    font-size:11px;
+    line-height:14px;
+    color:#005c96;
 }
 .esri-popup__header-title a{
     font-size:10px;
@@ -86,14 +88,50 @@
 .esri-feature__main-container a{
     font-size:10px;
 }
-.cs_adaptation_casestudies a{
-    text-decoration: underline;
-    color: #000;
-    font-weight:normal;
-}
 .esri-popup__content {
     overflow:hidden;
     margin: 0 5px 2px;
+}
+
+
+.esri-popup__pointer{
+    display:none;
+}
+.esri-popup__button{
+    padding:0;
+    color:#ffffff;
+}
+.esri-popup__button:hover {
+    background-color:transparent;
+}
+
+.esri-popup__header-buttons {
+    background-color:#005c96;
+    color: #ffffff;
+    border-radius:50%;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+}
+.esri-popup__icon {
+    width:10px;
+    height:10px;
+    flex: 0 0 10px;
+    font-size:10px;
+}
+.esri-popup__icon:hover,
+.esri-popup__header-buttons .esri-popup__button:hover {
+    color:#fffff !important;
+}
+.esri-popup--shadow {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
+    border-bottom:6px solid #005c96;
+}
+.esri-popup__content {
+    margin:0;
+}
+.esri-popup__content p{
+    padding: 0 5px 0 5px;
 }
 </style>
 <div class="row">
