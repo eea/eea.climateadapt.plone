@@ -998,5 +998,11 @@ class C3sIndicatorsOverview(BrowserView):
                     })
         return response
 
+    def get_disclaimer(self):
+        site = portal.get()
+        base_folder = site["knowledge"]["european-climate-data-explorer"]
+        datastore = IAnnotations(base_folder).get('c3s_json_data', {})
+        return datastore['data']['html_pages']['disclaimer']['page_text']
+
     def __call__(self):
         return self.index()

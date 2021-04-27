@@ -191,6 +191,15 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      name="c3s_disclaimer"
+      for="*"
+      class="eea.climateadapt.browser.misc.C3sIndicatorsOverview"
+      template="pt/c3s_disclaimer.pt"
+      permission="zope2.View"
+      />
+
+
 
   <browser:page
       name="view"
