@@ -3,7 +3,7 @@
     <div class="tile tile-default" id="b48b97e5-278f-4474-a61b-b73734177559">
       <div class="cover-richtext-tile tile-content">
         <div class="cover-richtext-tile tile-content"><div style="float:right;"><a class="right standard-button secundary-button" href="/knowledge/european-climate-data-explorer">Go back</a></div>
-          <h1>Overview list all indicators</h1>
+          <h1>Overview list all indices</h1>
           <p tal:content="structure view/data/overview_page/description"></p>
         </div>
       </div>
