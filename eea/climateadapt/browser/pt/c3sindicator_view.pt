@@ -75,6 +75,7 @@
             </div>
 
             <script
+              tal:attributes="src python:'https://cds.climate.copernicus.eu/toolbox/toolbox-'+view.get_toolbox_embed_version()+'.js'"
               type="text/javascript"
               src="https://cds.climate.copernicus.eu/toolbox/toolbox-4.16.0.js"></script>
             <script type="text/javascript" tal:content="structure view/c3sjs_overview">

@@ -983,5 +983,20 @@ class C3sIndicatorsOverview(BrowserView):
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         return datastore.get('data', {})
 
+    def get_categories(self):
+        site = portal.get()
+        base_folder = site["knowledge"]["european-climate-data-explorer"]
+        datastore = IAnnotations(base_folder).get('c3s_json_data', {})
+        data_overview_page = datastore['data']['overview_page']
+
+        response = []
+        for category_key in data_overview_page['category_order']:
+            if category_key in data_overview_page['hazard_list']:
+                response.append({
+                    'name':category_key,
+                    'data':data_overview_page['hazard_list'][category_key]
+                    })
+        return response
+
     def __call__(self):
         return self.index()

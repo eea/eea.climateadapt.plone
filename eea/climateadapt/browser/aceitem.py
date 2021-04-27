@@ -14,6 +14,7 @@ from zc.relation.interfaces import ICatalog
 from zope.component import getUtility
 from zope.interface import classImplements  # , implements
 from zope.intid.interfaces import IIntIds
+from zope.annotation.interfaces import IAnnotations
 
 # from zope.interface import implements
 # from eea.depiction.browser.interfaces import IImageView
@@ -78,6 +79,14 @@ class C3sIndicatorView(DefaultView, AceViewApi):
             self.context.details_app_toolbox_url, self.context.details_app_parameters
         )
         return response
+
+    def get_toolbox_embed_version(self):
+        site = api.portal.get()
+        base_folder = site["knowledge"]["european-climate-data-explorer"]
+        annot = IAnnotations(base_folder)
+        if "c3s_json_data" in annot:
+            return annot["c3s_json_data"]["data"]["toolbox_embed_version"]
+        return "4.16.0"
 
 
 def to_observatory_url(obj):
