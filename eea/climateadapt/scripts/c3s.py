@@ -46,10 +46,7 @@ def update_object(obj, indicator):
 
     obj.title = indicator["page_title"]
     obj.long_description = RichTextValue(
-        "<h4>"
-        + indicator["indicator_title"]
-        + "</h4>"
-        + indicator["description"]
+        "<h4>" + indicator["indicator_title"] + "</h4>" + indicator["description"]
     )
 
     obj.definition_app = RichTextValue(
@@ -62,15 +59,15 @@ def update_object(obj, indicator):
     obj.overview_app_toolbox_url = indicator["overview"]
     obj.overview_app_parameters = "{}"
     if indicator["vars"]["overview"]:
-        obj.overview_app_parameters = (
-            "{workflowParams:" + json.dumps(indicator["vars"]["overview"]) + "}"
+        obj.overview_app_parameters = json.dumps(
+            {"workflowParams": indicator["vars"]["overview"]}
         )
 
     obj.details_app_toolbox_url = indicator["detail"]
     obj.details_app_parameters = "{}"
     if indicator["vars"]["detail"]:
-        obj.overview_app_parameters = (
-            "{workflowParams:" + json.dumps(indicator["vars"]["detail"]) + "}"
+        obj.details_app_parameters = json.dumps(
+            {"workflowParams:": indicator["vars"]["detail"]}
         )
 
     obj.c3s_identifier = indicator.get("identifier", "")
