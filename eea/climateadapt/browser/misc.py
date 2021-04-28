@@ -968,7 +968,6 @@ class C3sIndicatorsOverview(BrowserView):
     def json_indicator_page_to_url(self, json_indicator_page):
         """ Given an indicator html page URL, it resolves to an imported indicator
         """
-        # import pdb; pdb.set_trace()
         html_page = json_indicator_page.split('/')[-1]
         for iid, info in self.data.get('indicators', {}).items():
             if info['overviewpage'] == html_page:
@@ -990,12 +989,23 @@ class C3sIndicatorsOverview(BrowserView):
         data_overview_page = datastore['data']['overview_page']
 
         response = []
-        for category_key in data_overview_page['category_order']:
-            if category_key in data_overview_page['hazard_list']:
+        hazard_type_order = data_overview_page['hazard_type_order']
+        hazard_type_order.append(['Other'])
+
+        for index, main_category in enumerate(data_overview_page['category_order']):
+            if main_category in data_overview_page['hazard_list']:
+                category_data = data_overview_page['hazard_list'][main_category]
+
+                subcategories = hazard_type_order[index]
+                res = []
+                for subcategory in subcategories:
+                    if subcategory in category_data:
+                        res.append((subcategory, category_data[subcategory]))
                 response.append({
-                    'name':category_key,
-                    'data':data_overview_page['hazard_list'][category_key]
+                    'name': main_category,
+                    'data': res
                     })
+
         return response
 
     def get_disclaimer(self):
