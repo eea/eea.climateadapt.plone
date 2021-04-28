@@ -10,7 +10,8 @@
     </div>
   </div>
 
-  <div class="row" tal:define="categories view/get_categories">
+  <div class="column col-md-16 pt-4" style="padding-top:40px;" tal:define="categories view/get_categories">
+  <div class="row">
     <div class="column col-md-6" tal:repeat="category categories">
         <h2 tal:content="category/name">Heat and cold</h2>
 
@@ -28,6 +29,7 @@
             </tal:rep>
         </tal:def>
     </div>
+  </div>
   </div>
 
   <br>
