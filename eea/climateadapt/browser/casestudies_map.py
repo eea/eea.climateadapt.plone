@@ -47,13 +47,19 @@ class Items(BrowserView):
         for brain in brains:
             obj = brain.getObject()
             if hasattr(obj, 'geolocation') and obj.geolocation:
+                list_ipcc_categories = []
                 list_adaptation_options = []
                 list_adaptation_options_links = []
                 adaptation_options = obj.adaptationoptions
                 for ao_related in adaptation_options:
                     try:
-                        list_adaptation_options.append(ao_related.to_object.title)
-                        list_adaptation_options_links.append('<a href=\''+ao_related.to_object.absolute_url_path()+'\'>'+ao_related.to_object.title+'</a>')
+                        ao = ao_related.to_object
+                        if hasattr(ao, 'ipcc_category'):
+                            for ipcc_category in ao.ipcc_category:
+                                if ipcc_category not in list_ipcc_categories:
+                                    list_ipcc_categories.append(ipcc_category)
+                        list_adaptation_options.append(ao.title)
+                        list_adaptation_options_links.append('<a href=\''+ao.absolute_url_path()+'\'>'+ao.title+'</a>')
                     except:
                         ''
 
@@ -79,11 +85,13 @@ class Items(BrowserView):
                             #"sectors": obj.sectors,
                             "sectors":  ','+(','.join(obj.sectors))+',',
                             "impacts": ','+(','.join(obj.climate_impacts))+',',
+                            "ipccs": ','+(','.join(list_ipcc_categories))+',',
                             "adaptation_options": '<>'.join(list_adaptation_options),
                             "adaptation_options_links": '<>'.join(list_adaptation_options_links),
 
                             "sectors_str": ','.join(sectors_str),
                             "impacts_str": ','.join(impacts_str),
+                            "ipcc_categories_str": ','.join(list_ipcc_categories),
                             "title": obj.title,
                             "description": brain.long_description.raw,
                             "url": brain.getURL(),
@@ -118,6 +126,15 @@ class Page(BrowserView):
         vocabulary = factory(self.context)
         response = [];
         #response.append({"key": "", "value": "Filter by SECTOR"})
+        for term in vocabulary:
+            response.append({"key": term.value, "value": term.title})
+        return response
+
+    def get_ipcc_categories(self):
+        factory = getUtility(IVocabularyFactory, "eea.climateadapt.aceitems_ipcc_category")
+        vocabulary = factory(self.context)
+        response = [];
+        #response.append({"key": "", "value": "Filter by IPCCS"})
         for term in vocabulary:
             response.append({"key": term.value, "value": term.title})
         return response

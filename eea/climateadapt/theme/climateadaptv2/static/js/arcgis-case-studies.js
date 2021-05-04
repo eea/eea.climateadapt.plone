@@ -163,7 +163,7 @@ window.requirejs([
 });
 
 $( document ).ready(function() {
-  $('#arcgis_case_study_form input[name="impacts"], #arcgis_case_study_form input[name="sectors"]').change(function(){
+  $('#arcgis_case_study_form input[name="impacts"], #arcgis_case_study_form input[name="sectors"], #arcgis_case_study_form input[name="ipccs"]').change(function(){
     updateItems();
   });
   $('#arcgis_case_study_form h4').click(function() {
@@ -187,6 +187,7 @@ function updateItems(type) {
   const where = [];
   const whereImpacts = [];
   const whereSectors = [];
+  const whereIpccs = [];
   where.push( "portal_type LIKE 'casestudy'" );
 
   const impacts = $("#arcgis_case_study_form input[name='impacts']:checked");
@@ -203,6 +204,14 @@ function updateItems(type) {
   }
   if (whereSectors.length) {
     where.push('('+whereSectors.join(' OR ')+')');
+  }
+
+  const ipccs = $("#arcgis_case_study_form input[name='ipccs']:checked");
+  for (index=0; index<ipccs.length; index++) {
+    whereIpccs.push( "ipccs LIKE '%"+ipccs[index].getAttribute('value')+"%'" );
+  }
+  if (whereIpccs.length) {
+    where.push('('+whereIpccs.join(' OR ')+')');
   }
 
   window.mapview.filter = {where: where.join(' AND ')};

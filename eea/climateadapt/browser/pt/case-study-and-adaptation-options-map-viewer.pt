@@ -212,6 +212,14 @@
                     <input type="checkbox" name="impacts" tal:attributes="value climate_impact/key" >
                 </p>
             </div>
+            <div class="cols-md-12 cs_filter_ipcc_div" tal:define="ipcc_categories view/get_ipcc_categories" style="padding-top:10px;">
+                <h4>Filter by IPCC Categories</h4>
+                <p class="cs_filter_ipcc" style="display:none;" tal:repeat="ipcc_category ipcc_categories">
+                    <span class="float-left" tal:content="ipcc_category/value">Sector name</span>
+                    <input type="checkbox" name="ipccs" tal:attributes="value ipcc_category/key" >
+                </p>
+            </div>
+
 
             <!--
             <div class="cols-md-12">
