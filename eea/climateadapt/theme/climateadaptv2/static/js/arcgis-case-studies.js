@@ -166,8 +166,23 @@ $( document ).ready(function() {
   $('#arcgis_case_study_form input[name="impacts"], #arcgis_case_study_form input[name="sectors"]').change(function(){
     updateItems();
   });
+  $('#arcgis_case_study_form h4').click(function() {
+      filterDisplayMode(this);
+  })
+  elements = $('#arcgis_case_study_form h4');
+  for (i=0;i<elements.length;i++) {
+    //filterDisplayMode(elements[i]);
+  };
 });
 
+function filterDisplayMode(element) {
+    console.log('aici', element);
+    if ($(element).hasClass('active')) {
+        $(element).removeClass('active').parent().find('p').hide();
+    } else {
+        $(element).addClass('active').parent().find('p').show();
+    }
+}
 function updateItems(type) {
   const where = [];
   const whereImpacts = [];

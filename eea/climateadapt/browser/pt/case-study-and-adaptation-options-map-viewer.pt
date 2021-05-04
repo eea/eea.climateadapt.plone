@@ -155,14 +155,14 @@
         <div class="row">
             <div class="cols-md-12 cs_filter_sector_div" tal:define="sectors view/get_sectors">
                 <h4>Filter by SECTOR</h4>
-                <p class="cs_filter_sector" tal:repeat="sector sectors">
+                <p class="cs_filter_sector" style="display:none;" tal:repeat="sector sectors">
                     <span class="float-left" tal:content="sector/value">Sector name</span>
                     <input type="checkbox" name="sectors" tal:attributes="value sector/key" >
                 </p>
             </div>
             <div class="cols-md-12 cs_filter_impact_div" tal:define="climate_impacts view/get_climate_impacts" style="padding-top:10px;">
                 <h4>Filter by IMPACT</h4>
-                <p class="cs_filter_impact" tal:repeat="climate_impact climate_impacts">
+                <p class="cs_filter_impact" style="display:none;" tal:repeat="climate_impact climate_impacts">
                     <span class="float-left" tal:content="climate_impact/value">Sector name</span>
                     <input type="checkbox" name="impacts" tal:attributes="value climate_impact/key" >
                 </p>
