@@ -95,7 +95,10 @@
 
 
 .esri-popup__pointer{
-    display:none;
+    margin: 0 0 0 -8px;
+}
+.esri-popup__pointer .esri-popup--shadow{
+    border:none;
 }
 .esri-popup__button{
     padding:0;
@@ -137,8 +140,10 @@
 <div class="row">
     <div class="col-md-12 cs-menu">
         <a href="" class="selected">Map</a>
+        <!--
         <a href="">Charts</a>
         <a href='/data-and-downloads/?source=%7B"query"%3A%7B"function_score"%3A%7B"query"%3A%7B"bool"%3A%7B"must"%3A%7B"bool"%3A%7B"must"%3A%5B%7B"term"%3A%7B"hasWorkflowState"%3A"published"%7D%7D%5D%7D%7D%2C"filter"%3A%7B"bool"%3A%7B"should"%3A%5B%7B"term"%3A%7B"typeOfData"%3A"Case%20studies"%7D%7D%5D%7D%7D%7D%7D%2C"functions"%3A%5B%7B"gauss"%3A%7B"issued"%3A%7B"scale"%3A"14d"%7D%7D%7D%5D%2C"score_mode"%3A"sum"%7D%7D%2C"display_type"%3A"list"%2C"sort"%3A%5B%7B"issued"%3A%7B"order"%3A"desc"%7D%7D%5D%2C"highlight"%3A%7B"fields"%3A%7B"*"%3A%7B%7D%7D%7D%7D'>Database</a>
+        -->
     </div>
 </div>
 <div class="row">

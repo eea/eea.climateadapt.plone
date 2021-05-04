@@ -39,11 +39,11 @@ window.requirejs([
     12->0.2
     */
     zoomAdjustment = [8, 7, 4, 2, 1, 0.9, 0.7, 0.2, 0.1, 0.05, 0.04, 0.02 ];
-console.log('Zoom adjustment:'+zoomAdjustment[view.zoom-1]);
-console.log(view.zoom, zoomAdjustment.length >  view.zoom);
+//console.log('Zoom adjustment:'+zoomAdjustment[view.zoom-1]);
+//console.log(view.zoom, zoomAdjustment.length >  view.zoom);
     if (view.zoom && zoomAdjustment.length > view.zoom) {
-console.log(geo.longitude, geo.latitude);
-console.log('Zoom adjustment:'+zoomAdjustment[view.zoom-1]);
+//console.log(geo.longitude, geo.latitude);
+//console.log('Zoom adjustment:'+zoomAdjustment[view.zoom-1]);
         view.goTo({center:[geo.longitude, geo.latitude-zoomAdjustment[view.zoom-1]]});
     } else {
         view.goTo({center:[geo.longitude, geo.latitude]});
@@ -59,9 +59,9 @@ console.log('Zoom adjustment:'+zoomAdjustment[view.zoom-1]);
       div.innerHTML += '<span style="background-color:#ddd;display:block;margin-bottom:10px;"><center><img style="max-height:133px;" src="'+feature.graphic.attributes.image+'" /></center></span>';
     }
     if (sectors.length) {
-      div.innerHTML += '<p style="font-size:12px;margin-bottom:5px;""><span style="color:#069;">Adaptation sectors:</span> '+sectors.split(',').join(', ')+'</p>';
+      div.innerHTML += '<p style="font-size:12px;margin-bottom:10px;""><span style="color:#069;">Adaptation sectors:</span> '+sectors.split(',').join(', ')+'</p>';
     }
-    div.innerHTML += '<p style="font-size:12px;margin-bottom:5px;""><span style="color:#069;">Climate impacts:</span> '+impacts+'</p>';
+    div.innerHTML += '<p style="font-size:12px;margin-bottom:10px;""><span style="color:#069;">Climate impacts:</span> '+impacts+'</p>';
     if (adaptation_options.length) {
       div.innerHTML += '<p class="cs_adaptation_casestudies" style="font-size:12px;margin-bottom:5px;""><span style="color:#069;">Adaptation options:</span> '+adaptation_options.split('<>').join('; ')+'</p>';
     }
