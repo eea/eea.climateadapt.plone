@@ -17,6 +17,7 @@ window.requirejs([
 
   const template = {
     title: "<strong>{title}</strong> <a href='{url}'>open DB</a>",
+    //location: centerPoint,
     outFields: ["*"],
     content: popupContent
   };
@@ -137,8 +138,11 @@ console.log('Zoom adjustment:'+zoomAdjustment[view.zoom-1]);
     map: map,
     popup: {
       actions: [],
-      dockEnabled: false,
-      dockOptions:{buttonEnabled: false}
+      //dockEnabled: false,
+      alignment: "bottom-center",
+      dockOptions:{
+          buttonEnabled: false
+      }
     }
   });
 
