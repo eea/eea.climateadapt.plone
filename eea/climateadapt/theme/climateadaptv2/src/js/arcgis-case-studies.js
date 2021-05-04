@@ -51,9 +51,9 @@ window.requirejs([
 
     var div = document.createElement("div");
 
-    let sectors = feature.graphic.attributes.sectors_str;
-    let impacts = feature.graphic.attributes.impacts_str;
-    let adaptation_options = feature.graphic.attributes.adaptation_options_links;
+    var sectors = feature.graphic.attributes.sectors_str;
+    var impacts = feature.graphic.attributes.impacts_str;
+    var adaptation_options = feature.graphic.attributes.adaptation_options_links;
 
     if (feature.graphic.attributes.image.length) {
       div.innerHTML += '<span style="background-color:#ddd;display:block;margin-bottom:10px;"><center><img style="max-height:133px;" src="'+feature.graphic.attributes.image+'" /></center></span>';
