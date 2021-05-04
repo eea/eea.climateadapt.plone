@@ -30,112 +30,157 @@
 <script src="++theme++climateadaptv2/static/js/arcgis-case-studies.js"></script>
 
 <style>
-#arcgis_case_study_form h4{
-    background-color:#005c96;
-    color:#ffffff;
-    font-size:12px;
-    height:35px;
-    padding:10px;
-}
-#arcgis_case_study_form p{
-    clear:both;
-    padding:2px;
-    padding-left:10px;
-    line-height:20px;
-}
-#arcgis_case_study_form span{
-    float:left;
-    font-size:12px;
-    font-family:OpenSansM;
-}
-#arcgis_case_study_form input{
-    float:right;
-}
-.esri-feature__main-container li a {
-    font-size:12px;
-}
-.esri-ui-inner-container .esri-component.esri-popup:has(.esri-popup__main-container .esri-hide2){
-    display:none !important;
-}
-.cs-menu a {
-    background-color:#828282;
-    padding:5px;
-    width:100px !important;
-    color:#fff;
-    text-decoration:none;
-    font-weight:normal;
-    display: inline-block;
-    font-size: 13px;
-}
-.cs-menu a.selected {
-    background-color:#005c96;
-}
-.esri-popup__header-title{
-    text-align: left;
-    padding:0;
-}
-.esri-popup__header-title strong,
-.esri-popup__header-title h2{
-    font-weight:normal;
-    font-size:11px;
-    line-height:14px;
-    color:#005c96;
-}
-.esri-popup__header-title a{
-    font-size:10px;
-}
-.esri-feature__main-container p,
-.esri-feature__main-container a{
-    font-size:10px;
-}
-.esri-popup__content {
-    overflow:hidden;
-    margin: 0 5px 2px;
-}
+  #arcgis_case_study_form h4 {
+    position: relative;
+    color: #005c96;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px;
+    border-bottom: 1px solid #d8d8d8;
+    margin-bottom: 0 !important;
+  }
+
+  #arcgis_case_study_form h4:hover {
+    background-color: #f1f6fb;
+  }
 
 
-.esri-popup__pointer{
-    margin: 0 0 0 -8px;
-}
-.esri-popup__pointer .esri-popup--shadow{
-    border:none;
-}
-.esri-popup__button{
-    padding:0;
-    color:#ffffff;
-}
-.esri-popup__button:hover {
-    background-color:transparent;
-}
-
-.esri-popup__header-buttons {
-    background-color:#005c96;
-    color: #ffffff;
-    border-radius:50%;
+  #arcgis_case_study_form h4:after {
+    content: "\f054";
+    font-family: FontAwesome;
     position: absolute;
-    right: -10px;
-    top: -10px;
-}
-.esri-popup__icon {
-    width:10px;
-    height:10px;
-    flex: 0 0 10px;
-    font-size:10px;
-}
-.esri-popup__icon:hover,
-.esri-popup__header-buttons .esri-popup__button:hover {
-    color:#fffff !important;
-}
-.esri-popup--shadow {
-    box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
-    border-bottom:6px solid #005c96;
-}
-.esri-popup__content {
-    margin:0;
-}
-.esri-popup__content p{
-    padding: 0 5px 0 5px;
-}
+    right: 10px;
+    top: 13px;
+  }
+
+  #arcgis_case_study_form h4.active,
+  #arcgis_case_study_form h4.active:hover {
+    background-color: #005c96;
+    color: #fff;
+  }
+
+  #arcgis_case_study_form h4:hover:after,
+  #arcgis_case_study_form h4.active:after {
+    content: "\f078";
+  }
+
+  #arcgis_case_study_form p {
+    clear: both;
+    padding: 2px;
+    padding-left: 10px;
+    line-height: 20px;
+  }
+
+  #arcgis_case_study_form p:first-of-type {
+    margin-top: 10px;
+  }
+
+  #arcgis_case_study_form p:last-of-type {
+    margin-bottom: 30px;
+  }
+
+  #arcgis_case_study_form span {
+    float: left;
+    font-size: 12px;
+    font-family: OpenSansM;
+  }
+
+  #arcgis_case_study_form input{
+    float:right;
+  }
+
+  .esri-feature__main-container li a {
+    font-size: 12px;
+  }
+
+  .esri-ui-inner-container .esri-component.esri-popup:has(.esri-popup__main-container .esri-hide2){
+    display:none !important;
+  }
+
+  .cs-menu a {
+      background-color:#828282;
+      padding:5px;
+      width:100px !important;
+      color:#fff;
+      text-decoration:none;
+      font-weight:normal;
+      display: inline-block;
+      font-size: 13px;
+  }
+
+  .cs-menu a.selected {
+      background-color:#005c96;
+  }
+
+  .esri-popup__header-title{
+      text-align: left;
+      padding:0;
+  }
+
+  .esri-popup__header-title strong,
+  .esri-popup__header-title h2{
+      font-weight:normal;
+      font-size:11px;
+      line-height:14px;
+      color:#005c96;
+  }
+
+  .esri-popup__header-title a{
+      font-size:10px;
+  }
+
+  .esri-feature__main-container p,
+  .esri-feature__main-container a{
+      font-size:10px;
+  }
+
+  .esri-popup__content {
+      overflow:hidden;
+      margin: 0 5px 2px;
+  }
+
+  .esri-popup__pointer{
+      margin: 0 0 0 -8px;
+  }
+  .esri-popup__pointer .esri-popup--shadow{
+      border:none;
+  }
+  .esri-popup__button{
+      padding:0;
+      color:#ffffff;
+  }
+  .esri-popup__button:hover {
+      background-color:transparent;
+  }
+
+  .esri-popup__header-buttons {
+      background-color:#005c96;
+      color: #ffffff;
+      border-radius:50%;
+      position: absolute;
+      right: -10px;
+      top: -10px;
+  }
+  .esri-popup__icon {
+      width:10px;
+      height:10px;
+      flex: 0 0 10px;
+      font-size:10px;
+  }
+  .esri-popup__icon:hover,
+  .esri-popup__header-buttons .esri-popup__button:hover {
+      color:#fffff !important;
+  }
+  .esri-popup--shadow {
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
+      border-bottom:6px solid #005c96;
+  }
+  .esri-popup__content {
+      margin:0;
+  }
+  .esri-popup__content p{
+      padding: 0 5px 0 5px;
+  }
 </style>
 <div class="row">
     <div class="col-md-12 cs-menu">
@@ -160,7 +205,7 @@
                     <input type="checkbox" name="sectors" tal:attributes="value sector/key" >
                 </p>
             </div>
-            <div class="cols-md-12 cs_filter_impact_div" tal:define="climate_impacts view/get_climate_impacts" style="padding-top:10px;">
+            <div class="cols-md-12 cs_filter_impact_div" tal:define="climate_impacts view/get_climate_impacts">
                 <h4>Filter by IMPACT</h4>
                 <p class="cs_filter_impact" style="display:none;" tal:repeat="climate_impact climate_impacts">
                     <span class="float-left" tal:content="climate_impact/value">Sector name</span>
