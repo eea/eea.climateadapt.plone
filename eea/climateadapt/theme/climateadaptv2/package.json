@@ -21,7 +21,7 @@
     "gruntcli": "0.0.2-security",
     "handlebars": "^4.7.6",
     "load-grunt-tasks": "^3.4.1",
-    "merge": "^1.2.0"
+    "merge": "^2.1.1"
   },
   "author": "Tiberiu Ichim, Eaudeweb, EEA",
   "license": "ISC",
