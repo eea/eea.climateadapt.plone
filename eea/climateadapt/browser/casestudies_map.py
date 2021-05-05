@@ -138,3 +138,17 @@ class Page(BrowserView):
         for term in vocabulary:
             response.append({"key": term.value, "value": term.title})
         return response
+
+    def get_ipcc_categories2(self):
+        factory = getUtility(IVocabularyFactory, "eea.climateadapt.aceitems_ipcc_category")
+        vocabulary = factory(self.context)
+        response = {};
+        #response.append({"key": "", "value": "Filter by IPCCS"})
+        import pdb; pdb.set_trace()
+        for term in vocabulary:
+            titleSplit = term.title.split(':')
+            if titleSplit[0] not in response:
+                response[titleSplit[0]] = []
+            response[titleSplit[0]].append({"key": term.value, "value": titleSplit[1].strip()})
+            #response.append({"key": term.value, "value": term.title})
+        return response
