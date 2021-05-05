@@ -144,7 +144,6 @@ class Page(BrowserView):
         vocabulary = factory(self.context)
         response = {};
         #response.append({"key": "", "value": "Filter by IPCCS"})
-        import pdb; pdb.set_trace()
         for term in vocabulary:
             titleSplit = term.title.split(':')
             if titleSplit[0] not in response:
