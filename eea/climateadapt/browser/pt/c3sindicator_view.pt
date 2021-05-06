@@ -175,7 +175,7 @@
       </style>
 
       <script>
-        if(window.location.hash && window.location.hash=="#details") {
+        if((window.location.hash && window.location.hash=="#details") || window.location.search.length) {
             c3sView('details');
         } else {
             c3sView('overview');
