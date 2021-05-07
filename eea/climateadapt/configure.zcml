@@ -167,8 +167,7 @@
       name="Description"
       />
   <adapter
-      factory=".catalog.get_aceitem_description"
-      for=".aceproject.IAceProject"
+      factory=".catalog.get_aceproject_description"
       name="Description"
       />
 
@@ -464,11 +463,11 @@
   <include package="collective.monkeypatcher" />
 
   <monkey:patch
-    description="Patch Plone isLinked"
-    module="Products.CMFPlone.utils"
-    original="isLinked"
-    replacement="eea.climateadapt.isLinked"
-    preserveOriginal="false"
-    />
+      original="isLinked"
+      replacement="eea.climateadapt.isLinked"
+      module="Products.CMFPlone.utils"
+      description="Patch Plone isLinked"
+      preserveOriginal="false"
+      />
 
 </configure>

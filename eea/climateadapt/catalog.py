@@ -2,8 +2,15 @@ import json
 import logging
 
 from collective.cover.interfaces import ICover, ISearchableText
-from sumy.nlp.tokenizers import Tokenizer
+from eea.climateadapt.aceitem import IAceItem
+from eea.climateadapt.behaviors.aceproject import IAceProject
+from eea.climateadapt.city_profile import ICityProfile
+from eea.climateadapt.interfaces import IClimateAdaptContent, INewsEventsLinks
+from plone.api.portal import get_tool
+from plone.indexer import indexer
+from Products.CMFPlone.utils import safe_unicode
 from sumy.nlp.stemmers import Stemmer
+from sumy.nlp.tokenizers import Tokenizer
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.summarizers.lsa import LsaSummarizer as Summarizer
 from sumy.utils import get_stop_words
@@ -11,21 +18,15 @@ from zope.annotation.interfaces import IAnnotations
 from zope.component import queryAdapter
 from zope.interface import Interface
 
-from eea.climateadapt.aceitem import IAceItem
 # from eea.climateadapt.browser.frontpage_slides import IRichImage
-from eea.climateadapt.city_profile import ICityProfile
-from eea.climateadapt.interfaces import IClimateAdaptContent, INewsEventsLinks
-from plone.api.portal import get_tool
-from plone.indexer import indexer
-from plone.rfc822.interfaces import IPrimaryFieldInfo
-from Products.CMFPlone.utils import safe_unicode
+# from plone.rfc822.interfaces import IPrimaryFieldInfo
 
-logger = logging.getLogger('eea.climateadapt')
+logger = logging.getLogger("eea.climateadapt")
 
 
 @indexer(Interface)
 def imported_ids(object):
-    annot = IAnnotations(object).get('eea.climateadapt.imported_ids')
+    annot = IAnnotations(object).get("eea.climateadapt.imported_ids")
 
     if annot is None:
         return
@@ -53,7 +54,7 @@ def aceproject_id(object):
 
 @indexer(Interface)
 def countries(object):
-    """ Provides a list of countries this item "belongs" to
+    """Provides a list of countries this item "belongs" to
 
     We first look at the spatial_values attribute. If it doesn't exist, try to
     parse the geochars attribute
@@ -61,7 +62,7 @@ def countries(object):
 
     value = None
 
-    if hasattr(object, 'spatial_values'):
+    if hasattr(object, "spatial_values"):
         value = object.spatial_values
 
     if value:
@@ -69,29 +70,27 @@ def countries(object):
 
         return value
 
-    if hasattr(object, 'geochars'):
+    if hasattr(object, "geochars"):
         value = object.geochars
 
         if not value:
             return None
 
-        value = json.loads(value)['geoElements'].get('countries', []) or None
+        value = json.loads(value)["geoElements"].get("countries", []) or None
 
         return value
 
 
 @indexer(ICover)
 def search_type(object):
-    """
-    """
+    """"""
 
     return "CONTENT"
 
 
 @indexer(INewsEventsLinks)
 def search_type_for_newsevents(object):
-    """
-    """
+    """"""
 
     return "CONTENT"
 
@@ -128,43 +127,40 @@ def featured(obj):
 
 @indexer(Interface)
 def bio_regions(object):
-    """ Provides the list of bioregions, extracted from geochar
-    """
+    """Provides the list of bioregions, extracted from geochar"""
 
     value = None
 
-    if hasattr(object, 'geochars'):
+    if hasattr(object, "geochars"):
         value = object.geochars
 
         if not value:
             return None
 
-        value = json.loads(value)['geoElements'].get('biotrans', []) or None
+        value = json.loads(value)["geoElements"].get("biotrans", []) or None
 
         return value
 
 
 @indexer(Interface)
 def macro_regions(object):
-    """ Provides the list of macro_regions, extracted from geochar
-    """
+    """Provides the list of macro_regions, extracted from geochar"""
 
     value = None
 
-    if hasattr(object, 'geochars'):
+    if hasattr(object, "geochars"):
         value = object.geochars
 
         if not value:
             return None
 
-        value = json.loads(value)['geoElements'].get('macrotrans', []) or None
+        value = json.loads(value)["geoElements"].get("macrotrans", []) or None
 
         return value
 
 
-@indexer(IAceItem)
-def get_aceitem_description(object):
-    """ Simplify the long description rich text in a simple 2 paragraphs
+def _get_aceitem_description(object):
+    """Simplify the long description rich text in a simple 2 paragraphs
     "summary"
     """
     v = object.Description()
@@ -173,23 +169,31 @@ def get_aceitem_description(object):
         return v
 
     if not object.long_description:
-        return ''
+        return ""
 
     text = object.long_description.raw
-    portal_transforms = get_tool(name='portal_transforms')
+    portal_transforms = get_tool(name="portal_transforms")
 
     # Output here is a single <p> which contains <br /> for newline
-    data = portal_transforms.convertTo('text/plain',
-                                       text,
-                                       mimetype='text/html')
+    data = portal_transforms.convertTo("text/plain", text, mimetype="text/html")
     text = data.getData().strip()
 
     # the following is a very bad algorithm. Needs to use nltk.tokenize
-    pars = text.split('.')
+    pars = text.split(".")
 
-    return '.'.join(pars[:2])
+    return ".".join(pars[:2])
 
     return text
+
+
+@indexer(IAceItem)
+def get_aceitem_description(object):
+    return _get_aceitem_description(object)
+
+
+@indexer(IAceProject)
+def get_aceproject_description(object):
+    return _get_aceitem_description(object)
 
 
 LANGUAGE = "english"
@@ -198,27 +202,31 @@ SENTENCES_COUNT = 2
 
 @indexer(ICover)
 def cover_description(obj):
-    """ Simplify the long description rich text in a simple 2 paragraphs
+    """Simplify the long description rich text in a simple 2 paragraphs
     "summary"
     """
+
     v = obj.Description()
-    if v not in [None, '']:
+    if v not in [None, ""]:
         return v
 
-    portal_transforms = get_tool(name='portal_transforms')
+    portal_transforms = get_tool(name="portal_transforms")
     tiles = obj.get_tiles()
     text = []
     for tile in tiles:
-        tile_obj = obj.restrictedTraverse('@@{0}/{1}'.format(tile['type'], tile['id']))
+        tile_obj = obj.restrictedTraverse("@@{0}/{1}".format(tile["type"], tile["id"]))
 
         searchable = queryAdapter(tile_obj, ISearchableText)
         if searchable:
             text.append(searchable.SearchableText())
         else:
-            data = portal_transforms.convertTo('text/plain',
-                                                tile_obj.getText(),
-                                                mimetype='text/html')
-            text.append(data.getData().strip())
+            try:
+                data = portal_transforms.convertTo(
+                    "text/plain", tile_obj.getText(), mimetype="text/html"
+                )
+                text.append(data.getData().strip())
+            except Exception:
+                continue
 
     text = [safe_unicode(entry) for entry in text if entry]
 
@@ -234,4 +242,5 @@ def cover_description(obj):
         text.append(sentence._text)
 
     text = " ".join(text)
+    # print("Description", text)
     return text
