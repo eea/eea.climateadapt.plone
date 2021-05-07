@@ -1,0 +1,18 @@
+<div tal:define="data options/country_data">
+  <div tal:repeat="section_title python: data.keys()">
+    <h2 tal:content="section_title"></h2>
+
+        <div style="border: 1px solid black; padding: 10px;"
+            tal:define="section_data python: data[section_title]">
+          <p tal:content="python: len(section_data)"></p>
+          <div style="border-bottom: 1px solid black;"
+              tal:repeat="key section_data">
+            <h3 tal:content="key"></h3>
+            <p tal:content="python: section_data[key]"></p>
+          </div>
+        </div>
+
+  </div>
+
+  <div tal:content="options/original_data"/>
+</div>
