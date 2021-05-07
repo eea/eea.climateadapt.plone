@@ -170,6 +170,15 @@
       factory=".catalog.get_aceproject_description"
       name="Description"
       />
+  <adapter
+      factory=".catalog.get_adaptation_option_description"
+      name="Description"
+      />
+
+  <adapter
+      factory=".catalog.get_casestudy_description"
+      name="Description"
+      />
 
   <adapter
       factory=".catalog.cover_description"

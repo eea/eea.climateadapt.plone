@@ -4,6 +4,8 @@ import logging
 from collective.cover.interfaces import ICover, ISearchableText
 from eea.climateadapt.aceitem import IAceItem
 from eea.climateadapt.behaviors.aceproject import IAceProject
+from eea.climateadapt.behaviors.adaptationoption import IAdaptationOption
+from eea.climateadapt.behaviors.casestudy import ICaseStudy
 from eea.climateadapt.city_profile import ICityProfile
 from eea.climateadapt.interfaces import IClimateAdaptContent, INewsEventsLinks
 from plone.api.portal import get_tool
@@ -193,6 +195,16 @@ def get_aceitem_description(object):
 
 @indexer(IAceProject)
 def get_aceproject_description(object):
+    return _get_aceitem_description(object)
+
+
+@indexer(IAdaptationOption)
+def get_adaptation_option_description(object):
+    return _get_aceitem_description(object)
+
+
+@indexer(ICaseStudy)
+def get_casestudy_description(object):
     return _get_aceitem_description(object)
 
 
