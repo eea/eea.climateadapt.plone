@@ -74,10 +74,10 @@ def update_object(obj, indicator):
     obj.sectors = []
     obj.climate_impacts = []
 
-    #state = api.content.get_state(obj=obj, default="Unknown")
-    #if state != "published":
-        #print("Object not published, publishing", obj)
-        #api.content.transition(obj, "publish")
+    state = api.content.get_state(obj=obj, default="Unknown")
+    if state != "published":
+        print("Object not published, publishing", obj)
+        api.content.transition(obj, "publish")
     obj._p_changed = True
 
 
