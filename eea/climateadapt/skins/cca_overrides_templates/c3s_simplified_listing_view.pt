@@ -28,6 +28,7 @@ padding: 2em 0em;
          tal:condition="has_text"
       >
         <div metal:define-slot="inside" tal:replace="structure here/text/output | nothing">The body</div>
+        <br><br>
     </div>
 
     <metal:listingmacro define-macro="listing">

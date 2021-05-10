@@ -156,9 +156,10 @@ def main():
         save_indicator(data["indicators"][indicator_identifier], site, data)
 
     for theme_id in data["themes"]:
+        #import pdb; pdb.set_trace()
         theme_folder = base_folder[theme_id]
         theme_folder.text = RichTextValue(
-            data["themes"][theme_id]["description"], "text/plain", "text/html"
+            data["themes"][theme_id]["description"]
         )
         theme_folder._p_changed = True
         print("Updated description for", theme_folder)

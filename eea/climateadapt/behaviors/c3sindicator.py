@@ -45,8 +45,8 @@ class IC3sIndicator(IIndicator):
 
     #directives.omitted(IEditForm, "include_in_observatory")
     #directives.omitted(IAddForm, "include_in_observatory")
-    directives.omitted(IEditForm, "health_impacts")
-    directives.omitted(IAddForm, "health_impacts")
+    #directives.omitted(IEditForm, "health_impacts")
+    #directives.omitted(IAddForm, "health_impacts")
 
     definition_app = RichText(
         title=(u"App definition"),
