@@ -181,6 +181,12 @@
   .esri-popup__content p{
       padding: 0 5px 0 5px;
   }
+  .cs_filter_ipcc {
+    padding-top:10px !important;
+  }
+  .cs_filter_ipcc:first-child {
+    padding-top:0px !important;
+  }
 </style>
 <div class="row">
     <div class="col-md-12 cs-menu">
@@ -215,7 +221,7 @@
             <div class="cols-md-12 cs_filter_ipcc_div" tal:define="ipcc_categories view/get_ipcc_categories2">
                 <h4>Filter by IPCC Categories</h4>
                 <p class="cs_filter_ipcc" style="display:none;" tal:repeat="ipcc_category ipcc_categories">
-                    <span style="clear:both;font-weight:bold;font-size:16px;border-bottom:1px solid #005c96;color:#005c96;width:100%" class="float-left" tal:content="python: ipcc_category"></span>
+                    <span style="clear:both;font-weight:bold;font-size:16px;border-bottom:1px solid #005c96;color:#005c96;width:100%" class="float-left ipcc_category_title" tal:content="python: ipcc_category"></span>
                     <tal tal:repeat="ipcc python:ipcc_categories[ipcc_category]">
                         <span style="clear:both;" class="float-left" tal:content="ipcc/value">Sector name</span>
                         <input type="checkbox" name="ipccs" tal:attributes="value ipcc/key" >
