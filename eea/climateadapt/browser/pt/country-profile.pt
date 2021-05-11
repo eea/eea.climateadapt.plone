@@ -2,12 +2,25 @@
     class="sweet-tabs" id="country-tab">
   <div>
     <h2>National circumstances relevant to adaptation actions</h2>
-    <h3>Biogeophysical characteristics</h3>
-    <div tal:content="data/National_Circumstances/BiogeophysicalCharacteristics">Data here</div>
-    <h3>Demographic situation</h3>
-    <div tal:content="data/National_Circumstances/DemographicSituation">Data here</div>
-    <h3>Economic and infrastructural situation</h3>
-    <div tal:content="data/National_Circumstances/EconomicInfrastructuralSituation">Data here</div>
+    <tal:block tal:define="fieldset_legend string: Biogeophysical characteristics;
+                        fieldset_data data/National_Circumstances/BiogeophysicalCharacteristics">
+      <tal:macro metal:define-macro="fieldset-macro">
+        <fieldset>
+          <legend tal:content="fieldset_legend">Biogeophysical characteristics</legend>
+          <div tal:content="fieldset_data">Data here</div>
+        </fieldset>
+      </tal:macro>
+    </tal:block>
+
+    <tal:block tal:define="fieldset_legend string: Demographic situation;
+                        fieldset_data data/National_Circumstances/DemographicSituation">
+      <tal:macro metal:use-macro="view/fieldset-macro"/>
+    </tal:block>
+
+    <tal:block tal:define="fieldset_legend string: Economic and infrastructural situation;
+                        fieldset_data data/National_Circumstances/EconomicInfrastructuralSituation">
+      <tal:macro metal:use-macro="view/fieldset-macro"/>
+    </tal:block>
   </div>
   <div style="padding: 1.5em;">
     <p>
@@ -16,827 +29,474 @@
   </div>
   <ul class="nav nav-tabs">
     <li class="active"><a href="#4489-0" data-toggle="tab">Summary</a></li>
-    <li class=" "><a href="#4489-3" data-toggle="tab">Assessment</a></li>
-    <li class=" "><a href="#4489-1" data-toggle="tab">Legal &amp; policy frameworks</a></li>
-    <li class=" "><a href="#4489-2" data-toggle="tab">Strategies, plans &amp; goals</a>
+    <li class=" "><a href="#4489-1" data-toggle="tab">Assessment</a></li>
+    <li class=" "><a href="#4489-2" data-toggle="tab">Legal &amp; policy frameworks</a></li>
+    <li class=" "><a href="#4489-3" data-toggle="tab">Strategies, plans &amp; goals</a>
     </li>
     <li class=" "><a href="#4489-4" data-toggle="tab">Monitoring &amp; evaluation</a>
     </li>
-    <li class=" "><a href="#4489-6" data-toggle="tab">Good practices, cooperation &amp; synergies</a></li>
-    <li class=" "><a href="#4489-5" data-toggle="tab">Contact</a></li>
+    <li class=" "><a href="#4489-5" data-toggle="tab">Good practices, cooperation &amp; synergies</a></li>
+    <li class=" "><a href="#4489-6" data-toggle="tab">Contact</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="4489-0">
-      <table class="listing" summary="">
+      <table class="listing table-striped" summary="">
         <thead>
           <tr>
-            <th style="width: 298px; cursor: pointer;">Item</th>
-            <th style="width: 351px; cursor: pointer;">Status</th>
-            <th style="width: 356px; cursor: pointer;">Links</th>
+            <th style="width: 298px;">Item</th>
+            <th style="width: 351px;">Status</th>
+            <th style="width: 356px;">Links</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="odd">
-            <td style="width: 298px;">National Adaptation Strategy</td>
-            <td style="width: 351px;">
+          <tr>
+            <td>National adaptation strategy (NAS)</td>
+            <td>
               <ul>
-                <li>Adopted</li>
+                <li tal:repeat="item data/Legal_Policies/NAS"
+                    tal:content="item/Status">Adopted</li>
               </ul>
             </td>
-            <td style="width: 356px;">
+            <td>
               <ul>
-                <li style="clear: both;"><span class="link-external"><a
-                    href="https://www.bmk.gv.at/dam/jcr:a97fb5f2-85c5-4027-b377-383f80eee354/NAS_Context_2017_en.pdf"
-                    rel="noopener" target="_blank" data-linktype="external"
-                    data-val="https://www.bmk.gv.at/dam/jcr:a97fb5f2-85c5-4027-b377-383f80eee354/NAS_Context_2017_en.pdf">Austrian Adaptation Strategy</a></span>
+                <li tal:repeat="item data/Legal_Policies/NAS"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/Link; data-val item/Link"
+                       tal:content="item/Title"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
                 </li>
               </ul>
             </td>
           </tr>
-          <tr class="even">
-            <td style="width: 298px;">National Adaptation Plan</td>
-            <td style="width: 351px;">
+          <tr>
+            <td>National adaptation plan (NAP)</td>
+            <td>
               <ul>
-                <li>Adopted</li>
+                <li tal:repeat="item data/Legal_Policies/NAP"
+                    tal:content="item/Status">Adopted</li>
               </ul>
             </td>
-            <td style="width: 356px;">
+            <td>
               <ul>
-                <li><span class="link-external"><a
-                    href="https://www.bmk.gv.at/dam/jcr:3b304e0f-bae9-4cc8-a934-ae8d212f7fe4/NAS_Action_Plan2017_en.pdf"
-                    rel="noopener" target="_blank" data-linktype="external"
-                    data-val="https://www.bmk.gv.at/dam/jcr:3b304e0f-bae9-4cc8-a934-ae8d212f7fe4/NAS_Action_Plan2017_en.pdf">Austrian Action Plan</a></span>
+                <li tal:repeat="item data/Legal_Policies/NAP"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/Link; data-val item/Link"
+                       tal:content="item/Title"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
                 </li>
               </ul>
             </td>
           </tr>
-          <tr class="odd">
-            <td style="width: 298px;">Impacts, vulnerability and adaptation
-              assessments
-            </td>
-            <td style="width: 351px;">
+          <tr tal:define="items python: data['Legal_Policies'].get('SAP', [])">
+            <td>Sectoral adaptation plan (SAP)</td>
+            <td>
               <ul>
-                <li>Completed&nbsp;</li>
-              </ul>
-              <ul>
-                <li><span>Completed&nbsp;</span></li>
+                <li tal:repeat="item items"
+                    tal:content="item/Status">Adopted</li>
               </ul>
             </td>
-            <td style="width: 356px;">
+            <td>
               <ul>
-                <li><span class="link-external"><a
-                    href="http://austriaca.at/aar14" rel="noopener"
-                    target="_blank" data-linktype="external"
-                    data-val="http://austriaca.at/aar14">Austrian Assessment Report 2014 on Climate Change</a></span>
-                </li>
-                <li><span class="link-external"><a href="https://coin.ccca.ac.at/"
-                                                   rel="noopener" target="_blank"
-                                                   data-linktype="external"
-                                                   data-val="https://coin.ccca.ac.at/">Costs of Inaction “Assessing the Costs of Climate Change in Austria"</a></span>
+                <li tal:repeat="item items"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/Link; data-val item/Link"
+                       tal:content="item/Title"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
                 </li>
               </ul>
             </td>
           </tr>
-          <tr class="even">
-            <td style="width: 298px;">Research programmes&nbsp;</td>
-            <td style="width: 351px;">
+          <tr>
+            <td>Climate change impact and vulnerability assessment</td>
+            <td>
               <ul>
-                <li>Currently being undertaken</li>
-                <li><span>Currently being undertaken</span></li>
+                <li tal:repeat="item data/National_Circumstances/CC_IVA"
+                    tal:content="item/Status">Adopted</li>
               </ul>
             </td>
-            <td style="width: 356px;">
+            <td>
               <ul>
-                <li><span class="link-external"><a href="http://www.startclim.at/"
-                                                   rel="noopener" target="_blank"
-                                                   data-linktype="external"
-                                                   data-val="http://www.startclim.at/">StartClim</a></span>
-                </li>
-                <li><span class="link-external"><a
-                    href="https://www.klimafonds.gv.at/call/austrian-climate-research-program/"
-                    rel="noopener" target="_blank" data-linktype="external"
-                    data-val="https://www.klimafonds.gv.at/call/austrian-climate-research-program/">Climate and Energy Fund (ACRP)</a></span>
+                <li tal:repeat="item data/National_Circumstances/CC_IVA"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/Link; data-val item/Link"
+                       tal:content="item/Title"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
                 </li>
               </ul>
             </td>
           </tr>
-          <tr class="odd">
-            <td style="width: 298px;">Meteorological observations</td>
-            <td style="width: 351px;">
+          <tr>
+            <td>Meteorological observations</td>
+            <td>
               <ul>
-                <li>Established</li>
+                <li tal:repeat="item data/National_Circumstances/Meteo_observation"
+                    tal:content="item/Status">Adopted</li>
               </ul>
             </td>
-            <td style="width: 356px;">
+            <td>
               <ul>
-                <li><span class="link-external"><a href="http://www.zamg.ac.at"
-                                                   rel="noopener" target="_blank"
-                                                   data-linktype="external"
-                                                   data-val="http://www.zamg.ac.at">Met Office (ZAMG)</a></span><br><br>
+                <li tal:repeat="item data/National_Circumstances/Meteo_observation"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/WebLink; data-val item/WebLink"
+                       tal:content="item/Name"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
                 </li>
               </ul>
             </td>
           </tr>
-          <tr class="even">
-            <td style="width: 298px;">Climate projections and services</td>
-            <td style="width: 351px;">
+          <tr>
+            <td>Climate projections and services</td>
+            <td>
               <ul>
-                <li>Established</li>
-              </ul>
-              <ul>
-                <li>Established</li>
+                <li tal:repeat="item data/National_Circumstances/Climate_Projections_Services"
+                    tal:content="item/Status">Adopted</li>
               </ul>
             </td>
-            <td style="width: 356px;">
+            <td>
               <ul>
-                <li><span class="link-external"><a href="https://data.ccca.ac.at/"
-                                                   rel="noopener" target="_blank"
-                                                   data-linktype="external"
-                                                   data-val="https://data.ccca.ac.at/">CCCA Data Server</a></span>
-                </li>
-                <li><span class="link-external"><a href="http://www.ccca.ac.at/"
-                                                   rel="noopener" target="_blank"
-                                                   data-linktype="external"
-                                                   data-val="http://www.ccca.ac.at/">Climate Change Centre Austria (CCCA)</a></span>
+                <li tal:repeat="item data/National_Circumstances/Climate_Projections_Services"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/WebLink; data-val item/WebLink"
+                       tal:content="item/Description"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
                 </li>
               </ul>
             </td>
           </tr>
-          <tr class="odd">
-            <td style="width: 298px;">CC IVA portals and platforms</td>
-            <td style="width: 351px;">
+          <tr>
+            <td>Adaptation portals and platforms</td>
+            <td>
               <ul>
-                <li>Established</li>
+                <li tal:repeat="item data/Contact/CCIV_Portal_Platform"
+                    tal:content="item/Status">Adopted</li>
               </ul>
             </td>
-            <td style="width: 356px;">
+            <td>
               <ul>
-                <li><span class="link-external"><a
-                    href="http://www.klimawandelanpassung.at" rel="noopener"
-                    target="_blank" data-linktype="external"
-                    data-val="http://www.klimawandelanpassung.at">Klimawandelanpassung.at</a></span>
+                <li tal:repeat="item data/Contact/CCIV_Portal_Platform"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/Website; data-val item/Website"
+                       tal:content="item/Name"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
                 </li>
               </ul>
             </td>
           </tr>
-          <tr class="even">
-            <td style="width: 298px;">Monitoring, indicators, methodologies</td>
-            <td style="width: 351px;">
+          <tr>
+            <td>Monitoring, reporting and evaluation (MRE) indicators and methodologies</td>
+            <td>
               <ul>
-                <li>Established</li>
+                <li tal:repeat="item data/Monitoring_Evaluation/Monitoring_Indicator_Methodologies"
+                    tal:content="item/IndicatorsMethodology">Adopted</li>
               </ul>
             </td>
-            <td style="width: 356px;">
+            <td>
               <ul>
-                <li><span class="link-external"><a
-                    href="https://www.bmnt.gv.at/umwelt/klimaschutz/klimapolitik_national/anpassungsstrategie/Fortschrittsbericht.html"
-                    rel="noopener" target="_blank" data-linktype="external"
-                    data-val="https://www.bmnt.gv.at/umwelt/klimaschutz/klimapolitik_national/anpassungsstrategie/Fortschrittsbericht.html">1st Progress Report, 2015</a></span>
+                <li tal:repeat="item data/Monitoring_Evaluation/Monitoring_Indicator_Methodologies"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/Link; data-val item/Link"
+                       tal:content="item/Description"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
                 </li>
               </ul>
             </td>
           </tr>
-          <tr class="odd">
-            <td style="width: 298px;">Monitoring Mechanism Regulation</td>
-            <td style="width: 351px;">
-              <ul>
-                <li>Last reporting on Adaptation (Art. 15) submitted</li>
-              </ul>
+          <tr>
+            <td>Key reports and publications</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>National communication to the UNFCCC</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Governance regulation adaptation reporting</td>
+            <td></td>
+            <td></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tab-pane  " id="4489-1">
+      <tal:block tal:define="fieldset_legend string: Climate monitoring, modelling, projections and scenarios;
+                    fieldset_data data/National_Circumstances/MainActivitiesClimateMonitoring">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <tal:block tal:define="fieldset_legend string: Methodologies and tools (including uncertainties and challenges);
+                    fieldset_data data/National_Circumstances/ApproachesMethodologiesTools">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <tal:block tal:define="fieldset_legend string: General aspects of climate change impact and vulnerability assessment;
+                    fieldset_data data/National_Circumstances/GeneralAspectsAssessment">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <table class="listing table-striped">
+        <thead>
+          <tr>
+            <th style="width: 298px;">Observed climate hazards</th>
+            <th style="width: 351px;">Acute</th>
+            <th style="width: 356px;">Chronic</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Temperature</td>
+            <td tal:define="values data/National_Circumstances/TemperatureRelatedAcute;
+                            other_values data/National_Circumstances/TemperatureAcuteOther">
+              <tal:macro metal:define-macro="assessment-climate-hazards">
+                <ul tal:condition="values">
+                  <li tal:repeat="val python: values.split(', ')"
+                      tal:content="python: val.split(' - ')[-1]">Value here</li>
+                  <li tal:condition="other_values">
+                    Other: <span tal:content="other_values"></span>
+                  </li>
+                </ul>
+              </tal:macro>
             </td>
-            <td style="width: 356px;">
-              <ul>
-                <li><span class="link-external"><a
-                    href="http://cdr.eionet.europa.eu/at/eu/mmr/art15_adaptation/envxidy3g/"
-                    rel="noopener" target="_blank" data-linktype="external"
-                    data-val="http://cdr.eionet.europa.eu/at/eu/mmr/art15_adaptation/envxidy3g/">2019 submission</a></span>
-                </li>
-              </ul>
+            <td tal:define="values data/National_Circumstances/TemperatureRelatedChronic;
+                            other_values data/National_Circumstances/TemperatureChronicOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
             </td>
           </tr>
-          <tr class="even">
-            <td style="width: 298px;">National Communication to the UNFCCC</td>
-            <td style="width: 351px;">
-              <ul>
-                <li>Last National Communication Submitted</li>
-              </ul>
+          <tr>
+            <td>Wind</td>
+            <td tal:define="values data/National_Circumstances/WindRelatedAcute;
+                            other_values data/National_Circumstances/WindAcuteOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
             </td>
-            <td style="width: 356px;">
-              <ul>
-                <li><span class="link-external"><a
-                    href="http://unfccc.int/files/national_reports/annex_i_natcom/submitted_natcom/application/pdf/69823015_austria-nc7-1-at_nc7.pdf"
-                    data-val="http://unfccc.int/files/national_reports/annex_i_natcom/submitted_natcom/application/pdf/69823015_austria-nc7-1-at_nc7.pdf"
-                    data-linktype="external" target="_blank">UNFCCC NC7</a></span>
-                </li>
-              </ul>
+            <td tal:define="values data/National_Circumstances/WindRelatedChronic;
+                            other_values data/National_Circumstances/WindChronicOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+          <tr>
+            <td>Water</td>
+            <td tal:define="values data/National_Circumstances/WaterRelatedAcute;
+                            other_values data/National_Circumstances/WaterAcuteOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+            <td tal:define="values data/National_Circumstances/WaterRelatedChronic;
+                            other_values data/National_Circumstances/WaterChronicOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+          <tr>
+            <td>Solid mass</td>
+            <td tal:define="values data/National_Circumstances/SolidMassRelatedAcute;
+                            other_values data/National_Circumstances/SolidAcuteOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+            <td tal:define="values data/National_Circumstances/SolidMassRelatedChronic;
+                            other_values data/National_Circumstances/SolidChronicOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
             </td>
           </tr>
         </tbody>
       </table>
+
+      <table class="listing table-striped">
+        <thead>
+          <tr>
+            <th style="width: 298px;">Key future climate hazards</th>
+            <th style="width: 351px;">Acute</th>
+            <th style="width: 356px;">Chronic</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Temperature</td>
+            <td tal:define="values data/National_Circumstances/FutureTemperatureRelatedAcute;
+                            other_values data/National_Circumstances/FutureTemperatureAcuteOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+            <td tal:define="values data/National_Circumstances/FutureTemperatureRelatedChronic;
+                            other_values data/National_Circumstances/FutureTemperatureChronicOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+          <tr>
+            <td>Wind</td>
+            <td tal:define="values data/National_Circumstances/FutureWindRelatedAcute;
+                            other_values data/National_Circumstances/FutureWindAcuteOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+            <td tal:define="values data/National_Circumstances/FutureWindRelatedChronic;
+                            other_values data/National_Circumstances/FutureWindChronicOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+          <tr>
+            <td>Water</td>
+            <td tal:define="values data/National_Circumstances/FutureWaterRelatedAcute;
+                            other_values data/National_Circumstances/FutureWaterAcuteOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+            <td tal:define="values data/National_Circumstances/FutureWaterRelatedChronic;
+                            other_values data/National_Circumstances/FutureWaterChronicOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+          <tr>
+            <td>Solid mass</td>
+            <td tal:define="values data/National_Circumstances/FutureSolidMassRelatedAcute;
+                            other_values data/National_Circumstances/FutureSolidAcuteOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+            <td tal:define="values data/National_Circumstances/FutureSolidMassRelatedChronic;
+                            other_values data/National_Circumstances/FutureSolidChronicOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <tal:block tal:define="fieldset_legend string: Overview of existing pressures;
+                    fieldset_data data/National_Circumstances/DescribeExistingEnvironmental">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <tal:block tal:define="fieldset_legend string: Secondary effects;
+                    fieldset_data data/National_Circumstances/DescribeSecondaryEffects">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <h2>Key affected sectors</h2>
+      <table tal:repeat="item data/National_Circumstances/Afected_Sectors"
+          class="listing table-striped">
+        <thead>
+          <tr>
+            <th style="width: 200px;">Sector <span>[see details]</span></th>
+            <th>
+              <span tal:content="item/SectorTitle">Forest</span>
+              <span tal:condition="item/SectorDescribeIfOther"
+                  tal:content="python: ': ' + item['SectorDescribeIfOther']">Forest</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Impact/key hazard</td>
+            <td>
+              <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
+                  tal:content="item/ImpactsKeyHazards">long text</div>
+              <div style="padding: 5px;"
+                   tal:content="item/DescribeImpactsKeyHazards">long text</div>
+            </td>
+          </tr>
+          <tr>
+            <td>Key hazard likelihood</td>
+            <td>
+              <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
+                  tal:content="item/KeyHazardsLikelihood">long text</div>
+              <div style="padding: 5px;"
+                   tal:content="item/DescribeLikelihood">long text</div>
+            </td>
+          </tr>
+          <tr>
+            <td>Vulnerability</td>
+            <td>
+              <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
+                  tal:content="item/Vulnerability">long text</div>
+              <div style="padding: 5px;"
+                   tal:content="item/DescribeVulnerability">long text</div>
+            </td>
+          </tr>
+          <tr>
+            <td>Risk Future Impact</td>
+            <td>
+              <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
+                  tal:content="item/RiskFutureImpacts">long text</div>
+              <div style="padding: 5px;"
+                   tal:content="item/DescribeRisk">long text</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
-    <div class="tab-pane  " id="4489-1">
-      <p>In Austria, a national adaptation strategy (NAS) was adopted on 23rd
-        October 2012 by the Council of Ministers and endorsed by the Provincial
-        Governors Conference on 16th May 2013. The Austrian NAS consists of two
-        parts: a Strategic Framework (or "Context") and an Action Plan (BMNT,
-        formerly BMLFUW (2017). The Austrian Strategy for Adaptation to Climate
-        Change&nbsp;<span class="link-external"><a
-            href="https://www.bmnt.gv.at/umwelt/klimaschutz/klimapolitik_national/anpassungsstrategie/strategie-kontext.html"
-            rel="noopener" target="_blank" data-linktype="external"
-            data-val="https://www.bmnt.gv.at/umwelt/klimaschutz/klimapolitik_national/anpassungsstrategie/strategie-kontext.html">Part 1 “Context" and Part 2 “Action plan"</a></span>&nbsp;are&nbsp;available
-        in German. <span class="link-external"><a
-            href="https://www.bmnt.gv.at/service/publikationen/umwelt/austrian-strategy-adaption-to-climate-change.html"
-            rel="noopener" target="_blank" data-linktype="external"
-            data-val="https://www.bmnt.gv.at/service/publikationen/umwelt/austrian-strategy-adaption-to-climate-change.html">Part 1 “Context" </a></span>is
-        also available in English. The aim of the Austrian NAS is to avoid the
-        adverse effects of climate change on the environment, society, and the
-        economy and to fully utilise any opportunities that may arise.</p>
-      <p>&nbsp;</p>
-      <h3>Adaptation Strategies</h3>
-      <p>The NAS aims to create a national framework to ensure coordination and
-        harmonisation of the various climate adaptation activities in all areas.
-        In August 2017, a revised version of the NAS was adopted by the Austrian
-        Council of Ministers, which was subsequently also approved by the
-        Conference of the Governors of the Bundesländer (NUTS II) in November
-        2017. This new version aims to update and further develop the NAS, while
-        preserving its overall structure.</p>
-      <p>A national adaptation plan (NAP) was adopted in 2012 (as part of the
-        NAS) and revised in 2016 (and approved together with the revised NAS in
-        2017). The NAP presents a catalogue of 135 adaptation options for 14
-        areas of action. These areas are: agriculture, forestry, water resources
-        and water management, tourism, energy (with a focus on the electricity
-        industry), protection from natural hazards, construction and housing,
-        disaster risk management, health, ecosystems and biodiversity,
-        transportation infrastructure and selected aspects of mobility, spatial
-        planning, business/industry/trade, and cities (with a focus on urban
-        green and open spaces). The drafting process was characterized by the
-        extensive and active participation of representatives from the federal
-        ministries, the provincial states, interest groups, stakeholders, NGOs,
-        and other institutions. The Environment Agency Austria (EAA) was
-        actively involved in various aspects of the strategy's development;
-        among other things, it organized the participation process with more
-        than 100 institutions.</p>
-      <h3>Implementation means</h3>
-      <p>With regard to implementation, the Austrian Adaptation Strategy and
-        Action Plan provides concrete recommendations in the 14 areas for action
-        and describes those in detail in the corresponding Action Plan, in which
-        also the key actors, potential conflicts and time horizons for
-        implementation are noted for each recommendation and measure. For
-        successful implementation of the NAS, a lot of effort is being made to
-        ensure best possible cooperation between all actors concerned. In terms
-        of provision of resources, the following premises apply for the
-        implementation of the Austrian Adaptation Strategy and Action Plan:</p>
-      <ul>
-        <li>The implementation of the recommendations must be achieved within
-          the existing jurisdictions of all governmental authorities (federal,
-          provincial states, local);
-        </li>
-        <li>All recommendations listed in the Austrian Action Plan are to be
-          covered by the resources available in the applicable financial
-          frameworks of the public sector (federal, provincial states, local);
-        </li>
-        <li>The costs of implementing the recommendations are to be covered by
-          prioritization and shifting within the available budget.
-        </li>
-      </ul>
-      <p>In many cases, implementation of the recommendations will require the
-        cooperation of various actors in the public sector (federal, provincial
-        states, local) and the private sector. To ensure fair burden-sharing,
-        cooperation within the public sector and between the public and private
-        sectors is recommendable and meaningful. A new funding program (<span
-            class="link-external"><a
-            href="https://klar-anpassungsregionen.at/klar-programm/"
-            rel="noopener" target="_blank" data-linktype="external"
-            data-val="https://klar-anpassungsregionen.at/klar-programm/">KLAR!-Climate Change Adaptation Model Regions for Austria</a></span>)&nbsp;is
-        available with the aim to support Austrian regions in enhancing their
-        climate resilience in vulnerable sectors. The program has been launched
-        in September 2016 and ran until the end of 2017 for the initial phase,
-        with a volume of 800.000 Euro to support adaptation efforts in regions.
-        Until the end of March 2017, regions and municipalities were invited to
-        submit their applications including a basic concept to the Climate and
-        Energy Fund, who initiated the KLAR! programme in cooperation with the
-        Federal Ministry for Sustainability and Tourism (BMNT).</p>
-      <p>Since 2018 and up until 2019, beneficiaries are now working on
-        implementing the measures laid out in these concepts with a financial
-        support of 2,1 Million EURO. In a third phase post-2020, the action
-        plans and their executed measures will then be evaluated. Since October
-        2018, new regions can apply in the initial phase until March 29, 2019.
-        New regional climate scenarios were funded to support regional
-        adaptation.</p>
-      <p>Furthermore, the Federal Ministry for Sustainability and Tourism,
-        together with the provincial states have financed various capacity
-        building activities for the regional and local level (e.g. workshops in
-        regions, brochure with 11 good-practice examples on adaptation from
-        regions across Austria).</p>
-      <h3>Monitoring, reporting and evaluation</h3>
-      <p>A progress report was published by the BMNT in 2015 (BMNT, formerly
-        BMLFUW (2015). <span class="link-external"><a
-            href="https://www.bmnt.gv.at/umwelt/klimaschutz/klimapolitik_national/anpassungsstrategie/Fortschrittsbericht.html"
-            data-linktype="external"
-            data-val="https://www.bmnt.gv.at/umwelt/klimaschutz/klimapolitik_national/anpassungsstrategie/Fortschrittsbericht.html"
-            target="_blank">Anpassung and den Klimawandel in Österreich. Fortschrittsbericht</a></span>.
-        Federal Ministry of Agriculture, Forestry, Environment and Water
-        Management, Vienna) on the state of implementation of the measures
-        described in the NAP. Monitoring and evaluation of the NAS/NAP is
-        pragmatic and comprises two modules:&nbsp;1) a self-assessment approach
-        using a stakeholder survey based on the NAP and sent to the key actors
-        mentioned therein;&nbsp;2) an indicator-based approach with qualitative
-        and quantitative data collections (BMNT, formerly BMLFUW (2014). <span
-            class="link-external"><a
-            href="https://www.bmnt.gv.at/umwelt/klimaschutz/klimapolitik_national/anpassungsstrategie/fortschrittsbericht.html"
-            rel="noopener" target="_blank" data-linktype="external"
-            data-val="https://www.bmnt.gv.at/umwelt/klimaschutz/klimapolitik_national/anpassungsstrategie/fortschrittsbericht.html">Anpassung an den Klimawandel in Österreich. Konzept für die Fortschrittsdarstellung</a></span>.
-        Federal Ministry of Agriculture, Forestry, Environment and Water
-        Management, Vienna). The results from the progress report show that
-        implementation and mainstreaming of adaptation is increasing in Austria
-        with a different level of progress in the various areas of action. The
-        results were of high relevance for the first updated version of the
-        Austrian Adaptation Strategy and its Action Plan as of 2017.</p>
-      <h3>Schedule and planned review/revision</h3>
-      <div>2nd Progress Report is foreseen for 2020.</div>
-    </div>
+
     <div class="tab-pane  " id="4489-2">
-      <p>The recommendations for the 14 areas have been developed beyond generic
-        recommendations and include specific information for implementation such
-        as responsibilities, existing instruments to be used for mainstreaming
-        adaptation, time frame for implementation, and required resources, etc.&nbsp;</p>
-      <h3>Sectors addressed in NAS/NAP</h3>
-      <p>Adaptation recommendations have been identified and assessed on the
-        basis of qualitative vulnerability assessment for nine sectors (i.e.
-        water, tourism, agriculture, forestry, electricity and energy, housing
-        and construction, health, ecosystems and biodiversity and
-        transport/infrastructure). The scientific community was strongly
-        involved in the process of developing proposals for adaptation options
-        for certain areas of action. Also many stakeholders from the organised
-        public (e.g. federal and provincial ministries or related institutions,
-        interest groups and social/environmental NGOs) were consulted to
-        complement the adaptation recommendations.</p>
-      <p>In total, 135 recommendations in the NAP have been formulated with the
-        number of recommendations per field of activity/area of action ranging
-        from three (tourism) to fourteen (agriculture). In most cases, the
-        recommendations for action represent rather bundles of discrete further
-        steps needed to accomplish the respective adaptation goal than single
-        specific measures. The recommendations for action are available at
-        national level, sub-national level, sectoral level and cross-sectoral
-        level. The following types of adaptation options were identified:</p>
-      <ul>
-        <li>Grey options (i.e. technological, such as river flood protection,
-          beach nourishment)
-        </li>
-        <li>Green options (i.e. ecosystem-based approaches that use nature's
-          multiple services, such as crop diversification, enhancing the ability
-          of indigenous plant and animal species to move across landscapes)
-        </li>
-        <li>Soft options (i.e. managerial, legal and policy approaches, such as
-          awareness-raising initiatives, passing legislation, creating early
-          warning systems, insurance, planning instruments)
-        </li>
-        <li>Combined options</li>
-      </ul>
-      <p>Each measure described follows the same structure:</p>
-      <ul>
-        <li>Content items elaborated for each recommendation</li>
-        <li>Goal</li>
-        <li>Relevance</li>
-        <li>Relation to other activity fields</li>
-        <li>Relation to existing instruments</li>
-        <li>Status of implementation</li>
-        <li>Recommended further steps</li>
-        <li>Possible resource needs</li>
-        <li>Conflict potentials</li>
-        <li>Implementing actors and</li>
-        <li>time horizon.</li>
-      </ul>
-      <p>Areas for action of the NAS/NAP have not been prioritised, but criteria
-        for prioritisation are identified in the NAS. In general, measures that
-        provide benefits independent of climate change ("win-win") or measures
-        that entail no disadvantages in case the actual climate trends do not
-        correspond to projections ("no-regret") should be prioritised, as well
-        as flexible measures. Furthermore, prioritisation according to the
-        "Europe 2020: A strategy for intelligent, sustainable, and inclusive
-        growth" is suggested.&nbsp;</p>
-      <h3>Mainstreaming of adaptation</h3>
-      <p>The integration of adaptation into sectoral policies and programmes and
-        thus mainstreaming is increasing with practical examples in agriculture,
-        forestry, biodiversity, health, water management and natural hazard
-        management. Climate adaptation is addressed in the amendment to the
-        Environmental Impact Assessment (EIA) Law in Austria in 2018. The
-        guidance documents for conducting EIA Reports are currently being
-        revised in order to comply with the requirements of the amended EIA
-        Directive.</p>
-      <p>The mainstreaming of climate adaptation into urban planning policies is
-        visible for example in the <span class="link-external"><a
-            href="https://www.wien.gv.at/stadtentwicklung/studien/pdf/b008379a.pdf"
-            target="_blank">Vienna urban development plan 2025 (STEP 2025)</a></span>
-        &nbsp;Climate adaptation measures are mentioned as an integral part of
-        planning the management and enhancement of the city of the ‘<span
-            class="link-external"><a
-            href="http://www5.umweltbundesamt.at/klimawandel/abfrage/show/4a118664-3c0d-1030-89d5-ed5b02f6ce23"
-            data-linktype="external"
-            data-val="http://www5.umweltbundesamt.at/klimawandel/abfrage/show/4a118664-3c0d-1030-89d5-ed5b02f6ce23"
-            target="_blank">Grünes Netz Graz</a></span>’ (Green Grid Graz)
-        developed by the city of Graz. Both are examples of a municipal strategy
-        papers for urban planning that places ecological and climate-specific
-        measures at its core. Social aspects also feature an important element
-        in the NAS and need to be considered during the implementation of
-        recommendations.</p>
+      <tal:block tal:define="fieldset_legend string: Legal and policy frameworks and regulations;
+                    fieldset_data data/Legal_Policies/LegalPolicyFrameworks">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <h2>Overview of institutional arrangements and governance at the national level</h2>
+      <tal:block tal:define="fieldset_legend string: Climate vulnerability and risk assessment;
+                    fieldset_data data/Legal_Policies/ArrangementsCCIV_assessments">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Planning, implemention, monitoring, evaluation and revision of adaptation policy;
+                    fieldset_data data/Legal_Policies/DescribeInstitutionalArrangements">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Integration of climate change impacts and resilience into environmental assessment procedures;
+                    fieldset_data data/Legal_Policies/DescribeEIA">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Integration of climate change adaptation into disaster risk management;
+                    fieldset_data data/Legal_Policies/DescribeDRR">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Collection & ownership of data;
+                    fieldset_data data/Legal_Policies/DescribeCollection">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <h2>Overview of institutional arrangements and governance at the sub-national level
+(where “sub-national” refers to local and regional)</h2>
+      <tal:block tal:define="fieldset_legend string: Legal requirements;
+                    fieldset_data data/Legal_Policies/SummarizeLegalRequirements">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Networks and collaborations;
+                    fieldset_data data/Legal_Policies/SummarizeNetworks">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Good practices;
+                    fieldset_data data/Legal_Policies/SummarizeGoodPractice">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
     </div>
-    <div class="tab-pane  " id="4489-3">The Austrian NAS (2017) contains a
-      qualitative vulnerability assessment for nine sectors (i.e. water,
-      tourism, agriculture, forestry, electricity and energy, housing and
-      construction, health, ecosystems and biodiversity and
-      transport/infrastructure). It was carried out by the Environment Agency
-      Austria in cooperation with the Institute of Meteorology of the University
-      of Natural Resources and Life Sciences. The vulnerability reports fed into
-      the NAS. Separate studies have not been carried out for the other five
-      sectors (protection from natural hazards, disaster risk management,
-      spatial planning, business/industry/trade, cities). Nevertheless, a
-      descriptive vulnerability assessment has been included in the NAP 2017 for
-      all 14 sectors, although it highlights the differences in the level of
-      knowledge and detail across sectors.
-      <h3>Observations and projections</h3>
-      <p>Observations and data are available for the last 250 years in the
-        greater alpine region (HistAlp-Dataset). The longest temperature and air
-        pressure series extend back to 1760, precipitation to 1800, cloudiness
-        to the 1840s and sunshine to the 1880s in the alpine region. Projections
-        are available for the Alpine region for temperature, precipitation,
-        heat, heavy precipitation and storms.</p>
-      <p>Data collection and provision is located at the Central Institute for
-        Meteorology and Geodynamics (ZAMG) with meteorological stations
-        measuring temperature, precipitation, wind, sunshine and many other
-        meteorological parameters. New regional climate scenarios for Austria
-        and its nine provincial states have been available since autumn 2016.
-        The scenarios are based on 13 EURO-CORDEX models, a 12.5km x 12.5 km
-        grid, and use two greenhouse gas scenarios. Results are available via
-        the Climate Change Centre Austria (CCCA) data portal (<span
-            class="link-external"><a href="https://data.ccca.ac.at/group/oks15"
-                                     rel="noopener" target="_blank"
-                                     data-linktype="external"
-                                     data-val="https://data.ccca.ac.at/group/oks15">CCCA Data Centre</a></span>).
-      </p>
-      <h3>Impact and Vulnerability Assessment</h3>
-      <p>The Austrian Panel on Climate Change (APCC) has conducted a
-        comprehensive assessment to document and integrate current scientific
-        knowledge of climate change and its anticipated impacts on Austria as
-        well as presents the needs and possibilities for mitigation and
-        adaptation. The APCC report was published in September 2014, after the
-        release of the IPCC Working Group III 5th Assessment Report. The
-        Austrian Assessment Report 2014 (AAR14) is based on the IPCC structure
-        and process; it consists of three volumes that present the existing
-        knowledge on climate change in Austria, and on the needs and
-        possibilities for mitigation and adaptation. The report aims to present
-        the scientific knowledge pertaining to Austria in a coherent and
-        complete manner to submit this in the form of policy-relevant
-        information to the Austrian Federal Government and political
-        decision-making bodies at all levels, and thereby providing a
-        decision-making basis for the private sector and a knowledge base for
-        academic institutions.</p>
-      <p>Similar to the IPCC assessment reports, the AAR14 is based on the
-        principle of being policy-relevant, but not policy-prescriptive. In a
-        joint, three-year effort approximately 240 Austrian scientists have
-        developed this first progress report on climate change in Austria, and
-        thus summarized the current state of knowledge on the characteristics of
-        climate change in Austria, its consequences, and mitigation and
-        adaptation strategies. Among the achievements of the report are:</p>
-      <ul>
-        <li>Increased robustness of scientific data through integration of the
-          findings of different research approaches and methods.
-        </li>
-        <li>Development of data that can better inform societal decision making
-          on climate change issues.
-        </li>
-        <li>Provision of policy-relevant technical support for strategies
-          developed to respond to climate change, and work on responses with the
-          European Union and other international organizations.
-        </li>
-        <li>Identification of knowledge gaps that can be addressed by future
-          research.
-        </li>
-        <li>Building of an active network of Austrian research institutions,
-          individual scientists, policymakers, and other stakeholders to carry
-          work on climate change forward.
-        </li>
-      </ul>
-      <p>Further assessments of the APCC are planned with the focus on specific
-        topics. The first <span class="link-external"><a
-            href="https://sr18.ccca.ac.at/" rel="noopener" target="_blank"
-            data-linktype="external" data-val="https://sr18.ccca.ac.at/">special report addressed health, demography and climate change</a></span>&nbsp;and
-        was published in September 2018. A <span class="link-external"><a
-            href="https://sr19.ccca.ac.at/" rel="noopener" target="_blank"
-            data-linktype="external" data-val="https://sr19.ccca.ac.at/">special report on tourism</a></span>&nbsp;is
-        on the way and expected for 2019. More special reports can be expected
-        in the years to come.</p>
-      <p>At regional level, some provincial states have conducted
-        vulnerability/impact assessments for their territories and priority
-        sectors: Lower Austria (for forestry, agriculture, energy, water and
-        winter tourism), Upper Austria, Salzburg, Styria and Tyrol. Upper
-        Austria, Styria, Tyrol, Salzburg and Vorarlberg have already adopted a
-        regional adaptation strategy, an integrated climate strategy for
-        Carinthia was finalised in 2018. Vienna, Lower Austria and Burgenland
-        are mainstreaming adaptation into existing policies, such as climate
-        mitigation plans.</p>
-      <p>With regard to<strong> economic assessments</strong>, a scientific
-        evaluation of the financial consequences of climate change in Austria
-        was presented in January 2015 as results of an ACRP project, Costs of
-        Inaction (<span class="link-external"><a href="https://coin.ccca.ac.at/"
-                                                 rel="noopener" target="_blank"
-                                                 data-linktype="external"
-                                                 data-val="https://coin.ccca.ac.at/">COIN</a></span>)
-        . This analysis and documentation on the "costs of inaction" provide the
-        basis for further applied research under the ACRP on the costs of
-        adaptation measures. The main results of two projects <span
-            class="link-external"><a
-            href="http://anpassung.ccca.at/pacinas/ergebnisse/" rel="noopener"
-            target="_blank" data-linktype="external"
-            data-val="http://anpassung.ccca.at/pacinas/ergebnisse/">PACINAS </a></span>(Public
-        Adaptation Costs: Investigating the National Adaptation Strategy) and
-        <span class="link-external"><a
-            href="http://anpassung.ccca.at/patches/ergebnisse/" rel="noopener"
-            target="_blank" data-linktype="external"
-            data-val="http://anpassung.ccca.at/patches/ergebnisse/">PACTCH:ES</a></span>
-        (Private Adaptation Threats and Chances: Enhancing Synergies with the
-        Austrian NAS implementation) were published in mid-2017.</p>
-      <h3><strong>Research</strong></h3>
-      <p>Climate research has rapidly evolved in recent years in Austria. The
-        national climate research programme StartClim and the Austrian Climate
-        Research Program (ACRP) of the Climate and Energy Fund provide important
-        and forward-looking results. In addition, significant insight has been
-        obtained through the former research programme proVISION of the Federal
-        Ministry for Science, Research and Economy and the Global Change
-        Programme of the Austrian Academy of Sciences.</p>
-      <p>Given the dimensions of climate change, institutionalized cooperation
-        in climate and climate impact research is urgently needed in Austria.
-        Upon the initiative of Austrian universities, the Climate Change Centre
-        Austria (CCCA) was formally established in 2011. The objective of the
-        CCCA is to improve the quality and efficiency of Austrian climate
-        research through networking and the promotion of cooperation, but also
-        to enhance its international visibility. As a focal point for research,
-        policy, media, and the public, and for all questions of climate research
-        in Austria, it serves to foster a sustainable national climate dialogue.
-        The CCCA is organized as an association and currently holds 21 full
-        members and 4 associate members, including numerous universities and
-        non-academic research institutions.</p>
-      <h3>Monitoring progress</h3>
-      <p>In 2014, a concept for monitoring and evaluation (M&amp;E) has been
-        published, which aims to:</p>
-      <ul>
-        <li>Monitor the implementation of the Austrian Adaptation Strategy;</li>
-        <li>Provide an overview on the progress of adaptation and information on
-          key trends of vulnerabilities;
-        </li>
-        <li>Create awareness for the need of adaptation as well as highlight
-          gaps and key challenges;
-        </li>
-        <li>Provide a basis for continued development (review) of the NAS.</li>
-      </ul>
-      <p>The M&amp;E system follows a pragmatic approach and is closely related
-        to the Action Plan. It comprises two modules: the first module is a
-        stakeholder survey ("self-assessment approach"; based on the Action plan
-        and sent to the key actors mentioned therein); the second module
-        presents a criteria-approach ("indicator-based approach" with
-        qualitative and quantitative data collections). The joint consideration
-        of these two components provided a broad picture of the implementation
-        of the NAS and key adaptation trends in Austria.</p>
-      <p>The M&amp;E scheme was developed together with stakeholders by
-        involving them in workshops and personal interviews. Based on the
-        results from the self-assessment and the data collection based on
-        indicators, a first progress report of the state of implementation of
-        the Austrian Adaptation Strategy and Action Plan was published in 2015.
-        It shows that the measures recommended in the NAP have been or are being
-        implemented in all activity fields although the level of progress varies
-        from sector to sector. Future M&amp;E and reporting is planned on a
-        five-year-cycle. The 2nd progress report is expected for 2020.</p>
+
+    <div class="tab-pane  " id="4489-3">
+      Strategies, plans &amp; goals
     </div>
+
     <div class="tab-pane  " id="4489-4">
-      <p>&nbsp;</p>
-      <p>In Austria, the BMNT (formerly, BMLFUW) holds overall responsibility
-        for adaptation policy-making (Division IV/1 of the BMNT). One of its
-        main assignments is to provide guidance by keeping the NAS and NAP
-        updated, as well as by drafting the progress report on its
-        implementation. The NAP is implemented in collaboration with a wide
-        range of fellow federal ministries, regional government actors and
-        sector stakeholders from the public and private sector.</p>
-      <h3><strong></strong><strong>Governance</strong></h3>
-      <p>All federal ministries were invited to join the NAS and NAP development
-        process and to provide feedback and comments on the document via three
-        rounds of written consultations. More precisely, the Inter-Ministerial
-        Committee to Coordinate Measures to Protect Global Climate (IMC Climate
-        Change) was regularly updated on the status of work towards the NAS.
-        According to the latest amendment of the Austrian Climate Protection
-        Law, §°4 (2), instead of the IMC the National Climate Protection
-        Committee is in charge of adaptation to unavoidable climate impacts. The
-        Committee meets at least once a year and is chaired by the BMNT.</p>
-      <p>Given the holistic and cross-sectoral nature of adaptation action,
-        there is a need for horizontal coordination in the implementation phase
-        as well. In accordance with the current division of competences (after
-        the national election in 2017), the BMNT holds a much broader range of
-        responsibilities as concerns areas of action in climate change. The
-        National Climate Protection Committee is the relevant institutional
-        body, set up by law, to provide sectoral coordination of adaptation and
-        mitigation measures. The Austrian Spatial Planning Concept (<span
-            class="link-external"><a
-            href="https://www.oerok.gv.at/fileadmin/Bilder/2.Reiter-Raum_u._Region/1.OEREK/OEREK_2011/Dokumente_OEREK_2011/OEREK_2011_EN_Downloadversion.pdf"
-            rel="noopener" target="_blank" data-linktype="external"
-            data-val="https://www.oerok.gv.at/fileadmin/Bilder/2.Reiter-Raum_u._Region/1.OEREK/OEREK_2011/Dokumente_OEREK_2011/OEREK_2011_EN_Downloadversion.pdf">Ö–REK</a></span>),
-        also calls for the continued organisation of "round table" meetings
-        between sectoral representatives to discuss relevant climate-related
-        issues during the implementation of measures.</p>
-      <p>The Bundesländer are highly committed to cooperating with the Federal
-        Ministry (BMNT) on climate adaptation. Climate coordination
-        officers/units have been installed in all provincial governments and act
-        as the main agents of vertical cooperation with the Federal Ministry for
-        Sustainability and Tourism (Nachmany et al. 2015). The Federal Ministry
-        for Sustainability and Tourism together with all Bundesländer (decision
-        taken by the LURK&nbsp; "Provincial Environmental Speakers" Conference)
-        has established an implementation plan summarising a few specific
-        measures to be implemented in close cooperation. One of the <span
-            class="link-external"><a
-            href="https://www.wien.gv.at/umweltschutz/pdf/lurk-2015.pdf"
-            rel="noopener" target="_blank" data-linktype="external"
-            data-val="https://www.wien.gv.at/umweltschutz/pdf/lurk-2015.pdf">decisions</a></span>&nbsp;was
-        the implementation of "dialogue events" in various Austrian cities.
-        Twelve such dialogue events took place in 2016 and 2017. As a next step,
-        more specific participatory measures were undertaken such as, a working
-        group on increased private risk precaution in case of extreme weather
-        events. In addition, stronger joint efforts were agreed to support
-        adaptation at regional level (e.g. through regional workshops, and a
-        <span class="link-external"><a
-            href="https://www.bmnt.gv.at/umwelt/klimaschutz/klimapolitik_national/anpassungsstrategie/goodpractice-broschuere.html"
-            rel="noopener" target="_blank" data-linktype="external"
-            data-val="https://www.bmnt.gv.at/umwelt/klimaschutz/klimapolitik_national/anpassungsstrategie/goodpractice-broschuere.html">booklet with good-practice examples</a></span><span
-            class="link-external"><a
-            href="https://www.bmnt.gv.at/umwelt/klimaschutz/klimapolitik_national/anpassungsstrategie/goodpractice-broschuere.html). "
-            target="_blank">). </a></span></p>
-      <p>The National Climate Protection Committee is the relevant institutional
-        body, set up by law, to provide vertical (and sectoral) coordination of
-        adaptation and mitigation measures. Furthermore, the Environment Agency
-        Austria (EAA) fulfilled an important role as a semi-public support unit
-        regarding several strands of activities throughout the entire NAS/NAP
-        process. The support roles delivered by the EAA included the provision
-        of technical expertise (as author, contributor or coordinator of
-        preparatory expert studies), the drafting and editing of the policy
-        paper, and implementation of various information activities towards the
-        public. A broad participatory process conducted by the EAA was
-        accompanying the strategy development from summer 2008 until summer
-        2011. All results gained from the participatory process are considered
-        in the development of the NAS/NAP. Representatives of the provincial
-        states and further relevant stakeholders (including scientists and
-        representatives from other Federal Ministries) have also been involved
-        in the establishment of a Monitoring and Evaluation system in Austria.
-        The chosen approach (stakeholder survey and data collection) also
-        ensures ongoing interaction across governance levels ad sectors. Diverse
-        participatory elements were used for the revision of the NAP/NAS in 2016
-        and 2017 as well as in the ongoing Monitoring and Evaluation
-        process.</p>
-      <h3>Knowledge</h3>
-      With regard to knowledge transfer, the website of the BMNT reports about
-      the ongoing political processes and further relevant activities on
-      adaptation to climate change at the national level. As part of the
-      participatory process accompanying the development of the Austrian
-      Adaptation Strategy, a <span class="link-external"><a
-        href="http://www.klimawandelanpassung.at" rel="noopener" target="_blank"
-        data-linktype="external" data-val="http://www.klimawandelanpassung.at">national climate change adaptation portal</a></span>&nbsp;was
-      set up to present Austria-specific information on climate change and
-      adaptation, which also includes a database on adaptation research and
-      practice. This platform is gradually expanding and serves as an entry
-      point to up-to-date information on adaptation in Austria. Examples
-      provided at the database shall help to increase general understanding of
-      adaptation, and demonstrate that many initiatives involving adaptation
-      have already been undertaken; although not necessarily under the headline
-      of climate change adaptation.
-      <p>In addition to the information available on the Internet, since January
-        2011 a regular newsletter on climate change adaptation provides
-        practical information for governmental decision-makers, interest groups,
-        private sector, etc. (designed and implemented by the Environment Agency
-        Austria with financing from the Climate and Energy Fund).</p>
-      <p>The Austrian Met Service (ZAMG) runs an c<span class="link-external"><a
-          href="https://www.zamg.ac.at/cms/de/klima/informationsportal-klimawandel"
-          rel="noopener" target="_blank" data-linktype="external"
-          data-val="https://www.zamg.ac.at/cms/de/klima/informationsportal-klimawandel">limate change information portal</a></span>&nbsp;since
-        2010. This platform seeks to present sound scientific information on
-        climate change in an understandable form. Furthermore, the Climate
-        Change Centre Austria (CCCA) has set up a website which provides climate
-        knowledge and climate data as well as and informs about research
-        activities and relevant events. Also the website <span
-            class="link-external"><a href="http://klimartikulieren.at/"
-                                     rel="noopener" target="_blank"
-                                     data-linktype="external"
-                                     data-val="http://klimartikulieren.at/">Klim[:A:]rtikulieren </a></span>provides
-        relevant information materials like animated videos, climate
-        communication, fact-check on climate change and other relevant material.
-      </p>
-      <p>Key results of the Austrian Climate Research Program (ACRP) have been
-        published regularly under the title "<span class="link-external"><a
-            href="https://www.klimafonds.gv.at/publication/acrp-in-essence/"
-            rel="noopener" target="_blank" data-linktype="external"
-            data-val="https://www.klimafonds.gv.at/publication/acrp-in-essence/">ACRP in Essence</a></span>"
-        since 2014. They are summarizing outcomes of the ACRP research projects
-        in a nut shell and aiming to make those outcomes accessible to policy
-        makers and politicians. In order to support politicians and experts in
-        the public administration of provincial states, regions and cities, as
-        well as actors in regional management in developing adaptation
-        strategies, a handbook with methods and tools which helps to tackle the
-        challenges of adaptation was published. It provides guidance for the
-        strategic and proactive examination of climate change impacts. The
-        handbook is one of the main results of the project FAMOUS (Factory of
-        Adaptation Measures operated ad different Scales) financed by the
-        Climate and Energy Fund.</p>
-      <p>More guidelines have been developed on a variety of issues concerning
-        the integration of adaptation as part of research projects, mainly
-        financed by the ACRP. Examples are the research projects CcTalK!, which
-        provided knowledge on how to communicate climate change adaptation to be
-        able to increase awareness and motivate stakeholder to act on
-        adaptation. Also the project ARISE developed a support system for
-        climate-sensitive iterative risk management as a key adaptation
-        approach. The "<span class="link-external"><a
-            href="https://www.klimafonds.gv.at/publication/acrp-in-essence/"
-            rel="noopener" target="_blank" data-linktype="external"
-            data-val="https://www.klimafonds.gv.at/publication/acrp-in-essence/">Strategic support for integrating climate change into project planning for large projects</a></span>",
-        as part of the research project ENVISAGE-CC, funded by the ACRP was
-        published. The project succeeded in raising awareness of climate impacts
-        with developers of large-scale infrastructure Projects, subject to EIA.
-        The follow-up project <span class="link-external"><a
-            href="https://www.rali.boku.ac.at/ilen/forschungsprojekte/specific/"
-            rel="noopener" target="_blank" data-linktype="external"
-            data-val="https://www.rali.boku.ac.at/ilen/forschungsprojekte/specific/">SPECIFIC</a></span>
-        (SPEcific Climate change ForesIght in projeCt design) has broadened the
-        target audience to environmental authorities and consultants (EIA
-        assessors/practitioners), and focused on rail, highway and power grid
-        projects, leading to the<span class="link-external"><a
-            href="http://uvpklimafit.boku.ac.at/" rel="noopener" target="_blank"
-            data-linktype="external" data-val="http://uvpklimafit.boku.ac.at/"> EIA climate-fit portal</a></span>.
-      </p>
-      <p>For raising public awareness on impacts and adaptation to climate
-        change, the BMNT has published two brochures, one with sound arguments
-        on <span class="link-external"><a
-            href="https://www.bmnt.gv.at/umwelt/klimaschutz/klimapolitik_national/anpassungsstrategie/argumentarium.html"
-            rel="noopener" target="_blank" data-linktype="external"
-            data-val="https://www.bmnt.gv.at/umwelt/klimaschutz/klimapolitik_national/anpassungsstrategie/argumentarium.html">Why we need to adapt</a></span>&nbsp;and
-        a second one which <span class="link-external"><a
-            href="https://www.bmnt.gv.at/service/publikationen/umwelt/irrtuemer-ueber-den-klimawandel.htm"
-            rel="noopener" target="_blank" data-linktype="external"
-            data-val="https://www.bmnt.gv.at/service/publikationen/umwelt/irrtuemer-ueber-den-klimawandel.htm">clarifies myths or factual errors</a></span>.
-        A booklet with <span class="link-external"><a
-            href="https://www.bmnt.gv.at/umwelt/klimaschutz/klimapolitik_national/anpassungsstrategie/goodpractice-broschuere.html"
-            rel="noopener" target="_blank" data-linktype="external"
-            data-val="https://www.bmnt.gv.at/umwelt/klimaschutz/klimapolitik_national/anpassungsstrategie/goodpractice-broschuere.html">good examples of adaptation in practice</a></span>
-        from Austrian municipalities was published, responding to strong demand
-        from sub-national stakeholders for concrete real-world cases
-        demonstrating municipal adaptation in practice.</p>
-      <h3>International dimensions</h3>
-      <p>In the NAS/NAP, cooperation to address common challenges with
-        neighbouring countries is not explicitly addressed. Nevertheless,
-        Austria is participating in several international partnerships that are
-        actively working on climate change and adaptation issues, although it is
-        not clear how these interact with the Austrian strategic approach to
-        adaptation.&nbsp;</p>
-      Austria is a contracting Party to the International Commission for the
-      Protection of the Danube River, which adopted a <span
-        class="link-external"><a
-        href="https://www.icpdr.org/flowpaper/viewer/default/files/nodes/documents/icpdr_climate-adaptation-strategy.pdf"
-        rel="noopener" target="_blank" data-linktype="external"
-        data-val="https://www.icpdr.org/flowpaper/viewer/default/files/nodes/documents/icpdr_climate-adaptation-strategy.pdf">Climate Adaptation Strategy</a></span>
-      in 2012. The Strategy is based on a thorough assessment of possible
-      climate impacts and suggests possible means to adapt to and mitigate them.
-      Austria is also a member country of the Alpine Convention, a framework
-      that sets out general measures for sustainable development in the Alpine
-      region. A <span class="link-external"><a
-        href="http://www.alpconv.org/en/convention/protocols/Documents/AC_IX_declarationclimatechange_en_fin.pdf?AspxAutoDetectCookieSupport=1"
-        rel="noopener" target="_blank" data-linktype="external"
-        data-val="http://www.alpconv.org/en/convention/protocols/Documents/AC_IX_declarationclimatechange_en_fin.pdf?AspxAutoDetectCookieSupport=1">ministerial declaration</a></span>&nbsp;on
-      climate change was adopted in 2006, followed in 2009 by <span
-        class="link-external"><a
-        href="http://www.alpconv.org/en/ClimatePortal/default.html"
-        rel="noopener" target="_blank" data-linktype="external"
-        data-val="http://www.alpconv.org/en/ClimatePortal/default.html">an action plan</a></span>&nbsp;of
-      measures for the Alpine region to contribute to the reduction of emissions
-      affecting the climate and the development of strategies to adapt to a
-      changing environment. Within the Alpine convention, guidelines have been
-      developed on <span class="link-external"><a
-        href="http://www.alpconv.org/en/ClimatePortal/default.html"
-        rel="noopener" target="_blank" data-linktype="external"
-        data-val="http://www.alpconv.org/en/ClimatePortal/default.html">local climate adaptation in relation to water management and natural hazards </a></span>in
-      the Alps. In addition, the recently established Advisory Committee on the
-      Alpine Climate (Alpine Climate Board), chaired by Austria under the Alpine
-      Convention gathers climate change specialists from the eight Alpine States
-      and observer organisations. The board will prepare recommendations for
-      future reinforced action, for the attention of the next Alpine Conference
-      in 2019, with the establishment of a climate-neutral Alpine space 2050 as
-      the overarching goal.&nbsp;&nbsp;
+      Monitoring &amp; evaluation
     </div>
+
     <div class="tab-pane  " id="4489-5">
-      <p><strong>Federal Ministry for Sustainability and Tourism</strong></p>
-      <p>National Focal Point&nbsp;</p>
-      <p>Dr. Barbara Kronberger-Kießwetter</p>
-      <p>Deputy-Head of Directorate IV/1 – Climate Policy Coordination</p>
-      <p>Stubenbastei 5, 1010 Wien</p>
-      <p>Tel. (+43 1) 71100 611739</p>
-      <p>Mail&nbsp;<span class="link-mailto"><a
-          href="mailto:barbara.kronberger@bmnt.gv.at" target="_blank">barbara.kronberger@bmnt.gv.at</a></span>&nbsp;
-      </p>
-      <p>Website&nbsp;<span class="link-external"><a
-          href="https://www.bmnt.gv.at/"
-          target="_blank">https://www.bmnt.gv.at/</a></span>&nbsp;</p>
+      Good practices, cooperation &amp; synergies
     </div>
-    <div class="tab-pane  " id="4489-6">TEST</div>
+
+    <div class="tab-pane  " id="4489-6">
+      Contact
+    </div>
   </div>
 </div>
