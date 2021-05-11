@@ -41,8 +41,6 @@ def get_source_data():
 def update_object(obj, indicator):
     print(obj.title)
     print("  ->" + obj.c3s_identifier)
-    # if 'C3S_434_021' == obj.c3s_identifier:
-    #    import pdb; pdb.set_trace()
 
     obj.title = indicator["page_title"]
     obj.long_description = RichTextValue(
@@ -67,7 +65,7 @@ def update_object(obj, indicator):
     obj.details_app_parameters = "{}"
     if indicator["vars"]["detail"]:
         obj.details_app_parameters = json.dumps(
-            {"workflowParams:": indicator["vars"]["detail"]}
+            {"workflowParams": indicator["vars"]["detail"]}
         )
 
     obj.c3s_identifier = indicator.get("identifier", "")
@@ -84,10 +82,6 @@ def update_object(obj, indicator):
 def save_indicator(indicator, site, data):
 
     print("=============================================")
-    # print(type(indicator))
-    # print(indicator.keys())
-    # print(indicator)
-
     print(indicator["theme"])
 
     portal_catalog = site.portal_catalog
@@ -101,8 +95,6 @@ def save_indicator(indicator, site, data):
 
     for brain in brains:
         obj = brain.getObject()
-        # print(brain.getURL())
-        # print('--->'+obj.title)
         try:
             if indicator["identifier"] == obj.c3s_identifier:
                 indicatorFound = True
@@ -152,11 +144,9 @@ def main():
     annot["c3s_json_data"] = {"data": data, "fetched": datetime.datetime.now()}
 
     for indicator_identifier in data["indicators"]:
-        # print(data['indicators'][indicator_identifier])
         save_indicator(data["indicators"][indicator_identifier], site, data)
 
     for theme_id in data["themes"]:
-        #import pdb; pdb.set_trace()
         theme_folder = base_folder[theme_id]
         theme_folder.text = RichTextValue(
             data["themes"][theme_id]["description"]
@@ -164,7 +154,6 @@ def main():
         theme_folder._p_changed = True
         print("Updated description for", theme_folder)
 
-        # c3s_simplified_listing_view
     transaction.commit()
     print("Total items:" + str(len(data["indicators"])))
 
