@@ -304,12 +304,45 @@
 
 .feature-text {
   margin: 1.5em 0 1.5em 0;
-  font-size: 19px;
+  font-size: 18px;
   font-family: "OpenSansM";
 }
 
 .feature-btn {
   padding: 8px 15px;
+}
+
+.new-feature .feature-section:first-child {
+  border-right: 1px solid #eee;
+}
+
+.feature-section {
+  display: flex;
+  flex-direction: column;
+  height: 240px;
+
+  .bottom-section {
+    margin-top: auto;
+  }
+}
+
+@media only screen and (min-width: 991px) and (max-width: 1095px) {
+  .feature-section {
+    width: 50% !important;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .new-feature .feature-section:first-child {
+    margin-bottom: 2em;
+    padding-bottom: 2em;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .feature-section {
+    height: auto;
+  }
 }
 
 /*** dynamic area  - Getting started ***/
