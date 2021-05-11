@@ -48,6 +48,10 @@ class IC3sIndicator(IIndicator):
     #directives.omitted(IEditForm, "health_impacts")
     #directives.omitted(IAddForm, "health_impacts")
 
+    indicator_title = TextLine(
+        title=_(u"Indicator title"), required=True
+    )
+
     definition_app = RichText(
         title=(u"App definition"),
         description=u"Provide a short description",

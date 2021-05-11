@@ -37,7 +37,11 @@
 
           <div style="clear: both; padding-top: 50px;" />
 
-          <div class="column col-md-12">
+          <div class="row">
+          <div class="column col-md-10">
+              <h2 tal:content="context/indicator_title"></h2>
+          </div>
+          <div class="column col-md-2">
             <a href="#details"
                class="standard-button primary-button"
                onclick="c3sView('details');return false;"
@@ -46,10 +50,9 @@
             </a>
             <div style="clear: both;" />
           </div>
+      </div>
 
-          <div class="column col-md-12">
             <hr>
-          </div>
 
           <div class="column col-md-12">
             <script>
@@ -108,13 +111,18 @@
              style="float: left; position: relative;">
              Go back</a>
          -->
-         <div class="column col-md-12">
+         <div class="row">
+         <div class="column col-md-10">
+             <h2 tal:content="python: context.indicator_title+' - Explore index'"></h2>
+         </div>
+         <div class="column col-md-2">
            <a href="#"
               class="standard-button primary-button"
               onclick="c3sView('overview');return false;"
               style="float: right; position: relative; width:200px;">
               Go back</a>
            <div style="clear: both;" />
+         </div>
          </div>
 
 

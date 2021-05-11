@@ -43,16 +43,10 @@ def update_object(obj, indicator):
     print("  ->" + obj.c3s_identifier)
 
     obj.title = indicator["page_title"]
-    obj.long_description = RichTextValue(
-        "<h4>" + indicator["indicator_title"] + "</h4>" + indicator["description"]
-    )
+    obj.indicator_title = indicator["indicator_title"]
 
-    obj.definition_app = RichTextValue(
-        "<h4>"
-        + indicator["indicator_title"]
-        + "</h4>"
-        + indicator["description_detail"]
-    )
+    obj.long_description = RichTextValue(indicator["description"])
+    obj.definition_app = RichTextValue(indicator["description_detail"])
 
     obj.overview_app_toolbox_url = indicator["overview"]
     obj.overview_app_parameters = "{}"
