@@ -26,6 +26,39 @@ class CountryProfileData(BrowserView):
     def annotations(self):
         return self.context.__annotations__
 
+    def get_sorted_affected_sectors_data(self):
+        items = self.processed_data['National_Circumstances'].get(
+            'Afected_Sectors', [])
+
+        sorted_items = sorted(
+            items,
+            key=lambda i: (i['SectorTitle'], i['SectorDescribeIfOther'])
+        )
+
+        return sorted_items
+
+    def get_sorted_action_measures_data(self):
+        items = self.processed_data['Strategies_Plans'].get(
+            'Action_Measures', [])
+
+        sorted_items = sorted(
+            items,
+            key=lambda i: (i['KeyTypeMeasure'], i['subKTM'], i['Title'])
+        )
+
+        return sorted_items
+
+    def get_sorted_available_practices_data(self):
+        items = self.processed_data['Cooperation_Experience'].get(
+            'Available_Good_Practices', [])
+
+        sorted_items = sorted(
+            items,
+            key=lambda i: i['Area']
+        )
+
+        return sorted_items
+
     def get_data(self):
         if 'discodata' not in self.annotations:
             return self.setup_data()
@@ -76,5 +109,11 @@ class CountryProfileData(BrowserView):
 
             processed_data[k] = new_value
 
+        self.processed_data = processed_data
+
         return self.template(country_data=processed_data,
                              original_data=orig_data)
+
+
+class CountryProfileDataRaw(CountryProfileData):
+    template = ViewPageTemplateFile("pt/country-profile-raw.pt")

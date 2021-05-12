@@ -835,6 +835,14 @@
       permission="zope2.View"
   />
 
+  <browser:page
+      name="country-profile-raw"
+      for="eea.climateadapt.interfaces.ICCACountry"
+      class=".country_fact_sheet.CountryProfileDataRaw"
+      template="pt/country-profile-raw.pt"
+      permission="zope2.View"
+  />
+
   <!-- Tile helpers -->
 
   <browser:page
