@@ -46,7 +46,7 @@
                class="standard-button primary-button"
                onclick="c3sView('details');return false;"
                style="float: right; position: relative;">
-               Explore in details
+               Explore in detail
             </a>
             <div style="clear: both;" />
           </div>

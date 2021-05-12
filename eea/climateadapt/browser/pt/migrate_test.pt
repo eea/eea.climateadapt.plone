@@ -1,0 +1,7 @@
+<h2>Migrate test</h2>
+<table tal:define="items view/list">
+    <tr tal:repeat="item items">
+        <td tal:content="item/title"></td>
+        <td tal:content="item/url"></td>
+    </tr>
+</table>
