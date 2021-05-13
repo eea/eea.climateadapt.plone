@@ -211,17 +211,19 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr tal:define="items python: data['Contact'].get('CCIV_Portal_Platform', {})">
             <td>Adaptation portals and platforms</td>
             <td>
               <ul>
-                <li tal:repeat="item data/Contact/CCIV_Portal_Platform"
+                <li tal:condition="items"
+                    tal:repeat="item items"
                     tal:content="item/Status">Adopted</li>
               </ul>
             </td>
             <td>
               <ul>
-                <li tal:repeat="item data/Contact/CCIV_Portal_Platform"
+                <li tal:condition="items"
+                    tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external">
                     <a tal:attributes="href item/Website; data-val item/Website"
@@ -256,7 +258,19 @@
           <tr>
             <td>Key reports and publications</td>
             <td></td>
-            <td></td>
+            <td tal:define="items python: data['Contact'].get('Publications', {})">
+              <ul>
+                <li tal:condition="items"
+                    tal:repeat="item items"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/WebLink; data-val item/WebLink"
+                       tal:content="item/TitleEnglish"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
+                </li>
+              </ul>
+            </td>
           </tr>
           <tr>
             <td>National communication to the UNFCCC</td>
