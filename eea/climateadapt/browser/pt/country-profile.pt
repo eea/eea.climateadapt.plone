@@ -1,4 +1,9 @@
+<div tal:condition="python: not options['country_data']">
+  No data for this country
+</div>
+
 <div tal:define="data options/country_data"
+     tal:condition="data"
     class="sweet-tabs" id="country-tab">
   <div style="background-color: white; padding: 30px;">
 
@@ -85,17 +90,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr tal:define="items python: data['Legal_Policies'].get('NAS', [])">
             <td>National adaptation strategy (NAS)</td>
             <td>
               <ul>
-                <li tal:repeat="item data/Legal_Policies/NAS"
+                <li tal:repeat="item items"
                     tal:content="item/Status">Adopted</li>
               </ul>
             </td>
             <td>
               <ul>
-                <li tal:repeat="item data/Legal_Policies/NAS"
+                <li tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external">
                     <a tal:attributes="href item/Link; data-val item/Link"
@@ -106,17 +111,17 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr tal:define="items python: data['Legal_Policies'].get('NAP', [])">
             <td>National adaptation plan (NAP)</td>
             <td>
               <ul>
-                <li tal:repeat="item data/Legal_Policies/NAP"
+                <li tal:repeat="item items"
                     tal:content="item/Status">Adopted</li>
               </ul>
             </td>
             <td>
               <ul>
-                <li tal:repeat="item data/Legal_Policies/NAP"
+                <li tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external">
                     <a tal:attributes="href item/Link; data-val item/Link"
@@ -148,17 +153,17 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr tal:define="items python: data['National_Circumstances'].get('CC_IVA', [])">
             <td>Climate change impact and vulnerability assessment</td>
             <td>
               <ul>
-                <li tal:repeat="item data/National_Circumstances/CC_IVA"
+                <li tal:repeat="item items"
                     tal:content="item/Status">Adopted</li>
               </ul>
             </td>
             <td>
               <ul>
-                <li tal:repeat="item data/National_Circumstances/CC_IVA"
+                <li tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external">
                     <a tal:attributes="href item/Link; data-val item/Link"
@@ -169,17 +174,17 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr tal:define="items python: data['National_Circumstances'].get('Meteo_observation', [])">
             <td>Meteorological observations</td>
             <td>
               <ul>
-                <li tal:repeat="item data/National_Circumstances/Meteo_observation"
+                <li tal:repeat="item items"
                     tal:content="item/Status">Adopted</li>
               </ul>
             </td>
             <td>
               <ul>
-                <li tal:repeat="item data/National_Circumstances/Meteo_observation"
+                <li tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external">
                     <a tal:attributes="href item/WebLink; data-val item/WebLink"
@@ -190,17 +195,17 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr tal:define="items python: data['National_Circumstances'].get('Climate_Projections_Services', [])">
             <td>Climate projections and services</td>
             <td>
               <ul>
-                <li tal:repeat="item data/National_Circumstances/Climate_Projections_Services"
+                <li tal:repeat="item items"
                     tal:content="item/Status">Adopted</li>
               </ul>
             </td>
             <td>
               <ul>
-                <li tal:repeat="item data/National_Circumstances/Climate_Projections_Services"
+                <li tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external">
                     <a tal:attributes="href item/WebLink; data-val item/WebLink"
@@ -211,7 +216,7 @@
               </ul>
             </td>
           </tr>
-          <tr tal:define="items python: data['Contact'].get('CCIV_Portal_Platform', {})">
+          <tr tal:define="items python: data['Contact'].get('CCIV_Portal_Platform', [])">
             <td>Adaptation portals and platforms</td>
             <td>
               <ul>
@@ -234,17 +239,17 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr tal:define="items python: data['Monitoring_Evaluation'].get('Monitoring_Indicator_Methodologies', [])">
             <td>Monitoring, reporting and evaluation (MRE) indicators and methodologies</td>
             <td>
               <ul>
-                <li tal:repeat="item data/Monitoring_Evaluation/Monitoring_Indicator_Methodologies"
+                <li tal:repeat="item items"
                     tal:content="item/IndicatorsMethodology">Adopted</li>
               </ul>
             </td>
             <td>
               <ul>
-                <li tal:repeat="item data/Monitoring_Evaluation/Monitoring_Indicator_Methodologies"
+                <li tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external">
                     <a tal:attributes="href item/Link; data-val item/Link"
@@ -258,7 +263,7 @@
           <tr>
             <td>Key reports and publications</td>
             <td></td>
-            <td tal:define="items python: data['Contact'].get('Publications', {})">
+            <td tal:define="items python: data['Contact'].get('Publications', [])">
               <ul>
                 <li tal:condition="items"
                     tal:repeat="item items"
@@ -790,9 +795,10 @@
     </div>
 
     <div class="tab-pane  " id="4489-6">
-      <div style="display: flex; margin-bottom: 1em;">
+      <div style="display: flex; margin-bottom: 1em;"
+          tal:define="items python: data['Contact'].get('Contact_General', [])">
         <div style="width: 50%;"
-            tal:repeat="item data/Contact/Contact_General">
+            tal:repeat="item items">
           <h3 tal:content="item/Organisation">Organisation</h3>
           <div tal:content="item/Department">Department within the organisation</div>
           <div style="font-style: italic;" tal:content="item/Role">Role of the organisation</div>
@@ -809,11 +815,14 @@
         </div>
       </div>
 
-      <h2 style="color: #005c96;">Relevant websites and social media source</h2>
-      <div tal:repeat="item data/Contact/Website">
-        <a tal:attributes="href python: item['Url'].startswith('http') and item['Url'] or 'http://' + item['Url']"
-          tal:content="item/Title">Website</a>
-      </div>
+      <tal:def tal:define="items python: data['Contact'].get('Website', [])"
+          tal:condition="items">
+        <h2 style="color: #005c96;">Relevant websites and social media source</h2>
+        <div tal:repeat="item items">
+          <a tal:attributes="href python: item['Url'].startswith('http') and item['Url'] or 'http://' + item['Url']"
+            tal:content="item/Title">Website</a>
+        </div>
+      </tal:def>
     </div>
   </div>
 </div>
