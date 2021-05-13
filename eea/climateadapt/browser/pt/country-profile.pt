@@ -1,18 +1,819 @@
-<div tal:define="data options/country_data">
-  <div tal:repeat="section_title python: data.keys()">
-    <h2 tal:content="section_title"></h2>
+<div tal:define="data options/country_data"
+    class="sweet-tabs" id="country-tab">
+  <div style="background-color: white; padding: 30px;">
 
-        <div style="border: 1px solid black; padding: 10px;"
-            tal:define="section_data python: data[section_title]">
-          <p tal:content="python: len(section_data)"></p>
-          <div style="border-bottom: 1px solid black;"
-              tal:repeat="key section_data">
-            <h3 tal:content="key"></h3>
-            <p tal:content="python: section_data[key]"></p>
+    <h1 class="documentFirstHeading">National circumstances relevant to adaptation actions</h1>
+
+    <tal:block tal:define="fieldset_legend string: Biogeophysical characteristics;
+                        fieldset_data data/National_Circumstances/BiogeophysicalCharacteristics">
+      <tal:macro metal:define-macro="fieldset-macro">
+
+        <fieldset tal:condition="fieldset_data"
+            style="border: 2px solid #329fd7; padding: 15px; margin-bottom: 1em;">
+          <legend style="border: 2px solid #329fd7; padding: 0.5em; width: initial;
+                color: white; background-color: #329fd7; font-weight: bold;
+                border-radius: 5px;"
+              tal:content="fieldset_legend">Biogeophysical characteristics</legend>
+
+          <div class="custom-accordion">
+            <div tal:define="id python: 'accordion_' + fieldset_legend.replace(' ', '_')"
+                 style="border: none; padding: 0px;"
+                 class="panel panel-default">
+              <div tal:attributes="id id"
+                   class="panel-collapse collapse"
+                   style="display: block; overflow: hidden; position: relative; height: 0px;">
+                <div class="panel-layer fadein"></div>
+                <div class="panel-body">
+                  <div class="read_more_second"
+                      tal:content="fieldset_data">Data here</div>
+                </div>
+              </div>
+              <div class="panel-heading"
+                   style="text-align: right;">
+                <h4 class="panel-title">
+                  <span class="link-https">
+                    <a tal:attributes="href id"
+                        class="accordion-toggle arrow-down collapsed"
+                      data-toggle="collapse"
+                      aria-expanded="false">Read more</a>
+                  </span>
+                </h4>
+              </div>
+            </div>
           </div>
-        </div>
+
+        </fieldset>
+      </tal:macro>
+    </tal:block>
+
+    <tal:block tal:define="fieldset_legend string: Demographic situation;
+                        fieldset_data data/National_Circumstances/DemographicSituation">
+      <tal:macro metal:use-macro="view/fieldset-macro"/>
+    </tal:block>
+
+    <tal:block tal:define="fieldset_legend string: Economic and infrastructural situation;
+                        fieldset_data data/National_Circumstances/EconomicInfrastructuralSituation">
+      <tal:macro metal:use-macro="view/fieldset-macro"/>
+    </tal:block>
+
+    <div style="padding: 0.5em;">
+      <p>
+        <strong>Reporting updated until: </strong><span tal:content="data/General_Information/UpdateDate"/>
+      </p>
+    </div>
 
   </div>
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#4489-0" data-toggle="tab">Summary</a></li>
+    <li class=" "><a href="#4489-1" data-toggle="tab">Assessment</a></li>
+    <li class=" "><a href="#4489-2" data-toggle="tab">Legal &amp; policy frameworks</a></li>
+    <li class=" "><a href="#4489-3" data-toggle="tab">Strategies, plans &amp; goals</a>
+    </li>
+    <li class=" "><a href="#4489-4" data-toggle="tab">Monitoring &amp; evaluation</a>
+    </li>
+    <li class=" "><a href="#4489-5" data-toggle="tab">Good practices, cooperation &amp; synergies</a></li>
+    <li class=" "><a href="#4489-6" data-toggle="tab">Contact</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="4489-0">
+      <table class="listing table-striped" summary="">
+        <thead>
+          <tr>
+            <th style="width: 298px;">Item</th>
+            <th style="width: 351px;">Status</th>
+            <th style="width: 356px;">Links</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>National adaptation strategy (NAS)</td>
+            <td>
+              <ul>
+                <li tal:repeat="item data/Legal_Policies/NAS"
+                    tal:content="item/Status">Adopted</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li tal:repeat="item data/Legal_Policies/NAS"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/Link; data-val item/Link"
+                       tal:content="item/Title"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>National adaptation plan (NAP)</td>
+            <td>
+              <ul>
+                <li tal:repeat="item data/Legal_Policies/NAP"
+                    tal:content="item/Status">Adopted</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li tal:repeat="item data/Legal_Policies/NAP"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/Link; data-val item/Link"
+                       tal:content="item/Title"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr tal:define="items python: data['Legal_Policies'].get('SAP', [])">
+            <td>Sectoral adaptation plan (SAP)</td>
+            <td>
+              <ul>
+                <li tal:repeat="item items"
+                    tal:content="item/Status">Adopted</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li tal:repeat="item items"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/Link; data-val item/Link"
+                       tal:content="item/Title"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Climate change impact and vulnerability assessment</td>
+            <td>
+              <ul>
+                <li tal:repeat="item data/National_Circumstances/CC_IVA"
+                    tal:content="item/Status">Adopted</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li tal:repeat="item data/National_Circumstances/CC_IVA"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/Link; data-val item/Link"
+                       tal:content="item/Title"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Meteorological observations</td>
+            <td>
+              <ul>
+                <li tal:repeat="item data/National_Circumstances/Meteo_observation"
+                    tal:content="item/Status">Adopted</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li tal:repeat="item data/National_Circumstances/Meteo_observation"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/WebLink; data-val item/WebLink"
+                       tal:content="item/Name"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Climate projections and services</td>
+            <td>
+              <ul>
+                <li tal:repeat="item data/National_Circumstances/Climate_Projections_Services"
+                    tal:content="item/Status">Adopted</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li tal:repeat="item data/National_Circumstances/Climate_Projections_Services"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/WebLink; data-val item/WebLink"
+                       tal:content="item/Description"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr tal:define="items python: data['Contact'].get('CCIV_Portal_Platform', {})">
+            <td>Adaptation portals and platforms</td>
+            <td>
+              <ul>
+                <li tal:condition="items"
+                    tal:repeat="item items"
+                    tal:content="item/Status">Adopted</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li tal:condition="items"
+                    tal:repeat="item items"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/Website; data-val item/Website"
+                       tal:content="item/Name"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Monitoring, reporting and evaluation (MRE) indicators and methodologies</td>
+            <td>
+              <ul>
+                <li tal:repeat="item data/Monitoring_Evaluation/Monitoring_Indicator_Methodologies"
+                    tal:content="item/IndicatorsMethodology">Adopted</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li tal:repeat="item data/Monitoring_Evaluation/Monitoring_Indicator_Methodologies"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/Link; data-val item/Link"
+                       tal:content="item/Description"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Key reports and publications</td>
+            <td></td>
+            <td tal:define="items python: data['Contact'].get('Publications', {})">
+              <ul>
+                <li tal:condition="items"
+                    tal:repeat="item items"
+                    style="clear: both;">
+                  <span class="link-external">
+                    <a tal:attributes="href item/WebLink; data-val item/WebLink"
+                       tal:content="item/TitleEnglish"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>National communication to the UNFCCC</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Governance regulation adaptation reporting</td>
+            <td></td>
+            <td></td>
+          </tr>
 
-  <div tal:content="options/original_data"/>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tab-pane  " id="4489-1">
+      <tal:block tal:define="fieldset_legend string: Climate monitoring, modelling, projections and scenarios;
+                    fieldset_data data/National_Circumstances/MainActivitiesClimateMonitoring">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <tal:block tal:define="fieldset_legend string: Methodologies and tools (including uncertainties and challenges);
+                    fieldset_data data/National_Circumstances/ApproachesMethodologiesTools">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <tal:block tal:define="fieldset_legend string: General aspects of climate change impact and vulnerability assessment;
+                    fieldset_data data/National_Circumstances/GeneralAspectsAssessment">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <table class="listing table-striped">
+        <thead>
+          <tr>
+            <th style="width: 298px;">Observed climate hazards</th>
+            <th style="width: 351px;">Acute</th>
+            <th style="width: 356px;">Chronic</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Temperature</td>
+            <td tal:define="values data/National_Circumstances/TemperatureRelatedAcute;
+                            other_values data/National_Circumstances/TemperatureAcuteOther">
+              <tal:macro metal:define-macro="assessment-climate-hazards">
+                <ul tal:condition="values">
+                  <li tal:repeat="val python: values.split(', ')"
+                      tal:content="python: val.split(' - ')[-1]">Value here</li>
+                  <li tal:condition="other_values">
+                    Other: <span tal:content="other_values"></span>
+                  </li>
+                </ul>
+              </tal:macro>
+            </td>
+            <td tal:define="values data/National_Circumstances/TemperatureRelatedChronic;
+                            other_values data/National_Circumstances/TemperatureChronicOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+          <tr>
+            <td>Wind</td>
+            <td tal:define="values data/National_Circumstances/WindRelatedAcute;
+                            other_values data/National_Circumstances/WindAcuteOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+            <td tal:define="values data/National_Circumstances/WindRelatedChronic;
+                            other_values data/National_Circumstances/WindChronicOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+          <tr>
+            <td>Water</td>
+            <td tal:define="values data/National_Circumstances/WaterRelatedAcute;
+                            other_values data/National_Circumstances/WaterAcuteOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+            <td tal:define="values data/National_Circumstances/WaterRelatedChronic;
+                            other_values data/National_Circumstances/WaterChronicOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+          <tr>
+            <td>Solid mass</td>
+            <td tal:define="values data/National_Circumstances/SolidMassRelatedAcute;
+                            other_values data/National_Circumstances/SolidAcuteOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+            <td tal:define="values data/National_Circumstances/SolidMassRelatedChronic;
+                            other_values data/National_Circumstances/SolidChronicOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="listing table-striped">
+        <thead>
+          <tr>
+            <th style="width: 298px;">Key future climate hazards</th>
+            <th style="width: 351px;">Acute</th>
+            <th style="width: 356px;">Chronic</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Temperature</td>
+            <td tal:define="values data/National_Circumstances/FutureTemperatureRelatedAcute;
+                            other_values data/National_Circumstances/FutureTemperatureAcuteOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+            <td tal:define="values data/National_Circumstances/FutureTemperatureRelatedChronic;
+                            other_values data/National_Circumstances/FutureTemperatureChronicOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+          <tr>
+            <td>Wind</td>
+            <td tal:define="values data/National_Circumstances/FutureWindRelatedAcute;
+                            other_values data/National_Circumstances/FutureWindAcuteOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+            <td tal:define="values data/National_Circumstances/FutureWindRelatedChronic;
+                            other_values data/National_Circumstances/FutureWindChronicOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+          <tr>
+            <td>Water</td>
+            <td tal:define="values data/National_Circumstances/FutureWaterRelatedAcute;
+                            other_values data/National_Circumstances/FutureWaterAcuteOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+            <td tal:define="values data/National_Circumstances/FutureWaterRelatedChronic;
+                            other_values data/National_Circumstances/FutureWaterChronicOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+          <tr>
+            <td>Solid mass</td>
+            <td tal:define="values data/National_Circumstances/FutureSolidMassRelatedAcute;
+                            other_values data/National_Circumstances/FutureSolidAcuteOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+            <td tal:define="values data/National_Circumstances/FutureSolidMassRelatedChronic;
+                            other_values data/National_Circumstances/FutureSolidChronicOther">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <tal:block tal:define="fieldset_legend string: Overview of existing pressures;
+                    fieldset_data data/National_Circumstances/DescribeExistingEnvironmental">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <tal:block tal:define="fieldset_legend string: Secondary effects;
+                    fieldset_data data/National_Circumstances/DescribeSecondaryEffects">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <h2 style="color: #005c96;">Key affected sectors</h2>
+      <tal:rep tal:repeat="item view/get_sorted_affected_sectors_data">
+        <h3>
+          <span tal:content="item/SectorTitle/title">Forest</span>
+          <span tal:condition="item/SectorDescribeIfOther"
+              tal:content="python: ': ' + item['SectorDescribeIfOther'].title()">Forest</span>
+
+        </h3>
+        <div class="custom-accordion">
+          <div style="border: none; padding: 0px;"
+               class="panel panel-default">
+            <div class="panel-collapse collapse"
+                 style="display: block; overflow: hidden; position: relative; height: 0px;">
+              <div class="panel-layer fadein"></div>
+              <div class="panel-body">
+                <div class="read_more_second">
+                  <table class="listing table-striped">
+                    <thead>
+                      <tr>
+                        <th style="width: 200px;">Sector</th>
+                        <th>
+                          <span tal:content="item/SectorTitle">Forest</span>
+                          <span tal:condition="item/SectorDescribeIfOther"
+                              tal:content="python: ': ' + item['SectorDescribeIfOther']">Forest</span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Impact/key hazard</td>
+                        <td>
+                          <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
+                              tal:content="item/ImpactsKeyHazards">long text</div>
+                          <div style="padding: 5px;"
+                               tal:content="item/DescribeImpactsKeyHazards">long text</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Key hazard likelihood</td>
+                        <td>
+                          <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
+                              tal:content="item/KeyHazardsLikelihood">long text</div>
+                          <div style="padding: 5px;"
+                               tal:content="item/DescribeLikelihood">long text</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Vulnerability</td>
+                        <td>
+                          <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
+                              tal:content="item/Vulnerability">long text</div>
+                          <div style="padding: 5px;"
+                               tal:content="item/DescribeVulnerability">long text</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Risk Future Impact</td>
+                        <td>
+                          <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
+                              tal:content="item/RiskFutureImpacts">long text</div>
+                          <div style="padding: 5px;"
+                               tal:content="item/DescribeRisk">long text</div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+            </div>
+            <div class="panel-heading"
+                 style="text-align: right;">
+              <h4 class="panel-title">
+                <span class="link-https">
+                  <a tal:attributes="href string: '.'"
+                      class="accordion-toggle arrow-down collapsed"
+                    data-toggle="collapse"
+                    aria-expanded="false">Read more</a>
+                </span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </tal:rep>
+    </div>
+
+    <div class="tab-pane  " id="4489-2">
+      <tal:block tal:define="fieldset_legend string: Legal and policy frameworks and regulations;
+                    fieldset_data data/Legal_Policies/LegalPolicyFrameworks">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <h2 style="color: #005c96;">Overview of institutional arrangements and governance at the national level</h2>
+      <tal:block tal:define="fieldset_legend string: Climate vulnerability and risk assessment;
+                    fieldset_data data/Legal_Policies/ArrangementsCCIV_assessments">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Planning, implemention, monitoring, evaluation and revision of adaptation policy;
+                    fieldset_data data/Legal_Policies/DescribeInstitutionalArrangements">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Integration of climate change impacts and resilience into environmental assessment procedures;
+                    fieldset_data data/Legal_Policies/DescribeEIA">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Integration of climate change adaptation into disaster risk management;
+                    fieldset_data data/Legal_Policies/DescribeDRR">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Collection & ownership of data;
+                    fieldset_data data/Legal_Policies/DescribeCollection">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <h2 style="color: #005c96;">Overview of institutional arrangements and governance at the sub-national level
+(where “sub-national” refers to local and regional)</h2>
+      <tal:block tal:define="fieldset_legend string: Legal requirements;
+                    fieldset_data data/Legal_Policies/SummarizeLegalRequirements">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Networks and collaborations;
+                    fieldset_data data/Legal_Policies/SummarizeNetworks">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Good practices;
+                    fieldset_data data/Legal_Policies/SummarizeGoodPractice">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+    </div>
+
+    <div class="tab-pane  " id="4489-3">
+      <tal:block tal:define="fieldset_legend string: Adaptation priorities;
+                    fieldset_data data/Strategies_Plans/AdaptationPriorities">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Challenges, gaps and barriers;
+                    fieldset_data data/Strategies_Plans/Challenges">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Summaries of national strategies;
+                    fieldset_data data/Strategies_Plans/SummaryNationalStrategies">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <h2 style="color: #005c96;">Selection of actions and (programmes of) measures</h2>
+      <tal:rep tal:repeat="item view/get_sorted_action_measures_data">
+        <h3>
+          <span tal:content="item/Title/title">Forest</span>
+        </h3>
+        <div class="custom-accordion">
+          <div style="border: none; padding: 0px;"
+               class="panel panel-default">
+            <div class="panel-collapse collapse"
+                 style="display: block; overflow: hidden; position: relative; height: 0px;">
+              <div class="panel-layer fadein"></div>
+              <div class="panel-body">
+                <div class="read_more_second">
+                  <table class="listing table-striped">
+                    <thead>
+                      <tr>
+                        <th style="width: 200px;">Title</th>
+                        <th>
+                          <span tal:content="item/Title">Forest</span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Description</td>
+                        <td>
+                          <div style="padding: 5px;"
+                               tal:content="item/ShortDescriptionMeasureAction">long text</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Status</td>
+                        <td>
+                          <div style="padding: 5px;"
+                               tal:content="item/Status">long text</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Key type measure (KTM)</td>
+                        <td>
+                          <div style="padding: 5px;"
+                               tal:content="item/KeyTypeMeasure">long text</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Sub-KTM</td>
+                        <td>
+                          <div style="padding: 5px;"
+                               tal:content="item/subKTM">long text</div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="panel-heading"
+                 style="text-align: right;">
+              <h4 class="panel-title">
+                <span class="link-https">
+                  <a tal:attributes="href string: '.'"
+                      class="accordion-toggle arrow-down collapsed"
+                    data-toggle="collapse"
+                    aria-expanded="false">Read more</a>
+                </span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </tal:rep>
+
+      <tal:block tal:define="fieldset_legend string: Overview of sub-national strategies;
+                    fieldset_data data/Strategies_Plans/OverviewContent">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Integrate climate change adaptation into sectoral policies, plans and programs;
+                    fieldset_data data/Strategies_Plans/OverviewEffortsClimate">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Stakeholder engagement - public;
+                    fieldset_data data/Strategies_Plans/OverviewMeasures">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Stakeholder engagement - private;
+                    fieldset_data data/Strategies_Plans/OverviewPrivateSector">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+    </div>
+
+    <div class="tab-pane  " id="4489-4">
+      <tal:block tal:define="fieldset_legend string: Monitoring, reporting and evaluation (MRE) methodology;
+                    fieldset_data data/Monitoring_Evaluation/DescribeMonitoringReportingEvaluation">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: MRE implementation;
+                    fieldset_data data/Monitoring_Evaluation/DescribeMREMethodology">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: State of play - implementation;
+                    fieldset_data data/Monitoring_Evaluation/DescribeStatePlay">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: State of play - spending for climate adaptation (including disaster risk management);
+                    fieldset_data data/Monitoring_Evaluation/SummaryClimateAdaptation">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: State of play - spending by sector;
+                    fieldset_data data/Monitoring_Evaluation/SummarySpendingShare">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Progress towards reducing climate impacts, vulnerabilities and risks;
+                    fieldset_data data/Monitoring_Evaluation/DescribeReducingClimateImpacts">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Progress increasing adaptive capacity;
+                    fieldset_data data/Monitoring_Evaluation/DescribeIncreasingAdaptiveCapacity">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Progress meeting adaptation priorities;
+                    fieldset_data data/Monitoring_Evaluation/DescribeMeetingAdaptationPriorities">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Progress addressing barriers to adaptation;
+                    fieldset_data data/Monitoring_Evaluation/DescribeProgressTowardsAddressing">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Steps to review climate change impact and vulnerability assessments;
+                    fieldset_data data/Monitoring_Evaluation/DescribeVulnerability">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Steps to review national adaptation policies;
+                    fieldset_data data/Monitoring_Evaluation/DescribeNationalAdaptation">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Overview of good practices to review subnational adaptation policies;
+                    fieldset_data data/Monitoring_Evaluation/DescribeSubnationalAdaptation">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+    </div>
+
+    <div class="tab-pane  " id="4489-5">
+      <h2 style="color: #005c96;">Good practices and lessons learnt</h2>
+      <tal:rep tal:repeat="item view/get_sorted_available_practices_data">
+        <h3>
+          <span tal:content="item/Area/title">Forest</span>
+        </h3>
+        <div class="custom-accordion">
+          <div style="border: none; padding: 0px;"
+               class="panel panel-default">
+            <div class="panel-collapse collapse"
+                 style="display: block; overflow: hidden; position: relative; height: 0px;">
+              <div class="panel-layer fadein"></div>
+              <div class="panel-body">
+                <div class="read_more_second">
+
+                  <table class="listing table-striped">
+                    <thead>
+                      <tr>
+                        <th style="width: 200px;">Area of good practice</th>
+                        <th>
+                          <span tal:content="item/Area">Forest</span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Description</td>
+                        <td>
+                          <div style="padding: 5px;"
+                               tal:content="item/DescribeGoodPractice">long text</div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+            </div>
+            <div class="panel-heading"
+                 style="text-align: right;">
+              <h4 class="panel-title">
+                <span class="link-https">
+                  <a tal:attributes="href string: '.'"
+                      class="accordion-toggle arrow-down collapsed"
+                    data-toggle="collapse"
+                    aria-expanded="false">Read more</a>
+                </span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </tal:rep>
+
+      <tal:block tal:define="fieldset_legend string: Synergies of adaptation actions with other international frameworks;
+                    fieldset_data data/Cooperation_Experience/DescribeSynergiesAdaptation">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Cooperation - science;
+                    fieldset_data data/Cooperation_Experience/DescribeDetailShareInformation">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string: Cooperation - policy;
+                    fieldset_data data/Cooperation_Experience/DescribeDetailCooperationEnhance">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+    </div>
+
+    <div class="tab-pane  " id="4489-6">
+      <div style="display: flex; margin-bottom: 1em;">
+        <div style="width: 50%;"
+            tal:repeat="item data/Contact/Contact_General">
+          <h3 tal:content="item/Organisation">Organisation</h3>
+          <div tal:content="item/Department">Department within the organisation</div>
+          <div style="font-style: italic;" tal:content="item/Role">Role of the organisation</div>
+          <div tal:content="item/NameContact">Contact person</div>
+          <div style="font-style: italic;" tal:content="item/RoleContact">Role of the contact person</div>
+          <div>
+            <a tal:attributes="href python:'mailto:' + item['GeneralEmail']"
+                tal:content="item/GeneralEmail">Email</a>
+          </div>
+          <div>
+            <a tal:attributes="href python: item['Website'].startswith('http') and item['Website'] or 'http://' + item['Website']"
+                tal:content="item/Website">Website</a>
+          </div>
+        </div>
+      </div>
+
+      <h2 style="color: #005c96;">Relevant websites and social media source</h2>
+      <div tal:repeat="item data/Contact/Website">
+        <a tal:attributes="href python: item['Url'].startswith('http') and item['Url'] or 'http://' + item['Url']"
+          tal:content="item/Title">Website</a>
+      </div>
+    </div>
+  </div>
 </div>
