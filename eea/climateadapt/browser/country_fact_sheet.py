@@ -2,14 +2,11 @@ import json
 import logging
 import urllib2
 
-
-
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from eea.climateadapt.vocabulary import ace_countries
-from plone.api.portal import get_tool
-from zope.component import getUtility
-from zope.schema.interfaces import IVocabularyFactory
+from plone.intelligenttext.transforms import \
+    convertWebIntelligentPlainTextToHtml as convWebInt
 
 from datetime import datetime
 
@@ -25,6 +22,9 @@ class CountryProfileData(BrowserView):
     @property
     def annotations(self):
         return self.context.__annotations__
+
+    def convert_web_int(self, text):
+        return convWebInt(text)
 
     def get_sorted_affected_sectors_data(self):
         items = self.processed_data['National_Circumstances'].get(
@@ -88,6 +88,9 @@ class CountryProfileData(BrowserView):
         )
 
         data = self.get_data()
+        # [u'AT', u'BE', u'BG', u'CZ', u'DE', u'DK', u'EE', u'ES', u'FI',
+        # u'GR', u'HR', u'HU', u'IE', u'IT', u'LT', u'LU', u'LV', u'MT',
+        # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
         orig_data = next((
             x
             for x in data['results']
@@ -96,7 +99,7 @@ class CountryProfileData(BrowserView):
 
         # remove the countryCode as we don't need it
         processed_data = {
-            k: v
+            k: unicode(v)
             for k, v in orig_data.items()
             if k != 'countryCode'
         }
