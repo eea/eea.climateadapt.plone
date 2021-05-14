@@ -470,36 +470,36 @@
                         <td>Impact/key hazard</td>
                         <td>
                           <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
-                              tal:content="item/ImpactsKeyHazards">long text</div>
+                              tal:content="structure python: view.convert_web_int(item['ImpactsKeyHazards'])">long text</div>
                           <div style="padding: 5px;"
-                               tal:content="item/DescribeImpactsKeyHazards">long text</div>
+                               tal:content="structure python: view.convert_web_int(item['DescribeImpactsKeyHazards'])">long text</div>
                         </td>
                       </tr>
                       <tr>
                         <td>Key hazard likelihood</td>
                         <td>
                           <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
-                              tal:content="item/KeyHazardsLikelihood">long text</div>
+                              tal:content="structure python: view.convert_web_int(item['KeyHazardsLikelihood'])">long text</div>
                           <div style="padding: 5px;"
-                               tal:content="item/DescribeLikelihood">long text</div>
+                               tal:content="structure python: view.convert_web_int(item['DescribeLikelihood'])">long text</div>
                         </td>
                       </tr>
                       <tr>
                         <td>Vulnerability</td>
                         <td>
                           <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
-                              tal:content="item/Vulnerability">long text</div>
+                              tal:content="structure python: view.convert_web_int(item['Vulnerability'])">long text</div>
                           <div style="padding: 5px;"
-                               tal:content="item/DescribeVulnerability">long text</div>
+                               tal:content="structure python: view.convert_web_int(item['DescribeVulnerability'])">long text</div>
                         </td>
                       </tr>
                       <tr>
                         <td>Risk Future Impact</td>
                         <td>
                           <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
-                              tal:content="item/RiskFutureImpacts">long text</div>
+                              tal:content="structure python: view.convert_web_int(item['RiskFutureImpacts'])">long text</div>
                           <div style="padding: 5px;"
-                               tal:content="item/DescribeRisk">long text</div>
+                               tal:content="structure python: view.convert_web_int(item['DescribeRisk'])">long text</div>
                         </td>
                       </tr>
                     </tbody>
@@ -610,7 +610,7 @@
                         <td>Description</td>
                         <td>
                           <div style="padding: 5px;"
-                               tal:content="item/ShortDescriptionMeasureAction">long text</div>
+                               tal:content="structure python: view.convert_web_int(item['ShortDescriptionMeasureAction'])">long text</div>
                         </td>
                       </tr>
                       <tr>
@@ -745,7 +745,7 @@
                       <tr>
                         <th style="width: 200px;">Area of good practice</th>
                         <th>
-                          <span tal:content="item/Area">Forest</span>
+                          <span tal:content="structure python: view.convert_web_int(item['Area'])">Forest</span>
                         </th>
                       </tr>
                     </thead>
@@ -754,7 +754,7 @@
                         <td>Description</td>
                         <td>
                           <div style="padding: 5px;"
-                               tal:content="item/DescribeGoodPractice">long text</div>
+                               tal:content="structure python: view.convert_web_int(item['DescribeGoodPractice'])">long text</div>
                         </td>
                       </tr>
                     </tbody>
