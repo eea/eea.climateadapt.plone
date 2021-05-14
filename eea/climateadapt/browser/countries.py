@@ -10,6 +10,7 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from eea.climateadapt.vocabulary import ace_countries
+from plone.api import portal
 from plone.intelligenttext.transforms import \
     convertWebIntelligentPlainTextToHtml as convWebInt
 
@@ -27,6 +28,14 @@ def parse_csv(path):
     return out
 
 
+def get_country_code(country_name):
+    country_code = next(
+        (k for k, v in ace_countries if v == country_name), 'Not found'
+    )
+
+    return country_code
+
+
 def setup_discodata(annotations):
     response = urllib2.urlopen(DISCODATA_URL)
     data = json.loads(response.read())
@@ -34,21 +43,53 @@ def setup_discodata(annotations):
         'timestamp': datetime.now(),
         'data': data
     }
+    annotations._p_changed = True
     logger.info("RELOAD URL %s", DISCODATA_URL)
 
     return data
 
 
-def get_discodata(annotations):
+def get_discodata():
+    annotations = portal.getSite().__annotations__
+
     if 'discodata' not in annotations:
+        annotations._p_changed = True
         return setup_discodata(annotations)
 
     last_import_date = annotations['discodata']['timestamp']
 
     if (datetime.now() - last_import_date).total_seconds() > 60 * 2:
+        annotations._p_changed = True
         return setup_discodata(annotations)
 
     return annotations['discodata']['data']
+
+
+def get_discodata_for_country(country_code):
+    data = get_discodata()
+
+    orig_data = next((
+        x
+        for x in data['results']
+        if x['countryCode'] == country_code
+    ), {})
+
+    # remove the countryCode as we don't need it
+    processed_data = {
+        k: unicode(v)
+        for k, v in orig_data.items()
+        if k != 'countryCode'
+    }
+
+    # some values are strings, and need to be transformed
+    # into Python objects
+    for k, val in processed_data.items():
+        json_val = json.loads(val)
+        new_value = json_val[k][0]
+
+        processed_data[k] = new_value
+
+    return processed_data
 
 
 DISCODATA_URL = 'https://discodata.eea.europa.eu/sql?query=select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BAdaptation_JSON%5D&p=1&nrOfHits=100'
@@ -202,12 +243,51 @@ def get_nap_nas(obj, text, country):
 class CountriesMetadataExtract(BrowserView):
     """Extract metadata from all country profiles, exports as json"""
 
+    def extract_country_metadata_from_discodata(self, obj):
+        res = {}
+
+        for name in ["nap", "nas"]:
+            if obj.hasProperty(name):
+                res[name] = obj.getProperty(name)
+
+        country_name = obj.Title()
+        country_code = get_country_code(country_name)
+
+        processed_data = get_discodata_for_country(country_code)
+
+        if not processed_data:
+            return res
+
+        for name in ('NAS', 'NAP'):
+            values = processed_data['Legal_Policies'].get(name, [])
+            is_nap_country = country_name in _COUNTRIES_WITH_NAP
+            is_nas_country = country_name in _COUNTRIES_WITH_NAS
+
+            # if (not values) and (is_nap_country or is_nas_country):
+            #     value = u"<p>Established</p>"
+
+            value = [
+                u"<li><a href='{}'>{}</a></li>".format(
+                    v.get('Link'), v.get('Title'))
+                for v in values
+            ]
+            value = u"<ul>{}</ul>".format(''.join(value))
+
+            if "NAP" in name:
+                prop = "nap_info"
+            else:
+                prop = "nas_info"
+
+            res[prop] = value
+
+        return res
+
     def extract_country_metadata(self, obj):
+        """ replaced by method 'extract_country_metadata_from_discodata' """
+
         # if 'ireland' in obj.absolute_url().lower():
         #     import pdb
         #     pdb.set_trace()
-
-        import pdb; pdb.set_trace()
 
         if "index_html" in obj.contentIds():
             cover = obj["index_html"]
@@ -240,7 +320,7 @@ class CountriesMetadataExtract(BrowserView):
                 continue
 
             res[child.Title()] = [
-                self.extract_country_metadata(child),
+                self.extract_country_metadata_from_discodata(child),
                 child.absolute_url(),
             ]
 
@@ -373,10 +453,6 @@ class ContextCountriesView(BrowserView):
 class CountryProfileData(BrowserView):
     template = ViewPageTemplateFile("pt/country-profile.pt")
 
-    @property
-    def annotations(self):
-        return self.context.__annotations__
-
     def convert_web_int(self, text):
         return convWebInt(text)
 
@@ -415,39 +491,16 @@ class CountryProfileData(BrowserView):
 
     def __call__(self):
         country_name = self.context.title
-        country_code = next(
-            (k for k, v in ace_countries if v == country_name), 'Not found'
-        )
+        country_code = get_country_code(country_name)
 
-        data = get_discodata(self.annotations)
+        processed_data = get_discodata_for_country(country_code)
         # [u'AT', u'BE', u'BG', u'CZ', u'DE', u'DK', u'EE', u'ES', u'FI',
         # u'GR', u'HR', u'HU', u'IE', u'IT', u'LT', u'LU', u'LV', u'MT',
         # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
-        orig_data = next((
-            x
-            for x in data['results']
-            if x['countryCode'] == country_code
-        ), {})
-
-        # remove the countryCode as we don't need it
-        processed_data = {
-            k: unicode(v)
-            for k, v in orig_data.items()
-            if k != 'countryCode'
-        }
-
-        # some values are strings, and need to be transformed
-        # into Python objects
-        for k, val in processed_data.items():
-            json_val = json.loads(val)
-            new_value = json_val[k][0]
-
-            processed_data[k] = new_value
 
         self.processed_data = processed_data
 
-        return self.template(country_data=processed_data,
-                             original_data=orig_data)
+        return self.template(country_data=processed_data)
 
 
 class CountryProfileDataRaw(CountryProfileData):
