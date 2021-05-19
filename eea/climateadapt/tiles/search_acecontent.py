@@ -137,6 +137,7 @@ class AceTileMixin(object):
         # todo: do countries
         # map of {tile field: index name}
         map = {
+            "origin_website": "origin_website",
             "search_type": "search_type",
             "element_type": "elements",
             "search_text": "SearchableText",
