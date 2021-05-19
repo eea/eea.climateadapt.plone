@@ -1,6 +1,6 @@
 #portal-breadcrumbs {
-  margin-left: 0;
   margin-right: 0;
+  margin-left: 0;
 
   a {
     color: @light-gray;
@@ -9,10 +9,10 @@
   }
 
   span:not(:last-child):after {
-    border: none;
-    content: "› ";
-    color: @light-gray;
     width: 5px;
+    border: none;
+    color: @light-gray;
+    content: "› ";
   }
 }
 
@@ -23,14 +23,14 @@
 
 #breadcrumbs-home {
   > a {
-    font-size: 0;
     color: transparent;
+    font-size: 0;
 
     &:before {
-      content: "\f015";
-      font-size: 13px;
       color: @light-gray;
+      content: "\f015";
       font-family: "FontAwesome";
+      font-size: 13px;
     }
   }
 }
