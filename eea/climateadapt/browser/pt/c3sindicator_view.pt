@@ -183,7 +183,9 @@
       </style>
 
       <script>
-        if((window.location.hash && window.location.hash=="#details") || window.location.search.length) {
+        if((window.location.hash && window.location.hash=="#details")
+            // Laci removed condition, see task #134136 || window.location.search.length
+            ) {
             c3sView('details');
         } else {
             c3sView('overview');
