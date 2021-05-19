@@ -42,6 +42,10 @@
            href="https://www.lancetcountdown.org/">
           Lancet Countdown
         </a>
+        <a tal:condition="python: origin == 'C3S'"
+           href="https://cds.climate.copernicus.eu/">
+          Copernicus Climate Change Service
+        </a>
       </div>
     </div>
   </div>
