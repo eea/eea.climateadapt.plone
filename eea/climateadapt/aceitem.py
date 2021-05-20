@@ -47,7 +47,7 @@ class Indicator(dexterity.Container):
 class C3sIndicator(dexterity.Container):
     implements(IIndicator, IClimateAdaptContent)
 
-    search_type = "C3s INDICATOR"
+    search_type = "INDICATOR"
 
 
 class MapGraphDataset(dexterity.Container):
