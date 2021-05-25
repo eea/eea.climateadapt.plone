@@ -185,7 +185,7 @@
       <script>
         if((window.location.hash && window.location.hash=="#details")
             // Laci removed condition, see task #134136 || window.location.search.length
-            || window.location.search.length
+            || (window.location.search.length && window.location.search != "?bs=0")
         ) {
             c3sView('details');
         } else {
