@@ -55,7 +55,7 @@
                    i18n:attributes="value label_search;"/>
         </fieldset>
         <div class="aceitems-search-info">
-            Search for Climate-Adapt database items <a href="/redirect_to_search_page">here</a>
+            Search Climate-ADAPT <a href="/search">here</a>
         </div>
 
         <div class="row">
