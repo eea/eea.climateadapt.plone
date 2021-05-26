@@ -205,21 +205,21 @@
         <form class="form-inline pl-3" id="arcgis_case_study_form" style="padding-left:20px;padding-right:20px;">
         <div class="row">
             <div class="cols-md-12 cs_filter_sector_div" tal:define="sectors view/get_sectors">
-                <h4>Filter by SECTOR</h4>
+                <h4>Adaptation Sectors</h4>
                 <p class="cs_filter_sector" style="display:none;" tal:repeat="sector sectors">
                     <span class="float-left" tal:content="sector/value">Sector name</span>
                     <input type="checkbox" name="sectors" tal:attributes="value sector/key" >
                 </p>
             </div>
             <div class="cols-md-12 cs_filter_impact_div" tal:define="climate_impacts view/get_climate_impacts">
-                <h4>Filter by IMPACT</h4>
+                <h4>Climate Impacts</h4>
                 <p class="cs_filter_impact" style="display:none;" tal:repeat="climate_impact climate_impacts">
                     <span class="float-left" tal:content="climate_impact/value">Sector name</span>
                     <input type="checkbox" name="impacts" tal:attributes="value climate_impact/key" >
                 </p>
             </div>
             <div class="cols-md-12 cs_filter_ipcc_div" tal:define="ipcc_categories view/get_ipcc_categories2">
-                <h4>Filter by IPCC Categories</h4>
+                <h4>Adaptation Options categories</h4>
                 <p class="cs_filter_ipcc" style="display:none;" tal:repeat="ipcc_category ipcc_categories">
                     <span style="clear:both;font-weight:bold;font-size:16px;border-bottom:1px solid #005c96;color:#005c96;width:100%" class="float-left ipcc_category_title" tal:content="python: ipcc_category"></span>
                     <tal tal:repeat="ipcc python:ipcc_categories[ipcc_category]">
