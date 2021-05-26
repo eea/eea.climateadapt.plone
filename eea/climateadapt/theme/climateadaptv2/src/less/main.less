@@ -740,6 +740,18 @@ body.section-observatory #aceitem_sidebar .health-information {
     left: 2px;
     color: #ffffff;
 }
+.top-menu-right-section .search-box ::-webKit-input-placeholder { /* WebKit browsers */
+    direction: rtl;
+}
+.top-menu-right-section .search-box :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    direction: rtl;
+}
+.top-menu-right-section .search-box ::-moz-placeholder { /* Mozilla Firefox 19+ but I'm not sure about working */
+    direction: rtl;
+}
+.top-menu-right-section .search-box :-ms-input-placeholder { /* Internet Explorer 10+ */
+    direction: rtl;
+}
 
 @media screen and (min-width: 500px) {
   #portal-personaltools {
