@@ -984,7 +984,6 @@ class C3sIndicatorsOverview(BrowserView):
 
     def get_categories(self):
         site = portal.get()
-        import pdb; pdb.set_trace()
         base_folder = site["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         data_overview_page = datastore['data']['overview_page']
