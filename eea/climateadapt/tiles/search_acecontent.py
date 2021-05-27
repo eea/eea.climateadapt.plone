@@ -170,7 +170,7 @@ class AceTileMixin(object):
         if sort:
             query["sort_on"] = sort_map[sort]
 
-            if sort == "MODIFIED" or "EFFECTIVE":
+            if sort in ("MODIFIED", "EFFECTIVE"):
                 query["sort_order"] = "reverse"
 
         for setting_name, index_name in map.items():
