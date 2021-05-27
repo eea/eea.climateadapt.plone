@@ -984,13 +984,15 @@ class C3sIndicatorsOverview(BrowserView):
 
     def get_categories(self):
         site = portal.get()
+        import pdb; pdb.set_trace()
         base_folder = site["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         data_overview_page = datastore['data']['overview_page']
 
         response = []
-        hazard_type_order = data_overview_page['hazard_type_order']
-        hazard_type_order.append(['Other'])
+        #hazard_type_order = data_overview_page['hazard_type_order']
+        hazard_type_order = data_overview_page['hazard_type_order_left'] + data_overview_page['hazard_type_order_right']
+        #hazard_type_order.append(['Other'])
 
         for index, main_category in enumerate(data_overview_page['category_order']):
             if main_category in data_overview_page['hazard_list']:
