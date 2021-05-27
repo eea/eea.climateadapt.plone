@@ -66,13 +66,13 @@
                     tal:condition="not:st">
                     Search results
                 </h1>
-                <h1 class="documentFirstHeading"
+                <h1 class="documentFirstHeading" style="color:#000;"
                     i18n:translate=""
                     tal:condition="st">
-                    Search results for
-                    <strong id="search-term" tal:content="st" i18n:name="term">
+                    Search results for:
+                    <span id="search-term" tal:content="st" i18n:name="term" style="font-style:italic;color:#005c96;">
                         Search Term
-                    </strong>
+                    </span>
                 </h1>
 
                 <p id="rss-subscription" i18n:domain="plone"
