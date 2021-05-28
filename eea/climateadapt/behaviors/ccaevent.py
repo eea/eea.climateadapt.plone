@@ -36,7 +36,7 @@ class ICcaEvent(model.Schema, IDXEvent):
     )
 
     online_event_url = TextLine(
-        title=_(u"Online event URL"), required=True
+        title=_(u"Online event URL"), required=False
     )
 
     technical_guidance  = NamedFile(
@@ -46,10 +46,10 @@ class ICcaEvent(model.Schema, IDXEvent):
 
     participation = RichText(
         title=_(u"Participation"),
-        required=True,
+        required=False,
         default=None
     )
 
     online_registration = TextLine(
-        title=_(u"Online registration"), required=True
+        title=_(u"Online registration"), required=False
     )
