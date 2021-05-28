@@ -48,6 +48,11 @@ def update_object(obj, indicator):
     obj.long_description = RichTextValue(indicator["description"])
     obj.definition_app = RichTextValue(indicator["description_detail"])
 
+    if isinstance(indicator["theme"], list):
+        obj.c3s_theme = indicator["theme"]
+    else:
+        obj.c3s_theme = [indicator["theme"]]
+
     obj.overview_app_toolbox_url = indicator["overview"]
     obj.overview_app_parameters = "{}"
     if indicator["vars"]["overview"]:
@@ -100,10 +105,10 @@ def save_indicator(indicator, site, data):
             # print("C3S Identifier NOT SET")
 
     if not indicatorFound:
+        from plone.dexterity.utils import createContentInContainer
+
         folder_path = "knowledge/european-climate-data-explorer/"
         folder_indicator_id = indicator["theme"].lower().replace(" ", "-")
-
-        from plone.dexterity.utils import createContentInContainer
 
         folder = site.restrictedTraverse(folder_path)
         if folder_indicator_id not in folder.contentIds():
@@ -120,8 +125,12 @@ def save_indicator(indicator, site, data):
         else:
             folder_indicator = folder[folder_indicator_id]
 
+        folder_path = "metadata/indicators/"
+        folder = site.restrictedTraverse(folder_path)
+
         obj = createContentInContainer(
-            folder_indicator,
+            #folder_indicator,
+            folder,
             "eea.climateadapt.c3sindicator",
             title=indicator["page_title"],
         )

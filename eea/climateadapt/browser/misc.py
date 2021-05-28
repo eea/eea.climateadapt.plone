@@ -1017,3 +1017,41 @@ class C3sIndicatorsOverview(BrowserView):
 
     def __call__(self):
         return self.index()
+
+class C3sIndicatorsListing(BrowserView):
+    """ Overview page for indicators. Registered as @@c3s_indicators_overview
+
+    To be used from inside a collective.cover
+    """
+
+    def __init__(self, context, request):
+        # Each view instance receives context and request as construction parameters
+        self.context = context
+        self.request = request
+
+    def list(self):
+        res = {'description':'','items':[]}
+
+        url = self.request["ACTUAL_URL"]
+        category = url.split("/")[-1]
+
+        catalog = api.portal.get_tool("portal_catalog")
+        brains = catalog.searchResults(portal_type='eea.climateadapt.c3sindicator', c3s_theme=category.capitalize())
+
+        items = {}
+        for brain in brains:
+            obj = brain.getObject()
+            items[obj.title] = brain.getURL()
+
+        site = portal.get()
+        base_folder = site["knowledge"]["european-climate-data-explorer"]
+        datastore = IAnnotations(base_folder).get('c3s_json_data', {})
+        res['description'] = datastore['data']['themes'][category]['description']
+        for indicator in datastore['data']['themes'][category]['apps']:
+            if indicator['title'] in items:
+                res['items'].append({
+                    'title': indicator['title'],
+                    'url': items[indicator['title']],
+                })
+
+        return res
