@@ -21,7 +21,16 @@ class ICcaEvent(model.Schema, IDXEvent):
     model.fieldset(
         "cca_event_info",
         label=u"CCA Event details",
-        fields=["image", "online_event_url", "participation", "technical_guidance", "online_registration"],
+        fields=[
+            "image",
+            "online_event_url",
+            "agenda",
+            "background_documents",
+            "participation",
+            "technical_guidance",
+            "language",
+            "online_registration"
+        ],
     )
 
     image = NamedBlobImage(
@@ -39,9 +48,24 @@ class ICcaEvent(model.Schema, IDXEvent):
         title=_(u"Online event URL"), required=False
     )
 
+    agenda = RichText(
+        title=_(u"Agenda"),
+        required=False,
+        default=None
+    )
+
+    background_documents = NamedFile(
+        title=_(u"Background documents"),
+        required=False,
+    )
+
     technical_guidance  = NamedFile(
         title=_(u"Technical guidance"),
         required=False,
+    )
+
+    language = TextLine(
+        title=_(u"Language"), required=False
     )
 
     participation = RichText(
