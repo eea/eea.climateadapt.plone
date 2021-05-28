@@ -74,9 +74,9 @@ def update_object(obj, indicator):
     obj.origin_website = ['C3S']
 
     state = api.content.get_state(obj=obj, default="Unknown")
-    #if state != "published":
-    #    print("Object not published, publishing", obj)
-    #    api.content.transition(obj, "publish")
+    if state != "published":
+        print("Object not published, publishing", obj)
+        api.content.transition(obj, "publish")
     obj._p_changed = True
 
 
