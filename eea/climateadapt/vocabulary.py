@@ -496,6 +496,18 @@ _governance = [
 governance_level = generic_vocabulary(_governance)
 alsoProvides(governance_level, IVocabularyFactory)
 
+_language = [
+    ("en", "English"),
+    ("de", "German"),
+    ("fr", "French"),
+    ("es", "Spanish"),
+    ("it", "Italian"),
+    ("nl", "Dutch"),
+]
+language = generic_vocabulary(_language)
+alsoProvides(language, IVocabularyFactory)
+
+
 _category = [
     ("Grey", "Grey: technological and engineering solutions aiming mainly at the protection of infrastructures or people."),
     ("Green", "Green: ecosystem-based approaches that use the multiple services of nature aiming at raising the resilience of ecosystems and their services."),

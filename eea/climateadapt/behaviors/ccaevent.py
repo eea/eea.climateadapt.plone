@@ -64,8 +64,15 @@ class ICcaEvent(model.Schema, IDXEvent):
         required=False,
     )
 
-    language = TextLine(
-        title=_(u"Language"), required=False
+    #language = TextLine(
+    #    title=_(u"Language"), required=False
+    #)
+
+    language = Choice(
+        title=_(u"Language"),
+        required=True,
+        default='en',
+        vocabulary="eea.climateadapt.event_language",
     )
 
     participation = RichText(
