@@ -497,12 +497,12 @@ governance_level = generic_vocabulary(_governance)
 alsoProvides(governance_level, IVocabularyFactory)
 
 _language = [
-    ("en", "English"),
-    ("de", "German"),
-    ("fr", "French"),
-    ("es", "Spanish"),
-    ("it", "Italian"),
-    ("nl", "Dutch"),
+    ("English", "English"),
+    ("German", "German"),
+    ("French", "French"),
+    ("Spanish", "Spanish"),
+    ("Italian", "Italian"),
+    ("Dutch", "Dutch"),
 ]
 language = generic_vocabulary(_language)
 alsoProvides(language, IVocabularyFactory)

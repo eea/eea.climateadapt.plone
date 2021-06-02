@@ -69,9 +69,9 @@ class ICcaEvent(model.Schema, IDXEvent):
     #)
 
     language = Choice(
-        title=_(u"Language"),
+        title=_(u"Event Language"),
         required=True,
-        default='en',
+        default='English',
         vocabulary="eea.climateadapt.event_language",
     )
 
@@ -82,5 +82,5 @@ class ICcaEvent(model.Schema, IDXEvent):
     )
 
     online_registration = TextLine(
-        title=_(u"Online registration"), required=False
+        title=_(u"Online registration (URL)"), required=False
     )

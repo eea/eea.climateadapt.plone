@@ -1,0 +1,69 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  xml:lang="en"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="eea.climateadapt">
+
+<body>
+    <metal:main fill-slot="main">
+<style>
+#ccaEventTabs {
+    padding-bottom:0px;
+}
+
+ul.nav.nav-tabs#ccaEventTabs li a{
+    background-color: #005c96;
+    color:#fff;
+}
+ul.nav.nav-tabs#ccaEventTabs li.active a{
+    background-color: #8a9c3a !important;
+}
+</style>
+        <ul class="nav nav-tabs" role="tablist" id="ccaEventTabs">
+          <li role="presentation" class="active"><a href="#cca-event" aria-controls="cca-event" role="tab" data-toggle="tab">Event</a></li>
+          <li role="presentation"><a href="#cca-agenda" aria-controls="cca-agenda" role="tab" data-toggle="tab">Agenda</a></li>
+          <li role="presentation"><a href="#cca-information" aria-controls="cca-information" role="tab" data-toggle="tab">Information</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="cca-event">
+              <tal:def tal:define="data nocall:view/data">
+
+                <div class="event clearfix" itemscope itemtype="https://schema.org/Event">
+
+                  <ul class="hiddenStructure">
+                    <li><a itemprop="url" class="url" href="" tal:attributes="href data/url" tal:content="data/url">url</a></li>
+                    <li itemprop="name" class="summary" tal:content="data/title">title</li>
+                    <li itemprop="startDate" class="dtstart" tal:content="data/start/isoformat">start</li>
+                    <li itemprop="endDate" class="dtend" tal:content="data/end/isoformat">end</li>
+                    <li itemprop="description" class="description" tal:content="data/description">description</li>
+                  </ul>
+
+                  <tal:eventsummary replace="structure context/@@event_summary"/>
+
+                  <div id="parent-fieldname-text" tal:condition="data/text">
+                    <tal:text content="structure data/text" />
+                  </div>
+
+                </div>
+
+              </tal:def>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="cca-agenda">
+            <p tal:content="structure context/agenda/output"></p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="cca-information">
+            <p tal:content="structure context/participation/output"></p>
+            <p><strong>Language:</strong> <span tal:content="context/language"/></p>
+            <a tal:condition="context/online_registration" tal:attributes="href context/online_registration">Online registration</a>
+          </div>
+        </div>
+
+    </metal:main>
+
+</body>
+</html>
