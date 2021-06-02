@@ -6,22 +6,35 @@
   xml:lang="en"
   lang="en"
   metal:use-macro="context/main_template/macros/master"
-  i18n:domain="eea.climateadapt">
+  >
 
 <body>
     <metal:main fill-slot="main">
 <style>
 #ccaEventTabs {
-    padding-bottom:0px;
+    border:0px;
 }
-
-ul.nav.nav-tabs#ccaEventTabs li a{
+ul.nav.nav-tabs#ccaEventTabs li a {
+    text-decoration:none;
+    color: #fff;
+}
+ul.nav.nav-tabs#ccaEventTabs li > a,
+ul.nav.nav-tabs#ccaEventTabs li span
+{
     background-color: #005c96;
-    color:#fff;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
 }
-ul.nav.nav-tabs#ccaEventTabs li.active a{
+ul.nav.nav-tabs#ccaEventTabs li.active > a,
+ul.nav.nav-tabs#ccaEventTabs li.active > span
+{
     background-color: #8a9c3a !important;
 }
+
+
 </style>
         <ul class="nav nav-tabs" role="tablist" id="ccaEventTabs">
           <li role="presentation" class="active"><a href="#cca-event" aria-controls="cca-event" role="tab" data-toggle="tab">Event</a></li>
