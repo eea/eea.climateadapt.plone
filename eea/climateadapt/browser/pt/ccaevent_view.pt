@@ -10,7 +10,7 @@
 
 <body>
     <metal:main fill-slot="body">
-        <tal:def tal:define="data nocall:view/data">
+        <tal:def tal:define="data nocall:view/data;">
 
 
 <style>
@@ -22,37 +22,65 @@
 .aceitem_page h5 {
     color:#007cb9;
     text-decoration:italic !important;
+    margin:0px;
+    padding-top:5px;
 }
 .macro-category{
+    margin:0px;
+    padding-top:5px;
 }
 .macro-category h4{
-    margin-bottom:2px;
+    color:#007cb9;
+    text-decoration:italic !important;
+    margin:0px;
+    padding-top:5px;
 }
+.aceitem_page h2 {
+    padding-top:20px;
+}
+
 </style>
+<script>
+$( document ).ready(function() {
+    var data_detail = $('#event_summary_data dl > div:first div.col-md-10').html();
+    data_detail = data_detail.replace('from','<br>');
+    data_detail = data_detail.replace('<span class="timezone">','<br><span class="timezone">');
+    $('#event_date_detail').html(data_detail);
+});
+</script>
             <div id="content" class="columned">
 
                   <div class="aceitem_page">
 
 
+                    <div class="scroll-to-top"><span class="scroll-button" title="Scroll to top"> <i class="scroll-icon glyphicon glyphicon-chevron-up"></i> </span></div>
                     <div id="content-core">
                         <div class="col-md-9 col-xs-12 content-column">
+                            <a href="">Event</a> | <a href="#agenda">Agenda and supporting documents</a> | <a href="#information">Practical Information</a> | <a href="#registration" tal:condition="context/online_registration">Registration</a>
+                            <br><br>
                             <h1>Climate-ADAPT Event</h1>
                             <div>
-                                <img tal:condition="context/image" style="float:left; padding-right:10px;padding-bottom:10px;" src="" tal:attributes="src python:context.absolute_url_path()+'/@@images/image/mini'">
-                                <h2 tal:content="structure data/title">Climate-ADAPT Event Title</h2>
+                                <img tal:condition="context/image" style="float:left; padding-right:10px;padding-bottom:10px;" src="" tal:attributes="src python:context.absolute_url_path()+'/@@images/image/preview'">
+                                <h2 style="padding-top:0px;" tal:content="structure data/title">Climate-ADAPT Event Title</h2>
                                 <p id="parent-fieldname-text" tal:condition="data/description" tal:content="structure data/description" />
                             </div>
 
-                            <div id="parent-fieldname-text" tal:condition="data/text">
+                            <div id="parent-fieldname-text" style="clear:both; padding-top:20px;" tal:condition="data/text">
                               <tal:text content="structure data/text" />
                             </div>
 
+                            <div style="display:none;" id="event_summary_data">
+                                <tal:eventsummary replace="structure context/@@event_summary"/>
+                            </div>
+
+                            <a name="agenda"></a>
                             <h2>Agenda and supporting documents</h2>
                             <div style="border:1px solid #ddd;padding:15px;" tal:content="structure context/agenda/output"></div>
                             <tal tal:condition="context/background_documents">
-                            <p>A background document for the event is available <a tal:attributes="href python:context.absolute_url_path()+'/@@download/background_documents/'+context.background_documents.filename">here</a></p>
+                            <p style="padding-top:15px;">A background document for the event is available <a tal:attributes="href python:context.absolute_url_path()+'/@@download/background_documents/'+context.background_documents.filename">here</a></p>
                             </tal>
 
+                            <a name="information"></a>
                             <h2>Practical information</h2>
                             <h5>Participation</h5>
                             <p tal:content="structure context/participation/output"></p>
@@ -71,6 +99,7 @@ available here as a <a tal:attributes="href python:context.absolute_url_path()+'
                             <p tal:content="structure context/language"></p>
 
                             <tal tal:condition="context/online_registration">
+                            <a name="registration"></a>
                             <h5>Registration</h5>
                             <p>Please fill in this <a href="" tal:attributes="href context/online_registration">registration form</a></p>
                             </tal>
@@ -79,7 +108,7 @@ available here as a <a tal:attributes="href python:context.absolute_url_path()+'
                         <div class="col-md-3 col-xs-12 content-sidebar">
                             <div class="macro-category">
                                 <h4>When:</h4>
-                                <span tal:content="data/start/isoformat">start date</span>
+                                <span id="event_date_detail"></span>
                             </div>
                           <div class="macro-category pt-5" style="padding-top:15px;">
                               <h4>Where:</h4>
