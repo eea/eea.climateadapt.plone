@@ -44,6 +44,8 @@
 $( document ).ready(function() {
     var data_detail = $('#event_summary_data dl > div:first div.col-md-10').html();
     data_detail = data_detail.replace('from','<br>');
+    data_detail = data_detail.replace('class="dtend"','');
+    data_detail = data_detail.replace(/abbr/g,'span');
     data_detail = data_detail.replace('<span class="timezone">','<br><span class="timezone">');
     $('#event_date_detail').html(data_detail);
 });
