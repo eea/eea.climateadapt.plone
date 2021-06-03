@@ -82,7 +82,7 @@ $( document ).ready(function() {
 
                             <a name="information"></a>
                             <h2>Practical information</h2>
-                            <h5>Participation</h5>
+                            <h5 style="padding-top:0px;">Participation</h5>
                             <p tal:content="structure context/participation/output"></p>
                             <tal tal:condition="context/technical_guidance">
                             <h5>Technical guidance</h5>
