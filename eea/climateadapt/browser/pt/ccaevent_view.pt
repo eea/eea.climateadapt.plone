@@ -38,7 +38,7 @@
                         <div class="col-md-9 col-xs-12 content-column">
                             <h1>Climate-ADAPT Event</h1>
                             <div>
-                                <img style="float:left; padding-right:10px;padding-bottom:10px;" src="" tal:attributes="src python:context.absolute_url_path()+'/@@images/image/mini'">
+                                <img tal:condition="context/image" style="float:left; padding-right:10px;padding-bottom:10px;" src="" tal:attributes="src python:context.absolute_url_path()+'/@@images/image/mini'">
                                 <h2 tal:content="structure data/title">Climate-ADAPT Event Title</h2>
                                 <p id="parent-fieldname-text" tal:condition="data/description" tal:content="structure data/description" />
                             </div>
