@@ -37,22 +37,39 @@
                     <div id="content-core">
                         <div class="col-md-9 col-xs-12 content-column">
                             <h1>Climate-ADAPT Event</h1>
-                            <h2 tal:content="structure data/title">Climate-ADAPT Event Title</h2>
-                            <div id="parent-fieldname-text" tal:condition="data/description" tal:content="structure data/description" />
-                            <hr>
+                            <div>
+                                <img style="float:left; padding-right:10px;padding-bottom:10px;" src="" tal:attributes="src python:context.absolute_url_path()+'/@@images/image/mini'">
+                                <h2 tal:content="structure data/title">Climate-ADAPT Event Title</h2>
+                                <p id="parent-fieldname-text" tal:condition="data/description" tal:content="structure data/description" />
+                            </div>
+
                             <div id="parent-fieldname-text" tal:condition="data/text">
                               <tal:text content="structure data/text" />
                             </div>
+
                             <h2>Agenda and supporting documents</h2>
-                            <p tal:content="structure context/agenda/output"></p>
+                            <div style="border:1px solid #ddd;padding:15px;" tal:content="structure context/agenda/output"></div>
+                            <tal tal:condition="context/background_documents">
+                            <p>A background document for the event is available <a tal:attributes="href python:context.absolute_url_path()+'/@@download/background_documents/'+context.background_documents.filename">here</a></p>
+                            </tal>
+
                             <h2>Practical information</h2>
                             <h5>Participation</h5>
                             <p tal:content="structure context/participation/output"></p>
+                            <tal tal:condition="context/technical_guidance">
                             <h5>Technical guidance</h5>
+                            <p>A step-by-step-guidance with technical instructions for participating in the online event is
+available here as a <a tal:attributes="href python:context.absolute_url_path()+'/@@download/technical_guidance/'+context.technical_guidance.filename">download document</a></p>
+                            </tal>
+
+                            <tal tal:condition="context/contact_email">
                             <h5>Contact</h5>
-                            <p>If you have any further questions you can contact</p>
+                            <p>If you have any further questions you can contact <a tal:attributes="href string:mailto:${context/contact_email}" tal:content="context/contact_email"></a></p>
+                            </tal>
+
                             <h5>Langauge of the conference</h5>
                             <p tal:content="structure context/language"></p>
+
                             <tal tal:condition="context/online_registration">
                             <h5>Registration</h5>
                             <p>Please fill in this <a href="" tal:attributes="href context/online_registration">registration form</a></p>

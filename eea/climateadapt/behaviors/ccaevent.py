@@ -45,7 +45,7 @@ class ICcaEvent(model.Schema, IDXEvent):
     )
 
     online_event_url = TextLine(
-        title=_(u"Online event URL"), required=False
+        title=_(u"More information on the event (URL)"), required=False
     )
 
     agenda = RichText(
@@ -82,5 +82,5 @@ class ICcaEvent(model.Schema, IDXEvent):
     )
 
     online_registration = TextLine(
-        title=_(u"More information on the event (URL)"), required=False
+        title=_(u"Online registration (URL)"), required=False
     )
