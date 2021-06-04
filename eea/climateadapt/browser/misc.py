@@ -1009,6 +1009,42 @@ class C3sIndicatorsOverview(BrowserView):
 
         return response
 
+    def get_overview_columns(self):
+        site = portal.get()
+        base_folder = site["knowledge"]["european-climate-data-explorer"]
+        datastore = IAnnotations(base_folder).get('c3s_json_data', {})
+        overview_page = datastore['data']['overview_page']
+        response = {'left':[], 'right':[]}
+
+        catalog = getToolByName(site, 'portal_catalog')
+        for category in overview_page['hazard_list']:
+            for hazard in overview_page['hazard_list'][category]:
+                for index, item in enumerate(overview_page['hazard_list'][category][hazard]):
+                    query = {
+                        'portal_type': [
+                            'eea.climateadapt.c3sindicator',
+                        ],
+                        'title': item['title']
+                    }
+                    brains = catalog.searchResults(**query)
+                    for brain in brains:
+                        overview_page['hazard_list'][category][hazard][index]['url'] = brain.getURL()
+
+        for side in response:
+            for cindex, category in enumerate(overview_page['category_order_'+side]):
+                if category in overview_page['hazard_list']:
+                    category_index = len(response[side])
+                    response[side].insert(category_index, {'name':category, 'items':[]})
+
+                    hazards = overview_page['hazard_type_order_'+side][cindex]
+                    for hazard in hazards:
+                        if hazard in overview_page['hazard_list'][category]:
+                            len_hazard = len(response[side][category_index]['items'])
+                            response[side][category_index]['items'].insert(len_hazard, {'name':hazard, 'items':overview_page['hazard_list'][category][hazard]})
+
+        return response
+
+
     def get_disclaimer(self):
         site = portal.get()
         base_folder = site["knowledge"]["european-climate-data-explorer"]
