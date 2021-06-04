@@ -23,11 +23,13 @@ class ICcaEvent(model.Schema, IDXEvent):
         label=u"CCA Event details",
         fields=[
             "image",
+            "subtitle",
             "online_event_url",
+            "agenda_file",
             "agenda",
             "background_documents",
             "participation",
-            "technical_guidance",
+            #"technical_guidance",
             "language",
             "online_registration"
         ],
@@ -44,6 +46,10 @@ class ICcaEvent(model.Schema, IDXEvent):
         required=False,
     )
 
+    subtitle = TextLine(
+        title=_(u"Subtitle"), required=False
+    )
+
     online_event_url = TextLine(
         title=_(u"More information on the event (URL)"), required=False
     )
@@ -52,21 +58,18 @@ class ICcaEvent(model.Schema, IDXEvent):
         title=_(u"Agenda"),
         required=False,
         default=None
+     )
+
+    agenda_file = NamedFile(
+        title=_(u"Agenda document"),
+        required=False,
     )
+
 
     background_documents = NamedFile(
         title=_(u"Background documents"),
         required=False,
     )
-
-    technical_guidance  = NamedFile(
-        title=_(u"Technical guidance"),
-        required=False,
-    )
-
-    #language = TextLine(
-    #    title=_(u"Language"), required=False
-    #)
 
     language = Choice(
         title=_(u"Event Language"),

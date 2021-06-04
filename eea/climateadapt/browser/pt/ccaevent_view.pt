@@ -64,6 +64,7 @@ $( document ).ready(function() {
                             <div>
                                 <img tal:condition="context/image" style="float:left; padding-right:10px;padding-bottom:10px;" src="" tal:attributes="src python:context.absolute_url_path()+'/@@images/image/preview'">
                                 <h2 style="padding-top:0px;" tal:content="structure data/title">Climate-ADAPT Event Title</h2>
+                                <h3 style="padding-top:0px;" tal:condition="context/subtitle" tal:content="structure context/subtitle">Climate-ADAPT Event Sub Title</h3>
                                 <p id="parent-fieldname-text" tal:condition="data/description" tal:content="structure data/description" />
                             </div>
 
@@ -77,32 +78,27 @@ $( document ).ready(function() {
 
                             <a name="agenda"></a>
                             <h2>Agenda and supporting documents</h2>
-                            <div style="border:1px solid #ddd;padding:15px;" tal:content="structure context/agenda/output"></div>
-                            <tal tal:condition="context/background_documents">
-                            <p style="padding-top:15px;">A background document for the event is available <a tal:attributes="href python:context.absolute_url_path()+'/@@download/background_documents/'+context.background_documents.filename">here</a></p>
+                            <tal tal:condition="context/agenda_file">
+                            <p style="padding-top:15px;">Download the detailed agenda <a tal:attributes="href python:context.absolute_url_path()+'/@@download/agenda_file/'+context.agenda_file.filename">here</a></p>
                             </tal>
+                            <div style="border:1px solid #ddd;padding:15px;" tal:content="structure context/agenda/output"></div>
 
                             <a name="information"></a>
                             <h2>Practical information</h2>
                             <h5 style="padding-top:0px;">Participation</h5>
                             <p tal:content="structure context/participation/output"></p>
-                            <tal tal:condition="context/technical_guidance">
-                            <h5>Technical guidance</h5>
-                            <p>A step-by-step-guidance with technical instructions for participating in the online event is
-available here as a <a tal:attributes="href python:context.absolute_url_path()+'/@@download/technical_guidance/'+context.technical_guidance.filename">download document</a></p>
-                            </tal>
 
                             <tal tal:condition="context/contact_email">
                             <h5>Contact</h5>
                             <p>If you have any further questions you can contact <a tal:attributes="href string:mailto:${context/contact_email}" tal:content="context/contact_email"></a></p>
                             </tal>
 
-                            <h5>Langauge of the conference</h5>
+                            <h5>Language of the conference</h5>
                             <p tal:content="structure context/language"></p>
 
                             <tal tal:condition="context/online_registration">
                             <a name="registration"></a>
-                            <h5>Registration</h5>
+                            <h2>Registration</h2>
                             <p>Please fill in this <a href="" tal:attributes="href context/online_registration">registration form</a></p>
                             </tal>
                         </div>
@@ -115,10 +111,6 @@ available here as a <a tal:attributes="href python:context.absolute_url_path()+'
                           <div class="macro-category pt-5" style="padding-top:15px;">
                               <h4>Where:</h4>
                               <span tal:content="data/location">location</span>
-                          </div>
-                          <div class="macro-category" style="padding-top:15px;">
-                              <h4>Contact:</h4>
-                              <span tal:content="data/contact_name">contact name</span>
                           </div>
                           <div class="macro-category" style="padding-top:15px;">
                               <h4>Info:</h4>
