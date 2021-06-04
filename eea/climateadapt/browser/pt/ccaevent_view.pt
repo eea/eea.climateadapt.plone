@@ -82,6 +82,9 @@ $( document ).ready(function() {
                             <p style="padding-top:15px;">Download the detailed agenda <a tal:attributes="href python:context.absolute_url_path()+'/@@download/agenda_file/'+context.agenda_file.filename">here</a></p>
                             </tal>
                             <div style="border:1px solid #ddd;padding:15px;" tal:content="structure context/agenda/output"></div>
+                            <tal tal:condition="context/background_documents">
+                            <p style="padding-top:15px;">A background document for the event is available <a tal:attributes="href python:context.absolute_url_path()+'/@@download/background_documents/'+context.background_documents.filename">here</a></p>
+                            </tal>
 
                             <a name="information"></a>
                             <h2>Practical information</h2>
