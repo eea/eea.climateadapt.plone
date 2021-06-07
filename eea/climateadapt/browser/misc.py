@@ -1020,17 +1020,27 @@ class C3sIndicatorsOverview(BrowserView):
         for category in overview_page['hazard_list']:
             for hazard in overview_page['hazard_list'][category]:
                 for index, item in enumerate(overview_page['hazard_list'][category][hazard]):
-                    try:
+                    c3s_identifier = None
+                    #print(item['title'])
+                    for c3s_identifier_ in datastore["data"]["indicators"]:
+                        #print("  "+c3s_identifier_)
+                        #print("  "+datastore["data"]["indicators"][c3s_identifier_]["page_title"])
+                        if datastore["data"]["indicators"][c3s_identifier_]["page_title"] == item['title']:
+                            c3s_identifier = c3s_identifier_
+                            #print("  --> FOUND")
+                            break
+                    if c3s_identifier:
+                        #import pdb; pdb.set_trace()
                         query = {
                             'portal_type': 'eea.climateadapt.c3sindicator',
-                            'Title': item['title']
+                            'c3s_identifier': c3s_identifier
                         }
                         brains = catalog.searchResults(query)
                         for brain in brains:
-                            overview_page['hazard_list'][category][hazard][index]['url'] = brain.getURL()
-                    except:
-                        '''
-                        '''
+                            if c3s_identifier == brain.getObject().c3s_identifier:
+                                overview_page['hazard_list'][category][hazard][index]['url'] = brain.getURL()
+                    else:
+                        print "Not found: "+ item['title']
 
         for side in response:
             for cindex, category in enumerate(overview_page['category_order_'+side]):
