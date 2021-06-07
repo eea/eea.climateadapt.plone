@@ -1,0 +1,3 @@
+<h1>ECDE Glossary</h1>
+<div tal:define="data view/get_glossary_table" tal:content="structure data">
+</div>

@@ -1053,6 +1053,14 @@ class C3sIndicatorsOverview(BrowserView):
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         return datastore['data']['html_pages']['disclaimer']['page_text']
 
+    def get_glossary_table(self):
+        site = portal.get()
+        base_folder = site["knowledge"]["european-climate-data-explorer"]
+        datastore = IAnnotations(base_folder).get('c3s_json_data', {})
+        if 'glossary_table' in datastore['data']:
+            return datastore['data']['glossary_table']
+        return ''
+
     def __call__(self):
         return self.index()
 
