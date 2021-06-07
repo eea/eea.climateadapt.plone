@@ -15,7 +15,7 @@
             <tal tal:repeat="category python:data[side]">
                 <h2 tal:content="python:category['name']"></h2>
                 <tal tal:repeat="hazard python:category['items']">
-                    <h4 tal:content="python:hazard['name']"></h4>
+                    <h4 tal:condition="python:hazard['name']!='Other'" tal:content="python:hazard['name']"></h4>
                     <ul>
                         <li tal:repeat="item python:hazard['items']">
                             <a tal:attributes="href python:item['url']" tal:content="python:item['title']"></a>
