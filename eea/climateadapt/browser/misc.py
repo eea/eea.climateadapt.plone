@@ -1020,15 +1020,17 @@ class C3sIndicatorsOverview(BrowserView):
         for category in overview_page['hazard_list']:
             for hazard in overview_page['hazard_list'][category]:
                 for index, item in enumerate(overview_page['hazard_list'][category][hazard]):
-                    query = {
-                        'portal_type': [
-                            'eea.climateadapt.c3sindicator',
-                        ],
-                        'title': item['title']
-                    }
-                    brains = catalog.searchResults(**query)
-                    for brain in brains:
-                        overview_page['hazard_list'][category][hazard][index]['url'] = brain.getURL()
+                    try:
+                        query = {
+                            'portal_type': 'eea.climateadapt.c3sindicator',
+                            'Title': item['title']
+                        }
+                        brains = catalog.searchResults(query)
+                        for brain in brains:
+                            overview_page['hazard_list'][category][hazard][index]['url'] = brain.getURL()
+                    except:
+                        '''
+                        '''
 
         for side in response:
             for cindex, category in enumerate(overview_page['category_order_'+side]):
