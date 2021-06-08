@@ -21,7 +21,6 @@
 }
 .aceitem_page h3 {
     color:#007cb9;
-    font-style:italic !important;
     margin:0px;
     padding-top:5px;
 }
