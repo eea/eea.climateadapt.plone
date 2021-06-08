@@ -19,6 +19,7 @@ import logging
 import transaction
 import urllib2
 from eea.climateadapt.scripts import get_plone_site
+from plone.dexterity.utils import createContentInContainer
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from zope.annotation.interfaces import IAnnotations
@@ -48,6 +49,11 @@ def update_object(obj, indicator):
     obj.long_description = RichTextValue(indicator["description"])
     obj.definition_app = RichTextValue(indicator["description_detail"])
 
+    if isinstance(indicator["theme"], list):
+        obj.c3s_theme = indicator["theme"]
+    else:
+        obj.c3s_theme = [indicator["theme"]]
+
     obj.overview_app_toolbox_url = indicator["overview"]
     obj.overview_app_parameters = "{}"
     if indicator["vars"]["overview"]:
@@ -65,6 +71,7 @@ def update_object(obj, indicator):
     obj.c3s_identifier = indicator.get("identifier", "")
     obj.sectors = []
     obj.climate_impacts = []
+    obj.origin_website = ['C3S']
 
     state = api.content.get_state(obj=obj, default="Unknown")
     if state != "published":
@@ -98,29 +105,30 @@ def save_indicator(indicator, site, data):
             pass
             # print("C3S Identifier NOT SET")
 
+    folder_path = "knowledge/european-climate-data-explorer/"
+    folder = site.restrictedTraverse(folder_path)
+
+    #for theme_name in indicator["theme"]:
+    #    folder_indicator_id = theme_name.lower().replace(" ", "-")
+    #    if folder_indicator_id not in folder.contentIds():
+    #        print("Create indicator folder", theme_name)
+    #        folder_indicator = createContentInContainer(
+    #            folder, "Folder", title=theme_name
+    #        )
+
+    #        folder_indicator.manage_addProperty(
+    #            id="layout", value="c3s_indicators_listing", type="string"
+    #        )
+    #        api.content.transition(folder_indicator, "publish")
+    #        folder_indicator._p_changed
+
     if not indicatorFound:
-        folder_path = "knowledge/european-climate-data-explorer/"
-        folder_indicator_id = indicator["theme"].lower().replace(" ", "-")
-
-        from plone.dexterity.utils import createContentInContainer
-
+        folder_path = "metadata/indicators/"
         folder = site.restrictedTraverse(folder_path)
-        if folder_indicator_id not in folder.contentIds():
-            print("Create indicator folder", indicator["theme"])
-            folder_indicator = createContentInContainer(
-                folder, "Folder", title=indicator["theme"]
-            )
-
-            folder_indicator.manage_addProperty(
-                id="layout", value="c3s_simplified_listing_view", type="string"
-            )
-            api.content.transition(folder_indicator, "publish")
-            folder_indicator._p_changed
-        else:
-            folder_indicator = folder[folder_indicator_id]
 
         obj = createContentInContainer(
-            folder_indicator,
+            #folder_indicator,
+            folder,
             "eea.climateadapt.c3sindicator",
             title=indicator["page_title"],
         )
@@ -140,13 +148,12 @@ def main():
     for indicator_identifier in data["indicators"]:
         save_indicator(data["indicators"][indicator_identifier], site, data)
 
-    for theme_id in data["themes"]:
-        theme_folder = base_folder[theme_id]
-        theme_folder.text = RichTextValue(
-            data["themes"][theme_id]["description"]
-        )
-        theme_folder._p_changed = True
-        print("Updated description for", theme_folder)
+    #for theme_id in data["themes"]:
+    #    theme_folder = base_folder[theme_id]
+    #    theme_folder.text = RichTextValue(
+    #        data["themes"][theme_id]["description"]
+    #    )
+    #    print("Updated description for", theme_folder)
 
     transaction.commit()
     print("Total items:" + str(len(data["indicators"])))

@@ -44,13 +44,19 @@ class HealthHomepageItems(BrowserView):
 
             size = self.days_elapsed_mapping(days)
 
+            toLocalizedTime = self.context.toLocalizedTime
+            local_time = toLocalizedTime(item.getObject().start, True)
+            local_time = datetime.datetime.strptime(local_time, '%b %d, %Y %I:%M %p')
+            local_time = datetime.datetime.strftime(local_time, "%d %b %Y")
+
             info = {
                 "title": item.Title,
                 "size": size,
                 "url": item.getURL(),
                 # "url": "/observatory/++aq++"
                 # + "/".join(item.getObject().getPhysicalPath()[2:]),
-                "date": item.getObject().start.strftime("%d %b %Y"),
+                #"date": item.getObject().start.strftime("%d %b %Y"),
+                "date": local_time,
                 "Subject": ("Health Observatory",),
             }
             results.append(info)

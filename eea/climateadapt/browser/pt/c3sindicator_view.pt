@@ -183,7 +183,10 @@
       </style>
 
       <script>
-        if((window.location.hash && window.location.hash=="#details") || window.location.search.length) {
+        if((window.location.hash && window.location.hash=="#details")
+            // Laci removed condition, see task #134136 || window.location.search.length
+            || (window.location.search.length && window.location.search != "?bs=0")
+        ) {
             c3sView('details');
         } else {
             c3sView('overview');
@@ -200,6 +203,7 @@
                 $('.c3s_overview').attr('style','display:block;');
             }
         }
+
       </script>
   <br>
   <p>Content in the European Climate Data Explorer pages is delivered by the <a href="https://climate.copernicus.eu/">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href="/knowledge/european-climate-data-explorer/disclaimer">Disclaimer</a></p>

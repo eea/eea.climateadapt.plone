@@ -10,20 +10,20 @@ body.search-app.site-observatory {
   }
 
   #portal-personaltools {
-    min-width: auto;
-    columns: auto;
-    background-color: transparent;
-    top: auto;
-    left: auto;
-    border: none;
-    box-shadow: none;
-    display: inline-flex;
-    right: auto;
-    width: auto;
-    height: auto;
-    vertical-align: bottom;
-    padding: 0;
     position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    display: inline-flex;
+    width: auto;
+    min-width: auto;
+    height: auto;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    columns: auto;
+    vertical-align: bottom;
 
     > a,
     .personal-menu-action {
@@ -48,6 +48,7 @@ body.site-observatory:not(.collapsed) {
 
       > span {
         background-color: transparent;
+
         > .toggle-down .angle-down-icon {
           border-top-color: #818a32;
         }
@@ -82,9 +83,9 @@ body.subsection-european-policy-framework {
   .cover-richtext-tile {
     @media only screen and (max-width: 680px) {
       img {
-        float: none !important;
         height: auto !important;
         margin: 0 !important;
+        float: none !important;
       }
     }
     @media only screen and (max-width: 500px) {
@@ -103,11 +104,11 @@ body.site-observatory.template-view.health-header {
 
   .portalMessage {
     position: absolute;
-    top: 118px;
-    left: 0;
-    right: 0;
-    height: 33px;
     z-index: 1;
+    top: 118px;
+    right: 0;
+    left: 0;
+    height: 33px;
   }
 
   #portal-breadcrumbs,
@@ -157,15 +158,15 @@ body.template-standard.site-observatory.health-header:not(.userrole-anonymous) {
 .template-standard,
 .template-view {
   .health-header-title {
+    // justify-content: center;
+    position: relative;
+    left: calc(~"-49.6vw + 50%");
+    display: flex;
     width: 100%; // fallback
     width: 100vw;
     height: 100px;
-    display: flex;
     align-items: center;
-    // justify-content: center;
-    position: relative;
     margin: 0 !important;
-    left: calc(~"-49.6vw + 50%");
     background: linear-gradient(
       10deg,
       rgba(17, 114, 181, 1) 0%,
@@ -174,18 +175,18 @@ body.template-standard.site-observatory.health-header:not(.userrole-anonymous) {
     );
 
     .tile-content {
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 1200px;
       width: 100%;
+      max-width: 1200px;
       padding: 0 10px;
+      margin-right: auto;
+      margin-left: auto;
 
       > *,
       h1 {
         margin: 0 !important;
+        color: #fff;
         font-family: "OpenSansR";
         font-size: 35px;
-        color: #fff;
 
         @media only screen and (max-width: 780px) {
           font-size: 27px;

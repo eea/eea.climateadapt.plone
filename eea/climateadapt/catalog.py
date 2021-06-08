@@ -2,7 +2,7 @@ import json
 import logging
 
 from collective.cover.interfaces import ICover, ISearchableText
-from eea.climateadapt.aceitem import IAceItem
+from eea.climateadapt.aceitem import IAceItem, IC3sIndicator
 from eea.climateadapt.behaviors.aceproject import IAceProject
 from eea.climateadapt.behaviors.adaptationoption import IAdaptationOption
 from eea.climateadapt.behaviors.casestudy import ICaseStudy
@@ -186,6 +186,11 @@ def _get_aceitem_description(object):
     return ".".join(pars[:2])
 
     return text
+
+
+@indexer(IC3sIndicator)
+def get_aceitem_description(object):
+    return _get_aceitem_description(object)
 
 
 @indexer(IAceItem)

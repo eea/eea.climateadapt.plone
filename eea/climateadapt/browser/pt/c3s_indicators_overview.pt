@@ -10,28 +10,21 @@
     </div>
   </div>
 
-  <div class="column col-md-16 pt-4" style="padding-top:40px;" tal:define="categories view/get_categories">
-  <div class="row">
-    <div class="column col-md-6" tal:repeat="category categories">
-        <h2 tal:content="category/name">Heat and cold</h2>
-
-        <tal:def define="subhazards_info category/data">
-            <tal:rep repeat="subhazard subhazards_info">
-              <h3 tal:content="python: subhazard[0]"
-                tal:condition="python: subhazard[0] != 'Other'">Extreme heat</h3>
-              <ul tal:define="indicators python: subhazard[1]">
-                <li tal:repeat="info indicators">
-                  <a href=""
-                    tal:attributes="href python:view.json_indicator_page_to_url(info['url'])"
-                    tal:content="info/title">Maximum daily</a>
-                </li>
-              </ul>
-            </tal:rep>
-        </tal:def>
+    <div class="row" tal:define="data view/get_overview_columns">
+        <div class="column col-md-6" tal:repeat="side python:['left','right']">
+            <tal tal:repeat="category python:data[side]">
+                <h2 tal:content="python:category['name']"></h2>
+                <tal tal:repeat="hazard python:category['items']">
+                    <h4 tal:condition="python:hazard['name']!='Other'" tal:content="python:hazard['name']"></h4>
+                    <ul>
+                        <li tal:repeat="item python:hazard['items']">
+                            <a tal:attributes="href python:item['url']" tal:content="python:item['title']"></a>
+                        </li>
+                    </ul>
+                </tal>
+            </tal>
+        </div>
     </div>
-  </div>
-  </div>
-
   <br>
   <p>Content in the European Climate Data Explorer pages is delivered by the <a href="https://climate.copernicus.eu/">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href="/knowledge/european-climate-data-explorer/disclaimer">Disclaimer</a></p>
 </div>

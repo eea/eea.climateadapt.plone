@@ -232,6 +232,11 @@
       component=".vocabulary.governance_level"
       />
   <utility
+      name="eea.climateadapt.event_language"
+      component=".vocabulary.language"
+      />
+
+  <utility
       name="eea.climateadapt.aceitems_category"
       component=".vocabulary.category"
       />

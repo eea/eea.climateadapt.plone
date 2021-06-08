@@ -192,6 +192,22 @@
       />
 
   <browser:page
+      name="c3s_indicators_glossary_table"
+      for="*"
+      class="eea.climateadapt.browser.misc.C3sIndicatorsOverview"
+      template="pt/c3s_indicators_glossary_table.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="c3s_indicators_listing"
+      for="*"
+      class="eea.climateadapt.browser.misc.C3sIndicatorsListing"
+      template="pt/c3s_indicators_listing.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
       name="c3s_disclaimer"
       for="*"
       class="eea.climateadapt.browser.misc.C3sIndicatorsOverview"
@@ -261,6 +277,14 @@
       name=".json"
       for="eea.climateadapt.acemeasure.ICaseStudy"
       class=".casestudy.CaseStudyJson"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="view_cca_event"
+      for="plone.event.interfaces.IEvent"
+      class="plone.app.event.browser.event_view.EventView"
+      template="pt/ccaevent_view.pt"
       permission="zope2.View"
       />
 

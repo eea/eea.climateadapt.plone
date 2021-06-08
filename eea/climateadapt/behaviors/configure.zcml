@@ -30,6 +30,12 @@
           provides=".health_observatory.IHealthObservatoryMetadata"
         />
 
+      <plone:behavior
+            title="CCA Event details"
+            description="Settings for CCA Events"
+            provides=".ccaevent.ICcaEvent"
+          />
+
     </configure>
 
 </configure>

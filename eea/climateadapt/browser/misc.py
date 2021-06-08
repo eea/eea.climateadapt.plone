@@ -989,8 +989,9 @@ class C3sIndicatorsOverview(BrowserView):
         data_overview_page = datastore['data']['overview_page']
 
         response = []
-        hazard_type_order = data_overview_page['hazard_type_order']
-        hazard_type_order.append(['Other'])
+        #hazard_type_order = data_overview_page['hazard_type_order']
+        hazard_type_order = data_overview_page['hazard_type_order_left'] + data_overview_page['hazard_type_order_right']
+        #hazard_type_order.append(['Other'])
 
         for index, main_category in enumerate(data_overview_page['category_order']):
             if main_category in data_overview_page['hazard_list']:
@@ -1008,11 +1009,105 @@ class C3sIndicatorsOverview(BrowserView):
 
         return response
 
+    def get_overview_columns(self):
+        site = portal.get()
+        base_folder = site["knowledge"]["european-climate-data-explorer"]
+        datastore = IAnnotations(base_folder).get('c3s_json_data', {})
+        overview_page = datastore['data']['overview_page']
+        response = {'left':[], 'right':[]}
+
+        catalog = getToolByName(site, 'portal_catalog')
+        for category in overview_page['hazard_list']:
+            for hazard in overview_page['hazard_list'][category]:
+                for index, item in enumerate(overview_page['hazard_list'][category][hazard]):
+                    c3s_identifier = None
+                    #print(item['title'])
+                    for c3s_identifier_ in datastore["data"]["indicators"]:
+                        #print("  "+c3s_identifier_)
+                        #print("  "+datastore["data"]["indicators"][c3s_identifier_]["page_title"])
+                        if datastore["data"]["indicators"][c3s_identifier_]["page_title"] == item['title']:
+                            c3s_identifier = c3s_identifier_
+                            #print("  --> FOUND")
+                            break
+                    if c3s_identifier:
+                        #import pdb; pdb.set_trace()
+                        query = {
+                            'portal_type': 'eea.climateadapt.c3sindicator',
+                            'c3s_identifier': c3s_identifier
+                        }
+                        brains = catalog.searchResults(query)
+                        for brain in brains:
+                            if c3s_identifier == brain.getObject().c3s_identifier:
+                                overview_page['hazard_list'][category][hazard][index]['url'] = brain.getURL()
+                    else:
+                        print "Not found: "+ item['title']
+
+        for side in response:
+            for cindex, category in enumerate(overview_page['category_order_'+side]):
+                if category in overview_page['hazard_list']:
+                    category_index = len(response[side])
+                    response[side].insert(category_index, {'name':category, 'items':[]})
+
+                    hazards = overview_page['hazard_type_order_'+side][cindex]
+                    for hazard in hazards:
+                        if hazard in overview_page['hazard_list'][category]:
+                            len_hazard = len(response[side][category_index]['items'])
+                            response[side][category_index]['items'].insert(len_hazard, {'name':hazard, 'items':overview_page['hazard_list'][category][hazard]})
+
+        return response
+
+
     def get_disclaimer(self):
         site = portal.get()
         base_folder = site["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         return datastore['data']['html_pages']['disclaimer']['page_text']
 
+    def get_glossary_table(self):
+        site = portal.get()
+        base_folder = site["knowledge"]["european-climate-data-explorer"]
+        datastore = IAnnotations(base_folder).get('c3s_json_data', {})
+        if 'glossary_table' in datastore['data']:
+            return datastore['data']['glossary_table']
+        return ''
+
     def __call__(self):
         return self.index()
+
+class C3sIndicatorsListing(BrowserView):
+    """ Overview page for indicators. Registered as @@c3s_indicators_overview
+
+    To be used from inside a collective.cover
+    """
+
+    def __init__(self, context, request):
+        # Each view instance receives context and request as construction parameters
+        self.context = context
+        self.request = request
+
+    def list(self):
+        res = {'description':'','items':[]}
+
+        url = self.request["ACTUAL_URL"]
+        category = url.split("/")[-1]
+
+        catalog = api.portal.get_tool("portal_catalog")
+        brains = catalog.searchResults(portal_type='eea.climateadapt.c3sindicator', c3s_theme=category.capitalize())
+
+        items = {}
+        for brain in brains:
+            obj = brain.getObject()
+            items[obj.title] = brain.getURL()
+
+        site = portal.get()
+        base_folder = site["knowledge"]["european-climate-data-explorer"]
+        datastore = IAnnotations(base_folder).get('c3s_json_data', {})
+        res['description'] = datastore['data']['themes'][category]['description']
+        for indicator in datastore['data']['themes'][category]['apps']:
+            if indicator['title'] in items:
+                res['items'].append({
+                    'title': indicator['title'],
+                    'url': items[indicator['title']],
+                })
+
+        return res

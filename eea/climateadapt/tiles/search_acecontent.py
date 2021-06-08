@@ -15,7 +15,7 @@ from collective.cover.tiles.list import IListTile
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.catalog import get_aceitem_description
 from eea.climateadapt.vocabulary import (_climateimpacts, _datatypes,
-                                         _elements, _sectors,
+                                         _elements, _origin_website, _sectors,
                                          ace_countries_dict)
 from plone import api
 from plone.api import portal
@@ -35,6 +35,7 @@ from zope.interface import implements
 from zope.schema import Bool, Choice, Dict, Int, List, TextLine
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
+ORIGIN_WEBSITES = dict(_origin_website)
 CLIMATE_IMPACTS = dict(_climateimpacts)
 COUNTRIES = ace_countries_dict
 DATATYPES = dict(_datatypes)
@@ -55,6 +56,14 @@ class ISearchAceContentTile(IPersistentCoverTile):
         title=_(u"Search Text"),
         required=False,
         default=u"",
+    )
+
+    origin_website = List(
+        title=_(u"Origin website"),
+        required=False,
+        value_type=Choice(
+            vocabulary='eea.climateadapt.origin_website'
+        ),
     )
 
     search_type = List(
@@ -137,6 +146,7 @@ class AceTileMixin(object):
         # todo: do countries
         # map of {tile field: index name}
         map = {
+            "origin_website": "origin_website",
             "search_type": "search_type",
             "element_type": "elements",
             "search_text": "SearchableText",
@@ -160,7 +170,7 @@ class AceTileMixin(object):
         if sort:
             query["sort_on"] = sort_map[sort]
 
-            if sort == "MODIFIED" or "EFFECTIVE":
+            if sort in ("MODIFIED", "EFFECTIVE"):
                 query["sort_order"] = "reverse"
 
         for setting_name, index_name in map.items():
@@ -221,6 +231,10 @@ class AceTileMixin(object):
             if k == "search_type":
                 for s in v:
                     terms.append({u"term": {u"typeOfData": DATATYPES[s]}})
+
+            if k == "origin_website":
+                for s in v:
+                    terms.append({u"term": {u"typeOfData": ORIGIN_WEBSITES[s]}})
 
             if k == "sectors":
                 for s in v:
