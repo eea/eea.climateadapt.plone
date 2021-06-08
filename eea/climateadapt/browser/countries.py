@@ -271,7 +271,9 @@ class CountriesMetadataExtract(BrowserView):
                     v.get('Link'), v.get('Title'))
                 for v in values
             ]
-            value = u"<ul>{}</ul>".format(''.join(value))
+            value = u"<ul>{}</ul>".format(
+                ''.join(value or ['<li>No data</li>'])
+            )
 
             if "NAP" in name:
                 prop = "nap_info"
