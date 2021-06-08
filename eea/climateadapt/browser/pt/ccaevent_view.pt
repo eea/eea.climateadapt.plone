@@ -19,9 +19,9 @@
 {
     color:#007cb9;
 }
-.aceitem_page h5 {
+.aceitem_page h3 {
     color:#007cb9;
-    text-decoration:italic !important;
+    font-style:italic !important;
     margin:0px;
     padding-top:5px;
 }
@@ -79,7 +79,7 @@ $( document ).ready(function() {
                             <a name="agenda"></a>
                             <h2>Agenda and supporting documents</h2>
                             <tal tal:condition="context/agenda_file">
-                            <p style="padding-top:15px;">Download the detailed agenda <a tal:attributes="href python:context.absolute_url_path()+'/@@download/agenda_file/'+context.agenda_file.filename">here</a></p>
+                            <p>Download the detailed agenda <a tal:attributes="href python:context.absolute_url_path()+'/@@download/agenda_file/'+context.agenda_file.filename">here</a></p>
                             </tal>
                             <div style="border:1px solid #ddd;padding:15px;" tal:content="structure context/agenda/output"></div>
                             <tal tal:condition="context/background_documents">
@@ -88,15 +88,15 @@ $( document ).ready(function() {
 
                             <a name="information"></a>
                             <h2>Practical information</h2>
-                            <h5 style="padding-top:0px;">Participation</h5>
+                            <h3 style="padding-top:0px;">Participation</h3>
                             <p tal:content="structure context/participation/output"></p>
 
                             <tal tal:condition="context/contact_email">
-                            <h5>Contact</h5>
+                            <h3>Contact</h3>
                             <p>If you have any further questions you can contact <a tal:attributes="href string:mailto:${context/contact_email}" tal:content="context/contact_email"></a></p>
                             </tal>
 
-                            <h5>Language of the conference</h5>
+                            <h3>Language of the conference</h3>
                             <p tal:content="structure context/language"></p>
 
                             <tal tal:condition="context/online_registration">
