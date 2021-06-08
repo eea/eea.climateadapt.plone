@@ -243,7 +243,7 @@ def get_nap_nas(obj, text, country):
 class CountriesMetadataExtract(BrowserView):
     """Extract metadata from all country profiles, exports as json"""
 
-    def extract_country_metadata_from_discodata(self, obj):
+    def extract_country_metadata_discodata(self, obj):
         res = {}
 
         for name in ["nap", "nas"]:
@@ -283,8 +283,6 @@ class CountriesMetadataExtract(BrowserView):
         return res
 
     def extract_country_metadata(self, obj):
-        """ replaced by method 'extract_country_metadata_from_discodata' """
-
         # if 'ireland' in obj.absolute_url().lower():
         #     import pdb
         #     pdb.set_trace()
@@ -319,8 +317,16 @@ class CountriesMetadataExtract(BrowserView):
             if child.portal_type not in ["Folder", "collective.cover.content"]:
                 continue
 
+            try:
+                c_metadata = self.extract_country_metadata(child)
+            except:
+                c_metadata = self.extract_country_metadata_discodata(child)
+
+            if not c_metadata:
+                c_metadata = self.extract_country_metadata_discodata(child)
+
             res[child.Title()] = [
-                self.extract_country_metadata_from_discodata(child),
+                c_metadata,
                 child.absolute_url(),
             ]
 
