@@ -1065,6 +1065,13 @@
       />
 
   <browser:page
+      name="case_study_contacts.csv"
+      for="*"
+      class=".download.CaseStudiesCSV"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
       name="health_homepage"
       for="*"
       class=".health.HealthHomepageItems"
