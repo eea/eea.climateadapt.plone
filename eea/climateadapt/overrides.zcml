@@ -38,6 +38,9 @@
   <adapter factory=".excelexport.TextFieldRenderer"
     provides="collective.excelexport.interfaces.IExportable" />
 
+  <adapter factory=".excelexport.RichTextFieldRenderer"
+    provides="collective.excelexport.interfaces.IExportable" />
+
   <adapter factory=".excelexport.RelationListFieldRenderer"
     provides="collective.excelexport.interfaces.IExportable" />
 

@@ -6,6 +6,7 @@ from zope.interface import Interface
 from zope.schema.interfaces import IDatetime, IList, IText, ITextLine, ITuple
 
 from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader, Year
+from plone.app.textfield.interfaces import IRichText
 from plone.api import content, portal
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.formwidget.geolocation.interfaces import IGeolocationField
@@ -41,6 +42,7 @@ class BaseRenderer(object):
 
         return base_style
 
+
 class ObjectStateRenderer(BaseRenderer):
     """ Object state: published/unpublished renderer
     """
@@ -51,6 +53,7 @@ class ObjectStateRenderer(BaseRenderer):
     def render_header(self):
         return "review state"
 
+
 class CreatorRenderer(BaseRenderer):
     """ Item creator renderer
     """
@@ -59,6 +62,7 @@ class CreatorRenderer(BaseRenderer):
 
     def render_header(self):
         return 'creator'
+
 
 class MetadataExportablesFactory(BaseExportableFactory):
     """Get fields content schema
@@ -282,6 +286,31 @@ class TextFieldRenderer(BaseFieldRenderer):
 
     def _get_text(self, value):
         return value
+
+    def render_value(self, obj):
+        """Gets the value to render in excel file from content value
+        """
+        value = self.get_value(obj)
+
+        if not value or value == NO_VALUE:
+            return ""
+
+        text = safe_unicode(self._get_text(value))
+
+        return text
+
+
+class RichTextFieldRenderer(BaseFieldRenderer):
+    """ RichText field adapter for excel export"""
+    adapts(IRichText, Interface, Interface)
+
+    def _get_text(self, value):
+        try:
+            v = value.output
+        except:
+            v = value
+            
+        return v
 
     def render_value(self, obj):
         """Gets the value to render in excel file from content value
