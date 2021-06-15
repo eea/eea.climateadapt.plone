@@ -739,6 +739,63 @@ function initCustomAccordions() {
   });
 }
 
+function initCountryProfileAccordions() {
+  // Accordion: Toggle arrow up and down on click
+  var $panelTitle = $(".panel-title a");
+
+  $panelTitle.addClass("arrow-down");
+  $panelTitle.click(function () {
+    $(this).toggleClass("arrow-up arrow-down");
+  });
+
+  var $customAccordion = $(".country-profile-accordion");
+  var $panelHeading = $customAccordion.find(".panel-heading");
+  var $panelCollapse = $customAccordion.find(".panel-collapse");
+  var $panelDefault = $customAccordion.find(".panel-default");
+
+//  $panelTitle.click(function () {
+//    var $this = $(this);
+//    if ($this.text() === "Read more") {
+//      $this.text("Read less");
+//    } else if ($this.text() === "Read less") {
+//      $this.text("Read more");
+//    }
+//  });
+
+  $panelCollapse.css({
+    display: "block",
+    height: "0px",
+    overflow: "hidden",
+    position: "relative",
+  });
+
+//  $panelHeading.css("text-align", "right");
+
+  var $panelLayer = $('<div class="panel-layer fadein"/>');
+  $panelCollapse.prepend($panelLayer);
+
+  $panelDefault.each(function () {
+    var panelTitle = $(".panel-title a", this);
+    var panelCollapse = $(".panel-collapse", this);
+    var panelLayer = $(".panel-layer", this);
+//    $(".panel-heading", this).before(panelCollapse);
+
+    var opened = false;
+
+    panelTitle.on("click", function () {
+      if (!opened) {
+        panelCollapse.addClass("panel-opened");
+        panelLayer.removeClass("fadein").addClass("fadeout");
+        opened = true;
+      } else {
+        panelCollapse.removeClass("panel-opened");
+        panelLayer.removeClass("fadeout").addClass("fadein");
+        opened = false;
+      }
+    });
+  });
+}
+
 function fixTiles() {
   // Fix tiles
   $(".tile-container").each(function () {
@@ -920,6 +977,7 @@ $(document).ready(function () {
   initExternalLinks();
   initCountryPages();
   initCustomAccordions();
+  initCountryProfileAccordions();
   fixTiles();
   fixForms();
   fixMoveMap();
