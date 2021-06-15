@@ -15,23 +15,23 @@
 
         <fieldset tal:condition="fieldset_data"
                   tal:define="use_accordion python: len(fieldset_data) > 1000"
-                  style="borderr: 2px solid #329fd7; padding: 10px 15px 0px 15px;">
-          <legend style="border: 2px solid #329fd7; padding: 0.5em;
-                color: white; background-color: #329fd7; font-weight: bold;
+                  >
+          <legend style="borderr: 2px solid #005c96; padding: 0.5em;
+                color: white; background-color: #005c96; font-weight: bold;
                 border-radius: 5px;"
               tal:content="fieldset_legend">Biogeophysical characteristics</legend>
 
           <div tal:attributes="class python: use_accordion and 'country-profile-accordion' or ''">
             <div tal:define="id python: 'accordion_' + fieldset_legend.replace(' ', '_')"
-                 style="border: none; padding: 0px; margin-top: -5px;"
+                 style="border: none; padding: 5px; margin-top: -5px;"
                  class="panel panel-default">
               <div tal:condition="use_accordion"
                   class="panel-heading"
-                  style="text-align: right; position: relative; top: -37px; left: -5px;">
+                  style="text-align: right; position: relative; top: -30px; left: 0px;">
                 <h4 class="panel-title">
                   <span class="link-https">
                     <a tal:attributes="href id"
-                       style="background-color: white; width: 125px; float: right; border-radius: 5px; text-align: center; padding: 2px;"
+                       style="background-color: white; width: 125px; float: right; border-radius: 5px; text-align: center; padding: 1px;"
                        class="accordion-toggle arrow-down collapsed"
                        data-toggle="collapse"
                        aria-expanded="false">Read more</a>
@@ -43,7 +43,7 @@
                    style="display: block; overflow: hidden; position: relative;">
                 <div tal:condition="use_accordion" class="panel-layer fadein"></div>
                 <div class="panel-body"
-                     style="padding: 5px 5px 15px 5px;">
+                     style="padding: 5px;">
                   <div class="read_more_second"
                       tal:content="structure python: view.convert_web_int(fieldset_data)">Data here</div>
                 </div>
@@ -444,9 +444,9 @@
 
       <h2 style="color: #005c96;">Key affected sectors</h2>
       <tal:rep tal:repeat="item view/get_sorted_affected_sectors_data">
-        <fieldset style="borderr: 2px solid #329fd7; padding: 10px 15px 0px 15px;">
-          <legend style="border: 2px solid #329fd7; padding: 0.5em;
-                  color: white; background-color: #329fd7; font-weight: bold;
+        <fieldset >
+          <legend style="borderr: 2px solid #005c96; padding: 0.5em;
+                  color: white; background-color: #005c96; font-weight: bold;
                   border-radius: 5px;">
             <span tal:content="item/SectorTitle/title">Forest</span>
             <span tal:condition="item/SectorDescribeIfOther"
@@ -454,14 +454,14 @@
 
           </legend>
           <div class="country-profile-accordion">
-            <div style="border: none; padding: 0px;"
+            <div style="border: none; padding: 5px;"
                  class="panel panel-default">
               <div class="panel-heading"
-                   style="text-align: right; position: relative; top: -42px; left: -5px;">
+                   style="text-align: right; position: relative; top: -35px; left: 0px;">
                 <h4 class="panel-title">
                   <span class="link-https">
                     <a tal:attributes="href string: '.'"
-                       style="background-color: white; width: 125px; float: right; border-radius: 5px; text-align: center; padding: 2px;"
+                       style="background-color: white; width: 125px; float: right; border-radius: 5px; text-align: center; padding: 1px;"
                        class="accordion-toggle arrow-down collapsed"
                        data-toggle="collapse"
                        aria-expanded="false">Read more</a>
@@ -594,21 +594,21 @@
 
       <h2 style="color: #005c96;">Selection of actions and (programmes of) measures</h2>
       <tal:rep tal:repeat="item view/get_sorted_action_measures_data">
-        <fieldset style="borderr: 2px solid #329fd7; padding: 10px 15px 0px 15px;">
-          <legend style="border: 2px solid #329fd7; padding: 0.5em;
-                  color: white; background-color: #329fd7; font-weight: bold;
+        <fieldset >
+          <legend style="borderr: 2px solid #005c96; padding: 0.5em;
+                  color: white; background-color: #005c96; font-weight: bold;
                   border-radius: 5px;">
             <span tal:content="item/Title">Forest</span>
           </legend>
           <div class="country-profile-accordion">
-            <div style="border: none; padding: 0px;"
+            <div style="border: none; padding: 5px;"
                  class="panel panel-default">
               <div class="panel-heading"
-                   style="text-align: right; position: relative; top: -42px; left: -5px;">
+                   style="text-align: right; position: relative; top: -35px; left: 0px;">
                 <h4 class="panel-title">
                   <span class="link-https">
                     <a tal:attributes="href string: '.'"
-                       style="background-color: white; width: 125px; float: right; border-radius: 5px; text-align: center; padding: 2px;"
+                       style="background-color: white; width: 125px; float: right; border-radius: 5px; text-align: center; padding: 1px;"
                        class="accordion-toggle arrow-down collapsed"
                       data-toggle="collapse"
                       aria-expanded="false">Read more</a>
@@ -742,21 +742,21 @@
     <div class="tab-pane  " id="4489-5">
       <h2 style="color: #005c96;">Good practices and lessons learnt</h2>
       <tal:rep tal:repeat="item view/get_sorted_available_practices_data">
-        <fieldset style="borderr: 2px solid #329fd7; padding: 10px 15px 0px 15px;">
-          <legend style="border: 2px solid #329fd7; padding: 0.5em;
-                  color: white; background-color: #329fd7; font-weight: bold;
+        <fieldset >
+          <legend style="borderr: 2px solid #005c96; padding: 0.5em;
+                  color: white; background-color: #005c96; font-weight: bold;
                   border-radius: 5px;">
             <span tal:content="item/Area">Forest</span>
           </legend>
           <div class="country-profile-accordion">
-            <div style="border: none; padding: 0px;"
+            <div style="border: none; padding: 5px;"
                  class="panel panel-default">
               <div class="panel-heading"
-                   style="text-align: right; position: relative; top: -42px; left: -5px;">
+                   style="text-align: right; position: relative; top: -35px; left: 0px;">
                 <h4 class="panel-title">
                   <span class="link-https">
                     <a tal:attributes="href string: '.'"
-                       style="background-color: white; width: 125px; float: right; border-radius: 5px; text-align: center; padding: 2px;"
+                       style="background-color: white; width: 125px; float: right; border-radius: 5px; text-align: center; padding: 1px;"
                        class="accordion-toggle arrow-down collapsed"
                        data-toggle="collapse"
                        aria-expanded="false">Read more</a>
