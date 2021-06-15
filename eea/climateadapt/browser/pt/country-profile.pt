@@ -450,7 +450,7 @@
                   border-radius: 5px;">
             <span tal:content="item/SectorTitle/title">Forest</span>
             <span tal:condition="item/SectorDescribeIfOther"
-                tal:content="python: ': ' + item['SectorDescribeIfOther'].title()">Forest</span>
+                tal:content="python: ': ' + item['SectorDescribeIfOther']">Forest</span>
 
           </legend>
           <div class="country-profile-accordion">
@@ -746,7 +746,7 @@
           <legend style="border: 2px solid #329fd7; padding: 0.5em;
                   color: white; background-color: #329fd7; font-weight: bold;
                   border-radius: 5px;">
-            <span tal:content="item/Area/title">Forest</span>
+            <span tal:content="item/Area">Forest</span>
           </legend>
           <div class="country-profile-accordion">
             <div style="border: none; padding: 0px;"
