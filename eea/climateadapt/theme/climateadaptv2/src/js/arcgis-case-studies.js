@@ -126,7 +126,7 @@ window.requirejs([
             type: "color",
             field: "origin_adaptecca",
             stops: [
-                { value: 10, color: "#3c8fdb" },
+                { value: 10, color: "#00FFFF" },
                 { value: 20, color: "#005c96" }
             ]
         }],

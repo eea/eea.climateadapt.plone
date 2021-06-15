@@ -218,7 +218,7 @@
     display: inline-block;
 }
 .case-study-legend span.light-blue{
-    background-color:#3c8fdb !important;
+    background-color:#00FFFF !important;
 }
 </style>
 <div class="row">
