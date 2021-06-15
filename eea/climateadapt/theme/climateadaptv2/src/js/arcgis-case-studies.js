@@ -85,43 +85,51 @@ window.requirejs([
   const geojsonLayer = new GeoJSONLayer({
     url: url,
     featureReduction: {
-      type: "cluster",
-      clusterRadius: "60px",
-      labelPlacement: "center-center",
-      clusterMinSize: "20px",
-      clusterMaxSize: "40px",
-      popupEnabled: true,
-      popupTemplate: {
-        title: "hello4",
-        content: onShow
-      },
-      labelingInfo: [{
-        labelExpressionInfo: {
-          expression: "Text($feature.cluster_count, '#,###')",
-        },
-        symbol: {
-          type: "text",
-          color: "#ffffff",
-          borderLineSize: 0,
-          font: {
-            weight: "bold",
-            family: "Noto Sans",
-            size: "16px"
-          },
-        },
+        type: "cluster",
+        clusterRadius: "60px",
         labelPlacement: "center-center",
-      }]
+        clusterMinSize: "20px",
+        clusterMaxSize: "40px",
+        popupEnabled: true,
+        popupTemplate: {
+            title: "hello4",
+            content: onShow
+        },
+        labelingInfo: [{
+            labelExpressionInfo: {
+                expression: "Text($feature.cluster_count, '#,###')",
+            },
+            symbol: {
+                type: "text",
+                color: "#ffffff",
+                borderLineSize: 0,
+                font: {
+                    weight: "bold",
+                    family: "Noto Sans",
+                    size: "16px"
+                },
+            },
+            labelPlacement: "center-center",
+        }],
     },
     renderer: {
-      type: "simple",
-      symbol: {
-        type: "simple-marker",
-        size: 8,
-        color: "#005c96",
-        outline: {
-          width: 0
-        }
-      }
+        type: "simple",
+        symbol: {
+            type: "simple-marker",
+            size: 8,
+            color: "#005c96",
+            outline: {
+                width: 0
+            }
+        },
+        visualVariables: [{
+            type: "color",
+            field: "origin_adaptecca",
+            stops: [
+                { value: 10, color: "#3c8fdb" },
+                { value: 20, color: "#005c96" }
+            ]
+        }],
     },
     popupTemplate: template
   });

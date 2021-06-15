@@ -88,6 +88,7 @@ class Items(BrowserView):
                             "ipccs": ','+(','.join(list_ipcc_categories))+',',
                             "adaptation_options": '<>'.join(list_adaptation_options),
                             "adaptation_options_links": '<>'.join(list_adaptation_options_links),
+                            "origin_adaptecca": 10 if 'AdapteCCA' in obj.origin_website else 20,
 
                             "sectors_str": ','.join(sectors_str),
                             "impacts_str": ','.join(impacts_str),
@@ -100,6 +101,8 @@ class Items(BrowserView):
                         "geometry": {
                             "type": "Point",
                             #"coordinates": [geo.x, geo.y]
+                            "svg" : {"fill_color": "#009900"},
+                            "color": "#009900",
                             "coordinates": [obj.geolocation.longitude, obj.geolocation.latitude]
                         }
                     })

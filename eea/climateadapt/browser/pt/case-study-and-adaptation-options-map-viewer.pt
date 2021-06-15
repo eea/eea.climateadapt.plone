@@ -187,6 +187,39 @@
   .cs_filter_ipcc:first-child {
     padding-top:0px !important;
   }
+  @media only screen and (min-width: 991px) {
+    .row.case-study-row {
+      display: flex;
+    }
+
+    .col-md-3.case-study-div {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
+
+    div.case-study-legend {
+      margin-top: auto; // pt div la care vrei sa fie jos
+    }
+   }
+
+.case-study-legend {
+   padding-left: 20px;
+   padding-right: 20px;
+}
+.case-study-legend p{
+}
+.case-study-legend span{
+    background-color:#005c96 !important;
+    height: 12px;
+    width: 12px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+.case-study-legend span.light-blue{
+    background-color:#3c8fdb !important;
+}
 </style>
 <div class="row">
     <div class="col-md-12 cs-menu">
@@ -197,11 +230,11 @@
         -->
     </div>
 </div>
-<div class="row">
+<div class="row case-study-row">
     <div class="col-md-9">
         <div id="arcgisDiv" style="min-height:605px;"></div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 case-study-div">
         <form class="form-inline pl-3" id="arcgis_case_study_form" style="padding-left:20px;padding-right:20px;">
         <div class="row">
             <div class="cols-md-12 cs_filter_sector_div" tal:define="sectors view/get_sectors">
@@ -247,6 +280,10 @@
         -->
         </div>
         </form>
+        <div class="case-study-legend">
+            <p><span></span> Climate-ADAPT case studies</p>
+            <p><span class="light-blue"></span> Case studies collected at national level in Spain, provided by AdapteCCA.es</p>
+        </div>
     </div>
 </div>
 
