@@ -1163,6 +1163,18 @@ $(document).ready(function () {
       $('html, body').animate({ scrollTop : 0 }, 500);
       return false;
     });
+
+    currentUrl = window.location.pathname + window.location.search;
+    ccaEventUrls = [
+        '/cca-events/event_listing',
+        '/cca-events/event_listing/',
+        '/cca-events/event_listing?mode=future',
+        '/cca-events/event_listing/?mode=future',
+    ];
+
+    if (ccaEventUrls.includes(currentUrl) && 0 == $("#content-core .event_listing article").length) {
+        $("#content-core .event_listing section").html("<h3>No events are planning for the time being</h3>")
+    }
 });
 
 // Divide the sub-menu in 2 columns if 'sub-sub-menu' exist
