@@ -458,7 +458,7 @@ function showMapTooltip(d) {
   var isOverview = (_selectedMapSection === 'overview');
   var napInfo, nasInfo;
   if (content['nap_info'] != '') {
-    napInfo = '<span>National adaptation strategy:</span>' +
+    napInfo = '<span>National adaptation plan:</span>' +
     content['nap_info'];
   } else {
     napInfo = '';

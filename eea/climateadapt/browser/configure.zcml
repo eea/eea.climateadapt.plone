@@ -854,7 +854,7 @@
   <browser:page
       name="country-profile"
       for="eea.climateadapt.interfaces.ICCACountry"
-      class=".country_fact_sheet.CountryProfileData"
+      class=".countries.CountryProfileData"
       template="pt/country-profile.pt"
       permission="zope2.View"
   />
@@ -862,7 +862,7 @@
   <browser:page
       name="country-profile-raw"
       for="eea.climateadapt.interfaces.ICCACountry"
-      class=".country_fact_sheet.CountryProfileDataRaw"
+      class=".countries.CountryProfileDataRaw"
       template="pt/country-profile-raw.pt"
       permission="zope2.View"
   />
