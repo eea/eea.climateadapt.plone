@@ -1166,6 +1166,8 @@ $(document).ready(function () {
 
     currentUrl = window.location.pathname + window.location.search;
     ccaEventUrls = [
+        '/cca-events',
+        '/cca-events/',
         '/cca-events/event_listing',
         '/cca-events/event_listing/',
         '/cca-events/event_listing?mode=future',
