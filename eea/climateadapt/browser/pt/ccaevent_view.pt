@@ -98,7 +98,7 @@ $( document ).ready(function() {
                             <h3>Language of the conference</h3>
                             <p tal:content="structure context/language"></p>
 
-                            <tal tal:condition="context/online_registration">
+                            <tal tal:condition="view/future_event">
                             <a name="registration"></a>
                             <h2>Registration</h2>
                             <p>Please fill in this <a href="" tal:attributes="href context/online_registration">registration form</a></p>
@@ -118,9 +118,9 @@ $( document ).ready(function() {
                               <h4>Info:</h4>
                               <span tal:content="data/contact_email">contact email</span>
                           </div>
-                          <div class="macro-category" style="padding-top:15px;">
+                          <div class="macro-category" style="padding-top:15px;" tal:condition="view/future_event">
                               <h4>Registration:</h4>
-                              <a tal:condition="context/online_registration" tal:attributes="href context/online_registration">Online registration</a>
+                              <a tal:attributes="href context/online_registration">Online registration</a>
                           </div>
                       </div>
                     </div>

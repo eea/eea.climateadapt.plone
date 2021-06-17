@@ -283,7 +283,7 @@
   <browser:page
       name="view_cca_event"
       for="plone.event.interfaces.IEvent"
-      class="plone.app.event.browser.event_view.EventView"
+      class="eea.climateadapt.browser.cca_event.CcaEvent"
       template="pt/ccaevent_view.pt"
       permission="zope2.View"
       />
