@@ -120,13 +120,13 @@
   .esri-popup__header-title strong,
   .esri-popup__header-title h2{
       font-weight:normal;
-      font-size:11px;
+      font-size:12px;
       line-height:14px;
       color:#005c96;
   }
 
   .esri-popup__header-title a{
-      font-size:10px;
+      font-size:12px;
   }
 
   .esri-feature__main-container p,
@@ -181,6 +181,7 @@
   .esri-popup__content p{
       padding: 0 5px 0 5px;
   }
+
   .cs_filter_ipcc {
     padding-top:10px !important;
   }
@@ -260,6 +261,9 @@
                         <input type="checkbox" name="ipccs" tal:attributes="value ipcc/key" >
                     </tal>
                 </p>
+            </div>
+            <div class="cols-md-12" style="clear:both;">
+                <a href="" class="standard-button primary-button reset" title="Reset">Reset</a>
             </div>
 
 
