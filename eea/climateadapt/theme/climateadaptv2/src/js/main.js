@@ -742,16 +742,17 @@ function initCustomAccordions() {
 function initCountryProfileAccordions() {
   // Accordion: Toggle arrow up and down on click
   var $panelTitle = $(".panel-title a");
-
-  $panelTitle.addClass("arrow-down");
-  $panelTitle.click(function () {
-    $(this).toggleClass("arrow-up arrow-down");
-  });
-
-  var $customAccordion = $(".country-profile-accordion");
+  var $customAccordion = $(".country-profile-accordion.collapsed");
   var $panelHeading = $customAccordion.find(".panel-heading");
   var $panelCollapse = $customAccordion.find(".panel-collapse");
   var $panelDefault = $customAccordion.find(".panel-default");
+
+  $panelTitle.click(function () {
+    // $(this).toggleClass("arrow-up arrow-down");
+    $(this).toggleClass("collapsed");
+    // var $legend = $(this).parents(".country-profile-accordion").prev();
+    // $legend.toggleClass("collapsed");
+  });
 
 //  $panelTitle.click(function () {
 //    var $this = $(this);
