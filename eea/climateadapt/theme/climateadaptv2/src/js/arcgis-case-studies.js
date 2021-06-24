@@ -59,11 +59,11 @@ window.requirejs([
       div.innerHTML += '<span style="background-color:#ddd;display:block;margin-bottom:10px;"><center><img style="max-height:133px;" src="'+feature.graphic.attributes.image+'" /></center></span>';
     }
     if (sectors.length) {
-      div.innerHTML += '<p style="font-size:12px;margin-bottom:10px;""><span style="color:#069;">Adaptation sectors:</span> '+sectors.split(',').join(', ')+'</p>';
+      div.innerHTML += '<p style="font-size:13px;margin-bottom:10px;""><span style="color:#069;">Adaptation sectors:</span> '+sectors.split(',').join(', ')+'</p>';
     }
-    div.innerHTML += '<p style="font-size:12px;margin-bottom:10px;""><span style="color:#069;">Climate impacts:</span> '+impacts+'</p>';
+    div.innerHTML += '<p style="font-size:13px;margin-bottom:10px;""><span style="color:#069;">Climate impacts:</span> '+impacts+'</p>';
     if (adaptation_options.length) {
-      div.innerHTML += '<p class="cs_adaptation_casestudies" style="font-size:12px;margin-bottom:5px;""><span style="color:#069;">Adaptation options:</span> '+adaptation_options.split('<>').join('; ')+'</p>';
+      div.innerHTML += '<p class="cs_adaptation_casestudies" style="font-size:13px;margin-bottom:5px;""><span style="color:#069;">Adaptation options:</span> '+adaptation_options.split('<>').join('; ')+'</p>';
     }
     $('.esri-component.esri-popup').css('display', 'block');
     return div;
@@ -172,19 +172,35 @@ window.requirejs([
 
 $( document ).ready(function() {
   $('#arcgis_case_study_form input[name="impacts"], #arcgis_case_study_form input[name="sectors"], #arcgis_case_study_form input[name="ipccs"]').change(function(){
+    buttonReset();
     updateItems();
   });
   $('#arcgis_case_study_form h4').click(function() {
       filterDisplayMode(this);
   })
+  $(".case-study-row .case-study-div a.reset").click(function() {
+      $(".case-study-row .case-study-div input:checked").click();
+      $(".case-study-row .case-study-div h4").removeClass('active');
+      $(".case-study-row .case-study-div form p").hide();
+      return false;
+  });
+  buttonReset();
+
   elements = $('#arcgis_case_study_form h4');
   for (i=0;i<elements.length;i++) {
     //filterDisplayMode(elements[i]);
   };
 });
 
+function buttonReset() {
+    if ($(".case-study-row .case-study-div input:checked").length >0) {
+        $(".case-study-row .case-study-div a.reset").show();
+    } else {
+        $(".case-study-row .case-study-div a.reset").hide();
+    }
+}
+
 function filterDisplayMode(element) {
-    console.log('aici', element);
     if ($(element).hasClass('active')) {
         $(element).removeClass('active').parent().find('p').hide();
     } else {
