@@ -81,9 +81,9 @@
       <table class="listing table-striped" summary="">
         <thead>
           <tr>
-            <th style="width: 298px;">Item</th>
-            <th style="width: 351px;">Status</th>
-            <th style="width: 356px;">Links</th>
+            <th style="width: 18em;">Item</th>
+            <th style="width: 22em;">Status</th>
+            <th style="width: 22em;">Links</th>
           </tr>
         </thead>
         <tbody>
@@ -308,9 +308,9 @@
       <table class="listing table-striped">
         <thead>
           <tr>
-            <th style="width: 298px;">Observed climate hazards</th>
-            <th style="width: 351px;">Acute</th>
-            <th style="width: 356px;">Chronic</th>
+            <th style="width: 18em;">Observed climate hazards</th>
+            <th style="width: 22em;">Acute</th>
+            <th style="width: 22em;">Chronic</th>
           </tr>
         </thead>
         <tbody>
@@ -372,9 +372,9 @@
       <table class="listing table-striped">
         <thead>
           <tr>
-            <th style="width: 298px;">Key future climate hazards</th>
-            <th style="width: 351px;">Acute</th>
-            <th style="width: 356px;">Chronic</th>
+            <th style="width: 18em;">Key future climate hazards</th>
+            <th style="width: 22em;">Acute</th>
+            <th style="width: 22em;">Chronic</th>
           </tr>
         </thead>
         <tbody>
@@ -463,7 +463,7 @@
                     <table class="listing table-striped">
                       <thead tal:condition="python: False">
                         <tr>
-                          <th style="width: 200px;">Sector</th>
+                          <th>Sector</th>
                           <th>
                             <span tal:content="item/SectorTitle">Forest</span>
                             <span tal:condition="item/SectorDescribeIfOther"
@@ -473,7 +473,7 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <td>Impact/key hazard</td>
+                          <td style="width: 14em;">Impact/key hazard</td>
                           <td>
                             <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
                                 tal:content="structure python: view.convert_web_int(item['ImpactsKeyHazards'])">long text</div>
@@ -604,7 +604,7 @@
                     <table class="listing table-striped">
                       <thead tal:condition="python: False">
                         <tr>
-                          <th style="width: 200px;">Title</th>
+                          <th>Title</th>
                           <th>
                             <span tal:content="item/Title">Forest</span>
                           </th>
@@ -612,7 +612,7 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <td>Description</td>
+                          <td style="width: 14em;">Description</td>
                           <td>
                             <div style="padding: 5px;"
                                  tal:content="structure python: view.convert_web_int(item['ShortDescriptionMeasureAction'])">long text</div>
@@ -758,55 +758,6 @@
           </fieldset>
 
         </tal:block>
-
-        <fieldset tal:condition="python:False">
-          <legend class="country-profile-legend collapsed list">
-            <span tal:content="item/Area">Forest</span>
-          </legend>
-          <div class="country-profile-accordion collapsed">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <span class="link-https">
-                    <a tal:attributes="href string: '.'"
-                       class="accordion-toggle arrow-down collapsed"
-                       data-toggle="collapse"
-                       aria-expanded="false">Read more</a>
-                  </span>
-                </h4>
-              </div>
-              <div class="panel-collapse collapse">
-                <div class="panel-layer fadein"></div>
-                <div class="panel-body">
-                  <div class="read_more_second">
-
-                    <table class="listing table-striped">
-                      <thead>
-                        <tr>
-                          <th style="width: 200px;">Area of good practice</th>
-                          <th>
-                            <span tal:content="structure python: view.convert_web_int(item['Area'])">Forest</span>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Description</td>
-                          <td>
-                            <div style="padding: 5px;"
-                                 tal:content="structure python: view.convert_web_int(item['DescribeGoodPractice'])">long text</div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </fieldset>
       </tal:rep>
 
       <tal:block tal:define="fieldset_legend string: Synergies of adaptation actions with other international frameworks;
@@ -825,7 +776,7 @@
     </div>
 
     <div class="tab-pane  " id="4489-6">
-      <div style="display: flex; margin-bottom: 1em;"
+      <div style="display: flex; margin-bottom: 3em;"
           tal:define="items python: data['Contact'].get('Contact_General', [])">
         <div style="width: 50%;"
             tal:repeat="item items">

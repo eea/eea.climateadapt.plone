@@ -47,7 +47,7 @@
 
       <!-- Select list with countries above map -->
       <div id="country-selector">
-        Select a country to go to country's page:
+        Select a country to go directly to the country's page:
         <select class="form-control">
           <option value=''>Choose a country</option>
         </select>
