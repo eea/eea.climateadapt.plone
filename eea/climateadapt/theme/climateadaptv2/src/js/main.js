@@ -1176,7 +1176,7 @@ $(document).ready(function () {
     ];
 
     if (ccaEventUrls.includes(currentUrl) && 0 == $("#content-core .event_listing article").length) {
-        $("#content-core .event_listing section").html("<h3>No events are planning for the time being</h3>")
+        $("#content-core .event_listing section").html("<h3>No events are planned for the time being</h3>")
     }
 });
 
