@@ -73,37 +73,56 @@ function getCountryClass(country, countries) {
     return k;
   }
 
-  var napnas = meta[0];
-  // console.log("Selected Map section", _selectedMapSection, napnas, countryName);
-
-  if (Object.keys(napnas).indexOf(_selectedMapSection) > -1) {
-    k += ' country-available';
-  }
-
-  if (napnas[_selectedMapSection] === true) {
-    k += ' country-blue';
-  }
-
-  var {nap, nas} = napnas;
-  var nasNapAdopted = (nap && nas);
-  var onlyNasAdopted = (!nap && nas);
-  var onlyNapAdopted = (nap && !nas);
-  var noneAdopted = !(('nap' in napnas) && ('nas' in napnas));
+  var countryNoData = ["United Kingdom", "Iceland", "Liechtenstein"]
+  var discodata = meta[0];
+  console.log("Selected Map section", _selectedMapSection, discodata, countryName);
 
   if (_selectedMapSection === 'overview') {
-    if (nasNapAdopted) {
+//    if (Object.keys(discodata).indexOf(_selectedMapSection) > -1) {
+//      k += ' country-available';
+//    }
+
+//    if (discodata[_selectedMapSection] === true) {
+//      k += ' country-blue';
+//    }
+
+    var {nap_info, nas_info, sap_info} = discodata;
+
+    var nasNapAdopted = (nap_info && nas_info && !sap_info);
+    var onlyNasAdopted = (!nap_info && nas_info && !sap_info);
+    var onlyNapAdopted = (nap_info && !nas_info && !sap_info);
+    var sapAdopted = sap_info;
+    var noneAdopted = !(('nap' in discodata) && ('nas' in discodata));
+
+    if (sapAdopted) {
+      k += ' country-sap';
+    } else if (nasNapAdopted) {
       k += ' country-nasnap';
-    } else if (nap || onlyNapAdopted) {
+    } else if (onlyNapAdopted) {
       k += ' country-nap';
-    } else if (nas || onlyNasAdopted) {
+    } else if (onlyNasAdopted) {
       k += ' country-nas';
     } else if (noneAdopted) {
       k += ' country-none';
     }
+
+    if (countryNoData.indexOf(countryName) > -1) {
+      k += ' country-nodata';
+    }
   }
 
-  if (countryName === "United Kingdom") {
-    k += ' country-nodata';
+  if (_selectedMapSection === 'climate') {
+    var {cciva_info} = discodata;
+    if (cciva_info) {
+      k += ' country-nasnap'
+    } else {
+      k += ' country-nap'
+    }
+
+  }
+
+  if (_selectedMapSection === 'portals') {
+    k += ' country-nas'
   }
 
   return k;
@@ -455,28 +474,50 @@ function showMapTooltip(d) {
   var content = info[0];
   var url = info[1];
 
-  var isOverview = (_selectedMapSection === 'overview');
-  var napInfo, nasInfo;
-  if (content['nap_info'] != '') {
-    napInfo = '<span>National adaptation plan:</span>' +
-    content['nap_info'];
-  } else {
-    napInfo = '';
-  }
-
-  if (content['nas_info'] != '') {
-    nasInfo = '<span>National adaptation strategy:</span>' +
-    content['nas_info'];
-  } else {
-    nasInfo = '';
-  }
-
-  if (content) {
-    if (isOverview) {
-      content = napInfo + nasInfo;
+  if (_selectedMapSection === 'overview') {
+    var napInfo, nasInfo, sapInfo;
+    if (content['nap_info']) {
+      napInfo = '<span>National Adaptation Plan:</span>' + content['nap_info'];
     } else {
-      content = content[window._selectedMapSection + '_info'];
+      napInfo = '';
     }
+
+    if (content['nas_info']) {
+      nasInfo = '<span>National Adaptation Strategy:</span>' + content['nas_info'];
+    } else {
+      nasInfo = '';
+    }
+
+    if (content['sap_info']) {
+      sapInfo = '<span>Sectoral Adaptation Plan:</span>' + content['sap_info'];
+    } else {
+      sapInfo = '';
+    }
+
+    content = (nasInfo + napInfo + sapInfo) || "No data reported";
+
+  }
+
+  if (_selectedMapSection === 'climate') {
+    var ccivaInfo;
+    if (content['cciva_info']) {
+      ccivaInfo = content['cciva_info'];
+    } else {
+      ccivaInfo = "No assessment reported";
+    }
+
+    content = ccivaInfo
+  }
+
+  if (_selectedMapSection === 'portals') {
+    var ccivportalInfo;
+    if (content['ccivportal_info']) {
+      ccivportalInfo = content['ccivportal_info'];
+    } else {
+      ccivportalInfo = "No data reported";
+    }
+
+    content = ccivportalInfo
   }
 
   if (content) createTooltip({
@@ -565,9 +606,10 @@ function createTooltip(opts) {
 function updateSelectedMapSection(key) {
   if (key.toLowerCase().indexOf('policy') > -1) {
     window._selectedMapSection = 'overview';
+  } else if (key.toLowerCase().indexOf('climate') > -1){
+    window._selectedMapSection = 'climate';
   } else {
-    window._selectedMapSection = (key.toLowerCase().indexOf('nas') > -1)
-      ? 'nas' : 'nap';
+    window._selectedMapSection = 'portals';
   }
 }
 
@@ -599,20 +641,26 @@ function createSectionsSelector(sections, countries, callback) {
   $('input', widget).on('change', function () {
     var selectedSection = $(this).attr('value');
     var $this = $(this);
-    var $mapType = $('.map-type');
+//    var $mapType = $('.map-type');
 
-    if ($this.val().indexOf("NAS") != -1) {
-      $mapType.text('NAS');
-    } else if ($this.val().indexOf("NAP") != -1) {
-      $mapType.text('NAP');
-    }
+//    if ($this.val().indexOf("NAS") != -1) {
+//      $mapType.text('NAS');
+//    } else if ($this.val().indexOf("NAP") != -1) {
+//      $mapType.text('NAP');
+//    }
 
     if ($this.val().toLowerCase().indexOf('policy') > -1) {
-      widget.siblings('.legend').hide();
       widget.siblings('.nasnap-legend').show();
-    } else {
-      widget.siblings('.legend').show();
+      widget.siblings('.climate-legend').hide();
+      widget.siblings('.portals-legend').hide();
+    } else if ($this.val().toLowerCase().indexOf('climate') > -1) {
       widget.siblings('.nasnap-legend').hide();
+      widget.siblings('.climate-legend').show();
+      widget.siblings('.portals-legend').hide();
+    } else { // portals
+      widget.siblings('.nasnap-legend').hide();
+      widget.siblings('.climate-legend').hide();
+      widget.siblings('.portals-legend').show();
     }
 
     updateSelectedMapSection(selectedSection);

@@ -71,19 +71,38 @@
           <div id="sections-selector"></div>
 
           <!-- Map legend underneath the map -->
-          <div class="legend">
+          <div class="legend climate-legend">
             <div class="legend-el">
               <span class="content-available legend-box"></span>
-              <p class="legend-text"><span class="map-type">NAS</span> adopted</p>
+              <p class="legend-text">One or more assessments reported</p>
             </div>
             <div class="legend-el">
               <span class="no-content legend-box"></span>
-              <p class="legend-text"><span class="map-type">NAS</span> not adopted</p>
+              <p class="legend-text">No assessments reported</p>
             </div>
-<!--             <div class="legend-el"> -->
-<!--               <span class="no-focus legend-box"></span> -->
-<!--               <p class="legend-text">No content available</p> -->
-<!--             </div> -->
+          </div>
+
+          <div class="legend portals-legend">
+            <div class="legend-el">
+              <span class="country-hazards legend-box"></span>
+              <p class="legend-text">Climate change hazards (impacts and/or vulnerabilities)</p>
+            </div>
+            <div class="legend-el">
+              <span class="country-adaptation legend-box"></span>
+              <p class="legend-text">Climate change adaptation (measures and solutions)</p>
+            </div>
+            <div class="legend-el">
+              <span class="country-both legend-box"></span>
+              <p class="legend-text">Both</p>
+            </div>
+            <div class="legend-el">
+              <span class="country-not-specified legend-box"></span>
+              <p class="legend-text">Focus not specified in reporting</p>
+            </div>
+            <div class="legend-el">
+              <span class="country-noportal legend-box"></span>
+              <p class="legend-text">No portal or platform reported</p>
+            </div>
           </div>
 
           <div class="legend nasnap-legend">
@@ -102,6 +121,10 @@
             <div class="legend-el">
               <span class="country-none legend-box"></span>
               <p class="legend-text">Neither NAS nor NAP are adopted</p>
+            </div>
+            <div class="legend-el">
+              <span class="country-sap legend-box"></span>
+              <p class="legend-text">SAP adopted</p>
             </div>
           </div>
         </div>

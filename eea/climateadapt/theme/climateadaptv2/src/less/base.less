@@ -2835,6 +2835,9 @@ div.width-1\3a 4 {
 
 .legend {
   display: none;
+  .legend-text {
+    width: 16em;
+  }
   .legend-el {
     padding: 0.8em 0;
     display: flex;
@@ -2872,6 +2875,30 @@ div.width-1\3a 4 {
   }
   .country-nodata {
     background-color: #efe7d4;
+  }
+  .country-sap {
+    background-color: #ffc5ac;
+  }
+}
+
+.legend.portals-legend {
+  .country-hazards {
+    background-color: #acedff;
+  }
+  .country-adaptation {
+    background-color: #11cbff;
+  }
+  .country-both {
+    background-color: @secondary-blue;
+  }
+  .country-not-specified {
+    background-color: #999;
+  }
+  .country-none {
+    background-color: #efe7d4;
+  }
+  .country-noportal {
+    background-color: #ffc5ac;
   }
 }
 
@@ -2991,6 +3018,11 @@ div.width-1\3a 4 {
 
 .country-blue path {
   fill: @secondary-blue;
+  cursor: pointer;
+}
+
+.country-sap path {
+  fill: #ffc5ac;
   cursor: pointer;
 }
 

@@ -150,8 +150,9 @@ _COUNTRIES_WITH_NAP = [
 
 _MARKERS = [
     ("national adaption policy", "National adaption policy"),
-    ("national adaptation strategy", "National adaptation strategy (NAS)"),
-    ("national adaptation plan", "National adaptation plan (NAP)"),
+    ("climate change impact and vulnerability assessments",
+     "Climate change impact and vulnerability assessments"),
+    ("adaptation portals and platforms", "Adaptation portals and platforms"),
     # ('action plans', 'National adaptation plans (NAP)'),
     # ('action plans', 'Action plans'),
     # ('impacts', 'Impacts, vulnerability and adaptation assessments'),
@@ -246,9 +247,9 @@ class CountriesMetadataExtract(BrowserView):
     def extract_country_metadata_discodata(self, obj):
         res = {}
 
-        for name in ["nap", "nas"]:
-            if obj.hasProperty(name):
-                res[name] = obj.getProperty(name)
+        # for name in ["nap", "nas", "sap"]:
+        #     if obj.hasProperty(name):
+        #         res[name] = obj.getProperty(name)
 
         country_name = obj.Title()
         country_code = get_country_code(country_name)
@@ -258,7 +259,9 @@ class CountriesMetadataExtract(BrowserView):
         if not processed_data:
             return res
 
-        for name in ('NAS', 'NAP'):
+        # setup National adaptation policy - NAS, NAP and SAP
+        for name in ('NAS', 'NAP', 'SAP'):
+            value = u''
             values = processed_data['Legal_Policies'].get(name, [])
             is_nap_country = country_name in _COUNTRIES_WITH_NAP
             is_nas_country = country_name in _COUNTRIES_WITH_NAS
@@ -266,21 +269,68 @@ class CountriesMetadataExtract(BrowserView):
             # if (not values) and (is_nap_country or is_nas_country):
             #     value = u"<p>Established</p>"
 
+            if values:
+                if name == 'SAP':
+                    value = [
+                        u"<li><a href='{0}'>{1}</a><p {5}>{3}</p>"
+                        u"<p {4}>{2}</p></li>".format(
+                            v.get('Link'), v.get('Title'),
+                            v.get('Status'), v.get('Sector'),
+                            "style='font-style:oblique;'",
+                            "style='font-weight:bold;'",
+                        )
+                        for v in values
+                    ]
+                else:
+                    value = [
+                        u"<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+                            v.get('Link'), v.get('Title'),
+                            "style='font-style:oblique;'", v.get('Status'))
+                        for v in values
+                    ]
+                value = u"<ul>{}</ul>".format(
+                    ''.join(value)
+                )
+
+            prop = "{}_info".format(name.lower())
+
+            res[prop] = value
+
+        # setup Climate change impact and vulnerability assessments
+        value = u""
+        values = processed_data['National_Circumstances'].get('CC_IVA', [])
+        if values:
             value = [
-                u"<li><a href='{}'>{}</a></li>".format(
-                    v.get('Link'), v.get('Title'))
+                u"<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+                    v.get('Link'), v.get('Title'),
+                    "style='font-style:oblique;'", v.get('Status'))
                 for v in values
             ]
             value = u"<ul>{}</ul>".format(
-                ''.join(value or ['<li>No data</li>'])
+                ''.join(value)
             )
 
-            if "NAP" in name:
-                prop = "nap_info"
-            else:
-                prop = "nas_info"
+        res["cciva_info"] = value
 
-            res[prop] = value
+        # setup Adaptation portals and platforms
+        value = u""
+        values = processed_data['Contact'].get('CCIV_Portal_Platform', [])
+        if values:
+            value = [
+                u"<li><a href='{0}'>{1}</a><p {5}>{3}</p>"
+                u"<p {4}>{2}</p></li>".format(
+                    v.get('Website'), v.get('Name'),
+                    v.get('Status'), v.get('Focus'),
+                    "style='font-style:oblique;'",
+                    "style='font-weight:bold;'",
+                )
+                for v in values
+            ]
+            value = u"<ul>{}</ul>".format(
+                ''.join(value)
+            )
+
+        res["ccivportal_info"] = value
 
         return res
 
