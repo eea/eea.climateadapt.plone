@@ -118,11 +118,21 @@ function getCountryClass(country, countries) {
     } else {
       k += ' country-nap'
     }
-
   }
 
   if (_selectedMapSection === 'portals') {
-    k += ' country-nas'
+    var {focus_info} = discodata;
+    if (focus_info === 'both') {
+      k += ' country-nasnap'
+    } else if (focus_info === 'hazard') {
+      k += ' country-nas'
+    } else if (focus_info === 'adaptation') {
+      k += ' country-nap'
+    } else if (focus_info === 'not_specified') {
+      k += ' country-none'
+    } else {
+      k += ' country-sap'
+    }
   }
 
   return k;

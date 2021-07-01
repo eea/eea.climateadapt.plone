@@ -330,6 +330,25 @@ class CountriesMetadataExtract(BrowserView):
                 ''.join(value)
             )
 
+            focus_vals = [
+                f
+                for focus in values
+                for f in focus.get('Focus', '').split(', ')
+            ]
+            hazard = "Climate change hazards; impact and/or vulnerability"
+            adapt = "Climate change adaptation (measures and solutions)"
+
+            if hazard in focus_vals and adapt in focus_vals:
+                focus_info = "both"
+            elif hazard in focus_vals and adapt not in focus_vals:
+                focus_info = "hazard"
+            elif hazard not in focus_vals and adapt in focus_vals:
+                focus_info = "adaptation"
+            else:
+                focus_info = "not_specified"
+
+            res["focus_info"] = focus_info
+
         res["ccivportal_info"] = value
 
         return res
