@@ -73,9 +73,9 @@ function getCountryClass(country, countries) {
     return k;
   }
 
-  var countryNoData = ["United Kingdom", "Iceland", "Liechtenstein"]
+  var countryNoData = ["United Kingdom", "Iceland", "Liechtenstein", "France"]
   var discodata = meta[0];
-  console.log("Selected Map section", _selectedMapSection, discodata, countryName);
+//  console.log("Selected Map section", _selectedMapSection, discodata, countryName);
 
   if (_selectedMapSection === 'overview') {
 //    if (Object.keys(discodata).indexOf(_selectedMapSection) > -1) {
@@ -107,7 +107,7 @@ function getCountryClass(country, countries) {
     }
 
     if (countryNoData.indexOf(countryName) > -1) {
-      k += ' country-nodata';
+      k += ' country-none';
     }
   }
 
@@ -253,7 +253,9 @@ function renderCountryFlag(parent, country, bbox, cpId) {
     })
     .on('mouseover', function() {
       // $('.country-flag').css('cursor', 'unset');
-      d3.select(this).attr('opacity', 1);
+      d3.select(this).attr('opacity', 0); // disable country flag
+//      $(this).siblings('path').css({'stroke-width': 2});
+      $(this).siblings('path').attr('class', 'selected');
       return countryNameTooltip
       .style("display", "block")
       .html(countryName);
@@ -268,6 +270,8 @@ function renderCountryFlag(parent, country, bbox, cpId) {
     })
     .on('mouseout', function() {
       d3.select(this).attr('opacity', 0);
+//      $(this).siblings('path').css({'stroke-width': 1});
+      $(this).siblings('path').attr('class', '');
       return countryNameTooltip
       .style("display", "none");
     })
@@ -534,6 +538,7 @@ function showMapTooltip(d) {
     coords: coords,
     content: content,
     name: d.properties.SHRT_ENGL,
+    flagUrl: d.url,
     url: url
   });
 
@@ -587,6 +592,7 @@ function createTooltip(opts) {
   var content = opts['content'];
   var name = opts['name'];
   var url = opts['url'];
+  flagUrl = opts['flagUrl'];
 
   $('#map-tooltip').remove();
   var style = 'top:' + x + 'px; left: ' + y + 'px';
@@ -597,6 +603,18 @@ function createTooltip(opts) {
   var h3_name = $('<h3>')
     .append(name)
     ;
+  var flag = $('<img>')
+    .attr('class', 'tooltip-country-flag')
+    .attr('src', function() {
+      if (getIEVersion() > 0) {
+        return '++theme++climateadaptv2/static/images/fallback.svg';
+      } else {
+        return flagUrl;
+      }
+    })
+    .attr('height', 33)
+    .attr('width', 54)
+    ;
   var link_tag = $('<a>')
     .attr('href', url)
     .append(h3_name)
@@ -604,6 +622,7 @@ function createTooltip(opts) {
   var name_div = $('<div>')
     .attr('id', 'country-name')
     .append(link_tag)
+    .append(flag)
     ;
   var tooltip = $("<div id='map-tooltip'>")
     .attr('style', style)
