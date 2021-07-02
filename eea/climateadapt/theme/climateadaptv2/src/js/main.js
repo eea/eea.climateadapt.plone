@@ -1178,6 +1178,18 @@ $(document).ready(function () {
     if (ccaEventUrls.includes(currentUrl) && 0 == $("#content-core .event_listing article").length) {
         $("#content-core .event_listing section").html("<h3>No events are planned for the time being</h3>")
     }
+
+    // ADD RESPONSIVE DIV
+    // for tables if parent not set as responsive
+    var tables = $('table');
+    for (i=0;i<tables.length;i++) {
+        parentElement = tables[i].parentElement;
+        if (!(parentElement.nodeName.toLowerCase() == 'div' && parentElement.classList.contains('table-responsive'))) {
+            divResponsive = '<div class="table-responsive">'+tables[i].outerHTML+"</div>";
+            tables[i].outerHTML = divResponsive;
+        }
+    }
+
 });
 
 // Divide the sub-menu in 2 columns if 'sub-sub-menu' exist
