@@ -221,6 +221,9 @@
 .case-study-legend span.light-blue{
     background-color:#00FFFF !important;
 }
+a.reset-button {
+    padding: 5px 10px !important;
+}
 </style>
 <div class="row">
     <div class="col-md-12 cs-menu">
@@ -262,8 +265,8 @@
                     </tal>
                 </p>
             </div>
-            <div class="cols-md-12" style="clear:both;">
-                <a href="" class="standard-button primary-button reset" title="Reset">Reset</a>
+            <div class="cols-md-12 pull-right" style="clear:both;">
+                <a href="" class="reset-button standard-button primary-button reset btn-sm" title="Reset">Reset</a>
             </div>
 
 
