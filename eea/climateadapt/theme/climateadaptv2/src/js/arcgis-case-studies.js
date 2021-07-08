@@ -39,12 +39,9 @@ window.requirejs([
     12->0.2
     */
     zoomAdjustment = [8, 7, 4, 2, 1, 0.9, 0.7, 0.2, 0.1, 0.05, 0.04, 0.02 ];
-//console.log('Zoom adjustment:'+zoomAdjustment[view.zoom-1]);
-//console.log(view.zoom, zoomAdjustment.length >  view.zoom);
-    if (view.zoom && zoomAdjustment.length > view.zoom) {
-//console.log(geo.longitude, geo.latitude);
-//console.log('Zoom adjustment:'+zoomAdjustment[view.zoom-1]);
-        view.goTo({center:[geo.longitude, geo.latitude-zoomAdjustment[view.zoom-1]]});
+    viewZoom = parseInt(view.zoom, 10);
+    if (viewZoom && zoomAdjustment.length > viewZoom) {
+        view.goTo({center:[geo.longitude, geo.latitude-zoomAdjustment[viewZoom-1]]});
     } else {
         view.goTo({center:[geo.longitude, geo.latitude]});
     }
