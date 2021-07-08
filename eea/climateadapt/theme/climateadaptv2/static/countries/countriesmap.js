@@ -73,7 +73,7 @@ function getCountryClass(country, countries) {
     return k;
   }
 
-  var countryNoData = ["United Kingdom", "Iceland", "Liechtenstein", "France"]
+  var countryNoData = ["United Kingdom"]
   var discodata = meta[0];
 //  console.log("Selected Map section", _selectedMapSection, discodata, countryName);
 
@@ -86,16 +86,15 @@ function getCountryClass(country, countries) {
 //      k += ' country-blue';
 //    }
 
-    var {nap_info, nas_info, sap_info} = discodata;
+    var {nap_info, nas_info, notreported} = discodata;
 
-    var nasNapAdopted = (nap_info && nas_info && !sap_info);
-    var onlyNasAdopted = (!nap_info && nas_info && !sap_info);
-    var onlyNapAdopted = (nap_info && !nas_info && !sap_info);
-    var sapAdopted = sap_info;
-    var noneAdopted = !(('nap' in discodata) && ('nas' in discodata));
+    var nasNapAdopted = (nap_info && nas_info);
+    var onlyNasAdopted = (!nap_info && nas_info);
+    var onlyNapAdopted = (nap_info && !nas_info);
+    var noneAdopted = !(nap_info && nas_info);
 
-    if (sapAdopted) {
-      k += ' country-sap';
+    if (notreported) {
+      k += ' country-notreported';
     } else if (nasNapAdopted) {
       k += ' country-nasnap';
     } else if (onlyNapAdopted) {
@@ -107,32 +106,50 @@ function getCountryClass(country, countries) {
     }
 
     if (countryNoData.indexOf(countryName) > -1) {
-      k += ' country-none';
+      k += ' country-nodata';
     }
   }
 
   if (_selectedMapSection === 'climate') {
-    var {cciva_info} = discodata;
-    if (cciva_info) {
-      k += ' country-nasnap'
-    } else {
-      k += ' country-nap'
+    var {cciva_info, notreported} = discodata;
+
+    if (notreported) {
+      k += ' country-notreported';
+    } else if (cciva_info) {
+      k += ' country-nasnap';
+    } else if (!cciva_info) {
+      k += ' country-none';
     }
+
+    if (countryNoData.indexOf(countryName) > -1) {
+      k += ' country-nodata';
+    }
+
   }
 
   if (_selectedMapSection === 'portals') {
-    var {focus_info} = discodata;
-    if (focus_info === 'both') {
-      k += ' country-nasnap'
+    var {focus_info, notreported} = discodata;
+
+    console.log(focus_info, countryName)
+
+    if (notreported) {
+      k += ' country-notreported';
+    } else if (focus_info === 'both') {
+      k += ' country-nasnap';
     } else if (focus_info === 'hazard') {
-      k += ' country-nas'
+      k += ' country-nas';
     } else if (focus_info === 'adaptation') {
-      k += ' country-nap'
+      k += ' country-nap';
     } else if (focus_info === 'not_specified') {
-      k += ' country-none'
+      k += ' country-not-specified';
     } else {
-      k += ' country-sap'
+      k += ' country-noportal';
     }
+
+    if (countryNoData.indexOf(countryName) > -1) {
+      k += ' country-nodata';
+    }
+
   }
 
   return k;
@@ -508,19 +525,27 @@ function showMapTooltip(d) {
       sapInfo = '';
     }
 
-    content = (nasInfo + napInfo + sapInfo) || "No data reported";
-
+    if (content['notreported']) {
+      content = "No data reported"
+    } else {
+      content = (nasInfo + napInfo + sapInfo) || "NAS and NAP not reported";
+    }
   }
 
   if (_selectedMapSection === 'climate') {
     var ccivaInfo;
+
     if (content['cciva_info']) {
       ccivaInfo = content['cciva_info'];
     } else {
       ccivaInfo = "No assessment reported";
     }
 
-    content = ccivaInfo
+    if (content['notreported']) {
+      content = "No data reported"
+    } else {
+      content = ccivaInfo;
+    }
   }
 
   if (_selectedMapSection === 'portals') {
@@ -528,10 +553,14 @@ function showMapTooltip(d) {
     if (content['ccivportal_info']) {
       ccivportalInfo = content['ccivportal_info'];
     } else {
-      ccivportalInfo = "No data reported";
+      ccivportalInfo = "No portal or platform reported";
     }
 
-    content = ccivportalInfo
+    if (content['notreported']) {
+      content = "No data reported";
+    } else {
+      content = ccivportalInfo;
+    }
   }
 
   if (content) createTooltip({

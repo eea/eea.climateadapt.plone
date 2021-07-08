@@ -77,8 +77,12 @@
               <p class="legend-text">One or more assessments reported</p>
             </div>
             <div class="legend-el">
-              <span class="no-content legend-box"></span>
+              <span class="country-none legend-box"></span>
               <p class="legend-text">No assessments reported</p>
+            </div>
+            <div class="legend-el">
+              <span class="country-notreported legend-box"></span>
+              <p class="legend-text">No data reported</p>
             </div>
           </div>
 
@@ -103,28 +107,32 @@
               <span class="country-noportal legend-box"></span>
               <p class="legend-text">No portal or platform reported</p>
             </div>
+            <div class="legend-el">
+              <span class="country-notreported legend-box"></span>
+              <p class="legend-text">No data reported</p>
+            </div>
           </div>
 
           <div class="legend nasnap-legend">
             <div class="legend-el">
               <span class="country-nasnap legend-box"></span>
-              <p class="legend-text">NAS and NAP adopted</p>
+              <p class="legend-text">NAS and NAP reported as adopted</p>
             </div>
             <div class="legend-el">
               <span class="country-nap legend-box"></span>
-              <p class="legend-text">Only NAP adopted</p>
+              <p class="legend-text">Only NAP reported as adopted</p>
             </div>
             <div class="legend-el">
               <span class="country-nas legend-box"></span>
-              <p class="legend-text">Only NAS adopted</p>
+              <p class="legend-text">Only NAS reported as adopted</p>
             </div>
             <div class="legend-el">
               <span class="country-none legend-box"></span>
-              <p class="legend-text">Neither NAS nor NAP are adopted</p>
+              <p class="legend-text">Neither NAS nor NAP reported as adopted</p>
             </div>
             <div class="legend-el">
-              <span class="country-sap legend-box"></span>
-              <p class="legend-text">SAP adopted</p>
+              <span class="country-notreported legend-box"></span>
+              <p class="legend-text">No data reported</p>
             </div>
           </div>
         </div>

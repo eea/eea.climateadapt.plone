@@ -257,6 +257,8 @@ class CountriesMetadataExtract(BrowserView):
         processed_data = get_discodata_for_country(country_code)
 
         if not processed_data:
+            res['notreported'] = True
+
             return res
 
         # setup National adaptation policy - NAS, NAP and SAP
@@ -333,9 +335,9 @@ class CountriesMetadataExtract(BrowserView):
             focus_vals = [
                 f
                 for focus in values
-                for f in focus.get('Focus', '').split(', ')
+                for f in focus.get('Focus', '').split('; ')
             ]
-            hazard = "Climate change hazards; impact and/or vulnerability"
+            hazard = "Climate change hazards, impact and/or vulnerability"
             adapt = "Climate change adaptation (measures and solutions)"
 
             if hazard in focus_vals and adapt in focus_vals:

@@ -2857,6 +2857,12 @@ div.width-1\3a 4 {
   .no-focus {
     background-color: #efe7d4;
   }
+  .country-notreported {
+    background-color: #ffc5ac;
+  }
+  .country-none {
+    background-color: #999;
+  }
 }
 
 .legend.nasnap-legend {
@@ -2870,14 +2876,8 @@ div.width-1\3a 4 {
   .country-nap {
     background-color: #11cbff;
   }
-  .country-none {
-    background-color: #999;
-  }
   .country-nodata {
     background-color: #efe7d4;
-  }
-  .country-sap {
-    background-color: #ffc5ac;
   }
 }
 
@@ -2892,13 +2892,13 @@ div.width-1\3a 4 {
     background-color: @secondary-blue;
   }
   .country-not-specified {
-    background-color: #999;
+    background-color: #fff3ac;
   }
   .country-none {
     background-color: #efe7d4;
   }
   .country-noportal {
-    background-color: #ffc5ac;
+    background-color: #999;
   }
 }
 
@@ -3031,8 +3031,13 @@ div.width-1\3a 4 {
   cursor: pointer;
 }
 
-.country-sap path {
+.country-notreported path {
   fill: #ffc5ac;
+  cursor: pointer;
+}
+
+.country-noportal path {
+  fill: #999;
   cursor: pointer;
 }
 
@@ -3062,7 +3067,7 @@ div.width-1\3a 4 {
 }
 
 .maplet-container .country-outline path {
-  fill: gray;
+  // fill: gray;
 }
 
 .maplet-container .country-available path {
