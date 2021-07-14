@@ -174,7 +174,7 @@
 
                               <fieldset class="noborder">
 
-                                  <legend i18n:translate="filter_results">Filter results</legend>
+                                  <legend i18n:translate="filter_results">By Climate-ADAPT sections</legend>
 
                                   <div class="field">
                                       <tal:path define="all string:/;
