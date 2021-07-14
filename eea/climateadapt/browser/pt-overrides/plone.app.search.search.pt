@@ -174,6 +174,73 @@
 
                               <fieldset class="noborder">
 
+                                  <legend i18n:translate="filter_results">Filter results</legend>
+
+                                  <div class="field">
+                                      <tal:path define="all string:/;
+                                                        about string:/cca/metadata/projects;
+                                                        newsletter string:/cca/metadata/newsletter;
+                                                        database string:/cca/metadata/;
+                                                        eu_adaptation string:/cca/eu-adaptation-policy;
+                                                        countries_regions string:/cca/countries-regions;
+                                                        knowledge string:/cca/knowledge;
+                                                        networks string:/cca/network;
+                                                        checked python:request.get('path', []);
+                                                        checked python:(len(checked) == 1) and checked[0] or all">
+                                          <input type="radio"
+                                                 id="query-path-all"
+                                                 name="path.query:record:list:path"
+                                                 tal:attributes="value all;
+                                                                 checked python:checked==all and 'checked' or '';"
+                                                 />
+                                          <label for="query-path-all" i18n:translate="path_all">All</label>
+                                          <br />
+                                          <input type="radio"
+                                                 id="query-path-about"
+                                                 name="path.query:record:list:path"
+                                                 tal:attributes="value about;
+                                                                 checked python:checked==about and 'checked' or '';"
+                                                 />
+                                          <label for="query-path-about" i18n:translate="path_about">About</label>
+                                          <br />
+                                          <input type="radio"
+                                                 id="query-path-newsletter"
+                                                 name="path.query:record:list:path"
+                                                 tal:attributes="value newsletter;
+                                                                 checked python:checked==newsletter and 'checked' or '';"
+                                                 />
+                                          <label for="query-path-newsletter" i18n:translate="path_newsletter">Newsletter</label>
+                                          <br />
+                                          <input type="radio"
+                                                 id="query-path-database"
+                                                 name="path.query:record:list:path"
+                                                 tal:attributes="value database;
+                                                                 checked python:checked==database and 'checked' or '';"
+                                                 />
+                                          <label for="query-path-database" i18n:translate="path_database">Database</label>
+                                          <br />
+                                          <input type="radio"
+                                                 id="query-path-eu-adaptation"
+                                                 name="path.query:record:list:path"
+                                                 tal:attributes="value eu_adaptation;
+                                                                 checked python:checked==eu_adaptation and 'checked' or '';"
+                                                 />
+                                          <label for="query-path-eu-adaptation" i18n:translate="path_eu_adaptation">EU Adaptation policy</label>
+                                          <br />
+                                          <input type="radio"
+                                                 id="query-path-countries-regions"
+                                                 name="path.query:record:list:path"
+                                                 tal:attributes="value countries_regions;
+                                                                 checked python:checked==countries_regions and 'checked' or '';"
+                                                 />
+                                          <label for="query-path-countries-regions" i18n:translate="path_countries_regions">Countries, regions and cities</label>
+
+                                      </tal:path>
+                                  </div>
+                                </fieldset>
+
+                              <fieldset class="noborder">
+
                                   <legend i18n:translate="label_new_items_since">New items since</legend>
 
                                   <div class="field">
