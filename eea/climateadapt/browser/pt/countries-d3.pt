@@ -127,6 +127,10 @@
               <p class="legend-text">Only NAS reported as adopted</p>
             </div>
             <div class="legend-el">
+              <span class="country-sap legend-box"></span>
+              <p class="legend-text">SAP reported as adopted</p>
+            </div>
+            <div class="legend-el">
               <span class="country-none legend-box"></span>
               <p class="legend-text">Neither NAS nor NAP reported as adopted</p>
             </div>

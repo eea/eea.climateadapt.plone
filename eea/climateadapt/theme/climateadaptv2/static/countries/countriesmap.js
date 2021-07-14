@@ -86,15 +86,24 @@ function getCountryClass(country, countries) {
 //      k += ' country-blue';
 //    }
 
-    var {nap_info, nas_info, notreported} = discodata;
+    var {nap_info, nas_info, sap_info, notreported} = discodata;
 
-    var nasNapAdopted = (nap_info && nas_info);
-    var onlyNasAdopted = (!nap_info && nas_info);
-    var onlyNapAdopted = (nap_info && !nas_info);
-    var noneAdopted = !(nap_info && nas_info);
+    var nasNapSapAdopted = (nap_info && nas_info && sap_info);
+    var nasSapAdopted = (!nap_info && nas_info && sap_info);
+    var napSapAdopted = (nap_info && !nas_info && sap_info);
+    var nasNapAdopted = (nap_info && nas_info && !sap_info);
+    var onlyNasAdopted = (!nap_info && nas_info && !sap_info);
+    var onlyNapAdopted = (nap_info && !nas_info && !sap_info);
+    var noneAdopted = !(nap_info && nas_info && sap_info);
 
     if (notreported) {
       k += ' country-notreported';
+    } else if (nasNapSapAdopted) {
+      k += ' country-nasnapsap';
+    } else if (nasSapAdopted) {
+      k += ' country-nassap';
+    } else if (napSapAdopted) {
+      k += ' country-napsap';
     } else if (nasNapAdopted) {
       k += ' country-nasnap';
     } else if (onlyNapAdopted) {
@@ -169,9 +178,11 @@ function renderCountry(map, country, path, countries, x, y) {
     .attr('class', klass)
     ;
 
-  parent       // define clipping path for this country
+  var defs = parent       // define clipping path for this country
     .append('defs')
-    .append('clipPath')
+    ;
+
+  defs.append('clipPath')
     .attr('id', cpId)
     .append('path')
     .attr('d', path(country))
@@ -335,9 +346,11 @@ function renderCountriesBox(opts) {
 
   globalMapProjection.scale(s).translate(t);
 
-  svg
+  var defs = svg
     .append('defs')    // rectangular clipping path for the whole drawn map
-    .append('clipPath')
+    ;
+
+  defs.append('clipPath')
     .attr('id', cprectid)
     .append('rect')
     .attr('x', x)
@@ -346,8 +359,76 @@ function renderCountriesBox(opts) {
     .attr('width', width)
     ;
 
+  // NAS + NAP + SAP
+  pattern = defs.append('pattern')
+    .attr('id', 'nasnapsap')
+    .attr('patternUnits', 'userSpaceOnUse')
+    .attr('width', '15')
+    .attr('height', '15')
+    .attr('patternTransform', 'scale(1) rotate(0)')
+    ;
+  pattern.append('rect')
+    .attr('x', '0')
+    .attr('y', '0')
+    .attr('width', '100%')
+    .attr('height', '100%')
+    .attr('fill', '#0170b7')
+    ;
+  pattern.append('path')
+    .attr('d', 'M5.25 10h13.5M10 5.25v13.5')
+    .attr('stroke-linecap', 'square')
+    .attr('stroke-width', '1')
+    .attr('stroke', 'black')
+    .attr('fill', '')
+    ;
 
-    var map = svg   // the map will be drawn in this group
+  // NAS + SAP
+  pattern = defs.append('pattern')
+    .attr('id', 'nassap')
+    .attr('patternUnits', 'userSpaceOnUse')
+    .attr('width', '15')
+    .attr('height', '15')
+    .attr('patternTransform', 'scale(1) rotate(0)')
+    ;
+  pattern.append('rect')
+    .attr('x', '0')
+    .attr('y', '0')
+    .attr('width', '100%')
+    .attr('height', '100%')
+    .attr('fill', '#acedff')
+    ;
+  pattern.append('path')
+    .attr('d', 'M5.25 10h13.5M10 5.25v13.5')
+    .attr('stroke-linecap', 'square')
+    .attr('stroke-width', '1')
+    .attr('stroke', 'black')
+    .attr('fill', '')
+    ;
+
+  // NAP + SAP
+  pattern = defs.append('pattern')
+    .attr('id', 'napsap')
+    .attr('patternUnits', 'userSpaceOnUse')
+    .attr('width', '15')
+    .attr('height', '15')
+    .attr('patternTransform', 'scale(1) rotate(0)')
+    ;
+  pattern.append('rect')
+    .attr('x', '0')
+    .attr('y', '0')
+    .attr('width', '100%')
+    .attr('height', '100%')
+    .attr('fill', '#11cbff')
+    ;
+  pattern.append('path')
+    .attr('d', 'M5.25 10h13.5M10 5.25v13.5')
+    .attr('stroke-linecap', 'square')
+    .attr('stroke-width', '1')
+    .attr('stroke', 'black')
+    .attr('fill', '')
+    ;
+
+  var map = svg   // the map will be drawn in this group
     .append('g')
     .attr('clip-path', opts.isMaplet ? 'url(#' + cprectid + ')': null)
     ;
