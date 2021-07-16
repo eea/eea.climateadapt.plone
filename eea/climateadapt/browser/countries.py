@@ -380,6 +380,7 @@ class CountriesMetadataExtract(BrowserView):
         text = tile_data["text"].raw
 
         res = get_nap_nas(obj, text, country=obj.Title())
+        res['notreported'] = True;
 
         return res
 

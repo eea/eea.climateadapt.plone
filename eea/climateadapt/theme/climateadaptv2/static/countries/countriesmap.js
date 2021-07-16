@@ -141,6 +141,7 @@ function getCountryClass(country, countries) {
 
     console.log(focus_info, countryName)
 
+    /*
     if (notreported) {
       k += ' country-notreported';
     } else if (focus_info === 'both') {
@@ -151,6 +152,14 @@ function getCountryClass(country, countries) {
       k += ' country-nap';
     } else if (focus_info === 'not_specified') {
       k += ' country-not-specified';
+    } else {
+      k += ' country-noportal';
+    }
+    */
+    if (notreported) {
+      k += ' country-notreported';
+    } else if (["both", "hazard", "adaptation", "not_specified"].includes(focus_info)) {
+      k += ' country-nasnap';
     } else {
       k += ' country-noportal';
     }

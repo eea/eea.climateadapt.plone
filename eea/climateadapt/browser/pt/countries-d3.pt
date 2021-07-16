@@ -88,20 +88,8 @@
 
           <div class="legend portals-legend">
             <div class="legend-el">
-              <span class="country-hazards legend-box"></span>
-              <p class="legend-text">Climate change hazards (impacts and/or vulnerabilities)</p>
-            </div>
-            <div class="legend-el">
-              <span class="country-adaptation legend-box"></span>
-              <p class="legend-text">Climate change adaptation (measures and solutions)</p>
-            </div>
-            <div class="legend-el">
               <span class="country-both legend-box"></span>
-              <p class="legend-text">Both</p>
-            </div>
-            <div class="legend-el">
-              <span class="country-not-specified legend-box"></span>
-              <p class="legend-text">Focus not specified in reporting</p>
+              <p class="legend-text">Adaptation portal or platform reported</p>
             </div>
             <div class="legend-el">
               <span class="country-noportal legend-box"></span>
