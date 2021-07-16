@@ -178,7 +178,7 @@
 
                                   <div class="field">
                                       <tal:path define="all string:/;
-                                                        about string:/cca/metadata/projects;
+                                                        about string:/cca/about;
                                                         newsletter string:/cca/metadata/newsletter;
                                                         database string:/cca/metadata/;
                                                         eu_adaptation string:/cca/eu-adaptation-policy;
@@ -186,7 +186,9 @@
                                                         knowledge string:/cca/knowledge;
                                                         networks string:/cca/network;
                                                         checked python:request.get('path', []);
-                                                        checked python:(len(checked) == 1) and checked[0] or all">
+                                                        checked python:checked.query if hasattr(checked,'__dict__') and hasattr(checked,'query') else checked;
+                                                        checked python:(len(checked) == 1) and checked[0] or all
+                                                        ">
                                           <input type="radio"
                                                  id="query-path-all"
                                                  name="path.query:record:list:path"
