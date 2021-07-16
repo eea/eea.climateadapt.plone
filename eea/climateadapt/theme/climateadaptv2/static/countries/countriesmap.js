@@ -598,7 +598,7 @@ var countryNameTooltip = d3.select("body")
     ;
 
 function showMapTooltip(d) {
-  var noDataReportedMsg = 'No data reported through the reporting mechanism of the Governance Regulation. Last information is available <a href="'+countrySettings[d.properties.SHRT_ENGL]+'">here</a>';
+  var noDataReportedMsg = 'No data reported through the reporting mechanism of the Governance Regulation. Last information is available <a href="'+countrySettings[d.properties.SHRT_ENGL][1]+'">here</a>';
   var coords = [d3.event.pageY, d3.event.pageX];
   var info = countrySettings[d.properties.SHRT_ENGL];
   if (!info) return;
