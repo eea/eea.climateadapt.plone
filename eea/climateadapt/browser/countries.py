@@ -542,7 +542,7 @@ class CountryProfileData(BrowserView):
 
         sorted_items = sorted(
             items,
-            key=lambda i: (i['SectorTitle'], i['SectorDescribeIfOther'])
+            key=lambda i: (i['SectorTitle'], i['SectorDescribeIfOther'] if 'SectorDescribeIfOther' in i else '')
         )
 
         return sorted_items
