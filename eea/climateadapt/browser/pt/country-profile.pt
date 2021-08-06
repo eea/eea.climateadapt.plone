@@ -353,7 +353,7 @@
           </tr>
           <tr>
             <td>Wind</td>
-            <td tal:define="values data/National_Circumstances/WindRelatedAcute;
+            <td tal:define="values python: data['National_Circumstances'].get('WindRelatedAcute', '');
                             other_values python: data['National_Circumstances'].get('WindAcuteOther', '')">
               <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
             </td>
@@ -402,14 +402,14 @@
                             other_values python: data['National_Circumstances'].get('FutureTemperatureAcuteOther', '')">
               <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
             </td>
-            <td tal:define="values data/National_Circumstances/FutureTemperatureRelatedChronic;
+            <td tal:define="values python: data['National_Circumstances'].get('FutureTemperatureRelatedChronic', '');
                             other_values python: data['National_Circumstances'].get('FutureTemperatureChronicOther', '')">
               <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
             </td>
           </tr>
           <tr>
             <td>Wind</td>
-            <td tal:define="values data/National_Circumstances/FutureWindRelatedAcute;
+            <td tal:define="values python: data['National_Circumstances'].get('FutureWindRelatedAcute', '');
                             other_values python: data['National_Circumstances'].get('FutureWindAcuteOther', '')">
               <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
             </td>
@@ -639,7 +639,7 @@
                                  tal:content="structure python: view.convert_web_int(item['ShortDescriptionMeasureAction'])">long text</div>
                           </td>
                         </tr>
-                        <tr>
+                        <tr tal:condition="python: 'Status' in item">
                           <td>Status</td>
                           <td>
                             <div style="padding: 5px;"
