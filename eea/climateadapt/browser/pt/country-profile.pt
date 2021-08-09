@@ -142,7 +142,7 @@
                 <li tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external">
-                    <a tal:attributes="href item/Link; data-val item/Link"
+                    <a tal:attributes="href python:item.get('Link', '#'); data-val python:item.get('Link', '#')"
                        tal:content="item/Title"
                        rel="noopener" target="_blank" data-linktype="external"></a>
                   </span>
