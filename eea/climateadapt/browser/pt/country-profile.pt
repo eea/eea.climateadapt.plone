@@ -424,7 +424,7 @@
                             other_values python: data['National_Circumstances'].get('FutureWaterAcuteOther', '')">
               <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
             </td>
-            <td tal:define="values data['National_Circumstances'].get('FutureWaterRelatedChronic', '');
+            <td tal:define="values python: data['National_Circumstances'].get('FutureWaterRelatedChronic', '');
                             other_values python: data['National_Circumstances'].get('FutureWaterChronicOther', '')">
               <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
             </td>
