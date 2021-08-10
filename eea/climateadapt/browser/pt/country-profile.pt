@@ -14,7 +14,7 @@
       <tal:macro metal:define-macro="fieldset-macro">
 
         <fieldset tal:condition="fieldset_data"
-                  tal:define="use_accordion python: len(fieldset_data) > 1000"
+                  tal:define="use_accordion python: len(fieldset_data) > 0"
                   >
           <legend class="country-profile-legend"
                   tal:content="fieldset_legend">Biogeophysical characteristics</legend>
