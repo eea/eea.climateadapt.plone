@@ -4,7 +4,7 @@
     padding-top: 40px;
   }
   .panel-body {
-    padding-bottom: 40px;
+    padding-bottom: 20px;
     padding-left: 55px;
     padding-right: 55px;
     padding-top: 20px;
@@ -13,9 +13,16 @@
   .panel.panel-default {
       border-bottom: 1px solid #ddd;
   }
-  .panel.panel-default a.accordion-toggle.arrow-up {
-    border-bottom: 1px solid #ddd;
+  .panel.panel-default h4 a.arrow-up {
+    border-bottom: 1px solid #ddd !important;
   }
+  .panel.panel-default h4 a.arrow-down {
+    border-bottom: 0px !important;
+  }
+  .panel.panel-default a.accordion-toggle.arrow-down {
+    padding-bottom: 10px;
+  }
+
   h4.panel-title a{
     font-family: GalanoGrotesqueAlt-Medium, Helvetica, Arial, sans-serif;
     font-size: 18px;

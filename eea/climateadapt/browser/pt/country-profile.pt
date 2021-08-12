@@ -440,28 +440,29 @@
 
       <h2 class="country-header">Key affected sectors</h2>
       <tal:rep tal:repeat="item view/get_sorted_affected_sectors_data">
-        <fieldset >
-          <legend class="country-profile-legend list collapsed">
-            <span tal:content="item/SectorTitle/title">Forest</span>
-            <span tal:condition="python: 'SectorDescribeIfOther' in item"
-                tal:content="python: ': ' + item['SectorDescribeIfOther']">Forest</span>
 
-          </legend>
-          <div class="country-profile-accordion collapsed">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <span class="link-https">
-                    <a tal:attributes="href string:'.'"
-                       class="accordion-toggle arrow-down collapsed"
-                       data-toggle="collapse"
-                       aria-expanded="false">Read more</a>
-                  </span>
-                </h4>
-              </div>
-              <div class="panel-collapse collapse">
-                <div class="panel-layer fadein"></div>
-                <div class="panel-body">
+        <div class="panel panel-default"
+          tal:define="id item/SectorTitle/title;
+                      id python: 'sector_title_' + id;
+                      id python: id + '_' + item['SectorDescribeIfOther'] if 'SectorDescribeIfOther' in item else id;
+                      id python: id.replace(' ', '_');
+                      id python: id.replace('(', '_');
+                      id python: id.replace(')', '_');
+                      id python: id.replace(',', '_');
+                      id python: id.replace('-', '_');
+                      "
+          >
+          <div class="panel-heading" tal:attributes="id python: id+'-heading'">
+            <h4 class="panel-title">
+              <a class="accordion-toggle tiny-acchead" tal:attributes="href python:'#'+id+'-body'" data-toggle="collapse">
+                <span tal:content="item/SectorTitle/title">Forest</span>
+                <span tal:condition="python: 'SectorDescribeIfOther' in item"
+                    tal:content="python: ': ' + item['SectorDescribeIfOther']">Forest</span>
+              </a>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" tal:attributes="id python: id+'-body'">
+            <div class="panel-body">
                   <div class="read_more_second">
                     <table class="listing table-striped">
                       <thead tal:condition="python: False">
@@ -518,8 +519,7 @@
                 </div>
               </div>
             </div>
-          </div>
-        </fieldset>
+
       </tal:rep>
     </div>
 
@@ -587,25 +587,27 @@
         <div>Not reported</div>
       </tal:cond>
       <tal:rep tal:repeat="item view/get_sorted_action_measures_data">
-        <fieldset >
-          <legend class="country-profile-legend list collapsed">
-            <span tal:content="item/Title">Forest</span>
-          </legend>
-          <div class="country-profile-accordion collapsed">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <span class="link-https">
-                    <a tal:attributes="href string:'.'"
-                       class="accordion-toggle arrow-down collapsed"
-                       data-toggle="collapse"
-                       aria-expanded="false">Read more</a>
-                  </span>
-                </h4>
-              </div>
-              <div class="panel-collapse collapse">
-                <div class="panel-layer fadein"></div>
-                <div class="panel-body">
+        <div class="panel panel-default"
+          tal:define="id item/Title;
+                      id python: 'sector_title_' + id;
+                      id python: id + '_' + item['SectorDescribeIfOther'] if 'SectorDescribeIfOther' in item else id;
+                      id python: id.replace(' ', '_');
+                      id python: id.replace('(', '_');
+                      id python: id.replace(')', '_');
+                      id python: id.replace(',', '_');
+                      id python: id.replace('-', '_');
+                      id python: id.replace('.', '_');
+                      "
+          >
+          <div class="panel-heading" tal:attributes="id python: id+'-heading'">
+            <h4 class="panel-title">
+              <a class="accordion-toggle tiny-acchead" tal:attributes="href python:'#'+id+'-body'" data-toggle="collapse">
+                <span tal:content="item/Title">Forest</span>
+              </a>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" tal:attributes="id python: id+'-body'">
+            <div class="panel-body">
                   <div class="read_more_second">
                     <table class="listing table-striped">
                       <thead tal:condition="python: False">
@@ -651,8 +653,6 @@
                 </div>
               </div>
             </div>
-          </div>
-        </fieldset>
       </tal:rep>
 
       <hr style="margin-top: 0px;">
@@ -728,7 +728,7 @@
 
     </div>
 
-    <div class="tab-pane  " id="4489-5">
+    <div class="tab-pane  " id="4489-5" tal:define="incrementItem python:0">
       <h2 class="country-header">Good practices and lessons learnt</h2>
       <tal:cond tal:condition="python: not view.get_sorted_available_practices_data()">
         <div>Not reported</div>
@@ -736,38 +736,28 @@
 
       <tal:rep tal:repeat="item view/get_sorted_available_practices_data">
         <tal:block tal:define="fieldset_legend item/Area;
-                      fieldset_data item/DescribeGoodPractice">
-          <fieldset tal:condition="fieldset_data"
-                    tal:define="use_accordion python: len(fieldset_data) > 1000">
-            <legend class="country-profile-legend list"
-                    tal:content="fieldset_legend">Biogeophysical characteristics</legend>
+                      fieldset_data item/DescribeGoodPractice;
+                      ">
+            <div class="panel panel-default"
+                        tal:condition="fieldset_data"
+                        tal:define="id python: 'good_practices_and_lessons_' + str(incrementItem);
+                                    incrementItem python: incrementItem +1;
+                                    "
+                        >
+                        <div class="panel-heading" tal:attributes="id python: id+'-heading'">
+                          <h4 class="panel-title">
+                            <a class="accordion-toggle tiny-acchead" tal:attributes="href python:'#'+id+'-body'" data-toggle="collapse">
+                              <span tal:content="fieldset_legend">Forest</span>
+                            </a>
+                          </h4>
+                        </div>
+                        <div class="panel-collapse tiny-accbody collapse" tal:attributes="id python: id+'-body'">
+                          <div class="panel-body" tal:content="structure python: view.convert_web_int(fieldset_data)">
 
-            <div tal:attributes="class python: use_accordion and 'country-profile-accordion collapsed' or 'country-profile-accordion list'">
-              <div tal:define="id python: 'accordion_' + fieldset_legend.replace(' ', '_')"
-                   class="panel panel-default">
-                <div tal:condition="use_accordion"
-                    class="panel-heading">
-                  <h4 class="panel-title">
-                    <span class="link-https">
-                      <a tal:attributes="href id"
-                         class="accordion-toggle arrow-down collapsed"
-                         data-toggle="collapse"
-                         aria-expanded="false">Read more</a>
-                    </span>
-                  </h4>
-                </div>
-                <div tal:attributes="id id"
-                     class="panel-collapse collapse">
-                  <div tal:condition="use_accordion" class="panel-layer fadein"></div>
-                  <div class="panel-body text">
-                    <div class="read_more_second"
-                        tal:content="structure python: view.convert_web_int(fieldset_data)">Data here</div>
+
+                    </div>
                   </div>
-                </div>
               </div>
-            </div>
-
-          </fieldset>
 
         </tal:block>
       </tal:rep>
