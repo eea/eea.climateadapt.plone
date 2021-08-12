@@ -448,6 +448,7 @@
                       id python: id.replace(' ', '_');
                       id python: id.replace('(', '_');
                       id python: id.replace(')', '_');
+                      id python: id.replace('/', '_');
                       id python: id.replace(',', '_');
                       id python: id.replace('-', '_');
                       "
