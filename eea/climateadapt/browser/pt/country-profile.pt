@@ -12,7 +12,13 @@
     <tal:block tal:define="fieldset_legend string:Biogeophysical characteristics;
                         fieldset_data data/National_Circumstances/BiogeophysicalCharacteristics">
       <tal:macro metal:define-macro="fieldset-macro">
-        <div class="panel panel-default" tal:define="id python: 'accordion_' + fieldset_legend.replace(' ', '_')">
+        <div class="panel panel-default"
+          tal:define="id python: 'accordion_' + fieldset_legend.replace(' ', '_');
+                      id python: id.replace('(', '_');
+                      id python: id.replace(')', '_');
+                      id python: id.replace(',', '_');
+                      "
+          >
           <div class="panel-heading" tal:attributes="id python: id+'-heading'">
             <h4 class="panel-title">
               <a class="accordion-toggle tiny-acchead" tal:attributes="href python:'#'+id+'-body'" data-toggle="collapse">
