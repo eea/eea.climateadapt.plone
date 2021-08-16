@@ -84,23 +84,6 @@ function renderCountry(map, country, path, countries, x, y) {
 
   var available = countries.names.indexOf(country.properties.SHRT_ENGL) !== -1;
 
-  var cflag = map
-    .append('svg:image')
-    .style("border", "1px solid #ddd")
-    .attr("xlink:href", country.url)
-    .attr("x", "0")
-    .attr("y", "140")
-    .attr("width", "150")
-    .attr("height", "100")
-    ;
-
- var cname = map
-        .append("text")
-        .attr("x", 160)
-        .attr("y", 235)
-        .style("font-size", "32pt")
-        .text(country['properties']['SHRT_ENGL']);
-
   var parent = map
     .append('g')
     .attr('class', klass)
@@ -230,9 +213,9 @@ function renderCountriesBox(opts) {
 //renderGraticule(map, 'semi-graticule', [5, 5], path);
 
   world.forEach(function (country) {
-    if (countries['names'].includes(country['properties']['SHRT_ENGL'])) {
+    //if (countries['names'].includes(country['properties']['SHRT_ENGL'])) {
       renderCountry(map, country, path, countries, x, y);
-    }
+    //}
   });
 
   return path;
