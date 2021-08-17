@@ -36,6 +36,15 @@ function initmap(metadata, world, flags) {
   var focusCountry = metadata.focusCountry;
   $("svg-container").show();
 
+  world.forEach(function (country) {
+    if (focusCountry == country['properties']['SHRT_ENGL']) {
+      var els = $('.country-header div.selected.resizeselect');
+      if (els.length) {
+        els[0].innerHTML = '<img style="margin-top:7px;vertical-align: top;height:25px;border:1px solid #ddd;" src="'+country.url+'">'+els[0].innerHTML;
+      }
+    }
+  });
+
   function drawMap() {
     drawCountries(world, focusCountry);
   }
@@ -213,9 +222,7 @@ function renderCountriesBox(opts) {
 //renderGraticule(map, 'semi-graticule', [5, 5], path);
 
   world.forEach(function (country) {
-    //if (countries['names'].includes(country['properties']['SHRT_ENGL'])) {
-      renderCountry(map, country, path, countries, x, y);
-    //}
+    renderCountry(map, country, path, countries, x, y);
   });
 
   return path;
