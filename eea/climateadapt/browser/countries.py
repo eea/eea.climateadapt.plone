@@ -534,7 +534,7 @@ class CountryProfileData(BrowserView):
     template = ViewPageTemplateFile("pt/country-profile.pt")
 
     def convert_web_int(self, text):
-        return convWebInt(text)
+        return convWebInt(text).strip('<br />')
 
     def get_sorted_affected_sectors_data(self):
         items = self.processed_data['National_Circumstances'].get(
