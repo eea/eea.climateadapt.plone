@@ -656,8 +656,6 @@
             </div>
       </tal:rep>
 
-      <hr style="margin-top: 0px;">
-
       <tal:block tal:define="fieldset_legend string:Overview of sub-national strategies;
                     fieldset_data data/Strategies_Plans/OverviewContent">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
@@ -762,8 +760,6 @@
 
         </tal:block>
       </tal:rep>
-
-      <hr>
 
       <tal:block tal:define="fieldset_legend string:Synergies of adaptation actions with other international frameworks;
                     fieldset_data data/Cooperation_Experience/DescribeSynergiesAdaptation">
