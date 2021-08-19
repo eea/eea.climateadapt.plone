@@ -589,7 +589,6 @@
       <h2 class="country-header">Selection of actions and (programmes of) measures</h2>
       <tal:cond tal:condition="python: not view.get_sorted_action_measures_data()">
         <div>Not reported</div>
-        <br/><br/>
       </tal:cond>
 
       <tal:rep tal:repeat="item view/get_sorted_action_measures_data">
