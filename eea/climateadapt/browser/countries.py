@@ -1,18 +1,18 @@
 import csv
 import json
 import logging
+from datetime import datetime
+
 import lxml.etree
 import lxml.html
 import urllib2
-from datetime import datetime
-from pkg_resources import resource_filename
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
 from eea.climateadapt.vocabulary import ace_countries
+from pkg_resources import resource_filename
 from plone.api import portal
 from plone.intelligenttext.transforms import \
     convertWebIntelligentPlainTextToHtml as convWebInt
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 def parse_csv(path):
@@ -380,7 +380,7 @@ class CountriesMetadataExtract(BrowserView):
         text = tile_data["text"].raw
 
         res = get_nap_nas(obj, text, country=obj.Title())
-        res['notreported'] = True;
+        res['notreported'] = True
 
         return res
 
@@ -534,7 +534,7 @@ class CountryProfileData(BrowserView):
     template = ViewPageTemplateFile("pt/country-profile.pt")
 
     def convert_web_int(self, text):
-        return convWebInt(text).strip('<br />')
+        return convWebInt(text.strip())
 
     def get_sorted_affected_sectors_data(self):
         items = self.processed_data['National_Circumstances'].get(
