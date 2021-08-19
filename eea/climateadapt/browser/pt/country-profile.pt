@@ -17,6 +17,9 @@
                       id python: id.replace('(', '_');
                       id python: id.replace(')', '_');
                       id python: id.replace(',', '_');
+                      id python: id.replace('/', '_');
+                      id python: id.replace('-', '_');
+
                       "
           >
           <div class="panel-heading" tal:attributes="id python: id+'-heading'">
@@ -586,7 +589,9 @@
       <h2 class="country-header">Selection of actions and (programmes of) measures</h2>
       <tal:cond tal:condition="python: not view.get_sorted_action_measures_data()">
         <div>Not reported</div>
+        <br/><br/>
       </tal:cond>
+
       <tal:rep tal:repeat="item view/get_sorted_action_measures_data">
         <div class="panel panel-default"
           tal:define="id item/Title;
@@ -656,6 +661,7 @@
             </div>
       </tal:rep>
 
+      <br/><br/>
       <tal:block tal:define="fieldset_legend string:Overview of sub-national strategies;
                     fieldset_data data/Strategies_Plans/OverviewContent">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
@@ -672,7 +678,6 @@
                     fieldset_data data/Strategies_Plans/OverviewPrivateSector">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
-
     </div>
 
     <div class="tab-pane  " id="4489-4" tal:condition="python: 'Monitoring_Evaluation' in data">
