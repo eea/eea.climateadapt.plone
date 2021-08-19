@@ -740,25 +740,22 @@
       <tal:rep tal:repeat="item view/get_sorted_available_practices_data">
         <tal:block tal:define="fieldset_legend item/Area;
                       fieldset_data item/DescribeGoodPractice;
+                      id repeat/item/index;
                       ">
             <div class="panel panel-default"
                         tal:condition="fieldset_data"
-                        tal:define="id python: 'good_practices_and_lessons_' + str(incrementItem);
-                                    incrementItem python: incrementItem +1;
+                        tal:define="id python: 'good_practices_and_lessons_'+str(id);
                                     "
-                        >
-                        <div class="panel-heading" tal:attributes="id python: id+'-heading'">
-                          <h4 class="panel-title">
-                            <a class="accordion-toggle tiny-acchead" tal:attributes="href python:'#'+id+'-body'" data-toggle="collapse">
-                              <span tal:content="fieldset_legend">Forest</span>
-                            </a>
-                          </h4>
-                        </div>
-                        <div class="panel-collapse tiny-accbody collapse" tal:attributes="id python: id+'-body'">
-                          <div class="panel-body" tal:content="structure python: view.convert_web_int(fieldset_data)">
-
-
-                    </div>
+                  >
+                  <div class="panel-heading" tal:attributes="id python: id+'-heading'">
+                    <h4 class="panel-title">
+                      <a class="accordion-toggle tiny-acchead" tal:attributes="href python:'#'+id+'-body'" data-toggle="collapse">
+                        <span tal:content="fieldset_legend">Forest</span>
+                      </a>
+                    </h4>
+                  </div>
+                  <div class="panel-collapse tiny-accbody collapse" tal:attributes="id python: id+'-body'">
+                    <div class="panel-body" tal:content="structure python: view.convert_web_int(fieldset_data)"></div>
                   </div>
               </div>
 
