@@ -628,6 +628,10 @@ function initCountryPages() {
     });
   };
   $(".resizeselect-list").resizeselectList();
+
+  $("div.country-select-tile div.dd-title-wrapper").on("click", function () {
+    $(".resizeselect-list").width($(this).width() + 14);
+  });
 }
 
 function fixMoveMap() {
