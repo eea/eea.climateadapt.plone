@@ -552,11 +552,6 @@ function initCountryPages() {
     policySubTitles.each(function () {
       $(this).replaceWith($("<p><strong>" + this.innerHTML + "</strong><p>"));
     });
-
-    // move eu sector policy factsheet
-    $sidebar = $(".column.col-md-3");
-    $sidebar.before($sidebar.find(".factsheet-pdf").parent());
-    $(".factsheet-pdf").parent().css("text-decoration", "none");
   }
 
   // TRANSNATIONAL SUBPAGES (two specific subpages)
