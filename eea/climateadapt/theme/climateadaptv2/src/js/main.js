@@ -676,9 +676,6 @@ function initCustomAccordions() {
   var $panelTitle = $(".panel-title a");
 
   $panelTitle.addClass("arrow-down");
-  $panelTitle.click(function () {
-    $(this).toggleClass("arrow-up arrow-down");
-  });
 
   // Custom accordion with faded text
   $(".tile").each(function () {
@@ -703,6 +700,14 @@ function initCustomAccordions() {
     } else if ($this.text() === "Read less") {
       $this.text("Read more");
     }
+  });
+
+  $('.panel').on('hidden.bs.collapse', function () {
+    $(this).find("a.accordion-toggle").first().toggleClass("arrow-up arrow-down");
+  });
+
+  $('.panel').on('shown.bs.collapse', function () {
+    $(this).find("a.accordion-toggle").first().toggleClass("arrow-up arrow-down");
   });
 
   $panelCollapse.css({
