@@ -10,7 +10,7 @@ window._world = {};
 
 function initCountriesMapTile() {
   // initialize the countries map
-  var cpath = '++theme++climateadaptv2/static/countries/euro-countries-simplified.geojson';
+  var cpath = '++theme++climateadaptv2/static/countries/euro-countries-homepage.geojson';
   var fpath = '++theme++climateadaptv2/static/countries/countries.tsv';
 
   var $sw = $('.svg-fp-container');
