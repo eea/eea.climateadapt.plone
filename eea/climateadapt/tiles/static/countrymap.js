@@ -248,6 +248,11 @@ function drawCountries(world, focusCountry) {
   var width = Math.round($(svg.node()).width());
   var height = Math.round($(svg.node()).height());
 
+  // Move this country to be the last one in world list - fix country borders color
+  var thisCountry = world.filter(c => c.properties.SHRT_ENGL == focusCountry)[0];
+  var filteredCountries = world.filter(c => c.properties.SHRT_ENGL !== focusCountry);
+  world.push(thisCountry);
+
   var opts = {
     'world': world,
     'svg': svg,
