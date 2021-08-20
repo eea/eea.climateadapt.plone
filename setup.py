@@ -49,7 +49,7 @@ setup(
         "tokenlib",
         "eea.rabbitmq.client",  # schedule jobs
         "eea.rabbitmq.plone",
-        "google-api-python-client",  # google analytics API integration
+        #"google-api-python-client",  # google analytics API integration
         # "collective.relationhelpers",
     ],
     extras_require={
