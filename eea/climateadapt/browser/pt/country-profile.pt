@@ -20,6 +20,9 @@
                       id python: id.replace('/', '_');
                       id python: id.replace('&', '_');
                       id python: id.replace('-', '_');
+                      id python: id.replace(',', '_');
+                      id python: id.replace('.', '_');
+                      id python: id.replace('/', '_');
 
                       "
           >
@@ -594,15 +597,8 @@
 
       <tal:rep tal:repeat="item view/get_sorted_action_measures_data">
         <div class="panel panel-default"
-          tal:define="id item/Title;
-                      id python: 'sector_title_' + id;
-                      id python: id + '_' + item['SectorDescribeIfOther'] if 'SectorDescribeIfOther' in item else id;
-                      id python: id.replace(' ', '_');
-                      id python: id.replace('(', '_');
-                      id python: id.replace(')', '_');
-                      id python: id.replace(',', '_');
-                      id python: id.replace('-', '_');
-                      id python: id.replace('.', '_');
+          tal:define="id repeat/item/index;
+                      id python: 'selection_of_index' + str(id);
                       "
           >
           <div class="panel-heading" tal:attributes="id python: id+'-heading'">
