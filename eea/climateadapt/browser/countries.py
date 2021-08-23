@@ -1,6 +1,8 @@
 import csv
 import json
 import logging
+import re
+import sys
 from datetime import datetime
 
 import lxml.etree
@@ -9,8 +11,11 @@ import urllib2
 from eea.climateadapt.vocabulary import ace_countries
 from pkg_resources import resource_filename
 from plone.api import portal
-from plone.intelligenttext.transforms import \
-    convertWebIntelligentPlainTextToHtml as convWebInt
+from plone.intelligenttext.transforms import (
+    WebIntelligentToHtmlConverter,
+    convertWebIntelligentPlainTextToHtml as convWebInt,
+    safe_decode
+)
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -239,6 +244,51 @@ def get_nap_nas(obj, text, country):
             logger.exception("Error in extracting information from country %s", country)
 
     return res
+
+
+PY3 = sys.version_info[0] == 3
+if PY3:
+    from html.entities import name2codepoint
+    unicode = str
+    unichr = chr
+else:
+    from htmlentitydefs import name2codepoint
+
+
+class CCAWebIntelligentToHtmlConverter(WebIntelligentToHtmlConverter):
+    newline_regex = re.compile('\\n+(?=[A-Z])')  #(?=\\p{L})
+    tabnewline_regex = re.compile('(\\r\\n)+')
+
+    def __call__(self):
+        text = self.orig
+        if text is None:
+            text = ''
+
+        text = safe_decode(text, errors='replace')
+
+        # Do &amp; separately, else, it may replace an already-inserted & from
+        # an entity with &amp;, so < becomes &lt; becomes &amp;lt;
+        text = text.replace('&', '&amp;')
+        # Make funny characters into html entity defs
+        for entity, codepoint in name2codepoint.items():
+            if entity != 'amp':
+                text = text.replace(unichr(codepoint), '&' + entity + ';')
+
+        text = self.urlRegexp.subn(self.replaceURL, text)[0]
+        text = self.emailRegexp.subn(self.replaceEmail, text)[0]
+        text = self.indentRegexp.subn(self.indentWhitespace, text)[0]
+
+        # convert windows line endings
+        # text = text.replace('\r\n', '\n')
+        text = self.tabnewline_regex.sub('\n', text)
+        text = self.newline_regex.sub('\n\n', text)
+        # Finally, make \n's into br's
+        text = text.replace('\n', '<br />')
+        
+        if not PY3:
+            text = text.encode('utf-8')
+
+        return text
 
 
 class CountriesMetadataExtract(BrowserView):
@@ -534,7 +584,12 @@ class CountryProfileData(BrowserView):
     template = ViewPageTemplateFile("pt/country-profile.pt")
 
     def convert_web_int(self, text):
-        return convWebInt(text.strip())
+        _text = CCAWebIntelligentToHtmlConverter(text.strip())()
+        
+        # import pdb; pdb.set_trace()
+
+        return _text
+        # return convWebInt(text.strip())
 
     def get_sorted_affected_sectors_data(self):
         items = self.processed_data['National_Circumstances'].get(

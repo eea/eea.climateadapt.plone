@@ -550,7 +550,7 @@
                     fieldset_data data/Legal_Policies/DescribeDRR">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
-      <tal:block tal:define="fieldset_legend string:Collection & ownership of data;
+      <tal:block tal:define="fieldset_legend string:Collection and ownership of data;
                     fieldset_data data/Legal_Policies/DescribeCollection">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
