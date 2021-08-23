@@ -1,0 +1,116 @@
+<div class="toc-container">
+  <ul class="toc-list"></ul>
+
+<script>
+$(document).ready(() => {
+  let $body = $("body");
+  if($body.hasClass("cover-layout-empty-layout") &&
+     $body.hasClass("template-standard") &&
+     $body.hasClass("portaltype-collective-cover-content") &&
+     $("#portal-breadcrumbs span").length == 6
+  ) {
+    // The context is correct, so define the  ToC:
+    let tocContainer = $("div.toc-container");
+    tocContainer.hide();
+
+    let sections = [
+      ["Key messages", "key-messages"],
+      ["Impacts and vulnerabilites", "impacts-and-vulnerabilities"],
+      ["Policy framework", "policy-framework"],
+      ["Improving the knowledge base", "improving-the-knowledge-base"],
+      ["Supporting investment and funding", "supporting-investment-and-funding"],
+      ["Supporting the implementation", "supporting-the-implementation"],
+      ["MRE of adaptation", "mre-of-adaptation"]
+    ];
+
+    function querySelectorIncludesText (selector, text) {
+      return Array.from(document.querySelectorAll(selector))
+              .find(el => el.textContent.includes(text));
+    }
+
+    let addLink = (section, isEnabled) => {
+      if(isEnabled) {
+        var listItem = "<li><a class='enabled' href='./#" + section[1] + "'>" + section[0] + "</a></li>";
+      } else {
+        var listItem = "<li><a class='disabled' href='./#" + section[1] + "'>" + section[0] + "</a></li>";
+      }
+
+      $("ul.toc-list").append(listItem);
+    }
+
+    let configureContentAnchorTag = (section) => {
+      let titleElement = querySelectorIncludesText("strong", section[0]);
+      if(titleElement === undefined) {
+        return false;
+      }
+      $(titleElement).replaceWith(
+        "<strong id='" + section[1] + "'>" + section[0] + "</strong>"
+      );
+      return true;
+    }
+
+    for(let section of sections) {
+      let exists = configureContentAnchorTag(section);
+      if(exists) {
+        addLink(section, enabled=true);
+      } else {
+        addLink(section, enabled=false);
+      }
+    }
+
+    $("ul.toc-list a.enabled").on("click", () => {
+      let $readMore = $("h4.panel-title a.accordion-toggle").first();
+      if($readMore.hasClass("arrow-down")) {
+        $readMore.click();
+      }
+    });
+
+    tocContainer.show();
+  }
+});
+</script>
+
+<style>
+ul.toc-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  list-style: none;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  background: white;
+  padding: 0px;
+  margin-bottom: 20px;
+  border: 1px solid rgb(229, 229, 229);
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+ul.toc-list li {
+  padding: 5px;
+  font-size: 10px !important;
+}
+
+ul.toc-list li:before {
+  content: "\f101";
+  font-family: "FontAwesome";
+  margin-right: 3px;
+  display: inline-block;
+  color: #007cb9;
+}
+
+ul.toc-list li a {
+  color: rgb(58, 58, 58);
+  text-decoration: none;
+}
+
+ul.toc-list li a.disabled {
+  opacity: 0.5;
+}
+
+ul.toc-list li a:hover {
+  color: #007cb9;
+}
+</style>
+</div>
