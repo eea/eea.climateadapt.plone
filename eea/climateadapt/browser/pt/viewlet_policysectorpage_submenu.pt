@@ -1,4 +1,4 @@
-<div class="toc-container">
+<div class="toc-container" style="display:none;">
   <ul class="toc-list"></ul>
 
 <script>
