@@ -1027,6 +1027,15 @@ $(document).ready(function () {
     e.preventDefault();
   });
 
+  // Search toggle filter by results div
+  $("a#search-filter-toggle").click(function (e) {
+    e.preventDefault();
+    var menuDiv = $( this ).parents(".actionMenu");
+    if (menuDiv) {
+      $(menuDiv).toggleClass("activated deactivated");
+    }
+  });
+
   // GENERAL
   // Add table class
   $(".CSSTableGenerator").addClass("listing");
