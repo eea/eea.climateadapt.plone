@@ -306,16 +306,6 @@ class FrontpageSearch(BrowserView):
                     path={"query": path, "depth": 10},
                 )
             )
-            if search_type == "INDICATOR":
-                c3s_indicators = len(
-                    catalog.searchResults(
-                        portal_type="eea.climateadapt.c3sindicator",
-                        review_state="published",
-                        # path={"query": path, "depth": 10},
-                    )
-                )
-                count += c3s_indicators
-
             counts[search_type] = count
 
         return [

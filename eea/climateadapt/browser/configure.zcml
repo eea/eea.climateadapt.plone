@@ -902,6 +902,14 @@
       permission="zope2.View"
       />
 
+  <browser:viewlet
+      name="policy_sector_page_sub_menu"
+      for="plone.dexterity.interfaces.IDexterityItem"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+      class=".viewlets.PolicySectorPageSubMenuViewlet"
+      permission="zope2.View"
+      />
+
   <browser:page
       name="urbanast_bottom_nav"
       for="*"

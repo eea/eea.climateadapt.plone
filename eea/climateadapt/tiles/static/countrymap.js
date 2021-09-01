@@ -40,7 +40,7 @@ function initmap(metadata, world, flags) {
     if (focusCountry == country['properties']['SHRT_ENGL']) {
       var els = $('.country-header div.selected.resizeselect');
       if (els.length) {
-        els[0].innerHTML = '<img style="margin-top:7px;vertical-align: top;height:25px;border:1px solid #ddd;" src="'+country.url+'">'+els[0].innerHTML;
+        els[0].innerHTML = '<img style="margin-top:7px;vertical-align: top;height:25px;border:1px solid #ddd;" src="'+country.url+'"> '+els[0].innerHTML;
       }
     }
   });

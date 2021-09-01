@@ -552,11 +552,6 @@ function initCountryPages() {
     policySubTitles.each(function () {
       $(this).replaceWith($("<p><strong>" + this.innerHTML + "</strong><p>"));
     });
-
-    // move eu sector policy factsheet
-    $sidebar = $(".column.col-md-3");
-    $sidebar.before($sidebar.find(".factsheet-pdf").parent());
-    $(".factsheet-pdf").parent().css("text-decoration", "none");
   }
 
   // TRANSNATIONAL SUBPAGES (two specific subpages)
@@ -628,6 +623,10 @@ function initCountryPages() {
     });
   };
   $(".resizeselect-list").resizeselectList();
+
+  $("div.country-select-tile div.dd-title-wrapper").on("click", function () {
+    $(".resizeselect-list").width($(this).width() + 14);
+  });
 }
 
 function fixMoveMap() {
@@ -1026,6 +1025,15 @@ $(document).ready(function () {
   // Top menu login
   $("#user-name").click(function (e) {
     e.preventDefault();
+  });
+
+  // Search toggle filter by results div
+  $("a#search-filter-toggle").click(function (e) {
+    e.preventDefault();
+    var menuDiv = $( this ).parents(".actionMenu");
+    if (menuDiv) {
+      $(menuDiv).toggleClass("activated deactivated");
+    }
   });
 
   // GENERAL

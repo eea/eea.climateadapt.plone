@@ -90,6 +90,10 @@ class SharePageSubMenuViewlet(ViewletBase):
                                   'share-your-info'))
 
 
+class PolicySectorPageSubMenuViewlet(ViewletBase):
+    index = ViewPageTemplateFile("pt/viewlet_policysectorpage_submenu.pt")
+
+
 class SearchBoxViewlet(BaseSearchViewlet):
     index = ViewPageTemplateFile('pt/searchbox.pt')
 
