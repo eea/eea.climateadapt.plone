@@ -53,6 +53,15 @@
 
             <div tal:condition="embed">
               <span tal:replace="structure embed"></span>
+              <div tal:condition="context/embed_url">
+                <hr />
+                <center>
+                <video controls="controls" preload="metadata" src="" width="640px" height="360"
+                  tal:attributes="src context/embed_url">
+                </video>
+                </center>
+                <hr />
+              </div>
             </div>
 
             <div tal:condition="not: embed">
