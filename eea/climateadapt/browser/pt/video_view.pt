@@ -16,7 +16,6 @@
 
           <div class="aceitem-left"
                metal:fill-slot="ace-left-slot"
-               tal:define="embed view/context/embed | nothing"
                >
 
             <!-- <div tal:define="url view/embed_url" tal:condition="not: embed"> -->
@@ -31,6 +30,11 @@
 
             <div style="margin-top: 1em;">
               <p tal:replace="structure python: view.w['long_description'].render()">description here</p>
+            </div>
+
+            <h4 class="reference-title" tal:condition="context/related_documents_presentations/raw | nothing">Related documents and presentations</h4>
+            <div tal:condition="context/related_documents_presentations">
+                <p tal:replace="structure context/related_documents_presentations/raw | None">related docs and presentations</p>
             </div>
 
             <h4 class="reference-title" tal:condition="python:context.websites or context.source">Reference information</h4>
@@ -51,20 +55,15 @@
 
             <metal:macro use-macro="context/ace_macros/macros/contributor_list" />
 
-            <div tal:condition="embed">
-              <span tal:replace="structure embed"></span>
-              <div tal:condition="context/embed_url">
-                <hr />
+            <div tal:condition="context/embed_url">
                 <center>
                 <video controls="controls" preload="metadata" src="" width="640px" height="360"
                   tal:attributes="src context/embed_url">
                 </video>
                 </center>
-                <hr />
-              </div>
             </div>
 
-            <div tal:condition="not: embed">
+            <div tal:condition="context/embed_url">
               <a href=""
                 tal:attributes="href context/embed_url"
                 target="_blank">See video outside Climate-ADAPT</a>

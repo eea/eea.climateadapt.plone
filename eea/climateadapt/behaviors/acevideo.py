@@ -3,16 +3,11 @@ from zope.schema import Text, TextLine, Date
 from eea.climateadapt import MessageFactory as _
 
 from .aceitem import IAceItem
+from plone.app.textfield import RichText
 
 
 class IAceVideo(IAceItem):
     """Video schema"""
-
-    embed = Text(
-        title=_(u"Video Embed code"),
-        description=u"Optional, enter video embed HTML code",
-        required=False,
-    )
 
     embed_url = TextLine(
         title=_(u"Video URL"), description=u"Enter the video URL", required=True
@@ -32,4 +27,10 @@ class IAceVideo(IAceItem):
         u"If you want to add only the year, please select \"day: 1\", "
         u"\"month: January\" and then the year",
         required=True,
+    )
+
+    related_documents_presentations = RichText(
+        title=_(u"Related documents and presentations"),
+        required=False,
+        default=None
     )
