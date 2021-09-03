@@ -72,7 +72,7 @@ class VideoFormExtender(FormExtender):
     def update(self):
         self.move('embed_url', after='title')
         self.move('video_height', after='embed_url')
-        self.move('embed', after='video_height')
+        self.move('related_documents_presentations', after='embed_url')
         self.move('IRelatedItems.relatedItems', after='comments')
 
         self.remove('ICategorization.subjects')
