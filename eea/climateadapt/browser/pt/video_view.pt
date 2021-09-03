@@ -55,13 +55,17 @@
 
             <metal:macro use-macro="context/ace_macros/macros/contributor_list" />
 
-            <div tal:condition="context/embed_url">
-                <center>
-                <video controls="controls" preload="metadata" src="" width="640px" height="360"
-                  tal:attributes="src context/embed_url">
-                </video>
-                </center>
-            </div>
+            <tal:block define="embed_url_val context/embed_url;
+                               embed_url_val python:embed_url_val+'/download' if embed_url_val.startswith('https://cmshare.eea.eu') and not embed_url_val.endswith('/download') else embed_url_val;
+              ">
+              <div tal:condition="embed_url_val">
+                  <center>
+                  <video controls="controls" preload="metadata" src="" width="640px" height="360"
+                    tal:attributes="src embed_url_val">
+                  </video>
+                  </center>
+              </div>
+            </tal:block>
 
             <div tal:condition="context/embed_url">
               <a href=""
