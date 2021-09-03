@@ -57,12 +57,12 @@
 
             <tal:block define="embed_url_val context/embed_url;
                                embed_url_val python:embed_url_val+'/download' if embed_url_val.startswith('https://cmshare.eea.eu') and not embed_url_val.endswith('/download') else embed_url_val;
-                               is_youtube python: 1 if 'https://www.youtube.com' in embed_url_val else 0;
+                               is_cmshare_video python: 1 if 'https://cmshare.eea.eu' in embed_url_val else 0;
               ">
               <div tal:condition="embed_url_val">
                   <center>
                   <video controls="controls" preload="metadata" src="" width="640px" height="360"
-                    tal:condition="python: not is_youtube"
+                    tal:condition="is_cmshare_video"
                     tal:attributes="src embed_url_val">
                   </video>
                   </center>
