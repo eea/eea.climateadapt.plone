@@ -12,6 +12,7 @@ $(document).ready(() => {
     // The context is correct, so define the  ToC:
     let tocContainer = $("div.toc-container");
     tocContainer.hide();
+    $("h1.documentFirstHeading").before(tocContainer);
 
     let sections = [
       ["Key messages", "key-messages"],
@@ -78,31 +79,13 @@ ul.toc-list {
   background: white;
   padding: 0px;
   margin-bottom: 20px;
-  border: 1px solid rgb(229, 229, 229);
-  padding-left: 15px;
-  padding-right: 15px;
 }
 
-ul.toc-list li {
-  padding: 5px;
-  font-size: 10px !important;
-}
-
-ul.toc-list li:before {
-  content: "\f101";
-  font-family: "FontAwesome";
-  margin-right: 3px;
+ul.toc-list li:after {
+  content: "|";
+  margin-left: 5px;
+  margin-right: 5px;
   display: inline-block;
-  color: #007cb9;
-}
-
-ul.toc-list li a {
-  color: rgb(58, 58, 58);
-  text-decoration: none;
-}
-
-ul.toc-list li a:hover {
-  color: #007cb9;
 }
 </style>
 </div>
