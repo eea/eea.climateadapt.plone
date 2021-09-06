@@ -640,7 +640,7 @@ def get_links(site):
         if hasattr(obj, 'websites'):
             if isinstance(obj.websites, str):
                 append_urls(obj.websites, path)
-            else:
+            elif type(obj.websites) is list or type(obj.websites) is tuple:
                 for url in obj.websites:
                     append_urls(url, path)
         else:
