@@ -172,6 +172,7 @@
                                   </div>
                               </fieldset>
 
+<!--
                               <fieldset class="noborder">
 
                                   <legend i18n:translate="filter_results">By Climate-ADAPT sections</legend>
@@ -240,7 +241,7 @@
                                       </tal:path>
                                   </div>
                                 </fieldset>
-
+-->
                               <fieldset class="noborder">
 
                                   <legend i18n:translate="label_new_items_since">New items since</legend>
