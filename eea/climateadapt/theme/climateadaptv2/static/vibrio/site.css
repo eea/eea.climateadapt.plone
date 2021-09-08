@@ -1,0 +1,354 @@
+﻿html {
+  font-family: Tahoma;
+  color: #333333;
+  /*limit map size to max 2048px, as that is the maximum image size offered by the map services*/
+  max-width: 2100px;
+}
+
+@font-face {
+  font-family: "MetaPro";
+  src: url(/vibriomapviewer/fonts/meta-pro/MetaPro-Book.eot);
+  src: url(/vibriomapviewer//fonts/meta-pro/MetaPro-Book.eot#iefix)
+      format("embedded-opentype"),
+    url(/fonts/meta-pro/MetaPro-Book.woff) format("woff"),
+    url(/fonts/meta-pro/MetaPro-Book.ttf) format("truetype"),
+    url(/fonts/meta-pro/MetaPro-Book.svg#MetaPro-Book) format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MetaPro";
+  src: url(/vibriomapviewer//fonts/meta-pro/MetaPro-Bold.eot);
+  src: url(/vibriomapviewer//fonts/meta-pro/MetaPro-Bold.eot#iefix)
+      format("embedded-opentype"),
+    url(/fonts/meta-pro/MetaPro-Bold.woff) format("woff"),
+    url(/fonts/meta-pro/MetaPro-Bold.ttf) format("truetype"),
+    url(/fonts/meta-pro/MetaPro-Bold.svg#MetaPro-Bold) format("svg");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MetaPro";
+  src: url(/vibriomapviewer//fonts/meta-pro/MetaPro-Black.eot);
+  src: url(/vibriomapviewer//fonts/meta-pro/MetaPro-Black.eot#iefix)
+      format("embedded-opentype"),
+    url(/fonts/meta-pro/MetaPro-Black.woff) format("woff"),
+    url(/fonts/meta-pro/MetaPro-Black.ttf) format("truetype"),
+    url(/fonts/meta-pro/MetaPro-Black.svg#MetaPro-Bold) format("svg");
+  font-weight: 900;
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "MetaPro", Georgia, "Times New Roman", Times, serif;
+  font-weight: bold;
+  line-height: 1.1;
+  color: inherit;
+}
+
+h4,
+.h4 {
+  font-size: 1.25em;
+}
+
+.section--navbar-header {
+  border-top: 0 none;
+}
+
+.section--navbar-header .section__inner {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.section--navbar-header .header-title {
+  margin-bottom: 0;
+  font-weight: 900;
+}
+
+.section--navbar-header .header-subtitle {
+  display: none;
+}
+
+.section--navbar-header .header-subtitle__image {
+  display: inline-block;
+  vertical-align: top;
+  width: 1.5em;
+}
+
+.section--navbar-header .header-signin {
+  font-family: "MetaPro", Georgia, "Times New Roman", Times, serif;
+  text-decoration: none;
+  font-size: 18pt;
+  font-weight: 300;
+  color: inherit;
+}
+
+@media screen and (min-width: 768px) {
+  .section--navbar-header .header-title {
+    margin-bottom: 0.125em;
+    font-size: 2.125em;
+  }
+
+  .section--navbar-header .header-subtitle {
+    font-weight: normal;
+    color: #777;
+    display: block;
+  }
+}
+
+.section--navbar-header .navbar-header {
+  float: none;
+  padding: 1.25em 0 1.25em 0;
+}
+
+.section--navbar-header .navbar-header .media-left {
+  padding: 0 1.25em;
+}
+
+.logo {
+  height: 3.75em;
+  width: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .logo {
+    height: 5.625em;
+  }
+}
+
+.media {
+  margin-top: 15px;
+}
+
+.media:first-child {
+  margin-top: 0;
+}
+
+.media,
+.media-body {
+  overflow: hidden;
+  zoom: 1;
+}
+
+.media-body {
+  width: 9000px;
+}
+
+.media-object {
+  display: block;
+}
+
+.media-object.img-thumbnail {
+  max-width: none;
+}
+
+.media-right {
+  width: 1000px;
+}
+
+.media-right,
+.media > .pull-right {
+  /*padding-left: 10px;*/
+  text-align: right;
+}
+
+.media-left,
+.media > .pull-left {
+  padding-right: 10px;
+}
+
+.media-left,
+.media-right,
+.media-body {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.media-middle {
+  vertical-align: middle;
+}
+
+.media-bottom {
+  vertical-align: bottom;
+}
+
+.media-heading {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.media-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.page-content-main {
+  margin: 0;
+  border-bottom: 0.35714em solid #65b32e;
+}
+
+.section--legal {
+  padding: 0;
+  border-top: 0 none;
+}
+
+.section--legal .section__inner {
+  padding-top: 1.42857em;
+  padding-bottom: 1.42857em;
+}
+
+.section--legal,
+.section--legal .section__inner {
+  background-color: #4d4d4d;
+}
+
+.section--legal .container-fluid {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.page-legal {
+  color: #fff;
+}
+
+.page-legal:before,
+.page-legal:after {
+  display: table;
+  content: " ";
+}
+
+.page-legal:after {
+  clear: both;
+}
+
+.page-legal__links {
+  margin: 0;
+}
+
+.page-legal__links ul {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+  display: block;
+}
+
+.page-legal__links ul:before,
+.page-legal__links ul:after {
+  display: table;
+  content: " ";
+}
+
+.page-legal__links ul:after {
+  clear: both;
+}
+
+@media print {
+  .page-legal__links ul {
+    display: none;
+  }
+}
+
+.page-legal__links li {
+  text-align: center;
+  display: block;
+  line-height: 1.33333;
+}
+
+@media screen and (min-width: 768px) {
+  .page-legal__links li {
+    text-align: left;
+    float: left;
+    margin-right: 1.07143em;
+  }
+}
+
+.page-legal__links .page-legal__copyright,
+.page-legal__links a {
+  display: block;
+  margin-bottom: 0.35714em;
+}
+
+.page-legal__links a {
+  color: #fff;
+}
+
+.page-legal__links .page-legal__copyright {
+  color: #777;
+  margin-top: 0.35714em;
+}
+
+.disclaimer-dialog {
+  max-width: 1400px;
+  padding: 0;
+  border-radius: 3px;
+}
+
+.disclaimer-dialog .ui-widget-header {
+  background-color: #000;
+  color: #fff;
+  padding: 1rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.disclaimer-dialog .ui-widget-header .ui-dialog-title {
+  padding: 0;
+  margin: 0;
+  font-family: Tahoma;
+  font-size: 13pt;
+  line-height: 1.2;
+  font-weight: normal;
+}
+
+.disclaimer-dialog .ui-dialog-content {
+  padding: 10px 20px 40px;
+}
+
+.disclaimer-dialog .ui-dialog-content h4 {
+  margin: 10px 0 25px 0;
+  background-color: #e6e6e6;
+  padding-right: 5px;
+  padding-left: 20px;
+  font-family: Tahoma;
+  color: #333;
+  font-weight: bold;
+  font-size: 13pt;
+}
+
+.disclaimer-dialog .ui-dialog-content p {
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: justify;
+  margin: 0;
+}
+
+.disclaimer-dialog .ui-dialog-content p.last {
+  margin-top: 15px;
+}
+
+.ui-widget-overlay {
+  background: #333;
+}
