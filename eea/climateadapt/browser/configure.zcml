@@ -1094,6 +1094,19 @@
       template="pt/vibriomap.pt"
       permission="zope2.View"
       />
+  <browser:page
+      name="vibriomap-old-view"
+      for="*"
+      template="pt/vibriomap-old.pt"
+      permission="zope2.View"
+      />
+  <browser:page
+      name="vibriomap-proxy"
+      for="*"
+      permission="zope2.View"
+      class=".misc.VibrioProxy"
+      />
+
 
   <browser:page
       name="lancet-indicator-view"

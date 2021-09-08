@@ -2,6 +2,7 @@ import json
 import logging
 import re
 import urllib
+import requests
 from email.MIMEText import MIMEText
 from itertools import islice
 
@@ -1111,3 +1112,16 @@ class C3sIndicatorsListing(BrowserView):
                 })
 
         return res
+
+
+class VibrioProxy(BrowserView):
+
+    url_vibrio = "https://geoportal.ecdc.europa.eu/vibriomapviewer/api/proxy"
+
+    def __call__(self):
+        response = self.request.response
+        response.setHeader("Content-type", "application/xml")
+
+        url = self.url_vibrio + '?' + self.request["QUERY_STRING"]
+        resp = requests.get(url)
+        return resp.content
