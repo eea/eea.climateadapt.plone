@@ -64,14 +64,14 @@ $(function () {
             $("#leftPanel").css("width", "290px")
             $("#map").css("width", "calc(99% - 290px)")
             map.resize();
-            $('#showhide').attr("src", "img/E3JSViewer/arrow_left.png");
+            $('#showhide').attr("src", "/++theme++climateadaptv2/static/vibrio/arrow_left.png");
 
         } else {
             $("#capaLeft").hide();
             $("#leftPanel").css("width", "2%")
             $("#map").css("width", "97%")
             map.resize();
-            $('#showhide').attr("src", "img/E3JSViewer/arrow_right.png");
+            $('#showhide').attr("src", "/++theme++climateadaptv2/static/vibrio/arrow_right.png");
         }
     });
 

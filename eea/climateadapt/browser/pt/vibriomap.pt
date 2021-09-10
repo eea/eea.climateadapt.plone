@@ -2,10 +2,6 @@
 
   <metal:title fill-slot="content-title">
     <h1 tal:content="context/Title">Vibrio map viewer</h1>
-    <div id="vibrio-subtitle">
-      <img src="++resource++eea.climateadapt/logo-ecdc.png" />
-        European Centre for Disease Prevention and Control (ECDC)
-    </div>
   </metal:title>
   <metal:content fill-slot="content-core">
     <div tal:content="structure python: hasattr(context, 'text') and context.text and context.text.output or ''"></div>
