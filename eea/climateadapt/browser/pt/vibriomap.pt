@@ -11,6 +11,32 @@
         <link rel="stylesheet" href="/++theme++climateadaptv2/static/vibrio/map-viewer.css" />
         <link rel="stylesheet" href="/++theme++climateadaptv2/static/vibrio/site.css" />
 
+<style>
+#fullScreenImg,
+#OverviewImg,
+#imgidentifybutton,
+#fullExtentImg,
+#imgAboutMapButton
+{
+  width:45px;
+  height:20px;
+}
+select.form-control {
+  height: 25px;
+  padding: 0;
+  margin: 0;
+}
+#optionsContainer {
+  margin:0px;
+  margin-top:0px;
+}
+#containerMap #leftPanel {
+  width:270px;
+}
+#containerMap #map {
+  width:calc(99% - 280px);
+}
+</style>
         <div class="container page-content-main">
             <div class="claro" id="mapBody">
                 <div style="margin:0 auto;position:relative" id="mapContainer">
