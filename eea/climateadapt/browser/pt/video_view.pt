@@ -32,6 +32,12 @@
               <p tal:replace="structure python: view.w['long_description'].render()">description here</p>
             </div>
 
+            <div tal:condition="context/embed_url" style="padding-top:30px;">
+              <a href=""
+                tal:attributes="href context/embed_url"
+                target="_blank">See video outside Climate-ADAPT</a>
+            </div>
+
             <h4 class="reference-title" tal:condition="context/related_documents_presentations/raw | nothing">Related documents and presentations</h4>
             <div tal:condition="context/related_documents_presentations">
                 <p tal:replace="structure context/related_documents_presentations/raw | None">related docs and presentations</p>
@@ -68,12 +74,6 @@
                   </center>
               </div>
             </tal:block>
-
-            <div tal:condition="context/embed_url">
-              <a href=""
-                tal:attributes="href context/embed_url"
-                target="_blank">See video outside Climate-ADAPT</a>
-            </div>
 
             <div metal:use-macro="context/ace_macros/macros/comments"></div>
           </div>
