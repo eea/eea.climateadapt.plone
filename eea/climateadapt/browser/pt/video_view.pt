@@ -16,6 +16,9 @@
 
           <div class="aceitem-left"
                metal:fill-slot="ace-left-slot"
+               tal:define="embed_url_val context/embed_url;
+                                  embed_url_val python:embed_url_val+'/download' if embed_url_val.startswith('https://cmshare.eea.eu') and not embed_url_val.endswith('/download') else embed_url_val;
+                                  is_cmshare_video python: 1 if 'https://cmshare.eea.eu' in embed_url_val else 0;"
                >
 
             <!-- <div tal:define="url view/embed_url" tal:condition="not: embed"> -->
@@ -32,11 +35,13 @@
               <p tal:replace="structure python: view.w['long_description'].render()">description here</p>
             </div>
 
+            <tal:block tal:condition="python: not is_cmshare_video">
             <div tal:condition="context/embed_url" style="padding-top:30px;">
               <a href=""
                 tal:attributes="href context/embed_url"
                 target="_blank">See video outside Climate-ADAPT</a>
             </div>
+            </tal:block>
 
             <h4 class="reference-title" tal:condition="context/related_documents_presentations/raw | nothing">Related documents and presentations</h4>
             <div tal:condition="context/related_documents_presentations">
@@ -61,10 +66,6 @@
 
             <metal:macro use-macro="context/ace_macros/macros/contributor_list" />
 
-            <tal:block define="embed_url_val context/embed_url;
-                               embed_url_val python:embed_url_val+'/download' if embed_url_val.startswith('https://cmshare.eea.eu') and not embed_url_val.endswith('/download') else embed_url_val;
-                               is_cmshare_video python: 1 if 'https://cmshare.eea.eu' in embed_url_val else 0;
-              ">
               <div tal:condition="embed_url_val">
                   <center>
                   <video controls="controls" preload="metadata" src="" width="640px" height="360"
@@ -73,7 +74,6 @@
                   </video>
                   </center>
               </div>
-            </tal:block>
 
             <div metal:use-macro="context/ace_macros/macros/comments"></div>
           </div>
