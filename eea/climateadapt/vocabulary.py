@@ -429,6 +429,7 @@ alsoProvides(acemeasure_types, IVocabularyFactory)
 _origin_website = (("AdapteCCA", "AdapteCCA"),
                    #("Climate-ADAPT", "Climate-ADAPT"),
                    ("EEA", "EEA"),
+                   ("EEA-archived", "EEA-archived"),
                    ('DRMKC', 'DRMKC'), ('C3S', 'C3S'),
                    ('Lancet Countdown', 'Lancet Countdown')
                    )
