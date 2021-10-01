@@ -16,7 +16,7 @@ $(document).ready(() => {
 
     let sections = [
       ["Key messages", "key-messages"],
-      ["Impacts and vulnerabilites", "impacts-and-vulnerabilities"],
+      ["Impacts and vulnerabilities", "impacts-and-vulnerabilities"],
       ["Policy framework", "policy-framework"],
       ["Improving the knowledge base", "improving-the-knowledge-base"],
       ["Supporting investment and funding", "supporting-investment-and-funding"],
