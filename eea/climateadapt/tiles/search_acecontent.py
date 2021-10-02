@@ -465,6 +465,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
             u"eea.climateadapt.aceproject",
             u"eea.climateadapt.casestudy",
             u"eea.climateadapt.guidancedocument",
+            u"eea.climateadapt.c3sindicator",
             u"eea.climateadapt.indicator",
             u"eea.climateadapt.informationportal",
             u"eea.climateadapt.mapgraphdataset",
