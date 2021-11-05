@@ -1,0 +1,421 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:main fill-slot="main">
+
+<tal:block >
+
+
+<script>
+  window._define = window.define;
+  window.define = undefined;
+</script>
+<script src='https://cdn.plot.ly/plotly-2.4.2.min.js'></script>
+
+<style>
+.bs-example {
+    margin-right: 0;
+    margin-left: 0;
+    background-color: #fff;
+    border-color: #ddd;
+    border-width: 1px;
+    border-radius: 4px 4px 0 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.item_list{
+    padding-top:40px !important;
+}
+
+.item_list h4{
+    paddding-bottom;4px;
+    margin:0;
+}
+.item_list h4 a{
+    text-decoration:none;
+}
+#item-pagination {
+  padding-top:20px;
+  padding-right:10px;
+  padding-left:10px;
+}
+.pagination.listingBar a {
+  text-decoration:none;
+  cursor: pointer;
+}
+
+  #boot-search-box .dropdown-menu-right {
+    left:0px !important;
+    padding:10px;
+    width:400px;
+  }
+  #boot-search-box .dropdown-menu-right h4{
+    padding-top:10px;
+    padding-bottom:5px;
+    margin:0px;
+  }
+  #boot-search-box .dropdown-menu-right h5{
+    padding-top:10px;
+    padding-bottom:5px;
+    margin:0px;
+  }
+  .item_filter p {
+    margin-top:20px;
+    padding:10px;
+    border-top:1px solid #ddd;
+  }
+</style>
+        <div class="item_filter bs_example">
+          <h2>Current filters</h2>
+          <div class="row" style="padding-left:10px;">
+            <div class="col-md-4">
+              <div class="input-group" id="boot-search-box">
+                  <div class="input-group-btn">
+                      <div class="btn-group" role="group">
+                          <div class="dropdown dropdown-lg">
+                              <button type="button" class="standard-button primary-button feature-btn dropdown-toggle" data-display="sectors" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span> Sectors</button>
+                              <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                  <form class="form-horizontal" role="form">
+                                    <div id="boot-search-box-div-sectors"></div>
+                                    <br>
+                                    <button type="submit" class="item_filter_submit standard-button primary-button">Update<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <p class="filter_sectors">All</p>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group" id="boot-search-box">
+                  <div class="input-group-btn">
+                      <div class="btn-group" role="group">
+                          <div class="dropdown dropdown-lg">
+                              <button type="button" class="standard-button primary-button feature-btn dropdown-toggle" data-display="impacts" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span> Impacts</button>
+                              <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                  <form class="form-horizontal" role="form">
+                                    <div id="boot-search-box-div-impacts"></div>
+                                    <br>
+                                    <button type="submit" class="item_filter_submit standard-button primary-button">Update<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <p class="filter_impacts covenant-text">All</p>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group" id="boot-search-box">
+                  <div class="input-group-btn">
+                      <div class="btn-group" role="group">
+                          <div class="dropdown dropdown-lg">
+                              <button type="button" class="standard-button primary-button feature-btn dropdown-toggle" data-display="adaptations" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span> Adaptations</button>
+                              <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                  <form class="form-horizontal" role="form">
+                                    <div id="boot-search-box-div-adaptations"></div>
+                                    <br>
+                                    <button type="submit" class="item_filter_submit standard-button primary-button">Update<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <p class="filter_adaptations">All</p>
+            </div>
+          </div>
+        </div>
+        <div style="height: 500px; width: 100%;" id="divChart">
+        </div>
+        <div class="item_list">
+        </div>
+
+
+
+
+  <script type="text/javascript">
+    var data = {
+                "type": "sankey",
+                "domain": {
+                    "x": [
+                        0,
+                        1
+                    ],
+                    "y": [
+                        0,
+                        1
+                    ]
+                },
+                "orientation": "h",
+                "valueformat": ".0f",
+                "valuesuffix": " items",
+                "node": {
+                    "pad": 15,
+                    "thickness": 15,
+                    "line": {
+                        "color": "rgba(0,0,96,0.2)",
+                        "width": 0.5
+                    },
+                    "color": [
+                        "rgba(31, 119, 180, 0.8)",
+                        "rgba(255, 127, 14, 0.8)",
+                        "rgba(44, 160, 44, 0.8)",
+                        "rgba(214, 39, 40, 0.8)",
+                        "rgba(148, 103, 189, 0.8)",
+                        "rgba(140, 86, 75, 0.8)",
+                        "rgba(227, 119, 194, 0.8)",
+                        "rgba(127, 127, 127, 0.8)",
+                        "rgba(188, 189, 34, 0.8)",
+                        "rgba(23, 190, 207, 0.8)",
+                        "rgba(31, 119, 180, 0.8)",
+                        "rgba(255, 127, 14, 0.8)",
+                        "rgba(44, 160, 44, 0.8)",
+                        "rgba(214, 39, 40, 0.8)",
+                        "rgba(148, 103, 189, 0.8)",
+                        "rgba(140, 86, 75, 0.8)",
+                        "rgba(227, 119, 194, 0.8)",
+                        "rgba(127, 127, 127, 0.8)",
+                        "rgba(188, 189, 34, 0.8)",
+                        "rgba(23, 190, 207, 0.8)",
+                        "rgba(31, 119, 180, 0.8)",
+                        "rgba(255, 127, 14, 0.8)",
+                        "rgba(44, 160, 44, 0.8)",
+                        "rgba(214, 39, 40, 0.8)",
+                        "rgba(148, 103, 189, 0.8)",
+                        "rgba(140, 86, 75, 0.8)",
+                        "rgba(227, 119, 194, 0.8)",
+                        "rgba(127, 127, 127, 0.8)",
+                        "rgba(188, 189, 34, 0.8)",
+                        "rgba(23, 190, 207, 0.8)",
+                        "rgba(31, 119, 180, 0.8)",
+                        "rgba(255, 127, 14, 0.8)",
+                        "rgba(44, 160, 44, 0.8)",
+                        "rgba(214, 39, 40, 0.8)",
+                        "rgba(148, 103, 189, 0.8)",
+                        "magenta",
+                        "rgba(227, 119, 194, 0.8)",
+                        "rgba(127, 127, 127, 0.8)",
+                        "rgba(188, 189, 34, 0.8)",
+                        "rgba(23, 190, 207, 0.8)",
+                        "rgba(31, 119, 180, 0.8)",
+                        "rgba(255, 127, 14, 0.8)",
+                        "rgba(44, 160, 44, 0.8)",
+                        "rgba(214, 39, 40, 0.8)",
+                        "rgba(148, 103, 189, 0.8)",
+                        "rgba(140, 86, 75, 0.8)",
+                        "rgba(227, 119, 194, 0.8)",
+                        "rgba(127, 127, 127, 0.8)"],
+                    "label": []
+                },
+                "link": {
+                    "source": [],
+                    "target": [],
+                    "value": [],
+                    "color": []
+                }
+        };
+
+  var chart = [data];
+
+  var layout = {
+    //title: "Basic Sankey",
+    font: {
+      size: 10
+    },
+    margin: {
+      l:5,
+      r:5,
+      t:5,
+      b:5
+    }
+  }
+
+  //Plotly.react('divChart', chart, layout)
+  var cs_data = '';
+
+  var colors = []
+  for (i=0;i<1000;i++) {
+    colors.push("rgba(0,0,96,0.2)");
+  }
+
+  data.link.color = colors;
+  items = [];
+
+  $( document ).ready(function() {
+    $.getJSON( "/case-studies-plotly.json", function( dataJson ) {
+      cs_data = dataJson;
+      displayFilters();
+      updateFilterSelectionLabels();
+    });
+
+    $('.item_filter_submit').click(function() {
+      updateFilterSelectionLabels();
+      $('.item_filter').click();
+      return false;
+    });
+  });
+
+  function updateFilterSelectionLabels() {
+    sectors = $("input[name='sectors']:checkbox:checked").map(function(){
+          return $(this).val();
+        }).get();
+    impacts = $("input[name='impacts']:checkbox:checked").map(function(){
+          return $(this).val();
+        }).get();
+    ipccs_all = $("input[name='ipccs']:checkbox");
+
+    ipccs = $("input[name='ipccs']:checkbox:checked").map(function(){
+          return $(this).val();
+        }).get();
+
+    var all_options = sectors.concat(impacts).concat(ipccs);
+
+    console.log(all_options);
+    $('p.filter_sectors').html(sectors.length==cs_data['filters']['sectors'].length ? 'All' : sectors.join(', '));
+    $('p.filter_impacts').html(impacts.length==cs_data['filters']['impacts'].length ? 'All' : impacts.join(', '));
+    $('p.filter_adaptations').html(ipccs.length==ipccs_all.length ? 'All' : ipccs.join(', '));
+    console.log(ipccs.length, ipccs_all.length);
+    updateItems(all_options);
+  }
+
+  function updateItems(options) {
+    items = [];
+
+    for (var i=0;i<cs_data['items'].length;i++) {
+      var item = cs_data['items'][i];
+      haveSectors = options.filter(value => item['sectors'].includes(value));
+      if (haveSectors.length==0) { continue;}
+      haveImpacts = options.filter(value => item['impacts'].includes(value));
+      if (haveImpacts.length==0) { continue;}
+      haveIpccs = options.filter(value => item['ipccs'].includes(value));
+      if (haveIpccs.length==0) { continue;}
+      items.push(item);
+    }
+    displayItems();
+
+    ipcc_cat = Object.keys(cs_data.filters.ipcc);
+    for (var i=0;i<ipcc_cat.length;i++) {
+      category_name = ipcc_cat[i];
+      haveData = options.filter(value => cs_data['filters']['ipcc'][category_name].includes(value));
+      if (haveData.length) {
+        options.push(category_name);
+      }
+    }
+    var nodes = [];
+    var nodes_index = [];
+    for (var i=0;i<cs_data['nodes'].length;i++) {
+      node_name = cs_data['nodes'][i];
+      if (options.indexOf(node_name)>=0) {
+        nodes.push(node_name);
+        nodes_index.push(i);
+      }
+    }
+
+console.log(nodes, nodes_index);
+    var sources = [];
+    var targets = [];
+    var values  = [];
+    for (var i=0;i<cs_data['sources'].length;i++) {
+      source_name = cs_data['nodes'][cs_data['sources'][i]];
+      target_name = cs_data['nodes'][cs_data['targets'][i]];
+      if (!(
+        nodes_index.indexOf(cs_data['sources'][i])>=0
+        && nodes_index.indexOf(cs_data['targets'][i])>=0
+      )) {
+        continue;
+      }
+
+      sources.push(nodes.indexOf(source_name));
+      targets.push(nodes.indexOf(target_name));
+      values.push(cs_data['values'][i]);
+    }
+
+    data.node.label = nodes;
+    data.link.source = sources;
+    data.link.target = targets;
+    data.link.value = values;
+
+    Plotly.react('divChart', chart, layout)
+  }
+
+  function displayFilters() {
+    var html = '';
+    var sectors = cs_data['filters']['sectors'].sort();
+    for (var i=0;i<sectors.length;i++) {
+      html += elementNode('sectors', sectors[i]);
+    }
+    $('#boot-search-box-div-sectors').html(html);
+
+    html = '';
+    var impacts = cs_data['filters']['impacts'].sort();
+    for (var i=0;i<impacts.length;i++) {
+      html += elementNode('impacts', impacts[i]);
+    }
+    $('#boot-search-box-div-impacts').html(html);
+
+    html = '';
+    var ipcc = cs_data['filters']['ipcc'];
+    var ipcc_keys = Object.keys(cs_data['filters']['ipcc']).sort();
+    for (var i=0;i<ipcc_keys.length;i++) {
+      html += '<h5>'+ipcc_keys[i]+'</h5>';
+      var ipcc_values = ipcc[ipcc_keys[i]].sort();
+      for (var j=0;j<ipcc_values.length;j++) {
+        html += elementNode('ipccs', ipcc_values[j]);
+      }
+    }
+
+    $('#boot-search-box-div-adaptations').html(html);
+  }
+
+  function elementNode(name, value) {
+    console.log(name, value);
+    return '<div class="form-check"><input class="form-check-input" name="'+name+'" type="checkbox" value="'+value+'" id="flexCheckDefault" checked><label class="form-check-label" for="flexCheckDefault">&nbsp;'+value+'</label></div>';
+    return '<div class="form-check"><input class="form-check-input" name="'+name+'" type="checkbox" value="'+value+'" id="flexCheckChecked" checked><label class="form-check-label" for="flexCheckChecked">&nbsp;'+value+'</label></div>';
+  }
+
+  function displayItems(page = 0) {
+    page = Math.max(1, page);
+    var per_page = 10;
+    var total_pages = Math.floor(items.length/per_page);
+    var total_items = items.length;
+    page = Math.min(page, total_pages);
+    var index_from = (page-1) * per_page;
+    var index_to = Math.min(index_from + per_page, items.length);
+console.log(page, per_page, index_from, index_to, total_pages, total_items);
+    html = '<div id="search-results-bar"><span><strong>'+total_items+'</strong> items matching your search terms.</span></div>';
+
+    html += '<div id="search-results">';
+      html += '<div class="searchResults">';
+      for (var i=index_from; i<index_to;i++) {
+        html += '<dt><a href="'+items[i]['url']+'">'+items[i]['title']+'</a></dt>';
+        html +='<dd><div>'+items[i]['description']+'</div></dd>';
+      }
+      html += '</div>';
+
+      html += '<div class="pagination listingBar">';
+
+      html += page > 1 ? '<a class="previous" onclick="displayItems('+(page-1)+');return false;" >« Previous 10 items</a>' : '';
+
+      html += '<strong>Page '+page+' from '+total_pages;
+
+      html += page < total_pages ? '<a class="next" onclick="displayItems('+(page+1)+');return false;" >Next 10 items »</a>' : '';
+      html += '</div>';
+    html += '</div>'
+    $('div.item_list').html(html);
+  }
+window.define = window._define;
+</script>
+
+</tal:block>
+</metal:main>
+
+</body>
+</html>

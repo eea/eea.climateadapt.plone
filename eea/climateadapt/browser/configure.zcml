@@ -13,7 +13,6 @@
   <include file="depiction.zcml" />
   <include file="migrations.zcml" />
 
-
   <browser:page
       name="iterate_control"
       for="*"
@@ -91,6 +90,44 @@
       permission="zope2.View"
       />
 
+<!--
+  <browser:page
+      name="case-studies-network"
+      for="*"
+      class=".casestudies_network.Network"
+      template="pt/case_study_network.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="case-studies-sankey-highcharts"
+      for="*"
+      class=".casestudies_network.Sankey"
+      template="pt/case_study_sankey.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="case-studies-sankey.json"
+      for="*"
+      class=".casestudies_network.Items"
+      permission="zope2.View"
+      />
+-->
+  <browser:page
+      name="case-studies-plotly"
+      for="*"
+      template="pt/case_study_plotly.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="case-studies-plotly.json"
+      for="*"
+      class=".casestudies_network.Plotly"
+      permission="zope2.View"
+      />
+
   <browser:page
       name="case-study-and-adaptation-options-map-viewer"
       for="*"
@@ -98,7 +135,6 @@
       template="pt/case-study-and-adaptation-options-map-viewer.pt"
       permission="zope2.View"
       />
-
 
   <browser:page
       name="listing-with-dates"
