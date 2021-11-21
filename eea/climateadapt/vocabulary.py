@@ -477,6 +477,8 @@ _cca_types = [
     ("MEASURE", "Adaptation Option"),
     ("ACTION", "Case Studies"),
     ("ORGANISATION", "Organisation"),
+    ("NEW", "News"),
+    ("EVENT", "Events"),
     # ("VIDEOS", "Videos"),
 ]
 cca_types = generic_vocabulary(_cca_types)

@@ -31,6 +31,12 @@ DEFAULT_LOCATIONS = {
     "ACTION": ('metadata/case-studies',
                "Case studies",
                'eea.climateadapt.casestudy'),
+    "NEW": ('news-archive',
+               "News",
+               'News Item'),
+    "EVENT": ('more-events',
+               "Events",
+               'Event'),
 }
 
 CONTACT_MAIL_LIST = [
