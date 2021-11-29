@@ -80,7 +80,7 @@ $( document ).ready(function() {
                             <tal tal:condition="context/agenda_file">
                             <p>Download the detailed agenda <a tal:attributes="href python:context.absolute_url_path()+'/@@download/agenda_file/'+context.agenda_file.filename">here</a></p>
                             </tal>
-                            <div style="border:1px solid #ddd;padding:15px;" tal:content="structure context/agenda/output"></div>
+                            <div style="border:1px solid #ddd;padding:15px;" tal:content="structure context/agenda/output" tal:condition="context/agenda"></div>
                             <tal tal:condition="context/background_documents">
                             <p style="padding-top:15px;">A background document for the event is available <a tal:attributes="href python:context.absolute_url_path()+'/@@download/background_documents/'+context.background_documents.filename">here</a></p>
                             </tal>
@@ -88,7 +88,7 @@ $( document ).ready(function() {
                             <a name="information"></a>
                             <h2>Practical information</h2>
                             <h3 style="padding-top:0px;">Participation</h3>
-                            <p tal:content="structure context/participation/output"></p>
+                            <p tal:content="structure context/participation/output" tal:condition="context/participation"></p>
 
                             <tal tal:condition="context/contact_email">
                             <h3>Contact</h3>
@@ -102,6 +102,7 @@ $( document ).ready(function() {
                             <a name="registration"></a>
                             <h2>Registration</h2>
                             <p>Please fill in this <a href="" tal:attributes="href context/online_registration">registration form</a></p>
+			    <p style="padding-top:15px;">Information on the protection of personal data is available in the <a tal:attributes="href python:context.absolute_url_path()+'/@@download/online_registrtion_documents/'+context.online_registration_documents.filename"><b>privacy statement</b></a></p>
                             </tal>
                         </div>
 
