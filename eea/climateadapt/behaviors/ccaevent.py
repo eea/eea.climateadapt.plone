@@ -31,7 +31,9 @@ class ICcaEvent(model.Schema, IDXEvent):
             "participation",
             #"technical_guidance",
             "language",
-            "online_registration"
+            "online_registration",
+            "online_registration_message",
+            "online_registration_documents",
         ],
     )
 
@@ -86,4 +88,15 @@ class ICcaEvent(model.Schema, IDXEvent):
 
     online_registration = TextLine(
         title=_(u"Online registration (URL)"), required=False
+    )
+
+    online_registration_message = RichText(
+        title=_(u"Online registration message"),
+        required=False,
+        default=None
+    )
+
+    online_registration_documents = NamedFile(
+        title=_(u"Online registration documents"),
+        required=False,
     )
