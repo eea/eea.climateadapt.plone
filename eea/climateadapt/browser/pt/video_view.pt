@@ -17,8 +17,8 @@
           <div class="aceitem-left"
                metal:fill-slot="ace-left-slot"
                tal:define="embed_url_val context/embed_url;
-                                  embed_url_val python:embed_url_val+'/download' if embed_url_val.startswith('https://cmshare.eea.eu') and not embed_url_val.endswith('/download') else embed_url_val;
-                                  is_cmshare_video python: 1 if 'https://cmshare.eea.eu' in embed_url_val else 0;"
+                                  embed_url_val python:embed_url_val+'/download' if (embed_url_val.startswith('https://shareit.eea.europa.eu') or embed_url_val.startswith('https://cmshare.eea.eu')) and not embed_url_val.endswith('/download') else embed_url_val;
+                                  is_cmshare_video python: 1 if ('https://cmshare.eea.eu' in embed_url_val or 'https://shareit.eea.europa.eu' in embed_url_val) else 0;"
                >
 
             <!-- <div tal:define="url view/embed_url" tal:condition="not: embed"> -->
@@ -30,7 +30,6 @@
             <!--   </iframe> -->
             <!--   <p tal:condition="not: url">The URL entered is not valid.</p> -->
             <!-- </div> -->
-
             <div style="margin-top: 1em;">
               <p tal:replace="structure python: view.w['long_description'].render()">description here</p>
             </div>
