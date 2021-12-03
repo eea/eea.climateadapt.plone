@@ -381,7 +381,7 @@ function renderCountriesBox(opts) {
     .attr('y', '0')
     .attr('width', '100%')
     .attr('height', '100%')
-    .attr('fill', '#0170b7')
+    .attr('fill', '#007db6')
     ;
   pattern.append('line')
     .attr('x1', '0')
@@ -407,7 +407,7 @@ function renderCountriesBox(opts) {
     .attr('y', '0')
     .attr('width', '100%')
     .attr('height', '100%')
-    .attr('fill', '#acedff')
+    .attr('fill', '#78d9fc')
     ;
   pattern.append('line')
     .attr('x1', '0')
