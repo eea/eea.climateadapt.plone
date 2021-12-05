@@ -1,4 +1,5 @@
 import csv
+import json
 import logging
 import urlparse
 from datetime import date
@@ -19,6 +20,9 @@ from plone.app.textfield.value import RichTextValue
 from Products.Five.browser import BrowserView
 from z3c.relationfield import RelationValue
 from zc.relation.interfaces import ICatalog
+
+
+from eea.climateadapt.vocabulary import BIOREGIONS
 
 # from zope.schema import Choice
 # from zope.schema.interfaces import IVocabularyFactory
@@ -812,3 +816,81 @@ class UpdateHealthItemsFields:
             )
 
         return res
+
+
+#142756
+class TransnationalRegions:
+    """Update TransnationalRegions field"""
+
+    def list(self):
+        response = []
+        fileUploaded = self.request.form.get("fileToUpload", None)
+
+        if not fileUploaded:
+            return response
+
+        reader = csv.reader(
+            fileUploaded,
+            delimiter=",",
+            quotechar='"',
+            #    dialect='excel',
+        )
+
+        regions = {}
+        site = api.portal.get()
+        for k, v in BIOREGIONS.items():
+            if 'TRANS_MACRO' in k:
+                regions[v] = k
+
+        # need condition for "Yes"
+        for row in reader:
+            item = {}
+            item["title"] = row[0]
+            item["region_old"] = row[5]
+            item["region_new"] = row[6]
+            item["url"] = row[11]
+            #item["uid"] = row[6]
+
+            local_path = item['url'].replace('http://', '')
+            local_path = local_path.replace('https://', '')
+
+            local_path = local_path[local_path.find('/'):]
+            local_path = local_path[1:]
+
+            #import pdb; pdb.set_trace()
+            try:
+                obj = site.restrictedTraverse(local_path)
+            except Exception, e:
+                obj = None
+
+            if not obj:
+                continue
+
+            geochars = json.loads(obj.geochars)
+            modified = False
+
+            obj.geochars = json.dumps(geochars).encode()
+            #macro = geochars['geoElements'].get('macrotrans', [])
+            macro = []
+            new_macros = item["region_new"].split(",")
+            for new_macro in new_macros:
+                if new_macro in regions:
+                    macro.append(regions[new_macro])
+
+            geochars['geoElements']['macrotrans'] = macro
+            obj.geochars = json.dumps(geochars).encode()
+            obj._p_changed = True
+            obj.reindexObject()
+            transaction.commit()
+
+            response.append(
+                {
+                    "title": obj.title,
+                    "url": item["url"],
+                    "macro_old": item["region_old"],
+                    "macro_new": item["region_new"]
+                }
+            )
+            logger.info("TRANS_MACRO SET for obj: %s", obj.absolute_url())
+
+        return response
