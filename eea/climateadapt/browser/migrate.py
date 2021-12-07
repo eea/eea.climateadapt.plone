@@ -842,8 +842,12 @@ class TransnationalRegions:
             if 'TRANS_MACRO' in k:
                 regions[v] = k
 
+        i_transaction = 0
         # need condition for "Yes"
         for row in reader:
+            i_transaction += 1
+            if i_transaction % 100 == 0:
+                transaction.savepoint()
             item = {}
             item["title"] = row[0]
             item["region_old"] = row[5]
@@ -859,7 +863,7 @@ class TransnationalRegions:
 
             #import pdb; pdb.set_trace()
             try:
-                obj = site.restrictedTraverse(local_path)
+                obj = site.restrictedTraverse(local_path.strip())
             except Exception, e:
                 obj = None
 
@@ -881,7 +885,6 @@ class TransnationalRegions:
             obj.geochars = json.dumps(geochars).encode()
             obj._p_changed = True
             obj.reindexObject()
-            transaction.commit()
 
             response.append(
                 {
@@ -893,4 +896,5 @@ class TransnationalRegions:
             )
             logger.info("TRANS_MACRO SET for obj: %s", obj.absolute_url())
 
+        transaction.commit()
         return response
