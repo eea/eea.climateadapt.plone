@@ -15,6 +15,9 @@
         .bottom > * {
           vertical-align: bottom;
         }
+        g.infolayer g.legend{
+          display:block !important;
+        }
       </style>
 
       <div class="bottom">
