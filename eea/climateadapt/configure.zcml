@@ -47,6 +47,7 @@
   <include file="stringinterp.zcml" />
   <include file="cache.zcml" />
   <include file="contentrules.zcml" />
+  <include file="restapi.zcml" />
 
   <browser:jbot
       directory="browser/pt-overrides"
