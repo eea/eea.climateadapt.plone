@@ -24,5 +24,10 @@ if(window.jQuery) {
       label_html = label_html.replace('IPCC adaptation options categories', link);
       $('#formfield-form-widgets-ipcc_category label[for=form-widgets-ipcc_category]').html(label_html);
     }
+
+    $( ".documentFirstHeading" ).before($('#portal-languageselector'));
+    // $('.currentLanguage').click(function() {
+    //     debugger;
+    // })
   });
 }
