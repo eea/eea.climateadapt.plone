@@ -115,6 +115,8 @@
     </rules>
 
     <replace css:content="#portal-columns" css:theme="#page-body"/>
+    <before css:content="#portal-languageselector" css:theme="#page-body"/>
+
     <replace css:content="#navbar" css:theme=".main-nav-menu" href="@@site_navbar" method="document"/>
 
     <!-- top menu help section -->
