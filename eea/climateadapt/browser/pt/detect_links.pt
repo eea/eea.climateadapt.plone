@@ -9,7 +9,7 @@
   i18n:domain="eea.climateadapt">
 
   <body>
-    
+
     <metal:main fill-slot="main">
     <script src="++resource++eea.climateadapt/jquery.dataTables.js"></script>
     <script>
@@ -22,18 +22,18 @@
       <table class="table table-striped table-bordered table-sm" id="broken-links-table">
         <thead>
           <tr>
-            <th>Destination Links</th>
-            <th>Code</th>
-            <th>Object URL</th>
-            <th>Date</th>
-            <th>Type</th>
+            <th i18n:translate="">Destination Links</th>
+            <th i18n:translate="">Code</th>
+            <th i18n:translate="">Object URL</th>
+            <th i18n:translate="">Date</th>
+            <th i18n:translate="">Type</th>
           </tr>
         </thead>
         <tbody tal:define="results view/results">
           <tal:rep tal:repeat="url python: results.keys()">
             <tr>
               <td class="left">
-                <a tal:attributes="href url" 
+                <a tal:attributes="href url"
                   target="_blank" tal:content="url"></a>
               </td>
               <td tal:content="python: results[url]['status']"></td>
@@ -46,8 +46,8 @@
                 </a>
               </td>
               <td tal:content="python: results[url]['date']"></td>
-              <td tal:condition="python: 'climate-adapt.eea' not in url">external</td>
-              <td tal:condition="python: 'climate-adapt.eea' in url">internal</td>
+              <td tal:condition="python: 'climate-adapt.eea' not in url" i18n:translate="">external</td>
+              <td tal:condition="python: 'climate-adapt.eea' in url" i18n:translate="">internal</td>
             </tr>
           </tal:rep>
         </tbody>

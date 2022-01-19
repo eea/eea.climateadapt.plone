@@ -25,14 +25,14 @@
     <div class="card-extra">
       <div class="website" tal:define="website_link view/website_link">
         <a tal:condition="website_link"
-           tal:attributes="href website_link">Web site</a>
+           tal:attributes="href website_link" i18n:translate="">Web site</a>
       </div>
       <!-- <div class="contact" tal:define="contact context/contact | nothing">
         <a tal:condition="contact"
            tal:attributes="href view/contact_link">Contact</a>
       </div> -->
       <div class="contributions">
-        <a href="" tal:attributes="href view/contributions_link">
+        <a href="" tal:attributes="href view/contributions_link" i18n:translate="">
           Observatory contributions
         </a>
       </div>

@@ -1,2 +1,2 @@
-<h1>Migrate</h1>
+<h1 i18n:translate="">Migrate</h1>
 <div tal:define="items view/list" />

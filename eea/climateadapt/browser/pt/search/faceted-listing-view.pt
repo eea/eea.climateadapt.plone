@@ -47,7 +47,7 @@
                                          data-search-url python:self.search_url(search_type);">
                     <thead>
                       <tr style="display:none;">
-                        <th>Title</th><th>Year</th><th>Published</th>
+                        <th i18n:translate="">Title</th><th i18n:translate="">Year</th><th i18n:translate="">Published</th>
                       </tr>
                     </thead>
                   </table>

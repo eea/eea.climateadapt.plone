@@ -1,22 +1,22 @@
 <div class="cityprofile_expired_token_error">
     <div tal:condition="not:view/check_url">
-        <h3> Your token is not valid for this city profile </h3>
+        <h3 i18n:translate=""> Your token is not valid for this city profile </h3>
 
         <div tal:condition="view/expire_value">
-            <h3>
+            <h3 i18n:translate="">
                 Your token has expired for this city profile.
             </h3>
         </div>
 
         <div tal:condition="view/malformed_value">
-            <h3>
+            <h3 i18n:translate="">
                 Your token is malformed.
                 Request a new city profile token.
             </h3>
         </div>
 
         <div tal:condition="view/invalid_value">
-            <h3>
+            <h3 i18n:translate="">
                 Request a new city profile token.
             </h3>
         </div>

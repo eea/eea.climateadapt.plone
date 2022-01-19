@@ -28,40 +28,40 @@
 
             <div tal:content="structure python: view.w['long_description'].render()"/>
             <!-- <h5 class="Adaptation-option-selector">Adaptation Option Description</h5> -->
-            <h5 class="Adaptation-option-selector">Additional Details</h5>
+            <h5 class="Adaptation-option-selector" i18n:translate="">Additional Details</h5>
             <ul>
-              <li tal:condition="context/category"> <a href="#ao_category">Category</a> </li>
-              <li tal:condition="context/ipcc_category"> <a href="#ipcc_category">IPCC categories</a> </li>
+              <li tal:condition="context/category"> <a href="#ao_category" i18n:translate="">Category</a> </li>
+              <li tal:condition="context/ipcc_category"> <a href="#ipcc_category" i18n:translate="">IPCC categories</a> </li>
               <li tal:condition="python: context.stakeholder_participation is not None">
-                   <a href="#stakeholder_participation">Stakeholder participation</a>
+                   <a href="#stakeholder_participation" i18n:translate="">Stakeholder participation</a>
               </li>
               <li tal:condition="python: context.success_limitations is not None">
-                   <a href="#success_factors">Success and Limiting Factors</a>
+                   <a href="#success_factors" i18n:translate="">Success and Limiting Factors</a>
               </li>
               <li tal:condition="python: context.cost_benefit is not None">
-                  <a href="#costs_benefits">Costs and Benefits</a>
+                  <a href="#costs_benefits" i18n:translate="">Costs and Benefits</a>
               </li>
               <li tal:condition="python: context.legal_aspects is not None">
-                  <a href="#legal">Legal Aspects</a>
+                  <a href="#legal" i18n:translate="">Legal Aspects</a>
               </li>
               <li tal:condition="python: context.implementation_time is not None">
-                  <a href="#implementation">Implementation Time</a>
+                  <a href="#implementation" i18n:translate="">Implementation Time</a>
               </li>
               <li tal:condition="python: context.lifetime is not None or ''">
-                  <a href="#life_time">Life Time</a>
+                  <a href="#life_time" i18n:translate="">Life Time</a>
               </li>
             </ul>
 
-            <h5 class="Adaptation-option-selector">Reference information</h5>
+            <h5 class="Adaptation-option-selector" i18n:translate="">Reference information</h5>
             <ul>
-              <li> <a href="#websites">Websites</a> </li>
-              <li> <a href="#source">Source</a> </li>
+              <li> <a href="#websites" i18n:translate="">Websites</a> </li>
+              <li> <a href="#source" i18n:translate="">Source</a> </li>
             </ul>
 
-            <h4>Adaptation Details</h4>
+            <h4 i18n:translate="">Adaptation Details</h4>
             <p></p>
             <div id="ao_category" tal:condition="context/category">
-              <p><em class="adapt-option-em" style="text-decoration: underline">Category</em></p>
+              <p><em class="adapt-option-em" style="text-decoration: underline" i18n:translate="">Category</em></p>
               <div tal:repeat="categ context/category">
                 <p>
                   <tal:block content="categ | nothing"/>
@@ -69,57 +69,57 @@
               </div>
             </div>
             <div id="ipcc_category" tal:condition="context/ipcc_category">
-              <p><em class="adapt-option-em" style="text-decoration: underline">IPCC categories</em></p>
+              <p><em class="adapt-option-em" style="text-decoration: underline" i18n:translate="">IPCC categories</em></p>
               <p>
                 <tal:block content="structure python:view.w['ipcc_category'].render()"/>
               </p>
             </div>
             <div tal:condition="python: context.stakeholder_participation is not None">
                 <p id="stakeholder_participation">
-                  <em class="adapt-option-em" style="text-decoration: underline">Stakeholder participation</em>
+                  <em class="adapt-option-em" style="text-decoration: underline" i18n:translate="">Stakeholder participation</em>
                   <tal:block content="structure python: view.w['stakeholder_participation'].render()"/>
                 </p>
             </div>
             <div tal:condition="python: context.success_limitations is not None">
                 <p id="success_factors">
-                  <em class="adapt-option-em" style="text-decoration: underline">Success and Limiting Factors</em>
+                  <em class="adapt-option-em" style="text-decoration: underline" i18n:translate="">Success and Limiting Factors</em>
                   <tal:block content="structure python: view.w['success_limitations'].render()"/>
                 </p>
             </div>
             <div tal:condition="python: context.cost_benefit is not None">
                 <p id="costs_benefits">
-                  <em class="adapt-option-em" style="text-decoration: underline">Costs and Benefits</em>
+                  <em class="adapt-option-em" style="text-decoration: underline" i18n:translate="">Costs and Benefits</em>
                   <tal:block content="structure python: view.w['cost_benefit'].render()"/>
                 </p>
             </div>
             <div tal:condition="python: context.legal_aspects is not None">
                 <p id="legal">
-                  <em class="adapt-option-em" style="text-decoration: underline">Legal Aspects</em>
+                  <em class="adapt-option-em" style="text-decoration: underline" i18n:translate="">Legal Aspects</em>
                   <tal:block content="structure python: view.w['legal_aspects'].render()"/>
                 </p>
             </div>
             <div tal:condition="python: context.implementation_time is not None">
                 <p id="implementation">
-                  <em class="adapt-option-em" style="text-decoration: underline">Implementation Time</em>
+                  <em class="adapt-option-em" style="text-decoration: underline" i18n:translate="">Implementation Time</em>
                   <tal:block content="structure python: view.w['implementation_time'].render()"/>
                 </p>
             </div>
             <div tal:condition="python: context.lifetime is not None">
                 <p id="life_time">
-                  <em class="adapt-option-em" style="text-decoration: underline">Life Time</em>
+                  <em class="adapt-option-em" style="text-decoration: underline" i18n:translate="">Life Time</em>
                   <tal:block content="structure python: view.w['lifetime'].render()"/>
                 </p>
             </div>
 
-            <h4 class="reference-title" tal:condition="python:context.websites or context.source">Reference information</h4>
+            <h4 class="reference-title" tal:condition="python:context.websites or context.source" i18n:translate="">Reference information</h4>
 
             <div tal:condition="context/websites">
-                <h5 id="websites" style="text-decoration: underline" class="Adaptation-option-selector">Websites:</h5>
+                <h5 id="websites" style="text-decoration: underline" class="Adaptation-option-selector" i18n:translate="">Websites:</h5>
                 <metal:macro use-macro="context/ace_macros/macros/websites" />
             </div>
 
             <div tal:condition="context/source">
-                <h5 id="source" style="text-decoration: underline" class="Adaptation-option-selector">References:</h5>
+                <h5 id="source" style="text-decoration: underline" class="Adaptation-option-selector" i18n:translate="">References:</h5>
                 <div tal:content="structure python: view.w['source'].render()">Source here</div>
             </div>
 
@@ -135,16 +135,16 @@
 
             <div class="macro-category">
               <div tal:condition="nothing | python: context.year != 0">
-                <h4>Item’s creation:</h4>
+                <h4 i18n:translate="">Item’s creation:</h4>
                 <tal:block content="structure context/year"/>
               </div>
             </div>
 
             <div class="macro-category" tal:condition="effective" tal:define="effective context/publication_date|nothing">
               <div>
-                <h4>Date of creation:</h4>
+                <h4 i18n:translate="">Date of creation:</h4>
                 <span tal:replace="python: effective.strftime('%Y')">2000</span>
-                <a href="#" data-toggle="tooltip" class="pat-tooltip"
+                <a href="#" data-toggle="tooltip" class="pat-tooltip" i18n:attributes="title"
                       title="The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT">
                       <i class="fa fa-question-circle"></i>
                 </a>
@@ -152,30 +152,30 @@
             </div>
 
             <div class="macro-category health-information" tal:condition="python:health_impacts" tal:define="health_impacts context/health_impacts">
-              <h4>Health impact:</h4>
+              <h4 i18n:translate="">Health impact:</h4>
               <div tal:condition="health_impacts">
                 <span tal:replace="python:', '.join(health_impacts or []) if isinstance(health_impacts, list) else health_impacts">health impacts</span>
               </div>
             </div>
 
             <div class="macro-category" tal:condition="context/keywords">
-              <h4>Keywords:</h4>
+              <h4 i18n:translate="">Keywords:</h4>
               <metal:macro use-macro="context/ace_macros/macros/keywords" />
             </div>
 
             <div class="macro-category">
-              <h4>Sectors:</h4>
+              <h4 i18n:translate="">Sectors:</h4>
               <tal:block content="structure python:view.w['sectors'].render()"/>
             </div>
 
             <div class="macro-category">
-              <h4>Climate impacts:</h4>
+              <h4 i18n:translate="">Climate impacts:</h4>
               <tal:block content="structure python:view.w['climate_impacts'].render()"/>
             </div>
 
             <div class="macro-category">
               <div tal:condition="python: view.governance_level() != ''">
-                <h4>Governance level:</h4>
+                <h4 i18n:translate="">Governance level:</h4>
                 <div tal:repeat="level python: view.governance_level()">
                   <span tal:content="level"></span>
                 </div>
@@ -184,14 +184,14 @@
 
             <div class="macro-category">
               <div tal:condition="python: view.render_geochar(context.geochars)">
-                <h4>Geographic characterisation:</h4>
+                <h4 i18n:translate="">Geographic characterisation:</h4>
                 <metal:macro use-macro="context/ace_macros/macros/geochar" />
               </div>
             </div>
 
             <div class="macro-category" tal:define="casestudies python: view.get_related_casestudies();">
               <div tal:condition="casestudies">
-                <h4>Case studies related to this option:</h4>
+                <h4 i18n:translate="">Case studies related to this option:</h4>
                 <div tal:repeat="item casestudies">
                   <a class="related-items" tal:content="item/title" href=""
                     tal:attributes="href item/url"/>

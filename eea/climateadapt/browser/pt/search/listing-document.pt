@@ -1,9 +1,9 @@
 <table class="listing-table" tal:define="brains view/brains; nr_res python: len(brains);" tal:on-error="nothing">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Year</th>
-      <th>Published</th>
+      <th i18n:translate="">Title</th>
+      <th i18n:translate="">Year</th>
+      <th i18n:translate="">Published</th>
     </tr>
   </thead>
   <tbody
@@ -14,13 +14,13 @@
                src="++theme++climateadapt/static/cca/img/featured-icon.png">
           <img tal:condition="python: view.new_item(brain)" tal:on-error="nothing"
                src="++theme++climateadapt/static/cca/img/new-en.gif">
-        <a href="" tal:content="title" tal:attributes="href brain/getURL" tal:on-error="nothing">» Link</a>
+        <a href="" tal:content="title" tal:attributes="href brain/getURL" tal:on-error="nothing" i18n:translate="">» Link</a>
         - <span tal:define="text python: view.html2text(brain.long_description.raw)" tal:on-error="nothing">
             <span tal:replace="python: text[:208-len(title)]" tal:on-error="nothing"/>...
           </span>
       </td>
-      <td class="table_year_css" tal:content="python: brain.year or '' " tal:on-error="nothing">year</td>
-      <td class="table_date_css" tal:content="python: view.get_publication_date(brain)" tal:on-error="nothing">Publish Date</td>
+      <td class="table_year_css" tal:content="python: brain.year or '' " tal:on-error="nothing" i18n:translate="">year</td>
+      <td class="table_date_css" tal:content="python: view.get_publication_date(brain)" tal:on-error="nothing" i18n:translate="">Publish Date</td>
     </tr>
   </tbody>
 </table>

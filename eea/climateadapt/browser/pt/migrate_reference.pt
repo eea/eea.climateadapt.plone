@@ -1,4 +1,4 @@
-<h1>reference migration</h1>
+<h1 i18n:translate="">reference migration</h1>
 <table tal:define="items view/list">
     <tr tal:repeat="item items">
         <td tal:content="item/title"></td>

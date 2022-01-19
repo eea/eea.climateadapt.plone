@@ -38,30 +38,30 @@
 
       </style>
 
-      <div class="header">
+      <div class="header" i18n:translate="">
         The <span class="city_name" tal:content="context/Title" /> City Profile administration menu
       </div>
 
-      <p>
+      <p i18n:translate="">
         Here you can manage Mayors Adapt initiative information relative to your city
       </p>
 
       <div class="city-menu-row">
-        <button name="submit" value="edit" 
+        <button name="submit" value="edit" i18n:translate=""
           tal:define="can_edit view/can_edit; disabled python: (not can_edit) and 'disabled' or ''"
-          tal:attributes="class disabled; disabled disabled"  
+          tal:attributes="class disabled; disabled disabled"
           >Edit</button>
-        <span>
+        <span i18n:translate="">
           Step 1: Edit your City Profile fact sheet.
           <span tal:omit-tag="" tal:condition="python: state == 'private'">
           </span>
-          <span tal:omit-tag="" tal:condition="python: (state == 'published') and not has_working_copy">
+          <span tal:omit-tag="" tal:condition="python: (state == 'published') and not has_working_copy" i18n:translate="">
             This will create a private copy of the fact sheet.
           </span>
-          <span tal:omit-tag="" tal:condition="python: (state == 'published') and has_working_copy">
+          <span tal:omit-tag="" tal:condition="python: (state == 'published') and has_working_copy" i18n:translate="">
             You will edit your existing private copy.
           </span>
-          <span tal:omit-tag="" tal:condition="python: state == 'pending'">
+          <span tal:omit-tag="" tal:condition="python: state == 'pending'" i18n:translate="">
             The document will be retracted from the publishing process.
           </span>
         </span>
@@ -69,22 +69,22 @@
 
       <div class="city-menu-row" tal:define="can_submit view/can_submit_for_publication">
         <button tal:define="disabled python: (not can_submit) and 'disabled' or ''"
-          tal:attributes="class disabled; disabled disabled" name="submit" value="submit">Submit for publication</button>
-        <span>Step 2: Finish editing your fact sheet.</span>
+          tal:attributes="class disabled; disabled disabled" name="submit" value="submit" i18n:translate="">Submit for publication</button>
+        <span i18n:translate="">Step 2: Finish editing your fact sheet.</span>
       </div>
 
       <div class="city-menu-row" >
         <button name="submit" tal:define="disabled python: (not has_working_copy) and 'disabled' or ''"
-          tal:attributes="class disabled; disabled disabled;" value="preview_working_copy">Preview working copy</button>
-        <span>Step 3: Preview your working copy of fact sheet.</span>
+          tal:attributes="class disabled; disabled disabled;" value="preview_working_copy" i18n:translate="">Preview working copy</button>
+        <span i18n:translate="">Step 3: Preview your working copy of fact sheet.</span>
       </div>
 
       <div class="city-menu-row" tal:define="baseline_state view/get_baseline_state">
-        <button name="submit" tal:attributes="class python: (baseline_state != 'published') and 'disabled' or ''" value="check">View published fact sheet</button>
-        <span>Step 4: View your published page in the Climate ADAPT platform, available as soon as the Mayors Adapt team approves it.</span>
+        <button name="submit" tal:attributes="class python: (baseline_state != 'published') and 'disabled' or ''" value="check" i18n:translate="">View published fact sheet</button>
+        <span i18n:translate="">Step 4: View your published page in the Climate ADAPT platform, available as soon as the Mayors Adapt team approves it.</span>
       </div>
 
-      <p>
+      <p i18n:translate="">
         Current document state: <strong tal:content="python: view.state_labels().get(state, state)" />
       </p>
 

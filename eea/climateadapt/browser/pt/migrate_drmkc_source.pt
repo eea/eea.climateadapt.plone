@@ -1,4 +1,4 @@
-<h1>migrate result</h1>
+<h1 i18n:translate="">migrate result</h1>
 <table tal:define="items view/list" width="100%">
     <tr tal:repeat="item items">
         <td tal:content="item/title"></td>

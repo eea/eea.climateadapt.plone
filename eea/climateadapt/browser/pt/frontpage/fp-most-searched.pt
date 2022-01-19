@@ -1,16 +1,16 @@
 <div class="eu-climate-policy-tile">
   <h3>
-    <a href="/data-and-downloads">Most searched</a>
+    <a href="/data-and-downloads" i18n:translate="">Most searched</a>
   </h3>
   <div style="padding-top:6px;">
     <ul tal:define="entries view/report_data">
       <li tal:repeat="entry entries">
         <a href=""
           tal:attributes="href python: context.portal_url() + '/redirect_to_search_page?SearchableText=' + entry[0]" >
-        <span tal:content="python: entry[0]">Water</span>
+        <span tal:content="python: entry[0]" i18n:translate="">Water</span>
         </a>
         (
-        <span tal:content="python: entry[1]">12</span>
+        <span tal:content="python: entry[1]" i18n:translate="">12</span>
         )
       </li>
     </ul>

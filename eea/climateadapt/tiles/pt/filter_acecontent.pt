@@ -5,39 +5,39 @@
   i18n:domain="collective.cover">
 
   <body tal:define="is_compose view/is_compose_mode">
-    <strong tal:condition="is_compose">Filterable Relevant AceContent Tile</strong>
+    <strong tal:condition="is_compose" i18n:translate="">Filterable Relevant AceContent Tile</strong>
 
     <dl tal:condition="view/is_compose_mode" class="aceitem-tile">
-      <dt>Title:</dt>
+      <dt i18n:translate="">Title:</dt>
       <dd tal:content="python: view.data.get('title')" />
-      <dt>Search text:</dt>
+      <dt i18n:translate="">Search text:</dt>
       <dd tal:content="python: view.data.get('search_text')" />
-      <dt>Aceitem type:</dt>
+      <dt i18n:translate="">Aceitem type:</dt>
       <dd tal:content="python: view.data.get('search_type')" />
-      <dt>Element type:</dt>
+      <dt i18n:translate="">Element type:</dt>
       <dd tal:content="python: view.data.get('element_type')" />
-      <dt>Sector:</dt>
+      <dt i18n:translate="">Sector:</dt>
       <dd tal:content="python: view.data.get('sector')" />
-      <dt>Special tags:</dt>
+      <dt i18n:translate="">Special tags:</dt>
       <dd tal:content="python: view.data.get('special_tags')" />
-      <dt>Countries:</dt>
+      <dt i18n:translate="">Countries:</dt>
       <dd tal:content="python: view.data.get('countries')" />
-      <dd>Number of items: </dd>
+      <dd i18n:translate="">Number of items: </dd>
       <dt tal:content="python: view.data.get('nr_items')" />
-      <dt>Macro-Transnational Regions:</dt>
+      <dt i18n:translate="">Macro-Transnational Regions:</dt>
       <dd tal:content="python: view.data.get('macro_regions')" />
-      <dt>Biogeographical Regions:</dt>
+      <dt i18n:translate="">Biogeographical Regions:</dt>
       <dd tal:content="python: view.data.get('bio_regions')" />
-      <dt>Funding programmes:</dt>
+      <dt i18n:translate="">Funding programmes:</dt>
       <dd tal:content="python: view.data.get('funding_programme')" />
-      <dt>Sort by:</dt>
+      <dt i18n:translate="">Sort by:</dt>
       <dd tal:content="python: view.data.get('sortBy')" />
     </dl>
 
     <div class="cover-richtext-tile tile-content aceitem-relevant-tile aceitem-filter-relevant-tile" tal:condition="not: is_compose">
       <h2 tal:content="python: view.data.get('title')">Title here</h2>
 
-      <h3 style="display:none">Relevant tile</h3>
+      <h3 style="display:none" i18n:translate="">Relevant tile</h3>
       <div tal:replace="structure python: view.filterform.render()" />
 
       <div style="display:none" tal:content="view/data" />
@@ -47,7 +47,7 @@
         </li>
       </ul>
       <div class="tile-footer">
-        <a class="read-more" href="" tal:attributes="href view/view_more_url">
+        <a class="read-more" href="" tal:attributes="href view/view_more_url" i18n:translate="">
           <i class="fa fa-angle-double-right"></i>
           View all
         </a>

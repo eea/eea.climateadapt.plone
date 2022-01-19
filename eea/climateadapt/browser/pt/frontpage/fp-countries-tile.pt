@@ -1,9 +1,9 @@
 <div id="fp-country-selector">
 
   <div class="map-caption">
-    <p>EEA Member countries are at different stages of preparing, developing and
+    <p i18n:translate="">EEA Member countries are at different stages of preparing, developing and
        implementing national adaptation strategies and plans.</p>
-    <p>Click on a specific country on the map or select from the dropdown to see
+    <p i18n:translate="">Click on a specific country on the map or select from the dropdown to see
        the country profile:</p>
     <div class="country-dropdown">
       <form>
@@ -11,7 +11,7 @@
           <option
             id="no-selection-option"
             value=""
-            selected="selected">
+            selected="selected" i18n:translate="">
             Go to country...
           </option>
           <option
@@ -21,7 +21,7 @@
         </select>
       </form>
     </div>
-    <a href="../countries-regions/countries" class="form-control">
+    <a href="../countries-regions/countries" class="form-control" i18n:translate="">
       See countries webpage
     </a>
   </div>

@@ -1,5 +1,5 @@
 <div class="last-update-tile">
     <p>
-      <span>Last update: </span><span tal:content="python: view.formated_date(context.modified())"></span>
+      <span i18n:translate="">Last update: </span><span tal:content="python: view.formated_date(context.modified())"></span>
     </p>
 </div>

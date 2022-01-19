@@ -40,40 +40,40 @@
 
       <!-- Sections selector on right side of map -->
       <div class="column col-md-2 col-xs-12">
-        <h5 class="choose-title">Choose thematic map:</h5>
+        <h5 class="choose-title" i18n:translate="">Choose thematic map:</h5>
         <div id="sections-selector" />
 
         <!-- Map legend underneath the map -->
         <div class="legend nasnap-legend hhap-legend">
           <div class="legend-el">
             <span class="country-national-hhap legend-box" />
-            <span class="legend-text">National HHAP</span>
+            <span class="legend-text" i18n:translate="">National HHAP</span>
           </div>
           <div class="legend-el">
             <span class="country-subnational-hhap legend-box" />
-            <span class="legend-text">Subnational or local HHAP</span>
+            <span class="legend-text" i18n:translate="">Subnational or local HHAP</span>
           </div>
           <div class="legend-el">
             <span class="country-no-hhap legend-box" />
-            <span class="legend-text">No HHAP</span>
+            <span class="legend-text" i18n:translate="">No HHAP</span>
           </div>
           <div class="legend-el">
             <span class="country-none legend-box" />
-            <span class="legend-text">No information</span>
+            <span class="legend-text" i18n:translate="">No information</span>
           </div>
         </div>
 
         <div class="legend hhws-legend">
           <div class="legend-el">
             <span class="country-national-hhap legend-box" />
-            <span class="legend-text">
+            <span class="legend-text" i18n:translate="">
               <!-- <span class="map-type">NAS</span> -->
                 HHWS available (click on country for further information)
             </span>
           </div>
           <div class="legend-el">
             <span class="country-none legend-box" />
-            <span class="legend-text">
+            <span class="legend-text" i18n:translate="">
               <!-- <span class="map-type">NAS</span> -->
                 No information
             </span>
@@ -99,14 +99,14 @@
     >
       <div class="tooltip-content">
         <div class="heat_index_value">
-          <strong>Heat index of HHWS:</strong>
+          <strong i18n:translate="">Heat index of HHWS:</strong>
           <span class="value" />
         </div>
         <p class="heat_index_website"
            style="margin-top:2em"
         >
           <a href=""
-             target="_blank"
+             target="_blank" i18n:translate=""
           >HHWS website</a>
         </p>
       </div>

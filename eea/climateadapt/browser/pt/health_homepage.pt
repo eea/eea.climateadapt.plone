@@ -17,12 +17,12 @@
         <ul class="nav nav-tabs">
           <li>
             <a href="/cca/health#news-tab"
-               tal:attributes="href python:context.absolute_url()+'#news-tab'">
+               tal:attributes="href python:context.absolute_url()+'#news-tab'" i18n:translate="">
                News</a>
           </li>
           <li class="active">
             <a href="/cca/health#events-tab"
-               tal:attributes="href python:context.absolute_url()+'#events-tab'">
+               tal:attributes="href python:context.absolute_url()+'#events-tab'" i18n:translate="">
                Events</a>
           </li>
         </ul>
@@ -61,7 +61,7 @@
               </ul>
 
               <div tal:condition="not: items">
-                <p class="no-events">No upcoming events.</p>
+                <p class="no-events" i18n:translate="">No upcoming events.</p>
               </div>
 
               <div class="read-more-wrapper">

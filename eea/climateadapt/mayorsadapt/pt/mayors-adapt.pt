@@ -108,7 +108,7 @@
     </style>
 
     <div tal:condition="context/text|nothing" tal:replace="structure context/text/output">
-      <p>Here you can find an overview of your personally created Climate-Adapt content.</p>
+      <p i18n:translate="">Here you can find an overview of your personally created Climate-Adapt content.</p>
     </div>
 
     <div class="columns-2" id="contenido">
@@ -117,7 +117,7 @@
         <div id="mapDiv" style="height:450px">
           <div id="xButton">
             <b>
-              <a onclick="toogleLegend()">X</a>
+              <a onclick="toogleLegend()" i18n:ignore="">X</a>
             </b>
           </div>
 
@@ -131,42 +131,42 @@
 
       <div id="contenidoCombos">
         <h2 class="portlet-title">
-          <span class="portlet-title-text">Filter by zone</span>
+          <span class="portlet-title-text" i18n:translate="">Filter by zone</span>
         </h2>
-        Choose a Country:<br/>
+        <span i18n:translate="">Choose a Country:</span><br/>
         <select id="country" style="width:100% ">
-          <option value="">All</option>
+          <option value="" i18n:translate="">All</option>
         </select><br/>
-        Choose a City:<br/>
+        <span i18n:translate="">Choose a City:</span><br/>
         <select id="cityCountry" style="width:100% ">
-          <option value="">All</option>
+          <option value="" i18n:translate="">All</option>
         </select><br/>
         <!-- <div style="text-align:center" class="bluebuttondiv"> <a id="zoneButton" style="float:none;margin-top:10px;margin-bottom:10px" class="bluebutton" >Filter</a> </div> -->
 
         <h2 class="portlet-title">
-          <span class="portlet-title-text">Filter by criteria</span>
+          <span class="portlet-title-text" i18n:translate="">Filter by criteria</span>
         </h2>
-        Climate Impacts:<br/>
+        <span i18n:translate="">Climate Impacts:</span><br/>
         <select id="impacts" style="width:100%">
-          <option value="">All</option>
+          <option value="" i18n:translate="">All</option>
         </select><br/>
-        Adaptation Sectors:<br/>
+        <span i18n:translate="">Adaptation Sectors:</span><br/>
         <select id="sectors" style="width:100%">
-          <option value="">All</option>
+          <option value="" i18n:translate="">All</option>
         </select><br/>
-        Stage of Implementation:<br/>
+        <span i18n:translate="">Stage of Implementation:</span><br/>
         <select id="stage" style="width:100%">
-          <option value="">All</option>
+          <option value="" i18n:translate="">All</option>
         </select><br/>
-        Choose a City:<br/>
+        <span i18n:translate="">Choose a City:</span><br/>
         <select id="city" style="width:100%">
-          <option value="">All</option>
+          <option value="" i18n:translate="">All</option>
         </select>
 
         <div id="disclaimer">
           <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-          [Browser Compatibility]
-          <div id="hover-content">We recommend using Mozilla Firefox or Google Chrome as your Internet browser to optimize the use of the map viewer. Using Microsoft Internet Explorer browser, particularly old versions, may cause some of our web site's
+          <span i18n:translate="">[Browser Compatibility]</span>
+          <div id="hover-content" i18n:translate="">We recommend using Mozilla Firefox or Google Chrome as your Internet browser to optimize the use of the map viewer. Using Microsoft Internet Explorer browser, particularly old versions, may cause some of our web site's
             features and services to operate incorrectly.</div>
         </div>
       </div>

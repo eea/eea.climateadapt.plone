@@ -54,7 +54,7 @@
                    value="Search"
                    i18n:attributes="value label_search;"/>
         </fieldset>
-        <div class="aceitems-search-info">
+        <div class="aceitems-search-info" i18n:translate="">
             Advanced search for Climate-Adapt database items <a href="/redirect_to_search_page">here</a>
         </div>
 
@@ -70,7 +70,7 @@
                     i18n:translate=""
                     tal:condition="st">
                     Search results for:
-                    <span id="search-term" tal:content="st" i18n:name="term" style="font-style:italic;color:#005c96;">
+                    <span id="search-term" tal:content="st" i18n:name="term" style="font-style:italic;color:#005c96;" i18n:translate="">
                         Search Term
                     </span>
                 </h1>

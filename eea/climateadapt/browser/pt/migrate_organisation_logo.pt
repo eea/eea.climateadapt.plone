@@ -1,4 +1,4 @@
-<h1>migrate organisation logo items:</h1>
+<h1 i18n:translate="">migrate organisation logo items:</h1>
 <table tal:define="items view/list" width="100%">
     <tr tal:repeat="item items">
         <td tal:content="item/title"></td>

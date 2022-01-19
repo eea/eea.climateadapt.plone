@@ -401,12 +401,12 @@
     </metal:fill-slot>
 
     <metal:fill-slot fill-slot="content-title">
-        <h1>Transnational regions and other regions and countries</h1>
+        <h1 i18n:translate="">Transnational regions and other regions and countries</h1>
     </metal:fill-slot>
     <metal:fill-slot fill-slot="content-core">
         <div class="journal-content-article" style="margin-right: 10px;">
-            <p>There are
-                <a href="http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm" target="_blank">12 regions</a>
+            <p i18n:translate="">There are
+                <a href="http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm" target="_blank" i18n:translate="">12 regions</a>
                 in Europe for transnational co-operation. In addition, specific EU agreed strategies exist for four macro-national regions:
                 <a href="http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm" target="_blank">Baltic Sea</a>,
                 <a href="http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm" target="_blank">Danube</a>,
@@ -414,7 +414,7 @@
                 <a href="http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/" target="_blank">Adriatic and Ionian</a>
                 regions. This section provides information on strategies and actions that have been developed or are currently under development for the EU transnational regions and for other regions and countries.<br/>
                 <br/>
-                <b>How to use the map?</b><br/>
+                <b i18n:translate="">How to use the map?</b><br/>
                 The map shows the transnational regions situated in Europe defined in the co-operation programmes for 2014-2020. You can select transnational regions by clicking on the map. If you select an area that belongs to more than one region, the pop-up
                 window will show all the regions where the area is located. The pop-up window also shows the countries where each region is located.<br/>
                 <br/>
@@ -422,7 +422,7 @@
 
             <p>
                 <select id="RegionsCombo" onchange="goCountry(this)" style="width:300px">
-                    <option value="%">Choose a region</option>
+                    <option value="%" i18n:translate="">Choose a region</option>
                 </select>
             </p>
         </div>
@@ -443,43 +443,43 @@
                     <div id="legendDiv">
                         <ul>
                             <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/Adriatic-Ionian.png"/>
-                                <a class="regionsLink" href="/transnational-regions/adriatic-ionian">Adriatic-Ionian</a>
+                                <a class="regionsLink" href="/transnational-regions/adriatic-ionian" i18n:translate="">Adriatic-Ionian</a>
                             </li>
                             <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/AlpineSpace.png"/>
-                                <a class="regionsLink" href="/transnational-regions/alpine-space">Alpine Space</a>
+                                <a class="regionsLink" href="/transnational-regions/alpine-space" i18n:translate="">Alpine Space</a>
                             </li>
                             <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/AtlanticArea.png"/>
-                                <a class="regionsLink" href="/transnational-regions/atlantic-area">Atlantic Area</a>
+                                <a class="regionsLink" href="/transnational-regions/atlantic-area" i18n:translate="">Atlantic Area</a>
                             </li>
                             <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/Balkan-Mediterranean.png"/>
-                                <a class="regionsLink" href="/transnational-regions/balkan-mediterranean">Balkan-Mediterranean</a>
+                                <a class="regionsLink" href="/transnational-regions/balkan-mediterranean" i18n:translate="">Balkan-Mediterranean</a>
                             </li>
                             <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/BalticSea.png"/>
-                                <a class="regionsLink" href="/transnational-regions/baltic-sea-region">Baltic Sea</a>
+                                <a class="regionsLink" href="/transnational-regions/baltic-sea-region" i18n:translate="">Baltic Sea</a>
                             </li>
                             <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/CentralEurope.png"/>
-                                <a class="regionsLink" href="/transnational-regions/central-europe">Central Europe</a>
+                                <a class="regionsLink" href="/transnational-regions/central-europe" i18n:translate="">Central Europe</a>
                             </li>
                             <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/Danube.png"/>
-                                <a class="regionsLink" href="/transnational-regions/danube">Danube</a>
+                                <a class="regionsLink" href="/transnational-regions/danube" i18n:translate="">Danube</a>
                             </li>
                             <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/Mediterranean.png"/>
-                                <a class="regionsLink" href="/transnational-regions/mediterranean">Mediterranean</a>
+                                <a class="regionsLink" href="/transnational-regions/mediterranean" i18n:translate="">Mediterranean</a>
                             </li>
                             <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/NorthSea.png"/>
-                                <a class="regionsLink" href="/transnational-regions/north-sea">North Sea</a>
+                                <a class="regionsLink" href="/transnational-regions/north-sea" i18n:translate="">North Sea</a>
                             </li>
                             <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/NorthWestEurope.png"/>
-                                <a class="regionsLink" href="/transnational-regions/north-west-europe">North West Europe</a>
+                                <a class="regionsLink" href="/transnational-regions/north-west-europe" i18n:translate="">North West Europe</a>
                             </li>
                             <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/NorthernPeriphery.png"/>
-                                <a class="regionsLink" href="/transnational-regions/northern-periphery">Northern Periphery and Arctic</a>
+                                <a class="regionsLink" href="/transnational-regions/northern-periphery" i18n:translate="">Northern Periphery and Arctic</a>
                             </li>
                             <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/SouthWestEurope.png"/>
-                                <a class="regionsLink" href="/transnational-regions/south-west-europe">South West Europe</a>
+                                <a class="regionsLink" href="/transnational-regions/south-west-europe" i18n:translate="">South West Europe</a>
                             </li>
                             <li style="list-style:none"><img src="/++theme++climateadapt/static/cca/img/Others.png"/>
-                                <a class="regionsLink" href="/transnational-regions/other-regions">Other regions</a>
+                                <a class="regionsLink" href="/transnational-regions/other-regions" i18n:translate="">Other regions</a>
                             </li>
                         </ul>
                     </div>

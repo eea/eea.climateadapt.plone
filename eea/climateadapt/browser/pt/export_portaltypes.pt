@@ -11,55 +11,55 @@
   <body>
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="content-core">
-        <p style="font-weight: 200; font-size: 2em;">Export the following portal types in excel:</p>
+        <p style="font-weight: 200; font-size: 2em;" i18n:translate="">Export the following portal types in excel:</p>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.publicationreport'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.publicationreport'" target="_blank" i18n:translate="">
                 Publications and reports excel export
             </a>
         </li>
 
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.guidancedocument'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.guidancedocument'" target="_blank" i18n:translate="">
                 Guidances excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.informationportal'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.informationportal'" target="_blank" i18n:translate="">
                 Information portals excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.tool'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.tool'" target="_blank" i18n:translate="">
                 Tools excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.organisation'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.organisation'" target="_blank" i18n:translate="">
                 Organisations excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.indicator'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.indicator'" target="_blank" i18n:translate="">
                 Indicators and reports excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.adaptationoption'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.adaptationoption'" target="_blank" i18n:translate="">
                 Adaptation Options excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.aceproject'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.aceproject'" target="_blank" i18n:translate="">
                 Research and knowledge projects excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.casestudy'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.casestudy'" target="_blank" i18n:translate="">
                 Case studies excel export
             </a>
         </li>
         <li>
-            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.mapgraphdataset'" target="_blank">
+            <a href="" tal:attributes="href python: view.context.absolute_url() + '/@@collective.excelexport?review_state=published&&portal_type=eea.climateadapt.mapgraphdataset'" target="_blank" i18n:translate="">
                 Map, graphs, dataset excel export
             </a>
         </li>

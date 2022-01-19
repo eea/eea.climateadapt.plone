@@ -57,7 +57,7 @@
                 </tal:def>
               </dd>
               <dd tal:define="num view/num_more_occurrences" tal:condition="num">
-                <a tal:attributes="href string:${view/event_context/absolute_url}/@@event_listing">
+                <a tal:attributes="href string:${view/event_context/absolute_url}/@@event_listing" i18n:translate="">
                   There are <tal:num replace="num"/> more occurrences.
                 </a>
               </dd>
@@ -71,7 +71,7 @@
               <dt i18n:translate="event_where">Where:</dt>
             </div>
             <div class="col-md-10">
-              <dd itemprop="location" class="location" tal:content="structure location">Location</dd>
+              <dd itemprop="location" class="location" tal:content="structure location" i18n:translate="">Location</dd>
             </div>
           </tal:cond>
         </div>

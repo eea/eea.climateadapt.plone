@@ -1,13 +1,13 @@
 <div>
   <div id="bottom-menu">
     <div id="previous-link">
-      <a href="">
+      <a href="" i18n:translate="">
         <i class="fa fa-arrow-left"></i>
         Previous question
       </a>
     </div>
     <div id="next-link">
-      <a href="">
+      <a href="" i18n:translate="">
         Next question
         <i class="fa fa-arrow-right"></i>
       </a>
@@ -16,7 +16,7 @@
   <div id="contact-link">
     <a href="/tools/urban-ast/contact" class="standard-button secondary-button">
       <i class="fa fa-envelope"></i>
-      <span class="contact-button">
+      <span class="contact-button" i18n:translate="">
         Contact us with your questions,<br/>comments and suggestions
       </span>
     </a>

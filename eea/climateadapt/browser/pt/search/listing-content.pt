@@ -1,7 +1,7 @@
 <table class="listing-table" tal:define="brains view/brains; nr_res python: len(brains);" tal:on-error="nothing">
   <thead>
     <tr>
-      <th>Title</th>
+      <th i18n:translate="">Title</th>
     </tr>
   </thead>
   <tbody
@@ -10,7 +10,7 @@
       <td tal:define="title brain/Title" tal:on-error="nothing">
         » <img tal:condition="python: view.new_item(brain)" tal:on-error="nothing"
                src="++theme++climateadapt/static/cca/img/new-en.gif">
-        <span tal:condition="python: view.expired(brain)" class="state-expired"> Expired </span>
+        <span tal:condition="python: view.expired(brain)" class="state-expired" i18n:translate=""> Expired </span>
         <a href="" tal:attributes="href python:view.cover_url(brain)" tal:on-error="nothing">
           <span tal:on-error="nothing" tal:replace="python:brain.Title or 'untitled' " />
         </a>

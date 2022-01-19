@@ -2,7 +2,7 @@
   <div id="countries-tile-selector">
     <!-- Select a country to go to country's page: -->
     <select class="form-control">
-      <option value=''>Go to country</option>
+      <option value='' i18n:translate="">Go to country</option>
       <option
         tal:repeat="country view/countries"
         tal:attributes="value country/absolute_url"

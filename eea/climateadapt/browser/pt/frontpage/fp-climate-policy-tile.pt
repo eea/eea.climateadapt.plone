@@ -1,6 +1,6 @@
 <div class="eu-climate-policy-tile">
   <h3>
-    <a href="/eu-adaptation-policy">EU Climate Policy</a>
+    <a href="/eu-adaptation-policy" i18n:translate="">EU Climate Policy</a>
   </h3>
   <div style="padding-top:6px;">
     <table align="center" cellpadding="1" cellspacing="1" style="width:80%;text-align:center;">
@@ -8,21 +8,21 @@
         <tr>
           <td>
             <a href="http://ec.europa.eu/clima/">
-              <img alt="EC Climate Action " tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/eu-flag.jpg" style="width: 116px; height: 58px;" />
+              <img alt="EC Climate Action "  i18n:attributes="alt" tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/eu-flag.jpg" style="width: 116px; height: 58px;" />
             </a>
           </td>
           <td>
             <a href="https://www.eea.europa.eu/themes/climate-change-adaptation" style="color: rgb(117, 136, 22);">
-              <img alt="EEA Climate Change topic" tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/eu-climate-change-topic.jpg" style="width: 77px; height: 68px;" />
+              <img alt="EEA Climate Change topic"  i18n:attributes="alt" tal:attributes="src string: ${context/++resource++eea.climateadapt}/frontpage/eu-climate-change-topic.jpg" style="width: 77px; height: 68px;" />
             </a>
           </td>
         </tr>
         <tr>
           <td>
-            <span style="color: rgb(34, 34, 34); font-family: Calibri, sans-serif; font-size: 14.6667px; line-height: normal;">EC Climate Action</span>
+            <span style="color: rgb(34, 34, 34); font-family: Calibri, sans-serif; font-size: 14.6667px; line-height: normal;" i18n:translate="">EC Climate Action</span>
           </td>
           <td>
-            <span style="color: rgb(34, 34, 34); font-family: Calibri, sans-serif; font-size: 14.6667px; line-height: normal;">EEA Climate Change topic</span>
+            <span style="color: rgb(34, 34, 34); font-family: Calibri, sans-serif; font-size: 14.6667px; line-height: normal;" i18n:translate="">EEA Climate Change topic</span>
           </td>
         </tr>
       </tbody>

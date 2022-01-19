@@ -16,7 +16,7 @@
             <div class="project-source" id="aceproject-logo" tal:condition="python: 'DRMKC' in getattr(context, 'origin_website', [])">
               <a tal:on-error="nothing"
                 tal:condition="context/partners_source_link"
-                tal:attributes="href context/partners_source_link">View on DRMKC</a>
+                tal:attributes="href context/partners_source_link" i18n:translate="">View on DRMKC</a>
 
               <a tal:condition="python: 'DRMKC' in getattr(context, 'origin_website', [])"
                 href="https://drmkc.jrc.ec.europa.eu/">
@@ -43,15 +43,15 @@
           <div metal:fill-slot="ace-left-slot">
             <metal:macro use-macro="context/ace_macros/macros/description" />
 
-            <h4>Project information</h4>
+            <h4 i18n:translate="">Project information</h4>
 
             <metal:macro use-macro="context/ace_macros/macros/lead" />
             <metal:macro use-macro="context/ace_macros/macros/partners" />
             <metal:macro use-macro="context/ace_macros/macros/funding" />
 
             <div tal:condition="context/websites">
-              <h4 class="reference-title">Reference information</h4>
-              <h5>Websites:</h5>
+              <h4 class="reference-title" i18n:translate="">Reference information</h4>
+              <h5 i18n:translate="">Websites:</h5>
               <metal:macro use-macro="context/ace_macros/macros/websites" />
             </div>
 
@@ -66,9 +66,9 @@
 
             <div class="macro-category" tal:condition="effective" tal:define="effective context/publication_date|nothing">
               <div>
-                <h4>Date of creation:</h4>
+                <h4 i18n:translate="">Date of creation:</h4>
                 <span tal:replace="python: effective.strftime('%Y')">2000</span>
-                <a href="#" data-toggle="tooltip" class="pat-tooltip"
+                <a href="#" data-toggle="tooltip" class="pat-tooltip"  i18n:attributes="title"
                       title="The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT">
                       <i class="fa fa-question-circle"></i>
                 </a>
@@ -76,44 +76,44 @@
             </div>
 
             <div class="macro-category health-information" tal:condition="python:health_impacts" tal:define="health_impacts context/health_impacts">
-              <h4>Health impact:</h4>
+              <h4 i18n:translate="">Health impact:</h4>
               <div tal:condition="health_impacts">
                   <span tal:replace="python:', '.join(health_impacts or [])">health impacts</span>
               </div>
             </div>
 
             <div class="macro-category" tal:condition="python: hasattr(context, 'funding_programme') and context.funding_programme and context.funding_programme!='Other'">
-              <h4>Funding Programme:</h4>
+              <h4 i18n:translate="">Funding Programme:</h4>
               <p tal:replace="context/funding_programme"/>
             </div>
 
             <div class="macro-category" tal:condition="context/keywords">
-              <h4>Keywords:</h4>
+              <h4 i18n:translate="">Keywords:</h4>
               <metal:macro use-macro="context/ace_macros/macros/keywords" />
             </div>
 
             <div class="macro-category">
-              <h4>Duration:</h4>
+              <h4 i18n:translate="">Duration:</h4>
               <p tal:replace="structure context/duration"/>
             </div>
 
             <div class="macro-category" tal:condition="is_observatory_page" tal:define="is_observatory_page python:not request.get('observatory_page',0)">
-              <h4>Climate impacts:</h4>
+              <h4 i18n:translate="">Climate impacts:</h4>
               <p tal:replace="structure python:view.w['climate_impacts'].render()"/>
             </div>
 
             <div id="cca-macro-category-elements" class="macro-category">
-              <h4>Elements:</h4>
+              <h4 i18n:translate="">Elements:</h4>
               <p tal:replace="structure python:view.w['elements'].render()"/>
             </div>
 
             <div class="macro-category" tal:condition="is_observatory_page" tal:define="is_observatory_page python:not request.get('observatory_page',0)">
-              <h4>Sectors:</h4>
+              <h4 i18n:translate="">Sectors:</h4>
               <p tal:replace="structure python:view.w['sectors'].render()"/>
             </div>
 
             <div class="macro-category">
-              <h4>Geographic characterization:</h4>
+              <h4 i18n:translate="">Geographic characterization:</h4>
               <tal:def define="geochar python:view.render_geochar(context.geochars)">
 
                 <div tal:content="structure geochar" tal:condition="geochar"/>
@@ -125,7 +125,7 @@
                     </div>
                   </div>
 
-                  <p tal:condition="context/spatial_values">
+                  <p tal:condition="context/spatial_values" i18n:translate="">
                     Countries:
                     <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
                   </p>
@@ -135,9 +135,9 @@
             </div>
 
             <div class="macro-category" tal:condition="python: context.source == 'DRMKC'">
-              <h4>External source</h4>
+              <h4 i18n:translate="">External source</h4>
               <div>
-                <a href="https://drmkc.jrc.ec.europa.eu/">DRMKC</a>
+                <a href="https://drmkc.jrc.ec.europa.eu/" i18n:translate="">DRMKC</a>
               </div>
             </div>
 

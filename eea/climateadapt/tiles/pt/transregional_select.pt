@@ -70,10 +70,10 @@
       }
     </style>
 
-    <strong tal:condition="is_compose">Transregional select</strong>
+    <strong tal:condition="is_compose" i18n:translate="">Transregional select</strong>
 
     <dl tal:condition="view/is_compose_mode">
-      <dt>Transnational regions select</dt>
+      <dt i18n:translate="">Transnational regions select</dt>
       <dd>
         <select class="form-control"></select>
       </dd>
@@ -112,7 +112,7 @@
       </section>
 
       <select id="trans-region-select" class="form-control">
-        <option value="">Choose a region</option>
+        <option value="" i18n:translate="">Choose a region</option>
         <option
           tal:repeat="region view/regions"
           tal:attributes="value region/url"
@@ -120,7 +120,7 @@
       </select>
 
       <div tal:condition="view/countries" class="region-countries">
-        <h5>Region's countries:</h5>
+        <h5 i18n:translate="">Region's countries:</h5>
         <tal:rep tal:repeat="info python: view.countries()[0]">
           <a href="" tal:omit-tag="python: not info[1]"
             tal:attributes="href python:info[1]"

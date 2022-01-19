@@ -227,7 +227,7 @@ a.reset-button {
 </style>
 <div class="row">
     <div class="col-md-12 cs-menu">
-        <a href="" class="selected">Map</a>
+        <a href="" class="selected" i18n:translate="">Map</a>
         <!--
         <a href="">Charts</a>
         <a href='/data-and-downloads/?source=%7B"query"%3A%7B"function_score"%3A%7B"query"%3A%7B"bool"%3A%7B"must"%3A%7B"bool"%3A%7B"must"%3A%5B%7B"term"%3A%7B"hasWorkflowState"%3A"published"%7D%7D%5D%7D%7D%2C"filter"%3A%7B"bool"%3A%7B"should"%3A%5B%7B"term"%3A%7B"typeOfData"%3A"Case%20studies"%7D%7D%5D%7D%7D%7D%7D%2C"functions"%3A%5B%7B"gauss"%3A%7B"issued"%3A%7B"scale"%3A"14d"%7D%7D%7D%5D%2C"score_mode"%3A"sum"%7D%7D%2C"display_type"%3A"list"%2C"sort"%3A%5B%7B"issued"%3A%7B"order"%3A"desc"%7D%7D%5D%2C"highlight"%3A%7B"fields"%3A%7B"*"%3A%7B%7D%7D%7D%7D'>Database</a>
@@ -242,21 +242,21 @@ a.reset-button {
         <form class="form-inline pl-3" id="arcgis_case_study_form" style="padding-left:20px;padding-right:20px;">
         <div class="row">
             <div class="cols-md-12 cs_filter_sector_div" tal:define="sectors view/get_sectors">
-                <h4>Adaptation Sectors</h4>
+                <h4 i18n:translate="">Adaptation Sectors</h4>
                 <p class="cs_filter_sector" style="display:none;" tal:repeat="sector sectors">
                     <span class="float-left" tal:content="sector/value">Sector name</span>
                     <input type="checkbox" name="sectors" tal:attributes="value sector/key" >
                 </p>
             </div>
             <div class="cols-md-12 cs_filter_impact_div" tal:define="climate_impacts view/get_climate_impacts">
-                <h4>Climate Impacts</h4>
+                <h4 i18n:translate="">Climate Impacts</h4>
                 <p class="cs_filter_impact" style="display:none;" tal:repeat="climate_impact climate_impacts">
                     <span class="float-left" tal:content="climate_impact/value">Sector name</span>
                     <input type="checkbox" name="impacts" tal:attributes="value climate_impact/key" >
                 </p>
             </div>
             <div class="cols-md-12 cs_filter_ipcc_div" tal:define="ipcc_categories view/get_ipcc_categories2">
-                <h4>Adaptation Options categories</h4>
+                <h4 i18n:translate="">Adaptation Options categories</h4>
                 <p class="cs_filter_ipcc" style="display:none;" tal:repeat="ipcc_category ipcc_categories">
                     <span style="clear:both;font-weight:bold;font-size:16px;border-bottom:1px solid #005c96;color:#005c96;width:100%" class="float-left ipcc_category_title" tal:content="python: ipcc_category"></span>
                     <tal tal:repeat="ipcc python:ipcc_categories[ipcc_category]">
@@ -266,7 +266,7 @@ a.reset-button {
                 </p>
             </div>
             <div class="cols-md-12 pull-right" style="clear:both;">
-                <a href="" class="reset-button standard-button primary-button reset btn-sm" title="Reset">Reset</a>
+                <a href="" class="reset-button standard-button primary-button reset btn-sm" title="Reset" i18n:translate="" i18n:attributes="title">Reset</a>
             </div>
 
 
@@ -288,8 +288,8 @@ a.reset-button {
         </div>
         </form>
         <div class="case-study-legend">
-            <p><span></span> Climate-ADAPT case studies</p>
-            <p><span class="light-blue"></span> Case studies collected at national level in Spain, provided by AdapteCCA.es</p>
+            <p i18n:translate=""><span></span> Climate-ADAPT case studies</p>
+            <p i18n:translate=""><span class="light-blue"></span> Case studies collected at national level in Spain, provided by AdapteCCA.es</p>
         </div>
     </div>
 </div>

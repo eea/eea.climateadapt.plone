@@ -3,7 +3,7 @@
 
     <div class="dd-country-title">
       <div class="dd-title-wrapper">
-        <div class="select-text">Choose a country:</div>
+        <div class="select-text" i18n:translate="">Choose a country:</div>
         <div class="selected resizeselect" tal:content="context/Title"></div>
         <i class="fa fa-angle-down"></i>
       </div>

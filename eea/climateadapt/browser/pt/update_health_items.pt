@@ -1,5 +1,5 @@
-<h1>Update health items</h1>
-<form action="/update_health_items" method="post" enctype="multipart/form-data">
+<h1 i18n:translate="">Update health items</h1>
+<form action="/update_health_items" method="post" enctype="multipart/form-data" i18n:translate="">
   <br>File to upload:
   <input type="file" name="fileToUpload" id="fileToUpload" />
   <input type="submit" value="Process CSV" name="submit" />

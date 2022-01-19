@@ -15,18 +15,18 @@
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
           <metal:topslot metal:fill-slot="ace-top-slot">
             <div >
-              <a href="" tal:attributes="href view/link_to_original">Original aceitem</a>
+              <a href="" tal:attributes="href view/link_to_original" i18n:translate="">Original aceitem</a>
               <h2 tal:content="view/type_label">Data Type</h2>
               <h1 tal:content="python: context.title">Title here</h1>
             </div>
           </metal:topslot>
 
           <div class="aceitem-left" metal:fill-slot="ace-left-slot">
-            <h3>Description</h3>
+            <h3 i18n:translate="">Description</h3>
             <div tal:content="structure python: view.w['long_description'].render()">description here</div>
 
-            <h4>Reference information</h4>
-            <h5>Websites:</h5>
+            <h4 i18n:translate="">Reference information</h4>
+            <h5 i18n:translate="">Websites:</h5>
             <!-- <div tal:content="structure python:view._render_websites(context.storage_type)"/> -->
 
             <div tal:define="link python:view._render_websites()">
@@ -37,11 +37,11 @@
 
             <!-- tal:condition="python: context.storage_type=='MAPLAYER'" -->
             <!-- <div tal:content="structure context/websites/output" style="text-decoration: underline">Source here</div> -->
-            <h5>Reference:</h5>
+            <h5 i18n:translate="">Reference:</h5>
             <div tal:content="structure python: view.w['source'].render()">Source here</div>
 
             <div tal:condition="context/metadata/raw | nothing">
-              <h5>Link to metadata:</h5>
+              <h5 i18n:translate="">Link to metadata:</h5>
               <div tal:content="structure python: view.w['metadata'].render()">Source here</div>
             </div>
               <!-- <div tal:content="structure python: view.linkify(view.w['metadata'].render())"></div> -->
@@ -53,7 +53,7 @@
           <div class="aceitem-right" metal:fill-slot="ace-right-slot">
 
              <div tal:condition="context/contentValues">
-                <h4 tal:define="file_nr context/contentValues">Item Documents (<span tal:content="python: len(file_nr)"></span>) </h4>
+                <h4 tal:define="file_nr context/contentValues" i18n:translate="">Item Documents (<span tal:content="python: len(file_nr)"></span>) </h4>
                 <ul>
                     <li tal:repeat="file context/contentValues">
                         <a tal:attributes="href file/absolute_url" tal:content="file/Title">
@@ -62,24 +62,24 @@
                 </ul>
             </div>
 
-            <h4>Keywords</h4>
+            <h4 i18n:translate="">Keywords</h4>
             <span tal:repeat="structure context/keywords">
                 <span tal:content="structure"></span>,
             </span>
 
-            <h4>Climate impacts</h4>
+            <h4 i18n:translate="">Climate impacts</h4>
             <tal:block content="structure python:view.w['climate_impacts'].render()"/>
 
-            <h4>Elements</h4>
+            <h4 i18n:translate="">Elements</h4>
             <tal:block content="structure python:view.w['elements'].render()"/>
 
-            <h4>Sectors</h4>
+            <h4 i18n:translate="">Sectors</h4>
             <tal:block content="structure python:view.w['sectors'].render()"/>
-            <h4>Geographic characterization</h4>
+            <h4 i18n:translate="">Geographic characterization</h4>
             <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars"/>
             <tal:cond condition="not: context/geochars">
               <p tal:condition="context/spatial_layer" tal:content="context/spatial_layer"/>
-              <p tal:condition="context/spatial_values">
+              <p tal:condition="context/spatial_values" i18n:translate="">
                 Countries:
                 <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
               </p>

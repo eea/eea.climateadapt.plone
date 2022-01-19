@@ -12,22 +12,22 @@
           <div class="slider-layer"></div>
 
           <div class="image-copyright">
-            <p tal:content="image/copyright">Image copyright</p>
+            <p tal:content="image/copyright" i18n:translate="">Image copyright</p>
           </div>
 
           <div class="slider-caption">
-            <h3 tal:content="image/title">
+            <h3 tal:content="image/title" i18n:translate="">
               About Climate Change Adaptation in Europe
             </h3>
             <p>
-              <tal:block tal:replace="python: view.getDescription(image)[:300] + '...'">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.
+              <tal:block tal:replace="python: view.getDescription(image)[:300] + '...'" i18n:translate="">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.
               </tal:block>
             </p>
 
             <div class="slider-bottom-caption clearfix">
               <div class="read-more-wrapper">
                 <a href="" class="read-more"
-                   tal:attributes="href image/url">
+                   tal:attributes="href image/url" i18n:translate="">
                   <i class="fa fa-angle-double-right"></i>
                   Read more
                 </a>
@@ -49,7 +49,7 @@
             </div>
             <div class="slider-layer slider-nav-layer"></div>
             <span class="slider-category"
-              tal:content="structure image/category">
+              tal:content="structure image/category" i18n:translate="">
               About Climate Change Adaptation in Europe
             </span>
           </div>

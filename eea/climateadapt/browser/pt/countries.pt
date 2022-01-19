@@ -81,25 +81,25 @@
   </metal:fill-slot>
 
   <metal:fill-slot fill-slot="content-title">
-    <h1>Country information</h1>
+    <h1 i18n:translate="">Country information</h1>
   </metal:fill-slot>
   <metal:fill-slot fill-slot="content-core">
 
     <div class="cover-richtext-tile tile-content">
 
       <div class="journal-content-article" style="margin-right: 10px;">
-        <p>EEA Member countries are at different stages of preparing, developing and implementing national
-          <a aria-describedby="ui-tooltip-0" class="glossary-inline-term" href="http://climate-adapt.eea.europa.eu/glossary#linkAdaptation" target="_blank">adaptation</a>
+        <p i18n:translate="">EEA Member countries are at different stages of preparing, developing and implementing national
+          <a aria-describedby="ui-tooltip-0" class="glossary-inline-term" href="http://climate-adapt.eea.europa.eu/glossary#linkAdaptation" target="_blank" i18n:translate="">adaptation</a>
           strategies and plans.</p>
 
-        <p>See in the map below the information provided by each Member State of the European Union under the European mechanism for monitoring and reporting information relevant to climate change (Regulation (EU) No 525/2013).</p>
+        <p i18n:translate="">See in the map below the information provided by each Member State of the European Union under the European mechanism for monitoring and reporting information relevant to climate change (Regulation (EU) No 525/2013).</p>
 
-        <p>For other EEA Member countries, the information provided is based on voluntary submissions to EEA.</p>
+        <p i18n:translate="">For other EEA Member countries, the information provided is based on voluntary submissions to EEA.</p>
 
-        <p>Filter by any of the topics in the drop-down list ('Choose Thematic Map') and the map will indicate if links on the topic are available for each country. To navigate to the information just scroll over to one country on the map and a pop-up window
+        <p i18n:translate="">Filter by any of the topics in the drop-down list ('Choose Thematic Map') and the map will indicate if links on the topic are available for each country. To navigate to the information just scroll over to one country on the map and a pop-up window
           will show the existing link(s) and allow clicking on them.</p>
 
-        <p>Select a country to go to country's page:
+        <p i18n:translate="">Select a country to go to country's page:
           <select id="country" onchange="goCountry(this)"></select>
         </p>
       </div>
@@ -120,22 +120,22 @@
         <div id="contenidoCombos">
           <div id="myfom">
             <h2 class="portlet-title">
-              <span class="portlet-title-text">Choose Thematic Map:</span>
+              <span class="portlet-title-text" i18n:translate="">Choose Thematic Map:</span>
             </h2>
             <br/>
             <select id="thematic_field" style="width:100%"></select>
 
             <div class="bluebuttondiv" style="text-align:center">
-              <a class="bluebutton" id="botoncito1" style="float:none;margin-top:10px;margin-bottom:10px;cursor:pointer">Show Thematic Map</a>
+              <a class="bluebutton" id="botoncito1" style="float:none;margin-top:10px;margin-bottom:10px;cursor:pointer" i18n:translate="">Show Thematic Map</a>
             </div>
             &nbsp;
 
             <p><img src="/++theme++climateadapt/static/cca/img/countriesLegend.png"/></p>
 
-            <div id="disclaimer">
+            <div id="disclaimer" i18n:translate="">
               <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
               [Disclaimer]
-              <div id="hover-content">The information presented in these pages is based on the reporting according to the Monitoring Mechanism Regulation (Regulation (EU) No 525/2013) and updates by the EEA member countries</div>
+              <div id="hover-content" i18n:translate="">The information presented in these pages is based on the reporting according to the Monitoring Mechanism Regulation (Regulation (EU) No 525/2013) and updates by the EEA member countries</div>
             </div>
           </div>
         </div>

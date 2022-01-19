@@ -11,18 +11,18 @@
   <body>
     <metal:main fill-slot="main">
     <style>
-        
+
     </style>
-      <tal:main-macro metal:define-macro="content-core" 
+      <tal:main-macro metal:define-macro="content-core"
        tal:define="years view/get_years;">
         <div class="" tal:repeat="year years">
-          <h2>Year: <span tal:content="year">2000</span></h2>
+          <h2 i18n:translate="">Year: <span tal:content="year">2000</span></h2>
           <table class="listing">
             <thead>
               <tr>
-                <th>Portal Type</th>
-                <th>Published</th>
-                <th>Total</th>
+                <th i18n:translate="">Portal Type</th>
+                <th i18n:translate="">Published</th>
+                <th i18n:translate="">Total</th>
               </tr>
             </thead>
             <tbody>

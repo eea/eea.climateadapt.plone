@@ -12,8 +12,8 @@
       <metal:main fill-slot="main">
         <tal:main-macro metal:define-macro="content-core">
 
-          <h1>Send token emails to City Mayors</h1>
-          <h3>Warning: this will reset/invalidate tokens on all selected cities</h3>
+          <h1 i18n:translate="">Send token emails to City Mayors</h1>
+          <h3 i18n:translate="">Warning: this will reset/invalidate tokens on all selected cities</h3>
 
           <form action="" method="POST" tal:attributes="action string:${context/absolute_url}/@@city-profile-admin">
             <table class="cities-listing table table-striped" tal:define="profiles view/res">
@@ -23,15 +23,15 @@
                     <input type="checkbox" id="select-all-cities" />
                     <!-- <label for="select&#45;all&#45;cities">Select all</label> -->
                   </th>
-                  <th>City</th>
-                  <th>Status</th>
-                  <th>Email</th>
+                  <th i18n:translate="">City</th>
+                  <th i18n:translate="">Status</th>
+                  <th i18n:translate="">Email</th>
                 </tr>
               </thead>
               <tbody >
                 <tr tal:repeat="city profiles" >
                   <td>
-                    <input type="checkbox" name="city:list" value="" 
+                    <input type="checkbox" name="city:list" value=""
                       tal:attributes="value city/getId; disabled python:'disabled' and (not city.official_email) or None"/>
                   </td>
                   <td>
@@ -46,7 +46,7 @@
                 </tr>
               </tbody>
             </table>
-            <input type="submit" name="submit" value="Submit"/>
+            <input type="submit" name="submit" value="Submit"/ i18n:attributes="value">
           </form>
 
           <script>

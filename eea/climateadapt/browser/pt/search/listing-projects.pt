@@ -1,8 +1,8 @@
 <table class="listing-table" tal:define="brains view/brains; nr_res python: len(brains);" tal:on-error="nothing">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Published</th>
+      <th i18n:translate="">Title</th>
+      <th i18n:translate="">Published</th>
     </tr>
   </thead>
   <tbody

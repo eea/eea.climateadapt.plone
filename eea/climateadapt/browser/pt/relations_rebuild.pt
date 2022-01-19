@@ -12,13 +12,13 @@
   <metal:content-core fill-slot="main">
 
     <header>
-      <h1 class="documentFirstHeading">Rebuild zc.relation catalog</h1>
+      <h1 class="documentFirstHeading" i18n:translate="">Rebuild zc.relation catalog</h1>
     </header>
 
     <div id="content-core">
 
-      <h3>
-        <span tal:condition="python:view.done">Success!</span>
+      <h3 i18n:translate="">
+        <span tal:condition="python:view.done" i18n:translate="">Success!</span>
         Current number of relations in the zc.relation catalog
       </h3>
 
@@ -28,8 +28,8 @@
             tal:condition="python: relations_stats or broken">
         <thead>
           <tr>
-            <th>Relation</th>
-            <th>Amount</th>
+            <th i18n:translate="">Relation</th>
+            <th i18n:translate="">Amount</th>
           </tr>
         </thead>
         <tbody>
@@ -54,41 +54,41 @@
         </tbody>
       </table>
 
-      <h3>Common relations:</h3>
+      <h3 i18n:translate="">Common relations:</h3>
       <dl>
-        <dt>relatedItems</dt>
-        <dd>Relations between content using the default "Related items" field</dd>
+        <dt i18n:translate="">relatedItems</dt>
+        <dd i18n:translate="">Relations between content using the default "Related items" field</dd>
 
-        <dt>isReferencing</dt>
-        <dd>Linkintegrity relations (source has a html-link to target)</dd>
+        <dt i18n:translate="">isReferencing</dt>
+        <dd i18n:translate="">Linkintegrity relations (source has a html-link to target)</dd>
 
-        <dt>iterate-working-copy</dt>
-        <dd>Relation from content to a working copy (using plone.app.iterate)</dd>
+        <dt i18n:translate="">iterate-working-copy</dt>
+        <dd i18n:translate="">Relation from content to a working copy (using plone.app.iterate)</dd>
 
-        <dt>staging-working-copy</dt>
-        <dd>Outdated relation from content to a working copy (using plone.app.stagingbehavior)</dd>
+        <dt i18n:translate="">staging-working-copy</dt>
+        <dd i18n:translate="">Outdated relation from content to a working copy (using plone.app.stagingbehavior)</dd>
 
-        <dt>(broken)</dt>
-        <dd>Either source or target no longer exist</dd>
+        <dt i18n:translate="">(broken)</dt>
+        <dd i18n:translate="">Either source or target no longer exist</dd>
 
-        <dt><i>all other</i></dt>
-        <dd>Custom attribute/fieldname used to describe the relation</dd>
+        <dt i18n:translate=""><i>all other</i></dt>
+        <dd i18n:translate="">Custom attribute/fieldname used to describe the relation</dd>
       </dl>
 
       <form id="rebuild_relations" method="post" action="@@rebuild-relations" enctype="multipart/form-data">
-        <h3>Purge and rebuild relation-catalog</h3>
-        <p>Clicking here will do the following:</p>
+        <h3 i18n:translate="">Purge and rebuild relation-catalog</h3>
+        <p i18n:translate="">Clicking here will do the following:</p>
         <ul>
-          <li>Get all relations from zc.relation catalog and store them in a annotation on the portal.</li>
-          <li>Remove all entries form zc.relation catalog.</li>
-          <li>Clean up or flush and rebuild intids - this depends on your selection below</li>
-          <li>Restore relations from the annotation on the portal.</li>
+          <li i18n:translate="">Get all relations from zc.relation catalog and store them in a annotation on the portal.</li>
+          <li i18n:translate="">Remove all entries form zc.relation catalog.</li>
+          <li i18n:translate="">Clean up or flush and rebuild intids - this depends on your selection below</li>
+          <li i18n:translate="">Restore relations from the annotation on the portal.</li>
         </ul>
 
         <div class="form-check">
           <input class="form-check-input" type="checkbox" name="flush_and_rebuild_intids" id="flush_intids">
           <label class="form-check-label" for="flush_intids" >Flush and rebuild intids</label>
-          <p>
+          <p i18n:translate="">
              This will delete all intids and create new one.<br/>
              Warning: If you have a lot of relations this can take some time. Check the log for details!<br/>
              If you have relations on tiles, flushing and rebuilding intids will destroy them b/c intids changed.

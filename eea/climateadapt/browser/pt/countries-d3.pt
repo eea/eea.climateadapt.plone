@@ -40,16 +40,16 @@
   <metal:fill-slot fill-slot="content-core">
 
     <div tal:condition="context/text|nothing" tal:replace="structure context/text/output">
-      <p>Here you can find an overview of your personally created Climate-Adapt content.</p>
+      <p i18n:translate="">Here you can find an overview of your personally created Climate-Adapt content.</p>
     </div>
 
     <div class="cover-richtext-tile tile-content" id="countrymap-container">
 
       <!-- Select list with countries above map -->
-      <div id="country-selector">
+      <div id="country-selector" i18n:translate="">
         Select a country to go directly to the country's page:
         <select class="form-control">
-          <option value=''>Choose a country</option>
+          <option value='' i18n:translate="">Choose a country</option>
         </select>
       </div>
 
@@ -67,73 +67,73 @@
 
         <!-- Sections selector on right side of map -->
         <div class="col-md-3 col-xs-12">
-          <h2 class="choose-title">Choose thematic map:</h2>
+          <h2 class="choose-title" i18n:translate="">Choose thematic map:</h2>
           <div id="sections-selector"></div>
 
           <!-- Map legend underneath the map -->
           <div class="legend climate-legend">
             <div class="legend-el">
               <span class="content-available legend-box"></span>
-              <p class="legend-text">One or more assessments reported</p>
+              <p class="legend-text" i18n:translate="">One or more assessments reported</p>
             </div>
             <div class="legend-el">
               <span class="country-none legend-box"></span>
-              <p class="legend-text">No assessments reported</p>
+              <p class="legend-text" i18n:translate="">No assessments reported</p>
             </div>
             <div class="legend-el">
               <span class="country-notreported legend-box"></span>
-              <p class="legend-text">No data reported</p>
+              <p class="legend-text" i18n:translate="">No data reported</p>
             </div>
           </div>
 
           <div class="legend portals-legend">
             <div class="legend-el">
               <span class="country-both legend-box"></span>
-              <p class="legend-text">Adaptation portal or platform reported</p>
+              <p class="legend-text" i18n:translate="">Adaptation portal or platform reported</p>
             </div>
             <div class="legend-el">
               <span class="country-noportal legend-box"></span>
-              <p class="legend-text">No portal or platform reported</p>
+              <p class="legend-text" i18n:translate="">No portal or platform reported</p>
             </div>
             <div class="legend-el">
               <span class="country-notreported legend-box"></span>
-              <p class="legend-text">No data reported</p>
+              <p class="legend-text" i18n:translate="">No data reported</p>
             </div>
           </div>
 
           <div class="legend nasnap-legend">
             <div class="legend-el">
               <span class="country-nasnap legend-box"></span>
-              <p class="legend-text">NAS and NAP reported as adopted</p>
+              <p class="legend-text" i18n:translate="">NAS and NAP reported as adopted</p>
             </div>
             <div class="legend-el">
               <span class="country-nap legend-box"></span>
-              <p class="legend-text">Only NAP reported as adopted</p>
+              <p class="legend-text" i18n:translate="">Only NAP reported as adopted</p>
             </div>
             <div class="legend-el">
               <span class="country-nas legend-box"></span>
-              <p class="legend-text">Only NAS reported as adopted</p>
+              <p class="legend-text" i18n:translate="">Only NAS reported as adopted</p>
             </div>
             <div class="legend-el">
               <span class="country-sap legend-box"></span>
-              <p class="legend-text">SAP reported as adopted</p>
+              <p class="legend-text" i18n:translate="">SAP reported as adopted</p>
             </div>
             <div class="legend-el">
               <span class="country-none legend-box"></span>
-              <p class="legend-text">Neither NAS nor NAP reported as adopted</p>
+              <p class="legend-text" i18n:translate="">Neither NAS nor NAP reported as adopted</p>
             </div>
             <div class="legend-el">
               <span class="country-notreported legend-box"></span>
-              <p class="legend-text">No data reported</p>
+              <p class="legend-text" i18n:translate="">No data reported</p>
             </div>
           </div>
         </div>
 
         <!-- Disclaimer in right side of map -->
-        <div id="disclaimer">
+        <div id="disclaimer" i18n:translate="">
           <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
           [Disclaimer]
-          <div id="hover-content">
+          <div id="hover-content" i18n:translate="">
             The information presented in these pages is based on the reporting according to 'Regulation (EU) 2018/1999 on the Governance of the Energy Union and Climate Action' and updates by the EEA member countries. However, for those pages where the information is last updated before 01/01/2021, the information presented is based on the reporting according to 'Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change' and updates by the EEA member countries.'
           </div>
         </div>

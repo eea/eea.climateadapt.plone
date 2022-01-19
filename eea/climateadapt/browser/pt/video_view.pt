@@ -38,28 +38,28 @@
             <div tal:condition="context/embed_url" style="padding-top:30px;">
               <a href=""
                 tal:attributes="href context/embed_url"
-                target="_blank">See video outside Climate-ADAPT</a>
+                target="_blank" i18n:translate="">See video outside Climate-ADAPT</a>
             </div>
             </tal:block>
 
-            <h4 class="reference-title" tal:condition="context/related_documents_presentations/raw | nothing">Related documents and presentations</h4>
+            <h4 class="reference-title" tal:condition="context/related_documents_presentations/raw | nothing" i18n:translate="">Related documents and presentations</h4>
             <div tal:condition="context/related_documents_presentations">
                 <p tal:replace="structure context/related_documents_presentations/raw | None">related docs and presentations</p>
             </div>
 
-            <h4 class="reference-title" tal:condition="python:context.websites or context.source">Reference information</h4>
+            <h4 class="reference-title" tal:condition="python:context.websites or context.source" i18n:translate="">Reference information</h4>
             <div tal:condition="context/websites">
-                <h5>Websites:</h5>
+                <h5 i18n:translate="">Websites:</h5>
                 <metal:macro use-macro="context/ace_macros/macros/websites" />
             </div>
 
             <div tal:condition="context/source">
-                <h5>Source:</h5>
+                <h5 i18n:translate="">Source:</h5>
                 <tal:block content="structure python: view.w['source'].render()"/>
             </div>
 
             <div tal:condition="context/metadata/raw | nothing">
-              <h5>Link to metadata:</h5>
+              <h5 i18n:translate="">Link to metadata:</h5>
               <div tal:content="structure python: view.metadata">Metadata</div>
             </div>
 
@@ -82,7 +82,7 @@
             <metal:macro use-macro="context/ace_macros/macros/files" />
 
             <div class="macro-category health-information" tal:condition="python:health_impacts" tal:define="health_impacts context/health_impacts">
-              <h4>Health impact:</h4>
+              <h4 i18n:translate="">Health impact:</h4>
               <div tal:condition="health_impacts">
                 <span tal:replace="python:', '.join(health_impacts or []) if isinstance(health_impacts, list) else health_impacts">health impacts</span>
               </div>
@@ -90,9 +90,9 @@
 
             <div class="macro-category" tal:condition="effective" tal:define="effective context/publication_date|nothing">
               <div>
-                <h4>Date of release:</h4>
+                <h4 i18n:translate="">Date of release:</h4>
                 <span tal:replace="python: effective.strftime('%Y')">2000</span>
-                <a href="#" data-toggle="tooltip" class="pat-tooltip"
+                <a href="#" data-toggle="tooltip" class="pat-tooltip" i18n:attributes="title"
                       title="The date refers to the date of release of the video">
                       <i class="fa fa-question-circle"></i>
                 </a>
@@ -100,27 +100,27 @@
             </div>
 
             <div class="macro-category" tal:condition="context/keywords">
-                <h4>Keywords</h4>
+                <h4 i18n:translate="">Keywords</h4>
                 <metal:macro use-macro="context/ace_macros/macros/keywords" />
             </div>
 
             <div class="macro-category">
-                <h4>Climate impacts</h4>
+                <h4 i18n:translate="">Climate impacts</h4>
                 <tal:block content="structure python:view.w['climate_impacts'].render()"/>
             </div>
 
             <div class="macro-category" tal:condition="context/elements">
-                <h4>Elements</h4>
+                <h4 i18n:translate="">Elements</h4>
                 <tal:block content="structure python:view.w['elements'].render()"/>
             </div>
 
             <div class="macro-category">
-                <h4>Sectors</h4>
+                <h4 i18n:translate="">Sectors</h4>
                 <tal:block content="structure python:view.w['sectors'].render()"/>
             </div>
 
             <div class="macro-category">
-                <h4>Geographic characterization</h4>
+                <h4 i18n:translate="">Geographic characterization</h4>
                 <metal:macro use-macro="context/ace_macros/macros/geochar" />
             </div>
 

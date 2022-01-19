@@ -23,7 +23,7 @@
 
     <div class="card-extra">
       <div class="year">
-        <span>Year:&nbsp;</span>
+        <span i18n:translate="">Year:&nbsp;</span>
         <span
           class="year"
           tal:content="python: getattr(context, 'publication_date')
@@ -34,7 +34,7 @@
       <div class="source"
            tal:define="origin context/origin_website | nothing;
                        origin python: origin and origin[0] or None">
-        <span>Source:&nbsp;</span>
+        <span i18n:translate="">Source:&nbsp;</span>
         <a tal:condition="python: origin == 'EEA'" href="https://eea.europa.eu">
            EEA
         </a>

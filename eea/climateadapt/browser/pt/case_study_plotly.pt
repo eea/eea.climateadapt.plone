@@ -72,64 +72,64 @@
   }
 </style>
         <div class="item_filter bs_example">
-          <h2>Current filters</h2>
+          <h2 i18n:translate="">Current filters</h2>
           <div class="row" style="padding-left:10px;">
             <div class="col-md-4">
               <div class="input-group" id="boot-search-box">
                   <div class="input-group-btn">
                       <div class="btn-group" role="group">
                           <div class="dropdown dropdown-lg">
-                              <button type="button" class="standard-button primary-button feature-btn dropdown-toggle" data-display="sectors" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span> Sectors</button>
+                              <button type="button" class="standard-button primary-button feature-btn dropdown-toggle" data-display="sectors" data-toggle="dropdown" aria-expanded="false" i18n:translate=""><span class="caret"></span> Sectors</button>
                               <div class="dropdown-menu dropdown-menu-right" role="menu">
                                   <form class="form-horizontal" role="form">
                                     <div id="boot-search-box-div-sectors"></div>
                                     <br>
-                                    <button type="submit" class="item_filter_submit standard-button primary-button">Update<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                    <button type="submit" class="item_filter_submit standard-button primary-button" i18n:translate="">Update<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                                   </form>
                               </div>
                           </div>
                       </div>
                   </div>
               </div>
-              <p class="filter_sectors">All</p>
+              <p class="filter_sectors" i18n:translate="">All</p>
             </div>
             <div class="col-md-4">
               <div class="input-group" id="boot-search-box">
                   <div class="input-group-btn">
                       <div class="btn-group" role="group">
                           <div class="dropdown dropdown-lg">
-                              <button type="button" class="standard-button primary-button feature-btn dropdown-toggle" data-display="impacts" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span> Impacts</button>
+                              <button type="button" class="standard-button primary-button feature-btn dropdown-toggle" data-display="impacts" data-toggle="dropdown" aria-expanded="false" i18n:translate=""><span class="caret"></span> Impacts</button>
                               <div class="dropdown-menu dropdown-menu-right" role="menu">
                                   <form class="form-horizontal" role="form">
                                     <div id="boot-search-box-div-impacts"></div>
                                     <br>
-                                    <button type="submit" class="item_filter_submit standard-button primary-button">Update<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                    <button type="submit" class="item_filter_submit standard-button primary-button" i18n:translate="">Update<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                                   </form>
                               </div>
                           </div>
                       </div>
                   </div>
               </div>
-              <p class="filter_impacts covenant-text">All</p>
+              <p class="filter_impacts covenant-text" i18n:translate="">All</p>
             </div>
             <div class="col-md-4">
               <div class="input-group" id="boot-search-box">
                   <div class="input-group-btn">
                       <div class="btn-group" role="group">
                           <div class="dropdown dropdown-lg">
-                              <button type="button" class="standard-button primary-button feature-btn dropdown-toggle" data-display="adaptations" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span> Adaptations</button>
+                              <button type="button" class="standard-button primary-button feature-btn dropdown-toggle" data-display="adaptations" data-toggle="dropdown" aria-expanded="false" i18n:translate=""><span class="caret"></span> Adaptations</button>
                               <div class="dropdown-menu dropdown-menu-right" role="menu">
                                   <form class="form-horizontal" role="form">
                                     <div id="boot-search-box-div-adaptations"></div>
                                     <br>
-                                    <button type="submit" class="item_filter_submit standard-button primary-button">Update<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                    <button type="submit" class="item_filter_submit standard-button primary-button" i18n:translate="">Update<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                                   </form>
                               </div>
                           </div>
                       </div>
                   </div>
               </div>
-              <p class="filter_adaptations">All</p>
+              <p class="filter_adaptations" i18n:translate="">All</p>
             </div>
           </div>
         </div>

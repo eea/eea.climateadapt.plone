@@ -26,7 +26,7 @@
              style="margin-bottom:25px !important; display:none;"
              id="observatory_back_button_div">
           <i class="fa fa-arrow-left" aria-hidden="true"></i>
-          <a style="text-decoration:none;" href="" onclick="window.history.back(); return false;">
+          <a style="text-decoration:none;" href="" onclick="window.history.back(); return false;" i18n:translate="">
             back to search
           </a>
           <br>
@@ -77,7 +77,7 @@
 
               <div class="share-your-info-ace-button">
                 <form method="POST" action="/help/share-your-info">
-                  <button class="standard-button primary-button">
+                  <button class="standard-button primary-button" i18n:translate="">
                     Share your information
                   </button>
                 </form>
@@ -94,21 +94,21 @@
                   tal:on-error="nothing"
                   class="ace_review_info">
                 <div tal:condition="python: creator and not reviewer">
-                  <h4>Created by:</h4>
+                  <h4 i18n:translate="">Created by:</h4>
                   <span class="review-name" tal:content="creator">John</span>
                 </div>
                 <div tal:condition="python: creator is reviewer">
-                  <h4>Created by:</h4>
+                  <h4 i18n:translate="">Created by:</h4>
                   <span class="review-name" tal:content="creator">John</span>
                 </div>
                 <div tal:condition="python: reviewer and not creator">
-                  <h4>Reviewed by:</h4>
+                  <h4 i18n:translate="">Reviewed by:</h4>
                   <span class="review-name" tal:content="reviewer">John</span>
                 </div>
                 <div tal:condition="python: (reviewer and creator) and (reviewer != creator)">
-                  <h4>Created by:</h4>
+                  <h4 i18n:translate="">Created by:</h4>
                   <span class="review-name" tal:content="creator">John</span>
-                  <h4>Reviewed by:</h4>
+                  <h4 i18n:translate="">Reviewed by:</h4>
                   <span class="review-name" tal:content="reviewer">John</span>
                 </div>
               </div>
@@ -137,11 +137,11 @@
                   cadapt_last_modified none | dates/cadapt_last_modified;">
 
       <p tal:condition="python: cadapt_published or cadapt_last_modified">
-        <span tal:condition="cadapt_published">
+        <span tal:condition="cadapt_published" i18n:translate="">
           <strong>Published in Climate-ADAPT</strong> <span tal:replace="python: cadapt_published.strftime('%b %d %Y')" />
         </span>
         <span tal:condition="python: cadapt_published and cadapt_last_modified"> &nbsp; - &nbsp; </span>
-        <span tal:condition="cadapt_last_modified">
+        <span tal:condition="cadapt_last_modified" i18n:translate="">
           <strong>Last Modified in Climate-ADAPT</strong> <span tal:replace="python: cadapt_last_modified.strftime('%b %d %Y')"/>
         </span>
       </p>
@@ -149,14 +149,14 @@
   </metal:macro>
 
   <metal:macro define-macro="description">
-    <h3>Description:</h3>
+    <h3 i18n:translate="">Description:</h3>
     <tal:block tal:define="description python: view.w['long_description'].render();"
                content="structure description"/>
   </metal:macro>
 
   <metal:macro define-macro="lead">
     <tal:cond condition="context/lead">
-      <h5>Lead</h5>
+      <h5 i18n:translate="">Lead</h5>
       <p tal:content="structure context/lead"/>
     </tal:cond>
   </metal:macro>
@@ -164,7 +164,7 @@
   <metal:macro define-macro="partners">
     <tal:def define="partners python: view.w['partners'].render();">
       <tal:cond condition="partners">
-        <h5>Partners</h5>
+        <h5 i18n:translate="">Partners</h5>
         <p tal:replace="structure partners"/>
       </tal:cond>
     </tal:def>
@@ -173,7 +173,7 @@
   <metal:macro define-macro="funding">
     <tal:def define="funding context/funding">
       <tal:cond condition="funding">
-        <h5>Source of funding</h5>
+        <h5 i18n:translate="">Source of funding</h5>
         <p tal:content="structure funding"/>
       </tal:cond>
     </tal:def>
@@ -195,7 +195,7 @@
     <div tal:condition="python: contributors or other_contributor"
          tal:define="contributors context/contributor_list;
                      other_contributor context/other_contributor|nothing">
-      <h5>Contributor:</h5>
+      <h5 i18n:translate="">Contributor:</h5>
       <div tal:condition="contributors" tal:repeat="contributor contributors">
       <span tal:condition="python: contributor.to_object"
             tal:replace="python: contributor.to_object.title" ></span>
@@ -209,7 +209,7 @@
     <div tal:define="portal_state context/@@plone_portal_state">
       <div tal:condition="python: view.check_user_role()">
         <h5 style="text-decoration: underline"
-            tal:condition="python: view.context.comments">Comments:</h5>
+            tal:condition="python: view.context.comments" i18n:translate="">Comments:</h5>
         <div tal:content="python: view.context.comments"></div>
       </div>
     </div>
@@ -220,7 +220,7 @@
       <div tal:condition="files" class="sidebar_files">
         <div class="files-wrapper">
           <h4>
-            <span tal:replace="view/type_label" />
+            <span tal:replace="view/type_label" i18n:translate=""/>
               Documents (<span tal:content="python: len(files)"></span>)
           </h4>
           <ul tal:repeat="file files">
@@ -243,7 +243,7 @@
         <div tal:condition="context/spatial_layer | nothing"
              tal:content="context/spatial_layer"/>
         <p tal:condition="context/spatial_values">
-          <span style="font-weight:bold;">Countries:</span><br>
+          <span style="font-weight:bold;" i18n:translate="">Countries:</span><br>
           <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
         </p>
       </tal:cond>

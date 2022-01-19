@@ -1,6 +1,6 @@
 <h1>Notify</h1>
 <form action="./migrate_all_objects_notify" method="post" enctype="multipart/form-data">
-  <br>Select CSV file to upload:
+  <br i18n:translate="">Select CSV file to upload:
   <input type="file" name="fileToUpload" id="fileToUpload" />
   <input type="submit" value="Process CSV" name="submit" />
 </form>

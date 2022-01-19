@@ -1,4 +1,4 @@
-<div tal:condition="python: not options['country_data']">
+<div tal:condition="python: not options['country_data']" i18n:translate="">
   No data for this country
 </div>
 
@@ -7,7 +7,7 @@
     class="sweet-tabs sweet-tabs2" id="country-tab">
   <div style="background-color: white; padding: 30px;">
 
-    <h1 class="documentFirstHeading">National circumstances relevant to adaptation actions</h1>
+    <h1 class="documentFirstHeading" i18n:translate="">National circumstances relevant to adaptation actions</h1>
 
     <tal:block tal:define="fieldset_legend string:Biogeophysical characteristics;
                         fieldset_data data/National_Circumstances/BiogeophysicalCharacteristics">
@@ -29,7 +29,7 @@
           <div class="panel-heading" tal:attributes="id python: id+'-heading'">
             <h4 class="panel-title">
               <a class="accordion-toggle tiny-acchead" tal:attributes="href python:'#'+id+'-body'" data-toggle="collapse">
-                <span tal:content="fieldset_legend">Biogeophysical characteristics</span>
+                <span tal:content="fieldset_legend" i18n:translate="">Biogeophysical characteristics</span>
               </a>
             </h4>
           </div>
@@ -52,35 +52,35 @@
 
     <div style="padding: 0.5em;">
       <p>
-        <strong>Reporting updated until: </strong><span tal:content="data/General_Information/UpdateDate"/>
+        <strong i18n:translate="">Reporting updated until: </strong><span tal:content="data/General_Information/UpdateDate"/>
       </p>
     </div>
 
   </div>
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#4489-0" data-toggle="tab">Summary</a></li>
-    <li class=" "><a href="#4489-1" data-toggle="tab">Assessment</a></li>
-    <li class=" "><a href="#4489-2" data-toggle="tab">Legal &amp; policy frameworks</a></li>
-    <li class=" "><a href="#4489-3" data-toggle="tab">Strategies, plans &amp; goals</a>
+    <li class="active"><a href="#4489-0" data-toggle="tab" i18n:translate="">Summary</a></li>
+    <li class=" "><a href="#4489-1" data-toggle="tab" i18n:translate="">Assessment</a></li>
+    <li class=" "><a href="#4489-2" data-toggle="tab" i18n:translate="">Legal &amp; policy frameworks</a></li>
+    <li class=" "><a href="#4489-3" data-toggle="tab" i18n:translate="">Strategies, plans &amp; goals</a>
     </li>
-    <li class=" "><a href="#4489-4" data-toggle="tab">Monitoring &amp; evaluation</a>
+    <li class=" "><a href="#4489-4" data-toggle="tab" i18n:translate="">Monitoring &amp; evaluation</a>
     </li>
-    <li class=" "><a href="#4489-5" data-toggle="tab">Good practices, cooperation &amp; synergies</a></li>
-    <li class=" "><a href="#4489-6" data-toggle="tab">Contact</a></li>
+    <li class=" "><a href="#4489-5" data-toggle="tab" i18n:translate="">Good practices, cooperation &amp; synergies</a></li>
+    <li class=" "><a href="#4489-6" data-toggle="tab" i18n:translate="">Contact</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="4489-0">
       <table class="listing table-striped" summary="">
         <thead>
           <tr>
-            <th style="width: 18em;">Item</th>
-            <th style="width: 22em;">Status</th>
-            <th style="width: 22em;">Links</th>
+            <th style="width: 18em;" i18n:translate="">Item</th>
+            <th style="width: 22em;" i18n:translate="">Status</th>
+            <th style="width: 22em;" i18n:translate="">Links</th>
           </tr>
         </thead>
         <tbody>
           <tr tal:define="items python: data['Legal_Policies'].get('NAS', [])">
-            <td>National adaptation strategy (NAS)</td>
+            <td i18n:translate="">National adaptation strategy (NAS)</td>
             <td>
               <ul>
                 <li tal:repeat="item items"
@@ -101,7 +101,7 @@
             </td>
           </tr>
           <tr tal:define="items python: data['Legal_Policies'].get('NAP', [])">
-            <td>National adaptation plan (NAP)</td>
+            <td i18n:translate="">National adaptation plan (NAP)</td>
             <td>
               <ul>
                 <li tal:repeat="item items"
@@ -122,7 +122,7 @@
             </td>
           </tr>
           <tr tal:define="items python: data['Legal_Policies'].get('SAP', [])">
-            <td>Sectoral adaptation plan (SAP)</td>
+            <td i18n:translate="">Sectoral adaptation plan (SAP)</td>
             <td>
               <ul>
                 <li tal:repeat="item items"
@@ -143,7 +143,7 @@
             </td>
           </tr>
           <tr tal:define="items python: data['National_Circumstances'].get('CC_IVA', [])">
-            <td>Climate change impact and vulnerability assessment</td>
+            <td i18n:translate="">Climate change impact and vulnerability assessment</td>
             <td>
               <ul>
                 <li tal:repeat="item items"
@@ -164,7 +164,7 @@
             </td>
           </tr>
           <tr tal:define="items python: data['National_Circumstances'].get('Meteo_observation', [])">
-            <td>Meteorological observations</td>
+            <td i18n:translate="">Meteorological observations</td>
             <td>
               <ul>
                 <li tal:repeat="item items"
@@ -185,7 +185,7 @@
             </td>
           </tr>
           <tr tal:define="items python: data['National_Circumstances'].get('Climate_Projections_Services', [])">
-            <td>Climate projections and services</td>
+            <td i18n:translate="">Climate projections and services</td>
             <td>
               <ul>
                 <li tal:repeat="item items"
@@ -206,7 +206,7 @@
             </td>
           </tr>
           <tr tal:define="items python: data['Contact'].get('CCIV_Portal_Platform', [])">
-            <td>Adaptation portals and platforms</td>
+            <td i18n:translate="">Adaptation portals and platforms</td>
             <td>
               <ul>
                 <li tal:condition="items"
@@ -229,7 +229,7 @@
             </td>
           </tr>
           <tr tal:define="items python: data['Monitoring_Evaluation'].get('Monitoring_Indicator_Methodologies', [])">
-            <td>Monitoring, reporting and evaluation (MRE) indicators and methodologies</td>
+            <td i18n:translate="">Monitoring, reporting and evaluation (MRE) indicators and methodologies</td>
             <td>
               <ul>
                 <li tal:repeat="item items"
@@ -250,7 +250,7 @@
             </td>
           </tr>
           <tr>
-            <td>Key reports and publications</td>
+            <td i18n:translate="">Key reports and publications</td>
             <td></td>
             <td tal:define="items python: data['Contact'].get('Publications', [])">
               <ul>
@@ -267,7 +267,7 @@
             </td>
           </tr>
           <tr>
-            <td>National communication to the UNFCCC</td>
+            <td i18n:translate="">National communication to the UNFCCC</td>
             <td></td>
             <td>
               <ul>
@@ -281,7 +281,7 @@
             </td>
           </tr>
           <tr>
-            <td>Governance regulation adaptation reporting</td>
+            <td i18n:translate="">Governance regulation adaptation reporting</td>
             <td></td>
             <td>
               <ul>
@@ -318,21 +318,21 @@
       <table class="listing table-striped">
         <thead>
           <tr>
-            <th style="width: 18em;">Observed climate hazards</th>
-            <th style="width: 22em;">Acute</th>
-            <th style="width: 22em;">Chronic</th>
+            <th style="width: 18em;" i18n:translate="">Observed climate hazards</th>
+            <th style="width: 22em;" i18n:translate="">Acute</th>
+            <th style="width: 22em;" i18n:translate="">Chronic</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Temperature</td>
+            <td i18n:translate="">Temperature</td>
             <td tal:define="values python: data['National_Circumstances'].get('TemperatureRelatedAcute', '');
                             other_values python: data['National_Circumstances'].get('TemperatureAcuteOther', '')">
               <tal:macro metal:define-macro="assessment-climate-hazards">
                 <ul tal:condition="values">
                   <li tal:repeat="val python: values.split(', ')"
                       tal:content="python: val.split(' - ')[-1]">Value here</li>
-                  <li tal:condition="other_values">
+                  <li tal:condition="other_values" i18n:translate="">
                     Other: <span tal:content="other_values"></span>
                   </li>
                 </ul>
@@ -344,7 +344,7 @@
             </td>
           </tr>
           <tr>
-            <td>Wind</td>
+            <td i18n:translate="">Wind</td>
             <td tal:define="values python: data['National_Circumstances'].get('WindRelatedAcute', '');
                             other_values python: data['National_Circumstances'].get('WindAcuteOther', '')">
               <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
@@ -355,7 +355,7 @@
             </td>
           </tr>
           <tr>
-            <td>Water</td>
+            <td i18n:translate="">Water</td>
             <td tal:define="values python: data['National_Circumstances'].get('WaterRelatedAcute', '');
                             other_values python: data['National_Circumstances'].get('WaterAcuteOther', '')">
               <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
@@ -366,7 +366,7 @@
             </td>
           </tr>
           <tr>
-            <td>Solid mass</td>
+            <td i18n:translate="">Solid mass</td>
             <td tal:define="values python: data['National_Circumstances'].get('SolidMassRelatedAcute', '');
                             other_values python: data['National_Circumstances'].get('SolidAcuteOther', '')">
               <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
@@ -382,14 +382,14 @@
       <table class="listing table-striped">
         <thead>
           <tr>
-            <th style="width: 18em;">Key future climate hazards</th>
-            <th style="width: 22em;">Acute</th>
-            <th style="width: 22em;">Chronic</th>
+            <th style="width: 18em;" i18n:translate="">Key future climate hazards</th>
+            <th style="width: 22em;" i18n:translate="">Acute</th>
+            <th style="width: 22em;" i18n:translate="">Chronic</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Temperature</td>
+            <td i18n:translate="">Temperature</td>
             <td tal:define="values python: data['National_Circumstances'].get('FutureTemperatureRelatedAcute', '');
                             other_values python: data['National_Circumstances'].get('FutureTemperatureAcuteOther', '')">
               <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
@@ -400,7 +400,7 @@
             </td>
           </tr>
           <tr>
-            <td>Wind</td>
+            <td i18n:translate="">Wind</td>
             <td tal:define="values python: data['National_Circumstances'].get('FutureWindRelatedAcute', '');
                             other_values python: data['National_Circumstances'].get('FutureWindAcuteOther', '')">
               <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
@@ -411,7 +411,7 @@
             </td>
           </tr>
           <tr>
-            <td>Water</td>
+            <td i18n:translate="">Water</td>
             <td tal:define="values python: data['National_Circumstances'].get('FutureWaterRelatedAcute', '');
                             other_values python: data['National_Circumstances'].get('FutureWaterAcuteOther', '')">
               <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
@@ -422,7 +422,7 @@
             </td>
           </tr>
           <tr>
-            <td>Solid mass</td>
+            <td i18n:translate="">Solid mass</td>
             <td tal:define="values python: data['National_Circumstances'].get('FutureSolidMassRelatedAcute', '');
                             other_values python: data['National_Circumstances'].get('FutureSolidAcuteOther', '')">
               <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
@@ -445,7 +445,7 @@
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
-      <h2 class="country-header">Key affected sectors</h2>
+      <h2 class="country-header" i18n:translate="">Key affected sectors</h2>
       <tal:rep tal:repeat="item view/get_sorted_affected_sectors_data">
 
         <div class="panel panel-default"
@@ -475,7 +475,7 @@
                     <table class="listing table-striped">
                       <thead tal:condition="python: False">
                         <tr>
-                          <th>Sector</th>
+                          <th i18n:translate="">Sector</th>
                           <th>
                             <span tal:content="item/SectorTitle">Forest</span>
                             <span tal:condition="item/SectorDescribeIfOther"
@@ -485,7 +485,7 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <td style="width: 14em;">Impact/key hazard</td>
+                          <td style="width: 14em;" i18n:translate="">Impact/key hazard</td>
                           <td>
                             <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
                                 tal:content="structure python: view.convert_web_int(item['ImpactsKeyHazards'])">long text</div>
@@ -494,7 +494,7 @@
                           </td>
                         </tr>
                         <tr>
-                          <td>Key hazard likelihood</td>
+                          <td i18n:translate="">Key hazard likelihood</td>
                           <td>
                             <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
                                 tal:content="structure python: view.convert_web_int(item['KeyHazardsLikelihood'])">long text</div>
@@ -503,7 +503,7 @@
                           </td>
                         </tr>
                         <tr>
-                          <td>Vulnerability</td>
+                          <td i18n:translate="">Vulnerability</td>
                           <td>
                             <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
                                 tal:content="structure python: view.convert_web_int(item['Vulnerability'])">long text</div>
@@ -512,7 +512,7 @@
                           </td>
                         </tr>
                         <tr>
-                          <td>Risk Future Impact</td>
+                          <td i18n:translate="">Risk Future Impact</td>
                           <td>
                             <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
                                 tal:content="structure python: view.convert_web_int(item['RiskFutureImpacts'])">long text</div>
@@ -537,7 +537,7 @@
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
-      <h2 class="country-header">Overview of institutional arrangements and governance at the national level</h2>
+      <h2 class="country-header" i18n:translate="">Overview of institutional arrangements and governance at the national level</h2>
       <tal:block tal:define="fieldset_legend string:Climate vulnerability and risk assessment;
                     fieldset_data data/Legal_Policies/ArrangementsCCIV_assessments">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
@@ -559,7 +559,7 @@
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
-      <h2 class="country-header">Overview of institutional arrangements and governance at the sub-national level
+      <h2 class="country-header" i18n:translate="">Overview of institutional arrangements and governance at the sub-national level
 (where “sub-national” refers to local and regional)</h2>
       <tal:block tal:define="fieldset_legend string:Legal requirements;
                     fieldset_data data/Legal_Policies/SummarizeLegalRequirements">
@@ -590,9 +590,9 @@
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
-      <h2 class="country-header">Selection of actions and (programmes of) measures</h2>
+      <h2 class="country-header" i18n:translate="">Selection of actions and (programmes of) measures</h2>
       <tal:cond tal:condition="python: not view.get_sorted_action_measures_data()">
-        <div>Not reported</div>
+        <div i18n:translate="">Not reported</div>
       </tal:cond>
 
       <tal:rep tal:repeat="item view/get_sorted_action_measures_data">
@@ -614,7 +614,7 @@
                     <table class="listing table-striped">
                       <thead tal:condition="python: False">
                         <tr>
-                          <th>Title</th>
+                          <th i18n:translate="">Title</th>
                           <th>
                             <span tal:content="item/Title">Forest</span>
                           </th>
@@ -622,28 +622,28 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <td style="width: 14em;">Description</td>
+                          <td style="width: 14em;" i18n:translate="">Description</td>
                           <td>
                             <div style="padding: 5px;"
                                  tal:content="structure python: view.convert_web_int(item['ShortDescriptionMeasureAction'])">long text</div>
                           </td>
                         </tr>
                         <tr tal:condition="python: 'Status' in item">
-                          <td>Status</td>
+                          <td i18n:translate="">Status</td>
                           <td>
                             <div style="padding: 5px;"
                                  tal:content="item/Status">long text</div>
                           </td>
                         </tr>
                         <tr>
-                          <td>Key type measure (KTM)</td>
+                          <td i18n:translate="">Key type measure (KTM)</td>
                           <td>
                             <div style="padding: 5px;"
                                  tal:content="item/KeyTypeMeasure">long text</div>
                           </td>
                         </tr>
                         <tr>
-                          <td>Sub-KTM</td>
+                          <td i18n:translate="">Sub-KTM</td>
                           <td>
                             <div style="padding: 5px;"
                                  tal:content="item/subKTM">long text</div>
@@ -729,9 +729,9 @@
     </div>
 
     <div class="tab-pane  " id="4489-5" tal:define="incrementItem python:0">
-      <h2 class="country-header">Good practices and lessons learnt</h2>
+      <h2 class="country-header" i18n:translate="">Good practices and lessons learnt</h2>
       <tal:cond tal:condition="python: not view.get_sorted_available_practices_data()">
-        <div>Not reported</div>
+        <div i18n:translate="">Not reported</div>
       </tal:cond>
 
       <tal:rep tal:repeat="item view/get_sorted_available_practices_data">
@@ -797,7 +797,7 @@
 
       <tal:def tal:define="items python: data['Contact'].get('Website', [])"
           tal:condition="items">
-        <h2 class="country-header">Relevant websites and social media source</h2>
+        <h2 class="country-header" i18n:translate="">Relevant websites and social media source</h2>
         <div tal:repeat="item items">
           <a tal:attributes="href python: item['Url'].startswith('http') and item['Url'] or 'http://' + item['Url']"
             tal:content="item/Title">Website</a>

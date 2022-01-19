@@ -5,10 +5,10 @@
   i18n:domain="collective.cover">
 
   <body tal:define="is_compose view/is_compose_mode">
-    <strong tal:condition="is_compose">Share button tile</strong>
+    <strong tal:condition="is_compose" i18n:translate="">Share button tile</strong>
 
     <dl tal:condition="view/is_compose_mode">
-      <dt>Share type:</dt>
+      <dt i18n:translate="">Share type:</dt>
       <dd tal:content="python: view.data.get('shareinfo_type')" />
     </dl>
 
@@ -17,7 +17,7 @@
 
       <a class="standard-button primary-button share-info-btn"
          href=""
-         tal:attributes="href view/link_url">
+         tal:attributes="href view/link_url" i18n:translate="">
          Share your information
        </a>
 

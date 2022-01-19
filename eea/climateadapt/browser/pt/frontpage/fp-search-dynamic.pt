@@ -7,7 +7,7 @@
         <i class="fa fa-cogs" tal:attributes="class string:fa ${section/icon_class}"></i>
         <span class="total-items" tal:content="section/count">120</span>
       </span>
-      <p tal:content="section/title">Adaptation <br> Options</p>
+      <p tal:content="section/title" i18n:translate="">Adaptation <br> Options</p>
     </a>
   </div>
 

@@ -1,5 +1,5 @@
 <div id="countries-tile-selector">
-  <h5>Select a country</h5>
+  <h5 i18n:translate="">Select a country</h5>
   <ul class="countries-list-tile">
     <li tal:repeat="country view/countries">
       <a tal:content="country/Title"

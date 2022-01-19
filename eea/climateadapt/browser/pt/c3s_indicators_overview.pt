@@ -2,8 +2,8 @@
   <div class="column col-md-16 " data-panel="">
     <div class="tile tile-default" id="b48b97e5-278f-4474-a61b-b73734177559">
       <div class="cover-richtext-tile tile-content">
-        <div class="cover-richtext-tile tile-content"><div style="float:right;"><a class="right standard-button secundary-button" href="/knowledge/european-climate-data-explorer">Go back</a></div>
-          <h1>Overview list of all indices</h1>
+        <div class="cover-richtext-tile tile-content"><div style="float:right;"><a class="right standard-button secundary-button" href="/knowledge/european-climate-data-explorer" i18n:translate="">Go back</a></div>
+          <h1 i18n:translate="">Overview list of all indices</h1>
           <p tal:content="structure view/data/overview_page/description"></p>
         </div>
       </div>
@@ -26,5 +26,5 @@
         </div>
     </div>
   <br>
-  <p>Content in the European Climate Data Explorer pages is delivered by the <a href="https://climate.copernicus.eu/">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href="/knowledge/european-climate-data-explorer/disclaimer">Disclaimer</a></p>
+  <p i18n:translate="">Content in the European Climate Data Explorer pages is delivered by the <a href="https://climate.copernicus.eu/">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href="/knowledge/european-climate-data-explorer/disclaimer">Disclaimer</a></p>
 </div>

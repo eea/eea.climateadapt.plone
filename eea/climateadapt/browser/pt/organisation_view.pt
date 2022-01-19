@@ -14,28 +14,28 @@
         <metal:macro use-macro="context/ace_macros/macros/ace_layout">
 
           <metal:slot metal:fill-slot="ace-left-slot">
-            <h3>Description:</h3>
+            <h3 i18n:translate="">Description:</h3>
             <tal:block content="structure python: view.w['long_description'].render()" />
             <div tal:condition="view/is_observatory_page">
               <div tal:condition="context/organisational_key_activities">
-                <h3>Key activities within climate change and health</h3>
+                <h3 i18n:translate="">Key activities within climate change and health</h3>
                 <p tal:content="structure context/organisational_key_activities/output | nothing" />
               </div>
             </div>
 
-            <h4 class="reference-title">Reference information</h4>
-            <h5>Websites:</h5>
+            <h4 class="reference-title" i18n:translate="">Reference information</h4>
+            <h5 i18n:translate="">Websites:</h5>
             <div metal:use-macro="context/ace_macros/macros/websites" />
             <div tal:condition="view/is_observatory_page">
               <div tal:condition="context/organisational_websites"
                    tal:on-error="nothing"
               >
-                <h5>Links to further information</h5>
+                <h5 i18n:translate="">Links to further information</h5>
                 <tal:block content="structure python: view.w['organisational_websites'].render()" />
               </div>
 
               <div tal:condition="context/organisational_contact_information">
-                <h5>Contact information for the Observatory</h5>
+                <h5 i18n:translate="">Contact information for the Observatory</h5>
                 <p tal:content="structure context/organisational_contact_information/raw" />
               </div>
             </div>
@@ -46,7 +46,7 @@
                  tal:condition="python: contributions and context.include_in_observatory"
             >
 
-              <h5>Observatory Contributions:</h5>
+              <h5 i18n:translate="">Observatory Contributions:</h5>
               <div class="listing-accordion" data-visible-lines="10">
                 <div class="accordion-wrapper">
                   <div class="panel-layer"></div>
@@ -59,7 +59,7 @@
                     </ul>
                   </div>
                 </div>
-                <span class="accordion-toggle down">See more</span>
+                <span class="accordion-toggle down" i18n:translate="">See more</span>
               </div>
 
               <div style="margin-top:1em !important">
@@ -67,7 +67,7 @@
                    tal:attributes="
                      href view/contributions_link;
                    "
-                >View all contributions in the resource catalogue</a>
+                 i18n:translate="">View all contributions in the resource catalogue</a>
               </div>
             </div>
 
@@ -87,10 +87,10 @@
                  tal:condition="effective"
             >
               <div>
-                <h4>Date of creation:</h4>
+                <h4 i18n:translate="">Date of creation:</h4>
                 <span tal:replace="python: effective.strftime('%Y')">2000</span>
                 <a class="pat-tooltip"
-                   href="#"
+                   href="#"  i18n:attributes="title"
                    title="The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
                    data-toggle="tooltip"
                 >
@@ -104,29 +104,29 @@
             <div class="macro-category"
                  tal:condition="context/keywords"
             >
-              <h4>Keywords:</h4>
+              <h4 i18n:translate="">Keywords:</h4>
               <div metal:use-macro="context/ace_macros/macros/keywords" />
             </div>
 
             <div class="macro-category" tal:condition="is_observatory_page" tal:define="is_observatory_page python:not request.get('observatory_page',0)">
-              <h4>Climate impacts:</h4>
+              <h4 i18n:translate="">Climate impacts:</h4>
               <tal:block content="structure python:view.w['climate_impacts'].render()" />
             </div>
 
             <div class="macro-category"
                  id="cca-macro-category-elements"
             >
-              <h4>Elements:</h4>
+              <h4 i18n:translate="">Elements:</h4>
               <tal:block content="structure python:view.w['elements'].render()" />
             </div>
 
             <div class="macro-category" tal:condition="is_observatory_page" tal:define="is_observatory_page python:not request.get('observatory_page',0)">
-              <h4>Sectors:</h4>
+              <h4 i18n:translate="">Sectors:</h4>
               <tal:block content="structure python:view.w['sectors'].render()" />
             </div>
 
             <div class="macro-category">
-              <h4>Geographic characterisation:</h4>
+              <h4 i18n:translate="">Geographic characterisation:</h4>
               <div metal:use-macro="context/ace_macros/macros/geochar" />
             </div>
 

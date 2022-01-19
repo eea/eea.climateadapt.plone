@@ -54,12 +54,12 @@ $( document ).ready(function() {
                   <div class="aceitem_page">
 
 
-                    <div class="scroll-to-top"><span class="scroll-button" title="Scroll to top"> <i class="scroll-icon glyphicon glyphicon-chevron-up"></i> </span></div>
+                    <div class="scroll-to-top"><span class="scroll-button" title="Scroll to top" i18n:attributes="title"> <i class="scroll-icon glyphicon glyphicon-chevron-up"></i> </span></div>
                     <div id="content-core">
                         <div class="col-md-9 col-xs-12 content-column">
-                            <a href="">Event</a> | <a href="#agenda">Agenda and supporting documents</a> | <a href="#information">Practical Information</a> | <a href="#registration" tal:condition="context/online_registration">Registration</a>
+                            <a href="" i18n:translate="">Event</a> | <a href="#agenda" i18n:translate="">Agenda and supporting documents</a> | <a href="#information" i18n:translate="">Practical Information</a> | <a href="#registration" tal:condition="context/online_registration" i18n:translate="">Registration</a>
                             <br><br>
-                            <h1>Climate-ADAPT Event</h1>
+                            <h1 i18n:translate="">Climate-ADAPT Event</h1>
                             <div>
                                 <img tal:condition="context/image" style="float:left; padding-right:10px;padding-bottom:10px;" src="" tal:attributes="src python:context.absolute_url_path()+'/@@images/image/preview'">
                                 <h2 style="padding-top:0px;" tal:content="structure data/title">Climate-ADAPT Event Title</h2>
@@ -76,52 +76,52 @@ $( document ).ready(function() {
                             </div>
 
                             <a name="agenda"></a>
-                            <h2>Agenda and supporting documents</h2>
+                            <h2 i18n:translate="">Agenda and supporting documents</h2>
                             <tal tal:condition="context/agenda_file">
-                            <p>Download the detailed agenda <a tal:attributes="href python:context.absolute_url_path()+'/@@download/agenda_file/'+context.agenda_file.filename">here</a></p>
+                            <p i18n:translate="">Download the detailed agenda <a tal:attributes="href python:context.absolute_url_path()+'/@@download/agenda_file/'+context.agenda_file.filename">here</a></p>
                             </tal>
                             <div style="border:1px solid #ddd;padding:15px;" tal:content="structure context/agenda/output" tal:condition="context/agenda"></div>
                             <tal tal:condition="context/background_documents">
-                            <p style="padding-top:15px;">A background document for the event is available <a tal:attributes="href python:context.absolute_url_path()+'/@@download/background_documents/'+context.background_documents.filename">here</a></p>
+                            <p style="padding-top:15px;" i18n:translate="">A background document for the event is available <a tal:attributes="href python:context.absolute_url_path()+'/@@download/background_documents/'+context.background_documents.filename">here</a></p>
                             </tal>
 
                             <a name="information"></a>
-                            <h2>Practical information</h2>
-                            <h3 style="padding-top:0px;">Participation</h3>
+                            <h2 i18n:translate="">Practical information</h2>
+                            <h3 style="padding-top:0px;" i18n:translate="">Participation</h3>
                             <p tal:content="structure context/participation/output" tal:condition="context/participation"></p>
 
                             <tal tal:condition="context/contact_email">
-                            <h3>Contact</h3>
-                            <p>If you have any further questions you can contact <a tal:attributes="href string:mailto:${context/contact_email}" tal:content="context/contact_email"></a></p>
+                            <h3 i18n:translate="">Contact</h3>
+                            <p i18n:translate="">If you have any further questions you can contact <a tal:attributes="href string:mailto:${context/contact_email}" tal:content="context/contact_email"></a></p>
                             </tal>
 
-                            <h3>Language of the conference</h3>
+                            <h3 i18n:translate="">Language of the conference</h3>
                             <p tal:content="structure context/language"></p>
 
                             <tal tal:condition="view/future_event">
                             <a name="registration"></a>
-                            <h2>Registration</h2>
-                            <p>Please fill in this <a href="" tal:attributes="href context/online_registration">registration form</a></p>
-			    <p style="padding-top:15px;" tal:condition="nocall: context/online_registration_documents | nothing">Information on the protection of personal data is available in the <a tal:attributes="href python:context.absolute_url_path()+'/@@download/online_registration_documents/'+context.online_registration_documents.filename"><b>privacy statement</b></a></p>
+                            <h2 i18n:translate="">Registration</h2>
+                            <p i18n:translate="">Please fill in this <a href="" tal:attributes="href context/online_registration">registration form</a></p>
+			                <p style="padding-top:15px;" tal:condition="nocall: context/online_registration_documents | nothing" i18n:translate="">Information on the protection of personal data is available in the <a tal:attributes="href python:context.absolute_url_path()+'/@@download/online_registration_documents/'+context.online_registration_documents.filename"><b>privacy statement</b></a></p>
                             </tal>
                         </div>
 
                         <div class="col-md-3 col-xs-12 content-sidebar">
                             <div class="macro-category">
-                                <h4>When:</h4>
+                                <h4 i18n:translate="">When:</h4>
                                 <span id="event_date_detail"></span>
                             </div>
                           <div class="macro-category pt-5" style="padding-top:15px;">
-                              <h4>Where:</h4>
+                              <h4 i18n:translate="">Where:</h4>
                               <span tal:content="data/location">location</span>
                           </div>
                           <div class="macro-category" style="padding-top:15px;">
-                              <h4>Info:</h4>
+                              <h4 i18n:translate="">Info:</h4>
                               <span tal:content="data/contact_email">contact email</span>
                           </div>
                           <div class="macro-category" style="padding-top:15px;" tal:condition="view/future_event">
-                              <h4>Registration:</h4>
-                              <a tal:attributes="href context/online_registration">Online registration</a>
+                              <h4 i18n:translate="">Registration:</h4>
+                              <a tal:attributes="href context/online_registration" i18n:translate="">Online registration</a>
                           </div>
                       </div>
                     </div>
@@ -138,8 +138,8 @@ $( document ).ready(function() {
           <div role="tabpanel" class="tab-pane" id="cca-agenda">
           </div>
           <div role="tabpanel" class="tab-pane" id="cca-information">
-            <p><strong>Language:</strong> <span tal:content="context/language"/></p>
-            <a tal:condition="context/online_registration" tal:attributes="href context/online_registration">Online registration</a>
+            <p i18n:translate=""><strong>Language:</strong> <span tal:content="context/language"/></p>
+            <a tal:condition="context/online_registration" tal:attributes="href context/online_registration" i18n:translate="">Online registration</a>
           </div>
         </div>
 

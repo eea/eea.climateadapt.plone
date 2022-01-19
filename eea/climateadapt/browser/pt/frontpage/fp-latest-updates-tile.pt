@@ -1,15 +1,15 @@
 <div style="padding-right:0em; border: none;" class="fp-tile-fixes">
-  <h3><a href="/more-latest-updates">Latest updates</a></h3>
-  <p>Check the latest updates in the content of the Platform.</p>
+  <h3><a href="/more-latest-updates" i18n:translate="">Latest updates</a></h3>
+  <p i18n:translate="">Check the latest updates in the content of the Platform.</p>
   <ul style="margin-left:0.2em">
     <li style="list-style-image: url(/++theme++climateadapt/static/cca/img/01_plus.png)">
-        <a href="/knowledge/adaptation-information/climate-services">Copernicus Climate Change Service</a>
-    </li>
-    <li style="list-style-image: url(/++theme++climateadapt/static/cca/img/01_plus.png)">  
-        <a href="/countries-regions/countries/bulgaria">Updated Country page of Bulgaria</a>
+        <a href="/knowledge/adaptation-information/climate-services" i18n:translate="">Copernicus Climate Change Service</a>
     </li>
     <li style="list-style-image: url(/++theme++climateadapt/static/cca/img/01_plus.png)">
-        <a href="/tools/urban-ast">Urban Adaptation Support Tool</a>
+        <a href="/countries-regions/countries/bulgaria" i18n:translate="">Updated Country page of Bulgaria</a>
+    </li>
+    <li style="list-style-image: url(/++theme++climateadapt/static/cca/img/01_plus.png)">
+        <a href="/tools/urban-ast" i18n:translate="">Urban Adaptation Support Tool</a>
     </li>
   </ul>
 </div>

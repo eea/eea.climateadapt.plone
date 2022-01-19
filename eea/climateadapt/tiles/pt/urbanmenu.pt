@@ -1,12 +1,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="collective.cover">
 
   <body tal:define="is_compose view/is_compose_mode">
-    <strong tal:condition="is_compose">Urban menu</strong>
+    <strong tal:condition="is_compose" i18n:translate="">Urban menu</strong>
 
     <!-- <h2 tal:content="python: view.data.get('title')">Title here</h2> -->
 
     <dl tal:condition="view/is_compose_mode">
-      <dt>Urban Menu</dt>
+      <dt i18n:translate="">Urban Menu</dt>
       <dd>
         <select></select>
       </dd>
@@ -130,63 +130,63 @@
 
       <ul class="menu-urban">
         <li>
-          <a href="/tools/urban-adaptation/climatic-threats/heat-waves" id="heat_waves" class="menu-link">Heat waves</a>
+          <a href="/tools/urban-adaptation/climatic-threats/heat-waves" id="heat_waves" class="menu-link" i18n:translate="">Heat waves</a>
           <ul class="menu-urban-sub">
             <li>
-              <a href="/tools/urban-adaptation/climatic-threats/heat-waves/exposure">Exposure</a>
+              <a href="/tools/urban-adaptation/climatic-threats/heat-waves/exposure" i18n:translate="">Exposure</a>
             </li>
             <li>
-              <a href="/tools/urban-adaptation/climatic-threats/heat-waves/sensitivity">Sensitivity</a>
+              <a href="/tools/urban-adaptation/climatic-threats/heat-waves/sensitivity" i18n:translate="">Sensitivity</a>
             </li>
             <li>
-              <a href="/tools/urban-adaptation/climatic-threats/heat-waves/response-capacity">Response capacity</a>
+              <a href="/tools/urban-adaptation/climatic-threats/heat-waves/response-capacity" i18n:translate="">Response capacity</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="/tools/urban-adaptation/climatic-threats/droughts" id="drought" class="menu-link">Water scarity and droughts</a>
+          <a href="/tools/urban-adaptation/climatic-threats/droughts" id="drought" class="menu-link" i18n:translate="">Water scarity and droughts</a>
           <ul class="menu-urban-sub">
             <li>
-              <a href="/tools/urban-adaptation/climatic-threats/droughts/exposure">Exposure</a>
+              <a href="/tools/urban-adaptation/climatic-threats/droughts/exposure" i18n:translate="">Exposure</a>
             </li>
             <li>
-              <a href="/tools/urban-adaptation/climatic-threats/droughts/sensitivity">Sensitivity</a>
+              <a href="/tools/urban-adaptation/climatic-threats/droughts/sensitivity" i18n:translate="">Sensitivity</a>
             </li>
             <li>
-              <a href="/tools/urban-adaptation/climatic-threats/droughts/response-capacity">Response capacity</a>
+              <a href="/tools/urban-adaptation/climatic-threats/droughts/response-capacity" i18n:translate="">Response capacity</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="/tools/urban-adaptation/climatic-threats/flooding" id="flooding" class="menu-link">Flooding</a>
+          <a href="/tools/urban-adaptation/climatic-threats/flooding" id="flooding" class="menu-link" i18n:translate="">Flooding</a>
           <ul class="menu-urban-sub">
             <li>
-              <a href="/tools/urban-adaptation/climatic-threats/flooding/exposure">Exposure</a>
+              <a href="/tools/urban-adaptation/climatic-threats/flooding/exposure" i18n:translate="">Exposure</a>
             </li>
             <li>
-              <a href="/tools/urban-adaptation/climatic-threats/flooding/sensitivity">Sensitivity</a>
+              <a href="/tools/urban-adaptation/climatic-threats/flooding/sensitivity" i18n:translate="">Sensitivity</a>
             </li>
             <li>
-              <a href="/tools/urban-adaptation/climatic-threats/flooding/response-capacity">Response capacity</a>
+              <a href="/tools/urban-adaptation/climatic-threats/flooding/response-capacity" i18n:translate="">Response capacity</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="/tools/urban-adaptation/climatic-threats/forest-fires" id="forest_fires" class="menu-link">Forest fires</a>
+          <a href="/tools/urban-adaptation/climatic-threats/forest-fires" id="forest_fires" class="menu-link" i18n:translate="">Forest fires</a>
           <ul class="menu-urban-sub">
             <li>
-              <a href="/tools/urban-adaptation/climatic-threats/forest-fires/exposure">Exposure</a>
+              <a href="/tools/urban-adaptation/climatic-threats/forest-fires/exposure" i18n:translate="">Exposure</a>
             </li>
             <li>
-              <a href="/tools/urban-adaptation/climatic-threats/forest-fires/sensitivity">Sensitivity</a>
+              <a href="/tools/urban-adaptation/climatic-threats/forest-fires/sensitivity" i18n:translate="">Sensitivity</a>
             </li>
             <li>
-              <a href="/tools/urban-adaptation/climatic-threats/forest-fires/response-capacity">Response capacity</a>
+              <a href="/tools/urban-adaptation/climatic-threats/forest-fires/response-capacity" i18n:translate="">Response capacity</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="/tools/urban-adaptation/climatic-threats/maps-response-capacity" id="maps-response-capacity" class="menu-link">Maps of response capacity</a>
+          <a href="/tools/urban-adaptation/climatic-threats/maps-response-capacity" id="maps-response-capacity" class="menu-link" i18n:translate="">Maps of response capacity</a>
         </li>
       </ul>
     </div>

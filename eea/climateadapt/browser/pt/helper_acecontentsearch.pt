@@ -1,20 +1,20 @@
 <ul>
-  <li>Publication and reports
+  <li i18n:translate="">Publication and reports
 
     elements: OBSERVATION
     types: DOCUMENT
     text: ""
-  
+
   </li>
 
-  <li>Information portals</li>
-  <li>Guidance</li>
-  <li>Tools</li>
-  <li>Maps, graphs and datasets</li>
-  <li>Indicators</li>
-  <li>Research and knowledge projects</li>
-  <li>Case studies</li>
-  <li>
+  <li i18n:translate="">Information portals</li>
+  <li i18n:translate="">Guidance</li>
+  <li i18n:translate="">Tools</li>
+  <li i18n:translate="">Maps, graphs and datasets</li>
+  <li i18n:translate="">Indicators</li>
+  <li i18n:translate="">Research and knowledge projects</li>
+  <li i18n:translate="">Case studies</li>
+  <li i18n:translate="">
     Organisations
 
     elements: OBSERVATION

@@ -1,7 +1,7 @@
 <metal:macro define-macro="text">
-  <p><strong>
+  <p i18n:translate=""><strong>
       The database contains quality checked information and is annotated by climate adaptation experts with keywords.</strong></p>
-  <p>
+  <p i18n:translate="">
       Please check our <a href="/help/guidance" target="_blank">Guidance to search function</a> for more help on how to search the database.
-  </p> 
+  </p>
 </metal:macro>

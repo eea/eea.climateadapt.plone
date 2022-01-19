@@ -54,13 +54,13 @@
 
         <script src="/++theme++climateadapt/static/cca/js/specialtagsadmin.js"></script>
 
-        <h1>Special tags administration</h1>
+        <h1 i18n:translate="">Special tags administration</h1>
 
         <table class="table listing" id="tags-admin" tal:define="tags view/special_tags">
           <thead>
             <tr>
-              <th>Tag</th>
-              <th>Count</th>
+              <th i18n:translate="">Tag</th>
+              <th i18n:translate="">Count</th>
             </tr>
           </thead>
           <tbody>
@@ -76,18 +76,18 @@
                 <form id="delete-tag-form" style="display: inline-block;">
                     <input type="text" name="action" value="delete" style="display:none;">
                     <input type="text" name="tag" style="display:none;" class="input-tag" tal:attributes="value tag">
-                    <input type="submit" value="Delete tag" class="delete-keyword-button">
+                    <input type="submit" value="Delete tag" class="delete-keyword-button" i18n:attributes="value">
                 </form>
 
-                <button class="rename-tag-button rename-keyword-button">Rename Tag</button>
+                <button class="rename-tag-button rename-keyword-button" i18n:translate="">Rename Tag</button>
 
-                <div class="rename-tag-dialog" style="display:none;" title="Rename tag">
+                <div class="rename-tag-dialog" style="display:none;" title="Rename tag" i18n:attributes="title">
                   <form>
-                    <p style="font-size: 1.3em;">Enter the new name you want to give to the tag:</p>
+                    <p style="font-size: 1.3em;" i18n:translate="">Enter the new name you want to give to the tag:</p>
                     <input type="text" value="" size="45" name="newtag">
                     <input type="text" name="action" value="rename" style="display:none;">
                     <input type="text" name="tag" value="" style="display:none;" class="input-tag">
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Submit" i18n:attributes="value">
                   </form>
                 </div>
               </td>

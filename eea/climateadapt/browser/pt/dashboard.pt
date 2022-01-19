@@ -75,7 +75,7 @@
 
       <h1 tal:content="context/Title">Personal dashboard</h1>
       <div tal:condition="context/text|nothing" tal:replace="structure context/text/output">
-        <p>Here you can find an overview of your personally created Climate-Adapt content.</p>
+        <p i18n:translate="">Here you can find an overview of your personally created Climate-Adapt content.</p>
       </div>
 
       <tal:item repeat="item view/items">
@@ -87,7 +87,7 @@
             (<tal:count replace="count"/>
             <tal:i replace='items_label'/>)
           </h2>
-          <a class="add-new" tal:attributes="href string:${portal_url}/${item/path}/++add++${portal_type}">
+          <a class="add-new" tal:attributes="href string:${portal_url}/${item/path}/++add++${portal_type}" i18n:translate="">
             <i class="fa fa-plus" aria-hidden="true"></i>
             Add new
             <tal:name replace="name"/>
@@ -97,10 +97,10 @@
             <table class="listing">
               <thead>
                 <tr>
-                  <th>Title</th>
-                  <th>Created</th>
-                  <th>Modified</th>
-                  <th>Status</th>
+                  <th i18n:translate="">Title</th>
+                  <th i18n:translate="">Created</th>
+                  <th i18n:translate="">Modified</th>
+                  <th i18n:translate="">Status</th>
                 </tr>
               </thead>
               <tbody>

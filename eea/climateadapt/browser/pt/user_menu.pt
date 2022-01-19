@@ -10,11 +10,11 @@
   <body>
 
     <metal:main fill-slot="main">
-        <h1>user menu</h1>
+        <h1 i18n:translate="">user menu</h1>
         <div id="user-portal-personaltools" >
             <ul>
                 <li id="">
-                    <a href="http://localhost/dashboard">Dashboard</a>
+                    <a href="http://localhost/dashboard" i18n:translate="">Dashboard</a>
                 </li>
             </ul>
         </div>
