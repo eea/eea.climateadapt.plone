@@ -26,7 +26,7 @@
             <h1 tal:content="context/title"></h1>
           </div>
           <div class="column col-md-2">
-            <a href="/knowledge/european-climate-data-explorer/" class="standard-button primary-button" >
+            <a href="/knowledge/european-climate-data-explorer/" class="standard-button info-button">
                ECDE homepage
             </a>
           </div>
