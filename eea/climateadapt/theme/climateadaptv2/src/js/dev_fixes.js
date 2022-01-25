@@ -39,7 +39,12 @@ if(window.jQuery) {
         +'</button>'
         + element.outerHTML.replace('<ul ', '<ul class="dropdown-menu" style="list-style:none;"');
       element.replaceWith(clone);
-      $( "#cca-lang-menu" ).insertBefore('.top-menu-nav');
+      var haveLanguage = $('.top-menu-language');
+      if (haveLanguage.length) {
+        $("#cca-lang-menu").appendTo(".top-menu-language");
+      } else {
+        $( "#cca-lang-menu" ).insertBefore('.top-menu-nav');
+      }
     }
 
     //$( ".documentFirstHeading" ).before($('#portal-languageselector'));
