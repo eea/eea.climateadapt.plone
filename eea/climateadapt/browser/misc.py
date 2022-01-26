@@ -188,6 +188,8 @@ class TestTranslationView(BrowserView):
             }
         }
 
+        logger.info('Data translation request: %r', data)
+
         resp = requests.post(
             SERVICE_URL,
             auth=HTTPDigestAuth('Marine_EEA_20180706', MARINE_PASS),
@@ -200,7 +202,7 @@ class TestTranslationView(BrowserView):
             "transId": resp.content,
             "externalRefId": text
         }
-        import pdb; pdb.set_trace()
+        #import pdb; pdb.set_trace()
         return res
 
 

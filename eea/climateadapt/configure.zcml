@@ -41,6 +41,7 @@
   <include package="._importer" />
   <include package=".upgrades" />
   <include package=".behaviors" />
+  <include package=".translation" />
 
   <include file="skins.zcml" />
   <include file="profiles.zcml" />
