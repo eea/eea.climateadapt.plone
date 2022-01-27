@@ -5,7 +5,8 @@
   xmlns:z3c="http://namespaces.zope.org/z3c"
   i18n_domain="wise.msfd">
 
-  
+  <adapter factory=".app.annotfactory" />
+
   <browser:page
     for="*"
     class=".views.TranslationCallback"

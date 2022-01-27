@@ -28,6 +28,8 @@ class TranslationCallback(BrowserView):
 
         form = self.request.form
 
+        logger.info('Translate params all : %r', form)
+
         form.pop('request-id', None)
         form.pop('target-language', None)
 
@@ -38,6 +40,8 @@ class TranslationCallback(BrowserView):
 
         original = form.pop('external-reference', '')
         original = normalize(original)
+
+        logger.info('Translate params all : %r', form)
 
         translated = form.pop('translation', form.keys()[0]).strip()
 

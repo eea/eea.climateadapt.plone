@@ -13,11 +13,11 @@ from langdetect import detect
 from persistent import Persistent
 from plone.api import portal
 
-#from .interfaces import ITranslationsStorage
+from .interfaces import ITranslationsStorage
 
 env = os.environ.get
 
-ANNOTATION_KEY = 'translation.msfd.storage'
+ANNOTATION_KEY = 'translation.cca.storage'
 TRANS_USERNAME = 'ipetchesi'        # TODO: get another username?
 MARINE_PASS = env('MARINE_PASS', '')
 SERVICE_URL = 'https://webgate.ec.europa.eu/etranslation/si/translate'
