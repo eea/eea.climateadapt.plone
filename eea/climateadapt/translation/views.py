@@ -9,8 +9,8 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile as VPTF
 from Products.statusmessages.interfaces import IStatusMessage
 
-#from . import (delete_translation, get_detected_lang, get_translated,
-#               normalize, retrieve_translation, save_translation)
+from . import (delete_translation, get_detected_lang, get_translated,
+               normalize, retrieve_translation, save_translation)
 from .interfaces import ITranslationContext
 
 logger = logging.getLogger('wise.msfd.translation')

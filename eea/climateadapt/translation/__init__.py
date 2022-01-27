@@ -183,3 +183,77 @@ def retrieve_translation(country_code,
     }
 
     return res
+
+def get_translated(value, language, site=None):
+    language = _get_country_code(language, value)
+
+    if site is None:
+        site = portal.get()
+
+    storage = ITranslationsStorage(site)
+
+    translated = storage.get(language, {}).get(value, None)
+
+    if translated:
+        if hasattr(translated, 'text'):
+            return translated.text.lstrip('?')
+
+        return translated.lstrip('?')
+
+
+def normalize(text):
+    if not isinstance(text, basestring):
+        return text
+
+    if isinstance(text, str):
+        text = text.decode('utf-8')
+
+    if not text:
+        return text
+
+    text = text.strip().replace(u'\r\n', u'\n').replace(u'\r', u'\n')
+
+    return text
+
+
+def delete_translation(text, source_lang):
+    source_lang = _get_country_code(source_lang, text)
+
+    site = portal.get()
+
+    storage = ITranslationsStorage(site)
+
+    if storage.get(source_lang, None):
+        decoded = normalize(text)
+
+        if text in storage[source_lang]:
+            del storage[source_lang][text]
+
+        if decoded in storage[source_lang]:
+            del storage[source_lang][decoded]
+
+            # I don't think this is needed
+            storage[source_lang]._p_changed = True
+            transaction.commit()
+
+
+def save_translation(original, translated, source_lang, approved=False):
+    source_lang = _get_country_code(source_lang, original)
+
+    site = portal.get()
+
+    storage = ITranslationsStorage(site)
+
+    storage_lang = storage.get(source_lang, None)
+
+    if storage_lang is None:
+        storage_lang = OOBTree()
+        storage[source_lang] = storage_lang
+
+    translated = Translation(translated)
+
+    if approved:
+        translated.approved = True
+
+    storage_lang[original] = translated
+    logger.info('Saving to annotation: %s', translated)

@@ -181,7 +181,7 @@ class TestTranslationView(BrowserView):
             'externalReference': text,          # externalReference,
             'textToTranslate': text,
             'sourceLanguage': country_code,
-            'targetLanguages': target_languages,
+            'targetLanguages': [target_languages],
             'destinations': {
                 'httpDestinations':
                 [dest],
