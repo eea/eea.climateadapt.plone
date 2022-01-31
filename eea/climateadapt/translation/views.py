@@ -10,8 +10,11 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile as VPTF
 from Products.statusmessages.interfaces import IStatusMessage
 
 from . import (delete_translation, get_detected_lang, get_translated,
-               normalize, retrieve_translation, save_translation)
+               normalize, retrieve_translation, save_translation,
+               get_translation_keys, get_translation_key_values)
 from .interfaces import ITranslationContext
+
+from plone.api import portal
 
 logger = logging.getLogger('wise.msfd.translation')
 
@@ -31,7 +34,7 @@ class TranslationCallback(BrowserView):
         logger.info('Translate params all : %r', form)
 
         form.pop('request-id', None)
-        form.pop('target-language', None)
+        target_language = form.pop('target-language', None)
 
         language = form.pop('source_lang', None)
 
@@ -52,6 +55,18 @@ class TranslationCallback(BrowserView):
 
         translated = translated.decode('latin-1')
 
-        save_translation(original, translated, language)
+        save_translation(original, translated, language, target_language)
 
-        return '{}'
+        return '<a href="/@@translate-key?key='+original+'">available translations</a>'
+
+class TranslationList(BrowserView):
+    """ This view is called by the EC translation service.
+    Saves the translation in Annotations
+    """
+
+    def list(self):
+        return get_translation_keys()
+
+    def keys(self):
+        key = self.request.form["key"]
+        return get_translation_key_values(key)

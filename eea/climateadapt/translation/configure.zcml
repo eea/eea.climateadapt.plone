@@ -14,4 +14,19 @@
     permission="zope2.View"
     />
 
+  <browser:page
+    for="*"
+    template="pt/list.pt"
+    class=".views.TranslationList"
+    name="translate-list"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
+    for="*"
+    template="pt/key.pt"
+    class=".views.TranslationList"
+    name="translate-key"
+    permission="cmf.ManagePortal"
+    />
 </configure>

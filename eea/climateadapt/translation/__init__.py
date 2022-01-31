@@ -184,6 +184,30 @@ def retrieve_translation(country_code,
 
     return res
 
+def get_translation_keys(site=None):
+    if site is None:
+        site = portal.get()
+
+    storage = ITranslationsStorage(site)
+
+    return set(storage.keys())
+
+def get_translation_key_values(key, site=None):
+    if site is None:
+        site = portal.get()
+
+    res = []
+    storage = ITranslationsStorage(site)
+    storage_key = storage.get(key, None)
+    if storage_key:
+        languages = set(storage_key.keys())
+        for language in languages:
+            res.append({
+                'language': language,
+                'translation': storage_key.get(language, None)
+            })
+    return res
+
 def get_translated(value, language, site=None):
     language = _get_country_code(language, value)
 
@@ -192,7 +216,7 @@ def get_translated(value, language, site=None):
 
     storage = ITranslationsStorage(site)
 
-    translated = storage.get(language, {}).get(value, None)
+    translated = storage.get(value, {}).get(language, None)
 
     if translated:
         if hasattr(translated, 'text'):
@@ -237,23 +261,21 @@ def delete_translation(text, source_lang):
             transaction.commit()
 
 
-def save_translation(original, translated, source_lang, approved=False):
+def save_translation(original, translated, source_lang, target_lang, approved=False):
     source_lang = _get_country_code(source_lang, original)
 
+    logger.info('Translate callback save: %s :: %s :: %s :: %s', original, translated, source_lang, target_lang)
     site = portal.get()
 
     storage = ITranslationsStorage(site)
 
-    storage_lang = storage.get(source_lang, None)
+    storage_original = storage.get(original, None)
 
-    if storage_lang is None:
-        storage_lang = OOBTree()
-        storage[source_lang] = storage_lang
+    if storage_original is None:
+        storage_original = OOBTree()
+        storage[original] = storage_original
 
     translated = Translation(translated)
+    storage_original[target_lang] = translated
 
-    if approved:
-        translated.approved = True
-
-    storage_lang[original] = translated
     logger.info('Saving to annotation: %s', translated)
