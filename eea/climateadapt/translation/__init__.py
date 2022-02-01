@@ -113,17 +113,20 @@ def retrieve_translation(country_code,
     if not text:
         return
 
-    translation = get_translated(text, country_code)
+    if not target_languages:
+        target_languages = ['EN']
+
+    translation = get_translated(text, target_languages[0])
 
     if translation:
-        if not(force or (u'....' in translation)):
+        if not(force == 'True' or (u'....' in translation)):
             # don't translate already translated strings, it overrides the
             # translation
             res = {
                 'transId': translation,
                 'externalRefId': text,
             }
-
+            logger.info('Data translation cached : %r', res)
             return res
 
     site_url = portal.get().absolute_url()
@@ -143,9 +146,6 @@ def retrieve_translation(country_code,
         )
 
         return
-
-    if not target_languages:
-        target_languages = ['EN']
 
     dest = '{}/@@translate-callback?source_lang={}'.format(site_url,
                                                            country_code)
@@ -168,6 +168,8 @@ def retrieve_translation(country_code,
             [dest],
         }
     }
+
+    logger.info('Data translation request : %r', data)
 
     resp = requests.post(
         SERVICE_URL,

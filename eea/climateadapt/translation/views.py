@@ -99,6 +99,11 @@ class TestTranslationView(BrowserView):
         text = form.pop('text', None)
         force = form.pop('force', False)
 
+        if isinstance(target_languages, str):
+            target_languages = target_languages.split(',')
+
+        logger.info('Response translation : %s %s %s %s', country_code, text, target_languages, force)
+
         return retrieve_translation(country_code, text, target_languages, force)
 
     def retrieve_translation(self, country_code, text, target_languages=None, force=False):
