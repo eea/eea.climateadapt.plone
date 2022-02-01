@@ -19,7 +19,7 @@ env = os.environ.get
 
 ANNOTATION_KEY = 'translation.cca.storage'
 TRANS_USERNAME = 'ipetchesi'        # TODO: get another username?
-MARINE_PASS = env('MARINE_PASS', '')
+MARINE_PASS = env('MARINE_PASS', 'P7n3BLvCerm7cx3B')
 SERVICE_URL = 'https://webgate.ec.europa.eu/etranslation/si/translate'
 
 logger = logging.getLogger('wise.msfd.translation')
@@ -132,7 +132,7 @@ def retrieve_translation(country_code,
         logger.warning(
             "Using localhost, won't retrieve translation for: %s", text)
 
-        return {}
+        #return {}
 
     # if detected language is english skip translation
 

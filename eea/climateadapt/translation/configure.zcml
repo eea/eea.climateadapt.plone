@@ -29,4 +29,12 @@
     name="translate-key"
     permission="cmf.ManagePortal"
     />
+
+  <browser:page
+      name="test-trans2"
+      for="*"
+      class=".views.TestTranslationView"
+      permission="cmf.ModifyPortalContent"
+      />
+
 </configure>
