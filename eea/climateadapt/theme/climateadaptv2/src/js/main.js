@@ -970,6 +970,7 @@ function initSeeMore() {
   });
 }
 
+
 $(document).ready(function () {
   var onResizeInitSlider = initSlider();
   var onResizeInitMainArea = initMainArea();
@@ -994,6 +995,16 @@ $(document).ready(function () {
   autoCollapseNavigation();
   initSeeMore();
 
+  //Language menu show/hide when user is logged in
+  $(document).on('click', '#cca-lang-menu button', function() {
+    if ($('#personaltools-login').length == 0) {
+      if ($( "#cca-lang-menu" ).hasClass( "open" )) {
+        $( "#cca-lang-menu" ).removeClass( "open" )
+      } else {
+        $( "#cca-lang-menu" ).addClass( "open" )
+      }
+    }
+  });
   if (window.require && window.requirejs) {
     window.requirejs.config({
       paths: {
