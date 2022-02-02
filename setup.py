@@ -50,6 +50,7 @@ setup(
         "eea.rabbitmq.client",  # schedule jobs
         "eea.rabbitmq.plone",
         "langdetect",
+        "chardet",
         #"google-api-python-client",  # google analytics API integration
         # "collective.relationhelpers",
     ],
