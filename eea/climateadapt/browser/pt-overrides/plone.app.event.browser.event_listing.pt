@@ -124,7 +124,7 @@
                             contact_name data/contact_name|nothing"
                 tal:condition="contact_email|contact_name">
               <span tal:condition="contact_email">
-                <i18n:label_email translate="label_email" i18n:translate="label_email">Email</i18n:label_email>:
+                <i18n:label_email translate="label_email">Email</i18n:label_email>:
               </span>
               <a class="contact_email" title=""
                   i18n:attributes="title contact_name"
