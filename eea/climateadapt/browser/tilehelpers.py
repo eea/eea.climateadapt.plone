@@ -294,7 +294,7 @@ class NewsTile(ListingTile):
     def parent(self):
         site = getSite()
 
-        return site['en/news-archive']
+        return site['/en/news-archive']
 
     @view.memoize
     def get_item_date(self, item):
@@ -347,7 +347,7 @@ class EventsTile(ListingTile):
     def parent(self):
         site = getSite()
 
-        return site['en/more-events']
+        return site['/en/more-events']
 
     @view.memoize
     def get_item_date(self, item):
