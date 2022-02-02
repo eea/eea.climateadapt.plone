@@ -295,7 +295,7 @@ class FrontpageSearch(BrowserView):
     def sections(self):
         catalog = get_tool("portal_catalog")
         counts = {}
-        metadata = self.context.restrictedTraverse("metadata")
+        metadata = self.context.restrictedTraverse("en/metadata")
         path = "/".join(metadata.getPhysicalPath())
 
         for search_type, _x, _y in SEARCH_TYPES_ICONS:

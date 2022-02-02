@@ -39,7 +39,7 @@ class FrontPageCountries(BrowserView):
 
     def countries(self):
         countries_folder = self.context.restrictedTraverse(
-            'countries-regions/countries'
+            'en/countries-regions/countries'
         )
 
         # countries = [c for c in countries_folder.contentValues()]
@@ -397,7 +397,7 @@ class LastUpdateTile(BrowserView):
 class CountriesTileMetadata(BrowserView):
     def __call__(self):
         countries_folder = self.context.restrictedTraverse(
-            'countries-regions/countries'
+            'en/countries-regions/countries'
         )
 
         countries = [c for c in countries_folder.contentValues()]
