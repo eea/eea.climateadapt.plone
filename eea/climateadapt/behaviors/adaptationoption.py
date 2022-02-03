@@ -1,6 +1,7 @@
 from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
                          TextLine, Tuple)
-
+from zope.interface import alsoProvides
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
 from plone.autoform import directives
@@ -64,3 +65,9 @@ class IAdaptationOption(IAceMeasure):
         u"and then the year",
         required=True
     )
+
+
+alsoProvides(IAdaptationOption["publication_date"], ILanguageIndependentField)
+alsoProvides(IAdaptationOption["casestudies"], ILanguageIndependentField)
+alsoProvides(IAdaptationOption["ipcc_category"], ILanguageIndependentField)
+alsoProvides(IAdaptationOption["category"], ILanguageIndependentField)

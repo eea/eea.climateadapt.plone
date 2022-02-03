@@ -13,6 +13,9 @@ from plone.app.event.dx.interfaces import IDXEvent
 from plone.namedfile.field import NamedBlobImage
 from plone.autoform.interfaces import IFormFieldProvider
 from zope.interface import provider
+from zope.interface import alsoProvides
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+
 
 # TODO: simplify this schema
 @provider(IFormFieldProvider)
@@ -100,3 +103,12 @@ class ICcaEvent(model.Schema, IDXEvent):
         title=_(u"Online registration documents"),
         required=False,
     )
+
+
+alsoProvides(ICcaEvent["image"], ILanguageIndependentField)
+alsoProvides(ICcaEvent["online_event_url"], ILanguageIndependentField)
+alsoProvides(ICcaEvent["agenda_file"], ILanguageIndependentField)
+alsoProvides(ICcaEvent["background_documents"], ILanguageIndependentField)
+alsoProvides(ICcaEvent["language"], ILanguageIndependentField)
+alsoProvides(ICcaEvent["online_registration"], ILanguageIndependentField)
+alsoProvides(ICcaEvent["online_registration_documents"], ILanguageIndependentField)

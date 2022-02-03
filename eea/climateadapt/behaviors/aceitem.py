@@ -2,6 +2,7 @@ from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader  # , Year
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
@@ -14,7 +15,7 @@ from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
-from zope.interface import implementer
+from zope.interface import alsoProvides, implementer
 from zope.schema import (URI, Bool, Choice, Date, Datetime, List, Text,
                          TextLine, Tuple)
 
@@ -455,3 +456,20 @@ def KeywordsFieldWidget(field, request):
     # widget.vocabulary = 'plone.app.vocabularies.Catalog'
 
     return widget
+
+alsoProvides(IAceItem['logo'], ILanguageIndependentField)
+alsoProvides(IAceItem['origin_website'], ILanguageIndependentField)
+alsoProvides(IAceItem['image'], ILanguageIndependentField)
+alsoProvides(IAceItem['contributor_list'], ILanguageIndependentField)
+alsoProvides(IAceItem['other_contributor'], ILanguageIndependentField)
+alsoProvides(IAceItem['keywords'], ILanguageIndependentField)
+alsoProvides(IAceItem['sectors'], ILanguageIndependentField)
+alsoProvides(IAceItem['climate_impacts'], ILanguageIndependentField)
+alsoProvides(IAceItem['elements'], ILanguageIndependentField)
+alsoProvides(IAceItem['websites'], ILanguageIndependentField)
+alsoProvides(IAceItem['special_tags'], ILanguageIndependentField)
+# alsoProvides(IAceItem['relatedItems'], ILanguageIndependentField)
+alsoProvides(IAceItem['geochars'], ILanguageIndependentField)
+alsoProvides(IAceItem['include_in_observatory'], ILanguageIndependentField)
+alsoProvides(IAceItem['health_impacts'], ILanguageIndependentField)
+alsoProvides(IAceItem['comments'], ILanguageIndependentField)

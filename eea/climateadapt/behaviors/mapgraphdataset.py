@@ -1,8 +1,9 @@
+from zope.interface import alsoProvides
 from zope.schema import TextLine
 
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.behaviors.aceitem import IAceItem
-
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 
 class IMapGraphDataset(IAceItem):
     """Maps, Graphs and Datasets Interface"""
@@ -13,3 +14,6 @@ class IMapGraphDataset(IAceItem):
         required=False,
         default=u"",
     )
+
+
+alsoProvides(IMapGraphDataset["gis_layer_id"], ILanguageIndependentField)

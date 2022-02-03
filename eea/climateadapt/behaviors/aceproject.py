@@ -3,6 +3,7 @@ import json
 from collective import dexteritytextindexer
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
@@ -15,7 +16,7 @@ from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
-from zope.interface import implementer
+from zope.interface import alsoProvides, implementer
 from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
                          TextLine, Tuple)
 
@@ -434,3 +435,29 @@ def SpecialTagsFieldWidget(field, request):
     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
     widget.vocabulary = "eea.climateadapt.special_tags"
     return widget
+
+
+alsoProvides(IAceProject["logo"], ILanguageIndependentField)
+alsoProvides(IAceProject["origin_website"], ILanguageIndependentField)
+alsoProvides(IAceProject["image"], ILanguageIndependentField)
+alsoProvides(IAceProject["contributor_list"], ILanguageIndependentField)
+alsoProvides(IAceProject["keywords"], ILanguageIndependentField)
+alsoProvides(IAceProject["sectors"], ILanguageIndependentField)
+alsoProvides(IAceProject["climate_impacts"], ILanguageIndependentField)
+alsoProvides(IAceProject["elements"], ILanguageIndependentField)
+alsoProvides(IAceProject["websites"], ILanguageIndependentField)
+alsoProvides(IAceProject["special_tags"], ILanguageIndependentField)
+# alsoProvides(IAceMeasure["relatedItems"], ILanguageIndependentField)
+alsoProvides(IAceProject["geochars"], ILanguageIndependentField)
+alsoProvides(IAceProject["include_in_observatory"], ILanguageIndependentField)
+alsoProvides(IAceProject["health_impacts"], ILanguageIndependentField)
+alsoProvides(IAceProject["publication_date"], ILanguageIndependentField)
+alsoProvides(IAceProject["acronym"], ILanguageIndependentField)
+alsoProvides(IAceProject["lead"], ILanguageIndependentField)
+alsoProvides(IAceProject["partners"], ILanguageIndependentField)
+alsoProvides(IAceProject["funding"], ILanguageIndependentField)
+alsoProvides(IAceProject["duration"], ILanguageIndependentField)
+alsoProvides(IAceProject["funding_programme"], ILanguageIndependentField)
+alsoProvides(IAceProject["featured"], ILanguageIndependentField)
+alsoProvides(IAceProject["partners_source_link"], ILanguageIndependentField)
+alsoProvides(IAceProject["comments"], ILanguageIndependentField)

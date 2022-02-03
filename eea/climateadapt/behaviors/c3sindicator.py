@@ -1,7 +1,9 @@
+from zope.interface import alsoProvides
 from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
                          TextLine, Tuple)
 
 from eea.climateadapt import MessageFactory as _
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.autoform import directives
 from z3c.form.interfaces import IAddForm, IEditForm
@@ -111,3 +113,13 @@ class IC3sIndicator(IIndicator):
         u"and then the year",
         required=False
     )
+
+
+alsoProvides(IC3sIndicator["c3s_identifier"], ILanguageIndependentField)
+alsoProvides(IC3sIndicator["overview_app_toolbox_url"], ILanguageIndependentField)
+alsoProvides(IC3sIndicator["overview_app_parameters"], ILanguageIndependentField)
+alsoProvides(IC3sIndicator["details_app_toolbox_url"], ILanguageIndependentField)
+alsoProvides(IC3sIndicator["details_app_parameters"], ILanguageIndependentField)
+alsoProvides(IC3sIndicator["sectors"], ILanguageIndependentField)
+alsoProvides(IC3sIndicator["climate_impacts"], ILanguageIndependentField)
+alsoProvides(IC3sIndicator["publication_date"], ILanguageIndependentField)

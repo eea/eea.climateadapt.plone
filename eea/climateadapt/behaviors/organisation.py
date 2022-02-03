@@ -1,8 +1,10 @@
+from zope.interface import alsoProvides
 from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
                          TextLine, Tuple)
 
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.behaviors.aceitem import IAceItem
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.autoform import directives
 from plone.namedfile.field import NamedBlobImage
@@ -92,3 +94,10 @@ class IOrganisation(IAceItem):
         ),
         required=False,
     )
+
+
+alsoProvides(IOrganisation["acronym"], ILanguageIndependentField)
+alsoProvides(IOrganisation["contact"], ILanguageIndependentField)
+alsoProvides(IOrganisation["organisational_websites"], ILanguageIndependentField)
+alsoProvides(IOrganisation["organisational_contact_information"], ILanguageIndependentField)
+alsoProvides(IOrganisation["logo"], ILanguageIndependentField)

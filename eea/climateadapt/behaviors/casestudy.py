@@ -1,6 +1,7 @@
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
 from plone.app.contenttypes.interfaces import IImage
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.autoform import directives
 from plone.directives import form
@@ -8,6 +9,7 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.namedfile.field import NamedBlobImage
 from z3c.form.interfaces import IAddForm, IEditForm
 from z3c.relationfield.schema import RelationChoice, RelationList
+from zope.interface import alsoProvides
 from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
                          TextLine, Tuple)
 
@@ -133,3 +135,12 @@ class ICaseStudy(IAceMeasure):  # , IGeolocatable):
         ),
         required=False,
     )
+
+
+alsoProvides(ICaseStudy["relevance"], ILanguageIndependentField)
+alsoProvides(ICaseStudy["contact"], ILanguageIndependentField)
+alsoProvides(ICaseStudy["adaptationoptions"], ILanguageIndependentField)
+alsoProvides(ICaseStudy["primary_photo"], ILanguageIndependentField)
+alsoProvides(ICaseStudy["primary_photo_copyright"], ILanguageIndependentField)
+alsoProvides(ICaseStudy["primephoto"], ILanguageIndependentField)
+alsoProvides(ICaseStudy["supphotos"], ILanguageIndependentField)

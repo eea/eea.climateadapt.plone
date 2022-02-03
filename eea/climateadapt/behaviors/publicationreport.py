@@ -1,10 +1,11 @@
+from zope.interface import alsoProvides
 from zope.schema import Date
 
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.behaviors.aceitem import IAceItem
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.autoform import directives
 from z3c.form.interfaces import IAddForm, IEditForm
-
 
 class IPublicationReport(IAceItem):
     """Publication Report Interface"""
@@ -24,3 +25,6 @@ class IPublicationReport(IAceItem):
         u"and then the year",
         required=True,
     )
+
+
+alsoProvides(IPublicationReport["publication_date"], ILanguageIndependentField)

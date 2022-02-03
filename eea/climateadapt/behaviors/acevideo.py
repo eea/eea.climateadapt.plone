@@ -1,8 +1,9 @@
 from zope.schema import Text, TextLine, Date
-
+from zope.interface import alsoProvides
 from eea.climateadapt import MessageFactory as _
 
 from .aceitem import IAceItem
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 
 
@@ -34,3 +35,8 @@ class IAceVideo(IAceItem):
         required=False,
         default=None
     )
+
+alsoProvides(IAceVideo["embed_url"], ILanguageIndependentField)
+alsoProvides(IAceVideo["video_height"], ILanguageIndependentField)
+alsoProvides(IAceVideo["publication_date"], ILanguageIndependentField)
+alsoProvides(IAceVideo["related_documents_presentations"], ILanguageIndependentField)
