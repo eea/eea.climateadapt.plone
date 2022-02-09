@@ -50,6 +50,68 @@ html_unescape = HTMLParser().unescape
 logger = logging.getLogger('eea.climateadapt')
 
 
+from plone.api import content
+from plone.app.multilingual.factory import DefaultTranslationFactory
+
+def execute_trans_script(site):
+    import pdb; pdb.set_trace()
+    catalog = site.portal_catalog
+    english_container = site['en']
+    language_folders = [x.id for x in catalog.searchResults(path='/cca', portal_type='LRF')]
+    language_folders.remove('en')
+
+    lang_independent_objects = [
+        "newsletter", "Members", "repository", "test-baltic", "frontpage",
+        "admin",  "more-latest-updates", "sandbox", "portal_pdf",
+        "portal_vocabularies", "portal_depiction", "frontpage-slides",
+        "dashboard", "latest-modifications-on-climate-adapt",
+        "covenant-of-mayors-external-website", "rss-feed",
+        "latest-news-events-on-climate-adapt", "specific-privacy-statement-for-climate-adapt",
+        "privacy-and-legal-notice", "database-items-overview", "broken-links",
+        "observatory-organisations", "observatory-management-group-organisations",
+        "indicators-backup", "eea-copyright-notice", "eea-disclaimer", "user-dashboard"]
+
+    # move folders under /en/
+    # for brain in site.getFolderContents():
+    #     obj = brain.getObject()
+    #
+    #     if obj.portal_type != 'LRF' and obj.id not in lang_independent_objects:
+    #         content.move(source=obj, target=english_container)
+
+    # get and parse all objects under /en/
+    res = catalog.searchResults(path='/cca/en')
+    failed_translations = []
+    for brain in res:
+        if brain.getPath() == '/cca/en':
+            continue
+        obj = brain.getObject()
+        factory = DefaultTranslationFactory(obj)
+
+        # create translation objects
+        for lang in language_folders:
+            # translated_object = factory(lang)
+            try:
+                translated_object = factory(lang)
+            except:
+                import pdb; pdb.set_trace()
+                failed_translations.append(obj)
+                translated_object = factory(lang)
+
+            # send translation requests to complete objects
+
+            # save translation
+    import pdb; pdb.set_trace()
+    return 'x'
+
+
+class TransScript(BrowserView):
+    """ """
+
+    def __call__(self):
+        from zope.site.hooks import getSite
+        return execute_trans_script(getSite())
+
+
 class CheckCopyPasteLocation(BrowserView):
     """ Performs a check which doesn't allow user to Copy cca-items
         if they belong to the group extranet-cca-editors

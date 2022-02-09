@@ -7,6 +7,13 @@
     >
 
   <browser:page
+      name="test_script"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".admin.TransScript"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
       name="force_unlock"
       for="*"
       class=".admin.ForceUnlock"
