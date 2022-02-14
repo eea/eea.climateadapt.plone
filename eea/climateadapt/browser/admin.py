@@ -50,11 +50,40 @@ html_unescape = HTMLParser().unescape
 logger = logging.getLogger('eea.climateadapt')
 
 
+# external cache using sqllite/sqlalchemy
+
 from plone.api import content
 from plone.app.multilingual.factory import DefaultTranslationFactory
+from eea.climateadapt.translation import retrieve_translation
+from plone.app.multilingual.manager import TranslationManager
+
+
+def initiate_translations(site):
+    catalog = site.portal_catalog
+    english_container = site['en']
+    language_folders = [x.id for x in catalog.searchResults(path='/cca', portal_type='LRF')]
+    language_folders.remove('en')
+
+    for brain in english_container.getFolderContents():
+        obj = brain.getObject()
+        if obj.portal_type in ['LIF', 'LRF']:
+            continue
+        translations = TranslationManager(obj).get_translations()
+        for trans in translations:
+            # get en fields that arent translation independent fields
+            # send requests to translation service for each field
+            # update field in obj
+            for attrib in vars(trans):
+                import pdb; pdb.set_trace()
+                translated = retrieve_translation('en', 'apples', 'RO')
+
+
+                setattr(trans, attrib, translated)
+                trans._p_changed = True
+                trans.reindexObject()
+
 
 def execute_trans_script(site):
-    import pdb; pdb.set_trace()
     catalog = site.portal_catalog
     english_container = site['en']
     language_folders = [x.id for x in catalog.searchResults(path='/cca', portal_type='LRF')]
@@ -72,35 +101,25 @@ def execute_trans_script(site):
         "indicators-backup", "eea-copyright-notice", "eea-disclaimer", "user-dashboard"]
 
     # move folders under /en/
-    # for brain in site.getFolderContents():
-    #     obj = brain.getObject()
-    #
-    #     if obj.portal_type != 'LRF' and obj.id not in lang_independent_objects:
-    #         content.move(source=obj, target=english_container)
+    for brain in site.getFolderContents():
+        obj = brain.getObject()
+
+        if obj.portal_type != 'LRF' and obj.id not in lang_independent_objects:
+            content.move(source=obj, target=english_container)
 
     # get and parse all objects under /en/
     res = catalog.searchResults(path='/cca/en')
     failed_translations = []
     for brain in res:
-        if brain.getPath() == '/cca/en':
+        if brain.getPath() == '/cca/en' or brain.portal_type == 'LIF':
             continue
         obj = brain.getObject()
         factory = DefaultTranslationFactory(obj)
 
         # create translation objects
         for lang in language_folders:
-            # translated_object = factory(lang)
-            try:
-                translated_object = factory(lang)
-            except:
-                import pdb; pdb.set_trace()
-                failed_translations.append(obj)
-                translated_object = factory(lang)
-
-            # send translation requests to complete objects
-
-            # save translation
-    import pdb; pdb.set_trace()
+            translated_object = factory(lang)
+            TranslationManager(obj).register_translation(lang, translated_object)
     return 'x'
 
 
@@ -110,6 +129,7 @@ class TransScript(BrowserView):
     def __call__(self):
         from zope.site.hooks import getSite
         return execute_trans_script(getSite())
+        # return initiate_translations(getSite())
 
 
 class CheckCopyPasteLocation(BrowserView):

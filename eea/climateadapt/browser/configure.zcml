@@ -151,13 +151,6 @@
       />
 
   <browser:page
-      name="test-trans"
-      for="*"
-      class=".misc.TestTranslationView"
-      permission="cmf.ModifyPortalContent"
-      />
-
-  <browser:page
       name="calculate-item-statistics"
       for="*"
       class=".misc.CalculateItemStatistics"
