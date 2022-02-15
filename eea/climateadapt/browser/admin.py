@@ -56,6 +56,7 @@ from plone.api import content
 from plone.app.multilingual.factory import DefaultTranslationFactory
 from eea.climateadapt.translation import retrieve_translation
 from plone.app.multilingual.manager import TranslationManager
+import transaction
 
 
 def initiate_translations(site):
@@ -83,7 +84,7 @@ def initiate_translations(site):
                 trans.reindexObject()
 
 
-def execute_trans_script(site):
+def execute_trans_script(site, language):
     catalog = site.portal_catalog
     english_container = site['en']
     language_folders = [x.id for x in catalog.searchResults(path='/cca', portal_type='LRF')]
@@ -107,6 +108,8 @@ def execute_trans_script(site):
         if obj.portal_type != 'LRF' and obj.id not in lang_independent_objects:
             content.move(source=obj, target=english_container)
 
+    transaction.commit()
+
     # get and parse all objects under /en/
     res = catalog.searchResults(path='/cca/en')
     failed_translations = []
@@ -117,18 +120,20 @@ def execute_trans_script(site):
         factory = DefaultTranslationFactory(obj)
 
         # create translation objects
-        for lang in language_folders:
-            translated_object = factory(lang)
-            TranslationManager(obj).register_translation(lang, translated_object)
-    return 'x'
+        # for lang in language_folders:
+        translated_object = factory(language)
+        TranslationManager(obj).register_translation(language, translated_object)
+        translated_object.reindexObject()
+    return 'Finished cloning for language %s' % language
 
 
 class TransScript(BrowserView):
     """ """
 
-    def __call__(self):
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
         from zope.site.hooks import getSite
-        return execute_trans_script(getSite())
+        return execute_trans_script(getSite(), **kwargs)
         # return initiate_translations(getSite())
 
 
