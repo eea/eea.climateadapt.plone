@@ -109,9 +109,8 @@ class KeywordsTagsCSV(BrowserView):
         entries = list(entries_set)
 
         for entry in entries:
-            try:
-                line = [entry.encode('utf-8'), ]
-                csv_writer.writerow(line)
+            line = [entry.encode('utf-8'), ]
+            csv_writer.writerow(line)
 
         out.seek(0)
         return out.getvalue()
