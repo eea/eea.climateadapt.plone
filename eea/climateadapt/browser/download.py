@@ -71,48 +71,47 @@ class CaseStudiesCSV(BrowserView):
 class KeywordsTagsCSV(BrowserView):
     """ Download CSV file with keywords/special_tags for all objects """
     def __call__(self):
+        obj_attr = self.request.form.get('attr')
+        if not obj_attr:
+            return 'Missing attr'
+
+        csv_headers = {
+            'keywords': 'Keywords',
+            'special_tags': 'Tags'
+        }
+
         out = StringIO()
         csv_writer = csv.writer(out, dialect='excel', delimiter=',')
-        keywords = []
-        tags = []
+
+        entries = []
 
         self.request.response.setHeader('Content-type', 'text/csv')
-        self.request.response.setHeader('Content-Disposition', 'attachment; filename="keywords_tags.csv"')
+        self.request.response.setHeader('Content-Disposition', 'attachment; filename="%s.csv"' % obj_attr)
 
         catalog = get_tool("portal_catalog")
         brains = catalog.searchResults()
 
         csv_writer.writerow([
-                'Keywords',
-                'Tags'
+                csv_headers.get(obj_attr) or obj_attr
                 ])
+
         for brain in brains:
             obj = brain.getObject()
 
-            if hasattr(obj, 'keywords'):
-                keys = getattr(obj, 'keywords', [])
+            if hasattr(obj, obj_attr):
+                keys = getattr(obj, obj_attr, [])
                 if keys not in [None, []]:
-                    for keyword in keys:
-                        keywords.append(keyword)
-
-            if hasattr(obj, 'special_tags'):
-                sp_tags = getattr(obj, 'special_tags', [])
-                if sp_tags not in [None, []]:
-                    for tag in sp_tags:
-                        tags.append(tag)
+                    for key in keys:
+                        entries.append(key)
 
         # convert to set and then list to get rid of duplicates
-        keywords_set = set(keywords)
-        tags_set = set(tags)
+        entries_set = set(entries)
+        entries = list(entries_set)
 
-        keywords = list(keywords_set)
-        tags = list(tags_set)
-
-        line = [
-            keywords,
-            tags,
-            ]
-        csv_writer.writerow(line)
+        for entry in entries:
+            try:
+                line = [entry.encode('utf-8'), ]
+                csv_writer.writerow(line)
 
         out.seek(0)
         return out.getvalue()
