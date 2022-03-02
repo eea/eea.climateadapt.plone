@@ -69,19 +69,52 @@ def initiate_translations(site):
         obj = brain.getObject()
         if obj.portal_type in ['LIF', 'LRF']:
             continue
+
+        fields = {}
+
+        from plone.app.textfield.value import RichTextValue
+        from zope.schema import getFieldsInOrder
+        # get behavior fields and values
+        from plone.behavior.interfaces import IBehaviorAssignable
+        behavior_assignable = IBehaviorAssignable(obj)
+        if behavior_assignable:
+            behaviors = behavior_assignable.enumerateBehaviors()
+            for behavior in behaviors:
+                for k,v in getFieldsInOrder(behavior.interface):
+                    value = getattr(obj, k, "")
+                    if isinstance(value, bool):
+                        continue
+
+                    if callable(value):
+                        fields.update({k: value()})
+                        continue
+
+                    if isinstance(value, RichTextValue):
+                        fields.update({k: value.output})
+                        continue
+
+                    fields.update({k: value})
+                    # fields.update({k: v})
+
+        #  get schema fields and values
+        for key, value in getFieldsInOrder(obj.getTypeInfo().lookupSchema()):
+            import pdb; pdb.set_trace()
+            value = getattr(getattr(obj, key), 'output', getattr(obj, key))
+
+
         translations = TranslationManager(obj).get_translations()
-        for trans in translations:
-            # get en fields that arent translation independent fields
+        for trans_key in translations:
+            trans_object = translations[trans_key]
             # send requests to translation service for each field
             # update field in obj
-            for attrib in vars(trans):
+
+            for field in fields:
                 import pdb; pdb.set_trace()
-                translated = retrieve_translation('en', 'apples', 'RO')
+                translated = retrieve_translation('en', fields[field], trans_key)
 
-
-                setattr(trans, attrib, translated)
-                trans._p_changed = True
-                trans.reindexObject()
+                setattr(trans_object, field, translated)
+                trans_object._p_changed = True
+                trans_object.reindexObject()
 
 
 def execute_trans_script(site, language):
@@ -133,8 +166,8 @@ class TransScript(BrowserView):
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
         from zope.site.hooks import getSite
-        return execute_trans_script(getSite(), **kwargs)
-        # return initiate_translations(getSite())
+        # return execute_trans_script(getSite(), **kwargs)
+        return initiate_translations(getSite())
 
 
 class CheckCopyPasteLocation(BrowserView):
