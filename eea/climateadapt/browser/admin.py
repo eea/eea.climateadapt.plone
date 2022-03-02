@@ -72,6 +72,7 @@ def initiate_translations(site):
 
         fields = {}
 
+        from DateTime import DateTime
         from plone.app.textfield.value import RichTextValue
         from zope.schema import getFieldsInOrder
         # get behavior fields and values
@@ -82,10 +83,16 @@ def initiate_translations(site):
             for behavior in behaviors:
                 for k,v in getFieldsInOrder(behavior.interface):
                     value = getattr(obj, k, "")
+
+                    # ignore bool values
                     if isinstance(value, bool):
                         continue
 
                     if callable(value):
+                        # ignore datetimes
+                        if isinstance(value(), DateTime):
+                            continue
+
                         fields.update({k: value()})
                         continue
 
