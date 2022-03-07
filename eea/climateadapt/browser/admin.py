@@ -40,88 +40,128 @@ from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 
-# from plone import api
-# from persistent.mapping import PersistentMapping
-# from collective.cover.tiles.list import ListTile
-# from eea.climateadapt._importer import utils as u
 
 html_unescape = HTMLParser().unescape
 
 logger = logging.getLogger('eea.climateadapt')
 
 
-# external cache using sqllite/sqlalchemy
-
 from plone.api import content
 from plone.app.multilingual.factory import DefaultTranslationFactory
 from eea.climateadapt.translation import retrieve_translation
 from plone.app.multilingual.manager import TranslationManager
 import transaction
+import json
+
+from datetime import date
+from DateTime import DateTime
+from plone.app.textfield.value import RichTextValue
+from plone.namedfile.file import NamedBlobImage, NamedBlobFile, NamedFile, NamedImage
+from zope.schema import getFieldsInOrder
+from plone.behavior.interfaces import IBehaviorAssignable
+from plone.formwidget.geolocation.geolocation import Geolocation
+from z3c.relationfield.relation import RelationValue
+
+def is_json(input):
+    try:
+        json.loads(input)
+    except ValueError as e:
+        return False
+    return True
 
 
 def initiate_translations(site):
     catalog = site.portal_catalog
-    english_container = site['en']
-    language_folders = [x.id for x in catalog.searchResults(path='/cca', portal_type='LRF')]
-    language_folders.remove('en')
+    count = 0
+    res = catalog.searchResults(path='/cca/en')
+    errors = []
 
-    for brain in english_container.getFolderContents():
-        obj = brain.getObject()
-        if obj.portal_type in ['LIF', 'LRF']:
+    for brain in res:
+        if brain.getPath() == '/cca/en' or brain.portal_type in ['LIF', 'LRF']:
             continue
 
-        fields = {}
-
-        from DateTime import DateTime
-        from plone.app.textfield.value import RichTextValue
-        from zope.schema import getFieldsInOrder
+        obj = brain.getObject()
         # get behavior fields and values
-        from plone.behavior.interfaces import IBehaviorAssignable
         behavior_assignable = IBehaviorAssignable(obj)
+        fields = {}
         if behavior_assignable:
             behaviors = behavior_assignable.enumerateBehaviors()
             for behavior in behaviors:
                 for k,v in getFieldsInOrder(behavior.interface):
-                    value = getattr(obj, k, "")
-
-                    # ignore bool values
-                    if isinstance(value, bool):
-                        continue
-
-                    if callable(value):
-                        # ignore datetimes
-                        if isinstance(value(), DateTime):
-                            continue
-
-                        fields.update({k: value()})
-                        continue
-
-                    if isinstance(value, RichTextValue):
-                        fields.update({k: value.output})
-                        continue
-
-                    fields.update({k: value})
-                    # fields.update({k: v})
+                    fields.update({k: v})
 
         #  get schema fields and values
-        for key, value in getFieldsInOrder(obj.getTypeInfo().lookupSchema()):
-            import pdb; pdb.set_trace()
-            value = getattr(getattr(obj, key), 'output', getattr(obj, key))
-
+        for k, v in getFieldsInOrder(obj.getTypeInfo().lookupSchema()):
+            fields.update({k: v})
 
         translations = TranslationManager(obj).get_translations()
-        for trans_key in translations:
-            trans_object = translations[trans_key]
+        for language in translations:
+            trans_obj = translations[language]
+
             # send requests to translation service for each field
             # update field in obj
+            for key in fields:
+                rich = False
+                if key in ['acronym', 'id']:
+                    continue
 
-            for field in fields:
-                import pdb; pdb.set_trace()
-                translated = retrieve_translation('en', fields[field], trans_key)
+                try:
+                    value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
+                except TypeError:
+                    if obj not in errors:
+                        errors.append(obj)
+                    continue
 
-                setattr(trans_object, field, translated)
-                trans_object._p_changed = True
-                trans_object.reindexObject()
+                if not value:
+                    continue
+
+                if callable(value):
+                    # ignore datetimes
+                    if isinstance(value(), DateTime):
+                        continue
+
+                    value = value()
+
+                # ignore some value types
+                if isinstance(value, bool) or \
+                   isinstance(value, int) or \
+                   isinstance(value, long) or \
+                   isinstance(value, tuple) or \
+                   isinstance(value, list) or \
+                   isinstance(value, set) or \
+                   isinstance(value, dict) or \
+                   isinstance(value, NamedBlobImage) or \
+                   isinstance(value, NamedBlobFile) or \
+                   isinstance(value, NamedImage) or \
+                   isinstance(value, NamedFile) or \
+                   isinstance(value, DateTime) or \
+                   isinstance(value, date) or \
+                   isinstance(value, RelationValue) or \
+                   isinstance(value, Geolocation):
+                    continue
+
+                if isinstance(value, RichTextValue):
+                    value = value.output
+                    rich = True
+
+                if is_json(value):
+                    continue
+
+                translated = retrieve_translation('en', value, language)
+
+                if rich:
+                    setattr(getattr(trans_obj, key), 'raw', translated)
+                else:
+                    setattr(trans_obj, key, translated)
+
+            # reindex object
+            trans_obj._p_changed = True
+            trans_obj.reindexObject()
+
+        count += 1
+        if count % 100 == 0:
+            logger.info("Processed %s objects" % count)
+            transaction.commit()
 
 
 def execute_trans_script(site, language):
