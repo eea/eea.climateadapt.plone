@@ -95,6 +95,7 @@ def initiate_translations(site):
             fields.update({k: v})
 
         translations = TranslationManager(obj).get_translations()
+        translations.pop('en')
         for language in translations:
             trans_obj = translations[language]
 
@@ -148,11 +149,11 @@ def initiate_translations(site):
                     continue
 
                 translated = retrieve_translation('EN', value, [language.upper()])
-
-                if rich:
-                    setattr(getattr(trans_obj, key), 'raw', translated)
-                else:
-                    setattr(trans_obj, key, translated)
+                if 'translated' in translated:
+                    if rich:
+                        setattr(getattr(trans_obj, key), 'raw', translated)
+                    else:
+                        setattr(trans_obj, key, translated)
 
             # reindex object
             trans_obj._p_changed = True

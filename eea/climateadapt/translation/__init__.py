@@ -124,7 +124,8 @@ def retrieve_translation(country_code,
             # translation
             res = {
                 'transId': translation,
-                'externalRefId': translation,
+                'externalRefId': text,
+                'translated': True
             }
             logger.info('Data translation cached : %r', res)
             return res
@@ -139,13 +140,13 @@ def retrieve_translation(country_code,
 
     # if detected language is english skip translation
 
-    if get_detected_lang(text) == 'en':
-        logger.info(
-            "English language detected, won't retrive translation for: %s",
-            text
-        )
-
-        return
+    # if get_detected_lang(text) == 'en':
+    #     logger.info(
+    #         "English language detected, won't retrive translation for: %s",
+    #         text
+    #     )
+    #
+    #     return
 
     dest = '{}/@@translate-callback?source_lang={}'.format(site_url,
                                                            country_code)
