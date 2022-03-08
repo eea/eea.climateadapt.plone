@@ -147,7 +147,7 @@ def initiate_translations(site):
                 if is_json(value):
                     continue
 
-                translated = retrieve_translation('en', value, language)
+                translated = retrieve_translation('EN', value, [language.upper()])
 
                 if rich:
                     setattr(getattr(trans_obj, key), 'raw', translated)
