@@ -151,9 +151,9 @@ def initiate_translations(site):
                 translated = retrieve_translation('EN', value, [language.upper()])
                 if 'translated' in translated:
                     if rich:
-                        setattr(getattr(trans_obj, key), 'raw', translated)
+                        setattr(getattr(trans_obj, key), 'raw', translated['transId'])
                     else:
-                        setattr(trans_obj, key, translated)
+                        setattr(trans_obj, key, translated['transId'])
 
             # reindex object
             trans_obj._p_changed = True
