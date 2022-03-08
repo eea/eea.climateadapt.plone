@@ -124,7 +124,7 @@ def retrieve_translation(country_code,
             # translation
             res = {
                 'transId': translation,
-                'externalRefId': text,
+                'externalRefId': translation,
             }
             logger.info('Data translation cached : %r', res)
             return res
