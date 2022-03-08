@@ -81,6 +81,11 @@ def initiate_translations(site):
             continue
 
         obj = brain.getObject()
+        if obj.id == 'natur2019adapt-initiative-workshop':
+            # import pdb;pdb.set_trace()
+            # translations = TranslationManager(obj).get_translations()
+            continue
+
         # get behavior fields and values
         behavior_assignable = IBehaviorAssignable(obj)
         fields = {}
