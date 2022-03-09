@@ -128,7 +128,7 @@ def initiate_translations(site):
             # update field in obj
             for key in fields:
                 rich = False
-                if key in ['acronym', 'id']:
+                if key in ['acronym', 'id', 'language']:
                     continue
 
                 try:
@@ -181,9 +181,9 @@ def initiate_translations(site):
                     else:
                         setattr(trans_obj, key, translated['transId'])
 
-            # reindex object
-            trans_obj._p_changed = True
-            trans_obj.reindexObject()
+                    # reindex object
+                    trans_obj._p_changed = True
+                    trans_obj.reindexObject(idxs=[key])
 
         count += 1
         if count % 100 == 0:
