@@ -62,12 +62,27 @@ from plone.behavior.interfaces import IBehaviorAssignable
 from plone.formwidget.geolocation.geolocation import Geolocation
 from z3c.relationfield.relation import RelationValue
 
+
 def is_json(input):
     try:
         json.loads(input)
     except ValueError as e:
         return False
     return True
+
+
+def force_unlock(context):
+    annot = getattr(context, '__annotations__', {})
+
+    if hasattr(context, '_dav_writelocks'):
+        del context._dav_writelocks
+        context._p_changed = True
+
+    if 'plone.locking' in annot:
+        del annot['plone.locking']
+
+        context._p_changed = True
+        annot._p_changed = True
 
 
 def initiate_translations(site):
@@ -85,6 +100,7 @@ def initiate_translations(site):
             # import pdb;pdb.set_trace()
             # translations = TranslationManager(obj).get_translations()
             continue
+        force_unlock(obj)
 
         # get behavior fields and values
         behavior_assignable = IBehaviorAssignable(obj)
@@ -99,7 +115,11 @@ def initiate_translations(site):
         for k, v in getFieldsInOrder(obj.getTypeInfo().lookupSchema()):
             fields.update({k: v})
 
-        translations = TranslationManager(obj).get_translations()
+        try:
+            translations = TranslationManager(obj).get_translations()
+        except:
+            errors.append(obj)
+            continue
         translations.pop('en')
         for language in translations:
             trans_obj = translations[language]
@@ -153,6 +173,7 @@ def initiate_translations(site):
                 if is_json(value):
                     continue
 
+                force_unlock(trans_obj)
                 translated = retrieve_translation('EN', value, [language.upper()])
                 if 'translated' in translated:
                     if rich:
@@ -168,6 +189,8 @@ def initiate_translations(site):
         if count % 100 == 0:
             logger.info("Processed %s objects" % count)
             transaction.commit()
+    import pdb; pdb.set_trace()
+    logger.info("DONE")
 
 
 def execute_trans_script(site, language):
