@@ -316,6 +316,7 @@ _elements = [
     ("OBSERVATIONS", "Observations and Scenarios"),
     ("PLANSTRATEGY", "Adaptation Plans and Strategies"),
     ("VULNERABILITY", "Vulnerability Assessment"),
+    ("CLIMATESERVICES", "Climate services"),
 ]
 aceitem_elements_vocabulary = generic_vocabulary(_elements)
 alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
