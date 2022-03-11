@@ -436,6 +436,13 @@
       permission="cmf.ReviewPortalContent"
       />
 
+    ------[ Workflow transitions: ]--------
+  <subscriber
+      for="zope.interface.Interface
+      Products.DCWorkflow.interfaces.IAfterTransitionEvent"
+      handler=".events.handle_workflow_change"
+      />
+
     ------[ Indicator Message Functionality: ]--------
 
   <subscriber
