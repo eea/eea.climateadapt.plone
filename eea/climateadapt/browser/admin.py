@@ -96,10 +96,6 @@ def initiate_translations(site):
             continue
 
         obj = brain.getObject()
-        if obj.id == 'natur2019adapt-initiative-workshop':
-            # import pdb;pdb.set_trace()
-            # translations = TranslationManager(obj).get_translations()
-            continue
         force_unlock(obj)
 
         # get behavior fields and values
@@ -115,11 +111,7 @@ def initiate_translations(site):
         for k, v in getFieldsInOrder(obj.getTypeInfo().lookupSchema()):
             fields.update({k: v})
 
-        try:
-            translations = TranslationManager(obj).get_translations()
-        except:
-            errors.append(obj)
-            continue
+        translations = TranslationManager(obj).get_translations()
         translations.pop('en')
         for language in translations:
             trans_obj = translations[language]
@@ -128,15 +120,11 @@ def initiate_translations(site):
             # update field in obj
             for key in fields:
                 rich = False
-                if key in ['acronym', 'id', 'language']:
+                print key
+                if key in ['acronym', 'id', 'language', 'portal_type', 'contentType']:
                     continue
 
-                try:
-                    value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
-                except TypeError:
-                    if obj not in errors:
-                        errors.append(obj)
-                    continue
+                value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
 
                 if not value:
                     continue
@@ -173,24 +161,27 @@ def initiate_translations(site):
                 if is_json(value):
                     continue
 
-                force_unlock(trans_obj)
-                translated = retrieve_translation('EN', value, [language.upper()])
-                if 'translated' in translated:
-                    if rich:
-                        setattr(getattr(trans_obj, key), 'raw', translated['transId'])
-                    else:
-                        setattr(trans_obj, key, translated['transId'])
-
-                    # reindex object
-                    trans_obj._p_changed = True
-                    trans_obj.reindexObject(idxs=[key])
+                if key not in errors:
+                    errors.append(key)
+                # force_unlock(trans_obj)
+                # translated = retrieve_translation('EN', value, [language.upper()])
+                # if 'translated' in translated:
+                #     if rich:
+                #         setattr(getattr(trans_obj, key), 'raw', translated['transId'])
+                #     else:
+                #         setattr(trans_obj, key, translated['transId'])
+                #
+                #     # reindex object
+                #     trans_obj._p_changed = True
+                #     trans_obj.reindexObject(idxs=[key])
 
         count += 1
         if count % 100 == 0:
             logger.info("Processed %s objects" % count)
             transaction.commit()
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     logger.info("DONE")
+    logger.info(errors)
 
 
 def execute_trans_script(site, language):
@@ -227,7 +218,7 @@ def execute_trans_script(site, language):
             continue
         obj = brain.getObject()
         factory = DefaultTranslationFactory(obj)
-
+        # import pdb; pdb.set_trace()
         # create translation objects
         # for lang in language_folders:
         translated_object = factory(language)
@@ -242,8 +233,8 @@ class TransScript(BrowserView):
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
         from zope.site.hooks import getSite
-        # return execute_trans_script(getSite(), **kwargs)
-        return initiate_translations(getSite())
+        return execute_trans_script(getSite(), **kwargs)
+        # return initiate_translations(getSite())
 
 
 class CheckCopyPasteLocation(BrowserView):
