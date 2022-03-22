@@ -349,4 +349,6 @@ class Navbar(ExternalTemplateHeader):
 
     def menu_help(self):
         menus = self.menu()
-        return menus[-1]
+        if len(menus):
+            return menus[-1]
+        return []
