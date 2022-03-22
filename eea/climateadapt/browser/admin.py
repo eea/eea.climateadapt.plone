@@ -48,8 +48,10 @@ logger = logging.getLogger('eea.climateadapt')
 
 from plone.api import content
 from plone.app.multilingual.factory import DefaultTranslationFactory
-from eea.climateadapt.translation import retrieve_translation
 from plone.app.multilingual.manager import TranslationManager
+from eea.climateadapt.tiles.richtext import RichTextWithTitle
+from eea.climateadapt.translation import retrieve_translation
+from collective.cover.tiles.richtext import RichTextTile
 import transaction
 import json
 
@@ -90,6 +92,7 @@ def initiate_translations(site):
     count = 0
     res = catalog.searchResults(path='/cca/en')
     errors = []
+    tile_fields = ['title', 'description', 'tile_title', 'footer', 'alt_text']
 
     for brain in res:
         if brain.getPath() == '/cca/en' or brain.portal_type in ['LIF', 'LRF']:
@@ -115,6 +118,33 @@ def initiate_translations(site):
         translations.pop('en')
         for language in translations:
             trans_obj = translations[language]
+
+            # get tile data
+            if trans_obj.portal_type == 'collective.cover.content':
+                import pdb; pdb.set_trace()
+                tiles_id = trans_obj.list_tiles()
+
+                for tile_id in tiles_id:
+                    tile = trans_obj.get_tile(tile_id)
+                    for field in tile_fields:
+                        value = tile.data.get(field)
+                        if value:
+                            translated = retrieve_translation('EN', value, [language.upper()])
+
+                            if 'translated' in translated:
+                                # convert to unicode
+                                import pdb; pdb.set_trace()
+                                tile.data.update({field: translated['transId']})
+
+                    if isinstance(tile, RichTextWithTitle) or \
+                       isinstance(tile, RichTextTile):
+                        value = tile.data.get('text').raw
+                        if value:
+                            translated = retrieve_translation('EN', value, [language.upper()])
+                            if 'translated' in translated:
+                                # convert to unicode
+                                import pdb; pdb.set_trace()
+                                tile.data['text'].raw = translated['transId']
 
             # send requests to translation service for each field
             # update field in obj
@@ -175,11 +205,12 @@ def initiate_translations(site):
                 #     trans_obj._p_changed = True
                 #     trans_obj.reindexObject(idxs=[key])
 
+
         count += 1
         if count % 100 == 0:
             logger.info("Processed %s objects" % count)
             transaction.commit()
-    # import pdb; pdb.set_trace()
+    import pdb; pdb.set_trace()
     logger.info("DONE")
     logger.info(errors)
 
@@ -240,8 +271,8 @@ class TransScript(BrowserView):
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
         from zope.site.hooks import getSite
-        return execute_trans_script(getSite(), **kwargs)
-        # return initiate_translations(getSite())
+        # return execute_trans_script(getSite(), **kwargs)
+        return initiate_translations(getSite())
 
 
 class CheckCopyPasteLocation(BrowserView):
