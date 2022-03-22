@@ -1,5 +1,5 @@
-<ul id="navbar" class="main-nav main-nav-menu" tal:define="menu view/menu">
-  <tal:block tal:repeat="section python: view.menu()">
+<ul id="navbar" class="main-nav main-nav-menu" tal:define="menu view/menu_site">
+  <tal:block tal:repeat="section python: view.menu_site()">
     <li class="main-nav-item"
       tal:attributes="id string:main-nav-item-${repeat/section/index}"
       tal:condition="python: section['label'] != 'Help'">

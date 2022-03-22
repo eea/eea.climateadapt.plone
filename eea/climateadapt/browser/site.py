@@ -5,6 +5,7 @@ import logging
 import re
 
 from zope.component.hooks import getSite
+from zope.component import getMultiAdapter
 
 from eea.climateadapt.browser.externaltemplates import ExternalTemplateHeader
 from Products.CMFCore.utils import getToolByName
@@ -208,19 +209,31 @@ class MenuParser:
             'children': [],
         }
 
-    def parse(self, text):
+    def parse(self, text, current_language = 'en'):
         value = text.strip()
         lines = value.split('\n')
         lines = [l.strip() for l in lines]
 
+        language_lines = {}
+        language = None
+        for l in lines:
+            if l.startswith('_____'):
+                language = l.strip('_')
+                language_lines[language] = []
+            elif language:
+                language_lines[language].append(l)
+
         self.reset()
         self.out = []
 
-        for line in lines:
-            self.process(line)
+        #for line in lines:
+        #TODO: check if language exist in menu
+        if current_language in language_lines:
+            for line in language_lines[current_language]:
+                self.process(line)
 
-        # handle end of lines
-        self.out.append(self.c_column)
+            # handle end of lines
+            self.out.append(self.c_column)
 
         return self.out
 
@@ -273,7 +286,7 @@ class MenuParser:
         self.c_column = None
 
 
-def _extract_menu(value, site_url=None):
+def _extract_menu(value, site_url=None, language = 'en'):
     """ Construct the data for the menu.
 
     Terminology in the menu:
@@ -294,8 +307,8 @@ def _extract_menu(value, site_url=None):
     if not site_url:
         site_url = getSite().absolute_url()
     parser = MenuParser(site_url)
-    result = parser.parse(value)
-
+    result = parser.parse(value, language)
+    logger.exception("Will use language: %s", language)
     return result
 
 
@@ -313,10 +326,27 @@ class Navbar(ExternalTemplateHeader):
             ptool = getToolByName(self.context,
                                   'portal_properties')['site_properties']
 
-            return _extract_menu(ptool.getProperty('main_navigation_menu'))
+            context = self.context.aq_inner
+            portal_state = getMultiAdapter((context, self.request), name=u'plone_portal_state')
+            current_language = portal_state.language()
+
+            sections = _extract_menu(ptool.getProperty('main_navigation_menu'), None, current_language)
+            for idx in range(len(sections)):
+                if not sections[idx]:
+                    sections.pop(idx)
+            return sections
+            return _extract_menu(ptool.getProperty('main_navigation_menu'), None, current_language)
         except Exception, e:
             logger.exception("Error while rendering navigation menu: %s", e)
 
             site_url = self.context.portal_url()
 
             return _extract_menu(DEFAULT_MENU, site_url)
+
+    def menu_site(self):
+        menus = self.menu()
+        return menus[0:-1]
+
+    def menu_help(self):
+        menus = self.menu()
+        return menus[-1]
