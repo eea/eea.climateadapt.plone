@@ -1,7 +1,7 @@
-<ul id="help-navbar" class="help-nav-menu" tal:define="menu view/menu">
+<ul id="help-navbar" class="help-nav-menu" tal:define="menu view/menu_help">
 
-  <tal:block tal:repeat="section python: view.menu()">
-    <li tal:condition="python: section['label'] == 'Help'">
+  <tal:block tal:define="section python: view.menu_help()">
+    <li tal:condition="section">
 
       <span tal:define="has_children python: bool(section['children'][-1])">
         <a href="" tal:attributes="href section/link;" class="help-main-nav-link">
