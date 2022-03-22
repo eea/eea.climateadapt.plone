@@ -209,7 +209,7 @@ def execute_trans_script(site, language):
             content.move(source=obj, target=english_container)
 
     transaction.commit()
-
+    errors = []
     # get and parse all objects under /en/
     res = catalog.searchResults(path='/cca/en')
     failed_translations = []
@@ -218,12 +218,19 @@ def execute_trans_script(site, language):
             continue
         obj = brain.getObject()
         factory = DefaultTranslationFactory(obj)
-        # import pdb; pdb.set_trace()
         # create translation objects
-        # for lang in language_folders:
-        translated_object = factory(language)
+        try:
+            translated_object = factory(language)
+        except:
+            errors.append(obj)
+            continue
         TranslationManager(obj).register_translation(language, translated_object)
         translated_object.reindexObject()
+    transaction.commit()
+    logger.info("Errors")
+    logger.info(errors)
+    logger.info("Finished cloning for language %s" % language)
+
     return 'Finished cloning for language %s' % language
 
 
