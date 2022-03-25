@@ -124,6 +124,9 @@ def initiate_translations(site):
                 import pdb; pdb.set_trace()
                 tiles_id = trans_obj.list_tiles()
 
+                if len(tiles_id) > 0:
+                    import pdb; pdb.set_trace()
+
                 for tile_id in tiles_id:
                     tile = trans_obj.get_tile(tile_id)
                     for field in tile_fields:
@@ -214,6 +217,51 @@ def initiate_translations(site):
     logger.info("DONE")
     logger.info(errors)
 
+def get_tile_type(tile):
+    tiles_types = {
+        'RichTextWithTitle': 'eea.climateadapt.richtext_with_title',
+        'EmbedTile': 'collective.cover.embed',
+        'RichTextTile': 'collective.cover.richtext',
+    }
+    for a_type in tiles_types.keys():
+        if a_type in str(type(tile)):
+            return tiles_types[a_type]
+
+    # TODO improve this. Add missing?
+    import pdb; pdb.set_trace()
+
+
+def copy_tiles(tiles, from_cover, to_cover):
+    for tile in tiles:
+        tile_type = get_tile_type(tile)
+
+        from_tile = from_cover.restrictedTraverse(
+            '@@{0}/{1}'.format(tile_type, tile.id)
+        )
+
+        to_tile = to_cover.restrictedTraverse(
+            '@@{0}/{1}'.format(tile_type, tile.id)
+        )
+
+        from_data_mgr = ITileDataManager(from_tile)
+        to_data_mgr = ITileDataManager(to_tile)
+        to_data_mgr.set(from_data_mgr.get())
+
+
+def create_translation_object(obj, language):
+    factory = DefaultTranslationFactory(obj)
+
+    translated_object = factory(language)
+
+    TranslationManager(obj).register_translation(language, translated_object)
+    translated_object.reindexObject()
+
+    if obj.portal_type == 'collective.cover.content':
+        tiles = [obj.get_tile(x) for x in obj.list_tiles()]
+        translated_object.cover_layout = obj.cover_layout
+        copy_tiles(tiles, obj, translated_object)
+
+        translated_object.reindexObject()
 
 def execute_trans_script(site, language):
     catalog = site.portal_catalog
@@ -248,15 +296,12 @@ def execute_trans_script(site, language):
         if brain.getPath() == '/cca/en' or brain.portal_type == 'LIF':
             continue
         obj = brain.getObject()
-        factory = DefaultTranslationFactory(obj)
-        # create translation objects
-        try:
-            translated_object = factory(language)
-        except:
-            errors.append(obj)
-            continue
-        TranslationManager(obj).register_translation(language, translated_object)
-        translated_object.reindexObject()
+        # try:
+        #     create_translation_object(obj, language)
+        # except:
+        #     errors.append(obj)
+        #     continue
+        create_translation_object(obj, language)
     transaction.commit()
     logger.info("Errors")
     logger.info(errors)
@@ -271,8 +316,8 @@ class TransScript(BrowserView):
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
         from zope.site.hooks import getSite
-        # return execute_trans_script(getSite(), **kwargs)
-        return initiate_translations(getSite())
+        return execute_trans_script(getSite(), **kwargs)
+        # return initiate_translations(getSite())
 
 
 class CheckCopyPasteLocation(BrowserView):
