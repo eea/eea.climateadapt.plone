@@ -312,12 +312,11 @@ def execute_trans_script(site, language):
         if brain.getPath() == '/cca/en' or brain.portal_type == 'LIF':
             continue
         obj = brain.getObject()
-        # try:
-        #     create_translation_object(obj, language)
-        # except:
-        #     errors.append(obj)
-        #     continue
-        create_translation_object(obj, language)
+        try:
+            create_translation_object(obj, language)
+        except:
+            errors.append(obj)
+            continue
     transaction.commit()
     logger.info("Errors")
     logger.info(errors)
