@@ -235,6 +235,7 @@ def get_tile_type(tile, from_cover, to_cover):
         'ShareInfoTile': 'eea.climateadapt.shareinfo',
         'FormTile': 'eea.climateadapt.formtile',
         'UrbanMenuTile': 'eea.climateadapt.urbanmenu',
+        'CardsTile': 'eea.climateadapt.cards_tile',
     }
     for a_type in tiles_types.keys():
         if a_type in str(type(tile)):
