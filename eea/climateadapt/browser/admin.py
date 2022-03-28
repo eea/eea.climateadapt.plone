@@ -217,11 +217,24 @@ def initiate_translations(site):
     logger.info("DONE")
     logger.info(errors)
 
-def get_tile_type(tile):
+def get_tile_type(tile, from_cover, to_cover):
     tiles_types = {
         'RichTextWithTitle': 'eea.climateadapt.richtext_with_title',
         'EmbedTile': 'collective.cover.embed',
         'RichTextTile': 'collective.cover.richtext',
+        'SearchAceContentTile': 'eea.climateadapt.search_acecontent',
+        'GenericViewTile': 'eea.climateadapt.genericview',
+        'RelevantAceContentItemsTile': 'eea.climateadapt.relevant_acecontent',
+        'ASTNavigationTile': 'eea.climateadapt.ast_navigation',
+        'ASTHeaderTile': 'eea.climateadapt.ast_header',
+        'FilterAceContentItemsTile': 'eea.climateadapt.filter_acecontent',
+        'TransRegionalSelectTile': 'eea.climateadapt.transregionselect',
+        'SectionNavTile': 'eea.climateadapt.section_nav',
+        'CountrySelectTile': 'eea.climateadapt.countryselect',
+        'BannerTile': 'collective.cover.banner',
+        'ShareInfoTile': 'eea.climateadapt.shareinfo',
+        'FormTile': 'eea.climateadapt.formtile',
+        'UrbanMenuTile': 'eea.climateadapt.urbanmenu',
     }
     for a_type in tiles_types.keys():
         if a_type in str(type(tile)):
@@ -232,8 +245,11 @@ def get_tile_type(tile):
 
 
 def copy_tiles(tiles, from_cover, to_cover):
+    print "Copy tiles..."
+    print from_cover.absolute_url()
+    print to_cover.absolute_url()
     for tile in tiles:
-        tile_type = get_tile_type(tile)
+        tile_type = get_tile_type(tile, from_cover, to_cover)
 
         from_tile = from_cover.restrictedTraverse(
             '@@{0}/{1}'.format(tile_type, tile.id)
