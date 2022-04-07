@@ -285,76 +285,13 @@ def create_translation_object(obj, language):
 
         translated_object.reindexObject()
 
-def query_items_in_natural_sort_order(root, query):
-    """
-    Create a flattened out list of portal_catalog queried items in their natural depth first navigation order.
-    @param root: Content item which acts as a navigation root
-    @param query: Dictionary of portal_catalog query parameters
-    @return: List of catalog brains
-    """
-
-    # Navigation tree base portal_catalog query parameters
-    applied_query=  {
-        'path' : '/'.join(root.getPhysicalPath()),
-        'sort_on' : 'getObjPositionInParent'
-    }
-
-    # Apply caller's filters
-    applied_query.update(query)
-
-    # Set the navigation tree build strategy
-    # - use navigation portlet strategy as base
-    #strategy = DefaultNavtreeStrategy(root)
-    strategy = NavtreeStrategyBase()
-    strategy.rootPath = '/'.join(root.getPhysicalPath())
-    strategy.showAllParents = False
-    strategy.bottomLevel = 999
-    # This will yield out tree of nested dicts of
-    # item brains with retrofitted navigational data
-    tree = buildFolderTree(root, root, query, strategy=strategy)
-
-    items = []
-
-    def flatten(children):
-        """ Recursively flatten the tree """
-        for c in children:
-            # Copy catalog brain object into the result
-            items.append(c["item"])
-            children = c.get("children", None)
-            if children:
-                flatten(children)
-
-    flatten(tree["children"])
-
-    return items
-
-def flatten_tree(tree):
-    items = []
-
-    def flatten(children):
-        """ Recursively flatten the tree """
-        for c in children:
-            # Copy catalog brain object into the result
-            items.append(c["item"])
-            children = c.get("children", None)
-            if children:
-                flatten(children)
-
-    flatten(tree["children"])
-
-    return items
-
 
 def get_all_objs(container):
     all_objs = []
-    print "GET ALL ITEMS ---------------------------"
-    print container
 
     def get_objs(context):
-        print "GET OBJS ------------------------------------------------------------"
         contents = api.content.find(context=context, depth=1)
         for item in contents:
-            print item.getObject().absolute_url()
             all_objs.append(item)
 
         for item in contents:
@@ -392,40 +329,22 @@ def execute_trans_script(site, language):
     transaction.commit()
     errors = []
     # get and parse all objects under /en/
-    res = query_items_in_natural_sort_order(root=english_container, query={})
-    res_old = catalog.searchResults(path='/cca/en')
+    res = get_all_objs(english_container)
 
-    all_res_urls = [x.getObject().absolute_url() for x in res]
-    all_res_old_urls = [x.getObject().absolute_url() for x in res_old]
-
-    diff_urls = [x for x in all_res_old_urls if x not in all_res_urls]
-    diff_objs = [x.getObject() for x in res_old if x.getObject().absolute_url() not in all_res_urls]
-
-    res_new = get_all_objs(english_container)
-
-    import pdb; pdb.set_trace()
-
-    # (Pdb) len(res_new)
-    # 6606
-    # (Pdb) len(res_old)
-    # 6607
-    # (Pdb) len(res)
-    # 6239
-
-    # failed_translations = []
-    # for brain in res:
-    #     if brain.getPath() == '/cca/en' or brain.portal_type == 'LIF':
-    #         continue
-    #     obj = brain.getObject()
-    #     try:
-    #         create_translation_object(obj, language)
-    #     except Exception as err:
-    #         errors.append(obj)
-    #         continue
-    # transaction.commit()
-    # logger.info("Errors")
-    # logger.info(errors)
-    # logger.info("Finished cloning for language %s" % language)
+    failed_translations = []
+    for brain in res:
+        if brain.getPath() == '/cca/en' or brain.portal_type == 'LIF':
+            continue
+        obj = brain.getObject()
+        try:
+            create_translation_object(obj, language)
+        except Exception as err:
+            errors.append(obj)
+            continue
+    transaction.commit()
+    logger.info("Errors")
+    logger.info(errors)
+    logger.info("Finished cloning for language %s" % language)
 
     return 'Finished cloning for language %s' % language
 
