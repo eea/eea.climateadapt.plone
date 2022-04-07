@@ -338,8 +338,10 @@ def execute_trans_script(site, language):
         obj = brain.getObject()
         try:
             create_translation_object(obj, language)
+            logger.info("Cloned: %s" % obj.absolute_url())
         except Exception as err:
             errors.append(obj)
+            logger.info("Error cloning: %s" % obj.absolute_url())
             continue
     transaction.commit()
     logger.info("Errors")
