@@ -40,6 +40,10 @@ from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 
+from plone.app.layout.navigation.navtree import buildFolderTree
+from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
+from plone.app.layout.navigation.navtree import NavtreeStrategyBase
+from plone import api
 
 html_unescape = HTMLParser().unescape
 
@@ -213,7 +217,6 @@ def initiate_translations(site):
         if count % 100 == 0:
             logger.info("Processed %s objects" % count)
             transaction.commit()
-    import pdb; pdb.set_trace()
     logger.info("DONE")
     logger.info(errors)
 
@@ -241,28 +244,30 @@ def get_tile_type(tile, from_cover, to_cover):
         if a_type in str(type(tile)):
             return tiles_types[a_type]
 
-    # TODO improve this. Add missing?
-    import pdb; pdb.set_trace()
-
+    return None
 
 def copy_tiles(tiles, from_cover, to_cover):
-    print "Copy tiles..."
-    print from_cover.absolute_url()
-    print to_cover.absolute_url()
+    logger.info("Copy tiles")
+    logger.info(from_cover.absolute_url())
+    logger.info(to_cover.absolute_url())
     for tile in tiles:
         tile_type = get_tile_type(tile, from_cover, to_cover)
 
-        from_tile = from_cover.restrictedTraverse(
-            '@@{0}/{1}'.format(tile_type, tile.id)
-        )
+        if tile_type is not None:
+            from_tile = from_cover.restrictedTraverse(
+                '@@{0}/{1}'.format(tile_type, tile.id)
+            )
 
-        to_tile = to_cover.restrictedTraverse(
-            '@@{0}/{1}'.format(tile_type, tile.id)
-        )
+            to_tile = to_cover.restrictedTraverse(
+                '@@{0}/{1}'.format(tile_type, tile.id)
+            )
 
-        from_data_mgr = ITileDataManager(from_tile)
-        to_data_mgr = ITileDataManager(to_tile)
-        to_data_mgr.set(from_data_mgr.get())
+            from_data_mgr = ITileDataManager(from_tile)
+            to_data_mgr = ITileDataManager(to_tile)
+            to_data_mgr.set(from_data_mgr.get())
+
+        else:
+            logger.info("Missing tile type")
 
 
 def create_translation_object(obj, language):
@@ -279,6 +284,86 @@ def create_translation_object(obj, language):
         copy_tiles(tiles, obj, translated_object)
 
         translated_object.reindexObject()
+
+def query_items_in_natural_sort_order(root, query):
+    """
+    Create a flattened out list of portal_catalog queried items in their natural depth first navigation order.
+    @param root: Content item which acts as a navigation root
+    @param query: Dictionary of portal_catalog query parameters
+    @return: List of catalog brains
+    """
+
+    # Navigation tree base portal_catalog query parameters
+    applied_query=  {
+        'path' : '/'.join(root.getPhysicalPath()),
+        'sort_on' : 'getObjPositionInParent'
+    }
+
+    # Apply caller's filters
+    applied_query.update(query)
+
+    # Set the navigation tree build strategy
+    # - use navigation portlet strategy as base
+    #strategy = DefaultNavtreeStrategy(root)
+    strategy = NavtreeStrategyBase()
+    strategy.rootPath = '/'.join(root.getPhysicalPath())
+    strategy.showAllParents = False
+    strategy.bottomLevel = 999
+    # This will yield out tree of nested dicts of
+    # item brains with retrofitted navigational data
+    tree = buildFolderTree(root, root, query, strategy=strategy)
+
+    items = []
+
+    def flatten(children):
+        """ Recursively flatten the tree """
+        for c in children:
+            # Copy catalog brain object into the result
+            items.append(c["item"])
+            children = c.get("children", None)
+            if children:
+                flatten(children)
+
+    flatten(tree["children"])
+
+    return items
+
+def flatten_tree(tree):
+    items = []
+
+    def flatten(children):
+        """ Recursively flatten the tree """
+        for c in children:
+            # Copy catalog brain object into the result
+            items.append(c["item"])
+            children = c.get("children", None)
+            if children:
+                flatten(children)
+
+    flatten(tree["children"])
+
+    return items
+
+
+def get_all_objs(container):
+    all_objs = []
+    print "GET ALL ITEMS ---------------------------"
+    print container
+
+    def get_objs(context):
+        print "GET OBJS ------------------------------------------------------------"
+        contents = api.content.find(context=context, depth=1)
+        for item in contents:
+            print item.getObject().absolute_url()
+            all_objs.append(item)
+
+        for item in contents:
+            get_objs(item.getObject())
+
+    get_objs(container)
+
+    return all_objs
+
 
 def execute_trans_script(site, language):
     catalog = site.portal_catalog
@@ -307,21 +392,40 @@ def execute_trans_script(site, language):
     transaction.commit()
     errors = []
     # get and parse all objects under /en/
-    res = catalog.searchResults(path='/cca/en')
-    failed_translations = []
-    for brain in res:
-        if brain.getPath() == '/cca/en' or brain.portal_type == 'LIF':
-            continue
-        obj = brain.getObject()
-        try:
-            create_translation_object(obj, language)
-        except:
-            errors.append(obj)
-            continue
-    transaction.commit()
-    logger.info("Errors")
-    logger.info(errors)
-    logger.info("Finished cloning for language %s" % language)
+    res = query_items_in_natural_sort_order(root=english_container, query={})
+    res_old = catalog.searchResults(path='/cca/en')
+
+    all_res_urls = [x.getObject().absolute_url() for x in res]
+    all_res_old_urls = [x.getObject().absolute_url() for x in res_old]
+
+    diff_urls = [x for x in all_res_old_urls if x not in all_res_urls]
+    diff_objs = [x.getObject() for x in res_old if x.getObject().absolute_url() not in all_res_urls]
+
+    res_new = get_all_objs(english_container)
+
+    import pdb; pdb.set_trace()
+
+    # (Pdb) len(res_new)
+    # 6606
+    # (Pdb) len(res_old)
+    # 6607
+    # (Pdb) len(res)
+    # 6239
+
+    # failed_translations = []
+    # for brain in res:
+    #     if brain.getPath() == '/cca/en' or brain.portal_type == 'LIF':
+    #         continue
+    #     obj = brain.getObject()
+    #     try:
+    #         create_translation_object(obj, language)
+    #     except Exception as err:
+    #         errors.append(obj)
+    #         continue
+    # transaction.commit()
+    # logger.info("Errors")
+    # logger.info(errors)
+    # logger.info("Finished cloning for language %s" % language)
 
     return 'Finished cloning for language %s' % language
 
