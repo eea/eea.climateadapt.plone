@@ -125,11 +125,7 @@ def initiate_translations(site):
 
             # get tile data
             if trans_obj.portal_type == 'collective.cover.content':
-                import pdb; pdb.set_trace()
                 tiles_id = trans_obj.list_tiles()
-
-                if len(tiles_id) > 0:
-                    import pdb; pdb.set_trace()
 
                 for tile_id in tiles_id:
                     tile = trans_obj.get_tile(tile_id)
@@ -351,15 +347,26 @@ def execute_trans_script(site, language):
     return 'Finished cloning for language %s' % language
 
 
-class TransScript(BrowserView):
-    """ """
+class PrepareTranslation(BrowserView):
+    """ Clone the content to be available for a new translation
+        Usage: /admin-prepare-translation?language=ro
+    """
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
         from zope.site.hooks import getSite
         return execute_trans_script(getSite(), **kwargs)
-        # return initiate_translations(getSite())
 
+
+class RunTranslation(BrowserView):
+    """ Translate the contents
+        Usage: /admin-run-translation
+    """
+
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
+        from zope.site.hooks import getSite
+        return initiate_translations(getSite())
 
 class CheckCopyPasteLocation(BrowserView):
     """ Performs a check which doesn't allow user to Copy cca-items

@@ -7,9 +7,16 @@
     >
 
   <browser:page
-      name="test_script"
+      name="admin-prepare-translation"
       for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".admin.TransScript"
+      class=".admin.PrepareTranslation"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="admin-run-translation"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".admin.RunTranslation"
       permission="cmf.ManagePortal"
       />
 
