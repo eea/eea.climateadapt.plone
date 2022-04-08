@@ -141,7 +141,10 @@ def initiate_translations(site):
 
                     if isinstance(tile, RichTextWithTitle) or \
                        isinstance(tile, RichTextTile):
-                        value = tile.data.get('text').raw
+                        try:
+                            value = tile.data.get('text').raw
+                        except AttributeError:
+                            value = None
                         if value:
                             translated = retrieve_translation('EN', value, [language.upper()])
                             if 'translated' in translated:
