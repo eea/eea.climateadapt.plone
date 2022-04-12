@@ -136,21 +136,25 @@ def initiate_translations(site):
 
                             if 'translated' in translated:
                                 # convert to unicode
-                                import pdb; pdb.set_trace()
+                                # import pdb; pdb.set_trace()
                                 tile.data.update({field: translated['transId']})
 
                     if isinstance(tile, RichTextWithTitle) or \
                        isinstance(tile, RichTextTile):
                         try:
                             value = tile.data.get('text').raw
-                        except AttributeError:
+                        except Exception:
                             value = None
                         if value:
                             translated = retrieve_translation('EN', value, [language.upper()])
                             if 'translated' in translated:
                                 # convert to unicode
-                                import pdb; pdb.set_trace()
-                                tile.data['text'].raw = translated['transId']
+                                # import pdb; pdb.set_trace()
+                                try:
+                                    tile.data['text'].raw = translated['transId']
+                                except AttributeError:
+                                    logger.info("Error for tile. TODO improve.")
+                                    logger.info(tile_id)
 
             # send requests to translation service for each field
             # update field in obj
