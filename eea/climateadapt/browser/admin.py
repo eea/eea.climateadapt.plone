@@ -203,17 +203,17 @@ def initiate_translations(site):
 
                 if key not in errors:
                     errors.append(key)
-                # force_unlock(trans_obj)
-                # translated = retrieve_translation('EN', value, [language.upper()])
-                # if 'translated' in translated:
-                #     if rich:
-                #         setattr(getattr(trans_obj, key), 'raw', translated['transId'])
-                #     else:
-                #         setattr(trans_obj, key, translated['transId'])
-                #
-                #     # reindex object
-                #     trans_obj._p_changed = True
-                #     trans_obj.reindexObject(idxs=[key])
+                force_unlock(trans_obj)
+                translated = retrieve_translation('EN', value, [language.upper()])
+                if 'translated' in translated:
+                    if rich:
+                        setattr(getattr(trans_obj, key), 'raw', translated['transId'])
+                    else:
+                        setattr(trans_obj, key, translated['transId'])
+
+                    # reindex object
+                    trans_obj._p_changed = True
+                    trans_obj.reindexObject(idxs=[key])
 
 
         count += 1
