@@ -211,10 +211,9 @@ def initiate_translations(site):
                     else:
                         setattr(trans_obj, key, translated['transId'])
 
-                    # reindex object
-                    trans_obj._p_changed = True
-                    trans_obj.reindexObject(idxs=[key])
-
+            # reindex object
+            trans_obj._p_changed = True
+            trans_obj.reindexObject(idxs=[key])
 
         count += 1
         if count % 100 == 0:
