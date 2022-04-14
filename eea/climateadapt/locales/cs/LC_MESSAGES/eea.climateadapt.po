@@ -13,438 +13,543 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:61
+#, 
 msgid "Adaptation Details"
-msgstr ""
+msgstr "Úprava adaptace"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:57
+#, 
 msgid "Adaptation Options Implemented In This Case"
-msgstr ""
+msgstr "Možnosti adaptace implementovány v tomto případě"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:125
+#, 
 msgid "Adaptation strategy"
-msgstr ""
+msgstr "Adaptační strategie"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:315
+#, 
 msgid "AdapteCCA"
-msgstr ""
+msgstr "Adaptecca."
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:31
 #: ../../climateadapt/browser/pt/casestudy_view.pt:71
+#, 
 msgid "Additional Details"
-msgstr ""
+msgstr "další detaily"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:158
+#, 
 msgid "Additional information on adaptation responses"
-msgstr ""
+msgstr "Další informace o adaptačních reakcích"
 
 #: ../../climateadapt/browser/overrides.py:37
+#, 
 msgid "Agriculture"
-msgstr ""
+msgstr "Zemědělství"
 
 #: ../../climateadapt/browser/overrides.py:39
+#, 
 msgid "Biodiversity"
-msgstr ""
+msgstr "Biologická rozmanitost"
 
 #: ../../climateadapt/browser/__init__.py:168
+#, 
 msgid "Biogeographical regions"
-msgstr ""
+msgstr "Biogeografické regiony"
 
 #: ../../climateadapt/browser/overrides.py:49
+#, 
 msgid "Buildings"
-msgstr ""
+msgstr "Budovy"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:46
+#, 
 msgid "Case Study Description"
-msgstr ""
+msgstr "Popis případové studie"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:241
+#, 
 msgid "Case Study Illustrations (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
-msgstr ""
+msgstr "Ilustrace případu studie ($ {dynamic_content}) <i class = \"fa fa-picture-o\" aria-hidden = \"true\"> </ i>"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:194
+#, 
 msgid "Case studies related to this option:"
-msgstr ""
+msgstr "Případové studie související s touto volbou:"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:33
+#, 
 msgid "Category"
-msgstr ""
+msgstr "Kategorie"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:49
+#, 
 msgid "Challenges"
-msgstr ""
+msgstr "Výzvy"
 
 #: ../../climateadapt/mayorsadapt/views.py:78
+#, 
 msgid "Check-out created"
-msgstr ""
+msgstr "Vytvořený odhlášení"
 
 #: ../../climateadapt/browser/__init__.py:208
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
+#, 
 msgid "City"
-msgstr ""
+msgstr "Město"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:111
+#, 
 msgid "Climate change impacts"
-msgstr ""
+msgstr "Dopady změny klimatu"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:102
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:172
 #: ../../climateadapt/browser/pt/casestudy_view.pt:294
+#, 
 msgid "Climate impacts:"
-msgstr ""
+msgstr "Dopady klimatu:"
 
 #: ../../climateadapt/browser/overrides.py:40
+#, 
 msgid "Coastal areas"
-msgstr ""
+msgstr "Pobřežní oblasti"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:103
+#, 
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:222
+#, 
 msgid "Contact person"
-msgstr ""
+msgstr "Kontaktní osoba"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:42
 #: ../../climateadapt/browser/pt/casestudy_view.pt:82
+#, 
 msgid "Costs and Benefits"
-msgstr ""
+msgstr "Náklady a přínosy"
 
 #: ../../climateadapt/browser/__init__.py:174
+#, 
 msgid "Countries"
-msgstr ""
+msgstr "Země"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:131
+#, 
 msgid "Countries: ${DYNAMIC_CONTENT}"
-msgstr ""
+msgstr "Země: $ {dynamic_content}"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:245
+#, 
 msgid "Covenant of Mayors 2020 signatory"
-msgstr ""
+msgstr "Signatář"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:251
+#, 
 msgid "Covenant of Mayors 2030 signatory"
-msgstr ""
+msgstr "Smlouva starostů 2030 signatář"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:141
+#, 
 msgid "DRMKC"
-msgstr ""
+msgstr "Drmkc."
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:70
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:145
 #: ../../climateadapt/browser/pt/casestudy_view.pt:214
+#, 
 msgid "Date of creation:"
-msgstr ""
+msgstr "Datum vytvoření:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:240
+#, 
 msgid "Date of officially joining Mayors Adapt"
-msgstr ""
+msgstr "Datum úředně spojující starosty přizpůsobit"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:138
+#, 
 msgid "Date of strategy/plan approval"
-msgstr ""
+msgstr "Datum schválení strategie / plánu"
 
 #: ../../climateadapt/browser/overrides.py:42
+#, 
 msgid "Disaster Risk Reduction"
-msgstr ""
+msgstr "Snížení rizika katastrofy"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:97
+#, 
 msgid "Duration:"
-msgstr ""
+msgstr "Doba trvání:"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:107
+#, 
 msgid "Elements:"
-msgstr ""
+msgstr "Prvky:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:28
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:228
+#, 
 msgid "Email"
-msgstr ""
+msgstr "E-mailem"
 
 #: ../../climateadapt/browser/overrides.py:47
+#, 
 msgid "Energy"
-msgstr ""
+msgstr "Energie"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:139
 #: ../../climateadapt/browser/pt/casestudy_view.pt:313
+#, 
 msgid "External source"
-msgstr ""
+msgstr "Vnější zdroj"
 
 #: ../../climateadapt/browser/overrides.py:43
+#, 
 msgid "Financial"
-msgstr ""
+msgstr "Finanční"
 
 #: ../../climateadapt/browser/overrides.py:38
+#, 
 msgid "Forestry"
-msgstr ""
+msgstr "Lesnictví"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:87
+#, 
 msgid "Funding Programme:"
-msgstr ""
+msgstr "Program financování:"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:187
+#, 
 msgid "Geographic characterisation:"
-msgstr ""
+msgstr "Geografická charakteristika:"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:117
 #: ../../climateadapt/browser/pt/casestudy_view.pt:308
+#, 
 msgid "Geographic characterization:"
-msgstr ""
+msgstr "Geografická charakteristika:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:171
+#, 
 msgid "Good practice / spotlight item"
-msgstr ""
+msgstr "Dobrá praxe / Položka reflektoru"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:178
 #: ../../climateadapt/browser/pt/casestudy_view.pt:300
+#, 
 msgid "Governance level:"
-msgstr ""
+msgstr "Úroveň správy:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:128
+#, 
 msgid "Have you already developed an adaptation strategy?"
-msgstr ""
+msgstr "Už jste vyvinuli adaptační strategii?"
 
 #: ../../climateadapt/browser/overrides.py:44
+#, 
 msgid "Health"
-msgstr ""
+msgstr "Zdraví"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:80
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:155
 #: ../../climateadapt/browser/pt/casestudy_view.pt:277
+#, 
 msgid "Health impact:"
-msgstr ""
+msgstr "Zdravotní dopad:"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:34
+#, 
 msgid "IPCC categories"
-msgstr ""
+msgstr "IPCC kategorie"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:48
 #: ../../climateadapt/browser/pt/casestudy_view.pt:90
+#, 
 msgid "Implementation Time"
-msgstr ""
+msgstr "Doba realizace"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:65
+#, 
 msgid "Importance and Relevance of Adaptation"
-msgstr ""
+msgstr "Význam a význam přizpůsobení"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:138
+#, 
 msgid "Item’s creation:"
-msgstr ""
+msgstr "Stvoření položky:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:203
+#, 
 msgid "Key vulnerable sectors"
-msgstr ""
+msgstr "Klíčové zranitelné sektory"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:92
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:162
 #: ../../climateadapt/browser/pt/casestudy_view.pt:284
+#, 
 msgid "Keywords:"
-msgstr ""
+msgstr "Klíčová slova:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:258
+#, 
 msgid "Last Update"
-msgstr ""
+msgstr "Poslední aktualizace"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:45
 #: ../../climateadapt/browser/pt/casestudy_view.pt:86
+#, 
 msgid "Legal Aspects"
-msgstr ""
+msgstr "Právní aspekty"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:51
 #: ../../climateadapt/browser/pt/casestudy_view.pt:94
+#, 
 msgid "Life Time"
-msgstr ""
+msgstr "Život"
 
 #: ../../climateadapt/browser/__init__.py:160
+#, 
 msgid "Macro-Transnational region"
-msgstr ""
+msgstr "Makro-nadnárodní region"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:120
+#, 
 msgid "Main motivation for taking adaptation action"
-msgstr ""
+msgstr "Hlavní motivace k přijetí adaptační akce"
 
 #: ../../climateadapt/browser/overrides.py:46
+#, 
 msgid "Marine and Fisheries"
-msgstr ""
+msgstr "Mořské a rybolov"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:212
+#, 
 msgid "Mayor"
-msgstr ""
+msgstr "starosta"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:234
+#, 
 msgid "Mayors Adapt signatory"
-msgstr ""
+msgstr "Starostové přizpůsobit signatáře"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:133
+#, 
 msgid "Name of the strategy/ plan (If adopted)"
-msgstr ""
+msgstr "Jméno strategie / plánu (pokud přijat)"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:53
+#, 
 msgid "Objectives"
-msgstr ""
+msgstr "Cíle"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:165
+#, 
 msgid "Planned adaptation actions"
-msgstr ""
+msgstr "Plánované adaptační akce"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:205
+#, 
 msgid "Please contact us for any other enquiry on this Case Study or to share a new Case Study (email <a href=\"mailto: climate.adapt@eea.europa.eu\">climate.adapt@eea.europa.eu</a>)"
-msgstr ""
+msgstr "Prosím, kontaktujte nás pro jakýkoli jiný dotaz o tomto případovém studiu nebo sdílet novou případovou studii (e-mail <a <a href=\"mailto: climate.Adapt@eea.ea.eu\"> climate.Adapt@eea.europa.eu </ a >)"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:217
+#, 
 msgid "Population"
-msgstr ""
+msgstr "Populace"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:23
+#, 
 msgid "Portal Type"
-msgstr ""
+msgstr "Typ portálu."
 
 #: ../../climateadapt/browser/overrides.py:59
+#, 
 msgid "Professional thematic domain"
-msgstr ""
+msgstr "Profesionální tematická doména"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:47
+#, 
 msgid "Project information"
-msgstr ""
+msgstr "Informace o projektu"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:24
+#, 
 msgid "Published"
-msgstr ""
+msgstr "Publikováno"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:194
+#, 
 msgid "Reference"
-msgstr ""
+msgstr "Odkaz"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:100
+#, 
 msgid "Reference Information"
-msgstr ""
+msgstr "Referenční informace"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:54
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:55
+#, 
 msgid "Reference information"
-msgstr ""
+msgstr "Referenční informace"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:122
+#, 
 msgid "References:"
-msgstr ""
+msgstr "Reference:"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:144
+#, 
 msgid "Relevance"
-msgstr ""
+msgstr "Relevantnost"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:112
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:167
 #: ../../climateadapt/browser/pt/casestudy_view.pt:289
+#, 
 msgid "Sectors:"
-msgstr ""
+msgstr "Sektory:"
 
 #: ../../climateadapt/browser/overrides.py:60
+#, 
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
-msgstr ""
+msgstr "Vyberte odvětví, pro které chcete obdržet e-mail oznámení, když je položka upravena."
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:15
+#, 
 msgid "Send token emails to City Mayors"
-msgstr ""
+msgstr "Poslat token e-maily do města starosty"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:61
+#, 
 msgid "Solutions"
-msgstr ""
+msgstr "Řešení"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:58
 #: ../../climateadapt/browser/pt/casestudy_view.pt:111
+#, 
 msgid "Source"
-msgstr ""
+msgstr "Zdroj"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:74
+#, 
 msgid "Stakeholder Participation"
-msgstr ""
+msgstr "Účast zúčastněných stran"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:36
+#, 
 msgid "Stakeholder participation"
-msgstr ""
+msgstr "Účast zúčastněných stran"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:27
+#, 
 msgid "Status"
-msgstr ""
+msgstr "Postavení"
 
 #: ../../climateadapt/browser/__init__.py:182
+#, 
 msgid "Sub Nationals"
-msgstr ""
+msgstr "Sub státní příslušníci"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:49
+#, 
 msgid "Submit"
-msgstr ""
+msgstr "Předložit"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:39
 #: ../../climateadapt/browser/pt/casestudy_view.pt:78
+#, 
 msgid "Success and Limiting Factors"
-msgstr ""
+msgstr "Úspěch a omezující faktory"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:153
+#, 
 msgid "Summary of the strategy/plan"
-msgstr ""
+msgstr "Shrnutí strategie / plánu"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:72
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:147
 #: ../../climateadapt/browser/pt/casestudy_view.pt:216
+#, 
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
-msgstr ""
+msgstr "Datum odkazuje na okamžik, kdy byla položka připravena nebo aktualizována přispívajícími odborníky, které mají být předloženy k publikaci v oblasti klimatu"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:25
+#, 
 msgid "Total"
-msgstr ""
+msgstr "Celkový"
 
 #: ../../climateadapt/browser/overrides.py:48
+#, 
 msgid "Transport"
-msgstr ""
+msgstr "Doprava"
 
 #: ../../climateadapt/browser/overrides.py:45
+#, 
 msgid "Urban"
-msgstr ""
+msgstr "Městský"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:18
+#, 
 msgid "View on DRMKC"
-msgstr ""
+msgstr "Zobrazit na DRMKC."
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:16
+#, 
 msgid "Warning: this will reset/invalidate tokens on all selected cities"
-msgstr ""
+msgstr "VAROVÁNÍ: Tím se resetuje / zruší tokeny na všech vybraných městech"
 
 #: ../../climateadapt/browser/overrides.py:50
+#, 
 msgid "Water management"
-msgstr ""
+msgstr "Vodní hospodářství"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:143
+#, 
 msgid "Weblink of the strategy/ plan"
-msgstr ""
+msgstr "Weblink strategie / plánu"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:148
+#, 
 msgid "Weblinks to relevant plans/ studies"
-msgstr ""
+msgstr "Weblinks do příslušných plánů / studií"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:230
+#, 
 msgid "Website"
-msgstr ""
+msgstr "webová stránka"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:57
 #: ../../climateadapt/browser/pt/casestudy_view.pt:107
+#, 
 msgid "Websites"
-msgstr ""
+msgstr "Webové stránky"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:55
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:117
+#, 
 msgid "Websites:"
-msgstr ""
+msgstr "Webové stránky:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:177
+#, 
 msgid "What sectors are concerned"
-msgstr ""
+msgstr "Co se týče odvětví"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:19
+#, 
 msgid "Year: <span>${DYNAMIC_CONTENT}</span>"
-msgstr ""
+msgstr "Rok: <span> $ {dynamic_content} </ span>"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:218
+#, 
 msgid "inhabitants"
-msgstr ""
+msgstr "obyvatelé"
+

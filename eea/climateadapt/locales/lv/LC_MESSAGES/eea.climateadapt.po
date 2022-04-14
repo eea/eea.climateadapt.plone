@@ -13,438 +13,543 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:61
+#, 
 msgid "Adaptation Details"
-msgstr ""
+msgstr "Adaptācijas informācija"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:57
+#, 
 msgid "Adaptation Options Implemented In This Case"
-msgstr ""
+msgstr "Šajā gadījumā īstenotās adaptācijas iespējas"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:125
+#, 
 msgid "Adaptation strategy"
-msgstr ""
+msgstr "Pielāgošanās stratēģija"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:315
+#, 
 msgid "AdapteCCA"
-msgstr ""
+msgstr "Adaptecca"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:31
 #: ../../climateadapt/browser/pt/casestudy_view.pt:71
+#, 
 msgid "Additional Details"
-msgstr ""
+msgstr "Papildu informācija"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:158
+#, 
 msgid "Additional information on adaptation responses"
-msgstr ""
+msgstr "Papildu informācija par adaptācijas atbildēm"
 
 #: ../../climateadapt/browser/overrides.py:37
+#, 
 msgid "Agriculture"
-msgstr ""
+msgstr "Lauksaimniecība"
 
 #: ../../climateadapt/browser/overrides.py:39
+#, 
 msgid "Biodiversity"
-msgstr ""
+msgstr "Bioloģiskā daudzveidība"
 
 #: ../../climateadapt/browser/__init__.py:168
+#, 
 msgid "Biogeographical regions"
-msgstr ""
+msgstr "Biogeogrāfiskie reģioni"
 
 #: ../../climateadapt/browser/overrides.py:49
+#, 
 msgid "Buildings"
-msgstr ""
+msgstr "Ēkas"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:46
+#, 
 msgid "Case Study Description"
-msgstr ""
+msgstr "Gadījuma izpētes apraksts"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:241
+#, 
 msgid "Case Study Illustrations (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
-msgstr ""
+msgstr "Gadījumu izpēte ilustrācijas ($ {dinamic_content}) <i klase = \"FA-Picture-O\" Aria-Hidden = \"True\"> </ i>"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:194
+#, 
 msgid "Case studies related to this option:"
-msgstr ""
+msgstr "Gadījumu pētījumi, kas saistīti ar šo iespēju:"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:33
+#, 
 msgid "Category"
-msgstr ""
+msgstr "Kategorija"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:49
+#, 
 msgid "Challenges"
-msgstr ""
+msgstr "Izaicinājumi"
 
 #: ../../climateadapt/mayorsadapt/views.py:78
+#, 
 msgid "Check-out created"
-msgstr ""
+msgstr "Izrakstīšanās izveidots"
 
 #: ../../climateadapt/browser/__init__.py:208
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
+#, 
 msgid "City"
-msgstr ""
+msgstr "Pilsēta"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:111
+#, 
 msgid "Climate change impacts"
-msgstr ""
+msgstr "Klimata pārmaiņu ietekme"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:102
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:172
 #: ../../climateadapt/browser/pt/casestudy_view.pt:294
+#, 
 msgid "Climate impacts:"
-msgstr ""
+msgstr "Klimata ietekme:"
 
 #: ../../climateadapt/browser/overrides.py:40
+#, 
 msgid "Coastal areas"
-msgstr ""
+msgstr "Piekrastes zonas"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:103
+#, 
 msgid "Contact"
-msgstr ""
+msgstr "Sazināties"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:222
+#, 
 msgid "Contact person"
-msgstr ""
+msgstr "Kontaktpersona"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:42
 #: ../../climateadapt/browser/pt/casestudy_view.pt:82
+#, 
 msgid "Costs and Benefits"
-msgstr ""
+msgstr "Izmaksas un ieguvumi"
 
 #: ../../climateadapt/browser/__init__.py:174
+#, 
 msgid "Countries"
-msgstr ""
+msgstr "Valstis"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:131
+#, 
 msgid "Countries: ${DYNAMIC_CONTENT}"
-msgstr ""
+msgstr "Valstis: $ {dinamic_content}"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:245
+#, 
 msgid "Covenant of Mayors 2020 signatory"
-msgstr ""
+msgstr "Pilsētu mēru gals 2020 Parakstītājs"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:251
+#, 
 msgid "Covenant of Mayors 2030 signatory"
-msgstr ""
+msgstr "Pilsētu mēru pakta 2030 Parakstītājs"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:141
+#, 
 msgid "DRMKC"
-msgstr ""
+msgstr "Drampc"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:70
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:145
 #: ../../climateadapt/browser/pt/casestudy_view.pt:214
+#, 
 msgid "Date of creation:"
-msgstr ""
+msgstr "Izveides datums:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:240
+#, 
 msgid "Date of officially joining Mayors Adapt"
-msgstr ""
+msgstr "Oficiāli pievienošanās mēru datums pielāgoties"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:138
+#, 
 msgid "Date of strategy/plan approval"
-msgstr ""
+msgstr "Stratēģijas / plāna apstiprinājuma datums"
 
 #: ../../climateadapt/browser/overrides.py:42
+#, 
 msgid "Disaster Risk Reduction"
-msgstr ""
+msgstr "Katastrofu riska samazināšana"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:97
+#, 
 msgid "Duration:"
-msgstr ""
+msgstr "Ilgums:"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:107
+#, 
 msgid "Elements:"
-msgstr ""
+msgstr "Elementi:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:28
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:228
+#, 
 msgid "Email"
-msgstr ""
+msgstr "E-pasta adrese"
 
 #: ../../climateadapt/browser/overrides.py:47
+#, 
 msgid "Energy"
-msgstr ""
+msgstr "Enerģija"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:139
 #: ../../climateadapt/browser/pt/casestudy_view.pt:313
+#, 
 msgid "External source"
-msgstr ""
+msgstr "Ārējais avots"
 
 #: ../../climateadapt/browser/overrides.py:43
+#, 
 msgid "Financial"
-msgstr ""
+msgstr "Finansiāls"
 
 #: ../../climateadapt/browser/overrides.py:38
+#, 
 msgid "Forestry"
-msgstr ""
+msgstr "Mežsaimniecība"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:87
+#, 
 msgid "Funding Programme:"
-msgstr ""
+msgstr "Finansēšanas programma:"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:187
+#, 
 msgid "Geographic characterisation:"
-msgstr ""
+msgstr "Ģeogrāfiskā raksturojums:"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:117
 #: ../../climateadapt/browser/pt/casestudy_view.pt:308
+#, 
 msgid "Geographic characterization:"
-msgstr ""
+msgstr "Ģeogrāfiskā raksturojums:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:171
+#, 
 msgid "Good practice / spotlight item"
-msgstr ""
+msgstr "Laba prakse / Spotlight vienums"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:178
 #: ../../climateadapt/browser/pt/casestudy_view.pt:300
+#, 
 msgid "Governance level:"
-msgstr ""
+msgstr "Pārvaldības līmenis:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:128
+#, 
 msgid "Have you already developed an adaptation strategy?"
-msgstr ""
+msgstr "Vai esat jau izstrādājis adaptācijas stratēģiju?"
 
 #: ../../climateadapt/browser/overrides.py:44
+#, 
 msgid "Health"
-msgstr ""
+msgstr "Veselība"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:80
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:155
 #: ../../climateadapt/browser/pt/casestudy_view.pt:277
+#, 
 msgid "Health impact:"
-msgstr ""
+msgstr "Veselības ietekme:"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:34
+#, 
 msgid "IPCC categories"
-msgstr ""
+msgstr "IPCC kategorijas"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:48
 #: ../../climateadapt/browser/pt/casestudy_view.pt:90
+#, 
 msgid "Implementation Time"
-msgstr ""
+msgstr "Īstenošanas laiks"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:65
+#, 
 msgid "Importance and Relevance of Adaptation"
-msgstr ""
+msgstr "Adaptācijas nozīme un atbilstība"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:138
+#, 
 msgid "Item’s creation:"
-msgstr ""
+msgstr "Vienības izveide:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:203
+#, 
 msgid "Key vulnerable sectors"
-msgstr ""
+msgstr "Galvenās neaizsargātās nozares"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:92
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:162
 #: ../../climateadapt/browser/pt/casestudy_view.pt:284
+#, 
 msgid "Keywords:"
-msgstr ""
+msgstr "Atslēgvārdi:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:258
+#, 
 msgid "Last Update"
-msgstr ""
+msgstr "Pēdējā atjaunošana"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:45
 #: ../../climateadapt/browser/pt/casestudy_view.pt:86
+#, 
 msgid "Legal Aspects"
-msgstr ""
+msgstr "Juridiskie aspekti"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:51
 #: ../../climateadapt/browser/pt/casestudy_view.pt:94
+#, 
 msgid "Life Time"
-msgstr ""
+msgstr "Mūžs"
 
 #: ../../climateadapt/browser/__init__.py:160
+#, 
 msgid "Macro-Transnational region"
-msgstr ""
+msgstr "Makro-starptautiskais reģions"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:120
+#, 
 msgid "Main motivation for taking adaptation action"
-msgstr ""
+msgstr "Galvenā motivācija pielāgošanās darbības veikšanai"
 
 #: ../../climateadapt/browser/overrides.py:46
+#, 
 msgid "Marine and Fisheries"
-msgstr ""
+msgstr "Jūras un zivsaimniecība"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:212
+#, 
 msgid "Mayor"
-msgstr ""
+msgstr "Mērs"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:234
+#, 
 msgid "Mayors Adapt signatory"
-msgstr ""
+msgstr "Mēri pielāgojas parakstītājam"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:133
+#, 
 msgid "Name of the strategy/ plan (If adopted)"
-msgstr ""
+msgstr "Stratēģijas / plāna nosaukums (ja tas pieņemts)"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:53
+#, 
 msgid "Objectives"
-msgstr ""
+msgstr "Mērķi"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:165
+#, 
 msgid "Planned adaptation actions"
-msgstr ""
+msgstr "Plānotās adaptācijas darbības"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:205
+#, 
 msgid "Please contact us for any other enquiry on this Case Study or to share a new Case Study (email <a href=\"mailto: climate.adapt@eea.europa.eu\">climate.adapt@eea.europa.eu</a>)"
-msgstr ""
+msgstr "Lūdzu, sazinieties ar mums jebkurai citai izmeklēšanai par šo gadījumu izpēti vai dalīties ar jaunu gadījumu izpēti (E-pasts <a href=\"mailto: klimats.Adapt@eea.europa.eu\"> klimats.europa.eu\"> klimats.eadapt@eea.europa.eu </ a >)"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:217
+#, 
 msgid "Population"
-msgstr ""
+msgstr "Populācija"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:23
+#, 
 msgid "Portal Type"
-msgstr ""
+msgstr "Portāla veids"
 
 #: ../../climateadapt/browser/overrides.py:59
+#, 
 msgid "Professional thematic domain"
-msgstr ""
+msgstr "Profesionālā tematiskais domēns"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:47
+#, 
 msgid "Project information"
-msgstr ""
+msgstr "Projekta informācija"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:24
+#, 
 msgid "Published"
-msgstr ""
+msgstr "Publicēts"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:194
+#, 
 msgid "Reference"
-msgstr ""
+msgstr "Atskaite"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:100
+#, 
 msgid "Reference Information"
-msgstr ""
+msgstr "Atsauces informācija"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:54
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:55
+#, 
 msgid "Reference information"
-msgstr ""
+msgstr "Atsauces informācija"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:122
+#, 
 msgid "References:"
-msgstr ""
+msgstr "Atsauces:"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:144
+#, 
 msgid "Relevance"
-msgstr ""
+msgstr "Nozīme"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:112
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:167
 #: ../../climateadapt/browser/pt/casestudy_view.pt:289
+#, 
 msgid "Sectors:"
-msgstr ""
+msgstr "Nozares:"
 
 #: ../../climateadapt/browser/overrides.py:60
+#, 
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
-msgstr ""
+msgstr "Izvēlieties nozares, kurām vēlaties saņemt paziņojuma e-pastu, kad vienums ir mainīts."
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:15
+#, 
 msgid "Send token emails to City Mayors"
-msgstr ""
+msgstr "Nosūtīt marķiera e-pastus pilsētas mēriem"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:61
+#, 
 msgid "Solutions"
-msgstr ""
+msgstr "Risinājumi"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:58
 #: ../../climateadapt/browser/pt/casestudy_view.pt:111
+#, 
 msgid "Source"
-msgstr ""
+msgstr "Avots"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:74
+#, 
 msgid "Stakeholder Participation"
-msgstr ""
+msgstr "Dalība ar ieinteresētajām personām"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:36
+#, 
 msgid "Stakeholder participation"
-msgstr ""
+msgstr "Dalība ar ieinteresētajām personām"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:27
+#, 
 msgid "Status"
-msgstr ""
+msgstr "Statuss"
 
 #: ../../climateadapt/browser/__init__.py:182
+#, 
 msgid "Sub Nationals"
-msgstr ""
+msgstr "Apakšstilbi"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:49
+#, 
 msgid "Submit"
-msgstr ""
+msgstr "Iesniegt"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:39
 #: ../../climateadapt/browser/pt/casestudy_view.pt:78
+#, 
 msgid "Success and Limiting Factors"
-msgstr ""
+msgstr "Veiksmes un ierobežojošie faktori"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:153
+#, 
 msgid "Summary of the strategy/plan"
-msgstr ""
+msgstr "Stratēģijas / plāna kopsavilkums"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:72
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:147
 #: ../../climateadapt/browser/pt/casestudy_view.pt:216
+#, 
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
-msgstr ""
+msgstr "Datums attiecas uz brīdi, kurā prece ir sagatavota vai atjaunināta, veicinot ekspertus, kas jāiesniedz publicēšanai klimata pielāgojumam"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:25
+#, 
 msgid "Total"
-msgstr ""
+msgstr "Kopā"
 
 #: ../../climateadapt/browser/overrides.py:48
+#, 
 msgid "Transport"
-msgstr ""
+msgstr "Transports"
 
 #: ../../climateadapt/browser/overrides.py:45
+#, 
 msgid "Urban"
-msgstr ""
+msgstr "Pilsēta"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:18
+#, 
 msgid "View on DRMKC"
-msgstr ""
+msgstr "Skats uz DRMKC"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:16
+#, 
 msgid "Warning: this will reset/invalidate tokens on all selected cities"
-msgstr ""
+msgstr "Brīdinājums: tas atiestatīs / nederēs žetonus visās izvēlētajās pilsētās"
 
 #: ../../climateadapt/browser/overrides.py:50
+#, 
 msgid "Water management"
-msgstr ""
+msgstr "Ūdens apsaimniekošana"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:143
+#, 
 msgid "Weblink of the strategy/ plan"
-msgstr ""
+msgstr "Stratēģijas / plāns"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:148
+#, 
 msgid "Weblinks to relevant plans/ studies"
-msgstr ""
+msgstr "Weblinks uz attiecīgajiem plāniem / pētījumiem"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:230
+#, 
 msgid "Website"
-msgstr ""
+msgstr "Vietne"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:57
 #: ../../climateadapt/browser/pt/casestudy_view.pt:107
+#, 
 msgid "Websites"
-msgstr ""
+msgstr "Mājas lapas"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:55
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:117
+#, 
 msgid "Websites:"
-msgstr ""
+msgstr "Tīmekļa vietnes:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:177
+#, 
 msgid "What sectors are concerned"
-msgstr ""
+msgstr "Kādas nozares ir bažas"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:19
+#, 
 msgid "Year: <span>${DYNAMIC_CONTENT}</span>"
-msgstr ""
+msgstr "Gads: <span> $ {dinamic_content} </ span>"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:218
+#, 
 msgid "inhabitants"
-msgstr ""
+msgstr "iedzīvotāji"
+

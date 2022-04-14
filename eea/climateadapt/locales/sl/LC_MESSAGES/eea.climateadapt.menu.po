@@ -13,435 +13,546 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
 
 #: health_menu:33
+#, 
 msgid "2021 Lancet Countdown-EEA Briefing"
-msgstr ""
+msgstr "2021 Lancet Countdown-Eea Briefing"
 
 #: site_menu:12
+#, 
 msgid "ADAPTATION IN EU POLICY SECTORS"
-msgstr ""
+msgstr "Prilagoditev v sektorjih politike EU"
 
 #: site_menu:0 health_menu:0
+#, 
 msgid "About"
-msgstr ""
+msgstr "Približno"
 
 #: site_menu:1
+#, 
 msgid "About Climate-ADAPT"
-msgstr ""
+msgstr "O podnebnih spremembah"
 
 #: health_menu:1
+#, 
 msgid "About the Observatory"
-msgstr ""
+msgstr "O observatoriju"
 
 #: site_menu:61
+#, 
 msgid "Adaptation Support Tool"
-msgstr ""
+msgstr "Orodje za podporo prilagajanju"
 
 #: site_menu:50
+#, 
 msgid "Adaptation options"
-msgstr ""
+msgstr "Možnosti prilagajanja"
 
 #: site_menu:33
+#, 
 msgid "Adriatic-Ionian"
-msgstr ""
+msgstr "Jadran-Ionian."
 
 #: site_menu:13
+#, 
 msgid "Agriculture"
-msgstr ""
+msgstr "Kmetijstvo"
 
 #: health_menu:15
+#, 
 msgid "Air pollution"
-msgstr ""
+msgstr "Onesnaževanje zraka"
 
 #: site_menu:34
+#, 
 msgid "Alpine Space"
-msgstr ""
+msgstr "Alpski prostor"
 
 #: health_menu:34
+#, 
 msgid "Annual reports"
-msgstr ""
+msgstr "Letna poročila"
 
 #: site_menu:35
+#, 
 msgid "Atlantic Area"
-msgstr ""
+msgstr "Atlantski prostor"
 
 #: site_menu:36
+#, 
 msgid "Balkan-Mediterranean"
-msgstr ""
+msgstr "Balkan-Sredozemlje"
 
 #: site_menu:37
+#, 
 msgid "Baltic Sea"
-msgstr ""
+msgstr "Baltsko morje"
 
 #: site_menu:14
+#, 
 msgid "Biodiversity"
-msgstr ""
+msgstr "Biotska raznovrstnost"
 
 #: site_menu:15
+#, 
 msgid "Buildings"
-msgstr ""
+msgstr "Stavbe"
 
 #: health_menu:23
+#, 
 msgid "C3S European health service (under development)"
-msgstr ""
+msgstr "C3S evropska zdravstvena služba (v razvoju)"
 
 #: health_menu:35
+#, 
 msgid "Capacity building"
-msgstr ""
+msgstr "Krepitev zmogljivosti"
 
 #: site_menu:67
+#, 
 msgid "Case studies"
-msgstr ""
+msgstr "Študije primerov"
 
 #: site_menu:66
+#, 
 msgid "Case study explorer"
-msgstr ""
+msgstr "Explorer Študija primera"
 
 #: site_menu:38
+#, 
 msgid "Central Europe"
-msgstr ""
+msgstr "Srednja Evropa"
 
 #: site_menu:31
+#, 
 msgid "Cities and towns"
-msgstr ""
+msgstr "Mesta in mesta"
 
 #: site_menu:55
+#, 
 msgid "Climate  Services"
-msgstr ""
+msgstr "Podnebne storitve"
 
 #: site_menu:70
+#, 
 msgid "Climate-ADAPT use cases"
-msgstr ""
+msgstr "Primeri uporabe podnebja"
 
 #: site_menu:16
+#, 
 msgid "Coastal areas"
-msgstr ""
+msgstr "Obalna območja"
 
 #: site_menu:29
+#, 
 msgid "Countries, Transnational regions, Cities"
-msgstr ""
+msgstr "Države, transnacionalne regije, mesta"
 
 #: site_menu:30 health_menu:8
+#, 
 msgid "Country Profiles"
-msgstr ""
+msgstr "Profili države"
 
 #: site_menu:54
+#, 
 msgid "DATA AND INDICATORS"
-msgstr ""
+msgstr "Podatki in indikatorji"
 
 #: site_menu:39
+#, 
 msgid "Danube"
-msgstr ""
+msgstr "Donava"
 
 #: site_menu:17
+#, 
 msgid "Disaster risk reduction"
-msgstr ""
+msgstr "Zmanjšanje tveganja nesreč"
 
 #: health_menu:22
+#, 
 msgid "ECDC Vibrio map viewer"
-msgstr ""
+msgstr "ECDC Vibrio Vibrio Map Vibracija"
 
 #: site_menu:6
+#, 
 msgid "EU ADAPTATION POLICY"
-msgstr ""
+msgstr "Politika prilagajanja EU"
 
 #: site_menu:7
+#, 
 msgid "EU Adaptation Strategy"
-msgstr ""
+msgstr "Strategija prilagajanja EU."
 
 #: site_menu:10
+#, 
 msgid "EU Covenant of Mayors"
-msgstr ""
+msgstr "Konvencija EU županov"
 
 #: site_menu:8
+#, 
 msgid "EU Mission on Adaptation"
-msgstr ""
+msgstr "Poslanstvo EU o prilagajanju"
 
 #: site_menu:27
+#, 
 msgid "EU REGIONAL POLICY"
-msgstr ""
+msgstr "Regionalna politika EU"
 
 #: site_menu:9
+#, 
 msgid "EU Reporting on Adaptation"
-msgstr ""
+msgstr "Poročanje EU o prilagajanju"
 
 #: health_menu:5
+#, 
 msgid "EU adaptation policy"
-msgstr ""
+msgstr "Politika prilagajanja EU"
 
 #: site_menu:11
+#, 
 msgid "EU funding of adaptation"
-msgstr ""
+msgstr "Financiranje prilagajanja EU"
 
 #: health_menu:6
+#, 
 msgid "EU health policy"
-msgstr ""
+msgstr "Zdravstvena politika EU"
 
 #: site_menu:5
+#, 
 msgid "EU policy"
-msgstr ""
+msgstr "Politika EU"
 
 #: site_menu:58
+#, 
 msgid "EUROPEAN CLIMATE DATA EXPLORER"
-msgstr ""
+msgstr "Evropski raziskovalec podnebnih podatkov"
 
 #: site_menu:72
+#, 
 msgid "EUROPEAN Climate and Health Observatory"
-msgstr ""
+msgstr "Evropski observatorski za podnebje in zdravstvo"
 
 #: site_menu:64
+#, 
 msgid "Economic tools"
-msgstr ""
+msgstr "Gospodarska orodja"
 
 #: site_menu:18
+#, 
 msgid "Ecosystem-based approaches"
-msgstr ""
+msgstr "Pristopi, ki temeljijo na ekosistemu"
 
 #: site_menu:19
+#, 
 msgid "Energy"
-msgstr ""
+msgstr "Energija"
 
 #: site_menu:53
+#, 
 msgid "Europe's vulnerability to climate change impacts occurring outside Europe"
-msgstr ""
+msgstr "Ranljivost Evrope za vplive na podnebne spremembe, ki se pojavljajo zunaj Evrope"
 
 #: health_menu:21
+#, 
 msgid "European Climate Data Explorer"
-msgstr ""
+msgstr "Evropski raziskovalec podnebnih podatkov"
 
 #: health_menu:4
+#, 
 msgid "European Policy Framework"
-msgstr ""
+msgstr "Okvir evropske politike"
 
 #: health_menu:25
+#, 
 msgid "European early warning systems"
-msgstr ""
+msgstr "Evropski sistemi zgodnjega opozarjanja"
 
 #: health_menu:10
+#, 
 msgid "Evidence on climate and health"
-msgstr ""
+msgstr "Dokazi o podnebju in zdravju"
 
 #: site_menu:79
+#, 
 msgid "FAQ for providers"
-msgstr ""
+msgstr "FAQ za ponudnike"
 
 #: site_menu:78
+#, 
 msgid "FAQ for users"
-msgstr ""
+msgstr "FAQ za uporabnike"
 
 #: site_menu:20
+#, 
 msgid "Financial"
-msgstr ""
+msgstr "Financial."
 
 #: health_menu:17
+#, 
 msgid "Flooding"
-msgstr ""
+msgstr "Poplave"
 
 #: site_menu:21
+#, 
 msgid "Forestry"
-msgstr ""
+msgstr "Gozdarstvo"
 
 #: site_menu:77
+#, 
 msgid "Glossary"
-msgstr ""
+msgstr "Glosar"
 
 #: site_menu:80
+#, 
 msgid "Guidance to search function"
-msgstr ""
+msgstr "Navodila za iskanje funkcije"
 
 #: site_menu:22
+#, 
 msgid "Health"
-msgstr ""
+msgstr "Zdravje."
 
 #: health_menu:11
+#, 
 msgid "Health effects"
-msgstr ""
+msgstr "Zdravstveni učinki"
 
 #: health_menu:24
+#, 
 msgid "Health warning systems"
-msgstr ""
+msgstr "Sistemi za zdravje"
 
 #: health_menu:12
+#, 
 msgid "Heat and health"
-msgstr ""
+msgstr "Toplote in zdravje"
 
 #: site_menu:76
+#, 
 msgid "Help"
-msgstr ""
+msgstr "Pomoč"
 
 #: site_menu:69
+#, 
 msgid "INTERREG projects"
-msgstr ""
+msgstr "Projekti Interreg."
 
 #: site_menu:49
+#, 
 msgid "Impacts, risks and vulnerabilities"
-msgstr ""
+msgstr "Vplivi, tveganja in ranljivosti"
 
 #: health_menu:18
+#, 
 msgid "Indicators"
-msgstr ""
+msgstr "Indikatorji"
 
 #: site_menu:56
+#, 
 msgid "Indicators in Climate-ADAPT"
-msgstr ""
+msgstr "Kazalniki pri prilagajanju podnebja"
 
 #: site_menu:47
+#, 
 msgid "Knowledge"
-msgstr ""
+msgstr "Znanje"
 
 #: site_menu:68
+#, 
 msgid "LIFE projects"
-msgstr ""
+msgstr "Projekt LIFE."
 
 #: site_menu:23
+#, 
 msgid "Marine and fisheries"
-msgstr ""
+msgstr "Marine in ribištvo"
 
 #: site_menu:40
+#, 
 msgid "Mediterranean"
-msgstr ""
+msgstr "Sredozemlje"
 
 #: site_menu:52
+#, 
 msgid "Monitoring, Reporting and Evaluation"
-msgstr ""
+msgstr "Spremljanje, poročanje in vrednotenje"
 
 #: health_menu:26
+#, 
 msgid "National heat-health warning systems and action plans"
-msgstr ""
+msgstr "Nacionalni sistemi za opozarjanje na toplotno zdravje in akcijski načrti"
 
 #: site_menu:74
+#, 
 msgid "Networks"
-msgstr ""
+msgstr "Omrežja"
 
 #: site_menu:41
+#, 
 msgid "North Sea"
-msgstr ""
+msgstr "severno morje"
 
 #: site_menu:42
+#, 
 msgid "North West Europe"
-msgstr ""
+msgstr "North West Europe"
 
 #: site_menu:43
+#, 
 msgid "Northern Periphery and Arctic"
-msgstr ""
+msgstr "Severna periferija in Arktika"
 
 #: health_menu:32
+#, 
 msgid "Observatory publications"
-msgstr ""
+msgstr "Observatorijske publikacije"
 
 #: site_menu:45
+#, 
 msgid "Other regions"
-msgstr ""
+msgstr "Druge regije"
 
 #: site_menu:2
+#, 
 msgid "Outreach"
-msgstr ""
+msgstr "Outreach."
 
 #: site_menu:65
+#, 
 msgid "PRACTICE"
-msgstr ""
+msgstr "Praksa"
 
 #: health_menu:3
+#, 
 msgid "Policy context"
-msgstr ""
+msgstr "Kontekst politike"
 
 #: health_menu:19
+#, 
 msgid "Projections and tools"
-msgstr ""
+msgstr "Projekcije in orodja"
 
 #: health_menu:31
+#, 
 msgid "Publications and outreach"
-msgstr ""
+msgstr "Publikacije in ozaveščanje"
 
 #: site_menu:57
+#, 
 msgid "RESEARCH AND INNOVATION PROJECTS"
-msgstr ""
+msgstr "Projekti raziskav in inovacij"
 
 #: health_menu:28
+#, 
 msgid "Resource catalogue"
-msgstr ""
+msgstr "Katalog virov"
 
 #: health_menu:29
+#, 
 msgid "Search for Resources"
-msgstr ""
+msgstr "Iskanje virov"
 
 #: site_menu:71
+#, 
 msgid "Search the database"
-msgstr ""
+msgstr "Poiščite bazo podatkov"
 
 #: site_menu:83
+#, 
 msgid "Share your information"
-msgstr ""
+msgstr "Delite svoje informacije"
 
 #: site_menu:3
+#, 
 msgid "Site map"
-msgstr ""
+msgstr "Zemljevid strani"
 
 #: site_menu:44
+#, 
 msgid "South West Europe"
-msgstr ""
+msgstr "Jugozahodna Evropa"
 
 #: site_menu:60
+#, 
 msgid "TOOLS"
-msgstr ""
+msgstr "Orodja"
 
 #: site_menu:48
+#, 
 msgid "TOPICS"
-msgstr ""
+msgstr "Teme"
 
 #: site_menu:32
+#, 
 msgid "Transnational regions"
-msgstr ""
+msgstr "Transnacionalne regije"
 
 #: site_menu:24
+#, 
 msgid "Transport"
-msgstr ""
+msgstr "Transport."
 
 #: site_menu:81
+#, 
 msgid "Tutorial Videos"
-msgstr ""
+msgstr "Vaje Videos."
 
 #: site_menu:51
+#, 
 msgid "Uncertainty guidance"
-msgstr ""
+msgstr "Usmerjanje negotovosti"
 
 #: site_menu:25
+#, 
 msgid "Urban"
-msgstr ""
+msgstr "Urban."
 
 #: site_menu:63
+#, 
 msgid "Urban Adaptation Map Viewer"
-msgstr ""
+msgstr "Gledalnik zemljevida mestnega prilagajanja"
 
 #: health_menu:20
+#, 
 msgid "Urban Adaptation Map Viewer (health focus)"
-msgstr ""
+msgstr "Gledalec zemljevida mestnega prilagajanja (Zdravstveni fokus)"
 
 #: site_menu:62
+#, 
 msgid "Urban Adaptation Support Tool"
-msgstr ""
+msgstr "Orodje za podporo prilagajanju mest"
 
 #: health_menu:13
+#, 
 msgid "Vector-borne diseases"
-msgstr ""
+msgstr "Bolezni, ki se prenašajo vektor"
 
 #: health_menu:14
+#, 
 msgid "Water and food-borne diseases"
-msgstr ""
+msgstr "Bolezni, ki se prenašajo z vodo in hrano"
 
 #: site_menu:26
+#, 
 msgid "Water management"
-msgstr ""
+msgstr "Upravljanje voda"
 
 #: site_menu:82 health_menu:36
+#, 
 msgid "Webinars"
-msgstr ""
+msgstr "Webinars."
 
 #: health_menu:16
+#, 
 msgid "Wildfire"
-msgstr ""
+msgstr "Wildfire."
 
 #: health_menu:7
+#, 
 msgid "Working Group on Health in Climate Change (WHO|Europe)"
-msgstr ""
+msgstr "Delovna skupina za zdravje pri podnebnih spremembah (WHO | Europe)"
+

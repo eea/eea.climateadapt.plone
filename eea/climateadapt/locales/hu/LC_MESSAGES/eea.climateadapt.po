@@ -13,438 +13,543 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:61
+#, 
 msgid "Adaptation Details"
-msgstr ""
+msgstr "Adaptációs adatok"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:57
+#, 
 msgid "Adaptation Options Implemented In This Case"
-msgstr ""
+msgstr "Ebben az esetben végrehajtott adaptációs opciók"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:125
+#, 
 msgid "Adaptation strategy"
-msgstr ""
+msgstr "Adaptációs stratégia"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:315
+#, 
 msgid "AdapteCCA"
-msgstr ""
+msgstr "Adaptecca"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:31
 #: ../../climateadapt/browser/pt/casestudy_view.pt:71
+#, 
 msgid "Additional Details"
-msgstr ""
+msgstr "További részletek"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:158
+#, 
 msgid "Additional information on adaptation responses"
-msgstr ""
+msgstr "További információk az alkalmazkodási válaszokról"
 
 #: ../../climateadapt/browser/overrides.py:37
+#, 
 msgid "Agriculture"
-msgstr ""
+msgstr "Mezőgazdaság"
 
 #: ../../climateadapt/browser/overrides.py:39
+#, 
 msgid "Biodiversity"
-msgstr ""
+msgstr "Biológiai sokféleség"
 
 #: ../../climateadapt/browser/__init__.py:168
+#, 
 msgid "Biogeographical regions"
-msgstr ""
+msgstr "Biogeográfiai régiók"
 
 #: ../../climateadapt/browser/overrides.py:49
+#, 
 msgid "Buildings"
-msgstr ""
+msgstr "Épületek"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:46
+#, 
 msgid "Case Study Description"
-msgstr ""
+msgstr "Esettanulmány leírása"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:241
+#, 
 msgid "Case Study Illustrations (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
-msgstr ""
+msgstr "Esettanulmányi illusztrációk ($ {dyndic_content}) <i class = \"fa fa-picture-o\" aria-rejtett = \"igaz\"> </ i>"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:194
+#, 
 msgid "Case studies related to this option:"
-msgstr ""
+msgstr "Az ehhez az opcióhoz kapcsolódó esettanulmányok:"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:33
+#, 
 msgid "Category"
-msgstr ""
+msgstr "Kategória"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:49
+#, 
 msgid "Challenges"
-msgstr ""
+msgstr "Kihívások"
 
 #: ../../climateadapt/mayorsadapt/views.py:78
+#, 
 msgid "Check-out created"
-msgstr ""
+msgstr "Kijelentkezés"
 
 #: ../../climateadapt/browser/__init__.py:208
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
+#, 
 msgid "City"
-msgstr ""
+msgstr "Város"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:111
+#, 
 msgid "Climate change impacts"
-msgstr ""
+msgstr "Az éghajlatváltozás hatásai"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:102
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:172
 #: ../../climateadapt/browser/pt/casestudy_view.pt:294
+#, 
 msgid "Climate impacts:"
-msgstr ""
+msgstr "Éghajlati hatások:"
 
 #: ../../climateadapt/browser/overrides.py:40
+#, 
 msgid "Coastal areas"
-msgstr ""
+msgstr "Parti szakaszok"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:103
+#, 
 msgid "Contact"
-msgstr ""
+msgstr "Kapcsolatba lépni"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:222
+#, 
 msgid "Contact person"
-msgstr ""
+msgstr "Kapcsolattartó"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:42
 #: ../../climateadapt/browser/pt/casestudy_view.pt:82
+#, 
 msgid "Costs and Benefits"
-msgstr ""
+msgstr "Költségek és előnyök"
 
 #: ../../climateadapt/browser/__init__.py:174
+#, 
 msgid "Countries"
-msgstr ""
+msgstr "Országok"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:131
+#, 
 msgid "Countries: ${DYNAMIC_CONTENT}"
-msgstr ""
+msgstr "Országok: $ {dynamic_content}"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:245
+#, 
 msgid "Covenant of Mayors 2020 signatory"
-msgstr ""
+msgstr "A polgármesterek szövetsége 2020 aláíró"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:251
+#, 
 msgid "Covenant of Mayors 2030 signatory"
-msgstr ""
+msgstr "A polgármesterek szövetsége 2030 aláíró"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:141
+#, 
 msgid "DRMKC"
-msgstr ""
+msgstr "DRMKC"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:70
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:145
 #: ../../climateadapt/browser/pt/casestudy_view.pt:214
+#, 
 msgid "Date of creation:"
-msgstr ""
+msgstr "A létrehozás dátuma:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:240
+#, 
 msgid "Date of officially joining Mayors Adapt"
-msgstr ""
+msgstr "A polgármesterek hivatalosan csatlakozásának időpontja"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:138
+#, 
 msgid "Date of strategy/plan approval"
-msgstr ""
+msgstr "A stratégia / terv jóváhagyásának időpontja"
 
 #: ../../climateadapt/browser/overrides.py:42
+#, 
 msgid "Disaster Risk Reduction"
-msgstr ""
+msgstr "Katasztrófakockázat csökkentése"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:97
+#, 
 msgid "Duration:"
-msgstr ""
+msgstr "Időtartam:"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:107
+#, 
 msgid "Elements:"
-msgstr ""
+msgstr "Elemek:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:28
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:228
+#, 
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: ../../climateadapt/browser/overrides.py:47
+#, 
 msgid "Energy"
-msgstr ""
+msgstr "Energia"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:139
 #: ../../climateadapt/browser/pt/casestudy_view.pt:313
+#, 
 msgid "External source"
-msgstr ""
+msgstr "Külső forrás"
 
 #: ../../climateadapt/browser/overrides.py:43
+#, 
 msgid "Financial"
-msgstr ""
+msgstr "Pénzügyi"
 
 #: ../../climateadapt/browser/overrides.py:38
+#, 
 msgid "Forestry"
-msgstr ""
+msgstr "Erdészet"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:87
+#, 
 msgid "Funding Programme:"
-msgstr ""
+msgstr "Finanszírozási program:"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:187
+#, 
 msgid "Geographic characterisation:"
-msgstr ""
+msgstr "Földrajzi jellemzés:"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:117
 #: ../../climateadapt/browser/pt/casestudy_view.pt:308
+#, 
 msgid "Geographic characterization:"
-msgstr ""
+msgstr "Földrajzi jellemzés:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:171
+#, 
 msgid "Good practice / spotlight item"
-msgstr ""
+msgstr "Jó gyakorlat / reflektorfény"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:178
 #: ../../climateadapt/browser/pt/casestudy_view.pt:300
+#, 
 msgid "Governance level:"
-msgstr ""
+msgstr "Irányítási szint:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:128
+#, 
 msgid "Have you already developed an adaptation strategy?"
-msgstr ""
+msgstr "Már kifejlesztett egy adaptációs stratégiát?"
 
 #: ../../climateadapt/browser/overrides.py:44
+#, 
 msgid "Health"
-msgstr ""
+msgstr "Egészség"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:80
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:155
 #: ../../climateadapt/browser/pt/casestudy_view.pt:277
+#, 
 msgid "Health impact:"
-msgstr ""
+msgstr "Egészségügyi hatás:"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:34
+#, 
 msgid "IPCC categories"
-msgstr ""
+msgstr "IPCC kategóriák"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:48
 #: ../../climateadapt/browser/pt/casestudy_view.pt:90
+#, 
 msgid "Implementation Time"
-msgstr ""
+msgstr "Végrehajtási idő"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:65
+#, 
 msgid "Importance and Relevance of Adaptation"
-msgstr ""
+msgstr "Az alkalmazkodás fontossága és relevanciája"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:138
+#, 
 msgid "Item’s creation:"
-msgstr ""
+msgstr "Az elem létrehozása:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:203
+#, 
 msgid "Key vulnerable sectors"
-msgstr ""
+msgstr "Kulcsfontosságú sebezhető ágazatok"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:92
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:162
 #: ../../climateadapt/browser/pt/casestudy_view.pt:284
+#, 
 msgid "Keywords:"
-msgstr ""
+msgstr "Kulcsszavak:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:258
+#, 
 msgid "Last Update"
-msgstr ""
+msgstr "Utolsó frissítés"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:45
 #: ../../climateadapt/browser/pt/casestudy_view.pt:86
+#, 
 msgid "Legal Aspects"
-msgstr ""
+msgstr "Jogi szempontok"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:51
 #: ../../climateadapt/browser/pt/casestudy_view.pt:94
+#, 
 msgid "Life Time"
-msgstr ""
+msgstr "Élettartam"
 
 #: ../../climateadapt/browser/__init__.py:160
+#, 
 msgid "Macro-Transnational region"
-msgstr ""
+msgstr "Makró-transznacionális régió"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:120
+#, 
 msgid "Main motivation for taking adaptation action"
-msgstr ""
+msgstr "Az alkalmazkodási akció fő motivációja"
 
 #: ../../climateadapt/browser/overrides.py:46
+#, 
 msgid "Marine and Fisheries"
-msgstr ""
+msgstr "Tengeri és halászat"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:212
+#, 
 msgid "Mayor"
-msgstr ""
+msgstr "Polgármester"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:234
+#, 
 msgid "Mayors Adapt signatory"
-msgstr ""
+msgstr "A polgármesterek aláírják az aláírást"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:133
+#, 
 msgid "Name of the strategy/ plan (If adopted)"
-msgstr ""
+msgstr "A stratégia / terv neve (ha elfogadják)"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:53
+#, 
 msgid "Objectives"
-msgstr ""
+msgstr "Célkitűzések"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:165
+#, 
 msgid "Planned adaptation actions"
-msgstr ""
+msgstr "Tervezett adaptációs intézkedések"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:205
+#, 
 msgid "Please contact us for any other enquiry on this Case Study or to share a new Case Study (email <a href=\"mailto: climate.adapt@eea.europa.eu\">climate.adapt@eea.europa.eu</a>)"
-msgstr ""
+msgstr "Kérjük, vegye fel velünk a kapcsolatot bármely más vizsgálathoz ebben az esettanulmányon, vagy megosztani egy új esettanulmányt (e-mail <a href=\"mailto: Climate.adapt@eea.europa.eu\"> Climat.adapt@eea.europa.eu </ a >)"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:217
+#, 
 msgid "Population"
-msgstr ""
+msgstr "Népesség"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:23
+#, 
 msgid "Portal Type"
-msgstr ""
+msgstr "Portál típus"
 
 #: ../../climateadapt/browser/overrides.py:59
+#, 
 msgid "Professional thematic domain"
-msgstr ""
+msgstr "Professzionális tematikus tartomány"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:47
+#, 
 msgid "Project information"
-msgstr ""
+msgstr "Projektinformációk"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:24
+#, 
 msgid "Published"
-msgstr ""
+msgstr "Közzétett"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:194
+#, 
 msgid "Reference"
-msgstr ""
+msgstr "Referencia"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:100
+#, 
 msgid "Reference Information"
-msgstr ""
+msgstr "Referenciaadatok"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:54
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:55
+#, 
 msgid "Reference information"
-msgstr ""
+msgstr "Referenciaadatok"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:122
+#, 
 msgid "References:"
-msgstr ""
+msgstr "Referenciák:"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:144
+#, 
 msgid "Relevance"
-msgstr ""
+msgstr "Relevancia"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:112
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:167
 #: ../../climateadapt/browser/pt/casestudy_view.pt:289
+#, 
 msgid "Sectors:"
-msgstr ""
+msgstr "Ágazatok:"
 
 #: ../../climateadapt/browser/overrides.py:60
+#, 
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
-msgstr ""
+msgstr "Válassza ki azt az ágazatokat, amelyekre egy értesítési e-mailt szeretne kapni, amikor egy elem módosul."
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:15
+#, 
 msgid "Send token emails to City Mayors"
-msgstr ""
+msgstr "Küldjön token e-maileket a városi polgármestereknek"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:61
+#, 
 msgid "Solutions"
-msgstr ""
+msgstr "Megoldások"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:58
 #: ../../climateadapt/browser/pt/casestudy_view.pt:111
+#, 
 msgid "Source"
-msgstr ""
+msgstr "Forrás"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:74
+#, 
 msgid "Stakeholder Participation"
-msgstr ""
+msgstr "Az érdekeltek részvétele"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:36
+#, 
 msgid "Stakeholder participation"
-msgstr ""
+msgstr "Az érdekeltek részvétele"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:27
+#, 
 msgid "Status"
-msgstr ""
+msgstr "Állapot"
 
 #: ../../climateadapt/browser/__init__.py:182
+#, 
 msgid "Sub Nationals"
-msgstr ""
+msgstr "Alkalmazások"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:49
+#, 
 msgid "Submit"
-msgstr ""
+msgstr "Beküldés"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:39
 #: ../../climateadapt/browser/pt/casestudy_view.pt:78
+#, 
 msgid "Success and Limiting Factors"
-msgstr ""
+msgstr "Siker és korlátozó tényezők"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:153
+#, 
 msgid "Summary of the strategy/plan"
-msgstr ""
+msgstr "A stratégia / terv összefoglalása"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:72
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:147
 #: ../../climateadapt/browser/pt/casestudy_view.pt:216
+#, 
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
-msgstr ""
+msgstr "A dátum azon a pillanatban hivatkozik, amikor az elemet az éghajlati alkalmazkodásban való közzétételre benyújtandó szakértők előkészítésével vagy frissítésével"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:25
+#, 
 msgid "Total"
-msgstr ""
+msgstr "Teljes"
 
 #: ../../climateadapt/browser/overrides.py:48
+#, 
 msgid "Transport"
-msgstr ""
+msgstr "Szállítás"
 
 #: ../../climateadapt/browser/overrides.py:45
+#, 
 msgid "Urban"
-msgstr ""
+msgstr "Városi"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:18
+#, 
 msgid "View on DRMKC"
-msgstr ""
+msgstr "Nézd meg a DRMKC-n"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:16
+#, 
 msgid "Warning: this will reset/invalidate tokens on all selected cities"
-msgstr ""
+msgstr "Figyelmeztetés: Ez visszaállítja / érvényteleníti a tokeneket az összes kiválasztott városon"
 
 #: ../../climateadapt/browser/overrides.py:50
+#, 
 msgid "Water management"
-msgstr ""
+msgstr "Vízgazdálkodás"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:143
+#, 
 msgid "Weblink of the strategy/ plan"
-msgstr ""
+msgstr "A stratégia / terv Weblink"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:148
+#, 
 msgid "Weblinks to relevant plans/ studies"
-msgstr ""
+msgstr "Releváns tervek / tanulmányok"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:230
+#, 
 msgid "Website"
-msgstr ""
+msgstr "Weboldal"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:57
 #: ../../climateadapt/browser/pt/casestudy_view.pt:107
+#, 
 msgid "Websites"
-msgstr ""
+msgstr "Weboldalak"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:55
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:117
+#, 
 msgid "Websites:"
-msgstr ""
+msgstr "Weboldalak:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:177
+#, 
 msgid "What sectors are concerned"
-msgstr ""
+msgstr "Milyen ágazatokra vonatkoznak"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:19
+#, 
 msgid "Year: <span>${DYNAMIC_CONTENT}</span>"
-msgstr ""
+msgstr "Év: <span> $ {Dynamic_Content} </ span>"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:218
+#, 
 msgid "inhabitants"
-msgstr ""
+msgstr "lakosok"
+

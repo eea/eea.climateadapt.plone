@@ -13,438 +13,543 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:61
+#, 
 msgid "Adaptation Details"
-msgstr ""
+msgstr "Detalji prilagodbe"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:57
+#, 
 msgid "Adaptation Options Implemented In This Case"
-msgstr ""
+msgstr "Opcije prilagodbe provedene u ovom slučaju"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:125
+#, 
 msgid "Adaptation strategy"
-msgstr ""
+msgstr "Strategija prilagodbe"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:315
+#, 
 msgid "AdapteCCA"
-msgstr ""
+msgstr "Adaptacca"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:31
 #: ../../climateadapt/browser/pt/casestudy_view.pt:71
+#, 
 msgid "Additional Details"
-msgstr ""
+msgstr "dodatni detalji"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:158
+#, 
 msgid "Additional information on adaptation responses"
-msgstr ""
+msgstr "Dodatne informacije o odgovorima prilagodbe"
 
 #: ../../climateadapt/browser/overrides.py:37
+#, 
 msgid "Agriculture"
-msgstr ""
+msgstr "Poljoprivreda"
 
 #: ../../climateadapt/browser/overrides.py:39
+#, 
 msgid "Biodiversity"
-msgstr ""
+msgstr "Bioraznolikost"
 
 #: ../../climateadapt/browser/__init__.py:168
+#, 
 msgid "Biogeographical regions"
-msgstr ""
+msgstr "Biogeografske regije"
 
 #: ../../climateadapt/browser/overrides.py:49
+#, 
 msgid "Buildings"
-msgstr ""
+msgstr "Građevine"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:46
+#, 
 msgid "Case Study Description"
-msgstr ""
+msgstr "Opis studije slučaja"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:241
+#, 
 msgid "Case Study Illustrations (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
-msgstr ""
+msgstr "Studija slučaja Ilustracije ($ {Dynamic_Conntent}) <I Class = \"Fa Fa-Picture-o\" Aria-skrivena = \"True\"> </ i>"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:194
+#, 
 msgid "Case studies related to this option:"
-msgstr ""
+msgstr "Studije slučaja vezane uz ovu opciju:"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:33
+#, 
 msgid "Category"
-msgstr ""
+msgstr "Kategorija"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:49
+#, 
 msgid "Challenges"
-msgstr ""
+msgstr "Izazovi"
 
 #: ../../climateadapt/mayorsadapt/views.py:78
+#, 
 msgid "Check-out created"
-msgstr ""
+msgstr "Check-out stvoren"
 
 #: ../../climateadapt/browser/__init__.py:208
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
+#, 
 msgid "City"
-msgstr ""
+msgstr "Grad"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:111
+#, 
 msgid "Climate change impacts"
-msgstr ""
+msgstr "Utjecaji klimatskih promjena"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:102
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:172
 #: ../../climateadapt/browser/pt/casestudy_view.pt:294
+#, 
 msgid "Climate impacts:"
-msgstr ""
+msgstr "Utjecaji klime:"
 
 #: ../../climateadapt/browser/overrides.py:40
+#, 
 msgid "Coastal areas"
-msgstr ""
+msgstr "Obalna područja"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:103
+#, 
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:222
+#, 
 msgid "Contact person"
-msgstr ""
+msgstr "Osoba za kontakt"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:42
 #: ../../climateadapt/browser/pt/casestudy_view.pt:82
+#, 
 msgid "Costs and Benefits"
-msgstr ""
+msgstr "Troškovi i koristi"
 
 #: ../../climateadapt/browser/__init__.py:174
+#, 
 msgid "Countries"
-msgstr ""
+msgstr "Zemlje"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:131
+#, 
 msgid "Countries: ${DYNAMIC_CONTENT}"
-msgstr ""
+msgstr "Zemlje: $ {Dynamic_content}"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:245
+#, 
 msgid "Covenant of Mayors 2020 signatory"
-msgstr ""
+msgstr "Savez gradonačelnika 2020 potpisnik"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:251
+#, 
 msgid "Covenant of Mayors 2030 signatory"
-msgstr ""
+msgstr "Savez gradonačelnika 2030 potpisnik"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:141
+#, 
 msgid "DRMKC"
-msgstr ""
+msgstr "Drmkc"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:70
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:145
 #: ../../climateadapt/browser/pt/casestudy_view.pt:214
+#, 
 msgid "Date of creation:"
-msgstr ""
+msgstr "Datum stvaranja:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:240
+#, 
 msgid "Date of officially joining Mayors Adapt"
-msgstr ""
+msgstr "Datum službenog pridruživanja gradonačelnika se prilagođava"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:138
+#, 
 msgid "Date of strategy/plan approval"
-msgstr ""
+msgstr "Datum odobrenja strategije / plana"
 
 #: ../../climateadapt/browser/overrides.py:42
+#, 
 msgid "Disaster Risk Reduction"
-msgstr ""
+msgstr "Smanjenje rizika od katastrofa"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:97
+#, 
 msgid "Duration:"
-msgstr ""
+msgstr "Trajanje:"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:107
+#, 
 msgid "Elements:"
-msgstr ""
+msgstr "Elementi:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:28
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:228
+#, 
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: ../../climateadapt/browser/overrides.py:47
+#, 
 msgid "Energy"
-msgstr ""
+msgstr "Energija"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:139
 #: ../../climateadapt/browser/pt/casestudy_view.pt:313
+#, 
 msgid "External source"
-msgstr ""
+msgstr "Vanjski izvor"
 
 #: ../../climateadapt/browser/overrides.py:43
+#, 
 msgid "Financial"
-msgstr ""
+msgstr "Financijski"
 
 #: ../../climateadapt/browser/overrides.py:38
+#, 
 msgid "Forestry"
-msgstr ""
+msgstr "Šumarstvo"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:87
+#, 
 msgid "Funding Programme:"
-msgstr ""
+msgstr "Program financiranja:"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:187
+#, 
 msgid "Geographic characterisation:"
-msgstr ""
+msgstr "Geografska karakterizacija:"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:117
 #: ../../climateadapt/browser/pt/casestudy_view.pt:308
+#, 
 msgid "Geographic characterization:"
-msgstr ""
+msgstr "Geografska karakterizacija:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:171
+#, 
 msgid "Good practice / spotlight item"
-msgstr ""
+msgstr "Dobra praksa / reflektorska stavka"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:178
 #: ../../climateadapt/browser/pt/casestudy_view.pt:300
+#, 
 msgid "Governance level:"
-msgstr ""
+msgstr "Razina upravljanja:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:128
+#, 
 msgid "Have you already developed an adaptation strategy?"
-msgstr ""
+msgstr "Jeste li već razvili strategiju prilagodbe?"
 
 #: ../../climateadapt/browser/overrides.py:44
+#, 
 msgid "Health"
-msgstr ""
+msgstr "Zdravlje"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:80
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:155
 #: ../../climateadapt/browser/pt/casestudy_view.pt:277
+#, 
 msgid "Health impact:"
-msgstr ""
+msgstr "Utjecaj zdravlja:"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:34
+#, 
 msgid "IPCC categories"
-msgstr ""
+msgstr "IPCC kategorije"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:48
 #: ../../climateadapt/browser/pt/casestudy_view.pt:90
+#, 
 msgid "Implementation Time"
-msgstr ""
+msgstr "Vrijeme implementacije"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:65
+#, 
 msgid "Importance and Relevance of Adaptation"
-msgstr ""
+msgstr "Važnost i relevantnost prilagodbe"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:138
+#, 
 msgid "Item’s creation:"
-msgstr ""
+msgstr "Stvaranje stavke:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:203
+#, 
 msgid "Key vulnerable sectors"
-msgstr ""
+msgstr "Ključni ranjivi sektori"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:92
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:162
 #: ../../climateadapt/browser/pt/casestudy_view.pt:284
+#, 
 msgid "Keywords:"
-msgstr ""
+msgstr "Ključne riječi:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:258
+#, 
 msgid "Last Update"
-msgstr ""
+msgstr "Zadnje ažuriranje"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:45
 #: ../../climateadapt/browser/pt/casestudy_view.pt:86
+#, 
 msgid "Legal Aspects"
-msgstr ""
+msgstr "Pravni aspekti"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:51
 #: ../../climateadapt/browser/pt/casestudy_view.pt:94
+#, 
 msgid "Life Time"
-msgstr ""
+msgstr "Doživotno"
 
 #: ../../climateadapt/browser/__init__.py:160
+#, 
 msgid "Macro-Transnational region"
-msgstr ""
+msgstr "Makro-transnacionalna regija"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:120
+#, 
 msgid "Main motivation for taking adaptation action"
-msgstr ""
+msgstr "Glavna motivacija za uzimanje adaptacijske akcije"
 
 #: ../../climateadapt/browser/overrides.py:46
+#, 
 msgid "Marine and Fisheries"
-msgstr ""
+msgstr "Morski i ribolov"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:212
+#, 
 msgid "Mayor"
-msgstr ""
+msgstr "Gradonačelnik"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:234
+#, 
 msgid "Mayors Adapt signatory"
-msgstr ""
+msgstr "Gradonačelnici Prilagodite potpisnik"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:133
+#, 
 msgid "Name of the strategy/ plan (If adopted)"
-msgstr ""
+msgstr "Naziv strategije / plana (ako je usvojeno)"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:53
+#, 
 msgid "Objectives"
-msgstr ""
+msgstr "Ciljevi"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:165
+#, 
 msgid "Planned adaptation actions"
-msgstr ""
+msgstr "Planirane akcije prilagodbe"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:205
+#, 
 msgid "Please contact us for any other enquiry on this Case Study or to share a new Case Study (email <a href=\"mailto: climate.adapt@eea.europa.eu\">climate.adapt@eea.europa.eu</a>)"
-msgstr ""
+msgstr "Kontaktirajte nas za bilo koji drugi upit o ovom slučaju studija slučaja ili podijeliti novu studiju slučaja (e-mail <a href=\"mailto: klima.Adapt@ea.europa.eu\"> klima.Adapt@ea.europa.eu </ a >)"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:217
+#, 
 msgid "Population"
-msgstr ""
+msgstr "Stanovništvo"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:23
+#, 
 msgid "Portal Type"
-msgstr ""
+msgstr "Vrsta portala"
 
 #: ../../climateadapt/browser/overrides.py:59
+#, 
 msgid "Professional thematic domain"
-msgstr ""
+msgstr "Profesionalna tematska domena"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:47
+#, 
 msgid "Project information"
-msgstr ""
+msgstr "Informacije o projektu"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:24
+#, 
 msgid "Published"
-msgstr ""
+msgstr "Objavljeno"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:194
+#, 
 msgid "Reference"
-msgstr ""
+msgstr "Referenca"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:100
+#, 
 msgid "Reference Information"
-msgstr ""
+msgstr "Referentne informacije"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:54
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:55
+#, 
 msgid "Reference information"
-msgstr ""
+msgstr "Referentne informacije"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:122
+#, 
 msgid "References:"
-msgstr ""
+msgstr "Reference:"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:144
+#, 
 msgid "Relevance"
-msgstr ""
+msgstr "Relevantnost"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:112
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:167
 #: ../../climateadapt/browser/pt/casestudy_view.pt:289
+#, 
 msgid "Sectors:"
-msgstr ""
+msgstr "Sektori:"
 
 #: ../../climateadapt/browser/overrides.py:60
+#, 
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
-msgstr ""
+msgstr "Odaberite sektore za koje želite primati e-poštu obavijesti kada je stavka izmijenjena."
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:15
+#, 
 msgid "Send token emails to City Mayors"
-msgstr ""
+msgstr "Pošaljite e-poštu za token u gradonačelnike grada"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:61
+#, 
 msgid "Solutions"
-msgstr ""
+msgstr "Rješenja"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:58
 #: ../../climateadapt/browser/pt/casestudy_view.pt:111
+#, 
 msgid "Source"
-msgstr ""
+msgstr "Izvor"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:74
+#, 
 msgid "Stakeholder Participation"
-msgstr ""
+msgstr "Sudjelovanje dionika"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:36
+#, 
 msgid "Stakeholder participation"
-msgstr ""
+msgstr "Sudjelovanje dionika"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:27
+#, 
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: ../../climateadapt/browser/__init__.py:182
+#, 
 msgid "Sub Nationals"
-msgstr ""
+msgstr "Sub državljani"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:49
+#, 
 msgid "Submit"
-msgstr ""
+msgstr "podnijeti"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:39
 #: ../../climateadapt/browser/pt/casestudy_view.pt:78
+#, 
 msgid "Success and Limiting Factors"
-msgstr ""
+msgstr "Uspjeh i ograničavajući čimbenici"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:153
+#, 
 msgid "Summary of the strategy/plan"
-msgstr ""
+msgstr "Sažetak strategije / plana"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:72
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:147
 #: ../../climateadapt/browser/pt/casestudy_view.pt:216
+#, 
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
-msgstr ""
+msgstr "Datum se odnosi na trenutak u kojem je predmet pripremljen ili ažuriran doprinosio stručnjacima koji će se dostaviti za objavljivanje u klimatskim prilagodbi"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:25
+#, 
 msgid "Total"
-msgstr ""
+msgstr "Ukupan"
 
 #: ../../climateadapt/browser/overrides.py:48
+#, 
 msgid "Transport"
-msgstr ""
+msgstr "Prijevoz"
 
 #: ../../climateadapt/browser/overrides.py:45
+#, 
 msgid "Urban"
-msgstr ""
+msgstr "Urbani"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:18
+#, 
 msgid "View on DRMKC"
-msgstr ""
+msgstr "Pogled na DRMKC"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:16
+#, 
 msgid "Warning: this will reset/invalidate tokens on all selected cities"
-msgstr ""
+msgstr "Upozorenje: Ovo će resetirati / poništiti žetone na svim odabranim gradovima"
 
 #: ../../climateadapt/browser/overrides.py:50
+#, 
 msgid "Water management"
-msgstr ""
+msgstr "Upravljanje vodom"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:143
+#, 
 msgid "Weblink of the strategy/ plan"
-msgstr ""
+msgstr "WebLink strategije / plana"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:148
+#, 
 msgid "Weblinks to relevant plans/ studies"
-msgstr ""
+msgstr "WebLinks na relevantne planove / studije"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:230
+#, 
 msgid "Website"
-msgstr ""
+msgstr "Web stranica"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:57
 #: ../../climateadapt/browser/pt/casestudy_view.pt:107
+#, 
 msgid "Websites"
-msgstr ""
+msgstr "Web stranice"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:55
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:117
+#, 
 msgid "Websites:"
-msgstr ""
+msgstr "Web stranice:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:177
+#, 
 msgid "What sectors are concerned"
-msgstr ""
+msgstr "Koji su sektori u pitanju"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:19
+#, 
 msgid "Year: <span>${DYNAMIC_CONTENT}</span>"
-msgstr ""
+msgstr "Godina: <span> $ {Dynamic_content} </ span>"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:218
+#, 
 msgid "inhabitants"
-msgstr ""
+msgstr "stanovnici"
+

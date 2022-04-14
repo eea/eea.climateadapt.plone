@@ -13,438 +13,543 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:61
+#, 
 msgid "Adaptation Details"
-msgstr ""
+msgstr "Подробности адаптации"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:57
+#, 
 msgid "Adaptation Options Implemented In This Case"
-msgstr ""
+msgstr "Параметры адаптации, реализованные в этом случае"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:125
+#, 
 msgid "Adaptation strategy"
-msgstr ""
+msgstr "Стратегия адаптации"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:315
+#, 
 msgid "AdapteCCA"
-msgstr ""
+msgstr "Adaptecca"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:31
 #: ../../climateadapt/browser/pt/casestudy_view.pt:71
+#, 
 msgid "Additional Details"
-msgstr ""
+msgstr "дополнительные детали"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:158
+#, 
 msgid "Additional information on adaptation responses"
-msgstr ""
+msgstr "Дополнительная информация о адаптационных ответах"
 
 #: ../../climateadapt/browser/overrides.py:37
+#, 
 msgid "Agriculture"
-msgstr ""
+msgstr "сельское хозяйство"
 
 #: ../../climateadapt/browser/overrides.py:39
+#, 
 msgid "Biodiversity"
-msgstr ""
+msgstr "Биоразнообразие"
 
 #: ../../climateadapt/browser/__init__.py:168
+#, 
 msgid "Biogeographical regions"
-msgstr ""
+msgstr "Биогеографические регионы"
 
 #: ../../climateadapt/browser/overrides.py:49
+#, 
 msgid "Buildings"
-msgstr ""
+msgstr "Здания"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:46
+#, 
 msgid "Case Study Description"
-msgstr ""
+msgstr "Тематическое исследование Описание"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:241
+#, 
 msgid "Case Study Illustrations (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
-msgstr ""
+msgstr "Иллюстрации корпуса исследования ($ {dynamic_content}) <i class = \"FA FA-Picture-O\" ARIA-HIDDEN = \"TRUE\"> </ I>"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:194
+#, 
 msgid "Case studies related to this option:"
-msgstr ""
+msgstr "Тематические исследования, связанные с этим вариантом:"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:33
+#, 
 msgid "Category"
-msgstr ""
+msgstr "Категория"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:49
+#, 
 msgid "Challenges"
-msgstr ""
+msgstr "Вызовы"
 
 #: ../../climateadapt/mayorsadapt/views.py:78
+#, 
 msgid "Check-out created"
-msgstr ""
+msgstr "Регистрация создана"
 
 #: ../../climateadapt/browser/__init__.py:208
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
+#, 
 msgid "City"
-msgstr ""
+msgstr "Город"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:111
+#, 
 msgid "Climate change impacts"
-msgstr ""
+msgstr "Воздействие изменения климата"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:102
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:172
 #: ../../climateadapt/browser/pt/casestudy_view.pt:294
+#, 
 msgid "Climate impacts:"
-msgstr ""
+msgstr "Климатические воздействия:"
 
 #: ../../climateadapt/browser/overrides.py:40
+#, 
 msgid "Coastal areas"
-msgstr ""
+msgstr "Прибрежная зона"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:103
+#, 
 msgid "Contact"
-msgstr ""
+msgstr "Контакт"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:222
+#, 
 msgid "Contact person"
-msgstr ""
+msgstr "Контактное лицо"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:42
 #: ../../climateadapt/browser/pt/casestudy_view.pt:82
+#, 
 msgid "Costs and Benefits"
-msgstr ""
+msgstr "Затраты и выгоды"
 
 #: ../../climateadapt/browser/__init__.py:174
+#, 
 msgid "Countries"
-msgstr ""
+msgstr "Стран"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:131
+#, 
 msgid "Countries: ${DYNAMIC_CONTENT}"
-msgstr ""
+msgstr "Страны: $ {dynamic_content}"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:245
+#, 
 msgid "Covenant of Mayors 2020 signatory"
-msgstr ""
+msgstr "Завет мэров 2020 подписант"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:251
+#, 
 msgid "Covenant of Mayors 2030 signatory"
-msgstr ""
+msgstr "Завет мэров 2030 подписант"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:141
+#, 
 msgid "DRMKC"
-msgstr ""
+msgstr "Drmkc."
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:70
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:145
 #: ../../climateadapt/browser/pt/casestudy_view.pt:214
+#, 
 msgid "Date of creation:"
-msgstr ""
+msgstr "Дата создания:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:240
+#, 
 msgid "Date of officially joining Mayors Adapt"
-msgstr ""
+msgstr "Дата официально присоединения к адаптации мэров"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:138
+#, 
 msgid "Date of strategy/plan approval"
-msgstr ""
+msgstr "Дата одобрения стратегии / плана"
 
 #: ../../climateadapt/browser/overrides.py:42
+#, 
 msgid "Disaster Risk Reduction"
-msgstr ""
+msgstr "Снижение риска бедствий"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:97
+#, 
 msgid "Duration:"
-msgstr ""
+msgstr "Продолжительность:"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:107
+#, 
 msgid "Elements:"
-msgstr ""
+msgstr "Элементы:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:28
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:228
+#, 
 msgid "Email"
-msgstr ""
+msgstr "Эл. адрес"
 
 #: ../../climateadapt/browser/overrides.py:47
+#, 
 msgid "Energy"
-msgstr ""
+msgstr "Энергия"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:139
 #: ../../climateadapt/browser/pt/casestudy_view.pt:313
+#, 
 msgid "External source"
-msgstr ""
+msgstr "Внешний источник"
 
 #: ../../climateadapt/browser/overrides.py:43
+#, 
 msgid "Financial"
-msgstr ""
+msgstr "Финансовый"
 
 #: ../../climateadapt/browser/overrides.py:38
+#, 
 msgid "Forestry"
-msgstr ""
+msgstr "Лесное хозяйство"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:87
+#, 
 msgid "Funding Programme:"
-msgstr ""
+msgstr "Программа финансирования:"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:187
+#, 
 msgid "Geographic characterisation:"
-msgstr ""
+msgstr "Географическая характеристика:"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:117
 #: ../../climateadapt/browser/pt/casestudy_view.pt:308
+#, 
 msgid "Geographic characterization:"
-msgstr ""
+msgstr "Географическая характеристика:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:171
+#, 
 msgid "Good practice / spotlight item"
-msgstr ""
+msgstr "Хорошая практика / точечный элемент"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:178
 #: ../../climateadapt/browser/pt/casestudy_view.pt:300
+#, 
 msgid "Governance level:"
-msgstr ""
+msgstr "Уровень управления:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:128
+#, 
 msgid "Have you already developed an adaptation strategy?"
-msgstr ""
+msgstr "Вы уже разработали стратегию адаптации?"
 
 #: ../../climateadapt/browser/overrides.py:44
+#, 
 msgid "Health"
-msgstr ""
+msgstr "Здоровье"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:80
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:155
 #: ../../climateadapt/browser/pt/casestudy_view.pt:277
+#, 
 msgid "Health impact:"
-msgstr ""
+msgstr "Влияние на здоровье:"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:34
+#, 
 msgid "IPCC categories"
-msgstr ""
+msgstr "Категории МГЭИК"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:48
 #: ../../climateadapt/browser/pt/casestudy_view.pt:90
+#, 
 msgid "Implementation Time"
-msgstr ""
+msgstr "Время внедрения"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:65
+#, 
 msgid "Importance and Relevance of Adaptation"
-msgstr ""
+msgstr "Важность и актуальность адаптации"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:138
+#, 
 msgid "Item’s creation:"
-msgstr ""
+msgstr "Создание предмета:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:203
+#, 
 msgid "Key vulnerable sectors"
-msgstr ""
+msgstr "Ключ уязвимых секторов"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:92
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:162
 #: ../../climateadapt/browser/pt/casestudy_view.pt:284
+#, 
 msgid "Keywords:"
-msgstr ""
+msgstr "Ключевые слова:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:258
+#, 
 msgid "Last Update"
-msgstr ""
+msgstr "Последнее обновление"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:45
 #: ../../climateadapt/browser/pt/casestudy_view.pt:86
+#, 
 msgid "Legal Aspects"
-msgstr ""
+msgstr "Правовые аспекты"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:51
 #: ../../climateadapt/browser/pt/casestudy_view.pt:94
+#, 
 msgid "Life Time"
-msgstr ""
+msgstr "Продолжительность жизни"
 
 #: ../../climateadapt/browser/__init__.py:160
+#, 
 msgid "Macro-Transnational region"
-msgstr ""
+msgstr "Макро транснациональный регион"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:120
+#, 
 msgid "Main motivation for taking adaptation action"
-msgstr ""
+msgstr "Основная мотивация для принятия адаптационных действий"
 
 #: ../../climateadapt/browser/overrides.py:46
+#, 
 msgid "Marine and Fisheries"
-msgstr ""
+msgstr "Морской и рыболовство"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:212
+#, 
 msgid "Mayor"
-msgstr ""
+msgstr "Мэр"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:234
+#, 
 msgid "Mayors Adapt signatory"
-msgstr ""
+msgstr "Мэры адаптируются подписавшими"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:133
+#, 
 msgid "Name of the strategy/ plan (If adopted)"
-msgstr ""
+msgstr "Название стратегии / плана (если принято)"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:53
+#, 
 msgid "Objectives"
-msgstr ""
+msgstr "Цели"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:165
+#, 
 msgid "Planned adaptation actions"
-msgstr ""
+msgstr "Запланированные действия адаптации"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:205
+#, 
 msgid "Please contact us for any other enquiry on this Case Study or to share a new Case Study (email <a href=\"mailto: climate.adapt@eea.europa.eu\">climate.adapt@eea.europa.eu</a>)"
-msgstr ""
+msgstr "Пожалуйста, свяжитесь с нами для любого другого запроса в этом тематическом исследовании или поделиться новым тематическим исследованием (электронная почта <a href=\"mailto: climate.adapt@eea.eureopa.eu\"> климат. Adapt@eea.europa.eu </ a >)"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:217
+#, 
 msgid "Population"
-msgstr ""
+msgstr "Население"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:23
+#, 
 msgid "Portal Type"
-msgstr ""
+msgstr "Тип портала"
 
 #: ../../climateadapt/browser/overrides.py:59
+#, 
 msgid "Professional thematic domain"
-msgstr ""
+msgstr "Профессиональный тематический домен"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:47
+#, 
 msgid "Project information"
-msgstr ""
+msgstr "Информационный проект"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:24
+#, 
 msgid "Published"
-msgstr ""
+msgstr "Опубликовано"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:194
+#, 
 msgid "Reference"
-msgstr ""
+msgstr "Справка"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:100
+#, 
 msgid "Reference Information"
-msgstr ""
+msgstr "Справочная информация"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:54
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:55
+#, 
 msgid "Reference information"
-msgstr ""
+msgstr "Справочная информация"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:122
+#, 
 msgid "References:"
-msgstr ""
+msgstr "Рекомендации:"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:144
+#, 
 msgid "Relevance"
-msgstr ""
+msgstr "Актуальность"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:112
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:167
 #: ../../climateadapt/browser/pt/casestudy_view.pt:289
+#, 
 msgid "Sectors:"
-msgstr ""
+msgstr "Секторы:"
 
 #: ../../climateadapt/browser/overrides.py:60
+#, 
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
-msgstr ""
+msgstr "Выберите сектора, для которых вы хотите получить уведомление по электронной почте, когда элемент изменен."
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:15
+#, 
 msgid "Send token emails to City Mayors"
-msgstr ""
+msgstr "Отправить токен электронные письма в мэры города"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:61
+#, 
 msgid "Solutions"
-msgstr ""
+msgstr "Растворы"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:58
 #: ../../climateadapt/browser/pt/casestudy_view.pt:111
+#, 
 msgid "Source"
-msgstr ""
+msgstr "Источник"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:74
+#, 
 msgid "Stakeholder Participation"
-msgstr ""
+msgstr "Участие заинтересованных сторон"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:36
+#, 
 msgid "Stakeholder participation"
-msgstr ""
+msgstr "Участие заинтересованных сторон"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:27
+#, 
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
 #: ../../climateadapt/browser/__init__.py:182
+#, 
 msgid "Sub Nationals"
-msgstr ""
+msgstr "Субъекта"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:49
+#, 
 msgid "Submit"
-msgstr ""
+msgstr "Представлять на рассмотрение"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:39
 #: ../../climateadapt/browser/pt/casestudy_view.pt:78
+#, 
 msgid "Success and Limiting Factors"
-msgstr ""
+msgstr "Успех и ограничительные факторы"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:153
+#, 
 msgid "Summary of the strategy/plan"
-msgstr ""
+msgstr "Краткое изложение стратегии / плана"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:72
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:147
 #: ../../climateadapt/browser/pt/casestudy_view.pt:216
+#, 
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
-msgstr ""
+msgstr "Дата относится к моменту, в котором товар был подготовлен или обновлен путем предоставления экспертов, которые будут представлены на публикацию в адаптации климата"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:25
+#, 
 msgid "Total"
-msgstr ""
+msgstr "Общее"
 
 #: ../../climateadapt/browser/overrides.py:48
+#, 
 msgid "Transport"
-msgstr ""
+msgstr "Транспорт"
 
 #: ../../climateadapt/browser/overrides.py:45
+#, 
 msgid "Urban"
-msgstr ""
+msgstr "Городской"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:18
+#, 
 msgid "View on DRMKC"
-msgstr ""
+msgstr "Вид на Drmkc."
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:16
+#, 
 msgid "Warning: this will reset/invalidate tokens on all selected cities"
-msgstr ""
+msgstr "ПРЕДУПРЕЖДЕНИЕ: это будет сброшено / аннулировать токены на все выбранные города"
 
 #: ../../climateadapt/browser/overrides.py:50
+#, 
 msgid "Water management"
-msgstr ""
+msgstr "Управление водой"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:143
+#, 
 msgid "Weblink of the strategy/ plan"
-msgstr ""
+msgstr "Weblink из стратегии / плана"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:148
+#, 
 msgid "Weblinks to relevant plans/ studies"
-msgstr ""
+msgstr "Weblinks к соответствующим планам / исследованиям"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:230
+#, 
 msgid "Website"
-msgstr ""
+msgstr "Интернет сайт"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:57
 #: ../../climateadapt/browser/pt/casestudy_view.pt:107
+#, 
 msgid "Websites"
-msgstr ""
+msgstr "Веб-сайты"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:55
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:117
+#, 
 msgid "Websites:"
-msgstr ""
+msgstr "Сайты:"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:177
+#, 
 msgid "What sectors are concerned"
-msgstr ""
+msgstr "Какие сектора обеспокоены"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:19
+#, 
 msgid "Year: <span>${DYNAMIC_CONTENT}</span>"
-msgstr ""
+msgstr "Год: <span> $ {dynamic_content} </ span>"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:218
+#, 
 msgid "inhabitants"
-msgstr ""
+msgstr "жители"
+
