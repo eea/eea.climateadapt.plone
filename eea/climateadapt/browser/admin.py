@@ -92,6 +92,7 @@ def force_unlock(context):
 
 
 def translate_obj(obj):
+    tile_fields = ['title', 'description', 'tile_title', 'footer', 'alt_text']
     errors = []
     force_unlock(obj)
 
@@ -211,14 +212,17 @@ def initiate_translations(site):
     count = 0
     res = catalog.searchResults(path='/cca/en')
     errors = []
-    tile_fields = ['title', 'description', 'tile_title', 'footer', 'alt_text']
 
     for brain in res:
         if brain.getPath() == '/cca/en' or brain.portal_type in ['LIF', 'LRF']:
             continue
 
         obj = brain.getObject()
-        result = translate_obj(obj)
+        try:
+            result = translate_obj(obj)
+        except Exception as err:
+            import pdb; pdb.set_trace()
+
         if len(result['errors']) > 0:
             for error in result['errors']:
                 errors.append(error)
