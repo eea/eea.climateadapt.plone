@@ -1,7 +1,7 @@
 from zope.interface import alsoProvides
 from zope.schema import Date
 
-from eea.climateadapt import MessageFactory as _
+from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.aceitem import IAceItem
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.autoform import directives

@@ -6,7 +6,7 @@ It renders a search "portlet" for Ace content
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
-from eea.climateadapt import MessageFactory as _
+from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.config import DEFAULT_LOCATIONS
 from eea.climateadapt.vocabulary import _cca_types
 from plone import api

@@ -8,7 +8,7 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:grok="http://namespaces.zope.org/grok"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="eea.climateadapt">
+    i18n_domain="eea.climateadapt2">
 
     <adapter factory=".aceitem.KeywordsFieldWidget" />
     <adapter factory=".aceitem.SpecialTagsFieldWidget" />

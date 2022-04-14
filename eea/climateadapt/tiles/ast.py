@@ -6,7 +6,7 @@ from collective.cover.tiles.base import (IPersistentCoverTile,
 from zope import schema
 from zope.interface import implements
 
-from eea.climateadapt import MessageFactory as _
+from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.interfaces import IASTNavigationRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 

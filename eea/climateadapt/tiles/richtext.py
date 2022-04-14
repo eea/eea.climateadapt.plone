@@ -1,7 +1,7 @@
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cover.tiles.richtext import IRichTextTile
 from collective.cover.tiles.richtext import RichTextTile
-from eea.climateadapt import MessageFactory as _
+from eea.climateadapt import CcaAdminMessageFactory as _
 from zope import schema
 from zope.interface import implements
 

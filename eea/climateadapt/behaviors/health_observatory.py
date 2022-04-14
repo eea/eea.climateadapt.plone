@@ -2,7 +2,7 @@ from zope.interface import provider
 from zope.schema import (URI, Bool, Choice, Date, Datetime, List, Text,
                          TextLine, Tuple)
 
-from eea.climateadapt import MessageFactory as _
+from eea.climateadapt import CcaAdminMessageFactory as _
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 
