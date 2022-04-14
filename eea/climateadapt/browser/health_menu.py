@@ -74,6 +74,7 @@ class Navbar(ExternalTemplateHeader):
         return pprint.pprint(v)
 
     def menu(self):
+        tool = getToolByName(self.context, "translation_service")
         context = self.context.aq_inner
         portal_state = getMultiAdapter((context, self.request), name=u'plone_portal_state')
         current_language = portal_state.language()
@@ -81,11 +82,11 @@ class Navbar(ExternalTemplateHeader):
         ptool = getToolByName(self.context, "portal_properties")["site_properties"]
         value = ptool.getProperty("health_navigation_menu") or DEFAULT_MENU
         site_url = self.context.portal_url()
-        return _extract_menu(value, site_url, current_language)
+        return _extract_menu(value, tool, None, current_language)
 
     def menu_site(self):
         menus = self.menu()
-        return menus[0:-1]
+        return menus
 
     def menu_help(self):
         menus = self.menu()
