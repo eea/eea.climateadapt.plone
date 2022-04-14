@@ -69,8 +69,7 @@ class TranslationCallback(BrowserView):
         # Please double-check, but the decode_text that automatically detects
         # the encoding doesn't seem to do a great job
 
-        # translated = translated.decode('latin-1')
-        # TODO ^ Re-enable decoding if tests fail
+        translated = translated.decode('latin-1')
 
         save_translation(original, translated, language, target_language)
 
