@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-04-14 04:10+0000\n"
+"POT-Creation-Date: 2022-04-14 06:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,6 +66,10 @@ msgstr ""
 msgid "Biogeographical Regions"
 msgstr ""
 
+#: ../../climateadapt/browser/__init__.py:168
+msgid "Biogeographical regions"
+msgstr ""
+
 #: ../../climateadapt/browser/overrides.py:49
 msgid "Buildings"
 msgstr ""
@@ -84,6 +88,10 @@ msgstr ""
 
 #: ../../climateadapt/mayorsadapt/views.py:78
 msgid "Check-out created"
+msgstr ""
+
+#: ../../climateadapt/browser/__init__.py:208
+msgid "City"
 msgstr ""
 
 #: ../../climateadapt/tiles/search_acecontent.py:728
@@ -427,6 +435,10 @@ msgstr ""
 msgid "Macro-Transnational Regions"
 msgstr ""
 
+#: ../../climateadapt/browser/__init__.py:160
+msgid "Macro-Transnational region"
+msgstr ""
+
 #: ../../climateadapt/behaviors/indicator.py:18
 msgid "Map/Graphs"
 msgstr ""
@@ -733,6 +745,10 @@ msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:379
 msgid "Storage Type"
+msgstr ""
+
+#: ../../climateadapt/browser/__init__.py:182
+msgid "Sub Nationals"
 msgstr ""
 
 #: ../../climateadapt/behaviors/ccaevent.py:55

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-04-14 04:10+0000\n"
+"POT-Creation-Date: 2022-04-14 06:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,6 +47,10 @@ msgstr ""
 msgid "Biodiversity"
 msgstr ""
 
+#: ../../climateadapt/browser/__init__.py:168
+msgid "Biogeographical regions"
+msgstr ""
+
 #: ../../climateadapt/browser/overrides.py:49
 msgid "Buildings"
 msgstr ""
@@ -75,6 +79,7 @@ msgstr ""
 msgid "Check-out created"
 msgstr ""
 
+#: ../../climateadapt/browser/__init__.py:208
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
 msgid "City"
 msgstr ""
@@ -83,6 +88,7 @@ msgstr ""
 msgid "Climate change impacts"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceproject_view.pt:102
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:172
 #: ../../climateadapt/browser/pt/casestudy_view.pt:294
 msgid "Climate impacts:"
@@ -105,6 +111,14 @@ msgstr ""
 msgid "Costs and Benefits"
 msgstr ""
 
+#: ../../climateadapt/browser/__init__.py:174
+msgid "Countries"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/aceproject_view.pt:131
+msgid "Countries: ${DYNAMIC_CONTENT}"
+msgstr ""
+
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:245
 msgid "Covenant of Mayors 2020 signatory"
 msgstr ""
@@ -113,6 +127,11 @@ msgstr ""
 msgid "Covenant of Mayors 2030 signatory"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceproject_view.pt:141
+msgid "DRMKC"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/aceproject_view.pt:70
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:145
 #: ../../climateadapt/browser/pt/casestudy_view.pt:214
 msgid "Date of creation:"
@@ -130,6 +149,14 @@ msgstr ""
 msgid "Disaster Risk Reduction"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceproject_view.pt:97
+msgid "Duration:"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/aceproject_view.pt:107
+msgid "Elements:"
+msgstr ""
+
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:28
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:228
 msgid "Email"
@@ -139,6 +166,7 @@ msgstr ""
 msgid "Energy"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceproject_view.pt:139
 #: ../../climateadapt/browser/pt/casestudy_view.pt:313
 msgid "External source"
 msgstr ""
@@ -151,10 +179,15 @@ msgstr ""
 msgid "Forestry"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceproject_view.pt:87
+msgid "Funding Programme:"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:187
 msgid "Geographic characterisation:"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceproject_view.pt:117
 #: ../../climateadapt/browser/pt/casestudy_view.pt:308
 msgid "Geographic characterization:"
 msgstr ""
@@ -176,6 +209,7 @@ msgstr ""
 msgid "Health"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceproject_view.pt:80
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:155
 #: ../../climateadapt/browser/pt/casestudy_view.pt:277
 msgid "Health impact:"
@@ -202,6 +236,7 @@ msgstr ""
 msgid "Key vulnerable sectors"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceproject_view.pt:92
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:162
 #: ../../climateadapt/browser/pt/casestudy_view.pt:284
 msgid "Keywords:"
@@ -219,6 +254,10 @@ msgstr ""
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:51
 #: ../../climateadapt/browser/pt/casestudy_view.pt:94
 msgid "Life Time"
+msgstr ""
+
+#: ../../climateadapt/browser/__init__.py:160
+msgid "Macro-Transnational region"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:120
@@ -265,6 +304,10 @@ msgstr ""
 msgid "Professional thematic domain"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceproject_view.pt:47
+msgid "Project information"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/item_statistics.pt:24
 msgid "Published"
 msgstr ""
@@ -277,6 +320,7 @@ msgstr ""
 msgid "Reference Information"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceproject_view.pt:54
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:55
 msgid "Reference information"
 msgstr ""
@@ -289,6 +333,7 @@ msgstr ""
 msgid "Relevance"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceproject_view.pt:112
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:167
 #: ../../climateadapt/browser/pt/casestudy_view.pt:289
 msgid "Sectors:"
@@ -323,6 +368,10 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
+#: ../../climateadapt/browser/__init__.py:182
+msgid "Sub Nationals"
+msgstr ""
+
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:49
 msgid "Submit"
 msgstr ""
@@ -336,6 +385,7 @@ msgstr ""
 msgid "Summary of the strategy/plan"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceproject_view.pt:72
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:147
 #: ../../climateadapt/browser/pt/casestudy_view.pt:216
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
@@ -351,6 +401,10 @@ msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:45
 msgid "Urban"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/aceproject_view.pt:18
+msgid "View on DRMKC"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:16
@@ -378,6 +432,7 @@ msgstr ""
 msgid "Websites"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceproject_view.pt:55
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:117
 msgid "Websites:"
 msgstr ""

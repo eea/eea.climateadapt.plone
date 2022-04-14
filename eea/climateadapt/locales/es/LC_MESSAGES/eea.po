@@ -9,12 +9,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"Language-Code: es\n"
+"Language-Name: Espanol\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
+"Domain: eea\n"
 "Language: \n"
 "X-Generator: Poedit 1.5.3\n"
+
+#: ../../climateadapt/browser/pt/keywords-admin.pt:57
+msgid "Keywords administration"
+msgstr "Administración de palabras clave2"
 
 #: ../../climateadapt/browser/pt/dashboard.pt:93
 msgid "<i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Add new ${DYNAMIC_CONTENT}"
@@ -26,7 +30,7 @@ msgstr ""
 
 #: ../../climateadapt/behaviors/aceproject.py:175
 msgid "Abstracts"
-msgstr ""
+msgstr "Abstractos"
 
 #: ../../climateadapt/tiles/search_acecontent.py:70
 msgid "Aceitem type"
