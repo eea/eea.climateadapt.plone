@@ -125,9 +125,8 @@ def translate_obj(obj):
                         translated = retrieve_translation('EN', value, [language.upper()])
 
                         if 'translated' in translated:
-                            # convert to unicode
-                            # import pdb; pdb.set_trace()
-                            tile.data.update({field: translated['transId']})
+                            encoded_text = translated['transId'].encode('latin-1')
+                            tile.data.update({field: encoded_text})
 
                 if isinstance(tile, RichTextWithTitle) or \
                    isinstance(tile, RichTextTile):
@@ -138,10 +137,9 @@ def translate_obj(obj):
                     if value:
                         translated = retrieve_translation('EN', value, [language.upper()])
                         if 'translated' in translated:
-                            # convert to unicode
-                            # import pdb; pdb.set_trace()
                             try:
-                                tile.data['text'].raw = translated['transId']
+                                encoded_text = translated['transId'].encode('latin-1')
+                                tile.data['text'].raw = encoded_text
                             except AttributeError:
                                 logger.info("Error for tile. TODO improve.")
                                 logger.info(tile_id)
