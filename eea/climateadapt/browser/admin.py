@@ -196,10 +196,11 @@ def translate_obj(obj):
             force_unlock(trans_obj)
             translated = retrieve_translation('EN', value, [language.upper()])
             if 'translated' in translated:
+                encoded_text = translated['transId'].encode('latin-1')
                 if rich:
-                    setattr(getattr(trans_obj, key), 'raw', translated['transId'])
+                    setattr(getattr(trans_obj, key), 'raw', encoded_text)
                 else:
-                    setattr(trans_obj, key, translated['transId'])
+                    setattr(trans_obj, key, encoded_text)
 
         # reindex object
         trans_obj._p_changed = True
