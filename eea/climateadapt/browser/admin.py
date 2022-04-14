@@ -91,6 +91,122 @@ def force_unlock(context):
         annot._p_changed = True
 
 
+def translate_obj(obj):
+    errors = []
+    force_unlock(obj)
+
+    # get behavior fields and values
+    behavior_assignable = IBehaviorAssignable(obj)
+    fields = {}
+    if behavior_assignable:
+        behaviors = behavior_assignable.enumerateBehaviors()
+        for behavior in behaviors:
+            for k,v in getFieldsInOrder(behavior.interface):
+                fields.update({k: v})
+
+    #  get schema fields and values
+    for k, v in getFieldsInOrder(obj.getTypeInfo().lookupSchema()):
+        fields.update({k: v})
+
+    translations = TranslationManager(obj).get_translations()
+    translations.pop('en')
+    for language in translations:
+        trans_obj = translations[language]
+
+        # get tile data
+        if trans_obj.portal_type == 'collective.cover.content':
+            tiles_id = trans_obj.list_tiles()
+
+            for tile_id in tiles_id:
+                tile = trans_obj.get_tile(tile_id)
+                for field in tile_fields:
+                    value = tile.data.get(field)
+                    if value:
+                        translated = retrieve_translation('EN', value, [language.upper()])
+
+                        if 'translated' in translated:
+                            # convert to unicode
+                            # import pdb; pdb.set_trace()
+                            tile.data.update({field: translated['transId']})
+
+                if isinstance(tile, RichTextWithTitle) or \
+                   isinstance(tile, RichTextTile):
+                    try:
+                        value = tile.data.get('text').raw
+                    except Exception:
+                        value = None
+                    if value:
+                        translated = retrieve_translation('EN', value, [language.upper()])
+                        if 'translated' in translated:
+                            # convert to unicode
+                            # import pdb; pdb.set_trace()
+                            try:
+                                tile.data['text'].raw = translated['transId']
+                            except AttributeError:
+                                logger.info("Error for tile. TODO improve.")
+                                logger.info(tile_id)
+
+        # send requests to translation service for each field
+        # update field in obj
+        for key in fields:
+            rich = False
+            print key
+            if key in ['acronym', 'id', 'language', 'portal_type', 'contentType']:
+                continue
+
+            value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
+
+            if not value:
+                continue
+
+            if callable(value):
+                # ignore datetimes
+                if isinstance(value(), DateTime):
+                    continue
+
+                value = value()
+
+            # ignore some value types
+            if isinstance(value, bool) or \
+               isinstance(value, int) or \
+               isinstance(value, long) or \
+               isinstance(value, tuple) or \
+               isinstance(value, list) or \
+               isinstance(value, set) or \
+               isinstance(value, dict) or \
+               isinstance(value, NamedBlobImage) or \
+               isinstance(value, NamedBlobFile) or \
+               isinstance(value, NamedImage) or \
+               isinstance(value, NamedFile) or \
+               isinstance(value, DateTime) or \
+               isinstance(value, date) or \
+               isinstance(value, RelationValue) or \
+               isinstance(value, Geolocation):
+                continue
+
+            if isinstance(value, RichTextValue):
+                value = value.output
+                rich = True
+
+            if is_json(value):
+                continue
+
+            if key not in errors:
+                errors.append(key)
+            force_unlock(trans_obj)
+            translated = retrieve_translation('EN', value, [language.upper()])
+            if 'translated' in translated:
+                if rich:
+                    setattr(getattr(trans_obj, key), 'raw', translated['transId'])
+                else:
+                    setattr(trans_obj, key, translated['transId'])
+
+        # reindex object
+        trans_obj._p_changed = True
+        trans_obj.reindexObject(idxs=[key])
+
+        return {'errors': errors}
+
 def initiate_translations(site):
     catalog = site.portal_catalog
     count = 0
@@ -103,117 +219,10 @@ def initiate_translations(site):
             continue
 
         obj = brain.getObject()
-        force_unlock(obj)
-
-        # get behavior fields and values
-        behavior_assignable = IBehaviorAssignable(obj)
-        fields = {}
-        if behavior_assignable:
-            behaviors = behavior_assignable.enumerateBehaviors()
-            for behavior in behaviors:
-                for k,v in getFieldsInOrder(behavior.interface):
-                    fields.update({k: v})
-
-        #  get schema fields and values
-        for k, v in getFieldsInOrder(obj.getTypeInfo().lookupSchema()):
-            fields.update({k: v})
-
-        translations = TranslationManager(obj).get_translations()
-        translations.pop('en')
-        for language in translations:
-            trans_obj = translations[language]
-
-            # get tile data
-            if trans_obj.portal_type == 'collective.cover.content':
-                tiles_id = trans_obj.list_tiles()
-
-                for tile_id in tiles_id:
-                    tile = trans_obj.get_tile(tile_id)
-                    for field in tile_fields:
-                        value = tile.data.get(field)
-                        if value:
-                            translated = retrieve_translation('EN', value, [language.upper()])
-
-                            if 'translated' in translated:
-                                # convert to unicode
-                                # import pdb; pdb.set_trace()
-                                tile.data.update({field: translated['transId']})
-
-                    if isinstance(tile, RichTextWithTitle) or \
-                       isinstance(tile, RichTextTile):
-                        try:
-                            value = tile.data.get('text').raw
-                        except Exception:
-                            value = None
-                        if value:
-                            translated = retrieve_translation('EN', value, [language.upper()])
-                            if 'translated' in translated:
-                                # convert to unicode
-                                # import pdb; pdb.set_trace()
-                                try:
-                                    tile.data['text'].raw = translated['transId']
-                                except AttributeError:
-                                    logger.info("Error for tile. TODO improve.")
-                                    logger.info(tile_id)
-
-            # send requests to translation service for each field
-            # update field in obj
-            for key in fields:
-                rich = False
-                print key
-                if key in ['acronym', 'id', 'language', 'portal_type', 'contentType']:
-                    continue
-
-                value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
-
-                if not value:
-                    continue
-
-                if callable(value):
-                    # ignore datetimes
-                    if isinstance(value(), DateTime):
-                        continue
-
-                    value = value()
-
-                # ignore some value types
-                if isinstance(value, bool) or \
-                   isinstance(value, int) or \
-                   isinstance(value, long) or \
-                   isinstance(value, tuple) or \
-                   isinstance(value, list) or \
-                   isinstance(value, set) or \
-                   isinstance(value, dict) or \
-                   isinstance(value, NamedBlobImage) or \
-                   isinstance(value, NamedBlobFile) or \
-                   isinstance(value, NamedImage) or \
-                   isinstance(value, NamedFile) or \
-                   isinstance(value, DateTime) or \
-                   isinstance(value, date) or \
-                   isinstance(value, RelationValue) or \
-                   isinstance(value, Geolocation):
-                    continue
-
-                if isinstance(value, RichTextValue):
-                    value = value.output
-                    rich = True
-
-                if is_json(value):
-                    continue
-
-                if key not in errors:
-                    errors.append(key)
-                force_unlock(trans_obj)
-                translated = retrieve_translation('EN', value, [language.upper()])
-                if 'translated' in translated:
-                    if rich:
-                        setattr(getattr(trans_obj, key), 'raw', translated['transId'])
-                    else:
-                        setattr(trans_obj, key, translated['transId'])
-
-            # reindex object
-            trans_obj._p_changed = True
-            trans_obj.reindexObject(idxs=[key])
+        result = translate_obj(obj)
+        if len(result['errors']) > 0:
+            for error in result['errors']:
+                errors.append(error)
 
         count += 1
         if count % 100 == 0:
@@ -373,6 +382,20 @@ class RunTranslation(BrowserView):
         kwargs.update(self.request.form)
         from zope.site.hooks import getSite
         return initiate_translations(getSite())
+
+class RunTranslationSingleItem(BrowserView):
+    """ Translate a single item
+        Usage: item/admin-translate-this
+
+        To be used for testing translation without waiting for all objects to be updated
+    """
+
+    def __call__(self, **kwargs):
+        obj = self.context
+        import pdb; pdb.set_trace()
+        result = translate_obj(obj)
+        transaction.commit()
+        return result
 
 class CheckCopyPasteLocation(BrowserView):
     """ Performs a check which doesn't allow user to Copy cca-items
