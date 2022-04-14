@@ -200,9 +200,9 @@ def translate_obj(obj):
                 else:
                     setattr(trans_obj, key, encoded_text)
 
-        # reindex object
-        trans_obj._p_changed = True
-        trans_obj.reindexObject(idxs=[key])
+                # reindex object
+                trans_obj._p_changed = True
+                trans_obj.reindexObject(idxs=[key])
 
         return {'errors': errors}
 
