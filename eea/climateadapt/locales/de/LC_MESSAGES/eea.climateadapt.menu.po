@@ -69,7 +69,7 @@ msgstr "Luftverschmutzung"
 #: site_menu:34
 #, 
 msgid "Alpine Space"
-msgstr "#VALUE!"
+msgstr "Alpiner Raum"
 
 #: health_menu:34
 #, 

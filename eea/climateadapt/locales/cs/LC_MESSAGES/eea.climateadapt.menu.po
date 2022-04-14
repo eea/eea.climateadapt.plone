@@ -13,435 +13,546 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
 
 #: health_menu:33
+#, 
 msgid "2021 Lancet Countdown-EEA Briefing"
-msgstr ""
+msgstr "2021 Lancet Countdown-EEA Briefing"
 
 #: site_menu:12
+#, 
 msgid "ADAPTATION IN EU POLICY SECTORS"
-msgstr ""
+msgstr "Adaptace v sektorech politiky EU"
 
 #: site_menu:0 health_menu:0
+#, 
 msgid "About"
-msgstr ""
+msgstr "O"
 
 #: site_menu:1
+#, 
 msgid "About Climate-ADAPT"
-msgstr ""
+msgstr "O klimatizaci"
 
 #: health_menu:1
+#, 
 msgid "About the Observatory"
-msgstr ""
+msgstr "O observatoři"
 
 #: site_menu:61
+#, 
 msgid "Adaptation Support Tool"
-msgstr ""
+msgstr "Nástroj pro adaptační podporu"
 
 #: site_menu:50
+#, 
 msgid "Adaptation options"
-msgstr ""
+msgstr "Možnosti přizpůsobení"
 
 #: site_menu:33
+#, 
 msgid "Adriatic-Ionian"
-msgstr ""
+msgstr "Adriatic-ionian"
 
 #: site_menu:13
+#, 
 msgid "Agriculture"
-msgstr ""
+msgstr "Zemědělství"
 
 #: health_menu:15
+#, 
 msgid "Air pollution"
-msgstr ""
+msgstr "Znečištění ovzduší"
 
 #: site_menu:34
+#, 
 msgid "Alpine Space"
-msgstr ""
+msgstr "Alpský prostor"
 
 #: health_menu:34
+#, 
 msgid "Annual reports"
-msgstr ""
+msgstr "Výroční zprávy"
 
 #: site_menu:35
+#, 
 msgid "Atlantic Area"
-msgstr ""
+msgstr "Atlantická oblast"
 
 #: site_menu:36
+#, 
 msgid "Balkan-Mediterranean"
-msgstr ""
+msgstr "Balkan-Mediterranean."
 
 #: site_menu:37
+#, 
 msgid "Baltic Sea"
-msgstr ""
+msgstr "Baltské moře"
 
 #: site_menu:14
+#, 
 msgid "Biodiversity"
-msgstr ""
+msgstr "Biologická rozmanitost"
 
 #: site_menu:15
+#, 
 msgid "Buildings"
-msgstr ""
+msgstr "Budovy"
 
 #: health_menu:23
+#, 
 msgid "C3S European health service (under development)"
-msgstr ""
+msgstr "C3S Evropská zdravotní služba (ve vývoji)"
 
 #: health_menu:35
+#, 
 msgid "Capacity building"
-msgstr ""
+msgstr "Budování kapacit"
 
 #: site_menu:67
+#, 
 msgid "Case studies"
-msgstr ""
+msgstr "Případové studie"
 
 #: site_menu:66
+#, 
 msgid "Case study explorer"
-msgstr ""
+msgstr "Případová studie Explorer."
 
 #: site_menu:38
+#, 
 msgid "Central Europe"
-msgstr ""
+msgstr "Střední Evropa"
 
 #: site_menu:31
+#, 
 msgid "Cities and towns"
-msgstr ""
+msgstr "Města a městečka"
 
 #: site_menu:55
+#, 
 msgid "Climate  Services"
-msgstr ""
+msgstr "Klimatické služby"
 
 #: site_menu:70
+#, 
 msgid "Climate-ADAPT use cases"
-msgstr ""
+msgstr "Použití klimatizačního použití"
 
 #: site_menu:16
+#, 
 msgid "Coastal areas"
-msgstr ""
+msgstr "Pobřežní oblasti"
 
 #: site_menu:29
+#, 
 msgid "Countries, Transnational regions, Cities"
-msgstr ""
+msgstr "Země, nadnárodní regiony, města"
 
 #: site_menu:30 health_menu:8
+#, 
 msgid "Country Profiles"
-msgstr ""
+msgstr "Profily pro země"
 
 #: site_menu:54
+#, 
 msgid "DATA AND INDICATORS"
-msgstr ""
+msgstr "Data a indikátory"
 
 #: site_menu:39
+#, 
 msgid "Danube"
-msgstr ""
+msgstr "Dunaj"
 
 #: site_menu:17
+#, 
 msgid "Disaster risk reduction"
-msgstr ""
+msgstr "Snížení rizika katastrofy"
 
 #: health_menu:22
+#, 
 msgid "ECDC Vibrio map viewer"
-msgstr ""
+msgstr "Prohlížeč mapy ECDC Vibio"
 
 #: site_menu:6
+#, 
 msgid "EU ADAPTATION POLICY"
-msgstr ""
+msgstr "Politika přizpůsobení EU"
 
 #: site_menu:7
+#, 
 msgid "EU Adaptation Strategy"
-msgstr ""
+msgstr "Strategie adaptační strategie EU"
 
 #: site_menu:10
+#, 
 msgid "EU Covenant of Mayors"
-msgstr ""
+msgstr "Povozní smlouva EU"
 
 #: site_menu:8
+#, 
 msgid "EU Mission on Adaptation"
-msgstr ""
+msgstr "Poslání EU o přizpůsobení"
 
 #: site_menu:27
+#, 
 msgid "EU REGIONAL POLICY"
-msgstr ""
+msgstr "Regionální politika EU"
 
 #: site_menu:9
+#, 
 msgid "EU Reporting on Adaptation"
-msgstr ""
+msgstr "Podávání zpráv EU o přizpůsobení"
 
 #: health_menu:5
+#, 
 msgid "EU adaptation policy"
-msgstr ""
+msgstr "Politika přizpůsobení EU"
 
 #: site_menu:11
+#, 
 msgid "EU funding of adaptation"
-msgstr ""
+msgstr "Financování EU adaptace"
 
 #: health_menu:6
+#, 
 msgid "EU health policy"
-msgstr ""
+msgstr "Politika v EU"
 
 #: site_menu:5
+#, 
 msgid "EU policy"
-msgstr ""
+msgstr "Politika EU"
 
 #: site_menu:58
+#, 
 msgid "EUROPEAN CLIMATE DATA EXPLORER"
-msgstr ""
+msgstr "European Explorer Climate Data"
 
 #: site_menu:72
+#, 
 msgid "EUROPEAN Climate and Health Observatory"
-msgstr ""
+msgstr "Evropská observatoř klimatu a zdraví"
 
 #: site_menu:64
+#, 
 msgid "Economic tools"
-msgstr ""
+msgstr "Ekonomické nástroje"
 
 #: site_menu:18
+#, 
 msgid "Ecosystem-based approaches"
-msgstr ""
+msgstr "Přístupy založené na ekosystémech"
 
 #: site_menu:19
+#, 
 msgid "Energy"
-msgstr ""
+msgstr "Energie"
 
 #: site_menu:53
+#, 
 msgid "Europe's vulnerability to climate change impacts occurring outside Europe"
-msgstr ""
+msgstr "Evropská zranitelnost vůči dopadům v oblasti změny klimatu vyskytující mimo Evropu"
 
 #: health_menu:21
+#, 
 msgid "European Climate Data Explorer"
-msgstr ""
+msgstr "European Explorer Climate Data"
 
 #: health_menu:4
+#, 
 msgid "European Policy Framework"
-msgstr ""
+msgstr "Evropský politický rámec"
 
 #: health_menu:25
+#, 
 msgid "European early warning systems"
-msgstr ""
+msgstr "Evropské systémy včasného varování"
 
 #: health_menu:10
+#, 
 msgid "Evidence on climate and health"
-msgstr ""
+msgstr "Důkazy o klimatu a zdraví"
 
 #: site_menu:79
+#, 
 msgid "FAQ for providers"
-msgstr ""
+msgstr "FAQ pro poskytovatele"
 
 #: site_menu:78
+#, 
 msgid "FAQ for users"
-msgstr ""
+msgstr "FAQ pro uživatele"
 
 #: site_menu:20
+#, 
 msgid "Financial"
-msgstr ""
+msgstr "Finanční"
 
 #: health_menu:17
+#, 
 msgid "Flooding"
-msgstr ""
+msgstr "Zaplavení"
 
 #: site_menu:21
+#, 
 msgid "Forestry"
-msgstr ""
+msgstr "Lesnictví"
 
 #: site_menu:77
+#, 
 msgid "Glossary"
-msgstr ""
+msgstr "Glosář"
 
 #: site_menu:80
+#, 
 msgid "Guidance to search function"
-msgstr ""
+msgstr "Poradenství pro funkci vyhledávání"
 
 #: site_menu:22
+#, 
 msgid "Health"
-msgstr ""
+msgstr "Zdraví"
 
 #: health_menu:11
+#, 
 msgid "Health effects"
-msgstr ""
+msgstr "Zdravé efekty"
 
 #: health_menu:24
+#, 
 msgid "Health warning systems"
-msgstr ""
+msgstr "Zdravotní varovné systémy"
 
 #: health_menu:12
+#, 
 msgid "Heat and health"
-msgstr ""
+msgstr "Teplo a zdraví"
 
 #: site_menu:76
+#, 
 msgid "Help"
-msgstr ""
+msgstr "Pomoc"
 
 #: site_menu:69
+#, 
 msgid "INTERREG projects"
-msgstr ""
+msgstr "Projekty INTERREG"
 
 #: site_menu:49
+#, 
 msgid "Impacts, risks and vulnerabilities"
-msgstr ""
+msgstr "Dopady, rizika a zranitelnosti"
 
 #: health_menu:18
+#, 
 msgid "Indicators"
-msgstr ""
+msgstr "Indikátory"
 
 #: site_menu:56
+#, 
 msgid "Indicators in Climate-ADAPT"
-msgstr ""
+msgstr "Ukazatele v oblasti klimatu"
 
 #: site_menu:47
+#, 
 msgid "Knowledge"
-msgstr ""
+msgstr "Znalost"
 
 #: site_menu:68
+#, 
 msgid "LIFE projects"
-msgstr ""
+msgstr "Životní projekty"
 
 #: site_menu:23
+#, 
 msgid "Marine and fisheries"
-msgstr ""
+msgstr "Mořské a rybolov"
 
 #: site_menu:40
+#, 
 msgid "Mediterranean"
-msgstr ""
+msgstr "Středomořský"
 
 #: site_menu:52
+#, 
 msgid "Monitoring, Reporting and Evaluation"
-msgstr ""
+msgstr "Monitorování, podávání zpráv a hodnocení"
 
 #: health_menu:26
+#, 
 msgid "National heat-health warning systems and action plans"
-msgstr ""
+msgstr "Národní systémy varování a akčních plánů tepla"
 
 #: site_menu:74
+#, 
 msgid "Networks"
-msgstr ""
+msgstr "Sítě"
 
 #: site_menu:41
+#, 
 msgid "North Sea"
-msgstr ""
+msgstr "Severní moře"
 
 #: site_menu:42
+#, 
 msgid "North West Europe"
-msgstr ""
+msgstr "Severozápadní Evropa"
 
 #: site_menu:43
+#, 
 msgid "Northern Periphery and Arctic"
-msgstr ""
+msgstr "Severní periferie a Arktida"
 
 #: health_menu:32
+#, 
 msgid "Observatory publications"
-msgstr ""
+msgstr "Observatoř publikace"
 
 #: site_menu:45
+#, 
 msgid "Other regions"
-msgstr ""
+msgstr "Jiné regiony"
 
 #: site_menu:2
+#, 
 msgid "Outreach"
-msgstr ""
+msgstr "Dosah"
 
 #: site_menu:65
+#, 
 msgid "PRACTICE"
-msgstr ""
+msgstr "PRAXE"
 
 #: health_menu:3
+#, 
 msgid "Policy context"
-msgstr ""
+msgstr "Kontext politiky"
 
 #: health_menu:19
+#, 
 msgid "Projections and tools"
-msgstr ""
+msgstr "Projekce a nástroje"
 
 #: health_menu:31
+#, 
 msgid "Publications and outreach"
-msgstr ""
+msgstr "Publikace a dosah"
 
 #: site_menu:57
+#, 
 msgid "RESEARCH AND INNOVATION PROJECTS"
-msgstr ""
+msgstr "Projekty výzkumu a inovací"
 
 #: health_menu:28
+#, 
 msgid "Resource catalogue"
-msgstr ""
+msgstr "Katalog zdrojů"
 
 #: health_menu:29
+#, 
 msgid "Search for Resources"
-msgstr ""
+msgstr "Vyhledávání zdrojů"
 
 #: site_menu:71
+#, 
 msgid "Search the database"
-msgstr ""
+msgstr "Hledat databázi"
 
 #: site_menu:83
+#, 
 msgid "Share your information"
-msgstr ""
+msgstr "Sdílejte své informace"
 
 #: site_menu:3
+#, 
 msgid "Site map"
-msgstr ""
+msgstr "Mapa stránek"
 
 #: site_menu:44
+#, 
 msgid "South West Europe"
-msgstr ""
+msgstr "Jihozápadní Evropa"
 
 #: site_menu:60
+#, 
 msgid "TOOLS"
-msgstr ""
+msgstr "NÁSTROJE"
 
 #: site_menu:48
+#, 
 msgid "TOPICS"
-msgstr ""
+msgstr "Témata"
 
 #: site_menu:32
+#, 
 msgid "Transnational regions"
-msgstr ""
+msgstr "Nadnárodní regiony"
 
 #: site_menu:24
+#, 
 msgid "Transport"
-msgstr ""
+msgstr "Doprava"
 
 #: site_menu:81
+#, 
 msgid "Tutorial Videos"
-msgstr ""
+msgstr "TUTORIAL DOWS"
 
 #: site_menu:51
+#, 
 msgid "Uncertainty guidance"
-msgstr ""
+msgstr "Vedení nejistoty"
 
 #: site_menu:25
+#, 
 msgid "Urban"
-msgstr ""
+msgstr "Městský"
 
 #: site_menu:63
+#, 
 msgid "Urban Adaptation Map Viewer"
-msgstr ""
+msgstr "Prohlížeč mapy Urban Adaptation"
 
 #: health_menu:20
+#, 
 msgid "Urban Adaptation Map Viewer (health focus)"
-msgstr ""
+msgstr "Urban Adaptace Mapa Prohlížeč (zdravotní zaostření)"
 
 #: site_menu:62
+#, 
 msgid "Urban Adaptation Support Tool"
-msgstr ""
+msgstr "Nástroj pro podporu přizpůsobení měst"
 
 #: health_menu:13
+#, 
 msgid "Vector-borne diseases"
-msgstr ""
+msgstr "Reklamní onemocnění"
 
 #: health_menu:14
+#, 
 msgid "Water and food-borne diseases"
-msgstr ""
+msgstr "Onemocnění vody a potravin"
 
 #: site_menu:26
+#, 
 msgid "Water management"
-msgstr ""
+msgstr "Vodní hospodářství"
 
 #: site_menu:82 health_menu:36
+#, 
 msgid "Webinars"
-msgstr ""
+msgstr "Webináře"
 
 #: health_menu:16
+#, 
 msgid "Wildfire"
-msgstr ""
+msgstr "Blesk"
 
 #: health_menu:7
+#, 
 msgid "Working Group on Health in Climate Change (WHO|Europe)"
-msgstr ""
+msgstr "Pracovní skupina pro zdraví při změně klimatu (WHO | Evropa)"
+

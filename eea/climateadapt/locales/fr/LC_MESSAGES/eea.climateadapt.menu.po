@@ -234,7 +234,7 @@ msgstr "Explorateur de données climatiques européennes"
 #: site_menu:72
 #, 
 msgid "EUROPEAN Climate and Health Observatory"
-msgstr "Observatoire du climat et de la santé européens"
+msgstr "Observatoire du climat et de la santé européen"
 
 #: site_menu:64
 #, 
