@@ -3,7 +3,8 @@
 from plone.api.portal import get_tool
 import transaction
 from OFS.SimpleItem import SimpleItem
-from plone.app.contentrules import PloneMessageFactory as _
+#from plone.app.contentrules import PloneMessageFactory as _
+from eea.climateadapt import CcaAdminMessageFactory as _
 from plone.app.contentrules.browser.formhelper import NullAddForm
 from plone.contentrules.rule.interfaces import IExecutable, IRuleElementData
 from Products.CMFPlone import utils

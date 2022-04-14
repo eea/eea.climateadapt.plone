@@ -12,6 +12,8 @@ from plone.i18n import normalizer
 from App.ZApplication import ZApplicationWrapper
 
 # Set up the i18n message factory for our package
+CcaMenuMessageFactory = MessageFactory("eea.climateadapt.menu")
+CcaAdminMessageFactory = MessageFactory("eea.climateadapt.admin")
 MessageFactory = MessageFactory("eea.climateadapt")
 
 # Change permission for manage_pasteObjects to "Add portal content"
