@@ -204,7 +204,7 @@ class AceViewApi(object):
         if isinstance(value, (list, tuple)):
             text = u", ".join(value)
 
-        return u"<div class='sidebar_bold'>" u"<h5>"+self.translate_text(""City")+":</h5><p>{0}</p></div>".format(
+        return u"<div class='sidebar_bold'>" u"<h5>"+self.translate_text("City")+":</h5><p>{0}</p></div>".format(
             text
         )
 
