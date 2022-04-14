@@ -173,6 +173,8 @@ class MenuParser:
     ITEM = 'ITEM'
     SUBITEM = 'SUBITEM'
     site_url = None
+    translation_tool = None
+    translation_language = 'en'
 
     def __init__(self, site_url):
         self.site_url = site_url
@@ -193,10 +195,16 @@ class MenuParser:
             icon = match.group('icon').replace('[', '').replace(']', '')
             label = match.group('label').replace('[', '').replace(']', '')
 
+        if self.translation_tool:
+            label = self.translation_tool.translate(label.strip(),
+                        domain="eea.climateadapt.menu",
+                        target_language=self.translation_language);
+
         item.update({
             'icon': icon.strip() + '</icon>',
             'label': label.strip(),
-            'link': link and (self.site_url + '/' + link.strip()) or None,
+            'link': link and (self.site_url + '/'
+                    + self.translation_language + '/' + link.strip()) or None,
         })
 
         return item
@@ -209,31 +217,22 @@ class MenuParser:
             'children': [],
         }
 
-    def parse(self, text, current_language = 'en'):
+    def parse(self, text, translation_tool = None, current_language = 'en'):
+        self.translation_tool = translation_tool
+        self.translation_language = current_language
+
         value = text.strip()
         lines = value.split('\n')
         lines = [l.strip() for l in lines]
 
-        language_lines = {}
-        language = None
-        for l in lines:
-            if l.startswith('_____'):
-                language = l.strip('_')
-                language_lines[language] = []
-            elif language:
-                language_lines[language].append(l)
-
         self.reset()
         self.out = []
 
-        #for line in lines:
-        #TODO: check if language exist in menu
-        if current_language in language_lines:
-            for line in language_lines[current_language]:
-                self.process(line)
+        for line in lines:
+            self.process(line)
 
-            # handle end of lines
-            self.out.append(self.c_column)
+        # handle end of lines
+        self.out.append(self.c_column)
 
         return self.out
 
@@ -286,7 +285,7 @@ class MenuParser:
         self.c_column = None
 
 
-def _extract_menu(value, site_url=None, language = 'en'):
+def _extract_menu(value, translation_tool = None, site_url=None, language = 'en'):
     """ Construct the data for the menu.
 
     Terminology in the menu:
@@ -307,7 +306,8 @@ def _extract_menu(value, site_url=None, language = 'en'):
     if not site_url:
         site_url = getSite().absolute_url()
     parser = MenuParser(site_url)
-    result = parser.parse(value, language)
+    result = parser.parse(value, translation_tool, language)
+    #import pdb; pdb.set_trace()
     logger.exception("Will use language: %s", language)
     return result
 
@@ -322,26 +322,31 @@ class Navbar(ExternalTemplateHeader):
         return pprint.pprint(v)
 
     def menu(self):
+        tool = getToolByName(self.context, "translation_service")
         try:
             ptool = getToolByName(self.context,
                                   'portal_properties')['site_properties']
 
             context = self.context.aq_inner
-            portal_state = getMultiAdapter((context, self.request), name=u'plone_portal_state')
+            portal_state = getMultiAdapter((context, self.request),
+                            name=u'plone_portal_state')
             current_language = portal_state.language()
 
-            sections = _extract_menu(ptool.getProperty('main_navigation_menu'), None, current_language)
+            sections = _extract_menu(ptool.getProperty('main_navigation_menu'),
+                            tool, None, current_language)
             for idx in range(len(sections)):
                 if not sections[idx]:
                     sections.pop(idx)
+
+
+            #import pdb; pdb.set_trace()
             return sections
-            return _extract_menu(ptool.getProperty('main_navigation_menu'), None, current_language)
         except Exception, e:
             logger.exception("Error while rendering navigation menu: %s", e)
 
             site_url = self.context.portal_url()
 
-            return _extract_menu(DEFAULT_MENU, site_url)
+            return _extract_menu(DEFAULT_MENU, tool, site_url)
 
     def menu_site(self):
         menus = self.menu()

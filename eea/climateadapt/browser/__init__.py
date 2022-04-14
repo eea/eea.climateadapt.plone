@@ -7,6 +7,7 @@ from Acquisition import aq_inner
 from collective.cover.browser.cover import Standard
 from eea.climateadapt.vocabulary import (BIOREGIONS, SUBNATIONAL_REGIONS,
                                          ace_countries_dict)
+from eea.climateadapt import MessageFactory as _
 from eea.geotags.behavior.geotags import ISingleGeoTag
 from plone import api
 from plone.api.user import get
@@ -20,6 +21,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from zExceptions import NotFound
 from zope.component import queryAdapter
+
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -155,7 +157,7 @@ class AceViewApi(object):
     def _render_geochar_macrotrans(self, value):
         tpl = (
             u"<div class='sidebar_bold'>"
-            u"<h5>Macro-Transnational region:</h5><p>{0}</p></div>"
+            u"<h5>"+self.translate_text("Macro-Transnational region")+":</h5><p>{0}</p></div>"
         )
 
         return tpl.format(u", ".join([BIOREGIONS[x] for x in value]))
@@ -163,18 +165,21 @@ class AceViewApi(object):
     def _render_geochar_biotrans(self, value):
         tpl = (
             u"<div class='sidebar_bold'>"
-            u"<h5>Biogeographical regions:</h5><p>{0}</p></div>"
+            u"<h5>"+self.translate_text("Biogeographical regions")+":</h5><p>{0}</p></div>"
         )
 
         return tpl.format(u", ".join([BIOREGIONS.get(x, x) for x in value]))
 
     def _render_geochar_countries(self, value):
-        tpl = u"<div class='sidebar_bold'><h5>Countries:</h5><p>{0}</p></div>"
+        tpl = u"<div class='sidebar_bold'><h5>"+self.translate_text("Countries")+":</h5><p>{0}</p></div>"
 
         return tpl.format(u", ".join(self.get_countries(value)))
 
     def _render_geochar_subnational(self, value):
-        tpl = u"<div class='sidebar_bold'>" u"<h5>Sub Nationals:</h5><p>{0}</p></div>"
+        label = self.translate_text('Sub Nationals')
+        tpl = u"<div class='sidebar_bold'>" u"<h5>%s:</h5><p>{0}</p></div>" %label
+        #tpl = u"<div class='sidebar_bold'>" u"<h5>"+_(u"Sub Nationals")+":</h5><p>{0}</p></div>"
+
         # a list like: ['SUBN_Marche__IT_']
 
         out = []
@@ -199,7 +204,7 @@ class AceViewApi(object):
         if isinstance(value, (list, tuple)):
             text = u", ".join(value)
 
-        return u"<div class='sidebar_bold'>" u"<h5>City:</h5><p>{0}</p></div>".format(
+        return u"<div class='sidebar_bold'>" u"<h5>"+self.translate_text(""City")+":</h5><p>{0}</p></div>".format(
             text
         )
 
@@ -315,6 +320,13 @@ class AceViewApi(object):
             return True
 
         return False
+
+    def translate_text(self, text):
+        tool = getToolByName(self.context, "translation_service")
+        return tool.translate(text,
+                domain="eea.climateadapt",
+                target_language="es"
+                )
 
 
 class ViewAceItem(BrowserView):

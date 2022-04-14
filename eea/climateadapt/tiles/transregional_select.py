@@ -3,7 +3,7 @@
 
 from collective.cover.tiles.base import (IPersistentCoverTile,
                                          PersistentCoverTile)
-from eea.climateadapt import MessageFactory as _
+from eea.climateadapt import CcaAdminMessageFactory as _
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope import schema

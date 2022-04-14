@@ -31,6 +31,14 @@
     />
 
   <browser:page
+    for="*"
+    template="pt/export-menu-pot.pt"
+    class=".export.MenuPot"
+    name="export-menu-po"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
       name="test-trans2"
       for="*"
       class=".views.TestTranslationView"

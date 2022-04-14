@@ -2,7 +2,7 @@ from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
                          TextLine, Tuple)
 from zope.interface import alsoProvides
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
-from eea.climateadapt import MessageFactory as _
+from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
 from plone.autoform import directives
 from plone.directives import form

@@ -12,7 +12,7 @@ from collective.cover.interfaces import ICoverUIDsProvider
 from collective.cover.tiles.base import (IPersistentCoverTile,
                                          PersistentCoverTile)
 from collective.cover.tiles.list import IListTile
-from eea.climateadapt import MessageFactory as _
+from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.catalog import get_aceitem_description
 from eea.climateadapt.vocabulary import (_climateimpacts, _datatypes,
                                          _elements, _origin_website, _sectors,

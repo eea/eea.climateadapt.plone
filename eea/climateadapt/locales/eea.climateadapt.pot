@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-01-20 06:21+0000\n"
+"POT-Creation-Date: 2022-04-14 06:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,70 +17,12 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: eea.climateadapt\n"
 
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.video.xml
-#: ../../climateadapt/profiles/upgrades/to_52/types/eea.climateadapt.video.xml
-msgid "A container for embeded videos"
-msgstr ""
-
-#: ../../climateadapt/tiles/ast.py:130
-msgid "AST Step"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:175
-msgid "Abstracts"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.acemeasure.xml
-msgid "Ace Measure"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.aceproject.xml
-msgid "Ace Project"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.acemeasure.xml
-msgid "AceMeasure"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.aceproject.xml
-msgid "AceProject"
-msgstr ""
-
-#: ../../climateadapt/tiles/search_acecontent.py:70
-msgid "Aceitem type"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:162
-#: ../../climateadapt/behaviors/organisation.py:28
-msgid "Acronym"
-msgstr ""
-
-#: ../../climateadapt/behaviors/organisation.py:29
-msgid "Acronym of the organisation"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:163
-msgid "Acronym of the project"
-msgstr ""
-
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:61
 msgid "Adaptation Details"
 msgstr ""
 
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.adaptationoption.xml
-msgid "Adaptation Option"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.adaptationoption.xml
-msgid "Adaptation Option Measure"
-msgstr ""
-
 #: ../../climateadapt/browser/pt/casestudy_view.pt:57
 msgid "Adaptation Options Implemented In This Case"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/export_portaltypes.pt:47
-msgid "Adaptation Options excel export"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:125
@@ -89,10 +31,6 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:315
 msgid "AdapteCCA"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/keywords-admin.pt:84
-msgid "Add keyword"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:31
@@ -104,53 +42,20 @@ msgstr ""
 msgid "Additional information on adaptation responses"
 msgstr ""
 
-#: ../../climateadapt/behaviors/ccaevent.py:60
-msgid "Agenda"
-msgstr ""
-
-#: ../../climateadapt/behaviors/ccaevent.py:66
-msgid "Agenda document"
-msgstr ""
-
 #: ../../climateadapt/browser/overrides.py:37
 msgid "Agriculture"
-msgstr ""
-
-#: ../../climateadapt/profiles/upgrades/to_22/controlpanel.xml
-msgid "ArcGIS Integration Settings"
-msgstr ""
-
-#: ../../climateadapt/behaviors/ccaevent.py:72
-msgid "Background documents"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:39
 msgid "Biodiversity"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:112
-msgid "Biogeographical Regions"
+#: ../../climateadapt/browser/__init__.py:168
+msgid "Biogeographical regions"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:49
 msgid "Buildings"
-msgstr ""
-
-#: ../../climateadapt/behaviors/c3sindicator.py:62
-msgid "C3S Identifier"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.c3sindicator.xml
-#: ../../climateadapt/profiles/upgrades/to_60/types/eea.climateadapt.c3sindicator.xml
-msgid "C3s Indicator"
-msgstr ""
-
-#: ../../climateadapt/behaviors/configure.zcml:37
-msgid "CCA Event details"
-msgstr ""
-
-#: ../../climateadapt/browser/frontpage.zcml:61
-msgid "Carousel Frontpage"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:46
@@ -161,139 +66,47 @@ msgstr ""
 msgid "Case Study Illustrations (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/export_portaltypes.pt:57
-msgid "Case studies excel export"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.casestudy.xml
-msgid "CaseStudy"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.casestudy.xml
-msgid "CaseStudy Measure"
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:194
+msgid "Case studies related to this option:"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:33
 msgid "Category"
 msgstr ""
 
-#: ../../climateadapt/behaviors/casestudy.py:31
 #: ../../climateadapt/browser/pt/casestudy_view.pt:49
 msgid "Challenges"
-msgstr ""
-
-#: ../../climateadapt/tiles/richtext.py:25
-msgid "Change header style."
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/views.py:78
 msgid "Check-out created"
 msgstr ""
 
+#: ../../climateadapt/browser/__init__.py:208
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
 msgid "City"
-msgstr ""
-
-#: ../../climateadapt/mayorsadapt/configure.zcml:46
-msgid "CityProfile Staging"
-msgstr ""
-
-#: ../../climateadapt/mayorsadapt/configure.zcml:225
-msgid "CityProfile: Token about to expire"
-msgstr ""
-
-#: ../../climateadapt/mayorsadapt/configure.zcml:231
-msgid "CityProfile: Token has expired"
-msgstr ""
-
-#: ../../climateadapt/mayorsadapt/configure.zcml:219
-msgid "CityProfile: Token reset"
-msgstr ""
-
-#: ../../climateadapt/mayorsadapt/configure.zcml:237
-msgid "CityProfile: new city profile registration"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:111
 msgid "Climate change impacts"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:728
-msgid "Climate impact"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:181
-#: ../../climateadapt/behaviors/acemeasure.py:141
-#: ../../climateadapt/behaviors/aceproject.py:249
-msgid "Climate impacts"
-msgstr ""
-
+#: ../../climateadapt/browser/pt/aceproject_view.pt:102
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:172
 #: ../../climateadapt/browser/pt/casestudy_view.pt:294
 msgid "Climate impacts:"
-msgstr ""
-
-#: ../../climateadapt/browser/faceted.zcml:34
-msgid "ClimateAdapt Listing View"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:18
-msgid "ClimateAdapt specific extensions (eea.climateadapt)"
-msgstr ""
-
-#: ../../climateadapt/configure.zcml:423
-msgid "ClimateAdapt: workflow transition with message"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:40
 msgid "Coastal areas"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/detect_links.pt:26
-msgid "Code"
-msgstr ""
-
-#: ../../climateadapt/browser/configure.zcml:61
-msgid "Columned View"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:264
-#: ../../climateadapt/behaviors/acemeasure.py:348
-msgid "Comments"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:351
-#: ../../climateadapt/behaviors/aceproject.py:323
-msgid "Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:81
-#: ../../climateadapt/behaviors/organisation.py:34
 #: ../../climateadapt/browser/pt/casestudy_view.pt:103
 msgid "Contact"
 msgstr ""
 
-#: ../../climateadapt/behaviors/organisation.py:71
-msgid "Contact information for the Observatory"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:84
-msgid "Contact of reference (institution and persons) who is directly involved in the development and implementation of the case. (500 char limit) "
-msgstr ""
-
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:222
 msgid "Contact person"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:115
-msgid "Copyright statement or other rights information for  the primary photo."
-msgstr ""
-
-#: ../../climateadapt/behaviors/organisation.py:35
-msgid "Corporate email or link to contact form"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:240
-msgid "Cost / Benefit"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:42
@@ -301,15 +114,12 @@ msgstr ""
 msgid "Costs and Benefits"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/keywords-admin.pt:63
-#: ../../climateadapt/browser/pt/special-tags-admin.pt:63
-msgid "Count"
+#: ../../climateadapt/browser/__init__.py:174
+msgid "Countries"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:386
-#: ../../climateadapt/behaviors/acemeasure.py:473
-#: ../../climateadapt/behaviors/aceproject.py:410
-msgid "Countries"
+#: ../../climateadapt/browser/pt/aceproject_view.pt:131
+msgid "Countries: ${DYNAMIC_CONTENT}"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:245
@@ -320,34 +130,14 @@ msgstr ""
 msgid "Covenant of Mayors 2030 signatory"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:400
-#: ../../climateadapt/behaviors/acemeasure.py:527
-#: ../../climateadapt/behaviors/aceproject.py:355
-msgid "Created"
+#: ../../climateadapt/browser/pt/aceproject_view.pt:141
+msgid "DRMKC"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:371
-msgid "Data Type"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/detect_links.pt:28
-msgid "Date"
-msgstr ""
-
+#: ../../climateadapt/browser/pt/aceproject_view.pt:70
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:145
 #: ../../climateadapt/browser/pt/casestudy_view.pt:214
 msgid "Date of creation:"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:210
-#: ../../climateadapt/behaviors/acemeasure.py:189
-#: ../../climateadapt/behaviors/aceproject.py:217
-msgid "Date of item's creation"
-msgstr ""
-
-#: ../../climateadapt/behaviors/c3sindicator.py:106
-#: ../../climateadapt/behaviors/guidancedocument.py:18
-#: ../../climateadapt/behaviors/indicator.py:21
-msgid "Date of item's publication"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:240
@@ -358,96 +148,16 @@ msgstr ""
 msgid "Date of strategy/plan approval"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acevideo.py:24
-msgid "Date of video's release"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/keywords-admin.pt:79
-msgid "Delete keyword"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/special-tags-admin.pt:79
-msgid "Delete tag"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:156
-msgid "Describe and tag this item with relevant keywords. Press Enter after writing your keyword. Use specific and not general key words (e.g. avoid words as: adaption, climate change, measure, integrated approach, etc.):"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:155
-msgid "Describe and tag this item with relevant keywords.Press Enter after writing your keyword."
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:243
-msgid "Describe costs (possibly providing quantitative estimate) and funding sources. Describe benefits provided by implemented solutions, i.e.: positive outcomes related climate change adaptation, co-benefits in other areas, quantitative estimation of benefits and related methodologies (e.g. monetization of benefits for cost benefit analysis, indicators of effectiveness of actions implemented, etc.) (5,000 characters limit)"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:230
-msgid "Describe factors that are decisive for a successful implementation and expected challenges or limiting factors which may hinder the process and need to be considered (5,000 character limit)"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:214
-msgid "Describe the Information about actors involved, the form of participation and the participation process.  Focus should be on the level of participation needed and/or adopted already (from information, to full commitment in the deliberation/implementation process), with useful notes e.g. regarding motivations. (5,000 character limit)"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:261
-msgid "Describe the Legislation framework from which the case originated, relevant institutional opportunities and constrains, which determined the case as it is (5000 character limit):"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:58
-msgid "Describe the climate change adaptation solution(s) implemented (5,000 characters limit):"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:48
-msgid "Describe the objectives which triggered the adaptation measures (5,000 characters limit):"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:244
-#: ../../climateadapt/behaviors/acemeasure.py:314
-msgid "Describe the references (projects, a tools reports, etc.) related to this item, providing further information about it or its source."
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:276
-msgid "Describe the time needed to implement the measure. Include: Time frame, e.g. 5-10 years, Brief explanation(250 char limit)"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:34
-msgid "Describe what are the main climate change impacts/risks and related challenges addressed by the adaptation solutions proposed by the case study. Possibly include quantitate scenarios/projections of future climate change considered by the case study (5,000 characters limit):"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:129
-#: ../../climateadapt/tiles/embedapp.py:25
-msgid "Description"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/detect_links.pt:25
-msgid "Destination Links"
-msgstr ""
-
-#: ../../climateadapt/behaviors/c3sindicator.py:72
-msgid "Details APP Toolbox URL"
-msgstr ""
-
 #: ../../climateadapt/browser/overrides.py:42
 msgid "Disaster Risk Reduction"
 msgstr ""
 
-#: ../../climateadapt/tiles/richtext.py:19
-msgid "Don't sanitize HTML"
+#: ../../climateadapt/browser/pt/aceproject_view.pt:97
+msgid "Duration:"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:279
-msgid "Duration"
-msgstr ""
-
-#: ../../climateadapt/tiles/search_acecontent.py:78
-msgid "Element type"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:196
-#: ../../climateadapt/behaviors/acemeasure.py:485
-#: ../../climateadapt/behaviors/aceproject.py:264
-msgid "Elements"
+#: ../../climateadapt/browser/pt/aceproject_view.pt:107
+msgid "Elements:"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:28
@@ -455,48 +165,13 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: ../../climateadapt/tiles/embedapp.py:15
-msgid "Embedding view"
-msgstr ""
-
-#: ../../climateadapt/mayorsadapt/configure.zcml:46
-msgid "Enable override of staging behavior for CityProfiles"
-msgstr ""
-
 #: ../../climateadapt/browser/overrides.py:47
 msgid "Energy"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/keywords-admin.pt:90
-msgid "Enter the new name you want to give to the keyword:"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/special-tags-admin.pt:86
-msgid "Enter the new name you want to give to the tag:"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:387
-#: ../../climateadapt/behaviors/acemeasure.py:474
-#: ../../climateadapt/behaviors/aceproject.py:411
-msgid "European countries"
-msgstr ""
-
-#: ../../climateadapt/behaviors/ccaevent.py:77
-msgid "Event Language"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/export_portaltypes.pt:14
-msgid "Export the following portal types in excel:"
-msgstr ""
-
+#: ../../climateadapt/browser/pt/aceproject_view.pt:139
 #: ../../climateadapt/browser/pt/casestudy_view.pt:313
 msgid "External source"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:222
-#: ../../climateadapt/behaviors/acemeasure.py:201
-#: ../../climateadapt/behaviors/aceproject.py:285
-msgid "Featured"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:43
@@ -507,45 +182,15 @@ msgstr ""
 msgid "Forestry"
 msgstr ""
 
-#: ../../climateadapt/tiles/formtile.py:25
-msgid "Form UUID"
+#: ../../climateadapt/browser/pt/aceproject_view.pt:87
+msgid "Funding Programme:"
 msgstr ""
 
-#: ../../climateadapt/profiles/default/types/FrontpageSlide.xml
-#: ../../climateadapt/profiles/upgrades/to_56/types/FrontpageSlide.xml
-msgid "Frontpage Slide"
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:187
+msgid "Geographic characterisation:"
 msgstr ""
 
-#: ../../climateadapt/browser/frontpage.zcml:61
-msgid "Frontpage Tile"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:154
-msgid "Funding Programme"
-msgstr ""
-
-#: ../../climateadapt/tiles/search_acecontent.py:119
-msgid "Funding programmes"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:273
-msgid "Further information on the funding"
-msgstr ""
-
-#: ../../climateadapt/behaviors/mapgraphdataset.py:11
-msgid "GIS Layer ID"
-msgstr ""
-
-#: ../../climateadapt/behaviors/adaptationoption.py:24
-msgid "General category"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:255
-#: ../../climateadapt/behaviors/acemeasure.py:338
-#: ../../climateadapt/behaviors/aceproject.py:315
-msgid "Geographic characterisation"
-msgstr ""
-
+#: ../../climateadapt/browser/pt/aceproject_view.pt:117
 #: ../../climateadapt/browser/pt/casestudy_view.pt:308
 msgid "Geographic characterization:"
 msgstr ""
@@ -554,20 +199,9 @@ msgstr ""
 msgid "Good practice / spotlight item"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:325
-msgid "Governance Level"
-msgstr ""
-
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:178
 #: ../../climateadapt/browser/pt/casestudy_view.pt:300
 msgid "Governance level:"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.guidancedocument.xml
-msgid "Guidance Document"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/export_portaltypes.pt:22
-msgid "Guidances excel export"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:128
@@ -578,137 +212,41 @@ msgstr ""
 msgid "Health"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceproject_view.pt:80
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:155
 #: ../../climateadapt/browser/pt/casestudy_view.pt:277
 msgid "Health impact:"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:129
-#: ../../climateadapt/behaviors/acemeasure.py:501
-#: ../../climateadapt/behaviors/aceproject.py:211
-msgid "Health impacts"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:392
-#: ../../climateadapt/behaviors/acemeasure.py:510
-msgid "High importance"
-msgstr ""
-
-#: ../../climateadapt/behaviors/adaptationoption.py:34
-msgid "IPCC adaptation options categories"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:34
 msgid "IPCC categories"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:273
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:48
 #: ../../climateadapt/browser/pt/casestudy_view.pt:90
 msgid "Implementation Time"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:464
-msgid "Implementation Type"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:26
-msgid "Import content from SQL database of Liferay data"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:65
 msgid "Importance and Relevance of Adaptation"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:396
-msgid "Important"
-msgstr ""
-
-#: ../../climateadapt/behaviors/configure.zcml:31
-msgid "Include in Health Observatory"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:134
-#: ../../climateadapt/behaviors/acemeasure.py:507
-#: ../../climateadapt/behaviors/aceproject.py:229
-msgid "Include in observatory"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.indicator.xml
-msgid "Indicator"
-msgstr ""
-
-#: ../../climateadapt/configure.zcml:450
-msgid "Indicator modified"
-msgstr ""
-
-#: ../../climateadapt/behaviors/c3sindicator.py:52
-msgid "Indicator title"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/export_portaltypes.pt:42
-msgid "Indicators and reports excel export"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.informationportal.xml
-msgid "Information portal"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/export_portaltypes.pt:27
-msgid "Information portals excel export"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:96
-#: ../../climateadapt/behaviors/acemeasure.py:360
-#: ../../climateadapt/behaviors/aceproject.py:106
-msgid "Item from third parties"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:366
-msgid "Item link"
-msgstr ""
-
-#: ../../climateadapt/behaviors/organisation.py:44
-msgid "Key activities within climate change and health"
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:138
+msgid "Item’s creation:"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:203
 msgid "Key vulnerable sectors"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/keywords-admin.pt:62
-msgid "Keyword"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:154
-#: ../../climateadapt/behaviors/acemeasure.py:155
-#: ../../climateadapt/behaviors/aceproject.py:200
-msgid "Keywords"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/keywords-admin.pt:57
-msgid "Keywords administration"
-msgstr ""
-
+#: ../../climateadapt/browser/pt/aceproject_view.pt:92
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:162
 #: ../../climateadapt/browser/pt/casestudy_view.pt:284
 msgid "Keywords:"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:405
-#: ../../climateadapt/behaviors/acemeasure.py:532
-#: ../../climateadapt/behaviors/aceproject.py:360
-msgid "Last Modified"
-msgstr ""
-
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:258
 msgid "Last Update"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:184
-msgid "Lead"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:185
-msgid "Lead organisation or individual of the project"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:45
@@ -716,60 +254,17 @@ msgstr ""
 msgid "Legal Aspects"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:258
-msgid "Legal aspects"
-msgstr ""
-
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:51
 #: ../../climateadapt/browser/pt/casestudy_view.pt:94
 msgid "Life Time"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:285
-msgid "Lifetime"
-msgstr ""
-
-#: ../../climateadapt/behaviors/organisation.py:58
-msgid "Links to further information (relevant for the Observatory)"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:232
-#: ../../climateadapt/behaviors/aceproject.py:294
-msgid "List the Websites where the item can be found or is described. Please place each website on a new line"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:298
-msgid "List the Websites where the option can be found or is described. Note: may refer to the original document describing a measure and does not have to refer back to the project e.g. collected measures. NOTE: Add http:// in front of every website link."
-msgstr ""
-
-#: ../../climateadapt/browser/configure.zcml:75
-msgid "Listing with dates"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:109
-#: ../../climateadapt/behaviors/acemeasure.py:373
-#: ../../climateadapt/behaviors/aceproject.py:118
-msgid "Logo"
-msgstr ""
-
-#: ../../climateadapt/tiles/search_acecontent.py:106
-msgid "Macro-Transnational Regions"
+#: ../../climateadapt/browser/__init__.py:160
+msgid "Macro-Transnational region"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:120
 msgid "Main motivation for taking adaptation action"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.mapgraphdataset.xml
-msgid "Map, Graph or Dataset"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/export_portaltypes.pt:62
-msgid "Map, graphs, dataset excel export"
-msgstr ""
-
-#: ../../climateadapt/behaviors/indicator.py:18
-msgid "Map/Graphs"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:46
@@ -784,92 +279,12 @@ msgstr ""
 msgid "Mayors Adapt signatory"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:494
-msgid "Measure Type"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:395
-msgid "Metadata"
-msgstr ""
-
-#: ../../climateadapt/behaviors/ccaevent.py:56
-msgid "More information on the event (URL)"
-msgstr ""
-
-#: ../../climateadapt/behaviors/organisation.py:40
-msgid "Name"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:120
-msgid "Name of the case study clearly identifying its scope and location (250 character limit)"
-msgstr ""
-
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:133
 msgid "Name of the strategy/ plan (If adopted)"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:124
-msgid "Nr of items to show"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:410
-#: ../../climateadapt/behaviors/acemeasure.py:537
-#: ../../climateadapt/behaviors/aceproject.py:365
-msgid "Object ID"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/detect_links.pt:27
-msgid "Object URL"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:45
 #: ../../climateadapt/browser/pt/casestudy_view.pt:53
 msgid "Objectives"
-msgstr ""
-
-#: ../../climateadapt/behaviors/ccaevent.py:90
-msgid "Online registration (URL)"
-msgstr ""
-
-#: ../../climateadapt/behaviors/ccaevent.py:100
-msgid "Online registration documents"
-msgstr ""
-
-#: ../../climateadapt/behaviors/ccaevent.py:94
-msgid "Online registration message"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.organisation.xml
-msgid "Organisation"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/export_portaltypes.pt:37
-msgid "Organisations excel export"
-msgstr ""
-
-#: ../../climateadapt/tiles/search_acecontent.py:62
-msgid "Origin website"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:291
-#: ../../climateadapt/behaviors/acemeasure.py:410
-msgid "Other contributor(s)"
-msgstr ""
-
-#: ../../climateadapt/behaviors/c3sindicator.py:66
-msgid "Overview APP Toolbox URL"
-msgstr ""
-
-#: ../../climateadapt/behaviors/ccaevent.py:84
-msgid "Participation"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:191
-msgid "Partners"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:417
-msgid "Partners Source Link"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:165
@@ -880,14 +295,6 @@ msgstr ""
 msgid "Please contact us for any other enquiry on this Case Study or to share a new Case Study (email <a href=\"mailto: climate.adapt@eea.europa.eu\">climate.adapt@eea.europa.eu</a>)"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:413
-msgid "Please first verify if the contributor is already part of the Climate ADAPT Database. If not, it is suggested to first create a new Organisation item (%s). As last alternative please add the new contributor(s) in the following box, using the official name"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:294
-msgid "Please first verify if the contributor is already part of the Climate ADAPT Database. If not, it is suggested to first create a new Organisation item (<a target='_blank' href='/metadata/organisations/++add++eea.climateadapt.organisation'>click here</a>). As last alternative please add the new contributor(s) in the following box, using the official name"
-msgstr ""
-
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:217
 msgid "Population"
 msgstr ""
@@ -896,76 +303,18 @@ msgstr ""
 msgid "Portal Type"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:364
-msgid "Portal type"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:112
-msgid "Primary Photo Copyright"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:107
-msgid "Primary photo"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:123
-msgid "Prime photo"
-msgstr ""
-
 #: ../../climateadapt/browser/overrides.py:59
 msgid "Professional thematic domain"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:169
-msgid "Project title or name"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:201
-msgid "Provide Keywords related to the project. Press Enter after writing your keyword."
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:280
-msgid "Provide duration of project - Start and end date [yr]"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:192
-msgid "Provide information about project partners (organisation names)."
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:176
-msgid "Provide information focusing on project output. Possibly on specific Website features."
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:306
-msgid "Provide source from which project was retrieved (e.g. specific DB) "
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:274
-msgid "Provide source of funding"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.publicationreport.xml
-msgid "Publication and Report"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/export_portaltypes.pt:16
-msgid "Publications and reports excel export"
+#: ../../climateadapt/browser/pt/aceproject_view.pt:47
+msgid "Project information"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:24
 msgid "Published"
 msgstr ""
 
-#: ../../climateadapt/profiles/upgrades/to_22/controlpanel.xml
-msgid "RabbitMQ Settings"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:512
-#: ../../climateadapt/behaviors/aceproject.py:401
-msgid "Rating"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:305
 #: ../../climateadapt/browser/pt/casestudy_view.pt:194
 msgid "Reference"
 msgstr ""
@@ -974,144 +323,23 @@ msgstr ""
 msgid "Reference Information"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceproject_view.pt:54
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:55
 msgid "Reference information"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:242
-#: ../../climateadapt/behaviors/acemeasure.py:312
-msgid "References"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:122
 msgid "References:"
 msgstr ""
 
-#: ../../climateadapt/tiles/transregional_select.py:22
-msgid "Region"
-msgstr ""
-
-#: ../../climateadapt/contentrules.py:25
-msgid "Reindex object"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:282
-#: ../../climateadapt/behaviors/acemeasure.py:400
-#: ../../climateadapt/behaviors/aceproject.py:145
-msgid "Related"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acevideo.py:33
-msgid "Related documents and presentations"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:66
 #: ../../climateadapt/browser/pt/casestudy_view.pt:144
 msgid "Relevance"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/keywords-admin.pt:88
-msgid "Rename Keyword"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/special-tags-admin.pt:82
-msgid "Rename Tag"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/keywords-admin.pt:82
-msgid "Rename keyword"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/special-tags-admin.pt:84
-msgid "Rename tag"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.researchproject.xml
-msgid "Research Project"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/export_portaltypes.pt:52
-msgid "Research and knowledge projects excel export"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.researchproject.xml
-msgid "ResearchProject"
-msgstr ""
-
-#: ../../climateadapt/tiles/search_acecontent.py:56
-msgid "Search Text"
-msgstr ""
-
-#: ../../climateadapt/tiles/search_acecontent.py:86
-msgid "Sector"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:166
-#: ../../climateadapt/behaviors/acemeasure.py:170
-#: ../../climateadapt/behaviors/aceproject.py:234
-msgid "Sectors"
-msgstr ""
-
+#: ../../climateadapt/browser/pt/aceproject_view.pt:112
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:167
 #: ../../climateadapt/browser/pt/casestudy_view.pt:289
 msgid "Sectors:"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:276
-msgid "Select from the Climate ADAPT \"Organisation\" items the organisations contributing to/ involved in this item"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:395
-#: ../../climateadapt/behaviors/aceproject.py:140
-msgid "Select from the Climate ADAPT Organisation items the organisations contributing to/ involved in this item"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:94
-msgid "Select one or more adaptation options that this item relates to:"
-msgstr ""
-
-#: ../../climateadapt/behaviors/adaptationoption.py:45
-msgid "Select one or more case study that this item relates to:"
-msgstr ""
-
-#: ../../climateadapt/behaviors/adaptationoption.py:25
-msgid "Select one or more categories of adaptation options. The 3 options are:"
-msgstr ""
-
-#: ../../climateadapt/behaviors/adaptationoption.py:35
-msgid "Select one or more categories of adaptation options. The options are:"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:182
-#: ../../climateadapt/behaviors/aceproject.py:250
-#: ../../climateadapt/behaviors/c3sindicator.py:93
-msgid "Select one or more climate change impact topics that this item relates to."
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:144
-msgid "Select one or more climate change impact topics that this item relates to:"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:197
-#: ../../climateadapt/behaviors/aceproject.py:265
-msgid "Select one or more elements."
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:167
-#: ../../climateadapt/behaviors/aceproject.py:235
-#: ../../climateadapt/behaviors/c3sindicator.py:79
-msgid "Select one or more relevant sector policies that this item relates to."
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:171
-msgid "Select one or more relevant sector policies that this item relates to:"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:70
-msgid "Select only one category below that best describes how relevant this case study is to climate change adaptation:"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:326
-msgid "Select the one governance level that relates to this adaptation option"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:60
@@ -1122,103 +350,33 @@ msgstr ""
 msgid "Send token emails to City Mayors"
 msgstr ""
 
-#: ../../climateadapt/behaviors/configure.zcml:37
-msgid "Settings for CCA Events"
-msgstr ""
-
-#: ../../climateadapt/behaviors/configure.zcml:31
-msgid "Settings for inclusion in Health Observatory"
-msgstr ""
-
-#: ../../climateadapt/tiles/shareinfo.py:26
-msgid "Share info type"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:148
-#: ../../climateadapt/behaviors/acemeasure.py:134
-msgid "Short summary"
-msgstr ""
-
-#: ../../climateadapt/tiles/search_acecontent.py:391
-msgid "Show listing results, in addition to assigned items"
-msgstr ""
-
-#: ../../climateadapt/tiles/search_acecontent.py:386
-msgid "Show the share button"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:55
 #: ../../climateadapt/browser/pt/casestudy_view.pt:61
 msgid "Solutions"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:406
-msgid "Sort order for results and assigned items"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:322
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:58
 #: ../../climateadapt/browser/pt/casestudy_view.pt:111
 msgid "Source"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:383
-#: ../../climateadapt/behaviors/acemeasure.py:470
-#: ../../climateadapt/behaviors/aceproject.py:404
-msgid "Spatial Layer"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:370
-msgid "Special Tagging"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:353
-#: ../../climateadapt/behaviors/acemeasure.py:515
-#: ../../climateadapt/behaviors/aceproject.py:384
-msgid "Special tagging"
-msgstr ""
-
-#: ../../climateadapt/tiles/search_acecontent.py:94
-msgid "Special tags"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/special-tags-admin.pt:57
-msgid "Special tags administration"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:74
 msgid "Stakeholder Participation"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:211
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:36
 msgid "Stakeholder participation"
-msgstr ""
-
-#: ../../climateadapt/browser/configure.zcml:57
-msgid "Standard with no title"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:27
 msgid "Status"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:378
-msgid "Storage Type"
+#: ../../climateadapt/browser/__init__.py:182
+msgid "Sub Nationals"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/keywords-admin.pt:94
-#: ../../climateadapt/browser/pt/special-tags-admin.pt:90
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:49
 msgid "Submit"
-msgstr ""
-
-#: ../../climateadapt/behaviors/ccaevent.py:52
-msgid "Subtitle"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:227
-msgid "Success / limitations"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:39
@@ -1230,36 +388,10 @@ msgstr ""
 msgid "Summary of the strategy/plan"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:486
-msgid "TODO: Elements description here"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/special-tags-admin.pt:62
-msgid "Tag"
-msgstr ""
-
+#: ../../climateadapt/browser/pt/aceproject_view.pt:72
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:147
 #: ../../climateadapt/browser/pt/casestudy_view.pt:216
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:118
-#: ../../climateadapt/behaviors/acemeasure.py:382
-#: ../../climateadapt/behaviors/aceproject.py:127
-msgid "Thumbnail"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:138
-#: ../../climateadapt/behaviors/acemeasure.py:119
-#: ../../climateadapt/behaviors/aceproject.py:168
-msgid "Title"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.tool.xml
-msgid "Tool"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/export_portaltypes.pt:32
-msgid "Tools excel export"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:25
@@ -1270,261 +402,12 @@ msgstr ""
 msgid "Transport"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/detect_links.pt:29
-msgid "Type"
-msgstr ""
-
-#: ../../climateadapt/tiles/cardslisting.py:28
-#: ../../climateadapt/tiles/section_nav.py:24
-msgid "UUID"
-msgstr ""
-
-#: ../../climateadapt/contentrules.py:60
-msgid "Unable to reindex ${name} as part of content rule 'reindex' action: ${error}"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:98
-msgid "Upgrade profile for eea.climateadapt v10"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:106
-msgid "Upgrade profile for eea.climateadapt v11"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:114
-msgid "Upgrade profile for eea.climateadapt v12"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:122
-msgid "Upgrade profile for eea.climateadapt v13"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:130
-msgid "Upgrade profile for eea.climateadapt v14"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:138
-msgid "Upgrade profile for eea.climateadapt v15"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:146
-msgid "Upgrade profile for eea.climateadapt v16"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:153
-msgid "Upgrade profile for eea.climateadapt v17"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:160
-msgid "Upgrade profile for eea.climateadapt v18"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:167
-msgid "Upgrade profile for eea.climateadapt v19"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:34
-msgid "Upgrade profile for eea.climateadapt v2"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:174
-msgid "Upgrade profile for eea.climateadapt v20"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:182
-msgid "Upgrade profile for eea.climateadapt v21"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:42
-msgid "Upgrade profile for eea.climateadapt v3"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:189
-msgid "Upgrade profile for eea.climateadapt v31"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:196
-msgid "Upgrade profile for eea.climateadapt v32"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:203
-msgid "Upgrade profile for eea.climateadapt v38"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:50
-msgid "Upgrade profile for eea.climateadapt v4"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:211
-msgid "Upgrade profile for eea.climateadapt v40"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:218
-msgid "Upgrade profile for eea.climateadapt v43"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:226
-msgid "Upgrade profile for eea.climateadapt v44"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:234
-msgid "Upgrade profile for eea.climateadapt v45"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:242
-msgid "Upgrade profile for eea.climateadapt v46"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:250
-msgid "Upgrade profile for eea.climateadapt v47"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:258
-msgid "Upgrade profile for eea.climateadapt v48"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:266
-msgid "Upgrade profile for eea.climateadapt v49"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:58
-msgid "Upgrade profile for eea.climateadapt v5"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:274
-msgid "Upgrade profile for eea.climateadapt v50"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:282
-msgid "Upgrade profile for eea.climateadapt v51"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:290
-msgid "Upgrade profile for eea.climateadapt v52"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:298
-msgid "Upgrade profile for eea.climateadapt v53"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:306
-msgid "Upgrade profile for eea.climateadapt v54"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:314
-msgid "Upgrade profile for eea.climateadapt v55"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:322
-msgid "Upgrade profile for eea.climateadapt v56"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:330
-msgid "Upgrade profile for eea.climateadapt v57"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:338
-msgid "Upgrade profile for eea.climateadapt v58"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:346
-msgid "Upgrade profile for eea.climateadapt v59"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:66
-msgid "Upgrade profile for eea.climateadapt v6"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:354
-msgid "Upgrade profile for eea.climateadapt v60"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:362
-msgid "Upgrade profile for eea.climateadapt v61"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:370
-msgid "Upgrade profile for eea.climateadapt v62"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:378
-msgid "Upgrade profile for eea.climateadapt v63"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:74
-msgid "Upgrade profile for eea.climateadapt v7"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:82
-msgid "Upgrade profile for eea.climateadapt v8"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:90
-msgid "Upgrade profile for eea.climateadapt v9"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:110
-#: ../../climateadapt/behaviors/acemeasure.py:374
-#: ../../climateadapt/behaviors/aceproject.py:119
-msgid "Upload a representative picture or logo for the item. Recommended size: at least 360/180 px, aspect ratio 2x"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:119
-#: ../../climateadapt/behaviors/acemeasure.py:383
-#: ../../climateadapt/behaviors/aceproject.py:128
-msgid "Upload a representative picture or logo for the item. Recommended size: at least 360/180 px, aspect ratio 2x. This image will be used in the search result page - cards view. If this image doesn't exist, then the logo image will be used."
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:368
-msgid "Uploaded by"
-msgstr ""
-
 #: ../../climateadapt/browser/overrides.py:45
 msgid "Urban"
 msgstr ""
 
-#: ../../climateadapt/tiles/richtext.py:20
-msgid "Use with care!"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:371
-msgid "Used only by Climate-ADAPT administrator. Please don't compile this field if you are a Climate-ADAPT expert creating a new item"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:354
-#: ../../climateadapt/behaviors/acemeasure.py:516
-#: ../../climateadapt/behaviors/aceproject.py:385
-msgid "Used only by Climate-ADAPT administrator. Please don't compile this field if you are a Climate-ADAPT expert creating a new item."
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:361
-msgid "Used only to highlight items provided by Third parties. <br>Please don't compile this field if you are a Climate-ADAPT expert creating a new item."
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:97
-#: ../../climateadapt/behaviors/aceproject.py:107
-msgid "Used only to highlight items provided by Third parties.<br>Please don't compile this field if you are a Climate-ADAPT expert creating a new item."
-msgstr ""
-
-#: ../../climateadapt/browser/configure.zcml:65
-msgid "Vertical Tab View"
-msgstr ""
-
-#: ../../climateadapt/profiles/default/types/eea.climateadapt.video.xml
-#: ../../climateadapt/profiles/upgrades/to_52/types/eea.climateadapt.video.xml
-msgid "Video"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acevideo.py:17
-msgid "Video Height"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acevideo.py:13
-msgid "Video URL"
-msgstr ""
-
-#: ../../climateadapt/tiles/genericview.py:21
-msgid "View name"
+#: ../../climateadapt/browser/pt/aceproject_view.pt:18
+msgid "View on DRMKC"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:16
@@ -1547,12 +430,12 @@ msgstr ""
 msgid "Website"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:231
-#: ../../climateadapt/behaviors/acemeasure.py:297
-#: ../../climateadapt/behaviors/aceproject.py:293
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:57
+#: ../../climateadapt/browser/pt/casestudy_view.pt:107
 msgid "Websites"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceproject_view.pt:55
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:117
 msgid "Websites:"
 msgstr ""
@@ -1565,26 +448,6 @@ msgstr ""
 msgid "Year: <span>${DYNAMIC_CONTENT}</span>"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:632
-msgid "You are not allowed to add content to this tile"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:18
-msgid "eea.climateadapt"
-msgstr ""
-
-#: ../../climateadapt/profiles.zcml:26
-msgid "eea.climateadapt: import content from Liferay"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/detect_links.pt:49
-msgid "external"
-msgstr ""
-
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:218
 msgid "inhabitants"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/detect_links.pt:50
-msgid "internal"
 msgstr ""

@@ -1,4 +1,4 @@
-from eea.climateadapt import MessageFactory as _
+from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
 from plone.app.contenttypes.interfaces import IImage
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField

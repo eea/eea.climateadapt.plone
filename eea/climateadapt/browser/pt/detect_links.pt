@@ -6,7 +6,7 @@
   xml:lang="en"
   lang="en"
   metal:use-macro="context/main_template/macros/master"
-  i18n:domain="eea.climateadapt">
+  i18n:domain="eea.climateadapt.admin">
 
   <body>
 
