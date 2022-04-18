@@ -244,7 +244,8 @@ def initiate_translations(site):
         try:
             result = translate_obj(obj)
         except Exception as err:
-            import pdb; pdb.set_trace()
+            errors.append(err)
+            # import pdb; pdb.set_trace()
 
         if len(result['errors']) > 0:
             for error in result['errors']:
