@@ -155,6 +155,29 @@ def translate_obj(obj):
 
             value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
 
+            if trans_obj.portal_type == 'Event':
+                force_unlock(trans_obj)
+                reindex = False
+                if key == 'start':
+                    # setattr(trans_obj, key, obj.start)
+                    trans_obj.start = obj.start
+                    reindex = True
+                if key == 'end':
+                    trans_obj.end = obj.end
+                    # setattr(trans_obj, key, obj.start)
+                    reindex = True
+                if key == 'effective':
+                    trans_obj.setEffectiveDate(obj.effective_date)
+                    reindex = True
+
+                if reindex is True:
+                    # reindex object
+                    trans_obj._p_changed = True
+                    trans_obj.reindexObject()
+                    continue
+
+                    # transaction.commit()
+
             if not value:
                 continue
 
@@ -395,7 +418,6 @@ class RunTranslationSingleItem(BrowserView):
 
     def __call__(self, **kwargs):
         obj = self.context
-        import pdb; pdb.set_trace()
         result = translate_obj(obj)
         transaction.commit()
         return result
