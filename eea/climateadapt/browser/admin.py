@@ -225,7 +225,8 @@ def translate_obj(obj):
                 if rich:
                     setattr(getattr(trans_obj, key), 'raw', encoded_text)
                 else:
-                    setattr(trans_obj, key, encoded_text)
+                    # setattr(trans_obj, key, encoded_text)
+                    setattr(trans_obj, key, translated['transId'])
 
                 # reindex object
                 trans_obj._p_changed = True
