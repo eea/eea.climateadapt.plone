@@ -169,6 +169,9 @@ def translate_obj(obj):
                 if key == 'effective':
                     trans_obj.setEffectiveDate(obj.effective_date)
                     reindex = True
+                if key == 'timezone':
+                    trans_obj.timezone = obj.timezone
+                    reindex = True
 
                 if reindex is True:
                     # reindex object
