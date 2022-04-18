@@ -1,4 +1,8 @@
-<div>
+<div
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  i18n:domain="eea.climateadapt"
+  >
 
   <metal:macro define-macro="title_date">
     <h1>
