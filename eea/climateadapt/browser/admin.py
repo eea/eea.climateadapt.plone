@@ -223,7 +223,9 @@ def translate_obj(obj):
             if 'translated' in translated:
                 encoded_text = translated['transId'].encode('latin-1')
                 if rich:
-                    setattr(getattr(trans_obj, key), 'raw', encoded_text)
+                    setattr(trans_obj, key, getattr(obj, key))
+                    setattr(trans_obj, key, RichTextValue(encoded_text))
+                    # setattr(getattr(trans_obj, key), 'raw', encoded_text)
                 else:
                     setattr(trans_obj, key, encoded_text)
 
