@@ -209,7 +209,7 @@ def translate_obj(obj):
                isinstance(value, Geolocation):
                 continue
 
-            if isinstance(getattr(obj, key), RichTextValue)
+            if isinstance(getattr(obj, key), RichTextValue):
                 value = getattr(obj, key).output
                 rich = True
 
