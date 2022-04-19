@@ -221,7 +221,20 @@ def translate_obj(obj):
             force_unlock(trans_obj)
             translated = retrieve_translation('EN', value, [language.upper()])
             if 'translated' in translated:
+                # TODO improve this part, after no more errors
                 encoded_text = translated['transId'].encode('latin-1')
+
+                if key == 'source' and obj.portal_type == 'eea.climateadapt.publicationreport':
+                    # import pdb; pdb.set_trace()
+                    setattr(trans_obj, key, getattr(obj, key))
+                    # setattr(trans_obj, key, encoded_text)
+                    # setattr(trans_obj, key, translated['transId'])
+                    setattr(trans_obj, key, RichTextValue(encoded_text))
+                    # reindex object
+                    trans_obj._p_changed = True
+                    trans_obj.reindexObject(idxs=[key])
+                    continue
+
                 if rich:
                     setattr(trans_obj, key, getattr(obj, key))
                     setattr(trans_obj, key, RichTextValue(encoded_text))
