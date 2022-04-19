@@ -251,7 +251,7 @@ def initiate_translations(site):
         except Exception as err:
             logger.info(err)
             # errors.append(err)
-            # import pdb; pdb.set_trace()
+            import pdb; pdb.set_trace()
 
         if len(result['errors']) > 0:
             for error in result['errors']:
