@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <link rel="preload" href="static/bs3/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="static/bs3/css/bootstrap.min.css"></noscript>
+    <link rel="preload" href="static/bs3/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="static/bs3/css/bootstrap.min.css" /></noscript>
     
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css"></noscript>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" /></noscript>
     
     <link rel="preload" href="static/css/compiled-css.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-    <noscript><link rel="stylesheet" href="static/css/compiled-css.css"></noscript>
+    <noscript><link rel="stylesheet" href="static/css/compiled-css.css" /></noscript>
     
-    <link rel="preload" href="static/css/compiled-less.css?rel=879213dfb4" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=879213dfb4"></noscript>
+    <link rel="preload" href="static/css/compiled-less.css?rel=60b8fcde38" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=60b8fcde38" /></noscript>
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="static/images/favicon/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/images/favicon/apple-touch-icon-114x114.png" />
@@ -25,12 +25,12 @@
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="static/images/favicon/apple-touch-icon-152x152.png" />
     <link rel="icon" type="image/png" href="static/images/favicon/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="static/images/favicon/favicon-16x16.png" sizes="16x16" />
-    <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon/favicon.ico" />
     
     <meta name="application-name" content="Climate-ADAPT"/>
     <meta name="msapplication-TileColor" content="#FFFFFF" />
     <meta name="msapplication-TileImage" content="mstile-144x144.png" />
-    <meta name="theme-color" content="#005C96">
+    <meta name="theme-color" content="#005C96" />
     <title>Climate-ADAPT</title>
   </head>
 
@@ -127,7 +127,6 @@
               -->
                 </ul>
       
-                </span>
               </div>
               <div class="mobile-menu">
                 <i class="fa fa-bars"></i>
@@ -372,23 +371,30 @@
       <div id="page-body"></div>
     </div>
 
-    <footer>
+    <footer  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="eea.climateadapt">
     
       <div class="footer-nav-wrapper">
         <div class="content-container">
           <nav class="footer-nav" role="navigation">
             <ul>
               <li class="footer-nav-item">
-                <a href="/" class="footer-nav-link">Home</a>
+                <a href="/" class="footer-nav-link" i18n:translate="">Home</a>
               </li>
               <li class="footer-nav-item">
-                <a href="mailto:climate.adapt@eea.europa.eu" class="footer-nav-link">Contact</a>
+                <a href="mailto:climate.adapt@eea.europa.eu" class="footer-nav-link" i18n:translate="">Contact</a>
               </li>
               <li class="footer-nav-item">
-                <a href="/sitemap" class="footer-nav-link">SITE MAP</a>
+                <a href="/sitemap" class="footer-nav-link" i18n:translate="">SITE MAP</a>
               </li>
               <li class="footer-nav-item">
-                <a href="/privacy-and-legal-notice" class="footer-nav-link">Privacy and Legal Notice</a>
+                <a href="/privacy-and-legal-notice" class="footer-nav-link" i18n:translate="">Privacy and Legal Notice</a>
               </li>
               <li class="footer-nav-item float-lg-right footer-login">
                   <!-- <a href="/login" id="personaltools-login" rel="#pb_1" class="footer-nav-link link-overlay" style="cursor: pointer;"><i class="fa fa-user"></i> Log in</a> -->
@@ -397,8 +403,8 @@
                     <div id="personal-menu">
                       <a class="personal-menu-action">
                         <i class="fa fa-user"></i>
-                        <span class="login-text">Login</span>
-                        <span class="user-name">user name</span>
+                        <span class="login-text" i18n:translate="">Login</span>
+                        <span class="user-name" i18n:translate="">user name</span>
                         <i class="angle-down-icon"></i>
                       </a>
                     </div>
@@ -426,7 +432,7 @@
       <div class="content-container">
         <div class="row footer-content">
           <div class="column col-md-4 col-xs-12">
-            <p class="site-info">The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href="https://ec.europa.eu/">European Commission</a> and the <a href="https://www.eea.europa.eu/">European Environment Agency.</a></p>
+            <p class="site-info" i18n:translate="">The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href="https://ec.europa.eu/">European Commission</a> and the <a href="https://www.eea.europa.eu/">European Environment Agency.</a></p>
             <div class="footer-logos-wrapper">
               <a href="https://ec.europa.eu/"
                  rel="noopener">
@@ -451,7 +457,7 @@
     
           <div class="eu-systems column col-md-8 col-xs-12">
             <div class="eu-systems-wrapper">
-              <p>Other European Information Systems:<br>&nbsp;</p>
+              <p i18n:translate="">Other European Information Systems:<br />&nbsp;</p>
               <ul class="footer-logos">
                 <li class="footer-logo-item">
                   <a href="https://biodiversity.europa.eu/"
