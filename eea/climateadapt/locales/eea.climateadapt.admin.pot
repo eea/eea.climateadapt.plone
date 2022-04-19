@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-04-14 06:48+0000\n"
+"POT-Creation-Date: 2022-04-19 13:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: eea.climateadapt.admin\n"
 
+#: ../../climateadapt/theme/tiles/ast.py:130
 #: ../../climateadapt/tiles/ast.py:130
 msgid "AST Step"
 msgstr ""
@@ -25,6 +26,7 @@ msgstr ""
 msgid "Abstracts"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/search_acecontent.py:70
 #: ../../climateadapt/tiles/search_acecontent.py:70
 msgid "Aceitem type"
 msgstr ""
@@ -62,12 +64,9 @@ msgstr ""
 msgid "Biodiversity"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/search_acecontent.py:112
 #: ../../climateadapt/tiles/search_acecontent.py:112
 msgid "Biogeographical Regions"
-msgstr ""
-
-#: ../../climateadapt/browser/__init__.py:168
-msgid "Biogeographical regions"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:49
@@ -82,6 +81,7 @@ msgstr ""
 msgid "Challenges"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/richtext.py:25
 #: ../../climateadapt/tiles/richtext.py:25
 msgid "Change header style."
 msgstr ""
@@ -90,11 +90,8 @@ msgstr ""
 msgid "Check-out created"
 msgstr ""
 
-#: ../../climateadapt/browser/__init__.py:208
-msgid "City"
-msgstr ""
-
-#: ../../climateadapt/tiles/search_acecontent.py:728
+#: ../../climateadapt/theme/tiles/search_acecontent.py:728
+#: ../../climateadapt/tiles/search_acecontent.py:734
 msgid "Climate impact"
 msgstr ""
 
@@ -229,6 +226,7 @@ msgid "Describe what are the main climate change impacts/risks and related chall
 msgstr ""
 
 #: ../../climateadapt/behaviors/acemeasure.py:131
+#: ../../climateadapt/theme/tiles/embedapp.py:25
 #: ../../climateadapt/tiles/embedapp.py:25
 msgid "Description"
 msgstr ""
@@ -245,6 +243,7 @@ msgstr ""
 msgid "Disaster Risk Reduction"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/richtext.py:19
 #: ../../climateadapt/tiles/richtext.py:19
 msgid "Don't sanitize HTML"
 msgstr ""
@@ -253,6 +252,7 @@ msgstr ""
 msgid "Duration"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/search_acecontent.py:78
 #: ../../climateadapt/tiles/search_acecontent.py:78
 msgid "Element type"
 msgstr ""
@@ -263,6 +263,7 @@ msgstr ""
 msgid "Elements"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/embedapp.py:15
 #: ../../climateadapt/tiles/embedapp.py:15
 msgid "Embedding view"
 msgstr ""
@@ -295,6 +296,7 @@ msgstr ""
 msgid "Forestry"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/formtile.py:25
 #: ../../climateadapt/tiles/formtile.py:25
 msgid "Form UUID"
 msgstr ""
@@ -303,6 +305,7 @@ msgstr ""
 msgid "Funding Programme"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/search_acecontent.py:119
 #: ../../climateadapt/tiles/search_acecontent.py:119
 msgid "Funding programmes"
 msgstr ""
@@ -431,12 +434,9 @@ msgstr ""
 msgid "Logo"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/search_acecontent.py:106
 #: ../../climateadapt/tiles/search_acecontent.py:106
 msgid "Macro-Transnational Regions"
-msgstr ""
-
-#: ../../climateadapt/browser/__init__.py:160
-msgid "Macro-Transnational region"
 msgstr ""
 
 #: ../../climateadapt/behaviors/indicator.py:18
@@ -467,6 +467,7 @@ msgstr ""
 msgid "Name of the case study clearly identifying its scope and location (250 character limit)"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/search_acecontent.py:124
 #: ../../climateadapt/tiles/search_acecontent.py:124
 msgid "Nr of items to show"
 msgstr ""
@@ -497,6 +498,7 @@ msgstr ""
 msgid "Online registration message"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/search_acecontent.py:62
 #: ../../climateadapt/tiles/search_acecontent.py:62
 msgid "Origin website"
 msgstr ""
@@ -592,6 +594,7 @@ msgstr ""
 msgid "References"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/transregional_select.py:22
 #: ../../climateadapt/tiles/transregional_select.py:22
 msgid "Region"
 msgstr ""
@@ -614,10 +617,12 @@ msgstr ""
 msgid "Relevance"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/search_acecontent.py:56
 #: ../../climateadapt/tiles/search_acecontent.py:56
 msgid "Search Text"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/search_acecontent.py:86
 #: ../../climateadapt/tiles/search_acecontent.py:86
 msgid "Sector"
 msgstr ""
@@ -690,6 +695,7 @@ msgstr ""
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/shareinfo.py:26
 #: ../../climateadapt/tiles/shareinfo.py:26
 msgid "Share info type"
 msgstr ""
@@ -699,11 +705,13 @@ msgstr ""
 msgid "Short summary"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:391
+#: ../../climateadapt/theme/tiles/search_acecontent.py:391
+#: ../../climateadapt/tiles/search_acecontent.py:397
 msgid "Show listing results, in addition to assigned items"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:386
+#: ../../climateadapt/theme/tiles/search_acecontent.py:386
+#: ../../climateadapt/tiles/search_acecontent.py:392
 msgid "Show the share button"
 msgstr ""
 
@@ -711,7 +719,8 @@ msgstr ""
 msgid "Solutions"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:406
+#: ../../climateadapt/theme/tiles/search_acecontent.py:406
+#: ../../climateadapt/tiles/search_acecontent.py:412
 msgid "Sort order for results and assigned items"
 msgstr ""
 
@@ -735,6 +744,7 @@ msgstr ""
 msgid "Special tagging"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/search_acecontent.py:94
 #: ../../climateadapt/tiles/search_acecontent.py:94
 msgid "Special tags"
 msgstr ""
@@ -745,10 +755,6 @@ msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:379
 msgid "Storage Type"
-msgstr ""
-
-#: ../../climateadapt/browser/__init__.py:182
-msgid "Sub Nationals"
 msgstr ""
 
 #: ../../climateadapt/behaviors/ccaevent.py:55
@@ -783,8 +789,9 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/cardslisting.py:28
+#: ../../climateadapt/theme/tiles/section_nav.py:24
 #: ../../climateadapt/tiles/cardslisting.py:28
-#: ../../climateadapt/tiles/section_nav.py:24
 msgid "UUID"
 msgstr ""
 
@@ -812,6 +819,7 @@ msgstr ""
 msgid "Urban"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/richtext.py:20
 #: ../../climateadapt/tiles/richtext.py:20
 msgid "Use with care!"
 msgstr ""
@@ -843,6 +851,7 @@ msgstr ""
 msgid "Video URL"
 msgstr ""
 
+#: ../../climateadapt/theme/tiles/genericview.py:21
 #: ../../climateadapt/tiles/genericview.py:21
 msgid "View name"
 msgstr ""
@@ -857,7 +866,8 @@ msgstr ""
 msgid "Websites"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:632
+#: ../../climateadapt/theme/tiles/search_acecontent.py:632
+#: ../../climateadapt/tiles/search_acecontent.py:638
 msgid "You are not allowed to add content to this tile"
 msgstr ""
 
