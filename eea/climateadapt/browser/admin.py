@@ -210,7 +210,7 @@ def translate_obj(obj):
                 continue
 
             if isinstance(getattr(obj, key), RichTextValue):
-                value = getattr(obj, key).output
+                value = getattr(obj, key).raw
                 rich = True
 
             if is_json(value):
@@ -227,7 +227,10 @@ def translate_obj(obj):
                     setattr(trans_obj, key, RichTextValue(encoded_text))
                     # setattr(getattr(trans_obj, key), 'raw', encoded_text)
                 else:
-                    setattr(trans_obj, key, encoded_text)
+                    if isinstance(value, str) and key in ['funding_programme']:
+                        setattr(trans_obj, key, translated['transId'])
+                    else:
+                        setattr(trans_obj, key, encoded_text)
 
                 # reindex object
                 trans_obj._p_changed = True
