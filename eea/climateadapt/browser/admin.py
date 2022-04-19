@@ -225,8 +225,11 @@ def translate_obj(obj):
                 if rich:
                     setattr(getattr(trans_obj, key), 'raw', encoded_text)
                 else:
-                    # setattr(trans_obj, key, encoded_text)
-                    setattr(trans_obj, key, translated['transId'])
+                    if key in ['long_description']:
+                        setattr(trans_obj, key, translated['transId'])
+                    else:
+                        setattr(trans_obj, key, encoded_text)
+
 
                 # reindex object
                 trans_obj._p_changed = True
@@ -248,7 +251,8 @@ def initiate_translations(site):
         try:
             result = translate_obj(obj)
         except Exception as err:
-            errors.append(err)
+            logger.info(err)
+            # errors.append(err)
             # import pdb; pdb.set_trace()
 
         if len(result['errors']) > 0:
