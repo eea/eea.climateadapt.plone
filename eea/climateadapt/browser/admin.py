@@ -209,8 +209,8 @@ def translate_obj(obj):
                isinstance(value, Geolocation):
                 continue
 
-            if isinstance(value, RichTextValue):
-                value = value.output
+            if isinstance(getattr(obj, key), RichTextValue)
+                value = getattr(obj, key).output
                 rich = True
 
             if is_json(value):
@@ -225,11 +225,7 @@ def translate_obj(obj):
                 if rich:
                     setattr(getattr(trans_obj, key), 'raw', encoded_text)
                 else:
-                    if key in ['long_description']:
-                        setattr(trans_obj, key, translated['transId'])
-                    else:
-                        setattr(trans_obj, key, encoded_text)
-
+                    setattr(trans_obj, key, encoded_text)
 
                 # reindex object
                 trans_obj._p_changed = True
