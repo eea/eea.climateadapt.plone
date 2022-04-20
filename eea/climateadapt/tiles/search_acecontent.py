@@ -268,7 +268,12 @@ class AceTileMixin(object):
 
             if k == "macro_regions":
                 for s in v:
-                    terms.append({u"term": {u"macro-transnational-region": s}})
+                    if 'TRANS_MACRO_' in s:
+                        for key, val in BIOREGIONS.items():
+                            if 'TRANS_MACRO_' in key and key == s:
+                                terms.append({u"term": {u"macro-transnational-region": val}})
+                    else:
+                        terms.append({u"term": {u"macro-transnational-region": s}})
 
             if k == "SearchableText":
                 for s in v:
@@ -289,6 +294,7 @@ class AceTileMixin(object):
 
         q = {"query": t}
 
+        print(q)
         return "{}{}".format(url, urllib.quote(json.dumps(q)))
 
 
