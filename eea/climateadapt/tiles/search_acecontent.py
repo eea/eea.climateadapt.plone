@@ -35,6 +35,8 @@ from zope.interface import implements
 from zope.schema import Bool, Choice, Dict, Int, List, TextLine
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
+from eea.climateadapt.vocabulary import BIOREGIONS
+
 ORIGIN_WEBSITES = dict(_origin_website)
 CLIMATE_IMPACTS = dict(_climateimpacts)
 COUNTRIES = ace_countries_dict
@@ -180,7 +182,15 @@ class AceTileMixin(object):
                 if index_name in KEYWORD_INDEXES:  # and len(setting) > 1:
                     query[index_name] = {"query": setting, "operator": "or"}
                 else:
-                    query[index_name] = setting
+                    if index_name == 'macro_regions':
+                        regions = []
+                        for region_name in setting:
+                            for k, v in BIOREGIONS.items():
+                                if 'TRANS_MACRO' in k and v == region_name:
+                                    regions.append(k)
+                        query[index_name] = regions
+                    else:
+                        query[index_name] = setting
 
         # get rid of special_tags index, just use the SearchableText
         # the special_tags field is indexed into the SearchableText
