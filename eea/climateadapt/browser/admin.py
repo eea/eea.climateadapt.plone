@@ -224,14 +224,13 @@ def translate_obj(obj):
                 # TODO improve this part, after no more errors
                 encoded_text = translated['transId'].encode('latin-1')
 
-                if key == 'source' and obj.portal_type == 'eea.climateadapt.publicationreport':
+                if key == 'source' and obj.portal_type in ['eea.climateadapt.publicationreport', 'eea.climateadapt.researchproject']:
                     # import pdb; pdb.set_trace()
                     setattr(trans_obj, key, getattr(obj, key))
                     # setattr(trans_obj, key, encoded_text)
                     # setattr(trans_obj, key, translated['transId'])
 
                     setattr(trans_obj, key, RichTextValue(encoded_text))
-                    # setattr(trans_obj, key, RichTextValue(encoded_text)) TODO check this
                     # ValueError: Can not convert 'Elsevier' to an IRichTextValue
                     # <ResearchProject at /cca/ro/help/share-your-info/research-and-knowledge-projects
                     # /elderly-resident2019s-uses-of-and-preferences-for-urban-green-spaces-during-hea
