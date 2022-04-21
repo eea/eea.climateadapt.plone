@@ -228,6 +228,7 @@ def translate_obj(obj):
                     'eea.climateadapt.publicationreport',
                     'eea.climateadapt.researchproject',
                     'eea.climateadapt.mapgraphdataset',
+                    'eea.climateadapt.video',
                     ]
 
                 if key == 'source' and obj.portal_type in source_richtext_types:
