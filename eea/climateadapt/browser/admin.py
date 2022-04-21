@@ -256,8 +256,15 @@ def initiate_translations(site):
     count = 0
     res = catalog.searchResults(path='/cca/en')
     errors = []
+    debug_skip = False
+    debug_skip_number = 100 # do not translate first objects
 
     for brain in res:
+        logger.info("-------------------------------------------------------------")
+        logger.info(count)
+        if debug_skip is True and count < debug_skip_number:
+            continue
+
         if brain.getPath() == '/cca/en' or brain.portal_type in ['LIF', 'LRF']:
             continue
 
