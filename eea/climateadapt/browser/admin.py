@@ -224,7 +224,13 @@ def translate_obj(obj):
                 # TODO improve this part, after no more errors
                 encoded_text = translated['transId'].encode('latin-1')
 
-                if key == 'source' and obj.portal_type in ['eea.climateadapt.publicationreport', 'eea.climateadapt.researchproject']:
+                source_richtext_types = [
+                    'eea.climateadapt.publicationreport',
+                    'eea.climateadapt.researchproject',
+                    'eea.climateadapt.mapgraphdataset',
+                    ]
+
+                if key == 'source' and obj.portal_type in source_richtext_types:
                     # import pdb; pdb.set_trace()
                     setattr(trans_obj, key, getattr(obj, key))
                     # setattr(trans_obj, key, encoded_text)
