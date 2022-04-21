@@ -266,13 +266,14 @@ def translate_obj(obj):
 
 def initiate_translations(site):
     catalog = site.portal_catalog
-    count = 0
+    count = -1
     res = catalog.searchResults(path='/cca/en')
     errors = []
     debug_skip = False
     debug_skip_number = 100 # do not translate first objects
 
     for brain in res:
+        count += 1
         logger.info("-------------------------------------------------------------")
         logger.info(count)
         if debug_skip is True and count < debug_skip_number:
@@ -291,9 +292,9 @@ def initiate_translations(site):
 
         if len(result['errors']) > 0:
             for error in result['errors']:
-                errors.append(error)
+                if error not in errors:
+                    errors.append(error)
 
-        count += 1
         if count % 100 == 0:
             logger.info("Processed %s objects" % count)
             transaction.commit()
