@@ -229,7 +229,13 @@ def translate_obj(obj):
                     setattr(trans_obj, key, getattr(obj, key))
                     # setattr(trans_obj, key, encoded_text)
                     # setattr(trans_obj, key, translated['transId'])
-                    setattr(trans_obj, key, RichTextValue(encoded_text))
+
+                    # setattr(trans_obj, key, RichTextValue(encoded_text)) TODO check this
+                    # ValueError: Can not convert 'Elsevier' to an IRichTextValue
+                    # <ResearchProject at /cca/ro/help/share-your-info/research-and-knowledge-projects
+                    # /elderly-resident2019s-uses-of-and-preferences-for-urban-green-spaces-during-hea
+                    # t-periods>
+
                     # reindex object
                     trans_obj._p_changed = True
                     trans_obj.reindexObject(idxs=[key])
