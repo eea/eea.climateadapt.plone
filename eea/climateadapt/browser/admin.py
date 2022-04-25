@@ -469,6 +469,7 @@ class RunTranslationSingleItem(BrowserView):
     """
 
     def __call__(self, **kwargs):
+        import pdb; pdb.set_trace()
         obj = self.context
         result = translate_obj(obj)
         transaction.commit()
