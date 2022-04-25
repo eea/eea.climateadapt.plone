@@ -271,11 +271,15 @@ def initiate_translations(site):
     errors = []
     debug_skip = False
     debug_skip_number = 100 # do not translate first objects
+    total_objs = len(res)
 
     for brain in res:
         count += 1
         logger.info("-------------------------------------------------------------")
         logger.info(count)
+        logger.info(total_objs)
+        logger.info("-------------------------------------------------------------")
+
         if debug_skip is True and count < debug_skip_number:
             continue
 
@@ -295,11 +299,15 @@ def initiate_translations(site):
                 if error not in errors:
                     errors.append(error)
 
-        if count % 100 == 0:
+        if count % 50 == 0:
             logger.info("Processed %s objects" % count)
             transaction.commit()
+
+        if count % 100 == 0:
+            import pdb; pdb.set_trace()
     logger.info("DONE")
     logger.info(errors)
+    import pdb; pdb.set_trace()
 
 def get_tile_type(tile, from_cover, to_cover):
     tiles_types = {
