@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-04-19 13:35+0000\n"
+"POT-Creation-Date: 2022-04-26 05:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,8 +132,8 @@ msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:103
-#: ../../climateadapt/theme/climateadaptv2/index.html:1449
-#: ../../climateadapt/theme/climateadaptv2/page.html:391
+#: ../../climateadapt/browser/pt/navbar_footer.pt:15
+#: ../../climateadapt/theme/climateadaptv2/static/footer.html:18
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -322,8 +322,7 @@ msgstr "Tervis"
 msgid "Health impact:"
 msgstr "Tervise mõju:"
 
-#: ../../climateadapt/theme/climateadaptv2/index.html:1446
-#: ../../climateadapt/theme/climateadaptv2/page.html:388
+#: ../../climateadapt/browser/pt/navbar_footer.pt:12
 #: ../../climateadapt/theme/climateadaptv2/static/footer.html:15
 msgid "Home"
 msgstr ""
@@ -399,11 +398,6 @@ msgstr ""
 msgid "Links to further information"
 msgstr ""
 
-#: ../../climateadapt/theme/climateadaptv2/index.html:1464
-#: ../../climateadapt/theme/climateadaptv2/page.html:406
-msgid "Login"
-msgstr ""
-
 # ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:120
 msgid "Main motivation for taking adaptation action"
@@ -438,8 +432,7 @@ msgstr "Eesmärgid"
 msgid "Observatory Contributions:"
 msgstr ""
 
-#: ../../climateadapt/theme/climateadaptv2/index.html:1518
-#: ../../climateadapt/theme/climateadaptv2/page.html:460
+#: ../../climateadapt/browser/pt/footer_logos.pt:35
 msgid "Other European Information Systems:<br />&nbsp;"
 msgstr ""
 
@@ -467,8 +460,7 @@ msgstr "Elanikkond"
 msgid "Portal Type"
 msgstr "Portaali tüüp"
 
-#: ../../climateadapt/theme/climateadaptv2/index.html:1455
-#: ../../climateadapt/theme/climateadaptv2/page.html:397
+#: ../../climateadapt/browser/pt/navbar_footer.pt:21
 #: ../../climateadapt/theme/climateadaptv2/static/footer.html:24
 msgid "Privacy and Legal Notice"
 msgstr ""
@@ -527,8 +519,7 @@ msgstr "Asjakohasus"
 msgid "Reviewed by:"
 msgstr ""
 
-#: ../../climateadapt/theme/climateadaptv2/index.html:1452
-#: ../../climateadapt/theme/climateadaptv2/page.html:394
+#: ../../climateadapt/browser/pt/navbar_footer.pt:18
 msgid "SITE MAP"
 msgstr ""
 
@@ -618,8 +609,7 @@ msgstr "Edu ja piiravad tegurid"
 msgid "Summary of the strategy/plan"
 msgstr "Strateegia kokkuvõte / plaan"
 
-#: ../../climateadapt/theme/climateadaptv2/index.html:1493
-#: ../../climateadapt/theme/climateadaptv2/page.html:435
+#: ../../climateadapt/browser/pt/footer_logos.pt:10
 msgid "The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href=\"https://ec.europa.eu/\">European Commission</a> and the <a href=\"https://www.eea.europa.eu/\">European Environment Agency.</a>"
 msgstr ""
 
@@ -720,8 +710,3 @@ msgstr ""
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:218
 msgid "inhabitants"
 msgstr "elanikud"
-
-#: ../../climateadapt/theme/climateadaptv2/index.html:1465
-#: ../../climateadapt/theme/climateadaptv2/page.html:407
-msgid "user name"
-msgstr ""

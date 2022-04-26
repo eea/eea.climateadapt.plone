@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-04-19 13:35+0000\n"
+"POT-Creation-Date: 2022-04-26 05:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,6 +28,7 @@ msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:70
 #: ../../climateadapt/tiles/search_acecontent.py:70
+#: ../../climateadapt/tiles/search_acecontent0.py:72
 msgid "Aceitem type"
 msgstr ""
 
@@ -66,6 +67,7 @@ msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:112
 #: ../../climateadapt/tiles/search_acecontent.py:112
+#: ../../climateadapt/tiles/search_acecontent0.py:114
 msgid "Biogeographical Regions"
 msgstr ""
 
@@ -91,7 +93,8 @@ msgid "Check-out created"
 msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:728
-#: ../../climateadapt/tiles/search_acecontent.py:734
+#: ../../climateadapt/tiles/search_acecontent.py:728
+#: ../../climateadapt/tiles/search_acecontent0.py:747
 msgid "Climate impact"
 msgstr ""
 
@@ -254,6 +257,7 @@ msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:78
 #: ../../climateadapt/tiles/search_acecontent.py:78
+#: ../../climateadapt/tiles/search_acecontent0.py:80
 msgid "Element type"
 msgstr ""
 
@@ -307,6 +311,7 @@ msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:119
 #: ../../climateadapt/tiles/search_acecontent.py:119
+#: ../../climateadapt/tiles/search_acecontent0.py:121
 msgid "Funding programmes"
 msgstr ""
 
@@ -436,6 +441,7 @@ msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:106
 #: ../../climateadapt/tiles/search_acecontent.py:106
+#: ../../climateadapt/tiles/search_acecontent0.py:108
 msgid "Macro-Transnational Regions"
 msgstr ""
 
@@ -469,6 +475,7 @@ msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:124
 #: ../../climateadapt/tiles/search_acecontent.py:124
+#: ../../climateadapt/tiles/search_acecontent0.py:126
 msgid "Nr of items to show"
 msgstr ""
 
@@ -500,6 +507,7 @@ msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:62
 #: ../../climateadapt/tiles/search_acecontent.py:62
+#: ../../climateadapt/tiles/search_acecontent0.py:64
 msgid "Origin website"
 msgstr ""
 
@@ -619,11 +627,13 @@ msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:56
 #: ../../climateadapt/tiles/search_acecontent.py:56
+#: ../../climateadapt/tiles/search_acecontent0.py:58
 msgid "Search Text"
 msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:86
 #: ../../climateadapt/tiles/search_acecontent.py:86
+#: ../../climateadapt/tiles/search_acecontent0.py:88
 msgid "Sector"
 msgstr ""
 
@@ -706,12 +716,14 @@ msgid "Short summary"
 msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:391
-#: ../../climateadapt/tiles/search_acecontent.py:397
+#: ../../climateadapt/tiles/search_acecontent.py:391
+#: ../../climateadapt/tiles/search_acecontent0.py:410
 msgid "Show listing results, in addition to assigned items"
 msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:386
-#: ../../climateadapt/tiles/search_acecontent.py:392
+#: ../../climateadapt/tiles/search_acecontent.py:386
+#: ../../climateadapt/tiles/search_acecontent0.py:405
 msgid "Show the share button"
 msgstr ""
 
@@ -720,7 +732,8 @@ msgid "Solutions"
 msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:406
-#: ../../climateadapt/tiles/search_acecontent.py:412
+#: ../../climateadapt/tiles/search_acecontent.py:406
+#: ../../climateadapt/tiles/search_acecontent0.py:425
 msgid "Sort order for results and assigned items"
 msgstr ""
 
@@ -746,6 +759,7 @@ msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:94
 #: ../../climateadapt/tiles/search_acecontent.py:94
+#: ../../climateadapt/tiles/search_acecontent0.py:96
 msgid "Special tags"
 msgstr ""
 
@@ -867,7 +881,8 @@ msgid "Websites"
 msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:632
-#: ../../climateadapt/tiles/search_acecontent.py:638
+#: ../../climateadapt/tiles/search_acecontent.py:632
+#: ../../climateadapt/tiles/search_acecontent0.py:651
 msgid "You are not allowed to add content to this tile"
 msgstr ""
 

@@ -1,0 +1,112 @@
+<div class="row footer-content"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  xml:lang="en"
+  lang="en"
+  i18n:domain="eea.climateadapt"
+  >
+  <div class="column col-md-4 col-xs-12">
+    <p class="site-info" i18n:translate="">The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href="https://ec.europa.eu/">European Commission</a> and the <a href="https://www.eea.europa.eu/">European Environment Agency.</a></p>
+    <div class="footer-logos-wrapper">
+      <a href="https://ec.europa.eu/"
+         rel="noopener">
+        <img data-src="/cca/++theme++climateadaptv2/static/images/ec_logo.svg"
+             alt="European Commission Logo"
+             title="European Commission"
+             width="160"
+             height="40"
+             class="lazyload"/>
+      </a>
+      <a href="https://www.eea.europa.eu/"
+         rel="noopener">
+        <img data-src="/cca/++theme++climateadaptv2/static/images/EEA-logo.png"
+             alt="EEA Logo"
+             title="European Environment Agency"
+             width="114"
+             height="40"
+             class="lazyload"/>
+      </a>
+    </div>
+  </div>
+
+  <div class="eu-systems column col-md-8 col-xs-12">
+    <div class="eu-systems-wrapper">
+      <p i18n:translate="">Other European Information Systems:<br />&nbsp;</p>
+      <ul class="footer-logos">
+        <li class="footer-logo-item">
+          <a href="https://biodiversity.europa.eu/"
+            rel="noopener">
+            <img data-src="/cca/++theme++climateadaptv2/static/images/bise-logo.svg"
+                 alt="BISE Logo"
+                 title="Biodiversity Information System for Europe"
+                 width="105"
+                 height="35"
+                 class="lazyload"
+                 />
+          </a>
+        </li>
+        <li class="footer-logo-item">
+          <a href="https://water.europa.eu/"
+             rel="noopener">
+            <img data-src="/cca/++theme++climateadaptv2/static/images/wise-logo.png"
+                 alt="WISE Logo"
+                 title="Water Information System for Europe"
+                 width="78"
+                 height="35"
+                 class="lazyload"
+                 />
+          </a>
+        </li>
+        <li class="footer-logo-item">
+          <a href="https://forest.eea.europa.eu/"
+             rel="noopener">
+            <img data-src="/cca/++theme++climateadaptv2/static/images/forest.svg"
+                 alt="FISE Logo"
+                 title="Forest Information System for Europe"
+                 width="133"
+                 height="36"
+                 class="lazyload"
+                 />
+          </a>
+        </li>
+        <li class="footer-logo-item">
+          <a href="https://climate.copernicus.eu/"
+             rel="noopener">
+            <img data-src="/cca/++theme++climateadaptv2/static/images/c3s-logo.png"
+                 alt="Copernicus Climate Logo"
+                 title="Climate Change Service"
+                 width="124"
+                 height="37"
+                 class="lazyload"
+                 />
+          </a>
+        </li>
+        <li class="footer-logo-item">
+          <a href="https://drmkc.jrc.ec.europa.eu/"
+             rel="noopener">
+            <img data-src="/cca/++theme++climateadaptv2/static/images/drmkc-logo.png"
+                 alt="DRMKC Logo"
+                 title="Disaster Risk Management Knowledge Centre"
+                 width="84"
+                 height="30"
+                 class="lazyload"
+                 />
+          </a>
+        </li>
+        <li class="footer-logo-item">
+          <a href="https://atmosphere.copernicus.eu/"
+             rel="noopener">
+            <img data-src="/cca/++theme++climateadaptv2/static/images/Logo_CAMS.png"
+                 alt="CAMS Logo"
+                 title="Copernicus Atmosphere Monitoring Service"
+                 width="84"
+                 height="30"
+                 class="lazyload"
+                 />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

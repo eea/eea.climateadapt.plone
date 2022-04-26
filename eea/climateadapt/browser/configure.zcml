@@ -676,6 +676,13 @@
       />
 
   <browser:page
+      name="footer_navbar"
+      for="*"
+      template="pt/navbar_footer.pt"
+      permission="zope.Public"
+      />
+
+  <browser:page
       name="health_navbar"
       for="*"
       class=".health_menu.Navbar"
@@ -688,6 +695,13 @@
       for="*"
       class=".site.Navbar"
       template="pt/help-nav.pt"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      name="footer_logos"
+      for="*"
+      template="pt/footer_logos.pt"
       permission="zope.Public"
       />
 
