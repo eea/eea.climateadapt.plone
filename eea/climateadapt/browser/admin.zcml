@@ -21,6 +21,13 @@
       />
 
   <browser:page
+      name="admin-some-translated"
+      for="*"
+      class=".admin.SomeTranslated"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
       name="admin-translate-this"
       for="*"
       class=".admin.RunTranslationSingleItem"

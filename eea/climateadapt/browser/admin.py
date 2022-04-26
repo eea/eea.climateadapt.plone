@@ -451,6 +451,42 @@ class PrepareTranslation(BrowserView):
         return execute_trans_script(getSite(), **kwargs)
 
 
+def admin_some_translated(site, items):
+    """ Create a list of links to be tested (for translation) for each content type
+    """
+    catalog = site.portal_catalog
+    portal_types = []
+    links = {}
+
+    res = catalog.searchResults(path='/cca/en')
+    count = -1
+    for brain in res:
+        count += 1
+        logger.info(count)
+        obj = brain.getObject()
+
+        portal_type = obj.portal_type
+        if portal_type not in portal_types:
+            portal_types.append(portal_type)
+            links[portal_type] = []
+
+        if len(links[portal_type]) < items:
+            links[portal_type].append(obj.absolute_url())
+
+    return {'Content types': portal_types, 'Links': links}
+
+
+class SomeTranslated(BrowserView):
+    """ Prepare a list of links for each content type in order to verify translation
+        Usage: /admin-some-translated?items=10
+    """
+
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
+        from zope.site.hooks import getSite
+        return admin_some_translated(getSite(), **kwargs)
+
+
 class RunTranslation(BrowserView):
     """ Translate the contents
         Usage: /admin-run-translation
