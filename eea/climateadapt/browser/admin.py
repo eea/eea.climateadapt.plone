@@ -264,24 +264,28 @@ def translate_obj(obj):
 
         return {'errors': errors}
 
-def initiate_translations(site):
+def initiate_translations(site, skip=0):
+    skip = int(skip)
     catalog = site.portal_catalog
     count = -1
     res = catalog.searchResults(path='/cca/en')
     errors = []
     debug_skip = False
-    debug_skip_number = 100 # do not translate first objects
+    debug_skip_number = skip # do not translate first objects
+    if skip > 0:
+        debug_skip = True
     total_objs = len(res)
 
     for brain in res:
         count += 1
+
+        if debug_skip is True and count < debug_skip_number:
+            continue
+
         logger.info("-------------------------------------------------------------")
         logger.info(count)
         logger.info(total_objs)
         logger.info("-------------------------------------------------------------")
-
-        if debug_skip is True and count < debug_skip_number:
-            continue
 
         if brain.getPath() == '/cca/en' or brain.portal_type in ['LIF', 'LRF']:
             continue
@@ -289,6 +293,7 @@ def initiate_translations(site):
         obj = brain.getObject()
         try:
             result = translate_obj(obj)
+            # result = {'errors': []}
         except Exception as err:
             logger.info(err)
             # errors.append(err)
@@ -454,6 +459,7 @@ class PrepareTranslation(BrowserView):
 def admin_some_translated(site, items):
     """ Create a list of links to be tested (for translation) for each content type
     """
+    items = int(items)
     catalog = site.portal_catalog
     portal_types = []
     links = {}
@@ -505,13 +511,14 @@ class SomeTranslated(BrowserView):
 
 class RunTranslation(BrowserView):
     """ Translate the contents
-        Usage: /admin-run-translation
+        Usage: /admin-run-translation?skip=1200  - translate skipping first 1200 objs
+        Usage: /admin-run-translation            - translate all
     """
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
         from zope.site.hooks import getSite
-        return initiate_translations(getSite())
+        return initiate_translations(getSite(), **kwargs)
 
 class RunTranslationSingleItem(BrowserView):
     """ Translate a single item
