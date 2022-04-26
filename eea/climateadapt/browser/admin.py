@@ -457,6 +457,7 @@ def admin_some_translated(site, items):
     catalog = site.portal_catalog
     portal_types = []
     links = {}
+    fields = {}
 
     res = catalog.searchResults(path='/cca/en')
     count = -1
@@ -470,10 +471,25 @@ def admin_some_translated(site, items):
             portal_types.append(portal_type)
             links[portal_type] = []
 
+            # get behavior fields and values
+            behavior_assignable = IBehaviorAssignable(obj)
+            _fields = {}
+            if behavior_assignable:
+                behaviors = behavior_assignable.enumerateBehaviors()
+                for behavior in behaviors:
+                    for k,v in getFieldsInOrder(behavior.interface):
+                        _fields.update({k: v})
+
+            #  get schema fields and values
+            for k, v in getFieldsInOrder(obj.getTypeInfo().lookupSchema()):
+                _fields.update({k: v})
+
+            fields[portal_type] = [(x, _fields[x]) for x in _fields]
+
         if len(links[portal_type]) < items:
             links[portal_type].append(obj.absolute_url())
 
-    return {'Content types': portal_types, 'Links': links}
+    return {'Content types': portal_types, 'Links': links, 'fields': fields}
 
 
 class SomeTranslated(BrowserView):
