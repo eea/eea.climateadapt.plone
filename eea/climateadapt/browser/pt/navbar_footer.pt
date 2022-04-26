@@ -1,0 +1,23 @@
+<ul id="navbar_footer"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  xml:lang="en"
+  lang="en"
+  i18n:domain="eea.climateadapt"
+  style="display:inline"
+  >
+
+  <li class="footer-nav-item">
+    <a href="/" class="footer-nav-link" i18n:translate="">Home</a>
+  </li>
+  <li class="footer-nav-item">
+    <a href="mailto:climate.adapt@eea.europa.eu" class="footer-nav-link" i18n:translate="">Contact</a>
+  </li>
+  <li class="footer-nav-item">
+    <a href="/sitemap" class="footer-nav-link" i18n:translate="">SITE MAP</a>
+  </li>
+  <li class="footer-nav-item">
+    <a href="/privacy-and-legal-notice" class="footer-nav-link" i18n:translate="">Privacy and Legal Notice</a>
+  </li>
+</ul>

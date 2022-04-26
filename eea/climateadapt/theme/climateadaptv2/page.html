@@ -371,31 +371,26 @@
       <div id="page-body"></div>
     </div>
 
-    <footer  xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      xml:lang="en"
-      lang="en"
-      metal:use-macro="context/main_template/macros/master"
-      i18n:domain="eea.climateadapt">
+    <footer>
     
       <div class="footer-nav-wrapper">
         <div class="content-container">
           <nav class="footer-nav" role="navigation">
-            <ul>
+            <ul class="navbar_footer navbar_footer_view" style="display:inline">
               <li class="footer-nav-item">
-                <a href="/" class="footer-nav-link" i18n:translate="">Home</a>
+                <a href="/" class="footer-nav-link">Home</a>
               </li>
               <li class="footer-nav-item">
-                <a href="mailto:climate.adapt@eea.europa.eu" class="footer-nav-link" i18n:translate="">Contact</a>
+                <a href="mailto:climate.adapt@eea.europa.eu" class="footer-nav-link">Contact</a>
               </li>
               <li class="footer-nav-item">
-                <a href="/sitemap" class="footer-nav-link" i18n:translate="">SITE MAP</a>
+                <a href="/sitemap" class="footer-nav-link">SITE MAP</a>
               </li>
               <li class="footer-nav-item">
-                <a href="/privacy-and-legal-notice" class="footer-nav-link" i18n:translate="">Privacy and Legal Notice</a>
+                <a href="/privacy-and-legal-notice" class="footer-nav-link">Privacy and Legal Notice</a>
               </li>
+            </ul>
+            <ul class="navbar_footer" style="display:inline">
               <li class="footer-nav-item float-lg-right footer-login">
                   <!-- <a href="/login" id="personaltools-login" rel="#pb_1" class="footer-nav-link link-overlay" style="cursor: pointer;"><i class="fa fa-user"></i> Log in</a> -->
     
@@ -403,8 +398,8 @@
                     <div id="personal-menu">
                       <a class="personal-menu-action">
                         <i class="fa fa-user"></i>
-                        <span class="login-text" i18n:translate="">Login</span>
-                        <span class="user-name" i18n:translate="">user name</span>
+                        <span class="login-text">Login</span>
+                        <span class="user-name">user name</span>
                         <i class="angle-down-icon"></i>
                       </a>
                     </div>
@@ -432,7 +427,7 @@
       <div class="content-container">
         <div class="row footer-content">
           <div class="column col-md-4 col-xs-12">
-            <p class="site-info" i18n:translate="">The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href="https://ec.europa.eu/">European Commission</a> and the <a href="https://www.eea.europa.eu/">European Environment Agency.</a></p>
+            <p class="site-info">The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href="https://ec.europa.eu/">European Commission</a> and the <a href="https://www.eea.europa.eu/">European Environment Agency.</a></p>
             <div class="footer-logos-wrapper">
               <a href="https://ec.europa.eu/"
                  rel="noopener">
@@ -443,21 +438,12 @@
                      height="40"
                      class="lazyload"/>
               </a>
-              <a href="https://www.eea.europa.eu/"
-                 rel="noopener">
-                <img data-src="/cca/++theme++climateadaptv2/static/images/EEA-logo.png"
-                     alt="EEA Logo"
-                     title="European Environment Agency"
-                     width="114"
-                     height="40"
-                     class="lazyload"/>
-              </a>
             </div>
           </div>
     
           <div class="eu-systems column col-md-8 col-xs-12">
             <div class="eu-systems-wrapper">
-              <p i18n:translate="">Other European Information Systems:<br />&nbsp;</p>
+              <p>Other European Information Systems:<br />&nbsp;</p>
               <ul class="footer-logos">
                 <li class="footer-logo-item">
                   <a href="https://biodiversity.europa.eu/"
@@ -467,66 +453,6 @@
                          title="Biodiversity Information System for Europe"
                          width="105"
                          height="35"
-                         class="lazyload"
-                         />
-                  </a>
-                </li>
-                <li class="footer-logo-item">
-                  <a href="https://water.europa.eu/"
-                     rel="noopener">
-                    <img data-src="/cca/++theme++climateadaptv2/static/images/wise-logo.png"
-                         alt="WISE Logo"
-                         title="Water Information System for Europe"
-                         width="78"
-                         height="35"
-                         class="lazyload"
-                         />
-                  </a>
-                </li>
-                <li class="footer-logo-item">
-                  <a href="https://forest.eea.europa.eu/"
-                     rel="noopener">
-                    <img data-src="/cca/++theme++climateadaptv2/static/images/forest.svg"
-                         alt="FISE Logo"
-                         title="Forest Information System for Europe"
-                         width="133"
-                         height="36"
-                         class="lazyload"
-                         />
-                  </a>
-                </li>
-                <li class="footer-logo-item">
-                  <a href="https://climate.copernicus.eu/"
-                     rel="noopener">
-                    <img data-src="/cca/++theme++climateadaptv2/static/images/c3s-logo.png"
-                         alt="Copernicus Climate Logo"
-                         title="Climate Change Service"
-                         width="124"
-                         height="37"
-                         class="lazyload"
-                         />
-                  </a>
-                </li>
-                <li class="footer-logo-item">
-                  <a href="https://drmkc.jrc.ec.europa.eu/"
-                     rel="noopener">
-                    <img data-src="/cca/++theme++climateadaptv2/static/images/drmkc-logo.png"
-                         alt="DRMKC Logo"
-                         title="Disaster Risk Management Knowledge Centre"
-                         width="84"
-                         height="30"
-                         class="lazyload"
-                         />
-                  </a>
-                </li>
-                <li class="footer-logo-item">
-                  <a href="https://atmosphere.copernicus.eu/"
-                     rel="noopener">
-                    <img data-src="/cca/++theme++climateadaptv2/static/images/Logo_CAMS.png"
-                         alt="CAMS Logo"
-                         title="Copernicus Atmosphere Monitoring Service"
-                         width="84"
-                         height="30"
                          class="lazyload"
                          />
                   </a>
