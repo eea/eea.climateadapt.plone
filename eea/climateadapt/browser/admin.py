@@ -224,12 +224,25 @@ def translate_obj(obj):
                 # TODO improve this part, after no more errors
                 encoded_text = translated['transId'].encode('latin-1')
 
-                if key == 'source' and obj.portal_type == 'eea.climateadapt.publicationreport':
+                source_richtext_types = [
+                    'eea.climateadapt.publicationreport',
+                    'eea.climateadapt.researchproject',
+                    'eea.climateadapt.mapgraphdataset',
+                    'eea.climateadapt.video',
+                    ]
+
+                if key == 'source' and obj.portal_type in source_richtext_types:
                     # import pdb; pdb.set_trace()
                     setattr(trans_obj, key, getattr(obj, key))
                     # setattr(trans_obj, key, encoded_text)
                     # setattr(trans_obj, key, translated['transId'])
+
                     setattr(trans_obj, key, RichTextValue(encoded_text))
+                    # ValueError: Can not convert 'Elsevier' to an IRichTextValue
+                    # <ResearchProject at /cca/ro/help/share-your-info/research-and-knowledge-projects
+                    # /elderly-resident2019s-uses-of-and-preferences-for-urban-green-spaces-during-hea
+                    # t-periods>
+
                     # reindex object
                     trans_obj._p_changed = True
                     trans_obj.reindexObject(idxs=[key])
@@ -253,11 +266,23 @@ def translate_obj(obj):
 
 def initiate_translations(site):
     catalog = site.portal_catalog
-    count = 0
+    count = -1
     res = catalog.searchResults(path='/cca/en')
     errors = []
+    debug_skip = False
+    debug_skip_number = 100 # do not translate first objects
+    total_objs = len(res)
 
     for brain in res:
+        count += 1
+        logger.info("-------------------------------------------------------------")
+        logger.info(count)
+        logger.info(total_objs)
+        logger.info("-------------------------------------------------------------")
+
+        if debug_skip is True and count < debug_skip_number:
+            continue
+
         if brain.getPath() == '/cca/en' or brain.portal_type in ['LIF', 'LRF']:
             continue
 
@@ -271,14 +296,18 @@ def initiate_translations(site):
 
         if len(result['errors']) > 0:
             for error in result['errors']:
-                errors.append(error)
+                if error not in errors:
+                    errors.append(error)
 
-        count += 1
-        if count % 100 == 0:
+        if count % 50 == 0:
             logger.info("Processed %s objects" % count)
             transaction.commit()
+
+        if count % 100 == 0:
+            import pdb; pdb.set_trace()
     logger.info("DONE")
     logger.info(errors)
+    import pdb; pdb.set_trace()
 
 def get_tile_type(tile, from_cover, to_cover):
     tiles_types = {
@@ -440,6 +469,7 @@ class RunTranslationSingleItem(BrowserView):
     """
 
     def __call__(self, **kwargs):
+        import pdb; pdb.set_trace()
         obj = self.context
         result = translate_obj(obj)
         transaction.commit()
