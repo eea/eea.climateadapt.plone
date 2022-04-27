@@ -155,7 +155,7 @@ def translate_obj(obj):
 
             value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
 
-            if trans_obj.portal_type == 'Event':
+            if trans_obj.portal_type in ['Event', 'cca-event']:
                 force_unlock(trans_obj)
                 reindex = False
                 if key == 'start':
