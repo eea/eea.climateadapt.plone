@@ -272,14 +272,23 @@ def initiate_translations(site, skip=0):
     errors = []
     debug_skip = False
     debug_skip_number = skip # do not translate first objects
+
     if skip > 0:
         debug_skip = True
     total_objs = len(res)
+
+    translate_only = False
+    only = [] # Example: ['Event', 'cca-event']
+    if len(only) > 0:
+        translate_only = True # translate only the specified content types
 
     for brain in res:
         count += 1
 
         if debug_skip is True and count < debug_skip_number:
+            continue
+
+        if translate_only is True and brain.portal_type not in only:
             continue
 
         logger.info("-------------------------------------------------------------")
