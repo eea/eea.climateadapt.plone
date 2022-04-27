@@ -308,7 +308,7 @@ def initiate_translations(site, skip=0):
             # errors.append(err)
             import pdb; pdb.set_trace()
 
-        t_errors = result.get('errors', [])
+        t_errors = result.get('errors', []) if result is not None else []
         if len(t_errors) > 0:
             for error in t_errors:
                 if error not in errors:
