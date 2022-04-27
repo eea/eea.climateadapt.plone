@@ -436,7 +436,11 @@ def execute_trans_script(site, language):
     res = get_all_objs(english_container)
 
     failed_translations = []
+    count = 0
     for brain in res:
+        logger.info('---------------------------------------------------------')
+        logger.info(count)
+        count += 1
         if brain.getPath() == '/cca/en' or brain.portal_type == 'LIF':
             continue
         obj = brain.getObject()
@@ -446,6 +450,7 @@ def execute_trans_script(site, language):
         except Exception as err:
             errors.append(obj)
             logger.info("Error cloning: %s" % obj.absolute_url())
+            import pdb; pdb.set_trace()
             continue
     transaction.commit()
     logger.info("Errors")
