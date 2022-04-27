@@ -450,8 +450,11 @@ def execute_trans_script(site, language):
         except Exception as err:
             errors.append(obj)
             logger.info("Error cloning: %s" % obj.absolute_url())
-            import pdb; pdb.set_trace()
-            continue
+            if err.message == 'Translation already exists':
+                continue
+            else:
+                import pdb; pdb.set_trace()
+
     transaction.commit()
     logger.info("Errors")
     logger.info(errors)
