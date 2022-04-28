@@ -81,8 +81,12 @@
               <p class="legend-text">No assessments reported</p>
             </div>
             <div class="legend-el">
+              <span class="country-outside legend-box"></span>
+              <p class="legend-text">Outside EEA coverage</p>
+            </div>
+            <div class="legend-el">
               <span class="country-notreported legend-box"></span>
-              <p class="legend-text">No data reported</p>
+              <p class="legend-text">No data reported in 2021</p>
             </div>
           </div>
 
@@ -96,8 +100,12 @@
               <p class="legend-text">No portal or platform reported</p>
             </div>
             <div class="legend-el">
+              <span class="country-outside legend-box"></span>
+              <p class="legend-text">Outside EEA coverage</p>
+            </div>
+            <div class="legend-el">
               <span class="country-notreported legend-box"></span>
-              <p class="legend-text">No data reported</p>
+              <p class="legend-text">No data reported in 2021</p>
             </div>
           </div>
 
@@ -119,12 +127,12 @@
               <p class="legend-text">SAP reported as adopted</p>
             </div>
             <div class="legend-el">
-              <span class="country-none legend-box"></span>
-              <p class="legend-text">Neither NAS nor NAP reported as adopted</p>
+              <span class="country-outside legend-box"></span>
+              <p class="legend-text">Outside EEA coverage</p>
             </div>
             <div class="legend-el">
               <span class="country-notreported legend-box"></span>
-              <p class="legend-text">No data reported</p>
+              <p class="legend-text">No data reported in 2021</p>
             </div>
           </div>
         </div>
