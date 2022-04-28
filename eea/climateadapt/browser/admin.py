@@ -262,7 +262,7 @@ def translate_obj(obj):
                 trans_obj._p_changed = True
                 trans_obj.reindexObject(idxs=[key])
 
-        return {'errors': errors}
+    return {'errors': errors}
 
 def initiate_translations(site, skip=0):
     skip = int(skip)
