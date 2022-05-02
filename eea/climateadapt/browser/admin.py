@@ -210,7 +210,7 @@ def translate_obj(obj):
                 continue
 
             if isinstance(getattr(obj, key), RichTextValue):
-                value = getattr(obj, key).raw
+                value = getattr(obj, key).raw.replace('\r\n', '')
                 rich = True
 
             if is_json(value):
