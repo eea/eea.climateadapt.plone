@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-04-26 05:51+0000\n"
+"POT-Creation-Date: 2022-04-28 05:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,6 +15,18 @@ msgstr ""
 "Domain: DOMAIN\n"
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:402
+msgid "<span class=\"d-icon database-icon\"></span> Search the <br /> Database"
+msgstr ""
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:396
+msgid "<span class=\"d-icon feature-icon\"></span> New <br /> feature"
+msgstr ""
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:408
+msgid "<span class=\"d-icon policy-icon\"></span> EU Sector <br /> Policies"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:149
 msgid "<strong>Last Modified in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
