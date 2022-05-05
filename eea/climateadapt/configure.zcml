@@ -49,22 +49,11 @@
   <include file="cache.zcml" />
   <include file="contentrules.zcml" />
   <include file="restapi.zcml" />
+  <include file="theme.zcml" />
 
   <browser:jbot
       directory="browser/pt-overrides"
       layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-      />
-
-  <plone:static
-      directory="theme/climateadapt"
-      name="climateadapt"
-      type="theme"
-      />
-
-  <plone:static
-      directory="theme/climateadaptv2"
-      name="climateadaptv2"
-      type="theme"
       />
 
   <class class=".acemeasure.CaseStudy">
