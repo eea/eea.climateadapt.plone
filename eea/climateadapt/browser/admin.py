@@ -155,7 +155,7 @@ def translate_obj(obj):
 
             value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
 
-            if trans_obj.portal_type == 'Event':
+            if trans_obj.portal_type in ['Event', 'cca-event']:
                 force_unlock(trans_obj)
                 reindex = False
                 if key == 'start':
@@ -210,7 +210,7 @@ def translate_obj(obj):
                 continue
 
             if isinstance(getattr(obj, key), RichTextValue):
-                value = getattr(obj, key).raw
+                value = getattr(obj, key).raw.replace('\r\n', '')
                 rich = True
 
             if is_json(value):
@@ -262,7 +262,7 @@ def translate_obj(obj):
                 trans_obj._p_changed = True
                 trans_obj.reindexObject(idxs=[key])
 
-        return {'errors': errors}
+    return {'errors': errors}
 
 def initiate_translations(site, skip=0):
     skip = int(skip)
@@ -272,14 +272,23 @@ def initiate_translations(site, skip=0):
     errors = []
     debug_skip = False
     debug_skip_number = skip # do not translate first objects
+
     if skip > 0:
         debug_skip = True
     total_objs = len(res)
+
+    translate_only = False
+    only = [] # Example: ['Event', 'cca-event']
+    if len(only) > 0:
+        translate_only = True # translate only the specified content types
 
     for brain in res:
         count += 1
 
         if debug_skip is True and count < debug_skip_number:
+            continue
+
+        if translate_only is True and brain.portal_type not in only:
             continue
 
         logger.info("-------------------------------------------------------------")
@@ -299,8 +308,9 @@ def initiate_translations(site, skip=0):
             # errors.append(err)
             import pdb; pdb.set_trace()
 
-        if len(result['errors']) > 0:
-            for error in result['errors']:
+        t_errors = result.get('errors', []) if result is not None else []
+        if len(t_errors) > 0:
+            for error in t_errors:
                 if error not in errors:
                     errors.append(error)
 
@@ -426,7 +436,11 @@ def execute_trans_script(site, language):
     res = get_all_objs(english_container)
 
     failed_translations = []
+    count = 0
     for brain in res:
+        logger.info('---------------------------------------------------------')
+        logger.info(count)
+        count += 1
         if brain.getPath() == '/cca/en' or brain.portal_type == 'LIF':
             continue
         obj = brain.getObject()
@@ -436,7 +450,11 @@ def execute_trans_script(site, language):
         except Exception as err:
             errors.append(obj)
             logger.info("Error cloning: %s" % obj.absolute_url())
-            continue
+            if err.message == 'Translation already exists':
+                continue
+            else:
+                import pdb; pdb.set_trace()
+
     transaction.commit()
     logger.info("Errors")
     logger.info(errors)
