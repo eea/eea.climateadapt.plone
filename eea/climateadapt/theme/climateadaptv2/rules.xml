@@ -33,7 +33,7 @@
     <copy attributes="role" css:content="content" css:theme="contentspace"/>
 
     <rules css:if-content=".section-frontpage.template-standard">
-      <theme href="index.html" />
+      <theme href="/@@theme.index.html?diazo.off=1" />
       <drop css:theme="head base" />
       <append css:theme="head">
         <base><xsl:attribute name="href"><xsl:value-of select="$portal_url"/></xsl:attribute></base>
