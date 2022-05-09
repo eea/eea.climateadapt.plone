@@ -51,6 +51,7 @@ setup(
         "eea.rabbitmq.plone",
         "langdetect",
         "chardet",
+        "zeep",
         #"google-api-python-client",  # google analytics API integration
         # "collective.relationhelpers",
     ],

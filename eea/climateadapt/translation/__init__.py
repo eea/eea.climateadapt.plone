@@ -15,6 +15,10 @@ from plone.api import portal
 
 from .interfaces import ITranslationsStorage
 
+from zeep import Client
+from zeep.wsse.username import UsernameToken
+import base64
+
 env = os.environ.get
 
 ANNOTATION_KEY = 'translation.cca.storage'
@@ -100,6 +104,59 @@ class Translation(Persistent):
 
     def __repr__(self):
         return self.text
+
+
+def retrieve_html_translation(source_lang, html, target_lang=None, force=False):
+    """ Send a call to automatic translation service, to translate a string
+    Returns a json formatted string
+    """
+
+    some_html = """
+    <div>Please translate this div. It contains two paragraphs.
+    <p>The first one.</p>
+    <p>The second</p>
+    </div>
+    <div>
+    This is another div. <b>Bold text</b>
+    </div>
+    """
+
+    encoded_html = base64.b64encode(some_html)
+
+    client = Client(
+        'https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL',
+        wsse=UsernameToken(TRANS_USERNAME, MARINE_PASS))
+
+    dest = '{}/@@translate-callback?source_lang={}&format=html'.format(site_url,
+                                                           source_lang)
+
+    response = client.service.translate(
+        {'priority': '5',
+         'external-reference': '1',
+         'caller-information': {'application': 'Marine_EEA_20180706',
+                                'username': TRANS_USERNAME},
+         # 'text-to-translate': 'Please translate this text for me.',
+
+         "document-to-translate-base64" : {
+            # "content" : encoded_file,
+            "content" : encoded_html,
+            "format" : "html",
+            "fileName" : "out"
+         },
+
+         'source-language': source_lang,
+         'target-languages': {'target-language': target_lang},
+         'domain': 'GEN',
+         'requester-callback': dest,
+         'destinations': {
+             'http-destination': dest,
+             'email-destination': 'ghita.bizau@eaudeweb.ro'
+            }
+         })
+
+    # If the response is a negative number this means error. Error codes:
+    # https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/How+to+submit+a+translation+request+via+the+CEF+eTranslation+webservice
+    import pdb; pdb.set_trace()
 
 
 def retrieve_translation(country_code,
