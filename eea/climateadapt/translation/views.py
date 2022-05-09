@@ -41,6 +41,7 @@ class TranslationCallback(BrowserView):
     """
 
     def __call__(self):
+        import pdb; pdb.set_trace()
         deps = ['translation']
         event.notify(InvalidateMemCacheEvent(raw=True, dependencies=deps))
         logger.info('Invalidate cache for dependencies: %s', ', '.join(deps))

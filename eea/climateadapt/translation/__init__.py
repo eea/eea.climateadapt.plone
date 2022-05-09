@@ -110,6 +110,11 @@ def retrieve_html_translation(source_lang, html, target_lang=None, force=False):
     """ Send a call to automatic translation service, to translate a string
     Returns a json formatted string
     """
+    if not html:
+        return
+
+    if not target_languages:
+        target_languages = ['EN']
 
     some_html = """
     <div>Please translate this div. It contains two paragraphs.
@@ -123,6 +128,26 @@ def retrieve_html_translation(source_lang, html, target_lang=None, force=False):
 
     encoded_html = base64.b64encode(some_html)
 
+    translation = get_translated(html, target_languages[0])
+
+    if translation:
+        if not(force == 'True' or (u'....' in translation)):
+            # don't translate already translated strings, it overrides the
+            # translation
+            res = {
+                'transId': translation,
+                'externalRefId': html,
+                'translated': True
+            }
+            logger.info('Data translation cached : %r', res)
+            return res
+
+    site_url = portal.get().absolute_url()
+
+    if 'localhost' in site_url:
+        logger.warning(
+            "Using localhost, won't retrieve translation for: %s", text)
+
     client = Client(
         'https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL',
         wsse=UsernameToken(TRANS_USERNAME, MARINE_PASS))
@@ -130,7 +155,7 @@ def retrieve_html_translation(source_lang, html, target_lang=None, force=False):
     dest = '{}/@@translate-callback?source_lang={}&format=html'.format(site_url,
                                                            source_lang)
 
-    response = client.service.translate(
+    resp = client.service.translate(
         {'priority': '5',
          'external-reference': '1',
          'caller-information': {'application': 'Marine_EEA_20180706',
@@ -157,6 +182,16 @@ def retrieve_html_translation(source_lang, html, target_lang=None, force=False):
     # If the response is a negative number this means error. Error codes:
     # https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/How+to+submit+a+translation+request+via+the+CEF+eTranslation+webservice
     import pdb; pdb.set_trace()
+
+    logger.info('Data translation request : html content')
+    logger.info('Response from translation request: %r', resp.content)
+
+    res = {
+        "transId": resp.content,
+        "externalRefId": text
+    }
+
+    return res
 
 
 def retrieve_translation(country_code,
