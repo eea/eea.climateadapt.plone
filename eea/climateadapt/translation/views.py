@@ -41,12 +41,17 @@ class TranslationCallback(BrowserView):
     """
 
     def __call__(self):
-        import pdb; pdb.set_trace()
+        form = self.request.form
+        if form.get('format', None) == 'html':
+            import pdb; pdb.set_trace()
+
+            logger.info('Translate html')
+            return
+
         deps = ['translation']
         event.notify(InvalidateMemCacheEvent(raw=True, dependencies=deps))
         logger.info('Invalidate cache for dependencies: %s', ', '.join(deps))
 
-        form = self.request.form
 
         logger.info('Translate params all : %r', form)
 
