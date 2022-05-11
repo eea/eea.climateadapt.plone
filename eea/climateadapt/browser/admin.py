@@ -267,11 +267,19 @@ def translate_obj(obj):
                 trans_obj._p_changed = True
                 trans_obj.reindexObject(idxs=[key])
 
-        for key in rich_fields:
-            value = getattr(obj, key).raw.replace('\r\n', '')
+        if len(rich_fields) > 0:
+            html_content = ""
+
+            for key in rich_fields:
+                value = getattr(obj, key).raw.replace('\r\n', '')
+                html_section = "<div class='cca-translation-section'" +
+                    " data-field='" + key + "'>" + value + "</div>"
+
+                html_content += html_section
+
             res = retrieve_html_translation(
                 'EN',
-                value,
+                html_content,
                 language.upper(),
                 False
             )
