@@ -179,15 +179,17 @@ def retrieve_html_translation(source_lang, html, target_languages=None, force=Fa
             }
          })
 
-    # If the response is a negative number this means error. Error codes:
-    # https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/How+to+submit+a+translation+request+via+the+CEF+eTranslation+webservice
-    import pdb; pdb.set_trace()
 
     logger.info('Data translation request : html content')
     logger.info('Response from translation request: %r', resp.content)
 
+    if resp[0] == '-':
+        # If the response is a negative number this means error. Error codes:
+        # https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/How+to+submit+a+translation+request+via+the+CEF+eTranslation+webservice
+        import pdb; pdb.set_trace()
+
     res = {
-        "transId": resp.content,
+        "transId": resp,
         "externalRefId": text
     }
 
