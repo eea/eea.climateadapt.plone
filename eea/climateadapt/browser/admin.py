@@ -268,10 +268,10 @@ def translate_obj(obj):
                 trans_obj.reindexObject(idxs=[key])
 
         for key in rich_fields:
-            # TODO WIP
+            value = getattr(obj, key).raw.replace('\r\n', '')
             res = retrieve_html_translation(
                 'EN',
-                "<p>text here</p>",
+                value,
                 language.upper(),
                 False
             )

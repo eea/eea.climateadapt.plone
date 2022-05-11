@@ -126,7 +126,9 @@ def retrieve_html_translation(source_lang, html, target_languages=None, force=Fa
     </div>
     """
 
-    encoded_html = base64.b64encode(some_html)
+    # TODO clean code
+    # encoded_html = base64.b64encode(some_html)
+    encoded_html = base64.b64encode(html)
 
     translation = get_translated(html, target_languages[0])
 
