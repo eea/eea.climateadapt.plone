@@ -106,7 +106,7 @@ class Translation(Persistent):
         return self.text
 
 
-def retrieve_html_translation(source_lang, html, target_lang=None, force=False):
+def retrieve_html_translation(source_lang, html, target_languages=None, force=False):
     """ Send a call to automatic translation service, to translate a string
     Returns a json formatted string
     """
@@ -170,7 +170,7 @@ def retrieve_html_translation(source_lang, html, target_lang=None, force=False):
          },
 
          'source-language': source_lang,
-         'target-languages': {'target-language': target_lang},
+         'target-languages': {'target-language': target_languages},
          'domain': 'GEN',
          'requester-callback': dest,
          'destinations': {
