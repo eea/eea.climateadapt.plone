@@ -55,6 +55,7 @@ from plone.app.multilingual.factory import DefaultTranslationFactory
 from plone.app.multilingual.manager import TranslationManager
 from eea.climateadapt.tiles.richtext import RichTextWithTitle
 from eea.climateadapt.translation import retrieve_translation
+from eea.climateadapt.translation import retrieve_html_translation
 from collective.cover.tiles.richtext import RichTextTile
 import transaction
 import json
@@ -147,6 +148,8 @@ def translate_obj(obj):
 
         # send requests to translation service for each field
         # update field in obj
+        rich_fields = []
+
         for key in fields:
             rich = False
             print key
@@ -212,6 +215,8 @@ def translate_obj(obj):
             if isinstance(getattr(obj, key), RichTextValue):
                 value = getattr(obj, key).raw.replace('\r\n', '')
                 rich = True
+                if key not in rich_fields:
+                    rich_fields.append(key)
 
             if is_json(value):
                 continue
@@ -261,6 +266,16 @@ def translate_obj(obj):
                 # reindex object
                 trans_obj._p_changed = True
                 trans_obj.reindexObject(idxs=[key])
+
+        for key in rich_fields:
+            # TODO WIP
+            res = retrieve_html_translation(
+                'EN',
+                "<p>text here</p>",
+                language.upper(),
+                False
+            )
+
 
     return {'errors': errors}
 
