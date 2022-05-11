@@ -1,8 +1,11 @@
+""" Init
+"""
 import json
 import logging
 import os
 from datetime import datetime
 
+import base64
 import chardet
 import requests
 from requests.auth import HTTPDigestAuth
@@ -17,7 +20,6 @@ from .interfaces import ITranslationsStorage
 
 from zeep import Client
 from zeep.wsse.username import UsernameToken
-import base64
 
 env = os.environ.get
 
@@ -116,18 +118,6 @@ def retrieve_html_translation(source_lang, html, target_languages=None, force=Fa
     if not target_languages:
         target_languages = ['EN']
 
-    some_html = """
-    <div>Please translate this div. It contains two paragraphs.
-    <p>The first one.</p>
-    <p>The second</p>
-    </div>
-    <div>
-    This is another div. <b>Bold text</b>
-    </div>
-    """
-
-    # TODO clean code
-    # encoded_html = base64.b64encode(some_html)
     encoded_html = base64.b64encode(html)
 
     translation = get_translated(html, target_languages[0])
@@ -148,14 +138,14 @@ def retrieve_html_translation(source_lang, html, target_languages=None, force=Fa
 
     if 'localhost' in site_url:
         logger.warning(
-            "Using localhost, won't retrieve translation for: %s", text)
+            "Using localhost, won't retrieve translation for: %s", html)
 
     client = Client(
         'https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL',
         wsse=UsernameToken(TRANS_USERNAME, MARINE_PASS))
 
-    dest = '{}/@@translate-callback?source_lang={}&format=html'.format(site_url,
-                                                           source_lang)
+    dest = '{}/@@translate-callback?source_lang={}&format=html'.format(
+            site_url, source_lang)
 
     resp = client.service.translate(
         {'priority': '5',
@@ -164,11 +154,11 @@ def retrieve_html_translation(source_lang, html, target_languages=None, force=Fa
                                 'username': TRANS_USERNAME},
          # 'text-to-translate': 'Please translate this text for me.',
 
-         "document-to-translate-base64" : {
-            # "content" : encoded_file,
-            "content" : encoded_html,
-            "format" : "html",
-            "fileName" : "out"
+         "document-to-translate-base64": {
+            # "content": encoded_file,
+            "content": encoded_html,
+            "format": "html",
+            "fileName": "out"
          },
 
          'source-language': source_lang,
@@ -181,18 +171,17 @@ def retrieve_html_translation(source_lang, html, target_languages=None, force=Fa
             }
          })
 
-
     logger.info('Data translation request : html content')
     logger.info('Response from translation request: %r', resp)
 
-    if str(resp[0]) == '-':
-        # If the response is a negative number this means error. Error codes:
-        # https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/How+to+submit+a+translation+request+via+the+CEF+eTranslation+webservice
-        import pdb; pdb.set_trace()
+    # if str(resp[0]) == '-':
+    #     # If the response is a negative number this means error. Error codes:
+    #     # https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/How+to+submit+a+translation+request+via+the+CEF+eTranslation+webservice
+    #     import pdb; pdb.set_trace()
 
     res = {
         "transId": resp,
-        "externalRefId": text
+        "externalRefId": html
     }
 
     return res
