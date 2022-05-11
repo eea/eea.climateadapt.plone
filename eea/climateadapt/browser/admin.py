@@ -45,11 +45,6 @@ from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
 from plone.app.layout.navigation.navtree import NavtreeStrategyBase
 from plone import api
 
-html_unescape = HTMLParser().unescape
-
-logger = logging.getLogger('eea.climateadapt')
-
-
 from plone.api import content
 from plone.app.multilingual.factory import DefaultTranslationFactory
 from plone.app.multilingual.manager import TranslationManager
@@ -63,11 +58,16 @@ import json
 from datetime import date
 from DateTime import DateTime
 from plone.app.textfield.value import RichTextValue
-from plone.namedfile.file import NamedBlobImage, NamedBlobFile, NamedFile, NamedImage
+from plone.namedfile.file import NamedBlobImage, NamedBlobFile
+from plone.namedfile.file import NamedFile, NamedImage
 from zope.schema import getFieldsInOrder
 from plone.behavior.interfaces import IBehaviorAssignable
 from plone.formwidget.geolocation.geolocation import Geolocation
 from z3c.relationfield.relation import RelationValue
+
+html_unescape = HTMLParser().unescape
+
+logger = logging.getLogger('eea.climateadapt')
 
 
 def is_json(input):
@@ -103,7 +103,7 @@ def translate_obj(obj):
     if behavior_assignable:
         behaviors = behavior_assignable.enumerateBehaviors()
         for behavior in behaviors:
-            for k,v in getFieldsInOrder(behavior.interface):
+            for k, v in getFieldsInOrder(behavior.interface):
                 fields.update({k: v})
 
     #  get schema fields and values
@@ -124,10 +124,12 @@ def translate_obj(obj):
                 for field in tile_fields:
                     value = tile.data.get(field)
                     if value:
-                        translated = retrieve_translation('EN', value, [language.upper()])
+                        translated = retrieve_translation(
+                                'EN', value, [language.upper()])
 
                         if 'translated' in translated:
-                            encoded_text = translated['transId'].encode('latin-1')
+                            encoded_text = translated['transId'].encode(
+                                    'latin-1')
                             tile.data.update({field: encoded_text})
 
                 if isinstance(tile, RichTextWithTitle) or \
@@ -137,10 +139,12 @@ def translate_obj(obj):
                     except Exception:
                         value = None
                     if value:
-                        translated = retrieve_translation('EN', value, [language.upper()])
+                        translated = retrieve_translation(
+                                'EN', value, [language.upper()])
                         if 'translated' in translated:
                             try:
-                                encoded_text = translated['transId'].encode('latin-1')
+                                encoded_text = translated['transId'].encode(
+                                        'latin-1')
                                 tile.data['text'].raw = encoded_text
                             except AttributeError:
                                 logger.info("Error for tile. TODO improve.")
@@ -152,8 +156,9 @@ def translate_obj(obj):
 
         for key in fields:
             rich = False
-            print key
-            if key in ['acronym', 'id', 'language', 'portal_type', 'contentType']:
+            print(key)
+            if key in ['acronym', 'id', 'language', 'portal_type',
+                       'contentType']:
                 continue
 
             value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
@@ -236,7 +241,8 @@ def translate_obj(obj):
                     'eea.climateadapt.video',
                     ]
 
-                if key == 'source' and obj.portal_type in source_richtext_types:
+                if key == 'source' and \
+                        obj.portal_type in source_richtext_types:
                     # import pdb; pdb.set_trace()
                     setattr(trans_obj, key, getattr(obj, key))
                     # setattr(trans_obj, key, encoded_text)
@@ -272,7 +278,7 @@ def translate_obj(obj):
 
             for key in rich_fields:
                 value = getattr(obj, key).raw.replace('\r\n', '')
-                html_section = "<div class='cca-translation-section'" +
+                html_section = "<div class='cca-translation-section'" + \
                     " data-field='" + key + "'>" + value + "</div>"
 
                 html_content += html_section
@@ -284,8 +290,8 @@ def translate_obj(obj):
                 False
             )
 
-
     return {'errors': errors}
+
 
 def initiate_translations(site, skip=0):
     skip = int(skip)
@@ -294,16 +300,16 @@ def initiate_translations(site, skip=0):
     res = catalog.searchResults(path='/cca/en')
     errors = []
     debug_skip = False
-    debug_skip_number = skip # do not translate first objects
+    debug_skip_number = skip  # do not translate first objects
 
     if skip > 0:
         debug_skip = True
     total_objs = len(res)
 
     translate_only = False
-    only = [] # Example: ['Event', 'cca-event']
+    only = []  # Example: ['Event', 'cca-event']
     if len(only) > 0:
-        translate_only = True # translate only the specified content types
+        translate_only = True  # translate only the specified content types
 
     for brain in res:
         count += 1
@@ -314,10 +320,10 @@ def initiate_translations(site, skip=0):
         if translate_only is True and brain.portal_type not in only:
             continue
 
-        logger.info("-------------------------------------------------------------")
+        logger.info("--------------------------------------------------------")
         logger.info(count)
         logger.info(total_objs)
-        logger.info("-------------------------------------------------------------")
+        logger.info("--------------------------------------------------------")
 
         if brain.getPath() == '/cca/en' or brain.portal_type in ['LIF', 'LRF']:
             continue
@@ -347,6 +353,7 @@ def initiate_translations(site, skip=0):
     logger.info(errors)
     import pdb; pdb.set_trace()
 
+
 def get_tile_type(tile, from_cover, to_cover):
     tiles_types = {
         'RichTextWithTitle': 'eea.climateadapt.richtext_with_title',
@@ -372,6 +379,7 @@ def get_tile_type(tile, from_cover, to_cover):
             return tiles_types[a_type]
 
     return None
+
 
 def copy_tiles(tiles, from_cover, to_cover):
     logger.info("Copy tiles")
@@ -432,7 +440,8 @@ def get_all_objs(container):
 def execute_trans_script(site, language):
     catalog = site.portal_catalog
     english_container = site['en']
-    language_folders = [x.id for x in catalog.searchResults(path='/cca', portal_type='LRF')]
+    language_folders = [
+        x.id for x in catalog.searchResults(path='/cca', portal_type='LRF')]
     language_folders.remove('en')
 
     lang_independent_objects = [
@@ -441,10 +450,13 @@ def execute_trans_script(site, language):
         "portal_vocabularies", "portal_depiction", "frontpage-slides",
         "dashboard", "latest-modifications-on-climate-adapt",
         "covenant-of-mayors-external-website", "rss-feed",
-        "latest-news-events-on-climate-adapt", "specific-privacy-statement-for-climate-adapt",
+        "latest-news-events-on-climate-adapt",
+        "specific-privacy-statement-for-climate-adapt",
         "privacy-and-legal-notice", "database-items-overview", "broken-links",
-        "observatory-organisations", "observatory-management-group-organisations",
-        "indicators-backup", "eea-copyright-notice", "eea-disclaimer", "user-dashboard"]
+        "observatory-organisations",
+        "observatory-management-group-organisations",
+        "indicators-backup", "eea-copyright-notice", "eea-disclaimer",
+        "user-dashboard"]
 
     # move folders under /en/
     for brain in site.getFolderContents():
@@ -461,7 +473,7 @@ def execute_trans_script(site, language):
     failed_translations = []
     count = 0
     for brain in res:
-        logger.info('---------------------------------------------------------')
+        logger.info('--------------------------------------------------------')
         logger.info(count)
         count += 1
         if brain.getPath() == '/cca/en' or brain.portal_type == 'LIF':
@@ -498,7 +510,8 @@ class PrepareTranslation(BrowserView):
 
 
 def admin_some_translated(site, items):
-    """ Create a list of links to be tested (for translation) for each content type
+    """ Create a list of links to be tested (for translation) for each
+        content type
     """
     items = int(items)
     catalog = site.portal_catalog
@@ -524,7 +537,7 @@ def admin_some_translated(site, items):
             if behavior_assignable:
                 behaviors = behavior_assignable.enumerateBehaviors()
                 for behavior in behaviors:
-                    for k,v in getFieldsInOrder(behavior.interface):
+                    for k, v in getFieldsInOrder(behavior.interface):
                         _fields.update({k: v})
 
             #  get schema fields and values
@@ -540,7 +553,8 @@ def admin_some_translated(site, items):
 
 
 class SomeTranslated(BrowserView):
-    """ Prepare a list of links for each content type in order to verify translation
+    """ Prepare a list of links for each content type in order to verify
+        translation
         Usage: /admin-some-translated?items=10
     """
 
@@ -552,7 +566,7 @@ class SomeTranslated(BrowserView):
 
 class RunTranslation(BrowserView):
     """ Translate the contents
-        Usage: /admin-run-translation?skip=1200  - translate skipping first 1200 objs
+        Usage: /admin-run-translation?skip=1200  - translate skip 1200 objs
         Usage: /admin-run-translation            - translate all
     """
 
@@ -561,11 +575,13 @@ class RunTranslation(BrowserView):
         from zope.site.hooks import getSite
         return initiate_translations(getSite(), **kwargs)
 
+
 class RunTranslationSingleItem(BrowserView):
     """ Translate a single item
         Usage: item/admin-translate-this
 
-        To be used for testing translation without waiting for all objects to be updated
+        To be used for testing translation without waiting for all objects to
+        be updated
     """
 
     def __call__(self, **kwargs):
@@ -574,6 +590,7 @@ class RunTranslationSingleItem(BrowserView):
         result = translate_obj(obj)
         transaction.commit()
         return result
+
 
 class CheckCopyPasteLocation(BrowserView):
     """ Performs a check which doesn't allow user to Copy cca-items
