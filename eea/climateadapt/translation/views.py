@@ -35,16 +35,36 @@ TRANS_USERNAME = 'ipetchesi'        # TODO: get another username?
 MARINE_PASS = 'P7n3BLvCerm7cx3B'
 SERVICE_URL = 'https://webgate.ec.europa.eu/etranslation/si/translate'
 
+
+def save_html_fields(form):
+    """ Get the translated html file, extract the values for each field and
+        update the related translation object.
+    """
+    form.pop('format')
+    form.pop('request-id')
+    form.pop('external-reference')
+    source_lang = form.get('source_lang')
+    form.pop('source_lang')
+    target_lang = form.get('target-language')
+    form.pop('target-language')
+    logger.info("Translate %s to %s", source_lang, target_lang)
+
+    b64_str = form.keys()[0]
+    b64_str += "=" * ((4 - len(b64_str) % 4) % 4)  # fix Incorrect padding
+    html_file = base64.decodestring(b64_str)
+    import pdb; pdb.set_trace()
+
+
 class TranslationCallback(BrowserView):
     """ This view is called by the EC translation service.
-    Saves the translation in Annotations
+    Saves the translation in Annotations (or directly in the object in case
+    of html fields).
     """
 
     def __call__(self):
         form = self.request.form
         if form.get('format', None) == 'html':
-            import pdb; pdb.set_trace()
-
+            save_html_fields(form)
             logger.info('Translate html')
             return
 
