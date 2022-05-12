@@ -23,6 +23,7 @@ from .interfaces import ITranslationContext
 
 from plone.api import portal
 from bs4 import BeautifulSoup
+from plone.app.multilingual.manager import TranslationManager
 
 logger = logging.getLogger('wise.msfd.translation')
 
@@ -44,9 +45,10 @@ def save_html_fields(form):
     """
     site = portal.getSite()
     obj_path = form.get("external-reference")
-    form.pop("external-reference")
-    obj = site.unrestrictedTraverse(obj_path)
-    import pdb; pdb.set_trace()
+
+    en_obj = site.unrestrictedTraverse(obj_path)
+    translations = TranslationManager(en_obj).get_translations()
+    translations.pop('en')
 
     form.pop('format')
     form.pop('request-id')
