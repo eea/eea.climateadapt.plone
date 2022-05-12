@@ -46,32 +46,34 @@ def save_html_fields(form):
     """ Get the translated html file, extract the values for each field and
         update the related translation object.
     """
-    site = portal.getSite()
-    obj_path = form.get("external-reference")
+    try:
+        site = portal.getSite()
+        obj_path = form.get("external-reference")
 
-    en_obj = site.unrestrictedTraverse(obj_path)
-    force_unlock(en_obj)
+        en_obj = site.unrestrictedTraverse(obj_path)
+        force_unlock(en_obj)
 
-    # import pdb; pdb.set_trace()
-    # translations = TranslationManager(en_obj).get_translations()
-    # Unauthorized: You are not allowed to access
-    # 'european-climate-data-explorer-user-guide' in this context
-    # translations.pop('en')
+        # import pdb; pdb.set_trace()
+        # translations = TranslationManager(en_obj).get_translations()
+        # Unauthorized: You are not allowed to access
+        # 'european-climate-data-explorer-user-guide' in this context
+        # translations.pop('en')
 
-    import pdb; pdb.set_trace()
-    form.pop('format')
-    form.pop('request-id')
-    form.pop('external-reference')
-    source_lang = form.get('source_lang')
-    form.pop('source_lang')
-    target_lang = form.get('target-language')
-    form.pop('target-language')
-    logger.info("Translate %s to %s", source_lang, target_lang)
+        form.pop('format')
+        form.pop('request-id')
+        form.pop('external-reference')
+        source_lang = form.get('source_lang')
+        form.pop('source_lang')
+        target_lang = form.get('target-language')
+        form.pop('target-language')
+        logger.info("Translate %s to %s", source_lang, target_lang)
 
-    prefix = '/cca/' + target_lang.lower() + '/'
-    trans_obj_path = obj_path.replace('/cca/en/', prefix)
-    trans_obj = site.unrestrictedTraverse(trans_obj_path)
-    force_unlock(trans_obj)
+        prefix = '/cca/' + target_lang.lower() + '/'
+        trans_obj_path = obj_path.replace('/cca/en/', prefix)
+        trans_obj = site.unrestrictedTraverse(trans_obj_path)
+        force_unlock(trans_obj)
+    except Exception as err:
+        import pdb; pdb.set_trace()
 
     b64_str = form.keys()[0]
     b64_str += "=" * ((4 - len(b64_str) % 4) % 4)  # fix Incorrect padding
@@ -81,7 +83,7 @@ def save_html_fields(form):
             'div', attrs={"class": "cca-translation-section"})
     for field in html_fields:
         field_name = field['data-field']
-        html_value = field.decode_contents()
+        html_value = field.decode_contents().decode('latin-1')
 
         # encoded_text = html_value.encode('latin-1')
         # setattr(trans_obj, field_name, html_value)
