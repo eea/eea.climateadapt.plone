@@ -83,9 +83,10 @@ def save_html_fields(form):
         field_name = field['data-field']
         html_value = field.decode_contents()
 
-        encoded_text = html_value.encode('latin-1')
+        # encoded_text = html_value.encode('latin-1')
         # setattr(trans_obj, field_name, html_value)
-        setattr(trans_obj, key, RichTextValue(encoded_text))
+        # setattr(trans_obj, field_name, RichTextValue(encoded_text))
+        setattr(trans_obj, field_name, RichTextValue(html_value))
         trans_obj._p_changed = True
         trans_obj.reindexObject(idxs=[field_name])
 
