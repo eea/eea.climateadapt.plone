@@ -26,6 +26,7 @@ from .interfaces import ITranslationContext
 from plone.api import portal
 from plone.app.multilingual.manager import TranslationManager
 from eea.climateadapt.browser.admin import force_unlock
+from plone.app.textfield.value import RichTextValue
 
 logger = logging.getLogger('wise.msfd.translation')
 
@@ -82,7 +83,9 @@ def save_html_fields(form):
         field_name = field['data-field']
         html_value = field.decode_contents()
 
-        setattr(trans_obj, field_name, html_value)
+        encoded_text = html_value.encode('latin-1')
+        # setattr(trans_obj, field_name, html_value)
+        setattr(trans_obj, key, RichTextValue(encoded_text))
         trans_obj._p_changed = True
         trans_obj.reindexObject(idxs=[field_name])
 
