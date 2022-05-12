@@ -72,10 +72,11 @@ def save_html_fields(form):
         trans_obj_path = obj_path.replace('/cca/en/', prefix)
         trans_obj = site.unrestrictedTraverse(trans_obj_path)
         force_unlock(trans_obj)
+
+        b64_str = form.keys()[0]
     except Exception as err:
         import pdb; pdb.set_trace()
 
-    b64_str = form.keys()[0]
     b64_str += "=" * ((4 - len(b64_str) % 4) % 4)  # fix Incorrect padding
     html_file = base64.decodestring(b64_str)
     soup = BeautifulSoup(html_file, "html.parser")
