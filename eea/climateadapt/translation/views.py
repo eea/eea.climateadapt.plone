@@ -4,6 +4,7 @@ import logging
 import base64
 import json
 import requests
+import transaction
 
 from zope import event
 from zope.security import checkPermission
@@ -49,10 +50,12 @@ def save_html_fields(form):
 
     en_obj = site.unrestrictedTraverse(obj_path)
     force_unlock(en_obj)
-    import pdb; pdb.set_trace()
 
-    translations = TranslationManager(en_obj).get_translations()
-    translations.pop('en')
+    # import pdb; pdb.set_trace()
+    # translations = TranslationManager(en_obj).get_translations()
+    # Unauthorized: You are not allowed to access
+    # 'european-climate-data-explorer-user-guide' in this context
+    # translations.pop('en')
 
     form.pop('format')
     form.pop('request-id')
@@ -62,6 +65,11 @@ def save_html_fields(form):
     target_lang = form.get('target-language')
     form.pop('target-language')
     logger.info("Translate %s to %s", source_lang, target_lang)
+
+    prefix = '/cca/' + target_lang.lower() + '/'
+    trans_obj_path = obj_path.replace('/cca/en/', prefix)
+    trans_obj = site.unrestrictedTraverse(trans_obj_path)
+    force_unlock(trans_obj)
 
     b64_str = form.keys()[0]
     b64_str += "=" * ((4 - len(b64_str) % 4) % 4)  # fix Incorrect padding
@@ -73,7 +81,12 @@ def save_html_fields(form):
         field_name = field['data-field']
         html_value = field.decode_contents()
 
-        import pdb; pdb.set_trace()
+        setattr(trans_obj, field_name, html_value)
+        trans_obj._p_changed = True
+        trans_obj.reindexObject(idxs=[field_name])
+
+    transaction.commit()
+    logger.info("Html translation saved for %s", trans_obj.absolute_url())
 
 
 class TranslationCallback(BrowserView):
