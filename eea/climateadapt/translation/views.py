@@ -1,9 +1,14 @@
+""" Translation views
+"""
 import logging
+import base64
+import json
 import requests
 
 from zope import event
 from zope.security import checkPermission
 
+from requests.auth import HTTPDigestAuth
 from eea.cache.event import InvalidateMemCacheEvent
 from langdetect.detector import LangDetectException
 from Products.Five.browser import BrowserView
@@ -17,10 +22,6 @@ from . import (delete_translation, get_detected_lang, get_translated,
 from .interfaces import ITranslationContext
 
 from plone.api import portal
-
-
-from requests.auth import HTTPDigestAuth
-import json
 
 logger = logging.getLogger('wise.msfd.translation')
 
@@ -72,7 +73,6 @@ class TranslationCallback(BrowserView):
         event.notify(InvalidateMemCacheEvent(raw=True, dependencies=deps))
         logger.info('Invalidate cache for dependencies: %s', ', '.join(deps))
 
-
         logger.info('Translate params all : %r', form)
 
         form.pop('request-id', None)
@@ -99,7 +99,9 @@ class TranslationCallback(BrowserView):
 
         save_translation(original, translated, language, target_language)
 
-        return '<a href="/@@translate-key?key='+original+'">available translations</a>'
+        return '<a href="/@@translate-key?key=' + \
+            original + '">available translations</a>'
+
 
 class TranslationList(BrowserView):
     """ This view is called by the EC translation service.
@@ -113,11 +115,12 @@ class TranslationList(BrowserView):
         key = self.request.form["key"]
         return get_translation_key_values(key)
 
+
 class TestTranslationView(BrowserView):
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
         logger.info('TestTranslationView1')
-        #return self.retrieve_translation(**kwargs)
+        # return self.retrieve_translation(**kwargs)
 
         form = self.request.form
         country_code = form.pop('country_code', None)
@@ -128,11 +131,14 @@ class TestTranslationView(BrowserView):
         if isinstance(target_languages, str):
             target_languages = target_languages.split(',')
 
-        logger.info('Response translation : %s %s %s %s', country_code, text, target_languages, force)
+        logger.info('Response translation : %s %s %s %s',
+                    country_code, text, target_languages, force)
 
-        return retrieve_translation(country_code, text, target_languages, force)
+        return retrieve_translation(
+                country_code, text, target_languages, force)
 
-    def retrieve_translation(self, country_code, text, target_languages=None, force=False):
+    def retrieve_translation(
+            self, country_code, text, target_languages=None, force=False):
         """ Send a call to automatic translation service, to translate a string
         Returns a json formatted string
         """
@@ -213,5 +219,5 @@ class TestTranslationView(BrowserView):
             "transId": resp.content,
             "externalRefId": text
         }
-        #import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         return res
