@@ -49,6 +49,8 @@ def save_html_fields(form):
 
     en_obj = site.unrestrictedTraverse(obj_path)
     force_unlock(en_obj)
+    import pdb; pdb.set_trace()
+
     translations = TranslationManager(en_obj).get_translations()
     translations.pop('en')
 
