@@ -22,6 +22,7 @@ from . import (delete_translation, get_detected_lang, get_translated,
 from .interfaces import ITranslationContext
 
 from plone.api import portal
+from bs4 import BeautifulSoup
 
 logger = logging.getLogger('wise.msfd.translation')
 
@@ -53,7 +54,14 @@ def save_html_fields(form):
     b64_str = form.keys()[0]
     b64_str += "=" * ((4 - len(b64_str) % 4) % 4)  # fix Incorrect padding
     html_file = base64.decodestring(b64_str)
-    import pdb; pdb.set_trace()
+    soup = BeautifulSoup(html_file, "html.parser")
+    html_fields = soup.find_all(
+            'div', attrs={"class": "cca-translation-section"})
+    for field in html_fields:
+        field_name = field['data-field']
+        html_value = field.decode_contents()
+
+        import pdb; pdb.set_trace()
 
 
 class TranslationCallback(BrowserView):
