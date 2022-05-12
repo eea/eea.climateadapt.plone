@@ -46,37 +46,38 @@ def save_html_fields(form):
     """ Get the translated html file, extract the values for each field and
         update the related translation object.
     """
-    try:
-        site = portal.getSite()
-        obj_path = form.get("external-reference")
+    site = portal.getSite()
+    obj_path = form.get("external-reference")
 
-        en_obj = site.unrestrictedTraverse(obj_path)
-        force_unlock(en_obj)
+    en_obj = site.unrestrictedTraverse(obj_path)
+    force_unlock(en_obj)
 
-        # import pdb; pdb.set_trace()
-        # translations = TranslationManager(en_obj).get_translations()
-        # Unauthorized: You are not allowed to access
-        # 'european-climate-data-explorer-user-guide' in this context
-        # translations.pop('en')
+    # import pdb; pdb.set_trace()
+    # translations = TranslationManager(en_obj).get_translations()
+    # Unauthorized: You are not allowed to access
+    # 'european-climate-data-explorer-user-guide' in this context
+    # translations.pop('en')
 
-        form.pop('format')
-        form.pop('request-id')
-        form.pop('external-reference')
-        source_lang = form.get('source_lang')
-        form.pop('source_lang')
-        target_lang = form.get('target-language')
-        form.pop('target-language')
-        logger.info("Translate %s to %s", source_lang, target_lang)
+    form.pop('format')
+    form.pop('request-id')
+    form.pop('external-reference')
+    source_lang = form.get('source_lang')
+    form.pop('source_lang')
+    target_lang = form.get('target-language')
+    form.pop('target-language')
+    logger.info("Translate %s to %s", source_lang, target_lang)
 
-        prefix = '/cca/' + target_lang.lower() + '/'
-        trans_obj_path = obj_path.replace('/cca/en/', prefix)
-        trans_obj = site.unrestrictedTraverse(trans_obj_path)
-        force_unlock(trans_obj)
+    prefix = '/cca/' + target_lang.lower() + '/'
+    trans_obj_path = obj_path.replace('/cca/en/', prefix)
+    trans_obj = site.unrestrictedTraverse(trans_obj_path)
+    force_unlock(trans_obj)
 
-        b64_str = form.keys()[0]
-    except Exception as err:
+    if len(form.keys()) == 0:
+        logger.info("Empty form")  # TODO: Check why?
         import pdb; pdb.set_trace()
+        return
 
+    b64_str = form.keys()[0]
     b64_str += "=" * ((4 - len(b64_str) % 4) % 4)  # fix Incorrect padding
     html_file = base64.decodestring(b64_str)
     soup = BeautifulSoup(html_file, "html.parser")
