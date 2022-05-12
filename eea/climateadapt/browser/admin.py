@@ -96,6 +96,8 @@ def translate_obj(obj):
     tile_fields = ['title', 'description', 'tile_title', 'footer', 'alt_text']
     errors = []
     force_unlock(obj)
+    obj_path = '/cca/en/knowledge/european-climate-data-explorer/european-climate-data-explorer-user-guide'
+    import pdb; pdb.set_trace()
 
     # get behavior fields and values
     behavior_assignable = IBehaviorAssignable(obj)
@@ -286,6 +288,7 @@ def translate_obj(obj):
             res = retrieve_html_translation(
                 'EN',
                 html_content,
+                obj_path,
                 language.upper(),
                 False
             )

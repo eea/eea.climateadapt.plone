@@ -108,7 +108,8 @@ class Translation(Persistent):
         return self.text
 
 
-def retrieve_html_translation(source_lang, html, target_languages=None, force=False):
+def retrieve_html_translation(
+        source_lang, html, obj_path, target_languages=None, force=False):
     """ Send a call to automatic translation service, to translate a string
     Returns a json formatted string
     """
@@ -149,7 +150,7 @@ def retrieve_html_translation(source_lang, html, target_languages=None, force=Fa
 
     resp = client.service.translate(
         {'priority': '5',
-         'external-reference': '1',
+         'external-reference': obj_path,
          'caller-information': {'application': 'Marine_EEA_20180706',
                                 'username': TRANS_USERNAME},
          # 'text-to-translate': 'Please translate this text for me.',

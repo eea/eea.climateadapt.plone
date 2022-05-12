@@ -42,6 +42,10 @@ def save_html_fields(form):
     """ Get the translated html file, extract the values for each field and
         update the related translation object.
     """
+    site = portal.getSite()
+    # obj = unrestrictedTraverse(obj_path)
+    import pdb; pdb.set_trace()
+
     form.pop('format')
     form.pop('request-id')
     form.pop('external-reference')
