@@ -9,6 +9,7 @@ from zope import event
 from zope.security import checkPermission
 
 from requests.auth import HTTPDigestAuth
+from bs4 import BeautifulSoup
 from eea.cache.event import InvalidateMemCacheEvent
 from langdetect.detector import LangDetectException
 from Products.Five.browser import BrowserView
@@ -22,8 +23,8 @@ from . import (delete_translation, get_detected_lang, get_translated,
 from .interfaces import ITranslationContext
 
 from plone.api import portal
-from bs4 import BeautifulSoup
 from plone.app.multilingual.manager import TranslationManager
+from eea.climateadapt.browser.admin import force_unlock
 
 logger = logging.getLogger('wise.msfd.translation')
 
@@ -47,6 +48,7 @@ def save_html_fields(form):
     obj_path = form.get("external-reference")
 
     en_obj = site.unrestrictedTraverse(obj_path)
+    force_unlock(en_obj)
     translations = TranslationManager(en_obj).get_translations()
     translations.pop('en')
 
