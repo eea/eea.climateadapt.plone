@@ -57,6 +57,7 @@ def save_html_fields(form):
     # 'european-climate-data-explorer-user-guide' in this context
     # translations.pop('en')
 
+    import pdb; pdb.set_trace()
     form.pop('format')
     form.pop('request-id')
     form.pop('external-reference')
