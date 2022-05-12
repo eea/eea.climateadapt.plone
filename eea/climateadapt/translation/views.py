@@ -43,7 +43,9 @@ def save_html_fields(form):
         update the related translation object.
     """
     site = portal.getSite()
-    # obj = unrestrictedTraverse(obj_path)
+    obj_path = form.get("external-reference")
+    form.pop("external-reference")
+    obj = site.unrestrictedTraverse(obj_path)
     import pdb; pdb.set_trace()
 
     form.pop('format')

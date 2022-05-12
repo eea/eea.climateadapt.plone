@@ -96,8 +96,10 @@ def translate_obj(obj):
     tile_fields = ['title', 'description', 'tile_title', 'footer', 'alt_text']
     errors = []
     force_unlock(obj)
-    obj_path = '/cca/en/knowledge/european-climate-data-explorer/european-climate-data-explorer-user-guide'
-    import pdb; pdb.set_trace()
+
+    site_url = portal.getSite().absolute_url()
+    obj_url = obj.absolute_url()
+    obj_path = '/cca' + obj_url.split(site_url)[-1]
 
     # get behavior fields and values
     behavior_assignable = IBehaviorAssignable(obj)
