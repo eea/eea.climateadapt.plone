@@ -25,7 +25,7 @@ env = os.environ.get
 
 ANNOTATION_KEY = 'translation.cca.storage'
 TRANS_USERNAME = 'ipetchesi'        # TODO: get another username?
-MARINE_PASS = env('MARINE_PASS', 'P7n3BLvCerm7cx3B')
+MARINE_PASS = env('MARINE_PASS', '')
 SERVICE_URL = 'https://webgate.ec.europa.eu/etranslation/si/translate'
 
 logger = logging.getLogger('wise.msfd.translation')

@@ -32,13 +32,8 @@ logger = logging.getLogger('wise.msfd.translation')
 
 ANNOTATION_KEY = 'translation.msfd.storage'
 TRANS_USERNAME = 'ipetchesi'        # TODO: get another username?
-# MARINE_PASS = env('MARINE_PASS', '')
+MARINE_PASS = env('MARINE_PASS', '')
 
-# USERNAME/PASSWORD FOR TRANS SERVICE
-# Marine_EEA_20180706 : P7n3BLvCerm7cx3B
-
-
-MARINE_PASS = 'P7n3BLvCerm7cx3B'
 SERVICE_URL = 'https://webgate.ec.europa.eu/etranslation/si/translate'
 
 
