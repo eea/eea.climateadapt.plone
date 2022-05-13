@@ -78,6 +78,9 @@ def save_html_fields(form):
     b64_str += b"=="  # fix Incorrect padding
     html_file = base64.decodestring(b64_str)
     soup = BeautifulSoup(html_file, "html.parser")
+    if target_lang == 'RO':
+        import pdb; pdb.set_trace()
+
     html_fields = soup.find_all(
             'div', attrs={"class": "cca-translation-section"})
     for field in html_fields:
