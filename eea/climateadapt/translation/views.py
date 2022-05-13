@@ -3,6 +3,7 @@
 import logging
 import base64
 import json
+import os
 import requests
 import transaction
 
@@ -29,6 +30,7 @@ from eea.climateadapt.browser.admin import force_unlock
 from plone.app.textfield.value import RichTextValue
 
 logger = logging.getLogger('wise.msfd.translation')
+env = os.environ.get
 
 ANNOTATION_KEY = 'translation.msfd.storage'
 TRANS_USERNAME = 'ipetchesi'        # TODO: get another username?
