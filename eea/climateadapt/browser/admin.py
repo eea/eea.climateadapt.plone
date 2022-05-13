@@ -289,8 +289,6 @@ def translate_obj(obj):
 
                 html_content += html_section
 
-                import pdb; pdb.set_trace()
-
             res = retrieve_html_translation(
                 'EN',
                 html_content,

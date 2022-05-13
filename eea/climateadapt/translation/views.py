@@ -71,12 +71,11 @@ def save_html_fields(form):
 
     if len(form.keys()) == 0:
         logger.info("Empty form")  # TODO: Check why?
-        import pdb; pdb.set_trace()
         return
 
     b64_str = form.keys()[0]
-    import pdb; pdb.set_trace()
-    b64_str += "=" * ((4 - len(b64_str) % 4) % 4)  # fix Incorrect padding
+    # b64_str += "=" * ((4 - len(b64_str) % 4) % 4)  # fix Incorrect padding
+    b64_str += b"=="  # fix Incorrect padding
     html_file = base64.decodestring(b64_str)
     soup = BeautifulSoup(html_file, "html.parser")
     html_fields = soup.find_all(
@@ -104,8 +103,6 @@ class TranslationCallback(BrowserView):
     """
 
     def __call__(self):
-        import pdb; pdb.set_trace()
-
         form = self.request.form
         if form.get('format', None) == 'html':
             save_html_fields(form)
