@@ -75,6 +75,7 @@ def save_html_fields(form):
         return
 
     b64_str = form.keys()[0]
+    import pdb; pdb.set_trace()
     b64_str += "=" * ((4 - len(b64_str) % 4) % 4)  # fix Incorrect padding
     html_file = base64.decodestring(b64_str)
     soup = BeautifulSoup(html_file, "html.parser")
