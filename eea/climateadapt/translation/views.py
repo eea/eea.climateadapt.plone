@@ -74,19 +74,24 @@ def save_html_fields(form):
         return
 
     b64_str = form.keys()[0]
-    # b64_str += "=" * ((4 - len(b64_str) % 4) % 4)  # fix Incorrect padding
-    b64_str += b"=="  # fix Incorrect padding
-    html_file = base64.decodestring(b64_str)
-    soup = BeautifulSoup(html_file, "html.parser")
-    if target_lang == 'RO':
-        import pdb; pdb.set_trace()
 
+    try:
+        html_file = base64.decodestring(b64_str).decode("latin-1")
+    except Exception:
+        logger.info("Incorrect padding - b64_str. Fix applied.")
+        b64_str += b"=="  # fix Incorrect padding
+        html_file = base64.decodestring(b64_str).decode("latin-1")
+
+    logger.info(html_file)
+
+    soup = BeautifulSoup(html_file, "html.parser")
     html_fields = soup.find_all(
             'div', attrs={"class": "cca-translation-section"})
     for field in html_fields:
         field_name = field['data-field']
         # html_value = field.decode_contents().decode('latin-1')
         html_value = field.decode_contents()
+        import pdb; pdb.set_trace()
 
         # encoded_text = html_value.encode('latin-1')
         # setattr(trans_obj, field_name, html_value)
