@@ -75,6 +75,7 @@ def save_html_fields(form):
 
     b64_str = form.keys()[0]
 
+    import pdb; pdb.set_trace()
     try:
         html_file = base64.decodestring(b64_str).decode("latin-1")
     except Exception:
