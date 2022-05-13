@@ -165,6 +165,7 @@ def retrieve_html_translation(
          'source-language': source_lang,
          'target-languages': {'target-language': target_languages},
          'domain': 'GEN',
+         'output-format': 'html',
          'requester-callback': dest,
          'destinations': {
              'http-destination': dest,
