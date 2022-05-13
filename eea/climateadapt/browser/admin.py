@@ -264,6 +264,7 @@ def translate_obj(obj):
                     continue
 
                 if rich:
+                    pass
                     # TODO No action needed, right?
                     # setattr(trans_obj, key, getattr(obj, key))
                     # setattr(trans_obj, key, RichTextValue(encoded_text))
