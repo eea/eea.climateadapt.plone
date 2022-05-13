@@ -283,16 +283,14 @@ def translate_obj(obj):
             html_content = u""
 
             for key in rich_fields:
-                try:
-                    value = getattr(obj, key).raw.replace('\r\n', '')
-                    value = value.decode('latin-1')
-                    html_section = u"<div class='cca-translation-section'" + \
-                        u" data-field='" + key + u"'>" + value + u"</div>"
+                value = getattr(obj, key).raw.replace('\r\n', '')
+                value = value.decode('latin-1')
+                html_section = u"<div class='cca-translation-section'" + \
+                    u" data-field='" + key + u"'>" + value + u"</div>"
 
-                    html_content += html_section
+                html_content += html_section
 
-                except Exception as err:
-                    import pdb; pdb.set_trace()
+                import pdb; pdb.set_trace()
 
             res = retrieve_html_translation(
                 'EN',
