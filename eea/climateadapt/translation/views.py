@@ -114,6 +114,7 @@ class TranslationCallback(BrowserView):
     def __call__(self):
         form = self.request.form
         if form.get('format', None) == 'html':
+            import pdb; pdb.set_trace()
             save_html_fields(form)
             logger.info('Translate html')
             return
