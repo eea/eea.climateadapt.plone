@@ -280,7 +280,8 @@ def translate_obj(obj):
                 trans_obj.reindexObject(idxs=[key])
 
         if len(rich_fields) > 0:
-            html_content = u""
+            html_content = u"<!doctype html><head><meta charset=utf-8></head>"
+            html_content += u"<body>"
 
             for key in rich_fields:
                 value = getattr(obj, key).raw.replace('\r\n', '')
@@ -289,6 +290,7 @@ def translate_obj(obj):
 
                 html_content += html_section
 
+            html_content += u"</body></html>"
             res = retrieve_html_translation(
                 'EN',
                 html_content,

@@ -169,7 +169,7 @@ def retrieve_html_translation(
          'requester-callback': dest,
          'destinations': {
              'http-destination': dest,
-             'email-destination': 'ghita.bizau@eaudeweb.ro'
+             # 'email-destination': 'ghita.bizau@eaudeweb.ro'
             }
          })
 
