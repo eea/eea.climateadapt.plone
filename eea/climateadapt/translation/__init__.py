@@ -119,6 +119,7 @@ def retrieve_html_translation(
     if not target_languages:
         target_languages = ['EN']
 
+    import pdb; pdb.set_trace()
     encoded_html = base64.b64encode(html)
 
     translation = get_translated(html, target_languages[0])
