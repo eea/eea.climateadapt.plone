@@ -264,8 +264,9 @@ def translate_obj(obj):
                     continue
 
                 if rich:
-                    setattr(trans_obj, key, getattr(obj, key))
-                    setattr(trans_obj, key, RichTextValue(encoded_text))
+                    # TODO No action needed, right?
+                    # setattr(trans_obj, key, getattr(obj, key))
+                    # setattr(trans_obj, key, RichTextValue(encoded_text))
                     # setattr(getattr(trans_obj, key), 'raw', encoded_text)
                 else:
                     if isinstance(value, str) and key in ['funding_programme']:

@@ -82,7 +82,8 @@ def save_html_fields(form):
             'div', attrs={"class": "cca-translation-section"})
     for field in html_fields:
         field_name = field['data-field']
-        html_value = field.decode_contents().decode('latin-1')
+        # html_value = field.decode_contents().decode('latin-1')
+        html_value = field.decode_contents()
 
         # encoded_text = html_value.encode('latin-1')
         # setattr(trans_obj, field_name, html_value)
