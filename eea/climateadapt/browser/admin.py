@@ -284,7 +284,7 @@ def translate_obj(obj):
 
             for key in rich_fields:
                 value = getattr(obj, key).raw.replace('\r\n', '')
-                value = value.decode('latin-1')
+                value = value.decode('utf-8')
                 html_section = u"<div class='cca-translation-section'" + \
                     u" data-field='" + key + u"'>" + value + u"</div>"
 
