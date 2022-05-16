@@ -132,7 +132,7 @@ def retrieve_html_translation(
                 'externalRefId': html,
                 'translated': True
             }
-            logger.info('Data translation cached : %r', res)
+            # logger.info('Data translation cached : %r', res)
             return res
 
     site_url = portal.get().absolute_url()
@@ -168,8 +168,8 @@ def retrieve_html_translation(
             }
          })
 
-    logger.info('Data translation request : html content')
-    logger.info('Response from translation request: %r', resp)
+    # logger.info('Data translation request : html content')
+    # logger.info('Response from translation request: %r', resp)
 
     # if str(resp[0]) == '-':
     #     # If the response is a negative number this means error. Error codes:
@@ -209,7 +209,7 @@ def retrieve_translation(country_code,
                 'externalRefId': text,
                 'translated': True
             }
-            logger.info('Data translation cached : %r', res)
+            # logger.info('Data translation cached : %r', res)
             return res
 
     site_url = portal.get().absolute_url()
@@ -233,7 +233,7 @@ def retrieve_translation(country_code,
     dest = '{}/@@translate-callback?source_lang={}'.format(site_url,
                                                            country_code)
 
-    logger.info('Translate callback URL: %s', dest)
+    # logger.info('Translate callback URL: %s', dest)
 
     data = {
         'priority': 5,
@@ -252,7 +252,7 @@ def retrieve_translation(country_code,
         }
     }
 
-    logger.info('Data translation request : %r', data)
+    # logger.info('Data translation request : %r', data)
 
     resp = requests.post(
         SERVICE_URL,
@@ -260,7 +260,7 @@ def retrieve_translation(country_code,
         data=json.dumps(data),
         headers={'Content-Type': 'application/json'}
     )
-    logger.info('Response from translation request: %r', resp.content)
+    # logger.info('Response from translation request: %r', resp.content)
 
     res = {
         "transId": resp.content,
