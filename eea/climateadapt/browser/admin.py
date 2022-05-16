@@ -116,6 +116,7 @@ def translate_obj(obj):
 
     translations = TranslationManager(obj).get_translations()
     translations.pop('en')
+    translations.pop('it')  # TODO restore (for testing ignore IT)
     for language in translations:
         trans_obj = translations[language]
 
