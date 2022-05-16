@@ -56,7 +56,7 @@ def save_html_fields(form, file):
     form.pop('source_lang')
     target_lang = form.get('target-language')
     form.pop('target-language')
-    logger.info("Translate %s to %s", source_lang, target_lang)
+    # logger.info("Translate %s to %s", source_lang, target_lang)
 
     prefix = '/cca/' + target_lang.lower() + '/'
     trans_obj_path = obj_path.replace('/cca/en/', prefix)
@@ -70,7 +70,7 @@ def save_html_fields(form, file):
     file.seek(0)
     b64_str = file.read()
     html_file = base64.decodestring(b64_str).decode("latin-1")
-    logger.info(html_file)
+    # logger.info(html_file)
     soup = BeautifulSoup(html_file, "html.parser")
     html_fields = soup.find_all(
             'div', attrs={"class": "cca-translation-section"})
@@ -84,7 +84,7 @@ def save_html_fields(form, file):
         trans_obj.reindexObject(idxs=[field_name])
 
     transaction.commit()
-    logger.info("Html translation saved for %s", trans_obj.absolute_url())
+    # logger.info("Html translation saved for %s", trans_obj.absolute_url())
 
 
 class TranslationCallback(BrowserView):
@@ -98,7 +98,7 @@ class TranslationCallback(BrowserView):
         if form.get('format', None) == 'html':
             file = self.request.stdin
             save_html_fields(form, file)
-            logger.info('Translate html')
+            # logger.info('Translate html')
             return
 
         deps = ['translation']

@@ -160,7 +160,7 @@ def translate_obj(obj):
 
         for key in fields:
             rich = False
-            print(key)
+            # print(key)
             if key in ['acronym', 'id', 'language', 'portal_type',
                        'contentType']:
                 continue
