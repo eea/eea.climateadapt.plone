@@ -39,7 +39,7 @@ MARINE_PASS = env('MARINE_PASS', '')
 SERVICE_URL = 'https://webgate.ec.europa.eu/etranslation/si/translate'
 
 
-def save_html_fields(form):
+def save_html_fields(form, file):
     """ Get the translated html file, extract the values for each field and
         update the related translation object.
     """
@@ -73,15 +73,11 @@ def save_html_fields(form):
         logger.info("Empty form")  # TODO: Check why?
         return
 
-    b64_str = form.keys()[0]
+    file.seek(0)
+    b64_str = file.read()
 
     import pdb; pdb.set_trace()
-    try:
-        html_file = base64.decodestring(b64_str).decode("latin-1")
-    except Exception:
-        logger.info("Incorrect padding - b64_str. Fix applied.")
-        b64_str += b"=="  # fix Incorrect padding
-        html_file = base64.decodestring(b64_str).decode("latin-1")
+    html_file = base64.decodestring(b64_str).decode("latin-1")
 
     logger.info(html_file)
 
@@ -115,7 +111,8 @@ class TranslationCallback(BrowserView):
         form = self.request.form
         if form.get('format', None) == 'html':
             import pdb; pdb.set_trace()
-            save_html_fields(form)
+            file = self.request.stdin
+            save_html_fields(form, file)
             logger.info('Translate html')
             return
 
