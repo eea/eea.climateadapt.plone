@@ -160,14 +160,14 @@ def retrieve_html_translation(
              "document-to-translate-base64": {
                 # "content": encoded_file,
                 "content": encoded_html,
-                "format": "html",
+                "format": "xhtml",
                 "fileName": "out"
              },
 
              'source-language': source_lang,
              'target-languages': {'target-language': target_languages},
              'domain': 'GEN',
-             'output-format': 'html',
+             'output-format': 'xhtml',
              'requester-callback': dest,
              'destinations': {
                  'email-destination': 'ghita.bizau@eaudeweb.ro'
@@ -184,14 +184,14 @@ def retrieve_html_translation(
              "document-to-translate-base64": {
                 # "content": encoded_file,
                 "content": encoded_html,
-                "format": "html",
+                "format": "xhtml",
                 "fileName": "out"
              },
 
              'source-language': source_lang,
              'target-languages': {'target-language': target_languages},
              'domain': 'GEN',
-             'output-format': 'html',
+             'output-format': 'xhtml',
              'destinations': {
                  'http-destination': dest,
                  'email-destination': 'ghita.bizau@eaudeweb.ro'
