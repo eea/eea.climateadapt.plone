@@ -165,7 +165,6 @@ def retrieve_html_translation(
          'output-format': 'html',
          'destinations': {
              'http-destination': dest,
-             'email-destination': 'ghita.bizau@eaudeweb.ro'
             }
          })
 
