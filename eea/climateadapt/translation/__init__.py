@@ -109,8 +109,7 @@ class Translation(Persistent):
 
 
 def retrieve_html_translation(
-        source_lang, html, obj_path, target_languages=None, force=False,
-        requester_callback=False):
+        source_lang, html, obj_path, target_languages=None, force=False):
     """ Send a call to automatic translation service, to translate a string
     Returns a json formatted string
     """
@@ -149,54 +148,26 @@ def retrieve_html_translation(
     dest = '{}/@@translate-callback?source_lang={}&format=html'.format(
             site_url, source_lang)
 
-    if requester_callback == True:
-        resp = client.service.translate(
-            {'priority': '5',
-             'external-reference': obj_path,
-             'caller-information': {'application': 'Marine_EEA_20180706',
-                                    'username': TRANS_USERNAME},
-             # 'text-to-translate': 'Please translate this text for me.',
+    resp = client.service.translate(
+        {'priority': '5',
+         'external-reference': obj_path,
+         'caller-information': {'application': 'Marine_EEA_20180706',
+                                'username': TRANS_USERNAME},
+         "document-to-translate-base64": {
+            "content": encoded_html,
+            "format": "html",
+            "fileName": "out"
+         },
 
-             "document-to-translate-base64": {
-                # "content": encoded_file,
-                "content": encoded_html,
-                "format": "xhtml",
-                "fileName": "out"
-             },
-
-             'source-language': source_lang,
-             'target-languages': {'target-language': target_languages},
-             'domain': 'GEN',
-             'output-format': 'xhtml',
-             'requester-callback': dest,
-             'destinations': {
-                 'email-destination': 'ghita.bizau@eaudeweb.ro'
-                }
-             })
-    else:
-        resp = client.service.translate(
-            {'priority': '5',
-             'external-reference': obj_path,
-             'caller-information': {'application': 'Marine_EEA_20180706',
-                                    'username': TRANS_USERNAME},
-             # 'text-to-translate': 'Please translate this text for me.',
-
-             "document-to-translate-base64": {
-                # "content": encoded_file,
-                "content": encoded_html,
-                "format": "xhtml",
-                "fileName": "out"
-             },
-
-             'source-language': source_lang,
-             'target-languages': {'target-language': target_languages},
-             'domain': 'GEN',
-             'output-format': 'xhtml',
-             'destinations': {
-                 'http-destination': dest,
-                 'email-destination': 'ghita.bizau@eaudeweb.ro'
-                }
-             })
+         'source-language': source_lang,
+         'target-languages': {'target-language': target_languages},
+         'domain': 'GEN',
+         'output-format': 'html',
+         'destinations': {
+             'http-destination': dest,
+             'email-destination': 'ghita.bizau@eaudeweb.ro'
+            }
+         })
 
     logger.info('Data translation request : html content')
     logger.info('Response from translation request: %r', resp)

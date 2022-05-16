@@ -49,12 +49,6 @@ def save_html_fields(form, file):
     en_obj = site.unrestrictedTraverse(obj_path)
     force_unlock(en_obj)
 
-    # import pdb; pdb.set_trace()
-    # translations = TranslationManager(en_obj).get_translations()
-    # Unauthorized: You are not allowed to access
-    # 'european-climate-data-explorer-user-guide' in this context
-    # translations.pop('en')
-
     form.pop('format')
     form.pop('request-id')
     form.pop('external-reference')
@@ -75,25 +69,17 @@ def save_html_fields(form, file):
 
     file.seek(0)
     b64_str = file.read()
-
-    import pdb; pdb.set_trace()
     html_file = base64.decodestring(b64_str).decode("latin-1")
-
     logger.info(html_file)
-
     soup = BeautifulSoup(html_file, "html.parser")
     html_fields = soup.find_all(
             'div', attrs={"class": "cca-translation-section"})
+
     for field in html_fields:
         field_name = field['data-field']
-        # html_value = field.decode_contents().decode('latin-1')
         html_value = field.decode_contents()
-        import pdb; pdb.set_trace()
-
-        # encoded_text = html_value.encode('latin-1')
-        # setattr(trans_obj, field_name, html_value)
-        # setattr(trans_obj, field_name, RichTextValue(encoded_text))
-        setattr(trans_obj, field_name, RichTextValue(html_value))
+        encoded_text = html_value.encode('latin-1')
+        setattr(trans_obj, field_name, RichTextValue(encoded_text))
         trans_obj._p_changed = True
         trans_obj.reindexObject(idxs=[field_name])
 
@@ -110,7 +96,6 @@ class TranslationCallback(BrowserView):
     def __call__(self):
         form = self.request.form
         if form.get('format', None) == 'html':
-            import pdb; pdb.set_trace()
             file = self.request.stdin
             save_html_fields(form, file)
             logger.info('Translate html')
@@ -266,5 +251,4 @@ class TestTranslationView(BrowserView):
             "transId": resp.content,
             "externalRefId": text
         }
-        # import pdb; pdb.set_trace()
         return res

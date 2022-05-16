@@ -92,7 +92,7 @@ def force_unlock(context):
         annot._p_changed = True
 
 
-def translate_obj(obj, requester_callback=False):
+def translate_obj(obj):
     tile_fields = ['title', 'description', 'tile_title', 'footer', 'alt_text']
     errors = []
     force_unlock(obj)
@@ -298,7 +298,6 @@ def translate_obj(obj, requester_callback=False):
                 obj_path,
                 language.upper(),
                 False,
-                requester_callback
             )
 
     return {'errors': errors}
@@ -599,24 +598,6 @@ class RunTranslationSingleItem(BrowserView):
         import pdb; pdb.set_trace()
         obj = self.context
         result = translate_obj(obj)
-        transaction.commit()
-        return result
-
-
-class RunTranslationSingleItemRC(BrowserView):
-    """ Translate a single item
-        Usage: item/admin-translate-this-rc
-
-        To be used for testing translation without waiting for all objects to
-        be updated
-
-        TODO remove, use for testing only
-    """
-
-    def __call__(self, **kwargs):
-        import pdb; pdb.set_trace()
-        obj = self.context
-        result = translate_obj(obj, requester_callback=True)
         transaction.commit()
         return result
 
