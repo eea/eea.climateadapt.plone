@@ -35,6 +35,13 @@
       />
 
   <browser:page
+      name="admin-translate-this-rc"
+      for="*"
+      class=".admin.RunTranslationSingleItemRC"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
       name="force_unlock"
       for="*"
       class=".admin.ForceUnlock"
