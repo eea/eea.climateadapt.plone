@@ -72,6 +72,7 @@ def save_html_fields(form, file):
     html_file = base64.decodestring(b64_str).decode("latin-1")
     # logger.info(html_file)
     soup = BeautifulSoup(html_file, "html.parser")
+
     html_fields = soup.find_all(
             'div', attrs={"class": "cca-translation-section"})
 
@@ -83,6 +84,18 @@ def save_html_fields(form, file):
         trans_obj._p_changed = True
         trans_obj.reindexObject(idxs=[field_name])
 
+    tiles = soup.find_all(
+            'div', attrs={"class": "cca-translation-tile"})
+
+    for field in tiles:
+        field_name = field['data-field']
+        tile_id = field['data-tile-id']
+        html_value = field.decode_contents()
+        encoded_text = html_value.encode('latin-1')
+        import pdb; pdb.set_trace()
+        # setattr(trans_obj, field_name, RichTextValue(encoded_text))
+        # trans_obj._p_changed = True
+        # trans_obj.reindexObject(idxs=[field_name])
     transaction.commit()
     # logger.info("Html translation saved for %s", trans_obj.absolute_url())
 
