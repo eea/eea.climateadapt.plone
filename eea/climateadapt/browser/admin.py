@@ -143,12 +143,13 @@ def translate_obj(obj):
                     except Exception:
                         value = None
                     if value:
+                        import pdb; pdb.set_trace()
                         html_content = u"<!doctype html>" + \
                             u"<head><meta charset=utf-8></head><body>"
 
                         value = value.replace('\r\n', '')
                         html_tile = u"<div class='cca-translation-tile'" + \
-                            u" data-field='" + key + u"'" + \
+                            u" data-field='" + field + u"'" + \
                             u" data-tile-id='" + tile_id + u"'" + \
                             u">" + value + u"</div>"
 
