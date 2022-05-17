@@ -3,7 +3,12 @@
 # Shell script to generate .po files.
 #
 
-declare -a list=("eea.climateadapt" "eea.climateadapt.menu" "eea.climateadapt.frontpage")
+declare -a list=(
+              "eea.cca"
+              "eea.climateadapt"
+              "eea.climateadapt.menu"
+              "eea.climateadapt.frontpage"
+              )
 
 length=${#list[@]}
 
@@ -12,7 +17,7 @@ for lang in $(find ./ -mindepth 1 -maxdepth 1 -type d); do
         echo $lang
         for (( j=0; j<length; j++ ));
         do
-	    domain=${list[$j]}
+	          domain=${list[$j]}
             touch $lang/LC_MESSAGES/$domain.po
             i18ndude sync --pot $domain.pot $lang/LC_MESSAGES/$domain.po
         done
