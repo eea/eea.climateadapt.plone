@@ -28,6 +28,7 @@ from plone.api import portal
 from plone.app.multilingual.manager import TranslationManager
 from eea.climateadapt.browser.admin import force_unlock
 from plone.app.textfield.value import RichTextValue
+from plone.tiles.interfaces import ITileDataManager
 
 logger = logging.getLogger('wise.msfd.translation')
 env = os.environ.get
@@ -93,6 +94,11 @@ def save_html_fields(form, file):
         html_value = field.decode_contents()
         encoded_text = html_value.encode('latin-1')
         import pdb; pdb.set_trace()
+        tile = trans_obj.get_tile(tile_id)
+        data_mgr = ITileDataManager(tile)
+        old_value = data_mgr.get()
+        data_mgr.set(encoded_text)
+
         # setattr(trans_obj, field_name, RichTextValue(encoded_text))
         # trans_obj._p_changed = True
         # trans_obj.reindexObject(idxs=[field_name])
