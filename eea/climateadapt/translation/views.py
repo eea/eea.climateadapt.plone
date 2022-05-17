@@ -116,6 +116,7 @@ class TranslationCallback(BrowserView):
     """
 
     def __call__(self):
+        import pdb; pdb.set_trace()
         form = self.request.form
         if form.get('format', None) == 'html':
             file = self.request.stdin
