@@ -98,16 +98,14 @@ def save_html_fields(form, file):
             'plone.tiles.data.' + tile_id, None)
         if tile is not None:
             import pdb; pdb.set_trace()
+            update = tile.data
+            update['text'] = RichTextValue(encoded_text)
+            tile.data.update(update)
+            trans_obj._p_changed = True
+            trans_obj.reindexObject(idxs=[field_name])
         else:
             logger.info("Cannot find tile")
             import pdb; pdb.set_trace()
-        # data_mgr = ITileDataManager(tile)
-        # old_value = data_mgr.get()
-        # data_mgr.set(encoded_text)
-
-        # setattr(trans_obj, field_name, RichTextValue(encoded_text))
-        # trans_obj._p_changed = True
-        # trans_obj.reindexObject(idxs=[field_name])
     transaction.commit()
     # logger.info("Html translation saved for %s", trans_obj.absolute_url())
 
