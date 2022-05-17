@@ -5,7 +5,6 @@ import base64
 import json
 import os
 import requests
-import transaction
 
 from zope import event
 from zope.security import checkPermission
@@ -106,8 +105,7 @@ def save_html_fields(form, file):
         else:
             logger.info("Cannot find tile")
             import pdb; pdb.set_trace()
-    transaction.commit()
-    # logger.info("Html translation saved for %s", trans_obj.absolute_url())
+    logger.info("Html translation saved for %s", trans_obj.absolute_url())
 
 
 class TranslationCallback(BrowserView):
@@ -121,7 +119,7 @@ class TranslationCallback(BrowserView):
         if form.get('format', None) == 'html':
             file = self.request.stdin
             save_html_fields(form, file)
-            # logger.info('Translate html')
+            logger.info('Translate html')
             return
 
         deps = ['translation']

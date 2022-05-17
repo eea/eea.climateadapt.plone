@@ -371,8 +371,8 @@ def initiate_translations(site, skip=0):
                 if error not in errors:
                     errors.append(error)
 
-        if count % 10 == 0:
-            # logger.info("Processed %s objects" % count)
+        if count % 25 == 0:
+            logger.info("Processed %s objects" % count)
             transaction.commit()
 
         if count % 50 == 0:
@@ -431,6 +431,7 @@ def copy_tiles(tiles, from_cover, to_cover):
 
         else:
             logger.info("Missing tile type")
+            import pdb; pdb.set_trace()
 
 
 def create_translation_object(obj, language):
