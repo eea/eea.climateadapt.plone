@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-05 18:32+0000\n"
+"POT-Creation-Date: 2022-05-17 12:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,10 +15,6 @@ msgstr ""
 "Domain: DOMAIN\n"
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
-
-#: ../../climateadapt/theme/climateadaptv2/index.html:403
-msgid "<span class=\"d-icon database-icon\"></span> Search the <br /> Database"
-msgstr ""
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:149
 msgid "<strong>Last Modified in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
@@ -169,6 +165,10 @@ msgstr ""
 msgid "Countries: ${DYNAMIC_CONTENT}"
 msgstr "Lönd: $ {dynamic_content}"
 
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:199
+msgid "Country profiles"
+msgstr ""
+
 # ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:245
 msgid "Covenant of Mayors 2020 signatory"
@@ -231,6 +231,10 @@ msgstr ""
 #: ../../climateadapt/browser/overrides.py:42
 msgid "Disaster Risk Reduction"
 msgstr "Minnkun hörmungaráhættu"
+
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:149
+msgid "Discover the main topics and tools of the observatory"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:97
@@ -331,6 +335,10 @@ msgstr "Heilbrigðisáhrif:"
 msgid "Home"
 msgstr ""
 
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:179
+msgid "INDICATORS"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:34
 msgid "IPCC categories"
@@ -381,6 +389,10 @@ msgstr "Síðasta uppfærsla"
 msgid "Lead"
 msgstr ""
 
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:163
+msgid "Learn more"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:45
 #: ../../climateadapt/browser/pt/casestudy_view.pt:86
@@ -426,6 +438,10 @@ msgstr "Mayors aðlaga undirritunaraðila"
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:133
 msgid "Name of the strategy/ plan (If adopted)"
 msgstr "Nafn stefnu / áætlun (ef samþykkt)"
+
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:159
+msgid "New"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:53
@@ -519,12 +535,20 @@ msgstr ""
 msgid "Relevance"
 msgstr "Mikilvægi."
 
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:219
+msgid "Resource catalogue"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/ace_macros.pt:109
 msgid "Reviewed by:"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/navbar_footer.pt:18
 msgid "SITE MAP"
+msgstr ""
+
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:220
+msgid "Search and access the Observatory’s database containing case studies, publications, indicators, research projects and other"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/indicator_view.pt:98
@@ -538,6 +562,10 @@ msgstr ""
 #: ../../climateadapt/browser/pt/casestudy_view.pt:289
 msgid "Sectors:"
 msgstr "Sectors:"
+
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:200
+msgid "See how countries are addressing climate change adaptation in public health"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/organisation_view.pt:63
 msgid "See more"
@@ -644,6 +672,10 @@ msgstr "Samtals."
 msgid "Transport"
 msgstr "Samgöngur"
 
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:160
+msgid "UV Index forecast (CAMS)"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/overrides.py:45
 msgid "Urban"
@@ -653,10 +685,18 @@ msgstr "Þéttbýli"
 msgid "View all contributions in the resource catalogue"
 msgstr ""
 
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:180
+msgid "View climate and health indicators from different trusted information providers"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:18
 msgid "View on DRMKC"
 msgstr "Skoða á Drmkc."
+
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:161
+msgid "View the UV Index forecast developed by Copernicus Atmosphere Monitoring Service (CAMS)"
+msgstr ""
 
 # ,
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:16
