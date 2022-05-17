@@ -16,542 +16,543 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
-# ,
 #: health_menu:33
+#, 
 msgid "2021 Lancet Countdown-EEA Briefing"
 msgstr "2021 Lancet Countdown-EEE-briefing"
 
-# ,
 #: site_menu:12
+#, 
 msgid "ADAPTATION IN EU POLICY SECTORS"
 msgstr "Aanpassing in sectoren EU-beleid"
 
-# ,
 #: site_menu:0 health_menu:0
+#, 
 msgid "About"
 msgstr "Wat betreft"
 
-# ,
 #: site_menu:1
+#, 
 msgid "About Climate-ADAPT"
 msgstr "Over klimaataanpassing"
 
-# ,
 #: health_menu:1
+#, 
 msgid "About the Observatory"
 msgstr "Over het observatorium"
 
-# ,
 #: site_menu:61
+#, 
 msgid "Adaptation Support Tool"
 msgstr "Adaptation Support Tool"
 
-# ,
 #: site_menu:50
+#, 
 msgid "Adaptation options"
 msgstr "Aanpassingsopties"
 
-# ,
 #: site_menu:33
+#, 
 msgid "Adriatic-Ionian"
 msgstr "Adriatic-Ionian"
 
-# ,
 #: site_menu:13
+#, 
 msgid "Agriculture"
 msgstr "landbouw"
 
-# ,
 #: health_menu:15
+#, 
 msgid "Air pollution"
 msgstr "Luchtvervuiling"
 
-# ,
 #: site_menu:34
+#, 
 msgid "Alpine Space"
 msgstr "Alpine ruimte"
 
-# ,
 #: health_menu:34
+#, 
 msgid "Annual reports"
 msgstr "Jaarlijkse verslagen"
 
-# ,
 #: site_menu:35
+#, 
 msgid "Atlantic Area"
 msgstr "Atlantic Area"
 
-# ,
 #: site_menu:36
+#, 
 msgid "Balkan-Mediterranean"
 msgstr "Balkan-Mediterranean"
 
-# ,
 #: site_menu:37
+#, 
 msgid "Baltic Sea"
 msgstr "Oostzee"
 
-# ,
 #: site_menu:14
+#, 
 msgid "Biodiversity"
 msgstr "Biodiversiteit"
 
-# ,
 #: site_menu:15
+#, 
 msgid "Buildings"
 msgstr "Gebouwen"
 
-# ,
 #: health_menu:23
+#, 
 msgid "C3S European health service (under development)"
 msgstr "C3S Europese gezondheidsdienst (in ontwikkeling)"
 
-# ,
 #: health_menu:35
+#, 
 msgid "Capacity building"
 msgstr "Capaciteit opbouwen"
 
-# ,
 #: site_menu:67
+#, 
 msgid "Case studies"
 msgstr "Case studies"
 
-# ,
 #: site_menu:66
+#, 
 msgid "Case study explorer"
 msgstr "Case study explorer"
 
-# ,
 #: site_menu:38
+#, 
 msgid "Central Europe"
 msgstr "Centraal Europa"
 
-# ,
 #: site_menu:31
+#, 
 msgid "Cities and towns"
 msgstr "Steden en dorpen"
 
-# ,
 #: site_menu:55
+#, 
 msgid "Climate  Services"
 msgstr "Klimaatdiensten"
 
-# ,
 #: site_menu:70
+#, 
 msgid "Climate-ADAPT use cases"
 msgstr "CLIMATE-AANPAALD GEBRUIK GEVALLEN"
 
-# ,
 #: site_menu:16
+#, 
 msgid "Coastal areas"
 msgstr "Kustgebieden"
 
-# ,
 #: site_menu:29
+#, 
 msgid "Countries, Transnational regions, Cities"
 msgstr "Landen, transnationale regio's, steden"
 
-# ,
 #: site_menu:30 health_menu:8
+#, 
 msgid "Country Profiles"
 msgstr "Landprofielen"
 
-# ,
 #: site_menu:54
+#, 
 msgid "DATA AND INDICATORS"
 msgstr "Gegevens en indicatoren"
 
-# ,
 #: site_menu:39
+#, 
 msgid "Danube"
 msgstr "Donau"
 
-# ,
 #: site_menu:17
+#, 
 msgid "Disaster risk reduction"
 msgstr "Rampenrisico-reductie"
 
-# ,
 #: health_menu:22
+#, 
 msgid "ECDC Vibrio map viewer"
 msgstr "ECDC Vibrio Map Viewer"
 
-# ,
 #: site_menu:6
+#, 
 msgid "EU ADAPTATION POLICY"
 msgstr "EU-aanpassingsbeleid"
 
-# ,
 #: site_menu:7
+#, 
 msgid "EU Adaptation Strategy"
 msgstr "EU-aanpassingsstrategie"
 
-# ,
 #: site_menu:10
+#, 
 msgid "EU Covenant of Mayors"
 msgstr "EU-convenant van burgemeesters"
 
-# ,
 #: site_menu:8
+#, 
 msgid "EU Mission on Adaptation"
 msgstr "EU-missie op aanpassing"
 
-# ,
 #: site_menu:27
+#, 
 msgid "EU REGIONAL POLICY"
 msgstr "EU-regionaal beleid"
 
-# ,
 #: site_menu:9
+#, 
 msgid "EU Reporting on Adaptation"
 msgstr "EU-rapportage over aanpassing"
 
-# ,
 #: health_menu:5
+#, 
 msgid "EU adaptation policy"
 msgstr "EU-aanpassingsbeleid"
 
-# ,
 #: site_menu:11
+#, 
 msgid "EU funding of adaptation"
 msgstr "EU-financiering van aanpassing"
 
-# ,
 #: health_menu:6
+#, 
 msgid "EU health policy"
 msgstr "EU-gezondheidsbeleid"
 
-# ,
 #: site_menu:5
+#, 
 msgid "EU policy"
 msgstr "EU-beleid"
 
-# ,
 #: site_menu:58
+#, 
 msgid "EUROPEAN CLIMATE DATA EXPLORER"
 msgstr "Europese klimaatgegevensverkenner"
 
-# ,
 #: site_menu:72
+#, 
 msgid "EUROPEAN Climate and Health Observatory"
 msgstr "Europees klimaat en gezondheidsbewaking"
 
-# ,
 #: site_menu:64
+#, 
 msgid "Economic tools"
 msgstr "Economische hulpmiddelen"
 
-# ,
 #: site_menu:18
+#, 
 msgid "Ecosystem-based approaches"
 msgstr "Ecosystem-gebaseerde benaderingen"
 
-# ,
 #: site_menu:19
+#, 
 msgid "Energy"
 msgstr "Energie"
 
-# ,
 #: site_menu:53
+#, 
 msgid "Europe's vulnerability to climate change impacts occurring outside Europe"
 msgstr "Europa's kwetsbaarheid voor klimaatveranderingeffecten die buiten Europa voorkomen"
 
-# ,
 #: health_menu:21
+#, 
 msgid "European Climate Data Explorer"
 msgstr "Europese klimaatgegevensverkenner"
 
-# ,
 #: health_menu:4
+#, 
 msgid "European Policy Framework"
 msgstr "Europees beleidskader"
 
-# ,
 #: health_menu:25
+#, 
 msgid "European early warning systems"
 msgstr "Europese vroegtijdige waarschuwingssystemen"
 
-# ,
 #: health_menu:10
+#, 
 msgid "Evidence on climate and health"
 msgstr "Bewijs over klimaat en gezondheid"
 
-# ,
 #: site_menu:79
+#, 
 msgid "FAQ for providers"
 msgstr "Veelgestelde vragen voor providers"
 
-# ,
 #: site_menu:78
+#, 
 msgid "FAQ for users"
 msgstr "Veelgestelde vragen voor gebruikers"
 
-# ,
 #: site_menu:20
+#, 
 msgid "Financial"
 msgstr "Financieel"
 
-# ,
 #: health_menu:17
+#, 
 msgid "Flooding"
 msgstr "Overstromingen"
 
-# ,
 #: site_menu:21
+#, 
 msgid "Forestry"
 msgstr "Bosbouw"
 
-# ,
 #: site_menu:77
+#, 
 msgid "Glossary"
 msgstr "Woordenlijst"
 
-# ,
 #: site_menu:80
+#, 
 msgid "Guidance to search function"
 msgstr "Begeleiding naar de zoekfunctie"
 
-# ,
 #: site_menu:22
+#, 
 msgid "Health"
 msgstr "Gezondheid"
 
-# ,
 #: health_menu:11
+#, 
 msgid "Health effects"
 msgstr "Gezondheidseffecten"
 
-# ,
 #: health_menu:24
+#, 
 msgid "Health warning systems"
 msgstr "Gezondheidswaarschuwingssystemen"
 
-# ,
 #: health_menu:12
+#, 
 msgid "Heat and health"
 msgstr "Warmte en gezondheid"
 
-# ,
 #: site_menu:76
+#, 
 msgid "Help"
 msgstr "Helpen"
 
-# ,
 #: site_menu:69
+#, 
 msgid "INTERREG projects"
 msgstr "Interreg-projecten"
 
-# ,
 #: site_menu:49
+#, 
 msgid "Impacts, risks and vulnerabilities"
 msgstr "Effecten, risico's en kwetsbaarheden"
 
-# ,
 #: health_menu:18
+#, 
 msgid "Indicators"
 msgstr "Indicatoren"
 
-# ,
 #: site_menu:56
+#, 
 msgid "Indicators in Climate-ADAPT"
 msgstr "Indicatoren in klimaataanpassing"
 
-# ,
 #: site_menu:47
+#, 
 msgid "Knowledge"
 msgstr "Kennis"
 
-# ,
 #: site_menu:68
+#, 
 msgid "LIFE projects"
 msgstr "Levensprojecten"
 
-# ,
 #: site_menu:23
+#, 
 msgid "Marine and fisheries"
 msgstr "Marine en visserij"
 
-# ,
 #: site_menu:40
+#, 
 msgid "Mediterranean"
 msgstr "Middellandse Zee"
 
-# ,
 #: site_menu:52
+#, 
 msgid "Monitoring, Reporting and Evaluation"
 msgstr "Monitoring, rapportage en evaluatie"
 
-# ,
 #: health_menu:26
+#, 
 msgid "National heat-health warning systems and action plans"
 msgstr "National Heat-Health-waarschuwingssystemen en actieplannen"
 
-# ,
 #: site_menu:74
+#, 
 msgid "Networks"
 msgstr "Netwerken"
 
-# ,
 #: site_menu:41
+#, 
 msgid "North Sea"
 msgstr "Noordzee"
 
-# ,
 #: site_menu:42
+#, 
 msgid "North West Europe"
 msgstr "Noordwest-Europa"
 
-# ,
 #: site_menu:43
+#, 
 msgid "Northern Periphery and Arctic"
 msgstr "Noordelijke periferie en Arctic"
 
-# ,
 #: health_menu:32
+#, 
 msgid "Observatory publications"
 msgstr "Observatory Publications"
 
-# ,
 #: site_menu:45
+#, 
 msgid "Other regions"
 msgstr "Andere regio's"
 
-# ,
 #: site_menu:2
+#, 
 msgid "Outreach"
 msgstr "Outreach"
 
-# ,
 #: site_menu:65
+#, 
 msgid "PRACTICE"
 msgstr "OEFENING"
 
-# ,
 #: health_menu:3
+#, 
 msgid "Policy context"
 msgstr "Beleidscontext"
 
-# ,
 #: health_menu:19
+#, 
 msgid "Projections and tools"
 msgstr "Projecties en gereedschappen"
 
-# ,
 #: health_menu:31
+#, 
 msgid "Publications and outreach"
 msgstr "Publicaties en outreach"
 
-# ,
 #: site_menu:57
+#, 
 msgid "RESEARCH AND INNOVATION PROJECTS"
 msgstr "Onderzoeks- en innovatieprojecten"
 
-# ,
 #: health_menu:28
+#, 
 msgid "Resource catalogue"
 msgstr "Resource-catalogus"
 
-# ,
 #: health_menu:29
+#, 
 msgid "Search for Resources"
 msgstr "Zoeken naar middelen"
 
-# ,
 #: site_menu:71
+#, 
 msgid "Search the database"
 msgstr "Doorzoek de database"
 
-# ,
 #: site_menu:83
+#, 
 msgid "Share your information"
 msgstr "Deel uw informatie"
 
-# ,
 #: site_menu:3
+#, 
 msgid "Site map"
 msgstr "Sitekaart"
 
-# ,
 #: site_menu:44
+#, 
 msgid "South West Europe"
 msgstr "Zuid-West-Europa"
 
-# ,
 #: site_menu:60
+#, 
 msgid "TOOLS"
 msgstr "GEREEDSCHAP"
 
-# ,
 #: site_menu:48
+#, 
 msgid "TOPICS"
 msgstr "Onderwerpen"
 
-# ,
 #: site_menu:32
+#, 
 msgid "Transnational regions"
 msgstr "Transnationale regio's"
 
-# ,
 #: site_menu:24
+#, 
 msgid "Transport"
 msgstr "Vervoer"
 
-# ,
 #: site_menu:81
+#, 
 msgid "Tutorial Videos"
 msgstr "Tutorial-video's"
 
-# ,
 #: site_menu:51
+#, 
 msgid "Uncertainty guidance"
 msgstr "Onzekerheidsgeleiding"
 
-# ,
 #: site_menu:25
+#, 
 msgid "Urban"
 msgstr "Stedelijk"
 
-# ,
 #: site_menu:63
+#, 
 msgid "Urban Adaptation Map Viewer"
 msgstr "Stedelijke aanpassingskaart Viewer"
 
-# ,
 #: health_menu:20
+#, 
 msgid "Urban Adaptation Map Viewer (health focus)"
 msgstr "Stedelijke aanpassingskaart Viewer (Gezondheidsgerichtheid)"
 
-# ,
 #: site_menu:62
+#, 
 msgid "Urban Adaptation Support Tool"
 msgstr "Stedelijke adaptatie-ondersteuningstool"
 
-# ,
 #: health_menu:13
+#, 
 msgid "Vector-borne diseases"
 msgstr "Vector-overgedragen ziekten"
 
-# ,
 #: health_menu:14
+#, 
 msgid "Water and food-borne diseases"
 msgstr "Water en voedsel overgedragen ziekten"
 
-# ,
 #: site_menu:26
+#, 
 msgid "Water management"
 msgstr "Water beheersing"
 
-# ,
 #: site_menu:82 health_menu:36
+#, 
 msgid "Webinars"
 msgstr "Webinars"
 
-# ,
 #: health_menu:16
+#, 
 msgid "Wildfire"
 msgstr "Wildvuur"
 
-# ,
 #: health_menu:7
+#, 
 msgid "Working Group on Health in Climate Change (WHO|Europe)"
 msgstr "Werkgroep over gezondheid in klimaatverandering (WHO | Europa)"
+

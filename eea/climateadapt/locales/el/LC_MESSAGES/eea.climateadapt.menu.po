@@ -16,542 +16,543 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
-# ,
 #: health_menu:33
+#, 
 msgid "2021 Lancet Countdown-EEA Briefing"
 msgstr "2021 LANCET αντίστροφη μέτρηση-ενημέρωση για τον ΕΟΧ"
 
-# ,
 #: site_menu:12
+#, 
 msgid "ADAPTATION IN EU POLICY SECTORS"
 msgstr "Προσαρμογή στους τομείς της πολιτικής της ΕΕ"
 
-# ,
 #: site_menu:0 health_menu:0
+#, 
 msgid "About"
 msgstr "Σχετικά με"
 
-# ,
 #: site_menu:1
+#, 
 msgid "About Climate-ADAPT"
 msgstr "Σχετικά με το κλίμα-προσαρμογή"
 
-# ,
 #: health_menu:1
+#, 
 msgid "About the Observatory"
 msgstr "Σχετικά με το Παρατηρητήριο"
 
-# ,
 #: site_menu:61
+#, 
 msgid "Adaptation Support Tool"
 msgstr "Εργαλείο υποστήριξης προσαρμογής"
 
-# ,
 #: site_menu:50
+#, 
 msgid "Adaptation options"
 msgstr "Επιλογές προσαρμογής"
 
-# ,
 #: site_menu:33
+#, 
 msgid "Adriatic-Ionian"
 msgstr "Αδριατική-Ιόνιο"
 
-# ,
 #: site_menu:13
+#, 
 msgid "Agriculture"
 msgstr "Γεωργία"
 
-# ,
 #: health_menu:15
+#, 
 msgid "Air pollution"
 msgstr "Μόλυνση του αέρα"
 
-# ,
 #: site_menu:34
+#, 
 msgid "Alpine Space"
 msgstr "Αλπικός χώρος"
 
-# ,
 #: health_menu:34
+#, 
 msgid "Annual reports"
 msgstr "Ετήσιες αναφορές"
 
-# ,
 #: site_menu:35
+#, 
 msgid "Atlantic Area"
 msgstr "Ατλαντική περιοχή"
 
-# ,
 #: site_menu:36
+#, 
 msgid "Balkan-Mediterranean"
 msgstr "Βαλκανική-Μεσογειακή"
 
-# ,
 #: site_menu:37
+#, 
 msgid "Baltic Sea"
 msgstr "Βαλτική θάλασσα"
 
-# ,
 #: site_menu:14
+#, 
 msgid "Biodiversity"
 msgstr "Βιοποικιλότητα"
 
-# ,
 #: site_menu:15
+#, 
 msgid "Buildings"
 msgstr "Κτίρια"
 
-# ,
 #: health_menu:23
+#, 
 msgid "C3S European health service (under development)"
 msgstr "C3S Ευρωπαϊκή Υπηρεσία Υγείας (υπό ανάπτυξη)"
 
-# ,
 #: health_menu:35
+#, 
 msgid "Capacity building"
 msgstr "Ανάπτυξη ικανοτήτων"
 
-# ,
 #: site_menu:67
+#, 
 msgid "Case studies"
 msgstr "Οι περιπτωσιολογικές μελέτες"
 
-# ,
 #: site_menu:66
+#, 
 msgid "Case study explorer"
 msgstr "Εξερευνητής μελέτης περιπτώσεων"
 
-# ,
 #: site_menu:38
+#, 
 msgid "Central Europe"
 msgstr "Κεντρική Ευρώπη"
 
-# ,
 #: site_menu:31
+#, 
 msgid "Cities and towns"
 msgstr "Πόλεις και πόλεις"
 
-# ,
 #: site_menu:55
+#, 
 msgid "Climate  Services"
 msgstr "Κλίμα"
 
-# ,
 #: site_menu:70
+#, 
 msgid "Climate-ADAPT use cases"
 msgstr "Οι περιπτώσεις χρήσης του κλίματος-προσαρμογής"
 
-# ,
 #: site_menu:16
+#, 
 msgid "Coastal areas"
 msgstr "Παράκτιες περιοχές"
 
-# ,
 #: site_menu:29
+#, 
 msgid "Countries, Transnational regions, Cities"
 msgstr "Χώρες, διακρατικές περιφέρειες, πόλεις"
 
-# ,
 #: site_menu:30 health_menu:8
+#, 
 msgid "Country Profiles"
 msgstr "Προφίλ χωρών"
 
-# ,
 #: site_menu:54
+#, 
 msgid "DATA AND INDICATORS"
 msgstr "Δεδομένα και δείκτες"
 
-# ,
 #: site_menu:39
+#, 
 msgid "Danube"
 msgstr "Δουνάβης"
 
-# ,
 #: site_menu:17
+#, 
 msgid "Disaster risk reduction"
 msgstr "Μείωση του κινδύνου καταστροφής"
 
-# ,
 #: health_menu:22
+#, 
 msgid "ECDC Vibrio map viewer"
 msgstr "ECDC VIBLIO Χάρτης προβολής"
 
-# ,
 #: site_menu:6
+#, 
 msgid "EU ADAPTATION POLICY"
 msgstr "Πολιτική προσαρμογής της ΕΕ"
 
-# ,
 #: site_menu:7
+#, 
 msgid "EU Adaptation Strategy"
 msgstr "Στρατηγική προσαρμογής της ΕΕ"
 
-# ,
 #: site_menu:10
+#, 
 msgid "EU Covenant of Mayors"
 msgstr "Συμφωνία των δημάρχων της ΕΕ"
 
-# ,
 #: site_menu:8
+#, 
 msgid "EU Mission on Adaptation"
 msgstr "Αποστολή της ΕΕ για την προσαρμογή"
 
-# ,
 #: site_menu:27
+#, 
 msgid "EU REGIONAL POLICY"
 msgstr "Περιφερειακή πολιτική της ΕΕ"
 
-# ,
 #: site_menu:9
+#, 
 msgid "EU Reporting on Adaptation"
 msgstr "Αναφορά της ΕΕ για την προσαρμογή"
 
-# ,
 #: health_menu:5
+#, 
 msgid "EU adaptation policy"
 msgstr "Πολιτική προσαρμογής της ΕΕ"
 
-# ,
 #: site_menu:11
+#, 
 msgid "EU funding of adaptation"
 msgstr "Χρηματοδότηση της ΕΕ για την προσαρμογή"
 
-# ,
 #: health_menu:6
+#, 
 msgid "EU health policy"
 msgstr "Πολιτική για την υγεία της ΕΕ"
 
-# ,
 #: site_menu:5
+#, 
 msgid "EU policy"
 msgstr "Πολιτική της ΕΕ"
 
-# ,
 #: site_menu:58
+#, 
 msgid "EUROPEAN CLIMATE DATA EXPLORER"
 msgstr "Ευρωπαϊκός εξερευνητής για το κλίμα"
 
-# ,
 #: site_menu:72
+#, 
 msgid "EUROPEAN Climate and Health Observatory"
 msgstr "Ευρωπαϊκό Παρατηρητήριο για το κλίμα και την υγεία"
 
-# ,
 #: site_menu:64
+#, 
 msgid "Economic tools"
 msgstr "Οικονομικά εργαλεία"
 
-# ,
 #: site_menu:18
+#, 
 msgid "Ecosystem-based approaches"
 msgstr "Προσέγγιση βασισμένων σε οικοσυστήματα"
 
-# ,
 #: site_menu:19
+#, 
 msgid "Energy"
 msgstr "Ενέργεια"
 
-# ,
 #: site_menu:53
+#, 
 msgid "Europe's vulnerability to climate change impacts occurring outside Europe"
 msgstr "Η ευπάθεια της Ευρώπης στις επιπτώσεις στην αλλαγή του κλίματος που συμβαίνουν εκτός Ευρώπης"
 
-# ,
 #: health_menu:21
+#, 
 msgid "European Climate Data Explorer"
 msgstr "Ευρωπαϊκός εξερευνητής για το κλίμα"
 
-# ,
 #: health_menu:4
+#, 
 msgid "European Policy Framework"
 msgstr "Ευρωπαϊκό πλαίσιο πολιτικής"
 
-# ,
 #: health_menu:25
+#, 
 msgid "European early warning systems"
 msgstr "Ευρωπαϊκά συστήματα έγκαιρης προειδοποίησης"
 
-# ,
 #: health_menu:10
+#, 
 msgid "Evidence on climate and health"
 msgstr "Αποδεικτικά στοιχεία για το κλίμα και την υγεία"
 
-# ,
 #: site_menu:79
+#, 
 msgid "FAQ for providers"
 msgstr "Συχνές ερωτήσεις για τους παρόχους"
 
-# ,
 #: site_menu:78
+#, 
 msgid "FAQ for users"
 msgstr "Συχνές ερωτήσεις για τους χρήστες"
 
-# ,
 #: site_menu:20
+#, 
 msgid "Financial"
 msgstr "Χρηματοοικονομική"
 
-# ,
 #: health_menu:17
+#, 
 msgid "Flooding"
 msgstr "Πλημμύρα"
 
-# ,
 #: site_menu:21
+#, 
 msgid "Forestry"
 msgstr "Δασοκομία"
 
-# ,
 #: site_menu:77
+#, 
 msgid "Glossary"
 msgstr "Γλωσσάριο"
 
-# ,
 #: site_menu:80
+#, 
 msgid "Guidance to search function"
 msgstr "Καθοδήγηση στη λειτουργία αναζήτησης"
 
-# ,
 #: site_menu:22
+#, 
 msgid "Health"
 msgstr "Υγεία"
 
-# ,
 #: health_menu:11
+#, 
 msgid "Health effects"
 msgstr "Επιπτώσεις στην υγεία"
 
-# ,
 #: health_menu:24
+#, 
 msgid "Health warning systems"
 msgstr "Συστήματα προειδοποίησης υγείας"
 
-# ,
 #: health_menu:12
+#, 
 msgid "Heat and health"
 msgstr "Θερμότητα και υγεία"
 
-# ,
 #: site_menu:76
+#, 
 msgid "Help"
 msgstr "Βοήθεια"
 
-# ,
 #: site_menu:69
+#, 
 msgid "INTERREG projects"
 msgstr "Interreg έργα"
 
-# ,
 #: site_menu:49
+#, 
 msgid "Impacts, risks and vulnerabilities"
 msgstr "Επιπτώσεις, Κίνδυνοι και Ευπάθειες"
 
-# ,
 #: health_menu:18
+#, 
 msgid "Indicators"
 msgstr "Δείκτες"
 
-# ,
 #: site_menu:56
+#, 
 msgid "Indicators in Climate-ADAPT"
 msgstr "Δείκτες στο Climate-Adapt"
 
-# ,
 #: site_menu:47
+#, 
 msgid "Knowledge"
 msgstr "Η γνώση"
 
-# ,
 #: site_menu:68
+#, 
 msgid "LIFE projects"
 msgstr "Έργα ζωής"
 
-# ,
 #: site_menu:23
+#, 
 msgid "Marine and fisheries"
 msgstr "Θαλάσσια και αλιεία"
 
-# ,
 #: site_menu:40
+#, 
 msgid "Mediterranean"
 msgstr "μεσογειακός"
 
-# ,
 #: site_menu:52
+#, 
 msgid "Monitoring, Reporting and Evaluation"
 msgstr "Παρακολούθηση, αναφορά και αξιολόγηση"
 
-# ,
 #: health_menu:26
+#, 
 msgid "National heat-health warning systems and action plans"
 msgstr "Εθνικά συστήματα προειδοποίησης θερμότητας και σχέδια δράσης"
 
-# ,
 #: site_menu:74
+#, 
 msgid "Networks"
 msgstr "Δίκτυα"
 
-# ,
 #: site_menu:41
+#, 
 msgid "North Sea"
 msgstr "Βόρεια Θάλασσα"
 
-# ,
 #: site_menu:42
+#, 
 msgid "North West Europe"
 msgstr "Βορειοδυτική Ευρώπη"
 
-# ,
 #: site_menu:43
+#, 
 msgid "Northern Periphery and Arctic"
 msgstr "Βόρεια περιφέρεια και Αρκτική"
 
-# ,
 #: health_menu:32
+#, 
 msgid "Observatory publications"
 msgstr "Παρατηρητηριακές δημοσιεύσεις"
 
-# ,
 #: site_menu:45
+#, 
 msgid "Other regions"
 msgstr "Άλλες περιοχές"
 
-# ,
 #: site_menu:2
+#, 
 msgid "Outreach"
 msgstr "Ξεπερνώ"
 
-# ,
 #: site_menu:65
+#, 
 msgid "PRACTICE"
 msgstr "ΠΡΑΚΤΙΚΗ"
 
-# ,
 #: health_menu:3
+#, 
 msgid "Policy context"
 msgstr "Πολιτική πλαίσιο"
 
-# ,
 #: health_menu:19
+#, 
 msgid "Projections and tools"
 msgstr "Προβολές και εργαλεία"
 
-# ,
 #: health_menu:31
+#, 
 msgid "Publications and outreach"
 msgstr "Δημοσιεύσεις και προβολή"
 
-# ,
 #: site_menu:57
+#, 
 msgid "RESEARCH AND INNOVATION PROJECTS"
 msgstr "Έργα έρευνας και καινοτομίας"
 
-# ,
 #: health_menu:28
+#, 
 msgid "Resource catalogue"
 msgstr "Κατάλογος πόρων"
 
-# ,
 #: health_menu:29
+#, 
 msgid "Search for Resources"
 msgstr "Αναζήτηση πόρων"
 
-# ,
 #: site_menu:71
+#, 
 msgid "Search the database"
 msgstr "Αναζήτηση στη βάση δεδομένων"
 
-# ,
 #: site_menu:83
+#, 
 msgid "Share your information"
 msgstr "Μοιραστείτε τις πληροφορίες σας"
 
-# ,
 #: site_menu:3
+#, 
 msgid "Site map"
 msgstr "Χάρτης τοποθεσίας"
 
-# ,
 #: site_menu:44
+#, 
 msgid "South West Europe"
 msgstr "Νοτιοδυτική Ευρώπη"
 
-# ,
 #: site_menu:60
+#, 
 msgid "TOOLS"
 msgstr "ΕΡΓΑΛΕΙΑ"
 
-# ,
 #: site_menu:48
+#, 
 msgid "TOPICS"
 msgstr "ΘΕΜΑΤΑ"
 
-# ,
 #: site_menu:32
+#, 
 msgid "Transnational regions"
 msgstr "Διακρατικές περιοχές"
 
-# ,
 #: site_menu:24
+#, 
 msgid "Transport"
 msgstr "Μεταφορά"
 
-# ,
 #: site_menu:81
+#, 
 msgid "Tutorial Videos"
 msgstr "Βίντεο Tutorial"
 
-# ,
 #: site_menu:51
+#, 
 msgid "Uncertainty guidance"
 msgstr "Καθοδήγηση αβεβαιότητας"
 
-# ,
 #: site_menu:25
+#, 
 msgid "Urban"
 msgstr "Αστικός"
 
-# ,
 #: site_menu:63
+#, 
 msgid "Urban Adaptation Map Viewer"
 msgstr "Πρόγραμμα προβολής χάρτη αστικής προσαρμογής"
 
-# ,
 #: health_menu:20
+#, 
 msgid "Urban Adaptation Map Viewer (health focus)"
 msgstr "Χάρτης αστικής προσαρμογής (εστίαση στην υγεία)"
 
-# ,
 #: site_menu:62
+#, 
 msgid "Urban Adaptation Support Tool"
 msgstr "Εργαλείο υποστήριξης αστικών προσαρμογής"
 
-# ,
 #: health_menu:13
+#, 
 msgid "Vector-borne diseases"
 msgstr "Ασθένειες φορέματος"
 
-# ,
 #: health_menu:14
+#, 
 msgid "Water and food-borne diseases"
 msgstr "Νερό και τρόφιμα ασθένειες"
 
-# ,
 #: site_menu:26
+#, 
 msgid "Water management"
 msgstr "ΔΙΑΧΕΙΡΙΣΗ ΝΕΡΟΥ"
 
-# ,
 #: site_menu:82 health_menu:36
+#, 
 msgid "Webinars"
 msgstr "Webinars"
 
-# ,
 #: health_menu:16
+#, 
 msgid "Wildfire"
 msgstr "Υγρό πύρ"
 
-# ,
 #: health_menu:7
+#, 
 msgid "Working Group on Health in Climate Change (WHO|Europe)"
 msgstr "Ομάδα εργασίας για την υγεία στην κλιματική αλλαγή (ΠΟΥ | Ευρώπη)"
+
