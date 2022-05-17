@@ -46,3 +46,6 @@ msgstr ""
 
 msgid "Tools"
 msgstr ""
+
+msgid "Countries:"
+msgstr ""

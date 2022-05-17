@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-17 15:14+0000\n"
+"POT-Creation-Date: 2022-05-17 18:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:149
+#: ../../climateadapt/browser/pt/ace_macros.pt:152
 msgid "<strong>Last Modified in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:145
+#: ../../climateadapt/browser/pt/ace_macros.pt:148
 msgid "<strong>Published in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
 msgstr ""
 
@@ -73,6 +73,10 @@ msgstr "Agricultura"
 msgid "Biodiversity"
 msgstr "Biodiversidad"
 
+#: ../../climateadapt/browser/__init__.py:169
+msgid "Biogeographical regions"
+msgstr ""
+
 # ,
 # ,
 #: ../../climateadapt/browser/overrides.py:49
@@ -117,6 +121,7 @@ msgstr "Check-out creado"
 
 # ,
 # ,
+#: ../../climateadapt/browser/__init__.py:208
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
 msgid "City"
 msgstr "Ciudad"
@@ -145,7 +150,7 @@ msgstr "Impactos climáticos:"
 msgid "Coastal areas"
 msgstr "Areas costeras"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:215
+#: ../../climateadapt/browser/pt/ace_macros.pt:218
 msgid "Comments:"
 msgstr ""
 
@@ -167,7 +172,7 @@ msgstr ""
 msgid "Contact person"
 msgstr "Persona de contacto"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:202
+#: ../../climateadapt/browser/pt/ace_macros.pt:205
 msgid "Contributor:"
 msgstr ""
 
@@ -178,7 +183,11 @@ msgstr ""
 msgid "Costs and Benefits"
 msgstr "Costos y beneficios"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:250
+#: ../../climateadapt/browser/__init__.py:175
+msgid "Countries"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/ace_macros.pt:253
 msgid "Countries:"
 msgstr ""
 
@@ -203,7 +212,7 @@ msgstr "Pacto de alcaldes 2020 signatario"
 msgid "Covenant of Mayors 2030 signatory"
 msgstr "Pacto de alcaldes 2030 signatario"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:101
+#: ../../climateadapt/browser/pt/ace_macros.pt:104
 msgid "Created by:"
 msgstr ""
 
@@ -248,7 +257,7 @@ msgstr "Fecha de la estrategia / aprobación del plan"
 msgid "Description"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:156
+#: ../../climateadapt/browser/pt/ace_macros.pt:159
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:21
 #: ../../climateadapt/browser/pt/organisation_view.pt:18
 msgid "Description:"
@@ -432,7 +441,7 @@ msgstr "Palabras clave:"
 msgid "Last Update"
 msgstr "Última actualización"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:163
+#: ../../climateadapt/browser/pt/ace_macros.pt:166
 msgid "Lead"
 msgstr ""
 
@@ -461,6 +470,10 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/organisation_view.pt:34
 msgid "Links to further information"
+msgstr ""
+
+#: ../../climateadapt/browser/__init__.py:161
+msgid "Macro-Transnational region"
 msgstr ""
 
 # ,
@@ -511,7 +524,7 @@ msgstr ""
 msgid "Other European Information Systems:<br />&nbsp;"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:171
+#: ../../climateadapt/browser/pt/ace_macros.pt:174
 msgid "Partners"
 msgstr ""
 
@@ -605,7 +618,7 @@ msgstr "Relevancia"
 msgid "Resource catalogue"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:109
+#: ../../climateadapt/browser/pt/ace_macros.pt:112
 msgid "Reviewed by:"
 msgstr ""
 
@@ -654,7 +667,7 @@ msgstr "Seleccione los sectores para los que desea recibir un correo electrónic
 msgid "Send token emails to City Mayors"
 msgstr "Enviar correos electrónicos de token a los alcaldes de la ciudad"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:84
+#: ../../climateadapt/browser/pt/ace_macros.pt:87
 msgid "Share your information"
 msgstr ""
 
@@ -671,7 +684,7 @@ msgstr "Soluciones"
 msgid "Source"
 msgstr "Fuente"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:180
+#: ../../climateadapt/browser/pt/ace_macros.pt:183
 msgid "Source of funding"
 msgstr ""
 
@@ -698,6 +711,10 @@ msgstr "Participación de las partes interesadas"
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:27
 msgid "Status"
 msgstr "Estado"
+
+#: ../../climateadapt/browser/__init__.py:180
+msgid "Sub Nationals"
+msgstr ""
 
 # ,
 # ,
@@ -836,7 +853,7 @@ msgstr "¿Qué sectores están preocupados?"
 msgid "Year: <span>${DYNAMIC_CONTENT}</span>"
 msgstr "Año: <span> $ {dynamic_content} </ span>"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:33
+#: ../../climateadapt/browser/pt/ace_macros.pt:36
 msgid "back to search"
 msgstr ""
 

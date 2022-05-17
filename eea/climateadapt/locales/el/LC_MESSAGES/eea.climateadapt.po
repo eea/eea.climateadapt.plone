@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-17 15:14+0000\n"
+"POT-Creation-Date: 2022-05-17 18:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:149
+#: ../../climateadapt/browser/pt/ace_macros.pt:152
 msgid "<strong>Last Modified in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:145
+#: ../../climateadapt/browser/pt/ace_macros.pt:148
 msgid "<strong>Published in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
 msgstr ""
 
@@ -65,6 +65,10 @@ msgstr "Γεωργία"
 msgid "Biodiversity"
 msgstr "Βιοποικιλότητα"
 
+#: ../../climateadapt/browser/__init__.py:169
+msgid "Biogeographical regions"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/overrides.py:49
 msgid "Buildings"
@@ -101,6 +105,7 @@ msgid "Check-out created"
 msgstr "Δημιουργήθηκε το check-out"
 
 # ,
+#: ../../climateadapt/browser/__init__.py:208
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
 msgid "City"
 msgstr "Πόλη"
@@ -126,7 +131,7 @@ msgstr "Κλίμα Επιπτώσεις:"
 msgid "Coastal areas"
 msgstr "Παράκτιες περιοχές"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:215
+#: ../../climateadapt/browser/pt/ace_macros.pt:218
 msgid "Comments:"
 msgstr ""
 
@@ -146,7 +151,7 @@ msgstr ""
 msgid "Contact person"
 msgstr "Πρόσωπο επικοινωνίας"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:202
+#: ../../climateadapt/browser/pt/ace_macros.pt:205
 msgid "Contributor:"
 msgstr ""
 
@@ -156,7 +161,11 @@ msgstr ""
 msgid "Costs and Benefits"
 msgstr "Κόστος και οφέλη"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:250
+#: ../../climateadapt/browser/__init__.py:175
+msgid "Countries"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/ace_macros.pt:253
 msgid "Countries:"
 msgstr ""
 
@@ -179,7 +188,7 @@ msgstr "Σύμβολο των Δημάρχων 2020 υπογράφων"
 msgid "Covenant of Mayors 2030 signatory"
 msgstr "Σύμβολο των Δημάρχων 2030 υπογράφων"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:101
+#: ../../climateadapt/browser/pt/ace_macros.pt:104
 msgid "Created by:"
 msgstr ""
 
@@ -221,7 +230,7 @@ msgstr "Ημερομηνία στρατηγικής / έγκρισης σχεδ�
 msgid "Description"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:156
+#: ../../climateadapt/browser/pt/ace_macros.pt:159
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:21
 #: ../../climateadapt/browser/pt/organisation_view.pt:18
 msgid "Description:"
@@ -385,7 +394,7 @@ msgstr "Λέξεις-κλειδιά:"
 msgid "Last Update"
 msgstr "Τελευταία ενημέρωση"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:163
+#: ../../climateadapt/browser/pt/ace_macros.pt:166
 msgid "Lead"
 msgstr ""
 
@@ -412,6 +421,10 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/organisation_view.pt:34
 msgid "Links to further information"
+msgstr ""
+
+#: ../../climateadapt/browser/__init__.py:161
+msgid "Macro-Transnational region"
 msgstr ""
 
 # ,
@@ -456,7 +469,7 @@ msgstr ""
 msgid "Other European Information Systems:<br />&nbsp;"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:171
+#: ../../climateadapt/browser/pt/ace_macros.pt:174
 msgid "Partners"
 msgstr ""
 
@@ -539,7 +552,7 @@ msgstr "Συνάφεια"
 msgid "Resource catalogue"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:109
+#: ../../climateadapt/browser/pt/ace_macros.pt:112
 msgid "Reviewed by:"
 msgstr ""
 
@@ -585,7 +598,7 @@ msgstr "Επιλέξτε τους τομείς για τους οποίους θ
 msgid "Send token emails to City Mayors"
 msgstr "Στείλτε τα emails token στους δημάρχους της πόλης"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:84
+#: ../../climateadapt/browser/pt/ace_macros.pt:87
 msgid "Share your information"
 msgstr ""
 
@@ -600,7 +613,7 @@ msgstr "Λύσεις"
 msgid "Source"
 msgstr "Πηγή"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:180
+#: ../../climateadapt/browser/pt/ace_macros.pt:183
 msgid "Source of funding"
 msgstr ""
 
@@ -624,6 +637,10 @@ msgstr "Συμμετοχή των ενδιαφερομένων"
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:27
 msgid "Status"
 msgstr "Κατάσταση"
+
+#: ../../climateadapt/browser/__init__.py:180
+msgid "Sub Nationals"
+msgstr ""
 
 # ,
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:49
@@ -746,7 +763,7 @@ msgstr "Ποιοι τομείς ενδιαφέρονται"
 msgid "Year: <span>${DYNAMIC_CONTENT}</span>"
 msgstr "Έτος: <span> $ {dynamic_content} </ span>"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:33
+#: ../../climateadapt/browser/pt/ace_macros.pt:36
 msgid "back to search"
 msgstr ""
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-17 15:14+0000\n"
+"POT-Creation-Date: 2022-05-17 18:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,11 +14,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:149
+#: ../../climateadapt/browser/pt/ace_macros.pt:152
 msgid "<strong>Last Modified in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:145
+#: ../../climateadapt/browser/pt/ace_macros.pt:148
 msgid "<strong>Published in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
 msgstr ""
 
@@ -55,6 +55,10 @@ msgstr ""
 msgid "Biodiversity"
 msgstr ""
 
+#: ../../climateadapt/browser/__init__.py:169
+msgid "Biogeographical regions"
+msgstr ""
+
 #: ../../climateadapt/browser/overrides.py:49
 msgid "Buildings"
 msgstr ""
@@ -83,6 +87,7 @@ msgstr ""
 msgid "Check-out created"
 msgstr ""
 
+#: ../../climateadapt/browser/__init__.py:208
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
 msgid "City"
 msgstr ""
@@ -105,7 +110,7 @@ msgstr ""
 msgid "Coastal areas"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:215
+#: ../../climateadapt/browser/pt/ace_macros.pt:218
 msgid "Comments:"
 msgstr ""
 
@@ -123,7 +128,7 @@ msgstr ""
 msgid "Contact person"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:202
+#: ../../climateadapt/browser/pt/ace_macros.pt:205
 msgid "Contributor:"
 msgstr ""
 
@@ -132,7 +137,11 @@ msgstr ""
 msgid "Costs and Benefits"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:250
+#: ../../climateadapt/browser/__init__.py:175
+msgid "Countries"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/ace_macros.pt:253
 msgid "Countries:"
 msgstr ""
 
@@ -152,7 +161,7 @@ msgstr ""
 msgid "Covenant of Mayors 2030 signatory"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:101
+#: ../../climateadapt/browser/pt/ace_macros.pt:104
 msgid "Created by:"
 msgstr ""
 
@@ -190,7 +199,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:156
+#: ../../climateadapt/browser/pt/ace_macros.pt:159
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:21
 #: ../../climateadapt/browser/pt/organisation_view.pt:18
 msgid "Description:"
@@ -331,7 +340,7 @@ msgstr ""
 msgid "Last Update"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:163
+#: ../../climateadapt/browser/pt/ace_macros.pt:166
 msgid "Lead"
 msgstr ""
 
@@ -356,6 +365,10 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/organisation_view.pt:34
 msgid "Links to further information"
+msgstr ""
+
+#: ../../climateadapt/browser/__init__.py:161
+msgid "Macro-Transnational region"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:120
@@ -394,7 +407,7 @@ msgstr ""
 msgid "Other European Information Systems:<br />&nbsp;"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:171
+#: ../../climateadapt/browser/pt/ace_macros.pt:174
 msgid "Partners"
 msgstr ""
 
@@ -465,7 +478,7 @@ msgstr ""
 msgid "Resource catalogue"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:109
+#: ../../climateadapt/browser/pt/ace_macros.pt:112
 msgid "Reviewed by:"
 msgstr ""
 
@@ -508,7 +521,7 @@ msgstr ""
 msgid "Send token emails to City Mayors"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:84
+#: ../../climateadapt/browser/pt/ace_macros.pt:87
 msgid "Share your information"
 msgstr ""
 
@@ -521,7 +534,7 @@ msgstr ""
 msgid "Source"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:180
+#: ../../climateadapt/browser/pt/ace_macros.pt:183
 msgid "Source of funding"
 msgstr ""
 
@@ -541,6 +554,10 @@ msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:27
 msgid "Status"
+msgstr ""
+
+#: ../../climateadapt/browser/__init__.py:180
+msgid "Sub Nationals"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:49
@@ -647,7 +664,7 @@ msgstr ""
 msgid "Year: <span>${DYNAMIC_CONTENT}</span>"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:33
+#: ../../climateadapt/browser/pt/ace_macros.pt:36
 msgid "back to search"
 msgstr ""
 
