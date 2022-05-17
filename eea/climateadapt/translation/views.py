@@ -93,11 +93,17 @@ def save_html_fields(form, file):
         tile_id = field['data-tile-id']
         html_value = field.decode_contents()
         encoded_text = html_value.encode('latin-1')
-        import pdb; pdb.set_trace()
-        tile = trans_obj.get_tile(tile_id)
-        data_mgr = ITileDataManager(tile)
-        old_value = data_mgr.get()
-        data_mgr.set(encoded_text)
+        # tile = trans_obj.get_tile(tile_id)
+        tile = trans_obj.__annotations__.get(
+            'plone.tiles.data.' + tile_id, None)
+        if tile is not None:
+            import pdb; pdb.set_trace()
+        else:
+            logger.info("Cannot find tile")
+            import pdb; pdb.set_trace()
+        # data_mgr = ITileDataManager(tile)
+        # old_value = data_mgr.get()
+        # data_mgr.set(encoded_text)
 
         # setattr(trans_obj, field_name, RichTextValue(encoded_text))
         # trans_obj._p_changed = True
