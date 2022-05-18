@@ -143,7 +143,6 @@ def translate_obj(obj):
                     except Exception:
                         value = None
                     if value:
-                        import pdb; pdb.set_trace()
                         html_content = u"<!doctype html>" + \
                             u"<head><meta charset=utf-8></head><body>"
 

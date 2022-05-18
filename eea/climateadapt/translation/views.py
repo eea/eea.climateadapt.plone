@@ -99,6 +99,8 @@ def save_html_fields(form, file):
             update = tile.data
             update['text'] = RichTextValue(encoded_text)
             tile.data.update(update)
+            if tile_id in ['d85624b4-a004-4526-ad8c-8f2308c5ef41']:
+                import pdb; pdb.set_trace()
             trans_obj._p_changed = True
             trans_obj.reindexObject(idxs=[field_name])
         else:
