@@ -146,6 +146,7 @@ def translate_obj(obj):
                         html_content = u"<!doctype html>" + \
                             u"<head><meta charset=utf-8></head><body>"
 
+                        import pdb; pdb.set_trace()
                         value = value.replace('\r\n', '')
                         html_tile = u"<div class='cca-translation-tile'" + \
                             u" data-field='" + field + u"'" + \
