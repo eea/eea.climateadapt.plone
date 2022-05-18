@@ -40,9 +40,6 @@ from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 
-from plone.app.layout.navigation.navtree import buildFolderTree
-from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
-from plone.app.layout.navigation.navtree import NavtreeStrategyBase
 from plone import api
 
 from plone.api import content

@@ -121,21 +121,6 @@ def retrieve_html_translation(
 
     encoded_html = base64.b64encode(html)
 
-    # TODO ? Need this?
-    # translation = get_translated(html, target_languages[0])
-
-    # if translation:
-    #     if not(force == 'True' or (u'....' in translation)):
-    #         # don't translate already translated strings, it overrides the
-    #         # translation
-    #         res = {
-    #             'transId': translation,
-    #             'externalRefId': html,
-    #             'translated': True
-    #         }
-    #         logger.info('Data translation cached : %r', res)
-    #         return res
-
     site_url = portal.get().absolute_url()
 
     if 'localhost' in site_url:

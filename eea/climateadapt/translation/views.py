@@ -2,32 +2,21 @@
 """
 import logging
 import base64
-import json
 import os
-import requests
 
 from zope import event
-from zope.security import checkPermission
 
-from requests.auth import HTTPDigestAuth
 from bs4 import BeautifulSoup
 from eea.cache.event import InvalidateMemCacheEvent
-from langdetect.detector import LangDetectException
 from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile as VPTF
-from Products.statusmessages.interfaces import IStatusMessage
 
-from . import (delete_translation, get_detected_lang, get_translated,
-               _get_country_code,
-               normalize, retrieve_translation, save_translation,
+from . import (normalize, save_translation,
                get_translation_keys, get_translation_key_values)
 from .interfaces import ITranslationContext
 
 from plone.api import portal
-from plone.app.multilingual.manager import TranslationManager
 from eea.climateadapt.browser.admin import force_unlock
 from plone.app.textfield.value import RichTextValue
-from plone.tiles.interfaces import ITileDataManager
 
 logger = logging.getLogger('wise.msfd.translation')
 env = os.environ.get
@@ -163,109 +152,3 @@ class TranslationList(BrowserView):
     def keys(self):
         key = self.request.form["key"]
         return get_translation_key_values(key)
-
-
-class TestTranslationView(BrowserView):
-    def __call__(self, **kwargs):
-        kwargs.update(self.request.form)
-        logger.info('TestTranslationView1')
-        # return self.retrieve_translation(**kwargs)
-
-        form = self.request.form
-        country_code = form.pop('country_code', None)
-        target_languages = form.pop('target_languages', None)
-        text = form.pop('text', None)
-        force = form.pop('force', False)
-
-        if isinstance(target_languages, str):
-            target_languages = target_languages.split(',')
-
-        logger.info('Response translation : %s %s %s %s',
-                    country_code, text, target_languages, force)
-
-        return retrieve_translation(
-                country_code, text, target_languages, force)
-
-    def retrieve_translation(
-            self, country_code, text, target_languages=None, force=False):
-        """ Send a call to automatic translation service, to translate a string
-        Returns a json formatted string
-        """
-        logger.info('TestTranslationView2')
-
-        country_code = _get_country_code(country_code, text)
-
-        if not text:
-            return
-
-        # translation = get_translated(text, country_code)
-        #
-        # if translation:
-        #     if not(force or (u'....' in translation)):
-        #         # don't translate already translated strings, it overrides the
-        #         # translation
-        #         res = {
-        #             'transId': translation,
-        #             'externalRefId': text,
-        #         }
-        #
-        #         return res
-
-        site_url = portal.get().absolute_url()
-
-        # if 'localhost' in site_url:
-        #     logger.warning(
-        #         "Using localhost, won't retrieve translation for: %s", text)
-        #
-        #     return {}
-
-        # if detected language is english skip translation
-
-        if get_detected_lang(text) == 'en':
-            logger.info(
-                "English language detected, won't retrive translation for: %s",
-                text
-            )
-
-            return
-
-        if not target_languages:
-            target_languages = ['EN']
-
-        dest = '{}/@@translate-callback?source_lang={}'.format(site_url,
-                                                               country_code)
-
-        logger.info('Translate callback URL: %s', dest)
-
-        data = {
-            'priority': 5,
-            'callerInformation': {
-                'application': 'Marine_EEA_20180706',
-                'username': TRANS_USERNAME,
-            },
-            'domain': 'SPD',
-            'externalReference': text,          # externalReference,
-            'textToTranslate': text,
-            'sourceLanguage': country_code,
-            'targetLanguages': [target_languages],
-            'destinations': {
-                'httpDestinations':
-                [dest],
-            }
-        }
-
-        logger.info('Data translation request: %r', data)
-
-        resp = requests.post(
-            SERVICE_URL,
-            auth=HTTPDigestAuth('Marine_EEA_20180706', MARINE_PASS),
-            data=json.dumps(data),
-            headers={'Content-Type': 'application/json'}
-        )
-        logger.info('Response from translation request: %r', resp.content)
-
-        res = {
-            "transId": resp.content,
-            "externalRefId": text
-        }
-        return res
