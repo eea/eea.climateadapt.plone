@@ -148,6 +148,7 @@ def translate_obj(obj):
 
                         import pdb; pdb.set_trace()
                         value = value.replace('\r\n', '')
+                        value = value.encode('utf-8')
                         html_tile = u"<div class='cca-translation-tile'" + \
                             u" data-field='" + field + u"'" + \
                             u" data-tile-id='" + tile_id + u"'" + \
@@ -304,6 +305,7 @@ def translate_obj(obj):
 
             for key in rich_fields:
                 value = getattr(obj, key).raw.replace('\r\n', '')
+                value = value.encode('utf-8')
                 html_section = u"<div class='cca-translation-section'" + \
                     u" data-field='" + key + u"'>" + value + u"</div>"
 

@@ -119,7 +119,7 @@ def retrieve_html_translation(
     if not target_languages:
         target_languages = ['EN']
 
-    encoded_html = base64.b64encode(html.encode('utf-8'))
+    encoded_html = base64.b64encode(html)
 
     # TODO ? Need this?
     # translation = get_translated(html, target_languages[0])
