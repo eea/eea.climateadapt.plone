@@ -43,7 +43,6 @@ def save_html_fields(form, file):
     """ Get the translated html file, extract the values for each field and
         update the related translation object.
     """
-    import pdb; pdb.set_trace()
     site = portal.getSite()
     obj_path = form.get("external-reference")
 
@@ -97,7 +96,6 @@ def save_html_fields(form, file):
         tile = trans_obj.__annotations__.get(
             'plone.tiles.data.' + tile_id, None)
         if tile is not None:
-            import pdb; pdb.set_trace()
             update = tile.data
             update['text'] = RichTextValue(encoded_text)
             tile.data.update(update)
@@ -105,7 +103,6 @@ def save_html_fields(form, file):
             trans_obj.reindexObject(idxs=[field_name])
         else:
             logger.info("Cannot find tile")
-            import pdb; pdb.set_trace()
     logger.info("Html translation saved for %s", trans_obj.absolute_url())
 
 
@@ -116,7 +113,6 @@ class TranslationCallback(BrowserView):
     """
 
     def __call__(self):
-        import pdb; pdb.set_trace()
         form = self.request.form
         if form.get('format', None) == 'html':
             file = self.request.stdin
