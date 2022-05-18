@@ -99,6 +99,7 @@ def save_html_fields(form, file):
             update = tile.data
             update['text'] = RichTextValue(encoded_text)
             tile.data.update(update)
+            trans_obj.reindexObject()
         else:
             logger.info("Cannot find tile")
     logger.info("Html translation saved for %s", trans_obj.absolute_url())
