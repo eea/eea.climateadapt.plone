@@ -129,12 +129,13 @@ class TranslationCallback(BrowserView):
             html_value = field.decode_contents()
             encoded_text = html_value.encode('latin-1')
             # tile = trans_obj.get_tile(tile_id)
-            tile = trans_obj.__annotations__.get(
-                'plone.tiles.data.' + tile_id, None)
+            tile_annot_id = 'plone.tiles.data.' + tile_id
+            tile = trans_obj.__annotations__.get(tile_annot_id, None)
             if tile is not None:
                 update = tile.data
                 update['text'] = RichTextValue(encoded_text)
-                tile.data.update(update)
+                # tile.data.update(update)
+                trans_obj.__annotations__[tile_annot_id] = update
                 trans_obj.reindexObject()
             else:
                 logger.info("Cannot find tile")
