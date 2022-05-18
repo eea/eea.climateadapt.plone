@@ -158,7 +158,7 @@ class AceViewApi(object):
     def _render_geochar_macrotrans(self, value):
         tpl = (
             u"<div class='sidebar_bold'>"
-            u"<h5>"+self.translate_text("Macro-Transnational region")+":</h5><p>{0}</p></div>"
+            u"<h5>"+self.translate_text(_("Macro-Transnational region"))+":</h5><p>{0}</p></div>"
         )
 
         return tpl.format(u", ".join([BIOREGIONS[x] for x in value]))
@@ -166,18 +166,18 @@ class AceViewApi(object):
     def _render_geochar_biotrans(self, value):
         tpl = (
             u"<div class='sidebar_bold'>"
-            u"<h5>"+self.translate_text("Biogeographical regions")+":</h5><p>{0}</p></div>"
+            u"<h5>"+self.translate_text(_("Biogeographical regions"))+":</h5><p>{0}</p></div>"
         )
 
         return tpl.format(u", ".join([BIOREGIONS.get(x, x) for x in value]))
 
     def _render_geochar_countries(self, value):
-        tpl = u"<div class='sidebar_bold'><h5>"+self.translate_text("Countries")+":</h5><p>{0}</p></div>"
+        tpl = u"<div class='sidebar_bold'><h5>"+self.translate_text(_("Countries"))+":</h5><p>{0}</p></div>"
 
         return tpl.format(u", ".join(self.get_countries(value)))
 
     def _render_geochar_subnational(self, value):
-        label = self.translate_text('Sub Nationals')
+        label = self.translate_text(_('Sub Nationals'))
         tpl = u"<div class='sidebar_bold'>" u"<h5>%s:</h5><p>{0}</p></div>" %label
         #tpl = u"<div class='sidebar_bold'>" u"<h5>"+_(u"Sub Nationals")+":</h5><p>{0}</p></div>"
 
@@ -205,7 +205,7 @@ class AceViewApi(object):
         if isinstance(value, (list, tuple)):
             text = u", ".join(value)
 
-        return u"<div class='sidebar_bold'>" u"<h5>"+self.translate_text("City")+":</h5><p>{0}</p></div>".format(
+        return u"<div class='sidebar_bold'>" u"<h5>"+self.translate_text(_("City"))+":</h5><p>{0}</p></div>".format(
             text
         )
 

@@ -36,7 +36,13 @@
 
   <body>
 
-    <div class="header">
+    <div class="header" xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="eea.climateadapt.frontpage">
       <div class="top-menu nav-down">
         <div class="content-container top-menu-wrapper">
           <div class="logo">
@@ -54,6 +60,7 @@
                 <form>
                   <input type="text"
                          name="SearchableText"
+                         i18n-placeholder
                          placeholder="Search Climate-ADAPT"/>
                   <div class="line"></div>
                   <button class="search-submit"
@@ -65,7 +72,7 @@
     
               <ul class="top-menu-nav">
                 <li class="top-menu-nav-item help-menu">
-                  <a class="help-link">
+                  <a class="help-link" i18n:translate="">
                     <i class="fa fa-question-circle"></i>
                     Help
                   </a>
@@ -76,19 +83,19 @@
                   </div>
                 </li>
                 <li class="top-menu-nav-item help-menu">
-                  <a href="/news-archive">
+                  <a href="/news-archive" i18n:translate="">
                     <i class="fa fa-newspaper-o"></i>
                     News
                   </a>
                 </li>
                 <li class="top-menu-nav-item help-menu">
-                  <a href="/more-events">
+                  <a href="/more-events" i18n:translate="">
                     <i class="fa fa-calendar"></i>
                     Events
                   </a>
                 </li>
                 <li class="top-menu-nav-item help-menu">
-                  <a href="/newsletter">
+                  <a href="/newsletter" i18n:translate="">
                     <i class="fa fa-envelope"></i>
                     Newsletter
                   </a>
@@ -377,13 +384,13 @@
       </div>
     </div>
 
-    <div class="dynamic-area"   xmlns="http://www.w3.org/1999/xhtml"
+    <div class="dynamic-area" xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      i18n:domain="eea.climateadapt"
+      i18n:domain="eea.climateadapt.frontpage"
     >
       <div class="content-container">
         <ul class="nav nav-tabs main-nav-tabs">
@@ -393,7 +400,7 @@
               Getting <br> Started
             </a>
           </li> -->
-          <li class="main-tab-item active">
+          <li class="main-tab-item active" i18n:translate="">
             <a href="#t-started">
               <span class="d-icon feature-icon"></span>
               New <br /> feature
@@ -406,25 +413,25 @@
             </a>
           </li>
           <li class="main-tab-item">
-            <a href="#t-policies">
+            <a href="#t-policies" i18n:translate="">
               <span class="d-icon policy-icon"></span>
               EU Sector <br /> Policies
             </a>
           </li>
           <li class="main-tab-item">
-            <a href="#t-countries" data-tab='countries' class="map-tab">
+            <a href="#t-countries" data-tab='countries' class="map-tab" i18n:translate="">
               <span class="d-icon eu-icon"></span>
               Country <br /> Profiles
             </a>
           </li>
           <li class="main-tab-item">
-            <a href="#t-studies">
+            <a href="#t-studies" i18n:translate="">
               <span class="d-icon case-icon"></span>
               Case <br /> Studies
             </a>
           </li>
           <li class="main-tab-item ast-section">
-            <a href="#t-adapt">
+            <a href="#t-adapt" i18n:translate="">
               <span class="d-icon ast-icon"></span>
               Adaptation <br /> Support Tool
             </a>
@@ -500,12 +507,12 @@
                   width="177"
                   height="61"
                   />
-                  <p class="feature-text">The European Climate Data Explorer provides
+                  <p class="feature-text" i18n:translate="">The European Climate Data Explorer provides
                     interactive access to many climate indices from the Copernicus
                     Climate Change Service in support of climate change adaptation.</p>
                   <div class="bottom-section">
                     <a class="standard-button primary-button feature-btn"
-                    href="/knowledge/european-climate-data-explorer/">
+                    href="/knowledge/european-climate-data-explorer/" i18n:translate="">
                     Go to the European Climate Data Explorer</a>
                   </div>
                 </div>
@@ -516,13 +523,13 @@
                   width="220"
                   height="58"
                   />
-                  <p class="feature-text">The European Climate and Health Observatory
+                  <p class="feature-text" i18n:translate="">The European Climate and Health Observatory
                     provides access to a wide range of relevant publications, tools,
                     websites and other resources related to climate change and health.
                   </p>
                   <div class="bottom-section">
                     <a class="standard-button primary-button feature-btn"
-                    href="/observatory">Go to the European Climate and Health Observatory</a>
+                    href="/observatory" i18n:translate="">Go to the European Climate and Health Observatory</a>
                   </div>
                 </div>
               </div>
@@ -649,9 +656,9 @@
               </form>
     
               <div class="text-center">
-                <p>The database contains quality checked information and is annotated
+                <p i18n:translate="">The database contains quality checked information and is annotated
                    by climate adaptation experts with keywords.</p>
-                <p>Please check our <a href="/help/guidance">Guidance to search function</a> for more help on how to search the database.</p>
+                <p i18n:translate="">Please check our <a href="/help/guidance">Guidance to search function</a> for more help on how to search the database.</p>
               </div>
     
               <div class="db-categories flex-wrapper">
@@ -661,7 +668,7 @@
                     <i class="fa fa-cogs"></i>
                     <span class="total-items">120</span>
                     </span>
-                    <p>Adaptation <br /> Options</p>
+                    <p i18n:translate="">Adaptation options</p>
                   </a>
                 </div>
                 <div class="db-category-wrapper">
@@ -670,7 +677,7 @@
                       <i class="fa fa-file-text-o"></i>
                       <span class="total-items">120</span>
                     </span>
-                    <p>Case studies</p>
+                    <p i18n:translate="">Case studies</p>
                   </a>
                 </div>
                 <div class="db-category-wrapper">
@@ -679,7 +686,7 @@
                     <i class="fa fa-compass"></i>
                     <span class="total-items">120</span>
                     </span>
-                    <p>Guidance</p>
+                    <p i18n:translate="">Guidance</p>
                   </a>
                 </div>
                 <div class="db-category-wrapper">
@@ -688,7 +695,7 @@
                       <i class="fa fa-area-chart"></i>
                       <span class="total-items">120</span>
                     </span>
-                    <p>Indicators</p>
+                    <p i18n:translate="">Indicators</p>
                   </a>
                 </div>
                 <div class="db-category-wrapper">
@@ -697,7 +704,7 @@
                       <i class="fa fa-info-circle"></i>
                       <span class="total-items">120</span>
                     </span>
-                    <p>Information <br /> Portals</p>
+                    <p i18n:translate="">Information portals</p>
                   </a>
                 </div>
                 <div class="db-category-wrapper">
@@ -715,7 +722,16 @@
                       <i class="fa fa-sitemap"></i>
                       <span class="total-items">120</span>
                     </span>
-                    <p>Organizations</p>
+                    <p i18n:translate="">Organisations</p>
+                  </a>
+                </div>
+                <div class="db-category-wrapper">
+                  <a href="#">
+                    <span class="db-category-icon">
+                      <i class="fa fa-sitemap"></i>
+                      <span class="total-items">120</span>
+                    </span>
+                    <p i18n:translate="">Videos</p>
                   </a>
                 </div>
                 <div class="db-category-wrapper">
@@ -724,7 +740,7 @@
                       <i class="fa fa-newspaper-o"></i>
                       <span class="total-items">120</span>
                     </span>
-                    <p>Publication <br /> and Reports</p>
+                    <p i18n:translate="">Publications and reports</p>
                   </a>
                 </div>
                 <div class="db-category-wrapper db-research action-flex-item">
@@ -733,7 +749,7 @@
                       <div class="research-icon"></div>
                     </span>
                     <span class="total-items">120</span>
-                    <p>Research and <br /> Knowledge projects</p>
+                    <p i18n:translate="">Research and knowledge projects</p>
                   </a>
                 </div>
                 <div class="db-category-wrapper">
@@ -742,13 +758,13 @@
                       <i class="fa fa-wrench"></i>
                       <span class="total-items">120</span>
                     </span>
-                    <p>Tools</p>
+                    <p i18n:translate="">Tools</p>
                   </a>
                 </div>
               </div> <!-- end of db categories -->
     
               <div class="see-more-link">
-                <a href="../data-and-downloads">
+                <a href="../data-and-downloads" i18n:translate="">
                   <i class="fa fa-angle-double-right"></i>
                   See complete database
                 </a>
@@ -756,104 +772,110 @@
             </div>
     
             <div class="tab-pane fade" id="t-policies">
-              <div class="policies-dynamic-area">
+              <div class="policies-dynamic-area" xmlns="http://www.w3.org/1999/xhtml"
+                xml:lang="en"
+                xmlns:tal="http://xml.zope.org/namespaces/tal"
+                xmlns:metal="http://xml.zope.org/namespaces/metal"
+                xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+                lang="en"
+                i18n:domain="eea.climateadapt.frontpage">
                 <ul class="nav nav-tabs flex-wrapper policies-nav">
                   <li class="policies-nav-item active">
                     <a href="/eu-adaptation-policy/sector-policies/agriculture"
                        data-toggle="tab" class="policies-nav-link" data-target="#agriculture">
                       <div class="policy-icons agriculture"></div>
-                      <p>Agriculture</p>
+                      <p i18n:translate="">Agriculture</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
                     <a href="/eu-adaptation-policy/sector-policies/biodiversity"
                        data-toggle="tab" class="policies-nav-link" data-target="#biodiversity" >
                        <div class="policy-icons biodiversity"></div>
-                       <p>Biodiversity</p>
+                       <p i18n:translate="">Biodiversity</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
                     <a href="/eu-adaptation-policy/sector-policies/buildings"
                        data-toggle="tab" class="policies-nav-link" data-target="#buildings">
                       <div class="policy-icons buildings"></div>
-                      <p>Buildings</p>
+                      <p i18n:translate="">Buildings</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
                     <a href="/eu-adaptation-policy/sector-policies/coastal-areas"
                        data-toggle="tab" class="policies-nav-link" data-target="#coastal-areas">
                       <div class="policy-icons coastal"></div>
-                      <p>Coastal areas</p>
+                      <p i18n:translate="">Coastal areas</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
                     <a href="/eu-adaptation-policy/sector-policies/disaster-risk-reduction"
                        data-toggle="tab" class="policies-nav-link" data-target="#disaster-risk-reduction">
                       <div class="policy-icons disaster"></div>
-                      <p>Disaster risk <br /> reduction</p>
+                      <p i18n:translate="">Disaster risk <br /> reduction</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
                     <a href="/eu-adaptation-policy/sector-policies/ecosystem"
                        data-toggle="tab" data-target="#ecosystem" class="policies-nav-link">
                       <div class="policy-icons green-infrastructure"></div>
-                      <p>Ecosystem-based approaches</p>
+                      <p i18n:translate="">Ecosystem-based approaches</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
                     <a href="/eu-adaptation-policy/sector-policies/energy"
                        data-toggle="tab" data-target="#energy" class="policies-nav-link">
                       <div class="policy-icons energy"></div>
-                      <p>Energy</p>
+                      <p i18n:translate="">Energy</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
                     <a href="/eu-adaptation-policy/sector-policies/financial"
                        data-toggle="tab" data-target="#financial" class="policies-nav-link">
                       <div class="policy-icons financial"></div>
-                      <p>Financial</p>
+                      <p i18n:translate="">Financial</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
                     <a href="/eu-adaptation-policy/sector-policies/forestry"
                        data-toggle="tab" data-target="#forestry" class="policies-nav-link">
                       <div class="policy-icons forestry"></div>
-                      <p>Forestry</p>
+                      <p i18n:translate="">Forestry</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
                     <a href="/eu-adaptation-policy/sector-policies/health"
                        data-toggle="tab"  data-target="#health" class="policies-nav-link">
                       <div class="policy-icons health"></div>
-                      <p>Health</p>
+                      <p i18n:translate="">Health</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
                     <a href="/eu-adaptation-policy/sector-policies/marine-and-fisheries"
                        data-toggle="tab" data-target="#marine-and-fisheries" class="policies-nav-link">
                       <div class="policy-icons marine"></div>
-                      <p>Marine <br /> &amp; fisheries</p>
+                      <p i18n:translate="">Marine <br /> &amp; fisheries</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
                     <a href="/eu-adaptation-policy/sector-policies/transport"
                        data-toggle="tab" data-target="#transport" class="policies-nav-link">
                       <div class="policy-icons transport"></div>
-                      <p>Transport</p>
+                      <p i18n:translate="">Transport</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
                     <a href="/eu-adaptation-policy/sector-policies/urban"
                        data-toggle="tab"  data-target="#urban" class="policies-nav-link">
                       <div class="policy-icons urban"></div>
-                      <p>Urban</p>
+                      <p i18n:translate="">Urban</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
                     <a href="/eu-adaptation-policy/sector-policies/water-management"
                        data-toggle="tab" data-target="#water-management" class="policies-nav-link">
                       <div class="policy-icons water"></div>
-                      <p>Water <br /> management</p>
+                      <p i18n:translate="">Water <br /> management</p>
                     </a>
                   </li>
                 </ul>
@@ -869,8 +891,8 @@
                              alt="Agriculture" title="Agriculture"/>
                       </div>
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                        <h3>Agriculture</h3>
-                        <p>Climate change has complex effects on the bio-physical processes that underpin agricultural systems, with both negative and positive consequences in different EU regions. Rising atmospheric CO2 concentration, higher temperatures, changes in precipitation patterns and in frequency of extreme events both affect the natural environment as well as the quantity, quality and stability of food production. Climatic variations impact on water resources, soils, pests and diseases, leading to significant changes in agriculture and livestock production.</p>
+                        <h3 i18n:translate="">Agriculture</h3>
+                        <p i18n:translate="">Climate change has complex effects on the bio-physical processes that underpin agricultural systems, with both negative and positive consequences in different EU regions. Rising atmospheric CO2 concentration, higher temperatures, changes in precipitation patterns and in frequency of extreme events both affect the natural environment as well as the quantity, quality and stability of food production. Climatic variations impact on water resources, soils, pests and diseases, leading to significant changes in agriculture and livestock production.</p>
                       </div>
                     </div>
                   </div>
@@ -884,8 +906,8 @@
                              alt="Biodiversity" title="Biodiversity"/>
                       </div>
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                        <h3>Biodiversity</h3>
-                        <p>Biodiversity plays an important role in regulating the climate, thus making a key contribution to climate change mitigation and adaptation.  At the same time, meeting mitigation targets coupled with ecosystem-based approaches is essential to avert biodiversity loss.  Therefore it is impossible to address biodiversity loss without addressing climate change, but it is equally impossible to tackle climate change without addressing biodiversity loss.</p>
+                        <h3 i18n:translate="">Biodiversity</h3>
+                        <p i18n:translate="">Biodiversity plays an important role in regulating the climate, thus making a key contribution to climate change mitigation and adaptation.  At the same time, meeting mitigation targets coupled with ecosystem-based approaches is essential to avert biodiversity loss.  Therefore it is impossible to address biodiversity loss without addressing climate change, but it is equally impossible to tackle climate change without addressing biodiversity loss.</p>
                       </div>
                     </div>
                   </div>
@@ -899,8 +921,8 @@
                              alt="Buildings" title="Buildings"/>
                       </div>
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                        <h3>Buildings</h3>
-                        <p>Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings  need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy). </p>
+                        <h3 i18n:translate="">Buildings</h3>
+                        <p i18n:translate="">Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings  need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy). </p>
                       </div>
                     </div>
                   </div>
@@ -914,8 +936,8 @@
                              alt="Coastal areas" title="Coastal areas"/>
                       </div>
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                        <h3>Coastal areas</h3>
-                        <p>Sea level rise can cause flooding, coastal erosion and the loss of low-lying coastal systems. It will also increase the risk of storm surges and the likelihood of landward intrusion of saltwater and may endanger coastal ecosystems. Expected rises in water temperatures and ocean acidification will contribute to a restructuring of coastal ecosystems; with implications for ocean circulation and biogeochemical cycling.</p>
+                        <h3 i18n:translate="">Coastal areas</h3>
+                        <p i18n:translate="">Sea level rise can cause flooding, coastal erosion and the loss of low-lying coastal systems. It will also increase the risk of storm surges and the likelihood of landward intrusion of saltwater and may endanger coastal ecosystems. Expected rises in water temperatures and ocean acidification will contribute to a restructuring of coastal ecosystems; with implications for ocean circulation and biogeochemical cycling.</p>
                       </div>
                     </div>
                   </div>
@@ -929,8 +951,8 @@
                              alt="Disaster risk reduction" title="Disaster risk reduction"/>
                       </div>
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                        <h3>Disaster risk reduction</h3>
-                        <p>Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters.</p>
+                        <h3 i18n:translate="">Disaster risk reduction</h3>
+                        <p i18n:translate="">Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters.</p>
                       </div>
                     </div>
                   </div>
@@ -944,8 +966,8 @@
                              alt="Ecosystem-based approaches" title="Ecosystem-based approaches"/>
                       </div>
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                        <h3>Ecosystem-based approaches</h3>
-                        <p>Ecosystem-based initiatives for climate change adaptation and disaster risk reduction increase resilience and decrease vulnerability of both people and ecosystems, empower people and provide jobs and business opportunities, make economic sense, are ready for use and easily accessible, including for the rural and urban poor. They provide multiple benefits and contribute to achieving climate change adaptation objectives but also several multi-lateral environmental agreements and sectoral policy objectives (e.g. haltering biodiversity loss, water quality or agricultural and forest management).</p>
+                        <h3 i18n:translate="">Ecosystem-based approaches</h3>
+                        <p i18n:translate="">Ecosystem-based initiatives for climate change adaptation and disaster risk reduction increase resilience and decrease vulnerability of both people and ecosystems, empower people and provide jobs and business opportunities, make economic sense, are ready for use and easily accessible, including for the rural and urban poor. They provide multiple benefits and contribute to achieving climate change adaptation objectives but also several multi-lateral environmental agreements and sectoral policy objectives (e.g. haltering biodiversity loss, water quality or agricultural and forest management).</p>
                       </div>
                     </div>
                   </div>
@@ -959,8 +981,8 @@
                              alt="Energy" title="Energy"/>
                       </div>
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                        <h3>Energy</h3>
-                        <p>Climate change affects the energy sector in multiple ways, ranging from changes in heating and cooling demand; to impacts on energy supply conditions – for example decreased water availability for hydropower during prolonged droughts and reduced availability of cooling water affecting the efficiency of power plants. Furthermore, energy infrastructure can be more exposed to damages by changing climate conditions. The European Commission in general aims to increase the climate resilience of infrastructure including energy by providing strategical frameworks.</p>
+                        <h3 i18n:translate="">Energy</h3>
+                        <p i18n:translate="">Climate change affects the energy sector in multiple ways, ranging from changes in heating and cooling demand; to impacts on energy supply conditions – for example decreased water availability for hydropower during prolonged droughts and reduced availability of cooling water affecting the efficiency of power plants. Furthermore, energy infrastructure can be more exposed to damages by changing climate conditions. The European Commission in general aims to increase the climate resilience of infrastructure including energy by providing strategical frameworks.</p>
                       </div>
                     </div>
                   </div>
@@ -974,8 +996,8 @@
                              alt="Financial" title="Financial"/>
                       </div>
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                        <h3>Financial</h3>
-                        <p>Extreme weather events in recent years have increased the urgency to mainstream climate change adaptation into the different EU policy fields. There are few specific EU activities to mainstream climate change adaptation into policies for financial and insurance sectors. However many European policies related to natural disasters (see Disaster risk reduction) are very relevant to the financial and insurance sector, as they may help to prevent significant losses and financial disasters. The European Commission has also committed itself to increasing financing of climate-related activities by ensuring that at least 20% of the European budget is climate-related expenditure.</p>
+                        <h3 i18n:translate="">Financial</h3>
+                        <p i18n:translate="">Extreme weather events in recent years have increased the urgency to mainstream climate change adaptation into the different EU policy fields. There are few specific EU activities to mainstream climate change adaptation into policies for financial and insurance sectors. However many European policies related to natural disasters (see Disaster risk reduction) are very relevant to the financial and insurance sector, as they may help to prevent significant losses and financial disasters. The European Commission has also committed itself to increasing financing of climate-related activities by ensuring that at least 20% of the European budget is climate-related expenditure.</p>
                       </div>
                     </div>
                   </div>
@@ -989,8 +1011,8 @@
                              alt="Forestry" title="Forestry"/>
                       </div>
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                        <h3>Forestry</h3>
-                        <p>The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector.</p>
+                        <h3 i18n:translate="">Forestry</h3>
+                        <p i18n:translate="">The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector.</p>
                       </div>
                     </div>
                   </div>
@@ -1003,8 +1025,8 @@
                              class="lazyload" alt="Health" title="Health"/>
                       </div>
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                        <h3>Health</h3>
-                        <p>Climate change will generate new health risks and amplify current health problems. Both direct and indirect effects on human, plant and animal health are expected from climate change. Direct effects result from changes in the intensity and frequency of extreme weather events like heatwaves and floods. Indirect effects can be felt through changes in the incidence of diseases transmitted by insects (i.e. vector borne diseases caused by mosquitoes and ticks), rodents, or changes in water, food and air quality. The European Commission's EU strategy on adaptation to climate change is accompanied by a Staff Working Document.</p>
+                        <h3 i18n:translate="">Health</h3>
+                        <p i18n:translate="">Climate change will generate new health risks and amplify current health problems. Both direct and indirect effects on human, plant and animal health are expected from climate change. Direct effects result from changes in the intensity and frequency of extreme weather events like heatwaves and floods. Indirect effects can be felt through changes in the incidence of diseases transmitted by insects (i.e. vector borne diseases caused by mosquitoes and ticks), rodents, or changes in water, food and air quality. The European Commission's EU strategy on adaptation to climate change is accompanied by a Staff Working Document.</p>
                       </div>
                     </div>
                   </div>
@@ -1017,8 +1039,8 @@
                              class="lazyload" alt="Marine and fisheries" title="Marine and fisheries"/>
                       </div>
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                        <h3>Marine and fisheries</h3>
-                        <p>Climate change is expected to have severe impacts on the marine environment. Increase in water temperatures will contribute to a restructuring of marine ecosystems with implications for ocean circulation, biogeochemical cycling and marine biodiversity. Ocean acidification will affect the ability of some calcium carbonate-secreting species (as molluscs, planktons and corals) to produce their shells or skeletons. Warmer and more acidic seawater will therefore negatively affect fishery and aquaculture.</p>
+                        <h3 i18n:translate="">Marine and fisheries</h3>
+                        <p i18n:translate="">Climate change is expected to have severe impacts on the marine environment. Increase in water temperatures will contribute to a restructuring of marine ecosystems with implications for ocean circulation, biogeochemical cycling and marine biodiversity. Ocean acidification will affect the ability of some calcium carbonate-secreting species (as molluscs, planktons and corals) to produce their shells or skeletons. Warmer and more acidic seawater will therefore negatively affect fishery and aquaculture.</p>
                       </div>
                     </div>
                   </div>
@@ -1031,8 +1053,8 @@
                              class="lazyload" alt="Transport" title="Transport"/>
                       </div>
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                        <h3>Transport</h3>
-                        <p>The need for adapting the transport system to the impact of climate change has been highlighted since the European Commission's Adaptation White Paper (COM (2009)148). Transport adaptation is addressed through a combination of European transport, climate change and research policies. The European Union promotes best practices, mainstreaming adaptation within its transport infrastructure development programmes, and provides guidance, e.g. by developing adequate standards for construction. Action is focused on transport infrastructure, and particularly on the Trans-European Transport Network (TEN-T).</p>
+                        <h3 i18n:translate="">Transport</h3>
+                        <p i18n:translate="">The need for adapting the transport system to the impact of climate change has been highlighted since the European Commission's Adaptation White Paper (COM (2009)148). Transport adaptation is addressed through a combination of European transport, climate change and research policies. The European Union promotes best practices, mainstreaming adaptation within its transport infrastructure development programmes, and provides guidance, e.g. by developing adequate standards for construction. Action is focused on transport infrastructure, and particularly on the Trans-European Transport Network (TEN-T).</p>
                       </div>
                     </div>
                   </div>
@@ -1045,8 +1067,8 @@
                              class="lazyload" alt="Urban" title="Urban"/>
                       </div>
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                        <h3>Urban</h3>
-                        <p>In Europe, nearly 73% of the population live in urban areas and this is projected to increase to over 80% by 2050. Climate change is likely to influence almost all components of cities and towns – their environment, economy and society.  This raises new, complex challenges for urban planning and management. Climate change impacts on the hubs of Europe's economic activity, social life, culture and innovation have repercussions far beyond their municipal borders.</p>
+                        <h3 i18n:translate="">Urban</h3>
+                        <p i18n:translate="">In Europe, nearly 73% of the population live in urban areas and this is projected to increase to over 80% by 2050. Climate change is likely to influence almost all components of cities and towns – their environment, economy and society.  This raises new, complex challenges for urban planning and management. Climate change impacts on the hubs of Europe's economic activity, social life, culture and innovation have repercussions far beyond their municipal borders.</p>
                       </div>
                     </div>
                   </div>
@@ -1059,8 +1081,8 @@
                              class="lazyload" alt="Water management" title="Water management"/>
                       </div>
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                        <h3>Water management</h3>
-                        <p>Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe.</p>
+                        <h3 i18n:translate="">Water management</h3>
+                        <p i18n:translate="">Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe.</p>
                       </div>
                     </div>
                   </div>
@@ -1068,7 +1090,7 @@
                 </div>
               </div>
               <div class="see-more-link">
-                <p>For more informations visit:
+                <p i18n:translate="">For more informations visit:
                   <a href="/cca/eu-adaptation-policy/sector-policies">
                     <i class="fa fa-angle-double-right"></i>
                     EU Sector Policies
@@ -1108,10 +1130,10 @@
             <div class="tab-pane fade" id="t-studies">
               <div class="case-study row">
                 <div class="col-md-12">
-                  <p>Climate-ADAPT case studies showcase initiatives that are already
+                  <p i18n:translate="">Climate-ADAPT case studies showcase initiatives that are already
                     being carried out in Europe to adapt to climate change and increase
                     resilience to extreme weather and slow-onset events. </p>
-                  <p>Case studies are flagship of the Climate-ADAPT platform.
+                  <p i18n:translate="">Case studies are flagship of the Climate-ADAPT platform.
                     They have a comprehensive structure that covers all the key
                     aspects in the implementation cycle of adaptation measures and
                     are careful and specifically prepared for Climate-ADAPT by the
@@ -1126,7 +1148,7 @@
                          width="39"
                          height="54"
                          />
-                    <p>See how Europe is adapting to climate change:
+                    <p i18n:translate="">See how Europe is adapting to climate change:
                       <a class="ca-booklet-link"
                          href="../about/climate-adapt-10-case-studies-online.pdf">
                         <i class="fa fa-angle-double-right"></i>
@@ -1233,8 +1255,8 @@
               <div class="see-more-link">
                 <div class="ast-link">
                   <div class="ast-link-wrapper">
-                    <p>For more informations visit:</p>
-                    <a href="../knowledge/tools/adaptation-support-tool">
+                    <p i18n:translate="">For more informations visit:</p>
+                    <a href="../knowledge/tools/adaptation-support-tool" i18n:translate="">
                       <i class="fa fa-angle-double-right"></i>
                       Adaptation support tool
                     </a>
@@ -1246,8 +1268,8 @@
                        width="81"
                        height="49"
                        />
-                  <p>For urban areas guidance visit:</p>
-                  <a href="../knowledge/tools/urban-ast/step-0-0">
+                  <p i18n:translate="">For urban areas guidance visit:</p>
+                  <a href="../knowledge/tools/urban-ast/step-0-0" i18n:translate="">
                     <i class="fa fa-angle-double-right"></i>
                     Urban Adaptation Support Tool
                   </a>
@@ -1263,7 +1285,13 @@
     </div>
 
     <div class="content-container">
-      <div class="main-area">
+      <div class="main-area" xmlns="http://www.w3.org/1999/xhtml"
+        xml:lang="en"
+        xmlns:tal="http://xml.zope.org/namespaces/tal"
+        xmlns:metal="http://xml.zope.org/namespaces/metal"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        lang="en"
+        i18n:domain="eea.climateadapt.frontpage">
         <div class="row">
       
           <div class="main-box col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -1276,8 +1304,8 @@
                        width="60"
                        height="60"
                        />
-                  <h5 class="info-title">Share <span>your information</span></h5>
-                  <p>Find out how to contribute different types of information to Climate-ADAPT</p>
+                  <h5 class="info-title" i18n:translate="">Share <span>your information</span></h5>
+                  <p i18n:translate="">Find out how to contribute different types of information to Climate-ADAPT</p>
                 </div>
               </a>
             </div>
@@ -1291,14 +1319,14 @@
                    width="122"
                    height="59"
                    />
-              <p class="covenant-text">
+              <p class="covenant-text" i18n:translate="">
                 The Covenant of Mayors initiative aims to engage and support cities
                 and towns to commit to reaching the EU climate mitigation and
                 adaptation targets. Signatory cities pledge action to support
                 implementation of the EU 40% greenhouse gas-reduction target
                 by 2030 ...</p>
               <div class="read-more-wrapper">
-                <a href="../eu-adaptation-policy/covenant-of-mayors" class="read-more">
+                <a href="../eu-adaptation-policy/covenant-of-mayors" class="read-more" i18n:translate="">
                   <i class="fa fa-angle-double-right"></i>
                   Read more
                 </a>
@@ -1310,10 +1338,10 @@
             <div class="box-container">
               <ul class="nav nav-tabs">
                 <li class="active">
-                  <a href="#news-tab">News</a>
+                  <a href="#news-tab" i18n:translate="">News</a>
                 </li>
                 <li>
-                  <a href="#events-tab">Events</a>
+                  <a href="#events-tab" i18n:translate="">Events</a>
                 </li>
               </ul>
       
@@ -1341,7 +1369,7 @@
                       </li>
                     </ul>
                     <div class="read-more-wrapper">
-                      <a href="" class="read-more">
+                      <a href="" class="read-more" i18n:translate="">
                         <i class="fa fa-angle-double-right"></i>
                         More news
                       </a>
@@ -1370,7 +1398,7 @@
                       <p class="news-time">01 Feb 2018</p>
                     </div>
                     <div class="read-more-wrapper">
-                      <a href="" class="read-more">
+                      <a href="" class="read-more" i18n:translate="">
                         <i class="fa fa-angle-double-right"></i>
                         More events
                       </a>
@@ -1386,10 +1414,10 @@
             <div class="box-container feed-container content-body">
               <ul class="nav nav-tabs">
                 <li class="active">
-                  <a href="#newsletter-tab">Newsletter</a>
+                  <a href="#newsletter-tab" i18n:translate="">Newsletter</a>
                 </li>
                 <li>
-                  <a href="#rss-tab">RSS feed</a>
+                  <a href="#rss-tab" i18n:translate="">RSS feed</a>
                 </li>
               </ul>
       
@@ -1400,11 +1428,11 @@
                        title="Check the European Climate Adaptation Newsletters">
                       <i class="fa fa-envelope"></i>
                     </a>
-                    <p>Check the <a href="../newsletter">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:</p>
+                    <p i18n:translate="">Check the <a href="../newsletter">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:</p>
                     <div class="main-link-wrapper">
                       <a href="https://confirmsubscription.com/h/d/5C00CA2AC14F0E55"
                          class="standard-button primary-button"
-                         title="Sign up for our Newsletters">
+                         title="Sign up for our Newsletters" i18n:translate="">
                           Sign me up!
                       </a>
                     </div>
@@ -1417,11 +1445,11 @@
                        title="Subscribe to our RSS Feed">
                       <i class="fa fa-rss"></i>
                     </a>
-                    <p>Subscribe to our <strong> RSS feed </strong> <br/> and stay up to date!</p>
+                    <p i18n:translate="">Subscribe to our <strong> RSS feed </strong> <br/> and stay up to date!</p>
                     <div class="main-link-wrapper">
                       <a href="/rss-feed"
                          class="standard-button primary-button"
-                         title="Subscribe to our RSS Feed">
+                         title="Subscribe to our RSS Feed" i18n:translate="">
                           Subscribe
                       </a>
                     </div>

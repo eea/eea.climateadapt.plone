@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-05 18:32+0000\n"
+"POT-Creation-Date: 2022-05-17 18:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: eea.climateadapt\n"
 
-#: ../../climateadapt/theme/climateadaptv2/index.html:403
-msgid "<span class=\"d-icon database-icon\"></span> Search the <br /> Database"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/ace_macros.pt:149
+#: ../../climateadapt/browser/pt/ace_macros.pt:152
 msgid "<strong>Last Modified in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:145
+#: ../../climateadapt/browser/pt/ace_macros.pt:148
 msgid "<strong>Published in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
 msgstr ""
 
@@ -62,6 +58,10 @@ msgstr ""
 msgid "Biodiversity"
 msgstr ""
 
+#: ../../climateadapt/browser/__init__.py:169
+msgid "Biogeographical regions"
+msgstr ""
+
 #: ../../climateadapt/browser/overrides.py:49
 msgid "Buildings"
 msgstr ""
@@ -90,6 +90,7 @@ msgstr ""
 msgid "Check-out created"
 msgstr ""
 
+#: ../../climateadapt/browser/__init__.py:208
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
 msgid "City"
 msgstr ""
@@ -112,7 +113,7 @@ msgstr ""
 msgid "Coastal areas"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:215
+#: ../../climateadapt/browser/pt/ace_macros.pt:218
 msgid "Comments:"
 msgstr ""
 
@@ -130,7 +131,7 @@ msgstr ""
 msgid "Contact person"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:202
+#: ../../climateadapt/browser/pt/ace_macros.pt:205
 msgid "Contributor:"
 msgstr ""
 
@@ -139,12 +140,20 @@ msgstr ""
 msgid "Costs and Benefits"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:250
+#: ../../climateadapt/browser/__init__.py:175
+msgid "Countries"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/ace_macros.pt:253
 msgid "Countries:"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:131
 msgid "Countries: ${DYNAMIC_CONTENT}"
+msgstr ""
+
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:199
+msgid "Country profiles"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:245
@@ -155,7 +164,7 @@ msgstr ""
 msgid "Covenant of Mayors 2030 signatory"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:101
+#: ../../climateadapt/browser/pt/ace_macros.pt:104
 msgid "Created by:"
 msgstr ""
 
@@ -193,7 +202,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:156
+#: ../../climateadapt/browser/pt/ace_macros.pt:159
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:21
 #: ../../climateadapt/browser/pt/organisation_view.pt:18
 msgid "Description:"
@@ -201,6 +210,10 @@ msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:42
 msgid "Disaster Risk Reduction"
+msgstr ""
+
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:149
+msgid "Discover the main topics and tools of the observatory"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:97
@@ -287,6 +300,10 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:179
+msgid "INDICATORS"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:34
 msgid "IPCC categories"
 msgstr ""
@@ -326,8 +343,12 @@ msgstr ""
 msgid "Last Update"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:163
+#: ../../climateadapt/browser/pt/ace_macros.pt:166
 msgid "Lead"
+msgstr ""
+
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:163
+msgid "Learn more"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:45
@@ -347,6 +368,10 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/organisation_view.pt:34
 msgid "Links to further information"
+msgstr ""
+
+#: ../../climateadapt/browser/__init__.py:161
+msgid "Macro-Transnational region"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:120
@@ -369,6 +394,10 @@ msgstr ""
 msgid "Name of the strategy/ plan (If adopted)"
 msgstr ""
 
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:159
+msgid "New"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/casestudy_view.pt:53
 msgid "Objectives"
 msgstr ""
@@ -381,7 +410,7 @@ msgstr ""
 msgid "Other European Information Systems:<br />&nbsp;"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:171
+#: ../../climateadapt/browser/pt/ace_macros.pt:174
 msgid "Partners"
 msgstr ""
 
@@ -448,12 +477,20 @@ msgstr ""
 msgid "Relevance"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:109
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:219
+msgid "Resource catalogue"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/ace_macros.pt:112
 msgid "Reviewed by:"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/navbar_footer.pt:18
 msgid "SITE MAP"
+msgstr ""
+
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:220
+msgid "Search and access the Observatory’s database containing case studies, publications, indicators, research projects and other"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/indicator_view.pt:98
@@ -465,6 +502,10 @@ msgstr ""
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:167
 #: ../../climateadapt/browser/pt/casestudy_view.pt:289
 msgid "Sectors:"
+msgstr ""
+
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:200
+msgid "See how countries are addressing climate change adaptation in public health"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/organisation_view.pt:63
@@ -483,7 +524,7 @@ msgstr ""
 msgid "Send token emails to City Mayors"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:84
+#: ../../climateadapt/browser/pt/ace_macros.pt:87
 msgid "Share your information"
 msgstr ""
 
@@ -496,7 +537,7 @@ msgstr ""
 msgid "Source"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:180
+#: ../../climateadapt/browser/pt/ace_macros.pt:183
 msgid "Source of funding"
 msgstr ""
 
@@ -516,6 +557,10 @@ msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:27
 msgid "Status"
+msgstr ""
+
+#: ../../climateadapt/browser/__init__.py:180
+msgid "Sub Nationals"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:49
@@ -559,6 +604,10 @@ msgstr ""
 msgid "Transport"
 msgstr ""
 
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:160
+msgid "UV Index forecast (CAMS)"
+msgstr ""
+
 #: ../../climateadapt/browser/overrides.py:45
 msgid "Urban"
 msgstr ""
@@ -567,8 +616,16 @@ msgstr ""
 msgid "View all contributions in the resource catalogue"
 msgstr ""
 
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:180
+msgid "View climate and health indicators from different trusted information providers"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/aceproject_view.pt:18
 msgid "View on DRMKC"
+msgstr ""
+
+#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:161
+msgid "View the UV Index forecast developed by Copernicus Atmosphere Monitoring Service (CAMS)"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:16
@@ -610,7 +667,7 @@ msgstr ""
 msgid "Year: <span>${DYNAMIC_CONTENT}</span>"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:33
+#: ../../climateadapt/browser/pt/ace_macros.pt:36
 msgid "back to search"
 msgstr ""
 

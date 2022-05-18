@@ -1,10 +1,10 @@
-<div class="dynamic-area"   xmlns="http://www.w3.org/1999/xhtml"
+<div class="dynamic-area" xmlns="http://www.w3.org/1999/xhtml"
   xml:lang="en"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   lang="en"
-  i18n:domain="eea.climateadapt"
+  i18n:domain="eea.climateadapt.frontpage"
 >
   <div class="content-container">
     <ul class="nav nav-tabs main-nav-tabs">
@@ -14,7 +14,7 @@
           Getting <br> Started
         </a>
       </li> -->
-      <li class="main-tab-item active">
+      <li class="main-tab-item active" i18n:translate="">
         <a href="#t-started">
           <span class="d-icon feature-icon"></span>
           New <br /> feature
@@ -27,25 +27,25 @@
         </a>
       </li>
       <li class="main-tab-item">
-        <a href="#t-policies">
+        <a href="#t-policies" i18n:translate="">
           <span class="d-icon policy-icon"></span>
           EU Sector <br /> Policies
         </a>
       </li>
       <li class="main-tab-item">
-        <a href="#t-countries" data-tab='countries' class="map-tab">
+        <a href="#t-countries" data-tab='countries' class="map-tab" i18n:translate="">
           <span class="d-icon eu-icon"></span>
           Country <br /> Profiles
         </a>
       </li>
       <li class="main-tab-item">
-        <a href="#t-studies">
+        <a href="#t-studies" i18n:translate="">
           <span class="d-icon case-icon"></span>
           Case <br /> Studies
         </a>
       </li>
       <li class="main-tab-item ast-section">
-        <a href="#t-adapt">
+        <a href="#t-adapt" i18n:translate="">
           <span class="d-icon ast-icon"></span>
           Adaptation <br /> Support Tool
         </a>
@@ -125,12 +125,12 @@
               width="177"
               height="61"
               />
-              <p class="feature-text">The European Climate Data Explorer provides
+              <p class="feature-text" i18n:translate="">The European Climate Data Explorer provides
                 interactive access to many climate indices from the Copernicus
                 Climate Change Service in support of climate change adaptation.</p>
               <div class="bottom-section">
                 <a class="standard-button primary-button feature-btn"
-                href="/knowledge/european-climate-data-explorer/">
+                href="/knowledge/european-climate-data-explorer/" i18n:translate="">
                 Go to the European Climate Data Explorer</a>
               </div>
             </div>
@@ -141,13 +141,13 @@
               width="220"
               height="58"
               />
-              <p class="feature-text">The European Climate and Health Observatory
+              <p class="feature-text" i18n:translate="">The European Climate and Health Observatory
                 provides access to a wide range of relevant publications, tools,
                 websites and other resources related to climate change and health.
               </p>
               <div class="bottom-section">
                 <a class="standard-button primary-button feature-btn"
-                href="/observatory">Go to the European Climate and Health Observatory</a>
+                href="/observatory" i18n:translate="">Go to the European Climate and Health Observatory</a>
               </div>
             </div>
           </div>
@@ -276,9 +276,9 @@
           </form>
 
           <div class="text-center">
-            <p>The database contains quality checked information and is annotated
+            <p i18n:translate="">The database contains quality checked information and is annotated
                by climate adaptation experts with keywords.</p>
-            <p>Please check our <a href="/help/guidance">Guidance to search function</a> for more help on how to search the database.</p>
+            <p i18n:translate="">Please check our <a href="/help/guidance">Guidance to search function</a> for more help on how to search the database.</p>
           </div>
 
           <div class="db-categories flex-wrapper">
@@ -288,7 +288,7 @@
                 <i class="fa fa-cogs"></i>
                 <span class="total-items">120</span>
                 </span>
-                <p>Adaptation <br /> Options</p>
+                <p i18n:translate="">Adaptation options</p>
               </a>
             </div>
             <div class="db-category-wrapper">
@@ -297,7 +297,7 @@
                   <i class="fa fa-file-text-o"></i>
                   <span class="total-items">120</span>
                 </span>
-                <p>Case studies</p>
+                <p i18n:translate="">Case studies</p>
               </a>
             </div>
             <div class="db-category-wrapper">
@@ -306,7 +306,7 @@
                 <i class="fa fa-compass"></i>
                 <span class="total-items">120</span>
                 </span>
-                <p>Guidance</p>
+                <p i18n:translate="">Guidance</p>
               </a>
             </div>
             <div class="db-category-wrapper">
@@ -315,7 +315,7 @@
                   <i class="fa fa-area-chart"></i>
                   <span class="total-items">120</span>
                 </span>
-                <p>Indicators</p>
+                <p i18n:translate="">Indicators</p>
               </a>
             </div>
             <div class="db-category-wrapper">
@@ -324,7 +324,7 @@
                   <i class="fa fa-info-circle"></i>
                   <span class="total-items">120</span>
                 </span>
-                <p>Information <br /> Portals</p>
+                <p i18n:translate="">Information portals</p>
               </a>
             </div>
             <div class="db-category-wrapper">
@@ -342,7 +342,16 @@
                   <i class="fa fa-sitemap"></i>
                   <span class="total-items">120</span>
                 </span>
-                <p>Organizations</p>
+                <p i18n:translate="">Organisations</p>
+              </a>
+            </div>
+            <div class="db-category-wrapper">
+              <a href="#">
+                <span class="db-category-icon">
+                  <i class="fa fa-sitemap"></i>
+                  <span class="total-items">120</span>
+                </span>
+                <p i18n:translate="">Videos</p>
               </a>
             </div>
             <div class="db-category-wrapper">
@@ -351,7 +360,7 @@
                   <i class="fa fa-newspaper-o"></i>
                   <span class="total-items">120</span>
                 </span>
-                <p>Publication <br /> and Reports</p>
+                <p i18n:translate="">Publications and reports</p>
               </a>
             </div>
             <div class="db-category-wrapper db-research action-flex-item">
@@ -360,7 +369,7 @@
                   <div class="research-icon"></div>
                 </span>
                 <span class="total-items">120</span>
-                <p>Research and <br /> Knowledge projects</p>
+                <p i18n:translate="">Research and knowledge projects</p>
               </a>
             </div>
             <div class="db-category-wrapper">
@@ -369,13 +378,13 @@
                   <i class="fa fa-wrench"></i>
                   <span class="total-items">120</span>
                 </span>
-                <p>Tools</p>
+                <p i18n:translate="">Tools</p>
               </a>
             </div>
           </div> <!-- end of db categories -->
 
           <div class="see-more-link">
-            <a href="../data-and-downloads">
+            <a href="../data-and-downloads" i18n:translate="">
               <i class="fa fa-angle-double-right"></i>
               See complete database
             </a>
@@ -386,7 +395,7 @@
         <div class="tab-pane fade" id="t-policies">
           {{> partials/tab-policies }}
           <div class="see-more-link">
-            <p>For more informations visit:
+            <p i18n:translate="">For more informations visit:
               <a href="/cca/eu-adaptation-policy/sector-policies">
                 <i class="fa fa-angle-double-right"></i>
                 EU Sector Policies
@@ -428,10 +437,10 @@
         <div class="tab-pane fade" id="t-studies">
           <div class="case-study row">
             <div class="col-md-12">
-              <p>Climate-ADAPT case studies showcase initiatives that are already
+              <p i18n:translate="">Climate-ADAPT case studies showcase initiatives that are already
                 being carried out in Europe to adapt to climate change and increase
                 resilience to extreme weather and slow-onset events. </p>
-              <p>Case studies are flagship of the Climate-ADAPT platform.
+              <p i18n:translate="">Case studies are flagship of the Climate-ADAPT platform.
                 They have a comprehensive structure that covers all the key
                 aspects in the implementation cycle of adaptation measures and
                 are careful and specifically prepared for Climate-ADAPT by the
@@ -446,7 +455,7 @@
                      width="39"
                      height="54"
                      />
-                <p>See how Europe is adapting to climate change:
+                <p i18n:translate="">See how Europe is adapting to climate change:
                   <a class="ca-booklet-link"
                      href="../about/climate-adapt-10-case-studies-online.pdf">
                     <i class="fa fa-angle-double-right"></i>
@@ -566,8 +575,8 @@
           <div class="see-more-link">
             <div class="ast-link">
               <div class="ast-link-wrapper">
-                <p>For more informations visit:</p>
-                <a href="../knowledge/tools/adaptation-support-tool">
+                <p i18n:translate="">For more informations visit:</p>
+                <a href="../knowledge/tools/adaptation-support-tool" i18n:translate="">
                   <i class="fa fa-angle-double-right"></i>
                   Adaptation support tool
                 </a>
@@ -579,8 +588,8 @@
                    width="81"
                    height="49"
                    />
-              <p>For urban areas guidance visit:</p>
-              <a href="../knowledge/tools/urban-ast/step-0-0">
+              <p i18n:translate="">For urban areas guidance visit:</p>
+              <a href="../knowledge/tools/urban-ast/step-0-0" i18n:translate="">
                 <i class="fa fa-angle-double-right"></i>
                 Urban Adaptation Support Tool
               </a>

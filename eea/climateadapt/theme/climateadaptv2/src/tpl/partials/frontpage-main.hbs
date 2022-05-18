@@ -1,4 +1,10 @@
-<div class="main-area">
+<div class="main-area" xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  i18n:domain="eea.climateadapt.frontpage">
   <div class="row">
 
     {{!-- Share your info --}}
@@ -12,8 +18,8 @@
                  width="60"
                  height="60"
                  />
-            <h5 class="info-title">Share <span>your information</span></h5>
-            <p>Find out how to contribute different types of information to Climate-ADAPT</p>
+            <h5 class="info-title" i18n:translate="">Share <span>your information</span></h5>
+            <p i18n:translate="">Find out how to contribute different types of information to Climate-ADAPT</p>
           </div>
         </a>
       </div>
@@ -28,14 +34,14 @@
              width="122"
              height="59"
              />
-        <p class="covenant-text">
+        <p class="covenant-text" i18n:translate="">
           The Covenant of Mayors initiative aims to engage and support cities
           and towns to commit to reaching the EU climate mitigation and
           adaptation targets. Signatory cities pledge action to support
           implementation of the EU 40% greenhouse gas-reduction target
           by 2030 ...</p>
         <div class="read-more-wrapper">
-          <a href="../eu-adaptation-policy/covenant-of-mayors" class="read-more">
+          <a href="../eu-adaptation-policy/covenant-of-mayors" class="read-more" i18n:translate="">
             <i class="fa fa-angle-double-right"></i>
             Read more
           </a>
@@ -48,10 +54,10 @@
       <div class="box-container">
         <ul class="nav nav-tabs">
           <li class="active">
-            <a href="#news-tab">News</a>
+            <a href="#news-tab" i18n:translate="">News</a>
           </li>
           <li>
-            <a href="#events-tab">Events</a>
+            <a href="#events-tab" i18n:translate="">Events</a>
           </li>
         </ul>
 
@@ -80,7 +86,7 @@
                 </li>
               </ul>
               <div class="read-more-wrapper">
-                <a href="" class="read-more">
+                <a href="" class="read-more" i18n:translate="">
                   <i class="fa fa-angle-double-right"></i>
                   More news
                 </a>
@@ -110,7 +116,7 @@
                 <p class="news-time">01 Feb 2018</p>
               </div>
               <div class="read-more-wrapper">
-                <a href="" class="read-more">
+                <a href="" class="read-more" i18n:translate="">
                   <i class="fa fa-angle-double-right"></i>
                   More events
                 </a>
@@ -126,10 +132,10 @@
       <div class="box-container feed-container content-body">
         <ul class="nav nav-tabs">
           <li class="active">
-            <a href="#newsletter-tab">Newsletter</a>
+            <a href="#newsletter-tab" i18n:translate="">Newsletter</a>
           </li>
           <li>
-            <a href="#rss-tab">RSS feed</a>
+            <a href="#rss-tab" i18n:translate="">RSS feed</a>
           </li>
         </ul>
 
@@ -141,11 +147,11 @@
                  title="Check the European Climate Adaptation Newsletters">
                 <i class="fa fa-envelope"></i>
               </a>
-              <p>Check the <a href="../newsletter">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:</p>
+              <p i18n:translate="">Check the <a href="../newsletter">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:</p>
               <div class="main-link-wrapper">
                 <a href="https://confirmsubscription.com/h/d/5C00CA2AC14F0E55"
                    class="standard-button primary-button"
-                   title="Sign up for our Newsletters">
+                   title="Sign up for our Newsletters" i18n:translate="">
                     Sign me up!
                 </a>
               </div>
@@ -159,11 +165,11 @@
                  title="Subscribe to our RSS Feed">
                 <i class="fa fa-rss"></i>
               </a>
-              <p>Subscribe to our <strong> RSS feed </strong> <br/> and stay up to date!</p>
+              <p i18n:translate="">Subscribe to our <strong> RSS feed </strong> <br/> and stay up to date!</p>
               <div class="main-link-wrapper">
                 <a href="/rss-feed"
                    class="standard-button primary-button"
-                   title="Subscribe to our RSS Feed">
+                   title="Subscribe to our RSS Feed" i18n:translate="">
                     Subscribe
                 </a>
               </div>

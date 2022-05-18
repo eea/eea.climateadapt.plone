@@ -1,4 +1,10 @@
-<div class="header">
+<div class="header" xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  i18n:domain="eea.climateadapt.frontpage">
   <div class="top-menu nav-down">
     <div class="content-container top-menu-wrapper">
       <div class="logo">
@@ -16,10 +22,11 @@
             <form>
               <input type="text"
                      name="SearchableText"
+                     i18n-placeholder
                      placeholder="Search Climate-ADAPT"/>
               <div class="line"></div>
               <button class="search-submit"
-                      aria-label="Search on Climate-ADAPT">
+                      aria-label="Search on Climate-ADAPT" i18n:translate="">
                 <i class="fa fa-search"></i>
               </button>
             </form>
@@ -27,7 +34,7 @@
 
           <ul class="top-menu-nav">
             <li class="top-menu-nav-item help-menu">
-              <a class="help-link">
+              <a class="help-link" i18n:translate="">
                 <i class="fa fa-question-circle"></i>
                 Help
               </a>
@@ -39,19 +46,19 @@
               </div>
             </li>
             <li class="top-menu-nav-item help-menu">
-              <a href="/news-archive">
+              <a href="/news-archive" i18n:translate="">
                 <i class="fa fa-newspaper-o"></i>
                 News
               </a>
             </li>
             <li class="top-menu-nav-item help-menu">
-              <a href="/more-events">
+              <a href="/more-events" i18n:translate="">
                 <i class="fa fa-calendar"></i>
                 Events
               </a>
             </li>
             <li class="top-menu-nav-item help-menu">
-              <a href="/newsletter">
+              <a href="/newsletter" i18n:translate="">
                 <i class="fa fa-envelope"></i>
                 Newsletter
               </a>

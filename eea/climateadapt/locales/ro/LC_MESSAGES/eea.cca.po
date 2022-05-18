@@ -1,0 +1,62 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2022-05-17 15:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
+
+#, 
+msgid "Adaptation options"
+msgstr "Opțiuni de adaptare"
+
+#, 
+msgid "Case studies"
+msgstr "Studii de caz"
+
+#, 
+msgid "Countries:"
+msgstr "Țări:"
+
+#, 
+msgid "Guidance"
+msgstr "Îndrumare"
+
+#, 
+msgid "Indicators"
+msgstr "Indicatori"
+
+#, 
+msgid "Information portals"
+msgstr "Portaluri de informații"
+
+#, 
+msgid "Organisations"
+msgstr "Organizații"
+
+#, 
+msgid "Publication and reports"
+msgstr "Publicarea și rapoartele"
+
+#, 
+msgid "Research and knowledge projects"
+msgstr "Proiecte de cercetare și cunoștințe"
+
+#, 
+msgid "Tools"
+msgstr "Instrumente"
+
+#, 
+msgid "Videos"
+msgstr "Videoclipuri"
+

@@ -1,0 +1,458 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2022-05-17 18:21+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:403
+#, 
+msgid "<a href=\"#t-started\"> <span class=\"d-icon feature-icon\"></span> New <br /> feature </a>"
+msgstr "<a href=\"#t-started\"> <span class = \"d-icon feature-icon\"> </span> jauns <br /> funkcija </a>"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1259
+#, 
+msgid "<i class=\"fa fa-angle-double-right\"></i> Adaptation support tool"
+msgstr "<i class = \"fa fa-leņķis-double-right\"> </i> adaptācijas atbalsta rīks"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1401
+#, 
+msgid "<i class=\"fa fa-angle-double-right\"></i> More events"
+msgstr "<i class = \"fa fa fa-leņķis-double-right\"> </i> vairāk notikumu"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1372
+#, 
+msgid "<i class=\"fa fa-angle-double-right\"></i> More news"
+msgstr "<i class = \"fa fa-leņķis-double-right\"> </i> vairāk ziņu"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1329
+#, 
+msgid "<i class=\"fa fa-angle-double-right\"></i> Read more"
+msgstr "<i class = \"fa fa-leņķis-double-right\"> </i> Lasīt vairāk"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:767
+#, 
+msgid "<i class=\"fa fa-angle-double-right\"></i> See complete database"
+msgstr "<i class = \"fa fa-leņķis-double-right\"> </i> skatīt pilnīgu datu bāzi"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1272
+#, 
+msgid "<i class=\"fa fa-angle-double-right\"></i> Urban Adaptation Support Tool"
+msgstr "<i class = \"fa fa-leņķis-double-right\"> </i> pilsētas adaptācijas atbalsta rīks"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:92
+#: ../../climateadapt/theme/climateadaptv2/page.html:98
+#, 
+msgid "<i class=\"fa fa-calendar\"></i> Events"
+msgstr "<i class = \"fa fa-calendar\"> </i> notikumi"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:98
+#: ../../climateadapt/theme/climateadaptv2/page.html:104
+#, 
+msgid "<i class=\"fa fa-envelope\"></i> Newsletter"
+msgstr "<i class = \"fa fa-invelope\"> </i> biļetens"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:86
+#: ../../climateadapt/theme/climateadaptv2/page.html:92
+#, 
+msgid "<i class=\"fa fa-newspaper-o\"></i> News"
+msgstr "<i class = \"fa fa-nespaper-o\"> </i> ziņas"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:75
+#: ../../climateadapt/theme/climateadaptv2/page.html:81
+#, 
+msgid "<i class=\"fa fa-question-circle\"></i> Help"
+msgstr "<i class = \"fa fa-Question-aplis\"> </i> palīdzība"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:434
+#, 
+msgid "<span class=\"d-icon ast-icon\"></span> Adaptation <br /> Support Tool"
+msgstr "<span class = \"D-ICON AST-ICON\"> < /span> adaptācija <br /> Atbalsta rīks"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:428
+#, 
+msgid "<span class=\"d-icon case-icon\"></span> Case <br /> Studies"
+msgstr "<span class = \"D-ICON CASE-ICON\"> < /span> gadījums <br /> Pētījumi"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:410
+#, 
+msgid "<span class=\"d-icon database-icon\"></span> Search the <br /> Database"
+msgstr "<span class = \"D-ICON datu bāze-icon\"> </span> Meklēt <br /> datu bāzē"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:422
+#, 
+msgid "<span class=\"d-icon eu-icon\"></span> Country <br /> Profiles"
+msgstr "<span class = \"d-icon eu-icon\"> < /span> valsts <br /> profili"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:416
+#, 
+msgid "<span class=\"d-icon policy-icon\"></span> EU Sector <br /> Policies"
+msgstr "<span class = \"D-ICON politika-icon\"> < /span> ES sektors <br /> politika"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:671
+#, 
+msgid "Adaptation options"
+msgstr "Adaptācijas iespējas"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:787
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:14
+#, 
+msgid "Agriculture"
+msgstr "Lauksaimniecība"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:794
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:21
+#, 
+msgid "Biodiversity"
+msgstr "Bioloģiskā daudzveidība"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:910
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:137
+#, 
+msgid "Biodiversity plays an important role in regulating the climate, thus making a key contribution to climate change mitigation and adaptation. At the same time, meeting mitigation targets coupled with ecosystem-based approaches is essential to avert biodiversity loss. Therefore it is impossible to address biodiversity loss without addressing climate change, but it is equally impossible to tackle climate change without addressing biodiversity loss."
+msgstr "Bioloģiskajai daudzveidībai ir liela nozīme klimata regulēšanā, tādējādi dodot galveno ieguldījumu klimata pārmaiņu mazināšanā un pielāgošanā. Tajā pašā laikā, lai novērstu bioloģiskās daudzveidības zaudēšanu, ir svarīgi ievērot mazināšanas mērķus kopā ar ekosistēmu balstītām pieejām. Tāpēc nav iespējams novērst bioloģiskās daudzveidības zaudējumus, nerisinot klimata izmaiņas, taču ir tikpat neiespējami risināt klimata izmaiņas, nerisinot bioloģiskās daudzveidības zaudējumus."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:801
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:28
+#, 
+msgid "Buildings"
+msgstr "Ēkas"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:925
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:152
+#, 
+msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
+msgstr "Ēkas var būt neaizsargātas pret klimata izmaiņām. Nākotnē var palielināties sabrukšanas risks, stāvokļa samazināšanās un ievērojama vērtības zaudēšana vairāk vētru, sniega vai grimšanas bojājuma, ūdens iejaukšanās rezultātā, iekštelpu klimata pasliktināšanās un samazināta ēkas kalpošanas laiks. Eiropas Komisijas mērķis ir palielināt infrastruktūras klimata noturību, ieskaitot ēkas. Jaunas un esošās ēkas ir jānovērtē, lai noturētos pret pašreizējiem riskiem un turpmākajām klimata izmaiņām, un attiecīgi tiek plānotas vai modernizētas. Galvenā politika, ko izmanto ēku noturības atbalstam, ir kohēzijas politika (saukta arī par reģionālo politiku)."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:680
+#, 
+msgid "Case studies"
+msgstr "Gadījumu izpēte"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1136
+#, 
+msgid "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href=\"https://climate-adapt.eea.europa.eu/repository/11090223.pdf\">criteria</a> and also in collaboration with the main stakeholders. See the <a href=\"../knowledge/tools/case-studies-climate-adapt\">Case Studies Page</a>."
+msgstr "Gadījumu izpēte ir klimata-adapt platformas flagmanis. Viņiem ir visaptveroša struktūra, kas aptver visus galvenos adaptācijas pasākumu ieviešanas cikla aspektus, un tie ir uzmanīgi un īpaši sagatavoti klimata adaptācijai organizācijā, kas ir iesaistīta ieviešanā ar EEA atbalstu, sekojot <A href kopumam = \"https://climate-adapt.eea.europa.eu/repository/11090223.pdf\"> kritēriji </a> un arī sadarbībā ar galvenajām ieinteresētajām personām. Skatīt <a href=\"../knowledge/tools/case-studies-climate-adapt\"> gadījumu izpētes lapa </a>."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1431
+#, 
+msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
+msgstr "Pārbaudiet <a href=\"../newsletter\"> Eiropas klimata adaptācijas biļetenu </a> un reģistrējieties, lai to saņemtu savā e-pastā:"
+
+#: ../../climateadapt/mayorsadapt/views.py:78
+#, 
+msgid "Check-out created"
+msgstr "Izrakstīšanās izrakstīšanās"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:985
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:212
+#, 
+msgid "Climate change affects the energy sector in multiple ways, ranging from changes in heating and cooling demand; to impacts on energy supply conditions – for example decreased water availability for hydropower during prolonged droughts and reduced availability of cooling water affecting the efficiency of power plants. Furthermore, energy infrastructure can be more exposed to damages by changing climate conditions. The European Commission in general aims to increase the climate resilience of infrastructure including energy by providing strategical frameworks."
+msgstr "Klimata izmaiņas ietekmē enerģijas nozari vairākos veidos, sākot no apkures un dzesēšanas pieprasījuma izmaiņām; Ietekme uz enerģijas padeves apstākļiem - piemēram, samazināta ūdens pieejamība hidroenerģijai ilgstošu sausuma laikā un samazināta dzesēšanas ūdens pieejamība, kas ietekmē spēkstaciju efektivitāti. Turklāt enerģijas infrastruktūra var būt vairāk pakļauta bojājumiem, mainot klimata apstākļus. Eiropas Komisijas kopumā mērķis ir palielināt infrastruktūras klimata noturību, ieskaitot enerģiju, nodrošinot stratēģisko ietvaru."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:895
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:122
+#, 
+msgid "Climate change has complex effects on the bio-physical processes that underpin agricultural systems, with both negative and positive consequences in different EU regions. Rising atmospheric CO2 concentration, higher temperatures, changes in precipitation patterns and in frequency of extreme events both affect the natural environment as well as the quantity, quality and stability of food production. Climatic variations impact on water resources, soils, pests and diseases, leading to significant changes in agriculture and livestock production."
+msgstr "Klimata izmaiņām ir sarežģīta ietekme uz biofiziskajiem procesiem, kas ir lauksaimniecības sistēmu pamatā, gan ar negatīvām, gan pozitīvām sekām dažādos ES reģionos. Augošā atmosfēras CO2 koncentrācija, augstāka temperatūra, nokrišņu modeļa izmaiņas un ārkārtēju notikumu biežums ietekmē gan dabisko vidi, gan pārtikas ražošanas daudzumu, kvalitāti un stabilitāti. Klimatiskās variācijas ietekmē ūdens resursus, augsni, kaitēkļus un slimības, izraisot ievērojamas izmaiņas lauksaimniecībā un lopkopībā."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1043
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:270
+#, 
+msgid "Climate change is expected to have severe impacts on the marine environment. Increase in water temperatures will contribute to a restructuring of marine ecosystems with implications for ocean circulation, biogeochemical cycling and marine biodiversity. Ocean acidification will affect the ability of some calcium carbonate-secreting species (as molluscs, planktons and corals) to produce their shells or skeletons. Warmer and more acidic seawater will therefore negatively affect fishery and aquaculture."
+msgstr "Paredzams, ka klimata pārmaiņām būs smaga ietekme uz jūras vidi. Ūdens temperatūras paaugstināšanās veicinās jūras ekosistēmu pārstrukturēšanu, kas ietekmē okeāna cirkulāciju, bioģeoķīmisko riteņbraukšanu un jūras bioloģisko daudzveidību. Okeāna paskābināšana ietekmēs dažu kalcija karbonātu izdalošo sugu (kā mīkstmīlis, planktonus un koraļļus) spēju ražot to čaumalas vai skeletus. Tāpēc siltāks un skābāks jūras ūdens negatīvi ietekmēs zvejniecību un akvakultūru."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1029
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:256
+#, 
+msgid "Climate change will generate new health risks and amplify current health problems. Both direct and indirect effects on human, plant and animal health are expected from climate change. Direct effects result from changes in the intensity and frequency of extreme weather events like heatwaves and floods. Indirect effects can be felt through changes in the incidence of diseases transmitted by insects (i.e. vector borne diseases caused by mosquitoes and ticks), rodents, or changes in water, food and air quality. The European Commission's EU strategy on adaptation to climate change is accompanied by a Staff Working Document."
+msgstr "Klimata izmaiņas radīs jaunus veselības riskus un pastiprinās pašreizējās veselības problēmas. Gan tieša, gan netieša ietekme uz cilvēku, augu un dzīvnieku veselību ir sagaidāma no klimata izmaiņām. Tieša ietekme rodas no ekstrēmu laika apstākļu intensitātes un biežuma izmaiņām, piemēram, karstuma viļņiem un plūdiem. Netiešos efektus var izjust, mainot kukaiņu pārnēsāto slimību biežumu (t.i., vektoru izraisītas slimības, ko izraisa odi un ērces), grauzēji vai ūdens, pārtikas un gaisa kvalitātes izmaiņas. Eiropas Komisijas ES stratēģiju par pielāgošanos klimata pārmaiņām ir pievienota personāla darba dokuments."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1133
+#, 
+msgid "Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events."
+msgstr "Klimata Adapt gadījumu pētījumi demonstrē iniciatīvas, kuras jau tiek veiktas Eiropā, lai pielāgotos klimata izmaiņām un palielinātu noturību pret ārkārtējiem laika apstākļiem un lēnām sākumiem."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:808
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:35
+#, 
+msgid "Coastal areas"
+msgstr "Piekrastes rajoni"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:815
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:42
+#, 
+msgid "Disaster risk <br /> reduction"
+msgstr "Katastrofu risks <br /> samazinājums"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:954
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:181
+#, 
+msgid "Disaster risk reduction"
+msgstr "Katastrofu riska samazināšana"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:822
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:49
+#, 
+msgid "Ecosystem-based approaches"
+msgstr "Uz ekosistēmu balstītas pieejas"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:970
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:197
+#, 
+msgid "Ecosystem-based initiatives for climate change adaptation and disaster risk reduction increase resilience and decrease vulnerability of both people and ecosystems, empower people and provide jobs and business opportunities, make economic sense, are ready for use and easily accessible, including for the rural and urban poor. They provide multiple benefits and contribute to achieving climate change adaptation objectives but also several multi-lateral environmental agreements and sectoral policy objectives (e.g. haltering biodiversity loss, water quality or agricultural and forest management)."
+msgstr "Ekosistēmas balstītas iniciatīvas klimata pārmaiņu pielāgošanai un katastrofu riska samazināšanai Palielina gan cilvēku, gan ekosistēmu neaizsargātību un samazina cilvēku neaizsargātību, dodiet iespēju cilvēkiem un nodrošināt darba vietas un biznesa iespējas, ir ekonomiska jēga, ir gatavas lietošanai un viegli pieejamām, ieskaitot lauku un pilsētu nabadzīgs. Tie sniedz vairākas priekšrocības un veicina klimata pārmaiņu pielāgošanas mērķu sasniegšanu, kā arī vairākus daudzpusējus vides nolīgumus un nozaru politikas mērķus (piemēram, bioloģiskās daudzveidības zaudējumu, ūdens kvalitātes vai lauksaimniecības un meža apsaimniekošanas pārtraukšana)."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:829
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:56
+#, 
+msgid "Energy"
+msgstr "Enerģija"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1344
+#, 
+msgid "Events"
+msgstr "Notikumi"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1000
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:227
+#, 
+msgid "Extreme weather events in recent years have increased the urgency to mainstream climate change adaptation into the different EU policy fields. There are few specific EU activities to mainstream climate change adaptation into policies for financial and insurance sectors. However many European policies related to natural disasters (see Disaster risk reduction) are very relevant to the financial and insurance sector, as they may help to prevent significant losses and financial disasters. The European Commission has also committed itself to increasing financing of climate-related activities by ensuring that at least 20% of the European budget is climate-related expenditure."
+msgstr "Ekstrēmi laika apstākļi pēdējos gados ir palielinājuši steidzamību, lai vispārizglītojošu klimata pārmaiņu pielāgošanos dažādās ES politikas jomās. Ir maz īpašu ES darbību, lai mainītu klimata pārmaiņu pielāgošanos finanšu un apdrošināšanas nozares politikām. Tomēr daudzas Eiropas politikas, kas saistītas ar dabas katastrofām (skatīt katastrofu riska samazināšanu), ir ļoti būtiskas finanšu un apdrošināšanas nozarei, jo tās var palīdzēt novērst ievērojamus zaudējumus un finansiālas katastrofas. Eiropas Komisija ir arī apņēmusies palielināt ar klimatu saistīto darbību finansēšanu, nodrošinot, ka vismaz 20% no Eiropas budžeta ir ar klimatu saistīti izdevumi."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:836
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:63
+#, 
+msgid "Financial"
+msgstr "Finansiāls"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1308
+#, 
+msgid "Find out how to contribute different types of information to Climate-ADAPT"
+msgstr "Uzziniet, kā sniegt dažādus informācijas veidus klimata adaptēt"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1258
+#, 
+msgid "For more informations visit:"
+msgstr "Lai iegūtu vairāk informācijas, apmeklējiet:"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1093
+#, 
+msgid "For more informations visit: <a href=\"/cca/eu-adaptation-policy/sector-policies\"> <i class=\"fa fa-angle-double-right\"></i> EU Sector Policies </a>"
+msgstr "Lai iegūtu vairāk informācijas, apmeklējiet: <a href=\"/cca/eu-adaptation-policy/sector-policies\"> <i class = \"fa fa-lange-double-right\"> </i> eu sektora politika </a>"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1271
+#, 
+msgid "For urban areas guidance visit:"
+msgstr "Pilsētu teritoriju vadības apmeklējumam:"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:843
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:70
+#, 
+msgid "Forestry"
+msgstr "Mežniecība"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:514
+#, 
+msgid "Go to the European Climate Data Explorer"
+msgstr "Dodieties pie Eiropas klimata datu pārlūkprogrammas"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:531
+#, 
+msgid "Go to the European Climate and Health Observatory"
+msgstr "Dodieties uz Eiropas klimata un veselības observatoriju"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:689
+#, 
+msgid "Guidance"
+msgstr "Vadība"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:850
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:77
+#, 
+msgid "Health"
+msgstr "Veselība"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1071
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:298
+#, 
+msgid "In Europe, nearly 73% of the population live in urban areas and this is projected to increase to over 80% by 2050. Climate change is likely to influence almost all components of cities and towns – their environment, economy and society. This raises new, complex challenges for urban planning and management. Climate change impacts on the hubs of Europe's economic activity, social life, culture and innovation have repercussions far beyond their municipal borders."
+msgstr "Eiropā gandrīz 73% iedzīvotāju dzīvo pilsētās, un tiek prognozēts, ka līdz 2050. gadam tas palielināsies līdz vairāk nekā 80%. Klimata pārmaiņas, visticamāk, ietekmēs gandrīz visus pilsētu un pilsētu komponentus - viņu vidi, ekonomiku un sabiedrību. Tas rada jaunus, sarežģītus izaicinājumus pilsētplānošanai un vadībai. Klimata pārmaiņu ietekme uz Eiropas ekonomiskās aktivitātes, sociālās dzīves, kultūras un inovāciju mezgliem ir sekas tālu ārpus viņu pašvaldību robežām."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:698
+#, 
+msgid "Indicators"
+msgstr "Indikatori"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:707
+#, 
+msgid "Information portals"
+msgstr "Informācijas portāli"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:857
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:84
+#, 
+msgid "Marine <br /> &amp; fisheries"
+msgstr "Marine <br /> & amp; zvejniecība"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1042
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:269
+#, 
+msgid "Marine and fisheries"
+msgstr "Jūras un zvejniecības"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1341
+#, 
+msgid "News"
+msgstr "Jaunumi"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1417
+#, 
+msgid "Newsletter"
+msgstr "Biļetens"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:725
+#, 
+msgid "Organisations"
+msgstr "Organizācijas"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:955
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:182
+#, 
+msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
+msgstr "Dažos pēdējos gados Eiropa ir piedzīvojusi visa veida dabas katastrofas: smagus plūdus, sausumus un mežu ugunsgrēkus ar postošu ietekmi uz cilvēku dzīvi, Eiropas ekonomiku un vidi. Pēdējā desmitgadē Eiropas Komisija pieņēma vairākas stratēģijas un darbības, lai tiktu galā ar katastrofu riska samazināšanu, piemēram, plūdu direktīvu un tās ieviešanu (grafiks), ES darbība par ūdens trūkumu un sausumu, zaļo papīru par apdrošināšanu Dabisko un cilvēku radīto katastrofu konteksts."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:661
+#, 
+msgid "Please check our <a href=\"/help/guidance\">Guidance to search function</a> for more help on how to search the database."
+msgstr "Lūdzu, pārbaudiet mūsu <a href=\"/help/guidance\"> vadlīnijas meklēšanas funkcijai </a>, lai iegūtu lielāku palīdzību, kā meklēt datu bāzi."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:743
+#, 
+msgid "Publications and reports"
+msgstr "Publikācijas un ziņojumi"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1420
+#, 
+msgid "RSS feed"
+msgstr "RSS barība"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:752
+#, 
+msgid "Research and knowledge projects"
+msgstr "Pētniecības un zināšanu projekti"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:940
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:167
+#, 
+msgid "Sea level rise can cause flooding, coastal erosion and the loss of low-lying coastal systems. It will also increase the risk of storm surges and the likelihood of landward intrusion of saltwater and may endanger coastal ecosystems. Expected rises in water temperatures and ocean acidification will contribute to a restructuring of coastal ecosystems; with implications for ocean circulation and biogeochemical cycling."
+msgstr "Jūras līmeņa paaugstināšanās var izraisīt plūdus, piekrastes eroziju un zemu piekrastes sistēmu zaudēšanu. Tas arī palielinās vētras pieauguma risku un sālsūdens iejaukšanās iespējamību un var apdraudēt piekrastes ekosistēmas. Paredzamie ūdens temperatūras paaugstināšanās un okeāna paskābināšanās veicinās piekrastes ekosistēmu pārstrukturēšanu; Ietekme uz okeāna cirkulāciju un bioģeoķīmisko riteņbraukšanu."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1151
+#, 
+msgid "See how Europe is adapting to climate change: <a class=\"ca-booklet-link\" href=\"../about/climate-adapt-10-case-studies-online.pdf\"> <i class=\"fa fa-angle-double-right\"></i> Case studies booklet </a>"
+msgstr "Skatiet, kā Eiropa pielāgojas klimata izmaiņām: <a class=\"ca-booklet-link\" href=\"../about/climate-adapt-10-case-studies-online.pdf\"> <i class = \"fa fa -Alfle-Double-Right \"> </i> Gadījumu izpētes buklets </a>"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1307
+#, 
+msgid "Share <span>your information</span>"
+msgstr "Dalīties ar <span> savu informāciju </span>"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1433
+#, 
+msgid "Sign me up!"
+msgstr "Pieraksti mani!"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1450
+#, 
+msgid "Subscribe"
+msgstr "Abonēt"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1448
+#, 
+msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
+msgstr "Abonējiet mūsu <strong> RSS plūsmu </strong> <br /> un sekojiet līdzi!"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1322
+#, 
+msgid "The Covenant of Mayors initiative aims to engage and support cities and towns to commit to reaching the EU climate mitigation and adaptation targets. Signatory cities pledge action to support implementation of the EU 40% greenhouse gas-reduction target by 2030 ..."
+msgstr "Mēru iniciatīvas derības mērķis ir iesaistīt un atbalstīt pilsētas un pilsētas, lai apņemtu sasniegt ES klimata mazināšanas un adaptācijas mērķus. Parakstījušās pilsētas apņemas rīkoties, lai atbalstītu ES 40% siltumnīcefekta gāzu samazināšanas mērķa ieviešanu līdz 2030. gadam ..."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:510
+#, 
+msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
+msgstr "Eiropas klimata datu pārlūkprogramma nodrošina interaktīvu piekļuvi daudziem Copernicus klimata pārmaiņu pakalpojuma klimata indeksiem, lai atbalstītu klimata pārmaiņu adaptāciju."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:526
+#, 
+msgid "The European Climate and Health Observatory provides access to a wide range of relevant publications, tools, websites and other resources related to climate change and health."
+msgstr "Eiropas klimata un veselības observatorija nodrošina piekļuvi plašam attiecīgo publikāciju, rīku, vietņu un citiem resursiem, kas saistīti ar klimata izmaiņām un veselību."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:659
+#, 
+msgid "The database contains quality checked information and is annotated by climate adaptation experts with keywords."
+msgstr "Datu bāzē ir kvalitatīva pārbaudīta informācija, un to anotē klimata adaptācijas eksperti ar atslēgvārdiem."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1057
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:284
+#, 
+msgid "The need for adapting the transport system to the impact of climate change has been highlighted since the European Commission's Adaptation White Paper (COM (2009)148). Transport adaptation is addressed through a combination of European transport, climate change and research policies. The European Union promotes best practices, mainstreaming adaptation within its transport infrastructure development programmes, and provides guidance, e.g. by developing adequate standards for construction. Action is focused on transport infrastructure, and particularly on the Trans-European Transport Network (TEN-T)."
+msgstr "Kopš Eiropas Komisijas adaptācijas Baltā grāmatas (COM (2009) 148) ir uzsvērta nepieciešamība pielāgot transporta sistēmu klimata pārmaiņu ietekmei. Transporta adaptācija tiek apskatīta, apvienojot Eiropas transporta, klimata pārmaiņas un pētniecības politiku. Eiropas Savienība veicina labāko praksi, pastāvīgu pielāgošanos savās transporta infrastruktūras attīstības programmās un sniedz norādes, piem. Izstrādājot atbilstošus celtniecības standartus. Darbība ir vērsta uz transporta infrastruktūru, jo īpaši uz Eiropas transporta tīklu (TEN-T)."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1015
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:242
+#, 
+msgid "The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector."
+msgstr "Straujais klimata pārmaiņu līmenis var pārvarēt meža ekosistēmu dabiskās spējas pielāgoties. Tas rada paaugstinātu traucējumu risku vētru, uguns, kaitēkļu un slimību dēļ, kas ietekmē meža augšanu un ražošanu. Tiks ietekmēta mežsaimniecības ekonomiskā dzīvotspēja, galvenokārt Eiropas dienvidu apgabalos, kā arī mežu spējas sniegt vides pakalpojumus, ieskaitot izmaiņas oglekļa izlietnes funkcijā. 2013. gadā Komisija pieņēma jaunu ES meža stratēģiju, kas reaģē uz jauniem izaicinājumiem, ar kuriem saskaras meži un mežu nozare."
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:761
+#, 
+msgid "Tools"
+msgstr "Instrumenti"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:864
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:91
+#, 
+msgid "Transport"
+msgstr "Transportēt"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:871
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:98
+#, 
+msgid "Urban"
+msgstr "Pilsētas"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:734
+#, 
+msgid "Videos"
+msgstr "Video"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:878
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:105
+#, 
+msgid "Water <br /> management"
+msgstr "Ūdens <br /> pārvaldība"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1084
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:311
+#, 
+msgid "Water management"
+msgstr "Ūdens pārvaldība"
+
+#: ../../climateadapt/theme/climateadaptv2/index.html:1085
+#: ../../climateadapt/theme/climateadaptv2/tab-policies-rule.html:312
+#, 
+msgid "Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe."
+msgstr "Ūdens resursus tieši ietekmē klimata izmaiņas, un šo resursu pārvaldība ietekmē ekosistēmu, sociāli ekonomisko darbību un cilvēku veselības neaizsargātību. Paredzams, ka arī ūdens apsaimniekošanai būs aizvien galvenā loma adaptācijā. Tiek prognozēts, ka klimata pārmaiņas izraisīs lielas izmaiņas ūdens pieejamībā visā Eiropā, palielinoties ūdens trūkumam un sausumiem galvenokārt Dienvideiropā un palielinot plūdu risku visā Eiropā."
+
