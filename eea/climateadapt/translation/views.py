@@ -39,72 +39,6 @@ MARINE_PASS = env('MARINE_PASS', '')
 SERVICE_URL = 'https://webgate.ec.europa.eu/etranslation/si/translate'
 
 
-def save_html_fields(form, file):
-    """ Get the translated html file, extract the values for each field and
-        update the related translation object.
-    """
-    site = portal.getSite()
-    obj_path = form.get("external-reference")
-
-    en_obj = site.unrestrictedTraverse(obj_path)
-    force_unlock(en_obj)
-
-    form.pop('format')
-    form.pop('request-id')
-    form.pop('external-reference')
-    source_lang = form.get('source_lang')
-    form.pop('source_lang')
-    target_lang = form.get('target-language')
-    form.pop('target-language')
-    # logger.info("Translate %s to %s", source_lang, target_lang)
-
-    prefix = '/cca/' + target_lang.lower() + '/'
-    trans_obj_path = obj_path.replace('/cca/en/', prefix)
-    trans_obj = site.unrestrictedTraverse(trans_obj_path)
-    force_unlock(trans_obj)
-
-    if len(form.keys()) == 0:
-        logger.info("Empty form")  # TODO: Check why?
-        return
-
-    file.seek(0)
-    b64_str = file.read()
-    html_file = base64.decodestring(b64_str).decode("latin-1")
-    # logger.info(html_file)
-    soup = BeautifulSoup(html_file, "html.parser")
-
-    html_fields = soup.find_all(
-            'div', attrs={"class": "cca-translation-section"})
-
-    for field in html_fields:
-        field_name = field['data-field']
-        html_value = field.decode_contents()
-        encoded_text = html_value.encode('latin-1')
-        setattr(trans_obj, field_name, RichTextValue(encoded_text))
-        trans_obj._p_changed = True
-        trans_obj.reindexObject(idxs=[field_name])
-
-    tiles = soup.find_all(
-            'div', attrs={"class": "cca-translation-tile"})
-
-    for field in tiles:
-        field_name = field['data-field']
-        tile_id = field['data-tile-id']
-        html_value = field.decode_contents()
-        encoded_text = html_value.encode('latin-1')
-        # tile = trans_obj.get_tile(tile_id)
-        tile = trans_obj.__annotations__.get(
-            'plone.tiles.data.' + tile_id, None)
-        if tile is not None:
-            update = tile.data
-            update['text'] = RichTextValue(encoded_text)
-            tile.data.update(update)
-            trans_obj.reindexObject()
-        else:
-            logger.info("Cannot find tile")
-    logger.info("Html translation saved for %s", trans_obj.absolute_url())
-
-
 class TranslationCallback(BrowserView):
     """ This view is called by the EC translation service.
     Saves the translation in Annotations (or directly in the object in case
@@ -115,7 +49,7 @@ class TranslationCallback(BrowserView):
         form = self.request.form
         if form.get('format', None) == 'html':
             file = self.request.stdin
-            save_html_fields(form, file)
+            self.save_html_fields(form, file)
             logger.info('Translate html')
             return
 
@@ -151,6 +85,71 @@ class TranslationCallback(BrowserView):
 
         return '<a href="/@@translate-key?key=' + \
             original + '">available translations</a>'
+
+    def save_html_fields(self, form, file):
+        """ Get the translated html file, extract the values for each field and
+            update the related translation object.
+        """
+        site = portal.getSite()
+        obj_path = form.get("external-reference")
+
+        en_obj = site.unrestrictedTraverse(obj_path)
+        force_unlock(en_obj)
+
+        form.pop('format')
+        form.pop('request-id')
+        form.pop('external-reference')
+        source_lang = form.get('source_lang')
+        form.pop('source_lang')
+        target_lang = form.get('target-language')
+        form.pop('target-language')
+        # logger.info("Translate %s to %s", source_lang, target_lang)
+
+        prefix = '/cca/' + target_lang.lower() + '/'
+        trans_obj_path = obj_path.replace('/cca/en/', prefix)
+        trans_obj = site.unrestrictedTraverse(trans_obj_path)
+        force_unlock(trans_obj)
+
+        if len(form.keys()) == 0:
+            logger.info("Empty form")  # TODO: Check why?
+            return
+
+        file.seek(0)
+        b64_str = file.read()
+        html_file = base64.decodestring(b64_str).decode("latin-1")
+        # logger.info(html_file)
+        soup = BeautifulSoup(html_file, "html.parser")
+
+        html_fields = soup.find_all(
+                'div', attrs={"class": "cca-translation-section"})
+
+        for field in html_fields:
+            field_name = field['data-field']
+            html_value = field.decode_contents()
+            encoded_text = html_value.encode('latin-1')
+            setattr(trans_obj, field_name, RichTextValue(encoded_text))
+            trans_obj._p_changed = True
+            trans_obj.reindexObject(idxs=[field_name])
+
+        tiles = soup.find_all(
+                'div', attrs={"class": "cca-translation-tile"})
+
+        for field in tiles:
+            field_name = field['data-field']
+            tile_id = field['data-tile-id']
+            html_value = field.decode_contents()
+            encoded_text = html_value.encode('latin-1')
+            # tile = trans_obj.get_tile(tile_id)
+            tile = trans_obj.__annotations__.get(
+                'plone.tiles.data.' + tile_id, None)
+            if tile is not None:
+                update = tile.data
+                update['text'] = RichTextValue(encoded_text)
+                tile.data.update(update)
+                trans_obj.reindexObject()
+            else:
+                logger.info("Cannot find tile")
+        logger.info("Html translation saved for %s", trans_obj.absolute_url())
 
 
 class TranslationList(BrowserView):
