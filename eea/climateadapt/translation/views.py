@@ -136,7 +136,7 @@ class TranslationCallback(BrowserView):
                 update['text'] = RichTextValue(encoded_text)
                 # tile.data.update(update)
                 trans_obj.__annotations__[tile_annot_id] = update
-                trans_obj.reindexObject()
+                # trans_obj.reindexObject()
             else:
                 logger.info("Cannot find tile")
         logger.info("Html translation saved for %s", trans_obj.absolute_url())
