@@ -339,16 +339,21 @@ def initiate_translations(site, skip=0, version=1):
 
 def translations_status(site):
     catalog = site.portal_catalog
-    res = catalog.searchResults(path='/cca/en')
+    brains = catalog.searchResults(path='/cca/en')
 
     versions = defaultdict(int)
+    template = "<p>{} at version {}</p>"
 
-    for brain in res:
+    for brain in brains:
         obj = brain.getObject()
         obj_version = int(getattr(obj, 'version', 0))
         versions[obj_version] += 1
 
-    return versions
+    res = []
+    for k, v in versions.items():
+        res.append(template.format(v, k))
+
+    return "".join(res)
 
 def translations_status_by_version(site, version=0):
     version = int(version)
