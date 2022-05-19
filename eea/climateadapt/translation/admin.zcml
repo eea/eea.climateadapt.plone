@@ -1,0 +1,38 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="eea.climateadapt"
+    >
+
+  <browser:page
+      name="admin-prepare-translation"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".admin.PrepareTranslation"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="admin-run-translation"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".admin.RunTranslation"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="admin-some-translated"
+      for="*"
+      class=".admin.SomeTranslated"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="admin-translate-this"
+      for="*"
+      class=".admin.RunTranslationSingleItem"
+      permission="cmf.ManagePortal"
+      />
+
+
+</configure>

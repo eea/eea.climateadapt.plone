@@ -7,34 +7,6 @@
     >
 
   <browser:page
-      name="admin-prepare-translation"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".admin.PrepareTranslation"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
-      name="admin-run-translation"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".admin.RunTranslation"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
-      name="admin-some-translated"
-      for="*"
-      class=".admin.SomeTranslated"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
-      name="admin-translate-this"
-      for="*"
-      class=".admin.RunTranslationSingleItem"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
       name="force_unlock"
       for="*"
       class=".admin.ForceUnlock"
