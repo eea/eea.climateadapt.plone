@@ -13,36 +13,50 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
 
+#, 
 msgid "Adaptation options"
-msgstr ""
+msgstr "Adaptacijos parinktys"
 
+#, 
 msgid "Case studies"
-msgstr ""
+msgstr "Atvejų tyrimai"
 
+#, 
 msgid "Countries:"
-msgstr ""
+msgstr "Šalys:"
 
+#, 
 msgid "Guidance"
-msgstr ""
+msgstr "Gairės"
 
+#, 
 msgid "Indicators"
-msgstr ""
+msgstr "Rodikliai"
 
+#, 
 msgid "Information portals"
-msgstr ""
+msgstr "Informacijos portalai"
 
+#, 
 msgid "Organisations"
-msgstr ""
+msgstr "Organizacijos"
 
+#, 
 msgid "Publication and reports"
-msgstr ""
+msgstr "Leidinys ir ataskaitos"
 
+#, 
 msgid "Research and knowledge projects"
-msgstr ""
+msgstr "Tyrimų ir žinių projektai"
 
+#, 
 msgid "Tools"
-msgstr ""
+msgstr "Įrankiai"
 
+#, 
 msgid "Videos"
-msgstr ""
+msgstr "Vaizdo įrašai"
+

@@ -60,11 +60,11 @@
                 <form>
                   <input type="text"
                          name="SearchableText"
-                         i18n-placeholder
+                         i18n:attributes="placeholder"
                          placeholder="Search Climate-ADAPT"/>
                   <div class="line"></div>
                   <button class="search-submit"
-                          aria-label="Search on Climate-ADAPT">
+                          aria-label="Search on Climate-ADAPT" i18n:translate="">
                     <i class="fa fa-search"></i>
                   </button>
                 </form>
@@ -646,7 +646,7 @@
             <div class="tab-pane fade" id="t-database">
     
             <form class="database-search-box" method="GET" action="/data-and-downloads/">
-              <input type="text" placeholder="type here ..."
+              <input type="text" i18n:attributes="placeholder" placeholder="type here ..."
               name="q" />
               <button class="search-submit"
                       type="submit"

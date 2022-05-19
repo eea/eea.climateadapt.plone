@@ -13,36 +13,50 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
 
+#, 
 msgid "Adaptation options"
-msgstr ""
+msgstr "Adaptācijas iespējas"
 
+#, 
 msgid "Case studies"
-msgstr ""
+msgstr "Gadījumu izpēte"
 
+#, 
 msgid "Countries:"
-msgstr ""
+msgstr "Valstis:"
 
+#, 
 msgid "Guidance"
-msgstr ""
+msgstr "Vadība"
 
+#, 
 msgid "Indicators"
-msgstr ""
+msgstr "Indikatori"
 
+#, 
 msgid "Information portals"
-msgstr ""
+msgstr "Informācijas portāli"
 
+#, 
 msgid "Organisations"
-msgstr ""
+msgstr "Organizācijas"
 
+#, 
 msgid "Publication and reports"
-msgstr ""
+msgstr "Publicēšana un pārskati"
 
+#, 
 msgid "Research and knowledge projects"
-msgstr ""
+msgstr "Pētniecības un zināšanu projekti"
 
+#, 
 msgid "Tools"
-msgstr ""
+msgstr "Instrumenti"
 
+#, 
 msgid "Videos"
-msgstr ""
+msgstr "Video"
+

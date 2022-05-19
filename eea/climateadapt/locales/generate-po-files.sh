@@ -8,6 +8,7 @@ declare -a list=(
               "eea.climateadapt"
               "eea.climateadapt.menu"
               "eea.climateadapt.frontpage"
+              "eea.climateadapt.observatory.frontpage"
               )
 
 length=${#list[@]}

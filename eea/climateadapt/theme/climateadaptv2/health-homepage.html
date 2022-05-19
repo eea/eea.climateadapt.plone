@@ -114,7 +114,13 @@
     </div>
 
     <div class="health-top-wrapper">
-      <div class="health-fp-image">
+      <div class="health-fp-image" xmlns="http://www.w3.org/1999/xhtml"
+        xml:lang="en"
+        xmlns:tal="http://xml.zope.org/namespaces/tal"
+        xmlns:metal="http://xml.zope.org/namespaces/metal"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        lang="en"
+        i18n:domain="eea.climateadapt.observatory.frontpage">
         <div class="health-image-wrapper">
           <div
             class="health-lead-image"
@@ -123,8 +129,8 @@
       
           <div class="image-text-wrapper">
             <div class="fp-image-content">
-              <h1>European Climate <br /> and Health Observatory</h1>
-              <p>We provide easy access to a wide range of relevant publications,
+              <h1 i18n:translate="">European Climate <br /> and Health Observatory</h1>
+              <p i18n:translate="">We provide easy access to a wide range of relevant publications,
                  tools, websites and other resources related to climate change and
                  human health.</p>
               <!-- <a href="/observatory/About/about-the-observatory"
@@ -145,7 +151,7 @@
         xmlns:metal="http://xml.zope.org/namespaces/metal"
         xmlns:i18n="http://xml.zope.org/namespaces/i18n"
         lang="en"
-        i18n:domain="eea.climateadapt">
+        i18n:domain="eea.climateadapt.observatory.frontpage">
         <h5 class="health_title" i18n:translate="">Discover the main topics and tools of the observatory</h5>
         <div class="row">
           <div class="column col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -261,17 +267,23 @@
             <!-- <div id="page-body"></div> -->
           </div>
           <div class="col-lg-6 col-sm-12 col-xs-12 health-right">
-            <div class="main-area">
+            <div class="main-area" xmlns="http://www.w3.org/1999/xhtml"
+              xml:lang="en"
+              xmlns:tal="http://xml.zope.org/namespaces/tal"
+              xmlns:metal="http://xml.zope.org/namespaces/metal"
+              xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+              lang="en"
+              i18n:domain="eea.climateadapt.observatory.frontpage">
               <div class="row">
                 <div class="main-health-box col-lg-6 col-sm-6 col-xs-12">
                   <div class="list_news_events">
-                    <h4>News/Events</h4>
+                    <h4 i18n:translate="">News/Events</h4>
                     <ul class="nav nav-tabs">
                       <li class="active">
-                        <a href="#news-tab">News</a>
+                        <a href="#news-tab" i18n:translate="">News</a>
                       </li>
                       <li>
-                        <a href="#events-tab">Events</a>
+                        <a href="#events-tab" i18n:translate="">Events</a>
                       </li>
                     </ul>
             
@@ -324,8 +336,8 @@
                              width="95"
                              height="110"
                              />
-                        <h5 class="info-title">Share <br /> your information</h5>
-                        <p>Find out how to contribute to the Observatory via Climate-ADAPT</p>
+                        <h5 class="info-title" i18n:translate="">Share <br /> your information</h5>
+                        <p i18n:translate="">Find out how to contribute to the Observatory via Climate-ADAPT</p>
                       </div>
                     </a>
                   </div>
@@ -347,28 +359,35 @@
       </div>
     </div>
 
-    <footer>
+    <footer xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="eea.climateadapt.observatory.frontpage">
     
       <div class="footer-nav-wrapper">
         <div class="content-container">
           <nav class="footer-nav" role="navigation">
             <ul>
               <li class="footer-nav-item">
-                <a href="/observatory" class="footer-nav-link">Home</a>
+                <a href="/observatory" class="footer-nav-link" i18n:translate="">Home</a>
               </li>
               <li class="footer-nav-item">
                 <a
                 class="footer-nav-link"
                 href="mailto:climate.adapt@eea.europa.eu?subject=Information for the European Climate and Health Observatory"
+                i18n:translate=""
                 >
                   Contact
                 </a>
               </li>
               <li class="footer-nav-item">
-                <a href="/observatory/sitemap" class="footer-nav-link">SITE MAP</a>
+                <a href="/observatory/sitemap" class="footer-nav-link" i18n:translate="">SITE MAP</a>
               </li>
               <li class="footer-nav-item">
-                <a href="/privacy-and-legal-notice" class="footer-nav-link">Privacy and Legal Notice</a>
+                <a href="/privacy-and-legal-notice" class="footer-nav-link" i18n:translate="">Privacy and Legal Notice</a>
               </li>
               <li class="footer-nav-item align-right footer-login">
                   <!-- <a href="/login" id="personaltools-login" rel="#pb_1" class="footer-nav-link link-overlay" style="cursor: pointer;"><i class="fa fa-user"></i> Log in</a> -->
@@ -406,7 +425,7 @@
       <div class="content-container">
         <div class="row footer-content">
           <div class="column col-md-4 col-xs-12">
-            <p class="site-info">This <strong>European Climate and Health
+            <p class="site-info" i18n:translate="">This <strong>European Climate and Health
             Observatory</strong> is
             a partnership between the European Commission,
             the European Environment Agency and several other organisations.</p>

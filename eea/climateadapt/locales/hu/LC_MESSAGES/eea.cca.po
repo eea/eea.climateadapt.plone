@@ -13,36 +13,50 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
 
+#, 
 msgid "Adaptation options"
-msgstr ""
+msgstr "Adaptációs lehetőségek"
 
+#, 
 msgid "Case studies"
-msgstr ""
+msgstr "Esettanulmányok"
 
+#, 
 msgid "Countries:"
-msgstr ""
+msgstr "Országok:"
 
+#, 
 msgid "Guidance"
-msgstr ""
+msgstr "Tanácsadás"
 
+#, 
 msgid "Indicators"
-msgstr ""
+msgstr "Indikátorok"
 
+#, 
 msgid "Information portals"
-msgstr ""
+msgstr "Információs portálok"
 
+#, 
 msgid "Organisations"
-msgstr ""
+msgstr "Szervezetek"
 
+#, 
 msgid "Publication and reports"
-msgstr ""
+msgstr "Publikáció és jelentések"
 
+#, 
 msgid "Research and knowledge projects"
-msgstr ""
+msgstr "Kutatási és tudásprojektek"
 
+#, 
 msgid "Tools"
-msgstr ""
+msgstr "Szerszámok"
 
+#, 
 msgid "Videos"
-msgstr ""
+msgstr "Videó"
+

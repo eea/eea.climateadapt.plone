@@ -13,36 +13,50 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
 
+#, 
 msgid "Adaptation options"
-msgstr ""
+msgstr "Параметры адаптации"
 
+#, 
 msgid "Case studies"
-msgstr ""
+msgstr "Тематические исследования"
 
+#, 
 msgid "Countries:"
-msgstr ""
+msgstr "Страны:"
 
+#, 
 msgid "Guidance"
-msgstr ""
+msgstr "Руководство"
 
+#, 
 msgid "Indicators"
-msgstr ""
+msgstr "Индикаторы"
 
+#, 
 msgid "Information portals"
-msgstr ""
+msgstr "Информационные порталы"
 
+#, 
 msgid "Organisations"
-msgstr ""
+msgstr "Организации"
 
+#, 
 msgid "Publication and reports"
-msgstr ""
+msgstr "Публикация и отчеты"
 
+#, 
 msgid "Research and knowledge projects"
-msgstr ""
+msgstr "Проекты по исследованиям и знаниям"
 
+#, 
 msgid "Tools"
-msgstr ""
+msgstr "Инструменты"
 
+#, 
 msgid "Videos"
-msgstr ""
+msgstr "Видео"
+

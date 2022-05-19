@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-17 18:20+0000\n"
+"POT-Creation-Date: 2022-05-19 18:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: eea.climateadapt\n"
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:152
+#: ../../climateadapt/browser/pt/ace_macros.pt:149
 msgid "<strong>Last Modified in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:148
+#: ../../climateadapt/browser/pt/ace_macros.pt:145
 msgid "<strong>Published in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
 msgstr ""
 
@@ -29,8 +29,20 @@ msgstr ""
 msgid "Adaptation Details"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:329
+msgid "Adaptation Measures and Actions"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/casestudy_view.pt:57
 msgid "Adaptation Options Implemented In This Case"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:330
+msgid "Adaptation Plans and Strategies"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:269
+msgid "Adaptation options"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:125
@@ -50,11 +62,17 @@ msgstr ""
 msgid "Additional information on adaptation responses"
 msgstr ""
 
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:57
+msgid "Advanced search for Climate-Adapt database items <a href=\"/redirect_to_search_page\">here</a>"
+msgstr ""
+
 #: ../../climateadapt/browser/overrides.py:37
+#: ../../climateadapt/vocabulary.py:293
 msgid "Agriculture"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:294
 msgid "Biodiversity"
 msgstr ""
 
@@ -63,6 +81,7 @@ msgid "Biogeographical regions"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:49
+#: ../../climateadapt/vocabulary.py:295
 msgid "Buildings"
 msgstr ""
 
@@ -72,6 +91,10 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:241
 msgid "Case Study Illustrations (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:270
+msgid "Case studies"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:194
@@ -110,10 +133,11 @@ msgid "Climate impacts:"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:40
+#: ../../climateadapt/vocabulary.py:296
 msgid "Coastal areas"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:218
+#: ../../climateadapt/browser/pt/ace_macros.pt:215
 msgid "Comments:"
 msgstr ""
 
@@ -131,7 +155,7 @@ msgstr ""
 msgid "Contact person"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:205
+#: ../../climateadapt/browser/pt/ace_macros.pt:202
 msgid "Contributor:"
 msgstr ""
 
@@ -144,16 +168,12 @@ msgstr ""
 msgid "Countries"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:253
+#: ../../climateadapt/browser/pt/ace_macros.pt:250
 msgid "Countries:"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:131
 msgid "Countries: ${DYNAMIC_CONTENT}"
-msgstr ""
-
-#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:199
-msgid "Country profiles"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:245
@@ -164,7 +184,7 @@ msgstr ""
 msgid "Covenant of Mayors 2030 signatory"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:104
+#: ../../climateadapt/browser/pt/ace_macros.pt:101
 msgid "Created by:"
 msgstr ""
 
@@ -202,22 +222,27 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:159
+#: ../../climateadapt/browser/pt/ace_macros.pt:156
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:21
 #: ../../climateadapt/browser/pt/organisation_view.pt:18
 msgid "Description:"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:42
+#: ../../climateadapt/vocabulary.py:297
 msgid "Disaster Risk Reduction"
 msgstr ""
 
-#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:149
-msgid "Discover the main topics and tools of the observatory"
+#: ../../climateadapt/vocabulary.py:337
+msgid "Droughts"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:97
 msgid "Duration:"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:298
+msgid "Ecosystem-based approaches (GI)"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/video_view.pt:113
@@ -236,6 +261,7 @@ msgid "Email"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:47
+#: ../../climateadapt/vocabulary.py:299
 msgid "Energy"
 msgstr ""
 
@@ -244,11 +270,21 @@ msgstr ""
 msgid "External source"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:338
+msgid "Extreme Temperatures"
+msgstr ""
+
 #: ../../climateadapt/browser/overrides.py:43
+#: ../../climateadapt/vocabulary.py:300
 msgid "Financial"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:339
+msgid "Flooding"
+msgstr ""
+
 #: ../../climateadapt/browser/overrides.py:38
+#: ../../climateadapt/vocabulary.py:301
 msgid "Forestry"
 msgstr ""
 
@@ -281,11 +317,16 @@ msgstr ""
 msgid "Governance level:"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:266
+msgid "Guidance"
+msgstr ""
+
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:128
 msgid "Have you already developed an adaptation strategy?"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:44
+#: ../../climateadapt/vocabulary.py:302
 msgid "Health"
 msgstr ""
 
@@ -300,12 +341,12 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:179
-msgid "INDICATORS"
-msgstr ""
-
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:34
 msgid "IPCC categories"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:340
+msgid "Ice and Snow"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:48
@@ -315,6 +356,14 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:65
 msgid "Importance and Relevance of Adaptation"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:265
+msgid "Indicators"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:263
+msgid "Information portals"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:138
@@ -343,12 +392,8 @@ msgstr ""
 msgid "Last Update"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:166
+#: ../../climateadapt/browser/pt/ace_macros.pt:163
 msgid "Lead"
-msgstr ""
-
-#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:163
-msgid "Learn more"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:45
@@ -378,7 +423,12 @@ msgstr ""
 msgid "Main motivation for taking adaptation action"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:264
+msgid "Maps, graphs and datasets"
+msgstr ""
+
 #: ../../climateadapt/browser/overrides.py:46
+#: ../../climateadapt/vocabulary.py:304
 msgid "Marine and Fisheries"
 msgstr ""
 
@@ -394,23 +444,31 @@ msgstr ""
 msgid "Name of the strategy/ plan (If adopted)"
 msgstr ""
 
-#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:159
-msgid "New"
+#: ../../climateadapt/vocabulary.py:310
+msgid "Non specific"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:53
 msgid "Objectives"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:327
+msgid "Observations and Scenarios"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/organisation_view.pt:50
 msgid "Observatory Contributions:"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:271
+msgid "Organisations"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/footer_logos.pt:35
 msgid "Other European Information Systems:<br />&nbsp;"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:174
+#: ../../climateadapt/browser/pt/ace_macros.pt:171
 msgid "Partners"
 msgstr ""
 
@@ -447,6 +505,10 @@ msgstr ""
 msgid "Project information"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:262
+msgid "Publications and reports"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/item_statistics.pt:24
 msgid "Published"
 msgstr ""
@@ -477,11 +539,11 @@ msgstr ""
 msgid "Relevance"
 msgstr ""
 
-#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:219
-msgid "Resource catalogue"
+#: ../../climateadapt/vocabulary.py:268
+msgid "Research and knowledge projects"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:112
+#: ../../climateadapt/browser/pt/ace_macros.pt:109
 msgid "Reviewed by:"
 msgstr ""
 
@@ -489,8 +551,20 @@ msgstr ""
 msgid "SITE MAP"
 msgstr ""
 
-#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:220
-msgid "Search and access the Observatory’s database containing case studies, publications, indicators, research projects and other"
+#: ../../climateadapt/vocabulary.py:341
+msgid "Sea Level Rise"
+msgstr ""
+
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:64
+msgid "Search results"
+msgstr ""
+
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:73
+msgid "Search results for: ${term}"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:331
+msgid "Sector Policies"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/indicator_view.pt:98
@@ -502,10 +576,6 @@ msgstr ""
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:167
 #: ../../climateadapt/browser/pt/casestudy_view.pt:289
 msgid "Sectors:"
-msgstr ""
-
-#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:200
-msgid "See how countries are addressing climate change adaptation in public health"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/organisation_view.pt:63
@@ -524,7 +594,7 @@ msgstr ""
 msgid "Send token emails to City Mayors"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:87
+#: ../../climateadapt/browser/pt/ace_macros.pt:84
 msgid "Share your information"
 msgstr ""
 
@@ -537,7 +607,7 @@ msgstr ""
 msgid "Source"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:183
+#: ../../climateadapt/browser/pt/ace_macros.pt:180
 msgid "Source of funding"
 msgstr ""
 
@@ -557,6 +627,10 @@ msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:27
 msgid "Status"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:342
+msgid "Storms"
 msgstr ""
 
 #: ../../climateadapt/browser/__init__.py:180
@@ -596,19 +670,21 @@ msgstr ""
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:267
+msgid "Tools"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/item_statistics.pt:25
 msgid "Total"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:48
+#: ../../climateadapt/vocabulary.py:306
 msgid "Transport"
 msgstr ""
 
-#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:160
-msgid "UV Index forecast (CAMS)"
-msgstr ""
-
 #: ../../climateadapt/browser/overrides.py:45
+#: ../../climateadapt/vocabulary.py:307
 msgid "Urban"
 msgstr ""
 
@@ -616,23 +692,24 @@ msgstr ""
 msgid "View all contributions in the resource catalogue"
 msgstr ""
 
-#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:180
-msgid "View climate and health indicators from different trusted information providers"
-msgstr ""
-
 #: ../../climateadapt/browser/pt/aceproject_view.pt:18
 msgid "View on DRMKC"
 msgstr ""
 
-#: ../../climateadapt/theme/climateadaptv2/health-homepage.html:161
-msgid "View the UV Index forecast developed by Copernicus Atmosphere Monitoring Service (CAMS)"
+#: ../../climateadapt/vocabulary.py:328
+msgid "Vulnerability Assessment"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:16
 msgid "Warning: this will reset/invalidate tokens on all selected cities"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:343
+msgid "Water Scarcity"
+msgstr ""
+
 #: ../../climateadapt/browser/overrides.py:50
+#: ../../climateadapt/vocabulary.py:309
 msgid "Water management"
 msgstr ""
 
@@ -667,10 +744,25 @@ msgstr ""
 msgid "Year: <span>${DYNAMIC_CONTENT}</span>"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/ace_macros.pt:36
+#: ../../climateadapt/browser/pt/ace_macros.pt:33
 msgid "back to search"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:218
 msgid "inhabitants"
+msgstr ""
+
+#. Default: "Filter the results."
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:111
+msgid "narrow_search_options"
+msgstr ""
+
+#. Default: "Sort by"
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:312
+msgid "sort_by"
+msgstr ""
+
+#. Default: "Located in"
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:402
+msgid "text_searchitem_location"
 msgstr ""

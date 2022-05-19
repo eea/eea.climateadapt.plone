@@ -13,36 +13,50 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
 
+#, 
 msgid "Adaptation options"
-msgstr ""
+msgstr "Aðlögunarvalkostir"
 
+#, 
 msgid "Case studies"
-msgstr ""
+msgstr "Málsrannsóknir"
 
+#, 
 msgid "Countries:"
-msgstr ""
+msgstr "Lönd:"
 
+#, 
 msgid "Guidance"
-msgstr ""
+msgstr "Leiðbeiningar"
 
+#, 
 msgid "Indicators"
-msgstr ""
+msgstr "Vísbendingar"
 
+#, 
 msgid "Information portals"
-msgstr ""
+msgstr "Upplýsingagáttir"
 
+#, 
 msgid "Organisations"
-msgstr ""
+msgstr "Samtök"
 
+#, 
 msgid "Publication and reports"
-msgstr ""
+msgstr "Útgáfa og skýrslur"
 
+#, 
 msgid "Research and knowledge projects"
-msgstr ""
+msgstr "Rannsóknar- og þekkingarverkefni"
 
+#, 
 msgid "Tools"
-msgstr ""
+msgstr "Verkfæri"
 
+#, 
 msgid "Videos"
-msgstr ""
+msgstr "Myndbönd"
+

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-17 18:20+0000\n"
+"POT-Creation-Date: 2022-05-19 18:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,6 +45,18 @@ msgstr ""
 msgid "Acronym of the project"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:329
+msgid "Adaptation Measures and Actions"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:330
+msgid "Adaptation Plans and Strategies"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:269
+msgid "Adaptation options"
+msgstr ""
+
 #: ../../climateadapt/behaviors/ccaevent.py:63
 msgid "Agenda"
 msgstr ""
@@ -54,6 +66,7 @@ msgid "Agenda document"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:37
+#: ../../climateadapt/vocabulary.py:293
 msgid "Agriculture"
 msgstr ""
 
@@ -62,6 +75,7 @@ msgid "Background documents"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:294
 msgid "Biodiversity"
 msgstr ""
 
@@ -76,11 +90,16 @@ msgid "Biogeographical regions"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:49
+#: ../../climateadapt/vocabulary.py:295
 msgid "Buildings"
 msgstr ""
 
 #: ../../climateadapt/behaviors/c3sindicator.py:64
 msgid "C3S Identifier"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:270
+msgid "Case studies"
 msgstr ""
 
 #: ../../climateadapt/behaviors/casestudy.py:33
@@ -113,6 +132,7 @@ msgid "Climate impacts"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:40
+#: ../../climateadapt/vocabulary.py:296
 msgid "Coastal areas"
 msgstr ""
 
@@ -251,6 +271,7 @@ msgid "Details APP Toolbox URL"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:42
+#: ../../climateadapt/vocabulary.py:297
 msgid "Disaster Risk Reduction"
 msgstr ""
 
@@ -259,8 +280,16 @@ msgstr ""
 msgid "Don't sanitize HTML"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:337
+msgid "Droughts"
+msgstr ""
+
 #: ../../climateadapt/behaviors/aceproject.py:280
 msgid "Duration"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:298
+msgid "Ecosystem-based approaches (GI)"
 msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:78
@@ -281,6 +310,7 @@ msgid "Embedding view"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:47
+#: ../../climateadapt/vocabulary.py:299
 msgid "Energy"
 msgstr ""
 
@@ -294,6 +324,10 @@ msgstr ""
 msgid "Event Language"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:338
+msgid "Extreme Temperatures"
+msgstr ""
+
 #: ../../climateadapt/behaviors/aceitem.py:223
 #: ../../climateadapt/behaviors/acemeasure.py:203
 #: ../../climateadapt/behaviors/aceproject.py:286
@@ -301,10 +335,16 @@ msgid "Featured"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:43
+#: ../../climateadapt/vocabulary.py:300
 msgid "Financial"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:339
+msgid "Flooding"
+msgstr ""
+
 #: ../../climateadapt/browser/overrides.py:38
+#: ../../climateadapt/vocabulary.py:301
 msgid "Forestry"
 msgstr ""
 
@@ -345,7 +385,12 @@ msgstr ""
 msgid "Governance Level"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:266
+msgid "Guidance"
+msgstr ""
+
 #: ../../climateadapt/browser/overrides.py:44
+#: ../../climateadapt/vocabulary.py:302
 msgid "Health"
 msgstr ""
 
@@ -362,6 +407,10 @@ msgstr ""
 
 #: ../../climateadapt/behaviors/adaptationoption.py:35
 msgid "IPCC adaptation options categories"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:340
+msgid "Ice and Snow"
 msgstr ""
 
 #: ../../climateadapt/behaviors/acemeasure.py:275
@@ -384,6 +433,14 @@ msgstr ""
 
 #: ../../climateadapt/behaviors/c3sindicator.py:54
 msgid "Indicator title"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:265
+msgid "Indicators"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:263
+msgid "Information portals"
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:97
@@ -461,7 +518,12 @@ msgstr ""
 msgid "Map/Graphs"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:264
+msgid "Maps, graphs and datasets"
+msgstr ""
+
 #: ../../climateadapt/browser/overrides.py:46
+#: ../../climateadapt/vocabulary.py:304
 msgid "Marine and Fisheries"
 msgstr ""
 
@@ -485,6 +547,10 @@ msgstr ""
 msgid "Name of the case study clearly identifying its scope and location (250 character limit)"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:310
+msgid "Non specific"
+msgstr ""
+
 #: ../../climateadapt/theme/tiles/search_acecontent.py:124
 #: ../../climateadapt/tiles/search_acecontent.py:124
 #: ../../climateadapt/tiles/search_acecontent0.py:126
@@ -505,6 +571,10 @@ msgstr ""
 msgid "Objectives"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:327
+msgid "Observations and Scenarios"
+msgstr ""
+
 #: ../../climateadapt/behaviors/ccaevent.py:93
 msgid "Online registration (URL)"
 msgstr ""
@@ -515,6 +585,10 @@ msgstr ""
 
 #: ../../climateadapt/behaviors/ccaevent.py:97
 msgid "Online registration message"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:271
+msgid "Organisations"
 msgstr ""
 
 #: ../../climateadapt/theme/tiles/search_acecontent.py:62
@@ -600,6 +674,10 @@ msgstr ""
 msgid "Provide source of funding"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:262
+msgid "Publications and reports"
+msgstr ""
+
 #: ../../climateadapt/behaviors/acemeasure.py:514
 #: ../../climateadapt/behaviors/aceproject.py:402
 msgid "Rating"
@@ -637,6 +715,14 @@ msgstr ""
 msgid "Relevance"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:268
+msgid "Research and knowledge projects"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:341
+msgid "Sea Level Rise"
+msgstr ""
+
 #: ../../climateadapt/theme/tiles/search_acecontent.py:56
 #: ../../climateadapt/tiles/search_acecontent.py:56
 #: ../../climateadapt/tiles/search_acecontent0.py:58
@@ -647,6 +733,10 @@ msgstr ""
 #: ../../climateadapt/tiles/search_acecontent.py:86
 #: ../../climateadapt/tiles/search_acecontent0.py:88
 msgid "Sector"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:331
+msgid "Sector Policies"
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:167
@@ -783,6 +873,10 @@ msgstr ""
 msgid "Storage Type"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:342
+msgid "Storms"
+msgstr ""
+
 #: ../../climateadapt/browser/__init__.py:180
 msgid "Sub Nationals"
 msgstr ""
@@ -811,7 +905,12 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:267
+msgid "Tools"
+msgstr ""
+
 #: ../../climateadapt/browser/overrides.py:48
+#: ../../climateadapt/vocabulary.py:306
 msgid "Transport"
 msgstr ""
 
@@ -846,6 +945,7 @@ msgid "Uploaded by"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:45
+#: ../../climateadapt/vocabulary.py:307
 msgid "Urban"
 msgstr ""
 
@@ -886,7 +986,16 @@ msgstr ""
 msgid "View name"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:328
+msgid "Vulnerability Assessment"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:343
+msgid "Water Scarcity"
+msgstr ""
+
 #: ../../climateadapt/browser/overrides.py:50
+#: ../../climateadapt/vocabulary.py:309
 msgid "Water management"
 msgstr ""
 

@@ -58,10 +58,6 @@ msgstr ""
 msgid "Acronym of the project"
 msgstr ""
 
-#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:57
-msgid "Advanced search for Climate-Adapt database items <a href=\"/redirect_to_search_page\">here</a>"
-msgstr ""
-
 #: ../../climateadapt/behaviors/ccaevent.py:60
 msgid "Agenda"
 msgstr ""

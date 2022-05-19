@@ -68,7 +68,7 @@
       <drop css:theme=".help-menu" />
 
       <rules css:if-content=".template-health_homepage">
-        <theme href="health-homepage.html" />
+        <theme href="/@@theme.health-homepage.html?diazo.off=1" />
         <replace css:theme=".list_news_events" css:content=".list_news_events" method="raw"/>
         <drop css:content=".list_news_events" />
         <replace css:theme=".folder_health_context" css:content=".folder_health_context" />
@@ -104,7 +104,7 @@
     </rules>
 
     <rules css:if-not-content=".section-frontpage.template-standard">
-      <theme href="page.html" />
+      <theme href="/@@theme.page.html?diazo.off=1" />
       <rules css:if-content="#show_only_article">
           <drop css:theme=".top-page-area" />
           <drop css:theme="footer" />

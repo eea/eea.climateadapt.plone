@@ -15,6 +15,8 @@ from plone.app.vocabularies.catalog import CatalogVocabularyFactory
 from plone.uuid.interfaces import IUUID
 from Products.CMFCore.utils import getToolByName
 
+from eea.climateadapt import MessageFactory as _
+
 
 def generic_vocabulary(_terms, sort=True):
     """ Returns a zope vocabulary from a dict or a list
@@ -257,16 +259,16 @@ class CCAItemsVocabulary(CatalogVocabularyFactory):
 # changes title and buttons (what to add) in view for AceItem
 # extracted from JAVA code:
 _datatypes = [
-    ("DOCUMENT", "Publications and reports"),
-    ("INFORMATIONSOURCE", "Information portals"),
-    ("MAPGRAPHDATASET", "Maps, graphs and datasets"),
-    ("INDICATOR", "Indicators"),
-    ("GUIDANCE", "Guidance"),
-    ("TOOL", "Tools"),
-    ("RESEARCHPROJECT", "Research and knowledge projects"),
-    ("MEASURE", "Adaptation options"),
-    ("ACTION", "Case studies"),
-    ("ORGANISATION", "Organisations"),
+    ("DOCUMENT", _("Publications and reports")),
+    ("INFORMATIONSOURCE", _("Information portals")),
+    ("MAPGRAPHDATASET", _("Maps, graphs and datasets")),
+    ("INDICATOR", _("Indicators")),
+    ("GUIDANCE", _("Guidance")),
+    ("TOOL", _("Tools")),
+    ("RESEARCHPROJECT", _("Research and knowledge projects")),
+    ("MEASURE", _("Adaptation options")),
+    ("ACTION", _("Case studies")),
+    ("ORGANISATION", _("Organisations")),
     # ("VIDEOS", "Videos"),
 ]
 aceitem_datatypes_vocabulary = generic_vocabulary(_datatypes)
@@ -288,24 +290,24 @@ alsoProvides(aceitem_storagetypes_vocabulary, IVocabularyFactory)
 
 _sectors = [    # this is the canonical
     # ("AGRICULTURE", "Agriculture and Forest"),
-    ("AGRICULTURE", "Agriculture"),
-    ("BIODIVERSITY", "Biodiversity"),
-    ("BUILDINGS", "Buildings"),
-    ("COASTAL", "Coastal areas"),
-    ("DISASTERRISKREDUCTION", "Disaster Risk Reduction"),
-    ("ECOSYSTEM", "Ecosystem-based approaches (GI)"),
-    ("ENERGY", "Energy"),
-    ("FINANCIAL", "Financial"),
-    ("FORESTRY", "Forestry"),
-    ("HEALTH", "Health"),
+    ("AGRICULTURE", _("Agriculture")),
+    ("BIODIVERSITY", _("Biodiversity")),
+    ("BUILDINGS", _("Buildings")),
+    ("COASTAL", _("Coastal areas")),
+    ("DISASTERRISKREDUCTION", _("Disaster Risk Reduction")),
+    ("ECOSYSTEM", _("Ecosystem-based approaches (GI)")),
+    ("ENERGY", _("Energy")),
+    ("FINANCIAL", _("Financial")),
+    ("FORESTRY", _("Forestry")),
+    ("HEALTH", _("Health")),
     # ("INFRASTRUCTURE", "Infrastructure"),
-    ("MARINE", "Marine and Fisheries"),
+    ("MARINE", _("Marine and Fisheries")),
     #   ("TOURISM", "Tourism"),
-    ("TRANSPORT", "Transport"),
-    ("URBAN", "Urban"),
+    ("TRANSPORT", _("Transport")),
+    ("URBAN", _("Urban")),
     #   ("OTHER", "Other"),
-    ("WATERMANAGEMENT", "Water management"),
-    ("NONSPECIFIC", "Non specific"),
+    ("WATERMANAGEMENT", _("Water management")),
+    ("NONSPECIFIC", _("Non specific")),
 ]
 aceitem_sectors_vocabulary = generic_vocabulary(_sectors, sort=False)
 alsoProvides(aceitem_sectors_vocabulary, IVocabularyFactory)
@@ -322,24 +324,24 @@ alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
 
 # Vocabulary for faceted search "Adaptation elements"
 fac_elements = [
-    ("OBSERVATIONS", "Observations and Scenarios"),
-    ("VULNERABILITY", "Vulnerability Assessment"),
-    ("MEASUREACTION", "Adaptation Measures and Actions"),
-    ("PLANSTRATEGY", "Adaptation Plans and Strategies"),
-    ("EU_POLICY", "Sector Policies"),
+    ("OBSERVATIONS", _("Observations and Scenarios")),
+    ("VULNERABILITY", _("Vulnerability Assessment")),
+    ("MEASUREACTION", _("Adaptation Measures and Actions")),
+    ("PLANSTRATEGY", _("Adaptation Plans and Strategies")),
+    ("EU_POLICY", _("Sector Policies")),
 ]
 faceted_elements = generic_vocabulary(fac_elements, sort=False)
 alsoProvides(faceted_elements, IVocabularyFactory)
 
 _climateimpacts = [
-    ("DROUGHT", "Droughts"),
-    ("EXTREMETEMP", "Extreme Temperatures"),
-    ("FLOODING", "Flooding"),
-    ("ICEANDSNOW", "Ice and Snow"),
-    ("SEALEVELRISE", "Sea Level Rise"),
-    ("STORM", "Storms"),
-    ("WATERSCARCE", "Water Scarcity"),
-    ("NONSPECIFIC", "Non specific"),
+    ("DROUGHT", _("Droughts")),
+    ("EXTREMETEMP", _("Extreme Temperatures")),
+    ("FLOODING", _("Flooding")),
+    ("ICEANDSNOW", _("Ice and Snow")),
+    ("SEALEVELRISE", _("Sea Level Rise")),
+    ("STORM", _("Storms")),
+    ("WATERSCARCE", _("Water Scarcity")),
+    ("NONSPECIFIC", _("Non specific")),
 ]
 aceitem_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts,
                                                        sort=False)

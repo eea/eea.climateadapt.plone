@@ -616,7 +616,7 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/search/faceted-listing-view.pt:22
 msgid "Search results"
-msgstr ""
+msgstr "Cauta rezultate 2"
 
 #: ../../climateadapt/tiles/search_acecontent.py:86
 msgid "Sector"
