@@ -1,5 +1,6 @@
 import json
 import logging
+from collections import defaultdict
 from datetime import date
 from DateTime import DateTime
 import transaction
@@ -336,6 +337,37 @@ def initiate_translations(site, skip=0, version=1):
     logger.info(errors)
     transaction.commit()
 
+def translations_status(site):
+    catalog = site.portal_catalog
+    res = catalog.searchResults(path='/cca/en')
+
+    versions = defaultdict(int)
+
+    for brain in res:
+        obj = brain.getObject()
+        obj_version = int(getattr(obj, 'version', 0))
+        versions[obj_version] += 1
+
+    return versions
+
+def translations_status_by_version(site, version=0):
+    version = int(version)
+    catalog = site.portal_catalog
+    brains = catalog.searchResults(path='/cca/en')
+
+    res = []
+    template = "<p>{}</p>"
+
+    for brain in brains:
+        obj = brain.getObject()
+        obj_version = int(getattr(obj, 'version', 0))
+        
+        if obj_version != version:
+            continue
+        
+        res.append(template.format(obj.absolute_url()))
+
+    return "".join(res)
 
 def get_tile_type(tile, from_cover, to_cover):
     tiles_types = {
@@ -575,3 +607,18 @@ class RunTranslationSingleItem(BrowserView):
         result = translate_obj(obj)
         transaction.commit()
         return result
+
+
+class TranslationStatus(BrowserView):
+    """ Display the the current versions for all translated objects
+    """
+
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
+        from zope.site.hooks import getSite
+
+        if "version" in kwargs:
+            return translations_status_by_version(getSite(), **kwargs)
+
+        return translations_status(getSite(), **kwargs)
+       

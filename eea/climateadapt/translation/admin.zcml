@@ -34,5 +34,12 @@
       permission="cmf.ManagePortal"
       />
 
+  <browser:page
+      name="admin-translation-status"
+      for="*"
+      class=".admin.TranslationStatus"
+      permission="cmf.ManagePortal"
+      />
+
 
 </configure>
