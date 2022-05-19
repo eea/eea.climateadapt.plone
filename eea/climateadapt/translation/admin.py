@@ -266,8 +266,9 @@ def translate_obj(obj):
     return {'errors': errors}
 
 
-def initiate_translations(site, skip=0):
+def initiate_translations(site, skip=0, version=1):
     skip = int(skip)
+    version = int(version)
     catalog = site.portal_catalog
     count = -1
     res = catalog.searchResults(path='/cca/en')
@@ -302,9 +303,17 @@ def initiate_translations(site, skip=0):
             continue
 
         obj = brain.getObject()
+        obj_version = int(getattr(obj, 'version', 0))
+        
+        if obj_version >= version:
+            logger.info("Skipping! object already at version %s" % obj_version)
+            continue
+        
         try:
             result = translate_obj(obj)
             # result = {'errors': []}
+            # TODO only set version if all fields were translated
+            obj.version = version
         except Exception as err:
             logger.info(err)
             # errors.append(err)
@@ -322,9 +331,10 @@ def initiate_translations(site, skip=0):
 
         if count % 50 == 0:
             import pdb; pdb.set_trace()
+
     logger.info("DONE")
     logger.info(errors)
-    import pdb; pdb.set_trace()
+    transaction.commit()
 
 
 def get_tile_type(tile, from_cover, to_cover):
