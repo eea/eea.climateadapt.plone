@@ -313,7 +313,6 @@ def initiate_translations(site, skip=0, version=None):
         obj_version = int(getattr(obj, 'version', 0))
 
         if obj_version >= version:
-            import pdb; pdb.set_trace()
             logger.info("Skipping! object already at version %s" % obj_version)
             continue
 
