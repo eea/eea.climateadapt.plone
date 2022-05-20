@@ -305,11 +305,11 @@ def initiate_translations(site, skip=0, version=1):
 
         obj = brain.getObject()
         obj_version = int(getattr(obj, 'version', 0))
-        
+
         if obj_version >= version:
             logger.info("Skipping! object already at version %s" % obj_version)
             continue
-        
+
         try:
             result = translate_obj(obj)
             # result = {'errors': []}
@@ -326,9 +326,9 @@ def initiate_translations(site, skip=0, version=1):
                 if error not in errors:
                     errors.append(error)
 
-        if count % 25 == 0:
-            logger.info("Processed %s objects" % count)
-            transaction.commit()
+        # if count % 25 == 0:
+        #     logger.info("Processed %s objects" % count)
+        #     transaction.commit()
 
         if count % 50 == 0:
             import pdb; pdb.set_trace()
@@ -366,10 +366,10 @@ def translations_status_by_version(site, version=0):
     for brain in brains:
         obj = brain.getObject()
         obj_version = int(getattr(obj, 'version', 0))
-        
+
         if obj_version != version:
             continue
-        
+
         res.append(template.format(obj.absolute_url()))
 
     return "".join(res)
@@ -626,4 +626,4 @@ class TranslationStatus(BrowserView):
             return translations_status_by_version(getSite(), **kwargs)
 
         return translations_status(getSite(), **kwargs)
-       
+
