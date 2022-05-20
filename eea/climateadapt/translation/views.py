@@ -132,7 +132,10 @@ class TranslationCallback(BrowserView):
             tile_annot_id = 'plone.tiles.data.' + tile_id
             tile = trans_obj.__annotations__.get(tile_annot_id, None)
             if tile is not None:
-                update = tile.data
+                try:
+                    update = tile.data
+                except AttributeError:
+                    import pdb; pdb.set_trace()
                 update['text'] = RichTextValue(encoded_text)
                 # tile.data.update(update)
                 trans_obj.__annotations__[tile_annot_id] = update
