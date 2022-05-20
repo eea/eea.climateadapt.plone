@@ -92,6 +92,10 @@ def translate_obj(obj):
                             u"<head><meta charset=utf-8></head><body>"
 
                         value = value.replace('\r\n', '')
+                        try:
+                            test_value = value + u"test"
+                        except UnicodeDecodeError:
+                            value = value.decode("utf-8")
                         html_tile = u"<div class='cca-translation-tile'" + \
                             u" data-field='" + field + u"'" + \
                             u" data-tile-id='" + tile_id + u"'" + \
