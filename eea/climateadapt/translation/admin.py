@@ -271,8 +271,10 @@ def translate_obj(obj):
     return {'errors': errors}
 
 
-def initiate_translations(site, skip=0, version=1):
+def initiate_translations(site, skip=0, version=None):
     skip = int(skip)
+    if version is None:
+        return "Missing translation version. Status: /admin-translation-status"
     version = int(version)
     catalog = site.portal_catalog
     count = -1
