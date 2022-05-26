@@ -518,6 +518,10 @@ def execute_trans_script(site, language):
             else:
                 import pdb; pdb.set_trace()
 
+        if count % 200 == 0:
+            logger.info("Processed %s objects" % count)
+            transaction.commit()
+
     transaction.commit()
     logger.info("Errors")
     logger.info(errors)
