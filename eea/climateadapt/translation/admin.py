@@ -25,6 +25,7 @@ from eea.climateadapt.translation import retrieve_translation
 from eea.climateadapt.translation import retrieve_html_translation
 
 from zope.schema import getFieldsInOrder
+from zope.site.hooks import getSite
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -580,7 +581,6 @@ class PrepareTranslation(BrowserView):
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        from zope.site.hooks import getSite
         return execute_trans_script(getSite(), **kwargs)
 
 
@@ -592,7 +592,6 @@ class SomeTranslated(BrowserView):
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        from zope.site.hooks import getSite
         return admin_some_translated(getSite(), **kwargs)
 
 
@@ -604,7 +603,6 @@ class RunTranslation(BrowserView):
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        from zope.site.hooks import getSite
         return initiate_translations(getSite(), **kwargs)
 
 
@@ -630,7 +628,6 @@ class TranslationStatus(BrowserView):
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        from zope.site.hooks import getSite
 
         if "version" in kwargs:
             return translations_status_by_version(getSite(), **kwargs)
