@@ -434,6 +434,10 @@ def copy_tiles(tiles, from_cover, to_cover):
 
 
 def create_translation_object(obj, language):
+    if language in TranslationManager(obj).get_translations():
+        logger.info("Skip creating translation. Already exists.")
+        return
+
     factory = DefaultTranslationFactory(obj)
 
     translated_object = factory(language)
@@ -447,7 +451,6 @@ def create_translation_object(obj, language):
         copy_tiles(tiles, obj, translated_object)
 
         translated_object.reindexObject()
-
 
 
 def get_all_objs(container):
