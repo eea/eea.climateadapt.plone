@@ -16,47 +16,46 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
-#, 
+# ,
 msgid "Adaptation options"
 msgstr "Għażliet ta 'adattament"
 
-#, 
+# ,
 msgid "Case studies"
 msgstr "Studji ta 'Każijiet"
 
-#, 
+# ,
 msgid "Countries:"
 msgstr "Pajjiżi:"
 
-#, 
+# ,
 msgid "Guidance"
 msgstr "Gwida"
 
-#, 
+# ,
 msgid "Indicators"
 msgstr "Indikaturi"
 
-#, 
+# ,
 msgid "Information portals"
 msgstr "Portali ta 'informazzjoni"
 
-#, 
+# ,
 msgid "Organisations"
 msgstr "Organizzazzjonijiet"
 
-#, 
+# ,
 msgid "Publication and reports"
 msgstr "Pubblikazzjoni u rapporti"
 
-#, 
+# ,
 msgid "Research and knowledge projects"
 msgstr "Proġetti ta 'Riċerka u Għarfien"
 
-#, 
+# ,
 msgid "Tools"
 msgstr "Għodda"
 
-#, 
+# ,
 msgid "Videos"
 msgstr "Vidjows"
-

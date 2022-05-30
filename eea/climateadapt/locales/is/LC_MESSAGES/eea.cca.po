@@ -16,47 +16,46 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
-#, 
+# ,
 msgid "Adaptation options"
 msgstr "Aðlögunarvalkostir"
 
-#, 
+# ,
 msgid "Case studies"
 msgstr "Málsrannsóknir"
 
-#, 
+# ,
 msgid "Countries:"
 msgstr "Lönd:"
 
-#, 
+# ,
 msgid "Guidance"
 msgstr "Leiðbeiningar"
 
-#, 
+# ,
 msgid "Indicators"
 msgstr "Vísbendingar"
 
-#, 
+# ,
 msgid "Information portals"
 msgstr "Upplýsingagáttir"
 
-#, 
+# ,
 msgid "Organisations"
 msgstr "Samtök"
 
-#, 
+# ,
 msgid "Publication and reports"
 msgstr "Útgáfa og skýrslur"
 
-#, 
+# ,
 msgid "Research and knowledge projects"
 msgstr "Rannsóknar- og þekkingarverkefni"
 
-#, 
+# ,
 msgid "Tools"
 msgstr "Verkfæri"
 
-#, 
+# ,
 msgid "Videos"
 msgstr "Myndbönd"
-

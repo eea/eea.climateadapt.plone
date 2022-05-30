@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-19 18:08+0000\n"
+"POT-Creation-Date: 2022-05-27 05:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,534 +17,533 @@ msgstr ""
 "Language: \n"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:403
-#, 
 msgid "<a href=\"#t-started\"> <span class=\"d-icon feature-icon\"></span> New <br /> feature </a>"
 msgstr "<a href=\"#t-started\"> <span class = \"d-icon feature-icon\"> </span> nýr <br /> lögun </a>"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1259
-#, 
 msgid "<i class=\"fa fa-angle-double-right\"></i> Adaptation support tool"
 msgstr "<i class = \"fa fa-horn-double-right\"> </i> aðlögunarstuðningstæki"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1401
-#, 
 msgid "<i class=\"fa fa-angle-double-right\"></i> More events"
 msgstr "<i class = \"fa fa-horn-double-right\"> </i> fleiri atburðir"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1372
-#, 
 msgid "<i class=\"fa fa-angle-double-right\"></i> More news"
 msgstr "<i class = \"fa fa-horn-double-right\"> </i> fleiri fréttir"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1329
-#, 
 msgid "<i class=\"fa fa-angle-double-right\"></i> Read more"
 msgstr "<i class = \"fa fa-horn-double-right\"> </i> Lesa meira"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:767
-#, 
 msgid "<i class=\"fa fa-angle-double-right\"></i> See complete database"
 msgstr "<i class = \"fa fa-horn-double-right\"> </i> sjá heill gagnagrunn"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1272
-#, 
 msgid "<i class=\"fa fa-angle-double-right\"></i> Urban Adaptation Support Tool"
 msgstr "<i class = \"fa fa-horn-double-right\"> </i> Urban aðlögunarstuðningstæki"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:92
 #: ../theme/climateadaptv2/page.html:98
-#, 
 msgid "<i class=\"fa fa-calendar\"></i> Events"
 msgstr "<i class = \"fa fa-calendar\"> </i> atburðir"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:98
 #: ../theme/climateadaptv2/page.html:104
-#, 
 msgid "<i class=\"fa fa-envelope\"></i> Newsletter"
 msgstr "<i class = \"fa fa-nelope\"> </i> fréttabréf"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:86
 #: ../theme/climateadaptv2/page.html:92
-#, 
 msgid "<i class=\"fa fa-newspaper-o\"></i> News"
 msgstr "<i class = \"fa fa-newspaper-o\"> </i> fréttir"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:75
 #: ../theme/climateadaptv2/page.html:81
-#, 
 msgid "<i class=\"fa fa-question-circle\"></i> Help"
 msgstr "<i class = \"fa fa-question circle\"> </i> hjálp"
 
+# ,
 #: ../theme/climateadaptv2/index.html:66
 #: ../theme/climateadaptv2/page.html:72
-#, 
 msgid "<i class=\"fa fa-search\"></i>"
 msgstr "<i class = \"fa fa-leit\"> </i>"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:434
-#, 
 msgid "<span class=\"d-icon ast-icon\"></span> Adaptation <br /> Support Tool"
 msgstr "<span class = \"d-icon ast-icon\"> </span> Aðlögun <br /> Stuðningstæki"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:428
-#, 
 msgid "<span class=\"d-icon case-icon\"></span> Case <br /> Studies"
 msgstr "<span class = \"d-icon case-icon\"> </span> mál <br /> Rannsóknir"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:410
-#, 
 msgid "<span class=\"d-icon database-icon\"></span> Search the <br /> Database"
 msgstr "<span class = \"D-Icon Database-Icon\"> </span> Leitaðu í <br /> gagnagrunninum"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:422
-#, 
 msgid "<span class=\"d-icon eu-icon\"></span> Country <br /> Profiles"
 msgstr "<span class = \"d-icon eu-icon\"> </span> land <br /> Snið"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:416
-#, 
 msgid "<span class=\"d-icon policy-icon\"></span> EU Sector <br /> Policies"
 msgstr "<span class = \"D-Icon Policy-Icon\"> </span> ESB geiri <br /> Stefna"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:671
-#, 
 msgid "Adaptation options"
 msgstr "Aðlögunarvalkostir"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:787
 #: ../theme/climateadaptv2/tab-policies-rule.html:14
-#, 
 msgid "Agriculture"
 msgstr "Landbúnaður"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:794
 #: ../theme/climateadaptv2/tab-policies-rule.html:21
-#, 
 msgid "Biodiversity"
 msgstr "Líffræðilegur fjölbreytileiki"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:910
 #: ../theme/climateadaptv2/tab-policies-rule.html:137
-#, 
 msgid "Biodiversity plays an important role in regulating the climate, thus making a key contribution to climate change mitigation and adaptation. At the same time, meeting mitigation targets coupled with ecosystem-based approaches is essential to avert biodiversity loss. Therefore it is impossible to address biodiversity loss without addressing climate change, but it is equally impossible to tackle climate change without addressing biodiversity loss."
 msgstr "Líffræðilegur fjölbreytileiki gegnir mikilvægu hlutverki við að stjórna loftslaginu og leggja þannig lykilframlag til mótvægis og aðlögunar loftslagsbreytinga. Á sama tíma er það nauðsynlegt að uppfylla mótvægismarkmið ásamt vistkerfisbundnum aðferðum til að afstýra tapi á líffræðilegum fjölbreytileika. Þess vegna er ómögulegt að takast á við tap á líffræðilegum fjölbreytileika án þess að takast á við loftslagsbreytingar, en það er jafn ómögulegt að takast á við loftslagsbreytingar án þess að takast á við tap á líffræðilegum fjölbreytileika."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:801
 #: ../theme/climateadaptv2/tab-policies-rule.html:28
-#, 
 msgid "Buildings"
 msgstr "Byggingar"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:925
 #: ../theme/climateadaptv2/tab-policies-rule.html:152
-#, 
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Byggingar geta verið viðkvæmar fyrir loftslagsbreytingum. Í framtíðinni getur verið aukning á hættu á hruni, minnkandi ástandi og verulegu gildi tapi vegna meiri óveðurs, snjó- eða landsframleiðslu, vatnsbyggingar, versnandi loftslags innanhúss og minni líftíma byggingarinnar. Framkvæmdastjórn Evrópusambandsins miðar að því að auka loftslagsmál innviða, þar á meðal byggingar. Meta þarf nýjar og núverandi byggingar fyrir seiglu fyrir núverandi áhættu og framtíðar loftslagsbreytingar og fyrirhugaðar eða uppfærðar í samræmi við það. Lykilstefna sem notuð er til að styðja við seiglu bygginga er samheldni stefna (einnig kölluð svæðisstefna)."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:680
-#, 
 msgid "Case studies"
 msgstr "Málsrannsóknir"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1136
-#, 
 msgid "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href=\"https://climate-adapt.eea.europa.eu/repository/11090223.pdf\">criteria</a> and also in collaboration with the main stakeholders. See the <a href=\"../knowledge/tools/case-studies-climate-adapt\">Case Studies Page</a>."
 msgstr "Málsrannsóknir eru flaggskip loftslagsaðlögunarpallsins. Þeir hafa yfirgripsmikla uppbyggingu sem nær yfir alla lykilþætti í framkvæmdarferli aðlögunaraðgerða og eru varkár og sérstaklega tilbúinn fyrir loftslagsmál af samtökunum sem taka þátt í framkvæmdinni með stuðningi EES, eftir setningu <a href = \"https://climate-adapt.eea.europa.eu/repository/11090223.pdf\"> Viðmið </a> og einnig í samvinnu við helstu hagsmunaaðila. Sjá <a href=\"..knowledge/tools/case-studies-climate-adapt\"> dæmisögur </a>."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1431
-#, 
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Athugaðu <a href=\"../newsletter\"> fréttabréf evrópskra loftslagsaðlögunar </a> og skráðu þig til að fá það í tölvupóstinum þínum:"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:985
 #: ../theme/climateadaptv2/tab-policies-rule.html:212
-#, 
 msgid "Climate change affects the energy sector in multiple ways, ranging from changes in heating and cooling demand; to impacts on energy supply conditions – for example decreased water availability for hydropower during prolonged droughts and reduced availability of cooling water affecting the efficiency of power plants. Furthermore, energy infrastructure can be more exposed to damages by changing climate conditions. The European Commission in general aims to increase the climate resilience of infrastructure including energy by providing strategical frameworks."
 msgstr "Loftslagsbreytingar hafa áhrif á orkugeirann á marga vegu, allt frá breytingum á upphitun og kælingu eftirspurn; til að hafa áhrif á orkugjafaaðstæður - til dæmis minnkað vatnsframboð fyrir vatnsafli við langvarandi þurrka og minnkað framboð á kælivatni sem hefur áhrif á skilvirkni virkjana. Ennfremur geta orkuminnviðir orðið fyrir skaðabótum með því að breyta loftslagsskilyrðum. Framkvæmdastjórn Evrópusambandsins miðar almennt að því að auka loftslagsþol innviða, þ.mt orku með því að útvega stefnumótandi ramma."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:895
 #: ../theme/climateadaptv2/tab-policies-rule.html:122
-#, 
 msgid "Climate change has complex effects on the bio-physical processes that underpin agricultural systems, with both negative and positive consequences in different EU regions. Rising atmospheric CO2 concentration, higher temperatures, changes in precipitation patterns and in frequency of extreme events both affect the natural environment as well as the quantity, quality and stability of food production. Climatic variations impact on water resources, soils, pests and diseases, leading to significant changes in agriculture and livestock production."
 msgstr "Loftslagsbreytingar hafa flókin áhrif á lífeðlisfræðilega ferla sem renna stoðum undir landbúnaðarkerfi, bæði með neikvæðar og jákvæðar afleiðingar á mismunandi ESB svæðum. Hækkandi styrkur CO2 í andrúmsloftinu, hærra hitastig, breytingar á úrkomumynstri og á tíðni öfgafullra atburða hafa bæði áhrif á náttúrulegt umhverfi sem og magn, gæði og stöðugleiki matvælaframleiðslu. Loftslagsbreytileiki hefur áhrif á vatnsauðlindir, jarðveg, skaðvalda og sjúkdóma, sem leiðir til verulegra breytinga á landbúnaði og búfjárframleiðslu."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1043
 #: ../theme/climateadaptv2/tab-policies-rule.html:270
-#, 
 msgid "Climate change is expected to have severe impacts on the marine environment. Increase in water temperatures will contribute to a restructuring of marine ecosystems with implications for ocean circulation, biogeochemical cycling and marine biodiversity. Ocean acidification will affect the ability of some calcium carbonate-secreting species (as molluscs, planktons and corals) to produce their shells or skeletons. Warmer and more acidic seawater will therefore negatively affect fishery and aquaculture."
 msgstr "Búist er við að loftslagsbreytingar hafi mikil áhrif á sjávarumhverfið. Hækkun hitastigs vatns mun stuðla að endurskipulagningu vistkerfa sjávar með afleiðingum fyrir blóðrás, lífefnafræðilega hjólreiðar og líffræðilegan fjölbreytileika sjávar. Sýrun sjávar mun hafa áhrif á getu sumra kalsíumkarbónatseytandi tegunda (sem lindýra, planktons og kóralla) til að framleiða skeljar eða beinagrindur. Hlýrra og súrara sjó hefur því neikvæð áhrif á fiskveiðar og fiskeldi."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1029
 #: ../theme/climateadaptv2/tab-policies-rule.html:256
-#, 
 msgid "Climate change will generate new health risks and amplify current health problems. Both direct and indirect effects on human, plant and animal health are expected from climate change. Direct effects result from changes in the intensity and frequency of extreme weather events like heatwaves and floods. Indirect effects can be felt through changes in the incidence of diseases transmitted by insects (i.e. vector borne diseases caused by mosquitoes and ticks), rodents, or changes in water, food and air quality. The European Commission's EU strategy on adaptation to climate change is accompanied by a Staff Working Document."
 msgstr "Loftslagsbreytingar munu skapa nýja heilsufarsáhættu og magna núverandi heilsufarsvandamál. Búist er við bæði bein og óbein áhrif á heilsu manna, plantna og dýra vegna loftslagsbreytinga. Bein áhrif stafar af breytingum á styrkleika og tíðni öfgafullra veðuratburða eins og hitabylgjur og flóð. Óbein áhrif geta fundið fyrir með breytingum á tíðni sjúkdóma sem smitast af skordýrum (þ.e.a.s. vektor borne sjúkdómum af völdum moskítóflugna og tik), nagdýrar eða breytingar á vatni, mat og loftgæðum. Stefna ESB framkvæmdastjórnar ESB um aðlögun að loftslagsbreytingum fylgir starfsskjali starfsmanna."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1133
-#, 
 msgid "Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events."
 msgstr "Málafræðilegar aðlagar sýna fram á frumkvæði sem þegar eru framkvæmdar í Evrópu til að laga sig að loftslagsbreytingum og auka seiglu í mikilli veðri og atburði hægfara."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:808
 #: ../theme/climateadaptv2/tab-policies-rule.html:35
-#, 
 msgid "Coastal areas"
 msgstr "Strandsvæði"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:815
 #: ../theme/climateadaptv2/tab-policies-rule.html:42
-#, 
 msgid "Disaster risk <br /> reduction"
 msgstr "Hörmungaráhætta <br /> Lækkun"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:954
 #: ../theme/climateadaptv2/tab-policies-rule.html:181
-#, 
 msgid "Disaster risk reduction"
 msgstr "Lækkun á hörmungum"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:822
 #: ../theme/climateadaptv2/tab-policies-rule.html:49
-#, 
 msgid "Ecosystem-based approaches"
 msgstr "Aðferðir byggðar á vistkerfi"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:970
 #: ../theme/climateadaptv2/tab-policies-rule.html:197
-#, 
 msgid "Ecosystem-based initiatives for climate change adaptation and disaster risk reduction increase resilience and decrease vulnerability of both people and ecosystems, empower people and provide jobs and business opportunities, make economic sense, are ready for use and easily accessible, including for the rural and urban poor. They provide multiple benefits and contribute to achieving climate change adaptation objectives but also several multi-lateral environmental agreements and sectoral policy objectives (e.g. haltering biodiversity loss, water quality or agricultural and forest management)."
 msgstr "Vistkerfi sem byggir á vistkerfum til aðlögunar loftslagsbreytinga og minnkun á hættu á hörmungum eykur seiglu og dregur úr varnarleysi bæði fólks og vistkerfa, styrkja fólk og veita störf og viðskiptatækifæri, gera efnahagslega vit, eru tilbúin til notkunar og aðgengileg, þar með talin dreifbýli og þéttbýli Aumingja. Þeir veita margvíslegan ávinning og stuðla að því að ná markmiðum um aðlögun loftslagsbreytinga en einnig nokkra marghliða umhverfissamninga og markmið um atvinnugrein (t.d. tap á líffræðilegum fjölbreytileika, vatnsgæðum eða landbúnaðar- og skógastjórnun)."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:829
 #: ../theme/climateadaptv2/tab-policies-rule.html:56
-#, 
 msgid "Energy"
 msgstr "Orka"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1344
-#, 
 msgid "Events"
 msgstr "Atburðir"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1000
 #: ../theme/climateadaptv2/tab-policies-rule.html:227
-#, 
 msgid "Extreme weather events in recent years have increased the urgency to mainstream climate change adaptation into the different EU policy fields. There are few specific EU activities to mainstream climate change adaptation into policies for financial and insurance sectors. However many European policies related to natural disasters (see Disaster risk reduction) are very relevant to the financial and insurance sector, as they may help to prevent significant losses and financial disasters. The European Commission has also committed itself to increasing financing of climate-related activities by ensuring that at least 20% of the European budget is climate-related expenditure."
 msgstr "Extreme veðuratburðir á undanförnum árum hafa aukið brýnt að aðlögun almennra loftslagsbreytinga að mismunandi vettvangi ESB. Það eru fá sérstök starfsemi ESB til almennra aðlögunar loftslagsbreytinga að stefnu fyrir fjármála- og tryggingageira. Samt sem áður eru margar evrópskar stefnur sem tengjast náttúruhamförum (sjá lækkun á hörmungum) mjög viðeigandi fyrir fjármála- og tryggingageirann, þar sem þær geta hjálpað til við að koma í veg fyrir verulegar tap og fjárhagslegar hamfarir. Framkvæmdastjórn Evrópusambandsins hefur einnig skuldbundið sig til að auka fjármögnun loftslagsstarfsemi með því að tryggja að að minnsta kosti 20% af fjárlögum Evrópu séu útgjöld sem tengjast loftslagsmálum."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:836
 #: ../theme/climateadaptv2/tab-policies-rule.html:63
-#, 
 msgid "Financial"
 msgstr "Fjármála"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1308
-#, 
 msgid "Find out how to contribute different types of information to Climate-ADAPT"
 msgstr "Finndu út hvernig eigi að leggja mismunandi tegundir upplýsinga til loftslagsaðlögunar"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1258
-#, 
 msgid "For more informations visit:"
 msgstr "Fyrir frekari upplýsingar heimsóttu:"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1093
-#, 
 msgid "For more informations visit: <a href=\"/cca/eu-adaptation-policy/sector-policies\"> <i class=\"fa fa-angle-double-right\"></i> EU Sector Policies </a>"
 msgstr "Fyrir frekari upplýsingar heimsóttu: <a href=\"/cca/eu-adaptation-policy/sector-policies\"> <i class = \"fa fa-angle-double-right\"> </i> Stefna ESB geira </a>"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1271
-#, 
 msgid "For urban areas guidance visit:"
 msgstr "Fyrir Leiðbeiningar í þéttbýli: Heimsókn:"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:843
 #: ../theme/climateadaptv2/tab-policies-rule.html:70
-#, 
 msgid "Forestry"
 msgstr "Skógrækt"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:514
-#, 
 msgid "Go to the European Climate Data Explorer"
 msgstr "Farðu í evrópska loftslagsgagnakönnuðurinn"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:531
-#, 
 msgid "Go to the European Climate and Health Observatory"
 msgstr "Farðu í evrópska loftslags- og heilsueftirlitið"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:689
-#, 
 msgid "Guidance"
 msgstr "Leiðbeiningar"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:850
 #: ../theme/climateadaptv2/tab-policies-rule.html:77
-#, 
 msgid "Health"
 msgstr "Heilsa"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1071
 #: ../theme/climateadaptv2/tab-policies-rule.html:298
-#, 
 msgid "In Europe, nearly 73% of the population live in urban areas and this is projected to increase to over 80% by 2050. Climate change is likely to influence almost all components of cities and towns – their environment, economy and society. This raises new, complex challenges for urban planning and management. Climate change impacts on the hubs of Europe's economic activity, social life, culture and innovation have repercussions far beyond their municipal borders."
 msgstr "Í Evrópu búa nærri 73% íbúanna í þéttbýli og spáð er að það muni aukast í yfir 80% árið 2050. Loftslagsbreytingar munu líklega hafa áhrif á alla hluti af borgum og bæjum - umhverfi þeirra, efnahagslífi og samfélagi. Þetta vekur nýjar, flóknar áskoranir fyrir borgarskipulag og stjórnun. Loftslagsbreytingar hafa áhrif á miðstöðvar atvinnustarfsemi Evrópu, félagslíf, menning og nýsköpun hafa afleiðingar langt umfram landamæri sveitarfélaga."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:698
-#, 
 msgid "Indicators"
 msgstr "Vísbendingar"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:707
-#, 
 msgid "Information portals"
 msgstr "Upplýsingagáttir"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:857
 #: ../theme/climateadaptv2/tab-policies-rule.html:84
-#, 
 msgid "Marine <br /> &amp; fisheries"
 msgstr "Marine <br /> & amp; fiskveiðar"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1042
 #: ../theme/climateadaptv2/tab-policies-rule.html:269
-#, 
 msgid "Marine and fisheries"
 msgstr "Marine and Fisheries"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1341
-#, 
 msgid "News"
 msgstr "Fréttir"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1417
-#, 
 msgid "Newsletter"
 msgstr "Fréttabréf"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:725
-#, 
 msgid "Organisations"
 msgstr "Samtök"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:955
 #: ../theme/climateadaptv2/tab-policies-rule.html:182
-#, 
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "Undanfarin ár hefur Evrópa upplifað allar tegundir náttúruhamfara: alvarleg flóð, þurrkar og skógareldar með hrikaleg áhrif á líf fólks, evrópska efnahagslífið og umhverfið. Undanfarinn áratug samþykkti framkvæmdastjórn ESB nokkrar áætlanir og aðgerðir til að takast á við minnkun á hörmungum sem til dæmis flóð tilskipun og framkvæmd hennar (tímaáætlun), aðgerðir ESB um vatnsskort og þurrka, grænbókina um tryggingar í tryggingunni samhengi náttúrulegra og manngerða hamfara."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:661
-#, 
 msgid "Please check our <a href=\"/help/guidance\">Guidance to search function</a> for more help on how to search the database."
 msgstr "Vinsamlegast athugaðu <a href=\"/help/guidance\"> leiðbeiningar um leitaraðgerð </a> til að fá frekari hjálp um hvernig á að leita í gagnagrunninum."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:743
-#, 
 msgid "Publications and reports"
 msgstr "Rit og skýrslur"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1420
-#, 
 msgid "RSS feed"
 msgstr "RSS fóður"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:752
-#, 
 msgid "Research and knowledge projects"
 msgstr "Rannsóknar- og þekkingarverkefni"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:940
 #: ../theme/climateadaptv2/tab-policies-rule.html:167
-#, 
 msgid "Sea level rise can cause flooding, coastal erosion and the loss of low-lying coastal systems. It will also increase the risk of storm surges and the likelihood of landward intrusion of saltwater and may endanger coastal ecosystems. Expected rises in water temperatures and ocean acidification will contribute to a restructuring of coastal ecosystems; with implications for ocean circulation and biogeochemical cycling."
 msgstr "Hækkun sjávarborðs getur valdið flóðum, rof á strandlengjum og tapi á lágliggjandi strandkerfum. Það mun einnig auka hættuna á stormaskiptum og líkurnar á afskiptum saltvatns í landi og geta stofnað vistkerfi strandsins í hættu. Búist er við hækkun á hitastigi vatns og súrnun sjávar mun stuðla að endurskipulagningu vistkerfa strandlengju; með afleiðingar fyrir hringrás hafsins og lífefnafræðilega hjólreiðar."
 
+# ,
 #: ../theme/climateadaptv2/index.html:61
 #: ../theme/climateadaptv2/page.html:67
-#, 
 msgid "Search Climate-ADAPT"
 msgstr "Leitaðu að loftslagsaðlögun"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1151
-#, 
 msgid "See how Europe is adapting to climate change: <a class=\"ca-booklet-link\" href=\"../about/climate-adapt-10-case-studies-online.pdf\"> <i class=\"fa fa-angle-double-right\"></i> Case studies booklet </a>"
 msgstr "Sjáðu hvernig Evrópa er að aðlagast loftslagsbreytingum: <a class=\"ca-booklet-link\" href=\"../about/climate-adapt-10-case-tudies-online.pdf\"> <i class = \"fa fa fa -Angle-Double-Right \"> </i> Case Studies bæklingur </a>"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1307
-#, 
 msgid "Share <span>your information</span>"
 msgstr "Deildu <span> upplýsingum þínum </span>"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1433
-#, 
 msgid "Sign me up!"
 msgstr "Skráðu mig!"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1450
-#, 
 msgid "Subscribe"
 msgstr "Gerast áskrifandi"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1448
-#, 
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "Gerast áskrifandi að <strong> RSS straumnum okkar </strong> <br /> og fylgstu með!"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1322
-#, 
 msgid "The Covenant of Mayors initiative aims to engage and support cities and towns to commit to reaching the EU climate mitigation and adaptation targets. Signatory cities pledge action to support implementation of the EU 40% greenhouse gas-reduction target by 2030 ..."
 msgstr "Átaksverkefni Mayors Mayors miðar að því að taka þátt og styðja borgir og bæi til að skuldbinda sig til að ná til að draga úr loftslagsmálum og aðlögunarmarkmiðum ESB. Undirritunarborgir Loforð aðgerðir til að styðja við framkvæmd ESB 40% Greinghouse Gas-minnkunarmarkmið árið 2030 ..."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:510
-#, 
 msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
 msgstr "Evrópska loftslagsgagnafyrirtækið veitir gagnvirkan aðgang að mörgum loftslagsvísitölum frá Copernicus loftslagsbreytingarþjónustunni til stuðnings aðlögun loftslagsbreytinga."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:526
-#, 
 msgid "The European Climate and Health Observatory provides access to a wide range of relevant publications, tools, websites and other resources related to climate change and health."
 msgstr "Evrópska loftslags- og heilsueftirlitið veitir aðgang að fjölmörgum viðeigandi ritum, verkfærum, vefsíðum og öðrum úrræðum sem tengjast loftslagsbreytingum og heilsu."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:659
-#, 
 msgid "The database contains quality checked information and is annotated by climate adaptation experts with keywords."
 msgstr "Gagnagrunnurinn inniheldur gæðakönnuð upplýsingar og er tilgreind af sérfræðingum í loftslagsmálum með lykilorð."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1057
 #: ../theme/climateadaptv2/tab-policies-rule.html:284
-#, 
 msgid "The need for adapting the transport system to the impact of climate change has been highlighted since the European Commission's Adaptation White Paper (COM (2009)148). Transport adaptation is addressed through a combination of European transport, climate change and research policies. The European Union promotes best practices, mainstreaming adaptation within its transport infrastructure development programmes, and provides guidance, e.g. by developing adequate standards for construction. Action is focused on transport infrastructure, and particularly on the Trans-European Transport Network (TEN-T)."
 msgstr "Þörfin fyrir að laga flutningskerfið að áhrifum loftslagsbreytinga hefur verið lögð áhersla á síðan aðlögun hvítbókar framkvæmdastjórnar Evrópusambandsins (COM (2009) 148). Fjallað er um aðlögun flutninga með blöndu af evrópskum flutningum, loftslagsbreytingum og rannsóknarstefnu. Evrópusambandið stuðlar að bestu starfsháttum, almennum aðlögun innan þróunaráætlana um flutningainnviði og veitir leiðbeiningar, t.d. með því að þróa fullnægjandi staðla fyrir smíði. Aðgerðir eru lögð áhersla á samgöngumannvirki og sérstaklega á Trans-European flutninganetinu (Ten-T)."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1015
 #: ../theme/climateadaptv2/tab-policies-rule.html:242
-#, 
 msgid "The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector."
 msgstr "Hröð tíðni loftslagsbreytinga getur sigrast á náttúrulegri getu vistkerfa skógar til að aðlagast. Það leiðir til aukinnar hættu á truflunum með óveðrum, eldi, meindýrum og sjúkdómum með afleiðingar fyrir vöxt skóga og framleiðslu. Efnahagslegur hagkvæmni skógræktar verður fyrir áhrifum, aðallega á suðurhluta Evrópu, svo og getu skóga til að veita umhverfisþjónustu, þar með talið breytingar á kolefnisvaskinum. Árið 2013 samþykkti framkvæmdastjórnin nýja skógarstefnu ESB, sem bregst við nýjum áskorunum sem skógur og skógargeirinn standa frammi fyrir."
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:761
-#, 
 msgid "Tools"
 msgstr "Verkfæri"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:864
 #: ../theme/climateadaptv2/tab-policies-rule.html:91
-#, 
 msgid "Transport"
 msgstr "Flutningur"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:871
 #: ../theme/climateadaptv2/tab-policies-rule.html:98
-#, 
 msgid "Urban"
 msgstr "Þéttbýli"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:734
-#, 
 msgid "Videos"
 msgstr "Myndbönd"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:878
 #: ../theme/climateadaptv2/tab-policies-rule.html:105
-#, 
 msgid "Water <br /> management"
 msgstr "Vatn <br /> Stjórnun"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1084
 #: ../theme/climateadaptv2/tab-policies-rule.html:311
-#, 
 msgid "Water management"
 msgstr "Vatnsstjórnun"
 
 # ,
+# ,
 #: ../theme/climateadaptv2/index.html:1085
 #: ../theme/climateadaptv2/tab-policies-rule.html:312
-#, 
 msgid "Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe."
 msgstr "Vatnsauðlindir hafa bein áhrif á loftslagsbreytingar og stjórnun þessara auðlinda hefur áhrif á varnarleysi vistkerfa, félags-og efnahagslegrar starfsemi og heilsu manna. Einnig er búist við að vatnsstjórnun gegni sífellt aðalhlutverki í aðlögun. Gert er ráð fyrir að loftslagsbreytingar leiði til mikilla breytinga á framboði vatns í Evrópu með auknum vatnsskorti og þurrkum aðallega í Suður -Evrópu og aukinni hættu á flóðum um flesta Evrópu."
 
+# ,
 #: ../theme/climateadaptv2/index.html:649
-#, 
 msgid "type here ..."
 msgstr "skrifaðu hér ..."
-

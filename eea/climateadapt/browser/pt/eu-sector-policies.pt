@@ -1,4 +1,9 @@
-<div tal:define="portal_url context/portal_url">
+<div tal:define="portal_url context/portal_url"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  i18n:domain="eea.climateadapt.frontpage" >
   <div class="policies-tile">
     <ul class="nav nav-tabs flex-wrapper policies-nav">
       <li class="policies-nav-item active">

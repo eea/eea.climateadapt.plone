@@ -16,47 +16,46 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
-#, 
+# ,
 msgid "Adaptation options"
 msgstr "Adaptasyon Seçenekleri"
 
-#, 
+# ,
 msgid "Case studies"
 msgstr "Durum çalışmaları"
 
-#, 
+# ,
 msgid "Countries:"
 msgstr "Ülkeler:"
 
-#, 
+# ,
 msgid "Guidance"
 msgstr "Rehberlik"
 
-#, 
+# ,
 msgid "Indicators"
 msgstr "Göstergeler"
 
-#, 
+# ,
 msgid "Information portals"
 msgstr "Bilgi portalları"
 
-#, 
+# ,
 msgid "Organisations"
 msgstr "Kuruluşlar"
 
-#, 
+# ,
 msgid "Publication and reports"
 msgstr "Yayın ve Raporlar"
 
-#, 
+# ,
 msgid "Research and knowledge projects"
 msgstr "Araştırma ve bilgi projeleri"
 
-#, 
+# ,
 msgid "Tools"
 msgstr "Aletler"
 
-#, 
+# ,
 msgid "Videos"
 msgstr "Videolar"
-

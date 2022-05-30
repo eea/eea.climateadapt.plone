@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-19 18:07+0000\n"
+"POT-Creation-Date: 2022-05-27 05:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,751 +13,1093 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
 
+#: ../../climateadapt/browser/pt/transnational_regions.pt:415
+msgid "12 regions"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:140
+msgid "<i class=\"fa fa-exclamation-circle\" aria-hidden=\"true\"></i> [Disclaimer] <div id=\"hover-content\">x</div>"
+msgstr ""
+
+# ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:149
 msgid "<strong>Last Modified in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
-msgstr ""
+msgstr "<strong> Последно модифицирано в Climate-Adapt </strong> $ {dynamic_content}"
 
+# ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:145
 msgid "<strong>Published in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
-msgstr ""
+msgstr "<strong> Публикувано в Climate-Adapt </strong> $ {dynamic_content}"
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:61
 msgid "Adaptation Details"
-msgstr ""
+msgstr "Подробности за адаптацията"
 
+# ,
 #: ../../climateadapt/vocabulary.py:329
 msgid "Adaptation Measures and Actions"
-msgstr ""
+msgstr "Мерки за адаптиране и действия"
 
+# ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:57
 msgid "Adaptation Options Implemented In This Case"
-msgstr ""
+msgstr "Опции за адаптиране, приложени в този случай"
 
+# ,
 #: ../../climateadapt/vocabulary.py:330
 msgid "Adaptation Plans and Strategies"
-msgstr ""
+msgstr "Планове и стратегии за адаптиране"
 
+# ,
 #: ../../climateadapt/vocabulary.py:269
 msgid "Adaptation options"
+msgstr "Опции за адаптиране"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:96
+msgid "Adaptation portal or platform reported"
 msgstr ""
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:125
 msgid "Adaptation strategy"
-msgstr ""
+msgstr "Стратегия за адаптиране"
 
+# ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:315
 msgid "AdapteCCA"
-msgstr ""
+msgstr "Adaptecca"
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:31
 #: ../../climateadapt/browser/pt/casestudy_view.pt:71
 msgid "Additional Details"
-msgstr ""
+msgstr "допълнителни детайли"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:158
 msgid "Additional information on adaptation responses"
+msgstr "Допълнителна информация за отговорите на адаптирането"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:420
+msgid "Adriatic and Ionian"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/transnational_regions.pt:452
+msgid "Adriatic-Ionian"
+msgstr ""
+
+# ,
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:57
 msgid "Advanced search for Climate-Adapt database items <a href=\"/redirect_to_search_page\">here</a>"
-msgstr ""
+msgstr "Разширено търсене на елементи от базата данни на климата-адапта <a href=\"/redirect_to_search_page\"> тук </a>"
 
+# ,
 #: ../../climateadapt/browser/overrides.py:37
 #: ../../climateadapt/vocabulary.py:293
 msgid "Agriculture"
+msgstr "селско стопанство"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:419
+msgid "Alpine"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/transnational_regions.pt:455
+msgid "Alpine Space"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:458
+msgid "Atlantic Area"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:461
+msgid "Balkan-Mediterranean"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:417
+msgid "Baltic Sea"
+msgstr ""
+
+# ,
 #: ../../climateadapt/browser/overrides.py:39
 #: ../../climateadapt/vocabulary.py:294
 msgid "Biodiversity"
-msgstr ""
+msgstr "Биоразнообразие"
 
+# ,
 #: ../../climateadapt/browser/__init__.py:169
 msgid "Biogeographical regions"
-msgstr ""
+msgstr "Биогеографски региони"
 
+# ,
 #: ../../climateadapt/browser/overrides.py:49
 #: ../../climateadapt/vocabulary.py:295
 msgid "Buildings"
-msgstr ""
+msgstr "Сгради"
 
+# ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:46
 msgid "Case Study Description"
-msgstr ""
+msgstr "Описание на казуса"
 
+# ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:241
 msgid "Case Study Illustrations (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
-msgstr ""
+msgstr "Илюстрации на казус ($ {dynamic_content}) <i class = \"fa-picture-o\" aria-hidden = \"true\"> </i>"
 
+# ,
 #: ../../climateadapt/vocabulary.py:270
 msgid "Case studies"
-msgstr ""
+msgstr "Казуси"
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:194
 msgid "Case studies related to this option:"
-msgstr ""
+msgstr "Казуси, свързани с тази опция:"
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:33
 msgid "Category"
+msgstr "Категория"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:467
+msgid "Central Europe"
 msgstr ""
 
+# ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:49
 msgid "Challenges"
-msgstr ""
+msgstr "Предизвикателства"
 
+# ,
 #: ../../climateadapt/mayorsadapt/views.py:78
 msgid "Check-out created"
+msgstr "Изписване създадена"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:56
+msgid "Choose a country"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/transnational_regions.pt:431
+msgid "Choose a region"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:74
+msgid "Choose thematic map:"
+msgstr ""
+
+# ,
 #: ../../climateadapt/browser/__init__.py:208
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
 msgid "City"
-msgstr ""
+msgstr "Град"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:111
 msgid "Climate change impacts"
-msgstr ""
+msgstr "Въздействия върху изменението на климата"
 
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:70
 #: ../../climateadapt/browser/pt/video_view.pt:108
 msgid "Climate impacts"
-msgstr ""
+msgstr "Въздействие върху климата"
 
+# ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:102
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:172
 #: ../../climateadapt/browser/pt/casestudy_view.pt:294
 msgid "Climate impacts:"
-msgstr ""
+msgstr "Въздействие върху климата:"
 
+# ,
 #: ../../climateadapt/browser/overrides.py:40
 #: ../../climateadapt/vocabulary.py:296
 msgid "Coastal areas"
-msgstr ""
+msgstr "Крайбрежните зони"
 
+# ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:215
 msgid "Comments:"
-msgstr ""
+msgstr "Коментари:"
 
+# ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:103
 #: ../../climateadapt/browser/pt/navbar_footer.pt:15
 #: ../../climateadapt/theme/climateadaptv2/static/footer.html:18
 msgid "Contact"
-msgstr ""
+msgstr "Контакт"
 
+# ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:39
 msgid "Contact information for the Observatory"
-msgstr ""
+msgstr "Информация за контакт за обсерваторията"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:222
 msgid "Contact person"
+msgstr "Лице за контакт"
+
+#: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:35
+msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
 msgstr ""
 
+# ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:202
 msgid "Contributor:"
-msgstr ""
+msgstr "Сътрудник:"
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:42
 #: ../../climateadapt/browser/pt/casestudy_view.pt:82
 msgid "Costs and Benefits"
-msgstr ""
+msgstr "Разходи и ползи"
 
+# ,
 #: ../../climateadapt/browser/__init__.py:175
 msgid "Countries"
-msgstr ""
+msgstr "Държави"
 
+# ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:250
 msgid "Countries:"
-msgstr ""
+msgstr "Държави:"
 
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:84
 #: ../../climateadapt/browser/pt/aceproject_view.pt:131
 msgid "Countries: ${DYNAMIC_CONTENT}"
-msgstr ""
+msgstr "Страни: $ {dynamic_content}"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:245
 msgid "Covenant of Mayors 2020 signatory"
-msgstr ""
+msgstr "Завет на кметовете 2020 г."
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:251
 msgid "Covenant of Mayors 2030 signatory"
-msgstr ""
+msgstr "Завет на кметовете 2030 г. подписала"
 
+# ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:101
 msgid "Created by:"
-msgstr ""
+msgstr "Създадено от:"
 
+# ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:141
 msgid "DRMKC"
+msgstr "DRMKC"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:418
+msgid "Danube"
 msgstr ""
 
+# ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:70
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:145
 #: ../../climateadapt/browser/pt/casestudy_view.pt:214
 msgid "Date of creation:"
-msgstr ""
+msgstr "Дата на създаване:"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:240
 msgid "Date of officially joining Mayors Adapt"
-msgstr ""
+msgstr "Дата на официално присъединяване към кметовете се адаптират"
 
+# ,
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:48
 #: ../../climateadapt/browser/pt/indicator_view.pt:66
 #: ../../climateadapt/browser/pt/publicationreport_view.pt:56
 msgid "Date of publication:"
-msgstr ""
+msgstr "Дата на публикуване:"
 
+# ,
 #: ../../climateadapt/browser/pt/video_view.pt:93
 msgid "Date of release:"
-msgstr ""
+msgstr "Дата на освобождаване:"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:138
 msgid "Date of strategy/plan approval"
-msgstr ""
+msgstr "Дата на одобрение на стратегията/плана"
 
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:25
 #: ../../climateadapt/browser/pt/indicator_view.pt:32
 #: ../../climateadapt/browser/pt/informationportal_view.pt:21
-#: ../../climateadapt/browser/pt/publicationreport_view.pt:22
 msgid "Description"
-msgstr ""
+msgstr "Описание"
 
+# ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:156
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:21
 #: ../../climateadapt/browser/pt/organisation_view.pt:18
 msgid "Description:"
-msgstr ""
+msgstr "Описание:"
 
+# ,
 #: ../../climateadapt/browser/overrides.py:42
 #: ../../climateadapt/vocabulary.py:297
 msgid "Disaster Risk Reduction"
-msgstr ""
+msgstr "Намаляване на риска от бедствия"
 
+# ,
 #: ../../climateadapt/vocabulary.py:337
 msgid "Droughts"
-msgstr ""
+msgstr "Суши"
 
+# ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:97
 msgid "Duration:"
-msgstr ""
+msgstr "Продължителност:"
 
+# ,
 #: ../../climateadapt/vocabulary.py:298
 msgid "Ecosystem-based approaches (GI)"
-msgstr ""
+msgstr "Подходи, базирани на екосистеми (GI)"
 
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:73
 #: ../../climateadapt/browser/pt/video_view.pt:113
 msgid "Elements"
-msgstr ""
+msgstr "Елементи"
 
+# ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:107
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:75
 #: ../../climateadapt/browser/pt/indicator_view.pt:93
 msgid "Elements:"
-msgstr ""
+msgstr "Елементи:"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:28
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:228
 msgid "Email"
-msgstr ""
+msgstr "електронна поща"
 
+# ,
 #: ../../climateadapt/browser/overrides.py:47
 #: ../../climateadapt/vocabulary.py:299
 msgid "Energy"
-msgstr ""
+msgstr "Енергия"
 
+# ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:139
 #: ../../climateadapt/browser/pt/casestudy_view.pt:313
 msgid "External source"
-msgstr ""
+msgstr "Външен източник"
 
+# ,
 #: ../../climateadapt/vocabulary.py:338
 msgid "Extreme Temperatures"
-msgstr ""
+msgstr "Екстремни температури"
 
+# ,
 #: ../../climateadapt/browser/overrides.py:43
 #: ../../climateadapt/vocabulary.py:300
 msgid "Financial"
-msgstr ""
+msgstr "Финансов"
 
+# ,
 #: ../../climateadapt/vocabulary.py:339
 msgid "Flooding"
-msgstr ""
+msgstr "Наводнение"
 
+# ,
 #: ../../climateadapt/browser/overrides.py:38
 #: ../../climateadapt/vocabulary.py:301
 msgid "Forestry"
-msgstr ""
+msgstr "горско стопанство"
 
+# ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:87
 msgid "Funding Programme:"
-msgstr ""
+msgstr "Програма за финансиране:"
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:187
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:85
 #: ../../climateadapt/browser/pt/informationportal_view.pt:88
 msgid "Geographic characterisation:"
-msgstr ""
+msgstr "Географска характеристика:"
 
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:78
 #: ../../climateadapt/browser/pt/video_view.pt:123
 msgid "Geographic characterization"
-msgstr ""
+msgstr "Географска характеристика"
 
+# ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:117
 #: ../../climateadapt/browser/pt/casestudy_view.pt:308
 #: ../../climateadapt/browser/pt/indicator_view.pt:103
 msgid "Geographic characterization:"
+msgstr "Географска характеристика:"
+
+#: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:11
+msgid "Go back"
 msgstr ""
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:171
 msgid "Good practice / spotlight item"
-msgstr ""
+msgstr "Добра практика / Прожектор"
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:178
 #: ../../climateadapt/browser/pt/casestudy_view.pt:300
 msgid "Governance level:"
-msgstr ""
+msgstr "Ниво на управление:"
 
+# ,
 #: ../../climateadapt/vocabulary.py:266
 msgid "Guidance"
-msgstr ""
+msgstr "Ръководство"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:128
 msgid "Have you already developed an adaptation strategy?"
-msgstr ""
+msgstr "Разработили ли сте вече стратегия за адаптация?"
 
+# ,
 #: ../../climateadapt/browser/overrides.py:44
 #: ../../climateadapt/vocabulary.py:302
 msgid "Health"
-msgstr ""
+msgstr "Здраве"
 
+# ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:80
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:155
 #: ../../climateadapt/browser/pt/casestudy_view.pt:277
 msgid "Health impact:"
-msgstr ""
+msgstr "Въздействие върху здравето:"
 
+# ,
 #: ../../climateadapt/browser/pt/navbar_footer.pt:12
 #: ../../climateadapt/theme/climateadaptv2/static/footer.html:15
 msgid "Home"
+msgstr "У дома"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:423
+msgid "How to use the map?"
 msgstr ""
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:34
 msgid "IPCC categories"
-msgstr ""
+msgstr "IPCC Категории"
 
+# ,
 #: ../../climateadapt/vocabulary.py:340
 msgid "Ice and Snow"
-msgstr ""
+msgstr "Лед и сняг"
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:48
 #: ../../climateadapt/browser/pt/casestudy_view.pt:90
 msgid "Implementation Time"
-msgstr ""
+msgstr "Време за изпълнение"
 
+# ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:65
 msgid "Importance and Relevance of Adaptation"
-msgstr ""
+msgstr "Значение и релевантност на адаптацията"
 
+# ,
 #: ../../climateadapt/vocabulary.py:265
 msgid "Indicators"
-msgstr ""
+msgstr "Показатели"
 
+# ,
 #: ../../climateadapt/vocabulary.py:263
 msgid "Information portals"
+msgstr "Информационни портали"
+
+#: ../../climateadapt/browser/pt/aceitem_view.pt:56
+msgid "Item Documents (<span>${DYNAMIC_CONTENT}</span>)"
 msgstr ""
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:138
 msgid "Item’s creation:"
-msgstr ""
+msgstr "Създаване на артикул:"
 
+# ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:22
 msgid "Key activities within climate change and health"
-msgstr ""
+msgstr "Основни дейности в рамките на изменението на климата и здравето"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:203
 msgid "Key vulnerable sectors"
-msgstr ""
+msgstr "Ключови уязвими сектори"
 
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:65
 #: ../../climateadapt/browser/pt/video_view.pt:103
 msgid "Keywords"
-msgstr ""
+msgstr "Ключови думи"
 
+# ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:92
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:162
 #: ../../climateadapt/browser/pt/casestudy_view.pt:284
 msgid "Keywords:"
-msgstr ""
+msgstr "Ключови думи:"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:258
 msgid "Last Update"
-msgstr ""
+msgstr "Последна актуализация"
 
+# ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:163
 msgid "Lead"
-msgstr ""
+msgstr "Водя"
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:45
 #: ../../climateadapt/browser/pt/casestudy_view.pt:86
 msgid "Legal Aspects"
-msgstr ""
+msgstr "Правни аспекти"
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:51
 #: ../../climateadapt/browser/pt/casestudy_view.pt:94
 msgid "Life Time"
-msgstr ""
+msgstr "Време за живот"
 
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:44
 #: ../../climateadapt/browser/pt/indicator_view.pt:49
 #: ../../climateadapt/browser/pt/video_view.pt:62
 msgid "Link to metadata:"
-msgstr ""
+msgstr "Връзка към метаданни:"
 
+# ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:34
 msgid "Links to further information"
-msgstr ""
+msgstr "Връзки към допълнителна информация"
 
+# ,
 #: ../../climateadapt/browser/__init__.py:161
 msgid "Macro-Transnational region"
-msgstr ""
+msgstr "Макро-трансационален регион"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:120
 msgid "Main motivation for taking adaptation action"
-msgstr ""
+msgstr "Основна мотивация за предприемане на адаптационни действия"
 
+# ,
 #: ../../climateadapt/vocabulary.py:264
 msgid "Maps, graphs and datasets"
-msgstr ""
+msgstr "Карти, графики и набори от данни"
 
+# ,
 #: ../../climateadapt/browser/overrides.py:46
 #: ../../climateadapt/vocabulary.py:304
 msgid "Marine and Fisheries"
-msgstr ""
+msgstr "Морски и риболов"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:212
 msgid "Mayor"
-msgstr ""
+msgstr "Кмет"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:234
 msgid "Mayors Adapt signatory"
+msgstr "Кметовете адаптират подписали"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:473
+msgid "Mediterranean"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/countries-d3.pt:111
+msgid "NAS and NAP reported as adopted"
+msgstr ""
+
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:133
 msgid "Name of the strategy/ plan (If adopted)"
+msgstr "Име на стратегията/ плана (ако е приет)"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:127
+msgid "Neither NAS nor NAP reported as adopted"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/countries-d3.pt:85
+msgid "No assessments reported"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:89
+msgid "No data reported"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:100
+msgid "No portal or platform reported"
+msgstr ""
+
+# ,
 #: ../../climateadapt/vocabulary.py:310
 msgid "Non specific"
+msgstr "Не специфични"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:476
+msgid "North Sea"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/transnational_regions.pt:479
+msgid "North West Europe"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:482
+msgid "Northern Periphery and Arctic"
+msgstr ""
+
+# ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:53
 msgid "Objectives"
-msgstr ""
+msgstr "Цели"
 
+# ,
 #: ../../climateadapt/vocabulary.py:327
 msgid "Observations and Scenarios"
-msgstr ""
+msgstr "Наблюдения и сценарии"
 
+# ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:50
 msgid "Observatory Contributions:"
+msgstr "Принос на обсерваторията:"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:81
+msgid "One or more assessments reported"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/countries-d3.pt:115
+msgid "Only NAP reported as adopted"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:119
+msgid "Only NAS reported as adopted"
+msgstr ""
+
+# ,
 #: ../../climateadapt/vocabulary.py:271
 msgid "Organisations"
+msgstr "Организации"
+
+#: ../../climateadapt/browser/pt/aceitem_view.pt:18
+msgid "Original aceitem"
 msgstr ""
 
+# ,
 #: ../../climateadapt/browser/pt/footer_logos.pt:35
 msgid "Other European Information Systems:<br />&nbsp;"
+msgstr "Други европейски информационни системи: <br /> & NBSP;"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:488
+msgid "Other regions"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:12
+msgid "Overview list of all indices"
+msgstr ""
+
+# ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:171
 msgid "Partners"
-msgstr ""
+msgstr "Партньори"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:165
 msgid "Planned adaptation actions"
-msgstr ""
+msgstr "Планирани действия за адаптиране"
 
+# ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:205
 msgid "Please contact us for any other enquiry on this Case Study or to share a new Case Study (email <a href=\"mailto: climate.adapt@eea.europa.eu\">climate.adapt@eea.europa.eu</a>)"
-msgstr ""
+msgstr "Моля, свържете се с нас за всяко друго запитване в този случай или да споделите нов казус (имейл <a href=\"mailto: climate.adapt@eea.europa.eu\"> climate.adapt@eea.europa.eu </a >)"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:217
 msgid "Population"
-msgstr ""
+msgstr "Население"
 
+# ,
 #: ../../climateadapt/browser/pt/item_statistics.pt:23
 msgid "Portal Type"
-msgstr ""
+msgstr "Тип портал"
 
+# ,
 #: ../../climateadapt/browser/pt/navbar_footer.pt:21
 #: ../../climateadapt/theme/climateadaptv2/static/footer.html:24
 msgid "Privacy and Legal Notice"
-msgstr ""
+msgstr "Поверителност и правно известие"
 
+# ,
 #: ../../climateadapt/browser/overrides.py:59
 msgid "Professional thematic domain"
-msgstr ""
+msgstr "Професионален тематичен домейн"
 
+# ,
 #: ../../climateadapt/browser/pt/publicationreport_view.pt:50
 msgid "Project Documents"
-msgstr ""
+msgstr "Документи на проекта"
 
+# ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:47
 msgid "Project information"
-msgstr ""
+msgstr "Информация за проекта"
 
+# ,
 #: ../../climateadapt/vocabulary.py:262
 msgid "Publications and reports"
-msgstr ""
+msgstr "Публикации и доклади"
 
+# ,
 #: ../../climateadapt/browser/pt/item_statistics.pt:24
 msgid "Published"
-msgstr ""
+msgstr "Публикувано"
 
+# ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:194
 msgid "Reference"
-msgstr ""
+msgstr "Справка"
 
+# ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:100
 msgid "Reference Information"
-msgstr ""
+msgstr "Референтна информация"
 
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:28
 #: ../../climateadapt/browser/pt/aceproject_view.pt:54
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:55
-#: ../../climateadapt/browser/pt/guidancedocument_view.pt:24
 msgid "Reference information"
+msgstr "Референтна информация"
+
+#: ../../climateadapt/browser/pt/aceitem_view.pt:40
+msgid "Reference:"
 msgstr ""
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:122
 msgid "References:"
-msgstr ""
+msgstr "Препратки:"
 
+# ,
 #: ../../climateadapt/browser/pt/video_view.pt:45
 msgid "Related documents and presentations"
-msgstr ""
+msgstr "Свързани документи и презентации"
 
+# ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:144
 msgid "Relevance"
-msgstr ""
+msgstr "Релевантност"
 
+# ,
 #: ../../climateadapt/vocabulary.py:268
 msgid "Research and knowledge projects"
-msgstr ""
+msgstr "Проекти за изследвания и знания"
 
+# ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:109
 msgid "Reviewed by:"
+msgstr "Прегледан от:"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:123
+msgid "SAP reported as adopted"
 msgstr ""
 
+# ,
 #: ../../climateadapt/browser/pt/navbar_footer.pt:18
 msgid "SITE MAP"
-msgstr ""
+msgstr "Карта на сайта"
 
+# ,
 #: ../../climateadapt/vocabulary.py:341
 msgid "Sea Level Rise"
-msgstr ""
+msgstr "Възход на морското равнище"
 
+# ,
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:64
 msgid "Search results"
-msgstr ""
+msgstr "Резултати от търсенето"
 
+# ,
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:73
 msgid "Search results for: ${term}"
-msgstr ""
+msgstr "Резултати от търсенето за: $ {термин}"
 
+# ,
 #: ../../climateadapt/vocabulary.py:331
 msgid "Sector Policies"
-msgstr ""
+msgstr "Секторни политики"
 
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:76
 #: ../../climateadapt/browser/pt/indicator_view.pt:98
 #: ../../climateadapt/browser/pt/video_view.pt:118
 msgid "Sectors"
-msgstr ""
+msgstr "Сектори"
 
+# ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:112
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:167
 #: ../../climateadapt/browser/pt/casestudy_view.pt:289
 msgid "Sectors:"
-msgstr ""
+msgstr "Сектори:"
 
+# ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:63
 msgid "See more"
-msgstr ""
+msgstr "Виж повече"
 
+# ,
 #: ../../climateadapt/browser/pt/video_view.pt:39
 msgid "See video outside Climate-ADAPT"
+msgstr "Вижте видео извън климата-адапта"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:54
+msgid "Select a country to go directly to the country's page:"
 msgstr ""
 
+# ,
 #: ../../climateadapt/browser/overrides.py:60
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
-msgstr ""
+msgstr "Изберете секторите, за които искате да получите имейл за уведомяване, когато даден елемент е променен."
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:15
 msgid "Send token emails to City Mayors"
-msgstr ""
+msgstr "Изпращайте имейли на жетони до кметовете на града"
 
+# ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:84
 msgid "Share your information"
-msgstr ""
+msgstr "Споделете вашата информация"
 
+# ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:61
 msgid "Solutions"
-msgstr ""
+msgstr "Решения"
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:58
 #: ../../climateadapt/browser/pt/casestudy_view.pt:111
 msgid "Source"
-msgstr ""
+msgstr "Източник"
 
+# ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:180
 msgid "Source of funding"
-msgstr ""
+msgstr "Източник на финансиране"
 
+# ,
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:32
 #: ../../climateadapt/browser/pt/indicator_view.pt:44
 #: ../../climateadapt/browser/pt/informationportal_view.pt:32
 msgid "Source:"
+msgstr "Източник:"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:485
+msgid "South West Europe"
 msgstr ""
 
+# ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:74
 msgid "Stakeholder Participation"
-msgstr ""
+msgstr "Участие на заинтересованите страни"
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:36
 msgid "Stakeholder participation"
-msgstr ""
+msgstr "Участие на заинтересованите страни"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:27
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
+# ,
 #: ../../climateadapt/vocabulary.py:342
 msgid "Storms"
-msgstr ""
+msgstr "Бури"
 
+# ,
 #: ../../climateadapt/browser/__init__.py:180
 msgid "Sub Nationals"
-msgstr ""
+msgstr "Под граждани"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:49
 msgid "Submit"
-msgstr ""
+msgstr "Изпращане"
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:39
 #: ../../climateadapt/browser/pt/casestudy_view.pt:78
 msgid "Success and Limiting Factors"
-msgstr ""
+msgstr "Успех и ограничаващи фактори"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:153
 msgid "Summary of the strategy/plan"
-msgstr ""
+msgstr "Обобщение на стратегията/плана"
 
+# ,
 #: ../../climateadapt/browser/pt/footer_logos.pt:10
 msgid "The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href=\"https://ec.europa.eu/\">European Commission</a> and the <a href=\"https://www.eea.europa.eu/\">European Environment Agency.</a>"
-msgstr ""
+msgstr "Европейската платформа за адаптиране на климата Climate-Adapt е партньорство между <a href=\"https://ec.europa.eu/\"> Европейска комисия </a> и <a href = \"https: //www.eea .europa.eu/\"> Европейска агенция за околна среда. </a>"
 
+# ,
 #: ../../climateadapt/browser/pt/video_view.pt:95
 msgid "The date refers to the date of release of the video"
-msgstr ""
+msgstr "Датата се отнася до датата на пускане на видеото"
 
+# ,
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:50
 #: ../../climateadapt/browser/pt/indicator_view.pt:68
 #: ../../climateadapt/browser/pt/publicationreport_view.pt:58
 msgid "The date refers to the latest date of publication of the item"
-msgstr ""
+msgstr "Датата се отнася до последната дата на публикуване на артикула"
 
+# ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:72
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:147
 #: ../../climateadapt/browser/pt/casestudy_view.pt:216
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
+msgstr "Датата се отнася до момента, в който артикулът е изготвен или актуализиран от участието на експертите, които ще бъдат изпратени за публикуването в климата адаптиране"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:140
+msgid "The information presented in these pages is based on the reporting according to 'Regulation (EU) 2018/1999 on the Governance of the Energy Union and Climate Action' and updates by the EEA member countries. However, for those pages where the information is last updated before 01/01/2021, the information presented is based on the reporting according to 'Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change' and updates by the EEA member countries.'"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/transnational_regions.pt:423
+msgid "There are <a href=\"http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm\" target=\"_blank\">x</a> in Europe for transnational co-operation. In addition, specific EU agreed strategies exist for four macro-national regions: <a href=\"http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN\" target=\"_blank\">x</a>, and <a href=\"http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/\" target=\"_blank\">x</a> regions. This section provides information on strategies and actions that have been developed or are currently under development for the EU transnational regions and for other regions and countries.<br /> <br /> <b>x</b><br /> The map shows the transnational regions situated in Europe defined in the co-operation programmes for 2014-2020. You can select transnational regions by clicking on the map. If you select an area that belongs to more than one region, the pop-up window will show all the regions where the area is located. The pop-up window also shows the countries where each region is located.<br /> <br /> To go to one of the regions' pages, choose in the drop-down list, click on the legend, or make use of the link shown in the tooltip."
+msgstr ""
+
+# ,
 #: ../../climateadapt/vocabulary.py:267
 msgid "Tools"
-msgstr ""
+msgstr "Инструменти"
 
+# ,
 #: ../../climateadapt/browser/pt/item_statistics.pt:25
 msgid "Total"
+msgstr "Обща сума"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:410
+msgid "Transnational regions and other regions and countries"
 msgstr ""
 
+# ,
 #: ../../climateadapt/browser/overrides.py:48
 #: ../../climateadapt/vocabulary.py:306
 msgid "Transport"
-msgstr ""
+msgstr "Транспорт"
 
+# ,
 #: ../../climateadapt/browser/overrides.py:45
 #: ../../climateadapt/vocabulary.py:307
 msgid "Urban"
-msgstr ""
+msgstr "Urban"
 
+# ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:67
 msgid "View all contributions in the resource catalogue"
-msgstr ""
+msgstr "Вижте всички приноси в каталога на ресурсите"
 
+# ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:18
 msgid "View on DRMKC"
-msgstr ""
+msgstr "Преглед на DRMKC"
 
+# ,
 #: ../../climateadapt/vocabulary.py:328
 msgid "Vulnerability Assessment"
-msgstr ""
+msgstr "Оценка на уязвимостта"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:16
 msgid "Warning: this will reset/invalidate tokens on all selected cities"
-msgstr ""
+msgstr "ПРЕДУПРЕЖДЕНИЕ: Това ще се нулира/обезсилва жетони във всички избрани градове"
 
+# ,
 #: ../../climateadapt/vocabulary.py:343
 msgid "Water Scarcity"
-msgstr ""
+msgstr "Недостиг на вода"
 
+# ,
 #: ../../climateadapt/browser/overrides.py:50
 #: ../../climateadapt/vocabulary.py:309
 msgid "Water management"
-msgstr ""
+msgstr "Управление на водата"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:143
 msgid "Weblink of the strategy/ plan"
-msgstr ""
+msgstr "Weblink на стратегията/ плана"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:148
 msgid "Weblinks to relevant plans/ studies"
-msgstr ""
+msgstr "Weblinks към съответните планове/ проучвания"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:230
 msgid "Website"
-msgstr ""
+msgstr "Уебсайт"
 
+# ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:57
 #: ../../climateadapt/browser/pt/casestudy_view.pt:107
 msgid "Websites"
-msgstr ""
+msgstr "Уебсайтове"
 
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:29
 #: ../../climateadapt/browser/pt/aceproject_view.pt:55
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:117
-#: ../../climateadapt/browser/pt/guidancedocument_view.pt:27
 msgid "Websites:"
-msgstr ""
+msgstr "Уебсайтове:"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:177
 msgid "What sectors are concerned"
-msgstr ""
+msgstr "За какви сектори са засегнати"
 
+# ,
 #: ../../climateadapt/browser/pt/item_statistics.pt:19
 msgid "Year: <span>${DYNAMIC_CONTENT}</span>"
-msgstr ""
+msgstr "Година: <Span> $ {dynamic_content} </span>"
 
+# ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:33
 msgid "back to search"
-msgstr ""
+msgstr "Обратно към търсене"
 
+# ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:218
 msgid "inhabitants"
-msgstr ""
+msgstr "жители"
 
 #. Default: "Filter the results."
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:111
 msgid "narrow_search_options"
 msgstr ""
 
+# ,
 #. Default: "Sort by"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:312
 msgid "sort_by"
-msgstr ""
+msgstr "Сортиране"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:402
