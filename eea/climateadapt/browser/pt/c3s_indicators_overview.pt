@@ -1,4 +1,10 @@
-<div class="row">
+<div class="row"  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  i18n:domain="eea.climateadapt"
+>
   <div class="column col-md-16 " data-panel="">
     <div class="tile tile-default" id="b48b97e5-278f-4474-a61b-b73734177559">
       <div class="cover-richtext-tile tile-content">

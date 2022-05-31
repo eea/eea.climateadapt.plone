@@ -16,47 +16,46 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
-#, 
+# ,
 msgid "Adaptation options"
 msgstr "Επιλογές προσαρμογής"
 
-#, 
+# ,
 msgid "Case studies"
 msgstr "Οι περιπτωσιολογικές μελέτες"
 
-#, 
+# ,
 msgid "Countries:"
 msgstr "Χώρες:"
 
-#, 
+# ,
 msgid "Guidance"
 msgstr "Οδηγία"
 
-#, 
+# ,
 msgid "Indicators"
 msgstr "Δείκτες"
 
-#, 
+# ,
 msgid "Information portals"
 msgstr "Πύλες πληροφοριών"
 
-#, 
+# ,
 msgid "Organisations"
 msgstr "Οργανώσεις"
 
-#, 
+# ,
 msgid "Publication and reports"
 msgstr "Δημοσίευση και αναφορές"
 
-#, 
+# ,
 msgid "Research and knowledge projects"
 msgstr "Έργα έρευνας και γνώσης"
 
-#, 
+# ,
 msgid "Tools"
 msgstr "Εργαλεία"
 
-#, 
+# ,
 msgid "Videos"
 msgstr "Βίντεο"
-

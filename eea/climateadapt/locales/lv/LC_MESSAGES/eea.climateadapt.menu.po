@@ -17,585 +17,705 @@ msgstr ""
 "Language: \n"
 
 # ,
+# ,
 #: health_menu:43
 msgid "2021 Lancet Countdown-EEA Briefing"
-msgstr "2021 Lancet Countdown-EEZ instruktāža"
+msgstr "2021 Lancet Countdown-EEA instruktāža"
 
+# ,
 # ,
 #: site_menu:28
 msgid "ADAPTATION IN EU POLICY SECTORS"
-msgstr "Pielāgošanās ES politikas nozarēs"
+msgstr "Adaptācija ES politikas sektoros"
 
+# ,
 # ,
 #: health_menu:9
 #: site_menu:10
 msgid "About"
-msgstr "Par to"
+msgstr "Gandrīz"
 
+# ,
 # ,
 #: site_menu:11
 msgid "About Climate-ADAPT"
-msgstr "Par klimatu pielāgošanos"
+msgstr "Par klimata adapt"
 
+# ,
 # ,
 #: health_menu:10
 msgid "About the Observatory"
 msgstr "Par observatoriju"
 
 # ,
+# ,
 #: site_menu:74
 msgid "Adaptation Support Tool"
 msgstr "Adaptācijas atbalsta rīks"
 
 # ,
+# ,
 #: site_menu:64
 msgid "Adaptation options"
-msgstr "Pielāgošanas iespējas"
+msgstr "Adaptācijas iespējas"
 
+# ,
 # ,
 #: site_menu:48
 msgid "Adriatic-Ionian"
-msgstr "Adriatic-ionian"
+msgstr "Adrijas jūra"
 
+# ,
 # ,
 #: site_menu:29
 msgid "Agriculture"
 msgstr "Lauksaimniecība"
 
 # ,
+# ,
 #: health_menu:27
 msgid "Air pollution"
 msgstr "Gaisa piesārņojums"
 
+# ,
 # ,
 #: site_menu:49
 msgid "Alpine Space"
 msgstr "Alpu telpa"
 
 # ,
+# ,
 #: health_menu:44
 msgid "Annual reports"
 msgstr "Gada pārskati"
 
+# ,
 # ,
 #: site_menu:50
 msgid "Atlantic Area"
 msgstr "Atlantijas okeāna apgabals"
 
 # ,
+# ,
 #: site_menu:51
 msgid "Balkan-Mediterranean"
-msgstr "Balkānu-Vidusjūra"
+msgstr "Balkānu-Mediterjūra"
 
+# ,
 # ,
 #: site_menu:52
 msgid "Baltic Sea"
 msgstr "Baltijas jūra"
 
 # ,
+# ,
 #: site_menu:30
 msgid "Biodiversity"
 msgstr "Bioloģiskā daudzveidība"
 
+# ,
 # ,
 #: site_menu:31
 msgid "Buildings"
 msgstr "Ēkas"
 
 # ,
+# ,
 #: health_menu:34
 msgid "C3S European health service (under development)"
-msgstr "C3S Eiropas veselības aprūpes dienests (izstrāde)"
+msgstr "C3S Eiropas veselības dienests (tiek izstrādāts)"
 
+# ,
 # ,
 #: health_menu:45
 msgid "Capacity building"
 msgstr "Spēju veidošana"
 
 # ,
+# ,
 #: site_menu:80
 msgid "Case studies"
 msgstr "Gadījumu izpēte"
 
 # ,
+# ,
 #: site_menu:79
 msgid "Case study explorer"
-msgstr "Case studiju pētnieks"
+msgstr "Gadījumu izpētes pētnieks"
 
+# ,
 # ,
 #: site_menu:53
 msgid "Central Europe"
-msgstr "Centrāleiropa"
+msgstr "Centrālā Eiropa"
 
+# ,
 # ,
 #: site_menu:46
 msgid "Cities and towns"
-msgstr "Pilsētas un pilsētas"
+msgstr "Pilsētas"
 
+# ,
 #: site_menu:69
 msgid "Climate Services"
-msgstr ""
+msgstr "Klimata pakalpojumi"
 
+# ,
 #: site_menu:17
 msgid "Climate-ADAPT events and webinars"
-msgstr ""
+msgstr "Klimata-adapt notikumi un tīmekļa semināri"
 
+# ,
 #: site_menu:16
 msgid "Climate-ADAPT performance reporting"
-msgstr ""
+msgstr "Klimata-adapt veiktspējas pārskati"
 
+# ,
 # ,
 #: site_menu:83
 msgid "Climate-ADAPT use cases"
-msgstr "Klimata pielāgošanās lietošanas gadījumi"
+msgstr "Klimata adaptēšanas gadījumi"
 
+# ,
 # ,
 #: site_menu:32
 msgid "Coastal areas"
-msgstr "Piekrastes zonas"
+msgstr "Piekrastes rajoni"
 
+# ,
 # ,
 #: site_menu:44
 msgid "Countries, Transnational regions, Cities"
 msgstr "Valstis, starpvalstu reģioni, pilsētas"
 
 # ,
+# ,
 #: health_menu:18
 #: site_menu:45
 msgid "Country Profiles"
-msgstr "Valsts profili"
+msgstr "Lauku profili"
 
+# ,
 #: site_menu:18
 msgid "Country specific promotions"
-msgstr ""
+msgstr "Konkrētas valsts akcijas"
 
+# ,
 # ,
 #: site_menu:68
 msgid "DATA AND INDICATORS"
 msgstr "Dati un rādītāji"
 
 # ,
+# ,
 #: site_menu:54
 msgid "Danube"
 msgstr "Donava"
 
 # ,
+# ,
 #: site_menu:33
 msgid "Disaster risk reduction"
 msgstr "Katastrofu riska samazināšana"
 
+# ,
 #: site_menu:13
 msgid "Dissemination materials"
-msgstr ""
+msgstr "Izplatīšanas materiāli"
 
+# ,
 # ,
 #: health_menu:33
 msgid "ECDC Vibrio map viewer"
-msgstr "ECDC VIBRIO kartes skatītājs"
+msgstr "ECDC Vibrio kartes skatītājs"
 
+# ,
 # ,
 #: site_menu:21
 msgid "EU ADAPTATION POLICY"
-msgstr "ES pielāgošanās politika"
+msgstr "ES adaptācijas politika"
 
+# ,
 # ,
 #: site_menu:22
 msgid "EU Adaptation Strategy"
-msgstr "ES pielāgošanās stratēģija"
+msgstr "ES adaptācijas stratēģija"
 
+# ,
 # ,
 #: site_menu:25
 msgid "EU Covenant of Mayors"
-msgstr "ES Pilsētu mēru pakta"
+msgstr "Mēru ES derība"
 
+# ,
 # ,
 #: site_menu:23
 msgid "EU Mission on Adaptation"
-msgstr "ES misija par adaptāciju"
+msgstr "ES misija pēc adaptācijas"
 
+# ,
 # ,
 #: site_menu:43
 msgid "EU REGIONAL POLICY"
 msgstr "ES reģionālā politika"
 
 # ,
+# ,
 #: site_menu:24
 msgid "EU Reporting on Adaptation"
-msgstr "ES ziņojumi par adaptāciju"
+msgstr "ES ziņošana par adaptāciju"
 
+# ,
 #: site_menu:26
 msgid "EU Sustainable Finance Strategy"
-msgstr ""
+msgstr "ES ilgtspējīga finanšu stratēģija"
 
+# ,
 # ,
 #: site_menu:27
 msgid "EU funding of adaptation"
-msgstr "ES pielāgošanās finansējums"
+msgstr "ES adaptācijas finansējums"
 
+# ,
 # ,
 #: site_menu:20
 msgid "EU policy"
 msgstr "ES politika"
 
 # ,
+# ,
 #: site_menu:72
 msgid "EUROPEAN CLIMATE DATA EXPLORER"
-msgstr "Eiropas klimata datu pētnieks"
+msgstr "Eiropas klimata datu izpēte"
 
+# ,
 # ,
 #: site_menu:85
 msgid "EUROPEAN Climate and Health Observatory"
-msgstr "Eiropas klimata un veselības novērošanas centrs"
+msgstr "Eiropas klimats un veselības observatorija"
 
+# ,
 # ,
 #: site_menu:77
 msgid "Economic tools"
 msgstr "Ekonomiskie instrumenti"
 
 # ,
+# ,
 #: site_menu:34
 msgid "Ecosystem-based approaches"
-msgstr "Ekosistēmas balstītas pieejas"
+msgstr "Uz ekosistēmu balstītas pieejas"
 
+# ,
 # ,
 #: site_menu:35
 msgid "Energy"
 msgstr "Enerģija"
 
 # ,
+# ,
 #: site_menu:67
 msgid "Europe's vulnerability to climate change impacts occurring outside Europe"
-msgstr "Eiropas neaizsargātība pret klimata pārmaiņām, kas notiek ārpus Eiropas"
+msgstr "Eiropas neaizsargātība pret klimata pārmaiņu ietekmi, kas notiek ārpus Eiropas"
 
+# ,
 # ,
 #: health_menu:32
 msgid "European Climate Data Explorer"
-msgstr "Eiropas klimata datu pētnieks"
+msgstr "Eiropas klimata datu izpēte"
 
+# ,
 # ,
 #: health_menu:13
 msgid "European Policy Framework"
 msgstr "Eiropas politikas sistēma"
 
 # ,
+# ,
 #: health_menu:37
 msgid "European early warning systems"
 msgstr "Eiropas agrīnās brīdināšanas sistēmas"
 
+# ,
 #: health_menu:14
 msgid "European policies on climate adaptation and health"
-msgstr ""
+msgstr "Eiropas klimata pielāgošanās un veselības politika"
 
+# ,
 # ,
 #: health_menu:19
 msgid "Evidence on climate and health"
 msgstr "Pierādījumi par klimatu un veselību"
 
 # ,
+# ,
 #: site_menu:90
 msgid "FAQ for providers"
 msgstr "FAQ pakalpojumu sniedzējiem"
 
+# ,
 # ,
 #: site_menu:89
 msgid "FAQ for users"
 msgstr "FAQ lietotājiem"
 
 # ,
+# ,
 #: site_menu:36
 msgid "Financial"
 msgstr "Finansiāls"
 
+# ,
 # ,
 #: health_menu:23
 msgid "Flooding"
 msgstr "Plūdi"
 
 # ,
+# ,
 #: site_menu:37
 msgid "Forestry"
-msgstr "Mežsaimniecība"
+msgstr "Mežniecība"
 
+# ,
 # ,
 #: site_menu:88
 msgid "Glossary"
 msgstr "Glosārijs"
 
 # ,
+# ,
 #: site_menu:91
 msgid "Guidance to search function"
-msgstr "Vadlīnijas meklēšanas funkcijai"
+msgstr "Norādījumi meklēšanas funkcijai"
 
+# ,
 # ,
 #: site_menu:38
 msgid "Health"
 msgstr "Veselība"
 
 # ,
+# ,
 #: health_menu:20
 msgid "Health effects"
 msgstr "Ietekme uz veselību"
 
+# ,
 # ,
 #: health_menu:36
 msgid "Health warning systems"
 msgstr "Veselības brīdināšanas sistēmas"
 
 # ,
+# ,
 #: health_menu:21
 msgid "Heat and health"
-msgstr "Siltums un veselība"
+msgstr "Karstums un veselība"
 
+# ,
 # ,
 #: site_menu:87
 msgid "Help"
 msgstr "Palīdzēt"
 
 # ,
+# ,
 #: site_menu:82
 msgid "INTERREG projects"
-msgstr "INTERREG projekti"
+msgstr "Interreg projekti"
 
+# ,
 # ,
 #: site_menu:63
 msgid "Impacts, risks and vulnerabilities"
-msgstr "Ietekme, riski un neaizsargātības"
+msgstr "Ietekme, riski un ievainojamības"
 
+# ,
 # ,
 #: health_menu:29
 msgid "Indicators"
-msgstr "Rādītāji"
+msgstr "Indikatori"
 
+# ,
 # ,
 #: site_menu:70
 msgid "Indicators in Climate-ADAPT"
-msgstr "Klimata pielāgošanās rādītāji"
+msgstr "Indikatori klimata adapt"
 
+# ,
 #: site_menu:15
 msgid "Inspiring Climate-ADAPT use cases"
-msgstr ""
+msgstr "Iedvesmojoši klimata-adapt lietošanas gadījumi"
 
+# ,
 # ,
 #: site_menu:61
 msgid "Knowledge"
 msgstr "Zināšanas"
 
 # ,
+# ,
 #: site_menu:81
 msgid "LIFE projects"
 msgstr "Dzīves projekti"
 
 # ,
+# ,
 #: site_menu:39
 msgid "Marine and fisheries"
-msgstr "Jūras un zivsaimniecība"
+msgstr "Jūras un zvejniecības"
 
+# ,
 # ,
 #: site_menu:55
 msgid "Mediterranean"
 msgstr "Vidusjūra"
 
+# ,
 #: health_menu:28
 msgid "Mental health effects"
-msgstr ""
+msgstr "Ietekme uz garīgo veselību"
 
+# ,
 # ,
 #: site_menu:66
 msgid "Monitoring, Reporting and Evaluation"
 msgstr "Uzraudzība, ziņošana un novērtēšana"
 
+# ,
 #: health_menu:16
 msgid "National Policies"
-msgstr ""
+msgstr "Valsts politika"
 
+# ,
 # ,
 #: health_menu:38
 msgid "National heat-health warning systems and action plans"
-msgstr "Valsts siltumkopšanas brīdināšanas sistēmas un rīcības plāni"
+msgstr "Nacionālās siltuma veselības brīdināšanas sistēmas un rīcības plāni"
 
+# ,
 #: health_menu:17
 msgid "National policy analysis 2022"
-msgstr ""
+msgstr "Nacionālās politikas analīze 2022"
 
+# ,
 # ,
 #: site_menu:86
 msgid "Networks"
 msgstr "Tīkli"
 
 # ,
+# ,
 #: site_menu:56
 msgid "North Sea"
 msgstr "Ziemeļu jūra"
 
 # ,
+# ,
 #: site_menu:57
 msgid "North West Europe"
-msgstr "Ziemeļrietumu Eiropa"
+msgstr "Ziemeļrietumeiropa"
 
+# ,
 # ,
 #: site_menu:58
 msgid "Northern Periphery and Arctic"
 msgstr "Ziemeļu perifērija un Arktika"
 
 # ,
+# ,
 #: health_menu:42
 msgid "Observatory publications"
 msgstr "Observatorijas publikācijas"
 
+# ,
 #: health_menu:11
 msgid "Observatory workplan for 2021-22"
-msgstr ""
+msgstr "Observatorijas darba plāns 2021-22"
 
+# ,
 # ,
 #: site_menu:60
 msgid "Other regions"
 msgstr "Citi reģioni"
 
+# ,
 #: site_menu:12
 msgid "Outreach & dissemination"
-msgstr ""
+msgstr "Informācija un izplatīšana"
 
+# ,
 # ,
 #: site_menu:78
 msgid "PRACTICE"
 msgstr "Prakse"
 
 # ,
+# ,
 #: health_menu:12
 msgid "Policy context"
 msgstr "Politikas konteksts"
 
+# ,
 # ,
 #: health_menu:30
 msgid "Projections and tools"
 msgstr "Prognozes un rīki"
 
 # ,
+# ,
 #: health_menu:41
 msgid "Publications and outreach"
 msgstr "Publikācijas un informēšana"
 
+# ,
 # ,
 #: site_menu:71
 msgid "RESEARCH AND INNOVATION PROJECTS"
 msgstr "Pētniecības un inovāciju projekti"
 
 # ,
+# ,
 #: health_menu:39
 msgid "Resource catalogue"
 msgstr "Resursu katalogs"
 
 # ,
+# ,
 #: health_menu:40
 msgid "Search for Resources"
-msgstr "Meklēt resursus"
+msgstr "Resursu meklēšana"
 
+# ,
 # ,
 #: site_menu:94
 msgid "Share your information"
-msgstr "Koplietojiet savu informāciju"
+msgstr "Kopīgot savu informāciju"
 
+# ,
 # ,
 #: site_menu:19
 msgid "Site map"
-msgstr "Vietnes karte"
+msgstr "Vietņu karte"
 
+# ,
 # ,
 #: site_menu:59
 msgid "South West Europe"
-msgstr "Dienvidrietumu Eiropa"
+msgstr "Dienvidrietumeiropa"
 
+# ,
 # ,
 #: site_menu:73
 msgid "TOOLS"
 msgstr "Instrumenti"
 
 # ,
+# ,
 #: site_menu:62
 msgid "TOPICS"
 msgstr "Tēmas"
 
 # ,
+# ,
 #: site_menu:47
 msgid "Transnational regions"
-msgstr "Starptautiskie reģioni"
+msgstr "Starpvalstu reģioni"
 
+# ,
 # ,
 #: site_menu:40
 msgid "Transport"
-msgstr "Transports"
+msgstr "Transportēt"
 
+# ,
 # ,
 #: site_menu:92
 msgid "Tutorial Videos"
-msgstr "Tutorial video"
+msgstr "Apmācības video"
 
+# ,
 #: site_menu:14
 msgid "Tutorial videos"
-msgstr ""
+msgstr "Apmācības video"
 
+# ,
 #: health_menu:35
 msgid "UV Index forecast (CAMS)"
-msgstr ""
+msgstr "UV indeksa prognoze (izciļņi)"
 
+# ,
 #: health_menu:26
 msgid "UV radiation"
-msgstr ""
+msgstr "UV starojums"
 
+# ,
 # ,
 #: site_menu:65
 msgid "Uncertainty guidance"
 msgstr "Nenoteiktības norādījumi"
 
 # ,
+# ,
 #: site_menu:41
 msgid "Urban"
-msgstr "Pilsēta"
+msgstr "Pilsētas"
 
+# ,
 # ,
 #: site_menu:76
 msgid "Urban Adaptation Map Viewer"
-msgstr "Pilsētas adaptācijas kartes skatītājs"
+msgstr "Pilsētas adaptācijas karšu skatītājs"
 
+# ,
 # ,
 #: health_menu:31
 msgid "Urban Adaptation Map Viewer (health focus)"
-msgstr "Pilsētas adaptācijas kartes skatītājs (Veselības fokuss)"
+msgstr "Pilsētas adaptācijas kartes skatītājs (Health Focus)"
 
+# ,
 # ,
 #: site_menu:75
 msgid "Urban Adaptation Support Tool"
 msgstr "Pilsētas adaptācijas atbalsta rīks"
 
 # ,
+# ,
 #: health_menu:24
 msgid "Vector-borne diseases"
-msgstr "Vektoru slimības"
+msgstr "Vektorās pārnēsātas slimības"
 
+# ,
 #: health_menu:15
 msgid "WHO Europe activities on climate change and health"
-msgstr ""
+msgstr "PVO Eiropas aktivitātes klimata pārmaiņu un veselības jomā"
 
+# ,
 # ,
 #: health_menu:25
 msgid "Water and food-borne diseases"
-msgstr "Ūdens un pārtikas izraisītas slimības"
+msgstr "Ūdens un pārtikā pārnēsātas slimības"
 
+# ,
 # ,
 #: site_menu:42
 msgid "Water management"
-msgstr "Ūdens apsaimniekošana"
+msgstr "Ūdens pārvaldība"
 
+# ,
 # ,
 #: health_menu:46
 #: site_menu:93
 msgid "Webinars"
-msgstr "Webinars"
+msgstr "Tīmekļa semināri"
 
+# ,
 #: health_menu:22
 msgid "Wildfires"
-msgstr ""
+msgstr "Ugunsgrēki"
 
+# ,
 #: site_menu:84
 msgid "[<icon class=\"fa fa-database\">]Search the database</icon>"
-msgstr ""
+msgstr "[<icon class = \"fa fa-database\">] Meklēt datu bāzē </con>"

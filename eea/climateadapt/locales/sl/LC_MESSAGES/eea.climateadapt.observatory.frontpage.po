@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-19 18:08+0000\n"
+"POT-Creation-Date: 2022-05-27 05:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,133 +16,132 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:378
 #: ../theme/climateadaptv2/health-page-full.html:142
 #: ../theme/climateadaptv2/health-page.html:231
-#, 
 msgid "Contact"
 msgstr "Stik"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:205
-#, 
 msgid "Country profiles"
 msgstr "Profili držav"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:155
-#, 
 msgid "Discover the main topics and tools of the observatory"
 msgstr "Odkrijte glavne teme in orodja observatorija"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:132
-#, 
 msgid "European Climate <br /> and Health Observatory"
 msgstr "Evropsko podnebje <br /> in zdravstveni observatorij"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:286
 #: ../theme/climateadaptv2/health-page.html:139
-#, 
 msgid "Events"
 msgstr "Dogodki"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:340
 #: ../theme/climateadaptv2/health-page.html:193
-#, 
 msgid "Find out how to contribute to the Observatory via Climate-ADAPT"
 msgstr "Ugotovite, kako prispevati k observatoriju prek podnebnega Adapta"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:375
 #: ../theme/climateadaptv2/health-page-full.html:139
 #: ../theme/climateadaptv2/health-page.html:228
-#, 
 msgid "Home"
 msgstr "Doma"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:185
-#, 
 msgid "INDICATORS"
 msgstr "Kazalniki"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:169
-#, 
 msgid "Learn more"
 msgstr "Nauči se več"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:165
-#, 
 msgid "New"
 msgstr "Novo"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:283
 #: ../theme/climateadaptv2/health-page.html:136
-#, 
 msgid "News"
 msgstr "Novice"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:280
 #: ../theme/climateadaptv2/health-page.html:133
-#, 
 msgid "News/Events"
 msgstr "Novice/dogodki"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:390
 #: ../theme/climateadaptv2/health-page-full.html:154
 #: ../theme/climateadaptv2/health-page.html:243
-#, 
 msgid "Privacy and Legal Notice"
 msgstr "Zasebnost in pravno obvestilo"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:225
-#, 
 msgid "Resource catalogue"
 msgstr "Katalog virov"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:387
 #: ../theme/climateadaptv2/health-page-full.html:151
 #: ../theme/climateadaptv2/health-page.html:240
-#, 
 msgid "SITE MAP"
 msgstr "Zemljevid spletnega mesta"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:226
-#, 
 msgid "Search and access the Observatory’s database containing case studies, publications, indicators, research projects and other"
 msgstr "Iskanje in dostop do baze podatkov, ki vsebuje študije primerov, publikacije, kazalnike, raziskovalne projekte in drugo"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:206
-#, 
 msgid "See how countries are addressing climate change adaptation in public health"
 msgstr "Oglejte si, kako se države spopadajo s prilagajanjem podnebnih sprememb v javnem zdravju"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:339
 #: ../theme/climateadaptv2/health-page.html:192
-#, 
 msgid "Share <br /> your information"
 msgstr "Delite <br /> svoje podatke"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:428
 #: ../theme/climateadaptv2/health-page-full.html:192
 #: ../theme/climateadaptv2/health-page.html:281
-#, 
 msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
 msgstr "Ta <strong> evropska podnebna in zdravstvena observatorija </strong> je partnerstvo med Evropsko komisijo, Evropsko okoljsko agencijo in številnimi drugimi organizacijami."
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:166
-#, 
 msgid "UV Index forecast (CAMS)"
 msgstr "Napoved UV indeksa (CAMS)"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:186
-#, 
 msgid "View climate and health indicators from different trusted information providers"
 msgstr "Oglejte si kazalnike podnebja in zdravja pri različnih zaupanja vrednih ponudnikih informacij"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:167
-#, 
 msgid "View the UV Index forecast developed by Copernicus Atmosphere Monitoring Service (CAMS)"
 msgstr "Oglejte si napoved UV indeksa, ki jo je razvila Service Copernicus Atmosphere Service (CAMS)"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:133
-#, 
 msgid "We provide easy access to a wide range of relevant publications, tools, websites and other resources related to climate change and human health."
 msgstr "Zagotavljamo enostaven dostop do širokega kroga ustreznih publikacij, orodij, spletnih mest in drugih virov, povezanih s podnebnimi spremembami in zdravjem ljudi."
-

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-19 18:07+0000\n"
+"POT-Creation-Date: 2022-05-27 05:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,14 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: eea.climateadapt\n"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:415
+msgid "12 regions"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:140
+msgid "<i class=\"fa fa-exclamation-circle\" aria-hidden=\"true\"></i> [Disclaimer] <div id=\"hover-content\">x</div>"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:149
 msgid "<strong>Last Modified in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
@@ -45,6 +53,10 @@ msgstr ""
 msgid "Adaptation options"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/countries-d3.pt:96
+msgid "Adaptation portal or platform reported"
+msgstr ""
+
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:125
 msgid "Adaptation strategy"
 msgstr ""
@@ -62,6 +74,14 @@ msgstr ""
 msgid "Additional information on adaptation responses"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/transnational_regions.pt:420
+msgid "Adriatic and Ionian"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:452
+msgid "Adriatic-Ionian"
+msgstr ""
+
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:57
 msgid "Advanced search for Climate-Adapt database items <a href=\"/redirect_to_search_page\">here</a>"
 msgstr ""
@@ -69,6 +89,26 @@ msgstr ""
 #: ../../climateadapt/browser/overrides.py:37
 #: ../../climateadapt/vocabulary.py:293
 msgid "Agriculture"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:419
+msgid "Alpine"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:455
+msgid "Alpine Space"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:458
+msgid "Atlantic Area"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:461
+msgid "Balkan-Mediterranean"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:417
+msgid "Baltic Sea"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:39
@@ -105,12 +145,28 @@ msgstr ""
 msgid "Category"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/transnational_regions.pt:467
+msgid "Central Europe"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/casestudy_view.pt:49
 msgid "Challenges"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/views.py:78
 msgid "Check-out created"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:56
+msgid "Choose a country"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:431
+msgid "Choose a region"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:74
+msgid "Choose thematic map:"
 msgstr ""
 
 #: ../../climateadapt/browser/__init__.py:208
@@ -122,6 +178,7 @@ msgstr ""
 msgid "Climate change impacts"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceitem_view.pt:70
 #: ../../climateadapt/browser/pt/video_view.pt:108
 msgid "Climate impacts"
 msgstr ""
@@ -155,6 +212,10 @@ msgstr ""
 msgid "Contact person"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:35
+msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/ace_macros.pt:202
 msgid "Contributor:"
 msgstr ""
@@ -172,6 +233,7 @@ msgstr ""
 msgid "Countries:"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceitem_view.pt:84
 #: ../../climateadapt/browser/pt/aceproject_view.pt:131
 msgid "Countries: ${DYNAMIC_CONTENT}"
 msgstr ""
@@ -190,6 +252,10 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:141
 msgid "DRMKC"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:418
+msgid "Danube"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:70
@@ -216,9 +282,9 @@ msgstr ""
 msgid "Date of strategy/plan approval"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceitem_view.pt:25
 #: ../../climateadapt/browser/pt/indicator_view.pt:32
 #: ../../climateadapt/browser/pt/informationportal_view.pt:21
-#: ../../climateadapt/browser/pt/publicationreport_view.pt:22
 msgid "Description"
 msgstr ""
 
@@ -245,6 +311,7 @@ msgstr ""
 msgid "Ecosystem-based approaches (GI)"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceitem_view.pt:73
 #: ../../climateadapt/browser/pt/video_view.pt:113
 msgid "Elements"
 msgstr ""
@@ -298,6 +365,7 @@ msgstr ""
 msgid "Geographic characterisation:"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceitem_view.pt:78
 #: ../../climateadapt/browser/pt/video_view.pt:123
 msgid "Geographic characterization"
 msgstr ""
@@ -306,6 +374,10 @@ msgstr ""
 #: ../../climateadapt/browser/pt/casestudy_view.pt:308
 #: ../../climateadapt/browser/pt/indicator_view.pt:103
 msgid "Geographic characterization:"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:11
+msgid "Go back"
 msgstr ""
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:171
@@ -341,6 +413,10 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/transnational_regions.pt:423
+msgid "How to use the map?"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:34
 msgid "IPCC categories"
 msgstr ""
@@ -366,6 +442,10 @@ msgstr ""
 msgid "Information portals"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceitem_view.pt:56
+msgid "Item Documents (<span>${DYNAMIC_CONTENT}</span>)"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:138
 msgid "Item’s creation:"
 msgstr ""
@@ -378,6 +458,7 @@ msgstr ""
 msgid "Key vulnerable sectors"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceitem_view.pt:65
 #: ../../climateadapt/browser/pt/video_view.pt:103
 msgid "Keywords"
 msgstr ""
@@ -406,6 +487,7 @@ msgstr ""
 msgid "Life Time"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceitem_view.pt:44
 #: ../../climateadapt/browser/pt/indicator_view.pt:49
 #: ../../climateadapt/browser/pt/video_view.pt:62
 msgid "Link to metadata:"
@@ -440,12 +522,48 @@ msgstr ""
 msgid "Mayors Adapt signatory"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/transnational_regions.pt:473
+msgid "Mediterranean"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:111
+msgid "NAS and NAP reported as adopted"
+msgstr ""
+
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:133
 msgid "Name of the strategy/ plan (If adopted)"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/countries-d3.pt:127
+msgid "Neither NAS nor NAP reported as adopted"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:85
+msgid "No assessments reported"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:89
+msgid "No data reported"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:100
+msgid "No portal or platform reported"
+msgstr ""
+
 #: ../../climateadapt/vocabulary.py:310
 msgid "Non specific"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:476
+msgid "North Sea"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:479
+msgid "North West Europe"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:482
+msgid "Northern Periphery and Arctic"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:53
@@ -460,12 +578,36 @@ msgstr ""
 msgid "Observatory Contributions:"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/countries-d3.pt:81
+msgid "One or more assessments reported"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:115
+msgid "Only NAP reported as adopted"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:119
+msgid "Only NAS reported as adopted"
+msgstr ""
+
 #: ../../climateadapt/vocabulary.py:271
 msgid "Organisations"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceitem_view.pt:18
+msgid "Original aceitem"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/footer_logos.pt:35
 msgid "Other European Information Systems:<br />&nbsp;"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:488
+msgid "Other regions"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:12
+msgid "Overview list of all indices"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:171
@@ -521,10 +663,14 @@ msgstr ""
 msgid "Reference Information"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceitem_view.pt:28
 #: ../../climateadapt/browser/pt/aceproject_view.pt:54
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:55
-#: ../../climateadapt/browser/pt/guidancedocument_view.pt:24
 msgid "Reference information"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/aceitem_view.pt:40
+msgid "Reference:"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:122
@@ -547,6 +693,10 @@ msgstr ""
 msgid "Reviewed by:"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/countries-d3.pt:123
+msgid "SAP reported as adopted"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/navbar_footer.pt:18
 msgid "SITE MAP"
 msgstr ""
@@ -567,6 +717,7 @@ msgstr ""
 msgid "Sector Policies"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceitem_view.pt:76
 #: ../../climateadapt/browser/pt/indicator_view.pt:98
 #: ../../climateadapt/browser/pt/video_view.pt:118
 msgid "Sectors"
@@ -584,6 +735,10 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/video_view.pt:39
 msgid "See video outside Climate-ADAPT"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:54
+msgid "Select a country to go directly to the country's page:"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:60
@@ -615,6 +770,10 @@ msgstr ""
 #: ../../climateadapt/browser/pt/indicator_view.pt:44
 #: ../../climateadapt/browser/pt/informationportal_view.pt:32
 msgid "Source:"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:485
+msgid "South West Europe"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:74
@@ -670,12 +829,24 @@ msgstr ""
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/countries-d3.pt:140
+msgid "The information presented in these pages is based on the reporting according to 'Regulation (EU) 2018/1999 on the Governance of the Energy Union and Climate Action' and updates by the EEA member countries. However, for those pages where the information is last updated before 01/01/2021, the information presented is based on the reporting according to 'Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change' and updates by the EEA member countries.'"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:423
+msgid "There are <a href=\"http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm\" target=\"_blank\">x</a> in Europe for transnational co-operation. In addition, specific EU agreed strategies exist for four macro-national regions: <a href=\"http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN\" target=\"_blank\">x</a>, and <a href=\"http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/\" target=\"_blank\">x</a> regions. This section provides information on strategies and actions that have been developed or are currently under development for the EU transnational regions and for other regions and countries.<br /> <br /> <b>x</b><br /> The map shows the transnational regions situated in Europe defined in the co-operation programmes for 2014-2020. You can select transnational regions by clicking on the map. If you select an area that belongs to more than one region, the pop-up window will show all the regions where the area is located. The pop-up window also shows the countries where each region is located.<br /> <br /> To go to one of the regions' pages, choose in the drop-down list, click on the legend, or make use of the link shown in the tooltip."
+msgstr ""
+
 #: ../../climateadapt/vocabulary.py:267
 msgid "Tools"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:25
 msgid "Total"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:410
+msgid "Transnational regions and other regions and countries"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:48
@@ -730,9 +901,9 @@ msgstr ""
 msgid "Websites"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/aceitem_view.pt:29
 #: ../../climateadapt/browser/pt/aceproject_view.pt:55
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:117
-#: ../../climateadapt/browser/pt/guidancedocument_view.pt:27
 msgid "Websites:"
 msgstr ""
 

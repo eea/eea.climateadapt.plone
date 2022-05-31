@@ -1,4 +1,5 @@
-<metal:use-macro use-macro="context/main_template/macros/master">
+<metal:use-macro use-macro="context/main_template/macros/master"
+  >
   <!-- <metal:fill-slot fill-slot="style_slot"> </metal:fill-slot> -->
 
   <metal:fill-slot fill-slot="javascript_head_slot">
@@ -43,11 +44,14 @@
       <p i18n:translate="">Here you can find an overview of your personally created Climate-Adapt content.</p>
     </div>
 
-    <div class="cover-richtext-tile tile-content" id="countrymap-container">
+    <div class="cover-richtext-tile tile-content" id="countrymap-container" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="eea.climateadapt">
 
       <!-- Select list with countries above map -->
-      <div id="country-selector" i18n:translate="">
-        Select a country to go directly to the country's page:
+      <div id="country-selector">
+        <span i18n:translate="">Select a country to go directly to the country's page:</span>
         <select class="form-control">
           <option value='' i18n:translate="">Choose a country</option>
         </select>

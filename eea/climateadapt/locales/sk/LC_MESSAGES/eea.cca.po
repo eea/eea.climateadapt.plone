@@ -16,47 +16,46 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
-#, 
+# ,
 msgid "Adaptation options"
 msgstr "Možnosti prispôsobenia"
 
-#, 
+# ,
 msgid "Case studies"
 msgstr "Prípadové štúdie"
 
-#, 
+# ,
 msgid "Countries:"
 msgstr "Krajiny:"
 
-#, 
+# ,
 msgid "Guidance"
 msgstr "Usmernenie"
 
-#, 
+# ,
 msgid "Indicators"
 msgstr "Ukazovateľ"
 
-#, 
+# ,
 msgid "Information portals"
 msgstr "Informačné portály"
 
-#, 
+# ,
 msgid "Organisations"
 msgstr "Organizácie"
 
-#, 
+# ,
 msgid "Publication and reports"
 msgstr "Publikácia a správy"
 
-#, 
+# ,
 msgid "Research and knowledge projects"
 msgstr "Výskumné a znalostné projekty"
 
-#, 
+# ,
 msgid "Tools"
 msgstr "Náradie"
 
-#, 
+# ,
 msgid "Videos"
 msgstr "Videá"
-

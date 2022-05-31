@@ -16,47 +16,46 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
-#, 
+# ,
 msgid "Adaptation options"
 msgstr "Adaptációs lehetőségek"
 
-#, 
+# ,
 msgid "Case studies"
 msgstr "Esettanulmányok"
 
-#, 
+# ,
 msgid "Countries:"
 msgstr "Országok:"
 
-#, 
+# ,
 msgid "Guidance"
 msgstr "Tanácsadás"
 
-#, 
+# ,
 msgid "Indicators"
 msgstr "Indikátorok"
 
-#, 
+# ,
 msgid "Information portals"
 msgstr "Információs portálok"
 
-#, 
+# ,
 msgid "Organisations"
 msgstr "Szervezetek"
 
-#, 
+# ,
 msgid "Publication and reports"
 msgstr "Publikáció és jelentések"
 
-#, 
+# ,
 msgid "Research and knowledge projects"
 msgstr "Kutatási és tudásprojektek"
 
-#, 
+# ,
 msgid "Tools"
 msgstr "Szerszámok"
 
-#, 
+# ,
 msgid "Videos"
 msgstr "Videó"
-

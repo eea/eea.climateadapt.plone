@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-19 18:08+0000\n"
+"POT-Creation-Date: 2022-05-27 05:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,133 +16,132 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:378
 #: ../theme/climateadaptv2/health-page-full.html:142
 #: ../theme/climateadaptv2/health-page.html:231
-#, 
 msgid "Contact"
 msgstr "Контакт"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:205
-#, 
 msgid "Country profiles"
 msgstr "Профили на страната"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:155
-#, 
 msgid "Discover the main topics and tools of the observatory"
 msgstr "Открийте основните теми и инструменти на обсерваторията"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:132
-#, 
 msgid "European Climate <br /> and Health Observatory"
 msgstr "Европейски климат <br /> и здравна обсерватория"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:286
 #: ../theme/climateadaptv2/health-page.html:139
-#, 
 msgid "Events"
 msgstr "Събития"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:340
 #: ../theme/climateadaptv2/health-page.html:193
-#, 
 msgid "Find out how to contribute to the Observatory via Climate-ADAPT"
 msgstr "Разберете как да допринесете за обсерваторията чрез климат-адаптиране"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:375
 #: ../theme/climateadaptv2/health-page-full.html:139
 #: ../theme/climateadaptv2/health-page.html:228
-#, 
 msgid "Home"
 msgstr "У дома"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:185
-#, 
 msgid "INDICATORS"
 msgstr "Показатели"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:169
-#, 
 msgid "Learn more"
 msgstr "Научете повече"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:165
-#, 
 msgid "New"
 msgstr "Ново"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:283
 #: ../theme/climateadaptv2/health-page.html:136
-#, 
 msgid "News"
 msgstr "Новини"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:280
 #: ../theme/climateadaptv2/health-page.html:133
-#, 
 msgid "News/Events"
 msgstr "Новини и събития"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:390
 #: ../theme/climateadaptv2/health-page-full.html:154
 #: ../theme/climateadaptv2/health-page.html:243
-#, 
 msgid "Privacy and Legal Notice"
 msgstr "Поверителност и правно известие"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:225
-#, 
 msgid "Resource catalogue"
 msgstr "Каталог на ресурсите"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:387
 #: ../theme/climateadaptv2/health-page-full.html:151
 #: ../theme/climateadaptv2/health-page.html:240
-#, 
 msgid "SITE MAP"
 msgstr "Карта на сайта"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:226
-#, 
 msgid "Search and access the Observatory’s database containing case studies, publications, indicators, research projects and other"
 msgstr "Търсене и достъп до базата данни на обсерваторията, съдържаща казуси, публикации, показатели, изследователски проекти и други"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:206
-#, 
 msgid "See how countries are addressing climate change adaptation in public health"
 msgstr "Вижте как страните се справят с адаптирането на изменението на климата в общественото здравеопазване"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:339
 #: ../theme/climateadaptv2/health-page.html:192
-#, 
 msgid "Share <br /> your information"
 msgstr "Споделете <br /> Вашата информация"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:428
 #: ../theme/climateadaptv2/health-page-full.html:192
 #: ../theme/climateadaptv2/health-page.html:281
-#, 
 msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
 msgstr "Тази <strong> европейска обсерватория за климата и здравето </strong> е партньорство между Европейската комисия, Европейската агенция по околна среда и няколко други организации."
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:166
-#, 
 msgid "UV Index forecast (CAMS)"
 msgstr "Прогноза за UV индекс (CAM)"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:186
-#, 
 msgid "View climate and health indicators from different trusted information providers"
 msgstr "Преглед на индикаторите за климата и здравето от различни надеждни доставчици на информация"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:167
-#, 
 msgid "View the UV Index forecast developed by Copernicus Atmosphere Monitoring Service (CAMS)"
 msgstr "Вижте прогнозата на UV индекса, разработена от услугата за наблюдение на атмосферата Copernicus (CAMS)"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:133
-#, 
 msgid "We provide easy access to a wide range of relevant publications, tools, websites and other resources related to climate change and human health."
 msgstr "Ние предоставяме лесен достъп до широк спектър от подходящи публикации, инструменти, уебсайтове и други ресурси, свързани с изменението на климата и човешкото здраве."
-

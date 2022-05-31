@@ -1,4 +1,10 @@
-<metal:use-macro use-macro="context/main_template/macros/master">
+<metal:use-macro use-macro="context/main_template/macros/master" tal:define="portal_url context/portal_url"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  i18n:domain="eea.climateadapt"
+  >
     <metal:fill-slot fill-slot="style_slot">
         <link href="https://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css" rel="stylesheet"/>
         <link href="https://js.arcgis.com/3.13/esri/css/esri.css" rel="stylesheet"/>
@@ -408,10 +414,10 @@
             <p i18n:translate="">There are
                 <a href="http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm" target="_blank" i18n:translate="">12 regions</a>
                 in Europe for transnational co-operation. In addition, specific EU agreed strategies exist for four macro-national regions:
-                <a href="http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm" target="_blank">Baltic Sea</a>,
-                <a href="http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm" target="_blank">Danube</a>,
-                <a href="http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN" target="_blank">Alpine</a>, and
-                <a href="http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/" target="_blank">Adriatic and Ionian</a>
+                <a href="http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm" target="_blank" i18n:translate="">Baltic Sea</a>,
+                <a href="http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm" target="_blank" i18n:translate="">Danube</a>,
+                <a href="http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN" target="_blank" i18n:translate="">Alpine</a>, and
+                <a href="http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/" target="_blank" i18n:translate="">Adriatic and Ionian</a>
                 regions. This section provides information on strategies and actions that have been developed or are currently under development for the EU transnational regions and for other regions and countries.<br/>
                 <br/>
                 <b i18n:translate="">How to use the map?</b><br/>

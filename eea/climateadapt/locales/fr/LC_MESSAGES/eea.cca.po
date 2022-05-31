@@ -16,47 +16,46 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
-#, 
+# ,
 msgid "Adaptation options"
 msgstr "Options d'adaptation"
 
-#, 
+# ,
 msgid "Case studies"
 msgstr "Études de cas"
 
-#, 
+# ,
 msgid "Countries:"
 msgstr "Des pays:"
 
-#, 
+# ,
 msgid "Guidance"
 msgstr "Orientation"
 
-#, 
+# ,
 msgid "Indicators"
 msgstr "Indicateurs"
 
-#, 
+# ,
 msgid "Information portals"
 msgstr "Portails d'information"
 
-#, 
+# ,
 msgid "Organisations"
 msgstr "Organisations"
 
-#, 
+# ,
 msgid "Publication and reports"
 msgstr "Publication et rapports"
 
-#, 
+# ,
 msgid "Research and knowledge projects"
 msgstr "Projets de recherche et de connaissances"
 
-#, 
+# ,
 msgid "Tools"
 msgstr "Outils"
 
-#, 
+# ,
 msgid "Videos"
 msgstr "Vidéos"
-

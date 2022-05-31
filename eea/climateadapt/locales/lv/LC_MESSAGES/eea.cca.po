@@ -16,47 +16,46 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
-#, 
+# ,
 msgid "Adaptation options"
 msgstr "Adaptācijas iespējas"
 
-#, 
+# ,
 msgid "Case studies"
 msgstr "Gadījumu izpēte"
 
-#, 
+# ,
 msgid "Countries:"
 msgstr "Valstis:"
 
-#, 
+# ,
 msgid "Guidance"
 msgstr "Vadība"
 
-#, 
+# ,
 msgid "Indicators"
 msgstr "Indikatori"
 
-#, 
+# ,
 msgid "Information portals"
 msgstr "Informācijas portāli"
 
-#, 
+# ,
 msgid "Organisations"
 msgstr "Organizācijas"
 
-#, 
+# ,
 msgid "Publication and reports"
 msgstr "Publicēšana un pārskati"
 
-#, 
+# ,
 msgid "Research and knowledge projects"
 msgstr "Pētniecības un zināšanu projekti"
 
-#, 
+# ,
 msgid "Tools"
 msgstr "Instrumenti"
 
-#, 
+# ,
 msgid "Videos"
 msgstr "Video"
-
