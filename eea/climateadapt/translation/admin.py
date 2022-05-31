@@ -515,12 +515,12 @@ def execute_trans_script(site, language):
             create_translation_object(obj, language)
             logger.info("Cloned: %s" % obj.absolute_url())
         except Exception as err:
-            errors.append(obj)
             logger.info("Error cloning: %s" % obj.absolute_url())
             if err.message == 'Translation already exists':
                 continue
             else:
-                import pdb; pdb.set_trace()
+                errors.append(obj)
+                # import pdb; pdb.set_trace()
 
         if count % 200 == 0:
             logger.info("Processed %s objects" % count)
