@@ -8,8 +8,11 @@ import transaction
 from collective.cover.tiles.richtext import RichTextTile
 from plone import api
 from plone.api import content, portal
+from plone.api.content import get_state
+from plone.app.layout.viewlets import ViewletBase
 from plone.app.multilingual.factory import DefaultTranslationFactory
 from plone.app.multilingual.manager import TranslationManager
+from plone.api.portal import get_tool
 from plone.app.textfield.value import RichTextValue
 from plone.behavior.interfaces import IBehaviorAssignable
 from plone.formwidget.geolocation.geolocation import Geolocation
@@ -61,9 +64,20 @@ def translate_obj(obj):
         fields.update({k: v})
 
     translations = TranslationManager(obj).get_translations()
-    translations.pop('en')
+    obj_en = translations.pop('en')
+    layout_en = obj_en.getLayout()
+    default_view_en = obj_en.getDefaultPage()
+    layout_default_view_en = obj_en[default_view_en].getLayout()
+
     for language in translations:
         trans_obj = translations[language]
+
+        # set the layout of the translated object to match the english object
+        trans_obj.setLayout(layout_en)
+
+        # also set the layout of the default view
+        if default_view_en:
+            trans_obj[default_view_en].setLayout(layout_default_view_en)
 
         # get tile data
         if trans_obj.portal_type == 'collective.cover.content':
@@ -637,3 +651,67 @@ class TranslationStatus(BrowserView):
 
         return translations_status(getSite(), **kwargs)
 
+
+class TranslationStateViewlet(ViewletBase):
+    """ Display the translation state
+    """
+
+    trans_wf_id = 'cca_translations_workflow'
+    css_types = {
+        'not_translated': 'error',
+        'translation_not_approved': 'warning',
+        'translation_approved': 'info',
+    }
+
+    def show_approve_button(self):
+        context = self.context
+        state, wf_state = self._get_current_wf_state(context)
+
+        return state == 'translation_not_approved'
+
+    def get_css_class(self):
+        context = self.context
+        css_class = "portalMessage {}"
+        state, wf_state = self._get_current_wf_state(context)
+        css_type = self.css_types.get(state, '')
+
+        return css_class.format(css_type)
+
+    def _get_current_wf_state(self, context=None):
+        if context is None:
+            context = self.context
+
+        wftool = get_tool('portal_workflow')
+        wf = None
+
+        for _wf in wftool.getWorkflowsFor(context):
+            if _wf.id != self.trans_wf_id:
+                continue
+
+            wf = _wf
+
+        if not wf:
+            return 'Not found', 'Not found'
+
+        initial_state = wf.initial_state
+        state = (wftool.getStatusOf('cca_translations_workflow', self.context) 
+                    or {})
+        state = state.get("review_state", initial_state)
+        wf_state = wf.states[state]
+
+        return state, wf_state
+
+    def get_status(self, context=None):
+        state, wf_state = self._get_current_wf_state(context)
+        title = wf_state.title.strip() or state
+
+        return title
+
+    def get_transitions(self, context=None):
+        if not context:
+            context = self.context
+
+        wftool = get_tool('portal_workflow')
+        transitions = wftool.listActionInfos(object=context)
+
+        return [t for t in transitions if t['allowed']]
