@@ -6,6 +6,7 @@
     >
 
   <adapter factory=".contentrules.ReindexActionExecutor" />
+  <adapter factory=".contentrules.TranslateActionExecutor" />
 
   <browser:page
       name="eea.climateadapt.Reindex"
@@ -23,6 +24,24 @@
       schema=".contentrules.IReindexAction"
       factory=".contentrules.ReindexAction"
       addview="eea.climateadapt.Reindex"
+      />
+
+  <browser:page
+      name="eea.climateadapt.Translate"
+      for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
+      class=".contentrules.TranslateAddForm"
+      permission="plone.app.contentrules.ManageContentRules"
+      />
+
+  <plone:ruleAction
+      name="eea.climateadapt.Translate"
+      title="Translate object"
+      description="Translate and object"
+      for="*"
+      event="zope.component.interfaces.IObjectEvent"
+      schema=".contentrules.ITranslateAction"
+      factory=".contentrules.TranslateAction"
+      addview="eea.climateadapt.Translate"
       />
 
 </configure>

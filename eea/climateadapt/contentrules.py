@@ -4,7 +4,6 @@ from plone.api.portal import get_tool
 import transaction
 from OFS.SimpleItem import SimpleItem
 #from plone.app.contentrules import PloneMessageFactory as _
-from eea.climateadapt import CcaAdminMessageFactory as _
 from plone.app.contentrules.browser.formhelper import NullAddForm
 from plone.contentrules.rule.interfaces import IExecutable, IRuleElementData
 from Products.CMFPlone import utils
@@ -12,6 +11,9 @@ from Products.statusmessages.interfaces import IStatusMessage
 from ZODB.POSException import ConflictError
 from zope.component import adapter
 from zope.interface import Interface, implementer
+
+from eea.climateadapt import CcaAdminMessageFactory as _
+from eea.climateadapt.translation.admin import translate_obj
 
 
 class IReindexAction(Interface):
@@ -70,3 +72,62 @@ class ReindexAddForm(NullAddForm):
 
     def create(self):
         return ReindexAction()
+
+
+class ITranslateAction(Interface):
+    """Interface for the configurable aspects of a translate action. """
+
+
+@implementer(ITranslateAction, IRuleElementData)
+class TranslateAction(SimpleItem):
+    """The actual persistent implementation of the action element. """
+
+    element = "eea.climateadapt.Translate"
+    summary = _(u"Translate object")
+
+
+@adapter(ITranslateAction, Interface)
+@implementer(IExecutable)
+class TranslateActionExecutor(object):
+    """The executor for this action."""
+
+    def __init__(self, context, element, event):
+        self.context = context
+        self.element = element
+        self.event = event
+
+    def __call__(self):
+        import pdb; pdb.set_trace()
+        obj = self.event.object
+        wftool = get_tool("portal_workflow")
+
+        transaction.savepoint()
+
+        try:
+            result = translate_obj(obj)
+            wftool.doActionFor(obj, 'send_to_translation_not_approved')
+        except Exception as e:
+            self.error(obj, str(e))
+            return False
+
+        transaction.commit()
+
+        return True
+
+    def error(self, obj, error):
+        request = getattr(self.context, "REQUEST", None)
+        if request is not None:
+            title = utils.pretty_title_or_id(obj, obj)
+            message = _(
+                u"Unable to translate ${name} as part of content rule "
+                "'translate' action: ${error}",
+                mapping={"name": title, "error": error},
+            )
+            IStatusMessage(request).addStatusMessage(message, type="error")
+
+
+class TranslateAddForm(NullAddForm):
+    """A translate action form"""
+
+    def create(self):
+        return TranslateAction()
