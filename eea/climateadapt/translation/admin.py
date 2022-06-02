@@ -443,7 +443,9 @@ def create_translation_object(obj, language):
     translated_object = factory(language)
 
     TranslationManager(obj).register_translation(language, translated_object)
-    translated_object.reindexObject()
+
+    # https://github.com/plone/plone.app.multilingual/blob/2.x/src/plone/app/multilingual/manager.py#L85
+    # translated_object.reindexObject()   ^ already reindexed.
 
     if obj.portal_type == 'collective.cover.content':
         tiles = [obj.get_tile(x) for x in obj.list_tiles()]
