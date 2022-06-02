@@ -691,7 +691,7 @@ class TranslationStateViewlet(ViewletBase):
             wf = _wf
 
         if not wf:
-            return 'Not found', 'Not found'
+            return 'Translation state not found', None
 
         initial_state = wf.initial_state
         state = (wftool.getStatusOf('cca_translations_workflow', self.context) 
@@ -703,7 +703,7 @@ class TranslationStateViewlet(ViewletBase):
 
     def get_status(self, context=None):
         state, wf_state = self._get_current_wf_state(context)
-        title = wf_state.title.strip() or state
+        title = wf_state and wf_state.title.strip() or state
 
         return title
 
