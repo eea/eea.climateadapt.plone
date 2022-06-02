@@ -6,7 +6,7 @@ import re
 
 from eea.climateadapt.browser.externaltemplates import ExternalTemplateHeader
 from Products.CMFCore.utils import getToolByName
-from zope.component import getMultiAdapter
+from eea.climateadapt.translation.utils import get_current_language
 
 from .site import _extract_menu
 
@@ -75,9 +75,7 @@ class Navbar(ExternalTemplateHeader):
 
     def menu(self):
         tool = getToolByName(self.context, "translation_service")
-        context = self.context.aq_inner
-        portal_state = getMultiAdapter((context, self.request), name=u'plone_portal_state')
-        current_language = portal_state.language()
+        current_language = get_current_language(self.context, self.request)
 
         ptool = getToolByName(self.context, "portal_properties")["site_properties"]
         value = ptool.getProperty("health_navigation_menu") or DEFAULT_MENU

@@ -5,6 +5,7 @@ import plone.api as api
 from Products.Five.browser import BrowserView
 from zope.component.hooks import getSite
 from zope.component import getMultiAdapter
+from eea.climateadapt.translation.utils import get_current_language
 
 class HealthHomepageItems(BrowserView):
     def days_elapsed_mapping(self, p):
@@ -102,16 +103,11 @@ class HealthHomepageItems(BrowserView):
     @property
     def more_news(self):
         site = getSite()
-        url = site[self.current_language(self.context)]["observatory"]["news-archive-observatory"].absolute_url()
+        url = site[get_current_language(self.context, self.request)]["observatory"]["news-archive-observatory"].absolute_url()
         return [url, "More news"]
 
     @property
     def more_events(self):
         site = getSite()
-        url = site[self.current_language(self.context)]["observatory"]["more-events-observatory"].absolute_url()
+        url = site[get_current_language(self.context, self.request)]["observatory"]["more-events-observatory"].absolute_url()
         return [url, "More events"]
-
-    def current_language(self, context):
-        context = context.aq_inner
-        portal_state = getMultiAdapter((context, self.request), name=u'plone_portal_state')
-        return portal_state.language()
