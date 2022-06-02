@@ -38,6 +38,9 @@
 
         <div id="content-core">
           <div class="col-md-9 col-xs-12 content-column">
+            <div id="viewlet-above-content-title"
+              tal:content="structure provider:plone.abovecontenttitle"/>
+
             <div class="aceitem_top">
               <!-- <div style="display: none" tal:content="context/special_tags | nothing">
                 Special tags, for debugging

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<dc-workflow workflow_id="cca_translations_workflow" title="Translations Workflow" description=" - Workflow that is used to track the translation status for items. - Things start out as not translated, then can be submitted for translation. - The manager can approve the translation." state_variable="review_state" initial_state="not_translated" manager_bypass="False">
+
+ <state state_id="not_translated" title="Not translated">
+  <description>Item not translated yet.</description>
+  <exit-transition transition_id="send_to_translation_not_approved"/>
+ </state>
+
+ <state state_id="translation_not_approved" title="Translation not approved">
+  <description>Translated, waiting to be approved.</description>
+  <exit-transition transition_id="send_to_translation_approved"/>
+ </state>
+
+ <state state_id="translation_approved" title="Translation approved">
+  <description>Translated, translation was approved.</description>
+  <exit-transition transition_id="send_to_translation_review"/>
+ </state>
+ 
+ <transition transition_id="send_to_translation_not_approved" title="Translate item" new_state="translation_not_approved" trigger="USER" before_script="" after_script="">
+  <description>Translate the item.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=send_to_translation_not_approved" category="workflow" icon="">Translate item</action>
+  <guard>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </transition>
+ 
+ <transition transition_id="send_to_translation_approved" title="Approve translation" new_state="translation_approved" trigger="USER" before_script="" after_script="">
+  <description>Approve the translation.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=send_to_translation_approved" category="workflow" icon="">Approve translation</action>
+  <guard>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </transition>
+ 
+ <transition transition_id="send_to_translation_review" title="Send the translation for review" new_state="translation_not_approved" trigger="USER" before_script="" after_script="">
+  <description>Send the translation for review.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=send_to_translation_review" category="workflow" icon="">Send the translation back for review</action>
+  <guard>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </transition>
+ 
+ </dc-workflow>
