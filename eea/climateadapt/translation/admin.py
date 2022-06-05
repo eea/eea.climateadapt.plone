@@ -354,6 +354,10 @@ def initiate_translations(site, skip=0, version=None, language=None):
                 if error not in errors:
                     errors.append(error)
 
+        if count % 25 == 0:
+            logger.info("Processed %s objects" % count)
+            transaction.commit()
+
     logger.info("DONE")
     logger.info(errors)
     transaction.commit()
