@@ -339,10 +339,10 @@ def initiate_translations(site, skip=0, version=None, language=None):
 
         try:
             result = translate_obj(obj, language)
-            # result = {'errors': []}
             # TODO only set version if all fields were translated
             obj.version = version
         except Exception as err:
+            result = {'errors': [err]}
             logger.info(err)
             # errors.append(err)
             import pdb; pdb.set_trace()
