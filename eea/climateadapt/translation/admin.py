@@ -41,7 +41,7 @@ def is_json(input):
     return True
 
 
-def translate_obj(obj):
+def translate_obj(obj, lang=None):
     tile_fields = ['title', 'description', 'tile_title', 'footer', 'alt_text']
     errors = []
     force_unlock(obj)
@@ -70,6 +70,10 @@ def translate_obj(obj):
     layout_default_view_en = obj_en[default_view_en].getLayout()
 
     for language in translations:
+        if lang is not None:
+            if language != lang:
+                continue
+
         trans_obj = translations[language]
 
         # set the layout of the translated object to match the english object
@@ -286,8 +290,10 @@ def translate_obj(obj):
     return {'errors': errors}
 
 
-def initiate_translations(site, skip=0, version=None):
+def initiate_translations(site, skip=0, version=None, language=None):
     skip = int(skip)
+    if language is None:
+        return "Missing language parameter. (Example: ?language=it)"
     if version is None:
         return "Missing translation version. Status: /admin-translation-status"
     version = int(version)
@@ -332,7 +338,7 @@ def initiate_translations(site, skip=0, version=None):
             continue
 
         try:
-            result = translate_obj(obj)
+            result = translate_obj(obj, language)
             # result = {'errors': []}
             # TODO only set version if all fields were translated
             obj.version = version
@@ -616,8 +622,9 @@ class SomeTranslated(BrowserView):
 
 class RunTranslation(BrowserView):
     """ Translate the contents
-        Usage: /admin-run-translation?skip=1200  - translate skip 1200 objs
-        Usage: /admin-run-translation            - translate all
+        Usage:
+        /admin-run-translation?language=it&version=1&skip=1200  -skip 1200 objs
+        /admin-run-translation?language=it&version=1
     """
 
     def __call__(self, **kwargs):
@@ -696,7 +703,7 @@ class TranslationStateViewlet(ViewletBase):
             return 'Translation state not found', None
 
         initial_state = wf.initial_state
-        state = (wftool.getStatusOf('cca_translations_workflow', self.context) 
+        state = (wftool.getStatusOf('cca_translations_workflow', self.context)
                     or {})
         state = state.get("review_state", initial_state)
         wf_state = wf.states[state]
