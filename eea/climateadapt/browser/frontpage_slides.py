@@ -3,6 +3,7 @@ import urllib
 from collections import namedtuple
 
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
+from eea.climateadapt.translation.utils import translate_text
 from plone import api
 from plone.api.portal import get_tool, getSite
 from plone.app.textfield import RichText
@@ -11,8 +12,6 @@ from plone.memoize import view
 from Products.Five.browser import BrowserView
 from zope.interface import implements
 from zope.schema import TextLine
-from Products.CMFCore.utils import getToolByName
-from zope.component import getMultiAdapter
 
 # from zope.lifecycleevent import modified
 # from plone.namedfile.field import NamedBlobImage
@@ -294,18 +293,6 @@ class FrontpageSearch(BrowserView):
 
         return l
 
-    def translate_text(self, text):
-        tool = getToolByName(self.context, "translation_service")
-        context = self.context.aq_inner
-        portal_state = getMultiAdapter((context, self.request),
-                        name=u'plone_portal_state')
-        current_language = portal_state.language()
-
-        return tool.translate(text,
-                domain="eea.cca",
-                target_language=current_language
-                )
-
     def sections(self):
         catalog = get_tool("portal_catalog")
         counts = {}
@@ -325,7 +312,7 @@ class FrontpageSearch(BrowserView):
         tmp_types = []
         for data in SEARCH_TYPES_ICONS:
             data = list(data)
-            data[1] = self.translate_text(data[1])
+            data[1] = translate_text(self.context, self.request, data[1], 'eea.cca')
             tmp_types.append(data)
         return [
             Section(x[1], counts.get(x[0], 0), self._make_link(x[1]), x[2])

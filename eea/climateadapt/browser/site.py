@@ -5,9 +5,9 @@ import logging
 import re
 
 from zope.component.hooks import getSite
-from zope.component import getMultiAdapter
 
 from eea.climateadapt.browser.externaltemplates import ExternalTemplateHeader
+from eea.climateadapt.translation.utils import get_current_language
 from Products.CMFCore.utils import getToolByName
 
 # from Products.Five.browser import BrowserView
@@ -327,10 +327,7 @@ class Navbar(ExternalTemplateHeader):
             ptool = getToolByName(self.context,
                                   'portal_properties')['site_properties']
 
-            context = self.context.aq_inner
-            portal_state = getMultiAdapter((context, self.request),
-                            name=u'plone_portal_state')
-            current_language = portal_state.language()
+            current_language = get_current_language(self.context, self.request)
 
             sections = _extract_menu(ptool.getProperty('main_navigation_menu'),
                             tool, None, current_language)
@@ -345,7 +342,6 @@ class Navbar(ExternalTemplateHeader):
             logger.exception("Error while rendering navigation menu: %s", e)
 
             site_url = self.context.portal_url()
-
             return _extract_menu(DEFAULT_MENU, tool, site_url)
 
     def menu_site(self):

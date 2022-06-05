@@ -8,6 +8,7 @@ from collective.cover.browser.cover import Standard
 from eea.climateadapt.vocabulary import (BIOREGIONS, SUBNATIONAL_REGIONS,
                                          ace_countries_dict)
 from eea.climateadapt import MessageFactory as _
+from eea.climateadapt.translation.utils import translate_text
 from eea.geotags.behavior.geotags import ISingleGeoTag
 from plone import api
 from plone.api.user import get
@@ -21,7 +22,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from zExceptions import NotFound
 from zope.component import queryAdapter
-from zope.component import getMultiAdapter
 
 
 logger = logging.getLogger("eea.climateadapt")
@@ -323,16 +323,7 @@ class AceViewApi(object):
         return False
 
     def translate_text(self, text):
-        tool = getToolByName(self.context, "translation_service")
-        context = self.context.aq_inner
-        portal_state = getMultiAdapter((context, self.request),
-                        name=u'plone_portal_state')
-        current_language = portal_state.language()
-
-        return tool.translate(text,
-                domain="eea.climateadapt",
-                target_language=current_language
-                )
+        return translate_text(self.context, self.request, text)
 
 
 class ViewAceItem(BrowserView):
