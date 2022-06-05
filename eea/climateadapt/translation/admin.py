@@ -67,7 +67,8 @@ def translate_obj(obj, lang=None):
     obj_en = translations.pop('en')
     layout_en = obj_en.getLayout()
     default_view_en = obj_en.getDefaultPage()
-    layout_default_view_en = obj_en[default_view_en].getLayout()
+    if default_view_en is not None:
+        layout_default_view_en = obj_en[default_view_en].getLayout()
 
     for language in translations:
         if lang is not None:
