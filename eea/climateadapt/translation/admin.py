@@ -417,7 +417,7 @@ def verify_cloned_language(site, language=None):
 
     logger.info("DONE. Found: {} Not found: {}".format(found, not_found))
 
-    return "".join(res)
+    return "\n".join(res)
 
 
 def translations_status_by_version(site, version=0):
