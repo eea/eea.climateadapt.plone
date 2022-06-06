@@ -82,10 +82,10 @@ def translate_obj(obj, lang=None, version=None):
 
             if obj_version >= version:
                 logger.info(
-                    "Skipping! object already at version %s" % obj_version)
+                    "Skipping! object already at version %s", obj_version)
                 continue
-            else:
-                trans_obj.version = version
+
+            trans_obj.version = version
 
         # set the layout of the translated object to match the english object
         trans_obj.setLayout(layout_en)
