@@ -1,3 +1,5 @@
+""" Admin translation
+"""
 import json
 import logging
 from collections import defaultdict
@@ -438,6 +440,8 @@ def verify_cloned_language(site, language=None):
 
 
 def translations_status_by_version(site, version=0, language=None):
+    """ Show the list of urls of a version and language
+    """
     if language is None:
         return "Missing language."
 
@@ -461,7 +465,10 @@ def translations_status_by_version(site, version=0, language=None):
 
     return "".join(res)
 
+
 def get_tile_type(tile, from_cover, to_cover):
+    """ Return tile type
+    """
     tiles_types = {
         'RichTextWithTitle': 'eea.climateadapt.richtext_with_title',
         'EmbedTile': 'collective.cover.embed',
@@ -489,6 +496,8 @@ def get_tile_type(tile, from_cover, to_cover):
 
 
 def copy_tiles(tiles, from_cover, to_cover):
+    """ Copy the tiles from cover to translated cover
+    """
     logger.info("Copy tiles")
     logger.info(from_cover.absolute_url())
     logger.info(to_cover.absolute_url())
@@ -514,6 +523,8 @@ def copy_tiles(tiles, from_cover, to_cover):
 
 
 def create_translation_object(obj, language):
+    """ Create translation object for an obj
+    """
     if language in TranslationManager(obj).get_translations():
         logger.info("Skip creating translation. Already exists.")
         return
@@ -536,6 +547,8 @@ def create_translation_object(obj, language):
 
 
 def get_all_objs(container):
+    """ Get the container's objects
+    """
     all_objs = []
 
     def get_objs(context):
@@ -552,6 +565,8 @@ def get_all_objs(container):
 
 
 def execute_trans_script(site, language):
+    """ Clone the content to be translated
+    """
     catalog = site.portal_catalog
     english_container = site['en']
     language_folders = [
