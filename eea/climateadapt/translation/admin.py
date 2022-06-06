@@ -380,6 +380,46 @@ def translations_status(site):
 
     return "".join(res)
 
+
+def verify_cloned_language(site, language=None):
+    """ Get all objects in english and check if all of them are cloned for
+        given language. Also make sure all paths are similar.
+        Correct:
+            /cca/en/obj-path
+            /cca/ro/obj-path
+        Wrong:
+            /cca/en/obj-path
+            /cca/ro/obj-path-ro-ro-ro
+    """
+    if language is None:
+        return "Missing language parameter. (Example: ?language=it)"
+    catalog = site.portal_catalog
+    brains = catalog.searchResults(path='/cca/en')
+    site_url = portal.getSite().absolute_url()
+    logger.info("I will list the missing objects if any. Checking...")
+
+    res = []
+    found = 0
+    not_found = 0
+    for brain in brains:
+        obj = brain.getObject()
+        obj_url = obj.absolute_url()
+        obj_path = '/cca' + obj_url.split(site_url)[-1]
+        prefix = '/cca/' + language.lower() + '/'
+        trans_obj_path = obj_path.replace('/cca/en/', prefix)
+        try:
+            trans_obj = site.unrestrictedTraverse(trans_obj_path)
+            found += 1
+        except Exception:
+            res.append(trans_obj_path)
+            logger.info(trans_obj_path)
+            not_found += 1
+
+    logger.info("DONE. Found: {} Not found: {}".format(found, not_found))
+
+    return "".join(res)
+
+
 def translations_status_by_version(site, version=0):
     version = int(version)
     catalog = site.portal_catalog
@@ -605,6 +645,16 @@ class PrepareTranslation(BrowserView):
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
         return execute_trans_script(getSite(), **kwargs)
+
+
+class VerifyClonedLanguage(BrowserView):
+    """ Use this view to check all links for a new cloned language
+        Usage: /admin-verify-cloned?language=ro
+    """
+
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
+        return verify_cloned_language(getSite(), **kwargs)
 
 
 class SomeTranslated(BrowserView):

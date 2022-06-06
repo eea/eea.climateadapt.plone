@@ -14,6 +14,13 @@
       />
 
   <browser:page
+      name="admin-verify-cloned"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".admin.VerifyClonedLanguage"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
       name="admin-run-translation"
       for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
       class=".admin.RunTranslation"
