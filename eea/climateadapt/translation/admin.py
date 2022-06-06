@@ -399,8 +399,9 @@ def verify_cloned_language(site, language=None):
     logger.info("I will list the missing objects if any. Checking...")
 
     res = []
-    found = 0
-    not_found = 0
+    found = 0  # translation found with correct path
+    found_changed = 0  # translation found but with different path
+    not_found = 0  # translation not found
     for brain in brains:
         obj = brain.getObject()
         obj_url = obj.absolute_url()
@@ -413,9 +414,16 @@ def verify_cloned_language(site, language=None):
         except Exception:
             res.append(trans_obj_path)
             logger.info(trans_obj_path)
-            not_found += 1
+            translations = TranslationManager(obj).get_translations()
+            if language in translations:
+                trans_obj = translations[language]
+                trans_obj.absolute_url()
+                found_changed += 1
+            else:
+                not_found += 1
 
-    logger.info("DONE. Found: {} Not found: {}".format(found, not_found))
+    logger.info("Found: %s. Found with different path: %s. Not found: %s.",
+                found, found_changed, not_found)
 
     return "\n".join(res)
 
