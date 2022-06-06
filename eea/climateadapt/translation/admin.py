@@ -41,7 +41,7 @@ def is_json(input):
     return True
 
 
-def translate_obj(obj, lang=None):
+def translate_obj(obj, lang=None, version=None):
     tile_fields = ['title', 'description', 'tile_title', 'footer', 'alt_text']
     errors = []
     force_unlock(obj)
@@ -76,6 +76,16 @@ def translate_obj(obj, lang=None):
                 continue
 
         trans_obj = translations[language]
+
+        if version is not None:
+            obj_version = int(getattr(trans_obj, 'version', 0))
+
+            if obj_version >= version:
+                logger.info(
+                    "Skipping! object already at version %s" % obj_version)
+                continue
+            else:
+                trans_obj.version = version
 
         # set the layout of the translated object to match the english object
         trans_obj.setLayout(layout_en)
@@ -332,16 +342,9 @@ def initiate_translations(site, skip=0, version=None, language=None):
             continue
 
         obj = brain.getObject()
-        obj_version = int(getattr(obj, 'version', 0))
-
-        if obj_version >= version:
-            logger.info("Skipping! object already at version %s" % obj_version)
-            continue
 
         try:
-            result = translate_obj(obj, language)
-            # TODO only set version if all fields were translated
-            obj.version = version
+            result = translate_obj(obj, language, version)
         except Exception as err:
             result = {'errors': [err]}
             logger.info(err)
@@ -364,10 +367,11 @@ def initiate_translations(site, skip=0, version=None, language=None):
 
 def translations_status(site):
     catalog = site.portal_catalog
-    brains = catalog.searchResults(path='/cca/en')
+    brains = catalog.searchResults()
 
     versions = defaultdict(int)
     template = "<p>{} at version {}</p>"
+    logger.info("Translations status:")
 
     for brain in brains:
         obj = brain.getObject()
@@ -378,6 +382,7 @@ def translations_status(site):
     for k, v in versions.items():
         res.append(template.format(v, k))
 
+    logger.info(res)
     return "".join(res)
 
 
@@ -435,7 +440,7 @@ def verify_cloned_language(site, language=None):
 def translations_status_by_version(site, version=0):
     version = int(version)
     catalog = site.portal_catalog
-    brains = catalog.searchResults(path='/cca/en')
+    brains = catalog.searchResults()
 
     res = []
     template = "<p>{}</p>"
