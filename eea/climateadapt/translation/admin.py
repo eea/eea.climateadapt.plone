@@ -365,9 +365,13 @@ def initiate_translations(site, skip=0, version=None, language=None):
     logger.info(errors)
     transaction.commit()
 
-def translations_status(site):
+def translations_status(site, language=None):
+    if language is None:
+        return "Missing language."
+
+    path = '/cca/' + language
     catalog = site.portal_catalog
-    brains = catalog.searchResults()
+    brains = catalog.searchResults(path=path)
 
     versions = defaultdict(int)
     template = "<p>{} at version {}</p>"
@@ -437,10 +441,15 @@ def verify_cloned_language(site, language=None):
     return "\n".join(res)
 
 
-def translations_status_by_version(site, version=0):
+def translations_status_by_version(site, version=0, language=None):
+    if language is None:
+        return "Missing language."
+
+    path = '/cca/' + language
     version = int(version)
     catalog = site.portal_catalog
     brains = catalog.searchResults()
+    brains = catalog.searchResults(path=path)
 
     res = []
     template = "<p>{}</p>"
