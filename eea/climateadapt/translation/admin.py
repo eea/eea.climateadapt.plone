@@ -413,14 +413,18 @@ def verify_cloned_language(site, language=None):
             found += 1
         except Exception:
             res.append(trans_obj_path)
-            logger.info(trans_obj_path)
             translations = TranslationManager(obj).get_translations()
             if language in translations:
                 trans_obj = translations[language]
-                trans_obj.absolute_url()
+                new_url = trans_obj.absolute_url()
+                res.append("Found as: " + new_url)
                 found_changed += 1
+                logger.info(trans_obj_path)
+                logger.info("Found as %s", new_url)
             else:
                 not_found += 1
+                res.append("Not found.")
+                logger.info("Not found: %s", trans_obj_path)
 
     logger.info("Found: %s. Found with different path: %s. Not found: %s.",
                 found, found_changed, not_found)
