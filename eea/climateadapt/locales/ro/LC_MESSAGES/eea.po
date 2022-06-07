@@ -91,7 +91,7 @@ msgstr ""
 
 #: ../../climateadapt/tiles/search_acecontent.py:728
 msgid "Climate impact"
-msgstr ""
+msgstr "Impact climatic"
 
 #: ../../climateadapt/behaviors/aceitem.py:181
 #: ../../climateadapt/behaviors/acemeasure.py:141

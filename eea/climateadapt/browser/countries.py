@@ -16,6 +16,7 @@ from plone.intelligenttext.transforms import (
     convertWebIntelligentPlainTextToHtml as convWebInt,
     safe_decode
 )
+from eea.climateadapt import MessageFactory as _
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -154,10 +155,10 @@ _COUNTRIES_WITH_NAP = [
 ]
 
 _MARKERS = [
-    ("national adaption policy", "National adaption policy"),
+    ("national adaption policy", _("National adaption policy")),
     ("climate change impact and vulnerability assessments",
-     "Climate change impact and vulnerability assessments"),
-    ("adaptation portals and platforms", "Adaptation portals and platforms"),
+     _("Climate change impact and vulnerability assessments")),
+    ("adaptation portals and platforms", _("Adaptation portals and platforms")),
     # ('action plans', 'National adaptation plans (NAP)'),
     # ('action plans', 'Action plans'),
     # ('impacts', 'Impacts, vulnerability and adaptation assessments'),
@@ -284,7 +285,7 @@ class CCAWebIntelligentToHtmlConverter(WebIntelligentToHtmlConverter):
         text = self.newline_regex.sub('\n\n', text)
         # Finally, make \n's into br's
         text = text.replace('\n', '<br />')
-        
+
         if not PY3:
             text = text.encode('utf-8')
 
@@ -585,7 +586,7 @@ class CountryProfileData(BrowserView):
 
     def convert_web_int(self, text):
         _text = CCAWebIntelligentToHtmlConverter(text.strip())()
-        
+
         # import pdb; pdb.set_trace()
 
         return _text

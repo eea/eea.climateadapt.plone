@@ -6,7 +6,6 @@ It renders a search "portlet" for Ace content
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
-from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.config import DEFAULT_LOCATIONS
 from eea.climateadapt.vocabulary import _cca_types
 from plone import api
@@ -18,12 +17,12 @@ from zope.interface import implements
 class IShareInfoTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=_(u'Title'),
+        title=u'Title',
         required=False,
     )
 
     shareinfo_type = schema.Choice(
-        title=_(u"Share info type"),
+        title=u"Share info type",
         vocabulary="eea.climateadapt.cca_types",
         required=False
     )

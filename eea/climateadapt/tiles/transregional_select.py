@@ -3,7 +3,6 @@
 
 from collective.cover.tiles.base import (IPersistentCoverTile,
                                          PersistentCoverTile)
-from eea.climateadapt import CcaAdminMessageFactory as _
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope import schema
@@ -14,12 +13,12 @@ from zope.interface import implements, providedBy
 class ITransRegionalSelectTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=_(u'Title'),
+        title=u'Title',
         required=False,
     )
 
     region = schema.Choice(
-        title=_(u"Region"),
+        title=u"Region",
         vocabulary="eea.climateadapt.regions",
         required=True,
     )

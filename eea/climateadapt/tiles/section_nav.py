@@ -6,7 +6,6 @@ from collective.cover.tiles.base import (IPersistentCoverTile,
 from zope import schema
 from zope.interface import implements
 
-from eea.climateadapt import CcaAdminMessageFactory as _
 from plone.app.uuid.utils import uuidToObject
 from plone.tiles.interfaces import ITileDataManager
 from plone.uuid.interfaces import IUUID
@@ -16,12 +15,12 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 class ISectionNavTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=_(u'Title'),
+        title=u'Title',
         required=True,
     )
 
     uuid = schema.TextLine(
-        title=_(u'UUID'),
+        title=u'UUID',
         required=False,
         readonly=True,
     )

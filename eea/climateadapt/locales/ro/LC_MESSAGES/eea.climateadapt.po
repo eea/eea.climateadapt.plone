@@ -216,7 +216,7 @@ msgstr "Check-out creat"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:56
 msgid "Choose a country"
-msgstr ""
+msgstr "Alege o tara"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:431
 msgid "Choose a region"
@@ -224,7 +224,7 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:74
 msgid "Choose thematic map:"
-msgstr ""
+msgstr "Alege o tema:"
 
 # ,
 # ,
@@ -781,7 +781,7 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:111
 msgid "NAS and NAP reported as adopted"
-msgstr ""
+msgstr "Reportate ca adoptate NAS si NAP"
 
 # ,
 # ,
@@ -792,7 +792,7 @@ msgstr "Numele strategiei/ planului (dacă este adoptat)"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:127
 msgid "Neither NAS nor NAP reported as adopted"
-msgstr ""
+msgstr "Nici NAS sau NAP nu sunt raportate"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:85
 msgid "No assessments reported"
@@ -800,7 +800,7 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:89
 msgid "No data reported"
-msgstr ""
+msgstr "Nu sunt raportate date"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:100
 msgid "No portal or platform reported"
@@ -848,11 +848,11 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:115
 msgid "Only NAP reported as adopted"
-msgstr ""
+msgstr "Reportate doar ca NAP"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:119
 msgid "Only NAS reported as adopted"
-msgstr ""
+msgstr "Reportate doar ca NAS"
 
 # ,
 #: ../../climateadapt/vocabulary.py:271
@@ -1016,7 +1016,7 @@ msgstr "Revizuite de:"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:123
 msgid "SAP reported as adopted"
-msgstr ""
+msgstr "SAP Reportate ca adoptate"
 
 # ,
 # ,
@@ -1079,7 +1079,7 @@ msgstr "Vezi videoclipuri în afara climei-adaptatului"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:54
 msgid "Select a country to go directly to the country's page:"
-msgstr ""
+msgstr "Alage o tara pt a fi redirectat la ea:"
 
 # ,
 # ,
@@ -1225,7 +1225,7 @@ msgstr "Data se referă la momentul în care articolul a fost pregătit sau actu
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:140
 msgid "The information presented in these pages is based on the reporting according to 'Regulation (EU) 2018/1999 on the Governance of the Energy Union and Climate Action' and updates by the EEA member countries. However, for those pages where the information is last updated before 01/01/2021, the information presented is based on the reporting according to 'Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change' and updates by the EEA member countries.'"
-msgstr ""
+msgstr "Informațiile prezentate în aceste pagini se bazează pe raportarea conform „Regulamentului (UE) 2018/1999 privind guvernanța uniunii energetice și acțiunea climatică” și actualizările țărilor membre SEE. Cu toate acestea, pentru acele pagini în care informațiile sunt actualizate ultima dată înainte de 01/01/2021, informațiile prezentate se bazează pe raportarea conform „Regulamentului (UE) nr. 525/2013 privind un mecanism de monitorizare și raportare a emisiilor de gaze cu efect de seră și de raportare. alte informații relevante pentru schimbările climatice” și actualizări ale țărilor membre SEE”."
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:423
 msgid "There are <a href=\"http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm\" target=\"_blank\">x</a> in Europe for transnational co-operation. In addition, specific EU agreed strategies exist for four macro-national regions: <a href=\"http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN\" target=\"_blank\">x</a>, and <a href=\"http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/\" target=\"_blank\">x</a> regions. This section provides information on strategies and actions that have been developed or are currently under development for the EU transnational regions and for other regions and countries.<br /> <br /> <b>x</b><br /> The map shows the transnational regions situated in Europe defined in the co-operation programmes for 2014-2020. You can select transnational regions by clicking on the map. If you select an area that belongs to more than one region, the pop-up window will show all the regions where the area is located. The pop-up window also shows the countries where each region is located.<br /> <br /> To go to one of the regions' pages, choose in the drop-down list, click on the legend, or make use of the link shown in the tooltip."
@@ -1269,6 +1269,11 @@ msgstr "Urban"
 #: ../../climateadapt/browser/pt/organisation_view.pt:67
 msgid "View all contributions in the resource catalogue"
 msgstr "Vizualizați toate contribuțiile din catalogul de resurse"
+
+# ,
+#: ../../climateadapt/tiles/pt/filter_acecontent.pt:52
+msgid "View all"
+msgstr "Vizualizați toate"
 
 # ,
 # ,
@@ -1385,3 +1390,7 @@ msgstr "filtrează după"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:402
 msgid "text_searchitem_location"
 msgstr "Text_SearchItem_location"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:140
+msgid "[Disclaimer]"
+msgstr "[Declinare]"

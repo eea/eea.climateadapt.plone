@@ -4,7 +4,6 @@
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cover.tiles.base import IPersistentCoverTile
 from collective.cover.tiles.base import PersistentCoverTile
-from eea.climateadapt import CcaAdminMessageFactory as _
 from zope import schema
 from zope.component import queryMultiAdapter
 from zope.interface import implements
@@ -13,12 +12,12 @@ from zope.interface import implements
 class IGenericViewTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=_(u'Title'),
+        title=u'Title',
         required=True,
     )
 
     view_name = schema.TextLine(
-        title=_(u'View name'),
+        title=u'View name',
         required=True,
     )
 

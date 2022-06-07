@@ -5,7 +5,6 @@ import json
 
 from collective.cover.tiles.base import (IPersistentCoverTile,
                                          PersistentCoverTile)
-from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.vocabulary import ace_countries_selection
 from plone.memoize import view
 from Products.Five.browser import BrowserView
@@ -17,7 +16,7 @@ from zope.interface import implements
 class ICountrySelectTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=_(u'Title'),
+        title=u'Title',
         required=False,
     )
 

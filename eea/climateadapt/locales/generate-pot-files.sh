@@ -3,7 +3,7 @@
 i18ndude rebuild-pot \
 	--pot eea.climateadapt.pot \
   --create eea.climateadapt \
-	--exclude "behaviors profiles tiles *.zcml contentrules.py export_portaltypes.pt keywords-admin.pt special-tags-admin.pt" \
+	--exclude "behaviors profiles *.zcml contentrules.py export_portaltypes.pt keywords-admin.pt special-tags-admin.pt" \
 	../../
 
   #--exclude "behaviors profiles tiles profiles.zcml keywords-admin.pt special-tags-admin.pt" \

@@ -2,35 +2,35 @@
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  i18n:domain="collective.cover">
+  i18n:domain="eea.climateadapt">
 
   <body tal:define="is_compose view/is_compose_mode">
-    <strong tal:condition="is_compose" i18n:translate="">Filterable Relevant AceContent Tile</strong>
+    <strong tal:condition="is_compose">Filterable Relevant AceContent Tile</strong>
 
     <dl tal:condition="view/is_compose_mode" class="aceitem-tile">
-      <dt i18n:translate="">Title:</dt>
+      <dt>Title:</dt>
       <dd tal:content="python: view.data.get('title')" />
-      <dt i18n:translate="">Search text:</dt>
+      <dt>Search text:</dt>
       <dd tal:content="python: view.data.get('search_text')" />
-      <dt i18n:translate="">Aceitem type:</dt>
+      <dt>Aceitem type:</dt>
       <dd tal:content="python: view.data.get('search_type')" />
-      <dt i18n:translate="">Element type:</dt>
+      <dt>Element type:</dt>
       <dd tal:content="python: view.data.get('element_type')" />
-      <dt i18n:translate="">Sector:</dt>
+      <dt>Sector:</dt>
       <dd tal:content="python: view.data.get('sector')" />
-      <dt i18n:translate="">Special tags:</dt>
+      <dt>Special tags:</dt>
       <dd tal:content="python: view.data.get('special_tags')" />
-      <dt i18n:translate="">Countries:</dt>
+      <dt>Countries:</dt>
       <dd tal:content="python: view.data.get('countries')" />
-      <dd i18n:translate="">Number of items: </dd>
+      <dd>Number of items: </dd>
       <dt tal:content="python: view.data.get('nr_items')" />
-      <dt i18n:translate="">Macro-Transnational Regions:</dt>
+      <dt>Macro-Transnational Regions:</dt>
       <dd tal:content="python: view.data.get('macro_regions')" />
-      <dt i18n:translate="">Biogeographical Regions:</dt>
+      <dt>Biogeographical Regions:</dt>
       <dd tal:content="python: view.data.get('bio_regions')" />
-      <dt i18n:translate="">Funding programmes:</dt>
+      <dt>Funding programmes:</dt>
       <dd tal:content="python: view.data.get('funding_programme')" />
-      <dt i18n:translate="">Sort by:</dt>
+      <dt>Sort by:</dt>
       <dd tal:content="python: view.data.get('sortBy')" />
     </dl>
 
@@ -47,9 +47,9 @@
         </li>
       </ul>
       <div class="tile-footer">
-        <a class="read-more" href="" tal:attributes="href view/view_more_url" i18n:translate="">
+        <a class="read-more" href="" tal:attributes="href view/view_more_url">
           <i class="fa fa-angle-double-right"></i>
-          View all
+          <span i18n:translate="">View all</span>
         </a>
       </div>
     </div>

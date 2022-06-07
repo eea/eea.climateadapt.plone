@@ -2,7 +2,7 @@
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  i18n:domain="collective.cover">
+  i18n:domain="eea.climateadapt">
 
   <body tal:define="is_compose view/is_compose_mode;
     assigned view/assigned;
@@ -11,7 +11,7 @@
     ">
 
     <div class="sortable-tile tile-content" tal:condition="is_compose">
-      <h3 style="margin-bottom:0.6em" i18n:translate="">Relevant AceContent Tile</h3>
+      <h3 style="margin-bottom:0.6em">Relevant AceContent Tile</h3>
 
       <tal:items repeat="obj assigned">
         <div class="list-item" style="position:relative;"
@@ -27,22 +27,22 @@
 
       <dl class="aceitem-tile">
 
-        <dt i18n:translate="">Element type:</dt>
+        <dt>Element type:</dt>
         <dd tal:content="python: view.data.get('element_type')" />
 
-        <dt i18n:translate="">Sector:</dt>
+        <dt>Sector:</dt>
         <dd tal:content="python: view.data.get('sector')" />
 
-        <dt i18n:translate="">Search type:</dt>
+        <dt>Search type:</dt>
         <dd tal:content="python: view.data.get('search_type')" />
 
-        <dt i18n:translate="">Special tags: </dt>
+        <dt>Special tags: </dt>
         <dd tal:content="python: view.data.get('special_tags')" />
 
-        <dt i18n:translate="">Search text: </dt>
+        <dt>Search text: </dt>
         <dd tal:content="python: view.data.get('search_text')" />
 
-        <dt i18n:translate="">Number of items: </dt>
+        <dt>Number of items: </dt>
         <dd tal:content="python: view.data.get('nr_items')" />
       </dl>
     </div>
@@ -75,26 +75,26 @@
             <i class="fa fa-search"></i>
           </a>
           <div tal:attributes="id string:info${view/id}" style="display:none" >
-           <h1 i18n:translate="">Relevant tile info</h1>
+           <h1>Relevant tile info</h1>
            <dl>
-             <dt i18n:translate="">Element type:</dt>
+             <dt>Element type:</dt>
              <dd tal:content="python: view.data.get('element_type')" />
-             <dt i18n:translate="">Sector:</dt>
+             <dt>Sector:</dt>
              <dd tal:content="python: view.data.get('sector')" />
-             <dt i18n:translate="">Search type:</dt>
+             <dt>Search type:</dt>
              <dd tal:content="python: view.data.get('search_type')" />
-             <dt i18n:translate="">Special tags: </dt>
+             <dt>Special tags: </dt>
              <dd tal:content="python: view.data.get('special_tags')" />
-             <dt i18n:translate="">Search text: </dt>
+             <dt>Search text: </dt>
              <dd tal:content="python: view.data.get('search_text')" />
-             <dt i18n:translate="">Number of items: </dt>
+             <dt>Number of items: </dt>
              <dd tal:content="python: view.data.get('nr_items')" />
            </dl>
           </div>
         </div>
 
         <h2><span tal:content="python: view.data.get('title')">Title here</span></h2>
-        <h3 style="display:none" i18n:translate="">Relevant tile</h3>
+        <h3 style="display:none">Relevant tile</h3>
 
         <ul class="list-items" style="clear: both;">
           <li tal:repeat="obj all_items">
@@ -114,9 +114,9 @@
 
           <div class="tile-footer" tal:condition="nothing">
            <a class="read-more" href="" tal:attributes="href view/view_more_url"
-             tal:condition="view/view_more" i18n:translate="">
+             tal:condition="view/view_more">
              <i class="fa fa-angle-double-right"></i>
-             View more
+             <span i18n:translate="">View more</span>
            </a>
           </div>
         </div>

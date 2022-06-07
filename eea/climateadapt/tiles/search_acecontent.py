@@ -12,7 +12,7 @@ from collective.cover.interfaces import ICoverUIDsProvider
 from collective.cover.tiles.base import (IPersistentCoverTile,
                                          PersistentCoverTile)
 from collective.cover.tiles.list import IListTile
-from eea.climateadapt import CcaAdminMessageFactory as _
+from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.catalog import get_aceitem_description
 from eea.climateadapt.vocabulary import (_climateimpacts, _datatypes,
                                          _elements, _origin_website, _sectors,
@@ -48,18 +48,18 @@ logger = logging.getLogger("eea.climateadapt")
 class ISearchAceContentTile(IPersistentCoverTile):
 
     title = TextLine(
-        title=_(u"Title"),
+        title=u"Title",
         required=False,
     )
 
     search_text = TextLine(
-        title=_(u"Search Text"),
+        title=u"Search Text",
         required=False,
         default=u"",
     )
 
     origin_website = List(
-        title=_(u"Origin website"),
+        title=u"Origin website",
         required=False,
         value_type=Choice(
             vocabulary='eea.climateadapt.origin_website'
@@ -67,7 +67,7 @@ class ISearchAceContentTile(IPersistentCoverTile):
     )
 
     search_type = List(
-        title=_(u"Aceitem type"),
+        title=u"Aceitem type",
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.search_types_vocabulary",
@@ -75,7 +75,7 @@ class ISearchAceContentTile(IPersistentCoverTile):
     )
 
     element_type = List(
-        title=_(u"Element type"),
+        title=u"Element type",
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.element_types_vocabulary",
@@ -83,7 +83,7 @@ class ISearchAceContentTile(IPersistentCoverTile):
     )
 
     sector = List(
-        title=_(u"Sector"),
+        title=u"Sector",
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_sectors",
@@ -91,37 +91,37 @@ class ISearchAceContentTile(IPersistentCoverTile):
     )
 
     special_tags = List(
-        title=_(u"Special tags"),
+        title=u"Special tags",
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.special_tags"),
     )
 
     countries = List(
-        title=_(u"Countries"),
+        title=u"Countries",
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
     )
 
     macro_regions = List(
-        title=_(u"Macro-Transnational Regions"),
+        title=u"Macro-Transnational Regions",
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.regions"),
     )
 
     bio_regions = List(
-        title=_(u"Biogeographical Regions"),
+        title=u"Biogeographical Regions",
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.bioregions"),
     )
 
     funding_programme = Choice(
         vocabulary="eea.climateadapt.funding_programme",
-        title=_(u"Funding programmes"),
+        title=u"Funding programmes",
         required=False,
     )
 
     nr_items = Int(
-        title=_(u"Nr of items to show"),
+        title=u"Nr of items to show",
         required=True,
         default=5,
     )
@@ -383,17 +383,17 @@ sortby_vocabulary = SimpleVocabulary(sortbyterms)
 class IRelevantAceContentItemsTile(ISearchAceContentTile):
 
     show_share_btn = Bool(
-        title=_(u"Show the share button"),
+        title=u"Show the share button",
         default=False,
     )
 
     combine_results = Bool(
-        title=_(u"Show listing results, in addition to assigned items"),
+        title=u"Show listing results, in addition to assigned items",
         default=False,
     )
 
     uuids = Dict(
-        title=_(u"Elements"),
+        title=u"Elements",
         key_type=TextLine(),
         value_type=Dict(
             key_type=TextLine(),
@@ -403,7 +403,7 @@ class IRelevantAceContentItemsTile(ISearchAceContentTile):
     )
 
     sortBy = Choice(
-        title=_(u"Sort order for results and assigned items"),
+        title=u"Sort order for results and assigned items",
         vocabulary=sortby_vocabulary,
     )
 
@@ -629,7 +629,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         """
 
         if not self.isAllowedToEdit():
-            raise Unauthorized(_("You are not allowed to add content to this tile"))
+            raise Unauthorized("You are not allowed to add content to this tile")
         # self.set_limit()
         data_mgr = ITileDataManager(self)
 
@@ -679,7 +679,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         """
 
         if not self.isAllowedToEdit():
-            raise Unauthorized(_("You are not allowed to add content to this tile"))
+            raise Unauthorized("You are not allowed to add content to this tile")
         data_mgr = ITileDataManager(self)
         old_data = data_mgr.get()
         # Clean old data
@@ -725,13 +725,13 @@ class IFilterAceContentItemsTile(IRelevantAceContentItemsTile):
 
 class IFilteringSchema(form.Schema):
     impact = Choice(
-        title=_(u"Climate impact"),
+        title=u"Climate impact",
         vocabulary="eea.climateadapt.aceitems_climateimpacts",
         required=False,
     )
 
     sector = Choice(
-        title=_(u"Sector"),
+        title=u"Sector",
         vocabulary="eea.climateadapt.aceitems_sectors",
         required=False,
     )
@@ -763,10 +763,10 @@ class FilteringForm(Form):  # form.SchemaForm):
 
 
 impacts_no_value = StaticWidgetAttribute(
-    u"All climate impacts", view=FilteringForm, field=IFilteringSchema["impact"]
+    _(u"All climate impacts"), view=FilteringForm, field=IFilteringSchema["impact"]
 )
 sectors_no_value = StaticWidgetAttribute(
-    u"All adaptation sectors", view=FilteringForm, field=IFilteringSchema["sector"]
+    _(u"All adaptation sectors"), view=FilteringForm, field=IFilteringSchema["sector"]
 )
 
 

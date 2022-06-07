@@ -48,7 +48,7 @@
 
     </rules>
 
-    <rules css:if-content=".site-observatory">
+    <rules css:if-content=".site-observatory,.section-observatory">
 
       <rules if="$external_template">
         <drop css:theme="head base" />

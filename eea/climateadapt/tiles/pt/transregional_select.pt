@@ -2,7 +2,7 @@
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  i18n:domain="collective.cover">
+  i18n:domain="eea.climateadapt">
 
   <body tal:define="is_compose view/is_compose_mode">
 
@@ -70,10 +70,10 @@
       }
     </style>
 
-    <strong tal:condition="is_compose" i18n:translate="">Transregional select</strong>
+    <strong tal:condition="is_compose">Transregional select</strong>
 
     <dl tal:condition="view/is_compose_mode">
-      <dt i18n:translate="">Transnational regions select</dt>
+      <dt>Transnational regions select</dt>
       <dd>
         <select class="form-control"></select>
       </dd>

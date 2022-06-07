@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-27 05:35+0000\n"
+"POT-Creation-Date: 2022-06-07 13:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,8 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: eea.climateadapt.admin\n"
 
-#: ../../climateadapt/theme/tiles/ast.py:130
-#: ../../climateadapt/tiles/ast.py:130
-msgid "AST Step"
-msgstr ""
-
 #: ../../climateadapt/behaviors/aceproject.py:176
 msgid "Abstracts"
-msgstr ""
-
-#: ../../climateadapt/theme/tiles/search_acecontent.py:70
-#: ../../climateadapt/tiles/search_acecontent.py:70
-#: ../../climateadapt/tiles/search_acecontent0.py:72
-msgid "Aceitem type"
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceproject.py:163
@@ -57,6 +46,10 @@ msgstr ""
 msgid "Adaptation options"
 msgstr ""
 
+#: ../../climateadapt/browser/countries.py:161
+msgid "Adaptation portals and platforms"
+msgstr ""
+
 #: ../../climateadapt/behaviors/ccaevent.py:63
 msgid "Agenda"
 msgstr ""
@@ -70,6 +63,14 @@ msgstr ""
 msgid "Agriculture"
 msgstr ""
 
+#: ../../climateadapt/tiles/search_acecontent.py:769
+msgid "All adaptation sectors"
+msgstr ""
+
+#: ../../climateadapt/tiles/search_acecontent.py:766
+msgid "All climate impacts"
+msgstr ""
+
 #: ../../climateadapt/behaviors/ccaevent.py:75
 msgid "Background documents"
 msgstr ""
@@ -77,12 +78,6 @@ msgstr ""
 #: ../../climateadapt/browser/overrides.py:39
 #: ../../climateadapt/vocabulary.py:294
 msgid "Biodiversity"
-msgstr ""
-
-#: ../../climateadapt/theme/tiles/search_acecontent.py:112
-#: ../../climateadapt/tiles/search_acecontent.py:112
-#: ../../climateadapt/tiles/search_acecontent0.py:114
-msgid "Biogeographical Regions"
 msgstr ""
 
 #: ../../climateadapt/browser/__init__.py:169
@@ -106,11 +101,6 @@ msgstr ""
 msgid "Challenges"
 msgstr ""
 
-#: ../../climateadapt/theme/tiles/richtext.py:25
-#: ../../climateadapt/tiles/richtext.py:25
-msgid "Change header style."
-msgstr ""
-
 #: ../../climateadapt/mayorsadapt/views.py:78
 msgid "Check-out created"
 msgstr ""
@@ -119,10 +109,8 @@ msgstr ""
 msgid "City"
 msgstr ""
 
-#: ../../climateadapt/theme/tiles/search_acecontent.py:728
-#: ../../climateadapt/tiles/search_acecontent.py:728
-#: ../../climateadapt/tiles/search_acecontent0.py:747
-msgid "Climate impact"
+#: ../../climateadapt/browser/countries.py:160
+msgid "Climate change impact and vulnerability assessments"
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:182
@@ -257,7 +245,6 @@ msgid "Describe what are the main climate change impacts/risks and related chall
 msgstr ""
 
 #: ../../climateadapt/behaviors/acemeasure.py:131
-#: ../../climateadapt/theme/tiles/embedapp.py:25
 #: ../../climateadapt/tiles/embedapp.py:25
 msgid "Description"
 msgstr ""
@@ -275,11 +262,6 @@ msgstr ""
 msgid "Disaster Risk Reduction"
 msgstr ""
 
-#: ../../climateadapt/theme/tiles/richtext.py:19
-#: ../../climateadapt/tiles/richtext.py:19
-msgid "Don't sanitize HTML"
-msgstr ""
-
 #: ../../climateadapt/vocabulary.py:337
 msgid "Droughts"
 msgstr ""
@@ -292,21 +274,10 @@ msgstr ""
 msgid "Ecosystem-based approaches (GI)"
 msgstr ""
 
-#: ../../climateadapt/theme/tiles/search_acecontent.py:78
-#: ../../climateadapt/tiles/search_acecontent.py:78
-#: ../../climateadapt/tiles/search_acecontent0.py:80
-msgid "Element type"
-msgstr ""
-
 #: ../../climateadapt/behaviors/aceitem.py:197
 #: ../../climateadapt/behaviors/acemeasure.py:487
 #: ../../climateadapt/behaviors/aceproject.py:265
 msgid "Elements"
-msgstr ""
-
-#: ../../climateadapt/theme/tiles/embedapp.py:15
-#: ../../climateadapt/tiles/embedapp.py:15
-msgid "Embedding view"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:47
@@ -348,19 +319,8 @@ msgstr ""
 msgid "Forestry"
 msgstr ""
 
-#: ../../climateadapt/theme/tiles/formtile.py:25
-#: ../../climateadapt/tiles/formtile.py:25
-msgid "Form UUID"
-msgstr ""
-
 #: ../../climateadapt/behaviors/aceproject.py:155
 msgid "Funding Programme"
-msgstr ""
-
-#: ../../climateadapt/theme/tiles/search_acecontent.py:119
-#: ../../climateadapt/tiles/search_acecontent.py:119
-#: ../../climateadapt/tiles/search_acecontent0.py:121
-msgid "Funding programmes"
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceproject.py:274
@@ -504,12 +464,6 @@ msgstr ""
 msgid "Logo"
 msgstr ""
 
-#: ../../climateadapt/theme/tiles/search_acecontent.py:106
-#: ../../climateadapt/tiles/search_acecontent.py:106
-#: ../../climateadapt/tiles/search_acecontent0.py:108
-msgid "Macro-Transnational Regions"
-msgstr ""
-
 #: ../../climateadapt/browser/__init__.py:161
 msgid "Macro-Transnational region"
 msgstr ""
@@ -547,14 +501,12 @@ msgstr ""
 msgid "Name of the case study clearly identifying its scope and location (250 character limit)"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:310
-msgid "Non specific"
+#: ../../climateadapt/browser/countries.py:158
+msgid "National adaption policy"
 msgstr ""
 
-#: ../../climateadapt/theme/tiles/search_acecontent.py:124
-#: ../../climateadapt/tiles/search_acecontent.py:124
-#: ../../climateadapt/tiles/search_acecontent0.py:126
-msgid "Nr of items to show"
+#: ../../climateadapt/vocabulary.py:310
+msgid "Non specific"
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:411
@@ -589,12 +541,6 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:271
 msgid "Organisations"
-msgstr ""
-
-#: ../../climateadapt/theme/tiles/search_acecontent.py:62
-#: ../../climateadapt/tiles/search_acecontent.py:62
-#: ../../climateadapt/tiles/search_acecontent0.py:64
-msgid "Origin website"
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:292
@@ -692,12 +638,7 @@ msgstr ""
 msgid "References"
 msgstr ""
 
-#: ../../climateadapt/theme/tiles/transregional_select.py:22
-#: ../../climateadapt/tiles/transregional_select.py:22
-msgid "Region"
-msgstr ""
-
-#: ../../climateadapt/contentrules.py:26
+#: ../../climateadapt/contentrules.py:28
 msgid "Reindex object"
 msgstr ""
 
@@ -721,18 +662,6 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:341
 msgid "Sea Level Rise"
-msgstr ""
-
-#: ../../climateadapt/theme/tiles/search_acecontent.py:56
-#: ../../climateadapt/tiles/search_acecontent.py:56
-#: ../../climateadapt/tiles/search_acecontent0.py:58
-msgid "Search Text"
-msgstr ""
-
-#: ../../climateadapt/theme/tiles/search_acecontent.py:86
-#: ../../climateadapt/tiles/search_acecontent.py:86
-#: ../../climateadapt/tiles/search_acecontent0.py:88
-msgid "Sector"
 msgstr ""
 
 #: ../../climateadapt/vocabulary.py:331
@@ -807,36 +736,13 @@ msgstr ""
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
 msgstr ""
 
-#: ../../climateadapt/theme/tiles/shareinfo.py:26
-#: ../../climateadapt/tiles/shareinfo.py:26
-msgid "Share info type"
-msgstr ""
-
 #: ../../climateadapt/behaviors/aceitem.py:149
 #: ../../climateadapt/behaviors/acemeasure.py:136
 msgid "Short summary"
 msgstr ""
 
-#: ../../climateadapt/theme/tiles/search_acecontent.py:391
-#: ../../climateadapt/tiles/search_acecontent.py:391
-#: ../../climateadapt/tiles/search_acecontent0.py:410
-msgid "Show listing results, in addition to assigned items"
-msgstr ""
-
-#: ../../climateadapt/theme/tiles/search_acecontent.py:386
-#: ../../climateadapt/tiles/search_acecontent.py:386
-#: ../../climateadapt/tiles/search_acecontent0.py:405
-msgid "Show the share button"
-msgstr ""
-
 #: ../../climateadapt/behaviors/casestudy.py:57
 msgid "Solutions"
-msgstr ""
-
-#: ../../climateadapt/theme/tiles/search_acecontent.py:406
-#: ../../climateadapt/tiles/search_acecontent.py:406
-#: ../../climateadapt/tiles/search_acecontent0.py:425
-msgid "Sort order for results and assigned items"
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceproject.py:323
@@ -857,12 +763,6 @@ msgstr ""
 #: ../../climateadapt/behaviors/acemeasure.py:517
 #: ../../climateadapt/behaviors/aceproject.py:385
 msgid "Special tagging"
-msgstr ""
-
-#: ../../climateadapt/theme/tiles/search_acecontent.py:94
-#: ../../climateadapt/tiles/search_acecontent.py:94
-#: ../../climateadapt/tiles/search_acecontent0.py:96
-msgid "Special tags"
 msgstr ""
 
 #: ../../climateadapt/behaviors/acemeasure.py:213
@@ -909,6 +809,10 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 
+#: ../../climateadapt/contentrules.py:86
+msgid "Translate object"
+msgstr ""
+
 #: ../../climateadapt/browser/overrides.py:48
 #: ../../climateadapt/vocabulary.py:306
 msgid "Transport"
@@ -918,14 +822,12 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: ../../climateadapt/theme/tiles/cardslisting.py:28
-#: ../../climateadapt/theme/tiles/section_nav.py:24
-#: ../../climateadapt/tiles/cardslisting.py:28
-msgid "UUID"
+#: ../../climateadapt/contentrules.py:63
+msgid "Unable to reindex ${name} as part of content rule 'reindex' action: ${error}"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:61
-msgid "Unable to reindex ${name} as part of content rule 'reindex' action: ${error}"
+#: ../../climateadapt/contentrules.py:121
+msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:111
@@ -947,11 +849,6 @@ msgstr ""
 #: ../../climateadapt/browser/overrides.py:45
 #: ../../climateadapt/vocabulary.py:307
 msgid "Urban"
-msgstr ""
-
-#: ../../climateadapt/theme/tiles/richtext.py:20
-#: ../../climateadapt/tiles/richtext.py:20
-msgid "Use with care!"
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceproject.py:372
@@ -981,11 +878,6 @@ msgstr ""
 msgid "Video URL"
 msgstr ""
 
-#: ../../climateadapt/theme/tiles/genericview.py:21
-#: ../../climateadapt/tiles/genericview.py:21
-msgid "View name"
-msgstr ""
-
 #: ../../climateadapt/vocabulary.py:328
 msgid "Vulnerability Assessment"
 msgstr ""
@@ -1003,12 +895,6 @@ msgstr ""
 #: ../../climateadapt/behaviors/acemeasure.py:299
 #: ../../climateadapt/behaviors/aceproject.py:294
 msgid "Websites"
-msgstr ""
-
-#: ../../climateadapt/theme/tiles/search_acecontent.py:632
-#: ../../climateadapt/tiles/search_acecontent.py:632
-#: ../../climateadapt/tiles/search_acecontent0.py:651
-msgid "You are not allowed to add content to this tile"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/detect_links.pt:49

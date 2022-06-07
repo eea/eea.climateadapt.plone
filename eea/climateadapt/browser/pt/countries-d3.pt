@@ -44,7 +44,8 @@
       <p i18n:translate="">Here you can find an overview of your personally created Climate-Adapt content.</p>
     </div>
 
-    <div class="cover-richtext-tile tile-content" id="countrymap-container" xmlns="http://www.w3.org/1999/xhtml"
+    <div class="cover-richtext-tile tile-content" id="countrymap-container"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="eea.climateadapt">
@@ -136,7 +137,7 @@
         <!-- Disclaimer in right side of map -->
         <div id="disclaimer" i18n:translate="">
           <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-          [Disclaimer]
+          <span i18n:translate="">[Disclaimer]</span>
           <div id="hover-content" i18n:translate="">
             The information presented in these pages is based on the reporting according to 'Regulation (EU) 2018/1999 on the Governance of the Energy Union and Climate Action' and updates by the EEA member countries. However, for those pages where the information is last updated before 01/01/2021, the information presented is based on the reporting according to 'Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change' and updates by the EEA member countries.'
           </div>

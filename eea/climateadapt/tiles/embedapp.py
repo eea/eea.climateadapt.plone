@@ -12,12 +12,12 @@ from zope.interface import implements
 class IEmbedAppTile(IPersistentCoverTile):
 
     embed = schema.Text(
-        title=_(u'Embedding view'),
+        title=u'Embedding view',
         required=False,
     )
 
     title = schema.TextLine(
-        title=_(u'Title'),
+        title=u'Title',
         required=False,
     )
 

@@ -14,10 +14,10 @@
     <link rel="preload" href="static/css/compiled-css.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
     <noscript><link rel="stylesheet" href="static/css/compiled-css.css"></noscript>
     
-    <link rel="preload" href="static/css/compiled-less.css?rel=c050afc37d" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=c050afc37d"></noscript>
+    <link rel="preload" href="static/css/compiled-less.css?rel=125cf7b75d" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=125cf7b75d"></noscript>
     
-    <link rel="stylesheet" type="text/css" href="/++theme++climateadaptv2/static/css/health.css?rel=bc0bd2f8e2" />
+    <link rel="stylesheet" type="text/css" href="/++theme++climateadaptv2/static/css/health.css?rel=3bd084ecde" />
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="static/images/favicon/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/images/favicon/apple-touch-icon-114x114.png" />
@@ -36,13 +36,18 @@
     <title>Climate-ADAPT</title>
   </head>
 
-  <body>
+  <body class="site-observatory">
     <div class="edit-bar-wrapper">
       <div class="content-container">
         <div id="edit-bar"></div>
       </div>
     </div>
-    <div class="header">
+    <div class="header"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="eea.climateadapt.frontpage" >
       <div class="top-menu nav-down">
         <div class="content-container top-menu-wrapper">
     
@@ -70,13 +75,13 @@
                   <li class="top-menu-nav-item">
                     <a href="/observatory/news-archive-observatory">
                       <i class="fa fa-newspaper-o"></i>
-                      News
+                      <span i18n:translate="">News</span>
                     </a>
                   </li>
                   <li class="top-menu-nav-item">
                     <a href="/observatory/more-events-observatory">
                       <i class="fa fa-calendar"></i>
-                      Events
+                      <span i18n:translate="">Events</span>
                     </a>
                   </li>
               </ul>
@@ -267,10 +272,9 @@
             <!-- <div id="page-body"></div> -->
           </div>
           <div class="col-lg-6 col-sm-12 col-xs-12 health-right">
-            <div class="main-area" xmlns="http://www.w3.org/1999/xhtml"
+            <div class="main-area"
+              xmlns="http://www.w3.org/1999/xhtml"
               xml:lang="en"
-              xmlns:tal="http://xml.zope.org/namespaces/tal"
-              xmlns:metal="http://xml.zope.org/namespaces/metal"
               xmlns:i18n="http://xml.zope.org/namespaces/i18n"
               lang="en"
               i18n:domain="eea.climateadapt.observatory.frontpage">
@@ -301,7 +305,7 @@
                           <div class="read-more-wrapper">
                             <a href="" class="read-more">
                               <i class="fa fa-angle-double-right"></i>
-                              More news
+                              <span i18n:translate="">More news</span>
                             </a>
                           </div>
                         </div>
@@ -318,7 +322,7 @@
                           <div class="read-more-wrapper">
                             <a href="" class="read-more">
                               <i class="fa fa-angle-double-right"></i>
-                              More events
+                              <span i18n:translate="">More events</span>
                             </a>
                           </div>
                         </div>

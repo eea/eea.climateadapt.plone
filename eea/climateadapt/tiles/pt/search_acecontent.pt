@@ -2,31 +2,31 @@
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  i18n:domain="collective.cover">
+  i18n:domain="eea.climateadapt">
 
   <body tal:define="is_compose view/is_compose_mode">
-    <strong tal:condition="is_compose" i18n:translate="">Search AceContent Tile</strong>
+    <strong tal:condition="is_compose">Search AceContent Tile</strong>
     <!-- <p tal:condition="python: not view.data.get('element_type') and is_compose" i18n:translate=""> -->
     <!--   Please edit the tile to enter correct data. -->
     <!-- </p> -->
     <div tal:condition="view/is_compose_mode">
       <dl class="aceitem-tile">
-        <dt i18n:translate="">Sector:</dt>
+        <dt>Sector:</dt>
         <dd tal:content="python: view.data.get('sector')" />
 
-        <dt i18n:translate="">Element type:</dt>
+        <dt>Element type:</dt>
         <dd tal:content="python: view.data.get('element_type')" />
 
-        <dt i18n:translate="">Search text: </dt>
+        <dt>Search text: </dt>
         <dd tal:content="python: view.data.get('search_text')" />
 
-        <dt i18n:translate="">Special tags: </dt>
+        <dt>Special tags: </dt>
         <dd tal:content="python: view.data.get('special_tags')" />
 
-        <dt i18n:translate="">Search type:</dt>
+        <dt>Search type:</dt>
         <dd tal:content="python: view.data.get('search_type')" />
 
-        <dt i18n:translate="">Number of items: </dt>
+        <dt>Number of items: </dt>
         <dd tal:content="python: view.data.get('nr_items')" />
       </dl>
     </div>
@@ -40,24 +40,24 @@
           <i class="fa fa-search"></i>
         </a>
         <div tal:attributes="id string:info${view/id}" style="display:none" >
-          <h1 i18n:translate="">Relevant tile info</h1>
+          <h1>Relevant tile info</h1>
           <dl>
-            <dt i18n:translate="">Sector:</dt>
+            <dt>Sector:</dt>
             <dd tal:content="python: view.data.get('sector')" />
 
-            <dt i18n:translate="">Element type:</dt>
+            <dt>Element type:</dt>
             <dd tal:content="python: view.data.get('element_type')" />
 
-            <dt i18n:translate="">Search text: </dt>
+            <dt>Search text: </dt>
             <dd tal:content="python: view.data.get('search_text')" />
 
-            <dt i18n:translate="">Special tags: </dt>
+            <dt>Special tags: </dt>
             <dd tal:content="python: view.data.get('special_tags')" />
 
-            <dt i18n:translate="">Search type:</dt>
+            <dt>Search type:</dt>
             <dd tal:content="python: view.data.get('search_type')" />
 
-            <dt i18n:translate="">Number of items: </dt>
+            <dt>Number of items: </dt>
             <dd tal:content="python: view.data.get('nr_items')" />
         </dl>  </div>
       </div>

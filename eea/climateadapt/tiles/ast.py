@@ -6,7 +6,6 @@ from collective.cover.tiles.base import (IPersistentCoverTile,
 from zope import schema
 from zope.interface import implements
 
-from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.interfaces import IASTNavigationRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -14,7 +13,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 class IASTNavigationTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=_(u'Title'),
+        title=u'Title',
         required=False,
     )
 
@@ -67,7 +66,7 @@ class ASTNavigationTile(PersistentCoverTile):
 class IUrbanASTNavigationTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=_(u'Title'),
+        title=u'Title',
         required=False,
     )
 
@@ -97,7 +96,7 @@ class UrbanASTNavigationTile(PersistentCoverTile):
 class IUrbanMenuTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=_(u'Title'),
+        title=u'Title',
         required=False,
     )
 
@@ -122,12 +121,12 @@ class UrbanMenuTile(PersistentCoverTile):
 class IASTHeaderTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=_(u'Title'),
+        title=u'Title',
         required=False,
     )
 
     step = schema.Int(
-        title=_(u"AST Step"),
+        title=u"AST Step",
         required=True,
         default=1,
     )
