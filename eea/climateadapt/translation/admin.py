@@ -1,3 +1,5 @@
+""" Admin translation
+"""
 import json
 import logging
 from collections import defaultdict
@@ -41,7 +43,7 @@ def is_json(input):
     return True
 
 
-def translate_obj(obj):
+def translate_obj(obj, lang=None, version=None):
     tile_fields = ['title', 'description', 'tile_title', 'footer', 'alt_text']
     errors = []
     force_unlock(obj)
@@ -67,10 +69,25 @@ def translate_obj(obj):
     obj_en = translations.pop('en')
     layout_en = obj_en.getLayout()
     default_view_en = obj_en.getDefaultPage()
-    layout_default_view_en = obj_en[default_view_en].getLayout()
+    if default_view_en is not None:
+        layout_default_view_en = obj_en[default_view_en].getLayout()
 
     for language in translations:
+        if lang is not None:
+            if language != lang:
+                continue
+
         trans_obj = translations[language]
+
+        if version is not None:
+            obj_version = int(getattr(trans_obj, 'version', 0))
+
+            if obj_version >= version:
+                logger.info(
+                    "Skipping! object already at version %s", obj_version)
+                continue
+
+            trans_obj.version = version
 
         # set the layout of the translated object to match the english object
         trans_obj.setLayout(layout_en)
@@ -286,8 +303,10 @@ def translate_obj(obj):
     return {'errors': errors}
 
 
-def initiate_translations(site, skip=0, version=None):
+def initiate_translations(site, skip=0, version=None, language=None):
     skip = int(skip)
+    if language is None:
+        return "Missing language parameter. (Example: ?language=it)"
     if version is None:
         return "Missing translation version. Status: /admin-translation-status"
     version = int(version)
@@ -325,18 +344,11 @@ def initiate_translations(site, skip=0, version=None):
             continue
 
         obj = brain.getObject()
-        obj_version = int(getattr(obj, 'version', 0))
-
-        if obj_version >= version:
-            logger.info("Skipping! object already at version %s" % obj_version)
-            continue
 
         try:
-            result = translate_obj(obj)
-            # result = {'errors': []}
-            # TODO only set version if all fields were translated
-            obj.version = version
+            result = translate_obj(obj, language, version)
         except Exception as err:
+            result = {'errors': [err]}
             logger.info(err)
             # errors.append(err)
             import pdb; pdb.set_trace()
@@ -347,23 +359,21 @@ def initiate_translations(site, skip=0, version=None):
                 if error not in errors:
                     errors.append(error)
 
-        # if count % 25 == 0:
-        #     logger.info("Processed %s objects" % count)
-        #     transaction.commit()
-
-        if count % 50 == 0:
-            import pdb; pdb.set_trace()
-
     logger.info("DONE")
     logger.info(errors)
     transaction.commit()
 
-def translations_status(site):
+def translations_status(site, language=None):
+    if language is None:
+        return "Missing language."
+
+    path = '/cca/' + language
     catalog = site.portal_catalog
-    brains = catalog.searchResults(path='/cca/en')
+    brains = catalog.searchResults(path=path)
 
     versions = defaultdict(int)
     template = "<p>{} at version {}</p>"
+    logger.info("Translations status:")
 
     for brain in brains:
         obj = brain.getObject()
@@ -374,12 +384,72 @@ def translations_status(site):
     for k, v in versions.items():
         res.append(template.format(v, k))
 
+    logger.info(res)
     return "".join(res)
 
-def translations_status_by_version(site, version=0):
-    version = int(version)
+
+def verify_cloned_language(site, language=None):
+    """ Get all objects in english and check if all of them are cloned for
+        given language. Also make sure all paths are similar.
+        Correct:
+            /cca/en/obj-path
+            /cca/ro/obj-path
+        Wrong:
+            /cca/en/obj-path
+            /cca/ro/obj-path-ro-ro-ro
+    """
+    if language is None:
+        return "Missing language parameter. (Example: ?language=it)"
     catalog = site.portal_catalog
     brains = catalog.searchResults(path='/cca/en')
+    site_url = portal.getSite().absolute_url()
+    logger.info("I will list the missing objects if any. Checking...")
+
+    res = []
+    found = 0  # translation found with correct path
+    found_changed = 0  # translation found but with different path
+    not_found = 0  # translation not found
+    for brain in brains:
+        obj = brain.getObject()
+        obj_url = obj.absolute_url()
+        obj_path = '/cca' + obj_url.split(site_url)[-1]
+        prefix = '/cca/' + language.lower() + '/'
+        trans_obj_path = obj_path.replace('/cca/en/', prefix)
+        try:
+            trans_obj = site.unrestrictedTraverse(trans_obj_path)
+            found += 1
+        except Exception:
+            res.append(trans_obj_path)
+            translations = TranslationManager(obj).get_translations()
+            if language in translations:
+                trans_obj = translations[language]
+                new_url = trans_obj.absolute_url()
+                res.append("Found as: " + new_url)
+                found_changed += 1
+                logger.info(trans_obj_path)
+                logger.info("Found as %s", new_url)
+            else:
+                not_found += 1
+                res.append("Not found.")
+                logger.info("Not found: %s", trans_obj_path)
+
+    logger.info("Found: %s. Found with different path: %s. Not found: %s.",
+                found, found_changed, not_found)
+
+    return "\n".join(res)
+
+
+def translations_status_by_version(site, version=0, language=None):
+    """ Show the list of urls of a version and language
+    """
+    if language is None:
+        return "Missing language."
+
+    path = '/cca/' + language
+    version = int(version)
+    catalog = site.portal_catalog
+    brains = catalog.searchResults()
+    brains = catalog.searchResults(path=path)
 
     res = []
     template = "<p>{}</p>"
@@ -395,7 +465,10 @@ def translations_status_by_version(site, version=0):
 
     return "".join(res)
 
+
 def get_tile_type(tile, from_cover, to_cover):
+    """ Return tile type
+    """
     tiles_types = {
         'RichTextWithTitle': 'eea.climateadapt.richtext_with_title',
         'EmbedTile': 'collective.cover.embed',
@@ -423,6 +496,8 @@ def get_tile_type(tile, from_cover, to_cover):
 
 
 def copy_tiles(tiles, from_cover, to_cover):
+    """ Copy the tiles from cover to translated cover
+    """
     logger.info("Copy tiles")
     logger.info(from_cover.absolute_url())
     logger.info(to_cover.absolute_url())
@@ -448,6 +523,8 @@ def copy_tiles(tiles, from_cover, to_cover):
 
 
 def create_translation_object(obj, language):
+    """ Create translation object for an obj
+    """
     if language in TranslationManager(obj).get_translations():
         logger.info("Skip creating translation. Already exists.")
         return
@@ -470,6 +547,8 @@ def create_translation_object(obj, language):
 
 
 def get_all_objs(container):
+    """ Get the container's objects
+    """
     all_objs = []
 
     def get_objs(context):
@@ -486,6 +565,8 @@ def get_all_objs(container):
 
 
 def execute_trans_script(site, language):
+    """ Clone the content to be translated
+    """
     catalog = site.portal_catalog
     english_container = site['en']
     language_folders = [
@@ -603,6 +684,16 @@ class PrepareTranslation(BrowserView):
         return execute_trans_script(getSite(), **kwargs)
 
 
+class VerifyClonedLanguage(BrowserView):
+    """ Use this view to check all links for a new cloned language
+        Usage: /admin-verify-cloned?language=ro
+    """
+
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
+        return verify_cloned_language(getSite(), **kwargs)
+
+
 class SomeTranslated(BrowserView):
     """ Prepare a list of links for each content type in order to verify
         translation
@@ -616,8 +707,9 @@ class SomeTranslated(BrowserView):
 
 class RunTranslation(BrowserView):
     """ Translate the contents
-        Usage: /admin-run-translation?skip=1200  - translate skip 1200 objs
-        Usage: /admin-run-translation            - translate all
+        Usage:
+        /admin-run-translation?language=it&version=1&skip=1200  -skip 1200 objs
+        /admin-run-translation?language=it&version=1
     """
 
     def __call__(self, **kwargs):
@@ -696,7 +788,7 @@ class TranslationStateViewlet(ViewletBase):
             return 'Translation state not found', None
 
         initial_state = wf.initial_state
-        state = (wftool.getStatusOf('cca_translations_workflow', self.context) 
+        state = (wftool.getStatusOf('cca_translations_workflow', self.context)
                     or {})
         state = state.get("review_state", initial_state)
         wf_state = wf.states[state]
