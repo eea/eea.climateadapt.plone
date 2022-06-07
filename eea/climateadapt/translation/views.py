@@ -80,10 +80,7 @@ class TranslationCallback(BrowserView):
             update the related translation object.
         """
         site = portal.getSite()
-        obj_path = form.get("external-reference")
-
-        en_obj = site.unrestrictedTraverse(obj_path)
-        force_unlock(en_obj)
+        trans_obj_path = form.get("external-reference")
 
         form.pop('format')
         form.pop('request-id')
@@ -94,8 +91,6 @@ class TranslationCallback(BrowserView):
         form.pop('target-language')
         # logger.info("Translate %s to %s", source_lang, target_lang)
 
-        prefix = '/cca/' + target_lang.lower() + '/'
-        trans_obj_path = obj_path.replace('/cca/en/', prefix)
         trans_obj = site.unrestrictedTraverse(trans_obj_path)
         force_unlock(trans_obj)
 

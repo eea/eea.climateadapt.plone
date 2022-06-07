@@ -78,6 +78,8 @@ def translate_obj(obj, lang=None, version=None):
                 continue
 
         trans_obj = translations[language]
+        trans_obj_url = trans_obj.absolute_url()
+        trans_obj_path = '/cca' + trans_obj_url.split(site_url)[-1]
 
         if version is not None:
             obj_version = int(getattr(trans_obj, 'version', 0))
@@ -140,7 +142,7 @@ def translate_obj(obj, lang=None, version=None):
                         translated = retrieve_html_translation(
                             'EN',
                             html_content,
-                            obj_path,
+                            trans_obj_path,
                             language.upper(),
                             False,
                         )
@@ -295,7 +297,7 @@ def translate_obj(obj, lang=None, version=None):
             res = retrieve_html_translation(
                 'EN',
                 html_content,
-                obj_path,
+                trans_obj_path,
                 language.upper(),
                 False,
             )
