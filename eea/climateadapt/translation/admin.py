@@ -440,6 +440,74 @@ def verify_cloned_language(site, language=None):
 
     return "\n".join(res)
 
+def verify_translation_fields(site, language=None):
+    """ Get all objects in english and check if all of them are cloned for
+        given language and with fields filled.
+    """
+    if language is None:
+        return "Missing language parameter. (Example: ?language=it)"
+    catalog = site.portal_catalog
+    #TODO: remove this, it is jsut for demo purpose
+    limit=10
+    brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
+    site_url = portal.getSite().absolute_url()
+    logger.info("I will list the missing translation fields. Checking...")
+
+    res = []
+    total_items = 0  # total translatable eng objects
+    found = 0  # found end objects
+    found_missing = 0  # missing at least one attribute
+    not_found = 0  # eng obj not found
+
+    skip_items = ['.jpg','.pdf','.png']
+    for brain in brains:
+        obj = brain.getObject()
+        obj_url = obj.absolute_url()
+        #if '.jpg' in obj_url:
+        if any(skip_item in obj_url for skip_item in skip_items):
+            continue
+        total_items += 1
+        #if 'rise-from-ice-sheets-to-local-implications' not in obj_url:
+        #    continue
+        obj_path = '/cca' + obj_url.split(site_url)[-1]
+        logger.info("Will check: %s", obj_path)
+        translations = TranslationManager(obj).get_translations()
+        if language not in translations:
+            #add message regarding no translation found
+            logger.info("Not found: %s", obj_path)
+            not_found += 1
+            continue
+        trans_obj = translations[language]
+
+        # get behavior fields and values
+        behavior_assignable = IBehaviorAssignable(obj)
+        fields = {}
+        if behavior_assignable:
+            behaviors = behavior_assignable.enumerateBehaviors()
+            for behavior in behaviors:
+                for k, v in getFieldsInOrder(behavior.interface):
+                    fields.update({k: v})
+        for k, v in getFieldsInOrder(obj.getTypeInfo().lookupSchema()):
+            fields.update({k: v})
+
+        fields_missing = []
+        for field in fields.keys():
+            #TODO: check if we need to log if this is FALSE
+            if hasattr(obj, field) and hasattr(trans_obj, field):
+                if bool(getattr(obj, field)) and not bool(getattr(trans_obj,field)):
+                    fields_missing.append(field)
+        if len(fields_missing):
+            logger.info("FIELDS NOT SET: %s %s", trans_obj.absolute_url(), fields_missing)
+            found_missing += 1
+
+        logger.info("URL: %s", trans_obj.absolute_url())
+        found += 1
+
+    logger.info("TotalItems: %s, Found with correct data: %s. Found with mising data: %s. Not found: %s.",
+                total_items, found, found_missing, not_found)
+
+    return "\n".join(res)
+
 
 def translations_status_by_version(site, version=0, language=None):
     """ Show the list of urls of a version and language
@@ -694,6 +762,16 @@ class VerifyClonedLanguage(BrowserView):
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
         return verify_cloned_language(getSite(), **kwargs)
+
+
+class VerifyTranslationFields(BrowserView):
+    """ Use this view to check all links for a new cloned language
+        Usage: /admin-verify-translation-fields?language=ro
+    """
+
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
+        return verify_translation_fields(getSite(), **kwargs)
 
 
 class SomeTranslated(BrowserView):
