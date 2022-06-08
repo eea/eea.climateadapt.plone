@@ -361,6 +361,10 @@ def initiate_translations(site, skip=0, version=None, language=None):
                 if error not in errors:
                     errors.append(error)
 
+        if count % 20 == 0:
+            logger.info("Processed %s objects" % count)
+            transaction.commit()
+
     logger.info("DONE")
     logger.info(errors)
     transaction.commit()
@@ -470,7 +474,7 @@ def verify_translation_fields(site, language=None):
         #if 'rise-from-ice-sheets-to-local-implications' not in obj_url:
         #    continue
         obj_path = '/cca' + obj_url.split(site_url)[-1]
-        logger.info("Will check: %s", obj_path)
+        # logger.info("Will check: %s", obj_path)
         translations = TranslationManager(obj).get_translations()
         if language not in translations:
             #add message regarding no translation found
