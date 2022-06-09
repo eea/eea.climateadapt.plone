@@ -42,6 +42,27 @@
       />
 
   <browser:page
+      name="admin-translate-step-1"
+      for="*"
+      class=".admin.TranslateStep1"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="admin-translate-step-2"
+      for="*"
+      class=".admin.TranslateStep2"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="admin-translate-portal_type_fields"
+      for="*"
+      class=".admin.TranslationListTypeFields"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
       name="admin-translate-this"
       for="*"
       class=".admin.RunTranslationSingleItem"

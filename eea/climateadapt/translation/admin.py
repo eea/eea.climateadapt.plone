@@ -2,6 +2,7 @@
 """
 import json
 import logging
+import os
 from collections import defaultdict
 from datetime import date
 from DateTime import DateTime
@@ -28,6 +29,7 @@ from eea.climateadapt.browser.admin import force_unlock
 from eea.climateadapt.tiles.richtext import RichTextWithTitle
 from eea.climateadapt.translation import retrieve_translation
 from eea.climateadapt.translation import retrieve_html_translation
+from eea.climateadapt.translation import get_translated
 
 from zope.schema import getFieldsInOrder
 from zope.site.hooks import getSite
@@ -471,8 +473,8 @@ def verify_translation_fields(site, language=None):
         if any(skip_item in obj_url for skip_item in skip_items):
             continue
         total_items += 1
-        #if 'rise-from-ice-sheets-to-local-implications' not in obj_url:
-        #    continue
+        if 'rise-from-ice-sheets-to-local-implications' not in obj_url:
+            continue
         obj_path = '/cca' + obj_url.split(site_url)[-1]
         # logger.info("Will check: %s", obj_path)
         translations = TranslationManager(obj).get_translations()
@@ -497,13 +499,22 @@ def verify_translation_fields(site, language=None):
         fields_missing = []
         for field in fields.keys():
             #TODO: check if we need to log if this is FALSE
-            if hasattr(obj, field) and hasattr(trans_obj, field):
-                if bool(getattr(obj, field)) and not bool(getattr(trans_obj,field)):
-                    fields_missing.append(field)
+            if not hasattr(obj, field):
+                continue
+            if not hasattr(trans_obj, field):
+                fields_missing.append(field)
+                continue
+            #if bool(getattr(obj, field)) and not bool(getattr(trans_obj,field)):
+            #        fields_missing.append(field)
+            missing = object()
+            if not getattr(obj,field,missing) in (missing, None) and getattr(trans_obj,field,missing) in (missing, None):
+                fields_missing.append(field)
+
         if len(fields_missing):
             logger.info("FIELDS NOT SET: %s %s", trans_obj.absolute_url(), fields_missing)
             found_missing += 1
 
+        #import pdb; pdb.set_trace()
         logger.info("URL: %s", trans_obj.absolute_url())
         found += 1
 
@@ -512,6 +523,202 @@ def verify_translation_fields(site, language=None):
 
     return "\n".join(res)
 
+def get_object_fields(obj):
+    behavior_assignable = IBehaviorAssignable(obj)
+    fields = {}
+    if behavior_assignable:
+        behaviors = behavior_assignable.enumerateBehaviors()
+        for behavior in behaviors:
+            for k, v in getFieldsInOrder(behavior.interface):
+                fields.update({k: v})
+    for k, v in getFieldsInOrder(obj.getTypeInfo().lookupSchema()):
+        fields.update({k: v})
+    return fields
+
+def get_object_fields_values(obj):
+    #TODO: perhaps a list by each portal_type
+    skip_fields = ['funding_programme', 'duration','partners_source_link',
+    'sync_uid','timezone','event_url']
+
+    data = {}
+    data['item'] = {}
+    data['html'] = {}
+    fields = get_object_fields(obj)
+    for key in fields:
+        rich = False
+        # print(key)
+        if key in ['acronym', 'id', 'language', 'portal_type',
+                   'contentType']:
+            continue
+
+        value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
+
+        if not value:
+            continue
+
+        if callable(value):
+            # ignore datetimes
+            if isinstance(value(), DateTime):
+                continue
+
+            value = value()
+
+        # ignore some value types
+        if isinstance(value, bool) or \
+           isinstance(value, int) or \
+           isinstance(value, long) or \
+           isinstance(value, tuple) or \
+           isinstance(value, list) or \
+           isinstance(value, set) or \
+           isinstance(value, dict) or \
+           isinstance(value, NamedBlobImage) or \
+           isinstance(value, NamedBlobFile) or \
+           isinstance(value, NamedImage) or \
+           isinstance(value, NamedFile) or \
+           isinstance(value, DateTime) or \
+           isinstance(value, date) or \
+           isinstance(value, RelationValue) or \
+           isinstance(value, Geolocation):
+            continue
+
+        if isinstance(getattr(obj, key), RichTextValue):
+            value = getattr(obj, key).raw.replace('\r\n', '')
+            data['html'][key] = value
+            continue
+            #rich = True
+            #if key not in rich_fields:
+            #    rich_fields.append(key)
+
+        if is_json(value):
+            continue
+
+        #if key not in errors:
+        #    errors.append(key)
+        #force_unlock(trans_obj)
+        #translated = retrieve_translation('EN', value, [language.upper()])
+        data['item'][key] = value
+    return data
+
+def translation_step_1(site, language=None):
+    """ Save all items for translation in a json file
+    """
+    catalog = site.portal_catalog
+    #TODO: remove this, it is jsut for demo purpose
+    limit=10000
+    brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
+    site_url = portal.getSite().absolute_url()
+    logger.info("I will start to create json files. Checking...")
+
+    res = {}
+    total_items = 0  # total translatable eng objects
+
+    skip_items = ['.jpg','.pdf','.png']
+    for brain in brains:
+        obj = brain.getObject()
+        obj_url = obj.absolute_url()
+        logger.info("PROCESS: %s", obj_url)
+        if any(skip_item in obj_url for skip_item in skip_items):
+            continue
+        #if 'rise-from-ice-sheets-to-local-implications' not in obj_url:
+        #    continue
+
+        data = get_object_fields_values(obj)
+        json_object = json.dumps(data, indent = 4)
+        #import pdb; pdb.set_trace()
+
+        with open("tmp/"+brain.UID+".json", "w") as outfile:
+            outfile.write(json_object)
+        if obj.portal_type not in res:
+            res[obj.portal_type] = 1
+        else:
+            res[obj.portal_type] += 1
+
+    logger.info("RESP %s", res)
+
+def translation_step_2(site, language=None):
+    """ Get all jsons objects in english and call etranslation for each field
+        to be translated in specified language.
+    """
+    if language is None:
+        return "Missing language parameter. (Example: ?language=it)"
+    json_files = os.listdir("tmp/")
+
+    nr_files = 0  # total translatable eng objects (not unique)
+    nr_items = 0  # total translatable eng objects (not unique)
+    nr_items_translated = 0  # found translated objects
+
+    for json_file in json_files:
+        nr_files += 1
+        file = open("tmp/"+json_file, "r")
+        json_content = file.read()
+        json_data = json.loads(json_content)
+        for key in json_data.keys():
+            res = retrieve_translation('EN', json_data[key], [language.upper()])
+            nr_items += 1
+            if 'translated' in res:
+                nr_items_translated += 1
+
+    logger.info("Files: %s, TotalItems: %s, Already translated: %s",
+                nr_files, nr_items, nr_items_translated)
+
+def translation_step_3(site, language=None):
+    """ Get all jsons objects in english and overwrite targeted language
+        object with translations.
+    """
+    if language is None:
+        return "Missing language parameter. (Example: ?language=it)"
+    json_files = os.listdir("tmp/")
+
+    nr_files = 0  # total translatable eng objects (not unique)
+    nr_items = 0  # total translatable eng objects (not unique)
+    nr_items_translated = 0  # found translated objects
+
+    for json_file in json_files:
+        nr_files += 1
+        file = open("tmp/"+json_file, "r")
+        json_content = file.read()
+        json_data = json.loads(json_content)
+        for key in json_data.keys():
+            translated_msg = get_translated(json_data[key], language.upper())
+
+def translation_list_type_fields(site):
+    """ Show each field for each type
+    """
+    catalog = site.portal_catalog
+    #TODO: remove this, it is jsut for demo purpose
+    limit=10000
+    brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
+    site_url = portal.getSite().absolute_url()
+    logger.info("I will start to create json files. Checking...")
+
+    res = {}
+    total_items = 0  # total translatable eng objects
+
+    skip_items = ['.jpg','.pdf','.png']
+    for brain in brains:
+        obj = brain.getObject()
+        obj_url = obj.absolute_url()
+        logger.info("PROCESS: %s", obj_url)
+        if any(skip_item in obj_url for skip_item in skip_items):
+            continue
+        #if 'rise-from-ice-sheets-to-local-implications' not in obj_url:
+        #    continue
+        data = get_object_fields_values(obj)
+
+        if obj.portal_type not in res:
+            res[obj.portal_type] = {"item":[],"html":[]}
+        for key in data['item']:
+            if key not in res[obj.portal_type]["item"]:
+                res[obj.portal_type]["item"].append(key)
+        for key in data['html']:
+            if key not in res[obj.portal_type]["html"]:
+                res[obj.portal_type]["html"].append(key)
+
+    json_object = json.dumps(res, indent = 4)
+    #import pdb; pdb.set_trace()
+
+    with open("port_type_fields.json", "w") as outfile:
+        outfile.write(json_object)
 
 def translations_status_by_version(site, version=0, language=None):
     """ Show the list of urls of a version and language
@@ -776,6 +983,35 @@ class VerifyTranslationFields(BrowserView):
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
         return verify_translation_fields(getSite(), **kwargs)
+
+
+class TranslateStep1(BrowserView):
+    """ Use this view to get a json files for all eng objects
+        Usage: /admin-translate-step-1
+    """
+
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
+        return translation_step_1(getSite(), **kwargs)
+
+
+class TranslateStep2(BrowserView):
+    """ Use this view to translate all json files to a language
+        Usage: /admin-translate-step-2?language=ro
+    """
+
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
+        return translation_step_2(getSite(), **kwargs)
+
+
+class TranslationListTypeFields(BrowserView):
+    """ Use this view to translate all json files to a language
+        Usage: /admin-translate-step-2?language=ro
+    """
+
+    def __call__(self, **kwargs):
+        return translation_list_type_fields(getSite())
 
 
 class SomeTranslated(BrowserView):
