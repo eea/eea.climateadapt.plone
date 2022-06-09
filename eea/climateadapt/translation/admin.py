@@ -650,7 +650,7 @@ def translation_step_1(site, limit = 10000, search_path = None):
 
     logger.info("RESP %s", res)
 
-def translation_step_2(site, language=None):
+def translation_step_2(site, language=None, uid=None):
     """ Get all jsons objects in english and call etranslation for each field
         to be translated in specified language.
     """
@@ -658,7 +658,13 @@ def translation_step_2(site, language=None):
         return "Missing language parameter. (Example: ?language=it)"
     catalog = site.portal_catalog
     site_url = portal.getSite().absolute_url()
-    json_files = os.listdir("tmp/")
+    #import pdb; pdb.set_trace()
+    if uid:
+        json_files = []
+        if os.path.exists("tmp/"+str(uid)+".json"):
+            json_files.append(str(uid)+".json")
+    else:
+        json_files = os.listdir("tmp/")
 
     nr_files = 0  # total translatable eng objects (not unique)
     nr_items = 0  # total translatable eng objects (not unique)
@@ -707,13 +713,18 @@ def translation_step_2(site, language=None):
     logger.info("Files: %s, TotalItems: %s, Already translated: %s",
                 nr_files, nr_items, nr_items_translated)
 
-def translation_step_3(site, language=None):
+def translation_step_3(site, language=None, uid=None):
     """ Get all jsons objects in english and overwrite targeted language
         object with translations.
     """
     if language is None:
         return "Missing language parameter. (Example: ?language=it)"
-    json_files = os.listdir("tmp/")
+    if uid:
+        json_files = []
+        if os.path.exists("tmp/"+str(uid)+".json"):
+            json_files.append(str(uid)+".json")
+    else:
+        json_files = os.listdir("tmp/")
 
     nr_files = 0  # total translatable eng objects (not unique)
     nr_items = 0  # total translatable eng objects (not unique)
@@ -1032,7 +1043,8 @@ class VerifyTranslationFields(BrowserView):
 
 class TranslateStep1(BrowserView):
     """ Use this view to get a json files for all eng objects
-        Usage: /admin-translate-step-1
+        Usage: /admin-translate-step-1?limit=10&search_path=some-words-in-url
+        Limit and search_path params are optional
     """
 
     def __call__(self, **kwargs):
@@ -1048,12 +1060,36 @@ class TranslateStep1(BrowserView):
 
 class TranslateStep2(BrowserView):
     """ Use this view to translate all json files to a language
-        Usage: /admin-translate-step-2?language=ro
+        Usage: /admin-translate-step-2?language=ro&uid=ABCDEF
+        uid is optional
     """
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        return translation_step_2(getSite(), **kwargs)
+        language = None
+        uid = None
+        if 'language' in kwargs:
+            language = kwargs['language']
+        if 'uid' in kwargs:
+            uid = kwargs['uid']
+        return translation_step_2(getSite(), language, uid)
+
+
+class TranslateStep3(BrowserView):
+    """ Use this view to translate all json files to a language
+        Usage: /admin-translate-step-3?language=ro&uid=ABCDEF
+        uid is optional
+    """
+
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
+        language = None
+        uid = None
+        if 'language' in kwargs:
+            language = kwargs['language']
+        if 'uid' in kwargs:
+            uid = kwargs['uid']
+        return translation_step_3(getSite(), language, uid)
 
 
 class TranslationListTypeFields(BrowserView):

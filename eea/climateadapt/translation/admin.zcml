@@ -56,6 +56,13 @@
       />
 
   <browser:page
+      name="admin-translate-step-3"
+      for="*"
+      class=".admin.TranslateStep3"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
       name="admin-translate-portal-type-fields"
       for="*"
       class=".admin.TranslationListTypeFields"
