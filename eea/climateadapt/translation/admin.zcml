@@ -56,7 +56,7 @@
       />
 
   <browser:page
-      name="admin-translate-portal_type_fields"
+      name="admin-translate-portal-type-fields"
       for="*"
       class=".admin.TranslationListTypeFields"
       permission="cmf.ManagePortal"
