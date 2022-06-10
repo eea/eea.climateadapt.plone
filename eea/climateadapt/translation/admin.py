@@ -551,8 +551,8 @@ def get_object_fields(obj):
 
 def get_object_fields_values(obj):
     #TODO: perhaps a list by each portal_type
-    skip_fields = ['funding_programme', 'duration','partners_source_link',
-    'sync_uid','timezone','event_url']
+    skip_fields = ['c3s_identifier', 'contact_email', 'contact_name', 'details_app_toolbox_url', 'duration', 'event_url', 'funding_programme', 'method', 'other_contributor',
+        'organisational_contact_information', 'organisational_websites', 'overview_app_toolbox_url', 'partners_source_link', 'remoteUrl', 'storage_type', 'sync_uid','timezone']
 
     data = {}
     data['item'] = {}
@@ -563,6 +563,8 @@ def get_object_fields_values(obj):
         # print(key)
         if key in ['acronym', 'id', 'language', 'portal_type',
                    'contentType']:
+            continue
+        if key in skip_fields:
             continue
 
         value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
@@ -613,12 +615,25 @@ def get_object_fields_values(obj):
         data['item'][key] = value
     return data
 
-def translation_step_1(site, language=None):
+def is_obj_skipped_for_translation(obj):
+    #skip by portal types
+    if obj.portal_type in ['eea.climateadapt.city_profile','LIF']:
+        return True
+
+    #skip by string in path
+    skip_path_items = ['.jpg','.pdf','.png']
+    obj_url = obj.absolute_url()
+    if any(skip_item in obj_url for skip_item in skip_path_items):
+        return True
+
+    #TODO: add here archived and other rules
+    return False
+
+def translation_step_1(site, limit = 10000, search_path = None):
     """ Save all items for translation in a json file
     """
     catalog = site.portal_catalog
     #TODO: remove this, it is jsut for demo purpose
-    limit=10000
     brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
     site_url = portal.getSite().absolute_url()
     logger.info("I will start to create json files. Checking...")
@@ -626,15 +641,15 @@ def translation_step_1(site, language=None):
     res = {}
     total_items = 0  # total translatable eng objects
 
-    skip_items = ['.jpg','.pdf','.png']
     for brain in brains:
         obj = brain.getObject()
         obj_url = obj.absolute_url()
-        logger.info("PROCESS: %s", obj_url)
-        if any(skip_item in obj_url for skip_item in skip_items):
+        if is_obj_skipped_for_translation(obj):
             continue
-        #if 'rise-from-ice-sheets-to-local-implications' not in obj_url:
-        #    continue
+        if search_path:
+            if search_path not in obj_url:
+                continue
+        logger.info("PROCESS: %s", obj_url)
 
         data = get_object_fields_values(obj)
         json_object = json.dumps(data, indent = 4)
@@ -649,13 +664,21 @@ def translation_step_1(site, language=None):
 
     logger.info("RESP %s", res)
 
-def translation_step_2(site, language=None):
+def translation_step_2(site, language=None, uid=None):
     """ Get all jsons objects in english and call etranslation for each field
         to be translated in specified language.
     """
     if language is None:
         return "Missing language parameter. (Example: ?language=it)"
-    json_files = os.listdir("tmp/")
+    catalog = site.portal_catalog
+    site_url = portal.getSite().absolute_url()
+    #import pdb; pdb.set_trace()
+    if uid:
+        json_files = []
+        if os.path.exists("tmp/"+str(uid)+".json"):
+            json_files.append(str(uid)+".json")
+    else:
+        json_files = os.listdir("tmp/")
 
     nr_files = 0  # total translatable eng objects (not unique)
     nr_items = 0  # total translatable eng objects (not unique)
@@ -666,22 +689,56 @@ def translation_step_2(site, language=None):
         file = open("tmp/"+json_file, "r")
         json_content = file.read()
         json_data = json.loads(json_content)
-        for key in json_data.keys():
-            res = retrieve_translation('EN', json_data[key], [language.upper()])
+        for key in json_data['item'].keys():
+            res = retrieve_translation('EN', json_data['item'][key], [language.upper()])
             nr_items += 1
             if 'translated' in res:
                 nr_items_translated += 1
+        if len(json_data['html']):
+            brains = catalog.searchResults(UID=json_file.replace(".json",""))
+            if 0 == len(brains):
+                continue
+            obj = brains[0].getObject()
+            translations = TranslationManager(obj).get_translations()
+            trans_obj = translations[language]
+            trans_obj_url = trans_obj.absolute_url()
+            trans_obj_path = '/cca' + trans_obj_url.split(site_url)[-1]
+
+            html_content = u"<!doctype html><head><meta charset=utf-8></head>"
+            html_content += u"<body>"
+
+            for key in json_data['html'].keys():
+                value = json_data['html'][key].replace('\r\n', '')
+                html_section = u"<div class='cca-translation-section'" + \
+                    u" data-field='" + key + u"'>" + value + u"</div>"
+
+                html_content += html_section
+
+            html_content += u"</body></html>"
+            html_content = html_content.encode('utf-8')
+            res = retrieve_html_translation(
+                'EN',
+                html_content,
+                trans_obj_path,
+                language.upper(),
+                False,
+            )
 
     logger.info("Files: %s, TotalItems: %s, Already translated: %s",
                 nr_files, nr_items, nr_items_translated)
 
-def translation_step_3(site, language=None):
+def translation_step_3(site, language=None, uid=None):
     """ Get all jsons objects in english and overwrite targeted language
         object with translations.
     """
     if language is None:
         return "Missing language parameter. (Example: ?language=it)"
-    json_files = os.listdir("tmp/")
+    if uid:
+        json_files = []
+        if os.path.exists("tmp/"+str(uid)+".json"):
+            json_files.append(str(uid)+".json")
+    else:
+        json_files = os.listdir("tmp/")
 
     nr_files = 0  # total translatable eng objects (not unique)
     nr_items = 0  # total translatable eng objects (not unique)
@@ -708,12 +765,11 @@ def translation_list_type_fields(site):
     res = {}
     total_items = 0  # total translatable eng objects
 
-    skip_items = ['.jpg','.pdf','.png']
     for brain in brains:
         obj = brain.getObject()
         obj_url = obj.absolute_url()
         logger.info("PROCESS: %s", obj_url)
-        if any(skip_item in obj_url for skip_item in skip_items):
+        if is_obj_skipped_for_translation(obj):
             continue
         #if 'rise-from-ice-sheets-to-local-implications' not in obj_url:
         #    continue
@@ -1001,22 +1057,53 @@ class VerifyTranslationFields(BrowserView):
 
 class TranslateStep1(BrowserView):
     """ Use this view to get a json files for all eng objects
-        Usage: /admin-translate-step-1
+        Usage: /admin-translate-step-1?limit=10&search_path=some-words-in-url
+        Limit and search_path params are optional
     """
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        return translation_step_1(getSite(), **kwargs)
+        limit = 10000
+        search_path = None
+        if 'limit' in kwargs:
+            limit = int(kwargs['limit'])
+        if 'search_path' in kwargs:
+            search_path = kwargs['search_path']
+        return translation_step_1(getSite(), limit, search_path)
 
 
 class TranslateStep2(BrowserView):
     """ Use this view to translate all json files to a language
-        Usage: /admin-translate-step-2?language=ro
+        Usage: /admin-translate-step-2?language=ro&uid=ABCDEF
+        uid is optional
     """
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        return translation_step_2(getSite(), **kwargs)
+        language = None
+        uid = None
+        if 'language' in kwargs:
+            language = kwargs['language']
+        if 'uid' in kwargs:
+            uid = kwargs['uid']
+        return translation_step_2(getSite(), language, uid)
+
+
+class TranslateStep3(BrowserView):
+    """ Use this view to translate all json files to a language
+        Usage: /admin-translate-step-3?language=ro&uid=ABCDEF
+        uid is optional
+    """
+
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
+        language = None
+        uid = None
+        if 'language' in kwargs:
+            language = kwargs['language']
+        if 'uid' in kwargs:
+            uid = kwargs['uid']
+        return translation_step_3(getSite(), language, uid)
 
 
 class TranslationListTypeFields(BrowserView):
