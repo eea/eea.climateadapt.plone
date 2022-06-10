@@ -453,7 +453,9 @@ def verify_translation_fields(site, language=None):
     if language is None:
         return "Missing language parameter. (Example: ?language=it)"
     catalog = site.portal_catalog
-    brains = catalog.searchResults(path='/cca/en')
+    #TODO: remove this, it is jsut for demo purpose
+    limit=10
+    brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
     site_url = portal.getSite().absolute_url()
     logger.info("I will list the missing translation fields. Checking...")
 
@@ -463,16 +465,10 @@ def verify_translation_fields(site, language=None):
     found_missing = 0  # missing at least one attribute
     not_found = 0  # eng obj not found
 
-    report = {}
-
     skip_items = ['.jpg','.pdf','.png']
     for brain in brains:
         obj = brain.getObject()
         obj_url = obj.absolute_url()
-
-        if obj.portal_type not in report:
-            report[obj.portal_type] = {}
-
         #if '.jpg' in obj_url:
         if any(skip_item in obj_url for skip_item in skip_items):
             continue
@@ -514,12 +510,6 @@ def verify_translation_fields(site, language=None):
             if not getattr(obj,field,missing) in (missing, None) and getattr(trans_obj,field,missing) in (missing, None):
                 fields_missing.append(field)
 
-                if field not in report[obj.portal_type]:
-                    report[obj.portal_type][field] = 0
-
-                prev_value = report[obj.portal_type][field]
-                report[obj.portal_type][field] = prev_value + 1
-
         if len(fields_missing):
             logger.info("FIELDS NOT SET: %s %s", trans_obj.absolute_url(), fields_missing)
             found_missing += 1
@@ -530,10 +520,6 @@ def verify_translation_fields(site, language=None):
 
     logger.info("TotalItems: %s, Found with correct data: %s. Found with mising data: %s. Not found: %s.",
                 total_items, found, found_missing, not_found)
-
-    json_object = json.dumps(report, indent=4)
-    with open("translation_report.json", "w") as outfile:
-        outfile.write(json_object)
 
     return "\n".join(res)
 
@@ -555,6 +541,8 @@ def get_object_fields_values(obj):
         'organisational_contact_information', 'organisational_websites', 'overview_app_toolbox_url', 'partners_source_link', 'remoteUrl', 'storage_type', 'sync_uid','timezone']
 
     data = {}
+    data['portal_type'] = obj.portal_type
+    data['path'] = obj.absolute_url()
     data['item'] = {}
     data['html'] = {}
     fields = get_object_fields(obj)
@@ -629,6 +617,31 @@ def is_obj_skipped_for_translation(obj):
     #TODO: add here archived and other rules
     return False
 
+def get_translation_object(obj):
+    translations = TranslationManager(obj).get_translations()
+    trans_obj = translations[language]
+    return trans_obj
+
+def get_translation_object_path(obj, site_url):
+    trans_obj = get_translation_object(obj)
+    trans_obj_url = trans_obj.absolute_url()
+    return '/cca' + trans_obj_url.split(site_url)[-1]
+
+def get_translation_object_from_uid(json_uid_file):
+    brains = catalog.searchResults(UID=json_uid_file.replace(".json",""))
+    if 0 == len(brains):
+        return None
+    return brains[0].getObject()
+
+def get_translation_json_files(uid=None):
+    json_files = []
+    if uid:
+        if os.path.exists("/tmp/jsons/"+str(uid)+".json"):
+            json_files.append(str(uid)+".json")
+    else:
+        json_files = os.listdir("/tmp/jsons/")
+    return json_file
+
 def translation_step_1(site, limit = 10000, search_path = None):
     """ Save all items for translation in a json file
     """
@@ -655,7 +668,7 @@ def translation_step_1(site, limit = 10000, search_path = None):
         json_object = json.dumps(data, indent = 4)
         #import pdb; pdb.set_trace()
 
-        with open("tmp/"+brain.UID+".json", "w") as outfile:
+        with open("/tmp/jsons/"+brain.UID+".json", "w") as outfile:
             outfile.write(json_object)
         if obj.portal_type not in res:
             res[obj.portal_type] = 1
@@ -673,12 +686,7 @@ def translation_step_2(site, language=None, uid=None):
     catalog = site.portal_catalog
     site_url = portal.getSite().absolute_url()
     #import pdb; pdb.set_trace()
-    if uid:
-        json_files = []
-        if os.path.exists("tmp/"+str(uid)+".json"):
-            json_files.append(str(uid)+".json")
-    else:
-        json_files = os.listdir("tmp/")
+    json_files = get_translation_json_files(uid)
 
     nr_files = 0  # total translatable eng objects (not unique)
     nr_items = 0  # total translatable eng objects (not unique)
@@ -686,7 +694,7 @@ def translation_step_2(site, language=None, uid=None):
 
     for json_file in json_files:
         nr_files += 1
-        file = open("tmp/"+json_file, "r")
+        file = open("/tmp/jsons/"+json_file, "r")
         json_content = file.read()
         json_data = json.loads(json_content)
         for key in json_data['item'].keys():
@@ -695,14 +703,8 @@ def translation_step_2(site, language=None, uid=None):
             if 'translated' in res:
                 nr_items_translated += 1
         if len(json_data['html']):
-            brains = catalog.searchResults(UID=json_file.replace(".json",""))
-            if 0 == len(brains):
-                continue
-            obj = brains[0].getObject()
-            translations = TranslationManager(obj).get_translations()
-            trans_obj = translations[language]
-            trans_obj_url = trans_obj.absolute_url()
-            trans_obj_path = '/cca' + trans_obj_url.split(site_url)[-1]
+            obj = get_translation_object_from_uid(json_file, site_url)
+            trans_obj_path = get_translation_object_path(obj, site_url)
 
             html_content = u"<!doctype html><head><meta charset=utf-8></head>"
             html_content += u"<body>"
@@ -733,12 +735,7 @@ def translation_step_3(site, language=None, uid=None):
     """
     if language is None:
         return "Missing language parameter. (Example: ?language=it)"
-    if uid:
-        json_files = []
-        if os.path.exists("tmp/"+str(uid)+".json"):
-            json_files.append(str(uid)+".json")
-    else:
-        json_files = os.listdir("tmp/")
+    json_files = get_translation_json_files(uid)
 
     nr_files = 0  # total translatable eng objects (not unique)
     nr_items = 0  # total translatable eng objects (not unique)
@@ -746,6 +743,9 @@ def translation_step_3(site, language=None, uid=None):
 
     for json_file in json_files:
         nr_files += 1
+
+        obj = get_translation_object_from_uid(json_file)
+
         file = open("tmp/"+json_file, "r")
         json_content = file.read()
         json_data = json.loads(json_content)
@@ -787,7 +787,7 @@ def translation_list_type_fields(site):
     json_object = json.dumps(res, indent = 4)
     #import pdb; pdb.set_trace()
 
-    with open("port_type_fields.json", "w") as outfile:
+    with open("/tmp/portal_type_fields.json", "w") as outfile:
         outfile.write(json_object)
 
 def translations_status_by_version(site, version=0, language=None):
