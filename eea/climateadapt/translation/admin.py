@@ -640,7 +640,7 @@ def get_translation_json_files(uid=None):
             json_files.append(str(uid)+".json")
     else:
         json_files = os.listdir("/tmp/jsons/")
-    return json_file
+    return json_files
 
 def translation_step_1(site, limit = 10000, search_path = None):
     """ Save all items for translation in a json file
