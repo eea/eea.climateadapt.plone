@@ -453,9 +453,7 @@ def verify_translation_fields(site, language=None):
     if language is None:
         return "Missing language parameter. (Example: ?language=it)"
     catalog = site.portal_catalog
-    #TODO: remove this, it is jsut for demo purpose
-    limit=10
-    brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
+    brains = catalog.searchResults(path='/cca/en')
     site_url = portal.getSite().absolute_url()
     logger.info("I will list the missing translation fields. Checking...")
 
@@ -465,10 +463,16 @@ def verify_translation_fields(site, language=None):
     found_missing = 0  # missing at least one attribute
     not_found = 0  # eng obj not found
 
+    report = {}
+
     skip_items = ['.jpg','.pdf','.png']
     for brain in brains:
         obj = brain.getObject()
         obj_url = obj.absolute_url()
+
+        if obj.portal_type not in report:
+            report[obj.portal_type] = {}
+
         #if '.jpg' in obj_url:
         if any(skip_item in obj_url for skip_item in skip_items):
             continue
@@ -510,6 +514,12 @@ def verify_translation_fields(site, language=None):
             if not getattr(obj,field,missing) in (missing, None) and getattr(trans_obj,field,missing) in (missing, None):
                 fields_missing.append(field)
 
+                if field not in report[obj.portal_type]:
+                    report[obj.portal_type][field] = 0
+
+                prev_value = report[obj.portal_type][field]
+                report[obj.portal_type][field] = prev_value + 1
+
         if len(fields_missing):
             logger.info("FIELDS NOT SET: %s %s", trans_obj.absolute_url(), fields_missing)
             found_missing += 1
@@ -520,6 +530,10 @@ def verify_translation_fields(site, language=None):
 
     logger.info("TotalItems: %s, Found with correct data: %s. Found with mising data: %s. Not found: %s.",
                 total_items, found, found_missing, not_found)
+
+    json_object = json.dumps(report, indent=4)
+    with open("translation_report.json", "w") as outfile:
+        outfile.write(json_object)
 
     return "\n".join(res)
 
