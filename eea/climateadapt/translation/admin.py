@@ -454,7 +454,9 @@ def verify_translation_fields(site, language=None):
     if language is None:
         return "Missing language parameter. (Example: ?language=it)"
     catalog = site.portal_catalog
-    brains = catalog.searchResults(path='/cca/en')
+    #TODO: remove this, it is jsut for demo purpose
+    limit=10
+    brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
     site_url = portal.getSite().absolute_url()
     logger.info("I will list the missing translation fields. Checking...")
 
@@ -464,19 +466,16 @@ def verify_translation_fields(site, language=None):
     found_missing = 0  # missing at least one attribute
     not_found = 0  # eng obj not found
 
-    report = {}
     skip_items = ['.jpg','.pdf','.png']
     for brain in brains:
         obj = brain.getObject()
         obj_url = obj.absolute_url()
-
-        if obj.portal_type not in report:
-            report[obj.portal_type] = {}
-
         #if '.jpg' in obj_url:
         if any(skip_item in obj_url for skip_item in skip_items):
             continue
         total_items += 1
+        if 'rise-from-ice-sheets-to-local-implications' not in obj_url:
+            continue
         obj_path = '/cca' + obj_url.split(site_url)[-1]
         # logger.info("Will check: %s", obj_path)
         translations = TranslationManager(obj).get_translations()
@@ -512,12 +511,6 @@ def verify_translation_fields(site, language=None):
             if not getattr(obj,field,missing) in (missing, None) and getattr(trans_obj,field,missing) in (missing, None):
                 fields_missing.append(field)
 
-                if field not in report[obj.portal_type]:
-                    report[obj.portal_type][field] = 0
-
-                prev_value = report[obj.portal_type][field]
-                report[obj.portal_type][field] = prev_value + 1
-
         if len(fields_missing):
             logger.info("FIELDS NOT SET: %s %s", trans_obj.absolute_url(), fields_missing)
             found_missing += 1
@@ -528,10 +521,6 @@ def verify_translation_fields(site, language=None):
 
     logger.info("TotalItems: %s, Found with correct data: %s. Found with mising data: %s. Not found: %s.",
                 total_items, found, found_missing, not_found)
-
-    json_object = json.dumps(report, indent=4)
-    with open("/tmp/translation_report.json", "w") as outfile:
-        outfile.write(json_object)
 
     return "\n".join(res)
 
@@ -767,6 +756,9 @@ def translation_step_3(site, language=None, uid=None):
         have_change = False
         for key in json_data['item'].keys():
             translated_msg = get_translated(json_data['item'][key], language.upper())
+            if uid:
+                logger.info("Key: %s, Msg: %s, Translate: %s", key, json_data['item'][key], translated_msg)
+
             if translated_msg:
                 setattr(trans_obj, key, translated_msg)
                 have_change = True
