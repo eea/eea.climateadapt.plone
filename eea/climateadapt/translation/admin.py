@@ -3,6 +3,7 @@
 import json
 import logging
 import os
+import time
 from collections import defaultdict
 from datetime import date
 from DateTime import DateTime
@@ -736,6 +737,7 @@ def translation_step_2(site, language=None, uid=None):
                 language.upper(),
                 False,
             )
+        time.sleep(3)
 
     logger.info("Files: %s, TotalItems: %s, Already translated: %s",
                 nr_files, nr_items, nr_items_translated)
@@ -757,12 +759,22 @@ def translation_step_3(site, language=None, uid=None):
         nr_files += 1
 
         obj = get_translation_object_from_uid(json_file, catalog)
+        trans_obj = get_translation_object(obj, language)
 
-        file = open("tmp/"+json_file, "r")
+        file = open("/tmp/jsons/"+json_file, "r")
         json_content = file.read()
         json_data = json.loads(json_content)
-        for key in json_data.keys():
-            translated_msg = get_translated(json_data[key], language.upper())
+        have_change = False
+        for key in json_data['item'].keys():
+            translated_msg = get_translated(json_data['item'][key], language.upper())
+            if translated_msg:
+                setattr(trans_obj, key, translated_msg)
+                have_change = True
+        if have_change:
+            trans_obj._p_changed = True
+            trans_obj.reindexObject()
+
+    logger.info("Fianlize step 3")
 
 def translation_list_type_fields(site):
     """ Show each field for each type

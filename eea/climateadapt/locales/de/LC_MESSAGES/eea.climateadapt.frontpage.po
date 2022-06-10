@@ -96,31 +96,31 @@ msgstr "<i class = \"fa fa-search\"> </i>"
 # ,
 #: ../theme/climateadaptv2/index.html:434
 msgid "<span class=\"d-icon ast-icon\"></span> Adaptation <br /> Support Tool"
-msgstr "<span class = \"d-icon ast-icon\"> < /span> Anpassung <br /> Support-Tool"
+msgstr "<span class = \"d-icon ast-icon\"></span> Anpassung <br /> Support-Tool"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:428
 msgid "<span class=\"d-icon case-icon\"></span> Case <br /> Studies"
-msgstr "<span class = \"d-icon case-icon\"> < /span> Fall <br /> Studien"
+msgstr "<span class = \"d-icon case-icon\"></span> Fall <br /> Studien"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:410
 msgid "<span class=\"d-icon database-icon\"></span> Search the <br /> Database"
-msgstr "<span class = \"d-ICON-Datenbank-ICON\"> < /span> Suchen Sie die <br /> Datenbank"
+msgstr "<span class = \"d-icon database-icon\"></span> Suchen Sie die <br /> Datenbank"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:422
 msgid "<span class=\"d-icon eu-icon\"></span> Country <br /> Profiles"
-msgstr "<span class = \"d-icon eu-icon\"> < /span> Land <br /> Profile"
+msgstr "<span class = \"d-icon eu-icon\"></span> Land <br /> Profile"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:416
 msgid "<span class=\"d-icon policy-icon\"></span> EU Sector <br /> Policies"
-msgstr "<span class = \"d-iCon Policy-ICON\"> < /span> EU-Sektor <br /> Richtlinien"
+msgstr "<span class = \"d-icon policy-icon\"></span> EU-Sektor <br /> Richtlinien"
 
 # ,
 # ,
