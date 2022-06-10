@@ -617,17 +617,17 @@ def is_obj_skipped_for_translation(obj):
     #TODO: add here archived and other rules
     return False
 
-def get_translation_object(obj):
+def get_translation_object(obj, language):
     translations = TranslationManager(obj).get_translations()
     trans_obj = translations[language]
     return trans_obj
 
-def get_translation_object_path(obj, site_url):
-    trans_obj = get_translation_object(obj)
+def get_translation_object_path(obj, language, site_url):
+    trans_obj = get_translation_object(obj, language)
     trans_obj_url = trans_obj.absolute_url()
     return '/cca' + trans_obj_url.split(site_url)[-1]
 
-def get_translation_object_from_uid(json_uid_file):
+def get_translation_object_from_uid(json_uid_file, catalog):
     brains = catalog.searchResults(UID=json_uid_file.replace(".json",""))
     if 0 == len(brains):
         return None
@@ -703,8 +703,8 @@ def translation_step_2(site, language=None, uid=None):
             if 'translated' in res:
                 nr_items_translated += 1
         if len(json_data['html']):
-            obj = get_translation_object_from_uid(json_file, site_url)
-            trans_obj_path = get_translation_object_path(obj, site_url)
+            obj = get_translation_object_from_uid(json_file, catalog)
+            trans_obj_path = get_translation_object_path(obj, language, site_url)
 
             html_content = u"<!doctype html><head><meta charset=utf-8></head>"
             html_content += u"<body>"
@@ -735,6 +735,7 @@ def translation_step_3(site, language=None, uid=None):
     """
     if language is None:
         return "Missing language parameter. (Example: ?language=it)"
+    catalog = site.portal_catalog
     json_files = get_translation_json_files(uid)
 
     nr_files = 0  # total translatable eng objects (not unique)
@@ -744,7 +745,7 @@ def translation_step_3(site, language=None, uid=None):
     for json_file in json_files:
         nr_files += 1
 
-        obj = get_translation_object_from_uid(json_file)
+        obj = get_translation_object_from_uid(json_file, catalog)
 
         file = open("tmp/"+json_file, "r")
         json_content = file.read()
