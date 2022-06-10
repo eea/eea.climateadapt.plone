@@ -261,7 +261,7 @@ def get_translation_keys(site=None):
 
     storage = ITranslationsStorage(site)
 
-    return set(storage.keys())
+    return list(storage.keys())
 
 def get_translation_key_values(key, site=None):
     if site is None:

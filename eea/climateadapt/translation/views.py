@@ -146,7 +146,16 @@ class TranslationList(BrowserView):
     """
 
     def list(self):
-        return get_translation_keys()
+        form = self.request.form
+        search = form.get('search', None)
+        limit = int(form.get('limit', 10))
+
+        data = get_translation_keys()
+        if search:
+            data = [item for item in data if  search in item]
+        if len(data)>limit:
+            data=data[0:limit]
+        return data
 
     def keys(self):
         key = self.request.form["key"]
