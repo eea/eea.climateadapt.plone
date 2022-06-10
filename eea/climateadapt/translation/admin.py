@@ -476,8 +476,6 @@ def verify_translation_fields(site, language=None):
         if any(skip_item in obj_url for skip_item in skip_items):
             continue
         total_items += 1
-        if 'rise-from-ice-sheets-to-local-implications' not in obj_url:
-            continue
         obj_path = '/cca' + obj_url.split(site_url)[-1]
         # logger.info("Will check: %s", obj_path)
         translations = TranslationManager(obj).get_translations()
