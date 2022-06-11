@@ -263,6 +263,25 @@ def get_translation_keys(site=None):
 
     return list(storage.keys())
 
+def get_translation_report(site=None):
+    if site is None:
+        site = portal.get()
+
+    storage = ITranslationsStorage(site)
+    report = {'nr_keys': len(storage.keys()),'items':{}}
+    import pdb; pdb.set_trace()
+    data = storage.keys()
+    for i in range(len(data)):
+        storage_key = storage.get(data[i])
+        languages = set(storage_key.keys())
+        for language in languages:
+            if language not in report['items']:
+                report['items'][language] = 0
+            report['items'][language] += 1
+
+    import pdb; pdb.set_trace()
+    return report
+
 def get_translation_key_values(key, site=None):
     if site is None:
         site = portal.get()

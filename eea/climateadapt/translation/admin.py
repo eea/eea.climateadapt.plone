@@ -5,7 +5,7 @@ import logging
 import os
 import time
 from collections import defaultdict
-from datetime import date
+from datetime import date, datetime
 from DateTime import DateTime
 import transaction
 
@@ -689,8 +689,13 @@ def translation_step_2(site, language=None, uid=None):
     #import pdb; pdb.set_trace()
     json_files = get_translation_json_files(uid)
 
+    import pdb; pdb.set_trace()
+    report = {}
+    report['date'] = {'start':datetime.now().strftime("%Y-%m-%d %H:%M:%S"),'end':None}
+    report['filter'] = {'language':language, 'uid':uid}
     nr_files = 0  # total translatable eng objects (not unique)
     nr_items = 0  # total translatable eng objects (not unique)
+    nr_html_items = 0  # total translatable eng objects (not unique)
     nr_items_translated = 0  # found translated objects
 
     for json_file in json_files:
@@ -704,6 +709,7 @@ def translation_step_2(site, language=None, uid=None):
             if 'translated' in res:
                 nr_items_translated += 1
         if len(json_data['html']):
+            nr_html_items += 1
             obj = get_translation_object_from_uid(json_file, catalog)
             trans_obj_path = get_translation_object_path(obj, language, site_url)
 
@@ -727,6 +733,13 @@ def translation_step_2(site, language=None, uid=None):
                 False,
             )
         time.sleep(3)
+
+    report['date']['end'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    report['response'] = {'nr_files':nr_files, 'items': {'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items}
+
+    json_object = json.dumps(report, indent = 4)
+    with open("/tmp/translate_step_2_"+language+"_"+str(datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))+".json", "w") as outfile:
+        outfile.write(json_object)
 
     logger.info("Files: %s, TotalItems: %s, Already translated: %s",
                 nr_files, nr_items, nr_items_translated)

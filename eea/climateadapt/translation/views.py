@@ -10,8 +10,8 @@ from bs4 import BeautifulSoup
 from eea.cache.event import InvalidateMemCacheEvent
 from Products.Five.browser import BrowserView
 
-from . import (normalize, save_translation,
-               get_translation_keys, get_translation_key_values)
+from . import (normalize, save_translation, get_translation_keys,
+               get_translation_key_values, get_translation_report)
 from .interfaces import ITranslationContext
 
 from plone.api import portal
@@ -160,3 +160,6 @@ class TranslationList(BrowserView):
     def keys(self):
         key = self.request.form["key"]
         return get_translation_key_values(key)
+
+    def report(self):
+        return get_translation_report()
