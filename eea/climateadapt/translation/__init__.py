@@ -269,7 +269,6 @@ def get_translation_report(site=None):
 
     storage = ITranslationsStorage(site)
     report = {'nr_keys': len(storage.keys()),'items':{}}
-    import pdb; pdb.set_trace()
     data = storage.keys()
     for i in range(len(data)):
         storage_key = storage.get(data[i])
@@ -279,7 +278,6 @@ def get_translation_report(site=None):
                 report['items'][language] = 0
             report['items'][language] += 1
 
-    import pdb; pdb.set_trace()
     return report
 
 def get_translation_key_values(key, site=None):
