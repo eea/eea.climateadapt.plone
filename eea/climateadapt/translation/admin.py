@@ -689,7 +689,6 @@ def translation_step_2(site, language=None, uid=None):
     #import pdb; pdb.set_trace()
     json_files = get_translation_json_files(uid)
 
-    import pdb; pdb.set_trace()
     report = {}
     report['date'] = {'start':datetime.now().strftime("%Y-%m-%d %H:%M:%S"),'end':None}
     report['filter'] = {'language':language, 'uid':uid}
