@@ -678,7 +678,12 @@ def translation_step_1(site, limit = 10000, search_path = None):
 
     logger.info("RESP %s", res)
 
-def translation_step_2(site, language=None, uid=None):
+def translation_step_2(site, request):
+    language = request.get('language', None)
+    uid = request.get('uid', None)
+    limit = int(request.get('limit', 0))
+    offset = int(request.get('offset', 0))
+
     """ Get all jsons objects in english and call etranslation for each field
         to be translated in specified language.
     """
@@ -691,11 +696,16 @@ def translation_step_2(site, language=None, uid=None):
 
     report = {}
     report['date'] = {'start':datetime.now().strftime("%Y-%m-%d %H:%M:%S"),'end':None}
-    report['filter'] = {'language':language, 'uid':uid}
+    report['filter'] = {'language':language, 'uid':uid, 'limit': limit, 'offset': offset}
+    total_files = len(json_files)  # total translatable eng objects (not unique)
     nr_files = 0  # total translatable eng objects (not unique)
     nr_items = 0  # total translatable eng objects (not unique)
     nr_html_items = 0  # total translatable eng objects (not unique)
     nr_items_translated = 0  # found translated objects
+    #import pdb; pdb.set_trace()
+    if limit:
+        json_files.sort()
+        json_files = json_files[offset: offset+limit]
 
     for json_file in json_files:
         nr_files += 1
@@ -734,7 +744,8 @@ def translation_step_2(site, language=None, uid=None):
         time.sleep(3)
 
     report['date']['end'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    report['response'] = {'nr_files':nr_files, 'items': {'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items}
+    report['response'] = {'items': {'nr_files': nr_files, 'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items}
+    report['total_files'] = total_files
 
     json_object = json.dumps(report, indent = 4)
     with open("/tmp/translate_step_2_"+language+"_"+str(datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))+".json", "w") as outfile:
@@ -1108,13 +1119,7 @@ class TranslateStep2(BrowserView):
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        language = None
-        uid = None
-        if 'language' in kwargs:
-            language = kwargs['language']
-        if 'uid' in kwargs:
-            uid = kwargs['uid']
-        return translation_step_2(getSite(), language, uid)
+        return translation_step_2(getSite(), self.request)
 
 
 class TranslateStep3(BrowserView):
