@@ -794,7 +794,9 @@ def translation_step_3(site, language=None, uid=None):
         for key in json_data['item'].keys():
             translated_msg = get_translated(json_data['item'][key], language.upper())
             if uid:
-                logger.info("Key: %s, Msg: %s, Translate: %s", key, json_data['item'][key], translated_msg)
+                logger.info(
+                    "Nr_file: %s, Key: %s, Msg: %s, Translate: %s",
+                    nr_files, key, json_data['item'][key], translated_msg)
 
             if translated_msg:
                 # TODO implement cover tiles case
