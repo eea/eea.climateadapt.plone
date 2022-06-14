@@ -826,8 +826,12 @@ def translation_step_3(site, language=None, uid=None):
                     setattr(trans_obj, key, RichTextValue(encoded_text))
                     have_change = True
                 else:
-                    setattr(trans_obj, key, translated_msg)
-                    have_change = True
+                    try:
+                        setattr(trans_obj, key, translated_msg)
+                        have_change = True
+                    except AttributeError:
+                        logger.info("AttributeError for obj: %s key: %s",
+                                    obj.absolute_url(), key)
         if have_change:
             trans_obj._p_changed = True
             trans_obj.reindexObject()
