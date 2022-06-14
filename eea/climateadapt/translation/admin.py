@@ -620,11 +620,15 @@ def is_obj_skipped_for_translation(obj):
 
 def get_translation_object(obj, language):
     translations = TranslationManager(obj).get_translations()
+    if language not in translations:
+        return None
     trans_obj = translations[language]
     return trans_obj
 
 def get_translation_object_path(obj, language, site_url):
     trans_obj = get_translation_object(obj, language)
+    if not trans_obj:
+        return None
     trans_obj_url = trans_obj.absolute_url()
     return '/cca' + trans_obj_url.split(site_url)[-1]
 
@@ -721,6 +725,8 @@ def translation_step_2(site, request):
             nr_html_items += 1
             obj = get_translation_object_from_uid(json_file, catalog)
             trans_obj_path = get_translation_object_path(obj, language, site_url)
+            if not trans_obj_path:
+                continue
 
             html_content = u"<!doctype html><head><meta charset=utf-8></head>"
             html_content += u"<body>"
@@ -741,6 +747,14 @@ def translation_step_2(site, request):
                 language.upper(),
                 False,
             )
+        logger.info("TransStep2 File  %s from %s, total files %s",nr_files, len(json_files), total_files)
+        tmp_report = {}
+        tmp_report['limit'] = limit
+        tmp_report['offset'] = offset
+        tmp_report['last_file_position'] = nr_files
+        json_object = json.dumps(tmp_report, indent = 4)
+        with open("/tmp/translate_step_2_last_file.json", "w") as outfile:
+            outfile.write(json_object)
         time.sleep(3)
 
     report['date']['end'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
