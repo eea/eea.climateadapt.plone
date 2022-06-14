@@ -797,8 +797,33 @@ def translation_step_3(site, language=None, uid=None):
                 logger.info("Key: %s, Msg: %s, Translate: %s", key, json_data['item'][key], translated_msg)
 
             if translated_msg:
-                setattr(trans_obj, key, translated_msg)
-                have_change = True
+                # TODO implement cover tiles case
+                # Step 1 and 2 to be updated first, I think
+                # try:
+                #     encoded_text = translated_msg.encode('latin-1')
+                #     tile.data['text'].raw = encoded_text
+                # except AttributeError:
+                #     logger.info("Error for tile. TODO improve.")
+                #     logger.info(tile_id)
+
+                encoded_text = translated_msg.encode('latin-1')
+
+                source_richtext_types = [
+                    'eea.climateadapt.publicationreport',
+                    'eea.climateadapt.researchproject',
+                    'eea.climateadapt.mapgraphdataset',
+                    'eea.climateadapt.video',
+                    ]
+
+                if key == 'source' and \
+                        obj.portal_type in source_richtext_types:
+                    setattr(trans_obj, key, getattr(obj, key))
+                    # solves Can not convert 'Elsevier' to an IRichTextValue
+                    setattr(trans_obj, key, RichTextValue(encoded_text))
+                    have_change = True
+                else:
+                    setattr(trans_obj, key, translated_msg)
+                    have_change = True
         if have_change:
             trans_obj._p_changed = True
             trans_obj.reindexObject()
