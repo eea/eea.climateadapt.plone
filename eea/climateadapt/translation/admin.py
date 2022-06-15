@@ -471,6 +471,9 @@ def verify_translation_fields(site, language=None):
 
     for brain in brains:
         obj = brain.getObject()
+        if is_obj_skipped_for_translation(obj):
+            continue
+
         obj_url = obj.absolute_url()
 
         if obj.portal_type not in report:
