@@ -881,6 +881,38 @@ def translation_step_4(site, language=None, uid=None):
         'storage_type', 'sync_uid','timezone']
 
     language_independent_fields = {
+        "eea.climateadapt.tool": [
+            "spatial_values", "storage_type", "publication_date",
+            ],
+        "eea.climateadapt.guidancedocument": [
+            "storage_type", "spatial_values",
+            ],
+        "EasyForm": ["showFields"],
+        "eea.climateadapt.adaptationoption": ["implementation_type"],
+        "eea.climateadapt.mapgraphdataset": ["storage_type", "spatial_values"],
+        "Collection": ["sort_reversed", "query"],
+        "Document": ["table_of_contents"],
+        "News Item": ["health_impacts"],
+        "eea.climateadapt.casestudy": [
+            "geolocation", "implementation_type",
+            "implementation_time", "objectives", "spatial_values",
+            "challenges", "source", "solutions"
+            ],
+        "eea.climateadapt.aceproject": [
+            "specialtagging", "spatial_values"
+            ],
+        "eea.climateadapt.indicator": [
+            "publication_date", "storage_type", "spatial_values"
+            ],
+        "eea.climateadapt.informationportal": [
+            "spatial_values", "storage_type", "publication_date"
+            ],
+        "eea.climateadapt.organisation": [
+            "storage_type", "spatial_values", "publication_date"
+            ],
+        "eea.climateadapt.publicationreport": [
+            "storage_type", "spatial_values"
+            ],
         "Event": [
             "start", "end", "effective", "timezone", "event_url",
             "health_impacts", "contact_email", "location", "contact_name"
@@ -928,8 +960,11 @@ def translation_step_4(site, language=None, uid=None):
                     trans_obj.timezone = obj.timezone
                     reindex = True
                 else:
-                    setattr(trans_obj, key, getattr(obj, key))
-                    reindex = True
+                    try:
+                        setattr(trans_obj, key, getattr(obj, key))
+                        reindex = True
+                    except Exception:
+                        logger.info("Skip: %s %s", obj.portal_type, key)
 
             if reindex is True:
                 # reindex object
