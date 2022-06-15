@@ -467,6 +467,8 @@ def verify_translation_fields(site, language=None):
 
     report = {}
     skip_items = ['.jpg','.pdf','.png']
+    skip_fields = ["sync_uid", "allow_discussion"]
+
     for brain in brains:
         obj = brain.getObject()
         obj_url = obj.absolute_url()
@@ -501,6 +503,8 @@ def verify_translation_fields(site, language=None):
 
         fields_missing = []
         for field in fields.keys():
+            if field in skip_fields:
+                continue
             #TODO: check if we need to log if this is FALSE
             if not hasattr(obj, field):
                 continue
