@@ -463,6 +463,7 @@ def verify_translation_fields(site, language=None):
     found = 0  # found end objects
     found_missing = 0  # missing at least one attribute
     not_found = 0  # eng obj not found
+    missing_values = 0  # count the missing field values
 
     report = {}
     skip_items = ['.jpg','.pdf','.png']
@@ -511,6 +512,7 @@ def verify_translation_fields(site, language=None):
             missing = object()
             if not getattr(obj,field,missing) in (missing, None) and getattr(trans_obj,field,missing) in (missing, None):
                 fields_missing.append(field)
+                missing_values += 1
 
                 if field not in report[obj.portal_type]:
                     report[obj.portal_type][field] = 0
@@ -526,8 +528,8 @@ def verify_translation_fields(site, language=None):
         logger.info("URL: %s", trans_obj.absolute_url())
         found += 1
 
-    logger.info("TotalItems: %s, Found with correct data: %s. Found with mising data: %s. Not found: %s.",
-                total_items, found, found_missing, not_found)
+    logger.info("TotalItems: %s, Found with correct data: %s. Found with mising data: %s. Not found: %s. Missing values: %s",
+                total_items, found, found_missing, not_found, missing_values)
 
     json_object = json.dumps(report, indent=4)
     with open("/tmp/translation_report.json", "w") as outfile:
@@ -862,9 +864,27 @@ def translation_step_4(site, language=None, uid=None):
     site_url = portal.getSite().absolute_url()
     logger.info("Start copying values for language independent fields...")
 
+    skip_fields = [
+        # solved:
+        # contact_email, contact_name
+
+        # remaining:
+        'c3s_identifier',
+        'details_app_toolbox_url', 'duration', 'event_url',
+        'funding_programme', 'method', 'other_contributor',
+        'organisational_contact_information', 'organisational_websites',
+        'overview_app_toolbox_url', 'partners_source_link', 'remoteUrl',
+        'storage_type', 'sync_uid','timezone']
+
     language_independent_fields = {
-        'Event': ['start', 'end', 'effective', 'timezone'],
-        'cca-event': ['start', 'end', 'effective', 'timezone'],
+        "Event": [
+            "start", "end", "effective", "timezone", "event_url",
+            "health_impacts", "contact_email", "location", "contact_name"
+            ],
+        "cca-event": [
+            "start", "end", "effective", "timezone", "contact_email",
+            "contact_name"
+            ],
     }
 
     for brain in brains:
@@ -893,15 +913,18 @@ def translation_step_4(site, language=None, uid=None):
                     # setattr(trans_obj, key, obj.start)
                     trans_obj.start = obj.start
                     reindex = True
-                if key == 'end':
+                elif key == 'end':
                     trans_obj.end = obj.end
                     # setattr(trans_obj, key, obj.start)
                     reindex = True
-                if key == 'effective':
+                elif key == 'effective':
                     trans_obj.setEffectiveDate(obj.effective_date)
                     reindex = True
-                if key == 'timezone':
+                elif key == 'timezone':
                     trans_obj.timezone = obj.timezone
+                    reindex = True
+                else:
+                    setattr(trans_obj, key, getattr(obj, key))
                     reindex = True
 
             if reindex is True:
