@@ -838,7 +838,7 @@ def translation_step_3(site, language=None, uid=None):
                     have_change = True
                 else:
                     try:
-                        setattr(trans_obj, key, translated_msg)
+                        setattr(trans_obj, key, encoded_text)
                         have_change = True
                     except AttributeError:
                         logger.info("AttributeError for obj: %s key: %s",
