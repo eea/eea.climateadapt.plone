@@ -813,8 +813,7 @@ def translation_step_2(site, request):
                     u" data-field='" + item['field'] + u"'" + \
                     u" data-tile-id='" + item['tile_id'] + u"'" + \
                     u">" + item['value'] + u"</div>"
-
-            html_content += html_tile
+                html_content += html_tile
 
             html_content += u"</body></html>"
             html_content = html_content.encode('utf-8')
@@ -903,6 +902,23 @@ def translation_step_3(site, language=None, uid=None):
         json_content = file.read()
         json_data = json.loads(json_content)
         have_change = False
+        for tile_id in json_data['tile'].keys():
+            tile_data = json_data['tile'][tile_id]
+            tile_annot_id = 'plone.tiles.data.' + tile_id
+            tile = trans_obj.__annotations__.get(tile_annot_id, None)
+            if not tile:
+                continue
+            for key in tile_data['item'].keys():
+                try:
+                    update = tile.data
+                except AttributeError:
+                    update = tile
+                translated_msg = get_translated(tile_data['item'][key], language.upper())
+                if translated_msg:
+                    update[key] = translated_msg
+                # tile.data.update(update)
+            trans_obj.__annotations__[tile_annot_id] = update
+
         for key in json_data['item'].keys():
             translated_msg = get_translated(json_data['item'][key], language.upper())
             if uid:
