@@ -557,68 +557,98 @@ def get_object_fields_values(obj):
     #TODO: perhaps a list by each portal_type
     skip_fields = ['c3s_identifier', 'contact_email', 'contact_name', 'details_app_toolbox_url', 'duration', 'event_url', 'funding_programme', 'method', 'other_contributor',
         'organisational_contact_information', 'organisational_websites', 'overview_app_toolbox_url', 'partners_source_link', 'remoteUrl', 'storage_type', 'sync_uid','timezone']
+    tile_fields = ['title', 'text', 'description', 'tile_title', 'footer', 'alt_text']
 
     data = {}
     data['portal_type'] = obj.portal_type
     data['path'] = obj.absolute_url()
     data['item'] = {}
     data['html'] = {}
-    fields = get_object_fields(obj)
-    for key in fields:
-        rich = False
-        # print(key)
-        if key in ['acronym', 'id', 'language', 'portal_type',
-                   'contentType']:
-            continue
-        if key in skip_fields:
-            continue
-
-        value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
-
-        if not value:
-            continue
-
-        if callable(value):
-            # ignore datetimes
-            if isinstance(value(), DateTime):
+    data['tile'] = {}
+    # get tile data
+    #import pdb; pdb.set_trace()
+    if obj.portal_type == 'collective.cover.content':
+        tiles_id = obj.list_tiles()
+        for tile_id in tiles_id:
+            data['tile'][tile_id] = {'item':{},'html':{}}
+            tile = obj.get_tile(tile_id)
+            for field in tile_fields:
+                value = None
+                if isinstance(tile, RichTextWithTitle) or \
+                   isinstance(tile, RichTextTile):
+                    if field in tile_fields:
+                        try:
+                            if isinstance(tile.data.get(field), RichTextValue):
+                                value = tile.data.get(field).raw
+                                if value:
+                                    data['tile'][tile_id]['html'][field] = value
+                            else:
+                                value = tile.data.get(field)
+                                if value:
+                                    data['tile'][tile_id]['item'][field] = value
+                        except Exception:
+                            value = None
+                else:
+                    value = tile.data.get(field, None)
+                    if value:
+                        data['tile'][tile_id]['item'][field] = value
+    else:
+        fields = get_object_fields(obj)
+        for key in fields:
+            rich = False
+            # print(key)
+            if key in ['acronym', 'id', 'language', 'portal_type',
+                       'contentType']:
+                continue
+            if key in skip_fields:
                 continue
 
-            value = value()
+            value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
 
-        # ignore some value types
-        if isinstance(value, bool) or \
-           isinstance(value, int) or \
-           isinstance(value, long) or \
-           isinstance(value, tuple) or \
-           isinstance(value, list) or \
-           isinstance(value, set) or \
-           isinstance(value, dict) or \
-           isinstance(value, NamedBlobImage) or \
-           isinstance(value, NamedBlobFile) or \
-           isinstance(value, NamedImage) or \
-           isinstance(value, NamedFile) or \
-           isinstance(value, DateTime) or \
-           isinstance(value, date) or \
-           isinstance(value, RelationValue) or \
-           isinstance(value, Geolocation):
-            continue
+            if not value:
+                continue
 
-        if isinstance(getattr(obj, key), RichTextValue):
-            value = getattr(obj, key).raw.replace('\r\n', '')
-            data['html'][key] = value
-            continue
-            #rich = True
-            #if key not in rich_fields:
-            #    rich_fields.append(key)
+            if callable(value):
+                # ignore datetimes
+                if isinstance(value(), DateTime):
+                    continue
 
-        if is_json(value):
-            continue
+                value = value()
 
-        #if key not in errors:
-        #    errors.append(key)
-        #force_unlock(trans_obj)
-        #translated = retrieve_translation('EN', value, [language.upper()])
-        data['item'][key] = value
+            # ignore some value types
+            if isinstance(value, bool) or \
+               isinstance(value, int) or \
+               isinstance(value, long) or \
+               isinstance(value, tuple) or \
+               isinstance(value, list) or \
+               isinstance(value, set) or \
+               isinstance(value, dict) or \
+               isinstance(value, NamedBlobImage) or \
+               isinstance(value, NamedBlobFile) or \
+               isinstance(value, NamedImage) or \
+               isinstance(value, NamedFile) or \
+               isinstance(value, DateTime) or \
+               isinstance(value, date) or \
+               isinstance(value, RelationValue) or \
+               isinstance(value, Geolocation):
+                continue
+
+            if isinstance(getattr(obj, key), RichTextValue):
+                value = getattr(obj, key).raw.replace('\r\n', '')
+                data['html'][key] = value
+                continue
+                #rich = True
+                #if key not in rich_fields:
+                #    rich_fields.append(key)
+
+            if is_json(value):
+                continue
+
+            #if key not in errors:
+            #    errors.append(key)
+            #force_unlock(trans_obj)
+            #translated = retrieve_translation('EN', value, [language.upper()])
+            data['item'][key] = value
     return data
 
 def is_obj_skipped_for_translation(obj):
@@ -664,12 +694,23 @@ def get_translation_json_files(uid=None):
         json_files = os.listdir("/tmp/jsons/")
     return json_files
 
-def translation_step_1(site, limit = 10000, search_path = None):
+def translation_step_1(site, request):
     """ Save all items for translation in a json file
     """
+    limit = int(request.get('limit', 0))
+    search_path = request.get('search_path', None)
+    portal_type = request.get('portal_type', None)
+
     catalog = site.portal_catalog
     #TODO: remove this, it is jsut for demo purpose
-    brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
+    search_data = {}
+    search_data['path'] = '/cca/en'
+    if limit:
+        search_data['sort_limit'] = limit
+    if portal_type:
+        search_data['portal_type'] = portal_type
+    #brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
+    brains = catalog.searchResults(search_data)
     site_url = portal.getSite().absolute_url()
     logger.info("I will start to create json files. Checking...")
 
@@ -704,6 +745,7 @@ def translation_step_2(site, request):
     uid = request.get('uid', None)
     limit = int(request.get('limit', 0))
     offset = int(request.get('offset', 0))
+    portal_type = request.get('portal_type', None)
 
     """ Get all jsons objects in english and call etranslation for each field
         to be translated in specified language.
@@ -729,15 +771,65 @@ def translation_step_2(site, request):
         json_files = json_files[offset: offset+limit]
 
     for json_file in json_files:
-        nr_files += 1
         file = open("/tmp/jsons/"+json_file, "r")
         json_content = file.read()
         json_data = json.loads(json_content)
+        if portal_type and portal_type!=json_data['portal_type']:
+            continue
+        nr_files += 1
+        #LOPP object tiles
+        tile_html_fields = []
+        for tile_id in json_data['tile'].keys():
+            tile_data = json_data['tile'][tile_id]
+            #LOOP tile text items
+            for key in tile_data['item'].keys():
+                res = retrieve_translation('EN', tile_data['item'][key], [language.upper()])
+                nr_items += 1
+                if 'translated' in res:
+                    nr_items_translated += 1
+            #LOOP tile HTML items
+            for key in tile_data['html'].keys():
+                value = tile_data['html'][key]
+                value = value.replace('\r\n', '')
+                try:
+                    test_value = value + u"test"
+                except UnicodeDecodeError:
+                    value = value.decode("utf-8")
+                tile_html_fields.append({'tile_id':tile_id,'field':key, 'value':value})
+        #TILE HTML fields translate in one call
+        if len(tile_html_fields):
+            nr_html_items += 1
+            obj = get_translation_object_from_uid(json_file, catalog)
+            trans_obj_path = get_translation_object_path(obj, language, site_url)
+            if not trans_obj_path:
+                continue
+            html_content = u"<!doctype html>" + \
+                u"<head><meta charset=utf-8></head><body>"
+            for item in tile_html_fields:
+                html_tile = u"<div class='cca-translation-tile'" + \
+                    u" data-field='" + item['field'] + u"'" + \
+                    u" data-tile-id='" + item['tile_id'] + u"'" + \
+                    u">" + item['value'] + u"</div>"
+
+            html_content += html_tile
+
+            html_content += u"</body></html>"
+            html_content = html_content.encode('utf-8')
+            translated = retrieve_html_translation(
+                'EN',
+                html_content,
+                trans_obj_path,
+                language.upper(),
+                False,
+            )
+
+        #LOOP object text items
         for key in json_data['item'].keys():
             res = retrieve_translation('EN', json_data['item'][key], [language.upper()])
             nr_items += 1
             if 'translated' in res:
                 nr_items_translated += 1
+        #LOOP object HTML items
         if len(json_data['html']):
             nr_html_items += 1
             obj = get_translation_object_from_uid(json_file, catalog)
@@ -782,8 +874,8 @@ def translation_step_2(site, request):
     with open("/tmp/translate_step_2_"+language+"_"+str(datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))+".json", "w") as outfile:
         outfile.write(json_object)
 
-    logger.info("Files: %s, TotalItems: %s, Already translated: %s",
-                nr_files, nr_items, nr_items_translated)
+    logger.info("Files: %s, TotalItems: %s, Already translated: %s HtmlItems: %s",
+                nr_files, nr_items, nr_items_translated, nr_html_items)
 
 def translation_step_3(site, language=None, uid=None):
     """ Get all jsons objects in english and overwrite targeted language
@@ -994,8 +1086,6 @@ def translation_list_type_fields(site):
         logger.info("PROCESS: %s", obj_url)
         if is_obj_skipped_for_translation(obj):
             continue
-        #if 'rise-from-ice-sheets-to-local-implications' not in obj_url:
-        #    continue
         data = get_object_fields_values(obj)
 
         if obj.portal_type not in res:
@@ -1286,13 +1376,7 @@ class TranslateStep1(BrowserView):
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        limit = 10000
-        search_path = None
-        if 'limit' in kwargs:
-            limit = int(kwargs['limit'])
-        if 'search_path' in kwargs:
-            search_path = kwargs['search_path']
-        return translation_step_1(getSite(), limit, search_path)
+        return translation_step_1(getSite(), self.request)
 
 
 class TranslateStep2(BrowserView):
