@@ -849,6 +849,65 @@ def translation_step_3(site, language=None, uid=None):
 
     logger.info("Fianlize step 3")
 
+
+def translation_step_4(site, language=None, uid=None):
+    """ Copy fields values from en to given language for language independent
+        fields.
+    """
+    if language is None:
+        return "Missing language parameter. (Example: ?language=it)"
+    catalog = site.portal_catalog
+
+    brains = catalog.searchResults(path='/cca/en')
+    site_url = portal.getSite().absolute_url()
+    logger.info("Start copying values for language independent fields...")
+
+    language_independent_fields = {
+        'Event': ['start', 'end', 'effective', 'timezone'],
+        'cca-event': ['start', 'end', 'effective', 'timezone'],
+    }
+
+    for brain in brains:
+        obj = brain.getObject()
+
+        if obj.portal_type in language_independent_fields:
+            obj_url = obj.absolute_url()
+            logger.info("PROCESS: %s", obj_url)
+
+            translations = TranslationManager(obj).get_translations()
+            trans_obj = translations[language]
+            force_unlock(trans_obj)
+            reindex = False
+
+            fields = language_independent_fields[obj.portal_type]
+            for key in fields:
+                logger.info("Field: %s", key)
+
+                # TODO simplify this
+                if key == 'start':
+                    # setattr(trans_obj, key, obj.start)
+                    trans_obj.start = obj.start
+                    reindex = True
+                if key == 'end':
+                    trans_obj.end = obj.end
+                    # setattr(trans_obj, key, obj.start)
+                    reindex = True
+                if key == 'effective':
+                    trans_obj.setEffectiveDate(obj.effective_date)
+                    reindex = True
+                if key == 'timezone':
+                    trans_obj.timezone = obj.timezone
+                    reindex = True
+
+            if reindex is True:
+                # reindex object
+                trans_obj._p_changed = True
+                trans_obj.reindexObject()
+                continue
+
+    logger.info("Finalize step 4")
+
+
 def translation_list_type_fields(site):
     """ Show each field for each type
     """
@@ -1181,7 +1240,7 @@ class TranslateStep2(BrowserView):
 
 
 class TranslateStep3(BrowserView):
-    """ Use this view to translate all json files to a language
+    """ Use this view to save the values from annotation in objects fields
         Usage: /admin-translate-step-3?language=ro&uid=ABCDEF
         uid is optional
     """
@@ -1195,6 +1254,23 @@ class TranslateStep3(BrowserView):
         if 'uid' in kwargs:
             uid = kwargs['uid']
         return translation_step_3(getSite(), language, uid)
+
+
+class TranslateStep4(BrowserView):
+    """ Use this view to copy fields values that are language independent
+        Usage: /admin-translate-step-4?language=ro&uid=ABCDEF
+        uid is optional
+    """
+
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
+        language = None
+        uid = None
+        if 'language' in kwargs:
+            language = kwargs['language']
+        if 'uid' in kwargs:
+            uid = kwargs['uid']
+        return translation_step_4(getSite(), language, uid)
 
 
 class TranslationListTypeFields(BrowserView):
