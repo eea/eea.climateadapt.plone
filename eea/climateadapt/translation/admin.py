@@ -875,7 +875,12 @@ def translation_step_4(site, language=None, uid=None):
             logger.info("PROCESS: %s", obj_url)
 
             translations = TranslationManager(obj).get_translations()
-            trans_obj = translations[language]
+            try:
+                trans_obj = translations[language]
+            except KeyError:
+                logger.info("Missing translation for: %s", obj_url)
+                continue
+
             force_unlock(trans_obj)
             reindex = False
 
