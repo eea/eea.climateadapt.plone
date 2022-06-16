@@ -760,9 +760,10 @@ def translation_step_2(site, request):
     #import pdb; pdb.set_trace()
     json_files = get_translation_json_files(uid)
 
+    report_date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     report = {}
     report['date'] = {'start':datetime.now().strftime("%Y-%m-%d %H:%M:%S"),'end':None}
-    report['filter'] = {'language':language, 'uid':uid, 'limit': limit, 'offset': offset}
+    report['filter'] = {'language':language, 'uid':uid, 'limit': limit, 'offset': offset, 'portal_type': portal_type}
     total_files = len(json_files)  # total translatable eng objects (not unique)
     nr_files = 0  # total translatable eng objects (not unique)
     nr_items = 0  # total translatable eng objects (not unique)
@@ -782,23 +783,24 @@ def translation_step_2(site, request):
         nr_files += 1
         #LOPP object tiles
         tile_html_fields = []
-        for tile_id in json_data['tile'].keys():
-            tile_data = json_data['tile'][tile_id]
-            #LOOP tile text items
-            for key in tile_data['item'].keys():
-                res = retrieve_translation('EN', tile_data['item'][key], [language.upper()])
-                nr_items += 1
-                if 'translated' in res:
-                    nr_items_translated += 1
-            #LOOP tile HTML items
-            for key in tile_data['html'].keys():
-                value = tile_data['html'][key]
-                value = value.replace('\r\n', '')
-                try:
-                    test_value = value + u"test"
-                except UnicodeDecodeError:
-                    value = value.decode("utf-8")
-                tile_html_fields.append({'tile_id':tile_id,'field':key, 'value':value})
+        if 'tile' in json_data:
+            for tile_id in json_data['tile'].keys():
+                tile_data = json_data['tile'][tile_id]
+                #LOOP tile text items
+                for key in tile_data['item'].keys():
+                    res = retrieve_translation('EN', tile_data['item'][key], [language.upper()])
+                    nr_items += 1
+                    if 'translated' in res:
+                        nr_items_translated += 1
+                #LOOP tile HTML items
+                for key in tile_data['html'].keys():
+                    value = tile_data['html'][key]
+                    value = value.replace('\r\n', '')
+                    try:
+                        test_value = value + u"test"
+                    except UnicodeDecodeError:
+                        value = value.decode("utf-8")
+                    tile_html_fields.append({'tile_id':tile_id,'field':key, 'value':value})
         #TILE HTML fields translate in one call
         if len(tile_html_fields):
             nr_html_items += 1
@@ -859,21 +861,23 @@ def translation_step_2(site, request):
                 False,
             )
         logger.info("TransStep2 File  %s from %s, total files %s",nr_files, len(json_files), total_files)
-        tmp_report = {}
-        tmp_report['limit'] = limit
-        tmp_report['offset'] = offset
-        tmp_report['last_file_position'] = nr_files
-        json_object = json.dumps(tmp_report, indent = 4)
-        with open("/tmp/translate_step_2_last_file.json", "w") as outfile:
+        report['date']['last_update'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        report['response'] = {'items': {'nr_files': nr_files, 'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items, 'portal_type':portal_type}
+        report['total_files'] = total_files
+        report['status'] = 'Processing'
+
+        json_object = json.dumps(report, indent = 4)
+        with open("/tmp/translate_step_2_"+language+"_"+report_date+".json", "w") as outfile:
             outfile.write(json_object)
-        time.sleep(2)
+        time.sleep(0.5)
 
     report['date']['end'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    report['status'] = 'Done'
     report['response'] = {'items': {'nr_files': nr_files, 'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items, 'portal_type':portal_type}
     report['total_files'] = total_files
 
     json_object = json.dumps(report, indent = 4)
-    with open("/tmp/translate_step_2_"+language+"_"+str(datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))+".json", "w") as outfile:
+    with open("/tmp/translate_step_2_"+language+"_"+report_date+".json", "w") as outfile:
         outfile.write(json_object)
 
     logger.info("Files: %s, TotalItems: %s, Already translated: %s HtmlItems: %s",
@@ -1117,14 +1121,30 @@ def translation_list_type_fields(site):
             continue
         data = get_object_fields_values(obj)
 
-        if obj.portal_type not in res:
-            res[obj.portal_type] = {"item":[],"html":[]}
-        for key in data['item']:
-            if key not in res[obj.portal_type]["item"]:
-                res[obj.portal_type]["item"].append(key)
-        for key in data['html']:
-            if key not in res[obj.portal_type]["html"]:
-                res[obj.portal_type]["html"].append(key)
+        if obj.portal_type == 'collective.cover.content':
+            if obj.portal_type not in res:
+                res[obj.portal_type] = {}
+            #import pdb; pdb.set_trace()
+            tiles_id = obj.list_tiles()
+            for tile_id in tiles_id:
+                tile = obj.get_tile(tile_id)
+                tile_name = tile.__class__.__name__
+                if tile_name not in res[obj.portal_type]:
+                    res[obj.portal_type][tile_name] = {}
+                for field in tile.data.keys():
+                    if field not in res[obj.portal_type][tile_name]:
+                        res[obj.portal_type][tile_name][field] = []
+                    if len(res[obj.portal_type][tile_name][field])<5:
+                        res[obj.portal_type][tile_name][field].append(obj_url)
+        else:
+            if obj.portal_type not in res:
+                res[obj.portal_type] = {"item":[],"html":[]}
+            for key in data['item']:
+                if key not in res[obj.portal_type]["item"]:
+                    res[obj.portal_type]["item"].append(key)
+            for key in data['html']:
+                if key not in res[obj.portal_type]["html"]:
+                    res[obj.portal_type]["html"].append(key)
 
     json_object = json.dumps(res, indent = 4)
     #import pdb; pdb.set_trace()
