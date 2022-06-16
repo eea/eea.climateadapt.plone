@@ -916,6 +916,7 @@ def translation_step_3(site, language=None, uid=None):
                 translated_msg = get_translated(tile_data['item'][key], language.upper())
                 if translated_msg:
                     update[key] = translated_msg
+                    have_change = True
                 # tile.data.update(update)
             trans_obj.__annotations__[tile_annot_id] = update
 
