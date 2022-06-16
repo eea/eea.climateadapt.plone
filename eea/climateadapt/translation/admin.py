@@ -866,10 +866,10 @@ def translation_step_2(site, request):
         json_object = json.dumps(tmp_report, indent = 4)
         with open("/tmp/translate_step_2_last_file.json", "w") as outfile:
             outfile.write(json_object)
-        time.sleep(3)
+        time.sleep(2)
 
     report['date']['end'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    report['response'] = {'items': {'nr_files': nr_files, 'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items}
+    report['response'] = {'items': {'nr_files': nr_files, 'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items, 'portal_type':portal_type}
     report['total_files'] = total_files
 
     json_object = json.dumps(report, indent = 4)
@@ -879,10 +879,16 @@ def translation_step_2(site, request):
     logger.info("Files: %s, TotalItems: %s, Already translated: %s HtmlItems: %s",
                 nr_files, nr_items, nr_items_translated, nr_html_items)
 
-def translation_step_3(site, language=None, uid=None):
+def translation_step_3(site, request):
     """ Get all jsons objects in english and overwrite targeted language
         object with translations.
     """
+    language = request.get('language', None)
+    uid = request.get('uid', None)
+    #limit = int(request.get('limit', 0))
+    #offset = int(request.get('offset', 0))
+    portal_type = request.get('portal_type', None)
+
     if language is None:
         return "Missing language parameter. (Example: ?language=it)"
     catalog = site.portal_catalog
@@ -901,24 +907,27 @@ def translation_step_3(site, language=None, uid=None):
         file = open("/tmp/jsons/"+json_file, "r")
         json_content = file.read()
         json_data = json.loads(json_content)
+        if portal_type and portal_type!=json_data['portal_type']:
+            continue
         have_change = False
-        for tile_id in json_data['tile'].keys():
-            tile_data = json_data['tile'][tile_id]
-            tile_annot_id = 'plone.tiles.data.' + tile_id
-            tile = trans_obj.__annotations__.get(tile_annot_id, None)
-            if not tile:
-                continue
-            for key in tile_data['item'].keys():
-                try:
-                    update = tile.data
-                except AttributeError:
-                    update = tile
-                translated_msg = get_translated(tile_data['item'][key], language.upper())
-                if translated_msg:
-                    update[key] = translated_msg
-                    have_change = True
-                # tile.data.update(update)
-            trans_obj.__annotations__[tile_annot_id] = update
+        if 'tile' in json_data:
+            for tile_id in json_data['tile'].keys():
+                tile_data = json_data['tile'][tile_id]
+                tile_annot_id = 'plone.tiles.data.' + tile_id
+                tile = trans_obj.__annotations__.get(tile_annot_id, None)
+                if not tile:
+                    continue
+                for key in tile_data['item'].keys():
+                    try:
+                        update = tile.data
+                    except AttributeError:
+                        update = tile
+                    translated_msg = get_translated(tile_data['item'][key], language.upper())
+                    if translated_msg:
+                        update[key] = translated_msg
+                        have_change = True
+                    # tile.data.update(update)
+                    trans_obj.__annotations__[tile_annot_id] = update
 
         for key in json_data['item'].keys():
             translated_msg = get_translated(json_data['item'][key], language.upper())
@@ -1418,13 +1427,7 @@ class TranslateStep3(BrowserView):
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        language = None
-        uid = None
-        if 'language' in kwargs:
-            language = kwargs['language']
-        if 'uid' in kwargs:
-            uid = kwargs['uid']
-        return translation_step_3(getSite(), language, uid)
+        return translation_step_3(getSite(), self.request)
 
 
 class TranslateStep4(BrowserView):
