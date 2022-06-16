@@ -1085,6 +1085,7 @@ def translation_step_4(site, language=None, uid=None):
                     continue
 
             trans_obj._p_changed = True
+            trans_obj.reindexObject()
 
         if obj.portal_type in language_independent_fields:
             obj_url = obj.absolute_url()
