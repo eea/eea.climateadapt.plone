@@ -1047,6 +1047,28 @@ def translation_step_4(site, language=None, uid=None):
     for brain in brains:
         obj = brain.getObject()
 
+        if obj.portal_type == 'Folder':
+            force_unlock(obj)
+            translations = TranslationManager(obj).get_translations()
+            obj_en = translations.pop('en')
+            layout_en = obj_en.getLayout()
+            default_view_en = obj_en.getDefaultPage()
+            
+            if default_view_en is not None:
+                layout_default_view_en = obj_en[default_view_en].getLayout()
+
+            for language in translations:
+                trans_obj = translations[language]
+
+                # set the layout of the translated object to match the english object
+                trans_obj.setLayout(layout_en)
+
+                # also set the layout of the default view
+                if default_view_en:
+                    trans_obj[default_view_en].setLayout(layout_default_view_en)
+                
+                trans_obj._p_changed = True
+
         if obj.portal_type in language_independent_fields:
             obj_url = obj.absolute_url()
             logger.info("PROCESS: %s", obj_url)
