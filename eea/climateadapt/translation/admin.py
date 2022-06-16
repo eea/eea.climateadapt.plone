@@ -989,18 +989,6 @@ def translation_step_4(site, language=None, uid=None):
     site_url = portal.getSite().absolute_url()
     logger.info("Start copying values for language independent fields...")
 
-    skip_fields = [
-        # solved:
-        # contact_email, contact_name
-
-        # remaining:
-        'c3s_identifier',
-        'details_app_toolbox_url', 'duration', 'event_url',
-        'funding_programme', 'method', 'other_contributor',
-        'organisational_contact_information', 'organisational_websites',
-        'overview_app_toolbox_url', 'partners_source_link', 'remoteUrl',
-        'storage_type', 'sync_uid','timezone']
-
     language_independent_fields = {
         "eea.climateadapt.tool": [
             "spatial_values", "storage_type", "publication_date",
@@ -1015,12 +1003,10 @@ def translation_step_4(site, language=None, uid=None):
         "Document": ["table_of_contents"],
         "News Item": ["health_impacts"],
         "eea.climateadapt.casestudy": [
-            "geolocation", "implementation_type",
-            "implementation_time", "objectives", "spatial_values",
-            "challenges", "source", "solutions"
+            "geolocation", "implementation_type", "spatial_values",
             ],
         "eea.climateadapt.aceproject": [
-            "specialtagging", "spatial_values"
+            "specialtagging", "spatial_values", "funding_programme",
             ],
         "eea.climateadapt.indicator": [
             "publication_date", "storage_type", "spatial_values"
