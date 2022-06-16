@@ -873,7 +873,7 @@ def translation_step_2(site, request):
 
     report['date']['end'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     report['status'] = 'Done'
-    report['response'] = {'items': {'nr_files': nr_files, 'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items, 'portal_type':portal_type}
+    report['response'] = {'items': {'nr_files': nr_files, 'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items}
     report['total_files'] = total_files
 
     json_object = json.dumps(report, indent = 4)
@@ -889,14 +889,25 @@ def translation_step_3(site, request):
     """
     language = request.get('language', None)
     uid = request.get('uid', None)
-    #limit = int(request.get('limit', 0))
-    #offset = int(request.get('offset', 0))
+    limit = int(request.get('limit', 0))
+    offset = int(request.get('offset', 0))
     portal_type = request.get('portal_type', None)
 
     if language is None:
         return "Missing language parameter. (Example: ?language=it)"
     catalog = site.portal_catalog
     json_files = get_translation_json_files(uid)
+    total_files = len(json_files)  # total translatable eng objects (not unique)
+
+    report_date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    report = {}
+    report['date'] = {'start':datetime.now().strftime("%Y-%m-%d %H:%M:%S"),'end':None}
+    report['filter'] = {'language':language, 'uid':uid, 'limit': limit, 'offset': offset, 'portal_type': portal_type}
+    report['total_files'] = total_files
+
+    if limit:
+        json_files.sort()
+        json_files = json_files[offset: offset+limit]
 
     nr_files = 0  # total translatable eng objects (not unique)
     nr_items = 0  # total translatable eng objects (not unique)
@@ -935,13 +946,6 @@ def translation_step_3(site, request):
 
         for key in json_data['item'].keys():
             translated_msg = get_translated(json_data['item'][key], language.upper())
-            if uid:
-                logger.info(
-                    "Nr_file: %s, Key: %s, Msg: %s, Translate: %s",
-                    nr_files, key, json_data['item'][key], translated_msg)
-            else:
-                logger.info("Nr_file: %s, Key: %s", nr_files, key)
-
             if translated_msg:
                 # TODO implement cover tiles case
                 # Step 1 and 2 to be updated first, I think
@@ -977,6 +981,21 @@ def translation_step_3(site, request):
         if have_change:
             trans_obj._p_changed = True
             trans_obj.reindexObject()
+
+        report['date']['last_update'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        report['response'] = {'last_item': json_file, 'files_processd': nr_files}
+        report['status'] = 'Processing'
+
+        json_object = json.dumps(report, indent = 4)
+        with open("/tmp/translate_step_3_"+language+"_"+report_date+".json", "w") as outfile:
+            outfile.write(json_object)
+
+    report['date']['end'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    report['status'] = 'Done'
+
+    json_object = json.dumps(report, indent = 4)
+    with open("/tmp/translate_step_3_"+language+"_"+report_date+".json", "w") as outfile:
+        outfile.write(json_object)
 
     logger.info("Fianlize step 3")
 
@@ -1043,7 +1062,7 @@ def translation_step_4(site, language=None, uid=None):
             obj_en = translations.pop('en')
             layout_en = obj_en.getLayout()
             default_view_en = obj_en.getDefaultPage()
-            
+
             if default_view_en is not None:
                 layout_default_view_en = obj_en[default_view_en].getLayout()
 
@@ -1061,10 +1080,10 @@ def translation_step_4(site, language=None, uid=None):
                 try:
                     trans_obj[default_view_en].setLayout(layout_default_view_en)
                 except:
-                    logger.info("Can't set layout for: %s", 
+                    logger.info("Can't set layout for: %s",
                                 trans_obj.absolute_url())
                     continue
-            
+
             trans_obj._p_changed = True
 
         if obj.portal_type in language_independent_fields:
