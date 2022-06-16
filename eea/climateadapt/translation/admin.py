@@ -1057,14 +1057,23 @@ def translation_step_4(site, language=None, uid=None):
             if default_view_en is not None:
                 layout_default_view_en = obj_en[default_view_en].getLayout()
 
-            trans_obj = translations[language]
+            try:
+                trans_obj = translations[language]
+            except KeyError:
+                logger.info("Missing translation for: %s", obj.absolute_url())
+                continue
 
-            # set the layout of the translated object to match the english object
+            # set the layout of the translated object to match the EN object
             trans_obj.setLayout(layout_en)
 
             # also set the layout of the default view
             if default_view_en:
-                trans_obj[default_view_en].setLayout(layout_default_view_en)
+                try:
+                    trans_obj[default_view_en].setLayout(layout_default_view_en)
+                except:
+                    logger.info("Can't set layout for: %s", 
+                                trans_obj.absolute_url())
+                    continue
             
             trans_obj._p_changed = True
 
