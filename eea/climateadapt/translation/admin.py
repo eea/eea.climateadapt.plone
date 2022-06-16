@@ -993,18 +993,6 @@ def translation_step_4(site, language=None, uid=None):
     site_url = portal.getSite().absolute_url()
     logger.info("Start copying values for language independent fields...")
 
-    skip_fields = [
-        # solved:
-        # contact_email, contact_name
-
-        # remaining:
-        'c3s_identifier',
-        'details_app_toolbox_url', 'duration', 'event_url',
-        'funding_programme', 'method', 'other_contributor',
-        'organisational_contact_information', 'organisational_websites',
-        'overview_app_toolbox_url', 'partners_source_link', 'remoteUrl',
-        'storage_type', 'sync_uid','timezone']
-
     language_independent_fields = {
         "eea.climateadapt.tool": [
             "spatial_values", "storage_type", "publication_date",
@@ -1019,12 +1007,10 @@ def translation_step_4(site, language=None, uid=None):
         "Document": ["table_of_contents"],
         "News Item": ["health_impacts"],
         "eea.climateadapt.casestudy": [
-            "geolocation", "implementation_type",
-            "implementation_time", "objectives", "spatial_values",
-            "challenges", "source", "solutions"
+            "geolocation", "implementation_type", "spatial_values",
             ],
         "eea.climateadapt.aceproject": [
-            "specialtagging", "spatial_values"
+            "specialtagging", "spatial_values", "funding_programme",
             ],
         "eea.climateadapt.indicator": [
             "publication_date", "storage_type", "spatial_values"
@@ -1050,6 +1036,36 @@ def translation_step_4(site, language=None, uid=None):
 
     for brain in brains:
         obj = brain.getObject()
+
+        if obj.portal_type == 'Folder':
+            force_unlock(obj)
+            translations = TranslationManager(obj).get_translations()
+            obj_en = translations.pop('en')
+            layout_en = obj_en.getLayout()
+            default_view_en = obj_en.getDefaultPage()
+            
+            if default_view_en is not None:
+                layout_default_view_en = obj_en[default_view_en].getLayout()
+
+            try:
+                trans_obj = translations[language]
+            except KeyError:
+                logger.info("Missing translation for: %s", obj.absolute_url())
+                continue
+
+            # set the layout of the translated object to match the EN object
+            trans_obj.setLayout(layout_en)
+
+            # also set the layout of the default view
+            if default_view_en:
+                try:
+                    trans_obj[default_view_en].setLayout(layout_default_view_en)
+                except:
+                    logger.info("Can't set layout for: %s", 
+                                trans_obj.absolute_url())
+                    continue
+            
+            trans_obj._p_changed = True
 
         if obj.portal_type in language_independent_fields:
             obj_url = obj.absolute_url()
