@@ -1057,17 +1057,16 @@ def translation_step_4(site, language=None, uid=None):
             if default_view_en is not None:
                 layout_default_view_en = obj_en[default_view_en].getLayout()
 
-            for language in translations:
-                trans_obj = translations[language]
+            trans_obj = translations[language]
 
-                # set the layout of the translated object to match the english object
-                trans_obj.setLayout(layout_en)
+            # set the layout of the translated object to match the english object
+            trans_obj.setLayout(layout_en)
 
-                # also set the layout of the default view
-                if default_view_en:
-                    trans_obj[default_view_en].setLayout(layout_default_view_en)
-                
-                trans_obj._p_changed = True
+            # also set the layout of the default view
+            if default_view_en:
+                trans_obj[default_view_en].setLayout(layout_default_view_en)
+            
+            trans_obj._p_changed = True
 
         if obj.portal_type in language_independent_fields:
             obj_url = obj.absolute_url()
