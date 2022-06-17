@@ -31,6 +31,7 @@ from eea.climateadapt.tiles.richtext import RichTextWithTitle
 from eea.climateadapt.translation import retrieve_translation
 from eea.climateadapt.translation import retrieve_html_translation
 from eea.climateadapt.translation import get_translated
+from eea.climateadapt.translation.scripts.translation import translation_step_2
 
 from zope.schema import getFieldsInOrder
 from zope.site.hooks import getSite
@@ -708,6 +709,22 @@ def get_translation_json_files(uid=None):
         json_files = os.listdir("/tmp/jsons/")
     return json_files
 
+def get_trans_obj_path_for_obj(obj):
+    res = {}
+    try:
+        translations = TranslationManager(obj).get_translations()
+    except:
+        logger.info("Error at getting translations for %s", obj.absolute_url())
+        translations = []
+
+    for language in translations:
+        trans_obj = translations[language]
+        trans_obj_url = trans_obj.absolute_url()
+
+        res[language] = trans_obj_url
+
+    return {"translated_obj_paths": res}
+
 def translation_step_1(site, request):
     """ Save all items for translation in a json file
     """
@@ -742,8 +759,12 @@ def translation_step_1(site, request):
         logger.info("PROCESS: %s", obj_url)
 
         data = get_object_fields_values(obj)
+
+        # add the trans_obj_path for each language into the json
+        translation_paths = get_trans_obj_path_for_obj(obj)
+        data.update(translation_paths)
+
         json_object = json.dumps(data, indent = 4)
-        #import pdb; pdb.set_trace()
 
         with open("/tmp/jsons/"+brain.UID+".json", "w") as outfile:
             outfile.write(json_object)
@@ -754,7 +775,7 @@ def translation_step_1(site, request):
 
     logger.info("RESP %s", res)
 
-def translation_step_2(site, request):
+def translation_step_2_old(site, request):
     language = request.get('language', None)
     uid = request.get('uid', None)
     limit = int(request.get('limit', 0))
@@ -1475,6 +1496,17 @@ class TranslateStep1(BrowserView):
         return translation_step_1(getSite(), self.request)
 
 
+class TranslateStep2Old(BrowserView):
+    """ Use this view to translate all json files to a language
+        Usage: /admin-translate-step-2-old?language=ro&uid=ABCDEF
+        uid is optional
+    """
+
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
+        return translation_step_2_old(getSite(), self.request)
+
+
 class TranslateStep2(BrowserView):
     """ Use this view to translate all json files to a language
         Usage: /admin-translate-step-2?language=ro&uid=ABCDEF
@@ -1483,7 +1515,7 @@ class TranslateStep2(BrowserView):
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        return translation_step_2(getSite(), self.request)
+        return translation_step_2(self.request)
 
 
 class TranslateStep3(BrowserView):
