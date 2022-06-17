@@ -1052,7 +1052,7 @@ def translation_step_4(site, language=None, uid=None):
             "storage_type", "spatial_values", "publication_date"
             ],
         "eea.climateadapt.publicationreport": [
-            "storage_type", "spatial_values"
+            "storage_type", "spatial_values", "metadata",
             ],
         "Event": [
             "start", "end", "effective", "timezone", "event_url",
