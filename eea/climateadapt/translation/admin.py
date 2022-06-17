@@ -466,6 +466,7 @@ def verify_translation_fields(site, language=None):
     missing_values = 0  # count the missing field values
 
     report = {}
+    report_detalied = []
     skip_items = ['.jpg','.pdf','.png']
     skip_fields = ["sync_uid", "allow_discussion"]
 
@@ -529,6 +530,10 @@ def verify_translation_fields(site, language=None):
 
         if len(fields_missing):
             logger.info("FIELDS NOT SET: %s %s", trans_obj.absolute_url(), fields_missing)
+            report_detalied.append({
+                    'url': trans_obj.absolute_url(),
+                    'missing': fields_missing
+                })
             found_missing += 1
 
         #import pdb; pdb.set_trace()
@@ -538,6 +543,7 @@ def verify_translation_fields(site, language=None):
     logger.info("TotalItems: %s, Found with correct data: %s. Found with mising data: %s. Not found: %s. Missing values: %s",
                 total_items, found, found_missing, not_found, missing_values)
 
+    report['_details'] = report_detalied
     json_object = json.dumps(report, indent=4)
     with open("/tmp/translation_report.json", "w") as outfile:
         outfile.write(json_object)
