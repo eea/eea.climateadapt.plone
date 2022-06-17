@@ -11,10 +11,6 @@ from requests.auth import HTTPDigestAuth
 from zeep import Client
 from zeep.wsse.username import UsernameToken
 
-request_file = open('request.json')
-REQUEST = json.load(request_file)
-request_file.close()
-
 env = os.environ.get
 
 ANNOTATION_KEY = 'translation.cca.storage'
@@ -138,6 +134,9 @@ def retrieve_html_translation(
 
 def translation_step_2(request=None):
     if not request:
+        request_file = open('request.json')
+        REQUEST = json.load(request_file)
+        request_file.close()
         request = REQUEST
 
     language = request.get('language', None)
