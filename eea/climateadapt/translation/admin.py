@@ -536,7 +536,8 @@ def verify_translation_fields(site, language=None):
             logger.info("FIELDS NOT SET: %s %s", trans_obj.absolute_url(), fields_missing)
             report_detalied.append({
                     'url': trans_obj.absolute_url(),
-                    'missing': fields_missing
+                    'missing': fields_missing,
+                    'portal_type': trans_obj.portal_type
                 })
             found_missing += 1
 
