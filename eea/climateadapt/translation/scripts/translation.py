@@ -49,7 +49,7 @@ def retrieve_translation(country_code,
     """ Send a call to automatic translation service, to translate a string
     Returns a json formatted string
     """
-    return {}
+
     dest = '{}/@@translate-callback?source_lang={}'.format(site_url,
                                                            country_code)
 
@@ -95,7 +95,7 @@ def retrieve_html_translation(
     """ Send a call to automatic translation service, to translate a string
     Returns a json formatted string
     """
-    return {}
+
     if not html:
         return
 
@@ -144,7 +144,6 @@ def retrieve_html_translation(
 
 def translation_step_2(request=None):
     # bin/standalone run bin/run_translation_step_2
-    import pdb; pdb.set_trace()
     
     if not request:
         # request_file = open('request.json')

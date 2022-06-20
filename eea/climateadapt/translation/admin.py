@@ -31,7 +31,6 @@ from eea.climateadapt.tiles.richtext import RichTextWithTitle
 from eea.climateadapt.translation import retrieve_translation
 from eea.climateadapt.translation import retrieve_html_translation
 from eea.climateadapt.translation import get_translated
-from eea.climateadapt.translation.scripts.translation import translation_step_2
 
 from zope.schema import getFieldsInOrder
 from zope.site.hooks import getSite
@@ -775,7 +774,7 @@ def translation_step_1(site, request):
 
     logger.info("RESP %s", res)
 
-def translation_step_2_old(site, request):
+def translation_step_2(site, request):
     language = request.get('language', None)
     uid = request.get('uid', None)
     limit = int(request.get('limit', 0))
