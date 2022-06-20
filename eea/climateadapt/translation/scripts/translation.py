@@ -188,7 +188,10 @@ def translation_step_2(request=None):
         try:
             json_data = json.loads(json_content)
         except:
-            error_report[json_file] = {"message": "Error in json file"}
+            error_report = {json_file: "Error in json file"}
+            with open("/tmp/errors_step_2_"+language+"_"+report_date+".json", "w") as outfile:
+                outfile.write(error_report)
+
             continue
         if portal_type and portal_type!=json_data['portal_type']:
             continue
