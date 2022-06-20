@@ -27,8 +27,8 @@ logger = logging.getLogger('eea.climateadapt')
 #     format='%(levelname)s - %(message)s')
 
 REQUEST = {
-    "language": "ro",
-    "uid": "4668ac9312ad434a8d37e99c0e789b82",
+    "language": "de",
+    "uid": "",
     "limit": 0,
     "offset": 0,
     "portal_type": ""
@@ -53,7 +53,7 @@ def retrieve_translation(country_code,
     dest = '{}/@@translate-callback?source_lang={}'.format(site_url,
                                                            country_code)
 
-    # logger.info('Translate callback URL: %s', dest)
+    # logger.warning('Translate callback URL: %s', dest)
 
     data = {
         'priority': 5,
@@ -72,7 +72,7 @@ def retrieve_translation(country_code,
         }
     }
 
-    logger.info('Data translation request : %r', data)
+    logger.warning('Data translation request : %r', data)
 
     resp = requests.post(
         SERVICE_URL,
@@ -80,7 +80,7 @@ def retrieve_translation(country_code,
         data=json.dumps(data),
         headers={'Content-Type': 'application/json'}
     )
-    logger.info('Response from translation request: %r', resp.content)
+    logger.warning('Response from translation request: %r', resp.content)
 
     res = {
         "transId": resp.content,
@@ -131,8 +131,8 @@ def retrieve_html_translation(
             }
          })
 
-    logger.info('Data translation request : html content')
-    logger.info('Response from translation request: %r', resp)
+    logger.warning('Data translation request : html content')
+    logger.warning('Response from translation request: %r', resp)
 
     res = {
         "transId": resp,
@@ -157,7 +157,7 @@ def translation_step_2(request=None):
     offset = int(request.get('offset', 0))
     portal_type = request.get('portal_type', None)
 
-    logger.info("Starting translation step 2 for language %s", language)
+    logger.warning("Starting translation step 2 for language %s", language)
 
     """ Get all jsons objects in english and call etranslation for each field
         to be translated in specified language.
@@ -276,7 +276,7 @@ def translation_step_2(request=None):
                 False,
             )
 
-        logger.info("TransStep2 File  %s from %s, total files %s",nr_files, len(json_files), total_files)
+        logger.warning("TransStep2 File  %s from %s, total files %s",nr_files, len(json_files), total_files)
         report['date']['last_update'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         report['response'] = {'items': {'nr_files': nr_files, 'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items, 'portal_type':portal_type}
         report['total_files'] = total_files
@@ -296,7 +296,7 @@ def translation_step_2(request=None):
     with open("/tmp/translate_step_2_"+language+"_"+report_date+".json", "w") as outfile:
         outfile.write(json_object)
 
-    logger.info("Files: %s, TotalItems: %s, Already translated: %s HtmlItems: %s",
+    logger.warning("Files: %s, TotalItems: %s, Already translated: %s HtmlItems: %s",
                 nr_files, nr_items, nr_items_translated, nr_html_items)
 
 
