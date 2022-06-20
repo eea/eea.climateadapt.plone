@@ -171,6 +171,7 @@ def translation_step_2(request=None):
     report = {}
     report['date'] = {'start': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),'end':None}
     report['filter'] = {'language':language, 'uid':uid, 'limit': limit, 'offset': offset, 'portal_type': portal_type}
+    error_report = {}
     total_files = len(json_files)  # total translatable eng objects (not unique)
     nr_files = 0  # total translatable eng objects (not unique)
     nr_items = 0  # total translatable eng objects (not unique)
@@ -184,7 +185,11 @@ def translation_step_2(request=None):
     for json_file in json_files:
         file = open("/tmp/jsons/" + json_file, "r")
         json_content = file.read()
-        json_data = json.loads(json_content)
+        try:
+            json_data = json.loads(json_content)
+        except:
+            error_report[json_file] = {"message": "Error in json file"}
+            continue
         if portal_type and portal_type!=json_data['portal_type']:
             continue
         nr_files += 1
@@ -295,6 +300,10 @@ def translation_step_2(request=None):
     json_object = json.dumps(report, indent = 4)
     with open("/tmp/translate_step_2_"+language+"_"+report_date+".json", "w") as outfile:
         outfile.write(json_object)
+
+    error_json_object = json.dumps(error_report, indent = 4)
+    with open("/tmp/errors_step_2_"+language+"_"+report_date+".json", "w") as outfile:
+        outfile.write(error_json_object)
 
     logger.warning("Files: %s, TotalItems: %s, Already translated: %s HtmlItems: %s",
                 nr_files, nr_items, nr_items_translated, nr_html_items)
