@@ -19,11 +19,20 @@ MARINE_PASS = env('MARINE_PASS', '')
 SERVICE_URL = 'https://webgate.ec.europa.eu/etranslation/si/translate'
 site_url = 'http://cca.devel5cph.eionet.europa.eu/'
 
-LOGFILE_NAME = "translate_{}.log".format(
-    datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
-logging.basicConfig(filename=LOGFILE_NAME, filemode='w', 
-    format='%(levelname)s - %(message)s')
+logger = logging.getLogger('eea.climateadapt')
 
+# LOGFILE_NAME = "translate_{}.log".format(
+#     datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
+# logging.basicConfig(filename=LOGFILE_NAME, filemode='w', 
+#     format='%(levelname)s - %(message)s')
+
+REQUEST = {
+    "language": "ro",
+    "uid": "4668ac9312ad434a8d37e99c0e789b82",
+    "limit": 0,
+    "offset": 0,
+    "portal_type": ""
+}
 
 def get_translation_json_files(uid=None):
     json_files = []
@@ -40,7 +49,7 @@ def retrieve_translation(country_code,
     """ Send a call to automatic translation service, to translate a string
     Returns a json formatted string
     """
-    
+    return {}
     dest = '{}/@@translate-callback?source_lang={}'.format(site_url,
                                                            country_code)
 
@@ -63,7 +72,7 @@ def retrieve_translation(country_code,
         }
     }
 
-    logging.info('Data translation request : %r', data)
+    logger.info('Data translation request : %r', data)
 
     resp = requests.post(
         SERVICE_URL,
@@ -71,7 +80,7 @@ def retrieve_translation(country_code,
         data=json.dumps(data),
         headers={'Content-Type': 'application/json'}
     )
-    logging.info('Response from translation request: %r', resp.content)
+    logger.info('Response from translation request: %r', resp.content)
 
     res = {
         "transId": resp.content,
@@ -86,6 +95,7 @@ def retrieve_html_translation(
     """ Send a call to automatic translation service, to translate a string
     Returns a json formatted string
     """
+    return {}
     if not html:
         return
 
@@ -121,8 +131,8 @@ def retrieve_html_translation(
             }
          })
 
-    logging.info('Data translation request : html content')
-    logging.info('Response from translation request: %r', resp)
+    logger.info('Data translation request : html content')
+    logger.info('Response from translation request: %r', resp)
 
     res = {
         "transId": resp,
@@ -133,10 +143,13 @@ def retrieve_html_translation(
 
 
 def translation_step_2(request=None):
+    # bin/standalone run bin/run_translation_step_2
+    import pdb; pdb.set_trace()
+    
     if not request:
-        request_file = open('request.json')
-        REQUEST = json.load(request_file)
-        request_file.close()
+        # request_file = open('request.json')
+        # REQUEST = json.load(request_file)
+        # request_file.close()
         request = REQUEST
 
     language = request.get('language', None)
@@ -144,6 +157,8 @@ def translation_step_2(request=None):
     limit = int(request.get('limit', 0))
     offset = int(request.get('offset', 0))
     portal_type = request.get('portal_type', None)
+
+    logger.info("Starting translation step 2 for language %s", language)
 
     """ Get all jsons objects in english and call etranslation for each field
         to be translated in specified language.
@@ -262,7 +277,7 @@ def translation_step_2(request=None):
                 False,
             )
 
-        logging.info("TransStep2 File  %s from %s, total files %s",nr_files, len(json_files), total_files)
+        logger.info("TransStep2 File  %s from %s, total files %s",nr_files, len(json_files), total_files)
         report['date']['last_update'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         report['response'] = {'items': {'nr_files': nr_files, 'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items, 'portal_type':portal_type}
         report['total_files'] = total_files
@@ -282,7 +297,7 @@ def translation_step_2(request=None):
     with open("/tmp/translate_step_2_"+language+"_"+report_date+".json", "w") as outfile:
         outfile.write(json_object)
 
-    logging.info("Files: %s, TotalItems: %s, Already translated: %s HtmlItems: %s",
+    logger.info("Files: %s, TotalItems: %s, Already translated: %s HtmlItems: %s",
                 nr_files, nr_items, nr_items_translated, nr_html_items)
 
 

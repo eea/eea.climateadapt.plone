@@ -1496,7 +1496,7 @@ class TranslateStep1(BrowserView):
         return translation_step_1(getSite(), self.request)
 
 
-class TranslateStep2Old(BrowserView):
+class TranslateStep2(BrowserView):
     """ Use this view to translate all json files to a language
         Usage: /admin-translate-step-2-old?language=ro&uid=ABCDEF
         uid is optional
@@ -1504,18 +1504,7 @@ class TranslateStep2Old(BrowserView):
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        return translation_step_2_old(getSite(), self.request)
-
-
-class TranslateStep2(BrowserView):
-    """ Use this view to translate all json files to a language
-        Usage: /admin-translate-step-2?language=ro&uid=ABCDEF
-        uid is optional
-    """
-
-    def __call__(self, **kwargs):
-        kwargs.update(self.request.form)
-        return translation_step_2(self.request)
+        return translation_step_2(getSite(), self.request)
 
 
 class TranslateStep3(BrowserView):

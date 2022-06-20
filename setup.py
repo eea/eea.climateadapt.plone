@@ -80,6 +80,7 @@ setup(
       archive_news = eea.climateadapt.browser.scripts:archive_news
       harvest_eea_indicators = eea.climateadapt.scripts.harvest_eea_indicators:main
       refresh_analytics_data = eea.climateadapt.browser.admin:refresh_analytics_data
+      run_translation_step_2 = eea.climateadapt.translation.scripts.translation:translation_step_2
       """,
     # The next two lines may be deleted after you no longer need
     # addcontent support from paster and before you distribute
