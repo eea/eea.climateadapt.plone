@@ -301,7 +301,7 @@ def translation_step_2(request=None):
         json_object = json.dumps(report, indent = 4)
         with open("/tmp/translate_step_2_"+language+"_"+report_date+".json", "w") as outfile:
             outfile.write(json_object)
-        time.sleep(0.6)
+        time.sleep(0.8)
 
     report['date']['end'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     report['status'] = 'Done'
