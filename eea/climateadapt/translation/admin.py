@@ -542,7 +542,7 @@ def verify_translation_fields(site, language=None):
             found_missing += 1
 
         #import pdb; pdb.set_trace()
-        logger.info("URL: %s", trans_obj.absolute_url())
+        logger.info("%s URL: %s", found, trans_obj.absolute_url())
         found += 1
 
     logger.info("TotalItems: %s, Found with correct data: %s. Found with mising data: %s. Not found: %s. Missing values: %s",
