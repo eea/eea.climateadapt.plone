@@ -953,6 +953,8 @@ def translation_step_3(site, request):
 
         obj = get_translation_object_from_uid(json_file, catalog)
         trans_obj = get_translation_object(obj, language)
+        if trans_obj is None:
+            continue
 
         file = open("/tmp/jsons/"+json_file, "r")
         json_content = file.read()
