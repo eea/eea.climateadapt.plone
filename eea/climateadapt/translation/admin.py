@@ -680,7 +680,11 @@ def is_obj_skipped_for_translation(obj):
     return False
 
 def get_translation_object(obj, language):
-    translations = TranslationManager(obj).get_translations()
+    try:
+        translations = TranslationManager(obj).get_translations()
+    except Exception:
+        return None
+
     if language not in translations:
         return None
     trans_obj = translations[language]
