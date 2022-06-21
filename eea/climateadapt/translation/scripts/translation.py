@@ -17,7 +17,7 @@ ANNOTATION_KEY = 'translation.cca.storage'
 TRANS_USERNAME = 'ipetchesi'        # TODO: get another username?
 MARINE_PASS = env('MARINE_PASS', '')
 SERVICE_URL = 'https://webgate.ec.europa.eu/etranslation/si/translate'
-site_url = 'http://cca.devel5cph.eionet.europa.eu/'
+site_url = 'https://cca.devel5cph.eionet.europa.eu'
 
 logger = logging.getLogger('eea.climateadapt')
 
