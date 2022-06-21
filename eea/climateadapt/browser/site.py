@@ -356,6 +356,9 @@ class Navbar(ExternalTemplateHeader):
         return []
 
     def translate_url(self, url):
+        # TODO fix this
+        return url
+
         current_language = get_current_language(self.context, self.request)
         #if 'en' == current_language:
         #    return url
