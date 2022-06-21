@@ -950,6 +950,7 @@ def translation_step_3(site, request):
 
     for json_file in json_files:
         nr_files += 1
+        logger.info("PROCESSING file: %s", nr_files)
 
         obj = get_translation_object_from_uid(json_file, catalog)
         trans_obj = get_translation_object(obj, language)
