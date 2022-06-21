@@ -23,7 +23,7 @@ logger = logging.getLogger('eea.climateadapt')
 
 # LOGFILE_NAME = "translate_{}.log".format(
 #     datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
-# logging.basicConfig(filename=LOGFILE_NAME, filemode='w', 
+# logging.basicConfig(filename=LOGFILE_NAME, filemode='w',
 #     format='%(levelname)s - %(message)s')
 
 REQUEST = {
@@ -81,6 +81,13 @@ def retrieve_translation(country_code,
         headers={'Content-Type': 'application/json'}
     )
     logger.warning('Response from translation request: %r', resp.content)
+
+    if isinstance(resp, long):
+        if resp == long('-20028L'):
+            # 250 docs or 500 texts
+            logger.error('LIMITS EXCEEDED, requests rejected by eTranslation')
+            time.sleep(60)
+            # import pdb; pdb.set_trace()
 
     res = {
         "transId": resp.content,
@@ -144,7 +151,7 @@ def retrieve_html_translation(
 
 def translation_step_2(request=None):
     # bin/standalone run bin/run_translation_step_2
-    
+
     if not request:
         # request_file = open('request.json')
         # REQUEST = json.load(request_file)
@@ -325,5 +332,5 @@ if __name__ == "__main__":
 
     for egg in eggs:
         sys.path.append(path.join(eggs_path, egg))
-   
-    translation_step_2(REQUEST) 
+
+    translation_step_2(REQUEST)
