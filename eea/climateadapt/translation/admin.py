@@ -1616,7 +1616,7 @@ class TranslationStateViewlet(ViewletBase):
         context = self.context
         css_class = "portalMessage {}"
         state, wf_state = self._get_current_wf_state(context)
-        css_type = self.css_types.get(state, '')
+        css_type = self.css_types.get(state, 'no_state')
 
         return css_class.format(css_type)
 
