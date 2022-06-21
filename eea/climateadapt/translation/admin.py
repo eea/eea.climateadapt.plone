@@ -1091,8 +1091,11 @@ def translation_step_4(site, language=None, uid=None):
             ],
     }
 
+    obj_count = 0
     for brain in brains:
         obj = brain.getObject()
+        obj_count += 1
+        logger.info("PROCESSING obj: %s", obj_count)
 
         if obj.portal_type == 'Folder':
             force_unlock(obj)
