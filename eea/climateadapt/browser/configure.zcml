@@ -680,6 +680,7 @@
       for="*"
       template="pt/navbar_footer.pt"
       permission="zope.Public"
+      class=".site.Navbar"
       />
 
   <browser:page

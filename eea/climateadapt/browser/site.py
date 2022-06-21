@@ -5,6 +5,7 @@ import logging
 import re
 
 from zope.component.hooks import getSite
+from plone.app.multilingual.manager import TranslationManager
 
 from eea.climateadapt.browser.externaltemplates import ExternalTemplateHeader
 from eea.climateadapt.translation.utils import get_current_language
@@ -353,3 +354,20 @@ class Navbar(ExternalTemplateHeader):
         if len(menus):
             return menus[-1]
         return []
+
+    def translate_url(self, url):
+        current_language = get_current_language(self.context, self.request)
+        #if 'en' == current_language:
+        #    return url
+        #import pdb; pdb.set_trace()
+        site = getSite()
+        obj = site.restrictedTraverse('/cca'+url)
+        if not obj:
+            return '#'
+        translations = TranslationManager(obj).get_translations()
+        if not translations:
+            return '#'
+        if current_language not in translations:
+            return '#'
+        trans_obj = translations[current_language]
+        return trans_obj.absolute_url()
