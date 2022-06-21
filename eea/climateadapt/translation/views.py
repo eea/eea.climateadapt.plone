@@ -81,6 +81,8 @@ class TranslationCallback(BrowserView):
         """
         site = portal.getSite()
         trans_obj_path = form.get("external-reference")
+        if 'https://' in trans_obj_path:
+            trans_obj_path = "/cca" + trans_obj_path.split(site.absolute_url())[-1]
 
         form.pop('format')
         form.pop('request-id')
