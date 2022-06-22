@@ -1,7 +1,7 @@
 <tal:def tal:define="css_class python: view.get_css_class()">
   <form method="GET"
       tal:attributes="action python: context.absolute_url() + '/content_status_modify'"
-      tal:condition="python: css_class != 'no_state'">
+      tal:condition="python: css_class != 'portalMessage no_state'">
     <div tal:attributes="class python: css_class">
       <strong tal:content="view/get_status">Phase 0</strong>
       <tal:cond tal:condition="view/show_approve_button">
@@ -13,4 +13,4 @@
       </tal:cond>
     </div>
   </form>
-<tal:def>
+</tal:def>
