@@ -17,45 +17,57 @@ msgstr ""
 "Language: \n"
 
 # ,
+#, 
 msgid "Adaptation options"
 msgstr "Anpassungsoptionen"
 
 # ,
+#, 
 msgid "Case studies"
 msgstr "Fallstudien"
 
 # ,
+#, 
 msgid "Countries:"
 msgstr "Länder:"
 
 # ,
+#, 
 msgid "Guidance"
-msgstr "Orientierungshilfe"
+msgstr "Leitfaden"
 
 # ,
+#, 
 msgid "Indicators"
 msgstr "Indikatoren"
 
 # ,
+#, 
 msgid "Information portals"
 msgstr "Informationsportale"
 
 # ,
+#, 
 msgid "Organisations"
 msgstr "Organisationen"
 
 # ,
+#, 
 msgid "Publication and reports"
 msgstr "Veröffentlichung und Berichte"
 
 # ,
+#, 
 msgid "Research and knowledge projects"
 msgstr "Forschungs- und Wissensprojekte"
 
 # ,
+#, 
 msgid "Tools"
 msgstr "Werkzeug"
 
 # ,
+#, 
 msgid "Videos"
 msgstr "Videos"
+

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-27 05:35+0000\n"
+"POT-Creation-Date: 2022-06-07 13:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,21 +16,25 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:77
+msgid "...loading configuration..."
+msgstr ""
+
 #: ../../climateadapt/browser/pt/transnational_regions.pt:415
 msgid "12 regions"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:140
-msgid "<i class=\"fa fa-exclamation-circle\" aria-hidden=\"true\"></i> [Disclaimer] <div id=\"hover-content\">x</div>"
+#: ../../climateadapt/browser/pt/countries-d3.pt:141
+msgid "<i class=\"fa fa-exclamation-circle\" aria-hidden=\"true\"></i> <span>x</span> <div id=\"hover-content\">x</div>"
 msgstr ""
 
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:149
+#: ../../climateadapt/browser/pt/ace_macros.pt:152
 msgid "<strong>Last Modified in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
 msgstr "<strong> utoljára módosítva az éghajlat-adaptban </strong> $ {Dynamic_content}"
 
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:145
+#: ../../climateadapt/browser/pt/ace_macros.pt:148
 msgid "<strong>Published in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
 msgstr "<strong> Megjelent a Climate-Adapt </strong> $ {Dynamic_Content} -ben"
 
@@ -59,8 +63,12 @@ msgstr "Adaptációs tervek és stratégiák"
 msgid "Adaptation options"
 msgstr "Adaptációs lehetőségek"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:96
+#: ../../climateadapt/browser/pt/countries-d3.pt:97
 msgid "Adaptation portal or platform reported"
+msgstr ""
+
+#: ../../climateadapt/browser/countries.py:161
+msgid "Adaptation portals and platforms"
 msgstr ""
 
 # ,
@@ -102,6 +110,14 @@ msgstr "Az éghajlati-adapt adatbázis-elemek fejlett keresése <a href=\"/redir
 #: ../../climateadapt/vocabulary.py:293
 msgid "Agriculture"
 msgstr "Mezőgazdaság"
+
+#: ../../climateadapt/tiles/search_acecontent.py:769
+msgid "All adaptation sectors"
+msgstr ""
+
+#: ../../climateadapt/tiles/search_acecontent.py:766
+msgid "All climate impacts"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:419
 msgid "Alpine"
@@ -179,15 +195,20 @@ msgstr "Kihívások"
 msgid "Check-out created"
 msgstr "Kijelentkezés létrehozott"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:56
+#: ../../climateadapt/browser/pt/countries-d3.pt:57
 msgid "Choose a country"
 msgstr ""
 
+#: ../../climateadapt/tiles/pt/country_select.pt:10
+msgid "Choose a country:"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/transnational_regions.pt:431
+#: ../../climateadapt/tiles/pt/transregional_select.pt:115
 msgid "Choose a region"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:74
+#: ../../climateadapt/browser/pt/countries-d3.pt:75
 msgid "Choose thematic map:"
 msgstr ""
 
@@ -196,6 +217,10 @@ msgstr ""
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
 msgid "City"
 msgstr "Város"
+
+#: ../../climateadapt/browser/countries.py:160
+msgid "Climate change impact and vulnerability assessments"
+msgstr ""
 
 # ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:111
@@ -222,7 +247,7 @@ msgid "Coastal areas"
 msgstr "Parti szakaszok"
 
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:215
+#: ../../climateadapt/browser/pt/ace_macros.pt:218
 msgid "Comments:"
 msgstr "Hozzászólások:"
 
@@ -244,11 +269,12 @@ msgid "Contact person"
 msgstr "Kapcsolattartó"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:35
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:213
 msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
 msgstr ""
 
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:202
+#: ../../climateadapt/browser/pt/ace_macros.pt:205
 msgid "Contributor:"
 msgstr "Hozzájáruló:"
 
@@ -264,7 +290,7 @@ msgid "Countries"
 msgstr "Országok"
 
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:250
+#: ../../climateadapt/browser/pt/ace_macros.pt:253
 msgid "Countries:"
 msgstr "Országok:"
 
@@ -285,7 +311,7 @@ msgid "Covenant of Mayors 2030 signatory"
 msgstr "A polgármesteri szövetség 2030 -as aláíró"
 
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:101
+#: ../../climateadapt/browser/pt/ace_macros.pt:104
 msgid "Created by:"
 msgstr "Készítette:"
 
@@ -335,7 +361,7 @@ msgid "Description"
 msgstr "Leírás"
 
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:156
+#: ../../climateadapt/browser/pt/ace_macros.pt:159
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:21
 #: ../../climateadapt/browser/pt/organisation_view.pt:18
 msgid "Description:"
@@ -386,6 +412,10 @@ msgstr "Email"
 #: ../../climateadapt/vocabulary.py:299
 msgid "Energy"
 msgstr "Energia"
+
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:49
+msgid "Explore in detail"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:139
@@ -441,6 +471,7 @@ msgid "Geographic characterization:"
 msgstr "Földrajzi jellemzés:"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:11
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:123
 msgid "Go back"
 msgstr ""
 
@@ -557,7 +588,7 @@ msgid "Last Update"
 msgstr "Utolsó frissítés"
 
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:163
+#: ../../climateadapt/browser/pt/ace_macros.pt:166
 msgid "Lead"
 msgstr "Vezet"
 
@@ -584,6 +615,10 @@ msgstr "Link a metaadatokhoz:"
 #: ../../climateadapt/browser/pt/organisation_view.pt:34
 msgid "Links to further information"
 msgstr "Linkek a további információkhoz"
+
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:74
+msgid "Loading"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/__init__.py:161
@@ -620,7 +655,7 @@ msgstr "A polgármesterek adaptálják az aláírást"
 msgid "Mediterranean"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:111
+#: ../../climateadapt/browser/pt/countries-d3.pt:112
 msgid "NAS and NAP reported as adopted"
 msgstr ""
 
@@ -629,19 +664,23 @@ msgstr ""
 msgid "Name of the strategy/ plan (If adopted)"
 msgstr "A stratégia/ terv neve (ha elfogadják)"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:127
+#: ../../climateadapt/browser/countries.py:158
+msgid "National adaption policy"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:128
 msgid "Neither NAS nor NAP reported as adopted"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:85
+#: ../../climateadapt/browser/pt/countries-d3.pt:86
 msgid "No assessments reported"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:89
+#: ../../climateadapt/browser/pt/countries-d3.pt:90
 msgid "No data reported"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:100
+#: ../../climateadapt/browser/pt/countries-d3.pt:101
 msgid "No portal or platform reported"
 msgstr ""
 
@@ -677,15 +716,15 @@ msgstr "Megfigyelések és forgatókönyvek"
 msgid "Observatory Contributions:"
 msgstr "Obszervatóriumi hozzájárulások:"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:81
+#: ../../climateadapt/browser/pt/countries-d3.pt:82
 msgid "One or more assessments reported"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:115
+#: ../../climateadapt/browser/pt/countries-d3.pt:116
 msgid "Only NAP reported as adopted"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:119
+#: ../../climateadapt/browser/pt/countries-d3.pt:120
 msgid "Only NAS reported as adopted"
 msgstr ""
 
@@ -712,7 +751,7 @@ msgid "Overview list of all indices"
 msgstr ""
 
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:171
+#: ../../climateadapt/browser/pt/ace_macros.pt:174
 msgid "Partners"
 msgstr "Partnerek"
 
@@ -793,6 +832,10 @@ msgstr ""
 msgid "References:"
 msgstr "Hivatkozások:"
 
+#: ../../climateadapt/tiles/pt/transregional_select.pt:123
+msgid "Region's countries:"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/pt/video_view.pt:45
 msgid "Related documents and presentations"
@@ -803,17 +846,21 @@ msgstr "Kapcsolódó dokumentumok és előadások"
 msgid "Relevance"
 msgstr "Jelentőség"
 
+#: ../../climateadapt/tiles/pt/filter_acecontent.pt:40
+msgid "Relevant tile"
+msgstr ""
+
 # ,
 #: ../../climateadapt/vocabulary.py:268
 msgid "Research and knowledge projects"
 msgstr "Kutatási és tudásprojektek"
 
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:109
+#: ../../climateadapt/browser/pt/ace_macros.pt:112
 msgid "Reviewed by:"
 msgstr "Áttekintette:"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:123
+#: ../../climateadapt/browser/pt/countries-d3.pt:124
 msgid "SAP reported as adopted"
 msgstr ""
 
@@ -836,6 +883,10 @@ msgstr "Keresési eredmények"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:73
 msgid "Search results for: ${term}"
 msgstr "Keresési eredmények a következőre: $ {kifejezés}"
+
+#: ../../climateadapt/tiles/pt/search_acecontent.pt:66
+msgid "Search tile"
+msgstr ""
 
 # ,
 #: ../../climateadapt/vocabulary.py:331
@@ -866,7 +917,7 @@ msgstr "Többet látni"
 msgid "See video outside Climate-ADAPT"
 msgstr "Lásd a videót az éghajlat-adapton kívül"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:54
+#: ../../climateadapt/browser/pt/countries-d3.pt:55
 msgid "Select a country to go directly to the country's page:"
 msgstr ""
 
@@ -881,7 +932,8 @@ msgid "Send token emails to City Mayors"
 msgstr "Küldjön token e -maileket a városi polgármestereknek"
 
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:84
+#: ../../climateadapt/browser/pt/ace_macros.pt:87
+#: ../../climateadapt/tiles/pt/search_acecontent.pt:103
 msgid "Share your information"
 msgstr "Ossza meg adatait"
 
@@ -897,7 +949,7 @@ msgid "Source"
 msgstr "Forrás"
 
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:180
+#: ../../climateadapt/browser/pt/ace_macros.pt:183
 msgid "Source of funding"
 msgstr "Finanszírozási forrás"
 
@@ -977,7 +1029,7 @@ msgstr "A dátum a tétel közzétételének legfrissebb dátumára utal"
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
 msgstr "A dátum arra a pillanatra vonatkozik, amelyben a tételt elkészítették vagy frissítették a közreműködő szakértők, akiket az éghajlati adaptusban a kiadványhoz benyújtanak"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:140
+#: ../../climateadapt/browser/pt/countries-d3.pt:141
 msgid "The information presented in these pages is based on the reporting according to 'Regulation (EU) 2018/1999 on the Governance of the Energy Union and Climate Action' and updates by the EEA member countries. However, for those pages where the information is last updated before 01/01/2021, the information presented is based on the reporting according to 'Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change' and updates by the EEA member countries.'"
 msgstr ""
 
@@ -1011,10 +1063,18 @@ msgstr "Szállítás"
 msgid "Urban"
 msgstr "Városi"
 
+#: ../../climateadapt/tiles/pt/filter_acecontent.pt:52
+msgid "View all"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:67
 msgid "View all contributions in the resource catalogue"
 msgstr "Tekintse meg az összes hozzájárulást az erőforráskatalógusban"
+
+#: ../../climateadapt/tiles/pt/relevant_acecontent.pt:119
+msgid "View more"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:18
@@ -1079,6 +1139,10 @@ msgstr "Milyen ágazatokat érint"
 #: ../../climateadapt/browser/pt/item_statistics.pt:19
 msgid "Year: <span>${DYNAMIC_CONTENT}</span>"
 msgstr "Év: <Span> $ {Dynamic_content} </span>"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:140
+msgid "[Disclaimer]"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:33

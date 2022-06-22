@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-27 05:35+0000\n"
+"POT-Creation-Date: 2022-06-07 13:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,131 +17,141 @@ msgstr ""
 "Language: \n"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:378
-#: ../theme/climateadaptv2/health-page-full.html:142
-#: ../theme/climateadaptv2/health-page.html:231
+#: ../theme/climateadaptv2/health-homepage.html:382
+#: ../theme/climateadaptv2/health-page-full.html:147
+#: ../theme/climateadaptv2/health-page.html:235
 msgid "Contact"
 msgstr "Kapcsolatba lépni"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:205
+#: ../theme/climateadaptv2/health-homepage.html:210
 msgid "Country profiles"
 msgstr "Vidéki profilok"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:155
+#: ../theme/climateadaptv2/health-homepage.html:160
 msgid "Discover the main topics and tools of the observatory"
 msgstr "Fedezze fel az obszervatórium fő témáit és eszközeit"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:132
+#: ../theme/climateadaptv2/health-homepage.html:137
 msgid "European Climate <br /> and Health Observatory"
 msgstr "Európai éghajlat <br /> és egészségügyi obszervatórium"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:286
-#: ../theme/climateadaptv2/health-page.html:139
+#: ../theme/climateadaptv2/health-homepage.html:290
+#: ../theme/climateadaptv2/health-page.html:143
 msgid "Events"
 msgstr "Események"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:340
-#: ../theme/climateadaptv2/health-page.html:193
+#: ../theme/climateadaptv2/health-homepage.html:344
+#: ../theme/climateadaptv2/health-page.html:197
 msgid "Find out how to contribute to the Observatory via Climate-ADAPT"
 msgstr "Tudja meg, hogyan lehet hozzájárulni az obszervatóriumhoz az éghajlat-adapton keresztül"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:375
-#: ../theme/climateadaptv2/health-page-full.html:139
-#: ../theme/climateadaptv2/health-page.html:228
+#: ../theme/climateadaptv2/health-homepage.html:379
+#: ../theme/climateadaptv2/health-page-full.html:144
+#: ../theme/climateadaptv2/health-page.html:232
 msgid "Home"
 msgstr "itthon"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:185
+#: ../theme/climateadaptv2/health-homepage.html:190
 msgid "INDICATORS"
 msgstr "Indikátorok"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:169
+#: ../theme/climateadaptv2/health-homepage.html:174
 msgid "Learn more"
 msgstr "Tudj meg többet"
 
+#: ../theme/climateadaptv2/health-homepage.html:325
+#: ../theme/climateadaptv2/health-page.html:178
+msgid "More events"
+msgstr ""
+
+#: ../theme/climateadaptv2/health-homepage.html:308
+#: ../theme/climateadaptv2/health-page.html:161
+msgid "More news"
+msgstr ""
+
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:165
+#: ../theme/climateadaptv2/health-homepage.html:170
 msgid "New"
 msgstr "Új"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:283
-#: ../theme/climateadaptv2/health-page.html:136
+#: ../theme/climateadaptv2/health-homepage.html:287
+#: ../theme/climateadaptv2/health-page.html:140
 msgid "News"
 msgstr "hírek"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:280
-#: ../theme/climateadaptv2/health-page.html:133
+#: ../theme/climateadaptv2/health-homepage.html:284
+#: ../theme/climateadaptv2/health-page.html:137
 msgid "News/Events"
 msgstr "Hírek és Események"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:390
-#: ../theme/climateadaptv2/health-page-full.html:154
-#: ../theme/climateadaptv2/health-page.html:243
+#: ../theme/climateadaptv2/health-homepage.html:394
+#: ../theme/climateadaptv2/health-page-full.html:159
+#: ../theme/climateadaptv2/health-page.html:247
 msgid "Privacy and Legal Notice"
 msgstr "Adatvédelem és jogi értesítés"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:225
+#: ../theme/climateadaptv2/health-homepage.html:230
 msgid "Resource catalogue"
 msgstr "Erőforráskatalógus"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:387
-#: ../theme/climateadaptv2/health-page-full.html:151
-#: ../theme/climateadaptv2/health-page.html:240
+#: ../theme/climateadaptv2/health-homepage.html:391
+#: ../theme/climateadaptv2/health-page-full.html:156
+#: ../theme/climateadaptv2/health-page.html:244
 msgid "SITE MAP"
 msgstr "Helytérkép"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:226
+#: ../theme/climateadaptv2/health-homepage.html:231
 msgid "Search and access the Observatory’s database containing case studies, publications, indicators, research projects and other"
 msgstr "Keresés és hozzáférés az obszervatórium adatbázisához, amely esettanulmányokat, kiadványokat, mutatókat, kutatási projekteket és egyéb"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:206
+#: ../theme/climateadaptv2/health-homepage.html:211
 msgid "See how countries are addressing climate change adaptation in public health"
 msgstr "Nézze meg, hogy az országok hogyan kezelik az éghajlatváltozás adaptációját a közegészségügyben"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:339
-#: ../theme/climateadaptv2/health-page.html:192
+#: ../theme/climateadaptv2/health-homepage.html:343
+#: ../theme/climateadaptv2/health-page.html:196
 msgid "Share <br /> your information"
 msgstr "Ossza meg <br /> Az Ön adatait"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:428
-#: ../theme/climateadaptv2/health-page-full.html:192
-#: ../theme/climateadaptv2/health-page.html:281
+#: ../theme/climateadaptv2/health-homepage.html:432
+#: ../theme/climateadaptv2/health-page-full.html:197
+#: ../theme/climateadaptv2/health-page.html:285
 msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
 msgstr "Ez az <strong> Európai Klíma és Egészségügyi Megfigyelő Intézet </strong> az Európai Bizottság, az Európai Környezetvédelmi Ügynökség és számos más szervezet közötti partnerség."
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:166
+#: ../theme/climateadaptv2/health-homepage.html:171
 msgid "UV Index forecast (CAMS)"
 msgstr "UV -index előrejelzése (CAMS)"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:186
+#: ../theme/climateadaptv2/health-homepage.html:191
 msgid "View climate and health indicators from different trusted information providers"
 msgstr "Az éghajlati és egészségügyi mutatók megtekintése a különböző megbízható információs szolgáltatóktól"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:167
+#: ../theme/climateadaptv2/health-homepage.html:172
 msgid "View the UV Index forecast developed by Copernicus Atmosphere Monitoring Service (CAMS)"
 msgstr "A Copernicus Atmosphere Monitoring Service (CAM) által kidolgozott UV -index -előrejelzés megtekintése"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:133
+#: ../theme/climateadaptv2/health-homepage.html:138
 msgid "We provide easy access to a wide range of relevant publications, tools, websites and other resources related to climate change and human health."
 msgstr "Könnyű hozzáférést biztosítunk a releváns publikációk, eszközök, webhelyek és az éghajlatváltozással és az emberi egészséggel kapcsolatos egyéb források széles skálájához."

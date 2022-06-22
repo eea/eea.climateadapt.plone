@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-27 05:35+0000\n"
+"POT-Creation-Date: 2022-06-07 13:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,25 +16,29 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:77
+msgid "...loading configuration..."
+msgstr ""
+
 #: ../../climateadapt/browser/pt/transnational_regions.pt:415
 msgid "12 regions"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:140
-msgid "<i class=\"fa fa-exclamation-circle\" aria-hidden=\"true\"></i> [Disclaimer] <div id=\"hover-content\">x</div>"
+#: ../../climateadapt/browser/pt/countries-d3.pt:141
+msgid "<i class=\"fa fa-exclamation-circle\" aria-hidden=\"true\"></i> <span>x</span> <div id=\"hover-content\">x</div>"
 msgstr ""
 
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:149
+#: ../../climateadapt/browser/pt/ace_macros.pt:152
 msgid "<strong>Last Modified in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
 msgstr "<strong> ultima modificare în climatizare-adapt </strong> $ {dinamic_content}"
 
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:145
+#: ../../climateadapt/browser/pt/ace_macros.pt:148
 msgid "<strong>Published in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
 msgstr "<strong> Publicat în Climate-Adapt </strong> $ {Dynamic_Content}"
 
@@ -67,8 +71,12 @@ msgstr "Planuri și strategii de adaptare"
 msgid "Adaptation options"
 msgstr "Opțiuni de adaptare"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:96
+#: ../../climateadapt/browser/pt/countries-d3.pt:97
 msgid "Adaptation portal or platform reported"
+msgstr ""
+
+#: ../../climateadapt/browser/countries.py:161
+msgid "Adaptation portals and platforms"
 msgstr ""
 
 # ,
@@ -120,6 +128,14 @@ msgstr "Căutare avansată pentru elemente de bază de date cu adaptare climatic
 #: ../../climateadapt/vocabulary.py:293
 msgid "Agriculture"
 msgstr "Agricultură"
+
+#: ../../climateadapt/tiles/search_acecontent.py:769
+msgid "All adaptation sectors"
+msgstr ""
+
+#: ../../climateadapt/tiles/search_acecontent.py:766
+msgid "All climate impacts"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:419
 msgid "Alpine"
@@ -214,15 +230,20 @@ msgstr "Provocări"
 msgid "Check-out created"
 msgstr "Check-out creat"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:56
+#: ../../climateadapt/browser/pt/countries-d3.pt:57
 msgid "Choose a country"
 msgstr "Alege o tara"
 
+#: ../../climateadapt/tiles/pt/country_select.pt:10
+msgid "Choose a country:"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/transnational_regions.pt:431
+#: ../../climateadapt/tiles/pt/transregional_select.pt:115
 msgid "Choose a region"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:74
+#: ../../climateadapt/browser/pt/countries-d3.pt:75
 msgid "Choose thematic map:"
 msgstr "Alege o tema:"
 
@@ -233,6 +254,10 @@ msgstr "Alege o tema:"
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
 msgid "City"
 msgstr "Oraș"
+
+#: ../../climateadapt/browser/countries.py:160
+msgid "Climate change impact and vulnerability assessments"
+msgstr ""
 
 # ,
 # ,
@@ -269,7 +294,7 @@ msgstr "Zone de coastă"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:215
+#: ../../climateadapt/browser/pt/ace_macros.pt:218
 msgid "Comments:"
 msgstr "Comentarii:"
 
@@ -297,13 +322,14 @@ msgid "Contact person"
 msgstr "Persoana de contact"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:35
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:213
 msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
 msgstr ""
 
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:202
+#: ../../climateadapt/browser/pt/ace_macros.pt:205
 msgid "Contributor:"
 msgstr "Contribuție:"
 
@@ -324,7 +350,7 @@ msgstr "Țări"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:250
+#: ../../climateadapt/browser/pt/ace_macros.pt:253
 msgid "Countries:"
 msgstr "Țări:"
 
@@ -353,7 +379,7 @@ msgstr "Legământul primarilor 2030 Semnatari"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:101
+#: ../../climateadapt/browser/pt/ace_macros.pt:104
 msgid "Created by:"
 msgstr "Creat de:"
 
@@ -419,7 +445,7 @@ msgstr "Descriere"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:156
+#: ../../climateadapt/browser/pt/ace_macros.pt:159
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:21
 #: ../../climateadapt/browser/pt/organisation_view.pt:18
 msgid "Description:"
@@ -482,6 +508,10 @@ msgstr "E-mail"
 #: ../../climateadapt/vocabulary.py:299
 msgid "Energy"
 msgstr "Energie"
+
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:49
+msgid "Explore in detail"
+msgstr ""
 
 # ,
 # ,
@@ -551,6 +581,7 @@ msgid "Geographic characterization:"
 msgstr "Caracterizare geografică:"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:11
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:123
 msgid "Go back"
 msgstr ""
 
@@ -699,7 +730,7 @@ msgstr "Ultima actualizare"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:163
+#: ../../climateadapt/browser/pt/ace_macros.pt:166
 msgid "Lead"
 msgstr "Conduce"
 
@@ -734,6 +765,10 @@ msgstr "Link către metadate:"
 #: ../../climateadapt/browser/pt/organisation_view.pt:34
 msgid "Links to further information"
 msgstr "Link -uri către informații suplimentare"
+
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:74
+msgid "Loading"
+msgstr ""
 
 # ,
 # ,
@@ -779,7 +814,7 @@ msgstr "Primii se adaptează semnatar"
 msgid "Mediterranean"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:111
+#: ../../climateadapt/browser/pt/countries-d3.pt:112
 msgid "NAS and NAP reported as adopted"
 msgstr "Reportate ca adoptate NAS si NAP"
 
@@ -790,19 +825,23 @@ msgstr "Reportate ca adoptate NAS si NAP"
 msgid "Name of the strategy/ plan (If adopted)"
 msgstr "Numele strategiei/ planului (dacă este adoptat)"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:127
+#: ../../climateadapt/browser/countries.py:158
+msgid "National adaption policy"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:128
 msgid "Neither NAS nor NAP reported as adopted"
 msgstr "Nici NAS sau NAP nu sunt raportate"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:85
+#: ../../climateadapt/browser/pt/countries-d3.pt:86
 msgid "No assessments reported"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:89
+#: ../../climateadapt/browser/pt/countries-d3.pt:90
 msgid "No data reported"
 msgstr "Nu sunt raportate date"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:100
+#: ../../climateadapt/browser/pt/countries-d3.pt:101
 msgid "No portal or platform reported"
 msgstr ""
 
@@ -842,15 +881,15 @@ msgstr "Observații și scenarii"
 msgid "Observatory Contributions:"
 msgstr "Contribuții observatorii:"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:81
+#: ../../climateadapt/browser/pt/countries-d3.pt:82
 msgid "One or more assessments reported"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:115
+#: ../../climateadapt/browser/pt/countries-d3.pt:116
 msgid "Only NAP reported as adopted"
 msgstr "Reportate doar ca NAP"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:119
+#: ../../climateadapt/browser/pt/countries-d3.pt:120
 msgid "Only NAS reported as adopted"
 msgstr "Reportate doar ca NAS"
 
@@ -881,7 +920,7 @@ msgstr ""
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:171
+#: ../../climateadapt/browser/pt/ace_macros.pt:174
 msgid "Partners"
 msgstr "Parteneri"
 
@@ -988,6 +1027,10 @@ msgstr ""
 msgid "References:"
 msgstr "Referințe:"
 
+#: ../../climateadapt/tiles/pt/transregional_select.pt:123
+msgid "Region's countries:"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -1002,6 +1045,10 @@ msgstr "Documente și prezentări conexe"
 msgid "Relevance"
 msgstr "Relevanţă"
 
+#: ../../climateadapt/tiles/pt/filter_acecontent.pt:40
+msgid "Relevant tile"
+msgstr ""
+
 # ,
 #: ../../climateadapt/vocabulary.py:268
 msgid "Research and knowledge projects"
@@ -1010,11 +1057,11 @@ msgstr "Proiecte de cercetare și cunoștințe"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:109
+#: ../../climateadapt/browser/pt/ace_macros.pt:112
 msgid "Reviewed by:"
 msgstr "Revizuite de:"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:123
+#: ../../climateadapt/browser/pt/countries-d3.pt:124
 msgid "SAP reported as adopted"
 msgstr "SAP Reportate ca adoptate"
 
@@ -1039,6 +1086,10 @@ msgstr "Rezultatele cautarii"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:73
 msgid "Search results for: ${term}"
 msgstr "Rezultatele căutării pentru: $ {termen}"
+
+#: ../../climateadapt/tiles/pt/search_acecontent.pt:66
+msgid "Search tile"
+msgstr ""
 
 # ,
 #: ../../climateadapt/vocabulary.py:331
@@ -1077,7 +1128,7 @@ msgstr "Vezi mai mult"
 msgid "See video outside Climate-ADAPT"
 msgstr "Vezi videoclipuri în afara climei-adaptatului"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:54
+#: ../../climateadapt/browser/pt/countries-d3.pt:55
 msgid "Select a country to go directly to the country's page:"
 msgstr "Alage o tara pt a fi redirectat la ea:"
 
@@ -1098,7 +1149,8 @@ msgstr "Trimiteți e -mailuri de jetoane către primii orașului"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:84
+#: ../../climateadapt/browser/pt/ace_macros.pt:87
+#: ../../climateadapt/tiles/pt/search_acecontent.pt:103
 msgid "Share your information"
 msgstr "Împărtășește -ți informațiile"
 
@@ -1120,7 +1172,7 @@ msgstr "Sursă"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:180
+#: ../../climateadapt/browser/pt/ace_macros.pt:183
 msgid "Source of funding"
 msgstr "Sursă de finanțare"
 
@@ -1223,7 +1275,7 @@ msgstr "Data se referă la ultima dată de publicare a articolului"
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
 msgstr "Data se referă la momentul în care articolul a fost pregătit sau actualizat prin participanți la experți care să fie transmise pentru publicarea în Climate ADAPT"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:140
+#: ../../climateadapt/browser/pt/countries-d3.pt:141
 msgid "The information presented in these pages is based on the reporting according to 'Regulation (EU) 2018/1999 on the Governance of the Energy Union and Climate Action' and updates by the EEA member countries. However, for those pages where the information is last updated before 01/01/2021, the information presented is based on the reporting according to 'Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change' and updates by the EEA member countries.'"
 msgstr "Informațiile prezentate în aceste pagini se bazează pe raportarea conform „Regulamentului (UE) 2018/1999 privind guvernanța uniunii energetice și acțiunea climatică” și actualizările țărilor membre SEE. Cu toate acestea, pentru acele pagini în care informațiile sunt actualizate ultima dată înainte de 01/01/2021, informațiile prezentate se bazează pe raportarea conform „Regulamentului (UE) nr. 525/2013 privind un mecanism de monitorizare și raportare a emisiilor de gaze cu efect de seră și de raportare. alte informații relevante pentru schimbările climatice” și actualizări ale țărilor membre SEE”."
 
@@ -1264,16 +1316,20 @@ msgid "Urban"
 msgstr "Urban"
 
 # ,
+#: ../../climateadapt/tiles/pt/filter_acecontent.pt:52
+msgid "View all"
+msgstr "Vizualizați toate"
+
+# ,
 # ,
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:67
 msgid "View all contributions in the resource catalogue"
 msgstr "Vizualizați toate contribuțiile din catalogul de resurse"
 
-# ,
-#: ../../climateadapt/tiles/pt/filter_acecontent.pt:52
-msgid "View all"
-msgstr "Vizualizați toate"
+#: ../../climateadapt/tiles/pt/relevant_acecontent.pt:119
+msgid "View more"
+msgstr ""
 
 # ,
 # ,
@@ -1359,6 +1415,10 @@ msgstr "Ce sectoare sunt în cauză"
 msgid "Year: <span>${DYNAMIC_CONTENT}</span>"
 msgstr "An: <span> $ {dinamic_content} </span>"
 
+#: ../../climateadapt/browser/pt/countries-d3.pt:140
+msgid "[Disclaimer]"
+msgstr "[Declinare]"
+
 # ,
 # ,
 # ,
@@ -1390,7 +1450,3 @@ msgstr "filtrează după"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:402
 msgid "text_searchitem_location"
 msgstr "Text_SearchItem_location"
-
-#: ../../climateadapt/browser/pt/countries-d3.pt:140
-msgid "[Disclaimer]"
-msgstr "[Declinare]"

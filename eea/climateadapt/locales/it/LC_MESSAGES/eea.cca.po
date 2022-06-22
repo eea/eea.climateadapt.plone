@@ -18,10 +18,12 @@ msgstr ""
 
 # ,
 # ,
+# ,
 #, 
 msgid "Adaptation options"
 msgstr "Opzioni di adattamento"
 
+# ,
 # ,
 # ,
 #, 
@@ -30,10 +32,12 @@ msgstr "Casi studio"
 
 # ,
 # ,
+# ,
 #, 
 msgid "Countries:"
-msgstr "Nazioni:"
+msgstr "Paesi:"
 
+# ,
 # ,
 # ,
 #, 
@@ -42,10 +46,12 @@ msgstr "Guida"
 
 # ,
 # ,
+# ,
 #, 
 msgid "Indicators"
 msgstr "Indicatori"
 
+# ,
 # ,
 # ,
 #, 
@@ -54,10 +60,12 @@ msgstr "Portali"
 
 # ,
 # ,
+# ,
 #, 
 msgid "Organisations"
 msgstr "Organizzazioni"
 
+# ,
 # ,
 # ,
 #, 
@@ -66,16 +74,19 @@ msgstr "Pubblicazioni e report"
 
 # ,
 # ,
+# ,
 #, 
 msgid "Research and knowledge projects"
 msgstr "Progetti di ricerca e conoscenza"
 
 # ,
 # ,
+# ,
 #, 
 msgid "Tools"
 msgstr "Strumenti"
 
+# ,
 # ,
 # ,
 #, 
