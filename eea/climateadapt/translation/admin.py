@@ -542,7 +542,7 @@ def verify_translation_fields(site, language=None):
             found_missing += 1
 
         #import pdb; pdb.set_trace()
-        logger.info("URL: %s", trans_obj.absolute_url())
+        logger.info("%s URL: %s", found, trans_obj.absolute_url())
         found += 1
 
     logger.info("TotalItems: %s, Found with correct data: %s. Found with mising data: %s. Not found: %s. Missing values: %s",
@@ -680,7 +680,11 @@ def is_obj_skipped_for_translation(obj):
     return False
 
 def get_translation_object(obj, language):
-    translations = TranslationManager(obj).get_translations()
+    try:
+        translations = TranslationManager(obj).get_translations()
+    except Exception:
+        return None
+
     if language not in translations:
         return None
     trans_obj = translations[language]
@@ -946,9 +950,12 @@ def translation_step_3(site, request):
 
     for json_file in json_files:
         nr_files += 1
+        logger.info("PROCESSING file: %s", nr_files)
 
         obj = get_translation_object_from_uid(json_file, catalog)
         trans_obj = get_translation_object(obj, language)
+        if trans_obj is None:
+            continue
 
         file = open("/tmp/jsons/"+json_file, "r")
         json_content = file.read()
@@ -1084,8 +1091,11 @@ def translation_step_4(site, language=None, uid=None):
             ],
     }
 
+    obj_count = 0
     for brain in brains:
         obj = brain.getObject()
+        obj_count += 1
+        logger.info("PROCESSING obj: %s", obj_count)
 
         if obj.portal_type == 'Folder':
             force_unlock(obj)
