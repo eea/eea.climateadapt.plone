@@ -27,6 +27,7 @@
       name="theme.index.html"
       for="*"
       permission="zope.Public"
+      class=".browser.site.Navbar"
       template="./theme/climateadaptv2/index.html"
       />
 

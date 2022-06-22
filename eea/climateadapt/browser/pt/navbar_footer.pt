@@ -9,15 +9,15 @@
   >
 
   <li class="footer-nav-item">
-    <a tal:attributes="href python:view.translate_url('/')" href="/" class="footer-nav-link" i18n:translate="">Home</a>
+    <a href="/" class="footer-nav-link" i18n:translate="">Home</a>
   </li>
   <li class="footer-nav-item">
     <a href="mailto:climate.adapt@eea.europa.eu" class="footer-nav-link" i18n:translate="">Contact</a>
   </li>
   <li class="footer-nav-item">
-    <a tal:attributes="href python:view.translate_url('/sitemap')" href="/sitemap" class="footer-nav-link" i18n:translate="">SITE MAP</a>
+    <a tal:attributes="href python:view.translate_url('/en/sitemap')" href="/sitemap" class="footer-nav-link" i18n:translate="">SITE MAP</a>
   </li>
   <li class="footer-nav-item">
-    <a tal:attributes="href python:view.translate_url('/privacy-and-legal-notice')" href="/privacy-and-legal-notice" class="footer-nav-link" i18n:translate="">Privacy and Legal Notice</a>
+    <a tal:attributes="href python:view.translate_url('/en/privacy-and-legal-notice')" href="/privacy-and-legal-notice" class="footer-nav-link" i18n:translate="">Privacy and Legal Notice</a>
   </li>
 </ul>

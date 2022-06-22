@@ -130,6 +130,7 @@
                 Climate Change Service in support of climate change adaptation.</p>
               <div class="bottom-section">
                 <a class="standard-button primary-button feature-btn"
+                tal:attributes="href python:view.translate_url('/en/knowledge/european-climate-data-explorer/')"
                 href="/knowledge/european-climate-data-explorer/" i18n:translate="">
                 Go to the European Climate Data Explorer</a>
               </div>
@@ -278,7 +279,7 @@
           <div class="text-center">
             <p i18n:translate="">The database contains quality checked information and is annotated
                by climate adaptation experts with keywords.</p>
-            <p i18n:translate="">Please check our <a href="/help/guidance">Guidance to search function</a> for more help on how to search the database.</p>
+            <p i18n:translate="">Please check our <a href="/help/guidance" tal:attributes="href python:view.translate_url('/en/help/guidance')">Guidance to search function</a> for more help on how to search the database.</p>
           </div>
 
           <div class="db-categories flex-wrapper">
@@ -396,7 +397,7 @@
           {{> partials/tab-policies }}
           <div class="see-more-link">
             <p i18n:translate="">For more informations visit:
-              <a href="/cca/eu-adaptation-policy/sector-policies">
+              <a href="/eu-adaptation-policy/sector-policies" tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies')">
                 <i class="fa fa-angle-double-right"></i>
                 EU Sector Policies
               </a>
@@ -448,7 +449,7 @@
                 support of EEA, following a set of
                 <a href="https://climate-adapt.eea.europa.eu/repository/11090223.pdf">criteria</a>
                 and also in collaboration with the main stakeholders.
-                See the <a href="../knowledge/tools/case-studies-climate-adapt">Case Studies Page</a>.</p>
+                See the <a href="../knowledge/tools/case-studies-climate-adapt" tal:attributes="href python:view.translate_url('/en/knowledge/tools/case-studies-climate-adapt')">Case Studies Page</a>.</p>
               <div class="ca-booklet">
                 <img class="lazyload"
                      data-src="{{ themeurl }}/static/images/ca-booklet.png"
