@@ -109,14 +109,14 @@ msgstr "<i class=\"fa fa-search\"></i>"
 #: ../theme/climateadaptv2/index.html:434
 #, 
 msgid "<span class=\"d-icon ast-icon\"></span> Adaptation <br /> Support Tool"
-msgstr "<span class=\"d-icon ast-icon\">< /span> Anpassung <br /> Support-Tool"
+msgstr "<span class=\"d-icon ast-icon\"></span> Anpassung <br /> Support-Tool"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:428
 #, 
 msgid "<span class=\"d-icon case-icon\"></span> Case <br /> Studies"
-msgstr "<span class=\"d-icon case-icon\">< /span> Fall <br /> Studien"
+msgstr "<span class=\"d-icon case-icon\"></span> Fall <br /> Studien"
 
 # ,
 # ,
@@ -137,7 +137,7 @@ msgstr "<span class=\"d-icon eu-icon\"></span> Land <br /> Profile"
 #: ../theme/climateadaptv2/index.html:416
 #, 
 msgid "<span class=\"d-icon policy-icon\"></span> EU Sector <br /> Policies"
-msgstr "<span class=\"d-icon policy-icon\">< /span> EU-Sektor <br /> Richtlinien"
+msgstr "<span class=\"d-icon policy-icon\"></span> EU-Sektor <br /> Richtlinien"
 
 # ,
 # ,
@@ -525,7 +525,7 @@ msgstr "Abonnieren"
 #: ../theme/climateadaptv2/index.html:1448
 #, 
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
-msgstr "Abonnieren Sie unseren <strong> RSS -Feed < /strong> <br /> und bleiben Sie auf dem neuesten Stand!"
+msgstr "Abonnieren Sie unseren <strong> RSS -Feed </strong> <br /> und bleiben Sie auf dem neuesten Stand!"
 
 # ,
 # ,

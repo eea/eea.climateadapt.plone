@@ -22,7 +22,7 @@ msgstr ""
 #: ../theme/climateadaptv2/index.html:403
 #, 
 msgid "<a href=\"#t-started\"> <span class=\"d-icon feature-icon\"></span> New <br /> feature </a>"
-msgstr "<a href=\"#t-started\"> <span class = \"d-icon característica-icon\"> </span> Nueva <br /> característica </a>"
+msgstr "<a href=\"#t-started\"> <span class = \"d-icon característica-icon\"></span> Nueva <br /> característica </a>"
 
 # ,
 # ,
