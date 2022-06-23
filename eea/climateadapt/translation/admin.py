@@ -1089,6 +1089,7 @@ def translation_step_4(site, language=None, uid=None):
             "start", "end", "effective", "timezone", "contact_email",
             "contact_name"
             ],
+        "File": ["file"]
     }
 
     obj_count = 0
@@ -1099,20 +1100,23 @@ def translation_step_4(site, language=None, uid=None):
 
         if obj.portal_type == 'Folder':
             force_unlock(obj)
-            translations = TranslationManager(obj).get_translations()
-            obj_en = translations.pop('en')
-            layout_en = obj_en.getLayout()
-            default_view_en = obj_en.getDefaultPage()
+            try:
+                translations = TranslationManager(obj).get_translations()
+            except:
+                pass
+
+            layout_en = obj.getLayout()
+            default_view_en = obj.getDefaultPage()
 
             if default_view_en is not None:
-                layout_default_view_en = obj_en[default_view_en].getLayout()
+                layout_default_view_en = obj[default_view_en].getLayout()
 
             try:
                 trans_obj = translations[language]
             except KeyError:
                 logger.info("Missing translation for: %s", obj.absolute_url())
                 continue
-
+            
             # set the layout of the translated object to match the EN object
             trans_obj.setLayout(layout_en)
 
@@ -1129,10 +1133,15 @@ def translation_step_4(site, language=None, uid=None):
             trans_obj.reindexObject()
 
         if obj.portal_type in language_independent_fields:
+            force_unlock(obj)
             obj_url = obj.absolute_url()
             logger.info("PROCESS: %s", obj_url)
 
-            translations = TranslationManager(obj).get_translations()
+            try:
+                translations = TranslationManager(obj).get_translations()
+            except:
+                pass
+
             try:
                 trans_obj = translations[language]
             except KeyError:
@@ -1175,6 +1184,7 @@ def translation_step_4(site, language=None, uid=None):
                 continue
 
     logger.info("Finalize step 4")
+    return("Finalize step 4")
 
 
 def translation_list_type_fields(site):
