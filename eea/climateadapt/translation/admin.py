@@ -469,7 +469,7 @@ def verify_translation_fields(site, language=None):
     report_detalied = []
     skip_items = ['.jpg','.pdf','.png']
     skip_fields = ["sync_uid", "allow_discussion"]
-    skip_types = ['File', 'Image']
+    # skip_types = ['File', 'Image']
 
     for brain in brains:
         obj = brain.getObject()
@@ -478,8 +478,8 @@ def verify_translation_fields(site, language=None):
 
         obj_url = obj.absolute_url()
 
-        if obj.portal_type in skip_types:
-            continue
+        # if obj.portal_type in skip_types:
+        #     continue
 
         if obj.portal_type not in report:
             report[obj.portal_type] = {}
