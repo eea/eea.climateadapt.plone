@@ -27,7 +27,7 @@ logger = logging.getLogger('eea.climateadapt')
 #     format='%(levelname)s - %(message)s')
 
 REQUEST = {
-    "language": "de",
+    "language": "de",  # do not use uppercase, it will fail on saving translations
     "uid": "",
     "limit": 10000,  # this is our default, as used in latest demo translations
     "offset": 0,
