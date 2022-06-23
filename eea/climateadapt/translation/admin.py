@@ -1062,7 +1062,7 @@ def translation_step_4(site, language=None, uid=None):
         "eea.climateadapt.mapgraphdataset": ["storage_type", "spatial_values"],
         "Collection": ["sort_reversed", "query"],
         "Document": ["table_of_contents"],
-        "News Item": ["health_impacts"],
+        "News Item": ["health_impacts", "image"],
         "eea.climateadapt.casestudy": [
             "geolocation", "implementation_type", "spatial_values",
             ],
@@ -1089,7 +1089,8 @@ def translation_step_4(site, language=None, uid=None):
             "start", "end", "effective", "timezone", "contact_email",
             "contact_name"
             ],
-        "File": ["file"]
+        "File": ["file"],
+        "Image": ["image"]
     }
 
     obj_count = 0
