@@ -16,12 +16,19 @@ $(document).ready(() => {
 
     let sections = [
       ["Key messages", "key-messages"],
+      ["Just resilience - overcoming inequalities in climate risks and adaptation action", "just-resilience"],
+      ["Potential of Nature-based solutions for adaptation policies and actions under a changing climate", "potential-of-nature-based-solutions"],
       ["Impacts and vulnerabilities", "impacts-and-vulnerabilities"],
       ["Policy framework", "policy-framework"],
       ["Improving the knowledge base", "improving-the-knowledge-base"],
+      ["Improvement of the knowledge base", "improvement-of-the-knowledge-base"],
       ["Supporting investment and funding", "supporting-investment-and-funding"],
+      ["Supporting funding and investment", "supporting-funding-and-investment"],
       ["Supporting the implementation", "supporting-the-implementation"],
-      ["MRE of adaptation", "mre-of-adaptation"]
+      ["MRE of adaptation", "mre-of-adaptation"],
+      ["MRE of progress on using Nature-based adaptation", "mre-of-progress"]
+
+
     ];
 
     function querySelectorIncludesText (selector, text) {
