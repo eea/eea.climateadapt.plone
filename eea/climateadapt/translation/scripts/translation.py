@@ -29,7 +29,7 @@ logger = logging.getLogger('eea.climateadapt')
 REQUEST = {
     "language": "de",
     "uid": "",
-    "limit": 0,
+    "limit": 10000,  # this is our default, as used in latest demo translations
     "offset": 0,
     "portal_type": ""
 }
