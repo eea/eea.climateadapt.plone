@@ -28,6 +28,13 @@
       />
 
   <browser:page
+      name="admin-translation-repaire"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".admin.TranslateRepaire"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
       name="admin-run-translation"
       for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
       class=".admin.RunTranslation"

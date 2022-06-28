@@ -447,14 +447,22 @@ def verify_cloned_language(site, language=None):
 
     return "\n".join(res)
 
-def verify_translation_fields(site, language=None):
+def verify_translation_fields(site, request):
+    language = request.get('language', None)
+    uid = request.get('uid', None)
+    stop_pdb = request.get('stop_pdb', None)
     """ Get all objects in english and check if all of them are cloned for
         given language and with fields filled.
     """
     if language is None:
         return "Missing language parameter. (Example: ?language=it)"
     catalog = site.portal_catalog
-    brains = catalog.searchResults(path='/cca/en')
+    #brains = catalog.searchResults(path='/cca/en')
+    catalogSearch = {}
+    catalogSearch['path'] = '/cca/en'
+    if uid:
+        catalogSearch['UID'] = uid
+    brains = catalog.searchResults(catalogSearch)
     site_url = portal.getSite().absolute_url()
     logger.info("I will list the missing translation fields. Checking...")
 
@@ -509,7 +517,10 @@ def verify_translation_fields(site, language=None):
         for k, v in getFieldsInOrder(obj.getTypeInfo().lookupSchema()):
             fields.update({k: v})
 
+        logger.info("%s URL: %s", found, trans_obj.absolute_url())
         fields_missing = []
+        if stop_pdb:
+            import pdb; pdb.set_trace()
         for field in fields.keys():
             if field in skip_fields:
                 continue
@@ -521,8 +532,36 @@ def verify_translation_fields(site, language=None):
                 continue
             #if bool(getattr(obj, field)) and not bool(getattr(trans_obj,field)):
             #        fields_missing.append(field)
-            missing = object()
-            if not getattr(obj,field,missing) in (missing, None) and getattr(trans_obj,field,missing) in (missing, None):
+            mark_field = False
+            if isinstance(getattr(obj, field), RichTextValue):
+                obj_val = getattr(obj, field).output
+                trans_obj_val = ''
+                if isinstance(getattr(trans_obj, field), RichTextValue):
+                    trans_obj_val = getattr(trans_obj, field).output
+                else:
+                    trans_obj_val = getattr(trans_obj, field, None)
+                    if not trans_obj_val:
+                        trans_obj_val = ''
+                if len(obj_val) and 0 == len(trans_obj_val):
+                    mark_field = True
+            elif isinstance(getattr(obj, field), unicode):
+                obj_val = getattr(obj, field)
+                trans_obj_val = ''
+                if isinstance(getattr(trans_obj, field), unicode):
+                    trans_obj_val = getattr(trans_obj, field)
+                elif isinstance(getattr(trans_obj, field), RichTextValue):
+                    trans_obj_val = getattr(trans_obj, field).output
+                else:
+                    trans_obj_val = getattr(trans_obj, field, '')
+                    if not trans_obj_val:
+                        trans_obj_val = ''
+                if len(obj_val) and 0 == len(trans_obj_val):
+                    mark_field = True
+            else:
+                missing = object()
+                if not mark_field and not getattr(obj,field,missing) in (missing, None) and getattr(trans_obj,field,missing) in (missing, None):
+                    mark_field = True
+            if mark_field:
                 fields_missing.append(field)
                 missing_values += 1
 
@@ -536,19 +575,20 @@ def verify_translation_fields(site, language=None):
             logger.info("FIELDS NOT SET: %s %s", trans_obj.absolute_url(), fields_missing)
             report_detalied.append({
                     'url': trans_obj.absolute_url(),
+                    'brain_uid': brain.UID,
                     'missing': fields_missing,
                     'portal_type': trans_obj.portal_type
                 })
             found_missing += 1
 
         #import pdb; pdb.set_trace()
-        logger.info("%s URL: %s", found, trans_obj.absolute_url())
         found += 1
 
     logger.info("TotalItems: %s, Found with correct data: %s. Found with mising data: %s. Not found: %s. Missing values: %s",
                 total_items, found, found_missing, not_found, missing_values)
 
     report['_details'] = report_detalied
+    report['_stats'] = {'file':total_items,'found':found,'found_missing':found_missing,'not_found':not_found,'missing_value':missing_value}
     json_object = json.dumps(report, indent=4)
     with open("/tmp/translation_report.json", "w") as outfile:
         outfile.write(json_object)
@@ -778,12 +818,14 @@ def translation_step_1(site, request):
 
     logger.info("RESP %s", res)
 
-def translation_step_2(site, request):
+def translation_step_2(site, request, force_uid=None):
     language = request.get('language', None)
     uid = request.get('uid', None)
     limit = int(request.get('limit', 0))
     offset = int(request.get('offset', 0))
     portal_type = request.get('portal_type', None)
+    if force_uid:
+        uid = force_uid
 
     """ Get all jsons objects in english and call etranslation for each field
         to be translated in specified language.
@@ -896,24 +938,26 @@ def translation_step_2(site, request):
                 False,
             )
         logger.info("TransStep2 File  %s from %s, total files %s",nr_files, len(json_files), total_files)
-        report['date']['last_update'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        report['response'] = {'items': {'nr_files': nr_files, 'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items, 'portal_type':portal_type}
+        if not force_uid:
+            report['date']['last_update'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            report['response'] = {'items': {'nr_files': nr_files, 'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items, 'portal_type':portal_type}
+            report['total_files'] = total_files
+            report['status'] = 'Processing'
+
+            json_object = json.dumps(report, indent = 4)
+            with open("/tmp/translate_step_2_"+language+"_"+report_date+".json", "w") as outfile:
+                outfile.write(json_object)
+        time.sleep(0.5)
+
+    if not force_uid:
+        report['date']['end'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        report['status'] = 'Done'
+        report['response'] = {'items': {'nr_files': nr_files, 'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items}
         report['total_files'] = total_files
-        report['status'] = 'Processing'
 
         json_object = json.dumps(report, indent = 4)
         with open("/tmp/translate_step_2_"+language+"_"+report_date+".json", "w") as outfile:
             outfile.write(json_object)
-        time.sleep(0.5)
-
-    report['date']['end'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    report['status'] = 'Done'
-    report['response'] = {'items': {'nr_files': nr_files, 'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items}
-    report['total_files'] = total_files
-
-    json_object = json.dumps(report, indent = 4)
-    with open("/tmp/translate_step_2_"+language+"_"+report_date+".json", "w") as outfile:
-        outfile.write(json_object)
 
     logger.info("Files: %s, TotalItems: %s, Already translated: %s HtmlItems: %s",
                 nr_files, nr_items, nr_items_translated, nr_html_items)
@@ -1186,6 +1230,39 @@ def translation_step_4(site, language=None, uid=None):
 
     logger.info("Finalize step 4")
     return("Finalize step 4")
+
+
+def translation_repaire(site, request):
+    """ Get all jsons objects in english and overwrite targeted language
+        object with translations.
+    """
+    language = request.get('language', None)
+    file = request.get('file', None)
+    uid = request.get('uid', None)
+    limit = int(request.get('limit', 0))
+    offset = int(request.get('offset', 0))
+    portal_type = request.get('portal_type', None)
+    stop_pdb = request.get('stop_pdb', None)
+
+    if language is None:
+        return "Missing language parameter. (Example: ?language=it)"
+    if file is None:
+        return "Missing file parameter. (Example: ?file=ABC will process /tmp/ABC.json)"
+    file = open("/tmp/"+file+".json", "r")
+    json_content = file.read()
+    if not is_json(json_content):
+        return "Looks like we the file is not valid json"
+    json_data = json.loads(json_content)
+
+    #import pdb; pdb.set_trace()
+    if '_details' not in json_data:
+        return "Details key was not found in json"
+
+    items = json_data['_details']
+    if stop_pdb:
+        import pdb; pdb.set_trace()
+    for item in items:
+        translation_step_2(site, request, item['brain_uid'])
 
 
 def translation_list_type_fields(site):
@@ -1502,7 +1579,7 @@ class VerifyTranslationFields(BrowserView):
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        return verify_translation_fields(getSite(), **kwargs)
+        return verify_translation_fields(getSite(), self.request)
 
 
 class TranslateStep1(BrowserView):
@@ -1553,6 +1630,17 @@ class TranslateStep4(BrowserView):
         if 'uid' in kwargs:
             uid = kwargs['uid']
         return translation_step_4(getSite(), language, uid)
+
+
+class TranslateRepaire(BrowserView):
+    """ Use this view to save the values from annotation in objects fields
+        Usage: /admin-translate-repaire?language=es&file=ABCDEF
+        file : /tmp/[ABCDEF].json
+    """
+
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
+        return translation_repaire(getSite(), self.request)
 
 
 class TranslationListTypeFields(BrowserView):
