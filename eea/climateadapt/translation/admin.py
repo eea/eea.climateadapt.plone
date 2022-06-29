@@ -451,6 +451,7 @@ def verify_translation_fields(site, request):
     language = request.get('language', None)
     uid = request.get('uid', None)
     stop_pdb = request.get('stop_pdb', None)
+    portal_type = request.get('portal_type', None)
     """ Get all objects in english and check if all of them are cloned for
         given language and with fields filled.
     """
@@ -481,6 +482,8 @@ def verify_translation_fields(site, request):
 
     for brain in brains:
         obj = brain.getObject()
+        if portal_type and portal_type!=obj.portal_type:
+            continue
         if is_obj_skipped_for_translation(obj):
             continue
 
@@ -1137,11 +1140,14 @@ def translation_step_4(site, language=None, uid=None):
             "contact_name"
             ],
         "File": ["file"],
-        "Image": ["image"]
+        "Image": ["image"],
+        "collective.cover.content": ["title"]
     }
 
     obj_count = 0
     for brain in brains:
+        if uid and uid != brain.UID:
+            continue
         obj = brain.getObject()
         obj_count += 1
         logger.info("PROCESSING obj: %s", obj_count)
@@ -1299,6 +1305,12 @@ def translation_repaire_step_3(site, request):
         import pdb; pdb.set_trace()
     catalog = site.portal_catalog
     for item in items:
+        if uid and uid != brain.UID:
+            continue
+        if portal_type and portal_type!=obj.portal_type:
+            continue
+        if stop_pdb:
+            import pdb; pdb.set_trace()
         translation_step_3_one_file(item['brain_uid']+'.json', language, catalog, portal_type)
 
 
