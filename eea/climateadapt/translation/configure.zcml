@@ -18,6 +18,15 @@
       permission="zope2.View"
       />
 
+  <browser:viewlet
+      name="translation_check_language_viewlet"
+      for="*"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
+      template="pt/translation_check_language_viewlet.pt"
+      class=".admin.TranslationCheckLanguageViewlet"
+      permission="zope2.View"
+      />
+
   <browser:page
     for="*"
     class=".views.TranslationCallback"

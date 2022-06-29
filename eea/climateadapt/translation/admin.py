@@ -31,6 +31,7 @@ from eea.climateadapt.tiles.richtext import RichTextWithTitle
 from eea.climateadapt.translation import retrieve_translation
 from eea.climateadapt.translation import retrieve_html_translation
 from eea.climateadapt.translation import get_translated
+from eea.climateadapt.translation.utils import get_current_language
 
 from zope.schema import getFieldsInOrder
 from zope.site.hooks import getSite
@@ -591,7 +592,7 @@ def verify_translation_fields(site, request):
                 total_items, found, found_missing, not_found, missing_values)
 
     report['_details'] = report_detalied
-    report['_stats'] = {'file':total_items,'found':found,'found_missing':found_missing,'not_found':not_found,'missing_value':missing_value}
+    report['_stats'] = {'file':total_items,'found':found,'found_missing':found_missing,'not_found':not_found,'missing_value':missing_values}
     json_object = json.dumps(report, indent=4)
     with open("/tmp/translation_report.json", "w") as outfile:
         outfile.write(json_object)
@@ -1307,7 +1308,7 @@ def translation_repaire_step_3(site, request):
     for item in items:
         if uid and uid != brain.UID:
             continue
-        if portal_type and portal_type!=obj.portal_type:
+        if portal_type and portal_type!=item['portal_type']:
             continue
         if stop_pdb:
             import pdb; pdb.set_trace()
@@ -1826,3 +1827,25 @@ class TranslationStateViewlet(ViewletBase):
         transitions = wftool.listActionInfos(object=context)
 
         return [t for t in transitions if t['allowed']]
+
+
+class TranslationCheckLanguageViewlet(ViewletBase):
+    """ Display if we have translation for language set in cookie
+    """
+
+    def get_plone_language(self):
+        #import pdb; pdb.set_trace()
+        return get_current_language(self.context, self.request)
+
+    def get_cookie_language(self):
+        #import pdb; pdb.set_trace()
+        return self.request.cookies.get("I18N_LANGUAGE", "en")
+
+    def get_suggestion_url(self):
+        #import pdb; pdb.set_trace()
+        #check if cookie plone language is not en
+        translations = TranslationManager(self.context).get_translations()
+        cookie_language = self.get_cookie_language()
+        if cookie_language in translations:
+            return translations[cookie_language].absolute_url()
+        return None
