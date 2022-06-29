@@ -962,6 +962,75 @@ def translation_step_2(site, request, force_uid=None):
     logger.info("Files: %s, TotalItems: %s, Already translated: %s HtmlItems: %s",
                 nr_files, nr_items, nr_items_translated, nr_html_items)
 
+def translation_step_3_one_file(json_file, language, catalog, portal_type = None):
+    obj = get_translation_object_from_uid(json_file, catalog)
+    trans_obj = get_translation_object(obj, language)
+    if trans_obj is None:
+        return
+
+    file = open("/tmp/jsons/"+json_file, "r")
+    json_content = file.read()
+    json_data = json.loads(json_content)
+    if portal_type and portal_type!=json_data['portal_type']:
+        return
+    have_change = False
+    if 'tile' in json_data:
+        for tile_id in json_data['tile'].keys():
+            tile_data = json_data['tile'][tile_id]
+            tile_annot_id = 'plone.tiles.data.' + tile_id
+            tile = trans_obj.__annotations__.get(tile_annot_id, None)
+            if not tile:
+                continue
+            for key in tile_data['item'].keys():
+                try:
+                    update = tile.data
+                except AttributeError:
+                    update = tile
+                translated_msg = get_translated(tile_data['item'][key], language.upper())
+                if translated_msg:
+                    update[key] = translated_msg
+                    have_change = True
+                # tile.data.update(update)
+                trans_obj.__annotations__[tile_annot_id] = update
+
+    for key in json_data['item'].keys():
+        translated_msg = get_translated(json_data['item'][key], language.upper())
+        if translated_msg:
+            # TODO implement cover tiles case
+            # Step 1 and 2 to be updated first, I think
+            # try:
+            #     encoded_text = translated_msg.encode('latin-1')
+            #     tile.data['text'].raw = encoded_text
+            # except AttributeError:
+            #     logger.info("Error for tile. TODO improve.")
+            #     logger.info(tile_id)
+
+            encoded_text = translated_msg.encode('latin-1')
+
+            source_richtext_types = [
+                'eea.climateadapt.publicationreport',
+                'eea.climateadapt.researchproject',
+                'eea.climateadapt.mapgraphdataset',
+                'eea.climateadapt.video',
+                ]
+
+            if key == 'source' and \
+                    obj.portal_type in source_richtext_types:
+                setattr(trans_obj, key, getattr(obj, key))
+                # solves Can not convert 'Elsevier' to an IRichTextValue
+                setattr(trans_obj, key, RichTextValue(encoded_text))
+                have_change = True
+            else:
+                try:
+                    setattr(trans_obj, key, encoded_text)
+                    have_change = True
+                except AttributeError:
+                    logger.info("AttributeError for obj: %s key: %s",
+                                obj.absolute_url(), key)
+    if have_change:
+        trans_obj._p_changed = True
+        trans_obj.reindexObject()
+
 def translation_step_3(site, request):
     """ Get all jsons objects in english and overwrite targeted language
         object with translations.
@@ -996,73 +1065,7 @@ def translation_step_3(site, request):
         nr_files += 1
         logger.info("PROCESSING file: %s", nr_files)
 
-        obj = get_translation_object_from_uid(json_file, catalog)
-        trans_obj = get_translation_object(obj, language)
-        if trans_obj is None:
-            continue
-
-        file = open("/tmp/jsons/"+json_file, "r")
-        json_content = file.read()
-        json_data = json.loads(json_content)
-        if portal_type and portal_type!=json_data['portal_type']:
-            continue
-        have_change = False
-        if 'tile' in json_data:
-            for tile_id in json_data['tile'].keys():
-                tile_data = json_data['tile'][tile_id]
-                tile_annot_id = 'plone.tiles.data.' + tile_id
-                tile = trans_obj.__annotations__.get(tile_annot_id, None)
-                if not tile:
-                    continue
-                for key in tile_data['item'].keys():
-                    try:
-                        update = tile.data
-                    except AttributeError:
-                        update = tile
-                    translated_msg = get_translated(tile_data['item'][key], language.upper())
-                    if translated_msg:
-                        update[key] = translated_msg
-                        have_change = True
-                    # tile.data.update(update)
-                    trans_obj.__annotations__[tile_annot_id] = update
-
-        for key in json_data['item'].keys():
-            translated_msg = get_translated(json_data['item'][key], language.upper())
-            if translated_msg:
-                # TODO implement cover tiles case
-                # Step 1 and 2 to be updated first, I think
-                # try:
-                #     encoded_text = translated_msg.encode('latin-1')
-                #     tile.data['text'].raw = encoded_text
-                # except AttributeError:
-                #     logger.info("Error for tile. TODO improve.")
-                #     logger.info(tile_id)
-
-                encoded_text = translated_msg.encode('latin-1')
-
-                source_richtext_types = [
-                    'eea.climateadapt.publicationreport',
-                    'eea.climateadapt.researchproject',
-                    'eea.climateadapt.mapgraphdataset',
-                    'eea.climateadapt.video',
-                    ]
-
-                if key == 'source' and \
-                        obj.portal_type in source_richtext_types:
-                    setattr(trans_obj, key, getattr(obj, key))
-                    # solves Can not convert 'Elsevier' to an IRichTextValue
-                    setattr(trans_obj, key, RichTextValue(encoded_text))
-                    have_change = True
-                else:
-                    try:
-                        setattr(trans_obj, key, encoded_text)
-                        have_change = True
-                    except AttributeError:
-                        logger.info("AttributeError for obj: %s key: %s",
-                                    obj.absolute_url(), key)
-        if have_change:
-            trans_obj._p_changed = True
-            trans_obj.reindexObject()
+        translation_step_3_one_file(json_file, language, catalog, portal_type)
 
         report['date']['last_update'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         report['response'] = {'last_item': json_file, 'files_processd': nr_files}
@@ -1079,7 +1082,7 @@ def translation_step_3(site, request):
     with open("/tmp/translate_step_3_"+language+"_"+report_date+".json", "w") as outfile:
         outfile.write(json_object)
 
-    logger.info("Fianlize step 3")
+    logger.info("Finalize step 3")
 
 
 def translation_step_4(site, language=None, uid=None):
@@ -1161,7 +1164,7 @@ def translation_step_4(site, language=None, uid=None):
             except KeyError:
                 logger.info("Missing translation for: %s", obj.absolute_url())
                 continue
-            
+
             # set the layout of the translated object to match the EN object
             trans_obj.setLayout(layout_en)
 
@@ -1263,6 +1266,40 @@ def translation_repaire(site, request):
         import pdb; pdb.set_trace()
     for item in items:
         translation_step_2(site, request, item['brain_uid'])
+
+
+def translation_repaire_step_3(site, request):
+    """ Get all jsons objects in english and overwrite targeted language
+        object with translations.
+    """
+    language = request.get('language', None)
+    file = request.get('file', None)
+    uid = request.get('uid', None)
+    limit = int(request.get('limit', 0))
+    offset = int(request.get('offset', 0))
+    portal_type = request.get('portal_type', None)
+    stop_pdb = request.get('stop_pdb', None)
+
+    if language is None:
+        return "Missing language parameter. (Example: ?language=it)"
+    if file is None:
+        return "Missing file parameter. (Example: ?file=ABC will process /tmp/ABC.json)"
+    file = open("/tmp/"+file+".json", "r")
+    json_content = file.read()
+    if not is_json(json_content):
+        return "Looks like we the file is not valid json"
+    json_data = json.loads(json_content)
+
+    #import pdb; pdb.set_trace()
+    if '_details' not in json_data:
+        return "Details key was not found in json"
+
+    items = json_data['_details']
+    if stop_pdb:
+        import pdb; pdb.set_trace()
+    catalog = site.portal_catalog
+    for item in items:
+        translation_step_3_one_file(item['brain_uid']+'.json', language, catalog, portal_type)
 
 
 def translation_list_type_fields(site):
@@ -1641,6 +1678,16 @@ class TranslateRepaire(BrowserView):
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
         return translation_repaire(getSite(), self.request)
+
+class TranslateRepaireStep3(BrowserView):
+    """ Use this view to save the values from annotation in objects fields
+        Usage: /admin-translate-repaire-step-3?language=es&file=ABCDEF
+        file : /tmp/[ABCDEF].json
+    """
+
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
+        return translation_repaire_step_3(getSite(), self.request)
 
 
 class TranslationListTypeFields(BrowserView):
