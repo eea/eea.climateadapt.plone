@@ -1,5 +1,3 @@
-<div style="border:1px solid #000;" tal:condition="view/show_display_message">
-  <strong tal:content="python: view.get_plone_language()">CURRENT PLONE PLANGUAGE</strong>
-  <strong tal:content="python: view.get_cookie_language()">CURRENT COOKIE PLANGUAGE</strong>
-  <a href="" tal:attributes="href python: view.get_suggestion_url()">suggested url</a>
+<div style="padding-bottom:10px;" tal:condition="view/show_display_message">
+  Based on your prefferencs, you can view this page in  <strong tal:content="python: view.get_cookie_language()">CURRENT COOKIE PLANGUAGE</strong> <a href="" tal:attributes="href python: view.get_suggestion_url()">here</a>
 </div>
