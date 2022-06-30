@@ -1833,6 +1833,12 @@ class TranslationCheckLanguageViewlet(ViewletBase):
     """ Display if we have translation for language set in cookie
     """
 
+    def show_display_message(self):
+        #import pdb; pdb.set_trace()
+        if self.get_plone_language()!=self.get_cookie_language():
+            return True
+        return None
+
     def get_plone_language(self):
         #import pdb; pdb.set_trace()
         return get_current_language(self.context, self.request)
