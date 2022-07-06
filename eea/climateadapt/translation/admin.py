@@ -1102,47 +1102,60 @@ def translation_step_4(site, language=None, uid=None):
     logger.info("Start copying values for language independent fields...")
 
     language_independent_fields = {
+        "Folder": ["effective"],
+        "eea.climateadapt.video": ["effective"],
+        "Link": ["effective"],
+        "eea.climateadapt.c3sindicator": ["effective"],
+        "eea.climateadapt.city_profile": ["effective"],
+        "eea.climateadapt.researchproject": ["effective"],
         "eea.climateadapt.tool": [
-            "spatial_values", "storage_type", "publication_date",
+            "spatial_values", "storage_type", "publication_date", "effective",
             ],
         "eea.climateadapt.guidancedocument": [
-            "storage_type", "spatial_values",
+            "storage_type", "spatial_values", "effective",
             ],
-        "EasyForm": ["showFields"],
-        "eea.climateadapt.adaptationoption": ["implementation_type"],
-        "eea.climateadapt.mapgraphdataset": ["storage_type", "spatial_values"],
-        "Collection": ["sort_reversed", "query"],
-        "Document": ["table_of_contents"],
-        "News Item": ["health_impacts", "image"],
+        "EasyForm": ["showFields", "effective"],
+        "eea.climateadapt.adaptationoption": [
+            "implementation_type", "effective",
+            ],
+        "eea.climateadapt.mapgraphdataset": [
+            "storage_type", "spatial_values", "effective",
+            ],
+        "Collection": ["sort_reversed", "query", "effective"],
+        "Document": ["table_of_contents", "effective"],
+        "News Item": ["health_impacts", "image", "effective"],
         "eea.climateadapt.casestudy": [
             "geolocation", "implementation_type", "spatial_values",
+            "effective",
             ],
         "eea.climateadapt.aceproject": [
             "specialtagging", "spatial_values", "funding_programme",
+            "effective"
             ],
         "eea.climateadapt.indicator": [
-            "publication_date", "storage_type", "spatial_values"
+            "publication_date", "storage_type", "spatial_values", "effective",
             ],
         "eea.climateadapt.informationportal": [
-            "spatial_values", "storage_type", "publication_date"
+            "spatial_values", "storage_type", "publication_date", "effective"
             ],
         "eea.climateadapt.organisation": [
-            "storage_type", "spatial_values", "publication_date"
+            "storage_type", "spatial_values", "publication_date", "effective",
             ],
         "eea.climateadapt.publicationreport": [
-            "storage_type", "spatial_values", "metadata",
+            "storage_type", "spatial_values", "metadata", "effective",
             ],
         "Event": [
             "start", "end", "effective", "timezone", "event_url",
-            "health_impacts", "contact_email", "location", "contact_name"
+            "health_impacts", "contact_email", "location", "contact_name",
+            "effective",
             ],
         "cca-event": [
             "start", "end", "effective", "timezone", "contact_email",
             "contact_name"
             ],
-        "File": ["file"],
-        "Image": ["image"],
-        "collective.cover.content": ["title"]
+        "File": ["file", "effective"],
+        "Image": ["image", "effective"],
+        "collective.cover.content": ["title", "effective"],
     }
 
     obj_count = 0
