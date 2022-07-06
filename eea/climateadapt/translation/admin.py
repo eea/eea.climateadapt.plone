@@ -1153,30 +1153,51 @@ def translation_step_4(site, language=None, uid=None):
         obj_count += 1
         logger.info("PROCESSING obj: %s", obj_count)
 
+        try:
+            translations = TranslationManager(obj).get_translations()
+        except:
+            pass
+
+        try:
+            trans_obj = translations[language]
+        except KeyError:
+            logger.info("Missing translation for: %s", obj.absolute_url())
+            continue
+
+        reindex = False
+
+        if obj.portal_type == 'collective.cover.content':
+            force_unlock(obj)
+            layout_en = obj.getLayout()
+            if layout_en:
+                reindex = True
+                trans_obj.setLayout(layout_en)
+
         if obj.portal_type == 'Folder':
             force_unlock(obj)
-            try:
-                translations = TranslationManager(obj).get_translations()
-            except:
-                pass
 
             layout_en = obj.getLayout()
             default_view_en = obj.getDefaultPage()
+            layout_default_view_en = None
+            if default_view_en:
+                try:
+                    trans_obj.setDefaultPage(default_view_en)
+                    reindex = True
+                except:
+                    logger.info("Can't set default page for: %s",
+                                trans_obj.absolute_url())
+            #else:
+            if not reindex:
+                reindex = True
+                trans_obj.setLayout(layout_en)
 
             if default_view_en is not None:
                 layout_default_view_en = obj[default_view_en].getLayout()
 
-            try:
-                trans_obj = translations[language]
-            except KeyError:
-                logger.info("Missing translation for: %s", obj.absolute_url())
-                continue
-
             # set the layout of the translated object to match the EN object
-            trans_obj.setLayout(layout_en)
 
             # also set the layout of the default view
-            if default_view_en:
+            if layout_default_view_en:
                 try:
                     trans_obj[default_view_en].setLayout(layout_default_view_en)
                 except:
@@ -1203,8 +1224,8 @@ def translation_step_4(site, language=None, uid=None):
                 logger.info("Missing translation for: %s", obj_url)
                 continue
 
-            force_unlock(trans_obj)
-            reindex = False
+            #force_unlock(trans_obj)
+            #reindex = False
 
             fields = language_independent_fields[obj.portal_type]
             for key in fields:
@@ -1232,11 +1253,11 @@ def translation_step_4(site, language=None, uid=None):
                     except Exception:
                         logger.info("Skip: %s %s", obj.portal_type, key)
 
-            if reindex is True:
-                # reindex object
-                trans_obj._p_changed = True
-                trans_obj.reindexObject()
-                continue
+        if reindex is True:
+            # reindex object
+            trans_obj._p_changed = True
+            trans_obj.reindexObject()
+            continue
 
     logger.info("Finalize step 4")
     return("Finalize step 4")
