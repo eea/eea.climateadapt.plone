@@ -52,14 +52,14 @@
         <div class="content-container top-menu-wrapper">
     
           <div class="logo">
-            <a href="/observatory" class="health_logo">
+            <a tal:attributes="href python:view.translate_url('/en/observatory')" href="/observatory" class="health_logo">
               <img src="/++theme++climateadaptv2/static/images/health-logo.svg"
                    alt="Health Observatory Logo"
                    width="182"
                    height="50"
                    />
             </a>
-            <a href="/">
+            <a tal:attributes="href python:view.translate_url('/en')" href="/">
               <img src="static/images/climate-adapt-logo.svg"
                    alt="Climate-ADAPT Logo"
                    width="204"
