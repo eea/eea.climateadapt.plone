@@ -42,6 +42,7 @@
       name="theme.health-homepage.html"
       for="*"
       permission="zope.Public"
+      class=".browser.site.Navbar"
       template="./theme/climateadaptv2/health-homepage.html"
       />
 
