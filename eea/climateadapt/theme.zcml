@@ -35,6 +35,7 @@
       name="theme.page.html"
       for="*"
       permission="zope.Public"
+      class=".browser.site.Navbar"
       template="./theme/climateadaptv2/page.html"
       />
 
@@ -44,6 +45,14 @@
       permission="zope.Public"
       class=".browser.site.Navbar"
       template="./theme/climateadaptv2/health-homepage.html"
+      />
+
+  <browser:page
+      name="theme.health-page-full.html"
+      for="*"
+      permission="zope.Public"
+      class=".browser.site.Navbar"
+      template="./theme/climateadaptv2/health-page-full.html"
       />
 
 </configure>

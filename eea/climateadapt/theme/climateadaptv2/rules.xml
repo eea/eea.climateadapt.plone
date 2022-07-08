@@ -83,7 +83,7 @@
       </rules>
 
       <rules css:if-not-content=".template-health_homepage">
-        <theme href="health-page-full.html" />
+        <theme href="/@@theme.health-page-full.html?diazo.off=1" />
         <drop css:theme=".health-fp-boxes" />
         <drop css:theme=".list_news_events" />
 
