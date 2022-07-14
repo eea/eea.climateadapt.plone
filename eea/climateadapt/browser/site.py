@@ -362,12 +362,9 @@ class Navbar(ExternalTemplateHeader):
         return []
 
     def translate_url(self, url):
-        # TODO fix this
-        #return url
-        if '/' == url:
-            return url
         current_language = get_current_language(self.context, self.request)
-        #import pdb; pdb.set_trace()
+        if '/' == url:
+            return "/?set_language="+current_language
         site = getSite()
         try:
             obj = site.unrestrictedTraverse('/cca'+url)
