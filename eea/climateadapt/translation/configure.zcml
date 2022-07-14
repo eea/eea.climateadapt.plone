@@ -27,6 +27,15 @@
       permission="zope2.View"
       />
 
+  <browser:viewlet
+      name="translation_info_viewlet"
+      for="*"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
+      template="pt/translation_info_viewlet.pt"
+      class=".admin.TranslationInfoViewlet"
+      permission="zope2.View"
+      />
+
   <browser:page
     for="*"
     class=".views.TranslationCallback"
