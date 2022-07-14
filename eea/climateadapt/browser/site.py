@@ -201,6 +201,12 @@ class MenuParser:
                         domain="eea.climateadapt.menu",
                         target_language=self.translation_language);
 
+        if link:
+            if "++aq++" in link:
+                #import pdb; pdb.set_trace()
+                link = link.replace("/en/observatory", "/"+self.translation_language+"/observatory")
+                link = link.replace("/++aq++en/", "/++aq++"+self.translation_language+"/")
+
         item.update({
             'icon': icon.strip() + '</icon>',
             'label': label.strip(),

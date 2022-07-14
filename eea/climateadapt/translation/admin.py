@@ -18,11 +18,13 @@ from plone.app.multilingual.factory import DefaultTranslationFactory
 from plone.app.multilingual.manager import TranslationManager
 from plone.api.portal import get_tool
 from plone.app.textfield.value import RichTextValue
+from plone.app.uuid.utils import uuidToObject
 from plone.behavior.interfaces import IBehaviorAssignable
 from plone.formwidget.geolocation.geolocation import Geolocation
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from plone.namedfile.file import NamedFile, NamedImage
 from plone.tiles.interfaces import ITileDataManager
+from plone.uuid.interfaces import IUUID
 from z3c.relationfield.relation import RelationValue
 from Products.Five.browser import BrowserView
 
@@ -787,6 +789,10 @@ def translation_step_1(site, request):
         search_data['sort_limit'] = limit
     if portal_type:
         search_data['portal_type'] = portal_type
+    #if search_path:
+    #    search_data['path'] = search_path
+    #import pdb; pdb.set_trace()
+
     #brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
     brains = catalog.searchResults(search_data)
     site_url = portal.getSite().absolute_url()
@@ -1179,7 +1185,32 @@ def translation_step_4(site, language=None, uid=None):
 
         reindex = False
 
+        #import pdb; pdb.set_trace()
         if obj.portal_type == 'collective.cover.content':
+            #Set propper collection for current language
+            #WE supose to have only one cards_tile in the list of tiles
+            try:
+                data_tiles = obj.get_tiles()
+                for data_tile in data_tiles:
+                    if data_tile['type'] == 'eea.climateadapt.cards_tile':
+                        data_trans_tiles = obj.get_tiles()
+                        for data_trans_tile in data_trans_tiles:
+                            if data_trans_tile['type'] == 'eea.climateadapt.cards_tile':
+                                #import pdb; pdb.set_trace()
+                                tile = obj.get_tile(data_tile['id'])
+                                trans_tile = trans_obj.get_tile(data_trans_tile['id'])
+
+                                collection_obj = uuidToObject(tile.data["uuid"])
+                                collection_trans_obj = get_translation_object(collection_obj, language)
+
+                                dataManager = ITileDataManager(trans_tile)
+
+                                temp = dataManager.get()
+                                temp['uuid'] = IUUID(collection_trans_obj)
+                                dataManager.set(temp)
+            except KeyError:
+                logger.info("Problem setting collection in tile for language")
+
             force_unlock(obj)
             layout_en = obj.getLayout()
             if layout_en:
