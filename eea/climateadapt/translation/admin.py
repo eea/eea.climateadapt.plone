@@ -1798,6 +1798,11 @@ class TranslationStatus(BrowserView):
         return translations_status(getSite(), **kwargs)
 
 
+class TranslationInfoViewlet(ViewletBase):
+    """ Display translation info for current object
+    """
+
+
 class TranslationStateViewlet(ViewletBase):
     """ Display the translation state
     """
