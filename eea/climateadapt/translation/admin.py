@@ -1801,12 +1801,18 @@ class TranslationStatus(BrowserView):
 class TranslationInfoViewlet(ViewletBase):
     """ Display translation info for current object
     """
+    def get_language(self):
+        return get_current_language(self.context, self.request)
+
+    def is_translated_content(self):
+        if self.get_language() == "en":
+            return False
+        return True
 
 
 class TranslationStateViewlet(ViewletBase):
     """ Display the translation state
     """
-
     trans_wf_id = 'cca_translations_workflow'
     css_types = {
         'not_translated': 'error',
