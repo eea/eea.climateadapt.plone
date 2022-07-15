@@ -6,6 +6,7 @@ import urllib
 
 from collective.cover.tiles.base import (IPersistentCoverTile,
                                          PersistentCoverTile)
+from eea.climateadapt.translation.utils import get_current_language
 from zope import schema
 from zope.interface import implements
 
@@ -64,12 +65,23 @@ class CardsTile(PersistentCoverTile):
         if not context:
             return []
 
-        return context.results()
+        #import pdb; pdb.set_trace()
+        #return context.results()
+
+        # Will return items only for current language instead
+        language = get_current_language(self.context, self.request)
+        results = context.results()
+        response = []
+        for result in results:
+            if result.getPath().startswith("/cca/"+language):
+                response.append(result)
+        return response
 
     def accepted_ct(self):
         return ["Collection"]
 
     def populate_with_object(self, obj):
+        #import pdb; pdb.set_trace()
         super(CardsTile, self).populate_with_object(obj)  # check permission
 
         if obj.portal_type in self.accepted_ct():
@@ -85,7 +97,11 @@ class IndicatorCard(BrowserView):
     """Indicator @@card view"""
 
     def indicator_link(self):
-        return "/observatory/++aq++" + "/".join(self.context.getPhysicalPath()[2:])
+        language = get_current_language(self.context, self.request)
+        link = "/"+language+"/observatory/++aq++" + "/".join(self.context.getPhysicalPath()[2:])
+        #link = link.replace("++aq++en/", "++aq++"+language+"/")
+        link = link.replace("++aq++"+language+"/", "++aq++")
+        return link
 
 
 class OrganisationCard(BrowserView):
@@ -149,4 +165,7 @@ class OrganisationCard(BrowserView):
         return websites[0]
 
     def organisation_link(self):
-        return "/observatory/++aq++" + "/".join(self.context.getPhysicalPath()[2:])
+        language = get_current_language(self.context, self.request)
+        link = "/"+language+"/observatory/++aq++" + "/".join(self.context.getPhysicalPath()[2:])
+        link = link.replace("++aq++"+language+"/", "++aq++")
+        return link

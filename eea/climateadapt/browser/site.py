@@ -201,6 +201,12 @@ class MenuParser:
                         domain="eea.climateadapt.menu",
                         target_language=self.translation_language);
 
+        if link:
+            if "++aq++" in link:
+                #import pdb; pdb.set_trace()
+                link = link.replace("/en/observatory", "/"+self.translation_language+"/observatory")
+                link = link.replace("/++aq++en/", "/++aq++"+self.translation_language+"/")
+
         item.update({
             'icon': icon.strip() + '</icon>',
             'label': label.strip(),
@@ -356,12 +362,9 @@ class Navbar(ExternalTemplateHeader):
         return []
 
     def translate_url(self, url):
-        # TODO fix this
-        #return url
-        if '/' == url:
-            return url
         current_language = get_current_language(self.context, self.request)
-        #import pdb; pdb.set_trace()
+        if '/' == url:
+            return "/?set_language="+current_language
         site = getSite()
         try:
             obj = site.unrestrictedTraverse('/cca'+url)
