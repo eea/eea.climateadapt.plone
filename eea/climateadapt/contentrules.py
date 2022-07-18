@@ -86,7 +86,7 @@ class TranslateAction(SimpleItem):
     summary = _(u"Translate object")
 
 
-@adapter(ITranslateAction, Interface)
+@adapter(Interface, ITranslateAction, Interface)
 @implementer(IExecutable)
 class TranslateActionExecutor(object):
     """The executor for this action."""
