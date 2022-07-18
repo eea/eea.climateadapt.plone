@@ -1095,15 +1095,34 @@ def translation_step_3(site, request):
     logger.info("Finalize step 3")
 
 
-def translation_step_4(site, language=None, uid=None):
+def translation_step_4(site, request):
     """ Copy fields values from en to given language for language independent
         fields.
     """
+    language = request.get('language', None)
+    uid = request.get('uid', None)
+    limit = int(request.get('limit', 0))
+    offset = int(request.get('offset', 0))
+    portal_type = request.get('portal_type', None)
+
     if language is None:
         return "Missing language parameter. (Example: ?language=it)"
-    catalog = site.portal_catalog
 
-    brains = catalog.searchResults(path='/cca/en')
+    catalog = site.portal_catalog
+    search_data = {}
+    search_data['path'] = '/cca/en'
+    if uid:
+        search_data['UID'] = uid
+    if limit:
+        search_data['sort_limit'] = limit
+    if portal_type:
+        search_data['portal_type'] = portal_type
+    #import pdb; pdb.set_trace()
+
+    #brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
+    brains = catalog.searchResults(search_data)
+
+    #brains = catalog.searchResults(path='/cca/en')
     site_url = portal.getSite().absolute_url()
     logger.info("Start copying values for language independent fields...")
 
@@ -1738,13 +1757,7 @@ class TranslateStep4(BrowserView):
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        language = None
-        uid = None
-        if 'language' in kwargs:
-            language = kwargs['language']
-        if 'uid' in kwargs:
-            uid = kwargs['uid']
-        return translation_step_4(getSite(), language, uid)
+        return translation_step_4(getSite(), self.request)
 
 
 class TranslateRepaire(BrowserView):
