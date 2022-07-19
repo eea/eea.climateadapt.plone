@@ -1,5 +1,7 @@
 from zope.component import getMultiAdapter
 from Products.CMFCore.utils import getToolByName
+from plone import api
+from plone.app.multilingual.manager import TranslationManager
 
 def get_current_language(context, request):
     context = context.aq_inner
@@ -14,3 +16,12 @@ def translate_text(context, request, text, domain=u'eea.climateadapt'):
             domain=domain,
             target_language=current_language
             )
+
+def get_site_languages():
+    try:
+        languages = TranslationManager(
+                api.portal.get().restrictedTraverse("en")
+                ).get_translations().keys()
+        return languages
+    except Exception:
+        return []
