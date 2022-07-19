@@ -1659,7 +1659,42 @@ def execute_trans_script(site, language):
 
 
 def verfiy_unlinked_translation(site, request):
-    """ Clone the content to be translated
+    """ Clone the content to be translated if not exist
+    """
+    language = request.get('language', None)
+    available_languages = ['es','de','it','pl','fr']
+    check_nr_languages = request.get('check_nr_languages', len(available_languages)+1)
+    uid = request.get('uid', None)
+    limit = int(request.get('limit', 0))
+    offset = int(request.get('offset', 0))
+    portal_type = request.get('portal_type', None)
+
+    catalog = site.portal_catalog
+    language_container = site['en']
+
+    # get and parse all objects under /en/
+    res = get_all_objs(language_container)
+
+    failed_translations = []
+    count = 0
+    for brain in res:
+        obj = brain.getObject()
+
+        if uid and uid != brain.UID:
+            continue
+        if portal_type and portal_type!=obj.portal_type:
+            continue
+
+        translations = TranslationManager(obj).get_translations()
+
+        if len(translations)<check_nr_languages:
+            logger.info(obj.absolute_url())
+            for available_language in available_languages:
+                create_translation_object(obj, available_language)
+
+
+def report_unlinked_translation(site, request):
+    """ Report untranslated items
     """
     language = request.get('language', None)
     available_languages = ['es','de','it','pl','fr']
@@ -1673,16 +1708,20 @@ def verfiy_unlinked_translation(site, request):
     language_container = site['en']
     #import pdb; pdb.set_trace()
 
-    errors = []
+    response = []
     # get and parse all objects under /en/
-    res = get_all_objs(language_container)
+    brains = get_all_objs(language_container)
 
     failed_translations = []
     count = 0
-    for brain in res:
+    for brain in brains:
+        obj = brain.getObject()
+
         if uid and uid != brain.UID:
             continue
-        obj = brain.getObject()
+        if portal_type and portal_type!=obj.portal_type:
+            continue
+
         translations = TranslationManager(obj).get_translations()
         #import pdb; pdb.set_trace()
 
@@ -1690,28 +1729,9 @@ def verfiy_unlinked_translation(site, request):
         #logger.info(count)
 
         if len(translations)<check_nr_languages:
-            logger.info(obj.absolute_url())
-            for available_language in available_languages:
-                create_translation_object(obj, available_language)
+            response.append(obj.absolute_url())
 
-        count += 1
-        ####
-        continue
-
-        try:
-            create_translation_object(obj, language)
-            logger.info("Cloned: %s" % obj.absolute_url())
-        except Exception as err:
-            logger.info("Error cloning: %s" % obj.absolute_url())
-            if err.message == 'Translation already exists':
-                continue
-            else:
-                errors.append(obj)
-                # import pdb; pdb.set_trace()
-
-        if count % 200 == 0:
-            logger.info("Processed %s objects" % count)
-            transaction.commit()
+    return response
 
 
 def admin_some_translated(site, items):
@@ -1775,6 +1795,16 @@ class VerfiyUnlinkedTranslation(BrowserView):
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
         return verfiy_unlinked_translation(getSite(), self.request)
+
+
+class ReportUnlinkedTranslation(BrowserView):
+    """ Check items which does not have relation to english
+        Usage: /admin-report-unlinked-translation
+    """
+
+    def report(self, **kwargs):
+        kwargs.update(self.request.form)
+        return report_unlinked_translation(getSite(), self.request)
 
 
 class VerifyClonedLanguage(BrowserView):
