@@ -1860,11 +1860,11 @@ class TranslationInfoViewlet(ViewletBase):
             actual_url = self.request.get("ACTUAL_URL")
             if url == actual_url:
                 return True
-            else:
-                if "folder_contents" in actual_url:
-                    return False
-                else:
-                    return True
+
+            if "folder_contents" in actual_url:
+                return False
+
+            return True
 
         return False
 
