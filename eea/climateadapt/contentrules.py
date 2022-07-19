@@ -14,6 +14,7 @@ from zope.interface import Interface, implementer
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.translation.admin import translate_obj
+from eea.climateadapt.translation.admin import create_translation_object
 
 
 class IReindexAction(Interface):
@@ -97,12 +98,17 @@ class TranslateActionExecutor(object):
         self.event = event
 
     def __call__(self):
-        import pdb; pdb.set_trace()
         obj = self.event.object
-        wftool = get_tool("portal_workflow")
 
         transaction.savepoint()
 
+        language = "it"  # TODO get all languages
+        try:
+            create_translation_object(obj, language)
+        except Exception as err:
+            import pdb; pdb.set_trace()
+
+        import pdb; pdb.set_trace()
         try:
             result = translate_obj(obj)
             wftool.doActionFor(obj, 'send_to_translation_not_approved')
