@@ -1849,9 +1849,24 @@ class TranslationInfoViewlet(ViewletBase):
         return get_current_language(self.context, self.request)
 
     def is_translated_content(self):
-        if self.get_language() == "en":
+        obj_language = self.get_language()
+        if obj_language == "en":
             return False
-        return True
+
+        translations = TranslationManager(self.context).get_translations()
+        trans_obj = translations.get(obj_language)
+        if trans_obj is not None:
+            url = trans_obj.absolute_url()
+            actual_url = self.request.get("ACTUAL_URL")
+            if url == actual_url:
+                return True
+            else:
+                if "folder_contents" in actual_url:
+                    return False
+                else:
+                    return True
+
+        return False
 
 
 class TranslationStateViewlet(ViewletBase):
