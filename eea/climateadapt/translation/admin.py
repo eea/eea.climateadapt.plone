@@ -1534,6 +1534,20 @@ def copy_tiles(tiles, from_cover, to_cover):
             import pdb; pdb.set_trace()
 
 
+def check_full_path_exists(obj, language):
+    """ Create full path for a object
+    """
+    parent = obj.getParentNode()
+    path = parent.getPhysicalPath()
+    if len(path)<=2:
+        return True
+
+    translations = TranslationManager(parent).get_translations()
+    if language not in translations:
+        ##TODO, what if the parent path already exist in language
+        ## but is not linked in translation manager
+        create_translation_object(parent, language)
+
 def create_translation_object(obj, language):
     """ Create translation object for an obj
     """
@@ -1541,6 +1555,7 @@ def create_translation_object(obj, language):
         logger.info("Skip creating translation. Already exists.")
         return
 
+    check_full_path_exists(obj, language)
     factory = DefaultTranslationFactory(obj)
 
     translated_object = factory(language)
@@ -1643,6 +1658,62 @@ def execute_trans_script(site, language):
     return 'Finished cloning for language %s' % language
 
 
+def verfiy_unlinked_translation(site, request):
+    """ Clone the content to be translated
+    """
+    language = request.get('language', None)
+    available_languages = ['es','de','it','pl','fr']
+    check_nr_languages = request.get('check_nr_languages', len(available_languages)+1)
+    uid = request.get('uid', None)
+    limit = int(request.get('limit', 0))
+    offset = int(request.get('offset', 0))
+    portal_type = request.get('portal_type', None)
+
+    catalog = site.portal_catalog
+    language_container = site['en']
+    #import pdb; pdb.set_trace()
+
+    errors = []
+    # get and parse all objects under /en/
+    res = get_all_objs(language_container)
+
+    failed_translations = []
+    count = 0
+    for brain in res:
+        if uid and uid != brain.UID:
+            continue
+        obj = brain.getObject()
+        translations = TranslationManager(obj).get_translations()
+        #import pdb; pdb.set_trace()
+
+        #logger.info('--------------------------------------------------------')
+        #logger.info(count)
+
+        if len(translations)<check_nr_languages:
+            logger.info(obj.absolute_url())
+            for available_language in available_languages:
+                create_translation_object(obj, available_language)
+
+        count += 1
+        ####
+        continue
+
+        try:
+            create_translation_object(obj, language)
+            logger.info("Cloned: %s" % obj.absolute_url())
+        except Exception as err:
+            logger.info("Error cloning: %s" % obj.absolute_url())
+            if err.message == 'Translation already exists':
+                continue
+            else:
+                errors.append(obj)
+                # import pdb; pdb.set_trace()
+
+        if count % 200 == 0:
+            logger.info("Processed %s objects" % count)
+            transaction.commit()
+
+
 def admin_some_translated(site, items):
     """ Create a list of links to be tested (for translation) for each
         content type
@@ -1694,6 +1765,16 @@ class PrepareTranslation(BrowserView):
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
         return execute_trans_script(getSite(), **kwargs)
+
+
+class VerfiyUnlinkedTranslation(BrowserView):
+    """ Check items which does not have relation to english
+        Usage: /admin-verify-unlinked-translation
+    """
+
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
+        return verfiy_unlinked_translation(getSite(), self.request)
 
 
 class VerifyClonedLanguage(BrowserView):
