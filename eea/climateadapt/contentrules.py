@@ -17,6 +17,7 @@ from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.translation.admin import translate_obj
 from eea.climateadapt.translation.admin import create_translation_object
 from eea.climateadapt.translation.utils import get_site_languages
+from plone.app.multilingual.manager import TranslationManager
 
 
 class IReindexAction(Interface):
@@ -112,11 +113,14 @@ class TranslateActionExecutor(object):
                     pass
                     # import pdb; pdb.set_trace()
 
-        # import pdb; pdb.set_trace()
         try:
             result = translate_obj(obj)
-            wftool = getToolByName(obj, "portal_workflow")
-            wftool.doActionFor(obj, 'send_to_translation_not_approved')
+            translations = TranslationManager(obj).get_translations()
+            for language in translations:
+                this_obj = translations[language]
+                wftool = getToolByName(this_obj, "portal_workflow")
+                wftool.doActionFor(
+                    this_obj, 'send_to_translation_not_approved')
         except Exception as e:
             self.error(obj, str(e))
             return False
