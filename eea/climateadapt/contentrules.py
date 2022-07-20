@@ -7,6 +7,7 @@ from OFS.SimpleItem import SimpleItem
 from plone.app.contentrules.browser.formhelper import NullAddForm
 from plone.contentrules.rule.interfaces import IExecutable, IRuleElementData
 from Products.CMFPlone import utils
+from Products.CMFCore.utils import getToolByName
 from Products.statusmessages.interfaces import IStatusMessage
 from ZODB.POSException import ConflictError
 from zope.component import adapter
@@ -114,6 +115,7 @@ class TranslateActionExecutor(object):
         # import pdb; pdb.set_trace()
         try:
             result = translate_obj(obj)
+            wftool = getToolByName(obj, "portal_workflow")
             wftool.doActionFor(obj, 'send_to_translation_not_approved')
         except Exception as e:
             self.error(obj, str(e))
