@@ -137,7 +137,7 @@ class TranslateActionExecutor(object):
         """
         transaction.savepoint()
         try:
-            result = translate_obj(obj)
+            result = translate_obj(obj, one_step=True)
         except Exception as e:
             self.error(obj, str(e))
             return False

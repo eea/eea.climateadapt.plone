@@ -42,6 +42,9 @@ class TranslationCallback(BrowserView):
             logger.info('Translate html')
             return
 
+        if form.get('one_step', None) is not None:
+            import pdb; pdb.set_trace()
+
         deps = ['translation']
         event.notify(InvalidateMemCacheEvent(raw=True, dependencies=deps))
         logger.info('Invalidate cache for dependencies: %s', ', '.join(deps))
