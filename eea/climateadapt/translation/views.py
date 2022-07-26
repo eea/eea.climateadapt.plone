@@ -17,6 +17,7 @@ from .interfaces import ITranslationContext
 from plone.api import portal
 from eea.climateadapt.browser.admin import force_unlock
 from plone.app.textfield.value import RichTextValue
+from eea.climateadapt.translation.admin import get_translation_object_from_uid
 
 logger = logging.getLogger('wise.msfd.translation')
 env = os.environ.get
@@ -96,8 +97,24 @@ class TranslationCallback(BrowserView):
     def save_text_field(self, uid, field, value):
         """ Save the translated value of given field for specified obj by uid
         """
-        import pdb; pdb.set_trace()
-        logger.info("One step translate: saved %s %s %s", uid, field, value)
+        site = portal.getSite()
+        catalog = site.portal_catalog
+        trans_obj = get_translation_object_from_uid(uid, catalog)
+
+        if value:
+            force_unlock(trans_obj)
+            encoded_text = value.encode('latin-1')
+            try:
+                setattr(trans_obj, field, encoded_text)
+                have_change = True
+            except AttributeError:
+                logger.info("One step: AttributeError for obj: %s key: %s",
+                            trans_obj.absolute_url(), field)
+            if have_change:
+                trans_obj._p_changed = True
+                trans_obj.reindexObject()
+
+            logger.info("One step: saved %s %s %s", uid, field, value)
 
     def save_html_fields(self, form, file):
         """ Get the translated html file, extract the values for each field and

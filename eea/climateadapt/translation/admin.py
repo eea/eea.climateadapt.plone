@@ -1018,15 +1018,6 @@ def translation_step_3_one_file(json_file, language, catalog, portal_type = None
     for key in json_data['item'].keys():
         translated_msg = get_translated(json_data['item'][key], language.upper())
         if translated_msg:
-            # TODO implement cover tiles case
-            # Step 1 and 2 to be updated first, I think
-            # try:
-            #     encoded_text = translated_msg.encode('latin-1')
-            #     tile.data['text'].raw = encoded_text
-            # except AttributeError:
-            #     logger.info("Error for tile. TODO improve.")
-            #     logger.info(tile_id)
-
             encoded_text = translated_msg.encode('latin-1')
 
             source_richtext_types = [
