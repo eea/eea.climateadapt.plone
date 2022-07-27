@@ -255,6 +255,67 @@ def retrieve_translation(country_code,
 
     return res
 
+def retrieve_translation_one_step(country_code, text, target_languages=None,
+        force=False, uid=None, field=None):
+    """ Translate simple text fields in one step.
+
+        Send a call to automatic translation service, to translate a string
+        Returns a json formatted string
+
+        The result will be automatically saved to specified obj and field
+        on callback, without using annotations.
+    """
+
+    country_code = _get_country_code(country_code, text)
+
+    if not text:
+        return
+
+    if not target_languages:
+        target_languages = ['EN']
+
+    site_url = portal.get().absolute_url()
+
+    if 'localhost' in site_url:
+        logger.warning(
+            "Using localhost, won't retrieve translation for: %s", text)
+
+    dest = '{}/@@translate-callback?one_step=true&source_lang={}&uid={}&field={}'.format(
+            site_url, country_code, uid, field)
+    data = {
+        'priority': 5,
+        'callerInformation': {
+            'application': 'Marine_EEA_20180706',
+            'username': TRANS_USERNAME,
+        },
+        'domain': 'SPD',
+        'externalReference': text,          # externalReference,
+        'textToTranslate': text,
+        'sourceLanguage': country_code,
+        'targetLanguages': target_languages,
+        'destinations': {
+            'httpDestinations':
+            [dest],
+        }
+    }
+
+    logger.info('One step translation request : %r', data)
+
+    resp = requests.post(
+        SERVICE_URL,
+        auth=HTTPDigestAuth('Marine_EEA_20180706', MARINE_PASS),
+        data=json.dumps(data),
+        headers={'Content-Type': 'application/json'}
+    )
+    logger.info('One step: resp from translation request: %r', resp.content)
+
+    res = {
+        "transId": resp.content,
+        "externalRefId": text
+    }
+
+    return res
+
 def get_translation_keys(site=None):
     if site is None:
         site = portal.get()

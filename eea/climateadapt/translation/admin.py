@@ -31,6 +31,7 @@ from Products.Five.browser import BrowserView
 from eea.climateadapt.browser.admin import force_unlock
 from eea.climateadapt.tiles.richtext import RichTextWithTitle
 from eea.climateadapt.translation import retrieve_translation
+from eea.climateadapt.translation import retrieve_translation_one_step
 from eea.climateadapt.translation import retrieve_html_translation
 from eea.climateadapt.translation import get_translated
 from eea.climateadapt.translation.utils import get_current_language
@@ -49,7 +50,10 @@ def is_json(input):
     return True
 
 
-def translate_obj(obj, lang=None, version=None):
+def translate_obj(obj, lang=None, version=None, one_step=False):
+    """ Translate given obj. Use one_step = True to translate in a single step
+        without using annotations.
+    """
     tile_fields = ['title', 'description', 'tile_title', 'footer', 'alt_text']
     errors = []
     force_unlock(obj)
@@ -113,6 +117,7 @@ def translate_obj(obj, lang=None, version=None):
                 for field in tile_fields:
                     value = tile.data.get(field)
                     if value:
+                        # TODO implement one step translation for tiles, too
                         translated = retrieve_translation(
                                 'EN', value, [language.upper()])
 
@@ -241,6 +246,13 @@ def translate_obj(obj, lang=None, version=None):
             if key not in errors:
                 errors.append(key)
             force_unlock(trans_obj)
+
+            if one_step == True:
+                translated = retrieve_translation_one_step(
+                    'EN', value, [language.upper()], uid=trans_obj.UID(),
+                    field=key)
+                continue
+
             translated = retrieve_translation('EN', value, [language.upper()])
             if 'translated' in translated:
                 # TODO improve this part, after no more errors
@@ -1006,15 +1018,6 @@ def translation_step_3_one_file(json_file, language, catalog, portal_type = None
     for key in json_data['item'].keys():
         translated_msg = get_translated(json_data['item'][key], language.upper())
         if translated_msg:
-            # TODO implement cover tiles case
-            # Step 1 and 2 to be updated first, I think
-            # try:
-            #     encoded_text = translated_msg.encode('latin-1')
-            #     tile.data['text'].raw = encoded_text
-            # except AttributeError:
-            #     logger.info("Error for tile. TODO improve.")
-            #     logger.info(tile_id)
-
             encoded_text = translated_msg.encode('latin-1')
 
             source_richtext_types = [

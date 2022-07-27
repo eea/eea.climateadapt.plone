@@ -17,6 +17,7 @@ from .interfaces import ITranslationContext
 from plone.api import portal
 from eea.climateadapt.browser.admin import force_unlock
 from plone.app.textfield.value import RichTextValue
+from eea.climateadapt.translation.admin import get_translation_object_from_uid
 
 logger = logging.getLogger('wise.msfd.translation')
 env = os.environ.get
@@ -41,6 +42,24 @@ class TranslationCallback(BrowserView):
             self.save_html_fields(form, file)
             logger.info('Translate html')
             return
+
+        if form.get('one_step', None) == "true":
+            uid = form.get('uid', None)
+            field = form.get('field', None)
+            if uid is not None and field is not None:
+                form.pop('uid', None)
+                form.pop('one_step', None)
+                form.pop('request-id', None)
+                form.pop('external-reference', None)
+                form.pop('target-language', None)
+                form.pop('field', None)
+                form.pop('source_lang', None)
+                translated = form.pop('translation', form.keys()[0]).strip()
+                translated = translated.decode('latin-1')
+                self.save_text_field(uid, field, translated)
+            else:
+                logger.info("Wrong callback data. Missing uid or field name.")
+                return
 
         deps = ['translation']
         event.notify(InvalidateMemCacheEvent(raw=True, dependencies=deps))
@@ -74,6 +93,28 @@ class TranslationCallback(BrowserView):
 
         return '<a href="/@@translate-key?key=' + \
             original + '">available translations</a>'
+
+    def save_text_field(self, uid, field, value):
+        """ Save the translated value of given field for specified obj by uid
+        """
+        site = portal.getSite()
+        catalog = site.portal_catalog
+        trans_obj = get_translation_object_from_uid(uid, catalog)
+
+        if value:
+            force_unlock(trans_obj)
+            encoded_text = value.encode('latin-1')
+            try:
+                setattr(trans_obj, field, encoded_text)
+                have_change = True
+            except AttributeError:
+                logger.info("One step: AttributeError for obj: %s key: %s",
+                            trans_obj.absolute_url(), field)
+            if have_change:
+                trans_obj._p_changed = True
+                trans_obj.reindexObject()
+
+            logger.info("One step: saved %s %s %s", uid, field, value)
 
     def save_html_fields(self, form, file):
         """ Get the translated html file, extract the values for each field and

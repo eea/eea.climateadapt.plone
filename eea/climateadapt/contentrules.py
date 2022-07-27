@@ -7,6 +7,7 @@ from OFS.SimpleItem import SimpleItem
 from plone.app.contentrules.browser.formhelper import NullAddForm
 from plone.contentrules.rule.interfaces import IExecutable, IRuleElementData
 from Products.CMFPlone import utils
+from Products.CMFCore.utils import getToolByName
 from Products.statusmessages.interfaces import IStatusMessage
 from ZODB.POSException import ConflictError
 from zope.component import adapter
@@ -15,7 +16,10 @@ from zope.interface import Interface, implementer
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.translation.admin import translate_obj
 from eea.climateadapt.translation.admin import create_translation_object
+from eea.climateadapt.translation.admin import translation_step_4
 from eea.climateadapt.translation.utils import get_site_languages
+from plone.app.multilingual.manager import TranslationManager
+from zope.site.hooks import getSite
 
 
 class IReindexAction(Interface):
@@ -100,28 +104,10 @@ class TranslateActionExecutor(object):
 
     def __call__(self):
         obj = self.event.object
-
-        transaction.savepoint()
-
-        for language in get_site_languages():
-            if language != "en":
-                try:
-                    create_translation_object(obj, language)
-                except Exception as err:
-                    pass
-                    # import pdb; pdb.set_trace()
-
-        # import pdb; pdb.set_trace()
-        try:
-            result = translate_obj(obj)
-            wftool.doActionFor(obj, 'send_to_translation_not_approved')
-        except Exception as e:
-            self.error(obj, str(e))
-            return False
-
-        transaction.commit()
-
-        return True
+        self.create_translations(obj)
+        self.translate_obj(obj)
+        self.set_workflow_states(obj)
+        self.copy_fields(obj)
 
     def error(self, obj, error):
         request = getattr(self.context, "REQUEST", None)
@@ -133,6 +119,51 @@ class TranslateActionExecutor(object):
                 mapping={"name": title, "error": error},
             )
             IStatusMessage(request).addStatusMessage(message, type="error")
+
+    def create_translations(self, obj):
+        """ Make sure all translations (cloned) objs exists for this obj
+        """
+        translations = TranslationManager(obj).get_translations()
+        for language in get_site_languages():
+            if language != "en" and language not in translations:
+                try:
+                    create_translation_object(obj, language)
+                except Exception as err:
+                    pass
+                    # import pdb; pdb.set_trace()
+
+    def translate_obj(self, obj):
+        """ Send the obj to be translated
+        """
+        transaction.savepoint()
+        try:
+            result = translate_obj(obj, one_step=True)
+        except Exception as e:
+            self.error(obj, str(e))
+            return False
+        transaction.commit()
+        return True
+
+    def set_workflow_states(self, obj):
+        """ Mark translations as not approved
+        """
+        translations = TranslationManager(obj).get_translations()
+        for language in translations:
+            this_obj = translations[language]
+            wftool = getToolByName(this_obj, "portal_workflow")
+            wftool.doActionFor(this_obj, 'send_to_translation_not_approved')
+
+    def copy_fields(self, obj):
+        """ Run step 4 for this obj
+        """
+        translations = TranslationManager(obj).get_translations()
+        for language in translations:
+            if language != "en":
+                settings = {
+                    "language": language,
+                    "uid": obj.UID(),
+                }
+                translation_step_4(getSite(), settings)
 
 
 class TranslateAddForm(NullAddForm):
