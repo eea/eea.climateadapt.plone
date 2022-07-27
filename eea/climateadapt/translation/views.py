@@ -59,7 +59,7 @@ class TranslationCallback(BrowserView):
                 self.save_text_field(uid, field, translated)
             else:
                 logger.info("Wrong callback data. Missing uid or field name.")
-                return
+            return
 
         deps = ['translation']
         event.notify(InvalidateMemCacheEvent(raw=True, dependencies=deps))
@@ -101,7 +101,7 @@ class TranslationCallback(BrowserView):
         catalog = site.portal_catalog
         trans_obj = get_translation_object_from_uid(uid, catalog)
 
-        if value:
+        if value is not None:
             force_unlock(trans_obj)
             encoded_text = value.encode('latin-1')
             try:
