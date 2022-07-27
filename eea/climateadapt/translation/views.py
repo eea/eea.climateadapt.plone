@@ -97,6 +97,7 @@ class TranslationCallback(BrowserView):
     def save_text_field(self, uid, field, value):
         """ Save the translated value of given field for specified obj by uid
         """
+        import pdb; pdb.set_trace()
         site = portal.getSite()
         catalog = site.portal_catalog
         trans_obj = get_translation_object_from_uid(uid, catalog)

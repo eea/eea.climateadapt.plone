@@ -106,8 +106,8 @@ class TranslateActionExecutor(object):
         obj = self.event.object
         self.create_translations(obj)
         self.translate_obj(obj)
-        self.set_workflow_states(obj)
-        self.copy_fields(obj)
+        # self.set_workflow_states(obj)
+        # self.copy_fields(obj)
 
     def error(self, obj, error):
         request = getattr(self.context, "REQUEST", None)
