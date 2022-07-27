@@ -1573,7 +1573,7 @@ def create_translation_object(obj, language):
         translated_object.cover_layout = obj.cover_layout
         copy_tiles(tiles, obj, translated_object)
 
-        translated_object.reindexObject()
+    translated_object.reindexObject()
 
 
 def get_all_objs(container):
