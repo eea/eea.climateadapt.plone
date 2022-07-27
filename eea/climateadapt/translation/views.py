@@ -104,9 +104,8 @@ class TranslationCallback(BrowserView):
         """
         site = portal.getSite()
         catalog = site.portal_catalog
-        trans_obj = get_translation_object_from_uid(uid, catalog)
+        # trans_obj = get_translation_object_from_uid(uid, catalog)
         trans_obj = site.unrestrictedTraverse(trans_obj_path)
-        import pdb; pdb.set_trace()
 
         if value is not None:
             force_unlock(trans_obj)
