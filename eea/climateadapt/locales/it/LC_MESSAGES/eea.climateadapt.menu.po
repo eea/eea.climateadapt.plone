@@ -96,7 +96,7 @@ msgstr "Adriatico-ionica"
 #: site_menu:29
 #, 
 msgid "Agriculture"
-msgstr "agricoltura"
+msgstr "Agricoltura"
 
 # ,
 # ,
@@ -270,7 +270,7 @@ msgstr "Aree costiere"
 #: site_menu:44
 #, 
 msgid "Countries, Transnational regions, Cities"
-msgstr "Paesi, regioni transnazionali, città"
+msgstr "Stati, regioni transnazionali, città"
 
 # ,
 # ,
@@ -280,14 +280,14 @@ msgstr "Paesi, regioni transnazionali, città"
 #: site_menu:45
 #, 
 msgid "Country Profiles"
-msgstr "Profili dei paesi"
+msgstr "Profili degli stati"
 
 # ,
 # ,
 #: site_menu:18
 #, 
 msgid "Country specific promotions"
-msgstr "Attività specifiche dei paesi"
+msgstr "Attività specifiche degli stati"
 
 # ,
 # ,
@@ -716,7 +716,7 @@ msgstr "Monitoraggio, reportistica e valutazione"
 #: health_menu:16
 #, 
 msgid "National Policies"
-msgstr "Politiche nazionali"
+msgstr "Politiche statali"
 
 # ,
 # ,
@@ -725,14 +725,14 @@ msgstr "Politiche nazionali"
 #: health_menu:38
 #, 
 msgid "National heat-health warning systems and action plans"
-msgstr "Sistemi nazionali e piani d'azione di allertamento per la salute e il calore"
+msgstr "Sistemi statali e piani d'azione di allertamento per la salute e il calore"
 
 # ,
 # ,
 #: health_menu:17
 #, 
 msgid "National policy analysis 2022"
-msgstr "Analisi delle politiche nazionali 2022"
+msgstr "Analisi delle politiche statali 2022"
 
 # ,
 # ,
@@ -1001,7 +1001,7 @@ msgstr "Visualizzatore di mappe di adattamento urbano (focus sulla salute)"
 #: site_menu:75
 #, 
 msgid "Urban Adaptation Support Tool"
-msgstr "Strumento di supporto dell'adattamento urbano"
+msgstr "Strumento di supporto per l'adattamento urbano"
 
 # ,
 # ,

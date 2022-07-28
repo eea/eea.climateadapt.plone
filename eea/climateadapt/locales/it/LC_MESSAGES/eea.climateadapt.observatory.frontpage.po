@@ -30,7 +30,7 @@ msgstr "Contatto"
 #: ../theme/climateadaptv2/health-homepage.html:210
 #, 
 msgid "Country profiles"
-msgstr "Profili statali"
+msgstr "Profili degli stati"
 
 # ,
 # ,
@@ -155,7 +155,7 @@ msgstr "Cerca e accedi al database dell'Osservatorio contenente casi studio, pub
 #: ../theme/climateadaptv2/health-homepage.html:211
 #, 
 msgid "See how countries are addressing climate change adaptation in public health"
-msgstr "Scopri come i paesi stanno affrontando l'adattamento ai cambiamenti climatici nella sanità pubblica"
+msgstr "Scopri come gli stati stanno affrontando l'adattamento ai cambiamenti climatici nella sanità pubblica"
 
 # ,
 # ,

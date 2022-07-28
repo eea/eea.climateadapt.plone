@@ -87,7 +87,7 @@ msgstr "AdapteCCA"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:71
 #, 
 msgid "Additional Details"
-msgstr "dettagli aggiuntivi"
+msgstr "Dettagli aggiuntivi"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:158
 #, 
@@ -113,7 +113,7 @@ msgstr "Ricerca avanzata nel database di Climate-ADAPT <a href=\"/redirect_to_se
 #: ../../climateadapt/vocabulary.py:293
 #, 
 msgid "Agriculture"
-msgstr "agricoltura"
+msgstr "Agricoltura"
 
 #: ../../climateadapt/tiles/search_acecontent.py:769
 msgid "All adaptation sectors"
@@ -208,7 +208,7 @@ msgstr "Check-out creato"
 #: ../../climateadapt/browser/pt/countries-d3.pt:57
 #, 
 msgid "Choose a country"
-msgstr "Scegli un paese"
+msgstr "Scegli uno stato"
 
 #: ../../climateadapt/tiles/pt/country_select.pt:10
 msgid "Choose a country:"
@@ -300,18 +300,18 @@ msgstr "Costi e benefici"
 #: ../../climateadapt/browser/__init__.py:175
 #, 
 msgid "Countries"
-msgstr "Paesi:"
+msgstr "Stati:"
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:253
 #, 
 msgid "Countries:"
-msgstr "Paesi:"
+msgstr "Stati:"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:84
 #: ../../climateadapt/browser/pt/aceproject_view.pt:131
 #, 
 msgid "Countries: ${DYNAMIC_CONTENT}"
-msgstr "Paesi: $ {Dynamic_Content}"
+msgstr "Stati: $ {Dynamic_Content}"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:245
 #, 
@@ -671,7 +671,7 @@ msgstr "Firmatari del Patto dei Sindaci"
 #: ../../climateadapt/browser/pt/transnational_regions.pt:473
 #, 
 msgid "Mediterranean"
-msgstr "mediterranea"
+msgstr "Mediterranea"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:112
 #, 
@@ -1022,7 +1022,7 @@ msgstr "Tempeste"
 #: ../../climateadapt/browser/__init__.py:180
 #, 
 msgid "Sub Nationals"
-msgstr "Sub nazionale"
+msgstr "Sub statale"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:49
 #, 
@@ -1070,7 +1070,6 @@ msgid "The information presented in these pages is based on the reporting accord
 msgstr "Le informazioni presentate in queste pagine si basano sui rapporti secondo il \"Regolamento (UE) 2018/1999 sulla Governance of the Energy Union and Climate Action'  e gli aggiornamenti dei paesi membri dell'AEA. Tuttavia, per quelle pagine in cui le informazioni sono state aggiornate l'ultima volta prima del 01/01/2021, le informazioni presentate si basano sul reporting secondo il 'Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change'."
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:423
-
 #: ../../climateadapt/vocabulary.py:267
 #, 
 msgid "Tools"
@@ -1084,7 +1083,7 @@ msgstr "Totale"
 #: ../../climateadapt/browser/pt/transnational_regions.pt:410
 #, 
 msgid "Transnational regions and other regions and countries"
-msgstr "Regioni transnazionali e altre regioni e stati"
+msgstr "Regioni transnazionali e altre regioni, stati"
 
 #: ../../climateadapt/browser/overrides.py:48
 #: ../../climateadapt/vocabulary.py:306

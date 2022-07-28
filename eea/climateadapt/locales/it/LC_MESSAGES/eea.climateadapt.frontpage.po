@@ -146,7 +146,7 @@ msgstr "<span class=\"d-icon database-icon\"></span> Cerca nel database <br />"
 #: ../theme/climateadaptv2/index.html:422
 #, 
 msgid "<span class=\"d-icon eu-icon\"></span> Country <br /> Profiles"
-msgstr "<span class=\"d-icon eu-icon\"></span> Profili <br /> di Paese"
+msgstr "<span class=\"d-icon eu-icon\"></span> Profili <br /> degli Stati"
 
 # ,
 # ,
@@ -171,7 +171,7 @@ msgstr "Opzioni di adattamento"
 #: ../theme/climateadaptv2/tab-policies-rule.html:14
 #, 
 msgid "Agriculture"
-msgstr "agricoltura"
+msgstr "Agricoltura"
 
 # ,
 # ,
