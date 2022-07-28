@@ -250,7 +250,7 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
             if one_step == True:
                 translated = retrieve_translation_one_step(
                     'EN', value, [language.upper()], uid=trans_obj.UID(),
-                    field=key)
+                    obj_path=trans_obj_path, field=key)
                 continue
 
             translated = retrieve_translation('EN', value, [language.upper()])
@@ -1573,7 +1573,7 @@ def create_translation_object(obj, language):
         translated_object.cover_layout = obj.cover_layout
         copy_tiles(tiles, obj, translated_object)
 
-        translated_object.reindexObject()
+    translated_object.reindexObject()
 
 
 def get_all_objs(container):

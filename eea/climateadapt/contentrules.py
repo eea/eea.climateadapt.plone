@@ -106,7 +106,7 @@ class TranslateActionExecutor(object):
         obj = self.event.object
         self.create_translations(obj)
         self.translate_obj(obj)
-        self.set_workflow_states(obj)
+        # self.set_workflow_states(obj)
         self.copy_fields(obj)
 
     def error(self, obj, error):
@@ -123,6 +123,7 @@ class TranslateActionExecutor(object):
     def create_translations(self, obj):
         """ Make sure all translations (cloned) objs exists for this obj
         """
+        transaction.savepoint()
         translations = TranslationManager(obj).get_translations()
         for language in get_site_languages():
             if language != "en" and language not in translations:
@@ -131,6 +132,7 @@ class TranslateActionExecutor(object):
                 except Exception as err:
                     pass
                     # import pdb; pdb.set_trace()
+        transaction.commit()
 
     def translate_obj(self, obj):
         """ Send the obj to be translated

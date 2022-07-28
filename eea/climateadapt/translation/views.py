@@ -45,6 +45,11 @@ class TranslationCallback(BrowserView):
 
         if form.get('one_step', None) == "true":
             uid = form.get('uid', None)
+            trans_obj_path = form.get("external-reference")
+            if 'https://' in trans_obj_path:
+                site = portal.getSite()
+                trans_obj_path = "/cca" + trans_obj_path.split(
+                        site.absolute_url())[-1]
             field = form.get('field', None)
             if uid is not None and field is not None:
                 form.pop('uid', None)
@@ -56,10 +61,10 @@ class TranslationCallback(BrowserView):
                 form.pop('source_lang', None)
                 translated = form.pop('translation', form.keys()[0]).strip()
                 translated = translated.decode('latin-1')
-                self.save_text_field(uid, field, translated)
+                self.save_text_field(uid, field, translated, trans_obj_path)
             else:
                 logger.info("Wrong callback data. Missing uid or field name.")
-                return
+            return
 
         deps = ['translation']
         event.notify(InvalidateMemCacheEvent(raw=True, dependencies=deps))
@@ -94,14 +99,15 @@ class TranslationCallback(BrowserView):
         return '<a href="/@@translate-key?key=' + \
             original + '">available translations</a>'
 
-    def save_text_field(self, uid, field, value):
+    def save_text_field(self, uid, field, value, trans_obj_path):
         """ Save the translated value of given field for specified obj by uid
         """
         site = portal.getSite()
         catalog = site.portal_catalog
-        trans_obj = get_translation_object_from_uid(uid, catalog)
+        # trans_obj = get_translation_object_from_uid(uid, catalog)
+        trans_obj = site.unrestrictedTraverse(trans_obj_path)
 
-        if value:
+        if value is not None:
             force_unlock(trans_obj)
             encoded_text = value.encode('latin-1')
             try:

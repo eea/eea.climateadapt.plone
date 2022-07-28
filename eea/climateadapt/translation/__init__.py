@@ -256,7 +256,7 @@ def retrieve_translation(country_code,
     return res
 
 def retrieve_translation_one_step(country_code, text, target_languages=None,
-        force=False, uid=None, field=None):
+        force=False, uid=None, obj_path=None, field=None):
     """ Translate simple text fields in one step.
 
         Send a call to automatic translation service, to translate a string
@@ -289,7 +289,7 @@ def retrieve_translation_one_step(country_code, text, target_languages=None,
             'username': TRANS_USERNAME,
         },
         'domain': 'SPD',
-        'externalReference': text,          # externalReference,
+        'externalReference': obj_path,
         'textToTranslate': text,
         'sourceLanguage': country_code,
         'targetLanguages': target_languages,
