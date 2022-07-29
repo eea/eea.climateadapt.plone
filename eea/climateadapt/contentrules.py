@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import logging
 from plone.api.portal import get_tool
 import transaction
 from OFS.SimpleItem import SimpleItem
@@ -20,6 +21,8 @@ from eea.climateadapt.translation.admin import translation_step_4
 from eea.climateadapt.translation.utils import get_site_languages
 from plone.app.multilingual.manager import TranslationManager
 from zope.site.hooks import getSite
+
+logger = logging.getLogger('eea.climateadapt')
 
 
 class IReindexAction(Interface):
@@ -105,7 +108,10 @@ class TranslateActionExecutor(object):
     def __call__(self):
         obj = self.event.object
         self.create_translations(obj)
-        self.translate_obj(obj)
+        res = self.translate_obj(obj)
+        if res is False:
+            logger.info("One step translation: fail.")
+        import pdb; pdb.set_trace()
         # self.set_workflow_states(obj)
         self.copy_fields(obj)
 
