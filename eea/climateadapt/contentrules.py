@@ -158,6 +158,7 @@ class TranslateActionExecutor(object):
     def copy_fields(self, obj):
         """ Run step 4 for this obj
         """
+        transaction.savepoint()
         translations = TranslationManager(obj).get_translations()
         for language in translations:
             if language != "en":
@@ -166,6 +167,7 @@ class TranslateActionExecutor(object):
                     "uid": obj.UID(),
                 }
                 translation_step_4(getSite(), settings)
+        transaction.commit()
 
 
 class TranslateAddForm(NullAddForm):
