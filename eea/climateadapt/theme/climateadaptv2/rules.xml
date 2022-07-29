@@ -115,15 +115,7 @@
     </rules>
 
     <replace css:content="#portal-columns" css:theme="#page-body"/>
-
-    <rules if="$is_anon">
-      <drop css:content="#portal-languageselector"/>
-    </rules>
-    <rules if-not="$is_anon">
-      <before css:content="#portal-languageselector" css:theme="footer"/>
-    </rules>
-
-
+    <before css:content="#portal-languageselector" css:theme="footer"/>
 
     <replace css:content="#navbar" css:theme=".main-nav-menu" href="@@site_navbar" method="document"/>
     <replace css:content="#navbar_footer" css:theme=".navbar_footer_view" href="@@footer_navbar" method="document"/>
