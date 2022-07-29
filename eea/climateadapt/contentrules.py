@@ -108,9 +108,7 @@ class TranslateActionExecutor(object):
     def __call__(self):
         obj = self.event.object
         self.create_translations(obj)
-        res = self.translate_obj(obj)
-        if res is False:
-            logger.info("One step translation: fail.")
+        self.translate_obj(obj)
         import pdb; pdb.set_trace()
         # self.set_workflow_states(obj)
         self.copy_fields(obj)
@@ -143,14 +141,10 @@ class TranslateActionExecutor(object):
     def translate_obj(self, obj):
         """ Send the obj to be translated
         """
-        transaction.savepoint()
         try:
             result = translate_obj(obj, one_step=True)
         except Exception as e:
             self.error(obj, str(e))
-            return False
-        transaction.commit()
-        return True
 
     def set_workflow_states(self, obj):
         """ Mark translations as not approved
