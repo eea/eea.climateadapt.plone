@@ -1605,10 +1605,11 @@ def execute_trans_script(site, language):
         x.id for x in catalog.searchResults(path='/cca', portal_type='LRF')]
     language_folders.remove('en')
 
+    # removed 'frontpage-slides' from lang_independent_objects
     lang_independent_objects = [
         "newsletter", "Members", "repository", "test-baltic", "frontpage",
         "admin",  "more-latest-updates", "sandbox", "portal_pdf",
-        "portal_vocabularies", "portal_depiction", "frontpage-slides",
+        "portal_vocabularies", "portal_depiction",
         "dashboard", "latest-modifications-on-climate-adapt",
         "covenant-of-mayors-external-website", "rss-feed",
         "latest-news-events-on-climate-adapt",

@@ -3,6 +3,7 @@ import urllib
 from collections import namedtuple
 
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
+from eea.climateadapt.translation.utils import get_current_language
 from eea.climateadapt.translation.utils import translate_text
 from plone import api
 from plone.api.portal import get_tool, getSite
@@ -64,12 +65,15 @@ class FrontpageSlidesView(BrowserView):
 
     def __call__(self):
         site = api.portal.get()
-        sf = site.unrestrictedTraverse("/cca/frontpage-slides")
+        current_language = get_current_language(self.context, self.request)
+        fp_slides_path = "/cca/{}/frontpage-slides".format(current_language)
+        sf = site.unrestrictedTraverse(fp_slides_path)
+
         slides = [
             o for o in sf.contentValues() if api.content.get_state(o) == "published"
         ]
         images = []
-
+        
         for slide in slides:
             handler = getattr(self, "handle_" + slide.title.encode("utf-8"), None)
             slide_data = {}
@@ -88,6 +92,7 @@ class FrontpageSlidesView(BrowserView):
                     "url": slide.read_more_link,
                 }
             images.append(slide_data)
+
         self.images = images
 
         return self.index()
