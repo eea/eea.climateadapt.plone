@@ -769,7 +769,7 @@ msgstr ""
 #: ../../climateadapt/browser/pt/footer_logos.pt:35
 #, 
 msgid "Other European Information Systems:<br />&nbsp;"
-msgstr "Autres systèmes d'information européens: <br /> & nbsp;"
+msgstr "Autres systèmes d'information européens: <br /> &nbsp;"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:488
 #, 
@@ -1043,7 +1043,7 @@ msgstr "Résumé de la stratégie / plan"
 #: ../../climateadapt/browser/pt/footer_logos.pt:10
 #, 
 msgid "The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href=\"https://ec.europa.eu/\">European Commission</a> and the <a href=\"https://www.eea.europa.eu/\">European Environment Agency.</a>"
-msgstr "La plateforme européenne d'adaptation au changement climatique Climate-ADAPT est un partenariat entre le <a href=\"https://ec.europa.eu/\"> Commission européenne </a> et <a href = \"https: //www.eea .Europa.eu / \"> Agence européenne de l'environnement. </a>"
+msgstr "La plateforme européenne d'adaptation au changement climatique Climate-ADAPT est un partenariat entre le <a href=\"https://ec.europa.eu/\"> Commission européenne </a> et <a href=\"https://www.eea.europa.eu/\"> Agence européenne de l'environnement. </a>"
 
 #: ../../climateadapt/browser/pt/video_view.pt:95
 #, 
