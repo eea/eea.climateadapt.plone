@@ -109,7 +109,6 @@ class TranslateActionExecutor(object):
         obj = self.event.object
         self.create_translations(obj)
         self.translate_obj(obj)
-        import pdb; pdb.set_trace()
         # self.set_workflow_states(obj)
         self.copy_fields(obj)
 

@@ -1337,7 +1337,6 @@ def translation_step_4(site, request):
 
             fields = language_independent_fields[obj.portal_type]
             for key in fields:
-                import pdb; pdb.set_trace()
                 logger.info("Field: %s", key)
 
                 # TODO simplify this
