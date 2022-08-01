@@ -512,6 +512,7 @@
                     Climate Change Service in support of climate change adaptation.</p>
                   <div class="bottom-section">
                     <a class="standard-button primary-button feature-btn"
+                    tal:attributes="href python:view.translate_url('/en/knowledge/european-climate-data-explorer/')"
                     href="/knowledge/european-climate-data-explorer/" i18n:translate="">
                     Go to the European Climate Data Explorer</a>
                   </div>
@@ -529,7 +530,9 @@
                   </p>
                   <div class="bottom-section">
                     <a class="standard-button primary-button feature-btn"
-                    href="/observatory" i18n:translate="">Go to the European Climate and Health Observatory</a>
+                    href="/observatory"
+                    tal:attributes="href python:view.translate_url('/en/observatory')"
+                     i18n:translate="">Go to the European Climate and Health Observatory</a>
                   </div>
                 </div>
               </div>

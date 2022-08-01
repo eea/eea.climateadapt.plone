@@ -1010,9 +1010,9 @@ $(document).ready(function () {
       +'</button>'
       + element.outerHTML.replace('<ul ', '<ul class="dropdown-menu" style="list-style:none;"');
     element.replaceWith(clone);
-    var haveLanguage = $('.top-menu-language');
+    var haveLanguage = $('.menu-nav-item-language-observatory');
     if (haveLanguage.length) {
-      $("#cca-lang-menu").appendTo(".top-menu-language");
+      $("#cca-lang-menu").appendTo(".menu-nav-item-language-observatory");
     } else {
       $( "#cca-lang-menu" ).insertBefore('.top-menu-nav');
     }
