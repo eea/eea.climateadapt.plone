@@ -43,7 +43,8 @@ class TranslationCallback(BrowserView):
             logger.info('Translate html')
             return
 
-        if form.get('one_step', None) == "true":
+        if form.get('one_step', None) == "true" and \
+                form.get('is_cover', None) != 'true':
             uid = form.get('uid', None)
             trans_obj_path = form.get("external-reference")
             if 'https://' in trans_obj_path:
@@ -64,6 +65,11 @@ class TranslationCallback(BrowserView):
                 self.save_text_field(uid, field, translated, trans_obj_path)
             else:
                 logger.info("Wrong callback data. Missing uid or field name.")
+            return
+
+        if form.get('one_step', None) == "true" and \
+                form.get('is_cover', None) == 'true':
+            self.save_tile_field(form)
             return
 
         deps = ['translation']
@@ -98,6 +104,34 @@ class TranslationCallback(BrowserView):
 
         return '<a href="/@@translate-key?key=' + \
             original + '">available translations</a>'
+
+    def save_tile_field(self, form):
+        """
+        """
+        tile_id = ""  # TODO send this info
+        field = ""  # TODO send this info
+        tile_annot_id = 'plone.tiles.data.' + tile_id
+        trans_obj_path = form.get("external-reference")
+        if 'https://' in trans_obj_path:
+            site = portal.getSite()
+            trans_obj_path = "/cca" + trans_obj_path.split(
+                    site.absolute_url())[-1]
+        trans_obj = site.unrestrictedTraverse(trans_obj_path)
+        tile = trans_obj.__annotations__.get(tile_annot_id, None)
+
+        if not tile:
+            return
+
+        try:
+            update = tile.data
+        except AttributeError:
+            update = tile
+
+        translated_msg = ""
+        if translated_msg:
+            update[field] = translated_msg
+
+        trans_obj.__annotations__[tile_annot_id] = update
 
     def save_text_field(self, uid, field, value, trans_obj_path):
         """ Save the translated value of given field for specified obj by uid

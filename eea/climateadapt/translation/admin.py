@@ -125,7 +125,7 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                             'EN', tile_data['item'][key], [language.upper()],
                             uid=trans_obj.UID(),
                             obj_path=trans_obj_path, field=key,
-                            tile_data=tile_data)
+                            tile_data=tile_data, tile_id=tile_id)
                         logger.info("One step translation tile: %s", res)
                     # LOOP tile HTML items
                     for key in tile_data['html'].keys():

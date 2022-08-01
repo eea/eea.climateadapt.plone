@@ -255,8 +255,10 @@ def retrieve_translation(country_code,
 
     return res
 
-def retrieve_translation_one_step(country_code, text, target_languages=None,
-        force=False, uid=None, obj_path=None, field=None, tile_data=None):
+def retrieve_translation_one_step(
+        country_code, text, target_languages=None,
+        force=False, uid=None, obj_path=None, field=None,
+        tile_data=None, tile_id=None):
     """ Translate simple text fields in one step.
 
         Send a call to automatic translation service, to translate a string
@@ -267,10 +269,13 @@ def retrieve_translation_one_step(country_code, text, target_languages=None,
     """
 
     country_code = _get_country_code(country_code, text)
+    site_url = portal.get().absolute_url()
 
+    is_cover = False
     if tile_data is not None:
-        # TODO save the translated text in cover tile simple field
-        import pdb; pdb.set_trace()
+        dest = '{}/@@translate-callback?one_step=true&source_lang={}&uid={}&field={}&is_cover=true&tile_id={}'.format(
+                site_url, country_code, uid, field, tile_id)
+        is_cover = True
 
     if not text:
         return
@@ -278,14 +283,13 @@ def retrieve_translation_one_step(country_code, text, target_languages=None,
     if not target_languages:
         target_languages = ['EN']
 
-    site_url = portal.get().absolute_url()
-
     if 'localhost' in site_url:
         logger.warning(
             "Using localhost, won't retrieve translation for: %s", text)
 
-    dest = '{}/@@translate-callback?one_step=true&source_lang={}&uid={}&field={}'.format(
-            site_url, country_code, uid, field)
+    if is_cover is False:
+        dest = '{}/@@translate-callback?one_step=true&source_lang={}&uid={}&field={}'.format(
+                site_url, country_code, uid, field)
     data = {
         'priority': 5,
         'callerInformation': {
