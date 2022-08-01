@@ -109,30 +109,42 @@ class TranslationCallback(BrowserView):
         """ Save a simple text filed in a cover tile
         """
         import pdb; pdb.set_trace()
-        tile_id = ""  # TODO send this info
-        field = ""  # TODO send this info
-        tile_annot_id = 'plone.tiles.data.' + tile_id
-        trans_obj_path = form.get("external-reference")
-        if 'https://' in trans_obj_path:
-            site = portal.getSite()
-            trans_obj_path = "/cca" + trans_obj_path.split(
-                    site.absolute_url())[-1]
-        trans_obj = site.unrestrictedTraverse(trans_obj_path)
-        tile = trans_obj.__annotations__.get(tile_annot_id, None)
+        field = form.get('field', None)
+        tile_id = form.get('tile_id', None)
+        if tile_id is not None and field is not None:
+            form.pop('uid', None)
+            form.pop('one_step', None)
+            form.pop('request-id', None)
+            form.pop('external-reference', None)
+            form.pop('target-language', None)
+            form.pop('field', None)
+            form.pop('source_lang', None)
+            form.pop('tile_id', None)
+            translated = form.pop('translation', form.keys()[0]).strip()
+            translated = translated.decode('latin-1')
 
-        if not tile:
-            return
+            tile_annot_id = 'plone.tiles.data.' + tile_id
+            trans_obj_path = form.get("external-reference")
+            if 'https://' in trans_obj_path:
+                site = portal.getSite()
+                trans_obj_path = "/cca" + trans_obj_path.split(
+                        site.absolute_url())[-1]
+            trans_obj = site.unrestrictedTraverse(trans_obj_path)
+            tile = trans_obj.__annotations__.get(tile_annot_id, None)
 
-        try:
-            update = tile.data
-        except AttributeError:
-            update = tile
+            if not tile:
+                return
 
-        translated_msg = ""
-        if translated_msg:
-            update[field] = translated_msg
+            try:
+                update = tile.data
+            except AttributeError:
+                update = tile
 
-        trans_obj.__annotations__[tile_annot_id] = update
+            translated_msg = translated
+            if translated_msg is not None:
+                update[field] = translated_msg
+
+            trans_obj.__annotations__[tile_annot_id] = update
 
     def save_text_field(self, uid, field, value, trans_obj_path):
         """ Save the translated value of given field for specified obj by uid
