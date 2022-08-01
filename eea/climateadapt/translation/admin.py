@@ -109,7 +109,60 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
             trans_obj[default_view_en].setLayout(layout_default_view_en)
 
         # get tile data
-        if trans_obj.portal_type == 'collective.cover.content':
+        if trans_obj.portal_type == 'collective.cover.content' and \
+                one_step is True:
+            # One step translation for covers/tiles
+            json_data = get_object_fields_values(obj_en)
+
+            tile_html_fields = []
+            if 'tile' in json_data:
+                for tile_id in json_data['tile'].keys():
+                    tile_data = json_data['tile'][tile_id]
+                    # LOOP tile text items
+                    for key in tile_data['item'].keys():
+                        # TODO add one step params
+                        res = retrieve_translation(
+                            'EN', tile_data['item'][key], [language.upper()]
+                        )
+                    # LOOP tile HTML items
+                    for key in tile_data['html'].keys():
+                        value = tile_data['html'][key]
+                        value = value.replace('\r\n', '')
+                        try:
+                            test_value = value + u"test"
+                        except UnicodeDecodeError:
+                            value = value.decode("utf-8")
+                        tile_html_fields.append(
+                            {'tile_id': tile_id, 'field': key, 'value': value}
+                        )
+
+            # TILE HTML fields translate in one call
+            if len(tile_html_fields):
+                # TODO fix path
+                trans_obj_path = json_data.get('translated_obj_paths', {}) \
+                    .get(language, None)
+                if not trans_obj_path:
+                    continue
+                html_content = u"<!doctype html>" + \
+                    u"<head><meta charset=utf-8></head><body>"
+                for item in tile_html_fields:
+                    html_tile = u"<div class='cca-translation-tile'" + \
+                        u" data-field='" + item['field'] + u"'" + \
+                        u" data-tile-id='" + item['tile_id'] + u"'" + \
+                        u">" + item['value'] + u"</div>"
+                    html_content += html_tile
+
+                html_content += u"</body></html>"
+                html_content = html_content.encode('utf-8')
+                # TODO add one step params
+                translated = retrieve_html_translation(
+                    'EN',
+                    html_content,
+                    trans_obj_path,
+                    language.upper(),
+                    False,
+                )
+        elif trans_obj.portal_type == 'collective.cover.content':
             tiles_id = trans_obj.list_tiles()
 
             for tile_id in tiles_id:
@@ -117,7 +170,6 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                 for field in tile_fields:
                     value = tile.data.get(field)
                     if value:
-                        # TODO implement one step translation for tiles, too
                         translated = retrieve_translation(
                                 'EN', value, [language.upper()])
 
@@ -710,17 +762,10 @@ def get_object_fields_values(obj):
                 value = getattr(obj, key).raw.replace('\r\n', '')
                 data['html'][key] = value
                 continue
-                #rich = True
-                #if key not in rich_fields:
-                #    rich_fields.append(key)
 
             if is_json(value):
                 continue
 
-            #if key not in errors:
-            #    errors.append(key)
-            #force_unlock(trans_obj)
-            #translated = retrieve_translation('EN', value, [language.upper()])
             data['item'][key] = value
     return data
 
@@ -795,7 +840,6 @@ def translation_step_1(site, request):
     portal_type = request.get('portal_type', None)
 
     catalog = site.portal_catalog
-    #TODO: remove this, it is jsut for demo purpose
     search_data = {}
     search_data['path'] = '/cca/en'
     if limit:
@@ -804,9 +848,7 @@ def translation_step_1(site, request):
         search_data['portal_type'] = portal_type
     #if search_path:
     #    search_data['path'] = search_path
-    #import pdb; pdb.set_trace()
 
-    #brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
     brains = catalog.searchResults(search_data)
     site_url = portal.getSite().absolute_url()
     logger.info("I will start to create json files. Checking...")
