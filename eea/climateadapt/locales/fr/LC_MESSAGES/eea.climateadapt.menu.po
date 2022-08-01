@@ -36,28 +36,28 @@ msgstr "Adaptation dans les secteurs de la politique de l'UE"
 #: site_menu:10
 #, 
 msgid "About"
-msgstr "Sur"
+msgstr "Au sujet de"
 
 # ,
 # ,
 #: site_menu:11
 #, 
 msgid "About Climate-ADAPT"
-msgstr "Sur le climat adapté"
+msgstr "Au sujet de Climate-ADAPT"
 
 # ,
 # ,
 #: health_menu:10
 #, 
 msgid "About the Observatory"
-msgstr "Sur l'observatoire"
+msgstr "Au sujet de l'observatoire"
 
 # ,
 # ,
 #: site_menu:74
 #, 
 msgid "Adaptation Support Tool"
-msgstr "Outil d'assistance d'adaptation"
+msgstr "Outil d'aide à l'adaptation"
 
 # ,
 # ,
@@ -99,21 +99,21 @@ msgstr "Espace alpin"
 #: health_menu:44
 #, 
 msgid "Annual reports"
-msgstr "Rapport annuel"
+msgstr "Rapports annuels"
 
 # ,
 # ,
 #: site_menu:50
 #, 
 msgid "Atlantic Area"
-msgstr "Région de l'Atlantique"
+msgstr "Zone Atlantique"
 
 # ,
 # ,
 #: site_menu:51
 #, 
 msgid "Balkan-Mediterranean"
-msgstr "Balkanique"
+msgstr "Balkan-Méditerranée"
 
 # ,
 # ,
@@ -176,7 +176,7 @@ msgstr "Europe centrale"
 #: site_menu:46
 #, 
 msgid "Cities and towns"
-msgstr "Grandes villes et villes"
+msgstr "Villes et municipalités"
 
 # ,
 #: site_menu:69
@@ -188,20 +188,20 @@ msgstr "Services climatiques"
 #: site_menu:17
 #, 
 msgid "Climate-ADAPT events and webinars"
-msgstr "Événements et webinaires adaptés au climat"
+msgstr "Événements et webinaires de Climate-ADAPT"
 
 # ,
 #: site_menu:16
 #, 
 msgid "Climate-ADAPT performance reporting"
-msgstr "Rapports de performances adaptables au climat"
+msgstr "Rapports de performances de Climate-ADAPT"
 
 # ,
 # ,
 #: site_menu:83
 #, 
 msgid "Climate-ADAPT use cases"
-msgstr "Cas d'utilisation adaptés au climat"
+msgstr "Cas d'utilisation de Climate-ADAPT"
 
 # ,
 # ,
@@ -263,7 +263,7 @@ msgstr "Matériaux de diffusion"
 #: health_menu:33
 #, 
 msgid "ECDC Vibrio map viewer"
-msgstr "Visionneuse de carte VIBRIO ECDC"
+msgstr "Visualiseur de carte VIBRIO ECDC"
 
 # ,
 # ,
@@ -284,7 +284,7 @@ msgstr "Stratégie d'adaptation de l'UE"
 #: site_menu:25
 #, 
 msgid "EU Covenant of Mayors"
-msgstr "EUABLE DE MAISE"
+msgstr "Convention des Maires de l'UE"
 
 # ,
 # ,
@@ -318,7 +318,7 @@ msgstr "Stratégie de finance durable de l'UE"
 #: site_menu:27
 #, 
 msgid "EU funding of adaptation"
-msgstr "Financement de l'UE de l'adaptation"
+msgstr "Financement EU de l'adaptation"
 
 # ,
 # ,
@@ -353,7 +353,7 @@ msgstr "Outils économiques"
 #: site_menu:34
 #, 
 msgid "Ecosystem-based approaches"
-msgstr "Approches basées sur les écosystèmes"
+msgstr "Approches fondées sur les écosystèmes"
 
 # ,
 # ,
@@ -367,7 +367,7 @@ msgstr "Énergie"
 #: site_menu:67
 #, 
 msgid "Europe's vulnerability to climate change impacts occurring outside Europe"
-msgstr "La vulnérabilité de l'Europe aux impacts du changement climatique se produisant en dehors de l'Europe"
+msgstr "La vulnérabilité de l'Europe aux impacts du changement climatique survenant hors de l'Europe"
 
 # ,
 # ,
@@ -394,14 +394,14 @@ msgstr "Systèmes d'alerte précoce européens"
 #: health_menu:14
 #, 
 msgid "European policies on climate adaptation and health"
-msgstr "Politiques européennes sur l'adaptation et la santé climatiques"
+msgstr "Politiques européennes sur l'adaptation climatique et la santé "
 
 # ,
 # ,
 #: health_menu:19
 #, 
 msgid "Evidence on climate and health"
-msgstr "Preuve sur le climat et la santé"
+msgstr "Données sur le climat et la santé"
 
 # ,
 # ,
@@ -450,7 +450,7 @@ msgstr "Glossaire"
 #: site_menu:91
 #, 
 msgid "Guidance to search function"
-msgstr "Guidance à la fonction de recherche"
+msgstr "Conseils pour la fonction de recherche"
 
 # ,
 # ,
@@ -485,14 +485,14 @@ msgstr "Chaleur et santé"
 #: site_menu:87
 #, 
 msgid "Help"
-msgstr "Aider"
+msgstr "Aide"
 
 # ,
 # ,
 #: site_menu:82
 #, 
 msgid "INTERREG projects"
-msgstr "Projets interreg"
+msgstr "Projets INTERREG"
 
 # ,
 # ,
@@ -513,13 +513,13 @@ msgstr "Indicateurs"
 #: site_menu:70
 #, 
 msgid "Indicators in Climate-ADAPT"
-msgstr "Indicateurs dans le climat ADAPT"
+msgstr "Indicateurs dans Climate-ADAPT"
 
 # ,
 #: site_menu:15
 #, 
 msgid "Inspiring Climate-ADAPT use cases"
-msgstr "Cas d'utilisation inspirants à la climat"
+msgstr "Cas d'utilisation inspirants de Climate-ADAPT"
 
 # ,
 # ,
@@ -533,14 +533,14 @@ msgstr "Connaissance"
 #: site_menu:81
 #, 
 msgid "LIFE projects"
-msgstr "Projets de vie"
+msgstr "Projets LIFE"
 
 # ,
 # ,
 #: site_menu:39
 #, 
 msgid "Marine and fisheries"
-msgstr "Marine et pêche"
+msgstr "Marine et pêches"
 
 # ,
 # ,
@@ -553,7 +553,7 @@ msgstr "méditerranéen"
 #: health_menu:28
 #, 
 msgid "Mental health effects"
-msgstr "Effets de la santé mentale"
+msgstr "Effets sur la santé mentale"
 
 # ,
 # ,
@@ -573,7 +573,7 @@ msgstr "Politiques nationales"
 #: health_menu:38
 #, 
 msgid "National heat-health warning systems and action plans"
-msgstr "Systèmes d'alerte et plans d'action nationaux de Heat-Health"
+msgstr "Systèmes nationaux d'alerte chaleur-santé et plans d'action"
 
 # ,
 #: health_menu:17
@@ -607,7 +607,7 @@ msgstr "Europe du Nord-Ouest"
 #: site_menu:58
 #, 
 msgid "Northern Periphery and Arctic"
-msgstr "Périphérie du nord et arctique"
+msgstr "Périphérie septentrionale et Arctique"
 
 # ,
 # ,
@@ -640,7 +640,7 @@ msgstr "Sensibilisation et diffusion"
 #: site_menu:78
 #, 
 msgid "PRACTICE"
-msgstr "ENTRAINE TOI"
+msgstr "PRATIQUE"
 
 # ,
 # ,
@@ -696,7 +696,7 @@ msgstr "Partagez vos informations"
 #: site_menu:19
 #, 
 msgid "Site map"
-msgstr "Site"
+msgstr "Plan du site"
 
 # ,
 # ,
@@ -738,13 +738,13 @@ msgstr "Le transport"
 #: site_menu:92
 #, 
 msgid "Tutorial Videos"
-msgstr "Vidéos de tutoriel"
+msgstr "Tutoriels vidéos"
 
 # ,
 #: site_menu:14
 #, 
 msgid "Tutorial videos"
-msgstr "Vidéos de tutoriel"
+msgstr "Tutoriels vidéos"
 
 # ,
 #: health_menu:35
@@ -763,7 +763,7 @@ msgstr "Le rayonnement UV"
 #: site_menu:65
 #, 
 msgid "Uncertainty guidance"
-msgstr "Orientation d'incertitude"
+msgstr "Guide de l'incertitude"
 
 # ,
 # ,
@@ -777,21 +777,21 @@ msgstr "Urbain"
 #: site_menu:76
 #, 
 msgid "Urban Adaptation Map Viewer"
-msgstr "Visionneuse de carte d'adaptation urbaine"
+msgstr "Visualiseur de cartes d'adaptation urbaine (Focus Santé)"
 
 # ,
 # ,
 #: health_menu:31
 #, 
 msgid "Urban Adaptation Map Viewer (health focus)"
-msgstr "Visionneuse de carte d'adaptation urbaine (Focus Health)"
+msgstr "Visualiseur de cartes d'adaptation urbaine (Focus Santé)"
 
 # ,
 # ,
 #: site_menu:75
 #, 
 msgid "Urban Adaptation Support Tool"
-msgstr "Outil de support d'adaptation urbaine"
+msgstr "Outil de soutien à l'adaptation urbaine"
 
 # ,
 # ,
@@ -804,14 +804,14 @@ msgstr "Maladies à transmission vectorielle"
 #: health_menu:15
 #, 
 msgid "WHO Europe activities on climate change and health"
-msgstr "Les activités de l'Europe sur le changement climatique et la santé"
+msgstr "Les activités de l'OMS Europe sur le changement climatique et la santé"
 
 # ,
 # ,
 #: health_menu:25
 #, 
 msgid "Water and food-borne diseases"
-msgstr "Maladies à l'eau et à l'alimentation"
+msgstr "Maladies liées à l'eau et à l'alimentation"
 
 # ,
 # ,

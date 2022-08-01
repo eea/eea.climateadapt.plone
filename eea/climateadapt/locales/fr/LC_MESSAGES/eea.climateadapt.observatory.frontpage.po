@@ -60,7 +60,7 @@ msgstr "Événements"
 #: ../theme/climateadaptv2/health-page.html:197
 #, 
 msgid "Find out how to contribute to the Observatory via Climate-ADAPT"
-msgstr "Découvrez comment contribuer à l'observatoire via le climat adaptable"
+msgstr "Découvrez comment contribuer à l'observatoire via Climate-ADAPT"
 
 # ,
 # ,
@@ -69,7 +69,7 @@ msgstr "Découvrez comment contribuer à l'observatoire via le climat adaptable"
 #: ../theme/climateadaptv2/health-page.html:232
 #, 
 msgid "Home"
-msgstr "Domicile"
+msgstr "Accueil"
 
 # ,
 # ,
@@ -83,7 +83,7 @@ msgstr "Indicateurs"
 #: ../theme/climateadaptv2/health-homepage.html:174
 #, 
 msgid "Learn more"
-msgstr "Apprendre encore plus"
+msgstr "En savoir plus"
 
 #: ../theme/climateadaptv2/health-homepage.html:325
 #: ../theme/climateadaptv2/health-page.html:178
@@ -116,7 +116,7 @@ msgstr "Nouvelles"
 #: ../theme/climateadaptv2/health-page.html:137
 #, 
 msgid "News/Events"
-msgstr "Nouvelles et événements"
+msgstr "Nouvelles/événements"
 
 # ,
 # ,
@@ -141,21 +141,21 @@ msgstr "Catalogue de ressources"
 #: ../theme/climateadaptv2/health-page.html:244
 #, 
 msgid "SITE MAP"
-msgstr "Site"
+msgstr "Plan du site"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:231
 #, 
 msgid "Search and access the Observatory’s database containing case studies, publications, indicators, research projects and other"
-msgstr "Rechercher et accéder à la base de données de l'observatoire contenant des études de cas, des publications, des indicateurs, des projets de recherche et d'autres"
+msgstr "Recherchez et accédez à la base de données de l'Observatoire contenant des études de cas, des publications, des indicateurs, des projets de recherche et autres."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:211
 #, 
 msgid "See how countries are addressing climate change adaptation in public health"
-msgstr "Voir comment les pays abordent l'adaptation du changement climatique en santé publique"
+msgstr "Découvrez comment les pays abordent l'adaptation au changement climatique dans le domaine de la santé publique."
 
 # ,
 # ,
@@ -163,7 +163,7 @@ msgstr "Voir comment les pays abordent l'adaptation du changement climatique en 
 #: ../theme/climateadaptv2/health-page.html:196
 #, 
 msgid "Share <br /> your information"
-msgstr "Partager <br /> Vos informations"
+msgstr "Partagez <br /> Vos informations"
 
 # ,
 # ,
@@ -186,19 +186,19 @@ msgstr "Prévisions de l'indice UV (CAMS)"
 #: ../theme/climateadaptv2/health-homepage.html:191
 #, 
 msgid "View climate and health indicators from different trusted information providers"
-msgstr "Voir les indicateurs climatiques et de santé de différents fournisseurs d'informations de confiance"
+msgstr "Consulter les indicateurs climatiques et sanitaires provenant de différents fournisseurs d'informations de confiance"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:172
 #, 
 msgid "View the UV Index forecast developed by Copernicus Atmosphere Monitoring Service (CAMS)"
-msgstr "Afficher la prévision de l'indice UV développé par Copernicus Atmosphere Survering Service (CAMS)"
+msgstr "Consultez les prévisions de l'indice UV élaborées par le Service de surveillance de l'atmosphère de Copernicus (CAMS)."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:138
 #, 
 msgid "We provide easy access to a wide range of relevant publications, tools, websites and other resources related to climate change and human health."
-msgstr "Nous offrons un accès facile à un large éventail de publications, d'outils, de sites Web et d'autres ressources pertinents liés au changement climatique et à la santé humaine."
+msgstr "Nous fournissons un accès facile à un large éventail de publications, d'outils, de sites web et d'autres ressources pertinentes liées au changement climatique et à la santé humaine."
 

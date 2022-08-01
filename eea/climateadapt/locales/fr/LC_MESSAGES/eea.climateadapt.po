@@ -32,12 +32,12 @@ msgstr ""
 #: ../../climateadapt/browser/pt/ace_macros.pt:152
 #, 
 msgid "<strong>Last Modified in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
-msgstr "<strong> Dernier modification dans le climat adaptable </strong> $ {dynamic_content}"
+msgstr "<strong> Dernière modification dans Climate-ADAPT </strong> $ {dynamic_content}"
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:148
 #, 
 msgid "<strong>Published in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
-msgstr "<strong> publié dans Climate-Adapt </strong> $ {dynamic_content}"
+msgstr "<strong> Publié dans Climate-Adapt </strong> $ {dynamic_content}"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:61
 #, 
@@ -52,7 +52,7 @@ msgstr "Mesures et actions d'adaptation"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:57
 #, 
 msgid "Adaptation Options Implemented In This Case"
-msgstr "Options d'adaptation implémentées dans ce cas"
+msgstr "Options d'adaptation mises en oeuvre dans ce cas"
 
 #: ../../climateadapt/vocabulary.py:330
 #, 
@@ -81,7 +81,7 @@ msgstr "Stratégie d'adaptation"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:315
 #, 
 msgid "AdapteCCA"
-msgstr "Adaptecca"
+msgstr "AdapteCCA"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:31
 #: ../../climateadapt/browser/pt/casestudy_view.pt:71
@@ -107,7 +107,7 @@ msgstr "Adriatique-ionien"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:57
 #, 
 msgid "Advanced search for Climate-Adapt database items <a href=\"/redirect_to_search_page\">here</a>"
-msgstr "Recherche avancée des éléments de base de données ADAPT climate <a href=\"/redirect_to_search_page\"> ici </a>"
+msgstr "Recherche avancée d'éléments de la base de données Climate-Adapt <a href=\"/redirect_to_search_page\"> ici </a>"
 
 #: ../../climateadapt/browser/overrides.py:37
 #: ../../climateadapt/vocabulary.py:293
@@ -141,7 +141,7 @@ msgstr "Région de l'Atlantique"
 #: ../../climateadapt/browser/pt/transnational_regions.pt:461
 #, 
 msgid "Balkan-Mediterranean"
-msgstr "Balkanique"
+msgstr "Balkan-Méditerranée"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:417
 #, 
@@ -203,7 +203,7 @@ msgstr "Défis"
 #: ../../climateadapt/mayorsadapt/views.py:78
 #, 
 msgid "Check-out created"
-msgstr "Découvrez créé"
+msgstr "Vérification créée"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:57
 #, 
@@ -279,7 +279,7 @@ msgstr "Coordonnées de l'observatoire"
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:222
 #, 
 msgid "Contact person"
-msgstr "Personne de contact"
+msgstr "Personne à contacter"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:35
 #: ../../climateadapt/browser/pt/c3sindicator_view.pt:213
@@ -289,7 +289,7 @@ msgstr "Le contenu des pages européens sur les données sur les données climat
 #: ../../climateadapt/browser/pt/ace_macros.pt:205
 #, 
 msgid "Contributor:"
-msgstr "Donateur:"
+msgstr "Contributeur"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:42
 #: ../../climateadapt/browser/pt/casestudy_view.pt:82
@@ -300,12 +300,12 @@ msgstr "Coûts et bénéfices"
 #: ../../climateadapt/browser/__init__.py:175
 #, 
 msgid "Countries"
-msgstr "Des pays"
+msgstr "Pays"
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:253
 #, 
 msgid "Countries:"
-msgstr "Des pays:"
+msgstr "Pays:"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:84
 #: ../../climateadapt/browser/pt/aceproject_view.pt:131
@@ -316,12 +316,12 @@ msgstr "Pays: $ {dynamic_content}"
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:245
 #, 
 msgid "Covenant of Mayors 2020 signatory"
-msgstr "Couvreur de maires 2020 signataire"
+msgstr "Signataire de la Convention des Maires 2020"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:251
 #, 
 msgid "Covenant of Mayors 2030 signatory"
-msgstr "Couvreur de maires 2030 signataire"
+msgstr "Signataire de la Convention des Maires 2030"
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:104
 #, 
@@ -331,7 +331,7 @@ msgstr "Créé par:"
 #: ../../climateadapt/browser/pt/aceproject_view.pt:141
 #, 
 msgid "DRMKC"
-msgstr "Drmkc"
+msgstr "DRMKC"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:418
 #, 
@@ -348,7 +348,7 @@ msgstr "Date de création:"
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:240
 #, 
 msgid "Date of officially joining Mayors Adapt"
-msgstr "Date d'adaptation officielle des maires s'adapter"
+msgstr "Date d'adhésion officielle à Mayors Adapt"
 
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:48
 #: ../../climateadapt/browser/pt/indicator_view.pt:66
@@ -365,21 +365,21 @@ msgstr "Date de sortie:"
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:138
 #, 
 msgid "Date of strategy/plan approval"
-msgstr "Date de stratégie / approbation du plan"
+msgstr "Date d'approbation de la stratégie/du plan"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:25
 #: ../../climateadapt/browser/pt/indicator_view.pt:32
 #: ../../climateadapt/browser/pt/informationportal_view.pt:21
 #, 
 msgid "Description"
-msgstr "La description"
+msgstr "Description"
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:159
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:21
 #: ../../climateadapt/browser/pt/organisation_view.pt:18
 #, 
 msgid "Description:"
-msgstr "La description:"
+msgstr "Description:"
 
 #: ../../climateadapt/browser/overrides.py:42
 #: ../../climateadapt/vocabulary.py:297
@@ -400,7 +400,7 @@ msgstr "Durée:"
 #: ../../climateadapt/vocabulary.py:298
 #, 
 msgid "Ecosystem-based approaches (GI)"
-msgstr "Approches basées sur les écosystèmes (GI)"
+msgstr "Approches fondées sur les écosystèmes (GI)"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:73
 #: ../../climateadapt/browser/pt/video_view.pt:113
@@ -493,7 +493,7 @@ msgstr "Retourner"
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:171
 #, 
 msgid "Good practice / spotlight item"
-msgstr "Article de bonne pratique / projecteur"
+msgstr "Bonne pratique / Point d'intérêt"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:178
 #: ../../climateadapt/browser/pt/casestudy_view.pt:300
@@ -528,7 +528,7 @@ msgstr "Impact sur la santé:"
 #: ../../climateadapt/theme/climateadaptv2/static/footer.html:15
 #, 
 msgid "Home"
-msgstr "Domicile"
+msgstr "Accueil"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:423
 #, 
@@ -656,7 +656,7 @@ msgstr "Cartes, graphiques et ensembles de données"
 #: ../../climateadapt/vocabulary.py:304
 #, 
 msgid "Marine and Fisheries"
-msgstr "Marine et pêche"
+msgstr "Marine et pêches"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:212
 #, 
@@ -666,17 +666,17 @@ msgstr "Maire"
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:234
 #, 
 msgid "Mayors Adapt signatory"
-msgstr "Les maires s'adaptent signataires"
+msgstr "Signataire de Mayors Adapt"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:473
 #, 
 msgid "Mediterranean"
-msgstr "méditerranéen"
+msgstr "Méditerranée"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:112
 #, 
 msgid "NAS and NAP reported as adopted"
-msgstr "NAS et NAP signalés comme adopté"
+msgstr "NAS et NAP déclarés comme adoptés"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:133
 #, 
@@ -690,7 +690,7 @@ msgstr ""
 #: ../../climateadapt/browser/pt/countries-d3.pt:128
 #, 
 msgid "Neither NAS nor NAP reported as adopted"
-msgstr "Ni NAS ni NAP ont été signalés comme adoptés"
+msgstr "Ni NAS ni NAP ont été déclarés comme adoptés"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:86
 #, 
@@ -725,7 +725,7 @@ msgstr "Europe du Nord-Ouest"
 #: ../../climateadapt/browser/pt/transnational_regions.pt:482
 #, 
 msgid "Northern Periphery and Arctic"
-msgstr "Périphérie du nord et arctique"
+msgstr "Périphérie nord et Arctique"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:53
 #, 
@@ -750,12 +750,12 @@ msgstr "Une ou plusieurs évaluations signalées"
 #: ../../climateadapt/browser/pt/countries-d3.pt:116
 #, 
 msgid "Only NAP reported as adopted"
-msgstr "Seule la sieste signalée comme adopté"
+msgstr "Seul le NAP a été déclaré comme adopté"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:120
 #, 
 msgid "Only NAS reported as adopted"
-msgstr "Seul le NAS a déclaré comme adopté"
+msgstr "Seul le NAS a été déclaré comme adopté"
 
 #: ../../climateadapt/vocabulary.py:271
 #, 
@@ -900,12 +900,12 @@ msgstr "SAP signalé comme adopté"
 #: ../../climateadapt/browser/pt/navbar_footer.pt:18
 #, 
 msgid "SITE MAP"
-msgstr "Site"
+msgstr "Plan du site"
 
 #: ../../climateadapt/vocabulary.py:341
 #, 
 msgid "Sea Level Rise"
-msgstr "Le niveau de la mer monte"
+msgstr "2lévation du niveau de la mer"
 
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:64
 #, 
@@ -948,7 +948,7 @@ msgstr "Voir plus"
 #: ../../climateadapt/browser/pt/video_view.pt:39
 #, 
 msgid "See video outside Climate-ADAPT"
-msgstr "Voir la vidéo en dehors du climat-adapt"
+msgstr "Voir la vidéo en dehors de Climate-ADAPT"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:55
 #, 
@@ -963,7 +963,7 @@ msgstr "Sélectionnez les secteurs pour lesquels vous souhaitez recevoir un e-ma
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:15
 #, 
 msgid "Send token emails to City Mayors"
-msgstr "Envoyer des e-mails à jeton aux maires de la ville"
+msgstr "Envoyez des courriels symboliques aux maires des villes"
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:87
 #: ../../climateadapt/tiles/pt/search_acecontent.pt:103
@@ -980,7 +980,7 @@ msgstr "Solutions"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:111
 #, 
 msgid "Source"
-msgstr "La source"
+msgstr "Source"
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:183
 #, 
@@ -992,7 +992,7 @@ msgstr "Source de financement"
 #: ../../climateadapt/browser/pt/informationportal_view.pt:32
 #, 
 msgid "Source:"
-msgstr "La source:"
+msgstr "Source:"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:485
 #, 
@@ -1022,7 +1022,7 @@ msgstr "Tempêtes"
 #: ../../climateadapt/browser/__init__.py:180
 #, 
 msgid "Sub Nationals"
-msgstr "Sous-ressortissants"
+msgstr "Sous-nationaux"
 
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:49
 #, 
@@ -1033,7 +1033,7 @@ msgstr "Soumettre"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:78
 #, 
 msgid "Success and Limiting Factors"
-msgstr "Succès et facteurs limitants"
+msgstr "Facteurs de réussite et facteurs limitants"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:153
 #, 
@@ -1043,7 +1043,7 @@ msgstr "Résumé de la stratégie / plan"
 #: ../../climateadapt/browser/pt/footer_logos.pt:10
 #, 
 msgid "The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href=\"https://ec.europa.eu/\">European Commission</a> and the <a href=\"https://www.eea.europa.eu/\">European Environment Agency.</a>"
-msgstr "La plateforme d'adaptation climatique européenne climat-adapt est un partenariat entre le <a href=\"https://ec.europa.eu/\"> Commission européenne </a> et <a href = \"https: //www.eea .Europa.eu / \"> Agence européenne de l'environnement. </a>"
+msgstr "La plateforme européenne d'adaptation au changement climatique Climate-ADAPT est un partenariat entre le <a href=\"https://ec.europa.eu/\"> Commission européenne </a> et <a href = \"https: //www.eea .Europa.eu / \"> Agence européenne de l'environnement. </a>"
 
 #: ../../climateadapt/browser/pt/video_view.pt:95
 #, 
@@ -1062,16 +1062,12 @@ msgstr "La date fait référence à la dernière date de publication de l'articl
 #: ../../climateadapt/browser/pt/casestudy_view.pt:216
 #, 
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
-msgstr "La date fait référence au moment où l'article a été préparé ou mis à jour par des experts contributifs à soumettre pour la publication dans Climate Adapt"
+msgstr "La date fait référence au moment où l'article a été préparé ou mis à jour par les experts contributeurs pour être soumis à la publication dans Climate ADAPT."
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:141
 #, 
 msgid "The information presented in these pages is based on the reporting according to 'Regulation (EU) 2018/1999 on the Governance of the Energy Union and Climate Action' and updates by the EEA member countries. However, for those pages where the information is last updated before 01/01/2021, the information presented is based on the reporting according to 'Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change' and updates by the EEA member countries.'"
-msgstr "Les informations présentées dans ces pages sont basées sur les rapports conformément à la «Règlement (UE) 2018/1999 sur la gouvernance de l'Union de l'énergie et de l'action climatique» et des mises à jour des pays membres de l'EEE. Cependant, pour les pages où les informations sont mises à jour pour la dernière fois avant le 01/01/2021, les informations présentées sont basées sur les rapports conformément au «Règlement (UE) n ° 525/2013 sur un mécanisme de surveillance et de signalement des émissions de gaz à effet de serre et de signalement Autres informations pertinentes pour le changement climatique «et les mises à jour par les pays membres de l'EEE»."
-
-#: ../../climateadapt/browser/pt/transnational_regions.pt:423
-msgid "There are <a href=\"http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm\" target=\"_blank\">x</a> in Europe for transnational co-operation. In addition, specific EU agreed strategies exist for four macro-national regions: <a href=\"http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN\" target=\"_blank\">x</a>, and <a href=\"http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/\" target=\"_blank\">x</a> regions. This section provides information on strategies and actions that have been developed or are currently under development for the EU transnational regions and for other regions and countries.<br /> <br /> <b>x</b><br /> The map shows the transnational regions situated in Europe defined in the co-operation programmes for 2014-2020. You can select transnational regions by clicking on the map. If you select an area that belongs to more than one region, the pop-up window will show all the regions where the area is located. The pop-up window also shows the countries where each region is located.<br /> <br /> To go to one of the regions' pages, choose in the drop-down list, click on the legend, or make use of the link shown in the tooltip."
-msgstr "Il y a <a href=\"http://ec.europa.eu/regional_policy/coopérate/cooperation/transnational/index_en.cfm\" target=\"_blank\"> x </a> En Europe pour la co- transnational co- opération. En outre, des stratégies spécifiques convenues par l'UE existent pour quatre régions macro-nationales: <a href=\"http://ec.europa.eu/regional_policy/coopérate/baltic/index_en.cfm\" Target=\"_blank\"> x </a>, <a href=\"http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm\" target=\"_blank\"> x </a>, <a href = \ "http://www.europarl.europa.eu/sides/getdoc.do?pubref=-/ep//text+ta+p7-ta-2013-0229+0+doc+xml+v0// En & amp; language = en \ "Target = \" _ Blank \ "> x </a>, et <a href = \" http://ec.europa.eu/regional_policy/en/policy/coopération/macro-regional- Stratégies / Adriatic-ionian / \ "Target = \" _ Blank \ "> x </a> Régions. Cette section fournit des informations sur les stratégies et les actions qui ont été développées ou sont actuellement en cours de développement pour les régions transnationales de l'UE et pour d'autres régions et pays. <br /> <br /> <b> x </b> <br /> Le La carte montre les régions transnationales situées en Europe définies dans les programmes de coopération pour 2014-2020. Vous pouvez sélectionner les régions transnationales en cliquant sur la carte. Si vous sélectionnez une zone qui appartient à plus d'une région, la fenêtre contextuelle montrera toutes les régions où se trouve la zone. La fenêtre contextuelle montre également les pays où se trouve chaque région. <br /> <br /> Pour aller dans l'une des pages des régions, choisir dans la liste déroulante, cliquer sur la légende ou utiliser le lien illustré dans l'info-bulle."
+msgstr "Les informations présentées sur ces pages sont basées sur les déclarations effectuées conformément au \"Règlement (UE) 2018/1999 sur la gouvernance de l'Union de l'énergie et l'action climatique\" et sur les mises à jour effectuées par les pays membres de l'EEE. Toutefois, pour les pages dont la dernière mise à jour est antérieure au 01/01/2021, les informations présentées sont basées sur les déclarations effectuées conformément au \"Règlement (UE) n° 525/2013 relatif à un mécanisme pour la surveillance et la déclaration des émissions de gaz à effet de serre et pour la déclaration d'autres informations ayant trait au changement climatique\" et les mises à jour effectuées par les pays membres de l'EEE."
 
 #: ../../climateadapt/vocabulary.py:267
 #, 
@@ -1092,7 +1088,7 @@ msgstr "Régions transnationales et autres régions et pays"
 #: ../../climateadapt/vocabulary.py:306
 #, 
 msgid "Transport"
-msgstr "Le transport"
+msgstr "Transport"
 
 #: ../../climateadapt/browser/overrides.py:45
 #: ../../climateadapt/vocabulary.py:307
@@ -1142,12 +1138,12 @@ msgstr "Gestion de l'eau"
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:143
 #, 
 msgid "Weblink of the strategy/ plan"
-msgstr "Link de la stratégie / plan"
+msgstr "Lien internet de la stratégie / plan"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:148
 #, 
 msgid "Weblinks to relevant plans/ studies"
-msgstr "Les liens vers les plans / études pertinents"
+msgstr "Liens internets vers les plans / études pertinents"
 
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:230
 #, 
@@ -1170,7 +1166,7 @@ msgstr "Sites Internet:"
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:177
 #, 
 msgid "What sectors are concerned"
-msgstr "Ce que sont concernés"
+msgstr "Quels secteurs sont concernés"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:19
 #, 
