@@ -121,9 +121,12 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                     # LOOP tile text items
                     for key in tile_data['item'].keys():
                         # TODO add one step params
-                        res = retrieve_translation(
-                            'EN', tile_data['item'][key], [language.upper()]
-                        )
+                        res = retrieve_translation_one_step(
+                            'EN', tile_data['item'][key], [language.upper()],
+                            uid=trans_obj.UID(),
+                            obj_path=trans_obj_path, field=key,
+                            tile_data=tile_data)
+                        logger.info("One step translation tile: %s", res)
                     # LOOP tile HTML items
                     for key in tile_data['html'].keys():
                         value = tile_data['html'][key]
@@ -138,9 +141,6 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
 
             # TILE HTML fields translate in one call
             if len(tile_html_fields):
-                # TODO fix path
-                trans_obj_path = json_data.get('translated_obj_paths', {}) \
-                    .get(language, None)
                 if not trans_obj_path:
                     continue
                 html_content = u"<!doctype html>" + \
@@ -154,7 +154,6 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
 
                 html_content += u"</body></html>"
                 html_content = html_content.encode('utf-8')
-                # TODO add one step params
                 translated = retrieve_html_translation(
                     'EN',
                     html_content,

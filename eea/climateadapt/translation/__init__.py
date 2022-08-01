@@ -256,7 +256,7 @@ def retrieve_translation(country_code,
     return res
 
 def retrieve_translation_one_step(country_code, text, target_languages=None,
-        force=False, uid=None, obj_path=None, field=None):
+        force=False, uid=None, obj_path=None, field=None, tile_data=None):
     """ Translate simple text fields in one step.
 
         Send a call to automatic translation service, to translate a string
@@ -267,6 +267,10 @@ def retrieve_translation_one_step(country_code, text, target_languages=None,
     """
 
     country_code = _get_country_code(country_code, text)
+
+    if tile_data is not None:
+        # TODO save the translated text in cover tile simple field
+        import pdb; pdb.set_trace()
 
     if not text:
         return
