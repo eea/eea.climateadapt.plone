@@ -106,8 +106,9 @@ class TranslationCallback(BrowserView):
             original + '">available translations</a>'
 
     def save_tile_field(self, form):
+        """ Save a simple text filed in a cover tile
         """
-        """
+        import pdb; pdb.set_trace()
         tile_id = ""  # TODO send this info
         field = ""  # TODO send this info
         tile_annot_id = 'plone.tiles.data.' + tile_id
