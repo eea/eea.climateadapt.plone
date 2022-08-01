@@ -18,67 +18,66 @@ msgstr ""
 
 # ,
 # ,
-#, 
+# ,
 msgid "Adaptation options"
 msgstr "Options d'adaptation"
 
 # ,
 # ,
-#, 
+# ,
 msgid "Case studies"
 msgstr "Études de cas"
 
 # ,
 # ,
-#, 
+# ,
 msgid "Countries:"
 msgstr "Pays:"
 
 # ,
 # ,
-#, 
+# ,
 msgid "Guidance"
 msgstr "Orientation"
 
 # ,
 # ,
-#, 
+# ,
 msgid "Indicators"
 msgstr "Indicateurs"
 
 # ,
 # ,
-#, 
+# ,
 msgid "Information portals"
 msgstr "Portails d'information"
 
 # ,
 # ,
-#, 
+# ,
 msgid "Organisations"
 msgstr "Organisations"
 
 # ,
 # ,
-#, 
+# ,
 msgid "Publication and reports"
 msgstr "Publication et rapports"
 
 # ,
 # ,
-#, 
+# ,
 msgid "Research and knowledge projects"
 msgstr "Projets de recherche et de connaissance"
 
 # ,
 # ,
-#, 
+# ,
 msgid "Tools"
 msgstr "Outils"
 
 # ,
 # ,
-#, 
+# ,
 msgid "Videos"
 msgstr "Vidéos"
-
