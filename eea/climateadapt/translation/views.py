@@ -36,6 +36,7 @@ class TranslationCallback(BrowserView):
     """
 
     def __call__(self):
+        import pdb; pdb.set_trace()
         form = self.request.form
         if form.get('format', None) == 'html':
             file = self.request.stdin
@@ -108,7 +109,6 @@ class TranslationCallback(BrowserView):
     def save_tile_field(self, form):
         """ Save a simple text filed in a cover tile
         """
-        import pdb; pdb.set_trace()
         field = form.get('field', None)
         tile_id = form.get('tile_id', None)
         if tile_id is not None and field is not None:
