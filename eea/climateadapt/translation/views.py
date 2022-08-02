@@ -115,16 +115,17 @@ class TranslationCallback(BrowserView):
             form.pop('uid', None)
             form.pop('one_step', None)
             form.pop('request-id', None)
+            trans_obj_path = form.get("external-reference")
             form.pop('external-reference', None)
             form.pop('target-language', None)
             form.pop('field', None)
             form.pop('source_lang', None)
             form.pop('tile_id', None)
+            form.pop('is_cover', None)
             translated = form.pop('translation', form.keys()[0]).strip()
             translated = translated.decode('latin-1')
 
             tile_annot_id = 'plone.tiles.data.' + tile_id
-            trans_obj_path = form.get("external-reference")
             if 'https://' in trans_obj_path:
                 site = portal.getSite()
                 trans_obj_path = "/cca" + trans_obj_path.split(
