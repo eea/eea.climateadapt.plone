@@ -122,7 +122,7 @@ class TranslationCallback(BrowserView):
             form.pop('tile_id', None)
             form.pop('is_cover', None)
             translated = form.pop('translation', form.keys()[0]).strip()
-            translated = translated.encode('latin-1')
+            # translated = translated.decode('latin-1')
 
             tile_annot_id = 'plone.tiles.data.' + tile_id
             site = portal.getSite()
