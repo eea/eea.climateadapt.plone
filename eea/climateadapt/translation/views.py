@@ -126,8 +126,8 @@ class TranslationCallback(BrowserView):
             translated = translated.decode('latin-1')
 
             tile_annot_id = 'plone.tiles.data.' + tile_id
+            site = portal.getSite()
             if 'https://' in trans_obj_path:
-                site = portal.getSite()
                 trans_obj_path = "/cca" + trans_obj_path.split(
                         site.absolute_url())[-1]
             trans_obj = site.unrestrictedTraverse(trans_obj_path)
