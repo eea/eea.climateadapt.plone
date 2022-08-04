@@ -144,7 +144,10 @@ class TranslationCallback(BrowserView):
             if translated_msg is not None:
                 update[field] = translated_msg
 
-            trans_obj.__annotations__[tile_annot_id] = update
+            try:
+                trans_obj.__annotations__[tile_annot_id] = update
+            except Exception as err:
+                import pdb; pdb.set_trace()
 
     def save_text_field(self, uid, field, value, trans_obj_path):
         """ Save the translated value of given field for specified obj by uid
