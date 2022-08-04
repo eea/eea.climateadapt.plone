@@ -147,7 +147,8 @@ class TranslationCallback(BrowserView):
             try:
                 trans_obj.__annotations__[tile_annot_id] = update
             except Exception as err:
-                import pdb; pdb.set_trace()
+                logger.info("One step: Error on saving translated tile field")
+                # import pdb; pdb.set_trace()
 
     def save_text_field(self, uid, field, value, trans_obj_path):
         """ Save the translated value of given field for specified obj by uid
