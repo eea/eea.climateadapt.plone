@@ -206,6 +206,8 @@ class MenuParser:
                 #import pdb; pdb.set_trace()
                 link = link.replace("/en/observatory", "/"+self.translation_language+"/observatory")
                 link = link.replace("/++aq++en/", "/++aq++"+self.translation_language+"/")
+            if link.endswith('/catalogue/') and self.translation_language != 'en':
+                link = link + '?lang=' + self.translation_language
 
         item.update({
             'icon': icon.strip() + '</icon>',
