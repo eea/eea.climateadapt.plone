@@ -74,7 +74,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         images = []
         
         for slide in slides:
-            handler = getattr(self, "handle_" + slide.title.encode("utf-8"), None)
+            handler = getattr(self, "handle_" + slide.id.encode("utf-8"), None)
             slide_data = {}
 
             image_url, copyright = self.getImages(slide)
@@ -172,6 +172,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
                 "review_state": "published",
                 "sort_on": "effective",
                 "sort_order": "descending",
+                "path": {"query": "/cca/{}".format(self.current_lang)},
             },
             full_objects=True,
         )[0]
@@ -237,6 +238,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
                 "review_state": "published",
                 "sort_on": "effective",
                 "sort_order": "descending",
+                "path": {"query": "/cca/{}".format(self.current_lang)},
             },
             full_objects=True,
         )[0]
