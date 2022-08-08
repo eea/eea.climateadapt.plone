@@ -6,6 +6,8 @@ developed and tested.
 
 import json
 
+from eea.climateadapt.translation.utils import TranslationUtilsMixin
+
 from collective.cover.tiles.base import (IPersistentCoverTile,
                                          PersistentCoverTile)
 from zope import schema
@@ -32,14 +34,14 @@ class AceContentSearch(BrowserView):
                                              full_objects=True)[:3]
 
 
-class FrontPageCountries(BrowserView):
+class FrontPageCountries(BrowserView, TranslationUtilsMixin):
     """ A view to render the frontpage tile with countries and
         country select form
     """
 
     def countries(self):
         countries_folder = self.context.restrictedTraverse(
-            'en/countries-regions/countries'
+            '{}/countries-regions/countries'.format(self.current_lang)
         )
 
         # countries = [c for c in countries_folder.contentValues()]
@@ -275,7 +277,7 @@ class Carousel(PersistentCoverTile):
         return result.getObject()
 
 
-class ListingTile(BrowserView):
+class ListingTile(BrowserView, TranslationUtilsMixin):
     """ Helper for listing tiles on fronpage
     """
 
@@ -294,7 +296,7 @@ class NewsTile(ListingTile):
     def parent(self):
         site = getSite()
 
-        return site['/en/news-archive']
+        return site[self.current_lang]['news-archive']
 
     @view.memoize
     def get_item_date(self, item):
@@ -347,7 +349,7 @@ class EventsTile(ListingTile):
     def parent(self):
         site = getSite()
 
-        return site['en/more-events']
+        return site[self.current_lang]['more-events']
 
     @view.memoize
     def get_item_date(self, item):
@@ -394,10 +396,10 @@ class LastUpdateTile(BrowserView):
         return portal.get_localized_time(datetime=modifiedTime)
 
 
-class CountriesTileMetadata(BrowserView):
+class CountriesTileMetadata(BrowserView, TranslationUtilsMixin):
     def __call__(self):
         countries_folder = self.context.restrictedTraverse(
-            'en/countries-regions/countries'
+            '{}/countries-regions/countries'.format(self.current_lang)
         )
 
         countries = [c for c in countries_folder.contentValues()]

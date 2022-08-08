@@ -3,6 +3,17 @@ from Products.CMFCore.utils import getToolByName
 from plone import api
 from plone.app.multilingual.manager import TranslationManager
 
+
+class TranslationUtilsMixin(object):
+    """ Class with utility methods related to translations """
+
+    @property
+    def current_lang(self):
+        current_language = get_current_language(self.context, self.request)
+
+        return current_language
+
+
 def get_current_language(context, request):
     context = context.aq_inner
     portal_state = getMultiAdapter((context, request), name=u'plone_portal_state')

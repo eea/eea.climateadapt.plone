@@ -3,7 +3,7 @@ import urllib
 from collections import namedtuple
 
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
-from eea.climateadapt.translation.utils import get_current_language
+from eea.climateadapt.translation.utils import TranslationUtilsMixin
 from eea.climateadapt.translation.utils import translate_text
 from plone import api
 from plone.api.portal import get_tool, getSite
@@ -60,13 +60,12 @@ class FrontpageSlide(dexterity.Container):
     implements(IFrontpageSlide, IEEAClimateAdaptInstalled)
 
 
-class FrontpageSlidesView(BrowserView):
+class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
     """BrowserView for the frontpage slides which will be loaded through diazo"""
 
     def __call__(self):
         site = api.portal.get()
-        current_language = get_current_language(self.context, self.request)
-        fp_slides_path = "/cca/{}/frontpage-slides".format(current_language)
+        fp_slides_path = "/cca/{}/frontpage-slides".format(self.current_lang)
         sf = site.unrestrictedTraverse(fp_slides_path)
 
         slides = [
@@ -145,7 +144,7 @@ class FrontpageSlidesView(BrowserView):
                 "review_state": "published",
                 "sort_on": "effective",
                 "sort_order": "reverse",
-                "path": {"query": "/cca/news-archive"},
+                "path": {"query": "/cca/{}/news-archive".format(self.current_lang)},
             },
             full_objects=True,
         )[0]
