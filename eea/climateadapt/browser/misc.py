@@ -35,6 +35,7 @@ from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.interface import Interface, implements
+from eea.climateadapt.translation.utils import get_current_language
 
 # from Acquisition import aq_inner
 # from eea.climateadapt import MessageFactory as _
@@ -979,13 +980,15 @@ class C3sIndicatorsOverview(BrowserView):
     @property
     def data(self):
         site = portal.get()
-        base_folder = site["knowledge"]["european-climate-data-explorer"]
+        lg = get_current_language(self.context, self.request)
+        base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         return datastore.get('data', {})
 
     def get_categories(self):
         site = portal.get()
-        base_folder = site["knowledge"]["european-climate-data-explorer"]
+        lg = get_current_language(self.context, self.request)
+        base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         data_overview_page = datastore['data']['overview_page']
 
@@ -1012,7 +1015,8 @@ class C3sIndicatorsOverview(BrowserView):
 
     def get_overview_columns(self):
         site = portal.get()
-        base_folder = site["knowledge"]["european-climate-data-explorer"]
+        lg = get_current_language(self.context, self.request)
+        base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         overview_page = datastore['data']['overview_page']
         response = {'left':[], 'right':[]}
@@ -1060,13 +1064,15 @@ class C3sIndicatorsOverview(BrowserView):
 
     def get_disclaimer(self):
         site = portal.get()
-        base_folder = site["knowledge"]["european-climate-data-explorer"]
+        lg = get_current_language(self.context, self.request)
+        base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         return datastore['data']['html_pages']['disclaimer']['page_text']
 
     def get_glossary_table(self):
         site = portal.get()
-        base_folder = site["knowledge"]["european-climate-data-explorer"]
+        lg = get_current_language(self.context, self.request)
+        base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         if 'glossary_table' in datastore['data']:
             return datastore['data']['glossary_table']
@@ -1101,7 +1107,8 @@ class C3sIndicatorsListing(BrowserView):
             items[obj.title] = brain.getURL()
 
         site = portal.get()
-        base_folder = site["knowledge"]["european-climate-data-explorer"]
+        # lg = get_current_language(self.context, self.request) - KeyError: 'data'
+        base_folder = site["en"]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         res['description'] = datastore['data']['themes'][category]['description']
         for indicator in datastore['data']['themes'][category]['apps']:
