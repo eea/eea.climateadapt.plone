@@ -19,6 +19,7 @@ from eea.climateadapt.translation.admin import translate_obj
 from eea.climateadapt.translation.admin import create_translation_object
 from eea.climateadapt.translation.admin import translation_step_4
 from eea.climateadapt.translation.utils import get_site_languages
+from eea.climateadapt.translation.utils import get_current_language
 from plone.app.multilingual.manager import TranslationManager
 from zope.site.hooks import getSite
 
@@ -107,10 +108,11 @@ class TranslateActionExecutor(object):
 
     def __call__(self):
         obj = self.event.object
-        self.create_translations(obj)
-        self.translate_obj(obj)
-        # self.set_workflow_states(obj)
-        self.copy_fields(obj)
+        if "/cca/en/" in obj.absolute_url():
+            self.create_translations(obj)
+            self.translate_obj(obj)
+            # self.set_workflow_states(obj)
+            self.copy_fields(obj)
 
     def error(self, obj, error):
         request = getattr(self.context, "REQUEST", None)
