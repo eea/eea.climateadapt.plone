@@ -153,6 +153,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         image_url, copyright = self.getImages(slide)
         category = "Latest <br/> News & Events"
         category_translated = self.get_translation_for_text(category)
+        category_translated = category_translated.replace('< br/>', '<br/>')
 
         return {
             "image_url": image_url,
@@ -182,6 +183,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         image_url, copyright = self.getImages(slide)
         category = "Most recent <br/> Case Study"
         category_translated = self.get_translation_for_text(category)
+        category_translated = category_translated.replace('< br/>', '<br/>')
 
         return {
             "image_url": image_url,
@@ -249,6 +251,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         image_url, copyright = self.getImages(slide)
         category = "Most recent <br/> Publication or Report"
         category_translated = self.get_translation_for_text(category)
+        category_translated = category_translated.replace('< br/>', '<br/>')
 
         return {
             "image_url": image_url,

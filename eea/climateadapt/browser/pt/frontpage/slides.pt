@@ -29,7 +29,7 @@
                 <a href="" class="read-more"
                    tal:attributes="href image/url" i18n:translate="">
                   <i class="fa fa-angle-double-right"></i>
-                  Read more
+                  <span tal:content="python: view.get_translation_for_text('Read more')">Read more</span>
                 </a>
               </div>
             </div>
