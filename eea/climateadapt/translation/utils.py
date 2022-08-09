@@ -3,6 +3,8 @@ from Products.CMFCore.utils import getToolByName
 from plone import api
 from plone.app.multilingual.manager import TranslationManager
 
+from eea.climateadapt.translation import retrieve_translation
+
 
 class TranslationUtilsMixin(object):
     """ Class with utility methods related to translations """
@@ -12,6 +14,21 @@ class TranslationUtilsMixin(object):
         current_language = get_current_language(self.context, self.request)
 
         return current_language
+
+    def get_translation_for_text(self, value, language=None):
+        if not language:
+            language = self.current_lang
+
+        translated = retrieve_translation(
+            'EN', value, [language.upper()])
+
+        if 'translated' in translated:
+            encoded_text = translated['transId'].encode(
+                    'latin-1')
+
+            return encoded_text
+
+        return value
 
 
 def get_current_language(context, request):
