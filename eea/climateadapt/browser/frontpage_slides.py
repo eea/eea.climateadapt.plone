@@ -150,15 +150,16 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         )[0]
 
         news = result.getObject()
-
         image_url, copyright = self.getImages(slide)
+        category = "Latest <br/> News & Events"
+        category_translated = self.get_translation_for_text(category)
 
         return {
             "image_url": image_url,
             "copyright": copyright,
             "title": news.Title(),
             "description": news.description,
-            "category": "Latest <br/> News & Events",
+            "category": category_translated,
             "url": news.absolute_url(),
         }
 
@@ -178,15 +179,16 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         )[0]
 
         cs = brain.getObject()
-
         image_url, copyright = self.getImages(slide)
+        category = "Most recent <br/> Case Study"
+        category_translated = self.get_translation_for_text(category)
 
         return {
             "image_url": image_url,
             "copyright": copyright,
             "title": cs.Title(),
             "description": cs.long_description,
-            "category": "Most recent <br/> Case Study",
+            "category": category_translated,
             "url": cs.absolute_url(),
         }
 
@@ -244,15 +246,16 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         )[0]
 
         publi = result.getObject()
-
         image_url, copyright = self.getImages(slide)
+        category = "Most recent <br/> Publication or Report"
+        category_translated = self.get_translation_for_text(category)
 
         return {
             "image_url": image_url,
             "copyright": copyright,
             "title": publi.Title(),
             "description": publi.long_description,
-            "category": "Most recent <br/> Publication or Report",
+            "category": category_translated,
             "url": publi.absolute_url(),
         }
 
