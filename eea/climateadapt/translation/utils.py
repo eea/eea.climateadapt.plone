@@ -19,8 +19,13 @@ class TranslationUtilsMixin(object):
         if not language:
             language = self.current_lang
 
+        language = language.upper()
+
+        if language == 'EN':
+            return value
+
         translated = retrieve_translation(
-            'EN', value, [language.upper()])
+            'EN', value, [language])
 
         if 'translated' in translated:
             encoded_text = translated['transId'].encode(
