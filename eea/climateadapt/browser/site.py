@@ -208,6 +208,8 @@ class MenuParser:
                 link = link.replace("/++aq++en/", "/++aq++"+self.translation_language+"/")
             if link.endswith('/catalogue/') and self.translation_language != 'en':
                 link = link + '?lang=' + self.translation_language
+            if link.endswith('/data-and-downloads') and self.translation_language != 'en':
+                link = link + '?lang=' + self.translation_language
 
         item.update({
             'icon': icon.strip() + '</icon>',
@@ -365,13 +367,23 @@ class Navbar(ExternalTemplateHeader):
 
     def translate_url(self, url):
         current_language = get_current_language(self.context, self.request)
+        current_language = 'ro'
         if '/' == url:
             return "/?set_language="+current_language
+
+        if url.endswith('/catalogue/') and current_language != 'en':
+            url = url + '?lang=' + current_language
+            return url.replace('/en/','/'+current_language+'/')
+        if url.endswith('/data-and-downloads/') and current_language != 'en':
+            url = url + '?lang=' + current_language
+            return url.replace('/en/','/'+current_language+'/')
+
         site = getSite()
         try:
-            obj = site.unrestrictedTraverse('/cca'+url)
+            obj = site.restrictedTraverse('/cca'+url)
             translations = TranslationManager(obj).get_translations()
             trans_obj = translations[current_language]
+
             return trans_obj.absolute_url()
         except Exception, e:
             return url

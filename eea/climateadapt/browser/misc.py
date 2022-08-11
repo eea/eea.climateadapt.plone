@@ -289,6 +289,7 @@ class RedirectToSearchView (BrowserView):
         self.request = request
 
     def __call__(self):
+        current_language = get_current_language(self.context, self.request)
         portal_state = getMultiAdapter((self.context, self.request),
                                        name=u'plone_portal_state')
 
@@ -308,12 +309,12 @@ class RedirectToSearchView (BrowserView):
 
         navigation_root_url = portal_state.navigation_root_url()
         if '/observatory' in navigation_root_url:
-            link = '/observatory/catalogue/'
+            link = '/'+current_language+'/observatory/catalogue/'
         else:
-            link = '/data-and-downloads/'
+            link = '/'+current_language+'/data-and-downloads/'
 
-        if link == '/observatory/catalogue/' and typeOfDataTo == 'organisations':
-            link = '/observatory/About/about-the-observatory#partners';
+        if link == '/'+current_language+'/observatory/catalogue/' and typeOfDataTo == 'organisations':
+            link = '/'+current_language+'/observatory/About/about-the-observatory#partners';
         else:
             querystring = self.request.form.get('SearchableText', "")
             query = {
@@ -338,7 +339,7 @@ class RedirectToSearchView (BrowserView):
             if typeOfDataTo in typeOfDataValues:
                 query['query']['bool']['filter'] = {"bool":{"should":[{"term":{"typeOfData":typeOfDataValues[typeOfDataTo]}}]}}
 
-            link = link + '?source=' + urllib.quote(json.dumps(query))
+            link = link + '?source=' + urllib.quote(json.dumps(query))+'&lang='+current_language
 
         return self.request.response.redirect(link)
 

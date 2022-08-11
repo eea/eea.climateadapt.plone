@@ -83,13 +83,13 @@
                   </div>
                 </li>
                 <li class="top-menu-nav-item help-menu">
-                  <a href="/news-archive" i18n:translate="">
+                  <a href="/news-archive" i18n:translate="" tal:attributes="href python:view.translate_url('/en/mews-archive/')">
                     <i class="fa fa-newspaper-o"></i>
                     News
                   </a>
                 </li>
                 <li class="top-menu-nav-item help-menu">
-                  <a href="/more-events" i18n:translate="">
+                  <a href="/more-events" i18n:translate="" tal:attributes="href python:view.translate_url('/en/more-events/')">
                     <i class="fa fa-calendar"></i>
                     Events
                   </a>
@@ -767,7 +767,7 @@
               </div> <!-- end of db categories -->
     
               <div class="see-more-link">
-                <a href="../data-and-downloads" i18n:translate="">
+                <a href="../data-and-downloads" i18n:translate="" tal:attributes="href python:view.translate_url('/en/data-and-downloads/')">
                   <i class="fa fa-angle-double-right"></i>
                   See complete database
                 </a>
