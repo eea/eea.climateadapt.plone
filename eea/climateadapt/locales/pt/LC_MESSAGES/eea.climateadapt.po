@@ -740,7 +740,7 @@ msgstr ""
 # ,
 #: ../../climateadapt/browser/pt/footer_logos.pt:35
 msgid "Other European Information Systems:<br />&nbsp;"
-msgstr "Outros sistemas de informação europeia: <br /> & nbsp;"
+msgstr "Outros sistemas de informação europeia: <br /> &nbsp;"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:488
 msgid "Other regions"

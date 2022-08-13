@@ -4,9 +4,9 @@
       tal:attributes="id string:main-nav-item-${repeat/section/index}"
       tal:condition="python: section['label'] != 'Help'">
 
-      <span tal:define="has_children python: bool(section['children'][-1])">
+      <span tal:define="has_children python: bool(section['children'][-1]);is_last repeat/section/end">
         <a class="main-nav-link"
-          tal:attributes="href python: section['label'] == 'Networks' and section['link'] or None">
+          tal:attributes="href python:is_last and section['link'] or None">
           <tal:block tal:condition="python: section['icon']"
                      tal:content="structure python: section['icon']" />
           <span tal:content="python: section['label']">Home</span>

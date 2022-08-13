@@ -769,7 +769,7 @@ msgstr ""
 # ,
 #: ../../climateadapt/browser/pt/footer_logos.pt:35
 msgid "Other European Information Systems:<br />&nbsp;"
-msgstr "Inne europejskie systemy informacyjne: <br /> & nbsp;"
+msgstr "Inne europejskie systemy informacyjne: <br /> &nbsp;"
 
 # ,
 #: ../../climateadapt/browser/pt/transnational_regions.pt:488
