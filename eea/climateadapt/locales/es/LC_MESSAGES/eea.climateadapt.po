@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-16 03:53+0000\n"
+"POT-Creation-Date: 2022-08-17 22:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -147,6 +147,10 @@ msgstr "Balcanero-mediterráneo"
 #: ../../climateadapt/browser/pt/transnational_regions.pt:417
 msgid "Baltic Sea"
 msgstr "mar Báltico"
+
+#: ../../climateadapt/translation/pt/translation_check_language_viewlet.pt:14
+msgid "Based on your preferences, you can view this page in english"
+msgstr "Según sus preferencias, puede ver esta página en español"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:39
@@ -1185,6 +1189,10 @@ msgstr ""
 #: ../../climateadapt/browser/pt/ace_macros.pt:33
 msgid "back to search"
 msgstr "Volver a la búsqueda"
+
+#: ../../climateadapt/translation/pt/translation_check_language_viewlet.pt:14
+msgid "here"
+msgstr "aquí"
 
 # ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:218

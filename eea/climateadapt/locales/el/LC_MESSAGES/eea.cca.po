@@ -20,6 +20,9 @@ msgstr ""
 msgid "Adaptation options"
 msgstr "Επιλογές προσαρμογής"
 
+msgid "Based on your preferences, you can view this page in english"
+msgstr ""
+
 # ,
 msgid "Case studies"
 msgstr "Οι περιπτωσιολογικές μελέτες"
@@ -59,3 +62,6 @@ msgstr "Εργαλεία"
 # ,
 msgid "Videos"
 msgstr "Βίντεο"
+
+msgid "here"
+msgstr ""

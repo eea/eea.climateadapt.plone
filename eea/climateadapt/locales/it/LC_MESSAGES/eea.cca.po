@@ -23,6 +23,9 @@ msgstr ""
 msgid "Adaptation options"
 msgstr "Opzioni di adattamento"
 
+msgid "Based on your preferences, you can view this page in english"
+msgstr "In base alle tue preferenze, puoi visualizzare questa pagina in italiano"
+
 # ,
 # ,
 # ,
@@ -92,3 +95,6 @@ msgstr "Strumenti"
 # ,
 msgid "Videos"
 msgstr "Video"
+
+msgid "here"
+msgstr "qui"

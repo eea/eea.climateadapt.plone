@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-16 03:53+0000\n"
+"POT-Creation-Date: 2022-08-17 22:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,81 +77,67 @@ msgstr ""
 msgid "More news"
 msgstr ""
 
-# ,
 #: ../theme/climateadaptv2/health-homepage.html:170
 msgid "New"
-msgstr "Uus"
+msgstr ""
 
-# ,
 #: ../theme/climateadaptv2/health-homepage.html:287
 #: ../theme/climateadaptv2/health-page.html:140
 msgid "News"
-msgstr "Uudised"
+msgstr ""
 
-# ,
 #: ../theme/climateadaptv2/health-homepage.html:284
 #: ../theme/climateadaptv2/health-page.html:137
 msgid "News/Events"
-msgstr "Uudised/sündmused"
+msgstr ""
 
-# ,
 #: ../theme/climateadaptv2/health-homepage.html:394
 #: ../theme/climateadaptv2/health-page-full.html:159
 #: ../theme/climateadaptv2/health-page.html:247
 msgid "Privacy and Legal Notice"
-msgstr "Privaatsus ja juriidiline teade"
+msgstr ""
 
-# ,
 #: ../theme/climateadaptv2/health-homepage.html:230
 msgid "Resource catalogue"
-msgstr "Ressursikataloog"
+msgstr ""
 
-# ,
 #: ../theme/climateadaptv2/health-homepage.html:391
 #: ../theme/climateadaptv2/health-page-full.html:156
 #: ../theme/climateadaptv2/health-page.html:244
 msgid "SITE MAP"
-msgstr "Saidikaart"
+msgstr ""
 
-# ,
 #: ../theme/climateadaptv2/health-homepage.html:231
 msgid "Search and access the Observatory’s database containing case studies, publications, indicators, research projects and other"
-msgstr "Otsimine ja juurdepääs observatooriumi andmebaasile, mis sisaldab juhtumianalüüse, väljaandeid, näitajaid, uurimisprojekte ja muid"
+msgstr ""
 
-# ,
 #: ../theme/climateadaptv2/health-homepage.html:211
 msgid "See how countries are addressing climate change adaptation in public health"
-msgstr "Vaadake, kuidas riigid käsitlevad kliimamuutustega kohanemist rahvatervises"
+msgstr ""
 
-# ,
 #: ../theme/climateadaptv2/health-homepage.html:343
 #: ../theme/climateadaptv2/health-page.html:196
 msgid "Share <br /> your information"
-msgstr "Jaga oma teavet <br />"
+msgstr ""
 
-# ,
 #: ../theme/climateadaptv2/health-homepage.html:432
 #: ../theme/climateadaptv2/health-page-full.html:197
 #: ../theme/climateadaptv2/health-page.html:285
 msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
-msgstr "See <strong> Euroopa kliima- ja tervishoiu vaatluskeskus </strong> on partnerlus Euroopa Komisjoni, Euroopa keskkonnaagentuuri ja mitmete teiste organisatsioonide vahel."
+msgstr ""
 
-# ,
 #: ../theme/climateadaptv2/health-homepage.html:171
 msgid "UV Index forecast (CAMS)"
-msgstr "UV -indeksi prognoos (CAMS)"
+msgstr ""
 
-# ,
 #: ../theme/climateadaptv2/health-homepage.html:191
 msgid "View climate and health indicators from different trusted information providers"
-msgstr "Vaadake erinevate usaldusväärsete teabe pakkujate kliima- ja tervisenäitajaid"
+msgstr ""
 
-# ,
 #: ../theme/climateadaptv2/health-homepage.html:172
 msgid "View the UV Index forecast developed by Copernicus Atmosphere Monitoring Service (CAMS)"
-msgstr "Vaadake UV -indeksi prognoosi, mille on välja töötanud Copernicus atmosfääri jälgimisteenus (CAMS)"
+msgstr ""
 
-# ,
 #: ../theme/climateadaptv2/health-homepage.html:138
 msgid "We provide easy access to a wide range of relevant publications, tools, websites and other resources related to climate change and human health."
-msgstr "Pakume hõlpsat juurdepääsu mitmesugustele asjakohastele väljaannetele, tööriistadele, veebisaitidele ja muudele ressurssidele, mis on seotud kliimamuutuste ja inimeste tervisega."
+msgstr ""

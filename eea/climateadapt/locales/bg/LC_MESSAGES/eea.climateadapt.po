@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-16 03:53+0000\n"
+"POT-Creation-Date: 2022-08-17 22:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,6 +137,10 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:417
 msgid "Baltic Sea"
+msgstr ""
+
+#: ../../climateadapt/translation/pt/translation_check_language_viewlet.pt:14
+msgid "Based on your preferences, you can view this page in english"
 msgstr ""
 
 # ,
@@ -1148,6 +1152,10 @@ msgstr ""
 #: ../../climateadapt/browser/pt/ace_macros.pt:33
 msgid "back to search"
 msgstr "Обратно към търсене"
+
+#: ../../climateadapt/translation/pt/translation_check_language_viewlet.pt:14
+msgid "here"
+msgstr ""
 
 # ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:218

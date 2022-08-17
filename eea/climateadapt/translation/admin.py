@@ -35,6 +35,7 @@ from eea.climateadapt.translation import retrieve_translation_one_step
 from eea.climateadapt.translation import retrieve_html_translation
 from eea.climateadapt.translation import get_translated
 from eea.climateadapt.translation.utils import get_current_language
+from eea.climateadapt.translation.utils import translate_text
 
 from zope.schema import getFieldsInOrder
 from zope.site.hooks import getSite
@@ -1582,6 +1583,7 @@ def copy_tiles(tiles, from_cover, to_cover):
 def check_full_path_exists(obj, language):
     """ Create full path for a object
     """
+
     parent = obj.getParentNode()
     path = parent.getPhysicalPath()
     if len(path)<=2:
@@ -2099,6 +2101,10 @@ class TranslationCheckLanguageViewlet(ViewletBase):
         if self.get_plone_language()!=self.get_cookie_language():
             return True
         return None
+
+    def get_message(self, message):
+        #import pdb; pdb.set_trace()
+        return translate_text(self.context, self.request, message, 'eea.cca', self.get_cookie_language())
 
     def get_plone_language(self):
         #import pdb; pdb.set_trace()

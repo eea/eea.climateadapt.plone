@@ -49,3 +49,9 @@ msgstr ""
 
 msgid "Countries:"
 msgstr ""
+
+msgid "Based on your preferences, you can view this page in english"
+msgstr ""
+
+msgid "here"
+msgstr ""

@@ -20,6 +20,9 @@ msgstr ""
 msgid "Adaptation options"
 msgstr "Għażliet ta 'adattament"
 
+msgid "Based on your preferences, you can view this page in english"
+msgstr ""
+
 # ,
 msgid "Case studies"
 msgstr "Studji ta 'Każijiet"
@@ -59,3 +62,6 @@ msgstr "Għodda"
 # ,
 msgid "Videos"
 msgstr "Vidjows"
+
+msgid "here"
+msgstr ""

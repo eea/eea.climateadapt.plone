@@ -22,6 +22,9 @@ msgstr ""
 msgid "Adaptation options"
 msgstr "Warianty adaptacji"
 
+msgid "Based on your preferences, you can view this page in english"
+msgstr "W oparciu o Twoje preferencje możesz wyświetlić tę stronę w języku polskim"
+
 # ,
 # ,
 # ,
@@ -81,3 +84,6 @@ msgstr "Narzędzia"
 # ,
 msgid "Videos"
 msgstr "Filmy"
+
+msgid "here"
+msgstr "tutaj"

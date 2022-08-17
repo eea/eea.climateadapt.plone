@@ -20,6 +20,9 @@ msgstr ""
 msgid "Adaptation options"
 msgstr "Anpassningsalternativ"
 
+msgid "Based on your preferences, you can view this page in english"
+msgstr ""
+
 # ,
 msgid "Case studies"
 msgstr "Fallstudier"
@@ -59,3 +62,6 @@ msgstr "Verktyg"
 # ,
 msgid "Videos"
 msgstr "videoklipp"
+
+msgid "here"
+msgstr ""

@@ -20,6 +20,9 @@ msgstr ""
 msgid "Adaptation options"
 msgstr "Adaptācijas iespējas"
 
+msgid "Based on your preferences, you can view this page in english"
+msgstr ""
+
 # ,
 msgid "Case studies"
 msgstr "Gadījumu izpēte"
@@ -59,3 +62,6 @@ msgstr "Instrumenti"
 # ,
 msgid "Videos"
 msgstr "Video"
+
+msgid "here"
+msgstr ""

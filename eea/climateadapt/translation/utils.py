@@ -41,13 +41,14 @@ def get_current_language(context, request):
     portal_state = getMultiAdapter((context, request), name=u'plone_portal_state')
     return portal_state.language()
 
-def translate_text(context, request, text, domain=u'eea.climateadapt'):
+def translate_text(context, request, text, domain=u'eea.climateadapt', language=None):
     tool = getToolByName(context, "translation_service")
-    current_language = get_current_language(context, request)
+    if not language:
+        language = get_current_language(context, request)
 
     return tool.translate(text,
             domain=domain,
-            target_language=current_language
+            target_language=language
             )
 
 def get_site_languages():

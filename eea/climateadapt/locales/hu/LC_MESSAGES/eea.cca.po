@@ -20,6 +20,9 @@ msgstr ""
 msgid "Adaptation options"
 msgstr "Adaptációs lehetőségek"
 
+msgid "Based on your preferences, you can view this page in english"
+msgstr ""
+
 # ,
 msgid "Case studies"
 msgstr "Esettanulmányok"
@@ -59,3 +62,6 @@ msgstr "Szerszámok"
 # ,
 msgid "Videos"
 msgstr "Videó"
+
+msgid "here"
+msgstr ""
