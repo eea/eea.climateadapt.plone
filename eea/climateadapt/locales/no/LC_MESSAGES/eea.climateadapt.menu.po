@@ -155,8 +155,12 @@ msgstr "Sentraleuropa"
 msgid "Cities and towns"
 msgstr "Byer og tettsteder"
 
+#: health_menu:2201
+msgid "Climate  Services"
+msgstr ""
+
 # ,
-#: site_menu:69
+#: health_menu:220
 msgid "Climate Services"
 msgstr "Klimatjenester"
 
@@ -540,6 +544,10 @@ msgstr "Observatorisk arbeidsplan for 2021-22"
 msgid "Other regions"
 msgstr "Andre regioner"
 
+#: health_menu:222
+msgid "Outreach"
+msgstr ""
+
 # ,
 #: site_menu:12
 msgid "Outreach & dissemination"
@@ -547,7 +555,7 @@ msgstr "Oppsøkende og formidling"
 
 # ,
 # ,
-#: site_menu:78
+#: health_menu:221
 msgid "PRACTICE"
 msgstr "ØVE PÅ"
 
@@ -586,6 +594,10 @@ msgstr "Ressurskatalog"
 #: health_menu:40
 msgid "Search for Resources"
 msgstr "Søk etter ressurser"
+
+#: site_menu:84
+msgid "Search the database"
+msgstr ""
 
 # ,
 # ,
@@ -714,8 +726,3 @@ msgstr "Webinarer"
 #: health_menu:22
 msgid "Wildfires"
 msgstr "Villbranner"
-
-# ,
-#: site_menu:84
-msgid "[<icon class=\"fa fa-database\">]Search the database</icon>"
-msgstr "[<icon class = \"fa fa-database\">] Søk i databasen </ikon>"

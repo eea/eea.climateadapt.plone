@@ -112,7 +112,7 @@ msgstr ""
 
 #: site_menu:69
 msgid "Climate Services"
-msgstr ""
+msgstr "Servicios Climáticos"
 
 #: site_menu:17
 msgid "Climate-ADAPT events and webinars"
@@ -497,5 +497,23 @@ msgid "Wildfires"
 msgstr ""
 
 #: site_menu:84
-msgid "[<icon class=\"fa fa-database\">]Search the database</icon>"
+msgid "Search the database"
+msgstr ""
+
+
+#: health_menu:220
+msgid "Climate Services"
+msgstr ""
+
+#: health_menu:2201
+msgid "Climate  Services"
+msgstr ""
+
+#: health_menu:221
+msgid "PRACTICE"
+msgstr ""
+
+
+#: health_menu:222
+msgid "Outreach"
 msgstr ""

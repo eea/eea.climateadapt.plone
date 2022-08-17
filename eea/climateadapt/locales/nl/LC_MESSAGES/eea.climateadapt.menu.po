@@ -155,8 +155,12 @@ msgstr "Centraal Europa"
 msgid "Cities and towns"
 msgstr "Steden en dorpen"
 
+#: health_menu:2201
+msgid "Climate  Services"
+msgstr ""
+
 # ,
-#: site_menu:69
+#: health_menu:220
 msgid "Climate Services"
 msgstr "Klimaatdiensten"
 
@@ -540,6 +544,10 @@ msgstr "Observatoriumwerkplan voor 2021-22"
 msgid "Other regions"
 msgstr "Andere regio's"
 
+#: health_menu:222
+msgid "Outreach"
+msgstr ""
+
 # ,
 #: site_menu:12
 msgid "Outreach & dissemination"
@@ -547,7 +555,7 @@ msgstr "Outreach & verspreiding"
 
 # ,
 # ,
-#: site_menu:78
+#: health_menu:221
 msgid "PRACTICE"
 msgstr "OEFENING"
 
@@ -586,6 +594,10 @@ msgstr "Resource catalogus"
 #: health_menu:40
 msgid "Search for Resources"
 msgstr "Zoek naar bronnen"
+
+#: site_menu:84
+msgid "Search the database"
+msgstr ""
 
 # ,
 # ,
@@ -714,8 +726,3 @@ msgstr "Webinars"
 #: health_menu:22
 msgid "Wildfires"
 msgstr "Bosbranden"
-
-# ,
-#: site_menu:84
-msgid "[<icon class=\"fa fa-database\">]Search the database</icon>"
-msgstr "[<icon class = \"fa fa-database\">] Zoek in de database </icon>"

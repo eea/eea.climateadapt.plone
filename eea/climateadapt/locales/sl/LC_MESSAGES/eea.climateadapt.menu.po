@@ -155,8 +155,12 @@ msgstr "Srednja Evropa"
 msgid "Cities and towns"
 msgstr "Mesta in mesta"
 
+#: health_menu:2201
+msgid "Climate  Services"
+msgstr ""
+
 # ,
-#: site_menu:69
+#: health_menu:220
 msgid "Climate Services"
 msgstr "Podnebne storitve"
 
@@ -540,6 +544,10 @@ msgstr "Opazovalni delovni načrt za 2021-22"
 msgid "Other regions"
 msgstr "Druge regije"
 
+#: health_menu:222
+msgid "Outreach"
+msgstr ""
+
 # ,
 #: site_menu:12
 msgid "Outreach & dissemination"
@@ -547,7 +555,7 @@ msgstr "Doseganje in razširjanje"
 
 # ,
 # ,
-#: site_menu:78
+#: health_menu:221
 msgid "PRACTICE"
 msgstr "Vadba"
 
@@ -586,6 +594,10 @@ msgstr "Katalog virov"
 #: health_menu:40
 msgid "Search for Resources"
 msgstr "Iskanje virov"
+
+#: site_menu:84
+msgid "Search the database"
+msgstr ""
 
 # ,
 # ,
@@ -714,8 +726,3 @@ msgstr "Webinarji"
 #: health_menu:22
 msgid "Wildfires"
 msgstr "Divji požari"
-
-# ,
-#: site_menu:84
-msgid "[<icon class=\"fa fa-database\">]Search the database</icon>"
-msgstr "[<icon class = \"fa fa-database\">] poiščite bazo podatkov </con>"

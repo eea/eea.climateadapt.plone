@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-06-07 13:29+0000\n"
+"POT-Creation-Date: 2022-08-16 03:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -638,7 +638,7 @@ msgstr ""
 msgid "References"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:28
+#: ../../climateadapt/contentrules.py:38
 msgid "Reindex object"
 msgstr ""
 
@@ -809,7 +809,7 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:86
+#: ../../climateadapt/contentrules.py:96
 msgid "Translate object"
 msgstr ""
 
@@ -822,7 +822,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:63
+#: ../../climateadapt/contentrules.py:73
 msgid "Unable to reindex ${name} as part of content rule 'reindex' action: ${error}"
 msgstr ""
 

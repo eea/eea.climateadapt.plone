@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-06-07 13:29+0000\n"
+"POT-Creation-Date: 2022-08-16 03:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,42 +26,42 @@ msgstr "<a href=\"#t-started\"> <span class = \"d-icon caracteristic-icon\"> </s
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1259
+#: ../theme/climateadaptv2/index.html:1262
 msgid "<i class=\"fa fa-angle-double-right\"></i> Adaptation support tool"
 msgstr "<i class = \"fa Fa-unghi-dublu-dreapta\"> </i> Instrument de asistență pentru adaptare"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1401
+#: ../theme/climateadaptv2/index.html:1404
 msgid "<i class=\"fa fa-angle-double-right\"></i> More events"
 msgstr "<i class = \"fa fa-unghi-dublu-dreapta\"> </i> Mai multe evenimente"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1372
+#: ../theme/climateadaptv2/index.html:1375
 msgid "<i class=\"fa fa-angle-double-right\"></i> More news"
 msgstr "<i class = \"fa fa-unghi-dublu-dreapta\"> </i> Mai multe știri"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1329
+#: ../theme/climateadaptv2/index.html:1332
 msgid "<i class=\"fa fa-angle-double-right\"></i> Read more"
 msgstr "<i class = \"fa fa-unghi-dublu-dreapta\"> </i> Citește mai mult"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:767
+#: ../theme/climateadaptv2/index.html:770
 msgid "<i class=\"fa fa-angle-double-right\"></i> See complete database"
 msgstr "<i class = \"fa fa-unghi-dublu-dreapta\"> </i> Vedeți baza de date completă"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1272
+#: ../theme/climateadaptv2/index.html:1275
 msgid "<i class=\"fa fa-angle-double-right\"></i> Urban Adaptation Support Tool"
 msgstr "<i class = \"fa Fa-unghi-dublu-dreapta\"> </i> Instrument de asistență pentru adaptare urbană"
 
@@ -137,14 +137,14 @@ msgstr "<span class = \"d-icon Policy-icon\"> </span> sectorul UE <br /> Politic
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:671
+#: ../theme/climateadaptv2/index.html:674
 msgid "Adaptation options"
 msgstr "Opțiuni de adaptare"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:787
+#: ../theme/climateadaptv2/index.html:790
 #: ../theme/climateadaptv2/tab-policies-rule.html:14
 msgid "Agriculture"
 msgstr "Agricultură"
@@ -152,7 +152,7 @@ msgstr "Agricultură"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:794
+#: ../theme/climateadaptv2/index.html:797
 #: ../theme/climateadaptv2/tab-policies-rule.html:21
 msgid "Biodiversity"
 msgstr "Biodiversitate"
@@ -160,7 +160,7 @@ msgstr "Biodiversitate"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:910
+#: ../theme/climateadaptv2/index.html:913
 #: ../theme/climateadaptv2/tab-policies-rule.html:137
 msgid "Biodiversity plays an important role in regulating the climate, thus making a key contribution to climate change mitigation and adaptation. At the same time, meeting mitigation targets coupled with ecosystem-based approaches is essential to avert biodiversity loss. Therefore it is impossible to address biodiversity loss without addressing climate change, but it is equally impossible to tackle climate change without addressing biodiversity loss."
 msgstr "Biodiversitatea joacă un rol important în reglarea climatului, aducând astfel o contribuție cheie la atenuarea și adaptarea schimbărilor climatice. În același timp, îndeplinirea obiectivelor de atenuare, cuplate cu abordări bazate pe ecosistem este esențială pentru a evita pierderea biodiversității. Prin urmare, este imposibil să abordăm pierderea biodiversității fără a aborda schimbările climatice, dar este la fel de imposibil să abordați schimbările climatice fără a aborda pierderea biodiversității."
@@ -168,7 +168,7 @@ msgstr "Biodiversitatea joacă un rol important în reglarea climatului, aducân
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:801
+#: ../theme/climateadaptv2/index.html:804
 #: ../theme/climateadaptv2/tab-policies-rule.html:28
 msgid "Buildings"
 msgstr "Clădiri"
@@ -176,7 +176,7 @@ msgstr "Clădiri"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:925
+#: ../theme/climateadaptv2/index.html:928
 #: ../theme/climateadaptv2/tab-policies-rule.html:152
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Clădirile pot fi vulnerabile la schimbările climatice. În viitor, poate exista o creștere a riscului de prăbușire, scăderea stării și pierderea semnificativă a valorii ca urmare a mai multor furtuni, a zăpezii sau a deteriorării de subsidență, a înfrângerii apei, a deteriorării climatului interior și a duratei de viață reduse a clădirii. Comisia Europeană își propune să crească rezistența climatică a infrastructurii, inclusiv a clădirilor. Clădirile noi și existente trebuie evaluate pentru rezistența la riscurile actuale și la schimbările climatice viitoare și planificate sau modernizate în consecință. O politică cheie folosită pentru a sprijini rezistența clădirilor este politica de coeziune (denumită și politică regională)."
@@ -184,28 +184,28 @@ msgstr "Clădirile pot fi vulnerabile la schimbările climatice. În viitor, poa
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:680
+#: ../theme/climateadaptv2/index.html:683
 msgid "Case studies"
 msgstr "Studii de caz"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1136
+#: ../theme/climateadaptv2/index.html:1139
 msgid "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href=\"https://climate-adapt.eea.europa.eu/repository/11090223.pdf\">criteria</a> and also in collaboration with the main stakeholders. See the <a href=\"../knowledge/tools/case-studies-climate-adapt\">Case Studies Page</a>."
 msgstr "Studiile de caz sunt flagship-ul platformei de adaptare a climei. Au o structură cuprinzătoare care acoperă toate aspectele cheie în ciclul de implementare a măsurilor de adaptare și sunt pregătiți și sunt pregătiți în mod specific pentru a adăuga climă de către organizația care este implicată în implementare cu sprijinul SEE, în urma unui set de <un HREF = \"https://clime-adapt.eea.europa.eu/repository/11090223.pdf\"> criterii </a> și, de asemenea, în colaborare cu principalele părți interesate. Consultați <a href=\"../knowledge/tools/case-studies-climate-adapt\"> pagina de studii de caz </a>."
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1431
+#: ../theme/climateadaptv2/index.html:1434
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Verificați <a href=\"../newsletter\"> buletinul european de adaptare climatică </a> și înregistrați-vă pentru a-l primi în e-mailul dvs .:"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:985
+#: ../theme/climateadaptv2/index.html:988
 #: ../theme/climateadaptv2/tab-policies-rule.html:212
 msgid "Climate change affects the energy sector in multiple ways, ranging from changes in heating and cooling demand; to impacts on energy supply conditions – for example decreased water availability for hydropower during prolonged droughts and reduced availability of cooling water affecting the efficiency of power plants. Furthermore, energy infrastructure can be more exposed to damages by changing climate conditions. The European Commission in general aims to increase the climate resilience of infrastructure including energy by providing strategical frameworks."
 msgstr "Schimbările climatice afectează sectorul energetic în mai multe moduri, variind de la modificări ale cererii de încălzire și răcire; la impactul asupra condițiilor de alimentare cu energie - de exemplu, scăderea disponibilității apei pentru hidroenergie în timpul secetelor prelungite și a disponibilității reduse a apei de răcire care afectează eficiența centralelor electrice. Mai mult, infrastructura energetică poate fi mai expusă la daune prin schimbarea condițiilor climatice. În general, Comisia Europeană își propune să crească rezistența climatică a infrastructurii, inclusiv energia prin furnizarea de cadre strategice."
@@ -213,7 +213,7 @@ msgstr "Schimbările climatice afectează sectorul energetic în mai multe modur
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:895
+#: ../theme/climateadaptv2/index.html:898
 #: ../theme/climateadaptv2/tab-policies-rule.html:122
 msgid "Climate change has complex effects on the bio-physical processes that underpin agricultural systems, with both negative and positive consequences in different EU regions. Rising atmospheric CO2 concentration, higher temperatures, changes in precipitation patterns and in frequency of extreme events both affect the natural environment as well as the quantity, quality and stability of food production. Climatic variations impact on water resources, soils, pests and diseases, leading to significant changes in agriculture and livestock production."
 msgstr "Schimbările climatice au efecte complexe asupra proceselor bio-fizice care stau la baza sistemelor agricole, cu consecințe negative și pozitive în diferite regiuni ale UE. Creșterea concentrației de CO2 atmosferice, temperaturi mai ridicate, modificări ale modelelor de precipitații și în frecvența evenimentelor extreme afectează atât mediul natural, cât și cantitatea, calitatea și stabilitatea producției de alimente. Variațiile climatice au impact asupra resurselor de apă, a solurilor, a dăunătorilor și a bolilor, ceea ce duce la modificări semnificative ale agriculturii și producției de animale."
@@ -221,7 +221,7 @@ msgstr "Schimbările climatice au efecte complexe asupra proceselor bio-fizice c
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1043
+#: ../theme/climateadaptv2/index.html:1046
 #: ../theme/climateadaptv2/tab-policies-rule.html:270
 msgid "Climate change is expected to have severe impacts on the marine environment. Increase in water temperatures will contribute to a restructuring of marine ecosystems with implications for ocean circulation, biogeochemical cycling and marine biodiversity. Ocean acidification will affect the ability of some calcium carbonate-secreting species (as molluscs, planktons and corals) to produce their shells or skeletons. Warmer and more acidic seawater will therefore negatively affect fishery and aquaculture."
 msgstr "Se preconizează că schimbările climatice vor avea impacturi severe asupra mediului marin. Creșterea temperaturilor apei va contribui la o restructurare a ecosistemelor marine cu implicații pentru circulația oceanului, ciclismul biogeochimic și biodiversitatea marină. Acidificarea oceanică va afecta capacitatea unor specii de secreție de carbonat de calciu (ca moluște, planktoni și corali) de a-și produce cochilii sau scheletele. Prin urmare, apa de mare mai caldă și mai acidă va afecta negativ pescuitul și acvacultura."
@@ -229,7 +229,7 @@ msgstr "Se preconizează că schimbările climatice vor avea impacturi severe as
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1029
+#: ../theme/climateadaptv2/index.html:1032
 #: ../theme/climateadaptv2/tab-policies-rule.html:256
 msgid "Climate change will generate new health risks and amplify current health problems. Both direct and indirect effects on human, plant and animal health are expected from climate change. Direct effects result from changes in the intensity and frequency of extreme weather events like heatwaves and floods. Indirect effects can be felt through changes in the incidence of diseases transmitted by insects (i.e. vector borne diseases caused by mosquitoes and ticks), rodents, or changes in water, food and air quality. The European Commission's EU strategy on adaptation to climate change is accompanied by a Staff Working Document."
 msgstr "Schimbările climatice vor genera noi riscuri pentru sănătate și vor amplifica problemele actuale de sănătate. Atât efectele directe, cât și cele indirecte asupra sănătății umane, plantelor și animalelor sunt așteptate de la schimbările climatice. Efectele directe rezultă din modificări ale intensității și frecvenței evenimentelor meteorologice extreme, cum ar fi undele de căldură și inundațiile. Efectele indirecte pot fi resimțite prin modificări ale incidenței bolilor transmise de insecte (adică bolile vectoriale suportate cauzate de țânțari și căpușe), rozătoare sau modificări ale apei, alimentelor și calității aerului. Strategia UE a Comisiei Europene privind adaptarea la schimbările climatice este însoțită de un document de lucru al personalului."
@@ -237,14 +237,14 @@ msgstr "Schimbările climatice vor genera noi riscuri pentru sănătate și vor 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1133
+#: ../theme/climateadaptv2/index.html:1136
 msgid "Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events."
 msgstr "Studiile de caz de caz de climă prezintă inițiative care sunt deja realizate în Europa pentru a se adapta la schimbările climatice și pentru a crește rezistența la vremuri extreme și la evenimentele cu debut lent."
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:808
+#: ../theme/climateadaptv2/index.html:811
 #: ../theme/climateadaptv2/tab-policies-rule.html:35
 msgid "Coastal areas"
 msgstr "Zone de coastă"
@@ -252,7 +252,7 @@ msgstr "Zone de coastă"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:815
+#: ../theme/climateadaptv2/index.html:818
 #: ../theme/climateadaptv2/tab-policies-rule.html:42
 msgid "Disaster risk <br /> reduction"
 msgstr "Risc de dezastre <br /> Reducere"
@@ -260,7 +260,7 @@ msgstr "Risc de dezastre <br /> Reducere"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:954
+#: ../theme/climateadaptv2/index.html:957
 #: ../theme/climateadaptv2/tab-policies-rule.html:181
 msgid "Disaster risk reduction"
 msgstr "Reducerea riscului de dezastre"
@@ -268,7 +268,7 @@ msgstr "Reducerea riscului de dezastre"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:822
+#: ../theme/climateadaptv2/index.html:825
 #: ../theme/climateadaptv2/tab-policies-rule.html:49
 msgid "Ecosystem-based approaches"
 msgstr "Abordări bazate pe ecosistem"
@@ -276,7 +276,7 @@ msgstr "Abordări bazate pe ecosistem"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:970
+#: ../theme/climateadaptv2/index.html:973
 #: ../theme/climateadaptv2/tab-policies-rule.html:197
 msgid "Ecosystem-based initiatives for climate change adaptation and disaster risk reduction increase resilience and decrease vulnerability of both people and ecosystems, empower people and provide jobs and business opportunities, make economic sense, are ready for use and easily accessible, including for the rural and urban poor. They provide multiple benefits and contribute to achieving climate change adaptation objectives but also several multi-lateral environmental agreements and sectoral policy objectives (e.g. haltering biodiversity loss, water quality or agricultural and forest management)."
 msgstr "Inițiativele bazate pe ecosistem pentru adaptarea la schimbările climatice și reducerea riscurilor în caz de dezastre cresc rezistența și scad vulnerabilitatea atât a persoanelor, cât și a ecosistemelor, abilități oamenii și oferă locuri de muncă și oportunități de afaceri, au sens economic, sunt gata de utilizare și ușor accesibile, inclusiv pentru rural și urban sărac. Acestea oferă beneficii multiple și contribuie la atingerea obiectivelor de adaptare a schimbărilor climatice, dar și la mai multe acorduri de mediu multi-laterale și obiective ale politicii sectoriale (de exemplu, pierderea pierderilor de biodiversitate, calitatea apei sau gestionarea agricolă și forestieră)."
@@ -284,7 +284,7 @@ msgstr "Inițiativele bazate pe ecosistem pentru adaptarea la schimbările clima
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:829
+#: ../theme/climateadaptv2/index.html:832
 #: ../theme/climateadaptv2/tab-policies-rule.html:56
 msgid "Energy"
 msgstr "Energie"
@@ -292,14 +292,14 @@ msgstr "Energie"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1344
+#: ../theme/climateadaptv2/index.html:1347
 msgid "Events"
 msgstr "Evenimente"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1000
+#: ../theme/climateadaptv2/index.html:1003
 #: ../theme/climateadaptv2/tab-policies-rule.html:227
 msgid "Extreme weather events in recent years have increased the urgency to mainstream climate change adaptation into the different EU policy fields. There are few specific EU activities to mainstream climate change adaptation into policies for financial and insurance sectors. However many European policies related to natural disasters (see Disaster risk reduction) are very relevant to the financial and insurance sector, as they may help to prevent significant losses and financial disasters. The European Commission has also committed itself to increasing financing of climate-related activities by ensuring that at least 20% of the European budget is climate-related expenditure."
 msgstr "Evenimentele meteorologice extreme din ultimii ani au crescut urgența la adaptarea la schimbările climatice în diferitele domenii de politici ale UE. Există puține activități specifice ale UE pentru adaptarea la schimbările climatice în politici pentru sectoarele financiare și de asigurări. Cu toate acestea, multe politici europene legate de dezastre naturale (a se vedea reducerea riscului de dezastre) sunt foarte relevante pentru sectorul financiar și de asigurări, deoarece acestea pot ajuta la prevenirea pierderilor semnificative și a dezastrelor financiare. De asemenea, Comisia Europeană s-a angajat să crească finanțarea activităților legate de climă, asigurându-se că cel puțin 20% din bugetul european reprezintă cheltuielile legate de climă."
@@ -307,7 +307,7 @@ msgstr "Evenimentele meteorologice extreme din ultimii ani au crescut urgența l
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:836
+#: ../theme/climateadaptv2/index.html:839
 #: ../theme/climateadaptv2/tab-policies-rule.html:63
 msgid "Financial"
 msgstr "Financiar"
@@ -315,35 +315,32 @@ msgstr "Financiar"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1308
+#: ../theme/climateadaptv2/index.html:1311
 msgid "Find out how to contribute different types of information to Climate-ADAPT"
 msgstr "Aflați cum să contribuiți la diferite tipuri de informații la adaptarea climei"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1258
+#: ../theme/climateadaptv2/index.html:1261
 msgid "For more informations visit:"
 msgstr "Pentru mai multe informații, vizitați:"
 
-# ,
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1093
-msgid "For more informations visit: <a href=\"/cca/eu-adaptation-policy/sector-policies\"> <i class=\"fa fa-angle-double-right\"></i> EU Sector Policies </a>"
-msgstr "Pentru mai multe informații, vizitați: <a href=\"/cca/eu-adaptation-policy/sector-policies\"> <i class = \"fa Fa-unghi-double-pright\"> </i> Politici ale sectorului EU </a>"
+#: ../theme/climateadaptv2/index.html:1096
+msgid "For more informations visit: <a href=\"/eu-adaptation-policy/sector-policies\"> <i class=\"fa fa-angle-double-right\"></i> EU Sector Policies </a>"
+msgstr ""
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1271
+#: ../theme/climateadaptv2/index.html:1274
 msgid "For urban areas guidance visit:"
 msgstr "Pentru ghidarea zonelor urbane vizită:"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:843
+#: ../theme/climateadaptv2/index.html:846
 #: ../theme/climateadaptv2/tab-policies-rule.html:70
 msgid "Forestry"
 msgstr "Silvicultură"
@@ -358,21 +355,21 @@ msgstr "Accesați Exploratorul de date climatice europene"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:531
+#: ../theme/climateadaptv2/index.html:532
 msgid "Go to the European Climate and Health Observatory"
 msgstr "Mergeți la Observatorul European Climat și Sănătate"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:689
+#: ../theme/climateadaptv2/index.html:692
 msgid "Guidance"
 msgstr "Îndrumare"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:850
+#: ../theme/climateadaptv2/index.html:853
 #: ../theme/climateadaptv2/tab-policies-rule.html:77
 msgid "Health"
 msgstr "Sănătate"
@@ -380,7 +377,7 @@ msgstr "Sănătate"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1071
+#: ../theme/climateadaptv2/index.html:1074
 #: ../theme/climateadaptv2/tab-policies-rule.html:298
 msgid "In Europe, nearly 73% of the population live in urban areas and this is projected to increase to over 80% by 2050. Climate change is likely to influence almost all components of cities and towns – their environment, economy and society. This raises new, complex challenges for urban planning and management. Climate change impacts on the hubs of Europe's economic activity, social life, culture and innovation have repercussions far beyond their municipal borders."
 msgstr "În Europa, aproape 73% din populație trăiesc în zonele urbane și se estimează că va crește până la peste 80% până în 2050. Schimbările climatice sunt probabil să influențeze aproape toate componentele orașelor și orașelor - mediul, economia și societatea lor. Acest lucru ridică noi provocări complexe pentru planificarea și managementul urban. Impactul schimbărilor climatice asupra hub -urilor activității economice a Europei, a vieții sociale, a culturii și a inovației au repercusiuni mult peste granițele lor municipale."
@@ -388,21 +385,21 @@ msgstr "În Europa, aproape 73% din populație trăiesc în zonele urbane și se
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:698
+#: ../theme/climateadaptv2/index.html:701
 msgid "Indicators"
 msgstr "Indicatori"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:707
+#: ../theme/climateadaptv2/index.html:710
 msgid "Information portals"
 msgstr "Portaluri de informații"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:857
+#: ../theme/climateadaptv2/index.html:860
 #: ../theme/climateadaptv2/tab-policies-rule.html:84
 msgid "Marine <br /> &amp; fisheries"
 msgstr "Marine <br /> & amp; Pescuit"
@@ -410,7 +407,7 @@ msgstr "Marine <br /> & amp; Pescuit"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1042
+#: ../theme/climateadaptv2/index.html:1045
 #: ../theme/climateadaptv2/tab-policies-rule.html:269
 msgid "Marine and fisheries"
 msgstr "Marine și pescuit"
@@ -418,28 +415,28 @@ msgstr "Marine și pescuit"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1341
+#: ../theme/climateadaptv2/index.html:1344
 msgid "News"
 msgstr "Știri"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1417
+#: ../theme/climateadaptv2/index.html:1420
 msgid "Newsletter"
 msgstr "Buletin informativ"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:725
+#: ../theme/climateadaptv2/index.html:728
 msgid "Organisations"
 msgstr "Organizații"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:955
+#: ../theme/climateadaptv2/index.html:958
 #: ../theme/climateadaptv2/tab-policies-rule.html:182
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "În ultimii ani, Europa a experimentat fiecare tip de dezastre naturale: inundații severe, secete și incendii forestiere cu efecte devastatoare asupra vieții oamenilor, a economiei europene și a mediului. În ultimul deceniu, Comisia Europeană a adoptat mai multe strategii și acțiuni pentru a face față reducerii riscului în caz de dezastre, precum, de exemplu, Directiva privind inundațiile și implementarea acesteia (TIRMETABLE), acțiunea UE privind deficitul de apă și secetă, hârtia ecologică privind asigurarea în domeniul asigurării în Contextul dezastrelor naturale și create de om."
@@ -447,35 +444,35 @@ msgstr "În ultimii ani, Europa a experimentat fiecare tip de dezastre naturale:
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:661
+#: ../theme/climateadaptv2/index.html:664
 msgid "Please check our <a href=\"/help/guidance\">Guidance to search function</a> for more help on how to search the database."
 msgstr "Vă rugăm să verificați <a href=\"/help/guidance\"> îndrumarea pentru funcția de căutare </a> Pentru mai mult ajutor cu privire la modul de căutare a bazei de date."
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:743
+#: ../theme/climateadaptv2/index.html:746
 msgid "Publications and reports"
 msgstr "Publicații și rapoarte"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1420
+#: ../theme/climateadaptv2/index.html:1423
 msgid "RSS feed"
 msgstr "Hrana RSS"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:752
+#: ../theme/climateadaptv2/index.html:755
 msgid "Research and knowledge projects"
 msgstr "Proiecte de cercetare și cunoștințe"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:940
+#: ../theme/climateadaptv2/index.html:943
 #: ../theme/climateadaptv2/tab-policies-rule.html:167
 msgid "Sea level rise can cause flooding, coastal erosion and the loss of low-lying coastal systems. It will also increase the risk of storm surges and the likelihood of landward intrusion of saltwater and may endanger coastal ecosystems. Expected rises in water temperatures and ocean acidification will contribute to a restructuring of coastal ecosystems; with implications for ocean circulation and biogeochemical cycling."
 msgstr "Creșterea nivelului mării poate provoca inundații, eroziunea de coastă și pierderea sistemelor de coastă joase. De asemenea, va crește riscul de creștere a furtunilor și probabilitatea de intruziune spre pământ a apei sărate și poate pune în pericol ecosistemele de coastă. Creșteri preconizate ale temperaturilor apei și acidificării oceanice vor contribui la o restructurare a ecosistemelor de coastă; cu implicații pentru circulația oceanului și ciclismul biogeochimic."
@@ -489,42 +486,42 @@ msgstr "Căutați climatul-adaptat"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1151
+#: ../theme/climateadaptv2/index.html:1154
 msgid "See how Europe is adapting to climate change: <a class=\"ca-booklet-link\" href=\"../about/climate-adapt-10-case-studies-online.pdf\"> <i class=\"fa fa-angle-double-right\"></i> Case studies booklet </a>"
 msgstr "Vedeți cum Europa se adaptează la schimbările climatice: <a class=\"ca-booklet-link\" href=\"../about/climate-adapt-10-case-studies-online.pdf\"> <i class = \"fa fa fa -Angle-Double-Right \"> </i> Broșură de studii de caz </a>"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1307
+#: ../theme/climateadaptv2/index.html:1310
 msgid "Share <span>your information</span>"
 msgstr "Partajează <span> informațiile dvs. </span>"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1433
+#: ../theme/climateadaptv2/index.html:1436
 msgid "Sign me up!"
 msgstr "Inscrie-ma!"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1450
+#: ../theme/climateadaptv2/index.html:1453
 msgid "Subscribe"
 msgstr "Abonati-va"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1448
+#: ../theme/climateadaptv2/index.html:1451
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "Abonați -vă la fluxul nostru <strong> RSS </strong> <br /> și rămâneți la curent!"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1322
+#: ../theme/climateadaptv2/index.html:1325
 msgid "The Covenant of Mayors initiative aims to engage and support cities and towns to commit to reaching the EU climate mitigation and adaptation targets. Signatory cities pledge action to support implementation of the EU 40% greenhouse gas-reduction target by 2030 ..."
 msgstr "Inițiativa Legământului primarilor își propune să se angajeze și să sprijine orașe și orașe pentru a se angaja să atingă obiectivele de atenuare a climei UE și de adaptare. Orașele semnatare se angajează pentru a sprijini implementarea obiectivului de reducere a gazelor cu efect de seră de 40% din UE până în 2030 ..."
 
@@ -538,21 +535,21 @@ msgstr "Exploratorul de date climatice europene oferă acces interactiv la mulț
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:526
+#: ../theme/climateadaptv2/index.html:527
 msgid "The European Climate and Health Observatory provides access to a wide range of relevant publications, tools, websites and other resources related to climate change and health."
 msgstr "Observatorul european pentru climă și sănătate oferă acces la o gamă largă de publicații, instrumente, site -uri web relevante și alte resurse legate de schimbările climatice și sănătatea."
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:659
+#: ../theme/climateadaptv2/index.html:662
 msgid "The database contains quality checked information and is annotated by climate adaptation experts with keywords."
 msgstr "Baza de date conține informații verificate de calitate și este adnotată de experți în adaptare la climă cu cuvinte cheie."
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1057
+#: ../theme/climateadaptv2/index.html:1060
 #: ../theme/climateadaptv2/tab-policies-rule.html:284
 msgid "The need for adapting the transport system to the impact of climate change has been highlighted since the European Commission's Adaptation White Paper (COM (2009)148). Transport adaptation is addressed through a combination of European transport, climate change and research policies. The European Union promotes best practices, mainstreaming adaptation within its transport infrastructure development programmes, and provides guidance, e.g. by developing adequate standards for construction. Action is focused on transport infrastructure, and particularly on the Trans-European Transport Network (TEN-T)."
 msgstr "Necesitatea adaptării sistemului de transport la impactul schimbărilor climatice a fost evidențiată de la Adaptarea Comisiei Europene (COM (2009) 148). Adaptarea transportului este abordată printr -o combinație de politici de transport european, schimbări climatice și cercetare. Uniunea Europeană promovează cele mai bune practici, integrarea adaptării în cadrul programelor sale de dezvoltare a infrastructurii de transport și oferă îndrumări, de ex. prin dezvoltarea standardelor adecvate pentru construcții. Acțiunea este axată pe infrastructura de transport și în special pe rețeaua de transport trans-european (Ten-T)."
@@ -560,7 +557,7 @@ msgstr "Necesitatea adaptării sistemului de transport la impactul schimbărilor
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1015
+#: ../theme/climateadaptv2/index.html:1018
 #: ../theme/climateadaptv2/tab-policies-rule.html:242
 msgid "The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector."
 msgstr "Rata rapidă a schimbărilor climatice poate depăși capacitatea naturală a ecosistemelor forestiere de a se adapta. Ea duce la un risc crescut de tulburări prin furtuni, foc, dăunători și boli, cu implicații asupra creșterii și producției pădurilor. Viabilitatea economică a silviculturii va fi afectată, în principal în zonele de sud ale Europei, precum și capacitatea pădurilor de a furniza servicii de mediu, inclusiv schimbări în funcția de chiuvetă de carbon. În 2013, Comisia a adoptat o nouă strategie forestieră a UE, care răspunde la noile provocări cu care se confruntă pădurile și sectorul pădurilor."
@@ -568,14 +565,14 @@ msgstr "Rata rapidă a schimbărilor climatice poate depăși capacitatea natura
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:761
+#: ../theme/climateadaptv2/index.html:764
 msgid "Tools"
 msgstr "Instrumente"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:864
+#: ../theme/climateadaptv2/index.html:867
 #: ../theme/climateadaptv2/tab-policies-rule.html:91
 msgid "Transport"
 msgstr "Transport"
@@ -583,7 +580,7 @@ msgstr "Transport"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:871
+#: ../theme/climateadaptv2/index.html:874
 #: ../theme/climateadaptv2/tab-policies-rule.html:98
 msgid "Urban"
 msgstr "Urban"
@@ -591,14 +588,14 @@ msgstr "Urban"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:734
+#: ../theme/climateadaptv2/index.html:737
 msgid "Videos"
 msgstr "Videoclipuri"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:878
+#: ../theme/climateadaptv2/index.html:881
 #: ../theme/climateadaptv2/tab-policies-rule.html:105
 msgid "Water <br /> management"
 msgstr "Apa <br /> Management"
@@ -606,7 +603,7 @@ msgstr "Apa <br /> Management"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1084
+#: ../theme/climateadaptv2/index.html:1087
 #: ../theme/climateadaptv2/tab-policies-rule.html:311
 msgid "Water management"
 msgstr "Managementul apei"
@@ -614,12 +611,12 @@ msgstr "Managementul apei"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1085
+#: ../theme/climateadaptv2/index.html:1088
 #: ../theme/climateadaptv2/tab-policies-rule.html:312
 msgid "Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe."
 msgstr "Resursele de apă sunt afectate direct de schimbările climatice, iar gestionarea acestor resurse afectează vulnerabilitatea ecosistemelor, activităților socio-economice și a sănătății umane. De asemenea, se așteaptă ca gestionarea apei să joace un rol din ce în ce mai central în adaptare. Schimbările climatice sunt proiectate să conducă la schimbări majore ale disponibilității apei în Europa, cu o creștere a apei din ce în ce mai mare și secetă în principal în sudul Europei și riscul din ce în ce mai mare de inundații în cea mai mare parte a Europei."
 
 # ,
-#: ../theme/climateadaptv2/index.html:649
+#: ../theme/climateadaptv2/index.html:652
 msgid "type here ..."
 msgstr "Scrie aici ..."

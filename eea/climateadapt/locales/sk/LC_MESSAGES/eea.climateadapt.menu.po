@@ -155,8 +155,12 @@ msgstr "Stredná Európa"
 msgid "Cities and towns"
 msgstr "Mestá"
 
+#: health_menu:2201
+msgid "Climate  Services"
+msgstr ""
+
 # ,
-#: site_menu:69
+#: health_menu:220
 msgid "Climate Services"
 msgstr "Klimatické služby"
 
@@ -540,6 +544,10 @@ msgstr "Observatórium pracovného plánu pre roky 2021-22"
 msgid "Other regions"
 msgstr "Iné regióny"
 
+#: health_menu:222
+msgid "Outreach"
+msgstr ""
+
 # ,
 #: site_menu:12
 msgid "Outreach & dissemination"
@@ -547,7 +555,7 @@ msgstr "Dosahovanie"
 
 # ,
 # ,
-#: site_menu:78
+#: health_menu:221
 msgid "PRACTICE"
 msgstr "Prax"
 
@@ -586,6 +594,10 @@ msgstr "Katalóg zdrojov"
 #: health_menu:40
 msgid "Search for Resources"
 msgstr "Vyhľadajte zdroje"
+
+#: site_menu:84
+msgid "Search the database"
+msgstr ""
 
 # ,
 # ,
@@ -714,8 +726,3 @@ msgstr "Webináre"
 #: health_menu:22
 msgid "Wildfires"
 msgstr "Požiare"
-
-# ,
-#: site_menu:84
-msgid "[<icon class=\"fa fa-database\">]Search the database</icon>"
-msgstr "[<icon class = \"fa FA-database\">] Vyhľadajte databázu </icon>"

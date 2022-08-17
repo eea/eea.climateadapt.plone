@@ -155,8 +155,12 @@ msgstr "Ewropa Ċentrali"
 msgid "Cities and towns"
 msgstr "Bliet u bliet"
 
+#: health_menu:2201
+msgid "Climate  Services"
+msgstr ""
+
 # ,
-#: site_menu:69
+#: health_menu:220
 msgid "Climate Services"
 msgstr "Servizzi tal-Klima"
 
@@ -540,6 +544,10 @@ msgstr "Pjan tax-xogħol osservatorju għall-2021-22"
 msgid "Other regions"
 msgstr "Reġjuni oħra"
 
+#: health_menu:222
+msgid "Outreach"
+msgstr ""
+
 # ,
 #: site_menu:12
 msgid "Outreach & dissemination"
@@ -547,7 +555,7 @@ msgstr "Sensibilizzazzjoni u tixrid"
 
 # ,
 # ,
-#: site_menu:78
+#: health_menu:221
 msgid "PRACTICE"
 msgstr "Prattika"
 
@@ -586,6 +594,10 @@ msgstr "Katalgu tar-Riżorsi"
 #: health_menu:40
 msgid "Search for Resources"
 msgstr "Fittex għar-riżorsi"
+
+#: site_menu:84
+msgid "Search the database"
+msgstr ""
 
 # ,
 # ,
@@ -714,8 +726,3 @@ msgstr "Webinars"
 #: health_menu:22
 msgid "Wildfires"
 msgstr "Wildfires"
-
-# ,
-#: site_menu:84
-msgid "[<icon class=\"fa fa-database\">]Search the database</icon>"
-msgstr "[<icon class = \"fa fa-database\">] Fittex fid-database </con>"

@@ -155,8 +155,12 @@ msgstr "Közép-Európa"
 msgid "Cities and towns"
 msgstr "Nagyvárosok és kisvárosok"
 
+#: health_menu:2201
+msgid "Climate  Services"
+msgstr ""
+
 # ,
-#: site_menu:69
+#: health_menu:220
 msgid "Climate Services"
 msgstr "Éghajlati szolgáltatások"
 
@@ -540,6 +544,10 @@ msgstr "Obszervatóriumi munkaterv 2021-22-re"
 msgid "Other regions"
 msgstr "Más régiók"
 
+#: health_menu:222
+msgid "Outreach"
+msgstr ""
+
 # ,
 #: site_menu:12
 msgid "Outreach & dissemination"
@@ -547,7 +555,7 @@ msgstr "Tájékoztatás és terjesztés"
 
 # ,
 # ,
-#: site_menu:78
+#: health_menu:221
 msgid "PRACTICE"
 msgstr "GYAKORLAT"
 
@@ -586,6 +594,10 @@ msgstr "Erőforráskatalógus"
 #: health_menu:40
 msgid "Search for Resources"
 msgstr "Erőforrások keresése"
+
+#: site_menu:84
+msgid "Search the database"
+msgstr ""
 
 # ,
 # ,
@@ -714,8 +726,3 @@ msgstr "Webináriumok"
 #: health_menu:22
 msgid "Wildfires"
 msgstr "Tűzoltó tűz"
-
-# ,
-#: site_menu:84
-msgid "[<icon class=\"fa fa-database\">]Search the database</icon>"
-msgstr "[<icon class = \"Fa Fa-Database\">] keresse meg az adatbázist </con>"

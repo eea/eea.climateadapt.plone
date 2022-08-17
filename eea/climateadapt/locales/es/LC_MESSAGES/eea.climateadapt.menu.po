@@ -178,9 +178,13 @@ msgstr "Europa Central"
 msgid "Cities and towns"
 msgstr "Ciudades y pueblos"
 
+#: health_menu:2201
+msgid "Climate  Services"
+msgstr "Servicios climáticos"
+
 # ,
 # ,
-#: site_menu:69
+#: health_menu:220
 msgid "Climate Services"
 msgstr "Servicios climáticos"
 
@@ -629,6 +633,10 @@ msgstr "Plan de trabajo del Observatorio para 2021-22"
 msgid "Other regions"
 msgstr "Otras regiones"
 
+#: health_menu:222
+msgid "Outreach"
+msgstr "Superar a"
+
 # ,
 # ,
 #: site_menu:12
@@ -638,9 +646,9 @@ msgstr "Divulgación y diseminación"
 # ,
 # ,
 # ,
-#: site_menu:78
+#: health_menu:221
 msgid "PRACTICE"
-msgstr "PRACTICE"
+msgstr "PRÁCTICA"
 
 # ,
 # ,
@@ -683,6 +691,10 @@ msgstr "Catálogo de recursos"
 #: health_menu:40
 msgid "Search for Resources"
 msgstr "Búsqueda de recursos"
+
+#: site_menu:84
+msgid "Search the database"
+msgstr "Búsqueda la base de datos"
 
 # ,
 # ,
@@ -833,9 +845,3 @@ msgstr "Seminarios web"
 #: health_menu:22
 msgid "Wildfires"
 msgstr "Incendios forestales"
-
-# ,
-# ,
-#: site_menu:84
-msgid "[<icon class=\"fa fa-database\">]Search the database</icon>"
-msgstr "[<icon class = \"fa fa-database\">] Búsqueda la base de datos </icon>"

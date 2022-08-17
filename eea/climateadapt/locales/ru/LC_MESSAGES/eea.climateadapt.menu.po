@@ -155,8 +155,12 @@ msgstr "Центральная Европа"
 msgid "Cities and towns"
 msgstr "Города и города"
 
+#: health_menu:2201
+msgid "Climate  Services"
+msgstr ""
+
 # ,
-#: site_menu:69
+#: health_menu:220
 msgid "Climate Services"
 msgstr "Климатические услуги"
 
@@ -540,6 +544,10 @@ msgstr "Рабочий план обсерватории на 2021-22 гг."
 msgid "Other regions"
 msgstr "Другие регионы"
 
+#: health_menu:222
+msgid "Outreach"
+msgstr ""
+
 # ,
 #: site_menu:12
 msgid "Outreach & dissemination"
@@ -547,7 +555,7 @@ msgstr "Охват и распространение"
 
 # ,
 # ,
-#: site_menu:78
+#: health_menu:221
 msgid "PRACTICE"
 msgstr "УПРАЖНЯТЬСЯ"
 
@@ -586,6 +594,10 @@ msgstr "Каталог ресурсов"
 #: health_menu:40
 msgid "Search for Resources"
 msgstr "Поиск ресурсов"
+
+#: site_menu:84
+msgid "Search the database"
+msgstr ""
 
 # ,
 # ,
@@ -714,8 +726,3 @@ msgstr "Вебинары"
 #: health_menu:22
 msgid "Wildfires"
 msgstr "Лесные пожары"
-
-# ,
-#: site_menu:84
-msgid "[<icon class=\"fa fa-database\">]Search the database</icon>"
-msgstr "[<icon class = \"fa fa-database\">] Поиск в базе данных </icon>"

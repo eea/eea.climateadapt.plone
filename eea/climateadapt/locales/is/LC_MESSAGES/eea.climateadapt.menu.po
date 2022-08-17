@@ -155,8 +155,12 @@ msgstr "Mið -Evrópa"
 msgid "Cities and towns"
 msgstr "Borgir og bæir"
 
+#: health_menu:2201
+msgid "Climate  Services"
+msgstr ""
+
 # ,
-#: site_menu:69
+#: health_menu:220
 msgid "Climate Services"
 msgstr "Loftslagsþjónusta"
 
@@ -540,6 +544,10 @@ msgstr "Observatory Workplan fyrir 2021-22"
 msgid "Other regions"
 msgstr "Önnur svæði"
 
+#: health_menu:222
+msgid "Outreach"
+msgstr ""
+
 # ,
 #: site_menu:12
 msgid "Outreach & dissemination"
@@ -547,7 +555,7 @@ msgstr "Ná lengra og miðlun"
 
 # ,
 # ,
-#: site_menu:78
+#: health_menu:221
 msgid "PRACTICE"
 msgstr "Æfðu"
 
@@ -586,6 +594,10 @@ msgstr "Auðlindaskrá"
 #: health_menu:40
 msgid "Search for Resources"
 msgstr "Leitaðu að auðlindum"
+
+#: site_menu:84
+msgid "Search the database"
+msgstr ""
 
 # ,
 # ,
@@ -714,8 +726,3 @@ msgstr "Webinars"
 #: health_menu:22
 msgid "Wildfires"
 msgstr "Wildfires"
-
-# ,
-#: site_menu:84
-msgid "[<icon class=\"fa fa-database\">]Search the database</icon>"
-msgstr "[<ICON CLASS = \"FA FA-Database\">] Leitaðu í gagnagrunninum </icon>"

@@ -155,8 +155,12 @@ msgstr "Orta Avrupa"
 msgid "Cities and towns"
 msgstr "Şehirler ve kasabalar"
 
+#: health_menu:2201
+msgid "Climate  Services"
+msgstr ""
+
 # ,
-#: site_menu:69
+#: health_menu:220
 msgid "Climate Services"
 msgstr "İklim hizmetleri"
 
@@ -540,6 +544,10 @@ msgstr "2021-22 için Gözlemevi Çalışma Planı"
 msgid "Other regions"
 msgstr "Diğer bölgeler"
 
+#: health_menu:222
+msgid "Outreach"
+msgstr ""
+
 # ,
 #: site_menu:12
 msgid "Outreach & dissemination"
@@ -547,7 +555,7 @@ msgstr "Sosyal Yardım ve Yayılma"
 
 # ,
 # ,
-#: site_menu:78
+#: health_menu:221
 msgid "PRACTICE"
 msgstr "UYGULAMA"
 
@@ -586,6 +594,10 @@ msgstr "Kaynak kataloğu"
 #: health_menu:40
 msgid "Search for Resources"
 msgstr "Kaynak arayın"
+
+#: site_menu:84
+msgid "Search the database"
+msgstr ""
 
 # ,
 # ,
@@ -714,8 +726,3 @@ msgstr "Web seminerleri"
 #: health_menu:22
 msgid "Wildfires"
 msgstr "Orman yangınları"
-
-# ,
-#: site_menu:84
-msgid "[<icon class=\"fa fa-database\">]Search the database</icon>"
-msgstr "[<icon class = \"fa fa-database\">] Veritabanını arayın </con>"

@@ -132,7 +132,11 @@ msgstr "Střední Evropa"
 msgid "Cities and towns"
 msgstr "Města a městečka"
 
-#: site_menu:69
+#: health_menu:2201
+msgid "Climate  Services"
+msgstr ""
+
+#: health_menu:220
 msgid "Climate Services"
 msgstr ""
 
@@ -451,12 +455,16 @@ msgstr ""
 msgid "Other regions"
 msgstr "Jiné regiony"
 
+#: health_menu:222
+msgid "Outreach"
+msgstr ""
+
 #: site_menu:12
 msgid "Outreach & dissemination"
 msgstr ""
 
 # ,
-#: site_menu:78
+#: health_menu:221
 msgid "PRACTICE"
 msgstr "PRAXE"
 
@@ -489,6 +497,10 @@ msgstr "Katalog zdrojů"
 #: health_menu:40
 msgid "Search for Resources"
 msgstr "Vyhledávání zdrojů"
+
+#: site_menu:84
+msgid "Search the database"
+msgstr ""
 
 # ,
 #: site_menu:94
@@ -594,8 +606,4 @@ msgstr "Webináře"
 
 #: health_menu:22
 msgid "Wildfires"
-msgstr ""
-
-#: site_menu:84
-msgid "[<icon class=\"fa fa-database\">]Search the database</icon>"
 msgstr ""

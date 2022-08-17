@@ -224,9 +224,13 @@ msgstr "Europa Centrală"
 msgid "Cities and towns"
 msgstr "Orașe și orașe"
 
+#: health_menu:2201
+msgid "Climate  Services"
+msgstr ""
+
 # ,
 # ,
-#: site_menu:69
+#: health_menu:220
 msgid "Climate Services"
 msgstr "Servicii climatice"
 
@@ -783,6 +787,10 @@ msgstr "Plan de muncă observator pentru 2021-22"
 msgid "Other regions"
 msgstr "Alte regiuni"
 
+#: health_menu:222
+msgid "Outreach"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:12
@@ -794,7 +802,7 @@ msgstr "Divulgare și diseminare"
 # ,
 # ,
 # ,
-#: site_menu:78
+#: health_menu:221
 msgid "PRACTICE"
 msgstr "PRACTICĂ"
 
@@ -851,6 +859,10 @@ msgstr "Catalog de resurse"
 #: health_menu:40
 msgid "Search for Resources"
 msgstr "Căutați resurse"
+
+#: site_menu:84
+msgid "Search the database"
+msgstr ""
 
 # ,
 # ,
@@ -1035,9 +1047,3 @@ msgstr "Webinarii"
 #: health_menu:22
 msgid "Wildfires"
 msgstr "Focuri sălbatice"
-
-# ,
-# ,
-#: site_menu:84
-msgid "[<icon class=\"fa fa-database\">]Search the database</icon>"
-msgstr "[<picon class = \"fa Fa-database\">] Căutați în baza de date </Cicon>"
