@@ -23,8 +23,8 @@
 
     <drop css:content="body script" />
     <rules css:if-not-content=".template-external-template-header">
-      <after css:theme-children="body" css:content="head script" />
-      <after css:theme-children="body" css:content="body script" method="raw"/>
+      <before css:theme-children="body" css:content="head script" />
+      <before css:theme-children="body" css:content="body script" method="raw"/>
     </rules>
 
     <!--Content-->
@@ -38,9 +38,14 @@
       <append css:theme="head">
         <base><xsl:attribute name="href"><xsl:value-of select="$portal_url"/></xsl:attribute></base>
       </append>
-      <replace css:content-children=".fp-news-tile" css:theme-children=".fp-news-tile" />
-      <replace css:content-children=".fp-events-tile" css:theme-children=".fp-events-tile" />
-      <replace css:theme-children="#t-countries" css:content="#fp-country-selector"  />
+
+      <!-- <replace css:content-children=".fp-news-tile" css:theme-children=".fp-news-tile" /> -->
+      <!-- <replace css:content-children=".fp-events-tile" css:theme-children=".fp-events-tile" /> -->
+      <!-- <replace css:theme-children="#t-countries" css:content="#fp-country-selector"  /> -->
+
+      <replace css:content-children=".fp-news-tile" css:theme-children=".fp-news-tile" href="fp-news-tile" method="document"/>
+      <replace css:content-children=".fp-events-tile" css:theme-children=".fp-events-tile" href="fp-events-tile" method="document"/>
+      <replace css:theme-children="#t-countries" css:content="#fp-country-selector" href="fp-countries-tile" method="document"/>
 
       <!-- slider -->
       <replace css:theme=".slider" css:content=".slider" href="/@@slides-frontpage" method="document" />
