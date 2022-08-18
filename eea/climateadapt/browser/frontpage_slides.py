@@ -3,8 +3,8 @@ import urllib
 from collections import namedtuple
 
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
-from eea.climateadapt.translation.utils import TranslationUtilsMixin
-from eea.climateadapt.translation.utils import translate_text
+from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
+                                                translate_text)
 from plone import api
 from plone.api.portal import get_tool, getSite
 from plone.app.textfield import RichText
@@ -72,7 +72,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
             o for o in sf.contentValues() if api.content.get_state(o) == "published"
         ]
         images = []
-        
+
         for slide in slides:
             handler = getattr(self, "handle_" + slide.id.encode("utf-8"), None)
             slide_data = {}
@@ -86,11 +86,13 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
                     "image_url": image_url,
                     "copyright": copyright,
                     "title": slide.title,
-                    "description": slide.long_description,
+                    "description": slide.long_description or '',
                     "category": slide.category,
                     "url": slide.read_more_link,
                 }
-            images.append(slide_data)
+
+            if slide_data:
+                images.append(slide_data)
 
         self.images = images
 
@@ -106,7 +108,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         images = [image.getObject() for image in slide.getFolderContents()]
 
         if len(images) == 0:
-            return ""
+            return ("", "")
 
         now = self.getCurrentDate()
         try:
@@ -120,6 +122,10 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         return url, copyright
 
     def getDescription(self, image):
+        # import pdb; pdb.set_trace()
+        if image is None:
+            return "missing image"
+
         description = image.get("description", "")
 
         if hasattr(description, "output"):
@@ -147,8 +153,11 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
                 "path": {"query": "/cca/{}/news-archive".format(self.current_lang)},
             },
             full_objects=True,
-        )[0]
+        )
+        if len(result) == 0:
+            return None
 
+        result = result[0]
         news = result.getObject()
         image_url, copyright = self.getImages(slide)
         category = "Latest <br/> News & Events"
@@ -159,7 +168,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
             "image_url": image_url,
             "copyright": copyright,
             "title": news.Title(),
-            "description": news.description,
+            "description": news.description or "",
             "category": category_translated,
             "url": news.absolute_url(),
         }
@@ -177,7 +186,11 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
                 "path": {"query": "/cca/{}".format(self.current_lang)},
             },
             full_objects=True,
-        )[0]
+        )
+
+        if len(brain) == 0:
+            return None
+        brain = brain[0]
 
         cs = brain.getObject()
         image_url, copyright = self.getImages(slide)
@@ -189,7 +202,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
             "image_url": image_url,
             "copyright": copyright,
             "title": cs.Title(),
-            "description": cs.long_description,
+            "description": cs.long_description or "",
             "category": category_translated,
             "url": cs.absolute_url(),
         }
@@ -245,7 +258,11 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
                 "path": {"query": "/cca/{}".format(self.current_lang)},
             },
             full_objects=True,
-        )[0]
+        )
+
+        if len(result) == 0:
+            return None
+        result = result[0]
 
         publi = result.getObject()
         image_url, copyright = self.getImages(slide)
@@ -257,7 +274,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
             "image_url": image_url,
             "copyright": copyright,
             "title": publi.Title(),
-            "description": publi.long_description,
+            "description": publi.long_description or "",
             "category": category_translated,
             "url": publi.absolute_url(),
         }
