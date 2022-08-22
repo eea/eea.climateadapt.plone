@@ -407,7 +407,7 @@ msgstr "Informationsportale"
 #: ../theme/climateadaptv2/index.html:860
 #: ../theme/climateadaptv2/tab-policies-rule.html:84
 msgid "Marine <br /> &amp; fisheries"
-msgstr "Meer <br /> & amp; Fischerei"
+msgstr "Meer <br /> &amp; Fischerei"
 
 # ,
 # ,
