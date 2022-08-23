@@ -1053,7 +1053,7 @@ def translation_step_3_one_file(json_file, language, catalog, portal_type = None
                     update = tile
                 translated_msg = get_translated(tile_data['item'][key], language.upper())
                 if translated_msg:
-                    update[key] = translated_msg
+                    update[key] = translated_msg.encode('latin-1')
                     have_change = True
                 # tile.data.update(update)
                 trans_obj.__annotations__[tile_annot_id] = update
