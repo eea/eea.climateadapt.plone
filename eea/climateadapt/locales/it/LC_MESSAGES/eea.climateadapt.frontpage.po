@@ -459,7 +459,7 @@ msgstr "Portali"
 #: ../theme/climateadaptv2/index.html:860
 #: ../theme/climateadaptv2/tab-policies-rule.html:84
 msgid "Marine <br /> &amp; fisheries"
-msgstr "Marino <br /> & amp; pesca"
+msgstr "Marino <br /> &amp; pesca"
 
 # ,
 # ,
