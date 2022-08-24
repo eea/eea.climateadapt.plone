@@ -69,7 +69,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         sf = site.unrestrictedTraverse(fp_slides_path)
 
         slides = [
-            o for o in sf.contentValues() if api.content.get_state(o) == "published"
+            o for o in sf.contentValues() # if api.content.get_state(o) == "published"
         ]
         images = []
 
@@ -88,7 +88,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
                     "title": slide.title,
                     "description": slide.long_description or '',
                     "category": slide.category,
-                    "url": slide.read_more_link,
+                    "url": self.translated_url(slide.read_more_link),
                 }
 
             if slide_data:
@@ -298,7 +298,7 @@ SEARCH_TYPES_ICONS = [
 ]
 
 
-class FrontpageSearch(BrowserView):
+class FrontpageSearch(BrowserView, TranslationUtilsMixin):
 
     # TODO: implement cache using eea.cache
     # @cache
@@ -317,8 +317,10 @@ class FrontpageSearch(BrowserView):
             }
         }
 
+        base_query = "{0}/data-and-downloads?lang={0}&source=".format(
+            self.current_lang)
         q = {"query": t}
-        l = "/data-and-downloads?source=" + urllib.quote(json.dumps(q))
+        l = base_query + urllib.quote(json.dumps(q))
 
         return l
 

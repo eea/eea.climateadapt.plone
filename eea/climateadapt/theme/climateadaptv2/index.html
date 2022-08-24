@@ -648,7 +648,9 @@
     
             <div class="tab-pane fade" id="t-database">
     
-            <form class="database-search-box" method="GET" action="/data-and-downloads/">
+            <form class="database-search-box" method="GET" 
+                tal:attributes="action python:view.translate_url('/en/data-and-downloads/')"
+                action="/data-and-downloads/">
               <input type="text" i18n:attributes="placeholder" placeholder="type here ..."
               name="q" />
               <button class="search-submit"
@@ -661,7 +663,7 @@
               <div class="text-center">
                 <p i18n:translate="">The database contains quality checked information and is annotated
                    by climate adaptation experts with keywords.</p>
-                <p i18n:translate="">Please check our <a href="/help/guidance">Guidance to search function</a> for more help on how to search the database.</p>
+                <p i18n:translate="">Please check our <a tal:attributes="href python:view.translate_url('/en/help/guidance')">Guidance to search function</a> for more help on how to search the database.</p>
               </div>
     
               <div class="db-categories flex-wrapper">
@@ -767,7 +769,7 @@
               </div> <!-- end of db categories -->
     
               <div class="see-more-link">
-                <a href="../data-and-downloads" i18n:translate="" tal:attributes="href python:view.translate_url('/en/data-and-downloads/')">
+                <a href="../data-and-downloads" i18n:translate="" tal:attributes="href python:view.translate_url('/en/data-and-downloads')">
                   <i class="fa fa-angle-double-right"></i>
                   See complete database
                 </a>
@@ -784,98 +786,112 @@
                 i18n:domain="eea.climateadapt.frontpage">
                 <ul class="nav nav-tabs flex-wrapper policies-nav">
                   <li class="policies-nav-item active">
-                    <a href="/eu-adaptation-policy/sector-policies/agriculture"
+                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/agriculture')"
+                        href="/eu-adaptation-policy/sector-policies/agriculture"
                        data-toggle="tab" class="policies-nav-link" data-target="#agriculture">
                       <div class="policy-icons agriculture"></div>
                       <p i18n:translate="">Agriculture</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
-                    <a href="/eu-adaptation-policy/sector-policies/biodiversity"
+                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/biodiversity')"
+                        href="/eu-adaptation-policy/sector-policies/biodiversity"
                        data-toggle="tab" class="policies-nav-link" data-target="#biodiversity" >
                        <div class="policy-icons biodiversity"></div>
                        <p i18n:translate="">Biodiversity</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
-                    <a href="/eu-adaptation-policy/sector-policies/buildings"
+                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/buildings')"
+                        href="/eu-adaptation-policy/sector-policies/buildings"
                        data-toggle="tab" class="policies-nav-link" data-target="#buildings">
                       <div class="policy-icons buildings"></div>
                       <p i18n:translate="">Buildings</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
-                    <a href="/eu-adaptation-policy/sector-policies/coastal-areas"
+                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/coastal-areas')"
+                        href="/eu-adaptation-policy/sector-policies/coastal-areas"
                        data-toggle="tab" class="policies-nav-link" data-target="#coastal-areas">
                       <div class="policy-icons coastal"></div>
                       <p i18n:translate="">Coastal areas</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
-                    <a href="/eu-adaptation-policy/sector-policies/disaster-risk-reduction"
+                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/disaster-risk-reduction')"
+                        href="/eu-adaptation-policy/sector-policies/disaster-risk-reduction"
                        data-toggle="tab" class="policies-nav-link" data-target="#disaster-risk-reduction">
                       <div class="policy-icons disaster"></div>
                       <p i18n:translate="">Disaster risk <br /> reduction</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
-                    <a href="/eu-adaptation-policy/sector-policies/ecosystem"
+                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/ecosystem')"
+                        href="/eu-adaptation-policy/sector-policies/ecosystem"
                        data-toggle="tab" data-target="#ecosystem" class="policies-nav-link">
                       <div class="policy-icons green-infrastructure"></div>
                       <p i18n:translate="">Ecosystem-based approaches</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
-                    <a href="/eu-adaptation-policy/sector-policies/energy"
+                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/energy')"
+                        href="/eu-adaptation-policy/sector-policies/energy"
                        data-toggle="tab" data-target="#energy" class="policies-nav-link">
                       <div class="policy-icons energy"></div>
                       <p i18n:translate="">Energy</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
-                    <a href="/eu-adaptation-policy/sector-policies/financial"
+                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/financial')"
+                        href="/eu-adaptation-policy/sector-policies/financial"
                        data-toggle="tab" data-target="#financial" class="policies-nav-link">
                       <div class="policy-icons financial"></div>
                       <p i18n:translate="">Financial</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
-                    <a href="/eu-adaptation-policy/sector-policies/forestry"
+                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/forestry')"
+                        href="/eu-adaptation-policy/sector-policies/forestry"
                        data-toggle="tab" data-target="#forestry" class="policies-nav-link">
                       <div class="policy-icons forestry"></div>
                       <p i18n:translate="">Forestry</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
-                    <a href="/eu-adaptation-policy/sector-policies/health"
+                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/health')"
+                        href="/eu-adaptation-policy/sector-policies/health"
                        data-toggle="tab"  data-target="#health" class="policies-nav-link">
                       <div class="policy-icons health"></div>
                       <p i18n:translate="">Health</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
-                    <a href="/eu-adaptation-policy/sector-policies/marine-and-fisheries"
+                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/marine-and-fisheries')"
+                        href="/eu-adaptation-policy/sector-policies/marine-and-fisheries"
                        data-toggle="tab" data-target="#marine-and-fisheries" class="policies-nav-link">
                       <div class="policy-icons marine"></div>
                       <p i18n:translate="">Marine <br /> &amp; fisheries</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
-                    <a href="/eu-adaptation-policy/sector-policies/transport"
+                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/transport')"
+                        href="/eu-adaptation-policy/sector-policies/transport"
                        data-toggle="tab" data-target="#transport" class="policies-nav-link">
                       <div class="policy-icons transport"></div>
                       <p i18n:translate="">Transport</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
-                    <a href="/eu-adaptation-policy/sector-policies/urban"
+                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/urban')"
+                        href="/eu-adaptation-policy/sector-policies/urban"
                        data-toggle="tab"  data-target="#urban" class="policies-nav-link">
                       <div class="policy-icons urban"></div>
                       <p i18n:translate="">Urban</p>
                     </a>
                   </li>
                   <li class="policies-nav-item">
-                    <a href="/eu-adaptation-policy/sector-policies/water-management"
+                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/water-management')"
+                        href="/eu-adaptation-policy/sector-policies/water-management"
                        data-toggle="tab" data-target="#water-management" class="policies-nav-link">
                       <div class="policy-icons water"></div>
                       <p i18n:translate="">Water <br /> management</p>
@@ -1094,7 +1110,8 @@
               </div>
               <div class="see-more-link">
                 <p i18n:translate="">For more informations visit:
-                  <a href="/eu-adaptation-policy/sector-policies">
+                  <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies')"
+                      href="/eu-adaptation-policy/sector-policies">
                     <i class="fa fa-angle-double-right"></i>
                     EU Sector Policies
                   </a>
@@ -1123,7 +1140,8 @@
                     </option>
                   </select>
                 </span>
-                <a href="../countries-regions/countries"
+                <a tal:attributes="href python:view.translate_url('/en/countries-regions/countries')"
+                    href="../countries-regions/countries"
                    class="standard-button primary-button sm-button">
                    See countries webpage
                  </a>
@@ -1142,9 +1160,12 @@
                     are careful and specifically prepared for Climate-ADAPT by the
                     organisation that is involved in the implementation with the
                     support of EEA, following a set of
-                    <a href="https://climate-adapt.eea.europa.eu/repository/11090223.pdf">criteria</a>
+                    <a tal:attributes="href python:view.translate_url('/en/repository/11090223.pdf')" 
+                      href="https://climate-adapt.eea.europa.eu/repository/11090223.pdf">criteria</a>
                     and also in collaboration with the main stakeholders.
-                    See the <a href="../knowledge/tools/case-studies-climate-adapt">Case Studies Page</a>.</p>
+                    See the <a 
+                      tal:attributes="href python:view.translate_url('/en/knowledge/tools/case-studies-climate-adapt')" 
+                      href="../knowledge/tools/case-studies-climate-adapt">Case Studies Page</a>.</p>
                   <div class="ca-booklet">
                     <img class="lazyload"
                          data-src="/cca/++theme++climateadaptv2//static/images/ca-booklet.png"
@@ -1153,6 +1174,7 @@
                          />
                     <p i18n:translate="">See how Europe is adapting to climate change:
                       <a class="ca-booklet-link"
+                          tal:attributes="href python:view.translate_url('/en/about/climate-adapt-10-case-studies-online.pdf')"
                          href="../about/climate-adapt-10-case-studies-online.pdf">
                         <i class="fa fa-angle-double-right"></i>
                         Case studies booklet
@@ -1171,42 +1193,54 @@
                   <div class="white-bg"></div>
                   <span class="ast-image-title">Adaptation <br /> Support Tool</span>
     
-                  <a class="ast-step-wrapper" href="../knowledge/tools/adaptation-support-tool/step-1">
+                  <a class="ast-step-wrapper" 
+                      tal:attributes="href python:view.translate_url('/en/knowledge/tools/adaptation-support-tool/step-1')"
+                      href="../knowledge/tools/adaptation-support-tool/step-1">
                     <span class="ast-circle circle-1">1</span>
                     <span class="step-text circle-1-text">
                       <p>Preparing the ground for adaptation</p>
                     </span>
                   </a>
     
-                  <a class="ast-step-wrapper" href="../knowledge/tools/adaptation-support-tool/step-2">
+                  <a class="ast-step-wrapper" 
+                      tal:attributes="href python:view.translate_url('/en/knowledge/tools/adaptation-support-tool/step-2')"
+                      href="../knowledge/tools/adaptation-support-tool/step-2">
                     <span class="ast-circle circle-2">2</span>
                     <span class="step-text circle-2-text">
                       <p>Assessing risks and vulnerability <br /> to climate change</p>
                     </span>
                   </a>
     
-                  <a class="ast-step-wrapper" href="../knowledge/tools/adaptation-support-tool/step-3">
+                  <a class="ast-step-wrapper" 
+                      tal:attributes="href python:view.translate_url('/en/knowledge/tools/adaptation-support-tool/step-3')"
+                      href="../knowledge/tools/adaptation-support-tool/step-3">
                     <span class="ast-circle circle-3">3</span>
                     <span class="step-text circle-3-text">
                       <p>Identifying adaptation options</p>
                     </span>
                   </a>
     
-                  <a class="ast-step-wrapper" href="../knowledge/tools/adaptation-support-tool/step-4">
+                  <a class="ast-step-wrapper" 
+                      tal:attributes="href python:view.translate_url('/en/knowledge/tools/adaptation-support-tool/step-4')"
+                      href="../knowledge/tools/adaptation-support-tool/step-4">
                     <span class="ast-circle circle-4">4</span>
                     <span class="step-text circle-4-text">
                       <p>Assessing adaptation options</p>
                     </span>
                   </a>
     
-                  <a class="ast-step-wrapper" href="../knowledge/tools/adaptation-support-tool/step-5">
+                  <a class="ast-step-wrapper" 
+                      tal:attributes="href python:view.translate_url('/en/knowledge/tools/adaptation-support-tool/step-5')"
+                      href="../knowledge/tools/adaptation-support-tool/step-5">
                     <span class="ast-circle circle-5">5</span>
                     <span class="step-text circle-5-text">
                       <p>Implementation</p>
                     </span>
                   </a>
     
-                  <a class="ast-step-wrapper" href="../knowledge/tools/adaptation-support-tool/step-6">
+                  <a class="ast-step-wrapper" 
+                      tal:attributes="href python:view.translate_url('/en/knowledge/tools/adaptation-support-tool/step-6')"
+                      href="../knowledge/tools/adaptation-support-tool/step-6">
                     <span class="ast-circle circle-6">6</span>
                     <span class="step-text circle-6-text">
                       <p>Monitoring &amp; Evaluation (M&amp;E)</p>
@@ -1218,37 +1252,43 @@
     
               <ul class="ast-steps">
                 <li>
-                  <a href="../knowledge/tools/adaptation-support-tool/step-1">
+                  <a tal:attributes="href python:view.translate_url('/en/knowledge/tools/adaptation-support-tool/step-1')"
+                      href="../knowledge/tools/adaptation-support-tool/step-1">
                     <span class="step-number">1.</span>
                     Preparing the ground for adaptation
                   </a>
                 </li>
                 <li>
-                  <a href="../knowledge/tools/adaptation-support-tool/step-2">
+                  <a tal:attributes="href python:view.translate_url('/en/knowledge/tools/adaptation-support-tool/step-2')"
+                      href="../knowledge/tools/adaptation-support-tool/step-2">
                     <span class="step-number">2.</span>
                     Assessing risks and vulnerability to climate change
                   </a>
                 </li>
                 <li>
-                  <a href="../knowledge/tools/adaptation-support-tool/step-3">
+                  <a tal:attributes="href python:view.translate_url('/en/knowledge/tools/adaptation-support-tool/step-3')"
+                      href="../knowledge/tools/adaptation-support-tool/step-3">
                     <span class="step-number">3.</span>
                     Identifying adaptation options
                   </a>
                 </li>
                 <li>
-                  <a href="../knowledge/tools/adaptation-support-tool/step-4">
+                  <a tal:attributes="href python:view.translate_url('/en/knowledge/tools/adaptation-support-tool/step-4')"
+                      href="../knowledge/tools/adaptation-support-tool/step-4">
                     <span class="step-number">4.</span>
                     Assessing adaptation options
                   </a>
                 </li>
                 <li>
-                  <a href="../knowledge/tools/adaptation-support-tool/step-5">
+                  <a tal:attributes="href python:view.translate_url('/en/knowledge/tools/adaptation-support-tool/step-5')"
+                      href="../knowledge/tools/adaptation-support-tool/step-5">
                     <span class="step-number">5.</span>
                     Implementation
                   </a>
                 </li>
                 <li>
-                  <a href="../knowledge/tools/adaptation-support-tool/step-6">
+                  <a tal:attributes="href python:view.translate_url('/en/knowledge/tools/adaptation-support-tool/step-6')"
+                      href="../knowledge/tools/adaptation-support-tool/step-6">
                     <span class="step-number">6.</span>
                     Monitoring & Evaluation (M&E)
                   </a>
@@ -1259,7 +1299,8 @@
                 <div class="ast-link">
                   <div class="ast-link-wrapper">
                     <p i18n:translate="">For more informations visit:</p>
-                    <a href="../knowledge/tools/adaptation-support-tool" i18n:translate="">
+                    <a tal:attributes="href python:view.translate_url('/en/knowledge/tools/adaptation-support-tool')"
+                        href="../knowledge/tools/adaptation-support-tool" i18n:translate="">
                       <i class="fa fa-angle-double-right"></i>
                       Adaptation support tool
                     </a>
@@ -1272,7 +1313,8 @@
                        height="49"
                        />
                   <p i18n:translate="">For urban areas guidance visit:</p>
-                  <a href="../knowledge/tools/urban-ast/step-0-0" i18n:translate="">
+                  <a tal:attributes="href python:view.translate_url('/en/knowledge/tools/adaptation-support-tool/step-0-0')"
+                      href="../knowledge/tools/urban-ast/step-0-0" i18n:translate="">
                     <i class="fa fa-angle-double-right"></i>
                     Urban Adaptation Support Tool
                   </a>
@@ -1299,7 +1341,8 @@
       
           <div class="main-box col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="box-container info-section">
-              <a href="../help/share-your-info">
+              <a tal:attributes="href python:view.translate_url('/en/help/share-your-info')"
+                  href="../help/share-your-info">
                 <div class="content-body">
                   <img class="lazyload"
                        data-src="/cca/++theme++climateadaptv2//static/images/share-info.svg"
@@ -1329,7 +1372,8 @@
                 implementation of the EU 40% greenhouse gas-reduction target
                 by 2030 ...</p>
               <div class="read-more-wrapper">
-                <a href="../eu-adaptation-policy/covenant-of-mayors" class="read-more" i18n:translate="">
+                <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/covenant-of-mayors')"
+                    href="../eu-adaptation-policy/covenant-of-mayors" class="read-more" i18n:translate="">
                   <i class="fa fa-angle-double-right"></i>
                   Read more
                 </a>

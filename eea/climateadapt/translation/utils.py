@@ -9,6 +9,49 @@ from eea.climateadapt.translation import retrieve_translation
 class TranslationUtilsMixin(object):
     """ Class with utility methods related to translations """
 
+    def translated_url(self, url):
+        """return the relative url for the object, including the current language
+        example for FR
+
+        /metadata/test -> /fr/metadata/test
+        /en/metadata/test -> /fr/metadata/test
+        """
+        
+        replace_urls = [
+            'https://cca.devel5cph.eionet.europa.eu',
+            'https://climate-adapt.eea.europa.eu'
+        ]
+
+        portal_url = self.context.portal_url()
+        
+        if portal_url in url:
+            relative_path = url.replace(portal_url, '')
+        else:
+            for r_url in replace_urls:
+                url = url.replace(r_url, '')
+
+            relative_path = url
+
+        if relative_path.startswith('/'):
+            relative_path = relative_path[1:]
+
+        relative_path_split = relative_path.split('/')
+
+        if relative_path_split[0] == self.current_lang:
+            return relative_path
+
+        if relative_path_split[0] == 'en':
+            new_path = "/{}/{}".format(
+                self.current_lang, relative_path_split[1:].join('/'))
+
+            return new_path
+
+        new_path = "/{}/{}".format(
+            self.current_lang, relative_path)
+
+        return new_path
+
+
     @property
     def current_lang(self):
         current_language = get_current_language(self.context, self.request)
