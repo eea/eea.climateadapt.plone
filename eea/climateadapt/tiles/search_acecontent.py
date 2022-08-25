@@ -14,6 +14,7 @@ from collective.cover.tiles.base import (IPersistentCoverTile,
 from collective.cover.tiles.list import IListTile
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.catalog import get_aceitem_description
+from eea.climateadapt.translation.utils import TranslationUtilsMixin
 from eea.climateadapt.vocabulary import (_climateimpacts, _datatypes,
                                          _elements, _origin_website, _sectors,
                                          ace_countries_dict)
@@ -285,7 +286,8 @@ class AceTileMixin(object):
         return "{}{}".format(url, urllib.quote(json.dumps(q)))
 
 
-class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
+class SearchAceContentTile(PersistentCoverTile, AceTileMixin, 
+        TranslationUtilsMixin):
     """Search Ace content tile
     It shows links to the search page, for all aceitems_types.
     """
@@ -320,7 +322,10 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin):
     def sections(self):
         """Returns a list of (section name, section count, section_url)"""
         site = getSite()
-        base = site.absolute_url() + "/data-and-downloads?source="
+        base_query = "/{0}/data-and-downloads/?lang={0}&source=".format(
+            self.current_lang)
+
+        base = site.absolute_url() + base_query
 
         result = []
 
