@@ -14,8 +14,8 @@
     <link rel="preload" href="static/css/compiled-css.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
     <noscript><link rel="stylesheet" href="static/css/compiled-css.css"></noscript>
     
-    <link rel="preload" href="static/css/compiled-less.css?rel=125cf7b75d" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=125cf7b75d"></noscript>
+    <link rel="preload" href="static/css/compiled-less.css?rel=fd7bebf9bf" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=fd7bebf9bf"></noscript>
     
     <link rel="stylesheet" type="text/css" href="/++theme++climateadaptv2/static/css/health.css?rel=287ce8b827" />
     
@@ -242,10 +242,12 @@
                 </a>
               </li>
               <li class="footer-nav-item">
-                <a href="/observatory/sitemap" class="footer-nav-link" i18n:translate="">SITE MAP</a>
+                <a tal:attributes="href python:view.translate_url('/en/observatory/sitemap')"
+                    href="/observatory/sitemap" class="footer-nav-link" i18n:translate="">SITE MAP</a>
               </li>
               <li class="footer-nav-item">
-                <a href="/privacy-and-legal-notice" class="footer-nav-link" i18n:translate="">Privacy and Legal Notice</a>
+                <a tal:attributes="href python:view.translate_url('/en/privacy-and-legal-notice')"
+                    href="/privacy-and-legal-notice" class="footer-nav-link" i18n:translate="">Privacy and Legal Notice</a>
               </li>
               <li class="footer-nav-item align-right footer-login">
                   <!-- <a href="/login" id="personaltools-login" rel="#pb_1" class="footer-nav-link link-overlay" style="cursor: pointer;"><i class="fa fa-user"></i> Log in</a> -->
@@ -273,7 +275,8 @@
     
               </li>
               <li class="footer-nav-item align-right footer-logged-menu">
-                <a href="/observatory/user-dashboard" class="footer-nav-link"><i class="fa fa-user"></i> dashboard</a>
+                <a tal:attributes="href python:view.translate_url('/en/observatory/user-dashboard')" 
+                  href="/observatory/user-dashboard" class="footer-nav-link"><i class="fa fa-user"></i> dashboard</a>
               </li>
             </ul>
           </nav>

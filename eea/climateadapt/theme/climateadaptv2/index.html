@@ -14,8 +14,8 @@
     <link rel="preload" href="static/css/compiled-css.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
     <noscript><link rel="stylesheet" href="static/css/compiled-css.css" /></noscript>
     
-    <link rel="preload" href="static/css/compiled-less.css?rel=125cf7b75d" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=125cf7b75d" /></noscript>
+    <link rel="preload" href="static/css/compiled-less.css?rel=fd7bebf9bf" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=fd7bebf9bf" /></noscript>
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="static/images/favicon/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/images/favicon/apple-touch-icon-114x114.png" />
@@ -1524,10 +1524,12 @@
                 <a href="mailto:climate.adapt@eea.europa.eu" class="footer-nav-link">Contact</a>
               </li>
               <li class="footer-nav-item">
-                <a href="/sitemap" class="footer-nav-link">SITE MAP</a>
+                <a tal:attributes="href python:view.translate_url('/en/sitemap')" 
+                  href="/sitemap" class="footer-nav-link">SITE MAP</a>
               </li>
               <li class="footer-nav-item">
-                <a href="/privacy-and-legal-notice" class="footer-nav-link">Privacy and Legal Notice</a>
+                <a tal:attributes="href python:view.translate_url('/en/privacy-and-legal-notice')"  
+                  href="/privacy-and-legal-notice" class="footer-nav-link">Privacy and Legal Notice</a>
               </li>
             </ul>
             <ul class="navbar_footer" style="display:inline">
@@ -1557,7 +1559,8 @@
     
               </li>
               <li class="footer-nav-item float-lg-right footer-logged-menu">
-                <a href="/user-dashboard" class="footer-nav-link"><i class="fa fa-user"></i> dashboard</a>
+                <a tal:attributes="href python:view.translate_url('/en/user-dashboard')"   
+                  href="/user-dashboard" class="footer-nav-link"><i class="fa fa-user"></i> dashboard</a>
               </li>
             </ul>
           </nav>
