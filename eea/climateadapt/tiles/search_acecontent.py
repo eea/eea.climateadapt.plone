@@ -286,7 +286,7 @@ class AceTileMixin(object):
         return "{}{}".format(url, urllib.quote(json.dumps(q)))
 
 
-class SearchAceContentTile(PersistentCoverTile, AceTileMixin, 
+class SearchAceContentTile(PersistentCoverTile, AceTileMixin,
         TranslationUtilsMixin):
     """Search Ace content tile
     It shows links to the search page, for all aceitems_types.
@@ -541,11 +541,18 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         return items
 
     def all_items(self):
+        current_language = get_current_language(self.context, self.request)
         site = getSite()
         catalog = site.portal_catalog
         res = []
 
         for item in self.assigned():
+            if '/'+current_language+'/' not in item.absolute_url():
+                translations = TranslationManager(item).get_translations()
+                if current_language not in translations:
+                    continue
+                item = translations[current_language]
+
             adapter = sortable_title(item)
             st = adapter()
             o = Item(
@@ -565,9 +572,6 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
                     return sorted(res, key=lambda o: o.sortable_title)
                 else:
                     return res
-
-        current_language = get_current_language(self.context, self.request)
-        #import pdb; pdb.set_trace()
 
         for item in self.items():
             obj = item.getObject()
