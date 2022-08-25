@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-17 22:27+0000\n"
+"POT-Creation-Date: 2022-08-16 03:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,17 +28,13 @@ msgstr "<a href=\"#t-started\"> <span class = \"d-d-con-feature-con\"> </span> �
 msgid "<i class=\"fa fa-angle-double-right\"></i> Adaptation support tool"
 msgstr "<i class = \"fa fa-angle-double-right\"> </i> g침odda ta 'appo치치 g침all-adattament"
 
-# ,
-# ,
 #: ../theme/climateadaptv2/index.html:1404
 msgid "<i class=\"fa fa-angle-double-right\"></i> More events"
-msgstr "<i class = \"fa fa-angle-double-right\"> </i> aktar avvenimenti"
+msgstr ""
 
-# ,
-# ,
 #: ../theme/climateadaptv2/index.html:1375
 msgid "<i class=\"fa fa-angle-double-right\"></i> More news"
-msgstr "<i class = \"fa fa-angle-double-right\"> </i> aktar a침barijiet"
+msgstr ""
 
 # ,
 # ,

@@ -1,10 +1,32 @@
+<div
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  i18n:domain="eea.climateadapt"
+  >
 <div tal:define="portal_url context/portal_url">
   <script tal:content="string:
     var active_ast_tab = ${view/active_tab};
     "></script>
   <script type="text/javascript">
     $(document).ready(function() {
+      cca_language = window.location.pathname.substring(0,4);
+
+      var as = $('#uast-menu > li > a');
+      for (i=0;i<as.length;i++) {
+        $(as[i]).attr('onclick', $(as[i]).attr('onclick').replace('/en/', cca_language));
+      }
+      var as = $('#uast-menu  li a');
+      for (i=0;i<as.length;i++) {
+        $(as[i]).attr('href', $(as[i]).attr('href').replace('/en/', cca_language));
+      }
+
       var c = document.location.href;
+      active_step = window.location.pathname.split('step-');
+      if (active_step.length>1) {
+        active_ast_tab = parseInt(active_step[1]);
+      } else {
+        active_ast_tab = 0;
+      }      
       $("#uast-menu").accordion({
         active: active_ast_tab
       });
@@ -19,256 +41,256 @@
     });
   </script>
 
-  <ul id="uast-menu">
+  <ul id="uast-menu" var selected=${structure:selected};>
     <li>
-      <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-0-0;
-        onclick string:document.location.href='${portal_url}/knowledge/tools/urban-ast/step-0-0'"
+      <a tal:attributes="href string:${portal_url}/en/knowledge/tools/urban-ast/step-0-0;
+        onclick string:document.location.href='${portal_url}/en/knowledge/tools/urban-ast/step-0-0'"
         name="step-0-0">
       <strong>&nbsp;&nbsp;</strong>
       <span class="uast-title" i18n:translate="">Getting started</span>
       </a>
       <ul id="step-0">
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-0-1" name="step-0-1" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-0-1" name="step-0-1" i18n:translate="">
           About the Urban Adaptation Support Tool</a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-0-2" name="step-0-2" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-0-2" name="step-0-2" i18n:translate="">
           Climate change impacts on European cities
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-0-3" name="step-0-3" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-0-3" name="step-0-3" i18n:translate="">
           Adaptation to climate change in urban areas
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-0-4" name="step-0-4" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-0-4" name="step-0-4" i18n:translate="">
           Principles and success factors
           </a>
         </li>
       </ul>
     </li>
     <li>
-      <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-1-0;
-        onclick string:document.location.href='${portal_url}/knowledge/tools/urban-ast/step-1-0'"
+      <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-1-0;
+        onclick string:document.location.href='${portal_url}/en/knowledge/tools/urban-ast/step-1-0'"
         name="step-1-0">
       <strong>1</strong>
       <span class="uast-title" i18n:translate="">Preparing the ground for adaptation</span>
       </a>
       <ul id="step-1">
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-1-1" name="step-1-1" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-1-1" name="step-1-1" i18n:translate="">
             1.1 Obtaining political support for adaptation
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-1-2" name="step-1-2" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-1-2" name="step-1-2" i18n:translate="">
             1.2 Collecting initial information
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-1-3" name="step-1-3" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-1-3" name="step-1-3" i18n:translate="">
             1.3 Setting up adaptation processes within and beyond the municipality
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-1-4" name="step-1-4" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-1-4" name="step-1-4" i18n:translate="">
             1.4 Identifying and obtaining human and technical resources
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-1-5" name="step-1-5" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-1-5" name="step-1-5" i18n:translate="">
             1.5 Identifying and obtaining financing and funding
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-1-6" name="step-1-6" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-1-6" name="step-1-6" i18n:translate="">
             1.6 Identifying and engaging stakeholders
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-1-7" name="step-1-7" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-1-7" name="step-1-7" i18n:translate="">
             1.7 Communicating adaptation to different target audiences
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-1-8" name="step-1-8" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-1-8" name="step-1-8" i18n:translate="">
             1.8 Finding additional support
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-1-check" name="step-1-9" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-1-check" name="step-1-9" i18n:translate="">
             1.9 Preparing the ground for adaptation: Self check
           </a>
         </li>
       </ul>
     </li>
     <li>
-      <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-2-0;
-        onclick string:document.location.href='${portal_url}/knowledge/tools/urban-ast/step-2-0'"
+      <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-2-0;
+        onclick string:document.location.href='${portal_url}/en/knowledge/tools/urban-ast/step-2-0'"
         name="step-2-0">
         <strong>2</strong>
         <span class="uast-title" i18n:translate="">Assessing climate change risks and vulnerabilities</span>
       </a>
       <ul id="step-2">
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-2-1" name="step-2-1" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-2-1" name="step-2-1" i18n:translate="">
             2.1 Recognizing past and present climate impacts
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-2-2" name="step-2-2" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-2-2" name="step-2-2" i18n:translate="">
             2.2 Understanding climate projections and future impacts
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-2-3" name="step-2-3" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-2-3" name="step-2-3" i18n:translate="">
             2.3 Identifying vulnerable urban sectors
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-2-4" name="step-2-4" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-2-4" name="step-2-4" i18n:translate="">
             2.4 Conducting risk and vulnerability assessments
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-2-5" name="step-2-5" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-2-5" name="step-2-5" i18n:translate="">
             2.5 Understanding the role of surrounding areas in adaptation
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-2-6" name="step-2-6" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-2-6" name="step-2-6" i18n:translate="">
             2.6 Identifying main adaptation concerns and defining objectives
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-2-check" name="step-2-9-1" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-2-check" name="step-2-9-1" i18n:translate="">
             2.7 Assessing climate change risks and vulnerabilities: Self check
           </a>
         </li>
       </ul>
     </li>
     <li>
-      <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-3-0;
-        onclick string:document.location.href='${portal_url}/knowledge/tools/urban-ast/step-3-0'"
+      <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-3-0;
+        onclick string:document.location.href='${portal_url}/en/knowledge/tools/urban-ast/step-3-0'"
         name="step-3-0">
         <strong>3</strong>
         <span class="uast-title" i18n:translate="">Identifying adaptation options</span>
       </a>
       <ul id="step-3">
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-3-1" name="step-3-1" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-3-1" name="step-3-1" i18n:translate="">
             3.1 Creating a catalogue of relevant adaptation options
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-3-2" name="step-3-2" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-3-2" name="step-3-2" i18n:translate="">
             3.2 Finding examples of good adaptation practices
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-3-check" name="step-3-3-1" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-3-check" name="step-3-3-1" i18n:translate="">
             3.3 Identifying adaptation options: Self check
           </a>
         </li>
       </ul>
     </li>
     <li>
-      <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-4-0;
-        onclick string:document.location.href='${portal_url}/knowledge/tools/urban-ast/step-4-0'"
+      <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-4-0;
+        onclick string:document.location.href='${portal_url}/en/knowledge/tools/urban-ast/step-4-0'"
         name="step-4-0">
         <strong>4</strong>
         <span class="uast-title" i18n:translate="">Assessing and selecting adaptation options</span>
       </a>
       <ul id="step-4">
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-4-1" name="step-4-1" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-4-1" name="step-4-1" i18n:translate="">
             4.1 Choosing an assessment framework for adaptation options
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-4-2" name="step-4-2" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-4-2" name="step-4-2" i18n:translate="">
             4.2 Conducting a cost-benefit analysis of adaptation measures
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-4-3" name="step-4-3" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-4-3" name="step-4-3" i18n:translate="">
             4.3 Prioritising adaptation options
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-4-check" name="step-4-4-1" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-4-check" name="step-4-4-1" i18n:translate="">
             4.4 Assessing and selecting adaptation options: Self check
           </a>
         </li>
       </ul>
     </li>
     <li>
-      <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-5-0;
-        onclick string:document.location.href='${portal_url}/knowledge/tools/urban-ast/step-5-0'"
+      <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-5-0;
+        onclick string:document.location.href='${portal_url}/en/knowledge/tools/urban-ast/step-5-0'"
         name="step-5-0">
         <strong>5</strong>
         <span class="uast-title" i18n:translate="">Implementing adaptation</span>
       </a>
       <ul id="step-5">
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-5-1" name="step-5-1" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-5-1" name="step-5-1" i18n:translate="">
             5.1 Designing an effective adaptation action plan
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-5-2" name="step-5-2" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-5-2" name="step-5-2" i18n:translate="">
             5.2 Finding examples of adaptation action plans
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-5-3" name="step-5-3" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-5-3" name="step-5-3" i18n:translate="">
             5.3 Mainstreaming adaptation in urban policies and plans
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-5-4" name="step-5-4" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-5-4" name="step-5-4" i18n:translate="">
             5.4 Addressing climate change through adaptation and mitigation
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-5-check" name="step-5-3-1" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-5-check" name="step-5-3-1" i18n:translate="">
             5.5 Implementing adaptation: Self check
           </a>
         </li>
       </ul>
     </li>
     <li>
-      <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-6-0;
-        onclick string:document.location.href='${portal_url}/knowledge/tools/urban-ast/step-6-0'"
+      <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-6-0;
+        onclick string:document.location.href='${portal_url}/en/knowledge/tools/urban-ast/step-6-0'"
         name="step-6-0">
         <strong>6</strong>
         <span class="uast-title" i18n:translate="">Monitoring and evaluating adaptation</span>
       </a>
       <ul id="step-6">
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-6-1" name="step-6-1" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-6-1" name="step-6-1" i18n:translate="">
             6.1 Developing the monitoring and evaluation approach
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-6-2" name="step-6-2" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-6-2" name="step-6-2" i18n:translate="">
             6.2 Defining monitoring indicators
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-6-3" name="step-6-3" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-6-3" name="step-6-3" i18n:translate="">
             6.3 Finding examples of adaptation monitoring indicators
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-6-4" name="step-6-4" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-6-4" name="step-6-4" i18n:translate="">
             6.4 Using monitoring results to enhance the process of adaptation
           </a>
         </li>
         <li>
-          <a tal:attributes="href string:${portal_url}/knowledge/tools/urban-ast/step-6-check" name="step-6-3-1" i18n:translate="">
+          <a tal:attributes="href string:${portal_url}/en/knowledge//tools/urban-ast/step-6-check" name="step-6-3-1" i18n:translate="">
             6.5 Monitoring and evaluating adaptation: Self check
           </a>
         </li>
@@ -276,4 +298,5 @@
     </li>
   </ul>
 
+</div>
 </div>

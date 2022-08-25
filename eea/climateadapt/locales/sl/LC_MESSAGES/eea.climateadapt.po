@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-17 22:27+0000\n"
+"POT-Creation-Date: 2022-08-24 08:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,8 +20,282 @@ msgstr ""
 msgid "...loading configuration..."
 msgstr ""
 
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:111
+msgid "1. Preparing the ground for adaptation"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:117
+msgid "1.1 Obtaining high-level political support for adaptation"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:66
+msgid "1.1 Obtaining political support for adaptation"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:71
+msgid "1.2 Collecting initial information"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:121
+msgid "1.2 Setting up the process in a structured way"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:125
+msgid "1.3 Estimating human and financial resources needed and identifying potential sources of long-term funding"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:76
+msgid "1.3 Setting up adaptation processes within and beyond the municipality"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:129
+msgid "1.4 Collecting information"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:81
+msgid "1.4 Identifying and obtaining human and technical resources"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:133
+msgid "1.5 Communicating adaptation and raising awareness"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:86
+msgid "1.5 Identifying and obtaining financing and funding"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:91
+msgid "1.6 Identifying and engaging stakeholders"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:137
+msgid "1.6 Preparing the ground for adaptation: Self-check"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:96
+msgid "1.7 Communicating adaptation to different target audiences"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:101
+msgid "1.8 Finding additional support"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:106
+msgid "1.9 Preparing the ground for adaptation: Self check"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/transnational_regions.pt:415
 msgid "12 regions"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:144
+msgid "2. Assessing climate change risks and vulnerabilities"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:121
+msgid "2.1 Recognizing past and present climate impacts"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:149
+msgid "2.1 Understanding climate risks"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:153
+msgid "2.2 Frameworks for assessing climate impacts, vulnerabilities and risks"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:126
+msgid "2.2 Understanding climate projections and future impacts"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:157
+msgid "2.3 General sequence for climate impacts, vulnerabilities and risk assessments"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:131
+msgid "2.3 Identifying vulnerable urban sectors"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:136
+msgid "2.4 Conducting risk and vulnerability assessments"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:161
+msgid "2.4 Taking trans-boundary issues into account"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:165
+msgid "2.5 Addressing knowledge gaps and dealing with uncertainties"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:141
+msgid "2.5 Understanding the role of surrounding areas in adaptation"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:146
+msgid "2.6 Identifying main adaptation concerns and defining objectives"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:169
+msgid "2.6 Identifying main adaptation concerns and setting a strategic direction"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:151
+msgid "2.7 Assessing climate change risks and vulnerabilities: Self check"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:173
+msgid "2.7 Assessing climate change risks and vulnerabilities: Self-check"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:180
+msgid "3. Identifying adaptation options"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:185
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:166
+msgid "3.1 Creating a catalogue of relevant adaptation options"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:189
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:171
+msgid "3.2 Finding examples of good adaptation practices"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:193
+msgid "3.3 Describing adaptation options in detail"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:176
+msgid "3.3 Identifying adaptation options: Self check"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:197
+msgid "3.4 Identifying adaptation options: Self-check"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:204
+msgid "4. Assessing adaptation options"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:210
+msgid "4.1 Assessing possible adaptation options in terms of effects, time, costs, benefits and efforts"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:191
+msgid "4.1 Choosing an assessment framework for adaptation options"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:196
+msgid "4.2 Conducting a cost-benefit analysis of adaptation measures"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:214
+msgid "4.2 Prioritising adaptation options and selecting preferred ones"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:218
+msgid "4.3 Preparing a strategy document and getting political approval"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:201
+msgid "4.3 Prioritising adaptation options"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:206
+msgid "4.4 Assessing and selecting adaptation options: Self check"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:222
+msgid "4.4 Assessing and selecting adaptation options: Self-check"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:232
+msgid "5. Implementing Adaptation"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:221
+msgid "5.1 Designing an effective adaptation action plan"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:238
+msgid "5.1 Developing an adaptation action plan"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:226
+msgid "5.2 Finding examples of adaptation action plans"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:242
+msgid "5.2 Organising governance of implementation across sectors and levels"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:231
+msgid "5.3 Mainstreaming adaptation in urban policies and plans"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:246
+msgid "5.3 Mainstreaming: Integrating adaptation into instruments and sector policies"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:236
+msgid "5.4 Addressing climate change through adaptation and mitigation"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:250
+msgid "5.4 Multilevel coordination and supportive governance framework"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:254
+msgid "5.5 Implementing Adaptation: Self-check"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:241
+msgid "5.5 Implementing adaptation: Self check"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:261
+msgid "6. Monitoring and Evaluating Adaptation"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:256
+msgid "6.1 Developing the monitoring and evaluation approach"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:268
+msgid "6.1 Understanding drivers and purposes"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:272
+msgid "6.2 Deciding who to involve in the process"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:261
+msgid "6.2 Defining monitoring indicators"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:276
+msgid "6.3 Defining MRE indicators and mixed-methods approach"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:266
+msgid "6.3 Finding examples of adaptation monitoring indicators"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:280
+msgid "6.4 Communicating results to inform policy and practice"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:271
+msgid "6.4 Using monitoring results to enhance the process of adaptation"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:276
+msgid "6.5 Monitoring and evaluating adaptation: Self check"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:284
+msgid "6.5 Monitoring and evaluating adaptation: Self-check"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:141
@@ -38,6 +312,14 @@ msgstr "<strong> nazadnje spremenjeno v podnebju-adapt </strong> $ {Dynamic_cont
 msgid "<strong>Published in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
 msgstr "<strong> Objavljeno v Climate-Adapt </strong> $ {Dynamic_content}"
 
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:37
+msgid "About the Urban Adaptation Support Tool"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:33
+msgid "Adaptation <br /> Support Tool"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:61
 msgid "Adaptation Details"
@@ -53,10 +335,18 @@ msgstr "Ukrepi in dejanja prilagajanja"
 msgid "Adaptation Options Implemented In This Case"
 msgstr "Možnosti prilagajanja, izvedene v tem primeru"
 
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:265
+msgid "Adaptation Options categories"
+msgstr ""
+
 # ,
 #: ../../climateadapt/vocabulary.py:330
 msgid "Adaptation Plans and Strategies"
 msgstr "Načrti in strategije prilagajanja"
+
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:250
+msgid "Adaptation Sectors"
+msgstr ""
 
 # ,
 #: ../../climateadapt/vocabulary.py:269
@@ -75,6 +365,14 @@ msgstr ""
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:125
 msgid "Adaptation strategy"
 msgstr "Strategija prilagajanja"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:96
+msgid "Adaptation to climate change"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:46
+msgid "Adaptation to climate change in urban areas"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:315
@@ -127,6 +425,22 @@ msgstr ""
 msgid "Alpine Space"
 msgstr ""
 
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:63
+msgid "Assessing adaptation options"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:187
+msgid "Assessing and selecting adaptation options"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:117
+msgid "Assessing climate change risks and vulnerabilities"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:47
+msgid "Assessing risks and vulnerability <br /> to climate change"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/transnational_regions.pt:458
 msgid "Atlantic Area"
 msgstr ""
@@ -137,10 +451,6 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:417
 msgid "Baltic Sea"
-msgstr ""
-
-#: ../../climateadapt/translation/pt/translation_check_language_viewlet.pt:14
-msgid "Based on your preferences, you can view this page in english"
 msgstr ""
 
 # ,
@@ -174,6 +484,10 @@ msgstr "Ilustracije študije primera ($ {Dynamic_content}) <i class = \"fa fa-pi
 #: ../../climateadapt/vocabulary.py:270
 msgid "Case studies"
 msgstr "Študije primerov"
+
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:298
+msgid "Case studies collected at national level in Spain, provided by AdapteCCA.es"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:194
@@ -222,6 +536,14 @@ msgstr ""
 msgid "City"
 msgstr "Mesto"
 
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:258
+msgid "Climate Impacts"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:92
+msgid "Climate Impacts in Europe"
+msgstr ""
+
 #: ../../climateadapt/browser/countries.py:160
 msgid "Climate change impact and vulnerability assessments"
 msgstr ""
@@ -230,6 +552,10 @@ msgstr ""
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:111
 msgid "Climate change impacts"
 msgstr "Vplive podnebnih sprememb"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:41
+msgid "Climate change impacts on European cities"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:70
@@ -243,6 +569,10 @@ msgstr "Podnebni vplivi"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:294
 msgid "Climate impacts:"
 msgstr "Podnebni vplivi:"
+
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:297
+msgid "Climate-ADAPT case studies"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/overrides.py:40
@@ -474,6 +804,10 @@ msgstr "Geografska karakterizacija"
 msgid "Geographic characterization:"
 msgstr "Geografska karakterizacija:"
 
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:33
+msgid "Getting started"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:11
 #: ../../climateadapt/browser/pt/c3sindicator_view.pt:123
 msgid "Go back"
@@ -533,11 +867,24 @@ msgstr "IPCC kategorije"
 msgid "Ice and Snow"
 msgstr "Led in sneg"
 
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:55
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:162
+msgid "Identifying adaptation options"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:71
+msgid "Implementation"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:48
 #: ../../climateadapt/browser/pt/casestudy_view.pt:90
 msgid "Implementation Time"
 msgstr "Čas izvajanja"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:217
+msgid "Implementing adaptation"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:65
@@ -634,6 +981,10 @@ msgstr "Makro-transnacionalna regija"
 msgid "Main motivation for taking adaptation action"
 msgstr "Glavna motivacija za ukrepanje prilagajanja"
 
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:235
+msgid "Map"
+msgstr ""
+
 # ,
 #: ../../climateadapt/vocabulary.py:264
 msgid "Maps, graphs and datasets"
@@ -657,6 +1008,14 @@ msgstr "Župani prilagodijo podpisnike"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:473
 msgid "Mediterranean"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:79
+msgid "Monitoring &amp; Evaluation (M&amp;E)"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:252
+msgid "Monitoring and evaluating adaptation"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:112
@@ -779,6 +1138,16 @@ msgstr "Prebivalstvo"
 msgid "Portal Type"
 msgstr "Vrsta portala"
 
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:39
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:62
+msgid "Preparing the ground for adaptation"
+msgstr ""
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:100
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:51
+msgid "Principles and success factors"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/pt/navbar_footer.pt:21
 #: ../../climateadapt/theme/climateadaptv2/static/footer.html:24
@@ -858,6 +1227,10 @@ msgstr ""
 #: ../../climateadapt/vocabulary.py:268
 msgid "Research and knowledge projects"
 msgstr "Projekti raziskav in znanja"
+
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:275
+msgid "Reset"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:112
@@ -1009,6 +1382,10 @@ msgstr "Uspeh in omejujoči dejavniki"
 msgid "Summary of the strategy/plan"
 msgstr "Povzetek strategije/načrta"
 
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:87
+msgid "The Adaptation Support Tool - Getting started"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/pt/footer_logos.pt:10
 msgid "The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href=\"https://ec.europa.eu/\">European Commission</a> and the <a href=\"https://www.eea.europa.eu/\">European Environment Agency.</a>"
@@ -1066,6 +1443,10 @@ msgstr "Prevoz"
 #: ../../climateadapt/vocabulary.py:307
 msgid "Urban"
 msgstr "Urban"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:104
+msgid "Using the Adaptation Support Tool"
+msgstr ""
 
 #: ../../climateadapt/tiles/pt/filter_acecontent.pt:52
 msgid "View all"
@@ -1152,10 +1533,6 @@ msgstr ""
 #: ../../climateadapt/browser/pt/ace_macros.pt:33
 msgid "back to search"
 msgstr "Nazaj na iskanje"
-
-#: ../../climateadapt/translation/pt/translation_check_language_viewlet.pt:14
-msgid "here"
-msgstr ""
 
 # ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:218

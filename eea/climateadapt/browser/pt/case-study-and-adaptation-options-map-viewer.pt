@@ -22,6 +22,11 @@
 <link rel="preload" href="/++theme++climateadaptv2/static/bs3/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
 
       -->
+<div
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  i18n:domain="eea.climateadapt"
+  >
 
 <script src="++theme++climateadaptv2/static/js/require.js"></script>
 
@@ -244,11 +249,12 @@ a.reset-button {
             <div class="cols-md-12 cs_filter_sector_div" tal:define="sectors view/get_sectors">
                 <h4 i18n:translate="">Adaptation Sectors</h4>
                 <p class="cs_filter_sector" style="display:none;" tal:repeat="sector sectors">
-                    <span class="float-left" tal:content="sector/value">Sector name</span>
+                    <span class="float-left" >Sector name</span>
                     <input type="checkbox" name="sectors" tal:attributes="value sector/key" >
                 </p>
             </div>
             <div class="cols-md-12 cs_filter_impact_div" tal:define="climate_impacts view/get_climate_impacts">
+                <textarea tal:content="climate_impacts"></textarea>
                 <h4 i18n:translate="">Climate Impacts</h4>
                 <p class="cs_filter_impact" style="display:none;" tal:repeat="climate_impact climate_impacts">
                     <span class="float-left" tal:content="climate_impact/value">Sector name</span>
@@ -288,12 +294,12 @@ a.reset-button {
         </div>
         </form>
         <div class="case-study-legend">
-            <p i18n:translate=""><span></span> Climate-ADAPT case studies</p>
-            <p i18n:translate=""><span class="light-blue"></span> Case studies collected at national level in Spain, provided by AdapteCCA.es</p>
+            <p><span></span> <span  i18n:translate="">Climate-ADAPT case studies</span></p>
+            <p><span class="light-blue"></span> <span i18n:translate="">Case studies collected at national level in Spain, provided by AdapteCCA.es</span></p>
         </div>
     </div>
 </div>
-
+</div>
 <!--
       </tal:main-macro>
   </metal:main>
