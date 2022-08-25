@@ -9,6 +9,7 @@ from zope import schema
 from zope.component.hooks import getSite
 from zope.interface import implements, providedBy
 
+from eea.climateadapt.translation.utils import TranslationUtilsMixin
 
 class ITransRegionalSelectTile(IPersistentCoverTile):
 
@@ -168,7 +169,7 @@ regions = {
 }
 
 
-class TransRegionalSelectTile(PersistentCoverTile):
+class TransRegionalSelectTile(PersistentCoverTile, TranslationUtilsMixin):
     """ TransRegionalSelect tile
 
     Shows a dropdown select for a region
@@ -218,4 +219,16 @@ class TransRegionalSelectTile(PersistentCoverTile):
         if not region:
             return []
 
-        return regions[region]
+        current_regions = regions[region]
+        regions_translated = []
+
+        for _r in current_regions[0]:
+            path = _r[1]
+            transl_path = path
+
+            if path:
+                transl_path = self.translated_url(path)
+
+            regions_translated.append((_r[0], transl_path))
+
+        return [regions_translated, current_regions[1]]
