@@ -17,6 +17,9 @@ from eea.climateadapt.catalog import get_aceitem_description
 from eea.climateadapt.vocabulary import (_climateimpacts, _datatypes,
                                          _elements, _origin_website, _sectors,
                                          ace_countries_dict)
+from eea.climateadapt.translation.utils import get_current_language
+from plone.app.multilingual.manager import TranslationManager
+
 from plone import api
 from plone.api import portal
 from plone.app.uuid.utils import uuidToObject
@@ -533,6 +536,8 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         return items
 
     def all_items(self):
+        site = getSite()
+        catalog = site.portal_catalog
         res = []
 
         for item in self.assigned():
@@ -556,8 +561,21 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
                 else:
                     return res
 
+        current_language = get_current_language(self.context, self.request)
+        #import pdb; pdb.set_trace()
+
         for item in self.items():
             obj = item.getObject()
+            if '/'+current_language+'/' not in item.getURL():
+                translations = TranslationManager(obj).get_translations()
+                if current_language not in translations:
+                    continue
+                obj = translations[current_language]
+                brains = catalog.searchResults(UID=obj.UID())
+                if len(brains) == 0:
+                    continue
+                item = brains[0]
+
             adapter = sortable_title(obj)
             st = adapter()
             o = Item(
