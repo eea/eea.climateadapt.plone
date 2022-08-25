@@ -317,7 +317,7 @@ class FrontpageSearch(BrowserView, TranslationUtilsMixin):
             }
         }
 
-        base_query = "{0}/data-and-downloads?lang={0}&source=".format(
+        base_query = "{0}/data-and-downloads/?lang={0}&source=".format(
             self.current_lang)
         q = {"query": t}
         l = base_query + urllib.quote(json.dumps(q))
