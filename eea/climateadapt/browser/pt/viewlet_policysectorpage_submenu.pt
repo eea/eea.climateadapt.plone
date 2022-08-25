@@ -14,15 +14,11 @@ $(document).ready(() => {
     tocContainer.hide();
     $("h1.documentFirstHeading").before(tocContainer);
 
-    let sections = [
-      ["Key messages", "key-messages"],
-      ["Impacts and vulnerabilities", "impacts-and-vulnerabilities"],
-      ["Policy framework", "policy-framework"],
-      ["Improving the knowledge base", "improving-the-knowledge-base"],
-      ["Supporting investment and funding", "supporting-investment-and-funding"],
-      ["Supporting the implementation", "supporting-the-implementation"],
-      ["MRE of adaptation", "mre-of-adaptation"]
-    ];
+    let section_titles = $("p.read_more_first, p.read_more_second");
+    let sections = [];
+    section_titles.each(function() {
+      sections.push([$(this).text(), $(this).text().replaceAll(" ", "-").toLowerCase()]);
+    });
 
     function querySelectorIncludesText (selector, text) {
       return Array.from(document.querySelectorAll(selector))

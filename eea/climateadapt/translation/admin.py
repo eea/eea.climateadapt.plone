@@ -1053,7 +1053,7 @@ def translation_step_3_one_file(json_file, language, catalog, portal_type = None
                     update = tile
                 translated_msg = get_translated(tile_data['item'][key], language.upper())
                 if translated_msg:
-                    update[key] = translated_msg
+                    update[key] = translated_msg.encode('latin-1')
                     have_change = True
                 # tile.data.update(update)
                 trans_obj.__annotations__[tile_annot_id] = update
@@ -1263,16 +1263,25 @@ def translation_step_4(site, request):
                             if data_trans_tile['type'] == 'eea.climateadapt.cards_tile':
                                 #import pdb; pdb.set_trace()
                                 tile = obj.get_tile(data_tile['id'])
-                                trans_tile = trans_obj.get_tile(data_trans_tile['id'])
+                                try:
+                                    trans_tile = trans_obj.get_tile(data_trans_tile['id'])
+                                except ValueError:
+                                    logger.info("Tile not found.")
+                                    trans_tile = None
 
-                                collection_obj = uuidToObject(tile.data["uuid"])
-                                collection_trans_obj = get_translation_object(collection_obj, language)
+                                if trans_tile is not None:
+                                    collection_obj = uuidToObject(tile.data["uuid"])
+                                    collection_trans_obj = get_translation_object(collection_obj, language)
 
-                                dataManager = ITileDataManager(trans_tile)
+                                    dataManager = ITileDataManager(trans_tile)
 
-                                temp = dataManager.get()
-                                temp['uuid'] = IUUID(collection_trans_obj)
-                                dataManager.set(temp)
+                                    temp = dataManager.get()
+                                    try:
+                                        temp['uuid'] = IUUID(collection_trans_obj)
+                                    except TypeError:
+                                        logger.info("Collection not found.")
+
+                                    dataManager.set(temp)
             except KeyError:
                 logger.info("Problem setting collection in tile for language")
 
