@@ -1053,7 +1053,10 @@ def translation_step_3_one_file(json_file, language, catalog, portal_type = None
                     update = tile
                 translated_msg = get_translated(tile_data['item'][key], language.upper())
                 if translated_msg:
-                    update[key] = translated_msg.encode('latin-1')
+                    try:
+                        update[key] = translated_msg.encode('latin-1')
+                    except Exception:
+                        update[key] = translated_msg
                     have_change = True
                 # tile.data.update(update)
                 trans_obj.__annotations__[tile_annot_id] = update
@@ -1121,7 +1124,13 @@ def translation_step_3(site, request):
         nr_files += 1
         logger.info("PROCESSING file: %s", nr_files)
 
-        translation_step_3_one_file(json_file, language, catalog, portal_type)
+        try:
+            translation_step_3_one_file(
+                    json_file, language, catalog, portal_type)
+            transaction.commit()  # make sure tiles are saved (encoding issue)
+        except Exception as err:
+            logger.info("ERROR")  # TODO improve this
+            logger.info(err)
 
         report['date']['last_update'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         report['response'] = {'last_item': json_file, 'files_processd': nr_files}
