@@ -367,22 +367,36 @@ class Navbar(ExternalTemplateHeader):
 
     def translate_url(self, url):
         current_language = get_current_language(self.context, self.request)
+        #logger.info("Will translate LANG %s, URL: %s", current_language, url)
         if '/' == url:
-            return "/?set_language="+current_language
+            url = "/?set_language="+current_language
+            #logger.exception("Translate URL1: %s", url)
+            return url
 
         if url.endswith('/catalogue/') and current_language != 'en':
             url = url + '?lang=' + current_language
-            return url.replace('/en/','/'+current_language+'/')
+            url = url.replace('/en/','/'+current_language+'/')
+            #logger.info("Translate URL2: %s", url)
+            return url
         if url.endswith('/data-and-downloads/') and current_language != 'en':
             url = url + '?lang=' + current_language
-            return url.replace('/en/','/'+current_language+'/')
+            url = url.replace('/en/','/'+current_language+'/')
+            #logger.info("Translate URL3: %s", url)
+            return url
 
         site = getSite()
         try:
             obj = site.restrictedTraverse('/cca'+url)
             translations = TranslationManager(obj).get_translations()
-            trans_obj = translations[current_language]
+            if current_language in translations:
+                trans_obj = translations[current_language]
 
-            return trans_obj.absolute_url()
+                url = trans_obj.absolute_url()
+                #logger.info("Translate URL4: %s", trans_obj.absolute_url())
+            else:
+                logger.info("Translate fail URL4.1: %s", url)
         except Exception, e:
-            return url
+            logger.exception("Translate error: %s", e)
+            #logger.info("Translate URL5: %s", url)
+
+        return url
