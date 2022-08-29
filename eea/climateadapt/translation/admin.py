@@ -681,7 +681,8 @@ def get_object_fields(obj):
 def get_object_fields_values(obj):
     #TODO: perhaps a list by each portal_type
     skip_fields = ['c3s_identifier', 'contact_email', 'contact_name', 'details_app_toolbox_url', 'duration', 'event_url', 'funding_programme', 'method', 'other_contributor',
-        'organisational_contact_information', 'organisational_websites', 'overview_app_toolbox_url', 'partners_source_link', 'remoteUrl', 'storage_type', 'sync_uid','timezone']
+        'organisational_contact_information', 'organisational_websites', 'overview_app_toolbox_url', 'partners_source_link', 'remoteUrl', 'storage_type', 'sync_uid','timezone',
+        'template_layout']
     tile_fields = ['title', 'text', 'description', 'tile_title', 'footer', 'alt_text']
 
     data = {}
@@ -717,56 +718,55 @@ def get_object_fields_values(obj):
                     value = tile.data.get(field, None)
                     if value:
                         data['tile'][tile_id]['item'][field] = value
-    else:
-        fields = get_object_fields(obj)
-        for key in fields:
-            rich = False
-            # print(key)
-            if key in ['acronym', 'id', 'language', 'portal_type',
-                       'contentType']:
-                continue
-            if key in skip_fields:
-                continue
+    fields = get_object_fields(obj)
+    for key in fields:
+        rich = False
+        # print(key)
+        if key in ['acronym', 'id', 'language', 'portal_type',
+                   'contentType']:
+            continue
+        if key in skip_fields:
+            continue
 
-            value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
+        value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
 
-            if not value:
-                continue
+        if not value:
+            continue
 
-            if callable(value):
-                # ignore datetimes
-                if isinstance(value(), DateTime):
-                    continue
-
-                value = value()
-
-            # ignore some value types
-            if isinstance(value, bool) or \
-               isinstance(value, int) or \
-               isinstance(value, long) or \
-               isinstance(value, tuple) or \
-               isinstance(value, list) or \
-               isinstance(value, set) or \
-               isinstance(value, dict) or \
-               isinstance(value, NamedBlobImage) or \
-               isinstance(value, NamedBlobFile) or \
-               isinstance(value, NamedImage) or \
-               isinstance(value, NamedFile) or \
-               isinstance(value, DateTime) or \
-               isinstance(value, date) or \
-               isinstance(value, RelationValue) or \
-               isinstance(value, Geolocation):
+        if callable(value):
+            # ignore datetimes
+            if isinstance(value(), DateTime):
                 continue
 
-            if isinstance(getattr(obj, key), RichTextValue):
-                value = getattr(obj, key).raw.replace('\r\n', '')
-                data['html'][key] = value
-                continue
+            value = value()
 
-            if is_json(value):
-                continue
+        # ignore some value types
+        if isinstance(value, bool) or \
+           isinstance(value, int) or \
+           isinstance(value, long) or \
+           isinstance(value, tuple) or \
+           isinstance(value, list) or \
+           isinstance(value, set) or \
+           isinstance(value, dict) or \
+           isinstance(value, NamedBlobImage) or \
+           isinstance(value, NamedBlobFile) or \
+           isinstance(value, NamedImage) or \
+           isinstance(value, NamedFile) or \
+           isinstance(value, DateTime) or \
+           isinstance(value, date) or \
+           isinstance(value, RelationValue) or \
+           isinstance(value, Geolocation):
+            continue
 
-            data['item'][key] = value
+        if isinstance(getattr(obj, key), RichTextValue):
+            value = getattr(obj, key).raw.replace('\r\n', '')
+            data['html'][key] = value
+            continue
+
+        if is_json(value):
+            continue
+
+        data['item'][key] = value
     return data
 
 def is_obj_skipped_for_translation(obj):
@@ -1235,7 +1235,7 @@ def translation_step_4(site, request):
             ],
         "File": ["file", "effective"],
         "Image": ["image", "effective"],
-        "collective.cover.content": ["title", "effective"],
+        "collective.cover.content": ["title", "effective",'template_layout'],
     }
 
     obj_count = 0
