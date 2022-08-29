@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-16 03:53+0000\n"
+"POT-Creation-Date: 2022-08-28 02:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,15 +28,15 @@ msgstr "<a href=\"#t-started\"> <span class = \"d-icon funkcja-icon\"> </span> N
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1262
+#: ../theme/climateadaptv2/index.html:1302
 msgid "<i class=\"fa fa-angle-double-right\"></i> Adaptation support tool"
 msgstr "<i class=\"fa fa-angle-double-right\"></i> Narzędzie wspjerające adaptację"
 
-#: ../theme/climateadaptv2/index.html:1404
+#: ../theme/climateadaptv2/index.html:1448
 msgid "<i class=\"fa fa-angle-double-right\"></i> More events"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1375
+#: ../theme/climateadaptv2/index.html:1419
 msgid "<i class=\"fa fa-angle-double-right\"></i> More news"
 msgstr ""
 
@@ -44,7 +44,7 @@ msgstr ""
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1332
+#: ../theme/climateadaptv2/index.html:1375
 msgid "<i class=\"fa fa-angle-double-right\"></i> Read more"
 msgstr "<i class=\"fa fa-angle-double-right\"></i> Przeczytaj więcej"
 
@@ -52,7 +52,7 @@ msgstr "<i class=\"fa fa-angle-double-right\"></i> Przeczytaj więcej"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:770
+#: ../theme/climateadaptv2/index.html:772
 msgid "<i class=\"fa fa-angle-double-right\"></i> See complete database"
 msgstr "<i class=\"fa fa-angle-double-right\"></i> Zobacz pełną bazę danych"
 
@@ -60,7 +60,7 @@ msgstr "<i class=\"fa fa-angle-double-right\"></i> Zobacz pełną bazę danych"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1275
+#: ../theme/climateadaptv2/index.html:1316
 msgid "<i class=\"fa fa-angle-double-right\"></i> Urban Adaptation Support Tool"
 msgstr "<i class=\"fa fa-angle-double-right\"></i> Narzędzie wspjerające adaptację miejską"
 
@@ -152,7 +152,7 @@ msgstr "<span class=\"d-icon policy-icon\"></span> Sektor UE <br /> Działania p
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:674
+#: ../theme/climateadaptv2/index.html:676
 msgid "Adaptation options"
 msgstr "Warianty adaptacji"
 
@@ -160,8 +160,8 @@ msgstr "Warianty adaptacji"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:790
-#: ../theme/climateadaptv2/tab-policies-rule.html:14
+#: ../theme/climateadaptv2/index.html:793
+#: ../theme/climateadaptv2/tab-policies-rule.html:15
 msgid "Agriculture"
 msgstr "Rolnictwo"
 
@@ -169,8 +169,8 @@ msgstr "Rolnictwo"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:797
-#: ../theme/climateadaptv2/tab-policies-rule.html:21
+#: ../theme/climateadaptv2/index.html:801
+#: ../theme/climateadaptv2/tab-policies-rule.html:23
 msgid "Biodiversity"
 msgstr "Bioróżnorodność "
 
@@ -178,8 +178,8 @@ msgstr "Bioróżnorodność "
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:913
-#: ../theme/climateadaptv2/tab-policies-rule.html:137
+#: ../theme/climateadaptv2/index.html:929
+#: ../theme/climateadaptv2/tab-policies-rule.html:151
 msgid "Biodiversity plays an important role in regulating the climate, thus making a key contribution to climate change mitigation and adaptation. At the same time, meeting mitigation targets coupled with ecosystem-based approaches is essential to avert biodiversity loss. Therefore it is impossible to address biodiversity loss without addressing climate change, but it is equally impossible to tackle climate change without addressing biodiversity loss."
 msgstr "Bioróżnorodność odgrywa ważną rolę w regulacji klimatu, wnosząc kluczowy wkład w łagodzenie zmian klimatu i i adaptację do nich. Jednoczesne osiągnięcie celów dotyczących łagodzenia zmian klimatu w połączeniu z podejściem ekosystemowym ma zasadnicze znaczenie dla zapobiegania utracie biróżnorodności. Dlatego niemożliwe jest przeciwdziałanie utracie bioróżnorodnościj bez przeciwdziałania zmianom klimatu, ale równie niemożliwe jest przeciwdziałanie zmianom klimatu bez przeciwdziałania utracie bioróżnorodności."
 
@@ -187,8 +187,8 @@ msgstr "Bioróżnorodność odgrywa ważną rolę w regulacji klimatu, wnosząc 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:804
-#: ../theme/climateadaptv2/tab-policies-rule.html:28
+#: ../theme/climateadaptv2/index.html:809
+#: ../theme/climateadaptv2/tab-policies-rule.html:31
 msgid "Buildings"
 msgstr "Budynki"
 
@@ -196,8 +196,8 @@ msgstr "Budynki"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:928
-#: ../theme/climateadaptv2/tab-policies-rule.html:152
+#: ../theme/climateadaptv2/index.html:944
+#: ../theme/climateadaptv2/tab-policies-rule.html:166
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Budynki mogą być podatne na zmiany klimatyczne. W przyszłości może wystąpić wzrost ryzyka zawalenia się, pogarszającego się stanu i znacznej utraty wartości w wyniku większej liczby burz, śniegu lub szkód spowodowanych osiadaniem, wnikania wody, pogarszającego się klimatu wewnętrznego i skróconego okresu eksploatacji budynku. Komisja Europejska dąży do zwiększenia odporności infrastruktury, w tym budynków, na zmiany klimatu. Nowe i istniejące budynki należy ocenić pod kątem odporności na obecne zagrożenia i przyszłe zmiany klimatyczne oraz odpowiednio je zaplanować lub zmodernizować. Kluczową polityką stosowaną do wspierania odporności budynków jest polityka spójności (zwana również polityką regionalną)."
 
@@ -205,23 +205,19 @@ msgstr "Budynki mogą być podatne na zmiany klimatyczne. W przyszłości może 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:683
+#: ../theme/climateadaptv2/index.html:685
 msgid "Case studies"
 msgstr "Studia przypadku"
 
-# ,
-# ,
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1139
-msgid "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href=\"https://climate-adapt.eea.europa.eu/repository/11090223.pdf\">criteria</a> and also in collaboration with the main stakeholders. See the <a href=\"../knowledge/tools/case-studies-climate-adapt\">Case Studies Page</a>."
-msgstr "Studia przypadków są wizytówką platformy Climate-ADAPT. Mają kompleksową strukturę, która obejmuje wszystkie kluczowe aspekty w cyklu wdrażania działań adaptacyjnych oraz są starannie i specjalnie przygotowane do Climate-ADAPT przez organizację zajmującą się ich wdrażaniem, ze wsparciem EEA, zgodnie z zestawem <HREF = \"https://climate-adapt.eea.europa.eu/repository/11090223.pdf\"> kryteriów </a>, a także we współpracy z głównymi zainteresowanymi stronami. Zobacz <a href=\"../knowledge/tools/case-studies-climate-adapt\"> stronę ze studiami przypadków </a>."
+#: ../theme/climateadaptv2/index.html:1166
+msgid "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href=\"${DYNAMIC_CONTENT}\">criteria</a> and also in collaboration with the main stakeholders. See the <a href=\"${DYNAMIC_CONTENT}\">Case Studies Page</a>."
+msgstr ""
 
 # ,
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1434
+#: ../theme/climateadaptv2/index.html:1478
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Sprawdź <a href=\"../newsletter\"> Europejski biuletyn o adaptacyji do zmain klimatu </a> i zarejestruj się, aby otrzymać go w e-mailu:"
 
@@ -229,8 +225,8 @@ msgstr "Sprawdź <a href=\"../newsletter\"> Europejski biuletyn o adaptacyji do 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:988
-#: ../theme/climateadaptv2/tab-policies-rule.html:212
+#: ../theme/climateadaptv2/index.html:1004
+#: ../theme/climateadaptv2/tab-policies-rule.html:226
 msgid "Climate change affects the energy sector in multiple ways, ranging from changes in heating and cooling demand; to impacts on energy supply conditions – for example decreased water availability for hydropower during prolonged droughts and reduced availability of cooling water affecting the efficiency of power plants. Furthermore, energy infrastructure can be more exposed to damages by changing climate conditions. The European Commission in general aims to increase the climate resilience of infrastructure including energy by providing strategical frameworks."
 msgstr "Zmiana klimatu wpływa na sektor energetyczny na wiele sposobów, od zmian w zapotrzebowaniu na ogrzewanie i chłodzenie, po wpływ na warunki zaopatrzenia w energię – na przykład zmniejszoną dostępność wody dla elektrowni wodnych podczas przedłużających się susz i zmniejszoną dostępność wody chłodzącej wpływającą na wydajność elektrowni. Ponadto infrastruktura energetyczna może być bardziej narażona na szkody wynikające ze zmieniających się warunków klimatycznych. Komisja Europejska dąży do zwiększenia odporności infrastruktury, w tym energetycznej, na klimat, zapewniając ramy strategiczne."
 
@@ -238,8 +234,8 @@ msgstr "Zmiana klimatu wpływa na sektor energetyczny na wiele sposobów, od zmi
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:898
-#: ../theme/climateadaptv2/tab-policies-rule.html:122
+#: ../theme/climateadaptv2/index.html:914
+#: ../theme/climateadaptv2/tab-policies-rule.html:136
 msgid "Climate change has complex effects on the bio-physical processes that underpin agricultural systems, with both negative and positive consequences in different EU regions. Rising atmospheric CO2 concentration, higher temperatures, changes in precipitation patterns and in frequency of extreme events both affect the natural environment as well as the quantity, quality and stability of food production. Climatic variations impact on water resources, soils, pests and diseases, leading to significant changes in agriculture and livestock production."
 msgstr "Zmiany klimatu mają złożony wpływ na procesy biofizyczne, które leżą u podstaw systemów rolnych, przynosząc zarówno negatywne, jak i pozytywne konsekwencje w różnych regionach UE. Rosnące stężenie CO2 w atmosferze, wyższe temperatury, zmiany w strukturze opadów i częstotliwości występowania zjawisk ekstremalnych wpływają zarówno na środowisko naturalne, jak i na ilość, jakość i stabilność produkcji żywności. Zmiany klimatyczne wpływają na zasoby wodne, gleby, szkodniki i choroby, prowadząc do znaczących zmian w rolnictwie i produkcji zwierzęcej."
 
@@ -247,8 +243,8 @@ msgstr "Zmiany klimatu mają złożony wpływ na procesy biofizyczne, które le�
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1046
-#: ../theme/climateadaptv2/tab-policies-rule.html:270
+#: ../theme/climateadaptv2/index.html:1062
+#: ../theme/climateadaptv2/tab-policies-rule.html:284
 msgid "Climate change is expected to have severe impacts on the marine environment. Increase in water temperatures will contribute to a restructuring of marine ecosystems with implications for ocean circulation, biogeochemical cycling and marine biodiversity. Ocean acidification will affect the ability of some calcium carbonate-secreting species (as molluscs, planktons and corals) to produce their shells or skeletons. Warmer and more acidic seawater will therefore negatively affect fishery and aquaculture."
 msgstr "Oczekuje się, że zmiany klimatu będą miały poważny wpływ na środowisko morskie. Wzrost temperatury wody przyczyni się do zmiany struktury ekosystemów morskich, co będzie miało wpływ na cyrkulację oceaniczną, obieg biogeochemiczny i bioróżnorodność morską. Zakwaszenie oceanów wpłynie na zdolność niektórych gatunków wydzielających węglan wapnia (takich jak mięczaki, plankton i koralowce) do wytwarzania muszli lub szkieletów. Cieplejsza i bardziej kwaśna woda morska wpłynie zatem negatywnie na rybołówstwo i akwakulturę."
 
@@ -256,8 +252,8 @@ msgstr "Oczekuje się, że zmiany klimatu będą miały poważny wpływ na środ
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1032
-#: ../theme/climateadaptv2/tab-policies-rule.html:256
+#: ../theme/climateadaptv2/index.html:1048
+#: ../theme/climateadaptv2/tab-policies-rule.html:270
 msgid "Climate change will generate new health risks and amplify current health problems. Both direct and indirect effects on human, plant and animal health are expected from climate change. Direct effects result from changes in the intensity and frequency of extreme weather events like heatwaves and floods. Indirect effects can be felt through changes in the incidence of diseases transmitted by insects (i.e. vector borne diseases caused by mosquitoes and ticks), rodents, or changes in water, food and air quality. The European Commission's EU strategy on adaptation to climate change is accompanied by a Staff Working Document."
 msgstr "Zmiany klimatu wygenerują nowe zagrożenia dla zdrowia i nasilą obecne problemy zdrowotne. Oczekuje się, że zmiany klimatu będą miały zarówno bezpośredni, jak i pośredni wpływ na zdrowie ludzi, roślin i zwierząt. Skutki bezpośrednie wynikają ze zmian intensywności i częstotliwości ekstremalnych zjawisk pogodowych, takich jak fale upałów i powodzie. Skutki pośrednie można odczuć poprzez zmiany w częstości występowania chorób przenoszonych przez owady (tj. choroby wektorowe przenoszone przez komary i kleszcze), gryzonie lub zmiany w jakości wody, żywności i powietrza. Strategii UE w zakresie adaptacji do zmian klimatu Komisji Europejskiej towarzyszy dokument roboczy służb Komisji."
 
@@ -265,7 +261,7 @@ msgstr "Zmiany klimatu wygenerują nowe zagrożenia dla zdrowia i nasilą obecne
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1136
+#: ../theme/climateadaptv2/index.html:1154
 msgid "Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events."
 msgstr "Studia przypadków Climate-ADAPT pokazują inicjatywy, które są już przeprowadzane w Europie w celu dostosowania się do zmian klimatu i zwiększenia odporności na ekstremalną pogodę i wydarzenia następujące powoli."
 
@@ -273,8 +269,8 @@ msgstr "Studia przypadków Climate-ADAPT pokazują inicjatywy, które są już p
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:811
-#: ../theme/climateadaptv2/tab-policies-rule.html:35
+#: ../theme/climateadaptv2/index.html:817
+#: ../theme/climateadaptv2/tab-policies-rule.html:39
 msgid "Coastal areas"
 msgstr "Obszary przybrzeżne"
 
@@ -282,8 +278,8 @@ msgstr "Obszary przybrzeżne"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:818
-#: ../theme/climateadaptv2/tab-policies-rule.html:42
+#: ../theme/climateadaptv2/index.html:825
+#: ../theme/climateadaptv2/tab-policies-rule.html:47
 msgid "Disaster risk <br /> reduction"
 msgstr "Ograniczenie  <br /> ryzyka klęsk żywiołowych"
 
@@ -291,8 +287,8 @@ msgstr "Ograniczenie  <br /> ryzyka klęsk żywiołowych"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:957
-#: ../theme/climateadaptv2/tab-policies-rule.html:181
+#: ../theme/climateadaptv2/index.html:973
+#: ../theme/climateadaptv2/tab-policies-rule.html:195
 msgid "Disaster risk reduction"
 msgstr "Ograniczenie ryzyka klęsk żywiołowych"
 
@@ -300,8 +296,8 @@ msgstr "Ograniczenie ryzyka klęsk żywiołowych"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:825
-#: ../theme/climateadaptv2/tab-policies-rule.html:49
+#: ../theme/climateadaptv2/index.html:833
+#: ../theme/climateadaptv2/tab-policies-rule.html:55
 msgid "Ecosystem-based approaches"
 msgstr "Podejścia ekosystemowe"
 
@@ -309,8 +305,8 @@ msgstr "Podejścia ekosystemowe"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:973
-#: ../theme/climateadaptv2/tab-policies-rule.html:197
+#: ../theme/climateadaptv2/index.html:989
+#: ../theme/climateadaptv2/tab-policies-rule.html:211
 msgid "Ecosystem-based initiatives for climate change adaptation and disaster risk reduction increase resilience and decrease vulnerability of both people and ecosystems, empower people and provide jobs and business opportunities, make economic sense, are ready for use and easily accessible, including for the rural and urban poor. They provide multiple benefits and contribute to achieving climate change adaptation objectives but also several multi-lateral environmental agreements and sectoral policy objectives (e.g. haltering biodiversity loss, water quality or agricultural and forest management)."
 msgstr "Inicjatywy oparte na ekosystemach dotyczące adaptacji do zmian klimatu i ograniczania ryzyka klęsk żywiołowych zwiększają odporność oraz zmniejszają podatność zarówno ludzi, jak i ekosystemów, wzmacniają pozycję ludzi oraz zapewniają miejsca pracy i możliwości biznesowe, mają sens ekonomiczny, są gotowe do wprowadzenia i łatwo dostępne, w tym dla obszarów wiejskich i biednych obszarów miejskich. Zapewniają one wiele korzyści i przyczyniają się do osiągnięcia celów adaptacji do zmian klimatu, ale także celów niektórych wielostronnych umów środowiskowych i polityki sektorowej (np. powstrzymanie utraty różnorodności biologicznej, jakość wody lub gospodarka rolna i leśna)."
 
@@ -318,8 +314,8 @@ msgstr "Inicjatywy oparte na ekosystemach dotyczące adaptacji do zmian klimatu 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:832
-#: ../theme/climateadaptv2/tab-policies-rule.html:56
+#: ../theme/climateadaptv2/index.html:841
+#: ../theme/climateadaptv2/tab-policies-rule.html:63
 msgid "Energy"
 msgstr "Energia"
 
@@ -327,7 +323,7 @@ msgstr "Energia"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1347
+#: ../theme/climateadaptv2/index.html:1391
 msgid "Events"
 msgstr "Wydarzenia"
 
@@ -335,8 +331,8 @@ msgstr "Wydarzenia"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1003
-#: ../theme/climateadaptv2/tab-policies-rule.html:227
+#: ../theme/climateadaptv2/index.html:1019
+#: ../theme/climateadaptv2/tab-policies-rule.html:241
 msgid "Extreme weather events in recent years have increased the urgency to mainstream climate change adaptation into the different EU policy fields. There are few specific EU activities to mainstream climate change adaptation into policies for financial and insurance sectors. However many European policies related to natural disasters (see Disaster risk reduction) are very relevant to the financial and insurance sector, as they may help to prevent significant losses and financial disasters. The European Commission has also committed itself to increasing financing of climate-related activities by ensuring that at least 20% of the European budget is climate-related expenditure."
 msgstr "Ekstremalne zdarzenia pogodowe w ostatnich latach zwiększyły pilną potrzebę  do dostosowania głównego nurtu zmian klimatu do różnych dziedzin polityki UE. Istnieje kilka konkretnych działań UE, które mają na celu włączenie adaptacji do zmian klimatu do polityk dotyczących sektorów finansowych i ubezpieczeniowych. Jednak wiele polityk europejskich związanych z klęskami żywiołowymi (zob. Zmniejszanie ryzyka klęsk żywiołowych) ma duże znaczenie dla sektora finansowego i ubezpieczeniowego, ponieważ mogą one pomóc w zapobieganiu znacznym stratom i katastrofom finansowym. Komisja Europejska zobowiązała się również do zwiększenia finansowania działań związanych z klimatem poprzez zapewnienie, aby co najmniej 20% budżetu europejskiego stanowiły wydatki związane z klimatem."
 
@@ -344,8 +340,8 @@ msgstr "Ekstremalne zdarzenia pogodowe w ostatnich latach zwiększyły pilną po
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:839
-#: ../theme/climateadaptv2/tab-policies-rule.html:63
+#: ../theme/climateadaptv2/index.html:849
+#: ../theme/climateadaptv2/tab-policies-rule.html:71
 msgid "Financial"
 msgstr "Finansowy"
 
@@ -353,7 +349,7 @@ msgstr "Finansowy"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1311
+#: ../theme/climateadaptv2/index.html:1354
 msgid "Find out how to contribute different types of information to Climate-ADAPT"
 msgstr "Dowiedz się, jak wprowadzić różne rodzaje informacji do Climate-ADAPT"
 
@@ -361,19 +357,19 @@ msgstr "Dowiedz się, jak wprowadzić różne rodzaje informacji do Climate-ADAP
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1261
+#: ../theme/climateadaptv2/index.html:1301
 msgid "For more informations visit:"
 msgstr "Aby uzyskać więcej informacji, odwiedź:"
 
-#: ../theme/climateadaptv2/index.html:1096
-msgid "For more informations visit: <a href=\"/eu-adaptation-policy/sector-policies\"> <i class=\"fa fa-angle-double-right\"></i> EU Sector Policies </a>"
+#: ../theme/climateadaptv2/index.html:1113
+msgid "For more informations visit: <a href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> EU Sector Policies </a>"
 msgstr ""
 
 # ,
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1274
+#: ../theme/climateadaptv2/index.html:1315
 msgid "For urban areas guidance visit:"
 msgstr "W celu wytycznych dla obszarów miejskich:"
 
@@ -381,8 +377,8 @@ msgstr "W celu wytycznych dla obszarów miejskich:"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:846
-#: ../theme/climateadaptv2/tab-policies-rule.html:70
+#: ../theme/climateadaptv2/index.html:857
+#: ../theme/climateadaptv2/tab-policies-rule.html:79
 msgid "Forestry"
 msgstr "Leśnictwo"
 
@@ -406,7 +402,7 @@ msgstr "Idź do European Climate and Health Observatory"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:692
+#: ../theme/climateadaptv2/index.html:694
 msgid "Guidance"
 msgstr "Wytyczne"
 
@@ -414,8 +410,8 @@ msgstr "Wytyczne"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:853
-#: ../theme/climateadaptv2/tab-policies-rule.html:77
+#: ../theme/climateadaptv2/index.html:865
+#: ../theme/climateadaptv2/tab-policies-rule.html:87
 msgid "Health"
 msgstr "Zdrowie"
 
@@ -423,8 +419,8 @@ msgstr "Zdrowie"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1074
-#: ../theme/climateadaptv2/tab-policies-rule.html:298
+#: ../theme/climateadaptv2/index.html:1090
+#: ../theme/climateadaptv2/tab-policies-rule.html:312
 msgid "In Europe, nearly 73% of the population live in urban areas and this is projected to increase to over 80% by 2050. Climate change is likely to influence almost all components of cities and towns – their environment, economy and society. This raises new, complex challenges for urban planning and management. Climate change impacts on the hubs of Europe's economic activity, social life, culture and innovation have repercussions far beyond their municipal borders."
 msgstr "W Europie prawie 73% populacji mieszka na obszarach miejskich i przewiduje się, że do 2050 r. liczba ta wzrośnie do ponad 80%. Zmiana klimatu prawdopodobnie wpłynie na prawie wszystkie elementy miast i miasteczek – ich środowisko, gospodarkę i społeczeństwo. Rodzi to nowe, złożone wyzwania dla planowania i zarządzania miastami. Zmiana klimatu wpływa  na ośrodki europejskiej działalności gospodarczej, życie społeczne, kulturę i innowacje mają reperkusje daleko poza granicami miast."
 
@@ -432,7 +428,7 @@ msgstr "W Europie prawie 73% populacji mieszka na obszarach miejskich i przewidu
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:701
+#: ../theme/climateadaptv2/index.html:703
 msgid "Indicators"
 msgstr "Wskaźniki"
 
@@ -440,7 +436,7 @@ msgstr "Wskaźniki"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:710
+#: ../theme/climateadaptv2/index.html:712
 msgid "Information portals"
 msgstr "Portale informacyjne"
 
@@ -448,8 +444,8 @@ msgstr "Portale informacyjne"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:860
-#: ../theme/climateadaptv2/tab-policies-rule.html:84
+#: ../theme/climateadaptv2/index.html:873
+#: ../theme/climateadaptv2/tab-policies-rule.html:95
 msgid "Marine <br /> &amp; fisheries"
 msgstr "Środowisko morskie <br /> & amp; rybołówstwo"
 
@@ -457,8 +453,8 @@ msgstr "Środowisko morskie <br /> & amp; rybołówstwo"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1045
-#: ../theme/climateadaptv2/tab-policies-rule.html:269
+#: ../theme/climateadaptv2/index.html:1061
+#: ../theme/climateadaptv2/tab-policies-rule.html:283
 msgid "Marine and fisheries"
 msgstr "Środowisko morskie i rybołówstwo"
 
@@ -466,7 +462,7 @@ msgstr "Środowisko morskie i rybołówstwo"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1344
+#: ../theme/climateadaptv2/index.html:1388
 msgid "News"
 msgstr "Aktualności"
 
@@ -474,7 +470,7 @@ msgstr "Aktualności"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1420
+#: ../theme/climateadaptv2/index.html:1464
 msgid "Newsletter"
 msgstr "Biuletyn"
 
@@ -482,7 +478,7 @@ msgstr "Biuletyn"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:728
+#: ../theme/climateadaptv2/index.html:730
 msgid "Organisations"
 msgstr "Organizacje"
 
@@ -490,24 +486,20 @@ msgstr "Organizacje"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:958
-#: ../theme/climateadaptv2/tab-policies-rule.html:182
+#: ../theme/climateadaptv2/index.html:974
+#: ../theme/climateadaptv2/tab-policies-rule.html:196
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "W ciągu ostatnich kilku lat Europa doświadczyła wszelkiego rodzaju klęsk żywiołowych: poważnych powodzi, susz i pożarów lasów, które miały niszczący wpływ na życie ludzi, europejską gospodarkę i środowisko. W minionej dekadzie Komisja Europejska przyjęła kilka strategii i działań mających na celu radzenie sobie z ograniczaniem ryzyka klęsk żywiołowych, jak np. dyrektywa powodziowa i jej wdrożenie (harmonogram), działanie UE w sprawie niedoboru wody i suszy, zielona księga w sprawie ubezpieczeń w kontekście klęsk żywiołowych i katastrof spowodowanych przez człowieka."
 
-# ,
-# ,
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:664
-msgid "Please check our <a href=\"/help/guidance\">Guidance to search function</a> for more help on how to search the database."
-msgstr "Sprawdź nasze <a href=\"/help/guidance\"> wytyczne dotyczące wyszukiwania </a>, aby uzyskać więcej pomocy na temat szukania bazy danych."
+#: ../theme/climateadaptv2/index.html:666
+msgid "Please check our <a href=\"${DYNAMIC_CONTENT}\">Guidance to search function</a> for more help on how to search the database."
+msgstr ""
 
 # ,
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:746
+#: ../theme/climateadaptv2/index.html:748
 msgid "Publications and reports"
 msgstr "Publikacje i raporty"
 
@@ -515,7 +507,7 @@ msgstr "Publikacje i raporty"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1423
+#: ../theme/climateadaptv2/index.html:1467
 msgid "RSS feed"
 msgstr "Kanał RSS"
 
@@ -523,7 +515,7 @@ msgstr "Kanał RSS"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:755
+#: ../theme/climateadaptv2/index.html:757
 msgid "Research and knowledge projects"
 msgstr "Projekty badawcze i oparte na wiedzy"
 
@@ -531,8 +523,8 @@ msgstr "Projekty badawcze i oparte na wiedzy"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:943
-#: ../theme/climateadaptv2/tab-policies-rule.html:167
+#: ../theme/climateadaptv2/index.html:959
+#: ../theme/climateadaptv2/tab-policies-rule.html:181
 msgid "Sea level rise can cause flooding, coastal erosion and the loss of low-lying coastal systems. It will also increase the risk of storm surges and the likelihood of landward intrusion of saltwater and may endanger coastal ecosystems. Expected rises in water temperatures and ocean acidification will contribute to a restructuring of coastal ecosystems; with implications for ocean circulation and biogeochemical cycling."
 msgstr "Wzrost poziomu morza może powodować powodzie, erozję wybrzeży i utratę nisko położonych systemów przybrzeżnych. Zwiększy on również ryzyko wezbrań sztormowych i prawdopodobieństwo wtargnięcia słonej wody na ląd, co może zagrozić ekosystemom przybrzeżnym. Spodziewany wzrost temperatury wody i zakwaszenie oceanów przyczynią się do zmiany struktury ekosystemów przybrzeżnych, co bedzie mialo wpływ na cyrkulację oceaniczną i obieg biogeochemiczny."
 
@@ -544,19 +536,15 @@ msgstr "Wzrost poziomu morza może powodować powodzie, erozję wybrzeży i utra
 msgid "Search Climate-ADAPT"
 msgstr "Wyszukaj w Climate-ADAPT"
 
-# ,
-# ,
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1154
-msgid "See how Europe is adapting to climate change: <a class=\"ca-booklet-link\" href=\"../about/climate-adapt-10-case-studies-online.pdf\"> <i class=\"fa fa-angle-double-right\"></i> Case studies booklet </a>"
-msgstr "Zobacz, jak Europa dostosowuje się do zmian klimatu: <a class=\"ca-booklet-linink\" href=\"../about/climate-adapt-10-case-studies-online.pdf\"> <i class = \"fa fa -Angle-Double-Right \"> </i> Broszura z studiami przypadków </a>"
+#: ../theme/climateadaptv2/index.html:1176
+msgid "See how Europe is adapting to climate change: <a class=\"ca-booklet-link\" href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> Case studies booklet </a>"
+msgstr ""
 
 # ,
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1310
+#: ../theme/climateadaptv2/index.html:1353
 msgid "Share <span>your information</span>"
 msgstr "Udostępnij <Pan> twoje informacje </span>"
 
@@ -564,7 +552,7 @@ msgstr "Udostępnij <Pan> twoje informacje </span>"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1436
+#: ../theme/climateadaptv2/index.html:1480
 msgid "Sign me up!"
 msgstr "Zarejestruj mnie!"
 
@@ -572,7 +560,7 @@ msgstr "Zarejestruj mnie!"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1453
+#: ../theme/climateadaptv2/index.html:1497
 msgid "Subscribe"
 msgstr "Subskrybuj"
 
@@ -580,7 +568,7 @@ msgstr "Subskrybuj"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1451
+#: ../theme/climateadaptv2/index.html:1495
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "Subskrybuj nasz <strong> kanał RSS </strong> <br /> i bądź na bieżąco!"
 
@@ -588,7 +576,7 @@ msgstr "Subskrybuj nasz <strong> kanał RSS </strong> <br /> i bądź na bieżą
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1325
+#: ../theme/climateadaptv2/index.html:1368
 msgid "The Covenant of Mayors initiative aims to engage and support cities and towns to commit to reaching the EU climate mitigation and adaptation targets. Signatory cities pledge action to support implementation of the EU 40% greenhouse gas-reduction target by 2030 ..."
 msgstr "Inicjatywa Porozumienie Burmistrzów ma na celu zaangażowanie i wspieranie miast i miasteczek w zobowiązaniu się do osiągnięcia celów UE w zakresie łagodzenia zmiany klimatu i przystosowania się do niej. Miasta-sygnatariusze zobowiązują się do podjęcia działań wspierających realizację unijnego celu redukcji gazów cieplarnianych o 40% do 2030 r...."
 
@@ -612,7 +600,7 @@ msgstr "European Climate and Health Observatory zapewnia dostęp do szerokiej ga
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:662
+#: ../theme/climateadaptv2/index.html:664
 msgid "The database contains quality checked information and is annotated by climate adaptation experts with keywords."
 msgstr "Baza danych zawiera sprawdzone pod względem jakości informacje i jest opatrzona adnotacjami przez ekspertów ds. adaptacji klimatycznej ze słowami kluczowymi."
 
@@ -620,8 +608,8 @@ msgstr "Baza danych zawiera sprawdzone pod względem jakości informacje i jest 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1060
-#: ../theme/climateadaptv2/tab-policies-rule.html:284
+#: ../theme/climateadaptv2/index.html:1076
+#: ../theme/climateadaptv2/tab-policies-rule.html:298
 msgid "The need for adapting the transport system to the impact of climate change has been highlighted since the European Commission's Adaptation White Paper (COM (2009)148). Transport adaptation is addressed through a combination of European transport, climate change and research policies. The European Union promotes best practices, mainstreaming adaptation within its transport infrastructure development programmes, and provides guidance, e.g. by developing adequate standards for construction. Action is focused on transport infrastructure, and particularly on the Trans-European Transport Network (TEN-T)."
 msgstr "Konieczność dostosowania systemu transportowego do skutków zmian klimatycznych została podkreślona w Adaptation White Paper (COM (2009)148) Komisji Europejskiej. Adaptacją do transportu zajmuje się połączenie europejskiej polityki transportowej, politiki dotyczącej zmian klimatu i polityki badawczej. Unia Europejska promuje najlepsze praktyki, włączając adaptację do głównego nurtu swoich programów rozwoju infrastruktury transportowej i udziela wskazówek m.in. poprzez opracowanie odpowiednich standardów budowlanych. Działania skupiają się na infrastrukturze transportowej, a w szczególności na transeuropejskiej sieci transportowej (TEN-T)."
 
@@ -629,8 +617,8 @@ msgstr "Konieczność dostosowania systemu transportowego do skutków zmian klim
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1018
-#: ../theme/climateadaptv2/tab-policies-rule.html:242
+#: ../theme/climateadaptv2/index.html:1034
+#: ../theme/climateadaptv2/tab-policies-rule.html:256
 msgid "The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector."
 msgstr "Szybkie tempo zmian klimatu może przezwyciężyć naturalną zdolność ekosystemów leśnych do adaptacji. Prowadzi to do zwiększonego ryzyka zakłóceń spowodowanych burzami, pożarami, szkodnikami i chorobami, co ma wpływ na wzrost i produkcję lasów. Wpłynie to na opłacalność ekonomiczną leśnictwa, głównie w południowych obszarach Europy, a także na zdolność lasów do świadczenia usług środowiskowych, w tym na zmianę funkcji pochłaniania dwutlenku węgla. W 2013 r. Komisja przyjęła nową strategię leśną UE, która odpowiada na nowe wyzwania stojące przed lasami i sektorem leśnym."
 
@@ -638,7 +626,7 @@ msgstr "Szybkie tempo zmian klimatu może przezwyciężyć naturalną zdolność
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:764
+#: ../theme/climateadaptv2/index.html:766
 msgid "Tools"
 msgstr "Narzędzia"
 
@@ -646,8 +634,8 @@ msgstr "Narzędzia"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:867
-#: ../theme/climateadaptv2/tab-policies-rule.html:91
+#: ../theme/climateadaptv2/index.html:881
+#: ../theme/climateadaptv2/tab-policies-rule.html:103
 msgid "Transport"
 msgstr "Transport"
 
@@ -655,8 +643,8 @@ msgstr "Transport"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:874
-#: ../theme/climateadaptv2/tab-policies-rule.html:98
+#: ../theme/climateadaptv2/index.html:889
+#: ../theme/climateadaptv2/tab-policies-rule.html:111
 msgid "Urban"
 msgstr "Miejski"
 
@@ -664,7 +652,7 @@ msgstr "Miejski"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:737
+#: ../theme/climateadaptv2/index.html:739
 msgid "Videos"
 msgstr "Filmy"
 
@@ -672,8 +660,8 @@ msgstr "Filmy"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:881
-#: ../theme/climateadaptv2/tab-policies-rule.html:105
+#: ../theme/climateadaptv2/index.html:897
+#: ../theme/climateadaptv2/tab-policies-rule.html:119
 msgid "Water <br /> management"
 msgstr "Gospodarka <br /> wodna"
 
@@ -681,8 +669,8 @@ msgstr "Gospodarka <br /> wodna"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1087
-#: ../theme/climateadaptv2/tab-policies-rule.html:311
+#: ../theme/climateadaptv2/index.html:1103
+#: ../theme/climateadaptv2/tab-policies-rule.html:325
 msgid "Water management"
 msgstr "Gospodarka wodna"
 
@@ -690,14 +678,14 @@ msgstr "Gospodarka wodna"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1088
-#: ../theme/climateadaptv2/tab-policies-rule.html:312
+#: ../theme/climateadaptv2/index.html:1104
+#: ../theme/climateadaptv2/tab-policies-rule.html:326
 msgid "Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe."
 msgstr "Zmiany klimatu mają bezpośredni wpływ na zasoby wodne, a zarządzanie tymi zasobami wpływa na wrażliwość ekosystemów, działalność społeczno-gospodarczą i zdrowie ludzkie. Oczekuje się również, że gospodarka wodna będzie odgrywać coraz większą rolę w adaptacji. Przewiduje się, że zmiany klimatu doprowadzą do poważnych zmian w dostępności wody w całej Europie, takich jak rosnące niedobore wody i susze, głównie w Europie Południowej oraz rosnące ryzyko powodzi w większości krajów Europy."
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:652
+#: ../theme/climateadaptv2/index.html:654
 msgid "type here ..."
 msgstr "pisz tutaj ..."

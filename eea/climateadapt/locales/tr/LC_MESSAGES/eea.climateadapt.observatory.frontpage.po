@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-24 08:36+0000\n"
+"POT-Creation-Date: 2022-08-28 02:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,141 +17,141 @@ msgstr ""
 "Language: \n"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:382
+#: ../theme/climateadaptv2/health-homepage.html:386
 #: ../theme/climateadaptv2/health-page-full.html:147
-#: ../theme/climateadaptv2/health-page.html:235
+#: ../theme/climateadaptv2/health-page.html:236
 msgid "Contact"
 msgstr "İletişim"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:210
+#: ../theme/climateadaptv2/health-homepage.html:213
 msgid "Country profiles"
 msgstr "Ülke profilleri"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:160
+#: ../theme/climateadaptv2/health-homepage.html:163
 msgid "Discover the main topics and tools of the observatory"
 msgstr "Gözlemevinin ana konularını ve araçlarını keşfedin"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:137
+#: ../theme/climateadaptv2/health-homepage.html:140
 msgid "European Climate <br /> and Health Observatory"
 msgstr "Avrupa iklimi <br /> ve sağlık gözlemevi"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:290
+#: ../theme/climateadaptv2/health-homepage.html:293
 #: ../theme/climateadaptv2/health-page.html:143
 msgid "Events"
 msgstr "Olaylar"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:344
-#: ../theme/climateadaptv2/health-page.html:197
+#: ../theme/climateadaptv2/health-homepage.html:348
+#: ../theme/climateadaptv2/health-page.html:198
 msgid "Find out how to contribute to the Observatory via Climate-ADAPT"
 msgstr "İklim-Adapt aracılığıyla gözlemevine nasıl katkıda bulunacağınızı öğrenin"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:379
+#: ../theme/climateadaptv2/health-homepage.html:383
 #: ../theme/climateadaptv2/health-page-full.html:144
-#: ../theme/climateadaptv2/health-page.html:232
+#: ../theme/climateadaptv2/health-page.html:233
 msgid "Home"
 msgstr "Ev"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:190
+#: ../theme/climateadaptv2/health-homepage.html:193
 msgid "INDICATORS"
 msgstr "Göstergeler"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:174
+#: ../theme/climateadaptv2/health-homepage.html:177
 msgid "Learn more"
 msgstr "Daha fazla bilgi edin"
 
-#: ../theme/climateadaptv2/health-homepage.html:325
+#: ../theme/climateadaptv2/health-homepage.html:328
 #: ../theme/climateadaptv2/health-page.html:178
 msgid "More events"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:308
+#: ../theme/climateadaptv2/health-homepage.html:311
 #: ../theme/climateadaptv2/health-page.html:161
 msgid "More news"
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:170
+#: ../theme/climateadaptv2/health-homepage.html:173
 msgid "New"
 msgstr "Yeni"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:287
+#: ../theme/climateadaptv2/health-homepage.html:290
 #: ../theme/climateadaptv2/health-page.html:140
 msgid "News"
 msgstr "Haberler"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:284
+#: ../theme/climateadaptv2/health-homepage.html:287
 #: ../theme/climateadaptv2/health-page.html:137
 msgid "News/Events"
 msgstr "Haberler"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:394
-#: ../theme/climateadaptv2/health-page-full.html:159
-#: ../theme/climateadaptv2/health-page.html:247
+#: ../theme/climateadaptv2/health-homepage.html:399
+#: ../theme/climateadaptv2/health-page-full.html:160
+#: ../theme/climateadaptv2/health-page.html:249
 msgid "Privacy and Legal Notice"
 msgstr "Gizlilik ve yasal bildirim"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:230
+#: ../theme/climateadaptv2/health-homepage.html:233
 msgid "Resource catalogue"
 msgstr "Kaynak kataloğu"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:391
+#: ../theme/climateadaptv2/health-homepage.html:395
 #: ../theme/climateadaptv2/health-page-full.html:156
-#: ../theme/climateadaptv2/health-page.html:244
+#: ../theme/climateadaptv2/health-page.html:245
 msgid "SITE MAP"
 msgstr "Site haritası"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:231
+#: ../theme/climateadaptv2/health-homepage.html:234
 msgid "Search and access the Observatory’s database containing case studies, publications, indicators, research projects and other"
 msgstr "Vaka çalışmaları, yayınlar, göstergeler, araştırma projeleri ve diğer gözlemcinin veritabanını arayın ve erişin."
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:211
+#: ../theme/climateadaptv2/health-homepage.html:214
 msgid "See how countries are addressing climate change adaptation in public health"
 msgstr "Ülkelerin Halk Sağlığı'na İklim Değişikliği Uyumunu Nasıl Yönettiğini görün"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:343
-#: ../theme/climateadaptv2/health-page.html:196
+#: ../theme/climateadaptv2/health-homepage.html:347
+#: ../theme/climateadaptv2/health-page.html:197
 msgid "Share <br /> your information"
 msgstr "Paylaş <br /> Bilgileriniz"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:432
-#: ../theme/climateadaptv2/health-page-full.html:197
-#: ../theme/climateadaptv2/health-page.html:285
+#: ../theme/climateadaptv2/health-homepage.html:439
+#: ../theme/climateadaptv2/health-page-full.html:200
+#: ../theme/climateadaptv2/health-page.html:289
 msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
 msgstr "Bu <strong> Avrupa İklim ve Sağlık Gözlemevi </strong>, Avrupa Komisyonu, Avrupa Çevre Ajansı ve diğer birkaç kuruluş arasında bir ortaklıktır."
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:171
+#: ../theme/climateadaptv2/health-homepage.html:174
 msgid "UV Index forecast (CAMS)"
 msgstr "UV endeks tahmini (CAMS)"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:191
+#: ../theme/climateadaptv2/health-homepage.html:194
 msgid "View climate and health indicators from different trusted information providers"
 msgstr "Farklı Güvenilir Bilgi Sağlayıcılardan İklim ve Sağlık Göstergelerini Görüntüle"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:172
+#: ../theme/climateadaptv2/health-homepage.html:175
 msgid "View the UV Index forecast developed by Copernicus Atmosphere Monitoring Service (CAMS)"
 msgstr "Copernicus Atmosfer İzleme Hizmeti (CAMS) tarafından geliştirilen UV endeks tahminini görüntüleyin"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:138
+#: ../theme/climateadaptv2/health-homepage.html:141
 msgid "We provide easy access to a wide range of relevant publications, tools, websites and other resources related to climate change and human health."
 msgstr "İklim değişikliği ve insan sağlığı ile ilgili çok çeşitli ilgili yayınlara, araçlara, web sitelerine ve diğer kaynaklara kolay erişim sağlıyoruz."

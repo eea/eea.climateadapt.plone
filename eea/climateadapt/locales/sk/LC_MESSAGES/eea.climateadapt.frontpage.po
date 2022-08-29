@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-16 03:53+0000\n"
+"POT-Creation-Date: 2022-08-28 02:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,33 +24,33 @@ msgstr "<a href=\"#t-started\"> <span class = \"d-icon funkcia-icon\"> </span> n
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1262
+#: ../theme/climateadaptv2/index.html:1302
 msgid "<i class=\"fa fa-angle-double-right\"></i> Adaptation support tool"
 msgstr "<i class = \"FA FA-Alg-Double-Right\"> </i> Nástroj na podporu prispôsobenia"
 
-#: ../theme/climateadaptv2/index.html:1404
+#: ../theme/climateadaptv2/index.html:1448
 msgid "<i class=\"fa fa-angle-double-right\"></i> More events"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1375
+#: ../theme/climateadaptv2/index.html:1419
 msgid "<i class=\"fa fa-angle-double-right\"></i> More news"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1332
+#: ../theme/climateadaptv2/index.html:1375
 msgid "<i class=\"fa fa-angle-double-right\"></i> Read more"
 msgstr "<i class = \"fa FA-uhlovi-dvojito-right\"> </i> Prečítajte si viac"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:770
+#: ../theme/climateadaptv2/index.html:772
 msgid "<i class=\"fa fa-angle-double-right\"></i> See complete database"
 msgstr "<i class = \"fa FA-Alg-Double-Right\"> </i> Pozrite si kompletnú databázu"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1275
+#: ../theme/climateadaptv2/index.html:1316
 msgid "<i class=\"fa fa-angle-double-right\"></i> Urban Adaptation Support Tool"
 msgstr "<i class = \"FA FA-Alg-Double-Right\"> </i> Nástroj na podporu adaptácie Urban Adaptation"
 
@@ -120,185 +120,183 @@ msgstr "<Span Class = \"D-ICON Policy-ICON\"> < /span> Sektory EÚ <br />"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:674
+#: ../theme/climateadaptv2/index.html:676
 msgid "Adaptation options"
 msgstr "Možnosti prispôsobenia"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:790
-#: ../theme/climateadaptv2/tab-policies-rule.html:14
+#: ../theme/climateadaptv2/index.html:793
+#: ../theme/climateadaptv2/tab-policies-rule.html:15
 msgid "Agriculture"
 msgstr "poľnohospodárstvo"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:797
-#: ../theme/climateadaptv2/tab-policies-rule.html:21
+#: ../theme/climateadaptv2/index.html:801
+#: ../theme/climateadaptv2/tab-policies-rule.html:23
 msgid "Biodiversity"
 msgstr "Biodiverzita"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:913
-#: ../theme/climateadaptv2/tab-policies-rule.html:137
+#: ../theme/climateadaptv2/index.html:929
+#: ../theme/climateadaptv2/tab-policies-rule.html:151
 msgid "Biodiversity plays an important role in regulating the climate, thus making a key contribution to climate change mitigation and adaptation. At the same time, meeting mitigation targets coupled with ecosystem-based approaches is essential to avert biodiversity loss. Therefore it is impossible to address biodiversity loss without addressing climate change, but it is equally impossible to tackle climate change without addressing biodiversity loss."
 msgstr "Biodiverzita zohráva dôležitú úlohu pri regulácii klímy, čím prináša kľúčový príspevok k zmierňovaniu a prispôsobeniu zmeny klímy. Zároveň je cieľom splnenia zmierňovania spojené s prístupmi založenými na ekosystémoch nevyhnutné na odvrátenie straty biodiverzity. Preto nie je možné riešiť stratu biodiverzity bez toho, aby ste sa zaoberali zmenou klímy, ale rovnako nie je možné riešiť zmenu podnebia bez toho, aby sa zaoberali stratami biodiverzity."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:804
-#: ../theme/climateadaptv2/tab-policies-rule.html:28
+#: ../theme/climateadaptv2/index.html:809
+#: ../theme/climateadaptv2/tab-policies-rule.html:31
 msgid "Buildings"
 msgstr "Budovy"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:928
-#: ../theme/climateadaptv2/tab-policies-rule.html:152
+#: ../theme/climateadaptv2/index.html:944
+#: ../theme/climateadaptv2/tab-policies-rule.html:166
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Budovy môžu byť náchylné na zmenu podnebia. V budúcnosti môže dôjsť k zvýšeniu rizika kolapsu, klesajúcej štátu a významnej strate hodnoty v dôsledku väčšieho počtu búrok, poškodenia snehu alebo poklesu, zásahu do vody, zhoršujúce sa vnútorné podnebie a znížená životnosť budov. Cieľom Európskej komisie je zvýšiť odolnosť infraštruktúry klímy vrátane budov. Nové a existujúce budovy je potrebné posúdiť odolnosť voči súčasným rizikám a budúcim zmenám v oblasti klímy a podľa toho sa plánovali alebo vylepšovali. Kľúčovou politikou používanou na podporu odolnosti budov je politika súdržnosti (tiež označovaná ako regionálna politika)."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:683
+#: ../theme/climateadaptv2/index.html:685
 msgid "Case studies"
 msgstr "Prípadové štúdie"
 
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1139
-msgid "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href=\"https://climate-adapt.eea.europa.eu/repository/11090223.pdf\">criteria</a> and also in collaboration with the main stakeholders. See the <a href=\"../knowledge/tools/case-studies-climate-adapt\">Case Studies Page</a>."
-msgstr "Prípadové štúdie sú vlajkovou loďou platformy klímy-ADAPT. Majú komplexnú štruktúru, ktorá pokrýva všetky kľúčové aspekty v implementačnom cykle adaptačných opatrení a sú opatrní a špecificky pripravení na klimatickú adapt organizáciou, ktorá sa podieľa na implementácii s podporou EHP, podľa súboru <a href = \"https://climate-adapt.eea.europa.eu/repository/11090223.pdf\"> Criteria </a> a tiež v spolupráci s hlavnými zúčastnenými stranami. Pozrite si <a href=\"../knowledge/tools/case-studies-limate-adapt\"> Prípadové štúdie </a>."
+#: ../theme/climateadaptv2/index.html:1166
+msgid "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href=\"${DYNAMIC_CONTENT}\">criteria</a> and also in collaboration with the main stakeholders. See the <a href=\"${DYNAMIC_CONTENT}\">Case Studies Page</a>."
+msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1434
+#: ../theme/climateadaptv2/index.html:1478
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Skontrolujte, či <a href=\"../newsletter\"> európsky informačný bulletin o klimatickej adaptácii </a> a zaregistrujte sa, aby ste ho dostali do svojho e-mailu:"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:988
-#: ../theme/climateadaptv2/tab-policies-rule.html:212
+#: ../theme/climateadaptv2/index.html:1004
+#: ../theme/climateadaptv2/tab-policies-rule.html:226
 msgid "Climate change affects the energy sector in multiple ways, ranging from changes in heating and cooling demand; to impacts on energy supply conditions – for example decreased water availability for hydropower during prolonged droughts and reduced availability of cooling water affecting the efficiency of power plants. Furthermore, energy infrastructure can be more exposed to damages by changing climate conditions. The European Commission in general aims to increase the climate resilience of infrastructure including energy by providing strategical frameworks."
 msgstr "Zmena podnebia ovplyvňuje energetický sektor niekoľkými spôsobmi, od zmien v dopyte po zahrievaní a chladení; na vplyvy na podmienky dodávky energie - napríklad znížená dostupnosť vody pre vodnú energiu počas predĺžených sucha a znížená dostupnosť chladiacej vody ovplyvňujúcej účinnosť elektrární. Okrem toho môže byť energetická infraštruktúra viac vystavená škodám zmenou klimatických podmienok. Cieľom Európskej komisie je všeobecne zvýšiť odolnosť infraštruktúry klímy vrátane energie poskytovaním strategických rámcov."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:898
-#: ../theme/climateadaptv2/tab-policies-rule.html:122
+#: ../theme/climateadaptv2/index.html:914
+#: ../theme/climateadaptv2/tab-policies-rule.html:136
 msgid "Climate change has complex effects on the bio-physical processes that underpin agricultural systems, with both negative and positive consequences in different EU regions. Rising atmospheric CO2 concentration, higher temperatures, changes in precipitation patterns and in frequency of extreme events both affect the natural environment as well as the quantity, quality and stability of food production. Climatic variations impact on water resources, soils, pests and diseases, leading to significant changes in agriculture and livestock production."
 msgstr "Zmena podnebia má zložité účinky na biofyzikálne procesy, ktoré podporujú poľnohospodárske systémy, s negatívnymi aj pozitívnymi dôsledkami v rôznych regiónoch EÚ. Stúpajúca atmosférická koncentrácia CO2, vyššie teploty, zmeny v zrážkových vzorcoch a frekvencia extrémnych udalostí ovplyvňujú prírodné prostredie, ako aj kvantitu, kvalitu a stabilitu výroby potravín. Klimatické variácie ovplyvňujú vodné zdroje, pôdy, škodcov a choroby, čo vedie k významným zmenám v poľnohospodárstve a výrobe hospodárskych zvierat."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1046
-#: ../theme/climateadaptv2/tab-policies-rule.html:270
+#: ../theme/climateadaptv2/index.html:1062
+#: ../theme/climateadaptv2/tab-policies-rule.html:284
 msgid "Climate change is expected to have severe impacts on the marine environment. Increase in water temperatures will contribute to a restructuring of marine ecosystems with implications for ocean circulation, biogeochemical cycling and marine biodiversity. Ocean acidification will affect the ability of some calcium carbonate-secreting species (as molluscs, planktons and corals) to produce their shells or skeletons. Warmer and more acidic seawater will therefore negatively affect fishery and aquaculture."
 msgstr "Očakáva sa, že zmena podnebia bude mať vážny vplyv na morské prostredie. Zvýšenie teplôt vody prispeje k reštrukturalizácii morských ekosystémov s dôsledkami na obeh oceánu, biogeochemické cyklovanie a morská biodiverzita. Ocidifikácia oceánu ovplyvní schopnosť niektorých druhov vylučujúcich uhličitan (ako mäkkýš, planktony a koraly) produkovať svoje škrupiny alebo kostry. Teplejšia a kyslejšia morská voda bude preto negatívne ovplyvniť rybolov a akvakultúru."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1032
-#: ../theme/climateadaptv2/tab-policies-rule.html:256
+#: ../theme/climateadaptv2/index.html:1048
+#: ../theme/climateadaptv2/tab-policies-rule.html:270
 msgid "Climate change will generate new health risks and amplify current health problems. Both direct and indirect effects on human, plant and animal health are expected from climate change. Direct effects result from changes in the intensity and frequency of extreme weather events like heatwaves and floods. Indirect effects can be felt through changes in the incidence of diseases transmitted by insects (i.e. vector borne diseases caused by mosquitoes and ticks), rodents, or changes in water, food and air quality. The European Commission's EU strategy on adaptation to climate change is accompanied by a Staff Working Document."
 msgstr "Zmena podnebia spôsobí nové zdravotné riziká a zosilní súčasné zdravotné problémy. Priame aj nepriame účinky na zdravie ľudí, rastlín a zvierat sa očakávajú od zmeny klímy. Priame účinky vyplývajú zo zmien v intenzite a frekvencii extrémnych poveternostných udalostí, ako sú horúčava a povodne. Nepriame účinky sa môžu pociťovať zmenami vo výskyte chorôb prenášaných hmyzom (t. J. Ochorenia prenášané vektormi spôsobenými komármi a kliešťami), hlodavcami alebo zmenami vo vode, potravinách a kvalite ovzdušia. Stratégia EÚ EÚ o prispôsobení sa zmene klímy je sprevádzaná pracovným dokumentom zamestnancov."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1136
+#: ../theme/climateadaptv2/index.html:1154
 msgid "Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events."
 msgstr "Prípadové štúdie klímy adapt ukazujú iniciatívy, ktoré sa už vykonávajú v Európe, aby sa prispôsobili zmene klímy a zvýšili odolnosť na extrémne počasie a pomaly nástupu udalostí."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:811
-#: ../theme/climateadaptv2/tab-policies-rule.html:35
+#: ../theme/climateadaptv2/index.html:817
+#: ../theme/climateadaptv2/tab-policies-rule.html:39
 msgid "Coastal areas"
 msgstr "Pobrežné oblasti"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:818
-#: ../theme/climateadaptv2/tab-policies-rule.html:42
+#: ../theme/climateadaptv2/index.html:825
+#: ../theme/climateadaptv2/tab-policies-rule.html:47
 msgid "Disaster risk <br /> reduction"
 msgstr "Riziko katastrofy <br /> Zníženie"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:957
-#: ../theme/climateadaptv2/tab-policies-rule.html:181
+#: ../theme/climateadaptv2/index.html:973
+#: ../theme/climateadaptv2/tab-policies-rule.html:195
 msgid "Disaster risk reduction"
 msgstr "Zníženie rizika katastrofy"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:825
-#: ../theme/climateadaptv2/tab-policies-rule.html:49
+#: ../theme/climateadaptv2/index.html:833
+#: ../theme/climateadaptv2/tab-policies-rule.html:55
 msgid "Ecosystem-based approaches"
 msgstr "Prístupy založené na ekosystémoch"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:973
-#: ../theme/climateadaptv2/tab-policies-rule.html:197
+#: ../theme/climateadaptv2/index.html:989
+#: ../theme/climateadaptv2/tab-policies-rule.html:211
 msgid "Ecosystem-based initiatives for climate change adaptation and disaster risk reduction increase resilience and decrease vulnerability of both people and ecosystems, empower people and provide jobs and business opportunities, make economic sense, are ready for use and easily accessible, including for the rural and urban poor. They provide multiple benefits and contribute to achieving climate change adaptation objectives but also several multi-lateral environmental agreements and sectoral policy objectives (e.g. haltering biodiversity loss, water quality or agricultural and forest management)."
 msgstr "Iniciatívy založené na ekosystémoch na prispôsobenie sa zmene klímy a zníženie rizika katastrof Zvýšenie odolnosti a zníženie zraniteľnosti ľudí a ekosystémov, posilňovaní ľudí a poskytujú pracovné miesta a obchodné príležitosti, dáva ekonomický zmysel, sú pripravení na použitie a ľahko dostupné, a to aj pre vidiecky a mestský chudobný. Poskytujú viac výhod a prispievajú k dosiahnutiu cieľov prispôsobenia sa zmenám klímy, ale aj niekoľko viacostrených environmentálnych dohôd a ciele sektorovej politiky (napr. Strata biodiverzity, kvalita vody alebo poľnohospodárske a lesné hospodárstvo)."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:832
-#: ../theme/climateadaptv2/tab-policies-rule.html:56
+#: ../theme/climateadaptv2/index.html:841
+#: ../theme/climateadaptv2/tab-policies-rule.html:63
 msgid "Energy"
 msgstr "Energia"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1347
+#: ../theme/climateadaptv2/index.html:1391
 msgid "Events"
 msgstr "Diania"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1003
-#: ../theme/climateadaptv2/tab-policies-rule.html:227
+#: ../theme/climateadaptv2/index.html:1019
+#: ../theme/climateadaptv2/tab-policies-rule.html:241
 msgid "Extreme weather events in recent years have increased the urgency to mainstream climate change adaptation into the different EU policy fields. There are few specific EU activities to mainstream climate change adaptation into policies for financial and insurance sectors. However many European policies related to natural disasters (see Disaster risk reduction) are very relevant to the financial and insurance sector, as they may help to prevent significant losses and financial disasters. The European Commission has also committed itself to increasing financing of climate-related activities by ensuring that at least 20% of the European budget is climate-related expenditure."
 msgstr "Extrémne poveternostné udalosti v posledných rokoch zvýšili naliehavosť na bežné prispôsobenie sa zmene klímy na rôzne oblasti politiky EÚ. Existuje len málo konkrétnych aktivít EÚ na bežnú prispôsobenie zmeny klímy na politiky pre finančné a poisťovacie sektory. Mnoho európskych politík súvisiacich s prírodnými katastrofami (pozri zníženie rizika katastrof) je však pre finančný a poisťovací sektor veľmi relevantné, pretože môžu pomôcť predchádzať významným stratám a finančným katastrofám. Európska komisia sa tiež zaviazala zvyšovať financovanie činností súvisiacich s klímou tým, že zabezpečila, že najmenej 20% európskeho rozpočtu sú výdavky súvisiace s klímou."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:839
-#: ../theme/climateadaptv2/tab-policies-rule.html:63
+#: ../theme/climateadaptv2/index.html:849
+#: ../theme/climateadaptv2/tab-policies-rule.html:71
 msgid "Financial"
 msgstr "Finančný"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1311
+#: ../theme/climateadaptv2/index.html:1354
 msgid "Find out how to contribute different types of information to Climate-ADAPT"
 msgstr "Zistite, ako prispievať rôznymi typmi informácií k klimatizácii adaptu"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1261
+#: ../theme/climateadaptv2/index.html:1301
 msgid "For more informations visit:"
 msgstr "Viac informácií nájdete na:"
 
-#: ../theme/climateadaptv2/index.html:1096
-msgid "For more informations visit: <a href=\"/eu-adaptation-policy/sector-policies\"> <i class=\"fa fa-angle-double-right\"></i> EU Sector Policies </a>"
+#: ../theme/climateadaptv2/index.html:1113
+msgid "For more informations visit: <a href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> EU Sector Policies </a>"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1274
+#: ../theme/climateadaptv2/index.html:1315
 msgid "For urban areas guidance visit:"
 msgstr "Pre usmerňovanie v mestských oblastiach navštívte:"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:846
-#: ../theme/climateadaptv2/tab-policies-rule.html:70
+#: ../theme/climateadaptv2/index.html:857
+#: ../theme/climateadaptv2/tab-policies-rule.html:79
 msgid "Forestry"
 msgstr "Lesníctvo"
 
@@ -316,103 +314,101 @@ msgstr "Choďte do európskeho Observatória o klíme a zdravotníctve"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:692
+#: ../theme/climateadaptv2/index.html:694
 msgid "Guidance"
 msgstr "Usmernenie"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:853
-#: ../theme/climateadaptv2/tab-policies-rule.html:77
+#: ../theme/climateadaptv2/index.html:865
+#: ../theme/climateadaptv2/tab-policies-rule.html:87
 msgid "Health"
 msgstr "Zdravie"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1074
-#: ../theme/climateadaptv2/tab-policies-rule.html:298
+#: ../theme/climateadaptv2/index.html:1090
+#: ../theme/climateadaptv2/tab-policies-rule.html:312
 msgid "In Europe, nearly 73% of the population live in urban areas and this is projected to increase to over 80% by 2050. Climate change is likely to influence almost all components of cities and towns – their environment, economy and society. This raises new, complex challenges for urban planning and management. Climate change impacts on the hubs of Europe's economic activity, social life, culture and innovation have repercussions far beyond their municipal borders."
 msgstr "V Európe žije takmer 73% obyvateľstva v mestských oblastiach a predpokladá sa, že sa do roku 2050 zvýši na viac ako 80%. Zmena podnebia pravdepodobne ovplyvní takmer všetky zložky miest a miest - ich životné prostredie, hospodárstvo a spoločnosť. To vyvoláva nové a zložité výzvy pre mestské plánovanie a riadenie. Vplyv zmeny podnebia na centrá ekonomickej činnosti Európy, spoločenského života, kultúry a inovácií majú následky ďaleko za ich mestskými hranicami."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:701
+#: ../theme/climateadaptv2/index.html:703
 msgid "Indicators"
 msgstr "Ukazovateľ"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:710
+#: ../theme/climateadaptv2/index.html:712
 msgid "Information portals"
 msgstr "Informačné portály"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:860
-#: ../theme/climateadaptv2/tab-policies-rule.html:84
+#: ../theme/climateadaptv2/index.html:873
+#: ../theme/climateadaptv2/tab-policies-rule.html:95
 msgid "Marine <br /> &amp; fisheries"
 msgstr "Marine <br /> & amp; rybolov"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1045
-#: ../theme/climateadaptv2/tab-policies-rule.html:269
+#: ../theme/climateadaptv2/index.html:1061
+#: ../theme/climateadaptv2/tab-policies-rule.html:283
 msgid "Marine and fisheries"
 msgstr "Morské a rybné hospodárstvo"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1344
+#: ../theme/climateadaptv2/index.html:1388
 msgid "News"
 msgstr "Novinky"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1420
+#: ../theme/climateadaptv2/index.html:1464
 msgid "Newsletter"
 msgstr "Bulletin"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:728
+#: ../theme/climateadaptv2/index.html:730
 msgid "Organisations"
 msgstr "Organizácie"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:958
-#: ../theme/climateadaptv2/tab-policies-rule.html:182
+#: ../theme/climateadaptv2/index.html:974
+#: ../theme/climateadaptv2/tab-policies-rule.html:196
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "V posledných rokoch Európa zažila každý druh prírodných katastrof: vážne povodne, sucho a lesné požiare s ničivými účinkami na životy ľudí, európske hospodárstvo a životné prostredie. V poslednom desaťročí Európska komisia prijala niekoľko stratégií a opatrení na zvládnutie zníženia rizika katastrof, napríklad smernice o povodniach a jej implementácii (časový rozvrh), akcia EÚ o nedostatku vody a suchu, zelená dokument o poistení v poistení Kontext prírodných a človekom spôsobených katastrofami."
 
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:664
-msgid "Please check our <a href=\"/help/guidance\">Guidance to search function</a> for more help on how to search the database."
-msgstr "Skontrolujte naše <a href=\"/help/guidance\"> Pokyny na vyhľadávanie funkcie </a> Ak potrebujete ďalšiu pomoc pri prehľadávaní databázy."
+#: ../theme/climateadaptv2/index.html:666
+msgid "Please check our <a href=\"${DYNAMIC_CONTENT}\">Guidance to search function</a> for more help on how to search the database."
+msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:746
+#: ../theme/climateadaptv2/index.html:748
 msgid "Publications and reports"
 msgstr "Publikácie a správy"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1423
+#: ../theme/climateadaptv2/index.html:1467
 msgid "RSS feed"
 msgstr "RSS zdroj"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:755
+#: ../theme/climateadaptv2/index.html:757
 msgid "Research and knowledge projects"
 msgstr "Výskumné a znalostné projekty"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:943
-#: ../theme/climateadaptv2/tab-policies-rule.html:167
+#: ../theme/climateadaptv2/index.html:959
+#: ../theme/climateadaptv2/tab-policies-rule.html:181
 msgid "Sea level rise can cause flooding, coastal erosion and the loss of low-lying coastal systems. It will also increase the risk of storm surges and the likelihood of landward intrusion of saltwater and may endanger coastal ecosystems. Expected rises in water temperatures and ocean acidification will contribute to a restructuring of coastal ecosystems; with implications for ocean circulation and biogeochemical cycling."
 msgstr "Nárast hladiny mora môže spôsobiť záplavy, pobrežnú eróziu a stratu nízko položených pobrežných systémov. Zvýši to tiež riziko prepätia búrok a pravdepodobnosť vniknutia slanej vody a môže ohroziť pobrežné ekosystémy. Očakávané zvýšenie teploty vody a okyslenie oceánov prispeje k reštrukturalizácii pobrežných ekosystémov; s dôsledkami pre obeh oceánu a biogeochemické cyklovanie."
 
@@ -422,39 +418,37 @@ msgstr "Nárast hladiny mora môže spôsobiť záplavy, pobrežnú eróziu a st
 msgid "Search Climate-ADAPT"
 msgstr "Hľadať klimatizáciu"
 
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1154
-msgid "See how Europe is adapting to climate change: <a class=\"ca-booklet-link\" href=\"../about/climate-adapt-10-case-studies-online.pdf\"> <i class=\"fa fa-angle-double-right\"></i> Case studies booklet </a>"
-msgstr "Pozrite sa, ako sa Európa prispôsobuje zmene podnebia: <a class=\"ca-Bhooklet-link\" href=\"../about/climate-dapt-10-case-studies-online.pdf\"> <i class = \"fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fA -Angle-double-right \"> </i> brožúra prípadových štúdií </a>"
+#: ../theme/climateadaptv2/index.html:1176
+msgid "See how Europe is adapting to climate change: <a class=\"ca-booklet-link\" href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> Case studies booklet </a>"
+msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1310
+#: ../theme/climateadaptv2/index.html:1353
 msgid "Share <span>your information</span>"
 msgstr "Zdieľajte <regan> svoje informácie </span>"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1436
+#: ../theme/climateadaptv2/index.html:1480
 msgid "Sign me up!"
 msgstr "Prihlás ma!"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1453
+#: ../theme/climateadaptv2/index.html:1497
 msgid "Subscribe"
 msgstr "Predplatiť"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1451
+#: ../theme/climateadaptv2/index.html:1495
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "Prihláste sa na odber nášho krmiva <strong> RSS </strong> <br /> a zostaňte v aktuálnom stave!"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1325
+#: ../theme/climateadaptv2/index.html:1368
 msgid "The Covenant of Mayors initiative aims to engage and support cities and towns to commit to reaching the EU climate mitigation and adaptation targets. Signatory cities pledge action to support implementation of the EU 40% greenhouse gas-reduction target by 2030 ..."
 msgstr "Cieľom iniciatívy Covenant of Cayors je zapojiť a podporovať mestá a mestá, aby sa zaviazali dosiahnuť ciele zmierňovania a prispôsobenia klímy EÚ. Signatory Cities sľubujú kroky na podporu implementácie cieľa EÚ 40% skleníkových plynov do roku 2030 ..."
 
@@ -472,72 +466,72 @@ msgstr "Európske observatórium klímy a zdravia poskytuje prístup k širokej 
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:662
+#: ../theme/climateadaptv2/index.html:664
 msgid "The database contains quality checked information and is annotated by climate adaptation experts with keywords."
 msgstr "Databáza obsahuje informácie o kontrole kvality a sú anotované odborníkmi na prispôsobenie klímy s kľúčovými slovami."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1060
-#: ../theme/climateadaptv2/tab-policies-rule.html:284
+#: ../theme/climateadaptv2/index.html:1076
+#: ../theme/climateadaptv2/tab-policies-rule.html:298
 msgid "The need for adapting the transport system to the impact of climate change has been highlighted since the European Commission's Adaptation White Paper (COM (2009)148). Transport adaptation is addressed through a combination of European transport, climate change and research policies. The European Union promotes best practices, mainstreaming adaptation within its transport infrastructure development programmes, and provides guidance, e.g. by developing adequate standards for construction. Action is focused on transport infrastructure, and particularly on the Trans-European Transport Network (TEN-T)."
 msgstr "Potreba prispôsobenia dopravného systému na vplyv zmeny klímy sa zdôrazňuje od adaptácie Európskej komisie (COM (2009) 148). Prispôsobenie dopravy sa rieši kombináciou európskej dopravy, zmeny klímy a výskumných politík. Európska únia podporuje osvedčené postupy, bežné adaptácie v rámci programov rozvoja dopravnej infraštruktúry a poskytuje usmernenie, napr. Rozvíjaním primeraných štandardov pre výstavbu. Akcia sa zameriava na dopravnú infraštruktúru, najmä na trans-európsku dopravnú sieť (desať-T)."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1018
-#: ../theme/climateadaptv2/tab-policies-rule.html:242
+#: ../theme/climateadaptv2/index.html:1034
+#: ../theme/climateadaptv2/tab-policies-rule.html:256
 msgid "The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector."
 msgstr "Rýchla miera zmeny podnebia môže prekonať prirodzenú schopnosť lesných ekosystémov prispôsobiť sa. Vedie to k zvýšenému riziku porúch búrokmi, požiarmi, škodcami a chorobami s dôsledkami pre rast lesov a výrobu. Ovplyvní ekonomická životaschopnosť lesníctva, najmä v južných oblastiach Európy, ako aj kapacita lesov poskytovať environmentálne služby vrátane zmien vo funkcii uhlíka. V roku 2013 Komisia prijala novú lesnú stratégiu EÚ, ktorá reaguje na nové výzvy, ktorým čelia lesy a lesný sektor."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:764
+#: ../theme/climateadaptv2/index.html:766
 msgid "Tools"
 msgstr "Náradie"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:867
-#: ../theme/climateadaptv2/tab-policies-rule.html:91
+#: ../theme/climateadaptv2/index.html:881
+#: ../theme/climateadaptv2/tab-policies-rule.html:103
 msgid "Transport"
 msgstr "Preprava"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:874
-#: ../theme/climateadaptv2/tab-policies-rule.html:98
+#: ../theme/climateadaptv2/index.html:889
+#: ../theme/climateadaptv2/tab-policies-rule.html:111
 msgid "Urban"
 msgstr "Mestský"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:737
+#: ../theme/climateadaptv2/index.html:739
 msgid "Videos"
 msgstr "Videá"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:881
-#: ../theme/climateadaptv2/tab-policies-rule.html:105
+#: ../theme/climateadaptv2/index.html:897
+#: ../theme/climateadaptv2/tab-policies-rule.html:119
 msgid "Water <br /> management"
 msgstr "Voda <br /> Manažment"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1087
-#: ../theme/climateadaptv2/tab-policies-rule.html:311
+#: ../theme/climateadaptv2/index.html:1103
+#: ../theme/climateadaptv2/tab-policies-rule.html:325
 msgid "Water management"
 msgstr "Vodné hospodárstvo"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1088
-#: ../theme/climateadaptv2/tab-policies-rule.html:312
+#: ../theme/climateadaptv2/index.html:1104
+#: ../theme/climateadaptv2/tab-policies-rule.html:326
 msgid "Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe."
 msgstr "Vodné zdroje sú priamo ovplyvňované zmenou klímy a riadenie týchto zdrojov ovplyvňuje zraniteľnosť ekosystémov, sociálno-ekonomických činností a ľudského zdravia. Očakáva sa tiež, že vodné hospodárstvo bude hrať pri adaptácii čoraz hlavnejšiu úlohu. Predpokladá sa, že zmena podnebia povedie k významným zmenám dostupnosti vody v celej Európe so zvyšujúcim sa nedostatkom vody a suchom najmä v južnej Európe a zvyšujúcemu sa riziku povodní vo väčšine Európy."
 
 # ,
-#: ../theme/climateadaptv2/index.html:652
+#: ../theme/climateadaptv2/index.html:654
 msgid "type here ..."
 msgstr "píšte sem ..."

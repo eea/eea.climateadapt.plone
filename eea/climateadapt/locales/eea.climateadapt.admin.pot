@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-24 08:36+0000\n"
+"POT-Creation-Date: 2022-08-28 02:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,11 +63,11 @@ msgstr ""
 msgid "Agriculture"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:769
+#: ../../climateadapt/tiles/search_acecontent.py:796
 msgid "All adaptation sectors"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:766
+#: ../../climateadapt/tiles/search_acecontent.py:793
 msgid "All climate impacts"
 msgstr ""
 
@@ -401,6 +401,18 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:263
 msgid "Information portals"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:532
+msgid "Institutional: Economic options"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:534
+msgid "Institutional: Government policies and programmes"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:533
+msgid "Institutional: Law and regulations"
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:97
@@ -741,6 +753,18 @@ msgstr ""
 msgid "Short summary"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:531
+msgid "Social: Behavioural"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Social: Educational options"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Social: Informational"
+msgstr ""
+
 #: ../../climateadapt/behaviors/casestudy.py:57
 msgid "Solutions"
 msgstr ""
@@ -775,6 +799,22 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:342
 msgid "Storms"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:527
+msgid "Structural and physical: Ecosystem-based adaptation options"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:525
+msgid "Structural and physical: Engineering and built environment options"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "Structural and physical: Service options"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:526
+msgid "Structural and physical: Technological options"
 msgstr ""
 
 #: ../../climateadapt/browser/__init__.py:180
