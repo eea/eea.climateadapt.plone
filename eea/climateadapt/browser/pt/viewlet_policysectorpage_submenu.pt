@@ -14,7 +14,8 @@ $(document).ready(() => {
     tocContainer.hide();
     $("h1.documentFirstHeading").before(tocContainer);
 
-    let section_titles = $("p.read_more_first, p.read_more_second");
+    let section_titles = $("#content-core p strong"); // TODO: define a class for this and update the content to use it
+    // let section_titles = $("p.read_more_first, p.read_more_second");
     let sections = [];
     section_titles.each(function() {
       sections.push([$(this).text(), $(this).text().replaceAll(" ", "-").toLowerCase()]);
