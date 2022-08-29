@@ -108,7 +108,7 @@ class TranslateActionExecutor(object):
 
     def __call__(self):
         obj = self.event.object
-        if "/cca/en/" in obj.absolute_url():
+        if "/en/" in obj.absolute_url():
             self.create_translations(obj)
             self.translate_obj(obj)
             # self.set_workflow_states(obj)
