@@ -1,5 +1,6 @@
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
+from eea.climateadapt.translation.utils import translate_text
 
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -146,9 +147,11 @@ class Page(BrowserView):
         factory = getUtility(IVocabularyFactory, "eea.climateadapt.aceitems_ipcc_category")
         vocabulary = factory(self.context)
         response = {};
+        #import pdb; pdb.set_trace()
         #response.append({"key": "", "value": "Filter by IPCCS"})
         for term in vocabulary:
-            titleSplit = term.title.split(':')
+            temp = translate_text(self.context, self.request, term.title)
+            titleSplit = temp.split(':')
             if titleSplit[0] not in response:
                 response[titleSplit[0]] = []
             response[titleSplit[0]].append({"key": term.value, "value": titleSplit[1].strip()})

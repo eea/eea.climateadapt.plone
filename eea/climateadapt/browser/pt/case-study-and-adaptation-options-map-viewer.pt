@@ -254,7 +254,6 @@ a.reset-button {
                 </p>
             </div>
             <div class="cols-md-12 cs_filter_impact_div" tal:define="climate_impacts view/get_climate_impacts">
-                <textarea tal:content="climate_impacts"></textarea>
                 <h4 i18n:translate="">Climate Impacts</h4>
                 <p class="cs_filter_impact" style="display:none;" tal:repeat="climate_impact climate_impacts">
                     <span class="float-left" tal:content="climate_impact/value">Sector name</span>
@@ -294,8 +293,8 @@ a.reset-button {
         </div>
         </form>
         <div class="case-study-legend">
-            <p><span></span> <span  i18n:translate="">Climate-ADAPT case studies</span></p>
-            <p><span class="light-blue"></span> <span i18n:translate="">Case studies collected at national level in Spain, provided by AdapteCCA.es</span></p>
+            <p><span></span> <tal i18n:translate="">Climate-ADAPT case studies</tal></p>
+            <p><span class="light-blue"></span> <tal i18n:translate="">Case studies collected at national level in Spain, provided by AdapteCCA.es</tal></p>
         </div>
     </div>
 </div>
