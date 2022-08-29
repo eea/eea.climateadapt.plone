@@ -1,4 +1,4 @@
-<div style="padding-bottom:10px;" tal:condition="view/show_display_message">
+<div style="padding-bottom:10px;" tal:condition="python: view.show_display_message() and href" tal:define="href python: view.get_suggestion_url()">
   <div class="alert alert-info">
     <div class="translation-info">
       <span tal:content="python: view.get_message('Based on your preferences, you can view this page in english')"></span>
