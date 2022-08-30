@@ -274,7 +274,7 @@
   <!-- </prepend> -->
 
   <prepend theme="/html/body" css:if-content=".health-header-title">
-    <xsl:attribute name="class"><xsl:value-of select="/html/body/@class"/> health-header</xsl:attribute>
+    <!-- <xsl:attribute name="class"><xsl:value-of select="/html/body/@class"/> health-header</xsl:attribute> -->
   </prepend>
 
     Strip the classes "col-md-3 col-xs-12 content-sidebar" from the parent of aceitem-sidebar
