@@ -2117,6 +2117,13 @@ class TranslationCheckLanguageViewlet(ViewletBase):
     def show_display_message(self):
         #import pdb; pdb.set_trace()
         if self.get_plone_language()!=self.get_cookie_language():
+            # check if force to stay on this page
+            if self.request.get('langflag', None):
+                return True
+            url = self.get_suggestion_url()
+            # if we have a url, then redirect. A few pages are not translated
+            if url:
+                return self.request.response.redirect(url)
             return True
         return None
 
