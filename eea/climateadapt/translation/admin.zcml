@@ -119,5 +119,12 @@
       permission="cmf.ManagePortal"
       />
 
+  <browser:page
+      name="admin-publish-items"
+      for="*"
+      class=".admin.AdminPublishItems"
+      permission="cmf.ManagePortal"
+      />
+
 
 </configure>

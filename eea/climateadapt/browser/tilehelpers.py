@@ -300,6 +300,9 @@ class NewsTile(ListingTile):
 
     @view.memoize
     def get_item_date(self, item):
+        if not item.effective_date:
+            return 'No date'
+
         date = item.effective_date.strftime('%d %b %Y')
 
         return date
@@ -353,6 +356,9 @@ class EventsTile(ListingTile):
 
     @view.memoize
     def get_item_date(self, item):
+        if not item.effective_date:
+            return 'No date'        
+
         date = item.end.strftime('%d %b %Y')
 
         return date
