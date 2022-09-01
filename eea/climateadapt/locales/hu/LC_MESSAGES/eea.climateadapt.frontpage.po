@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-01 07:22+0000\n"
+"POT-Creation-Date: 2022-09-01 11:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,36 +15,6 @@ msgstr ""
 "Domain: DOMAIN\n"
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:403
-msgid "<a href=\"#t-started\"> <span class=\"d-icon feature-icon\"></span> New <br /> feature </a>"
-msgstr "<a href=\"#t-started\"> <span class = \"d-icon feature-icon\"> </span> új <br /> feature </a>"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1302
-msgid "<i class=\"fa fa-angle-double-right\"></i> Adaptation support tool"
-msgstr "<i class = \"Fa Fa-Angle-Double-Right\"> </i> adaptációs támogató eszköz"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1375
-msgid "<i class=\"fa fa-angle-double-right\"></i> Read more"
-msgstr "<i class = \"Fa fa-lange-double-jobb\"> </i> További információ"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:772
-msgid "<i class=\"fa fa-angle-double-right\"></i> See complete database"
-msgstr "<i class = \"Fa Fa-Angle-Double-Jobb\"> </i> Lásd a teljes adatbázist"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1316
-msgid "<i class=\"fa fa-angle-double-right\"></i> Urban Adaptation Support Tool"
-msgstr "<i class = \"Fa Fa-Angle-Double-Right\"> </i> városi adaptációs támogató eszköz"
 
 # ,
 # ,
@@ -80,41 +50,19 @@ msgstr "<i class = \"Fa Fa-Question-Circle\"> </i> súgó"
 msgid "<i class=\"fa fa-search\"></i>"
 msgstr "<i class = \"Fa fa-search\"> </i>"
 
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:434
-msgid "<span class=\"d-icon ast-icon\"></span> Adaptation <br /> Support Tool"
-msgstr "<span class = \"d-icon ast-icon\"> </span> adaptáció <br /> Támogató eszköz"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:428
-msgid "<span class=\"d-icon case-icon\"></span> Case <br /> Studies"
-msgstr "<span class = \"d-icon case-icon\"> </span> eset <br /> Tanulmányok"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:410
-msgid "<span class=\"d-icon database-icon\"></span> Search the <br /> Database"
-msgstr "<span class = \"d-icon database-icon\"> </span> keresse meg a <br /> adatbázist"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:422
-msgid "<span class=\"d-icon eu-icon\"></span> Country <br /> Profiles"
-msgstr "<span class = \"d-icon eu-icon\"> </span> country <br /> profilok"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:416
-msgid "<span class=\"d-icon policy-icon\"></span> EU Sector <br /> Policies"
-msgstr "<span class = \"d-icon politik-icon\"> </span> EU szektor <br /> Politikák"
+#: ../theme/climateadaptv2/index.html:436
+msgid "Adaptation <br /> Support Tool"
+msgstr ""
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:676
 msgid "Adaptation options"
 msgstr "Adaptációs lehetőségek"
+
+#: ../theme/climateadaptv2/index.html:1305
+msgid "Adaptation support tool"
+msgstr ""
 
 # ,
 # ,
@@ -150,6 +98,10 @@ msgstr "Épületek"
 #: ../theme/climateadaptv2/tab-policies-rule.html:166
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Az épületek kiszolgáltatottak lehetnek az éghajlatváltozással szemben. A jövőben növekedhet az összeomlás, a csökkenő állapot csökkenése és a jelentős értékvesztés, a több vihar, a hó vagy a süllyedés károsodása, a víz beavatkozása, a beltéri éghajlat romlása és az épület élettartama eredményeként. Az Európai Bizottság célja az infrastruktúra éghajlati ellenálló képességének növelése, ideértve az épületeket is. Az új és a meglévő épületeket meg kell vizsgálni a jelenlegi kockázatokkal és a jövőbeli éghajlatváltozásokkal szembeni ellenálló képesség szempontjából, és ennek megfelelően megtervezni vagy korszerűsíteni. Az épületek ellenálló képességének alátámasztására alkalmazott kulcsfontosságú politika a kohéziós politika (más néven regionális politika)."
+
+#: ../theme/climateadaptv2/index.html:430
+msgid "Case <br /> Studies"
+msgstr ""
 
 # ,
 # ,
@@ -208,6 +160,10 @@ msgstr "Az éghajlati-adapt esettanulmányok olyan kezdeményezéseket mutatnak 
 msgid "Coastal areas"
 msgstr "Parti szakaszok"
 
+#: ../theme/climateadaptv2/index.html:424
+msgid "Country <br /> Profiles"
+msgstr ""
+
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:825
@@ -221,6 +177,10 @@ msgstr "Katasztrófakockázat <br /> Csökkentés"
 #: ../theme/climateadaptv2/tab-policies-rule.html:195
 msgid "Disaster risk reduction"
 msgstr "Katasztrófakockázat -csökkentés"
+
+#: ../theme/climateadaptv2/index.html:418
+msgid "EU Sector <br /> Policies"
+msgstr ""
 
 # ,
 # ,
@@ -358,6 +318,10 @@ msgstr ""
 msgid "More news"
 msgstr ""
 
+#: ../theme/climateadaptv2/index.html:406
+msgid "New <br /> feature"
+msgstr ""
+
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1388
@@ -399,6 +363,10 @@ msgstr "Publikációk és jelentések"
 msgid "RSS feed"
 msgstr "RSS -takarmány"
 
+#: ../theme/climateadaptv2/index.html:1378
+msgid "Read more"
+msgstr ""
+
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:757
@@ -417,6 +385,14 @@ msgstr "A tengerszint emelkedése áradást, part menti eróziót és az alacson
 #: ../theme/climateadaptv2/page.html:67
 msgid "Search Climate-ADAPT"
 msgstr "Keresse meg az éghajlat-adaptot"
+
+#: ../theme/climateadaptv2/index.html:412
+msgid "Search the <br /> Database"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:774
+msgid "See complete database"
+msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1176
 msgid "See how Europe is adapting to climate change: <a class=\"ca-booklet-link\" href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> Case studies booklet </a>"
@@ -503,6 +479,10 @@ msgstr "Szállítás"
 #: ../theme/climateadaptv2/tab-policies-rule.html:111
 msgid "Urban"
 msgstr "Városi"
+
+#: ../theme/climateadaptv2/index.html:1319
+msgid "Urban Adaptation Support Tool"
+msgstr ""
 
 # ,
 # ,

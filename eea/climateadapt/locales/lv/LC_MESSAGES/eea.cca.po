@@ -43,6 +43,15 @@ msgstr "Indikatori"
 msgid "Information portals"
 msgstr "Informācijas portāli"
 
+msgid "Latest <br/> News & Events"
+msgstr ""
+
+msgid "Most recent <br/> Case Study"
+msgstr ""
+
+msgid "Most recent <br/> Publication or Report"
+msgstr ""
+
 # ,
 msgid "Organisations"
 msgstr "Organizācijas"

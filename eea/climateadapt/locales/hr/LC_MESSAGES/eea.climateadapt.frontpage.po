@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-01 07:22+0000\n"
+"POT-Creation-Date: 2022-09-01 11:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,36 +15,6 @@ msgstr ""
 "Domain: DOMAIN\n"
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:403
-msgid "<a href=\"#t-started\"> <span class=\"d-icon feature-icon\"></span> New <br /> feature </a>"
-msgstr "<ahref=\"#t-started\"> <span class = \"d-icon značajka-icon\"> </span> nova <br/> značajka </a>"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1302
-msgid "<i class=\"fa fa-angle-double-right\"></i> Adaptation support tool"
-msgstr "<i class = \"FA FA FA-DOUBLE-DESING\"> </I> Alat za podršku prilagodbe"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1375
-msgid "<i class=\"fa fa-angle-double-right\"></i> Read more"
-msgstr "<i class = \"fa fa fA-kut-double-desno\"> </i> Pročitajte više"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:772
-msgid "<i class=\"fa fa-angle-double-right\"></i> See complete database"
-msgstr "<i class = \"FA fa-kut-double-desno\"> </i> Pogledajte kompletnu bazu podataka"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1316
-msgid "<i class=\"fa fa-angle-double-right\"></i> Urban Adaptation Support Tool"
-msgstr "<i class = \"FA FA FA-DOUBLE-DESNI\""
 
 # ,
 # ,
@@ -80,41 +50,19 @@ msgstr "<i class = \"fa-question-krug\"> </i> pomoć"
 msgid "<i class=\"fa fa-search\"></i>"
 msgstr "<i class = \"fa fa fa-search\"> </i>"
 
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:434
-msgid "<span class=\"d-icon ast-icon\"></span> Adaptation <br /> Support Tool"
-msgstr "<span class = \"d-icon ast-icon\"> </span> adaptacija <br/> alat za podršku"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:428
-msgid "<span class=\"d-icon case-icon\"></span> Case <br /> Studies"
-msgstr "<Span Class = \"D-ICON CASE-ICON\"> </Span> Slučaj <br/> Studije"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:410
-msgid "<span class=\"d-icon database-icon\"></span> Search the <br /> Database"
-msgstr "<span class = \"D-icon baza podataka-icon\"> </span> Pretražite <br/> bazu podataka"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:422
-msgid "<span class=\"d-icon eu-icon\"></span> Country <br /> Profiles"
-msgstr "<span class = \"d-icon eu-icon\"> </span> zemlja <br/> Profili"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:416
-msgid "<span class=\"d-icon policy-icon\"></span> EU Sector <br /> Policies"
-msgstr "<Span Class = \"D-ICON POLITIKA-ICON\"> </Span> EU sektor <br/> Politike"
+#: ../theme/climateadaptv2/index.html:436
+msgid "Adaptation <br /> Support Tool"
+msgstr ""
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:676
 msgid "Adaptation options"
 msgstr "Opcije prilagodbe"
+
+#: ../theme/climateadaptv2/index.html:1305
+msgid "Adaptation support tool"
+msgstr ""
 
 # ,
 # ,
@@ -150,6 +98,10 @@ msgstr "Građevine"
 #: ../theme/climateadaptv2/tab-policies-rule.html:166
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Zgrade mogu biti ranjive na klimatske promjene. U budućnosti može doći do povećanja rizika od kolapsa, smanjenja države i značajnog gubitka vrijednosti kao rezultat više oluja, oštećenja snijega ili utapanja, napada vode, pogoršanja zatvorene klime i smanjenog životnog vijeka zgrade. Europska komisija ima za cilj povećati klimatsku otpornost infrastrukture, uključujući zgrade. Nove i postojeće zgrade trebaju se procijeniti radi otpornosti na trenutne rizike i buduće klimatske promjene, te su u skladu s tim isplanirane ili nadograđene. Ključna politika koja se koristi za podršku otpornosti zgrada je politika kohezije (koja se naziva i regionalna politika)."
+
+#: ../theme/climateadaptv2/index.html:430
+msgid "Case <br /> Studies"
+msgstr ""
 
 # ,
 # ,
@@ -208,6 +160,10 @@ msgstr "Studije slučaja klime-adapta prikazuju inicijative koje se već provode
 msgid "Coastal areas"
 msgstr "Obalna područja"
 
+#: ../theme/climateadaptv2/index.html:424
+msgid "Country <br /> Profiles"
+msgstr ""
+
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:825
@@ -221,6 +177,10 @@ msgstr "Rizik od katastrofe <br/> Smanjenje"
 #: ../theme/climateadaptv2/tab-policies-rule.html:195
 msgid "Disaster risk reduction"
 msgstr "Smanjenje rizika od katastrofe"
+
+#: ../theme/climateadaptv2/index.html:418
+msgid "EU Sector <br /> Policies"
+msgstr ""
 
 # ,
 # ,
@@ -358,6 +318,10 @@ msgstr ""
 msgid "More news"
 msgstr ""
 
+#: ../theme/climateadaptv2/index.html:406
+msgid "New <br /> feature"
+msgstr ""
+
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1388
@@ -399,6 +363,10 @@ msgstr "Publikacije i izvještaji"
 msgid "RSS feed"
 msgstr "RSS feed"
 
+#: ../theme/climateadaptv2/index.html:1378
+msgid "Read more"
+msgstr ""
+
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:757
@@ -417,6 +385,14 @@ msgstr "Rast razine mora može uzrokovati poplavu, obalnu eroziju i gubitak nisk
 #: ../theme/climateadaptv2/page.html:67
 msgid "Search Climate-ADAPT"
 msgstr "Pretražite klimatsku adaptu"
+
+#: ../theme/climateadaptv2/index.html:412
+msgid "Search the <br /> Database"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:774
+msgid "See complete database"
+msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1176
 msgid "See how Europe is adapting to climate change: <a class=\"ca-booklet-link\" href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> Case studies booklet </a>"
@@ -503,6 +479,10 @@ msgstr "Prijevoz"
 #: ../theme/climateadaptv2/tab-policies-rule.html:111
 msgid "Urban"
 msgstr "Gradski"
+
+#: ../theme/climateadaptv2/index.html:1319
+msgid "Urban Adaptation Support Tool"
+msgstr ""
 
 # ,
 # ,

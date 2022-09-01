@@ -43,6 +43,15 @@ msgstr "Indikátory"
 msgid "Information portals"
 msgstr "Informační portály"
 
+msgid "Latest <br/> News & Events"
+msgstr ""
+
+msgid "Most recent <br/> Case Study"
+msgstr ""
+
+msgid "Most recent <br/> Publication or Report"
+msgstr ""
+
 # ,
 msgid "Organisations"
 msgstr "Organizace"

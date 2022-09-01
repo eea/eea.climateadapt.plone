@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-01 07:22+0000\n"
+"POT-Creation-Date: 2022-09-01 11:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,41 +15,6 @@ msgstr ""
 "Domain: DOMAIN\n"
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
-
-# ,
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:403
-msgid "<a href=\"#t-started\"> <span class=\"d-icon feature-icon\"></span> New <br /> feature </a>"
-msgstr "<a href=\"#t-started\"> <span class = \"d-icon caracteristic-icon\"> </span> nou <br /> caracteristică </a>"
-
-# ,
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1302
-msgid "<i class=\"fa fa-angle-double-right\"></i> Adaptation support tool"
-msgstr "<i class = \"fa Fa-unghi-dublu-dreapta\"> </i> Instrument de asistență pentru adaptare"
-
-# ,
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1375
-msgid "<i class=\"fa fa-angle-double-right\"></i> Read more"
-msgstr "<i class = \"fa fa-unghi-dublu-dreapta\"> </i> Citește mai mult"
-
-# ,
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:772
-msgid "<i class=\"fa fa-angle-double-right\"></i> See complete database"
-msgstr "<i class = \"fa fa-unghi-dublu-dreapta\"> </i> Vedeți baza de date completă"
-
-# ,
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1316
-msgid "<i class=\"fa fa-angle-double-right\"></i> Urban Adaptation Support Tool"
-msgstr "<i class = \"fa Fa-unghi-dublu-dreapta\"> </i> Instrument de asistență pentru adaptare urbană"
 
 # ,
 # ,
@@ -85,40 +50,9 @@ msgstr "<i class = \"fa fa-question-circle\"> </i> ajutor"
 msgid "<i class=\"fa fa-search\"></i>"
 msgstr "<i class = \"fa fa-search\"> </i>"
 
-# ,
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:434
-msgid "<span class=\"d-icon ast-icon\"></span> Adaptation <br /> Support Tool"
-msgstr "<span class = \"d-icon AST-ICON\"> </span> Adaptare <br /> Instrument de asistență"
-
-# ,
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:428
-msgid "<span class=\"d-icon case-icon\"></span> Case <br /> Studies"
-msgstr "<span class = \"d-icon caz-icon\"> </span> caz <br /> Studii"
-
-# ,
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:410
-msgid "<span class=\"d-icon database-icon\"></span> Search the <br /> Database"
-msgstr "<span class = \"D-ICON Database-icon\"> </span> Căutați baza de date <br />"
-
-# ,
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:422
-msgid "<span class=\"d-icon eu-icon\"></span> Country <br /> Profiles"
-msgstr "<span class = \"d-icon eu-icon\"> </span> țări <br /> profiluri"
-
-# ,
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:416
-msgid "<span class=\"d-icon policy-icon\"></span> EU Sector <br /> Policies"
-msgstr "<span class = \"d-icon Policy-icon\"> </span> sectorul UE <br /> Politici"
+#: ../theme/climateadaptv2/index.html:436
+msgid "Adaptation <br /> Support Tool"
+msgstr ""
 
 # ,
 # ,
@@ -126,6 +60,10 @@ msgstr "<span class = \"d-icon Policy-icon\"> </span> sectorul UE <br /> Politic
 #: ../theme/climateadaptv2/index.html:676
 msgid "Adaptation options"
 msgstr "Opțiuni de adaptare"
+
+#: ../theme/climateadaptv2/index.html:1305
+msgid "Adaptation support tool"
+msgstr ""
 
 # ,
 # ,
@@ -166,6 +104,10 @@ msgstr "Clădiri"
 #: ../theme/climateadaptv2/tab-policies-rule.html:166
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Clădirile pot fi vulnerabile la schimbările climatice. În viitor, poate exista o creștere a riscului de prăbușire, scăderea stării și pierderea semnificativă a valorii ca urmare a mai multor furtuni, a zăpezii sau a deteriorării de subsidență, a înfrângerii apei, a deteriorării climatului interior și a duratei de viață reduse a clădirii. Comisia Europeană își propune să crească rezistența climatică a infrastructurii, inclusiv a clădirilor. Clădirile noi și existente trebuie evaluate pentru rezistența la riscurile actuale și la schimbările climatice viitoare și planificate sau modernizate în consecință. O politică cheie folosită pentru a sprijini rezistența clădirilor este politica de coeziune (denumită și politică regională)."
+
+#: ../theme/climateadaptv2/index.html:430
+msgid "Case <br /> Studies"
+msgstr ""
 
 # ,
 # ,
@@ -232,6 +174,10 @@ msgstr "Studiile de caz de caz de climă prezintă inițiative care sunt deja re
 msgid "Coastal areas"
 msgstr "Zone de coastă"
 
+#: ../theme/climateadaptv2/index.html:424
+msgid "Country <br /> Profiles"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -247,6 +193,10 @@ msgstr "Risc de dezastre <br /> Reducere"
 #: ../theme/climateadaptv2/tab-policies-rule.html:195
 msgid "Disaster risk reduction"
 msgstr "Reducerea riscului de dezastre"
+
+#: ../theme/climateadaptv2/index.html:418
+msgid "EU Sector <br /> Policies"
+msgstr ""
 
 # ,
 # ,
@@ -403,6 +353,10 @@ msgstr ""
 msgid "More news"
 msgstr ""
 
+#: ../theme/climateadaptv2/index.html:406
+msgid "New <br /> feature"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -450,6 +404,10 @@ msgstr "Publicații și rapoarte"
 msgid "RSS feed"
 msgstr "Hrana RSS"
 
+#: ../theme/climateadaptv2/index.html:1378
+msgid "Read more"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -470,6 +428,14 @@ msgstr "Creșterea nivelului mării poate provoca inundații, eroziunea de coast
 #: ../theme/climateadaptv2/page.html:67
 msgid "Search Climate-ADAPT"
 msgstr "Căutați climatul-adaptat"
+
+#: ../theme/climateadaptv2/index.html:412
+msgid "Search the <br /> Database"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:774
+msgid "See complete database"
+msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1176
 msgid "See how Europe is adapting to climate change: <a class=\"ca-booklet-link\" href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> Case studies booklet </a>"
@@ -569,6 +535,10 @@ msgstr "Transport"
 #: ../theme/climateadaptv2/tab-policies-rule.html:111
 msgid "Urban"
 msgstr "Urban"
+
+#: ../theme/climateadaptv2/index.html:1319
+msgid "Urban Adaptation Support Tool"
+msgstr ""
 
 # ,
 # ,

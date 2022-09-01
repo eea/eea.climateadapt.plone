@@ -49,6 +49,15 @@ msgstr "Indicatori"
 msgid "Information portals"
 msgstr "Portaluri de informații"
 
+msgid "Latest <br/> News & Events"
+msgstr ""
+
+msgid "Most recent <br/> Case Study"
+msgstr ""
+
+msgid "Most recent <br/> Publication or Report"
+msgstr ""
+
 # ,
 # ,
 msgid "Organisations"

@@ -43,6 +43,15 @@ msgstr "Indikaturi"
 msgid "Information portals"
 msgstr "Portali ta 'informazzjoni"
 
+msgid "Latest <br/> News & Events"
+msgstr ""
+
+msgid "Most recent <br/> Case Study"
+msgstr ""
+
+msgid "Most recent <br/> Publication or Report"
+msgstr ""
+
 # ,
 msgid "Organisations"
 msgstr "Organizzazzjonijiet"

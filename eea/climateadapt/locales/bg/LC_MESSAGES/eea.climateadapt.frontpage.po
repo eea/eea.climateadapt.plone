@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-01 07:22+0000\n"
+"POT-Creation-Date: 2022-09-01 11:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,36 +15,6 @@ msgstr ""
 "Domain: DOMAIN\n"
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:403
-msgid "<a href=\"#t-started\"> <span class=\"d-icon feature-icon\"></span> New <br /> feature </a>"
-msgstr "<a href=\"#t-started\"> <span class = \"d-icon feature-icon\"> </span> Нова <br /> функция </a>"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1302
-msgid "<i class=\"fa fa-angle-double-right\"></i> Adaptation support tool"
-msgstr "<i class = \"fa fa-ъглов двойник-десен\"> </i> инструмент за поддръжка на адаптация"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1375
-msgid "<i class=\"fa fa-angle-double-right\"></i> Read more"
-msgstr "<i class = \"fa fa-ъглов-double-right\"> </i> Прочетете повече"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:772
-msgid "<i class=\"fa fa-angle-double-right\"></i> See complete database"
-msgstr "<i class = \"fa fa-ъглов-double-right\"> </i> Вижте пълна база данни"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1316
-msgid "<i class=\"fa fa-angle-double-right\"></i> Urban Adaptation Support Tool"
-msgstr "<i class = \"fa fa-ъглов двойник-десен\"> </i> инструмент за поддръжка на градска адаптация"
 
 # ,
 # ,
@@ -80,41 +50,19 @@ msgstr "<i class = \"fa fa-question-circle\"> </i> помощ"
 msgid "<i class=\"fa fa-search\"></i>"
 msgstr "<i class = \"fa fa-search\"> </i>"
 
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:434
-msgid "<span class=\"d-icon ast-icon\"></span> Adaptation <br /> Support Tool"
-msgstr "<span class = \"d-icon ast-icon\"> </span> Адаптация <br /> Инструмент за поддръжка"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:428
-msgid "<span class=\"d-icon case-icon\"></span> Case <br /> Studies"
-msgstr "<span class = \"d-icon case-icon\"> </span> случай <br /> проучвания"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:410
-msgid "<span class=\"d-icon database-icon\"></span> Search the <br /> Database"
-msgstr "<Span Class = \"D-ICON DATABASE-ICON\"> </span> Потърсете базата данни <br />"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:422
-msgid "<span class=\"d-icon eu-icon\"></span> Country <br /> Profiles"
-msgstr "<span class = \"d-icon eu-icon\"> </span> държава <br /> Профили"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:416
-msgid "<span class=\"d-icon policy-icon\"></span> EU Sector <br /> Policies"
-msgstr "<Span Class = \"D-ICON Policy-Icon\"> </span> сектор на ЕС <br /> Политики"
+#: ../theme/climateadaptv2/index.html:436
+msgid "Adaptation <br /> Support Tool"
+msgstr ""
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:676
 msgid "Adaptation options"
 msgstr "Опции за адаптиране"
+
+#: ../theme/climateadaptv2/index.html:1305
+msgid "Adaptation support tool"
+msgstr ""
 
 # ,
 # ,
@@ -150,6 +98,10 @@ msgstr "Сгради"
 #: ../theme/climateadaptv2/tab-policies-rule.html:166
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Сградите могат да бъдат уязвими от изменението на климата. В бъдеще може да има увеличаване на риска от срив, намаляване на състоянието и значителна загуба на стойност в резултат на повече бури, сняг или спускане щети, водно посегателство, влошаване на климата на закрито и намален живот на сградата. Европейската комисия има за цел да увеличи климатичната устойчивост на инфраструктурата, включително сградите. Новите и съществуващи сгради трябва да бъдат оценени за устойчивост на текущите рискове и бъдещите промени в климата и съответно планирани или надградени. Основна политика, използвана за подкрепа на устойчивостта на сградите, е политиката за сближаване (наричана също регионална политика)."
+
+#: ../theme/climateadaptv2/index.html:430
+msgid "Case <br /> Studies"
+msgstr ""
 
 # ,
 # ,
@@ -208,6 +160,10 @@ msgstr "Казусите за адаптиране на климата пока�
 msgid "Coastal areas"
 msgstr "Крайбрежните зони"
 
+#: ../theme/climateadaptv2/index.html:424
+msgid "Country <br /> Profiles"
+msgstr ""
+
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:825
@@ -221,6 +177,10 @@ msgstr "Намаляване на риска от бедствия <br /> Нам
 #: ../theme/climateadaptv2/tab-policies-rule.html:195
 msgid "Disaster risk reduction"
 msgstr "Намаляване на риска от бедствия"
+
+#: ../theme/climateadaptv2/index.html:418
+msgid "EU Sector <br /> Policies"
+msgstr ""
 
 # ,
 # ,
@@ -358,6 +318,10 @@ msgstr ""
 msgid "More news"
 msgstr ""
 
+#: ../theme/climateadaptv2/index.html:406
+msgid "New <br /> feature"
+msgstr ""
+
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1388
@@ -399,6 +363,10 @@ msgstr "Публикации и доклади"
 msgid "RSS feed"
 msgstr "RSS фураж"
 
+#: ../theme/climateadaptv2/index.html:1378
+msgid "Read more"
+msgstr ""
+
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:757
@@ -417,6 +385,14 @@ msgstr "Повишаването на морското равнище може �
 #: ../theme/climateadaptv2/page.html:67
 msgid "Search Climate-ADAPT"
 msgstr "Търсете климат-адаптиране"
+
+#: ../theme/climateadaptv2/index.html:412
+msgid "Search the <br /> Database"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:774
+msgid "See complete database"
+msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1176
 msgid "See how Europe is adapting to climate change: <a class=\"ca-booklet-link\" href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> Case studies booklet </a>"
@@ -503,6 +479,10 @@ msgstr "Транспорт"
 #: ../theme/climateadaptv2/tab-policies-rule.html:111
 msgid "Urban"
 msgstr "Urban"
+
+#: ../theme/climateadaptv2/index.html:1319
+msgid "Urban Adaptation Support Tool"
+msgstr ""
 
 # ,
 # ,

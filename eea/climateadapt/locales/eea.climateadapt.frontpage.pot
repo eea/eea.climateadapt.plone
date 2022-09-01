@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-01 07:22+0000\n"
+"POT-Creation-Date: 2022-09-01 11:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,26 +16,6 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: eea.climateadapt.frontpage\n"
-
-#: ../theme/climateadaptv2/index.html:403
-msgid "<a href=\"#t-started\"> <span class=\"d-icon feature-icon\"></span> New <br /> feature </a>"
-msgstr ""
-
-#: ../theme/climateadaptv2/index.html:1302
-msgid "<i class=\"fa fa-angle-double-right\"></i> Adaptation support tool"
-msgstr ""
-
-#: ../theme/climateadaptv2/index.html:1375
-msgid "<i class=\"fa fa-angle-double-right\"></i> Read more"
-msgstr ""
-
-#: ../theme/climateadaptv2/index.html:772
-msgid "<i class=\"fa fa-angle-double-right\"></i> See complete database"
-msgstr ""
-
-#: ../theme/climateadaptv2/index.html:1316
-msgid "<i class=\"fa fa-angle-double-right\"></i> Urban Adaptation Support Tool"
-msgstr ""
 
 #: ../theme/climateadaptv2/index.html:92
 #: ../theme/climateadaptv2/page.html:98
@@ -62,28 +42,16 @@ msgstr ""
 msgid "<i class=\"fa fa-search\"></i>"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:434
-msgid "<span class=\"d-icon ast-icon\"></span> Adaptation <br /> Support Tool"
-msgstr ""
-
-#: ../theme/climateadaptv2/index.html:428
-msgid "<span class=\"d-icon case-icon\"></span> Case <br /> Studies"
-msgstr ""
-
-#: ../theme/climateadaptv2/index.html:410
-msgid "<span class=\"d-icon database-icon\"></span> Search the <br /> Database"
-msgstr ""
-
-#: ../theme/climateadaptv2/index.html:422
-msgid "<span class=\"d-icon eu-icon\"></span> Country <br /> Profiles"
-msgstr ""
-
-#: ../theme/climateadaptv2/index.html:416
-msgid "<span class=\"d-icon policy-icon\"></span> EU Sector <br /> Policies"
+#: ../theme/climateadaptv2/index.html:436
+msgid "Adaptation <br /> Support Tool"
 msgstr ""
 
 #: ../theme/climateadaptv2/index.html:676
 msgid "Adaptation options"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1305
+msgid "Adaptation support tool"
 msgstr ""
 
 #: ../theme/climateadaptv2/index.html:793
@@ -109,6 +77,10 @@ msgstr ""
 #: ../theme/climateadaptv2/index.html:944
 #: ../theme/climateadaptv2/tab-policies-rule.html:166
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:430
+msgid "Case <br /> Studies"
 msgstr ""
 
 #: ../theme/climateadaptv2/index.html:685
@@ -152,6 +124,10 @@ msgstr ""
 msgid "Coastal areas"
 msgstr ""
 
+#: ../theme/climateadaptv2/index.html:424
+msgid "Country <br /> Profiles"
+msgstr ""
+
 #: ../theme/climateadaptv2/index.html:825
 #: ../theme/climateadaptv2/tab-policies-rule.html:47
 msgid "Disaster risk <br /> reduction"
@@ -160,6 +136,10 @@ msgstr ""
 #: ../theme/climateadaptv2/index.html:973
 #: ../theme/climateadaptv2/tab-policies-rule.html:195
 msgid "Disaster risk reduction"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:418
+msgid "EU Sector <br /> Policies"
 msgstr ""
 
 #: ../theme/climateadaptv2/index.html:833
@@ -260,6 +240,10 @@ msgstr ""
 msgid "More news"
 msgstr ""
 
+#: ../theme/climateadaptv2/index.html:406
+msgid "New <br /> feature"
+msgstr ""
+
 #: ../theme/climateadaptv2/index.html:1388
 msgid "News"
 msgstr ""
@@ -289,6 +273,10 @@ msgstr ""
 msgid "RSS feed"
 msgstr ""
 
+#: ../theme/climateadaptv2/index.html:1378
+msgid "Read more"
+msgstr ""
+
 #: ../theme/climateadaptv2/index.html:757
 msgid "Research and knowledge projects"
 msgstr ""
@@ -301,6 +289,14 @@ msgstr ""
 #: ../theme/climateadaptv2/index.html:61
 #: ../theme/climateadaptv2/page.html:67
 msgid "Search Climate-ADAPT"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:412
+msgid "Search the <br /> Database"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:774
+msgid "See complete database"
 msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1176
@@ -361,6 +357,10 @@ msgstr ""
 #: ../theme/climateadaptv2/index.html:889
 #: ../theme/climateadaptv2/tab-policies-rule.html:111
 msgid "Urban"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1319
+msgid "Urban Adaptation Support Tool"
 msgstr ""
 
 #: ../theme/climateadaptv2/index.html:739
