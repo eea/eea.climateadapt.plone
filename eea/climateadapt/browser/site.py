@@ -386,7 +386,7 @@ class Navbar(ExternalTemplateHeader):
 
         site = getSite()
         try:
-            obj = site.unrestrictedTraverse(url)
+            obj = site.unrestrictedTraverse('/cca' + url)
             translations = TranslationManager(obj).get_translations()
             if current_language in translations:
                 trans_obj = translations[current_language]
