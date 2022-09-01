@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-28 02:21+0000\n"
+"POT-Creation-Date: 2022-09-01 07:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,10 +30,6 @@ msgstr "<i class = \"Fa fa-úhel-double-right\"> </i> nástroj podpory adaptace"
 
 #: ../theme/climateadaptv2/index.html:1448
 msgid "<i class=\"fa fa-angle-double-right\"></i> More events"
-msgstr ""
-
-#: ../theme/climateadaptv2/index.html:1419
-msgid "<i class=\"fa fa-angle-double-right\"></i> More news"
 msgstr ""
 
 # ,
@@ -357,6 +353,10 @@ msgstr "Marine <br /> & amp; rybolov"
 #: ../theme/climateadaptv2/tab-policies-rule.html:283
 msgid "Marine and fisheries"
 msgstr "Marine a rybolov"
+
+#: ../theme/climateadaptv2/index.html:1421
+msgid "More news"
+msgstr ""
 
 # ,
 # ,
