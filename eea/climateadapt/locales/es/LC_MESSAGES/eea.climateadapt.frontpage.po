@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-01 07:08+0000\n"
+"POT-Creation-Date: 2022-09-01 07:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,10 +31,6 @@ msgstr "<a href=\"#t-started\"> <span class = \"d-icon característica-icon\"> <
 #: ../theme/climateadaptv2/index.html:1302
 msgid "<i class=\"fa fa-angle-double-right\"></i> Adaptation support tool"
 msgstr "<i class=\"fa fa-angage-double-right\"></i> Herramienta de soporte para la adaptación"
-
-#: ../theme/climateadaptv2/index.html:1448
-msgid "<i class=\"fa fa-angle-double-right\"></i> More events"
-msgstr ""
 
 # ,
 # ,
@@ -453,6 +449,10 @@ msgstr "Marítimo <br /> &amp; pesquero"
 #: ../theme/climateadaptv2/tab-policies-rule.html:283
 msgid "Marine and fisheries"
 msgstr "Marítimo y pesquero"
+
+#: ../theme/climateadaptv2/index.html:1450
+msgid "More events"
+msgstr "Más eventos"
 
 #: ../theme/climateadaptv2/index.html:1421
 msgid "More news"

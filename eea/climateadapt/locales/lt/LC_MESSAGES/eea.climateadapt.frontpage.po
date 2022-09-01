@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-01 07:08+0000\n"
+"POT-Creation-Date: 2022-09-01 07:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,10 +25,6 @@ msgstr "<a href=\"#t-started\"> <span class = \"D-icon feature-icon\"> </span> n
 #: ../theme/climateadaptv2/index.html:1302
 msgid "<i class=\"fa fa-angle-double-right\"></i> Adaptation support tool"
 msgstr "<i class = \"fa fa-oble-double-dešinė\"> </i> adaptacijos palaikymo įrankis"
-
-#: ../theme/climateadaptv2/index.html:1448
-msgid "<i class=\"fa fa-angle-double-right\"></i> More events"
-msgstr ""
 
 # ,
 #: ../theme/climateadaptv2/index.html:1375
@@ -304,6 +300,10 @@ msgstr "Jūrų pėstininkas <br /> & amp; Žuvininkystė"
 #: ../theme/climateadaptv2/tab-policies-rule.html:283
 msgid "Marine and fisheries"
 msgstr "Jūrų ir žuvininkystė"
+
+#: ../theme/climateadaptv2/index.html:1450
+msgid "More events"
+msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1421
 msgid "More news"

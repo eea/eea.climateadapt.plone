@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-01 07:08+0000\n"
+"POT-Creation-Date: 2022-09-01 07:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 # ,
 #: ../theme/climateadaptv2/index.html:403
 msgid "<a href=\"#t-started\"> <span class=\"d-icon feature-icon\"></span> New <br /> feature </a>"
-msgstr "<a href=\"#t-started\"> <span class = \"d-icon feature-icon\"> </span> new <br /> feature </a>"
+msgstr "<a href=\"#t-started\"> <span class = \"d-icon feature-icon\"> </span> Nouvelle <br /> fonctionnalité </a>"
 
 # ,
 # ,
@@ -31,10 +31,6 @@ msgstr "<a href=\"#t-started\"> <span class = \"d-icon feature-icon\"> </span> n
 #: ../theme/climateadaptv2/index.html:1302
 msgid "<i class=\"fa fa-angle-double-right\"></i> Adaptation support tool"
 msgstr "<i class=\"fa fa-angle-double-right\"></i> outil de support d'adaptation"
-
-#: ../theme/climateadaptv2/index.html:1448
-msgid "<i class=\"fa fa-angle-double-right\"></i> More events"
-msgstr ""
 
 # ,
 # ,
@@ -453,6 +449,10 @@ msgstr "Marine <br /> &amp; pêcherie"
 #: ../theme/climateadaptv2/tab-policies-rule.html:283
 msgid "Marine and fisheries"
 msgstr "Marine et pêche"
+
+#: ../theme/climateadaptv2/index.html:1450
+msgid "More events"
+msgstr "Plus d'événements"
 
 #: ../theme/climateadaptv2/index.html:1421
 msgid "More news"
