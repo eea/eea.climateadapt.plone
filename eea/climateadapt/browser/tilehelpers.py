@@ -6,7 +6,8 @@ developed and tested.
 
 import json
 
-from eea.climateadapt.translation.utils import TranslationUtilsMixin
+from eea.climateadapt.translation.utils import (
+    TranslationUtilsMixin, translate_text)
 
 from collective.cover.tiles.base import (IPersistentCoverTile,
                                          PersistentCoverTile)
@@ -290,7 +291,10 @@ class NewsTile(ListingTile):
 
     @property
     def more_url(self):
-        return [self.parent.absolute_url(), "More news"]
+        return [
+            self.parent.absolute_url(), 
+            translate_text(self.context, self.request, "More news", 'eea.climateadapt.frontpage', self.current_lang)
+        ]
 
     @property
     def parent(self):
@@ -346,7 +350,11 @@ class EventsTile(ListingTile):
 
     @property
     def more_url(self):
-        return [self.parent.absolute_url(), "More Events"]
+        return [
+            self.parent.absolute_url(), 
+            translate_text(self.context, self.request, "More events", 
+                'eea.climateadapt.frontpage', self.current_lang)
+        ]
 
     @property
     def parent(self):
