@@ -366,6 +366,15 @@ class Navbar(ExternalTemplateHeader):
         return []
 
     def translate_url(self, url):
+        #import pdb; pdb.set_trace()
+        lang_independent_urls = [
+            "privacy-and-legal-notice", "user-dashboard"
+            "eea-disclaimer", "/sitemap"
+            ]
+        for lang_independent_url in lang_independent_urls:
+            if url.endswith(lang_independent_url):
+                return url
+
         current_language = get_current_language(self.context, self.request)
         #logger.info("Will translate LANG %s, URL: %s", current_language, url)
         if '/' == url:
@@ -373,12 +382,16 @@ class Navbar(ExternalTemplateHeader):
             #logger.exception("Translate URL1: %s", url)
             return url
 
-        if url.endswith('/catalogue/') and current_language != 'en':
+        if url.endswith('/catalogue/'):
+            if current_language == 'en':
+                return url
             url = url + '?lang=' + current_language
             url = url.replace('/en/','/'+current_language+'/')
             #logger.info("Translate URL2: %s", url)
             return url
-        if url.endswith('/data-and-downloads/') and current_language != 'en':
+        if url.endswith('/data-and-downloads/'):
+            if current_language == 'en':
+                return url
             url = url + '?lang=' + current_language
             url = url.replace('/en/','/'+current_language+'/')
             #logger.info("Translate URL3: %s", url)
@@ -396,7 +409,7 @@ class Navbar(ExternalTemplateHeader):
             else:
                 logger.info("Translate fail URL4.1: %s", url)
         except Exception as e:
-            logger.exception("Translate error: %s", e)
+            logger.exception("Translate error: %s for %s", e, url)
             #logger.info("Translate URL5: %s", url)
 
         return url
