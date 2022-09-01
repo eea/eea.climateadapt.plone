@@ -52,7 +52,7 @@
       <span class="ast-image-title" i18n:translate="">Adaptation <br /> Support Tool</span>
 
       <a class="ast-step-wrapper"
-        tal:attributes="href string:${portal_url}/en/knowledge/tools/adaptation-support-tool/step-1">
+        tal:attributes="href string:${portal_url}/en/knowledge/tools/adaptation-support-tool/step-1-0">
         <span class="ast-circle circle-1">1</span>
         <span class="step-text circle-1-text">
           <p i18n:translate="">Preparing the ground for adaptation</p>
@@ -60,7 +60,7 @@
       </a>
 
       <a class="ast-step-wrapper"
-         tal:attributes="href string:${portal_url}/en/knowledge/tools/adaptation-support-tool/step-2">
+         tal:attributes="href string:${portal_url}/en/knowledge/tools/adaptation-support-tool/step-2-0">
         <span class="ast-circle circle-2">2</span>
         <span class="step-text circle-2-text">
           <p i18n:translate="">Assessing risks and vulnerability <br /> to climate change</p>
@@ -68,7 +68,7 @@
       </a>
 
       <a class="ast-step-wrapper"
-         tal:attributes="href string:${portal_url}/en/knowledge/tools/adaptation-support-tool/step-3">
+         tal:attributes="href string:${portal_url}/en/knowledge/tools/adaptation-support-tool/step-3-0">
         <span class="ast-circle circle-3">3</span>
         <span class="step-text circle-3-text">
           <p i18n:translate="">Identifying adaptation options</p>
@@ -76,7 +76,7 @@
       </a>
 
       <a class="ast-step-wrapper"
-         tal:attributes="href string:${portal_url}/en/knowledge/tools/adaptation-support-tool/step-4">
+         tal:attributes="href string:${portal_url}/en/knowledge/tools/adaptation-support-tool/step-4-0">
         <span class="ast-circle circle-4">4</span>
         <span class="step-text circle-4-text">
           <p i18n:translate="">Assessing adaptation options</p>
@@ -84,7 +84,7 @@
       </a>
 
       <a class="ast-step-wrapper"
-         tal:attributes="href string:${portal_url}/en/knowledge/tools/adaptation-support-tool/step-5">
+         tal:attributes="href string:${portal_url}/en/knowledge/tools/adaptation-support-tool/step-5-0">
         <span class="ast-circle circle-5">5</span>
         <span class="step-text circle-5-text">
           <p i18n:translate="">Implementation</p>
@@ -92,7 +92,7 @@
       </a>
 
       <a class="ast-step-wrapper"
-         tal:attributes="href string:${portal_url}/en/knowledge/tools/adaptation-support-tool/step-6">
+         tal:attributes="href string:${portal_url}/en/knowledge/tools/adaptation-support-tool/step-6-0">
         <span class="ast-circle circle-6">6</span>
         <span class="step-text circle-6-text">
           <p i18n:translate="">Monitoring &amp; Evaluation (M&amp;E)</p>
