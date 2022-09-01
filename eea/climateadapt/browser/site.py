@@ -386,7 +386,7 @@ class Navbar(ExternalTemplateHeader):
 
         site = getSite()
         try:
-            obj = site.unrestrictedTraverse('/cca' + url)
+            obj = site.unrestrictedTraverse(url)
             translations = TranslationManager(obj).get_translations()
             if current_language in translations:
                 trans_obj = translations[current_language]
@@ -395,7 +395,7 @@ class Navbar(ExternalTemplateHeader):
                 #logger.info("Translate URL4: %s", trans_obj.absolute_url())
             else:
                 logger.info("Translate fail URL4.1: %s", url)
-        except Exception, e:
+        except Exception as e:
             logger.exception("Translate error: %s", e)
             #logger.info("Translate URL5: %s", url)
 

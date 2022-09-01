@@ -1,6 +1,11 @@
 <tal:block tal:define="images python: view.images">
-  <div class="slider">
-
+  <div class="slider"
+      xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="eea.climateadapt.frontpage"  >
     <div class="slider-for">
       <tal:block tal:repeat="image images">
         <div class="slider-image-wrapper">
@@ -27,9 +32,9 @@
             <div class="slider-bottom-caption clearfix">
               <div class="read-more-wrapper">
                 <a href="" class="read-more"
-                   tal:attributes="href image/url" i18n:translate="">
+                   tal:attributes="href image/url">
                   <i class="fa fa-angle-double-right"></i>
-                  <span tal:content="python: view.get_translation_for_text('Read more')">Read more</span>
+                  <span i18n:translate="">Read more</span>
                 </a>
               </div>
             </div>

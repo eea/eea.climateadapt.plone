@@ -41,7 +41,7 @@ class FrontPageCountries(BrowserView, TranslationUtilsMixin):
     """
 
     def countries(self):
-        countries_folder = self.context.restrictedTraverse(
+        countries_folder = self.context.unrestrictedTraverse(
             '{}/countries-regions/countries'.format(self.current_lang)
         )
 
@@ -412,7 +412,7 @@ class LastUpdateTile(BrowserView):
 
 class CountriesTileMetadata(BrowserView, TranslationUtilsMixin):
     def __call__(self):
-        countries_folder = self.context.restrictedTraverse(
+        countries_folder = self.context.unrestrictedTraverse(
             '{}/countries-regions/countries'.format(self.current_lang)
         )
 
