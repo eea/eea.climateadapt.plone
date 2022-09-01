@@ -2157,7 +2157,8 @@ class AdminPublishItems(BrowserView):
     items_to_publish = [
         'frontpage-slides',
         'more-events', 
-        'countries-regions', 
+        # 'countries-regions', 
+        # 'countries-regions/index_html', 
         'news-archive', 
         'countries-regions/countries'
     ]

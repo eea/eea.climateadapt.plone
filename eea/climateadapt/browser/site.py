@@ -395,7 +395,7 @@ class Navbar(ExternalTemplateHeader):
                 #logger.info("Translate URL4: %s", trans_obj.absolute_url())
             else:
                 logger.info("Translate fail URL4.1: %s", url)
-        except Exception, e:
+        except Exception as e:
             logger.exception("Translate error: %s", e)
             #logger.info("Translate URL5: %s", url)
 
