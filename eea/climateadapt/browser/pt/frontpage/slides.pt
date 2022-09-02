@@ -25,7 +25,7 @@
               About Climate Change Adaptation in Europe
             </h3>
             <p>
-              <tal:block tal:replace="python: view.getDescription(image)[:300] + '...'" i18n:translate="">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.
+              <tal:block tal:replace="python: view.getDescription(image)[:240] + '...'" i18n:translate="">Climate-ADAPT aims to support Europe in adapting to climate change. It is an initiative of the European Commission and helps users to access and share information.
               </tal:block>
             </p>
 
