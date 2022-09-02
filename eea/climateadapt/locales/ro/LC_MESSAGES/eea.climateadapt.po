@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-01 11:41+0000\n"
+"POT-Creation-Date: 2022-09-02 21:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -298,6 +298,14 @@ msgstr ""
 msgid "6.5 Monitoring and evaluating adaptation: Self-check"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:74
+msgid "<!-- <span class=\"map-type\">NAS</span> --> HHWS available (click on country for further information)"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:81
+msgid "<!-- <span class=\"map-type\">NAS</span> --> No information"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/countries-d3.pt:141
 msgid "<i class=\"fa fa-exclamation-circle\" aria-hidden=\"true\"></i> <span>x</span> <div id=\"hover-content\">x</div>"
 msgstr ""
@@ -562,6 +570,7 @@ msgid "Choose a region"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:75
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:48
 msgid "Choose thematic map:"
 msgstr "Alege o tema:"
 
@@ -942,6 +951,10 @@ msgstr "Nivel de guvernare:"
 msgid "Guidance"
 msgstr "Îndrumare"
 
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:113
+msgid "HHWS website"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -965,6 +978,10 @@ msgstr "Sănătate"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:277
 msgid "Health impact:"
 msgstr "Impact asupra sănătății:"
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:107
+msgid "Heat index of HHWS:"
+msgstr ""
 
 # ,
 # ,
@@ -1198,6 +1215,10 @@ msgstr "Reportate ca adoptate NAS si NAP"
 msgid "Name of the strategy/ plan (If adopted)"
 msgstr "Numele strategiei/ planului (dacă este adoptat)"
 
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:55
+msgid "National HHAP"
+msgstr ""
+
 #: ../../climateadapt/browser/countries.py:158
 msgid "National adaption policy"
 msgstr ""
@@ -1206,6 +1227,10 @@ msgstr ""
 msgid "Neither NAS nor NAP reported as adopted"
 msgstr "Nici NAS sau NAP nu sunt raportate"
 
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:63
+msgid "No HHAP"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/countries-d3.pt:86
 msgid "No assessments reported"
 msgstr ""
@@ -1213,6 +1238,10 @@ msgstr ""
 #: ../../climateadapt/browser/pt/countries-d3.pt:90
 msgid "No data reported"
 msgstr "Nu sunt raportate date"
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:67
+msgid "No information"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:101
 msgid "No portal or platform reported"
@@ -1641,6 +1670,10 @@ msgstr "Sub naționali"
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:49
 msgid "Submit"
 msgstr "Trimite"
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:59
+msgid "Subnational or local HHAP"
+msgstr ""
 
 # ,
 # ,

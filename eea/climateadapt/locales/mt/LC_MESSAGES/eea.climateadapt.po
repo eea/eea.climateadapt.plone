@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-01 11:41+0000\n"
+"POT-Creation-Date: 2022-09-02 21:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -298,6 +298,14 @@ msgstr ""
 msgid "6.5 Monitoring and evaluating adaptation: Self-check"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:74
+msgid "<!-- <span class=\"map-type\">NAS</span> --> HHWS available (click on country for further information)"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:81
+msgid "<!-- <span class=\"map-type\">NAS</span> --> No information"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/countries-d3.pt:141
 msgid "<i class=\"fa fa-exclamation-circle\" aria-hidden=\"true\"></i> <span>x</span> <div id=\"hover-content\">x</div>"
 msgstr ""
@@ -527,6 +535,7 @@ msgid "Choose a region"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:75
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:48
 msgid "Choose thematic map:"
 msgstr ""
 
@@ -828,6 +837,10 @@ msgstr "Livell ta 'Governanza:"
 msgid "Guidance"
 msgstr "Gwida"
 
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:113
+msgid "HHWS website"
+msgstr ""
+
 # ,
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:128
 msgid "Have you already developed an adaptation strategy?"
@@ -845,6 +858,10 @@ msgstr "Saħħa"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:277
 msgid "Health impact:"
 msgstr "Impatt fuq is-saħħa:"
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:107
+msgid "Heat index of HHWS:"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/navbar_footer.pt:12
@@ -1037,6 +1054,10 @@ msgstr ""
 msgid "Name of the strategy/ plan (If adopted)"
 msgstr "Isem l-istrateġija / pjan (jekk adottat)"
 
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:55
+msgid "National HHAP"
+msgstr ""
+
 #: ../../climateadapt/browser/countries.py:158
 msgid "National adaption policy"
 msgstr ""
@@ -1045,12 +1066,20 @@ msgstr ""
 msgid "Neither NAS nor NAP reported as adopted"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:63
+msgid "No HHAP"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/countries-d3.pt:86
 msgid "No assessments reported"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:90
 msgid "No data reported"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:67
+msgid "No information"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:101
@@ -1407,6 +1436,10 @@ msgstr "Sub-ċittadini"
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:49
 msgid "Submit"
 msgstr "Tissottometti"
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:59
+msgid "Subnational or local HHAP"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:39
