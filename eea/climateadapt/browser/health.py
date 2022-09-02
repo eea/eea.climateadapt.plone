@@ -5,9 +5,10 @@ import plone.api as api
 from Products.Five.browser import BrowserView
 from zope.component.hooks import getSite
 from zope.component import getMultiAdapter
-from eea.climateadapt.translation.utils import get_current_language
+from eea.climateadapt.translation.utils import (
+    get_current_language, translate_text, TranslationUtilsMixin)
 
-class HealthHomepageItems(BrowserView):
+class HealthHomepageItems(BrowserView, TranslationUtilsMixin):
     def days_elapsed_mapping(self, p):
         mapping = [(80, "big"), (90, "med")]
         for check, value in mapping:
@@ -30,6 +31,7 @@ class HealthHomepageItems(BrowserView):
                 "review_state": "published",
                 "sort_on": "start",
                 "include_in_observatory": True,
+                "path": "/cca/{}".format(self.current_lang),
                 # "Subject": ("Health Observatory",),
             }
         )
@@ -74,7 +76,8 @@ class HealthHomepageItems(BrowserView):
                 "review_state": "published",
                 "sort_on": "effective",
                 "sort_order": "descending",
-                "include_in_observatory": True,
+                "include_in_observatory": True, 
+                "path": "/cca/{}".format(self.current_lang),
                 # "Subject": ("Health Observatory",),
             }
         )
@@ -104,10 +107,16 @@ class HealthHomepageItems(BrowserView):
     def more_news(self):
         site = getSite()
         url = site[get_current_language(self.context, self.request)]["observatory"]["news-archive-observatory"].absolute_url()
-        return [url, "More news"]
+        title = translate_text(self.context, self.request, 
+                "More news", 'eea.climateadapt.frontpage', self.current_lang)
+
+        return [url, title]
 
     @property
     def more_events(self):
         site = getSite()
         url = site[get_current_language(self.context, self.request)]["observatory"]["more-events-observatory"].absolute_url()
-        return [url, "More events"]
+        title = translate_text(self.context, self.request, 
+                "More events", 'eea.climateadapt.frontpage', self.current_lang)
+
+        return [url, title]

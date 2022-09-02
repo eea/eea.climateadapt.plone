@@ -293,7 +293,8 @@ class NewsTile(ListingTile):
     def more_url(self):
         return [
             self.parent.absolute_url(), 
-            translate_text(self.context, self.request, "More news", 'eea.climateadapt.frontpage', self.current_lang)
+            translate_text(self.context, self.request, 
+                "More news", 'eea.climateadapt.frontpage', self.current_lang)
         ]
 
     @property
