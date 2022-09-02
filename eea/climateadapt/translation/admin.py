@@ -1054,7 +1054,7 @@ def translation_step_3_one_file(json_file, language, catalog, portal_type = None
                 translated_msg = get_translated(tile_data['item'][key], language.upper())
                 if translated_msg:
                     if key == "title":
-                        update[key] = translated_msg
+                        update[key] = translated_msg.encode('latin-1')
                     else:
                         try:
                             update[key] = translated_msg.encode('latin-1')
