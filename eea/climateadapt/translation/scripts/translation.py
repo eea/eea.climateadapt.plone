@@ -220,7 +220,8 @@ def translation_step_2(request=None):
                 #LOOP tile HTML items
                 for key in tile_data['html'].keys():
                     value = tile_data['html'][key]
-                    value = value.replace('\r\n', '')
+                    value = value.replace('\r', '')
+                    value = value.replace('\n', '')
                     try:
                         test_value = value + u"test"
                     except UnicodeDecodeError:

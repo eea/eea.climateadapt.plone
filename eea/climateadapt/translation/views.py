@@ -197,7 +197,7 @@ class TranslationCallback(BrowserView):
         if len(form.keys()) == 0:
             logger.info("Empty form")  # TODO: Check why?
             return
-
+    
         file.seek(0)
         b64_str = file.read()
         html_file = base64.decodestring(b64_str).decode("latin-1")

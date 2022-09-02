@@ -131,7 +131,8 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                     # LOOP tile HTML items
                     for key in tile_data['html'].keys():
                         value = tile_data['html'][key]
-                        value = value.replace('\r\n', '')
+                        value = value.replace('\r', '')
+                        value = value.replace('\n', '')
                         try:
                             test_value = value + u"test"
                         except UnicodeDecodeError:
@@ -188,7 +189,8 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                         html_content = u"<!doctype html>" + \
                             u"<head><meta charset=utf-8></head><body>"
 
-                        value = value.replace('\r\n', '')
+                        value = value.replace('\r', '')
+                        value = value.replace('\n', '')
                         try:
                             test_value = value + u"test"
                         except UnicodeDecodeError:
@@ -937,7 +939,8 @@ def translation_step_2(site, request, force_uid=None):
                 #LOOP tile HTML items
                 for key in tile_data['html'].keys():
                     value = tile_data['html'][key]
-                    value = value.replace('\r\n', '')
+                    value = value.replace('\r', '')
+                    value = value.replace('\n', '')
                     try:
                         test_value = value + u"test"
                     except UnicodeDecodeError:
