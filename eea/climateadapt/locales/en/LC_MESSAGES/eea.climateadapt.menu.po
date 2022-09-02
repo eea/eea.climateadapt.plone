@@ -295,6 +295,10 @@ msgstr ""
 msgid "Evidence on climate and health"
 msgstr "Evidence on climate and health"
 
+#: health_menu:222
+msgid "Exposure of vulnerable groups to climate risks"
+msgstr ""
+
 # ,
 #: site_menu:90
 msgid "FAQ for providers"

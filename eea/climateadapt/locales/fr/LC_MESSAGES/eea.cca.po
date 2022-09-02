@@ -20,6 +20,7 @@ msgstr ""
 # ,
 # ,
 # ,
+# ,
 #, 
 msgid "Adaptation options"
 msgstr "Options d'adaptation"
@@ -27,6 +28,7 @@ msgstr "Options d'adaptation"
 msgid "Based on your preferences, you can view this page in english"
 msgstr "En fonction de vos préférences, vous pouvez afficher cette page en français"
 
+# ,
 # ,
 # ,
 # ,
@@ -39,10 +41,12 @@ msgstr "Études de cas"
 # ,
 # ,
 # ,
+# ,
 #, 
 msgid "Countries:"
 msgstr "Pays:"
 
+# ,
 # ,
 # ,
 # ,
@@ -55,10 +59,12 @@ msgstr "Orientation"
 # ,
 # ,
 # ,
+# ,
 #, 
 msgid "Indicators"
 msgstr "Indicateurs"
 
+# ,
 # ,
 # ,
 # ,
@@ -68,20 +74,24 @@ msgid "Information portals"
 msgstr "Portails d'information"
 
 # ,
+# ,
 #, 
 msgid "Latest <br/> News & Events"
 msgstr "Dernières <br/> actualités et événements"
 
+# ,
 # ,
 #, 
 msgid "Most recent <br/> Case Study"
 msgstr "Étude de cas <br/> la plus récente"
 
 # ,
+# ,
 #, 
 msgid "Most recent <br/> Publication or Report"
 msgstr "Publication ou rapport <br/> le plus récent"
 
+# ,
 # ,
 # ,
 # ,
@@ -94,10 +104,12 @@ msgstr "Organisations"
 # ,
 # ,
 # ,
+# ,
 #, 
 msgid "Publication and reports"
 msgstr "Publication et rapports"
 
+# ,
 # ,
 # ,
 # ,
@@ -110,10 +122,12 @@ msgstr "Projets de recherche et de connaissance"
 # ,
 # ,
 # ,
+# ,
 #, 
 msgid "Tools"
 msgstr "Outils"
 
+# ,
 # ,
 # ,
 # ,

@@ -351,6 +351,10 @@ msgstr "Az éghajlati alkalmazkodás és az egészségre vonatkozó európai pol
 msgid "Evidence on climate and health"
 msgstr "Bizonyítékok az éghajlatról és az egészségről"
 
+#: health_menu:222
+msgid "Exposure of vulnerable groups to climate risks"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:90

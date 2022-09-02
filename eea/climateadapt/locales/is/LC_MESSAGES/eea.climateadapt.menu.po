@@ -351,6 +351,10 @@ msgstr "Evrópsk stefna um aðlögun loftslags og heilsu"
 msgid "Evidence on climate and health"
 msgstr "Vísbendingar um loftslag og heilsu"
 
+#: health_menu:222
+msgid "Exposure of vulnerable groups to climate risks"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:90

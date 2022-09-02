@@ -505,6 +505,10 @@ msgstr "Politici europene privind adaptarea climatică și sănătatea"
 msgid "Evidence on climate and health"
 msgstr "Dovezi privind climatul și sănătatea"
 
+#: health_menu:222
+msgid "Exposure of vulnerable groups to climate risks"
+msgstr ""
+
 # ,
 # ,
 # ,

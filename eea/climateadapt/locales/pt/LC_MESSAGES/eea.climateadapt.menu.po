@@ -351,6 +351,10 @@ msgstr "Políticas européias sobre adaptação e saúde climáticas"
 msgid "Evidence on climate and health"
 msgstr "Evidência sobre clima e saúde"
 
+#: health_menu:222
+msgid "Exposure of vulnerable groups to climate risks"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:90

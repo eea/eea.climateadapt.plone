@@ -351,6 +351,10 @@ msgstr "Politiki Ewropej dwar l-adattament u s-saħħa tal-klima"
 msgid "Evidence on climate and health"
 msgstr "Evidenza dwar il-klima u s-saħħa"
 
+#: health_menu:222
+msgid "Exposure of vulnerable groups to climate risks"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:90

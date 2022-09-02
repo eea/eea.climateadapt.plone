@@ -351,6 +351,10 @@ msgstr "Европейская политика в области адаптац
 msgid "Evidence on climate and health"
 msgstr "Доказательства климата и здоровья"
 
+#: health_menu:222
+msgid "Exposure of vulnerable groups to climate risks"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:90

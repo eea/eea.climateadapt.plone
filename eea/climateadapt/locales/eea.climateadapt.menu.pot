@@ -517,3 +517,8 @@ msgstr ""
 #: health_menu:222
 msgid "Outreach"
 msgstr ""
+
+
+#: health_menu:222
+msgid "Exposure of vulnerable groups to climate risks"
+msgstr ""
