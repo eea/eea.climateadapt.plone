@@ -203,7 +203,6 @@ class MenuParser:
 
         if link:
             if "++aq++" in link:
-                #import pdb; pdb.set_trace()
                 link = link.replace("/en/observatory", "/"+self.translation_language+"/observatory")
                 link = link.replace("/++aq++en/", "/++aq++"+self.translation_language+"/")
             if link.endswith('/catalogue/') and self.translation_language != 'en':
@@ -318,8 +317,6 @@ def _extract_menu(value, translation_tool = None, site_url=None, language = 'en'
         site_url = getSite().absolute_url()
     parser = MenuParser(site_url)
     result = parser.parse(value, translation_tool, language)
-    #import pdb; pdb.set_trace()
-    logger.exception("Will use language: %s", language)
     return result
 
 
@@ -346,8 +343,6 @@ class Navbar(ExternalTemplateHeader):
                 if not sections[idx]:
                     sections.pop(idx)
 
-
-            #import pdb; pdb.set_trace()
             return sections
         except Exception, e:
             logger.exception("Error while rendering navigation menu: %s", e)
@@ -366,7 +361,6 @@ class Navbar(ExternalTemplateHeader):
         return []
 
     def translate_url(self, url):
-        #import pdb; pdb.set_trace()
         lang_independent_urls = [
             "privacy-and-legal-notice", "user-dashboard"
             "eea-disclaimer", "/sitemap"
@@ -399,6 +393,8 @@ class Navbar(ExternalTemplateHeader):
 
         site = getSite()
         try:
+            if '/'+current_language+'/' in url:
+                return url
             obj = site.unrestrictedTraverse('/cca' + url)
             translations = TranslationManager(obj).get_translations()
             if current_language in translations:
@@ -407,7 +403,7 @@ class Navbar(ExternalTemplateHeader):
                 url = trans_obj.absolute_url()
                 #logger.info("Translate URL4: %s", trans_obj.absolute_url())
             else:
-                logger.info("Translate fail URL4.1: %s", url)
+                logger.info("Translate fail URL4.1: [%s]", url)
         except Exception as e:
             logger.exception("Translate error: %s for %s", e, url)
             #logger.info("Translate URL5: %s", url)
