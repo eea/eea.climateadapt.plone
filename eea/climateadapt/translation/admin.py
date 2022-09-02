@@ -1209,7 +1209,8 @@ def translation_step_4(site, request):
             ],
         "Collection": ["sort_reversed", "query", "effective"],
         "Document": ["table_of_contents", "effective"],
-        "News Item": ["health_impacts", "image", "effective"],
+        "News Item": ["health_impacts", "image", "effective", 
+            "include_in_observatory"],
         "eea.climateadapt.casestudy": [
             "geolocation", "implementation_type", "spatial_values",
             "effective",
@@ -1233,7 +1234,7 @@ def translation_step_4(site, request):
         "Event": [
             "start", "end", "effective", "timezone", "event_url",
             "health_impacts", "contact_email", "location", "contact_name",
-            "effective",
+            "effective", "include_in_observatory"
             ],
         "cca-event": [
             "start", "end", "effective", "timezone", "contact_email",
