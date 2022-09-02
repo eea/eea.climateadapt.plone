@@ -53,7 +53,7 @@
 
     </rules>
 
-    <rules css:if-content=".site-observatory,.section-observatory">
+    <rules css:if-content=".site-observatory,.section-observatory,.web-cca-observatory">
 
       <rules if="$external_template">
         <drop css:theme="head base" />
@@ -278,12 +278,12 @@
   </prepend>
 
     Strip the classes "col-md-3 col-xs-12 content-sidebar" from the parent of aceitem-sidebar
-  <xsl:template match="div[contains(@class, 'content-sidebar') and ancestor::*[contains(@class, 'section-observatory')]]">
+  <xsl:template match="div[contains(@class, 'content-sidebar') and ancestor::*[contains(@class, 'web-cca-observatory')]]">
     <xsl:copy-of select="node()[not(contains(@id, 'aceitem_sidebar'))]" />
   </xsl:template>
 
     Replace col-md-9 with col-md-12 in observatory section, aceitems
-  <xsl:template match="div[contains(@class, 'content-column') and ancestor::*[contains(@class, 'section-observatory')]]">
+  <xsl:template match="div[contains(@class, 'content-column') and ancestor::*[contains(@class, 'web-cca-observatory')]]">
     <div>
       <xsl:attribute name="class">col-md-12 col-xs-12 content-column</xsl:attribute>
       <xsl:copy-of select="node()" />
