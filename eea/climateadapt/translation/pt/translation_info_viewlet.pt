@@ -25,9 +25,13 @@
       <p>
         <span class="show-more" style="display: none;">
           Don’t use eTranslation to translate EU legislation. Authentic versions in
-          the 24 official languages are available on Eur-Lex. See also the Europa
-          language policy and legal notice (includes privacy policy and
-          copyright notice).
+          the 24 official languages are available on
+          <a href="https://eur-lex.europa.eu/homepage.html">Eur-Lex</a>.
+          See also the
+          <a href="https://ec.europa.eu/info/language-policy_en">Europa language policy</a>
+          and
+          <a href="https://ec.europa.eu/info/legal-notice_en">legal notice</a>
+          (includes privacy policy and copyright notice).
         </span>
         <button class="less" style="display: none;">Show less</button>
       </p>
