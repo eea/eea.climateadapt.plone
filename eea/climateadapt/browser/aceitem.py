@@ -15,6 +15,8 @@ from zope.component import getUtility
 from zope.interface import classImplements  # , implements
 from zope.intid.interfaces import IIntIds
 from zope.annotation.interfaces import IAnnotations
+from eea.climateadapt.translation.utils import get_current_language
+from eea.climateadapt.translation.admin import get_translation_object
 
 # from zope.interface import implements
 # from eea.depiction.browser.interfaces import IImageView
@@ -111,9 +113,15 @@ class OrganisationView(DefaultView, AceViewApi):
         return 0
 
     def get_contributions(self):
+        current_language = get_current_language(self.context, self.request)
+        if current_language != "en":
+            en_obj = get_translation_object(self.context, "en")
+        else:
+            en_obj = self.context
+
         relation_catalog = getUtility(ICatalog)
         intids = getUtility(IIntIds)
-        uid = intids.getId(self.context)
+        uid = intids.getId(en_obj)
         response = []
         urls = []
 
@@ -122,7 +130,8 @@ class OrganisationView(DefaultView, AceViewApi):
             if relation.from_attribute == "relatedItems":
                 continue
 
-            obj = relation.from_object
+            engl_obj = relation.from_object
+            obj = get_translation_object(engl_obj, current_language)
             if api.content.get_state(obj) == "published":
                 if obj.absolute_url() in urls or (
                     not getattr(obj, "include_in_observatory")
