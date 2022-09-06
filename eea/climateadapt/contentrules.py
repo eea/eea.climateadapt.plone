@@ -17,6 +17,7 @@ from zope.interface import Interface, implementer
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.translation.admin import translate_obj
 from eea.climateadapt.translation.admin import create_translation_object
+from eea.climateadapt.translation.admin import copy_missing_interfaces
 from eea.climateadapt.translation.admin import translation_step_4
 from eea.climateadapt.translation.utils import get_site_languages
 from eea.climateadapt.translation.utils import get_current_language
@@ -112,6 +113,12 @@ class TranslateActionExecutor(object):
             self.create_translations(obj)
             self.translate_obj(obj)
             # self.set_workflow_states(obj)
+
+            self.copy_interfaces(obj)  # TODO: delete. It's already included in
+            # create_translation_object. It is used here only for testing
+            # on old created content. Example: fixing interfaces for pages
+            # like share-your-info
+
             self.copy_fields(obj)
 
     def error(self, obj, error):
@@ -146,6 +153,14 @@ class TranslateActionExecutor(object):
             result = translate_obj(obj, one_step=True)
         except Exception as e:
             self.error(obj, str(e))
+
+    def copy_interfaces(self, obj):
+        """ Copy interfaces from en to translated obj
+        """
+        translations = TranslationManager(obj).get_translations()
+        for language in translations:
+            trans_obj = translations[language]
+            copy_missing_interfaces(obj, trans_obj)
 
     def set_workflow_states(self, obj):
         """ Mark translations as not approved

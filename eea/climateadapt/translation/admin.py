@@ -39,6 +39,7 @@ from eea.climateadapt.translation.utils import translate_text
 
 from zope.schema import getFieldsInOrder
 from zope.site.hooks import getSite
+from zope.interface import alsoProvides
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -1209,7 +1210,7 @@ def translation_step_4(site, request):
             ],
         "Collection": ["sort_reversed", "query", "effective"],
         "Document": ["table_of_contents", "effective"],
-        "News Item": ["health_impacts", "image", "effective", 
+        "News Item": ["health_impacts", "image", "effective",
             "include_in_observatory"],
         "eea.climateadapt.casestudy": [
             "geolocation", "implementation_type", "spatial_values",
@@ -1611,14 +1612,29 @@ def check_full_path_exists(obj, language):
 
     parent = obj.getParentNode()
     path = parent.getPhysicalPath()
-    if len(path)<=2:
+    if len(path) <= 2:
         return True
 
     translations = TranslationManager(parent).get_translations()
     if language not in translations:
-        ##TODO, what if the parent path already exist in language
-        ## but is not linked in translation manager
+        # TODO, what if the parent path already exist in language
+        # but is not linked in translation manager
         create_translation_object(parent, language)
+
+
+def copy_missing_interfaces(en_obj, trans_obj):
+    """ Make sure all interfaces are copied from english obj to translated obj
+    """
+    en_i = [(x.getName(), x) for x in en_obj.__provides__.interfaces()]
+    trans_i = [(x.getName(), x) for x in trans_obj.__provides__.interfaces()]
+    missing_i = [x for x in en_i if x not in trans_i]
+    if len(missing_i) > 0:
+        logger.info("Missing interfaces: %s" % len(missing_i))
+        for interf in missing_i:
+            alsoProvides(trans_obj, interf[1])
+            trans_obj.reindexObject()
+            logger.info("Copied interface: %s" % interf[0])
+
 
 def create_translation_object(obj, language):
     """ Create translation object for an obj
@@ -1642,6 +1658,7 @@ def create_translation_object(obj, language):
         translated_object.cover_layout = obj.cover_layout
         copy_tiles(tiles, obj, translated_object)
 
+    copy_missing_interfaces(obj, translated_object)
     translated_object.reindexObject()
 
 
