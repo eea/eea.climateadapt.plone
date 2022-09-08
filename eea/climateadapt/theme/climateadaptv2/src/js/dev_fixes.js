@@ -25,15 +25,5 @@ if(window.jQuery) {
       $('#formfield-form-widgets-ipcc_category label[for=form-widgets-ipcc_category]').html(label_html);
     }
 
-    //$( ".documentFirstHeading" ).before($('#portal-languageselector'));
-/*    if ($('.section-metadata').length) {
-      $( "#portal-languageselector" ).prependTo('.content-column');
-    } else if ($('.section-observatory').length){
-    } else {
-      $( "#portal-languageselector" ).prependTo('#content');
-    }*/
-    // $('.currentLanguage').click(function() {
-    //     debugger;
-    // })
   });
 }

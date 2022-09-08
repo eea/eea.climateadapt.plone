@@ -717,7 +717,10 @@ def check_link(link):
         logger.warning("Now checking: %s", link)
 
         try:
-            requests.head(link, timeout=5, allow_redirects=True)
+            resp = requests.head(link, timeout=5, allow_redirects=True)
+            if resp.status_code == 404:
+                return {'status': '404', 'url': link}
+            #requests.head(link, timeout=5, allow_redirects=True)
         except requests.exceptions.ReadTimeout:
             return {'status': '504', 'url': link}
         except requests.exceptions.ConnectTimeout:

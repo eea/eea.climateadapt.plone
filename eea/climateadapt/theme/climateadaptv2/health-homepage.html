@@ -17,8 +17,8 @@
     <link rel="preload" href="static/css/compiled-css.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
     <noscript><link rel="stylesheet" href="static/css/compiled-css.css"></noscript>
     
-    <link rel="preload" href="static/css/compiled-less.css?rel=ad44ff4051" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=ad44ff4051"></noscript>
+    <link rel="preload" href="static/css/compiled-less.css?rel=423d148720" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=423d148720"></noscript>
     
     <link rel="stylesheet" type="text/css" href="/++theme++climateadaptv2/static/css/health.css?rel=287ce8b827" />
     
@@ -166,15 +166,15 @@
             <div class="box-container">
               <div class="health-box-image">
                 <img class="box-image" style="width:auto;margin:auto;"
-                     src="/++theme++climateadaptv2/static/images/Logo_CAMSPOSLINE.png"/>
+                     src="/++theme++climateadaptv2/static/images/health-mental.svg"/>
                 <div class="health-box-layer"></div>
               </div>
               <div class="health-top-content">
                 <span class="new-label" i18n:translate="">New</span>
-                <h5 style="display:inline-block" i18n:translate="">UV Index forecast (CAMS)</h5>
-                <p i18n:translate="">View the UV Index forecast developed by Copernicus Atmosphere Monitoring Service (CAMS)</p>
+                <h5 style="display:inline-block" i18n:translate="">Impacts on mental health</h5>
+                <p i18n:translate="">Learn how mental health is affected by climate change</p>
                 <div class="health-footer">
-                  <a class="health-learn-more" tal:attributes="href python:view.translate_url('/en/observatory/evidence/projections-and-tools/cams-uv-index-forecast')" href="/observatory/evidence/projections-and-tools/cams-uv-index-forecast" i18n:translate="">
+                  <a class="health-learn-more" tal:attributes="href python:view.translate_url('/en/observatory/evidence/health-effects/mental-health-effects')" href="/en/observatory/evidence/health-effects/mental-health-effects" i18n:translate="">
                     Learn more
                   </a>
                 </div>
@@ -278,6 +278,8 @@
             <div class="main-area"
               xmlns="http://www.w3.org/1999/xhtml"
               xml:lang="en"
+              xmlns:tal="http://xml.zope.org/namespaces/tal"
+              xmlns:metal="http://xml.zope.org/namespaces/metal"
               xmlns:i18n="http://xml.zope.org/namespaces/i18n"
               lang="en"
               i18n:domain="eea.climateadapt.observatory.frontpage">

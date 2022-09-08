@@ -12,6 +12,7 @@ from zc.relation.interfaces import ICatalog
 from zope.component import queryUtility
 from zope.globalrequest import getRequest
 
+from DateTime import DateTime
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -105,6 +106,18 @@ def remove_broken_relations(obj, event):
                 request.form['ajax_load'] = request.form['ajax_load'][0]
         return
 
+
+def handle_workflow_change(object, event):
+    def updateEffective(object, value):
+        object.setEffectiveDate(value)
+        object.reindexObject()
+        transaction.commit()
+
+    if event.new_state.title == 'Published':
+        updateEffective(object, DateTime())
+    else:
+        updateEffective(object, None)
+    return
 
 # from zope.annotation.interfaces import IAnnotations
 # from eea.climateadapt.browser.facetedsearch import CCA_TYPES

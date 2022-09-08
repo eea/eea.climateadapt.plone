@@ -2,6 +2,7 @@ import csv
 import logging
 import urlparse
 from datetime import date
+from io import BytesIO as StringIO
 
 import transaction
 from zope.component import getUtility
@@ -20,36 +21,19 @@ from Products.Five.browser import BrowserView
 from z3c.relationfield import RelationValue
 from zc.relation.interfaces import ICatalog
 
-# from zope.schema import Choice
-# from zope.schema.interfaces import IVocabularyFactory
-# import StringIO
-# import sys
-
 
 logger = logging.getLogger("eea.climateadapt")
 
 
 class CaseStudiesCSV(BrowserView):
-    """Download CSV file with contacts for case studies"""
+    """ Download CSV file with contacts for case studies """
     def __call__(self):
-        from io import BytesIO as StringIO
-        import csv
         out = StringIO()
         csv_writer = csv.writer(out, dialect='excel', delimiter=',')
         #csv_writer.writer(writer_file, dialect=dialect, delimiter=self.delimiter)
 
         self.request.response.setHeader('Content-type', 'text/csv')
         self.request.response.setHeader('Content-Disposition', 'attachment; filename="case_studies_contact.csv"')
-
-        #print('A,B')
-        #print('0,1')
-        #print('10,11')
-        #csv_writer.writerow(['a'])
-        #csv_writer.writerow(['0'])
-        #csv_writer.writerow(['10'])
-
-
-        #return "a,b,c\r\n0,1,2\r\n10,11,12\r\n"
 
         catalog = get_tool("portal_catalog")
         brains = catalog.searchResults(
@@ -60,7 +44,6 @@ class CaseStudiesCSV(BrowserView):
             }
         )
 
-        print('Title,Url,Status,Contact,Longitude,Latitude');
         csv_writer.writerow([
                 'Title',
                 'Url',
@@ -79,6 +62,54 @@ class CaseStudiesCSV(BrowserView):
                 str(obj.geolocation.longitude if obj.geolocation and hasattr(obj.geolocation, 'longitude') else ''),
                 str(obj.geolocation.latitude if obj.geolocation and hasattr(obj.geolocation, 'latitude') else '')
                 ]
+            csv_writer.writerow(line)
+
+        out.seek(0)
+        return out.getvalue()
+
+
+class KeywordsTagsCSV(BrowserView):
+    """ Download CSV file with keywords/special_tags for all objects """
+    def __call__(self):
+        obj_attr = self.request.form.get('attr')
+        if not obj_attr:
+            return 'Missing attr'
+
+        csv_headers = {
+            'keywords': 'Keywords',
+            'special_tags': 'Tags'
+        }
+
+        out = StringIO()
+        csv_writer = csv.writer(out, dialect='excel', delimiter=',')
+
+        entries = []
+
+        self.request.response.setHeader('Content-type', 'text/csv')
+        self.request.response.setHeader('Content-Disposition', 'attachment; filename="%s.csv"' % obj_attr)
+
+        catalog = get_tool("portal_catalog")
+        brains = catalog.searchResults()
+
+        csv_writer.writerow([
+                csv_headers.get(obj_attr) or obj_attr
+                ])
+
+        for brain in brains:
+            obj = brain.getObject()
+
+            if hasattr(obj, obj_attr):
+                keys = getattr(obj, obj_attr, [])
+                if keys not in [None, []]:
+                    for key in keys:
+                        entries.append(key)
+
+        # convert to set and then list to get rid of duplicates
+        entries_set = set(entries)
+        entries = list(entries_set)
+
+        for entry in entries:
+            line = [entry.encode('utf-8'), ]
             csv_writer.writerow(line)
 
         out.seek(0)

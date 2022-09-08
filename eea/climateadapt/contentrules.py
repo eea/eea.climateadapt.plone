@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from plone import api
 import logging
 from plone.api.portal import get_tool
 import transaction
@@ -13,6 +14,7 @@ from Products.statusmessages.interfaces import IStatusMessage
 from ZODB.POSException import ConflictError
 from zope.component import adapter
 from zope.interface import Interface, implementer
+from DateTime import DateTime
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.translation.admin import translate_obj
@@ -25,6 +27,61 @@ from plone.app.multilingual.manager import TranslationManager
 from zope.site.hooks import getSite
 
 logger = logging.getLogger('eea.climateadapt')
+
+
+class IObjectDateExpirationAction(Interface):
+    """Interface for the configurable aspects of a archived action. """
+
+
+@implementer(IObjectDateExpirationAction, IRuleElementData)
+class ObjectDateExpirationAction(SimpleItem):
+    """The actual persistent implementation of the action element. """
+
+    element = "eea.climateadapt.ObjectDateExpiration"
+    summary = _(u"Set object expiration date")
+
+
+@adapter(Interface, IObjectDateExpirationAction, Interface)
+@implementer(IExecutable)
+class ObjectDateExpirationActionExecutor(object):
+    """The executor for this action."""
+
+    def __init__(self, context, element, event):
+        self.context = context
+        self.element = element
+        self.event = event
+
+    def __call__(self):
+        obj = self.event.object
+
+        transaction.savepoint()
+
+        catalog = get_tool("portal_catalog")
+
+        try:
+            portal = api.portal.get()
+            state = api.content.get_state(obj)
+            if state == 'published':
+                obj.setExpirationDate(None)
+                obj._p_changed = True
+                obj.reindexObject()
+            if state == 'archived':
+                obj.setExpirationDate(DateTime())
+                obj._p_changed = True
+                obj.reindexObject()
+
+        except Exception as e:
+            self.error(obj, str(e))
+            return False
+
+        return True
+
+
+class ObjectDateExpirationAddForm(NullAddForm):
+    """A reindex action form"""
+
+    def create(self):
+        return ObjectDateExpirationAction()
 
 
 class IReindexAction(Interface):

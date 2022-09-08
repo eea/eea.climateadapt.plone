@@ -22,7 +22,17 @@
       </style>
 
       <div class="bottom">
-        <h1 tal:content="context/title"></h1>
+        <div class="row">
+          <div class="column col-md-10">
+            <h1 tal:content="context/title"></h1>
+          </div>
+          <div class="column col-md-2">
+            <a href="/knowledge/european-climate-data-explorer/" class="standard-button info-button">
+               ECDE homepage
+            </a>
+          </div>
+        </div>
+
         <img
           tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
           tal:condition="context/logo"
@@ -32,7 +42,6 @@
         <div tal:define="only_article python:request.get('only_article',0)">
             <div tal:condition="only_article" id="show_only_article"></div>
         </div>
-
 
         <div class="c3s c3s_overview">
           <div tal:content="structure python: view.w['long_description'].render()">

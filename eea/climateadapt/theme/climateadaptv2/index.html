@@ -14,8 +14,8 @@
     <link rel="preload" href="static/css/compiled-css.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
     <noscript><link rel="stylesheet" href="static/css/compiled-css.css" /></noscript>
     
-    <link rel="preload" href="static/css/compiled-less.css?rel=ad44ff4051" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=ad44ff4051" /></noscript>
+    <link rel="preload" href="static/css/compiled-less.css?rel=423d148720" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=423d148720" /></noscript>
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="static/images/favicon/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/images/favicon/apple-touch-icon-114x114.png" />
@@ -826,16 +826,7 @@
                     </a>
                   </li>
                   <li class="policies-nav-item">
-                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/ecosystem')"
-                        href="/eu-adaptation-policy/sector-policies/ecosystem"
-                       data-toggle="tab" data-target="#ecosystem" class="policies-nav-link">
-                      <div class="policy-icons green-infrastructure"></div>
-                      <p i18n:translate="">Ecosystem-based approaches</p>
-                    </a>
-                  </li>
-                  <li class="policies-nav-item">
-                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/energy')"
-                        href="/eu-adaptation-policy/sector-policies/energy"
+                    <a href="/eu-adaptation-policy/sector-policies/energy"
                        data-toggle="tab" data-target="#energy" class="policies-nav-link">
                       <div class="policy-icons energy"></div>
                       <p i18n:translate="">Energy</p>
@@ -972,21 +963,6 @@
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
                         <h3 i18n:translate="">Disaster risk reduction</h3>
                         <p i18n:translate="">Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters.</p>
-                      </div>
-                    </div>
-                  </div>
-              
-                  <!-- Ecosystem-based approaches (GI) -->
-                  <div id="ecosystem" class="tab-pane">
-                    <div class="row">
-                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
-                        <img data-src="/cca/++theme++climateadaptv2/static/images/eupolicy/ecosystem.png"
-                             class="lazyload"
-                             alt="Ecosystem-based approaches" title="Ecosystem-based approaches"/>
-                      </div>
-                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                        <h3 i18n:translate="">Ecosystem-based approaches</h3>
-                        <p i18n:translate="">Ecosystem-based initiatives for climate change adaptation and disaster risk reduction increase resilience and decrease vulnerability of both people and ecosystems, empower people and provide jobs and business opportunities, make economic sense, are ready for use and easily accessible, including for the rural and urban poor. They provide multiple benefits and contribute to achieving climate change adaptation objectives but also several multi-lateral environmental agreements and sectoral policy objectives (e.g. haltering biodiversity loss, water quality or agricultural and forest management).</p>
                       </div>
                     </div>
                   </div>
@@ -1360,20 +1336,23 @@
           <div class="main-box col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="box-container">
               <img class="lazyload"
-                   data-src="/cca/++theme++climateadaptv2/static/images/COM_logo.png"
-                   title="Covenant of Mayors logo"
+                   data-src="/cca/++theme++climateadaptv2/static/images/2022-2024-strategy-cover-image-preview.png"
+                   title="The 2022-2024 Climate-ADAPT Strategy"
                    width="122"
-                   height="59"
+                   height="73"
                    />
-              <p class="covenant-text" i18n:translate="">
-                The Covenant of Mayors initiative aims to engage and support cities
-                and towns to commit to reaching the EU climate mitigation and
-                adaptation targets. Signatory cities pledge action to support
-                implementation of the EU 40% greenhouse gas-reduction target
-                by 2030 ...</p>
+              <p class="covenant-text">
+                <a href="../about/climate-adapt-strategy-2022-2024-final.pdf" i18n:translate="">
+                  The 2022-2024 Climate-ADAPT Strategy
+                </a>
+                <span i18n:translate="">
+                  informs about how Climate-ADAPT will be further expanded with new
+                  knowledge compoments towards becoming 'the authoritative European
+                  platform for adaptation' and outlines priority actions...
+                </span>
+              </p>
               <div class="read-more-wrapper">
-                <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/covenant-of-mayors')"
-                    href="../eu-adaptation-policy/covenant-of-mayors" class="read-more">
+                <a href="../about/climate-adapt-strategy-2022-2024-final.pdf" class="read-more">
                   <i class="fa fa-angle-double-right"></i>
                   <span i18n:translate="">Read more</span>
                 </a>

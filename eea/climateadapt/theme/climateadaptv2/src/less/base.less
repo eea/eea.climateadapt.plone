@@ -390,6 +390,18 @@ form .standard-button,
   }
 }
 
+.info-button {
+  background-color: #17a2b8;
+  border: 2px solid #17a2b8;
+  color: #fff;
+
+  &:hover {
+    background-color: #17a2b8;
+    border: 2px solid #17a2b8;
+    color: #fff;
+  }
+}
+
 .text-center {
   text-align: center;
 }
@@ -611,7 +623,7 @@ form .standard-button,
 }
 
 .image-left {
-  width: 100%;
+  // width: 100%;
   float: left;
   margin-right: 1em;
 }
@@ -1503,6 +1515,11 @@ dl.warning,
   border: 1px solid #efc855;
   background-color: #fff3cd;
 }
+
+#content-core .portalMessage {
+  padding: 1em;
+}
+
 
 dl.info,
 .portalMessage.info,
@@ -2865,6 +2882,9 @@ div.width-1\3a 4 {
     background-color: #fed7da;
   }
   .country-none {
+    background-color: #c0c0c0;
+  }
+  .country-outside {
     background-color: #e0e0e0;
   }
 }
@@ -2904,11 +2924,12 @@ div.width-1\3a 4 {
   .country-none {
     background-color: #efe7d4;
   }
+  .country-outside {
+    background-color: #e0e0e0;
+  }
   .country-noportal {
     //background-color: #999;
-    background-color: #e0e0e0;
-;
-
+    background-color: #c0c0c0;
   }
 }
 

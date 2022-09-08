@@ -1131,6 +1131,13 @@
       />
 
   <browser:page
+      name="keywords_tags.csv"
+      for="*"
+      class=".download.KeywordsTagsCSV"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
       name="health_homepage"
       for="*"
       class=".health.HealthHomepageItems"
