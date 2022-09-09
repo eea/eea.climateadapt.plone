@@ -395,6 +395,10 @@ class Navbar(ExternalTemplateHeader):
         try:
             if '/'+current_language+'/' in url:
                 return url
+
+            url = url.replace('/en/', '/'+current_language+'/');
+            return url
+
             obj = site.unrestrictedTraverse('/cca' + url)
             translations = TranslationManager(obj).get_translations()
             if current_language in translations:
