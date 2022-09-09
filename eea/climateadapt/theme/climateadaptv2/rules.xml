@@ -120,7 +120,9 @@
     </rules>
 
     <replace css:content="#portal-columns" css:theme="#page-body"/>
-    <before css:content="#portal-languageselector" css:theme="footer"/>
+    <rules if-not="$is_anon">
+      <before css:content="#portal-languageselector" css:theme="footer"/>
+    </rules>
 
     <replace css:content="#navbar" css:theme=".main-nav-menu" href="@@site_navbar" method="document"/>
     <replace css:content="#navbar_footer" css:theme=".navbar_footer_view" href="@@footer_navbar" method="document"/>
