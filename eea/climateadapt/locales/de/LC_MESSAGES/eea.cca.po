@@ -20,7 +20,7 @@ msgstr ""
 # ,
 # ,
 # ,
-#, 
+# ,
 msgid "Adaptation options"
 msgstr "Anpassungsoptionen"
 
@@ -31,7 +31,7 @@ msgstr "Basierend auf Ihren Präferenzen können Sie diese Seite auf Deutsch anz
 # ,
 # ,
 # ,
-#, 
+# ,
 msgid "Case studies"
 msgstr "Fallstudien"
 
@@ -39,7 +39,7 @@ msgstr "Fallstudien"
 # ,
 # ,
 # ,
-#, 
+# ,
 msgid "Countries:"
 msgstr "Länder:"
 
@@ -47,7 +47,7 @@ msgstr "Länder:"
 # ,
 # ,
 # ,
-#, 
+# ,
 msgid "Guidance"
 msgstr "Leitfaden"
 
@@ -55,7 +55,7 @@ msgstr "Leitfaden"
 # ,
 # ,
 # ,
-#, 
+# ,
 msgid "Indicators"
 msgstr "Indikatoren"
 
@@ -63,25 +63,25 @@ msgstr "Indikatoren"
 # ,
 # ,
 # ,
-#, 
+# ,
 msgid "Information portals"
 msgstr "Informationsportale"
 
 # ,
 # ,
-#, 
+# ,
 msgid "Latest <br/> News & Events"
 msgstr "Aktuelle <br/> Neuigkeiten und Veranstaltungen"
 
 # ,
 # ,
-#, 
+# ,
 msgid "Most recent <br/> Case Study"
 msgstr "Neueste <br/> Fallstudie"
 
 # ,
 # ,
-#, 
+# ,
 msgid "Most recent <br/> Publication or Report"
 msgstr "Neueste <br/> Veröffentlichung oder Bericht"
 
@@ -89,7 +89,7 @@ msgstr "Neueste <br/> Veröffentlichung oder Bericht"
 # ,
 # ,
 # ,
-#, 
+# ,
 msgid "Organisations"
 msgstr "Organisationen"
 
@@ -97,7 +97,7 @@ msgstr "Organisationen"
 # ,
 # ,
 # ,
-#, 
+# ,
 msgid "Publication and reports"
 msgstr "Veröffentlichung und Berichte"
 
@@ -105,7 +105,7 @@ msgstr "Veröffentlichung und Berichte"
 # ,
 # ,
 # ,
-#, 
+# ,
 msgid "Research and knowledge projects"
 msgstr "Forschungs- und Wissensprojekte"
 
@@ -113,7 +113,7 @@ msgstr "Forschungs- und Wissensprojekte"
 # ,
 # ,
 # ,
-#, 
+# ,
 msgid "Tools"
 msgstr "Werkzeug"
 
@@ -121,10 +121,9 @@ msgstr "Werkzeug"
 # ,
 # ,
 # ,
-#, 
+# ,
 msgid "Videos"
 msgstr "Videos"
 
 msgid "here"
 msgstr "hier"
-

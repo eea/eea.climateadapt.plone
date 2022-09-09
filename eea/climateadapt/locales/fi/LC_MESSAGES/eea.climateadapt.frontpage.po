@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-02 21:13+0000\n"
+"POT-Creation-Date: 2022-09-09 01:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgstr ""
 msgid "Adaptation options"
 msgstr "Sopeutumisvaihtoehdot"
 
-#: ../theme/climateadaptv2/index.html:1305
+#: ../theme/climateadaptv2/index.html:1281
 msgid "Adaptation support tool"
 msgstr ""
 
@@ -80,8 +80,8 @@ msgstr "Biologinen monimuotoisuus"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:929
-#: ../theme/climateadaptv2/tab-policies-rule.html:151
+#: ../theme/climateadaptv2/index.html:920
+#: ../theme/climateadaptv2/tab-policies-rule.html:142
 msgid "Biodiversity plays an important role in regulating the climate, thus making a key contribution to climate change mitigation and adaptation. At the same time, meeting mitigation targets coupled with ecosystem-based approaches is essential to avert biodiversity loss. Therefore it is impossible to address biodiversity loss without addressing climate change, but it is equally impossible to tackle climate change without addressing biodiversity loss."
 msgstr "Biologisella monimuotoisuudella on tärkeä rooli ilmaston säätelyssä, mikä antaa avainasemassa ilmastonmuutoksen lieventämisessä ja sopeutumisessa. Samanaikaisesti lieventämiskohteet yhdistettynä ekosysteemipohjaisten lähestymistapojen kanssa on välttämätöntä biologisen monimuotoisuuden menetyksen estämiseksi. Siksi biologisen monimuotoisuuden menetystä on mahdotonta puuttua ilman ilmastomuutosta, mutta ilmastomuutosta on yhtä mahdotonta puuttua ilman biologisen monimuotoisuuden menetystä."
 
@@ -94,8 +94,8 @@ msgstr "Rakennukset"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:944
-#: ../theme/climateadaptv2/tab-policies-rule.html:166
+#: ../theme/climateadaptv2/index.html:935
+#: ../theme/climateadaptv2/tab-policies-rule.html:157
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Rakennukset voivat olla alttiita ilmastonmuutokselle. Tulevaisuudessa voi lisääntyä romahduksen riski, vähenevä valtio ja merkittävää arvon menetystä enemmän myrskyjä, lumi- tai laskentavaurioita, veden tunkeutumista, huonontumista sisätiloissa ja vähentyneiden rakennusten elinaikana. Euroopan komission tavoitteena on lisätä infrastruktuurin ilmastokestävyyttä, mukaan lukien rakennukset. Uusia ja olemassa olevia rakennuksia on arvioitava nykyisten riskien ja tulevien ilmastomuutosten kestävyyden saavuttamiseksi, ja suunnitellaan tai päivitettävä vastaavasti. Keskeinen politiikka, jota käytetään rakennusten kestävyyden tukemiseen, on koheesiopolitiikka (jota kutsutaan myös alueelliseksi politiikaksi)."
 
@@ -109,47 +109,47 @@ msgstr ""
 msgid "Case studies"
 msgstr "Tapaustutkimuksia"
 
-#: ../theme/climateadaptv2/index.html:1166
+#: ../theme/climateadaptv2/index.html:1142
 msgid "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href=\"${DYNAMIC_CONTENT}\">criteria</a> and also in collaboration with the main stakeholders. See the <a href=\"${DYNAMIC_CONTENT}\">Case Studies Page</a>."
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1478
+#: ../theme/climateadaptv2/index.html:1457
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Tarkista <a href=\"../newsletter\"> eurooppalaisen ilmaston sopeutumisuutiskirje </a> ja rekisteröidy saadaksesi sen sähköpostisi:"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1004
-#: ../theme/climateadaptv2/tab-policies-rule.html:226
+#: ../theme/climateadaptv2/index.html:980
+#: ../theme/climateadaptv2/tab-policies-rule.html:202
 msgid "Climate change affects the energy sector in multiple ways, ranging from changes in heating and cooling demand; to impacts on energy supply conditions – for example decreased water availability for hydropower during prolonged droughts and reduced availability of cooling water affecting the efficiency of power plants. Furthermore, energy infrastructure can be more exposed to damages by changing climate conditions. The European Commission in general aims to increase the climate resilience of infrastructure including energy by providing strategical frameworks."
 msgstr "Ilmastomuutos vaikuttaa energia -alaan monin tavoin, lämmityksen ja jäähdytyskysynnän muutoksista; vaikutuksiin energian syöttöolosuhteisiin - esimerkiksi vesivoiman veden saatavuus pitkittyneiden kuivuuksien aikana ja vähentynyt jäähdytysveden saatavuus, joka vaikuttaa voimalaitosten tehokkuuteen. Lisäksi energiainfrastruktuuri voidaan altistaa vaurioille enemmän muuttuvien ilmasto -olosuhteiden avulla. Euroopan komission tavoitteena on yleensä lisätä infrastruktuurin ilmastokestävyyttä, mukaan lukien energiaa tarjoamalla strategisia puitteita."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:914
-#: ../theme/climateadaptv2/tab-policies-rule.html:136
+#: ../theme/climateadaptv2/index.html:905
+#: ../theme/climateadaptv2/tab-policies-rule.html:127
 msgid "Climate change has complex effects on the bio-physical processes that underpin agricultural systems, with both negative and positive consequences in different EU regions. Rising atmospheric CO2 concentration, higher temperatures, changes in precipitation patterns and in frequency of extreme events both affect the natural environment as well as the quantity, quality and stability of food production. Climatic variations impact on water resources, soils, pests and diseases, leading to significant changes in agriculture and livestock production."
 msgstr "Ilmastomuutoksella on monimutkaisia ​​vaikutuksia maatalousjärjestelmien tukeviin biofysikaalisiin prosesseihin sekä negatiivisilla että positiivisilla seurauksilla eri EU: n alueilla. Kasvava ilmakehän CO2 -pitoisuus, korkeammat lämpötilat, sadekuvioiden muutokset ja äärimmäisten tapahtumien tiheys vaikuttavat sekä luonnonympäristöön sekä elintarviketuotannon määrään, laatuun ja stabiilisuuteen. Ilmastovariaatiot vaikuttavat vesivaroihin, maaperään, tuholaisiin ja sairauksiin, mikä johtaa merkittäviin muutoksiin maataloudessa ja karjantuotannossa."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1062
-#: ../theme/climateadaptv2/tab-policies-rule.html:284
+#: ../theme/climateadaptv2/index.html:1038
+#: ../theme/climateadaptv2/tab-policies-rule.html:260
 msgid "Climate change is expected to have severe impacts on the marine environment. Increase in water temperatures will contribute to a restructuring of marine ecosystems with implications for ocean circulation, biogeochemical cycling and marine biodiversity. Ocean acidification will affect the ability of some calcium carbonate-secreting species (as molluscs, planktons and corals) to produce their shells or skeletons. Warmer and more acidic seawater will therefore negatively affect fishery and aquaculture."
 msgstr "Ilmastomuutoksen odotetaan olevan vakavia vaikutuksia meriympäristöön. Veden lämpötilan nousu edistää meriekosysteemien uudelleenjärjestelyjä, joilla on vaikutuksia valtameren kiertoon, biogeokemialliseen pyöräilyyn ja meribiologiseen monimuotoisuuteen. Valtameren happamoituminen vaikuttaa joidenkin kalsiumkarbonaattien erittävien lajien (nilviäisinä, planktonien ja korallien) kykyyn tuottaa kuorilleen tai luurankoihin. Lämpimämpi ja happamempi merivedet vaikuttavat siten negatiivisesti kalastukseen ja vesiviljelyyn."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1048
-#: ../theme/climateadaptv2/tab-policies-rule.html:270
+#: ../theme/climateadaptv2/index.html:1024
+#: ../theme/climateadaptv2/tab-policies-rule.html:246
 msgid "Climate change will generate new health risks and amplify current health problems. Both direct and indirect effects on human, plant and animal health are expected from climate change. Direct effects result from changes in the intensity and frequency of extreme weather events like heatwaves and floods. Indirect effects can be felt through changes in the incidence of diseases transmitted by insects (i.e. vector borne diseases caused by mosquitoes and ticks), rodents, or changes in water, food and air quality. The European Commission's EU strategy on adaptation to climate change is accompanied by a Staff Working Document."
 msgstr "Ilmastomuutos aiheuttaa uusia terveysriskejä ja vahvistaa nykyisiä terveysongelmia. Ilmastomuutoksesta odotetaan sekä suoria että epäsuoria vaikutuksia ihmisen, kasvien ja eläinten terveyteen. Suorat vaikutukset johtuvat muutoksista äärimmäisten säätapahtumien, kuten lämpöaaltojen ja tulvien, muutoksista. Epäsuorat vaikutukset voidaan tuntea muutoksissa hyönteisten (ts. Vektorien aiheuttamien hyttysten ja punkkien aiheuttamien vektorien aiheuttamien tautien tai veden, ruoan ja ilmanlaadun aiheuttamien vektorien aiheuttamien sairauksien välittämisessä. Euroopan komission EU: n ilmastomuutokseen sopeutumista koskevaan Strategiaan liittyy henkilöstön työasiakirja."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1154
+#: ../theme/climateadaptv2/index.html:1130
 msgid "Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events."
 msgstr "Ilmasto-adapt-tapaustutkimukset Esittelevät aloitteita, jotka jo suoritetaan Euroopassa sopeutuakseen ilmastonmuutokseen ja kasvattaakseen joustavuutta äärimmäisiin sää- ja hitaasti alkaviin tapahtumiin."
 
@@ -173,8 +173,8 @@ msgstr "Katastrofiriski <br /> vähennys"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:973
-#: ../theme/climateadaptv2/tab-policies-rule.html:195
+#: ../theme/climateadaptv2/index.html:964
+#: ../theme/climateadaptv2/tab-policies-rule.html:186
 msgid "Disaster risk reduction"
 msgstr "Katastrofiriskin vähentäminen"
 
@@ -184,71 +184,57 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:833
-#: ../theme/climateadaptv2/tab-policies-rule.html:55
-msgid "Ecosystem-based approaches"
-msgstr "Ekosysteemipohjaiset lähestymistavat"
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:989
-#: ../theme/climateadaptv2/tab-policies-rule.html:211
-msgid "Ecosystem-based initiatives for climate change adaptation and disaster risk reduction increase resilience and decrease vulnerability of both people and ecosystems, empower people and provide jobs and business opportunities, make economic sense, are ready for use and easily accessible, including for the rural and urban poor. They provide multiple benefits and contribute to achieving climate change adaptation objectives but also several multi-lateral environmental agreements and sectoral policy objectives (e.g. haltering biodiversity loss, water quality or agricultural and forest management)."
-msgstr "Ilmastonmuutoksen sopeutumisen ja katastrofiriskien vähentämisen ekosysteemipohjaiset aloitteet lisäävät sekä ihmisten että ekosysteemien kestävyyttä ja vähentävät ihmisille ja tarjoavat työpaikkoja ja liiketoimintamahdollisuuksia, ovat taloudellisia merkityksiä, ovat valmiita käytettäviin ja helposti saatavilla, myös maaseutu- ja kaupunkialueisiin huono. Ne tarjoavat useita etuja ja edistävät ilmastomuutoksen sopeutumistavoitteiden saavuttamista, mutta myös useita monenvälisiä ympäristösopimuksia ja alakohtaisia ​​poliittisia tavoitteita (esim. Biologisen monimuotoisuuden menetys, veden laatu tai maatalouden ja metsänhoito)."
-
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:841
-#: ../theme/climateadaptv2/tab-policies-rule.html:63
+#: ../theme/climateadaptv2/index.html:832
+#: ../theme/climateadaptv2/tab-policies-rule.html:54
 msgid "Energy"
 msgstr "Energia"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1391
+#: ../theme/climateadaptv2/index.html:1370
 msgid "Events"
 msgstr "Tapahtumat"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1019
-#: ../theme/climateadaptv2/tab-policies-rule.html:241
+#: ../theme/climateadaptv2/index.html:995
+#: ../theme/climateadaptv2/tab-policies-rule.html:217
 msgid "Extreme weather events in recent years have increased the urgency to mainstream climate change adaptation into the different EU policy fields. There are few specific EU activities to mainstream climate change adaptation into policies for financial and insurance sectors. However many European policies related to natural disasters (see Disaster risk reduction) are very relevant to the financial and insurance sector, as they may help to prevent significant losses and financial disasters. The European Commission has also committed itself to increasing financing of climate-related activities by ensuring that at least 20% of the European budget is climate-related expenditure."
 msgstr "Äärimmäiset säätapahtumat ovat viime vuosina lisänneet kiireellisyyttä ilmastonmuutoksen mukautukseen EU: n eri EU: n politiikan aloille. Ilmastomuutoksen muokkaamiseen rahoitus- ja vakuutusalalla on vähän erityisiä EU: n toimintoja. Monet luonnonkatastrofeihin liittyvät eurooppalaiset politiikat (katso katastrofiriskien vähentäminen) ovat kuitenkin erittäin merkityksellisiä taloudelliselle ja vakuutusalalle, koska ne voivat auttaa estämään merkittäviä tappioita ja taloudellisia katastrofeja. Euroopan komissio on myös sitoutunut ilmastoon liittyvien toimien rahoittamiseen varmistamalla, että vähintään 20% Euroopan budjetista on ilmastoon liittyviä menoja."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:849
-#: ../theme/climateadaptv2/tab-policies-rule.html:71
+#: ../theme/climateadaptv2/index.html:840
+#: ../theme/climateadaptv2/tab-policies-rule.html:62
 msgid "Financial"
 msgstr "Rahoitus-"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1354
+#: ../theme/climateadaptv2/index.html:1330
 msgid "Find out how to contribute different types of information to Climate-ADAPT"
 msgstr "Ota selvää, kuinka antaa erityyppisiä tietoja ilmasto-adaptiksi"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1301
+#: ../theme/climateadaptv2/index.html:1277
 msgid "For more informations visit:"
 msgstr "Lisätietoja vierailusta:"
 
-#: ../theme/climateadaptv2/index.html:1113
+#: ../theme/climateadaptv2/index.html:1089
 msgid "For more informations visit: <a href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> EU Sector Policies </a>"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1315
+#: ../theme/climateadaptv2/index.html:1291
 msgid "For urban areas guidance visit:"
 msgstr "Kaupunkialueiden ohjausvierailu:"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:857
-#: ../theme/climateadaptv2/tab-policies-rule.html:79
+#: ../theme/climateadaptv2/index.html:848
+#: ../theme/climateadaptv2/tab-policies-rule.html:70
 msgid "Forestry"
 msgstr "Metsätalous"
 
@@ -272,15 +258,15 @@ msgstr "Opas"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:865
-#: ../theme/climateadaptv2/tab-policies-rule.html:87
+#: ../theme/climateadaptv2/index.html:856
+#: ../theme/climateadaptv2/tab-policies-rule.html:78
 msgid "Health"
 msgstr "Terveys"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1090
-#: ../theme/climateadaptv2/tab-policies-rule.html:312
+#: ../theme/climateadaptv2/index.html:1066
+#: ../theme/climateadaptv2/tab-policies-rule.html:288
 msgid "In Europe, nearly 73% of the population live in urban areas and this is projected to increase to over 80% by 2050. Climate change is likely to influence almost all components of cities and towns – their environment, economy and society. This raises new, complex challenges for urban planning and management. Climate change impacts on the hubs of Europe's economic activity, social life, culture and innovation have repercussions far beyond their municipal borders."
 msgstr "Euroopassa lähes 73% väestöstä asuu kaupunkialueilla, ja sen ennustetaan nousevan yli 80 prosenttiin vuoteen 2050 mennessä. Ilmastomuutos vaikuttaa todennäköisesti melkein kaikkiin kaupunkien ja kaupunkien - heidän ympäristöön, talouteen ja yhteiskuntaan. Tämä herättää uusia, monimutkaisia ​​haasteita kaupunkisuunnittelulle ja johtamiselle. Ilmastomuutos vaikuttaa Euroopan taloudellisen toiminnan, sosiaalisen elämän, kulttuurin ja innovaatioiden keskuksiin, jotka ovat kaukana heidän kunnallisista rajoistaan."
 
@@ -298,23 +284,23 @@ msgstr "Tietoportaalit"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:873
-#: ../theme/climateadaptv2/tab-policies-rule.html:95
+#: ../theme/climateadaptv2/index.html:864
+#: ../theme/climateadaptv2/tab-policies-rule.html:86
 msgid "Marine <br /> &amp; fisheries"
 msgstr "Marine <br /> & amp; kalastus"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1061
-#: ../theme/climateadaptv2/tab-policies-rule.html:283
+#: ../theme/climateadaptv2/index.html:1037
+#: ../theme/climateadaptv2/tab-policies-rule.html:259
 msgid "Marine and fisheries"
 msgstr "Meri- ja kalatalous"
 
-#: ../theme/climateadaptv2/index.html:1450
+#: ../theme/climateadaptv2/index.html:1429
 msgid "More events"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1421
+#: ../theme/climateadaptv2/index.html:1400
 msgid "More news"
 msgstr ""
 
@@ -324,13 +310,13 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1388
+#: ../theme/climateadaptv2/index.html:1367
 msgid "News"
 msgstr "Uutiset"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1464
+#: ../theme/climateadaptv2/index.html:1443
 msgid "Newsletter"
 msgstr "Uutiskirje"
 
@@ -342,8 +328,8 @@ msgstr "Organisaatiot"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:974
-#: ../theme/climateadaptv2/tab-policies-rule.html:196
+#: ../theme/climateadaptv2/index.html:965
+#: ../theme/climateadaptv2/tab-policies-rule.html:187
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "Viime vuosina Eurooppa on kokenut kaiken tyyppisiä luonnonkatastrofeja: vakavia tulvia, kuivuuksia ja metsäpaloja, joilla on tuhoisia vaikutuksia ihmisten elämään, Euroopan talouteen ja ympäristöön. Viimeisen vuosikymmenen aikana Euroopan komissio hyväksyi useita strategioita ja toimia katastrofiriskien vähentämisen selviytymiseksi, kuten esimerkiksi tulvien direktiivi ja sen täytäntöönpano (aikataulu), EU: n veden niukkuutta ja kuivuutta koskeva toimenpide, vihreä vakuutusasiakirja Luonnollisten ja ihmisen aiheuttamien katastrofien konteksti."
 
@@ -359,11 +345,11 @@ msgstr "Julkaisut ja raportit"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1467
+#: ../theme/climateadaptv2/index.html:1446
 msgid "RSS feed"
 msgstr "RSS -syöttö"
 
-#: ../theme/climateadaptv2/index.html:1378
+#: ../theme/climateadaptv2/index.html:1357
 msgid "Read more"
 msgstr ""
 
@@ -375,8 +361,8 @@ msgstr "Tutkimus- ja tietoprojektit"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:959
-#: ../theme/climateadaptv2/tab-policies-rule.html:181
+#: ../theme/climateadaptv2/index.html:950
+#: ../theme/climateadaptv2/tab-policies-rule.html:172
 msgid "Sea level rise can cause flooding, coastal erosion and the loss of low-lying coastal systems. It will also increase the risk of storm surges and the likelihood of landward intrusion of saltwater and may endanger coastal ecosystems. Expected rises in water temperatures and ocean acidification will contribute to a restructuring of coastal ecosystems; with implications for ocean circulation and biogeochemical cycling."
 msgstr "Merenpinnan nousu voi aiheuttaa tulvia, rannikkoerosiota ja matalalla olevien rannikkojärjestelmien menetyksiä. Se lisää myös myrskyjen nousun riskiä ja suolaisen veden tunkeutumisen todennäköisyyttä ja voi vaarantaa rannikkoekosysteemit. Veden lämpötilojen ja valtamerten happamoitumisen odotettavissa olevat nousut edistävät rannikkoekosysteemien uudelleenjärjestelyjä; vaikutuksia valtameren kiertoon ja biogeokemialliseen pyöräilyyn."
 
@@ -394,39 +380,37 @@ msgstr ""
 msgid "See complete database"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1176
+#: ../theme/climateadaptv2/index.html:1152
 msgid "See how Europe is adapting to climate change: <a class=\"ca-booklet-link\" href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> Case studies booklet </a>"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1353
+#: ../theme/climateadaptv2/index.html:1329
 msgid "Share <span>your information</span>"
 msgstr "Jaa <span> Tietosi </span>"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1480
+#: ../theme/climateadaptv2/index.html:1459
 msgid "Sign me up!"
 msgstr "Rekisteröidy!"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1497
+#: ../theme/climateadaptv2/index.html:1476
 msgid "Subscribe"
 msgstr "Tilata"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1495
+#: ../theme/climateadaptv2/index.html:1474
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "Tilaa <strong> RSS -syöte </strong> <br /> ja pysy ajan tasalla!"
 
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1368
-msgid "The Covenant of Mayors initiative aims to engage and support cities and towns to commit to reaching the EU climate mitigation and adaptation targets. Signatory cities pledge action to support implementation of the EU 40% greenhouse gas-reduction target by 2030 ..."
-msgstr "Kaupunginjohtaja -aloitteen liitossa pyritään osallistumaan ja tukemaan kaupunkeja sitoutumaan saavuttamaan EU: n ilmaston lieventämis- ja sopeutumiskohteet. Allekirjoittavien kaupunkien panttivaikutus EU: n 40%: n kasvihuonekaasun vähennystavoitteen täytäntöönpanon tukemiseksi vuoteen 2030 mennessä ..."
+#: ../theme/climateadaptv2/index.html:1345
+msgid "The 2022-2024 Climate-ADAPT Strategy"
+msgstr ""
 
 # ,
 # ,
@@ -448,15 +432,15 @@ msgstr "Tietokanta sisältää laadun tarkistetut tiedot, ja ilmaston sopeutumis
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1076
-#: ../theme/climateadaptv2/tab-policies-rule.html:298
+#: ../theme/climateadaptv2/index.html:1052
+#: ../theme/climateadaptv2/tab-policies-rule.html:274
 msgid "The need for adapting the transport system to the impact of climate change has been highlighted since the European Commission's Adaptation White Paper (COM (2009)148). Transport adaptation is addressed through a combination of European transport, climate change and research policies. The European Union promotes best practices, mainstreaming adaptation within its transport infrastructure development programmes, and provides guidance, e.g. by developing adequate standards for construction. Action is focused on transport infrastructure, and particularly on the Trans-European Transport Network (TEN-T)."
 msgstr "Kuljetusjärjestelmän mukauttamisen tarve ilmastomuutoksen vaikutuksiin on korostettu Euroopan komission sopeutumisen valkoisen kirjan jälkeen (COM (2009) 148). Kuljetusmahdollisuudet käsitellään yhdistämällä eurooppalaista kuljetusta, ilmastonmuutos- ja tutkimuspolitiikkaa. Euroopan unioni edistää parhaita käytäntöjä, valtavirtaistava sopeutumista kuljetusinfrastruktuurin kehittämisohjelmissa ja tarjoaa ohjeita, esim. kehittämällä riittävät rakennusstandardit. Toiminta keskittyy kuljetusinfrastruktuuriin ja erityisesti eurooppalaisen kuljetusverkkoon (TEN-T)."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1034
-#: ../theme/climateadaptv2/tab-policies-rule.html:256
+#: ../theme/climateadaptv2/index.html:1010
+#: ../theme/climateadaptv2/tab-policies-rule.html:232
 msgid "The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector."
 msgstr "Ilmastomuutoksen nopea määrä voi voittaa metsäekosysteemien luonnollisen kyvyn sopeutua. Se johtaa lisääntyneeseen häiriöiden riskiin myrskyjen, tulipalojen, tuholaisten ja sairauksien kautta, jotka vaikuttavat metsien kasvuun ja tuotantoon. Metsätalouden taloudellinen kannattavuus vaikuttaa pääasiassa Euroopan eteläisillä alueilla sekä metsien kyky tarjota ympäristöpalveluita, mukaan lukien muutokset hiilen uppoamisessa. Vuonna 2013 komissio hyväksyi uuden EU: n metsänstrategian, joka vastaa metsien ja metsäalan uusiin haasteisiin."
 
@@ -468,19 +452,19 @@ msgstr "Työkalut"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:881
-#: ../theme/climateadaptv2/tab-policies-rule.html:103
+#: ../theme/climateadaptv2/index.html:872
+#: ../theme/climateadaptv2/tab-policies-rule.html:94
 msgid "Transport"
 msgstr "Kuljetus"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:889
-#: ../theme/climateadaptv2/tab-policies-rule.html:111
+#: ../theme/climateadaptv2/index.html:880
+#: ../theme/climateadaptv2/tab-policies-rule.html:102
 msgid "Urban"
 msgstr "Kaupunki-"
 
-#: ../theme/climateadaptv2/index.html:1319
+#: ../theme/climateadaptv2/index.html:1295
 msgid "Urban Adaptation Support Tool"
 msgstr ""
 
@@ -492,24 +476,28 @@ msgstr "Videot"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:897
-#: ../theme/climateadaptv2/tab-policies-rule.html:119
+#: ../theme/climateadaptv2/index.html:888
+#: ../theme/climateadaptv2/tab-policies-rule.html:110
 msgid "Water <br /> management"
 msgstr "Vesi <br /> Hallinta"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1103
-#: ../theme/climateadaptv2/tab-policies-rule.html:325
+#: ../theme/climateadaptv2/index.html:1079
+#: ../theme/climateadaptv2/tab-policies-rule.html:301
 msgid "Water management"
 msgstr "Vesihuolto"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1104
-#: ../theme/climateadaptv2/tab-policies-rule.html:326
+#: ../theme/climateadaptv2/index.html:1080
+#: ../theme/climateadaptv2/tab-policies-rule.html:302
 msgid "Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe."
 msgstr "Ilmastomuutos vaikuttaa suoraan vesivaroihin, ja näiden resurssien hallinta vaikuttaa ekosysteemien haavoittuvuuteen, sosioekonomiseen toimintaan ja ihmisten terveyteen. Vedenhallinnan odotetaan myös olevan yhä keskeisempi rooli sopeutumisessa. Ilmastomuutoksen ennustetaan johtavan suuriin muutoksiin veden saatavuudessa kaikkialla Euroopassa, kun veden niukkuus ja kuivuudet kasvavat pääasiassa Etelä -Euroopassa ja lisääntyvän tulvien riskiä suurimmassa osassa Eurooppaa."
+
+#: ../theme/climateadaptv2/index.html:1348
+msgid "informs about how Climate-ADAPT will be further expanded with new knowledge compoments towards becoming 'the authoritative European platform for adaptation' and outlines priority actions..."
+msgstr ""
 
 # ,
 #: ../theme/climateadaptv2/index.html:654

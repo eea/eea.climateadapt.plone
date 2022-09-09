@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-02 21:13+0000\n"
+"POT-Creation-Date: 2022-09-09 01:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,11 +34,11 @@ msgstr ""
 msgid "Acronym of the project"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:329
+#: ../../climateadapt/vocabulary.py:330
 msgid "Adaptation Measures and Actions"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:330
+#: ../../climateadapt/vocabulary.py:331
 msgid "Adaptation Plans and Strategies"
 msgstr ""
 
@@ -63,11 +63,11 @@ msgstr ""
 msgid "Agriculture"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:796
+#: ../../climateadapt/tiles/search_acecontent.py:812
 msgid "All adaptation sectors"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:793
+#: ../../climateadapt/tiles/search_acecontent.py:809
 msgid "All climate impacts"
 msgstr ""
 
@@ -262,7 +262,7 @@ msgstr ""
 msgid "Disaster Risk Reduction"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:337
+#: ../../climateadapt/vocabulary.py:338
 msgid "Droughts"
 msgstr ""
 
@@ -295,7 +295,7 @@ msgstr ""
 msgid "Event Language"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:338
+#: ../../climateadapt/vocabulary.py:339
 msgid "Extreme Temperatures"
 msgstr ""
 
@@ -310,7 +310,7 @@ msgstr ""
 msgid "Financial"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:339
+#: ../../climateadapt/vocabulary.py:340
 msgid "Flooding"
 msgstr ""
 
@@ -369,7 +369,7 @@ msgstr ""
 msgid "IPCC adaptation options categories"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:340
+#: ../../climateadapt/vocabulary.py:341
 msgid "Ice and Snow"
 msgstr ""
 
@@ -403,15 +403,15 @@ msgstr ""
 msgid "Information portals"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:532
+#: ../../climateadapt/vocabulary.py:533
 msgid "Institutional: Economic options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:534
+#: ../../climateadapt/vocabulary.py:535
 msgid "Institutional: Government policies and programmes"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:533
+#: ../../climateadapt/vocabulary.py:534
 msgid "Institutional: Law and regulations"
 msgstr ""
 
@@ -535,7 +535,7 @@ msgstr ""
 msgid "Objectives"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:327
+#: ../../climateadapt/vocabulary.py:328
 msgid "Observations and Scenarios"
 msgstr ""
 
@@ -650,7 +650,7 @@ msgstr ""
 msgid "References"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:38
+#: ../../climateadapt/contentrules.py:96
 msgid "Reindex object"
 msgstr ""
 
@@ -672,11 +672,11 @@ msgstr ""
 msgid "Research and knowledge projects"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:341
+#: ../../climateadapt/vocabulary.py:342
 msgid "Sea Level Rise"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:331
+#: ../../climateadapt/vocabulary.py:332
 msgid "Sector Policies"
 msgstr ""
 
@@ -748,20 +748,24 @@ msgstr ""
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
 msgstr ""
 
+#: ../../climateadapt/contentrules.py:41
+msgid "Set object expiration date"
+msgstr ""
+
 #: ../../climateadapt/behaviors/aceitem.py:149
 #: ../../climateadapt/behaviors/acemeasure.py:136
 msgid "Short summary"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:531
+#: ../../climateadapt/vocabulary.py:532
 msgid "Social: Behavioural"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:529
+#: ../../climateadapt/vocabulary.py:530
 msgid "Social: Educational options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:530
+#: ../../climateadapt/vocabulary.py:531
 msgid "Social: Informational"
 msgstr ""
 
@@ -797,23 +801,23 @@ msgstr ""
 msgid "Storage Type"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:342
+#: ../../climateadapt/vocabulary.py:343
 msgid "Storms"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:527
+#: ../../climateadapt/vocabulary.py:528
 msgid "Structural and physical: Ecosystem-based adaptation options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:525
+#: ../../climateadapt/vocabulary.py:526
 msgid "Structural and physical: Engineering and built environment options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:528
+#: ../../climateadapt/vocabulary.py:529
 msgid "Structural and physical: Service options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:526
+#: ../../climateadapt/vocabulary.py:527
 msgid "Structural and physical: Technological options"
 msgstr ""
 
@@ -849,7 +853,7 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:96
+#: ../../climateadapt/contentrules.py:154
 msgid "Translate object"
 msgstr ""
 
@@ -862,11 +866,11 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:73
+#: ../../climateadapt/contentrules.py:131
 msgid "Unable to reindex ${name} as part of content rule 'reindex' action: ${error}"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:121
+#: ../../climateadapt/contentrules.py:185
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 
@@ -918,11 +922,11 @@ msgstr ""
 msgid "Video URL"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:328
+#: ../../climateadapt/vocabulary.py:329
 msgid "Vulnerability Assessment"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:343
+#: ../../climateadapt/vocabulary.py:344
 msgid "Water Scarcity"
 msgstr ""
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-02 21:13+0000\n"
+"POT-Creation-Date: 2022-09-09 01:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
-#: ../../climateadapt/browser/pt/c3sindicator_view.pt:77
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:86
 msgid "...loading configuration..."
 msgstr ""
 
@@ -306,7 +306,7 @@ msgstr ""
 msgid "<!-- <span class=\"map-type\">NAS</span> --> No information"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:141
+#: ../../climateadapt/browser/pt/countries-d3.pt:149
 msgid "<i class=\"fa fa-exclamation-circle\" aria-hidden=\"true\"></i> <span>x</span> <div id=\"hover-content\">x</div>"
 msgstr ""
 
@@ -334,7 +334,7 @@ msgid "Adaptation Details"
 msgstr "Λεπτομέρειες προσαρμογής"
 
 # ,
-#: ../../climateadapt/vocabulary.py:329
+#: ../../climateadapt/vocabulary.py:330
 msgid "Adaptation Measures and Actions"
 msgstr "Μέτρα και ενέργειες προσαρμογής"
 
@@ -348,7 +348,7 @@ msgid "Adaptation Options categories"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:330
+#: ../../climateadapt/vocabulary.py:331
 msgid "Adaptation Plans and Strategies"
 msgstr "Σχέδια και στρατηγικές προσαρμογής"
 
@@ -361,7 +361,7 @@ msgstr ""
 msgid "Adaptation options"
 msgstr "Επιλογές προσαρμογής"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:97
+#: ../../climateadapt/browser/pt/countries-d3.pt:101
 msgid "Adaptation portal or platform reported"
 msgstr ""
 
@@ -417,11 +417,11 @@ msgstr "Προηγμένη αναζήτηση για κλιματικά στοι
 msgid "Agriculture"
 msgstr "Γεωργία"
 
-#: ../../climateadapt/tiles/search_acecontent.py:796
+#: ../../climateadapt/tiles/search_acecontent.py:812
 msgid "All adaptation sectors"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:793
+#: ../../climateadapt/tiles/search_acecontent.py:809
 msgid "All climate impacts"
 msgstr ""
 
@@ -611,7 +611,7 @@ msgid "Contact person"
 msgstr "Υπάλληλος"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:35
-#: ../../climateadapt/browser/pt/c3sindicator_view.pt:213
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:222
 msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
 msgstr ""
 
@@ -716,7 +716,7 @@ msgid "Disaster Risk Reduction"
 msgstr "Μείωση του κινδύνου καταστροφών"
 
 # ,
-#: ../../climateadapt/vocabulary.py:337
+#: ../../climateadapt/vocabulary.py:338
 msgid "Droughts"
 msgstr "Αποτρίχω"
 
@@ -755,7 +755,7 @@ msgstr "ΗΛΕΚΤΡΟΝΙΚΗ ΔΙΕΥΘΥΝΣΗ"
 msgid "Energy"
 msgstr "Ενέργεια"
 
-#: ../../climateadapt/browser/pt/c3sindicator_view.pt:49
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:58
 msgid "Explore in detail"
 msgstr ""
 
@@ -766,7 +766,7 @@ msgid "External source"
 msgstr "Εξωτερική πηγή"
 
 # ,
-#: ../../climateadapt/vocabulary.py:338
+#: ../../climateadapt/vocabulary.py:339
 msgid "Extreme Temperatures"
 msgstr "Ακραίες θερμοκρασίες"
 
@@ -777,7 +777,7 @@ msgid "Financial"
 msgstr "Χρηματοοικονομική"
 
 # ,
-#: ../../climateadapt/vocabulary.py:339
+#: ../../climateadapt/vocabulary.py:340
 msgid "Flooding"
 msgstr "Πλημμύρα"
 
@@ -817,7 +817,7 @@ msgid "Getting started"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:11
-#: ../../climateadapt/browser/pt/c3sindicator_view.pt:123
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:132
 msgid "Go back"
 msgstr ""
 
@@ -878,7 +878,7 @@ msgid "IPCC categories"
 msgstr "Κατηγορίες IPCC"
 
 # ,
-#: ../../climateadapt/vocabulary.py:340
+#: ../../climateadapt/vocabulary.py:341
 msgid "Ice and Snow"
 msgstr "Πάγος και χιόνι"
 
@@ -916,15 +916,15 @@ msgstr "Δείκτες"
 msgid "Information portals"
 msgstr "Πύλες πληροφοριών"
 
-#: ../../climateadapt/vocabulary.py:532
+#: ../../climateadapt/vocabulary.py:533
 msgid "Institutional: Economic options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:534
+#: ../../climateadapt/vocabulary.py:535
 msgid "Institutional: Government policies and programmes"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:533
+#: ../../climateadapt/vocabulary.py:534
 msgid "Institutional: Law and regulations"
 msgstr ""
 
@@ -994,7 +994,7 @@ msgstr "Σύνδεσμος με μεταδεδομένα:"
 msgid "Links to further information"
 msgstr "Σύνδεσμοι σε περαιτέρω πληροφορίες"
 
-#: ../../climateadapt/browser/pt/c3sindicator_view.pt:74
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:83
 msgid "Loading"
 msgstr ""
 
@@ -1045,7 +1045,7 @@ msgstr ""
 msgid "Monitoring and evaluating adaptation"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:112
+#: ../../climateadapt/browser/pt/countries-d3.pt:120
 msgid "NAS and NAP reported as adopted"
 msgstr ""
 
@@ -1062,10 +1062,6 @@ msgstr ""
 msgid "National adaption policy"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:128
-msgid "Neither NAS nor NAP reported as adopted"
-msgstr ""
-
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:63
 msgid "No HHAP"
 msgstr ""
@@ -1074,15 +1070,15 @@ msgstr ""
 msgid "No assessments reported"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:90
-msgid "No data reported"
+#: ../../climateadapt/browser/pt/countries-d3.pt:94
+msgid "No data reported in 2021"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:67
 msgid "No information"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:101
+#: ../../climateadapt/browser/pt/countries-d3.pt:105
 msgid "No portal or platform reported"
 msgstr ""
 
@@ -1109,7 +1105,7 @@ msgid "Objectives"
 msgstr "Στόχοι"
 
 # ,
-#: ../../climateadapt/vocabulary.py:327
+#: ../../climateadapt/vocabulary.py:328
 msgid "Observations and Scenarios"
 msgstr "Παρατηρήσεις και σενάρια"
 
@@ -1122,11 +1118,11 @@ msgstr "Παρατηρητηρίων:"
 msgid "One or more assessments reported"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:116
+#: ../../climateadapt/browser/pt/countries-d3.pt:124
 msgid "Only NAP reported as adopted"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:120
+#: ../../climateadapt/browser/pt/countries-d3.pt:128
 msgid "Only NAS reported as adopted"
 msgstr ""
 
@@ -1146,6 +1142,10 @@ msgstr "Άλλα ευρωπαϊκά συστήματα πληροφοριών: <
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:488
 msgid "Other regions"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:136
+msgid "Outside EEA coverage"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:12
@@ -1275,7 +1275,7 @@ msgstr ""
 msgid "Reviewed by:"
 msgstr "Κριτική από:"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:124
+#: ../../climateadapt/browser/pt/countries-d3.pt:132
 msgid "SAP reported as adopted"
 msgstr ""
 
@@ -1285,7 +1285,7 @@ msgid "SITE MAP"
 msgstr "Χάρτης τοποθεσίας"
 
 # ,
-#: ../../climateadapt/vocabulary.py:341
+#: ../../climateadapt/vocabulary.py:342
 msgid "Sea Level Rise"
 msgstr "Άνοδος της στάθμης της θάλασσας"
 
@@ -1304,7 +1304,7 @@ msgid "Search tile"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:331
+#: ../../climateadapt/vocabulary.py:332
 msgid "Sector Policies"
 msgstr "Τομεακές πολιτικές"
 
@@ -1352,15 +1352,15 @@ msgstr "Αποστολή μηνυμάτων ηλεκτρονικού ταχυδ�
 msgid "Share your information"
 msgstr "Μοιραστείτε τα στοιχεία σας"
 
-#: ../../climateadapt/vocabulary.py:531
+#: ../../climateadapt/vocabulary.py:532
 msgid "Social: Behavioural"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:529
+#: ../../climateadapt/vocabulary.py:530
 msgid "Social: Educational options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:530
+#: ../../climateadapt/vocabulary.py:531
 msgid "Social: Informational"
 msgstr ""
 
@@ -1407,23 +1407,23 @@ msgid "Status"
 msgstr "Κατάσταση"
 
 # ,
-#: ../../climateadapt/vocabulary.py:342
+#: ../../climateadapt/vocabulary.py:343
 msgid "Storms"
 msgstr "Καταιγίδες"
 
-#: ../../climateadapt/vocabulary.py:527
+#: ../../climateadapt/vocabulary.py:528
 msgid "Structural and physical: Ecosystem-based adaptation options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:525
+#: ../../climateadapt/vocabulary.py:526
 msgid "Structural and physical: Engineering and built environment options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:528
+#: ../../climateadapt/vocabulary.py:529
 msgid "Structural and physical: Service options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:526
+#: ../../climateadapt/vocabulary.py:527
 msgid "Structural and physical: Technological options"
 msgstr ""
 
@@ -1480,7 +1480,7 @@ msgstr "Η ημερομηνία αναφέρεται στην τελευταία
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
 msgstr "Η ημερομηνία αναφέρεται στη στιγμή κατά την οποία το αντικείμενο έχει προετοιμαστεί ή ενημερωθεί από τους συνεισφέροντες εμπειρογνώμονες που θα υποβληθούν για τη δημοσίευση στο CLIMI0 ADAPT"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:141
+#: ../../climateadapt/browser/pt/countries-d3.pt:149
 msgid "The information presented in these pages is based on the reporting according to 'Regulation (EU) 2018/1999 on the Governance of the Energy Union and Climate Action' and updates by the EEA member countries. However, for those pages where the information is last updated before 01/01/2021, the information presented is based on the reporting according to 'Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change' and updates by the EEA member countries.'"
 msgstr ""
 
@@ -1537,7 +1537,7 @@ msgid "View on DRMKC"
 msgstr "Προβολή στο DRMKC"
 
 # ,
-#: ../../climateadapt/vocabulary.py:328
+#: ../../climateadapt/vocabulary.py:329
 msgid "Vulnerability Assessment"
 msgstr "Αξιολόγηση της ευπάθειας"
 
@@ -1547,7 +1547,7 @@ msgid "Warning: this will reset/invalidate tokens on all selected cities"
 msgstr "Προειδοποίηση: Αυτό θα επαναφέρει/θα ακυρώσει τις μάρκες σε όλες τις επιλεγμένες πόλεις"
 
 # ,
-#: ../../climateadapt/vocabulary.py:343
+#: ../../climateadapt/vocabulary.py:344
 msgid "Water Scarcity"
 msgstr "Λειψυδρία"
 
@@ -1595,7 +1595,7 @@ msgstr "Ποιοι τομείς πρόκειται"
 msgid "Year: <span>${DYNAMIC_CONTENT}</span>"
 msgstr "Έτος: <pan> $ {dynamic_content} </span>"
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:140
+#: ../../climateadapt/browser/pt/countries-d3.pt:148
 msgid "[Disclaimer]"
 msgstr ""
 

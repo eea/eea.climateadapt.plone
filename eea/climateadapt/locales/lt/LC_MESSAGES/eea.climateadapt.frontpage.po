@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-02 21:13+0000\n"
+"POT-Creation-Date: 2022-09-09 01:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgstr ""
 msgid "Adaptation options"
 msgstr "Adaptacijos parinktys"
 
-#: ../theme/climateadaptv2/index.html:1305
+#: ../theme/climateadaptv2/index.html:1281
 msgid "Adaptation support tool"
 msgstr ""
 
@@ -72,8 +72,8 @@ msgid "Biodiversity"
 msgstr "Biologinė įvairovė"
 
 # ,
-#: ../theme/climateadaptv2/index.html:929
-#: ../theme/climateadaptv2/tab-policies-rule.html:151
+#: ../theme/climateadaptv2/index.html:920
+#: ../theme/climateadaptv2/tab-policies-rule.html:142
 msgid "Biodiversity plays an important role in regulating the climate, thus making a key contribution to climate change mitigation and adaptation. At the same time, meeting mitigation targets coupled with ecosystem-based approaches is essential to avert biodiversity loss. Therefore it is impossible to address biodiversity loss without addressing climate change, but it is equally impossible to tackle climate change without addressing biodiversity loss."
 msgstr "Biologinė įvairovė vaidina svarbų vaidmenį reguliuojant klimatą, taigi labai prisideda prie klimato pokyčių švelninimo ir prisitaikymo. Tuo pačiu metu siekiant išvengti biologinės įvairovės praradimo, būtina tenkinti švelninimo tikslus kartu su ekosistemomis pagrįstais metodais. Todėl neįmanoma pašalinti biologinės įvairovės nuostolių nenagrinėjant klimato pokyčių, tačiau taip pat neįmanoma įveikti klimato pokyčių, nenagrinėjant biologinės įvairovės nuostolių."
 
@@ -84,8 +84,8 @@ msgid "Buildings"
 msgstr "Pastatai"
 
 # ,
-#: ../theme/climateadaptv2/index.html:944
-#: ../theme/climateadaptv2/tab-policies-rule.html:166
+#: ../theme/climateadaptv2/index.html:935
+#: ../theme/climateadaptv2/tab-policies-rule.html:157
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Pastatai gali būti pažeidžiami dėl klimato pokyčių. Ateityje gali padidėti žlugimo rizika, mažėjanti būsena ir reikšmingai prarasti vertę dėl daugiau audrų, sniego ar nuosmukio pažeidimų, vandens kėsinimosi, blogėjančio vidaus klimato ir sumažėjusio pastato eksploatavimo laiko. Europos Komisija siekia padidinti infrastruktūros atsparumą klimatui, įskaitant pastatus. Naujiems ir esamiems pastatams reikia įvertinti atsparumą dabartinei rizikai ir būsimiems klimato pokyčiams ir atitinkamai suplanuoti ar atnaujinti. Pagrindinė pastatų atsparumo palaikymo politika yra sanglaudos politika (dar vadinama regionine politika)."
 
@@ -98,41 +98,41 @@ msgstr ""
 msgid "Case studies"
 msgstr "Atvejų tyrimai"
 
-#: ../theme/climateadaptv2/index.html:1166
+#: ../theme/climateadaptv2/index.html:1142
 msgid "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href=\"${DYNAMIC_CONTENT}\">criteria</a> and also in collaboration with the main stakeholders. See the <a href=\"${DYNAMIC_CONTENT}\">Case Studies Page</a>."
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:1478
+#: ../theme/climateadaptv2/index.html:1457
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Patikrinkite <a href=\"../newsletter\"> Europos klimato adaptacijos informacinį biuletenį </a> Ir užsiregistruokite, kad gautumėte jį el. Paštu:"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1004
-#: ../theme/climateadaptv2/tab-policies-rule.html:226
+#: ../theme/climateadaptv2/index.html:980
+#: ../theme/climateadaptv2/tab-policies-rule.html:202
 msgid "Climate change affects the energy sector in multiple ways, ranging from changes in heating and cooling demand; to impacts on energy supply conditions – for example decreased water availability for hydropower during prolonged droughts and reduced availability of cooling water affecting the efficiency of power plants. Furthermore, energy infrastructure can be more exposed to damages by changing climate conditions. The European Commission in general aims to increase the climate resilience of infrastructure including energy by providing strategical frameworks."
 msgstr "Klimato pokyčiai daro įtaką energetikos sektoriui įvairiais būdais, pradedant nuo šildymo ir vėsinimo paklausos pokyčių; Poveikis energijos tiekimo sąlygoms - pavyzdžiui, sumažėjęs hidroenergetikos vandens prieinamumas ilgalaikėse sausros metu ir sumažėjo aušinimo vandens, turinčio įtakos elektrinių efektyvumui, prieinamumą. Be to, keičiant klimato sąlygas, energetikos infrastruktūra gali būti labiau paveikta žalos. Europos Komisija apskritai siekia padidinti infrastruktūros atsparumą klimatui, įskaitant energiją, teikdama strategines sistemas."
 
 # ,
-#: ../theme/climateadaptv2/index.html:914
-#: ../theme/climateadaptv2/tab-policies-rule.html:136
+#: ../theme/climateadaptv2/index.html:905
+#: ../theme/climateadaptv2/tab-policies-rule.html:127
 msgid "Climate change has complex effects on the bio-physical processes that underpin agricultural systems, with both negative and positive consequences in different EU regions. Rising atmospheric CO2 concentration, higher temperatures, changes in precipitation patterns and in frequency of extreme events both affect the natural environment as well as the quantity, quality and stability of food production. Climatic variations impact on water resources, soils, pests and diseases, leading to significant changes in agriculture and livestock production."
 msgstr "Klimato pokyčiai turi sudėtingą poveikį biofiziniams procesams, kuriuose grindžiamos žemės ūkio sistemos, turintys tiek neigiamų, tiek teigiamų padarinių skirtinguose ES regionuose. Kylanti atmosferos CO2 koncentracija, aukštesnė temperatūra, kritulių pokyčiai ir ekstremalių įvykių dažnis turi įtakos natūraliam aplinkai, taip pat maisto gamybos kiekiui, kokybei ir stabilumui. Klimatiniai pokyčiai daro įtaką vandens ištekliams, dirvožemiui, kenkėjams ir ligoms, todėl smarkiai pasikeitė žemės ūkio ir gyvulių gamyba."
 
 # ,
-#: ../theme/climateadaptv2/index.html:1062
-#: ../theme/climateadaptv2/tab-policies-rule.html:284
+#: ../theme/climateadaptv2/index.html:1038
+#: ../theme/climateadaptv2/tab-policies-rule.html:260
 msgid "Climate change is expected to have severe impacts on the marine environment. Increase in water temperatures will contribute to a restructuring of marine ecosystems with implications for ocean circulation, biogeochemical cycling and marine biodiversity. Ocean acidification will affect the ability of some calcium carbonate-secreting species (as molluscs, planktons and corals) to produce their shells or skeletons. Warmer and more acidic seawater will therefore negatively affect fishery and aquaculture."
 msgstr "Tikimasi, kad klimato pokyčiai turės didelę įtaką jūrų aplinkai. Vandens temperatūros padidėjimas prisidės prie jūrinių ekosistemų restruktūrizavimo, turinčio įtakos vandenynų cirkuliacijai, biogeocheminiam ciklui ir jūrų biologinei įvairovei. Vandenyno rūgštėjimas paveiks kai kurių kalcio karbonatą išskiriančių rūšių (kaip moliuskų, planktonų ir koralų) gebėjimą gaminti savo lukštus ar skeletus. Todėl šiltesnis ir rūgštesnis jūros vanduo neigiamai paveiks žvejybą ir akvakultūrą."
 
 # ,
-#: ../theme/climateadaptv2/index.html:1048
-#: ../theme/climateadaptv2/tab-policies-rule.html:270
+#: ../theme/climateadaptv2/index.html:1024
+#: ../theme/climateadaptv2/tab-policies-rule.html:246
 msgid "Climate change will generate new health risks and amplify current health problems. Both direct and indirect effects on human, plant and animal health are expected from climate change. Direct effects result from changes in the intensity and frequency of extreme weather events like heatwaves and floods. Indirect effects can be felt through changes in the incidence of diseases transmitted by insects (i.e. vector borne diseases caused by mosquitoes and ticks), rodents, or changes in water, food and air quality. The European Commission's EU strategy on adaptation to climate change is accompanied by a Staff Working Document."
 msgstr "Klimato pokyčiai sukels naują pavojų sveikatai ir sustiprins dabartines sveikatos problemas. Tikimasi tiek tiesioginio, tiek netiesioginio poveikio žmonių, augalų ir gyvūnų sveikatai iš klimato pokyčių. Tiesioginis poveikis atsiranda dėl ekstremalių oro sąlygų, tokių kaip karščio ir potvynių, intensyvumo ir dažnio pokyčių. Netiesioginis poveikis gali būti jaučiamas pasikeitus vabzdžių perduodamoms ligoms (t. Y. Vektoriams, kuriems atsiranda uodų ir erkių sukeltos ligos), graužikų ar vandens, maisto ir oro kokybės pokyčių. Europos Komisijos ES pritaikymo prie klimato pokyčių strategijai lydi personalo darbinis dokumentas."
 
 # ,
-#: ../theme/climateadaptv2/index.html:1154
+#: ../theme/climateadaptv2/index.html:1130
 msgid "Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events."
 msgstr "Klimato pritaikymo atvejų tyrimai rodo iniciatyvas, kurios jau vykdomos Europoje, siekiant prisitaikyti prie klimato pokyčių ir padidinti atsparumą ekstremaliems orams ir lėtai atsirandantiems įvykiams."
 
@@ -153,8 +153,8 @@ msgid "Disaster risk <br /> reduction"
 msgstr "Nelaimės rizika <br /> Sumažinimas"
 
 # ,
-#: ../theme/climateadaptv2/index.html:973
-#: ../theme/climateadaptv2/tab-policies-rule.html:195
+#: ../theme/climateadaptv2/index.html:964
+#: ../theme/climateadaptv2/tab-policies-rule.html:186
 msgid "Disaster risk reduction"
 msgstr "Nelaimių rizikos mažinimas"
 
@@ -163,62 +163,50 @@ msgid "EU Sector <br /> Policies"
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:833
-#: ../theme/climateadaptv2/tab-policies-rule.html:55
-msgid "Ecosystem-based approaches"
-msgstr "Ekosistemomis pagrįsti metodai"
-
-# ,
-#: ../theme/climateadaptv2/index.html:989
-#: ../theme/climateadaptv2/tab-policies-rule.html:211
-msgid "Ecosystem-based initiatives for climate change adaptation and disaster risk reduction increase resilience and decrease vulnerability of both people and ecosystems, empower people and provide jobs and business opportunities, make economic sense, are ready for use and easily accessible, including for the rural and urban poor. They provide multiple benefits and contribute to achieving climate change adaptation objectives but also several multi-lateral environmental agreements and sectoral policy objectives (e.g. haltering biodiversity loss, water quality or agricultural and forest management)."
-msgstr "Ekosistemomis pagrįstos klimato kaitos adaptacijos ir nelaimių rizikos mažinimo iniciatyvos padidina atsparumą ir sumažina tiek žmonių, tiek ekosistemų pažeidžiamumą, įgalina žmones ir suteikia darbo vietų bei verslo galimybių, yra ekonominė prasmė, yra pasirengę naudoti ir lengvai prieinami, įskaitant kaimo ir miesto vargšas. Jie teikia daugybę privalumų ir prisideda siekiant klimato pokyčių pritaikymo tikslų, tačiau taip pat keli daugialypės aplinkosaugos susitarimai ir sektorių politikos tikslai (pvz., Biologinės įvairovės praradimo, vandens kokybės ar žemės ūkio bei miškų valdymas)."
-
-# ,
-#: ../theme/climateadaptv2/index.html:841
-#: ../theme/climateadaptv2/tab-policies-rule.html:63
+#: ../theme/climateadaptv2/index.html:832
+#: ../theme/climateadaptv2/tab-policies-rule.html:54
 msgid "Energy"
 msgstr "Energija"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1391
+#: ../theme/climateadaptv2/index.html:1370
 msgid "Events"
 msgstr "Įvykiai"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1019
-#: ../theme/climateadaptv2/tab-policies-rule.html:241
+#: ../theme/climateadaptv2/index.html:995
+#: ../theme/climateadaptv2/tab-policies-rule.html:217
 msgid "Extreme weather events in recent years have increased the urgency to mainstream climate change adaptation into the different EU policy fields. There are few specific EU activities to mainstream climate change adaptation into policies for financial and insurance sectors. However many European policies related to natural disasters (see Disaster risk reduction) are very relevant to the financial and insurance sector, as they may help to prevent significant losses and financial disasters. The European Commission has also committed itself to increasing financing of climate-related activities by ensuring that at least 20% of the European budget is climate-related expenditure."
 msgstr "Pastaraisiais metais ekstremalūs orų įvykiai padidino skubumą į pagrindinius klimato pokyčių pritaikymą į skirtingas ES politikos sritis. Yra keletas specifinių ES veiklos, skirtos pagrindiniam klimato pokyčių pritaikymui į finansų ir draudimo sektorių politiką. Tačiau daugelis su stichinių nelaimių susijusių Europos politikos (žr. Nelaimių rizikos mažinimą) yra labai svarbios finansų ir draudimo sektoriui, nes jos gali padėti užkirsti kelią dideliems nuostoliams ir finansinėms nelaimėms. Europos Komisija taip pat įsipareigojo didinti su klimatu susijusios veiklos finansavimą užtikrindama, kad mažiausiai 20% Europos biudžeto yra su klimatu susijusios išlaidos."
 
 # ,
-#: ../theme/climateadaptv2/index.html:849
-#: ../theme/climateadaptv2/tab-policies-rule.html:71
+#: ../theme/climateadaptv2/index.html:840
+#: ../theme/climateadaptv2/tab-policies-rule.html:62
 msgid "Financial"
 msgstr "Finansinis"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1354
+#: ../theme/climateadaptv2/index.html:1330
 msgid "Find out how to contribute different types of information to Climate-ADAPT"
 msgstr "Sužinokite, kaip prisidėti prie įvairių tipų informacijos apie klimato pritaikymą"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1301
+#: ../theme/climateadaptv2/index.html:1277
 msgid "For more informations visit:"
 msgstr "Norėdami gauti daugiau informacijos, apsilankykite:"
 
-#: ../theme/climateadaptv2/index.html:1113
+#: ../theme/climateadaptv2/index.html:1089
 msgid "For more informations visit: <a href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> EU Sector Policies </a>"
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:1315
+#: ../theme/climateadaptv2/index.html:1291
 msgid "For urban areas guidance visit:"
 msgstr "Miesto teritorijoms gairės apsilankymas:"
 
 # ,
-#: ../theme/climateadaptv2/index.html:857
-#: ../theme/climateadaptv2/tab-policies-rule.html:79
+#: ../theme/climateadaptv2/index.html:848
+#: ../theme/climateadaptv2/tab-policies-rule.html:70
 msgid "Forestry"
 msgstr "Miškininkystė"
 
@@ -238,14 +226,14 @@ msgid "Guidance"
 msgstr "Gairės"
 
 # ,
-#: ../theme/climateadaptv2/index.html:865
-#: ../theme/climateadaptv2/tab-policies-rule.html:87
+#: ../theme/climateadaptv2/index.html:856
+#: ../theme/climateadaptv2/tab-policies-rule.html:78
 msgid "Health"
 msgstr "Sveikata"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1090
-#: ../theme/climateadaptv2/tab-policies-rule.html:312
+#: ../theme/climateadaptv2/index.html:1066
+#: ../theme/climateadaptv2/tab-policies-rule.html:288
 msgid "In Europe, nearly 73% of the population live in urban areas and this is projected to increase to over 80% by 2050. Climate change is likely to influence almost all components of cities and towns – their environment, economy and society. This raises new, complex challenges for urban planning and management. Climate change impacts on the hubs of Europe's economic activity, social life, culture and innovation have repercussions far beyond their municipal borders."
 msgstr "Europoje beveik 73% gyventojų gyvena miesto teritorijose ir prognozuojama, kad iki 2050 m. Tai padidės iki daugiau nei 80%. Klimato pokyčiai greičiausiai turės įtakos beveik visoms miestų ir miestų komponentams - jų aplinkai, ekonomikai ir visuomenei. Tai kelia naujų, sudėtingų iššūkių miesto planavimui ir valdymui. Klimato pokyčiai daro įtaką Europos ekonominės veiklos, socialinio gyvenimo, kultūros ir inovacijų centams, kurie yra toli už jų savivaldybių sienų."
 
@@ -260,22 +248,22 @@ msgid "Information portals"
 msgstr "Informacijos portalai"
 
 # ,
-#: ../theme/climateadaptv2/index.html:873
-#: ../theme/climateadaptv2/tab-policies-rule.html:95
+#: ../theme/climateadaptv2/index.html:864
+#: ../theme/climateadaptv2/tab-policies-rule.html:86
 msgid "Marine <br /> &amp; fisheries"
 msgstr "Jūrų pėstininkas <br /> & amp; Žuvininkystė"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1061
-#: ../theme/climateadaptv2/tab-policies-rule.html:283
+#: ../theme/climateadaptv2/index.html:1037
+#: ../theme/climateadaptv2/tab-policies-rule.html:259
 msgid "Marine and fisheries"
 msgstr "Jūrų ir žuvininkystė"
 
-#: ../theme/climateadaptv2/index.html:1450
+#: ../theme/climateadaptv2/index.html:1429
 msgid "More events"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1421
+#: ../theme/climateadaptv2/index.html:1400
 msgid "More news"
 msgstr ""
 
@@ -284,12 +272,12 @@ msgid "New <br /> feature"
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:1388
+#: ../theme/climateadaptv2/index.html:1367
 msgid "News"
 msgstr "žinios"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1464
+#: ../theme/climateadaptv2/index.html:1443
 msgid "Newsletter"
 msgstr "Informacinis biuletenis"
 
@@ -299,8 +287,8 @@ msgid "Organisations"
 msgstr "Organizacijos"
 
 # ,
-#: ../theme/climateadaptv2/index.html:974
-#: ../theme/climateadaptv2/tab-policies-rule.html:196
+#: ../theme/climateadaptv2/index.html:965
+#: ../theme/climateadaptv2/tab-policies-rule.html:187
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "Per pastaruosius kelerius metus Europa patyrė visų rūšių stichines nelaimes: stiprius potvynius, sausras ir miškų gaisrus, turinčius niokojantį poveikį žmonių gyvenimui, Europos ekonomikai ir aplinkai. Per pastarąjį dešimtmetį Europos Komisija priėmė keletą strategijų ir veiksmų, skirtų susidoroti su nelaimių rizikos mažinimu, nes, pavyzdžiui, potvynių direktyva ir jos įgyvendinimas (tvarkaraštis), ES veiksmas dėl vandens trūkumo ir sausros, žaliojo dokumento apie draudimą, esantį draudimo srityje. Natūralių ir žmogaus sukeltų nelaimių kontekstas."
 
@@ -314,11 +302,11 @@ msgid "Publications and reports"
 msgstr "Leidiniai ir ataskaitos"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1467
+#: ../theme/climateadaptv2/index.html:1446
 msgid "RSS feed"
 msgstr "RSS pašarai"
 
-#: ../theme/climateadaptv2/index.html:1378
+#: ../theme/climateadaptv2/index.html:1357
 msgid "Read more"
 msgstr ""
 
@@ -328,8 +316,8 @@ msgid "Research and knowledge projects"
 msgstr "Tyrimų ir žinių projektai"
 
 # ,
-#: ../theme/climateadaptv2/index.html:959
-#: ../theme/climateadaptv2/tab-policies-rule.html:181
+#: ../theme/climateadaptv2/index.html:950
+#: ../theme/climateadaptv2/tab-policies-rule.html:172
 msgid "Sea level rise can cause flooding, coastal erosion and the loss of low-lying coastal systems. It will also increase the risk of storm surges and the likelihood of landward intrusion of saltwater and may endanger coastal ecosystems. Expected rises in water temperatures and ocean acidification will contribute to a restructuring of coastal ecosystems; with implications for ocean circulation and biogeochemical cycling."
 msgstr "Jūros lygio kilimas gali sukelti potvynius, pakrančių eroziją ir mažų pakrančių sistemų praradimą. Tai taip pat padidins audros padidėjimo riziką ir tikimybę, kad sūraus vandens įsibrovimo kryptis ir gali kelti pavojų pakrančių ekosistemoms. Tikimasi vandens temperatūros ir vandenyno rūgštėjimo pakilimo padidės pakrančių ekosistemų restruktūrizavimas; su įtaka vandenynų cirkuliacijai ir biogeocheminiam ciklui."
 
@@ -347,34 +335,33 @@ msgstr ""
 msgid "See complete database"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1176
+#: ../theme/climateadaptv2/index.html:1152
 msgid "See how Europe is adapting to climate change: <a class=\"ca-booklet-link\" href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> Case studies booklet </a>"
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:1353
+#: ../theme/climateadaptv2/index.html:1329
 msgid "Share <span>your information</span>"
 msgstr "Dalytis <Pan> savo informacija </span>"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1480
+#: ../theme/climateadaptv2/index.html:1459
 msgid "Sign me up!"
 msgstr "Užregistruokit mane!"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1497
+#: ../theme/climateadaptv2/index.html:1476
 msgid "Subscribe"
 msgstr "Prenumeruoti"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1495
+#: ../theme/climateadaptv2/index.html:1474
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "Prenumeruokite mūsų <strong> RSS kanalą </strong> <br /> ir nuolat atnaujinkite!"
 
-# ,
-#: ../theme/climateadaptv2/index.html:1368
-msgid "The Covenant of Mayors initiative aims to engage and support cities and towns to commit to reaching the EU climate mitigation and adaptation targets. Signatory cities pledge action to support implementation of the EU 40% greenhouse gas-reduction target by 2030 ..."
-msgstr "Merų iniciatyvos pakto tikslas - sudominti ir remti miestus ir miestus, kad jie įsipareigotų pasiekti ES klimato švelninimo ir prisitaikymo tikslus. Pasirašiusių miestų įsipareigojimų veiksmai siekiant palaikyti 40% 40% šiltnamio efektą sukeliančių dujų mažinimo tikslo įgyvendinimą iki 2030 m. ..."
+#: ../theme/climateadaptv2/index.html:1345
+msgid "The 2022-2024 Climate-ADAPT Strategy"
+msgstr ""
 
 # ,
 #: ../theme/climateadaptv2/index.html:510
@@ -392,14 +379,14 @@ msgid "The database contains quality checked information and is annotated by cli
 msgstr "Duomenų bazėje yra kokybės patikrinta informacija ir ją anotuoja klimato adaptacijos ekspertai, turintys raktinių žodžių."
 
 # ,
-#: ../theme/climateadaptv2/index.html:1076
-#: ../theme/climateadaptv2/tab-policies-rule.html:298
+#: ../theme/climateadaptv2/index.html:1052
+#: ../theme/climateadaptv2/tab-policies-rule.html:274
 msgid "The need for adapting the transport system to the impact of climate change has been highlighted since the European Commission's Adaptation White Paper (COM (2009)148). Transport adaptation is addressed through a combination of European transport, climate change and research policies. The European Union promotes best practices, mainstreaming adaptation within its transport infrastructure development programmes, and provides guidance, e.g. by developing adequate standards for construction. Action is focused on transport infrastructure, and particularly on the Trans-European Transport Network (TEN-T)."
 msgstr "Po Europos Komisijos adaptacijos baltojo popieriaus (COM (2009) 148) buvo pabrėžtas poreikis pritaikyti transporto sistemą prie klimato pokyčių poveikio. Transporto adaptacija nagrinėjama derinant Europos transportą, klimato pokyčius ir tyrimų politiką. Europos Sąjunga skatina geriausią praktiką, integruojančią adaptaciją savo transporto infrastruktūros plėtros programose ir teikia rekomendacijas, pvz. sukuriant tinkamus statybos standartus. Veiksmai yra orientuoti į transporto infrastruktūrą, ypač į Transeuropietišką transporto tinklą (TEN-T)."
 
 # ,
-#: ../theme/climateadaptv2/index.html:1034
-#: ../theme/climateadaptv2/tab-policies-rule.html:256
+#: ../theme/climateadaptv2/index.html:1010
+#: ../theme/climateadaptv2/tab-policies-rule.html:232
 msgid "The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector."
 msgstr "Spartus klimato pokyčių greitis gali įveikti natūralius miško ekosistemų gebėjimą prisitaikyti. Tai lemia padidėjusią trikdžių riziką dėl audrų, gaisro, kenkėjų ir ligų, turinčių įtakos miškų augimui ir gamybai. Miškų ekonominis gyvybingumas bus paveiktas daugiausia pietiniuose Europos vietose, taip pat miškų gebėjimas teikti aplinkos apsaugos paslaugas, įskaitant anglies kriauklės funkcijos pokyčius. 2013 m. Komisija priėmė naują ES miškų strategiją, kuri reaguoja į naujus iššūkius, su kuriais susiduria miškai ir miškų sektorius."
 
@@ -409,18 +396,18 @@ msgid "Tools"
 msgstr "Įrankiai"
 
 # ,
-#: ../theme/climateadaptv2/index.html:881
-#: ../theme/climateadaptv2/tab-policies-rule.html:103
+#: ../theme/climateadaptv2/index.html:872
+#: ../theme/climateadaptv2/tab-policies-rule.html:94
 msgid "Transport"
 msgstr "Transportas"
 
 # ,
-#: ../theme/climateadaptv2/index.html:889
-#: ../theme/climateadaptv2/tab-policies-rule.html:111
+#: ../theme/climateadaptv2/index.html:880
+#: ../theme/climateadaptv2/tab-policies-rule.html:102
 msgid "Urban"
 msgstr "Miestas"
 
-#: ../theme/climateadaptv2/index.html:1319
+#: ../theme/climateadaptv2/index.html:1295
 msgid "Urban Adaptation Support Tool"
 msgstr ""
 
@@ -430,22 +417,26 @@ msgid "Videos"
 msgstr "Vaizdo įrašai"
 
 # ,
-#: ../theme/climateadaptv2/index.html:897
-#: ../theme/climateadaptv2/tab-policies-rule.html:119
+#: ../theme/climateadaptv2/index.html:888
+#: ../theme/climateadaptv2/tab-policies-rule.html:110
 msgid "Water <br /> management"
 msgstr "Vanduo <br /> Valdymas"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1103
-#: ../theme/climateadaptv2/tab-policies-rule.html:325
+#: ../theme/climateadaptv2/index.html:1079
+#: ../theme/climateadaptv2/tab-policies-rule.html:301
 msgid "Water management"
 msgstr "Vandens tvarkymas"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1104
-#: ../theme/climateadaptv2/tab-policies-rule.html:326
+#: ../theme/climateadaptv2/index.html:1080
+#: ../theme/climateadaptv2/tab-policies-rule.html:302
 msgid "Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe."
 msgstr "Vandens ištekliams tiesiogiai daro įtaką klimato pokyčiai, o šių išteklių valdymas daro įtaką ekosistemų, socialinės ir ekonominės veiklos ir žmonių sveikatos pažeidžiamumui. Tikimasi, kad vandens tvarkymas taip pat vaidins vis svarbesnį vaidmenį adaptacijoje. Numatoma, kad klimato pokyčiai sukels didelius vandens prieinamumo pokyčius visoje Europoje, didėjant vandens trūkumui ir sausros, daugiausia Pietų Europoje ir didėjant potvynių rizikai visoje didžiojoje Europoje."
+
+#: ../theme/climateadaptv2/index.html:1348
+msgid "informs about how Climate-ADAPT will be further expanded with new knowledge compoments towards becoming 'the authoritative European platform for adaptation' and outlines priority actions..."
+msgstr ""
 
 # ,
 #: ../theme/climateadaptv2/index.html:654

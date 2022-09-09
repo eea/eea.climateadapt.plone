@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-02 21:13+0000\n"
+"POT-Creation-Date: 2022-09-09 01:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,120 +13,148 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
 
-#: ../theme/climateadaptv2/health-homepage.html:386
+#: ../theme/climateadaptv2/health-homepage.html:388
 #: ../theme/climateadaptv2/health-page-full.html:147
-#: ../theme/climateadaptv2/health-page.html:236
+#: ../theme/climateadaptv2/health-page.html:238
+#, 
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #: ../theme/climateadaptv2/health-homepage.html:213
+#, 
 msgid "Country profiles"
-msgstr ""
+msgstr "Perfiles de Países"
 
 #: ../theme/climateadaptv2/health-homepage.html:163
+#, 
 msgid "Discover the main topics and tools of the observatory"
-msgstr ""
+msgstr "Descubrir principales temas y herramientas del Observatorio"
 
 #: ../theme/climateadaptv2/health-homepage.html:140
+#, 
 msgid "European Climate <br /> and Health Observatory"
-msgstr ""
+msgstr "Clima europeo <br /> y Observatorio de Salud"
 
-#: ../theme/climateadaptv2/health-homepage.html:293
-#: ../theme/climateadaptv2/health-page.html:143
+#: ../theme/climateadaptv2/health-homepage.html:295
+#: ../theme/climateadaptv2/health-page.html:145
+#, 
 msgid "Events"
-msgstr ""
+msgstr "Eventos"
 
-#: ../theme/climateadaptv2/health-homepage.html:348
-#: ../theme/climateadaptv2/health-page.html:198
+#: ../theme/climateadaptv2/health-homepage.html:350
+#: ../theme/climateadaptv2/health-page.html:200
+#, 
 msgid "Find out how to contribute to the Observatory via Climate-ADAPT"
-msgstr ""
+msgstr "Descubra cómo contribuir al Observatorio a través de Climate-ADAPT"
 
-#: ../theme/climateadaptv2/health-homepage.html:383
+#: ../theme/climateadaptv2/health-homepage.html:385
 #: ../theme/climateadaptv2/health-page-full.html:144
-#: ../theme/climateadaptv2/health-page.html:233
+#: ../theme/climateadaptv2/health-page.html:235
+#, 
 msgid "Home"
-msgstr ""
+msgstr "Página inicial"
 
 #: ../theme/climateadaptv2/health-homepage.html:193
+#, 
 msgid "INDICATORS"
-msgstr ""
-
-#: ../theme/climateadaptv2/health-homepage.html:177
-msgid "Learn more"
-msgstr ""
-
-#: ../theme/climateadaptv2/health-homepage.html:328
-#: ../theme/climateadaptv2/health-page.html:178
-msgid "More events"
-msgstr ""
-
-#: ../theme/climateadaptv2/health-homepage.html:311
-#: ../theme/climateadaptv2/health-page.html:161
-msgid "More news"
-msgstr ""
-
-#: ../theme/climateadaptv2/health-homepage.html:173
-msgid "New"
-msgstr ""
-
-#: ../theme/climateadaptv2/health-homepage.html:290
-#: ../theme/climateadaptv2/health-page.html:140
-msgid "News"
-msgstr ""
-
-#: ../theme/climateadaptv2/health-homepage.html:287
-#: ../theme/climateadaptv2/health-page.html:137
-msgid "News/Events"
-msgstr ""
-
-#: ../theme/climateadaptv2/health-homepage.html:399
-#: ../theme/climateadaptv2/health-page-full.html:160
-#: ../theme/climateadaptv2/health-page.html:249
-msgid "Privacy and Legal Notice"
-msgstr ""
-
-#: ../theme/climateadaptv2/health-homepage.html:233
-msgid "Resource catalogue"
-msgstr ""
-
-#: ../theme/climateadaptv2/health-homepage.html:395
-#: ../theme/climateadaptv2/health-page-full.html:156
-#: ../theme/climateadaptv2/health-page.html:245
-msgid "SITE MAP"
-msgstr ""
-
-#: ../theme/climateadaptv2/health-homepage.html:234
-msgid "Search and access the Observatory’s database containing case studies, publications, indicators, research projects and other"
-msgstr ""
-
-#: ../theme/climateadaptv2/health-homepage.html:214
-msgid "See how countries are addressing climate change adaptation in public health"
-msgstr ""
-
-#: ../theme/climateadaptv2/health-homepage.html:347
-#: ../theme/climateadaptv2/health-page.html:197
-msgid "Share <br /> your information"
-msgstr ""
-
-#: ../theme/climateadaptv2/health-homepage.html:439
-#: ../theme/climateadaptv2/health-page-full.html:200
-#: ../theme/climateadaptv2/health-page.html:289
-msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
-msgstr ""
+msgstr "Indicadores"
 
 #: ../theme/climateadaptv2/health-homepage.html:174
-msgid "UV Index forecast (CAMS)"
-msgstr ""
-
-#: ../theme/climateadaptv2/health-homepage.html:194
-msgid "View climate and health indicators from different trusted information providers"
-msgstr ""
+#, 
+msgid "Impacts on mental health"
+msgstr "Impactos en la salud mental"
 
 #: ../theme/climateadaptv2/health-homepage.html:175
-msgid "View the UV Index forecast developed by Copernicus Atmosphere Monitoring Service (CAMS)"
-msgstr ""
+#, 
+msgid "Learn how mental health is affected by climate change"
+msgstr "Conozca cómo la salud mental se ve afectada por el cambio climático"
+
+#: ../theme/climateadaptv2/health-homepage.html:177
+#, 
+msgid "Learn more"
+msgstr "Saber más"
+
+#: ../theme/climateadaptv2/health-homepage.html:330
+#: ../theme/climateadaptv2/health-page.html:180
+#, 
+msgid "More events"
+msgstr "Más eventos"
+
+#: ../theme/climateadaptv2/health-homepage.html:313
+#: ../theme/climateadaptv2/health-page.html:163
+#, 
+msgid "More news"
+msgstr "Más noticias"
+
+#: ../theme/climateadaptv2/health-homepage.html:173
+#, 
+msgid "New"
+msgstr "Nuevo"
+
+#: ../theme/climateadaptv2/health-homepage.html:292
+#: ../theme/climateadaptv2/health-page.html:142
+#, 
+msgid "News"
+msgstr "Noticias"
+
+#: ../theme/climateadaptv2/health-homepage.html:289
+#: ../theme/climateadaptv2/health-page.html:139
+#, 
+msgid "News/Events"
+msgstr "Noticias y Eventos"
+
+#: ../theme/climateadaptv2/health-homepage.html:401
+#: ../theme/climateadaptv2/health-page-full.html:160
+#: ../theme/climateadaptv2/health-page.html:251
+#, 
+msgid "Privacy and Legal Notice"
+msgstr "Privacidad y aviso legal"
+
+#: ../theme/climateadaptv2/health-homepage.html:233
+#, 
+msgid "Resource catalogue"
+msgstr "Catálogo de recursos"
+
+#: ../theme/climateadaptv2/health-homepage.html:397
+#: ../theme/climateadaptv2/health-page-full.html:156
+#: ../theme/climateadaptv2/health-page.html:247
+#, 
+msgid "SITE MAP"
+msgstr "Mapa del sitio web"
+
+#: ../theme/climateadaptv2/health-homepage.html:234
+#, 
+msgid "Search and access the Observatory’s database containing case studies, publications, indicators, research projects and other"
+msgstr "Búsqueda y acceso a la base de datos del Observatorio que contiene casos de estudio, publicaciones, indicadores, proyectos de investigación y otros"
+
+#: ../theme/climateadaptv2/health-homepage.html:214
+#, 
+msgid "See how countries are addressing climate change adaptation in public health"
+msgstr "Ver cómo los países abordan la adaptación al cambio climático en la salud pública"
+
+#: ../theme/climateadaptv2/health-homepage.html:349
+#: ../theme/climateadaptv2/health-page.html:199
+#, 
+msgid "Share <br /> your information"
+msgstr "Comparte <br /> tu información"
+
+#: ../theme/climateadaptv2/health-homepage.html:441
+#: ../theme/climateadaptv2/health-page-full.html:200
+#: ../theme/climateadaptv2/health-page.html:291
+#, 
+msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
+msgstr "El <strong> Observatorio Europeo de Clima y Salud </strong> es un partenariado entre la Comisión Europea, la Agencia Europea de Medio Ambiente y varias otras organizaciones."
+
+#: ../theme/climateadaptv2/health-homepage.html:194
+#, 
+msgid "View climate and health indicators from different trusted information providers"
+msgstr "Ver indicadores climáticos y de salud provenientes de diferentes proveedores de información de confianza"
 
 #: ../theme/climateadaptv2/health-homepage.html:141
+#, 
 msgid "We provide easy access to a wide range of relevant publications, tools, websites and other resources related to climate change and human health."
-msgstr ""
+msgstr "Proporcionamos un acceso fácil a una amplia gama de publicaciones, herramientas, sitios web y otros recursos relevantes relacionados con el cambio climático y la salud humana."
+
