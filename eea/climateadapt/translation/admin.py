@@ -2168,7 +2168,10 @@ class TranslationCheckLanguageViewlet(ViewletBase):
     def get_suggestion_url(self):
         #import pdb; pdb.set_trace()
         #check if cookie plone language is not en
-        translations = TranslationManager(self.context).get_translations()
+        try:
+            translations = TranslationManager(self.context).get_translations()
+        except Exception:
+            return None
         cookie_language = self.get_cookie_language()
         if cookie_language in translations:
             return translations[cookie_language].absolute_url()
