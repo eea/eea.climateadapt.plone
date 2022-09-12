@@ -790,6 +790,8 @@ def get_translation_object(obj, language):
     try:
         translations = TranslationManager(obj).get_translations()
     except Exception:
+        if language == 'en':  # temporary solution to have EN site working
+            return obj        # TODO: better fix
         return None
 
     if language not in translations:

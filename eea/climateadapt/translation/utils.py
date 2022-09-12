@@ -16,14 +16,14 @@ class TranslationUtilsMixin(object):
         /metadata/test -> /fr/metadata/test
         /en/metadata/test -> /fr/metadata/test
         """
-        
+
         replace_urls = [
             'https://cca.devel5cph.eionet.europa.eu',
             'https://climate-adapt.eea.europa.eu'
         ]
 
         portal_url = self.context.portal_url()
-        
+
         if portal_url in url:
             relative_path = url.replace(portal_url, '')
         else:
@@ -80,9 +80,13 @@ class TranslationUtilsMixin(object):
 
 
 def get_current_language(context, request):
-    context = context.aq_inner
-    portal_state = getMultiAdapter((context, request), name=u'plone_portal_state')
-    return portal_state.language()
+    try:
+        context = context.aq_inner
+        portal_state = getMultiAdapter(
+                (context, request), name=u'plone_portal_state')
+        return portal_state.language()
+    except Exception:
+        return 'en'
 
 def translate_text(context, request, text, domain=u'eea.climateadapt', language=None):
     tool = getToolByName(context, "translation_service")
