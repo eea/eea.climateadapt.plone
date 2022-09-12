@@ -15,23 +15,10 @@ $(document).ready(() => {
     $("h1.documentFirstHeading").before(tocContainer);
 
     let sections = [];
-    if($body.hasClass("site-en")) {
-      sections = [
-        ["Key messages", "key-messages"],
-        ["Impacts and vulnerabilities", "impacts-and-vulnerabilities"],
-        ["Policy framework", "policy-framework"],
-        ["Improving the knowledge base", "improving-the-knowledge-base"],
-        ["Supporting investment and funding", "supporting-investment-and-funding"],
-        ["Supporting the implementation", "supporting-the-implementation"],
-        ["MRE of adaptation", "mre-of-adaptation"]
-      ];
-    } else {
-      let section_titles = $("#content-core p strong"); // TODO: define a class for this and update the content to use it
-      // let section_titles = $("p.read_more_first, p.read_more_second");
-      section_titles.each(function() {
-        sections.push([$(this).text(), $(this).text().replaceAll(" ", "-").toLowerCase()]);
-      });
-    }
+    let section_titles = $("#content-core .cca-toc-section");
+    section_titles.each(function() {
+      sections.push([$(this).text(), $(this).text().replaceAll(" ", "-").toLowerCase()]);
+    });
 
     function querySelectorIncludesText (selector, text) {
       return Array.from(document.querySelectorAll(selector))
@@ -51,7 +38,7 @@ $(document).ready(() => {
         return false;
       }
       $(titleElement).replaceWith(
-        "<strong id='" + section[1] + "'>" + section[0] + "</strong>"
+        "<strong id='" + section[1] + "'><span class='cca-toc-section'>" + section[0] + "</span></strong>"
       );
       return true;
     }
