@@ -1,4 +1,8 @@
-<div tal:define="portal_url context/portal_url">
+<div tal:define="portal_url context/portal_url"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  i18n:domain="eea.climateadapt"
+  >
   <ul id="third-level-menu">
     <li><a tal:attributes="href string:${portal_url}/en/help/share-your-info/general" i18n:translate="">General</a></li>
     <li><a tal:attributes="href string:${portal_url}/en/help/share-your-info/publications-and-reports" i18n:translate="">Publications and reports</a></li>
