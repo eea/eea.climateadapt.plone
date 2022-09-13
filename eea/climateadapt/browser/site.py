@@ -396,6 +396,10 @@ class Navbar(ExternalTemplateHeader):
             if '/'+current_language+'/' in url:
                 return url
 
+            '''
+            Replace the link with current language, tooks to much time and
+            external templates for search app are not created for all languages
+            '''
             url = url.replace('/en/', '/'+current_language+'/');
             return url
 
