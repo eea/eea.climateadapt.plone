@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-09 01:50+0000\n"
+"POT-Creation-Date: 2022-09-14 11:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,14 +103,18 @@ msgstr "Il-bini jista 'jkun vulnerabbli għall-bidla fil-klima. Fil-futur jista 
 msgid "Case <br /> Studies"
 msgstr ""
 
+#: ../theme/climateadaptv2/index.html:1142
+msgid "Case Studies Page"
+msgstr ""
+
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:685
 msgid "Case studies"
 msgstr "Studji ta 'Każijiet"
 
-#: ../theme/climateadaptv2/index.html:1142
-msgid "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href=\"${DYNAMIC_CONTENT}\">criteria</a> and also in collaboration with the main stakeholders. See the <a href=\"${DYNAMIC_CONTENT}\">Case Studies Page</a>."
+#: ../theme/climateadaptv2/index.html:1156
+msgid "Case studies booklet"
 msgstr ""
 
 # ,
@@ -182,6 +186,10 @@ msgstr "Tnaqqis tar-riskju tad-diżastri"
 msgid "EU Sector <br /> Policies"
 msgstr ""
 
+#: ../theme/climateadaptv2/index.html:1092
+msgid "EU Sector Policies"
+msgstr ""
+
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:832
@@ -217,13 +225,9 @@ msgstr "Sib kif tikkontribwixxi tipi differenti ta 'informazzjoni lill-Adatta ta
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1277
+#: ../theme/climateadaptv2/index.html:1088
 msgid "For more informations visit:"
 msgstr "Għal aktar informazzjoni żur:"
-
-#: ../theme/climateadaptv2/index.html:1089
-msgid "For more informations visit: <a href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> EU Sector Policies </a>"
-msgstr ""
 
 # ,
 # ,
@@ -255,6 +259,10 @@ msgstr "Mur fl-Osservatorju Ewropew dwar il-Klima u s-Saħħa"
 #: ../theme/climateadaptv2/index.html:694
 msgid "Guidance"
 msgstr "Gwida"
+
+#: ../theme/climateadaptv2/index.html:666
+msgid "Guidance to search function"
+msgstr ""
 
 # ,
 # ,
@@ -333,10 +341,6 @@ msgstr "Organizzazzjonijiet"
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "Matul l-aħħar ftit snin, l-Ewropa esperjenzat kull tip ta 'diżastri naturali: għargħar qawwi, nixfiet u nirien fil-foresti b'effetti devastanti fuq il-ħajja tan-nies, l-ekonomija Ewropea u l-ambjent. Fl-aħħar għaxar snin, il-Kummissjoni Ewropea adottat bosta strateġiji u azzjonijiet biex tlaħħaq mat-tnaqqis tar-riskju tad-diżastri peress li, pereżempju, id-direttiva tal-għargħar u l-implimentazzjoni tagħha (skeda), l-azzjoni tal-UE dwar l-iskarsezza tal-ilma u n-nixfa, il-karta ħadra dwar l-assigurazzjoni fil- Kuntest ta 'diżastri naturali u magħmula mill-bniedem."
 
-#: ../theme/climateadaptv2/index.html:666
-msgid "Please check our <a href=\"${DYNAMIC_CONTENT}\">Guidance to search function</a> for more help on how to search the database."
-msgstr ""
-
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:748
@@ -380,8 +384,8 @@ msgstr ""
 msgid "See complete database"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1152
-msgid "See how Europe is adapting to climate change: <a class=\"ca-booklet-link\" href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> Case studies booklet </a>"
+#: ../theme/climateadaptv2/index.html:1151
+msgid "See how Europe is adapting to climate change:"
 msgstr ""
 
 # ,
@@ -494,6 +498,20 @@ msgstr "Ġestjoni tal-ilma"
 #: ../theme/climateadaptv2/tab-policies-rule.html:302
 msgid "Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe."
 msgstr "Ir-riżorsi tal-ilma huma milquta direttament mit-tibdil fil-klima, u l-immaniġġjar ta 'dawn ir-riżorsi jaffettwa l-vulnerabbiltà tal-ekosistemi, l-attivitajiet soċjoekonomiċi u s-saħħa tal-bniedem. Il-ġestjoni tal-ilma hija wkoll mistennija li jkollha rwol dejjem aktar ċentrali fl-adattament. It-tibdil fil-klima huwa mbassar li jwassal għal bidliet kbar fid-disponibbiltà tal-ilma madwar l-Ewropa b'żieda fl-iskarsezza tal-ilma u n-nixfiet prinċipalment fl-Ewropa tan-Nofsinhar u r-riskju dejjem jiżdied ta 'għargħar matul il-biċċa l-kbira tal-Ewropa."
+
+#. Default: "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of ${case_studies_tab_repository} and also in collaboration with the main stakeholders. See the ${case_studies_tab_pages}."
+#: ../theme/climateadaptv2/index.html:1142
+msgid "case_studies_tab"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1139
+msgid "criteria"
+msgstr ""
+
+#. Default: "Please check our ${page_url} for more help on how to search the database."
+#: ../theme/climateadaptv2/index.html:666
+msgid "guidance_link"
+msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1348
 msgid "informs about how Climate-ADAPT will be further expanded with new knowledge compoments towards becoming 'the authoritative European platform for adaptation' and outlines priority actions..."

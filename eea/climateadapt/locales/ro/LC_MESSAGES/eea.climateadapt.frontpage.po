@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-09 01:50+0000\n"
+"POT-Creation-Date: 2022-09-14 11:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,6 +109,10 @@ msgstr "Clădirile pot fi vulnerabile la schimbările climatice. În viitor, poa
 msgid "Case <br /> Studies"
 msgstr ""
 
+#: ../theme/climateadaptv2/index.html:1142
+msgid "Case Studies Page"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -116,8 +120,8 @@ msgstr ""
 msgid "Case studies"
 msgstr "Studii de caz"
 
-#: ../theme/climateadaptv2/index.html:1142
-msgid "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href=\"${DYNAMIC_CONTENT}\">criteria</a> and also in collaboration with the main stakeholders. See the <a href=\"${DYNAMIC_CONTENT}\">Case Studies Page</a>."
+#: ../theme/climateadaptv2/index.html:1156
+msgid "Case studies booklet"
 msgstr ""
 
 # ,
@@ -198,6 +202,10 @@ msgstr "Reducerea riscului de dezastre"
 msgid "EU Sector <br /> Policies"
 msgstr ""
 
+#: ../theme/climateadaptv2/index.html:1092
+msgid "EU Sector Policies"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -239,13 +247,9 @@ msgstr "Aflați cum să contribuiți la diferite tipuri de informații la adapta
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1277
+#: ../theme/climateadaptv2/index.html:1088
 msgid "For more informations visit:"
 msgstr "Pentru mai multe informații, vizitați:"
-
-#: ../theme/climateadaptv2/index.html:1089
-msgid "For more informations visit: <a href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> EU Sector Policies </a>"
-msgstr ""
 
 # ,
 # ,
@@ -282,6 +286,10 @@ msgstr "Mergeți la Observatorul European Climat și Sănătate"
 #: ../theme/climateadaptv2/index.html:694
 msgid "Guidance"
 msgstr "Îndrumare"
+
+#: ../theme/climateadaptv2/index.html:666
+msgid "Guidance to search function"
+msgstr ""
 
 # ,
 # ,
@@ -370,10 +378,6 @@ msgstr "Organizații"
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "În ultimii ani, Europa a experimentat fiecare tip de dezastre naturale: inundații severe, secete și incendii forestiere cu efecte devastatoare asupra vieții oamenilor, a economiei europene și a mediului. În ultimul deceniu, Comisia Europeană a adoptat mai multe strategii și acțiuni pentru a face față reducerii riscului în caz de dezastre, precum, de exemplu, Directiva privind inundațiile și implementarea acesteia (TIRMETABLE), acțiunea UE privind deficitul de apă și secetă, hârtia ecologică privind asigurarea în domeniul asigurării în Contextul dezastrelor naturale și create de om."
 
-#: ../theme/climateadaptv2/index.html:666
-msgid "Please check our <a href=\"${DYNAMIC_CONTENT}\">Guidance to search function</a> for more help on how to search the database."
-msgstr ""
-
 # ,
 # ,
 # ,
@@ -421,8 +425,8 @@ msgstr ""
 msgid "See complete database"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1152
-msgid "See how Europe is adapting to climate change: <a class=\"ca-booklet-link\" href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> Case studies booklet </a>"
+#: ../theme/climateadaptv2/index.html:1151
+msgid "See how Europe is adapting to climate change:"
 msgstr ""
 
 # ,
@@ -551,6 +555,20 @@ msgstr "Managementul apei"
 #: ../theme/climateadaptv2/tab-policies-rule.html:302
 msgid "Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe."
 msgstr "Resursele de apă sunt afectate direct de schimbările climatice, iar gestionarea acestor resurse afectează vulnerabilitatea ecosistemelor, activităților socio-economice și a sănătății umane. De asemenea, se așteaptă ca gestionarea apei să joace un rol din ce în ce mai central în adaptare. Schimbările climatice sunt proiectate să conducă la schimbări majore ale disponibilității apei în Europa, cu o creștere a apei din ce în ce mai mare și secetă în principal în sudul Europei și riscul din ce în ce mai mare de inundații în cea mai mare parte a Europei."
+
+#. Default: "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of ${case_studies_tab_repository} and also in collaboration with the main stakeholders. See the ${case_studies_tab_pages}."
+#: ../theme/climateadaptv2/index.html:1142
+msgid "case_studies_tab"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1139
+msgid "criteria"
+msgstr ""
+
+#. Default: "Please check our ${page_url} for more help on how to search the database."
+#: ../theme/climateadaptv2/index.html:666
+msgid "guidance_link"
+msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1348
 msgid "informs about how Climate-ADAPT will be further expanded with new knowledge compoments towards becoming 'the authoritative European platform for adaptation' and outlines priority actions..."

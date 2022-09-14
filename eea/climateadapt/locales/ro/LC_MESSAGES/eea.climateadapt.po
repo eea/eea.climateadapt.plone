@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-09 01:50+0000\n"
+"POT-Creation-Date: 2022-09-14 11:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -298,11 +298,11 @@ msgstr ""
 msgid "6.5 Monitoring and evaluating adaptation: Self-check"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-heat-index.pt:74
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:72
 msgid "<!-- <span class=\"map-type\">NAS</span> --> HHWS available (click on country for further information)"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-heat-index.pt:81
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:79
 msgid "<!-- <span class=\"map-type\">NAS</span> --> No information"
 msgstr ""
 
@@ -310,19 +310,9 @@ msgstr ""
 msgid "<i class=\"fa fa-exclamation-circle\" aria-hidden=\"true\"></i> <span>x</span> <div id=\"hover-content\">x</div>"
 msgstr ""
 
-# ,
-# ,
-# ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:152
-msgid "<strong>Last Modified in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
-msgstr "<strong> ultima modificare în climatizare-adapt </strong> $ {dinamic_content}"
-
-# ,
-# ,
-# ,
-#: ../../climateadapt/browser/pt/ace_macros.pt:148
-msgid "<strong>Published in Climate-ADAPT</strong> ${DYNAMIC_CONTENT}"
-msgstr "<strong> Publicat în Climate-Adapt </strong> $ {Dynamic_Content}"
+#: ../../climateadapt/browser/pt/casestudy_view.pt:241
+msgid "<span>x</span> (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
+msgstr ""
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:54
 msgid "About the Urban Adaptation Support Tool"
@@ -365,6 +355,7 @@ msgid "Adaptation Sectors"
 msgstr ""
 
 # ,
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:13
 #: ../../climateadapt/vocabulary.py:269
 msgid "Adaptation options"
 msgstr "Opțiuni de adaptare"
@@ -508,14 +499,12 @@ msgstr "Clădiri"
 msgid "Case Study Description"
 msgstr "Descrierea studiului de caz"
 
-# ,
-# ,
-# ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:241
-msgid "Case Study Illustrations (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
-msgstr "Ilustrații de studiu de caz ($ {dinamic_content}) <i class = \"fa fa-pictură-o\" aria-hidden = \"true\"> </i>"
+msgid "Case Study Illustrations"
+msgstr ""
 
 # ,
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:14
 #: ../../climateadapt/vocabulary.py:270
 msgid "Case studies"
 msgstr "Studii de caz"
@@ -570,7 +559,7 @@ msgid "Choose a region"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:75
-#: ../../climateadapt/browser/pt/countries-heat-index.pt:48
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:46
 msgid "Choose thematic map:"
 msgstr "Alege o tema:"
 
@@ -693,16 +682,10 @@ msgstr "Țări"
 # ,
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:253
+#: ../../climateadapt/browser/pt/aceitem_view.pt:83
+#: ../../climateadapt/browser/pt/aceproject_view.pt:130
 msgid "Countries:"
 msgstr "Țări:"
-
-# ,
-# ,
-# ,
-#: ../../climateadapt/browser/pt/aceitem_view.pt:84
-#: ../../climateadapt/browser/pt/aceproject_view.pt:131
-msgid "Countries: ${DYNAMIC_CONTENT}"
-msgstr "Țări: $ {dinamic_content}"
 
 # ,
 # ,
@@ -851,6 +834,10 @@ msgstr "E-mail"
 msgid "Energy"
 msgstr "Energie"
 
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:17
+msgid "Events"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/c3sindicator_view.pt:58
 msgid "Explore in detail"
 msgstr ""
@@ -895,6 +882,10 @@ msgstr "Silvicultură"
 #: ../../climateadapt/browser/pt/aceproject_view.pt:87
 msgid "Funding Programme:"
 msgstr "Program de finanțare:"
+
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:7
+msgid "General"
+msgstr ""
 
 # ,
 # ,
@@ -951,7 +942,11 @@ msgstr "Nivel de guvernare:"
 msgid "Guidance"
 msgstr "Îndrumare"
 
-#: ../../climateadapt/browser/pt/countries-heat-index.pt:113
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:10
+msgid "Guidance documents"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:111
 msgid "HHWS website"
 msgstr ""
 
@@ -979,7 +974,7 @@ msgstr "Sănătate"
 msgid "Health impact:"
 msgstr "Impact asupra sănătății:"
 
-#: ../../climateadapt/browser/pt/countries-heat-index.pt:107
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:105
 msgid "Heat index of HHWS:"
 msgstr ""
 
@@ -1039,6 +1034,10 @@ msgstr "Importanța și relevanța adaptării"
 msgid "Indicators"
 msgstr "Indicatori"
 
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:9
+msgid "Information Portals"
+msgstr ""
+
 # ,
 #: ../../climateadapt/vocabulary.py:263
 msgid "Information portals"
@@ -1057,7 +1056,7 @@ msgid "Institutional: Law and regulations"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:56
-msgid "Item Documents (<span>${DYNAMIC_CONTENT}</span>)"
+msgid "Item Documents"
 msgstr ""
 
 # ,
@@ -1097,6 +1096,10 @@ msgstr "Cuvinte cheie"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:284
 msgid "Keywords:"
 msgstr "Cuvinte cheie:"
+
+#: ../../climateadapt/browser/pt/ace_macros.pt:152
+msgid "Last Modified in Climate-ADAPT"
+msgstr ""
 
 # ,
 # ,
@@ -1215,7 +1218,7 @@ msgstr "Reportate ca adoptate NAS si NAP"
 msgid "Name of the strategy/ plan (If adopted)"
 msgstr "Numele strategiei/ planului (dacă este adoptat)"
 
-#: ../../climateadapt/browser/pt/countries-heat-index.pt:55
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:53
 msgid "National HHAP"
 msgstr ""
 
@@ -1223,7 +1226,11 @@ msgstr ""
 msgid "National adaption policy"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-heat-index.pt:63
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:16
+msgid "News"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:61
 msgid "No HHAP"
 msgstr ""
 
@@ -1235,7 +1242,7 @@ msgstr ""
 msgid "No data reported in 2021"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-heat-index.pt:67
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:65
 msgid "No information"
 msgstr ""
 
@@ -1292,6 +1299,7 @@ msgid "Only NAS reported as adopted"
 msgstr "Reportate doar ca NAS"
 
 # ,
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:15
 #: ../../climateadapt/vocabulary.py:271
 msgid "Organisations"
 msgstr "Organizații"
@@ -1393,6 +1401,7 @@ msgid "Project information"
 msgstr "Informatii despre proiect"
 
 # ,
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:8
 #: ../../climateadapt/vocabulary.py:262
 msgid "Publications and reports"
 msgstr "Publicații și rapoarte"
@@ -1403,6 +1412,10 @@ msgstr "Publicații și rapoarte"
 #: ../../climateadapt/browser/pt/item_statistics.pt:24
 msgid "Published"
 msgstr "Publicat"
+
+#: ../../climateadapt/browser/pt/ace_macros.pt:148
+msgid "Published in Climate-ADAPT"
+msgstr ""
 
 # ,
 # ,
@@ -1461,6 +1474,7 @@ msgid "Relevant tile"
 msgstr ""
 
 # ,
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:12
 #: ../../climateadapt/vocabulary.py:268
 msgid "Research and knowledge projects"
 msgstr "Proiecte de cercetare și cunoștințe"
@@ -1671,7 +1685,7 @@ msgstr "Sub naționali"
 msgid "Submit"
 msgstr "Trimite"
 
-#: ../../climateadapt/browser/pt/countries-heat-index.pt:59
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:57
 msgid "Subnational or local HHAP"
 msgstr ""
 
@@ -1735,6 +1749,7 @@ msgid "There are <a href=\"http://ec.europa.eu/regional_policy/cooperate/coopera
 msgstr ""
 
 # ,
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:11
 #: ../../climateadapt/vocabulary.py:267
 msgid "Tools"
 msgstr "Instrumente"
@@ -1863,12 +1878,9 @@ msgstr "Site -uri web:"
 msgid "What sectors are concerned"
 msgstr "Ce sectoare sunt în cauză"
 
-# ,
-# ,
-# ,
 #: ../../climateadapt/browser/pt/item_statistics.pt:19
-msgid "Year: <span>${DYNAMIC_CONTENT}</span>"
-msgstr "An: <span> $ {dinamic_content} </span>"
+msgid "Year:"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:148
 msgid "[Disclaimer]"

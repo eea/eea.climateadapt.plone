@@ -53,7 +53,7 @@
           <div class="aceitem-right" metal:fill-slot="ace-right-slot">
 
              <div tal:condition="context/contentValues">
-                <h4 tal:define="file_nr context/contentValues" i18n:translate="">Item Documents (<span tal:content="python: len(file_nr)"></span>) </h4>
+                <h4 tal:define="file_nr context/contentValues"><span i18n:translate="">Item Documents</span> (<span tal:content="python: len(file_nr)"></span>) </h4>
                 <ul>
                     <li tal:repeat="file context/contentValues">
                         <a tal:attributes="href file/absolute_url" tal:content="file/Title">
@@ -79,8 +79,8 @@
             <p tal:content="structure python:view.render_geochar(context.geochars)" tal:condition="context/geochars"/>
             <tal:cond condition="not: context/geochars">
               <p tal:condition="context/spatial_layer" tal:content="context/spatial_layer"/>
-              <p tal:condition="context/spatial_values" i18n:translate="">
-                Countries:
+              <p tal:condition="context/spatial_values">
+                <span i18n:translate="">Countries:</span>
                 <span tal:replace="python:', '.join([x.upper() for x in context.spatial_values])"/>
               </p>
             </tal:cond>

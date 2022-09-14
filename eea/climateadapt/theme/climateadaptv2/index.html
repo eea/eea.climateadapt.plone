@@ -14,8 +14,8 @@
     <link rel="preload" href="static/css/compiled-css.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
     <noscript><link rel="stylesheet" href="static/css/compiled-css.css" /></noscript>
     
-    <link rel="preload" href="static/css/compiled-less.css?rel=76dbcbeff1" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=76dbcbeff1" /></noscript>
+    <link rel="preload" href="static/css/compiled-less.css?rel=1f5d65c2d0" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=1f5d65c2d0" /></noscript>
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="static/images/favicon/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/images/favicon/apple-touch-icon-114x114.png" />
@@ -663,7 +663,7 @@
               <div class="text-center">
                 <p i18n:translate="">The database contains quality checked information and is annotated
                    by climate adaptation experts with keywords.</p>
-                <p i18n:translate="">Please check our <a tal:attributes="href python:view.translate_url('/en/help/guidance')">Guidance to search function</a> for more help on how to search the database.</p>
+                <p i18n:translate="guidance_link">Please check our <a i18n:translate="" i18n:name="page_url" tal:attributes="href python:view.translate_url('/en/help/guidance')">Guidance to search function</a> for more help on how to search the database.</p>
               </div>
     
               <div class="db-categories flex-wrapper">
@@ -1085,11 +1085,11 @@
                 </div>
               </div>
               <div class="see-more-link">
-                <p i18n:translate="">For more informations visit:
+                <p><span i18n:translate="">For more informations visit:</span>
                   <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies')"
                       href="/eu-adaptation-policy/sector-policies">
                     <i class="fa fa-angle-double-right"></i>
-                    EU Sector Policies
+                    <span i18n:translate="">EU Sector Policies</span>
                   </a>
                 </p>
               </div>
@@ -1130,16 +1130,16 @@
                   <p i18n:translate="">Climate-ADAPT case studies showcase initiatives that are already
                     being carried out in Europe to adapt to climate change and increase
                     resilience to extreme weather and slow-onset events. </p>
-                  <p i18n:translate="">Case studies are flagship of the Climate-ADAPT platform.
+                  <p i18n:translate="case_studies_tab">Case studies are flagship of the Climate-ADAPT platform.
                     They have a comprehensive structure that covers all the key
                     aspects in the implementation cycle of adaptation measures and
                     are careful and specifically prepared for Climate-ADAPT by the
                     organisation that is involved in the implementation with the
                     support of EEA, following a set of
-                    <a tal:attributes="href python:view.translate_url('/en/repository/11090223.pdf')"
+                    <a i18n:translate="" i18n:name="case_studies_tab_repository" tal:attributes="href python:view.translate_url('/en/repository/11090223.pdf')"
                       href="https://climate-adapt.eea.europa.eu/repository/11090223.pdf">criteria</a>
                     and also in collaboration with the main stakeholders.
-                    See the <a
+                    See the <a i18n:translate="" i18n:name="case_studies_tab_pages"
                       tal:attributes="href python:view.translate_url('/en/knowledge/tools/case-studies-climate-adapt')"
                       href="../knowledge/tools/case-studies-climate-adapt">Case Studies Page</a>.</p>
                   <div class="ca-booklet">
@@ -1148,12 +1148,12 @@
                          width="39"
                          height="54"
                          />
-                    <p i18n:translate="">See how Europe is adapting to climate change:
+                    <p><span i18n:translate="">See how Europe is adapting to climate change:</span>
                       <a class="ca-booklet-link"
                           tal:attributes="href python:view.translate_url('/en/about/climate-adapt-10-case-studies-online.pdf')"
                          href="../about/climate-adapt-10-case-studies-online.pdf">
                         <i class="fa fa-angle-double-right"></i>
-                        Case studies booklet
+                        <span i18n:translate="">Case studies booklet</span>
                       </a>
                     </p>
                   </div>

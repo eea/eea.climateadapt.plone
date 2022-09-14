@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-09 01:50+0000\n"
+"POT-Creation-Date: 2022-09-14 11:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,14 +103,18 @@ msgstr "Budovy mohou být zranitelné vůči změně klimatu. V budoucnu může 
 msgid "Case <br /> Studies"
 msgstr ""
 
+#: ../theme/climateadaptv2/index.html:1142
+msgid "Case Studies Page"
+msgstr ""
+
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:685
 msgid "Case studies"
 msgstr "Případové studie"
 
-#: ../theme/climateadaptv2/index.html:1142
-msgid "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of <a href=\"${DYNAMIC_CONTENT}\">criteria</a> and also in collaboration with the main stakeholders. See the <a href=\"${DYNAMIC_CONTENT}\">Case Studies Page</a>."
+#: ../theme/climateadaptv2/index.html:1156
+msgid "Case studies booklet"
 msgstr ""
 
 # ,
@@ -182,6 +186,10 @@ msgstr "Snížení rizika katastrofy"
 msgid "EU Sector <br /> Policies"
 msgstr ""
 
+#: ../theme/climateadaptv2/index.html:1092
+msgid "EU Sector Policies"
+msgstr ""
+
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:832
@@ -217,13 +225,9 @@ msgstr "Zjistěte, jak přispět různými typy informací k úpravě klimatu"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1277
+#: ../theme/climateadaptv2/index.html:1088
 msgid "For more informations visit:"
 msgstr "Pro více informací navštivte:"
-
-#: ../theme/climateadaptv2/index.html:1089
-msgid "For more informations visit: <a href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> EU Sector Policies </a>"
-msgstr ""
 
 # ,
 # ,
@@ -255,6 +259,10 @@ msgstr "Přejít na evropskou observatoř pro klima a zdraví"
 #: ../theme/climateadaptv2/index.html:694
 msgid "Guidance"
 msgstr "Vedení"
+
+#: ../theme/climateadaptv2/index.html:666
+msgid "Guidance to search function"
+msgstr ""
 
 # ,
 # ,
@@ -333,10 +341,6 @@ msgstr "Organizace"
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "Během několika posledních let Evropa zažila všechny typy přírodních katastrof: závažné povodní, sucha a lesní požáry s ničivými účinky na životy lidí, na evropskou ekonomiku a životní prostředí. V uplynulém desetiletí Evropská komise přijala několik strategií a opatření, aby se vyrovnaly se snížením rizika katastrof, jako například směrnice o povodních a její implementaci (časový rozvrh), akce EU o nedostatku vody a suchu, zelený dokument o pojištění v Kontext přírodních a umělých katastrof."
 
-#: ../theme/climateadaptv2/index.html:666
-msgid "Please check our <a href=\"${DYNAMIC_CONTENT}\">Guidance to search function</a> for more help on how to search the database."
-msgstr ""
-
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:748
@@ -380,8 +384,8 @@ msgstr ""
 msgid "See complete database"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1152
-msgid "See how Europe is adapting to climate change: <a class=\"ca-booklet-link\" href=\"${DYNAMIC_CONTENT}\"> <i class=\"fa fa-angle-double-right\"></i> Case studies booklet </a>"
+#: ../theme/climateadaptv2/index.html:1151
+msgid "See how Europe is adapting to climate change:"
 msgstr ""
 
 # ,
@@ -494,6 +498,20 @@ msgstr "Vodní hospodářství"
 #: ../theme/climateadaptv2/tab-policies-rule.html:302
 msgid "Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe."
 msgstr "Vodní zdroje jsou přímo ovlivněny změnou klimatu a řízení těchto zdrojů ovlivňuje zranitelnost ekosystémů, sociálně-ekonomické činnosti a lidské zdraví. Očekává se, že vodní hospodářství bude hrát v adaptaci stále ústřední roli. Předpokládá se, že změna klimatu povede k velkým změnám dostupnosti vody v celé Evropě se zvyšujícím se nedostatkem vody a suchem hlavně v jižní Evropě a zvyšováním rizika povodní po většinu Evropy."
+
+#. Default: "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of ${case_studies_tab_repository} and also in collaboration with the main stakeholders. See the ${case_studies_tab_pages}."
+#: ../theme/climateadaptv2/index.html:1142
+msgid "case_studies_tab"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1139
+msgid "criteria"
+msgstr ""
+
+#. Default: "Please check our ${page_url} for more help on how to search the database."
+#: ../theme/climateadaptv2/index.html:666
+msgid "guidance_link"
+msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1348
 msgid "informs about how Climate-ADAPT will be further expanded with new knowledge compoments towards becoming 'the authoritative European platform for adaptation' and outlines priority actions..."
