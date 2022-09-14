@@ -249,7 +249,7 @@ a.reset-button {
             <div class="cols-md-12 cs_filter_sector_div" tal:define="sectors view/get_sectors">
                 <h4 i18n:translate="">Adaptation Sectors</h4>
                 <p class="cs_filter_sector" style="display:none;" tal:repeat="sector sectors">
-                    <span class="float-left" >Sector name</span>
+                    <span class="float-left" tal:content="sector/value">Sector name</span>
                     <input type="checkbox" name="sectors" tal:attributes="value sector/key" >
                 </p>
             </div>
