@@ -482,4 +482,12 @@
       preserveOriginal="false"
       />
 
+  <monkey:patch
+      original="getCache"
+      replacement="eea.climateadapt.patch.getCache"
+      module="plone.app.theming.transform"
+      description="Patch getCache"
+      preserveOriginal="false"
+      />
+
 </configure>
