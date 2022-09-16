@@ -21,6 +21,7 @@ from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
 from zope.site.hooks import getSite
 
+from eea.climateadapt.translation.utils import TranslationUtilsMixin
 # from Products.LDAPUserFolder.LDAPDelegate import filter_format
 
 try:
@@ -81,7 +82,7 @@ class CustomizedPersonalBarViewlet(BasePersonalBarViewlet):
                     redirect_to_personal_preferences()
 
 
-class SharePageSubMenuViewlet(ViewletBase):
+class SharePageSubMenuViewlet(ViewletBase, TranslationUtilsMixin):
     index = ViewPageTemplateFile("pt/viewlet_sharepage_submenu.pt")
 
     def update(self):
