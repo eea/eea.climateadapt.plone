@@ -777,11 +777,13 @@ def is_obj_skipped_for_translation(obj):
     if obj.portal_type in ['eea.climateadapt.city_profile','LIF']:
         return True
 
-    #skip by string in path
-    skip_path_items = ['.jpg','.pdf','.png']
-    obj_url = obj.absolute_url()
-    if any(skip_item in obj_url for skip_item in skip_path_items):
-        return True
+    # DO NOT SKIP, images or pdfs from case-studies have description and title
+    # fields those are needed to be translated (or at least to be copied)
+    # skip by string in path
+    # skip_path_items = ['.jpg','.pdf','.png']
+    # obj_url = obj.absolute_url()
+    # if any(skip_item in obj_url for skip_item in skip_path_items):
+        # return True
 
     #TODO: add here archived and other rules
     return False
