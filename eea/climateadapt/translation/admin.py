@@ -1074,6 +1074,7 @@ def translation_step_3_one_file(json_file, language, catalog, portal_type = None
 
     for key in json_data['item'].keys():
         translated_msg = get_translated(json_data['item'][key], language.upper())
+
         if translated_msg:
             encoded_text = translated_msg.encode('latin-1')
 
@@ -1245,8 +1246,8 @@ def translation_step_4(site, request):
             "start", "end", "effective", "timezone", "contact_email",
             "contact_name"
             ],
-        "File": ["file", "effective"],
-        "Image": ["image", "effective"],
+        "File": ["file", "effective", "filename"],
+        "Image": ["image", "effective", "filename"],
         "collective.cover.content": ["title", "effective",'template_layout'],
     }
 
