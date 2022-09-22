@@ -2506,7 +2506,7 @@ msgstr "Narzędzie wsparcia adaptacji - Pierwsze kroki"
 # ,
 #: ../../climateadapt/browser/pt/footer_logos.pt:10
 msgid "The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href=\"https://ec.europa.eu/\">European Commission</a> and the <a href=\"https://www.eea.europa.eu/\">European Environment Agency.</a>"
-msgstr "Europejska platforma o adaptacyji klimatycznej Climate-ADAPT to partnerstwo między <a href=\"https://ec.europa.eu/\"> Komisją Europejską </a> i <a href = \"https: //www.eea .europa.eu/\"> Europejską Agencją Środowiska (EEA). </a>"
+msgstr "Europejska platforma o adaptacyji klimatycznej Climate-ADAPT to partnerstwo między <a href=\"https://ec.europa.eu/\"> Komisją Europejską </a> i <a href=\"https://www.eea.europa.eu/\"> Europejską Agencją Środowiska (EEA). </a>"
 
 # ,
 # ,

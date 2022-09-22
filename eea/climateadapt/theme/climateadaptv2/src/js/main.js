@@ -834,6 +834,23 @@ function fixTiles() {
   });
 }
 
+function fixTilesEuPolicy() {
+  bodyTag = document.getElementsByTagName("body");
+  if (bodyTag.length==0) {
+    return 0;
+  }
+  if (!bodyTag[0].classList.contains('subsection-sector-policies')) {
+    return 0;
+  }
+  tiles = $('.col-md-9 .tile.tile-default');
+  if (tiles.length == 4) {
+    for (i=1;i<4;i++) {
+      $(tiles[i]).addClass('col-md-4');
+    }
+  }
+  console.log('im in');
+}
+
 function fixPDFButton() {
   // Move PDF button in the content area
   var $pdfButton = $("#document-action-download_pdf");
@@ -985,6 +1002,7 @@ $(document).ready(function () {
   initCustomAccordions();
   initCountryProfileAccordions();
   fixTiles();
+  fixTilesEuPolicy();
   fixForms();
   fixMoveMap();
   fixUseCases();
