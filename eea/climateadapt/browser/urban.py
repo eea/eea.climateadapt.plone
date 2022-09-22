@@ -37,8 +37,8 @@ class LandingPage(BrowserView, TranslationUtilsMixin):
                         u"filter": {
                             u"bool": {
                                 u"must": [
-                                    {u"bool": {u"should":{u"term": {u"typeOfData": search_type}}}},
-                                    {u"bool": {u"should":{u"term": {u"sectors": "URBAN"}}}},
+                                    {u"bool": {u"should":[{u"term": {u"typeOfData": search_type}}]}},
+                                    {u"bool": {u"should":[{u"term": {u"sectors": "Urban"}}]}},
                                 ]
                             }
                         },
