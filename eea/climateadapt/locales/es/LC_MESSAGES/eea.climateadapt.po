@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-22 18:23+0000\n"
+"POT-Creation-Date: 2022-09-22 21:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1356,6 +1356,10 @@ msgstr "Areas costeras"
 msgid "Comments:"
 msgstr "Comentarios:"
 
+#: ../../climateadapt/browser/pt/help-categories.pt:10
+msgid "Common definitions of the terms used frequently in the clearinghouse."
+msgstr "Definiciones comunes de los términos utilizados con frecuencia en la cámara de compensación."
+
 # ,
 # ,
 # ,
@@ -1714,6 +1718,14 @@ msgstr "Fuente externa"
 msgid "Extreme Temperatures"
 msgstr "Temperaturas extremas"
 
+#: ../../climateadapt/browser/pt/help-categories.pt:22
+msgid "FAQ for providers"
+msgstr "Preguntas frecuentes para proveedores"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:29
+msgid "FAQ for users"
+msgstr "Preguntas frecuentes para los usuarios"
+
 # ,
 # ,
 # ,
@@ -1725,6 +1737,10 @@ msgstr "Temperaturas extremas"
 #: ../../climateadapt/vocabulary.py:300
 msgid "Financial"
 msgstr "Financiero"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:24
+msgid "Find out how to contribute different types of information to Climate-ADAPT."
+msgstr "Descubra cómo aportar diferentes tipos de información a Climate-ADAPT."
 
 # ,
 # ,
@@ -1749,6 +1765,10 @@ msgstr "Inundación"
 msgid "Forestry"
 msgstr "Forestal"
 
+#: ../../climateadapt/browser/pt/help-categories.pt:31
+msgid "Frequently asked questions in one place."
+msgstr "Preguntas frecuentes en un solo lugar."
+
 # ,
 # ,
 # ,
@@ -1766,7 +1786,7 @@ msgstr "General"
 
 #: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:60
 msgid "Geographic characterisation"
-msgstr ""
+msgstr "Caracterización geográfica"
 
 # ,
 # ,
@@ -1815,6 +1835,10 @@ msgstr "Caracterización geográfica:"
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:50
 msgid "Getting started"
 msgstr "Empezando"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:8
+msgid "Glossary"
+msgstr "Glosario"
 
 # ,
 # ,
@@ -1865,6 +1889,14 @@ msgstr "Guia"
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:10
 msgid "Guidance documents"
 msgstr "Documentos de orientación"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:17
+msgid "Guidance on the Climate-ADAPT Database Search function."
+msgstr "Orientación sobre la función de búsqueda de la base de datos de Climate-ADAPT."
+
+#: ../../climateadapt/browser/pt/help-categories.pt:15
+msgid "Guidance to <br /> search function"
+msgstr "Orientación a la  <br />función de búsqueda"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:111
 msgid "HHWS website"
@@ -1964,6 +1996,10 @@ msgstr "Hielo y nieve"
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:179
 msgid "Identifying adaptation options"
 msgstr "Identificación de opciones de adaptación"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:38
+msgid "If you are new user the video tutorials can help you get started."
+msgstr "Si es un usuario nuevo, los tutoriales en video pueden ayudarlo a comenzar."
 
 # ,
 # ,
@@ -2170,7 +2206,7 @@ msgstr "Tiempo de vida"
 
 #: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:26
 msgid "Link to Map Viewer:"
-msgstr ""
+msgstr "Enlace al visor de mapas:"
 
 # ,
 # ,
@@ -3324,6 +3360,10 @@ msgstr "Regiones transnacionales y otras regiones y países"
 #: ../../climateadapt/vocabulary.py:306
 msgid "Transport"
 msgstr "Transporte"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:36
+msgid "Tutorial videos"
+msgstr "Vídeos tutoriales"
 
 # ,
 # ,

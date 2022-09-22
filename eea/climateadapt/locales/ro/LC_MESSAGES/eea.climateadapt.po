@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-22 18:23+0000\n"
+"POT-Creation-Date: 2022-09-22 21:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -631,6 +631,10 @@ msgstr "Zone de coastă"
 msgid "Comments:"
 msgstr "Comentarii:"
 
+#: ../../climateadapt/browser/pt/help-categories.pt:10
+msgid "Common definitions of the terms used frequently in the clearinghouse."
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -857,6 +861,14 @@ msgstr "Sursă externă"
 msgid "Extreme Temperatures"
 msgstr "Temperaturi extreme"
 
+#: ../../climateadapt/browser/pt/help-categories.pt:22
+msgid "FAQ for providers"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/help-categories.pt:29
+msgid "FAQ for users"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -864,6 +876,10 @@ msgstr "Temperaturi extreme"
 #: ../../climateadapt/vocabulary.py:300
 msgid "Financial"
 msgstr "Financiar"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:24
+msgid "Find out how to contribute different types of information to Climate-ADAPT."
+msgstr ""
 
 # ,
 #: ../../climateadapt/vocabulary.py:340
@@ -877,6 +893,10 @@ msgstr "Inundare"
 #: ../../climateadapt/vocabulary.py:301
 msgid "Forestry"
 msgstr "Silvicultură"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:31
+msgid "Frequently asked questions in one place."
+msgstr ""
 
 # ,
 # ,
@@ -923,6 +943,10 @@ msgstr "Caracterizare geografică:"
 msgid "Getting started"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/help-categories.pt:8
+msgid "Glossary"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:11
 #: ../../climateadapt/browser/pt/c3sindicator_view.pt:132
 msgid "Go back"
@@ -950,6 +974,14 @@ msgstr "Îndrumare"
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:10
 msgid "Guidance documents"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/help-categories.pt:17
+msgid "Guidance on the Climate-ADAPT Database Search function."
+msgstr ""
+
+#: ../../climateadapt/browser/pt/help-categories.pt:15
+msgid "Guidance to <br /> search function"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:111
@@ -1010,6 +1042,10 @@ msgstr "Gheață și zăpadă"
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:74
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:179
 msgid "Identifying adaptation options"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/help-categories.pt:38
+msgid "If you are new user the video tutorials can help you get started."
 msgstr ""
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:90
@@ -1783,6 +1819,10 @@ msgstr ""
 #: ../../climateadapt/vocabulary.py:306
 msgid "Transport"
 msgstr "Transport"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:36
+msgid "Tutorial videos"
+msgstr ""
 
 # ,
 # ,

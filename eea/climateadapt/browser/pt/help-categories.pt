@@ -1,4 +1,7 @@
-<div tal:define="portal_url context/portal_url" class="flex-wrapper">
+<div tal:define="portal_url context/portal_url" class="flex-wrapper"  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  i18n:domain="eea.climateadapt"
+>
     <div class="help-section action-flex-item">
       <a tal:attributes="href string:${portal_url}/help/glossary" class="help-section-header">
         <div class="help-icon glossary-icon"></div>

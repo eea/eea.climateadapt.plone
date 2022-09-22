@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-22 18:23+0000\n"
+"POT-Creation-Date: 2022-09-22 21:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1205,6 +1205,10 @@ msgstr "Küstenzone"
 msgid "Comments:"
 msgstr "Bemerkungen:"
 
+#: ../../climateadapt/browser/pt/help-categories.pt:10
+msgid "Common definitions of the terms used frequently in the clearinghouse."
+msgstr "Allgemeine Definitionen der in der Clearingstelle häufig verwendeten Begriffe."
+
 # ,
 # ,
 # ,
@@ -1505,6 +1509,14 @@ msgstr "Externe Quelle"
 msgid "Extreme Temperatures"
 msgstr "Extreme Temperaturen"
 
+#: ../../climateadapt/browser/pt/help-categories.pt:22
+msgid "FAQ for providers"
+msgstr "FAQ für Anbieter"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:29
+msgid "FAQ for users"
+msgstr "FAQ für Benutzer"
+
 # ,
 # ,
 # ,
@@ -1514,6 +1526,10 @@ msgstr "Extreme Temperaturen"
 #: ../../climateadapt/vocabulary.py:300
 msgid "Financial"
 msgstr "Finanziell"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:24
+msgid "Find out how to contribute different types of information to Climate-ADAPT."
+msgstr "Finden Sie heraus, wie Sie verschiedene Arten von Informationen zu Climate-ADAPT beitragen können."
 
 # ,
 # ,
@@ -1533,6 +1549,10 @@ msgstr "Überschwemmung"
 #: ../../climateadapt/vocabulary.py:301
 msgid "Forestry"
 msgstr "Forstwirtschaft"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:31
+msgid "Frequently asked questions in one place."
+msgstr "Häufig gestellte Fragen an einem Ort."
 
 # ,
 # ,
@@ -1593,6 +1613,10 @@ msgstr "Geografische Charakterisierung:"
 msgid "Getting started"
 msgstr "Einstieg"
 
+#: ../../climateadapt/browser/pt/help-categories.pt:8
+msgid "Glossary"
+msgstr "Glossar"
+
 # ,
 # ,
 # ,
@@ -1635,6 +1659,14 @@ msgstr "Orientierungshilfe"
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:10
 msgid "Guidance documents"
 msgstr "Leitfäden"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:17
+msgid "Guidance on the Climate-ADAPT Database Search function."
+msgstr "Anleitung zur Suchfunktion der Climate-ADAPT-Datenbank."
+
+#: ../../climateadapt/browser/pt/help-categories.pt:15
+msgid "Guidance to <br /> search function"
+msgstr "Anleitung zur <br /> Suchfunktion"
 
 # ,
 # ,
@@ -1723,6 +1755,10 @@ msgstr "Eis und Schnee"
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:179
 msgid "Identifying adaptation options"
 msgstr "Anpassungsoptionen identifizieren"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:38
+msgid "If you are new user the video tutorials can help you get started."
+msgstr "Wenn Sie ein neuer Benutzer sind, können Ihnen die Video-Tutorials beim Einstieg helfen."
 
 # ,
 # ,
@@ -2907,6 +2943,10 @@ msgstr "Transnationale Regionen und andere Regionen und Länder"
 #: ../../climateadapt/vocabulary.py:306
 msgid "Transport"
 msgstr "Transport"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:36
+msgid "Tutorial videos"
+msgstr "Tutorial-Videos"
 
 # ,
 # ,
