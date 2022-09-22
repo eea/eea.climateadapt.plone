@@ -889,7 +889,7 @@ msgstr "Descrizione del caso studio"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:241
 msgid "Case Study Illustrations"
-msgstr ""
+msgstr "Illustrazioni del caso studio"
 
 # ,
 # ,
@@ -1316,7 +1316,7 @@ msgstr "Energia"
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:17
 msgid "Events"
-msgstr ""
+msgstr "Eventi"
 
 # ,
 # ,
@@ -1379,7 +1379,7 @@ msgstr "Programma di finanziamento:"
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:7
 msgid "General"
-msgstr ""
+msgstr "Generale"
 
 # ,
 # ,
@@ -1454,11 +1454,11 @@ msgstr "Guida"
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:10
 msgid "Guidance documents"
-msgstr ""
+msgstr "Documenti di orientamento"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:111
 msgid "HHWS website"
-msgstr ""
+msgstr "Sito web HHWS"
 
 # ,
 # ,
@@ -1489,7 +1489,7 @@ msgstr "Impatto sulla salute:"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:105
 msgid "Heat index of HHWS:"
-msgstr ""
+msgstr "Indice di calore di HHWS:"
 
 # ,
 # ,
@@ -1575,7 +1575,7 @@ msgstr "Indicatori"
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:9
 msgid "Information Portals"
-msgstr ""
+msgstr "Portali"
 
 # ,
 # ,
@@ -1608,7 +1608,7 @@ msgstr "Istituzionale: legge e regolamenti"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:56
 msgid "Item Documents"
-msgstr ""
+msgstr "Documenti"
 
 # ,
 # ,
@@ -1655,7 +1655,7 @@ msgstr "Parole chiave:"
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:152
 msgid "Last Modified in Climate-ADAPT"
-msgstr ""
+msgstr "Aggiornamento più recente in Climate-ADAPT"
 
 # ,
 # ,
@@ -1816,7 +1816,7 @@ msgstr "Nome della strategia/ piano (se adottato)"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:53
 msgid "National HHAP"
-msgstr ""
+msgstr "HHAP nazionale"
 
 # ,
 # ,
@@ -1828,11 +1828,11 @@ msgstr "Politica di adattamento nazionale"
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:16
 msgid "News"
-msgstr ""
+msgstr "Notizia"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:61
 msgid "No HHAP"
-msgstr ""
+msgstr "No HHAP"
 
 # ,
 # ,
@@ -1849,7 +1849,7 @@ msgstr "Nessun dato riportato nel 2021"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:65
 msgid "No information"
-msgstr ""
+msgstr "Nessuna informazione"
 
 # ,
 # ,
@@ -2094,7 +2094,7 @@ msgstr "Pubblicato"
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:148
 msgid "Published in Climate-ADAPT"
-msgstr ""
+msgstr "Pubblicato in Climate-ADAPT"
 
 # ,
 # ,
@@ -2462,7 +2462,7 @@ msgstr "Invia"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:57
 msgid "Subnational or local HHAP"
-msgstr ""
+msgstr "HHAP subnazionale o locale"
 
 # ,
 # ,
@@ -2706,7 +2706,7 @@ msgstr "Quali settori sono interessati"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:19
 msgid "Year:"
-msgstr ""
+msgstr "Anno:"
 
 # ,
 # ,
