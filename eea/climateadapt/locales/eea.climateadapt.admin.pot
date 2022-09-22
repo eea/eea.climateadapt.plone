@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-14 11:44+0000\n"
+"POT-Creation-Date: 2022-09-22 08:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -105,7 +105,7 @@ msgstr ""
 msgid "Check-out created"
 msgstr ""
 
-#: ../../climateadapt/browser/__init__.py:208
+#: ../../climateadapt/browser/__init__.py:209
 msgid "City"
 msgstr ""
 

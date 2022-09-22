@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-14 11:44+0000\n"
+"POT-Creation-Date: 2022-09-22 08:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -535,7 +535,7 @@ msgid "Choose thematic map:"
 msgstr ""
 
 # ,
-#: ../../climateadapt/browser/__init__.py:208
+#: ../../climateadapt/browser/__init__.py:209
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
 msgid "City"
 msgstr "Borg"
@@ -563,6 +563,7 @@ msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:70
+#: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:51
 #: ../../climateadapt/browser/pt/video_view.pt:108
 msgid "Climate impacts"
 msgstr "Loftslagsáhrif"
@@ -723,6 +724,7 @@ msgstr "Vistkerfisbundnar aðferðir (GI)"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:73
+#: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:54
 #: ../../climateadapt/browser/pt/video_view.pt:113
 msgid "Elements"
 msgstr "Þættir"
@@ -789,6 +791,10 @@ msgstr "Fjármögnunaráætlun:"
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:7
 msgid "General"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:60
+msgid "Geographic characterisation"
 msgstr ""
 
 # ,
@@ -956,6 +962,7 @@ msgstr "Lykil viðkvæmra geira"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:65
+#: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:48
 #: ../../climateadapt/browser/pt/video_view.pt:103
 msgid "Keywords"
 msgstr "Lykilorð"
@@ -993,10 +1000,14 @@ msgstr "Lagalegir þættir"
 msgid "Life Time"
 msgstr "Líftími"
 
+#: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:26
+msgid "Link to Map Viewer:"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:44
 #: ../../climateadapt/browser/pt/indicator_view.pt:49
-#: ../../climateadapt/browser/pt/video_view.pt:62
+#: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:37
 msgid "Link to metadata:"
 msgstr "Hlekkur á lýsigögn:"
 
@@ -1333,7 +1344,7 @@ msgstr "Stefnur í geiranum"
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:76
 #: ../../climateadapt/browser/pt/indicator_view.pt:98
-#: ../../climateadapt/browser/pt/video_view.pt:118
+#: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:57
 msgid "Sectors"
 msgstr "Geirar"
 
