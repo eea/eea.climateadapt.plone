@@ -6,7 +6,7 @@
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   lang="en"
   metal:use-macro="context/main_template/macros/master"
-  i18n:domain="example.conference">
+  i18n:domain="eea.climateadapt">
   <body>
 
     <metal:main fill-slot="main">
@@ -23,7 +23,7 @@
 
             <h4 class="reference-title" i18n:translate="">Reference information</h4>
 
-            <h5 i18n:translate="">Link to Map Viewer: </h5>
+            <h5 i18n:translate="">Link to Map Viewer:</h5>
             <div tal:define="link python: view.compose_layer_link()">
               <a tal:attributes="href link/url" tal:content="link/title"></a>
             </div>
