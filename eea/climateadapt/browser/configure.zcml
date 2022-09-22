@@ -133,6 +133,7 @@
       for="*"
       template="pt/urban-landing-page.pt"
       permission="zope2.View"
+      class=".urban.LandingPage"
       />
 
   <browser:page

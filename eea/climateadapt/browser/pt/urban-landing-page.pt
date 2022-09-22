@@ -1,0 +1,410 @@
+<style>
+.policies-nav-item {
+  width:200px;
+  margin-top:20px;
+}
+.main-tab-item a i.fa{
+  font-size:44px;
+  color:#005c96;
+  margin-bottom:20px;
+}
+.urban-landing .main-tab-item{
+  width:140px;
+}
+.urban-landing .db-category-wrapper{
+  text-align:left;
+}
+.urban-landing .db-category-icon i.fa{
+  font-size:60px;
+}
+.urban-landing .db-category-wrapper b{
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.urban-landing #t-databases .db-category-wrapper{
+  flex:1 1 120px;
+}
+.db-category-wrapper #t-databases .total-items {
+  padding-left:4px;
+}
+.urban-landing .db-category-wrapper .total-items {
+  text-align:center;
+  font-size:10.5px;
+}
+</style>
+
+<div xmlns="http://www.w3.org/1999/xhtml"
+  class="dynamic-area urban-landing"
+  xml:lang="en"
+  lang="en"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n:domain="eea.climateadapt.urban">
+      <div class="content-container">
+        <ul class="nav nav-tabs main-nav-tabs">
+          <!-- <li class="main-tab-item active">
+            <a href="#t-started">
+              <span class="d-icon started-icon"></span>
+              Getting <br> Started
+            </a>
+          </li> -->
+          <li class="main-tab-item active">
+
+            <a href="#t-tools">
+              <!-- <span class="d-icon feature-icon"></span> -->
+              <i class="fa fa-wrench fa-6" aria-hidden="true"></i>
+              <br><span i18n:translate="">Tools</span>
+            </a>
+          </li>
+          <li class="main-tab-item">
+            <a href="#t-case-studies">
+              <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+              <br><span i18n:translate="">Case studies and Adaptations Options</span>
+            </a>
+          </li>
+          <li class="main-tab-item">
+            <a href="#t-databases">
+              <i class="fa fa-database" aria-hidden="true"></i>
+              <br><span i18n:translate="">Databases</span>
+            </a>
+          </li>
+          <li class="main-tab-item">
+            <a href="#t-policy">
+              <i class="fa fa-list-alt" aria-hidden="true"></i>
+              <br><span i18n:translate="">Policy framework</span>
+            </a>
+          </li>
+          <li class="main-tab-item">
+            <a href="#t-funding">
+              <i class="fa fa-money" aria-hidden="true"></i>
+              <br><span i18n:translate="">Funding and Financing</span>
+            </a>
+          </li>
+          <li class="main-tab-item ast-section">
+            <a href="#t-city">
+              <i class="fa fa-globe" aria-hidden="true"></i>
+              <br><span i18n:translate="">City Initiative</span>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="tab-container" style="border:none;">
+        <div class="content-container">
+          <div class="tab-content tab-body clearfix" style="border:none;box-shadow:none;">
+
+            <div class="tab-pane active fade in" id="t-tools">
+              <div class="new-feature row">
+                <div class="col-md-4 col-sm-12 feature-section">
+                  <img src="/en/knowledge/tools/urban-ast/uast_logo_0.png" height="58px;" width="110x;">
+                  <p class="feature-text" i18n:translate="">The Urban Adaptation Support Tool assists cities, towns and local authorities in developing, implementing and monitoring climate change adaptation plans..</p>
+                  <div class="bottom-section">
+                    <a class="standard-button primary-button feature-btn" href="/en/knowledge/tools/urban-ast/step-0-0" i18n:translate="">
+                    Go to the Urban Adaptation Support Tool</a>
+                  </div>
+                </div>
+
+                <div class="col-md-4 col-sm-12 feature-section">
+                  <img src="/++theme++climateadaptv2/static/images/health-logo.svg" alt="Health Observatory Logo" width="220" height="58">
+                  <p class="feature-text" i18n:translate="">The Urban Adaptation Map Viewer provides an overview of the current and future climate hazards, the vulnerability of the cities to these hazards and their adaptive capacity.
+                  </p>
+                  <div class="bottom-section">
+                    <a class="standard-button primary-button feature-btn" href="t/en/knowledge/tools/urban-adaptation" i18n:translate="">Go to the Urban Adaptation Map Viewer</a>
+                  </div>
+                </div>
+
+                <div class="col-md-4 col-sm-12 feature-section">
+                  <img src="/++theme++climateadaptv2/static/images/ecde-logo.svg" width="220" height="58">
+                  <p class="feature-text" i18n:translate="">The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation.
+                  </p>
+                  <div class="bottom-section">
+                    <a class="standard-button primary-button feature-btn" href="/en/knowledge/european-climate-data-explorer/" i18n:translate="">Go to the European Climate Data Explorer</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="t-case-studies">
+              <div class="new-feature row">
+                <div class="col-md-6 col-sm-12 feature-section">
+                  <div class="db-category-wrapper">
+                    <span class="db-category-icon">
+                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                    </span>
+                    <b i18n:translate="">Case studies</b>
+                  </div>
+                  <p class="feature-text" i18n:translate="">Explore Urban adaptation case studies in terms of geographic location, thematic coverage and link to adaptation options through the map-based Case study explorer.</p>
+                  <div class="bottom-section">
+                    <a class="standard-button primary-button feature-btn" href="/en/knowledge/tools/case-study-explorer#sectors=URBAN" i18n:translate="">
+                    Go to Case Study Explorer</a>
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12 feature-section">
+                  <div class="db-category-wrapper">
+                    <span class="db-category-icon">
+                        <i class="fa fa-cogs" aria-hidden="true"></i>
+                    </span>
+                    <b i18n:translate="">Adaptation tools</b>
+                  </div>
+                  <p class="feature-text" i18n:translate="">Learn more about different adaptation options to the various impacts of climate change in urban areas.</p>
+                  <div class="bottom-section">
+                    <a class="standard-button primary-button feature-btn" href="/en/knowledge/tools/adaptation-support-tool" i18n:translate="">Go to the Adaptation Options</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="t-databases">
+              <div>
+                <img src="https://dummyimage.com/150x200/ddd/000&text=One" />
+                <img src="https://dummyimage.com/150x200/ddd/000&text=Two" />
+                <img src="https://dummyimage.com/150x200/ddd/000&text=Thr" />
+              </div>
+
+
+              <h2 style="font-weight:lighter;width:100%;background-color: #005c96;
+    padding: 15px;
+    color: #fff;
+    margin-top: 15px;">Search the Climate Adapt Database:</h2>
+              <div xmlns="" class="db-categories flex-wrapper" tal:define="sections view/sections">
+                <div class="db-category-wrapper" tal:repeat="section sections">
+                  <a href="#" tal:attributes="href section/link">
+                    <span class="db-category-icon">
+                      <i class="fa fa-cogs" tal:attributes="class string:fa ${section/icon_class}"></i>
+                      <span class="total-items" tal:content="section/count">120</span>
+                    </span>
+                    <p tal:content="section/title" i18n:translate="">Adaptation <br> Options</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="t-policy">
+              <div>
+                <img src="https://dummyimage.com/300x300/ddd/000&text=IMG" style="float:left;padding-right:20px;" />
+                <p class="feature-text">The EU has several policy frameworks in place to increase the resilience of European cities and their inhabitants, including the EU Adaptation Strategy and the EU Biodiversity Strategy 2030, and has developed several initiatives to improve knowledge and data availability on urban vulnerability and adaptive capacity. It also provides financial and technical support to policy makers and practitioners to make cities more resilient and adaptive.</p>
+                <div class="bottom-section">
+                  <a class="standard-button primary-button feature-btn" href="/en/knowledge/european-climate-data-explorer/">Go to the Urban Policy Overview</a>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="t-funding">
+              <div>
+                <img src="https://dummyimage.com/300x200/ddd/000&text=IMG" style="float:left;padding-right:20px;" />
+                <p class="feature-text">The Covenant of Mayors Interactive <a href="https://www.covenantofmayors.eu/support/funding.html">Funding Guide</a> provides comprehensive and up-to-date information on various funding initiatives open to cities and managed by the European Commission, Member States and key financial institutions such as the European Investment Bank. In addition, the guide includes information on support services and innovative financing models.</p>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="t-city">
+              <div class="policies-dynamic-area" xml:lang="en" lang="en">
+                 <ul class="nav nav-tabs flex-wrapper policies-nav">
+                   <li class="policies-nav-item">
+                     <a href="/en/eu-adaptation-policy/sector-policies/agriculture" data-toggle="tab" class="policies-nav-link" data-target="#agriculture" aria-expanded="false">
+                       <img src="https://dummyimage.com/170x70/aaa/000&text=LOGO1" style="float:left;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item">
+                     <a href="/en/eu-adaptation-policy/sector-policies/biodiversity" data-toggle="tab" class="policies-nav-link" data-target="#biodiversity" aria-expanded="false">
+                       <img src="https://dummyimage.com/170x70/aaa/000&text=LOGO2" style="float:left;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item">
+                     <a href="/en/eu-adaptation-policy/sector-policies/buildings" data-toggle="tab" class="policies-nav-link" data-target="#buildings" aria-expanded="true">
+                       <img src="https://dummyimage.com/170x70/aaa/000&text=LOGO3" style="float:left;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item">
+                     <a href="/en/eu-adaptation-policy/sector-policies/coastal-areas" data-toggle="tab" class="policies-nav-link" data-target="#coastal-areas" aria-expanded="false">
+                       <img src="https://dummyimage.com/170x70/aaa/000&text=LOGO4" style="float:left;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item">
+                     <a href="/en/eu-adaptation-policy/sector-policies/disaster-risk-reduction" data-toggle="tab" class="policies-nav-link" data-target="#disaster-risk-reduction" aria-expanded="true">
+                       <img src="https://dummyimage.com/170x70/aaa/000&text=LOGO5" style="float:left;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item">
+                     <a href="/eu-adaptation-policy/sector-policies/energy" data-toggle="tab" data-target="#energy" class="policies-nav-link" aria-expanded="true">
+                       <img src="https://dummyimage.com/170x70/aaa/000&text=LOGO6" style="float:left;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item active">
+                     <a href="/en/eu-adaptation-policy/sector-policies/financial" data-toggle="tab" data-target="#financial" class="policies-nav-link" aria-expanded="true">
+                       <img src="https://dummyimage.com/170x70/aaa/000&text=LOGO7" style="float:left;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item">
+                     <a href="/en/eu-adaptation-policy/sector-policies/forestry" data-toggle="tab" data-target="#forestry" class="policies-nav-link" aria-expanded="true">
+                       <img src="https://dummyimage.com/170x70/aaa/000&text=LOGO8" style="float:left;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item">
+                     <a href="/en/eu-adaptation-policy/sector-policies/health" data-toggle="tab" data-target="#health" class="policies-nav-link" aria-expanded="false">
+                       <img src="https://dummyimage.com/170x70/aaa/000&text=LOGO9" style="float:left;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item">
+                     <a href="/en/eu-adaptation-policy/sector-policies/marine-and-fisheries" data-toggle="tab" data-target="#marine-and-fisheries" class="policies-nav-link" aria-expanded="false">
+                       <img src="https://dummyimage.com/170x70/aaa/000&text=LOGO10" style="float:left;padding-right:10px;" />
+                     </a>
+                   </li>
+                 </ul>
+
+                 <div class="tab-content policies-tab-content">
+
+                   <!-- Agriculture -->
+                   <div id="agriculture" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="https://dummyimage.com/270x170/aaa/000&text=LOGO1" style="float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3>Title 1</h3>
+                         <p>Text 1 Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Nam adipiscing. Sed magna purus, fermentum eu, tincidunt eu, varius ut, felis.
+Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam pretium turpis et arcu. Praesent adipiscing. Cras dapibus.</p>
+                       </div>
+                     </div>
+                   </div>
+
+                   <!-- Biodiversity -->
+                   <div id="biodiversity" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="https://dummyimage.com/270x170/aaa/000&text=LOGO2" style="float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3>Title 2</h3>
+                         <p>Text 2 Pellentesque dapibus hendrerit tortor. In ac felis quis tortor malesuada pretium. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Etiam imperdiet imperdiet orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce id purus.</p>
+                       </div>
+                     </div>
+                   </div>
+
+                   <!-- Buildings -->
+                   <div id="buildings" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="https://dummyimage.com/270x170/aaa/000&text=LOGO3" style="float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3>Title 3</h3>
+                         <p>Text 3  Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Morbi nec metus. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi.</p>
+                       </div>
+                     </div>
+                   </div>
+
+                   <!-- Coastal areas -->
+                   <div id="coastal-areas" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="https://dummyimage.com/270x170/aaa/000&text=LOGO4" style="float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3>Title 4</h3>
+                         <p>Text 4 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent turpis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce id purus. Curabitur at lacus ac velit ornare lobortis.
+Vivamus in erat ut urna cursus vestibulum. Curabitur suscipit suscipit tellus. Sed cursus turpis vitae tortor. Vestibulum suscipit nulla quis orci.</p>
+                       </div>
+                     </div>
+                   </div>
+
+                   <!-- Disaster risk reduction -->
+                   <div id="disaster-risk-reduction" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="https://dummyimage.com/270x170/aaa/000&text=LOGO5" style="float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3>Title 5</h3>
+                         <p>Text 5 Cras risus ipsum, faucibus ut, ullamcorper id, varius ac, leo. Ut leo. Curabitur vestibulum aliquam leo. Aenean imperdiet. Vivamus euismod mauris.Praesent adipiscing. Pellentesque commodo eros a enim. Fusce ac felis sit amet ligula pharetra condimentum. Duis lobortis massa imperdiet quam. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros.</p>
+                       </div>
+                     </div>
+                   </div>
+
+                   <!-- Energy -->
+                   <div id="energy" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="https://dummyimage.com/270x170/aaa/000&text=LOGO6" style="float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3>Title 6</h3>
+                         <p>Text 6 Aenean massa. Pellentesque ut neque. Morbi vestibulum volutpat enim. Phasellus accumsan cursus velit.Curabitur at lacus ac velit ornare lobortis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce fermentum odio nec arcu. Nunc interdum lacus sit amet orci.</p>
+                       </div>
+                     </div>
+                   </div>
+
+                   <!-- Financial -->
+                   <div id="financial" class="tab-pane active">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="https://dummyimage.com/270x170/aaa/000&text=LOGO7" style="float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3>Title 7</h3>
+                         <p>Text 7 Ut leo. Curabitur turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos.
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce egestas elit eget lorem. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.
+Praesent vestibulum dapibus nibh. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Quisque rutrum.</p>
+                       </div>
+                     </div>
+                   </div>
+
+                   <!-- Forestry -->
+                   <div id="forestry" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="https://dummyimage.com/270x170/aaa/000&text=LOGO8" style="float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3>Title 8</h3>
+                         <p>Text 8 Vestibulum fringilla pede sit amet augue. Fusce convallis metus id felis luctus adipiscing. Curabitur vestibulum aliquam leo.. Vestibulum dapibus nunc ac augue.
+Nunc egestas, augue at pellentesque laoreet, felis eros vehicula leo, at malesuada velit leo quis pede. Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus. Proin magna. Donec elit libero, sodales nec, volutpat a, suscipit non, turpis. Praesent adipiscing.</p>
+                       </div>
+                     </div>
+                   </div>
+
+                   <!-- Health -->
+                   <div id="health" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="https://dummyimage.com/270x170/aaa/000&text=LOGO9" style="float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3>Title 9</h3>
+                         <p>Text 9 Maecenas egestas arcu quis ligula mattis placerat. Phasellus accumsan cursus velit. Aliquam eu nunc. Nunc nonummy metus.
+Praesent ac sem eget est egestas volutpat. Donec posuere vulputate arcu. Integer tincidunt. Fusce convallis metus id felis luctus adipiscing.</p>
+                       </div>
+                     </div>
+                   </div>
+
+                   <!-- Marine and fisheries -->
+                   <div id="marine-and-fisheries" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="https://dummyimage.com/270x170/aaa/000&text=LOGO10" style="float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3>Title 10</h3>
+                         <p>Text 10 Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Vestibulum dapibus nunc ac augue. Curabitur vestibulum aliquam leo. Fusce commodo aliquam arcu. Fusce neque.
+Praesent egestas neque eu enim. Mauris sollicitudin fermentum libero. Cras id dui. Nunc nulla. In hac habitasse platea dictumst.</p>
+                       </div>
+                     </div>
+                   </div>
+
+                 </div>
+               </div>
+
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+      <div style="clear:both;"/>
