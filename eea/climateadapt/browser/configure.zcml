@@ -129,6 +129,13 @@
       />
 
   <browser:page
+      name="urban-landing-page"
+      for="*"
+      template="pt/urban-landing-page.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
       name="case-study-and-adaptation-options-map-viewer"
       for="*"
       class=".casestudies_map.Page"
