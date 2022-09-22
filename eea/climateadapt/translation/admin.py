@@ -1219,7 +1219,7 @@ def translation_step_4(site, request):
             "include_in_observatory"],
         "eea.climateadapt.casestudy": [
             "geolocation", "implementation_type", "spatial_values",
-            "effective",
+            "effective", "source",
             ],
         "eea.climateadapt.aceproject": [
             "specialtagging", "spatial_values", "funding_programme",
