@@ -60,6 +60,9 @@ msgstr "Organizácie"
 msgid "Publication and reports"
 msgstr "Publikácia a správy"
 
+msgid "Publications and reports"
+msgstr ""
+
 # ,
 msgid "Research and knowledge projects"
 msgstr "Výskumné a znalostné projekty"

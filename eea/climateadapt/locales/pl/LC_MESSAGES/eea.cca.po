@@ -120,6 +120,9 @@ msgstr "Organizacje"
 msgid "Publication and reports"
 msgstr "Publikacja i raporty"
 
+msgid "Publications and reports"
+msgstr "Publikacja i raporty"
+
 # ,
 # ,
 # ,

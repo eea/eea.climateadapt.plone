@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-22 08:41+0000\n"
+"POT-Creation-Date: 2022-09-22 18:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,6 +121,14 @@ msgstr "Narzędzie wspjerające adaptację"
 msgid "Agriculture"
 msgstr "Rolnictwo"
 
+#: ../theme/climateadaptv2/index.html:1204
+msgid "Assessing adaptation options"
+msgstr "Ocena opcji adaptacji"
+
+#: ../theme/climateadaptv2/index.html:1186
+msgid "Assessing risks and vulnerability <br /> to climate change"
+msgstr "Ocena ryzyka i podatności <br /> na zmiany klimatu"
+
 # ,
 # ,
 # ,
@@ -183,7 +191,7 @@ msgstr "Studia <br /> przypadków"
 
 #: ../theme/climateadaptv2/index.html:1142
 msgid "Case Studies Page"
-msgstr ""
+msgstr "stronę ze studiami przypadków"
 
 # ,
 # ,
@@ -199,7 +207,7 @@ msgstr "Studia przypadku"
 
 #: ../theme/climateadaptv2/index.html:1156
 msgid "Case studies booklet"
-msgstr ""
+msgstr "Broszura z studiami przypadków"
 
 # ,
 # ,
@@ -334,7 +342,7 @@ msgstr "Sektor UE <br /> Działania polityczne"
 
 #: ../theme/climateadaptv2/index.html:1092
 msgid "EU Sector Policies"
-msgstr ""
+msgstr "polityka sektorowa UE"
 
 # ,
 # ,
@@ -474,7 +482,7 @@ msgstr "Wytyczne"
 
 #: ../theme/climateadaptv2/index.html:666
 msgid "Guidance to search function"
-msgstr ""
+msgstr "wytyczne dotyczące wyszukiwania"
 
 # ,
 # ,
@@ -488,6 +496,14 @@ msgstr ""
 #: ../theme/climateadaptv2/tab-policies-rule.html:78
 msgid "Health"
 msgstr "Zdrowie"
+
+#: ../theme/climateadaptv2/index.html:1195
+msgid "Identifying adaptation options"
+msgstr "Identyfikacja opcji adaptacji"
+
+#: ../theme/climateadaptv2/index.html:1213
+msgid "Implementation"
+msgstr "Realizacja"
 
 # ,
 # ,
@@ -551,6 +567,10 @@ msgstr "Środowisko morskie <br /> &amp; rybołówstwo"
 #: ../theme/climateadaptv2/tab-policies-rule.html:259
 msgid "Marine and fisheries"
 msgstr "Środowisko morskie i rybołówstwo"
+
+#: ../theme/climateadaptv2/index.html:1222
+msgid "Monitoring &amp; Evaluation (M&amp;E)"
+msgstr "Monitorowanie &amp; Ocena (M&amp;E)"
 
 # ,
 # ,
@@ -624,6 +644,10 @@ msgstr "Organizacje"
 #: ../theme/climateadaptv2/tab-policies-rule.html:187
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "W ciągu ostatnich kilku lat Europa doświadczyła wszelkiego rodzaju klęsk żywiołowych: poważnych powodzi, susz i pożarów lasów, które miały niszczący wpływ na życie ludzi, europejską gospodarkę i środowisko. W minionej dekadzie Komisja Europejska przyjęła kilka strategii i działań mających na celu radzenie sobie z ograniczaniem ryzyka klęsk żywiołowych, jak np. dyrektywa powodziowa i jej wdrożenie (harmonogram), działanie UE w sprawie niedoboru wody i suszy, zielona księga w sprawie ubezpieczeń w kontekście klęsk żywiołowych i katastrof spowodowanych przez człowieka."
+
+#: ../theme/climateadaptv2/index.html:1177
+msgid "Preparing the ground for adaptation"
+msgstr "Przygotowanie gruntu do adaptacji"
 
 # ,
 # ,
@@ -712,7 +736,7 @@ msgstr "Zobacz pełną bazę danych"
 
 #: ../theme/climateadaptv2/index.html:1151
 msgid "See how Europe is adapting to climate change:"
-msgstr ""
+msgstr "Zobacz, jak Europa dostosowuje się do zmian klimatu:"
 
 # ,
 # ,
@@ -929,16 +953,16 @@ msgstr "Zmiany klimatu mają bezpośredni wpływ na zasoby wodne, a zarządzanie
 #. Default: "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of ${case_studies_tab_repository} and also in collaboration with the main stakeholders. See the ${case_studies_tab_pages}."
 #: ../theme/climateadaptv2/index.html:1142
 msgid "case_studies_tab"
-msgstr ""
+msgstr "Studia przypadków są wizytówką platformy Climate-ADAPT. Mają kompleksową strukturę, która obejmuje wszystkie kluczowe aspekty w cyklu wdrażania działań adaptacyjnych oraz są starannie i specjalnie przygotowane do Climate-ADAPT przez organizację zajmującą się ich wdrażaniem, ze wsparciem EEA, zgodnie z zestawem ${case_studies_tab_repository}, a także we współpracy z głównymi zainteresowanymi stronami. Zobacz ${case_studies_tab_pages}."
 
 #: ../theme/climateadaptv2/index.html:1139
 msgid "criteria"
-msgstr ""
+msgstr "kryteriów"
 
 #. Default: "Please check our ${page_url} for more help on how to search the database."
 #: ../theme/climateadaptv2/index.html:666
 msgid "guidance_link"
-msgstr ""
+msgstr "Sprawdź nasze ${page_url}, aby uzyskać więcej pomocy na temat szukania bazy danych."
 
 # ,
 #: ../theme/climateadaptv2/index.html:1348

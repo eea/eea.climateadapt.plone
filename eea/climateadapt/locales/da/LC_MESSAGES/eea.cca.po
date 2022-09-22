@@ -60,6 +60,9 @@ msgstr "Organisationer"
 msgid "Publication and reports"
 msgstr "Publikation og rapporter"
 
+msgid "Publications and reports"
+msgstr ""
+
 # ,
 msgid "Research and knowledge projects"
 msgstr "Forsknings- og videnprojekter"

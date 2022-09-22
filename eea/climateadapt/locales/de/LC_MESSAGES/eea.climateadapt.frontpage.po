@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-22 08:41+0000\n"
+"POT-Creation-Date: 2022-09-22 18:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,6 +131,14 @@ msgstr "Anpassung Support-Tool"
 #: ../theme/climateadaptv2/tab-policies-rule.html:15
 msgid "Agriculture"
 msgstr "Landwirtschaft"
+
+#: ../theme/climateadaptv2/index.html:1204
+msgid "Assessing adaptation options"
+msgstr "Bewertung von Anpassungsoptionen"
+
+#: ../theme/climateadaptv2/index.html:1186
+msgid "Assessing risks and vulnerability <br /> to climate change"
+msgstr "Bewertung von Risiken und Verwundbarkeit <br /> für den Klimawandel"
 
 # ,
 # ,
@@ -540,6 +548,14 @@ msgstr "Anleitung zur Suchfunktion"
 msgid "Health"
 msgstr "Gesundheit"
 
+#: ../theme/climateadaptv2/index.html:1195
+msgid "Identifying adaptation options"
+msgstr "Anpassungsoptionen identifizieren"
+
+#: ../theme/climateadaptv2/index.html:1213
+msgid "Implementation"
+msgstr "Implementierung"
+
 # ,
 # ,
 # ,
@@ -607,6 +623,10 @@ msgstr "Meer <br /> &amp; Fischerei"
 #: ../theme/climateadaptv2/tab-policies-rule.html:259
 msgid "Marine and fisheries"
 msgstr "Meer und Fischerei"
+
+#: ../theme/climateadaptv2/index.html:1222
+msgid "Monitoring &amp; Evaluation (M&amp;E)"
+msgstr "Überwachung &amp; Bewertung (M&amp;E)"
 
 # ,
 # ,
@@ -690,6 +710,10 @@ msgstr "Organisationen"
 #: ../theme/climateadaptv2/tab-policies-rule.html:187
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "In den letzten Jahren hat Europa alle Arten von Naturkatastrophen erlebt: schwere Überschwemmungen, Dürren und Waldbrände mit verheerenden Auswirkungen auf das Leben der Menschen, die europäische Wirtschaft und die Umwelt. In den letzten zehn Jahren hat die Europäische Kommission mehrere Strategien und Maßnahmen zur Verringerung des Katastrophenrisikos verabschiedet, z. B. die Hochwasserrichtlinie und ihre Umsetzung (Zeitplan), die EU-Aktion zu Wasserknappheit und Dürre, das Grünbuch über Versicherungen im Zusammenhang mit Naturkatastrophen und von Menschen verursachten Katastrophen."
+
+#: ../theme/climateadaptv2/index.html:1177
+msgid "Preparing the ground for adaptation"
+msgstr "Vorbereitung des Bodens für die Anpassung"
 
 # ,
 # ,
@@ -1030,7 +1054,7 @@ msgstr "Die Wasserressourcen sind unmittelbar vom Klimawandel betroffen, und die
 #. Default: "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of ${case_studies_tab_repository} and also in collaboration with the main stakeholders. See the ${case_studies_tab_pages}."
 #: ../theme/climateadaptv2/index.html:1142
 msgid "case_studies_tab"
-msgstr "Fallstudien sind das Flaggschiff der Climate-ADAPT-Plattform. Sie haben eine umfassende Struktur, die alle Schlüsselaspekte im Umsetzungszyklus von Anpassungsmaßnahmen abdeckt, und werden von der an der Umsetzung beteiligten Organisation mit Unterstützung der EEA nach einer Reihe von ${case_studies_tab_repository sorgfältig und speziell auf Climate-ADAPT vorbereitet } und auch in Zusammenarbeit mit den Hauptakteuren. Siehe ${case_studies_tab_pages}."
+msgstr "Fallstudien sind das Flaggschiff der Climate-ADAPT-Plattform. Sie haben eine umfassende Struktur, die alle Schlüsselaspekte im Umsetzungszyklus von Anpassungsmaßnahmen abdeckt, und werden von der an der Umsetzung beteiligten Organisation mit Unterstützung der EEA nach einer Reihe von ${case_studies_tab_repository} sorgfältig und speziell auf Climate-ADAPT vorbereitet und auch in Zusammenarbeit mit den Hauptakteuren. Siehe ${case_studies_tab_pages}."
 
 # ,
 # ,

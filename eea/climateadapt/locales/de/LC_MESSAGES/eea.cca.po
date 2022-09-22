@@ -101,6 +101,9 @@ msgstr "Organisationen"
 msgid "Publication and reports"
 msgstr "Veröffentlichung und Berichte"
 
+msgid "Publications and reports"
+msgstr "Veröffentlichung und Berichte"
+
 # ,
 # ,
 # ,

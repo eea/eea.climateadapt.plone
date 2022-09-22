@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-22 08:41+0000\n"
+"POT-Creation-Date: 2022-09-22 18:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,6 +72,14 @@ msgstr ""
 #: ../theme/climateadaptv2/tab-policies-rule.html:15
 msgid "Agriculture"
 msgstr "Agricultură"
+
+#: ../theme/climateadaptv2/index.html:1204
+msgid "Assessing adaptation options"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1186
+msgid "Assessing risks and vulnerability <br /> to climate change"
+msgstr ""
 
 # ,
 # ,
@@ -299,6 +307,14 @@ msgstr ""
 msgid "Health"
 msgstr "Sănătate"
 
+#: ../theme/climateadaptv2/index.html:1195
+msgid "Identifying adaptation options"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1213
+msgid "Implementation"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -336,6 +352,10 @@ msgstr "Marine <br /> & amp; Pescuit"
 #: ../theme/climateadaptv2/tab-policies-rule.html:259
 msgid "Marine and fisheries"
 msgstr "Marine și pescuit"
+
+#: ../theme/climateadaptv2/index.html:1222
+msgid "Monitoring &amp; Evaluation (M&amp;E)"
+msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1429
 msgid "More events"
@@ -377,6 +397,10 @@ msgstr "Organizații"
 #: ../theme/climateadaptv2/tab-policies-rule.html:187
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "În ultimii ani, Europa a experimentat fiecare tip de dezastre naturale: inundații severe, secete și incendii forestiere cu efecte devastatoare asupra vieții oamenilor, a economiei europene și a mediului. În ultimul deceniu, Comisia Europeană a adoptat mai multe strategii și acțiuni pentru a face față reducerii riscului în caz de dezastre, precum, de exemplu, Directiva privind inundațiile și implementarea acesteia (TIRMETABLE), acțiunea UE privind deficitul de apă și secetă, hârtia ecologică privind asigurarea în domeniul asigurării în Contextul dezastrelor naturale și create de om."
+
+#: ../theme/climateadaptv2/index.html:1177
+msgid "Preparing the ground for adaptation"
+msgstr ""
 
 # ,
 # ,

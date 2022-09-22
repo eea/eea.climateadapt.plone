@@ -60,6 +60,9 @@ msgstr "Organizācijas"
 msgid "Publication and reports"
 msgstr "Publicēšana un pārskati"
 
+msgid "Publications and reports"
+msgstr ""
+
 # ,
 msgid "Research and knowledge projects"
 msgstr "Pētniecības un zināšanu projekti"

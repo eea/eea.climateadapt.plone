@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-22 08:41+0000\n"
+"POT-Creation-Date: 2022-09-22 18:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -165,6 +165,14 @@ msgstr "outil de support d'adaptation"
 #: ../theme/climateadaptv2/tab-policies-rule.html:15
 msgid "Agriculture"
 msgstr "Agriculture"
+
+#: ../theme/climateadaptv2/index.html:1204
+msgid "Assessing adaptation options"
+msgstr "Évaluation des options d'adaptation"
+
+#: ../theme/climateadaptv2/index.html:1186
+msgid "Assessing risks and vulnerability <br /> to climate change"
+msgstr "Évaluation des risques et de la vulnérabilité <br /> au changement climatique"
 
 # ,
 # ,
@@ -695,6 +703,14 @@ msgstr "Conseils pour la fonction de recherche"
 msgid "Health"
 msgstr "Santé"
 
+#: ../theme/climateadaptv2/index.html:1195
+msgid "Identifying adaptation options"
+msgstr "Identifier les options d'adaptation"
+
+#: ../theme/climateadaptv2/index.html:1213
+msgid "Implementation"
+msgstr "Mise en œuvre"
+
 # ,
 # ,
 # ,
@@ -782,6 +798,10 @@ msgstr "Marine <br /> &amp; pêcherie"
 #: ../theme/climateadaptv2/tab-policies-rule.html:259
 msgid "Marine and fisheries"
 msgstr "Marine et pêche"
+
+#: ../theme/climateadaptv2/index.html:1222
+msgid "Monitoring &amp; Evaluation (M&amp;E)"
+msgstr "Surveillance &amp; Évaluation (M&amp;E)"
 
 # ,
 # ,
@@ -890,6 +910,10 @@ msgstr "Organisations"
 #: ../theme/climateadaptv2/tab-policies-rule.html:187
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "Au cours des dernières années, l'Europe a connu tous les types de catastrophes naturelles: inondations graves, sécheresses et incendies de forêt avec des effets dévastateurs sur la vie des gens, l'économie européenne et l'environnement. Au cours de la dernière décennie, la Commission européenne a adopté plusieurs stratégies et actions pour faire face à la réduction des risques de catastrophes comme, par exemple, la directive sur les inondations et sa mise en œuvre (calendrier), l'action de l'UE sur la rareté de l'eau et la sécheresse, le livre vert sur l'assurance dans le contexte des catastrophes naturelles et anthropiques."
+
+#: ../theme/climateadaptv2/index.html:1177
+msgid "Preparing the ground for adaptation"
+msgstr "Préparer le terrain pour l'adaptation"
 
 # ,
 # ,
@@ -1333,7 +1357,7 @@ msgstr "Les ressources en eau sont directement affectées par le changement clim
 #. Default: "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of ${case_studies_tab_repository} and also in collaboration with the main stakeholders. See the ${case_studies_tab_pages}."
 #: ../theme/climateadaptv2/index.html:1142
 msgid "case_studies_tab"
-msgstr "Les études de cas sont le fleuron de la plateforme Climate-ADAPT. Ils ont une structure complète qui couvre tous les aspects clés du cycle de mise en œuvre des mesures d'adaptation et sont soigneusement et spécifiquement préparés pour Climate-ADAPT par l'organisation impliquée dans la mise en œuvre avec le soutien de l'AEE, à la suite d'un ensemble de ${case_studies_tab_repository } et aussi en collaboration avec les principales parties prenantes. Voir les ${case_studies_tab_pages}."
+msgstr "Les études de cas sont le fleuron de la plateforme Climate-ADAPT. Ils ont une structure complète qui couvre tous les aspects clés du cycle de mise en œuvre des mesures d'adaptation et sont soigneusement et spécifiquement préparés pour Climate-ADAPT par l'organisation impliquée dans la mise en œuvre avec le soutien de l'AEE, à la suite d'un ensemble de ${case_studies_tab_repository} et aussi en collaboration avec les principales parties prenantes. Voir les ${case_studies_tab_pages}."
 
 # ,
 # ,

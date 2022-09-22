@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-22 08:41+0000\n"
+"POT-Creation-Date: 2022-09-22 18:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,6 +64,14 @@ msgstr ""
 #: ../theme/climateadaptv2/tab-policies-rule.html:15
 msgid "Agriculture"
 msgstr "Žemdirbystė"
+
+#: ../theme/climateadaptv2/index.html:1204
+msgid "Assessing adaptation options"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1186
+msgid "Assessing risks and vulnerability <br /> to climate change"
+msgstr ""
 
 # ,
 #: ../theme/climateadaptv2/index.html:801
@@ -239,6 +247,14 @@ msgstr ""
 msgid "Health"
 msgstr "Sveikata"
 
+#: ../theme/climateadaptv2/index.html:1195
+msgid "Identifying adaptation options"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1213
+msgid "Implementation"
+msgstr ""
+
 # ,
 #: ../theme/climateadaptv2/index.html:1066
 #: ../theme/climateadaptv2/tab-policies-rule.html:288
@@ -266,6 +282,10 @@ msgstr "Jūrų pėstininkas <br /> & amp; Žuvininkystė"
 #: ../theme/climateadaptv2/tab-policies-rule.html:259
 msgid "Marine and fisheries"
 msgstr "Jūrų ir žuvininkystė"
+
+#: ../theme/climateadaptv2/index.html:1222
+msgid "Monitoring &amp; Evaluation (M&amp;E)"
+msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1429
 msgid "More events"
@@ -299,6 +319,10 @@ msgstr "Organizacijos"
 #: ../theme/climateadaptv2/tab-policies-rule.html:187
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "Per pastaruosius kelerius metus Europa patyrė visų rūšių stichines nelaimes: stiprius potvynius, sausras ir miškų gaisrus, turinčius niokojantį poveikį žmonių gyvenimui, Europos ekonomikai ir aplinkai. Per pastarąjį dešimtmetį Europos Komisija priėmė keletą strategijų ir veiksmų, skirtų susidoroti su nelaimių rizikos mažinimu, nes, pavyzdžiui, potvynių direktyva ir jos įgyvendinimas (tvarkaraštis), ES veiksmas dėl vandens trūkumo ir sausros, žaliojo dokumento apie draudimą, esantį draudimo srityje. Natūralių ir žmogaus sukeltų nelaimių kontekstas."
+
+#: ../theme/climateadaptv2/index.html:1177
+msgid "Preparing the ground for adaptation"
+msgstr ""
 
 # ,
 #: ../theme/climateadaptv2/index.html:748

@@ -60,6 +60,9 @@ msgstr "Οργανώσεις"
 msgid "Publication and reports"
 msgstr "Δημοσίευση και αναφορές"
 
+msgid "Publications and reports"
+msgstr ""
+
 # ,
 msgid "Research and knowledge projects"
 msgstr "Έργα έρευνας και γνώσης"

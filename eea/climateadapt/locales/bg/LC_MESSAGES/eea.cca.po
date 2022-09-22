@@ -60,6 +60,9 @@ msgstr "Организации"
 msgid "Publication and reports"
 msgstr "Публикация и отчети"
 
+msgid "Publications and reports"
+msgstr ""
+
 # ,
 msgid "Research and knowledge projects"
 msgstr "Проекти за изследвания и знания"

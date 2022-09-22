@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-22 08:41+0000\n"
+"POT-Creation-Date: 2022-09-22 18:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,6 +57,14 @@ msgstr ""
 #: ../theme/climateadaptv2/index.html:793
 #: ../theme/climateadaptv2/tab-policies-rule.html:15
 msgid "Agriculture"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1204
+msgid "Assessing adaptation options"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1186
+msgid "Assessing risks and vulnerability <br /> to climate change"
 msgstr ""
 
 #: ../theme/climateadaptv2/index.html:801
@@ -207,6 +215,14 @@ msgstr ""
 msgid "Health"
 msgstr ""
 
+#: ../theme/climateadaptv2/index.html:1195
+msgid "Identifying adaptation options"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1213
+msgid "Implementation"
+msgstr ""
+
 #: ../theme/climateadaptv2/index.html:1066
 #: ../theme/climateadaptv2/tab-policies-rule.html:288
 msgid "In Europe, nearly 73% of the population live in urban areas and this is projected to increase to over 80% by 2050. Climate change is likely to influence almost all components of cities and towns – their environment, economy and society. This raises new, complex challenges for urban planning and management. Climate change impacts on the hubs of Europe's economic activity, social life, culture and innovation have repercussions far beyond their municipal borders."
@@ -228,6 +244,10 @@ msgstr ""
 #: ../theme/climateadaptv2/index.html:1037
 #: ../theme/climateadaptv2/tab-policies-rule.html:259
 msgid "Marine and fisheries"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1222
+msgid "Monitoring &amp; Evaluation (M&amp;E)"
 msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1429
@@ -257,6 +277,10 @@ msgstr ""
 #: ../theme/climateadaptv2/index.html:965
 #: ../theme/climateadaptv2/tab-policies-rule.html:187
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1177
+msgid "Preparing the ground for adaptation"
 msgstr ""
 
 #: ../theme/climateadaptv2/index.html:748

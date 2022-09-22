@@ -68,6 +68,9 @@ msgstr "Organizații"
 msgid "Publication and reports"
 msgstr "Publicarea și rapoartele"
 
+msgid "Publications and reports"
+msgstr ""
+
 # ,
 # ,
 msgid "Research and knowledge projects"

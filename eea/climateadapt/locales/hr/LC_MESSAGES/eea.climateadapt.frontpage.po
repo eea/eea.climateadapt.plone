@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-22 08:41+0000\n"
+"POT-Creation-Date: 2022-09-22 18:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,6 +70,14 @@ msgstr ""
 #: ../theme/climateadaptv2/tab-policies-rule.html:15
 msgid "Agriculture"
 msgstr "Poljoprivreda"
+
+#: ../theme/climateadaptv2/index.html:1204
+msgid "Assessing adaptation options"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1186
+msgid "Assessing risks and vulnerability <br /> to climate change"
+msgstr ""
 
 # ,
 # ,
@@ -271,6 +279,14 @@ msgstr ""
 msgid "Health"
 msgstr "Zdravlje"
 
+#: ../theme/climateadaptv2/index.html:1195
+msgid "Identifying adaptation options"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1213
+msgid "Implementation"
+msgstr ""
+
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1066
@@ -303,6 +319,10 @@ msgstr "Marine <br/> & amp; ribarstvo"
 #: ../theme/climateadaptv2/tab-policies-rule.html:259
 msgid "Marine and fisheries"
 msgstr "Morski i ribarstvo"
+
+#: ../theme/climateadaptv2/index.html:1222
+msgid "Monitoring &amp; Evaluation (M&amp;E)"
+msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1429
 msgid "More events"
@@ -340,6 +360,10 @@ msgstr "Organizacija"
 #: ../theme/climateadaptv2/tab-policies-rule.html:187
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "Tijekom posljednjih nekoliko godina, Europa je doživjela svaku vrstu prirodnih katastrofa: teške poplave, suše i šumski požari s razornim učincima na život ljudi, europsku ekonomiju i okoliš. U proteklom desetljeću, Europska komisija usvojila je nekoliko strategija i radnji za suočavanje s smanjenjem rizika od katastrofe, kao, na primjer, Direktiva o poplavama i njegovoj provedbi (raspored), akcija EU o nedostatku vode i suši, zelena knjiga o osiguranju u osiguranju u Kontekst prirodnih i umjetnih katastrofa."
+
+#: ../theme/climateadaptv2/index.html:1177
+msgid "Preparing the ground for adaptation"
+msgstr ""
 
 # ,
 # ,

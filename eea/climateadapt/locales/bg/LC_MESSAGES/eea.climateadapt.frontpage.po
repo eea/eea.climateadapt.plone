@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-22 08:41+0000\n"
+"POT-Creation-Date: 2022-09-22 18:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,6 +70,14 @@ msgstr ""
 #: ../theme/climateadaptv2/tab-policies-rule.html:15
 msgid "Agriculture"
 msgstr "селско стопанство"
+
+#: ../theme/climateadaptv2/index.html:1204
+msgid "Assessing adaptation options"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1186
+msgid "Assessing risks and vulnerability <br /> to climate change"
+msgstr ""
 
 # ,
 # ,
@@ -271,6 +279,14 @@ msgstr ""
 msgid "Health"
 msgstr "Здраве"
 
+#: ../theme/climateadaptv2/index.html:1195
+msgid "Identifying adaptation options"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1213
+msgid "Implementation"
+msgstr ""
+
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1066
@@ -303,6 +319,10 @@ msgstr "Морски <br /> & amp; риболов"
 #: ../theme/climateadaptv2/tab-policies-rule.html:259
 msgid "Marine and fisheries"
 msgstr "Морски и риболов"
+
+#: ../theme/climateadaptv2/index.html:1222
+msgid "Monitoring &amp; Evaluation (M&amp;E)"
+msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1429
 msgid "More events"
@@ -340,6 +360,10 @@ msgstr "Организации"
 #: ../theme/climateadaptv2/tab-policies-rule.html:187
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "През последните няколко години Европа преживява всеки тип природни бедствия: тежки наводнения, суши и горски пожари с пагубни ефекти върху живота на хората, европейската икономика и околната среда. През изминалото десетилетие Европейската комисия прие няколко стратегии и действия за справяне с намаляването на риска от бедствия, тъй като например директивата за наводненията и нейното прилагане (график), действието на ЕС върху недостиг на вода и суша, зелената книга за застраховането в The Контекст на природни и създадени от човека бедствия."
+
+#: ../theme/climateadaptv2/index.html:1177
+msgid "Preparing the ground for adaptation"
+msgstr ""
 
 # ,
 # ,

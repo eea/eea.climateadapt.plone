@@ -60,6 +60,9 @@ msgstr "Organizzazzjonijiet"
 msgid "Publication and reports"
 msgstr "Pubblikazzjoni u rapporti"
 
+msgid "Publications and reports"
+msgstr ""
+
 # ,
 msgid "Research and knowledge projects"
 msgstr "Proġetti ta 'Riċerka u Għarfien"

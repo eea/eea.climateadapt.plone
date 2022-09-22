@@ -60,6 +60,9 @@ msgstr "Organisatsioonid"
 msgid "Publication and reports"
 msgstr "Avaldamine ja aruanded"
 
+msgid "Publications and reports"
+msgstr ""
+
 # ,
 msgid "Research and knowledge projects"
 msgstr "Teadusuuringute ja teadmiste projektid"

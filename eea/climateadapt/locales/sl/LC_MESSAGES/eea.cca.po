@@ -60,6 +60,9 @@ msgstr "Organizacije"
 msgid "Publication and reports"
 msgstr "Objava in poročila"
 
+msgid "Publications and reports"
+msgstr ""
+
 # ,
 msgid "Research and knowledge projects"
 msgstr "Projekti raziskav in znanja"
