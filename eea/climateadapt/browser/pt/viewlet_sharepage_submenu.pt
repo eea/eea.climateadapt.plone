@@ -3,7 +3,7 @@
   lang="en"
   i18n:domain="eea.climateadapt"
   >
-  <ul id="third-level-menu" tal:define="lang python:self.current_lang">
+  <ul id="third-level-menu" tal:define="lang python:view.current_lang">
     <li><a tal:attributes="href string:/${lang}/help/share-your-info/general" i18n:translate="">General</a></li>
     <li><a tal:attributes="href string:/${lang}/help/share-your-info/publications-and-reports" i18n:translate="">Publications and reports</a></li>
     <li><a tal:attributes="href string:/${lang}/help/share-your-info/information-portals" i18n:translate="">Information Portals</a></li>
