@@ -251,6 +251,10 @@ msgstr "Europski istraživač podataka o klimi"
 msgid "EUROPEAN Climate and Health Observatory"
 msgstr "Europska klima i zdravlje opservatorij"
 
+#:
+msgid "Economic losses and fatalities"
+msgstr ""
+
 # ,
 #: site_menu:77
 msgid "Economic tools"
@@ -383,6 +387,14 @@ msgstr "Pokazatelji u klimi prilagođeni"
 msgid "Inspiring Climate-ADAPT use cases"
 msgstr ""
 
+#:
+msgid "Just resilience"
+msgstr ""
+
+#:
+msgid "KEY EU ACTIONS"
+msgstr ""
+
 # ,
 #: site_menu:61
 msgid "Knowledge"
@@ -423,6 +435,10 @@ msgstr "Nacionalni sustavi za zdravlje topline i akcijski planovi"
 
 #: health_menu:17
 msgid "National policy analysis 2022"
+msgstr ""
+
+#:
+msgid "Nature-based solutions"
 msgstr ""
 
 # ,

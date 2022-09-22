@@ -298,6 +298,10 @@ msgstr "Evropski raziskovalec podnebnih podatkov"
 msgid "EUROPEAN Climate and Health Observatory"
 msgstr "Evropski podnebni in zdravstveni observatorij"
 
+#:
+msgid "Economic losses and fatalities"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:77
@@ -456,6 +460,14 @@ msgstr "Kazalniki v podnebnem adaptu"
 msgid "Inspiring Climate-ADAPT use cases"
 msgstr "Navdihujoči primeri uporabe podnebja"
 
+#:
+msgid "Just resilience"
+msgstr ""
+
+#:
+msgid "KEY EU ACTIONS"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:61
@@ -506,6 +518,10 @@ msgstr "Državni sistemi opozorila in akcijski načrti za toplotno zdravje"
 #: health_menu:17
 msgid "National policy analysis 2022"
 msgstr "Analiza nacionalne politike 2022"
+
+#:
+msgid "Nature-based solutions"
+msgstr ""
 
 # ,
 # ,

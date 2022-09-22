@@ -298,6 +298,10 @@ msgstr "Europos klimato duomenų tyrinėtojas"
 msgid "EUROPEAN Climate and Health Observatory"
 msgstr "Europos klimatas ir sveikatos observatorija"
 
+#:
+msgid "Economic losses and fatalities"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:77
@@ -456,6 +460,14 @@ msgstr "Klimato pritaikymo rodikliai"
 msgid "Inspiring Climate-ADAPT use cases"
 msgstr "Įkvepiantys klimato pritaikymo atvejai"
 
+#:
+msgid "Just resilience"
+msgstr ""
+
+#:
+msgid "KEY EU ACTIONS"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:61
@@ -506,6 +518,10 @@ msgstr "Nacionalinės šilumos sveikatos įspėjimo sistemos ir veiksmų planai"
 #: health_menu:17
 msgid "National policy analysis 2022"
 msgstr "Nacionalinė politikos analizė 2022"
+
+#:
+msgid "Nature-based solutions"
+msgstr ""
 
 # ,
 # ,

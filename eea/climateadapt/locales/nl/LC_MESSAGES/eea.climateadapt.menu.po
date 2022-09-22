@@ -298,6 +298,10 @@ msgstr "European Climate Data Explorer"
 msgid "EUROPEAN Climate and Health Observatory"
 msgstr "Europees klimaat- en gezondheidsobservatorium"
 
+#:
+msgid "Economic losses and fatalities"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:77
@@ -456,6 +460,14 @@ msgstr "Indicatoren in het klimaat-aanpassing"
 msgid "Inspiring Climate-ADAPT use cases"
 msgstr "Inspirerend gebruiksgevallen voor klimaat-aanpassing"
 
+#:
+msgid "Just resilience"
+msgstr ""
+
+#:
+msgid "KEY EU ACTIONS"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:61
@@ -506,6 +518,10 @@ msgstr "Nationale waarschuwingssystemen voor warmte-gezondheid en actieplannen"
 #: health_menu:17
 msgid "National policy analysis 2022"
 msgstr "Nationale beleidsanalyse 2022"
+
+#:
+msgid "Nature-based solutions"
+msgstr ""
 
 # ,
 # ,

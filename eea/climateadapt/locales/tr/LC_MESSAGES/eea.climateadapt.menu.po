@@ -298,6 +298,10 @@ msgstr "Avrupa İklim Veri Gezgini"
 msgid "EUROPEAN Climate and Health Observatory"
 msgstr "Avrupa İklim ve Sağlık Gözlemevi"
 
+#:
+msgid "Economic losses and fatalities"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:77
@@ -456,6 +460,14 @@ msgstr "İklim uyarlamasında göstergeler"
 msgid "Inspiring Climate-ADAPT use cases"
 msgstr "İlham verici iklim-uyarlama kullanım durumları"
 
+#:
+msgid "Just resilience"
+msgstr ""
+
+#:
+msgid "KEY EU ACTIONS"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:61
@@ -506,6 +518,10 @@ msgstr "Ulusal Isı Sağlığı Uyarı Sistemleri ve Eylem Planları"
 #: health_menu:17
 msgid "National policy analysis 2022"
 msgstr "Ulusal Politika Analizi 2022"
+
+#:
+msgid "Nature-based solutions"
+msgstr ""
 
 # ,
 # ,

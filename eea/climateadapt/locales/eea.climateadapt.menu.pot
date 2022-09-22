@@ -522,3 +522,23 @@ msgstr ""
 #: health_menu:222
 msgid "Exposure of vulnerable groups to climate risks"
 msgstr ""
+
+
+#:
+msgid "KEY EU ACTIONS"
+msgstr ""
+
+
+#:
+msgid "Just resilience"
+msgstr ""
+
+
+#:
+msgid "Nature-based solutions"
+msgstr ""
+
+
+#:
+msgid "Economic losses and fatalities"
+msgstr ""

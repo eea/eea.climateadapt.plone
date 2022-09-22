@@ -486,6 +486,10 @@ msgstr "Explorador de datos climáticos europeos"
 msgid "EUROPEAN Climate and Health Observatory"
 msgstr "Observatorio Europeo de Clima y Salud"
 
+#:
+msgid "Economic losses and fatalities"
+msgstr "Pérdidas económicas y muertes"
+
 # ,
 # ,
 # ,
@@ -751,6 +755,14 @@ msgstr "Indicadores en Climate-ADAPT"
 msgid "Inspiring Climate-ADAPT use cases"
 msgstr "Casos de uso inspiradores Climate-ADAPT"
 
+#:
+msgid "Just resilience"
+msgstr "Solo resiliencia"
+
+#:
+msgid "KEY EU ACTIONS"
+msgstr "ACCIONES CLAVE DE LA UE"
+
 # ,
 # ,
 # ,
@@ -837,6 +849,10 @@ msgstr "Sistemas nacionales de alerta sanitaria por ola de calor y planes de acc
 #: health_menu:17
 msgid "National policy analysis 2022"
 msgstr "Análisis de políticas nacionales 2022"
+
+#:
+msgid "Nature-based solutions"
+msgstr "Soluciones basadas en la naturaleza"
 
 # ,
 # ,

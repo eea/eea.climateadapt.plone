@@ -249,7 +249,7 @@ msgstr "Villes et municipalités"
 
 #: health_menu:2201
 msgid "Climate  Services"
-msgstr ""
+msgstr "Services climatiques"
 
 # ,
 # ,
@@ -485,6 +485,10 @@ msgstr "Explorateur européen de données climatiques"
 #: site_menu:85
 msgid "EUROPEAN Climate and Health Observatory"
 msgstr "Observatoire européen du climat et de la santé"
+
+#:
+msgid "Economic losses and fatalities"
+msgstr "Pertes économiques et décès"
 
 # ,
 # ,
@@ -751,6 +755,14 @@ msgstr "Indicateurs dans Climate-ADAPT"
 msgid "Inspiring Climate-ADAPT use cases"
 msgstr "Cas d'utilisation inspirants de Climate-ADAPT"
 
+#:
+msgid "Just resilience"
+msgstr "Juste de la résilience"
+
+#:
+msgid "KEY EU ACTIONS"
+msgstr "ACTIONS CLÉS DE L'UE"
+
 # ,
 # ,
 # ,
@@ -837,6 +849,10 @@ msgstr "Systèmes nationaux d'alerte chaleur-santé et plans d'action"
 #: health_menu:17
 msgid "National policy analysis 2022"
 msgstr "Analyse nationale des politiques 2022"
+
+#:
+msgid "Nature-based solutions"
+msgstr "Solutions basées sur la nature"
 
 # ,
 # ,

@@ -427,6 +427,10 @@ msgstr "Explorer european de date climatice"
 msgid "EUROPEAN Climate and Health Observatory"
 msgstr "Observatorul european pentru climă și sănătate"
 
+#:
+msgid "Economic losses and fatalities"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -659,6 +663,14 @@ msgstr "Indicatori în adaptarea climatului"
 msgid "Inspiring Climate-ADAPT use cases"
 msgstr "Inspirând cazuri de utilizare a climei"
 
+#:
+msgid "Just resilience"
+msgstr ""
+
+#:
+msgid "KEY EU ACTIONS"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -730,6 +742,10 @@ msgstr "Sisteme naționale de avertizare a sănătății căldurii și planuri d
 #: health_menu:17
 msgid "National policy analysis 2022"
 msgstr "Analiza politicilor naționale 2022"
+
+#:
+msgid "Nature-based solutions"
+msgstr ""
 
 # ,
 # ,

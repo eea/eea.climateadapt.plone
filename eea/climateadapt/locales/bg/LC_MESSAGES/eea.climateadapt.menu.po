@@ -251,6 +251,10 @@ msgstr "Европейски климатичен изследовател"
 msgid "EUROPEAN Climate and Health Observatory"
 msgstr "Европейска обсерватория за климата и здравето"
 
+#:
+msgid "Economic losses and fatalities"
+msgstr ""
+
 # ,
 #: site_menu:77
 msgid "Economic tools"
@@ -383,6 +387,14 @@ msgstr "Показатели в климат"
 msgid "Inspiring Climate-ADAPT use cases"
 msgstr ""
 
+#:
+msgid "Just resilience"
+msgstr ""
+
+#:
+msgid "KEY EU ACTIONS"
+msgstr ""
+
 # ,
 #: site_menu:61
 msgid "Knowledge"
@@ -423,6 +435,10 @@ msgstr "Национални системи за предупреждение з
 
 #: health_menu:17
 msgid "National policy analysis 2022"
+msgstr ""
+
+#:
+msgid "Nature-based solutions"
 msgstr ""
 
 # ,

@@ -298,6 +298,10 @@ msgstr "Evrópsk loftslagsgögn landkönnuður"
 msgid "EUROPEAN Climate and Health Observatory"
 msgstr "Evrópskt loftslags- og heilsueftirlit"
 
+#:
+msgid "Economic losses and fatalities"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:77
@@ -456,6 +460,14 @@ msgstr "Vísar í loftslagsaðlögun"
 msgid "Inspiring Climate-ADAPT use cases"
 msgstr "Innblástur tilfelli loftslagsaðlögunar"
 
+#:
+msgid "Just resilience"
+msgstr ""
+
+#:
+msgid "KEY EU ACTIONS"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:61
@@ -506,6 +518,10 @@ msgstr "National Heat Health viðvörunarkerfi og aðgerðaáætlanir"
 #: health_menu:17
 msgid "National policy analysis 2022"
 msgstr "Landsstefna greining 2022"
+
+#:
+msgid "Nature-based solutions"
+msgstr ""
 
 # ,
 # ,

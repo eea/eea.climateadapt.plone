@@ -298,6 +298,10 @@ msgstr "Esploratur Ewropew tad-Dejta dwar il-Klima"
 msgid "EUROPEAN Climate and Health Observatory"
 msgstr "Osservatorju Ewropew dwar il-Klima u s-Saħħa"
 
+#:
+msgid "Economic losses and fatalities"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:77
@@ -456,6 +460,14 @@ msgstr "Indikaturi fl-Adapt tal-Klima"
 msgid "Inspiring Climate-ADAPT use cases"
 msgstr "Każijiet ta 'użu ta' adattament għall-klima"
 
+#:
+msgid "Just resilience"
+msgstr ""
+
+#:
+msgid "KEY EU ACTIONS"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:61
@@ -506,6 +518,10 @@ msgstr "Sistemi nazzjonali ta 'twissija tas-saħħa tas-sħana u pjanijiet ta' a
 #: health_menu:17
 msgid "National policy analysis 2022"
 msgstr "Analiżi tal-Politika Nazzjonali 2022"
+
+#:
+msgid "Nature-based solutions"
+msgstr ""
 
 # ,
 # ,
