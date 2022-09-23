@@ -560,7 +560,10 @@ class ContextCountriesView(BrowserView):
         )
 
     def script_country_settings(self):
-        context_titles = [x.Title() for x in self.context.aq_parent.contentValues()]
+        context_titles = [
+            x.id.title().replace('-', ' ')
+            for x in self.context.aq_parent.contentValues()
+        ]
         available_countries = [
             x for x in self.available_countries if x in context_titles
         ]
