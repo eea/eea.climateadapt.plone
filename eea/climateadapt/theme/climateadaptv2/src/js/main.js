@@ -839,7 +839,18 @@ function fixTilesEuPolicy() {
   if (bodyTag.length==0) {
     return 0;
   }
-  if (!bodyTag[0].classList.contains('subsection-sector-policies')) {
+  classAllowed = [
+      'subsection-sector-policies',
+      'subsection-key-eu-actions',
+      'subsection-adaptation-information'
+    ];
+  found = false;
+  for (i=0;i<classAllowed.length;i++) {
+    if (bodyTag[0].classList.contains(classAllowed[i])) {
+      found = true;
+    }
+  }
+  if (!found) {
     return 0;
   }
   tiles = $('.col-md-9 .tile.tile-default');
