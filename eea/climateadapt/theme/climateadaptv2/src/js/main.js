@@ -841,6 +841,7 @@ function fixTilesColumns() {
   }
   fixTilesColumns3Bottom(bodyTag);
   fixTilesColumns2Bottom48(bodyTag);
+  fixTilesColumns2Bottom66(bodyTag);
 }
 
 function fixTilesColumns3Bottom(bodyTag) {
@@ -883,6 +884,49 @@ function fixTilesColumns2Bottom48() {
   if (tiles.length == 3) {
       $(tiles[1]).addClass('col-md-4');
       $(tiles[2]).addClass('col-md-8');
+  }
+}
+
+function fixTilesColumns2Bottom66(bodyTag) {
+  classAllowed = [
+      'subsection-tools-adaptation-support-tool-step-1-4',
+      'subsection-tools-adaptation-support-tool-step-4-2',
+      'subsection-tools-adaptation-support-tool-step-4-3',
+      'subsection-tools-adaptation-support-tool-step-5-1',
+      'subsection-tools-adaptation-support-tool-step-5-2',
+      'subsection-tools-adaptation-support-tool-step-5-4',
+      'subsection-tools-adaptation-support-tool-step-6-1',
+      'subsection-tools-adaptation-support-tool-step-6-2',
+      'subsection-tools-adaptation-support-tool-step-6-3',
+      'subsection-tools-adaptation-support-tool-step-6-4',
+
+      'subsection-tools-urban-ast-step-0-1',
+      'subsection-tools-urban-ast-step-2-5'
+    ];
+  found = false;
+  for (i=0;i<classAllowed.length;i++) {
+    if (bodyTag[0].classList.contains(classAllowed[i])) {
+      found = true;
+    }
+  }
+  if (!found) {
+    return 0;
+  }
+  tiles = $('.col-md-8 .tile.tile-default');
+  if (tiles.length != 4) {
+    return 0;
+  }
+  for (i=2;i<4;i++) {
+    if (!$(tiles[i]).parent().hasClass('col-md-6')) {
+      $(tiles[i]).addClass('col-md-6');
+    }
+  }
+
+  h2 = $(tiles[3]).find('h2');
+  if (h2.length) {
+    if (!$(h2[0]).hasClass('richtext-tile-title')) {
+      $(h2[0]).addClass('richtext-tile-title');
+    }
   }
 }
 
