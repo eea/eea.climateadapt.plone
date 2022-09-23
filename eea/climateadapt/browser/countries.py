@@ -551,10 +551,12 @@ class ContextCountriesView(BrowserView):
 
     def countries(self):
         objects = self.context.aq_parent.contentValues()
-
+        
         return sorted(
-            [x for x in objects if x.Title() in self.available_countries],
-            key=lambda x: x.Title(),
+            [
+                x for x in objects 
+                if x.id.title().replace('-', ' ') in self.available_countries
+            ],key=lambda x: x.id.title().replace('-', ' '),
         )
 
     def script_country_settings(self):
