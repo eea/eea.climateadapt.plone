@@ -813,7 +813,7 @@ sectors_no_value = StaticWidgetAttribute(
 )
 
 
-class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin):
+class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMixin):
     implements(IFilterAceContentItemsTile)
 
     short_name = u"Filterable relevant AceContent"
@@ -844,6 +844,7 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
         if sector:
             query["sectors"] = sector
+        query["path"] = {"query": "/cca/{}".format(self.current_lang)};
 
         res = self.catalog.searchResults(limit=count, **query)
 
@@ -851,7 +852,8 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin):
 
     def view_more_url(self):
         site = getSite()
-        base = site.absolute_url() + "/data-and-downloads/?source="
+        base = site.absolute_url() + "/{}/data-and-downloads/?lang={}&source="\
+                    .format(self.current_lang, self.current_lang)
 
         query = {
             "elements": self.data.get("element_type"),

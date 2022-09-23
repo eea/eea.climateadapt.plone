@@ -834,11 +834,16 @@ function fixTiles() {
   });
 }
 
-function fixTilesEuPolicy() {
+function fixTilesColumns() {
   bodyTag = document.getElementsByTagName("body");
   if (bodyTag.length==0) {
     return 0;
   }
+  fixTilesColumns3Bottom(bodyTag);
+  fixTilesColumns2Bottom48(bodyTag);
+}
+
+function fixTilesColumns3Bottom(bodyTag) {
   classAllowed = [
       'subsection-sector-policies',
       'subsection-key-eu-actions',
@@ -859,7 +864,26 @@ function fixTilesEuPolicy() {
       $(tiles[i]).addClass('col-md-4');
     }
   }
-  console.log('im in');
+}
+
+function fixTilesColumns2Bottom48() {
+  classAllowed = [
+      'subsection-adaptation-information-adaptation-measures'
+    ];
+  found = false;
+  for (i=0;i<classAllowed.length;i++) {
+    if (bodyTag[0].classList.contains(classAllowed[i])) {
+      found = true;
+    }
+  }
+  if (!found) {
+    return 0;
+  }
+  tiles = $('.col-md-9 .tile.tile-default');
+  if (tiles.length == 3) {
+      $(tiles[1]).addClass('col-md-4');
+      $(tiles[2]).addClass('col-md-8');
+  }
 }
 
 function fixPDFButton() {
@@ -1013,7 +1037,7 @@ $(document).ready(function () {
   initCustomAccordions();
   initCountryProfileAccordions();
   fixTiles();
-  fixTilesEuPolicy();
+  fixTilesColumns();
   fixForms();
   fixMoveMap();
   fixUseCases();
