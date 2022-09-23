@@ -17,7 +17,7 @@ jQuery(document).ready(function () {
   $sw.append($load);
 
   d3.json(cpath, function (world) {
-    $.get('@@countries-metadata-extract', function (metadata) {
+    $.get('/en/countries-regions/countries/@@countries-metadata-extract?langflag=1', function (metadata) {
       d3.tsv(fpath, function (flags) {
         window._flags = flags;
         initmap(metadata, world, flags);
