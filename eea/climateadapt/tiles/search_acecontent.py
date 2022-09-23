@@ -768,13 +768,13 @@ class IFilterAceContentItemsTile(IRelevantAceContentItemsTile):
 
 class IFilteringSchema(form.Schema):
     impact = Choice(
-        title=u"Climate impact",
+        title=_(u"Climate impact"),
         vocabulary="eea.climateadapt.aceitems_climateimpacts",
         required=False,
     )
 
     sector = Choice(
-        title=u"Sector",
+        title=_(u"Sector"),
         vocabulary="eea.climateadapt.aceitems_sectors",
         required=False,
     )
