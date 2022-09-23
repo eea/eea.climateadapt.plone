@@ -1217,7 +1217,7 @@ def translation_step_4(site, request):
         "Collection": ["sort_reversed", "query", "effective"],
         "Document": ["table_of_contents", "effective"],
         "News Item": ["health_impacts", "image", "effective",
-            "include_in_observatory"],
+            "include_in_observatory", "subject"],
         "eea.climateadapt.casestudy": [
             "geolocation", "implementation_type", "spatial_values",
             "effective", "source",
