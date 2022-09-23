@@ -13,6 +13,8 @@ from zope import schema
 from zope.component.hooks import getSite
 from zope.interface import implements
 
+from eea.climateadapt.translation.utils import TranslationUtilsMixin
+
 
 class IShareInfoTile(IPersistentCoverTile):
 
@@ -28,7 +30,7 @@ class IShareInfoTile(IPersistentCoverTile):
     )
 
 
-class ShareInfoTile(PersistentCoverTile):
+class ShareInfoTile(PersistentCoverTile, TranslationUtilsMixin):
     """ Share info tile
 
     It shows a button with link to creating content of a certain type
@@ -53,6 +55,7 @@ class ShareInfoTile(PersistentCoverTile):
         site = getSite()    # TODO: fix this link
         type_ = self.data.get('shareinfo_type')
         location, _t, factory = DEFAULT_LOCATIONS[type_]
+        location = self.current_lang + '/' + location
         location = site.restrictedTraverse(location)
         return "{0}/++add++{1}".format(location.absolute_url(), factory)
 
