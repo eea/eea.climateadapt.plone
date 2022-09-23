@@ -194,7 +194,8 @@ class TransRegionalSelectTile(PersistentCoverTile, TranslationUtilsMixin):
         q = {
             "object_provides":
                 "eea.climateadapt.interfaces.ITransnationalRegionMarker",
-            'sort_on': 'sortable_title'
+            'sort_on': 'sortable_title',
+            "path": {"query": "/cca/{}".format(self.current_lang)}
         }
         brains = catalog.searchResults(**q)
 

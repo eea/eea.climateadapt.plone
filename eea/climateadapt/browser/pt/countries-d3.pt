@@ -30,8 +30,6 @@
       window.define = window._old_define;
     </script>
 
-    <script type="text/javascript" src="/++resource++collective.js.bootstrap/js/bootstrap.min.js"></script>
-
   </metal:fill-slot>
 
   <metal:fill-slot fill-slot="content-title">
