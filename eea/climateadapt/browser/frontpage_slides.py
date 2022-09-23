@@ -161,7 +161,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         news = result.getObject()
         image_url, copyright = self.getImages(slide)
         category = "Latest <br/> News & Events"
-        category_translated = translate_text(self.context, self.request, 
+        category_translated = translate_text(self.context, self.request,
             category, 'eea.cca', self.current_lang)
 
         return {
@@ -195,7 +195,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         cs = brain.getObject()
         image_url, copyright = self.getImages(slide)
         category = "Most recent <br/> Case Study"
-        category_translated = translate_text(self.context, self.request, 
+        category_translated = translate_text(self.context, self.request,
             category, 'eea.cca', self.current_lang)
 
         return {
@@ -267,7 +267,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         publi = result.getObject()
         image_url, copyright = self.getImages(slide)
         category = "Most recent <br/> Publication or Report"
-        category_translated = translate_text(self.context, self.request, 
+        category_translated = translate_text(self.context, self.request,
             category, 'eea.cca', self.current_lang)
 
         return {
@@ -341,12 +341,14 @@ class FrontpageSearch(BrowserView, TranslationUtilsMixin):
             counts[search_type] = count
 
         tmp_types = []
+
         for data in SEARCH_TYPES_ICONS:
             data = list(data)
+            data.append(data[1])
             data[1] = translate_text(self.context, self.request, data[1], 'eea.cca')
             tmp_types.append(data)
         return [
-            Section(x[1], counts.get(x[0], 0), self._make_link(x[1]), x[2])
+            Section(x[1], counts.get(x[0], 0), self._make_link(x[3]), x[2])
             #for x in SEARCH_TYPES_ICONS
             for x in tmp_types
         ]
