@@ -853,12 +853,12 @@ def translation_step_1(site, request):
         search_data['sort_limit'] = limit
     if portal_type:
         search_data['portal_type'] = portal_type
-    #if search_path:
+    # if search_path:
     #    search_data['path'] = search_path
 
     brains = catalog.searchResults(search_data)
-    site_url = portal.getSite().absolute_url()
-    logger.info("I will start to create json files. Checking...")
+    # site_url = portal.getSite().absolute_url()
+    logger.info("Start creating json files...")
 
     res = {}
     total_items = 0  # total translatable eng objects
@@ -871,7 +871,8 @@ def translation_step_1(site, request):
         if search_path:
             if search_path not in obj_url:
                 continue
-        logger.info("PROCESS: %s", obj_url)
+        total_items += 1
+        logger.info("PROCESS: %s %s", total_items, obj_url)
 
         data = get_object_fields_values(obj)
 
@@ -879,7 +880,7 @@ def translation_step_1(site, request):
         translation_paths = get_trans_obj_path_for_obj(obj)
         data.update(translation_paths)
 
-        json_object = json.dumps(data, indent = 4)
+        json_object = json.dumps(data, indent=4)
 
         with open("/tmp/jsons/"+brain.UID+".json", "w") as outfile:
             outfile.write(json_object)
@@ -888,7 +889,7 @@ def translation_step_1(site, request):
         else:
             res[obj.portal_type] += 1
 
-    logger.info("RESP %s", res)
+    logger.info("DONE STEP 1. Res: %s", res)
 
 def translation_step_2(site, request, force_uid=None):
     language = request.get('language', None)
