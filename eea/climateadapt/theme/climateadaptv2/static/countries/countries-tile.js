@@ -20,7 +20,7 @@ function initCountriesMapTile() {
   $sw.append($load);
 
   d3.json(cpath, function (world) {
-    $.get(window.portal_url + '/@@countries-tile-metadata', function (metadata) {
+    $.get(window.portal_url + '/en/@@countries-tile-metadata?langflag=1', function (metadata) {
       d3.tsv(fpath, function (flags) {
         window._world = world;
         window.countrySettings = metadata;
