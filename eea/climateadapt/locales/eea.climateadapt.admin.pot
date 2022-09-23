@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-22 21:37+0000\n"
+"POT-Creation-Date: 2022-09-23 09:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,6 +111,10 @@ msgstr ""
 
 #: ../../climateadapt/browser/countries.py:160
 msgid "Climate change impact and vulnerability assessments"
+msgstr ""
+
+#: ../../climateadapt/tiles/search_acecontent.py:771
+msgid "Climate impact"
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:182
@@ -674,6 +678,10 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:342
 msgid "Sea Level Rise"
+msgstr ""
+
+#: ../../climateadapt/tiles/search_acecontent.py:777
+msgid "Sector"
 msgstr ""
 
 #: ../../climateadapt/vocabulary.py:332

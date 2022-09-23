@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-22 21:37+0000\n"
+"POT-Creation-Date: 2022-09-23 09:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1277,6 +1277,10 @@ msgstr "Impacts du changement climatique"
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:58
 msgid "Climate change impacts on European cities"
 msgstr "Les effets du changement climatique sur les villes européennes"
+
+#: ../../climateadapt/tiles/search_acecontent.py:771
+msgid "Climate impact"
+msgstr "Impact climatique"
 
 # ,
 # ,
@@ -2834,6 +2838,10 @@ msgstr "Résultats de la recherche pour: $ {terme}"
 #: ../../climateadapt/tiles/pt/search_acecontent.pt:66
 msgid "Search tile"
 msgstr "Carreaux de recherche"
+
+#: ../../climateadapt/tiles/search_acecontent.py:777
+msgid "Sector"
+msgstr "Secteur"
 
 # ,
 # ,
