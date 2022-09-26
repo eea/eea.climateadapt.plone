@@ -1,4 +1,7 @@
-<div tal:define="portal_url context/portal_url" class="trans-regions-section">
+<div tal:define="portal_url context/portal_url" class="trans-regions-section"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  i18n:domain="eea.climateadapt">
 
   <script>
     $(document).ready(function () {
