@@ -168,6 +168,7 @@ window.requirejs([
 });
 
 $( document ).ready(function() {
+  //pageLoadMap();
   $('#arcgis_case_study_form input[name="impacts"], #arcgis_case_study_form input[name="sectors"], #arcgis_case_study_form input[name="ipccs"]').change(function(){
     buttonReset();
     updateItems();
@@ -187,7 +188,22 @@ $( document ).ready(function() {
   for (i=0;i<elements.length;i++) {
     //filterDisplayMode(elements[i]);
   };
+
 });
+
+function getQueryparams(key) {
+  return urlSearchParams = new URLSearchParams(window.location.search);
+}
+
+function pageLoadMap() {
+    params = getQueryparams();
+    sectors = params['sectors'];
+    if (sectors) {
+      $('.cs_filter_sector_div h4').click();
+      $('.cs_filter_sector_div input[value="'+sectors+'"]').click();
+      updateItems();
+    }
+}
 
 function buttonReset() {
     if ($(".case-study-row .case-study-div input:checked").length >0) {
