@@ -20,6 +20,7 @@ from plone.api.content import get_state
 from plone.api.portal import get_tool, show_message
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 from plone.app.widgets.dx import DatetimeWidgetConverter as BaseConverter
+from plone.app.multilingual.manager import TranslationManager
 from plone.directives import form
 from plone.formwidget.captcha.validator import (CaptchaValidator,
                                                 WrongCaptchaCode)
@@ -36,6 +37,8 @@ from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.interface import Interface, implements
 from eea.climateadapt.translation.utils import get_current_language
+from eea.climateadapt.translation.utils import TranslationUtilsMixin
+
 
 # from Acquisition import aq_inner
 # from eea.climateadapt import MessageFactory as _
@@ -1085,7 +1088,7 @@ class C3sIndicatorsOverview(BrowserView):
     def __call__(self):
         return self.index()
 
-class C3sIndicatorsListing(BrowserView):
+class C3sIndicatorsListing(BrowserView, TranslationUtilsMixin):
     """ Overview page for indicators. Registered as @@c3s_indicators_overview
 
     To be used from inside a collective.cover
@@ -1107,8 +1110,13 @@ class C3sIndicatorsListing(BrowserView):
 
         items = {}
         for brain in brains:
+            if '/en/' not in brain.getURL():
+                continue
             obj = brain.getObject()
-            items[obj.title] = brain.getURL()
+            items[obj.title] = {
+                "url":brain.getURL(),
+                "obj":obj
+            }
 
         site = portal.get()
         # lg = get_current_language(self.context, self.request) - KeyError: 'data'
@@ -1117,9 +1125,13 @@ class C3sIndicatorsListing(BrowserView):
         res['description'] = datastore['data']['themes'][category]['description']
         for indicator in datastore['data']['themes'][category]['apps']:
             if indicator['title'] in items:
+                obj = items[indicator['title']]['obj']
+                translations = TranslationManager(obj).get_translations()
+                if self.current_lang in translations:
+                    obj = translations[self.current_lang]
                 res['items'].append({
-                    'title': indicator['title'],
-                    'url': items[indicator['title']],
+                    'title': obj.title,
+                    'url': obj.absolute_url(),
                 })
 
         return res
