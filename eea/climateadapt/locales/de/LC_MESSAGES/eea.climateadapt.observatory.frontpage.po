@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-23 09:40+0000\n"
+"POT-Creation-Date: 2022-09-26 08:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:388
 #: ../theme/climateadaptv2/health-page-full.html:147
-#: ../theme/climateadaptv2/health-page.html:238
+#: ../theme/climateadaptv2/health-page.html:241
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -50,7 +50,7 @@ msgstr "European Climate <br /> and Health Observatory"
 # ,
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:295
-#: ../theme/climateadaptv2/health-page.html:145
+#: ../theme/climateadaptv2/health-page.html:148
 msgid "Events"
 msgstr "Veranstaltungen"
 
@@ -58,7 +58,7 @@ msgstr "Veranstaltungen"
 # ,
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:350
-#: ../theme/climateadaptv2/health-page.html:200
+#: ../theme/climateadaptv2/health-page.html:203
 msgid "Find out how to contribute to the Observatory via Climate-ADAPT"
 msgstr "Finden Sie heraus, wie Sie über das Climate-ADAPT zum Observatorium beitragen können"
 
@@ -67,7 +67,7 @@ msgstr "Finden Sie heraus, wie Sie über das Climate-ADAPT zum Observatorium bei
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:385
 #: ../theme/climateadaptv2/health-page-full.html:144
-#: ../theme/climateadaptv2/health-page.html:235
+#: ../theme/climateadaptv2/health-page.html:238
 msgid "Home"
 msgstr "Startseite"
 
@@ -97,13 +97,13 @@ msgstr "Mehr erfahren"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:330
-#: ../theme/climateadaptv2/health-page.html:180
+#: ../theme/climateadaptv2/health-page.html:183
 msgid "More events"
 msgstr "Weitere Veranstaltungen"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:313
-#: ../theme/climateadaptv2/health-page.html:163
+#: ../theme/climateadaptv2/health-page.html:166
 msgid "More news"
 msgstr "Weitere Nachrichten"
 
@@ -118,7 +118,7 @@ msgstr "Neu"
 # ,
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:292
-#: ../theme/climateadaptv2/health-page.html:142
+#: ../theme/climateadaptv2/health-page.html:145
 msgid "News"
 msgstr "Nachricht"
 
@@ -126,7 +126,7 @@ msgstr "Nachricht"
 # ,
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:289
-#: ../theme/climateadaptv2/health-page.html:139
+#: ../theme/climateadaptv2/health-page.html:142
 msgid "News/Events"
 msgstr "Neuigkeiten/Veranstaltungen"
 
@@ -135,7 +135,7 @@ msgstr "Neuigkeiten/Veranstaltungen"
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:401
 #: ../theme/climateadaptv2/health-page-full.html:160
-#: ../theme/climateadaptv2/health-page.html:251
+#: ../theme/climateadaptv2/health-page.html:254
 msgid "Privacy and Legal Notice"
 msgstr "Privatsphäre und rechtliche Bekanntmachung"
 
@@ -151,7 +151,7 @@ msgstr "Ressourcenkatalog"
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:397
 #: ../theme/climateadaptv2/health-page-full.html:156
-#: ../theme/climateadaptv2/health-page.html:247
+#: ../theme/climateadaptv2/health-page.html:250
 msgid "SITE MAP"
 msgstr "SEITENVERZEICHNIS"
 
@@ -173,7 +173,7 @@ msgstr "Sehen Sie, wie sich die Länder mit der Anpassung des Klimawandels in de
 # ,
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:349
-#: ../theme/climateadaptv2/health-page.html:199
+#: ../theme/climateadaptv2/health-page.html:202
 msgid "Share <br /> your information"
 msgstr "Teilen Sie <br /> Ihre Informationen"
 
@@ -182,7 +182,7 @@ msgstr "Teilen Sie <br /> Ihre Informationen"
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:441
 #: ../theme/climateadaptv2/health-page-full.html:200
-#: ../theme/climateadaptv2/health-page.html:291
+#: ../theme/climateadaptv2/health-page.html:294
 msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
 msgstr "Dieses <strong>European Climate and Health Observatory </strong> ist eine Partnerschaft zwischen der Europäischen Kommission, der Europäischen Umweltbehörde und mehreren anderen Organisationen."
 

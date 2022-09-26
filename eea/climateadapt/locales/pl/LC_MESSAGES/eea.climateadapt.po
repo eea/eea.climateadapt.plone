@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-23 09:40+0000\n"
+"POT-Creation-Date: 2022-09-26 08:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -586,7 +586,7 @@ msgstr ""
 msgid "<!-- <span class=\"map-type\">NAS</span> --> No information"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:149
+#: ../../climateadapt/browser/pt/countries-d3.pt:147
 msgid "<i class=\"fa fa-exclamation-circle\" aria-hidden=\"true\"></i> <span>x</span> <div id=\"hover-content\">x</div>"
 msgstr ""
 
@@ -671,7 +671,7 @@ msgstr "Warianty adaptacji"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:101
+#: ../../climateadapt/browser/pt/countries-d3.pt:99
 msgid "Adaptation portal or platform reported"
 msgstr "Zgłoszony portal adaptacyjny lub platforma"
 
@@ -731,6 +731,10 @@ msgstr "Dodatkowe Szczegóły"
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:158
 msgid "Additional information on adaptation responses"
 msgstr "Dodatkowe informacje na temat rozwiązań adaptacyjnych"
+
+#: ../../climateadapt/browser/pt/regions-section.pt:24
+msgid "Adriatic Ionian"
+msgstr "Adriatyk i Morze Jońskie"
 
 # ,
 # ,
@@ -793,6 +797,7 @@ msgstr "Alpejski"
 # ,
 # ,
 # ,
+#: ../../climateadapt/browser/pt/regions-section.pt:30
 #: ../../climateadapt/browser/pt/transnational_regions.pt:455
 msgid "Alpine Space"
 msgstr "Przestrzeń alpejska"
@@ -833,9 +838,14 @@ msgstr "Ocena ryzyka i podatności <br /> na zmiany klimatu"
 # ,
 # ,
 # ,
+#: ../../climateadapt/browser/pt/regions-section.pt:36
 #: ../../climateadapt/browser/pt/transnational_regions.pt:458
 msgid "Atlantic Area"
 msgstr "Obszar Atlantyku"
+
+#: ../../climateadapt/browser/pt/regions-section.pt:42
+msgid "Balkan Mediterranean"
+msgstr "Rejon bałkańsko-śródziemnomorski"
 
 # ,
 # ,
@@ -849,6 +859,7 @@ msgstr "Rejon bałkańsko-śródziemnomorski"
 # ,
 # ,
 # ,
+#: ../../climateadapt/browser/pt/regions-section.pt:48
 #: ../../climateadapt/browser/pt/transnational_regions.pt:417
 msgid "Baltic Sea"
 msgstr "Morze Bałtyckie"
@@ -928,6 +939,7 @@ msgstr "Kategoria"
 # ,
 # ,
 # ,
+#: ../../climateadapt/browser/pt/regions-section.pt:54
 #: ../../climateadapt/browser/pt/transnational_regions.pt:467
 msgid "Central Europe"
 msgstr "Europa Środkowa"
@@ -952,7 +964,7 @@ msgstr "Wymeldowanie utworzone"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:57
+#: ../../climateadapt/browser/pt/countries-d3.pt:55
 msgid "Choose a country"
 msgstr "Wybierz kraj"
 
@@ -968,6 +980,7 @@ msgstr "Wybierz kraj:"
 # ,
 # ,
 # ,
+#: ../../climateadapt/browser/pt/regions-section.pt:18
 #: ../../climateadapt/browser/pt/transnational_regions.pt:431
 #: ../../climateadapt/tiles/pt/transregional_select.pt:115
 msgid "Choose a region"
@@ -977,7 +990,7 @@ msgstr "Wybierz region"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:75
+#: ../../climateadapt/browser/pt/countries-d3.pt:73
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:46
 msgid "Choose thematic map:"
 msgstr "Wybierz mapę tematyczną:"
@@ -1185,6 +1198,7 @@ msgstr "DRMKC"
 # ,
 # ,
 # ,
+#: ../../climateadapt/browser/pt/regions-section.pt:61
 #: ../../climateadapt/browser/pt/transnational_regions.pt:418
 msgid "Danube"
 msgstr "Dunaj"
@@ -1324,6 +1338,7 @@ msgstr "E-mail"
 msgid "Energy"
 msgstr "Energia"
 
+#: ../../climateadapt/browser/pt/health_homepage.pt:25
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:17
 msgid "Events"
 msgstr "Wydarzenia"
@@ -1829,6 +1844,7 @@ msgstr "Sygnatariusz Porozumienia Burmistrzów"
 # ,
 # ,
 # ,
+#: ../../climateadapt/browser/pt/regions-section.pt:67
 #: ../../climateadapt/browser/pt/transnational_regions.pt:473
 msgid "Mediterranean"
 msgstr "Śródziemnomorski"
@@ -1853,7 +1869,7 @@ msgstr "Monitorowanie i ocena adaptacji"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:120
+#: ../../climateadapt/browser/pt/countries-d3.pt:118
 msgid "NAS and NAP reported as adopted"
 msgstr "NAS (krajowa strategia adaptacyjna) i NAP (krajowy plan adaptacyjny) zgłoszone jako przyjęte"
 
@@ -1877,6 +1893,7 @@ msgstr "Krajowy HHAP"
 msgid "National adaption policy"
 msgstr "Krajowa polityka adaptacyjna"
 
+#: ../../climateadapt/browser/pt/health_homepage.pt:20
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:16
 msgid "News"
 msgstr "Aktualności"
@@ -1889,12 +1906,12 @@ msgstr "No HHAP"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:86
+#: ../../climateadapt/browser/pt/countries-d3.pt:84
 msgid "No assessments reported"
 msgstr "Nie zgłoszono żadnych ocen"
 
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:94
+#: ../../climateadapt/browser/pt/countries-d3.pt:92
 msgid "No data reported in 2021"
 msgstr "Brak danych w 2021 r."
 
@@ -1906,9 +1923,13 @@ msgstr "Brak informacji"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:105
+#: ../../climateadapt/browser/pt/countries-d3.pt:103
 msgid "No portal or platform reported"
 msgstr "Brak portalu lub platformy"
+
+#: ../../climateadapt/browser/pt/health_homepage.pt:65
+msgid "No upcoming events."
+msgstr "Brak nadchodzących wydarzeń."
 
 # ,
 # ,
@@ -1922,6 +1943,7 @@ msgstr "Niespecyficzne"
 # ,
 # ,
 # ,
+#: ../../climateadapt/browser/pt/regions-section.pt:73
 #: ../../climateadapt/browser/pt/transnational_regions.pt:476
 msgid "North Sea"
 msgstr "Morze Północne"
@@ -1934,10 +1956,15 @@ msgstr "Morze Północne"
 msgid "North West Europe"
 msgstr "Europa północno -zachodnia"
 
+#: ../../climateadapt/browser/pt/regions-section.pt:79
+msgid "North Western Europe"
+msgstr "Europa północno -zachodnia"
+
 # ,
 # ,
 # ,
 # ,
+#: ../../climateadapt/browser/pt/regions-section.pt:85
 #: ../../climateadapt/browser/pt/transnational_regions.pt:482
 msgid "Northern Periphery and Arctic"
 msgstr "Peryferia północne i Arktyka"
@@ -1970,7 +1997,7 @@ msgstr "Wkład Obserwatorium:"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:82
+#: ../../climateadapt/browser/pt/countries-d3.pt:80
 msgid "One or more assessments reported"
 msgstr "Zgłoszona jedną lub więcej ocen"
 
@@ -1978,7 +2005,7 @@ msgstr "Zgłoszona jedną lub więcej ocen"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:124
+#: ../../climateadapt/browser/pt/countries-d3.pt:122
 msgid "Only NAP reported as adopted"
 msgstr "Tylko NAP (krajowy plan adaptacyjny) zgłoszony jako przyjęty"
 
@@ -1986,7 +2013,7 @@ msgstr "Tylko NAP (krajowy plan adaptacyjny) zgłoszony jako przyjęty"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:128
+#: ../../climateadapt/browser/pt/countries-d3.pt:126
 msgid "Only NAS reported as adopted"
 msgstr "Tylko NAS (krajowa strategia adaptacyjna) zgłoszona jako przyjęta"
 
@@ -2024,7 +2051,7 @@ msgid "Other regions"
 msgstr "Inne regiony"
 
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:136
+#: ../../climateadapt/browser/pt/countries-d3.pt:134
 msgid "Outside EEA coverage"
 msgstr "Poza zasięgiem EEA"
 
@@ -2250,7 +2277,7 @@ msgstr "Zrecenzowany przez:"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:132
+#: ../../climateadapt/browser/pt/countries-d3.pt:130
 msgid "SAP reported as adopted"
 msgstr "SAP zgłoszony jako przyjęty"
 
@@ -2346,7 +2373,7 @@ msgstr "Zobacz film poza Climate-ADAPT"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:55
+#: ../../climateadapt/browser/pt/countries-d3.pt:53
 msgid "Select a country to go directly to the country's page:"
 msgstr "Wybierz kraj, aby przejść bezpośrednio na stronę kraju:"
 
@@ -2435,6 +2462,7 @@ msgstr "Źródło:"
 # ,
 # ,
 # ,
+#: ../../climateadapt/browser/pt/regions-section.pt:91
 #: ../../climateadapt/browser/pt/transnational_regions.pt:485
 msgid "South West Europe"
 msgstr "Europa południowo -zachodna"
@@ -2584,7 +2612,7 @@ msgstr "Data odnosi się do momentu, w którym element został przygotowany lub 
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:149
+#: ../../climateadapt/browser/pt/countries-d3.pt:147
 msgid "The information presented in these pages is based on the reporting according to 'Regulation (EU) 2018/1999 on the Governance of the Energy Union and Climate Action' and updates by the EEA member countries. However, for those pages where the information is last updated before 01/01/2021, the information presented is based on the reporting according to 'Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change' and updates by the EEA member countries.'"
 msgstr "Informacje przedstawione na tych stronach oparte są na raporcie zgodnie z \"Rozporządzeniem (UE) 2018/1999 w sprawie zarządzania unią energetyczną i działaniami na rzecz klimatu\" oraz aktualizacji krajów członkowskich Europejskej Agencji Środowiska (EEA). Jednak w przypadku tych stron, na których informacje zostały ostatnio zaktualizowane przed 01.01.2021, przedstawione informacje oparte są na sprawozdawczości zgodnie z \"Rozporządzeniem (UE) nr 525/2013 w sprawie mechanizmu monitorowania i sprawozdawczości w zakresie emisji gazów cieplarnianych oraz zgłaszania innych informacji mających znaczenie dla zmiany klimatu\"oraz aktualizacji krajów członkowskich Europejskej Agencji Środowiska (EEA)."
 
@@ -2771,7 +2799,7 @@ msgstr "Rok:"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:148
+#: ../../climateadapt/browser/pt/countries-d3.pt:146
 msgid "[Disclaimer]"
 msgstr "[Zastrzeżenie]"
 
