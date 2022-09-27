@@ -1126,9 +1126,13 @@ class C3sIndicatorsListing(BrowserView, TranslationUtilsMixin):
         for indicator in datastore['data']['themes'][category]['apps']:
             if indicator['title'] in items:
                 obj = items[indicator['title']]['obj']
-                translations = TranslationManager(obj).get_translations()
-                if self.current_lang in translations:
-                    obj = translations[self.current_lang]
+                if self.current_lang != 'en':
+                    try:
+                        translations = TranslationManager(obj).get_translations()
+                        if self.current_lang in translations:
+                            obj = translations[self.current_lang]
+                    except:
+                        logger.info('At least one language is not published for '.obj.absolute_url())
                 res['items'].append({
                     'title': obj.title,
                     'url': obj.absolute_url(),
