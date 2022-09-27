@@ -197,12 +197,14 @@ class TranslationCallback(BrowserView):
         if len(form.keys()) == 0:
             logger.info("Empty form")  # TODO: Check why?
             return
-    
+
         file.seek(0)
         b64_str = file.read()
         html_file = base64.decodestring(b64_str).decode("latin-1")
         # logger.info(html_file)
-        soup = BeautifulSoup(html_file, "html.parser")
+        # soup = BeautifulSoup(html_file, "html.parser")
+        soup = BeautifulSoup(html_file, "lxml")  # it's seems better
+        # for invalid HTML cases.
 
         html_fields = soup.find_all(
                 'div', attrs={"class": "cca-translation-section"})
