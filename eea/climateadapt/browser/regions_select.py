@@ -8,9 +8,9 @@ from Products.Five.browser import BrowserView
 
 from eea.climateadapt import MessageFactory as _
 from Products.CMFCore.utils import getToolByName
+from eea.climateadapt.translation.utils import TranslationUtilsMixin
 
-
-class TransRegionSelect(BrowserView):
+class TransRegionSelect(BrowserView, TranslationUtilsMixin):
     """ A dropdown select with transnational regions
     """
 
@@ -21,7 +21,8 @@ class TransRegionSelect(BrowserView):
         q = {
             "object_provides":
                 "eea.climateadapt.interfaces.ITransnationalRegionMarker",
-            'sort_on': 'sortable_title'
+            'sort_on': 'sortable_title',
+            'path': '/cca/'+self.current_lang
         }
         brains = catalog.searchResults(**q)
 
