@@ -126,5 +126,12 @@
       permission="cmf.ManagePortal"
       />
 
+    <browser:page
+      for="*"
+      template="pt/translate_one_object.pt"
+      class=".admin.TranslateOneObject"
+      name="translate-object"
+      permission="cmf.ManagePortal"
+      />
 
 </configure>
