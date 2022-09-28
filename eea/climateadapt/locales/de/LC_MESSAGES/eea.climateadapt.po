@@ -41,7 +41,7 @@ msgstr "1. Vorbereitung des Bodens für die Anpassung"
 # ,
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:136
 msgid "1.1 Obtaining high-level political support for adaptation"
-msgstr "1.1 hochrangige politische Unterstützung für die Anpassung erhalten"
+msgstr "1.1 Hochrangige politische Unterstützung für die Anpassung erhalten"
 
 # ,
 # ,

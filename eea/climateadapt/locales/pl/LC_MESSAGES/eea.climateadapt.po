@@ -312,7 +312,7 @@ msgstr "3.2 Znalezienie przykładów dobrych praktyk adaptacyjnych"
 # ,
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:212
 msgid "3.3 Describing adaptation options in detail"
-msgstr "3.3 szczegółowe opisanie opcji adaptacji"
+msgstr "3.3 Szczegółowe opisanie opcji adaptacji"
 
 # ,
 # ,
