@@ -368,7 +368,7 @@ msgstr "4.2 Conduzione di un'analisi costi-benefici delle misure di adattamento"
 # ,
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:233
 msgid "4.2 Prioritising adaptation options and selecting preferred ones"
-msgstr "4.2 priorita le opzioni di adattamento e selezionando quelle preferite"
+msgstr "4.2 Priorita le opzioni di adattamento e selezionando quelle preferite"
 
 # ,
 # ,
@@ -456,7 +456,7 @@ msgstr "5.3 Adattamento integrale nelle politiche e nei piani urbani"
 # ,
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:265
 msgid "5.3 Mainstreaming: Integrating adaptation into instruments and sector policies"
-msgstr "5.3 mainstreaming: integrazione dell'adattamento in strumenti e politiche settoriali"
+msgstr "5.3 Mainstreaming: integrazione dell'adattamento in strumenti e politiche settoriali"
 
 # ,
 # ,

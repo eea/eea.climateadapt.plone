@@ -68,7 +68,7 @@ msgstr "1.2 Erstinformationen sammeln"
 # ,
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:140
 msgid "1.2 Setting up the process in a structured way"
-msgstr "1.2 den Prozess strukturiert einrichten"
+msgstr "1.2 Den Prozess strukturiert einrichten"
 
 # ,
 # ,
@@ -158,7 +158,7 @@ msgstr "1.7 Anpassung an verschiedene Zielgruppen kommunizieren"
 # ,
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:118
 msgid "1.8 Finding additional support"
-msgstr "1.8 zusätzliche Unterstützung finden"
+msgstr "1.8 Zusätzliche Unterstützung finden"
 
 # ,
 # ,

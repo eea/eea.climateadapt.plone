@@ -274,7 +274,7 @@ msgstr "2.3 Identification des secteurs urbains vulnérables"
 # ,
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:153
 msgid "2.4 Conducting risk and vulnerability assessments"
-msgstr "2.4 effectuer des évaluations des risques et de la vulnérabilité"
+msgstr "2.4 Effectuer des évaluations des risques et de la vulnérabilité"
 
 # ,
 # ,
@@ -284,7 +284,7 @@ msgstr "2.4 effectuer des évaluations des risques et de la vulnérabilité"
 # ,
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:180
 msgid "2.4 Taking trans-boundary issues into account"
-msgstr "2.4 en tenant compte des problèmes transfondaires"
+msgstr "2.4 En tenant compte des problèmes transfondaires"
 
 # ,
 # ,
@@ -376,7 +376,7 @@ msgstr "3.1 Création d'un catalogue d'options d'adaptation pertinentes"
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:208
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:188
 msgid "3.2 Finding examples of good adaptation practices"
-msgstr "3.2 trouver des exemples de bonnes pratiques d'adaptation"
+msgstr "3.2 Trouver des exemples de bonnes pratiques d'adaptation"
 
 # ,
 # ,
@@ -446,7 +446,7 @@ msgstr "4.1 Choisir un cadre d'évaluation pour les options d'adaptation"
 # ,
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:213
 msgid "4.2 Conducting a cost-benefit analysis of adaptation measures"
-msgstr "4.2 effectuer une analyse coûts-avantages des mesures d'adaptation"
+msgstr "4.2 Effectuer une analyse coûts-avantages des mesures d'adaptation"
 
 # ,
 # ,
@@ -576,7 +576,7 @@ msgstr "5.3 Intégration générale: intégrer l'adaptation dans les instruments
 # ,
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:253
 msgid "5.4 Addressing climate change through adaptation and mitigation"
-msgstr "5.4 aborder le changement climatique par l'adaptation et l'atténuation"
+msgstr "5.4 Aborder le changement climatique par l'adaptation et l'atténuation"
 
 # ,
 # ,
