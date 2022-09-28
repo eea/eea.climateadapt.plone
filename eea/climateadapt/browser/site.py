@@ -364,8 +364,8 @@ class Navbar(ExternalTemplateHeader):
 
     def translate_url(self, url):
         lang_independent_urls = [
-            "privacy-and-legal-notice", "user-dashboard"
-            "eea-disclaimer", "/sitemap"
+            #"privacy-and-legal-notice", "/sitemap"
+            "user-dashboard", "eea-disclaimer",
             ]
         for lang_independent_url in lang_independent_urls:
             if url.endswith(lang_independent_url):
