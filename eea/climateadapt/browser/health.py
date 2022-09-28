@@ -76,7 +76,7 @@ class HealthHomepageItems(BrowserView, TranslationUtilsMixin):
                 "review_state": "published",
                 "sort_on": "effective",
                 "sort_order": "descending",
-                "include_in_observatory": True, 
+                "include_in_observatory": True,
                 "path": "/cca/{}".format(self.current_lang),
                 # "Subject": ("Health Observatory",),
             }
@@ -95,8 +95,8 @@ class HealthHomepageItems(BrowserView, TranslationUtilsMixin):
             info = {
                 "title": item.Title,
                 "size": size,
-                "url": "/observatory/++aq++"  # item.getURL()
-                + "/".join(item.getObject().getPhysicalPath()[2:]),
+                "url": "/"+self.current_lang+"/observatory/++aq++"  # item.getURL()
+                + "/".join(item.getObject().getPhysicalPath()[3:]),
                 "date": item.getObject().effective().strftime("%d %b %Y"),
             }
             results.append(info)
@@ -107,7 +107,7 @@ class HealthHomepageItems(BrowserView, TranslationUtilsMixin):
     def more_news(self):
         site = getSite()
         url = site[get_current_language(self.context, self.request)]["observatory"]["news-archive-observatory"].absolute_url()
-        title = translate_text(self.context, self.request, 
+        title = translate_text(self.context, self.request,
                 "More news", 'eea.climateadapt.frontpage', self.current_lang)
 
         return [url, title]
@@ -116,7 +116,7 @@ class HealthHomepageItems(BrowserView, TranslationUtilsMixin):
     def more_events(self):
         site = getSite()
         url = site[get_current_language(self.context, self.request)]["observatory"]["more-events-observatory"].absolute_url()
-        title = translate_text(self.context, self.request, 
+        title = translate_text(self.context, self.request,
                 "More events", 'eea.climateadapt.frontpage', self.current_lang)
 
         return [url, title]
