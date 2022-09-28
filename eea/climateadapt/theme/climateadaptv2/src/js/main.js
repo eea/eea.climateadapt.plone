@@ -840,6 +840,7 @@ function fixTilesColumns() {
     return 0;
   }
   fixTilesColumns3Bottom(bodyTag);
+  fixTilesColumns3BottomSpecial2(bodyTag);
   fixTilesColumns2Bottom48(bodyTag);
   fixTilesColumns2Bottom66(bodyTag);
 }
@@ -862,6 +863,27 @@ function fixTilesColumns3Bottom(bodyTag) {
   tiles = $('.col-md-9 .tile.tile-default');
   if (tiles.length == 4) {
     for (i=1;i<4;i++) {
+      $(tiles[i]).addClass('col-md-4');
+    }
+  }
+}
+
+function fixTilesColumns3BottomSpecial2(bodyTag) {
+  classAllowed = [
+      'subsection-tools-economic-tools-economic-tools',
+    ];
+  found = false;
+  for (i=0;i<classAllowed.length;i++) {
+    if (bodyTag[0].classList.contains(classAllowed[i])) {
+      found = true;
+    }
+  }
+  if (!found) {
+    return 0;
+  }
+  tiles = $('.col-md-16 .tile.tile-default');
+  if (tiles.length == 3) {
+    for (i=1;i<3;i++) {
       $(tiles[i]).addClass('col-md-4');
     }
   }
