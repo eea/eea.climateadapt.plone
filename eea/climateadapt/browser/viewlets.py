@@ -1,6 +1,6 @@
 import pkg_resources
-
 from Acquisition import aq_inner
+from eea.climateadapt.translation.utils import TranslationUtilsMixin
 from plone.api import group
 from plone.api.content import get_state
 from plone.app.layout.viewlets import ViewletBase
@@ -21,7 +21,6 @@ from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
 from zope.site.hooks import getSite
 
-from eea.climateadapt.translation.utils import TranslationUtilsMixin
 # from Products.LDAPUserFolder.LDAPDelegate import filter_format
 
 try:
@@ -192,19 +191,21 @@ class PathBarViewlet(BasePathBarViewlet):
             self.br_exists = False
 
     def localize_observatory(self, url):
+        # import pdb; pdb.set_trace()
         portal_url = self.context.portal_url()
         base = self.navigation_root_url
 
+        current_lang = self.request.cookies.get('I18N_LANGUAGE', 'en')
         if '/observatory/metadata' in url:
             path = url.replace(portal_url, '')
-            path = path.replace('/observatory/', '')
+            path = path.replace('/%s/observatory/' % current_lang, '')
             url = base + '/++aq++' + path
 
         if '/observatory/news-archive' in url:
-            url = '/observatory/news-archive-observatory/'
+            url = '/%s/observatory/news-archive-observatory/' % current_lang
 
         if '/observatory/more-events' in url:
-            url = '/observatory/more-events-observatory/'
+            url = '%s/observatory/more-events-observatory/' % current_lang
 
         return url
 
