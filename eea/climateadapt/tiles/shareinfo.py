@@ -57,7 +57,8 @@ class ShareInfoTile(PersistentCoverTile, TranslationUtilsMixin):
         location, _t, factory = DEFAULT_LOCATIONS[type_]
         location = self.current_lang + '/' + location
         location = site.restrictedTraverse(location)
-        return "{0}/++add++{1}".format(location.absolute_url(), factory)
+        url = location.absolute_url().replace("/"+self.current_lang+"/", "/en/")
+        return "{0}/++add++{1}".format(url, factory)
 
     def link_title(self):
         type_ = self.data.get('shareinfo_type')
