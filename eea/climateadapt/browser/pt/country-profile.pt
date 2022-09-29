@@ -92,7 +92,8 @@
                 <li tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external">
-                    <a tal:attributes="href python: item.get('Link', '#'); data-val python: item.get('Link', '#')"
+                    <a tal:attributes="href python: view.fix_link(item.get('Link', '#'));
+                                       data-val python: view.fix_link(item.get('Link', '#'))"
                        tal:content="item/Title"
                        rel="noopener" target="_blank" data-linktype="external"></a>
                   </span>
@@ -113,7 +114,8 @@
                 <li tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external" tal:condition="python: 'Link' in item">
-                    <a tal:attributes="href python: item.get('Link', '#'); data-val python: item.get('Link', '#')"
+                    <a tal:attributes="href python: view.fix_link(item.get('Link', '#'));
+                                       data-val python: view.fix_link(item.get('Link', '#'))"
                        tal:content="item/Title"
                        rel="noopener" target="_blank" data-linktype="external"></a>
                   </span>
@@ -134,7 +136,8 @@
                 <li tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external">
-                    <a tal:attributes="href python:item.get('Link', '#'); data-val python:item.get('Link', '#')"
+                    <a tal:attributes="href python: view.fix_link(item.get('Link', '#'));
+                                       data-val python: view.fix_link(item.get('Link', '#'))"
                        tal:content="item/Title"
                        rel="noopener" target="_blank" data-linktype="external"></a>
                   </span>
@@ -155,7 +158,8 @@
                 <li tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external">
-                    <a tal:attributes="href item/Link; data-val item/Link"
+                    <a tal:attributes="href python: view.fix_link(item.get('Link', '#'));
+                                       data-val python: view.fix_link(item.get('Link', '#'))"
                        tal:content="item/Title"
                        rel="noopener" target="_blank" data-linktype="external"></a>
                   </span>
@@ -176,7 +180,8 @@
                 <li tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external">
-                    <a tal:attributes="href item/WebLink; data-val item/WebLink"
+                    <a tal:attributes="href python: view.fix_link(item.get('WebLink', '#'));
+                                       data-val python: view.fix_link(item.get('WebLink', '#'))"
                        tal:content="item/Name"
                        rel="noopener" target="_blank" data-linktype="external"></a>
                   </span>
@@ -197,7 +202,8 @@
                 <li tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external">
-                    <a tal:attributes="href python: item.get('WebLink', '#'); data-val python: item.get('WebLink', '#')"
+                    <a tal:attributes="href python: view.fix_link(item.get('WebLink', '#'));
+                                       data-val python: view.fix_link(item.get('WebLink', '#'))"
                        tal:content="item/Description"
                        rel="noopener" target="_blank" data-linktype="external"></a>
                   </span>
@@ -220,7 +226,8 @@
                     tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external">
-                    <a tal:attributes="href item/Website; data-val item/Website"
+                    <a tal:attributes="href python: view.fix_link(item.get('Website', '#'));
+                                       data-val python: view.fix_link(item.get('Website', '#'))"
                        tal:content="item/Name"
                        rel="noopener" target="_blank" data-linktype="external"></a>
                   </span>
@@ -241,7 +248,8 @@
                 <li tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external">
-                    <a tal:attributes="href item/Link; data-val item/Link"
+                    <a tal:attributes="href python: view.fix_link(item.get('Link', '#'));
+                                       data-val python: view.fix_link(item.get('Link', '#'))"
                        tal:content="item/Description"
                        rel="noopener" target="_blank" data-linktype="external"></a>
                   </span>
@@ -258,7 +266,8 @@
                     tal:repeat="item items"
                     style="clear: both;">
                   <span class="link-external">
-                    <a tal:attributes="href item/WebLink; data-val item/WebLink"
+                    <a tal:attributes="href python: view.fix_link(item.get('WebLink', '#'));
+                                       data-val python: view.fix_link(item.get('WebLink', '#'))"
                        tal:content="item/TitleEnglish"
                        rel="noopener" target="_blank" data-linktype="external"></a>
                   </span>

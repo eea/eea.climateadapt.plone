@@ -551,10 +551,10 @@ class ContextCountriesView(BrowserView):
 
     def countries(self):
         objects = self.context.aq_parent.contentValues()
-        
+
         return sorted(
             [
-                x for x in objects 
+                x for x in objects
                 if x.id.title().replace('-', ' ') in self.available_countries
             ],key=lambda x: x.id.title().replace('-', ' '),
         )
@@ -629,6 +629,14 @@ class CountryProfileData(BrowserView):
         )
 
         return sorted_items
+
+    def fix_link(self, link):
+        """ Fix links like www.website.com
+        """
+        if link != "#" and 'http' not in link:
+            return "http://" + link
+
+        return link
 
     def __call__(self):
         country_name = self.context.title
