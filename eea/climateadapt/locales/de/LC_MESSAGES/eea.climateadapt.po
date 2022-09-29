@@ -50,7 +50,7 @@ msgstr "1.1 Hochrangige politische Unterstützung für die Anpassung erhalten"
 # ,
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:83
 msgid "1.1 Obtaining political support for adaptation"
-msgstr "1.1 politische Unterstützung für die Anpassung erhalten"
+msgstr "1.1 Politische Unterstützung für die Anpassung erhalten"
 
 # ,
 # ,
