@@ -32,7 +32,30 @@
   text-align:center;
   font-size:10.5px;
 }
+.urban-landing-top {
+  position: relative;
+  background-image: url("/en/eu-adaptation-policy/sector-policies/urban-landing/urban.jpg");
+  background-size: cover;
+  height:400px;
+  margin-left: -20px;
+  margin-top: -20px;
+  margin-right: -20px;
+}
+.urban-landing-top .text {
+  background-color: rgba(0,0,0,.5);
+  color: #fff;
+  position: absolute;
+  top: 150px;
+  right: 50px;
+  width: 400px;
+  padding:10px;
+}
+.urban-landing-top p {
+    font-size: 20pt;
+    color:#fff;
+}
 </style>
+
 
 <div xmlns="http://www.w3.org/1999/xhtml"
   class="dynamic-area urban-landing"
@@ -43,6 +66,11 @@
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   i18n:domain="eea.climateadapt.urban">
+      <div class="urban-landing-top">
+        <div class="text">
+          <p>Learn more about how cities can adapt to climate change to become future-proof, climate-resilient cities</p>
+        </div>
+      </div>
       <div class="content-container">
         <ul class="nav nav-tabs main-nav-tabs">
           <!-- <li class="main-tab-item active">
