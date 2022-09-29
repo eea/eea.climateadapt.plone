@@ -271,7 +271,7 @@ class ForcePingObjectCRView(BrowserView):
         options = {}
         options['create'] = False
         options['service_to_ping'] = 'http://semantic.eea.europa.eu/ping'
-            # context = res.getObject()
+        # context = res.getObject()
         url = obj.absolute_url()
 
         if 'https' in url:
@@ -279,7 +279,7 @@ class ForcePingObjectCRView(BrowserView):
 
         options['obj_url'] = url + '/@@rdf'
         logger.info("Pinging: %s", url)
-        ping_CRSDS(context, options)
+        ping_CRSDS(obj, options)
         logger.info("Finished pinging: %s", url)
 
         return 'Finished'
