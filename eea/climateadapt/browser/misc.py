@@ -988,6 +988,7 @@ class C3sIndicatorsOverview(BrowserView):
     def data(self):
         site = portal.get()
         lg = get_current_language(self.context, self.request)
+        lg = "en"
         base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         return datastore.get('data', {})
@@ -995,6 +996,7 @@ class C3sIndicatorsOverview(BrowserView):
     def get_categories(self):
         site = portal.get()
         lg = get_current_language(self.context, self.request)
+        lg = "en"
         base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         data_overview_page = datastore['data']['overview_page']
@@ -1022,7 +1024,8 @@ class C3sIndicatorsOverview(BrowserView):
 
     def get_overview_columns(self):
         site = portal.get()
-        lg = get_current_language(self.context, self.request)
+        lang = get_current_language(self.context, self.request)
+        lg = "en"
         base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         overview_page = datastore['data']['overview_page']
@@ -1042,14 +1045,15 @@ class C3sIndicatorsOverview(BrowserView):
                             #print("  --> FOUND")
                             break
                     if c3s_identifier:
-                        #import pdb; pdb.set_trace()
                         query = {
                             'portal_type': 'eea.climateadapt.c3sindicator',
-                            'c3s_identifier': c3s_identifier
+                            'c3s_identifier': c3s_identifier,
+                            'path': "/cca/"+lang+"/metadata"
                         }
                         brains = catalog.searchResults(query)
                         for brain in brains:
                             if c3s_identifier == brain.getObject().c3s_identifier:
+                                overview_page['hazard_list'][category][hazard][index]['title'] = brain.getObject().title
                                 overview_page['hazard_list'][category][hazard][index]['url'] = brain.getURL()
                     else:
                         print "Not found: "+ item['title']
