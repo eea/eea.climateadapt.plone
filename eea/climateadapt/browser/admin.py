@@ -3,21 +3,15 @@ import datetime
 import json
 import logging
 
-from lxml.etree import fromstring
-from pkg_resources import resource_filename
-from zope import schema
-from zope.annotation.interfaces import IAnnotations
-from zope.component import adapter, getMultiAdapter, getUtility
-from zope.interface import (Interface, Invalid, implementer, implements,
-                            invariant)
-
 from apiclient.discovery import build
 from DateTime import DateTime
 from eea.climateadapt.browser.site import _extract_menu
 from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
 from eea.climateadapt.scripts import get_plone_site
 from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
+from lxml.etree import fromstring
 from oauth2client.service_account import ServiceAccountCredentials
+from pkg_resources import resource_filename
 from plone.api import portal
 from plone.api.portal import get_tool, getSite
 from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
@@ -33,14 +27,17 @@ from plone.z3cform import layout
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from six.moves.html_parser import HTMLParser
-from z3c.form import form as z3cform
 from z3c.form import button
+from z3c.form import form as z3cform
 from z3c.form.interfaces import IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
-
-from DateTime import DateTime
+from zope import schema
+from zope.annotation.interfaces import IAnnotations
+from zope.component import adapter, getMultiAdapter, getUtility
+from zope.interface import (Interface, Invalid, implementer, implements,
+                            invariant)
 
 html_unescape = HTMLParser().unescape
 
@@ -257,6 +254,37 @@ class ListTilesWithTitleView (BrowserView):
                 self.walk(x)
 
 
+class ForcePingObjectCRView(BrowserView):
+    """ Force pingcr on objects between a set interval """
+
+    def __call__(self):
+        cat = get_tool('portal_catalog')
+        obj = self.context
+
+        # query = {
+        #     'review_state': ['published', 'archived']       ## , 'private'
+        # }
+        # results = cat.searchResults(query)
+        # logger.info("Found %s objects " % len(results))
+
+        count = 0
+        options = {}
+        options['create'] = False
+        options['service_to_ping'] = 'http://semantic.eea.europa.eu/ping'
+        # context = res.getObject()
+        url = obj.absolute_url()
+
+        if 'https' in url:
+            url = url.replace('https', 'http')
+
+        options['obj_url'] = url + '/@@rdf'
+        logger.info("Pinging: %s", url)
+        ping_CRSDS(obj, options)
+        logger.info("Finished pinging: %s", url)
+
+        return 'Finished'
+
+
 class ForcePingCRView(BrowserView):
     """ Force pingcr on objects between a set interval """
 
@@ -264,7 +292,7 @@ class ForcePingCRView(BrowserView):
         cat = get_tool('portal_catalog')
 
         query = {
-            'review_state': ['published', 'archived', 'private']
+            'review_state': ['published', 'archived']       ## , 'private'
         }
         results = cat.searchResults(query)
 
