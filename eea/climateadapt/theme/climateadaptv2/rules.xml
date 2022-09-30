@@ -51,6 +51,7 @@
       <replace css:theme=".slider" css:content=".slider" href="/@@slides-frontpage" method="document" />
       <replace css:theme=".db-categories" css:content=".db-categories" href="@@fp-search-dynamic" method="document"/>
 
+      <after css:theme-children="div.global-msg" css:content="div#portal-columns div#globalstatusmessage" />
     </rules>
 
     <rules css:if-content=".site-observatory,.section-observatory,.web-cca-observatory">
