@@ -5,7 +5,7 @@ import logging
 import re
 
 from zope.component.hooks import getSite
-from plone.app.multilingual.manager import TranslationManager
+#from plone.app.multilingual.manager import TranslationManager
 
 from eea.climateadapt.browser.externaltemplates import ExternalTemplateHeader
 from eea.climateadapt.translation.utils import get_current_language
@@ -405,15 +405,15 @@ class Navbar(ExternalTemplateHeader):
             url = url.replace('/en/', '/'+current_language+'/');
             return url
 
-            obj = site.unrestrictedTraverse('/cca' + url)
-            translations = TranslationManager(obj).get_translations()
-            if current_language in translations:
-                trans_obj = translations[current_language]
+            #obj = site.unrestrictedTraverse('/cca' + url)
+            #translations = TranslationManager(obj).get_translations()
+            #if current_language in translations:
+            #    trans_obj = translations[current_language]
 
-                url = trans_obj.absolute_url()
+            #    url = trans_obj.absolute_url()
                 #logger.info("Translate URL4: %s", trans_obj.absolute_url())
-            else:
-                logger.info("Translate fail URL4.1: [%s]", url)
+            #else:
+            #    logger.info("Translate fail URL4.1: [%s]", url)
         except Exception as e:
             logger.exception("Translate error: %s for %s", e, url)
             #logger.info("Translate URL5: %s", url)

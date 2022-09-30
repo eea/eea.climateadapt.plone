@@ -19,7 +19,7 @@ from eea.climateadapt.vocabulary import (_climateimpacts, _datatypes,
                                          _elements, _origin_website, _sectors,
                                          ace_countries_dict)
 from eea.climateadapt.translation.utils import get_current_language
-from plone.app.multilingual.manager import TranslationManager
+#from plone.app.multilingual.manager import TranslationManager
 
 from plone import api
 from plone.api import portal
@@ -437,7 +437,7 @@ class IRelevantAceContentItemsTile(ISearchAceContentTile):
 Item = namedtuple("Item", ["Title", "Description", "icons", "sortable_title", "url"])
 
 
-class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
+class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMixin):
     """Relevant AceItem content"""
 
     implements(IRelevantAceContentItemsTile, IListTile)
@@ -563,12 +563,15 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         res = []
 
         for item in self.assigned():
-            if '/'+current_language+'/' not in item.absolute_url():
-                translations = TranslationManager(item).get_translations()
-                if current_language not in translations:
-                    continue
-                item = translations[current_language]
-
+            if current_language != 'en':
+                #import pdb; pdb.set_trace()
+                item = self.translated_object(item)
+            #    translations = TranslationManager(item).get_translations()
+            #    if current_language not in translations:
+            #        continue
+            #    item = translations[current_language]
+            if not item:
+                continue
             adapter = sortable_title(item)
             st = adapter()
             o = Item(
@@ -592,14 +595,10 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
         for item in self.items():
             obj = item.getObject()
             if '/'+current_language+'/' not in item.getURL():
-                translations = TranslationManager(obj).get_translations()
-                if current_language not in translations:
-                    continue
-                obj = translations[current_language]
-                brains = catalog.searchResults(UID=obj.UID())
-                if len(brains) == 0:
-                    continue
-                item = brains[0]
+                item = self.translated_object(item)
+
+            if not item:
+                continue
 
             adapter = sortable_title(obj)
             st = adapter()
@@ -641,7 +640,8 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin):
                     # maybe the user has no permission to access the object
                     # so we try to get it bypassing the restrictions
                     catalog = api.portal.get_tool("portal_catalog")
-                    brain = catalog.unrestrictedSearchResults(UID=uuid)
+                    #brain = catalog.unrestrictedSearchResults(UID=uuid, review_state='published')
+                    brain = catalog.searchResults(UID=uuid, review_state='published')
 
                     if not brain:
                         # the object was deleted; remove it from the tile
