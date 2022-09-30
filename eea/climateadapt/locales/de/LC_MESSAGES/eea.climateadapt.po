@@ -1007,7 +1007,7 @@ msgstr "Fallstudienbeschreibung"
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:241
 msgid "Case Study Illustrations"
-msgstr "Fallstudienabbildungen ($ {dynamic_content}) <i class = \"fa fa-sticture-o\" aria-hidden = \"true\"> </i>"
+msgstr "Fallstudienabbildungen"
 
 # ,
 # ,
