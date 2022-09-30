@@ -963,7 +963,7 @@ class DatetimeDataConverter(BaseConverter):
         return value
 
 
-class C3sIndicatorsOverview(BrowserView):
+class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
     """ Overview page for indicators. Registered as @@c3s_indicators_overview
 
     To be used from inside a collective.cover
@@ -1024,39 +1024,58 @@ class C3sIndicatorsOverview(BrowserView):
 
     def get_overview_columns(self):
         site = portal.get()
-        lang = get_current_language(self.context, self.request)
+        lang = self.current_lang
         lg = "en"
+
         base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         overview_page = datastore['data']['overview_page']
         response = {'left':[], 'right':[]}
 
         catalog = getToolByName(site, 'portal_catalog')
-        for category in overview_page['hazard_list']:
-            for hazard in overview_page['hazard_list'][category]:
-                for index, item in enumerate(overview_page['hazard_list'][category][hazard]):
-                    c3s_identifier = None
-                    #print(item['title'])
-                    for c3s_identifier_ in datastore["data"]["indicators"]:
-                        #print("  "+c3s_identifier_)
-                        #print("  "+datastore["data"]["indicators"][c3s_identifier_]["page_title"])
-                        if datastore["data"]["indicators"][c3s_identifier_]["page_title"] == item['title']:
-                            c3s_identifier = c3s_identifier_
-                            #print("  --> FOUND")
-                            break
-                    if c3s_identifier:
-                        query = {
-                            'portal_type': 'eea.climateadapt.c3sindicator',
-                            'c3s_identifier': c3s_identifier,
-                            'path': "/cca/"+lang+"/metadata"
-                        }
-                        brains = catalog.searchResults(query)
-                        for brain in brains:
-                            if c3s_identifier == brain.getObject().c3s_identifier:
-                                overview_page['hazard_list'][category][hazard][index]['title'] = brain.getObject().title
-                                overview_page['hazard_list'][category][hazard][index]['url'] = brain.getURL()
-                    else:
-                        print "Not found: "+ item['title']
+        if 'hazard_list_language' not in overview_page:
+            overview_page['hazard_list_language'] = {}
+        if lang not in overview_page['hazard_list_language']:
+            overview_page['hazard_list_language'][lang] = {}
+
+            for category in overview_page['hazard_list']:
+                if category not in overview_page['hazard_list_language'][lang]:
+                    overview_page['hazard_list_language'][lang][category] = {}
+                for hazard in overview_page['hazard_list'][category]:
+                    if hazard not in overview_page['hazard_list_language'][lang][category]:
+                        overview_page['hazard_list_language'][lang][category][hazard] = []
+                    for index, item in enumerate(overview_page['hazard_list'][category][hazard]):
+                        c3s_identifier = None
+                        #print(item['title'])
+                        for c3s_identifier_ in datastore["data"]["indicators"]:
+                            #print("  "+c3s_identifier_)
+                            #print("  "+datastore["data"]["indicators"][c3s_identifier_]["page_title"])
+                            if datastore["data"]["indicators"][c3s_identifier_]["page_title"] == item['title']:
+                                c3s_identifier = c3s_identifier_
+                                #print("  --> FOUND")
+                                break
+                        if c3s_identifier:
+                            query = {
+                                'portal_type': 'eea.climateadapt.c3sindicator',
+                                'c3s_identifier': c3s_identifier,
+                                'path': "/cca/"+lang+"/metadata"
+                            }
+                            brains = catalog.searchResults(query)
+                            for brain in brains:
+                                logger.info('C3S %s LNG %s', c3s_identifier, lang)
+                                logger.info('C3S %s URL %s', brain.getObject().c3s_identifier, brain.getURL())
+
+                                if c3s_identifier != brain.getObject().c3s_identifier:
+                                    continue
+                                if "/"+lang+"/" not in brain.getURL():
+                                    continue
+                                #overview_page['hazard_list'][category][hazard][index]['title'] = brain.getObject().title
+                                #overview_page['hazard_list'][category][hazard][index]['url'] = brain.getURL()
+                                overview_page['hazard_list_language'][lang][category][hazard].append({'title':brain.getObject().title, 'url':brain.getURL()})
+                                logger.info('LANG %s URL %', lang, brain.absolute_url())
+
+                        else:
+                            print "Not found: "+ item['title']
 
         for side in response:
             for cindex, category in enumerate(overview_page['category_order_'+side]):
@@ -1068,7 +1087,7 @@ class C3sIndicatorsOverview(BrowserView):
                     for hazard in hazards:
                         if hazard in overview_page['hazard_list'][category]:
                             len_hazard = len(response[side][category_index]['items'])
-                            response[side][category_index]['items'].insert(len_hazard, {'name':hazard, 'items':overview_page['hazard_list'][category][hazard]})
+                            response[side][category_index]['items'].insert(len_hazard, {'name':hazard, 'items':overview_page['hazard_list_language'][lang][category][hazard]})
 
         return response
 
