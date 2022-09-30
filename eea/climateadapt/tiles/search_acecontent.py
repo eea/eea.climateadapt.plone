@@ -14,13 +14,12 @@ from collective.cover.tiles.base import (IPersistentCoverTile,
 from collective.cover.tiles.list import IListTile
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.catalog import get_aceitem_description
-from eea.climateadapt.translation.utils import TranslationUtilsMixin
-from eea.climateadapt.vocabulary import (_climateimpacts, _datatypes,
-                                         _elements, _origin_website, _sectors,
+from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
+                                                get_current_language)
+from eea.climateadapt.vocabulary import (BIOREGIONS, _climateimpacts,
+                                         _datatypes, _elements,
+                                         _origin_website, _sectors,
                                          ace_countries_dict)
-from eea.climateadapt.translation.utils import get_current_language
-#from plone.app.multilingual.manager import TranslationManager
-
 from plone import api
 from plone.api import portal
 from plone.app.uuid.utils import uuidToObject
@@ -39,7 +38,9 @@ from zope.interface import implements
 from zope.schema import Bool, Choice, Dict, Int, List, TextLine
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
-from eea.climateadapt.vocabulary import BIOREGIONS
+#from plone.app.multilingual.manager import TranslationManager
+
+
 
 ORIGIN_WEBSITES = dict(_origin_website)
 CLIMATE_IMPACTS = dict(_climateimpacts)
@@ -147,7 +148,8 @@ class AceTileMixin(object):
 
     def build_query(self):
 
-        query = {"review_state": "published"}
+        lang = get_current_language(self.context, self.request)
+        query = {"review_state": "published", "Language": lang}
 
         # todo: do countries
         # map of {tile field: index name}
