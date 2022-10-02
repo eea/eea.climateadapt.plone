@@ -131,7 +131,7 @@
   <browser:page
       name="urban-landing-page"
       for="*"
-      template="pt/urban-landing-page.pt"
+      template="pt/urban_landing_page.pt"
       permission="zope2.View"
       class=".urban.LandingPage"
       />
