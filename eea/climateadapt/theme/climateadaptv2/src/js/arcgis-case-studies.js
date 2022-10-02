@@ -160,18 +160,22 @@ window.requirejs([
 
   view.whenLayerView(geojsonLayer).then(function(layerView) {
     window.mapview = layerView;
-    layerView.filter = {
-      where: "portal_type LIKE 'casestudy'"
-    };
+    updateItems()
+    //layerView.filter = {
+    //  where: "portal_type LIKE 'casestudy' and (sectors LIKE '%URBAN%')"
+    //};
 
   });
 });
 
+var changeSkipClicks = false;
 $( document ).ready(function() {
-  //pageLoadMap();
   $('#arcgis_case_study_form input[name="impacts"], #arcgis_case_study_form input[name="sectors"], #arcgis_case_study_form input[name="ipccs"]').change(function(){
-    buttonReset();
-    updateItems();
+    if (!changeSkipClicks) {
+      buttonReset();
+      updateItems();
+    }
+    changeSkipClicks = false;
   });
   $('#arcgis_case_study_form h4').click(function() {
       filterDisplayMode(this);
@@ -189,19 +193,21 @@ $( document ).ready(function() {
     //filterDisplayMode(elements[i]);
   };
 
+  pageLoadMap();
 });
 
-function getQueryparams(key) {
-  return urlSearchParams = new URLSearchParams(window.location.search);
-}
-
 function pageLoadMap() {
-    params = getQueryparams();
-    sectors = params['sectors'];
-    if (sectors) {
-      $('.cs_filter_sector_div h4').click();
-      $('.cs_filter_sector_div input[value="'+sectors+'"]').click();
-      updateItems();
+    params = new URLSearchParams(window.location.search);
+    sectorsData = params.get('sectors');
+    if (sectorsData) {
+      sectors = sectorsData.split(',');
+      if (sectors.length) {
+        $('.cs_filter_sector_div h4').click();
+        changeSkipClicks = true;
+      }
+      for (i=0;i<sectors.length;i++) {
+        $('.cs_filter_sector_div input[value="'+sectors[i]+'"]').click();
+      }
     }
 }
 
