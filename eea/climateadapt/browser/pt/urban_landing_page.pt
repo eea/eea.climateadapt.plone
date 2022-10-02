@@ -174,7 +174,7 @@
                   </div>
                   <p class="feature-text" i18n:translate="">Explore Urban adaptation case studies in terms of geographic location, thematic coverage and link to adaptation options through the map-based Case study explorer.</p>
                   <div class="bottom-section">
-                    <a class="standard-button primary-button feature-btn" href="/en/knowledge/tools/case-study-explorer#sectors=URBAN" i18n:translate="">
+                    <a class="standard-button primary-button feature-btn" href="/en/knowledge/tools/case-study-explorer?sectors=URBAN" i18n:translate="">
                     Go to Case Study Explorer</a>
                   </div>
                 </div>
