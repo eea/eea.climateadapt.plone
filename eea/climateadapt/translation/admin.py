@@ -1322,7 +1322,7 @@ def translation_step_4(site, request):
                 reindex = True
                 trans_obj.setLayout(layout_en)
 
-        if obj.portal_type == 'Folder':
+        if obj.portal_type in ('Folder', 'Document'):
             force_unlock(obj)
 
             layout_en = obj.getLayout()
