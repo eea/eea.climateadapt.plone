@@ -144,6 +144,12 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                             {'tile_id': tile_id, 'field': key, 'value': value}
                         )
 
+            # Translate simple fields
+            for key in json_data['item'].keys():
+                res = retrieve_translation_one_step(
+                    'EN', json_data['item'][key], [language.upper()],
+                    uid=trans_obj.UID(), obj_path=trans_obj_path, field=key)
+
             # TILE HTML fields translate in one call
             if len(tile_html_fields):
                 if not trans_obj_path:
@@ -305,7 +311,7 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                 errors.append(key)
             force_unlock(trans_obj)
 
-            if one_step == True:
+            if one_step is True:
                 translated = retrieve_translation_one_step(
                     'EN', value, [language.upper()], uid=trans_obj.UID(),
                     obj_path=trans_obj_path, field=key)
