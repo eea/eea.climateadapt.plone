@@ -2161,6 +2161,8 @@ class TranslationCheckLanguageViewlet(ViewletBase):
             if self.request.get('langflag', None):
                 return True
             url = self.get_suggestion_url()
+            if '++aq++' in self.request["ACTUAL_URL"]:
+                url = url.replace("/news-archive/", "/observatory/++aq++news-archive/")
             # if we have a url, then redirect. A few pages are not translated
             if url:
                 return self.request.response.redirect(url)
