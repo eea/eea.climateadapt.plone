@@ -490,11 +490,4 @@
       preserveOriginal="false"
       />
 
-  <monkey:patch
-      original="searchableText"
-      replacement="eea.climateadapt.patch.searchableText"
-      module="collective.cover.content"
-      description="Patch searchableText"
-      preserveOriginal="false"
-      />
 </configure>
