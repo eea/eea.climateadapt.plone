@@ -34,12 +34,14 @@
 }
 .urban-landing-top {
   position: relative;
-  background-image: url("/en/eu-adaptation-policy/sector-policies/urban-landing/urban.jpg");
+  background-image: url(/en/eu-adaptation-policy/sector-policies/urban-landing/urban.jpg);
   background-size: cover;
-  height:400px;
-  margin-left: -20px;
-  margin-top: -20px;
-  margin-right: -20px;
+  height: 400px;
+  margin-left: -50vw !important;
+  margin-top: -140px;
+  margin-right: -50vw !important;
+  right: 50%;
+  left: 50%;
 }
 .urban-landing-top .text {
   background-color: rgba(0,0,0,.5);
@@ -56,6 +58,18 @@
 }
 .urban-landing ul.nav-tabs li img {
   margin-bottom:15px;
+}
+.urban-landing .portal-breadcrumbs {
+  display:none !important;
+}
+.urban-landing > .content-container {
+  background-color: #eee;
+}
+.urban-landing > .content-container > ul.nav-tabs{
+  padding-bottom:0px;
+}
+#t-case-studies p.feature-text {
+    min-height: 60px;
 }
 #t-city .policies-nav a {
   text-align:center;
@@ -74,7 +88,7 @@
   i18n:domain="eea.climateadapt.urban">
       <div class="urban-landing-top">
         <div class="text">
-          <p>Learn more about how cities can adapt to climate change to become future-proof, climate-resilient cities</p>
+          <p i18n:translate="">Learn more about how cities can adapt to climate change to become future-proof, climate-resilient cities</p>
         </div>
       </div>
       <div class="content-container">
@@ -93,7 +107,7 @@
               <br><span i18n:translate="">Tools</span>
             </a>
           </li>
-          <li class="main-tab-item">
+          <li class="main-tab-item" style="min-width:230px;">
             <a href="#t-case-studies">
               <img src="/++theme++climateadaptv2/static/images/urban-landing/tab2_ico.png" width="50px;">
               <br><span i18n:translate="">Case studies and Adaptations Options</span>
