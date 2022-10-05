@@ -33,15 +33,15 @@
   font-size:10.5px;
 }
 .urban-landing-top {
-  position: relative;
-  background-image: url(/en/eu-adaptation-policy/sector-policies/urban-landing/urban.jpg);
-  background-size: cover;
-  height: 400px;
-  margin-left: -50vw !important;
-  margin-top: -140px;
-  margin-right: -50vw !important;
-  right: 50%;
-  left: 50%;
+	position: relative;
+	background-image: url(/en/eu-adaptation-policy/sector-policies/urban-landing/urban.jpg);
+	background-size: cover;
+	height: 400px;
+	margin-left: -50vw !important;
+	margin-top: -210px;
+	/* margin-right: -50vw !important; */
+	right: 50%;
+	left: 50%;
 }
 .urban-landing-top .text {
   background-color: rgba(0,0,0,.5);
@@ -102,8 +102,7 @@
           <li class="main-tab-item active">
 
             <a href="#t-tools">
-              <!-- <span class="d-icon feature-icon"></span> -->
-              <i class="fa fa-wrench fa-6" aria-hidden="true"></i>
+              <img src="/++theme++climateadaptv2/static/images/urban-landing/tab1_ico.png" width="50px;">
               <br><span i18n:translate="">Tools</span>
             </a>
           </li>
