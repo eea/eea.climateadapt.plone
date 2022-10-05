@@ -44,13 +44,17 @@
 	left: 50%;
 }
 .urban-landing-top .text {
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(150, 150, 150,.5);
   color: #fff;
   position: absolute;
-  top: 150px;
-  right: 50px;
-  width: 400px;
-  padding:10px;
+  top: 139px;
+  right: 30%;
+  width: 100%;
+  padding: 10px;
+  left: 21%;
+  max-width: 600px;
+  max-height: 212px;
+  height: auto;
 }
 .urban-landing-top p {
     font-size: 20pt;
