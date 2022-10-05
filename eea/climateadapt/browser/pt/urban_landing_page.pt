@@ -25,6 +25,9 @@
 .urban-landing #t-databases .db-category-wrapper{
   flex:1 1 120px;
 }
+.urban-landing .blue-bg{
+  height:105%;
+}
 .db-category-wrapper #t-databases .total-items {
   padding-left:4px;
 }
@@ -38,7 +41,7 @@
 	background-size: cover;
 	height: 400px;
 	margin-left: -50vw !important;
-	margin-top: -210px;
+	margin-top: -70px;
 	/* margin-right: -50vw !important; */
 	right: 50%;
 	left: 50%;
@@ -146,7 +149,7 @@
 
       <div class="tab-container" style="border:none;">
         <div class="content-container">
-          <div class="tab-content tab-body clearfix" style="border:none;box-shadow:none;">
+          <div class="tab-content tab-body clearfix" style="border:none;box-shadow:none;padding-bottom:40px;">
 
             <div class="tab-pane active fade in" id="t-tools">
               <div class="new-feature row">
@@ -232,7 +235,8 @@
                       <i class="fa fa-cogs" tal:attributes="class string:fa ${section/icon_class}"></i>
                       <span class="total-items" tal:content="section/count">120</span>
                     </span>
-                    <p tal:content="section/title" i18n:translate="">Adaptation <br> Options</p>
+                    <p tal:condition="python: section.icon_class == 'research-icon'" tal:content="section/title" style="padding-top:15px;" i18n:translate="">Adaptation <br> Options</p>
+                    <p tal:condition="python: section.icon_class != 'research-icon'" tal:content="section/title" i18n:translate="">Adaptation <br> Options</p>
                   </a>
                 </div>
               </div>
@@ -426,12 +430,13 @@ Praesent ac sem eget est egestas volutpat. Donec posuere vulputate arcu. Integer
 
 
             </div>
-
+<div style="clear:both;"></div>
           </div>
         </div>
         <div class="blue-bg"></div>
 
       </div>
+<div style="clear:both;"></div>
 
     </div>
 <div style="clear:both;"/>
