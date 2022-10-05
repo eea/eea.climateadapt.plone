@@ -75,6 +75,14 @@
 .urban-landing > .content-container > ul.nav-tabs{
   padding-bottom:0px;
 }
+.urban-landing .research-icon {
+  height: 50px !important;
+  width: 50px !important;
+  background-size: 100px !important;
+}
+.urban-landing a:hover .research-icon {
+    background-position: -51px 0;
+}
 #t-case-studies p.feature-text {
     min-height: 60px;
 }
@@ -235,7 +243,7 @@
                       <i class="fa fa-cogs" tal:attributes="class string:fa ${section/icon_class}"></i>
                       <span class="total-items" tal:content="section/count">120</span>
                     </span>
-                    <p tal:condition="python: section.icon_class == 'research-icon'" tal:content="section/title" style="padding-top:15px;" i18n:translate="">Adaptation <br> Options</p>
+                    <p tal:condition="python: section.icon_class == 'research-icon'" tal:content="section/title" style="padding-top:5px;" i18n:translate="">Adaptation <br> Options</p>
                     <p tal:condition="python: section.icon_class != 'research-icon'" tal:content="section/title" i18n:translate="">Adaptation <br> Options</p>
                   </a>
                 </div>
