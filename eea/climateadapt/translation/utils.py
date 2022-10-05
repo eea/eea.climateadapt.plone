@@ -88,6 +88,7 @@ class TranslationUtilsMixin(object):
                 self.current_lang, '/'.join(relative_path_split[1:]))
 
         try:
+            site = api.portal.get()
             object = site.restrictedTraverse("/cca" + new_path)
         except:
             object = None
