@@ -192,6 +192,7 @@
 
                 <div tal:condition="context/source | nothing">
                   <h5 id="source" i18n:translate="">Reference</h5>
+                  <!-- <div tal:on-error="python:context.source" tal:content="structure python: context.source.raw"></div> -->
                   <div tal:content="structure python: context.source.raw"></div>
                 </div>
 
