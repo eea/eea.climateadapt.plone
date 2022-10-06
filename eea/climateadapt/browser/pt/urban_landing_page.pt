@@ -39,25 +39,25 @@
 	position: relative;
 	background-image: url(/en/eu-adaptation-policy/sector-policies/urban-landing/urban.jpg);
 	background-size: cover;
-	height: 400px;
+	height: 400px !important;
 	margin-left: -50vw !important;
 	margin-top: -70px;
 	/* margin-right: -50vw !important; */
 	right: 50%;
 	left: 50%;
+	border-bottom: 5px solid #8a9c3a;
 }
 .urban-landing-top .text {
-  background-color: rgba(150, 150, 150,.5);
-  color: #fff;
-  position: absolute;
-  top: 139px;
-  right: 30%;
-  width: 100%;
-  padding: 10px;
-  left: 21%;
-  max-width: 600px;
-  max-height: 212px;
-  height: auto;
+	background-color: rgba(150, 150, 150,.5);
+	color: #fff;
+	position: absolute;
+	top: 139px;
+	right: 39%;
+	width: 100%;
+	padding: 10px;
+	max-width: 600px;
+	max-height: 212px;
+	height: auto;
 }
 .urban-landing-top p {
     font-size: 20pt;
@@ -89,6 +89,32 @@
 #t-city .policies-nav a {
   text-align:center;
 }
+
+.urban-landing .db-category-wrapper {
+	text-align: unset;
+}
+
+.db-categories.flex-wrapper {
+	padding: 20px 0 0 0;
+}
+
+.db-category-wrapper {
+	padding: 1em 0 0 0;
+}
+
+#t-databases .tab-pane {
+	padding: 1.5em 1.5em 0em 1.5em;
+}
+
+.main-tab-item a span {
+	white-space: normal;
+}
+
+.subsection-sector-policies-urban-landing-urban .footer {
+	margin-top: unset;}
+
+.tab-container .content-container {
+	padding-bottom: 1rem;}
 </style>
 
 
@@ -162,7 +188,7 @@
             <div class="tab-pane active fade in" id="t-tools">
               <div class="new-feature row">
                 <div class="col-md-4 col-sm-12 feature-section">
-                  <img src="/en/knowledge/tools/urban-ast/uast_logo_0.png" height="58px;" width="110x;">
+                  <img src="/en/knowledge/tools/urban-ast/uast_logo_0.png" width="110px;" height="58px;">
                   <p class="feature-text" i18n:translate="">The Urban Adaptation Support Tool assists cities, towns and local authorities in developing, implementing and monitoring climate change adaptation plans..</p>
                   <div class="bottom-section">
                     <a class="standard-button primary-button feature-btn" href="/en/knowledge/tools/urban-ast/step-0-0" i18n:translate="">
@@ -171,7 +197,7 @@
                 </div>
 
                 <div class="col-md-4 col-sm-12 feature-section">
-                  <img src="/++theme++climateadaptv2/static/images/urban-landing/map_viewer_icon.png" alt="Health Observatory Logo" width="80" height="58">
+                  <img src="/++theme++climateadaptv2/static/images/urban-landing/map_viewer_icon.png" alt="Health Observatory Logo" width="58px" height="58px">
                   <p class="feature-text" i18n:translate="">The Urban Adaptation Map Viewer provides an overview of the current and future climate hazards, the vulnerability of the cities to these hazards and their adaptive capacity.
                   </p>
                   <div class="bottom-section">
@@ -180,7 +206,7 @@
                 </div>
 
                 <div class="col-md-4 col-sm-12 feature-section">
-                  <img src="/++theme++climateadaptv2/static/images/ecde-logo.svg" width="220" height="58">
+                  <img src="/++theme++climateadaptv2/static/images/ecde-logo.svg" width="220px" height="58px">
                   <p class="feature-text" i18n:translate="">The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation.
                   </p>
                   <div class="bottom-section">
