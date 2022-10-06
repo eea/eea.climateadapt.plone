@@ -463,9 +463,15 @@
                          <img src="https://dummyimage.com/270x170/aaa/000&text=LOGO10" style="float:left;padding-right:10px;" />
                        </div>
                        <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                         <h3 i18n:translate="">Title 10</h3>
-                         <p i18n:translate="">Text 10 Maecenas egestas arcu quis ligula mattis placerat. Phasellus accumsan cursus velit. Aliquam eu nunc. Nunc nonummy metus.
-Praesent ac sem eget est egestas volutpat. Donec posuere vulputate arcu. Integer tincidunt. Fusce convallis metus id felis luctus adipiscing.</p>
+                         <h3 i18n:translate="">Different City Networks</h3>
+                         <p i18n:translate="">
+                           <a href="https://www.climatealliance.org/home.html">Climate Alliance</a>
+                           <br><a href="https://www.ccre.org">Council of European Municipalities and Regions (CEMR)</a>
+                           <br><a href="https://www.cdp.net/en">CDP</a>
+                           <br><a href="https://www.c40.org">C40</a>
+                           <br><a href="https://fedarene.org">European Federation of Agencies and Regions for Energy and Environment (FEDARENE)</a>
+                           <br><a href="https://www.ccre.org">Local Governments for Sustainability (ICLEI) Europe</a>
+                        </p>
                        </div>
                      </div>
                    </div>
