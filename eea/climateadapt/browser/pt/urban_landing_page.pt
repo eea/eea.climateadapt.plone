@@ -110,8 +110,9 @@
 	white-space: normal;
 }
 
-.subsection-sector-policies-urban-landing-urban .footer {
-	margin-top: unset;}
+.subsection-sector-policies-urban-landing-urban footer {
+	margin-top: unset;
+}
 
 .tab-container .content-container {
 	padding-bottom: 1rem;}
