@@ -83,6 +83,12 @@
 .urban-landing a:hover .research-icon {
     background-position: -51px 0;
 }
+.urban-landing #t-databases img{
+  border:1px solid #ddd;
+}
+.urban-landing #t-databases a:hover img{
+  border:1px solid #000;
+}
 #t-case-studies p.feature-text {
     min-height: 60px;
 }
@@ -252,10 +258,13 @@
 
             <div class="tab-pane fade" id="t-databases">
               <div>
-                <img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep.png" style="height:215px;padding-right:50px;"/>
-                <img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep1.jpg" style="height:200px;;padding-right:5px;"/>
-                <img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep2.jpg" style="height:200px;padding-right:5px;"/>
-                <img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep3.jpg" style="height:200px;"/>
+                <!-- <img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep.png" style="height:215px;padding-right:50px;"/>-->
+                <a href="/en/metadata/publications/sixth-assessment-report"><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep1.jpg" style="height:138px;;padding-right:5px;"/></a>
+                <a href=""><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep2.jpg" style="height:138px;;padding-right:5px;"/></a>
+                <a href=""><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep3.jpg" style="height:138px;;padding-right:5px;"/></a>
+                <a href=""><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep4.jpg" style="height:138px;;padding-right:5px;"/></a>
+                <a href=""><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep5.jpg" style="height:138px;;padding-right:5px;"/></a>
+                <a href=""><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep6.jpg" style="height:138px;;padding-right:5px;"/></a>
               </div>
 
 
