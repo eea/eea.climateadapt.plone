@@ -639,7 +639,7 @@ class CountryProfileData(BrowserView):
         return link
 
     def __call__(self):
-        country_name = self.context.title
+        country_name = self.context.id.title()
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
