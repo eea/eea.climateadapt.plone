@@ -25,6 +25,9 @@
 .urban-landing #t-databases .db-category-wrapper{
   flex:1 1 120px;
 }
+.urban-landing .blue-bg{
+  height:105%;
+}
 .db-category-wrapper #t-databases .total-items {
   padding-left:4px;
 }
@@ -33,22 +36,28 @@
   font-size:10.5px;
 }
 .urban-landing-top {
-  position: relative;
-  background-image: url("/en/eu-adaptation-policy/sector-policies/urban-landing/urban.jpg");
-  background-size: cover;
-  height:400px;
-  margin-left: -20px;
-  margin-top: -20px;
-  margin-right: -20px;
+	position: relative;
+	background-image: url(/en/eu-adaptation-policy/sector-policies/urban-landing/urban.jpg);
+	background-size: cover;
+	height: 400px !important;
+	margin-left: -50vw !important;
+	margin-top: -70px;
+	/* margin-right: -50vw !important; */
+	right: 50%;
+	left: 50%;
+	border-bottom: 5px solid #8a9c3a;
 }
 .urban-landing-top .text {
-  background-color: rgba(0,0,0,.5);
-  color: #fff;
-  position: absolute;
-  top: 150px;
-  right: 50px;
-  width: 400px;
-  padding:10px;
+	background-color: rgba(150, 150, 150,.5);
+	color: #fff;
+	position: absolute;
+	top: 139px;
+	right: 39%;
+	width: 100%;
+	padding: 10px;
+	max-width: 600px;
+	max-height: 212px;
+	height: auto;
 }
 .urban-landing-top p {
     font-size: 20pt;
@@ -57,9 +66,62 @@
 .urban-landing ul.nav-tabs li img {
   margin-bottom:15px;
 }
+.urban-landing .portal-breadcrumbs {
+  display:none !important;
+}
+.urban-landing > .content-container {
+  background-color: #eee;
+}
+.urban-landing > .content-container > ul.nav-tabs{
+  padding-bottom:0px;
+}
+.urban-landing .research-icon {
+  height: 50px !important;
+  width: 50px !important;
+  background-size: 100px !important;
+}
+.urban-landing a:hover .research-icon {
+    background-position: -51px 0;
+}
+.urban-landing #t-databases img{
+  border:1px solid #ddd;
+}
+.urban-landing #t-databases a:hover img{
+  border:1px solid #000;
+}
+#t-case-studies p.feature-text {
+    min-height: 60px;
+}
 #t-city .policies-nav a {
   text-align:center;
 }
+
+.urban-landing .db-category-wrapper {
+	text-align: unset;
+}
+
+.db-categories.flex-wrapper {
+	padding: 20px 0 0 0;
+}
+
+.db-category-wrapper {
+	padding: 1em 0 0 0;
+}
+
+#t-databases .tab-pane {
+	padding: 1.5em 1.5em 0em 1.5em;
+}
+
+.main-tab-item a span {
+	white-space: normal;
+}
+
+.subsection-sector-policies-urban-landing-urban footer {
+	margin-top: unset;
+}
+
+.tab-container .content-container {
+	padding-bottom: 1rem;}
 </style>
 
 
@@ -74,7 +136,7 @@
   i18n:domain="eea.climateadapt.urban">
       <div class="urban-landing-top">
         <div class="text">
-          <p>Learn more about how cities can adapt to climate change to become future-proof, climate-resilient cities</p>
+          <p i18n:translate="">Learn more about how cities can adapt to climate change to become future-proof, climate-resilient cities</p>
         </div>
       </div>
       <div class="content-container">
@@ -88,12 +150,11 @@
           <li class="main-tab-item active">
 
             <a href="#t-tools">
-              <!-- <span class="d-icon feature-icon"></span> -->
-              <i class="fa fa-wrench fa-6" aria-hidden="true"></i>
+              <img src="/++theme++climateadaptv2/static/images/urban-landing/tab1_ico.png" width="50px;">
               <br><span i18n:translate="">Tools</span>
             </a>
           </li>
-          <li class="main-tab-item">
+          <li class="main-tab-item" style="min-width:230px;">
             <a href="#t-case-studies">
               <img src="/++theme++climateadaptv2/static/images/urban-landing/tab2_ico.png" width="50px;">
               <br><span i18n:translate="">Case studies and Adaptations Options</span>
@@ -129,12 +190,12 @@
 
       <div class="tab-container" style="border:none;">
         <div class="content-container">
-          <div class="tab-content tab-body clearfix" style="border:none;box-shadow:none;">
+          <div class="tab-content tab-body clearfix" style="border:none;box-shadow:none;padding-bottom:40px;">
 
             <div class="tab-pane active fade in" id="t-tools">
               <div class="new-feature row">
                 <div class="col-md-4 col-sm-12 feature-section">
-                  <img src="/en/knowledge/tools/urban-ast/uast_logo_0.png" height="58px;" width="110x;">
+                  <img src="/en/knowledge/tools/urban-ast/uast_logo_0.png" width="110px;" height="58px;">
                   <p class="feature-text" i18n:translate="">The Urban Adaptation Support Tool assists cities, towns and local authorities in developing, implementing and monitoring climate change adaptation plans..</p>
                   <div class="bottom-section">
                     <a class="standard-button primary-button feature-btn" href="/en/knowledge/tools/urban-ast/step-0-0" i18n:translate="">
@@ -143,7 +204,7 @@
                 </div>
 
                 <div class="col-md-4 col-sm-12 feature-section">
-                  <img src="/++theme++climateadaptv2/static/images/urban-landing/map_viewer_icon.png" alt="Health Observatory Logo" width="80" height="58">
+                  <img src="/++theme++climateadaptv2/static/images/urban-landing/map_viewer_icon.png" alt="Health Observatory Logo" width="58px" height="58px">
                   <p class="feature-text" i18n:translate="">The Urban Adaptation Map Viewer provides an overview of the current and future climate hazards, the vulnerability of the cities to these hazards and their adaptive capacity.
                   </p>
                   <div class="bottom-section">
@@ -152,7 +213,7 @@
                 </div>
 
                 <div class="col-md-4 col-sm-12 feature-section">
-                  <img src="/++theme++climateadaptv2/static/images/ecde-logo.svg" width="220" height="58">
+                  <img src="/++theme++climateadaptv2/static/images/ecde-logo.svg" width="220px" height="58px">
                   <p class="feature-text" i18n:translate="">The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation.
                   </p>
                   <div class="bottom-section">
@@ -197,10 +258,13 @@
 
             <div class="tab-pane fade" id="t-databases">
               <div>
-                <img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep.png" style="height:215px;padding-right:50px;"/>
-                <img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep1.jpg" style="height:200px;;padding-right:5px;"/>
-                <img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep2.jpg" style="height:200px;padding-right:5px;"/>
-                <img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep3.jpg" style="height:200px;"/>
+                <!-- <img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep.png" style="height:215px;padding-right:50px;"/>-->
+                <a href="/en/metadata/publications/sixth-assessment-report"><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep1.jpg" style="height:138px;;padding-right:5px;"/></a>
+                <a href=""><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep2.jpg" style="height:138px;;padding-right:5px;"/></a>
+                <a href=""><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep3.jpg" style="height:138px;;padding-right:5px;"/></a>
+                <a href=""><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep4.jpg" style="height:138px;;padding-right:5px;"/></a>
+                <a href=""><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep5.jpg" style="height:138px;;padding-right:5px;"/></a>
+                <a href=""><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep6.jpg" style="height:138px;;padding-right:5px;"/></a>
               </div>
 
 
@@ -215,7 +279,8 @@
                       <i class="fa fa-cogs" tal:attributes="class string:fa ${section/icon_class}"></i>
                       <span class="total-items" tal:content="section/count">120</span>
                     </span>
-                    <p tal:content="section/title" i18n:translate="">Adaptation <br> Options</p>
+                    <p tal:condition="python: section.icon_class == 'research-icon'" tal:content="section/title" style="padding-top:5px;" i18n:translate="">Adaptation <br> Options</p>
+                    <p tal:condition="python: section.icon_class != 'research-icon'" tal:content="section/title" i18n:translate="">Adaptation <br> Options</p>
                   </a>
                 </div>
               </div>
@@ -398,9 +463,15 @@
                          <img src="https://dummyimage.com/270x170/aaa/000&text=LOGO10" style="float:left;padding-right:10px;" />
                        </div>
                        <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                         <h3 i18n:translate="">Title 10</h3>
-                         <p i18n:translate="">Text 10 Maecenas egestas arcu quis ligula mattis placerat. Phasellus accumsan cursus velit. Aliquam eu nunc. Nunc nonummy metus.
-Praesent ac sem eget est egestas volutpat. Donec posuere vulputate arcu. Integer tincidunt. Fusce convallis metus id felis luctus adipiscing.</p>
+                         <h3 i18n:translate="">Different City Networks</h3>
+                         <p i18n:translate="">
+                           <a href="https://www.climatealliance.org/home.html">Climate Alliance</a>
+                           <br><a href="https://www.ccre.org">Council of European Municipalities and Regions (CEMR)</a>
+                           <br><a href="https://www.cdp.net/en">CDP</a>
+                           <br><a href="https://www.c40.org">C40</a>
+                           <br><a href="https://fedarene.org">European Federation of Agencies and Regions for Energy and Environment (FEDARENE)</a>
+                           <br><a href="https://www.ccre.org">Local Governments for Sustainability (ICLEI) Europe</a>
+                        </p>
                        </div>
                      </div>
                    </div>
@@ -409,11 +480,13 @@ Praesent ac sem eget est egestas volutpat. Donec posuere vulputate arcu. Integer
 
 
             </div>
-
+<div style="clear:both;"></div>
           </div>
         </div>
+        <div class="blue-bg"></div>
 
       </div>
+<div style="clear:both;"></div>
 
     </div>
 <div style="clear:both;"/>

@@ -231,7 +231,10 @@ def cover_description(obj):
     tiles = obj.get_tiles()
     text = []
     for tile in tiles:
-        tile_obj = obj.restrictedTraverse("@@{0}/{1}".format(tile["type"], tile["id"]))
+        # tile_obj = obj.unrestrictedTraverse(
+        # "@@{0}/{1}".format(tile["type"], tile["id"]))
+        tile_annot_id = 'plone.tiles.data.' + tile['id']
+        tile_obj = obj.__annotations__.get(tile_annot_id, None)
 
         searchable = queryAdapter(tile_obj, ISearchableText)
         if searchable:

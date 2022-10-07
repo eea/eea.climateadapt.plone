@@ -110,6 +110,17 @@ class ICaseStudy(IAceMeasure):  # , IGeolocatable):
         required=False,
     )
 
+    # dexteritytextindexer.searchable("source")
+    source = RichText(
+        title=_(u"References"),
+        required=False,
+        description=_(
+            u"Describe the references (projects, a tools reports, etc.) "
+            u"related to this item, providing further information about "
+            u"it or its source."
+        ),
+    )
+
     primary_photo_copyright = TextLine(
         title=_(u"Primary Photo Copyright"),
         required=False,

@@ -5,7 +5,7 @@ from zope.site.hooks import getSite
 
 
 def getCache(settings):
-    """ The purpose of this is to include the current language in the cache key 
+    """ The purpose of this is to include the current language in the cache key
     """
     # We need a persistent object to hang a _v_ attribute off for caching.
 

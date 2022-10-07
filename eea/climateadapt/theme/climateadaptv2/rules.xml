@@ -54,6 +54,10 @@
       <after css:theme-children="div.global-msg" css:content="div#portal-columns div#globalstatusmessage" />
     </rules>
 
+    <rules css:if-content=".urban-landing">
+      <replace css:theme=".content-container.site-container" css:content=".cover-genericview-tile.tile-content"/>
+    </rules>
+
     <rules css:if-content=".site-observatory,.section-observatory,.web-cca-observatory">
 
       <rules if="$external_template">
