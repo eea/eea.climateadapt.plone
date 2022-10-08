@@ -2,7 +2,7 @@
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  i18n:domain="collective.cover">
+  i18n:domain="eea.climateadapt">
 
   <body tal:define="is_compose view/is_compose_mode">
     <strong tal:condition="is_compose" i18n:translate="">Share button tile</strong>
@@ -17,9 +17,7 @@
 
       <a class="standard-button primary-button share-info-btn"
          href=""
-         tal:attributes="href view/link_url" i18n:translate="">
-         Share your information
-       </a>
+         tal:attributes="href view/link_url" i18n:translate="">Share your information</a>
 
     </div>
   </body>
