@@ -10,7 +10,7 @@ ElementsVocabularyFactory = KeywordsVocabulary('elements')
 _regions = [
     'Adriatic-Ionian',
     'Alpine Space',
-    'Atlantic',
+    'Atlantic Area',
     'Balkan-Mediterranean',
     'Baltic Sea',
     'Central Europe',
@@ -18,9 +18,9 @@ _regions = [
     'Mediterranean',
     'North Sea',
     'North West Europe',
-    'Northern Periphery and Arctic',
+    'Northern Periphery',
     'South West Europe',
-    'Other regions'
+    'Other Regions'
 ]
 
 regions_vocabulary = generic_vocabulary(_regions)
