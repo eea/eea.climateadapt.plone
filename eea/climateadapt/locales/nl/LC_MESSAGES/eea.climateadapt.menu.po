@@ -186,6 +186,10 @@ msgstr "Klimaat-adapt use cases"
 msgid "Coastal areas"
 msgstr "Kustgebieden"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:44

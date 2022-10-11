@@ -158,6 +158,10 @@ msgstr "Kućišta za upotrebu klime"
 msgid "Coastal areas"
 msgstr "Obalna područja"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
 # ,
 #: site_menu:44
 msgid "Countries, Transnational regions, Cities"

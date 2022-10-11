@@ -158,6 +158,10 @@ msgstr "Климатични случаи на използване на кли�
 msgid "Coastal areas"
 msgstr "Крайбрежните зони"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
 # ,
 #: site_menu:44
 msgid "Countries, Transnational regions, Cities"

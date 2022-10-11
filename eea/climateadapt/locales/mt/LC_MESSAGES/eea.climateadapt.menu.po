@@ -186,6 +186,10 @@ msgstr "Każijiet ta 'użu ta' adattament għall-klima"
 msgid "Coastal areas"
 msgstr "Żoni kostali"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:44

@@ -186,6 +186,10 @@ msgstr "Éghajlat-adapt felhasználási esetek"
 msgid "Coastal areas"
 msgstr "Parti szakaszok"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:44

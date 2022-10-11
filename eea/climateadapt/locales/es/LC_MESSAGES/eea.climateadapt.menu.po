@@ -298,6 +298,10 @@ msgstr "Casos de uso Climate-ADAPT"
 msgid "Coastal areas"
 msgstr "Areas costeras"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr "Países, regiones transnacionales"
+
 # ,
 # ,
 # ,
