@@ -186,6 +186,10 @@ msgstr "Primeri uporabe podnebja-adapt"
 msgid "Coastal areas"
 msgstr "Obalna območja"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:44

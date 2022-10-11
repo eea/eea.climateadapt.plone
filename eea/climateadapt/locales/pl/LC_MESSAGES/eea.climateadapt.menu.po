@@ -326,6 +326,10 @@ msgstr "Przypadki użycia Climate-ADAPT"
 msgid "Coastal areas"
 msgstr "Obszary przybrzeżne"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr "Kraje, regiony transnarodowe"
+
 # ,
 # ,
 # ,

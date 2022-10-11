@@ -158,6 +158,10 @@ msgstr "Klima-Tilpasningssager"
 msgid "Coastal areas"
 msgstr "Kystområder."
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
 # ,
 #: site_menu:44
 msgid "Countries, Transnational regions, Cities"

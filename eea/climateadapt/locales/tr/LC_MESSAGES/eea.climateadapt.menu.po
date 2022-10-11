@@ -186,6 +186,10 @@ msgstr "İklim-uyarlama kullanım durumları"
 msgid "Coastal areas"
 msgstr "Kıyı bölgeleri"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:44

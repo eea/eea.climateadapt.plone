@@ -158,6 +158,10 @@ msgstr "Ilmasto-sopeutettava käyttötapaukset"
 msgid "Coastal areas"
 msgstr "Rannikkoalueet"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
 # ,
 #: site_menu:44
 msgid "Countries, Transnational regions, Cities"

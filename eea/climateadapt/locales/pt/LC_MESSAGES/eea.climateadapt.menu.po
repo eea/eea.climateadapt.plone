@@ -186,6 +186,10 @@ msgstr "Casos de uso de adaptação climática"
 msgid "Coastal areas"
 msgstr "Áreas costeiras"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:44

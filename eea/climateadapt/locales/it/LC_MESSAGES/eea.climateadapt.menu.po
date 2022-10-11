@@ -351,6 +351,10 @@ msgstr "Casi d'uso per l'adattamento climatico"
 msgid "Coastal areas"
 msgstr "Aree costiere"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr "Stati, regioni transnazionali"
+
 # ,
 # ,
 # ,

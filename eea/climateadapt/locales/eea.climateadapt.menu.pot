@@ -134,6 +134,10 @@ msgstr ""
 msgid "Countries, Transnational regions, Cities"
 msgstr ""
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
 #: health_menu:18
 #: site_menu:45
 msgid "Country Profiles"

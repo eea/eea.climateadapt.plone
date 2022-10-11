@@ -186,6 +186,10 @@ msgstr "Klimata adaptēšanas gadījumi"
 msgid "Coastal areas"
 msgstr "Piekrastes rajoni"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:44

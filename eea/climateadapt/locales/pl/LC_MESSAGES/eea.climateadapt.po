@@ -2311,7 +2311,7 @@ msgstr "Wyniki wyszukiwania"
 # ,
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:73
 msgid "Search results for: ${term}"
-msgstr "Wyniki wyszukiwania dla: $ {termin}"
+msgstr "Wyniki wyszukiwania dla: ${term}"
 
 # ,
 # ,
@@ -2826,7 +2826,7 @@ msgstr "mieszkańcy"
 #. Default: "Filter the results."
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:111
 msgid "narrow_search_options"
-msgstr "zawęź_opcje_wyszukiwania"
+msgstr "Filtruj wyniki."
 
 # ,
 # ,

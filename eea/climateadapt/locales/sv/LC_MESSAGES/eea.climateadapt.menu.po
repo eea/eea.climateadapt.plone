@@ -186,6 +186,10 @@ msgstr "Klimatanvändningsfall"
 msgid "Coastal areas"
 msgstr "Kustområden"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:44

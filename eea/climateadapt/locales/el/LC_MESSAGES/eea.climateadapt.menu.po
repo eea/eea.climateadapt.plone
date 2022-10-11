@@ -158,6 +158,10 @@ msgstr "Οι περιπτώσεις χρήσης του κλίματος-προ�
 msgid "Coastal areas"
 msgstr "Παράκτιες περιοχές"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
 # ,
 #: site_menu:44
 msgid "Countries, Transnational regions, Cities"

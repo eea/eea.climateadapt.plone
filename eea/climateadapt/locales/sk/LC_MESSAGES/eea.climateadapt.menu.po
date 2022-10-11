@@ -186,6 +186,10 @@ msgstr "Prípady použitia klímy adapt"
 msgid "Coastal areas"
 msgstr "Pobrežné oblasti"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:44

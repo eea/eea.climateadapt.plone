@@ -158,6 +158,10 @@ msgstr "Kliima-kohandusalastamise juhtumid"
 msgid "Coastal areas"
 msgstr "Rannikualad"
 
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
 # ,
 #: site_menu:44
 msgid "Countries, Transnational regions, Cities"

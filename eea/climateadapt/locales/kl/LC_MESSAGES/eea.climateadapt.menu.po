@@ -132,6 +132,10 @@ msgid "Coastal areas"
 msgstr ""
 
 #: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
+#: site_menu:44
 msgid "Countries, Transnational regions, Cities"
 msgstr ""
 
