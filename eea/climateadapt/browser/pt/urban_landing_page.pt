@@ -351,7 +351,7 @@
                    </li>
                    <li class="policies-nav-item">
                      <a href="#" data-toggle="tab" data-target="#tab10" class="policies-nav-link" aria-expanded="false">
-                       <img src="https://dummyimage.com/170x70/aaa/000&text=LOGO10" style="float:left;padding-right:10px;" />
+                       <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo10.jpg" style="height:120px;padding-right:10px;" />
                      </a>
                    </li>
                  </ul>
@@ -460,7 +460,7 @@
                    <div id="tab10" class="tab-pane">
                      <div class="row">
                        <div class="policy-image col-md-3 col-sm-3 col-xs-4">
-                         <img src="https://dummyimage.com/270x170/aaa/000&text=LOGO10" style="float:left;padding-right:10px;" />
+                         <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo10.jpg" style="float:left;padding-right:10px;" />
                        </div>
                        <div class="policy-description col-md-9 col-sm-9 col-xs-8">
                          <h3 i18n:translate="">City Networks</h3>
