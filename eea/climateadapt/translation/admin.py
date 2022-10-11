@@ -1170,13 +1170,13 @@ def translation_step_4(site, request):
         search_data['sort_limit'] = limit
     if portal_type:
         search_data['portal_type'] = portal_type
-    #import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
 
-    #brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
+    # brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
     brains = catalog.searchResults(search_data)
 
-    #brains = catalog.searchResults(path='/cca/en')
-    site_url = portal.getSite().absolute_url()
+    # brains = catalog.searchResults(path='/cca/en')
+    # site_url = portal.getSite().absolute_url()
     logger.info("Start copying values for language independent fields...")
 
     language_independent_fields = {
@@ -1202,7 +1202,7 @@ def translation_step_4(site, request):
         "Collection": ["sort_reversed", "query", "effective"],
         "Document": ["table_of_contents", "effective"],
         "News Item": ["health_impacts", "image", "effective",
-            "include_in_observatory", "subject"],
+                      "include_in_observatory", "subject"],
         "eea.climateadapt.casestudy": [
             "geolocation", "implementation_type", "spatial_values",
             "effective", "source",
@@ -1224,17 +1224,17 @@ def translation_step_4(site, request):
             "storage_type", "spatial_values", "metadata", "effective",
             ],
         "Event": [
-            "start", "end", "effective", "timezone", "event_url",
+            "timezone", "start", "end", "effective", "event_url",
             "health_impacts", "contact_email", "location", "contact_name",
             "effective", "include_in_observatory"
             ],
         "cca-event": [
-            "start", "end", "effective", "timezone", "contact_email",
+            "timezone", "start", "end", "effective", "contact_email",
             "contact_name"
             ],
         "File": ["file", "effective", "filename"],
         "Image": ["image", "effective", "filename"],
-        "collective.cover.content": ["title", "effective",'template_layout'],
+        "collective.cover.content": ["title", "effective", 'template_layout'],
     }
 
     obj_count = 0
