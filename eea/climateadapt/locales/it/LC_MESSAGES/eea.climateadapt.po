@@ -2826,7 +2826,7 @@ msgstr "abitanti"
 #. Default: "Filter the results."
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:111
 msgid "narrow_search_options"
-msgstr "raffina_la_ricerca"
+msgstr "Filtra i risultati."
 
 # ,
 # ,

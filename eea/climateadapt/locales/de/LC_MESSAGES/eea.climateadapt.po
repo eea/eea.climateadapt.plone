@@ -3517,7 +3517,7 @@ msgstr "Einwohner"
 #. Default: "Filter the results."
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:111
 msgid "narrow_search_options"
-msgstr ""
+msgstr "Filtern Sie die Ergebnisse."
 
 # ,
 # ,
