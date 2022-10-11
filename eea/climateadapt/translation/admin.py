@@ -243,32 +243,9 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
 
             value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
 
-            # TODO clean code - this is already in step 4
-            # if trans_obj.portal_type in ['Event', 'cca-event']:
-            #     force_unlock(trans_obj)
-            #     reindex = False
-            #     if key == 'start':
-            #         # setattr(trans_obj, key, obj.start)
-            #         trans_obj.start = obj.start
-            #         reindex = True
-            #     if key == 'end':
-            #         trans_obj.end = obj.end
-            #         # setattr(trans_obj, key, obj.start)
-            #         reindex = True
-            #     if key == 'effective':
-            #         trans_obj.setEffectiveDate(obj.effective_date)
-            #         reindex = True
-            #     if key == 'timezone':
-            #         trans_obj.timezone = obj.timezone
-            #         reindex = True
-            #
-            #     if reindex is True:
-            #         # reindex object
-            #         trans_obj._p_changed = True
-            #         trans_obj.reindexObject()
-            #         continue
-            #
-            #         # transaction.commit()
+            if trans_obj.portal_type in ['Event', 'cca-event']:
+                if key in ['start', 'end', 'timezone']:
+                    continue
 
             if not value:
                 continue
