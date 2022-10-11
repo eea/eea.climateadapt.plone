@@ -208,7 +208,7 @@
                   <p class="feature-text" i18n:translate="">The Urban Adaptation Map Viewer provides an overview of the current and future climate hazards, the vulnerability of the cities to these hazards and their adaptive capacity.
                   </p>
                   <div class="bottom-section">
-                    <a class="standard-button primary-button feature-btn" href="t/en/knowledge/tools/urban-adaptation" i18n:translate="">Go to the Urban Adaptation Map Viewer</a>
+                    <a class="standard-button primary-button feature-btn" href="/en/knowledge/tools/urban-adaptation" i18n:translate="">Go to the Urban Adaptation Map Viewer</a>
                   </div>
                 </div>
 
@@ -245,11 +245,11 @@
                     <span class="db-category-icon">
                         <i class="fa fa-cogs" aria-hidden="true"></i>
                     </span>
-                    <b i18n:translate="">Adaptation tools</b>
+                    <b i18n:translate="">Adaptation options</b>
                   </div>
                   <p class="feature-text" i18n:translate="">Learn more about different adaptation options to the various impacts of climate change in urban areas.</p>
                   <div class="bottom-section">
-                    <a class="standard-button primary-button feature-btn" href="/en/knowledge/tools/adaptation-support-tool" i18n:translate="">Go to the Adaptation Options</a>
+                    <a class="standard-button primary-button feature-btn" href="/en/data-and-downloads/?lang=en&source=%7B%22query%22%3A%20%7B%22function_score%22%3A%20%7B%22query%22%3A%20%7B%22bool%22%3A%20%7B%22filter%22%3A%20%7B%22bool%22%3A%20%7B%22must%22%3A%20%5B%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22typeOfData%22%3A%20%22Adaptation%20options%22%7D%7D%5D%7D%7D%2C%20%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22sectors%22%3A%20%22Urban%22%7D%7D%5D%7D%7D%5D%7D%7D%7D%7D%7D%7D%7D" i18n:translate="">Go to the Adaptation Options</a>
                   </div>
                 </div>
 
@@ -291,14 +291,14 @@
                 <img src="/++theme++climateadaptv2/static/images/urban-landing/tab4.png" style="float:left;padding-right:20px;" />
                 <p i18n:translate="" class="feature-text">The EU has several policy frameworks in place to increase the resilience of European cities and their inhabitants, including the EU Adaptation Strategy and the EU Biodiversity Strategy 2030, and has developed several initiatives to improve knowledge and data availability on urban vulnerability and adaptive capacity. It also provides financial and technical support to policy makers and practitioners to make cities more resilient and adaptive.</p>
                 <div class="bottom-section">
-                  <a i18n:translate="" class="standard-button primary-button feature-btn" href="/en/knowledge/european-climate-data-explorer/">Go to the Urban Policy Overview</a>
+                  <a i18n:translate="" class="standard-button primary-button feature-btn" href="/en/eu-adaptation-policy/sector-policies/urban">Go to the Urban Policy Overview</a>
                 </div>
               </div>
             </div>
             <div class="tab-pane fade" id="t-funding">
               <div>
-                <img src="/++theme++climateadaptv2/static/images/urban-landing/funding-guide.png" style="width:250px;float:left;padding-right:20px;" />
-                <p class="feature-text" i18n:translate="">The Covenant of Mayors Interactive <a href="https://www.covenantofmayors.eu/support/funding.html">Funding Guide</a> provides comprehensive and up-to-date information on various funding initiatives open to cities and managed by the European Commission, Member States and key financial institutions such as the European Investment Bank. In addition, the guide includes information on support services and innovative financing models.</p>
+                <img src="/++theme++climateadaptv2/static/images/urban-landing/funding-guide.png" style="width:300px;float:left;padding-right:20px;" />
+                <p class="feature-text" i18n:translate="">The <a href="https://www.covenantofmayors.eu/support/funding.html">Covenant of Mayors Interactive Funding Guide</a> provides comprehensive and up-to-date information on various funding initiatives open to cities and managed by the European Commission, Member States and key financial institutions such as the European Investment Bank. In addition, the guide includes information on support services and innovative financing models.</p>
               </div>
             </div>
             <div class="tab-pane fade" id="t-city">
@@ -398,7 +398,7 @@
                        </div>
                        <div class="policy-description col-md-9 col-sm-9 col-xs-8">
                          <h3 i18n:translate="">FAO Green Cities</h3>
-                         <p i18n:translate=""><a href="https://www.fao.org/green-cities-initiative/en/">The Initiative</a> focuses on improving the urban environment, strengthening urban-rural linkages and the resilience of urban systems, services and populations to external shocks.</p>
+                         <p i18n:translate="">The <a href="https://www.fao.org/green-cities-initiative/en/">FAO Green Cities Initiative</a> focuses on improving the urban environment, strengthening urban-rural linkages and the resilience of urban systems, services and populations to external shocks.</p>
                        </div>
                      </div>
                    </div>
@@ -463,7 +463,7 @@
                          <img src="https://dummyimage.com/270x170/aaa/000&text=LOGO10" style="float:left;padding-right:10px;" />
                        </div>
                        <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                         <h3 i18n:translate="">Different City Networks</h3>
+                         <h3 i18n:translate="">City Networks</h3>
                          <p i18n:translate="">
                            <a href="https://www.climatealliance.org/home.html">Climate Alliance</a>
                            <br><a href="https://www.ccre.org">Council of European Municipalities and Regions (CEMR)</a>
