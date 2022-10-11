@@ -2311,7 +2311,7 @@ msgstr "Risultati della ricerca"
 # ,
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:73
 msgid "Search results for: ${term}"
-msgstr "Risultati della ricerca per: $ {termine}"
+msgstr "Risultati della ricerca per: ${term}"
 
 # ,
 # ,
