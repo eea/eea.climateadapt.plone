@@ -1383,6 +1383,7 @@ def translation_step_4(site, request):
             # reindex object
             trans_obj._p_changed = True
             trans_obj.reindexObject()
+            transaction.commit()  # TODO Improve. This is a fix for Event.
             continue
 
     logger.info("Finalize step 4")
