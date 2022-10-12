@@ -44,12 +44,18 @@
 	border-bottom: 5px solid #8a9c3a;
   background-position: center;
 }
+.urban-landing-top .text-content {
+  margin: 0 auto;
+  max-width: 1200px;
+  position: relative;
+  width: 100%;
+}
 .urban-landing-top .text {
 	background-color: rgba(150, 150, 150,.5);
 	color: #fff;
 	position: absolute;
-	top: 139px;
-	right: 39%;
+  top: 190px;
+  right: 2%;
 	width: 100%;
 	padding: 10px;
 	max-width: 600px;
@@ -136,9 +142,11 @@
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   i18n:domain="eea.climateadapt.urban">
       <div class="urban-landing-top">
-        <div class="text">
-          <p i18n:translate="">Learn more about how cities can adapt to climate change to become future-proof, climate-resilient cities</p>
-        </div>
+        <div class="text-content">
+            <div class="text">
+              <p i18n:translate="">Learn more about how cities can adapt to climate change to become future-proof, climate-resilient cities</p>
+            </div>
+          </div>
       </div>
       <div class="content-container">
         <ul class="nav nav-tabs main-nav-tabs">
@@ -352,7 +360,7 @@
                    </li>
                    <li class="policies-nav-item">
                      <a href="#" data-toggle="tab" data-target="#tab10" class="policies-nav-link" aria-expanded="false">
-                       <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo10.jpg" style="height:120px;padding-right:10px;" />
+                       <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo10.png" style="height:120px;padding-right:10px;" />
                      </a>
                    </li>
                  </ul>
@@ -461,7 +469,7 @@
                    <div id="tab10" class="tab-pane">
                      <div class="row">
                        <div class="policy-image col-md-3 col-sm-3 col-xs-4">
-                         <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo10.jpg" style="float:left;padding-right:10px;" />
+                         <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo10.png" style="float:left;padding-right:10px;" />
                        </div>
                        <div class="policy-description col-md-9 col-sm-9 col-xs-8">
                          <h3 i18n:translate="">City Networks</h3>
@@ -475,6 +483,7 @@
                         </p>
                        </div>
                      </div>
+                     <p style="font-size: 12px;">Image courtesy of <a style="color: #999;font-size: 12px;" href="https://www.vecteezy.com/free-vector/technology">Technology Vectors by Vecteezy</a></p>
                    </div>
                  </div>
                </div>
