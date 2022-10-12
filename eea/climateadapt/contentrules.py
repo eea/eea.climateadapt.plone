@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-
-from plone import api
+""" Content rules
+"""
 import logging
+from plone import api
 from plone.api.portal import get_tool
 import transaction
 from OFS.SimpleItem import SimpleItem
-#from plone.app.contentrules import PloneMessageFactory as _
+# from plone.app.contentrules import PloneMessageFactory as _
 from plone.app.contentrules.browser.formhelper import NullAddForm
 from plone.contentrules.rule.interfaces import IExecutable, IRuleElementData
 from Products.CMFPlone import utils
@@ -22,7 +23,6 @@ from eea.climateadapt.translation.admin import create_translation_object
 from eea.climateadapt.translation.admin import copy_missing_interfaces
 from eea.climateadapt.translation.admin import translation_step_4
 from eea.climateadapt.translation.utils import get_site_languages
-from eea.climateadapt.translation.utils import get_current_language
 from plone.app.multilingual.manager import TranslationManager
 from zope.site.hooks import getSite
 
@@ -53,13 +53,9 @@ class ObjectDateExpirationActionExecutor(object):
 
     def __call__(self):
         obj = self.event.object
-
         transaction.savepoint()
 
-        catalog = get_tool("portal_catalog")
-
         try:
-            portal = api.portal.get()
             state = api.content.get_state(obj)
             if state == 'published':
                 obj.setExpirationDate(None)
@@ -71,7 +67,7 @@ class ObjectDateExpirationActionExecutor(object):
                 obj.reindexObject()
 
         except Exception as e:
-            self.error(obj, str(e))
+            # self.error(obj, str(e))
             return False
 
         return True
@@ -116,15 +112,16 @@ class ReindexActionExecutor(object):
         try:
             catalog.unindexObject(obj)
             catalog.indexObject(obj)
-        except ConflictError as e:
-            raise e
-        except Exception as e:
-            self.error(obj, str(e))
+        except ConflictError as err:
+            raise err
+        except Exception as err:
+            self.error(obj, str(err))
             return False
 
         return True
 
     def error(self, obj, error):
+        """ Show error """
         request = getattr(self.context, "REQUEST", None)
         if request is not None:
             title = utils.pretty_title_or_id(obj, obj)
@@ -181,8 +178,8 @@ class TranslateActionExecutor(object):
             # on old created content. Example: fixing interfaces for pages
             # like share-your-info
 
-
     def error(self, obj, error):
+        """ Show error """
         request = getattr(self.context, "REQUEST", None)
         if request is not None:
             title = utils.pretty_title_or_id(obj, obj)
@@ -200,11 +197,7 @@ class TranslateActionExecutor(object):
         translations = TranslationManager(obj).get_translations()
         for language in get_site_languages():
             if language != "en" and language not in translations:
-                try:
-                    create_translation_object(obj, language)
-                except Exception as err:
-                    pass
-                    # import pdb; pdb.set_trace()
+                create_translation_object(obj, language)
         transaction.commit()
 
     def translate_obj(self, obj):
