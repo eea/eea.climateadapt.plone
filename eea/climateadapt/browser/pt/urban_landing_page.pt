@@ -40,12 +40,9 @@
 	background-image: url(/en/eu-adaptation-policy/sector-policies/urban-landing/urban.jpg);
 	background-size: cover;
 	height: 400px !important;
-	margin-left: -50vw !important;
-	margin-top: -70px;
 	/* margin-right: -50vw !important; */
-	right: 50%;
-	left: 50%;
 	border-bottom: 5px solid #8a9c3a;
+  background-position: center;
 }
 .urban-landing-top .text {
 	background-color: rgba(150, 150, 150,.5);
@@ -121,7 +118,11 @@
 }
 
 .tab-container .content-container {
-	padding-bottom: 1rem;}
+	padding-bottom: 1rem;
+}
+.top-page-area .header {
+  position:absolute !important;
+}
 </style>
 
 
