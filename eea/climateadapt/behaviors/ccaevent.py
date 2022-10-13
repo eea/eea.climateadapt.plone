@@ -33,7 +33,7 @@ class ICcaEvent(model.Schema, IDXEvent):
             "background_documents",
             "participation",
             #"technical_guidance",
-            "language",
+            "event_language",
             "online_registration",
             "online_registration_message",
             "online_registration_documents",
@@ -76,7 +76,7 @@ class ICcaEvent(model.Schema, IDXEvent):
         required=False,
     )
 
-    language = Choice(
+    event_language = Choice(
         title=_(u"Event Language"),
         required=True,
         default='English',
@@ -109,6 +109,6 @@ alsoProvides(ICcaEvent["image"], ILanguageIndependentField)
 alsoProvides(ICcaEvent["online_event_url"], ILanguageIndependentField)
 alsoProvides(ICcaEvent["agenda_file"], ILanguageIndependentField)
 alsoProvides(ICcaEvent["background_documents"], ILanguageIndependentField)
-alsoProvides(ICcaEvent["language"], ILanguageIndependentField)
+alsoProvides(ICcaEvent["event_language"], ILanguageIndependentField)
 alsoProvides(ICcaEvent["online_registration"], ILanguageIndependentField)
 alsoProvides(ICcaEvent["online_registration_documents"], ILanguageIndependentField)

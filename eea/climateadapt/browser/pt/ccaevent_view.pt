@@ -96,7 +96,7 @@ $( document ).ready(function() {
                             </tal>
 
                             <h3 i18n:translate="">Language of the conference</h3>
-                            <p tal:content="structure context/language"></p>
+                            <p tal:content="structure context/event_language | string:'English'"></p>
 
                             <tal tal:condition="view/future_event">
                             <a name="registration"></a>
