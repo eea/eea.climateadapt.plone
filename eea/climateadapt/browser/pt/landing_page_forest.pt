@@ -1,0 +1,502 @@
+<style>
+.policies-nav-item {
+  width:200px;
+  margin-top:20px;
+}
+.main-tab-item a i.fa{
+  font-size:44px;
+  color:#005c96;
+  margin-bottom:20px;
+}
+.urban-landing .main-tab-item{
+  width:140px;
+}
+.urban-landing .db-category-wrapper{
+  text-align:left;
+}
+.urban-landing .db-category-icon i.fa{
+  font-size:60px;
+}
+.urban-landing .db-category-wrapper b{
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.urban-landing #t-databases .db-category-wrapper{
+  flex:1 1 120px;
+}
+.urban-landing .blue-bg{
+  height:105%;
+}
+.db-category-wrapper #t-databases .total-items {
+  padding-left:4px;
+}
+.urban-landing .db-category-wrapper .total-items {
+  text-align:center;
+  font-size:10.5px;
+}
+.urban-landing-top {
+	position: relative;
+	background-image: url(/en/eu-adaptation-policy/sector-policies/urban-landing/urban.jpg);
+	background-size: cover;
+	height: 400px !important;
+	/* margin-right: -50vw !important; */
+	border-bottom: 5px solid #8a9c3a;
+  background-position: center;
+}
+.urban-landing-top .text-content {
+  margin: 0 auto;
+  max-width: 1200px;
+  position: relative;
+  width: 100%;
+}
+.urban-landing-top .text {
+	background-color: rgba(150, 150, 150,.5);
+	color: #fff;
+	position: absolute;
+  top: 190px;
+  right: 2%;
+	width: 100%;
+	padding: 10px;
+	max-width: 600px;
+	max-height: 212px;
+	height: auto;
+}
+.urban-landing-top p {
+    font-size: 20pt;
+    color:#fff;
+}
+.urban-landing ul.nav-tabs li img {
+  margin-bottom:15px;
+}
+.urban-landing .portal-breadcrumbs {
+  display:none !important;
+}
+.urban-landing > .content-container {
+  background-color: #eee;
+}
+.urban-landing > .content-container > ul.nav-tabs{
+  padding-bottom:0px;
+}
+.urban-landing .research-icon {
+  height: 50px !important;
+  width: 50px !important;
+  background-size: 100px !important;
+}
+.urban-landing a:hover .research-icon {
+    background-position: -51px 0;
+}
+.urban-landing #t-databases img{
+  border:1px solid #ddd;
+}
+.urban-landing #t-databases a:hover img{
+  border:1px solid #000;
+}
+#t-case-studies p.feature-text {
+    min-height: 60px;
+}
+#t-city .policies-nav a {
+  text-align:center;
+}
+
+.urban-landing .db-category-wrapper {
+	text-align: unset;
+}
+
+.db-categories.flex-wrapper {
+	padding: 20px 0 0 0;
+}
+
+.db-category-wrapper {
+	padding: 1em 0 0 0;
+}
+
+#t-databases .tab-pane {
+	padding: 1.5em 1.5em 0em 1.5em;
+}
+
+.main-tab-item a span {
+	white-space: normal;
+}
+
+.subsection-sector-policies-urban-landing-urban footer {
+	margin-top: unset;
+}
+
+.tab-container .content-container {
+	padding-bottom: 1rem;
+}
+.top-page-area .header {
+  position:absolute !important;
+}
+</style>
+
+
+<div xmlns="http://www.w3.org/1999/xhtml"
+  class="dynamic-area urban-landing"
+  xml:lang="en"
+  lang="en"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n:domain="eea.climateadapt.landing_page">
+      <div class="urban-landing-top">
+        <div class="text-content">
+            <div class="text">
+              <p i18n:translate="">Learn more about how forests can adapt to climate change to stay healthy, diverse, resilient and productive</p>
+            </div>
+          </div>
+      </div>
+      <div class="content-container">
+        <ul class="nav nav-tabs main-nav-tabs">
+          <!-- <li class="main-tab-item active">
+            <a href="#t-started">
+              <span class="d-icon started-icon"></span>
+              Getting <br> Started
+            </a>
+          </li> -->
+          <li class="main-tab-item active">
+
+            <a href="#t-tools">
+              <img src="/++theme++climateadaptv2/static/images/urban-landing/tab1_ico.png" width="50px;">
+              <br><span i18n:translate="">Tools</span>
+            </a>
+          </li>
+          <li class="main-tab-item" style="min-width:230px;">
+            <a href="#t-case-studies">
+              <img src="/++theme++climateadaptv2/static/images/urban-landing/tab2_ico.png" width="50px;">
+              <br><span i18n:translate="">Case studies and Adaptations Options</span>
+            </a>
+          </li>
+          <li class="main-tab-item">
+            <a href="#t-databases">
+              <img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_ico.png" width="50px;">
+              <br><span i18n:translate="">Databases</span>
+            </a>
+          </li>
+          <li class="main-tab-item">
+            <a href="#t-policy">
+              <img src="/++theme++climateadaptv2/static/images/urban-landing/tab4_ico.png" width="50px;">
+              <br><span i18n:translate="">Policy framework</span>
+            </a>
+          </li>
+          <li class="main-tab-item">
+            <a href="#t-funding">
+              <img src="/++theme++climateadaptv2/static/images/urban-landing/tab5_ico.png" width="50px;">
+              <br><span i18n:translate="">Funding and Financing</span>
+            </a>
+          </li>
+          <li class="main-tab-item ast-section">
+            <a href="#t-city">
+              <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_ico.png" width="50px;">
+              <br><span i18n:translate="">City Initiative</span>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="tab-container" style="border:none;">
+        <div class="content-container">
+          <div class="tab-content tab-body clearfix" style="border:none;box-shadow:none;padding-bottom:40px;">
+
+            <div class="tab-pane active fade in" id="t-tools">
+              <div class="new-feature row">
+                <div class="col-md-4 col-sm-12 feature-section">
+                  <img src="/en/knowledge/tools/urban-ast/uast_logo_0.png" width="110px;" height="58px;">
+                  <p class="feature-text" i18n:translate="">The Urban Adaptation Support Tool assists cities, towns and local authorities in developing, implementing and monitoring climate change adaptation plans..</p>
+                  <div class="bottom-section">
+                    <a class="standard-button primary-button feature-btn" href="/en/knowledge/tools/urban-ast/step-0-0" i18n:translate="">
+                    Go to the Forest Adaptation Support Tool</a>
+                  </div>
+                </div>
+
+                <div class="col-md-4 col-sm-12 feature-section">
+                  <img src="/++theme++climateadaptv2/static/images/urban-landing/map_viewer_icon.png" alt="Health Observatory Logo" width="58px" height="58px">
+                  <p class="feature-text" i18n:translate="">The Urban Adaptation Map Viewer provides an overview of the current and future climate hazards, the vulnerability of the cities to these hazards and their adaptive capacity.
+                  </p>
+                  <div class="bottom-section">
+                    <a class="standard-button primary-button feature-btn" href="/en/knowledge/tools/urban-adaptation" i18n:translate="">Go to the Forest Adaptation Map Viewer</a>
+                  </div>
+                </div>
+
+                <div class="col-md-4 col-sm-12 feature-section">
+                  <img src="/++theme++climateadaptv2/static/images/ecde-logo.svg" width="220px" height="58px">
+                  <p class="feature-text" i18n:translate="">The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation.
+                  </p>
+                  <div class="bottom-section">
+                    <a class="standard-button primary-button feature-btn" href="/en/knowledge/european-climate-data-explorer/" i18n:translate="">Go to the European Climate Data Explorer</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="t-case-studies">
+              <div class="new-feature row">
+                <div class="col-md-6 col-sm-12 feature-section">
+                  <div class="db-category-wrapper">
+                    <span class="db-category-icon">
+                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                    </span>
+                    <b i18n:translate="">Case studies</b>
+                  </div>
+                  <p class="feature-text" i18n:translate="">Explore Forest adaptation case studies in terms of geographic location, thematic coverage and link to adaptation options through the map-based Case study explorer.</p>
+                  <div class="bottom-section">
+                    <a class="standard-button primary-button feature-btn" href="/en/knowledge/tools/case-study-explorer?sectors=FORESTRY" i18n:translate="">
+                    Go to Case Study Explorer</a>
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12 feature-section">
+                  <div class="db-category-wrapper">
+                    <span class="db-category-icon">
+                        <i class="fa fa-cogs" aria-hidden="true"></i>
+                    </span>
+                    <b i18n:translate="">Adaptation options</b>
+                  </div>
+                  <p class="feature-text" i18n:translate="">Learn more about different adaptation options to the various impacts of climate change in forests.</p>
+                  <div class="bottom-section">
+                    <a class="standard-button primary-button feature-btn" href="/en/data-and-downloads/?lang=en&source=%7B%22query%22%3A%20%7B%22function_score%22%3A%20%7B%22query%22%3A%20%7B%22bool%22%3A%20%7B%22filter%22%3A%20%7B%22bool%22%3A%20%7B%22must%22%3A%20%5B%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22typeOfData%22%3A%20%22Adaptation%20options%22%7D%7D%5D%7D%7D%2C%20%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22sectors%22%3A%20%22Forestry%22%7D%7D%5D%7D%7D%5D%7D%7D%7D%7D%7D%7D%7D" i18n:translate="">Go to the Adaptation Options</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="t-databases">
+              <div>
+                <!-- <img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep.png" style="height:215px;padding-right:50px;"/>-->
+                <a href="/en/metadata/publications/sixth-assessment-report"><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep1.jpg" style="height:250px;;padding-right:5px;"/></a>
+                <a href="/en/metadata/projects/peseta-projection-of-economic-impacts-of-climate-change-in-sectors-of-the-european-union-based-on-bottom-up-analysis"><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep2.jpg" style="height:250px;;padding-right:5px;"/></a>
+                <a href="/en/metadata/publications/second-assessment-report-of-the-urban-climate-change-research-network"><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep3.jpg" style="height:250px;;padding-right:5px;"/></a>
+                <a href="/en/metadata/publications/urban-adaptation-in-europe-how-cities-and-towns-respond-to-climate-change"><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep4.jpg" style="height:250px;;padding-right:5px;"/></a>
+                <a href="/en/metadata/publications/financing-urban-adaptation-to-climate-change"><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep5.jpg" style="height:250px;;padding-right:5px;"/></a>
+                <a href="/en/metadata/publications/urban-adaptation-to-climate-change-in-europe-2016-transforming-cities-in-a-changing-climate-1"><img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep6.jpg" style="height:250px;;padding-right:5px;"/></a>
+              </div>
+
+
+              <h2 i18n:translate="" style="font-weight:lighter;width:100%;background-color: #005c96;
+    padding: 15px;
+    color: #fff;
+    margin-top: 15px;">Search the Climate Adapt Database:</h2>
+              <div xmlns="" class="db-categories flex-wrapper" tal:define="sections view/sections">
+                <div class="db-category-wrapper" tal:repeat="section sections">
+                  <a href="#" tal:attributes="href section/link">
+                    <span class="db-category-icon">
+                      <i class="fa fa-cogs" tal:attributes="class string:fa ${section/icon_class}"></i>
+                      <span class="total-items" tal:content="section/count">120</span>
+                    </span>
+                    <p tal:condition="python: section.icon_class == 'research-icon'" tal:content="section/title" style="padding-top:5px;" i18n:translate="">Adaptation <br> Options</p>
+                    <p tal:condition="python: section.icon_class != 'research-icon'" tal:content="section/title" i18n:translate="">Adaptation <br> Options</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="t-policy">
+              <div>
+                <img src="/++theme++climateadaptv2/static/images/urban-landing/tab4.png" style="float:left;padding-right:20px;" />
+                <p i18n:translate="" class="feature-text">Forests and forest-based sector are well positioned to play a strong role in reaching the objectives of the <a href="https://ec.europa.eu/info/strategy/priorities-2019-2024/european-green-deal_en">European Green Deal</a>. Several flagship strategies are related to forests and increasing the resilience of European forests such as the EU Forest Strategy for 2030, the Biodiversity Strategy for 2030, the Nature Restoration Law, and the EU Framework for Forest monitoring and Strategic Plans.  Several actions are initiated to improve information and knowledge on forest resilience and adaptation to climate change impacts.</p>
+                <div class="bottom-section">
+                  <a i18n:translate="" class="standard-button primary-button feature-btn" href="/en/eu-adaptation-policy/sector-policies/urban">Go to the Forest Policy Overview</a>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="t-funding">
+              <div>
+                <img src="/++theme++climateadaptv2/static/images/urban-landing/funding-guide.png" style="width:300px;float:left;padding-right:20px;" />
+                <p class="feature-text" i18n:translate="">The main financing mechanisms are the CAP Pillar II and the sustainable taxonomy for climate change and for biodiversity protection</p>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="t-city">
+              <div class="policies-dynamic-area" xml:lang="en" lang="en">
+                 <ul class="nav nav-tabs flex-wrapper policies-nav">
+                   <li class="policies-nav-item">
+                     <a href="https://www.covenantofmayors.eu/" data-toggle="tab" class="policies-nav-link" data-target="#tab1" aria-expanded="false">
+                       <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo1.png" style="width:200px;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item">
+                     <a href="https://ec.europa.eu/clima/eu-action/european-green-deal/european-climate-pact_en" data-toggle="tab" class="policies-nav-link" data-target="#tab2" aria-expanded="false">
+                       <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo2.jpg" style="width:200px;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item">
+                     <a href="https://www.uia-initiative.eu/en" data-toggle="tab" class="policies-nav-link" data-target="#tab3" aria-expanded="true">
+                       <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo3.png" style="width:200px;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item">
+                     <a href="https://www.fao.org/green-cities-initiative/en/" data-toggle="tab" class="policies-nav-link" data-target="#tab4" aria-expanded="false">
+                       <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo4.jpg" style="height:120px;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item">
+                     <a href="https://oppla.eu/about" data-toggle="tab" class="policies-nav-link" data-target="#tab5" aria-expanded="true">
+                       <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo5.png" style="width:200px;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item">
+                     <a href="https://ec.europa.eu/info/research-and-innovation/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe/eu-missions-horizon-europe/adaptation-climate-change-including-societal-transformation_en" data-toggle="tab" data-target="#tab6" class="policies-nav-link" aria-expanded="true">
+                       <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo6.jpg" style="width:200px;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item active">
+                     <a href="https://mcr2030.undrr.org/" data-toggle="tab" data-target="#tab7" class="policies-nav-link" aria-expanded="true">
+                       <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo7.png" style="width:200px;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item">
+                     <a href="https://urbact.eu/" data-toggle="tab" data-target="#tab8" class="policies-nav-link" aria-expanded="true">
+                       <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo8.png" style="width:200px;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item">
+                     <a href="https://resilientcitiesnetwork.org/" data-toggle="tab" data-target="#tab9" class="policies-nav-link" aria-expanded="false">
+                       <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo9.png" style="width:200px;padding-right:10px;" />
+                     </a>
+                   </li>
+                   <li class="policies-nav-item">
+                     <a href="#" data-toggle="tab" data-target="#tab10" class="policies-nav-link" aria-expanded="false">
+                       <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo10.png" style="height:120px;padding-right:10px;" />
+                     </a>
+                   </li>
+                 </ul>
+
+                 <div class="tab-content policies-tab-content">
+
+                   <div id="tab1" class="tab-pane active">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo1.png" style="width:250px;float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3 i18n:translate="">The EU Covenant of Mayors</h3>
+                         <p i18n:translate="">The <a href="https://www.covenantofmayors.eu/">EU Covenant of Mayors</a> brings together over 10,000 local governments voluntarily committed to implementing EU climate and energy objectives. Signatory cities commit to increasing resilience and preparing for the adverse impacts of climate change.</p>
+                       </div>
+                     </div>
+                   </div>
+                   <div id="tab2" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo2.jpg" style="width:250px;float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3 i18n:translate="">European Climate Pact</h3>
+                         <p i18n:translate="">The <a href="https://ec.europa.eu/clima/eu-action/european-green-deal/european-climate-pact_en">European Climate Pact</a> is an EU-wide initiative inviting people, communities and organisations to participate in climate action and build a greener Europe.</p>
+                       </div>
+                     </div>
+                   </div>
+                   <div id="tab3" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo3.png" style="width:250px;float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3 i18n:translate="">Urban Innovative Actions</h3>
+                         <p i18n:translate=""><a href="https://www.uia-initiative.eu/en">Urban Innovative Actions</a> is an Initiative of the European Union that provides urban areas throughout Europe with resources to test new and unproven solutions to address urban challenge</p>
+                       </div>
+                     </div>
+                   </div>
+                   <div id="tab4" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo4.jpg" style="width:110px;height:120px;float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3 i18n:translate="">FAO Green Cities</h3>
+                         <p i18n:translate="">The <a href="https://www.fao.org/green-cities-initiative/en/">FAO Green Cities Initiative</a> focuses on improving the urban environment, strengthening urban-rural linkages and the resilience of urban systems, services and populations to external shocks.</p>
+                       </div>
+                     </div>
+                   </div>
+                   <div id="tab5" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo5.png" style="width:250px;float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3 i18n:translate="">OPPLA</h3>
+                         <p i18n:translate=""><a href="https://oppla.eu/about">Oppla</a> is the EU Repository of Nature-Based Solutions. It provides a knowledge marketplace, where the latest thinking on natural capital, ecosystem services and nature-based solutions is brought together. Its purpose is to simplify how to share, obtain and create knowledge to better manage our environment</p>
+                       </div>
+                     </div>
+                   </div>
+                   <div id="tab6" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo6.jpg" style="width:250px;float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3 i18n:translate="">EU Missions</h3>
+                         <p i18n:translate="">Adaptation to Climate Change: The goal of the <a href="https://ec.europa.eu/info/research-and-innovation/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe/eu-missions-horizon-europe/adaptation-climate-change-including-societal-transformation_en">EU mission</a> - Adaptation to climate change is to foster the development of innovative solutions to adapt to climate change and encourage regions, cities and communities to lead the societal transformation.-transformation_en)</p>
+                       </div>
+                     </div>
+                   </div>
+                   <div id="tab7" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo7.png" style="width:250px;float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3 i18n:translate="">MCR 2030</h3>
+                         <p i18n:translate="">Making Cities Resilient: <a href="https://mcr2030.undrr.org/">Making Cities Resilient 2030</a> is a cross-stakeholder initiative for improving local resilience through advocacy, sharing knowledge and experiences, establishing mutually reinforcing city-to-city learning networks, injecting technical expertise, connecting multiple layers of government and building partnerships.</p>
+                       </div>
+                     </div>
+                   </div>
+                   <div id="tab8" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo8.png" style="width:250px;float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3 i18n:translate="">URBACT</h3>
+                         <p i18n:translate=""><a href="https://urbact.eu/">URBACT’s</a> mission is to enable cities to work together and develop integrated solutions to common urban challenges, by networking, learning from one another’s experiences, drawing lessons and identifying good practices to improve urban policies.</p>
+                       </div>
+                     </div>
+                   </div>
+                   <div id="tab9" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo9.png" style="width:250px;float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3 i18n:translate="">Resilient Cities Network</h3>
+                         <p i18n:translate="">The <a href="https://resilientcitiesnetwork.org/">Resilient Cities Network</a> consists of cities that are committed to building and investing in urban resilience, located in five geographical regions: Africa, Asia Pacific, Europe and Middle East, Latin America and the Caribbean, and North America.</p>
+                       </div>
+                     </div>
+                   </div>
+                   <div id="tab10" class="tab-pane">
+                     <div class="row">
+                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                         <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_logo10.png" style="float:left;padding-right:10px;" />
+                       </div>
+                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                         <h3 i18n:translate="">City Networks</h3>
+                         <p i18n:translate="">
+                           <a href="https://www.climatealliance.org/home.html">Climate Alliance</a>
+                           <br><a href="https://www.ccre.org">Council of European Municipalities and Regions (CEMR)</a>
+                           <br><a href="https://www.cdp.net/en">CDP</a>
+                           <br><a href="https://www.c40.org">C40</a>
+                           <br><a href="https://fedarene.org">European Federation of Agencies and Regions for Energy and Environment (FEDARENE)</a>
+                           <br><a href="https://www.ccre.org">Local Governments for Sustainability (ICLEI) Europe</a>
+                        </p>
+                       </div>
+                     </div>
+                     <p style="font-size: 12px;">Image courtesy of <a style="color: #999;font-size: 12px;" href="https://www.vecteezy.com/free-vector/technology">Technology Vectors by Vecteezy</a></p>
+                   </div>
+                 </div>
+               </div>
+
+
+            </div>
+<div style="clear:both;"></div>
+          </div>
+        </div>
+        <div class="blue-bg"></div>
+
+      </div>
+<div style="clear:both;"></div>
+
+    </div>
+<div style="clear:both;"/>

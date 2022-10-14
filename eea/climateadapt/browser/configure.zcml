@@ -131,12 +131,20 @@
   <browser:page
       name="urban-landing-page"
       for="*"
-      template="pt/urban_landing_page.pt"
+      template="pt/landing_page_urban.pt"
       permission="zope2.View"
-      class=".urban.LandingPage"
+      class=".landing_page.Urban"
       />
 
   <browser:page
+      name="forest-landing-page"
+      for="*"
+      template="pt/landing_page_forest.pt"
+      permission="zope2.View"
+      class=".landing_page.Forest"
+      />
+
+<browser:page
       name="case-study-and-adaptation-options-map-viewer"
       for="*"
       class=".casestudies_map.Page"
