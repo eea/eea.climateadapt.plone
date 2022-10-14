@@ -592,6 +592,9 @@
           $(subs).each(function (i, el) {
             for (index = 0; index < this.length; index++) {
               if (el.text.indexOf(this[index]) > -1) {
+                if (geo.subnational.indexOf(el.value) > -1) {
+                  $(el).attr("selected", true);  // mark as selected existing values
+                }
                 $(el).show();
                 break;
               }
@@ -600,6 +603,10 @@
               }
             }
           }.bind(countries));
+
+          // Subnational Regions - make sure selected options are listed under Your selections
+          // on edit form load
+          $("#subnationals :selected").clone().appendTo($("#subnationals_selected"));
 
           // If no inputs are checked, don't show any options on page load
           if (countries.length === 0) {
