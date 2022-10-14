@@ -190,6 +190,12 @@ class AceTileMixin(object):
                 else:
                     if index_name == 'macro_regions':
                         regions = []
+                        if 'Other Regions' in setting:
+                            setting.append('Macaronesia')
+                            setting.append('Caribbean Area')
+                            setting.append('Amazonia')
+                            setting.append('Anatolian')
+                            setting.append('Indian Ocean Area')
                         for region_name in setting:
                             for k, v in BIOREGIONS.items():
                                 if 'TRANS_MACRO' in k and v == region_name:
