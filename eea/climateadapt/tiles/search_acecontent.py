@@ -280,11 +280,15 @@ class AceTileMixin(object):
 
             if k == "macro_regions":
                 for s in v:
+                    #import pdb; pdb.set_trace()
                     if 'TRANS_MACRO_' in s:
                         for key, val in BIOREGIONS.items():
                             if 'TRANS_MACRO_' in key and key == s:
+                                if val in self.list_of_other_regions():
+                                    val = 'Other Regions'
                                 terms.append({u"term": {u"macro-transnational-region": val}})
                     else:
+                        import pdb; pdb.set_trace()
                         terms.append({u"term": {u"macro-transnational-region": s}})
 
             if k == "SearchableText":
@@ -308,6 +312,15 @@ class AceTileMixin(object):
 
         print(q)
         return "{}{}".format(url, urllib.quote(json.dumps(q)))
+
+    def list_of_other_regions(self):
+        resp = []
+        resp.append('Macaronesia')
+        resp.append('Caribbean Area')
+        resp.append('Amazonia')
+        resp.append('Anatolian')
+        resp.append('Indian Ocean Area')
+        return resp
 
 
 class SearchAceContentTile(PersistentCoverTile, AceTileMixin,
