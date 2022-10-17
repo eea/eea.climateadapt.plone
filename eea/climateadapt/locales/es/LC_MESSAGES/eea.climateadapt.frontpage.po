@@ -92,7 +92,7 @@ msgstr "<i class=\"fa fa-search\"></i>"
 #: ../theme/climateadaptv2/index.html:436
 #, 
 msgid "Adaptation <br /> Support Tool"
-msgstr "Herramienta de Soporte <br /> para la Adaptación"
+msgstr "Herramienta de soporte <br /> para la adaptación"
 
 # ,
 # ,
@@ -201,7 +201,7 @@ msgstr "Los edificios pueden ser vulnerables al cambio climático. Se prevé que
 #: ../theme/climateadaptv2/index.html:430
 #, 
 msgid "Case <br /> Studies"
-msgstr "Casos de <br /> Estudio"
+msgstr "Casos de <br /> estudio"
 
 #: ../theme/climateadaptv2/index.html:1142
 msgid "Case Studies Page"
@@ -328,7 +328,7 @@ msgstr "Zonas costeras"
 #: ../theme/climateadaptv2/index.html:424
 #, 
 msgid "Country <br /> Profiles"
-msgstr "Perfiles <br /> [de Países / Nacionales]"
+msgstr "Perfiles <br /> [de países]"
 
 # ,
 # ,
@@ -365,7 +365,7 @@ msgstr "Reducción del riesgo de desastre"
 #: ../theme/climateadaptv2/index.html:418
 #, 
 msgid "EU Sector <br /> Policies"
-msgstr "Políticas Sectoriales <br /> de la UE"
+msgstr "Políticas sectoriales <br /> de la UE"
 
 #: ../theme/climateadaptv2/index.html:1092
 msgid "EU Sector Policies"
@@ -782,7 +782,7 @@ msgstr "Buscar en Climate-ADAPT"
 #: ../theme/climateadaptv2/index.html:412
 #, 
 msgid "Search the <br /> Database"
-msgstr "Navegue la <br /> Base de Datos"
+msgstr "Navegue la <br /> base de datos"
 
 # ,
 # ,
@@ -971,7 +971,7 @@ msgstr "Urbano"
 #: ../theme/climateadaptv2/index.html:1295
 #, 
 msgid "Urban Adaptation Support Tool"
-msgstr "Herramienta de Soporte para la Adaptación Urbana"
+msgstr "Herramienta de soporte para la adaptación urbana"
 
 # ,
 # ,

@@ -162,7 +162,7 @@ msgstr "Bewertung von Risiken und Verwundbarkeit <br /> für den Klimawandel"
 #: ../theme/climateadaptv2/tab-policies-rule.html:23
 #, 
 msgid "Biodiversity"
-msgstr "Artenvielfalt"
+msgstr "Biosdiversität"
 
 # ,
 # ,
@@ -177,7 +177,7 @@ msgstr "Artenvielfalt"
 #: ../theme/climateadaptv2/tab-policies-rule.html:142
 #, 
 msgid "Biodiversity plays an important role in regulating the climate, thus making a key contribution to climate change mitigation and adaptation. At the same time, meeting mitigation targets coupled with ecosystem-based approaches is essential to avert biodiversity loss. Therefore it is impossible to address biodiversity loss without addressing climate change, but it is equally impossible to tackle climate change without addressing biodiversity loss."
-msgstr "Die Artenvielfalt spielt eine wichtige Rolle bei der Regulierung des Klimas und leistet damit einen entscheidenden Beitrag zur Abschwächung des Klimawandels und zur Anpassung daran. Gleichzeitig ist das Erreichen von Minderungszielen in Verbindung mit ökosystembasierten Ansätzen unerlässlich, um den Verlust der biologischen Vielfalt zu verhindern. Es ist daher unmöglich, den Verlust der biologischen Vielfalt zu bekämpfen, ohne sich mit dem Klimawandel zu befassen, aber es ist ebenso unmöglich, den Klimawandel zu bekämpfen, ohne sich mit dem Verlust der biologischen Vielfalt zu befassen."
+msgstr "Die Biodiversität spielt eine wichtige Rolle bei der Regulierung des Klimas und leistet damit einen entscheidenden Beitrag zur Abschwächung des Klimawandels und zur Anpassung daran. Gleichzeitig ist das Erreichen von Minderungszielen in Verbindung mit ökosystembasierten Ansätzen unerlässlich, um den Verlust der biologischen Vielfalt zu verhindern. Es ist daher unmöglich, den Verlust der biologischen Vielfalt zu bekämpfen, ohne sich mit dem Klimawandel zu befassen, aber es ist ebenso unmöglich, den Klimawandel zu bekämpfen, ohne sich mit dem Verlust der biologischen Vielfalt zu befassen."
 
 # ,
 # ,
@@ -401,7 +401,7 @@ msgstr "Reduzierung des Katastrophenrisikos"
 #: ../theme/climateadaptv2/index.html:418
 #, 
 msgid "EU Sector <br /> Policies"
-msgstr "EU-Sektor <br /> Richtlinien"
+msgstr "EU-Sektor <br /> Politiken"
 
 # ,
 # ,
@@ -538,7 +538,7 @@ msgstr "Forstwirtschaft"
 #: ../theme/climateadaptv2/index.html:514
 #, 
 msgid "Go to the European Climate Data Explorer"
-msgstr "Gehen Sie zum europäischen Klima -Datenforscher"
+msgstr "Gehen Sie zum europäischen  European Climate Data Explorer"
 
 # ,
 # ,
@@ -1028,7 +1028,7 @@ msgstr "Das rasche Tempo des Klimawandels kann die natürliche Anpassungsfähigk
 #: ../theme/climateadaptv2/index.html:766
 #, 
 msgid "Tools"
-msgstr "Werkzeug"
+msgstr "Werkzeuge"
 
 # ,
 # ,
@@ -1069,7 +1069,7 @@ msgstr "Urban"
 #: ../theme/climateadaptv2/index.html:1295
 #, 
 msgid "Urban Adaptation Support Tool"
-msgstr "Anpassungs-Support-Tool in der Stadtanpassung"
+msgstr "städtisches Anpassungs-Support-Tool"
 
 # ,
 # ,

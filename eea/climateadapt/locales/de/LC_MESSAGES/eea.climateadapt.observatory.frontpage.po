@@ -154,7 +154,7 @@ msgstr "Neuigkeiten/Veranstaltungen"
 #: ../theme/climateadaptv2/health-page.html:254
 #, 
 msgid "Privacy and Legal Notice"
-msgstr "Datenschutz und rechtliche Hinweise"
+msgstr "Datenschutz und Impressum"
 
 # ,
 # ,

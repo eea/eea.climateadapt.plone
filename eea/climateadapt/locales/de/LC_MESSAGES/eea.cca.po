@@ -114,7 +114,7 @@ msgstr "Veröffentlichung und Berichte"
 
 #, 
 msgid "Publications and reports"
-msgstr "Veröffentlichung und Berichte"
+msgstr "Veröffentlichungen und Berichte"
 
 # ,
 # ,
@@ -132,7 +132,7 @@ msgstr "Forschungs- und Wissensprojekte"
 # ,
 #, 
 msgid "Tools"
-msgstr "Werkzeug"
+msgstr "Werkzeuge"
 
 # ,
 # ,
