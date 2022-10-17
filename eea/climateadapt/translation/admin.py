@@ -288,7 +288,7 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                 errors.append(key)
             force_unlock(trans_obj)
 
-            if one_step is True:
+            if one_step is True and rich is not True:
                 translated = retrieve_translation_one_step(
                     'EN', value, [language.upper()], uid=trans_obj.UID(),
                     obj_path=trans_obj_path, field=key)
