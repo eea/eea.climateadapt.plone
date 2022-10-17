@@ -104,10 +104,10 @@
                         items matching your search terms.
                     </span>
 
-                    <dl class="actionMenu deactivated"
+                    <dl class="actionMenuCca deactivated"
                         tal:attributes="class python:view.show_advanced_search() and 'actionMenu activated' or 'actionMenu deactivated'">
 
-                      <dt class="actionMenuHeader">
+                      <dt class="actionMenuHeaderCca">
                           <a href="#"
                              tal:attributes="href view/advanced_search_trigger"
                              id="search-filter-toggle"
@@ -432,6 +432,11 @@
 
             </div>
         </div>
+        <style>
+          #search-results-bar dt.actionMenuHeaderCca a::after {
+              content: "▼";
+          }
+        </style>
 
         <div class="visualClear"><!-- --></div>
     </form>
