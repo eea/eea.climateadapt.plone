@@ -26,6 +26,7 @@ from plone.namedfile.file import NamedFile, NamedImage
 from plone.tiles.interfaces import ITileDataManager
 from plone.uuid.interfaces import IUUID
 from z3c.relationfield.relation import RelationValue
+from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.Five.browser import BrowserView
 
 from eea.climateadapt.browser.admin import force_unlock
@@ -1390,6 +1391,69 @@ def translation_step_4(site, request):
     return("Finalize step 4")
 
 
+def translation_step_5(site, request):
+    """ Publish translated items for a language and copy publishing and
+        creation date from EN items.
+    """
+    language = request.get('language', None)
+    uid = request.get('uid', None)
+    limit = int(request.get('limit', 0))
+    offset = int(request.get('offset', 0))
+    portal_type = request.get('portal_type', None)
+
+    if language is None:
+        return "Missing language parameter. (Example: ?language=it)"
+
+    catalog = site.portal_catalog
+    search_data = {}
+    search_data['path'] = '/cca/en'
+    if uid:
+        search_data['UID'] = uid
+    if limit:
+        search_data['sort_limit'] = limit
+    if portal_type:
+        search_data['portal_type'] = portal_type
+
+    brains = catalog.searchResults(search_data)
+    logger.info("Start publishing translated items...")
+
+    obj_count = 0
+    for brain in brains:
+        if uid and uid != brain.UID:
+            continue
+        obj = brain.getObject()
+        obj_count += 1
+        logger.info("PROCESSING obj: %s", obj_count)
+
+        try:
+            translations = TranslationManager(obj).get_translations()
+        except:
+            pass
+
+        try:
+            trans_obj = translations[language]
+        except KeyError:
+            logger.info("Missing translation for: %s", obj.absolute_url())
+            continue
+
+        try:
+            state = api.content.get_state(obj)
+        except WorkflowException:
+            continue
+
+        if state == "published":
+            logger.info("TODO: publish %s", obj.absolute_url())
+            # if api.content.get_state(trans_obj) != "published":
+            #     logger.info("Publishing %s" % trans_obj.absolute_url())
+            #     self.wftool.doActionFor(trans_obj, 'publish')
+            #
+            # # TODO copy published and creation date
+            # trans_obj._p_changed = True
+            # trans_obj.reindexObject()
+
+    logger.info("Finalize step 5")
+    return("Finalize step 5")
+
 def translation_repaire(site, request):
     """ Get all jsons objects in english and overwrite targeted language
         object with translations.
@@ -1953,6 +2017,17 @@ class TranslateStep4(BrowserView):
         return translation_step_4(getSite(), self.request)
 
 
+class TranslateStep5(BrowserView):
+    """ Use this view to publish all translated items for a language
+        and copy the publishing and creation date from EN items.
+        Usage: /admin-translate-step-5?language=ro&uid=ABCDEF
+        uid is optional
+    """
+
+    def __call__(self, **kwargs):
+        kwargs.update(self.request.form)
+        return translation_step_5(getSite(), self.request)
+
 class TranslateRepaire(BrowserView):
     """ Use this view to save the values from annotation in objects fields
         Usage: /admin-translate-repaire?language=es&file=ABCDEF
@@ -2261,6 +2336,7 @@ class AdminPublishItems(BrowserView):
                         errors.append(result)
 
         return "<br>".join(errors)
+
 
 #@adapter(Interface, ITranslateAction, Interface)
 #@implementer(IExecutable)

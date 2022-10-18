@@ -99,6 +99,13 @@
       />
 
   <browser:page
+      name="admin-translate-step-5"
+      for="*"
+      class=".admin.TranslateStep5"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
       name="admin-translate-portal-type-fields"
       for="*"
       class=".admin.TranslationListTypeFields"
@@ -126,7 +133,7 @@
       permission="cmf.ManagePortal"
       />
 
-    <browser:page
+  <browser:page
       for="*"
       template="pt/translate_one_object.pt"
       class=".admin.TranslateOneObject"
