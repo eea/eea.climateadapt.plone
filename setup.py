@@ -38,9 +38,9 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        # "setuptools",
-        # "plone.app.dexterity",
-        # "plone.namedfile [blobs]",
+        "setuptools",
+        "plone.app.dexterity",
+        "plone.namedfile [blobs]",
         # -*- Extra requirements: -*-
         "z3c.jbot",
         "pycountry",
