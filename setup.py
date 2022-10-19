@@ -52,7 +52,6 @@ setup(
         "langdetect",
         "chardet",
         "zeep==3.4.0",
-        "PasteDeploy==2.1.1",
         # "google-api-python-client",  # google analytics API integration
         # "collective.relationhelpers",
     ],
@@ -86,7 +85,7 @@ setup(
     # The next two lines may be deleted after you no longer need
     # addcontent support from paster and before you distribute
     # your package.
-    setup_requires=["PasteScript"],
-    paster_plugins=["templer.localcommands"],
+    # setup_requires=["PasteScript"],
+    # paster_plugins=["templer.localcommands"],
     # refresh_analytics_data = eea.climateadapt.browser.admin:refresh_analytics_data
 )
