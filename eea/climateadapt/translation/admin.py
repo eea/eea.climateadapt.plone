@@ -28,6 +28,7 @@ from plone.uuid.interfaces import IUUID
 from z3c.relationfield.relation import RelationValue
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.Five.browser import BrowserView
+from Products.CMFCore.utils import getToolByName
 
 from eea.climateadapt.browser.admin import force_unlock
 from eea.climateadapt.tiles.richtext import RichTextWithTitle
@@ -1442,14 +1443,10 @@ def translation_step_5(site, request):
             continue
 
         if state == "published":
-            logger.info("TODO: publish %s", obj.absolute_url())
-            # if api.content.get_state(trans_obj) != "published":
-            #     logger.info("Publishing %s" % trans_obj.absolute_url())
-            #     self.wftool.doActionFor(trans_obj, 'publish')
-            #
-            # # TODO copy published and creation date
-            # trans_obj._p_changed = True
-            # trans_obj.reindexObject()
+            if api.content.get_state(trans_obj) != "published":
+                wftool = getToolByName(trans_obj, 'portal_workflow')
+                logger.info("Publishing %s" % trans_obj.absolute_url())
+                wftool.doActionFor(trans_obj, 'publish')
 
     logger.info("Finalize step 5")
     return("Finalize step 5")
