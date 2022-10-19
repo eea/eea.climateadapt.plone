@@ -52,7 +52,8 @@ setup(
         "langdetect",
         "chardet",
         "zeep==3.4.0",
-        #"google-api-python-client",  # google analytics API integration
+        "PasteDeploy==2.1.1",
+        # "google-api-python-client",  # google analytics API integration
         # "collective.relationhelpers",
     ],
     extras_require={
