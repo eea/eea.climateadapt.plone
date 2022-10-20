@@ -7,6 +7,7 @@ import urllib
 from collective.cover.tiles.base import (IPersistentCoverTile,
                                          PersistentCoverTile)
 from eea.climateadapt.translation.utils import get_current_language
+from eea.climateadapt.translation.utils import TranslationUtilsMixin
 from zope import schema
 from zope.interface import implements
 
@@ -104,7 +105,7 @@ class IndicatorCard(BrowserView):
         return link
 
 
-class OrganisationCard(BrowserView):
+class OrganisationCard(BrowserView, TranslationUtilsMixin):
     """Organisation @@card view"""
 
     # index = ViewPageTemplateFile("pt/card_organisation.pt")
@@ -156,7 +157,7 @@ class OrganisationCard(BrowserView):
 
         q = {"query": t}
 
-        return "/observatory/catalogue/?source=" + urllib.quote(json.dumps(q))
+        return "/"+self.current_lang+"/observatory/catalogue/?source=" + urllib.quote(json.dumps(q))
 
     def website_link(self):
         websites = getattr(self.context, "websites", [])
