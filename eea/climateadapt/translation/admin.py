@@ -1428,7 +1428,7 @@ def translation_step_5(site, request):
 
         try:
             translations = TranslationManager(obj).get_translations()
-        except:
+        except Exception:
             pass
 
         try:
@@ -1445,11 +1445,16 @@ def translation_step_5(site, request):
         if state == "published":
             if api.content.get_state(trans_obj) != "published":
                 wftool = getToolByName(trans_obj, 'portal_workflow')
-                logger.info("Publishing %s" % trans_obj.absolute_url())
+                logger.info("Publishing %s", trans_obj.absolute_url())
                 wftool.doActionFor(trans_obj, 'publish')
 
+        if obj.EffectiveDate() != trans_obj.EffectiveDate():
+            trans_obj.setEffectiveDate(obj.effective_date)
+            trans_obj._p_changed = True
+            trans_obj.reindexObject()
+
     logger.info("Finalize step 5")
-    return("Finalize step 5")
+    return "Finalize step 5"
 
 def translation_repaire(site, request):
     """ Get all jsons objects in english and overwrite targeted language
