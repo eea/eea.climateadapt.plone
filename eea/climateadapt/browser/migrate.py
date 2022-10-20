@@ -898,3 +898,47 @@ class TransnationalRegions:
 
         transaction.commit()
         return response
+
+class AdaptationNatureBasesSolutions:
+    """Add nature based solutions to elements from sectors"""
+
+    def list(self):
+        # overwrite = int(self.request.form.get('overwrite', 0))
+
+        catalog = api.portal.get_tool("portal_catalog")
+
+        res = []
+        for _type in DB_ITEM_TYPES:
+            brains = catalog.searchResults(
+                portal_type=_type, include_in_observatory=True
+            )
+            for brain in brains:
+                obj = brain.getObject()
+
+                if not hasattr(obj, "sectors"):
+                    continue
+                if 'ECOSYSTEM' not in obj.sectors:
+                    continue
+                if not obj.elements:
+                    obj.elements = []
+                if not hasattr(obj, "elements"):
+                    obj.elements = []
+                if 'NATUREBASEDSOL' not in obj.elements:
+                    obj.elements.append('NATUREBASEDSOL');
+                obj.sectors.remove('ECOSYSTEM')
+                #obj.health_impacts = [obj.health_impacts]
+                obj._p_changed = True
+                logger.info("Migrated adaptation element: %s %s", brain.getURL(), obj.elements)
+
+                res.append(
+                    {
+                        "title": obj.title,
+                        "id": brain.UID,
+                        "url": brain.getURL(),
+                        # 'publication_date': obj.publication_date,
+                        "sectors": obj.sectors,
+                        "elements": obj.elements,
+                    }
+                )
+
+        return res
