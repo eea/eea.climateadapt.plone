@@ -535,7 +535,7 @@ msgstr "Explorador de datos climáticos europeos"
 #: site_menu:85
 #, 
 msgid "EUROPEAN Climate and Health Observatory"
-msgstr "Observatorio Europeo de Clima y Salud"
+msgstr "EUROPEAN Climate and Health Observatory"
 
 #: 
 #, 

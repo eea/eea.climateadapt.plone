@@ -169,7 +169,7 @@ msgstr "Comparte <br /> tu información"
 #: ../theme/climateadaptv2/health-page.html:294
 #, 
 msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
-msgstr "El <strong> Observatorio Europeo de Clima y Salud </strong> es una asociación entre la Comisión Europea, la Agencia Europea de Medio Ambiente y otras organizaciones."
+msgstr "El <strong> European Climate and Health Observatory </strong> es una asociación entre la Comisión Europea, la Agencia Europea de Medio Ambiente y otras organizaciones."
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:194
