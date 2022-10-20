@@ -1548,7 +1548,7 @@ msgstr "Persona de contacto"
 #: ../../climateadapt/browser/pt/c3sindicator_view.pt:222
 #, 
 msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
-msgstr "El contenido en las páginas del Explorador de Datos Climáticos Europeos es suministrado por el <a href=\"https://climate.copernicus.eu/\"> Servicio de Cambio Climático de Copernicus (C3S) </a> e implementado por ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\"> descargo de responsabilidad </a>"
+msgstr "El contenido en las páginas del Explorador de Datos Climáticos Europeos es suministrado por el <a href=\"https://climate.copernicus.eu/\"> Copernicus Climate Change Service (C3S) </a> e implementado por ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\"> descargo de responsabilidad </a>"
 
 # ,
 # ,
@@ -3245,7 +3245,7 @@ msgstr "Resultados de la búsqueda"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:73
 #, 
 msgid "Search results for: ${term}"
-msgstr "Resultados de búsqueda para: $ {término}"
+msgstr "Resultados de búsqueda para: ${term}"
 
 # ,
 # ,

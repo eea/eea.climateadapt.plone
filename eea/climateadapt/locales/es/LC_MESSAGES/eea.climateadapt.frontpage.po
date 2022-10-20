@@ -236,7 +236,7 @@ msgstr "Folleto de casos de estudio"
 #: ../theme/climateadaptv2/index.html:1457
 #, 
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
-msgstr "Consulte el <a href=\"../newsletter\"> Boletín Europeo de Adaptación Climática </a> y regístrese para recibirlo en su correo electrónico:"
+msgstr "Consulte el <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> y regístrese para recibirlo en su correo electrónico:"
 
 # ,
 # ,
@@ -503,7 +503,7 @@ msgstr "Ir al Explorador de Datos Climáticos Europeos"
 #: ../theme/climateadaptv2/index.html:532
 #, 
 msgid "Go to the European Climate and Health Observatory"
-msgstr "Ir al Observatorio Europeo de Clima y Salud"
+msgstr "Ir al European Climate and Health Observatory"
 
 # ,
 # ,
@@ -694,7 +694,7 @@ msgstr "Organizaciones"
 #: ../theme/climateadaptv2/tab-policies-rule.html:187
 #, 
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
-msgstr "En los últimos años, Europa ha experimentado todo tipo de desastres naturales: inundaciones, sequías e incendios forestales con efectos devastadores en la vida de las personas, en la economía europea y en el medio ambiente. En la última década, la Comisión Europea adoptó varias estrategias y acciones para hacer frente a la reducción del riesgo de desastres, por ejemplo, la Directiva Europea de Inundaciones y su implementación (calendario), la política Europea de Gestión de Escasez de Agua y Sequías, y el Libro Verde sobre los seguros de catástrofes naturales y antropógenas"
+msgstr "En los últimos años, Europa ha experimentado todo tipo de desastres naturales: inundaciones, sequías e incendios forestales con efectos devastadores en la vida de las personas, en la economía europea y en el medio ambiente. En la última década, la Comisión Europea adoptó varias estrategias y acciones para hacer frente a la reducción del riesgo de desastres, por ejemplo, la Directiva Europea de Inundaciones y su implementación (calendario), la política Europea de Gestión de Escasez de Agua y Sequías, y el Green Paper sobre los seguros de catástrofes naturales y antropógenas"
 
 #: ../theme/climateadaptv2/index.html:1177
 msgid "Preparing the ground for adaptation"
@@ -867,7 +867,7 @@ msgstr "La estrategia 2022-2024 Climate-ADAPT"
 #: ../theme/climateadaptv2/index.html:510
 #, 
 msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
-msgstr "El Explorador Europeo de Datos Climáticos proporciona acceso interactivo a muchos índices climáticos del Servicio de Cambio Climático de Copernicus para apoyar la adaptación al cambio climático."
+msgstr "El Explorador Europeo de Datos Climáticos proporciona acceso interactivo a muchos índices climáticos del Copernicus Climate Change Service para apoyar la adaptación al cambio climático."
 
 # ,
 # ,
@@ -880,7 +880,7 @@ msgstr "El Explorador Europeo de Datos Climáticos proporciona acceso interactiv
 #: ../theme/climateadaptv2/index.html:527
 #, 
 msgid "The European Climate and Health Observatory provides access to a wide range of relevant publications, tools, websites and other resources related to climate change and health."
-msgstr "El Observatorio Europeo de Clima y Salud proporciona acceso a una amplia gama de publicaciones, herramientas, sitios web y otros recursos relevantes relacionados con el cambio climático y la salud."
+msgstr "El European Climate and Health Observatory proporciona acceso a una amplia gama de publicaciones, herramientas, sitios web y otros recursos relevantes relacionados con el cambio climático y la salud."
 
 # ,
 # ,
@@ -907,7 +907,7 @@ msgstr "La base de datos contiene información verificada de calidad y es anotad
 #: ../theme/climateadaptv2/tab-policies-rule.html:274
 #, 
 msgid "The need for adapting the transport system to the impact of climate change has been highlighted since the European Commission's Adaptation White Paper (COM (2009)148). Transport adaptation is addressed through a combination of European transport, climate change and research policies. The European Union promotes best practices, mainstreaming adaptation within its transport infrastructure development programmes, and provides guidance, e.g. by developing adequate standards for construction. Action is focused on transport infrastructure, and particularly on the Trans-European Transport Network (TEN-T)."
-msgstr "La necesidad de adaptar el sistema de transporte a los efectos del cambio climático se ha destacado desde el Libro Blanco de adaptación de la Comisión Europea (COM (2009) 148). La adaptación del sector del transporte se aborda a través de una combinación de políticas europeas de transporte, cambio climático e investigación. La Unión Europea promueve las mejores prácticas para la adaptación dentro de sus programas de desarrollo de infraestructura de transporte, y proporciona orientación, por ejemplo, desarrollando estándares adecuados para la construcción. La acción se centra en la infraestructura de transporte, y particularmente en la red de transporte transeuropeo (TEN-T)."
+msgstr "La necesidad de adaptar el sistema de transporte a los efectos del cambio climático se ha destacado desde el Adaptation White Paper (COM (2009) 148). La adaptación del sector del transporte se aborda a través de una combinación de políticas europeas de transporte, cambio climático e investigación. La Unión Europea promueve las mejores prácticas para la adaptación dentro de sus programas de desarrollo de infraestructura de transporte, y proporciona orientación, por ejemplo, desarrollando estándares adecuados para la construcción. La acción se centra en la infraestructura de transporte, y particularmente en la red de transporte transeuropeo (TEN-T)."
 
 # ,
 # ,

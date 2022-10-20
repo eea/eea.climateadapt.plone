@@ -235,7 +235,7 @@ msgstr "Broszura z studiami przypadków"
 #: ../theme/climateadaptv2/index.html:1457
 #, 
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
-msgstr "Sprawdź <a href=\"../newsletter\"> Europejski biuletyn o adaptacyji do zmain klimatu </a> i zarejestruj się, aby otrzymać go w e-mailu:"
+msgstr "Sprawdź <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> i zarejestruj się, aby otrzymać go w e-mailu:"
 
 # ,
 # ,

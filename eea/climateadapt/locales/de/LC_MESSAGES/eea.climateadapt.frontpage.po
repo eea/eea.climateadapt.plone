@@ -260,7 +260,7 @@ msgstr "Fallstudienbroschüre"
 #: ../theme/climateadaptv2/index.html:1457
 #, 
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
-msgstr "Schauen Sie sich den <a href=\"../newsletter\">Europäischen Newsletter zur Klimaanpassung</a> an und registrieren Sie sich, um ihn per E-Mail zu erhalten:"
+msgstr "Schauen Sie sich den <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> an und registrieren Sie sich, um ihn per E-Mail zu erhalten:"
 
 # ,
 # ,
@@ -763,7 +763,7 @@ msgstr "Organisationen"
 #: ../theme/climateadaptv2/tab-policies-rule.html:187
 #, 
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
-msgstr "In den letzten Jahren hat Europa alle Arten von Naturkatastrophen erlebt: schwere Überschwemmungen, Dürren und Waldbrände mit verheerenden Auswirkungen auf das Leben der Menschen, die europäische Wirtschaft und die Umwelt. In den letzten zehn Jahren hat die Europäische Kommission mehrere Strategien und Maßnahmen zur Verringerung des Katastrophenrisikos verabschiedet, z. B. die Hochwasserrichtlinie und ihre Umsetzung (Zeitplan), die EU-Aktion zu Wasserknappheit und Dürre, das Grünbuch über Versicherungen im Zusammenhang mit Naturkatastrophen und von Menschen verursachten Katastrophen."
+msgstr "In den letzten Jahren hat Europa alle Arten von Naturkatastrophen erlebt: schwere Überschwemmungen, Dürren und Waldbrände mit verheerenden Auswirkungen auf das Leben der Menschen, die europäische Wirtschaft und die Umwelt. In den letzten zehn Jahren hat die Europäische Kommission mehrere Strategien und Maßnahmen zur Verringerung des Katastrophenrisikos verabschiedet, z. B. die Hochwasserrichtlinie und ihre Umsetzung (Zeitplan), die EU-Aktion zu Wasserknappheit und Dürre, das Green Paper über Versicherungen im Zusammenhang mit Naturkatastrophen und von Menschen verursachten Katastrophen."
 
 #: ../theme/climateadaptv2/index.html:1177
 msgid "Preparing the ground for adaptation"
@@ -942,7 +942,7 @@ msgstr "Abonnieren Sie unseren <strong> RSS -Feed </strong> <br /> und bleiben S
 #: ../theme/climateadaptv2/index.html:1345
 #, 
 msgid "The 2022-2024 Climate-ADAPT Strategy"
-msgstr "Die Klima-ADAPT-Strategie 2022-2024"
+msgstr "Die Climate-ADAPT-Strategie 2022-2024"
 
 # ,
 # ,

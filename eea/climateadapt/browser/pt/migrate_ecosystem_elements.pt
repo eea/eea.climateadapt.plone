@@ -1,0 +1,9 @@
+<h1 i18n:translate="">Add nature bsed solutions to elements</h1>
+
+<table tal:define="items view/list">
+    <tr tal:repeat="item items" style="border:1px solid #ddd;">
+        <td><a tal:content="item/title" tal:attributes="href item/url"></a></td>
+        <td tal:content="item/sectors|nothing"></td>
+        <td tal:content="item/elements|nothing"></td>
+    </tr>
+</table>
