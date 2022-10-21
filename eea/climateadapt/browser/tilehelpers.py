@@ -292,8 +292,8 @@ class NewsTile(ListingTile):
     @property
     def more_url(self):
         return [
-            self.parent.absolute_url(), 
-            translate_text(self.context, self.request, 
+            self.parent.absolute_url(),
+            translate_text(self.context, self.request,
                 "More news", 'eea.climateadapt.frontpage', self.current_lang)
         ]
 
@@ -352,9 +352,9 @@ class EventsTile(ListingTile):
     @property
     def more_url(self):
         return [
-            self.parent.absolute_url(), 
-            translate_text(self.context, self.request, "More events", 
-                'eea.climateadapt.frontpage', self.current_lang)
+            self.parent.absolute_url(),
+            translate_text(self.context, self.request, "More events",
+                           'eea.climateadapt.frontpage', self.current_lang)
         ]
 
     @property
@@ -366,9 +366,14 @@ class EventsTile(ListingTile):
     @view.memoize
     def get_item_date(self, item):
         if not item.effective_date:
-            return 'No date'        
+            return 'No date'
 
-        date = item.end.strftime('%d %b %Y')
+        try:
+            date = item.end.strftime('%d %b %Y')
+        except Exception:
+            return None
+            # TODO Make sure start and end date are copied for all translated
+            # events.
 
         return date
 
@@ -419,7 +424,7 @@ class CountriesTileMetadata(BrowserView, TranslationUtilsMixin):
 
         countries = [c for c in countries_folder.contentValues()]
 
-        res = [c.Title() for c in countries if c.portal_type \
-            in ['Folder', 'collective.cover.content']]
+        res = [c.Title() for c in countries if c.portal_type
+               in ['Folder', 'collective.cover.content']]
 
         return json.dumps(res)
