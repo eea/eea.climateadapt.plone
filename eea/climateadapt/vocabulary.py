@@ -465,6 +465,7 @@ _funding_programme = (("Other", "Other"),
                        "FP7: 2007/2013 - Seventh Framework Programme"),
                       ("FP6: 2002/2006 - Sixth Framework Programme",
                        "FP6: 2002/2006 - Sixth Framework Programme"),
+                      ("Horizon Europe", "Horizon Europe"),
                       )
 
 funding_programme = generic_vocabulary(_funding_programme)
