@@ -190,7 +190,7 @@
           <li class="main-tab-item ast-section">
             <a href="#t-city">
               <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_ico.png" width="50px;">
-              <br><span i18n:translate="">City Initiative</span>
+              <br><span i18n:translate="">City Initiatives</span>
             </a>
           </li>
         </ul>
