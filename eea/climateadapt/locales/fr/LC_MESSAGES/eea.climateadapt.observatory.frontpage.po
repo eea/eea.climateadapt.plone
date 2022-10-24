@@ -52,7 +52,7 @@ msgstr "Découvrez les principaux sujets et outils de l'observatoire"
 #: ../theme/climateadaptv2/health-homepage.html:140
 #, 
 msgid "European Climate <br /> and Health Observatory"
-msgstr "Climat européen <br /> et observatoire de santé"
+msgstr "European Climate <br /> and Health Observatory"
 
 # ,
 # ,
