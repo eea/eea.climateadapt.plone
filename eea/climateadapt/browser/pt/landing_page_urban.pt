@@ -37,7 +37,7 @@
 }
 .urban-landing-top {
 	position: relative;
-	background-image: url(/en/eu-adaptation-policy/sector-policies/urban-landing/urban.jpg);
+	background-image: url(/en/eu-adaptation-policy/sector-policies/urban-landing-top.jpg);
 	background-size: cover;
 	height: 400px !important;
 	/* margin-right: -50vw !important; */
