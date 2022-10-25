@@ -541,6 +541,10 @@ msgstr "Mapa stranice"
 msgid "South West Europe"
 msgstr "Jugoistočna Europa"
 
+#:
+msgid "Strategic objectives 2030"
+msgstr ""
+
 # ,
 #: site_menu:73
 msgid "TOOLS"

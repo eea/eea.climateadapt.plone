@@ -641,6 +641,10 @@ msgstr "Sitekaart"
 msgid "South West Europe"
 msgstr "Zuidwest -Europa"
 
+#:
+msgid "Strategic objectives 2030"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:73

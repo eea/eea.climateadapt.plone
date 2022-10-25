@@ -641,6 +641,10 @@ msgstr "Mappa tas-sit"
 msgid "South West Europe"
 msgstr "L-Ewropa tal-Lbiċ"
 
+#:
+msgid "Strategic objectives 2030"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:73

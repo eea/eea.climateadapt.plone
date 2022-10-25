@@ -452,6 +452,10 @@ msgstr ""
 msgid "South West Europe"
 msgstr ""
 
+#:
+msgid "Strategic objectives 2030"
+msgstr ""
+
 #: site_menu:73
 msgid "TOOLS"
 msgstr ""

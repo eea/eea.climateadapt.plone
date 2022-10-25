@@ -641,6 +641,10 @@ msgstr "Карта сайта"
 msgid "South West Europe"
 msgstr "Юго -Западная Европа"
 
+#:
+msgid "Strategic objectives 2030"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:73

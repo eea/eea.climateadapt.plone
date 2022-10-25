@@ -641,6 +641,10 @@ msgstr "Nettstedskart"
 msgid "South West Europe"
 msgstr "Sør -Vest -Europa"
 
+#:
+msgid "Strategic objectives 2030"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:73

@@ -541,6 +541,10 @@ msgstr "Χάρτης τοποθεσίας"
 msgid "South West Europe"
 msgstr "Νοτιοδυτική Ευρώπη"
 
+#:
+msgid "Strategic objectives 2030"
+msgstr ""
+
 # ,
 #: site_menu:73
 msgid "TOOLS"

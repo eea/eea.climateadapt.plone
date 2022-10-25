@@ -915,6 +915,10 @@ msgstr "Harta site -ului"
 msgid "South West Europe"
 msgstr "Europa de Sud -Vest"
 
+#:
+msgid "Strategic objectives 2030"
+msgstr ""
+
 # ,
 # ,
 # ,

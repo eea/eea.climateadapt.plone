@@ -1153,6 +1153,10 @@ msgstr "Plan du site"
 msgid "South West Europe"
 msgstr "Europe du Sud-Ouest"
 
+#:
+msgid "Strategic objectives 2030"
+msgstr "Objectifs stratégiques 2030"
+
 # ,
 # ,
 # ,

@@ -1159,6 +1159,10 @@ msgstr "Seitenverzeichnis"
 msgid "South West Europe"
 msgstr "Südwesteuropa"
 
+#:
+msgid "Strategic objectives 2030"
+msgstr "Strategische Ziele 2030"
+
 # ,
 # ,
 # ,

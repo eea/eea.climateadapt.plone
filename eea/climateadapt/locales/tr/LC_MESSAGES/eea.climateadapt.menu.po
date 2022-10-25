@@ -641,6 +641,10 @@ msgstr "Site haritası"
 msgid "South West Europe"
 msgstr "Güney Batı Avrupa"
 
+#:
+msgid "Strategic objectives 2030"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:73

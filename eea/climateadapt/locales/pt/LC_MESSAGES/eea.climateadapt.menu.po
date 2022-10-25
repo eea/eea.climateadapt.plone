@@ -641,6 +641,10 @@ msgstr "Mapa do site"
 msgid "South West Europe"
 msgstr "Sudoeste da Europa"
 
+#:
+msgid "Strategic objectives 2030"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:73

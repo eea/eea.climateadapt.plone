@@ -541,6 +541,10 @@ msgstr "Sivustokartta"
 msgid "South West Europe"
 msgstr "Etelä-Länsi-Eurooppa"
 
+#:
+msgid "Strategic objectives 2030"
+msgstr ""
+
 # ,
 #: site_menu:73
 msgid "TOOLS"

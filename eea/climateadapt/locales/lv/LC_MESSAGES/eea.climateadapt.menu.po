@@ -641,6 +641,10 @@ msgstr "Vietņu karte"
 msgid "South West Europe"
 msgstr "Dienvidrietumeiropa"
 
+#:
+msgid "Strategic objectives 2030"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:73

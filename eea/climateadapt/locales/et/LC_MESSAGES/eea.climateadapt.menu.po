@@ -541,6 +541,10 @@ msgstr "Saidi kaart"
 msgid "South West Europe"
 msgstr "Lääne-Euroopa"
 
+#:
+msgid "Strategic objectives 2030"
+msgstr ""
+
 # ,
 #: site_menu:73
 msgid "TOOLS"

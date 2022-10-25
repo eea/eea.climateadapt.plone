@@ -546,3 +546,8 @@ msgstr ""
 #:
 msgid "Economic losses and fatalities"
 msgstr ""
+
+
+#:
+msgid "Strategic objectives 2030"
+msgstr ""
