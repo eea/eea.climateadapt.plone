@@ -145,6 +145,13 @@
       />
 
   <browser:page
+      name="admin-export-keywords"
+      for="*"
+      class=".admin.ExportKeywordsCSV"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
       name="rebuild-relations"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       class=".relations.RebuildRelationsControlpanel"

@@ -2,9 +2,13 @@
 import datetime
 import json
 import logging
+import csv
+from plone import api
+from io import BytesIO as StringIO
 
 from apiclient.discovery import build
 from DateTime import DateTime
+from eea.climateadapt.browser.migrate import DB_ITEM_TYPES
 from eea.climateadapt.browser.site import _extract_menu
 from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
 from eea.climateadapt.scripts import get_plone_site
@@ -836,3 +840,34 @@ class ConvertPythonDatetime(BrowserView):
                     logger.info("Fix %s: %s - %s", brain.getURL(), name, attr)
 
         return "done"
+
+
+class ExportKeywordsCSV(BrowserView):
+    """ Export the list of keywords and the URLs of items using them
+    """
+    def __call__(self):
+        catalog = api.portal.get_tool("portal_catalog")
+
+        res = {}
+        for _type in DB_ITEM_TYPES:
+            brains = catalog.searchResults(portal_type=_type, path='/cca/en')
+            for brain in brains:
+                if brain.keywords is None:
+                    continue
+
+                for keyword in brain.keywords:
+                    if keyword not in res:
+                        res[keyword] = []
+                    res[keyword].append(brain.getURL())
+
+        out = StringIO()
+        csv_writer = csv.writer(out, dialect='excel', delimiter=',')
+
+        for tag in sorted(res.keys()):
+            csv_writer.writerow([tag.encode("utf-8"), "\n".join(res[tag])])
+
+        self.request.response.setHeader('Content-type', 'text/csv')
+        self.request.response.setHeader(
+            'Content-Disposition', 'attachment; filename="keywords.csv"')
+        out.seek(0)
+        return out.getvalue()
