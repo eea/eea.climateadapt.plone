@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-26 08:33+0000\n"
+"POT-Creation-Date: 2022-10-25 12:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:388
 #: ../theme/climateadaptv2/health-page-full.html:147
-#: ../theme/climateadaptv2/health-page.html:241
+#: ../theme/climateadaptv2/health-page.html:238
 msgid "Contact"
 msgstr "Contato"
 
@@ -40,20 +40,24 @@ msgstr "Clima europeu <br /> e Observatório de Saúde"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:295
-#: ../theme/climateadaptv2/health-page.html:148
+#: ../theme/climateadaptv2/health-page.html:145
 msgid "Events"
 msgstr "Eventos"
 
+#: ../theme/climateadaptv2/health-homepage.html:175
+msgid "Explore the availability of urban green to elderly and unemployed people, and around schools and hospitals"
+msgstr ""
+
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:350
-#: ../theme/climateadaptv2/health-page.html:203
+#: ../theme/climateadaptv2/health-page.html:200
 msgid "Find out how to contribute to the Observatory via Climate-ADAPT"
 msgstr "Descubra como contribuir para o observatório via adaptação climática"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:385
 #: ../theme/climateadaptv2/health-page-full.html:144
-#: ../theme/climateadaptv2/health-page.html:238
+#: ../theme/climateadaptv2/health-page.html:235
 msgid "Home"
 msgstr "Casa"
 
@@ -62,26 +66,18 @@ msgstr "Casa"
 msgid "INDICATORS"
 msgstr "Indicadores"
 
-#: ../theme/climateadaptv2/health-homepage.html:174
-msgid "Impacts on mental health"
-msgstr ""
-
-#: ../theme/climateadaptv2/health-homepage.html:175
-msgid "Learn how mental health is affected by climate change"
-msgstr ""
-
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:177
 msgid "Learn more"
 msgstr "Saber mais"
 
 #: ../theme/climateadaptv2/health-homepage.html:330
-#: ../theme/climateadaptv2/health-page.html:183
+#: ../theme/climateadaptv2/health-page.html:180
 msgid "More events"
 msgstr ""
 
 #: ../theme/climateadaptv2/health-homepage.html:313
-#: ../theme/climateadaptv2/health-page.html:166
+#: ../theme/climateadaptv2/health-page.html:163
 msgid "More news"
 msgstr ""
 
@@ -92,20 +88,20 @@ msgstr "Novo"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:292
-#: ../theme/climateadaptv2/health-page.html:145
+#: ../theme/climateadaptv2/health-page.html:142
 msgid "News"
 msgstr "Notícia"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:289
-#: ../theme/climateadaptv2/health-page.html:142
+#: ../theme/climateadaptv2/health-page.html:139
 msgid "News/Events"
 msgstr "Noticias & Eventos"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:401
 #: ../theme/climateadaptv2/health-page-full.html:160
-#: ../theme/climateadaptv2/health-page.html:254
+#: ../theme/climateadaptv2/health-page.html:251
 msgid "Privacy and Legal Notice"
 msgstr "Privacidade e aviso legal"
 
@@ -117,7 +113,7 @@ msgstr "Catálogo de recursos"
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:397
 #: ../theme/climateadaptv2/health-page-full.html:156
-#: ../theme/climateadaptv2/health-page.html:250
+#: ../theme/climateadaptv2/health-page.html:247
 msgid "SITE MAP"
 msgstr "MAPA DO SITE"
 
@@ -133,16 +129,20 @@ msgstr "Veja como os países estão abordando a adaptação das mudanças climá
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:349
-#: ../theme/climateadaptv2/health-page.html:202
+#: ../theme/climateadaptv2/health-page.html:199
 msgid "Share <br /> your information"
 msgstr "Compartilhe <br /> Suas informações"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:441
 #: ../theme/climateadaptv2/health-page-full.html:200
-#: ../theme/climateadaptv2/health-page.html:294
+#: ../theme/climateadaptv2/health-page.html:291
 msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
 msgstr "Este <strong> europeu clima e observatório de saúde </strong> é uma parceria entre a Comissão Europeia, a Agência Europeia Ambiental e várias outras organizações."
+
+#: ../theme/climateadaptv2/health-homepage.html:174
+msgid "Urban Green For At-Risk Groups"
+msgstr ""
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:194

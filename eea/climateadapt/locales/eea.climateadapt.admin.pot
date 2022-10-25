@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-26 08:33+0000\n"
+"POT-Creation-Date: 2022-10-25 12:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,11 +34,11 @@ msgstr ""
 msgid "Acronym of the project"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:330
+#: ../../climateadapt/vocabulary.py:331
 msgid "Adaptation Measures and Actions"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:331
+#: ../../climateadapt/vocabulary.py:332
 msgid "Adaptation Plans and Strategies"
 msgstr ""
 
@@ -63,11 +63,11 @@ msgstr ""
 msgid "Agriculture"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:812
+#: ../../climateadapt/tiles/search_acecontent.py:833
 msgid "All adaptation sectors"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:809
+#: ../../climateadapt/tiles/search_acecontent.py:830
 msgid "All climate impacts"
 msgstr ""
 
@@ -113,7 +113,7 @@ msgstr ""
 msgid "Climate change impact and vulnerability assessments"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:771
+#: ../../climateadapt/tiles/search_acecontent.py:792
 msgid "Climate impact"
 msgstr ""
 
@@ -155,7 +155,7 @@ msgstr ""
 msgid "Contact of reference (institution and persons) who is directly involved in the development and implementation of the case. (500 char limit) "
 msgstr ""
 
-#: ../../climateadapt/behaviors/casestudy.py:117
+#: ../../climateadapt/behaviors/casestudy.py:128
 msgid "Copyright statement or other rights information for  the primary photo."
 msgstr ""
 
@@ -237,6 +237,7 @@ msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:245
 #: ../../climateadapt/behaviors/acemeasure.py:316
+#: ../../climateadapt/behaviors/casestudy.py:117
 msgid "Describe the references (projects, a tools reports, etc.) related to this item, providing further information about it or its source."
 msgstr ""
 
@@ -266,7 +267,7 @@ msgstr ""
 msgid "Disaster Risk Reduction"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:338
+#: ../../climateadapt/vocabulary.py:339
 msgid "Droughts"
 msgstr ""
 
@@ -299,7 +300,7 @@ msgstr ""
 msgid "Event Language"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:339
+#: ../../climateadapt/vocabulary.py:340
 msgid "Extreme Temperatures"
 msgstr ""
 
@@ -314,7 +315,7 @@ msgstr ""
 msgid "Financial"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:340
+#: ../../climateadapt/vocabulary.py:341
 msgid "Flooding"
 msgstr ""
 
@@ -373,7 +374,7 @@ msgstr ""
 msgid "IPCC adaptation options categories"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:341
+#: ../../climateadapt/vocabulary.py:342
 msgid "Ice and Snow"
 msgstr ""
 
@@ -407,15 +408,15 @@ msgstr ""
 msgid "Information portals"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:533
+#: ../../climateadapt/vocabulary.py:535
 msgid "Institutional: Economic options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:535
+#: ../../climateadapt/vocabulary.py:537
 msgid "Institutional: Government policies and programmes"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:534
+#: ../../climateadapt/vocabulary.py:536
 msgid "Institutional: Law and regulations"
 msgstr ""
 
@@ -521,6 +522,10 @@ msgstr ""
 msgid "National adaption policy"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:322
+msgid "Nature-based solutions"
+msgstr ""
+
 #: ../../climateadapt/vocabulary.py:310
 msgid "Non specific"
 msgstr ""
@@ -539,7 +544,7 @@ msgstr ""
 msgid "Objectives"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:328
+#: ../../climateadapt/vocabulary.py:329
 msgid "Observations and Scenarios"
 msgstr ""
 
@@ -592,7 +597,7 @@ msgstr ""
 msgid "Portal type"
 msgstr ""
 
-#: ../../climateadapt/behaviors/casestudy.py:114
+#: ../../climateadapt/behaviors/casestudy.py:125
 msgid "Primary Photo Copyright"
 msgstr ""
 
@@ -600,7 +605,7 @@ msgstr ""
 msgid "Primary photo"
 msgstr ""
 
-#: ../../climateadapt/behaviors/casestudy.py:125
+#: ../../climateadapt/behaviors/casestudy.py:136
 msgid "Prime photo"
 msgstr ""
 
@@ -651,10 +656,11 @@ msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:243
 #: ../../climateadapt/behaviors/acemeasure.py:314
+#: ../../climateadapt/behaviors/casestudy.py:115
 msgid "References"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:96
+#: ../../climateadapt/contentrules.py:92
 msgid "Reindex object"
 msgstr ""
 
@@ -676,15 +682,15 @@ msgstr ""
 msgid "Research and knowledge projects"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:342
+#: ../../climateadapt/vocabulary.py:343
 msgid "Sea Level Rise"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:777
+#: ../../climateadapt/tiles/search_acecontent.py:798
 msgid "Sector"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:332
+#: ../../climateadapt/vocabulary.py:333
 msgid "Sector Policies"
 msgstr ""
 
@@ -765,15 +771,15 @@ msgstr ""
 msgid "Short summary"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:532
+#: ../../climateadapt/vocabulary.py:534
 msgid "Social: Behavioural"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:530
+#: ../../climateadapt/vocabulary.py:532
 msgid "Social: Educational options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:531
+#: ../../climateadapt/vocabulary.py:533
 msgid "Social: Informational"
 msgstr ""
 
@@ -809,23 +815,23 @@ msgstr ""
 msgid "Storage Type"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:343
+#: ../../climateadapt/vocabulary.py:344
 msgid "Storms"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:528
+#: ../../climateadapt/vocabulary.py:530
 msgid "Structural and physical: Ecosystem-based adaptation options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:526
+#: ../../climateadapt/vocabulary.py:528
 msgid "Structural and physical: Engineering and built environment options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:529
+#: ../../climateadapt/vocabulary.py:531
 msgid "Structural and physical: Service options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:527
+#: ../../climateadapt/vocabulary.py:529
 msgid "Structural and physical: Technological options"
 msgstr ""
 
@@ -861,7 +867,7 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:154
+#: ../../climateadapt/contentrules.py:151
 msgid "Translate object"
 msgstr ""
 
@@ -874,11 +880,12 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:131
+#: ../../climateadapt/contentrules.py:128
 msgid "Unable to reindex ${name} as part of content rule 'reindex' action: ${error}"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:185
+#: ../../climateadapt/contentrules.py:186
+#: ../../climateadapt/translation/admin.py:2385
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 
@@ -930,11 +937,11 @@ msgstr ""
 msgid "Video URL"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:329
+#: ../../climateadapt/vocabulary.py:330
 msgid "Vulnerability Assessment"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:344
+#: ../../climateadapt/vocabulary.py:345
 msgid "Water Scarcity"
 msgstr ""
 

@@ -1,4 +1,7 @@
-<div id="countries-tile-selector">
+<div id="countries-tile-selector"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  i18n:domain="eea.climateadapt">
   <h5 i18n:translate="">Select a country</h5>
   <ul class="countries-list-tile">
     <li tal:repeat="country view/countries">
