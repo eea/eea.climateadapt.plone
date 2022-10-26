@@ -1856,13 +1856,16 @@ def report_unlinked_translation(site, request):
     language_container = site['en']
     #import pdb; pdb.set_trace()
 
-    response = []
+    res = {}
     # get and parse all objects under /en/
     brains = get_all_objs(language_container)
 
     failed_translations = []
     count = 0
+    report_date = datetime.now().strftime('%Y_%m_%d')
+
     for brain in brains:
+        count += 1
         obj = brain.getObject()
 
         if uid and uid != brain.UID:
@@ -1873,13 +1876,17 @@ def report_unlinked_translation(site, request):
         translations = TranslationManager(obj).get_translations()
         #import pdb; pdb.set_trace()
 
-        #logger.info('--------------------------------------------------------')
-        #logger.info(count)
+        # logger.info('--------------------------------------------------------')
+        # logger.info(count)
 
         if len(translations)<check_nr_languages:
-            response.append(obj.absolute_url())
+            res[brain.UID] = obj.absolute_url()
 
-    return response
+    json_object = json.dumps(res, indent = 4)
+    with open("/tmp/report_unlinked_translation_"+ report_date +".json", "w") as outfile:
+        outfile.write(json_object)
+
+    return res
 
 
 def admin_some_translated(site, items):
