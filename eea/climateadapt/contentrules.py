@@ -166,18 +166,12 @@ class TranslateActionExecutor(object):
         if "/en/" in obj.absolute_url():
             self.create_translations(obj)
 
-            if obj.portal_type == "cca-event":
-                # First copy language independent fields values
-                # (like step 4)
-                self.copy_fields(obj)
-                # then translate:
-                self.translate_obj(obj)
-                # self.set_workflow_states(obj)
-            else:
-                # TODO: test with multiple content types, but this seems to
-                # work for covers.
-                self.translate_obj(obj)
-                self.copy_fields(obj)
+            # First copy language independent fields values
+            # (like step 4)
+            self.copy_fields(obj)
+            # then translate:
+            self.translate_obj(obj)
+            # self.set_workflow_states(obj)
 
             self.copy_interfaces(obj)  # TODO: delete. It's already included in
             # create_translation_object. It is used here only for testing
