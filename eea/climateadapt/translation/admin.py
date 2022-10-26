@@ -236,6 +236,10 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
         # update field in obj
         rich_fields = []
 
+        if one_step is True:
+            return None
+            # do not translate again fields
+
         for key in fields:
             rich = False
             # print(key)
