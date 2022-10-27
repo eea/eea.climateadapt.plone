@@ -95,6 +95,10 @@ msgstr "Årliga rapporter"
 msgid "Atlantic Area"
 msgstr "Atlantisk område"
 
+#:
+msgid "Availability of urban green spaces to vulnerable groups"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:51

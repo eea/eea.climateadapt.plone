@@ -551,3 +551,8 @@ msgstr ""
 #:
 msgid "Strategic objectives 2030"
 msgstr ""
+
+
+#:
+msgid "Availability of urban green spaces to vulnerable groups"
+msgstr ""

@@ -82,6 +82,10 @@ msgstr "Výroční zprávy"
 msgid "Atlantic Area"
 msgstr "Atlantická oblast"
 
+#:
+msgid "Availability of urban green spaces to vulnerable groups"
+msgstr ""
+
 # ,
 #: site_menu:51
 msgid "Balkan-Mediterranean"

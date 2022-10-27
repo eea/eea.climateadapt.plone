@@ -95,6 +95,10 @@ msgstr "Rapporti Annwali"
 msgid "Atlantic Area"
 msgstr "Żona tal-Atlantiku"
 
+#:
+msgid "Availability of urban green spaces to vulnerable groups"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:51

@@ -24,6 +24,7 @@ msgstr ""
 # ,
 # ,
 #: health_menu:43
+#, 
 msgid "2021 Lancet Countdown-EEA Briefing"
 msgstr "2021 Lancet Countdown-EEA-Briefing"
 
@@ -35,6 +36,7 @@ msgstr "2021 Lancet Countdown-EEA-Briefing"
 # ,
 # ,
 #: site_menu:28
+#, 
 msgid "ADAPTATION IN EU POLICY SECTORS"
 msgstr "ANPASSUNG IN DEN EU-POLITIKBEREICHEN"
 
@@ -47,6 +49,7 @@ msgstr "ANPASSUNG IN DEN EU-POLITIKBEREICHEN"
 # ,
 #: health_menu:9
 #: site_menu:10
+#, 
 msgid "About"
 msgstr "Über uns"
 
@@ -58,6 +61,7 @@ msgstr "Über uns"
 # ,
 # ,
 #: site_menu:11
+#, 
 msgid "About Climate-ADAPT"
 msgstr "Über Climate-ADAPT"
 
@@ -69,6 +73,7 @@ msgstr "Über Climate-ADAPT"
 # ,
 # ,
 #: health_menu:10
+#, 
 msgid "About the Observatory"
 msgstr "Über das Observatorium"
 
@@ -80,6 +85,7 @@ msgstr "Über das Observatorium"
 # ,
 # ,
 #: site_menu:74
+#, 
 msgid "Adaptation Support Tool"
 msgstr "Anpassungssupport Tool"
 
@@ -91,6 +97,7 @@ msgstr "Anpassungssupport Tool"
 # ,
 # ,
 #: site_menu:64
+#, 
 msgid "Adaptation options"
 msgstr "Anpassungsoptionen"
 
@@ -102,6 +109,7 @@ msgstr "Anpassungsoptionen"
 # ,
 # ,
 #: site_menu:48
+#, 
 msgid "Adriatic-Ionian"
 msgstr "Adria-Ionische Meer"
 
@@ -113,6 +121,7 @@ msgstr "Adria-Ionische Meer"
 # ,
 # ,
 #: site_menu:29
+#, 
 msgid "Agriculture"
 msgstr "Landwirtschaft"
 
@@ -124,6 +133,7 @@ msgstr "Landwirtschaft"
 # ,
 # ,
 #: health_menu:27
+#, 
 msgid "Air pollution"
 msgstr "Luftverschmutzung"
 
@@ -135,6 +145,7 @@ msgstr "Luftverschmutzung"
 # ,
 # ,
 #: site_menu:49
+#, 
 msgid "Alpine Space"
 msgstr "Alpenraum"
 
@@ -146,6 +157,7 @@ msgstr "Alpenraum"
 # ,
 # ,
 #: health_menu:44
+#, 
 msgid "Annual reports"
 msgstr "Jahresberichte"
 
@@ -157,8 +169,14 @@ msgstr "Jahresberichte"
 # ,
 # ,
 #: site_menu:50
+#, 
 msgid "Atlantic Area"
 msgstr "Atlantikgebiet"
+
+#: 
+#, 
+msgid "Availability of urban green spaces to vulnerable groups"
+msgstr "Verfügbarkeit von städtischen Grünflächen für gefährdete Gruppen"
 
 # ,
 # ,
@@ -168,6 +186,7 @@ msgstr "Atlantikgebiet"
 # ,
 # ,
 #: site_menu:51
+#, 
 msgid "Balkan-Mediterranean"
 msgstr "Balkan-Mittelmeer"
 
@@ -179,6 +198,7 @@ msgstr "Balkan-Mittelmeer"
 # ,
 # ,
 #: site_menu:52
+#, 
 msgid "Baltic Sea"
 msgstr "Ostsee"
 
@@ -190,6 +210,7 @@ msgstr "Ostsee"
 # ,
 # ,
 #: site_menu:30
+#, 
 msgid "Biodiversity"
 msgstr "Artenvielfalt"
 
@@ -201,6 +222,7 @@ msgstr "Artenvielfalt"
 # ,
 # ,
 #: site_menu:31
+#, 
 msgid "Buildings"
 msgstr "Gebäude"
 
@@ -212,6 +234,7 @@ msgstr "Gebäude"
 # ,
 # ,
 #: health_menu:34
+#, 
 msgid "C3S European health service (under development)"
 msgstr "C3S Europäischer Gesundheitsdienst (in der Entwicklung)"
 
@@ -223,6 +246,7 @@ msgstr "C3S Europäischer Gesundheitsdienst (in der Entwicklung)"
 # ,
 # ,
 #: health_menu:45
+#, 
 msgid "Capacity building"
 msgstr "Kapazitätsaufbau"
 
@@ -234,6 +258,7 @@ msgstr "Kapazitätsaufbau"
 # ,
 # ,
 #: site_menu:80
+#, 
 msgid "Case studies"
 msgstr "Fallstudien"
 
@@ -245,6 +270,7 @@ msgstr "Fallstudien"
 # ,
 # ,
 #: site_menu:79
+#, 
 msgid "Case study explorer"
 msgstr "Fallstudien-Explorer"
 
@@ -256,6 +282,7 @@ msgstr "Fallstudien-Explorer"
 # ,
 # ,
 #: site_menu:53
+#, 
 msgid "Central Europe"
 msgstr "Zentraleuropa"
 
@@ -267,6 +294,7 @@ msgstr "Zentraleuropa"
 # ,
 # ,
 #: site_menu:46
+#, 
 msgid "Cities and towns"
 msgstr "Städte"
 
@@ -281,6 +309,7 @@ msgstr "Klimaservices"
 # ,
 # ,
 #: health_menu:220
+#, 
 msgid "Climate Services"
 msgstr "Klimaservices"
 
@@ -291,6 +320,7 @@ msgstr "Klimaservices"
 # ,
 # ,
 #: site_menu:17
+#, 
 msgid "Climate-ADAPT events and webinars"
 msgstr "Climate-ADAPT Veranstaltungen und Webinare"
 
@@ -301,6 +331,7 @@ msgstr "Climate-ADAPT Veranstaltungen und Webinare"
 # ,
 # ,
 #: site_menu:16
+#, 
 msgid "Climate-ADAPT performance reporting"
 msgstr "Climate-ADAPT Leistungsberichterstattung"
 
@@ -312,6 +343,7 @@ msgstr "Climate-ADAPT Leistungsberichterstattung"
 # ,
 # ,
 #: site_menu:83
+#, 
 msgid "Climate-ADAPT use cases"
 msgstr "Anwendungsfälle für Climate-ADAPT"
 
@@ -323,6 +355,7 @@ msgstr "Anwendungsfälle für Climate-ADAPT"
 # ,
 # ,
 #: site_menu:32
+#, 
 msgid "Coastal areas"
 msgstr "Küstenzonen"
 
@@ -338,6 +371,7 @@ msgstr "Länder, transnationale Regionen"
 # ,
 # ,
 #: site_menu:44
+#, 
 msgid "Countries, Transnational regions, Cities"
 msgstr "Länder, transnationale Regionen, Städte"
 
@@ -350,6 +384,7 @@ msgstr "Länder, transnationale Regionen, Städte"
 # ,
 #: health_menu:18
 #: site_menu:45
+#, 
 msgid "Country Profiles"
 msgstr "Länderprofile"
 
@@ -360,6 +395,7 @@ msgstr "Länderprofile"
 # ,
 # ,
 #: site_menu:18
+#, 
 msgid "Country specific promotions"
 msgstr "Landesspezifische Aktionen"
 
@@ -371,6 +407,7 @@ msgstr "Landesspezifische Aktionen"
 # ,
 # ,
 #: site_menu:68
+#, 
 msgid "DATA AND INDICATORS"
 msgstr "DATEN UND INDIKATOREN"
 
@@ -382,6 +419,7 @@ msgstr "DATEN UND INDIKATOREN"
 # ,
 # ,
 #: site_menu:54
+#, 
 msgid "Danube"
 msgstr "Donau"
 
@@ -393,6 +431,7 @@ msgstr "Donau"
 # ,
 # ,
 #: site_menu:33
+#, 
 msgid "Disaster risk reduction"
 msgstr "Reduzierung des Katastrophenrisikos"
 
@@ -403,6 +442,7 @@ msgstr "Reduzierung des Katastrophenrisikos"
 # ,
 # ,
 #: site_menu:13
+#, 
 msgid "Dissemination materials"
 msgstr "Verbreitungsmaterial"
 
@@ -414,6 +454,7 @@ msgstr "Verbreitungsmaterial"
 # ,
 # ,
 #: health_menu:33
+#, 
 msgid "ECDC Vibrio map viewer"
 msgstr "ECDC Vibrio-Kartenbetrachter"
 
@@ -425,6 +466,7 @@ msgstr "ECDC Vibrio-Kartenbetrachter"
 # ,
 # ,
 #: site_menu:21
+#, 
 msgid "EU ADAPTATION POLICY"
 msgstr "EU-Anpassungspolitik"
 
@@ -436,6 +478,7 @@ msgstr "EU-Anpassungspolitik"
 # ,
 # ,
 #: site_menu:22
+#, 
 msgid "EU Adaptation Strategy"
 msgstr "EU-Anpassungsstrategie"
 
@@ -447,6 +490,7 @@ msgstr "EU-Anpassungsstrategie"
 # ,
 # ,
 #: site_menu:25
+#, 
 msgid "EU Covenant of Mayors"
 msgstr "EU-Konvent der Bürgermeister"
 
@@ -458,6 +502,7 @@ msgstr "EU-Konvent der Bürgermeister"
 # ,
 # ,
 #: site_menu:23
+#, 
 msgid "EU Mission on Adaptation"
 msgstr "EU-Mission zur Anpassung"
 
@@ -469,6 +514,7 @@ msgstr "EU-Mission zur Anpassung"
 # ,
 # ,
 #: site_menu:43
+#, 
 msgid "EU REGIONAL POLICY"
 msgstr "EU Regionalpolitik"
 
@@ -480,6 +526,7 @@ msgstr "EU Regionalpolitik"
 # ,
 # ,
 #: site_menu:24
+#, 
 msgid "EU Reporting on Adaptation"
 msgstr "EU-Berichterstattung zur Anpassung"
 
@@ -490,6 +537,7 @@ msgstr "EU-Berichterstattung zur Anpassung"
 # ,
 # ,
 #: site_menu:26
+#, 
 msgid "EU Sustainable Finance Strategy"
 msgstr "EU-Strategie für nachhaltige Finanzen"
 
@@ -501,6 +549,7 @@ msgstr "EU-Strategie für nachhaltige Finanzen"
 # ,
 # ,
 #: site_menu:27
+#, 
 msgid "EU funding of adaptation"
 msgstr "EU-Finanzierung der Anpassung"
 
@@ -512,6 +561,7 @@ msgstr "EU-Finanzierung der Anpassung"
 # ,
 # ,
 #: site_menu:20
+#, 
 msgid "EU policy"
 msgstr "EU-Politik"
 
@@ -523,6 +573,7 @@ msgstr "EU-Politik"
 # ,
 # ,
 #: site_menu:72
+#, 
 msgid "EUROPEAN CLIMATE DATA EXPLORER"
 msgstr "EUROPÄISCHER KLIMADATEN-EXPLORER"
 
@@ -534,12 +585,14 @@ msgstr "EUROPÄISCHER KLIMADATEN-EXPLORER"
 # ,
 # ,
 #: site_menu:85
+#, 
 msgid "EUROPEAN Climate and Health Observatory"
 msgstr "EUROPEAN Climate and Health Observatory"
 
 # ,
 # ,
-#:
+#: 
+#, 
 msgid "Economic losses and fatalities"
 msgstr "Wirtschaftliche Verluste und Todesfälle"
 
@@ -551,6 +604,7 @@ msgstr "Wirtschaftliche Verluste und Todesfälle"
 # ,
 # ,
 #: site_menu:77
+#, 
 msgid "Economic tools"
 msgstr "Ökonomische Instrumente"
 
@@ -562,6 +616,7 @@ msgstr "Ökonomische Instrumente"
 # ,
 # ,
 #: site_menu:34
+#, 
 msgid "Ecosystem-based approaches"
 msgstr "Ökosystembasierte Ansätze"
 
@@ -573,6 +628,7 @@ msgstr "Ökosystembasierte Ansätze"
 # ,
 # ,
 #: site_menu:35
+#, 
 msgid "Energy"
 msgstr "Energie"
 
@@ -584,6 +640,7 @@ msgstr "Energie"
 # ,
 # ,
 #: site_menu:67
+#, 
 msgid "Europe's vulnerability to climate change impacts occurring outside Europe"
 msgstr "Europas Anfälligkeit für den Klimawandel Auswirkungen außerhalb Europas"
 
@@ -595,6 +652,7 @@ msgstr "Europas Anfälligkeit für den Klimawandel Auswirkungen außerhalb Europ
 # ,
 # ,
 #: health_menu:32
+#, 
 msgid "European Climate Data Explorer"
 msgstr "Europäischer Klimadaten-Explorer"
 
@@ -606,6 +664,7 @@ msgstr "Europäischer Klimadaten-Explorer"
 # ,
 # ,
 #: health_menu:13
+#, 
 msgid "European Policy Framework"
 msgstr "Europäischer politischer Rahmen"
 
@@ -617,6 +676,7 @@ msgstr "Europäischer politischer Rahmen"
 # ,
 # ,
 #: health_menu:37
+#, 
 msgid "European early warning systems"
 msgstr "Europäische Frühwarnsysteme"
 
@@ -627,6 +687,7 @@ msgstr "Europäische Frühwarnsysteme"
 # ,
 # ,
 #: health_menu:14
+#, 
 msgid "European policies on climate adaptation and health"
 msgstr "Europäische Richtlinien zur Klimaanpassung und Gesundheit"
 
@@ -638,6 +699,7 @@ msgstr "Europäische Richtlinien zur Klimaanpassung und Gesundheit"
 # ,
 # ,
 #: health_menu:19
+#, 
 msgid "Evidence on climate and health"
 msgstr "Beweise für Klima und Gesundheit"
 
@@ -647,6 +709,7 @@ msgstr "Beweise für Klima und Gesundheit"
 # ,
 # ,
 #: health_menu:222
+#, 
 msgid "Exposure of vulnerable groups to climate risks"
 msgstr "Exposition gefährdeter Gruppen gegenüber Klimarisiken"
 
@@ -658,6 +721,7 @@ msgstr "Exposition gefährdeter Gruppen gegenüber Klimarisiken"
 # ,
 # ,
 #: site_menu:90
+#, 
 msgid "FAQ for providers"
 msgstr "FAQ für Anbieter"
 
@@ -669,6 +733,7 @@ msgstr "FAQ für Anbieter"
 # ,
 # ,
 #: site_menu:89
+#, 
 msgid "FAQ for users"
 msgstr "FAQ für Benutzer"
 
@@ -680,6 +745,7 @@ msgstr "FAQ für Benutzer"
 # ,
 # ,
 #: site_menu:36
+#, 
 msgid "Financial"
 msgstr "Finanziell"
 
@@ -691,6 +757,7 @@ msgstr "Finanziell"
 # ,
 # ,
 #: health_menu:23
+#, 
 msgid "Flooding"
 msgstr "Überschwemmung"
 
@@ -702,6 +769,7 @@ msgstr "Überschwemmung"
 # ,
 # ,
 #: site_menu:37
+#, 
 msgid "Forestry"
 msgstr "Forstwirtschaft"
 
@@ -713,6 +781,7 @@ msgstr "Forstwirtschaft"
 # ,
 # ,
 #: site_menu:88
+#, 
 msgid "Glossary"
 msgstr "Glossar"
 
@@ -724,6 +793,7 @@ msgstr "Glossar"
 # ,
 # ,
 #: site_menu:91
+#, 
 msgid "Guidance to search function"
 msgstr "Anleitung zur Suchfunktion"
 
@@ -735,6 +805,7 @@ msgstr "Anleitung zur Suchfunktion"
 # ,
 # ,
 #: site_menu:38
+#, 
 msgid "Health"
 msgstr "Gesundheit"
 
@@ -746,6 +817,7 @@ msgstr "Gesundheit"
 # ,
 # ,
 #: health_menu:20
+#, 
 msgid "Health effects"
 msgstr "Auswirkungen auf die Gesundheit"
 
@@ -757,6 +829,7 @@ msgstr "Auswirkungen auf die Gesundheit"
 # ,
 # ,
 #: health_menu:36
+#, 
 msgid "Health warning systems"
 msgstr "Gesundheitswarnsysteme"
 
@@ -768,6 +841,7 @@ msgstr "Gesundheitswarnsysteme"
 # ,
 # ,
 #: health_menu:21
+#, 
 msgid "Heat and health"
 msgstr "Hitze und Gesundheit"
 
@@ -779,6 +853,7 @@ msgstr "Hitze und Gesundheit"
 # ,
 # ,
 #: site_menu:87
+#, 
 msgid "Help"
 msgstr "Hilfe"
 
@@ -790,6 +865,7 @@ msgstr "Hilfe"
 # ,
 # ,
 #: site_menu:82
+#, 
 msgid "INTERREG projects"
 msgstr "INTERREG Projekte"
 
@@ -801,6 +877,7 @@ msgstr "INTERREG Projekte"
 # ,
 # ,
 #: site_menu:63
+#, 
 msgid "Impacts, risks and vulnerabilities"
 msgstr "Auswirkungen, Risiken und Schwachstellen"
 
@@ -812,6 +889,7 @@ msgstr "Auswirkungen, Risiken und Schwachstellen"
 # ,
 # ,
 #: health_menu:29
+#, 
 msgid "Indicators"
 msgstr "Indikatoren"
 
@@ -823,6 +901,7 @@ msgstr "Indikatoren"
 # ,
 # ,
 #: site_menu:70
+#, 
 msgid "Indicators in Climate-ADAPT"
 msgstr "Indikatoren in Climate-ADAPT"
 
@@ -833,18 +912,21 @@ msgstr "Indikatoren in Climate-ADAPT"
 # ,
 # ,
 #: site_menu:15
+#, 
 msgid "Inspiring Climate-ADAPT use cases"
 msgstr "Inspirierende Anwendungsfälle von Climate-ADAPT"
 
 # ,
 # ,
-#:
+#: 
+#, 
 msgid "Just resilience"
 msgstr "Nur Resilienz"
 
 # ,
 # ,
-#:
+#: 
+#, 
 msgid "KEY EU ACTIONS"
 msgstr "WICHTIGSTE EU-MASSNAHMEN"
 
@@ -856,6 +938,7 @@ msgstr "WICHTIGSTE EU-MASSNAHMEN"
 # ,
 # ,
 #: site_menu:61
+#, 
 msgid "Knowledge"
 msgstr "Wissen"
 
@@ -867,6 +950,7 @@ msgstr "Wissen"
 # ,
 # ,
 #: site_menu:81
+#, 
 msgid "LIFE projects"
 msgstr "LIFE Projekte"
 
@@ -878,6 +962,7 @@ msgstr "LIFE Projekte"
 # ,
 # ,
 #: site_menu:39
+#, 
 msgid "Marine and fisheries"
 msgstr "Meer und Fischerei"
 
@@ -889,6 +974,7 @@ msgstr "Meer und Fischerei"
 # ,
 # ,
 #: site_menu:55
+#, 
 msgid "Mediterranean"
 msgstr "Mittelmeer"
 
@@ -899,6 +985,7 @@ msgstr "Mittelmeer"
 # ,
 # ,
 #: health_menu:28
+#, 
 msgid "Mental health effects"
 msgstr "Auswirkungen auf die psychische Gesundheit"
 
@@ -910,6 +997,7 @@ msgstr "Auswirkungen auf die psychische Gesundheit"
 # ,
 # ,
 #: site_menu:66
+#, 
 msgid "Monitoring, Reporting and Evaluation"
 msgstr "Überwachung, Berichterstattung und Evaluation"
 
@@ -920,6 +1008,7 @@ msgstr "Überwachung, Berichterstattung und Evaluation"
 # ,
 # ,
 #: health_menu:16
+#, 
 msgid "National Policies"
 msgstr "Nationale Richtlinien"
 
@@ -931,6 +1020,7 @@ msgstr "Nationale Richtlinien"
 # ,
 # ,
 #: health_menu:38
+#, 
 msgid "National heat-health warning systems and action plans"
 msgstr "Nationale Warnsysteme und Aktionspläne für Hitze und Gesundheit"
 
@@ -941,12 +1031,14 @@ msgstr "Nationale Warnsysteme und Aktionspläne für Hitze und Gesundheit"
 # ,
 # ,
 #: health_menu:17
+#, 
 msgid "National policy analysis 2022"
 msgstr "Nationale Politikanalyse 2022"
 
 # ,
 # ,
-#:
+#: 
+#, 
 msgid "Nature-based solutions"
 msgstr "Naturbasierte Lösungen"
 
@@ -958,6 +1050,7 @@ msgstr "Naturbasierte Lösungen"
 # ,
 # ,
 #: site_menu:86
+#, 
 msgid "Networks"
 msgstr "Netzwerke"
 
@@ -969,6 +1062,7 @@ msgstr "Netzwerke"
 # ,
 # ,
 #: site_menu:56
+#, 
 msgid "North Sea"
 msgstr "Nordsee"
 
@@ -980,6 +1074,7 @@ msgstr "Nordsee"
 # ,
 # ,
 #: site_menu:57
+#, 
 msgid "North West Europe"
 msgstr "Nordwesteuropa"
 
@@ -991,6 +1086,7 @@ msgstr "Nordwesteuropa"
 # ,
 # ,
 #: site_menu:58
+#, 
 msgid "Northern Periphery and Arctic"
 msgstr "Nordperipherie und Arktis"
 
@@ -1002,6 +1098,7 @@ msgstr "Nordperipherie und Arktis"
 # ,
 # ,
 #: health_menu:42
+#, 
 msgid "Observatory publications"
 msgstr "Veröffentlichungen der Beobachtungsstelle"
 
@@ -1012,6 +1109,7 @@ msgstr "Veröffentlichungen der Beobachtungsstelle"
 # ,
 # ,
 #: health_menu:11
+#, 
 msgid "Observatory workplan for 2021-22"
 msgstr "Arbeitsplan der Beobachtungsstelle für 2021-22"
 
@@ -1023,6 +1121,7 @@ msgstr "Arbeitsplan der Beobachtungsstelle für 2021-22"
 # ,
 # ,
 #: site_menu:60
+#, 
 msgid "Other regions"
 msgstr "Andere Regionen"
 
@@ -1037,6 +1136,7 @@ msgstr "Reichweite"
 # ,
 # ,
 #: site_menu:12
+#, 
 msgid "Outreach & dissemination"
 msgstr "Öffentlichkeitsarbeit und Informationsverbreitung"
 
@@ -1048,6 +1148,7 @@ msgstr "Öffentlichkeitsarbeit und Informationsverbreitung"
 # ,
 # ,
 #: health_menu:221
+#, 
 msgid "PRACTICE"
 msgstr "ÜBEN"
 
@@ -1059,6 +1160,7 @@ msgstr "ÜBEN"
 # ,
 # ,
 #: health_menu:12
+#, 
 msgid "Policy context"
 msgstr "Politischer Kontext"
 
@@ -1070,6 +1172,7 @@ msgstr "Politischer Kontext"
 # ,
 # ,
 #: health_menu:30
+#, 
 msgid "Projections and tools"
 msgstr "Projektionen und Werkzeuge"
 
@@ -1081,6 +1184,7 @@ msgstr "Projektionen und Werkzeuge"
 # ,
 # ,
 #: health_menu:41
+#, 
 msgid "Publications and outreach"
 msgstr "Veröffentlichungen und Öffentlichkeitsarbeit"
 
@@ -1092,6 +1196,7 @@ msgstr "Veröffentlichungen und Öffentlichkeitsarbeit"
 # ,
 # ,
 #: site_menu:71
+#, 
 msgid "RESEARCH AND INNOVATION PROJECTS"
 msgstr "Forschungs- und Innovationsprojekte"
 
@@ -1103,6 +1208,7 @@ msgstr "Forschungs- und Innovationsprojekte"
 # ,
 # ,
 #: health_menu:39
+#, 
 msgid "Resource catalogue"
 msgstr "Ressourcenkatalog"
 
@@ -1114,6 +1220,7 @@ msgstr "Ressourcenkatalog"
 # ,
 # ,
 #: health_menu:40
+#, 
 msgid "Search for Resources"
 msgstr "Suche nach Ressourcen"
 
@@ -1123,6 +1230,7 @@ msgstr "Suche nach Ressourcen"
 # ,
 # ,
 #: site_menu:84
+#, 
 msgid "Search the database"
 msgstr "Suchen Sie in der Datenbank"
 
@@ -1134,6 +1242,7 @@ msgstr "Suchen Sie in der Datenbank"
 # ,
 # ,
 #: site_menu:94
+#, 
 msgid "Share your information"
 msgstr "Teilen Sie Ihre Informationen"
 
@@ -1145,6 +1254,7 @@ msgstr "Teilen Sie Ihre Informationen"
 # ,
 # ,
 #: site_menu:19
+#, 
 msgid "Site map"
 msgstr "Seitenverzeichnis"
 
@@ -1156,10 +1266,12 @@ msgstr "Seitenverzeichnis"
 # ,
 # ,
 #: site_menu:59
+#, 
 msgid "South West Europe"
 msgstr "Südwesteuropa"
 
-#:
+#: 
+#, 
 msgid "Strategic objectives 2030"
 msgstr "Strategische Ziele 2030"
 
@@ -1171,6 +1283,7 @@ msgstr "Strategische Ziele 2030"
 # ,
 # ,
 #: site_menu:73
+#, 
 msgid "TOOLS"
 msgstr "WERKZEUG"
 
@@ -1182,6 +1295,7 @@ msgstr "WERKZEUG"
 # ,
 # ,
 #: site_menu:62
+#, 
 msgid "TOPICS"
 msgstr "THEMEN"
 
@@ -1193,6 +1307,7 @@ msgstr "THEMEN"
 # ,
 # ,
 #: site_menu:47
+#, 
 msgid "Transnational regions"
 msgstr "Transnationale Regionen"
 
@@ -1204,6 +1319,7 @@ msgstr "Transnationale Regionen"
 # ,
 # ,
 #: site_menu:40
+#, 
 msgid "Transport"
 msgstr "Transport"
 
@@ -1215,6 +1331,7 @@ msgstr "Transport"
 # ,
 # ,
 #: site_menu:92
+#, 
 msgid "Tutorial Videos"
 msgstr "Lehrvideos"
 
@@ -1225,6 +1342,7 @@ msgstr "Lehrvideos"
 # ,
 # ,
 #: site_menu:14
+#, 
 msgid "Tutorial videos"
 msgstr "Lehrvideos"
 
@@ -1235,6 +1353,7 @@ msgstr "Lehrvideos"
 # ,
 # ,
 #: health_menu:35
+#, 
 msgid "UV Index forecast (CAMS)"
 msgstr "UV -Indexprognose (CAMS)"
 
@@ -1245,6 +1364,7 @@ msgstr "UV -Indexprognose (CAMS)"
 # ,
 # ,
 #: health_menu:26
+#, 
 msgid "UV radiation"
 msgstr "UV-Strahlung"
 
@@ -1256,6 +1376,7 @@ msgstr "UV-Strahlung"
 # ,
 # ,
 #: site_menu:65
+#, 
 msgid "Uncertainty guidance"
 msgstr "Unsicherheitsführung"
 
@@ -1267,6 +1388,7 @@ msgstr "Unsicherheitsführung"
 # ,
 # ,
 #: site_menu:41
+#, 
 msgid "Urban"
 msgstr "Urban"
 
@@ -1278,6 +1400,7 @@ msgstr "Urban"
 # ,
 # ,
 #: site_menu:76
+#, 
 msgid "Urban Adaptation Map Viewer"
 msgstr "Städtische Anpassung Map Viewer"
 
@@ -1289,6 +1412,7 @@ msgstr "Städtische Anpassung Map Viewer"
 # ,
 # ,
 #: health_menu:31
+#, 
 msgid "Urban Adaptation Map Viewer (health focus)"
 msgstr "Städtische Anpassung Map Viewer (Schwerpunkt Gesundheit)"
 
@@ -1300,6 +1424,7 @@ msgstr "Städtische Anpassung Map Viewer (Schwerpunkt Gesundheit)"
 # ,
 # ,
 #: site_menu:75
+#, 
 msgid "Urban Adaptation Support Tool"
 msgstr "Tool zur Unterstützung der städtischen Anpassung"
 
@@ -1311,6 +1436,7 @@ msgstr "Tool zur Unterstützung der städtischen Anpassung"
 # ,
 # ,
 #: health_menu:24
+#, 
 msgid "Vector-borne diseases"
 msgstr "Vektor-übertragene Krankheiten"
 
@@ -1321,6 +1447,7 @@ msgstr "Vektor-übertragene Krankheiten"
 # ,
 # ,
 #: health_menu:15
+#, 
 msgid "WHO Europe activities on climate change and health"
 msgstr "WHO Europa Aktivitäten über Klimawandel und Gesundheit"
 
@@ -1332,6 +1459,7 @@ msgstr "WHO Europa Aktivitäten über Klimawandel und Gesundheit"
 # ,
 # ,
 #: health_menu:25
+#, 
 msgid "Water and food-borne diseases"
 msgstr "Durch Wasser und Lebensmittel übertragbare Krankheiten"
 
@@ -1343,6 +1471,7 @@ msgstr "Durch Wasser und Lebensmittel übertragbare Krankheiten"
 # ,
 # ,
 #: site_menu:42
+#, 
 msgid "Water management"
 msgstr "Wassermanagement"
 
@@ -1355,6 +1484,7 @@ msgstr "Wassermanagement"
 # ,
 #: health_menu:46
 #: site_menu:93
+#, 
 msgid "Webinars"
 msgstr "Webinare"
 
@@ -1365,5 +1495,7 @@ msgstr "Webinare"
 # ,
 # ,
 #: health_menu:22
+#, 
 msgid "Wildfires"
 msgstr "Waldbrände"
+

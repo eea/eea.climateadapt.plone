@@ -82,6 +82,10 @@ msgstr "Ετήσιες αναφορές"
 msgid "Atlantic Area"
 msgstr "Ατλαντική περιοχή"
 
+#:
+msgid "Availability of urban green spaces to vulnerable groups"
+msgstr ""
+
 # ,
 #: site_menu:51
 msgid "Balkan-Mediterranean"

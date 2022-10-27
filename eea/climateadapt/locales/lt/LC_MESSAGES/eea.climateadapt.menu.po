@@ -95,6 +95,10 @@ msgstr "Metinės ataskaitos"
 msgid "Atlantic Area"
 msgstr "Atlanto teritorija"
 
+#:
+msgid "Availability of urban green spaces to vulnerable groups"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:51

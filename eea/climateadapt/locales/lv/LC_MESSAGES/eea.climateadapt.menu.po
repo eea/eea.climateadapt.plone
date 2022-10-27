@@ -95,6 +95,10 @@ msgstr "Gada pārskati"
 msgid "Atlantic Area"
 msgstr "Atlantijas okeāna apgabals"
 
+#:
+msgid "Availability of urban green spaces to vulnerable groups"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:51
