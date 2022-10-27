@@ -1240,7 +1240,7 @@ def translation_step_4(site, request):
             ],
         "File": ["file", "effective", "filename"],
         "Image": ["image", "effective", "filename"],
-        "collective.cover.content": ["title", "effective", 'template_layout'],
+        "collective.cover.content": ["effective", 'template_layout'],
     }
 
     obj_count = 0
