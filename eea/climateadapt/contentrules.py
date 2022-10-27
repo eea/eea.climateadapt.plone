@@ -165,14 +165,8 @@ class TranslateActionExecutor(object):
         obj = self.event.object
         if "/en/" in obj.absolute_url():
             self.create_translations(obj)
-
-            # First copy language independent fields values
-            # (like step 4)
             self.copy_fields(obj)
-            # then translate:
             self.translate_obj(obj)
-            # self.set_workflow_states(obj)
-
             self.copy_interfaces(obj)  # TODO: delete. It's already included in
             # create_translation_object. It is used here only for testing
             # on old created content. Example: fixing interfaces for pages

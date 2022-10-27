@@ -60,6 +60,16 @@ class TranslationCallback(BrowserView):
                 form.pop('target-language', None)
                 form.pop('field', None)
                 form.pop('source_lang', None)
+
+                if len(form.keys()) > 1 and '\n' in form:
+                    # This was the case of
+                    # /cca/de/eu-adaptation-policy/sector-policies/forestry/index_html
+                    # where eTranslation added a new key in the form
+                    # and this happened only for DE, resulting a single
+                    # not translated title
+                    # https://taskman.eionet.europa.eu/issues/155311#note-38
+                    form.pop('\n', None)
+
                 translated = form.pop('translation', form.keys()[0]).strip()
                 translated = translated.decode('latin-1')
                 self.save_text_field(uid, field, translated, trans_obj_path)
@@ -158,7 +168,7 @@ class TranslationCallback(BrowserView):
         # trans_obj = get_translation_object_from_uid(uid, catalog)
         trans_obj = site.unrestrictedTraverse(trans_obj_path)
 
-        if value is not None:
+        if value is not None and value != u'':
             force_unlock(trans_obj)
             encoded_text = value.encode('latin-1')
             try:

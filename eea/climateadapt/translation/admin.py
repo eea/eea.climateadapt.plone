@@ -47,6 +47,13 @@ from zope.globalrequest import getRequest
 
 logger = logging.getLogger('eea.climateadapt')
 
+LANGUAGE_INDEPENDENT_FIELDS = [
+    'c3s_identifier', 'contact_email', 'contact_name',
+    'details_app_toolbox_url', 'duration', 'event_url', 'funding_programme',
+    'method', 'other_contributor', 'organisational_contact_information',
+    'organisational_websites', 'overview_app_toolbox_url',
+    'partners_source_link', 'remoteUrl', 'storage_type', 'sync_uid',
+    'timezone', 'template_layout']
 
 def is_json(input):
     try:
@@ -241,6 +248,8 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
             # print(key)
             if key in ['acronym', 'id', 'language', 'portal_type',
                        'contentType']:
+                continue
+            if key in LANGUAGE_INDEPENDENT_FIELDS:
                 continue
 
             value = getattr(getattr(obj, key), 'raw', getattr(obj, key))
@@ -670,10 +679,9 @@ def get_object_fields(obj):
 
 def get_object_fields_values(obj):
     #TODO: perhaps a list by each portal_type
-    skip_fields = ['c3s_identifier', 'contact_email', 'contact_name', 'details_app_toolbox_url', 'duration', 'event_url', 'funding_programme', 'method', 'other_contributor',
-        'organisational_contact_information', 'organisational_websites', 'overview_app_toolbox_url', 'partners_source_link', 'remoteUrl', 'storage_type', 'sync_uid','timezone',
-        'template_layout']
-    tile_fields = ['title', 'text', 'description', 'tile_title', 'footer', 'alt_text']
+    skip_fields = LANGUAGE_INDEPENDENT_FIELDS
+    tile_fields = [
+        'title', 'text', 'description', 'tile_title', 'footer', 'alt_text']
 
     data = {}
     data['portal_type'] = obj.portal_type
@@ -1236,7 +1244,7 @@ def translation_step_4(site, request):
             ],
         "File": ["file", "effective", "filename"],
         "Image": ["image", "effective", "filename"],
-        "collective.cover.content": ["title", "effective", 'template_layout'],
+        "collective.cover.content": ["effective", 'template_layout'],
     }
 
     obj_count = 0
