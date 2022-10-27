@@ -943,7 +943,7 @@ msgstr "Analyse nationale des politiques 2022"
 # ,
 #:
 msgid "Nature-based solutions"
-msgstr ""
+msgstr "Solutions basées sur la nature"
 
 # ,
 # ,

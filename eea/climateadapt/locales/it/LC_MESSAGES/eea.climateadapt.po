@@ -2170,7 +2170,7 @@ msgstr "Politica di adattamento nazionale"
 
 #: ../../climateadapt/vocabulary.py:322
 msgid "Nature-based solutions"
-msgstr ""
+msgstr "Soluzioni basate sulla natura"
 
 # ,
 #: ../../climateadapt/browser/pt/health_homepage.pt:20

@@ -910,7 +910,7 @@ class AdaptationNatureBasesSolutions:
         res = []
         for _type in DB_ITEM_TYPES:
             brains = catalog.searchResults(
-                portal_type=_type, include_in_observatory=True
+                portal_type=_type
             )
             for brain in brains:
                 obj = brain.getObject()
@@ -926,7 +926,6 @@ class AdaptationNatureBasesSolutions:
                 if 'NATUREBASEDSOL' not in obj.elements:
                     obj.elements.append('NATUREBASEDSOL');
                 obj.sectors.remove('ECOSYSTEM')
-                #obj.health_impacts = [obj.health_impacts]
                 obj._p_changed = True
                 logger.info("Migrated adaptation element: %s %s", brain.getURL(), obj.elements)
 
