@@ -158,7 +158,7 @@ class TranslationCallback(BrowserView):
         # trans_obj = get_translation_object_from_uid(uid, catalog)
         trans_obj = site.unrestrictedTraverse(trans_obj_path)
 
-        if value is not None:
+        if value is not None and value != u'':
             force_unlock(trans_obj)
             encoded_text = value.encode('latin-1')
             try:
