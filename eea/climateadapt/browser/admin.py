@@ -8,6 +8,7 @@ from io import BytesIO as StringIO
 
 from apiclient.discovery import build
 from DateTime import DateTime
+from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.browser.migrate import DB_ITEM_TYPES
 from eea.climateadapt.browser.site import _extract_menu
 from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
@@ -30,6 +31,7 @@ from plone.tiles.interfaces import ITileDataManager
 from plone.z3cform import layout
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
+from Products.statusmessages.interfaces import IStatusMessage
 from six.moves.html_parser import HTMLParser
 from z3c.form import button
 from z3c.form import form as z3cform
@@ -490,7 +492,35 @@ class KeywordsAdminView (BrowserView):
 
     @view.memoize
     def keywords(self):
-        return self.context.portal_catalog.uniqueValuesFor('keywords')
+        if 'letter' not in self.request:
+            return []
+
+        brains = self.context.portal_catalog.searchResults(path='/cca/en')
+        keywords = []
+        # keywords = self.context.portal_catalog.uniqueValuesFor('keywords')
+
+        for brain in brains:
+            kw = brain.keywords
+
+            if kw:
+                keywords.extend(list(kw))
+
+        keywords = set(keywords)
+        letter = self.request.letter
+
+        if letter == 'All':
+            return keywords
+
+        res = [k for k in keywords if k.startswith(letter)]
+
+        return res
+
+    @view.memoize
+    def keywords_first_letters(self):
+        kw = self.context.portal_catalog.uniqueValuesFor('keywords')
+        res = sorted(set([k[0] for k in kw if k]))
+
+        return ['All'] + res
 
     def get_keyword_length(self, key):
         catalog = self.context.portal_catalog._catalog
@@ -514,7 +544,15 @@ class KeywordsAdminView (BrowserView):
                         key for key in obj.keywords if key != keyword)
                 obj.reindexObject()
                 obj._p_changed = True
+
         logger.info("Deleted keyword: %s", keyword)
+        message = _(
+            u"Keyword succesfully deleted: ${kw_old}.",
+            mapping={"kw_old": keyword},
+        )
+        IStatusMessage(self.request).addStatusMessage(message, type="success")
+
+        self.request.response.redirect(self.request.URL0)
 
     def handle_rename(self, keyword):
         catalog = self.context.portal_catalog
@@ -536,7 +574,15 @@ class KeywordsAdminView (BrowserView):
                     obj.keywords += (newkeyword, )
                 obj._p_changed = True
                 obj.reindexObject()
+
         logger.info("Finished renaming: %s TO %s", keyword, newkeyword)
+        message = _(
+            u"Keyword succesfully renamed: ${kw_old} to ${kw_new}.",
+            mapping={"kw_old": keyword, "kw_new": newkeyword},
+        )
+        IStatusMessage(self.request).addStatusMessage(message, type="success")
+
+        self.request.response.redirect(self.request.URL0)
 
 
 class KeywordObjects (BrowserView):
@@ -545,8 +591,10 @@ class KeywordObjects (BrowserView):
 
     def __call__(self):
         key = self.request.form['keyword'].decode('utf-8')
-        key_obj = [b.getURL() + '/edit' for b in
-                   self.context.portal_catalog.searchResults(keywords=key)]
+        brains = self.context.portal_catalog.searchResults(
+            keywords=key, path='/cca/en')
+        
+        key_obj = [b.getURL() + '/edit' for b in brains]
 
         return json.dumps(key_obj)
 

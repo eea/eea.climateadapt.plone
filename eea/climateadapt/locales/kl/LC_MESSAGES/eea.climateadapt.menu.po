@@ -67,6 +67,10 @@ msgstr ""
 msgid "Atlantic Area"
 msgstr ""
 
+#:
+msgid "Availability of urban green spaces to vulnerable groups"
+msgstr ""
+
 #: site_menu:51
 msgid "Balkan-Mediterranean"
 msgstr ""

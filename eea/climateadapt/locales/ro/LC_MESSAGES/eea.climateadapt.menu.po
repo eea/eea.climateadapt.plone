@@ -134,6 +134,10 @@ msgstr "Rapoarte anuale"
 msgid "Atlantic Area"
 msgstr "Zona Atlanticului"
 
+#:
+msgid "Availability of urban green spaces to vulnerable groups"
+msgstr ""
+
 # ,
 # ,
 # ,

@@ -95,6 +95,10 @@ msgstr "Yıllık raporlar"
 msgid "Atlantic Area"
 msgstr "Atlantik bölgesi"
 
+#:
+msgid "Availability of urban green spaces to vulnerable groups"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:51

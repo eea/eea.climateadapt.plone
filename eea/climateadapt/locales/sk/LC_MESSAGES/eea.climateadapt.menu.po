@@ -95,6 +95,10 @@ msgstr "Výročné správy"
 msgid "Atlantic Area"
 msgstr "Atlantická oblasť"
 
+#:
+msgid "Availability of urban green spaces to vulnerable groups"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:51

@@ -95,6 +95,10 @@ msgstr "Relatórios anuais"
 msgid "Atlantic Area"
 msgstr "Área Atlântica"
 
+#:
+msgid "Availability of urban green spaces to vulnerable groups"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:51

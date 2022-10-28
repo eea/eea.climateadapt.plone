@@ -56,7 +56,33 @@
 
         <h1 i18n:translate="">Keywords administration</h1>
 
-        <table class="table listing" id="keywords-admin" tal:define="keys view/keywords">
+        <div>
+          <ul style="display: inline-block;" class="alphabetic-pagination pagination">
+            <tal:rep tal:repeat="kw_letter view/keywords_first_letters">
+              <li style="display: inline;">
+                <a style="position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;"  
+                  tal:attributes="href python: '?letter={}'.format(kw_letter)"
+                  tal:content="kw_letter">
+                </a>
+              </li>
+            </tal:rep>
+          </ul>
+        </div>
+
+        <div tal:condition="python:not view.keywords()">
+          Select starting letter.
+        </div>
+
+        <table tal:condition="view/keywords"
+          class="table listing" id="keywords-admin" tal:define="keys view/keywords">
           <thead>
             <tr>
               <th i18n:translate="">Keyword</th>

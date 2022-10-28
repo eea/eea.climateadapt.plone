@@ -95,6 +95,10 @@ msgstr "Letna poročila"
 msgid "Atlantic Area"
 msgstr "Atlantsko območje"
 
+#:
+msgid "Availability of urban green spaces to vulnerable groups"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:51

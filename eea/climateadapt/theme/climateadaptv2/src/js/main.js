@@ -1088,6 +1088,24 @@ function initSeeMore() {
   });
 }
 
+function getCurrentLanguage() {
+  current_language = "en";
+  langDiv = $('#portal-languageselector .currentLanguage');
+  if (langDiv.length) {
+    current_language = langDiv[0].className.replace('currentLanguage','');
+    current_language = current_language.replace('language-','');
+    current_language = current_language.trim();
+  }
+  return current_language;
+}
+
+function setCurrentLanguage() {
+  current_language = getCurrentLanguage();
+  var elements = $("input[type='hidden']");
+  elements.each(function () {
+    $(this).val(current_language);
+  });
+}
 
 $(document).ready(function () {
   var onResizeInitSlider = initSlider();
@@ -1113,6 +1131,7 @@ $(document).ready(function () {
   setSubmenuWidth();
   autoCollapseNavigation();
   initSeeMore();
+  setCurrentLanguage();
 
   //Move language div if exist in header
   li = document.querySelectorAll("ul#portal-languageselector > li.currentLanguage");
