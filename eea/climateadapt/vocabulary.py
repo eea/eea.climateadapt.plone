@@ -511,6 +511,7 @@ _language = [
     ("Spanish", "Spanish"),
     ("Italian", "Italian"),
     ("Dutch", "Dutch"),
+    ("Romanian", "Romanian"),
 ]
 language = generic_vocabulary(_language)
 alsoProvides(language, IVocabularyFactory)

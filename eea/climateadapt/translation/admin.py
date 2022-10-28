@@ -76,6 +76,23 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
     obj_url = obj.absolute_url()
     obj_path = '/cca' + obj_url.split(site_url)[-1]
 
+    cca_event_languages = {
+        "English": "EN",
+        "German": "DE",
+        "French": "FE",
+        "Spanish": "ES",
+        "Italian": "IT",
+        "Dutch": "NL",
+        "Romanian": "RO",
+    }
+
+    if obj.portal_type == 'cca-event':
+        custom_language = obj.event_language
+        if custom_language is not None:
+            custom_language = cca_event_languages.get(custom_language, None)
+            if custom_language is not None:
+                source_language = custom_language
+
     # get behavior fields and values
     behavior_assignable = IBehaviorAssignable(obj)
     fields = {}
