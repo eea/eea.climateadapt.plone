@@ -67,6 +67,7 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
     """ Translate given obj. Use one_step = True to translate in a single step
         without using annotations.
     """
+    source_language = 'EN'
     tile_fields = ['title', 'description', 'tile_title', 'footer', 'alt_text']
     errors = []
     force_unlock(obj)
@@ -135,8 +136,8 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                     for key in tile_data['item'].keys():
                         # TODO add one step params
                         res = retrieve_translation_one_step(
-                            'EN', tile_data['item'][key], [language.upper()],
-                            uid=trans_obj.UID(),
+                            source_language, tile_data['item'][key],
+                            [language.upper()], uid=trans_obj.UID(),
                             obj_path=trans_obj_path, field=key,
                             tile_data=tile_data, tile_id=tile_id)
                         logger.info("One step translation tile: %s", res)
@@ -156,8 +157,9 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
             # Translate simple fields
             for key in json_data['item'].keys():
                 res = retrieve_translation_one_step(
-                    'EN', json_data['item'][key], [language.upper()],
-                    uid=trans_obj.UID(), obj_path=trans_obj_path, field=key)
+                    source_language, json_data['item'][key],
+                    [language.upper()], uid=trans_obj.UID(),
+                    obj_path=trans_obj_path, field=key)
 
             # TILE HTML fields translate in one call
             if len(tile_html_fields):
@@ -175,7 +177,7 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                 html_content += u"</body></html>"
                 html_content = html_content.encode('utf-8')
                 translated = retrieve_html_translation(
-                    'EN',
+                    source_language,
                     html_content,
                     trans_obj_path,
                     language.upper(),
@@ -190,7 +192,7 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                     value = tile.data.get(field)
                     if value:
                         translated = retrieve_translation(
-                                'EN', value, [language.upper()])
+                                source_language, value, [language.upper()])
 
                         if 'translated' in translated:
                             encoded_text = translated['transId'].encode(
@@ -223,7 +225,7 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                         html_content += u"</body></html>"
                         html_content = html_content.encode('utf-8')
                         translated = retrieve_html_translation(
-                            'EN',
+                            source_language,
                             html_content,
                             trans_obj_path,
                             language.upper(),
@@ -301,11 +303,12 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
 
             if one_step is True and rich is not True:
                 translated = retrieve_translation_one_step(
-                    'EN', value, [language.upper()], uid=trans_obj.UID(),
-                    obj_path=trans_obj_path, field=key)
+                    source_language, value, [language.upper()],
+                    uid=trans_obj.UID(), obj_path=trans_obj_path, field=key)
                 continue
 
-            translated = retrieve_translation('EN', value, [language.upper()])
+            translated = retrieve_translation(
+                    source_language, value, [language.upper()])
             if 'translated' in translated:
                 # TODO improve this part, after no more errors
                 encoded_text = translated['transId'].encode('latin-1')
@@ -365,7 +368,7 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
             html_content += u"</body></html>"
             html_content = html_content.encode('utf-8')
             res = retrieve_html_translation(
-                'EN',
+                source_language,
                 html_content,
                 trans_obj_path,
                 language.upper(),
