@@ -1101,7 +1101,7 @@ function getCurrentLanguage() {
 
 function setCurrentLanguage() {
   current_language = getCurrentLanguage();
-  var elements = $("input[type='hidden']");
+  var elements = $("input[type='hidden']#pageCurrentLanguage");
   elements.each(function () {
     $(this).val(current_language);
   });

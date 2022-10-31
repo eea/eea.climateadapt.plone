@@ -7,7 +7,8 @@
 
 <!--<script type="text/javascript" src="/portal_javascripts/Sunburst%20Theme/++resource++plone.app.jquery.js"></script>-->
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+
 <!--?<script type="text/javascript" src="/frontpage/cca/portal_javascripts/Sunburst%20Theme/++resource++plone.app.jquery.js?ts=14"></script>-->
 
 <!--<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:8080/cca/portal_css/Sunburst%20Theme/reset.css">-->
