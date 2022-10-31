@@ -1,4 +1,4 @@
-<h1 i18n:translate="">Add nature bsed solutions to elements</h1>
+<h1 i18n:translate="">Reindex nature bsed solutions</h1>
 
 <table tal:define="items view/list">
     <tr tal:repeat="item items" style="border:1px solid #ddd;">
