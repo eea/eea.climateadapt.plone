@@ -53,7 +53,7 @@ LANGUAGE_INDEPENDENT_FIELDS = [
     'method', 'other_contributor', 'organisational_contact_information',
     'organisational_websites', 'overview_app_toolbox_url',
     'partners_source_link', 'remoteUrl', 'storage_type', 'sync_uid',
-    'timezone', 'template_layout']
+    'timezone', 'template_layout', 'event_language']
 
 def is_json(input):
     try:
@@ -84,6 +84,10 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
         "Italian": "IT",
         "Dutch": "NL",
         "Romanian": "RO",
+        "Polish": "PL",
+        "Bulgarian": "BG",
+        "Slovak": "SK",
+        "Slovenian": "SI",
     }
 
     if obj.portal_type == 'cca-event':
@@ -1260,7 +1264,7 @@ def translation_step_4(site, request):
             ],
         "cca-event": [
             "timezone", "start", "end", "effective", "contact_email",
-            "contact_name"
+            "contact_name", "event_language",
             ],
         "File": ["file", "effective", "filename"],
         "Image": ["image", "effective", "filename"],
