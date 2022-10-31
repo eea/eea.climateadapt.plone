@@ -927,7 +927,48 @@ class AdaptationNatureBasesSolutions:
                     obj.elements.append('NATUREBASEDSOL');
                 obj.sectors.remove('ECOSYSTEM')
                 obj._p_changed = True
+                obj.reindexObject()
                 logger.info("Migrated adaptation element: %s %s", brain.getURL(), obj.elements)
+
+                res.append(
+                    {
+                        "title": obj.title,
+                        "id": brain.UID,
+                        "url": brain.getURL(),
+                        # 'publication_date': obj.publication_date,
+                        "sectors": obj.sectors,
+                        "elements": obj.elements,
+                    }
+                )
+
+        return res
+
+class ElementNatureBasesSolutions:
+    """Reindex NatureBasedSolution elements"""
+
+    def list(self):
+        # overwrite = int(self.request.form.get('overwrite', 0))
+
+        catalog = api.portal.get_tool("portal_catalog")
+
+        res = []
+        for _type in DB_ITEM_TYPES:
+            brains = catalog.searchResults(
+                portal_type=_type
+            )
+            for brain in brains:
+                obj = brain.getObject()
+
+                if not hasattr(obj, "elements"):
+                    continue
+                if not obj.elements:
+                    continue
+                #import pdb; pdb.set_trace()
+                if 'NATUREBASEDSOL' not in obj.elements:
+                    continue
+                obj._p_changed = True
+                obj.reindexObject()
+                logger.info("Reindex: %s %s", brain.getURL(), obj.elements)
 
                 res.append(
                     {
