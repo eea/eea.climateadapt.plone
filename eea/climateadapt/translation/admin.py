@@ -84,6 +84,10 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
         "Italian": "IT",
         "Dutch": "NL",
         "Romanian": "RO",
+        "Polish": "PL",
+        "Bulgarian": "BG",
+        "Slovak": "SK",
+        "Slovenian": "SI",
     }
 
     if obj.portal_type == 'cca-event':
