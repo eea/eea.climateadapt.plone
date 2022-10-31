@@ -1264,7 +1264,7 @@ def translation_step_4(site, request):
             ],
         "cca-event": [
             "timezone", "start", "end", "effective", "contact_email",
-            "contact_name"
+            "contact_name", "event_language",
             ],
         "File": ["file", "effective", "filename"],
         "Image": ["image", "effective", "filename"],
