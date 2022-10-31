@@ -5,6 +5,7 @@
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   xml:lang="en"
   lang="en"
+  i18n:domain="eea.climateadapt"
   metal:use-macro="context/main_template/macros/master"
   >
 
@@ -57,7 +58,7 @@ $( document ).ready(function() {
                     <div class="scroll-to-top"><span class="scroll-button" title="Scroll to top" i18n:attributes="title"> <i class="scroll-icon glyphicon glyphicon-chevron-up"></i> </span></div>
                     <div id="content-core">
                         <div class="col-md-9 col-xs-12 content-column">
-                            <a href="" i18n:translate="">Event</a> | <a href="#agenda" i18n:translate="">Agenda and supporting documents</a> | <a href="#information" i18n:translate="">Practical Information</a> | <a href="#registration" tal:condition="context/online_registration" i18n:translate="">Registration</a>
+                            <a href="" i18n:translate="">Event</a> | <a href="#agenda" i18n:translate="">Agenda and supporting documents</a> | <a href="#information" i18n:translate="">Practical information</a> | <a href="#registration" tal:condition="context/online_registration" i18n:translate="">Registration</a>
                             <br><br>
                             <h1 i18n:translate="">Climate-ADAPT Event</h1>
                             <div>
