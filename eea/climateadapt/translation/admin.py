@@ -53,7 +53,7 @@ LANGUAGE_INDEPENDENT_FIELDS = [
     'method', 'other_contributor', 'organisational_contact_information',
     'organisational_websites', 'overview_app_toolbox_url',
     'partners_source_link', 'remoteUrl', 'storage_type', 'sync_uid',
-    'timezone', 'template_layout']
+    'timezone', 'template_layout', 'event_language']
 
 def is_json(input):
     try:
