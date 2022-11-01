@@ -1585,7 +1585,6 @@ def translation_repaire_step_3(site, request):
         return "Looks like we the file is not valid json"
     json_data = json.loads(json_content)
 
-    #import pdb; pdb.set_trace()
     if '_details' not in json_data:
         return "Details key was not found in json"
 
@@ -1596,25 +1595,24 @@ def translation_repaire_step_3(site, request):
     for item in items:
         if uid and uid != brain.UID:
             continue
-        if portal_type and portal_type!=item['portal_type']:
+        if portal_type and portal_type != item['portal_type']:
             continue
         if stop_pdb:
             import pdb; pdb.set_trace()
-        translation_step_3_one_file(item['brain_uid']+'.json', language, catalog, portal_type)
+        translation_step_3_one_file(
+                item['brain_uid']+'.json', language, catalog, portal_type)
 
 
 def translation_list_type_fields(site):
     """ Show each field for each type
     """
     catalog = site.portal_catalog
-    #TODO: remove this, it is jsut for demo purpose
-    limit=10000
+    # TODO: remove this, it is jsut for demo purpose
+    limit = 10000
     brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
-    site_url = portal.getSite().absolute_url()
     logger.info("I will start to create json files. Checking...")
 
     res = {}
-    total_items = 0  # total translatable eng objects
 
     for brain in brains:
         obj = brain.getObject()
@@ -1627,7 +1625,6 @@ def translation_list_type_fields(site):
         if obj.portal_type == 'collective.cover.content':
             if obj.portal_type not in res:
                 res[obj.portal_type] = {}
-            #import pdb; pdb.set_trace()
             tiles_id = obj.list_tiles()
             for tile_id in tiles_id:
                 tile = obj.get_tile(tile_id)
@@ -1637,11 +1634,11 @@ def translation_list_type_fields(site):
                 for field in tile.data.keys():
                     if field not in res[obj.portal_type][tile_name]:
                         res[obj.portal_type][tile_name][field] = []
-                    if len(res[obj.portal_type][tile_name][field])<5:
+                    if len(res[obj.portal_type][tile_name][field]) < 5:
                         res[obj.portal_type][tile_name][field].append(obj_url)
         else:
             if obj.portal_type not in res:
-                res[obj.portal_type] = {"item":[],"html":[]}
+                res[obj.portal_type] = {"item": [], "html": []}
             for key in data['item']:
                 if key not in res[obj.portal_type]["item"]:
                     res[obj.portal_type]["item"].append(key)
@@ -1649,11 +1646,11 @@ def translation_list_type_fields(site):
                 if key not in res[obj.portal_type]["html"]:
                     res[obj.portal_type]["html"].append(key)
 
-    json_object = json.dumps(res, indent = 4)
-    #import pdb; pdb.set_trace()
+    json_object = json.dumps(res, indent=4)
 
     with open("/tmp/portal_type_fields.json", "w") as outfile:
         outfile.write(json_object)
+
 
 def translations_status_by_version(site, version=0, language=None):
     """ Show the list of urls of a version and language
@@ -1856,7 +1853,6 @@ def execute_trans_script(site, language):
     # get and parse all objects under /en/
     res = get_all_objs(english_container)
 
-    failed_translations = []
     count = 0
     for brain in res:
         logger.info('--------------------------------------------------------')
@@ -1874,7 +1870,6 @@ def execute_trans_script(site, language):
                 continue
             else:
                 errors.append(obj)
-                # import pdb; pdb.set_trace()
 
         if count % 200 == 0:
             logger.info("Processed %s objects" % count)
@@ -1893,7 +1888,8 @@ def verify_unlinked_translation(site, request):
     """
     language = request.get('language', None)
     available_languages = ['es','de','it','pl','fr']
-    check_nr_languages = request.get('check_nr_languages', len(available_languages)+1)
+    check_nr_languages = request.get(
+            'check_nr_languages', len(available_languages)+1)
     uid = request.get('uid', None)
     limit = int(request.get('limit', 0))
     offset = int(request.get('offset', 0))
@@ -1912,12 +1908,12 @@ def verify_unlinked_translation(site, request):
 
         if uid and uid != brain.UID:
             continue
-        if portal_type and portal_type!=obj.portal_type:
+        if portal_type and portal_type != obj.portal_type:
             continue
 
         translations = TranslationManager(obj).get_translations()
 
-        if len(translations)<check_nr_languages:
+        if len(translations) < check_nr_languages:
             logger.info(obj.absolute_url())
             for available_language in available_languages:
                 create_translation_object(obj, available_language)
@@ -1928,7 +1924,8 @@ def report_unlinked_translation(site, request):
     """
     language = request.get('language', None)
     available_languages = ['es','de','it','pl','fr']
-    check_nr_languages = request.get('check_nr_languages', len(available_languages)+1)
+    check_nr_languages = request.get(
+        'check_nr_languages', len(available_languages)+1)
     uid = request.get('uid', None)
     limit = int(request.get('limit', 0))
     offset = int(request.get('offset', 0))
@@ -1936,13 +1933,11 @@ def report_unlinked_translation(site, request):
 
     catalog = site.portal_catalog
     language_container = site['en']
-    #import pdb; pdb.set_trace()
 
     res = {}
     # get and parse all objects under /en/
     brains = get_all_objs(language_container)
 
-    failed_translations = []
     count = 0
     report_date = datetime.now().strftime('%Y_%m_%d')
 
@@ -1952,20 +1947,17 @@ def report_unlinked_translation(site, request):
 
         if uid and uid != brain.UID:
             continue
-        if portal_type and portal_type!=obj.portal_type:
+        if portal_type and portal_type != obj.portal_type:
             continue
 
         translations = TranslationManager(obj).get_translations()
-        #import pdb; pdb.set_trace()
 
-        # logger.info('--------------------------------------------------------')
-        # logger.info(count)
-
-        if len(translations)<check_nr_languages:
+        if len(translations) < check_nr_languages:
             res[brain.UID] = obj.absolute_url()
 
-    json_object = json.dumps(res, indent = 4)
-    with open("/tmp/report_unlinked_translation_"+ report_date +".json", "w") as outfile:
+    json_object = json.dumps(res, indent=4)
+    with open("/tmp/report_unlinked_translation_" + report_date +
+              ".json", "w") as outfile:
         outfile.write(json_object)
 
     return res
@@ -1999,12 +1991,12 @@ def admin_some_translated(site, items):
             if behavior_assignable:
                 behaviors = behavior_assignable.enumerateBehaviors()
                 for behavior in behaviors:
-                    for k, v in getFieldsInOrder(behavior.interface):
-                        _fields.update({k: v})
+                    for k, val in getFieldsInOrder(behavior.interface):
+                        _fields.update({k: val})
 
             #  get schema fields and values
-            for k, v in getFieldsInOrder(obj.getTypeInfo().lookupSchema()):
-                _fields.update({k: v})
+            for k, val in getFieldsInOrder(obj.getTypeInfo().lookupSchema()):
+                _fields.update({k: val})
 
             fields[portal_type] = [(x, _fields[x]) for x in _fields]
 
@@ -2272,7 +2264,7 @@ class TranslationStateViewlet(ViewletBase):
 
         initial_state = wf.initial_state
         state = (wftool.getStatusOf('cca_translations_workflow', self.context)
-                    or {})
+                 or {})
         state = state.get("review_state", initial_state)
         wf_state = wf.states[state]
 
@@ -2299,14 +2291,14 @@ class TranslationCheckLanguageViewlet(ViewletBase):
     """
 
     def show_display_message(self):
-        #import pdb; pdb.set_trace()
-        if self.get_plone_language()!=self.get_cookie_language():
+        if self.get_plone_language() != self.get_cookie_language():
             # check if force to stay on this page
             if self.request.get('langflag', None):
                 return True
             url = self.get_suggestion_url()
             if '++aq++' in self.request["ACTUAL_URL"]:
-                url = url.replace("/news-archive/", "/observatory/++aq++news-archive/")
+                url = url.replace(
+                    "/news-archive/", "/observatory/++aq++news-archive/")
             # if we have a url, then redirect. A few pages are not translated
             if url:
                 return self.request.response.redirect(url)
@@ -2314,20 +2306,17 @@ class TranslationCheckLanguageViewlet(ViewletBase):
         return None
 
     def get_message(self, message):
-        #import pdb; pdb.set_trace()
-        return translate_text(self.context, self.request, message, 'eea.cca', self.get_cookie_language())
+        return translate_text(
+            self.context, self.request, message, 'eea.cca',
+            self.get_cookie_language())
 
     def get_plone_language(self):
-        #import pdb; pdb.set_trace()
         return get_current_language(self.context, self.request)
 
     def get_cookie_language(self):
-        #import pdb; pdb.set_trace()
         return self.request.cookies.get("I18N_LANGUAGE", "en")
 
     def get_suggestion_url(self):
-        #import pdb; pdb.set_trace()
-        #check if cookie plone language is not en
         try:
             translations = TranslationManager(self.context).get_translations()
         except Exception:
@@ -2429,14 +2418,13 @@ class AdminPublishItems(BrowserView):
         return "<br>".join(errors)
 
 
-#@adapter(Interface, ITranslateAction, Interface)
-#@implementer(IExecutable)
+# @adapter(Interface, ITranslateAction, Interface)
+# @implementer(IExecutable)
 class TranslateOneObject(BrowserView):
     """Translate one object."""
 
     def translate(self):
-        response = {'error':None, 'items':[], 'url':None}
-        #import pdb; pdb.set_trace()
+        response = {'error': None, 'items': [], 'url': None}
         request = getRequest()
         url = request.get('url', None)
         response['url'] = url
@@ -2448,13 +2436,12 @@ class TranslateOneObject(BrowserView):
                 response['error'] = 'NOT FOUND'
                 return response
 
-            #import pdb; pdb.set_trace()
             if "/en/" in obj.absolute_url():
                 response['items'] = self.create_translations(obj)
                 self.translate_obj(obj)
                 # self.set_workflow_states(obj)
 
-                self.copy_interfaces(obj)  # TODO: delete. It's already included in
+                self.copy_interfaces(obj)  # TODO: delete. It's included in
                 # create_translation_object. It is used here only for testing
                 # on old created content. Example: fixing interfaces for pages
                 # like share-your-info
