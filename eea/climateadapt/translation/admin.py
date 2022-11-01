@@ -1743,6 +1743,14 @@ def create_translation_object(obj, language):
     # https://github.com/plone/plone.app.multilingual/blob/2.x/src/plone/app/multilingual/manager.py#L85
     # translated_object.reindexObject()   ^ already reindexed.
 
+    # In cases like: /en/page-en -> /fr/page, fix the url: /fr/page-en
+    try:
+        if translated_object.id != obj.id:
+            translated_object.aq_parent.manage_renameObject(
+                    translated_object.id, obj.id)
+    except Exception:
+        logger.info("CREATE ITEM: cannot rename the item id - already exists.")
+
     if obj.portal_type == 'collective.cover.content':
         tiles = [obj.get_tile(x) for x in obj.list_tiles()]
         translated_object.cover_layout = obj.cover_layout
