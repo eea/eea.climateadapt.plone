@@ -16,7 +16,7 @@
   <browser:page
       name="admin-verify-unlinked-translation"
       for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".admin.VerfiyUnlinkedTranslation"
+      class=".admin.VerifyUnlinkedTranslation"
       permission="cmf.ManagePortal"
       />
 

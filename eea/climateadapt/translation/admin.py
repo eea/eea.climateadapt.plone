@@ -1846,7 +1846,7 @@ def execute_trans_script(site, language):
     return 'Finished cloning for language %s' % language
 
 
-def verfiy_unlinked_translation(site, request):
+def verify_unlinked_translation(site, request):
     """ Clone the content to be translated if not exist
     """
     language = request.get('language', None)
@@ -1982,14 +1982,14 @@ class PrepareTranslation(BrowserView):
         return execute_trans_script(getSite(), **kwargs)
 
 
-class VerfiyUnlinkedTranslation(BrowserView):
+class VerifyUnlinkedTranslation(BrowserView):
     """ Check items which does not have relation to english
         Usage: /admin-verify-unlinked-translation
     """
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        return verfiy_unlinked_translation(getSite(), self.request)
+        return verify_unlinked_translation(getSite(), self.request)
 
 
 class ReportUnlinkedTranslation(BrowserView):
