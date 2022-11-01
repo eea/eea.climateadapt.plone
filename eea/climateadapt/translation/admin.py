@@ -567,13 +567,13 @@ def verify_translation_fields(site, request):
 
     report = {}
     report_detalied = []
-    skip_items = ['.jpg','.pdf','.png']
+    skip_items = ['.jpg', '.pdf', '.png']
     skip_fields = ["sync_uid", "allow_discussion"]
     # skip_types = ['File', 'Image']
 
     for brain in brains:
         obj = brain.getObject()
-        if portal_type and portal_type!=obj.portal_type:
+        if portal_type and portal_type != obj.portal_type:
             continue
         if is_obj_skipped_for_translation(obj):
             continue
@@ -586,15 +586,12 @@ def verify_translation_fields(site, request):
         if obj.portal_type not in report:
             report[obj.portal_type] = {}
 
-        #if '.jpg' in obj_url:
         if any(skip_item in obj_url for skip_item in skip_items):
             continue
         total_items += 1
         obj_path = '/cca' + obj_url.split(site_url)[-1]
-        # logger.info("Will check: %s", obj_path)
         translations = TranslationManager(obj).get_translations()
         if language not in translations:
-            #add message regarding no translation found
             logger.info("Not found: %s", obj_path)
             not_found += 1
             continue
@@ -618,14 +615,12 @@ def verify_translation_fields(site, request):
         for field in fields.keys():
             if field in skip_fields:
                 continue
-            #TODO: check if we need to log if this is FALSE
+            # TODO: check if we need to log if this is FALSE
             if not hasattr(obj, field):
                 continue
             if not hasattr(trans_obj, field):
                 fields_missing.append(field)
                 continue
-            #if bool(getattr(obj, field)) and not bool(getattr(trans_obj,field)):
-            #        fields_missing.append(field)
             mark_field = False
             if isinstance(getattr(obj, field), RichTextValue):
                 obj_val = getattr(obj, field).output
@@ -653,7 +648,9 @@ def verify_translation_fields(site, request):
                     mark_field = True
             else:
                 missing = object()
-                if not mark_field and not getattr(obj,field,missing) in (missing, None) and getattr(trans_obj,field,missing) in (missing, None):
+                if not mark_field and not getattr(obj, field, missing) in \
+                        (missing, None) and getattr(
+                                trans_obj, field, missing) in (missing, None):
                     mark_field = True
             if mark_field:
                 fields_missing.append(field)
@@ -666,7 +663,9 @@ def verify_translation_fields(site, request):
                 report[obj.portal_type][field] = prev_value + 1
 
         if len(fields_missing):
-            logger.info("FIELDS NOT SET: %s %s", trans_obj.absolute_url(), fields_missing)
+            logger.info(
+                "FIELDS NOT SET: %s %s", trans_obj.absolute_url(),
+                fields_missing)
             report_detalied.append({
                     'url': trans_obj.absolute_url(),
                     'brain_uid': brain.UID,
@@ -675,14 +674,19 @@ def verify_translation_fields(site, request):
                 })
             found_missing += 1
 
-        #import pdb; pdb.set_trace()
         found += 1
 
-    logger.info("TotalItems: %s, Found with correct data: %s. Found with mising data: %s. Not found: %s. Missing values: %s",
+    logger.info("Items: %s, With correct data: %s. With missing data: %s. Not found: %s. Missing values: %s",
                 total_items, found, found_missing, not_found, missing_values)
 
     report['_details'] = report_detalied
-    report['_stats'] = {'file':total_items,'found':found,'found_missing':found_missing,'not_found':not_found,'missing_value':missing_values}
+    report['_stats'] = {
+        'file': total_items,
+        'found': found,
+        'found_missing': found_missing,
+        'not_found': not_found,
+        'missing_value': missing_values
+        }
     json_object = json.dumps(report, indent=4)
     with open("/tmp/translation_report.json", "w") as outfile:
         outfile.write(json_object)
@@ -702,7 +706,7 @@ def get_object_fields(obj):
     return fields
 
 def get_object_fields_values(obj):
-    #TODO: perhaps a list by each portal_type
+    # TODO: perhaps a list by each portal_type
     skip_fields = LANGUAGE_INDEPENDENT_FIELDS
     tile_fields = [
         'title', 'text', 'description', 'tile_title', 'footer', 'alt_text']
@@ -714,11 +718,10 @@ def get_object_fields_values(obj):
     data['html'] = {}
     data['tile'] = {}
     # get tile data
-    #import pdb; pdb.set_trace()
     if obj.portal_type == 'collective.cover.content':
         tiles_id = obj.list_tiles()
         for tile_id in tiles_id:
-            data['tile'][tile_id] = {'item':{},'html':{}}
+            data['tile'][tile_id] = {'item': {}, 'html': {}}
             tile = obj.get_tile(tile_id)
             for field in tile_fields:
                 value = None
@@ -729,11 +732,13 @@ def get_object_fields_values(obj):
                             if isinstance(tile.data.get(field), RichTextValue):
                                 value = tile.data.get(field).raw
                                 if value:
-                                    data['tile'][tile_id]['html'][field] = value
+                                    data['tile'][tile_id]['html'][
+                                            field] = value
                             else:
                                 value = tile.data.get(field)
                                 if value:
-                                    data['tile'][tile_id]['item'][field] = value
+                                    data['tile'][tile_id]['item'][
+                                            field] = value
                         except Exception:
                             value = None
                 else:
@@ -742,8 +747,6 @@ def get_object_fields_values(obj):
                         data['tile'][tile_id]['item'][field] = value
     fields = get_object_fields(obj)
     for key in fields:
-        rich = False
-        # print(key)
         if key in ['acronym', 'id', 'language', 'portal_type',
                    'contentType']:
             continue
@@ -792,8 +795,8 @@ def get_object_fields_values(obj):
     return data
 
 def is_obj_skipped_for_translation(obj):
-    #skip by portal types
-    if obj.portal_type in ['eea.climateadapt.city_profile','LIF']:
+    # skip by portal types
+    if obj.portal_type in ['eea.climateadapt.city_profile', 'LIF']:
         return True
 
     # DO NOT SKIP, images or pdfs from case-studies have description and title
@@ -804,7 +807,7 @@ def is_obj_skipped_for_translation(obj):
     # if any(skip_item in obj_url for skip_item in skip_path_items):
         # return True
 
-    #TODO: add here archived and other rules
+    # TODO: add here archived and other rules
     return False
 
 def get_translation_object(obj, language):
@@ -828,7 +831,7 @@ def get_translation_object_path(obj, language, site_url):
     return '/cca' + trans_obj_url.split(site_url)[-1]
 
 def get_translation_object_from_uid(json_uid_file, catalog):
-    brains = catalog.searchResults(UID=json_uid_file.replace(".json",""))
+    brains = catalog.searchResults(UID=json_uid_file.replace(".json", ""))
     if 0 == len(brains):
         return None
     return brains[0].getObject()
@@ -846,7 +849,7 @@ def get_trans_obj_path_for_obj(obj):
     res = {}
     try:
         translations = TranslationManager(obj).get_translations()
-    except:
+    except Exception:
         logger.info("Error at getting translations for %s", obj.absolute_url())
         translations = []
 
@@ -926,19 +929,26 @@ def translation_step_2(site, request, force_uid=None):
         return "Missing language parameter. (Example: ?language=it)"
     catalog = site.portal_catalog
     site_url = portal.getSite().absolute_url()
-    #import pdb; pdb.set_trace()
     json_files = get_translation_json_files(uid)
 
     report_date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     report = {}
-    report['date'] = {'start':datetime.now().strftime("%Y-%m-%d %H:%M:%S"),'end':None}
-    report['filter'] = {'language':language, 'uid':uid, 'limit': limit, 'offset': offset, 'portal_type': portal_type}
-    total_files = len(json_files)  # total translatable eng objects (not unique)
+    report['date'] = {
+        'start': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        'end': None
+    }
+    report['filter'] = {
+        'language': language,
+        'uid': uid,
+        'limit': limit,
+        'offset': offset,
+        'portal_type': portal_type
+    }
+    total_files = len(json_files)  # total translatable eng objs (not unique)
     nr_files = 0  # total translatable eng objects (not unique)
     nr_items = 0  # total translatable eng objects (not unique)
     nr_html_items = 0  # total translatable eng objects (not unique)
     nr_items_translated = 0  # found translated objects
-    #import pdb; pdb.set_trace()
     if limit:
         json_files.sort()
         json_files = json_files[offset: offset+limit]
@@ -947,21 +957,22 @@ def translation_step_2(site, request, force_uid=None):
         file = open("/tmp/jsons/"+json_file, "r")
         json_content = file.read()
         json_data = json.loads(json_content)
-        if portal_type and portal_type!=json_data['portal_type']:
+        if portal_type and portal_type != json_data['portal_type']:
             continue
         nr_files += 1
-        #LOPP object tiles
+        # LOOP object tiles
         tile_html_fields = []
         if 'tile' in json_data:
             for tile_id in json_data['tile'].keys():
                 tile_data = json_data['tile'][tile_id]
-                #LOOP tile text items
+                # LOOP tile text items
                 for key in tile_data['item'].keys():
-                    res = retrieve_translation('EN', tile_data['item'][key], [language.upper()])
+                    res = retrieve_translation(
+                            'EN', tile_data['item'][key], [language.upper()])
                     nr_items += 1
                     if 'translated' in res:
                         nr_items_translated += 1
-                #LOOP tile HTML items
+                # LOOP tile HTML items
                 for key in tile_data['html'].keys():
                     value = tile_data['html'][key]
                     value = value.replace('\r', '')
@@ -970,12 +981,14 @@ def translation_step_2(site, request, force_uid=None):
                         test_value = value + u"test"
                     except UnicodeDecodeError:
                         value = value.decode("utf-8")
-                    tile_html_fields.append({'tile_id':tile_id,'field':key, 'value':value})
-        #TILE HTML fields translate in one call
+                    tile_html_fields.append(
+                            {'tile_id': tile_id, 'field': key, 'value': value})
+        # TILE HTML fields translate in one call
         if len(tile_html_fields):
             nr_html_items += 1
             obj = get_translation_object_from_uid(json_file, catalog)
-            trans_obj_path = get_translation_object_path(obj, language, site_url)
+            trans_obj_path = get_translation_object_path(
+                    obj, language, site_url)
             if not trans_obj_path:
                 continue
             html_content = u"<!doctype html>" + \
@@ -997,17 +1010,19 @@ def translation_step_2(site, request, force_uid=None):
                 False,
             )
 
-        #LOOP object text items
+        # LOOP object text items
         for key in json_data['item'].keys():
-            res = retrieve_translation('EN', json_data['item'][key], [language.upper()])
+            res = retrieve_translation(
+                    'EN', json_data['item'][key], [language.upper()])
             nr_items += 1
             if 'translated' in res:
                 nr_items_translated += 1
-        #LOOP object HTML items
+        # LOOP object HTML items
         if len(json_data['html']):
             nr_html_items += 1
             obj = get_translation_object_from_uid(json_file, catalog)
-            trans_obj_path = get_translation_object_path(obj, language, site_url)
+            trans_obj_path = get_translation_object_path(
+                    obj, language, site_url)
             if not trans_obj_path:
                 continue
 
@@ -1032,27 +1047,45 @@ def translation_step_2(site, request, force_uid=None):
             )
         logger.info("TransStep2 File  %s from %s, total files %s",nr_files, len(json_files), total_files)
         if not force_uid:
-            report['date']['last_update'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            report['response'] = {'items': {'nr_files': nr_files, 'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items, 'portal_type':portal_type}
+            report['date']['last_update'] = datetime.now().strftime(
+                    "%Y-%m-%d %H:%M:%S")
+            report['response'] = {
+                'items': {
+                    'nr_files': nr_files,
+                    'nr': nr_items,
+                    'nr_already_translated': nr_items_translated
+                },
+                'htmls': nr_html_items,
+                'portal_type': portal_type
+            }
             report['total_files'] = total_files
             report['status'] = 'Processing'
 
-            json_object = json.dumps(report, indent = 4)
-            with open("/tmp/translate_step_2_"+language+"_"+report_date+".json", "w") as outfile:
+            json_object = json.dumps(report, indent=4)
+            with open("/tmp/translate_step_2_" + language + "_" + report_date +
+                      ".json", "w") as outfile:
                 outfile.write(json_object)
         time.sleep(0.5)
 
     if not force_uid:
         report['date']['end'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         report['status'] = 'Done'
-        report['response'] = {'items': {'nr_files': nr_files, 'nr':nr_items, 'nr_already_translated':nr_items_translated},'htmls':nr_html_items}
+        report['response'] = {
+            'items': {
+                'nr_files': nr_files,
+                'nr': nr_items,
+                'nr_already_translated': nr_items_translated
+            },
+            'htmls': nr_html_items
+        }
         report['total_files'] = total_files
 
-        json_object = json.dumps(report, indent = 4)
-        with open("/tmp/translate_step_2_"+language+"_"+report_date+".json", "w") as outfile:
+        json_object = json.dumps(report, indent=4)
+        with open("/tmp/translate_step_2_" + language + "_" + report_date +
+                  ".json", "w") as outfile:
             outfile.write(json_object)
 
-    logger.info("Files: %s, TotalItems: %s, Already translated: %s HtmlItems: %s",
+    logger.info("Files: %s, Total: %s, Already translated: %s HtmlItems: %s",
                 nr_files, nr_items, nr_items_translated, nr_html_items)
 
 def translation_step_3_one_file(json_file, language, catalog, portal_type = None):
@@ -1064,7 +1097,7 @@ def translation_step_3_one_file(json_file, language, catalog, portal_type = None
     file = open("/tmp/jsons/"+json_file, "r")
     json_content = file.read()
     json_data = json.loads(json_content)
-    if portal_type and portal_type!=json_data['portal_type']:
+    if portal_type and portal_type != json_data['portal_type']:
         return
     have_change = False
     if 'tile' in json_data:
@@ -1079,7 +1112,8 @@ def translation_step_3_one_file(json_file, language, catalog, portal_type = None
                     update = tile.data
                 except AttributeError:
                     update = tile
-                translated_msg = get_translated(tile_data['item'][key], language.upper())
+                translated_msg = get_translated(
+                        tile_data['item'][key], language.upper())
                 if translated_msg:
                     if key == "title":
                         update[key] = translated_msg.encode('latin-1')
@@ -1093,7 +1127,8 @@ def translation_step_3_one_file(json_file, language, catalog, portal_type = None
                 trans_obj.__annotations__[tile_annot_id] = update
 
     for key in json_data['item'].keys():
-        translated_msg = get_translated(json_data['item'][key], language.upper())
+        translated_msg = get_translated(
+                json_data['item'][key], language.upper())
 
         if translated_msg:
             encoded_text = translated_msg.encode('latin-1')
@@ -1136,12 +1171,21 @@ def translation_step_3(site, request):
         return "Missing language parameter. (Example: ?language=it)"
     catalog = site.portal_catalog
     json_files = get_translation_json_files(uid)
-    total_files = len(json_files)  # total translatable eng objects (not unique)
+    total_files = len(json_files)  # total translatable eng objs (not unique)
 
     report_date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     report = {}
-    report['date'] = {'start':datetime.now().strftime("%Y-%m-%d %H:%M:%S"),'end':None}
-    report['filter'] = {'language':language, 'uid':uid, 'limit': limit, 'offset': offset, 'portal_type': portal_type}
+    report['date'] = {
+        'start': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        'end': None
+    }
+    report['filter'] = {
+        'language': language,
+        'uid': uid,
+        'limit': limit,
+        'offset': offset,
+        'portal_type': portal_type
+    }
     report['total_files'] = total_files
 
     if limit:
@@ -1149,8 +1193,6 @@ def translation_step_3(site, request):
         json_files = json_files[offset: offset+limit]
 
     nr_files = 0  # total translatable eng objects (not unique)
-    nr_items = 0  # total translatable eng objects (not unique)
-    nr_items_translated = 0  # found translated objects
 
     for json_file in json_files:
         nr_files += 1
@@ -1164,19 +1206,25 @@ def translation_step_3(site, request):
             logger.info("ERROR")  # TODO improve this
             logger.info(err)
 
-        report['date']['last_update'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        report['response'] = {'last_item': json_file, 'files_processd': nr_files}
+        report['date']['last_update'] = datetime.now().strftime(
+                "%Y-%m-%d %H:%M:%S")
+        report['response'] = {
+            'last_item': json_file,
+            'files_processd': nr_files
+        }
         report['status'] = 'Processing'
 
-        json_object = json.dumps(report, indent = 4)
-        with open("/tmp/translate_step_3_"+language+"_"+report_date+".json", "w") as outfile:
+        json_object = json.dumps(report, indent=4)
+        with open("/tmp/translate_step_3_" + language + "_" + report_date +
+                  ".json", "w") as outfile:
             outfile.write(json_object)
 
     report['date']['end'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     report['status'] = 'Done'
 
-    json_object = json.dumps(report, indent = 4)
-    with open("/tmp/translate_step_3_"+language+"_"+report_date+".json", "w") as outfile:
+    json_object = json.dumps(report, indent=4)
+    with open("/tmp/translate_step_3_" + language + "_" + report_date +
+              ".json", "w") as outfile:
         outfile.write(json_object)
 
     logger.info("Finalize step 3")
@@ -1204,7 +1252,6 @@ def translation_step_4(site, request):
         search_data['sort_limit'] = limit
     if portal_type:
         search_data['portal_type'] = portal_type
-    # import pdb; pdb.set_trace()
 
     # brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
     brains = catalog.searchResults(search_data)
@@ -1292,10 +1339,9 @@ def translation_step_4(site, request):
 
         reindex = False
 
-        #import pdb; pdb.set_trace()
         if obj.portal_type == 'collective.cover.content':
-            #Set propper collection for current language
-            #WE supose to have only one cards_tile in the list of tiles
+            # Set propper collection for current language
+            # WE supose to have only one cards_tile in the list of tiles
             try:
                 data_tiles = obj.get_tiles()
                 for data_tile in data_tiles:
@@ -1303,23 +1349,27 @@ def translation_step_4(site, request):
                         data_trans_tiles = obj.get_tiles()
                         for data_trans_tile in data_trans_tiles:
                             if data_trans_tile['type'] == 'eea.climateadapt.cards_tile':
-                                #import pdb; pdb.set_trace()
                                 tile = obj.get_tile(data_tile['id'])
                                 try:
-                                    trans_tile = trans_obj.get_tile(data_trans_tile['id'])
+                                    trans_tile = trans_obj.get_tile(
+                                            data_trans_tile['id'])
                                 except ValueError:
                                     logger.info("Tile not found.")
                                     trans_tile = None
 
                                 if trans_tile is not None:
-                                    collection_obj = uuidToObject(tile.data["uuid"])
-                                    collection_trans_obj = get_translation_object(collection_obj, language)
+                                    collection_obj = uuidToObject(
+                                            tile.data["uuid"])
+                                    collection_trans_obj = \
+                                        get_translation_object(
+                                            collection_obj, language)
 
                                     dataManager = ITileDataManager(trans_tile)
 
                                     temp = dataManager.get()
                                     try:
-                                        temp['uuid'] = IUUID(collection_trans_obj)
+                                        temp['uuid'] = IUUID(
+                                                collection_trans_obj)
                                     except TypeError:
                                         logger.info("Collection not found.")
 
@@ -1346,7 +1396,6 @@ def translation_step_4(site, request):
                 except:
                     logger.info("Can't set default page for: %s",
                                 trans_obj.absolute_url())
-            #else:
             if not reindex:
                 reindex = True
                 trans_obj.setLayout(layout_en)
@@ -1359,7 +1408,8 @@ def translation_step_4(site, request):
             # also set the layout of the default view
             if layout_default_view_en:
                 try:
-                    trans_obj[default_view_en].setLayout(layout_default_view_en)
+                    trans_obj[default_view_en].setLayout(
+                            layout_default_view_en)
                 except:
                     logger.info("Can't set layout for: %s",
                                 trans_obj.absolute_url())
@@ -1384,21 +1434,15 @@ def translation_step_4(site, request):
                 logger.info("Missing translation for: %s", obj_url)
                 continue
 
-            #force_unlock(trans_obj)
-            #reindex = False
-
             fields = language_independent_fields[obj.portal_type]
             for key in fields:
                 logger.info("Field: %s", key)
 
-                # TODO simplify this
                 if key == 'start':
-                    # setattr(trans_obj, key, obj.start)
                     trans_obj.start = obj.start
                     reindex = True
                 elif key == 'end':
                     trans_obj.end = obj.end
-                    # setattr(trans_obj, key, obj.start)
                     reindex = True
                 elif key == 'effective':
                     trans_obj.setEffectiveDate(obj.effective_date)
@@ -1414,7 +1458,6 @@ def translation_step_4(site, request):
                         logger.info("Skip: %s %s", obj.portal_type, key)
 
         if reindex is True:
-            # reindex object
             trans_obj._p_changed = True
             trans_obj.reindexObject()
             transaction.commit()  # TODO Improve. This is a fix for Event.
@@ -1510,7 +1553,6 @@ def translation_repaire(site, request):
         return "Looks like we the file is not valid json"
     json_data = json.loads(json_content)
 
-    #import pdb; pdb.set_trace()
     if '_details' not in json_data:
         return "Details key was not found in json"
 
