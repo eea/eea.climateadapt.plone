@@ -79,7 +79,7 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
     cca_event_languages = {
         "English": "EN",
         "German": "DE",
-        "French": "FE",
+        "French": "FR",
         "Spanish": "ES",
         "Italian": "IT",
         "Dutch": "NL",
