@@ -908,17 +908,22 @@ class AdaptationNatureBasesSolutions:
         catalog = api.portal.get_tool("portal_catalog")
 
         res = []
+        i_transaction = 0
         for _type in DB_ITEM_TYPES:
             brains = catalog.searchResults(
                 portal_type=_type
             )
             for brain in brains:
                 obj = brain.getObject()
-
                 if not hasattr(obj, "sectors"):
                     continue
                 if 'ECOSYSTEM' not in obj.sectors:
                     continue
+
+                i_transaction += 1
+                if i_transaction % 100 == 0:
+                    transaction.savepoint()
+
                 if not obj.elements:
                     obj.elements = []
                 if not hasattr(obj, "elements"):
@@ -941,6 +946,7 @@ class AdaptationNatureBasesSolutions:
                     }
                 )
 
+        transaction.commit()
         return res
 
 class ElementNatureBasesSolutions:
@@ -952,6 +958,7 @@ class ElementNatureBasesSolutions:
         catalog = api.portal.get_tool("portal_catalog")
 
         res = []
+        i_transaction = 0
         for _type in DB_ITEM_TYPES:
             brains = catalog.searchResults(
                 portal_type=_type
@@ -966,6 +973,9 @@ class ElementNatureBasesSolutions:
                 #import pdb; pdb.set_trace()
                 if 'NATUREBASEDSOL' not in obj.elements:
                     continue
+                i_transaction += 1
+                if i_transaction % 100 == 0:
+                    transaction.savepoint()
                 obj._p_changed = True
                 obj.reindexObject()
                 logger.info("Reindex: %s %s", brain.getURL(), obj.elements)
@@ -981,4 +991,5 @@ class ElementNatureBasesSolutions:
                     }
                 )
 
+        transaction.commit()
         return res
