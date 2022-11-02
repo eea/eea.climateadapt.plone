@@ -36,6 +36,13 @@
       />
 
   <browser:page
+      name="admin-fix-urls-translated-content"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".admin.FixUrlsForTranslatedContent"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
       name="admin-verify-translation-fields"
       for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
       class=".admin.VerifyTranslationFields"
