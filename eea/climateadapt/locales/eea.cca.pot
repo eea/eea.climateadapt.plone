@@ -67,3 +67,12 @@ msgstr ""
 
 msgid "Most recent <br/> Publication or Report"
 msgstr ""
+
+msgid "National adaption policy"
+msgstr ""
+
+msgid "Climate change impact and vulnerability assessments"
+msgstr ""
+
+msgid "Adaptation portals and platforms"
+msgstr ""

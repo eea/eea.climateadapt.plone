@@ -20,12 +20,18 @@ msgstr ""
 msgid "Adaptation options"
 msgstr "Aanpassingsopties"
 
+msgid "Adaptation portals and platforms"
+msgstr ""
+
 msgid "Based on your preferences, you can view this page in english"
 msgstr ""
 
 # ,
 msgid "Case studies"
 msgstr "Casestudy"
+
+msgid "Climate change impact and vulnerability assessments"
+msgstr ""
 
 # ,
 msgid "Countries:"
@@ -50,6 +56,9 @@ msgid "Most recent <br/> Case Study"
 msgstr ""
 
 msgid "Most recent <br/> Publication or Report"
+msgstr ""
+
+msgid "National adaption policy"
 msgstr ""
 
 # ,

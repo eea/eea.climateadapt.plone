@@ -17,7 +17,7 @@ jQuery(document).ready(function () {
   $sw.append($load);
 
   d3.json(cpath, function (world) {
-    $.get('/en/countries-regions/countries/@@countries-metadata-extract?langflag=1', function (metadata) {
+    $.get('/'+getCurrentLanguage()+'/countries-regions/countries/@@countries-metadata-extract?langflag=1', function (metadata) {
       d3.tsv(fpath, function (flags) {
         window._flags = flags;
         initmap(metadata, world, flags);
@@ -31,13 +31,14 @@ jQuery(document).ready(function () {
 function initmap(metadata, world, flags) {
   countrySettings = metadata[0];
   var sections = metadata[1];
+  var sections_language = metadata[2];
 
   world = world.features;
 
   // setCountryFlags(world, flags);
 
   createSectionsSelector(
-    sections,
+    sections_language,
     countrySettings,
     function () {
       drawCountries(world);
@@ -774,8 +775,10 @@ function updateSelectedMapSection(key) {
 function createSectionsSelector(sections, countries, callback) {
   // var container = $("#countries-map-selector");
   var widget = $("#sections-selector");
-
-  sections.forEach(function (key, index) {
+  for (index=0;index<sections.length;index++) {
+    key = sections[index][0];
+    label_name = sections[index][1];
+    console.log(key,index);
     var label = $("<label>");
     var span = $("<span class='radiobtn'>");
     var inp = $("<input type='radio'>")
@@ -790,11 +793,11 @@ function createSectionsSelector(sections, countries, callback) {
 
     label
       .append(inp)
-      .append(key)
+      .append(label_name)
       .append(span)
       ;
     widget.append($(label));
-  });
+  }
 
   $('input', widget).on('change', function () {
     var selectedSection = $(this).attr('value');

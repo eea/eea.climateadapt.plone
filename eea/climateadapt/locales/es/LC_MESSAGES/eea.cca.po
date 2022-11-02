@@ -27,6 +27,9 @@ msgstr ""
 msgid "Adaptation options"
 msgstr "Opciones de adaptación"
 
+msgid "Adaptation portals and platforms"
+msgstr "Portales y plataformas de adaptación,"
+
 msgid "Based on your preferences, you can view this page in english"
 msgstr "Según sus preferencias, puede ver esta página en español"
 
@@ -40,6 +43,9 @@ msgstr "Según sus preferencias, puede ver esta página en español"
 # ,
 msgid "Case studies"
 msgstr "Casos de estudio"
+
+msgid "Climate change impact and vulnerability assessments"
+msgstr "Evaluaciones de vulnerabilidad e impacto del cambio climático"
 
 # ,
 # ,
@@ -108,6 +114,9 @@ msgstr "Caso de estudio <br/> más reciente"
 # ,
 msgid "Most recent <br/> Publication or Report"
 msgstr "Publicación o informe <br/> más reciente"
+
+msgid "National adaption policy"
+msgstr "Política nacional de adaptación"
 
 # ,
 # ,
