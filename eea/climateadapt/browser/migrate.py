@@ -1028,6 +1028,8 @@ class ElementNatureBSReverse:
                 obj = brain.getObject()
                 if not hasattr(obj, "elements"):
                     continue
+                if not obj.elements:
+                    continue
                 if 'NATUREBASEDSOL' not in obj.elements:
                     continue
 
