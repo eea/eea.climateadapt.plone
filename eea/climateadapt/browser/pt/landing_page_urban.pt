@@ -160,7 +160,7 @@
 
             <a href="#t-tools">
               <img src="/++theme++climateadaptv2/static/images/urban-landing/tab1_ico.png" width="50px;">
-              <br><span i18n:translate="">Tools</span>
+              <br><span i18n:translate="">Data and Tools</span>
             </a>
           </li>
           <li class="main-tab-item" style="min-width:230px;">
@@ -172,13 +172,13 @@
           <li class="main-tab-item">
             <a href="#t-databases">
               <img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_ico.png" width="50px;">
-              <br><span i18n:translate="">Databases</span>
+              <br><span i18n:translate="">Resource Catalogue</span>
             </a>
           </li>
           <li class="main-tab-item">
             <a href="#t-policy">
               <img src="/++theme++climateadaptv2/static/images/urban-landing/tab4_ico.png" width="50px;">
-              <br><span i18n:translate="">Policy framework</span>
+              <br><span i18n:translate="">Policy Overview</span>
             </a>
           </li>
           <li class="main-tab-item">
