@@ -905,11 +905,22 @@ class AdaptationNatureBasesSolutions:
     def list(self):
         # overwrite = int(self.request.form.get('overwrite', 0))
 
+        db_item_types = [
+            "eea.climateadapt.guidancedocument",
+            "eea.climateadapt.indicator",
+            "eea.climateadapt.informationportal",
+            "eea.climateadapt.organisation",
+            "eea.climateadapt.publicationreport",
+            "eea.climateadapt.aceproject",
+            "eea.climateadapt.tool",
+            "eea.climateadapt.video",
+        ]
+
         catalog = api.portal.get_tool("portal_catalog")
 
         res = []
         i_transaction = 0
-        for _type in DB_ITEM_TYPES:
+        for _type in db_item_types:
             brains = catalog.searchResults(
                 portal_type=_type
             )
@@ -979,6 +990,61 @@ class ElementNatureBasesSolutions:
                 obj._p_changed = True
                 obj.reindexObject()
                 logger.info("Reindex: %s %s", brain.getURL(), obj.elements)
+
+                res.append(
+                    {
+                        "title": obj.title,
+                        "id": brain.UID,
+                        "url": brain.getURL(),
+                        # 'publication_date': obj.publication_date,
+                        "sectors": obj.sectors,
+                        "elements": obj.elements,
+                    }
+                )
+
+        transaction.commit()
+        return res
+
+class ElementNatureBSReverse:
+    """Ecosystem based aproach revert"""
+
+    def list(self):
+        # overwrite = int(self.request.form.get('overwrite', 0))
+
+        db_item_types = [
+            "eea.climateadapt.adaptationoption",
+            "eea.climateadapt.casestudy",
+        ]
+
+        catalog = api.portal.get_tool("portal_catalog")
+
+        res = []
+        i_transaction = 0
+        for _type in db_item_types:
+            brains = catalog.searchResults(
+                portal_type=_type
+            )
+            for brain in brains:
+                obj = brain.getObject()
+                if not hasattr(obj, "elements"):
+                    continue
+                if 'NATUREBASEDSOL' not in obj.elements:
+                    continue
+
+                i_transaction += 1
+                if i_transaction % 100 == 0:
+                    transaction.savepoint()
+
+                if not obj.sectors:
+                    obj.sectors = []
+                if not hasattr(obj, "sectors"):
+                    obj.sectors = []
+                if 'ECOSYSTEM' not in obj.sectors:
+                    obj.sectors.append('ECOSYSTEM');
+                obj.elements.remove('NATUREBASEDSOL')
+                obj._p_changed = True
+                obj.reindexObject()
+                logger.info("Migrated adaptation element: %s %s", brain.getURL(), obj.elements)
 
                 res.append(
                     {
