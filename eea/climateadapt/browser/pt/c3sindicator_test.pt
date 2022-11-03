@@ -1,0 +1,116 @@
+<h1>Mean Temperature, 1950 - 2100</h1>
+<button class="btn-hidden fs-only standard-button primary-button fullscreen-cmd" style="float: right; position: relative;" href="" data-fullscreen="false">
+    Fullscreen
+</button>
+<div>
+  <details class="general-info collapsible" open="">
+    <summary>Background Information</summary>
+    <tal><p>Temperature is an essential climate variable making the Daily Mean Temperature a fundamental index for following climate variability and change. This Index is the main one in the Mean temperature Hazard type of the Heat and Cold category of the classification.
+A higher Index value indicates a warmer climate. Change (i.e difference relative to an average over a 30-year reference period) in annual mean temperature is often used as a headline index in regional climate change assessments whereas changes in seasonal means are relevant for seasonal changes evaluation and sectoral applications.</p>
+<p><strong>Definition</strong>
+Daily mean temperature (°C) is the mean of temperature values during a day.
+In weather and climate models temperature is the variable simulating atmospheric air temperature at 2m above the surface. This Index is usually presented as annual, seasonal or monthly values over a reference period.  </p>
+<p><strong>Data Sources</strong>
+The data was assembled on behalf of the Copernicus Climate Change Service (C3S) based on climate projections hosted on the C3S Climate Data Store (CDS). The Index is calculated from a set of nine bias-corrected multi-model simulations from the EURO-CORDEX experiment. These simulations have a spatial resolution of 0.25° x 0.25°, a 3-hourly output, and cover scenarios RCP4.5 and RCP8.5. More information about the dataset can be found in the corresponding <a href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/sis-energy-derived-projections">CDS documentation resources</a>. </p>
+<p><strong>Supporting Information</strong>
+Further information about this application can be found in the Product User Guide (PUG) of the application in the documentation resources of the CDS.
+Related information also be found in other sections of the EEA site: </p>
+<ul>
+<li>The Index based interactive EEA report: Heat and cold-mean air temperature (<a href="https://www.eea.europa.eu/publications/europes-changing-climate-hazards-1/heat-and-cold/heat-and-cold-2014-mean">link</a>).</li>
+<li>The EEA Indicators: Global and European temperatures (<a href="https://www.eea.europa.eu/ims/global-and-european-temperatures">link</a>), </li>
+</ul>
+</tal>
+  </details>
+</div>
+<div>
+  <details class="vis-nav collapsible" open="">
+    <summary>Visualisation and Navigation</summary>
+    <tal><p>The application has an interactive map on the left side with a set of drop down menus to select the regions (NUTS, Transnational regions or Europe Zones), the time span (Year, Season or Month) and the emission scenario (RCP4.5 or RCP8.5). By clicking on the map, a scrolling panel appears on the right side displaying interactive plots corresponding to spatial and temporal averages over the selected region. Hover over the plots to see the values. </p>
+<p>Some plots show an uncertainty envelope representing the range of Likely values, as defined by the IPCC, based on an ensemble of models (see FAQ).   </p>
+</tal>
+  </details>
+</div>
+
+<div class="row">
+    <div class="column col-md-12" data-panel="">
+        <button class="hidden-fs standard-button primary-button fullscreen-cmd" style="float: right; position: relative;" href="" data-fullscreen="false">Fullscreen</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="column col-md-12" data-panel="">
+          <div class="t-ct">
+              <div id="toolbox-app">
+                  <div class="pre-app-loading">
+                      <img src="https://cds.climate.copernicus.eu/toolbox/assets/spinner.svg"
+                          alt="Loading">
+                      <div>
+                          Loading index...
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <script type="text/javascript">
+              window.cds_toolbox = {
+                  cds_public_path: 'https://cds.climate.copernicus.eu/toolbox/'
+              };
+              const pageURL = window.location.origin + window.location.pathname;
+          </script>
+
+          <script type="text/javascript"
+              src="https://cds.climate.copernicus.eu/toolbox/toolbox-latest.js"></script>
+
+          <script type="text/javascript">
+              const WORKFLOW = 'https://cds.climate.copernicus.eu/workflows/c3s/ecde-app-mean-temperature/master/configuration.json';
+              const WORKFLOWPARAMS = {};
+
+              (function () {
+                  document.addEventListener('DOMContentLoaded', function () {
+                      window.cds_toolbox.runApp(
+                          'toolbox-app',
+                          WORKFLOW,
+                          {
+                              workflowParams: WORKFLOWPARAMS,
+                          }
+                      );
+                  }, false);
+              })();
+          </script>
+      </div>
+</div>
+
+<script>
+  (function () {
+    const buttons = document
+      .querySelectorAll(".fullscreen-cmd");
+    buttons.forEach(function (fullscreenBtn) {
+      fullscreenBtn?.addEventListener("click", (ev) => {
+        ev.preventDefault();
+        const element = ev.target;
+        if (element.getAttribute("data-fullscreen") === "false") {
+          document.querySelector("body").classList.add("fullscreen");
+          buttons.forEach(function (button) {
+            button.setAttribute("data-fullscreen", "true");
+            button.innerText = "Exit fullscreen";
+          });
+          document.querySelector(".general-info").open = false;
+        } else {
+          document.querySelector("body").classList.remove("fullscreen");
+          buttons.forEach(function (button) {
+            button.setAttribute("data-fullscreen", "false");
+            button.innerText = "Fullscreen";
+          });
+          document.querySelector(".general-info").open = true;
+        }
+      });
+    });
+  })();
+</script>
+
+
+
+
+<link rel="stylesheet" type="text/css" media="screen" href="http://ecde-dev.copernicus-climate.eu/css/style-maris.css?v=ec476a3554" />
+
+  <p>Content in the European Climate Data Explorer pages is delivered by the <a href="https://climate.copernicus.eu/">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href="/knowledge/european-climate-data-explorer/disclaimer">Disclaimer</a></p>

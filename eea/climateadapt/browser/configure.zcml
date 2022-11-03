@@ -129,6 +129,14 @@
       />
 
   <browser:page
+      name="c3sindicator-test"
+      for="*"
+      template="pt/c3sindicator_test.pt"
+      permission="zope2.View"
+      />
+
+
+  <browser:page
       name="urban-landing-page"
       for="*"
       template="pt/landing_page_urban.pt"
