@@ -254,7 +254,7 @@ class CountryModifier(object):
         # <rdfs:label>Czechia</rdfs:label>
         # </geo:SpatialThing>
         # </dcterms:spatial>
-        country = self.context.Title()
+        country = self.context.id.replace("-", " ").title()
         code = country_to_code[country]
 
         SpatialThing = session.get_class(surf.ns.GEO.SpatialThing)
