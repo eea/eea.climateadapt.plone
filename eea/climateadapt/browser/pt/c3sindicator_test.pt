@@ -22,6 +22,16 @@ display: list-item;
 cursor: pointer;
 font-weight: 700;
 }
+hr {
+    background: #005C96;
+    height: 4px;
+}
+/* App loading icon centered */
+.pre-app-loading {
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+}
 </style>
 
 <script>
@@ -69,7 +79,7 @@ Related information also be found in other sections of the EEA site: </p>
   <button class="hidden-fs standard-button primary-button fullscreen-cmd" style="float: right; position: relative;" href="" data-fullscreen="false">Fullscreen</button>
 </div>
 </div>
-
+<hr>
 <div class="row">
 <div class="column col-md-12" data-panel="">
     <div class="t-ct">
@@ -139,4 +149,4 @@ window.define = window._define;
 
 <!-- <link rel="stylesheet" type="text/css" media="screen" href="http://ecde-dev.copernicus-climate.eu/css/style-maris.css?v=ec476a3554" /> -->
 
-<p i18n:translate="">Content in the European Climate Data Explorer pages is delivered by the <a href="https://climate.copernicus.eu/">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href="/knowledge/european-climate-data-explorer/disclaimer">Disclaimer</a></p>
+<br><br><p i18n:translate="">Content in the European Climate Data Explorer pages is delivered by the <a href="https://climate.copernicus.eu/">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href="/knowledge/european-climate-data-explorer/disclaimer">Disclaimer</a></p>
