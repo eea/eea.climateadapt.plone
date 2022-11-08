@@ -5,7 +5,7 @@
 
       <span tal:define="has_children python: bool(section['children'][-1])">
         <a href="" tal:attributes="href section/link;" class="help-main-nav-link">
-          <span tal:content="python: section['label'] + ' introduction'">
+          <span tal:content="python: section['label']">
             Help
           </span>
         </a>
