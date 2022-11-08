@@ -234,11 +234,38 @@ class CaseStudies:
             fileUploaded,
             delimiter=",",
             quotechar='"',
-            #    dialect='excel',
+            # dialect='excel',
         )
 
-        import pdb; pdb.set_trace()
+        catalog = api.portal.get_tool('portal_catalog')
+        brains = catalog.searchResults(
+                path='/cca/en',
+                portal_type="eea.climateadapt.casestudy")
 
+        case_studies = [b.getObject() for b in brains]
+        items = {}
+        for case_study in case_studies:
+            items[case_study.title] = case_study
+
+        items_new = {}
+        for case_study in reader:
+            items_new[case_study[2].decode('utf-8')] = \
+                case_study[39].decode('utf-8')
+
+        new_not_found = []
+        for x in items_new.keys():
+            if x not in items.keys():
+                new_not_found.append(x)
+
+        old_not_found = []
+        for x in items.keys():
+            if x not in items_new.keys():
+                old_not_found.append(x)
+
+        logger.info("Case studies not found in csv file: %s", old_not_found)
+        logger.info("Case studies not found in database: %s", new_not_found)
+
+        __import__('pdb').set_trace()
         # need condition for "Yes"
         # for row in reader:
         #     item = {}
