@@ -215,6 +215,55 @@ class FundingProgramme:
         return response
 
 
+class CaseStudies:
+    """Migrate case studies
+       Use Excel file - column AN, to retag case studies.
+       The column AN list the transnational regions to be displayed
+       on-line in each case study.
+       https://taskman.eionet.europa.eu/issues/156654#note-2
+    """
+
+    def list(self):
+        response = []
+        fileUploaded = self.request.form.get("fileToUpload", None)
+
+        if not fileUploaded:
+            return response
+
+        reader = csv.reader(
+            fileUploaded,
+            delimiter=",",
+            quotechar='"',
+            #    dialect='excel',
+        )
+
+        import pdb; pdb.set_trace()
+
+        # need condition for "Yes"
+        # for row in reader:
+        #     item = {}
+        #     item["title"] = row[0]
+        #     item["funding_programme"] = row[3]
+        #     item["url"] = row[4]
+        #     item["uid"] = row[6]
+        #
+        #     obj = api.content.get(UID=item["uid"])
+        #
+        #     if not obj:
+        #         continue
+        #
+        #     obj.funding_programme = item["funding_programme"]
+        #     obj._p_changed = True
+        #     response.append(
+        #         {
+        #             "title": obj.title,
+        #             "url": item["url"],
+        #             "funding_programme": obj.funding_programme,
+        #         }
+        #     )
+        #     logger.info("Migrated funding programme for obj: %s", obj.absolute_url())
+
+        return response
 # 126085
 class ContributingOrganisationPartner():
     """ Migrate funding_programme field

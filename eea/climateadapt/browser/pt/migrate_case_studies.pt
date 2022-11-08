@@ -1,0 +1,8 @@
+<h1 i18n:translate="">Update case studies transnational regions</h1>
+<form action="./migrate_case_studies" method="post" enctype="multipart/form-data">
+  <br i18n:translate="">Select CSV file to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload" />
+  <input type="submit" value="Process CSV" name="submit" />
+</form>
+<table tal:define="items view/list">
+</table>
