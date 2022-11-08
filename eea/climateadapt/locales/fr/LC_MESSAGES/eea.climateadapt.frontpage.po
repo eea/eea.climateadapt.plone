@@ -1445,7 +1445,7 @@ msgstr "Les ressources en eau sont directement affectées par le changement clim
 #. Default: "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of ${case_studies_tab_repository} and also in collaboration with the main stakeholders. See the ${case_studies_tab_pages}."
 #: ../theme/climateadaptv2/index.html:1142
 msgid "case_studies_tab"
-msgstr "Les études de cas sont le fleuron de la plateforme Climate-ADAPT. Ils ont une structure complète qui couvre tous les aspects clés du cycle de mise en œuvre des mesures d'adaptation et sont soigneusement et spécifiquement préparés pour Climate-ADAPT par l'organisation impliquée dans la mise en œuvre avec le soutien de l'AEE, à la suite d'un ensemble de ${case_studies_tab_repository } et aussi en collaboration avec les principales parties prenantes. Voir les ${case_studies_tab_pages}."
+msgstr "Les études de cas sont le fleuron de la plateforme Climate-ADAPT. Ils ont une structure complète qui couvre tous les aspects clés du cycle de mise en œuvre des mesures d'adaptation et sont soigneusement et spécifiquement préparés pour Climate-ADAPT par l'organisation impliquée dans la mise en œuvre avec le soutien de l'AEE, à la suite d'un ensemble de ${case_studies_tab_repository} et aussi en collaboration avec les principales parties prenantes. Voir les ${case_studies_tab_pages}."
 
 # ,
 # ,
