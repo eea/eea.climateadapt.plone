@@ -807,7 +807,7 @@ msgstr "Zobacz, jak Europa dostosowuje się do zmian klimatu:"
 # ,
 #: ../theme/climateadaptv2/index.html:1329
 msgid "Share <span>your information</span>"
-msgstr "Udostępnij <Pan> twoje informacje </span>"
+msgstr "Udostępnij <span> twoje informacje </span>"
 
 # ,
 # ,

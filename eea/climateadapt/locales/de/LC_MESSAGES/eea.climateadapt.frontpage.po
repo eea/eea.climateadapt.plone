@@ -892,7 +892,7 @@ msgstr "Sehen Sie, wie sich Europa an den Klimawandel anpasst:"
 # ,
 #: ../theme/climateadaptv2/index.html:1329
 msgid "Share <span>your information</span>"
-msgstr "Teilen Sie <Pan> Ihre Informationen </span>"
+msgstr "Teilen Sie <span> Ihre Informationen </span>"
 
 # ,
 # ,
