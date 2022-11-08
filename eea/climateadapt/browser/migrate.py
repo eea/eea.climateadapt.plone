@@ -265,15 +265,15 @@ class CaseStudies:
         logger.info("Case studies not found in csv file: %s", old_not_found)
         logger.info("Case studies not found in database: %s", new_not_found)
 
-        __import__('pdb').set_trace()
-        # need condition for "Yes"
-        # for row in reader:
-        #     item = {}
-        #     item["title"] = row[0]
-        #     item["funding_programme"] = row[3]
-        #     item["url"] = row[4]
-        #     item["uid"] = row[6]
-        #
+        for item in items_new.keys():
+            new_values = items_new[item]
+            case_study = items.get(item, None)
+            if case_study is not None:
+                logger.info("Migrate %s", case_study.absolute_url())
+                # TODO update field, reindex
+            else:
+                logger.info("Not found: %s", item)
+
         #     obj = api.content.get(UID=item["uid"])
         #
         #     if not obj:
@@ -288,7 +288,6 @@ class CaseStudies:
         #             "funding_programme": obj.funding_programme,
         #         }
         #     )
-        #     logger.info("Migrated funding programme for obj: %s", obj.absolute_url())
 
         return response
 # 126085
