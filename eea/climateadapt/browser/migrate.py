@@ -266,10 +266,27 @@ class CaseStudies:
         logger.info("Case studies not found in database: %s", new_not_found)
 
         for item in items_new.keys():
-            new_values = items_new[item]
+            new_values = items_new[item].split("\n")
             case_study = items.get(item, None)
             if case_study is not None:
                 logger.info("Migrate %s", case_study.absolute_url())
+                __import__('pdb').set_trace()
+                try:
+                    old_values = []
+                    values = json.loads(case_study.geochars)[
+                        'geoElements']['macrotrans']
+                    for value in values:
+                        bio = BIOREGIONS.get(value, None)
+                        if bio is None:
+                            logger("Missing bioregion: %s", value)
+                        else:
+                            old_values.append(bio)
+                except Exception:
+                    old_values = None
+
+                logger.info("OLD values: %s", old_values)
+                logger.info("NEW values: %s", new_values)
+
                 # TODO update field, reindex
             else:
                 logger.info("Not found: %s", item)
