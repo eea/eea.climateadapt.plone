@@ -293,6 +293,11 @@ class CaseStudies:
         logger.info("Case studies not found in csv file: %s", old_not_found)
         logger.info("Case studies not found in database: %s", new_not_found)
 
+        regions = {}
+        for k, v in BIOREGIONS.items():
+            if 'TRANS_MACRO' in k:
+                regions[v] = k
+
         list_new_values = []
 
         for item in items_new.keys():
@@ -317,34 +322,44 @@ class CaseStudies:
                 except Exception:
                     old_values = None
 
+                # Set new geochars
+                try:
+                    new_geochars = json.loads(case_study.geochars)
+                except Exception:
+                    new_geochars = {'geoElements': {}}
+
+                logger.info("=== OLD: %s", new_geochars)
+                macro = []
+                new_macros = new_values
+                for new_macro in new_macros:
+                    if new_macro in regions:
+                        macro.append(regions[new_macro])
+                    else:
+                        logger.info("------------- MISSING: %s", new_macro)
+
+                new_geochars['geoElements']['macrotrans'] = macro
+                logger.info("=== NEW: %s", new_geochars)
+
+                # TODO
+                # obj.geochars = json.dumps(geochars).encode()
+                # obj._p_changed = True
+                # obj.reindexObject()
+
                 logger.info("OLD values: %s", old_values)
                 logger.info("NEW values: %s", new_values)
-
-                # TODO update field, reindex
             else:
                 logger.info("Not found: %s", item)
 
+        # Make sure all values are defined in our vocabulary
         missing_definitions = [x for x in set(
             list_new_values) if x not in BIOREGIONS.values()]
         logger.info("Values to be added in BIOREGIONS definition: %s",
                     missing_definitions)
-        __import__('pdb').set_trace()
-        #     obj = api.content.get(UID=item["uid"])
-        #
-        #     if not obj:
-        #         continue
-        #
-        #     obj.funding_programme = item["funding_programme"]
-        #     obj._p_changed = True
-        #     response.append(
-        #         {
-        #             "title": obj.title,
-        #             "url": item["url"],
-        #             "funding_programme": obj.funding_programme,
-        #         }
-        #     )
 
+        logger.info("DONE")
         return response
+
+
 # 126085
 class ContributingOrganisationPartner():
     """ Migrate funding_programme field
