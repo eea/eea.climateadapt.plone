@@ -21,6 +21,7 @@ from plone.app.textfield.value import RichTextValue
 from Products.Five.browser import BrowserView
 from z3c.relationfield import RelationValue
 from zc.relation.interfaces import ICatalog
+from plone.app.multilingual.manager import TranslationManager
 
 
 from eea.climateadapt.vocabulary import BIOREGIONS
@@ -347,9 +348,26 @@ class CaseStudies:
                 new_geochars['geoElements']['macrotrans'] = macro
                 logger.info("=== NEW: %s", new_geochars)
 
-                case_study.geochars = json.dumps(new_geochars).encode()
-                case_study._p_changed = True
-                case_study.reindexObject()
+                prepared_val = json.dumps(new_geochars).encode()
+                obj = case_study
+                obj.geochars = prepared_val
+                obj._p_changed = True
+                obj.reindexObject()
+
+                # Apply the same change for translated content
+                try:
+                    translations = TranslationManager(obj).get_translations()
+                except Exception:
+                    translations = None
+
+                if translations is not None:
+                    for language in translations.keys():
+                        trans_obj = translations[language]
+                        trans_obj.geochars = prepared_val
+                        trans_obj._p_changed = True
+                        trans_obj.reindexObject()
+                        logger.info("Migrated too: %s",
+                                    trans_obj.absolute_url())
 
                 logger.info("OLD values: %s", old_values)
                 logger.info("NEW values: %s", new_values)
