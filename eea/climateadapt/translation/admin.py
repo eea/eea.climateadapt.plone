@@ -1350,7 +1350,7 @@ def translation_step_4(site, request):
                       "include_in_observatory", "subject"],
         "eea.climateadapt.casestudy": [
             "geolocation", "implementation_type", "spatial_values",
-            "effective", "source",
+            "effective", "source", "geochars",
             ],
         "eea.climateadapt.aceproject": [
             "specialtagging", "spatial_values", "funding_programme",
