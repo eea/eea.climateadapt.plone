@@ -265,12 +265,16 @@ class CaseStudies:
         logger.info("Case studies not found in csv file: %s", old_not_found)
         logger.info("Case studies not found in database: %s", new_not_found)
 
+        list_new_values = []
+
         for item in items_new.keys():
             new_values = items_new[item].split("\n")
+            for a_val in new_values:
+                list_new_values.append(a_val)
+
             case_study = items.get(item, None)
             if case_study is not None:
                 logger.info("Migrate %s", case_study.absolute_url())
-                __import__('pdb').set_trace()
                 try:
                     old_values = []
                     values = json.loads(case_study.geochars)[
@@ -291,6 +295,11 @@ class CaseStudies:
             else:
                 logger.info("Not found: %s", item)
 
+        missing_definitions = [x for x in set(
+            list_new_values) if x not in BIOREGIONS.values()]
+        logger.info("Values to be added in BIOREGIONS definition: %s",
+                    missing_definitions)
+        __import__('pdb').set_trace()
         #     obj = api.content.get(UID=item["uid"])
         #
         #     if not obj:
