@@ -215,6 +215,34 @@ class FundingProgramme:
         return response
 
 
+def extract_vals(val):
+    """ Extract values for transnational regions, from csv row value
+    """
+    # Eliminate extra spaces and ,
+    new_val = val.replace(" \n", "\n").replace(",", "").lstrip().rstrip()
+    # Eliminate invalid values
+    invalid = ['', '103', 'New region', 'Delete regions']
+    # Fix some values to match the existing correct values
+    correct = {
+        'Alpine space': 'Alpine Space',
+        'Adriatic-Ionian Region': 'Adriatic-Ionian',
+        'Mediterranean Region': 'Mediterranean',
+        'Mediterranean sea basin': 'Mediterranean Sea Basin',
+        'Adriatic Ionian': 'Adriatic-Ionian',
+        'Baltic': 'Baltic Sea',
+    }
+    new_values = []
+    for a_val in new_val.split("\n"):
+        if a_val not in invalid:
+            new_value = correct.get(a_val, a_val)
+            if new_value == 'Northern Periphery and Arctic':
+                new_values.append('Northern Periphery')
+                new_values.append('Arctic')
+            else:
+                new_values.append(new_value)
+    return new_values
+
+
 class CaseStudies:
     """Migrate case studies
        Use Excel file - column AN, to retag case studies.
@@ -268,8 +296,9 @@ class CaseStudies:
         list_new_values = []
 
         for item in items_new.keys():
-            new_values = items_new[item].split("\n")
+            new_values = extract_vals(items_new[item])
             for a_val in new_values:
+
                 list_new_values.append(a_val)
 
             case_study = items.get(item, None)
