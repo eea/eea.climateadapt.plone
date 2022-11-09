@@ -15,6 +15,7 @@ from eea.climateadapt.vocabulary import _health_impacts
 from plone import api
 from plone.api import portal
 from plone.api.portal import get_tool
+from plone.api.content import get_state
 from plone.app.textfield import RichText
 from plone.app.textfield.value import RichTextValue
 from Products.Five.browser import BrowserView
@@ -286,11 +287,17 @@ class CaseStudies:
                 new_not_found.append(x)
 
         old_not_found = []
+        old_not_found_urls = []
         for x in items.keys():
             if x not in items_new.keys():
                 old_not_found.append(x)
+                not_found_obj = items[x]
+                if get_state(not_found_obj) not in ['archived', 'private']:
+                    old_not_found_urls.append(not_found_obj.absolute_url())
 
         logger.info("Case studies not found in csv file: %s", old_not_found)
+        logger.info("Case studies to be verified by URLs: %s",
+                    old_not_found_urls)
         logger.info("Case studies not found in database: %s", new_not_found)
 
         regions = {}
