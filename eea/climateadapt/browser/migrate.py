@@ -343,6 +343,7 @@ class CaseStudies:
                         macro.append(regions[new_macro])
                     else:
                         logger.info("------------- MISSING: %s", new_macro)
+                        __import__('pdb').set_trace()
 
                 new_geochars['geoElements']['macrotrans'] = macro
                 logger.info("=== NEW: %s", new_geochars)
