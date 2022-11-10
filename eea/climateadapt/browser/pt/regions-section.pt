@@ -21,19 +21,16 @@
 
   <div class="flex-wrapper">
     <div class="region-wrapper">
-      <h6 i18n:translate="">Adriatic Ionian</h6>
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/adriatic-ionian">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/adriatic_ionian.png"/>
       </a>
     </div>
     <div class="region-wrapper">
-      <h6 i18n:translate="">Alpine Space</h6>
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/alpine-space">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/alpine_space.png"/>
       </a>
     </div>
     <div class="region-wrapper">
-      <h6 i18n:translate="">Atlantic Area</h6>
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/atlantic-area">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/atlantic_area.png"/>
       </a>
@@ -47,50 +44,42 @@
     </div>
   -->
     <div class="region-wrapper">
-      <h6 i18n:translate="">Baltic Sea</h6>
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/baltic-sea-region">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/baltic_sea.png"/>
       </a>
     </div>
     <div class="region-wrapper">
-      <h6 i18n:translate="">Central Europe</h6>
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/central-europe">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/central_europe.png"/>
       </a>
     </div>
 
     <div class="region-wrapper">
-      <h6 i18n:translate="">Danube</h6>
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/danube">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/danube.png"/>
       </a>
     </div>
     <div class="region-wrapper">
-      <h6 i18n:translate="">Mediterranean</h6>
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/mediterranean">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/mediterranean.png"/>
       </a>
     </div>
     <div class="region-wrapper">
-      <h6 i18n:translate="">North Sea</h6>
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/north-sea">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/north_sea.png"/>
       </a>
     </div>
     <div class="region-wrapper">
-      <h6 i18n:translate="">North Western Europe</h6>
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/north-west-europe">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/north_western_europe.png"/>
       </a>
     </div>
     <div class="region-wrapper">
-      <h6 i18n:translate="">Northern Periphery and Arctic</h6>
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/northern-periphery">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/northern_periphery_and_arctic.png"/>
       </a>
     </div>
     <div class="region-wrapper">
-      <h6 i18n:translate="">South West Europe</h6>
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/south-west-europe">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/south_west_europe.png"/>
       </a>
