@@ -555,6 +555,7 @@ _header_level = (
 rich_header_level = generic_vocabulary(_header_level)
 alsoProvides(rich_header_level, IVocabularyFactory)
 
+# acesearch-geochars-lbl-TRANS_MACRO_BALKAN_MED=Balkan-Mediterranean
 labels = """
 acesearch-geochars-lbl-GLOBAL=Global
 acesearch-geochars-lbl-EUROPE=Europe
@@ -574,7 +575,6 @@ acesearch-geochars-lbl-TRANS_MACRO_SW_EUR=South West Europe
 acesearch-geochars-lbl-TRANS_MACRO_MED=Mediterranean
 acesearch-geochars-lbl-TRANS_MACRO_DANUBE=Danube
 acesearch-geochars-lbl-TRANS_MACRO_ADR_IONIAN=Adriatic-Ionian
-acesearch-geochars-lbl-TRANS_MACRO_BALKAN_MED=Balkan-Mediterranean
 acesearch-geochars-lbl-TRANS_MACRO_CAR_AREA=Caribbean Area
 acesearch-geochars-lbl-TRANS_MACRO_AMAZONIA=Amazonia
 acesearch-geochars-lbl-TRANS_MACRO_IND_OCEAN_AREA=Indian Ocean Area
