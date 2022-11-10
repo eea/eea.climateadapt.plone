@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-10-25 12:07+0000\n"
+"POT-Creation-Date: 2022-11-10 08:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,7 +46,7 @@ msgstr ""
 msgid "Adaptation options"
 msgstr ""
 
-#: ../../climateadapt/browser/countries.py:161
+#: ../../climateadapt/browser/countries.py:166
 msgid "Adaptation portals and platforms"
 msgstr ""
 
@@ -109,7 +109,7 @@ msgstr ""
 msgid "City"
 msgstr ""
 
-#: ../../climateadapt/browser/countries.py:160
+#: ../../climateadapt/browser/countries.py:165
 msgid "Climate change impact and vulnerability assessments"
 msgstr ""
 
@@ -408,15 +408,15 @@ msgstr ""
 msgid "Information portals"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:535
+#: ../../climateadapt/vocabulary.py:540
 msgid "Institutional: Economic options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:537
+#: ../../climateadapt/vocabulary.py:542
 msgid "Institutional: Government policies and programmes"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:536
+#: ../../climateadapt/vocabulary.py:541
 msgid "Institutional: Law and regulations"
 msgstr ""
 
@@ -432,6 +432,14 @@ msgstr ""
 
 #: ../../climateadapt/behaviors/organisation.py:46
 msgid "Key activities within climate change and health"
+msgstr ""
+
+#: ../../climateadapt/browser/admin.py:549
+msgid "Keyword succesfully deleted: ${kw_old}."
+msgstr ""
+
+#: ../../climateadapt/browser/admin.py:579
+msgid "Keyword succesfully renamed: ${kw_old} to ${kw_new}."
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:155
@@ -518,7 +526,7 @@ msgstr ""
 msgid "Name of the case study clearly identifying its scope and location (250 character limit)"
 msgstr ""
 
-#: ../../climateadapt/browser/countries.py:158
+#: ../../climateadapt/browser/countries.py:163
 msgid "National adaption policy"
 msgstr ""
 
@@ -771,15 +779,15 @@ msgstr ""
 msgid "Short summary"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:534
+#: ../../climateadapt/vocabulary.py:539
 msgid "Social: Behavioural"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:532
+#: ../../climateadapt/vocabulary.py:537
 msgid "Social: Educational options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:533
+#: ../../climateadapt/vocabulary.py:538
 msgid "Social: Informational"
 msgstr ""
 
@@ -819,19 +827,19 @@ msgstr ""
 msgid "Storms"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:530
+#: ../../climateadapt/vocabulary.py:535
 msgid "Structural and physical: Ecosystem-based adaptation options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:528
+#: ../../climateadapt/vocabulary.py:533
 msgid "Structural and physical: Engineering and built environment options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:531
+#: ../../climateadapt/vocabulary.py:536
 msgid "Structural and physical: Service options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:529
+#: ../../climateadapt/vocabulary.py:534
 msgid "Structural and physical: Technological options"
 msgstr ""
 
@@ -884,8 +892,8 @@ msgstr ""
 msgid "Unable to reindex ${name} as part of content rule 'reindex' action: ${error}"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:186
-#: ../../climateadapt/translation/admin.py:2385
+#: ../../climateadapt/contentrules.py:180
+#: ../../climateadapt/translation/admin.py:2535
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 

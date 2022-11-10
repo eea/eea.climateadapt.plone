@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-10-25 12:07+0000\n"
+"POT-Creation-Date: 2022-11-10 08:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -372,7 +372,7 @@ msgstr "Opțiuni de adaptare"
 msgid "Adaptation portal or platform reported"
 msgstr ""
 
-#: ../../climateadapt/browser/countries.py:161
+#: ../../climateadapt/browser/countries.py:166
 msgid "Adaptation portals and platforms"
 msgstr ""
 
@@ -413,10 +413,6 @@ msgstr "detalii suplimentare"
 msgid "Additional information on adaptation responses"
 msgstr "Informații suplimentare despre răspunsurile de adaptare"
 
-#: ../../climateadapt/browser/pt/regions-section.pt:24
-msgid "Adriatic Ionian"
-msgstr ""
-
 #: ../../climateadapt/browser/pt/transnational_regions.pt:420
 msgid "Adriatic and Ionian"
 msgstr ""
@@ -454,7 +450,6 @@ msgstr ""
 msgid "Alpine"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/regions-section.pt:30
 #: ../../climateadapt/browser/pt/transnational_regions.pt:455
 msgid "Alpine Space"
 msgstr ""
@@ -475,20 +470,14 @@ msgstr ""
 msgid "Assessing risks and vulnerability <br /> to climate change"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/regions-section.pt:36
 #: ../../climateadapt/browser/pt/transnational_regions.pt:458
 msgid "Atlantic Area"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/regions-section.pt:42
-msgid "Balkan Mediterranean"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:461
 msgid "Balkan-Mediterranean"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/regions-section.pt:48
 #: ../../climateadapt/browser/pt/transnational_regions.pt:417
 msgid "Baltic Sea"
 msgstr ""
@@ -550,7 +539,6 @@ msgstr "Studii de caz legate de această opțiune:"
 msgid "Category"
 msgstr "Categorie"
 
-#: ../../climateadapt/browser/pt/regions-section.pt:54
 #: ../../climateadapt/browser/pt/transnational_regions.pt:467
 msgid "Central Europe"
 msgstr ""
@@ -604,7 +592,7 @@ msgstr ""
 msgid "Climate Impacts in Europe"
 msgstr ""
 
-#: ../../climateadapt/browser/countries.py:160
+#: ../../climateadapt/browser/countries.py:165
 msgid "Climate change impact and vulnerability assessments"
 msgstr ""
 
@@ -691,9 +679,9 @@ msgstr "Informații de contact pentru Observator"
 msgid "Contact person"
 msgstr "Persoana de contact"
 
-#: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:35
-#: ../../climateadapt/browser/pt/c3sindicator_view.pt:169
-#: ../../climateadapt/browser/pt/c3sindicator_view0.pt:153
+#: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:37
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:157
+#: ../../climateadapt/browser/pt/c3sindicator_view0.pt:174
 msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
 msgstr ""
 
@@ -755,7 +743,6 @@ msgstr "Creat de:"
 msgid "DRMKC"
 msgstr "DRMKC"
 
-#: ../../climateadapt/browser/pt/regions-section.pt:61
 #: ../../climateadapt/browser/pt/transnational_regions.pt:418
 msgid "Danube"
 msgstr ""
@@ -1142,15 +1129,15 @@ msgstr ""
 msgid "Information portals"
 msgstr "Portaluri de informații"
 
-#: ../../climateadapt/vocabulary.py:535
+#: ../../climateadapt/vocabulary.py:540
 msgid "Institutional: Economic options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:537
+#: ../../climateadapt/vocabulary.py:542
 msgid "Institutional: Government policies and programmes"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:536
+#: ../../climateadapt/vocabulary.py:541
 msgid "Institutional: Law and regulations"
 msgstr ""
 
@@ -1178,6 +1165,14 @@ msgstr "Activități cheie în cadrul schimbărilor climatice și al sănătăț
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:203
 msgid "Key vulnerable sectors"
 msgstr "Sectoare vulnerabile cheie"
+
+#: ../../climateadapt/browser/admin.py:549
+msgid "Keyword succesfully deleted: ${kw_old}."
+msgstr ""
+
+#: ../../climateadapt/browser/admin.py:579
+msgid "Keyword succesfully renamed: ${kw_old} to ${kw_new}."
+msgstr ""
 
 # ,
 # ,
@@ -1303,7 +1298,6 @@ msgstr "Primar"
 msgid "Mayors Adapt signatory"
 msgstr "Primii se adaptează semnatar"
 
-#: ../../climateadapt/browser/pt/regions-section.pt:67
 #: ../../climateadapt/browser/pt/transnational_regions.pt:473
 msgid "Mediterranean"
 msgstr ""
@@ -1331,7 +1325,7 @@ msgstr "Numele strategiei/ planului (dacă este adoptat)"
 msgid "National HHAP"
 msgstr ""
 
-#: ../../climateadapt/browser/countries.py:158
+#: ../../climateadapt/browser/countries.py:163
 msgid "National adaption policy"
 msgstr ""
 
@@ -1373,7 +1367,6 @@ msgstr ""
 msgid "Non specific"
 msgstr "Non -specific"
 
-#: ../../climateadapt/browser/pt/regions-section.pt:73
 #: ../../climateadapt/browser/pt/transnational_regions.pt:476
 msgid "North Sea"
 msgstr ""
@@ -1382,11 +1375,6 @@ msgstr ""
 msgid "North West Europe"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/regions-section.pt:79
-msgid "North Western Europe"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/regions-section.pt:85
 #: ../../climateadapt/browser/pt/transnational_regions.pt:482
 msgid "Northern Periphery and Arctic"
 msgstr ""
@@ -1499,10 +1487,6 @@ msgid "Portal Type"
 msgstr "Tip portal"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:61
-msgid "Practical Information"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/ccaevent_view.pt:90
 msgid "Practical information"
 msgstr ""
 
@@ -1756,15 +1740,15 @@ msgstr ""
 msgid "Share your information"
 msgstr "Împărtășește -ți informațiile"
 
-#: ../../climateadapt/vocabulary.py:534
+#: ../../climateadapt/vocabulary.py:539
 msgid "Social: Behavioural"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:532
+#: ../../climateadapt/vocabulary.py:537
 msgid "Social: Educational options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:533
+#: ../../climateadapt/vocabulary.py:538
 msgid "Social: Informational"
 msgstr ""
 
@@ -1799,7 +1783,6 @@ msgstr "Sursă de finanțare"
 msgid "Source:"
 msgstr "Sursă:"
 
-#: ../../climateadapt/browser/pt/regions-section.pt:91
 #: ../../climateadapt/browser/pt/transnational_regions.pt:485
 msgid "South West Europe"
 msgstr ""
@@ -1830,19 +1813,19 @@ msgstr "stare"
 msgid "Storms"
 msgstr "Furtuni"
 
-#: ../../climateadapt/vocabulary.py:530
+#: ../../climateadapt/vocabulary.py:535
 msgid "Structural and physical: Ecosystem-based adaptation options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:528
+#: ../../climateadapt/vocabulary.py:533
 msgid "Structural and physical: Engineering and built environment options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:531
+#: ../../climateadapt/vocabulary.py:536
 msgid "Structural and physical: Service options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:529
+#: ../../climateadapt/vocabulary.py:534
 msgid "Structural and physical: Technological options"
 msgstr ""
 
@@ -1951,7 +1934,7 @@ msgstr "Transport"
 msgid "Tutorial videos"
 msgstr ""
 
-#: ../../climateadapt/translation/admin.py:2385
+#: ../../climateadapt/translation/admin.py:2535
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 

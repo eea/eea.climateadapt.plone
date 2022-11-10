@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-10-25 12:07+0000\n"
+"POT-Creation-Date: 2022-11-10 08:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1011,7 +1011,7 @@ msgstr "Portail ou plate-forme d'adaptation signalé"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/countries.py:161
+#: ../../climateadapt/browser/countries.py:166
 msgid "Adaptation portals and platforms"
 msgstr "Portails et plateformes d'adaptation"
 
@@ -1087,10 +1087,6 @@ msgstr "Détails supplémentaires"
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:158
 msgid "Additional information on adaptation responses"
 msgstr "Informations supplémentaires sur les réponses d'adaptation"
-
-#: ../../climateadapt/browser/pt/regions-section.pt:24
-msgid "Adriatic Ionian"
-msgstr "Adriatique et ionien"
 
 # ,
 # ,
@@ -1190,7 +1186,6 @@ msgstr "Alpin"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/regions-section.pt:30
 #: ../../climateadapt/browser/pt/transnational_regions.pt:455
 msgid "Alpine Space"
 msgstr "Espace alpin"
@@ -1251,14 +1246,9 @@ msgstr "Évaluation des risques et de la vulnérabilité <br /> au changement cl
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/regions-section.pt:36
 #: ../../climateadapt/browser/pt/transnational_regions.pt:458
 msgid "Atlantic Area"
 msgstr "Région de l'Atlantique"
-
-#: ../../climateadapt/browser/pt/regions-section.pt:42
-msgid "Balkan Mediterranean"
-msgstr "Balkan-Méditerranée"
 
 # ,
 # ,
@@ -1280,7 +1270,6 @@ msgstr "Balkan-Méditerranée"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/regions-section.pt:48
 #: ../../climateadapt/browser/pt/transnational_regions.pt:417
 msgid "Baltic Sea"
 msgstr "mer Baltique"
@@ -1399,7 +1388,6 @@ msgstr "Catégorie"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/regions-section.pt:54
 #: ../../climateadapt/browser/pt/transnational_regions.pt:467
 msgid "Central Europe"
 msgstr "Europe centrale"
@@ -1524,7 +1512,7 @@ msgstr "Impacts climatiques en Europe"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/countries.py:160
+#: ../../climateadapt/browser/countries.py:165
 msgid "Climate change impact and vulnerability assessments"
 msgstr "Évaluations de l'impact et de la vulnérabilité du changement climatique"
 
@@ -1672,9 +1660,9 @@ msgstr "Personne à contacter"
 
 # ,
 # ,
-#: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:35
-#: ../../climateadapt/browser/pt/c3sindicator_view.pt:169
-#: ../../climateadapt/browser/pt/c3sindicator_view0.pt:153
+#: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:37
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:157
+#: ../../climateadapt/browser/pt/c3sindicator_view0.pt:174
 msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
 msgstr "Le contenu des pages de l'Explorateur européen de données climatiques est fourni par  <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> mis en oeuvre par ECMWF. <a href=\"/knowledge/european-cimate-data-explorer/disclaimer\"> avertissement </a>"
 
@@ -1785,7 +1773,6 @@ msgstr "DRMKC"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/regions-section.pt:61
 #: ../../climateadapt/browser/pt/transnational_regions.pt:418
 msgid "Danube"
 msgstr "Danube"
@@ -2473,7 +2460,7 @@ msgstr "Portails d'information"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:535
+#: ../../climateadapt/vocabulary.py:540
 msgid "Institutional: Economic options"
 msgstr "Institutionnel: Options économiques"
 
@@ -2484,7 +2471,7 @@ msgstr "Institutionnel: Options économiques"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:537
+#: ../../climateadapt/vocabulary.py:542
 msgid "Institutional: Government policies and programmes"
 msgstr "Institutionnel: politiques et programmes gouvernementaux"
 
@@ -2495,7 +2482,7 @@ msgstr "Institutionnel: politiques et programmes gouvernementaux"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:536
+#: ../../climateadapt/vocabulary.py:541
 msgid "Institutional: Law and regulations"
 msgstr "Institutionnel: droit et réglementation"
 
@@ -2546,6 +2533,14 @@ msgstr "Activités clés dans le changement climatique et la santé"
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:203
 msgid "Key vulnerable sectors"
 msgstr "Secteurs vulnérables clés"
+
+#: ../../climateadapt/browser/admin.py:549
+msgid "Keyword succesfully deleted: ${kw_old}."
+msgstr ""
+
+#: ../../climateadapt/browser/admin.py:579
+msgid "Keyword succesfully renamed: ${kw_old} to ${kw_new}."
+msgstr ""
 
 # ,
 # ,
@@ -2775,7 +2770,6 @@ msgstr "Signataire de Mayors Adapt"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/regions-section.pt:67
 #: ../../climateadapt/browser/pt/transnational_regions.pt:473
 msgid "Mediterranean"
 msgstr "Méditerranée"
@@ -2844,7 +2838,7 @@ msgstr "HAP national"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/countries.py:158
+#: ../../climateadapt/browser/countries.py:163
 msgid "National adaption policy"
 msgstr "Politique d'adaptation nationale"
 
@@ -2932,7 +2926,6 @@ msgstr "Non spécifique"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/regions-section.pt:73
 #: ../../climateadapt/browser/pt/transnational_regions.pt:476
 msgid "North Sea"
 msgstr "la mer du Nord"
@@ -2949,10 +2942,6 @@ msgstr "la mer du Nord"
 msgid "North West Europe"
 msgstr "Europe du Nord-Ouest"
 
-#: ../../climateadapt/browser/pt/regions-section.pt:79
-msgid "North Western Europe"
-msgstr "Europe du Nord-Ouest"
-
 # ,
 # ,
 # ,
@@ -2961,7 +2950,6 @@ msgstr "Europe du Nord-Ouest"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/regions-section.pt:85
 #: ../../climateadapt/browser/pt/transnational_regions.pt:482
 msgid "Northern Periphery and Arctic"
 msgstr "Périphérie nord et Arctique"
@@ -3183,12 +3171,8 @@ msgstr "Population"
 msgid "Portal Type"
 msgstr "Type de portail"
 
-#: ../../climateadapt/browser/pt/ccaevent_view.pt:61
-msgid "Practical Information"
-msgstr ""
-
 # ,
-#: ../../climateadapt/browser/pt/ccaevent_view.pt:90
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:61
 msgid "Practical information"
 msgstr "Informations pratiques"
 
@@ -3670,7 +3654,7 @@ msgstr "Partagez vos informations"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:534
+#: ../../climateadapt/vocabulary.py:539
 msgid "Social: Behavioural"
 msgstr "Social: comportemental"
 
@@ -3681,7 +3665,7 @@ msgstr "Social: comportemental"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:532
+#: ../../climateadapt/vocabulary.py:537
 msgid "Social: Educational options"
 msgstr "Social: Options éducatives"
 
@@ -3692,7 +3676,7 @@ msgstr "Social: Options éducatives"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:533
+#: ../../climateadapt/vocabulary.py:538
 msgid "Social: Informational"
 msgstr "Social: informationnel"
 
@@ -3755,7 +3739,6 @@ msgstr "Source:"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/regions-section.pt:91
 #: ../../climateadapt/browser/pt/transnational_regions.pt:485
 msgid "South West Europe"
 msgstr "Europe du Sud-Ouest"
@@ -3815,7 +3798,7 @@ msgstr "Tempêtes"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:530
+#: ../../climateadapt/vocabulary.py:535
 msgid "Structural and physical: Ecosystem-based adaptation options"
 msgstr "Structurel et physique: options d'adaptation basées sur les écosystèmes"
 
@@ -3826,7 +3809,7 @@ msgstr "Structurel et physique: options d'adaptation basées sur les écosystèm
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:528
+#: ../../climateadapt/vocabulary.py:533
 msgid "Structural and physical: Engineering and built environment options"
 msgstr "Structurel et physique: ingénierie et environnement bâti"
 
@@ -3837,7 +3820,7 @@ msgstr "Structurel et physique: ingénierie et environnement bâti"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:531
+#: ../../climateadapt/vocabulary.py:536
 msgid "Structural and physical: Service options"
 msgstr "Structurel et physique: options de service"
 
@@ -3848,7 +3831,7 @@ msgstr "Structurel et physique: options de service"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:529
+#: ../../climateadapt/vocabulary.py:534
 msgid "Structural and physical: Technological options"
 msgstr "Structurel et physique: options technologiques"
 
@@ -4047,7 +4030,7 @@ msgstr "Transport"
 msgid "Tutorial videos"
 msgstr "Vidéos didactiques"
 
-#: ../../climateadapt/translation/admin.py:2385
+#: ../../climateadapt/translation/admin.py:2535
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-10-25 12:07+0000\n"
+"POT-Creation-Date: 2022-11-10 08:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,14 @@ msgstr ""
 "Language: \n"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:388
+#: ../theme/climateadaptv2/health-homepage.html:391
 #: ../theme/climateadaptv2/health-page-full.html:147
 #: ../theme/climateadaptv2/health-page.html:238
 msgid "Contact"
 msgstr "kontaktas"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:213
+#: ../theme/climateadaptv2/health-homepage.html:216
 msgid "Country profiles"
 msgstr "Šalies profiliai"
 
@@ -33,50 +33,54 @@ msgstr "Šalies profiliai"
 msgid "Discover the main topics and tools of the observatory"
 msgstr "Atraskite pagrindines observatorijos temas ir įrankius"
 
+#: ../theme/climateadaptv2/health-homepage.html:174
+msgid "EEA report on climate & health"
+msgstr ""
+
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:140
 msgid "European Climate <br /> and Health Observatory"
 msgstr "Europos klimatas <br /> ir sveikatos observatorija"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:295
+#: ../theme/climateadaptv2/health-homepage.html:298
 #: ../theme/climateadaptv2/health-page.html:145
 msgid "Events"
 msgstr "Įvykiai"
 
-#: ../theme/climateadaptv2/health-homepage.html:175
-msgid "Explore the availability of urban green to elderly and unemployed people, and around schools and hospitals"
-msgstr ""
-
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:350
+#: ../theme/climateadaptv2/health-homepage.html:353
 #: ../theme/climateadaptv2/health-page.html:200
 msgid "Find out how to contribute to the Observatory via Climate-ADAPT"
 msgstr "Sužinokite, kaip prisidėti prie observatorijos per klimatą, pritaikant"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:385
+#: ../theme/climateadaptv2/health-homepage.html:388
 #: ../theme/climateadaptv2/health-page-full.html:144
 #: ../theme/climateadaptv2/health-page.html:235
 msgid "Home"
 msgstr "Namai"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:193
+#: ../theme/climateadaptv2/health-homepage.html:196
 msgid "INDICATORS"
 msgstr "Rodikliai"
+
+#: ../theme/climateadaptv2/health-homepage.html:175
+msgid "Learn how heat and infectious diseases induced by climate change affect health and well-being in Europe"
+msgstr ""
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:177
 msgid "Learn more"
 msgstr "Sužinokite daugiau"
 
-#: ../theme/climateadaptv2/health-homepage.html:330
+#: ../theme/climateadaptv2/health-homepage.html:333
 #: ../theme/climateadaptv2/health-page.html:180
 msgid "More events"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:313
+#: ../theme/climateadaptv2/health-homepage.html:316
 #: ../theme/climateadaptv2/health-page.html:163
 msgid "More news"
 msgstr ""
@@ -87,65 +91,61 @@ msgid "New"
 msgstr "Nauja"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:292
+#: ../theme/climateadaptv2/health-homepage.html:295
 #: ../theme/climateadaptv2/health-page.html:142
 msgid "News"
 msgstr "žinios"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:289
+#: ../theme/climateadaptv2/health-homepage.html:292
 #: ../theme/climateadaptv2/health-page.html:139
 msgid "News/Events"
 msgstr "Naujienos/įvykiai"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:401
+#: ../theme/climateadaptv2/health-homepage.html:404
 #: ../theme/climateadaptv2/health-page-full.html:160
 #: ../theme/climateadaptv2/health-page.html:251
 msgid "Privacy and Legal Notice"
 msgstr "Privatumas ir teisinis pranešimas"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:233
+#: ../theme/climateadaptv2/health-homepage.html:236
 msgid "Resource catalogue"
 msgstr "Išteklių katalogas"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:397
+#: ../theme/climateadaptv2/health-homepage.html:400
 #: ../theme/climateadaptv2/health-page-full.html:156
 #: ../theme/climateadaptv2/health-page.html:247
 msgid "SITE MAP"
 msgstr "Svetainės žemėlapis"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:234
+#: ../theme/climateadaptv2/health-homepage.html:237
 msgid "Search and access the Observatory’s database containing case studies, publications, indicators, research projects and other"
 msgstr "Ieškokite ir naudokite observatorijos duomenų bazėje, kurioje yra atvejų analizės, leidinių, rodiklių, tyrimų projektų ir kitų"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:214
+#: ../theme/climateadaptv2/health-homepage.html:217
 msgid "See how countries are addressing climate change adaptation in public health"
 msgstr "Pažiūrėkite, kaip šalys kreipiasi į klimato pokyčių prisitaikymą visuomenės sveikatos srityje"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:349
+#: ../theme/climateadaptv2/health-homepage.html:352
 #: ../theme/climateadaptv2/health-page.html:199
 msgid "Share <br /> your information"
 msgstr "Dalytis <br /> Jūsų informacija"
 
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:441
+#: ../theme/climateadaptv2/health-homepage.html:444
 #: ../theme/climateadaptv2/health-page-full.html:200
 #: ../theme/climateadaptv2/health-page.html:291
 msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
 msgstr "Šis <strong> Europos klimatas ir sveikatos observatorija </strong> yra Europos Komisijos, Europos aplinkos agentūros ir kelių kitų organizacijų partnerystė."
 
-#: ../theme/climateadaptv2/health-homepage.html:174
-msgid "Urban Green For At-Risk Groups"
-msgstr ""
-
 # ,
-#: ../theme/climateadaptv2/health-homepage.html:194
+#: ../theme/climateadaptv2/health-homepage.html:197
 msgid "View climate and health indicators from different trusted information providers"
 msgstr "Peržiūrėkite įvairių patikimų informacijos teikėjų klimato ir sveikatos rodiklius"
 
