@@ -5,12 +5,12 @@
     xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="eea.climateadapt">
 
-    <browser:page
-        for="*"
-        name="convert_origin"
-        class=".migrate.ConvertSiteOrigin"
-        permission="cmf.ManagePortal"
-        />
+  <browser:page
+    for="*"
+    name="convert_origin"
+    class=".migrate.ConvertSiteOrigin"
+    permission="cmf.ManagePortal"
+    />
 
   <browser:page
     name="migrate_year_to_date"
@@ -36,13 +36,13 @@
     permission="cmf.ManagePortal"
     />
 
-    <browser:page
-      name="migrate_health_impacts_none"
-      for="*"
-      template="pt/migrate_health_impacts_none.pt"
-      class=".migrate.UpdateHealthItemsNone"
-      permission="cmf.ManagePortal"
-      />
+  <browser:page
+    name="migrate_health_impacts_none"
+    for="*"
+    template="pt/migrate_health_impacts_none.pt"
+    class=".migrate.UpdateHealthItemsNone"
+    permission="cmf.ManagePortal"
+    />
 
   <browser:page
     name="migrate_health_impacts"
@@ -68,53 +68,67 @@
     permission="cmf.ManagePortal"
     />
 
-    <browser:page
-      name="migrate_ecosystem_to_elements"
-      for="*"
-      template="pt/migrate_ecosystem_elements.pt"
-      class=".migrate.AdaptationNatureBasesSolutions"
-      permission="cmf.ManagePortal"
-      />
+  <browser:page
+    name="migrate_database_items"
+    for="*"
+    class=".migrate.MigrateTransnationalRegionsDatabaseItems"
+    permission="cmf.ManagePortal"
+    />
 
-    <browser:page
-      name="migrate_nature_elements_reindex"
-      for="*"
-      template="pt/migrate_elements_nature_reindex.pt"
-      class=".migrate.ElementNatureBasesSolutions"
-      permission="cmf.ManagePortal"
-      />
+  <browser:page
+    name="migrate_indicators"
+    for="*"
+    class=".migrate.MigrateTransnationalRegionsIndicators"
+    permission="cmf.ManagePortal"
+    />
 
-    <browser:page
-      name="migrate_nature_elements_reverse"
-      for="*"
-      template="pt/migrate_elements_nature_reverse.pt"
-      class=".migrate.ElementNatureBSReverse"
-      permission="cmf.ManagePortal"
-      />
+  <browser:page
+    name="migrate_ecosystem_to_elements"
+    for="*"
+    template="pt/migrate_ecosystem_elements.pt"
+    class=".migrate.AdaptationNatureBasesSolutions"
+    permission="cmf.ManagePortal"
+    />
 
-    <browser:page
-      name="migrate_contributor_list"
-      for="*"
-      template="pt/migrate_contributor_list.pt"
-      class=".migrate.MoveContributorsToList"
-      permission="cmf.ManagePortal"
-      />
+  <browser:page
+    name="migrate_nature_elements_reindex"
+    for="*"
+    template="pt/migrate_elements_nature_reindex.pt"
+    class=".migrate.ElementNatureBasesSolutions"
+    permission="cmf.ManagePortal"
+    />
 
-    <browser:page
-      name="migrate_partener_organisations"
-      for="*"
-      template="pt/migrate_partener_organisations.pt"
-      class=".migrate.ContributingOrganisationPartner"
-      permission="cmf.ManagePortal"
-      />
+  <browser:page
+    name="migrate_nature_elements_reverse"
+    for="*"
+    template="pt/migrate_elements_nature_reverse.pt"
+    class=".migrate.ElementNatureBSReverse"
+    permission="cmf.ManagePortal"
+    />
 
-    <browser:page
-      name="migrate_drmkc_source"
-      for="*"
-      template="pt/migrate_drmkc_source.pt"
-      class=".migrate.DrmkcSource"
-      permission="cmf.ManagePortal"
-      />
+  <browser:page
+    name="migrate_contributor_list"
+    for="*"
+    template="pt/migrate_contributor_list.pt"
+    class=".migrate.MoveContributorsToList"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
+    name="migrate_partener_organisations"
+    for="*"
+    template="pt/migrate_partener_organisations.pt"
+    class=".migrate.ContributingOrganisationPartner"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
+    name="migrate_drmkc_source"
+    for="*"
+    template="pt/migrate_drmkc_source.pt"
+    class=".migrate.DrmkcSource"
+    permission="cmf.ManagePortal"
+    />
 
   <browser:page
     name="migrate_source_to_richtext"
@@ -124,21 +138,21 @@
     permission="cmf.ManagePortal"
     />
 
-    <browser:page
-      name="migrate_funding_programme_updates"
-      for="*"
-      template="pt/migrate_funding_programme_updates.pt"
-      class=".migrate.MigrateFundingProgrammeUpdates"
-      permission="cmf.ManagePortal"
-      />
+  <browser:page
+    name="migrate_funding_programme_updates"
+    for="*"
+    template="pt/migrate_funding_programme_updates.pt"
+    class=".migrate.MigrateFundingProgrammeUpdates"
+    permission="cmf.ManagePortal"
+    />
 
-    <browser:page
-      name="migrate_all_objects_notify"
-      for="*"
-      template="pt/migrate_all_objects_notify.pt"
-      class=".migrate.AllObjectsNotify"
-      permission="cmf.ManagePortal"
-      />
+  <browser:page
+    name="migrate_all_objects_notify"
+    for="*"
+    template="pt/migrate_all_objects_notify.pt"
+    class=".migrate.AllObjectsNotify"
+    permission="cmf.ManagePortal"
+    />
 
   <browser:page
     name="migrate_transnational_regions"

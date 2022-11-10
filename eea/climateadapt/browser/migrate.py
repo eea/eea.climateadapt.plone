@@ -245,6 +245,52 @@ def extract_vals(val):
     return new_values
 
 
+class MigrateTransnationalRegionsDatabaseItems(BrowserView):
+    """ Update transnational regions
+
+    ALL database items EXCEPT: case studies, indicators, adaptation options
+    a. For the items that are currently tagged for Balkan Mediterranean region:
+        REPLACE THE  TAG "Balkan-Mediterranean" WITH
+        i. MEDITERRANEAN tag (items with the following countries selected
+        or mentioned in the text:
+        Greece OR Albania OR Macedonia OR Bulgaria)
+        ii. ADRIATIC-IONIAN REGION  tag (items with the following
+        countries selected or mentioned in the text:
+        Greece OR Albania OR Macedonia)
+        iii. DANUBE REGION tag (items with Bulgaria selected or mentioned)
+        iv. NOTHING (DELETE tag) if countries are not mentioned
+
+    b. For the items  that are currently tagged for Mediterranean region:
+        i. ADD THE TAG MEDITERRANEAN SEA BASIN
+        (NEW TAG needs to be created first) IF the items include or mention:
+        Egypt OR Tunisia OR Algeria OR Turkey OR Israel OR Lebanon OR
+        Palestine OR Jordan OR "Southern and Eastern Mediterranean Countries"
+        OR "surrounding regions" OR "Africa" OR "African" or
+        "Mediterranean basin" OR "Mediterranean Sea basin".
+
+    c. For the items that are currently tagged for Danube Area
+        i. ADD the tag "Black Sea Basin" (NEW TAG needs to be created first)
+        if they mention "Black Sea"
+
+    d. For the items that are currently tagged for South East Europe
+        i. ADD the tag "Mid-Atlantic" (NEW TAG needs to be created first)
+        IF the item include or mention "Morocco" OR "Africa" OR "Canary"
+        Note. No items are currently found with these words
+    """
+    def __call__(self):
+        return "WIP MigrateTransnationalRegionsDatabaseItems"
+
+
+class MigrateTransnationalRegionsIndicators(BrowserView):
+    """ Database INDICATORS (that are always tagged for all regions)
+        a. Remove Balkan-Mediterranean tag for all the items
+        b. Add Black Sea Basin, Mediterranean Sea Basin, Mid-Atlantic
+        (3 new tags need to be created FIRST) for all the items
+    """
+    def __call__(self):
+        return "WIP MigrateTransnationalRegionsIndicators"
+
+
 class CaseStudies:
     """Migrate case studies
        Use Excel file - column AN, to retag case studies.
