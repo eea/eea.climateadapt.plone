@@ -66,14 +66,14 @@ regions = {
          ('United Kingdom', '/countries/united-kingdom')],
         [('atlantic_area.jpg')],
     ],
-    'Balkan-Mediterranean': [
-        [('Bulgaria', '/countries/bulgaria'),
-         ('Cyprus', '/countries/cyprus'),
-         ('Greece', '/countries/greece'),
-         ('Albania', ''),
-         ('Republic of North Macedonia', '')],
-        [('balkan_mediterranean.jpg')],
-    ],
+    #'Balkan-Mediterranean': [
+    #    [('Bulgaria', '/countries/bulgaria'),
+    #     ('Cyprus', '/countries/cyprus'),
+    #     ('Greece', '/countries/greece'),
+    #     ('Albania', ''),
+    #     ('Republic of North Macedonia', '')],
+    #    [('balkan_mediterranean.jpg')],
+    #],
     'Baltic Sea': [
         [('Denmark', '/countries/denmark'),
          ('Estonia', '/countries/estonia'),
@@ -203,6 +203,8 @@ class TransRegionalSelectTile(PersistentCoverTile, TranslationUtilsMixin):
 
         for b in brains:
             obj = b.getObject()
+            if 'Balkan-Mediterranean Area' == obj.title:
+                continue
             provides = ["%s.%s" % (iface.__module__ or '', iface.__name__)
                         for iface in providedBy(obj)]
 

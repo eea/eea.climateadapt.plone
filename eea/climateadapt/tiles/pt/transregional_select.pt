@@ -99,7 +99,7 @@
                tal:attributes="href python: '/++resource++eea.climateadapt.tiles/images/' + info">
 
               <img class="thumb"
-                   tal:attributes="src python: '/++resource++eea.climateadapt.tiles/images/' + info;
+                   tal:attributes="src python: '/cca/++theme++climateadaptv2/static/images/transnational/' + info.replace('.jpg','.png').replace(' ','');
                    alt python:context.Title();
                    title python:context.Title()">
 
