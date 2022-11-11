@@ -278,6 +278,94 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
         Note. No items are currently found with these words
     """
     def __call__(self):
+        content_types = [
+            "eea.climateadapt.aceproject",
+            "eea.climateadapt.guidancedocument",
+            "eea.climateadapt.informationportal",
+            "eea.climateadapt.organisation",
+            "eea.climateadapt.publicationreport",
+            "eea.climateadapt.tool",
+            "eea.climateadapt.video",
+        ]
+        for _type in content_types:
+            catalog = api.portal.get_tool('portal_catalog')
+            brains = catalog.searchResults(
+                    path='/cca/en',
+                    portal_type=_type)
+            logger.info("Start migrating %s", _type)
+
+            regions = {}
+            for k, v in BIOREGIONS.items():
+                if 'TRANS_MACRO' in k:
+                    regions[v] = k
+
+            for brain in brains:
+                obj = brain.getObject()
+                try:
+                    old_values = []
+                    values = json.loads(obj.geochars)[
+                            'geoElements']['macrotrans']
+                    for value in values:
+                        bio = BIOREGIONS.get(value, None)
+                        if bio is None:
+                            logger.info("Missing bioregion: %s", value)
+                        else:
+                            old_values.append(bio)
+                except Exception as err:
+                    old_values = []
+                    logger.info(err)
+
+                logger.info(obj.geochars)
+                logger.info(old_values)
+
+                # Set new geochars
+                # new_values = []
+                # include_vals = ["Black Sea Basin", "Mediterranean Sea Basin",
+                #                 "Mid-Atlantic"]
+                # exclude_vals = ["Balkan-Mediterranean"]
+                #
+                # for val in include_vals:
+                #     new_values.append(val)
+                #
+                # for val in old_values:
+                #     if val not in new_values and val not in exclude_vals:
+                #         new_values.append(val)
+                #
+                # try:
+                #     new_geochars = json.loads(obj.geochars)
+                # except Exception:
+                #     new_geochars = {'geoElements': {}}
+                #
+                # macro = []
+                # new_macros = new_values
+                # for new_macro in new_macros:
+                #     if new_macro in regions:
+                #         macro.append(regions[new_macro])
+                #     else:
+                #         logger.info("------------- MISSING: %s", new_macro)
+                #
+                # new_geochars['geoElements']['macrotrans'] = macro
+                # logger.info("=== NEW: %s", new_geochars)
+                #
+                # prepared_val = json.dumps(new_geochars).encode()
+                # obj.geochars = prepared_val
+                # obj._p_changed = True
+                # obj.reindexObject()
+
+                # Apply the same change for translated content
+                # try:
+                #     translations = TranslationManager(obj).get_translations()
+                # except Exception:
+                #     translations = None
+                #
+                # if translations is not None:
+                #     for language in translations.keys():
+                #         trans_obj = translations[language]
+                #         trans_obj.geochars = prepared_val
+                #         trans_obj._p_changed = True
+                #         trans_obj.reindexObject()
+                #         logger.info("Migrated too: %s",
+                #                     trans_obj.absolute_url())
         return "WIP MigrateTransnationalRegionsDatabaseItems"
 
 
