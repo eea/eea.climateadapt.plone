@@ -584,6 +584,7 @@ acesearch-geochars-lbl-TRANS_MACRO_MID_ATLANTIC=Mid-Atlantic
 acesearch-geochars-lbl-TRANS_MACRO_BALKAN_MED=Balkan-Mediterranean
 acesearch-geochars-lbl-TRANS_MACRO_ARCTIC=Arctic
 acesearch-geochars-lbl-TRANS_MACRO_BLACKSEA=Black Sea
+acesearch-geochars-lbl-TRANS_MACRO_BLACKSEA_BASIN=Black Sea Basin
 acesearch-geochars-lbl-TRANS_MACRO_ATLANTIC=Atlantic
 acesearch-geochars-lbl-TRANS_BIO_ALPINE=Alpine
 acesearch-geochars-lbl-TRANS_BIO_ANATOLIAN=Anatolian
