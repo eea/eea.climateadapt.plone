@@ -345,6 +345,10 @@ class MigrateTransnationalRegionsIndicators(BrowserView):
             new_geochars['geoElements']['macrotrans'] = macro
             logger.info("=== NEW: %s", new_geochars)
 
+            # TODO: 'all the items' = all indicators? Or all the indicators
+            # that had a value set for macro transnational region?
+            # Clarify this before updating the items.
+
             # prepared_val = json.dumps(new_geochars).encode()
             # obj.geochars = prepared_val
             # obj._p_changed = True
