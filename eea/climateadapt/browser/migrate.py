@@ -278,6 +278,16 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
         Note. No items are currently found with these words
     """
     def __call__(self):
+
+        def has_country(vals, countries):
+            """ Check if at least one value is found in countries list
+            """
+            for value in vals:
+                if value in countries:
+                    return True
+
+            return False
+
         content_types = [
             "eea.climateadapt.aceproject",
             "eea.climateadapt.guidancedocument",
@@ -313,10 +323,33 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
                             old_values.append(bio)
                 except Exception as err:
                     old_values = []
-                    logger.info(err)
+                    # logger.info(err)
 
-                logger.info(obj.geochars)
-                logger.info(old_values)
+                try:
+                    countries = json.loads(obj.geochars)[
+                            'geoElements']['countries']
+                except Exception as err:
+                    countries = []
+                    # logger.info(err)
+
+                is_balkan_m = False
+                if "Balkan-Mediterranean" in old_values:
+                    is_balkan_m = True
+
+                if is_balkan_m is True:
+                    logger.info("Countries: %s", countries)
+                    if has_country(["GR", "AL", "MK", "BG"], countries):
+                        logger.info("Replace Blakan-M with Mediterranean")
+                    # or mentioned in the text:
+                    # Greece OR Albania OR Macedonia OR Bulgaria)
+                    # ii. ADRIATIC-IONIAN REGION  tag (items with the following
+                    # countries selected or mentioned in the text:
+                    # Greece OR Albania OR Macedonia)
+                    # iii. DANUBE REGION tag (items with Bulgaria selected or mentioned)
+                    # iv. NOTHING (DELETE tag) if countries are not mentioned
+
+                # logger.info(obj.geochars)
+                # logger.info(old_values)
 
                 # Set new geochars
                 # new_values = []
