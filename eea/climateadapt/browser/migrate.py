@@ -288,6 +288,34 @@ class MigrateTransnationalRegionsIndicators(BrowserView):
         (3 new tags need to be created FIRST) for all the items
     """
     def __call__(self):
+        catalog = api.portal.get_tool('portal_catalog')
+        brains = catalog.searchResults(
+                path='/cca/en',
+                portal_type="eea.climateadapt.indicator")
+
+        regions = {}
+        for k, v in BIOREGIONS.items():
+            if 'TRANS_MACRO' in k:
+                regions[v] = k
+
+        for brain in brains:
+            obj = brain.getObject()
+            try:
+                old_values = []
+                values = json.loads(obj.geochars)['geoElements']['macrotrans']
+                for value in values:
+                    bio = BIOREGIONS.get(value, None)
+                    if bio is None:
+                        logger.info("Missing bioregion: %s", value)
+                    else:
+                        old_values.append(bio)
+            except Exception as err:
+                old_values = None
+                logger.info(err)
+
+            logger.info(obj.geochars)
+            logger.info(old_values)
+
         return "WIP MigrateTransnationalRegionsIndicators"
 
 
@@ -370,7 +398,7 @@ class CaseStudies:
                     for value in values:
                         bio = BIOREGIONS.get(value, None)
                         if bio is None:
-                            logger("Missing bioregion: %s", value)
+                            logger.info("Missing bioregion: %s", value)
                         else:
                             old_values.append(bio)
                 except Exception:

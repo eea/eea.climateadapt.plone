@@ -556,6 +556,7 @@ rich_header_level = generic_vocabulary(_header_level)
 alsoProvides(rich_header_level, IVocabularyFactory)
 
 # acesearch-geochars-lbl-TRANS_MACRO_BALKAN_MED=Balkan-Mediterranean
+# TODO Delete this ^ after migrations are done
 labels = """
 acesearch-geochars-lbl-GLOBAL=Global
 acesearch-geochars-lbl-EUROPE=Europe
@@ -580,6 +581,7 @@ acesearch-geochars-lbl-TRANS_MACRO_AMAZONIA=Amazonia
 acesearch-geochars-lbl-TRANS_MACRO_IND_OCEAN_AREA=Indian Ocean Area
 acesearch-geochars-lbl-TRANS_MACRO_MED_BASIN=Mediterranean Sea Basin
 acesearch-geochars-lbl-TRANS_MACRO_MID_ATLANTIC=Mid-Atlantic
+acesearch-geochars-lbl-TRANS_MACRO_BALKAN_MED=Balkan-Mediterranean
 acesearch-geochars-lbl-TRANS_MACRO_ARCTIC=Arctic
 acesearch-geochars-lbl-TRANS_MACRO_BLACKSEA=Black Sea
 acesearch-geochars-lbl-TRANS_MACRO_ATLANTIC=Atlantic
