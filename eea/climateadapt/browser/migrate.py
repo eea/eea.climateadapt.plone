@@ -451,6 +451,8 @@ class MigrateTransnationalRegionsIndicators(BrowserView):
             if 'TRANS_MACRO' in k:
                 regions[v] = k
 
+        with_empty_field = 0
+        with_values = 0
         for brain in brains:
             obj = brain.getObject()
             try:
@@ -464,10 +466,16 @@ class MigrateTransnationalRegionsIndicators(BrowserView):
                         old_values.append(bio)
             except Exception as err:
                 old_values = []
-                logger.info(err)
+                # logger.info(err)
 
+            logger.info("---------------------------------------- Migrating:")
+            logger.info(obj.absolute_url())
             logger.info(obj.geochars)
             logger.info(old_values)
+            if len(old_values) == 0:
+                with_empty_field += 1
+            else:
+                with_values += 1
 
             # Set new geochars
             new_values = []
@@ -498,31 +506,30 @@ class MigrateTransnationalRegionsIndicators(BrowserView):
             new_geochars['geoElements']['macrotrans'] = macro
             logger.info("=== NEW: %s", new_geochars)
 
-            # TODO: 'all the items' = all indicators? Or all the indicators
-            # that had a value set for macro transnational region?
-            # Clarify this before updating the items.
+            if len(old_values) > 0:
+                prepared_val = json.dumps(new_geochars).encode()
+                obj.geochars = prepared_val
+                obj._p_changed = True
+                obj.reindexObject()
 
-            # prepared_val = json.dumps(new_geochars).encode()
-            # obj.geochars = prepared_val
-            # obj._p_changed = True
-            # obj.reindexObject()
+                # Apply the same change for translated content
+                try:
+                    translations = TranslationManager(obj).get_translations()
+                except Exception:
+                    translations = None
 
-            # Apply the same change for translated content
-            # try:
-            #     translations = TranslationManager(obj).get_translations()
-            # except Exception:
-            #     translations = None
-            #
-            # if translations is not None:
-            #     for language in translations.keys():
-            #         trans_obj = translations[language]
-            #         trans_obj.geochars = prepared_val
-            #         trans_obj._p_changed = True
-            #         trans_obj.reindexObject()
-            #         logger.info("Migrated too: %s",
-            #                     trans_obj.absolute_url())
+                if translations is not None:
+                    for language in translations.keys():
+                        trans_obj = translations[language]
+                        trans_obj.geochars = prepared_val
+                        trans_obj._p_changed = True
+                        trans_obj.reindexObject()
+                        logger.info("Migrated too: %s",
+                                    trans_obj.absolute_url())
 
-        return "WIP MigrateTransnationalRegionsIndicators"
+        logger.info("With empty field %s", with_empty_field)
+        logger.info("With values %s", with_values)
+        return "Done"
 
 
 class CaseStudies:
