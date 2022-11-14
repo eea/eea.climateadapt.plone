@@ -25,6 +25,7 @@ from plone.app.multilingual.manager import TranslationManager
 
 
 from eea.climateadapt.vocabulary import BIOREGIONS
+from eea.climateadapt.vocabulary import SUBNATIONAL_REGIONS
 
 # from zope.schema import Choice
 # from zope.schema.interfaces import IVocabularyFactory
@@ -242,6 +243,21 @@ def extract_vals(val):
                 new_values.append('Arctic')
             else:
                 new_values.append(new_value)
+    return new_values
+
+
+def extract_subnational_vals(val):
+    """ Extract values for subnational regions, from csv row value
+    """
+    # Eliminate extra spaces and ,
+    new_val = val.replace(" \n", "\n").replace(",", "").lstrip().rstrip()
+    # Eliminate invalid values
+    invalid = ['', '103', 'New region', 'Delete regions']
+    new_values = []
+    for a_val in new_val.split("\n"):
+        if a_val not in invalid:
+            new_value = a_val
+            new_values.append(new_value)
     return new_values
 
 
@@ -527,8 +543,10 @@ class CaseStudies:
 
         items_new = {}
         for case_study in reader:
-            items_new[case_study[2].decode('utf-8')] = \
-                case_study[39].decode('utf-8')
+            items_new[case_study[2].decode('utf-8')] = {
+                'trans_macro': case_study[39].decode('utf-8'),
+                'subnational': case_study[34].decode('utf-8'),
+            }
 
         new_not_found = []
         for x in items_new.keys():
@@ -554,10 +572,21 @@ class CaseStudies:
             if 'TRANS_MACRO' in k:
                 regions[v] = k
 
+        sub_regions = {}
+        for k, v in SUBNATIONAL_REGIONS.items():
+            if 'SUBN_' in k:
+                sub_regions[v] = k
+
         list_new_values = []
 
         for item in items_new.keys():
-            new_values = extract_vals(items_new[item])
+            new_values = extract_vals(items_new[item]['trans_macro'])
+            new_sub_values = extract_subnational_vals(
+                    items_new[item]['subnational'])
+            logger.info("MACRO %s", new_values)
+            logger.info("SUB %s", new_sub_values)
+            continue
+
             for a_val in new_values:
 
                 list_new_values.append(a_val)
@@ -595,6 +624,32 @@ class CaseStudies:
 
                 new_geochars['geoElements']['macrotrans'] = macro
                 logger.info("=== NEW: %s", new_geochars)
+
+                # Subnational regions
+                try:
+                    old_sub_values = []
+                    sub_values = json.loads(case_study.geochars)[
+                        'geoElements']['subnational']
+                    for sub_value in sub_values:
+                        # Some keys are non-ASCII, so we use encoding:
+                        # (Pdb) sub_values
+                        # [u'SUBN_Catalu\xf1a__ES_']
+                        # (Pdb) SUBNATIONAL_REGIONS[sub_values[0]]
+                        # *** KeyError: u'SUBN_Catalu\xf1a__ES_'
+                        # (Pdb) SUBNATIONAL_REGIONS[
+                        #                      sub_values[0].encode('utf-8')]
+                        # 'Catalu\xc3\xb1a (ES)'
+                        sub = SUBNATIONAL_REGIONS.get(
+                                sub_value.encode('utf-8'), None)
+
+                        if sub is None:
+                            logger.info("Missing subnational: %s", sub_value)
+                        else:
+                            old_sub_values.append(sub)
+                except Exception:
+                    old_sub_values = None
+
+                # import pdb; pdb.set_trace()
 
                 prepared_val = json.dumps(new_geochars).encode()
                 obj = case_study
@@ -1278,7 +1333,6 @@ class TransnationalRegions:
             local_path = local_path[local_path.find('/'):]
             local_path = local_path[1:]
 
-            #import pdb; pdb.set_trace()
             try:
                 obj = site.restrictedTraverse(local_path.strip())
             except Exception, e:
@@ -1398,7 +1452,7 @@ class ElementNatureBasesSolutions:
                     continue
                 if not obj.elements:
                     continue
-                #import pdb; pdb.set_trace()
+
                 if 'NATUREBASEDSOL' not in obj.elements:
                     continue
                 i_transaction += 1
