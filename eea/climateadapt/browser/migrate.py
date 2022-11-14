@@ -637,7 +637,15 @@ class CaseStudies:
                     else:
                         logger.info("------------- MISSING: %s", new_macro)
 
+                sub_val = []
+                for new_sub in new_sub_values:
+                    encoded_sub = new_sub.encode('utf-8')
+                    if encoded_sub in sub_regions:
+                        sub_val.append(sub_regions[encoded_sub])
+                    else:
+                        logger.info("------------- MISSING: %s", new_sub)
                 new_geochars['geoElements']['macrotrans'] = macro
+                new_geochars['geoElements']['subnational'] = sub_val
                 logger.info("=== NEW: %s", new_geochars)
 
                 # Subnational regions
@@ -663,8 +671,6 @@ class CaseStudies:
                             old_sub_values.append(sub)
                 except Exception:
                     old_sub_values = None
-
-                # import pdb; pdb.set_trace()
 
                 prepared_val = json.dumps(new_geochars).encode()
                 obj = case_study
