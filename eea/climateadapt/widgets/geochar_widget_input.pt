@@ -83,6 +83,12 @@
                     <option value="TRANS_MACRO_N_SEA" i18n:translate="">North Sea</option>
                     <option value="TRANS_MACRO_NW_EUROPE" i18n:translate="">North West Europe</option>
                     <option value="TRANS_MACRO_SW_EUR" i18n:translate="">South West Europe</option>
+                    <option value="TRANS_MACRO_MED_BASIN" i18n:translate="">Mediterranean Sea Basin</option>
+                    <option value="TRANS_MACRO_MID_ATLANTIC" i18n:translate="">Mid-Atlantic</option>
+                    <option value="TRANS_MACRO_ARCTIC" i18n:translate="">Arctic</option>
+                    <option value="TRANS_MACRO_BLACKSEA" i18n:translate="">Black Sea</option>
+                    <option value="TRANS_MACRO_ATLANTIC" i18n:translate="">Atlantic</option>
+                    <option value="TRANS_MACRO_BLACKSEA_BASIN" i18n:translate="">Black Sea Basin</option>
                   </select>
                 </td>
               </tr>
@@ -499,6 +505,7 @@
                           <option value='SUBN_Manisa_Afyonkarahisar_Kütahya_Uşak_TR_'  i18n:translate="">Manisa, Afyonkarahisar, Kütahya, Uşak (TR)</option>
                           <option value='SUBN_Extra_Regio_NUTS_2__LT_'  i18n:translate="">Extra-Regio NUTS 2 (LT)</option>
                           <option value='SUBN_Lazio__IT_'  i18n:translate="">Lazio (IT)</option>
+                          <option value='SUBN_Pisa__IT_'  i18n:translate="">Pisa (IT)</option>
                           <option value='SUBN_Réunion__FR_'  i18n:translate="">Réunion (FR)</option>
                           <option value='SUBN_Aquitaine__FR_'  i18n:translate="">Aquitaine (FR)</option>
                           <option value='SUBN_Syddanmark__DK_'  i18n:translate="">Syddanmark (DK)</option>
