@@ -775,6 +775,7 @@ SUBNATIONAL_REGIONS = {
     "SUBN_Umbria__IT_": "Umbria (IT)",
     "SUBN_Marche__IT_": "Marche (IT)",
     "SUBN_Lazio__IT_": "Lazio (IT)",
+    "SUBN_Pisa__IT_": "Pisa (IT)",
     "SUBN_Extra_Regio_NUTS_2__IT_": "Extra-Regio NUTS 2 (IT)",
     "SUBN_Ísland_IS_": "Ísland (IS)",
     "SUBN_Liechtenstein_LI_": "Liechtenstein (LI)",

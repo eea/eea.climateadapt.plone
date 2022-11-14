@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import csv
 import json
 import logging
@@ -252,12 +253,27 @@ def extract_subnational_vals(val):
     # Eliminate extra spaces and ,
     new_val = val.replace(" \n", "\n").replace(",", "").lstrip().rstrip()
     # Eliminate invalid values
-    invalid = ['', '103', 'New region', 'Delete regions']
+    invalid = ['', '-', 'Nuts 2']
+    # Fix some values to match the existing correct values
+    correct = {
+        'ITI17 - Tuscany': 'Toscana (IT)',
+        'Pisa (Italy)': 'Pisa (IT)',
+    }
     new_values = []
     for a_val in new_val.split("\n"):
         if a_val not in invalid:
             new_value = a_val
-            new_values.append(new_value)
+            if ('SK) V' in new_value and ',' in val) or (
+                    'FI) E' in new_value and ',' in val) or (
+                    'any Pisa' in new_value and ',' in val):
+                # Západné Slovensko (SK), Východné Slovensko (SK)
+                # Pohjois- ja Itä-Suomi (FI), Etelä-Suomi (FI)
+                # ITI17 - Tuscany, Pisa (Italy)
+                temp = val.split(", ")
+                new_values.append(correct.get(temp[0], temp[0]))
+                new_values.append(correct.get(temp[1], temp[1]))
+            else:
+                new_values.append(correct.get(new_value, new_value))
     return new_values
 
 
@@ -578,18 +594,17 @@ class CaseStudies:
                 sub_regions[v] = k
 
         list_new_values = []
+        list_new_sub_values = []
 
         for item in items_new.keys():
             new_values = extract_vals(items_new[item]['trans_macro'])
             new_sub_values = extract_subnational_vals(
                     items_new[item]['subnational'])
-            logger.info("MACRO %s", new_values)
-            logger.info("SUB %s", new_sub_values)
-            continue
 
             for a_val in new_values:
-
                 list_new_values.append(a_val)
+            for a_sub_val in new_sub_values:
+                list_new_sub_values.append(a_sub_val)
 
             case_study = items.get(item, None)
             if case_study is not None:
@@ -682,6 +697,11 @@ class CaseStudies:
             list_new_values) if x not in BIOREGIONS.values()]
         logger.info("Values to be added in BIOREGIONS definition: %s",
                     missing_definitions)
+        missing_sub_definitions = [x for x in set(
+            list_new_sub_values) if x.encode(
+                'utf-8') not in SUBNATIONAL_REGIONS.values()]
+        logger.info("Values to be added in SUBNATIONAL definition: %s",
+                    missing_sub_definitions)
 
         logger.info("DONE")
         return response
@@ -699,7 +719,6 @@ class ContributingOrganisationPartner():
         local_path = local_path[local_path.find('/'):]
         local_path = local_path[1:]
 
-        #import pdb; pdb.set_trace()
         site = api.portal.get()
         try:
             object = site.restrictedTraverse(local_path)
@@ -1038,7 +1057,6 @@ class AllObjectsNotify:
         local_path = local_path[local_path.find('/'):]
         local_path = local_path[1:]
 
-        #import pdb; pdb.set_trace()
         site = api.portal.get()
         try:
             object = site.restrictedTraverse(local_path)
