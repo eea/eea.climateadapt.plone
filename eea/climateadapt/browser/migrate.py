@@ -295,16 +295,48 @@ def search_for(content_types=[], tag="", at_least_one=[],
             if obj.UID() not in res.keys():
                 res[obj.UID()] = {
                     'obj': obj,
-                    'reason': [text_to_search]
+                    'reason_terms': [text_to_search],
+                    'reason_tags': []
                 }
             else:
-                if text_to_search not in res[obj.UID()]['reason']:
-                    res[obj.UID()]['reason'].append(text_to_search)
+                if text_to_search not in res[obj.UID()]['reason_terms']:
+                    res[obj.UID()]['reason_terms'].append(text_to_search)
 
-    # if tag_is_optional is True:
-    #     # TODO search for more content based only on this tag?
-    # else:
-    #     # TODO use the tag as a filter for items found above
+    if tag_is_optional is True:
+        # TODO search for more content based only on this tag?
+        pass
+    else:
+        # use the tag as a filter for items found above
+        temp = res
+        res = {}
+
+        for item_id in temp.keys():
+            item = temp[item_id]
+            obj = item['obj']
+
+            # TODO: Move this outside
+            regions = {}
+            for k, v in BIOREGIONS.items():
+                if 'TRANS_MACRO' in k:
+                    regions[v] = k
+
+            try:
+                old_values = []
+                values = json.loads(obj.geochars)[
+                        'geoElements']['macrotrans']
+                for value in values:
+                    bio = BIOREGIONS.get(value, None)
+                    if bio is None:
+                        logger.info("Missing bioregion: %s", value)
+                    else:
+                        old_values.append(bio)
+            except Exception as err:
+                old_values = []
+
+            if tag in old_values:
+                item['reason_tags'].append(tag)
+                res[obj.UID()] = item
+
     return res
 
 
@@ -396,35 +428,6 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
     def __call__(self):
 
 
-        # for _type in content_types:
-        #     catalog = api.portal.get_tool('portal_catalog')
-        #     brains = catalog.searchResults(
-        #             path='/cca/en',
-        #             portal_type=_type)
-        #     logger.info("Start migrating %s", _type)
-        #
-        #     regions = {}
-        #     for k, v in BIOREGIONS.items():
-        #         if 'TRANS_MACRO' in k:
-        #             regions[v] = k
-        #
-        #     for brain in brains:
-        #         obj = brain.getObject()
-        #         try:
-        #             old_values = []
-        #             values = json.loads(obj.geochars)[
-        #                     'geoElements']['macrotrans']
-        #             for value in values:
-        #                 bio = BIOREGIONS.get(value, None)
-        #                 if bio is None:
-        #                     logger.info("Missing bioregion: %s", value)
-        #                 else:
-        #                     old_values.append(bio)
-        #         except Exception as err:
-        #             old_values = []
-        #
-        #         logger.info("OLD: %s", old_values)
-        #     return res
 
         # def has_country(vals, countries):
         #     """ Check if at least one value is found in countries list
@@ -451,8 +454,8 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
 
         found_items = search_for(
                 content_types=content_types,
-                tag="Danube Area",
-                at_least_one=["Black Sea", "Greece", "Italy", "Europe"],
+                tag="Danube",
+                at_least_one=["Black Sea"],
                 tag_is_optional=False)
 
         __import__('pdb').set_trace()
