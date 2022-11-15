@@ -285,23 +285,40 @@ def search_for(content_types=[], tag="", at_least_one=[],
     """
     catalog = api.portal.get_tool('portal_catalog')
     res = {}
-    for text_to_search in at_least_one:
+
+    if at_least_one is None:
+        # do a simple query
         found = catalog.searchResults({
             'portal_type': content_types,
             'path': '/cca/en',
-            'SearchableText': text_to_search
         })
         for brain in found:
             obj = brain.getObject()
             if obj.UID() not in res.keys():
                 res[obj.UID()] = {
                     'obj': obj,
-                    'reason_terms': [text_to_search],
+                    'reason_terms': [],
                     'reason_tags': []
                 }
-            else:
-                if text_to_search not in res[obj.UID()]['reason_terms']:
-                    res[obj.UID()]['reason_terms'].append(text_to_search)
+    else:
+        # search for each term
+        for text_to_search in at_least_one:
+            found = catalog.searchResults({
+                'portal_type': content_types,
+                'path': '/cca/en',
+                'SearchableText': text_to_search
+            })
+            for brain in found:
+                obj = brain.getObject()
+                if obj.UID() not in res.keys():
+                    res[obj.UID()] = {
+                        'obj': obj,
+                        'reason_terms': [text_to_search],
+                        'reason_tags': []
+                    }
+                else:
+                    if text_to_search not in res[obj.UID()]['reason_terms']:
+                        res[obj.UID()]['reason_terms'].append(text_to_search)
 
     if tag_is_optional is True:
         # TODO search for more content based only on this tag?
@@ -355,6 +372,84 @@ def justify_migration(objs={}, action=""):
             'reason': reason
         })
     return res
+
+
+def migrate_delete_tag(objs=[], tag=""):
+    """ Update the list of objects deleting the new macro transnational region
+        tag in obj.geochars['geoElements']['macrotrans']
+
+        Do the same for their translated items
+    """
+    regions = {}
+    for k, v in BIOREGIONS.items():
+        if 'TRANS_MACRO' in k:
+            regions[v] = k
+
+    for item_id in objs.keys():
+        item = objs[item_id]
+        obj = item['obj']
+        try:
+            old_values = []
+            values = json.loads(obj.geochars)['geoElements']['macrotrans']
+            for value in values:
+                bio = BIOREGIONS.get(value, None)
+                if bio is None:
+                    logger.info("Missing bioregion: %s", value)
+                else:
+                    old_values.append(bio)
+        except Exception as err:
+            old_values = []
+            logger.info(err)
+
+        logger.info("---------------------------------------- Migrating:")
+        logger.info(obj.absolute_url())
+        logger.info(obj.geochars)
+        logger.info(old_values)
+        logger.info("Reason terms: %s", item['reason_terms'])
+        logger.info("Reason tags: %s", item['reason_tags'])
+
+        # Set new geochars
+        new_values = []
+
+        for val in old_values:
+            if val not in new_values and val != tag:
+                new_values.append(val)
+
+        try:
+            new_geochars = json.loads(obj.geochars)
+        except Exception:
+            new_geochars = {'geoElements': {}}
+
+        macro = []
+        new_macros = new_values
+        for new_macro in new_macros:
+            if new_macro in regions:
+                macro.append(regions[new_macro])
+            else:
+                logger.info("------------- MISSING: %s", new_macro)
+
+        new_geochars['geoElements']['macrotrans'] = macro
+        logger.info("=== NEW: %s", new_geochars)
+
+        prepared_val = json.dumps(new_geochars).encode()
+        obj.geochars = prepared_val
+        obj._p_changed = True
+        obj.reindexObject()
+
+        # Apply the same change for translated content
+        try:
+            translations = TranslationManager(obj).get_translations()
+        except Exception:
+            translations = None
+
+        if translations is not None:
+            for language in translations.keys():
+                trans_obj = translations[language]
+                trans_obj.geochars = prepared_val
+                trans_obj._p_changed = True
+                trans_obj.reindexObject()
+                logger.info("Migrated too: %s",
+                            trans_obj.absolute_url())
 
 
 def migrate_add_tag(objs=[], tag=""):
@@ -568,7 +663,15 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
         migrate_add_tag(objs=found_items, tag="Danube")
 
         # DELETE Balkan-Mediterranean ---------------------------------- a. iv.
-        # TODO implement
+        found_items = search_for(
+                content_types=content_types,
+                tag="Balkan-Mediterranean",
+                at_least_one=None,
+                tag_is_optional=False)
+
+        logs += justify_migration(objs=found_items,
+                                  action="Delete tag: Balkan-Mediterranean")
+        migrate_delete_tag(objs=found_items, tag="Balkan-Mediterranean")
 
         # ADD Mediterranean Sea Basin ----------------------------------- b. i.
         found_items = search_for(
