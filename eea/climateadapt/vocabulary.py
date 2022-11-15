@@ -573,6 +573,7 @@ acesearch-geochars-lbl-TRANS_MACRO_ATL_AREA=Atlantic Area
 acesearch-geochars-lbl-TRANS_MACRO_ALP_SPACE=Alpine Space
 acesearch-geochars-lbl-TRANS_MACRO_CEN_EUR=Central Europe
 acesearch-geochars-lbl-TRANS_MACRO_SW_EUR=South West Europe
+acesearch-geochars-lbl-TRANS_MACRO_SE_EUR=South East Europe
 acesearch-geochars-lbl-TRANS_MACRO_MED=Mediterranean
 acesearch-geochars-lbl-TRANS_MACRO_DANUBE=Danube
 acesearch-geochars-lbl-TRANS_MACRO_ADR_IONIAN=Adriatic-Ionian

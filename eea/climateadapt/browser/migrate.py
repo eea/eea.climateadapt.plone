@@ -533,6 +533,60 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
         ]
 
         logs = []
+
+        # ADD Mediterranean --------------------------------------------- a. i.
+        found_items = search_for(
+                content_types=content_types,
+                tag="Balkan-Mediterranean",
+                at_least_one=["Greece", "Albania", "Macedonia", "Bulgaria"],
+                tag_is_optional=False)
+
+        logs += justify_migration(objs=found_items,
+                                  action="Add tag: Mediterranean")
+        migrate_add_tag(objs=found_items, tag="Mediterranean")
+
+        # ADD Adriatic-Ionian ------------------------------------------ a. ii.
+        found_items = search_for(
+                content_types=content_types,
+                tag="Balkan-Mediterranean",
+                at_least_one=["Greece", "Albania", "Macedonia"],
+                tag_is_optional=False)
+
+        logs += justify_migration(objs=found_items,
+                                  action="Add tag: Adriatic-Ionian")
+        migrate_add_tag(objs=found_items, tag="Adriatic-Ionian")
+
+        # ADD Danube -------------------------------------------------- a. iii.
+        found_items = search_for(
+                content_types=content_types,
+                tag="Balkan-Mediterranean",
+                at_least_one=["Bulgaria"],
+                tag_is_optional=False)
+
+        logs += justify_migration(objs=found_items,
+                                  action="Add tag: Danube")
+        migrate_add_tag(objs=found_items, tag="Danube")
+
+        # DELETE Balkan-Mediterranean ---------------------------------- a. iv.
+        # TODO implement
+
+        # ADD Mediterranean Sea Basin ----------------------------------- b. i.
+        found_items = search_for(
+                content_types=content_types,
+                tag="Mediterranean",
+                at_least_one=[
+                    "Egypt", "Tunisia", "Algeria", "Turkey", "Israel",
+                    "Lebanon", "Palestine", "Jordan",
+                    "Southern and Eastern Mediterranean Countries",
+                    "surrounding regions", "Africa", "African",
+                    "Mediterranean basin", "Mediterranean Sea basin"],
+                tag_is_optional=False)
+
+        logs += justify_migration(objs=found_items,
+                                  action="Add tag: Mediterranean Sea Basin")
+        migrate_add_tag(objs=found_items, tag="Mediterranean Sea Basin")
+
+        # ADD Black Sea Basin ------------------------------------------- c. i.
         found_items = search_for(
                 content_types=content_types,
                 tag="Danube",
@@ -543,32 +597,17 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
                                   action="Add tag: Black Sea Basin")
         migrate_add_tag(objs=found_items, tag="Black Sea Basin")
 
-        # found_items = search_for(
-        #         content_types=content_types,
-        #         tag="Balkan-Mediterranean",
-        #         at_least_one=["Greece", "Albania", "Macedonia", "Bulgaria"],
-        #         tag_is_optional=False)
-        #
-        # logs += justify_migration(objs=found_items,
-        #                           action="Add tag: Mediterranean")
-        #
-        # found_items = search_for(
-        #         content_types=content_types,
-        #         tag="Balkan-Mediterranean",
-        #         at_least_one=["Greece", "Albania", "Macedonia"],
-        #         tag_is_optional=False)
-        #
-        # logs += justify_migration(objs=found_items,
-        #                           action="Add tag: Adriatic-Ionian Region")
-        #
-        # found_items = search_for(
-        #         content_types=content_types,
-        #         tag="Balkan-Mediterranean",
-        #         at_least_one=["Bulgaria"],
-        #         tag_is_optional=False)
-        #
-        # logs += justify_migration(objs=found_items,
-        #                           action="Add tag: Danube Region")
+        # ADD Mid-Atlantic ---------------------------------------------- d. i.
+        # TODO Add tag South E... in widget, too
+        found_items = search_for(
+                content_types=content_types,
+                tag="South East Europe",
+                at_least_one=["Morocco", "Africa", "Canary"],
+                tag_is_optional=False)
+
+        logs += justify_migration(objs=found_items,
+                                  action="Add tag: Mid-Atlantic")
+        migrate_add_tag(objs=found_items, tag="Mid-Atlantic")
 
         report = logs
         json_object = json.dumps(report, indent=4)
