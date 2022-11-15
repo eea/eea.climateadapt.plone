@@ -280,6 +280,59 @@ def extract_subnational_vals(val):
 class MigrateTransnationalRegionsDatabaseItems(BrowserView):
     """ Update transnational regions
 
+    --- The request simplified ------------------------------------------------
+    ** If we replace with a single tag, the first replace will be lost. So,
+    instead of REPLACE we will ADD the new tag then the old Balkan-M will be
+    deleted for all. This way Balkan-M + Greece => Mediterranean AND also
+    Balkan-M + Greece => Adriatic-I Region.
+
+    IF content_types
+    AND Balkan-Mediterranean
+        IF Greece
+        OR Albania
+        OR Macedonia
+        OR Bulgaria
+            => REPLACE Balkan-Mediterranean WITH Mediterranean               **
+
+        IF Greece
+        OR Albania
+        OR Macedonia
+            => REPLACE Balkan-Mediterranean WITH Adriatic-Ionian Region      **
+
+        IF Bulgaria
+            => REPLACE Balkan-Mediterranean WITH Danube Region               **
+
+        IF countries not mentioned
+            => DELETE tag Balkan-Mediterranean
+
+    AND Mediterranean
+        IF Egypt
+        OR Tunisia
+        OR Algeria
+        OR Turkey
+        OR Israel
+        OR Lebanon
+        OR Palestine
+        OR Jordan
+        OR "Southern and Eastern Mediterranean Countries"
+        OR "surrounding regions"
+        OR "Africa"
+        OR "African"
+        OR "Mediterranean basin"
+        OR "Mediterranean Sea basin".
+            => ADD tag MEDITERRANEAN SEA BASIN
+
+    AND Danube Area
+        IF Black Sea
+            => ADD tag Black Sea Basin
+
+    AND South East Europe
+        IF Morocco
+        OR Africa
+        OR Canary
+            => ADD tag Mid-Atlantic
+
+    --- The request -----------------------------------------------------------
     ALL database items EXCEPT: case studies, indicators, adaptation options
     a. For the items that are currently tagged for Balkan Mediterranean region:
         REPLACE THE  TAG "Balkan-Mediterranean" WITH
@@ -364,6 +417,7 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
                     countries = []
                     # logger.info(err)
 
+                __import__('pdb').set_trace()
                 is_balkan_m = False
                 if "Balkan-Mediterranean" in old_values:
                     is_balkan_m = True
