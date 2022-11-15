@@ -315,12 +315,6 @@ def search_for(content_types=[], tag="", at_least_one=[],
             item = temp[item_id]
             obj = item['obj']
 
-            # TODO: Move this outside
-            regions = {}
-            for k, v in BIOREGIONS.items():
-                if 'TRANS_MACRO' in k:
-                    regions[v] = k
-
             try:
                 old_values = []
                 values = json.loads(obj.geochars)[
@@ -361,6 +355,85 @@ def justify_migration(objs={}, action=""):
             'reason': reason
         })
     return res
+
+
+def migrate_add_tag(objs=[], tag=""):
+    """ Update the list of objects adding the new macro transnational region
+        tag in obj.geochars['geoElements']['macrotrans']
+
+        Do the same for their translated items
+    """
+    regions = {}
+    for k, v in BIOREGIONS.items():
+        if 'TRANS_MACRO' in k:
+            regions[v] = k
+
+    for item_id in objs.keys():
+        item = objs[item_id]
+        obj = item['obj']
+        try:
+            old_values = []
+            values = json.loads(obj.geochars)['geoElements']['macrotrans']
+            for value in values:
+                bio = BIOREGIONS.get(value, None)
+                if bio is None:
+                    logger.info("Missing bioregion: %s", value)
+                else:
+                    old_values.append(bio)
+        except Exception as err:
+            old_values = []
+            logger.info(err)
+
+        logger.info("---------------------------------------- Migrating:")
+        logger.info(obj.absolute_url())
+        logger.info(obj.geochars)
+        logger.info(old_values)
+        logger.info("Reason terms: %s", item['reason_terms'])
+        logger.info("Reason tags: %s", item['reason_tags'])
+
+        # Set new geochars
+        new_values = []
+        new_values.append(tag)
+
+        for val in old_values:
+            if val not in new_values:
+                new_values.append(val)
+
+        try:
+            new_geochars = json.loads(obj.geochars)
+        except Exception:
+            new_geochars = {'geoElements': {}}
+
+        macro = []
+        new_macros = new_values
+        for new_macro in new_macros:
+            if new_macro in regions:
+                macro.append(regions[new_macro])
+            else:
+                logger.info("------------- MISSING: %s", new_macro)
+
+        new_geochars['geoElements']['macrotrans'] = macro
+        logger.info("=== NEW: %s", new_geochars)
+
+        prepared_val = json.dumps(new_geochars).encode()
+        obj.geochars = prepared_val
+        obj._p_changed = True
+        obj.reindexObject()
+
+        # Apply the same change for translated content
+        try:
+            translations = TranslationManager(obj).get_translations()
+        except Exception:
+            translations = None
+
+        if translations is not None:
+            for language in translations.keys():
+                trans_obj = translations[language]
+                trans_obj.geochars = prepared_val
+                trans_obj._p_changed = True
+                trans_obj.reindexObject()
+                logger.info("Migrated too: %s",
+                            trans_obj.absolute_url())
 
 
 class MigrateTransnationalRegionsDatabaseItems(BrowserView):
@@ -449,15 +522,6 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
         Note. No items are currently found with these words
     """
     def __call__(self):
-        # def has_country(vals, countries):
-        #     """ Check if at least one value is found in countries list
-        #     """
-        #     for value in vals:
-        #         if value in countries:
-        #             return True
-        #
-        #     return False
-
         content_types = [
             "eea.climateadapt.aceproject",
             "eea.climateadapt.guidancedocument",
@@ -477,33 +541,34 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
 
         logs += justify_migration(objs=found_items,
                                   action="Add tag: Black Sea Basin")
+        migrate_add_tag(objs=found_items, tag="Black Sea Basin")
 
-        found_items = search_for(
-                content_types=content_types,
-                tag="Balkan-Mediterranean",
-                at_least_one=["Greece", "Albania", "Macedonia", "Bulgaria"],
-                tag_is_optional=False)
-
-        logs += justify_migration(objs=found_items,
-                                  action="Add tag: Mediterranean")
-
-        found_items = search_for(
-                content_types=content_types,
-                tag="Balkan-Mediterranean",
-                at_least_one=["Greece", "Albania", "Macedonia"],
-                tag_is_optional=False)
-
-        logs += justify_migration(objs=found_items,
-                                  action="Add tag: Adriatic-Ionian Region")
-
-        found_items = search_for(
-                content_types=content_types,
-                tag="Balkan-Mediterranean",
-                at_least_one=["Bulgaria"],
-                tag_is_optional=False)
-
-        logs += justify_migration(objs=found_items,
-                                  action="Add tag: Danube Region")
+        # found_items = search_for(
+        #         content_types=content_types,
+        #         tag="Balkan-Mediterranean",
+        #         at_least_one=["Greece", "Albania", "Macedonia", "Bulgaria"],
+        #         tag_is_optional=False)
+        #
+        # logs += justify_migration(objs=found_items,
+        #                           action="Add tag: Mediterranean")
+        #
+        # found_items = search_for(
+        #         content_types=content_types,
+        #         tag="Balkan-Mediterranean",
+        #         at_least_one=["Greece", "Albania", "Macedonia"],
+        #         tag_is_optional=False)
+        #
+        # logs += justify_migration(objs=found_items,
+        #                           action="Add tag: Adriatic-Ionian Region")
+        #
+        # found_items = search_for(
+        #         content_types=content_types,
+        #         tag="Balkan-Mediterranean",
+        #         at_least_one=["Bulgaria"],
+        #         tag_is_optional=False)
+        #
+        # logs += justify_migration(objs=found_items,
+        #                           action="Add tag: Danube Region")
 
         report = logs
         json_object = json.dumps(report, indent=4)
@@ -511,84 +576,7 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
         with open("/tmp/migration_report_" + r_date + ".json", "w") as outf:
             outf.write(json_object)
 
-        #             # logger.info(err)
-        #
-        #         try:
-        #             countries = json.loads(obj.geochars)[
-        #                     'geoElements']['countries']
-        #         except Exception as err:
-        #             countries = []
-        #             # logger.info(err)
-        #
-        #         __import__('pdb').set_trace()
-        #         is_balkan_m = False
-        #         if "Balkan-Mediterranean" in old_values:
-        #             is_balkan_m = True
-        #
-        #         if is_balkan_m is True:
-        #             logger.info("Countries: %s", countries)
-        #             if has_country(["GR", "AL", "MK", "BG"], countries):
-        #                 logger.info("Replace Blakan-M with Mediterranean")
-        #             # or mentioned in the text:
-                    # Greece OR Albania OR Macedonia OR Bulgaria)
-                    # ii. ADRIATIC-IONIAN REGION  tag (items with the following
-                    # countries selected or mentioned in the text:
-                    # Greece OR Albania OR Macedonia)
-                    # iii. DANUBE REGION tag (items with Bulgaria selected or mentioned)
-                    # iv. NOTHING (DELETE tag) if countries are not mentioned
-
-                # logger.info(obj.geochars)
-                # logger.info(old_values)
-
-                # Set new geochars
-                # new_values = []
-                # include_vals = ["Black Sea Basin", "Mediterranean Sea Basin",
-                #                 "Mid-Atlantic"]
-                # exclude_vals = ["Balkan-Mediterranean"]
-                #
-                # for val in include_vals:
-                #     new_values.append(val)
-                #
-                # for val in old_values:
-                #     if val not in new_values and val not in exclude_vals:
-                #         new_values.append(val)
-                #
-                # try:
-                #     new_geochars = json.loads(obj.geochars)
-                # except Exception:
-                #     new_geochars = {'geoElements': {}}
-                #
-                # macro = []
-                # new_macros = new_values
-                # for new_macro in new_macros:
-                #     if new_macro in regions:
-                #         macro.append(regions[new_macro])
-                #     else:
-                #         logger.info("------------- MISSING: %s", new_macro)
-                #
-                # new_geochars['geoElements']['macrotrans'] = macro
-                # logger.info("=== NEW: %s", new_geochars)
-                #
-                # prepared_val = json.dumps(new_geochars).encode()
-                # obj.geochars = prepared_val
-                # obj._p_changed = True
-                # obj.reindexObject()
-
-                # Apply the same change for translated content
-                # try:
-                #     translations = TranslationManager(obj).get_translations()
-                # except Exception:
-                #     translations = None
-                #
-                # if translations is not None:
-                #     for language in translations.keys():
-                #         trans_obj = translations[language]
-                #         trans_obj.geochars = prepared_val
-                #         trans_obj._p_changed = True
-                #         trans_obj.reindexObject()
-                #         logger.info("Migrated too: %s",
-                #                     trans_obj.absolute_url())
-        return "WIP MigrateTransnationalRegionsDatabaseItems"
+        return "Done"
 
 
 class MigrateTransnationalRegionsIndicators(BrowserView):
@@ -596,6 +584,8 @@ class MigrateTransnationalRegionsIndicators(BrowserView):
         a. Remove Balkan-Mediterranean tag for all the items
         b. Add Black Sea Basin, Mediterranean Sea Basin, Mid-Atlantic
         (3 new tags need to be created FIRST) for all the items
+
+        TODO json report
     """
     def __call__(self):
         catalog = api.portal.get_tool('portal_catalog')
