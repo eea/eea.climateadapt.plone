@@ -340,6 +340,19 @@ def search_for(content_types=[], tag="", at_least_one=[],
     return res
 
 
+def justify_migration(objs={}, action=""):
+    """ Human readable explanation of modified objects
+    """
+    for item_id in objs.keys():
+        item = objs[item_id]
+        obj = item['obj']
+        logger.info("----------------------")
+        logger.info(obj.absolute_url())
+        logger.info(action)
+        logger.info("Found terms: %s, Found tags: %s",
+                    item['reason_terms'], item['reason_tags'])
+
+
 class MigrateTransnationalRegionsDatabaseItems(BrowserView):
     """ Update transnational regions
 
@@ -426,9 +439,6 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
         Note. No items are currently found with these words
     """
     def __call__(self):
-
-
-
         # def has_country(vals, countries):
         #     """ Check if at least one value is found in countries list
         #     """
@@ -458,6 +468,7 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
                 at_least_one=["Black Sea"],
                 tag_is_optional=False)
 
+        justify_migration(objs=found_items, action="Add tag: Black Sea Basin")
         __import__('pdb').set_trace()
 
         # add_tag(found_items, "Black Sea Basin")
