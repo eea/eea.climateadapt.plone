@@ -277,6 +277,37 @@ def extract_subnational_vals(val):
     return new_values
 
 
+def search_for(content_types=[], tag="", at_least_one=[],
+               tag_is_optional=False):
+    """ Search for items having the content types, the tag, and
+        some optional text/tags
+    """
+    catalog = api.portal.get_tool('portal_catalog')
+    res = {}
+    for text_to_search in at_least_one:
+        found = catalog.searchResults({
+            'portal_type': content_types,
+            'path': '/cca/en',
+            'SearchableText': text_to_search
+        })
+        for brain in found:
+            obj = brain.getObject()
+            if obj.UID() not in res.keys():
+                res[obj.UID()] = {
+                    'obj': obj,
+                    'reason': [text_to_search]
+                }
+            else:
+                if text_to_search not in res[obj.UID()]['reason']:
+                    res[obj.UID()]['reason'].append(text_to_search)
+
+    # if tag_is_optional is True:
+    #     # TODO search for more content based only on this tag?
+    # else:
+    #     # TODO use the tag as a filter for items found above
+    return res
+
+
 class MigrateTransnationalRegionsDatabaseItems(BrowserView):
     """ Update transnational regions
 
@@ -363,54 +394,7 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
         Note. No items are currently found with these words
     """
     def __call__(self):
-        def search_for(content_types=[], tag="", at_least_one=[]):
-            """ Search for items having the content types, the tag, and
-                some optional text/tags
-            """
-            catalog = api.portal.get_tool('portal_catalog')
-            res = []
-            for text_to_search in at_least_one:
-                found = catalog.searchResults({
-                    'portal_type': content_types,
-                    'path': '/cca/en',
-                    'SearchableText': text_to_search
-                })
-                for brain in found:
-                    obj = brain.getObject()
-                    if obj not in res:
-                        res.append(obj)
-            return res
 
-        # def has_country(vals, countries):
-        #     """ Check if at least one value is found in countries list
-        #     """
-        #     for value in vals:
-        #         if value in countries:
-        #             return True
-        #
-        #     return False
-
-        content_types = [
-            "eea.climateadapt.aceproject",
-            "eea.climateadapt.guidancedocument",
-            "eea.climateadapt.informationportal",
-            "eea.climateadapt.organisation",
-            "eea.climateadapt.publicationreport",
-            "eea.climateadapt.tool",
-            "eea.climateadapt.video",
-        ]
-
-        # AND Danube Area
-        #     IF Black Sea
-        #         => ADD tag Black Sea Basin
-
-        found_items = search_for(
-                content_types=content_types,
-                tag="Danube Area",
-                at_least_one=["Black Sea"])
-        __import__('pdb').set_trace()
-
-        # add_tag(found_items, "Black Sea Basin")
 
         # for _type in content_types:
         #     catalog = api.portal.get_tool('portal_catalog')
@@ -438,6 +422,44 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
         #                     old_values.append(bio)
         #         except Exception as err:
         #             old_values = []
+        #
+        #         logger.info("OLD: %s", old_values)
+        #     return res
+
+        # def has_country(vals, countries):
+        #     """ Check if at least one value is found in countries list
+        #     """
+        #     for value in vals:
+        #         if value in countries:
+        #             return True
+        #
+        #     return False
+
+        content_types = [
+            "eea.climateadapt.aceproject",
+            "eea.climateadapt.guidancedocument",
+            "eea.climateadapt.informationportal",
+            "eea.climateadapt.organisation",
+            "eea.climateadapt.publicationreport",
+            "eea.climateadapt.tool",
+            "eea.climateadapt.video",
+        ]
+
+        # AND Danube Area
+        #     IF Black Sea
+        #         => ADD tag Black Sea Basin
+
+        found_items = search_for(
+                content_types=content_types,
+                tag="Danube Area",
+                at_least_one=["Black Sea", "Greece", "Italy", "Europe"],
+                tag_is_optional=False)
+
+        __import__('pdb').set_trace()
+
+        # add_tag(found_items, "Black Sea Basin")
+
+
         #             # logger.info(err)
         #
         #         try:
