@@ -4,6 +4,7 @@ import json
 import logging
 import urlparse
 from datetime import date
+from datetime import datetime
 
 import transaction
 from zope.component import getUtility
@@ -493,6 +494,11 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
         justify_migration(objs=found_items,
                           action="Add tag: Danube Region")
 
+        report = {'logs': 'TODO save logs here'}
+        json_object = json.dumps(report, indent=4)
+        r_date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        with open("/tmp/migration_report_" + r_date + ".json", "w") as outf:
+            outf.write(json_object)
 
         #             # logger.info(err)
         #
