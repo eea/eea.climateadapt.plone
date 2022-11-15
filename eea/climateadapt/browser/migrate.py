@@ -458,10 +458,6 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
             "eea.climateadapt.video",
         ]
 
-        # AND Danube Area
-        #     IF Black Sea
-        #         => ADD tag Black Sea Basin
-
         found_items = search_for(
                 content_types=content_types,
                 tag="Danube",
@@ -471,7 +467,31 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
         justify_migration(objs=found_items, action="Add tag: Black Sea Basin")
         __import__('pdb').set_trace()
 
-        # add_tag(found_items, "Black Sea Basin")
+        found_items = search_for(
+                content_types=content_types,
+                tag="Balkan-Mediterranean",
+                at_least_one=["Greece", "Albania", "Macedonia", "Bulgaria"],
+                tag_is_optional=False)
+
+        justify_migration(objs=found_items, action="Add tag: Mediterranean")
+
+        found_items = search_for(
+                content_types=content_types,
+                tag="Balkan-Mediterranean",
+                at_least_one=["Greece", "Albania", "Macedonia"],
+                tag_is_optional=False)
+
+        justify_migration(objs=found_items,
+                          action="Add tag: Adriatic-Ionian Region")
+
+        found_items = search_for(
+                content_types=content_types,
+                tag="Balkan-Mediterranean",
+                at_least_one=["Bulgaria"],
+                tag_is_optional=False)
+
+        justify_migration(objs=found_items,
+                          action="Add tag: Danube Region")
 
 
         #             # logger.info(err)
