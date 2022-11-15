@@ -363,15 +363,32 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
         Note. No items are currently found with these words
     """
     def __call__(self):
-
-        def has_country(vals, countries):
-            """ Check if at least one value is found in countries list
+        def search_for(content_types=[], tag="", at_least_one=[]):
+            """ Search for items having the content types, the tag, and
+                some optional text/tags
             """
-            for value in vals:
-                if value in countries:
-                    return True
+            catalog = api.portal.get_tool('portal_catalog')
+            res = []
+            for text_to_search in at_least_one:
+                found = catalog.searchResults({
+                    'portal_type': content_types,
+                    'path': '/cca/en',
+                    'SearchableText': text_to_search
+                })
+                for brain in found:
+                    obj = brain.getObject()
+                    if obj not in res:
+                        res.append(obj)
+            return res
 
-            return False
+        # def has_country(vals, countries):
+        #     """ Check if at least one value is found in countries list
+        #     """
+        #     for value in vals:
+        #         if value in countries:
+        #             return True
+        #
+        #     return False
 
         content_types = [
             "eea.climateadapt.aceproject",
@@ -382,51 +399,64 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
             "eea.climateadapt.tool",
             "eea.climateadapt.video",
         ]
-        for _type in content_types:
-            catalog = api.portal.get_tool('portal_catalog')
-            brains = catalog.searchResults(
-                    path='/cca/en',
-                    portal_type=_type)
-            logger.info("Start migrating %s", _type)
 
-            regions = {}
-            for k, v in BIOREGIONS.items():
-                if 'TRANS_MACRO' in k:
-                    regions[v] = k
+        # AND Danube Area
+        #     IF Black Sea
+        #         => ADD tag Black Sea Basin
 
-            for brain in brains:
-                obj = brain.getObject()
-                try:
-                    old_values = []
-                    values = json.loads(obj.geochars)[
-                            'geoElements']['macrotrans']
-                    for value in values:
-                        bio = BIOREGIONS.get(value, None)
-                        if bio is None:
-                            logger.info("Missing bioregion: %s", value)
-                        else:
-                            old_values.append(bio)
-                except Exception as err:
-                    old_values = []
-                    # logger.info(err)
+        found_items = search_for(
+                content_types=content_types,
+                tag="Danube Area",
+                at_least_one=["Black Sea"])
+        __import__('pdb').set_trace()
 
-                try:
-                    countries = json.loads(obj.geochars)[
-                            'geoElements']['countries']
-                except Exception as err:
-                    countries = []
-                    # logger.info(err)
+        # add_tag(found_items, "Black Sea Basin")
 
-                __import__('pdb').set_trace()
-                is_balkan_m = False
-                if "Balkan-Mediterranean" in old_values:
-                    is_balkan_m = True
-
-                if is_balkan_m is True:
-                    logger.info("Countries: %s", countries)
-                    if has_country(["GR", "AL", "MK", "BG"], countries):
-                        logger.info("Replace Blakan-M with Mediterranean")
-                    # or mentioned in the text:
+        # for _type in content_types:
+        #     catalog = api.portal.get_tool('portal_catalog')
+        #     brains = catalog.searchResults(
+        #             path='/cca/en',
+        #             portal_type=_type)
+        #     logger.info("Start migrating %s", _type)
+        #
+        #     regions = {}
+        #     for k, v in BIOREGIONS.items():
+        #         if 'TRANS_MACRO' in k:
+        #             regions[v] = k
+        #
+        #     for brain in brains:
+        #         obj = brain.getObject()
+        #         try:
+        #             old_values = []
+        #             values = json.loads(obj.geochars)[
+        #                     'geoElements']['macrotrans']
+        #             for value in values:
+        #                 bio = BIOREGIONS.get(value, None)
+        #                 if bio is None:
+        #                     logger.info("Missing bioregion: %s", value)
+        #                 else:
+        #                     old_values.append(bio)
+        #         except Exception as err:
+        #             old_values = []
+        #             # logger.info(err)
+        #
+        #         try:
+        #             countries = json.loads(obj.geochars)[
+        #                     'geoElements']['countries']
+        #         except Exception as err:
+        #             countries = []
+        #             # logger.info(err)
+        #
+        #         __import__('pdb').set_trace()
+        #         is_balkan_m = False
+        #         if "Balkan-Mediterranean" in old_values:
+        #             is_balkan_m = True
+        #
+        #         if is_balkan_m is True:
+        #             logger.info("Countries: %s", countries)
+        #             if has_country(["GR", "AL", "MK", "BG"], countries):
+        #                 logger.info("Replace Blakan-M with Mediterranean")
+        #             # or mentioned in the text:
                     # Greece OR Albania OR Macedonia OR Bulgaria)
                     # ii. ADRIATIC-IONIAN REGION  tag (items with the following
                     # countries selected or mentioned in the text:
