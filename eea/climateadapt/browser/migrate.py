@@ -344,14 +344,23 @@ def search_for(content_types=[], tag="", at_least_one=[],
 def justify_migration(objs={}, action=""):
     """ Human readable explanation of modified objects
     """
+    res = []
     for item_id in objs.keys():
         item = objs[item_id]
         obj = item['obj']
         logger.info("----------------------")
         logger.info(obj.absolute_url())
         logger.info(action)
-        logger.info("Found terms: %s, Found tags: %s",
-                    item['reason_terms'], item['reason_tags'])
+        reason = "Found terms {0}, Found tags: {1}".format(
+            item['reason_terms'], item['reason_tags']
+            )
+        logger.info(reason)
+        res.append({
+            'URL': obj.absolute_url(),
+            'action': action,
+            'reason': reason
+        })
+    return res
 
 
 class MigrateTransnationalRegionsDatabaseItems(BrowserView):
@@ -459,14 +468,15 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
             "eea.climateadapt.video",
         ]
 
+        logs = []
         found_items = search_for(
                 content_types=content_types,
                 tag="Danube",
                 at_least_one=["Black Sea"],
                 tag_is_optional=False)
 
-        justify_migration(objs=found_items, action="Add tag: Black Sea Basin")
-        __import__('pdb').set_trace()
+        logs += justify_migration(objs=found_items,
+                                  action="Add tag: Black Sea Basin")
 
         found_items = search_for(
                 content_types=content_types,
@@ -474,7 +484,8 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
                 at_least_one=["Greece", "Albania", "Macedonia", "Bulgaria"],
                 tag_is_optional=False)
 
-        justify_migration(objs=found_items, action="Add tag: Mediterranean")
+        logs += justify_migration(objs=found_items,
+                                  action="Add tag: Mediterranean")
 
         found_items = search_for(
                 content_types=content_types,
@@ -482,8 +493,8 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
                 at_least_one=["Greece", "Albania", "Macedonia"],
                 tag_is_optional=False)
 
-        justify_migration(objs=found_items,
-                          action="Add tag: Adriatic-Ionian Region")
+        logs += justify_migration(objs=found_items,
+                                  action="Add tag: Adriatic-Ionian Region")
 
         found_items = search_for(
                 content_types=content_types,
@@ -491,10 +502,10 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
                 at_least_one=["Bulgaria"],
                 tag_is_optional=False)
 
-        justify_migration(objs=found_items,
-                          action="Add tag: Danube Region")
+        logs += justify_migration(objs=found_items,
+                                  action="Add tag: Danube Region")
 
-        report = {'logs': 'TODO save logs here'}
+        report = logs
         json_object = json.dumps(report, indent=4)
         r_date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         with open("/tmp/migration_report_" + r_date + ".json", "w") as outf:
