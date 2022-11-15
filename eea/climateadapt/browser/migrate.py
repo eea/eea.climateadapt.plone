@@ -725,8 +725,6 @@ class MigrateTransnationalRegionsIndicators(BrowserView):
         a. Remove Balkan-Mediterranean tag for all the items
         b. Add Black Sea Basin, Mediterranean Sea Basin, Mid-Atlantic
         (3 new tags need to be created FIRST) for all the items
-
-        TODO json report
     """
     def __call__(self):
         catalog = api.portal.get_tool('portal_catalog')
@@ -739,6 +737,7 @@ class MigrateTransnationalRegionsIndicators(BrowserView):
             if 'TRANS_MACRO' in k:
                 regions[v] = k
 
+        logs = []
         with_empty_field = 0
         with_values = 0
         for brain in brains:
@@ -800,6 +799,13 @@ class MigrateTransnationalRegionsIndicators(BrowserView):
                 obj._p_changed = True
                 obj.reindexObject()
 
+                logs.append({
+                    'url': obj.absolute_url(),
+                    'action': 'Geochars: Add:{0} Delete:{1}.'.format(
+                        include_vals, exclude_vals
+                    )
+                })
+
                 # Apply the same change for translated content
                 try:
                     translations = TranslationManager(obj).get_translations()
@@ -817,6 +823,12 @@ class MigrateTransnationalRegionsIndicators(BrowserView):
 
         logger.info("With empty field %s", with_empty_field)
         logger.info("With values %s", with_values)
+
+        report = logs
+        json_object = json.dumps(report, indent=4)
+        r_date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        with open("/tmp/migration_report_" + r_date + ".json", "w") as outf:
+            outf.write(json_object)
         return "Done"
 
 
