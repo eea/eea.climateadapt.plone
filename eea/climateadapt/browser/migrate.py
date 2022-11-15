@@ -701,7 +701,6 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
         migrate_add_tag(objs=found_items, tag="Black Sea Basin")
 
         # ADD Mid-Atlantic ---------------------------------------------- d. i.
-        # TODO Add tag South E... in widget, too
         found_items = search_for(
                 content_types=content_types,
                 tag="South East Europe",

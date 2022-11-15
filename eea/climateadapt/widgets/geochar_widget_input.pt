@@ -83,6 +83,7 @@
                     <option value="TRANS_MACRO_N_SEA" i18n:translate="">North Sea</option>
                     <option value="TRANS_MACRO_NW_EUROPE" i18n:translate="">North West Europe</option>
                     <option value="TRANS_MACRO_SW_EUR" i18n:translate="">South West Europe</option>
+                    <option value="TRANS_MACRO_SE_EUR" i18n:translate="">South East Europe</option>
                     <option value="TRANS_MACRO_MED_BASIN" i18n:translate="">Mediterranean Sea Basin</option>
                     <option value="TRANS_MACRO_MID_ATLANTIC" i18n:translate="">Mid-Atlantic</option>
                     <option value="TRANS_MACRO_ARCTIC" i18n:translate="">Arctic</option>
