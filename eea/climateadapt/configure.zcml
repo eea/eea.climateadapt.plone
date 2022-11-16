@@ -32,7 +32,10 @@
       file="meta.zcml"
       />
   <include package="plone.app.theming" />
+  <include package="plone.app.async" /> 
+  <include package="plone.app.registry" />
 
+  <include package=".async" />
   <include package=".widgets" />
   <include package=".browser" />
   <include package=".tiles" />

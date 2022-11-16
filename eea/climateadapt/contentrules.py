@@ -2,19 +2,24 @@
 """ Content rules
 """
 import logging
+import pytz
+import urllib
+from datetime import datetime, timedelta
 from plone import api
 from plone.api.portal import get_tool
 import transaction
 from OFS.SimpleItem import SimpleItem
 # from plone.app.contentrules import PloneMessageFactory as _
 from plone.app.contentrules.browser.formhelper import NullAddForm
+from plone.app.multilingual.manager import TranslationManager
 from plone.contentrules.rule.interfaces import IExecutable, IRuleElementData
 from Products.CMFPlone import utils
 from Products.CMFCore.utils import getToolByName
 from Products.statusmessages.interfaces import IStatusMessage
 from ZODB.POSException import ConflictError
-from zope.component import adapter
-from zope.interface import Interface, implementer
+from zope.component import adapter, adapts, queryUtility, ComponentLookupError
+from zope.interface import Interface, implementer, implements
+from zope.site.hooks import getSite
 from DateTime import DateTime
 
 from eea.climateadapt import CcaAdminMessageFactory as _
@@ -23,8 +28,10 @@ from eea.climateadapt.translation.admin import create_translation_object
 from eea.climateadapt.translation.admin import copy_missing_interfaces
 from eea.climateadapt.translation.admin import translation_step_4
 from eea.climateadapt.translation.utils import get_site_languages
-from plone.app.multilingual.manager import TranslationManager
-from zope.site.hooks import getSite
+from eea.rdfmarshaller.async import IAsyncService
+from eea.rabbitmq.plone.rabbitmq import get_rabbitmq_client_settings
+from eea.rabbitmq.plone.rabbitmq import queue_msg
+
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -237,3 +244,162 @@ class TranslateAddForm(NullAddForm):
 
     def create(self):
         return TranslateAction()
+
+
+def get_async_service():
+        async_service = queryUtility(IAsyncService)
+
+        return async_service
+
+
+def execute_translate_sds(context, options):
+    """ translate via zc.async
+    """
+    async_service = get_async_service()
+
+    while True:
+        try:
+            settings = {
+                "language": options['language'],
+                "uid": options['uid'],
+            }
+            translation_step_4(getSite(), settings)
+            logger.info("Async translate for object %s", options['obj_url'])
+
+            try:
+                logger.info("Response for running translate_step_4: %s", 
+                    options['obj_url'])
+            except AttributeError:
+                message = 'no message'
+
+        except Exception as err:
+            import pdb; pdb.set_trace()
+            # re-schedule PING on error
+            schedule = datetime.now(pytz.UTC) + timedelta(hours=4)
+            queue = async_service.getQueues()['']
+            async_service.queueJobInQueueWithDelay(
+                None, schedule, queue, ('translate',),
+                execute_translate_sds, context, options
+            )
+
+            # mark the original job as failed
+            return "Translate rescheduled for object %s. "\
+                "Reason: %s " % (
+                    options['obj_url'],
+                    str(err))
+
+        break
+
+
+class TranslateAsyncAddForm(NullAddForm):
+    """A translate async action form"""
+
+    def create(self):
+        return TranslateAsyncAction()
+
+
+class ITranslateAsyncAction(Interface):
+    """ Interface for run translate and translate_step_4 for and object
+    """
+
+
+class TranslateAsyncAction(SimpleItem):
+    """ Async translate and translate_step_4 for and object
+    """
+    implements(ITranslateAsyncAction, IRuleElementData)
+
+    element = "eea.climateadapt.TranslateAsync"
+    summary = _(u"Translate object async")
+
+
+class TranslateAsyncActionExecutor(object):
+    """ Translate async executor
+    """
+    implements(IExecutable)
+    adapts(Interface, ITranslateAsyncAction, Interface)
+    noasync_msg = 'No instance for async operations was defined.'
+    
+    def __init__(self, context, element, event):
+        self.context = context
+        self.element = element
+        self.event = event
+        self._rabbit_config = None
+
+    def ping_RabbitMQ(self, options):
+        """ Ping the SDS service via RabbitMQ
+        """
+        params = {}
+        params['language'] = options['language']
+        params['uid'] = options['uid']
+        encoded_params = urllib.urlencode(params)
+        full_url = "%s/%s?%s" % (options['portal_url'],
+            options['translate_step'], 
+            encoded_params)
+
+        msg = "{}".format(full_url)
+        try:
+            queue_msg(msg, queue="translate_sds_queue")
+        except Exception as err:
+            logger.error("Sending '%s' in 'translate_sds_queue' FAILED: %s", msg, err)
+
+    @property
+    def rabbit_config(self):
+        """ RabbitMQ Config
+        """
+        if self._rabbit_config is not None:
+            return self._rabbit_config
+
+        try:
+            self._rabbit_config = get_rabbitmq_client_settings()
+        except Exception:
+            self._rabbit_config = {}
+        return self._rabbit_config   
+
+    @property
+    def async_service(self):
+        return get_async_service()
+
+    def translate_step_4_sds(self, obj):
+        options = {}
+        options['obj_url'] = obj.absolute_url()
+        options['translate_step'] = 'admin-translate-step-4'
+        options['uid'] = obj.UID()
+        options['portal_url'] = self.context.absolute_url()
+        
+        translations = TranslationManager(obj).get_translations()
+        
+        # check if object has translations
+        if 'en' not in translations:
+            return True
+        
+        obj_en = translations.pop('en')
+        
+        for language in translations:
+            options['language'] = language
+            self.translate_sds(options)
+
+        return True
+
+    def translate_sds(self, options):
+        """ Ping the CR/SDS service
+        """
+        # Use RabbitMQ if available
+        # if self.rabbit_config:
+        #     return self.ping_RabbitMQ(options)
+
+        # Use zc.async if available
+        if self.async_service is None:
+            logger.warn("Can't translate_asyn, plone.app.async not installed!")
+            return
+
+        queue = self.async_service.getQueues()['']
+        try:
+            self.async_service.queueJobInQueue(queue, ('translate',), execute_translate_sds, self.context, options)
+        except ComponentLookupError:
+            logger.info(self.noasync_msg)
+
+    def __call__(self):
+        obj = self.event.object
+        self.translate_step_4_sds(obj)
+
+        return True
