@@ -1136,7 +1136,7 @@ msgstr "Die Wasserressourcen sind unmittelbar vom Klimawandel betroffen, und die
 #. Default: "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of ${case_studies_tab_repository} and also in collaboration with the main stakeholders. See the ${case_studies_tab_pages}."
 #: ../theme/climateadaptv2/index.html:1143
 msgid "case_studies_tab"
-msgstr "Fallstudien sind das Flaggschiff der Climate-ADAPT-Plattform. Sie haben eine umfassende Struktur, die alle Schlüsselaspekte im Umsetzungszyklus von Anpassungsmaßnahmen abdeckt, und werden von der an der Umsetzung beteiligten Organisation mit Unterstützung der EEA nach einer Reihe von ${case_studies_tab_repository sorgfältig und speziell auf Climate-ADAPT vorbereitet } und auch in Zusammenarbeit mit den Hauptakteuren. Siehe ${case_studies_tab_pages}."
+msgstr "Fallstudien sind das Flaggschiff der Climate-ADAPT-Plattform. Sie haben eine umfassende Struktur, die alle Schlüsselaspekte im Umsetzungszyklus von Anpassungsmaßnahmen abdeckt, und werden von der an der Umsetzung beteiligten Organisation mit Unterstützung der EEA nach einer Reihe von ${case_studies_tab_repository} sorgfältig und speziell auf Climate-ADAPT vorbereitet und auch in Zusammenarbeit mit den Hauptakteuren. Siehe ${case_studies_tab_pages}."
 
 # ,
 # ,
