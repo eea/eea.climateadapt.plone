@@ -96,7 +96,7 @@
           <tal:rep tal:repeat="info python: view.countries()[1]">
             <a data-featherlight="image"
                class="thumb-wrapper"
-               tal:attributes="href python: '/++resource++eea.climateadapt.tiles/images/' + info">
+               tal:attributes="href python: '/cca/++theme++climateadaptv2/static/images/transnational/' + info.replace('.jpg','_bg.png').replace(' ','')">
 
               <img class="thumb"
                    tal:attributes="src python: '/cca/++theme++climateadaptv2/static/images/transnational/' + info.replace('.jpg','.png').replace(' ','');
