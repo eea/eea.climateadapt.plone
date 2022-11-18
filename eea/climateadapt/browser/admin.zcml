@@ -152,6 +152,13 @@
       />
 
   <browser:page
+      name="admin-export-dbitems"
+      for="*"
+      class=".admin.ExportDbItems"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
       name="rebuild-relations"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       class=".relations.RebuildRelationsControlpanel"

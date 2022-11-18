@@ -28,6 +28,7 @@ from plone.i18n.normalizer import idnormalizer
 from plone.memoize import view
 from plone.registry.interfaces import IRegistry
 from plone.tiles.interfaces import ITileDataManager
+from plone.indexer.interfaces import IIndexer
 from plone.z3cform import layout
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
@@ -593,7 +594,7 @@ class KeywordObjects (BrowserView):
         key = self.request.form['keyword'].decode('utf-8')
         brains = self.context.portal_catalog.searchResults(
             keywords=key, path='/cca/en')
-        
+
         key_obj = [b.getURL() + '/edit' for b in brains]
 
         return json.dumps(key_obj)
@@ -917,5 +918,74 @@ class ExportKeywordsCSV(BrowserView):
         self.request.response.setHeader('Content-type', 'text/csv')
         self.request.response.setHeader(
             'Content-Disposition', 'attachment; filename="keywords.csv"')
+        out.seek(0)
+        return out.getvalue()
+
+
+class ExportDbItems(BrowserView):
+    """ Export the list of keywords and the URLs of items using them
+    """
+    def __call__(self):
+        catalog = api.portal.get_tool("portal_catalog")
+
+        res = []
+        res.append(['UID','TITLE','TYPE','URL','KEYWORDS','SECTORS','ELEMENTS','IMPACTS','SearchableText'])
+        for _type in DB_ITEM_TYPES:
+            brains = catalog.searchResults(portal_type=_type, path='/cca/en', review_state='published')
+            for brain in brains:
+                line = []
+                try:
+                    line.append(brain.UID)
+                    line.append(brain.Title)
+                    line.append(_type.replace('eea.climateadapt.',''))
+                    line.append(brain.getURL())
+                    #keywords
+                    temp = u''
+                    if brain.keywords:
+                        temp = u','.join(brain.keywords).encode('utf-8')
+                    line.append(temp)
+
+                    obj = brain.getObject()
+                    #sectors
+                    temp = u''
+                    if hasattr(obj, "sectors"):
+                        temp = u','.join(obj.sectors)
+                    line.append(temp)
+                    #elements
+                    temp = u''
+                    if hasattr(obj, "elements"):
+                        if obj.elements:
+                            temp = u','.join(obj.elements)
+                    line.append(temp)
+                    #impacts
+                    temp = u''
+                    if hasattr(obj, "climate_impacts"):
+                        temp = u','.join(obj.climate_impacts)
+                    line.append(temp)
+                    #indexer = getMultiAdapter((obj, catalog), IIndexer, name="SearchableText")
+                    #temp = indexer()
+                    #line.append(temp)
+
+                    #import pdb; pdb.set_trace()
+
+                    res.append(line)
+                except Exception as Err:
+                    import pdb; pdb.set_trace()
+                    logger.info(brain.getURL())
+                    logger.info(Err)
+
+        out = StringIO()
+        csv_writer = csv.writer(out, dialect='excel', delimiter=',')
+
+        for line in res:
+            try:
+                csv_writer.writerow(line)
+            except:
+                import pdb; pdb.set_trace()
+                logger.info(line)
+
+        self.request.response.setHeader('Content-type', 'text/csv')
+        self.request.response.setHeader(
+            'Content-Disposition', 'attachment; filename="db-items.csv"')
         out.seek(0)
         return out.getvalue()
