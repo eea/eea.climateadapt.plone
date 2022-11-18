@@ -71,6 +71,25 @@ class C3sIndicatorView(DefaultView, AceViewApi):
                 """
         response = response.replace("SCRIPT_URL", self.context.overview_app_toolbox_url)
         response = response.replace("SCRIPT_JSON", self.context.overview_app_parameters)
+
+
+        response = """
+            const WORKFLOW = 'SCRIPT_JSON';
+            const WORKFLOWPARAMS = {};
+
+            (function () {
+                document.addEventListener('DOMContentLoaded', function () {
+                    window.cds_toolbox.runApp(
+                        'toolbox-app',
+                        WORKFLOW,
+                        {
+                            workflowParams: WORKFLOWPARAMS,
+                        }
+                    );
+                }, false);
+            })();
+            """
+        response = response.replace("SCRIPT_JSON", self.context.overview_app_toolbox_url)
         return response
 
     def c3sjs_details(self):
