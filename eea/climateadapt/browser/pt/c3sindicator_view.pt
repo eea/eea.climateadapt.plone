@@ -19,208 +19,142 @@
         g.infolayer g.legend{
           display:block !important;
         }
-      </style>
 
-      <div class="bottom">
-        <div class="row">
-          <div class="column col-md-10">
-            <h1 tal:content="context/title"></h1>
-          </div>
-          <div class="column col-md-2">
-            <a href="/knowledge/european-climate-data-explorer/" class="standard-button info-button">
-               ECDE homepage
-            </a>
-          </div>
-        </div>
+.exit-fullscreen-cmd {
+  display:none;
+}
+body.fullwidth .exit-fullscreen-cmd {
+  display:block;
+}
 
-        <img
-          tal:attributes="src string:${context/absolute_url}/@@images/logo/thumb"
-          tal:condition="context/logo"
-          style=" padding-left: 20px; max-height: 50px;"
-          />
-        </div>
-        <div tal:define="only_article python:request.get('only_article',0)">
-            <div tal:condition="only_article" id="show_only_article"></div>
-        </div>
+.collapsible {
+    margin-bottom: 1rem;
+}
+.collapsible summary{
+  margin-bottom:20px;
+}
 
-        <div class="c3s c3s_overview">
-          <div tal:content="structure python: view.w['long_description'].render()">
-            description here
-          </div>
+.collapsible summary {
+    display: list-item;
+    cursor: pointer;
+    font-weight: 700;
+}
+hr {
+    background: #005C96;
+    height: 4px;
+}
+/* App loading icon centered */
+.pre-app-loading {
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+}
+</style>
 
-          <div style="clear: both; padding-top: 50px;" />
+<script>
+  window._define = window.define;
+  window.define = undefined;
+</script>      <script>
+        window._define = window.define;
+        window.define = undefined;
+      </script>
 
-          <div class="row">
-          <div class="column col-md-10">
-              <h2 tal:content="context/indicator_title"></h2>
-          </div>
-          <div class="column col-md-2">
-            <a href="#details"
-               class="standard-button primary-button"
-               onclick="c3sView('details');return false;"
-               style="float: right; position: relative;" i18n:translate="">
-               Explore in detail
-            </a>
-            <div style="clear: both;" />
-          </div>
-      </div>
+<h1 tal:content="context/title"></h1>
+<button class="btn-hidden fs-only standard-button primary-button exit-fullscreen-cmd" style="float: right; position: relative;" href=""
+    data-fullscreen="false">
+    Exit fullscreen
+</button>
+<div>
+  <details class="general-info collapsible" open="">
+    <summary>Background Information</summary>
+    <tal tal:content="structure python: view.w['long_description'].render()"></tal>
+  </details>
+</div>
+<div>
+  <details class="vis-nav collapsible">
+    <summary>Visualisation and Navigation</summary>
+    <tal tal:content="structure python: view.w['definition_app'].render()"></tal>
+  </details>
+</div>
 
-            <hr>
+<div class="row">
+    <div class="column col-md-12" data-panel="">
+        <button class="hidden-fs standard-button primary-button fullscreen-cmd" style="float: right; position: relative;" href="" data-fullscreen="false">Fullscreen</button>
+    </div>
+</div>
 
-          <div class="column col-md-12">
-            <script>
-              window._define = window.define;
-              window.define = undefined;
-            </script>
+<hr>
 
-            <script type="text/javascript">
-              window.cds_toolbox = { cds_public_path: 'https://cds.climate.copernicus.eu/toolbox/' };
-            </script>
-
-            <div class="t-ct">
-              <div id="toolbox-app-overview">
-                <div class="pre-app-loading">
-                  <img i18n:attributes="alt"
-                    src="https://cds.climate.copernicus.eu/toolbox/assets/spinner.svg"
-                    alt="Loading" />
-                  <div i18n:translate="">
-                      ...loading configuration...
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <script
-              tal:attributes="src python:'https://cds.climate.copernicus.eu/toolbox/toolbox-'+view.get_toolbox_embed_version()+'.js'"
-              type="text/javascript"
-              src="https://cds.climate.copernicus.eu/toolbox/toolbox-4.16.0.js"></script>
-
-            <script type="text/javascript" tal:content="structure view/c3sjs_overview">
-                (function () {
-                    document.addEventListener('DOMContentLoaded', function () {
-                        window.cds_toolbox.runApp('toolbox-app-overview', 'https://cds.climate.copernicus.eu/workflows/c3s/hidden-app-health-mosquito-overview-web/master/configuration.json?configuration_version=3.0', {
-                            workflowParams: {
-                                "indicator": "season_length",
-                            }
-                        });
-                    }, false);
-                })();
-            </script>
-
-          </div>
-        </div>
-
-        <div class="c3s c3s_details">
-
-          <div style="clear: both; padding-top: 50px;"
-              tal:condition="context/definition_app"
-              tal:content="structure context/definition_app/output">
-          </div>
-
-          <!--
-          <a href="#"
-             class="standard-button primary-button c3s_details"
-             onclick="c3sView('overview');return false;"
-             style="float: left; position: relative;">
-             Go back</a>
-         -->
-         <div class="row">
-         <div class="column col-md-10">
-             <h2 tal:content="python: context.indicator_title+' - Explore index'"></h2>
-         </div>
-         <div class="column col-md-2">
-           <a href="#"
-              class="standard-button primary-button"
-              onclick="c3sView('overview');return false;"
-              style="float: right; position: relative; width:200px;" i18n:translate="">
-              Go back</a>
-           <div style="clear: both;" />
-         </div>
-         </div>
-
-
-          <div style="clear:both;" />
-
+<div class="row">
+    <div class="column col-md-12" data-panel="">
           <div class="t-ct">
-            <div id="toolbox-app-details">
-              <div class="pre-app-loading">
-                <img i18n:attributes="alt"
-                  src="https://cds.climate.copernicus.eu/toolbox/assets/spinner.svg"
-                  alt="Loading" />
-                <div i18n:translate="">
-                    ...loading configuration...
-                </div>
+              <div id="toolbox-app">
+                  <div class="pre-app-loading">
+                      <img src="https://cds.climate.copernicus.eu/toolbox/assets/spinner.svg"
+                          alt="Loading">
+                      <div>
+                          Loading index...
+                      </div>
+                  </div>
               </div>
-            </div>
           </div>
 
-          <div id="c3s_details_js">
-            <script type="text/javascript" tal:content="structure view/c3sjs_details">
-            </script>
-          </div>
-        </div>
+          <script type="text/javascript">
+              window.cds_toolbox = {
+                  cds_public_path: 'https://cds.climate.copernicus.eu/toolbox/'
+              };
+              const pageURL = window.location.origin + window.location.pathname;
+          </script>
 
-        <!--
-        <div style="clear:both;padding-top:25px;width:100%;text-align:right;"
-             tal:condition="python: context.relatedItems and len(context.relatedItems)"
-        >
-          <a tal:define="related_url python: context.relatedItems[0].to_object.absolute_url()"
-              tal:attributes="href related_url;"
-              href=""
-              class="standard-button primary-button">
-              Open as database item
-          </a>
-        </div>
-        -->
+          <script type="text/javascript"
+              src="https://cds.climate.copernicus.eu/toolbox/toolbox-latest.js"></script>
 
-      <div style="clear:both;" />
+          <script type="text/javascript" tal:content="structure view/c3sjs_overview">
+              const WORKFLOW = 'https://cds.climate.copernicus.eu/workflows/c3s/LINK_NAME/master/configuration.json';
+              const WORKFLOWPARAMS = {};
 
-      <script>
-        window.define = window._define;
-      </script>
+              (function () {
+                  document.addEventListener('DOMContentLoaded', function () {
+                      window.cds_toolbox.runApp(
+                          'toolbox-app',
+                          WORKFLOW,
+                          {
+                              workflowParams: WORKFLOWPARAMS,
+                          }
+                      );
+                  }, false);
+              })();
+          </script>
+      </div>
+</div>
 
-      <style>
-      .row.c3s {
-        clear:both;
-      }
 
-      .c3s h2 {
-        color:#000;
-        background-color:#fff;
-      }
+<script>
+  $(document).ready(function() {
+    $( ".fullscreen-cmd" ).on( "click", function() {
+      element = $( this )[0];
+      element.setAttribute("data-fullscreen", "true");
+      document.querySelector("body").classList.add("fullwidth");
+      $(".general-info.collapsible").removeAttr("open");
+      $(".fullscreen-cmd").hide();
+    });
+    $( ".exit-fullscreen-cmd" ).on( "click", function() {
+      element = $( this )[0];
+      element.setAttribute("data-fullscreen", "false");
+      document.querySelector("body").classList.remove("fullwidth");
+      $(".general-info.collapsible").attr("open","");
+      $(".fullscreen-cmd").show();
+    });
+  });
+</script>
 
-      hr {
-        background: #005C96;
-        height: 4px;
-      }
-      </style>
+<script>
+  window.define = window._define;
+</script>
 
-      <script>
-        $(document).ready(function () {
-          if((window.location.hash && window.location.hash=="#details")
-              // Laci removed condition, see task #134136 || window.location.search.length
-              || (window.location.search.length && window.location.search != "?bs=0")
-          ) {
-              c3sView('details');
-          } else {
-              c3sView('overview');
-          }
-        });
-        function c3sView(type) {
-            if (type=='details') {
-                location.hash = '#details';
-                $('.c3s_overview').css('display','none');
-                $('.c3s_details').attr('style','display:block;margin-top:-60px;');
-                window.cds_toolbox.runApp('toolbox-app-details', c3s_details_url, c3s_details_params);
-            } else {
-                location.hash = '';
-                $('.c3s_details').attr('style','display:none;');
-                $('.c3s_overview').attr('style','display:block;');
-            }
-        }
-      </script>
-  <br>
-  <p i18n:translate="">Content in the European Climate Data Explorer pages is delivered by the <a href="https://climate.copernicus.eu/">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href="/knowledge/european-climate-data-explorer/disclaimer">Disclaimer</a></p>
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="http://ecde-dev.copernicus-climate.eu/css/style-maris.css?v=ec476a3554" /> -->
+
+  <br><br><p i18n:translate="">Content in the European Climate Data Explorer pages is delivered by the <a href="https://climate.copernicus.eu/">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href="/knowledge/european-climate-data-explorer/disclaimer">Disclaimer</a></p>
     </metal:main>
   </body>
 </html>
