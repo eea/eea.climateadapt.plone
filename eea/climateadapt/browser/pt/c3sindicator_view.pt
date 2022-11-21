@@ -66,13 +66,13 @@ hr {
 </button>
 <div>
   <details class="general-info collapsible" open="">
-    <summary><b>Background Information</b></summary>
+    <summary><strong>Background Information</strong></summary>
     <tal tal:content="structure python: view.w['long_description'].render()"></tal>
   </details>
 </div>
 <div>
   <details class="vis-nav collapsible">
-    <summary><b>Visualisation and Navigation</b></summary>
+    <summary><strong>Visualisation and Navigation</strong></summary>
     <tal tal:content="structure python: view.w['definition_app'].render()"></tal>
   </details>
 </div>
