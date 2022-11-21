@@ -66,13 +66,13 @@ hr {
 </button>
 <div>
   <details class="general-info collapsible" open="">
-    <summary>Background Information</summary>
+    <summary><b>Background Information</b></summary>
     <tal tal:content="structure python: view.w['long_description'].render()"></tal>
   </details>
 </div>
 <div>
   <details class="vis-nav collapsible">
-    <summary>Visualisation and Navigation</summary>
+    <summary><b>Visualisation and Navigation</b></summary>
     <tal tal:content="structure python: view.w['definition_app'].render()"></tal>
   </details>
 </div>
@@ -136,6 +136,7 @@ hr {
       element.setAttribute("data-fullscreen", "true");
       document.querySelector("body").classList.add("fullwidth");
       $(".general-info.collapsible").removeAttr("open");
+      $(".vis-nav.collapsible").removeAttr("open");
       $(".fullscreen-cmd").hide();
     });
     $( ".exit-fullscreen-cmd" ).on( "click", function() {
