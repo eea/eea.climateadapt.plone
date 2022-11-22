@@ -49,10 +49,6 @@
       .thumb-wrapper:hover {
         border: 1px solid #005C96;
       }
-      .thumb-wrapper:hover > .thumb {
-        -webkit-transform: scale3d(1.2, 1.2, 1.2);
-        transform: scale3d(1.2, 1.2, 1.2);
-      }
       .thumb-wrapper:hover .gallery-layer {
         background-color: rgba(0, 0, 0, 0.5);
       }
@@ -67,6 +63,7 @@
         transition: transform 0.15s ease 0s;
         -webkit-transform: scale3d(1.1, 1.1, 1.1);
         transform: scale3d(1.1, 1.1, 1.1);
+	object-fit: scale-down;
       }
     </style>
 
