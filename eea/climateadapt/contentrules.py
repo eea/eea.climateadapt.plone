@@ -16,6 +16,7 @@ from plone.contentrules.rule.interfaces import IExecutable, IRuleElementData
 from Products.CMFPlone import utils
 from Products.CMFCore.utils import getToolByName
 from Products.statusmessages.interfaces import IStatusMessage
+from Testing.ZopeTestCase import utils as zopeUtils
 from ZODB.POSException import ConflictError
 from zope.component import adapter, adapts, queryUtility, ComponentLookupError
 from zope.interface import Interface, implementer, implements
@@ -252,43 +253,43 @@ def get_async_service():
         return async_service
 
 
-def execute_translate_sds(context, options):
+def execute_translate_sds(context, options, language, request_vars):
     """ translate via zc.async
     """
-    async_service = get_async_service()
+    if not hasattr(context, 'REQUEST'):
+        zopeUtils._Z2HOST = options['obj_url']
+        context = zopeUtils.makerequest(context)
+        context.REQUEST['PARENTS'] = [context]
 
-    while True:
-        try:
-            settings = {
-                "language": options['language'],
-                "uid": options['uid'],
-            }
-            translation_step_4(getSite(), settings)
-            logger.info("Async translate for object %s", options['obj_url'])
+        for k, v in request_vars:
+            context.REQUEST.set(k, v)
 
-            try:
-                logger.info("Response for running translate_step_4: %s", 
-                    options['obj_url'])
-            except AttributeError:
-                message = 'no message'
+    try:
+        settings = {
+            "language": language,
+            "uid": options['uid'],
+        }
+        res = translation_step_4(context, settings, async_request=True)
+        logger.info("Async translate for object %s", options['obj_url'])
 
-        except Exception as err:
-            import pdb; pdb.set_trace()
-            # re-schedule PING on error
-            schedule = datetime.now(pytz.UTC) + timedelta(hours=4)
-            queue = async_service.getQueues()['']
-            async_service.queueJobInQueueWithDelay(
-                None, schedule, queue, ('translate',),
-                execute_translate_sds, context, options
-            )
+    except Exception as err:
+        # async_service = get_async_service()
 
-            # mark the original job as failed
-            return "Translate rescheduled for object %s. "\
-                "Reason: %s " % (
-                    options['obj_url'],
-                    str(err))
+        # re-schedule PING on error
+        # schedule = datetime.now(pytz.UTC) + timedelta(hours=4)
+        # queue = async_service.getQueues()['']
+        # async_service.queueJobInQueueWithDelay(
+        #     None, schedule, queue, ('translate',),
+        #     execute_translate_sds, context, options, language, request_vars
+        # )
 
-        break
+        # mark the original job as failed
+        return "Translate rescheduled for object %s. "\
+            "Reason: %s " % (
+                options['obj_url'],
+                str(err))
+
+    return res
 
 
 class TranslateAsyncAddForm(NullAddForm):
@@ -375,26 +376,35 @@ class TranslateAsyncActionExecutor(object):
         obj_en = translations.pop('en')
         
         for language in translations:
-            options['language'] = language
-            self.translate_sds(options)
+            settings = {
+                "language": language,
+                "uid": options['uid'],
+            }
+            # import pdb; pdb.set_trace()
+            # translation_step_4(getSite(), settings)
+            # options['language'] = language
+            self.translate_sds(options, language)
 
         return True
 
-    def translate_sds(self, options):
+    def translate_sds(self, options, language):
         """ Ping the CR/SDS service
         """
-        # Use RabbitMQ if available
-        # if self.rabbit_config:
-        #     return self.ping_RabbitMQ(options)
-
         # Use zc.async if available
         if self.async_service is None:
             logger.warn("Can't translate_asyn, plone.app.async not installed!")
             return
 
         queue = self.async_service.getQueues()['']
+        
+        request_vars = {}
+        
+        # request_keys_to_copy = ['_orig_env', 'environ', 'other', 'script']
+        # for req_key in request_keys_to_copy:
+        #     request_vars[req_key] = getattr(self.context.REQUEST, req_key)
+
         try:
-            self.async_service.queueJobInQueue(queue, ('translate',), execute_translate_sds, self.context, options)
+            self.async_service.queueJobInQueue(queue, ('translate',), execute_translate_sds, self.context, options, language, request_vars)
         except ComponentLookupError:
             logger.info(self.noasync_msg)
 
