@@ -667,6 +667,10 @@ msgstr "SUĠĠETTI"
 msgid "Transnational regions"
 msgstr "Reġjuni transnazzjonali"
 
+#:
+msgid "Transnational, National, local"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:40

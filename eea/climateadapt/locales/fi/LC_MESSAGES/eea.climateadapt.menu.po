@@ -564,6 +564,10 @@ msgstr "Aiheet"
 msgid "Transnational regions"
 msgstr "Valtioiden kansainväliset alueet"
 
+#:
+msgid "Transnational, National, local"
+msgstr ""
+
 # ,
 #: site_menu:40
 msgid "Transport"

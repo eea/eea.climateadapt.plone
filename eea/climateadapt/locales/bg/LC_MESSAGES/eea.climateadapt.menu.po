@@ -564,6 +564,10 @@ msgstr "ТЕМИ"
 msgid "Transnational regions"
 msgstr "Транснационални региони"
 
+#:
+msgid "Transnational, National, local"
+msgstr ""
+
 # ,
 #: site_menu:40
 msgid "Transport"

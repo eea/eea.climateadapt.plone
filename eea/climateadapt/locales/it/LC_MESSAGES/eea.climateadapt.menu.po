@@ -1498,6 +1498,10 @@ msgstr "TEMI"
 msgid "Transnational regions"
 msgstr "Regioni transnazionali"
 
+#:
+msgid "Transnational, National, local"
+msgstr "Transnazionale, nazionale, locale"
+
 # ,
 # ,
 # ,

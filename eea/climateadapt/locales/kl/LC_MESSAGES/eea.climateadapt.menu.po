@@ -472,6 +472,10 @@ msgstr ""
 msgid "Transnational regions"
 msgstr ""
 
+#:
+msgid "Transnational, National, local"
+msgstr ""
+
 #: site_menu:40
 msgid "Transport"
 msgstr ""

@@ -667,6 +667,10 @@ msgstr "Onderwerpen"
 msgid "Transnational regions"
 msgstr "Transnationale gebieden"
 
+#:
+msgid "Transnational, National, local"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:40

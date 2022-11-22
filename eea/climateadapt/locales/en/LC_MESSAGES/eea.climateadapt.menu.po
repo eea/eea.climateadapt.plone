@@ -564,6 +564,10 @@ msgstr "TOPICS"
 msgid "Transnational regions"
 msgstr "Transnational regions"
 
+#:
+msgid "Transnational, National, local"
+msgstr ""
+
 # ,
 #: site_menu:40
 msgid "Transport"

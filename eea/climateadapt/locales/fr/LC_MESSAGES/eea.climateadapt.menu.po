@@ -1305,6 +1305,10 @@ msgstr "LES SUJETS"
 msgid "Transnational regions"
 msgstr "Régions transnationales"
 
+#:
+msgid "Transnational, National, local"
+msgstr "Transnational, National, local"
+
 # ,
 # ,
 # ,

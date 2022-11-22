@@ -667,6 +667,10 @@ msgstr "Témák"
 msgid "Transnational regions"
 msgstr "Transznacionális régiók"
 
+#:
+msgid "Transnational, National, local"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:40

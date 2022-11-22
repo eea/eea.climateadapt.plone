@@ -950,6 +950,10 @@ msgstr "Subiecte"
 msgid "Transnational regions"
 msgstr "Regiuni transnaționale"
 
+#:
+msgid "Transnational, National, local"
+msgstr ""
+
 # ,
 # ,
 # ,

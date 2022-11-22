@@ -1305,6 +1305,10 @@ msgstr "Temas"
 msgid "Transnational regions"
 msgstr "Regiones transnacionales"
 
+#:
+msgid "Transnational, National, local"
+msgstr "Transnacional, Nacional, Local"
+
 # ,
 # ,
 # ,

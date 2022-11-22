@@ -667,6 +667,10 @@ msgstr "Tēmas"
 msgid "Transnational regions"
 msgstr "Starpvalstu reģioni"
 
+#:
+msgid "Transnational, National, local"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:40

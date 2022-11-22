@@ -667,6 +667,10 @@ msgstr "Efni"
 msgid "Transnational regions"
 msgstr "Fjölþjóðleg svæði"
 
+#:
+msgid "Transnational, National, local"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:40

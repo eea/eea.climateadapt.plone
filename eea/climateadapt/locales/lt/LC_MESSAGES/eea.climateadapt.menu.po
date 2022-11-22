@@ -667,6 +667,10 @@ msgstr "Temos"
 msgid "Transnational regions"
 msgstr "Tarptautiniai regionai"
 
+#:
+msgid "Transnational, National, local"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:40

@@ -564,6 +564,10 @@ msgstr "Teemasid"
 msgid "Transnational regions"
 msgstr "Riikidevahelised piirkonnad"
 
+#:
+msgid "Transnational, National, local"
+msgstr ""
+
 # ,
 #: site_menu:40
 msgid "Transport"

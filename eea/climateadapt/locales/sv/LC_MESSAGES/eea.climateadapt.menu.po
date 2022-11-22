@@ -667,6 +667,10 @@ msgstr "Ämnen"
 msgid "Transnational regions"
 msgstr "Transnationella regioner"
 
+#:
+msgid "Transnational, National, local"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:40

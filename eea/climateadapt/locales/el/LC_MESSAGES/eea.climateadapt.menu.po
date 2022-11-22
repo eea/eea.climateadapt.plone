@@ -564,6 +564,10 @@ msgstr "ΘΕΜΑΤΑ"
 msgid "Transnational regions"
 msgstr "Διακρατικές περιοχές"
 
+#:
+msgid "Transnational, National, local"
+msgstr ""
+
 # ,
 #: site_menu:40
 msgid "Transport"

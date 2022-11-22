@@ -667,6 +667,10 @@ msgstr "Konular"
 msgid "Transnational regions"
 msgstr "Ulusötesi bölgeler"
 
+#:
+msgid "Transnational, National, local"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:40
