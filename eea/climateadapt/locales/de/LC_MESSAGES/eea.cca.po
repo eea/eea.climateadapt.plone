@@ -22,9 +22,11 @@ msgstr ""
 # ,
 # ,
 # ,
+#, 
 msgid "Adaptation options"
 msgstr "Anpassungsoptionen"
 
+#, 
 msgid "Adaptation portals and platforms"
 msgstr "Anpassungsportale und -plattformen"
 
@@ -37,9 +39,11 @@ msgstr "Basierend auf Ihren Präferenzen können Sie diese Seite auf Deutsch anz
 # ,
 # ,
 # ,
+#, 
 msgid "Case studies"
 msgstr "Fallstudien"
 
+#, 
 msgid "Climate change impact and vulnerability assessments"
 msgstr "Auswirkungen des Klimawandels und Vulnerabilitätsbewertungen"
 
@@ -49,6 +53,7 @@ msgstr "Auswirkungen des Klimawandels und Vulnerabilitätsbewertungen"
 # ,
 # ,
 # ,
+#, 
 msgid "Countries:"
 msgstr "Länder:"
 
@@ -58,6 +63,7 @@ msgstr "Länder:"
 # ,
 # ,
 # ,
+#, 
 msgid "Guidance"
 msgstr "Leitfaden"
 
@@ -67,6 +73,7 @@ msgstr "Leitfaden"
 # ,
 # ,
 # ,
+#, 
 msgid "Indicators"
 msgstr "Indikatoren"
 
@@ -76,6 +83,7 @@ msgstr "Indikatoren"
 # ,
 # ,
 # ,
+#, 
 msgid "Information portals"
 msgstr "Informationsportale"
 
@@ -83,13 +91,15 @@ msgstr "Informationsportale"
 # ,
 # ,
 # ,
+#, 
 msgid "Latest <br/> News & Events"
-msgstr "Aktuelle <br/> Neuigkeiten und Veranstaltungen"
+msgstr "Aktuellste <br/> Neuigkeiten und Veranstaltungen"
 
 # ,
 # ,
 # ,
 # ,
+#, 
 msgid "Most recent <br/> Case Study"
 msgstr "Neueste <br/> Fallstudie"
 
@@ -97,9 +107,11 @@ msgstr "Neueste <br/> Fallstudie"
 # ,
 # ,
 # ,
+#, 
 msgid "Most recent <br/> Publication or Report"
-msgstr "Neueste <br/> Veröffentlichung oder Bericht"
+msgstr "Neueste <br/> Veröffentlichung oder neuester Bericht"
 
+#, 
 msgid "National adaption policy"
 msgstr "Nationale Anpassungspolitik"
 
@@ -109,6 +121,7 @@ msgstr "Nationale Anpassungspolitik"
 # ,
 # ,
 # ,
+#, 
 msgid "Organisations"
 msgstr "Organisationen"
 
@@ -118,10 +131,12 @@ msgstr "Organisationen"
 # ,
 # ,
 # ,
+#, 
 msgid "Publication and reports"
 msgstr "Veröffentlichung und Berichte"
 
 # ,
+#, 
 msgid "Publications and reports"
 msgstr "Veröffentlichungen und Berichte"
 
@@ -131,6 +146,7 @@ msgstr "Veröffentlichungen und Berichte"
 # ,
 # ,
 # ,
+#, 
 msgid "Research and knowledge projects"
 msgstr "Forschungs- und Wissensprojekte"
 
@@ -140,6 +156,7 @@ msgstr "Forschungs- und Wissensprojekte"
 # ,
 # ,
 # ,
+#, 
 msgid "Tools"
 msgstr "Werkzeuge"
 
@@ -149,8 +166,10 @@ msgstr "Werkzeuge"
 # ,
 # ,
 # ,
+#, 
 msgid "Videos"
 msgstr "Videos"
 
 msgid "here"
 msgstr "hier"
+
