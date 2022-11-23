@@ -11,6 +11,8 @@ NAME = 'translate'
 def get_maximum_threads(queue):
     """ Get the maximum threads per queue
     """
+    return 1
+    
     size = 0
     for dispatcher_agent in queue.dispatchers.values():
         if not dispatcher_agent.activated:

@@ -1294,7 +1294,7 @@ def translation_step_3(site, request):
     logger.info("Finalize step 3")
 
 
-def translation_step_4(site, request):
+def translation_step_4(site, request, async_request=False):
     """ Copy fields values from en to given language for language independent
         fields.
     """
@@ -1397,6 +1397,13 @@ def translation_step_4(site, request):
 
         try:
             trans_obj = translations[language]
+            # set REQUEST otherwise will give error 
+            # when executing trans_obj.setLayout()
+            if async_request:  #not hasattr(trans_obj, 'REQUEST'):
+                trans_obj.REQUEST = site.REQUEST
+                obj.REQUEST = site.REQUEST
+                #request = getattr(event.object, 'REQUEST', getRequest())
+
         except KeyError:
             logger.info("Missing translation for: %s", obj.absolute_url())
             continue
@@ -1438,6 +1445,20 @@ def translation_step_4(site, request):
                                         logger.info("Collection not found.")
 
                                     dataManager.set(temp)
+                    if data_tile['type'] == 'eea.climateadapt.relevant_acecontent':
+                        tile = obj.get_tile(data_tile['id'])
+                        tile_type = get_tile_type(tile, obj, trans_obj)
+                        from_tile = obj.restrictedTraverse('@@{0}/{1}'.format(tile_type, tile.id))
+                        to_tile = trans_obj.restrictedTraverse('@@{0}/{1}'.format(tile_type, tile.id))
+                        
+                        from_data_mgr = ITileDataManager(from_tile)
+                        to_data_mgr = ITileDataManager(to_tile)
+                        from_data = from_data_mgr.get()
+                        
+                        trans_tile = trans_obj.get_tile(data_tile['id'])
+                        from_data['title'] = trans_tile.data['title']
+                        to_data_mgr.set(from_data)
+                        
             except KeyError:
                 logger.info("Problem setting collection in tile for language")
 
@@ -1478,6 +1499,10 @@ def translation_step_4(site, request):
                     logger.info("Can't set layout for: %s",
                                 trans_obj.absolute_url())
                     continue
+
+            if async_request:
+                del trans_obj.REQUEST
+                del obj.REQUEST
 
             trans_obj._p_changed = True
             trans_obj.reindexObject()
@@ -1522,11 +1547,15 @@ def translation_step_4(site, request):
                         logger.info("Skip: %s %s", obj.portal_type, key)
 
         if reindex is True:
+            if async_request:
+                del trans_obj.REQUEST
+                del obj.REQUEST
+
             trans_obj._p_changed = True
             trans_obj.reindexObject()
             transaction.commit()  # TODO Improve. This is a fix for Event.
             continue
-
+    
     logger.info("Finalize step 4")
     return("Finalize step 4")
 
