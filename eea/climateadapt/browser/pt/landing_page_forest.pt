@@ -39,10 +39,10 @@
 	position: relative;
 	background-image: url(/++theme++climateadaptv2/static/images/forest-landing/landing.jpg);
 	background-size: cover;
-	height: 400px !important;
+	height: 440px !important;
 	/* margin-right: -50vw !important; */
 	border-bottom: 5px solid #8a9c3a;
-  background-position: center;
+  background-position: bottom;
 }
 .urban-landing-top .text-content {
   margin: 0 auto;
@@ -219,14 +219,14 @@
         <div class="content-container">
           <div class="tab-content tab-body clearfix" style="border:none;box-shadow:none;padding-bottom:40px;">
 
-            <div class="tab-pane active fade in" id="t-tools">
+            <div class="tab-pane active fade in" id="t-tools" style="margin-bottom:40px;">
               <div class="new-feature row">
                 <div class="col-md-4 col-sm-12 feature-section">
                   <img src="/++theme++climateadaptv2/static/images/ecde-logo.svg" style="max-height:78px; margin-bottom:22px;">
                   <p class="feature-text" i18n:translate="">The European Climate Data Explorer provides interactive access to many climate indices like fire weather indices in support of climate change adaptation in forests.</p>
                   <div class="bottom-section">
                     <a class="standard-button primary-button feature-btn" href="/en/knowledge/european-climate-data-explorer/" i18n:translate="">
-                    Go to the European Climate Data Explorer</a>
+                    European Climate Data Explorer</a>
                   </div>
                 </div>
 
@@ -235,7 +235,7 @@
                   <p class="feature-text" i18n:translate="">The European Drought Observatory (EDO) contains drought-relevant information. These give an overview of the situation in the EU about imminent droughts.
                   </p>
                   <div class="bottom-section">
-                    <a class="standard-button primary-button feature-btn" href="https://edo.jrc.ec.europa.eu/" i18n:translate="">Go to the European Drought Observatory</a>
+                    <a class="standard-button primary-button feature-btn" href="https://edo.jrc.ec.europa.eu/" i18n:translate="">European Drought Observatory</a>
                   </div>
                 </div>
 
@@ -244,7 +244,7 @@
                   <p class="feature-text" i18n:translate="">The European Forest Fire Information System (EFFIS) supports the protection of forests against fires  and provides the EU with harmonized information on forest fires
                   </p>
                   <div class="bottom-section">
-                    <a class="standard-button primary-button feature-btn" href="https://effis.jrc.ec.europa.eu/" i18n:translate="">Go to The European Forest Fire Information System</a>
+                    <a class="standard-button primary-button feature-btn" href="https://effis.jrc.ec.europa.eu/" i18n:translate="">The European Forest Fire Information System</a>
                   </div>
                 </div>
 
@@ -287,9 +287,9 @@
                 <!-- <img src="/++theme++climateadaptv2/static/images/urban-landing/tab3_rep.png" style="height:215px;padding-right:50px;"/>-->
                 <a href="/en/metadata/publications/european-forests-tackling-climate-change"><img src="/++theme++climateadaptv2/static/images/forest-landing/eustafor.png"/></a>
                 <a href="/en/metadata/publications/adaptation-to-climate-change-in-sustainable-forest-management-in-europe"><img src="/++theme++climateadaptv2/static/images/forest-landing/SustainableForestManagement.png"/></a>
-                <a href="/en/metadata/publications/land-based-wildfire-prevention-principles-and-experiences-on-managing-landscapes-forests-and-woodlands-for-safety-and-resilience-in-europe"><img src="/++theme++climateadaptv2/static/images/forest-landing/Landbased-WildfirePrevention.png"/></a>
-                <a href="#"><img src="/++theme++climateadaptv2/static/images/forest-landing/Impacts-of-Climate-Change.png"/></a>
-                <a href="#"><img src="/++theme++climateadaptv2/static/images/forest-landing/Forest-based.png"/></a>
+                <a href="/en/metadata/publications//en/metadata/publications/land-based-wildfire-prevention-principles-and-experiences-on-managing-landscapes-forests-and-woodlands-for-safety-and-resilience-in-europe/"><img src="/++theme++climateadaptv2/static/images/forest-landing/Landbased-WildfirePrevention.png"/></a>
+                <a href="/en/metadata/publications/impacts-of-climate-change-on-european-forests-and-options-for-adaptation"><img src="/++theme++climateadaptv2/static/images/forest-landing/Impacts-of-Climate-Change.png"/></a>
+                <a href="/en/metadata/publications/forest-based-climate-change-mitigation-and-adaptation-in-europe-from-science-to-policy/"><img src="/++theme++climateadaptv2/static/images/forest-landing/Forest-based.png"/></a>
               </div>
 
 
@@ -316,7 +316,7 @@
                 <img src="/++theme++climateadaptv2/static/images/urban-landing/tab4.png" style="float:left;padding-right:20px;" />
                 <p i18n:translate="" class="feature-text">The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector.</p>
                 <div class="bottom-section">
-                  <a i18n:translate="" class="standard-button primary-button feature-btn" href="/en/eu-adaptation-policy/sector-policies/urban">Go to the Forest Policy Overview</a>
+                  <a i18n:translate="" class="standard-button primary-button feature-btn" href="/en/eu-adaptation-policy/sector-policies/forestry">Go to the Forest Policy Overview</a>
                 </div>
               </div>
             </div>
@@ -326,7 +326,7 @@
                 <h4>EU funding of adaptation</h4>
                 <p class="feature-text" i18n:translate="">The EU finances adaptation to climate change in Europe through a wide range of instruments. The Multiannual Financial Framework  2021-2027 ensures that at least 25% of the European budget is climate-related expenditure. Therefore, Climate adaptation actions have to be integrated into all the major EU spending programmes, and a tracking system is put in place to guarantee these objectives are met.</p>
                 <div class="bottom-section">
-                  <a class="standard-button primary-button feature-btn" href="#">
+                  <a class="standard-button primary-button feature-btn" href="/en/eu-adaptation-policy/funding">
                       Go to EU funding of adaptation</a>
                 </div>
               </div>
@@ -335,7 +335,7 @@
               <div class="list-items">
                 <a href="https://forest.eea.europa.eu/"><img src="/++theme++climateadaptv2/static/images/forest-landing/FISE-Logo.svg" style="width:500px;"/></a>
                 <a href="https://foresteurope.org/"><img src="/++theme++climateadaptv2/static/images/forest-landing/ForestEurope.png" style="width:300px;"/></a>
-                <a href="#"><img src="/++theme++climateadaptv2/static/images/forest-landing/NetworkCSF.png" style="width:200px;"/></a>
+                <a href="https://www.vbne.nl/klimaatslimbosennatuurbeheer/projecten-europa"><img src="/++theme++climateadaptv2/static/images/forest-landing/NetworkCSF.png" style="width:200px;"/></a>
               </div>
             </div>
 <div style="clear:both;"></div>
