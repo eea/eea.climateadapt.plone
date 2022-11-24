@@ -18,20 +18,18 @@ from Products.CMFCore.utils import getToolByName
 from Products.statusmessages.interfaces import IStatusMessage
 from Testing.ZopeTestCase import utils as zopeUtils
 from ZODB.POSException import ConflictError
-from zope.component import adapter, adapts, queryUtility, ComponentLookupError
+from zope.component import adapter, adapts, ComponentLookupError
 from zope.interface import Interface, implementer, implements
 from zope.site.hooks import getSite
 from DateTime import DateTime
 
 from eea.climateadapt import CcaAdminMessageFactory as _
+from eea.climateadapt.async.utils import get_async_service
 from eea.climateadapt.translation.admin import translate_obj
 from eea.climateadapt.translation.admin import create_translation_object
 from eea.climateadapt.translation.admin import copy_missing_interfaces
 from eea.climateadapt.translation.admin import translation_step_4
 from eea.climateadapt.translation.utils import get_site_languages
-from eea.rdfmarshaller.async import IAsyncService
-from eea.rabbitmq.plone.rabbitmq import get_rabbitmq_client_settings
-from eea.rabbitmq.plone.rabbitmq import queue_msg
 
 
 logger = logging.getLogger('eea.climateadapt')
@@ -247,13 +245,28 @@ class TranslateAddForm(NullAddForm):
         return TranslateAction()
 
 
-def get_async_service():
-        async_service = queryUtility(IAsyncService)
+class TranslateAsyncAddForm(NullAddForm):
+    """A translate async action form"""
 
-        return async_service
+    def create(self):
+        return TranslateAsyncAction()
 
 
-def execute_translate_sds(context, options, language, request_vars):
+class ITranslateAsyncAction(Interface):
+    """ Interface for run translate and translate_step_4 for and object
+    """
+
+
+class TranslateAsyncAction(SimpleItem):
+    """ Async translate and translate_step_4 for and object
+    """
+    implements(ITranslateAsyncAction, IRuleElementData)
+
+    element = "eea.climateadapt.TranslateAsync"
+    summary = _(u"Translate object async")
+
+
+def execute_translate_step_4_async(context, options, language, request_vars):
     """ translate via zc.async
     """
     if not hasattr(context, 'REQUEST'):
@@ -280,7 +293,7 @@ def execute_translate_sds(context, options, language, request_vars):
         # queue = async_service.getQueues()['']
         # async_service.queueJobInQueueWithDelay(
         #     None, schedule, queue, ('translate',),
-        #     execute_translate_sds, context, options, language, request_vars
+        #     execute_translate_step_4_async, context, options, language, request_vars
         # )
 
         # mark the original job as failed
@@ -290,27 +303,6 @@ def execute_translate_sds(context, options, language, request_vars):
                 str(err))
 
     return res
-
-
-class TranslateAsyncAddForm(NullAddForm):
-    """A translate async action form"""
-
-    def create(self):
-        return TranslateAsyncAction()
-
-
-class ITranslateAsyncAction(Interface):
-    """ Interface for run translate and translate_step_4 for and object
-    """
-
-
-class TranslateAsyncAction(SimpleItem):
-    """ Async translate and translate_step_4 for and object
-    """
-    implements(ITranslateAsyncAction, IRuleElementData)
-
-    element = "eea.climateadapt.TranslateAsync"
-    summary = _(u"Translate object async")
 
 
 class TranslateAsyncActionExecutor(object):
@@ -324,70 +316,12 @@ class TranslateAsyncActionExecutor(object):
         self.context = context
         self.element = element
         self.event = event
-        self._rabbit_config = None
-
-    def ping_RabbitMQ(self, options):
-        """ Ping the SDS service via RabbitMQ
-        """
-        params = {}
-        params['language'] = options['language']
-        params['uid'] = options['uid']
-        encoded_params = urllib.urlencode(params)
-        full_url = "%s/%s?%s" % (options['portal_url'],
-            options['translate_step'], 
-            encoded_params)
-
-        msg = "{}".format(full_url)
-        try:
-            queue_msg(msg, queue="translate_sds_queue")
-        except Exception as err:
-            logger.error("Sending '%s' in 'translate_sds_queue' FAILED: %s", msg, err)
-
-    @property
-    def rabbit_config(self):
-        """ RabbitMQ Config
-        """
-        if self._rabbit_config is not None:
-            return self._rabbit_config
-
-        try:
-            self._rabbit_config = get_rabbitmq_client_settings()
-        except Exception:
-            self._rabbit_config = {}
-        return self._rabbit_config   
 
     @property
     def async_service(self):
         return get_async_service()
 
-    def translate_step_4_sds(self, obj):
-        options = {}
-        options['obj_url'] = obj.absolute_url()
-        options['translate_step'] = 'admin-translate-step-4'
-        options['uid'] = obj.UID()
-        options['portal_url'] = self.context.absolute_url()
-        
-        translations = TranslationManager(obj).get_translations()
-        
-        # check if object has translations
-        if 'en' not in translations:
-            return True
-        
-        obj_en = translations.pop('en')
-        
-        for language in translations:
-            settings = {
-                "language": language,
-                "uid": options['uid'],
-            }
-            # import pdb; pdb.set_trace()
-            # translation_step_4(getSite(), settings)
-            # options['language'] = language
-            self.translate_sds(options, language)
-
-        return True
-
-    def translate_sds(self, options, language):
+    def translate_async(self, options, language):
         """ Ping the CR/SDS service
         """
         # Use zc.async if available
@@ -404,12 +338,26 @@ class TranslateAsyncActionExecutor(object):
         #     request_vars[req_key] = getattr(self.context.REQUEST, req_key)
 
         try:
-            self.async_service.queueJobInQueue(queue, ('translate',), execute_translate_sds, self.context, options, language, request_vars)
+            self.async_service.queueJobInQueue(queue, ('translate',), execute_translate_step_4_async, self.context, options, language, request_vars)
         except ComponentLookupError:
             logger.info(self.noasync_msg)
 
     def __call__(self):
         obj = self.event.object
-        self.translate_step_4_sds(obj)
+        options = {}
+        options['obj_url'] = obj.absolute_url()
+        options['uid'] = obj.UID()
+        
+        translations = TranslationManager(obj).get_translations()
+        
+        # check if object has translations
+        if 'en' not in translations:
+            return True
+        
+        obj_en = translations.pop('en')
+        
+        for language in translations:
+            
+            self.translate_async(options, language)
 
         return True
