@@ -65,6 +65,10 @@ msgstr "Aðlögunarvalkostir"
 msgid "Adriatic-Ionian"
 msgstr "Adriatic-ionian"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:29

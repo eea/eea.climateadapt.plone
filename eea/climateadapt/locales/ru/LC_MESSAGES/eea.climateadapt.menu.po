@@ -65,6 +65,10 @@ msgstr "Параметры адаптации"
 msgid "Adriatic-Ionian"
 msgstr "Адриат-ионийский"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:29
