@@ -29,7 +29,10 @@ from z3c.relationfield.relation import RelationValue
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
+from Products.statusmessages.interfaces import IStatusMessage
+from Testing.ZopeTestCase import utils as zopeUtils
 
+from eea.climateadapt.async.utils import get_async_service
 from eea.climateadapt.browser.admin import force_unlock
 from eea.climateadapt.tiles.richtext import RichTextWithTitle
 from eea.climateadapt.translation import retrieve_translation
@@ -121,7 +124,7 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
         if lang is not None:
             if language != lang:
                 continue
-
+        
         trans_obj = translations[language]
         trans_obj_url = trans_obj.absolute_url()
         trans_obj_path = '/cca' + trans_obj_url.split(site_url)[-1]
@@ -2622,3 +2625,87 @@ class TranslateOneObject(BrowserView):
                     "uid": obj.UID(),
                 }
                 translation_step_4(getSite(), settings)
+
+
+def execute_translate_async(context, options, language, request_vars):
+    """ translate via zc.async
+    """
+    if not hasattr(context, 'REQUEST'):
+        zopeUtils._Z2HOST = options['obj_url']
+        context = zopeUtils.makerequest(context)
+        context.REQUEST['PARENTS'] = [context]
+
+        for k, v in request_vars:
+            context.REQUEST.set(k, v)
+
+    try:
+        settings = {
+            "language": language,
+            "uid": options['uid'],
+        }
+        import pdb; pdb.set_trace()
+        create_translation_object(context, language)
+        translation_step_4(context, settings, async_request=True)
+        translate_obj(context,lang=language, one_step=True)
+        trans_obj = get_translation_object(context, language)
+        copy_missing_interfaces(context, trans_obj)
+        
+        logger.info("Async translate for object %s", options['obj_url'])
+
+    except Exception as err:
+        # async_service = get_async_service()
+
+        # re-schedule PING on error
+        # schedule = datetime.now(pytz.UTC) + timedelta(hours=4)
+        # queue = async_service.getQueues()['']
+        # async_service.queueJobInQueueWithDelay(
+        #     None, schedule, queue, ('translate',),
+        #     execute_translate_step_4_async, context, options, language, request_vars
+        # )
+
+        # mark the original job as failed
+        return "Translate rescheduled for object %s. "\
+            "Reason: %s " % (
+                options['obj_url'],
+                str(err))
+
+    return 'FInished'
+
+
+class TranslateObjectAsync(BrowserView):
+    
+    @property
+    def async_service(self):
+        return get_async_service()
+
+    def __call__(self):
+        messages = IStatusMessage(self.request)
+        messages.add(u"Translation process initiated.", type=u"info")
+        obj = self.context
+        options = {}
+        options['obj_url'] = obj.absolute_url()
+        options['uid'] = obj.UID()
+        request_vars = {}
+        
+        # request_keys_to_copy = ['_orig_env', 'environ', 'other', 'script']
+        # for req_key in request_keys_to_copy:
+        #     request_vars[req_key] = getattr(obj.REQUEST, req_key)
+   
+        if "/en/" in self.context.absolute_url():
+            # run translate FULL (all languages)
+            translations = TranslationManager(obj).get_translations()
+
+            for language in translations:
+                if self.async_service is None:
+                    logger.warn("Can't translate_asyn, plone.app.async not installed!")
+                    return
+
+                queue = self.async_service.getQueues()['']
+
+                self.async_service.queueJobInQueue(queue, ('translate',), execute_translate_async, obj, options, language, request_vars)
+
+        else:
+            # run translate ONLY for the current language
+            pass
+
+        self.request.response.redirect(obj.absolute_url())
