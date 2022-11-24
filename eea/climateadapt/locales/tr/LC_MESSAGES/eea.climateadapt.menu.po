@@ -65,6 +65,10 @@ msgstr "Adaptasyon Seçenekleri"
 msgid "Adriatic-Ionian"
 msgstr "Adriyatik"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:29

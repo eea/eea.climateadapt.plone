@@ -57,6 +57,10 @@ msgstr "Επιλογές προσαρμογής"
 msgid "Adriatic-Ionian"
 msgstr "Αδριατική-Ιόνιο"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 #: site_menu:29
 msgid "Agriculture"

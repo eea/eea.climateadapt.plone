@@ -65,6 +65,10 @@ msgstr "Adaptacijos parinktys"
 msgid "Adriatic-Ionian"
 msgstr "Adrijos jianietis"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:29

@@ -65,6 +65,10 @@ msgstr "Adaptācijas iespējas"
 msgid "Adriatic-Ionian"
 msgstr "Adrijas jūra"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:29

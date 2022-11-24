@@ -65,6 +65,10 @@ msgstr "Možnosti prilagajanja"
 msgid "Adriatic-Ionian"
 msgstr "Jadransko-ionski"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:29

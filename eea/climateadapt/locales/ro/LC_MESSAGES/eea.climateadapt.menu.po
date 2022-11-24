@@ -89,6 +89,10 @@ msgstr "Opțiuni de adaptare"
 msgid "Adriatic-Ionian"
 msgstr "Adriatic-ionian"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 # ,
 # ,

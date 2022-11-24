@@ -57,6 +57,10 @@ msgstr "Adaptation options"
 msgid "Adriatic-Ionian"
 msgstr "Adriatic-Ionian"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 #: site_menu:29
 msgid "Agriculture"
