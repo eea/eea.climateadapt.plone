@@ -319,7 +319,7 @@
 
             <div class="tab-pane fade" id="t-policy">
               <div>
-                <img src="/++theme++climateadaptv2/static/images/forest-landing/landing.jpg" style="max-height:300px;float:left;padding-right:20px;" />
+                <img src="/++theme++climateadaptv2/static/images/forest-landing/tab4.png" style="max-height:250px;float:left;padding-right:20px;" />
                 <p i18n:translate="" class="feature-text">The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector.</p>
                 <div class="bottom-section">
                   <a i18n:translate="" class="standard-button primary-button feature-btn" href="/en/eu-adaptation-policy/sector-policies/forestry">Go to the Forest Policy Overview</a>
@@ -328,7 +328,7 @@
             </div>
             <div class="tab-pane fade" id="t-funding">
               <div>
-                <img src="/++theme++climateadaptv2/static/images/forest-landing/chestnuts.jpg" style="width:300px;float:left;padding-right:20px;" />
+                <img src="/++theme++climateadaptv2/static/images/forest-landing/chestnuts.jpg" style="height:250px;float:left;padding-right:20px;" />
                 <h4>EU funding of adaptation</h4>
                 <p class="feature-text" i18n:translate="">The EU finances adaptation to climate change in Europe through a wide range of instruments. The Multiannual Financial Framework  2021-2027 ensures that at least 25% of the European budget is climate-related expenditure. Therefore, Climate adaptation actions have to be integrated into all the major EU spending programmes, and a tracking system is put in place to guarantee these objectives are met.</p>
                 <div class="bottom-section">
