@@ -1701,6 +1701,78 @@ class TransnationalRegions:
         transaction.commit()
         return response
 
+
+class ObservatoryHealthImpacts:
+    """Update health impacts #156631"""
+
+    def list(self):
+        # overwrite = int(self.request.form.get('overwrite', 0))
+
+        db_item_types = [
+            "eea.climateadapt.casestudy",
+            "eea.climateadapt.guidancedocument",
+            "eea.climateadapt.indicator",
+            "eea.climateadapt.informationportal",
+            "eea.climateadapt.organisation",
+            "eea.climateadapt.publicationreport",
+            "eea.climateadapt.aceproject",
+            "eea.climateadapt.tool",
+            "eea.climateadapt.video",
+        ]
+
+        catalog = api.portal.get_tool("portal_catalog")
+
+        res = []
+        i_transaction = 0
+        for _type in db_item_types:
+            brains = catalog.searchResults(
+                portal_type=_type,
+                path='/cca/en',
+                include_in_observatory="True"
+            )
+            for brain in brains:
+                obj = brain.getObject()
+                if not hasattr(obj, "health_impacts"):
+                    continue
+                if not obj.health_impacts:
+                    continue
+
+                health_impacts_before = obj.health_impacts
+
+                obj.health_impacts = []
+                for health_impact in health_impacts_before:
+                    if health_impact == 'Heat and cold':
+                        health_impact = 'Heat'
+                    elif health_impact == 'Floods and storms':
+                        health_impact = 'Droughts and floods'
+                    elif health_impact == 'Infectious diseases':
+                        health_impact = 'Climate-sensitive diseases'
+                    elif health_impact == 'Air quality and aeroallergens':
+                        health_impact = 'Air pollution and aero-allergens'
+                    obj.health_impacts.append(health_impact)
+
+                i_transaction += 1
+                if i_transaction % 100 == 0:
+                    transaction.savepoint()
+
+                obj._p_changed = True
+                obj.reindexObject()
+                logger.info("Health impacts set: %s %s", brain.getURL(), obj.health_impacts)
+
+                res.append(
+                    {
+                        "title": obj.title,
+                        "id": brain.UID,
+                        "url": brain.getURL(),
+                        "health_impacts": obj.health_impacts,
+                        "before": health_impacts_before,
+                    }
+                )
+
+        transaction.commit()
+        return res
+
+
 class AdaptationNatureBasesSolutions:
     """Add nature based solutions to elements from sectors"""
 
