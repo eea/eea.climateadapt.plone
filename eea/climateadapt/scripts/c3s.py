@@ -32,9 +32,13 @@ logging.basicConfig()
 #    "static-generator-dev/data/data_consolidated.json"
 #)
 
+#SOURCE_URL = (
+#    "https://raw.githubusercontent.com/bopen/c3s-430a-portal/"
+#    "static-generator-add-mean-temperature/data/data_consolidated.json"
+#    )
 SOURCE_URL = (
     "https://raw.githubusercontent.com/bopen/c3s-430a-portal/"
-    "static-generator-add-mean-temperature/data/data_consolidated.json"
+    "feature-merge-repositories/data/data_consolidated.json"
     )
 
 
