@@ -1141,6 +1141,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                             query = {
                                 'portal_type': 'eea.climateadapt.c3sindicator',
                                 'c3s_identifier': c3s_identifier,
+                                'review_state': 'published',
                                 'path': "/cca/"+lang+"/metadata"
                             }
                             brains = catalog.searchResults(query)
@@ -1243,7 +1244,6 @@ class C3sIndicatorsListing(BrowserView, TranslationUtilsMixin):
                     'title': obj.title,
                     'url': obj.absolute_url(),
                 })
-
         return res
 
 
