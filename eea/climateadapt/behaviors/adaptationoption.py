@@ -8,6 +8,7 @@ from plone.autoform import directives
 from plone.directives import form
 from z3c.form.interfaces import IAddForm, IEditForm
 from z3c.relationfield.schema import RelationChoice, RelationList
+from plone.app.textfield import RichText
 
 
 class IAdaptationOption(IAceMeasure):
@@ -64,6 +65,17 @@ class IAdaptationOption(IAceMeasure):
         u"add only the year, please select \"day: 1\", \"month: January\" "
         u"and then the year",
         required=True
+    )
+
+    # dexteritytextindexer.searchable("source")
+    source = RichText(
+        title=_(u"References"),
+        required=False,
+        description=_(
+            u"Describe the references (projects, a tools reports, etc.) "
+            u"related to this item, providing further information about "
+            u"it or its source."
+        ),
     )
 
 

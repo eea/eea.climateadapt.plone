@@ -1209,8 +1209,8 @@ class SourceToRichText:
         catalog = api.portal.get_tool("portal_catalog")
 
         DB_ITEM_TYPES = [
-            # "eea.climateadapt.adaptationoption",
-            "eea.climateadapt.casestudy",
+            "eea.climateadapt.adaptationoption",
+            # "eea.climateadapt.casestudy",
             # "eea.climateadapt.guidancedocument",
             # "eea.climateadapt.indicator",
             # "eea.climateadapt.informationportal",
