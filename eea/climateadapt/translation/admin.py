@@ -4,6 +4,7 @@ import json
 import logging
 import os
 import time
+from Acquisition import aq_parent, aq_inner
 from collections import defaultdict
 from datetime import date, datetime
 from DateTime import DateTime
@@ -1843,7 +1844,7 @@ def check_full_path_exists(obj, language):
     """ Create full path for a object
     """
 
-    parent = obj.getParentNode()
+    parent = aq_parent(aq_inner(obj))
     path = parent.getPhysicalPath()
     if len(path) <= 2:
         return True
@@ -2646,30 +2647,26 @@ def execute_translate_async(context, options, language, request_vars):
         for k, v in request_vars.items():
             context.REQUEST.set(k, v)
 
-        prev_obj = context
+        # prev_obj = context
 
-        for path in options['PARENTS'][1:]:
-            obj = prev_obj.unrestrictedTraverse(path)
-            obj.REQUEST = context.REQUEST
-            prev_obj.__parent__ = obj
-            prev_obj = obj
+        # for path in options['PARENTS'][1:]:
+        #     obj = prev_obj.unrestrictedTraverse(path)
+        #     obj.REQUEST = context.REQUEST
+        #     prev_obj.__parent__ = obj
+        #     prev_obj = obj
 
     try:
         settings = {
             "language": language,
             "uid": options['uid'],
         }
-        from Acquisition import aq_parent
-        x = aq_parent(context)
-        import pdb; pdb.set_trace()
-        create_translation_object(context, language)
+
         translation_step_4(context, settings, async_request=True)
         site_portal = portal.get()
         site_portal.REQUEST = context.REQUEST
         translate_obj(context, lang=language, one_step=True)
         trans_obj = get_translation_object(context, language)
-        copy_missing_interfaces(context, trans_obj)
-        
+        # copy_missing_interfaces(context, trans_obj)
         
         # delete REQUEST to avoid pickle error
         # del context.REQUEST
@@ -2733,20 +2730,21 @@ class TranslateObjectAsync(BrowserView):
                 if language == "en":
                     continue
                 
-                import pdb; pdb.set_trace()
-                parent = obj.getParentNode()
-                path = parent.getPhysicalPath()
-
                 if self.async_service is None:
                     logger.warn("Can't translate_asyn, plone.app.async not installed!")
                     return
 
+                create_translation_object(obj, language)
                 queue = self.async_service.getQueues()['']
-
                 self.async_service.queueJobInQueue(queue, ('translate',), execute_translate_async, obj, options, language, request_vars)
 
         else:
-            # run translate ONLY for the current language
-            pass
+            translations = TranslationManager(obj).get_translations()
+            obj_en = translations.pop('en')
+            language = get_current_language(self.context, self.request)
+
+            create_translation_object(obj_en, language)
+            queue = self.async_service.getQueues()['']
+            self.async_service.queueJobInQueue(queue, ('translate',), execute_translate_async, obj_en, options, language, request_vars)
 
         self.request.response.redirect(obj.absolute_url())
