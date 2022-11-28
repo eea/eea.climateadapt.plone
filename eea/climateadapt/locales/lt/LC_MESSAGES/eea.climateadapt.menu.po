@@ -47,6 +47,10 @@ msgstr "Apie klimato pritaikymą"
 msgid "About the Observatory"
 msgstr "Apie observatoriją"
 
+#:
+msgid "Accessibility of hospitals in Europe"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:74
@@ -430,6 +434,10 @@ msgstr "SVEIKATOS POVEIKIS"
 #: health_menu:36
 msgid "Health warning systems"
 msgstr "Įspėjimo apie sveikatą sistemos"
+
+#:
+msgid "Heat"
+msgstr ""
 
 # ,
 # ,

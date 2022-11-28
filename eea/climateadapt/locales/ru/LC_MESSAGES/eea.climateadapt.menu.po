@@ -47,6 +47,10 @@ msgstr "О климате-адапте"
 msgid "About the Observatory"
 msgstr "О обсерватории"
 
+#:
+msgid "Accessibility of hospitals in Europe"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:74
@@ -430,6 +434,10 @@ msgstr "Последствия для здоровья"
 #: health_menu:36
 msgid "Health warning systems"
 msgstr "Системы предупреждения о здравоохранении"
+
+#:
+msgid "Heat"
+msgstr ""
 
 # ,
 # ,

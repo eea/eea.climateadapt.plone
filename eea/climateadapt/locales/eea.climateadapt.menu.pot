@@ -565,3 +565,11 @@ msgstr ""
 #:
 msgid "Aero-allergens"
 msgstr ""
+
+#:
+msgid "Heat"
+msgstr ""
+
+#:
+msgid "Accessibility of hospitals in Europe"
+msgstr ""

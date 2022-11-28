@@ -42,6 +42,10 @@ msgstr "About Climate-ADAPT"
 msgid "About the Observatory"
 msgstr "About the Observatory"
 
+#:
+msgid "Accessibility of hospitals in Europe"
+msgstr ""
+
 # ,
 #: site_menu:74
 msgid "Adaptation Support Tool"
@@ -364,6 +368,10 @@ msgstr "Health effects"
 #: health_menu:36
 msgid "Health warning systems"
 msgstr "Health warning systems"
+
+#:
+msgid "Heat"
+msgstr ""
 
 # ,
 #: health_menu:21

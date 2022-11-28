@@ -35,6 +35,10 @@ msgstr ""
 msgid "About the Observatory"
 msgstr ""
 
+#:
+msgid "Accessibility of hospitals in Europe"
+msgstr ""
+
 #: site_menu:74
 msgid "Adaptation Support Tool"
 msgstr ""
@@ -302,6 +306,10 @@ msgstr ""
 
 #: health_menu:36
 msgid "Health warning systems"
+msgstr ""
+
+#:
+msgid "Heat"
 msgstr ""
 
 #: health_menu:21

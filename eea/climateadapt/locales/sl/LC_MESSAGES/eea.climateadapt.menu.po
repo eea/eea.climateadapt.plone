@@ -47,6 +47,10 @@ msgstr "O podnebju-adapt"
 msgid "About the Observatory"
 msgstr "O opazovalnici"
 
+#:
+msgid "Accessibility of hospitals in Europe"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:74
@@ -430,6 +434,10 @@ msgstr "Učinki na zdravje"
 #: health_menu:36
 msgid "Health warning systems"
 msgstr "Zdravstveni opozorilni sistemi"
+
+#:
+msgid "Heat"
+msgstr ""
 
 # ,
 # ,

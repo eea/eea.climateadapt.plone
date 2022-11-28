@@ -47,6 +47,10 @@ msgstr "Dwar Adapt tal-Klima"
 msgid "About the Observatory"
 msgstr "Dwar l-osservatorju"
 
+#:
+msgid "Accessibility of hospitals in Europe"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:74
@@ -430,6 +434,10 @@ msgstr "Effetti fuq is-saħħa"
 #: health_menu:36
 msgid "Health warning systems"
 msgstr "Sistemi ta 'twissija tas-saħħa"
+
+#:
+msgid "Heat"
+msgstr ""
 
 # ,
 # ,

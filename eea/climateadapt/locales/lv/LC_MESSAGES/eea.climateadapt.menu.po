@@ -47,6 +47,10 @@ msgstr "Par klimata adapt"
 msgid "About the Observatory"
 msgstr "Par observatoriju"
 
+#:
+msgid "Accessibility of hospitals in Europe"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:74
@@ -430,6 +434,10 @@ msgstr "Ietekme uz veselību"
 #: health_menu:36
 msgid "Health warning systems"
 msgstr "Veselības brīdināšanas sistēmas"
+
+#:
+msgid "Heat"
+msgstr ""
 
 # ,
 # ,

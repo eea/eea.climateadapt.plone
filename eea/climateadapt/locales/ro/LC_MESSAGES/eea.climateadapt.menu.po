@@ -62,6 +62,10 @@ msgstr "Despre adaptarea climatică"
 msgid "About the Observatory"
 msgstr "Despre observator"
 
+#:
+msgid "Accessibility of hospitals in Europe"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -614,6 +618,10 @@ msgstr "Efectele sanatatii"
 #: health_menu:36
 msgid "Health warning systems"
 msgstr "Sisteme de avertizare pentru sănătate"
+
+#:
+msgid "Heat"
+msgstr ""
 
 # ,
 # ,

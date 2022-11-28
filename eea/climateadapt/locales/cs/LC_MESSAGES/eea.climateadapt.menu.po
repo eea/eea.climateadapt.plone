@@ -42,6 +42,10 @@ msgstr "O klimatizaci"
 msgid "About the Observatory"
 msgstr "O observatoři"
 
+#:
+msgid "Accessibility of hospitals in Europe"
+msgstr ""
+
 # ,
 #: site_menu:74
 msgid "Adaptation Support Tool"
@@ -364,6 +368,10 @@ msgstr "Zdravé efekty"
 #: health_menu:36
 msgid "Health warning systems"
 msgstr "Zdravotní varovné systémy"
+
+#:
+msgid "Heat"
+msgstr ""
 
 # ,
 #: health_menu:21

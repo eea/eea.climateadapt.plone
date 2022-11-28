@@ -47,6 +47,10 @@ msgstr "İklim-Adapt Hakkında"
 msgid "About the Observatory"
 msgstr "Gözlemevi hakkında"
 
+#:
+msgid "Accessibility of hospitals in Europe"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:74
@@ -430,6 +434,10 @@ msgstr "Sağlık etkileri"
 #: health_menu:36
 msgid "Health warning systems"
 msgstr "Sağlık Uyarı Sistemleri"
+
+#:
+msgid "Heat"
+msgstr ""
 
 # ,
 # ,

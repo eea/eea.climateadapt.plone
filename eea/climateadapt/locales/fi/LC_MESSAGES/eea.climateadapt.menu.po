@@ -42,6 +42,10 @@ msgstr "Tietoja ilmastosta"
 msgid "About the Observatory"
 msgstr "Observatoriosta"
 
+#:
+msgid "Accessibility of hospitals in Europe"
+msgstr ""
+
 # ,
 #: site_menu:74
 msgid "Adaptation Support Tool"
@@ -364,6 +368,10 @@ msgstr "Terveysvaikutukset"
 #: health_menu:36
 msgid "Health warning systems"
 msgstr "Terveysvaroitusjärjestelmät"
+
+#:
+msgid "Heat"
+msgstr ""
 
 # ,
 #: health_menu:21

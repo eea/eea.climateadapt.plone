@@ -42,6 +42,10 @@ msgstr "Σχετικά με το κλίμα-προσαρμογή"
 msgid "About the Observatory"
 msgstr "Σχετικά με το Παρατηρητήριο"
 
+#:
+msgid "Accessibility of hospitals in Europe"
+msgstr ""
+
 # ,
 #: site_menu:74
 msgid "Adaptation Support Tool"
@@ -364,6 +368,10 @@ msgstr "Επιπτώσεις στην υγεία"
 #: health_menu:36
 msgid "Health warning systems"
 msgstr "Συστήματα προειδοποίησης υγείας"
+
+#:
+msgid "Heat"
+msgstr ""
 
 # ,
 #: health_menu:21

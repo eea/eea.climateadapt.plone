@@ -47,6 +47,10 @@ msgstr "Om klimatanpassning"
 msgid "About the Observatory"
 msgstr "Om observatoriet"
 
+#:
+msgid "Accessibility of hospitals in Europe"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:74
@@ -430,6 +434,10 @@ msgstr "Hälsoeffekter"
 #: health_menu:36
 msgid "Health warning systems"
 msgstr "Hälsovårdssystem"
+
+#:
+msgid "Heat"
+msgstr ""
 
 # ,
 # ,
