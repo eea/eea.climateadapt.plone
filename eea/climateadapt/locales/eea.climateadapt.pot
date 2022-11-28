@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-11-28 07:49+0000\n"
+"POT-Creation-Date: 2022-11-28 19:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: eea.climateadapt\n"
 
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:86
 #: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:86
 msgid "...loading configuration..."
 msgstr ""
@@ -639,7 +640,7 @@ msgid "Contact person"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:37
-#: ../../climateadapt/browser/pt/c3sindicator_view.pt:158
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:222
 #: ../../climateadapt/browser/pt/c3sindicator_view0.pt:174
 msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
 msgstr ""
@@ -787,6 +788,7 @@ msgstr ""
 msgid "Explore Urban adaptation case studies in terms of geographic location, thematic coverage and link to adaptation options through the map-based Case study explorer."
 msgstr ""
 
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:58
 #: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:58
 msgid "Explore in detail"
 msgstr ""
@@ -876,6 +878,7 @@ msgid "Glossary"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:11
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:132
 #: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:132
 msgid "Go back"
 msgstr ""
@@ -1118,6 +1121,7 @@ msgstr ""
 msgid "Links to further information"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:83
 #: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:83
 msgid "Loading"
 msgstr ""
@@ -1658,7 +1662,7 @@ msgid "The Urban Adaptation Map Viewer provides an overview of the current and f
 msgstr ""
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:208
-msgid "The Urban Adaptation Support Tool assists cities, towns and local authorities in developing, implementing and monitoring climate change adaptation plans.."
+msgid "The Urban Adaptation Support Tool assists cities, towns and local authorities in developing, implementing and monitoring climate change adaptation plans."
 msgstr ""
 
 #: ../../climateadapt/browser/pt/video_view.pt:95
@@ -1711,7 +1715,7 @@ msgstr ""
 msgid "URBACT"
 msgstr ""
 
-#: ../../climateadapt/translation/admin.py:2567
+#: ../../climateadapt/translation/admin.py:2576
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 

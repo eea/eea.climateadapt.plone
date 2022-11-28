@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-11-28 07:49+0000\n"
+"POT-Creation-Date: 2022-11-28 19:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,10 +33,6 @@ msgstr "Šalies profiliai"
 msgid "Discover the main topics and tools of the observatory"
 msgstr "Atraskite pagrindines observatorijos temas ir įrankius"
 
-#: ../theme/climateadaptv2/health-homepage.html:173
-msgid "EEA report on climate & health"
-msgstr ""
-
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:140
 msgid "European Climate <br /> and Health Observatory"
@@ -67,7 +63,7 @@ msgid "INDICATORS"
 msgstr "Rodikliai"
 
 #: ../theme/climateadaptv2/health-homepage.html:174
-msgid "Learn how heat and infectious diseases induced by climate change affect health and well-being in Europe"
+msgid "Learn about pollen impact on human health and the role climate change is playing"
 msgstr ""
 
 # ,
@@ -101,6 +97,10 @@ msgstr "žinios"
 #: ../theme/climateadaptv2/health-page.html:139
 msgid "News/Events"
 msgstr "Naujienos/įvykiai"
+
+#: ../theme/climateadaptv2/health-homepage.html:173
+msgid "Pollen Impact"
+msgstr ""
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:407

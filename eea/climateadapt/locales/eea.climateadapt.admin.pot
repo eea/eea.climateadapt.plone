@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-11-28 07:49+0000\n"
+"POT-Creation-Date: 2022-11-28 19:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -897,7 +897,7 @@ msgid "Unable to reindex ${name} as part of content rule 'reindex' action: ${err
 msgstr ""
 
 #: ../../climateadapt/contentrules.py:186
-#: ../../climateadapt/translation/admin.py:2567
+#: ../../climateadapt/translation/admin.py:2576
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 
