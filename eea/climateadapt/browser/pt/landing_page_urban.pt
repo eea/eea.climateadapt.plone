@@ -93,8 +93,12 @@
   border:1px solid #000;
 }
 #t-case-studies p.feature-text {
-    min-height: 60px;
+    min-height: 90px;
 }
+#t-tools p.feature-text {
+    min-height: 125px;
+}
+
 #t-city .policies-nav a {
   text-align:center;
 }
@@ -128,6 +132,10 @@
 }
 .top-page-area .header {
   position:absolute !important;
+}
+
+.feature-section{
+  height:280px !important;
 }
 </style>
 
