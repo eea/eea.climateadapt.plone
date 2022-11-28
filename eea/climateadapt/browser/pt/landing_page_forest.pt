@@ -154,6 +154,10 @@
   border:none !important;
 }
 
+.feature-section {
+height:310px !important;
+}
+
 </style>
 
 
@@ -190,7 +194,7 @@
           <li class="main-tab-item" style="min-width:230px;">
             <a href="#t-case-studies">
               <img src="/++theme++climateadaptv2/static/images/urban-landing/tab2_ico.png" width="50px;">
-              <br><span i18n:translate="">Case studies and Adaptations Options</span>
+              <br><span i18n:translate="">Adaptation Options and Case Studies</span>
             </a>
           </li>
           <li class="main-tab-item">
@@ -211,12 +215,14 @@
               <br><span i18n:translate="">Funding and Financing</span>
             </a>
           </li>
+          <!--
           <li class="main-tab-item ast-section">
             <a href="#t-forest">
               <img src="/++theme++climateadaptv2/static/images/urban-landing/tab6_ico.png" width="50px;">
               <br><span i18n:translate="">Forest Initiative</span>
             </a>
           </li>
+        -->
         </ul>
 
       </div>
@@ -227,7 +233,7 @@
 
             <div class="tab-pane active fade in" id="t-tools" style="margin-bottom:40px;">
               <div class="new-feature row">
-                <div class="col-md-4 col-sm-12 feature-section">
+                <div class="col-md-3 col-sm-12 feature-section">
                   <img src="/++theme++climateadaptv2/static/images/ecde-logo.svg" style="max-height:78px; margin-bottom:22px;">
                   <p class="feature-text" i18n:translate="">The European Climate Data Explorer provides interactive access to many climate indices like fire weather indices in support of climate change adaptation in forests.</p>
                   <div class="bottom-section">
@@ -236,7 +242,16 @@
                   </div>
                 </div>
 
-                <div class="col-md-4 col-sm-12 feature-section">
+                <div class="col-md-3 col-sm-12 feature-section">
+                  <img src="/++theme++climateadaptv2/static/images/forest-landing/FISE-Logo.svg" style="max-height:78px; margin-bottom:22px;">
+                  <p class="feature-text" i18n:translate="">FISE web portal will help us to improve the health and resilience of our forests, which play a vital role in protecting our biodiversity and in mitigating climate change.
+                  </p>
+                  <div class="bottom-section">
+                    <a class="standard-button primary-button feature-btn" href="https://forest.eea.europa.eu/" i18n:translate="">Forestry Information System for Europe</a>
+                  </div>
+                </div>
+
+                <div class="col-md-3 col-sm-12 feature-section">
                   <img src="/++theme++climateadaptv2/static/images/forest-landing/edo.png">
                   <p class="feature-text" i18n:translate="">The European Drought Observatory (EDO) contains drought-relevant information. These give an overview of the situation in the EU about imminent droughts.
                   </p>
@@ -245,7 +260,7 @@
                   </div>
                 </div>
 
-                <div class="col-md-4 col-sm-12 feature-section">
+                <div class="col-md-3 col-sm-12 feature-section">
                   <img src="/++theme++climateadaptv2/static/images/forest-landing/effis.png">
                   <p class="feature-text" i18n:translate="">The European Forest Fire Information System (EFFIS) supports the protection of forests against fires  and provides the EU with harmonized information on forest fires
                   </p>
@@ -320,7 +335,7 @@
             <div class="tab-pane fade" id="t-policy">
               <div>
                 <img src="/++theme++climateadaptv2/static/images/forest-landing/tab4.png" style="max-height:250px;float:left;padding-right:20px;" />
-                <p i18n:translate="" class="feature-text">The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector.</p>
+                <p i18n:translate="" class="feature-text">The climate crisis is severely affecting Europe's forests, making them increasingly vulnerable to hazards like storms, wildfires, droughts, insect and disease outbreaks, or sea level rise. The growing risks and impacts are affecting the economic viability of forestry and they reduce the capacity of forests to provide essential ecosystem services. The EU responds to this unprecedented challenge by supporting the adaptation of forests to climate change through a wide range of policies, like the EU Forest Strategy, EU Strategy on Adaptation to Climate Change, and the EU Biodiversity Strategy.</p>
                 <div class="bottom-section">
                   <a i18n:translate="" class="standard-button primary-button feature-btn" href="/en/eu-adaptation-policy/sector-policies/forestry">Go to the Forest Policy Overview</a>
                 </div>
@@ -357,41 +372,41 @@
                    </li>
                  </ul>
                </div>
-             <div class="tab-content policies-tab-content">
-               <div id="tab1" class="tab-pane active">
-                 <div class="row">
-                   <div class="policy-image col-md-3 col-sm-3 col-xs-4">
-                     <img src="/++theme++climateadaptv2/static/images/forest-landing/FISE-Logo.svg" style="width:250px;float:left;"/>
+               <div class="tab-content policies-tab-content">
+                 <div id="tab1" class="tab-pane active">
+                   <div class="row">
+                     <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                       <img src="/++theme++climateadaptv2/static/images/forest-landing/FISE-Logo.svg" style="width:250px;float:left;"/>
+                     </div>
+                     <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                       <h3 i18n:translate="">Fise</h3>
+                       <p i18n:translate=""><a href="https://forest.eea.europa.eu/">FISE</a> web portal will help us to improve the health and resilience of our forests, which play a vital role in protecting our biodiversity and in mitigating climate change</p>
+                     </div>
                    </div>
-                   <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                     <h3 i18n:translate="">Fise</h3>
-                     <p i18n:translate=""><a href="https://forest.eea.europa.eu/">FISE</a> web portal will help us to improve the health and resilience of our forests, which play a vital role in protecting our biodiversity and in mitigating climate change</p>
+                 </div>
+                 <div id="tab2" class="tab-pane">
+                   <div class="row">
+                     <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                       <img src="/++theme++climateadaptv2/static/images/forest-landing/ForestEurope.png" style="width:250px;float:left;"/>
+                     </div>
+                     <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                       <h3 i18n:translate="">Forest Europe</h3>
+                       <p i18n:translate=""><a href="https://foresteurope.org/">FOREST EUROPE</a> is a Pan-European voluntary high-level forest policy process. aim is to develop common strategies for the 46 signatories on how to protect and sustainably manage forests.</p>
+                     </div>
+                   </div>
+                 </div>
+                 <div id="tab3" class="tab-pane">
+                   <div class="row">
+                     <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                       <img src="/++theme++climateadaptv2/static/images/forest-landing/NetworkCSF.png" style="width:250px;float:left;"/>
+                     </div>
+                     <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                       <h3 i18n:translate="">Network on Climate-Smart Forestry Projects</h3>
+                       <p i18n:translate=""><a href="https://www.vbne.nl/klimaatslimbosennatuurbeheer/projecten-europa">Network on Climate-Smart Forestry Project</a>. An overview of all climate-smart forestry (CSF) projects in Europe</p>
+                     </div>
                    </div>
                  </div>
                </div>
-               <div id="tab2" class="tab-pane">
-                 <div class="row">
-                   <div class="policy-image col-md-3 col-sm-3 col-xs-4">
-                     <img src="/++theme++climateadaptv2/static/images/forest-landing/ForestEurope.png" style="width:250px;float:left;"/>
-                   </div>
-                   <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                     <h3 i18n:translate="">Forest Europe</h3>
-                     <p i18n:translate=""><a href="https://foresteurope.org/">FOREST EUROPE</a> is a Pan-European voluntary high-level forest policy process. aim is to develop common strategies for the 46 signatories on how to protect and sustainably manage forests.</p>
-                   </div>
-                 </div>
-               </div>
-               <div id="tab3" class="tab-pane">
-                 <div class="row">
-                   <div class="policy-image col-md-3 col-sm-3 col-xs-4">
-                     <img src="/++theme++climateadaptv2/static/images/forest-landing/NetworkCSF.png" style="width:250px;float:left;"/>
-                   </div>
-                   <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                     <h3 i18n:translate="">Network on Climate-Smart Forestry Projects</h3>
-                     <p i18n:translate=""><a href="https://www.vbne.nl/klimaatslimbosennatuurbeheer/projecten-europa">Network on Climate-Smart Forestry Project</a>. An overview of all climate-smart forestry (CSF) projects in Europe</p>
-                   </div>
-                 </div>
-               </div>
-             </div>
             </div>
 <div style="clear:both;"></div>
           </div>
