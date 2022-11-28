@@ -140,7 +140,7 @@
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  i18n:domain="eea.climateadapt.landing_page">
+  i18n:domain="eea.climateadapt">
       <div class="urban-landing-top">
         <div class="text-content">
             <div class="text">
@@ -205,7 +205,7 @@
               <div class="new-feature row">
                 <div class="col-md-4 col-sm-12 feature-section">
                   <img src="/en/knowledge/tools/urban-ast/uast_logo_0.png" width="110px;" height="58px;">
-                  <p class="feature-text" i18n:translate="">The Urban Adaptation Support Tool assists cities, towns and local authorities in developing, implementing and monitoring climate change adaptation plans..</p>
+                  <p class="feature-text" i18n:translate="">The Urban Adaptation Support Tool assists cities, towns and local authorities in developing, implementing and monitoring climate change adaptation plans.</p>
                   <div class="bottom-section">
                     <a class="standard-button primary-button feature-btn" href="/en/knowledge/tools/urban-ast/step-0-0" i18n:translate="">
                     Go to the Urban Adaptation Support Tool</a>
@@ -288,8 +288,8 @@
                       <i class="fa fa-cogs" tal:attributes="class string:fa ${section/icon_class}"></i>
                       <span class="total-items" tal:content="section/count">120</span>
                     </span>
-                    <p tal:condition="python: section.icon_class == 'research-icon'" tal:content="section/title" style="padding-top:5px;" i18n:translate="">Adaptation <br> Options</p>
-                    <p tal:condition="python: section.icon_class != 'research-icon'" tal:content="section/title" i18n:translate="">Adaptation <br> Options</p>
+                    <p tal:condition="python: section.icon_class == 'research-icon'" tal:content="section/title" style="padding-top:5px;" >Adaptation <br> Options</p>
+                    <p tal:condition="python: section.icon_class != 'research-icon'" tal:content="section/title" >Adaptation <br> Options</p>
                   </a>
                 </div>
               </div>
@@ -429,7 +429,7 @@
                        </div>
                        <div class="policy-description col-md-9 col-sm-9 col-xs-8">
                          <h3 i18n:translate="">EU Missions</h3>
-                         <p i18n:translate="">Adaptation to Climate Change: The goal of the <a href="https://ec.europa.eu/info/research-and-innovation/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe/eu-missions-horizon-europe/adaptation-climate-change-including-societal-transformation_en">EU mission</a> - Adaptation to climate change is to foster the development of innovative solutions to adapt to climate change and encourage regions, cities and communities to lead the societal transformation.-transformation_en)</p>
+                         <p i18n:translate="">Adaptation to Climate Change: The goal of the <a href="https://ec.europa.eu/info/research-and-innovation/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe/eu-missions-horizon-europe/adaptation-climate-change-including-societal-transformation_en">EU mission</a> - Adaptation to climate change is to foster the development of innovative solutions to adapt to climate change and encourage regions, cities and communities to lead the societal transformation.</p>
                        </div>
                      </div>
                    </div>
@@ -483,7 +483,7 @@
                         </p>
                        </div>
                      </div>
-                     <p style="font-size: 12px;">Image courtesy of <a style="color: #999;font-size: 12px;" href="https://www.vecteezy.com/free-vector/technology">Technology Vectors by Vecteezy</a></p>
+                     <p style="font-size: 12px;" i18n:translate="">Image courtesy of <a style="color: #999;font-size: 12px;" href="https://www.vecteezy.com/free-vector/technology">Technology Vectors by Vecteezy</a></p>
                    </div>
                  </div>
                </div>
