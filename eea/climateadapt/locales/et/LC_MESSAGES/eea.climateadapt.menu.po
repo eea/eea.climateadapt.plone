@@ -57,6 +57,10 @@ msgstr "Kohandamisvõimalused"
 msgid "Adriatic-Ionian"
 msgstr "Aadria-Ionian"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 #: site_menu:29
 msgid "Agriculture"
@@ -563,6 +567,10 @@ msgstr "Teemasid"
 #: site_menu:47
 msgid "Transnational regions"
 msgstr "Riikidevahelised piirkonnad"
+
+#:
+msgid "Transnational, National, local"
+msgstr ""
 
 # ,
 #: site_menu:40

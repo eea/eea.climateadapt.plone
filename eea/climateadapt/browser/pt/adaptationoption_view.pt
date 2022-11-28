@@ -120,7 +120,7 @@
 
             <div tal:condition="context/source">
                 <h5 id="source" style="text-decoration: underline" class="Adaptation-option-selector" i18n:translate="">References:</h5>
-                <div tal:content="structure python: view.w['source'].render()">Source here</div>
+                <div tal:content="structure python: context.source.raw">Source here</div>
             </div>
 
             <div metal:use-macro="context/ace_macros/macros/contributor_list"></div>

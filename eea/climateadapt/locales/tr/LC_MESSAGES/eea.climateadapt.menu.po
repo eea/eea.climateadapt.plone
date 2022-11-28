@@ -65,6 +65,10 @@ msgstr "Adaptasyon Seçenekleri"
 msgid "Adriatic-Ionian"
 msgstr "Adriyatik"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:29
@@ -666,6 +670,10 @@ msgstr "Konular"
 #: site_menu:47
 msgid "Transnational regions"
 msgstr "Ulusötesi bölgeler"
+
+#:
+msgid "Transnational, National, local"
+msgstr ""
 
 # ,
 # ,

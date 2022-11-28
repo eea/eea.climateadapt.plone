@@ -57,6 +57,10 @@ msgstr "Sopimusvaihtoehdot"
 msgid "Adriatic-Ionian"
 msgstr "Adriatic-Joonian"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 #: site_menu:29
 msgid "Agriculture"
@@ -563,6 +567,10 @@ msgstr "Aiheet"
 #: site_menu:47
 msgid "Transnational regions"
 msgstr "Valtioiden kansainväliset alueet"
+
+#:
+msgid "Transnational, National, local"
+msgstr ""
 
 # ,
 #: site_menu:40

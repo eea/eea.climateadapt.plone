@@ -65,6 +65,10 @@ msgstr "Adaptācijas iespējas"
 msgid "Adriatic-Ionian"
 msgstr "Adrijas jūra"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:29
@@ -666,6 +670,10 @@ msgstr "Tēmas"
 #: site_menu:47
 msgid "Transnational regions"
 msgstr "Starpvalstu reģioni"
+
+#:
+msgid "Transnational, National, local"
+msgstr ""
 
 # ,
 # ,

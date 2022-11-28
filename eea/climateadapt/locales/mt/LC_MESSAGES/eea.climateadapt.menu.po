@@ -65,6 +65,10 @@ msgstr "Għażliet ta 'adattament"
 msgid "Adriatic-Ionian"
 msgstr "Adrijatiku-Ionian"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:29
@@ -666,6 +670,10 @@ msgstr "SUĠĠETTI"
 #: site_menu:47
 msgid "Transnational regions"
 msgstr "Reġjuni transnazzjonali"
+
+#:
+msgid "Transnational, National, local"
+msgstr ""
 
 # ,
 # ,

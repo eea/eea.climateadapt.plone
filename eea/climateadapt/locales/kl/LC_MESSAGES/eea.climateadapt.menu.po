@@ -47,6 +47,10 @@ msgstr ""
 msgid "Adriatic-Ionian"
 msgstr ""
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 #: site_menu:29
 msgid "Agriculture"
 msgstr ""
@@ -470,6 +474,10 @@ msgstr ""
 
 #: site_menu:47
 msgid "Transnational regions"
+msgstr ""
+
+#:
+msgid "Transnational, National, local"
 msgstr ""
 
 #: site_menu:40

@@ -65,6 +65,10 @@ msgstr "Možnosti prilagajanja"
 msgid "Adriatic-Ionian"
 msgstr "Jadransko-ionski"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:29
@@ -666,6 +670,10 @@ msgstr "Teme"
 #: site_menu:47
 msgid "Transnational regions"
 msgstr "Nadnacionalne regije"
+
+#:
+msgid "Transnational, National, local"
+msgstr ""
 
 # ,
 # ,

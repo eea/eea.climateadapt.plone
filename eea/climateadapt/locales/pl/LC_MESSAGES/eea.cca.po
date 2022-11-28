@@ -24,9 +24,11 @@ msgstr ""
 # ,
 # ,
 # ,
+# ,
 msgid "Adaptation options"
 msgstr "Taktyki adaptacyjne"
 
+# ,
 msgid "Adaptation portals and platforms"
 msgstr "Portale i platformy adaptacyjne"
 
@@ -41,12 +43,15 @@ msgstr "W oparciu o Twoje preferencje możesz wyświetlić tę stronę w języku
 # ,
 # ,
 # ,
+# ,
 msgid "Case studies"
 msgstr "Studia przypadków"
 
+# ,
 msgid "Climate change impact and vulnerability assessments"
 msgstr "Oceny wpływu i podatności na zmianę klimatu"
 
+# ,
 # ,
 # ,
 # ,
@@ -66,9 +71,11 @@ msgstr "Kraje:"
 # ,
 # ,
 # ,
+# ,
 msgid "Guidance"
 msgstr "Wytyczne"
 
+# ,
 # ,
 # ,
 # ,
@@ -88,9 +95,11 @@ msgstr "Wskaźniki"
 # ,
 # ,
 # ,
+# ,
 msgid "Information portals"
 msgstr "Portale informacyjne"
 
+# ,
 # ,
 # ,
 # ,
@@ -104,6 +113,7 @@ msgstr "Najnowsze <br/> Wiadomości i wydarzenia"
 # ,
 # ,
 # ,
+# ,
 msgid "Most recent <br/> Case Study"
 msgstr "Najnowsze <br/> Studium przypadku"
 
@@ -112,12 +122,15 @@ msgstr "Najnowsze <br/> Studium przypadku"
 # ,
 # ,
 # ,
+# ,
 msgid "Most recent <br/> Publication or Report"
 msgstr "Najnowsza <br/> publikacja lub raport"
 
+# ,
 msgid "National adaption policy"
 msgstr "Krajowa polityka adaptacyjna"
 
+# ,
 # ,
 # ,
 # ,
@@ -137,13 +150,16 @@ msgstr "Organizacje"
 # ,
 # ,
 # ,
+# ,
 msgid "Publication and reports"
 msgstr "Publikacja i raporty"
 
 # ,
+# ,
 msgid "Publications and reports"
 msgstr "Publikacja i raporty"
 
+# ,
 # ,
 # ,
 # ,
@@ -163,9 +179,11 @@ msgstr "Projekty badawcze i oparte na wiedzy"
 # ,
 # ,
 # ,
+# ,
 msgid "Tools"
 msgstr "Narzędzia"
 
+# ,
 # ,
 # ,
 # ,

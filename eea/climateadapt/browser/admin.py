@@ -962,9 +962,9 @@ class ExportDbItems(BrowserView):
                     if hasattr(obj, "climate_impacts"):
                         temp = u','.join(obj.climate_impacts)
                     line.append(temp)
-                    #indexer = getMultiAdapter((obj, catalog), IIndexer, name="SearchableText")
-                    #temp = indexer()
-                    #line.append(temp)
+                    indexer = getMultiAdapter((obj, catalog), IIndexer, name="SearchableText")
+                    temp = indexer()
+                    line.append(temp)
 
                     #import pdb; pdb.set_trace()
 
@@ -974,18 +974,33 @@ class ExportDbItems(BrowserView):
                     logger.info(brain.getURL())
                     logger.info(Err)
 
-        out = StringIO()
-        csv_writer = csv.writer(out, dialect='excel', delimiter=',')
+#        out = StringIO()
+#        csv_writer = csv.writer(out, dialect='excel', delimiter=',')
 
-        for line in res:
-            try:
-                csv_writer.writerow(line)
-            except:
-                import pdb; pdb.set_trace()
-                logger.info(line)
+        logger.info('CSV INIT')
+#        for line in res:
+#            try:
+#                csv_writer.writerow(line)
+#            except:
+#                import pdb; pdb.set_trace()
+#                logger.info(line)
 
-        self.request.response.setHeader('Content-type', 'text/csv')
-        self.request.response.setHeader(
-            'Content-Disposition', 'attachment; filename="db-items.csv"')
-        out.seek(0)
-        return out.getvalue()
+        with open("/tmp/db-items.csv", "w") as outfile:
+            csv_writer = csv.writer(outfile, dialect='excel', delimiter=',')
+            for line in res:
+                try:
+                    csv_writer.writerow(line)
+                except:
+                    import pdb; pdb.set_trace()
+                    logger.info(line)
+
+
+
+        logger.info('CSV PREPARED')
+
+#        self.request.response.setHeader('Content-type', 'text/csv')
+#        self.request.response.setHeader(
+#            'Content-Disposition', 'attachment; filename="db-items.csv"')
+#        out.seek(0)
+        logger.info('CSV READY')
+#        return out.getvalue()

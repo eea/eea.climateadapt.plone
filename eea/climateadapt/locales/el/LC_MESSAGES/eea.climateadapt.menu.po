@@ -57,6 +57,10 @@ msgstr "Επιλογές προσαρμογής"
 msgid "Adriatic-Ionian"
 msgstr "Αδριατική-Ιόνιο"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 #: site_menu:29
 msgid "Agriculture"
@@ -563,6 +567,10 @@ msgstr "ΘΕΜΑΤΑ"
 #: site_menu:47
 msgid "Transnational regions"
 msgstr "Διακρατικές περιοχές"
+
+#:
+msgid "Transnational, National, local"
+msgstr ""
 
 # ,
 #: site_menu:40

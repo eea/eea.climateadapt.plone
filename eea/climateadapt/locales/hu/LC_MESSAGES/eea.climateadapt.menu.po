@@ -65,6 +65,10 @@ msgstr "Adaptációs lehetőségek"
 msgid "Adriatic-Ionian"
 msgstr "Adriai-ioni"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:29
@@ -666,6 +670,10 @@ msgstr "Témák"
 #: site_menu:47
 msgid "Transnational regions"
 msgstr "Transznacionális régiók"
+
+#:
+msgid "Transnational, National, local"
+msgstr ""
 
 # ,
 # ,

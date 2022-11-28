@@ -65,6 +65,10 @@ msgstr "Aðlögunarvalkostir"
 msgid "Adriatic-Ionian"
 msgstr "Adriatic-ionian"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:29
@@ -666,6 +670,10 @@ msgstr "Efni"
 #: site_menu:47
 msgid "Transnational regions"
 msgstr "Fjölþjóðleg svæði"
+
+#:
+msgid "Transnational, National, local"
+msgstr ""
 
 # ,
 # ,

@@ -12,12 +12,15 @@
         <div class="health-box-image">
           <img class="box-image" style="width:auto;margin:auto;"
                src="/++theme++climateadaptv2/static/images/new-item.svg"/>
-          <div class="health-box-layer"></div>
+          <div class="health-box-layer"><span class="new-label" i18n:translate="">New</span></div>
         </div>
         <div class="health-top-content">
-          <span class="new-label" i18n:translate="">New</span>
           <h5 style="display:inline-block" i18n:translate="">EEA report on climate & health</h5>
-          <p i18n:translate="">Learn how heat and infectious diseases induced by climate change affect health and well-being in Europe</p>
+          <p i18n:translate="" style="display: -webkit-inline-box;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;">Learn how heat and infectious diseases induced by climate change affect health and well-being in Europe</p>
           <div class="health-footer">
             <a class="health-learn-more"
                tal:attributes="href python:view.translate_url('/en/metadata/publications/eea-report-2018climate-change-impacts-on-health-in-europe-heat-and-infectious-diseases2019')"

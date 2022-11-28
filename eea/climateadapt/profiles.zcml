@@ -377,4 +377,12 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_64"
+      title="Upgrade profile for eea.climateadapt v64"
+      description=""
+      directory="profiles/upgrades/to_64"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
 </configure>

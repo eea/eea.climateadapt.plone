@@ -57,6 +57,10 @@ msgstr "Опции за адаптация"
 msgid "Adriatic-Ionian"
 msgstr "Адриатическо-йонийски"
 
+#:
+msgid "Aero-allergens"
+msgstr ""
+
 # ,
 #: site_menu:29
 msgid "Agriculture"
@@ -563,6 +567,10 @@ msgstr "ТЕМИ"
 #: site_menu:47
 msgid "Transnational regions"
 msgstr "Транснационални региони"
+
+#:
+msgid "Transnational, National, local"
+msgstr ""
 
 # ,
 #: site_menu:40

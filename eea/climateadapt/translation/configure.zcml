@@ -30,7 +30,7 @@
   <browser:viewlet
       name="translation_info_viewlet"
       for="*"
-      manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContent"
       template="pt/translation_info_viewlet.pt"
       class=".admin.TranslationInfoViewlet"
       permission="zope2.View"
