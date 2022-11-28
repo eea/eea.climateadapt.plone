@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-11-10 08:58+0000\n"
+"POT-Creation-Date: 2022-11-28 07:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -306,6 +306,22 @@ msgstr ""
 msgid "<!-- <span class=\"map-type\">NAS</span> --> No information"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:421
+msgid "<a href=\"https://oppla.eu/about\">Oppla</a> is the EU Repository of Nature-Based Solutions. It provides a knowledge marketplace, where the latest thinking on natural capital, ecosystem services and nature-based solutions is brought together. Its purpose is to simplify how to share, obtain and create knowledge to better manage our environment"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:454
+msgid "<a href=\"https://urbact.eu/\">URBACT’s</a> mission is to enable cities to work together and develop integrated solutions to common urban challenges, by networking, learning from one another’s experiences, drawing lessons and identifying good practices to improve urban policies."
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:476
+msgid "<a href=\"https://www.climatealliance.org/home.html\">Climate Alliance</a> <br><a href=\"https://www.ccre.org\">Council of European Municipalities and Regions (CEMR)</a> <br><a href=\"https://www.cdp.net/en\">CDP</a> <br><a href=\"https://www.c40.org\">C40</a> <br><a href=\"https://fedarene.org\">European Federation of Agencies and Regions for Energy and Environment (FEDARENE)</a> <br><a href=\"https://iclei-europe.org\">Local Governments for Sustainability (ICLEI) Europe</a>"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:399
+msgid "<a href=\"https://www.uia-initiative.eu/en\">Urban Innovative Actions</a> is an Initiative of the European Union that provides urban areas throughout Europe with resources to test new and unproven solutions to address urban challenge"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/countries-d3.pt:147
 msgid "<i class=\"fa fa-exclamation-circle\" aria-hidden=\"true\"></i> <span>x</span> <div id=\"hover-content\">x</div>"
 msgstr ""
@@ -359,6 +375,7 @@ msgid "Adaptation Sectors"
 msgstr ""
 
 # ,
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:257
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:13
 #: ../../climateadapt/vocabulary.py:269
 msgid "Adaptation options"
@@ -376,6 +393,10 @@ msgstr ""
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:125
 msgid "Adaptation strategy"
 msgstr "Kohanemisstrateegia"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:432
+msgid "Adaptation to Climate Change: The goal of the <a href=\"https://ec.europa.eu/info/research-and-innovation/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe/eu-missions-horizon-europe/adaptation-climate-change-including-societal-transformation_en\">EU mission</a> - Adaptation to climate change is to foster the development of innovative solutions to adapt to climate change and encourage regions, cities and communities to lead the societal transformation."
+msgstr ""
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:115
 msgid "Adaptation to climate change"
@@ -495,10 +516,15 @@ msgid "Case Study Illustrations"
 msgstr ""
 
 # ,
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:243
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:14
 #: ../../climateadapt/vocabulary.py:270
 msgid "Case studies"
 msgstr "Juhtumiuuringud"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:169
+msgid "Case studies and Adaptations Options"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:297
 msgid "Case studies collected at national level in Spain, provided by AdapteCCA.es"
@@ -538,7 +564,7 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/regions-section.pt:18
 #: ../../climateadapt/browser/pt/transnational_regions.pt:431
-#: ../../climateadapt/tiles/pt/transregional_select.pt:115
+#: ../../climateadapt/tiles/pt/transregional_select.pt:112
 msgid "Choose a region"
 msgstr ""
 
@@ -552,6 +578,14 @@ msgstr ""
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
 msgid "City"
 msgstr "Linn"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:193
+msgid "City Initiatives"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:475
+msgid "City Networks"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:257
 msgid "Climate Impacts"
@@ -633,7 +667,7 @@ msgid "Contact person"
 msgstr "Kontaktisik"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:37
-#: ../../climateadapt/browser/pt/c3sindicator_view.pt:157
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:158
 #: ../../climateadapt/browser/pt/c3sindicator_view0.pt:174
 msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
 msgstr ""
@@ -683,6 +717,10 @@ msgstr "DRMKC"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:418
 msgid "Danube"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:163
+msgid "Data and Tools"
 msgstr ""
 
 # ,
@@ -748,6 +786,10 @@ msgstr "Põuad"
 msgid "Duration:"
 msgstr "Kestus:"
 
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:431
+msgid "EU Missions"
+msgstr ""
+
 # ,
 #: ../../climateadapt/vocabulary.py:298
 msgid "Ecosystem-based approaches (GI)"
@@ -779,6 +821,10 @@ msgstr "E -kiri"
 msgid "Energy"
 msgstr "Energia"
 
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:387
+msgid "European Climate Pact"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:61
 msgid "Event"
 msgstr ""
@@ -786,6 +832,10 @@ msgstr ""
 #: ../../climateadapt/browser/pt/health_homepage.pt:25
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:17
 msgid "Events"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:245
+msgid "Explore Urban adaptation case studies in terms of geographic location, thematic coverage and link to adaptation options through the map-based Case study explorer."
 msgstr ""
 
 #: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:58
@@ -802,6 +852,10 @@ msgstr "Väline allikas"
 #: ../../climateadapt/vocabulary.py:340
 msgid "Extreme Temperatures"
 msgstr "Äärmuslikud temperatuurid"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:409
+msgid "FAO Green Cities"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/help-categories.pt:22
 msgid "FAQ for providers"
@@ -840,6 +894,10 @@ msgstr ""
 #: ../../climateadapt/browser/pt/aceproject_view.pt:87
 msgid "Funding Programme:"
 msgstr "Rahastamisprogramm:"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:187
+msgid "Funding and Financing"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:7
 msgid "General"
@@ -880,6 +938,30 @@ msgstr ""
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:11
 #: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:132
 msgid "Go back"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:247
+msgid "Go to Case Study Explorer"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:261
+msgid "Go to the Adaptation Options"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:229
+msgid "Go to the European Climate Data Explorer"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:220
+msgid "Go to the Urban Adaptation Map Viewer"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:210
+msgid "Go to the Urban Adaptation Support Tool"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:303
+msgid "Go to the Urban Policy Overview"
 msgstr ""
 
 # ,
@@ -968,6 +1050,10 @@ msgstr ""
 msgid "If you have any further questions you can contact <a href=\"${DYNAMIC_CONTENT}\">${DYNAMIC_CONTENT}</a>"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:486
+msgid "Image courtesy of <a style=\"color: #999;font-size: 12px;\" href=\"https://www.vecteezy.com/free-vector/technology\">Technology Vectors by Vecteezy</a>"
+msgstr ""
+
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:90
 msgid "Implementation"
 msgstr ""
@@ -1040,11 +1126,11 @@ msgstr "Põhitegevused kliimamuutuste ja tervise piires"
 msgid "Key vulnerable sectors"
 msgstr "Peamised haavatavad sektorid"
 
-#: ../../climateadapt/browser/admin.py:549
+#: ../../climateadapt/browser/admin.py:550
 msgid "Keyword succesfully deleted: ${kw_old}."
 msgstr ""
 
-#: ../../climateadapt/browser/admin.py:579
+#: ../../climateadapt/browser/admin.py:580
 msgid "Keyword succesfully renamed: ${kw_old} to ${kw_new}."
 msgstr ""
 
@@ -1080,6 +1166,14 @@ msgstr "Viimane uuendus"
 msgid "Lead"
 msgstr "Juhtimine"
 
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:259
+msgid "Learn more about different adaptation options to the various impacts of climate change in urban areas."
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:147
+msgid "Learn more about how cities can adapt to climate change to become future-proof, climate-resilient cities"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:45
 #: ../../climateadapt/browser/pt/casestudy_view.pt:86
@@ -1112,6 +1206,10 @@ msgstr "Lingid lisateabe saamiseks"
 msgid "Loading"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:442
+msgid "MCR 2030"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/__init__.py:161
 msgid "Macro-Transnational region"
@@ -1121,6 +1219,10 @@ msgstr "Makrokodane piirkond"
 #: ../../climateadapt/mayorsadapt/pt/city_profile.pt:120
 msgid "Main motivation for taking adaptation action"
 msgstr "Peamine motivatsioon kohanemismeetmete võtmiseks"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:443
+msgid "Making Cities Resilient: <a href=\"https://mcr2030.undrr.org/\">Making Cities Resilient 2030</a> is a cross-stakeholder initiative for improving local resilience through advocacy, sharing knowledge and experiences, establishing mutually reinforcing city-to-city learning networks, injecting technical expertise, connecting multiple layers of government and building partnerships."
+msgstr ""
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:235
 msgid "Map"
@@ -1226,6 +1328,10 @@ msgstr ""
 msgid "Northern Periphery and Arctic"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:420
+msgid "OPPLA"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:53
 msgid "Objectives"
@@ -1305,6 +1411,10 @@ msgstr "Selle juhtumianalüüsi kohta leiate meiega ühendust või jagage uue ju
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:105
 msgid "Please fill in this <a href=\"${DYNAMIC_CONTENT}\">registration form</a>"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:181
+msgid "Policy Overview"
 msgstr ""
 
 # ,
@@ -1392,7 +1502,7 @@ msgstr ""
 msgid "References:"
 msgstr "Viited:"
 
-#: ../../climateadapt/tiles/pt/transregional_select.pt:123
+#: ../../climateadapt/tiles/pt/transregional_select.pt:120
 msgid "Region's countries:"
 msgstr ""
 
@@ -1428,6 +1538,14 @@ msgstr "Teadusuuringute ja teadmiste projektid"
 msgid "Reset"
 msgstr ""
 
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:464
+msgid "Resilient Cities Network"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:175
+msgid "Resource Catalogue"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:112
 msgid "Reviewed by:"
@@ -1460,6 +1578,10 @@ msgstr "Otsingu tulemused"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:73
 msgid "Search results for: ${term}"
 msgstr "Otsingu tulemused: $ {termin}"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:280
+msgid "Search the Climate Adapt Database:"
+msgstr ""
 
 #: ../../climateadapt/tiles/pt/search_acecontent.pt:66
 msgid "Search tile"
@@ -1631,14 +1753,54 @@ msgstr "Edu ja piiravad tegurid"
 msgid "Summary of the strategy/plan"
 msgstr "Strateegia/plaani kokkuvõte"
 
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:388
+msgid "The <a href=\"https://ec.europa.eu/clima/eu-action/european-green-deal/european-climate-pact_en\">European Climate Pact</a> is an EU-wide initiative inviting people, communities and organisations to participate in climate action and build a greener Europe."
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:465
+msgid "The <a href=\"https://resilientcitiesnetwork.org/\">Resilient Cities Network</a> consists of cities that are committed to building and investing in urban resilience, located in five geographical regions: Africa, Asia Pacific, Europe and Middle East, Latin America and the Caribbean, and North America."
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:377
+msgid "The <a href=\"https://www.covenantofmayors.eu/\">EU Covenant of Mayors</a> brings together over 10,000 local governments voluntarily committed to implementing EU climate and energy objectives. Signatory cities commit to increasing resilience and preparing for the adverse impacts of climate change."
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:310
+msgid "The <a href=\"https://www.covenantofmayors.eu/support/funding.html\">Covenant of Mayors Interactive Funding Guide</a> provides comprehensive and up-to-date information on various funding initiatives open to cities and managed by the European Commission, Member States and key financial institutions such as the European Investment Bank. In addition, the guide includes information on support services and innovative financing models."
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:410
+msgid "The <a href=\"https://www.fao.org/green-cities-initiative/en/\">FAO Green Cities Initiative</a> focuses on improving the urban environment, strengthening urban-rural linkages and the resilience of urban systems, services and populations to external shocks."
+msgstr ""
+
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:106
 msgid "The Adaptation Support Tool - Getting started"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:376
+msgid "The EU Covenant of Mayors"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:301
+msgid "The EU has several policy frameworks in place to increase the resilience of European cities and their inhabitants, including the EU Adaptation Strategy and the EU Biodiversity Strategy 2030, and has developed several initiatives to improve knowledge and data availability on urban vulnerability and adaptive capacity. It also provides financial and technical support to policy makers and practitioners to make cities more resilient and adaptive."
 msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/footer_logos.pt:10
 msgid "The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href=\"https://ec.europa.eu/\">European Commission</a> and the <a href=\"https://www.eea.europa.eu/\">European Environment Agency.</a>"
 msgstr "Euroopa kliimaga kohanemisplatvorm Climate-Adapt on partnerlus <a href=\"https://ec.europa.eu/\"> Euroopa Komisjon </a> ja <a href = \"https: //www.eea .europa.eu/\"> Euroopa keskkonnaagentuur. </a>"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:226
+msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:217
+msgid "The Urban Adaptation Map Viewer provides an overview of the current and future climate hazards, the vulnerability of the cities to these hazards and their adaptive capacity."
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:208
+msgid "The Urban Adaptation Support Tool assists cities, towns and local authorities in developing, implementing and monitoring climate change adaptation plans.."
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/video_view.pt:95
@@ -1692,7 +1854,11 @@ msgstr "Transport"
 msgid "Tutorial videos"
 msgstr ""
 
-#: ../../climateadapt/translation/admin.py:2535
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:453
+msgid "URBACT"
+msgstr ""
+
+#: ../../climateadapt/translation/admin.py:2567
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 
@@ -1701,6 +1867,10 @@ msgstr ""
 #: ../../climateadapt/vocabulary.py:307
 msgid "Urban"
 msgstr "Linna-"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:398
+msgid "Urban Innovative Actions"
+msgstr ""
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:123
 msgid "Using the Adaptation Support Tool"

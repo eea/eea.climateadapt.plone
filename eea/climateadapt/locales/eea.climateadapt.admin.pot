@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-11-10 08:58+0000\n"
+"POT-Creation-Date: 2022-11-28 07:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -237,7 +237,7 @@ msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:245
 #: ../../climateadapt/behaviors/acemeasure.py:316
-#: ../../climateadapt/behaviors/casestudy.py:117
+#: ../../climateadapt/behaviors/adaptationoption.py:74
 msgid "Describe the references (projects, a tools reports, etc.) related to this item, providing further information about it or its source."
 msgstr ""
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "GIS Layer ID"
 msgstr ""
 
-#: ../../climateadapt/behaviors/adaptationoption.py:25
+#: ../../climateadapt/behaviors/adaptationoption.py:26
 msgid "General category"
 msgstr ""
 
@@ -370,7 +370,7 @@ msgstr ""
 msgid "High importance"
 msgstr ""
 
-#: ../../climateadapt/behaviors/adaptationoption.py:35
+#: ../../climateadapt/behaviors/adaptationoption.py:36
 msgid "IPCC adaptation options categories"
 msgstr ""
 
@@ -434,11 +434,11 @@ msgstr ""
 msgid "Key activities within climate change and health"
 msgstr ""
 
-#: ../../climateadapt/browser/admin.py:549
+#: ../../climateadapt/browser/admin.py:550
 msgid "Keyword succesfully deleted: ${kw_old}."
 msgstr ""
 
-#: ../../climateadapt/browser/admin.py:579
+#: ../../climateadapt/browser/admin.py:580
 msgid "Keyword succesfully renamed: ${kw_old} to ${kw_new}."
 msgstr ""
 
@@ -664,11 +664,11 @@ msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:243
 #: ../../climateadapt/behaviors/acemeasure.py:314
-#: ../../climateadapt/behaviors/casestudy.py:115
+#: ../../climateadapt/behaviors/adaptationoption.py:72
 msgid "References"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:92
+#: ../../climateadapt/contentrules.py:98
 msgid "Reindex object"
 msgstr ""
 
@@ -721,15 +721,15 @@ msgstr ""
 msgid "Select one or more adaptation options that this item relates to:"
 msgstr ""
 
-#: ../../climateadapt/behaviors/adaptationoption.py:46
+#: ../../climateadapt/behaviors/adaptationoption.py:47
 msgid "Select one or more case study that this item relates to:"
 msgstr ""
 
-#: ../../climateadapt/behaviors/adaptationoption.py:26
+#: ../../climateadapt/behaviors/adaptationoption.py:27
 msgid "Select one or more categories of adaptation options. The 3 options are:"
 msgstr ""
 
-#: ../../climateadapt/behaviors/adaptationoption.py:36
+#: ../../climateadapt/behaviors/adaptationoption.py:37
 msgid "Select one or more categories of adaptation options. The options are:"
 msgstr ""
 
@@ -770,7 +770,7 @@ msgstr ""
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:41
+#: ../../climateadapt/contentrules.py:47
 msgid "Set object expiration date"
 msgstr ""
 
@@ -875,8 +875,12 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:151
+#: ../../climateadapt/contentrules.py:157
 msgid "Translate object"
+msgstr ""
+
+#: ../../climateadapt/contentrules.py:266
+msgid "Translate object async"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:48
@@ -888,12 +892,12 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:128
+#: ../../climateadapt/contentrules.py:134
 msgid "Unable to reindex ${name} as part of content rule 'reindex' action: ${error}"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:180
-#: ../../climateadapt/translation/admin.py:2535
+#: ../../climateadapt/contentrules.py:186
+#: ../../climateadapt/translation/admin.py:2567
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 

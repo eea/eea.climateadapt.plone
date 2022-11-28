@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-11-10 08:58+0000\n"
+"POT-Creation-Date: 2022-11-28 07:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: eea.climateadapt.observatory.frontpage\n"
 
-#: ../theme/climateadaptv2/health-homepage.html:391
+#: ../theme/climateadaptv2/health-homepage.html:394
 #: ../theme/climateadaptv2/health-page-full.html:147
 #: ../theme/climateadaptv2/health-page.html:238
 msgid "Contact"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:216
+#: ../theme/climateadaptv2/health-homepage.html:219
 msgid "Country profiles"
 msgstr ""
 
@@ -31,7 +31,7 @@ msgstr ""
 msgid "Discover the main topics and tools of the observatory"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:174
+#: ../theme/climateadaptv2/health-homepage.html:173
 msgid "EEA report on climate & health"
 msgstr ""
 
@@ -39,94 +39,94 @@ msgstr ""
 msgid "European Climate <br /> and Health Observatory"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:298
+#: ../theme/climateadaptv2/health-homepage.html:301
 #: ../theme/climateadaptv2/health-page.html:145
 msgid "Events"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:353
+#: ../theme/climateadaptv2/health-homepage.html:356
 #: ../theme/climateadaptv2/health-page.html:200
 msgid "Find out how to contribute to the Observatory via Climate-ADAPT"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:388
+#: ../theme/climateadaptv2/health-homepage.html:391
 #: ../theme/climateadaptv2/health-page-full.html:144
 #: ../theme/climateadaptv2/health-page.html:235
 msgid "Home"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:196
+#: ../theme/climateadaptv2/health-homepage.html:199
 msgid "INDICATORS"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:175
+#: ../theme/climateadaptv2/health-homepage.html:174
 msgid "Learn how heat and infectious diseases induced by climate change affect health and well-being in Europe"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:177
+#: ../theme/climateadaptv2/health-homepage.html:180
 msgid "Learn more"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:333
+#: ../theme/climateadaptv2/health-homepage.html:336
 #: ../theme/climateadaptv2/health-page.html:180
 msgid "More events"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:316
+#: ../theme/climateadaptv2/health-homepage.html:319
 #: ../theme/climateadaptv2/health-page.html:163
 msgid "More news"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:173
+#: ../theme/climateadaptv2/health-homepage.html:170
 msgid "New"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:295
+#: ../theme/climateadaptv2/health-homepage.html:298
 #: ../theme/climateadaptv2/health-page.html:142
 msgid "News"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:292
+#: ../theme/climateadaptv2/health-homepage.html:295
 #: ../theme/climateadaptv2/health-page.html:139
 msgid "News/Events"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:404
+#: ../theme/climateadaptv2/health-homepage.html:407
 #: ../theme/climateadaptv2/health-page-full.html:160
 #: ../theme/climateadaptv2/health-page.html:251
 msgid "Privacy and Legal Notice"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:236
+#: ../theme/climateadaptv2/health-homepage.html:239
 msgid "Resource catalogue"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:400
+#: ../theme/climateadaptv2/health-homepage.html:403
 #: ../theme/climateadaptv2/health-page-full.html:156
 #: ../theme/climateadaptv2/health-page.html:247
 msgid "SITE MAP"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:237
+#: ../theme/climateadaptv2/health-homepage.html:240
 msgid "Search and access the Observatory’s database containing case studies, publications, indicators, research projects and other"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:217
+#: ../theme/climateadaptv2/health-homepage.html:220
 msgid "See how countries are addressing climate change adaptation in public health"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:352
+#: ../theme/climateadaptv2/health-homepage.html:355
 #: ../theme/climateadaptv2/health-page.html:199
 msgid "Share <br /> your information"
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:444
+#: ../theme/climateadaptv2/health-homepage.html:447
 #: ../theme/climateadaptv2/health-page-full.html:200
 #: ../theme/climateadaptv2/health-page.html:291
 msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
 msgstr ""
 
-#: ../theme/climateadaptv2/health-homepage.html:197
+#: ../theme/climateadaptv2/health-homepage.html:200
 msgid "View climate and health indicators from different trusted information providers"
 msgstr ""
 
