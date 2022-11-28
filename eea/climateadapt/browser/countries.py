@@ -307,7 +307,7 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
         #     if obj.hasProperty(name):
         #         res[name] = obj.getProperty(name)
 
-        country_name = obj.Title()
+        country_name = obj.id.title().replace('-', ' ')
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
@@ -435,7 +435,7 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
         tile_data = cover.__annotations__["plone.tiles.data." + uid]
         text = tile_data["text"].raw
 
-        res = get_nap_nas(obj, text, country=obj.Title())
+        res = get_nap_nas(obj, text, country=obj.id.title().replace('-', ' '))
         res['notreported'] = True
 
         return res
@@ -454,8 +454,8 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
 
             if not c_metadata:
                 c_metadata = self.extract_country_metadata_discodata(child)
-
-            res[child.Title()] = [
+            
+            res[child.id.title().replace('-', ' ')] = [
                 c_metadata,
                 child.absolute_url(),
             ]
@@ -647,7 +647,7 @@ class CountryProfileData(BrowserView):
         return link
 
     def __call__(self):
-        country_name = self.context.id.title()
+        country_name = self.context.id.title().replace('-', ' ')
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
