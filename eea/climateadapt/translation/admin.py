@@ -70,6 +70,7 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
     """ Translate given obj. Use one_step = True to translate in a single step
         without using annotations.
     """
+    # import pdb; pdb.set_trace()
     source_language = 'EN'
     tile_fields = ['title', 'description', 'tile_title', 'footer', 'alt_text']
     errors = []
@@ -115,6 +116,10 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
 
     translations = TranslationManager(obj).get_translations()
     obj_en = translations.pop('en')
+
+    if not hasattr(obj_en, 'REQUEST'):
+        obj_en.REQUEST = obj.REQUEST
+
     layout_en = obj_en.getLayout()
     default_view_en = obj_en.getDefaultPage()
     if default_view_en is not None:
@@ -128,6 +133,9 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
         trans_obj = translations[language]
         trans_obj_url = trans_obj.absolute_url()
         trans_obj_path = '/cca' + trans_obj_url.split(site_url)[-1]
+
+        if not hasattr(trans_obj, 'REQUEST'):
+            trans_obj.REQUEST = obj.REQUEST
 
         if version is not None:
             obj_version = int(getattr(trans_obj, 'version', 0))
@@ -2631,24 +2639,41 @@ def execute_translate_async(context, options, language, request_vars):
     """ translate via zc.async
     """
     if not hasattr(context, 'REQUEST'):
-        zopeUtils._Z2HOST = options['obj_url']
+        zopeUtils._Z2HOST = options['http_host']
         context = zopeUtils.makerequest(context)
-        context.REQUEST['PARENTS'] = [context]
+        # context.REQUEST['PARENTS'] = [context]
 
-        for k, v in request_vars:
+        for k, v in request_vars.items():
             context.REQUEST.set(k, v)
+
+        prev_obj = context
+
+        for path in options['PARENTS'][1:]:
+            obj = prev_obj.unrestrictedTraverse(path)
+            obj.REQUEST = context.REQUEST
+            prev_obj.__parent__ = obj
+            prev_obj = obj
 
     try:
         settings = {
             "language": language,
             "uid": options['uid'],
         }
+        from Acquisition import aq_parent
+        x = aq_parent(context)
         import pdb; pdb.set_trace()
         create_translation_object(context, language)
         translation_step_4(context, settings, async_request=True)
-        translate_obj(context,lang=language, one_step=True)
+        site_portal = portal.get()
+        site_portal.REQUEST = context.REQUEST
+        translate_obj(context, lang=language, one_step=True)
         trans_obj = get_translation_object(context, language)
         copy_missing_interfaces(context, trans_obj)
+        
+        
+        # delete REQUEST to avoid pickle error
+        # del context.REQUEST
+        del site_portal.REQUEST
         
         logger.info("Async translate for object %s", options['obj_url'])
 
@@ -2685,17 +2710,33 @@ class TranslateObjectAsync(BrowserView):
         options = {}
         options['obj_url'] = obj.absolute_url()
         options['uid'] = obj.UID()
-        request_vars = {}
+        options['http_host'] = self.context.REQUEST._orig_env['HTTP_HOST']
+
+        # get the paths for all parents, will be needed later for aquisition
+        all_parents = []
+        for parent in obj.REQUEST['PARENTS']:
+            all_parents.append(('/').join(parent.getPhysicalPath()))
+        
+        options['PARENTS'] = all_parents
+
+        request_vars = {
+            # 'PARENTS': obj.REQUEST['PARENTS']
+        }
         
         # request_keys_to_copy = ['_orig_env', 'environ', 'other', 'script']
         # for req_key in request_keys_to_copy:
         #     request_vars[req_key] = getattr(obj.REQUEST, req_key)
    
-        if "/en/" in self.context.absolute_url():
+        if "/en/" in obj.absolute_url():
             # run translate FULL (all languages)
-            translations = TranslationManager(obj).get_translations()
+            for language in get_site_languages():
+                if language == "en":
+                    continue
+                
+                import pdb; pdb.set_trace()
+                parent = obj.getParentNode()
+                path = parent.getPhysicalPath()
 
-            for language in translations:
                 if self.async_service is None:
                     logger.warn("Can't translate_asyn, plone.app.async not installed!")
                     return
