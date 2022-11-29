@@ -2750,9 +2750,10 @@ class TranslateObjectAsync(BrowserView):
                 self.async_service.queueJobInQueue(queue, ('translate',), execute_translate_async, obj, options, language, request_vars)
 
         else:
-            translations = TranslationManager(obj).get_translations()
-            obj_en = translations.pop('en')
             language = get_current_language(self.context, self.request)
+            en_path = '/'.join(obj.getPhysicalPath())
+            en_path = en_path.replace('/{}/'.format(language), '/en/')
+            obj_en = self.context.unrestrictedTraverse(en_path.replace('/{}/'.format(language), '/en/'))
 
             create_translation_object(obj_en, language)
             queue = self.async_service.getQueues()['']
