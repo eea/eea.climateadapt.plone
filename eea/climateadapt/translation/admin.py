@@ -2668,8 +2668,6 @@ def execute_translate_async(context, options, language, request_vars):
             "uid": options['uid'],
         }
 
-        import pdb; pdb.set_trace()
-
         translation_step_4(context, settings, async_request=True)
         site_portal = portal.get()
         site_portal.REQUEST = context.REQUEST
@@ -2717,8 +2715,6 @@ class TranslateObjectAsync(BrowserView):
         options['obj_url'] = obj.absolute_url()
         options['uid'] = obj.UID()
         options['http_host'] = self.context.REQUEST.environ['HTTP_X_FORWARDED_HOST']
-
-        import pdb; pdb.set_trace()
 
         # get the paths for all parents, will be needed later for aquisition
         all_parents = []
