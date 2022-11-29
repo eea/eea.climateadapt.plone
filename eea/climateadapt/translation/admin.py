@@ -1513,8 +1513,11 @@ def translation_step_4(site, request, async_request=False):
                     continue
 
             if async_request:
-                del trans_obj.REQUEST
-                del obj.REQUEST
+                if hasattr(trans_obj, 'REQUEST'):
+                    del trans_obj.REQUEST
+
+                if hasattr(obj, 'REQUEST'):
+                    del obj.REQUEST
 
             trans_obj._p_changed = True
             trans_obj.reindexObject()
@@ -1560,8 +1563,11 @@ def translation_step_4(site, request, async_request=False):
 
         if reindex is True:
             if async_request:
-                del trans_obj.REQUEST
-                del obj.REQUEST
+                if hasattr(trans_obj, 'REQUEST'):
+                    del trans_obj.REQUEST
+
+                if hasattr(obj, 'REQUEST'):
+                    del obj.REQUEST
 
             trans_obj._p_changed = True
             trans_obj.reindexObject()
@@ -2665,7 +2671,7 @@ def execute_translate_async(context, options, language, request_vars):
         site_portal = portal.get()
         site_portal.REQUEST = context.REQUEST
         translate_obj(context, lang=language, one_step=True)
-        trans_obj = get_translation_object(context, language)
+        # trans_obj = get_translation_object(context, language)
         # copy_missing_interfaces(context, trans_obj)
         
         # delete REQUEST to avoid pickle error
