@@ -440,11 +440,12 @@ _origin_website = (("AdapteCCA", "AdapteCCA"),
 origin_website = generic_vocabulary(_origin_website)
 alsoProvides(origin_website, IVocabularyFactory)
 
-_health_impacts = (("Heat and cold", "Heat and cold"),
-                   ("Floods and storms", "Floods and storms"),
-                   ("Infectious diseases", "Infectious diseases"),
-                   ("Air quality and aeroallergens",
-                    "Air quality and aeroallergens"),
+_health_impacts = (("Heat", "Heat"),
+                   ("Droughts and floods", "Droughts and floods"),
+                   ("Climate-sensitive diseases", "Climate-sensitive diseases"),
+                   ("Air pollution and aero-allergens",
+                    "Air pollution and aero-allergens"),
+                   ("Wildfires", "Wildfires"),
                    ("-NONSPECIFIC-", "-NONSPECIFIC-"))
 
 health_impacts = generic_vocabulary(_health_impacts, False)
