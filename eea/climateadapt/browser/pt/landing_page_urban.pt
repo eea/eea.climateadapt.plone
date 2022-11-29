@@ -174,7 +174,7 @@
           <li class="main-tab-item" style="min-width:230px;">
             <a href="#t-case-studies">
               <img src="/++theme++climateadaptv2/static/images/urban-landing/tab2_ico.png" width="50px;">
-              <br><span i18n:translate="">Case studies and Adaptations Options</span>
+              <br><span i18n:translate="">Case studies and Adaptation Options</span>
             </a>
           </li>
           <li class="main-tab-item">
