@@ -206,7 +206,7 @@ height:310px !important;
           <li class="main-tab-item">
             <a href="#t-policy">
               <img src="/++theme++climateadaptv2/static/images/urban-landing/tab4_ico.png" width="50px;">
-              <br><span i18n:translate="">Policy framework</span>
+              <br><span i18n:translate="">Policy overview</span>
             </a>
           </li>
           <li class="main-tab-item">
