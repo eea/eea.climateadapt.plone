@@ -40,6 +40,7 @@ class Items(BrowserView):
                     "eea.climateadapt.casestudy",
                     "eea.climateadapt.adaptationoption",
                 ],
+                "path": "/cca/en",
                 "review_state": "published"
             }
         )
@@ -80,6 +81,9 @@ class Items(BrowserView):
                 if (obj.geolocation.longitude == 0):
                     logger.info("Very south: %s %s %s", obj.geolocation.longitude, obj.geolocation.latitude, brain.getURL())
 
+                long_description = ''
+                if brain.long_description:
+                    long_description = brain.long_description.raw
                 results['features'].append({
                         "properties": {
                             "portal_type":  obj.portal_type.replace('eea.climateadapt.', ''),
@@ -95,7 +99,7 @@ class Items(BrowserView):
                             "impacts_str": ','.join(impacts_str),
                             "ipcc_categories_str": ','.join(list_ipcc_categories),
                             "title": obj.title,
-                            "description": brain.long_description.raw,
+                            "description": long_description,
                             "url": brain.getURL(),
                             "image": brain.getURL()+'/@@images/primary_photo/preview' if obj.primary_photo else ''
                         },

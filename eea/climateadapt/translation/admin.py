@@ -1513,8 +1513,11 @@ def translation_step_4(site, request, async_request=False):
                     continue
 
             if async_request:
-                del trans_obj.REQUEST
-                del obj.REQUEST
+                if hasattr(trans_obj, 'REQUEST'):
+                    del trans_obj.REQUEST
+
+                if hasattr(obj, 'REQUEST'):
+                    del obj.REQUEST
 
             trans_obj._p_changed = True
             trans_obj.reindexObject()
@@ -1560,8 +1563,11 @@ def translation_step_4(site, request, async_request=False):
 
         if reindex is True:
             if async_request:
-                del trans_obj.REQUEST
-                del obj.REQUEST
+                if hasattr(trans_obj, 'REQUEST'):
+                    del trans_obj.REQUEST
+
+                if hasattr(obj, 'REQUEST'):
+                    del obj.REQUEST
 
             trans_obj._p_changed = True
             trans_obj.reindexObject()
@@ -2642,6 +2648,7 @@ def execute_translate_async(context, options, language, request_vars):
     if not hasattr(context, 'REQUEST'):
         zopeUtils._Z2HOST = options['http_host']
         context = zopeUtils.makerequest(context)
+        context.REQUEST.other['SERVER_URL'] = context.REQUEST.other['SERVER_URL'].replace('http', 'https')
         # context.REQUEST['PARENTS'] = [context]
 
         for k, v in request_vars.items():
@@ -2661,11 +2668,13 @@ def execute_translate_async(context, options, language, request_vars):
             "uid": options['uid'],
         }
 
+        import pdb; pdb.set_trace()
+
         translation_step_4(context, settings, async_request=True)
         site_portal = portal.get()
         site_portal.REQUEST = context.REQUEST
         translate_obj(context, lang=language, one_step=True)
-        trans_obj = get_translation_object(context, language)
+        # trans_obj = get_translation_object(context, language)
         # copy_missing_interfaces(context, trans_obj)
         
         # delete REQUEST to avoid pickle error
@@ -2707,7 +2716,9 @@ class TranslateObjectAsync(BrowserView):
         options = {}
         options['obj_url'] = obj.absolute_url()
         options['uid'] = obj.UID()
-        options['http_host'] = self.context.REQUEST._orig_env['HTTP_HOST']
+        options['http_host'] = self.context.REQUEST.environ['HTTP_X_FORWARDED_HOST']
+
+        import pdb; pdb.set_trace()
 
         # get the paths for all parents, will be needed later for aquisition
         all_parents = []
@@ -2739,9 +2750,10 @@ class TranslateObjectAsync(BrowserView):
                 self.async_service.queueJobInQueue(queue, ('translate',), execute_translate_async, obj, options, language, request_vars)
 
         else:
-            translations = TranslationManager(obj).get_translations()
-            obj_en = translations.pop('en')
             language = get_current_language(self.context, self.request)
+            en_path = '/'.join(obj.getPhysicalPath())
+            en_path = en_path.replace('/{}/'.format(language), '/en/')
+            obj_en = self.context.unrestrictedTraverse(en_path.replace('/{}/'.format(language), '/en/'))
 
             create_translation_object(obj_en, language)
             queue = self.async_service.getQueues()['']
