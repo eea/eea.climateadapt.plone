@@ -1727,7 +1727,7 @@ class ObservatoryHealthImpacts:
         for _type in db_item_types:
             brains = catalog.searchResults(
                 portal_type=_type,
-                path='/cca/en',
+                path='/cca',
                 include_in_observatory="True"
             )
             for brain in brains:
