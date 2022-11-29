@@ -87,6 +87,7 @@
 }
 .urban-landing #t-databases img{
   border:1px solid #ddd;
+  max-width:180px;
 }
 .urban-landing #t-databases a:hover img{
   border:1px solid #000;
@@ -311,6 +312,7 @@ height:310px !important;
                 <a href="/en/metadata/publications//en/metadata/publications/land-based-wildfire-prevention-principles-and-experiences-on-managing-landscapes-forests-and-woodlands-for-safety-and-resilience-in-europe/"><img src="/++theme++climateadaptv2/static/images/forest-landing/Landbased-WildfirePrevention.png"/></a>
                 <a href="/en/metadata/publications/impacts-of-climate-change-on-european-forests-and-options-for-adaptation"><img src="/++theme++climateadaptv2/static/images/forest-landing/Impacts-of-Climate-Change.png"/></a>
                 <a href="/en/metadata/publications/forest-based-climate-change-mitigation-and-adaptation-in-europe-from-science-to-policy/"><img src="/++theme++climateadaptv2/static/images/forest-landing/Forest-based.png"/></a>
+                <a href="/en/metadata/portals/overview-of-climate-smart-forestry-projects-in-europe/"><img src="/++theme++climateadaptv2/static/images/forest-landing/NetworkCSF.png"/></a>
               </div>
 
 
