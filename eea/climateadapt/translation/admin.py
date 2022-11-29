@@ -2648,6 +2648,7 @@ def execute_translate_async(context, options, language, request_vars):
     if not hasattr(context, 'REQUEST'):
         zopeUtils._Z2HOST = options['http_host']
         context = zopeUtils.makerequest(context)
+        context.REQUEST.other['SERVER_URL'] = context.REQUEST.other['SERVER_URL'].replace('http', 'https')
         # context.REQUEST['PARENTS'] = [context]
 
         for k, v in request_vars.items():
@@ -2668,7 +2669,7 @@ def execute_translate_async(context, options, language, request_vars):
         }
 
         import pdb; pdb.set_trace()
-        
+
         translation_step_4(context, settings, async_request=True)
         site_portal = portal.get()
         site_portal.REQUEST = context.REQUEST
