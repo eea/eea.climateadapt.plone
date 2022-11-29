@@ -1492,7 +1492,7 @@ msgstr "Casi studio"
 # ,
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:169
 #,
-msgid "Case studies and Adaptations Options"
+msgid "Case studies and Adaptation Options"
 msgstr "Casi di studio e opzioni di adattamento"
 
 # ,
