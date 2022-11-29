@@ -26,6 +26,10 @@ msgstr "2021 Lancet Odbrojavanje-EEA brifing"
 msgid "ADAPTATION IN EU POLICY SECTORS"
 msgstr "Prilagodba u sektorima politike EU-a"
 
+#:
+msgid "ADAPTATION IN THE FORESTRY SECTOR"
+msgstr ""
+
 # ,
 #: health_menu:9
 #: site_menu:10

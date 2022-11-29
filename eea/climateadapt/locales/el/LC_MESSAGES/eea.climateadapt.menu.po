@@ -26,6 +26,10 @@ msgstr "2021 LANCET αντίστροφη μέτρηση-ενημέρωση γι�
 msgid "ADAPTATION IN EU POLICY SECTORS"
 msgstr "Προσαρμογή στους τομείς της πολιτικής της ΕΕ"
 
+#:
+msgid "ADAPTATION IN THE FORESTRY SECTOR"
+msgstr ""
+
 # ,
 #: health_menu:9
 #: site_menu:10

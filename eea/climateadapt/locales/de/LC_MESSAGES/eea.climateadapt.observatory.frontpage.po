@@ -21,10 +21,10 @@ msgstr ""
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:394
 #: ../theme/climateadaptv2/health-page-full.html:147
 #: ../theme/climateadaptv2/health-page.html:238
-#, 
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -33,8 +33,8 @@ msgstr "Kontakt"
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:219
-#, 
 msgid "Country profiles"
 msgstr "Länderprofile"
 
@@ -43,8 +43,8 @@ msgstr "Länderprofile"
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:163
-#, 
 msgid "Discover the main topics and tools of the observatory"
 msgstr "Entdecken Sie die Hauptthemen und Werkzeuge des Observatoriums"
 
@@ -53,8 +53,8 @@ msgstr "Entdecken Sie die Hauptthemen und Werkzeuge des Observatoriums"
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:140
-#, 
 msgid "European Climate <br /> and Health Observatory"
 msgstr "European Climate <br /> and Health Observatory"
 
@@ -63,9 +63,9 @@ msgstr "European Climate <br /> and Health Observatory"
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:301
 #: ../theme/climateadaptv2/health-page.html:145
-#, 
 msgid "Events"
 msgstr "Veranstaltungen"
 
@@ -74,9 +74,9 @@ msgstr "Veranstaltungen"
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:356
 #: ../theme/climateadaptv2/health-page.html:200
-#, 
 msgid "Find out how to contribute to the Observatory via Climate-ADAPT"
 msgstr "Finden Sie heraus, wie Sie über Climate-ADAPT zum Observatorium beitragen können"
 
@@ -85,10 +85,10 @@ msgstr "Finden Sie heraus, wie Sie über Climate-ADAPT zum Observatorium beitrag
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:391
 #: ../theme/climateadaptv2/health-page-full.html:144
 #: ../theme/climateadaptv2/health-page.html:235
-#, 
 msgid "Home"
 msgstr "Startseite"
 
@@ -97,13 +97,13 @@ msgstr "Startseite"
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:199
-#, 
 msgid "INDICATORS"
 msgstr "Indikatoren"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:174
-#, 
 msgid "Learn about pollen impact on human health and the role climate change is playing"
 msgstr "Erfahren Sie mehr über die Auswirkungen von Pollen auf die menschliche Gesundheit und die Rolle, die der Klimawandel dabei spielt"
 
@@ -112,26 +112,26 @@ msgstr "Erfahren Sie mehr über die Auswirkungen von Pollen auf die menschliche 
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:180
-#, 
 msgid "Learn more"
 msgstr "Mehr erfahren"
 
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:336
 #: ../theme/climateadaptv2/health-page.html:180
-#, 
 msgid "More events"
 msgstr "Weitere Veranstaltungen"
 
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:319
 #: ../theme/climateadaptv2/health-page.html:163
-#, 
 msgid "More news"
 msgstr "Weitere Neuigkeiten"
 
@@ -140,8 +140,8 @@ msgstr "Weitere Neuigkeiten"
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:170
-#, 
 msgid "New"
 msgstr "Neu"
 
@@ -150,9 +150,9 @@ msgstr "Neu"
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:298
 #: ../theme/climateadaptv2/health-page.html:142
-#, 
 msgid "News"
 msgstr "Neuigkeiten"
 
@@ -161,14 +161,14 @@ msgstr "Neuigkeiten"
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:295
 #: ../theme/climateadaptv2/health-page.html:139
-#, 
 msgid "News/Events"
 msgstr "Neuigkeiten/Veranstaltungen"
 
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:173
-#, 
 msgid "Pollen Impact"
 msgstr "Polleneinfluss"
 
@@ -177,10 +177,10 @@ msgstr "Polleneinfluss"
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:407
 #: ../theme/climateadaptv2/health-page-full.html:160
 #: ../theme/climateadaptv2/health-page.html:251
-#, 
 msgid "Privacy and Legal Notice"
 msgstr "Datenschutzerklärung und Impressum"
 
@@ -189,8 +189,8 @@ msgstr "Datenschutzerklärung und Impressum"
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:239
-#, 
 msgid "Resource catalogue"
 msgstr "Ressourcenkatalog"
 
@@ -199,10 +199,10 @@ msgstr "Ressourcenkatalog"
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:403
 #: ../theme/climateadaptv2/health-page-full.html:156
 #: ../theme/climateadaptv2/health-page.html:247
-#, 
 msgid "SITE MAP"
 msgstr "SEITENVERZEICHNIS"
 
@@ -211,8 +211,8 @@ msgstr "SEITENVERZEICHNIS"
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:240
-#, 
 msgid "Search and access the Observatory’s database containing case studies, publications, indicators, research projects and other"
 msgstr "Such- und Zugriffsmöglichkeiten auf die Datenbank des Observatoriums und die darin enthaltenen Fallstudien, Veröffentlichungen, Indikatoren, Forschungsprojekte etc."
 
@@ -221,8 +221,8 @@ msgstr "Such- und Zugriffsmöglichkeiten auf die Datenbank des Observatoriums un
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:220
-#, 
 msgid "See how countries are addressing climate change adaptation in public health"
 msgstr "Erfahren Sie, wie die Länder die Anpassung an den Klimawandel im Bereich der öffentlichen Gesundheit angehen"
 
@@ -231,9 +231,9 @@ msgstr "Erfahren Sie, wie die Länder die Anpassung an den Klimawandel im Bereic
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:355
 #: ../theme/climateadaptv2/health-page.html:199
-#, 
 msgid "Share <br /> your information"
 msgstr "Teilen Sie <br /> Ihre Informationen"
 
@@ -242,10 +242,10 @@ msgstr "Teilen Sie <br /> Ihre Informationen"
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:447
 #: ../theme/climateadaptv2/health-page-full.html:200
 #: ../theme/climateadaptv2/health-page.html:291
-#, 
 msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
 msgstr "<strong>European Climate and Health Observatory </strong> ist eine Partnerschaft zwischen der Europäischen Kommission, der Europäischen Umweltbehörde und mehreren anderen Organisationen."
 
@@ -254,8 +254,8 @@ msgstr "<strong>European Climate and Health Observatory </strong> ist eine Partn
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:200
-#, 
 msgid "View climate and health indicators from different trusted information providers"
 msgstr "Erkunden Sie die  Klima- und Gesundheitsindikatoren vertrauenswürdiger Informationsanbieter"
 
@@ -264,8 +264,7 @@ msgstr "Erkunden Sie die  Klima- und Gesundheitsindikatoren vertrauenswürdiger 
 # ,
 # ,
 # ,
+# ,
 #: ../theme/climateadaptv2/health-homepage.html:141
-#, 
 msgid "We provide easy access to a wide range of relevant publications, tools, websites and other resources related to climate change and human health."
 msgstr "Wir bieten einen einfachen Zugang zu einem breiten Spektrum an relevanten Veröffentlichungen, Werkzeugen, Websiten und anderen Ressourcen zum Thema Klimawandel und menschliche Gesundheit."
-

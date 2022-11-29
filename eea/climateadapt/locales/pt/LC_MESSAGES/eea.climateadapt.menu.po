@@ -28,6 +28,10 @@ msgstr "2021 Briefamento de Contdown-EEA de Lancet"
 msgid "ADAPTATION IN EU POLICY SECTORS"
 msgstr "Adaptação nos setores de políticas da UE"
 
+#:
+msgid "ADAPTATION IN THE FORESTRY SECTOR"
+msgstr ""
+
 # ,
 # ,
 #: health_menu:9

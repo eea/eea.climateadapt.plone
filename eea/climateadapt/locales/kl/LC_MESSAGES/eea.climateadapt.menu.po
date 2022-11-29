@@ -22,6 +22,10 @@ msgstr ""
 msgid "ADAPTATION IN EU POLICY SECTORS"
 msgstr ""
 
+#:
+msgid "ADAPTATION IN THE FORESTRY SECTOR"
+msgstr ""
+
 #: health_menu:9
 #: site_menu:10
 msgid "About"

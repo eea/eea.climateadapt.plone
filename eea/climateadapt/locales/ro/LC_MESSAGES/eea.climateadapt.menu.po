@@ -34,6 +34,10 @@ msgstr "2021 Lancet Countdown-EEA Briefing"
 msgid "ADAPTATION IN EU POLICY SECTORS"
 msgstr "Adaptarea în sectoarele politicii UE"
 
+#:
+msgid "ADAPTATION IN THE FORESTRY SECTOR"
+msgstr ""
+
 # ,
 # ,
 # ,

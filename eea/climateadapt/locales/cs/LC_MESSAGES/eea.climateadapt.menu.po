@@ -26,6 +26,10 @@ msgstr "2021 Lancet Countdown-EEA Briefing"
 msgid "ADAPTATION IN EU POLICY SECTORS"
 msgstr "Adaptace v sektorech politiky EU"
 
+#:
+msgid "ADAPTATION IN THE FORESTRY SECTOR"
+msgstr ""
+
 # ,
 #: health_menu:9
 #: site_menu:10

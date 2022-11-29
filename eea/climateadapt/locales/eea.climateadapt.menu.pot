@@ -573,3 +573,7 @@ msgstr ""
 #:
 msgid "Accessibility of hospitals in Europe"
 msgstr ""
+
+#:
+msgid "ADAPTATION IN THE FORESTRY SECTOR"
+msgstr ""
