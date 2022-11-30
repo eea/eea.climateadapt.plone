@@ -238,7 +238,7 @@ height:310px !important;
                   <img src="/++theme++climateadaptv2/static/images/ecde-logo.svg" style="max-height:78px; margin-bottom:22px;">
                   <p class="feature-text" i18n:translate="">The European Climate Data Explorer provides interactive access to many climate indices like fire weather indices in support of climate change adaptation in forests.</p>
                   <div class="bottom-section">
-                    <a class="standard-button primary-button feature-btn" href="/en/knowledge/european-climate-data-explorer/" i18n:translate="">
+                    <a class="standard-button primary-button feature-btn" href="/en/knowledge/european-climate-data-explorer/forestry" i18n:translate="">
                     European Climate Data Explorer</a>
                   </div>
                 </div>

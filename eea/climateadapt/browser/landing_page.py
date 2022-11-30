@@ -122,7 +122,7 @@ class Forest(BrowserView, TranslationUtilsMixin):
             count = len(
                 catalog.searchResults(
                     search_type=search_type,
-                    sectors="URBAN",
+                    sectors="FORESTRY",
                     review_state="published",
                     path={"query": path, "depth": 10},
                 )
