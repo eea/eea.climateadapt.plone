@@ -25,11 +25,13 @@ from DateTime import DateTime
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.async.utils import get_async_service
-from eea.climateadapt.translation.admin import translate_obj
 from eea.climateadapt.translation.admin import create_translation_object
 from eea.climateadapt.translation.admin import copy_missing_interfaces
+from eea.climateadapt.translation.admin import execute_translate_async
+from eea.climateadapt.translation.admin import translate_obj
 from eea.climateadapt.translation.admin import translation_step_4
-from eea.climateadapt.translation.utils import get_site_languages
+from eea.climateadapt.translation.utils import (get_current_language, 
+    get_site_languages)
 
 
 logger = logging.getLogger('eea.climateadapt')
@@ -321,43 +323,44 @@ class TranslateAsyncActionExecutor(object):
     def async_service(self):
         return get_async_service()
 
-    def translate_async(self, options, language):
-        """ Ping the CR/SDS service
-        """
-        # Use zc.async if available
-        if self.async_service is None:
-            logger.warn("Can't translate_asyn, plone.app.async not installed!")
-            return
-
-        queue = self.async_service.getQueues()['']
-        
-        request_vars = {}
-        
-        # request_keys_to_copy = ['_orig_env', 'environ', 'other', 'script']
-        # for req_key in request_keys_to_copy:
-        #     request_vars[req_key] = getattr(self.context.REQUEST, req_key)
-
-        try:
-            self.async_service.queueJobInQueue(queue, ('translate',), execute_translate_step_4_async, self.context, options, language, request_vars)
-        except ComponentLookupError:
-            logger.info(self.noasync_msg)
-
     def __call__(self):
         obj = self.event.object
         options = {}
         options['obj_url'] = obj.absolute_url()
         options['uid'] = obj.UID()
+        options['http_host'] = self.context.REQUEST.environ['HTTP_X_FORWARDED_HOST']
+
+        request_vars = {
+            # 'PARENTS': obj.REQUEST['PARENTS']
+        }
         
-        translations = TranslationManager(obj).get_translations()
-        
-        # check if object has translations
-        if 'en' not in translations:
-            return True
-        
-        obj_en = translations.pop('en')
-        
-        for language in translations:
-            
-            self.translate_async(options, language)
+        # request_keys_to_copy = ['_orig_env', 'environ', 'other', 'script']
+        # for req_key in request_keys_to_copy:
+        #     request_vars[req_key] = getattr(obj.REQUEST, req_key)
+   
+        if "/en/" in obj.absolute_url():
+            # run translate FULL (all languages)
+            for language in get_site_languages():
+                if language == "en":
+                    continue
+                
+                if self.async_service is None:
+                    logger.warn("Can't translate_asyn, plone.app.async not installed!")
+                    return
+
+                create_translation_object(obj, language)
+                queue = self.async_service.getQueues()['']
+                self.async_service.queueJobInQueue(queue, ('translate',), execute_translate_async, obj, options, language, request_vars)
+
+        else:
+            language = get_current_language(self.context, self.request)
+            en_path = '/'.join(obj.getPhysicalPath())
+            en_path = en_path.replace('/{}/'.format(language), '/en/')
+            obj_en = self.context.unrestrictedTraverse(en_path.replace('/{}/'.format(language), '/en/'))
+
+            create_translation_object(obj_en, language)
+            queue = self.async_service.getQueues()['']
+            self.async_service.queueJobInQueue(queue, ('translate',), execute_translate_async, obj_en, options, language, request_vars)
+
 
         return True

@@ -2654,14 +2654,6 @@ def execute_translate_async(context, options, language, request_vars):
         for k, v in request_vars.items():
             context.REQUEST.set(k, v)
 
-        # prev_obj = context
-
-        # for path in options['PARENTS'][1:]:
-        #     obj = prev_obj.unrestrictedTraverse(path)
-        #     obj.REQUEST = context.REQUEST
-        #     prev_obj.__parent__ = obj
-        #     prev_obj = obj
-
     try:
         settings = {
             "language": language,
@@ -2715,13 +2707,6 @@ class TranslateObjectAsync(BrowserView):
         options['obj_url'] = obj.absolute_url()
         options['uid'] = obj.UID()
         options['http_host'] = self.context.REQUEST.environ['HTTP_X_FORWARDED_HOST']
-
-        # get the paths for all parents, will be needed later for aquisition
-        all_parents = []
-        for parent in obj.REQUEST['PARENTS']:
-            all_parents.append(('/').join(parent.getPhysicalPath()))
-        
-        options['PARENTS'] = all_parents
 
         request_vars = {
             # 'PARENTS': obj.REQUEST['PARENTS']
