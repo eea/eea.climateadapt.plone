@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-12-06 20:00+0000\n"
+"POT-Creation-Date: 2022-12-06 20:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -793,6 +793,10 @@ msgstr "Ilgums:"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:439
 msgid "EU Missions"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:349
+msgid "EU funding of adaptation"
 msgstr ""
 
 # ,
