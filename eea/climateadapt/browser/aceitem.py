@@ -91,10 +91,6 @@ class C3sIndicatorView(DefaultView, AceViewApi):
         return "4.16.0"
 
 
-def to_observatory_url(obj):
-    return "/observatory/++aq++" + "/".join(obj.getPhysicalPath()[2:])
-
-
 class OrganisationView(DefaultView, AceViewApi):
     """"""
 
@@ -111,6 +107,14 @@ class OrganisationView(DefaultView, AceViewApi):
         if self.request.form.get("observatory_page") == "1":
             return 1
         return 0
+
+    def to_observatory_url(self, obj):
+        current_language = get_current_language(self.context, self.request)
+        segments = obj.getPhysicalPath()[2:]
+        if segments[0] != 'metadata':
+            segments = segments[1:]
+        return "/"+current_language+"/observatory/++aq++" + \
+                "/".join(segments)
 
     def get_contributions(self):
         current_language = get_current_language(self.context, self.request)
@@ -142,7 +146,7 @@ class OrganisationView(DefaultView, AceViewApi):
                 response.append(
                     {
                         "title": obj.title,
-                        "url": to_observatory_url(obj),
+                        "url": self.to_observatory_url(obj),
                         "date": (
                             getattr(obj, "publication_date", None)
                             or obj.creation_date.asdatetime().date()
