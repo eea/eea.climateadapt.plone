@@ -130,7 +130,7 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
         if lang is not None:
             if language != lang:
                 continue
-        
+
         trans_obj = translations[language]
         trans_obj_url = trans_obj.absolute_url()
         trans_obj_path = '/cca' + trans_obj_url.split(site_url)[-1]
@@ -1387,7 +1387,7 @@ def translation_step_4(site, request, async_request=False):
             ],
         "cca-event": [
             "timezone", "start", "end", "effective", "contact_email",
-            "contact_name", "event_language",
+            "contact_name", "event_language", "event_url",
             ],
         "File": ["file", "effective", "filename"],
         "Image": ["image", "effective", "filename"],
@@ -1409,7 +1409,7 @@ def translation_step_4(site, request, async_request=False):
 
         try:
             trans_obj = translations[language]
-            # set REQUEST otherwise will give error 
+            # set REQUEST otherwise will give error
             # when executing trans_obj.setLayout()
             if async_request:  #not hasattr(trans_obj, 'REQUEST'):
                 trans_obj.REQUEST = site.REQUEST
@@ -1462,15 +1462,15 @@ def translation_step_4(site, request, async_request=False):
                         tile_type = get_tile_type(tile, obj, trans_obj)
                         from_tile = obj.restrictedTraverse('@@{0}/{1}'.format(tile_type, tile.id))
                         to_tile = trans_obj.restrictedTraverse('@@{0}/{1}'.format(tile_type, tile.id))
-                        
+
                         from_data_mgr = ITileDataManager(from_tile)
                         to_data_mgr = ITileDataManager(to_tile)
                         from_data = from_data_mgr.get()
-                        
+
                         trans_tile = trans_obj.get_tile(data_tile['id'])
                         from_data['title'] = trans_tile.data['title']
                         to_data_mgr.set(from_data)
-                        
+
             except KeyError:
                 logger.info("Problem setting collection in tile for language")
 
@@ -1573,7 +1573,7 @@ def translation_step_4(site, request, async_request=False):
             trans_obj.reindexObject()
             transaction.commit()  # TODO Improve. This is a fix for Event.
             continue
-    
+
     logger.info("Finalize step 4")
     return("Finalize step 4")
 
@@ -2666,11 +2666,11 @@ def execute_translate_async(context, options, language, request_vars):
         translate_obj(context, lang=language, one_step=True)
         # trans_obj = get_translation_object(context, language)
         # copy_missing_interfaces(context, trans_obj)
-        
+
         # delete REQUEST to avoid pickle error
         # del context.REQUEST
         del site_portal.REQUEST
-        
+
         logger.info("Async translate for object %s", options['obj_url'])
 
     except Exception as err:
@@ -2694,7 +2694,7 @@ def execute_translate_async(context, options, language, request_vars):
 
 
 class TranslateObjectAsync(BrowserView):
-    
+
     @property
     def async_service(self):
         return get_async_service()
@@ -2711,17 +2711,17 @@ class TranslateObjectAsync(BrowserView):
         request_vars = {
             # 'PARENTS': obj.REQUEST['PARENTS']
         }
-        
+
         # request_keys_to_copy = ['_orig_env', 'environ', 'other', 'script']
         # for req_key in request_keys_to_copy:
         #     request_vars[req_key] = getattr(obj.REQUEST, req_key)
-   
+
         if "/en/" in obj.absolute_url():
             # run translate FULL (all languages)
             for language in get_site_languages():
                 if language == "en":
                     continue
-                
+
                 if self.async_service is None:
                     logger.warn("Can't translate_asyn, plone.app.async not installed!")
                     return
