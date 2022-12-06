@@ -170,7 +170,7 @@ height:310px !important;
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  i18n:domain="eea.climateadapt.landing_page">
+  i18n:domain="eea.climateadapt">
       <div class="urban-landing-top">
         <div class="text-content">
             <div class="text">
@@ -349,7 +349,7 @@ height:310px !important;
                 <h4>EU funding of adaptation</h4>
                 <p class="feature-text" i18n:translate="">The EU finances adaptation to climate change in Europe through a wide range of instruments. The Multiannual Financial Framework  2021-2027 ensures that at least 25% of the European budget is climate-related expenditure. Therefore, Climate adaptation actions have to be integrated into all the major EU spending programmes, and a tracking system is put in place to guarantee these objectives are met.</p>
                 <div class="bottom-section">
-                  <a class="standard-button primary-button feature-btn" href="/en/eu-adaptation-policy/funding">
+                  <a class="standard-button primary-button feature-btn" href="/en/eu-adaptation-policy/funding" i18n:translate="">
                       Go to EU funding of adaptation</a>
                 </div>
               </div>
@@ -374,6 +374,7 @@ height:310px !important;
                    </li>
                  </ul>
                </div>
+<!--
                <div class="tab-content policies-tab-content">
                  <div id="tab1" class="tab-pane active">
                    <div class="row">
@@ -409,6 +410,7 @@ height:310px !important;
                    </div>
                  </div>
                </div>
+-->
             </div>
 <div style="clear:both;"></div>
           </div>
