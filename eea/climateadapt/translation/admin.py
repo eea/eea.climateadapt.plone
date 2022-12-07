@@ -1628,11 +1628,14 @@ def translation_step_5(site, request):
         except WorkflowException:
             continue
 
-        if state == "published":
-            if api.content.get_state(trans_obj) != "published":
+        if state in ["published", "archived"]:
+            if api.content.get_state(trans_obj) != state:
                 wftool = getToolByName(trans_obj, 'portal_workflow')
-                logger.info("Publishing %s", trans_obj.absolute_url())
-                wftool.doActionFor(trans_obj, 'publish')
+                logger.info("%s %s", state, trans_obj.absolute_url())
+                if state == 'published':
+                    wftool.doActionFor(trans_obj, 'publish')
+                elif state == 'archived':
+                    wftool.doActionFor(trans_obj, 'archive')
 
         if obj.EffectiveDate() != trans_obj.EffectiveDate():
             trans_obj.setEffectiveDate(obj.effective_date)
