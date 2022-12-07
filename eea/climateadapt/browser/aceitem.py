@@ -136,23 +136,24 @@ class OrganisationView(DefaultView, AceViewApi):
 
             engl_obj = relation.from_object
             obj = get_translation_object(engl_obj, current_language)
-            if api.content.get_state(obj) == "published":
-                if obj.absolute_url() in urls or (
-                    not getattr(obj, "include_in_observatory")
-                ):
-                    continue
+            if obj is not None:
+                if api.content.get_state(obj) == "published":
+                    if obj.absolute_url() in urls or (
+                        not getattr(obj, "include_in_observatory")
+                    ):
+                        continue
 
-                urls.append(obj.absolute_url())
-                response.append(
-                    {
-                        "title": obj.title,
-                        "url": self.to_observatory_url(obj),
-                        "date": (
-                            getattr(obj, "publication_date", None)
-                            or obj.creation_date.asdatetime().date()
-                        ),
-                    }
-                )
+                    urls.append(obj.absolute_url())
+                    response.append(
+                        {
+                            "title": obj.title,
+                            "url": self.to_observatory_url(obj),
+                            "date": (
+                                getattr(obj, "publication_date", None)
+                                or obj.creation_date.asdatetime().date()
+                            ),
+                        }
+                    )
 
         # print(response)
         response.sort(key=lambda x: x.get("date"), reverse=True)
