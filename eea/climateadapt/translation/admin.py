@@ -1354,7 +1354,7 @@ def translation_step_4(site, request, async_request=False):
             "implementation_type", "effective",
             ],
         "eea.climateadapt.mapgraphdataset": [
-            "storage_type", "spatial_values", "effective",
+            "storage_type", "spatial_values", "effective", "source",
             ],
         "Collection": ["sort_reversed", "query", "effective"],
         "Document": ["table_of_contents", "effective"],
