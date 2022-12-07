@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-11-28 19:23+0000\n"
+"POT-Creation-Date: 2022-12-06 20:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -408,15 +408,15 @@ msgstr ""
 msgid "Information portals"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:540
+#: ../../climateadapt/vocabulary.py:541
 msgid "Institutional: Economic options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:542
+#: ../../climateadapt/vocabulary.py:543
 msgid "Institutional: Government policies and programmes"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:541
+#: ../../climateadapt/vocabulary.py:542
 msgid "Institutional: Law and regulations"
 msgstr ""
 
@@ -668,7 +668,7 @@ msgstr ""
 msgid "References"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:98
+#: ../../climateadapt/contentrules.py:100
 msgid "Reindex object"
 msgstr ""
 
@@ -770,7 +770,7 @@ msgstr ""
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:47
+#: ../../climateadapt/contentrules.py:49
 msgid "Set object expiration date"
 msgstr ""
 
@@ -779,15 +779,15 @@ msgstr ""
 msgid "Short summary"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:539
+#: ../../climateadapt/vocabulary.py:540
 msgid "Social: Behavioural"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:537
+#: ../../climateadapt/vocabulary.py:538
 msgid "Social: Educational options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:538
+#: ../../climateadapt/vocabulary.py:539
 msgid "Social: Informational"
 msgstr ""
 
@@ -827,19 +827,19 @@ msgstr ""
 msgid "Storms"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:535
+#: ../../climateadapt/vocabulary.py:536
 msgid "Structural and physical: Ecosystem-based adaptation options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:533
+#: ../../climateadapt/vocabulary.py:534
 msgid "Structural and physical: Engineering and built environment options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:536
+#: ../../climateadapt/vocabulary.py:537
 msgid "Structural and physical: Service options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:534
+#: ../../climateadapt/vocabulary.py:535
 msgid "Structural and physical: Technological options"
 msgstr ""
 
@@ -875,11 +875,11 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:157
+#: ../../climateadapt/contentrules.py:159
 msgid "Translate object"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:266
+#: ../../climateadapt/contentrules.py:268
 msgid "Translate object async"
 msgstr ""
 
@@ -892,12 +892,12 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:134
+#: ../../climateadapt/contentrules.py:136
 msgid "Unable to reindex ${name} as part of content rule 'reindex' action: ${error}"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:186
-#: ../../climateadapt/translation/admin.py:2576
+#: ../../climateadapt/contentrules.py:188
+#: ../../climateadapt/translation/admin.py:2582
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 
