@@ -15,6 +15,16 @@
       package="plone.restapi"
       file="permissions.zcml"
       />
+
+  <plone:CORSPolicy
+    allow_origin="http://localhost:3000"
+    allow_methods="DELETE,GET,OPTIONS,PATCH,POST,PUT"
+    allow_credentials="true"
+    expose_headers="Content-Length"
+    allow_headers="Accept,Authorization,Content-Type"
+    max_age="3600"
+    />
+
   <includeDependencies package="." />
 
   <i18n:registerTranslations directory="locales" />
@@ -32,7 +42,7 @@
       file="meta.zcml"
       />
   <include package="plone.app.theming" />
-  <include package="plone.app.async" /> 
+  <include package="plone.app.async" />
   <include package="plone.app.registry" />
 
   <include package=".async" />
