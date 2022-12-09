@@ -339,7 +339,7 @@
                             other_values python: data['National_Circumstances'].get('TemperatureAcuteOther', '')">
               <tal:macro metal:define-macro="assessment-climate-hazards">
                 <ul tal:condition="values">
-                  <li tal:repeat="val python: values.split(', ')"
+                  <li tal:repeat="val python: values.split('; ')"
                       tal:content="python: val.split(' - ')[-1]">Value here</li>
                   <li tal:condition="other_values" i18n:translate="">
                     Other: <span tal:content="other_values"></span>
