@@ -1366,7 +1366,7 @@ def translation_step_4(site, request, async_request=False):
             ],
         "eea.climateadapt.aceproject": [
             "specialtagging", "spatial_values", "funding_programme",
-            "effective"
+            "effective", "source",
             ],
         "eea.climateadapt.indicator": [
             "publication_date", "storage_type", "spatial_values", "effective",
