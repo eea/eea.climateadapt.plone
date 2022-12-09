@@ -20,6 +20,9 @@ from tlspu.cookiepolicy.browser.viewlets import CookiePolicyViewlet
 from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
 from zope.site.hooks import getSite
+from eea.climateadapt.translation.admin import get_translation_object
+from eea.climateadapt.translation.utils import get_current_language
+from plone.api import portal
 
 # from Products.LDAPUserFolder.LDAPDelegate import filter_format
 
@@ -106,11 +109,19 @@ class RelatedItemsViewlet(ViewletBase):
         context = aq_inner(self.context)
         res = ()
 
+        site_url = portal.getSite().absolute_url()
+        current_language = get_current_language(self.context, self.request)
+        if current_language != "en":
+            en_obj = get_translation_object(context, "en")
+        else:
+            en_obj = context
+
+        catalog = getToolByName(en_obj, 'portal_catalog')
+
         # Archetypes
 
-        if base_hasattr(context, 'getRawRelatedItems'):
-            catalog = getToolByName(context, 'portal_catalog')
-            related = context.getRawRelatedItems()
+        if base_hasattr(en_obj, 'getRawRelatedItems'):
+            related = en_obj.getRawRelatedItems()
 
             if not related:
                 return ()
@@ -128,14 +139,26 @@ class RelatedItemsViewlet(ViewletBase):
 
         # Dexterity
 
-        if HAS_RELATIONFIELD and IRelatedItems.providedBy(context):
-            related = context.relatedItems
+        if HAS_RELATIONFIELD and IRelatedItems.providedBy(en_obj):
+            related = en_obj.relatedItems
 
             if not related:
                 return ()
             res = self.related2brains(related)
 
-        return res
+        translated_res = []
+        for brain in res:
+            en_obj = brain.getObject()
+            try:
+                trans_obj = get_translation_object(en_obj, current_language)
+                obj_url = trans_obj.absolute_url()
+                obj_path = '/cca' + obj_url.split(site_url)[-1]
+
+                trans_res = catalog({'path': obj_path})
+                translated_res.append(trans_res[0])
+            except Exception:
+                pass
+        return translated_res
 
     def related2brains(self, related):
         """Return a list of brains based on a list of relations. Will filter
