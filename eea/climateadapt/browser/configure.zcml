@@ -115,6 +115,14 @@
       />
 -->
   <browser:page
+      name="observatory_indicators_list"
+      for="*"
+      class=".observatory_indicators.ObservatoryIndicators"
+      template="pt/observatory_indicators_search.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
       name="case-studies-plotly"
       for="*"
       template="pt/case_study_plotly.pt"

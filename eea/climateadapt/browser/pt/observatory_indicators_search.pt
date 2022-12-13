@@ -1,0 +1,122 @@
+<div  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="eea.climateadapt.not_yet">
+<body>
+
+<tal:block  tal:define="data view/get_data">
+
+<style>
+  #observatory_indicators_form {
+    margin-bottom:20px;
+  }
+  #observatory_indicators_form .input_search {
+    background-color:#ecf3f6;
+    width:340px;
+    float:left;
+    margin-right:30px;
+  }
+  #observatory_indicators_form button {
+    background-color:#ecf3f6;
+    float:right;
+    border:0px;
+    padding-top:3px;
+  }
+  #observatory_indicators_form input {
+    line-height:28px;
+    background-color:#ecf3f6;
+    border:none;
+    padding:2px;
+    padding-left:10px;
+    width:300px;
+    margin-right:10px;
+  }
+  #observatory_indicators_form select {
+    line-height:28px;
+    border:none;
+    padding:2px;
+    width:300px;
+  }
+  .observatory_indicators_health_impacts img {
+    fill:#0a75ba;
+    filter: invert(0.3) sepia(1) saturate(5) hue-rotate(175deg);
+    height:50px;
+    margin-bottom:10px;
+  }
+  .observatory_indicators_list {
+    padding-bottom:30px;
+  }
+  .observatory_indicators_list > div{
+    clear:both;
+  }
+  .observatory_indicators_list h2 {
+    margin-bottom:0px;
+  }
+  .observatory_indicators_list h2 a{
+    text-decoration: none;
+    color:#007cb9;
+    font-size:14pt;
+  }
+  .observatory_indicators_list h2 a:hover{
+    color:#23527c;
+  }
+  .observatory_indicators_list .details span{
+    float:left;
+    color:#666666;
+    width:50px;
+  }
+  .observatory_indicators_list .details p{
+    color:#666666;
+    float:left;
+  }
+  .db-category-wrapper:hover p{
+    font-weight:bold;
+  }
+  .db-category-wrapper:hover .total-items{
+    font-weight:bold;
+    background-color:#818A32;
+  }
+  .observatory_indicators_health_impacts .db-category-wrapper:hover img {
+    fill:#0a75ba;
+    filter: invert(0.2) sepia(1) saturate(5) hue-rotate(175deg);
+  }
+</style>
+<div class="db-categories flex-wrapper observatory_indicators_health_impacts" tal:define="impacts python:data['health_impacts']" style="border-bottom:1px solid #818A32;padding:0px !important;margin:20px 0;">
+  <div tal:repeat="impact impacts" class="db-category-wrapper">
+    <span class="db-category-icon">
+      <img tal:attributes="src python:'/++theme++climateadaptv2/static/images/health/'+impact.lower().replace(' ','_')+'.svg'" style="width:50px;">
+      <span class="total-items" tal:content="python:impacts[impact]['value']">20</span>
+    </span>
+    <p tal:content="impact">Impact name</p>
+  </div>
+</div>
+<form id="observatory_indicators_form">
+  <div class="input_search">
+    <input type="text" name="search" value="" placeholder="Search" tal:attributes="value python:view.get_selected_search()">
+    <button><i class="fa fa-search"></i></button>
+  </div>
+  <select name="origin_website" tal:define="origin_websites view/get_origin_websites;origin_selected python:view.get_selected_origin_websites()">
+    <option value="" i18n:translate="">Show all sources</option>
+    <option tal:repeat="origin_website origin_websites" tal:attributes="value python:origin_website[0];selected python:'selected' if origin_website[0]==origin_selected else ''" tal:content="python:origin_website[1]"></option>
+  </select>
+</form>
+
+<div class="observatory_indicators_list" tal:define="items python:data['items']">
+  <div tal:repeat="item items">
+    <h2><a href="" tal:attributes="href item/url" tal:content="item/title">item title</a></h2>
+    <div class="details">
+      <span tal:content="item/year"></span><p tal:content="item/origin_websites"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+$( document ).ready(function() {
+  $( "#observatory_indicators_form select" ).on( "change", function() {
+    $( "#observatory_indicators_form").submit()
+  });
+});
+</script>
+
+</tal:block>
+
+</div>
