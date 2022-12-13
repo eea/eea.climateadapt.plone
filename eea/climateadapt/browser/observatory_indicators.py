@@ -36,7 +36,7 @@ class ObservatoryIndicators(BrowserView, TranslationUtilsMixin):
         #import pdb; pdb.set_trace()
         search_params = {
                         "path": "/cca/"+self.current_lang,
-                        "portal_type": "eea.climateadapt.indicator",
+                        "portal_type": ["eea.climateadapt.indicator","eea.climateadapt.c3sindicator"],
                         "include_in_observatory":"True",
                         "review_state": "published"
                     }
