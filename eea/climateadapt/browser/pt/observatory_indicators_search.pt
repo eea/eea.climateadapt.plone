@@ -82,7 +82,7 @@
 </style>
 <div class="db-categories flex-wrapper observatory_indicators_health_impacts" tal:define="impacts python:data['health_impacts']" style="border-bottom:1px solid #818A32;padding:0px !important;margin:20px 0;">
   <div tal:repeat="impact impacts" class="db-category-wrapper">
-    <span class="db-category-icon">
+    <span class="db-category-icon" tal:attributes="class python:'db-category-icon '+impact.lower().replace(' ','_')">
       <img tal:attributes="src python:'/++theme++climateadaptv2/static/images/health/'+impact.lower().replace(' ','_')+'.svg'" style="width:50px;">
       <span class="total-items" tal:content="python:impacts[impact]['value']">20</span>
     </span>
@@ -101,7 +101,7 @@
 </form>
 
 <div class="observatory_indicators_list" tal:define="items python:data['items']">
-  <div tal:repeat="item items">
+  <div tal:repeat="item items" tal:attributes="class item/health_impacts_tag">
     <h2><a href="" tal:attributes="href item/url" tal:content="item/title">item title</a></h2>
     <div class="details">
       <span tal:content="item/year"></span><p tal:content="item/origin_websites"></p>

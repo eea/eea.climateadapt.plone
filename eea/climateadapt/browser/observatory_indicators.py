@@ -77,6 +77,7 @@ class ObservatoryIndicators(BrowserView, TranslationUtilsMixin):
                     "id": brain.UID,
                     "url": brain.getURL(),
                     "origin_websites": origin_website,
+                    "health_impacts_tag": '_'+'_'.join(obj.health_impacts).lower().replace(' ','_')+'_',
                     "year": obj.publication_date.year
                 })
 
