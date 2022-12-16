@@ -106,7 +106,7 @@
 
 <div class="observatory_indicators_list" tal:define="items python:data['items']">
   <div tal:repeat="item items" tal:attributes="class item/health_impacts_list">
-    <h2><a href="" tal:attributes="href item/url" tal:content="item/title">item title</a></h2>
+    <h2><a href="" tal:attributes="href item/url" tal:content="item/title" target="_blank">item title</a></h2>
     <div class="details">
       <span tal:content="item/year"></span><p tal:content="item/origin_websites"></p>
     </div>
