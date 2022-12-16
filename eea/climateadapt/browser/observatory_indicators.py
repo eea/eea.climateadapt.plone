@@ -30,10 +30,24 @@ class ObservatoryIndicators(BrowserView, TranslationUtilsMixin):
         return self.get_varaible_from_query("search")
 
     def get_origin_websites(self):
-        return _origin_website
+        catalog = get_tool("portal_catalog")
+        origin_website = []
+        search_params = {
+                        "path": "/cca/"+self.current_lang,
+                        "portal_type": ["eea.climateadapt.indicator","eea.climateadapt.c3sindicator"],
+                        "include_in_observatory":"True",
+                        "review_state": "published"
+                    }
+        brains = catalog.searchResults(search_params)
+        for brain in brains:
+            obj = brain.getObject()
+            if hasattr(obj, "origin_website"):
+                for origin_name in obj.origin_website:
+                    if origin_name not in origin_website:
+                        origin_website.append(origin_name)
+        return origin_website
 
     def get_search_params(self):
-        #import pdb; pdb.set_trace()
         search_params = {
                         "path": "/cca/"+self.current_lang,
                         "portal_type": ["eea.climateadapt.indicator","eea.climateadapt.c3sindicator"],
@@ -60,9 +74,6 @@ class ObservatoryIndicators(BrowserView, TranslationUtilsMixin):
         }
 
         search_params = self.get_search_params()
-        #import pdb; pdb.set_trace()
-        #if selected_origin:
-        #    search_params = {}
         brains = catalog.searchResults(search_params)
         for brain in brains:
             obj = brain.getObject()
@@ -77,7 +88,7 @@ class ObservatoryIndicators(BrowserView, TranslationUtilsMixin):
                     "id": brain.UID,
                     "url": brain.getURL(),
                     "origin_websites": origin_website,
-                    "health_impacts_tag": '_'+'_'.join(obj.health_impacts).lower().replace(' ','_')+'_',
+                    "health_impacts_list": ' '.join([impact.lower().replace(' ','_') for impact in obj.health_impacts]),
                     "year": obj.publication_date.year
                 })
 

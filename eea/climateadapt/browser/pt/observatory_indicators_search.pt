@@ -56,9 +56,6 @@
     color:#007cb9;
     font-size:14pt;
   }
-  .observatory_indicators_list h2 a:hover{
-    color:#23527c;
-  }
   .observatory_indicators_list .details span{
     float:left;
     color:#666666;
@@ -68,21 +65,28 @@
     color:#666666;
     float:left;
   }
+  .db-category-wrapper.selected p,
   .db-category-wrapper:hover p{
     font-weight:bold;
   }
+  .db-category-wrapper.selected .observatory_indicators_list h2 a,
+  .observatory_indicators_list h2 a:hover{
+    color:#23527c;
+  }
+  .db-category-wrapper.selected .total-items,
   .db-category-wrapper:hover .total-items{
     font-weight:bold;
     background-color:#818A32;
   }
+  .db-category-wrapper.selected .observatory_indicators_health_impacts .db-category-wrapper img,
   .observatory_indicators_health_impacts .db-category-wrapper:hover img {
     fill:#0a75ba;
     filter: invert(0.2) sepia(1) saturate(5) hue-rotate(175deg);
   }
 </style>
 <div class="db-categories flex-wrapper observatory_indicators_health_impacts" tal:define="impacts python:data['health_impacts']" style="border-bottom:1px solid #818A32;padding:0px !important;margin:20px 0;">
-  <div tal:repeat="impact impacts" class="db-category-wrapper">
-    <span class="db-category-icon" tal:attributes="class python:'db-category-icon '+impact.lower().replace(' ','_')">
+  <div tal:repeat="impact impacts" class="db-category-wrapper" tal:attributes="class python:'db-category-wrapper '+impact.lower().replace(' ','_')">
+    <span class="db-category-icon">
       <img tal:attributes="src python:'/++theme++climateadaptv2/static/images/health/'+impact.lower().replace(' ','_')+'.svg'" style="width:50px;">
       <span class="total-items" tal:content="python:impacts[impact]['value']">20</span>
     </span>
@@ -96,12 +100,12 @@
   </div>
   <select name="origin_website" tal:define="origin_websites view/get_origin_websites;origin_selected python:view.get_selected_origin_websites()">
     <option value="" i18n:translate="">Show all sources</option>
-    <option tal:repeat="origin_website origin_websites" tal:attributes="value python:origin_website[0];selected python:'selected' if origin_website[0]==origin_selected else ''" tal:content="python:origin_website[1]"></option>
+    <option tal:repeat="origin_website origin_websites" tal:attributes="value python:origin_website;selected python:'selected' if origin_website==origin_selected else ''" tal:content="python:origin_website"></option>
   </select>
 </form>
 
 <div class="observatory_indicators_list" tal:define="items python:data['items']">
-  <div tal:repeat="item items" tal:attributes="class item/health_impacts_tag">
+  <div tal:repeat="item items" tal:attributes="class item/health_impacts_list">
     <h2><a href="" tal:attributes="href item/url" tal:content="item/title">item title</a></h2>
     <div class="details">
       <span tal:content="item/year"></span><p tal:content="item/origin_websites"></p>
@@ -114,6 +118,20 @@ $( document ).ready(function() {
   $( "#observatory_indicators_form select" ).on( "change", function() {
     $( "#observatory_indicators_form").submit()
   });
+  $(".db-category-wrapper").on("click", function() {
+    selected_impact = $(this).attr("class").replace("db-category-wrapper", "").trim();
+    is_selected = $(this).hasClass('selected');
+    console.log(selected_impact, is_selected);
+    if (is_selected) {
+      $(".observatory_indicators_list > div").removeClass("hide");
+      $(this).removeClass('selected');
+    } else {
+      $(".observatory_indicators_list > div").addClass("hide");
+      $(".observatory_indicators_list > div."+selected_impact).removeClass("hide");
+      $(".db-category-wrapper").removeClass('selected');
+      $(this).addClass('selected');
+    }
+  })
 });
 </script>
 
