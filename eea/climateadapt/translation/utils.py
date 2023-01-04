@@ -121,6 +121,17 @@ class TranslationUtilsMixin(object):
 
         return value
 
+    def get_i18n_for_text(self, text, domain=u'eea.climateadapt', language=None):
+        if not language:
+            language = self.current_lang
+
+        language = language.lower()
+
+        if language == 'en':
+            return text
+
+        return translate_text(self.context, self.request, text, domain, language)
+
 
 def get_current_language(context, request):
     try:

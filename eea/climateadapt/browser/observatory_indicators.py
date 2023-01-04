@@ -74,13 +74,12 @@ class ObservatoryIndicators(BrowserView, TranslationUtilsMixin):
         catalog = get_tool("portal_catalog")
         items = []
         health_impacts = {
-            'Heat':{'value':0,'icon':'fa fa-area-chart'},
-            'Droughts and floods':{'value':0,'icon':'fa fa-compass'},
-            'Climate-sensitive diseases':{'value':0,'icon':'fa fa-info-circle'},
-            'Air pollution and aero-allergens':{'value':0,'icon':'fa fa-file-video-o'},
-            'Wildfires':{'value':0,'icon':'fa fa-wrench'}
+            'Heat':{'value':0,'icon':'fa fa-area-chart', 'print':self.get_i18n_for_text('Heat')},
+            'Droughts and floods':{'value':0,'icon':'fa fa-compass', 'print':self.get_i18n_for_text('Droughts and floods')},
+            'Climate-sensitive diseases':{'value':0,'icon':'fa fa-info-circle', 'print':self.get_i18n_for_text('Climate-sensitive diseases')},
+            'Air pollution and aero-allergens':{'value':0,'icon':'fa fa-file-video-o', 'print':self.get_i18n_for_text('Air pollution and aero-allergens')},
+            'Wildfires':{'value':0,'icon':'fa fa-wrench', 'print':self.get_i18n_for_text('Wildfires')}
         }
-
         search_params = self.get_search_params()
         brains = catalog.searchResults(search_params, sort_on='sortable_title', sort_order='ascending')
         for brain in brains:

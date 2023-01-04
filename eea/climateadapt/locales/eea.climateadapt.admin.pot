@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-12-06 20:42+0000\n"
+"POT-Creation-Date: 2023-01-04 21:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,10 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: eea.climateadapt.admin\n"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "-NONSPECIFIC-"
+msgstr ""
 
 #: ../../climateadapt/behaviors/aceproject.py:176
 msgid "Abstracts"
@@ -61,6 +65,10 @@ msgstr ""
 #: ../../climateadapt/browser/overrides.py:37
 #: ../../climateadapt/vocabulary.py:293
 msgid "Agriculture"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Air pollution and aero-allergens"
 msgstr ""
 
 #: ../../climateadapt/tiles/search_acecontent.py:833
@@ -121,6 +129,10 @@ msgstr ""
 #: ../../climateadapt/behaviors/acemeasure.py:143
 #: ../../climateadapt/behaviors/aceproject.py:250
 msgid "Climate impacts"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:445
+msgid "Climate-sensitive diseases"
 msgstr ""
 
 #: ../../climateadapt/browser/overrides.py:40
@@ -271,6 +283,10 @@ msgstr ""
 msgid "Droughts"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:444
+msgid "Droughts and floods"
+msgstr ""
+
 #: ../../climateadapt/behaviors/aceproject.py:280
 msgid "Duration"
 msgstr ""
@@ -363,6 +379,10 @@ msgstr ""
 #: ../../climateadapt/behaviors/acemeasure.py:503
 #: ../../climateadapt/behaviors/aceproject.py:212
 msgid "Health impacts"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:443
+msgid "Heat"
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:393
@@ -897,7 +917,7 @@ msgid "Unable to reindex ${name} as part of content rule 'reindex' action: ${err
 msgstr ""
 
 #: ../../climateadapt/contentrules.py:188
-#: ../../climateadapt/translation/admin.py:2582
+#: ../../climateadapt/translation/admin.py:2585
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 
@@ -966,6 +986,10 @@ msgstr ""
 #: ../../climateadapt/behaviors/acemeasure.py:299
 #: ../../climateadapt/behaviors/aceproject.py:294
 msgid "Websites"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Wildfires"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/detect_links.pt:49

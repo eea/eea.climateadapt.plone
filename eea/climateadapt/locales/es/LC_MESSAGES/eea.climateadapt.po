@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-12-06 20:42+0000\n"
+"POT-Creation-Date: 2023-01-04 21:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,6 +15,10 @@ msgstr ""
 "Domain: DOMAIN\n"
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "-NONSPECIFIC-"
+msgstr ""
 
 # ,
 # ,
@@ -1560,6 +1564,10 @@ msgstr "Orden del día y documentos de apoyo"
 msgid "Agriculture"
 msgstr "Agricultura"
 
+#: ../../climateadapt/vocabulary.py:447
+msgid "Air pollution and aero-allergens"
+msgstr "Contaminación del aire y aeroalérgenos"
+
 # ,
 # ,
 # ,
@@ -2188,6 +2196,10 @@ msgstr "Evento Clima-ADAPT"
 msgid "Climate-ADAPT case studies"
 msgstr "Casis de estudio de Climate-ADAPT"
 
+#: ../../climateadapt/vocabulary.py:445
+msgid "Climate-sensitive diseases"
+msgstr "Enfermedades sensibles al clima"
+
 # ,
 # ,
 # ,
@@ -2631,6 +2643,10 @@ msgstr "Descarga la agenda detallada <a href=\"${DYNAMIC_CONTENT}\">aquí</a>"
 #: ../../climateadapt/vocabulary.py:339
 msgid "Droughts"
 msgstr "Sequías"
+
+#: ../../climateadapt/vocabulary.py:444
+msgid "Droughts and floods"
+msgstr "Sequías e inundaciones"
 
 # ,
 # ,
@@ -3301,6 +3317,10 @@ msgstr "Salud"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:278
 msgid "Health impact:"
 msgstr "Impacto en la salud:"
+
+#: ../../climateadapt/vocabulary.py:443
+msgid "Heat"
+msgstr "Calor"
 
 # ,
 # ,
@@ -5048,6 +5068,10 @@ msgstr "Vuelve al comienzo"
 msgid "Sea Level Rise"
 msgstr "Aumento del nivel del mar"
 
+#: ../../climateadapt/browser/pt/observatory_indicators_search.pt:98
+msgid "Search"
+msgstr "Búsqueda"
+
 # ,
 # ,
 # ,
@@ -5280,6 +5304,10 @@ msgstr ""
 #: ../../climateadapt/tiles/pt/shareinfo.pt:18
 msgid "Share your information"
 msgstr "Comparte tu información"
+
+#: ../../climateadapt/browser/pt/observatory_indicators_search.pt:105
+msgid "Show all sources"
+msgstr "Mostrar todas las fuentes"
 
 # ,
 # ,
@@ -5912,7 +5940,7 @@ msgstr "Vídeos tutoriales"
 msgid "URBACT"
 msgstr "Urbacto"
 
-#: ../../climateadapt/translation/admin.py:2582
+#: ../../climateadapt/translation/admin.py:2585
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 
@@ -6214,6 +6242,10 @@ msgstr "Cuando:"
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:116
 msgid "Where:"
 msgstr "Dónde:"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Wildfires"
+msgstr "Incendios forestales"
 
 # ,
 # ,

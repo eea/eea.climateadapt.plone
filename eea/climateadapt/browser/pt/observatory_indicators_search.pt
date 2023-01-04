@@ -1,6 +1,6 @@
 <div  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      i18n:domain="eea.climateadapt.not_yet">
+      i18n:domain="eea.climateadapt">
 <body>
 
 <tal:block  tal:define="data view/get_data">
@@ -90,12 +90,15 @@
       <img tal:attributes="src python:'/++theme++climateadaptv2/static/images/health/'+impact.lower().replace(' ','_')+'.svg'" style="width:50px;">
       <span class="total-items" tal:content="python:impacts[impact]['value']">20</span>
     </span>
-    <p tal:content="impact">Impact name</p>
+    <p tal:content="python:impacts[impact]['print']">Impact name</p>
   </div>
 </div>
 <form id="observatory_indicators_form">
   <div class="input_search">
-    <input type="text" name="search" value="" placeholder="Search" tal:attributes="value python:view.get_selected_search()">
+    <input type="text" name="search" value=""
+      placeholder="Search"
+      i18n:attributes="placeholder"
+      tal:attributes="value python:view.get_selected_search()">
     <button><i class="fa fa-search"></i></button>
   </div>
   <select name="origin_website" tal:define="origin_websites view/get_origin_websites;origin_selected python:view.get_selected_origin_websites()">

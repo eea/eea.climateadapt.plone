@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-12-06 20:42+0000\n"
+"POT-Creation-Date: 2023-01-04 21:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,6 +15,10 @@ msgstr ""
 "Domain: DOMAIN\n"
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "-NONSPECIFIC-"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/c3sindicator_view.pt:86
 #: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:86
@@ -450,6 +454,10 @@ msgstr ""
 msgid "Agriculture"
 msgstr "Lauksaimniecība"
 
+#: ../../climateadapt/vocabulary.py:447
+msgid "Air pollution and aero-allergens"
+msgstr ""
+
 #: ../../climateadapt/tiles/search_acecontent.py:833
 msgid "All adaptation sectors"
 msgstr ""
@@ -639,6 +647,10 @@ msgstr ""
 msgid "Climate-ADAPT case studies"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:445
+msgid "Climate-sensitive diseases"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/overrides.py:40
 #: ../../climateadapt/vocabulary.py:296
@@ -785,6 +797,10 @@ msgstr ""
 #: ../../climateadapt/vocabulary.py:339
 msgid "Droughts"
 msgstr "Sausums"
+
+#: ../../climateadapt/vocabulary.py:444
+msgid "Droughts and floods"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:97
@@ -1055,6 +1071,10 @@ msgstr "Veselība"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:278
 msgid "Health impact:"
 msgstr "Ietekme uz veselību:"
+
+#: ../../climateadapt/vocabulary.py:443
+msgid "Heat"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:105
 msgid "Heat index of HHWS:"
@@ -1628,6 +1648,10 @@ msgstr ""
 msgid "Sea Level Rise"
 msgstr "Jūras līmeņa celšanās"
 
+#: ../../climateadapt/browser/pt/observatory_indicators_search.pt:98
+msgid "Search"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:64
 msgid "Search results"
@@ -1712,6 +1736,10 @@ msgstr ""
 #: ../../climateadapt/tiles/pt/shareinfo.pt:18
 msgid "Share your information"
 msgstr "Kopīgot savu informāciju"
+
+#: ../../climateadapt/browser/pt/observatory_indicators_search.pt:105
+msgid "Show all sources"
+msgstr ""
 
 #: ../../climateadapt/vocabulary.py:540
 msgid "Social: Behavioural"
@@ -1946,7 +1974,7 @@ msgstr ""
 msgid "URBACT"
 msgstr ""
 
-#: ../../climateadapt/translation/admin.py:2582
+#: ../../climateadapt/translation/admin.py:2585
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 
@@ -2042,6 +2070,10 @@ msgstr ""
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:116
 msgid "Where:"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Wildfires"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:19

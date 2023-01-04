@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-12-06 20:42+0000\n"
+"POT-Creation-Date: 2023-01-04 21:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,6 +15,10 @@ msgstr ""
 "Domain: DOMAIN\n"
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "-NONSPECIFIC-"
+msgstr ""
 
 # ,
 # ,
@@ -1370,6 +1374,10 @@ msgstr "Agenda e documenti giustificativi"
 msgid "Agriculture"
 msgstr "Agricoltura"
 
+#: ../../climateadapt/vocabulary.py:447
+msgid "Air pollution and aero-allergens"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -1914,6 +1922,10 @@ msgstr "Evento Climate-ADAPT"
 msgid "Climate-ADAPT case studies"
 msgstr "Casi di studio Climate-ADAPT"
 
+#: ../../climateadapt/vocabulary.py:445
+msgid "Climate-sensitive diseases"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -2287,6 +2299,10 @@ msgstr "Scarica l'agenda dettagliata <a href=\"${DYNAMIC_CONTENT}\">qui</a>"
 #: ../../climateadapt/vocabulary.py:339
 msgid "Droughts"
 msgstr "Siccità"
+
+#: ../../climateadapt/vocabulary.py:444
+msgid "Droughts and floods"
+msgstr ""
 
 # ,
 # ,
@@ -2887,6 +2903,10 @@ msgstr "Salute"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:278
 msgid "Health impact:"
 msgstr "Impatto sulla salute:"
+
+#: ../../climateadapt/vocabulary.py:443
+msgid "Heat"
+msgstr ""
 
 # ,
 # ,
@@ -4411,6 +4431,10 @@ msgstr "Scorri verso l'alto"
 msgid "Sea Level Rise"
 msgstr "Innalzamento del livello del mare"
 
+#: ../../climateadapt/browser/pt/observatory_indicators_search.pt:98
+msgid "Search"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -4608,6 +4632,10 @@ msgstr ""
 #: ../../climateadapt/tiles/pt/shareinfo.pt:18
 msgid "Share your information"
 msgstr "Condividi le tue informazioni"
+
+#: ../../climateadapt/browser/pt/observatory_indicators_search.pt:105
+msgid "Show all sources"
+msgstr ""
 
 # ,
 # ,
@@ -5174,7 +5202,7 @@ msgstr "Video tutorial"
 msgid "URBACT"
 msgstr "Urbact"
 
-#: ../../climateadapt/translation/admin.py:2582
+#: ../../climateadapt/translation/admin.py:2585
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 
@@ -5431,6 +5459,10 @@ msgstr "Quando:"
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:116
 msgid "Where:"
 msgstr "Dove:"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Wildfires"
+msgstr ""
 
 # ,
 # ,
