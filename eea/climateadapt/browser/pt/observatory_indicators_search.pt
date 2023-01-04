@@ -100,7 +100,7 @@
   </div>
   <select name="origin_website" tal:define="origin_websites view/get_origin_websites;origin_selected python:view.get_selected_origin_websites()">
     <option value="" i18n:translate="">Show all sources</option>
-    <option tal:repeat="origin_website origin_websites" tal:attributes="value python:origin_website;selected python:'selected' if origin_website==origin_selected else ''" tal:content="python:origin_website"></option>
+    <option tal:repeat="origin_website origin_websites" tal:attributes="value python:origin_website[0];selected python:'selected' if origin_website[0]==origin_selected else ''" tal:content="python:origin_website[1]"></option>
   </select>
 </form>
 

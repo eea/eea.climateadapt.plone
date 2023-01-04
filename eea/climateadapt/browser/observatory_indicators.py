@@ -15,6 +15,13 @@ logger = logging.getLogger("eea.climateadapt")
 
 class ObservatoryIndicators(BrowserView, TranslationUtilsMixin):
 
+    def map_origin_wesite(self, name):
+        if name == "Lancet Countdown":
+            return "Lancet Countdown in Europe"
+        if name == "C3S":
+            return "Copernicus (C3S)"
+        return name
+
     def get_varaible_from_query(self, variable):
         request = self.request
         if 'PARENT_REQUEST' not in request:
@@ -45,7 +52,8 @@ class ObservatoryIndicators(BrowserView, TranslationUtilsMixin):
                 for origin_name in obj.origin_website:
                     if origin_name not in origin_website:
                         origin_website.append(origin_name)
-        return origin_website
+        origin_website.sort()
+        return [[v,self.map_origin_wesite(v)] for v in origin_website]
 
     def get_search_params(self):
         search_params = {
@@ -74,7 +82,7 @@ class ObservatoryIndicators(BrowserView, TranslationUtilsMixin):
         }
 
         search_params = self.get_search_params()
-        brains = catalog.searchResults(search_params)
+        brains = catalog.searchResults(search_params, sort_on='sortable_title', sort_order='ascending')
         for brain in brains:
             obj = brain.getObject()
             origin_website = ''
@@ -87,10 +95,9 @@ class ObservatoryIndicators(BrowserView, TranslationUtilsMixin):
                     "title": obj.title,
                     "id": brain.UID,
                     "url": brain.getURL(),
-                    "origin_websites": origin_website,
+                    "origin_websites": self.map_origin_wesite(origin_website),
                     "health_impacts_list": ' '.join([impact.lower().replace(' ','_') for impact in obj.health_impacts]),
                     "year": obj.publication_date.year
                 })
 
-        #import pdb; pdb.set_trace()
         return {'items':items,'health_impacts':health_impacts}
