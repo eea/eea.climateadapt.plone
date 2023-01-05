@@ -30,8 +30,8 @@ from eea.climateadapt.translation.admin import copy_missing_interfaces
 from eea.climateadapt.translation.admin import execute_translate_async
 from eea.climateadapt.translation.admin import translate_obj
 from eea.climateadapt.translation.admin import translation_step_4
-from eea.climateadapt.translation.utils import (get_current_language, 
-    get_site_languages)
+from eea.climateadapt.translation.utils import (get_current_language,
+                                                get_site_languages)
 
 
 logger = logging.getLogger('eea.climateadapt')
@@ -313,7 +313,7 @@ class TranslateAsyncActionExecutor(object):
     implements(IExecutable)
     adapts(Interface, ITranslateAsyncAction, Interface)
     noasync_msg = 'No instance for async operations was defined.'
-    
+
     def __init__(self, context, element, event):
         self.context = context
         self.element = element
@@ -328,39 +328,89 @@ class TranslateAsyncActionExecutor(object):
         options = {}
         options['obj_url'] = obj.absolute_url()
         options['uid'] = obj.UID()
-        options['http_host'] = self.context.REQUEST.environ['HTTP_X_FORWARDED_HOST']
+        options['http_host'] = self.context.REQUEST.environ[
+                'HTTP_X_FORWARDED_HOST']
 
         request_vars = {
             # 'PARENTS': obj.REQUEST['PARENTS']
         }
-        
+
         # request_keys_to_copy = ['_orig_env', 'environ', 'other', 'script']
         # for req_key in request_keys_to_copy:
         #     request_vars[req_key] = getattr(obj.REQUEST, req_key)
-   
+
         if "/en/" in obj.absolute_url():
             # run translate FULL (all languages)
             for language in get_site_languages():
                 if language == "en":
                     continue
-                
+
                 if self.async_service is None:
-                    logger.warn("Can't translate_asyn, plone.app.async not installed!")
+                    logger.warn(
+                        "Can't translate_asyn, plone.app.async not installed!")
                     return
 
                 create_translation_object(obj, language)
                 queue = self.async_service.getQueues()['']
-                self.async_service.queueJobInQueue(queue, ('translate',), execute_translate_async, obj, options, language, request_vars)
+                self.async_service.queueJobInQueue(
+                        queue, ('translate',), execute_translate_async,
+                        obj, options, language, request_vars)
 
         else:
             language = get_current_language(self.context, self.request)
             en_path = '/'.join(obj.getPhysicalPath())
             en_path = en_path.replace('/{}/'.format(language), '/en/')
-            obj_en = self.context.unrestrictedTraverse(en_path.replace('/{}/'.format(language), '/en/'))
+            obj_en = self.context.unrestrictedTraverse(
+                    en_path.replace('/{}/'.format(language), '/en/'))
 
             create_translation_object(obj_en, language)
             queue = self.async_service.getQueues()['']
-            self.async_service.queueJobInQueue(queue, ('translate',), execute_translate_async, obj_en, options, language, request_vars)
-
+            self.async_service.queueJobInQueue(
+                queue, ('translate',), execute_translate_async,
+                obj_en, options, language, request_vars)
 
         return True
+
+
+class ISynchronizeStatesForTranslationsAction(Interface):
+    """ Interface for sync states for translation items action. """
+
+
+@implementer(ISynchronizeStatesForTranslationsAction, IRuleElementData)
+class SynchronizeStatesForTranslationsAction(SimpleItem):
+    """The actual persistent implementation of the action element. """
+
+    element = "eea.climateadapt.SynchronizeStatesForTranslations"
+    summary = _(u"Synchronize states for translations")
+
+
+@adapter(Interface, ISynchronizeStatesForTranslationsAction, Interface)
+@implementer(IExecutable)
+class SynchronizeStatesForTranslationsActionExecutor(object):
+    """ Make sure the translated objects have the same state as EN object
+    """
+
+    def __init__(self, context, element, event):
+        self.context = context
+        self.element = element
+        self.event = event
+
+    def __call__(self):
+        obj = self.event.object
+
+        if "/en/" in obj.absolute_url():
+            # TODO get its state and set it for translations
+            logger.info("ENGLISH -> translations")
+
+        else:
+            # No action?
+            logger.info("translation item changed - NO ACTION for states")
+
+        return True
+
+
+class SynchronizeStatesForTranslationsAddForm(NullAddForm):
+    """A translate action form"""
+
+    def create(self):
+        return SynchronizeStatesForTranslationsAction()

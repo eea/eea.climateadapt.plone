@@ -8,6 +8,7 @@
   <adapter factory=".contentrules.ReindexActionExecutor" />
   <adapter factory=".contentrules.TranslateActionExecutor" />
   <adapter factory=".contentrules.TranslateAsyncActionExecutor" />
+  <adapter factory=".contentrules.SynchronizeStatesForTranslationsActionExecutor" />
 
   <browser:page
       name="eea.climateadapt.Reindex"
@@ -83,4 +84,21 @@
       addview="eea.climateadapt.TranslateAsync"
       />
 
+  <browser:page
+      name="eea.climateadapt.SynchronizeStatesForTranslations"
+      for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
+      class=".contentrules.SynchronizeStatesForTranslationsAddForm"
+      permission="plone.app.contentrules.ManageContentRules"
+      />
+
+  <plone:ruleAction
+      name="eea.climateadapt.SynchronizeStatesForTranslations"
+      title="Synchronize states for translations"
+      description="Make sure translation items have the same state as EN obj"
+      for="*"
+      event="zope.component.interfaces.IObjectEvent"
+      schema=".contentrules.ISynchronizeStatesForTranslationsAction"
+      factory=".contentrules.SynchronizeStatesForTranslationsAction"
+      addview="eea.climateadapt.SynchronizeStatesForTranslations"
+      />
 </configure>
