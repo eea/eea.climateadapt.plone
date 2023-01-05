@@ -30,6 +30,7 @@ from eea.climateadapt.translation.admin import copy_missing_interfaces
 from eea.climateadapt.translation.admin import execute_translate_async
 from eea.climateadapt.translation.admin import translate_obj
 from eea.climateadapt.translation.admin import translation_step_4
+from eea.climateadapt.translation.admin import translation_step_5
 from eea.climateadapt.translation.utils import (get_current_language, 
     get_site_languages)
 
@@ -175,6 +176,7 @@ class TranslateActionExecutor(object):
             self.create_translations(obj)
             self.copy_fields(obj)
             self.translate_obj(obj)
+            self.publish_translations(obj)
             self.copy_interfaces(obj)  # TODO: delete. It's already included in
             # create_translation_object. It is used here only for testing
             # on old created content. Example: fixing interfaces for pages
@@ -239,6 +241,18 @@ class TranslateActionExecutor(object):
                 }
                 translation_step_4(getSite(), settings)
 
+    def publish_translations(self, obj):
+        """ Run step 5 for this obj
+        """
+        translations = TranslationManager(obj).get_translations()
+        for language in translations:
+            if language != "en":
+                settings = {
+                    "language": language,
+                    "uid": obj.UID(),
+                }
+                translation_step_5(getSite(), settings)
+    
 
 class TranslateAddForm(NullAddForm):
     """A translate action form"""
