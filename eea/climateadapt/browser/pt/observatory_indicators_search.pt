@@ -6,6 +6,9 @@
 <tal:block  tal:define="data view/get_data">
 
 <style>
+  .db-category-wrapper:hover {
+      cursor: pointer;
+  }
   #observatory_indicators_form {
     margin-bottom:20px;
   }
