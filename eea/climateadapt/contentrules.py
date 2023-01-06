@@ -409,16 +409,29 @@ class SynchronizeStatesForTranslationsActionExecutor(object):
         self.element = element
         self.event = event
 
+    def set_new_state(self, trans_obj, action):
+        """ Set the new state
+        """
+        try:
+            wftool = getToolByName(trans_obj, 'portal_workflow')
+            wftool.doActionFor(trans_obj, action)
+        except Exception:
+            logger.info("Synchronize states: not saved for trans object.")
+
     def __call__(self):
         obj = self.event.object
 
         if "/en/" in obj.absolute_url():
-            # TODO get its state and set it for translations
-            logger.info("ENGLISH -> translations")
+            logger.info("Synchronize states...")
+            action = self.event.action
+            translations = TranslationManager(obj).get_translations()
+            translated_objs = [
+                    translations[x] for x in translations if x != "en"]
 
+            for trans_obj in translated_objs:
+                self.set_new_state(trans_obj, action)
         else:
-            # No action?
-            logger.info("translation item changed - NO ACTION for states")
+            logger.info("Synchronize states: no action.")
 
         return True
 
