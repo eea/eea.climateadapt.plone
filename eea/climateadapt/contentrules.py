@@ -415,6 +415,7 @@ class SynchronizeStatesForTranslationsActionExecutor(object):
         try:
             wftool = getToolByName(trans_obj, 'portal_workflow')
             wftool.doActionFor(trans_obj, action)
+            transaction.commit()
         except Exception:
             logger.info("Synchronize states: not saved for trans object.")
 
