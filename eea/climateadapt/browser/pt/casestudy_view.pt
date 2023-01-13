@@ -221,7 +221,7 @@
                   </div>
                 </div>
 
-              <div class="case-studies-illustrations" tal:condition="supphotos">
+              <div class="case-studies-illustrations 123" tal:condition="supphotos">
                 <div id="blueimp-gallery"
                      class="blueimp-gallery blueimp-gallery-controls"
                      data-use-bootstrap-modal="false">
@@ -326,29 +326,31 @@
                  tal:condition="python: portal_state.anonymous() == True">
            <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
            <script>
-             document.getElementById('links').onclick = function (event) {
-               event = event || window.event;
-               var target = event.target || event.srcElement,
-                 link = target.src ? target.parentNode : target,
-                 options = {
-                   index: link, event: event,
-                   onslide: function (index, slide) {
-                     self = this;
-                     var initializeAdditional = function (index, data, klass, self) {
-                       var text = self.list[index].getAttribute(data),
-                         node = self.container.find(klass);
-                       node.empty();
-                       if (text) {
-                         node[0].appendChild(document.createTextNode(text));
-                       }
-                     };
-                     initializeAdditional(index, 'data-description', '.description', self);
-                     initializeAdditional(index, 'data-copyright', '.casestudies-gallery-copyright', self);
-                   }
-                 },
-                 links = this.getElementsByTagName('a');
-               blueimp.Gallery(links, options);
-             };
+             $( document ).ready(function() {
+               document.getElementById('links').onclick = function (event) {
+                 event = event || window.event;
+                 var target = event.target || event.srcElement,
+                   link = target.src ? target.parentNode : target,
+                   options = {
+                     index: link, event: event,
+                     onslide: function (index, slide) {
+                       self = this;
+                       var initializeAdditional = function (index, data, klass, self) {
+                         var text = self.list[index].getAttribute(data),
+                           node = self.container.find(klass);
+                         node.empty();
+                         if (text) {
+                           node[0].appendChild(document.createTextNode(text));
+                         }
+                       };
+                       initializeAdditional(index, 'data-description', '.description', self);
+                       initializeAdditional(index, 'data-copyright', '.casestudies-gallery-copyright', self);
+                     }
+                   },
+                   links = this.getElementsByTagName('a');
+                 blueimp.Gallery(links, options);
+               };
+             });
            </script>
         </tal:def>
 
