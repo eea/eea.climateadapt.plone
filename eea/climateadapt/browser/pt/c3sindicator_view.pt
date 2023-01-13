@@ -205,19 +205,19 @@
           } else {
               c3sView('overview');
           }
-          function c3sView(type) {
-              if (type=='details') {
-                  location.hash = '#details';
-                  $('.c3s_overview').css('display','none');
-                  $('.c3s_details').attr('style','display:block;margin-top:-60px;');
-                  window.cds_toolbox.runApp('toolbox-app-details', c3s_details_url, c3s_details_params);
-              } else {
-                  location.hash = '';
-                  $('.c3s_details').attr('style','display:none;');
-                  $('.c3s_overview').attr('style','display:block;');
-              }
-          }
         });
+        function c3sView(type) {
+            if (type=='details') {
+                location.hash = '#details';
+                $('.c3s_overview').css('display','none');
+                $('.c3s_details').attr('style','display:block;margin-top:-60px;');
+                window.cds_toolbox.runApp('toolbox-app-details', c3s_details_url, c3s_details_params);
+            } else {
+                location.hash = '';
+                $('.c3s_details').attr('style','display:none;');
+                $('.c3s_overview').attr('style','display:block;');
+            }
+        }
       </script>
   <br>
   <p i18n:translate="">Content in the European Climate Data Explorer pages is delivered by the <a href="https://climate.copernicus.eu/">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href="/knowledge/european-climate-data-explorer/disclaimer">Disclaimer</a></p>
