@@ -47,62 +47,68 @@
         </span>
         <button class="less" style="display: none;">Show less</button>
       </p>
-      <script>
-        $(document).ready(function() {
-          $("div.translation-info .show-more").hide();
-          $("div.translation-info .show-less").show();
-
-          $("button.more").on("click", function() {
-            $("div.translation-info .show-more").show();
-            $("button.more").hide();
-            $("button.less").show();
-          });
-
-          $("button.less").on("click", function() {
-            $("div.translation-info .show-more").hide();
-            $("button.more").show();
-            $("button.less").hide();
-          });
-
-          function getCookie(cname) {
-            let name = cname + "=";
-            let decodedCookie = decodeURIComponent(document.cookie);
-            let ca = decodedCookie.split(';');
-            for(let i = 0; i <ca.length; i++) {
-              let c = ca[i];
-              while (c.charAt(0) == ' ') {
-                c = c.substring(1);
-              }
-              if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
-              }
-            }
-            return "";
-          }
-
-          window.onunload = function(){};
-          console.log(window.onload);
-
-          const site_language_class = Array.from($("body")[0].classList).find(
-            element => element.includes('site-') && element.length == 7);
-          const page_language = site_language_class.split("-")[1];
-          const cookie_language = getCookie("I18N_LANGUAGE").replaceAll("\"", "").replaceAll("'", "");
-          console.log("Cookie:", cookie_language, "Page content:", page_language);
-
-          if (cookie_language != page_language){
-            $("div.alert.alert-redirect").show();
-
-            const language_names = {"en": "English", "de": "German", "fr": "French", "es": "Spanish", "it": "Italian", "pl": "Polish"};
-            $("span.cookie-language-option").text(language_names[cookie_language]);
-            var translated = window.location.href.replace("/" + page_language + "/", "/" + cookie_language + "/");
-            $("a.reload-page-language").attr("href", translated);
-          }
-        });
-      </script>
     </div>
   </div>
 </div>
 
+<script>
+  $(document).ready(function() {
+    $("div.translation-info .show-more").hide();
+    $("div.translation-info .show-less").show();
+
+    $("button.more").on("click", function() {
+      $("div.translation-info .show-more").show();
+      $("button.more").hide();
+      $("button.less").show();
+    });
+
+    $("button.less").on("click", function() {
+      $("div.translation-info .show-more").hide();
+      $("button.more").show();
+      $("button.less").hide();
+    });
+    function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      try {
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+      } catch (error) {
+        return "";
+      }
+      return "";
+    }
+
+    window.onunload = function(){};
+    console.log(window.onload);
+
+    const site_language_class = Array.from($("body")[0].classList).find(
+      element => element.includes('site-') && element.length == 7);
+
+    if (site_language_class !== undefined) {
+      const page_language = site_language_class.split("-")[1];
+      const cookie_language = getCookie("I18N_LANGUAGE").replaceAll("\"", "").replaceAll("'", "");
+      console.log("Cookie:", cookie_language, "Page content:", page_language);
+
+      if (cookie_language != page_language && cookie_language !== ''){
+        $("div.alert.alert-redirect").show();
+
+        const language_names = {"en": "English", "de": "German", "fr": "French", "es": "Spanish", "it": "Italian", "pl": "Polish"};
+        $("span.cookie-language-option").text(language_names[cookie_language]);
+        var translated = window.location.href.replace("/" + page_language + "/", "/" + cookie_language + "/");
+        $("a.reload-page-language").attr("href", translated);
+      }
+    }
+  });
+</script>
 <style>
 div.alert.alert-warning {
   background: #f5d4ab;
