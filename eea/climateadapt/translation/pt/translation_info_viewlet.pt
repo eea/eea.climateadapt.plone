@@ -80,17 +80,7 @@
             return "";
           }
 
-          // function confirmRedirect(cookie_language, page_language) {
-          //   var question = "Reload as " + cookie_language + "?";
-          //   var ask=confirm(question);
-          //   if (ask) {
-          //     var translated = window.location.href.replace("/" + page_language + "/", "/" + cookie_language + "/");
-          //     window.location=translated;
-          //   }
-          // }
-
           window.onunload = function(){};
-
           console.log(window.onload);
 
           const site_language_class = Array.from($("body")[0].classList).find(
@@ -100,15 +90,12 @@
           console.log("Cookie:", cookie_language, "Page content:", page_language);
 
           if (cookie_language != page_language){
-            console.log("show alert");
-
             $("div.alert.alert-redirect").show();
 
             const language_names = {"en": "English", "de": "German", "fr": "French", "es": "Spanish", "it": "Italian", "pl": "Polish"};
             $("span.cookie-language-option").text(language_names[cookie_language]);
             var translated = window.location.href.replace("/" + page_language + "/", "/" + cookie_language + "/");
             $("a.reload-page-language").attr("href", translated);
-            // confirmRedirect(cookie_language, page_language);
           }
         });
       </script>
