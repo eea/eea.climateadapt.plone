@@ -1,16 +1,16 @@
-<div class="translation-info-container" tal:condition="view/is_translated_content">
-  <div class="alert alert-warning alert-dismissable alert-redirect" style="display: none;">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <div class="translation-info">
-      <h3>Language preference detected</h3>
-      <p>
-        Do you want to see the page translated into <span class="cookie-language-option"></span>?
-        <a href ="" class="reload-page-language">Yes, reload the page using my language settings.</a>
-      </p>
-    </div>
+<div class="alert alert-warning alert-dismissable alert-redirect" style="display: none;">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="translation-info">
+    <h3>Language preference detected</h3>
+    <p>
+      Do you want to see the page translated into <span class="cookie-language-option"></span>?
+      <a href ="" class="reload-page-language">Yes, reload the page using my language settings.</a>
+    </p>
   </div>
+</div>
+<div class="translation-info-container" tal:condition="view/is_translated_content">
   <div class="alert alert-warning alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
@@ -101,9 +101,9 @@
       </script>
     </div>
   </div>
+</div>
 
-  <style>
-
+<style>
 div.alert.alert-warning {
   background: #f5d4ab;
   overflow: auto;
@@ -123,5 +123,4 @@ button.more,
 button.less {
   font-size: 0.8em;
 }
-  </style>
-</div>
+</style>
