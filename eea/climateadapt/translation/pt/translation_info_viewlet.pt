@@ -4,10 +4,10 @@
       <span aria-hidden="true">&times;</span>
     </button>
     <div class="translation-info">
-      <h3>Language preference</h3>
+      <h3>Language preference detected</h3>
       <p>
-        Reload page as <span class="cookie-language-option"></span>?
-        <a href ="" class="reload-page-language">Yes, reload the page.</a>
+        Do you want to see the page translated into <span class="cookie-language-option"></span>?
+        <a href ="" class="reload-page-language">Yes, reload the page using my language settings.</a>
       </p>
     </div>
   </div>
