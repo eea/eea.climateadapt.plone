@@ -15,6 +15,12 @@
           tal:attributes="href string:$here_url/search_rss?${request/QUERY_STRING}"/>
     <link rel="home" title="Home" tal:attributes="href view/navroot_url" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/1.1.2/css/bootstrap-multiselect.min.css"
+          integrity="sha512-fZNmykQ6RlCyzGl9he+ScLrlU0LWeaR6MO/Kq9lelfXOw54O63gizFMSD5fVgZvU1YfDIc6mxom5n60qJ1nCrQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/1.1.2/js/bootstrap-multiselect.min.js"
+            integrity="sha512-lxQ4VnKKW7foGFV6L9zlSe+6QppP9B2t+tMMaV4s4iqAv4iHIyXED7O+fke1VeLNaRdoVkVt8Hw/jmZ+XocsXQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </metal:block>
 
   <metal:block fill-slot="top_slot"
@@ -53,7 +59,54 @@
                    type="submit"
                    value="Search"
                    i18n:attributes="value label_search;"/>
+
+            <!-- <select id="select-search-languages" multiple="multiple"> -->
+            <select id="select-search-languages">
+              <option value="all">All languages</option>
+              <option value="en">English</option>
+              <option value="de">Deutch</option>
+              <option value="fr">Français</option>
+              <option value="es">Español</option>
+              <option value="it">Italiano</option>
+              <option value="pl">Polski</option>
+            </select>
         </fieldset>
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $('#select-search-languages').multiselect({
+              includeSelectAllOption: true,
+              nonSelectedText: 'Show results in:',
+              numberDisplayed: 2,
+            });
+          });
+        </script>
+        <style>
+          span.multiselect-native-select {
+            display: inline-block;
+            width: 200px;
+          }
+          span.multiselect-native-select button {
+            width: 100%;
+            text-align: left;
+            border: none;
+          }
+          span.multiselect-native-select button label {
+            margin-left: 2px;
+            position: relative;
+            top: -1px;
+          }
+          button.multiselect.dropdown-toggle {
+            padding: 12px 25px;
+            border-radius: 5px;
+          }
+          button.multiselect.dropdown-toggle > span::after {
+            content: "\25bc";
+            padding-left: 1em;
+            color: #bdbdbd;
+            float: right;
+          }
+        </style>
+
         <div class="aceitems-search-info" i18n:translate="">
             Advanced search for Climate-Adapt database items <a href="/redirect_to_search_page">here</a>
         </div>

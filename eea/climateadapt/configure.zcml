@@ -503,4 +503,10 @@
       preserveOriginal="false"
       />
 
+  <monkey:patch
+      description="Fix plone.app.search to include language filter"
+      class="plone.app.search.browser.Search"
+      original="results"
+      preserveOriginal="false"
+      replacement="eea.climateadapt.patch.results" />
 </configure>
