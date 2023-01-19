@@ -109,7 +109,6 @@
         <style>
           span.multiselect-native-select {
             display: inline-block;
-            width: 200px;
           }
           span.multiselect-native-select button {
             width: 100%;
