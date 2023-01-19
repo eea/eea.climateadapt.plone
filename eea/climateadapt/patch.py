@@ -29,7 +29,7 @@ def getCache(settings):
 
 
 # https://github.com/plone/plone.app.search/blob/1.1.x/plone/app/search/browser.py#L33
-# Patch the search results to include language filter.
+# Refs #159767 - Patch the search results to include language filter.
 def results(self, query=None, batch=True, b_size=10, b_start=0):
     """ Get properly wrapped search results from the catalog.
     Everything in Plone that performs searches should go through this view.

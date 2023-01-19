@@ -77,6 +77,14 @@
               includeSelectAllOption: true,
               nonSelectedText: 'Show results in:',
               numberDisplayed: 2,
+              onChange: function(option, checked, select) {
+                let selected_language_option = option.val();
+                const current_url = window.location.href;
+                const url = new URL(current_url);
+                url.searchParams.set("language", selected_language_option);
+                const new_url = url.href;
+                window.location.href = new_url;
+              }
             });
           });
         </script>
