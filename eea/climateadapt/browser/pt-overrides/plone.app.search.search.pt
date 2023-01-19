@@ -86,6 +86,24 @@
                 window.location.href = new_url;
               }
             });
+
+            let preselected_lang = "all";
+            let search_params = new URLSearchParams(window.location.search);
+            if (search_params.has('language')) {
+              let possible_languages = ['all', 'en', 'de', 'fr', 'es', 'it', 'pl'];
+              preselected_lang = search_params.get('language');
+              if (!possible_languages.includes(preselected_lang)) {
+                preselected_lang = "all";
+              }
+            }
+
+            $('#select-search-languages option').each(function() {
+              if ($(this).val() === preselected_lang) {
+                this.selected=true;
+              }
+            });
+            $("#select-search-languages").multiselect('refresh');
+            $("#select-search-languages").multiselect('updateButtonText');
           });
         </script>
         <style>
