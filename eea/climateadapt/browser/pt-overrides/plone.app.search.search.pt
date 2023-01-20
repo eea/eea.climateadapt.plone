@@ -149,7 +149,7 @@ $(document).ready(function() {
   }
 
   if ($("body").hasClass("userrole-authenticated")) {
-    loadJS('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js',
+    loadJS('/++resource++collective.js.bootstrap/js/bootstrap.min.js',
             function(){}, document.body);
   }
   loadJS('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/1.1.2/js/bootstrap-multiselect.min.js',
