@@ -130,6 +130,17 @@
             color: #bdbdbd;
             float: right;
           }
+          h1.documentFirstHeading {
+            margin-top: 1em;
+            margin-bottom: 0px !important;
+          }
+          div.aceitems-search-info {
+            margin-top: -1em !important;
+          }
+          input.searchPage.searchButton {
+            margin-right: 1px;
+            margin-left: 3px;
+          }
         </style>
 
         <div class="aceitems-search-info" i18n:translate="">
