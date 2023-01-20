@@ -58,7 +58,7 @@
                    i18n:attributes="value label_search;"/>
 
             <!-- <select id="select-search-languages" multiple="multiple"> -->
-            <select id="select-search-languages">
+            <select id="select-search-languages" style="display: none;">
               <option value="all">All languages</option>
               <option value="en">English</option>
               <option value="de">Deutch</option>
@@ -116,6 +116,7 @@ $(document).ready(function() {
     });
     $("#select-search-languages").multiselect('refresh');
     $("#select-search-languages").multiselect('updateButtonText');
+    $("#select-search-languages").show();
   }
 
   if ($("body").hasClass("userrole-authenticated")) {
