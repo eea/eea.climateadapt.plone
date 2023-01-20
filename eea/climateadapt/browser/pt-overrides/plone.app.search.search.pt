@@ -18,9 +18,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/1.1.2/css/bootstrap-multiselect.min.css"
           integrity="sha512-fZNmykQ6RlCyzGl9he+ScLrlU0LWeaR6MO/Kq9lelfXOw54O63gizFMSD5fVgZvU1YfDIc6mxom5n60qJ1nCrQ=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/1.1.2/js/bootstrap-multiselect.min.js"
-            integrity="sha512-lxQ4VnKKW7foGFV6L9zlSe+6QppP9B2t+tMMaV4s4iqAv4iHIyXED7O+fke1VeLNaRdoVkVt8Hw/jmZ+XocsXQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </metal:block>
 
   <metal:block fill-slot="top_slot"
@@ -72,39 +69,62 @@
             </select>
         </fieldset>
         <script type="text/javascript">
-          $(document).ready(function() {
-            $('#select-search-languages').multiselect({
-              includeSelectAllOption: true,
-              nonSelectedText: 'Show results in:',
-              numberDisplayed: 2,
-              onChange: function(option, checked, select) {
-                let selected_language_option = option.val();
-                const current_url = window.location.href;
-                const url = new URL(current_url);
-                url.searchParams.set("language", selected_language_option);
-                const new_url = url.href;
-                window.location.href = new_url;
-              }
-            });
+$(document).ready(function() {
+  var loadJS = function(url, implementationCode, location){
+    //url is URL of external file, implementationCode is the code
+    //to be called from the file, location is the location to
+    //insert the <script> element
 
-            let preselected_lang = "all";
-            let search_params = new URLSearchParams(window.location.search);
-            if (search_params.has('language')) {
-              let possible_languages = ['all', 'en', 'de', 'fr', 'es', 'it', 'pl'];
-              preselected_lang = search_params.get('language');
-              if (!possible_languages.includes(preselected_lang)) {
-                preselected_lang = "all";
-              }
-            }
+    var scriptTag = document.createElement('script');
+    scriptTag.src = url;
 
-            $('#select-search-languages option').each(function() {
-              if ($(this).val() === preselected_lang) {
-                this.selected=true;
-              }
-            });
-            $("#select-search-languages").multiselect('refresh');
-            $("#select-search-languages").multiselect('updateButtonText');
-          });
+    scriptTag.onload = implementationCode;
+    scriptTag.onreadystatechange = implementationCode;
+
+    location.appendChild(scriptTag);
+  };
+
+  var language_filter_behavior = function() {
+    $('#select-search-languages').multiselect({
+      includeSelectAllOption: true,
+      nonSelectedText: 'Show results in:',
+      numberDisplayed: 2,
+      onChange: function(option, checked, select) {
+        let selected_language_option = option.val();
+        const current_url = window.location.href;
+        const url = new URL(current_url);
+        url.searchParams.set("language", selected_language_option);
+        const new_url = url.href;
+        window.location.href = new_url;
+      }
+    });
+
+    let preselected_lang = "all";
+    let search_params = new URLSearchParams(window.location.search);
+    if (search_params.has('language')) {
+      let possible_languages = ['all', 'en', 'de', 'fr', 'es', 'it', 'pl'];
+      preselected_lang = search_params.get('language');
+      if (!possible_languages.includes(preselected_lang)) {
+        preselected_lang = "all";
+      }
+    }
+
+    $('#select-search-languages option').each(function() {
+      if ($(this).val() === preselected_lang) {
+        this.selected=true;
+      }
+    });
+    $("#select-search-languages").multiselect('refresh');
+    $("#select-search-languages").multiselect('updateButtonText');
+  }
+
+  if ($("body").hasClass("userrole-authenticated")) {
+    loadJS('https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js',
+            function(){}, document.body);
+  }
+  loadJS('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/1.1.2/js/bootstrap-multiselect.min.js',
+        language_filter_behavior, document.body);
+});
         </script>
         <style>
           span.multiselect-native-select {
