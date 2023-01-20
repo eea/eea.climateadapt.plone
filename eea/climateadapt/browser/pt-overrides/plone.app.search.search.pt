@@ -85,6 +85,26 @@ $(document).ready(function() {
   };
 
   var language_filter_behavior = function() {
+    function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      try {
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+      } catch (error) {
+        return "";
+      }
+      return "";
+    }
+
     $('#select-search-languages').multiselect({
       includeSelectAllOption: true,
       nonSelectedText: 'Show results in:',
@@ -100,12 +120,21 @@ $(document).ready(function() {
     });
 
     let preselected_lang = "all";
+    let possible_languages = ['all', 'en', 'de', 'fr', 'es', 'it', 'pl'];
     let search_params = new URLSearchParams(window.location.search);
     if (search_params.has('language')) {
-      let possible_languages = ['all', 'en', 'de', 'fr', 'es', 'it', 'pl'];
+      // language filter is set
       preselected_lang = search_params.get('language');
       if (!possible_languages.includes(preselected_lang)) {
         preselected_lang = "all";
+      }
+    } else {
+      // no preselected language cases
+      const cookie_language = getCookie("I18N_LANGUAGE").replaceAll("\"", "").replaceAll("'", "");
+      if (possible_languages.includes(cookie_language)) {
+        preselected_lang = cookie_language;  // default when cookie is set
+      } else {
+        preselected_lang = "en";  // default when cookie is not set
       }
     }
 
