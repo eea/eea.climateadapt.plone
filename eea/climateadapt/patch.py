@@ -58,6 +58,8 @@ def results(self, query=None, batch=True, b_size=10, b_start=0):
     else:
         updated_path = "/cca/" + language
 
+    if query is None:
+        query = {}
     query['path'] = updated_path
     # Customization end -------------------------------------------------------
 
