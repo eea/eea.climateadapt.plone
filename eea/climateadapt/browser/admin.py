@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
+import csv
 import datetime
 import json
 import logging
-import csv
-from plone import api
 from io import BytesIO as StringIO
 
 from apiclient.discovery import build
@@ -17,6 +16,7 @@ from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
 from lxml.etree import fromstring
 from oauth2client.service_account import ServiceAccountCredentials
 from pkg_resources import resource_filename
+from plone import api
 from plone.api import portal
 from plone.api.portal import get_tool, getSite
 from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
@@ -25,10 +25,10 @@ from plone.app.widgets.dx import RelatedItemsWidget
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.directives import form
 from plone.i18n.normalizer import idnormalizer
+from plone.indexer.interfaces import IIndexer
 from plone.memoize import view
 from plone.registry.interfaces import IRegistry
 from plone.tiles.interfaces import ITileDataManager
-from plone.indexer.interfaces import IIndexer
 from plone.z3cform import layout
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
@@ -77,6 +77,10 @@ class CheckCopyPasteLocation(BrowserView):
     def check(self, action, object):
         portal_state = getMultiAdapter(
             (self.context, self.request), name="plone_portal_state")
+
+        member = portal_state.member()
+        if member.name == 'Anonymous User':
+            return False
         user = portal_state.member().getUser().getId()
         groups = getToolByName(self, 'portal_groups').getGroupsByUserId(user)
 
