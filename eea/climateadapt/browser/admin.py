@@ -79,8 +79,10 @@ class CheckCopyPasteLocation(BrowserView):
             (self.context, self.request), name="plone_portal_state")
 
         member = portal_state.member()
-        if member.name == 'Anonymous User':
+
+        if getattr(member, 'name', None) == 'Anonymous User':
             return False
+
         user = portal_state.member().getUser().getId()
         groups = getToolByName(self, 'portal_groups').getGroupsByUserId(user)
 
