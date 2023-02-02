@@ -1720,6 +1720,10 @@ class Retag:
 
         # need condition for "Yes"
         for row in reader:
+            #AdaptationOptions does not have elements
+            if 'metadata/adaptation-options/' in row[3]:
+                continue
+
             item = {}
             item["uid"] = row[0]
             item["title"] = row[1]
@@ -1737,18 +1741,18 @@ class Retag:
             if not obj:
                 continue
 
-            if not hasattr(obj, "keywords"):
-                obj.keywords = ()
+            if not obj.elements:
+                obj.elements = []
+            if not hasattr(obj, "elements"):
+                obj.elements = []
 
-            if not obj.keywords:
-                obj.keywords = ()
+            if item["climate_service"] and 'CLIMATESERVICES' not in obj.elements:
+                    obj.elements.append('CLIMATESERVICES');
+            if item["just_resilience"] and 'JUSTRESILIENCE' not in obj.elements:
+                    obj.elements.append('JUSTRESILIENCE');
+            if item["mre"] and 'MRE' not in obj.elements:
+                    obj.elements.append('MRE');
 
-            if item["climate_service"]:
-                obj.keywords += ('climate service', )
-            if item["just_resilience"]:
-                obj.keywords += ('just resilience', )
-            if item["mre"]:
-                obj.keywords += ('mre', )
             obj._p_changed = True
             obj.reindexObject()
             response.append(

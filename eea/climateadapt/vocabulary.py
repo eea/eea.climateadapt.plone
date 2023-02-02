@@ -319,6 +319,8 @@ _elements = [
     ("PLANSTRATEGY", "Adaptation Plans and Strategies"),
     ("VULNERABILITY", "Vulnerability Assessment"),
     ("CLIMATESERVICES", "Climate services"),
+    ("JUSTRESILIENCE", "Just Resilience"),
+    ("MRE", "MRE"),
     ("NATUREBASEDSOL", _("Nature-based solutions")),
 ]
 aceitem_elements_vocabulary = generic_vocabulary(_elements)
