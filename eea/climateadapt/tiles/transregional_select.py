@@ -237,6 +237,7 @@ class TransRegionalSelectTile(PersistentCoverTile, TranslationUtilsMixin):
             if path:
                 transl_path = self.translated_url(path)
 
+            transl_path = transl_path.replace('/countries/', '/countries-regions/countries/')
             regions_translated.append((_r[0], transl_path))
 
         return [regions_translated, current_regions[1]]
