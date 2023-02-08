@@ -53,6 +53,7 @@
   <include package=".mayorsadapt" />
   <include package="._importer" />
   <include package=".upgrades" />
+  <include package=".restapi" />
   <include package=".behaviors" />
   <include package=".translation" />
 
