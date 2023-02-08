@@ -378,7 +378,7 @@ class DetectBrokenLinksView (BrowserView):
             for info in annot[date]:
                 info = info.copy()
                 try:
-                    obj = self.context.restrictedTraverse(info['object_url'])
+                    obj = self.context.unrestrictedTraverse(info['object_url'])
                 except:
                     continue
 
