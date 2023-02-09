@@ -11,9 +11,6 @@ class AdaptationOptionSerializer(SerializeToJson):
     def __call__(self, version=None, include_items=True):
         result = super(AdaptationOptionSerializer, self).__call__(
                 version=None, include_items=True)
-        result["zzztestvalue"] = "TEST VALUE"
         item = self.context
-
         result['related_case_studies'] = find_related_casestudies(item)
-        # __import__('pdb').set_trace()
         return result
