@@ -63,7 +63,7 @@
               <td tal:content="python: results[url]['status']"></td>
               <td class="left">
                 <a target="_blank"
-                    tal:define="url python: view.url(results[url]['object_url'])"
+                    tal:define="url python: results[url]['object_url']"
                     tal:attributes="href url"
                     tal:content="url">
                     URL

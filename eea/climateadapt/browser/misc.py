@@ -402,7 +402,7 @@ class DetectBrokenLinksView (BrowserView):
                     
                     item['url'] = info['url']
                     item['status'] = info['status']
-                    item['object_url'] = info['object_url']
+                    item['object_url'] = self.url(info['object_url'])
                     
                     broken_links.append(item)
 
