@@ -26,7 +26,7 @@
       <h3>Showing results <span tal:content="python: (chunk_index * items_to_display) + 1 "></span> to <span tal:content="python: chunk_index * items_to_display + len(results) "></span> </h3>
   
       <div>Select results to show:</div>
-      <form action="./broken-links" style="margin-bottom: 10px;">
+      <form action="." style="margin-bottom: 10px;">
         <tal:rep tal:repeat="chunk all_results">
           <tal:def tal:define="index repeat/chunk/index">
             <button type="submit" name="index" 
@@ -37,7 +37,7 @@
         </tal:rep>
       </form>
 
-      <form action="./broken-links">
+      <form action=".">
           <button type="submit" name="download-excel" value="download-excel">
               Download all <span tal:content="python: sum([len(x) for x in all_results])"></span> records as excel
           </button>

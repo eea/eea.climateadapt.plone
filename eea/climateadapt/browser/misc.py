@@ -406,6 +406,8 @@ class DetectBrokenLinksView (BrowserView):
                     
                     broken_links.append(item)
 
+        broken_links.sort(key=lambda i: i['date'])
+
         for link in broken_links:
             res[link['url']] = link
 
