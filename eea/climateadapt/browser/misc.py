@@ -377,18 +377,7 @@ class DetectBrokenLinksView (BrowserView):
         latest_dates = sorted(annot.keys())[-5:]
         res = {}
 
-        broken_links = [
-            {"url": "http://balticsea.com/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
-            {"url": "http://balticsea.com1/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
-            {"url": "http://balticsea.com2/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
-            {"url": "http://balticsea.com3/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
-            {"url": "http://balticsea.com4/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
-            {"url": "http://balticsea.com5/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
-            {"url": "http://balticsea.com6/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
-            {"url": "http://balticsea.com7/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
-            {"url": "http://balticsea.com8/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
-            {"url": "http://balticsea.9/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
-        ]
+        broken_links = []
 
         for date in latest_dates:
             for info in annot[date]:
