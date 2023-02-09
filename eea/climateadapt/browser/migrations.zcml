@@ -171,6 +171,15 @@
     />
 
   <browser:page
+    name="migrate_retag"
+    for="*"
+    template="pt/migrate_retag.pt"
+    class=".migrate.Retag"
+    permission="cmf.ManagePortal"
+    />
+
+
+  <browser:page
     name="update_health_items"
     for="*"
     template="pt/update_health_items.pt"

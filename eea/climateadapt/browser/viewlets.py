@@ -113,6 +113,8 @@ class RelatedItemsViewlet(ViewletBase):
         current_language = get_current_language(self.context, self.request)
         if current_language != "en":
             en_obj = get_translation_object(context, "en")
+            if en_obj is None:
+                en_obj = context  # case of not translated items (Newsletter)
         else:
             en_obj = context
 

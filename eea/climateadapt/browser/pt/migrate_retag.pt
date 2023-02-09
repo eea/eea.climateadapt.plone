@@ -1,0 +1,16 @@
+<h1 i18n:translate="">Retag content #153789</h1>
+<form action="./migrate_retag" method="post" enctype="multipart/form-data">
+  <br i18n:translate="">Select CSV file to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload" />
+  <input type="submit" value="Process CSV" name="submit" />
+</form>
+<table tal:define="items view/list">
+    <tr tal:repeat="item items">
+        <td tal:content="item/title"></td>
+        <td tal:content="item/url"></td>
+        <td tal:content="item/keywords"></td>
+        <td tal:content="item/climate_service"></td>
+        <td tal:content="item/just_resilience"></td>
+        <td tal:content="item/mre"></td>
+    </tr>
+</table>

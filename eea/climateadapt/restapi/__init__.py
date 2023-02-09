@@ -1,3 +1,5 @@
+""" plone.restapi customizations
+"""
 from plone.restapi.interfaces import IJsonCompatible
 from zope.component import adapter
 from zope.interface import implementer

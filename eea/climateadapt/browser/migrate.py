@@ -1701,6 +1701,74 @@ class TransnationalRegions:
         transaction.commit()
         return response
 
+class Retag:
+    """Retag items #153789"""
+
+    def list(self):
+        response = []
+        fileUploaded = self.request.form.get("fileToUpload", None)
+
+        if not fileUploaded:
+            return response
+
+        reader = csv.reader(
+            fileUploaded,
+            delimiter=",",
+            quotechar='"',
+            #    dialect='excel',
+        )
+
+        # need condition for "Yes"
+        for row in reader:
+            #AdaptationOptions does not have elements
+            if 'metadata/adaptation-options/' in row[3]:
+                continue
+
+            item = {}
+            item["uid"] = row[0]
+            item["title"] = row[1]
+            item["url"] = row[3]
+            item["climate_service"] = row[9]
+            item["just_resilience"] = row[10]
+            item["mre"] = row[11]
+
+            #import pdb; pdb.set_trace()
+            if not item["climate_service"] and not item["just_resilience"] and not item["mre"]:
+                continue
+
+            obj = api.content.get(UID=item["uid"])
+
+            if not obj:
+                continue
+
+            if not obj.elements:
+                obj.elements = []
+            if not hasattr(obj, "elements"):
+                obj.elements = []
+
+            if item["climate_service"] and 'CLIMATESERVICES' not in obj.elements:
+                    obj.elements.append('CLIMATESERVICES');
+            if item["just_resilience"] and 'JUSTRESILIENCE' not in obj.elements:
+                    obj.elements.append('JUSTRESILIENCE');
+            if item["mre"] and 'MRE' not in obj.elements:
+                    obj.elements.append('MRE');
+
+            obj._p_changed = True
+            obj.reindexObject()
+            response.append(
+                {
+                    "title": obj.title,
+                    "url": item["url"],
+                    "keywords": obj.keywords,
+                    'climate_service': 'x' if item['climate_service'] else '',
+                    'just_resilience': 'x' if item['just_resilience'] else '',
+                    'mre': 'x' if item['mre'] else '',
+                }
+            )
+            logger.info("RETAG for obj: %s", obj.absolute_url())
+
+        return response
+
 
 class ObservatoryHealthImpacts:
     """Update health impacts #156631"""

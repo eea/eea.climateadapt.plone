@@ -14,41 +14,27 @@ from zope.intid.interfaces import IIntIds
 from zope.security import checkPermission
 
 
-class AdaptationOptionView(DefaultView, AceViewApi):
-    """ """
+def find_related_casestudies(item):
+    """ Find related case studies
+    """
+    catalog = getUtility(ICatalog)
+    intids = getUtility(IIntIds, context=item)
 
-    type_label = u"Adaptation option"
+    res = []
+    urls = []
 
-    def get_related_casestudies(self):
-        catalog = getUtility(ICatalog)
-        intids = getUtility(IIntIds)
+    # __import__('pdb').set_trace()
+    # test = intids.getId(aq_inner(item))
 
-        res = []
-        urls = []
+    for rel in catalog.findRelations(
+        dict(to_id=intids.getId(aq_inner(item)),
+             from_attribute='adaptationoptions')
+    ):
+        obj = intids.queryObject(rel.from_id)
 
-        for rel in catalog.findRelations(
-            dict(to_id=intids.getId(aq_inner(self.context)),
-                 from_attribute='adaptationoptions')
-        ):
-            obj = intids.queryObject(rel.from_id)
-
-            if obj is not None and checkPermission('zope2.View', obj):
-                obj_state = api.content.get_state(obj)
-
-                if obj_state == 'published':
-                    res.append({
-                        'title': obj.title,
-                        'url': obj.absolute_url()
-                    })
-                    urls.append(obj.absolute_url())
-
-        cstudies = [o.to_object for o in self.context.casestudies]
-
-        for obj in cstudies:
-            if obj.absolute_url() in urls:
-                continue
-
+        if obj is not None and checkPermission('zope2.View', obj):
             obj_state = api.content.get_state(obj)
+
             if obj_state == 'published':
                 res.append({
                     'title': obj.title,
@@ -56,7 +42,30 @@ class AdaptationOptionView(DefaultView, AceViewApi):
                 })
                 urls.append(obj.absolute_url())
 
-        return res
+    cstudies = [o.to_object for o in item.casestudies]
+
+    for obj in cstudies:
+        if obj.absolute_url() in urls:
+            continue
+
+        obj_state = api.content.get_state(obj)
+        if obj_state == 'published':
+            res.append({
+                'title': obj.title,
+                'url': obj.absolute_url()
+            })
+            urls.append(obj.absolute_url())
+
+    return res
+
+
+class AdaptationOptionView(DefaultView, AceViewApi):
+    """ """
+
+    type_label = u"Adaptation option"
+
+    def get_related_casestudies(self):
+        return find_related_casestudies(self.context)
 
 
 class AdaptationOptionFormExtender(FormExtender):
