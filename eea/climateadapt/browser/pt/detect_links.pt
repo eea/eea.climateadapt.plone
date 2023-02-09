@@ -18,7 +18,31 @@
       });
     </script>
     <tal:main-macro metal:define-macro="content-core">
-    <div class="CSSTableGenerator">
+    <div class="CSSTableGenerator"
+        tal:define="all_results view/results;
+          chunk_index python: int(view.chunk_index) or 0;
+          results python: all_results and all_results[chunk_index] or {};
+          items_to_display python: view.items_to_display or 500">
+      <h3>Showing results <span tal:content="python: (chunk_index * items_to_display) + 1 "></span> to <span tal:content="python: chunk_index * items_to_display + len(results) "></span> </h3>
+  
+      <div>Select results to show:</div>
+      <form action="./broken-links" style="margin-bottom: 10px;">
+        <tal:rep tal:repeat="chunk all_results">
+          <tal:def tal:define="index repeat/chunk/index">
+            <button type="submit" name="index" 
+                tal:attributes="value index;" >
+              <span tal:content="python: (index * items_to_display) + 1"></span> to <span tal:content="python: index * items_to_display + len(chunk)"></span>
+            </button>
+          </tal:def>
+        </tal:rep>
+      </form>
+
+      <form action="./broken-links">
+          <button type="submit" name="download-excel" value="download-excel">
+              Download all <span tal:content="python: sum([len(x) for x in all_results])"></span> records as excel
+          </button>
+      </form>
+
       <table class="table table-striped table-bordered table-sm" id="broken-links-table">
         <thead>
           <tr>
@@ -29,7 +53,7 @@
             <th i18n:translate="">Type</th>
           </tr>
         </thead>
-        <tbody tal:define="results view/results">
+        <tbody>
           <tal:rep tal:repeat="url python: results.keys()">
             <tr>
               <td class="left">
@@ -46,8 +70,7 @@
                 </a>
               </td>
               <td tal:content="python: results[url]['date']"></td>
-              <td tal:condition="python: 'climate-adapt.eea' not in url" i18n:translate="">external</td>
-              <td tal:condition="python: 'climate-adapt.eea' in url" i18n:translate="">internal</td>
+              <td tal:content="python: results[url]['state']"></td>
             </tr>
           </tal:rep>
         </tbody>

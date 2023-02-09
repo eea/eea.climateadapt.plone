@@ -1,13 +1,15 @@
 import json
 import logging
+import transaction
 import re
-import urllib
 import requests
+import urllib
+import xlsxwriter
+
+from datetime import datetime
 from email.MIMEText import MIMEText
 from itertools import islice
-
-import requests
-import transaction
+from io import BytesIO
 from BeautifulSoup import BeautifulSoup
 from DateTime import DateTime
 from dateutil.tz import gettz
@@ -353,7 +355,9 @@ class ExcelCsvExportView (BrowserView):
 
 class DetectBrokenLinksView (BrowserView):
     """ View for detecting broken links"""
-
+    
+    items_to_display = 200
+    
     # def show_obj(self, path):
     #     """ Don't show objects which are not published
     #     """
@@ -372,11 +376,24 @@ class DetectBrokenLinksView (BrowserView):
         annot = IAnnotations(portal)['broken_links_data']
         latest_dates = sorted(annot.keys())[-5:]
         res = {}
-        broken_links = []
+
+        broken_links = [
+            {"url": "http://balticsea.com/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
+            {"url": "http://balticsea.com1/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
+            {"url": "http://balticsea.com2/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
+            {"url": "http://balticsea.com3/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
+            {"url": "http://balticsea.com4/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
+            {"url": "http://balticsea.com5/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
+            {"url": "http://balticsea.com6/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
+            {"url": "http://balticsea.com7/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
+            {"url": "http://balticsea.com8/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
+            {"url": "http://balticsea.9/", "status": "404", "object_url": "test", "date": "2022/11/05", "state": "external"},
+        ]
 
         for date in latest_dates:
             for info in annot[date]:
-                info = info.copy()
+                item = {}
+                
                 try:
                     obj = self.context.unrestrictedTraverse(info['object_url'])
                 except:
@@ -384,17 +401,86 @@ class DetectBrokenLinksView (BrowserView):
 
                 state = get_state(obj)
                 if state not in ['private', 'archived']:
-                    info['date'] = date.Date() if isinstance(
+                    if 'climate-adapt.eea' in info['url']:
+                        item['state'] = 'internal'
+                    else:
+                        item['state'] = 'external'
+
+                    item['date'] = date.Date() if isinstance(
                         date, DateTime) else date
                     if (isinstance(date, str) and date=='pre_nov7_data'):
                         continue
-
-                    broken_links.append(info)
+                    
+                    item['url'] = info['url']
+                    item['status'] = info['status']
+                    item['object_url'] = info['object_url']
+                    
+                    broken_links.append(item)
 
         for link in broken_links:
             res[link['url']] = link
 
-        return res
+        self.chunk_index = int(self.request.form.get('index', 0)) or 0
+        chunks = []
+
+        for i in range(0, len(res), self.items_to_display):
+            chunks.append(dict(res.items()[i:i + self.items_to_display]))
+
+        return chunks
+
+    def data_to_xls(self, data):
+        headers = [
+            ('url', 'Destination Links'),
+            ('status' ,'Status Code'), 
+            ('object_url' ,'Object Url'), 
+            ('date' ,'Date'), 
+            ('state' ,'Type')
+        ]
+
+        # Create a workbook and add a worksheet.
+        out = BytesIO()
+        workbook = xlsxwriter.Workbook(out, {'in_memory': True})
+
+        wtitle = 'Broken-Links'
+        worksheet = workbook.add_worksheet(wtitle[:30])
+
+        for i, (key, title) in enumerate(headers):
+                worksheet.write(0, i, title or '')
+
+        row_index = 1
+
+        for chunk in data:
+            for url, row in chunk.items():
+                for i, (key, title) in enumerate(headers):
+                    value = row[key]
+                    worksheet.write(row_index, i, value or '')
+
+                row_index += 1
+
+        workbook.close()
+        out.seek(0)
+
+        return out
+
+    def download_as_excel(self):
+        xlsdata = self.results()
+        xlsio = self.data_to_xls(xlsdata)
+        sh = self.request.response.setHeader
+
+        sh('Content-Type', 'application/vnd.openxmlformats-officedocument.'
+           'spreadsheetml.sheet')
+        fname = "-".join(["Broken-Links",
+                          str(datetime.now().replace(microsecond=0))])
+        sh('Content-Disposition',
+           'attachment; filename=%s.xlsx' % fname)
+
+        return xlsio.read()
+
+    def __call__(self):
+        if 'download-excel' in self.request.form:
+            return self.download_as_excel()
+
+        return self.index()
 
 
 class ClearMacrotransnationalRegions (BrowserView):
