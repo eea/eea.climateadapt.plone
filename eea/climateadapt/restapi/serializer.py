@@ -7,24 +7,7 @@ from plone.restapi.serializer.dxcontent import SerializeToJson
 from zope.component import adapter
 from zope.interface import Interface
 from plone.restapi.serializer.converters import json_compatible
-
-
-def get_date_updated(item):
-    wh = item.workflow_history
-    wf = wh.get("cca_items_workflow", None)
-
-    response = {}
-    response["cadapt_last_modified"] = item.modified()
-    response["cadapt_published"] = item.effective()
-
-    if not wf:
-        return response
-
-    for metadata in wf:
-        if metadata["action"] == "publish":
-            response["cadapt_published"] = metadata["time"]
-
-    return response
+from eea.climateadapt.browser import get_date_updated
 
 
 def append_common_new_fields(result, item):
