@@ -1,3 +1,4 @@
 <configure xmlns="http://namespaces.zope.org/zope">
+  <adapter factory=".serializer.ClimateAdaptContentSerializer" />
   <adapter factory=".serializer.AdaptationOptionSerializer" />
 </configure>
