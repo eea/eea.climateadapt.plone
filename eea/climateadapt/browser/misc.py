@@ -381,6 +381,9 @@ class DetectBrokenLinksView (BrowserView):
 
         for date in latest_dates:
             for info in annot[date]:
+                if 'en' not in info['object_url']:
+                    continue
+
                 item = {}
                 
                 try:
@@ -719,6 +722,9 @@ def get_links(site):
     for b in brains:
         obj = b.getObject()
         path = obj.getPhysicalPath()
+
+        if 'en' not in path:
+            continue
 
         if hasattr(obj, 'websites'):
             if isinstance(obj.websites, str):
