@@ -59,10 +59,8 @@ class CaseStudySerializer(SerializeToJson):
         ]
 
         files = get_files(item)
-        suffix = ""
         result["cca_files"] = [
-            {"title": file.Title(), "url": file.absolute_url() + suffix}
-            for file in files
+            {"title": file.Title(), "url": file.absolute_url()} for file in files
         ]
 
         result = append_common_new_fields(result, item)
