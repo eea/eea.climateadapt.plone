@@ -6,6 +6,7 @@ from zope.component import adapter
 from zope.interface import Interface
 from plone.restapi.serializer.converters import json_compatible
 from eea.climateadapt.browser import get_date_updated
+from eea.climateadapt.browser import get_files
 
 
 def append_common_new_fields(result, item):
@@ -56,5 +57,13 @@ class CaseStudySerializer(SerializeToJson):
             {"title": image.Title(), "url": image.absolute_url() + suffix}
             for image in images
         ]
+
+        files = get_files(item)
+        suffix = ""
+        result["cca_files"] = [
+            {"title": file.Title(), "url": file.absolute_url() + suffix}
+            for file in files
+        ]
+
         result = append_common_new_fields(result, item)
         return result

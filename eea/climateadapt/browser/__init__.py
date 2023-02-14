@@ -53,6 +53,22 @@ def get_date_updated(item):
     return response
 
 
+def get_files(context):
+    files = context.contentValues({"portal_type": "File"})
+
+    for r in context.relatedItems:
+        obj = r.to_object
+        if obj is None:
+            continue
+        if obj.portal_type in ["File", "Image"]:
+            files.append(obj)
+
+    # return [r.to_object for r in self.context.relatedItems] \
+    #     + self.context.contentValues({'portal_type': 'File'})
+
+    return files
+
+
 class AceViewApi(object):
     def geotag(self):
         tag = queryAdapter(self.context, ISingleGeoTag)
@@ -142,19 +158,7 @@ class AceViewApi(object):
         return result
 
     def get_files(self):
-        files = self.context.contentValues({"portal_type": "File"})
-
-        for r in self.context.relatedItems:
-            obj = r.to_object
-            if obj is None:
-                continue
-            if obj.portal_type in ["File", "Image"]:
-                files.append(obj)
-
-        # return [r.to_object for r in self.context.relatedItems] \
-        #     + self.context.contentValues({'portal_type': 'File'})
-
-        return files
+        return get_files(self.context)
 
     def _render_geochar_element(self, value):
         value = BIOREGIONS[value]
