@@ -19,6 +19,8 @@ from sumy.utils import get_stop_words
 from zope.annotation.interfaces import IAnnotations
 from zope.component import queryAdapter
 from zope.interface import Interface
+from plone.dexterity.interfaces import IDexterityContent
+from Acquisition import aq_base
 
 # from eea.climateadapt.browser.frontpage_slides import IRichImage
 # from plone.rfc822.interfaces import IPrimaryFieldInfo
@@ -233,7 +235,7 @@ def cover_description(obj):
     for tile in tiles:
         # tile_obj = obj.unrestrictedTraverse(
         # "@@{0}/{1}".format(tile["type"], tile["id"]))
-        tile_annot_id = 'plone.tiles.data.' + tile['id']
+        tile_annot_id = "plone.tiles.data." + tile["id"]
         tile_obj = obj.__annotations__.get(tile_annot_id, None)
 
         searchable = queryAdapter(tile_obj, ISearchableText)
@@ -264,3 +266,21 @@ def cover_description(obj):
     text = " ".join(text)
     # print("Description", text)
     return text
+
+
+@indexer(IDexterityContent)
+def image_field_indexer(obj):
+    """Indexer for knowing in a catalog search if a content has any image."""
+    base_obj = aq_base(obj)
+
+    image_field = ""
+    if getattr(base_obj, "preview_image", False):
+        image_field = "preview_image"
+    elif (
+        getattr(base_obj, "preview_image_link", False)
+        and not base_obj.preview_image_link.isBroken()
+    ):
+        image_field = "preview_image_link"
+    elif getattr(base_obj, "image", False):
+        image_field = "image"
+    return image_field

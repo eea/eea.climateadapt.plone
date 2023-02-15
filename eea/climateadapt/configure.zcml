@@ -190,6 +190,11 @@
       name="Description"
       />
 
+  <adapter
+      factory=".catalog.image_field_indexer"
+      name="image_field"
+      />
+
   <!-- <adapter name="getObjSize" factory=".catalog.getObjSize_image" /> -->
 
   <adapter
