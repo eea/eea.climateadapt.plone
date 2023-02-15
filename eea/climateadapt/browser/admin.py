@@ -790,7 +790,6 @@ class GetBrokenCreationDates(BrowserView):
     by getting the creator/creation_date from workflow_history
     """
     zone = DateTime().timezone()
-    ignore_content_types = ('text/plain', )
 
     def date_to_iso(self, date_time):
         if not date_time:
@@ -808,14 +807,14 @@ class GetBrokenCreationDates(BrowserView):
         for brain in brains:
             try:
                 obj = brain.getObject()
-                content_type = obj.content_type()
             except:
                 continue
 
-            if content_type in self.ignore_content_types:
+            creator = obj.Creator()
+
+            if creator not in ('tibi', 'tiberich'):
                 continue
 
-            creator = obj.Creator()
             creation_date = obj.CreationDate()
             wfh = obj.workflow_history
             wf_creator = None
