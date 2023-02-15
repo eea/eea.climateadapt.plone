@@ -124,6 +124,14 @@
       />
 
   <browser:page
+      name="get-broken-creation-dates"
+      for="*"
+      class=".admin.GetBrokenCreationDates"
+      permission="cmf.ManagePortal"
+      template="pt/get_broken_creation_dates.pt"
+      />
+
+  <browser:page
       name="migrate-tiles"
       for="*"
       class=".admin.MigrateTiles"

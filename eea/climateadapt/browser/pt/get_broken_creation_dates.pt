@@ -1,0 +1,14 @@
+<table>
+    <tr>
+        <th>URL</th>
+        <th>Content Type</th>
+        <th>Creator</th>
+        <th>WF Creator</th>
+        <th>Creation Date</th>
+        <th>WF Creation Date</th>
+    </tr>
+    <tr tal:repeat="row view/data">
+        <td tal:repeat="value row"
+            tal:content="value"></td>
+    </tr>
+</table>

@@ -26,6 +26,7 @@ from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.directives import form
 from plone.i18n.normalizer import idnormalizer
 from plone.indexer.interfaces import IIndexer
+from plone.dexterity.utils import datify
 from plone.memoize import view
 from plone.registry.interfaces import IRegistry
 from plone.tiles.interfaces import ITileDataManager
@@ -781,6 +782,66 @@ class GoPDB(BrowserView):
     def __call__(self):
         import pdb
         pdb.set_trace()
+        x = self.context.Creator()
+
+
+class GetBrokenCreationDates(BrowserView):
+    """ Get all objects with broken 'creator' and 'creation_date' and fix it
+    by getting the creator/creation_date from workflow_history
+    """
+    zone = DateTime().timezone()
+    ignore_content_types = ('text/plain', )
+
+    def date_to_iso(self, date_time):
+        if not date_time:
+            return None
+
+        date = datify(date_time)
+        return date.toZone(self.zone).ISO()
+
+    def __call__(self):
+        catalog = api.portal.get_tool("portal_catalog")
+
+        brains = catalog.searchResults(path='/cca/en')
+        res = []
+
+        for brain in brains:
+            obj = brain.getObject()
+            content_type = obj.content_type()
+
+            if content_type in self.ignore_content_types:
+                continue
+
+            creator = obj.Creator()
+            creation_date = obj.CreationDate()
+            wfh = obj.workflow_history
+            wf_creator = None
+            wf_creation_date = None
+
+            wf_data = [
+                (x['actor'], self.date_to_iso(x['time']))
+                for x in wfh.get('cca_items_workflow', {})
+                if x['action'] is None
+                ]
+
+            if wf_data:
+                wf_creator, wf_creation_date = wf_data[0]
+            
+            if not wf_creator:
+                continue
+
+            if wf_creator == creator:
+                continue
+
+            if wf_creation_date == creation_date:
+                continue
+            
+            res.append((obj.absolute_url(), content_type, creator, 
+                wf_creator, creation_date, wf_creation_date))
+        
+        self.data = res
+
+        return self.index()
 
 
 class MigrateTiles(BrowserView):
