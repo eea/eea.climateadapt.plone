@@ -808,11 +808,9 @@ class GetBrokenCreationDates(BrowserView):
         for brain in brains:
             try:
                 obj = brain.getObject()
+                content_type = obj.content_type()
             except:
-                # NotFound
                 continue
-
-            content_type = obj.content_type()
 
             if content_type in self.ignore_content_types:
                 continue
@@ -825,8 +823,15 @@ class GetBrokenCreationDates(BrowserView):
 
             wf_data = [
                 (x['actor'], self.date_to_iso(x['time']))
-                for x in wfh.get('cca_items_workflow', {})
+                for x in wfh.get('cca_webpages_workflow', {})
                 if x['action'] is None
+            ]
+
+            if not wf_data:
+                wf_data = [
+                    (x['actor'], self.date_to_iso(x['time']))
+                    for x in wfh.get('cca_items_workflow', {})
+                    if x['action'] is None
                 ]
 
             if wf_data:
