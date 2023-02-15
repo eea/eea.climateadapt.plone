@@ -806,7 +806,12 @@ class GetBrokenCreationDates(BrowserView):
         res = []
 
         for brain in brains:
-            obj = brain.getObject()
+            try:
+                obj = brain.getObject()
+            except:
+                # NotFound
+                continue
+
             content_type = obj.content_type()
 
             if content_type in self.ignore_content_types:
