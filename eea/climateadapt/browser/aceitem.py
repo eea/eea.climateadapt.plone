@@ -1,8 +1,9 @@
 import json
 import urllib
-from itertools import chain, islice
 
 from eea.climateadapt.browser import AceViewApi
+from eea.climateadapt.translation.admin import get_translation_object
+from eea.climateadapt.translation.utils import get_current_language
 from plone import api
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.edit import DefaultEditForm
@@ -11,13 +12,12 @@ from plone.dexterity.interfaces import IDexterityEditForm
 from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
 from zc.relation.interfaces import ICatalog
+from zope.annotation.interfaces import IAnnotations
 from zope.component import getUtility
 from zope.interface import classImplements  # , implements
 from zope.intid.interfaces import IIntIds
-from zope.annotation.interfaces import IAnnotations
-from eea.climateadapt.translation.utils import get_current_language
-from eea.climateadapt.translation.admin import get_translation_object
 
+# from itertools import chain, islice
 # from zope.interface import implements
 # from eea.depiction.browser.interfaces import IImageView
 # from Products.Five.browser import BrowserView
@@ -30,37 +30,37 @@ class AceItemView(DefaultView, AceViewApi):
 class PublicationReportView(DefaultView, AceViewApi):
     """"""
 
-    type_label = u"Publications and Reports"
+    type_label = "Publications and Reports"
 
 
 class InformationPortalView(DefaultView, AceViewApi):
     """"""
 
-    type_label = u"Information Portal"
+    type_label = "Information Portal"
 
 
 class GuidanceDocumentView(DefaultView, AceViewApi):
     """"""
 
-    type_label = u"Guidance Document"
+    type_label = "Guidance Document"
 
 
 class ToolView(DefaultView, AceViewApi):
     """"""
 
-    type_label = u"Tools"
+    type_label = "Tools"
 
 
 class IndicatorView(DefaultView, AceViewApi):
     """"""
 
-    type_label = u"Indicator"
+    type_label = "Indicator"
 
 
 class C3sIndicatorView(DefaultView, AceViewApi):
     """"""
 
-    type_label = u"C3s Indicator"
+    type_label = "C3s Indicator"
 
     def c3sjs_overview(self):
         response = """(function () {
@@ -84,7 +84,7 @@ class C3sIndicatorView(DefaultView, AceViewApi):
 
     def get_toolbox_embed_version(self):
         site = api.portal.get()
-        base_folder = site['en']["knowledge"]["european-climate-data-explorer"]
+        base_folder = site["en"]["knowledge"]["european-climate-data-explorer"]
         annot = IAnnotations(base_folder)
         if "c3s_json_data" in annot:
             return annot["c3s_json_data"]["data"]["toolbox_embed_version"]
@@ -94,7 +94,7 @@ class C3sIndicatorView(DefaultView, AceViewApi):
 class OrganisationView(DefaultView, AceViewApi):
     """"""
 
-    type_label = u"Organisation"
+    type_label = "Organisation"
 
     def __init__(self, context, request):
         # Each view instance receives context and request as construction parameters
@@ -111,10 +111,9 @@ class OrganisationView(DefaultView, AceViewApi):
     def to_observatory_url(self, obj):
         current_language = get_current_language(self.context, self.request)
         segments = obj.getPhysicalPath()[2:]
-        if segments[0] != 'metadata':
+        if segments[0] != "metadata":
             segments = segments[1:]
-        return "/"+current_language+"/observatory/++aq++" + \
-                "/".join(segments)
+        return "/" + current_language + "/observatory/++aq++" + "/".join(segments)
 
     def get_contributions(self):
         current_language = get_current_language(self.context, self.request)
@@ -177,12 +176,12 @@ class OrganisationView(DefaultView, AceViewApi):
             org = map_contributor_values[self.context.id]
 
         t = {
-            u"function_score": {
-                u"query": {
-                    u"bool": {
-                        u"filter": {
-                            u"bool": {
-                                u"should": [{u"term": {u"partner_contributors": org}}]
+            "function_score": {
+                "query": {
+                    "bool": {
+                        "filter": {
+                            "bool": {
+                                "should": [{"term": {"partner_contributors": org}}]
                             }
                         },
                     }
