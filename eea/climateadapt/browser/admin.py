@@ -845,7 +845,7 @@ class GetBrokenCreationDates(BrowserView):
             if wf_creation_date == creation_date:
                 continue
             
-            res.append((obj.absolute_url(), content_type, creator, 
+            res.append((obj.absolute_url(), creator, 
                 wf_creator, creation_date, wf_creation_date))
         
         self.data = res
