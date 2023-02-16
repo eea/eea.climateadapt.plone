@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<object name="portal_properties" meta_type="Plone Properties Tool">
+  <object name="imaging_properties" meta_type="Plone Property Sheet">
+   <property name="title">Image handling properties</property>
+   <property name="allowed_sizes" type="lines" purge="False">
+    <element value="huge 1600:65536"/>
+   </property>
+  </object>
+</object>

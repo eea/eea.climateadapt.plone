@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<registry>
+    <record name="plone.allowed_sizes" interface="plone.app.imaging.interfaces.IImagingSchema" field="allowed_sizes">
+      <field type="plone.registry.field.List">
+        <default/>
+        <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Specify all allowed maximum image dimensions, one per line. The required format is &lt;name&gt; &lt;width&gt;:&lt;height&gt;.</description>
+        <required>False</required>
+        <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Allowed image sizes</title>
+        <value_type type="plone.registry.field.TextLine"/>
+      </field>
+      <value>
+        <element>huge 1600:65536</element>
+      </value>
+    </record>
+</registry>
