@@ -189,7 +189,7 @@ def _get_aceitem_description(object):
 
 
 @indexer(IC3sIndicator)
-def get_aceitem_description(object):
+def get_aceitem_description_indicator(object):
     return _get_aceitem_description(object)
 
 
@@ -233,7 +233,7 @@ def cover_description(obj):
     for tile in tiles:
         # tile_obj = obj.unrestrictedTraverse(
         # "@@{0}/{1}".format(tile["type"], tile["id"]))
-        tile_annot_id = 'plone.tiles.data.' + tile['id']
+        tile_annot_id = "plone.tiles.data." + tile["id"]
         tile_obj = obj.__annotations__.get(tile_annot_id, None)
 
         searchable = queryAdapter(tile_obj, ISearchableText)

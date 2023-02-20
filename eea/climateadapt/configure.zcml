@@ -172,6 +172,10 @@
       name="Description"
       />
   <adapter
+      factory=".catalog.get_aceitem_description_indicator"
+      name="Description"
+      />
+  <adapter
       factory=".catalog.get_aceproject_description"
       name="Description"
       />
