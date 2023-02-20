@@ -790,6 +790,8 @@ class GetBrokenCreationDates(BrowserView):
     by getting the creator/creation_date from workflow_history
     """
     zone = DateTime().timezone()
+    bl_users = ('ghitab', 'tibiadmin', 'tibi', 'tiberich', 'eugentripon', 
+        'iulianpetchesi', 'krisztina')
 
     def date_to_iso(self, date_time):
         if not date_time:
@@ -798,7 +800,21 @@ class GetBrokenCreationDates(BrowserView):
         date = datify(date_time)
         return date.toZone(self.zone).ISO()
 
-    def __call__(self):
+    def get_new_creator(self, creators, wf_creator):
+        if wf_creator not in self.bl_users:
+            return wf_creator
+
+        filtered_creators = [
+            x for x in creators
+            if x not in self.bl_users
+        ]
+
+        if filtered_creators:
+            return filtered_creators[0]
+
+        return ''
+
+    def results(self):
         catalog = api.portal.get_tool("portal_catalog")
 
         brains = catalog.searchResults(path='/cca/en')
@@ -807,12 +823,11 @@ class GetBrokenCreationDates(BrowserView):
         for brain in brains:
             try:
                 obj = brain.getObject()
+                creator = obj.Creator()
             except:
                 continue
 
-            creator = obj.Creator()
-
-            if creator not in ('tibi', 'tiberich'):
+            if creator not in self.bl_users:
                 continue
 
             creation_date = obj.CreationDate()
@@ -821,7 +836,7 @@ class GetBrokenCreationDates(BrowserView):
             wf_creation_date = None
 
             wf_data = [
-                (x['actor'], self.date_to_iso(x['time']))
+                (x['actor'], x['time'])
                 for x in wfh.get('cca_webpages_workflow', {})
                 if x['action'] is None
             ]
@@ -842,13 +857,50 @@ class GetBrokenCreationDates(BrowserView):
             if wf_creator == creator:
                 continue
 
-            if wf_creation_date == creation_date:
+            if self.date_to_iso(wf_creation_date) == creation_date:
                 continue
             
-            res.append((obj.absolute_url(), creator, 
-                wf_creator, creation_date, wf_creation_date))
-        
-        self.data = res
+            # if wf_creator in self.bl_users:
+                # continue
+
+            if 'copy_of_' in obj.absolute_url():
+                continue
+
+            new_creator = self.get_new_creator(obj.creators, wf_creator)
+
+            if not new_creator:
+                continue
+
+            res.append((obj, creator, wf_creator, new_creator, creation_date, 
+                wf_creation_date))
+
+        return res
+
+    def fix_broken_dates(self):
+        results = self.results()
+
+        for row in results:
+            try:
+                obj = row[0]
+                new_creator = row[3]
+                creators = [
+                    x for x in obj.creators if x != new_creator   
+                ]
+                creators = tuple([new_creator] + creators)
+                obj.creators = creators
+                obj._p_changed = True
+                obj.reindexObject()
+            except Exception as e:
+                import pdb; pdb.set_trace()
+
+        try:
+            return "Fixed {} objects!".format(len(results))
+        except Exception as e:
+            import pdb; pdb.set_trace()
+
+    def __call__(self):
+        if "fix-broken-dates" in self.request.form:
+            return self.fix_broken_dates()
 
         return self.index()
 
