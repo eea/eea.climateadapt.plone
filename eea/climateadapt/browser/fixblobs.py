@@ -95,6 +95,22 @@ def check_dexterity_blobs(context):
                         )
 
                         return True
+                    except SystemError:
+                        try:
+                            value.getSize()
+                        except POSKeyError:
+                            print("Found damaged Dexterity plone.app.NamedFile \
+                                    %s on %s" % (key, context.absolute_url()))
+
+                            add_broken_link(
+                                url=context.absolute_url(),
+                                creation=context.creation_date,
+                                modification=context.modification_date,
+                                reason="sure"
+                            )
+
+                            return True
+        
     return False
 
 
