@@ -880,23 +880,19 @@ class GetBrokenCreationDates(BrowserView):
         results = self.results()
 
         for row in results:
-            try:
-                obj = row[0]
-                new_creator = row[3]
-                creators = [
-                    x for x in obj.creators if x != new_creator   
-                ]
-                creators = tuple([new_creator] + creators)
-                obj.creators = creators
-                obj._p_changed = True
-                obj.reindexObject()
-            except Exception as e:
-                import pdb; pdb.set_trace()
-
-        try:
-            return "Fixed {} objects!".format(len(results))
-        except Exception as e:
-            import pdb; pdb.set_trace()
+            obj = row[0]
+            new_creator = row[3]
+            new_creation_date = row[5]
+            creators = [
+                x for x in obj.creators if x != new_creator   
+            ]
+            creators = tuple([new_creator] + creators)
+            obj.creators = creators
+            obj.creation_date = new_creation_date
+            obj._p_changed = True
+            obj.reindexObject()
+            
+        return "Fixed {} objects!".format(len(results))
 
     def __call__(self):
         if "fix-broken-dates" in self.request.form:
