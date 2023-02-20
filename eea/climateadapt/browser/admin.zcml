@@ -182,4 +182,18 @@
       permission="cmf.ManagePortal"
       />
 
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="fix-blobs-only-check"
+        class=".fixblobs.FixBlobsOnlyCheck"
+        template="pt/fixblobs.pt"
+        permission="cmf.ManagePortal"
+        />
+
+   <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="fix-blobs-imsure-delete"
+        class=".fixblobs.FixBlobs"
+        permission="cmf.ManagePortal"
+        />
 </configure>

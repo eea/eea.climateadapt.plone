@@ -1,0 +1,46 @@
+<div class="broken-links-container" tal:define="links python:view.broken_links">
+  <h3>Broken links</h3>
+  <p>You can order the content by column:</p>
+  <table id="broken-links">
+    <thead>
+      <tr>
+        <th>URL</th>
+        <th>Creation time (YYYY/MM/DD)</th>
+        <th>Last modified time (YYYY/MM/DD)</th>
+        <th>Is it broken?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr tal:repeat="link links">
+        <td>
+          <a href="" tal:attributes="href python:link['url']" tal:content="python:link['url']">url</a>
+        </td>
+        <td tal:content="python:link['creation'].strftime('%Y/%m/%d/ %H:%M')">Creation</td>
+        <td tal:content="python:link['modification'].strftime('%Y/%m/%d/ %H:%M')">Modification</td>
+        <td tal:content="python:link.get('reason', 'N/A')">maybe</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The same content, for easier copy-paste:</p>
+  <div class="link-for-copy-paste">
+    <p tal:repeat="link links">
+      <a href="" tal:attributes="href python:link['url']" tal:content="python:link['url']">url</a>
+      (<span tal:content="python:link['creation'].strftime('%Y/%m/%d/ %H:%M')">Creation</span>,
+       <span tal:content="python:link['modification'].strftime('%Y/%m/%d/ %H:%M')">Modification</span>)
+    </p>
+  </div>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<style src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></style>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script>
+  $(document).ready(function (){
+      $('#broken-links').DataTable();
+  });
+</script>
