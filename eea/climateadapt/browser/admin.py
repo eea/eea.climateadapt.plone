@@ -8,6 +8,8 @@ from io import BytesIO as StringIO
 from apiclient.discovery import build
 from DateTime import DateTime
 from eea.climateadapt import CcaAdminMessageFactory as _
+from eea.climateadapt.browser.fixblobs import (check_at_blobs, 
+                                               check_dexterity_blobs)
 from eea.climateadapt.browser.migrate import DB_ITEM_TYPES
 from eea.climateadapt.browser.site import _extract_menu
 from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
@@ -881,6 +883,13 @@ class GetBrokenCreationDates(BrowserView):
 
         for row in results:
             obj = row[0]
+
+            if obj.portal_type in ('File', 'Image'):
+                continue
+
+            if check_at_blobs(obj) or check_dexterity_blobs(obj):
+                continue
+
             new_creator = row[3]
             new_creation_date = row[5]
             creators = [
