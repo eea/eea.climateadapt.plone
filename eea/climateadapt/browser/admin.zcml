@@ -132,6 +132,14 @@
       />
 
   <browser:page
+      name="get-missing-languages"
+      for="*"
+      class=".admin.GetMissingLanguages"
+      permission="cmf.ManagePortal"
+      template="pt/get_missing_languages.pt"
+      />
+
+  <browser:page
       name="migrate-tiles"
       for="*"
       class=".admin.MigrateTiles"

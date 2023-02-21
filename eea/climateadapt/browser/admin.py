@@ -908,6 +908,62 @@ class GetBrokenCreationDates(BrowserView):
             return self.fix_broken_dates()
 
         return self.index()
+        
+
+class GetMissingLanguages(BrowserView):
+    """ Get all objects with missing 'language' field
+    """
+
+    def results(self):
+        catalog = api.portal.get_tool("portal_catalog")
+
+        brains = catalog.searchResults(path='/cca')
+        res = []
+
+        for brain in brains:
+            try:
+                obj = brain.getObject()
+            except:
+                continue
+            
+            language = getattr(obj, 'language')
+
+            if language:
+                continue
+
+            language_from_path = obj.getPhysicalPath()[2]
+
+            if len(language_from_path) != 2:
+                continue
+            
+            if language == language_from_path:
+                continue
+
+            res.append((obj, language, language_from_path))
+
+        return res
+
+    def fix_languages(self):
+        results = self.results()
+
+        for row in results:
+            obj = row[0]
+
+            language_from_path = row[2]
+
+            obj.language = language_from_path
+            obj._p_changed = True
+            obj.reindexObject(idxs=["language"])
+            
+        return "Fixed {} objects!".format(len(results))
+
+    def __call__(self):
+        if "fix-languages" in self.request.form:
+            return self.fix_languages()
+
+        # return "Missing language from {} objects".format(len(self.results()))
+
+        return self.index()
 
 
 class MigrateTiles(BrowserView):
