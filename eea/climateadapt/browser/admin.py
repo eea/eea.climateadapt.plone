@@ -899,7 +899,7 @@ class GetBrokenCreationDates(BrowserView):
             obj.creators = creators
             obj.creation_date = new_creation_date
             obj._p_changed = True
-            obj.reindexObject()
+            obj.reindexObject(idxs=["creators", "creation_date"])
             
         return "Fixed {} objects!".format(len(results))
 
