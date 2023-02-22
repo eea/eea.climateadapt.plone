@@ -989,6 +989,14 @@ msgstr "Leśnictwo"
 msgid "Glossary"
 msgstr "Słownik"
 
+#:
+msgid "Ground-level ozone"
+msgstr "Ozonu w warstwie przyziemnej"
+
+#:
+msgid "Ground-level ozone forecast (CAMS)"
+msgstr "Prognoza ozonu w warstwie przyziemnej (CAMS)"
+
 # ,
 # ,
 # ,

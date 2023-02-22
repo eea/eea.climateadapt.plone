@@ -415,6 +415,14 @@ msgstr "Skogsbruk"
 msgid "Glossary"
 msgstr "Ordlista"
 
+#:
+msgid "Ground-level ozone"
+msgstr ""
+
+#:
+msgid "Ground-level ozone forecast (CAMS)"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:91

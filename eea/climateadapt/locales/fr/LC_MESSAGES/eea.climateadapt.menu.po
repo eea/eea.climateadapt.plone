@@ -927,6 +927,14 @@ msgstr "Sylviculture"
 msgid "Glossary"
 msgstr "Glossaire"
 
+#:
+msgid "Ground-level ozone"
+msgstr "Ozone au niveau du sol"
+
+#:
+msgid "Ground-level ozone forecast (CAMS)"
+msgstr "Prévisions d'ozone au niveau du sol (CAMS)"
+
 # ,
 # ,
 # ,

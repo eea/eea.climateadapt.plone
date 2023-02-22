@@ -577,3 +577,11 @@ msgstr ""
 #:
 msgid "ADAPTATION IN THE FORESTRY SECTOR"
 msgstr ""
+
+#:
+msgid "Ground-level ozone"
+msgstr ""
+
+#:
+msgid "Ground-level ozone forecast (CAMS)"
+msgstr ""

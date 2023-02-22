@@ -415,6 +415,14 @@ msgstr "Erdészet"
 msgid "Glossary"
 msgstr "Szójegyzék"
 
+#:
+msgid "Ground-level ozone"
+msgstr ""
+
+#:
+msgid "Ground-level ozone forecast (CAMS)"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:91

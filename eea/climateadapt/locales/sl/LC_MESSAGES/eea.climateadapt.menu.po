@@ -415,6 +415,14 @@ msgstr "Gozdarstvo"
 msgid "Glossary"
 msgstr "Slovar"
 
+#:
+msgid "Ground-level ozone"
+msgstr ""
+
+#:
+msgid "Ground-level ozone forecast (CAMS)"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:91
