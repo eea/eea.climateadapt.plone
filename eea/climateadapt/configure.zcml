@@ -49,9 +49,9 @@
   <include package=".widgets" />
   <include package=".browser" />
   <include package=".tiles" />
-  <include package=".sat" />
+  <!-- <include package=".sat" /> -->
   <include package=".mayorsadapt" />
-  <include package="._importer" />
+  <!-- <include package="._importer" /> -->
   <include package=".upgrades" />
   <include package=".restapi" />
   <include package=".behaviors" />

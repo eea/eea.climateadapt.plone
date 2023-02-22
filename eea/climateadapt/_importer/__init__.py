@@ -1,3 +1,5 @@
+raise ValueError("Should not be imported")
+
 import json
 import os
 import sys
@@ -5,46 +7,22 @@ from collections import defaultdict
 from datetime import datetime as dt
 
 import dateutil
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
-from zope.annotation.interfaces import IAnnotations
-from zope.component import getMultiAdapter, getUtility
-from zope.interface import alsoProvides, noLongerProvides
-from zope.intid.interfaces import IIntIds
-from zope.sqlalchemy import register
-
 import transaction
 from eea.climateadapt._importer import sqlschema as sql
 from eea.climateadapt._importer.tweak_sql import fix_relations
 from eea.climateadapt._importer.utils import parse_settings  # , printe
-from eea.climateadapt._importer.utils import (ACE_ITEM_TYPES,
-                                              _get_latest_version,
-                                              create_cover_at,
-                                              create_folder_at,
-                                              create_plone_content,
-                                              createAndPublishContentInContainer,
-                                              extract_portlet_info,
-                                              extract_simplified_info_from_article_content,
-                                              get_relateditems,
-                                              get_repofile_by_id, localize,
-                                              log_call, logger,
-                                              make_ast_navigation_tile,
-                                              make_countries_dropdown_tile,
-                                              make_faceted, make_group,
-                                              make_iframe_embed_tile,
-                                              make_image_tile, make_layout,
-                                              make_richtext_tile,
-                                              make_richtext_with_title_tile,
-                                              make_row, make_share_tile,
-                                              make_tile, make_tiles,
-                                              make_transregion_dropdown_tile,
-                                              make_urbanast_navigation_tile,
-                                              make_urbanmenu_title,
-                                              make_view_tile, pack_to_table,
-                                              r2t, render, render_accordion,
-                                              render_tabs, s2d, s2l, s2li,
-                                              stamp_cover, strip_xml, t2r,
-                                              to_decimal, write_links)
+from eea.climateadapt._importer.utils import (
+    ACE_ITEM_TYPES, _get_latest_version, create_cover_at, create_folder_at,
+    create_plone_content, createAndPublishContentInContainer,
+    extract_portlet_info, extract_simplified_info_from_article_content,
+    get_relateditems, get_repofile_by_id, localize, log_call, logger,
+    make_ast_navigation_tile, make_countries_dropdown_tile, make_faceted,
+    make_group, make_iframe_embed_tile, make_image_tile, make_layout,
+    make_richtext_tile, make_richtext_with_title_tile, make_row,
+    make_share_tile, make_tile, make_tiles, make_transregion_dropdown_tile,
+    make_urbanast_navigation_tile, make_urbanmenu_title, make_view_tile,
+    pack_to_table, r2t, render, render_accordion, render_tabs, s2d, s2l, s2li,
+    stamp_cover, strip_xml, t2r, to_decimal, write_links)
 from eea.climateadapt.config import DEFAULT_LOCATIONS
 from eea.climateadapt.interfaces import (IASTNavigationRoot,
                                          IBalticRegionMarker,
@@ -53,9 +31,10 @@ from eea.climateadapt.interfaces import (IASTNavigationRoot,
                                          ISiteSearchFacetedView,
                                          ITransnationalRegionMarker,
                                          ITransRegioRoot)
-from eea.climateadapt.mayorsadapt.vocabulary import (already_devel_adapt_strategy_vocabulary,
-                                                     stage_implementation_cycle_vocabulary,
-                                                     status_of_adapt_signature_vocabulary)
+from eea.climateadapt.mayorsadapt.vocabulary import (
+    already_devel_adapt_strategy_vocabulary,
+    stage_implementation_cycle_vocabulary,
+    status_of_adapt_signature_vocabulary)
 from eea.climateadapt.vocabulary import (_cca_types, ace_countries_vocabulary,
                                          aceitem_climateimpacts_vocabulary,
                                          aceitem_elements_vocabulary,
@@ -71,7 +50,14 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.WorkflowCore import WorkflowException
 from pytz import timezone, utc
 from six.moves.html_parser import HTMLParser
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
 from z3c.relationfield.relation import RelationValue
+from zope.annotation.interfaces import IAnnotations
+from zope.component import getMultiAdapter, getUtility
+from zope.interface import alsoProvides, noLongerProvides
+from zope.intid.interfaces import IIntIds
+from zope.sqlalchemy import register
 
 # from eea.climateadapt.interfaces import ICitiesListingsRoot
 
@@ -2803,8 +2789,8 @@ def get_plone_site():
     app.REQUEST['PARENTS'] = [app]
     from zope.globalrequest import setRequest
     setRequest(app.REQUEST)
-    from AccessControl.SpecialUsers import system as user
     from AccessControl.SecurityManagement import newSecurityManager
+    from AccessControl.SpecialUsers import system as user
     newSecurityManager(None, user)
 
     _site = app['Plone']
