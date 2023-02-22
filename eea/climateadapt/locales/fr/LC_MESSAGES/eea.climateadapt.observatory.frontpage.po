@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-01-04 21:14+0000\n"
+"POT-Creation-Date: 2023-02-22 10:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,10 +110,9 @@ msgstr "Accueil"
 msgid "INDICATORS"
 msgstr "Indicateurs"
 
-# ,
 #: ../theme/climateadaptv2/health-homepage.html:174
-msgid "Learn about pollen impact on human health and the role climate change is playing"
-msgstr "En savoir plus sur l'impact du pollen sur la santé humaine et le rôle que joue le changement climatique"
+msgid "Learn about the impact of ground-level ozone on human health in the context of climate change"
+msgstr "Découvrez l'impact de l'ozone au niveau du sol sur la santé humaine dans le contexte du changement climatique"
 
 # ,
 # ,
@@ -179,10 +178,9 @@ msgstr "Nouvelles"
 msgid "News/Events"
 msgstr "Nouvelles/événements"
 
-# ,
 #: ../theme/climateadaptv2/health-homepage.html:173
-msgid "Pollen Impact"
-msgstr "Impact pollinique"
+msgid "Ozone impact"
+msgstr "Impact de l'ozone"
 
 # ,
 # ,

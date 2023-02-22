@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-01-04 21:14+0000\n"
+"POT-Creation-Date: 2023-02-22 10:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,7 +127,7 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1458
+#: ../theme/climateadaptv2/index.html:1456
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Skontrolujte, či <a href=\"../newsletter\"> európsky informačný bulletin o klimatickej adaptácii </a> a zaregistrujte sa, aby ste ho dostali do svojho e-mailu:"
 
@@ -207,7 +207,7 @@ msgstr "Energia"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1371
+#: ../theme/climateadaptv2/index.html:1369
 msgid "Events"
 msgstr "Diania"
 
@@ -324,11 +324,11 @@ msgstr "Morské a rybné hospodárstvo"
 msgid "Monitoring &amp; Evaluation (M&amp;E)"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1430
+#: ../theme/climateadaptv2/index.html:1428
 msgid "More events"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1401
+#: ../theme/climateadaptv2/index.html:1399
 msgid "More news"
 msgstr ""
 
@@ -338,13 +338,13 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1368
+#: ../theme/climateadaptv2/index.html:1366
 msgid "News"
 msgstr "Novinky"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1444
+#: ../theme/climateadaptv2/index.html:1442
 msgid "Newsletter"
 msgstr "Bulletin"
 
@@ -373,11 +373,11 @@ msgstr "Publikácie a správy"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1447
+#: ../theme/climateadaptv2/index.html:1445
 msgid "RSS feed"
 msgstr "RSS zdroj"
 
-#: ../theme/climateadaptv2/index.html:1358
+#: ../theme/climateadaptv2/index.html:1356
 msgid "Read more"
 msgstr ""
 
@@ -420,31 +420,31 @@ msgstr "Zdieľajte <regan> svoje informácie </span>"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1460
+#: ../theme/climateadaptv2/index.html:1458
 msgid "Sign me up!"
 msgstr "Prihlás ma!"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1477
+#: ../theme/climateadaptv2/index.html:1475
 msgid "Subscribe"
 msgstr "Predplatiť"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1475
+#: ../theme/climateadaptv2/index.html:1473
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "Prihláste sa na odber nášho krmiva <strong> RSS </strong> <br /> a zostaňte v aktuálnom stave!"
-
-#: ../theme/climateadaptv2/index.html:1346
-msgid "The 2022-2024 Climate-ADAPT Strategy"
-msgstr ""
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:510
 msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
 msgstr "Európsky prieskumník klimatických údajov poskytuje interaktívny prístup k mnohým indexom klímy zo služby zmeny klímy Copernicus na podporu adaptácie zmeny klímy."
+
+#: ../theme/climateadaptv2/index.html:1346
+msgid "The European Climate Risk Assessment"
+msgstr ""
 
 # ,
 # ,
@@ -537,11 +537,11 @@ msgstr ""
 msgid "guidance_link"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1349
-msgid "informs about how Climate-ADAPT will be further expanded with new knowledge compoments towards becoming 'the authoritative European platform for adaptation' and outlines priority actions..."
-msgstr ""
-
 # ,
 #: ../theme/climateadaptv2/index.html:654
 msgid "type here ..."
 msgstr "píšte sem ..."
+
+#: ../theme/climateadaptv2/index.html:1349
+msgid "will assess current and future climate change impacts and risks relating to the environment, economy and wider society in Europe."
+msgstr ""
