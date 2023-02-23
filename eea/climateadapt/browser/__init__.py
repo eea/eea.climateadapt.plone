@@ -29,6 +29,40 @@ logger = logging.getLogger("eea.climateadapt")
 ReviewInfo = namedtuple("ReviewInfo", ["creator", "reviewer"])
 
 
+def get_date_updated(item):
+    wh = item.workflow_history
+    wf = wh.get("cca_items_workflow", None)
+
+    response = {}
+    response["cadapt_last_modified"] = item.modified()
+    response["cadapt_published"] = item.effective()
+
+    if not wf:
+        return response
+
+    for metadata in wf:
+        if metadata["action"] == "publish":
+            response["cadapt_published"] = metadata["time"]
+
+    return response
+
+
+def get_files(context):
+    files = context.contentValues({"portal_type": "File"})
+
+    for r in context.relatedItems:
+        obj = r.to_object
+        if obj is None:
+            continue
+        if obj.portal_type in ["File", "Image"]:
+            files.append(obj)
+
+    # return [r.to_object for r in self.context.relatedItems] \
+    #     + self.context.contentValues({'portal_type': 'File'})
+
+    return files
+
+
 class AceViewApi(object):
     def geotag(self):
         tag = queryAdapter(self.context, ISingleGeoTag)
