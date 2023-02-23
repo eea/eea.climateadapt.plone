@@ -930,7 +930,7 @@ msgstr "El Explorador Europeo de Datos Climáticos proporciona acceso interactiv
 
 #: ../theme/climateadaptv2/index.html:1346
 msgid "The European Climate Risk Assessment"
-msgstr "Evaluación Europea del riesgo climático"
+msgstr "La evaluación europea del riesgo climático"
 
 # ,
 # ,
@@ -1132,4 +1132,4 @@ msgstr "escriba aquí ..."
 
 #: ../theme/climateadaptv2/index.html:1349
 msgid "will assess current and future climate change impacts and risks relating to the environment, economy and wider society in Europe."
-msgstr "evaluará los impactos y riesgos actuales y futuros del cambio climático relacionados con el medio ambiente, la economía y la sociedad en general en Europa."
+msgstr "va a evaluar los efectos actuales y futuros del cambio climático y los riesgos relacionados con el medio ambiente, la economía y la sociedad en general en Europa."

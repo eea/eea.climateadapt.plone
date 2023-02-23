@@ -1334,4 +1334,4 @@ msgstr "hier eingeben..."
 # ,
 #: ../theme/climateadaptv2/index.html:1349
 msgid "will assess current and future climate change impacts and risks relating to the environment, economy and wider society in Europe."
-msgstr "wird die aktuellen und zukünftigen Auswirkungen und Risiken des Klimawandels in Bezug auf die Umwelt, die Wirtschaft und die Gesellschaft im Allgemeinen in Europa bewerten."
+msgstr "wird die derzeitigen und künftigen Auswirkungen und Risiken des Klimawandels auf die Umwelt, die Wirtschaft und die Gesellschaft in Europa bewerten."

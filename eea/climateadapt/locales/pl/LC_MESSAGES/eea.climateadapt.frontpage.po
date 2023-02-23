@@ -1128,4 +1128,4 @@ msgstr "pisz tutaj ..."
 
 #: ../theme/climateadaptv2/index.html:1349
 msgid "will assess current and future climate change impacts and risks relating to the environment, economy and wider society in Europe."
-msgstr "dokona oceny obecnych i przyszłych skutków zmian klimatu i zagrożeń związanych ze środowiskiem, gospodarką i szerszym społeczeństwem w Europie."
+msgstr "oceni obecne i przyszłe skutki zmian klimatu i zagrożenia dla środowiska, gospodarki i ogółu społeczeństwa w Europie."
