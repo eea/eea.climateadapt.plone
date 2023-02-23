@@ -23,8 +23,15 @@
 
     <drop css:content="body script" />
     <rules css:if-not-content=".template-external-template-header">
-      <before css:theme-children="body" css:content="head script" />
-      <before css:theme-children="body" css:content="body script" method="raw"/>
+      <rules css:if-content=".template-edit">
+        <!-- Refs #248974 - scripts must load after edit form content is loaded -->
+        <after css:theme-children="body" css:content="head script" />
+        <after css:theme-children="body" css:content="body script" method="raw"/>
+      </rules>
+      <rules css:if-not-content=".template-edit">
+        <before css:theme-children="body" css:content="head script" />
+        <before css:theme-children="body" css:content="body script" method="raw"/>
+      </rules>
     </rules>
 
     <!--Content-->
