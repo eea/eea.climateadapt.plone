@@ -1,3 +1,3 @@
 <configure xmlns="http://namespaces.zope.org/zope">
-  <adapter factory=".serializer.AdaptationOptionSerializer" />
+  <adapter factory=".serializer.LanguageSerializer" />
 </configure>
