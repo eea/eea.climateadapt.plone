@@ -515,4 +515,11 @@
       original="results"
       preserveOriginal="false"
       replacement="eea.climateadapt.patch.results" />
+
+  <monkey:patch
+      description="Refs #162035 - Make internal ZCatalog compatible with Plone 6"
+      class="plone.restapi.serializer.summary.DefaultJSONSummarySerializer"
+      original="metadata_fields"
+      preserveOriginal="false"
+      replacement="eea.climateadapt.patch.metadata_fields" />
 </configure>
