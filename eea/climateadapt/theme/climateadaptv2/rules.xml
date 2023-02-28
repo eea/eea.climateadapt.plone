@@ -199,12 +199,6 @@
     <before css:content=".content-column > .tile-default:first-child">
       <xsl:copy-of select='//*[@class="documentFirstHeading"]' />
     </before>
-
-    <drop css:content="#viewlet-below-content-title" />
-    <before css:content=".content-column > .tile-default:first-child">
-      <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
-    </before>
-
   </rules>
 
   <!-- AST & UAST: move last modified under the h1 title -->
