@@ -21,7 +21,7 @@
                           >
            <tal:results repeat="result batch">
              <li class="news-item">
-               <h2 tal:define="item_url python: '/en/observatory/++aq++news-archive/' + result.getURL().split('/')[-1] if is_observatory else result.getURL()">
+               <h2 tal:define="item_url python: '/en/observatory/++aq++' + '/'.join(result.getURL().split('/')[-2:]) if is_observatory else result.getURL()">
                  <a href="" tal:content="result/Title" tal:attributes="href item_url">
                   News Title with href
                  </a>
