@@ -525,6 +525,10 @@ msgstr "ØVE SIG"
 msgid "Policy context"
 msgstr "Politisk kontekst"
 
+#:
+msgid "Pollution"
+msgstr ""
+
 # ,
 #: health_menu:30
 msgid "Projections and tools"

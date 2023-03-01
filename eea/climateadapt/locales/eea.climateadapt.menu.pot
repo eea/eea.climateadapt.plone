@@ -585,3 +585,7 @@ msgstr ""
 #:
 msgid "Ground-level ozone forecast (CAMS)"
 msgstr ""
+
+#:
+msgid "Pollution"
+msgstr ""

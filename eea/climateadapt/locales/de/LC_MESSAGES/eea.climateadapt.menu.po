@@ -1485,6 +1485,10 @@ msgstr "Praktische Umsetzung"
 msgid "Policy context"
 msgstr "Politischer Kontext"
 
+#:
+msgid "Pollution"
+msgstr "Umweltverschmutzung"
+
 # ,
 # ,
 # ,

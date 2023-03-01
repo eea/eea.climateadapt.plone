@@ -525,6 +525,10 @@ msgstr "ΠΡΑΚΤΙΚΗ"
 msgid "Policy context"
 msgstr "Πολιτική πλαίσιο"
 
+#:
+msgid "Pollution"
+msgstr ""
+
 # ,
 #: health_menu:30
 msgid "Projections and tools"

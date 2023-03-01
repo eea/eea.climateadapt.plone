@@ -617,6 +617,10 @@ msgstr "ÖVA"
 msgid "Policy context"
 msgstr "Politisk sammanhang"
 
+#:
+msgid "Pollution"
+msgstr ""
+
 # ,
 # ,
 #: health_menu:30

@@ -617,6 +617,10 @@ msgstr "OEFENING"
 msgid "Policy context"
 msgstr "Beleidscontext"
 
+#:
+msgid "Pollution"
+msgstr ""
+
 # ,
 # ,
 #: health_menu:30

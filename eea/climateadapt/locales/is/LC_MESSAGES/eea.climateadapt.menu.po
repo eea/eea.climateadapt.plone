@@ -617,6 +617,10 @@ msgstr "Æfðu"
 msgid "Policy context"
 msgstr "Stefnusamhengi"
 
+#:
+msgid "Pollution"
+msgstr ""
+
 # ,
 # ,
 #: health_menu:30

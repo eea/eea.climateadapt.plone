@@ -617,6 +617,10 @@ msgstr "Praktika"
 msgid "Policy context"
 msgstr "Politikos kontekstas"
 
+#:
+msgid "Pollution"
+msgstr ""
+
 # ,
 # ,
 #: health_menu:30

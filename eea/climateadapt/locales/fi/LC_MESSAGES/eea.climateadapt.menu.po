@@ -525,6 +525,10 @@ msgstr "HARJOITELLA"
 msgid "Policy context"
 msgstr "Politiikan tausta"
 
+#:
+msgid "Pollution"
+msgstr ""
+
 # ,
 #: health_menu:30
 msgid "Projections and tools"

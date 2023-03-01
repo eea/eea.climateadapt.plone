@@ -867,6 +867,10 @@ msgstr "PRACTICĂ"
 msgid "Policy context"
 msgstr "Contextul politic"
 
+#:
+msgid "Pollution"
+msgstr ""
+
 # ,
 # ,
 # ,

@@ -617,6 +617,10 @@ msgstr "UYGULAMA"
 msgid "Policy context"
 msgstr "Politika bağlamı"
 
+#:
+msgid "Pollution"
+msgstr ""
+
 # ,
 # ,
 #: health_menu:30

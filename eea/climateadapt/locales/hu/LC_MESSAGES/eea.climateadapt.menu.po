@@ -617,6 +617,10 @@ msgstr "GYAKORLAT"
 msgid "Policy context"
 msgstr "Politikai összefüggés"
 
+#:
+msgid "Pollution"
+msgstr ""
+
 # ,
 # ,
 #: health_menu:30

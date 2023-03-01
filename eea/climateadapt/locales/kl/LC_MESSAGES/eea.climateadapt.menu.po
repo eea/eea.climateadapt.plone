@@ -444,6 +444,10 @@ msgstr ""
 msgid "Policy context"
 msgstr ""
 
+#:
+msgid "Pollution"
+msgstr ""
+
 #: health_menu:30
 msgid "Projections and tools"
 msgstr ""

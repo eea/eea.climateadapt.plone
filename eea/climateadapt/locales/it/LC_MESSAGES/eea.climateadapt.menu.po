@@ -1553,6 +1553,10 @@ msgstr "L'ADATTAMENTO IN PRATICA"
 msgid "Policy context"
 msgstr "Contesto politico"
 
+#:
+msgid "Pollution"
+msgstr "Inquinamento"
+
 # ,
 # ,
 # ,

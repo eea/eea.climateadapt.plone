@@ -525,6 +525,10 @@ msgstr "Практика"
 msgid "Policy context"
 msgstr "Контекст на политиката"
 
+#:
+msgid "Pollution"
+msgstr ""
+
 # ,
 #: health_menu:30
 msgid "Projections and tools"
