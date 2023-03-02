@@ -828,7 +828,7 @@ class GetBrokenCreationDates(BrowserView):
                 creator = obj.Creator()
             except:
                 continue
-
+            
             if creator not in self.bl_users:
                 continue
 
@@ -845,7 +845,7 @@ class GetBrokenCreationDates(BrowserView):
 
             if not wf_data:
                 wf_data = [
-                    (x['actor'], self.date_to_iso(x['time']))
+                    (x['actor'], x['time'])
                     for x in wfh.get('cca_items_workflow', {})
                     if x['action'] is None
                 ]
@@ -878,6 +878,58 @@ class GetBrokenCreationDates(BrowserView):
 
         return res
 
+    def results_string_dates(self):
+        catalog = api.portal.get_tool("portal_catalog")
+
+        brains = catalog.searchResults(path='/cca/en')
+        res = []
+
+        for brain in brains:
+            try:
+                obj = brain.getObject()
+            except:
+                continue
+
+            if not hasattr(obj, 'creation_date'):
+                continue
+
+            if not isinstance(obj.creation_date, basestring):
+                continue
+            
+            res.append(obj)
+
+        return res
+    
+    def fix_string_dates(self):
+        results = self.results_string_dates()
+
+        for obj in results:
+            wfh = obj.workflow_history
+
+            new_creation_date = [
+                x['time']
+                for x in wfh.get('cca_webpages_workflow', {})
+                if x['action'] is None
+            ]
+
+            if not new_creation_date:
+                new_creation_date = [
+                    x['time']
+                    for x in wfh.get('cca_items_workflow', {})
+                    if x['action'] is None
+                ]
+
+            new_creation_date = new_creation_date and new_creation_date[0] or ''
+
+            if not new_creation_date:
+                continue
+
+            obj.creation_date = new_creation_date
+            obj._p_changed = True
+            obj.reindexObject(idxs=["creators", "creation_date"])
+
+        return "Fixed {} results!".format(len(results))
+
     def fix_broken_dates(self):
         results = self.results()
 
@@ -906,6 +958,14 @@ class GetBrokenCreationDates(BrowserView):
     def __call__(self):
         if "fix-broken-dates" in self.request.form:
             return self.fix_broken_dates()
+
+        if "fix-string-dates" in self.request.form:
+            return self.fix_string_dates()
+
+        if "string-dates" in self.request.form:
+            results = self.results_string_dates()
+
+            return [x.absolute_url() for x in results] or 'No results!'
 
         return self.index()
         
