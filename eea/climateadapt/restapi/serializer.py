@@ -28,6 +28,11 @@ class ClimateAdaptContentSerializer(SerializeToJson):
             version=None, include_items=True
         )
         item = self.context
+
+        files = get_files(item)
+        result["cca_files"] = [
+            {"title": file.Title(), "url": file.absolute_url()} for file in files
+        ]
         result = append_common_new_fields(result, item)
         return result
 
