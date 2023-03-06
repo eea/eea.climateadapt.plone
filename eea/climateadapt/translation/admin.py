@@ -2438,7 +2438,10 @@ class TranslationCheckLanguageViewlet(ViewletBase):
         return get_current_language(self.context, self.request)
 
     def get_cookie_language(self):
-        return self.request.cookies.get("I18N_LANGUAGE", "en")
+        obj_language = getattr(self.context, 'language', 'en')
+        cookie_lang = self.request.cookies.get("I18N_LANGUAGE", None)
+
+        return cookie_lang or obj_language
 
     def get_suggestion_url(self):
         try:
