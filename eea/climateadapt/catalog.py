@@ -246,8 +246,9 @@ def cover_description(obj):
     text = [safe_unicode(entry) for entry in text if entry]
 
     text = " ".join(text)
-    import pdb
-
-    pdb.set_trace()
-    # print("Description", text)
-    return text
+    # TODO: it looks empty for all objects
+    # portal_catalog - Indexes - select Description - Reindex
+    # if len(text) > 2:
+    #     import pdb; pdb.set_trace()
+    #     print text
+    return text[:200]
