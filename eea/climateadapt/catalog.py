@@ -214,7 +214,7 @@ SENTENCES_COUNT = 2
 
 @indexer(ICover)
 def cover_description(obj):
-    """Simplify the long description rich text in a simple 2 paragraphs
+    """Simplify the long description rich text in a simple max 200 chars
     "summary"
     """
 
@@ -237,7 +237,7 @@ def cover_description(obj):
         else:
             try:
                 data = portal_transforms.convertTo(
-                    "text/plain", tile_obj.getText(), mimetype="text/html"
+                    "text/plain", tile_obj["text"].raw, mimetype="text/html"
                 )
                 text.append(data.getData().strip())
             except Exception:
@@ -246,9 +246,4 @@ def cover_description(obj):
     text = [safe_unicode(entry) for entry in text if entry]
 
     text = " ".join(text)
-    # TODO: it looks empty for all objects
-    # portal_catalog - Indexes - select Description - Reindex
-    # if len(text) > 2:
-    #     import pdb; pdb.set_trace()
-    #     print text
     return text[:200]
