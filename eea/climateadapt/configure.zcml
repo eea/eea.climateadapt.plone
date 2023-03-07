@@ -189,11 +189,6 @@
       name="Description"
       />
 
-  <adapter
-      factory=".catalog.cover_description"
-      name="Description"
-      />
-
   <!-- <adapter name="getObjSize" factory=".catalog.getObjSize_image" /> -->
 
   <adapter
