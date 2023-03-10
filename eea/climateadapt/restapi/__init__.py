@@ -23,5 +23,6 @@ def geolocation_converter(value):
 
 
 @adapter(IRichTextValue)
+@implementer(IJsonCompatible)
 def richtext_value_converter(value):
     return value and value.output or ""
