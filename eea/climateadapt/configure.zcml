@@ -62,7 +62,6 @@
   <include file="stringinterp.zcml" />
   <include file="cache.zcml" />
   <include file="contentrules.zcml" />
-  <include file="restapi.zcml" />
   <include file="theme.zcml" />
 
   <browser:jbot

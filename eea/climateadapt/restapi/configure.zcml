@@ -2,4 +2,9 @@
   <adapter factory=".serializer.ClimateAdaptContentSerializer" />
   <adapter factory=".serializer.AdaptationOptionSerializer" />
   <adapter factory=".serializer.CaseStudySerializer" />
+
+  <adapter factory=".long_converter" />
+  <adapter factory=".geolocation_converter" />
+  <adapter factory=".richtext_value_converter" />
+
 </configure>
