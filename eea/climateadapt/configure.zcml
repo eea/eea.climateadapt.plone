@@ -56,6 +56,7 @@
   <include package=".restapi" />
   <include package=".behaviors" />
   <include package=".translation" />
+  <include package=".migration" />
 
   <include file="skins.zcml" />
   <include file="profiles.zcml" />

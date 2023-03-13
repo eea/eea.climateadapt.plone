@@ -52,6 +52,7 @@ setup(
         "langdetect",
         "chardet",
         "zeep==3.4.0",
+        "beautifulsoup4==4.9.3",        # last compatible with Python2
         # "google-api-python-client",  # google analytics API integration
         # "collective.relationhelpers",
     ],
