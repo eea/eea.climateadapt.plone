@@ -1,4 +1,5 @@
 import json
+from uuid import uuid4
 
 import requests
 
@@ -14,5 +15,11 @@ def text_to_slate(text):
     return slate
 
 
+def convert_block(block):
+    # TODO: do the plaintext
+    return {"@type": "slate", "value": [block], "plaintext": ""}
+
+
 def slate_to_blocks(slate):
-    return []
+    blocks = [[str(uuid4()), convert_block(block)] for block in slate]
+    return blocks

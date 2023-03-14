@@ -61,5 +61,13 @@ class MigrateCover(object):
             blocks.extend(data.pop('blocks', []))
             attributes.update(data)
 
-        print(blocks)
-        return json.dumps({"blocks": blocks, "attributes": attributes})
+        blocks_layout = {"items": [b[0] for b in blocks]}
+        blocks_data = {}
+        for b in blocks:
+            blocks_data[b[0]] = b[1]
+
+        self.context.blocks_layout = blocks_layout
+        self.context.blocks = blocks_data
+        return "ok"
+        # print(blocks)
+        # return json.dumps({"blocks": blocks, "attributes": attributes})
