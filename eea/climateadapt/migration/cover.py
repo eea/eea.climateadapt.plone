@@ -7,7 +7,9 @@ from plone.tiles.interfaces import ITileDataManager
 from zope.component import adapter
 from zope.interface import Interface, implementer
 
-from .slate.html2slate import text_to_slate
+from .utils import slate_to_blocks, text_to_slate
+
+# from .slate.html2slate import text_to_slate
 
 
 def richtext_tile_to_blocks(tile_dm, obj, request):
@@ -23,7 +25,11 @@ def richtext_tile_to_blocks(tile_dm, obj, request):
     text = data.get('text')
     if text:
         html = text.raw     # TODO: should we use .output ?
-        blocks = text_to_slate(html)
+        print("Converting--")
+        print(html)
+        print("--/Converting")
+        slate = text_to_slate(html)
+        blocks = slate_to_blocks(slate)
 
     return {
         "blocks": blocks,
