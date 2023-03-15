@@ -386,7 +386,17 @@ class OverrideRichText(RichTextWidget):
         return args
 
     def render(self):
-        return super(OverrideRichText, self).render()
+        # on the first render throws POSKeyError: 'No blob file'
+        # try to re-render if error happens
+        nr_of_tries = 0
+        
+        while nr_of_tries < 3:
+            try:
+                return super(OverrideRichText, self).render()
+            except Exception as e:
+                pass
+
+            nr_of_tries = nr_of_tries + 1
 
 
 @adapter(getSpecification(IRichTextBehavior['text']), IWidgetsLayer)

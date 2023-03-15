@@ -353,6 +353,14 @@ msgstr "Skovbrug"
 msgid "Glossary"
 msgstr "Ordliste"
 
+#:
+msgid "Ground-level ozone"
+msgstr ""
+
+#:
+msgid "Ground-level ozone forecast (CAMS)"
+msgstr ""
+
 # ,
 #: site_menu:91
 msgid "Guidance to search function"
@@ -516,6 +524,10 @@ msgstr "ØVE SIG"
 #: health_menu:12
 msgid "Policy context"
 msgstr "Politisk kontekst"
+
+#:
+msgid "Pollution"
+msgstr ""
 
 # ,
 #: health_menu:30

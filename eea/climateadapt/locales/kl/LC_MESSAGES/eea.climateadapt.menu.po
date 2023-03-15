@@ -296,6 +296,14 @@ msgstr ""
 msgid "Glossary"
 msgstr ""
 
+#:
+msgid "Ground-level ozone"
+msgstr ""
+
+#:
+msgid "Ground-level ozone forecast (CAMS)"
+msgstr ""
+
 #: site_menu:91
 msgid "Guidance to search function"
 msgstr ""
@@ -434,6 +442,10 @@ msgstr ""
 
 #: health_menu:12
 msgid "Policy context"
+msgstr ""
+
+#:
+msgid "Pollution"
 msgstr ""
 
 #: health_menu:30

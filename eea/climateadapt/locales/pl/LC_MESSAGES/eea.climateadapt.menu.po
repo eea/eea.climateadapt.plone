@@ -989,6 +989,14 @@ msgstr "Leśnictwo"
 msgid "Glossary"
 msgstr "Słownik"
 
+#:
+msgid "Ground-level ozone"
+msgstr "Ozonu w warstwie przyziemnej"
+
+#:
+msgid "Ground-level ozone forecast (CAMS)"
+msgstr "Prognoza ozonu w warstwie przyziemnej (CAMS)"
+
 # ,
 # ,
 # ,
@@ -1465,6 +1473,10 @@ msgstr "PRAKTYKA"
 #: health_menu:12
 msgid "Policy context"
 msgstr "Kontekst polityczny"
+
+#:
+msgid "Pollution"
+msgstr "Zanieczyszczenie"
 
 # ,
 # ,

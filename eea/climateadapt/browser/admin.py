@@ -8,6 +8,8 @@ from io import BytesIO as StringIO
 from apiclient.discovery import build
 from DateTime import DateTime
 from eea.climateadapt import CcaAdminMessageFactory as _
+from eea.climateadapt.browser.fixblobs import (check_at_blobs, 
+                                               check_dexterity_blobs)
 from eea.climateadapt.browser.migrate import DB_ITEM_TYPES
 from eea.climateadapt.browser.site import _extract_menu
 from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
@@ -26,6 +28,7 @@ from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.directives import form
 from plone.i18n.normalizer import idnormalizer
 from plone.indexer.interfaces import IIndexer
+from plone.dexterity.utils import datify
 from plone.memoize import view
 from plone.registry.interfaces import IRegistry
 from plone.tiles.interfaces import ITileDataManager
@@ -783,6 +786,246 @@ class GoPDB(BrowserView):
     def __call__(self):
         import pdb
         pdb.set_trace()
+        x = self.context.Creator()
+
+
+class GetBrokenCreationDates(BrowserView):
+    """ Get all objects with broken 'creator' and 'creation_date' and fix it
+    by getting the creator/creation_date from workflow_history
+    """
+    zone = DateTime().timezone()
+    bl_users = ('ghitab', 'tibiadmin', 'tibi', 'tiberich', 'eugentripon', 
+        'iulianpetchesi', 'krisztina')
+
+    def date_to_iso(self, date_time):
+        if not date_time:
+            return None
+
+        date = datify(date_time)
+        return date.toZone(self.zone).ISO()
+
+    def get_new_creator(self, creators, wf_creator):
+        if wf_creator not in self.bl_users:
+            return wf_creator
+
+        filtered_creators = [
+            x for x in creators
+            if x not in self.bl_users
+        ]
+
+        if filtered_creators:
+            return filtered_creators[0]
+
+        return ''
+
+    def results(self):
+        catalog = api.portal.get_tool("portal_catalog")
+
+        brains = catalog.searchResults(path='/cca/en')
+        res = []
+
+        for brain in brains:
+            try:
+                obj = brain.getObject()
+                creator = obj.Creator()
+            except:
+                continue
+            
+            if creator not in self.bl_users:
+                continue
+
+            creation_date = obj.CreationDate()
+            wfh = obj.workflow_history
+            wf_creator = None
+            wf_creation_date = None
+
+            wf_data = [
+                (x['actor'], x['time'])
+                for x in wfh.get('cca_webpages_workflow', {})
+                if x['action'] is None
+            ]
+
+            if not wf_data:
+                wf_data = [
+                    (x['actor'], x['time'])
+                    for x in wfh.get('cca_items_workflow', {})
+                    if x['action'] is None
+                ]
+
+            if wf_data:
+                wf_creator, wf_creation_date = wf_data[0]
+            
+            if not wf_creator:
+                continue
+
+            if wf_creator == creator:
+                continue
+
+            if self.date_to_iso(wf_creation_date) == creation_date:
+                continue
+            
+            # if wf_creator in self.bl_users:
+                # continue
+
+            if 'copy_of_' in obj.absolute_url():
+                continue
+
+            new_creator = self.get_new_creator(obj.creators, wf_creator)
+
+            if not new_creator:
+                continue
+
+            res.append((obj, creator, wf_creator, new_creator, creation_date, 
+                wf_creation_date))
+
+        return res
+
+    def results_string_dates(self):
+        catalog = api.portal.get_tool("portal_catalog")
+
+        brains = catalog.searchResults(path='/cca/en')
+        res = []
+
+        for brain in brains:
+            try:
+                obj = brain.getObject()
+            except:
+                continue
+
+            if not hasattr(obj, 'creation_date'):
+                continue
+
+            if not isinstance(obj.creation_date, basestring):
+                continue
+            
+            res.append(obj)
+
+        return res
+    
+    def fix_string_dates(self):
+        results = self.results_string_dates()
+
+        for obj in results:
+            wfh = obj.workflow_history
+
+            new_creation_date = [
+                x['time']
+                for x in wfh.get('cca_webpages_workflow', {})
+                if x['action'] is None
+            ]
+
+            if not new_creation_date:
+                new_creation_date = [
+                    x['time']
+                    for x in wfh.get('cca_items_workflow', {})
+                    if x['action'] is None
+                ]
+
+            new_creation_date = new_creation_date and new_creation_date[0] or ''
+
+            if not new_creation_date:
+                continue
+
+            obj.creation_date = new_creation_date
+            obj._p_changed = True
+            obj.reindexObject(idxs=["creators", "creation_date"])
+
+        return "Fixed {} results!".format(len(results))
+
+    def fix_broken_dates(self):
+        results = self.results()
+
+        for row in results:
+            obj = row[0]
+
+            if obj.portal_type in ('File', 'Image'):
+                continue
+
+            if check_at_blobs(obj) or check_dexterity_blobs(obj):
+                continue
+
+            new_creator = row[3]
+            new_creation_date = row[5]
+            creators = [
+                x for x in obj.creators if x != new_creator   
+            ]
+            creators = tuple([new_creator] + creators)
+            obj.creators = creators
+            obj.creation_date = new_creation_date
+            obj._p_changed = True
+            obj.reindexObject(idxs=["creators", "creation_date"])
+            
+        return "Fixed {} objects!".format(len(results))
+
+    def __call__(self):
+        if "fix-broken-dates" in self.request.form:
+            return self.fix_broken_dates()
+
+        if "fix-string-dates" in self.request.form:
+            return self.fix_string_dates()
+
+        if "string-dates" in self.request.form:
+            results = self.results_string_dates()
+
+            return [x.absolute_url() for x in results] or 'No results!'
+
+        return self.index()
+        
+
+class GetMissingLanguages(BrowserView):
+    """ Get all objects with missing 'language' field
+    """
+
+    def results(self):
+        catalog = api.portal.get_tool("portal_catalog")
+
+        brains = catalog.searchResults(path='/cca')
+        res = []
+
+        for brain in brains:
+            try:
+                obj = brain.getObject()
+            except:
+                continue
+            
+            language = getattr(obj, 'language')
+
+            if language:
+                continue
+
+            language_from_path = obj.getPhysicalPath()[2]
+
+            if len(language_from_path) != 2:
+                continue
+            
+            if language == language_from_path:
+                continue
+
+            res.append((obj, language, language_from_path))
+
+        return res
+
+    def fix_languages(self):
+        results = self.results()
+
+        for row in results:
+            obj = row[0]
+
+            language_from_path = row[2]
+
+            obj.language = language_from_path
+            obj._p_changed = True
+            obj.reindexObject(idxs=["language"])
+            
+        return "Fixed {} objects!".format(len(results))
+
+    def __call__(self):
+        if "fix-languages" in self.request.form:
+            return self.fix_languages()
+
+        # return "Missing language from {} objects".format(len(self.results()))
+
+        return self.index()
 
 
 class MigrateTiles(BrowserView):

@@ -353,6 +353,14 @@ msgstr "Metsandus"
 msgid "Glossary"
 msgstr "Sõnastik"
 
+#:
+msgid "Ground-level ozone"
+msgstr ""
+
+#:
+msgid "Ground-level ozone forecast (CAMS)"
+msgstr ""
+
 # ,
 #: site_menu:91
 msgid "Guidance to search function"
@@ -516,6 +524,10 @@ msgstr "Praktika"
 #: health_menu:12
 msgid "Policy context"
 msgstr "Poliitikakontekst"
+
+#:
+msgid "Pollution"
+msgstr ""
 
 # ,
 #: health_menu:30

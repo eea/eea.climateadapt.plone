@@ -1,0 +1,18 @@
+<table>
+    <tr>
+        <th>URL</th>
+        <th>Creator</th>
+        <th>WF Creator</th>
+        <th>NEW Creator</th>
+        <th>Creation Date</th>
+        <th>WF Creation Date</th>
+    </tr>
+    <tr tal:repeat="row view/results">
+        <td tal:content="python: row[0].absolute_url()"></td>
+        <td tal:content="python: row[1]"></td>
+        <td tal:content="python: row[2]"></td>
+        <td tal:content="python: row[3]"></td>
+        <td tal:content="python: row[4]"></td>
+        <td tal:content="python: view.date_to_iso(row[5])"></td>
+    </tr>
+</table>

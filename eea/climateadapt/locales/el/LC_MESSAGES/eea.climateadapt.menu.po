@@ -353,6 +353,14 @@ msgstr "Δασοκομία"
 msgid "Glossary"
 msgstr "Γλωσσάριο"
 
+#:
+msgid "Ground-level ozone"
+msgstr ""
+
+#:
+msgid "Ground-level ozone forecast (CAMS)"
+msgstr ""
+
 # ,
 #: site_menu:91
 msgid "Guidance to search function"
@@ -516,6 +524,10 @@ msgstr "ΠΡΑΚΤΙΚΗ"
 #: health_menu:12
 msgid "Policy context"
 msgstr "Πολιτική πλαίσιο"
+
+#:
+msgid "Pollution"
+msgstr ""
 
 # ,
 #: health_menu:30

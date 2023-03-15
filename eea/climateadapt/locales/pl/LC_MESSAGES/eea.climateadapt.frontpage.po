@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-01-04 21:14+0000\n"
+"POT-Creation-Date: 2023-02-22 10:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -249,7 +249,7 @@ msgstr "Broszura z studiami przypadków"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1458
+#: ../theme/climateadaptv2/index.html:1456
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Sprawdź <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> i zarejestruj się, aby otrzymać go w e-mailu:"
 
@@ -421,7 +421,7 @@ msgstr "Energia"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1371
+#: ../theme/climateadaptv2/index.html:1369
 msgid "Events"
 msgstr "Wydarzenia"
 
@@ -664,7 +664,7 @@ msgstr "Monitorowanie &amp; Ocena (M&amp;E)"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1430
+#: ../theme/climateadaptv2/index.html:1428
 msgid "More events"
 msgstr "Więcej wydarzeń"
 
@@ -674,7 +674,7 @@ msgstr "Więcej wydarzeń"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1401
+#: ../theme/climateadaptv2/index.html:1399
 msgid "More news"
 msgstr "Więcej wiadomości"
 
@@ -698,7 +698,7 @@ msgstr "Nowość"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1368
+#: ../theme/climateadaptv2/index.html:1366
 msgid "News"
 msgstr "Aktualności"
 
@@ -712,7 +712,7 @@ msgstr "Aktualności"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1444
+#: ../theme/climateadaptv2/index.html:1442
 msgid "Newsletter"
 msgstr "Biuletyn"
 
@@ -773,7 +773,7 @@ msgstr "Publikacje i raporty"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1447
+#: ../theme/climateadaptv2/index.html:1445
 msgid "RSS feed"
 msgstr "Kanał RSS"
 
@@ -783,7 +783,7 @@ msgstr "Kanał RSS"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1358
+#: ../theme/climateadaptv2/index.html:1356
 msgid "Read more"
 msgstr "Przeczytaj więcej"
 
@@ -878,7 +878,7 @@ msgstr "Udostępnij <span> twoje informacje </span>"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1460
+#: ../theme/climateadaptv2/index.html:1458
 msgid "Sign me up!"
 msgstr "Zarejestruj mnie!"
 
@@ -892,7 +892,7 @@ msgstr "Zarejestruj mnie!"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1477
+#: ../theme/climateadaptv2/index.html:1475
 msgid "Subscribe"
 msgstr "Subskrybuj"
 
@@ -906,16 +906,9 @@ msgstr "Subskrybuj"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1475
+#: ../theme/climateadaptv2/index.html:1473
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "Subskrybuj nasz <strong> kanał RSS </strong> <br /> i bądź na bieżąco!"
-
-# ,
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:1346
-msgid "The 2022-2024 Climate-ADAPT Strategy"
-msgstr "Strategia Climate-ADAPT na lata 2022-2024"
 
 # ,
 # ,
@@ -930,6 +923,10 @@ msgstr "Strategia Climate-ADAPT na lata 2022-2024"
 #: ../theme/climateadaptv2/index.html:510
 msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
 msgstr "Europejski Eksplorator Danych Klimatycznych zapewnia interaktywny dostęp do wielu wskaźników klimatycznych z usługi Copernicus Climate Change Service w celu wsparcia adaptacji do zmian klimatu."
+
+#: ../theme/climateadaptv2/index.html:1346
+msgid "The European Climate Risk Assessment"
+msgstr "Europejska Ocena Ryzyka Klimatycznego"
 
 # ,
 # ,
@@ -1119,13 +1116,6 @@ msgstr "Sprawdź nasze ${page_url}, aby uzyskać więcej pomocy na temat szukani
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1349
-msgid "informs about how Climate-ADAPT will be further expanded with new knowledge compoments towards becoming 'the authoritative European platform for adaptation' and outlines priority actions..."
-msgstr "informuje o tym, w jaki sposób Climate-ADAPT będzie dalej rozszerzany o nowe elementy wiedzy, aby stać się \"autorytatywną europejską platformą adaptacji\" i przedstawia działania priorytetowe..."
-
-# ,
-# ,
-# ,
 # ,
 # ,
 # ,
@@ -1135,3 +1125,7 @@ msgstr "informuje o tym, w jaki sposób Climate-ADAPT będzie dalej rozszerzany 
 #: ../theme/climateadaptv2/index.html:654
 msgid "type here ..."
 msgstr "pisz tutaj ..."
+
+#: ../theme/climateadaptv2/index.html:1349
+msgid "will assess current and future climate change impacts and risks relating to the environment, economy and wider society in Europe."
+msgstr "oceni obecne i przyszłe skutki zmian klimatu i zagrożenia dla środowiska, gospodarki i ogółu społeczeństwa w Europie."

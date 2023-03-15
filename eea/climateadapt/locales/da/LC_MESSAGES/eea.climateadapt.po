@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-01-04 21:14+0000\n"
+"POT-Creation-Date: 2023-02-22 10:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
-#: ../../climateadapt/vocabulary.py:449
+#: ../../climateadapt/vocabulary.py:451
 msgid "-NONSPECIFIC-"
 msgstr ""
 
@@ -357,7 +357,7 @@ msgid "Adaptation Details"
 msgstr "Tilpasningsoplysninger"
 
 # ,
-#: ../../climateadapt/vocabulary.py:331
+#: ../../climateadapt/vocabulary.py:333
 msgid "Adaptation Measures and Actions"
 msgstr "Tilpasningstiltag og handlinger"
 
@@ -375,7 +375,7 @@ msgid "Adaptation Options categories"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:332
+#: ../../climateadapt/vocabulary.py:334
 msgid "Adaptation Plans and Strategies"
 msgstr "Tilpasningsplaner og strategier"
 
@@ -440,7 +440,7 @@ msgid "Adriatic-Ionian"
 msgstr ""
 
 # ,
-#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:57
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:196
 msgid "Advanced search for Climate-Adapt database items <a href=\"/redirect_to_search_page\">here</a>"
 msgstr "Avanceret søgning efter klima-adapt databaseemner <a href=\"/Redirect_to_search_page\"> her </a>"
 
@@ -454,7 +454,7 @@ msgstr ""
 msgid "Agriculture"
 msgstr "Landbrug"
 
-#: ../../climateadapt/vocabulary.py:447
+#: ../../climateadapt/vocabulary.py:449
 msgid "Air pollution and aero-allergens"
 msgstr ""
 
@@ -647,7 +647,7 @@ msgstr ""
 msgid "Climate-ADAPT case studies"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:445
+#: ../../climateadapt/vocabulary.py:447
 msgid "Climate-sensitive diseases"
 msgstr ""
 
@@ -684,7 +684,7 @@ msgid "Contact person"
 msgstr "Kontaktperson"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:37
-#: ../../climateadapt/browser/pt/c3sindicator_view.pt:222
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:223
 #: ../../climateadapt/browser/pt/c3sindicator_view0.pt:174
 msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
 msgstr ""
@@ -794,11 +794,11 @@ msgid "Download the detailed agenda <a href=\"${DYNAMIC_CONTENT}\">here</a>"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:339
+#: ../../climateadapt/vocabulary.py:341
 msgid "Droughts"
 msgstr "Tørke"
 
-#: ../../climateadapt/vocabulary.py:444
+#: ../../climateadapt/vocabulary.py:446
 msgid "Droughts and floods"
 msgstr ""
 
@@ -887,7 +887,7 @@ msgid "External source"
 msgstr "Ekstern kilde"
 
 # ,
-#: ../../climateadapt/vocabulary.py:340
+#: ../../climateadapt/vocabulary.py:342
 msgid "Extreme Temperatures"
 msgstr "Ekstreme temperaturer"
 
@@ -918,7 +918,7 @@ msgid "Find out how to contribute different types of information to Climate-ADAP
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:341
+#: ../../climateadapt/vocabulary.py:343
 msgid "Flooding"
 msgstr "Oversvømmelse"
 
@@ -1072,7 +1072,7 @@ msgstr "Sundhed"
 msgid "Health impact:"
 msgstr "Sundhedspåvirkning:"
 
-#: ../../climateadapt/vocabulary.py:443
+#: ../../climateadapt/vocabulary.py:445
 msgid "Heat"
 msgstr ""
 
@@ -1095,7 +1095,7 @@ msgid "IPCC categories"
 msgstr "IPCC -kategorier"
 
 # ,
-#: ../../climateadapt/vocabulary.py:342
+#: ../../climateadapt/vocabulary.py:344
 msgid "Ice and Snow"
 msgstr "Is og sne"
 
@@ -1157,15 +1157,15 @@ msgstr ""
 msgid "Information portals"
 msgstr "Informationsportaler"
 
-#: ../../climateadapt/vocabulary.py:541
+#: ../../climateadapt/vocabulary.py:543
 msgid "Institutional: Economic options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:543
+#: ../../climateadapt/vocabulary.py:545
 msgid "Institutional: Government policies and programmes"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:542
+#: ../../climateadapt/vocabulary.py:544
 msgid "Institutional: Law and regulations"
 msgstr ""
 
@@ -1188,11 +1188,11 @@ msgstr "Nøgleaktiviteter inden for klimaændringer og sundhed"
 msgid "Key vulnerable sectors"
 msgstr "Nøgle sårbare sektorer"
 
-#: ../../climateadapt/browser/admin.py:550
+#: ../../climateadapt/browser/admin.py:560
 msgid "Keyword succesfully deleted: ${kw_old}."
 msgstr ""
 
-#: ../../climateadapt/browser/admin.py:580
+#: ../../climateadapt/browser/admin.py:590
 msgid "Keyword succesfully renamed: ${kw_old} to ${kw_new}."
 msgstr ""
 
@@ -1349,7 +1349,7 @@ msgstr ""
 msgid "National adaption policy"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:322
+#: ../../climateadapt/vocabulary.py:324
 msgid "Nature-based solutions"
 msgstr ""
 
@@ -1409,7 +1409,7 @@ msgid "Objectives"
 msgstr "Mål"
 
 # ,
-#: ../../climateadapt/vocabulary.py:329
+#: ../../climateadapt/vocabulary.py:331
 msgid "Observations and Scenarios"
 msgstr "Observationer og scenarier"
 
@@ -1644,21 +1644,21 @@ msgid "Scroll to top"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:343
+#: ../../climateadapt/vocabulary.py:345
 msgid "Sea Level Rise"
 msgstr "Stigning i havniveauet"
 
-#: ../../climateadapt/browser/pt/observatory_indicators_search.pt:98
+#: ../../climateadapt/browser/pt/observatory_indicators_search.pt:101
 msgid "Search"
 msgstr ""
 
 # ,
-#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:64
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:203
 msgid "Search results"
 msgstr "Søgeresultater"
 
 # ,
-#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:73
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:212
 msgid "Search results for: ${term}"
 msgstr "Søgeresultater for: $ {term}"
 
@@ -1676,7 +1676,7 @@ msgid "Sector"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:333
+#: ../../climateadapt/vocabulary.py:335
 msgid "Sector Policies"
 msgstr "Sektorpolitikker"
 
@@ -1737,19 +1737,19 @@ msgstr ""
 msgid "Share your information"
 msgstr "Del dine oplysninger"
 
-#: ../../climateadapt/browser/pt/observatory_indicators_search.pt:105
+#: ../../climateadapt/browser/pt/observatory_indicators_search.pt:108
 msgid "Show all sources"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:540
+#: ../../climateadapt/vocabulary.py:542
 msgid "Social: Behavioural"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:538
+#: ../../climateadapt/vocabulary.py:540
 msgid "Social: Educational options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:539
+#: ../../climateadapt/vocabulary.py:541
 msgid "Social: Informational"
 msgstr ""
 
@@ -1796,23 +1796,23 @@ msgid "Status"
 msgstr "Status"
 
 # ,
-#: ../../climateadapt/vocabulary.py:344
+#: ../../climateadapt/vocabulary.py:346
 msgid "Storms"
 msgstr "Storme"
 
-#: ../../climateadapt/vocabulary.py:536
+#: ../../climateadapt/vocabulary.py:538
 msgid "Structural and physical: Ecosystem-based adaptation options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:534
+#: ../../climateadapt/vocabulary.py:536
 msgid "Structural and physical: Engineering and built environment options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:537
+#: ../../climateadapt/vocabulary.py:539
 msgid "Structural and physical: Service options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:535
+#: ../../climateadapt/vocabulary.py:537
 msgid "Structural and physical: Technological options"
 msgstr ""
 
@@ -2011,7 +2011,7 @@ msgid "View on DRMKC"
 msgstr "Vis på DRMKC"
 
 # ,
-#: ../../climateadapt/vocabulary.py:330
+#: ../../climateadapt/vocabulary.py:332
 msgid "Vulnerability Assessment"
 msgstr "Sårbarhedsvurdering"
 
@@ -2021,7 +2021,7 @@ msgid "Warning: this will reset/invalidate tokens on all selected cities"
 msgstr "ADVARSEL: Dette nulstiller/ugyldige tokens på alle udvalgte byer"
 
 # ,
-#: ../../climateadapt/vocabulary.py:345
+#: ../../climateadapt/vocabulary.py:347
 msgid "Water Scarcity"
 msgstr "Vandmangel"
 
@@ -2072,7 +2072,7 @@ msgstr ""
 msgid "Where:"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:448
+#: ../../climateadapt/vocabulary.py:450
 msgid "Wildfires"
 msgstr ""
 
@@ -2095,17 +2095,17 @@ msgid "inhabitants"
 msgstr "indbyggere"
 
 #. Default: "Filter the results."
-#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:111
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:250
 msgid "narrow_search_options"
 msgstr ""
 
 # ,
 #. Default: "Sort by"
-#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:312
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:451
 msgid "sort_by"
 msgstr "Sorter efter"
 
 #. Default: "Located in"
-#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:402
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"
 msgstr ""

@@ -124,6 +124,22 @@
       />
 
   <browser:page
+      name="get-broken-creation-dates"
+      for="*"
+      class=".admin.GetBrokenCreationDates"
+      permission="cmf.ManagePortal"
+      template="pt/get_broken_creation_dates.pt"
+      />
+
+  <browser:page
+      name="get-missing-languages"
+      for="*"
+      class=".admin.GetMissingLanguages"
+      permission="cmf.ManagePortal"
+      template="pt/get_missing_languages.pt"
+      />
+
+  <browser:page
       name="migrate-tiles"
       for="*"
       class=".admin.MigrateTiles"
@@ -174,4 +190,18 @@
       permission="cmf.ManagePortal"
       />
 
+    <browser:page
+        for="*"
+        name="fix-blobs-only-check"
+        class=".fixblobs.FixBlobsOnlyCheck"
+        template="pt/fixblobs.pt"
+        permission="cmf.ManagePortal"
+        />
+
+   <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="fix-blobs-imsure-delete"
+        class=".fixblobs.FixBlobs"
+        permission="cmf.ManagePortal"
+        />
 </configure>

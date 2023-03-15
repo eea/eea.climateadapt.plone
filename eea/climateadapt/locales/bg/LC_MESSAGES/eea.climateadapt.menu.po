@@ -353,6 +353,14 @@ msgstr "горско стопанство"
 msgid "Glossary"
 msgstr "Терминологичен речник"
 
+#:
+msgid "Ground-level ozone"
+msgstr ""
+
+#:
+msgid "Ground-level ozone forecast (CAMS)"
+msgstr ""
+
 # ,
 #: site_menu:91
 msgid "Guidance to search function"
@@ -516,6 +524,10 @@ msgstr "Практика"
 #: health_menu:12
 msgid "Policy context"
 msgstr "Контекст на политиката"
+
+#:
+msgid "Pollution"
+msgstr ""
 
 # ,
 #: health_menu:30

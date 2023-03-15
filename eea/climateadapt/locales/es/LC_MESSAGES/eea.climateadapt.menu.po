@@ -927,6 +927,14 @@ msgstr "Silvicultura"
 msgid "Glossary"
 msgstr "Glosario"
 
+#:
+msgid "Ground-level ozone"
+msgstr "Ozono en el suelo"
+
+#:
+msgid "Ground-level ozone forecast (CAMS)"
+msgstr "Pronóstico de ozono en el suelo (CAMS)"
+
 # ,
 # ,
 # ,
@@ -1373,6 +1381,10 @@ msgstr "PRÁCTICA"
 #: health_menu:12
 msgid "Policy context"
 msgstr "Contexto político"
+
+#:
+msgid "Pollution"
+msgstr "Contaminación"
 
 # ,
 # ,

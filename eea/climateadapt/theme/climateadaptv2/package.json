@@ -19,7 +19,7 @@
     "grunt-postcss": "^0.8.0",
     "grunt-template-html": "^0.1.4",
     "gruntcli": "0.0.2-security",
-    "handlebars": "^4.7.6",
+    "handlebars": "^4.7.7",
     "load-grunt-tasks": "^3.4.1",
     "merge": "^1.2.0"
   },

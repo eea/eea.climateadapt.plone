@@ -587,6 +587,14 @@ msgstr "Silvicultură"
 msgid "Glossary"
 msgstr "Glosar"
 
+#:
+msgid "Ground-level ozone"
+msgstr ""
+
+#:
+msgid "Ground-level ozone forecast (CAMS)"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -858,6 +866,10 @@ msgstr "PRACTICĂ"
 #: health_menu:12
 msgid "Policy context"
 msgstr "Contextul politic"
+
+#:
+msgid "Pollution"
+msgstr ""
 
 # ,
 # ,

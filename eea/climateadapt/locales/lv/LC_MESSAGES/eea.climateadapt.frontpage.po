@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-01-04 21:14+0000\n"
+"POT-Creation-Date: 2023-02-22 10:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,7 +127,7 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1458
+#: ../theme/climateadaptv2/index.html:1456
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Pārbaudiet <a href=\"../newsletter\"> Eiropas klimata adaptācijas biļetenu </a> un reģistrējieties, lai to saņemtu savā e-pastā:"
 
@@ -207,7 +207,7 @@ msgstr "Enerģija"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1371
+#: ../theme/climateadaptv2/index.html:1369
 msgid "Events"
 msgstr "Notikumi"
 
@@ -324,11 +324,11 @@ msgstr "Jūras un zvejniecības"
 msgid "Monitoring &amp; Evaluation (M&amp;E)"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1430
+#: ../theme/climateadaptv2/index.html:1428
 msgid "More events"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1401
+#: ../theme/climateadaptv2/index.html:1399
 msgid "More news"
 msgstr ""
 
@@ -338,13 +338,13 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1368
+#: ../theme/climateadaptv2/index.html:1366
 msgid "News"
 msgstr "Jaunumi"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1444
+#: ../theme/climateadaptv2/index.html:1442
 msgid "Newsletter"
 msgstr "Biļetens"
 
@@ -373,11 +373,11 @@ msgstr "Publikācijas un ziņojumi"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1447
+#: ../theme/climateadaptv2/index.html:1445
 msgid "RSS feed"
 msgstr "RSS barība"
 
-#: ../theme/climateadaptv2/index.html:1358
+#: ../theme/climateadaptv2/index.html:1356
 msgid "Read more"
 msgstr ""
 
@@ -420,31 +420,31 @@ msgstr "Dalīties ar <span> savu informāciju </span>"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1460
+#: ../theme/climateadaptv2/index.html:1458
 msgid "Sign me up!"
 msgstr "Pieraksti mani!"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1477
+#: ../theme/climateadaptv2/index.html:1475
 msgid "Subscribe"
 msgstr "Abonēt"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1475
+#: ../theme/climateadaptv2/index.html:1473
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "Abonējiet mūsu <strong> RSS plūsmu </strong> <br /> un sekojiet līdzi!"
-
-#: ../theme/climateadaptv2/index.html:1346
-msgid "The 2022-2024 Climate-ADAPT Strategy"
-msgstr ""
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:510
 msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
 msgstr "Eiropas klimata datu pārlūkprogramma nodrošina interaktīvu piekļuvi daudziem Copernicus klimata pārmaiņu pakalpojuma klimata indeksiem, lai atbalstītu klimata pārmaiņu adaptāciju."
+
+#: ../theme/climateadaptv2/index.html:1346
+msgid "The European Climate Risk Assessment"
+msgstr ""
 
 # ,
 # ,
@@ -537,11 +537,11 @@ msgstr ""
 msgid "guidance_link"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1349
-msgid "informs about how Climate-ADAPT will be further expanded with new knowledge compoments towards becoming 'the authoritative European platform for adaptation' and outlines priority actions..."
-msgstr ""
-
 # ,
 #: ../theme/climateadaptv2/index.html:654
 msgid "type here ..."
 msgstr "raksti šeit ..."
+
+#: ../theme/climateadaptv2/index.html:1349
+msgid "will assess current and future climate change impacts and risks relating to the environment, economy and wider society in Europe."
+msgstr ""

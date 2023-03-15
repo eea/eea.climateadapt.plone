@@ -1,0 +1,12 @@
+<table>
+    <tr>
+        <th>URL</th>
+        <th>Language</th>
+        <th>Language from Path</th>
+    </tr>
+    <tr tal:repeat="row view/results">
+        <td tal:content="python: row[0].absolute_url()"></td>
+        <td tal:content="python: row[1]"></td>
+        <td tal:content="python: row[2]"></td>
+    </tr>
+</table>

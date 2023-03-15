@@ -1,6 +1,7 @@
 import json
 import logging
 
+from Acquisition import aq_base
 from collective.cover.interfaces import ICover, ISearchableText
 from eea.climateadapt.aceitem import IAceItem, IC3sIndicator
 from eea.climateadapt.behaviors.aceproject import IAceProject
@@ -9,18 +10,12 @@ from eea.climateadapt.behaviors.casestudy import ICaseStudy
 from eea.climateadapt.city_profile import ICityProfile
 from eea.climateadapt.interfaces import IClimateAdaptContent, INewsEventsLinks
 from plone.api.portal import get_tool
+from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
 from Products.CMFPlone.utils import safe_unicode
-from sumy.nlp.stemmers import Stemmer
-from sumy.nlp.tokenizers import Tokenizer
-from sumy.parsers.plaintext import PlaintextParser
-from sumy.summarizers.lsa import LsaSummarizer as Summarizer
-from sumy.utils import get_stop_words
 from zope.annotation.interfaces import IAnnotations
 from zope.component import queryAdapter
 from zope.interface import Interface
-from plone.dexterity.interfaces import IDexterityContent
-from Acquisition import aq_base
 
 # from eea.climateadapt.browser.frontpage_slides import IRichImage
 # from plone.rfc822.interfaces import IPrimaryFieldInfo
@@ -191,7 +186,7 @@ def _get_aceitem_description(object):
 
 
 @indexer(IC3sIndicator)
-def get_aceitem_description(object):
+def get_aceitem_description_indicator(object):
     return _get_aceitem_description(object)
 
 
@@ -221,7 +216,7 @@ SENTENCES_COUNT = 2
 
 @indexer(ICover)
 def cover_description(obj):
-    """Simplify the long description rich text in a simple 2 paragraphs
+    """Simplify the long description rich text in a simple max 200 chars
     "summary"
     """
 
@@ -244,7 +239,7 @@ def cover_description(obj):
         else:
             try:
                 data = portal_transforms.convertTo(
-                    "text/plain", tile_obj.getText(), mimetype="text/html"
+                    "text/plain", tile_obj["text"].raw, mimetype="text/html"
                 )
                 text.append(data.getData().strip())
             except Exception:
@@ -252,20 +247,8 @@ def cover_description(obj):
 
     text = [safe_unicode(entry) for entry in text if entry]
 
-    text = ".".join(text)
-    parser = PlaintextParser.from_string(text, Tokenizer(LANGUAGE))
-
-    stemmer = Stemmer(LANGUAGE)
-    summarizer = Summarizer(stemmer)
-    summarizer.stop_words = get_stop_words(LANGUAGE)
-
-    text = []
-    for sentence in summarizer(parser.document, SENTENCES_COUNT):
-        text.append(sentence._text)
-
     text = " ".join(text)
-    # print("Description", text)
-    return text
+    return text[:200]
 
 
 @indexer(IDexterityContent)

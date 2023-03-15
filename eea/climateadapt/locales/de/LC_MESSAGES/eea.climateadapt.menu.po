@@ -994,6 +994,14 @@ msgstr "Forstwirtschaft"
 msgid "Glossary"
 msgstr "Glossar"
 
+#:
+msgid "Ground-level ozone"
+msgstr "Bodennahes Ozon"
+
+#:
+msgid "Ground-level ozone forecast (CAMS)"
+msgstr "Bodennahes Ozonprognose (CAMS)"
+
 # ,
 # ,
 # ,
@@ -1476,6 +1484,10 @@ msgstr "Praktische Umsetzung"
 #: health_menu:12
 msgid "Policy context"
 msgstr "Politischer Kontext"
+
+#:
+msgid "Pollution"
+msgstr "Umweltverschmutzung"
 
 # ,
 # ,

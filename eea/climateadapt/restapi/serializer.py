@@ -1,12 +1,14 @@
 from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy
-from eea.climateadapt.interfaces import IClimateAdaptContent
+from eea.climateadapt.browser import get_date_updated, get_files
 from eea.climateadapt.browser.adaptationoption import find_related_casestudies
+from eea.climateadapt.interfaces import (IClimateAdaptContent,
+                                         IEEAClimateAdaptInstalled)
+from plone.app.contenttypes.interfaces import IFolder
+from plone.dexterity.interfaces import IDexterityContent
+from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.serializer.dxcontent import SerializeToJson
 from zope.component import adapter
 from zope.interface import Interface
-from plone.restapi.serializer.converters import json_compatible
-from eea.climateadapt.browser import get_date_updated
-from eea.climateadapt.browser import get_files
 
 
 def append_common_new_fields(result, item):
@@ -18,7 +20,26 @@ def append_common_new_fields(result, item):
         get_date_updated(item)["cadapt_published"]
     )
     result["is_cca_content"] = True
+    result["language"] = getattr(item, "language", "")
+
     return result
+
+
+@adapter(IDexterityContent, IEEAClimateAdaptInstalled)
+class LanguageGenericSerializer(SerializeToJson):
+    def __call__(self, version=None, include_items=True):
+        result = super(LanguageGenericSerializer, self).__call__(
+            version=None, include_items=True
+        )
+        item = self.context
+        result["language"] = getattr(item, "language", "")
+
+        return result
+
+
+@adapter(IFolder, Interface)
+class LanguageFolderSerializer(LanguageGenericSerializer):
+    """"""
 
 
 @adapter(IClimateAdaptContent, Interface)
