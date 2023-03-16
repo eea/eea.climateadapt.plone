@@ -3,7 +3,7 @@ from eea.climateadapt.browser import get_date_updated, get_files
 from eea.climateadapt.browser.adaptationoption import find_related_casestudies
 from eea.climateadapt.interfaces import (IClimateAdaptContent,
                                          IEEAClimateAdaptInstalled)
-from plone.app.contenttypes.interfaces import IFolder
+# from plone.app.contenttypes.interfaces import IFolder
 from plone.dexterity.interfaces import IDexterityContainer, IDexterityContent
 from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.serializer.dxcontent import (SerializeFolderToJson,
@@ -27,9 +27,9 @@ def append_common_new_fields(result, item):
 
 
 @adapter(IDexterityContainer, IEEAClimateAdaptInstalled)
-class LanguageGenericSerializer(SerializeFolderToJson):
+class LanguageGenericFolderSerializer(SerializeFolderToJson):
     def __call__(self, version=None, include_items=True):
-        result = super(LanguageGenericSerializer, self).__call__(
+        result = super(LanguageGenericFolderSerializer, self).__call__(
             version=None, include_items=True
         )
         item = self.context
@@ -50,9 +50,9 @@ class LanguageGenericSerializer(SerializeToJson):
         return result
 
 
-@adapter(IFolder, Interface)
-class LanguageFolderSerializer(LanguageGenericSerializer):
-    """"""
+# @adapter(IFolder, Interface)
+# class LanguageFolderSerializer(LanguageGenericSerializer):
+#     """"""
 
 
 @adapter(IClimateAdaptContent, Interface)
