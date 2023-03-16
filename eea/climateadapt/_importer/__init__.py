@@ -1,4 +1,4 @@
-raise ValueError("Should not be imported")
+# raise ValueError("Should not be imported")
 
 import json
 import os
@@ -220,7 +220,7 @@ def import_adaptationoption(data, location):
         implementation_time=t2r(data.implementationtime),
         implementation_type=data.implementationtype,
         #keywords=s2l(data.keywords, separators=[';', ',']),
-        #keywords=t2r(data.keywords),
+        # keywords=t2r(data.keywords),
         keywords=s2l(r2t(data.keywords), separators=[';', ',']),
         legal_aspects=t2r(data.legalaspects),
         lifetime=t2r(data.lifetime),
@@ -238,7 +238,7 @@ def import_adaptationoption(data, location):
         success_limitations=t2r(data.succeslimitations),
         title=data.name,
         year=int(data.year or '0'),
-        #websites=s2l(data.website),
+        # websites=s2l(data.website),
         websites=s2l(r2t(html_unescape(data.website))),
         governance_level=s2l(data.geos_),
         category=s2l(data.category),
@@ -355,7 +355,7 @@ def import_image(data, location):
         file_data = open('./document_library/0/0/' + name).read()
     except IOError:
         logger.error("Image with id %d does not exist in the supplied "
-                       "document library", data.imageid)
+                     "document library", data.imageid)
 
         return None
 
@@ -419,8 +419,8 @@ def import_dlfileentry(data, location):
 
     if not os.path.exists(fpath):
         logger.error("File with id %d and title '%s' does not exist in the "
-                       "supplied document library", data.fileentryid,
-                       data.title)
+                     "supplied document library", data.fileentryid,
+                     data.title)
 
         return None
 
@@ -452,7 +452,7 @@ def import_dlfileentry(data, location):
                      data.name,
                      data.fileentryid,
                      data.largeimageid,
-                     #data.smallimageid,
+                     # data.smallimageid,
                      ])
     IAnnotations(item)['eea.climateadapt.imported_ids'] = PersistentList(info)
 
@@ -532,8 +532,8 @@ portlet_importers = {   # import specific portlets by their ID
 }
 
 WATCH = [
-#   '/observations-and-scenarios',
-#   u'/transnational-regions/baltic-sea/policy-framework'
+    #   '/observations-and-scenarios',
+    #   u'/transnational-regions/baltic-sea/policy-framework'
 ]
 
 
@@ -556,7 +556,8 @@ def import_layout(layout, site):
         return
 
     if layout.friendlyurl in WATCH:
-        import pdb; pdb.set_trace()
+        import pdb
+        pdb.set_trace()
 
     settings = parse_settings(layout.typesettings)
 
@@ -577,8 +578,8 @@ def import_layout(layout, site):
     logger.debug("Importing layout %s at url %s with template %s",
                  layout.layoutid, layout.friendlyurl, template)
 
-    is_column = lambda s: (s.startswith('column-')
-                           and not s.endswith('-customizable'))
+    def is_column(s): return (s.startswith('column-')
+                              and not s.endswith('-customizable'))
 
     structure = {}
 
@@ -686,13 +687,13 @@ def import_city_profile(container, journal):
 
     mpttt = map_titles_to_tokens
     c = container
-    map_climate_impacts                 = mpttt(c, aceitem_climateimpacts_vocabulary)
-    map_country                         = mpttt(c, ace_countries_vocabulary)
+    map_climate_impacts = mpttt(c, aceitem_climateimpacts_vocabulary)
+    map_country = mpttt(c, ace_countries_vocabulary)
     map_status_of_major_adapt_signature = mpttt(c, status_of_adapt_signature_vocabulary)
-    map_impacted_sectors                = mpttt(c, aceitem_sectors_vocabulary)
-    map_stage_of_implementation         = mpttt(c, stage_implementation_cycle_vocabulary)
-    map_adaptation_strategy             = mpttt(c, already_devel_adapt_strategy_vocabulary)
-    map_elements                        = mpttt(c, aceitem_elements_vocabulary)
+    map_impacted_sectors = mpttt(c, aceitem_sectors_vocabulary)
+    map_stage_of_implementation = mpttt(c, stage_implementation_cycle_vocabulary)
+    map_adaptation_strategy = mpttt(c, already_devel_adapt_strategy_vocabulary)
+    map_elements = mpttt(c, aceitem_elements_vocabulary)
 
     def map_to_x(x):
         res = map_adaptation_strategy(x)
@@ -827,7 +828,7 @@ def import_city_profile(container, journal):
         if img:
             mapped_data['picture'] = img.image
 
-    _publish = journal.status == 0 # is this a published city?
+    _publish = journal.status == 0  # is this a published city?
 
     geoloc_lat = s2d(mapped_data.pop('city_latitude'))
     geoloc_long = s2d(mapped_data.pop('city_longitude'))
@@ -856,7 +857,7 @@ def import_city_profiles(site):
         template_pks[name] = data.templatekey
 
     _id = template_pks['City Profile']
-    cp = defaultdict(lambda:[])
+    cp = defaultdict(lambda: [])
     query = session.query(sql.Journalarticle).filter_by(templateid=_id)
 
     for data in query:
@@ -868,16 +869,16 @@ def import_city_profiles(site):
     for city_name in cp:
         if city_name and city_name != '-':
             cities = cp[city_name]
-            cities.sort(key=lambda d:d.version)
+            cities.sort(key=lambda d: d.version)
             to_import.append(cities[-1])
 
     if not 'city-profile' in site.contentIds():
         city_profiles_folder = createAndPublishContentInContainer(
-        site,
-        'Folder',
-        id='city-profile',
-        title='City Profiles',
-    )
+            site,
+            'Folder',
+            id='city-profile',
+            title='City Profiles',
+        )
     city_profiles_folder = site['city-profile']
     imported = []
     to_import = sorted(to_import, key=lambda x: x.title)
@@ -997,9 +998,9 @@ def import_template_transnationalregion(site, layout, structure):
     # column-3 is unknown and will be ignored
     # Ex: /countries/liechtenstein
 
-    assert(len(structure) >= 2)
-    assert(len(structure['column-1']) == 1)
-    assert(len(structure['column-2']) == 1)
+    assert (len(structure) >= 2)
+    assert (len(structure['column-1']) == 1)
+    assert (len(structure['column-2']) == 1)
 
     payload = structure['column-2'][0]
     portletid, records = payload
@@ -1047,7 +1048,7 @@ def import_template_transnationalregion(site, layout, structure):
     cover.aq_parent.edit(title=structure['name'])
     stamp_cover(cover, layout)
 
-    #image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
+    # image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
     image = get_repofile_by_id(site, image_info['id'])
     image_tile = make_countries_dropdown_tile(cover, image)
     content_tile = make_richtext_tile(cover, {'title': 'main content',
@@ -1079,11 +1080,11 @@ def import_template_ace_layout_2(site, layout, structure):
 
         return
 
-    assert(len(structure) == 5)
-    assert(len(structure['column-1']) == 1)
-    assert(len(structure['column-2']) == 1)
-    assert(len(structure['column-3']) == 1)
-    assert(len(structure['column-4']) == 1)
+    assert (len(structure) == 5)
+    assert (len(structure['column-1']) == 1)
+    assert (len(structure['column-2']) == 1)
+    assert (len(structure['column-3']) == 1)
+    assert (len(structure['column-4']) == 1)
 
     name = structure['name']
     cover = create_cover_at(site, layout.friendlyurl, title=str(name))
@@ -1141,8 +1142,8 @@ def import_template_ace_layout_col_1_2(site, layout, structure):
     # iframe (or just plain html text) on the right
     # example page: http://adapt-test.eea.europa.eu//tools/urban-adaptation/climatic-threats/heat-waves/sensitivity
 
-    assert(len(structure) == 3)
-    assert(len(structure['column-1']) == 1)
+    assert (len(structure) == 3)
+    assert (len(structure['column-1']) == 1)
 
     title = strip_xml(structure['name'])
     cover = create_cover_at(site, layout.friendlyurl, title=title)
@@ -1462,9 +1463,9 @@ def _import_template_urban_ast(site, layout, structure, nav_tile_maker,
     #                  'portletSetupUseCustomTitle': u'false',
     #                  'step': u'5'}),
 
-    assert(len(structure) >= 3)
-    assert(len(structure['column-1']) == 1)
-    assert(len(structure['column-2']) >= 2)
+    assert (len(structure) >= 3)
+    assert (len(structure['column-1']) == 1)
+    assert (len(structure['column-2']) >= 2)
 
     section_title = structure['column-2'][1][1]['portlet_title']
 
@@ -1533,7 +1534,7 @@ def import_template_1_2_columns_i(site, layout, structure):
     # TODO: column-2 and column-3 - simplefilterportlet
     # there's only one page, here: /map-viewer
     logger.error("Please investigate this importer %s with template %s",
-                   layout.friendlyurl, '1_2_columns_i')
+                 layout.friendlyurl, '1_2_columns_i')
     raise ValueError
 
     return
@@ -1548,11 +1549,11 @@ def import_template_1_2_columns_ii(site, layout, structure):
     # row 1: text + image
     # row 2: share button
 
-    assert(len(structure) == 2 or len(structure) == 3)
-    assert(len(structure['column-1']) == 1)
+    assert (len(structure) == 2 or len(structure) == 3)
+    assert (len(structure['column-1']) == 1)
 
     if len(structure) > 2:
-        assert(len(structure['column-2']) == 1)
+        assert (len(structure['column-2']) == 1)
 
     content_portlet = structure['column-1'][0][1]['content']
 
@@ -1570,7 +1571,6 @@ def import_template_1_2_columns_ii(site, layout, structure):
     cover.setLayout('standard')
     alsoProvides(cover, IClimateAdaptSharePage)
     stamp_cover(cover, layout)
-
 
     share_portlet = None
     share_portlet_title = ""
@@ -1819,7 +1819,7 @@ def import_template_2_columns_i(site, layout, structure):
     # ex: /countries
     # TODO: fix images linking
 
-    assert(len(structure) in [2, 3])
+    assert (len(structure) in [2, 3])
 
     title = structure['name']
 
@@ -1866,7 +1866,7 @@ def import_template_2_columns_ii(site, layout, structure):
 
     if len(structure) == 1:  # this is a fake page. Ex: /adaptation-sectors
         logger.error("Please investigate this importer %s with template %s",
-                       layout.friendlyurl, '2_columns_ii')
+                     layout.friendlyurl, '2_columns_ii')
         raise ValueError
 
     if layout.friendlyurl == u'/mayors-adapt/register':
@@ -1895,7 +1895,7 @@ def import_template_2_columns_iii(site, layout, structure):
 
     # ex: /organisations
 
-    assert(len(structure) == 2 or len(structure) == 3)
+    assert (len(structure) == 2 or len(structure) == 3)
 
     # title = structure['name']
     title = structure['column-1'][0][1]['portlet_title']
@@ -2016,7 +2016,7 @@ def import_template_2_columns_iii(site, layout, structure):
 
     if len(structure) == 3:
         # column-2 has a image
-        assert(len(structure['column-2']) == 1)
+        assert (len(structure['column-2']) == 1)
         image = structure['column-2'][0][1]['content'][0]
 
     # Fix images
@@ -2052,7 +2052,7 @@ def import_template_ace_layout_1(site, layout, structure):
     # ex page: /home (may be just a mockup for home page)
 
     logger.error("Please investigate this importer %s with template %s",
-                   layout.friendlyurl, 'ace_layout_1')
+                 layout.friendlyurl, 'ace_layout_1')
     raise ValueError
 
 
@@ -2087,7 +2087,7 @@ def import_template_ace_layout_5(site, layout, structure):
     alsoProvides(cover.aq_parent, ITransnationalRegionMarker)
     cover.aq_parent.reindexObject(idxs=('object_provides',))
 
-    main_info = {'title': main_title, 'text': main_text }
+    main_info = {'title': main_title, 'text': main_text}
     image_info = {
         'id': image,
         'description': '',
@@ -2163,7 +2163,7 @@ def _import_transnational_region_page(site, layout, structure):
     cover.aq_parent.reindexObject(idxs=('object_provides',))
     cover.aq_parent.edit(title=_info['title'])
 
-    main_info = {'title': _info['title'], 'text': _info['main_text'] }
+    main_info = {'title': _info['title'], 'text': _info['main_text']}
     image_info = {
         'id': _info['image'],
         'description': '',
@@ -2199,11 +2199,11 @@ def import_template_faq(site, layout, structure):
     # TODO: fix styling of columns
     # TODO: fix images path
 
-    assert(len(structure) == 5)
-    assert(len(structure['column-1']) == 1)
-    assert(len(structure['column-2']) == 1)
-    assert(len(structure['column-3']) == 1)
-    assert(len(structure['column-4']) == 1)
+    assert (len(structure) == 5)
+    assert (len(structure['column-1']) == 1)
+    assert (len(structure['column-2']) == 1)
+    assert (len(structure['column-3']) == 1)
+    assert (len(structure['column-4']) == 1)
 
     main_text = structure['column-1'][0][1]['content'][0]
     col1 = structure['column-2'][0][1]['content'][0]
@@ -2295,30 +2295,29 @@ def import_template_frontpage(site, layout, structure):
                                       "view_name": "fp-newsletter-tile"})
 
     latest_updates_tile = make_view_tile(cover,
-                                     {'title': "Latest updates",
-                                      "view_name": "fp-latest-updates-tile"})
+                                         {'title': "Latest updates",
+                                          "view_name": "fp-latest-updates-tile"})
 
     eu_sector_policies_tile = make_view_tile(cover,
-                                     {'title': "EU Sector Policies",
-                                      "view_name": "fp-sector-policies-tile"})
+                                             {'title': "EU Sector Policies",
+                                              "view_name": "fp-sector-policies-tile"})
 
     eu_funding_tile = make_view_tile(cover,
                                      {'title': "EU Funding and Adaptation",
                                       "view_name": "fp-funding-tile"})
 
     eu_climate_policy_tile = make_view_tile(cover,
-                                     {'title': "EU Climate Policy",
-                                      "view_name": "fp-climate-policy-tile"})
-
+                                            {'title': "EU Climate Policy",
+                                             "view_name": "fp-climate-policy-tile"})
 
     row_1 = make_row(make_group(12, carousel_tile))
     row_2 = make_row(*[make_group(3, tile) for tile in [ast_tile,
-                                                             countries_tile,
-                                                             casestudies_tile,
-                                                             shareinfo_tile]])
+                                                        countries_tile,
+                                                        casestudies_tile,
+                                                        shareinfo_tile]])
     row_3 = make_row(*[make_group(3, tile) for tile in
-                           [news_tile, events_tile, newsletter_tile,
-                            latest_updates_tile]])
+                       [news_tile, events_tile, newsletter_tile,
+                        latest_updates_tile]])
     row_4 = make_row(make_group(12, eu_sector_policies_tile))
     row_5 = make_row(*[make_group(6, tile) for tile in [eu_funding_tile,
                                                         eu_climate_policy_tile]])
@@ -2398,7 +2397,8 @@ def import_journal_articles(site):
                          (event.absolute_url(), str(publish_date)))
         else:
             print "no structure id"
-            import pdb; pdb.set_trace()
+            import pdb
+            pdb.set_trace()
 
     parent = create_folder_at(site, '/news-archive')
     parent.edit(title="News Archive")
@@ -2519,11 +2519,11 @@ def import_aceitems(session, site):
     # because case studies have references to adaptation options
     q = session.query(sql.AceMeasure)
 
-    for acemeasure in q.filter(sql.AceMeasure.mao_type!='A'):
+    for acemeasure in q.filter(sql.AceMeasure.mao_type != 'A'):
         import_adaptationoption(acemeasure, get_default_location(site,
-                                                                    'MEASURE'))
+                                                                 'MEASURE'))
 
-    for acemeasure in q.filter(sql.AceMeasure.mao_type=='A'):
+    for acemeasure in q.filter(sql.AceMeasure.mao_type == 'A'):
         import_casestudy(acemeasure, get_default_location(site, 'ACTION'))
 
     fix_casestudy_images(site)
@@ -2579,7 +2579,8 @@ def run_importer(site=None):
     fix_relations(session)
 
     if 'dbshell' in sys.argv:
-        import pdb; pdb.set_trace()
+        import pdb
+        pdb.set_trace()
 
     if site is None:
         site = get_plone_site()
@@ -2777,7 +2778,7 @@ def tweak_site(site):
         site,
         'Document',
         title=u'More latest updates',
-        text = t2r(_content)
+        text=t2r(_content)
     )
 
 

@@ -1,29 +1,33 @@
 # -*- coding: utf-8 -*-
-import urllib2
+import json
 import logging
-import transaction
-import json, requests
-from admin import Item
-from DateTime import DateTime
-from lxml.etree import fromstring
-from six.moves.html_parser import HTMLParser
-from persistent.mapping import PersistentMapping
-from zope.annotation.interfaces import IAnnotations
 
+import requests
+import transaction
+import urllib2
+from DateTime import DateTime
+from eea.climateadapt._importer import utils as u
+from lxml.etree import fromstring
+from persistent.mapping import PersistentMapping
 from plone import api
 from plone.i18n.normalizer import idnormalizer
-from eea.climateadapt._importer import utils as u
+from six.moves.html_parser import HTMLParser
+from zope.annotation.interfaces import IAnnotations
+
+from admin import Item
 
 html_unescape = HTMLParser().unescape
 logger = logging.getLogger('eea.climateadapt')
+
 
 class DRMKCItem:
     def __init__(self, result):
         for attr in result.keys():
             setattr(self, attr, result[attr])
 
+
 class DRMKCImporter():
-    def __init__ (self, site):
+    def __init__(self, site):
         self.container = site['metadata']['projects']
         self.url = 'https://drmkc.jrc.ec.europa.eu/API/ProjectsExplorer/Query/Filter'
         self.payload = """{"Operator": "AND",
@@ -45,7 +49,7 @@ class DRMKCImporter():
             "Types": [
             "project"
             ]}"""
-        self.headers = {'Content-type':'application/json'}
+        self.headers = {'Content-type': 'application/json'}
 
     def get_response(self):
         response = requests.post(self.url, data=self.payload, headers=self.headers)
@@ -59,14 +63,14 @@ class DRMKCImporter():
             title=f.Title,
             long_description=u.t2r(f.Description),
             creation_date=DateTime(f.CreatedOnDate),
-            acronym =f.Acronym,
-            source ='DRMKC',
-            lead =f.CreatedByUser[u'DisplayName'],
+            acronym=f.Acronym,
+            source='DRMKC',
+            lead=f.CreatedByUser[u'DisplayName'],
             partners=u.t2r(''),
             sectors=[],
             climate_impacts=[],
-            geochars = '',
-            rating = 0,
+            geochars='',
+            rating=0,
             websites=()
             # f.Country,
             # f.EndDate,
@@ -94,13 +98,13 @@ class DRMKCImporter():
             # f.Years,
             # f.Score
             # f.getGeoProperties
-            )
+        )
 
         annot = IAnnotations(item)
         annot['import_id'] = import_id
         logger.warning('CREATING: %s', f.Title)
         return item
-    
+
     def update_obj(self, f):
         item = self.update_content_in_container(
             self.container,
@@ -109,14 +113,14 @@ class DRMKCImporter():
             title=f.Title,
             long_description=u.t2r(f.Description),
             creation_date=DateTime(f.CreatedOnDate),
-            acronym =f.Acronym,
-            source ='DRMKC',
-            lead =f.CreatedByUser[u'DisplayName'],
+            acronym=f.Acronym,
+            source='DRMKC',
+            lead=f.CreatedByUser[u'DisplayName'],
             partners=u.t2r(''),
             sectors=[],
             climate_impacts=[],
-            geochars = '',
-            rating = 0,
+            geochars='',
+            rating=0,
             websites=()
             # rating= f.Score,
             # f.Country,
@@ -145,7 +149,7 @@ class DRMKCImporter():
             # f.TotalEcContributionPerYear,
             # f.Years,
             # f.getGeoProperties
-            )
+        )
 
         logger.warning('UPDATING: %s. Last modified %s', obj.title, obj.modified())
         return item
@@ -156,16 +160,16 @@ class DRMKCImporter():
         item = self.container[shortname]
 
         for attr in kwargs.keys():
-            setattr(item, attr, kwargs[attr]) #(object, name, value)
+            setattr(item, attr, kwargs[attr])  # (object, name, value)
 
         item.reindexObject()
         item._p_changed = True
 
         return item
-    
+
     def response_import(self, result):
-        if not result['CreatedByUser']: ### edgecase when result['CreatedByUser'] is None
-            result['CreatedByUser'] =  {u'DisplayName': u''}
+        if not result['CreatedByUser']:  # edgecase when result['CreatedByUser'] is None
+            result['CreatedByUser'] = {u'DisplayName': u''}
 
         f = DRMKCItem(result)
         import_id = f.Id
@@ -180,16 +184,16 @@ class DRMKCImporter():
 
         annot = getattr(original.aq_inner.aq_self, '__annotations__', {})
         test_id = annot.get('original_import_id')
-        
+
         if (test_id == import_id) and (last_modified > original.modified()):
             return self.update_obj(f, shortname)
         else:
             if not hasattr(original.aq_inner.aq_self, '__annotations__'):
                 original.__annotations__ = PersistentMapping()
-            
+
             original.__annotations__['original_import_id'] = import_id
             raise NoUpdates
-    
+
     def __call__(self):
         response = self.get_response()
         for result in response['Result']:
@@ -197,7 +201,7 @@ class DRMKCImporter():
                 obj = self.response_import(result)
             except NoUpdates:
                 continue
-        
+
         transaction.commit()
 
 
@@ -213,7 +217,7 @@ class AdapteCCACaseStudyImporter():
 
     def __init__(self, site):
         self.case_studies_folder = site['metadata']['case-studies']
-    
+
     def t_sectors(self, l):
         # Translate values to their CCA equivalent
 
@@ -362,11 +366,11 @@ class AdapteCCACaseStudyImporter():
 
         v = [x.strip() for x in v.split(',')]
         v = {"geoElements":
-                {"element": "EUROPE", "macrotrans": None,
+             {"element": "EUROPE", "macrotrans": None,
                  "biotrans": [map.get(x, '') for x in v], "countries": [],
-                 "subnational":[], "city":"",
-                 }
-            }
+                 "subnational": [], "city": "",
+              }
+             }
         return json.dumps(v)
 
     def update_content_in_container(self, shortname, *args, **kwargs):
@@ -375,7 +379,7 @@ class AdapteCCACaseStudyImporter():
         item = self.case_studies_folder[shortname]
 
         for attr in kwargs.keys():
-            setattr(item, attr, kwargs[attr]) #(object, name, value)
+            setattr(item, attr, kwargs[attr])  # (object, name, value)
 
         item.reindexObject()
         item._p_changed = True
@@ -402,7 +406,7 @@ class AdapteCCACaseStudyImporter():
         else:
             if not hasattr(original.aq_inner.aq_self, '__annotations__'):
                 original.__annotations__ = PersistentMapping()
-            
+
             original.__annotations__['original_import_id'] = import_id
             raise NoUpdates
 
@@ -509,7 +513,7 @@ class AdapteCCACaseStudyImporter():
 
         logger.warning('UPDATING: %s. Last modified %s', obj.title, obj.modified())
         return item
-        
+
     def __call__(self):
         response = urllib2.urlopen('http://bio.devplx.com/adaptecca/cases_en.xml')
         AdapteCCA_data = response.read()
@@ -520,7 +524,7 @@ class AdapteCCACaseStudyImporter():
                 transaction.commit()
             except NoUpdates:
                 continue
-            
+
             logger.warning(item.absolute_url())
 
         return 'AdapteCCA case study importer'
