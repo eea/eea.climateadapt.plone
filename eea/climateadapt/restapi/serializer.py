@@ -4,9 +4,10 @@ from eea.climateadapt.browser.adaptationoption import find_related_casestudies
 from eea.climateadapt.interfaces import (IClimateAdaptContent,
                                          IEEAClimateAdaptInstalled)
 from plone.app.contenttypes.interfaces import IFolder
-from plone.dexterity.interfaces import IDexterityContent
+from plone.dexterity.interfaces import IDexterityContainer, IDexterityContent
 from plone.restapi.serializer.converters import json_compatible
-from plone.restapi.serializer.dxcontent import SerializeToJson
+from plone.restapi.serializer.dxcontent import (SerializeFolderToJson,
+                                                SerializeToJson)
 from zope.component import adapter
 from zope.interface import Interface
 
@@ -23,6 +24,18 @@ def append_common_new_fields(result, item):
     result["language"] = getattr(item, "language", "")
 
     return result
+
+
+@adapter(IDexterityContainer, IEEAClimateAdaptInstalled)
+class LanguageGenericSerializer(SerializeFolderToJson):
+    def __call__(self, version=None, include_items=True):
+        result = super(LanguageGenericSerializer, self).__call__(
+            version=None, include_items=True
+        )
+        item = self.context
+        result["language"] = getattr(item, "language", "")
+
+        return result
 
 
 @adapter(IDexterityContent, IEEAClimateAdaptInstalled)
@@ -59,7 +72,7 @@ class ClimateAdaptContentSerializer(SerializeToJson):
 
 
 @adapter(IAdaptationOption, Interface)
-class AdaptationOptionSerializer(SerializeToJson):
+class AdaptationOptionSerializer(SerializeFolderToJson):        # SerializeToJson
     def __call__(self, version=None, include_items=True):
         result = super(AdaptationOptionSerializer, self).__call__(
             version=None, include_items=True
@@ -71,7 +84,7 @@ class AdaptationOptionSerializer(SerializeToJson):
 
 
 @adapter(ICaseStudy, Interface)
-class CaseStudySerializer(SerializeToJson):
+class CaseStudySerializer(SerializeFolderToJson):       # SerializeToJson
     def __call__(self, version=None, include_items=True):
         result = super(CaseStudySerializer, self).__call__(
             version=None, include_items=True
