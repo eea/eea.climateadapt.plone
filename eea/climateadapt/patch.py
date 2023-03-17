@@ -47,15 +47,20 @@ def results(self, query=None, batch=True, b_size=10, b_start=0):
     query = self.filter_query(query)
 
     # Customization start -----------------------------------------------------
+    try:
+        default_language = self.request.cookies.get("I18N_LANGUAGE", "en")
+    except Exception:
+        default_language = "en"
+
     languages = ["en", "fr", "de", "it", "pl", "es"]
     try:
-        lang = self.request.form.get("language", None)
+        lang = self.request.form.get("language", default_language)
         if lang in languages:
             language = lang
         else:
             language = "all"
     except Exception:
-        language = "all"
+        language = default_language
 
     if language == "all":
         updated_path = "/cca"
