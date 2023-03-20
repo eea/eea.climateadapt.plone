@@ -27,7 +27,7 @@ def find_related_casestudies(item):
     # test = intids.getId(aq_inner(item))
 
     for rel in catalog.findRelations(
-        dict(to_id=intids.getId(aq_inner(item)),
+        dict(to_id=intids.getId(aq_inner(item).aq_self),
              from_attribute='adaptationoptions')
     ):
         obj = intids.queryObject(rel.from_id)

@@ -56,13 +56,13 @@
   <include package=".restapi" />
   <include package=".behaviors" />
   <include package=".translation" />
+  <include package=".migration" />
 
   <include file="skins.zcml" />
   <include file="profiles.zcml" />
   <include file="stringinterp.zcml" />
   <include file="cache.zcml" />
   <include file="contentrules.zcml" />
-  <include file="restapi.zcml" />
   <include file="theme.zcml" />
 
   <browser:jbot
@@ -192,6 +192,11 @@
   <adapter
       factory=".catalog.cover_description"
       name="Description"
+      />
+
+  <adapter
+      factory=".catalog.image_field_indexer"
+      name="image_field"
       />
 
   <!-- <adapter name="getObjSize" factory=".catalog.getObjSize_image" /> -->
@@ -514,4 +519,11 @@
       original="results"
       preserveOriginal="false"
       replacement="eea.climateadapt.patch.results" />
+
+  <monkey:patch
+      description="Refs #162035 - Make internal ZCatalog compatible with Plone 6"
+      class="plone.restapi.serializer.summary.DefaultJSONSummarySerializer"
+      original="metadata_fields"
+      preserveOriginal="false"
+      replacement="eea.climateadapt.patch.metadata_fields" />
 </configure>

@@ -1,6 +1,7 @@
 import json
 import logging
 
+from Acquisition import aq_base
 from collective.cover.interfaces import ICover, ISearchableText
 from eea.climateadapt.aceitem import IAceItem, IC3sIndicator
 from eea.climateadapt.behaviors.aceproject import IAceProject
@@ -9,6 +10,7 @@ from eea.climateadapt.behaviors.casestudy import ICaseStudy
 from eea.climateadapt.city_profile import ICityProfile
 from eea.climateadapt.interfaces import IClimateAdaptContent, INewsEventsLinks
 from plone.api.portal import get_tool
+from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
 from Products.CMFPlone.utils import safe_unicode
 from zope.annotation.interfaces import IAnnotations
@@ -247,3 +249,21 @@ def cover_description(obj):
 
     text = " ".join(text)
     return text[:200]
+
+
+@indexer(IDexterityContent)
+def image_field_indexer(obj):
+    """Indexer for knowing in a catalog search if a content has any image."""
+    base_obj = aq_base(obj)
+
+    image_field = ""
+    if getattr(base_obj, "preview_image", False):
+        image_field = "preview_image"
+    elif (
+        getattr(base_obj, "preview_image_link", False)
+        and not base_obj.preview_image_link.isBroken()
+    ):
+        image_field = "preview_image_link"
+    elif getattr(base_obj, "image", False):
+        image_field = "image"
+    return image_field

@@ -11,7 +11,15 @@
     i18n_domain="eea.climateadapt"
     >
 
-  <adapter factory=".restapi.long_converter" />
-  <adapter factory=".restapi.geolocation_converter" />
+  <browser:page
+    name="volto_migrate"
+    for="*"
+    class=".views.MigrateContent"
+    permission="cmf.ManagePortal"
+    />
+
+  <adapter
+      factory=".cover.MigrateCover"
+      />
 
 </configure>

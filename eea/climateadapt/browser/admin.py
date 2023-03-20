@@ -82,11 +82,13 @@ class CheckCopyPasteLocation(BrowserView):
             (self.context, self.request), name="plone_portal_state")
 
         member = portal_state.member()
+
         try:
             if member.name == 'Anonymous User':
                 return False
         except Exception:
             pass  # 161069 Error while rendering plone.contentactions
+
         user = portal_state.member().getUser().getId()
         groups = getToolByName(self, 'portal_groups').getGroupsByUserId(user)
 
