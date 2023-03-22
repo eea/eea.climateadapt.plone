@@ -1,4 +1,6 @@
-<configure xmlns="http://namespaces.zope.org/zope">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone">
 
   <adapter factory=".serializer.LanguageGenericSerializer"/>
   <adapter factory=".serializer.LanguageGenericFolderSerializer"/>
@@ -9,5 +11,19 @@
   <adapter factory=".long_converter" />
   <adapter factory=".geolocation_converter" />
   <adapter factory=".richtext_value_converter" />
+
+  <adapter
+    factory=".workflow.WorkflowInfo"
+    name="workflow"
+    />
+
+  <plone:service
+    method="GET"
+    factory=".workflow.WorkflowInfoService"
+    for="Products.CMFCore.interfaces.IContentish"
+    permission="zope2.View"
+    name="@workflow"
+    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    />
 
 </configure>
