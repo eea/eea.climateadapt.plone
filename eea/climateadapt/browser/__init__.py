@@ -122,9 +122,10 @@ class AceViewApi(object):
     @view.memoize
     def html2text(self, html):
         if not isinstance(html, basestring):
-            return ""
+            return u""
         portal_transforms = api.portal.get_tool(name="portal_transforms")
-        data = portal_transforms.convertTo("text/plain", html, mimetype="text/html")
+        data = portal_transforms.convertTo(
+            "text/plain", html, mimetype="text/html")
         text = data.getData()
 
         return text.strip()
@@ -163,7 +164,7 @@ class AceViewApi(object):
     def _render_geochar_element(self, value):
         value = BIOREGIONS[value]
 
-        return "<p>{0}</p>".format(value)
+        return u"<p>{0}</p>".format(value)
         # if value == 'Global':
         #     return value + u"<br/>"
         # else:
@@ -171,36 +172,36 @@ class AceViewApi(object):
 
     def _render_geochar_macrotrans(self, value):
         tpl = (
-            "<div class='sidebar_bold'>"
-            "<h5>"
+            u"<div class='sidebar_bold'>"
+            u"<h5>"
             + self.translate_text(_("Macro-Transnational region"))
-            + ":</h5><p>{0}</p></div>"
+            + u":</h5><p>{0}</p></div>"
         )
 
         return tpl.format(", ".join([BIOREGIONS[x] for x in value]))
 
     def _render_geochar_biotrans(self, value):
         tpl = (
-            "<div class='sidebar_bold'>"
-            "<h5>"
+            u"<div class='sidebar_bold'>"
+            u"<h5>"
             + self.translate_text(_("Biogeographical regions"))
-            + ":</h5><p>{0}</p></div>"
+            + u":</h5><p>{0}</p></div>"
         )
 
         return tpl.format(", ".join([BIOREGIONS.get(x, x) for x in value]))
 
     def _render_geochar_countries(self, value):
         tpl = (
-            "<div class='sidebar_bold'><h5>"
+            u"<div class='sidebar_bold'><h5>"
             + self.translate_text(_("Countries"))
-            + ":</h5><p>{0}</p></div>"
+            + u":</h5><p>{0}</p></div>"
         )
 
         return tpl.format(", ".join(self.get_countries(value)))
 
     def _render_geochar_subnational(self, value):
         label = self.translate_text(_("Sub Nationals"))
-        tpl = "<div class='sidebar_bold'>" "<h5>%s:</h5><p>{0}</p></div>" % label
+        tpl = u"<div class='sidebar_bold'>" u"<h5>%s:</h5><p>{0}</p></div>" % label
         # tpl = u"<div class='sidebar_bold'>" u"<h5>"+_(u"Sub Nationals")+":</h5><p>{0}</p></div>"
 
         # a list like: ['SUBN_Marche__IT_']
@@ -217,7 +218,7 @@ class AceViewApi(object):
             else:
                 logger.error("Subnational region not found: %s", line)
 
-        text = ", ".join([x.decode("utf-8") for x in out])
+        text = u", ".join([x.decode("utf-8") for x in out])
 
         return tpl.format(text)
 
@@ -225,9 +226,9 @@ class AceViewApi(object):
         text = value
 
         if isinstance(value, (list, tuple)):
-            text = ", ".join(value)
+            text = u", ".join(value)
 
-        return "<div class='sidebar_bold'>" "<h5>{0}:</h5><p>{1}</p></div>".format(
+        return u"<div class='sidebar_bold'>" "<h5>{0}:</h5><p>{1}</p></div>".format(
             self.translate_text(_("City")), text
         )
 
@@ -242,7 +243,7 @@ class AceViewApi(object):
         #                   "city":""}}'
 
         if not value:
-            return ""
+            return u""
 
         value = json.loads(value)
 
@@ -330,7 +331,8 @@ class AceViewApi(object):
         groups_tool = getToolByName(self.context, "portal_groups")
         user = mt.getAuthenticatedMember()
 
-        user_groups = [group.id for group in groups_tool.getGroupsByUserId(user.id)]
+        user_groups = [
+            group.id for group in groups_tool.getGroupsByUserId(user.id)]
         to_check = [
             "extranet-cca-reviewers",
             "Administrators",
