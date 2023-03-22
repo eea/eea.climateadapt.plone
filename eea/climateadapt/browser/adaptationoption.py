@@ -35,7 +35,7 @@ def find_related_casestudies(item):
         if obj is not None and checkPermission('zope2.View', obj):
             obj_state = api.content.get_state(obj)
 
-            if obj_state == 'published':
+            if obj_state == 'published' and obj.language == item.language:
                 res.append({
                     'title': obj.title,
                     'url': obj.absolute_url()
@@ -49,7 +49,7 @@ def find_related_casestudies(item):
             continue
 
         obj_state = api.content.get_state(obj)
-        if obj_state == 'published':
+        if obj_state == 'published' and obj.language == item.language:
             res.append({
                 'title': obj.title,
                 'url': obj.absolute_url()
