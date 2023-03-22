@@ -1,0 +1,106 @@
+<div class="climate-adapt-platforms-dynamic-area" xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  i18n:domain="eea.climateadapt.frontpage">
+  <ul class="nav nav-tabs flex-wrapper policies-nav">
+    <li class="climate-adapt-platforms-nav-item active">
+      <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/agriculture')"
+          href="/eu-adaptation-policy/sector-policies/agriculture"
+         data-toggle="tab" class="policies-nav-link" data-target="#platforms">
+        <div class="policy-icons agriculture"></div>
+        <p i18n:translate="">European Climate Data Explorer</p>
+      </a>
+    </li>
+    <li class="climate-adapt-platforms-nav-item">
+      <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/biodiversity')"
+          href="/eu-adaptation-policy/sector-policies/biodiversity"
+         data-toggle="tab" class="policies-nav-link" data-target="#observatory" >
+         <div class="policy-icons biodiversity"></div>
+         <p i18n:translate="">European Climate and Health Observatory</p>
+      </a>
+    </li>
+    <li class="climate-adapt-platforms-nav-item">
+      <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/buildings')"
+          href="/eu-adaptation-policy/sector-policies/buildings"
+         data-toggle="tab" class="policies-nav-link" data-target="#eumission">
+        <div class="policy-icons buildings"></div>
+        <p i18n:translate="">EU Mission on Adaptation</p>
+      </a>
+    </li>
+    <li class="climate-adapt-platforms-nav-item">
+      <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/coastal-areas')"
+          href="/eu-adaptation-policy/sector-policies/coastal-areas"
+         data-toggle="tab" class="policies-nav-link" data-target="#eucra">
+        <div class="policy-icons coastal"></div>
+        <p i18n:translate="">European Climate Risk Assesments<br />(EUCRA)</p>
+      </a>
+    </li>
+  </ul>
+
+  <div class="tab-content policies-tab-content">
+
+    <!-- Platforms -->
+    <div id="platforms" class="tab-pane active">
+      <div class="row">
+        <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+          <img data-src="{{ themeurl }}static/images/eupolicy/agriculture.png"
+               class="lazyload"
+               alt="Agriculture" title="Agriculture"/>
+        </div>
+        <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+          <h3 i18n:translate="">European Climate Data Explorer</h3>
+          <p i18n:translate="">Climate change has complex effects on the bio-physical processes that underpin agricultural systems, with both negative and positive consequences in different EU regions. Rising atmospheric CO2 concentration, higher temperatures, changes in precipitation patterns and in frequency of extreme events both affect the natural environment as well as the quantity, quality and stability of food production. Climatic variations impact on water resources, soils, pests and diseases, leading to significant changes in agriculture and livestock production.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Observatory -->
+    <div id="observatory" class="tab-pane">
+      <div class="row">
+        <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+          <img data-src="{{ themeurl }}static/images/eupolicy/biodiversity.png"
+               class="lazyload"
+               alt="Biodiversity" title="Biodiversity"/>
+        </div>
+        <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+          <h3 i18n:translate="">European Climate and Health Observatory</h3>
+          <p i18n:translate="">Biodiversity plays an important role in regulating the climate, thus making a key contribution to climate change mitigation and adaptation.  At the same time, meeting mitigation targets coupled with ecosystem-based approaches is essential to avert biodiversity loss.  Therefore it is impossible to address biodiversity loss without addressing climate change, but it is equally impossible to tackle climate change without addressing biodiversity loss.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EuMission -->
+    <div id="eumission" class="tab-pane">
+      <div class="row">
+        <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+          <img data-src="{{ themeurl }}static/images/eupolicy/buildings.png"
+               class="lazyload"
+               alt="Buildings" title="Buildings"/>
+        </div>
+        <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+          <h3 i18n:translate="">EU Mission on Adaptation</h3>
+          <p i18n:translate="">Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings  need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy). </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- eucra -->
+    <div id="eucra" class="tab-pane">
+      <div class="row">
+        <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+          <img data-src="{{ themeurl }}static/images/eupolicy/coastal.png"
+               class="lazyload"
+               alt="Coastal areas" title="Coastal areas"/>
+        </div>
+        <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+          <h3 i18n:translate="">European Climate Risk Assesments</h3>
+          <p i18n:translate="">Sea level rise can cause flooding, coastal erosion and the loss of low-lying coastal systems. It will also increase the risk of storm surges and the likelihood of landward intrusion of saltwater and may endanger coastal ecosystems. Expected rises in water temperatures and ocean acidification will contribute to a restructuring of coastal ecosystems; with implications for ocean circulation and biogeochemical cycling.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
