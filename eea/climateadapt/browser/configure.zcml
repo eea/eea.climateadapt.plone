@@ -368,7 +368,7 @@
       factory=".custom_form_tabs.CustomFormTabsFormExtender"
       provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
       for="plone.dexterity.interfaces.IDexterityItem
-           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           plone.restapi.interfaces.IPloneRestapiLayer
            .custom_form_tabs.CustomFormTabsEditForm"
       />
 
