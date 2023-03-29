@@ -38,7 +38,7 @@ logging.basicConfig()
 #    )
 SOURCE_URL = (
     "https://raw.githubusercontent.com/bopen/c3s-430a-portal/"
-    "feature-merge-repositories/data/data_consolidated.json"
+    "static-generator-acceptance/data/data_consolidated.json"
     )
 
 
