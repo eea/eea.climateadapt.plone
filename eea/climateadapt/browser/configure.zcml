@@ -356,6 +356,22 @@
       permission="zope2.View"
       />
 
+    -----[ Form Tabs customizations, exclude blocks layout ]----
+  <browser:page
+      name="edit"
+      for="plone.dexterity.interfaces.IDexterityItem"
+      class=".custom_form_tabs.CustomFormTabsEditView"
+      permission="cmf.ModifyPortalContent"
+      />
+
+  <adapter
+      factory=".custom_form_tabs.CustomFormTabsFormExtender"
+      provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+      for="plone.dexterity.interfaces.IDexterityItem
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .custom_form_tabs.CustomFormTabsEditForm"
+      />
+
     -----[ Case Study Form customizations ]----
 
   <browser:page
