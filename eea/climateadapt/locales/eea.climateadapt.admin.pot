@@ -1,10 +1,10 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#--- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+#SOME DESCRIPTIVE TITLE.
+#FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-02-22 10:42+0000\n"
+"POT-Creation-Date: 2023-03-29 06:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,7 +88,7 @@ msgstr ""
 msgid "Biodiversity"
 msgstr ""
 
-#: ../../climateadapt/browser/__init__.py:169
+#: ../../climateadapt/browser/__init__.py:186
 msgid "Biogeographical regions"
 msgstr ""
 
@@ -113,7 +113,7 @@ msgstr ""
 msgid "Check-out created"
 msgstr ""
 
-#: ../../climateadapt/browser/__init__.py:209
+#: ../../climateadapt/browser/__init__.py:228
 msgid "City"
 msgstr ""
 
@@ -454,11 +454,11 @@ msgstr ""
 msgid "Key activities within climate change and health"
 msgstr ""
 
-#: ../../climateadapt/browser/admin.py:560
+#: ../../climateadapt/browser/admin.py:562
 msgid "Keyword succesfully deleted: ${kw_old}."
 msgstr ""
 
-#: ../../climateadapt/browser/admin.py:590
+#: ../../climateadapt/browser/admin.py:592
 msgid "Keyword succesfully renamed: ${kw_old} to ${kw_new}."
 msgstr ""
 
@@ -509,7 +509,7 @@ msgstr ""
 msgid "Logo"
 msgstr ""
 
-#: ../../climateadapt/browser/__init__.py:161
+#: ../../climateadapt/browser/__init__.py:177
 msgid "Macro-Transnational region"
 msgstr ""
 
@@ -863,7 +863,7 @@ msgstr ""
 msgid "Structural and physical: Technological options"
 msgstr ""
 
-#: ../../climateadapt/browser/__init__.py:180
+#: ../../climateadapt/browser/__init__.py:199
 msgid "Sub Nationals"
 msgstr ""
 
@@ -921,7 +921,7 @@ msgid "Unable to reindex ${name} as part of content rule 'reindex' action: ${err
 msgstr ""
 
 #: ../../climateadapt/contentrules.py:190
-#: ../../climateadapt/translation/admin.py:2585
+#: ../../climateadapt/translation/admin.py:2610
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-02-22 10:42+0000\n"
+"POT-Creation-Date: 2023-03-29 06:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,53 +56,53 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:677
+#: ../theme/climateadaptv2/index.html:797
 msgid "Adaptation options"
 msgstr "Għażliet ta 'adattament"
 
-#: ../theme/climateadaptv2/index.html:1282
+#: ../theme/climateadaptv2/index.html:1402
 msgid "Adaptation support tool"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:794
+#: ../theme/climateadaptv2/index.html:914
 #: ../theme/climateadaptv2/tab-policies-rule.html:15
 msgid "Agriculture"
 msgstr "Agrikoltura"
 
-#: ../theme/climateadaptv2/index.html:1205
+#: ../theme/climateadaptv2/index.html:1325
 msgid "Assessing adaptation options"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1187
+#: ../theme/climateadaptv2/index.html:1307
 msgid "Assessing risks and vulnerability <br /> to climate change"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:802
+#: ../theme/climateadaptv2/index.html:922
 #: ../theme/climateadaptv2/tab-policies-rule.html:23
 msgid "Biodiversity"
 msgstr "Bijodiversità"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:921
+#: ../theme/climateadaptv2/index.html:1041
 #: ../theme/climateadaptv2/tab-policies-rule.html:142
 msgid "Biodiversity plays an important role in regulating the climate, thus making a key contribution to climate change mitigation and adaptation. At the same time, meeting mitigation targets coupled with ecosystem-based approaches is essential to avert biodiversity loss. Therefore it is impossible to address biodiversity loss without addressing climate change, but it is equally impossible to tackle climate change without addressing biodiversity loss."
 msgstr "Il-bijodiversità għandha rwol importanti fir-regolazzjoni tal-klima, u b'hekk tagħti kontribut ewlieni għall-mitigazzjoni u l-adattament tal-bidla fil-klima. Fl-istess ħin, il-miri ta 'mitigazzjoni tal-laqgħa flimkien ma' approċċi bbażati fuq l-ekosistema huma essenzjali biex jiġu evitati telf ta 'bijodiversità. Għalhekk huwa impossibbli li tiġi indirizzata t-telf tal-bijodiversità mingħajr ma tiġi indirizzata t-tibdil fil-klima, iżda huwa daqstant impossibbli li tiġi indirizzata t-tibdil fil-klima mingħajr ma tiġi indirizzata t-telf tal-bijodiversità."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:810
+#: ../theme/climateadaptv2/index.html:930
 #: ../theme/climateadaptv2/tab-policies-rule.html:31
 msgid "Buildings"
 msgstr "Bini"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:936
+#: ../theme/climateadaptv2/index.html:1056
 #: ../theme/climateadaptv2/tab-policies-rule.html:157
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Il-bini jista 'jkun vulnerabbli għall-bidla fil-klima. Fil-futur jista 'jkun hemm żieda fir-riskju ta' kollass, stat li qed jonqos u telf sinifikanti ta 'valur bħala riżultat ta' aktar maltempati, ħsarat ta 'borra jew sussidju, inkarigu ta' ilma, li jiddeterjoraw il-klima ta 'ġewwa u l-ħajja tal-bini mnaqqsa. Il-Kummissjoni Ewropea għandha l-għan li żżid ir-reżiljenza dwar il-klima tal-infrastruttura, inklużi l-bini. Bini ġdid u eżistenti jeħtieġ li jiġi vvalutat għar-reżiljenza għar-riskji attwali u l-bidliet fil-klima futuri, u ppjanati jew aġġornati kif xieraq. Politika ewlenija użata biex tappoġġja r-reżiljenza tal-bini hija l-politika ta 'koeżjoni (imsejħa wkoll il-politika reġjonali)."
@@ -111,63 +111,67 @@ msgstr "Il-bini jista 'jkun vulnerabbli għall-bidla fil-klima. Fil-futur jista 
 msgid "Case <br /> Studies"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1143
+#: ../theme/climateadaptv2/index.html:1263
 msgid "Case Studies Page"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:686
+#: ../theme/climateadaptv2/index.html:806
 msgid "Case studies"
 msgstr "Studji ta 'Każijiet"
 
-#: ../theme/climateadaptv2/index.html:1157
+#: ../theme/climateadaptv2/index.html:1277
 msgid "Case studies booklet"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1456
+#: ../theme/climateadaptv2/index.html:1580
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Iċċekkja l- <a href=\"../newsletter\"> Newsletter Ewropew għall-Adattament tal-Klima </a> u irreġistra biex tirċieviha fl-e-mail tiegħek:"
 
+#: ../theme/climateadaptv2/index.html:406
+msgid "Climate Adapt<br />Platforms"
+msgstr ""
+
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:981
+#: ../theme/climateadaptv2/index.html:1101
 #: ../theme/climateadaptv2/tab-policies-rule.html:202
 msgid "Climate change affects the energy sector in multiple ways, ranging from changes in heating and cooling demand; to impacts on energy supply conditions – for example decreased water availability for hydropower during prolonged droughts and reduced availability of cooling water affecting the efficiency of power plants. Furthermore, energy infrastructure can be more exposed to damages by changing climate conditions. The European Commission in general aims to increase the climate resilience of infrastructure including energy by providing strategical frameworks."
 msgstr "It-tibdil fil-klima jaffettwa s-settur tal-enerġija b'diversi modi, li jvarja minn bidliet fit-tisħin u d-domanda tat-tkessiħ; Għall-impatti fuq il-kundizzjonijiet tal-provvista tal-enerġija - pereżempju tnaqqis fid-disponibbiltà tal-ilma għall-idroenerġija waqt nixfiet fit-tul u disponibbiltà mnaqqsa ta 'ilma li jkessaħ li jaffettwa l-effiċjenza tal-impjanti tal-enerġija. Barra minn hekk, l-infrastruttura tal-enerġija tista 'tkun aktar esposta għad-danni billi tbiddel il-kundizzjonijiet klimatiċi. Il-Kummissjoni Ewropea b'mod ġenerali għandha l-għan li żżid ir-reżiljenza klimatika tal-infrastruttura inkluża l-enerġija billi tipprovdi oqfsa strateġiċi."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:906
+#: ../theme/climateadaptv2/index.html:1026
 #: ../theme/climateadaptv2/tab-policies-rule.html:127
 msgid "Climate change has complex effects on the bio-physical processes that underpin agricultural systems, with both negative and positive consequences in different EU regions. Rising atmospheric CO2 concentration, higher temperatures, changes in precipitation patterns and in frequency of extreme events both affect the natural environment as well as the quantity, quality and stability of food production. Climatic variations impact on water resources, soils, pests and diseases, leading to significant changes in agriculture and livestock production."
 msgstr "It-tibdil fil-klima għandu effetti kumplessi fuq il-proċessi bijo-fiżiċi li jirfdu sistemi agrikoli, b'konsegwenzi negattivi u pożittivi f'reġjuni differenti ta 'l-UE. Żieda fil-konċentrazzjoni ta 'CO2 atmosferika, temperaturi ogħla, bidliet fix-xejriet ta' preċipitazzjoni u fil-frekwenza ta 'avvenimenti estremi kemm jaffettwaw l-ambjent naturali kif ukoll il-kwantità, il-kwalità u l-istabbiltà tal-produzzjoni tal-ikel. Il-varjazzjonijiet klimatiċi jħallu impatt fuq ir-riżorsi tal-ilma, il-ħamrija, il-pesti u l-mard, li jwasslu għal bidliet sinifikanti fl-agrikoltura u l-produzzjoni tal-bhejjem."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1039
+#: ../theme/climateadaptv2/index.html:1159
 #: ../theme/climateadaptv2/tab-policies-rule.html:260
 msgid "Climate change is expected to have severe impacts on the marine environment. Increase in water temperatures will contribute to a restructuring of marine ecosystems with implications for ocean circulation, biogeochemical cycling and marine biodiversity. Ocean acidification will affect the ability of some calcium carbonate-secreting species (as molluscs, planktons and corals) to produce their shells or skeletons. Warmer and more acidic seawater will therefore negatively affect fishery and aquaculture."
 msgstr "It-tibdil fil-klima huwa mistenni li jkollu impatti severi fuq l-ambjent tal-baħar. Żieda fit-temperaturi tal-ilma tikkontribwixxi għal ristrutturar ta 'ekosistemi tal-baħar b'implikazzjonijiet għaċ-ċirkolazzjoni tal-oċeani, ċikliżmu bijokimiku u bijodiversità tal-baħar. L-aċidifikazzjoni tal-oċean se taffettwa l-abbiltà ta 'xi speċi ta' sigrieti tal-karbonat tal-kalċju (bħala molluski, planktoni u qroll) biex jipproduċu l-qxur jew skeletri tagħhom. L-ilma baħar aktar sħun u aktar aċiduż għalhekk jaffettwa b'mod negattiv is-sajd u l-akkwakultura."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1025
+#: ../theme/climateadaptv2/index.html:1145
 #: ../theme/climateadaptv2/tab-policies-rule.html:246
 msgid "Climate change will generate new health risks and amplify current health problems. Both direct and indirect effects on human, plant and animal health are expected from climate change. Direct effects result from changes in the intensity and frequency of extreme weather events like heatwaves and floods. Indirect effects can be felt through changes in the incidence of diseases transmitted by insects (i.e. vector borne diseases caused by mosquitoes and ticks), rodents, or changes in water, food and air quality. The European Commission's EU strategy on adaptation to climate change is accompanied by a Staff Working Document."
 msgstr "It-tibdil fil-klima se jiġġenera riskji ġodda għas-saħħa u jamplifika l-problemi attwali tas-saħħa. Kemm l-effetti diretti kif ukoll dawk indiretti fuq is-saħħa tal-bniedem, tal-pjanti u tal-annimali huma mistennija mill-bidla fil-klima. L-effetti diretti jirriżultaw minn bidliet fl-intensità u l-frekwenza ta 'avvenimenti tat-temp estremi bħal mewġ tas-sħana u għargħar. Effetti indiretti jistgħu jinħassu permezz ta 'bidliet fl-inċidenza ta' mard trażmess minn insetti (i.e. mard li jinġarr mill-vettur ikkawżat minn nemus u qurdien), annimali gerriema, jew bidliet fl-ilma, l-ikel u l-kwalità tal-arja. L-istrateġija tal-UE tal-Kummissjoni Ewropea dwar l-adattament għat-tibdil fil-klima hija akkumpanjata minn dokument ta 'ħidma tal-persunal."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1131
+#: ../theme/climateadaptv2/index.html:1251
 msgid "Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events."
 msgstr "Studji ta 'każijiet ta' adattament dwar il-klima juru inizjattivi li diġà qed isiru fl-Ewropa biex jadattaw għat-tibdil fil-klima u jżidu r-reżiljenza għal temp estrem u avvenimenti li jibdew bil-mod."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:818
+#: ../theme/climateadaptv2/index.html:938
 #: ../theme/climateadaptv2/tab-policies-rule.html:39
 msgid "Coastal areas"
 msgstr "Żoni kostali"
@@ -178,218 +182,238 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:826
+#: ../theme/climateadaptv2/index.html:946
 #: ../theme/climateadaptv2/tab-policies-rule.html:47
 msgid "Disaster risk <br /> reduction"
 msgstr "Riskju tad-Diżastri <br /> Tnaqqis"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:965
+#: ../theme/climateadaptv2/index.html:1085
 #: ../theme/climateadaptv2/tab-policies-rule.html:186
 msgid "Disaster risk reduction"
 msgstr "Tnaqqis tar-riskju tad-diżastri"
+
+#: ../theme/climateadaptv2/index.html:532
+msgid "EU Mission on Adaptation"
+msgstr ""
 
 #: ../theme/climateadaptv2/index.html:418
 msgid "EU Sector <br /> Policies"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1093
+#: ../theme/climateadaptv2/index.html:1213
 msgid "EU Sector Policies"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:833
+#: ../theme/climateadaptv2/index.html:953
 #: ../theme/climateadaptv2/tab-policies-rule.html:54
 msgid "Energy"
 msgstr "Enerġija"
 
+#: ../theme/climateadaptv2/index.html:516
+msgid "European Climate Data Explorer"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:613
+msgid "European Climate Risk Assesments"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:540
+msgid "European Climate Risk Assesments<br />(EUCRA)"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:524
+msgid "European Climate and Health Observatory"
+msgstr ""
+
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1369
+#: ../theme/climateadaptv2/index.html:1493
 msgid "Events"
 msgstr "Avvenimenti"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:996
+#: ../theme/climateadaptv2/index.html:1116
 #: ../theme/climateadaptv2/tab-policies-rule.html:217
 msgid "Extreme weather events in recent years have increased the urgency to mainstream climate change adaptation into the different EU policy fields. There are few specific EU activities to mainstream climate change adaptation into policies for financial and insurance sectors. However many European policies related to natural disasters (see Disaster risk reduction) are very relevant to the financial and insurance sector, as they may help to prevent significant losses and financial disasters. The European Commission has also committed itself to increasing financing of climate-related activities by ensuring that at least 20% of the European budget is climate-related expenditure."
 msgstr "Avvenimenti tat-temp estremi f'dawn l-aħħar snin żiedu l-urġenza għall-adattament tal-bidla fil-klima mainstream fl-oqsma differenti tal-politika tal-UE. Hemm ftit attivitajiet speċifiċi tal-UE għall-adattament tal-bidla fil-klima mainstream f'politiki għas-setturi finanzjarji u tal-assigurazzjoni. Madankollu ħafna politiki Ewropej relatati mad-diżastri naturali (ara t-tnaqqis tar-riskju tad-diżastri) huma rilevanti ħafna għas-settur finanzjarju u tal-assigurazzjoni, peress li jistgħu jgħinu biex jipprevjenu telf sinifikanti u diżastri finanzjarji. Il-Kummissjoni Ewropea impenjat ruħha wkoll li żżid il-finanzjament tal-attivitajiet relatati mal-klima billi żgura li mill-inqas 20% tal-baġit Ewropew huwa n-nefqa relatata mal-klima."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:841
+#: ../theme/climateadaptv2/index.html:961
 #: ../theme/climateadaptv2/tab-policies-rule.html:62
 msgid "Financial"
 msgstr "Finanzjarju"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1331
+#: ../theme/climateadaptv2/index.html:1451
 msgid "Find out how to contribute different types of information to Climate-ADAPT"
 msgstr "Sib kif tikkontribwixxi tipi differenti ta 'informazzjoni lill-Adatta tal-Klima"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1089
+#: ../theme/climateadaptv2/index.html:1209
 msgid "For more informations visit:"
 msgstr "Għal aktar informazzjoni żur:"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1292
+#: ../theme/climateadaptv2/index.html:1412
 msgid "For urban areas guidance visit:"
 msgstr "Għal żjara ta 'gwida taż-żoni urbani:"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:849
+#: ../theme/climateadaptv2/index.html:969
 #: ../theme/climateadaptv2/tab-policies-rule.html:70
 msgid "Forestry"
 msgstr "Forestrija"
 
+#: ../theme/climateadaptv2/index.html:596
+msgid "Go to the EU Mission"
+msgstr ""
+
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:514
+#: ../theme/climateadaptv2/index.html:558
 msgid "Go to the European Climate Data Explorer"
 msgstr "Mur għand l-Explorer Ewropew tad-Dejta dwar il-Klima"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:532
+#: ../theme/climateadaptv2/index.html:577
 msgid "Go to the European Climate and Health Observatory"
 msgstr "Mur fl-Osservatorju Ewropew dwar il-Klima u s-Saħħa"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:695
+#: ../theme/climateadaptv2/index.html:815
 msgid "Guidance"
 msgstr "Gwida"
 
-#: ../theme/climateadaptv2/index.html:667
+#: ../theme/climateadaptv2/index.html:787
 msgid "Guidance to search function"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:857
+#: ../theme/climateadaptv2/index.html:977
 #: ../theme/climateadaptv2/tab-policies-rule.html:78
 msgid "Health"
 msgstr "Saħħa"
 
-#: ../theme/climateadaptv2/index.html:1196
+#: ../theme/climateadaptv2/index.html:1316
 msgid "Identifying adaptation options"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1214
+#: ../theme/climateadaptv2/index.html:1334
 msgid "Implementation"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1067
+#: ../theme/climateadaptv2/index.html:1187
 #: ../theme/climateadaptv2/tab-policies-rule.html:288
 msgid "In Europe, nearly 73% of the population live in urban areas and this is projected to increase to over 80% by 2050. Climate change is likely to influence almost all components of cities and towns – their environment, economy and society. This raises new, complex challenges for urban planning and management. Climate change impacts on the hubs of Europe's economic activity, social life, culture and innovation have repercussions far beyond their municipal borders."
 msgstr "Fl-Ewropa, kważi 73% tal-popolazzjoni tgħix f'żoni urbani u dan huwa mbassar li jiżdied għal aktar minn 80% sal-2050. It-tibdil fil-klima x'aktarx jinfluwenza kważi l-komponenti kollha tal-bliet u l-bliet - l-ambjent, l-ekonomija u s-soċjetà tagħhom. Dan iqajjem sfidi ġodda u kumplessi għall-ippjanar u l-immaniġġjar urban. L-impatti tat-tibdil fil-klima fuq il-hubs tal-attività ekonomika tal-Ewropa, il-ħajja soċjali, il-kultura u l-innovazzjoni għandhom riperkussjonijiet ferm lil hinn mill-fruntieri muniċipali tagħhom."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:704
+#: ../theme/climateadaptv2/index.html:824
 msgid "Indicators"
 msgstr "Indikaturi"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:713
+#: ../theme/climateadaptv2/index.html:833
 msgid "Information portals"
 msgstr "Portali ta 'informazzjoni"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:865
+#: ../theme/climateadaptv2/index.html:985
 #: ../theme/climateadaptv2/tab-policies-rule.html:86
 msgid "Marine <br /> &amp; fisheries"
 msgstr "Marine <br /> & amp; Sajd"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1038
+#: ../theme/climateadaptv2/index.html:1158
 #: ../theme/climateadaptv2/tab-policies-rule.html:259
 msgid "Marine and fisheries"
 msgstr "Baħar u Sajd"
 
-#: ../theme/climateadaptv2/index.html:1223
+#: ../theme/climateadaptv2/index.html:1343
 msgid "Monitoring &amp; Evaluation (M&amp;E)"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1428
+#: ../theme/climateadaptv2/index.html:1552
 msgid "More events"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1399
+#: ../theme/climateadaptv2/index.html:1523
 msgid "More news"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:406
-msgid "New <br /> feature"
-msgstr ""
-
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1366
+#: ../theme/climateadaptv2/index.html:1490
 msgid "News"
 msgstr "Aħbarijiet"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1442
+#: ../theme/climateadaptv2/index.html:1566
 msgid "Newsletter"
 msgstr "Newsletter"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:731
+#: ../theme/climateadaptv2/index.html:851
 msgid "Organisations"
 msgstr "Organizzazzjonijiet"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:966
+#: ../theme/climateadaptv2/index.html:1086
 #: ../theme/climateadaptv2/tab-policies-rule.html:187
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "Matul l-aħħar ftit snin, l-Ewropa esperjenzat kull tip ta 'diżastri naturali: għargħar qawwi, nixfiet u nirien fil-foresti b'effetti devastanti fuq il-ħajja tan-nies, l-ekonomija Ewropea u l-ambjent. Fl-aħħar għaxar snin, il-Kummissjoni Ewropea adottat bosta strateġiji u azzjonijiet biex tlaħħaq mat-tnaqqis tar-riskju tad-diżastri peress li, pereżempju, id-direttiva tal-għargħar u l-implimentazzjoni tagħha (skeda), l-azzjoni tal-UE dwar l-iskarsezza tal-ilma u n-nixfa, il-karta ħadra dwar l-assigurazzjoni fil- Kuntest ta 'diżastri naturali u magħmula mill-bniedem."
 
-#: ../theme/climateadaptv2/index.html:1178
+#: ../theme/climateadaptv2/index.html:1298
 msgid "Preparing the ground for adaptation"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:749
+#: ../theme/climateadaptv2/index.html:869
 msgid "Publications and reports"
 msgstr "Pubblikazzjonijiet u rapporti"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1445
+#: ../theme/climateadaptv2/index.html:1569
 msgid "RSS feed"
 msgstr "RSS għalf"
 
-#: ../theme/climateadaptv2/index.html:1356
+#: ../theme/climateadaptv2/index.html:1480
 msgid "Read more"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:758
+#: ../theme/climateadaptv2/index.html:878
 msgid "Research and knowledge projects"
 msgstr "Proġetti ta 'Riċerka u Għarfien"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:951
+#: ../theme/climateadaptv2/index.html:1071
 #: ../theme/climateadaptv2/tab-policies-rule.html:172
 msgid "Sea level rise can cause flooding, coastal erosion and the loss of low-lying coastal systems. It will also increase the risk of storm surges and the likelihood of landward intrusion of saltwater and may endanger coastal ecosystems. Expected rises in water temperatures and ocean acidification will contribute to a restructuring of coastal ecosystems; with implications for ocean circulation and biogeochemical cycling."
 msgstr "Żieda fil-livell tal-baħar tista 'tikkawża għargħar, erożjoni kostali u t-telf ta' sistemi kostali li jinsabu baxxi. Se żżid ukoll ir-riskju ta 'żidiet ta' maltempati u l-probabbiltà ta 'intrużjoni fuq l-art ta' l-ilma mielaħ u tista 'tipperikola l-ekosistemi kostali. Iż-żidiet mistennija fit-temperaturi tal-ilma u l-aċidifikazzjoni tal-oċeani jikkontribwixxu għal ristrutturar ta 'ekosistemi kostali; b'implikazzjonijiet għaċ-ċirkolazzjoni tal-oċeani u ċ-ċikliżmu bijokokimiku."
@@ -404,144 +428,152 @@ msgstr "Fittex adapt tal-klima"
 msgid "Search the <br /> Database"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:775
+#: ../theme/climateadaptv2/index.html:895
 msgid "See complete database"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1152
+#: ../theme/climateadaptv2/index.html:1272
 msgid "See how Europe is adapting to climate change:"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1330
+#: ../theme/climateadaptv2/index.html:1450
 msgid "Share <span>your information</span>"
 msgstr "Aqsam <Span> L-Informazzjoni Tiegħek </span>"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1458
+#: ../theme/climateadaptv2/index.html:1582
 msgid "Sign me up!"
 msgstr "Iffirmani!"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1475
+#: ../theme/climateadaptv2/index.html:1599
 msgid "Subscribe"
 msgstr "Abbona"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1473
+#: ../theme/climateadaptv2/index.html:1597
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "Abbona għall-għalf <strong> RSS tagħna </strong> <br /> u ibqa 'aġġornat!"
 
-# ,
-# ,
-#: ../theme/climateadaptv2/index.html:510
-msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
-msgstr "L-Explorer Ewropew tad-Dejta dwar il-Klima jipprovdi aċċess interattiv għal ħafna indiċi klimatiċi mis-Servizz ta 'Bidla Klimali ta' Copernicus b'appoġġ għall-adattament tal-bidla fil-klima."
-
-#: ../theme/climateadaptv2/index.html:1346
-msgid "The European Climate Risk Assessment"
+#: ../theme/climateadaptv2/index.html:595
+msgid "The EU Mission on Adaptation to Climate Change portal provides relevant information and resources to European regional and local authorities to prepare and plan for climate resilience."
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:527
+#: ../theme/climateadaptv2/index.html:557
+msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
+msgstr "L-Explorer Ewropew tad-Dejta dwar il-Klima jipprovdi aċċess interattiv għal ħafna indiċi klimatiċi mis-Servizz ta 'Bidla Klimali ta' Copernicus b'appoġġ għall-adattament tal-bidla fil-klima."
+
+#: ../theme/climateadaptv2/index.html:1466
+msgid "The European Climate Risk Assessment"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:614
+msgid "The European Climate Risk Assessment provides an assessment of current and future climate change impacts and risks relating to the environment, economy and wider society in Europe."
+msgstr ""
+
+# ,
+# ,
+#: ../theme/climateadaptv2/index.html:576
 msgid "The European Climate and Health Observatory provides access to a wide range of relevant publications, tools, websites and other resources related to climate change and health."
 msgstr "L-Osservatorju Ewropew dwar il-Klima u s-Saħħa jipprovdi aċċess għal firxa wiesgħa ta 'pubblikazzjonijiet, għodod, websajts u riżorsi oħra relatati mat-tibdil fil-klima u s-saħħa."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:665
+#: ../theme/climateadaptv2/index.html:785
 msgid "The database contains quality checked information and is annotated by climate adaptation experts with keywords."
 msgstr "Id-database fiha informazzjoni kkontrollata mill-kwalità u hija annotata minn esperti tal-adattament tal-klima bil-kliem kjavi."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1053
+#: ../theme/climateadaptv2/index.html:1173
 #: ../theme/climateadaptv2/tab-policies-rule.html:274
 msgid "The need for adapting the transport system to the impact of climate change has been highlighted since the European Commission's Adaptation White Paper (COM (2009)148). Transport adaptation is addressed through a combination of European transport, climate change and research policies. The European Union promotes best practices, mainstreaming adaptation within its transport infrastructure development programmes, and provides guidance, e.g. by developing adequate standards for construction. Action is focused on transport infrastructure, and particularly on the Trans-European Transport Network (TEN-T)."
 msgstr "Il-ħtieġa għall-adattament tas-sistema tat-trasport għall-impatt tal-bidla fil-klima ġiet enfasizzata mill-Adattament tal-White Paper tal-Kummissjoni Ewropea (Com (2009) 148). L-adattament tat-trasport huwa indirizzat permezz ta 'taħlita ta' politiki Ewropej ta 'trasport, tibdil fil-klima u riċerka. L-Unjoni Ewropea tippromwovi l-aħjar prattiki, l-integrazzjoni tal-adattament fil-programmi ta 'żvilupp tal-infrastruttura tat-trasport tagħha, u tipprovdi gwida, p.e. billi tiżviluppa standards adegwati għall-kostruzzjoni. L-azzjoni hija ffokata fuq l-infrastruttura tat-trasport, u partikolarment fuq in-Netwerk tat-Trasport Trans-Ewropew (TEN-T)."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1011
+#: ../theme/climateadaptv2/index.html:1131
 #: ../theme/climateadaptv2/tab-policies-rule.html:232
 msgid "The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector."
 msgstr "Ir-rata rapida ta 'bidla fil-klima tista' tegħleb il-kapaċità naturali ta 'l-ekosistemi tal-foresti li jadattaw. Dan iwassal għal riskju akbar ta 'disturbi permezz ta' maltempati, nar, pesti u mard b'implikazzjonijiet għat-tkabbir tal-foresti u l-produzzjoni. Il-vijabbiltà ekonomika tal-forestrija se tkun affettwata, l-aktar fiż-żoni tan-Nofsinhar tal-Ewropa, kif ukoll il-kapaċità tal-foresti li jipprovdu servizzi ambjentali, inklużi bidliet fil-funzjoni tal-sink tal-karbonju. Fl-2013, il-Kummissjoni adottat strateġija ġdida tal-foresti tal-UE, li tirrispondi għal sfidi ġodda li qed jiffaċċjaw il-foresti u s-settur tal-foresti."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:767
+#: ../theme/climateadaptv2/index.html:887
 msgid "Tools"
 msgstr "Għodda"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:873
+#: ../theme/climateadaptv2/index.html:993
 #: ../theme/climateadaptv2/tab-policies-rule.html:94
 msgid "Transport"
 msgstr "Trasport"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:881
+#: ../theme/climateadaptv2/index.html:1001
 #: ../theme/climateadaptv2/tab-policies-rule.html:102
 msgid "Urban"
 msgstr "Urban"
 
-#: ../theme/climateadaptv2/index.html:1296
+#: ../theme/climateadaptv2/index.html:1416
 msgid "Urban Adaptation Support Tool"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:740
+#: ../theme/climateadaptv2/index.html:860
 msgid "Videos"
 msgstr "Vidjows"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:889
+#: ../theme/climateadaptv2/index.html:1009
 #: ../theme/climateadaptv2/tab-policies-rule.html:110
 msgid "Water <br /> management"
 msgstr "Ilma <br /> Ġestjoni"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1080
+#: ../theme/climateadaptv2/index.html:1200
 #: ../theme/climateadaptv2/tab-policies-rule.html:301
 msgid "Water management"
 msgstr "Ġestjoni tal-ilma"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1081
+#: ../theme/climateadaptv2/index.html:1201
 #: ../theme/climateadaptv2/tab-policies-rule.html:302
 msgid "Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe."
 msgstr "Ir-riżorsi tal-ilma huma milquta direttament mit-tibdil fil-klima, u l-immaniġġjar ta 'dawn ir-riżorsi jaffettwa l-vulnerabbiltà tal-ekosistemi, l-attivitajiet soċjoekonomiċi u s-saħħa tal-bniedem. Il-ġestjoni tal-ilma hija wkoll mistennija li jkollha rwol dejjem aktar ċentrali fl-adattament. It-tibdil fil-klima huwa mbassar li jwassal għal bidliet kbar fid-disponibbiltà tal-ilma madwar l-Ewropa b'żieda fl-iskarsezza tal-ilma u n-nixfiet prinċipalment fl-Ewropa tan-Nofsinhar u r-riskju dejjem jiżdied ta 'għargħar matul il-biċċa l-kbira tal-Ewropa."
 
 #. Default: "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of ${case_studies_tab_repository} and also in collaboration with the main stakeholders. See the ${case_studies_tab_pages}."
-#: ../theme/climateadaptv2/index.html:1143
+#: ../theme/climateadaptv2/index.html:1263
 msgid "case_studies_tab"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1140
+#: ../theme/climateadaptv2/index.html:1260
 msgid "criteria"
 msgstr ""
 
 #. Default: "Please check our ${page_url} for more help on how to search the database."
-#: ../theme/climateadaptv2/index.html:667
+#: ../theme/climateadaptv2/index.html:787
 msgid "guidance_link"
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:654
+#: ../theme/climateadaptv2/index.html:774
 msgid "type here ..."
 msgstr "Ittajpja hawn ..."
 
-#: ../theme/climateadaptv2/index.html:1349
+#: ../theme/climateadaptv2/index.html:1471
 msgid "will assess current and future climate change impacts and risks relating to the environment, economy and wider society in Europe."
 msgstr ""
