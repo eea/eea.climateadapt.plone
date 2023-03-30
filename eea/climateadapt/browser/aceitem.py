@@ -63,14 +63,22 @@ class C3sIndicatorView(DefaultView, AceViewApi):
     type_label = "C3s Indicator"
 
     def c3sjs_overview(self):
-        response = """(function () {
-                    document.addEventListener('DOMContentLoaded', function () {
-                        window.cds_toolbox.runApp('toolbox-app-overview', 'SCRIPT_URL', SCRIPT_JSON);
-                    }, false);
-                })();
-                """
-        response = response.replace("SCRIPT_URL", self.context.overview_app_toolbox_url)
-        response = response.replace("SCRIPT_JSON", self.context.overview_app_parameters)
+        response = """
+            const WORKFLOW = 'SCRIPT_JSON';
+            const WORKFLOWPARAMS = {};
+            (function () {
+                document.addEventListener('DOMContentLoaded', function () {
+                    window.cds_toolbox.runApp(
+                        'toolbox-app',
+                        WORKFLOW,
+                        {
+                            workflowParams: WORKFLOWPARAMS,
+                        }
+                    );
+                }, false);
+            })();
+            """
+        response = response.replace("SCRIPT_JSON", self.context.overview_app_toolbox_url)
         return response
 
     def c3sjs_details(self):
