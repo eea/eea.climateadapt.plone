@@ -28,9 +28,9 @@ logger = logging.getLogger("eea.climateadapt")
 logging.basicConfig()
 
 SOURCE_URL = (
-    "https://raw.githubusercontent.com/maris-development/c3s-434-portal/"
-    "static-generator/data/data_consolidated.json"
-)
+    "https://raw.githubusercontent.com/bopen/c3s-430a-portal/"
+    "static-generator-acceptance/data/data_consolidated.json"
+    )
 
 
 def get_source_data():
@@ -46,27 +46,28 @@ def update_object(obj, indicator):
     obj.title = indicator["page_title"]
     obj.indicator_title = indicator["indicator_title"]
 
-    obj.long_description = RichTextValue(indicator["description"])
-    obj.definition_app = RichTextValue(indicator["description_detail"])
+    obj.long_description = RichTextValue(indicator["description_general"])
+    obj.definition_app = RichTextValue(indicator["description_vis_nav"])
 
     if isinstance(indicator["theme"], list):
         obj.c3s_theme = indicator["theme"]
     else:
         obj.c3s_theme = [indicator["theme"]]
 
-    obj.overview_app_toolbox_url = indicator["overview"]
-    obj.overview_app_parameters = "{}"
-    if indicator["vars"]["overview"]:
-        obj.overview_app_parameters = json.dumps(
-            {"workflowParams": indicator["vars"]["overview"]}
-        )
+    obj.overview_app_toolbox_url = indicator["detail"]
+    #obj.overview_app_parameters = "{}"
+    #if indicator["vars"]["overview"]:
+    #    obj.overview_app_parameters = json.dumps(
+    #        {"workflowParams": indicator["vars"]["overview"]}
+    #    )
+    obj.overview_app_parameters = indicator["overview"]
 
-    obj.details_app_toolbox_url = indicator["detail"]
-    obj.details_app_parameters = "{}"
-    if indicator["vars"]["detail"]:
-        obj.details_app_parameters = json.dumps(
-            {"workflowParams": indicator["vars"]["detail"]}
-        )
+    #obj.details_app_toolbox_url = indicator["detail"]
+    #obj.details_app_parameters = "{}"
+    #if indicator["vars"]["detail"]:
+    #    obj.details_app_parameters = json.dumps(
+    #        {"workflowParams": indicator["vars"]["detail"]}
+    #    )
 
     obj.c3s_identifier = indicator.get("identifier", "")
     obj.sectors = []
@@ -90,6 +91,7 @@ def save_indicator(indicator, site, data):
         **{
             "portal_type": "eea.climateadapt.c3sindicator",
             "c3s_identifier": indicator["identifier"],
+            "path": "/cca/en"
         }
     )
     indicatorFound = False
@@ -105,7 +107,7 @@ def save_indicator(indicator, site, data):
             pass
             # print("C3S Identifier NOT SET")
 
-    folder_path = "knowledge/european-climate-data-explorer/"
+    folder_path = "en/knowledge/european-climate-data-explorer/"
     folder = site.restrictedTraverse(folder_path)
 
     #for theme_name in indicator["theme"]:
@@ -123,7 +125,7 @@ def save_indicator(indicator, site, data):
     #        folder_indicator._p_changed
 
     if not indicatorFound:
-        folder_path = "metadata/indicators/"
+        folder_path = "en/metadata/indicators/"
         folder = site.restrictedTraverse(folder_path)
 
         obj = createContentInContainer(
@@ -140,11 +142,12 @@ def save_indicator(indicator, site, data):
 def main():
     site = get_plone_site()
     data = get_source_data()
-    base_folder = site["knowledge"]["european-climate-data-explorer"]
+    base_folder = site["en"]["knowledge"]["european-climate-data-explorer"]
     annot = IAnnotations(base_folder)
     annot._p_changed = True
     annot["c3s_json_data"] = {"data": data, "fetched": datetime.datetime.now()}
 
+    #import pdb; pdb.set_trace()
     for indicator_identifier in data["indicators"]:
         save_indicator(data["indicators"][indicator_identifier], site, data)
 
