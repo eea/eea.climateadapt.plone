@@ -1,15 +1,14 @@
-import json
+# import json
 
 from collective.cover.interfaces import ICover
+from collective.cover.tiles.richtext import IRichTextTile
 from eea.climateadapt.migration.interfaces import IMigrateToVolto
 from eea.climateadapt.tiles.richtext import IRichTextWithTitle
 from plone.tiles.interfaces import ITileDataManager
 from zope.component import adapter
 from zope.interface import Interface, implementer
 
-from .utils import slate_to_blocks, text_to_slate
-
-# from .slate.html2slate import text_to_slate
+from .utils import convert_to_blocks
 
 
 def richtext_tile_to_blocks(tile_dm, obj, request):
@@ -28,8 +27,7 @@ def richtext_tile_to_blocks(tile_dm, obj, request):
         print("Converting--")
         print(html)
         print("--/Converting")
-        slate = text_to_slate(html)
-        blocks = slate_to_blocks(slate)
+        blocks = convert_to_blocks(html)
 
     return {
         "blocks": blocks,
@@ -37,6 +35,7 @@ def richtext_tile_to_blocks(tile_dm, obj, request):
 
 
 tile_converters = {
+    IRichTextTile: richtext_tile_to_blocks,
     IRichTextWithTitle: richtext_tile_to_blocks
 }
 
