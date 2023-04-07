@@ -15,8 +15,8 @@ def convert_to_blocks(text):
     if req.status_code != 200:
         print("Error in converter")
         print(req.text)
-        import pdb
-        pdb.set_trace()
+        # import pdb
+        # pdb.set_trace()
 
         return []
 

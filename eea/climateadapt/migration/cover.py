@@ -48,6 +48,7 @@ class MigrateCover(object):
         self.request = request
 
     def __call__(self):
+        # allow some blocks to set content metadata fields
         attributes = {}
         blocks = []
 
