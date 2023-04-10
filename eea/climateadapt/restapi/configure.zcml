@@ -27,4 +27,9 @@
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
 
+  <subscriber
+      factory=".deserializer.VolatileSmartField"
+      provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer"
+      />
+
 </configure>
