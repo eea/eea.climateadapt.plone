@@ -53,7 +53,8 @@ class MigrateCover(object):
 [{u'children': [{u'children': [{u'id': u'1ab374eb8fb84e7ca45d45c6ed478889',
                                 u'tile-type': u'eea.climateadapt.richtext_with_title',
                                 u'type': u'tile'}],
-                 u'column-size': 9,                                                                                                                                                                                               u'css-class': u'content-column',
+                 u'column-size': 9,
+                 u'css-class': u'content-column',
                  u'roles': [u'Manager'],
                  u'type': u'group'},
                 {u'children': [{u'id': u'8df509b8122b48eaac79b3f2a4cfba83',
@@ -287,8 +288,8 @@ class MigrateCover(object):
         # return json.dumps({"blocks": blocks, "attributes": attributes})
 
 
-@ adapter(IFolder, Interface)
-@ implementer(IMigrateToVolto)
+@adapter(IFolder, Interface)
+@implementer(IMigrateToVolto)
 class MigrateFolder(object):
 
     def __init__(self, context, request):
