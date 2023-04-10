@@ -31,9 +31,9 @@
       factory=".deserializer.VolatileSmartField"
       provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer"
       />
-  
+
   <subscriber
-    factory=".serializer.SearchAceContentBlockSerializer"
+    factory=".blocks.SearchAceContentBlockSerializer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
     />
 

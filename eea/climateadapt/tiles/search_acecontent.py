@@ -41,7 +41,6 @@ from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 #from plone.app.multilingual.manager import TranslationManager
 
 
-
 ORIGIN_WEBSITES = dict(_origin_website)
 CLIMATE_IMPACTS = dict(_climateimpacts)
 COUNTRIES = ace_countries_dict
@@ -288,7 +287,8 @@ class AceTileMixin(object):
                                     val = 'Other Regions'
                                 terms.append({u"term": {u"macro-transnational-region": val}})
                     else:
-                        import pdb; pdb.set_trace()
+                        import pdb
+                        pdb.set_trace()
                         terms.append({u"term": {u"macro-transnational-region": s}})
 
             if k == "SearchableText":
@@ -320,41 +320,8 @@ class AceTileMixin(object):
         resp.append('Amazonia')
         resp.append('Anatolian')
         resp.append('Indian Ocean Area')
+
         return resp
-
-
-class SearchAceContentTile(PersistentCoverTile, AceTileMixin,
-        TranslationUtilsMixin):
-    """Search Ace content tile
-    It shows links to the search page, for all aceitems_types.
-    """
-
-    implements(ISearchAceContentTile)
-
-    # available options:
-    # title
-    # search_text
-    # element_type
-    # sector
-    # special_tags
-    # countries
-
-    index = ViewPageTemplateFile("pt/search_acecontent.pt")
-
-    is_configurable = True
-    is_editable = True
-    is_droppable = False
-    short_name = u"Search AceContent"
-
-    @view.memoize
-    def is_empty(self):
-        return False
-
-    @view.memoize
-    def accepted_ct(self):
-        """Return an empty list as no content types are accepted."""
-
-        return []
 
     def sections(self):
         """Returns a list of (section name, section count, section_url)"""
@@ -413,6 +380,39 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin,
                 result.append(r)
 
         return result
+
+
+class SearchAceContentTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMixin):
+    """Search Ace content tile
+    It shows links to the search page, for all aceitems_types.
+    """
+
+    implements(ISearchAceContentTile)
+
+    # available options:
+    # title
+    # search_text
+    # element_type
+    # sector
+    # special_tags
+    # countries
+
+    index = ViewPageTemplateFile("pt/search_acecontent.pt")
+
+    is_configurable = True
+    is_editable = True
+    is_droppable = False
+    short_name = u"Search AceContent"
+
+    @view.memoize
+    def is_empty(self):
+        return False
+
+    @view.memoize
+    def accepted_ct(self):
+        """Return an empty list as no content types are accepted."""
+
+        return []
 
 
 sortby_def = {
@@ -865,7 +865,7 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUt
 
         if sector:
             query["sectors"] = sector
-        query["path"] = {"query": "/cca/{}".format(self.current_lang)};
+        query["path"] = {"query": "/cca/{}".format(self.current_lang)}
 
         res = self.catalog.searchResults(limit=count, **query)
 
@@ -874,7 +874,7 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUt
     def view_more_url(self):
         site = getSite()
         base = site.absolute_url() + "/{}/data-and-downloads/?lang={}&source="\
-                    .format(self.current_lang, self.current_lang)
+            .format(self.current_lang, self.current_lang)
 
         query = {
             "elements": self.data.get("element_type"),
