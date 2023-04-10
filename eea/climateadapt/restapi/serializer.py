@@ -10,7 +10,12 @@ from plone.restapi.serializer.dxcontent import (SerializeFolderToJson,
                                                 SerializeToJson)
 from zope.component import adapter
 from zope.interface import Interface
+from plone.restapi.behaviors import IBlocks
+from plone.restapi.interfaces import IBlockFieldSerializationTransformer
+from zope.publisher.interfaces.browser import IBrowserRequest
+from zope.interface import implementer
 
+# from plone import api
 
 def append_common_new_fields(result, item):
     """Add here fields for any CCA content type"""
@@ -25,7 +30,28 @@ def append_common_new_fields(result, item):
 
     return result
 
+@implementer(IBlockFieldSerializationTransformer)
+@adapter(IBlocks, IBrowserRequest)
+class SearchAceContentBlockSerializer(object):
+    order = 100
+    block_type = "searchAceContent"
 
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self, block):
+        import pdb;pdb.set_trace()
+
+        # portal_transforms = api.portal.get_tool(name="portal_transforms")
+        # raw_html = block.get("html", "")
+        # data = portal_transforms.convertTo(
+        #     "text/x-html-safe", raw_html, mimetype="text/html"
+        # )
+        # html = data.getData()
+        # block["html"] = html
+
+        return block
 @adapter(IDexterityContainer, IEEAClimateAdaptInstalled)
 class LanguageGenericFolderSerializer(SerializeFolderToJson):
     def __call__(self, version=None, include_items=True):
