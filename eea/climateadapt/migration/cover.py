@@ -10,6 +10,7 @@ from plone.tiles.interfaces import ITileDataManager
 from zope.component import adapter
 from zope.interface import Interface, implementer
 
+from .fixes import fix_content
 from .utils import convert_to_blocks
 
 
@@ -223,7 +224,6 @@ class MigrateCover(object):
             }
             columns_storage['blocks_layout']['items'].append(uid)
 
-        # data['data']['blocks_layout']['items'].append[uid]
         return [make_uid(), data]
 
     def __call__(self):
@@ -282,6 +282,7 @@ class MigrateCover(object):
 
         # TODO: ensure there's a page banner block (or title block)
 
+        fix_content(self.context)
         return "ok"
 
         # print(blocks)
