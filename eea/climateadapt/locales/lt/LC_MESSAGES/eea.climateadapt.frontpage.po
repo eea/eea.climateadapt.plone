@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-04-12 05:30+0000\n"
+"POT-Creation-Date: 2023-04-12 07:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -242,10 +242,6 @@ msgstr "Miesto teritorijoms gairės apsilankymas:"
 msgid "Forestry"
 msgstr "Miškininkystė"
 
-#: ../theme/climateadaptv2/index.html:592
-msgid "Go to the EU Mission"
-msgstr ""
-
 #: ../theme/climateadaptv2/index.html:611
 msgid "Go to the EUCRA"
 msgstr ""
@@ -259,6 +255,10 @@ msgstr "Eikite į Europos klimato duomenų tyrinėtoją"
 #: ../theme/climateadaptv2/index.html:573
 msgid "Go to the European Climate and Health Observatory"
 msgstr "Eikite į Europos klimatą ir sveikatos observatoriją"
+
+#: ../theme/climateadaptv2/index.html:592
+msgid "Go to the Mission Portal"
+msgstr ""
 
 # ,
 #: ../theme/climateadaptv2/index.html:815

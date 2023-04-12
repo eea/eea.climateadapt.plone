@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-04-12 05:30+0000\n"
+"POT-Creation-Date: 2023-04-12 07:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -723,10 +723,6 @@ msgstr "Pour les conseils sur les zones urbaines, visitez le site:"
 msgid "Forestry"
 msgstr "Sylviculture"
 
-#: ../theme/climateadaptv2/index.html:592
-msgid "Go to the EU Mission"
-msgstr "Aller à la EU Mission"
-
 #: ../theme/climateadaptv2/index.html:611
 msgid "Go to the EUCRA"
 msgstr "Allez à la EUCRA"
@@ -768,6 +764,10 @@ msgstr "Aller à l'explorateur européen de données climatiques"
 #: ../theme/climateadaptv2/index.html:573
 msgid "Go to the European Climate and Health Observatory"
 msgstr "Aller à European Climate and Health Observatory"
+
+#: ../theme/climateadaptv2/index.html:592
+msgid "Go to the Mission Portal"
+msgstr "Aller à la Mission Portal"
 
 # ,
 # ,

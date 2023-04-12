@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-04-12 05:30+0000\n"
+"POT-Creation-Date: 2023-04-12 07:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,23 +20,6 @@ msgstr ""
 #: ../../climateadapt/vocabulary.py:451
 msgid "-NONSPECIFIC-"
 msgstr "-NON SPECIFIQUE-"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/browser/pt/c3sindicator_view.pt:86
-msgid "...loading configuration..."
-msgstr "... Configuration de chargement ..."
 
 # ,
 # ,
@@ -2426,7 +2409,7 @@ msgstr "Personne à contacter"
 # ,
 # ,
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:37
-#: ../../climateadapt/browser/pt/c3sindicator_view.pt:223
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:158
 msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
 msgstr "Le contenu des pages de l'Explorateur européen de données climatiques est fourni par  <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> mis en oeuvre par ECMWF. <a href=\"/knowledge/european-cimate-data-explorer/disclaimer\"> avertissement </a>"
 
@@ -2961,23 +2944,6 @@ msgstr "Explorez les études de cas d'adaptation urbaine en termes de localisati
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/c3sindicator_view.pt:58
-msgid "Explore in detail"
-msgstr "Explorer en détail"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:139
 #: ../../climateadapt/browser/pt/casestudy_view.pt:314
 msgid "External source"
@@ -3256,7 +3222,6 @@ msgstr "Glossaire"
 # ,
 # ,
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:11
-#: ../../climateadapt/browser/pt/c3sindicator_view.pt:132
 msgid "Go back"
 msgstr "Retourner"
 
@@ -4070,23 +4035,6 @@ msgstr "Lien vers les métadonnées:"
 #: ../../climateadapt/browser/pt/organisation_view.pt:34
 msgid "Links to further information"
 msgstr "Liens vers de plus amples informations"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/browser/pt/c3sindicator_view.pt:83
-msgid "Loading"
-msgstr "Chargement"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:450
 msgid "MCR 2030"
