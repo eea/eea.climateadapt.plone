@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-02-22 10:42+0000\n"
+"POT-Creation-Date: 2023-04-12 05:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,6 @@ msgstr "-NIESPECYFICZNE-"
 # ,
 # ,
 #: ../../climateadapt/browser/pt/c3sindicator_view.pt:86
-#: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:86
 msgid "...loading configuration..."
 msgstr "... Ładowanie konfiguracji ..."
 
@@ -1670,7 +1669,7 @@ msgstr "Bioróżnorodność"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/__init__.py:169
+#: ../../climateadapt/browser/__init__.py:186
 msgid "Biogeographical regions"
 msgstr "Regiony biogeograficzne"
 
@@ -1903,7 +1902,7 @@ msgstr "Wybierz mapę tematyczną:"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/__init__.py:209
+#: ../../climateadapt/browser/__init__.py:228
 #: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
 msgid "City"
 msgstr "Miasto"
@@ -2165,7 +2164,6 @@ msgstr "Osoba kontaktowa"
 # ,
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:37
 #: ../../climateadapt/browser/pt/c3sindicator_view.pt:223
-#: ../../climateadapt/browser/pt/c3sindicator_view0.pt:174
 msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
 msgstr "Treść na stronach Europejskiego Eksploratora Danych Klimatycznych jest dostarczana przez <a href=\"https://climate.copernicus.eu/\"> Copernicus Climate Change Service (C3S) </a> zaimplementowany przez ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\"> zastrzeżenie </a>"
 
@@ -2211,7 +2209,7 @@ msgstr "Koszty i korzyści"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/__init__.py:175
+#: ../../climateadapt/browser/__init__.py:194
 msgid "Countries"
 msgstr "Kraje"
 
@@ -2651,7 +2649,6 @@ msgstr "Przeglądaj studia przypadków adaptacji miast pod względem położenia
 # ,
 # ,
 #: ../../climateadapt/browser/pt/c3sindicator_view.pt:58
-#: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:58
 msgid "Explore in detail"
 msgstr "Zbadaj szczegółowo"
 
@@ -2925,7 +2922,6 @@ msgstr "Słowniczek"
 # ,
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:11
 #: ../../climateadapt/browser/pt/c3sindicator_view.pt:132
-#: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:132
 msgid "Go back"
 msgstr "Wróć"
 
@@ -3470,11 +3466,11 @@ msgstr "Kluczowe działania w ramach zmian klimatu i zdrowia"
 msgid "Key vulnerable sectors"
 msgstr "Kluczowe narażone sektory"
 
-#: ../../climateadapt/browser/admin.py:560
+#: ../../climateadapt/browser/admin.py:562
 msgid "Keyword succesfully deleted: ${kw_old}."
 msgstr ""
 
-#: ../../climateadapt/browser/admin.py:590
+#: ../../climateadapt/browser/admin.py:592
 msgid "Keyword succesfully renamed: ${kw_old} to ${kw_new}."
 msgstr ""
 
@@ -3675,7 +3671,6 @@ msgstr "Linki do dalszych informacji"
 # ,
 # ,
 #: ../../climateadapt/browser/pt/c3sindicator_view.pt:83
-#: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:83
 msgid "Loading"
 msgstr "Ładowanie"
 
@@ -3694,7 +3689,7 @@ msgstr ""
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/__init__.py:161
+#: ../../climateadapt/browser/__init__.py:177
 msgid "Macro-Transnational region"
 msgstr "Region makro-transnarodowy"
 
@@ -5235,7 +5230,7 @@ msgstr "Strukturalne i fizyczne: opcje technologiczne"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/__init__.py:180
+#: ../../climateadapt/browser/__init__.py:199
 msgid "Sub Nationals"
 msgstr "Poziom niższy niż krajowy"
 
@@ -5604,7 +5599,7 @@ msgstr "Filmy instruktażowe"
 msgid "URBACT"
 msgstr "URBACT"
 
-#: ../../climateadapt/translation/admin.py:2585
+#: ../../climateadapt/translation/admin.py:2610
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 
