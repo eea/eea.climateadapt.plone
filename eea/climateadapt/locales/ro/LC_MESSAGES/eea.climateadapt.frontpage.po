@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-03-29 06:56+0000\n"
+"POT-Creation-Date: 2023-04-12 05:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,10 +139,6 @@ msgstr ""
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Verificați <a href=\"../newsletter\"> buletinul european de adaptare climatică </a> și înregistrați-vă pentru a-l primi în e-mailul dvs .:"
 
-#: ../theme/climateadaptv2/index.html:406
-msgid "Climate Adapt<br />Platforms"
-msgstr ""
-
 # ,
 # ,
 # ,
@@ -210,7 +206,7 @@ msgstr "Risc de dezastre <br /> Reducere"
 msgid "Disaster risk reduction"
 msgstr "Reducerea riscului de dezastre"
 
-#: ../theme/climateadaptv2/index.html:532
+#: ../theme/climateadaptv2/index.html:515
 msgid "EU Mission on Adaptation"
 msgstr ""
 
@@ -230,19 +226,19 @@ msgstr ""
 msgid "Energy"
 msgstr "Energie"
 
-#: ../theme/climateadaptv2/index.html:516
+#: ../theme/climateadaptv2/index.html:529
 msgid "European Climate Data Explorer"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:613
+#: ../theme/climateadaptv2/index.html:609
 msgid "European Climate Risk Assesments"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:540
+#: ../theme/climateadaptv2/index.html:536
 msgid "European Climate Risk Assesments<br />(EUCRA)"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:524
+#: ../theme/climateadaptv2/index.html:522
 msgid "European Climate and Health Observatory"
 msgstr ""
 
@@ -298,21 +294,25 @@ msgstr "Pentru ghidarea zonelor urbane vizită:"
 msgid "Forestry"
 msgstr "Silvicultură"
 
-#: ../theme/climateadaptv2/index.html:596
+#: ../theme/climateadaptv2/index.html:592
 msgid "Go to the EU Mission"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:611
+msgid "Go to the EUCRA"
 msgstr ""
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:558
+#: ../theme/climateadaptv2/index.html:554
 msgid "Go to the European Climate Data Explorer"
 msgstr "Accesați Exploratorul de date climatice europene"
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:577
+#: ../theme/climateadaptv2/index.html:573
 msgid "Go to the European Climate and Health Observatory"
 msgstr "Mergeți la Observatorul European Climat și Sănătate"
 
@@ -391,6 +391,10 @@ msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1523
 msgid "More news"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:406
+msgid "New <br /> feature"
 msgstr ""
 
 # ,
@@ -505,14 +509,14 @@ msgstr "Abonati-va"
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "Abonați -vă la fluxul nostru <strong> RSS </strong> <br /> și rămâneți la curent!"
 
-#: ../theme/climateadaptv2/index.html:595
+#: ../theme/climateadaptv2/index.html:591
 msgid "The EU Mission on Adaptation to Climate Change portal provides relevant information and resources to European regional and local authorities to prepare and plan for climate resilience."
 msgstr ""
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:557
+#: ../theme/climateadaptv2/index.html:553
 msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
 msgstr "Exploratorul de date climatice europene oferă acces interactiv la mulți indici climatici din serviciul Copernicului pentru schimbările climatice în sprijinul adaptării schimbărilor climatice."
 
@@ -520,14 +524,14 @@ msgstr "Exploratorul de date climatice europene oferă acces interactiv la mulț
 msgid "The European Climate Risk Assessment"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:614
+#: ../theme/climateadaptv2/index.html:610
 msgid "The European Climate Risk Assessment provides an assessment of current and future climate change impacts and risks relating to the environment, economy and wider society in Europe."
 msgstr ""
 
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:576
+#: ../theme/climateadaptv2/index.html:572
 msgid "The European Climate and Health Observatory provides access to a wide range of relevant publications, tools, websites and other resources related to climate change and health."
 msgstr "Observatorul european pentru climă și sănătate oferă acces la o gamă largă de publicații, instrumente, site -uri web relevante și alte resurse legate de schimbările climatice și sănătatea."
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-03-29 06:56+0000\n"
+"POT-Creation-Date: 2023-04-12 05:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -253,10 +253,6 @@ msgstr "Broszura z studiami przypadków"
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Sprawdź <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> i zarejestruj się, aby otrzymać go w e-mailu:"
 
-#: ../theme/climateadaptv2/index.html:406
-msgid "Climate Adapt<br />Platforms"
-msgstr ""
-
 # ,
 # ,
 # ,
@@ -386,7 +382,7 @@ msgstr "Ograniczenie  <br /> ryzyka klęsk żywiołowych"
 msgid "Disaster risk reduction"
 msgstr "Ograniczenie ryzyka klęsk żywiołowych"
 
-#: ../theme/climateadaptv2/index.html:532
+#: ../theme/climateadaptv2/index.html:515
 msgid "EU Mission on Adaptation"
 msgstr ""
 
@@ -419,19 +415,19 @@ msgstr "polityka sektorowa UE"
 msgid "Energy"
 msgstr "Energia"
 
-#: ../theme/climateadaptv2/index.html:516
+#: ../theme/climateadaptv2/index.html:529
 msgid "European Climate Data Explorer"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:613
+#: ../theme/climateadaptv2/index.html:609
 msgid "European Climate Risk Assesments"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:540
+#: ../theme/climateadaptv2/index.html:536
 msgid "European Climate Risk Assesments<br />(EUCRA)"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:524
+#: ../theme/climateadaptv2/index.html:522
 msgid "European Climate and Health Observatory"
 msgstr ""
 
@@ -536,9 +532,13 @@ msgstr "W celu wytycznych dla obszarów miejskich:"
 msgid "Forestry"
 msgstr "Leśnictwo"
 
-#: ../theme/climateadaptv2/index.html:596
+#: ../theme/climateadaptv2/index.html:592
 msgid "Go to the EU Mission"
-msgstr ""
+msgstr "Idź do EU Mission"
+
+#: ../theme/climateadaptv2/index.html:611
+msgid "Go to the EUCRA"
+msgstr "Idź do EUCRA"
 
 # ,
 # ,
@@ -550,7 +550,7 @@ msgstr ""
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:558
+#: ../theme/climateadaptv2/index.html:554
 msgid "Go to the European Climate Data Explorer"
 msgstr "Idź do Europejskiego Eksploratora Danych Klimatycznych"
 
@@ -564,7 +564,7 @@ msgstr "Idź do Europejskiego Eksploratora Danych Klimatycznych"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:577
+#: ../theme/climateadaptv2/index.html:573
 msgid "Go to the European Climate and Health Observatory"
 msgstr "Idź do European Climate and Health Observatory"
 
@@ -705,6 +705,10 @@ msgstr "Więcej wydarzeń"
 #: ../theme/climateadaptv2/index.html:1523
 msgid "More news"
 msgstr "Więcej wiadomości"
+
+#: ../theme/climateadaptv2/index.html:406
+msgid "New <br /> feature"
+msgstr ""
 
 # ,
 # ,
@@ -928,7 +932,7 @@ msgstr "Subskrybuj"
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "Subskrybuj nasz <strong> kanał RSS </strong> <br /> i bądź na bieżąco!"
 
-#: ../theme/climateadaptv2/index.html:595
+#: ../theme/climateadaptv2/index.html:591
 msgid "The EU Mission on Adaptation to Climate Change portal provides relevant information and resources to European regional and local authorities to prepare and plan for climate resilience."
 msgstr "Portal Misji „Adaptacja do zmiany klimatu” dostarcza odpowiednich informacji i zasobów władzom regionalnym i lokalnym w Europie w celu przygotowania i planowania odporności na zmianę klimatu"
 
@@ -942,7 +946,7 @@ msgstr "Portal Misji „Adaptacja do zmiany klimatu” dostarcza odpowiednich in
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:557
+#: ../theme/climateadaptv2/index.html:553
 msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
 msgstr "Europejski Eksplorator Danych Klimatycznych zapewnia interaktywny dostęp do wielu wskaźników klimatycznych z usługi Copernicus Climate Change Service w celu wsparcia adaptacji do zmian klimatu."
 
@@ -950,7 +954,7 @@ msgstr "Europejski Eksplorator Danych Klimatycznych zapewnia interaktywny dostę
 msgid "The European Climate Risk Assessment"
 msgstr "Europejska Ocena Ryzyka Klimatycznego"
 
-#: ../theme/climateadaptv2/index.html:614
+#: ../theme/climateadaptv2/index.html:610
 msgid "The European Climate Risk Assessment provides an assessment of current and future climate change impacts and risks relating to the environment, economy and wider society in Europe."
 msgstr "Europejska Ocena Ryzyka Klimatycznego zawiera ocenę obecnych i przyszłych skutków zmiany klimatu oraz ryzyka związanego ze środowiskiem, gospodarką i szerzej pojętym społeczeństwem w Europie."
 
@@ -964,7 +968,7 @@ msgstr "Europejska Ocena Ryzyka Klimatycznego zawiera ocenę obecnych i przyszł
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:576
+#: ../theme/climateadaptv2/index.html:572
 msgid "The European Climate and Health Observatory provides access to a wide range of relevant publications, tools, websites and other resources related to climate change and health."
 msgstr "European Climate and Health Observatory zapewnia dostęp do szerokiej gamy odpowiednich publikacji, narzędzi, stron internetowych i innych zasobów związanych ze zmianami klimatu i zdrowiem."
 
