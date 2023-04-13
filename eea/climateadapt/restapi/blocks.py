@@ -25,14 +25,6 @@ class SearchAceContentBlockSerializer(object):
         ace.current_lang = 'en'
 
         block['_v_results'] = ace.sections()
-        print('sections', block)
-
-        # portal_transforms = api.portal.get_tool(name="portal_transforms")
-        # raw_html = block.get("html", "")
-        # data = portal_transforms.convertTo(
-        #     "text/x-html-safe", raw_html, mimetype="text/html"
-        # )
-        # html = data.getData()
-        # block["html"] = html
+        # print('sections', block)
 
         return block

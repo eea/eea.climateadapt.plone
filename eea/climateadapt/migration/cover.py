@@ -5,6 +5,7 @@ from collective.cover.interfaces import ICover
 from collective.cover.tiles.richtext import IRichTextTile
 from eea.climateadapt.migration.interfaces import IMigrateToVolto
 from eea.climateadapt.tiles.richtext import IRichTextWithTitle
+from eea.climateadapt.tiles.search_acecontent import ISearchAceContentTile
 from plone.app.contenttypes.interfaces import IFolder
 from plone.tiles.interfaces import ITileDataManager
 from zope.component import adapter
@@ -37,9 +38,36 @@ def richtext_tile_to_blocks(tile_dm, obj, request):
     }
 
 
+def search_acecontent_to_block(tile_dm, obj, request):
+    data = tile_dm.get()
+    # import pdb
+    # pdb.set_trace()
+    
+    blocks = [[make_uid(), {
+        "@type": "searchAceContent",
+        "title": data.get('title'),
+        "search_text": data.get('search_text'),
+        "origin_website": data.get('origin_website'),
+        "search_type": data.get('search_type'),
+        "element_type": data.get('element_type'),
+        "sector": data.get('sector'),
+        "special_tags": data.get('special_tags'),
+        'countries': data.get('countries'),
+        "macro_regions": data.get('macro_regions'),
+        "bio_regions": data.get('bio_regions'),
+        "funding_programme": data.get('funding_programme'),
+        "nr_items": data.get('nr_items'),
+    }]]
+
+    return {
+        "blocks": blocks,
+    }
+
+
 tile_converters = {
     IRichTextTile: richtext_tile_to_blocks,
-    IRichTextWithTitle: richtext_tile_to_blocks
+    IRichTextWithTitle: richtext_tile_to_blocks,
+    ISearchAceContentTile: search_acecontent_to_block
 }
 
 
