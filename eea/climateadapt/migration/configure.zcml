@@ -22,4 +22,8 @@
       factory=".cover.MigrateCover"
       />
 
+  <adapter
+      factory=".cover.MigrateFolder"
+      />
+
 </configure>

@@ -40,9 +40,7 @@ def richtext_tile_to_blocks(tile_dm, obj, request):
 
 def search_acecontent_to_block(tile_dm, obj, request):
     data = tile_dm.get()
-    # import pdb
-    # pdb.set_trace()
-    
+
     blocks = [[make_uid(), {
         "@type": "searchAceContent",
         "title": data.get('title'),
@@ -242,7 +240,8 @@ class MigrateCover(object):
                 tile_data = self.convert_tile_to_volto_blocklist(tile['id'])
                 blocklist = tile_data.pop('blocks', [])
                 attributes.update(tile_data)
-                tile_blocks, tile_blocks_layout = self._blocklist_to_blocks(blocklist)
+                tile_blocks, tile_blocks_layout = self._blocklist_to_blocks(
+                    blocklist)
                 blocks.update(tile_blocks)
                 blocks_layout.extend(tile_blocks_layout['items'])
 
@@ -326,5 +325,10 @@ class MigrateFolder(object):
         self.request = request
 
     def __call__(self):
+        obj = self.context
+        if "index_html" in obj.contentIds():
+            cover = obj["index_html"]
+            MigrateCover(cover, self.request).__call__()
+
         # if there's a cover with id index_html, use that as content
         pass
