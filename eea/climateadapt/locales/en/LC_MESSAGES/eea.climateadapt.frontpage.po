@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-04-12 07:25+0000\n"
+"POT-Creation-Date: 2023-04-14 18:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -169,11 +169,11 @@ msgid "European Climate Data Explorer"
 msgstr ""
 
 #: ../theme/climateadaptv2/index.html:609
-msgid "European Climate Risk Assesments"
+msgid "European Climate Risk Assessment"
 msgstr ""
 
 #: ../theme/climateadaptv2/index.html:536
-msgid "European Climate Risk Assesments<br />(EUCRA)"
+msgid "European Climate Risk Assessment<br />(EUCRA)"
 msgstr ""
 
 #: ../theme/climateadaptv2/index.html:522
@@ -284,7 +284,7 @@ msgid "More news"
 msgstr ""
 
 #: ../theme/climateadaptv2/index.html:406
-msgid "New <br /> feature"
+msgid "New <br /> Features"
 msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1490
