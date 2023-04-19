@@ -28,3 +28,29 @@ class SearchAceContentBlockSerializer(object):
         # print('sections', block)
 
         return block
+    
+
+@implementer(IBlockFieldSerializationTransformer)
+@adapter(IBlocks, IBrowserRequest)
+class RelevantAceContentBlockSerializer(object):
+    order = 100
+    block_type = "relevantAceContent"
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self, block):
+
+        ace = AceTileMixin()
+        ace.context = self.context
+        ace.request = self.request
+        ace.data = block
+        ace.current_lang = 'en'
+
+        import pdb
+        pdb.set_trace()
+        
+        # print('sections', block)
+
+        return block

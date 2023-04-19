@@ -381,6 +381,44 @@ class AceTileMixin(object):
 
         return result
 
+    # @view.memoize
+    def assigned(self):
+        """Return the list of objects stored in the tile as UUID. If an UUID
+        has no object associated with it, removes the UUID from the list.
+        :returns: a list of objects.
+        """
+        # self.set_limit()
+
+        # always get the latest data
+        uuids = ITileDataManager(self).get().get("uuids", None)
+
+        results = list()
+
+        if uuids:
+            ordered_uuids = [(k, v) for k, v in uuids.items()]
+            ordered_uuids.sort(key=lambda x: x[1]["order"])
+
+            for uuid in [i[0] for i in ordered_uuids]:
+                obj = uuidToObject(uuid)
+
+                if obj:
+                    results.append(obj)
+
+                else:
+                    # maybe the user has no permission to access the object
+                    # so we try to get it bypassing the restrictions
+                    catalog = api.portal.get_tool("portal_catalog")
+                    #brain = catalog.unrestrictedSearchResults(UID=uuid, review_state='published')
+                    brain = catalog.searchResults(UID=uuid, review_state='published')
+
+                    if not brain:
+                        # the object was deleted; remove it from the tile
+                        self.remove_item(uuid)
+                        logger.debug(
+                            "Nonexistent object {0} removed from " "tile".format(uuid)
+                        )
+
+        return results
 
 class SearchAceContentTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMixin):
     """Search Ace content tile
@@ -489,7 +527,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
     @view.memoize
     def is_empty(self):
         return False
-
+    
     def get_description(self, item):
         # TODO: move this code to an indexer and a metadata column
 
@@ -528,7 +566,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
             "Page",
             "Link",
         ]
-
+    
     def view_more_url(self):
         site = getSite()
         base = site.absolute_url() + "/data-and-downloads?source="
@@ -633,46 +671,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
             res.append(o)
 
         return res
-
-    # @view.memoize
-    def assigned(self):
-        """Return the list of objects stored in the tile as UUID. If an UUID
-        has no object associated with it, removes the UUID from the list.
-        :returns: a list of objects.
-        """
-        # self.set_limit()
-
-        # always get the latest data
-        uuids = ITileDataManager(self).get().get("uuids", None)
-
-        results = list()
-
-        if uuids:
-            ordered_uuids = [(k, v) for k, v in uuids.items()]
-            ordered_uuids.sort(key=lambda x: x[1]["order"])
-
-            for uuid in [i[0] for i in ordered_uuids]:
-                obj = uuidToObject(uuid)
-
-                if obj:
-                    results.append(obj)
-
-                else:
-                    # maybe the user has no permission to access the object
-                    # so we try to get it bypassing the restrictions
-                    catalog = api.portal.get_tool("portal_catalog")
-                    #brain = catalog.unrestrictedSearchResults(UID=uuid, review_state='published')
-                    brain = catalog.searchResults(UID=uuid, review_state='published')
-
-                    if not brain:
-                        # the object was deleted; remove it from the tile
-                        self.remove_item(uuid)
-                        logger.debug(
-                            "Nonexistent object {0} removed from " "tile".format(uuid)
-                        )
-
-        return results
-
+    
     def populate_with_object(self, obj):
         """Add an object to the list of items
         :param obj: [required] The object to be added

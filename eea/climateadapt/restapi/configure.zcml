@@ -37,4 +37,9 @@
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
     />
 
+  <subscriber
+    factory=".blocks.RelevantAceContentBlockSerializer"
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+    />
+
 </configure>
