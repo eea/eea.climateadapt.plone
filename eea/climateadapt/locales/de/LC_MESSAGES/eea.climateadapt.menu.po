@@ -1265,6 +1265,10 @@ msgstr "Mittelmeerraum"
 msgid "Mental health effects"
 msgstr "Auswirkungen auf die psychische Gesundheit"
 
+#: site_menu:23
+msgid "Mission Portal"
+msgstr "Missionsportal"
+
 # ,
 # ,
 # ,

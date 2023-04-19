@@ -451,6 +451,10 @@ msgstr "Средиземно море"
 msgid "Mental health effects"
 msgstr ""
 
+#: site_menu:23
+msgid "Mission Portal"
+msgstr ""
+
 # ,
 #: site_menu:66
 msgid "Monitoring, Reporting and Evaluation"

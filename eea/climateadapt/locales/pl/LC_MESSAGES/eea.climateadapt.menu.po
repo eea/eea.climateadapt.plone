@@ -1256,6 +1256,10 @@ msgstr "Śródziemnomorski"
 msgid "Mental health effects"
 msgstr "Efekty dla zdrowia psychicznego"
 
+#: site_menu:23
+msgid "Mission Portal"
+msgstr "Portal misji"
+
 # ,
 # ,
 # ,

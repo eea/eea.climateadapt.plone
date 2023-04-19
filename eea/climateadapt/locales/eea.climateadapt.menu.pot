@@ -183,6 +183,11 @@ msgstr ""
 msgid "EU Mission on Adaptation"
 msgstr ""
 
+#: site_menu:23
+msgid "Mission Portal"
+msgstr ""
+
+#: site_menu:43
 #: site_menu:43
 msgid "EU REGIONAL POLICY"
 msgstr ""

@@ -1178,6 +1178,10 @@ msgstr "Mediterráneo"
 msgid "Mental health effects"
 msgstr "Efectos en la salud mental"
 
+#: site_menu:23
+msgid "Mission Portal"
+msgstr "Portal de la misión"
+
 # ,
 # ,
 # ,

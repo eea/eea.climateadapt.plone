@@ -1325,6 +1325,10 @@ msgstr "Mediterranea"
 msgid "Mental health effects"
 msgstr "Effetti sulla salute mentale"
 
+#: site_menu:23
+msgid "Mission Portal"
+msgstr "Portale della missione"
+
 # ,
 # ,
 # ,
