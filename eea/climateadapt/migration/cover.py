@@ -6,10 +6,14 @@ from collective.cover.tiles.richtext import IRichTextTile
 from eea.climateadapt.migration.interfaces import IMigrateToVolto
 from eea.climateadapt.tiles.richtext import IRichTextWithTitle
 from eea.climateadapt.tiles.search_acecontent import ISearchAceContentTile
+from eea.climateadapt.tiles.shareinfo import IShareInfoTile
+from eea.climateadapt.config import DEFAULT_LOCATIONS
+from eea.climateadapt.translation.utils import (get_current_language)
 from plone.app.contenttypes.interfaces import IFolder
 from plone.tiles.interfaces import ITileDataManager
 from zope.component import adapter
 from zope.interface import Interface, implementer
+from zope.component.hooks import getSite
 
 from .fixes import fix_content
 from .utils import convert_to_blocks
@@ -61,11 +65,41 @@ def search_acecontent_to_block(tile_dm, obj, request):
         "blocks": blocks,
     }
 
+def share_info_tile_to_block(tile_dm, obj, request):
+    data = tile_dm.get()
+
+    def link_url(obj):
+        site = getSite()
+        current_lang = get_current_language(obj, request)
+        type_ = data.get('shareinfo_type')
+        location, _t, factory = DEFAULT_LOCATIONS[type_]
+        location = current_lang + '/' + location
+        location = site.restrictedTraverse(location)
+        url = location.absolute_url().replace("/" + current_lang + "/", "/en/")
+        return "{0}/++add++{1}".format(url, factory)
+
+
+    blocks = [[make_uid(), {
+        "@type": "callToActionBlock",
+        "href": link_url(obj),
+        "styles": {
+            "icon": "ri-share-line",
+            "theme": "primary"
+        },
+        "text": "Share your information", # TODO: translation
+        "target": "_self",
+    }]]
+
+    return {
+        "blocks": blocks,
+    }
+
 
 tile_converters = {
     IRichTextTile: richtext_tile_to_blocks,
     IRichTextWithTitle: richtext_tile_to_blocks,
-    ISearchAceContentTile: search_acecontent_to_block
+    ISearchAceContentTile: search_acecontent_to_block,
+    IShareInfoTile: share_info_tile_to_block,
 }
 
 
