@@ -5,7 +5,7 @@ from collective.cover.interfaces import ICover
 from collective.cover.tiles.richtext import IRichTextTile
 from eea.climateadapt.migration.interfaces import IMigrateToVolto
 from eea.climateadapt.tiles.richtext import IRichTextWithTitle
-from eea.climateadapt.tiles.search_acecontent import ISearchAceContentTile
+from eea.climateadapt.tiles.search_acecontent import ISearchAceContentTile, IRelevantAceContentItemsTile
 from eea.climateadapt.tiles.shareinfo import IShareInfoTile
 from eea.climateadapt.config import DEFAULT_LOCATIONS
 from eea.climateadapt.translation.utils import (get_current_language)
@@ -94,11 +94,18 @@ def share_info_tile_to_block(tile_dm, obj, request):
         "blocks": blocks,
     }
 
+def relevant_acecontent_to_block(tile_dm, obj, request):
+    data = tile_dm.get()
+    import pdb
+    pdb.set_trace()
+
+
 
 tile_converters = {
     IRichTextTile: richtext_tile_to_blocks,
     IRichTextWithTitle: richtext_tile_to_blocks,
     ISearchAceContentTile: search_acecontent_to_block,
+    IRelevantAceContentItemsTile: relevant_acecontent_to_block,
     IShareInfoTile: share_info_tile_to_block,
 }
 
