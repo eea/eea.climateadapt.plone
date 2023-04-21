@@ -355,9 +355,9 @@ class ExcelCsvExportView (BrowserView):
 
 class DetectBrokenLinksView (BrowserView):
     """ View for detecting broken links"""
-    
+
     items_to_display = 200
-    
+
     # def show_obj(self, path):
     #     """ Don't show objects which are not published
     #     """
@@ -385,7 +385,7 @@ class DetectBrokenLinksView (BrowserView):
                     continue
 
                 item = {}
-                
+
                 try:
                     obj = self.context.unrestrictedTraverse(info['object_url'])
                 except:
@@ -402,11 +402,11 @@ class DetectBrokenLinksView (BrowserView):
                         date, DateTime) else date
                     if (isinstance(date, str) and date=='pre_nov7_data'):
                         continue
-                    
+
                     item['url'] = info['url']
                     item['status'] = info['status']
                     item['object_url'] = self.url(info['object_url'])
-                    
+
                     broken_links.append(item)
 
         broken_links.sort(key=lambda i: i['date'])
@@ -425,9 +425,9 @@ class DetectBrokenLinksView (BrowserView):
     def data_to_xls(self, data):
         headers = [
             ('url', 'Destination Links'),
-            ('status' ,'Status Code'), 
-            ('object_url' ,'Object Url'), 
-            ('date' ,'Date'), 
+            ('status' ,'Status Code'),
+            ('object_url' ,'Object Url'),
+            ('date' ,'Date'),
             ('state' ,'Type')
         ]
 
@@ -1210,6 +1210,8 @@ class C3sIndicatorsListing(BrowserView, TranslationUtilsMixin):
 
         url = self.request["ACTUAL_URL"]
         category = url.split("/")[-1]
+        category_id = category.lower().replace("-"," ")
+        category_path = category.lower()
 
         catalog = api.portal.get_tool("portal_catalog")
         brains = catalog.searchResults(portal_type='eea.climateadapt.c3sindicator', c3s_theme=category.capitalize())
@@ -1228,8 +1230,8 @@ class C3sIndicatorsListing(BrowserView, TranslationUtilsMixin):
         # lg = get_current_language(self.context, self.request) - KeyError: 'data'
         base_folder = site["en"]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
-        res['description'] = datastore['data']['themes'][category]['description']
-        for indicator in datastore['data']['themes'][category]['apps']:
+        res['description'] = datastore['data']['themes'][category_id]['description']
+        for indicator in datastore['data']['themes'][category_id]['apps']:
             if indicator['title'] in items:
                 obj = items[indicator['title']]['obj']
                 if self.current_lang != 'en':
