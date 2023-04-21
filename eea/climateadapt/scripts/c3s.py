@@ -86,6 +86,23 @@ def save_indicator(indicator, site, data):
     print("=============================================")
     print(indicator["theme"])
 
+    folder_path = "en/knowledge/european-climate-data-explorer/"
+    folder = site.restrictedTraverse(folder_path)
+
+    for theme_name in indicator["theme"]:
+        folder_indicator_id = theme_name.lower().replace(" ", "-")
+        if folder_indicator_id not in folder.contentIds():
+            print("Create indicator folder", theme_name)
+            folder_indicator = createContentInContainer(
+                folder, "Folder", title=theme_name
+            )
+
+            folder_indicator.manage_addProperty(
+                id="layout", value="c3s_indicators_listing", type="string"
+            )
+            api.content.transition(folder_indicator, "publish")
+            folder_indicator._p_changed
+
     portal_catalog = site.portal_catalog
     brains = portal_catalog.unrestrictedSearchResults(
         **{
@@ -106,23 +123,6 @@ def save_indicator(indicator, site, data):
         except Exception:
             pass
             # print("C3S Identifier NOT SET")
-
-    folder_path = "en/knowledge/european-climate-data-explorer/"
-    folder = site.restrictedTraverse(folder_path)
-
-    #for theme_name in indicator["theme"]:
-    #    folder_indicator_id = theme_name.lower().replace(" ", "-")
-    #    if folder_indicator_id not in folder.contentIds():
-    #        print("Create indicator folder", theme_name)
-    #        folder_indicator = createContentInContainer(
-    #            folder, "Folder", title=theme_name
-    #        )
-
-    #        folder_indicator.manage_addProperty(
-    #            id="layout", value="c3s_indicators_listing", type="string"
-    #        )
-    #        api.content.transition(folder_indicator, "publish")
-    #        folder_indicator._p_changed
 
     if not indicatorFound:
         folder_path = "en/metadata/indicators/"

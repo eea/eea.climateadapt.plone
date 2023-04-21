@@ -526,4 +526,12 @@
       original="metadata_fields"
       preserveOriginal="false"
       replacement="eea.climateadapt.patch.metadata_fields" />
+    
+    <monkey:patch
+      description="Patch getTerm to fix UnicodeEncodeError: 'ascii' codec can't encode character..."
+      class="plone.app.vocabularies.users.UsersVocabulary"
+      original="getTerm"
+      preserveOriginal="false"
+      replacement="eea.climateadapt.patch.getTerm" />
+
 </configure>

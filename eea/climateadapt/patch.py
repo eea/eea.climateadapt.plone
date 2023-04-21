@@ -1,6 +1,7 @@
 from eea.climateadapt.translation.utils import get_current_language
 from plone.app.theming.transform import _Cache
 from zope.globalrequest import getRequest
+from zope.schema.vocabulary import SimpleTerm
 from zope.site.hooks import getSite
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.PloneBatch import Batch
@@ -111,3 +112,18 @@ def metadata_fields(self):
         additional_metadata_fields = fields_cache
 
     return DEFAULT_METADATA_FIELDS | additional_metadata_fields
+
+
+# Refs #248978
+def getTerm(self, userid):
+    try:
+        token = userid.encode("utf-8")
+    except:
+        token = userid
+
+    fullname = userid
+    user = self._users.getUserById(userid, None)
+    if user:
+        fullname = user.getProperty('fullname', None) or userid
+    
+    return SimpleTerm(userid, token, fullname)
