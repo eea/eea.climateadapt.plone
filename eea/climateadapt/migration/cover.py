@@ -97,16 +97,21 @@ def embed_tile_to_block(tile_dm, obj, request):
 
     if '<video' in embed:
         soup = BeautifulSoup(embed, "html.parser")
-        url = soup.find("video").attrs.get('src')
+        video = soup.find("video")
+        url = video.attrs.get('src')
+        preview_image = video.attrs.get('poster', None)
 
-        blocks = [[make_uid(), {
+        video_block = {
             # "@type": "video", -not working for cmshare.eea.europa.eu
             "@type": "nextCloudVideo",
             "url": url,
-        }]]
+        }
+
+        if preview_image is not None:
+            video_block['preview_image'] = preview_image
 
         return {
-            "blocks": blocks,
+            "blocks": [[make_uid(), video_block]]
         }
 
     print("Implement missing embed tile type.")
