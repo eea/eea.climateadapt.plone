@@ -14,6 +14,8 @@ from zope.component import adapter
 from zope.interface import Interface, implementer
 from .fixes import fix_content
 from .utils import convert_to_blocks
+from collective.cover.tiles.embed import IEmbedTile
+from bs4 import BeautifulSoup
 
 
 def richtext_tile_to_blocks(tile_dm, obj, request):
@@ -62,6 +64,7 @@ def search_acecontent_to_block(tile_dm, obj, request):
         "blocks": blocks,
     }
 
+
 def share_info_tile_to_block(tile_dm, obj, request):
     data = tile_dm.get()
 
@@ -77,9 +80,9 @@ def share_info_tile_to_block(tile_dm, obj, request):
         "styles": {
             "icon": "ri-share-line",
             "theme": "primary",
-            "align" : "left"
+            "align": "left"
         },
-        "text": "Share your information", # TODO: translation
+        "text": "Share your information",  # TODO: translation
         "target": "_self",
     }]]
 
@@ -87,11 +90,32 @@ def share_info_tile_to_block(tile_dm, obj, request):
         "blocks": blocks,
     }
 
+
+def embed_tile_to_block(tile_dm, obj, request):
+    data = tile_dm.get()
+    embed = data.get("embed", None)
+
+    if '<video' in embed:
+        soup = BeautifulSoup(embed, "html.parser")
+        url = soup.find("video").attrs.get('src')
+
+        blocks = [[make_uid(), {
+            "@type": "video",
+            "url": url,
+        }]]
+
+        return {
+            "blocks": blocks,
+        }
+
+    print("Implement missing embed tile type.")
+    return None
+
+
 def relevant_acecontent_to_block(tile_dm, obj, request):
     data = tile_dm.get()
     import pdb
     pdb.set_trace()
-
 
 
 tile_converters = {
@@ -100,6 +124,7 @@ tile_converters = {
     ISearchAceContentTile: search_acecontent_to_block,
     IRelevantAceContentItemsTile: relevant_acecontent_to_block,
     IShareInfoTile: share_info_tile_to_block,
+    IEmbedTile: embed_tile_to_block,
 }
 
 
