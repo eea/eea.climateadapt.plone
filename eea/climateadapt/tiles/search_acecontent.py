@@ -381,6 +381,56 @@ class AceTileMixin(object):
 
         return result
 
+    # @view.memoize
+    def relevant_items(self):
+        count = self.data.get("nr_items", 5) or 5
+        query = self.build_query()
+        res = self.catalog.searchResults(**query)
+
+        if len(res) < count:
+            self.view_more = False
+ 
+        try:
+            items = res[:count] 
+        except TypeError:
+            items = []
+        
+        return items
+
+    def relevant_all_items(self):
+        current_language = get_current_language(self.context, self.request)
+        res = []
+
+        combine = self.data.get("combine_results", False)
+
+        if not combine:
+            if res:
+                if self.data.get("sortBy", "") == "NAME":
+                    return sorted(res, key=lambda o: o.sortable_title)
+                else:
+                    return res
+
+        for item in self.relevant_items():
+            obj = item.getObject()
+            if '/' + current_language + '/' not in item.getURL():
+                item = self.translated_object(item)
+
+            if not item:
+                continue
+
+            adapter = sortable_title(obj)
+            st = adapter()
+            o = Item(
+                item.Title,
+                item.Description,
+                '', #self.get_icons(item),
+                st,
+                item.getURL(),
+            )
+            res.append(o)
+
+        return res
+
 class SearchAceContentTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMixin):
     """Search Ace content tile
     It shows links to the search page, for all aceitems_types.

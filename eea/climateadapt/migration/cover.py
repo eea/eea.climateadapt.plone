@@ -14,6 +14,7 @@ from zope.component import adapter
 from zope.interface import Interface, implementer
 from .fixes import fix_content
 from .utils import convert_to_blocks
+from .tiles import relevant_items
 
 
 def richtext_tile_to_blocks(tile_dm, obj, request):
@@ -89,10 +90,30 @@ def share_info_tile_to_block(tile_dm, obj, request):
 
 def relevant_acecontent_to_block(tile_dm, obj, request):
     data = tile_dm.get()
-    import pdb
-    pdb.set_trace()
 
+    blocks = [[make_uid(), {
+        "@type": "relevantAceContent",
+        "title": data.get('title'),
+        "items": relevant_items(obj, request, tile_dm),
+        "search_text": data.get('search_text'),
+        "origin_website": data.get('origin_website'),
+        "search_type": data.get('search_type'),
+        "element_type": data.get('element_type'),
+        "sector": data.get('sector'),
+        "special_tags": data.get('special_tags'),
+        'countries': data.get('countries'),
+        "macro_regions": data.get('macro_regions'),
+        "bio_regions": data.get('bio_regions'),
+        "funding_programme": data.get('funding_programme'),
+        "nr_items": data.get('nr_items'),
+        "show_share_btn": data.get('show_share_btn'),
+        "sortBy": data.get('sortBy'),
+        "combine_results": data.get('combine_results'),
+    }]]
 
+    return {
+        "blocks": blocks,
+    }
 
 tile_converters = {
     IRichTextTile: richtext_tile_to_blocks,
