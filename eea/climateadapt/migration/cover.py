@@ -15,6 +15,8 @@ from zope.interface import Interface, implementer
 from .fixes import fix_content
 from .utils import convert_to_blocks
 from .tiles import relevant_items
+from collective.cover.tiles.embed import IEmbedTile
+from bs4 import BeautifulSoup
 
 
 def richtext_tile_to_blocks(tile_dm, obj, request):
@@ -63,6 +65,7 @@ def search_acecontent_to_block(tile_dm, obj, request):
         "blocks": blocks,
     }
 
+
 def share_info_tile_to_block(tile_dm, obj, request):
     data = tile_dm.get()
 
@@ -78,15 +81,43 @@ def share_info_tile_to_block(tile_dm, obj, request):
         "styles": {
             "icon": "ri-share-line",
             "theme": "primary",
-            "align" : "left"
+            "align": "left"
         },
-        "text": "Share your information", # TODO: translation
+        "text": "Share your information",  # TODO: translation
         "target": "_self",
     }]]
 
     return {
         "blocks": blocks,
     }
+
+
+def embed_tile_to_block(tile_dm, obj, request):
+    data = tile_dm.get()
+    embed = data.get("embed", None)
+
+    if '<video' in embed:
+        soup = BeautifulSoup(embed, "html.parser")
+        video = soup.find("video")
+        url = video.attrs.get('src')
+        preview_image = video.attrs.get('poster', None)
+
+        video_block = {
+            # "@type": "video", -not working for cmshare.eea.europa.eu
+            "@type": "nextCloudVideo",
+            "url": url,
+        }
+
+        if preview_image is not None:
+            video_block['preview_image'] = preview_image
+
+        return {
+            "blocks": [[make_uid(), video_block]]
+        }
+
+    print("Implement missing embed tile type.")
+    return None
+
 
 def relevant_acecontent_to_block(tile_dm, obj, request):
     data = tile_dm.get()
@@ -115,12 +146,14 @@ def relevant_acecontent_to_block(tile_dm, obj, request):
         "blocks": blocks,
     }
 
+
 tile_converters = {
     IRichTextTile: richtext_tile_to_blocks,
     IRichTextWithTitle: richtext_tile_to_blocks,
     ISearchAceContentTile: search_acecontent_to_block,
     IRelevantAceContentItemsTile: relevant_acecontent_to_block,
     IShareInfoTile: share_info_tile_to_block,
+    IEmbedTile: embed_tile_to_block,
 }
 
 
