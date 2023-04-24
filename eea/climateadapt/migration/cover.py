@@ -100,7 +100,8 @@ def embed_tile_to_block(tile_dm, obj, request):
         url = soup.find("video").attrs.get('src')
 
         blocks = [[make_uid(), {
-            "@type": "video",
+            # "@type": "video", -not working for cmshare.eea.europa.eu
+            "@type": "nextCloudVideo",
             "url": url,
         }]]
 
