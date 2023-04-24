@@ -100,6 +100,37 @@ def embed_tile_to_block(tile_dm, obj, request):
         video = soup.find("video")
         url = video.attrs.get('src')
         preview_image = video.attrs.get('poster', None)
+        video_description = soup.get_text().replace('\n', '')
+
+        video_title = {
+            "@type": "slate",
+            "plaintext": video_description,
+            "value": [
+                {
+                    "children": [
+                        {
+                            "text": video_description,
+                        }
+                    ],
+                    "type": "h3"
+                }
+            ]
+        }
+
+        video_caption = {
+            "@type": "slate",
+            "plaintext": video_description,
+            "value": [
+                {
+                    "children": [
+                        {
+                            "text": video_description,
+                        }
+                    ],
+                    "type": "p"
+                },
+            ]
+        }
 
         video_block = {
             # "@type": "video", -not working for cmshare.eea.europa.eu
@@ -110,8 +141,14 @@ def embed_tile_to_block(tile_dm, obj, request):
         if preview_image is not None:
             video_block['preview_image'] = preview_image
 
+        blocks = []
+        if len(video_description) > 1:
+            blocks.append([make_uid(), video_title])
+        blocks.append([make_uid(), video_block])
+        if len(video_description) > 1:
+            blocks.append([make_uid(), video_caption])
         return {
-            "blocks": [[make_uid(), video_block]]
+            "blocks": blocks
         }
 
     print("Implement missing embed tile type.")
@@ -131,6 +168,8 @@ tile_converters = {
     IRelevantAceContentItemsTile: relevant_acecontent_to_block,
     IShareInfoTile: share_info_tile_to_block,
     IEmbedTile: embed_tile_to_block,
+
+
 }
 
 
