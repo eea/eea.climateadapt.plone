@@ -1260,3 +1260,66 @@ class VibrioProxy(BrowserView):
         url = self.url_vibrio + '?' + self.request["QUERY_STRING"]
         resp = requests.get(url)
         return resp.content
+
+
+class GetCoventantOfMayorsLinks(BrowserView):
+    domains = ['www.covenantofmayors.eu', 'eumayors.eu', 'mayors-adapt.eu']
+
+    def url_needed(self, url):
+        for domain in self.domains:
+            if domain in url:
+                return True
+        
+        return False
+
+    def data_to_xls(self, data):
+        headers = ['Location', 'Link']
+
+        # Create a workbook and add a worksheet.
+        out = BytesIO()
+        workbook = xlsxwriter.Workbook(out, {'in_memory': True})
+
+        wtitle = 'Broken-Links'
+        worksheet = workbook.add_worksheet(wtitle[:30])
+
+        for i, title in enumerate(headers):
+                worksheet.write(0, i, title or '')
+
+        row_index = 1
+
+        for row in data:
+            path = row[0]
+            link = row[1]
+            worksheet.write(row_index, 0, path or '')
+            worksheet.write(row_index, 1, link or '')
+
+            row_index += 1
+
+        workbook.close()
+        out.seek(0)
+
+        return out
+
+    def __call__(self):
+        links = get_links(self.context)
+        result = []
+
+        for link in links:
+            url = link['link']
+
+            if url and self.url_needed(url):
+                path = '/'.join(link['object_url'])
+                obj = self.context.unrestrictedTraverse(path)
+                result.append((obj.absolute_url(), url))
+
+        xlsio = self.data_to_xls(result)
+        sh = self.request.response.setHeader
+
+        sh('Content-Type', 'application/vnd.openxmlformats-officedocument.'
+           'spreadsheetml.sheet')
+        fname = "-".join(["CovenantOfMayorsLinks",
+                          str(datetime.now().replace(microsecond=0))])
+        sh('Content-Disposition',
+           'attachment; filename=%s.xlsx' % fname)
+
+        return xlsio.read()
