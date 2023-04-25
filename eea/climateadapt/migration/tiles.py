@@ -1,11 +1,12 @@
 import logging
 from uuid import uuid4
-from eea.climateadapt.translation.utils import get_current_language
+from collections import namedtuple
 from plone import api
 from plone.app.uuid.utils import uuidToObject
 from zope.component.hooks import getSite
-# from zope.component.hooks import getSite
-# from Products.CMFPlone.CatalogTool import sortable_title
+from Products.CMFPlone.CatalogTool import sortable_title
+from Products.CMFCore.utils import getToolByName
+
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -47,36 +48,88 @@ def assigned(tile):
                     )
     return results
 
+Item = namedtuple(
+    "Item", [
+        "id", 
+        "portal_type", 
+        "getId", 
+        "UID", 
+        "Title",
+        "title",
+        "Description",
+        "meta_type",
+        "created",
+        "effective",
+        "modified",
+        "review_state",
+        "sortable_title",
+    ]
+)
+
 def relevant_items(obj, request, tile):
-    res = []
     site = getSite()
+    data = tile.get()
+    results = []
+    items = []
 
     for item in assigned(tile):
-        if not item:
-            continue
-
+        wftool = getToolByName(item, "portal_workflow")
+        state = wftool.getInfoFor(item, "review_state")
         obj_path = item.getPhysicalPath()
         site_path = site.getPhysicalPath()
         path = '/' + '/'.join(obj_path[len(site_path):])
+        
+        if not item:
+            continue
+        
+        adapter = sortable_title(item)
+        st = adapter()
+        o = Item(
+            path,
+            item.portal_type,
+            item.getId(),
+            item.UID(),
+            item.Title(),
+            item.Title(),
+            item.Description(),
+            item.meta_type,
+            item.created(),
+            item.effective(),
+            item.modified(),
+            state,
+            st,
+        )
+        items.append(o)
+    
+    combine = data.get("combine_results", False)
 
+    if not combine:
+        if items:
+            if data.get("sortBy", "") == "NAME":
+                items = sorted(items, key=lambda o: o.sortable_title)
+
+
+    for item in items:
         o = {
             '@id': str(uuid4()),
-            'item_title': item.Title(),
+            'item_title': item.Title,
             'link': path,
             'source': [{
                 "@id": path,
                 "@type": item.portal_type,
-                "getId": item.getId(),
-                "UID": item.UID(),
-                "Title": item.Title(),
-                "title": item.Title(),
+                "getId": item.getId,
+                "UID": item.UID,
+                "Title": item.Title,
+                "title": item.Title,
                 "meta_type": item.meta_type,
-                "Description": item.Description(),
-                "created": item.created(),
-                "effective": item.effective(),
+                "Description": item.Description,
+                "created": item.created,
+                "effective": item.effective,
+                "modified": item.modified,
+                "review_state": item.review_state,
             }]
         }
         
-        res.append(o)
+        results.append(o)
 
-    return res
+    return results
