@@ -42,9 +42,4 @@
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
     />
 
-  <subscriber
-    factory=".blocks.FilterAceContentBlockSerializer"
-    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-    />
-
 </configure>

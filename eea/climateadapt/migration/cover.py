@@ -190,7 +190,6 @@ def filter_acecontent_to_block(tile_dm, obj, request):
     blocks = [[make_uid(), {
         "@type": "filterAceContent",
         "title": data.get('title'),
-        # "items": relevant_items(obj, request, tile_dm),
         "search_text": data.get('search_text'),
         "origin_website": data.get('origin_website'),
         "search_type": data.get('search_type'),
@@ -202,9 +201,7 @@ def filter_acecontent_to_block(tile_dm, obj, request):
         "bio_regions": data.get('bio_regions'),
         "funding_programme": data.get('funding_programme'),
         "nr_items": data.get('nr_items'),
-        "show_share_btn": data.get('show_share_btn'),
         "sortBy": data.get('sortBy'),
-        "combine_results": data.get('combine_results'),
     }]]
 
     return {
