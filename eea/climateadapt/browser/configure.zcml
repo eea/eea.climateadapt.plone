@@ -212,6 +212,13 @@
       />
 
   <browser:page
+      name="get-coventantofmayors-links"
+      for="*"
+      class=".misc.GetCoventantOfMayorsLinks"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
       name="no_title_cover_view"
       for="*"
       class=".CoverNoTitleView"
