@@ -5,7 +5,7 @@ from collective.cover.interfaces import ICover
 from collective.cover.tiles.richtext import IRichTextTile
 from eea.climateadapt.migration.interfaces import IMigrateToVolto
 from eea.climateadapt.tiles.richtext import IRichTextWithTitle
-from eea.climateadapt.tiles.search_acecontent import ISearchAceContentTile, IRelevantAceContentItemsTile
+from eea.climateadapt.tiles.search_acecontent import ISearchAceContentTile, IRelevantAceContentItemsTile, IFilterAceContentItemsTile
 from eea.climateadapt.tiles.shareinfo import IShareInfoTile
 from eea.climateadapt.config import DEFAULT_LOCATIONS
 from plone.app.contenttypes.interfaces import IFolder
@@ -36,30 +36,6 @@ def richtext_tile_to_blocks(tile_dm, obj, request):
         print(html)
         print("--/Converting")
         blocks = convert_to_blocks(html)
-
-    return {
-        "blocks": blocks,
-    }
-
-
-def search_acecontent_to_block(tile_dm, obj, request):
-    data = tile_dm.get()
-
-    blocks = [[make_uid(), {
-        "@type": "searchAceContent",
-        "title": data.get('title'),
-        "search_text": data.get('search_text'),
-        "origin_website": data.get('origin_website'),
-        "search_type": data.get('search_type'),
-        "element_type": data.get('element_type'),
-        "sector": data.get('sector'),
-        "special_tags": data.get('special_tags'),
-        'countries': data.get('countries'),
-        "macro_regions": data.get('macro_regions'),
-        "bio_regions": data.get('bio_regions'),
-        "funding_programme": data.get('funding_programme'),
-        "nr_items": data.get('nr_items'),
-    }]]
 
     return {
         "blocks": blocks,
@@ -155,6 +131,30 @@ def embed_tile_to_block(tile_dm, obj, request):
     print("Implement missing embed tile type.")
     return None
 
+def search_acecontent_to_block(tile_dm, obj, request):
+    data = tile_dm.get()
+
+    blocks = [[make_uid(), {
+        "@type": "searchAceContent",
+        "title": data.get('title'),
+        "search_text": data.get('search_text'),
+        "origin_website": data.get('origin_website'),
+        "search_type": data.get('search_type'),
+        "element_type": data.get('element_type'),
+        "sector": data.get('sector'),
+        "special_tags": data.get('special_tags'),
+        'countries': data.get('countries'),
+        "macro_regions": data.get('macro_regions'),
+        "bio_regions": data.get('bio_regions'),
+        "funding_programme": data.get('funding_programme'),
+        "nr_items": data.get('nr_items'),
+    }]]
+    # import pdb; pdb.set_trace()
+
+    return {
+        "blocks": blocks,
+    }
+
 
 def relevant_acecontent_to_block(tile_dm, obj, request):
     data = tile_dm.get()
@@ -183,16 +183,43 @@ def relevant_acecontent_to_block(tile_dm, obj, request):
         "blocks": blocks,
     }
 
+def filter_acecontent_to_block(tile_dm, obj, request):
+    data = tile_dm.get()
+    # import pdb; pdb.set_trace();
+
+    blocks = [[make_uid(), {
+        "@type": "filterAceContent",
+        "title": data.get('title'),
+        # "items": relevant_items(obj, request, tile_dm),
+        "search_text": data.get('search_text'),
+        "origin_website": data.get('origin_website'),
+        "search_type": data.get('search_type'),
+        "element_type": data.get('element_type'),
+        "sector": data.get('sector'),
+        "special_tags": data.get('special_tags'),
+        'countries': data.get('countries'),
+        "macro_regions": data.get('macro_regions'),
+        "bio_regions": data.get('bio_regions'),
+        "funding_programme": data.get('funding_programme'),
+        "nr_items": data.get('nr_items'),
+        "show_share_btn": data.get('show_share_btn'),
+        "sortBy": data.get('sortBy'),
+        "combine_results": data.get('combine_results'),
+    }]]
+
+    return {
+        "blocks": blocks,
+    }
+
 
 tile_converters = {
     IRichTextTile: richtext_tile_to_blocks,
     IRichTextWithTitle: richtext_tile_to_blocks,
     ISearchAceContentTile: search_acecontent_to_block,
     IRelevantAceContentItemsTile: relevant_acecontent_to_block,
+    IFilterAceContentItemsTile: filter_acecontent_to_block,
     IShareInfoTile: share_info_tile_to_block,
     IEmbedTile: embed_tile_to_block,
-
-
 }
 
 
