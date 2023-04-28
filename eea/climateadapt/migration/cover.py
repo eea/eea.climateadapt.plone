@@ -80,57 +80,23 @@ def embed_tile_to_block(tile_dm, obj, request):
         preview_image = video.attrs.get('poster', None)
         video_description = soup.get_text().replace('\n', '')
 
-        video_title = {
-            "@type": "slate",
-            "plaintext": video_description,
-            "value": [
-                {
-                    "children": [
-                        {
-                            "text": video_description,
-                        }
-                    ],
-                    "type": "h3"
-                }
-            ]
-        }
-
-        video_caption = {
-            "@type": "slate",
-            "plaintext": video_description,
-            "value": [
-                {
-                    "children": [
-                        {
-                            "text": video_description,
-                        }
-                    ],
-                    "type": "p"
-                },
-            ]
-        }
-
         video_block = {
             # "@type": "video", -not working for cmshare.eea.europa.eu
             "@type": "nextCloudVideo",
             "url": url,
+            "title": video_description,
         }
 
         if preview_image is not None:
             video_block['preview_image'] = preview_image
 
-        blocks = []
-        if len(video_description) > 1:
-            blocks.append([make_uid(), video_title])
-        blocks.append([make_uid(), video_block])
-        if len(video_description) > 1:
-            blocks.append([make_uid(), video_caption])
         return {
-            "blocks": blocks
+            "blocks": [[make_uid(), video_block]]
         }
 
     print("Implement missing embed tile type.")
     return None
+
 
 def search_acecontent_to_block(tile_dm, obj, request):
     data = tile_dm.get()
@@ -183,6 +149,7 @@ def relevant_acecontent_to_block(tile_dm, obj, request):
     return {
         "blocks": blocks,
     }
+
 
 def filter_acecontent_to_block(tile_dm, obj, request):
     data = tile_dm.get()
