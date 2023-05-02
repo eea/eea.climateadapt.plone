@@ -8,6 +8,7 @@ from eea.climateadapt.tiles.richtext import IRichTextWithTitle
 from eea.climateadapt.tiles.search_acecontent import ISearchAceContentTile, IRelevantAceContentItemsTile, IFilterAceContentItemsTile
 from eea.climateadapt.tiles.shareinfo import IShareInfoTile
 from eea.climateadapt.config import DEFAULT_LOCATIONS
+from eea.climateadapt.vocabulary import BIOREGIONS
 from plone.app.contenttypes.interfaces import IFolder
 from plone.tiles.interfaces import ITileDataManager
 from zope.component import adapter
@@ -152,7 +153,12 @@ def relevant_acecontent_to_block(tile_dm, obj, request):
 
 def filter_acecontent_to_block(tile_dm, obj, request):
     data = tile_dm.get()
-    # import pdb; pdb.set_trace();
+    macro_regions = []
+
+    for region_name in data.get('macro_regions'):
+        for k, v in BIOREGIONS.items():
+            if 'TRANS_MACRO' in k and v == region_name:
+                macro_regions.append(k)
 
     blocks = [[make_uid(), {
         "@type": "filterAceContent",
@@ -164,7 +170,7 @@ def filter_acecontent_to_block(tile_dm, obj, request):
         "sector": data.get('sector'),
         "special_tags": data.get('special_tags'),
         'countries': data.get('countries'),
-        "macro_regions": data.get('macro_regions'),
+        "macro_regions": macro_regions,
         "bio_regions": data.get('bio_regions'),
         "funding_programme": data.get('funding_programme'),
         "nr_items": data.get('nr_items'),
