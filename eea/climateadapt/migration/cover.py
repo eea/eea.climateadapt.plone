@@ -153,12 +153,33 @@ def relevant_acecontent_to_block(tile_dm, obj, request):
 
 def filter_acecontent_to_block(tile_dm, obj, request):
     data = tile_dm.get()
-    macro_regions = []
+    macro_regions = data.get('macro_regions')
+    sortBy = None
+    trans_macro_regions = []
+    sortingValues = {
+        'effective': 'EFFECTIVE', 
+        'modified': 'MODIFIED', 
+        'getId': 'NAME'
+    }
+    otherRegions = {
+        'Macaronesia',
+        'Caribbean Area',
+        'Amazonia',
+        'Anatolian',
+        'Indian Ocean Area'
+    }
+    regions = [i for i in macro_regions if i not in otherRegions]
 
-    for region_name in data.get('macro_regions'):
+    for region_name in regions:
+        if 'Other Regions' == region_name:
+            trans_macro_regions.append('Other Regions')
         for k, v in BIOREGIONS.items():
             if 'TRANS_MACRO' in k and v == region_name:
-                macro_regions.append(k)
+                trans_macro_regions.append(k)
+    
+    for k, v in sortingValues.items():
+        if v == data.get('sortBy'):
+            sortBy = k
 
     blocks = [[make_uid(), {
         "@type": "filterAceContent",
@@ -170,11 +191,11 @@ def filter_acecontent_to_block(tile_dm, obj, request):
         "sector": data.get('sector'),
         "special_tags": data.get('special_tags'),
         'countries': data.get('countries'),
-        "macro_regions": macro_regions,
+        "macro_regions": trans_macro_regions,
         "bio_regions": data.get('bio_regions'),
         "funding_programme": data.get('funding_programme'),
         "nr_items": data.get('nr_items'),
-        "sortBy": data.get('sortBy'),
+        "sortBy": sortBy,
     }]]
 
     return {
