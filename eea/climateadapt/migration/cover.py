@@ -94,6 +94,22 @@ def embed_tile_to_block(tile_dm, obj, request):
             "blocks": [[make_uid(), video_block]]
         }
 
+    elif 'discomap' or 'maps.arcgis' in embed:
+        soup = BeautifulSoup(embed, "html.parser")
+        iframe = soup.find("iframe")
+        url = iframe.attrs.get('src')
+
+        maps_block = {
+            "@type": "maps",
+            "align": "full",
+            "dataprotection": {},
+            "height": "100vh",
+            "url": url,
+        }
+
+        return {
+            "blocks": [[make_uid(), maps_block]]
+        }
     print("Implement missing embed tile type.")
     return None
 
@@ -157,8 +173,8 @@ def filter_acecontent_to_block(tile_dm, obj, request):
     sortBy = None
     trans_macro_regions = []
     sortingValues = {
-        'effective': 'EFFECTIVE', 
-        'modified': 'MODIFIED', 
+        'effective': 'EFFECTIVE',
+        'modified': 'MODIFIED',
         'getId': 'NAME'
     }
     otherRegions = {
@@ -176,7 +192,7 @@ def filter_acecontent_to_block(tile_dm, obj, request):
         for k, v in BIOREGIONS.items():
             if 'TRANS_MACRO' in k and v == region_name:
                 trans_macro_regions.append(k)
-    
+
     for k, v in sortingValues.items():
         if v == data.get('sortBy'):
             sortBy = k
