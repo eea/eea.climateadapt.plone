@@ -372,10 +372,12 @@ class MigrateCover(object):
     def make_column_block(self, row):
         attributes = {}
         col_mapping = {
-            9: 'twoThirds',
+            2: 'oneThird',
             3: 'oneThird',
             4: 'oneThird',
             8: 'twoThirds',
+            9: 'twoThirds',
+            10: 'twoThirds',
             12: 'full',
         }
         children = row['children']
