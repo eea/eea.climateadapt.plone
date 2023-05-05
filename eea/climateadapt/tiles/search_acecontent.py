@@ -388,7 +388,7 @@ class AceTileMixin(object):
         return res
 
     def relevant_all_items(self):
-        current_language = get_current_language(self.context, self.request)
+        # current_language = get_current_language(self.context, self.request)
         count = int(self.data.get("nr_items", 5)) or 5
         res = []
 
@@ -403,8 +403,8 @@ class AceTileMixin(object):
 
         for item in self.relevant_items():
             obj = item.getObject()
-            if '/' + current_language + '/' not in item.getURL():
-                item = self.translated_object(item)
+            # if '/' + current_language + '/' not in item.getURL():
+            #     item = self.translated_object(item)
 
             if not item:
                 continue
@@ -414,7 +414,7 @@ class AceTileMixin(object):
             o = Item(
                 item.Title,
                 item.Description,
-                '', #self.get_icons(item),
+                '',
                 st,
                 item.getURL(),
             )
