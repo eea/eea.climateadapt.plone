@@ -454,7 +454,9 @@ class MigrateCover(object):
                     column = self.make_column_block(row)
                     page_blocks.append(column)
                 else:
-                    tiles = columns[0]['children']
+                    tiles = columns[0].get('children', None)
+                    if tiles is None:
+                        continue
                     for tile in tiles:
                         tileid = tile['id']
                         data = self.convert_tile_to_volto_blocklist(tileid)
