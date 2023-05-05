@@ -6,6 +6,7 @@ from collective.cover.tiles.richtext import IRichTextTile
 from eea.climateadapt.migration.interfaces import IMigrateToVolto
 from eea.climateadapt.tiles.richtext import IRichTextWithTitle
 from eea.climateadapt.tiles.search_acecontent import ISearchAceContentTile, IRelevantAceContentItemsTile, IFilterAceContentItemsTile
+from eea.climateadapt.tiles.cardslisting import ICardsTile
 from eea.climateadapt.tiles.shareinfo import IShareInfoTile
 from eea.climateadapt.config import DEFAULT_LOCATIONS
 from eea.climateadapt.vocabulary import BIOREGIONS
@@ -62,6 +63,41 @@ def share_info_tile_to_block(tile_dm, obj, request):
         },
         "text": "Share your information",  # TODO: translation
         "target": "_self",
+    }]]
+
+    return {
+        "blocks": blocks,
+    }
+
+
+def cards_tile_to_block(tile_dm, obj, request):
+    data = tile_dm.get()
+    cards = tile_dm.tile.cards()
+
+    volto_cards = []
+    for card in cards:
+        title = card.title
+        card_obj = card.getObject()
+        html = card_obj.unrestrictedTraverse("card")()
+        img = card_obj.absolute_url() + "/@@images/logo"
+        card_view = card_obj.unrestrictedTraverse("card")
+        website_link = card_view.website_link()
+        organisation_link = card_view.organisation_link()
+        contributions_link = card_view.contributions_link()
+
+        volto_cards.append({
+            'attachedimage': img,
+            'copyright': [],
+            'link': organisation_link,
+            'linkTitle': title,
+        })
+
+    blocks = [[make_uid(), {
+        "@type": "imagecards",
+        "cards": volto_cards,
+        "display": "cards_grid",
+        "gridSize": "four",
+        "image_scale": "large",
     }]]
 
     return {
@@ -227,6 +263,7 @@ tile_converters = {
     IFilterAceContentItemsTile: filter_acecontent_to_block,
     IShareInfoTile: share_info_tile_to_block,
     IEmbedTile: embed_tile_to_block,
+    ICardsTile: cards_tile_to_block,
 }
 
 
