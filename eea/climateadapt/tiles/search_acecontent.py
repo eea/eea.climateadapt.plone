@@ -381,24 +381,15 @@ class AceTileMixin(object):
 
         return result
 
-    # @view.memoize
     def relevant_items(self):
-        count = self.data.get("nr_items", 5) or 5
         query = self.build_query()
         res = self.catalog.searchResults(**query)
 
-        if len(res) < count:
-            self.view_more = False
- 
-        try:
-            items = res[:count] 
-        except TypeError:
-            items = []
-        
-        return items
+        return res
 
     def relevant_all_items(self):
         current_language = get_current_language(self.context, self.request)
+        count = int(self.data.get("nr_items", 5)) or 5
         res = []
 
         combine = self.data.get("combine_results", False)
@@ -429,7 +420,7 @@ class AceTileMixin(object):
             )
             res.append(o)
 
-        return res
+        return res[:count]
 
 
 class SearchAceContentTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMixin):
