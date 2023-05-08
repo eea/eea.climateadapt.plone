@@ -1,3 +1,6 @@
+""" Post-migration "fixers", which are executed after an object has been migrated
+"""
+
 
 def fix_climate_services_toc(context):
     # TODO: make multilingual aware
