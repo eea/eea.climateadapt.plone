@@ -16,7 +16,7 @@ from eea.climateadapt.tiles.shareinfo import IShareInfoTile
 from eea.climateadapt.vocabulary import BIOREGIONS
 from plone.app.contenttypes.interfaces import IFolder
 from plone.tiles.interfaces import ITileDataManager
-from zope.component import adapter
+from zope.component import adapter, getMultiAdapter
 from zope.interface import Interface, implementer
 
 from .fixes import fix_content
@@ -515,7 +515,6 @@ class MigrateCover(object):
         # TODO: ensure there's a page banner block (or title block)
 
         fix_content(self.context)
-        return "ok"
 
         # print(blocks)
         # return json.dumps({"blocks": blocks, "attributes": attributes})
@@ -531,9 +530,14 @@ class MigrateFolder(object):
 
     def __call__(self):
         obj = self.context
-        if "index_html" in obj.contentIds():
-            cover = obj["index_html"]
-            MigrateCover(cover, self.request).__call__()
 
-        # if there's a cover with id index_html, use that as content
-        pass
+        if "index_html" in obj.contentIds():
+            # TODO: test if the cover has been migrated
+            # we could test for blocks + blocks_layout
+            cover = obj["index_html"]
+            migrate = getMultiAdapter((cover, self.request), IMigrateToVolto)
+            migrate()
+
+            self.context.blocks_layout = cover.blocks_layout
+            self.context.blocks = cover.blocks
+            self._p_changed = True
