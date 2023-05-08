@@ -1,24 +1,27 @@
 import json
 from uuid import uuid4
 
+from bs4 import BeautifulSoup
 from collective.cover.interfaces import ICover
+from collective.cover.tiles.embed import IEmbedTile
 from collective.cover.tiles.richtext import IRichTextTile
-from eea.climateadapt.migration.interfaces import IMigrateToVolto
-from eea.climateadapt.tiles.richtext import IRichTextWithTitle
-from eea.climateadapt.tiles.search_acecontent import ISearchAceContentTile, IRelevantAceContentItemsTile, IFilterAceContentItemsTile
-from eea.climateadapt.tiles.cardslisting import ICardsTile
-from eea.climateadapt.tiles.shareinfo import IShareInfoTile
 from eea.climateadapt.config import DEFAULT_LOCATIONS
+from eea.climateadapt.migration.interfaces import IMigrateToVolto
+from eea.climateadapt.tiles.cardslisting import ICardsTile
+from eea.climateadapt.tiles.richtext import IRichTextWithTitle
+from eea.climateadapt.tiles.search_acecontent import (
+    IFilterAceContentItemsTile, IRelevantAceContentItemsTile,
+    ISearchAceContentTile)
+from eea.climateadapt.tiles.shareinfo import IShareInfoTile
 from eea.climateadapt.vocabulary import BIOREGIONS
 from plone.app.contenttypes.interfaces import IFolder
 from plone.tiles.interfaces import ITileDataManager
 from zope.component import adapter
 from zope.interface import Interface, implementer
+
 from .fixes import fix_content
-from .utils import convert_to_blocks
 from .tiles import relevant_items
-from collective.cover.tiles.embed import IEmbedTile
-from bs4 import BeautifulSoup
+from .utils import convert_to_blocks
 
 
 def richtext_tile_to_blocks(tile_dm, obj, request):
