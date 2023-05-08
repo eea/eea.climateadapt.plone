@@ -530,13 +530,15 @@ class MigrateFolder(object):
 
     def __call__(self):
         obj = self.context
+        default_page = obj.getProperty('default_page')
+        if not default_page and "index_html" in obj.contentIds():
+            default_page = 'index_html'
 
-        if "index_html" in obj.contentIds():
-            # TODO: test if the cover has been migrated
-            # we could test for blocks + blocks_layout
-            cover = obj["index_html"]
-            migrate = getMultiAdapter((cover, self.request), IMigrateToVolto)
-            migrate()
+        if default_page:
+            cover = obj.restrictedTraverse(default_page)
+            if not getattr(cover.aq_inner.aq_self, 'blocks'):
+                migrate = getMultiAdapter((cover, self.request), IMigrateToVolto)
+                migrate()
 
             self.context.blocks_layout = cover.blocks_layout
             self.context.blocks = cover.blocks
