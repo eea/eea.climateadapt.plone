@@ -12,6 +12,7 @@ from eea.climateadapt.tiles.richtext import IRichTextWithTitle
 from eea.climateadapt.tiles.search_acecontent import (
     IFilterAceContentItemsTile, IRelevantAceContentItemsTile,
     ISearchAceContentTile)
+from eea.climateadapt.tiles.transregional_select import ITransRegionalSelectTile
 from eea.climateadapt.tiles.shareinfo import IShareInfoTile
 from eea.climateadapt.vocabulary import BIOREGIONS
 from plone.app.contenttypes.interfaces import IFolder
@@ -170,7 +171,6 @@ def search_acecontent_to_block(tile_dm, obj, request):
         "funding_programme": data.get('funding_programme'),
         "nr_items": data.get('nr_items'),
     }]]
-    # import pdb; pdb.set_trace()
 
     return {
         "blocks": blocks,
@@ -256,6 +256,18 @@ def filter_acecontent_to_block(tile_dm, obj, request):
         "blocks": blocks,
     }
 
+def region_select_to_block(tile_dm, obj, request):
+    data = tile_dm.get()
+
+    blocks = [[make_uid(), {
+        "@type": "transRegionSelect",
+        "title": data.get('title'),
+    }]]
+
+    return {
+        "blocks": blocks,
+    }
+
 
 tile_converters = {
     IRichTextTile: richtext_tile_to_blocks,
@@ -264,6 +276,7 @@ tile_converters = {
     IRelevantAceContentItemsTile: relevant_acecontent_to_block,
     IFilterAceContentItemsTile: filter_acecontent_to_block,
     IShareInfoTile: share_info_tile_to_block,
+    ITransRegionalSelectTile: region_select_to_block,
     IEmbedTile: embed_tile_to_block,
     ICardsTile: cards_tile_to_block,
 }
