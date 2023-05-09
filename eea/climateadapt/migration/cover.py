@@ -75,32 +75,31 @@ def share_info_tile_to_block(tile_dm, obj, request):
 
 def cards_tile_to_block(tile_dm, obj, request):
     data = tile_dm.get()
-    cards = tile_dm.tile.cards()
 
-    volto_cards = []
-    for card in cards:
-        title = card.title
-        card_obj = card.getObject()
-        html = card_obj.unrestrictedTraverse("card")()
-        img = card_obj.absolute_url() + "/@@images/logo"
-        card_view = card_obj.unrestrictedTraverse("card")
-        website_link = card_view.website_link()
-        organisation_link = card_view.organisation_link()
-        contributions_link = card_view.contributions_link()
+    if tile_dm.tile.is_empty():
+        return {"blocks": []}
 
-        volto_cards.append({
-            'attachedimage': img,
-            'copyright': [],
-            'link': organisation_link,
-            'linkTitle': title,
-        })
+    collection = tile_dm.tile.get_context()
+    query = collection.query
 
-    blocks = [[make_uid(), {
-        "@type": "imagecards",
-        "cards": volto_cards,
-        "display": "cards_grid",
+    query.append({
+        "i": "path",
+        "o": "plone.app.querystring.operation.string.absolutePath",
+        "v": "/cca/en/metadata/organisations"
+    })
+
+    block_id = make_uid()
+
+    blocks = [[block_id, {
+        "@type": "listing",
+        "block": block_id,
+        "headlineTag": "h2",
         "gridSize": "four",
-        "image_scale": "large",
+        "query": [],
+        "querystring": {
+            "query": query,
+        },
+        "variation": "cardsGallery"
     }]]
 
     return {
