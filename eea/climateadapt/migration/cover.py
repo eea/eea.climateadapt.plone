@@ -258,11 +258,18 @@ def filter_acecontent_to_block(tile_dm, obj, request):
 
 def region_select_to_block(tile_dm, obj, request):
     data = tile_dm.get()
+    block_id = make_uid()
 
-    blocks = [[make_uid(), {
-        "@type": "transRegionSelect",
-        "title": data.get('title'),
-    }]]
+    blocks = [
+        [block_id, {
+            "@type": "image",
+            "url": ""
+        }],
+        [block_id, {
+            "@type": "transRegionSelect",
+            "title": data.get('title'),
+        }]
+    ]
 
     return {
         "blocks": blocks,
