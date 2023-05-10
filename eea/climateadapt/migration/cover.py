@@ -15,6 +15,7 @@ from eea.climateadapt.tiles.search_acecontent import (
 from eea.climateadapt.tiles.transregional_select import ITransRegionalSelectTile
 from eea.climateadapt.tiles.shareinfo import IShareInfoTile
 from eea.climateadapt.vocabulary import BIOREGIONS
+from eea.climateadapt.translation.utils import get_current_language
 from plone.app.contenttypes.interfaces import IFolder
 from plone.tiles.interfaces import ITileDataManager
 from zope.component import adapter, getMultiAdapter
@@ -50,11 +51,12 @@ def richtext_tile_to_blocks(tile_dm, obj, request):
 
 def share_info_tile_to_block(tile_dm, obj, request):
     data = tile_dm.get()
+    current_lang = get_current_language(obj, request)
 
     def link_url():
         type_ = data.get('shareinfo_type')
         location, _t, factory = DEFAULT_LOCATIONS[type_]
-        location = '/en/' + location
+        location = '/' + current_lang + '/' + location
         return "{0}/add?type={1}".format(location, factory)
 
     blocks = [[make_uid(), {
@@ -260,16 +262,10 @@ def region_select_to_block(tile_dm, obj, request):
     data = tile_dm.get()
     block_id = make_uid()
 
-    blocks = [
-        [block_id, {
-            "@type": "image",
-            "url": ""
-        }],
-        [block_id, {
-            "@type": "transRegionSelect",
-            "title": data.get('title'),
-        }]
-    ]
+    blocks = [[block_id, {
+        "@type": "transRegionSelect",
+        "title": data.get('title'),
+    }]]
 
     return {
         "blocks": blocks,
