@@ -144,6 +144,8 @@ class CityProfileFormExtender(FormExtender):
     def update(self):
         try:
             self.move('IGeolocatable.geolocation', after='country')
+            self.remove('IBlocks.blocks')
+            self.remove('IBlocks.blocks_layout')            
             self.remove('city_background_information_about_the_city')
             self.remove('status_of_mayors_adapt_signature')
             self.remove('ICategorization.subjects')

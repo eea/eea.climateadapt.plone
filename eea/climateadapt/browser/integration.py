@@ -17,7 +17,8 @@ from eea.climateadapt.browser.aceitem import (GuidanceDocumentAddForm,
 from eea.climateadapt.browser.aceproject import AceProjectAddForm
 from eea.climateadapt.browser.adaptationoption import AdaptationOptionAddForm
 from eea.climateadapt.browser.casestudy import CaseStudyAddForm
-from eea.climateadapt.browser.custom_form_tabs import EventAddForm
+from eea.climateadapt.browser.event import EventAddForm
+from eea.climateadapt.browser.news_item import NewsItemAddForm
 from eea.climateadapt.browser.mapgraphsdataset import MapsAddForm
 from eea.climateadapt.browser.video import VideoAddForm
 from eea.climateadapt.mayorsadapt.cityprofile import CityProfileAddForm
@@ -98,6 +99,7 @@ forms_dict = {
     'eea.climateadapt.acevideo.Video': VideoAddForm,
     'eea.climateadapt.city_profile.CityProfile': CityProfileAddForm,
     'plone.app.contenttypes.content.Event': EventAddForm,
+    'plone.app.contenttypes.content.NewsItem': NewsItemAddForm,
 }
 
 
@@ -114,7 +116,6 @@ class AddView(DefaultAddView):
     """
 
     def __init__(self, context, request, ti):
-        # import pdb; pdb.set_trace()
         self.context = context
         self.request = request
 

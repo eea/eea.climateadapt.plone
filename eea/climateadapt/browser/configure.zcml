@@ -379,29 +379,21 @@
            .custom_form_tabs.CustomFormTabsEditForm"
       />
 
-  <!-- <browser:page
-      name="add"
-      for="*"
-      class=".custom_form_tabs.AddView"
-      permission="cmf.AddPortalContent"
-      /> -->
-
-<!-- plone.dexterity.interfaces.IDexterityItem -->
-
     <adapter
-        factory=".custom_form_tabs.EventAddExtender"
+        factory=".event.EventAddExtender"
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
         for="*
              plone.restapi.interfaces.IDefaultBrowserLayer
-             .custom_form_tabs.EventAddForm"
+             .event.EventAddForm"
         />
 
-    <!-- <class class=".custom_form_tabs.AddView">
-        <require
-            permission="cmf.AddPortalContent"
-            interface="zope.publisher.interfaces.browser.IBrowserPage"
-            />
-    </class>       -->
+    <adapter
+        factory=".news_item.NewsItemAddExtender"
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="*
+             plone.restapi.interfaces.IDefaultBrowserLayer
+             .news_item.NewsItemAddForm"
+        />
 
     -----[ Case Study Form customizations ]----
 
