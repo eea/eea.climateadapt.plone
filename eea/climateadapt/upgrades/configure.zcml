@@ -3,9 +3,14 @@
            i18n_domain="eea.climateadapt">
 
   <genericsetup:upgradeSteps
-    source="64"
+    source="*"
     destination="65"
     profile="eea.climateadapt:default">
+
+    <genericsetup:upgradeStep title="New indexes and catalog fields"
+      description=""
+      handler=".update.update_to_65" />
+
     <genericsetup:upgradeDepends
       title="Upgrade profile eeaclimate to v65"
       import_profile="eea.climateadapt:eeaclimateadapt_to_65"

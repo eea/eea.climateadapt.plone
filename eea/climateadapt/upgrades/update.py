@@ -7,6 +7,8 @@ from plone.app.textfield.interfaces import ITransformer
 from Products.MimetypesRegistry.mime_types.magic import guessMime
 from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
 
+from plone import api
+
 logger = logging.getLogger('eea.climateadapt.migration')
 default_profile = 'profile-eea.climateadapt:default'
 
@@ -88,7 +90,7 @@ def _fix_covers(self):
     # TODO: rename this function, needs better name
 
     covers = self.portal_catalog.searchResults(
-                          portal_type='collective.cover.content')
+        portal_type='collective.cover.content')
 
     for cover in covers:
         cover = cover.getObject()
@@ -167,7 +169,7 @@ def update_to_22(context):
             else:
                 if "INFRASTRUCTURE" in b.sectors:
                     b.sectors.remove("INFRASTRUCTURE")
-                    b.sectors = sorted(set(b.sectors + \
+                    b.sectors = sorted(set(b.sectors +
                                            ["ENERGY", "TRANSPORT", "BUILDINGS"])
                                        )
                     b.reindexObject()
@@ -201,7 +203,7 @@ def update_to_23(context):
     }
 
     profiles = catalog.searchResults(
-               portal_type="eea.climateadapt.city_profile")
+        portal_type="eea.climateadapt.city_profile")
 
     for b in profiles:
         obj = b.getObject()
@@ -579,17 +581,17 @@ def update_to_39(context):
 
     catalog = portal.get_tool(name='portal_catalog')
     query = {'portal_type': [
-            'eea.climateadapt.aceproject',
-            'eea.climateadapt.adaptationoption',
-            'eea.climateadapt.casestudy',
-            'eea.climateadapt.guidancedocument',
-            'eea.climateadapt.indicator',
-            'eea.climateadapt.informationportal',
-            'eea.climateadapt.mapgraphdataset',
-            'eea.climateadapt.organisation',
-            'eea.climateadapt.publicationreport',
-            'eea.climateadapt.researchproject',
-            'eea.climateadapt.tool']}
+        'eea.climateadapt.aceproject',
+        'eea.climateadapt.adaptationoption',
+        'eea.climateadapt.casestudy',
+        'eea.climateadapt.guidancedocument',
+        'eea.climateadapt.indicator',
+        'eea.climateadapt.informationportal',
+        'eea.climateadapt.mapgraphdataset',
+        'eea.climateadapt.organisation',
+        'eea.climateadapt.publicationreport',
+        'eea.climateadapt.researchproject',
+        'eea.climateadapt.tool']}
 
     brains = catalog.searchResults(**query)
     logger.info('Got %s results.' % len(brains))
@@ -782,3 +784,11 @@ def update_to_57(context):
                     ping_CRSDS(context, options)
                     logger.info("Finished pinging: %s", url)
     logger.info("Finished upgrade 57.")
+
+
+def update_to_65(setup_tool=None):
+    """Run upgrade"""
+    logger.info("Running upgrade (Python): New indexes and catalog fields")
+    setup = api.portal.get_tool("portal_setup")
+    setup.runImportStepFromProfile("eea.climateadapt:default", "catalog")
+    logger.info("Done")
