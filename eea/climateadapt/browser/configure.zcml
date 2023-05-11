@@ -386,10 +386,12 @@
       permission="cmf.AddPortalContent"
       /> -->
 
+<!-- plone.dexterity.interfaces.IDexterityItem -->
+
     <adapter
         factory=".custom_form_tabs.EventAddExtender"
         provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
-        for="plone.dexterity.interfaces.IDexterityItem
+        for="*
              plone.restapi.interfaces.IDefaultBrowserLayer
              .custom_form_tabs.EventAddForm"
         />

@@ -1,10 +1,11 @@
 from plone.dexterity.browser import add
 from plone.dexterity.browser.edit import DefaultEditForm
-from plone.z3cform import layout
 from plone.dexterity.interfaces import IDexterityEditForm
+from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
 from zope.interface import classImplements
-from z3c.form.interfaces import IAddForm
+
+# from z3c.form.interfaces import IAddForm
 
 
 class CustomFormTabsEditForm(DefaultEditForm):
@@ -44,7 +45,6 @@ class EventAddForm(add.DefaultAddForm):
 
 class EventAddExtender(FormExtender):
     def update(self):
-        import pdb; pdb.set_trace()
         self.remove('IBlocks.blocks')
         self.remove('IBlocks.blocks_layout')
         groups = self.form.groups

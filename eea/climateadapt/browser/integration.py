@@ -3,17 +3,11 @@
 
 import inspect
 from types import FunctionType
-from UserDict import UserDict
 
+from Acquisition import Explicit, aq_inner
 from collective.cover.interfaces import ITileEditForm
 from collective.cover.tiles.edit import CustomEditForm as CoverEditForm
 from collective.cover.tiles.edit import CustomTileEdit as CoverTileEdit
-from zope.component import queryUtility
-from zope.interface import implementer
-from zope.interface.common.mapping import IMapping
-from zope.schema.interfaces import IVocabularyFactory
-
-from Acquisition import Explicit, aq_inner
 from eea.climateadapt.browser.aceitem import (GuidanceDocumentAddForm,
                                               IndicatorAddForm,
                                               InformationPortalAddForm,
@@ -35,6 +29,11 @@ from plone.app.widgets.browser import vocabulary as vocab
 from plone.dexterity.browser.add import DefaultAddView
 from plone.namedfile.scaling import ImageScaling
 from plone.tiles.interfaces import ITileDataManager
+from UserDict import UserDict
+from zope.component import queryUtility
+from zope.interface import implementer
+from zope.interface.common.mapping import IMapping
+from zope.schema.interfaces import IVocabularyFactory
 
 
 class VocabularyView(vocab.VocabularyView):
@@ -115,7 +114,7 @@ class AddView(DefaultAddView):
     """
 
     def __init__(self, context, request, ti):
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         self.context = context
         self.request = request
 
