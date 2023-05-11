@@ -48,6 +48,7 @@ class CaseStudyAddForm(DefaultAddForm):
 
 class CaseStudyFormExtender(FormExtender):
     def update(self):
+        import pdb; pdb.set_trace()
         self.move('IGeolocatable.geolocation', after='geochars')
         self.move('description', before='long_description')
         self.move('primary_photo', after='long_description')

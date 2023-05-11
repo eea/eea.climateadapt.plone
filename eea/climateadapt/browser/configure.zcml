@@ -379,6 +379,22 @@
            .custom_form_tabs.CustomFormTabsEditForm"
       />
 
+    <adapter
+        factory=".event.EventAddExtender"
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="*
+             plone.restapi.interfaces.IDefaultBrowserLayer
+             .event.EventAddForm"
+        />
+
+    <adapter
+        factory=".news_item.NewsItemAddExtender"
+        provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+        for="*
+             plone.restapi.interfaces.IDefaultBrowserLayer
+             .news_item.NewsItemAddForm"
+        />
+
     -----[ Case Study Form customizations ]----
 
   <browser:page

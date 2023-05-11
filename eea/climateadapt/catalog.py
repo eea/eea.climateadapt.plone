@@ -174,7 +174,8 @@ def _get_aceitem_description(object):
     portal_transforms = get_tool(name="portal_transforms")
 
     # Output here is a single <p> which contains <br /> for newline
-    data = portal_transforms.convertTo("text/plain", text, mimetype="text/html")
+    data = portal_transforms.convertTo(
+        "text/plain", text, mimetype="text/html")
     text = data.getData().strip()
 
     # the following is a very bad algorithm. Needs to use nltk.tokenize
@@ -266,4 +267,6 @@ def image_field_indexer(obj):
         image_field = "preview_image_link"
     elif getattr(base_obj, "image", False):
         image_field = "image"
+    elif getattr(base_obj, "logo", False):
+        image_field = "logo"
     return image_field

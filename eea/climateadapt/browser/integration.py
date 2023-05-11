@@ -3,17 +3,11 @@
 
 import inspect
 from types import FunctionType
-from UserDict import UserDict
 
+from Acquisition import Explicit, aq_inner
 from collective.cover.interfaces import ITileEditForm
 from collective.cover.tiles.edit import CustomEditForm as CoverEditForm
 from collective.cover.tiles.edit import CustomTileEdit as CoverTileEdit
-from zope.component import queryUtility
-from zope.interface import implementer
-from zope.interface.common.mapping import IMapping
-from zope.schema.interfaces import IVocabularyFactory
-
-from Acquisition import Explicit, aq_inner
 from eea.climateadapt.browser.aceitem import (GuidanceDocumentAddForm,
                                               IndicatorAddForm,
                                               InformationPortalAddForm,
@@ -23,6 +17,8 @@ from eea.climateadapt.browser.aceitem import (GuidanceDocumentAddForm,
 from eea.climateadapt.browser.aceproject import AceProjectAddForm
 from eea.climateadapt.browser.adaptationoption import AdaptationOptionAddForm
 from eea.climateadapt.browser.casestudy import CaseStudyAddForm
+from eea.climateadapt.browser.event import EventAddForm
+from eea.climateadapt.browser.news_item import NewsItemAddForm
 from eea.climateadapt.browser.mapgraphsdataset import MapsAddForm
 from eea.climateadapt.browser.video import VideoAddForm
 from eea.climateadapt.mayorsadapt.cityprofile import CityProfileAddForm
@@ -34,6 +30,11 @@ from plone.app.widgets.browser import vocabulary as vocab
 from plone.dexterity.browser.add import DefaultAddView
 from plone.namedfile.scaling import ImageScaling
 from plone.tiles.interfaces import ITileDataManager
+from UserDict import UserDict
+from zope.component import queryUtility
+from zope.interface import implementer
+from zope.interface.common.mapping import IMapping
+from zope.schema.interfaces import IVocabularyFactory
 
 
 class VocabularyView(vocab.VocabularyView):
@@ -97,6 +98,8 @@ forms_dict = {
     'eea.climateadapt.aceproject.AceProject': AceProjectAddForm,
     'eea.climateadapt.acevideo.Video': VideoAddForm,
     'eea.climateadapt.city_profile.CityProfile': CityProfileAddForm,
+    'plone.app.contenttypes.content.Event': EventAddForm,
+    'plone.app.contenttypes.content.NewsItem': NewsItemAddForm,
 }
 
 
