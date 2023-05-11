@@ -36,5 +36,7 @@ class AceProjectFormExtender(FormExtender):
         self.remove('IOwnership.creators')
         self.remove('IOwnership.contributors')
         self.remove('IOwnership.rights')
+        self.remove('IBlocks.blocks')
+        self.remove('IBlocks.blocks_layout')
         labels = ['label_schema_dates', 'label_schema_ownership']
         self.form.groups = [group for group in self.form.groups if group.label not in labels]

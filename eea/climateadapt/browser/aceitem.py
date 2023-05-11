@@ -298,7 +298,8 @@ class OrganisationFormExtender(FormExtender):
         self.move("organisational_websites", after="include_in_observatory")
         self.move("organisational_key_activities", after="include_in_observatory")
         self.remove("other_contributor")
-
+        self.remove('IBlocks.blocks')
+        self.remove('IBlocks.blocks_layout')
 
 class AceItemFormExtender(FormExtender):
     def update(self):
@@ -312,6 +313,8 @@ class AceItemFormExtender(FormExtender):
         self.remove("IOwnership.creators")
         self.remove("IOwnership.contributors")
         self.remove("IOwnership.rights")
+        self.remove('IBlocks.blocks')
+        self.remove('IBlocks.blocks_layout')
         labels = ["label_schema_ownership"]  # 'label_schema_dates',
         self.form.groups = [
             group for group in self.form.groups if group.label not in labels
@@ -321,6 +324,8 @@ class AceItemFormExtender(FormExtender):
 class IndicatorFormExtender(FormExtender):
     def update(self):
         self.move("publication_date", before="map_graphs")
+        self.remove('IBlocks.blocks')
+        self.remove('IBlocks.blocks_layout')
 
 
 class C3sIndicatorFormExtender(FormExtender):
@@ -328,3 +333,5 @@ class C3sIndicatorFormExtender(FormExtender):
 
     def update(self):
         self.move("IRelatedItems.relatedItems", after="details_app_parameters")
+        self.remove('IBlocks.blocks')
+        self.remove('IBlocks.blocks_layout')

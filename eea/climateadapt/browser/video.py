@@ -1,7 +1,5 @@
 import re
 
-from zope.interface import classImplements
-
 from eea.climateadapt.browser import AceViewApi
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.edit import DefaultEditForm
@@ -9,6 +7,7 @@ from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityEditForm
 from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
+from zope.interface import classImplements
 
 YOUTUBE_RE = r"((?<=(v|V)/)|(?<=be/)|(?<=(\?|\&)v=)|(?<=embed/))([\w-]+)"
 
@@ -82,6 +81,9 @@ class VideoFormExtender(FormExtender):
         self.remove('IOwnership.creators')
         self.remove('IOwnership.contributors')
         self.remove('IOwnership.rights')
+
+        self.remove('IBlocks.blocks')
+        self.remove('IBlocks.blocks_layout')
 
         labels = ['label_schema_dates', 'label_schema_ownership']
         self.form.groups = [
